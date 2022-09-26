@@ -2,85 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 065615EAC91
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 18:32:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CA195EAC9F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 18:34:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbiIZQcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 12:32:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56878 "EHLO
+        id S229551AbiIZQeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 12:34:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbiIZQcM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 12:32:12 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D06441181C0;
-        Mon, 26 Sep 2022 08:21:14 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id n83so8607849oif.11;
-        Mon, 26 Sep 2022 08:21:14 -0700 (PDT)
+        with ESMTP id S229928AbiIZQdg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 12:33:36 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B03F511E0E9
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:21:51 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id b24so7830381ljk.6
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:21:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=rVeM/2z2RL7wShJp3R+AGD2+tohyP4EZGs6J3R3DeLw=;
+        b=Y4CaRVDxS8Y3JvTSmgkn8fJ/38atNIuEOaa8KUbLHQLKo0H4O8yL5pwp4n0vvNGAr5
+         D0oZvX8o4dkGAgFUbQX7tJoY4c7Siwtk1eTBlaxrN2K7um9JpHKr18FwECQal7HSvCOE
+         iz7PTEH0s1Khu18OkQPj8FQSkwtLf5AYaPU6aTMWgY1cCpcsKGf6AK+2mB38X5BCtva5
+         JTPG/bmgzpyZvmJnSIbdVZ1Bq5UsWxbYKqmeTL9Lyna9Fmxt/vlGjjYmSIH35yR/XJbP
+         6kGcNnjn01ku95H5z642Hm2BctzKIAhBXU/Krx3u7OYYzZ2pamoaHrQox2bCm6s2l1u0
+         2Rfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=34Dly/59vA9BGCyZSvsKIj3l9vOYmCctczWHkPWb3MA=;
-        b=f6lbFYze4rqOtYmbcKN2VXG772ZJULviBTUDolnKHOBNqnW+xzTssMxXzAkyOzfFcC
-         i56AX2pcYC8ogpaQZPOnFZrHPACXf26U8CSwt26JscvrKRM4J0jJpex2hj5+IxQp3Gjo
-         St9MCw/Xz3j2daAP7MNDKb09rvZOFmaJ2ZWNy6CGmTU/bS23p12VdPVzswfWC+u/ily1
-         CaFwL2WuWyWVHg4Y1wgUM575WG+PKYsK0bLfdYTER8y5LvnP/4Zf5iliqMjxTNs8oS6f
-         7ux+YT3PpqaVMg5RV+IVmKIn56gQBs9rMYzb9hT7g8s9xnd3dXlH/GkcConscIKTFzG/
-         /ywQ==
-X-Gm-Message-State: ACrzQf2zcnTcMlL7KPMA7xKAZ1qPUCfcbUKCz1GKfxiBcmZ32VqxVPKC
-        7IbxM22cs//6MlzIM6nAwg==
-X-Google-Smtp-Source: AMsMyM6YF0CeTQRnist/vo7AghkCgUaVZvOXdmVq8mR0R6Qzrp/kssnnRIobhGR0NnBE8FYaGWIC+g==
-X-Received: by 2002:aca:b409:0:b0:350:e9a8:15b5 with SMTP id d9-20020acab409000000b00350e9a815b5mr12417878oif.299.1664205630762;
-        Mon, 26 Sep 2022 08:20:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z10-20020a9d65ca000000b00636d0984f5asm7992690oth.11.2022.09.26.08.20.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Sep 2022 08:20:30 -0700 (PDT)
-Received: (nullmailer pid 1982209 invoked by uid 1000);
-        Mon, 26 Sep 2022 15:20:29 -0000
-Date:   Mon, 26 Sep 2022 10:20:29 -0500
-From:   robh@kernel.org
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Luca Weiss <luca@z3ntu.xyz>
-Subject: Re: [PATCH v4 2/8] dt-bindings: arm: cpus: Add kryo240 compatible
-Message-ID: <20220926152029.GA1981960-robh@kernel.org>
-References: <20220919180618.1840194-1-iskren.chernev@gmail.com>
- <20220919180618.1840194-3-iskren.chernev@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=rVeM/2z2RL7wShJp3R+AGD2+tohyP4EZGs6J3R3DeLw=;
+        b=d8kWckCj8j6KPuS4yvtJ50X1bj7awPNQ/OhhrhNEXpVsObePC2VPOQ2ghEP3qkdZzu
+         rEcSV5zD5WRwqkEw4NYy4QvW/DPgnKLgkAhTIJTisTSU2uTMnYNeJlP6iMN3mK/iha7d
+         OHYbtvrKbRCMk86e2iN5RFqEuOpFE6CUBWP7NDekQrYxIvI4Z60SgTSgd9YQD9JlTzwi
+         XoNJbe5Ityr/UdPCMr5VLpyhDOXIRE50RFq/Qze447FMNk+jInFNCfoTaP+5btQboS0R
+         Sfmhkuc2/sO36WGtpsC6ZIxyEvMBQcouNrxtuDi1w+lYD2gJvzUuPzK5B9s6bF78aSvD
+         TBVQ==
+X-Gm-Message-State: ACrzQf1I/qsZhQeTmR0iaQ+F6MVuDOaXxTZzRnZ5YSaMStBJT1uSRPXn
+        CuHgCKJrWV9Kr9CNPmRi4gooxg==
+X-Google-Smtp-Source: AMsMyM6TnBiGwylYUiIDQx8ZP/84Pe+VKWseD7Y9O/a6KvH0Gmnu7tIsrT/BNEF3Lb841xFelxuHKQ==
+X-Received: by 2002:a05:651c:546:b0:26c:698f:a4a2 with SMTP id q6-20020a05651c054600b0026c698fa4a2mr8536230ljp.161.1664205702839;
+        Mon, 26 Sep 2022 08:21:42 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id k27-20020a2ea27b000000b0026c3e350682sm2412307ljm.14.2022.09.26.08.21.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Sep 2022 08:21:23 -0700 (PDT)
+Message-ID: <47bcc9c0-f5c1-4308-8774-a7cf59ec2b36@linaro.org>
+Date:   Mon, 26 Sep 2022 17:21:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220919180618.1840194-3-iskren.chernev@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH] spi: renesas,sh-msiof: Add r8a779g0 support
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <a840ca8487cfd612fae2b20c98e93ae7c7f50ef4.1664204638.git.geert+renesas@glider.be>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a840ca8487cfd612fae2b20c98e93ae7c7f50ef4.1664204638.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Sep 2022 21:06:12 +0300, Iskren Chernev wrote:
-> Kryo240 is found in SM4250, the slower sibling of the SM6115.
+On 26/09/2022 17:05, Geert Uytterhoeven wrote:
+> Document support for the Clock-Synchronized Serial Interface with FIFO
+> (MSIOF) in the Renesas R-Car V4H (R8A779G0) SoC.
 > 
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  Documentation/devicetree/bindings/arm/cpus.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
-Applied, thanks!
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
