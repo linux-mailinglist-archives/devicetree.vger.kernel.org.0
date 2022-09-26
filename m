@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CA195EAC9F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 18:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0CA85EACA8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 18:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229551AbiIZQeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 12:34:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50900 "EHLO
+        id S229591AbiIZQgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 12:36:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229928AbiIZQdg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 12:33:36 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B03F511E0E9
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:21:51 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id b24so7830381ljk.6
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:21:51 -0700 (PDT)
+        with ESMTP id S229599AbiIZQgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 12:36:17 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FBE8895CE
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:24:17 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id bu25so9519025lfb.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:24:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=rVeM/2z2RL7wShJp3R+AGD2+tohyP4EZGs6J3R3DeLw=;
-        b=Y4CaRVDxS8Y3JvTSmgkn8fJ/38atNIuEOaa8KUbLHQLKo0H4O8yL5pwp4n0vvNGAr5
-         D0oZvX8o4dkGAgFUbQX7tJoY4c7Siwtk1eTBlaxrN2K7um9JpHKr18FwECQal7HSvCOE
-         iz7PTEH0s1Khu18OkQPj8FQSkwtLf5AYaPU6aTMWgY1cCpcsKGf6AK+2mB38X5BCtva5
-         JTPG/bmgzpyZvmJnSIbdVZ1Bq5UsWxbYKqmeTL9Lyna9Fmxt/vlGjjYmSIH35yR/XJbP
-         6kGcNnjn01ku95H5z642Hm2BctzKIAhBXU/Krx3u7OYYzZ2pamoaHrQox2bCm6s2l1u0
-         2Rfg==
+        bh=wEeVxC+Jj0fO1a6xVAekL2QQ4Xd1P/VWGsEdgl2CBdQ=;
+        b=sT8KxkzW2UDi2WXZTEyY2J5g3JflTMOdIbOGrbrbhuuOQGFG/iJVVQhd36nc67SlTB
+         0J/ZzB/2lVb8svWZXzfadHzUb/qzTwNi1l1+zT9SLqy54Tmb/Db8Vr+bP4ABz3nDqetp
+         XDM9Rc/1sxQ32nK/w10QT+KYi25D50qEgMFBZQ2bhlxfxTETfdGmzfvn8kAHNBfC1uat
+         /pY1HxrlRGuQLnlkBe89hYa/4khBneAoPUBDKWU9QSQtfW+BhrIWKKZQcxijQ6dYtaGr
+         8T1mlh0co4QDyz1tkfh9CnLDhz4vdVgPk3E8X/6tSsmozf+pjmv5+vksF/djEGlLoY/P
+         Ht0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=rVeM/2z2RL7wShJp3R+AGD2+tohyP4EZGs6J3R3DeLw=;
-        b=d8kWckCj8j6KPuS4yvtJ50X1bj7awPNQ/OhhrhNEXpVsObePC2VPOQ2ghEP3qkdZzu
-         rEcSV5zD5WRwqkEw4NYy4QvW/DPgnKLgkAhTIJTisTSU2uTMnYNeJlP6iMN3mK/iha7d
-         OHYbtvrKbRCMk86e2iN5RFqEuOpFE6CUBWP7NDekQrYxIvI4Z60SgTSgd9YQD9JlTzwi
-         XoNJbe5Ityr/UdPCMr5VLpyhDOXIRE50RFq/Qze447FMNk+jInFNCfoTaP+5btQboS0R
-         Sfmhkuc2/sO36WGtpsC6ZIxyEvMBQcouNrxtuDi1w+lYD2gJvzUuPzK5B9s6bF78aSvD
-         TBVQ==
-X-Gm-Message-State: ACrzQf1I/qsZhQeTmR0iaQ+F6MVuDOaXxTZzRnZ5YSaMStBJT1uSRPXn
-        CuHgCKJrWV9Kr9CNPmRi4gooxg==
-X-Google-Smtp-Source: AMsMyM6TnBiGwylYUiIDQx8ZP/84Pe+VKWseD7Y9O/a6KvH0Gmnu7tIsrT/BNEF3Lb841xFelxuHKQ==
-X-Received: by 2002:a05:651c:546:b0:26c:698f:a4a2 with SMTP id q6-20020a05651c054600b0026c698fa4a2mr8536230ljp.161.1664205702839;
-        Mon, 26 Sep 2022 08:21:42 -0700 (PDT)
+        bh=wEeVxC+Jj0fO1a6xVAekL2QQ4Xd1P/VWGsEdgl2CBdQ=;
+        b=8J8cu6MZ4q7Sq5irSwxomt3tU7p32NtIEV3hnXEBUhPJob2FC1LAlw+Z6wSZGqm1Mh
+         362IM5BfSPdtlj3ZyXdMlegeqsC7wSHQyhuKwy+fVA8Hd3PenOjDMfAYBD0mePNyFZ2q
+         TV3Be/d53Yjnoj1exibnsEXxRqQnqm3o0W7SBylMpedAltO8n2PNWO8UjBowbxIWN0kw
+         IN5n0fKsmozzvbkT3j3GZ4trp9xPG1N5ffqukPBb8U8U+HemWG2ezbWR/3R5uEDJNAOF
+         WfNLFEbt0vE/JPwZwDcI1ObDXIeh/o9U8VqxnnKtSXdnVi74ws5nQ5+6gutIfs56nmb7
+         EeMQ==
+X-Gm-Message-State: ACrzQf0XX4+htLzmgf2W2URwlecX348dqrUAcueYa1Flle8I+bomtl00
+        1N2igQY6rwm4ZbNQ3Q+muju8Iw==
+X-Google-Smtp-Source: AMsMyM4WNXvwoISkZVoHx5nmnUm0mE6iDaqETAECxbKFeL+Mxzl9IiW2l7q25sX/kIiiPL/cL73ECw==
+X-Received: by 2002:a05:6512:1393:b0:48d:6f0:64c7 with SMTP id p19-20020a056512139300b0048d06f064c7mr8792725lfa.20.1664205799082;
+        Mon, 26 Sep 2022 08:23:19 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id k27-20020a2ea27b000000b0026c3e350682sm2412307ljm.14.2022.09.26.08.21.12
+        by smtp.gmail.com with ESMTPSA id w11-20020a05651c118b00b00261e7e7b698sm2385955ljo.123.2022.09.26.08.23.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 08:21:23 -0700 (PDT)
-Message-ID: <47bcc9c0-f5c1-4308-8774-a7cf59ec2b36@linaro.org>
-Date:   Mon, 26 Sep 2022 17:21:07 +0200
+        Mon, 26 Sep 2022 08:23:08 -0700 (PDT)
+Message-ID: <38a1959d-df60-df44-57ba-3f9012b78360@linaro.org>
+Date:   Mon, 26 Sep 2022 17:22:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH] spi: renesas,sh-msiof: Add r8a779g0 support
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8916: Align dsi phy-names with
+ schema
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Mark Brown <broonie@kernel.org>,
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <a840ca8487cfd612fae2b20c98e93ae7c7f50ef4.1664204638.git.geert+renesas@glider.be>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220925172443.92900-1-luca@z3ntu.xyz>
+ <20220925172443.92900-2-luca@z3ntu.xyz>
+ <205a80be-de12-b610-eef2-e9e42179cf02@linaro.org> <2253302.ElGaqSPkdT@g550jk>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a840ca8487cfd612fae2b20c98e93ae7c7f50ef4.1664204638.git.geert+renesas@glider.be>
+In-Reply-To: <2253302.ElGaqSPkdT@g550jk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,16 +82,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 17:05, Geert Uytterhoeven wrote:
-> Document support for the Clock-Synchronized Serial Interface with FIFO
-> (MSIOF) in the Renesas R-Car V4H (R8A779G0) SoC.
+On 26/09/2022 17:02, Luca Weiss wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
+> On Montag, 26. September 2022 10:53:03 CEST Krzysztof Kozlowski wrote:
+>> On 25/09/2022 19:24, Luca Weiss wrote:
+>>> Use dsi instead of dsi-phy as required by the binding.
+>>>
+>>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+>>> ---
+>>
+>> Already sent:
+>>
+>> https://lore.kernel.org/all/20220924090108.166934-4-dmitry.baryshkov@linaro.
+>> org/
+> 
+> This patch is phy-names property while the other patch is for node name, 
+> unless I'm missing something.
 
+Ah, right. -ETOOMANYPHYs...
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+> 
+> But as Dmitry pointed out, there's a patchset to completely remove the 
+> property which is also totally fine by me.
 Best regards,
 Krzysztof
 
