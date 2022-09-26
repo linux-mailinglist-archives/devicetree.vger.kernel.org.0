@@ -2,86 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EC7F5EB560
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 01:18:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B64FC5EB5A9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 01:23:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbiIZXST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 19:18:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36124 "EHLO
+        id S230381AbiIZXXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 19:23:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbiIZXSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 19:18:17 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C852A723E;
-        Mon, 26 Sep 2022 16:18:14 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id v130so10125765oie.2;
-        Mon, 26 Sep 2022 16:18:14 -0700 (PDT)
+        with ESMTP id S231278AbiIZXXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 19:23:24 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40FEA5D0D0
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 16:21:31 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id s26so7881531pgv.7
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 16:21:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=Vtd4ZxGAnl6/Vc1zcYUrAA8XLjrJ22nEb+ormUd5geU=;
+        b=jTrvz6bF/SB2nxH+poaFA5bWLDSCnsO21WNeMLlw76gVoxaXg7Gq/QZtdWQbRxcIax
+         bLN2vkIPNOA5RNLkDDH31sRCfVZQMIvu+bt7B4k/aBaXiW2+2mtJMPQ2Rqht+u0w+QQ+
+         Rsz8PsUlVS3oHYgW8J0gY85Jij0hPFZ6MRNtdBb4h9iqnsh0pYd/iUeGKdkOQ/SpGFKh
+         eSU+5gCfUuVLXCXLgb7997Vw6hXSsuRgbGdoqFO/oxEUYMmGCpzdlg1uKfdP7+lKDIFV
+         3kRuPIAgpIfJwGlHPdNkekGWNwU6H5s6jrve4RGVMEwZXdrxwEF+WGp6sjlO46h2ROqD
+         qaCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=/VPqA+Ek8QtP5pfgu0YyQnv/XSoVrA0G4H3niIHpRLw=;
-        b=fPOEQI6lVhMfnSAXMPAqIav7phCwWxCC9k820xH18nQemEAgB4Fczkn4zifSps1TJ9
-         mOPTpct19xBWJzE6lxphvWNZLiptaC3Nqa9kTRQW3E1nGHrKi1a4hTP0Tsm1hBu/Klz1
-         ztIzrPHvhDLqolaOBm/S7veZcv7S4NOgpPIO4IzYoQUOWJOxfFZTyB0YM1WpmTg8uQLs
-         fhXW66z0Mu62S5nr0AnqpnxjlfLmKhZA1foFV/z0ZmTAnhkEOCGYHd/z7FEJdjazyVob
-         msLFQtxprJefZ+lDdpnUl/0HUUVpALh84YS34LSnJWSVTa+1QO3uiiPpHtJ9Ztqf058r
-         dqCg==
-X-Gm-Message-State: ACrzQf2n6N2biXiWhnoDkEPSxU8+ry6FUmLH3qtAc0C0ooywBjkeUPUf
-        oIHlkSFB5wWAG+aApKUDP67rAATqgA==
-X-Google-Smtp-Source: AMsMyM7gXM9sEcSlW/jlbRbRX1jbCgTiZp1J8NlO3IV8x9BQR2Y84Aa7gOjkqLc+YV+CpPU5wjUD2g==
-X-Received: by 2002:a05:6808:118e:b0:345:9c3e:121d with SMTP id j14-20020a056808118e00b003459c3e121dmr541410oil.211.1664234293408;
-        Mon, 26 Sep 2022 16:18:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 7-20020a9d0c07000000b00655c6b2655esm8247356otr.68.2022.09.26.16.18.12
+        bh=Vtd4ZxGAnl6/Vc1zcYUrAA8XLjrJ22nEb+ormUd5geU=;
+        b=RWxVapSlENoVtUOJ/W3KLEEQ1WAjnpDFSFDMJNtbcUwm9OPwGZa6TQ9udikTT6n69e
+         QSw3HGVosxDjPNay1anZC/ZeHqjzQdHQfs8s1i6CmXJTqkprTTdbDyO/ZY88PVoosHzb
+         miCYwjCN0L1LAy+QXTF/CYGottNSOs9Wi7JCw+XcuZ+clWLxBCCx8/0BG0AgcS93eGKI
+         6aXTHVKPtzW3p7fn59+04cYJaq5QysLGRKtl2d+5rsNloaa10ni69KkVT+CqiYMoSJJk
+         PxSiI4pdufMKQt91NJYTqQEiIw/ddZPIjkOSJedh4USDYU7SsaZ8sTL6HxLWUfdGIY/e
+         zAXg==
+X-Gm-Message-State: ACrzQf0uOYt5uAFkVd68GKwKqfMLon6WDA6uMd+YHx5PGFL26aDQVddL
+        lJOCz3VDVQxUDJCxA2fVh4+/rQ==
+X-Google-Smtp-Source: AMsMyM7uEKP/X9XnTuCliOHf/St+XChdIOBlG6o90bLgoFJ1qlMKifAyIXQz5ljUxD640uqP+my/dQ==
+X-Received: by 2002:a05:6a00:1346:b0:546:ff1e:26ae with SMTP id k6-20020a056a00134600b00546ff1e26aemr26387773pfu.45.1664234490690;
+        Mon, 26 Sep 2022 16:21:30 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id bg8-20020a056a02010800b004348bd693a8sm14706pgb.31.2022.09.26.16.21.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Sep 2022 16:18:13 -0700 (PDT)
-Received: (nullmailer pid 3156327 invoked by uid 1000);
-        Mon, 26 Sep 2022 23:18:12 -0000
-Date:   Mon, 26 Sep 2022 18:18:12 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        dri-devel@lists.freedesktop.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andy Gross <agross@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display/msm: Add QCM2290 DSI phy
-Message-ID: <20220926231812.GA3156261-robh@kernel.org>
-References: <20220924121900.222711-1-dmitry.baryshkov@linaro.org>
- <20220924121900.222711-2-dmitry.baryshkov@linaro.org>
+        Mon, 26 Sep 2022 16:21:29 -0700 (PDT)
+Date:   Mon, 26 Sep 2022 17:21:27 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     bjorn.andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V5 3/6] remoteproc: imx_rproc: support attaching to
+ i.MX8QXP M4
+Message-ID: <20220926232127.GB2817947@p14s>
+References: <20220824011023.1493050-1-peng.fan@oss.nxp.com>
+ <20220824011023.1493050-4-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220924121900.222711-2-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220824011023.1493050-4-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 24 Sep 2022 15:18:59 +0300, Dmitry Baryshkov wrote:
-> From: Loic Poulain <loic.poulain@linaro.org>
+On Wed, Aug 24, 2022 at 09:10:20AM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> QCM2290 platform uses the 14nm DSI PHY driver.
+> When M4 is kicked by SCFW, M4 runs in its own hardware partition, Linux
+> could only do IPC with M4, it could not start, stop, update image.
 > 
-> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> We disable recovery reboot when M4 is managed by SCFW, because
+> remoteproc core still not support M4 auto-recovery without loading
+> image.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/remoteproc/imx_rproc.c | 108 ++++++++++++++++++++++++++++++++-
+>  1 file changed, 107 insertions(+), 1 deletion(-)
 > 
+> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+> index 7cc4fd207e2d..bcba74e90020 100644
+> --- a/drivers/remoteproc/imx_rproc.c
+> +++ b/drivers/remoteproc/imx_rproc.c
+> @@ -6,6 +6,7 @@
+>  #include <linux/arm-smccc.h>
+>  #include <linux/clk.h>
+>  #include <linux/err.h>
+> +#include <linux/firmware/imx/sci.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/kernel.h>
+>  #include <linux/mailbox_client.h>
+> @@ -59,6 +60,8 @@
+>  #define IMX_SIP_RPROC_STARTED		0x01
+>  #define IMX_SIP_RPROC_STOP		0x02
+>  
+> +#define IMX_SC_IRQ_GROUP_REBOOTED	5
+> +
+>  /**
+>   * struct imx_rproc_mem - slim internal memory structure
+>   * @cpu_addr: MPU virtual address of the memory region
+> @@ -89,6 +92,10 @@ struct imx_rproc {
+>  	struct work_struct		rproc_work;
+>  	struct workqueue_struct		*workqueue;
+>  	void __iomem			*rsc_table;
+> +	struct imx_sc_ipc		*ipc_handle;
+> +	struct notifier_block		rproc_nb;
+> +	u32				rproc_pt;	/* partition id */
+> +	u32				rsrc_id;	/* resource id */
+>  };
+>  
+>  static const struct imx_rproc_att imx_rproc_att_imx93[] = {
+> @@ -117,6 +124,18 @@ static const struct imx_rproc_att imx_rproc_att_imx93[] = {
+>  	{ 0xD0000000, 0xa0000000, 0x10000000, 0 },
+>  };
+>  
+> +static const struct imx_rproc_att imx_rproc_att_imx8qxp[] = {
+> +	{ 0x08000000, 0x08000000, 0x10000000, 0 },
+> +	/* TCML/U */
+> +	{ 0x1FFE0000, 0x34FE0000, 0x00040000, ATT_OWN | ATT_IOMEM },
+> +	/* OCRAM(Low 96KB) */
+> +	{ 0x21000000, 0x00100000, 0x00018000, 0 },
+> +	/* OCRAM */
+> +	{ 0x21100000, 0x00100000, 0x00040000, 0 },
+> +	/* DDR (Data) */
+> +	{ 0x80000000, 0x80000000, 0x60000000, 0 },
+> +};
+> +
+>  static const struct imx_rproc_att imx_rproc_att_imx8mn[] = {
+>  	/* dev addr , sys addr  , size	    , flags */
+>  	/* ITCM   */
+> @@ -255,6 +274,12 @@ static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mq = {
+>  	.method		= IMX_RPROC_MMIO,
+>  };
+>  
+> +static const struct imx_rproc_dcfg imx_rproc_cfg_imx8qxp = {
+> +	.att		= imx_rproc_att_imx8qxp,
+> +	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8qxp),
+> +	.method		= IMX_RPROC_SCU_API,
+> +};
+> +
+>  static const struct imx_rproc_dcfg imx_rproc_cfg_imx8ulp = {
+>  	.att		= imx_rproc_att_imx8ulp,
+>  	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8ulp),
+> @@ -680,6 +705,37 @@ static void imx_rproc_free_mbox(struct rproc *rproc)
+>  	mbox_free_channel(priv->rx_ch);
+>  }
+>  
+> +static void imx_rproc_put_scu(struct rproc *rproc)
+> +{
+> +	struct imx_rproc *priv = rproc->priv;
+> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
+> +
+> +	if (dcfg->method != IMX_RPROC_SCU_API)
+> +		return;
+> +
+> +	if (!imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id))
+> +		return;
+> +
+> +	imx_scu_irq_group_enable(IMX_SC_IRQ_GROUP_REBOOTED, BIT(priv->rproc_pt), false);
+> +	imx_scu_irq_unregister_notifier(&priv->rproc_nb);
+> +}
+> +
+> +static int imx_rproc_partition_notify(struct notifier_block *nb,
+> +				      unsigned long event, void *group)
+> +{
+> +	struct imx_rproc *priv = container_of(nb, struct imx_rproc, rproc_nb);
+> +
+> +	/* Ignore other irqs */
+> +	if (!((event & BIT(priv->rproc_pt)) && (*(u8 *)group == IMX_SC_IRQ_GROUP_REBOOTED)))
+> +		return 0;
+> +
+> +	rproc_report_crash(priv->rproc, RPROC_WATCHDOG);
+> +
+> +	pr_info("Partition%d reset!\n", priv->rproc_pt);
+> +
+> +	return 0;
+> +}
+> +
+>  static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  {
+>  	struct regmap_config config = { .name = "imx-rproc" };
+> @@ -689,6 +745,7 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  	struct arm_smccc_res res;
+>  	int ret;
+>  	u32 val;
+> +	u8 pt;
+>  
+>  	switch (dcfg->method) {
+>  	case IMX_RPROC_NONE:
+> @@ -699,6 +756,51 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  		if (res.a0)
+>  			priv->rproc->state = RPROC_DETACHED;
+>  		return 0;
+> +	case IMX_RPROC_SCU_API:
+> +		ret = imx_scu_get_handle(&priv->ipc_handle);
+> +		if (ret)
+> +			return ret;
+> +		ret = of_property_read_u32(dev->of_node, "fsl,resource-id", &priv->rsrc_id);
+> +		if (ret) {
+> +			dev_err(dev, "No fsl,resource-id property\n");
+> +			return ret;
+> +		}
+> +
+> +		/*
+> +		 * If Mcore resource is not owned by Acore partition, It is kicked by ROM,
+> +		 * and Linux could only do IPC with Mcore and nothing else.
+> +		 */
+> +		if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id))
+> +			return 0;
 
-Acked-by: Rob Herring <robh@kernel.org>
+If imx_sc_rm_is_resource_owned() return '1' than the remote processor is under
+Linux's control and what follows below is not needed.  That is also coherent
+with the comment in [1].
+
+That is in contrast with what is happening in imx_rproc_put_scu().  There, if
+the remote processor is _not_ owned by Linux than the condition returns without
+calling imx_scu_irq_group_enable() and imx_scu_irq_unregister_notifier().  That
+seems to be a bug. 
+
+There is also a problem in patch 4/6 associated to that.
+
+Thanks,
+Mathieu
+
+
+[1]. https://elixir.bootlin.com/linux/v6.0-rc7/source/drivers/firmware/imx/rm.c#L24
+
+> +
+> +		priv->rproc->state = RPROC_DETACHED;
+> +		priv->rproc->recovery_disabled = true;
+> +
+> +		/* Get partition id and enable irq in SCFW */
+> +		ret = imx_sc_rm_get_resource_owner(priv->ipc_handle, priv->rsrc_id, &pt);
+> +		if (ret) {
+> +			dev_err(dev, "not able to get resource owner\n");
+> +			return ret;
+> +		}
+> +
+> +		priv->rproc_pt = pt;
+> +		priv->rproc_nb.notifier_call = imx_rproc_partition_notify;
+> +
+> +		ret = imx_scu_irq_register_notifier(&priv->rproc_nb);
+> +		if (ret) {
+> +			dev_warn(dev, "register scu notifier failed.\n");
+> +			return ret;
+> +		}
+> +
+> +		ret = imx_scu_irq_group_enable(IMX_SC_IRQ_GROUP_REBOOTED, BIT(priv->rproc_pt),
+> +					       true);
+> +		if (ret) {
+> +			imx_scu_irq_unregister_notifier(&priv->rproc_nb);
+> +			dev_warn(dev, "Enable irq failed.\n");
+> +			return ret;
+> +		}
+> +
+> +		return 0;
+>  	default:
+>  		break;
+>  	}
+> @@ -803,7 +905,7 @@ static int imx_rproc_probe(struct platform_device *pdev)
+>  
+>  	ret = imx_rproc_clk_enable(priv);
+>  	if (ret)
+> -		goto err_put_mbox;
+> +		goto err_put_scu;
+>  
+>  	INIT_WORK(&priv->rproc_work, imx_rproc_vq_work);
+>  
+> @@ -820,6 +922,8 @@ static int imx_rproc_probe(struct platform_device *pdev)
+>  
+>  err_put_clk:
+>  	clk_disable_unprepare(priv->clk);
+> +err_put_scu:
+> +	imx_rproc_put_scu(rproc);
+>  err_put_mbox:
+>  	imx_rproc_free_mbox(rproc);
+>  err_put_wkq:
+> @@ -837,6 +941,7 @@ static int imx_rproc_remove(struct platform_device *pdev)
+>  
+>  	clk_disable_unprepare(priv->clk);
+>  	rproc_del(rproc);
+> +	imx_rproc_put_scu(rproc);
+>  	imx_rproc_free_mbox(rproc);
+>  	destroy_workqueue(priv->workqueue);
+>  	rproc_free(rproc);
+> @@ -852,6 +957,7 @@ static const struct of_device_id imx_rproc_of_match[] = {
+>  	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
+>  	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
+>  	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
+> +	{ .compatible = "fsl,imx8qxp-cm4", .data = &imx_rproc_cfg_imx8qxp },
+>  	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
+>  	{ .compatible = "fsl,imx93-cm33", .data = &imx_rproc_cfg_imx93 },
+>  	{},
+> -- 
+> 2.37.1
+> 
