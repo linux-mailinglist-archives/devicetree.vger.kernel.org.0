@@ -2,102 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 292B95E98D1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 07:35:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24A4E5E9904
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 07:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231396AbiIZFfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 01:35:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47846 "EHLO
+        id S233442AbiIZFyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 01:54:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233079AbiIZFfU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 01:35:20 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 855041F2DA
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 22:35:18 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id e18so7486469edj.3
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 22:35:18 -0700 (PDT)
+        with ESMTP id S233099AbiIZFyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 01:54:51 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D6C51401A
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 22:54:49 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id a8so9102840lff.13
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 22:54:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=uQm/cyI6O2TECbE+cPd+sUKnp2FCGlHvQ4HWSuz+uSg=;
-        b=bvj4BJCXhuoY+XVd7CpW0wyJbpTiRkIRiYp5uuTDkAbcaXZe8AzQT/VxPZLxL3Yorg
-         xdtZuFe7/VqVVkB3XXhYGSa3RMXjHjZTOhD8G2nHvEN2zaQOYaHrsWWh0Jv3hyyoD3x2
-         E0Wcv+6JZdSQryG4iCkzVhAd3XiX3pnqGTDQA=
+        d=nabam-net.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=X+VWAsBrIwEfcisjAcclNatXU+W7hYzJIi619hVAYo4=;
+        b=5eAEQIvfh6PgVVrKOQDhrOJzQOEWut30eS5UsyvaikF2HxXHMsve8fRLWEzXxS8ZCB
+         wV1NrRt4+sTr+4V+mDcRMM3n9AWCwUMqjFzsyyUPauf7r5ZaFkm4XATT+pJNop4OrNN6
+         uAIUn1YfQjrG6guqfvBum2afvAxRSzMEKDCot/RKIZFPgJ0t+u0NgpOri+zbAyemAEr5
+         bd9eV2SnBaDQF7s9Jv6SFNpSS5B+BVvG5N/9zmlQjE0sjsXMuQIc8duf2j854dnAakAI
+         ZlI+x8N3CskA2+K3A67MOgsjU/xAthaRbFL8eWqY4oLqvGdBMC24IS+/6oydquK57vRn
+         00BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=uQm/cyI6O2TECbE+cPd+sUKnp2FCGlHvQ4HWSuz+uSg=;
-        b=sWCCLjls/EdkIWjs6PRpBTNYOIyI3mB9Gbq/57cwfUCubXpXiyGhikGFoN5+OlrtaV
-         IwhBIc8deTJ2eSQpzfiwRwhSo8X/QrEVSMY7r6lsIxxX2bfmItlN/771sqJT95kAsu7T
-         YxniUQ7a6tfjEHzK4GYB6Z3bDSE2ggvy2/pxjEg3N4qbodAkFdPBy5Fef7zUHG9SwSyb
-         7IBZ8X4tBrEWCQ9PJb5vvfVoJB94V6yLpg5Hxv5sLRptr2vCyvHb/nfWkcBn6LVdpJXd
-         1e88EcWD4Drn8wQjynTFmnD54wlK1yd4IDu1ZBd63g9L/syEhRNncz5J/+4+xCk0pOXE
-         jE2g==
-X-Gm-Message-State: ACrzQf25wXVW3HlRVpGLCPdqfdeifKsPtVcTIPkWZMua4VXo7MF9jbLy
-        N915+drCzdiuH8OzyrKccTNCC0c82A5WGA4UEY9hGg==
-X-Google-Smtp-Source: AMsMyM5sOF/np8p+lz3ZmwY9NsZIytiFDwGMSg6JHrTesURDkV9WMexbAV6SKC66ej7VC+axAK4njLND0s0MeZqSPD4=
-X-Received: by 2002:a05:6402:280f:b0:44e:ee5c:da6b with SMTP id
- h15-20020a056402280f00b0044eee5cda6bmr20607304ede.256.1664170517096; Sun, 25
- Sep 2022 22:35:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220919-v1-0-4844816c9808@baylibre.com> <20220919-v1-2-4844816c9808@baylibre.com>
- <CAGXv+5GJrjxG0pEGqseEacz_KFCRhWJSiLoiwuwwUTaSeO0RBg@mail.gmail.com>
-In-Reply-To: <CAGXv+5GJrjxG0pEGqseEacz_KFCRhWJSiLoiwuwwUTaSeO0RBg@mail.gmail.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 26 Sep 2022 13:35:05 +0800
-Message-ID: <CAGXv+5Gw_fKHfhTEAOQi7R_GtD5OSiSTQ5wCvKjEckXBwjLLQA@mail.gmail.com>
-Subject: Re: [PATCH v1 02/17] clk: mediatek: add VDOSYS1 clock
-To:     Guillaume Ranquet <granquet@baylibre.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=X+VWAsBrIwEfcisjAcclNatXU+W7hYzJIi619hVAYo4=;
+        b=4h2OG6WJiV2kx6hYV5LQQEAJmtiVMVes9+IkuJeU/O8mZVw+0Vq0kFrcgLIno1T9DW
+         OuNTL6iRTKG+21kTzlkfGhiWuyn+zv7A9lHHyRR+wD9R6EZw6Jpkp2EPS2iiJEdrabF2
+         19j868OpvTpJw9bTxWcSPxVDY06vNEW5DbqUHDPhfaRubphTeUQ1oGt7d7fXezsSPd3N
+         yQmhJRa1OjBSAiuDnSpjGf4aKhbYjKcQMUI3VzPiitREE4wjywIyE2WuOWUjizFJkzEN
+         Y4qjsj0gO1km7yuCPalI7GIJKgPQTubH4FDLd7nyu7hqxe1vY2+UxEQaJwliktPqr06l
+         jfJA==
+X-Gm-Message-State: ACrzQf0Ysk+IZqnNyBglU1HUwlb+JPy4ogDk6gEgwcNslhiE9eBEVwd1
+        cOVpziyFzmsZjjv4Q8xvkyD8JA==
+X-Google-Smtp-Source: AMsMyM4cZ97MklJ5Y/TZMAOLJPoaymov4ootDnxdWi85A0d8+O+ucKqqpJBuyICClp8AYZbld8h0GA==
+X-Received: by 2002:a05:6512:33c6:b0:497:9df1:a25a with SMTP id d6-20020a05651233c600b004979df1a25amr7613701lfg.562.1664171687262;
+        Sun, 25 Sep 2022 22:54:47 -0700 (PDT)
+Received: from 16-inch.lan (c-7f0d225c.016-470-73746f7.bbcust.telenor.se. [92.34.13.127])
+        by smtp.googlemail.com with ESMTPSA id e27-20020a05651c039b00b0026c5ab1883dsm2271114ljp.16.2022.09.25.22.54.45
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 25 Sep 2022 22:54:46 -0700 (PDT)
+From:   Lev Popov <leo@nabam.net>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Dan Johansen <strit@manjaro.org>, Lev Popov <leo@nabam.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3] arm64: dts: rockchip: fix quartz64-a bluetooth configuration
+Date:   Mon, 26 Sep 2022 07:54:33 +0200
+Message-Id: <20220926055435.31284-1-leo@nabam.net>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <CAMdYzYpdhJ-wWN9UAppQvaNqK8Y_RadYv2v67gD5S_u=1ZXw0Q@mail.gmail.com>
+References: <CAMdYzYpdhJ-wWN9UAppQvaNqK8Y_RadYv2v67gD5S_u=1ZXw0Q@mail.gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 1:09 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
->
-> On Tue, Sep 20, 2022 at 12:59 AM Guillaume Ranquet
-> <granquet@baylibre.com> wrote:
-> >
-> > From: Pablo Sun <pablo.sun@mediatek.com>
-> >
-> > Add the clock gate definition for the DPI1 hardware
-> > in VDOSYS1.
-> >
-> > The parent clock "hdmi_txpll" is already defined in
-> > `mt8195.dtsi`.
-> >
-> > Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+For "Quartz64 Model A" add missing RTS line to the UART interface used by
+bluetooth and swap bluetooth host-wakeup and device-wakeup gpio pins to
+match the boards physical layout. This changes are necessary to make
+bluetooth provided by the wireless module work.
 
-I've queued patches 1 & 2 up here [1] and will send a pull request to
-the clock maintainer later this week.
+Fixes: b33a22a1e7c4248608e533fc4fa524258b3fae84 (arm64: dts: rockchip: add basic dts for Pine64 Quartz64-A)
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/wens/linux.git/log/?h=clk-mtk-for-6.1
+Signed-off-by: Lev Popov <leo@nabam.net>
+---
+ arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+index a05460b92415..91908081c5ed 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+@@ -740,7 +740,7 @@ &uart0 {
+ 
+ &uart1 {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn>;
++	pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn &uart1m0_rtsn>;
+ 	status = "okay";
+ 	uart-has-rtscts;
+ 
+@@ -748,8 +748,8 @@ bluetooth {
+ 		compatible = "brcm,bcm43438-bt";
+ 		clocks = <&rk817 1>;
+ 		clock-names = "lpo";
+-		device-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
+-		host-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
++		host-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
++		device-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
+ 		shutdown-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
+-- 
+2.37.3
+
