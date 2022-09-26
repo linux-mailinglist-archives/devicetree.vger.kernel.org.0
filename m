@@ -2,55 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C9AF5E9B44
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 09:55:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F5835E9B69
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:01:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234244AbiIZHzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 03:55:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59666 "EHLO
+        id S234246AbiIZIAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 04:00:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234779AbiIZHym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 03:54:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16B2D3A152;
-        Mon, 26 Sep 2022 00:50:03 -0700 (PDT)
+        with ESMTP id S234241AbiIZH7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 03:59:48 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFD6AAE47;
+        Mon, 26 Sep 2022 00:57:35 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C6F7E6187F;
-        Mon, 26 Sep 2022 07:48:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 978F3C433D6;
-        Mon, 26 Sep 2022 07:48:55 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 98C59B8191D;
+        Mon, 26 Sep 2022 07:57:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7912C433C1;
+        Mon, 26 Sep 2022 07:57:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664178538;
-        bh=Ls0crOyKk+lkt5TTs2uBxIeihBWmZjPuhe4cTEvU2s8=;
+        s=k20201202; t=1664179053;
+        bh=QTLA3YF9AiEQybUyFdQhFkFoVISeKnQ7EdbSa++0Axs=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EEFaMW2CEFbnuKtlIjOgMxeDsj9tyJuHJZaXMY/oHyOOw1vDBO9xDon1sV7Bcv6yp
-         Cf/J5L/E8oxCvjn+C3Ptog6MkUAxyq33d95WzV0Zhm+xDLlW74loKvJrlNI5Ezewut
-         u+K9x+IpZVsl9/RhCopjzTHMFrqMAur5ojhymucQmWb0Lgb1+nfvXduEjlXGHwTzIi
-         AzXkxrCHpRdUTb/XmOxI/JVtrwEwVXE0fG5UrUDkqjyzMND5e2xd7mbHHXHLiw3t1W
-         voh4mA8XMMKaLywuwJxgLJPEj8EEfxcy/d8DQoodT5Nm15AinVEOGP0wlsWUZFK4V6
-         tVdZWA+WyCRig==
-Date:   Mon, 26 Sep 2022 08:48:52 +0100
+        b=RRmyuA3Q9PagzbLzSRoZTo+wXGCJ1DiipDin0Wnu1TOstTjft4Rz9a9Iz311J1WLg
+         9H9qaTXpS6vm6pWnDmsLP5r8KtGUcwtNt3OWUKDIPuf1pYLbkV1sc5ZPWLuCSNL3cz
+         y4V43NHxoWikICnqNazKmdHmqAKuPD4bTrvUT7dEqoRXkHD3PSWD+jmRF8FuwgMtP8
+         m7EOSg4h1JoCC8zaAulKtAFiXk+9A1y1fW2QmCHNZQE7F7sKPcUOaVPGWc5MoGRwq7
+         RlB0NWgjx6/o74BtmBTo+lK6MYKOvEPwQqXkiLo3XBaWgbDzQbtu+H8frDkOF0+7lt
+         Lo9giEsSGfGXg==
+Date:   Mon, 26 Sep 2022 08:57:26 +0100
 From:   Lee Jones <lee@kernel.org>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        hsinyi@chromium.org
-Subject: Re: [PATCH 1/5] dt-bindings: mfd: mediatek: Add scpsys compatible
- for mt8186
-Message-ID: <YzFZZErEDZLC9Cuu@google.com>
-References: <20220923131148.6678-1-allen-kh.cheng@mediatek.com>
- <20220923131148.6678-2-allen-kh.cheng@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: mfd: qcom-spmi-pmic: Add pm6125
+ compatible
+Message-ID: <YzFbZkN8gSjJm9nS@google.com>
+References: <20220919204826.215845-1-marijn.suijten@somainline.org>
+ <20220919204826.215845-2-marijn.suijten@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220923131148.6678-2-allen-kh.cheng@mediatek.com>
+In-Reply-To: <20220919204826.215845-2-marijn.suijten@somainline.org>
 X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,16 +65,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Sep 2022, Allen-KH Cheng wrote:
+On Mon, 19 Sep 2022, Marijn Suijten wrote:
 
-> Add a new scpsys compatible for mt8186 SoC.
+> Document support for the pm6125, typically paired with the sm6125 SoC.
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 > ---
->  .../devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml          | 1 +
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 
-Applied, thanks.
+Doesn't apply cleanly.  Please rebase.
+
+> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> index 65cbc6dee545..a6ee8c7f7738 100644
+> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> @@ -35,6 +35,7 @@ properties:
+>        - enum:
+>            - qcom,pm660
+>            - qcom,pm660l
+> +          - qcom,pm6125
+>            - qcom,pm6150
+>            - qcom,pm6150l
+>            - qcom,pm6350
 
 -- 
 Lee Jones [李琼斯]
