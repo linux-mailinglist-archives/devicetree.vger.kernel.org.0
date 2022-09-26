@@ -2,173 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BA8E5E9CA2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:57:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7ACA5E9CB0
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:59:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234104AbiIZI5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 04:57:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50298 "EHLO
+        id S234598AbiIZI7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 04:59:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233361AbiIZI5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:57:32 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9B283CBEB
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:57:30 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id x21so8004082edd.11
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:57:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=q89NyQ9b1PpoKXEkGp2ns+Ib3Shkz3cUPYaSufAXKUc=;
-        b=n/ZXnZb952U5lWurVM94tkGD6ar7Ax0UfVipCAlGLuHtleFEQEIN8GHQ1RxzVtONhj
-         In6/yRm/tdgCGv8hilqP8gcd7Oqi2ZwL3QVpyvlv8kYKqjGjKzLXsy+X0BGAE38HpLbD
-         H/LXzx8uHjOrCBpNJnaINnVOmlDy+OhaZAJgY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=q89NyQ9b1PpoKXEkGp2ns+Ib3Shkz3cUPYaSufAXKUc=;
-        b=3BF2yOovBX7gH749fINQ0RmxKR+mu+xswuVV2RuEaJTH0wWzTt8oIKFVlmW5nO/YBf
-         9Xe73r0+erp1RRKFXzG4cXsqHgalXoW7E7ZLB0vkehS8zQQHMdj7bq4WeHApH351veBQ
-         aWssit7AWVz2qOCSGNIU/zQnA4kD/Klgg0G9AvL5kydOP/li9PzQQL/f6rSp04RaO3ax
-         V9QKc/HoVoVgepQGt9vtgytoG68W6Cb8kikfoQP5MjWFAYRxK/ctRs99XoZJ7H8OYjpa
-         OOSiAmTNW5puCTcIIiKv8Qk3zgjJfUQlnOwIKZezUbQsFOGN5T+FT8r6o8ix7s6AMl3M
-         XSNQ==
-X-Gm-Message-State: ACrzQf0W7IjdbyNa1ZGVFXW+qWH453emFSzPcVEQQjiFSxT/+s58lbWS
-        XaIYHvJP7bvkACwnSCRe5lmKzZwfHlN2JkOD0ZMMmg==
-X-Google-Smtp-Source: AMsMyM7HZwvp/a4tFxiTN7T+gF7HA3kkCdtKrxuJAFXrT6ZiR+YlsGYzpYjFqob4runlnShPtvtGPHUPzlbsMnmQ86Y=
-X-Received: by 2002:a05:6402:90e:b0:443:ec4b:2b03 with SMTP id
- g14-20020a056402090e00b00443ec4b2b03mr20918608edz.71.1664182648982; Mon, 26
- Sep 2022 01:57:28 -0700 (PDT)
+        with ESMTP id S234594AbiIZI7R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:59:17 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA5D3DBE0;
+        Mon, 26 Sep 2022 01:59:15 -0700 (PDT)
+Received: from canpemm500009.china.huawei.com (unknown [172.30.72.55])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Mbc5q017czWhBL;
+        Mon, 26 Sep 2022 16:55:10 +0800 (CST)
+Received: from [10.67.102.169] (10.67.102.169) by
+ canpemm500009.china.huawei.com (7.192.105.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 26 Sep 2022 16:59:13 +0800
+CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        <yangyicong@hisilicon.com>, <wsa@kernel.org>, <robh@kernel.org>
+Subject: Re: [PATCH next v5 1/2] i2c: hisi: Add initial device tree support
+To:     Weilong Chen <chenweilong@huawei.com>, <xuwei5@huawei.com>
+References: <20220920072215.161331-1-chenweilong@huawei.com>
+From:   Yicong Yang <yangyicong@huawei.com>
+Message-ID: <5629396c-a964-c2ba-8f8b-8bb6c4c78939@huawei.com>
+Date:   Mon, 26 Sep 2022 16:59:13 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-References: <20220915072458.18232-1-angelogioacchino.delregno@collabora.com>
- <20220915072458.18232-6-angelogioacchino.delregno@collabora.com>
- <CAGXv+5HxEWPmLLi0zRrJ+T7bVcpoQoFt81+_ciXNDXRrGmfU6w@mail.gmail.com> <9f7d1eda-cdf3-5108-7e9d-a10937fe224e@collabora.com>
-In-Reply-To: <9f7d1eda-cdf3-5108-7e9d-a10937fe224e@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 26 Sep 2022 16:57:17 +0800
-Message-ID: <CAGXv+5HYKjDJALa6MAAE4XzRTMfE_vdEWg6XaWekUq7w8ko3BQ@mail.gmail.com>
-Subject: Re: [PATCH v2 05/10] clk: mediatek: clk-mt8195-mfg: Reparent mfg_bg3d
- and propagate rate changes
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
-        miles.chen@mediatek.com, rex-bc.chen@mediatek.com,
-        nfraprado@collabora.com, chun-jie.chen@mediatek.com,
-        jose.exposito89@gmail.com, drinkcat@chromium.org,
-        weiyi.lu@mediatek.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220920072215.161331-1-chenweilong@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.102.169]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ canpemm500009.china.huawei.com (7.192.105.203)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-6.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 4:36 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 26/09/22 05:27, Chen-Yu Tsai ha scritto:
-> > On Thu, Sep 15, 2022 at 3:25 PM AngeloGioacchino Del Regno
-> > <angelogioacchino.delregno@collabora.com> wrote:
-> >>
-> >> The MFG_BG3D is a gate to enable/disable clock output to the GPU,
-> >> but the actual output is decided by multiple muxes; in particular:
-> >> mfg_ck_fast_ref muxes between "slow" (top_mfg_core_tmp) and
-> >> "fast" (MFGPLL) clock, while top_mfg_core_tmp muxes between the
-> >> 26MHz clock and various system PLLs.
-> >>
-> >> This also implies that "top_mfg_core_tmp" is a parent of the
-> >> "mfg_ck_fast_ref" mux (and not vice-versa), so reparent the
-> >
-> > I don't see where this was the case though? I think what you meant
-> > was that the direct parent for "mfg_bg3d" is "mfg_ck_fast_ref, not
-> > "top_mfg_core_tmp"?
-> >
->
-> MFG_BG3D's direct parent is mfg_ck_fast_ref - yes - but in the commit message
-> I am explaining how the clock tree for MFG_BG3D really is and, in particular,
-> I'm then explaining that:
-> * parenting MFG_BG3D to "top_mfg_core_tmp" is wrong; because
-> * "top_mfg_core_tmp" is a parent of "mfg_ck_fast_ref" (not the other way around).
->
-> So, the question in your comment is addressed just a little later....
->
-> >> MFG_BG3D gate to the latter and add the CLK_SET_RATE_PARENT
->
-> ...here, where I say "reparent MFG_BG3D to the latter", where "the latter" is,
-> exactly "mfg_ck_fast_ref".
->
-> I hope you now understand what I am trying to communicate :-)
->
-> However, if even after that you still think that the commit description should
-> be rewritten in some less tangled and/or more understandable way, I definitely
-> can do that.
->
-> Please confirm :-)
+On 2022/9/20 15:22, Weilong Chen wrote:
+> The HiSilicon I2C controller can be used on embedded platform, which
+> boot from devicetree.
+> 
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+> ---
+> Change since v4:
+> - Remove the protection for the headers for ACPI/OF
+> Link: https://lore.kernel.org/lkml/20220909074842.281232-1-chenweilong@huawei.com/T/
+> 
+>  drivers/i2c/busses/Kconfig    |  2 +-
+>  drivers/i2c/busses/i2c-hisi.c | 15 ++++++++++++++-
+>  2 files changed, 15 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
+> index 0c48d8a9f44a..81f6936c312f 100644
+> --- a/drivers/i2c/busses/Kconfig
+> +++ b/drivers/i2c/busses/Kconfig
+> @@ -673,7 +673,7 @@ config I2C_HIGHLANDER
+>  
+>  config I2C_HISI
+>  	tristate "HiSilicon I2C controller"
+> -	depends on (ARM64 && ACPI) || COMPILE_TEST
+> +	depends on ARM64 || COMPILE_TEST
+>  	help
+>  	  Say Y here if you want to have Hisilicon I2C controller support
+>  	  available on the Kunpeng Server.
+> diff --git a/drivers/i2c/busses/i2c-hisi.c b/drivers/i2c/busses/i2c-hisi.c
+> index 76c3d8f6fc3c..67031024217c 100644
+> --- a/drivers/i2c/busses/i2c-hisi.c
+> +++ b/drivers/i2c/busses/i2c-hisi.c
+> @@ -5,6 +5,7 @@
+>   * Copyright (c) 2021 HiSilicon Technologies Co., Ltd.
+>   */
+>  
+> +#include <linux/acpi.h>
+>  #include <linux/bits.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/completion.h>
+> @@ -13,6 +14,7 @@
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+>  #include <linux/mod_devicetable.h>
+> +#include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/property.h>
+>  #include <linux/units.h>
+> @@ -483,17 +485,28 @@ static int hisi_i2c_probe(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> +#ifdef CONFIG_ACPI
+>  static const struct acpi_device_id hisi_i2c_acpi_ids[] = {
+>  	{ "HISI03D1", 0 },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(acpi, hisi_i2c_acpi_ids);
+> +#endif
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id hisi_i2c_dts_ids[] = {
+> +	{ .compatible = "hisilicon,hisi-i2c", },
 
-I think
+The patch itself looks good to me:
 
-    This also implies that "top_mfg_core_tmp" is a parent of the
-    "mfg_ck_fast_ref" mux (and not vice-versa)
+Acked-by: Yicong Yang <yangyicong@hisilicon.com>
 
-actually confused me.
+It's better to have a tag from xuwei for HiSilicon's DTS stuff.
 
-Maybe just say
+Thanks.
 
-    The clock gate comes after all the muxes, so its parent is
-    mfg_ck_fast_ref, not top_mfg_core_tmp. Reparent mfg_bg3d to
-    the latter to match the hardware ...
-
-Since you are fixing the topology, could you also add a fixes tag?
-
-
-Thanks
-ChenYu
-
-
-> >> flag to it: this way we ensure propagating rate changes that
-> >> are requested on MFG_BG3D along its entire clock tree.
-> >>
-> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> >
-> > Otherwise,
-> >
-> > Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> >
-> >
-> >> ---
-> >>   drivers/clk/mediatek/clk-mt8195-mfg.c | 6 ++++--
-> >>   1 file changed, 4 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/clk/mediatek/clk-mt8195-mfg.c b/drivers/clk/mediatek/clk-mt8195-mfg.c
-> >> index 9411c556a5a9..c94cb71bd9b9 100644
-> >> --- a/drivers/clk/mediatek/clk-mt8195-mfg.c
-> >> +++ b/drivers/clk/mediatek/clk-mt8195-mfg.c
-> >> @@ -17,10 +17,12 @@ static const struct mtk_gate_regs mfg_cg_regs = {
-> >>   };
-> >>
-> >>   #define GATE_MFG(_id, _name, _parent, _shift)                  \
-> >> -       GATE_MTK(_id, _name, _parent, &mfg_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
-> >> +       GATE_MTK_FLAGS(_id, _name, _parent, &mfg_cg_regs,       \
-> >> +                      _shift, &mtk_clk_gate_ops_setclr,        \
-> >> +                      CLK_SET_RATE_PARENT)
-> >>
-> >>   static const struct mtk_gate mfg_clks[] = {
-> >> -       GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "top_mfg_core_tmp", 0),
-> >> +       GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "mfg_ck_fast_ref", 0),
-> >>   };
-> >>
-> >>   static const struct mtk_clk_desc mfg_desc = {
-> >> --
-> >> 2.37.2
-> >>
->
->
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, hisi_i2c_dts_ids);
+> +#endif
+>  
+>  static struct platform_driver hisi_i2c_driver = {
+>  	.probe		= hisi_i2c_probe,
+>  	.driver		= {
+>  		.name	= "hisi-i2c",
+> -		.acpi_match_table = hisi_i2c_acpi_ids,
+> +		.acpi_match_table = ACPI_PTR(hisi_i2c_acpi_ids),
+> +		.of_match_table = of_match_ptr(hisi_i2c_dts_ids),
+>  	},
+>  };
+>  module_platform_driver(hisi_i2c_driver);
+> 
