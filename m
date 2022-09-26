@@ -2,131 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7F1E5EB4EF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 00:59:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03FE85EB4FA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 01:02:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230271AbiIZW75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 18:59:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58326 "EHLO
+        id S229779AbiIZXCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 19:02:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230258AbiIZW74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 18:59:56 -0400
-Received: from alln-iport-6.cisco.com (alln-iport-6.cisco.com [173.37.142.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48CCB6DADA;
-        Mon, 26 Sep 2022 15:59:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=772; q=dns/txt; s=iport;
-  t=1664233195; x=1665442795;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9lF1v7Ra0dl1OC5suIbwGZInJITE1VNb8U5AxddwgW8=;
-  b=a+HdEWKHytySx1AWvjPME0xI81s5VSYKqI19bf0A9/CEbpSqooIYcqyt
-   zWvnT97fWue8uPn2n9D2qb0dssFvYYyb5pIko/mvSv2qtJBpnnwh9wanh
-   FJ/FXiMBt/h/yBomFz3w7Nvo44VVPBtcbSKYYaw37VjLxlruT5VS+prTl
-   s=;
-X-IPAS-Result: =?us-ascii?q?A0AQAAAJLjJjmJldJa1aHAEBAQEBAQcBARIBAQQEAQFAg?=
- =?us-ascii?q?TsHAQELAYMkVT5FjG2GUIIokWiLKoF8CwEBAQ0BATkJBAEBgVODMgKEbAIlN?=
- =?us-ascii?q?AkOAQIEAQEBAQMCAwEBAQEBAQMBAQUBAQECAQcEFAEBAQEBAQEBHRkFEA4nh?=
- =?us-ascii?q?WgNhkMBAgM6PxALGC5XBhOCfQGDIAMQqXh4gTSBAYNQARgYhByBXwYkgRkBk?=
- =?us-ascii?q?CgnHIFJRIQ/PohSgi4EmSU4A0QdQQMLQjUYAxQDBSQHAxkPIw0NBBYHDAMDB?=
- =?us-ascii?q?SUDAgIbBwICAwIGEwUCAk02CAQIBCskDwUCBy8FBC8CHgQFBhEIAhYCBgQEB?=
- =?us-ascii?q?AQVAhAIAggmFwcTMxkBBVkQCSEcDhoNBQYTAyBvBUQPKDFrKx0bCoEMKigVA?=
- =?us-ascii?q?wQEAwIGEwMDIgIQKjEUBCkTEi0HK3MJAgMiZwUDAwQoLAMJIR8HKCY8B1g6A?=
- =?us-ascii?q?QQDAhAiPQYDCQMCJFuBLygFAw0ZJggFIxceBAg8AgUGVxMCChIDEw+YZYILg?=
- =?us-ascii?q?UF7gUKTC4JkjT+BMJ0vg2OBSYlylGJMEahzlwuNPJoEAgQGBQIWgWE6gVszG?=
- =?us-ascii?q?ggbFYMjEj4ZD445iG2FaiQzOQIGCwEBAwmKUAEB?=
-IronPort-Data: A9a23:QOxF9qLwIuFJr1KtFE+RIJIlxSXFcZb7ZxGr2PjKsXjdYENS1GEAn
- WAWUWGEOPbbYGv9LYpyYYjk9UMBuZPRzN5lTAUd+CA2RRqmiyZq6fd1j6vUF3nPRiEWZBs/t
- 63yUvGZcIZsCCW0Si6FatANl1EkvU2zbue6WbWs1hxZH1c+En9w00w7wYbVv6Yx6TSHK1LV0
- T/Ni5W31G+Ng1aY5UpNtspvADs21BjDkGtwUm4WPJinj3eC/5UhN6/zEInqR5fOria4KcbhL
- wrL5OnREmo0ZH7BAPv9+lrwWhVirrI/oWFih1IOM5VOjCSuqQRj9J48G6JAcHwUjm+xvdZ8l
- /NMksGvHFJB0q3kwIzxUjFCGC14eKZB4rKCez60sNeYyAvNdH6EL/dGVR5te9ZHvLcsRzgTr
- pT0KxhVBvyHr+6/xrO2TvZlrs8iN8LseogYvxmMyBmIU618EcmaH/2iCdlw7ilqnMxAHfzlQ
- JQIa2M0MR/kOBNiAwJCYH45tL742iagG9FCk3qRpKwq8y3ewg1ZzrfgKpzWd8aMSMETmVyXz
- krC/mLkElQZPsGezTat7H2hnKnMkDn9VYZUE6e3ntZmjUOSzWEPEhAbfUW0rOP/iUOkXd9bb
- UsO9UIGqak06VzuTdTnWRC8iGCLswRaWNdKFeA+rgaXxcL85wefG3hBRyRELd8rrsk7QRQu1
- 0SVhJXoAzJ1ubGYQH7b8a2bxRuyISE9P34eYjVCRgwAi/HnoYcungrXRZNvHbCditzuBSq2x
- CKOpSIlwbIJgqYj06S94ECChjO0vbDXQQMvoAbaRGSo6kV+foHNT5z4t3DY4OxGIYLfSUOO1
- FANmNCbxOQPC4yd0SKKXeMBFa2o4PDDNyfT6XZ1GJMh3zeg4XiuecZX+j4WDExpKMcfZTjxY
- EKVvQ5L4457N2Cld6hqe8S8FqwC0qnkEfzmW+rSY94IZYJ+HCec8ShoI0eW0233i08quboyM
- pDdesGpZV4WAKJmwT6eSOYYybIvyz4/zmOVXpn9ihq92LyVZWWeTvEOOR2TdYgEALisug7Z9
- ZNUMNGHjk8ZW+zlaS6R+okWRbwXEZQlLcHQk8t4LrKaGUljQlkDDfKO57IGJpMwysy5idz01
- n26X0ZZzn/2invGNRiGZxhfhFXHAMsXQZUTYHFEALq455QwSd31vftALfPbaZFipbI8laQrJ
- xUQU5/YasmjXAgr7Nj0gXPVlo1pdB2xiRmJOUJJixBgIsYwHmQlFjIYFzYDGQEUBSax8MA5u
- bDljEXQQIEIQEJpC8O+hBOTI7GZ4Cl1dAFaBhugzjxvlKPEq9ECx8vZ1aRfHi30AU+frgZ2L
- i7PafvimcHDopUu7P7Cjr2eooGiHoNWRxQEQzOCsu7qbHOHogJPJLOsts7VIlgxs0upqM2fi
- Rl9k5kQzdVexg8R6toge1qV5fJmv7MDWIO2Piw9TCmUMDxH+5trI2KN2oFUp7ZRy7pC0TZaq
- WrRkuS2zY6hYZu/eHZIfVJNRr3ahZk8xGKIhdxrexqS2cOC1OfdOamkF0PS2HU1wXocGN5N/
- NrNT+ZNu1bu0kpzb47c5s2WnkzVRkE9v2wcnslyKOfWZsADkDmuvbS05vfK3ayy
-IronPort-HdrOrdr: A9a23:XuwFpqoWy0RMTz0rP6Os0rEaV5oueYIsimQD101hICG9vPb2qy
- mLpoV/6faUskdyZJhOo7q90cW7LE80sKQFhbX5Xo3SPzUO2lHIEGgK1+KLqAEIWRefygc378
- ldmsZFZOEZyTNB/KDHCM7SKadG/OW6
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="5.93,347,1654560000"; 
-   d="scan'208";a="963281140"
-Received: from rcdn-core-2.cisco.com ([173.37.93.153])
-  by alln-iport-6.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 26 Sep 2022 22:59:48 +0000
-Received: from zorba ([10.25.129.98])
-        by rcdn-core-2.cisco.com (8.15.2/8.15.2) with ESMTPS id 28QMxjxT030040
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Mon, 26 Sep 2022 22:59:46 GMT
-Date:   Mon, 26 Sep 2022 15:59:45 -0700
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>
-Cc:     Sean Anderson <sean.anderson@seco.com>,
-        Will Deacon <will@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Rob Herring <robh@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
-        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-efi@vger.kernel.org
-Subject: Re: [PATCH 0/8] generic command line v4
-Message-ID: <20220926225945.GC4320@zorba>
-References: <20210416040924.2882771-1-danielwa@cisco.com>
- <b517fac5-2fdc-a8c9-75d0-174c67f5a2de@seco.com>
- <20220922205334.GV4320@zorba>
- <dcff9b0f-82c8-5aa7-0fff-b749a05fcb20@seco.com>
- <20220922211026.GW4320@zorba>
- <1663881344.25129.23.camel@chimera>
+        with ESMTP id S229615AbiIZXCl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 19:02:41 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1629A720A;
+        Mon, 26 Sep 2022 16:02:39 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id br15-20020a056830390f00b0061c9d73b8bdso5388421otb.6;
+        Mon, 26 Sep 2022 16:02:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=TmS5+X4pLYVYH89RFG+N2VbfzYq4t5hSiusvv4Jlq5I=;
+        b=QR7l/2MmHkaT0SUzKijCLrD9ngRyW/htGUD1Kg5lZGTZFkYoSP2GA83+nxcHeWgHYF
+         SMVCVsTtqC232kJGq6aAwBzKsUQ6U8UVxs+XpdCtvFF9OQeu1d4szJG5zZtXXDmUlmGv
+         j0vsgqZPU2jZX8wsYbxXDwRsNqH2rK8xodHPS/JKJ2po0FyR2QSM9/t+zfLKHL9h1iQl
+         /8YtD5LEJTE6ZNg/C10o5K2LUAZHKWR+NpuNz06wUemdh2CYLminvddi+U5DQdOdOhXE
+         PKn87KOzC5kAjh1Z4NMSnGFiJ0mLLE7AuSOy9AQHLGvomVfFQlHwp5JOfAGQMNi+F/Ub
+         rBsg==
+X-Gm-Message-State: ACrzQf3BnBFD3cfDz4ay+2uHEvTQwliyuii1GLjamhkeji3kQ5QSPNea
+        vjm/leSDuQrxs5UcV0LkIA==
+X-Google-Smtp-Source: AMsMyM64gmuEGrnM1z+5TQNLgzvx4Cn9fhx9QC2j1LdnTPhHdfqmycio7t54+hj8gvjrM9lGXLXWAg==
+X-Received: by 2002:a05:6830:13d0:b0:655:cad8:e57 with SMTP id e16-20020a05683013d000b00655cad80e57mr11115841otq.156.1664233358887;
+        Mon, 26 Sep 2022 16:02:38 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k67-20020a9d19c9000000b006396521c804sm8382105otk.55.2022.09.26.16.02.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Sep 2022 16:02:38 -0700 (PDT)
+Received: (nullmailer pid 3128731 invoked by uid 1000);
+        Mon, 26 Sep 2022 23:02:37 -0000
+Date:   Mon, 26 Sep 2022 18:02:37 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-pm@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: power: reset: restart-handler: add
+ common schema
+Message-ID: <20220926230237.GA3128685-robh@kernel.org>
+References: <20220923203603.515714-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1663881344.25129.23.camel@chimera>
-X-Outbound-SMTP-Client: 10.25.129.98, [10.25.129.98]
-X-Outbound-Node: rcdn-core-2.cisco.com
-X-Spam-Status: No, score=-12.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220923203603.515714-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 22, 2022 at 02:15:44PM -0700, Daniel Gimpelevich wrote:
-> On Thu, 2022-09-22 at 14:10 -0700, Daniel Walker wrote:
-> > On Thu, Sep 22, 2022 at 05:03:46PM -0400, Sean Anderson wrote:
-> [snip]
-> > > As recently as last month, someone's patch to add such support was
-> > > rejected for this reason [1].
-> > > 
-> > > --Sean
-> > > 
-> > > [1] https://lore.kernel.org/linux-arm-kernel/20220812084613.GA3107@willie-the-truck/
-> > 
-> > 
-> > I had no idea.. Thanks for pointing that out. I guess I will re-submit in that
-> > case.
-> > 
-> > Daniel
+On Fri, 23 Sep 2022 22:36:03 +0200, Krzysztof Kozlowski wrote:
+> Add common schema for restart and shutdown handlers, so they all use
+> same meaning of "priority" field.  The Linux drivers already have this
+> property and some systems want to customize it per-board in DTS.
 > 
-> This has been happening repeatedly since circa 2014, on multiple
-> architectures. It's quite frustrating, really.
- 
- I'm not sure I'm following your comments. What's frustrating exactly ?
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Changes since v1:
+> 1. Use double ':'
+> 
+> v1 was marked as changes-requested in Rob's patchwork, but I think there
+> was not actual consensus on any other changes to make.
+> 
+> v1:
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220907123630.57383-1-krzysztof.kozlowski@linaro.org/
+> 
+> See also:
+> https://lore.kernel.org/all/8fe93da3-f768-16ae-7025-1cfa97a42b27@linaro.org/
+> https://lore.kernel.org/all/20220831081715.14673-1-pali@kernel.org/
+> ---
+>  .../bindings/power/reset/gpio-restart.yaml    | 13 ++------
+>  .../bindings/power/reset/restart-handler.yaml | 30 +++++++++++++++++++
+>  2 files changed, 33 insertions(+), 10 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/power/reset/restart-handler.yaml
+> 
 
-Daniel
+Reviewed-by: Rob Herring <robh@kernel.org>
