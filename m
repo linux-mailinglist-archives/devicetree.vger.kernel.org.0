@@ -2,66 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 044E55EA6C7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 15:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB8555EA6D5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 15:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233468AbiIZNDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 09:03:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45538 "EHLO
+        id S235331AbiIZNGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 09:06:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235074AbiIZNDQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 09:03:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08C0D6D575;
-        Mon, 26 Sep 2022 04:35:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 734EC60B3E;
-        Mon, 26 Sep 2022 11:34:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9D99C433C1;
-        Mon, 26 Sep 2022 11:34:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664192070;
-        bh=82aV2qPqY36TnHAg7AkDtAtRTa2uq3BR98lyZXCd7IU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ThwsgDAcAz6Q90uRwxjGIFNqd8lFoGjUokSe9GNMnw8pALNPfbdtoME9tMsLaFR8/
-         5wPOC5ukpYr8Qe74PnXuA2J4FJC4inrxNKmriM4vW2IAc+9T6xaUHaH0VXIg5Q4B9B
-         N+kDF3ANbInAsqsaD4Nhj/f+9NG/NrC1hQpNq//7uGgzH7UTBsGpimnhP8LGg8JqqF
-         M+NFcyj18h+8ByrpgQ78atj6tAQTYWigRH/WrD6sHYkra2GV39GzSTx7GD9HO0pzJH
-         H15FAJkmUQL2mUW7Z5nT4ayxkqyp5AUJRRhr4/96UYjrZu5IrJZR8LVLZMhsWuIW4Q
-         fJJDxG2I+wyag==
-Date:   Mon, 26 Sep 2022 17:04:22 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [RFC PATCH 0/4] cpufreq: qcom-hw: Move clocks to CPU node
-Message-ID: <20220926113422.GA101994@thinkpad>
-References: <cover.1657695140.git.viresh.kumar@linaro.org>
- <20220715160933.GD12197@workstation>
- <20220718015742.uwskqo55qd67jx2w@vireshk-i7>
- <20220801023756.76jswkbwivuntqof@vireshk-i7>
- <20220830032456.z4olnogsyg32vhiz@builder.lan>
- <20220830054042.akj7pf366inelvpo@vireshk-i7>
- <20220830062050.GA7066@workstation>
- <20220920102803.rqj44xrz2szj3tqi@vireshk-i7>
+        with ESMTP id S235370AbiIZNFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 09:05:50 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BFC26EF0D
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 04:37:12 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id i26so10324403lfp.11
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 04:37:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=Mn7BtO0CrR75wwHD6k8uIcJOsYMT6YL8yxp/m4Q8puQ=;
+        b=wO8YP6TNZZoEtju7Dw0zWf3yBLCurwNYxWl6RG55tJ/VjElqS7W2G2asZzd9Qw9gJS
+         2dakReW3g38wAY8RVcZmxnWEYNfvbjZcgMPfRKLsC2u34r05pATjTUED+wAsYgjhmjVi
+         vMd4Sl70xy158KuXfXLih1p5RctuH/O0pmYf86+H0+Pr8U3p2pzS260jQr9K84v6p2RQ
+         0UvKaxORwyfjIEh/7WacVePt7On5+h5hsrroXSVGxDpY3MI1A82Vu9lrc2YHt6mEUaZN
+         Vfp9g1l0uJVJAInurNFDQ9S8KKc6Icgn/g0biNig1aN4yi+Uslblt2TKvExQAkD5/rcC
+         F/YQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=Mn7BtO0CrR75wwHD6k8uIcJOsYMT6YL8yxp/m4Q8puQ=;
+        b=Fi/G246UKuqPzFCHpBuC+e7XEN8aLNtjgzX31ylpu2NXZYhajmNfydIWUMOJphlukG
+         Vhy8vEMe5fb8CMME7sQRvK9txQy0WxKtZEiCAMCAKAFBJQ1eAEZOzxZcZ3uQ7wk/U1PZ
+         qJYkJ0E5OJQ9YPQmxWV5o5kYFtGCOkt2ADK/p1cDsVK1wzx6nt5eator7AfDbgSKavfi
+         te8sngYHbMVe+QGRsHAZoTATH9o6Nem2bhenO9/U/NThEk4t45LWsNJPsA2N7W8WO6S5
+         v3+nOv5mIX5fC6dVnN49XL+iOrURh90GuedAbh+VHG7qgD9Cn9nDupBpz/P2oear1K0p
+         PwAg==
+X-Gm-Message-State: ACrzQf1/DDbg7VftTYiCWPfm0o0f8ZydOfOYTBKVmiWJHgaJG8v7ge4U
+        f/qnyCJSeJsQ64oZIlRaXuvImxFaxneaQg==
+X-Google-Smtp-Source: AMsMyM7w99Hat5BiH38tnNlm0fceWMlGL7bmPq3hmcHc8k+/5IujyjhiEhQkKzF13BaWnd467/dXLg==
+X-Received: by 2002:ac2:568a:0:b0:49a:1fe:64e2 with SMTP id 10-20020ac2568a000000b0049a01fe64e2mr9240626lfr.156.1664192163103;
+        Mon, 26 Sep 2022 04:36:03 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id bi33-20020a05651c232100b0026beeeafab7sm2353259ljb.94.2022.09.26.04.36.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Sep 2022 04:36:02 -0700 (PDT)
+Message-ID: <816c1431-72cb-b73b-79b6-0eae3344eda2@linaro.org>
+Date:   Mon, 26 Sep 2022 13:36:01 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220920102803.rqj44xrz2szj3tqi@vireshk-i7>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v5] dt-bindings: qcom: document preferred compatible
+ naming
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+References: <20220720073326.19591-1-krzysztof.kozlowski@linaro.org>
+ <7fdcff6a-9db9-a9d0-4013-7d3ff5fd5d8c@linaro.org>
+ <CAA8EJprom=CfxPQke5JjZi0CSSvvB=cw1RxOO8StLThpASG3ew@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAA8EJprom=CfxPQke5JjZi0CSSvvB=cw1RxOO8StLThpASG3ew@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,34 +85,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 20, 2022 at 03:58:03PM +0530, Viresh Kumar wrote:
-> On 30-08-22, 11:50, Manivannan Sadhasivam wrote:
-> > On Tue, Aug 30, 2022 at 11:10:42AM +0530, Viresh Kumar wrote:
-> > > On 29-08-22, 22:24, Bjorn Andersson wrote:
-> > > > Conceptually, it sounds like a good idea to express the clock feeding
-> > > > the CPU clusters, which is controlled by the OSM/EPSS.  But do you
-> > > > expect the OPP framework to actually do something with the clock, or
-> > > > just to ensure that the relationship is properly described?
-> > > 
-> > > No, the OPP core will never try to set the clock rate in your case,
-> > > though it will do clk_get().
-> > > 
-> > 
-> > Okay. Then I think it is a fair argument to make qcom-cpufreq-hw as the
-> > clock provider for CPUs.
-> > 
-> > I will send the RFC soon.
+On 26/09/2022 13:16, Dmitry Baryshkov wrote:
+>>
+>> This is waiting for two months. If you do not like it, please respond
+>> with some comments.
 > 
-> Ping.
+> I'd say, this is good, it documents what was agreed before.
 > 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Didn't get time so far. Will get to this once I'm back from vacation.
 
-Thanks,
-Mani
+Thanks. I will rebase and resend.
 
-> -- 
-> viresh
+Best regards,
+Krzysztof
 
--- 
-மணிவண்ணன் சதாசிவம்
