@@ -2,82 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C2965EB276
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 777B55EB28C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:46:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231196AbiIZUmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 16:42:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47876 "EHLO
+        id S229912AbiIZUqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 16:46:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231200AbiIZUmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:42:17 -0400
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF5DCAB4EC;
-        Mon, 26 Sep 2022 13:42:05 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id e24-20020a05683013d800b0065be336b8feso5217499otq.8;
-        Mon, 26 Sep 2022 13:42:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=4n0zzF8za7s/qhUkEAj/8fvq00/7FWulmYmfEXglZkU=;
-        b=DrTyUWwSLjZGM+YbKm2cKwF7uX1YiwETGyrX+Q3KSdpD9dVV7rVn9vxNHwvwc0luRP
-         FBbW79Sg6y8vQgY/SpR5g2YHp8iWA2kZPCcptEy7fWiBjxMJ2bY+yNhjTfU86zMC8vza
-         FY4iAsE9bJbal2k8hLmIpWqjo2QD4oZT5CxEl4SEfAvxWTQHH/kfxCyFJ/N/7fdntSol
-         Q/g2dQu3ogejOsP9c6UgeIsn0pj++TqXdCtx6+V5dDY2d4pRKx761yabmKIl85bSkxGF
-         O7Se3imnXM6ZUJeNws9A7tZvFtfIotOUF3ytctEwk8FY2usfLanO7oxGh9E+X+RzTB9u
-         02sQ==
-X-Gm-Message-State: ACrzQf29WDOoMSd9GPviOW4+GdlA9l+bb2Mr1nw9kTVmflavRjQmhukj
-        eXtrv/noeJpi5ZxhM21unw==
-X-Google-Smtp-Source: AMsMyM7UCa1J9doE98pQ4tKnf1kQISQgMn1NWxPT7w1h9o2BF9PhgS4q1DNLVv1GSX7rFWMl7G+NDA==
-X-Received: by 2002:a05:6830:6b0a:b0:655:f16d:fa4b with SMTP id db10-20020a0568306b0a00b00655f16dfa4bmr11098397otb.164.1664224878723;
-        Mon, 26 Sep 2022 13:41:18 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r65-20020acaf344000000b0034564365bf2sm7607479oih.17.2022.09.26.13.41.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Sep 2022 13:41:18 -0700 (PDT)
-Received: (nullmailer pid 2773928 invoked by uid 1000);
-        Mon, 26 Sep 2022 20:41:17 -0000
-Date:   Mon, 26 Sep 2022 15:41:17 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 08/12] dt-bindings: pinctrl: qcom,sm8250-lpass-lpi: add
- bias-bus-hold and input-enable
-Message-ID: <20220926204117.GA2773872-robh@kernel.org>
-References: <20220922195651.345369-1-krzysztof.kozlowski@linaro.org>
- <20220922195651.345369-9-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229458AbiIZUqr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:46:47 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDA699FA9E;
+        Mon, 26 Sep 2022 13:46:44 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.bb.vodafone.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 7949884DD8;
+        Mon, 26 Sep 2022 22:46:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1664225202;
+        bh=CBDilgeWFIDHqedtyjY50ZN3XapKiimiMO9OJg6Q+28=;
+        h=From:To:Cc:Subject:Date:From;
+        b=T83novwM6PTG/jvVJJhYrArLVrcLJXDh/qzWYn63hIiDWw9csIVqxWpCEoBeZ6oG0
+         FtGwM+ErywZGC8FGZ61kFMWPM06joOYtOWhQB79AlSeiVDwXWDuQFPhy/sjIN+RQaD
+         bteL/IYz3iDQXSrIJB/vmNwRykB0iaT/Li7duvyVbilO5+w3DzoMFYklYAU1YT8xdB
+         uYLBebNbY99xeYMvt3reH0bsedAq6rDA16Mcgdf2Lrt+gDbGAqKQYIhaqrn2hjZ7A0
+         s5Y5XQ8Ld7cuQCEEf0/nDB/3zizB+jBtNTB4jgZpQsS7GIC79lP26LQdaJZLndKDiW
+         1+EozeJauaKcw==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH] dt-bindings: i2c: st,stm32-i2c: Document interrupt-names property
+Date:   Mon, 26 Sep 2022 22:46:31 +0200
+Message-Id: <20220926204631.381702-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220922195651.345369-9-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Sep 2022 21:56:47 +0200, Krzysztof Kozlowski wrote:
-> The existing SC7280 LPASS pin controller nodes use bias-bus-hold and
-> input-enable, so allow them.  Squash also blank lines for readability.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml     | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
-> 
+Document interrupt-names property with "event" and "error" interrupt names.
+This fixes dtbs_check warnings when building current Linux DTs:
 
-Acked-by: Rob Herring <robh@kernel.org>
+"
+arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dtb: i2c@40015000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+"
+
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Wolfram Sang <wsa@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-i2c@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+To: linux-arm-kernel@lists.infradead.org
+---
+ Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
+index a415887637862..63958cac339b7 100644
+--- a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
+@@ -57,6 +57,11 @@ properties:
+       - description: interrupt ID for I2C event
+       - description: interrupt ID for I2C error
+ 
++  interrupt-names:
++    items:
++      - const: event
++      - const: error
++
+   resets:
+     maxItems: 1
+ 
+-- 
+2.35.1
+
