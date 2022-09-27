@@ -2,123 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 720E15EBCCD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:10:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1842A5EBCEA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:14:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230411AbiI0IK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 04:10:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46138 "EHLO
+        id S231189AbiI0IOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 04:14:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231576AbiI0IKD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:10:03 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15BD811E5CB
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 01:03:52 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28R7k3vX015658;
-        Tue, 27 Sep 2022 10:02:39 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=K8GwUiis6Jdql8ycWraGoz6gs4NTf04zXDxZqotFXaY=;
- b=MvvXRxGBqyb7c6M32ixvr8x3Sbpp9JciY/4ZSd/Mxr43HfzVWrlGe5UeGNju3KiiD+Qr
- WZO6g/DPaHXXVXvd58XR2pFydrIFils1AXG3sLF0HNJ+9UfPkBhkpVID0D4z8FJ54gm2
- MVZ13m1ie5KwCjDftB1+KWSDJeGmmRGf3/NNJ4j+X9no41Llh/ZHJP74E893e1gn+nsO
- d4wLUIgz3YKARW08yNF+uf+hE/AyrxQvIJcEqRCH7PiJjb9iO2f9V3Hjmaq3dHmQbdGx
- pd3qrhhPWK600LxItb3mVCDotV0NOy5oXrqAogdjNgKJKfAJDd2VIdgZeSdQuQYcYu5z Tw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3jsrsjggjb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 27 Sep 2022 10:02:39 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 24D0D10002A;
-        Tue, 27 Sep 2022 10:02:36 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8E0B5216826;
-        Tue, 27 Sep 2022 10:02:36 +0200 (CEST)
-Received: from [10.201.20.178] (10.75.127.45) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Tue, 27 Sep
- 2022 10:02:36 +0200
-Message-ID: <c60a624a-6c95-8ccf-9afe-86ce568cea05@foss.st.com>
-Date:   Tue, 27 Sep 2022 10:02:35 +0200
+        with ESMTP id S231740AbiI0INu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:13:50 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9F6CE3A
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 01:09:36 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id bq9so13754556wrb.4
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 01:09:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date;
+        bh=Ut3iGu0b/mI6XW5rpgCs/5VK4qy+LVrOrJIS25KPemw=;
+        b=i4Jvq0fa9Bl6I2SPiG4hGMCYydOUsAwFpniv75l8RduOKIDc+1n907TVHDddAjeadQ
+         R/8ye3NnLtMldaO9llS3wIopU6SlVHg7cJk3qvlr+/JoAOOTw1/5ncKSMOyy2+UN9IG+
+         OCh2VvIaQ6XZqTD+bLDNQLcY8BOB9cqII1xsU7J4Lu7D+94BOmzTRqRbNpQ3nD3yehzE
+         6pF6bZt60JhmPPtpvL0yiGU+IJ01BRZfai2B9lqRHoQvnwCExYbzh27J1CBqg7QS4DN/
+         3plZLbc0+SMImRnuUUtnHlw+4U7XuXRHzUpY0Gjy4Fi/2IQRGrE31/IjgHvc4/J3PfxF
+         Cd4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=Ut3iGu0b/mI6XW5rpgCs/5VK4qy+LVrOrJIS25KPemw=;
+        b=5tvuUvuvOZu4v5yQMyqpBjOSSq2iPOsjt7MrI56mEyzDDQ8QInFMCtU8wZRDXuQaMn
+         N9pGeSoqnCJ5Gs3HzmqJMXCQpFv1vmFOt7uGYzkfTUbJSAMP0Y0lsmLTl7ptJvUOcqUJ
+         ZCWir9Ppq8fsxWNe0XkR6uvuUU+lxR1TuC2YhGAFc4TL2AQ4OlIr+YP2hVNrdLZG0PgW
+         w++lX3viLoIsfUajKdXo3zIkph1MVRijrBNtiOQ7cWd/RiL/DzU/HA4+BrIN9KVQ6HHW
+         s4qPf0Hc40T34NRFlHNIAaToy+cAscMA5DZrYR34jG8usP8TQfF33m0u7hI6r7D0xvHC
+         Bl7w==
+X-Gm-Message-State: ACrzQf2Vi0QI57lSoG9eF0UO20RIzPW3/lU/guEi58/U1Re/MkMYWX4b
+        7d0yGVRHTAbp65ikopFI1rPLcK4dG21E5rF+
+X-Google-Smtp-Source: AMsMyM4WHp67dF80OY/vsCx8rfoGnuoWLl1ptdh1oP4myyjv5slsl9o3gYYnbqLklpA+rBFT+1PyXw==
+X-Received: by 2002:adf:a15e:0:b0:22c:b9b7:abd0 with SMTP id r30-20020adfa15e000000b0022cb9b7abd0mr1508586wrr.584.1664266174765;
+        Tue, 27 Sep 2022 01:09:34 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:b771:c77b:f889:9833? ([2a01:e0a:982:cbb0:b771:c77b:f889:9833])
+        by smtp.gmail.com with ESMTPSA id d37-20020a05600c4c2500b003b332a7b898sm899485wmp.45.2022.09.27.01.09.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Sep 2022 01:09:34 -0700 (PDT)
+Message-ID: <82fd53cf-c45e-fd9e-13b2-3cc2ff155d65@linaro.org>
+Date:   Tue, 27 Sep 2022 10:09:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: sound: st,stm32-sai: Document audio OF graph
- port
+Subject: Re: [PATCH v4 2/3] ARM: dts: qcom: msm8974: add missing TCSR syscon
+ compatible
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
-CC:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20220927002004.685108-1-marex@denx.de>
-From:   Olivier MOYSAN <olivier.moysan@foss.st.com>
-In-Reply-To: <20220927002004.685108-1-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220920150414.637634-1-krzysztof.kozlowski@linaro.org>
+ <20220920150414.637634-3-krzysztof.kozlowski@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20220920150414.637634-3-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-27_02,2022-09-22_02,2022-06-22_01
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
-
-Thanks for your patch.
-You can add my:
-Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
-
-BRs
-
-On 9/27/22 02:20, Marek Vasut wrote:
-> It is expected that the SAI subnodes would contain audio OF graph port
-> with endpoint to link it with the other side of audio link. Document
-> the port: property.
+On 20/09/2022 17:04, Krzysztof Kozlowski wrote:
+> TCSR syscon node should come with dedicated compatible.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Olivier Moysan <olivier.moysan@foss.st.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> To: linux-arm-kernel@lists.infradead.org
-> ---
->   Documentation/devicetree/bindings/sound/st,stm32-sai.yaml | 4 ++++
->   1 file changed, 4 insertions(+)
+>   arch/arm/boot/dts/qcom-msm8974.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-> index 1a3abc9495055..56d206f97a96c 100644
-> --- a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-> +++ b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-> @@ -122,6 +122,10 @@ patternProperties:
->           description: Configure the SAI device as master clock provider.
->           const: 0
+> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> index 7a9be0acf3f5..a4e12daf3eeb 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> @@ -1239,7 +1239,7 @@ tcsr_mutex_block: syscon@fd484000 {
+>   		};
 >   
-> +      port:
-> +        $ref: audio-graph-port.yaml#
-> +        unevaluatedProperties: false
-> +
->       required:
->         - compatible
->         - "#sound-dai-cells"
+>   		tcsr: syscon@fd4a0000 {
+> -			compatible = "syscon";
+> +			compatible = "qcom,tcsr-msm8974", "syscon";
+>   			reg = <0xfd4a0000 0x10000>;
+>   		};
+>   
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
