@@ -2,109 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9CC45EBCC6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:08:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 720E15EBCCD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:10:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231266AbiI0IIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 04:08:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45976 "EHLO
+        id S230411AbiI0IK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 04:10:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231189AbiI0IHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:07:32 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A1E115F58
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 01:02:00 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id bk15so5947049wrb.13
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 01:02:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=k3Uie5pxkgijukjmsxCrYCPs7jEPbo3aKWq5eUqCVmA=;
-        b=atrB2K6hZteWnvzbPkbVoOb6uaiXmiR3AyWDp/KoYcRjXAeCmkNgkEscK/WeMsu4B/
-         DbnQLJ7+Atl/C9djjI/Z4TBfY33e67mCqc7PoP65Ry1dATFWrYzhG16let04hYYRE1C4
-         552SG6rUw2D9uWXZSWWgkVMWsSciEpfO2yArasPWPYahvhA+IUHG2Ys2Sy2T/MM0VwzJ
-         1u8vTYqO56bCWIqp0vZSjtPUGicxle0VpFrkLicOXJKZoPr8j9aQBvkJod6gdLTLJjYB
-         Sdf6tyirbY/0u5uAqqPJp9tEY9/GS7ec4NTkyzr2mKUhrnTdMKOrkJIoTpTmsbQ0wfy9
-         i2YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=k3Uie5pxkgijukjmsxCrYCPs7jEPbo3aKWq5eUqCVmA=;
-        b=Xrms4ihqeP9fTF/RiJeE/i4SBFzXTWT/xJgywyy0MieDDFtXTsutjGy647YWD+wvmf
-         grq8tjTe+HJLlHjN2sOOqqMyRz8MNEDe229c3yxDrLVvMZM9+Tbnu3IMxUiI+AeenCjm
-         uGsVmg0SQfWgYkXEzO4N9LVsVC6zA4fuhTSMGEb/KdFGNHYBOomiJd3I3fsElZFVTuGZ
-         kp9i8TWMnWumylsOaIeZJcw5FH2MZWvUhk6zcDF6gEd1ti05e3H51U3n8ptz9kVHEoO5
-         67fZBJ3sZI1V2wtpxClxJRq8PJvxDry1T9ERHgVvLwYR3p5TllF6HDe2i4Dct4SJfig0
-         /swA==
-X-Gm-Message-State: ACrzQf17ZhKP4mzMG6GJKEXExjyiJYP1nv42jvRjWi5uF22Ey67SBSmm
-        v6bZXrNbxCt2hvlvi/2RhhOYQA==
-X-Google-Smtp-Source: AMsMyM7Nsk7GUy0Dn+s5dXjE9WoMQoVO5BreYgsM9yVfqjD93GEr6OzmJ9TbwoNWDiPStSCfSr/OMA==
-X-Received: by 2002:a5d:6484:0:b0:226:dd0e:b09c with SMTP id o4-20020a5d6484000000b00226dd0eb09cmr16103248wri.388.1664265671924;
-        Tue, 27 Sep 2022 01:01:11 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id p4-20020a1c5444000000b003a5c7a942edsm13357199wmi.28.2022.09.27.01.01.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Sep 2022 01:01:11 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     heiko@sntech.de, davem@davemloft.net, herbert@gondor.apana.org.au,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH RFT 5/5] ARM64: dts: rk3568: add crypto node
-Date:   Tue, 27 Sep 2022 08:00:48 +0000
-Message-Id: <20220927080048.3151911-6-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220927080048.3151911-1-clabbe@baylibre.com>
-References: <20220927080048.3151911-1-clabbe@baylibre.com>
+        with ESMTP id S231576AbiI0IKD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:10:03 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15BD811E5CB
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 01:03:52 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28R7k3vX015658;
+        Tue, 27 Sep 2022 10:02:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=K8GwUiis6Jdql8ycWraGoz6gs4NTf04zXDxZqotFXaY=;
+ b=MvvXRxGBqyb7c6M32ixvr8x3Sbpp9JciY/4ZSd/Mxr43HfzVWrlGe5UeGNju3KiiD+Qr
+ WZO6g/DPaHXXVXvd58XR2pFydrIFils1AXG3sLF0HNJ+9UfPkBhkpVID0D4z8FJ54gm2
+ MVZ13m1ie5KwCjDftB1+KWSDJeGmmRGf3/NNJ4j+X9no41Llh/ZHJP74E893e1gn+nsO
+ d4wLUIgz3YKARW08yNF+uf+hE/AyrxQvIJcEqRCH7PiJjb9iO2f9V3Hjmaq3dHmQbdGx
+ pd3qrhhPWK600LxItb3mVCDotV0NOy5oXrqAogdjNgKJKfAJDd2VIdgZeSdQuQYcYu5z Tw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3jsrsjggjb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 27 Sep 2022 10:02:39 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 24D0D10002A;
+        Tue, 27 Sep 2022 10:02:36 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8E0B5216826;
+        Tue, 27 Sep 2022 10:02:36 +0200 (CEST)
+Received: from [10.201.20.178] (10.75.127.45) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Tue, 27 Sep
+ 2022 10:02:36 +0200
+Message-ID: <c60a624a-6c95-8ccf-9afe-86ce568cea05@foss.st.com>
+Date:   Tue, 27 Sep 2022 10:02:35 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] dt-bindings: sound: st,stm32-sai: Document audio OF graph
+ port
+Content-Language: en-US
+To:     Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
+CC:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20220927002004.685108-1-marex@denx.de>
+From:   Olivier MOYSAN <olivier.moysan@foss.st.com>
+In-Reply-To: <20220927002004.685108-1-marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-27_02,2022-09-22_02,2022-06-22_01
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The rk3568 has a crypto IP handled by the rk3588 crypto driver so adds a
-node for it.
+Hi Marek,
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- arch/arm64/boot/dts/rockchip/rk3568.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Thanks for your patch.
+You can add my:
+Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index ba67b58f05b7..62432297f234 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -211,6 +211,20 @@ gmac0_mtl_tx_setup: tx-queues-config {
- 		};
- 	};
- 
-+	crypto: crypto@fe380000 {
-+		compatible = "rockchip,rk3568-crypto";
-+		reg = <0x0 0xfe380000 0x0 0x2000>;
-+		interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_CRYPTO_NS>, <&cru HCLK_CRYPTO_NS>,
-+			 <&cru CLK_CRYPTO_NS_CORE>, <&cru CLK_CRYPTO_NS_PKA>;
-+		clock-names = "aclk", "hclk", "sclk", "pka";
-+		resets = <&cru SRST_CRYPTO_NS_CORE>, <&cru SRST_A_CRYPTO_NS>,
-+			<&cru SRST_H_CRYPTO_NS>, <&cru SRST_CRYPTO_NS_RNG>,
-+			<&cru SRST_CRYPTO_NS_PKA>;
-+		reset-names = "core", "a", "h", "rng,", "pka";
-+		status = "okay";
-+	};
-+
- 	combphy0: phy@fe820000 {
- 		compatible = "rockchip,rk3568-naneng-combphy";
- 		reg = <0x0 0xfe820000 0x0 0x100>;
--- 
-2.35.1
+BRs
 
+On 9/27/22 02:20, Marek Vasut wrote:
+> It is expected that the SAI subnodes would contain audio OF graph port
+> with endpoint to link it with the other side of audio link. Document
+> the port: property.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Olivier Moysan <olivier.moysan@foss.st.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+>   Documentation/devicetree/bindings/sound/st,stm32-sai.yaml | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
+> index 1a3abc9495055..56d206f97a96c 100644
+> --- a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
+> +++ b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
+> @@ -122,6 +122,10 @@ patternProperties:
+>           description: Configure the SAI device as master clock provider.
+>           const: 0
+>   
+> +      port:
+> +        $ref: audio-graph-port.yaml#
+> +        unevaluatedProperties: false
+> +
+>       required:
+>         - compatible
+>         - "#sound-dai-cells"
