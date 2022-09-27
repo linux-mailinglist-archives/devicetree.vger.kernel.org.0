@@ -2,225 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E34E5EC73D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 17:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 914325EC76E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 17:19:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230374AbiI0PJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 11:09:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47028 "EHLO
+        id S230159AbiI0PTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 11:19:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229773AbiI0PJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 11:09:24 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FFF8ED5C7;
-        Tue, 27 Sep 2022 08:09:23 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-1318443dbdfso2295206fac.3;
-        Tue, 27 Sep 2022 08:09:23 -0700 (PDT)
+        with ESMTP id S229870AbiI0PTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 11:19:09 -0400
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D352A13F291;
+        Tue, 27 Sep 2022 08:19:07 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id n83so12186794oif.11;
+        Tue, 27 Sep 2022 08:19:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=1ZWmPycHUkkFEQR2ZsGpxQk0g/W60HxvJ1Q7FAci2J4=;
-        b=L+ii6VVKnK5x/FHaKT59G6act7ch4ziRQjVN56BkheM35qKL0hsR8kwh1GJPT3IJ3S
-         FuOta7y30UUN5sCDHfo5Spbsy45RffRYKJNnPqM/kI+Jgt4T1HivV8DFdwHKQt2H4wv/
-         d7LPnC/ODGtk59VkzWU/80ypnoDMUxjoUooifiOxtuxbrhYrxkJZisC1EKbQiEaa2kmX
-         OZw374JlnMNsu1sUb6hasZmW8tCbxuj7/FSPYV7mRv8FMH695JNUOw2lTuPrIHMni/Gn
-         enKAHwDS5ITN25korn8S8OKIVxGr9kuTM3yZQ5C5b2APNuOfW/DqTJhMVpIgmv8efvMN
-         AksQ==
-X-Gm-Message-State: ACrzQf0UfRtf/GmofrUWBps/jBdmFWTX9g2zAEj88rcAt1gbKn0jARm9
-        y/rLT4ADFMUAiL671dr3kA==
-X-Google-Smtp-Source: AMsMyM7APdedr7GTCehozM/Pn4pn3u16sNQkYQCLotrGXzCOPCX9JgcatneA+sxDI36vhFUqMSl67A==
-X-Received: by 2002:a05:6870:ac0d:b0:127:bf92:581f with SMTP id kw13-20020a056870ac0d00b00127bf92581fmr2612535oab.270.1664291362323;
-        Tue, 27 Sep 2022 08:09:22 -0700 (PDT)
-Received: from xps15.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.googlemail.com with ESMTPSA id br25-20020a056830391900b00654625c0c4dsm780884otb.17.2022.09.27.08.09.21
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=wXRxHNgmKmKanl4l8Eg0fqOKtTO4UZYjRiXrYlMvlIs=;
+        b=xyIbYgCruNYKEX/gAM8RE9W5eFDqTT3nybB6POGRubRApqbDt735UjeK095knHfrOO
+         Fsb/N7Eg5GtmpQLBq1+34J0pGWYvuHMNLHjnaSaL8QXVAC03TA6u428998dAICLicrwt
+         wIg0J7zZNoLfSyNVMbN8xSLcKulaY5AUFKKGW3qqNm7W5h7VLxIsdFFDOIDAbrdoimj5
+         60kAqOs/8KEQRzHmvYG7/qUBMdwD+ByQGAdeqklYuMP2p5u1XalKQ+1TNk3uU53oPA9U
+         U7cCLaoBtXlAIcnf8srFGPSrFsy7we7xofyt/L7DsRUv/ey5kIqd2c9qvg2xPDfzUWJZ
+         oRlw==
+X-Gm-Message-State: ACrzQf0iAohErXEPY/q2rlhISueA7f6JckgexZCKMvAgLBlCQ0iccmzK
+        ZIxz0FnnRN/FYb/9WUl0Rd8B6z3GNQ==
+X-Google-Smtp-Source: AMsMyM7Tq6EI9RI+e6p6itE+pIviLGESsSPKqa2eDsEQSeRij6qJxEIF50+Itf26CrjppCHGUK4y9A==
+X-Received: by 2002:a05:6808:282:b0:34f:6d11:7f68 with SMTP id z2-20020a056808028200b0034f6d117f68mr2093203oic.237.1664291947082;
+        Tue, 27 Sep 2022 08:19:07 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w15-20020a056830410f00b0065689e13f52sm787327ott.71.2022.09.27.08.19.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Sep 2022 08:09:22 -0700 (PDT)
+        Tue, 27 Sep 2022 08:19:06 -0700 (PDT)
+Received: (nullmailer pid 4054434 invoked by uid 1000);
+        Tue, 27 Sep 2022 15:19:05 -0000
+Date:   Tue, 27 Sep 2022 10:19:05 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        dri-devel@lists.freedesktop.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        devicetree@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Jiri Kosina <jkosina@suse.cz>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: input: Convert hid-over-i2c to DT schema
-Date:   Tue, 27 Sep 2022 10:09:15 -0500
-Message-Id: <20220927150916.1091217-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        Andy Gross <agross@kernel.org>
+Subject: Re: [PATCH v8 01/12] dt-bindings: display/msm: split qcom,mdss
+ bindings
+Message-ID: <20220927151905.GA4052559-robh@kernel.org>
+References: <20220924123611.225520-1-dmitry.baryshkov@linaro.org>
+ <20220924123611.225520-2-dmitry.baryshkov@linaro.org>
+ <20220924172339.bebekrawee4ubogv@krzk-bin>
+ <CAA8EJpqD74ZWvFK-QQ+MUHxssE7HKLS5D+hVe7+A9_H03QgwOg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpqD74ZWvFK-QQ+MUHxssE7HKLS5D+hVe7+A9_H03QgwOg@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the hid-over-i2c binding to DT schema format. The supplies should
-probably be specific to a specific device, but it seems they are already
-in use otherwise. 'wakeup-source' is added as it was not explicitly
-documented.
+On Sat, Sep 24, 2022 at 09:27:10PM +0300, Dmitry Baryshkov wrote:
+> Hi,
+> 
+> On Sat, 24 Sept 2022 at 20:23, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On Sat, 24 Sep 2022 15:36:00 +0300, Dmitry Baryshkov wrote:
+> > > Split Mobile Display SubSystem (MDSS) root node bindings to the separate
+> > > yaml file. Changes to the existing (txt) schema:
+> > >  - Added optional "vbif_nrt_phys" region used by msm8996
+> > >  - Made "bus" and "vsync" clocks optional (they are not used by some
+> > >    platforms)
+> > >  - Added optional resets property referencing MDSS reset
+> > >  - Defined child nodes pointing to corresponding reference schema.
+> > >  - Dropped the "lut" clock. It was added to the schema by mistake (it is
+> > >    a part of mdp4 schema, not the mdss).
+> > >
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > ---
+> > >  .../devicetree/bindings/display/msm/mdp5.txt  |  30 +-
+> > >  .../bindings/display/msm/qcom,mdss.yaml       | 264 ++++++++++++++++++
+> > >  2 files changed, 265 insertions(+), 29 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+> > >
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,mdss.example.dtb: dsi@1a98000: clock-names:0: 'byte' was expected
+> >         From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,mdss.example.dtb: dsi@1a98000: clock-names:1: 'byte_intf' was expected
+> >         From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,mdss.example.dtb: dsi@1a98000: clock-names:2: 'pixel' was expected
+> >         From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,mdss.example.dtb: dsi@1a98000: clock-names:3: 'core' was expected
+> >         From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,mdss.example.dtb: dsi@1a98000: clock-names:4: 'iface' was expected
+> >         From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,mdss.example.dtb: dsi@1a98000: clock-names:5: 'bus' was expected
+> >         From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,mdss.example.dtb: dsi@1a98000: phy-names:0: 'dsi' was expected
+> >         From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,mdss.example.dtb: dsi@1a98000: 'power-domains' is a required property
+> >         From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,mdss.example.dtb: dsi@1a98000: 'operating-points-v2' is a required property
+> >         From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> 
+> These are the errors generated by the dsi@ node from the example. The
+> DSI schema is handled separately (by Bryan, added to the Cc list). Can
+> we have a lifter for this patch? Or I can revert to dropping the dsi@
+> part from the example.
 
-There's a few warnings for undocumented properties 'vcc-supply' and
-'reset-gpios'. Those remain as they probably should have a specific
-compatible as well.
+It's fine as long as I don't see them in linux-next.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Fix example dtc warnings
----
- .../bindings/input/hid-over-i2c.txt           | 46 ----------
- .../bindings/input/hid-over-i2c.yaml          | 83 +++++++++++++++++++
- 2 files changed, 83 insertions(+), 46 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/hid-over-i2c.txt
- create mode 100644 Documentation/devicetree/bindings/input/hid-over-i2c.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/hid-over-i2c.txt b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
-deleted file mode 100644
-index 34c43d3bddfd..000000000000
---- a/Documentation/devicetree/bindings/input/hid-over-i2c.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--* HID over I2C Device-Tree bindings
--
--HID over I2C provides support for various Human Interface Devices over the
--I2C bus. These devices can be for example touchpads, keyboards, touch screens
--or sensors.
--
--The specification has been written by Microsoft and is currently available here:
--http://msdn.microsoft.com/en-us/library/windows/hardware/hh852380.aspx
--
--If this binding is used, the kernel module i2c-hid will handle the communication
--with the device and the generic hid core layer will handle the protocol.
--
--Required properties:
--- compatible: must be "hid-over-i2c"
--- reg: i2c slave address
--- hid-descr-addr: HID descriptor address
--- interrupts: interrupt line
--
--Additional optional properties:
--
--Some devices may support additional optional properties to help with, e.g.,
--power sequencing. The following properties can be supported by one or more
--device-specific compatible properties, which should be used in addition to the
--"hid-over-i2c" string.
--
--- compatible:
--  * "wacom,w9013" (Wacom W9013 digitizer). Supports:
--    - vdd-supply (3.3V)
--    - vddl-supply (1.8V)
--    - post-power-on-delay-ms
--
--- vdd-supply: phandle of the regulator that provides the supply voltage.
--- post-power-on-delay-ms: time required by the device after enabling its regulators
--  or powering it on, before it is ready for communication.
--- touchscreen-inverted-x: See touchscreen.txt
--- touchscreen-inverted-y: See touchscreen.txt
--
--Example:
--
--	i2c-hid-dev@2c {
--		compatible = "hid-over-i2c";
--		reg = <0x2c>;
--		hid-descr-addr = <0x0020>;
--		interrupt-parent = <&gpx3>;
--		interrupts = <3 2>;
--	};
-diff --git a/Documentation/devicetree/bindings/input/hid-over-i2c.yaml b/Documentation/devicetree/bindings/input/hid-over-i2c.yaml
-new file mode 100644
-index 000000000000..7156b08f7645
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/hid-over-i2c.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/hid-over-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HID over I2C Devices
-+
-+maintainers:
-+  - Benjamin Tissoires <benjamin.tissoires@redhat.com>
-+  - Jiri Kosina <jkosina@suse.cz>
-+
-+description: |+
-+  HID over I2C provides support for various Human Interface Devices over the
-+  I2C bus. These devices can be for example touchpads, keyboards, touch screens
-+  or sensors.
-+
-+  The specification has been written by Microsoft and is currently available here:
-+  https://msdn.microsoft.com/en-us/library/windows/hardware/hh852380.aspx
-+
-+  If this binding is used, the kernel module i2c-hid will handle the communication
-+  with the device and the generic hid core layer will handle the protocol.
-+
-+allOf:
-+  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - wacom,w9013
-+          - const: hid-over-i2c
-+      - description: Just "hid-over-i2c" alone is allowed, but not recommended.
-+        const: hid-over-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  hid-descr-addr:
-+    description: HID descriptor address
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  post-power-on-delay-ms:
-+    description: Time required by the device after enabling its regulators
-+      or powering it on, before it is ready for communication.
-+
-+  touchscreen-inverted-x: true
-+
-+  touchscreen-inverted-y: true
-+
-+  vdd-supply:
-+    description: 3.3V supply
-+
-+  vddl-supply:
-+    description: 1.8V supply
-+
-+  wakeup-source: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        hid@2c {
-+            compatible = "hid-over-i2c";
-+            reg = <0x2c>;
-+            hid-descr-addr = <0x0020>;
-+            interrupts = <3 2>;
-+        };
-+    };
-+...
--- 
-2.34.1
-
+Rob
