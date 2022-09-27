@@ -2,135 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52FBB5ECF29
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 23:13:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 256ED5ECF55
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 23:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231703AbiI0VNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 17:13:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56090 "EHLO
+        id S231702AbiI0VfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 17:35:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232047AbiI0VNp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 17:13:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 919391E0C63;
-        Tue, 27 Sep 2022 14:13:44 -0700 (PDT)
-Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4C047660226A;
-        Tue, 27 Sep 2022 22:13:41 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664313222;
-        bh=9UjteKLPOSGyctNC2dvGb5oVbZ353r1Xwokh8mtTLmA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BM2zDwDf7dEv8qNZAEb1RcaW5UUki18dIfL+WFvu58dzl2CZ0RAmHCI6zB5v7y4t/
-         LxCfCgQwAqRdbqPGuS0rvjwnuTpzPBAmO3oHnHwg0EUUxHjsZ+GWlHVpm/8k+Q1Ek3
-         y5hIyNvmYqtYtuGrq+WlCcLKgZ+o3aIGLoi4sRrAFy6H7KWSJchsNRh1pk1e2+90yI
-         /0vqob9x1hqy7o/HbYhHNUA+/+7TCSQe3nM1vN9Qx0ZPySD6al3IG4G0UZMlhRB6OA
-         93COQYze9ls7VVoqfUK6YcQNT4seFvz3T7V0aKycI/+KWqdQL2V1TqqdLCBQDGx2gF
-         kX8hCsHuHk8Hw==
-Date:   Tue, 27 Sep 2022 17:13:37 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/3] arm64: dts: mediatek: asurada: Add display regulators
-Message-ID: <20220927211337.idgcuawo7xsiexah@notapiano>
-References: <20220908171153.670762-1-nfraprado@collabora.com>
- <20220908171153.670762-2-nfraprado@collabora.com>
- <CAGXv+5FErSBT-t6vz_2naApuPoC4PympWft-9Gd_MMPUTN+CsQ@mail.gmail.com>
+        with ESMTP id S229779AbiI0VfT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 17:35:19 -0400
+Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8AAF2BB08;
+        Tue, 27 Sep 2022 14:35:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+        ; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+        Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+        Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+        bh=PDR3r9o/jLyp7gsKkv7+GSdo7+M7ZkytJP4A8PtoWAI=; b=Lk3LGgTb08No5NRzGqWSR6k1TZ
+        zfLt6hiNWyqI5CdfUASMlGoV3yz21/vpX4XjYigMsnjKQ5herGxVQ4DszGgqxspavNfzTfTp6/zDs
+        mqgIgmAjVd5H5d2jCK0FO0vZvMe4+i6lmDqBMXeVCQ9wcdNyt3AObpMu5AZJKbm5e2uk6JZSRsIh3
+        ODQZ14q/h+frLjtYUNEQ0k+Y6LyU0BRWIYbZP7rJayGD2+4YcvkFB1qmvldo1DL3/QVBFn3s8uAvr
+        pl7/XCL6t9y5x3z2ewlQ0I/v+0Agmhdy7GtYbiFQ/8oVi5+HTvf1DwR2kIalbX84drlkogMAGFx7H
+        Twa2qkzg==;
+Received: from [2a01:e34:ec5d:a741:8a4c:7c4e:dc4c:1787] (helo=ohm.rr44.fr)
+        by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1odIEG-00C1Wx-4h; Tue, 27 Sep 2022 23:35:00 +0200
+Received: from aurel32 by ohm.rr44.fr with local (Exim 4.96)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1odIEE-000VRP-0Z;
+        Tue, 27 Sep 2022 23:34:58 +0200
+Date:   Tue, 27 Sep 2022 23:34:58 +0200
+From:   Aurelien Jarno <aurelien@aurel32.net>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     heiko@sntech.de, davem@davemloft.net, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH RFT 0/5] crypto: rockchip: add crypto offloader V2
+Message-ID: <YzNsgjPFwVEDo4E4@aurel32.net>
+Mail-Followup-To: Corentin Labbe <clabbe@baylibre.com>, heiko@sntech.de,
+        davem@davemloft.net, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+References: <20220927080048.3151911-1-clabbe@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGXv+5FErSBT-t6vz_2naApuPoC4PympWft-9Gd_MMPUTN+CsQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220927080048.3151911-1-clabbe@baylibre.com>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chen-Yu,
-
-thank you for the insights on the power supply hierarchy. Just a couple further
-questions below.
-
-On Wed, Sep 21, 2022 at 10:20:43PM +0800, Chen-Yu Tsai wrote:
-> Hi,
+On 2022-09-27 08:00, Corentin Labbe wrote:
+> Hello
 > 
-> On Fri, Sep 9, 2022 at 1:12 AM Nícolas F. R. A. Prado
-> <nfraprado@collabora.com> wrote:
-> >
-> > Add the regulators present on the Asurada platform that are used to
-> > power the internal and external displays.
-> >
-> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> >
-> > ---
-> >
-> >  .../boot/dts/mediatek/mt8192-asurada.dtsi     | 114 ++++++++++++++++++
-> >  1 file changed, 114 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> > index 4b314435f8fd..1d99e470ea1a 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> > @@ -23,6 +23,42 @@ memory@40000000 {
-> >                 reg = <0 0x40000000 0 0x80000000>;
-> >         };
-> >
-> > +       pp1000_dpbrdg: regulator-1v0-dpbrdg {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-name = "pp1000_dpbrdg";
-> > +               pinctrl-names = "default";
-> > +               pinctrl-0 = <&pp1000_dpbrdg_en_pins>;
-> > +               regulator-min-microvolt = <1000000>;
-> > +               regulator-max-microvolt = <1000000>;
-> 
-> This is fed by a rail called PP1350_VS2, which is from the MT6359 PMIC.
-> And this regulator is a proper LDO.
+> Rockchip rk3568 and rk3588 have a common crypto offloader IP different
+> than rk3228 one.
+> I started to work the driver for this IP on a rk3588 based board, but this SoC
+> is still not upstream.
+> So it is why I send this serie asking for test since I own no rk3568 and
+> I need to be sure datasheet is right.
 
-So, we should have an additional regulator node here called pp1350_vs2 which
-will feed into pp1000_dpbrdg and that is itself fed in from mt6359_vs2_buck_reg
-(from mt6359.dtsi). Is that right?
+I did a quick test, and it doesn't seem to work. I get:
 
-Also, is PP1350_VS2 just a simple switch or an LDO?
+rk3588-crypto fe380000.crypto: DMA timeout
+rk3588-crypto fe380000.crypto: DMA timeout
 
-> 
-[..]
-> > +       pp1800_dpbrdg: regulator-1v8-dpbrdg {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-name = "pp1800_dpbrdg";
-> > +               pinctrl-names = "default";
-> > +               pinctrl-0 = <&pp1800_dpbrdg_en_pins>;
-> > +               regulator-min-microvolt = <1800000>;
-> > +               regulator-max-microvolt = <1800000>;
-> 
-> This regulator is only a power switch. Please drop the min/max properties.
-> This is fed by a rail called PP1800_VIO18_U, which is from an LDO on the
-> MT6359 PMIC.
+That's on an ODROID-M1 board, so with the set of patches I sent
+yesterday to support it.
 
-Similarly, we should have a pp1800_vio18_u node that is fed in by
-mt6359_vio18_ldo_reg, right? And is it a switch or an LDO?
-
-Thanks,
-Nícolas
-
-> 
-> > +               enable-active-high;
-> > +               regulator-boot-on;
-> > +               gpio = <&pio 126 GPIO_ACTIVE_HIGH>;
-> > +       };
-> > +
-[..]
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                 http://www.aurel32.net
