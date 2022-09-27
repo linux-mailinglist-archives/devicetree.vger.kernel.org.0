@@ -2,155 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFE245EC4B3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 15:40:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B65025EC4DA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 15:46:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232683AbiI0Nku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 09:40:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46104 "EHLO
+        id S230098AbiI0Nqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 09:46:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232428AbiI0Nkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 09:40:49 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB66639BA1;
-        Tue, 27 Sep 2022 06:40:47 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D23086602265;
-        Tue, 27 Sep 2022 14:40:44 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664286045;
-        bh=l0r0ZaX9YZdqDz2RvEUsZ5NEBzsjJi9GrROUQaXEGsQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PJE93JHEO7cWrmml9ztx3rkOfFWah/FwdZGzTfwUIQ2w7hQSt++Kt8QMso/okg+gJ
-         bU35vtHR0wFh8Lni+XwK8+VKqwEelaZex29NnvukvV3iTYn0XzguZq/v4LTKhyINVv
-         mQhq041uL42occFBaGzGJCm/sVnRhFmudSliD1DF0k0kig/AbPS6+3YZ5VE6iPdFO8
-         Msy4Fn8M2FAaAFa/lEV/aTzwJAPPwhDqfCDYoCsRE7i9HlDR96yiUSAvIpH4CqqDI4
-         4/xqVfOI0tHIgLreg0030IY4Em5y5iSM4KrBL19bylYxu4kLPNPGyhgh/shBIvP9YF
-         mT4XwODwKfkZg==
-Message-ID: <6f1deed3-87e5-6d73-74b7-f5123c7f4362@collabora.com>
-Date:   Tue, 27 Sep 2022 15:40:42 +0200
+        with ESMTP id S231883AbiI0Nqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 09:46:43 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E75EC57A;
+        Tue, 27 Sep 2022 06:46:42 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id y15so5115228ilq.4;
+        Tue, 27 Sep 2022 06:46:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=JYhubVsYX6ouoh07xHct6JKDa2u34ATcTX+f9kydsg0=;
+        b=SFNBETuy+YwSF+Q5f3FRDqDN/eaViyqw5he3UZgTk4MtyJF6NRCFNYIKYJPmlsEAMt
+         DeyMJfFPjEHThTWRJp3rwRQNYq+ZP2jaZRHsnPQUIIDoSjEnb2J9Ee7Ql7vsi1f3j6o/
+         jljy4aCW1hQFLl0pqMecxtsOTvbgdYBKABSzUnLo1vpbsoWJhvmEPoLD5bs7HSEIMWBU
+         wuvLfswFLjp0hC6zhxiQcY5dIDIbYgEDKhQ9j0i+rprfbNfGwV1WpoNmxVOp4RQ0vso/
+         Md84BYiwvupF5tMaidkzgxgcpXnhMJk0px5c/qoGPkjlQ7myoI/dmvljGCU6pWvZLAl2
+         eVMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=JYhubVsYX6ouoh07xHct6JKDa2u34ATcTX+f9kydsg0=;
+        b=OsUwitFeFBUkqbBjvwldvn2fv9Ob6UFkSwbTA5Q26rQopwrULRCD5wjpbfeKzW+mDo
+         62XpRWspSR92mjjQohN+MLt9zY9e3Mw6qLwjFgsktX7it8xg55Ru0oKL5SCrxXYscVL3
+         f39/w2HxnzIy0u2F+JlrMi6J1Am0ctOPzBvCXktJEm+TOnd0179J4amtWaV0oCbhdXmN
+         gJ3KjC+/jCHG8f6nb1VE4M9fs4/NTyjMfoJKsFvO77z3dK0dLXLgjIOF7BKhTd4Uihrv
+         15ex3YWjzCV0Ee8x6K25h0fSmUK/YGC0wcWmnrAqr7EVktgqO4ppPTA+KzGY1135ZPmW
+         u1Dw==
+X-Gm-Message-State: ACrzQf0KwBTPUHc+XlEiqVRoew1w4hxklC/0OSJl+CcRSNWSWeoRjxLW
+        bVcc5vziwX462YBq/FfniSc3Mt3M2Q4xfJVy8xk=
+X-Google-Smtp-Source: AMsMyM74SUeo8HFBuN8kt3k2EUdmy5YSQU9ffddju6d2f4+EfiQh0gzO1dPkP75z7a8X/jcoAFX7j9B59EvRj65nyGI=
+X-Received: by 2002:a92:360c:0:b0:2f6:33ed:e2a2 with SMTP id
+ d12-20020a92360c000000b002f633ede2a2mr13076960ila.29.1664286401415; Tue, 27
+ Sep 2022 06:46:41 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 3/5] arm64: dts: mt8186: Add IOMMU and SMI nodes
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Lee Jones <lee@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        hsinyi@chromium.org
-References: <20220923131148.6678-1-allen-kh.cheng@mediatek.com>
- <20220923131148.6678-4-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220923131148.6678-4-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220926061420.1248-1-linux.amoon@gmail.com> <20220926180102.37614-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20220926180102.37614-1-amadeus@jmu.edu.cn>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Tue, 27 Sep 2022 19:16:25 +0530
+Message-ID: <CANAwSgTyt2D-aEMMowO6d+0ddTQb46o0pWMahnr7ny2rjY7iaQ@mail.gmail.com>
+Subject: Re: [PATCH-next v1] arm64: dts: rockchip: Enable NVM Express PCIe
+ controller on rock3a
+To:     Chukun Pan <amadeus@jmu.edu.cn>
+Cc:     heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        michael.riesch@wolfvision.net, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/09/22 15:11, Allen-KH Cheng ha scritto:
-> Add iommu and smi nodes for mt8186 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Hi Chukun,
+
+On Mon, 26 Sept 2022 at 23:31, Chukun Pan <amadeus@jmu.edu.cn> wrote:
+>
+> Hi,
+>
+> On 26-09-22, 06:14, Anand Moon wrote:
+>
+> > +     pcie30_3v3: gpio-regulator {
+> > +             compatible = "regulator-gpio";
+> > +             regulator-name = "pcie30_3v3";
+> > +             regulator-min-microvolt = <100000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +             gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
+> > +             gpios-states = <0x1>;
+> > +             states = <100000 0x0>, <3300000 0x1>;
+> > +     };
+>
+> This is actually no different from vcc3v3-pcie regulator?
+>
+> > +&pcie30phy {
+> > +     data-lanes = <0 1 2 3>;
+> > +     phy-supply = <&vcc3v3_pi6c_03>;
+> > +     status = "okay";
+> > +};
+>
+> It seems that there is no need to define additional data-lanes when
+> the pcie3x1 node is not enabled, and phy-supply seems unnecessary on
+> this board.
+>
+As per the schematic below pice support with 2 regulators
+
+VCC3V3_PCIE        (SCT2250FPA)
+VCC3V3_PI6C_03  (PI6C557-03 is a spread spectrum clock generator
+supporting PCI Express and Ethernet requirements)
+
+[0] https://dl.radxa.com/rock3/docs/hw/3a/rock3a_v1.3_sch.pdf
+
+> Excuse me, can you try the patches I posted? Lspci can recognize
+> pcie3x2 normally, but I don't have a spare nvme hard drive right
+> now to test if it works.
+>
+
+No, it did not work on my board, see bool logs.
+[0] https://pastebin.com/Lk93VFxg
+
+[ 0.725985] phy phy-fe8c0000.phy.4: lane number 0, val 1
+[ 0.726975] phy phy-fe8c0000.phy.4: rockchip_p3phy_rk3568_init: lock
+failed 0x6890000, check input refclk and power supply
+[ 0.728172] phy phy-fe8c0000.phy.4: phy init failed --> -110
+[ 0.728704] rockchip-dw-pcie: probe of 3c0800000.pcie failed with error -110
+[ 0.745193] ALSA device list:
+
+Thanks
+-Anand
+
+> Thanks, Chukun
+>
 > ---
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 173 +++++++++++++++++++++++
->   1 file changed, 173 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> index 833e7037fe22..68f06bef88f3 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -7,6 +7,7 @@
->   #include <dt-bindings/clock/mt8186-clk.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/memory/mt8186-memory-port.h>
->   #include <dt-bindings/pinctrl/mt8186-pinfunc.h>
->   #include <dt-bindings/power/mt8186-power.h>
->   #include <dt-bindings/phy/phy.h>
-> @@ -944,24 +945,113 @@
->   			#reset-cells = <1>;
->   		};
->   
-> +		smi_common: smi@14002000 {
-> +			compatible = "mediatek,mt8186-smi-common";
-> +			reg = <0 0x14002000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_SMI_COMMON>, <&mmsys CLK_MM_SMI_COMMON>,
-> +				 <&mmsys CLK_MM_SMI_GALS>, <&mmsys CLK_MM_SMI_GALS>;
-> +			clock-names = "apb", "smi", "gals0", "gals1";
-> +			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-> +		};
-> +
-> +		larb0: smi@14003000 {
-> +			compatible = "mediatek,mt8186-smi-larb";
-> +			reg = <0 0x14003000 0 0x1000>;
-> +			mediatek,larb-id = <0>;
-> +			mediatek,smi = <&smi_common>;
-
-Order by name after reg please...
-
-compatible
-reg
-clocks
-clock-names
-mediatek,larb-id
-mediatek,smi
-power-domains
-
-> +			clocks = <&mmsys CLK_MM_SMI_COMMON>,
-> +				 <&mmsys CLK_MM_SMI_COMMON>;
-> +			clock-names = "apb", "smi";
-> +			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-> +		};
-> +
-> +		larb1: smi@14004000 {
-> +			compatible = "mediatek,mt8186-smi-larb";
-> +			reg = <0 0x14004000 0 0x1000>;
-> +			mediatek,larb-id = <1>;
-> +			mediatek,smi = <&smi_common>;
-> +			clocks = <&mmsys CLK_MM_SMI_COMMON>,
-> +				 <&mmsys CLK_MM_SMI_COMMON>;
-> +			clock-names = "apb", "smi";
-> +			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-> +		};
-> +
-> +		iommu_mm: iommu@14016000 {
-> +			compatible = "mediatek,mt8186-iommu-mm";
-> +			reg = <0 0x14016000 0 0x1000>;
-> +			mediatek,larbs = <&larb0 &larb1 &larb2 &larb4
-> +					  &larb7 &larb8 &larb9 &larb11
-> +					  &larb13 &larb14 &larb16 &larb17
-> +					  &larb19 &larb20>;
-> +			interrupts = <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&mmsys CLK_MM_SMI_IOMMU>;
-> +			clock-names = "bclk";
-
-clocks
-clock-names
-interrupts
-mediatek,larbs
-power-domains
-
-...etc :-)
-
-P.S.: Same comment for the other commits, too!
-
-Regards,
-Angelo
-
-
+> Chukun Pan (3):
+>   arm64: dts: rockchip: Add regulator suffix to ROCK3 Model A
+>   arm64: dts: rockchip: Rename pinctrl label of pcie2x1 on rock-3a
+>   arm64: dts: rockchip: Add PCIe v3 nodes to rock-3a
+>
+>  .../boot/dts/rockchip/rk3568-rock-3a.dts      | 36 ++++++++++++++-----
+>  1 file changed, 27 insertions(+), 9 deletions(-)
+>
+> --
+> 2.25.1
+>
