@@ -2,128 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F81D5EC20C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 14:05:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 345575EC21B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 14:09:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231701AbiI0MFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 08:05:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41816 "EHLO
+        id S231818AbiI0MJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 08:09:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231888AbiI0MFc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 08:05:32 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9069413CE1;
-        Tue, 27 Sep 2022 05:05:28 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id s14so14748076wro.0;
-        Tue, 27 Sep 2022 05:05:28 -0700 (PDT)
+        with ESMTP id S232226AbiI0MJf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 08:09:35 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 747B95F7D;
+        Tue, 27 Sep 2022 05:09:33 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id 102-20020a9d0bef000000b0065a08449ab3so6211081oth.2;
+        Tue, 27 Sep 2022 05:09:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
+        d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=aMFz74PifNUSu/W0zEbEDzLNbyXt9EcYY4KaI+IEVt0=;
-        b=G+gMsz+4fAGkT5Px+9K2xvQvfj9D9TKBj+P18qWucd+8pQw+U/rOWuTlHv5B+ULWgT
-         5y7QcT8rOOYXt6E2TDNxd5r7cd86ngoHaw5Qxuxys3fzcgGygoE0f++c7fNDk1eXEYl1
-         6Z/wo+8NHwi1sqwA5Z3kjzgK1LP2QNOmlaO0g=
+        bh=HfW3SUcUzN5oToVSuRjYiGdXRKLE00MUsymnMGgf6To=;
+        b=N3SPoKFLMpfj4bfskmwPVsj56f5aVYv+OToP9zxYJI8aQXcPteXDnlRHnx+SXH0SQ0
+         wxM6qkR74b5Is3uoH9IAMQsapQCy63srhwDriQ2ssJvEHqYvp6WexCb/jGH3ySGzhOk7
+         uz3RORMsx2SVejle7velo6of3ypeaqE0cGSroV125Id9uVD7+L5a/pYRldY7UUvUuPAd
+         U+oiXDIMw2Q7GCJHYvkpOMO6mwCgdzvKu7kIA0wgB/MFc2fcke5GsW4lGmpCz1XwOnbS
+         r7AVdD1zaBDt4xbpoE2s/2mAHXtgse96c31UwVvJWohv6yRC6FLeKrvJjcg//+6WAEP4
+         dkOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=aMFz74PifNUSu/W0zEbEDzLNbyXt9EcYY4KaI+IEVt0=;
-        b=bJx33mF6zJh126LPomwxUd2lBlESZEQQ5UyPU9e6ePi5FmUL6vZE/FsbP+PPvFajQd
-         tW96aBzMvB9KRE9gWuClbigZ7TGndR8PZtoagOiMpxaP4EwW2COYbe4GF3KU/43BXRcW
-         Cqqqmyd89/eq1fXbECre2YHRica9kQWV2EJN3mYw6xbcjewpjJ1VjhL+9Cd7LNCpR+ZW
-         KdekCTLK4C6Na+LQ6D9ZZM2th613emZf0lFMp3yPCmsSvm+bdG8RN6DjdQAkcxjQ9mDH
-         jyJuTb32pZJpFuzf37G+0y91jTskWyWUJIptIt7Os03sA1mml1IIsQPXaoPiDtugxi75
-         Nniw==
-X-Gm-Message-State: ACrzQf025lMgBkYAsIeyfpf8ADOnhVI7GbgG14ito6ODPjzHibA9N1hi
-        FVLmoOT7rf4v/YwjFqTeqEnbSA9xbZXO2PkJK1IpV0Dv
-X-Google-Smtp-Source: AMsMyM7nMLB0IrCPb2M/nxRoglUKQkXLXDTvev/T6b71kPxYN6T7MwuZB65wnFvN2X+RV+DTVJ2yZoF81QdnU8NDvZ8=
-X-Received: by 2002:a5d:4bc3:0:b0:22a:4b7a:6f60 with SMTP id
- l3-20020a5d4bc3000000b0022a4b7a6f60mr16447585wrt.549.1664280326958; Tue, 27
- Sep 2022 05:05:26 -0700 (PDT)
+        bh=HfW3SUcUzN5oToVSuRjYiGdXRKLE00MUsymnMGgf6To=;
+        b=m8gftGsOy3LWM96bj+CJQ/bmGiJmwSV3dgNgxUG3uXT3dn3dMhDE0qklbn1LqUf3Xz
+         c6OnLUtbUtEIACmjHn2XGmdKxkODYvYBCiCHMgLf3+gQhamZsj4Lx9JDstVz7QPkXBSQ
+         eT7w91tlpHlitxsHx/rC/Xneo4eZ3AAiQZlUyf0kTVp9QSfBM/iTjZK/Ek677+gzg6+U
+         EqiDi12xEoVeerlaKc/UcjH7SYDDFR8xWyfkVyU4+vYPTzDvym9lxjte5FCiLZw6AOwD
+         Vrw1No4YJsjXSUibJN5FrsbPPFnK0UJUGanOi4aVy915qOcEI5BCXq1ARpkxEgaAC907
+         JZEQ==
+X-Gm-Message-State: ACrzQf28gdQBvbuBN5Zi1BJ64/OfbLvSnkq6Bk5FIkbWOnN+S7J5H3h3
+        l19iPH5ghPRYYCEncv7xdq5KIwliWBhV20k2N+k=
+X-Google-Smtp-Source: AMsMyM6FL8QQmrf+fllfLdnU+I8CtKxT3FJx/ArVJ4fYG6BveW9MVfKNAWcolaHQxh13N7PCsMvEAMvIrx8/3DSCDYE=
+X-Received: by 2002:a9d:19ca:0:b0:655:bcdc:f546 with SMTP id
+ k68-20020a9d19ca000000b00655bcdcf546mr12536540otk.304.1664280572819; Tue, 27
+ Sep 2022 05:09:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220927114515.GA22344@hcl-ThinkPad-T495>
-In-Reply-To: <20220927114515.GA22344@hcl-ThinkPad-T495>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 27 Sep 2022 12:05:14 +0000
-Message-ID: <CACPK8XdHaExSzdHpCXNzSEK7L-QDDSkz2rud3OynBC-KhEApFA@mail.gmail.com>
-Subject: Re: [PATCH v6] ARM: dts: aspeed: Yosemite V2: Enable OCP debug card
-To:     Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
+References: <20220927031929.807070-1-sergio.paracuellos@gmail.com>
+ <YzLagn9/j0w4UymU@sirena.org.uk> <CAMhs-H8664babt9xwE-iCJNCdm+kues-c6V1iPwS63EtdWCV1w@mail.gmail.com>
+ <YzLloE/AEdFiHsEj@sirena.org.uk>
+In-Reply-To: <YzLloE/AEdFiHsEj@sirena.org.uk>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Tue, 27 Sep 2022 14:09:21 +0200
+Message-ID: <CAMhs-H9+hp3yLoGyGTNLDZKX__KGwa5PwLrqiFzVP__8_nPrFw@mail.gmail.com>
+Subject: Re: [RESEND PATCH v3] dt-bindings: spi: migrate mt7621 text bindings
+ to YAML
+To:     Mark Brown <broonie@kernel.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Sept 2022 at 11:45, Karthikeyan Pasupathi
-<pkarthikeyan1509@gmail.com> wrote:
+On Tue, Sep 27, 2022 at 1:59 PM Mark Brown <broonie@kernel.org> wrote:
 >
-> Added IPMB-13 channel for Debug Card communication.
-> which improves the readability of the machine and makes
-> it easier to debug the server and it will display some
-> pieces of information about the server like "system info",
-> "Critical sensors" and "critical sel".
+> On Tue, Sep 27, 2022 at 01:36:04PM +0200, Sergio Paracuellos wrote:
+> > On Tue, Sep 27, 2022 at 1:12 PM Mark Brown <broonie@kernel.org> wrote:
+> > > On Tue, Sep 27, 2022 at 05:19:29AM +0200, Sergio Paracuellos wrote:
 >
-> Signed-off-by: Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+> > > Please submit patches using subject lines reflecting the style for the
+> > > subsystem, this makes it easier for people to identify relevant patches.
+>
+> > Since this is a binding migration change I sent the patch expecting
+> > this going into the devicetree kernel tree. So I just use the common
+> > device tree change style 'dt-bindings: spi: migrate mt7621 text
+> > bindings to YAML' as the subject. So I don't really understand what
+> > you mean above, sorry. What is wrong with this subject? I submitted
+> > this v3 [0] and I was told by Rob to resend it to you and the
+> > linux-spi mail list also.
+>
+> Bindings mostly go through the subsystem rather than the DT tree.
 
-Thanks, I've queued this.
+I thought when changes are only in the binding side DT tree was
+preferred. Sorry for the inconvenience, then. Will take into account
+your advice from now on.
 
-Thanks Zev for your help reviewing.
-
-> ---
-> v6:
->  -Fix the commit format
->
-> v5:
->  -Updated commit message
->
-> v4:
->  -Resolved syntax error
->
-> v3:
->  -Updated the title and commit
->
-> v2:
->  -Updated the title
->
-> v1:
->  - Initial draft
-> ---
-> ---
->  arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-> index 8864e9c312a8..84236df522dc 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-> @@ -215,6 +215,17 @@
->         };
->  };
->
-> +&i2c13 {
-> +       status = "okay";
-> +       // Debug Card
-> +       multi-master;
-> +       ipmb13@10 {
-> +               compatible = "ipmb-dev";
-> +               reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-> +               i2c-protocol;
-> +       };
-> +};
-> +
->  &pwm_tacho {
->         status = "okay";
->         //FSC
-> --
-> 2.17.1
->
+Thanks,
+    Sergio Paracuellos
