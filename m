@@ -2,89 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FBA25EC0AF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 13:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A99F95EC0F7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 13:20:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231827AbiI0LNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 07:13:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48688 "EHLO
+        id S232019AbiI0LUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 07:20:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231897AbiI0LMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 07:12:47 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8942528E07;
-        Tue, 27 Sep 2022 04:12:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 23D61B81B10;
-        Tue, 27 Sep 2022 11:12:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27747C433C1;
-        Tue, 27 Sep 2022 11:12:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664277128;
-        bh=dv3kOjQkN2747uDiGJnnkt1eBZPn4MDWS+H/rcToHKQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=irmnfS3HRA9ytPoTuAuYi4Z7DrmpMIC6waufvsh6ZKesIFzMAH1Cqd4//FyMsbPA/
-         8DyZykNdqV5Wj79lJ/MqwAtb0zy035aadS81+R5iPzNXEVpb1EeAoBZHHeUSlOGAa9
-         iVu/Q4JQVhbxJDLgIng8++VVm4phLypxLCYRRWiSQkAhPiLNUOwQDS3IhINDbzEO3a
-         nNSWuoBSs9DmW8arw73mYYQqQcRKlRdhxxOs9+iGJzCdyQjytM4BSChhewBsCQOPja
-         xEvDNLp8fSNtUZYWupuDGFe56uxK+W13kHSxe33gu1k0G++miwfbf45l+dIzksfJH+
-         UbuZgCj6p1o/g==
-Date:   Tue, 27 Sep 2022 12:12:02 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-spi@vger.kernel.org,
-        matthias.bgg@gmail.com, arinc.unal@arinc9.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [RESEND PATCH v3] dt-bindings: spi: migrate mt7621 text bindings
- to YAML
-Message-ID: <YzLagn9/j0w4UymU@sirena.org.uk>
-References: <20220927031929.807070-1-sergio.paracuellos@gmail.com>
+        with ESMTP id S231956AbiI0LUN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 07:20:13 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE5D6B161;
+        Tue, 27 Sep 2022 04:19:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1664277599; x=1695813599;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=3HA1yaWXJ5JYhDrqsKuM6J4dWhwzZGgY3RcmKz1LDWc=;
+  b=J47ivqtqh5MLoGBpg0/RIGalUqXY9/ms7wdAqgFlzXNGHqC5h0wcgU9B
+   Merm0UMaZOkkjhnHvXXARpGFkDEvUACO6kI1KmWOZYIMksrXx1BUusE8R
+   rRoJ6+SH7hxEyenWSBttVkjxx9SoZXeWUSFQFjCeSV2MYwLPaSvdYzy5a
+   98ekHCywDykkZ07iFBNe2uGhZ5W6lsbTZdc/Xg3sL+JV8H7KsAf3uHA3b
+   3gzzyDTcbVE+E5SBMFh+6xsUq9V8aRDd4xWd6IXGhVyH5v6TIyUFNBaA1
+   2x9lvs35WZn5GHeRmm/qERLJ9jUolHd7LQ4LuM9PZV5G52yjAEnIBravQ
+   g==;
+X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; 
+   d="scan'208";a="179094331"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Sep 2022 04:19:57 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 27 Sep 2022 04:19:56 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
+ Transport; Tue, 27 Sep 2022 04:19:54 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Shravan Chippa <shravan.chippa@microchip.com>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cyril Jean <Cyril.Jean@microchip.com>,
+        Lewis Hanly <lewis.hanly@microchip.com>,
+        Vattipalli Praveen <praveen.kumar@microchip.com>,
+        Wolfgang Grandegger <wg@aries-embedded.de>,
+        Hugh Breslin <hugh.breslin@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v6 00/11] New PolarFire SoC devkit devicetrees & 22.09 reference design updates
+Date:   Tue, 27 Sep 2022 12:19:12 +0100
+Message-ID: <20220927111922.3602838-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="///nd/DeEmgELYTC"
-Content-Disposition: inline
-In-Reply-To: <20220927031929.807070-1-sergio.paracuellos@gmail.com>
-X-Cookie: Vote anarchist.
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Resending with an extra patch making some more memory map changes that
+are to be introduced in the v2022.10 reference design. Since the
+v2022.10 and v2022.09 reference designs both indepedently break
+backwards compat, v2022.09 is not compatible with <= v2022.05 and
+v2022.10 is not compatible with v2022.09, I am doing the jump directly
+to v2022.10 rather than putting an intermediate step at v2022.09.
 
---///nd/DeEmgELYTC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I did not drop Krzysztof's Ack on patch 1 as s/09/10 has no impact on
+the correctness of the binding.
 
-On Tue, Sep 27, 2022 at 05:19:29AM +0200, Sergio Paracuellos wrote:
-> SoC MT7621 SPI bindings used text format, so migrate them to YAML.
-> There are some additions to the binding that were not in the original
+--8<---
+Hey all,
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+Some 6.1 targeted changes here.
+Firstly, two new dev kits (one first-party & one from Aries Embedded).
+They've been sitting in our vendor tree, so are being sent where they
+belong.
 
---///nd/DeEmgELYTC
-Content-Type: application/pgp-signature; name="signature.asc"
+Secondly, another release of our reference design for the Icicle kit
+is due in September. Usually these do not really change much for the
+devicetree, but this time around a pair of changes impact the memory
+map.
 
------BEGIN PGP SIGNATURE-----
+The first of these is adding dma-ranges to the pcie controller. The
+controller had some issues to begin with & with the current reference
+design (v2022.05) would not work with mainline Linux nor has it since
+reference design v2021.08. A combination of the property, a change
+to the FPGA design & a small fix to the driver will get it working
+with mainline again. The other non-backwards compatible change to the
+reference design is moves of the peripherals instantiated in the
+fabric. Currently they are fairly spread out & a common complaint has
+been that this leaves little room in the fic3 section of the memory map
+for custom peripherals without removing the existing ones.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMy2oEACgkQJNaLcl1U
-h9B5nQf/VidvFDvPMfROPjc+zsL8Jo7Odsl/VracE0VLJAgEpcFoaP30DoeZNdYq
-PgNh0YChMBkVjTFP0eIX2IzEFVKzuEG99Z5ZUy4izeE3LBt58iopy+2UxNZs1LzG
-ce5il9jWznceYRJ581TigI2W4Opc9KAKzEqRC+kPS1iSXs/i++Gv/eMtEDsdYq5I
-xRfqmuSBMAVszvLtIXVs4ZAvOGk1iEqQFOpXjHD0kIR8+sideqs2OeU5NhRrTCAW
-Sq53UbVhxVgLi1iPViZ8BS2YFybjcY0Jjl4NHakRSENNeGcbMctk7q6QXs7HMwOE
-mm+3Pt1hEpuwvX9ffuq12Pt6/hGzTQ==
-=N3+j
------END PGP SIGNATURE-----
+This series depends on [0] so as not to add dtbs_check warnings. The
+fabric clock support is added by [1].
 
---///nd/DeEmgELYTC--
+Thanks,
+Conor.
+
+Changes since v5:
+- swap v2022.09 for v2022.10 in the binding
+- add a patch with the v2022.10 memory map changes
+
+Changes since v4:
+- fix the incompatible interrupts on m100pfsevp
+
+Changes since v3:
+- add an extra patch reducing the fic3 clock rate
+
+Changes since v2:
+- drop the sd & emmc versions of the aries devicetree
+- remove a extra newline
+
+Changes since v1:
+- made the polarberry part of an enum in patch 1
+
+0 - https://lore.kernel.org/linux-gpio/20220825143522.3102546-1-conor.dooley@microchip.com/
+1 - https://lore.kernel.org/linux-clk/20220824093342.187844-1-conor.dooley@microchip.com/
+
+Conor Dooley (9):
+  dt-bindings: riscv: microchip: document icicle reference design
+  dt-bindings: riscv: microchip: document the aries m100pfsevp
+  riscv: dts: microchip: add pci dma ranges for the icicle kit
+  riscv: dts: microchip: move the mpfs' pci node to -fabric.dtsi
+  riscv: dts: microchip: icicle: update pci address properties
+  riscv: dts: microchip: icicle: re-jig fabric peripheral addresses
+  riscv: dts: microchip: reduce the fic3 clock rate
+  riscv: dts: microchip: add a devicetree for aries' m100pfsevp
+  riscv: dts: microchip: update memory configuration for v2022.10
+
+Shravan Chippa (1):
+  dt-bindings: riscv: microchip: document the sev kit
+
+Vattipalli Praveen (1):
+  riscv: dts: microchip: add sevkit device tree
+
+ .../devicetree/bindings/riscv/microchip.yaml  |  20 +-
+ arch/riscv/boot/dts/microchip/Makefile        |   2 +
+ .../dts/microchip/mpfs-icicle-kit-fabric.dtsi |  43 ++++-
+ .../boot/dts/microchip/mpfs-icicle-kit.dts    |  18 +-
+ .../dts/microchip/mpfs-m100pfs-fabric.dtsi    |  45 +++++
+ .../boot/dts/microchip/mpfs-m100pfsevp.dts    | 179 ++++++++++++++++++
+ .../dts/microchip/mpfs-polarberry-fabric.dtsi |  29 +++
+ .../dts/microchip/mpfs-sev-kit-fabric.dtsi    |  45 +++++
+ .../riscv/boot/dts/microchip/mpfs-sev-kit.dts | 145 ++++++++++++++
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       |  30 ---
+ 10 files changed, 511 insertions(+), 45 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/microchip/mpfs-m100pfs-fabric.dtsi
+ create mode 100644 arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
+ create mode 100644 arch/riscv/boot/dts/microchip/mpfs-sev-kit-fabric.dtsi
+ create mode 100644 arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
+
+-- 
+2.37.3
+
