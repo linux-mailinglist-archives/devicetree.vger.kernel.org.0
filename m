@@ -2,102 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB4E55EC20A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 14:04:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F81D5EC20C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 14:05:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232207AbiI0MEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 08:04:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38268 "EHLO
+        id S231701AbiI0MFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 08:05:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232206AbiI0MEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 08:04:43 -0400
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E1971D9;
-        Tue, 27 Sep 2022 05:04:32 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 84BD6580B4D;
-        Tue, 27 Sep 2022 08:04:30 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Tue, 27 Sep 2022 08:04:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1664280270; x=1664283870; bh=X6PgjqV1In
-        3ZSq9GixXUX+wp6ZWYnHlCCiRNYB8MzOo=; b=lf5crLfqQDmnHfXyRPd0RxqTsS
-        1iIK1oqW2RLYJpJECb0dI8CnPPZXjJsP9fIFBJJw6GoCXv6LpqOfAheXncm8a4eE
-        +3V2cMBqlF/Uq04vuq9nGHc+WjgBIQaS/IrT/G4OHmsizNz+t5jjOS5hnb1PV7I/
-        xba7NdW1ag50HrLmTL5aawX/YfTG3mLag1Ca9LqaYIlixAp3qM9U/fH9dJwutsEZ
-        eftnbOVPQjIT5pyn0fwEKVPuXeqrcXksQvblgeG1TjQQG7nVR3/dryBBFNfodYB5
-        7Pw6q1KMF3UY/GfTNf7xrl9ORqETU1Fy0ZFLUHcdzku1cUsCCYZDuCHTr2Cg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; t=1664280270; x=1664283870; bh=X6PgjqV1In3ZSq9GixXUX+wp6ZWY
-        nHlCCiRNYB8MzOo=; b=bDSqXckW0Y32+AmR/aRSggoFs21pUIMFAL0bBrsxBc/I
-        q2DUC8Yogk5bW8PgqKloeBULaZeXVSQ67uDZkhDpCwAoajHaHpasH6/i3DjloJII
-        T3sbT9rokvzgRVs1Kg9UMiP8FzsBoO/5cJcna3AgJWiDjEggrnbVNyAJVBqweQFu
-        S6XIuaRka8TtiGXaLwSi45zi+MyQhP0Tz4Pvl6iPUG2Ehaq8jwbfrjZMm2qL1cWB
-        PFZTjEU9qVkAp6BpGLRJmXa9QJcE+1aCYqU6n25fz3Hnv9e+R7hjSrJz0xVWLOaS
-        RSUDDCxp3q4tUPjT4dionUarHFCHFMeRl3c5NrMyYQ==
-X-ME-Sender: <xms:zeYyY8S5ahd0QXtq6QoJfBkDmnI1-wIcUqrBfXZy5uTfEc2hDw3EEg>
-    <xme:zeYyY5xM_Vtig_uSBVnjl_nqCBT3rrbRLrPCc3hX4ns7AuQO7HRd4xVQ2KpfUsWjj
-    dKuwEjlkTQnPEHVO-8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeegiedgvddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:zeYyY50e3pxAnidlv6ow6J05cH6G_ideOK7wh8AAzqcN-73hAW5Cwg>
-    <xmx:zeYyYwCDs_2gfOaVIcH6jLGueqU1KnCWJ7RXj4up8XEEgWmU11erNw>
-    <xmx:zeYyY1iLZE2QFLavvsJaTrGF07tL8WwmmlI7Zgof7JkkuGNjUlJ2cg>
-    <xmx:zuYyY9g1A3_VCqwS4EDE03577fjzeGafDHpLzKHagO76sn7OapU2iw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 21661B60086; Tue, 27 Sep 2022 08:04:29 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-968-g04df58079d-fm-20220921.001-g04df5807
-Mime-Version: 1.0
-Message-Id: <ad962bed-1614-4eb1-91f7-23b9cb6e0ea3@www.fastmail.com>
-In-Reply-To: <20220927104138.5924-1-marex@denx.de>
-References: <20220927104138.5924-1-marex@denx.de>
-Date:   Tue, 27 Sep 2022 14:04:08 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Marek Vasut" <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc:     "Yann Gautier" <yann.gautier@foss.st.com>,
-        "Alexandre Torgue" <alexandre.torgue@foss.st.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Ulf Hansson" <ulf.hansson@linaro.org>, devicetree@vger.kernel.org,
-        "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2] dt-bindings: mmc: arm,pl18x: Document interrupt-names property
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231888AbiI0MFc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 08:05:32 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9069413CE1;
+        Tue, 27 Sep 2022 05:05:28 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id s14so14748076wro.0;
+        Tue, 27 Sep 2022 05:05:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=aMFz74PifNUSu/W0zEbEDzLNbyXt9EcYY4KaI+IEVt0=;
+        b=G+gMsz+4fAGkT5Px+9K2xvQvfj9D9TKBj+P18qWucd+8pQw+U/rOWuTlHv5B+ULWgT
+         5y7QcT8rOOYXt6E2TDNxd5r7cd86ngoHaw5Qxuxys3fzcgGygoE0f++c7fNDk1eXEYl1
+         6Z/wo+8NHwi1sqwA5Z3kjzgK1LP2QNOmlaO0g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=aMFz74PifNUSu/W0zEbEDzLNbyXt9EcYY4KaI+IEVt0=;
+        b=bJx33mF6zJh126LPomwxUd2lBlESZEQQ5UyPU9e6ePi5FmUL6vZE/FsbP+PPvFajQd
+         tW96aBzMvB9KRE9gWuClbigZ7TGndR8PZtoagOiMpxaP4EwW2COYbe4GF3KU/43BXRcW
+         Cqqqmyd89/eq1fXbECre2YHRica9kQWV2EJN3mYw6xbcjewpjJ1VjhL+9Cd7LNCpR+ZW
+         KdekCTLK4C6Na+LQ6D9ZZM2th613emZf0lFMp3yPCmsSvm+bdG8RN6DjdQAkcxjQ9mDH
+         jyJuTb32pZJpFuzf37G+0y91jTskWyWUJIptIt7Os03sA1mml1IIsQPXaoPiDtugxi75
+         Nniw==
+X-Gm-Message-State: ACrzQf025lMgBkYAsIeyfpf8ADOnhVI7GbgG14ito6ODPjzHibA9N1hi
+        FVLmoOT7rf4v/YwjFqTeqEnbSA9xbZXO2PkJK1IpV0Dv
+X-Google-Smtp-Source: AMsMyM7nMLB0IrCPb2M/nxRoglUKQkXLXDTvev/T6b71kPxYN6T7MwuZB65wnFvN2X+RV+DTVJ2yZoF81QdnU8NDvZ8=
+X-Received: by 2002:a5d:4bc3:0:b0:22a:4b7a:6f60 with SMTP id
+ l3-20020a5d4bc3000000b0022a4b7a6f60mr16447585wrt.549.1664280326958; Tue, 27
+ Sep 2022 05:05:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220927114515.GA22344@hcl-ThinkPad-T495>
+In-Reply-To: <20220927114515.GA22344@hcl-ThinkPad-T495>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 27 Sep 2022 12:05:14 +0000
+Message-ID: <CACPK8XdHaExSzdHpCXNzSEK7L-QDDSkz2rud3OynBC-KhEApFA@mail.gmail.com>
+Subject: Re: [PATCH v6] ARM: dts: aspeed: Yosemite V2: Enable OCP debug card
+To:     Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 27, 2022, at 12:41 PM, Marek Vasut wrote:
-> Document interrupt-names property with "cmd_irq" interrupt name.
-> This fixes dtbs_check warnings when building current Linux DTs:
+On Tue, 27 Sept 2022 at 11:45, Karthikeyan Pasupathi
+<pkarthikeyan1509@gmail.com> wrote:
 >
-> "
-> arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dtb: mmc@58007000: 
-> Unevaluated properties are not allowed ('interrupt-names' was 
-> unexpected)
-> "
+> Added IPMB-13 channel for Debug Card communication.
+> which improves the readability of the machine and makes
+> it easier to debug the server and it will display some
+> pieces of information about the server like "system info",
+> "Critical sensors" and "critical sel".
+>
+> Signed-off-by: Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
 
-I don't think that anything relies on the name here. Should
-it just be removed from the dts files then? The name does
-not follow the usual conventions with the "_irq" postfix.
+Thanks, I've queued this.
 
-     Arnd
+Thanks Zev for your help reviewing.
+
+> ---
+> v6:
+>  -Fix the commit format
+>
+> v5:
+>  -Updated commit message
+>
+> v4:
+>  -Resolved syntax error
+>
+> v3:
+>  -Updated the title and commit
+>
+> v2:
+>  -Updated the title
+>
+> v1:
+>  - Initial draft
+> ---
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+> index 8864e9c312a8..84236df522dc 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+> @@ -215,6 +215,17 @@
+>         };
+>  };
+>
+> +&i2c13 {
+> +       status = "okay";
+> +       // Debug Card
+> +       multi-master;
+> +       ipmb13@10 {
+> +               compatible = "ipmb-dev";
+> +               reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+> +               i2c-protocol;
+> +       };
+> +};
+> +
+>  &pwm_tacho {
+>         status = "okay";
+>         //FSC
+> --
+> 2.17.1
+>
