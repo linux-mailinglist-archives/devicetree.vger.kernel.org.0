@@ -2,264 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E4C5EBA45
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 07:59:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E5835EBAD1
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 08:39:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229495AbiI0F7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 01:59:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36548 "EHLO
+        id S229693AbiI0Gjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 02:39:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiI0F72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 01:59:28 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2121.outbound.protection.outlook.com [40.107.114.121])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E6FA6AC9;
-        Mon, 26 Sep 2022 22:59:27 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AsgatCN+5nU9JZXR70bpdfZzxJL/6cgR3t9AO7VZb9maD4cOqQTD3y67wEbQ+cYwN8DbDQtJ4idhwkK22afEX9kuxrxfMVk74wqC39R1GCsuay7z3/2sXaZnz0eijdWHgHfLztVNK7A18fey5Iy/E9UR4D/x00xIDbxf09uK5AAHnzjZ9lvNa6G9rHPCMryf/xsZG2CYy8gRPBEIGZr4Yim8hHSGUsqY2ELvaPknvuZY3CkikBqPbl0yZItiV+uxZpUwDzI7n9UYZ3OE4DQ46duHMGdpCpslbJpfenGN3SUUwuxi6qCLrZkyqZXdD+X9PJ+BIBKJx0njdrGDj6RNKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7/DjLI6zIkFneMfgVpirxpvKxDzJxw58UwT4LpW3A50=;
- b=LJX9oMl6VxW5jbgGa5p1AJIFNko+sXbkAv64ANeVfcaWCu8yXiQcqHHJ7Q+usj7COF4upxjNU+TNHHoaDlKyG08WCyrJ5ZtTRN1VM1so0xYUnw+p1R1Yd57jAirWGB6aE+1Iwv8Dt6Q0Nk8UTZ5drk7h6g4SxScr4w5gtc3HvR0FF7/zoicRlEMHiMyrX5+O8fXadccWuTSYLIbh8myFQXFycUkThm3uX05Yjvk6S775kPaS6h/oof74V/+S1YSrJsCDxOzZOKcMyILlgTl6l1x+UVAVRtUJ3AetCHJW7+Qz6jjOB+nXZChw3YcKCnxpP1nQKAFlrBTnXsQ7SQtSVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7/DjLI6zIkFneMfgVpirxpvKxDzJxw58UwT4LpW3A50=;
- b=FXp5IGf7/DmX21HjFLGUKznTSGOo3znS2wcGI097MxHRMgBCuNyCUTqWvEm8eq32TEG33XRh6KOU/qq8p+8d9Pm+zje5aVrtBkaFpJw7i+SRMf2rvKbeZmXeoYgptHiU3oSUDyhiDlrJJZG0GPZxhIEdA7tdf8gZ8n9axHyujKw=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OS3PR01MB9591.jpnprd01.prod.outlook.com
- (2603:1096:604:1c8::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.24; Tue, 27 Sep
- 2022 05:59:25 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::2991:1e2d:e62c:37d0]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::2991:1e2d:e62c:37d0%3]) with mapi id 15.20.5654.026; Tue, 27 Sep 2022
- 05:59:25 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v3 2/3] net: ethernet: renesas: Add Ethernet Switch driver
-Thread-Topic: [PATCH v3 2/3] net: ethernet: renesas: Add Ethernet Switch
- driver
-Thread-Index: AQHYzkQbCGZNTw1MNUuaNx/SR8stKK3s/34AgARIsfCAANSngIAAruVQ
-Date:   Tue, 27 Sep 2022 05:59:25 +0000
-Message-ID: <TYBPR01MB534189F384D8A0F5E5E00666D8559@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20220922052803.3442561-1-yoshihiro.shimoda.uh@renesas.com>
- <20220922052803.3442561-3-yoshihiro.shimoda.uh@renesas.com>
- <Yy2wivbzUA2zroqy@lunn.ch>
- <TYBPR01MB5341ACAD30E913D01C94FE08D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <YzH65W3r1IV+rHFW@lunn.ch>
-In-Reply-To: <YzH65W3r1IV+rHFW@lunn.ch>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OS3PR01MB9591:EE_
-x-ms-office365-filtering-correlation-id: f3bbfd1f-ab3a-4437-c073-08daa04d6e90
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: PQrpQkorUh+8y3g7fx9ALPDlEeVN1qialkU6+zjWdho/4sqr/0/27cvBdUv8JKb1dpuk0/tBx+EFod33VkLpRtLOI8pqx5tPnaUrbxOm8uKGxm6UP3naaLGxXwbXdWDYofUDD0Hfbq9/D2bwImFCd8KqitbWs3wSkro1+Pu4FIM4wwxn7W3/9a42PJxNChZ9qbppfb15yp98DxFv0OKh+lkSeC9ZkzFg1NW3EwokPmWGr7K4lCf+FSlEbEowewZSvrq77DLzv++EGtRf88HcaSZ/o7XCgNQyWhBEOQTAgjlQ1G/qlqqKVreDvdjy7oVtzPt3shlp7HcEMH3/7p/Nhvxia1g0GnO5X6cFrNoKBSEKerNR4duSpVQe4XduAuNevkzssoaa4UDoBcDkqp7Vu1QT368hzQ7ZEeJ7KuyOoX2qd/o6m/RIkDbL401X5vkEdPcHgHo7xFk2l1YDyylonJARIoeVVg5eqKqU2csLOExXrInGORFCZYDGrm/TyWznAXbB3qepnis2oEhpF99iOi/wwaCainJqQaNilCYRDPV+611WJlp+JdJLMvxViSD4X/fXEMHD7fU/caX0P2OyfwH/XJsbX5/5ZmoOutlRqdv14OUidY2r3wvBeQHRDfpSJGar1VftxknSaY5LCj0xmcdWbXeX58DNDZsl6aoRvxf+s4nvndk1kv/5x1UPblcbPm46HX8UeDXnyL7hIqJzk3RVHW/OELMT841hYefMZSRGXqoXkVihrhvGOxYFWd0Quu/8EXkXjpdSULp/gbzowrmYtHJRYgVotaMVFFPXhvxEamyQB9M1qaXL8W9SjVehXsVz75lgSar/j+6LtAK0JQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(346002)(39860400002)(366004)(376002)(136003)(451199015)(122000001)(4326008)(5660300002)(33656002)(2906002)(186003)(8936002)(52536014)(7416002)(38070700005)(64756008)(66446008)(66476007)(66556008)(41300700001)(86362001)(66946007)(9686003)(8676002)(76116006)(83380400001)(316002)(7696005)(6916009)(6506007)(54906003)(478600001)(55016003)(38100700002)(966005)(71200400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?jdzr2toLoLRkSYT3uY55S454PZxxWmJmqZNIbvoIrjyp6jWXMe91m9R6JEif?=
- =?us-ascii?Q?WzvoT3FnqgQgOZk/Xj5+uWiTAqxk50x7+OSij+iR1W8GshAUeDzTndK6hm9T?=
- =?us-ascii?Q?Dhz/sCn1+T7OH+yPEw1sU/0oCTP10/u2Us21+xD0Yb+DzFjMtcERsrvzjdYn?=
- =?us-ascii?Q?ZUo9xrVwuXoaHF9mrhK9PYpkq2fp9H60kiRPeXFw6L+iKFDwGXn8IDaPcE+e?=
- =?us-ascii?Q?25lx0eLTKeIOyekHnX9A1de5GHzfqkxp7X/vC+GRu+KKYDw9MYauqCf01cmd?=
- =?us-ascii?Q?S2mHL2zdCkb1Y11a0NwV665avjkaHbTHWG6KnlLR1+F/nP5BfNHk5QYcfCez?=
- =?us-ascii?Q?vGSHifv64NZMZi36/GE804Wg0xmkWO17UfsqqT5uO6iV2Natn0llzjamTfUr?=
- =?us-ascii?Q?1eCgGqH5Cgnlqd87Hd/UoznfLuAUMQLafgBlrHAGyFJ39V8UqBnf9/Qf5HJ1?=
- =?us-ascii?Q?gn41G/MOIbIeiNHj35cLL9ceIbYMYdCfZHkhKi2XNW30HTcMJOeIFHY9PPF/?=
- =?us-ascii?Q?wmfuE4HlI9b5xPCM8c6KkHnGF9eSSqj7CbAsJd5u4XCgmMKyc6e3gUNam2jL?=
- =?us-ascii?Q?fnIiyPfpRm3LxjAPSpxeU1TLUkq/XapLOX2SoAI1Hzhn72gEi1gFYFoSUpPQ?=
- =?us-ascii?Q?bt7czLpy6+ePsbnB4iTCvAoift3IXRum17jIl5I9qPzvtaLrbX5bcycx15TB?=
- =?us-ascii?Q?Fd1nMstokmO3mo5EQzvOZWbLow8D/bzmD2vN3k81j2wPME2EE3hrSbgfP9rV?=
- =?us-ascii?Q?rObURvEP8iVQrUbbC5Hyda9S0bPiDnq1mC7MpdWDCC4omugVU1q32W3Y8fy0?=
- =?us-ascii?Q?VYR/GLla15t3faAJM/NYfQk41I9OwJf9UiFlEXLoWYfCZc4S498lx8T5sr0s?=
- =?us-ascii?Q?MVgYaeFvKc464/Rtekf1993TPOzARgA8SXEn8eGBsdAnQ0ymINSKzUI6GWxv?=
- =?us-ascii?Q?XQmlTcEgzBpwA43PfU8MvkK5WlzjMmflKM80hs1GdCfbKmbXK1W1CWAJ+zGr?=
- =?us-ascii?Q?435OsO5/FNbICGLjWXxZjGNDxLH6u4OdAHByCqQxrqwPUIkdez677+aKAqi4?=
- =?us-ascii?Q?Etr7STPOpIPhiNoFVjQWbUwAwqDr1jEzIFwRoU1QpsZr3Qv2reoxfwcUvz0D?=
- =?us-ascii?Q?Ca5bhh99I02Ecox1PlC0FaesjHL+ElBPYLyf+1zSY0BUL8cSVMvzkUj/e2Fg?=
- =?us-ascii?Q?mnQwcbtsuxyyV/dbYBqsQ7bN/6++KRWrstSMeY8PQRuER2HvYntIupUxmNpQ?=
- =?us-ascii?Q?1PXCEF2MGOmwMQXPgOkejpdp/kV3brgyZY+jbVRSxk7to26aM5vs344f7qHw?=
- =?us-ascii?Q?ByJOgJb2kjEdH8D2vtJOcSkloV9pl4iFSHN9mNVCdGU8xMQ4A8i6Thc2yPdx?=
- =?us-ascii?Q?qfYRTxbOV03oPppFIyvDJeOHGqm90pOmgiUZvEXw44BxoY3Kd4KflLrxbH7s?=
- =?us-ascii?Q?+RETbyDPo6QQ7+0zPi68qVoJimzOkqMoax8115CSUtL9eJuIZetGFMMye/1I?=
- =?us-ascii?Q?9QGmQgHEZit/uv2D3Uq8xAiHM4uM+vfcfn5bYLpNYtEQ1mwiUrMWV6iLTOjF?=
- =?us-ascii?Q?s4sioWD8rS3YISePvVsejWFsXW1nGig+DqLrgUX7NTASj0+uufM74HQDWWcj?=
- =?us-ascii?Q?quitTnPe0uL9Gq/R1Ye/J5GG8zoYotghVS93y+jG1aj6/fOchcjPo2XU15Cz?=
- =?us-ascii?Q?3IpMUQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229458AbiI0Gjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 02:39:44 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4C8601BEAE;
+        Mon, 26 Sep 2022 23:39:41 -0700 (PDT)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxvmummjJjMaEiAA--.52293S2;
+        Tue, 27 Sep 2022 14:39:34 +0800 (CST)
+Subject: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to
+ json-schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        =?UTF-8?B?5YiY5L2p5a6d?= <liupeibao@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        =?UTF-8?B?5YiY5L2p5a6d?= <liupeibao@loongson.cn>
+References: <20220921015605.17078-1-zhuyinbo@loongson.cn>
+ <20220921015605.17078-2-zhuyinbo@loongson.cn>
+ <fb901889-d769-ba56-d4cb-2d9d8b50f74f@linaro.org>
+ <28a78a10.a7dd.1835f5aaf90.Coremail.zhuyinbo@loongson.cn>
+ <a44244f2-fb96-0483-b529-d0f2b0b7e5d8@linaro.org>
+ <4febe7e4.a96c.18362d997e3.Coremail.zhuyinbo@loongson.cn>
+ <20220924174258.GA1011284-robh@kernel.org>
+ <4ce14e3c.bf79.18377f44118.Coremail.zhuyinbo@loongson.cn>
+ <1f3e153b-da8a-43fa-162f-9bea2ed3ef78@linaro.org>
+ <73282433.c0c0.18378f2cf65.Coremail.zhuyinbo@loongson.cn>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <1f423ccd-9b2b-3416-c594-7ded6a3b32b6@loongson.cn>
+Date:   Tue, 27 Sep 2022 14:39:34 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3bbfd1f-ab3a-4437-c073-08daa04d6e90
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2022 05:59:25.3627
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: f4j3OO3eytUh+uyKv6P216bgzArzGT4xItuyqQyKO5EPt9/Zuy2qizC+NrayfdsfAu5hY9X57nyJNDbGnniYJzVcwvrTODmcQ2xKB9PkwCU6qcaELCeG0k9fkcgitOEP
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB9591
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <73282433.c0c0.18378f2cf65.Coremail.zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8DxvmummjJjMaEiAA--.52293S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Gw15Wry7Xw4UKFyxXF4UCFg_yoWfAr47pF
+        17CayUCr4kJr18uwnrKF1UCFn0q345tr1DXrnrGw18Jryqqw13XF43Xr1UuryxGryjgF4U
+        ZrWvgw12ga4UJ3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUU9l14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+        1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+        6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+        CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+        2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+        W8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka
+        0xkIwI1lc7I2V7IY0VAS07AlzVAYIcxG8wCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
+        8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
+        xVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
+        AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
+        cIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r
+        4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUOmhFUUUUU
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
 
-> From: Andrew Lunn, Sent: Tuesday, September 27, 2022 4:18 AM
->=20
-> On Mon, Sep 26, 2022 at 08:12:14AM +0000, Yoshihiro Shimoda wrote:
-> > Hi Andrew,
-> >
-> > > From: Andrew Lunn, Sent: Friday, September 23, 2022 10:12 PM
-> > >
-> > > > +/* Forwarding engine block (MFWD) */
-> > > > +static void rswitch_fwd_init(struct rswitch_private *priv)
-> > > > +{
-> > > > +	int i;
-> > > > +
-> > > > +	for (i =3D 0; i < RSWITCH_NUM_HW; i++) {
-> > > > +		iowrite32(FWPC0_DEFAULT, priv->addr + FWPC0(i));
-> > > > +		iowrite32(0, priv->addr + FWPBFC(i));
-> > > > +	}
-> > >
-> > > What is RSWITCH_NUM_HW?
-> >
-> > I think the name is unclear...
-> > Anyway, this hardware has 3 ethernet ports and 2 CPU ports.
-> > So that the RSWITCH_NUM_HW is 5. Perhaps, RSWITCH_NUM_ALL_PORTS
-> > is better name.
->=20
-> How do the CPU ports differ to the other ports? When you mention CPU
-> ports, it makes me wonder if this should be a DSA driver?
+在 2022/9/26 下午4:38, Yinbo Zhu 写道:
+>
+>
+>> -----原始邮件-----
+>> 发件人: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+>> 发送时间:2022-09-26 14:21:41 (星期一)
+>> 收件人: "Yinbo Zhu" <zhuyinbo@loongson.cn>, "Rob Herring" <robh@kernel.org>
+>> 抄送: "Rafael J . Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Amit Kucheria" <amitk@kernel.org>, "Zhang Rui" <rui.zhang@intel.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, zhanghongchen <zhanghongchen@loongson.cn>, "刘佩宝" <liupeibao@loongson.cn>
+>> 主题: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to json-schema
+>>
+>> On 26/09/2022 06:00, Yinbo Zhu wrote:
+>>>
+>>>
+>>>> -----原始邮件-----
+>>>> 发件人: "Rob Herring" <robh@kernel.org>
+>>>> 发送时间:2022-09-25 01:42:58 (星期日)
+>>>> 收件人: "朱银波" <zhuyinbo@loongson.cn>
+>>>> 抄送: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rafael J . Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Amit Kucheria" <amitk@kernel.org>, "Zhang Rui" <rui.zhang@intel.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, zhanghongchen <zhanghongchen@loongson.cn>
+>>>> 主题: Re: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to json-schema
+>>>>
+>>>> On Thu, Sep 22, 2022 at 09:39:30AM +0800, 朱银波 wrote:
+>>>>>
+>>>>>
+>>>>>> -----原始邮件-----
+>>>>>> 发件人: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+>>>>>> 发送时间:2022-09-21 17:31:11 (星期三)
+>>>>>> 收件人: "朱银波" <zhuyinbo@loongson.cn>
+>>>>>> 抄送: "Rafael J . Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Amit Kucheria" <amitk@kernel.org>, "Zhang Rui" <rui.zhang@intel.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, zhanghongchen <zhanghongchen@loongson.cn>
+>>>>>> 主题: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to json-schema
+>>>>>>
+>>>>>> On 21/09/2022 11:22, 朱银波 wrote:
+>>>>>>>> -----原始邮件-----
+>>>>>>>> 发件人: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+>>>>>>>> 发送时间:2022-09-21 15:05:00 (星期三)
+>>>>>>>> 收件人: "Yinbo Zhu" <zhuyinbo@loongson.cn>, "Rafael J . Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Amit Kucheria" <amitk@kernel.org>, "Zhang Rui" <rui.zhang@intel.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+>>>>>>>> 抄送: zhanghongchen <zhanghongchen@loongson.cn>
+>>>>>>>> 主题: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to json-schema
+>>>>>>>>
+>>>>>>>> On 21/09/2022 03:56, Yinbo Zhu wrote:
+>>>>>>>>> Convert the loongson2 thermal binding to DT schema format using
+>>>>>>>>> json-schema.
+>>>>>>>> Incorrect subject and incorrect commit msg. There is no conversion here.
+>>>>>>> Our soc architecture is the loongson2 series, so we will modify it accordingly.
+>>>>>> How the soc architecture is related to my comment that you do not
+>>>>>> perform conversion?
+>>>>> I got it, and I will aad a conversion.
+>>>>>>>>> Signed-off-by: Yinbo Zhu <c>
+>>>>>>>>> ---
+>>>>>>>>> Change in v2:
+>>>>>>>>> 		1. Add description and type about the "id".	
+>>>>>>>>> 		2. Make the filename was based on compatible.
+>>>>>>>>>
+>>>>>>>>>   .../bindings/thermal/loongson2-thermal.yaml   | 52 +++++++++++++++++++
+>>>>>>>>>   1 file changed, 52 insertions(+)
+>>>>>>>>>   create mode 100644 Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+>>>>>>>>>
+>>>>>>>>> diff --git a/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+>>>>>>>>> new file mode 100644
+>>>>>>>>> index 000000000000..2994ae3a56aa
+>>>>>>>>> --- /dev/null
+>>>>>>>>> +++ b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+>>>>>>>>
+>>>>>>>> No improvements here. You ignore my comments, so I am going to NAK it.
+>>>>>>> I don't get your point, that dts compatible is "loongson,loongson2-thermal", so this driver file name is named
+>>>>>>> loongson2-thermal that according what you said about "Filename based on compatible."
+>>>>>>> If what I understand is not what you expect, please tell me how to modify it.
+>>>>>>
+>>>>>> Filename must match the compatible, so: loongson,loongson2-thermal.yaml
+>>>>> I got it, and I will add a conversion.
+>>>>>>>>
+>>>>>>>>> @@ -0,0 +1,52 @@
+>>>>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>>>>>> +%YAML 1.2
+>>>>>>>>> +---
+>>>>>>>>> +$id: http://devicetree.org/schemas/thermal/loongson2-thermal.yaml#
+>>>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>>>>> +
+>>>>>>>>> +title: Thermal sensors on loongson2 SoCs
+>>>>>>>>> +
+>>>>>>>>> +maintainers:
+>>>>>>>>> +  - zhanghongchen <zhanghongchen@loongson.cn>
+>>>>>>>>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+>>>>>>>>> +
+>>>>>>>>> +properties:
+>>>>>>>>> +  compatible:
+>>>>>>>>> +    const: loongson,loongson2-thermal
+>>>>>>>>> +
+>>>>>>>>> +  reg:
+>>>>>>>>> +    maxItems: 1
+>>>>>>>>> +
+>>>>>>>>> +  id:
+>>>>>>>>> +    $ref: '//schemas/types.yaml#/definitions/uint32'
+>>>>>>>> No improvements here, so let me be specific - you need to really justify
+>>>>>>>> such property or it cannot go to schema.
+>>>>>>> The loongson2_thermal.c driver need parse this "id" property.
+>>>>>> This is not reason to add properties to DT. DT describes the hardware,
+>>>>>> not driver behavior.
+>>>>>>
+>>>>>> Why hardware needs arbitrary, additional addressing number instead of
+>>>>>> standard unit address?
+>>>>> The loongson2 series soc supports up to four sensors, but the 2K1000 has only one sensor, so the ID must be 0.
+>>>>> For the 2K1000, in order to distinguish the differences between different hardware in the Loongson2 SoC series,
+>>>>> the ID is added to the dts
+>>>> Differences in SoCs is what 'compatible' is for. If 'loongson2' is not a
+>>>> specific SoC, then your compatible string is not specific enough.
+>>> If other loongson2 platforms are different from the thermal sensor, I will add compatible
+>>> "loongson,loongson2-thermal-xxx", please you note.
+>> No, this compatible looks wrong then. What is your SoC model number? You
+>> called loongson2 a "series", so that's not appropriate. Compatible
+>> should be specific.
+> Must it be strict here? I have a look about other platforms are similar to this one, eg.
+> examples:
+>    - |
+>      tmu@f0000 {
+>          compatible = "fsl,qoriq-tmu";
+> the qoriq series soc include ls1046a/ls1043/ls1088a/...
+>
+> and the compatible was "loongson,loongson2-xxx" is internal rules, we hope that code can as the rules
+> to upstream.
+>
+>>>>>>>>> +    description: |
+>>>>>>>>> +      Specify the thermal sensor id.
+>>>>>>>>> +    minimum: 0
+>>>>>>>>> +    maximum: 3
+>>>>>>>>> +
+>>>>>>>>> +  interrupts:
+>>>>>>>>> +    maxItems: 1
+>>>>>>>>> +
+>>>>>>>>> +  "#thermal-sensor-cells":
+>>>>>>>>> +    const: 1
+>>>> If one SoC only has 1 sensor, then this could be 0. However, you don't
+>>>> have to do that, but it's another way to distinguish differences.
+>>> okay ,I got it.
+>>>>>>>>> +
+>>>>>>>>> +required:
+>>>>>>>>> +  - compatible
+>>>>>>>>> +  - reg
+>>>>>>>>> +  - id
+>>>>>>>>> +  - interrupt-parent
+>>>>>>>> Why?
+>>>>>>> The interrupts of our dts do not specify an interrupt parent,
+>>>>>>> eg. interrupts = <7 IRQ_TYPE_LEVEL_LOW>
+>>>>>>> so we need to add an interrupt parent property.
+>>>>>> You can add but I am asking why is it required?
+>>>>> Since there is more than one interrupt controller in the Loongson2 series soc, that need to specify the interrupt
+>>>>> controller in the dts, that is, the interrupt parent.   If different interrupt parents are used in dts, the interrupt
+>>>>> numbers are different.
+>>>> It is perfectly valid for the 'interrupt-parent' to be in *any* parent
+>>>> node. So it is never required by any binding.
+>>> I don't get your meaning, You mean I can add it in the dts, but I don't need to add it in the binding file, right?
+>> You should not add it to the binding because it is not related to the
+>> device itself.
+> okay, I got it.
+>>>> Rob
+>>>
+>> Don't include such footers. We cannot talk over confidential emails and
+>> you clearly state that here.
+>>
+>> Best regards,
+>> Krzysztof
 
-I compared a DSA diagram [1] and this Ethernet Switch and then
-this switch differs than the DSA diagram:
-- This switch has a feature which accesses DRAM directly like an "ethernet =
-controller".
-  I called this feature as "cpu port", but it might be incorrect.
-- This switch has doesn't have any "control path". Instead of that, this sw=
-itch
-  is controled by registers via APB (internal bus) directly.
+I'm sorry to add this footers,  this is a problem with my website 
+mailbox. Later, I use my local mailbox to send emails,
 
-So, IIUC, this should not be a DSA driver.
+there will be no footprints in my local mailbox.
 
-[1] https://bootlin.com/blog/tag/dsa/
 
-> Is there a public data sheet for this device?
+TKs,
 
-Unfortunately, we have no public data sheet for this device.
-But, I tried to figure this switch diagram about control/data paths as belo=
-w:
+BRs
 
-Control path:
-+--- R-Car S4-8 SoC -------------------------+
-|                                            |
-| CPU ---(APB bus)---+--- Ethernet Switch ---|---(MDIO)--------------+
-|                    |                       |                       |
-|                    +--- Ethernet SERDES    |              External Ethern=
-et PHY --- RJ45
-|                                            |
-+--------------------------------------------+
-Notes: The switch and SERDES have 3 ports of MDIO and SGMII.
+Yinbo Zhu.
 
-Data Path:
-+--- R-Car S4-8 SoC -------------------------------------------------------=
---+
-|                                                                          =
-  |
-| CPU ---(AXI bus)---+--- DRAM        +--------+                           =
-  |
-|                    +---(cpu port)---|        |---(ether port)--- SERDES -=
---|---(SGMII)--- PHY --- RJ45
-|                    |                | Switch |---(ether port)--- SERDES -=
---|---(SGMII)--- PHY --- RJ45
-|                    +---(cpu port)---|        |---(ether port)--- SERDES -=
---|---(SGMII)--- PHY --- RJ45
-|                                     +--------|                           =
-  |
-+--------------------------------------------------------------------------=
---+
+>
 
-The current driver only supports one of MDIO, cpu port and ethernet port, a=
-nd it acts as an ethernet device.
-
-> > Perhaps, since the current driver supports 1 ethernet port and 1 CPU po=
-rt only,
-> > I should modify this driver for the current condition strictly.
->=20
-> I would suggest you support all three user ports. For an initial
-> driver you don't need to support any sort of acceleration. You don't
-> need any hardware bridging etc. That can be added later. Just three
-> separated ports.
-
-Thank you for your suggestion. However, supporting three user ports
-is required to modify an external ethernet PHY driver.
-(For now, a boot loader initialized the PHY, but one port only.)
-
-The PHY is 88E2110 on my environment, so Linux has a driver in
-drivers/net/phy/marvell10g.c. However, I guess this is related to
-configuration of the PHY chip on the board, it needs to change
-the host 7interface mode, but the driver doesn't support it for now.
-
-So, I'd like to support three user ports later if possible...
-
-> > > > +
-> > > > +	for (i =3D 0; i < RSWITCH_NUM_ETHA; i++) {
-> > >
-> > > RSWITCH_NUM_ETHA appears to be the number of ports?
-> >
-> > Yes, this is number of ethernet ports.
->=20
-> In the DSA world we call these user ports.
-
-I got it.
-However, when I read the dsa document of Linux kernel,
-it seems to call DSA ports. Perhaps, I could misunderstand the document tho=
-ugh...
-https://docs.kernel.org/networking/dsa/dsa.html
-
-> > > > +	kfree(c->skb);
-> > > > +	c->skb =3D NULL;
-> > >
-> > > When i see code like this, i wonder why an API call like
-> > > dev_kfree_skb() is not being used. I would suggest reaming this to
-> > > something other than skb, which has a very well understood meaning.
-> >
-> > Perhaps, c->skbs is better name than just c->skb.
->=20
-> Yes, that is O.K.
-
-I got it. Thanks!
-
-Best regards,
-Yoshihiro Shimoda
-
->      Andrew
