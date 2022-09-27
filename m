@@ -2,87 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35C765EC628
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 16:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 199065EC696
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 16:37:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231828AbiI0Och (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 10:32:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54340 "EHLO
+        id S233054AbiI0Ohj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 10:37:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231811AbiI0OcJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 10:32:09 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 762D861B1A
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 07:31:49 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id j16so16043098lfg.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 07:31:49 -0700 (PDT)
+        with ESMTP id S233066AbiI0Og5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 10:36:57 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1BE51BA39F
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 07:34:09 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id a8so15980857lff.13
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 07:34:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=NUfI4SCRisddpR+Mrk1Ab5N6zdnsa7HpNGyqDE8S3Ak=;
-        b=N5H3PvxU0f/K1m+Ie5ZB11BDUfHM5/7rmKTWERCI16RPnFP93poTMnQCJcmimNQyb+
-         iM26D7OsLJcsmOZU/xMHANBiDKZIn9q2gs+chOxXtKyJdRoM3jcDS5xdhCqh3NMrfRvl
-         d4IWDb/pXsaeTkuCa9br1kfnKDF0YN9oUcBRFQWU75t855LH3pbtJP9ynWm4chBxGG+z
-         6dailbrZEc3YIZTVHATQ5QYGCP/Jr9uNtyCEmGyO7YdW7A+jIrhldXH2mH7IJvdPcHDI
-         n9XprOk48xR/fUdkCmm9j3V13OUbMExg0fBRQ2uf4Tl6H1UI5g9KWgvQc3JkKwQP3qBL
-         L0Vg==
+        bh=acCfIXSEg+p9BRvSasg6n7vxaIKD1v6nwDt9haJjID4=;
+        b=QgEOT9R7HvQuURmKpD32ePt8X/quN8Mgms7zIlqxXEcuZleC+WkiU6rnIAE+VOmA7p
+         AKzoefSiS+qwHB+RuNgQ0M3GmuolLohQFherQZ0AQBC3yixvLnOdC33YVzDDv9X7r8tK
+         aYLCscnoOlTGquASwxHmHpWsb0NAu+HbL/EVJBFbYptd9RwN96a9gdrHM1l4gRagQz3L
+         NG6fprtn5K+fQNxStOR2eiPqSzmPinMtwXA67Js/hpFtHVyh9fqsrOBNFU2kA9rJXK0g
+         /+VD+gSvlzp0OWaSUeHR9geB86zWpfjOqV9sp3iZlclo9CD0jNWyFHdPPS2N2ys74vsh
+         Qk8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=NUfI4SCRisddpR+Mrk1Ab5N6zdnsa7HpNGyqDE8S3Ak=;
-        b=00B7h9OIWycOdHiI/HUG+81CiokPTuYL7vnDkCWWPsm0lF2ubJ31kjzUNtqgEboXno
-         jfaUIXx8Bi8yk6KWxBpJ7Awworn38k6SWdzTbi289K1MfNOYY9uUZApBCYNKF08xhJNd
-         LG5Qnz33C2zlawK8zPKqTIS9woYYbZ2uJu+R3fvoNpPeCsKb/CpBe/liiKFRqUdYNS26
-         2kE6Czs/RD5vRptDc7ZkpRn9pC2qjlkQ15faY1HMg9C5QWNQSfinvMn2A9Z23q+87L47
-         zvBSbQ3dGrhDBQVRJQtDnIrAAvt3ZCgbLK7ievRd5GuWeZuVvkV88IzcGfpZFAuq8iGl
-         VAXw==
-X-Gm-Message-State: ACrzQf0zyaCyR4Mx8HjaRP3oVyA9eYKGRZ60TyOJrtmb9crE4MzLfEmG
-        aHhK/GTPhTto+CYOwP/HICs0yw==
-X-Google-Smtp-Source: AMsMyM45aqxVkdxZ0HAqRVzU94fLrEHMjS4h00CZmLSIcK6DvgMURloYNRLEY0p/VovPPWPqX6uRGg==
-X-Received: by 2002:a05:6512:39ca:b0:497:a0b6:449c with SMTP id k10-20020a05651239ca00b00497a0b6449cmr10908608lfu.308.1664289107724;
-        Tue, 27 Sep 2022 07:31:47 -0700 (PDT)
+        bh=acCfIXSEg+p9BRvSasg6n7vxaIKD1v6nwDt9haJjID4=;
+        b=0hbcr4a0cHp6JIX5M8XgjSTeqOYDEaJxsOrSISz3NRCB5wfKN/Z+7v+vDvPIQ3NwV7
+         RpB96aOommchfebmQ7xUePYI3E8/zLXT8m62fL4MJdMOOMTjOucO+BqADwUPPEd/9mCg
+         G1tlBtoR/Klk3tjbihjxX9DKz9I+aMsYcN4UpWsccD8/cKgnUYLGr1U6Hl2X4KP2TVIK
+         PQ930Fs0B9scD/RVkjNJJYzp/XKdc3HrMbE4fEOpiIlX8gPtzbc0P3jc3icFIulaPaFq
+         GQIuMs3o9WMzBBUeP0j4Rg7X68vWc9wh2qoVWKvFwWCl+wXGMFdUW2rBz6mLoYtL9fD+
+         XEBw==
+X-Gm-Message-State: ACrzQf0XdrFiOLE7ZfiGeMUuovTM7clzc4caRbdBmrOVGWXXEbzqrAKP
+        hj9hJQhaVpuiq7Y1BzO3pYd3YQ==
+X-Google-Smtp-Source: AMsMyM5HF32G8zBKxBDSRk0Co6DuTb44eQb2XOpoqNIlWhBA00YGIY7V1/dw12NficsJu7DCThiLCg==
+X-Received: by 2002:a19:654d:0:b0:49f:5309:1cb6 with SMTP id c13-20020a19654d000000b0049f53091cb6mr10928341lfj.522.1664289247824;
+        Tue, 27 Sep 2022 07:34:07 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id z40-20020a2ebe28000000b0026c2fec2f8esm176975ljq.84.2022.09.27.07.31.37
+        by smtp.gmail.com with ESMTPSA id be43-20020a056512252b00b00498ee99a749sm176228lfb.304.2022.09.27.07.33.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Sep 2022 07:31:39 -0700 (PDT)
-Message-ID: <db8ec605-7038-4cd1-9e70-bbe40404fa06@linaro.org>
-Date:   Tue, 27 Sep 2022 16:31:36 +0200
+        Tue, 27 Sep 2022 07:33:56 -0700 (PDT)
+Message-ID: <e7697876-f2bc-b0ef-c8bc-6737d8a54551@linaro.org>
+Date:   Tue, 27 Sep 2022 16:33:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v1 04/17] dt-bindings: display: mediatek: add MT8195 hdmi
- bindings
+Subject: Re: [PATCH v2 01/33] arm64: dts: qcom: ipq6018-cp01-c1: correct
+ blspi1 pins
 Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        David Airlie <airlied@linux.ie>,
+To:     Robert Marko <robimarko@gmail.com>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20220919-v1-0-4844816c9808@baylibre.com>
- <20220919-v1-4-4844816c9808@baylibre.com>
- <260bb17f-efc8-1287-3e03-f9b8e79a6e31@linaro.org>
- <CABnWg9vifOaAgwr7tkELUqbQA_1f-FfMFZ9o7sjZCaneo_FUmw@mail.gmail.com>
+        Stephan Gerhold <stephan@gerhold.net>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        krishna Lanka <quic_vamslank@quicinc.com>,
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220926074415.53100-1-krzysztof.kozlowski@linaro.org>
+ <20220926074415.53100-2-krzysztof.kozlowski@linaro.org>
+ <647d12dd-9bc6-ebe3-7a72-9b9c0d4610dd@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CABnWg9vifOaAgwr7tkELUqbQA_1f-FfMFZ9o7sjZCaneo_FUmw@mail.gmail.com>
+In-Reply-To: <647d12dd-9bc6-ebe3-7a72-9b9c0d4610dd@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -95,64 +87,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2022 15:54, Guillaume Ranquet wrote:
-> On Thu, 22 Sep 2022 09:18, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->> On 19/09/2022 18:56, Guillaume Ranquet wrote:
->>> Add mt8195 SoC bindings for hdmi and hdmi-ddc
->>>
->>> Make port1 optional for mt8195 as it only supports HDMI tx for now.
->>> Requires a ddc-i2c-bus phandle.
->>> Requires a power-domains phandle.
->>>
->>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
->>> index bdaf0b51e68c..abb231a0694b 100644
->>> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
->>> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
->>> @@ -21,6 +21,10 @@ properties:
->>>        - mediatek,mt7623-hdmi
->>>        - mediatek,mt8167-hdmi
->>>        - mediatek,mt8173-hdmi
->>> +      - mediatek,mt8195-hdmi
->>> +
->>> +  clocks: true
->>> +  clock-names: true
->>
->> ????
->> Why is this moved?
->>
->>>
->>>    reg:
->>>      maxItems: 1
->>> @@ -28,20 +32,6 @@ properties:
->>>    interrupts:
->>>      maxItems: 1
->>>
->>> -  clocks:
->>> -    items:
->>> -      - description: Pixel Clock
->>> -      - description: HDMI PLL
->>> -      - description: Bit Clock
->>> -      - description: S/PDIF Clock
->>> -
->>> -  clock-names:
->>> -    items:
->>> -      - const: pixel
->>> -      - const: pll
->>> -      - const: bclk
->>> -      - const: spdif
->>
->> Clock definition with constraints should stay here. You just customize
->> it per variant.
->>
-> Clocks are different between the two hardwares, so I've tried moving everything
-> inside the if/else block.
+On 27/09/2022 16:01, Robert Marko wrote:
 > 
-> Is there a better way to express this?
+> On 26. 09. 2022. 09:43, Krzysztof Kozlowski wrote:
+>> When BLSPI1 (originally SPI0, later renamed in commit f82c48d46852
+>> ("arm64: dts: qcom: ipq6018: correct QUP peripheral labels")) was added,
+>> the device node lacked respective pin configuration assignment.   It
+>> used also blsp0_spi function but that was probably the same mistake as
+>> naming it SPI0.
+> 
+> Hi,
+> 
+> Sorry for making it confusing, but "blsp0_spi" is the correct function.
+> Pinctrl driver and datasheets call functions blsp0-blps5, but usually in DT
+> we call the nodes blsp1-blsp6.
+> 
+> It would probably be better for me to rename the nodes to blsp0-5 instead.
 
-https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L38
+OK, so instead I will add blsp0_spi to the bindings.
 
 Best regards,
 Krzysztof
