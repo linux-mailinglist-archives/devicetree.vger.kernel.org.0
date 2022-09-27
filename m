@@ -2,175 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F7005EC7CF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 17:33:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 838435EC7D7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 17:34:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231981AbiI0Pdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 11:33:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47452 "EHLO
+        id S232306AbiI0Pem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 11:34:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232285AbiI0Pde (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 11:33:34 -0400
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 371F11C00FB;
-        Tue, 27 Sep 2022 08:33:33 -0700 (PDT)
-Received: by mail-ot1-f43.google.com with SMTP id r13-20020a056830418d00b0065601df69c0so6545124otu.7;
-        Tue, 27 Sep 2022 08:33:33 -0700 (PDT)
+        with ESMTP id S232127AbiI0Pei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 11:34:38 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5013B1EE
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 08:34:36 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id h3so11390002lja.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 08:34:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=KnfQ5MVXuQS4uTeBoXkARvioMVeeBYYaCbZ+4fW2hjI=;
+        b=FemK9rcHKM1AtE1IhtiZEszA4xYBbnG064EUkEwRnGTy1O2T6oraaVI+XPBYGAPgj7
+         k1aUpumffBe4/L73oEmIUFP//eSJlzljHg2UcLHQ/rcZbkOi+S0GKfNSiiFG+kpUfLJQ
+         WXM1wZBt/0WrzeESwOJI9MOVihc5QucR2iI5KHyuToGobIhmRDrreMS1n+eF8hS6kAv+
+         IjG5zv3rhZj6R/s1HT0lQEXvlltWOJQOw3cuPOlehxDZ5ZfkaFLWHBQs+hT1q4e9HzWZ
+         7+hizkokLu8F32Sigks05kvo3nkTXEkk7DueOQWv1feVKaQ9Vi4xRN6B0AOUErbOOGNe
+         3zLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=zjI6ubeIbgQT2Yf0aGxPciDY+P2liDNjOEnL2+LkAyE=;
-        b=cN3Bg1R7tKngsluouxTcd9k3VeYyD9sY7FjN6G5SWlngQRuZUpmrBYK9MkKBJ6dkTh
-         E9v+2vvW6/dVwS2ArzV1xzzH5CiiE6Jdxj2Of+qUBVZk4rwgG7u11DV0pkdpF+bQ/Czv
-         eHhn7Jb3eiIbrPRn+voZ3I1EwbOIHkkhS6qWSpj6OjOuBCXoy8aESrM6RsGA+nJ3RCKu
-         lTaGXckJSOF9z7TqbBNtlx9vu+2/IOSHlp5N932ryCDxG4J/8fv31BwujvuxF3lOy3Cu
-         dMMXjdopz2Ztk91BkhkaTjftDIfc7uGEApkqmUfCcU76B4gCMAM5i5wvhx0Xo438gvTr
-         izqA==
-X-Gm-Message-State: ACrzQf0BQaiJlFgBCbbzFcFB8iQ7A7A+AtwpF59PwUKMTuaNcZrusjVb
-        Yz+AwY7BCTbs/vFRqo30Ug==
-X-Google-Smtp-Source: AMsMyM5eq9K8ICY6X0Mr3tOx3IJ4dvoj1unYKLRLY6r5PgzFpoQnkpXjPvXns1r165xN5VFsaDkAWw==
-X-Received: by 2002:a05:6830:1d4c:b0:65b:5ca1:3c5c with SMTP id p12-20020a0568301d4c00b0065b5ca13c5cmr12714674oth.77.1664292812364;
-        Tue, 27 Sep 2022 08:33:32 -0700 (PDT)
-Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o11-20020a4ae58b000000b00425678b9c4bsm744517oov.0.2022.09.27.08.33.31
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=KnfQ5MVXuQS4uTeBoXkARvioMVeeBYYaCbZ+4fW2hjI=;
+        b=KCA5p023zf8MrLREIt0rZlwlFDEqy8ffnf+Pg5rJ2ixAqxNrTTuZBvJ2CR7jKyha6S
+         bUldEyAPT5Ok1bSJkYgUh7DVupWKhwAjrYqLRQ+D7lPwr9ZfQ9RjtkLPW7VxtfeVgGgg
+         +QxdS3lJhjQGMte0+4ZcjMzesaL2Im7I1RA94aytPOHOfMGvyuYrTl47bLu04/kRATVk
+         OiTbavJgyfskPxfw/JIitKN5guwWZ8r0NbSewOuQFx7d/aK5OD/Yv5Yzw4l3URYKCRA9
+         +q+bagKiASPLok3eGNVTwUUCWtqIfqKuLtVZ3P0X5dsMRZGezKW/QnL8Jx7/5GsMwc/2
+         P9PA==
+X-Gm-Message-State: ACrzQf2ae5iLDFc0z+Fa13736rzburrjLokGTMjYf3XmAu92WsMOCdOr
+        MCKvsCLhKjy5DbwoBoOlalhHiA==
+X-Google-Smtp-Source: AMsMyM5TMJj/Z6yeEablaKxnBT3O75W7AzgFt1GS4+TXeXhNRqz4ejTeUS+DmMjMxXhm/eyjG9fblg==
+X-Received: by 2002:a05:651c:4ca:b0:26c:50e6:a9d3 with SMTP id e10-20020a05651c04ca00b0026c50e6a9d3mr10518216lji.318.1664292874704;
+        Tue, 27 Sep 2022 08:34:34 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id o18-20020a2e7312000000b00268bc2c1ed0sm191592ljc.22.2022.09.27.08.34.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Sep 2022 08:33:32 -0700 (PDT)
-Received: (nullmailer pid 4069847 invoked by uid 1000);
-        Tue, 27 Sep 2022 15:33:31 -0000
-Date:   Tue, 27 Sep 2022 10:33:31 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        netdev@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        "linuxppc-dev @ lists . ozlabs . org" <linuxppc-dev@lists.ozlabs.org>,
+        Tue, 27 Sep 2022 08:34:33 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v5 1/9] dt-bindings: net: Expand pcs-handle to
- an array
-Message-ID: <20220927153331.GA4057163-robh@kernel.org>
-References: <20220926190322.2889342-1-sean.anderson@seco.com>
- <20220926190322.2889342-2-sean.anderson@seco.com>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 00/12] pinctrl/arm64: qcom: continued - fix Qualcomm LPASS pinctrl schema warnings
+Date:   Tue, 27 Sep 2022 17:34:17 +0200
+Message-Id: <20220927153429.55365-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220926190322.2889342-2-sean.anderson@seco.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 03:03:13PM -0400, Sean Anderson wrote:
-> This allows multiple phandles to be specified for pcs-handle, such as
-> when multiple PCSs are present for a single MAC. To differentiate
-> between them, also add a pcs-handle-names property.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> This was previously submitted as [1]. I expect to update this series
-> more, so I have moved it here. Changes from that version include:
-> - Add maxItems to existing bindings
-> - Add a dependency from pcs-names to pcs-handle.
-> 
-> [1] https://lore.kernel.org/netdev/20220711160519.741990-3-sean.anderson@seco.com/
-> 
-> (no changes since v4)
-> 
-> Changes in v4:
-> - Use pcs-handle-names instead of pcs-names, as discussed
-> 
-> Changes in v3:
-> - New
-> 
->  .../bindings/net/dsa/renesas,rzn1-a5psw.yaml           |  1 +
->  .../devicetree/bindings/net/ethernet-controller.yaml   | 10 +++++++++-
->  .../devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml    |  2 +-
->  3 files changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> index 7ca9c19a157c..a53552ee1d0e 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> @@ -74,6 +74,7 @@ properties:
->  
->          properties:
->            pcs-handle:
-> +            maxItems: 1
+Hi,
 
-Forgot to remove the $ref here.
+Changes since v1
+================
+1. Reorder patches - DTS first.
+2. Correct commit msg in two binding patches, as suggested by Rob.
+3. Add tags.
 
->              description:
->                phandle pointing to a PCS sub-node compatible with
->                renesas,rzn1-miic.yaml#
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> index 4b3c590fcebf..5bb2ec2963cf 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> @@ -108,11 +108,16 @@ properties:
->      $ref: "#/properties/phy-connection-type"
->  
->    pcs-handle:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+Overview
+========
+This is the *second*, independent patchset around Qualcomm pinctrl in recent days:
+1. First round of TLMM fixes: merged
+2. LPASS fixes: *this patchset*
+3. ARMv7 TLMM fixes: https://lore.kernel.org/all/20220926074415.53100-1-krzysztof.kozlowski@linaro.org/
+4. ARMv8 remaining TLMM fixes: https://lore.kernel.org/linux-devicetree/20220925110608.145728-1-krzysztof.kozlowski@linaro.org/T/#t
 
-'phandle-array' is really a matrix, so this needs a bit more:
+Dependencies
+============
+1. No dependencies.
+2. dt-bindings are independent of DTS patches.
 
-items:
-  maxItems: 1
+Best regards,
+Krzysztof
 
-Which basically says this is phandles with no arg cells.
+Krzysztof Kozlowski (12):
+  arm64: dts: qcom: sc7280: drop clock-cells from LPASS TLMM
+  arm64: dts: qcom: sc7280: align LPASS pin configuration with DT schema
+  arm64: dts: qcom: sm8250: correct LPASS pin pull down
+  arm64: dts: qcom: sm8250: align LPASS pin configuration with DT schema
+  dt-bindings: pinctrl: qcom,sc8280xp-lpass-lpi: fix gpio pattern
+  dt-bindings: pinctrl: qcom,sm8450-lpass-lpi: fix gpio pattern
+  dt-bindings: pinctrl: qcom,sc7280-lpass-lpi: fix matching pin config
+  dt-bindings: pinctrl: qcom,sc8280xp-lpass-lpi: fix matching pin config
+  dt-bindings: pinctrl: qcom,sm8250-lpass-lpi: fix matching pin config
+  dt-bindings: pinctrl: qcom,sm8450-lpass-lpi: fix matching pin config
+  dt-bindings: pinctrl: qcom,sc7280-lpass-lpi: add bias-bus-hold
+  dt-bindings: pinctrl: qcom,sm8250-lpass-lpi: add bias-bus-hold and
+    input-enable
 
->      description:
->        Specifies a reference to a node representing a PCS PHY device on a MDIO
->        bus to link with an external PHY (phy-handle) if exists.
->  
-> +  pcs-handle-names:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
+ .../qcom,sc7280-lpass-lpi-pinctrl.yaml        | 34 +++++++++++---
+ .../qcom,sc8280xp-lpass-lpi-pinctrl.yaml      | 31 +++++++++++--
+ .../qcom,sm8250-lpass-lpi-pinctrl.yaml        | 42 ++++++++++++++---
+ .../qcom,sm8450-lpass-lpi-pinctrl.yaml        | 38 +++++++++++++--
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          | 34 +++++++-------
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 46 +++++++++----------
+ 6 files changed, 166 insertions(+), 59 deletions(-)
 
-No need for a type as *-names already has a type.
+-- 
+2.34.1
 
-> +    description:
-> +      The name of each PCS in pcs-handle.
-> +
->    phy-handle:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> @@ -216,6 +221,9 @@ properties:
->          required:
->            - speed
->  
-> +dependencies:
-> +  pcs-handle-names: [pcs-handle]
-> +
->  allOf:
->    - if:
->        properties:
-> diff --git a/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml b/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
-> index 7f620a71a972..600240281e8c 100644
-> --- a/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
-> @@ -31,7 +31,7 @@ properties:
->    phy-mode: true
->  
->    pcs-handle:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
->      description:
->        A reference to a node representing a PCS PHY device found on
->        the internal MDIO bus.
-> -- 
-> 2.35.1.1320.gc452695387.dirty
-> 
-> 
