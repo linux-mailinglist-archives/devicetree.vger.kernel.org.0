@@ -2,117 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7325EC77E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 17:21:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F7005EC7CF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 17:33:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231552AbiI0PVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 11:21:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45456 "EHLO
+        id S231981AbiI0Pdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 11:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231575AbiI0PVA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 11:21:00 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89BADA6C15
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 08:20:58 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id t16so7293263ljh.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 08:20:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=veq+G9FK2IKRofFJs4LIXDoip5Zj7zd2eyL6Dpdxun0=;
-        b=ZrsdDb1V0Lp3Q8JzsRAHu9vK/6jWRz0dmk+YEjSCJIV4s6Pmr/951FQfvsO25RKzQi
-         x9Po2FD8+4lMVtWXX15kWB4ZSIguELNYHNmqVkwAHln2NDbA8ctldog7uoLF0jxUaKQe
-         HtkpM8uyNKSrknFQee4TNdlYQiCba/bsvzCGBuryEgByOYsb247TnHnmzICpXUepuD+R
-         00zMs97JRSom3KqEtT/42OYkMD33I5z1d0huUVTvrC9GZW3Io8kAiBKctYFn3nyKQa5u
-         B/tRkaukOTujPszms2SVTaZQoTW+rIbfcaVGqLTjJKonZpAbpS15xWiIREoZeIYnc8iF
-         uecQ==
+        with ESMTP id S232285AbiI0Pde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 11:33:34 -0400
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 371F11C00FB;
+        Tue, 27 Sep 2022 08:33:33 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id r13-20020a056830418d00b0065601df69c0so6545124otu.7;
+        Tue, 27 Sep 2022 08:33:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=veq+G9FK2IKRofFJs4LIXDoip5Zj7zd2eyL6Dpdxun0=;
-        b=5wuSKSN708xiekrVBlcyFfueh3HnbMry9oNN9MVk/Xz8MBesniAZivzaNdVn7jdv/L
-         TJ0XlMW1F2VWTJo05rWBgKTy7qwYpOjiOUThLGwItRZt4v7osi5fXdleuL8REMeYu9F5
-         UdUQl5RlVXonpeTistfVNCFpPEhuInFET8zva/NlOUwW1eQsJ6gF0oyUyF6EKnfMJkbY
-         +sSh2gLQAnEQi/Tmu38TIH26SeBVFSfnXev4FJJo3gN6n78LY3/aNou93sozsh+kQ42R
-         kh2XJy6Zj1UyBOpMhViUuWgXyDsmmFDxhYZ0+U47RK/X5S3Ovrby9Kjf52osfIY9tNKy
-         Pozg==
-X-Gm-Message-State: ACrzQf0JTwqEiUPaoYDoFkCo4cju52tmI54uzJ4uCeJqTqUZNY2CU/Vt
-        4TM+8AxA9gD/q9bLgm3CjI5pKg==
-X-Google-Smtp-Source: AMsMyM6eRhReD4PW+oQxCPAKYWyxgZNO3b8rhIuPZuQCCqupb56gVM2GGbrKyiA/EDY2hionZOasng==
-X-Received: by 2002:a05:651c:2103:b0:25d:6478:2a57 with SMTP id a3-20020a05651c210300b0025d64782a57mr9839256ljq.496.1664292056840;
-        Tue, 27 Sep 2022 08:20:56 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id bd3-20020a05651c168300b00261e8e4e381sm193881ljb.2.2022.09.27.08.20.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Sep 2022 08:20:55 -0700 (PDT)
-Message-ID: <923b6d27-c06c-8462-8bd5-31d6ad45efd1@linaro.org>
-Date:   Tue, 27 Sep 2022 17:20:54 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v2 01/33] arm64: dts: qcom: ipq6018-cp01-c1: correct
- blspi1 pins
-Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=zjI6ubeIbgQT2Yf0aGxPciDY+P2liDNjOEnL2+LkAyE=;
+        b=cN3Bg1R7tKngsluouxTcd9k3VeYyD9sY7FjN6G5SWlngQRuZUpmrBYK9MkKBJ6dkTh
+         E9v+2vvW6/dVwS2ArzV1xzzH5CiiE6Jdxj2Of+qUBVZk4rwgG7u11DV0pkdpF+bQ/Czv
+         eHhn7Jb3eiIbrPRn+voZ3I1EwbOIHkkhS6qWSpj6OjOuBCXoy8aESrM6RsGA+nJ3RCKu
+         lTaGXckJSOF9z7TqbBNtlx9vu+2/IOSHlp5N932ryCDxG4J/8fv31BwujvuxF3lOy3Cu
+         dMMXjdopz2Ztk91BkhkaTjftDIfc7uGEApkqmUfCcU76B4gCMAM5i5wvhx0Xo438gvTr
+         izqA==
+X-Gm-Message-State: ACrzQf0BQaiJlFgBCbbzFcFB8iQ7A7A+AtwpF59PwUKMTuaNcZrusjVb
+        Yz+AwY7BCTbs/vFRqo30Ug==
+X-Google-Smtp-Source: AMsMyM5eq9K8ICY6X0Mr3tOx3IJ4dvoj1unYKLRLY6r5PgzFpoQnkpXjPvXns1r165xN5VFsaDkAWw==
+X-Received: by 2002:a05:6830:1d4c:b0:65b:5ca1:3c5c with SMTP id p12-20020a0568301d4c00b0065b5ca13c5cmr12714674oth.77.1664292812364;
+        Tue, 27 Sep 2022 08:33:32 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o11-20020a4ae58b000000b00425678b9c4bsm744517oov.0.2022.09.27.08.33.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Sep 2022 08:33:32 -0700 (PDT)
+Received: (nullmailer pid 4069847 invoked by uid 1000);
+        Tue, 27 Sep 2022 15:33:31 -0000
+Date:   Tue, 27 Sep 2022 10:33:31 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        netdev@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        "linuxppc-dev @ lists . ozlabs . org" <linuxppc-dev@lists.ozlabs.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        krishna Lanka <quic_vamslank@quicinc.com>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220926074415.53100-1-krzysztof.kozlowski@linaro.org>
- <20220926074415.53100-2-krzysztof.kozlowski@linaro.org>
- <647d12dd-9bc6-ebe3-7a72-9b9c0d4610dd@gmail.com>
- <e7697876-f2bc-b0ef-c8bc-6737d8a54551@linaro.org>
- <6ac05eac-e6f5-b8e5-35dc-25373723f401@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6ac05eac-e6f5-b8e5-35dc-25373723f401@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v5 1/9] dt-bindings: net: Expand pcs-handle to
+ an array
+Message-ID: <20220927153331.GA4057163-robh@kernel.org>
+References: <20220926190322.2889342-1-sean.anderson@seco.com>
+ <20220926190322.2889342-2-sean.anderson@seco.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220926190322.2889342-2-sean.anderson@seco.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2022 17:20, Robert Marko wrote:
+On Mon, Sep 26, 2022 at 03:03:13PM -0400, Sean Anderson wrote:
+> This allows multiple phandles to be specified for pcs-handle, such as
+> when multiple PCSs are present for a single MAC. To differentiate
+> between them, also add a pcs-handle-names property.
 > 
-> On 27. 09. 2022. 16:33, Krzysztof Kozlowski wrote:
->> On 27/09/2022 16:01, Robert Marko wrote:
->>> On 26. 09. 2022. 09:43, Krzysztof Kozlowski wrote:
->>>> When BLSPI1 (originally SPI0, later renamed in commit f82c48d46852
->>>> ("arm64: dts: qcom: ipq6018: correct QUP peripheral labels")) was added,
->>>> the device node lacked respective pin configuration assignment.   It
->>>> used also blsp0_spi function but that was probably the same mistake as
->>>> naming it SPI0.
->>> Hi,
->>>
->>> Sorry for making it confusing, but "blsp0_spi" is the correct function.
->>> Pinctrl driver and datasheets call functions blsp0-blps5, but usually in DT
->>> we call the nodes blsp1-blsp6.
->>>
->>> It would probably be better for me to rename the nodes to blsp0-5 instead.
->> OK, so instead I will add blsp0_spi to the bindings.
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
+> This was previously submitted as [1]. I expect to update this series
+> more, so I have moved it here. Changes from that version include:
+> - Add maxItems to existing bindings
+> - Add a dependency from pcs-names to pcs-handle.
 > 
-> Can you add blsp0_uart and blsp0_i2c as well?
-> All 6 of the QUP-s have same features.
+> [1] https://lore.kernel.org/netdev/20220711160519.741990-3-sean.anderson@seco.com/
+> 
+> (no changes since v4)
+> 
+> Changes in v4:
+> - Use pcs-handle-names instead of pcs-names, as discussed
+> 
+> Changes in v3:
+> - New
+> 
+>  .../bindings/net/dsa/renesas,rzn1-a5psw.yaml           |  1 +
+>  .../devicetree/bindings/net/ethernet-controller.yaml   | 10 +++++++++-
+>  .../devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml    |  2 +-
+>  3 files changed, 11 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+> index 7ca9c19a157c..a53552ee1d0e 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+> @@ -74,6 +74,7 @@ properties:
+>  
+>          properties:
+>            pcs-handle:
+> +            maxItems: 1
 
-Sure
+Forgot to remove the $ref here.
 
-Best regards,
-Krzysztof
+>              description:
+>                phandle pointing to a PCS sub-node compatible with
+>                renesas,rzn1-miic.yaml#
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> index 4b3c590fcebf..5bb2ec2963cf 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> @@ -108,11 +108,16 @@ properties:
+>      $ref: "#/properties/phy-connection-type"
+>  
+>    pcs-handle:
+> -    $ref: /schemas/types.yaml#/definitions/phandle
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
 
+'phandle-array' is really a matrix, so this needs a bit more:
+
+items:
+  maxItems: 1
+
+Which basically says this is phandles with no arg cells.
+
+>      description:
+>        Specifies a reference to a node representing a PCS PHY device on a MDIO
+>        bus to link with an external PHY (phy-handle) if exists.
+>  
+> +  pcs-handle-names:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+
+No need for a type as *-names already has a type.
+
+> +    description:
+> +      The name of each PCS in pcs-handle.
+> +
+>    phy-handle:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> @@ -216,6 +221,9 @@ properties:
+>          required:
+>            - speed
+>  
+> +dependencies:
+> +  pcs-handle-names: [pcs-handle]
+> +
+>  allOf:
+>    - if:
+>        properties:
+> diff --git a/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml b/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
+> index 7f620a71a972..600240281e8c 100644
+> --- a/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
+> @@ -31,7 +31,7 @@ properties:
+>    phy-mode: true
+>  
+>    pcs-handle:
+> -    $ref: /schemas/types.yaml#/definitions/phandle
+> +    maxItems: 1
+>      description:
+>        A reference to a node representing a PCS PHY device found on
+>        the internal MDIO bus.
+> -- 
+> 2.35.1.1320.gc452695387.dirty
+> 
+> 
