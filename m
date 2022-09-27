@@ -2,98 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C76295ECFFD
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 00:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3350B5ED005
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 00:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231231AbiI0WFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 18:05:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46978 "EHLO
+        id S231736AbiI0WGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 18:06:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbiI0WFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 18:05:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81624EEEBC;
-        Tue, 27 Sep 2022 15:05:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 53EDB61BF5;
-        Tue, 27 Sep 2022 22:05:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFA08C4314B;
-        Tue, 27 Sep 2022 22:05:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664316321;
-        bh=PT9L3gVgvk+NtjJTnya/r6tVxlGqzoJ1UQygKoxMIbE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=TZJUughhtGRTj3Ms19FBBZKRRiVI8m7qZFPhF2r0zmZBT6eHGpDxptxfOOoecBESs
-         Pj4RgZTmYkKaGTcUO+kwa2trqrV2d7+rb0qd5jy6iqtqa6GM2x5eQ7rHStLaI7iTat
-         zLHonFAx2CNuYPIBar7d1cUUIkZklP9yAtDhSHlepFnR7v2GN1+0pDiVuWKiwUG5Sj
-         DN5IionQuJ10iE/0ZnzRJ2iz0IBU/s0q7jDdRVT6dPQSb0PLe019oY/+NeGhr+dYE3
-         wzj5l1u2115qsFMGjo7tYUSe/KW1p1WwIQHScJCYKdRmyRcd89c67/RCldWegBQo+K
-         upcNrw6qLCISw==
-Received: by mail-vs1-f46.google.com with SMTP id j7so11000943vsr.13;
-        Tue, 27 Sep 2022 15:05:21 -0700 (PDT)
-X-Gm-Message-State: ACrzQf3Ud60dw6d3l2Tf0goh6qKGRC5ZKPL0bU5bhdsEiVvf+AzVMCOV
-        JXR54jOCloTl51YJXsY8sKXN8RV/ukm+kuHH2w==
-X-Google-Smtp-Source: AMsMyM5W0GcaSRnIx3xT9MsFQVa6C2yfhAclAga6IA7giEMLVq64/7bTyJ3c/aHSQjJl4sv7pPyEo2cpR5IcHdxPt7k=
-X-Received: by 2002:a67:c18a:0:b0:398:4c72:cafb with SMTP id
- h10-20020a67c18a000000b003984c72cafbmr11756375vsj.53.1664316320606; Tue, 27
- Sep 2022 15:05:20 -0700 (PDT)
+        with ESMTP id S230506AbiI0WF4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 18:05:56 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94E12FE047
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 15:05:44 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id t62so13385648oie.10
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 15:05:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=JaMWwQ9HrjvsyjP4+lMX3j2mmeycMY/Ai6gz1nlGh+c=;
+        b=rf0dI63kpZex5b62iqy4YMzkDWuar2qJrs70KoWcuAwe6sFqJVtm/l4VOk9CwracdV
+         i5kiQJxiskS19UJxBOqbkvxgzqBiPtKqzuJYyHObHxIniegw9Hdr6Rdw/eqbBbn6ejBa
+         rpx5jyRt4hZw23UAkFEhKLUEuqh5kreMXDtkWSulgPw7CvH4hsyizNCnmxiYWpRfOw7s
+         TMGGWzEf4rx7S7rOaGzbjcRka7CMwmeMlgRYZFVNFTckvPh8AIMyD/cl4D+KQxyOHBSS
+         h+lmhq8lkrFB5MDwt5/r75Qn7osHhqKT/pMmcC4AC5Pw/zI6vxCxiXHYQ21uOFdua8k9
+         kKig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=JaMWwQ9HrjvsyjP4+lMX3j2mmeycMY/Ai6gz1nlGh+c=;
+        b=NmqKolvRsPoGPuvQUS2tEdMeZK3rDANynAP7chLjabSnqC/2xYy0+PBKp+11r17ujP
+         hiZaj6N5aVA4At5ijcDVtx6phN7Ywruzi+BqHETV05nNmu+ZKg/3wJPSjDLwuToU7PCP
+         FNlRLBIK73WgGkLFJLNBbvALPOkAbgWLQn6fmV7gmEbR25Lz5EhljvF6J2Mzt0i9HFov
+         KToKwu/S7jnRTmbG8P6uf1Pj1soyr5nAJ612Jzm0h43UPdUR7BrQeSUtXJaEK5nxuVTI
+         rRVmTepnghEHxpHG9YuLe9tpObDFfhxqY5o2+t0zccRcqXS2UpMyUO4rCcvyJQ2Vk+MO
+         KEMQ==
+X-Gm-Message-State: ACrzQf3DvaY75IjdArasriUfePxAD2ylz+mPINOX1FmohuaoPC9jJS1m
+        aszq5Lov4MJ6STKqcWLups9qAA==
+X-Google-Smtp-Source: AMsMyM69sEAW5sC87A5BdOty2QyeC+oSd8dCAfo8e2Yf7ON+NBnfr+vFtjYa30arwddCtWOuuS/AEg==
+X-Received: by 2002:a05:6808:1a14:b0:350:1965:8b5 with SMTP id bk20-20020a0568081a1400b00350196508b5mr2774875oib.85.1664316343555;
+        Tue, 27 Sep 2022 15:05:43 -0700 (PDT)
+Received: from fedora (69-109-179-158.lightspeed.dybhfl.sbcglobal.net. [69.109.179.158])
+        by smtp.gmail.com with ESMTPSA id t15-20020a9d774f000000b006594674d4ddsm1280317otl.44.2022.09.27.15.05.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Sep 2022 15:05:43 -0700 (PDT)
+Date:   Tue, 27 Sep 2022 18:05:40 -0400
+From:   William Breathitt Gray <william.gray@linaro.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Lee Jones <lee@kernel.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH RFC 0/8] Add RZ/G2L MTU3a MFD and Counter driver
+Message-ID: <YzNztKSYQPQrnV7k@fedora>
+References: <20220926132114.60396-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-References: <20220926140932.820050-1-dinguyen@kernel.org> <f4d29a38-c195-43f7-4837-43a6176a0a58@linaro.org>
- <d8706eb0-6e1c-22ae-a88b-ea183e6bcede@kernel.org>
-In-Reply-To: <d8706eb0-6e1c-22ae-a88b-ea183e6bcede@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 27 Sep 2022 17:05:09 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+ty4HShTWhQ+NTOWRWjNTw1=Z6YO-co6_BhDXPuU+5Yg@mail.gmail.com>
-Message-ID: <CAL_Jsq+ty4HShTWhQ+NTOWRWjNTw1=Z6YO-co6_BhDXPuU+5Yg@mail.gmail.com>
-Subject: Re: [PATCHv3 1/3] dt-bindings: mmc: synopsys-dw-mshc: document "altr,sysmgr-syscon"
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        jh80.chung@samsung.com, ulf.hansson@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3JebmYDBRONn6Avy"
+Content-Disposition: inline
+In-Reply-To: <20220926132114.60396-1-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 11:49 AM Dinh Nguyen <dinguyen@kernel.org> wrote:
->
->
->
-> On 9/26/22 10:35, Krzysztof Kozlowski wrote:
-> > On 26/09/2022 16:09, Dinh Nguyen wrote:
-> >> +allOf:
-> >> +  - $ref: "synopsys-dw-mshc-common.yaml#"
-> >> +
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            const:
-> >> +              - altr,socfpga-dw-mshc
-> >> +    then:
-> >> +      required:
-> >> +        - altr,sysmgr-syscon
-> >
-> > else:
-> >    properties:
-> >      altr,sysmgr-syscon: false
-> > and then you will probably see the warnings leading to error in syntax
-> > (const is not an array)...
-> >
->
-> Hmm, okay. I ran dt_binding_check and did not see the warning. I'll
-> check it again.
 
-Indeed, it does not warn. An array is allowed here as you could have a
-constant array value. Expect a warning soon though, as I'm working on
-adding one.
+--3JebmYDBRONn6Avy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On Mon, Sep 26, 2022 at 02:21:06PM +0100, Biju Das wrote:
+> The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
+> the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
+> channels and one 32-bit timer channel. It supports the following
+> functions
+>  - Counter
+>  - Timer
+>  - PWM
+>=20
+> This patch series aim to add MFD and counter driver for MTU3a.
+> Subsequent patch seies will add TImer and PWM driver support
+> also enhancements to counter driver.
+
+Hello Biju,
+
+I see this device consists of several channels, but only one Count is
+defined in the counter patch ("Channel 1 Count"). Do all channels
+support counting, or is it limited to just one channel?
+
+Thanks,
+
+William Breathitt Gray
+
+--3JebmYDBRONn6Avy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCYzNztAAKCRC1SFbKvhIj
+Kzj6AP4sKi7ppEU6iFRI55vrVy/B8K5aZkGgsGuMvoxg/GjHCQD+O8s8zrGt+LRN
+xmCaiedfdSS+4BNhI2WWK/e+7DCDuQ0=
+=0jtN
+-----END PGP SIGNATURE-----
+
+--3JebmYDBRONn6Avy--
