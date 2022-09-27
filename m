@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E72115EBD2A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 613EE5EBD2F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:24:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231453AbiI0IYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 04:24:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53430 "EHLO
+        id S230442AbiI0IYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 04:24:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231560AbiI0IYJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:24:09 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61066B1B84;
-        Tue, 27 Sep 2022 01:24:05 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id r20so5562002qtn.12;
-        Tue, 27 Sep 2022 01:24:05 -0700 (PDT)
+        with ESMTP id S231209AbiI0IYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:24:32 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57073B248E;
+        Tue, 27 Sep 2022 01:24:29 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id w22-20020a056830061600b006546deda3f9so5934528oti.4;
+        Tue, 27 Sep 2022 01:24:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=JumtaG8idfRuPN7IPsQOajX6NdF5kvAB/Ix+jKSGj3w=;
-        b=N58abmOnIGGqnlAybUTb6/zEYEJoeCDbvBN6ZDSUATu52v0yGALiq7faPI444bxBPp
-         QfKKQ/K9NcfE3RMxaALdup2gleJgCtuqIHWzFuhLDLeqCqosMAT99ZGGwIZUSORXM3YZ
-         QzlbyGmblLnFemh+SPTLYKFThhPMvZBYRiVR7WExOAKJLXTKl0S6DSUzmpyaI1pYX6S3
-         bi2xDBU/GNYZrR49CeEauOmIjy0B0VAjx1h5Urax0kHHK1qGpH/TsXiRDKJWOI+6pMDO
-         6VvsLOcLhybyWNmUIvPw3C0hIdzf/1SCz+2YjzRt9MmuoaAvSwnV7EnA8Lr7CEKhyLzm
-         YLzQ==
+        bh=gQ+wC3gDGV3yuaRddBzFSqfasdF4aPIO41dI/GPBHP0=;
+        b=f1JxDVnXxsZi9PYT3F3kM+EVQHsVqccvhRg+nven8l+zIOUwN6genHxiKz0kl2VkH0
+         n1q2wz5JGSFZovqkk7Wbbt/TnF2Vd3+Ugm/FpH+WVpH9RCtpRvloK2nlo3QOpXjWwOKP
+         JnNjIqvuSxekdKc3a3DARoYSkdo/qgDTGtPAL5H/RzzjUOM+YA1dsmCakLWHs66kO/ra
+         ATpuJpA+KFrh7tMP/7KUf9nJ/d2ZSv0JaQ+HUtFl3+DK1jupnUTfDqrKcin1o/GS9+iB
+         kvPCHk7bghtJUi8CAzS9IJNR2qHxRTAuh1pw99qSIiTquazsSUuu2k6LEwvsKyDA54jo
+         sYcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=JumtaG8idfRuPN7IPsQOajX6NdF5kvAB/Ix+jKSGj3w=;
-        b=U851kVTQXYEfeMqrkXHogbGYnxAXGWCYaA8XzaVYfv22CNYlk5CojIcjDtClke6lYH
-         q4d/CW+j20lelxPd2hJM2KQjzaQ3yoC74dIfyROd4qTRwT5vqQIfzMCEmnqWjI32fC38
-         PAGqCYuFjQYzkOGtpWBeGmzjNcL32uy898WKK01Oo+0ig5oQCO5AqXUj7QO4bJf1sgJ+
-         3516gq54amDZXBSNCBJ20mxqVLItl13Dm9r8D6IUa+paA+28ayyyfu5YHjiDw7Mn1G8M
-         ri6rD+LobIwZHDEu2SJkXouSGQ878xZ0KFuppfSPwRXhc447ZY+oHspF++bXR2Ql1AZP
-         cMag==
-X-Gm-Message-State: ACrzQf0H2bv8kwZ+lQRm3ganTb2UHruK/eQq1+CRC2C5t9SGYHLdf9Ur
-        gXha/CvFcAhbxm+KkdHbGuuFSsucOzkHAhfvPvA=
-X-Google-Smtp-Source: AMsMyM4cdEyBYxd3DGv4ep5x3l2RfKrLChy4QD9sRS5fzZ4K310L6/eK1kKbo1BQuQk2emvdJqriiNWagfICQslq9lM=
-X-Received: by 2002:a05:622a:54f:b0:35c:f68f:44c3 with SMTP id
- m15-20020a05622a054f00b0035cf68f44c3mr20937765qtx.546.1664267044459; Tue, 27
- Sep 2022 01:24:04 -0700 (PDT)
+        bh=gQ+wC3gDGV3yuaRddBzFSqfasdF4aPIO41dI/GPBHP0=;
+        b=jJYFolay1ER8qCiFCWWIqm00brcmsZXEco9UEggIpVAzAGwmBi3XMjKT1pReaLfa1j
+         2P9/OI9zamzwTQ1iPaxhz1gN1Fh4ncdonlTPcbX0Yp9r174Q8U6K1X+iRIRrwdz6sFT4
+         C9LmVdMpV4fs8P/pJSUo5oDEyHP4GSL2a46vRgwDzSVe+TdDnj7UC63M4d4RVMWyKu3x
+         d8sCyFxvPonhCzmb+qh8ZpufVjqFQgKnrcIBXFPdhMIl7sPG1LoudWUL2G3dMLeXjlaL
+         hjQeVy6QdLw34/PqNHNtIo/BZOxX8xp3wQZRO8QyYTYSzH5JrLhkNbQBGB039ZlZHFkC
+         /oJg==
+X-Gm-Message-State: ACrzQf0ssNdlSyJ/YVoxmDft62oL2UWyXq6uZz4NIURARtV2q0+FRz1d
+        lbeVRQTQyor6ILTiNY+dk7rf+Q9CSrGsE96NzI8=
+X-Google-Smtp-Source: AMsMyM59clMaaD9rBZgKpedRbCzWNYmvRcTCevA4HPUI6z4ozlznlTp38zuFMk9oysvJ5O9bvU2nrRhGFl6MWVjj3DE=
+X-Received: by 2002:a05:6830:150e:b0:655:bc7d:1e5d with SMTP id
+ k14-20020a056830150e00b00655bc7d1e5dmr11648947otp.272.1664267068174; Tue, 27
+ Sep 2022 01:24:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220818220245.338396-1-robimarko@gmail.com> <20220818220245.338396-2-robimarko@gmail.com>
- <1efe2f7d-05e2-6207-f4df-5b597d00c862@linaro.org>
-In-Reply-To: <1efe2f7d-05e2-6207-f4df-5b597d00c862@linaro.org>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Tue, 27 Sep 2022 10:23:53 +0200
-Message-ID: <CAOX2RU7C-ocdmBBOoXurh0nrhkntHVHvPsC33DQd9o3FuFAN6Q@mail.gmail.com>
-Subject: Re: [PATCH v7 2/5] drivers: thermal: tsens: Add support for combined interrupt
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     amitk@kernel.org, thara.gopinath@gmail.com, agross@kernel.org,
-        konrad.dybcio@somainline.org, rafael@kernel.org,
-        rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, andersson@kernel.org
+References: <20220926162549.805108-1-sergio.paracuellos@gmail.com> <20220926211508.GA682626@roeck-us.net>
+In-Reply-To: <20220926211508.GA682626@roeck-us.net>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Tue, 27 Sep 2022 10:24:16 +0200
+Message-ID: <CAMhs-H-j34cfv1rJ=fUKhQrZ5FwSJezZFnw=esh4MPNw+zNUNA@mail.gmail.com>
+Subject: Re: [PATCH RESEND v2] dt-bindings: watchdog: migrate mt7621 text
+ bindings to YAML
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-watchdog@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        wim@linux-watchdog.org, Matthias Brugger <matthias.bgg@gmail.com>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,31 +73,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Aug 2022 at 00:49, Daniel Lezcano <daniel.lezcano@linaro.org> wr=
-ote:
+On Mon, Sep 26, 2022 at 11:16 PM Guenter Roeck <linux@roeck-us.net> wrote:
 >
-> On 19/08/2022 00:02, Robert Marko wrote:
-> > Despite using tsens v2.3 IP, IPQ8074 and IPQ6018 only have one IRQ for
-> > signaling both up/low and critical trips.
+> On Mon, Sep 26, 2022 at 06:25:49PM +0200, Sergio Paracuellos wrote:
+> > Soc Mt7621 Watchdog bindings used text format, so migrate them to YAML.
 > >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 >
-> I'll pick the patches 1-4 as soon as Bjorn gives its blessing for this on=
-e
-Resending with Bjorns new email as Linaro one bounces.
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Sounds good to me,
+Thanks, Guenter!
 
-Bjorn can you please take a look?
+Rob, I don't know why this patch is not in devicetree patchwork list...
 
-Regards,
-Robert
+Please let me know if you want me to resend this again.
+
+Thanks,
+   Sergio Paracuellos
+
 >
->
-> --
-> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
-M SoCs
->
-> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-> <http://twitter.com/#!/linaroorg> Twitter |
-> <http://www.linaro.org/linaro-blog/> Blog
+> > ---
+> > Changes in v2 RESEND:
+> > - Resent sending also to watchdog maintainers.
+> >
+> > Changes in v2:
+> >  - Rebase onto last kernel version.
+> >  - Add Krzysztof Reviewed-by tag.=C2=BA
+> >
+> >  .../watchdog/mediatek,mt7621-wdt.yaml         | 33 +++++++++++++++++++
+> >  .../bindings/watchdog/mt7621-wdt.txt          | 12 -------
+> >  2 files changed, 33 insertions(+), 12 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek=
+,mt7621-wdt.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/mt7621-w=
+dt.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mt7621=
+-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.=
+yaml
+> > new file mode 100644
+> > index 000000000000..b2b17fdf4e39
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.ya=
+ml
+> > @@ -0,0 +1,33 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/watchdog/mediatek,mt7621-wdt.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Ralink Watchdog Timers
+> > +
+> > +maintainers:
+> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: watchdog.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: mediatek,mt7621-wdt
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    watchdog@100 {
+> > +      compatible =3D "mediatek,mt7621-wdt";
+> > +      reg =3D <0x100 0x100>;
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt =
+b/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
+> > deleted file mode 100644
+> > index c15ef0ef609f..000000000000
+> > --- a/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
+> > +++ /dev/null
+> > @@ -1,12 +0,0 @@
+> > -Ralink Watchdog Timers
+> > -
+> > -Required properties:
+> > -- compatible: must be "mediatek,mt7621-wdt"
+> > -- reg: physical base address of the controller and length of the regis=
+ter range
+> > -
+> > -Example:
+> > -
+> > -     watchdog@100 {
+> > -             compatible =3D "mediatek,mt7621-wdt";
+> > -             reg =3D <0x100 0x10>;
+> > -     };
