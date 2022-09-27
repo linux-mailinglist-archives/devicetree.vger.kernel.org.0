@@ -2,287 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B2F5ECF16
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 23:04:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52FBB5ECF29
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 23:13:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233093AbiI0VEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 17:04:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39742 "EHLO
+        id S231703AbiI0VNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 17:13:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232966AbiI0VEV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 17:04:21 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1EAA1ED21E;
-        Tue, 27 Sep 2022 14:04:17 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id rk17so10049356ejb.1;
-        Tue, 27 Sep 2022 14:04:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=dwJjSyJsER8fu8KaFJu/+9H/JRzimbvYtz7bUiJaAMg=;
-        b=LNjkyGy1QJ6wRsWRW9atYqfNX2O5mrLw2YUI0juyHo/Jvf+yMD2xERny2vjwNkUzNQ
-         7/S1Eugns/jTgZQp8KvEHNHG7tcL82D3ZEndC4Fv5pcVWMPZl85aAbllnF6zpjhAwGw7
-         aq6sL5jJsYFo+Y1QreFAtfDj4tJ45G/vhLn84Ml4wi+v+lPBK4lkiqo21tdhbHkgbjcv
-         DjFK7rHfvjajMLuBABPywmc19ftokTM4vFdIefEnI2I7tCyFhRHrk6tBoEcEdj50hgbt
-         fXO4uEfkPAMxGD6JQYkoaI2wqP5jePTN0sqqDKOKDeRUTAcQjfMmr1Gf/JAfcjFrThc/
-         nHKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=dwJjSyJsER8fu8KaFJu/+9H/JRzimbvYtz7bUiJaAMg=;
-        b=DqZLWL7XrcfWivHgyYuLpeGli8FunzFhakS8clvXqJkaxS2Qf8OsTtG6ueLSzah6oA
-         xjWcWC+Mjj60J0nJVtNVwjVaFsjpR2ClCawzBepYHV+sFSULMQeOFZRKhwen15W78Llp
-         qvekYIVdrRmeT0HG3RRCFZTomfkgDSNbc3K/Fo6ST55tpYUtR6dG2LdZu8Oe7ts2cWp6
-         YN6RkDwiJGVJDSni6KMWgaNCH156tewBr4yeq3B4IbNVUlD1ZV7hbsNlTA1joDwiD09m
-         K7DSMuT8MUTyWK2W0Q+kqpeOe3vIs83UFTBMR7ySQtOA5l/gVHN0s7gkLx8Iba9U8wok
-         4kTg==
-X-Gm-Message-State: ACrzQf1GapyMYz/s2xOQOsnDQyCjxJPd6Gbe9ypATiYmHQsvNK7kd56i
-        E5xdmB0nefE+2RO2MYRwtDWLc9xDPrFdnrJI
-X-Google-Smtp-Source: AMsMyM6i6nNNyLuaK2nxSVMc5/lwEZzu06kWlB9WJ0eeM1NNO6aPdH4Eev68mCA6/c4inVvaCFUkJQ==
-X-Received: by 2002:a17:907:3e02:b0:782:1267:f2c8 with SMTP id hp2-20020a1709073e0200b007821267f2c8mr24098245ejc.585.1664312655552;
-        Tue, 27 Sep 2022 14:04:15 -0700 (PDT)
-Received: from skbuf ([188.27.184.197])
-        by smtp.gmail.com with ESMTPSA id r19-20020a05640251d300b0044f21c69608sm2044515edd.10.2022.09.27.14.04.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Sep 2022 14:04:14 -0700 (PDT)
-Date:   Wed, 28 Sep 2022 00:04:11 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Lee Jones <lee@kernel.org>,
+        with ESMTP id S232047AbiI0VNp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 17:13:45 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 919391E0C63;
+        Tue, 27 Sep 2022 14:13:44 -0700 (PDT)
+Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4C047660226A;
+        Tue, 27 Sep 2022 22:13:41 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664313222;
+        bh=9UjteKLPOSGyctNC2dvGb5oVbZ353r1Xwokh8mtTLmA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BM2zDwDf7dEv8qNZAEb1RcaW5UUki18dIfL+WFvu58dzl2CZ0RAmHCI6zB5v7y4t/
+         LxCfCgQwAqRdbqPGuS0rvjwnuTpzPBAmO3oHnHwg0EUUxHjsZ+GWlHVpm/8k+Q1Ek3
+         y5hIyNvmYqtYtuGrq+WlCcLKgZ+o3aIGLoi4sRrAFy6H7KWSJchsNRh1pk1e2+90yI
+         /0vqob9x1hqy7o/HbYhHNUA+/+7TCSQe3nM1vN9Qx0ZPySD6al3IG4G0UZMlhRB6OA
+         93COQYze9ls7VVoqfUK6YcQNT4seFvz3T7V0aKycI/+KWqdQL2V1TqqdLCBQDGx2gF
+         kX8hCsHuHk8Hw==
+Date:   Tue, 27 Sep 2022 17:13:37 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v3 net-next 11/14] mfd: ocelot: add regmaps for ocelot_ext
-Message-ID: <20220927210411.6oc3aphlyp4imgsq@skbuf>
-References: <20220926002928.2744638-1-colin.foster@in-advantage.com>
- <20220926002928.2744638-12-colin.foster@in-advantage.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/3] arm64: dts: mediatek: asurada: Add display regulators
+Message-ID: <20220927211337.idgcuawo7xsiexah@notapiano>
+References: <20220908171153.670762-1-nfraprado@collabora.com>
+ <20220908171153.670762-2-nfraprado@collabora.com>
+ <CAGXv+5FErSBT-t6vz_2naApuPoC4PympWft-9Gd_MMPUTN+CsQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220926002928.2744638-12-colin.foster@in-advantage.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGXv+5FErSBT-t6vz_2naApuPoC4PympWft-9Gd_MMPUTN+CsQ@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 25, 2022 at 05:29:25PM -0700, Colin Foster wrote:
-> The Ocelot switch core driver relies heavily on a fixed array of resources
-> for both ports and peripherals. This is in contrast to existing peripherals
-> - pinctrl for example - which have a one-to-one mapping of driver <>
-> resource. As such, these regmaps must be created differently so that
-> enumeration-based offsets are preserved.
+Hi Chen-Yu,
+
+thank you for the insights on the power supply hierarchy. Just a couple further
+questions below.
+
+On Wed, Sep 21, 2022 at 10:20:43PM +0800, Chen-Yu Tsai wrote:
+> Hi,
 > 
-> Register the regmaps to the core MFD device unconditionally so they can be
-> referenced by the Ocelot switch / Felix DSA systems.
+> On Fri, Sep 9, 2022 at 1:12 AM Nícolas F. R. A. Prado
+> <nfraprado@collabora.com> wrote:
+> >
+> > Add the regulators present on the Asurada platform that are used to
+> > power the internal and external displays.
+> >
+> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> >
+> > ---
+> >
+> >  .../boot/dts/mediatek/mt8192-asurada.dtsi     | 114 ++++++++++++++++++
+> >  1 file changed, 114 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> > index 4b314435f8fd..1d99e470ea1a 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> > @@ -23,6 +23,42 @@ memory@40000000 {
+> >                 reg = <0 0x40000000 0 0x80000000>;
+> >         };
+> >
+> > +       pp1000_dpbrdg: regulator-1v0-dpbrdg {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "pp1000_dpbrdg";
+> > +               pinctrl-names = "default";
+> > +               pinctrl-0 = <&pp1000_dpbrdg_en_pins>;
+> > +               regulator-min-microvolt = <1000000>;
+> > +               regulator-max-microvolt = <1000000>;
 > 
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> ---
+> This is fed by a rail called PP1350_VS2, which is from the MT6359 PMIC.
+> And this regulator is a proper LDO.
+
+So, we should have an additional regulator node here called pp1350_vs2 which
+will feed into pp1000_dpbrdg and that is itself fed in from mt6359_vs2_buck_reg
+(from mt6359.dtsi). Is that right?
+
+Also, is PP1350_VS2 just a simple switch or an LDO?
+
 > 
-> v3
->     * No change
+[..]
+> > +       pp1800_dpbrdg: regulator-1v8-dpbrdg {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "pp1800_dpbrdg";
+> > +               pinctrl-names = "default";
+> > +               pinctrl-0 = <&pp1800_dpbrdg_en_pins>;
+> > +               regulator-min-microvolt = <1800000>;
+> > +               regulator-max-microvolt = <1800000>;
 > 
-> v2
->     * Alignment of variables broken out to a separate patch
->     * Structs now correctly use EXPORT_SYMBOL*
->     * Logic moved and comments added to clear up conditionals around
->       vsc7512_target_io_res[i].start
+> This regulator is only a power switch. Please drop the min/max properties.
+> This is fed by a rail called PP1800_VIO18_U, which is from an LDO on the
+> MT6359 PMIC.
+
+Similarly, we should have a pp1800_vio18_u node that is fed in by
+mt6359_vio18_ldo_reg, right? And is it a switch or an LDO?
+
+Thanks,
+Nícolas
+
 > 
-> v1 from previous RFC:
->     * New patch
-> 
-> ---
->  drivers/mfd/ocelot-core.c  | 87 ++++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/ocelot.h |  5 +++
->  2 files changed, 92 insertions(+)
-> 
-> diff --git a/drivers/mfd/ocelot-core.c b/drivers/mfd/ocelot-core.c
-> index 013e83173062..702555fbdcc5 100644
-> --- a/drivers/mfd/ocelot-core.c
-> +++ b/drivers/mfd/ocelot-core.c
-> @@ -45,6 +45,45 @@
->  #define VSC7512_SIO_CTRL_RES_START	0x710700f8
->  #define VSC7512_SIO_CTRL_RES_SIZE	0x00000100
->  
-> +#define VSC7512_HSIO_RES_START		0x710d0000
-> +#define VSC7512_HSIO_RES_SIZE		0x00000128
-
-I don't think you should give the HSIO resource to the switching driver.
-In drivers/net/ethernet/mscc/ocelot_vsc7514.c, there is this comment:
-
-static void ocelot_pll5_init(struct ocelot *ocelot)
-{
-	/* Configure PLL5. This will need a proper CCF driver
-	 * The values are coming from the VTSS API for Ocelot
-	 */
-
-I believe CCF stands for Common Clock Framework.
-
-> +
-> +#define VSC7512_ANA_RES_START		0x71880000
-> +#define VSC7512_ANA_RES_SIZE		0x00010000
-> +
-> +#define VSC7512_QS_RES_START		0x71080000
-> +#define VSC7512_QS_RES_SIZE		0x00000100
-> +
-> +#define VSC7512_QSYS_RES_START		0x71800000
-> +#define VSC7512_QSYS_RES_SIZE		0x00200000
-> +
-> +#define VSC7512_REW_RES_START		0x71030000
-> +#define VSC7512_REW_RES_SIZE		0x00010000
-> +
-> +#define VSC7512_SYS_RES_START		0x71010000
-> +#define VSC7512_SYS_RES_SIZE		0x00010000
-> +
-> +#define VSC7512_S0_RES_START		0x71040000
-> +#define VSC7512_S1_RES_START		0x71050000
-> +#define VSC7512_S2_RES_START		0x71060000
-> +#define VSC7512_S_RES_SIZE		0x00000400
-
-VCAP_RES_SIZE?
-
-> +
-> +#define VSC7512_GCB_RES_START		0x71070000
-> +#define VSC7512_GCB_RES_SIZE		0x0000022c
-
-Again, I don't think devcpu_gcb should be given to a switching-only
-driver. There's nothing switching-related about it.
-
-> +#define VSC7512_PORT_0_RES_START	0x711e0000
-> +#define VSC7512_PORT_1_RES_START	0x711f0000
-> +#define VSC7512_PORT_2_RES_START	0x71200000
-> +#define VSC7512_PORT_3_RES_START	0x71210000
-> +#define VSC7512_PORT_4_RES_START	0x71220000
-> +#define VSC7512_PORT_5_RES_START	0x71230000
-> +#define VSC7512_PORT_6_RES_START	0x71240000
-> +#define VSC7512_PORT_7_RES_START	0x71250000
-> +#define VSC7512_PORT_8_RES_START	0x71260000
-> +#define VSC7512_PORT_9_RES_START	0x71270000
-> +#define VSC7512_PORT_10_RES_START	0x71280000
-> +#define VSC7512_PORT_RES_SIZE		0x00010000
-> +
->  #define VSC7512_GCB_RST_SLEEP_US	100
->  #define VSC7512_GCB_RST_TIMEOUT_US	100000
->  
-> @@ -96,6 +135,36 @@ static const struct resource vsc7512_sgpio_resources[] = {
->  	DEFINE_RES_REG_NAMED(VSC7512_SIO_CTRL_RES_START, VSC7512_SIO_CTRL_RES_SIZE, "gcb_sio"),
->  };
->  
-> +const struct resource vsc7512_target_io_res[TARGET_MAX] = {
-> +	[ANA] = DEFINE_RES_REG_NAMED(VSC7512_ANA_RES_START, VSC7512_ANA_RES_SIZE, "ana"),
-> +	[QS] = DEFINE_RES_REG_NAMED(VSC7512_QS_RES_START, VSC7512_QS_RES_SIZE, "qs"),
-> +	[QSYS] = DEFINE_RES_REG_NAMED(VSC7512_QSYS_RES_START, VSC7512_QSYS_RES_SIZE, "qsys"),
-> +	[REW] = DEFINE_RES_REG_NAMED(VSC7512_REW_RES_START, VSC7512_REW_RES_SIZE, "rew"),
-> +	[SYS] = DEFINE_RES_REG_NAMED(VSC7512_SYS_RES_START, VSC7512_SYS_RES_SIZE, "sys"),
-> +	[S0] = DEFINE_RES_REG_NAMED(VSC7512_S0_RES_START, VSC7512_S_RES_SIZE, "s0"),
-> +	[S1] = DEFINE_RES_REG_NAMED(VSC7512_S1_RES_START, VSC7512_S_RES_SIZE, "s1"),
-> +	[S2] = DEFINE_RES_REG_NAMED(VSC7512_S2_RES_START, VSC7512_S_RES_SIZE, "s2"),
-> +	[GCB] = DEFINE_RES_REG_NAMED(VSC7512_GCB_RES_START, VSC7512_GCB_RES_SIZE, "devcpu_gcb"),
-> +	[HSIO] = DEFINE_RES_REG_NAMED(VSC7512_HSIO_RES_START, VSC7512_HSIO_RES_SIZE, "hsio"),
-> +};
-> +EXPORT_SYMBOL_NS(vsc7512_target_io_res, MFD_OCELOT);
-> +
-> +const struct resource vsc7512_port_io_res[] = {
-
-I hope you will merge these 2 arrays now.
-
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_0_RES_START, VSC7512_PORT_RES_SIZE, "port0"),
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_1_RES_START, VSC7512_PORT_RES_SIZE, "port1"),
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_2_RES_START, VSC7512_PORT_RES_SIZE, "port2"),
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_3_RES_START, VSC7512_PORT_RES_SIZE, "port3"),
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_4_RES_START, VSC7512_PORT_RES_SIZE, "port4"),
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_5_RES_START, VSC7512_PORT_RES_SIZE, "port5"),
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_6_RES_START, VSC7512_PORT_RES_SIZE, "port6"),
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_7_RES_START, VSC7512_PORT_RES_SIZE, "port7"),
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_8_RES_START, VSC7512_PORT_RES_SIZE, "port8"),
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_9_RES_START, VSC7512_PORT_RES_SIZE, "port9"),
-> +	DEFINE_RES_REG_NAMED(VSC7512_PORT_10_RES_START, VSC7512_PORT_RES_SIZE, "port10"),
-> +	{}
-> +};
-> +EXPORT_SYMBOL_NS(vsc7512_port_io_res, MFD_OCELOT);
-> +
->  static const struct mfd_cell vsc7512_devs[] = {
->  	{
->  		.name = "ocelot-pinctrl",
-> @@ -144,6 +213,7 @@ static void ocelot_core_try_add_regmaps(struct device *dev,
->  
->  int ocelot_core_init(struct device *dev)
->  {
-> +	const struct resource *port_res;
->  	int i, ndevs;
->  
->  	ndevs = ARRAY_SIZE(vsc7512_devs);
-> @@ -151,6 +221,23 @@ int ocelot_core_init(struct device *dev)
->  	for (i = 0; i < ndevs; i++)
->  		ocelot_core_try_add_regmaps(dev, &vsc7512_devs[i]);
->  
-> +	/*
-> +	 * Both the target_io_res and the port_io_res structs need to be referenced directly by
-> +	 * the ocelot_ext driver, so they can't be attached to the dev directly and referenced by
-> +	 * offset like the rest of the drivers. Instead, create these regmaps always and allow any
-> +	 * children look these up by name.
-> +	 */
-> +	for (i = 0; i < TARGET_MAX; i++)
-> +		/*
-> +		 * The target_io_res array is sparsely populated. Use .start as an indication that
-> +		 * the entry isn't defined
-> +		 */
-> +		if (vsc7512_target_io_res[i].start)
-> +			ocelot_core_try_add_regmap(dev, &vsc7512_target_io_res[i]);
-> +
-> +	for (port_res = vsc7512_port_io_res; port_res->start; port_res++)
-> +		ocelot_core_try_add_regmap(dev, port_res);
-> +
-
-Will need to be updated.
-
->  	return devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, vsc7512_devs, ndevs, NULL, 0, NULL);
->  }
->  EXPORT_SYMBOL_NS(ocelot_core_init, MFD_OCELOT);
-> diff --git a/include/linux/mfd/ocelot.h b/include/linux/mfd/ocelot.h
-> index dd72073d2d4f..439ff5256cf0 100644
-> --- a/include/linux/mfd/ocelot.h
-> +++ b/include/linux/mfd/ocelot.h
-> @@ -11,8 +11,13 @@
->  #include <linux/regmap.h>
->  #include <linux/types.h>
->  
-> +#include <soc/mscc/ocelot.h>
-> +
-
-Is this the problematic include that makes it necessary to have the
-pinctrl hack? Can we drop the #undef REG now?
-
->  struct resource;
->  
-> +extern const struct resource vsc7512_target_io_res[TARGET_MAX];
-> +extern const struct resource vsc7512_port_io_res[];
-> +
-
-Will need to be removed.
-
->  static inline struct regmap *
->  ocelot_regmap_from_resource_optional(struct platform_device *pdev,
->  				     unsigned int index,
-> -- 
-> 2.25.1
-> 
+> > +               enable-active-high;
+> > +               regulator-boot-on;
+> > +               gpio = <&pio 126 GPIO_ACTIVE_HIGH>;
+> > +       };
+> > +
+[..]
