@@ -2,127 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D1535EBDB5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 948765EBDBF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:49:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231420AbiI0Ipy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 04:45:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44730 "EHLO
+        id S230477AbiI0Itj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 04:49:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231406AbiI0Ipx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:45:53 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB6443E47;
-        Tue, 27 Sep 2022 01:45:51 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28R61EEc011790;
-        Tue, 27 Sep 2022 10:45:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=Dyznb/HDuNwOefV0uJggIqu+fF7WsNix9IVaqdVthls=;
- b=KibQCYQoc6G6DQbxAArpZi7N+/JZRmPGy347Orel25+TXOjFsLlL6i0xrdudJpQ3gfdC
- 1yIldoSVwlukkVRyuR+DypIqMzQ1g8kYOZeTrsvlck5NoD5D14nFoyVBcu2JhkPHWs4q
- Yet/A0kWiRmndB8Jar9Kt0lGq76OrveL/K5lnPpr47eIJmu0nPrqcRCWF2gYUUOCNHjY
- qQSkTKMGV11W2Qh+amAGUo8qX1hvvadHMKpunoG8YR9oF9GgEqJSrurRaswI+3BnhimF
- Fc6vdOKrpI8eGMpLp8Vw8H5kCb05l3QljhMPYILlBE5x+pE3VFeq/1fXnNgaQ7ciwpZQ 7Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3jss82827j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 27 Sep 2022 10:45:35 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 55F3F100034;
-        Tue, 27 Sep 2022 10:45:35 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 504A7216EF0;
-        Tue, 27 Sep 2022 10:45:35 +0200 (CEST)
-Received: from [10.201.20.201] (10.75.127.123) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Tue, 27 Sep
- 2022 10:45:32 +0200
-Message-ID: <3f21cc73-c190-7855-b1c6-722098b5fa22@foss.st.com>
-Date:   Tue, 27 Sep 2022 10:45:31 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: mmc: arm,pl18x: Document interrupt-names
+        with ESMTP id S230202AbiI0Ith (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:49:37 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DFD67649;
+        Tue, 27 Sep 2022 01:49:35 -0700 (PDT)
+X-UUID: 54547f90f4c24f05a9716be71998a468-20220927
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=PWBKd6s+alHmuqMW7zBzYd2csWJfir6MkKHpoQDs4cg=;
+        b=Ry/6IipgkSU2hqtXGAVjuy+5b5xKfu8wglUEzfr25o/dRZNXDRdrpfArD37Q0c7f24lLrXcY8AdAyJF7tvOW6Gkp1z5HrlGZD8Y7nk99nIf+dxBrOBkWeJ5dOmohV/tOzja0ZcyL9//6S7HvkQQNNFwyRI7EzHI+Bd4AowS9IHk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:6147a00e-7c2d-4823-ad3d-bed593ddf9b0,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:45
+X-CID-INFO: VERSION:1.1.11,REQID:6147a00e-7c2d-4823-ad3d-bed593ddf9b0,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:45
+X-CID-META: VersionHash:39a5ff1,CLOUDID:1eb737a3-dc04-435c-b19b-71e131a5fc35,B
+        ulkID:220927164931O60JSLKQ,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 54547f90f4c24f05a9716be71998a468-20220927
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+        (envelope-from <jianguo.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1987659540; Tue, 27 Sep 2022 16:49:30 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 27 Sep 2022 16:49:29 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Tue, 27 Sep 2022 16:49:27 +0800
+Message-ID: <eb6a70844b067f76e8405b937de9408045d569a0.camel@mediatek.com>
+Subject: Re: [PATCH v5 2/4] dt-bindings: net: snps,dwmac: add clk_csr
  property
-Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
-CC:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20220926204708.381741-1-marex@denx.de>
-From:   Yann Gautier <yann.gautier@foss.st.com>
-In-Reply-To: <20220926204708.381741-1-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Tue, 27 Sep 2022 16:49:27 +0800
+In-Reply-To: <a215ae81-10de-7880-1a15-b7b08d0d80d7@linaro.org>
+References: <20220923052828.16581-1-jianguo.zhang@mediatek.com>
+         <20220923052828.16581-3-jianguo.zhang@mediatek.com>
+         <a215ae81-10de-7880-1a15-b7b08d0d80d7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.123]
-X-ClientProxiedBy: GPXDAG2NODE4.st.com (10.75.127.68) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-27_02,2022-09-22_02,2022-06-22_01
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/26/22 22:47, Marek Vasut wrote:
+Dear Krzysztof,
 
-Hi Marek,
+	Thanks for your comment.
 
-> Document interrupt-names property with "event" and "error" interrupt names.
-Minor: this looks like a wrong copy/paste, the interrupt name is cmd_irq 
-here.
-
-Other than that, you can add my:
-Reviewed-by: Yann Gautier <yann.gautier@foss.st.com>
-
-
-Best regards,
-Yann
-
-> This fixes dtbs_check warnings when building current Linux DTs:
+On Fri, 2022-09-23 at 20:11 +0200, Krzysztof Kozlowski wrote:
+> On 23/09/2022 07:28, Jianguo Zhang wrote:
+> > The clk_csr property is parsed in driver for generating MDC clock
+> > with correct frequency. A warning('clk_csr' was unexpeted) is
+> > reported
+> > when runing 'make_dtbs_check' because the clk_csr property
+> > has been not documented in the binding file.
 > 
-> "
-> arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dtb: mmc@58007000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
-> "
+> Your subject is not accurate anymore. Maybe mention that instead of
+> existing clk_csr, you add a different property.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Yann Gautier <yann.gautier@foss.st.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-mmc@vger.kernel.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> To: linux-arm-kernel@lists.infradead.org
-> ---
->   Documentation/devicetree/bindings/mmc/arm,pl18x.yaml | 3 +++
->   1 file changed, 3 insertions(+)
+> With commit msg fixes:
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> index 1e69a5a42439b..5f7eae8d57ab9 100644
-> --- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> @@ -99,6 +99,9 @@ properties:
->       minItems: 1
->       maxItems: 2
->   
-> +  interrupt-names:
-> +    const: cmd_irq
-> +
->     st,sig-dir-dat0:
->       $ref: /schemas/types.yaml#/definitions/flag
->       description: ST Micro-specific property, bus signal direction pins used for
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+We will fix commit message in next version patches.
+
+> Best regards,
+> Krzysztof
+> 
+BRS
+Jianguo
 
