@@ -2,48 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E8215EB5EF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 01:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A90F5EB62C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 02:20:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbiIZXpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 19:45:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38454 "EHLO
+        id S229810AbiI0AUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 20:20:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbiIZXpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 19:45:17 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 345E4BA8
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 16:45:16 -0700 (PDT)
+        with ESMTP id S230032AbiI0AUN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 20:20:13 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FACB719AD
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 17:20:09 -0700 (PDT)
 Received: from tr.lan (ip-86-49-12-201.bb.vodafone.cz [86.49.12.201])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 9686E84BEF;
-        Tue, 27 Sep 2022 01:45:13 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 11A0884E31;
+        Tue, 27 Sep 2022 02:20:07 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1664235914;
-        bh=C8gWIDs4Jz5cItlEC5PdGI7V8drgK9GC2bW5sHDcyZ8=;
+        s=phobos-20191101; t=1664238007;
+        bh=OBQwDC3kXdektDpa5NG0Pkr9pcNuEgOjGxQ588vpKHQ=;
         h=From:To:Cc:Subject:Date:From;
-        b=v1Z6T9uaBNPppQ/epfPscPQTDY0JANoqvraXOQRxfFfjeegZqOUAjIf8F7kC6BsVk
-         x+vN94AmrhB+JB47OEz+/w/dBuGfCATnmOxQoN+Zfub8T1zYoOvSu2krYnYiA5WfCo
-         76ZhezfE4prgnxANWhOmBYg3RcVsmhqZ1lMXgQK7dvHy4Sjd0RHO1ojx7KPrY0nOMt
-         +jtksQYd0pYEB0DyWfGW1eRyGMZTaoWs6Xve0lRNQGkPwkIVBaoI/FiTwhm2g4OQ+a
-         lZxcVYAp0pOiRYMfa+Df2FwrvtQpKDbk4TAnU2/GQW8qAWxJgpnnwvpR8il2gs1Ih0
-         HYFIWt8pa0v9g==
+        b=ry5a7XJN4Rd+RUTewE+8p0QlSBNnPCSXKqf5Li4unj12nUKRDVsD1nAs/f9sMx1VD
+         v5Dmmay739913SPifuAqRtFsu7KyX/fMMbfUyI/2IUNgmgRTGQ+/S6W8qj0k9zjpVs
+         rhyvBjmv10m6HYvp+OU4rhp0UCkm0v00W3BWXjoWCiwYPRK4yYgybwAZQiQWAhAiyW
+         2O4hw2rOyrtqh+gYTlyZpf4fk4mzvb1hR/SCLY1wFvXUNoTpK4nKq6xPxt2HY5uRLv
+         X1z8GUwCJE/klCCJbdE7Ji8Nxg7A2ilWyodAtoc9PD1IRZzq3ELpnqUuF8vT1V71Ft
+         leA8lIGfvMMsg==
 From:   Marek Vasut <marex@denx.de>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marex@denx.de>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
         linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] dt-bindings: display: st,stm32-dsi: Handle data-lanes in DSI port node
-Date:   Tue, 27 Sep 2022 01:45:01 +0200
-Message-Id: <20220926234501.583115-1-marex@denx.de>
+Subject: [PATCH] dt-bindings: sound: st,stm32-sai: Document audio OF graph port
+Date:   Tue, 27 Sep 2022 02:20:04 +0200
+Message-Id: <20220927002004.685108-1-marex@denx.de>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -58,53 +59,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Handle 'data-lanes' property of the DSI output endpoint, it is possible
-to describe DSI link with 1 or 2 data lanes this way.
+It is expected that the SAI subnodes would contain audio OF graph port
+with endpoint to link it with the other side of audio link. Document
+the port: property.
 
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
 Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Philippe Cornu <philippe.cornu@foss.st.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Olivier Moysan <olivier.moysan@foss.st.com>
 Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Yannick Fertre <yannick.fertre@foss.st.com>
 Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
+Cc: alsa-devel@alsa-project.org
 Cc: linux-stm32@st-md-mailman.stormreply.com
 To: linux-arm-kernel@lists.infradead.org
 ---
- .../bindings/display/st,stm32-dsi.yaml          | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/sound/st,stm32-sai.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml b/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
-index 54f67cb510401..c488308d7be13 100644
---- a/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
-@@ -58,9 +58,20 @@ properties:
-           DSI input port node, connected to the ltdc rgb output port.
+diff --git a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
+index 1a3abc9495055..56d206f97a96c 100644
+--- a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
++++ b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
+@@ -122,6 +122,10 @@ patternProperties:
+         description: Configure the SAI device as master clock provider.
+         const: 0
  
-       port@1:
--        $ref: /schemas/graph.yaml#/properties/port
--        description:
--          DSI output port node, connected to a panel or a bridge input port"
-+        $ref: /schemas/graph.yaml#/$defs/port-base
++      port:
++        $ref: audio-graph-port.yaml#
 +        unevaluatedProperties: false
-+        description: |
-+          DSI output port node, connected to a panel or a bridge input port.
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+            properties:
-+              data-lanes:
-+                minItems: 1
-+                items:
-+                  - const: 1
-+                  - const: 2
- 
- required:
-   - "#address-cells"
++
+     required:
+       - compatible
+       - "#sound-dai-cells"
 -- 
 2.35.1
 
