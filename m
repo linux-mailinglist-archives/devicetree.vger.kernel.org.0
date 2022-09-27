@@ -2,69 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E2AC5EC51B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 15:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57D8B5EC557
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 16:02:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232208AbiI0N5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 09:57:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56516 "EHLO
+        id S231708AbiI0OCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 10:02:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232372AbiI0N5S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 09:57:18 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1164146F9F
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 06:57:13 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id d42so15932341lfv.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 06:57:13 -0700 (PDT)
+        with ESMTP id S232943AbiI0OB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 10:01:57 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91474167069;
+        Tue, 27 Sep 2022 07:01:09 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id r7so15188711wrm.2;
+        Tue, 27 Sep 2022 07:01:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=ev3n3HXsdxmctruPXinckwm0/GHt4MhpPRr9m0oOsZc=;
-        b=Bg3/vWwxHWbjWj+yyqdJTk09hhh/aL9pHflbIUI6Lnhex/jdIXnWo97O4rpLarE4k/
-         YnO54AwZUehrw1kGbcEYJNIhJJDKW8XAM8TSOgpnq2YCbDQctFYJQyJDVT2a+aquyQFF
-         SbXR1A8jHGrzXakcSYBebs6Howdb3o/VWjoPLt9TBqg5QIV9p2O0mxJlzlTWVND7GEwk
-         m1RDnZNEeLkLzoDgHyxN4tuxoxt0MUqaxDuepIm1GzBXdSSkjBspxvoDen3ydYRi9Vuo
-         MWq64ggmaStqY3MpKxYl2xhwwWV5kwhjBX73w8d+heu5r1Mth2kObEPHol9+GksUioYu
-         UN8g==
+        bh=Zl3CYBbxDXgqBxtjh5C7beBUpnsxheMilBJE58SXbWk=;
+        b=D1dcNej7lgw4hQyNwIM6GOULn2x7zin4v0Mk6AZSu7JxMsuPwlvyvDrvQ4P/obvnR+
+         zC8knFVdz6tm8dpaKkPBYHf7HGxWI0HRBbZlBc54ujLvb8XEsNMXRnUILXtrrDExm7uk
+         SvrvVcmfS+Qi7BFofVpa/kgnTYtEMvII8y710Jx0LCUkPnJxk5ZoNyxxTNqyhlpLvS2i
+         2D8FbKtxWkaeS9x7rIyMQJV8aigr05iw8/zk/RkbNr04Ty064FRfav96aOMN1bna2oT+
+         SMTfxUPHBa43PXAJivxOCCSsyA8N2PTPHaYqHUOqyC82qI2VpSjcNX77PNF1S5CgGddL
+         iepQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=ev3n3HXsdxmctruPXinckwm0/GHt4MhpPRr9m0oOsZc=;
-        b=1xNXOBqcPOH/ATY4hsiIM768cHnDv4zhaq3e8tj/czfJAI6eRhnEAuZL3hdLdzYA2q
-         FmThV3CoUHG66/h6IWcDiRjux2fbRlyYjIB4ICXuf17NTV0VS8OzP+4EqsZZ373Q9bYF
-         5Yrl9dM73W640bjd8WWAOU2gtQ9QONrqeLkzQRjWo0BJeyE2+bUKkyaLB6yYMQf5ehIg
-         ggSrd6kaDzyRrh9JIdnyRwxlKCMcnu5/UF7Wr1gCYQoUUumz3h/hoU1HM8xb0/S4Qw7v
-         dKIrGDuYfNXo5ub6WtE6J5OKsOUH4fLsngvk5XCpSMOmpcHBHYwgDlF8oPYMjDOc/PAQ
-         Z95w==
-X-Gm-Message-State: ACrzQf2GwffomquyQiONbutTGWWS048hSHENHZ3kTTWV/ah4Yzevsgys
-        om3TBY54V+86qqYoN/1aCc9hHg==
-X-Google-Smtp-Source: AMsMyM6M47O8+8lVhBzSBboPo/7X+DVhNqB4VwbBpU1UI/8S5RUtO9VL4jj56EPB413fC/SuD5EwBA==
-X-Received: by 2002:ac2:464b:0:b0:49e:b29c:2b04 with SMTP id s11-20020ac2464b000000b0049eb29c2b04mr10772069lfo.127.1664287031342;
-        Tue, 27 Sep 2022 06:57:11 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id i18-20020a056512007200b004a1e592837esm170924lfo.140.2022.09.27.06.57.08
+        bh=Zl3CYBbxDXgqBxtjh5C7beBUpnsxheMilBJE58SXbWk=;
+        b=H25hS6HA/uHxlUy9qsSb2vXCXi/E8fOEOo7z52ZAwxvikmcV2SnN05o/9/3y9y8/G/
+         Ov0uHcTo6uHJiE92B/66EdabnkghnRkrPeDv7b0wkI0W4ZeFLxkYHS3QKysNYFXa+prg
+         Mb2doxf6jaoJWHed+ZnMkOpAWqwqxZWWg+ifnuCM/Ao/e+z+7t6jP0ISy2qrQkbRuHhE
+         MP8PMp6Bx/SZqdSgHhuqzFFCxHNRNnFXWAB3YwguWwq57AyDr2VCt/9ZSgEWBd5LI7Xh
+         s5/T33VuDj8AIU6jkP6QMqxRItq1cI3cu14jCoFHpLjhpWD5tum/FPKN2xX0oVQDSv2E
+         boOA==
+X-Gm-Message-State: ACrzQf2mc6//lgLPyxB7LSRW/Zh4JmTSN9mm+P8quS0/lmC4XITUqkvv
+        ms385c1EK0194JPkCUriGCM=
+X-Google-Smtp-Source: AMsMyM6mplNHrXN0mTK3Yjnt6CSBZnyux/jhGU9KmvIIs5qL9RxB/QzaleQKaV3sNBoNRnXZyQoFTA==
+X-Received: by 2002:a05:6000:912:b0:229:9bc1:27ed with SMTP id bz18-20020a056000091200b002299bc127edmr16508539wrb.546.1664287267615;
+        Tue, 27 Sep 2022 07:01:07 -0700 (PDT)
+Received: from [192.168.3.32] (dh207-97-176.xnet.hr. [88.207.97.176])
+        by smtp.gmail.com with ESMTPSA id o2-20020adfeac2000000b00228c375d81bsm1944246wrn.2.2022.09.27.07.01.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Sep 2022 06:57:09 -0700 (PDT)
-Message-ID: <1029e512-02f0-8d08-2994-6440fa9c033d@linaro.org>
-Date:   Tue, 27 Sep 2022 15:57:08 +0200
+        Tue, 27 Sep 2022 07:01:07 -0700 (PDT)
+Message-ID: <647d12dd-9bc6-ebe3-7a72-9b9c0d4610dd@gmail.com>
+Date:   Tue, 27 Sep 2022 16:01:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 25/32] dt-bindings: pinctrl: qcom,qcm2290: do not require
- function on non-GPIOs
+ Thunderbird/102.2.1
+Subject: Re: [PATCH v2 01/33] arm64: dts: qcom: ipq6018-cp01-c1: correct
+ blspi1 pins
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sricharan R <sricharan@codeaurora.org>,
         Stephan Gerhold <stephan@gerhold.net>,
         Shawn Guo <shawn.guo@linaro.org>,
         Vinod Koul <vkoul@kernel.org>,
@@ -72,58 +71,67 @@ Cc:     Andy Gross <agross@kernel.org>,
         Sivaprakash Murugesan <sivaprak@codeaurora.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220924080459.13084-1-krzysztof.kozlowski@linaro.org>
- <20220924080459.13084-26-krzysztof.kozlowski@linaro.org>
- <CAA8EJppxWu86+t=nejrqe_TnhoMLjtvWcvAaQA1awx3qW0t=fw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJppxWu86+t=nejrqe_TnhoMLjtvWcvAaQA1awx3qW0t=fw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+References: <20220926074415.53100-1-krzysztof.kozlowski@linaro.org>
+ <20220926074415.53100-2-krzysztof.kozlowski@linaro.org>
+From:   Robert Marko <robimarko@gmail.com>
+In-Reply-To: <20220926074415.53100-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2022 13:42, Dmitry Baryshkov wrote:
-> On Sat, 24 Sept 2022 at 11:07, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> Certain pins, like SDcard related, do not have functions and such should
->> not be required.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../bindings/pinctrl/qcom,qcm2290-pinctrl.yaml        | 11 ++++++++++-
->>  1 file changed, 10 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-pinctrl.yaml
->> index 5324b61eb4f7..89453cb60c12 100644
->> --- a/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-pinctrl.yaml
->> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-pinctrl.yaml
->> @@ -60,7 +60,6 @@ patternProperties:
->>      description:
->>        Pinctrl node's client devices use subnodes for desired pin configuration.
->>        Client device subnodes use below standard properties.
->> -    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
->>
->>      properties:
->>        pins:
->> @@ -116,6 +115,16 @@ patternProperties:
->>      required:
->>        - pins
->>
->> +    allOf:
-> 
-> Nit: I think you can drop allOf here and move the $ref up a few lines.
-> 
 
-It's anyway different in v2 - there is no if:then.
+On 26. 09. 2022. 09:43, Krzysztof Kozlowski wrote:
+> When BLSPI1 (originally SPI0, later renamed in commit f82c48d46852
+> ("arm64: dts: qcom: ipq6018: correct QUP peripheral labels")) was added,
+> the device node lacked respective pin configuration assignment.   It
+> used also blsp0_spi function but that was probably the same mistake as
+> naming it SPI0.
 
-Best regards,
-Krzysztof
+Hi,
 
+Sorry for making it confusing, but "blsp0_spi" is the correct function.
+Pinctrl driver and datasheets call functions blsp0-blps5, but usually in DT
+we call the nodes blsp1-blsp6.
+
+It would probably be better for me to rename the nodes to blsp0-5 instead.
+
+Regards,
+Robert
+
+>
+> Fixes: 5bf635621245 ("arm64: dts: ipq6018: Add a few device nodes")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+> index 1ba2eca33c7b..afc2dc79767d 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+> @@ -37,6 +37,8 @@ &blsp1_i2c3 {
+>   
+>   &blsp1_spi1 {
+>   	cs-select = <0>;
+> +	pinctrl-0 = <&spi_0_pins>;
+> +	pinctrl-names = "default";
+>   	status = "okay";
+>   
+>   	flash@0 {
+> @@ -57,7 +59,7 @@ i2c_1_pins: i2c-1-pins {
+>   
+>   	spi_0_pins: spi-0-pins {
+>   		pins = "gpio38", "gpio39", "gpio40", "gpio41";
+> -		function = "blsp0_spi";
+> +		function = "blsp1_spi";
+>   		drive-strength = <8>;
+>   		bias-pull-down;
+>   	};
