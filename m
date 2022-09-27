@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6EA25EC80D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 17:36:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D98C5EC80B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 17:36:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232681AbiI0Pgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 11:36:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53766 "EHLO
+        id S232665AbiI0Pg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 11:36:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232571AbiI0Pfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 11:35:41 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52EE11005C
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 08:35:15 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id p5so11314700ljc.13
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 08:35:14 -0700 (PDT)
+        with ESMTP id S232458AbiI0Pfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 11:35:39 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3535310FCD
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 08:35:17 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id l12so11331404ljg.9
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 08:35:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=EalEz9AV2V0m5q+BMPo2gblVIc4RaNqnpRQA+ia4FNc=;
-        b=E0i5PYEN24O+6dgL9ngxmJEGTGs47BaRui5U8vGwlpdKMIngJr2/XH4ZAXfdA2FyZQ
-         QCug4TFZuaVXHHivO8BVAiDmo65MMrpC3ftNNeLDKvi+M6GIGoMa3+2osjcYrZr9+bsm
-         yemvCSFXbYCo+l/Gh14xz9ng6qHw14g3an3w7r3kOK72aCLTkrLJEG0iRRSH84REC76L
-         SyIj0zYDeINJwq5f+8k4qCsuDUMDktB5LP6772PCtyvpWN7rJm9IVIbJ4/K1o16ry/0M
-         mvDBHfcsL52pLZR8VIervMuU4hAlgyQCAnQhrHmoxc2kPgSx6eXWhgx8KFVw7KzfD8bQ
-         jTOg==
+        bh=1t0TIGJesK6hLM5PKw2EecRxO6c2wK2K1+TZumZPtWk=;
+        b=Zd+cDgXiUivkzOnNFILtkBUnmUVQGo0NTItQGI0pc0jvJWMCwLFM4PgofQnzwpMXgP
+         Lr3SUU/EFKSX6fExAKqNx6z0tTHZaXh559ZsExQKnKUSaL4W38N6M3RBlf5zFMSpQmeH
+         lA2eXyXrakU0D++ih83K9oYhwmtO1dsIDcVXZL2Hsb/UG3oWT2zpYfbGEjDkwtbEqVOS
+         VXPE7+vM6hVe+nE2qRWiQwQtK70FdIIVZkDvNbeBapfT+mcjWeIZUsehzgBGN41Kdaaa
+         xKE6XdN4OYs1xtGOypEZ6c6EcoINpxywJ4I8aWRBlktARPx6Z5f3HnDsSzPAhG1ZJ8GI
+         nm0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=EalEz9AV2V0m5q+BMPo2gblVIc4RaNqnpRQA+ia4FNc=;
-        b=Nu782HQAhG2OG9JJeXHhV9VFeklrCexEzwNGK2eC7tQV7RVQRbcgiqDZD2HUmNGBdG
-         1Cdx5Xme32cv5j+6VH+8r8c//mxgQxyeHSDT48Fdqk7qfhRu6Fe0LegMrF2ac7G/wxG1
-         TxNdlHF7uLsximH9aRQR2aLjGvjF0B6fbmEsgb9PapEFiqGMpPwHecTmp2ShVmdhN68v
-         rDkAK8CBTURr7J9G2y4p69kU2KzYpSDZu5mCBHfdYCncwGU6LwPaB09D6IN/BdpeDg0M
-         42muZ8TfvUCYXLILzolwWCH9CyM3r/gkdlwZwa5APPnd0VaNOrf5yaArRxFGNnMYI9OL
-         6VJg==
-X-Gm-Message-State: ACrzQf21mzvyG2wKEyf5c4VEF7hNgSTqRn2AnwELyC4yD62cXwpXDxep
-        2dHpP31Ba+uTJsnASSA2IM9GWA==
-X-Google-Smtp-Source: AMsMyM4hs1yEXSuiLsujg/XbJUM5EFTVyJx5Cxs22w2sTyb14cMgxbDCc+qifhsud/W44L8RZT7Mzg==
-X-Received: by 2002:a2e:9c1a:0:b0:26b:2bf7:9154 with SMTP id s26-20020a2e9c1a000000b0026b2bf79154mr9419060lji.417.1664292912811;
-        Tue, 27 Sep 2022 08:35:12 -0700 (PDT)
+        bh=1t0TIGJesK6hLM5PKw2EecRxO6c2wK2K1+TZumZPtWk=;
+        b=m2oCIGB7tM+PFY50Uj9rYeFrJ1/Oqg+71DjFdbnzZg8UUWeBgD0PoL4Fa+UZ56BzUU
+         C83ePuIGs+sa6MQY8zRE0OYPQIkZPd49p4dH4qStHIcoZQ2D6zR+5Dwx69b/jg9aEhiB
+         2oumQGtGqdGSSIHcL7m5hBBXy47Kiu0aOWlnADRka5yCeNwA94iOSNRQP/YRPvcDI/G9
+         ICiRQm30C8jBaFScPD65pw0nkzQL3y7Q6X0dRlsH3zbqgu+3d9rvR1wJ3VfTUjL1by4p
+         Dv9bB9JDQyhYpyAg8QZ9tw15Mn0xFFd7TdhnpoeEPV7/FVVhRrxwP3epbUIbgyiRCUSs
+         9V1w==
+X-Gm-Message-State: ACrzQf3SRqNCigR/7CBqwx+vOxs7QTihmiayua61sJpfZ671avOsQgRS
+        xiGYgHilTWusiueXq5iDSNrYAQ==
+X-Google-Smtp-Source: AMsMyM4yTeO2bn30uGrLMDwGpJ8vVNyDNE/DJp3E6f2DnLXWPNQW/gMeP/hHBhmgWo9UQJQFyeINCQ==
+X-Received: by 2002:a2e:a910:0:b0:26a:ed13:cda6 with SMTP id j16-20020a2ea910000000b0026aed13cda6mr9437335ljq.250.1664292914866;
+        Tue, 27 Sep 2022 08:35:14 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o18-20020a2e7312000000b00268bc2c1ed0sm191592ljc.22.2022.09.27.08.35.10
+        by smtp.gmail.com with ESMTPSA id o18-20020a2e7312000000b00268bc2c1ed0sm191592ljc.22.2022.09.27.08.35.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Sep 2022 08:35:11 -0700 (PDT)
+        Tue, 27 Sep 2022 08:35:13 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 11/12] dt-bindings: pinctrl: qcom,sc7280-lpass-lpi: add bias-bus-hold
-Date:   Tue, 27 Sep 2022 17:34:28 +0200
-Message-Id: <20220927153429.55365-12-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 12/12] dt-bindings: pinctrl: qcom,sm8250-lpass-lpi: add bias-bus-hold and input-enable
+Date:   Tue, 27 Sep 2022 17:34:29 +0200
+Message-Id: <20220927153429.55365-13-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220927153429.55365-1-krzysztof.kozlowski@linaro.org>
 References: <20220927153429.55365-1-krzysztof.kozlowski@linaro.org>
@@ -78,20 +78,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The existing SC7280 LPASS pin controller nodes use bias-bus-hold, so
-allow it.  Squash also blank lines for readability.
+The existing SC7280 LPASS pin controller nodes use bias-bus-hold and
+input-enable, so allow them.  Squash also blank lines for readability.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Acked-by: Rob Herring <robh@kernel.org>
 ---
- .../bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml      | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ .../bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml     | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
-index a8a48b684692..bd54c92287d6 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
-@@ -91,13 +91,10 @@ $defs:
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+index 78da5d2bb353..290ba2375e92 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+@@ -96,13 +96,11 @@ $defs:
              3: Reserved (No adjustments)
  
        bias-pull-down: true
@@ -101,6 +101,7 @@ index a8a48b684692..bd54c92287d6 100644
 +      bias-bus-hold: true
        bias-disable: true
 -
++      input-enable: true
        output-high: true
 -
        output-low: true
