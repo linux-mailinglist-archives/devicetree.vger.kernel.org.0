@@ -2,48 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FB1A5EB8B0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 05:24:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5F75EB8B3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 05:24:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbiI0DYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 23:24:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52920 "EHLO
+        id S231482AbiI0DYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 23:24:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230413AbiI0DX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 23:23:56 -0400
+        with ESMTP id S231137AbiI0DX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 23:23:58 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE0746225;
-        Mon, 26 Sep 2022 20:23:11 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E7F5C37A;
+        Mon, 26 Sep 2022 20:23:16 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2534061595;
-        Tue, 27 Sep 2022 03:23:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5273C4347C;
-        Tue, 27 Sep 2022 03:23:08 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A31F061585;
+        Tue, 27 Sep 2022 03:23:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD677C43143;
+        Tue, 27 Sep 2022 03:23:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664248989;
-        bh=7Jou6n5y0mKpBXvA3sndzVkCRVrnapOjPsW5ZL+vmmQ=;
+        s=k20201202; t=1664248995;
+        bh=MbHislodbHWamvfQ72iARjTJC113lxMjN7t13HcDaCQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=pGONiHh8/FgmUxq/70cvzR2OxKfuAdCCkdcW3quM8HyvQSguG7rSFZvX5puor+oFy
-         3VNjuX4Lso1I2VWecEIx92FAd8mnKfO+iU8mTQqIZBqCUQfL0AXhOGBt1+4bz+oebB
-         Lbebkz7kyjva7h/zJIdFoA66IW9wF48t3iPoYidWC8yBBquAixqp6iy7NFBfW8ycr0
-         LpgSIERpnJW2osiYHK65fLVT97OBMYwKeYXmWhuAeg/iqHX8/wco6k40Gj//t6V5wW
-         iGogEzejflt9zKUWD1ARV/yUBtd/Xr3zejaPu9ws0ROim//wkQ4aEAswEcco7icDB8
-         t06Exybmb3c0A==
+        b=aApuCfnscjtUP2X01tAoaY7Z3EPOKYw0faY5GFVVDcrcGFIvI16MkQ5aeGM/Vgbyd
+         hMFfghzbzr3Fy4LCq1KZ0LKJHqpS5Lbgd5lY88Qk2VytxWM8wLvFKS8KYEz/6WBqkO
+         QvNp5/cFvdXETXUdw99tay5DRtwic5CxvEWKtIYZf0oc4Rq0HpEf+TkP60us85GGoy
+         6FqXrvRGCgnyibz1s8ms4H4CSex1zCn9F+WiW+LkfU3mfo8VWCi7vKiutlK5b46WpM
+         mA1Busa6JAsdLJ6A9ZQKhBt5cbliFdzpJdinP561ei7T4OamZ7eHAj3PSs+mozDi6/
+         F3lgtF/WAoewA==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        mturquette@baylibre.com, dmitry.baryshkov@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, quic_tdas@quicinc.com,
-        agross@kernel.org, sboyd@kernel.org
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 0/4] clk: qcom: add SM8450 Display clock controller support
-Date:   Mon, 26 Sep 2022 22:23:00 -0500
-Message-Id: <166424897976.1766486.7928034838653422228.b4-ty@kernel.org>
+To:     loic.poulain@linaro.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, Bjorn Andersson <andersson@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        sboyd@kernel.org, yassine.oudjana@gmail.com
+Cc:     y.oudjana@protonmail.com, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        jami.kettunen@somainline.org, linux-clk@vger.kernel.org,
+        martin.botka@somainline.org, dmitry.baryshkov@linaro.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH 0/6] clk: qcom: msm8996-cpu: Cleanup and migrate to parent_data
+Date:   Mon, 26 Sep 2022 22:23:04 -0500
+Message-Id: <166424897968.1766486.11324579765862390238.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220908222850.3552050-1-dmitry.baryshkov@linaro.org>
-References: <20220908222850.3552050-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220621160621.24415-1-y.oudjana@protonmail.com>
+References: <20220621160621.24415-1-y.oudjana@protonmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -56,32 +61,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 9 Sep 2022 01:28:46 +0300, Dmitry Baryshkov wrote:
-> Add support for the Display clock controller found on SM8450 platform.
+On Tue, 21 Jun 2022 20:06:15 +0400, Yassine Oudjana wrote:
+> This series includes some cleanup of the MSM8996 CPU clock driver, as well as
+> migration from parent_names to parent_data for all of its clocks. The DT schema
+> is also fixed in this series to show the actual clocks consumed by the clock
+> controller and pass checks.
 > 
-> Changes since v2:
->  - bindings: added missing gcc-sm8450.h include
-> 
-> Changes since v1:
->  - Rebased on top of 6.0-rc
->  - Dropped clk-names in favour of using parent indices (Bjorn)
->  - Added GCC_DISP_AHB_CLK to dispcc node (Bjorn)
->  - Changed bindings licence to dual GPL+BSD (Bjorn)
->  - Removed zero clocks in dt bindings
->  - Fixed syntax issues
+> Yassine Oudjana (6):
+>   clk: qcom: msm8996-cpu: Rename DIV_2_INDEX to SMUX_INDEX
+>   clk: qcom: msm8996-cpu: Statically define PLL dividers
+>   clk: qcom: msm8996-cpu: Unify cluster order
+>   clk: qcom: msm8996-cpu: Convert secondary muxes to clk_regmap_mux
+>   dt-bindings: clock: qcom,msm8996-apcc: Fix clocks
+>   clk: qcom: msm8996-cpu: Use parent_data for all clocks
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] dt-bindings: clock: qcom: add bindings for dispcc on SM8450
-      commit: a7edd291636ac0bddf6c5a5aef6a94c2a9794830
-[2/4] clk: qcom: alpha-pll: add support for power off mode for lucid evo PLL
-      commit: 9d062edd561f594b71130c4846c9032bfec8d97f
-[3/4] clk: qcom: Add support for Display Clock Controller on SM8450
-      commit: 16fb89f92ec4412ac49ddca64944d5f72e063f69
-[4/4] arm64: dts: qcom: sm8450: add display clock controller
-      (no commit info)
+[1/6] clk: qcom: msm8996-cpu: Rename DIV_2_INDEX to SMUX_INDEX
+      commit: 1ba0a3bbd5ed5a1bb8d0165912d9904b812af74b
+[2/6] clk: qcom: msm8996-cpu: Statically define PLL dividers
+      commit: de37e0214c28330cf0dbf4fe51db1d9d38c13c93
+[3/6] clk: qcom: msm8996-cpu: Unify cluster order
+      commit: 382139bfd68fe6cc9dc94ffe3b9d783b85be3b1c
+[4/6] clk: qcom: msm8996-cpu: Convert secondary muxes to clk_regmap_mux
+      commit: 9a9f5f9a5a0ca3f463eb28ba5920a6fd18dc9956
+[5/6] dt-bindings: clock: qcom,msm8996-apcc: Fix clocks
+      commit: b4feed4a3d0a6b8cef4a574a9df707c556928ec2
 
 Best regards,
 -- 
