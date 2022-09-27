@@ -2,101 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 278345EC1FA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 13:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB4E55EC20A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 14:04:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232159AbiI0L7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 07:59:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55638 "EHLO
+        id S232207AbiI0MEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 08:04:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232019AbiI0L7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 07:59:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 296EA767C;
-        Tue, 27 Sep 2022 04:59:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BA684618A3;
-        Tue, 27 Sep 2022 11:59:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E0CBC433C1;
-        Tue, 27 Sep 2022 11:59:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664279974;
-        bh=nNaZ2uwzXtVL9imsBm5VYF7bk8vx/Y6VwBdujKGokcE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Z+23zlwjWL6JKb+dyRA65oiV54i09OfcS80QRNvXv9OrfBq3eimLdxn+5CdYGK2ny
-         enhOkWVqKBYC1QnaRWgTqbchIlrqk6nr2rC7gKfB5ADf2xUgSJ1akGvb/dvVtX5daW
-         rejYTaYK4GJSGu6MIsQ6Rlbecbep9AdzZNEVxrzvLdtv3XsLt3hpVDSADf2vCtdCCB
-         HhzcblDOeS68V37u4rWgjVSNETVPRFjjOAVxrxSBPxoUdtOaTT2PLrKZ62NDGGcEB+
-         4MBPYqIDz0AWX70WxdzMxr3n+jiw8XOS3VzBfTJE3XXl890F5ff87xmZknz4qo2VP+
-         9bcyKa1DJL1Uw==
-Date:   Tue, 27 Sep 2022 12:59:28 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [RESEND PATCH v3] dt-bindings: spi: migrate mt7621 text bindings
- to YAML
-Message-ID: <YzLloE/AEdFiHsEj@sirena.org.uk>
-References: <20220927031929.807070-1-sergio.paracuellos@gmail.com>
- <YzLagn9/j0w4UymU@sirena.org.uk>
- <CAMhs-H8664babt9xwE-iCJNCdm+kues-c6V1iPwS63EtdWCV1w@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="W7anHBPfj7xrPFu7"
-Content-Disposition: inline
-In-Reply-To: <CAMhs-H8664babt9xwE-iCJNCdm+kues-c6V1iPwS63EtdWCV1w@mail.gmail.com>
-X-Cookie: Vote anarchist.
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232206AbiI0MEn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 08:04:43 -0400
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E1971D9;
+        Tue, 27 Sep 2022 05:04:32 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 84BD6580B4D;
+        Tue, 27 Sep 2022 08:04:30 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Tue, 27 Sep 2022 08:04:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1664280270; x=1664283870; bh=X6PgjqV1In
+        3ZSq9GixXUX+wp6ZWYnHlCCiRNYB8MzOo=; b=lf5crLfqQDmnHfXyRPd0RxqTsS
+        1iIK1oqW2RLYJpJECb0dI8CnPPZXjJsP9fIFBJJw6GoCXv6LpqOfAheXncm8a4eE
+        +3V2cMBqlF/Uq04vuq9nGHc+WjgBIQaS/IrT/G4OHmsizNz+t5jjOS5hnb1PV7I/
+        xba7NdW1ag50HrLmTL5aawX/YfTG3mLag1Ca9LqaYIlixAp3qM9U/fH9dJwutsEZ
+        eftnbOVPQjIT5pyn0fwEKVPuXeqrcXksQvblgeG1TjQQG7nVR3/dryBBFNfodYB5
+        7Pw6q1KMF3UY/GfTNf7xrl9ORqETU1Fy0ZFLUHcdzku1cUsCCYZDuCHTr2Cg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1664280270; x=1664283870; bh=X6PgjqV1In3ZSq9GixXUX+wp6ZWY
+        nHlCCiRNYB8MzOo=; b=bDSqXckW0Y32+AmR/aRSggoFs21pUIMFAL0bBrsxBc/I
+        q2DUC8Yogk5bW8PgqKloeBULaZeXVSQ67uDZkhDpCwAoajHaHpasH6/i3DjloJII
+        T3sbT9rokvzgRVs1Kg9UMiP8FzsBoO/5cJcna3AgJWiDjEggrnbVNyAJVBqweQFu
+        S6XIuaRka8TtiGXaLwSi45zi+MyQhP0Tz4Pvl6iPUG2Ehaq8jwbfrjZMm2qL1cWB
+        PFZTjEU9qVkAp6BpGLRJmXa9QJcE+1aCYqU6n25fz3Hnv9e+R7hjSrJz0xVWLOaS
+        RSUDDCxp3q4tUPjT4dionUarHFCHFMeRl3c5NrMyYQ==
+X-ME-Sender: <xms:zeYyY8S5ahd0QXtq6QoJfBkDmnI1-wIcUqrBfXZy5uTfEc2hDw3EEg>
+    <xme:zeYyY5xM_Vtig_uSBVnjl_nqCBT3rrbRLrPCc3hX4ns7AuQO7HRd4xVQ2KpfUsWjj
+    dKuwEjlkTQnPEHVO-8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeegiedgvddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:zeYyY50e3pxAnidlv6ow6J05cH6G_ideOK7wh8AAzqcN-73hAW5Cwg>
+    <xmx:zeYyYwCDs_2gfOaVIcH6jLGueqU1KnCWJ7RXj4up8XEEgWmU11erNw>
+    <xmx:zeYyY1iLZE2QFLavvsJaTrGF07tL8WwmmlI7Zgof7JkkuGNjUlJ2cg>
+    <xmx:zuYyY9g1A3_VCqwS4EDE03577fjzeGafDHpLzKHagO76sn7OapU2iw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 21661B60086; Tue, 27 Sep 2022 08:04:29 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-968-g04df58079d-fm-20220921.001-g04df5807
+Mime-Version: 1.0
+Message-Id: <ad962bed-1614-4eb1-91f7-23b9cb6e0ea3@www.fastmail.com>
+In-Reply-To: <20220927104138.5924-1-marex@denx.de>
+References: <20220927104138.5924-1-marex@denx.de>
+Date:   Tue, 27 Sep 2022 14:04:08 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Marek Vasut" <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     "Yann Gautier" <yann.gautier@foss.st.com>,
+        "Alexandre Torgue" <alexandre.torgue@foss.st.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Ulf Hansson" <ulf.hansson@linaro.org>, devicetree@vger.kernel.org,
+        "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v2] dt-bindings: mmc: arm,pl18x: Document interrupt-names property
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Sep 27, 2022, at 12:41 PM, Marek Vasut wrote:
+> Document interrupt-names property with "cmd_irq" interrupt name.
+> This fixes dtbs_check warnings when building current Linux DTs:
+>
+> "
+> arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dtb: mmc@58007000: 
+> Unevaluated properties are not allowed ('interrupt-names' was 
+> unexpected)
+> "
 
---W7anHBPfj7xrPFu7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I don't think that anything relies on the name here. Should
+it just be removed from the dts files then? The name does
+not follow the usual conventions with the "_irq" postfix.
 
-On Tue, Sep 27, 2022 at 01:36:04PM +0200, Sergio Paracuellos wrote:
-> On Tue, Sep 27, 2022 at 1:12 PM Mark Brown <broonie@kernel.org> wrote:
-> > On Tue, Sep 27, 2022 at 05:19:29AM +0200, Sergio Paracuellos wrote:
-
-> > Please submit patches using subject lines reflecting the style for the
-> > subsystem, this makes it easier for people to identify relevant patches.
-
-> Since this is a binding migration change I sent the patch expecting
-> this going into the devicetree kernel tree. So I just use the common
-> device tree change style 'dt-bindings: spi: migrate mt7621 text
-> bindings to YAML' as the subject. So I don't really understand what
-> you mean above, sorry. What is wrong with this subject? I submitted
-> this v3 [0] and I was told by Rob to resend it to you and the
-> linux-spi mail list also.
-
-Bindings mostly go through the subsystem rather than the DT tree.
-
---W7anHBPfj7xrPFu7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMy5aAACgkQJNaLcl1U
-h9Bv0Af+MriMXHEc8gmZoqCCPIRvO58TXJ/P7cwzGH+zIKbNCxHKOs4J4z2vtvTu
-9KWQs2kXxYxLDi5hpmrJJQTuUGF7zphnEZmE5pp8HmxHgJaEAj2fIXLgWj6bFXiB
-NUylKGkoL8mwvOpcQx4vLT4oqTIj0OUTP4gOVXD88rfgpg/5xKHQq4tEJT6E9Tqj
-BGk2l0y/VxuOWiCES2YGiLV6LOa9kWkd7AeFAtxhkz3rKcoJKq142eMBACDwY57o
-QbF6qOIbmUhi4I+WUc/tMThf3BhIWo8FxKe+zwT+Mm6dcqCBW/fZO5p3+soHZ42/
-qOToIEr8omzPJXzN1o+Qako3LOR2Xw==
-=2f4+
------END PGP SIGNATURE-----
-
---W7anHBPfj7xrPFu7--
+     Arnd
