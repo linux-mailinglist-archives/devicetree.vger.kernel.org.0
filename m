@@ -2,125 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B065EC6B9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 16:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3B065EC6F2
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 16:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233059AbiI0Op0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 10:45:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59064 "EHLO
+        id S232207AbiI0OyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 10:54:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233088AbiI0Oot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 10:44:49 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B266240BC;
-        Tue, 27 Sep 2022 07:39:40 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id j188so12156563oih.0;
-        Tue, 27 Sep 2022 07:39:40 -0700 (PDT)
+        with ESMTP id S232693AbiI0Oxf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 10:53:35 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19356B2879;
+        Tue, 27 Sep 2022 07:51:43 -0700 (PDT)
+Received: by mail-qk1-f178.google.com with SMTP id d17so6129572qko.13;
+        Tue, 27 Sep 2022 07:51:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=aXapzxkwJjXshh7yZTouvFh3NO4W45oOiG6QOPv9xbg=;
-        b=aPERMFIIOQdl5pZgcPeRw1wlPETmuTiRy7/hYErp8oXNrs6Ge5CHKKp/oyiwhM3e9Y
-         LQhsU4yhsBWyqvGoPMFLQ8yHDm6JXCDv4zyP4vmUBvgRTMe7b1uhuecdfLNLd0x3K2JA
-         Y0+QJT2CDxcOtNjT0MM3o/WVu1POdqpOT0HwYFWWwfIQhQcGzvYqhaq0s+xWCneztDor
-         qUCqkduAUI2wBi4bIV+VNOvBxu6M+TxqPKmNv4/GUWiGQ9sK7WwmgJ6vsVMgPDLUBo8Z
-         w8qH+R6ULsje9ujmyVyAuYHHF9TNsX9oo1slKBFEvlGlI+sWBPF9QMcEFI+Tt1P0rh3a
-         W9QA==
-X-Gm-Message-State: ACrzQf0ww6L7O4JrYa9muvpJ7b2+YzbvZJc4IP4I+p3nGjBbwo0r+v2i
-        CAFJFuxEiTT9yDu5eB69WA==
-X-Google-Smtp-Source: AMsMyM4hNo1lj9rE/jk87Z2GYcC05y3cmAk+GwtgMB/vVsr+Y0jnhpLHuNbLvB+pBZP2SyJ7pntfMg==
-X-Received: by 2002:a05:6808:ca:b0:350:2d75:f3ed with SMTP id t10-20020a05680800ca00b003502d75f3edmr1899153oic.175.1664289559695;
-        Tue, 27 Sep 2022 07:39:19 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q16-20020a9d6550000000b00636fd78dd57sm763037otl.41.2022.09.27.07.39.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Sep 2022 07:39:19 -0700 (PDT)
-Received: (nullmailer pid 943210 invoked by uid 1000);
-        Tue, 27 Sep 2022 14:39:18 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        "linuxppc-dev @ lists . ozlabs . org" <linuxppc-dev@lists.ozlabs.org>,
-        Eric Dumazet <edumazet@google.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>
-In-Reply-To: <20220926190322.2889342-2-sean.anderson@seco.com>
-References: <20220926190322.2889342-1-sean.anderson@seco.com> <20220926190322.2889342-2-sean.anderson@seco.com>
-Subject: Re: [PATCH net-next v5 1/9] dt-bindings: net: Expand pcs-handle to an array
-Date:   Tue, 27 Sep 2022 09:39:18 -0500
-Message-Id: <1664289558.335769.943209.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=mcmbFJNhtLAll3ZUzfvL0JQzBR7USTKl9MyorTFZA2I=;
+        b=hhFfg7bOv3JPslW1Lywu+O8oTyDgVOQCY5qVPXRsS9VpvlPjp/iTwXpKvD6Ikcmaow
+         qcLxhuBfgeWQkkl2foGPoc+KCENuRkl6x2F4Q5f+FxQbN4Fu83jlcMSQL2jl8p/1yZEy
+         YZpNSo18W3geSPaKa5dcrWLuAN3xF03yb0f5HiD/Yli4hvC4X/mykSr5eR9IR3KveeQR
+         CIUmCcBFP4hAaURdtX5c4dTDQAvxWKYrZ+jEIODDBrM7LJDbJpKMZBv9qxNS3WxWnss6
+         XCSUGpq5kLF1geN05dHwgyGOS9E3jtZ9An7Xjb/oAz7/oJSmqRXIf5Sb4p1Dawwye9oC
+         coyQ==
+X-Gm-Message-State: ACrzQf22z9TCeUcKaZmRbHgX16/fDQX/B4YW+2gJoU0EqPT5IsN9gQ0s
+        wkdVqEHBMMj2cQnyhzIxrvwiWZOKGIdPKg==
+X-Google-Smtp-Source: AMsMyM6/pxbBc1bUGqW3NPrX+YQPSp8U9WLoUPyw1jXSb0XeV2JDLwmCz7a4ZiHoljcQ1NIphTp+Pg==
+X-Received: by 2002:a05:620a:158d:b0:6cd:efb1:8eb6 with SMTP id d13-20020a05620a158d00b006cdefb18eb6mr17736313qkk.185.1664290302541;
+        Tue, 27 Sep 2022 07:51:42 -0700 (PDT)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id d22-20020ac81196000000b0035d453b8c57sm963061qtj.11.2022.09.27.07.51.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Sep 2022 07:51:42 -0700 (PDT)
+Received: by mail-yb1-f172.google.com with SMTP id c9so12527266ybf.5;
+        Tue, 27 Sep 2022 07:51:41 -0700 (PDT)
+X-Received: by 2002:a5b:506:0:b0:6af:ffac:4459 with SMTP id
+ o6-20020a5b0506000000b006afffac4459mr23972953ybp.365.1664290301712; Tue, 27
+ Sep 2022 07:51:41 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220923205251.1387-1-alexander.helms.jy@renesas.com>
+ <20220923205251.1387-2-alexander.helms.jy@renesas.com> <20220926230438.GA3128861-robh@kernel.org>
+ <cbe89899-7f56-c43a-f8c9-887825fbe4a6@amd.com>
+In-Reply-To: <cbe89899-7f56-c43a-f8c9-887825fbe4a6@amd.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 27 Sep 2022 16:51:29 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUuzrdf4rmD3n_-S9ujrfmY5Y6VOsNapiLRR5MG9bKAjw@mail.gmail.com>
+Message-ID: <CAMuHMdUuzrdf4rmD3n_-S9ujrfmY5Y6VOsNapiLRR5MG9bKAjw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add bindings for Renesas ProXO
+To:     Michal Simek <michal.simek@amd.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Alex Helms <alexander.helms.jy@renesas.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        mturquette@baylibre.com, geert+renesas@glider.be
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Sep 2022 15:03:13 -0400, Sean Anderson wrote:
-> This allows multiple phandles to be specified for pcs-handle, such as
-> when multiple PCSs are present for a single MAC. To differentiate
-> between them, also add a pcs-handle-names property.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> This was previously submitted as [1]. I expect to update this series
-> more, so I have moved it here. Changes from that version include:
-> - Add maxItems to existing bindings
-> - Add a dependency from pcs-names to pcs-handle.
-> 
-> [1] https://lore.kernel.org/netdev/20220711160519.741990-3-sean.anderson@seco.com/
-> 
-> (no changes since v4)
-> 
-> Changes in v4:
-> - Use pcs-handle-names instead of pcs-names, as discussed
-> 
-> Changes in v3:
-> - New
-> 
->  .../bindings/net/dsa/renesas,rzn1-a5psw.yaml           |  1 +
->  .../devicetree/bindings/net/ethernet-controller.yaml   | 10 +++++++++-
->  .../devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml    |  2 +-
->  3 files changed, 11 insertions(+), 2 deletions(-)
-> 
+Hi Michal,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Tue, Sep 27, 2022 at 4:10 PM Michal Simek <michal.simek@amd.com> wrote:
+> On 9/27/22 01:04, Rob Herring wrote:
+> > On Fri, Sep 23, 2022 at 01:52:50PM -0700, Alex Helms wrote:
+> >> Add dt bindings for the Renesas ProXO oscillator.
+> >>
+> >> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
 
-yamllint warnings/errors:
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml: properties:ethernet-ports:patternProperties:^(ethernet-)?port@[0-4]$:properties:pcs-handle:maxItems: False schema does not allow 1
-	hint: Scalar properties should not have array keywords
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml: ignoring, error in schema: properties: ethernet-ports: patternProperties: ^(ethernet-)?port@[0-4]$: properties: pcs-handle: maxItems
-Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.example.dtb:0:0: /example-0/switch@44050000: failed to match any schema with compatible: ['renesas,r9a06g032-a5psw', 'renesas,rzn1-a5psw']
-Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.example.dtb:0:0: /example-0/switch@44050000: failed to match any schema with compatible: ['renesas,r9a06g032-a5psw', 'renesas,rzn1-a5psw']
+> Driver is also using clock-output-names which is not listed here.
 
-doc reference errors (make refcheckdocs):
+... which is deprecated, and thus should not be used by the driver
+at all.
 
-See https://patchwork.ozlabs.org/patch/
+Gr{oetje,eeting}s,
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+                        Geert
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
