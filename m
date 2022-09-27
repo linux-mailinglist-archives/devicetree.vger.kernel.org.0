@@ -2,202 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5899C5EB7DB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 04:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E922D5EB755
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 04:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbiI0CnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 22:43:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48338 "EHLO
+        id S229437AbiI0CE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 22:04:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbiI0CnS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 22:43:18 -0400
-X-Greylist: delayed 3068 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 26 Sep 2022 19:43:17 PDT
-Received: from mx0b-00268f01.pphosted.com (mx0b-00268f01.pphosted.com [148.163.159.192])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 054B3E5FBB;
-        Mon, 26 Sep 2022 19:43:16 -0700 (PDT)
-Received: from pps.filterd (m0105197.ppops.net [127.0.0.1])
-        by mx0a-00268f01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28QKx0jg022112;
-        Tue, 27 Sep 2022 01:51:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=equinix.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-id : content-transfer-encoding : mime-version; s=pps202002;
- bh=PVK+00F/fHK6zi0e9j8KP71Xhqecd+tFCPpdchEgLQE=;
- b=hZdQmXIdk0Pye+hnKquWxQwkXG6x9zAT4B0FYfd/AbLPuR+DfejBRXrsXT0c6841H/Wk
- yZX9BSBXFFRND8xfaRgVm1PYyLFO+ngyl16OSRoA+a9OG75W75VbqNy9y1bH/vfsNsGj
- 6W+X+0w1/Ck9QPoq3CIIti7H+dcY1HOddm3zs76EifhZo15bso5nxGie5PGXQCIJOYUA
- KXWOCcCGHUpHEaSnTIyCIfQQQZJG6KzKJtFRRzGCJ43EeDfs2RdbNIekIZglgjipXJyh
- RnRzLJkC/1r84kFh1j8LuqzCgvb30csdVJ7y52n/djhQbE7msQg0A9G8M9g1ZhRXC6rp hg== 
-Received: from nam12-dm6-obe.outbound.protection.outlook.com (mail-dm6nam12lp2170.outbound.protection.outlook.com [104.47.59.170])
-        by mx0a-00268f01.pphosted.com (PPS) with ESMTPS id 3jukkernx4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 27 Sep 2022 01:51:34 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E5/y8y+yZ2d22C2mqv7oVSu8cdGPukc1ffgEU7k97InSmeP47CWaqBNwn3+kdpABYS8wLnsRmtS0/hD06eiiebDSknDTPuWR6yovQQXAc23POLVj8hw1/bhSuyYzQuUtjtAmsuZNfCpoXPKW3kSs11QYLtHdzFlSoN1JU6LmIc4P8Jd8s2VxrwXJqnysWwZsl4Z4Y/q1ta8YVbtlDsqmdYdpQ3DYK0fgpkdHhfdthA4lu5zHfAcWvCCkeIxHm7Ll9YbXPvxNLSlqzO5+mbxsniTP8pOtJVJnube2+m2p9yQtYDUqqY4XJsRgeOJsbOHdk7GHYuyvmfRoBLrPB1IiHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PVK+00F/fHK6zi0e9j8KP71Xhqecd+tFCPpdchEgLQE=;
- b=Gu4TlyWwNlM4O1MnYYEpzI1Q6jkV9BWbcgnEZYOS4Hji6gRWdNZaXnDvIfO4NeSFc/AaNVC4cm7eFSW7G5keQdKZJ3wuhD5U54wVTmn6fq0r28kaKf7AgmTAsjGvXDO1ce1wKpHJL7b0XmyjJOYv454HYFnjzFx86Qd/V6cT4SDflCg9ZDpW0+kI53jtod+8Y6yqIf850iiPMQmhqh6fiHuS8XZB1hNMowIApAghnOeZjpSnOIiSyTY8xQ99Q72Xr0Q/gYtB8E+ZxjRBgu0IuzRcu/3iR+BjSxAyj7/KDB6nQtFmhhIGHoMwHVOLFp+LZOuoZuP/XzUhhTz+0gNMiA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=equinix.com; dmarc=pass action=none header.from=equinix.com;
- dkim=pass header.d=equinix.com; arc=none
-Received: from DM8PR04MB8007.namprd04.prod.outlook.com (2603:10b6:5:314::20)
- by BY5PR04MB6550.namprd04.prod.outlook.com (2603:10b6:a03:1db::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Tue, 27 Sep
- 2022 01:51:31 +0000
-Received: from DM8PR04MB8007.namprd04.prod.outlook.com
- ([fe80::4043:b584:ed2f:7b95]) by DM8PR04MB8007.namprd04.prod.outlook.com
- ([fe80::4043:b584:ed2f:7b95%4]) with mapi id 15.20.5654.025; Tue, 27 Sep 2022
- 01:51:31 +0000
-From:   Zev Weiss <zweiss@equinix.com>
-To:     Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
-Subject: Re: [PATCH v5] ARM: dts: aspeed: Yosemite V2: Enable OCP debug card
-Thread-Topic: [PATCH v5] ARM: dts: aspeed: Yosemite V2: Enable OCP debug card
-Thread-Index: AQHY0hOqzhlbl775rEujDf7XROiYCA==
-Date:   Tue, 27 Sep 2022 01:51:31 +0000
-Message-ID: <20220927015130.GG30806@packtop>
-References: <20220926124313.GA8400@hcl-ThinkPad-T495>
-In-Reply-To: <20220926124313.GA8400@hcl-ThinkPad-T495>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR04MB8007:EE_|BY5PR04MB6550:EE_
-x-ms-office365-filtering-correlation-id: 8b04e200-c0b4-4074-5907-08daa02accfe
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: tr6Y2tivMNaJAwiLTbsq0X5dm4iUycvAdHmj93Xb5OPOdeuVUK145IfwCoou+KPXx0e5oe2ONzC05kBSzT4hI76jVVKtS3TdXS+WyrGILqYKKgQAdg1NAT0Jz9Ib2pMfO1F7kITN9WsJDLlly1x2gRG9vT20igNqY/9E036Ziirh5WQ8i8OYsyYk7esSg9g0Nce9z+NolvNaU+AGMwF7RP2upmCO4a8P1CDhL3bBz+0W+2yK88WG1790hmJSaelb/646bydL9hca/us/+g8HwjdPVVNKw5m6vunRjhkuLn93r6dK0zNOcTOWSrOssBesSUc77a1NjjFX4XdH+Zr1FBp47690e6cPLLYZYO9/ZEyl0yHgVltErTlfjaG46vFdlYYxpMObXUTeA/NIaQxIvGRv+ng7hrRFwInHX5xqdHQC9cFzkcUADh1WqGLci+0YVF0DzCY2FsIlG68qlZwJyOCk+sQmOKY1g8UKhmQvueomb4oWieiai2qbwKtZx4fnIpO+fa0/fO9GswWc4b8zpnFijXf1Tz2+uxC8FvNt9+zHU0SienXDAsLYuFANAmrsbPRZeQkZ58OX6CRLBiMn8x7xPIFdxG5bXF0ZU1WsbFlGic+2Gvy/IzP9oLIn+AEhOjNb0Yn2U89rkdgQAAAG3f7NXMdi/YhLgkCWLIMwkxX+j4CetlKaNWz7yGWo2rmgVYKbYTxdSq6P7FqoE6ZjIPJTCm5jeR4CdxMxSq10lvVKK7RcM+sQYT34Nc57faSXjRKx6t+khkpnqC8oMsv9eA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR04MB8007.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(7916004)(376002)(346002)(396003)(366004)(39860400002)(136003)(451199015)(33716001)(2906002)(4326008)(83380400001)(316002)(122000001)(38100700002)(64756008)(41300700001)(86362001)(6916009)(26005)(8936002)(66476007)(66946007)(8676002)(66446008)(66556008)(76116006)(54906003)(5660300002)(33656002)(1076003)(478600001)(9686003)(6512007)(6486002)(38070700005)(91956017)(186003)(71200400001)(6506007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?8vvxCFWqQTgdxgWxpaq8mBSQWxI81QUqoUESv4Ff/lv2NGCSLfl/uTh5TcI/?=
- =?us-ascii?Q?RGxdYBUOXIQRGAwKaKfW/YA7Jv+mAagbLBZZEYvM3QvCkDvFKSCN4vVxVkw7?=
- =?us-ascii?Q?DdfZm3+WXkYlramopQnVCIkYqEmIrM4WK+rhVWF7qhZzgcOzDEyd1HdWf16j?=
- =?us-ascii?Q?Rs1FueVLnaFXNh+XESvSiGRBfPphuCyvQcPoTgWyxF/I/nUuKlkJESMyQRqe?=
- =?us-ascii?Q?qjSRwj9aRm7CwUHWvxSguqnzMXsl3dHTg/9EwZpC2SCS9Oq9zu/YN5YsJwSx?=
- =?us-ascii?Q?bptCW9nAJD/6KcuYMcfTKzd0SlGTkQ1dPwFOmflX8WkuCE0w30ud8vGUqBsW?=
- =?us-ascii?Q?oMy1BVMaUeg1hg0tasvl7E0tjCvFcLQAV6zzkyu8YrFgI9fzyySh+OH0xkcZ?=
- =?us-ascii?Q?ETxPMOTzaKp8ztMHVZ08nzDmGxA0stb0AoOZtOl3BqoGUu+pdikVWwbsYVno?=
- =?us-ascii?Q?TYcFjMssRjseRjeEl+xPmgE8vkiapT9Ks3mYImEh3gZES1lDWtEw4wjqq+1j?=
- =?us-ascii?Q?fqa4wnG5WsL6SOU4kZ/Ee0pnGzspHtrvGHz+C3F33ahmBcIdQ5AF/WaZku8q?=
- =?us-ascii?Q?kBiqdPORr05t7XKFuaRH+PNoPgyOHw0rHFL74M1z3G6aCjiitU3ubILJLLY5?=
- =?us-ascii?Q?4KGiiS9/ogKtYUchnDD+he2wjqXljY73jgFekjRRiajNZvucjYdwgU9tdKHV?=
- =?us-ascii?Q?3hmVgW4iUdLQQ8pmTPtDq8p1BDY5n74lZnKAyhJaeaDKaDZlqvk/yoybHNVN?=
- =?us-ascii?Q?9aTfO4WdbIrtGtpVVXIqeaMjgyp4eB+dZ6ZBXJ+J6yETiWHFC54OEV4Z87mz?=
- =?us-ascii?Q?YEns75qwhOa/r6wSbqejHT8XDW5V1TI3YPjUwWRRxuzBxAfUyS++J67KJxjM?=
- =?us-ascii?Q?zbmvi+O/JUQhLGYspwtapHW8jGP5WJlVF2NXdfNch8qOjmZ7LprTbSI0WQsp?=
- =?us-ascii?Q?cKyYfkEsz7XLN2yE8TBB4vm9q8H/oSqyz3aEOc5asZllRedYdXphmM8nQ4cZ?=
- =?us-ascii?Q?+e0vDzxItwjmgo2qklAGCGPrr2nxE4Ltx3ZenM2Tf61Ez2BGgteLrhCGzKG7?=
- =?us-ascii?Q?Lnr/uookVSSZUDns88nQNhWq00VJycDkoOFxpT16WtXLynVDL71ssYQb2IqK?=
- =?us-ascii?Q?GlA8zcjk+N9Dt/r92LQSRLTnyap2RYQP3NwEtEv9+WfHxt7prHXK0CgIf0XT?=
- =?us-ascii?Q?MTcwJ9rAiS2gcrm6mg+ne5pesTYyrjeXH59kPMixliVKcaGuZAAHl5Jil4gr?=
- =?us-ascii?Q?WLZ5sE2ypmTL/E4c4tk6NkpVOjLUkJ2VA4101oLR/ciAG0bgs1eKRdMKBYs5?=
- =?us-ascii?Q?rj3CRqiNvVdhpXaNIs5ZU1oYK48e2oz6pQ7xWba6j2m2ZEnMDQVJc3Q3T03h?=
- =?us-ascii?Q?9KkUno+EOVqInnTHGwe53qhJw2lEIBZK6/ol1XURgkMFKEms2hELtyecWT8P?=
- =?us-ascii?Q?KuRBUU2qTs0CeRirNuv7afR5l/Ggo7TWEzTjM2IExeRX+R7dbHIGdUWUkzP8?=
- =?us-ascii?Q?2K/tp+e69nreqDovVp/9mO9uFII780PeKSPcaJBnIgKNWoqShzltQLcb6Kx3?=
- =?us-ascii?Q?yTRjuPQigtU8dROhn90lx/xMNXpR8dvSU0BhMA++?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <C94E632F4FEE6F45BE949DD6A33DE9C8@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229610AbiI0CEZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 22:04:25 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C37BA8339;
+        Mon, 26 Sep 2022 19:04:24 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id e68so8438730pfe.1;
+        Mon, 26 Sep 2022 19:04:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=SnO8aVtavYR6NyHfDDKowaxtha4eDB/hQjOAOFJayeQ=;
+        b=KDYrV4B33D0SRsBg8Jm1HIymG1tY5VT0P8OfWSzisMqjKRot3grFKGXzRk2P61w3mt
+         lgUWL6ISYXJlNOGy2GnHiVWLEVpA12AQJx8Tn8DY/gf/mo9mul08aGqvELWcU5h/j7cb
+         tJnd01ylv8iLi0hpHp58pxw0wdpLf55Tnf2EiN9jpABTWXAECgNSJZdhtR5vNd+hZ/Or
+         cHAa8oM299cEPS7JvbC68HvIWYgUSx+J1HBvzLKzUSfZxGWswSyNfXajHRE2rCfLCgqF
+         EN7XjPos3T3TCsvw4j5vxk2VpmEVboBtd/3Iy3AxWE3KKdhoCWK1gH/knagEpi9PEtGt
+         RWAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=SnO8aVtavYR6NyHfDDKowaxtha4eDB/hQjOAOFJayeQ=;
+        b=VeG3cZ6C5egNj05ZSaBTi7yW2ehGDwU64ulg7bSvC1+kuWH71IgwtVKabkeOhvgXrl
+         kHwAb+qvFaXIrKWgVjK2qjYz4rLUozTOe9zK2Hw0YwMgDxVktdkWbuhZBGjcanxo6rHF
+         86WGT803FfmeTLSanvOiSsameYjkcPIW3WAIsQuc22Xngd2WIaP7WtuJwK/oOYIa2/4b
+         RE8crFnqbf2ER5fsowpDwZhlEr1JcaCyblSdDtGyZmnsCTiHkBnC+KpdOHAy6l7tm4Kt
+         l7hudxeuygaRu2uLDkUqtLnQUWCy0lzwxQe3+XTFXUbXIwWJYkROgVxxzhb1NfPN3jHu
+         um+w==
+X-Gm-Message-State: ACrzQf3xYQfPJclZ2pUwL6c8EpTRODbFPL+OlDPqx6Na2gHRbF17lveO
+        lDYbISOov8zxKRjrfKvZanw=
+X-Google-Smtp-Source: AMsMyM6O6JvCHN+Du7f/0+Gbm01LHsBKNiTCjGRGOnuMCtM5ighdJp+lDhGPXShoGYJg88HpOl6nqQ==
+X-Received: by 2002:a65:5184:0:b0:439:14cb:fbe4 with SMTP id h4-20020a655184000000b0043914cbfbe4mr21845211pgq.166.1664244264085;
+        Mon, 26 Sep 2022 19:04:24 -0700 (PDT)
+Received: from debian.me (subs02-180-214-232-66.three.co.id. [180.214.232.66])
+        by smtp.gmail.com with ESMTPSA id y15-20020a17090322cf00b001641b2d61d4sm145692plg.30.2022.09.26.19.04.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Sep 2022 19:04:23 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+        id 389511037F7; Tue, 27 Sep 2022 09:04:18 +0700 (WIB)
+Date:   Tue, 27 Sep 2022 09:04:18 +0700
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jilin Yuan <yuanjilin@cdjrlc.com>, frowand.list@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: device: fix repeated words in comments
+Message-ID: <YzJaIolrTarQ4Qdn@debian.me>
+References: <20220918094915.19567-1-yuanjilin@cdjrlc.com>
+ <20220926185852.GA2581083-robh@kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: equinix.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR04MB8007.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b04e200-c0b4-4074-5907-08daa02accfe
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2022 01:51:31.4168
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 72adb271-2fc7-4afe-a5ee-9de6a59f6bfb
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: l4BOqZUNsbtJM2Q/A8Kxk/wvuuQKmJjwvI5BYyRrF93jWWT+8ShqtqhI2wc1Or8peLdfmCWfVaUahsCqRSnIsw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR04MB6550
-X-Proofpoint-ORIG-GUID: cVhZWHx9wK3T_6Sc3Z_5PxrLSeR8b3Ts
-X-Proofpoint-GUID: cVhZWHx9wK3T_6Sc3Z_5PxrLSeR8b3Ts
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-26_11,2022-09-22_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 adultscore=0 phishscore=0 mlxscore=0 suspectscore=0
- spamscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
- clxscore=1011 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2209130000 definitions=main-2209270009
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="z7VFNrjjSH/G3qIC"
+Content-Disposition: inline
+In-Reply-To: <20220926185852.GA2581083-robh@kernel.org>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 05:43:13AM PDT, Karthikeyan Pasupathi wrote:
->Added IPMB-13 channel for Debug Card communication.
->which improves the readability of the machine and makes
->it easier to debug the server and it will display some
->pieces of information about the server like "system info",
->"Critical sensors" and "critical sel".
->
->---
->--- v5- Updated commit message
->--- v4- Resolved syntax error
->--- v3- Updated the title and commit
->--- v2- Updated the title
->--- v1- Initial draft
->---
->
 
-Note that git treats a '---' line as a separator, so everything past the
-first one above will be discarded when this patch is applied (e.g. via
-'git am')...
+--z7VFNrjjSH/G3qIC
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->Signed-off-by: Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+On Mon, Sep 26, 2022 at 01:58:52PM -0500, Rob Herring wrote:
+> On Sun, Sep 18, 2022 at 05:49:15PM +0800, Jilin Yuan wrote:
+> > Delete the redundant word 'of'.
+>=20
+> Again? Sigh.
+>=20
+> Please read:
+>=20
+> https://lore.kernel.org/all/CAL_JsqL4GvgFYzGUfhW5pvm4wYGrFaj6gHOYZjnOMuk2=
+zCz67w@mail.gmail.com/
+>=20
+> >=20
+> > Signed-off-by: Jilin Yuan <yuanjilin@cdjrlc.com>
+>=20
+> Are you sure you are the author?
+>=20
 
-...including your S-O-B line here.
+Hi Rob,
 
-If you're aiming to do something like what Joel describes on his blog
-(https://shenki.github.io/git-patch-workflow/), you should make sure put
-your first '---' line and any non-commit-message notes *after* your
-S-O-B and any other tags.
+Some reviewers sent comments for similar patches from @cdjrlc.com
+people (including myself at [1]), with some of them requesting changes.
+However, there are never any responses to these reviews from @cdjrlc.com
+people, just like ZTE developers sending through cgel.zte ignored
+review comments [2] (try searching `f:"cdjrlc.com" AND s:"Re:"`, it returns
+nothing for now).
 
->---
-> arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts | 11 +++++++++++
-> 1 file changed, 11 insertions(+)
->
->diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/a=
-rm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
->index 8864e9c312a8..84236df522dc 100644
->--- a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
->+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
->@@ -215,6 +215,17 @@
-> 	};
-> };
->
->+&i2c13 {
->+	status =3D "okay";
->+	// Debug Card
->+	multi-master;
->+	ipmb13@10 {
->+		compatible =3D "ipmb-dev";
->+		reg =3D <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
->+		i2c-protocol;
->+	};
->+};
->+
-> &pwm_tacho {
-> 	status =3D "okay";
-> 	//FSC
->--=20
->2.17.1
->=
+Thanks.
+
+[1]: https://lore.kernel.org/lkml/YyclQlws9d7vheDk@debian.me/
+[2]: https://lore.kernel.org/lkml/878rn1dd8l.fsf@intel.com/
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--z7VFNrjjSH/G3qIC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCYzJaHQAKCRD2uYlJVVFO
+owdzAP4silDAtVrFUialTJDTN4QOtYT3Ezv6SHadYD4SDLgS6AD/QHIxT6wf1SQv
+k7QDBtRPT90lwKxVHKjKW6OWzs0rTQU=
+=3v9Z
+-----END PGP SIGNATURE-----
+
+--z7VFNrjjSH/G3qIC--
