@@ -2,186 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E27F5EBEFD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 11:49:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 865175EBF12
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 11:55:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230418AbiI0Jtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 05:49:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55944 "EHLO
+        id S229584AbiI0Jzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 05:55:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231583AbiI0Jtg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 05:49:36 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63FA1B5E6D
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 02:49:27 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id u16-20020a05600c211000b003b5152ebf09so6522651wml.5
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 02:49:27 -0700 (PDT)
+        with ESMTP id S231266AbiI0Jzv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 05:55:51 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B46A476ED
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 02:55:49 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id nb11so19530148ejc.5
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 02:55:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=nq3WBeYXhCQSWiPmtePyjnaCUywGX1VqNE4Hjgy4wjc=;
-        b=V1VJQbmw0izIU2rdeQJcqVR9AbM0sVv89CHIhahpjyv/i2me2zCtcOSEedttm9j6oi
-         yw5ZlpSIa4yNFOqdKS3PuHnydhDiLPoID6JNCjkN+rf0DNcf2b8OsnGCNIXaO0eZgoq5
-         EvbSlUY1ImqxreH0IC2/Q72qf2492665axweX4Ct5v+lpwu89vI8KtC8Vlg5uKIna00W
-         7Ci+yz+V25R2JNkTGiyfuLL64YdICh0lthZUb81d6IIBGt5+eubvJi6FsP6W+SopJ24q
-         1rx7ByHMathFUSgxMuV0Fvh0n0BLvwQBL1AflIa9PfhLBLpoL6PIiBxFSXDPHnADWT7v
-         CxIA==
+        d=skymem-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=XV9ssZrIcTJoriDQ00sgubDE7NtKif9nXDWu0n7DRrI=;
+        b=mfTNXjhFSt2KsEjj4t4EvJwLc94NLVsIn8woiJsAQaX00UE4vdpKpxUau7w4cnfXg7
+         lsTcBIZXxfa9cLOrl+wb+KyMyHwiWbnUTYlDoqrRe5i0XL1oRC7T+naQgMpQnUMfQELm
+         GDgSVwrYZ+ROMIDdTGCoPPeL98DgoR4+KXI2e+ZwKZqAzqXZeQa76MNUjHv7YOOJYKOu
+         hqubZoOs77HPEhqjc9AvXuUpw04DvjWsAob9V6s2xK4VcZJZu624sywIWawC70Rm8hPU
+         f14DNOkuHzCM0r/KA5kkvK8VDH27j2bWEp7UP+yKIGrt+NLc3VyN6ypVVtNgyeIhP2K6
+         HWNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=nq3WBeYXhCQSWiPmtePyjnaCUywGX1VqNE4Hjgy4wjc=;
-        b=upO3qpdNuZWPXnHRFC52d1dEaTETj+sOoBHB6Lp6nyszs+NEEQb1Ad8QmJGS2Vplla
-         7HHUUvnir9CoTTRP0Zl4uFiIbfH2GaLIfYadtwUEKatGhPa2dH8mif/cVyShU4PmXt9y
-         VB+f7S19VJuKvnnFKwPW0j09Mu9ujjD76xraxjWrZTlYSguwuFWfb4s0RIjxIGHhDju+
-         2DJNqG9O43KIQZ2KkqqyXS9Uw/9wjadgMMmWjO0F4uGIWEqnbkeP46D67pggHk4DB0Bt
-         T+TJ4CNfbLW68vVJF0KVnzz+wTPCrzjl1xp9otjIRXsaHWMtIapZOaLNbnB+Ks71xeOm
-         288g==
-X-Gm-Message-State: ACrzQf3RcX28E8RijY8iWFEjjCHcyEJdaHaBny+oY675h1l17atcW9s3
-        nPPBNhkP/OX7tksGyMSygQd8ls/NBtkxfelCM3O1bK/nfTOmfQ==
-X-Google-Smtp-Source: AMsMyM6M89HqlD5eusQam02W5+l7q/StJRn0ZBEpd8Lzpy2VnGizkYIrEvsUOghaHY6iPZwXzF5II8l8+QwOJ/BFmAM=
-X-Received: by 2002:a1c:f311:0:b0:3b5:18ca:fc5e with SMTP id
- q17-20020a1cf311000000b003b518cafc5emr1955721wmq.70.1664272165913; Tue, 27
- Sep 2022 02:49:25 -0700 (PDT)
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=XV9ssZrIcTJoriDQ00sgubDE7NtKif9nXDWu0n7DRrI=;
+        b=4ppwQ8NDs4ZaT5nrDTBRa1Y0osr6EmYu0zcFnQT5ZXpAPZgrA+/87u0ju2UaCXBW1t
+         IPqFZjDtt7sO/0y8Nio3aP27v7cLNIomkyZqBiMvnopXKFJbpFWPmb7m8cRud9/YiL0i
+         PLupWfdEykfep+AbuqZVCvgVQYmjXqvy4jEsCkYMJobu1u4/LgiPnndssChFtyNE8CT3
+         +Yirh+/vMoEbbSapHwl7q1f/cmGVmeqtTqHlGqXVXkto67wlR5uY8NZU/aUaIQGUzEHI
+         GZphE1NWcy5aPOAhlS5NTrgsJGYiNGTEv0ZHdjAaihbKf3BYz0uqB+iDkIwvgA0UgTqk
+         6FKQ==
+X-Gm-Message-State: ACrzQf1pg9RWUTHWnYa9orbPZFVCsntiqRYg5jKIBCtBFIr5ng0ai9/6
+        LhGto0eRnJTyBb74/3OynHG2S57TSWD5QjilgxBTEw==
+X-Google-Smtp-Source: AMsMyM5z+srhMT4r/bP/skybDZPUbd0EfdpYPferZo6iV7zpEnHH6l/jpAkapGrHty5uPha40CNK1ucIbnJTCgm+le4=
+X-Received: by 2002:a17:907:2cd8:b0:776:64a8:1adf with SMTP id
+ hg24-20020a1709072cd800b0077664a81adfmr22036659ejc.151.1664272547883; Tue, 27
+ Sep 2022 02:55:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220609150851.23084-1-max.oss.09@gmail.com> <CACRpkdZ0=8poNcFaCYSmMyg1GBfkHLAr3QvvzFKweLPr3UM2vg@mail.gmail.com>
- <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com>
- <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
- <20220726160337.GA41736@francesco-nb.int.toradex.com> <CAPDyKFqGFjywJ-Vmmn9=-NOzJX=24mH9A03H9djS=nJotKWK8A@mail.gmail.com>
- <20220728112146.GA97654@francesco-nb.int.toradex.com> <CAPDyKFqtCxrjALeCmhuqQ2VmmUHhi-DjXO30uHChTPFeDbp+JQ@mail.gmail.com>
- <20220909142247.GA238001@francesco-nb.int.toradex.com> <CAPDyKFrwpz=gi3iY5YsO6k4o33eLQRp-wXvBx3nQ0q=G9YrqHA@mail.gmail.com>
- <70ee4f8e-7529-307e-656c-2a65d0187af6@linaro.org> <CAPDyKFoyNWZvT+QPdX4sQuS3DL8mepfnLraHLusMi9K8MOfLgg@mail.gmail.com>
- <d19ffd93-bbb3-ac61-0ec3-58fd48443eb2@linaro.org>
-In-Reply-To: <d19ffd93-bbb3-ac61-0ec3-58fd48443eb2@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 27 Sep 2022 11:48:48 +0200
-Message-ID: <CAPDyKFrDFAif3DnvPoLrgJ2+fv+aB9GyOoG_O3q-1m=2Y5eT5w@mail.gmail.com>
-Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
- which controls
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <1664269036-16142-1-git-send-email-hongxing.zhu@nxp.com>
+ <1664269036-16142-14-git-send-email-hongxing.zhu@nxp.com> <CAKvd=_hQUXCu4kv1tB=FpvP_-iE_7d2B232wwroMa9UtcBqmPQ@mail.gmail.com>
+In-Reply-To: <CAKvd=_hQUXCu4kv1tB=FpvP_-iE_7d2B232wwroMa9UtcBqmPQ@mail.gmail.com>
+From:   Info Skymem <info@skymem.com>
+Date:   Tue, 27 Sep 2022 11:55:36 +0200
+Message-ID: <CAKvd=_g+qvufQpX=ak2i-FqSsC9xqrNK_cPJYRV8xHKXD6LK3w@mail.gmail.com>
+Subject: Re: [PATCH v4 13/14] PCI: imx6: Add i.MX8MM PCIe EP support
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     l.stach@pengutronix.de, bhelgaas@google.com, robh+dt@kernel.org,
+        lorenzo.pieralisi@arm.com, shawnguo@kernel.org, kishon@ti.com,
+        kw@linux.com, frank.li@nxp.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[...]
+Hi,
+thank you for your information.
 
-> >>>>
-> >>>> The main concern that was raised on this topic was that we have to
-> >>>> somehow link the power-domain to the specific peripherals (the power
-> >>>> domain consumer) in the device tree.
-> >>>
-> >>> Yes, that is needed. Although, I don't see how that is a concern?
-> >>>
-> >>> We already have the valid bindings to use for this, see more below.
-> >>>
-> >>>>
-> >>>> Adding the power-domain property there will trigger validation errors
-> >>>> unless we do explicitly add the power-domains to the schema for each
-> >>>> peripheral we need this. To me this does not really work, but maybe I'm
-> >>>> not understanding something.
-> >>>>
-> >>>> This is what Rob wrote on the topic [1]:
-> >>>>   > No. For 'power-domains' bindings have to define how many there are and
-> >>>>   > what each one is.
-> >>>>
-> >>>> Just as an example from patch [2]:
-> >>>>
-> >>>>   can1: can@0 {
-> >>>>     compatible = "microchip,mcp251xfd";
-> >>>>     power-domains = <&pd_sleep_moci>;
-> >>>>   };
-> >>>>
-> >>>> leads to:
-> >>>>
-> >>>>   imx8mm-verdin-nonwifi-dahlia.dtb: can@0: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-> >>>>           From schema: .../bindings/net/can/microchip,mcp251xfd.yaml
-> >>>
-> >>> I think it should be fine to just add the below line to the DT
-> >>> bindings, for each peripheral device to fix the above problem.
-> >>>
-> >>> power-domains: true
-> >>
-> >> Again, as Rob said, no, because it must be strictly defined. So for
-> >> example: "maxItems: 1" for simple cases. But what if device is then part
-> >> of two power domains?
-> >>
-> >>>
-> >>> That should be okay, right?
-> >>
-> >> Adding it to each peripheral scales poorly. Especially that literally
-> >> any device can be part of such power domain.
-> >
-> > Right.
-> >
-> >>
-> >> If we are going with power domain approach, then it should be applicable
-> >> basically to every device or to every device of some class (e.g. I2C,
-> >> SPI). This means it should be added to respective core schema in
-> >> dtschema repo, in a way it does not interfere with other power-domains
-> >> properties (existing ones).
-> >
-> > Isn't that already taken care of [1]?
+On our website you can find email addresses of companies and people.
+https://www.skymem.info
+
+In short, it=E2=80=99s like Google for emails.
+
+Best regards,
+Robert,
+Skymem team
+
+
+On Tue, Sep 27, 2022 at 11:54 AM Info Skymem <info@skymem.com> wrote:
 >
-> No, because it does not define the items (what are the power domains and
-> how many). This binding expects that any device has maxItems restricting it.
-
-Right, apologize for my ignorance.
-
+> Hi,
+> thank you for your information.
 >
-> >
-> > If there is more than one power domain per device, perhaps we may need
-> > to extend it with a more strict binding? But, that doesn't seem to be
-> > the case here - and if it turns out to be needed later on, we can
-> > always extend the bindings, no?
-> >
-> > Note also that we already have DT bindings specifying "power-domains:
-> > true" to deal with the above. Isn't that what we want?
+> On our website you can find email addresses of companies and people.
+> https://www.skymem.info
 >
-> You mentioned it before and both me and Rob already responded - no,
-> because it does not restrict the number of items.
-
-Okay, so maxItems need to be specified for each peripheral. It's not a
-big deal, right?
-
-Of course, it would be even easier if the core schema would use a
-default "maxItems: 1" for power domain consumers, which of course must
-be possible to be overridden for those consumers that need something
-else. But perhaps it's not that simple. :-)
-
-Kind regards
-Uffe
+> In short, it=E2=80=99s like Google for emails.
+>
+> Best regards,
+> Robert,
+> Skymem team
+>
+> On Tue, Sep 27, 2022 at 11:31 AM Richard Zhu <hongxing.zhu@nxp.com> wrote=
+:
+>>
+>> Add i.MX8MM PCIe EP support.
+>>
+>> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+>> ---
+>>  drivers/pci/controller/dwc/pci-imx6.c | 17 +++++++++++++++++
+>>  1 file changed, 17 insertions(+)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/control=
+ler/dwc/pci-imx6.c
+>> index 777ad946ec7f..907a36e18842 100644
+>> --- a/drivers/pci/controller/dwc/pci-imx6.c
+>> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+>> @@ -53,6 +53,7 @@ enum imx6_pcie_variants {
+>>         IMX8MM,
+>>         IMX8MP,
+>>         IMX8MQ_EP,
+>> +       IMX8MM_EP,
+>>  };
+>>
+>>  #define IMX6_PCIE_FLAG_IMX6_PHY                        BIT(0)
+>> @@ -156,6 +157,7 @@ static unsigned int imx6_pcie_grp_offset(const struc=
+t imx6_pcie *imx6_pcie)
+>>         WARN_ON(imx6_pcie->drvdata->variant !=3D IMX8MQ &&
+>>                 imx6_pcie->drvdata->variant !=3D IMX8MQ_EP &&
+>>                 imx6_pcie->drvdata->variant !=3D IMX8MM &&
+>> +               imx6_pcie->drvdata->variant !=3D IMX8MM_EP &&
+>>                 imx6_pcie->drvdata->variant !=3D IMX8MP);
+>>         return imx6_pcie->controller_id =3D=3D 1 ? IOMUXC_GPR16 : IOMUXC=
+_GPR14;
+>>  }
+>> @@ -319,6 +321,7 @@ static void imx6_pcie_init_phy(struct imx6_pcie *imx=
+6_pcie)
+>>  {
+>>         switch (imx6_pcie->drvdata->variant) {
+>>         case IMX8MM:
+>> +       case IMX8MM_EP:
+>>         case IMX8MP:
+>>                 /*
+>>                  * The PHY initialization had been done in the PHY
+>> @@ -577,6 +580,7 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie=
+ *imx6_pcie)
+>>         case IMX7D:
+>>                 break;
+>>         case IMX8MM:
+>> +       case IMX8MM_EP:
+>>         case IMX8MQ:
+>>         case IMX8MQ_EP:
+>>         case IMX8MP:
+>> @@ -623,6 +627,7 @@ static void imx6_pcie_disable_ref_clk(struct imx6_pc=
+ie *imx6_pcie)
+>>                                    IMX7D_GPR12_PCIE_PHY_REFCLK_SEL);
+>>                 break;
+>>         case IMX8MM:
+>> +       case IMX8MM_EP:
+>>         case IMX8MQ:
+>>         case IMX8MQ_EP:
+>>         case IMX8MP:
+>> @@ -694,6 +699,7 @@ static void imx6_pcie_assert_core_reset(struct imx6_=
+pcie *imx6_pcie)
+>>                 reset_control_assert(imx6_pcie->pciephy_reset);
+>>                 fallthrough;
+>>         case IMX8MM:
+>> +       case IMX8MM_EP:
+>>         case IMX8MP:
+>>                 reset_control_assert(imx6_pcie->apps_reset);
+>>                 break;
+>> @@ -771,6 +777,7 @@ static int imx6_pcie_deassert_core_reset(struct imx6=
+_pcie *imx6_pcie)
+>>                 break;
+>>         case IMX6Q:             /* Nothing to do */
+>>         case IMX8MM:
+>> +       case IMX8MM_EP:
+>>         case IMX8MP:
+>>                 break;
+>>         }
+>> @@ -822,6 +829,7 @@ static void imx6_pcie_ltssm_enable(struct device *de=
+v)
+>>         case IMX8MQ:
+>>         case IMX8MQ_EP:
+>>         case IMX8MM:
+>> +       case IMX8MM_EP:
+>>         case IMX8MP:
+>>                 reset_control_deassert(imx6_pcie->apps_reset);
+>>                 break;
+>> @@ -843,6 +851,7 @@ static void imx6_pcie_ltssm_disable(struct device *d=
+ev)
+>>         case IMX8MQ:
+>>         case IMX8MQ_EP:
+>>         case IMX8MM:
+>> +       case IMX8MM_EP:
+>>         case IMX8MP:
+>>                 reset_control_assert(imx6_pcie->apps_reset);
+>>                 break;
+>> @@ -1094,6 +1103,7 @@ static int imx6_add_pcie_ep(struct imx6_pcie *imx6=
+_pcie,
+>>
+>>         switch (imx6_pcie->drvdata->variant) {
+>>         case IMX8MQ_EP:
+>> +       case IMX8MM_EP:
+>>                 pcie_dbi2_offset =3D SZ_1M;
+>>                 break;
+>>         default:
+>> @@ -1306,6 +1316,7 @@ static int imx6_pcie_probe(struct platform_device =
+*pdev)
+>>                 }
+>>                 break;
+>>         case IMX8MM:
+>> +       case IMX8MM_EP:
+>>         case IMX8MP:
+>>                 imx6_pcie->pcie_aux =3D devm_clk_get(dev, "pcie_aux");
+>>                 if (IS_ERR(imx6_pcie->pcie_aux))
+>> @@ -1471,6 +1482,11 @@ static const struct imx6_pcie_drvdata drvdata[] =
+=3D {
+>>                 .mode =3D DW_PCIE_EP_TYPE,
+>>                 .gpr =3D "fsl,imx8mq-iomuxc-gpr",
+>>         },
+>> +       [IMX8MM_EP] =3D {
+>> +               .variant =3D IMX8MM_EP,
+>> +               .mode =3D DW_PCIE_EP_TYPE,
+>> +               .gpr =3D "fsl,imx8mm-iomuxc-gpr",
+>> +       },
+>>  };
+>>
+>>  static const struct of_device_id imx6_pcie_of_match[] =3D {
+>> @@ -1482,6 +1498,7 @@ static const struct of_device_id imx6_pcie_of_matc=
+h[] =3D {
+>>         { .compatible =3D "fsl,imx8mm-pcie", .data =3D &drvdata[IMX8MM],=
+ },
+>>         { .compatible =3D "fsl,imx8mp-pcie", .data =3D &drvdata[IMX8MP],=
+ },
+>>         { .compatible =3D "fsl,imx8mq-pcie-ep", .data =3D &drvdata[IMX8M=
+Q_EP], },
+>> +       { .compatible =3D "fsl,imx8mm-pcie-ep", .data =3D &drvdata[IMX8M=
+M_EP], },
+>>         {},
+>>  };
+>>
+>> --
+>> 2.25.1
+>>
+>>
+>> _______________________________________________
+>> linux-arm-kernel mailing list
+>> linux-arm-kernel@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
