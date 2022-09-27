@@ -2,96 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3B065EC6F2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 16:54:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A01185EC732
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 17:05:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232207AbiI0OyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 10:54:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52600 "EHLO
+        id S231926AbiI0PFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 11:05:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232693AbiI0Oxf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 10:53:35 -0400
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19356B2879;
-        Tue, 27 Sep 2022 07:51:43 -0700 (PDT)
-Received: by mail-qk1-f178.google.com with SMTP id d17so6129572qko.13;
-        Tue, 27 Sep 2022 07:51:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=mcmbFJNhtLAll3ZUzfvL0JQzBR7USTKl9MyorTFZA2I=;
-        b=hhFfg7bOv3JPslW1Lywu+O8oTyDgVOQCY5qVPXRsS9VpvlPjp/iTwXpKvD6Ikcmaow
-         qcLxhuBfgeWQkkl2foGPoc+KCENuRkl6x2F4Q5f+FxQbN4Fu83jlcMSQL2jl8p/1yZEy
-         YZpNSo18W3geSPaKa5dcrWLuAN3xF03yb0f5HiD/Yli4hvC4X/mykSr5eR9IR3KveeQR
-         CIUmCcBFP4hAaURdtX5c4dTDQAvxWKYrZ+jEIODDBrM7LJDbJpKMZBv9qxNS3WxWnss6
-         XCSUGpq5kLF1geN05dHwgyGOS9E3jtZ9An7Xjb/oAz7/oJSmqRXIf5Sb4p1Dawwye9oC
-         coyQ==
-X-Gm-Message-State: ACrzQf22z9TCeUcKaZmRbHgX16/fDQX/B4YW+2gJoU0EqPT5IsN9gQ0s
-        wkdVqEHBMMj2cQnyhzIxrvwiWZOKGIdPKg==
-X-Google-Smtp-Source: AMsMyM6/pxbBc1bUGqW3NPrX+YQPSp8U9WLoUPyw1jXSb0XeV2JDLwmCz7a4ZiHoljcQ1NIphTp+Pg==
-X-Received: by 2002:a05:620a:158d:b0:6cd:efb1:8eb6 with SMTP id d13-20020a05620a158d00b006cdefb18eb6mr17736313qkk.185.1664290302541;
-        Tue, 27 Sep 2022 07:51:42 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id d22-20020ac81196000000b0035d453b8c57sm963061qtj.11.2022.09.27.07.51.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Sep 2022 07:51:42 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id c9so12527266ybf.5;
-        Tue, 27 Sep 2022 07:51:41 -0700 (PDT)
-X-Received: by 2002:a5b:506:0:b0:6af:ffac:4459 with SMTP id
- o6-20020a5b0506000000b006afffac4459mr23972953ybp.365.1664290301712; Tue, 27
- Sep 2022 07:51:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220923205251.1387-1-alexander.helms.jy@renesas.com>
- <20220923205251.1387-2-alexander.helms.jy@renesas.com> <20220926230438.GA3128861-robh@kernel.org>
- <cbe89899-7f56-c43a-f8c9-887825fbe4a6@amd.com>
-In-Reply-To: <cbe89899-7f56-c43a-f8c9-887825fbe4a6@amd.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 27 Sep 2022 16:51:29 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUuzrdf4rmD3n_-S9ujrfmY5Y6VOsNapiLRR5MG9bKAjw@mail.gmail.com>
-Message-ID: <CAMuHMdUuzrdf4rmD3n_-S9ujrfmY5Y6VOsNapiLRR5MG9bKAjw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add bindings for Renesas ProXO
-To:     Michal Simek <michal.simek@amd.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Alex Helms <alexander.helms.jy@renesas.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        mturquette@baylibre.com, geert+renesas@glider.be
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S232039AbiI0PFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 11:05:09 -0400
+Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3206737FB5
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 08:05:06 -0700 (PDT)
+Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
+        (envelope-from <bert@biot.com>)
+        id 1odC8u-00CKeP-Ht
+        for devicetree@vger.kernel.org; Tue, 27 Sep 2022 17:05:04 +0200
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Received: from [2a01:4f8:10a:f402::1:2]
+        by yawp.biot.com with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <bert@biot.com>)
+        id 1odC8c-00CKd0-AK; Tue, 27 Sep 2022 17:04:46 +0200
+Message-ID: <64b7e467-485a-91db-82fb-3204f8ccf877@biot.com>
+Date:   Tue, 27 Sep 2022 17:04:45 +0200
+MIME-Version: 1.0
+Subject: Re: [PATCH v2 2/3] spi: Add support for the Airoha EN7523 SoC SPI
+ controller
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, John Crispin <john@phrozen.org>,
+        Benjamin Larsson <benjamin.larsson@iopsys.eu>
+References: <20220927113229.1214224-1-bert@biot.com>
+ <20220927113229.1214224-3-bert@biot.com> <YzLrMHVU3mTJVVh6@sirena.org.uk>
+From:   Bert Vermeulen <bert@biot.com>
+In-Reply-To: <YzLrMHVU3mTJVVh6@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michal,
+On 9/27/22 14:23, Mark Brown wrote:
 
-On Tue, Sep 27, 2022 at 4:10 PM Michal Simek <michal.simek@amd.com> wrote:
-> On 9/27/22 01:04, Rob Herring wrote:
-> > On Fri, Sep 23, 2022 at 01:52:50PM -0700, Alex Helms wrote:
-> >> Add dt bindings for the Renesas ProXO oscillator.
-> >>
-> >> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
+Hi Mark,
 
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
+Thanks for reviewing.
 
-> Driver is also using clock-output-names which is not listed here.
+> On Tue, Sep 27, 2022 at 01:32:28PM +0200, Bert Vermeulen wrote:
+> 
+>>  
+>> +config SPI_AIROHA_EN7523
+>> +	bool "Airoha EN7523 SPI controller support"
+> 
+> Why not tristate?
+> 
+>> +	depends on ARCH_AIROHA
+> 
+> I don't see a reason we couldn't have an || COMPILE_TEST here to improve
+> coverage?
+> 
+>> +	default ARCH_AIROHA
 
-... which is deprecated, and thus should not be used by the driver
-at all.
+In both cases, because SPi boot flash is the only way to boot this SoC 
+that I know of. However as you say this may not be the case on different 
+SoCs, and indeed I believe this SPI core is in lots of stuff already.
 
-Gr{oetje,eeting}s,
+So I'll fix this, and also address your other comments.
 
-                        Geert
+> It's unusual to default a SPI controller on, they tend not to be ultra
+> critical like a clock driver or similar can be?
+> 
+>> +static void __iomem *iobase;
+> 
+> This should be driver data rather than a global, your current SoC might
+> only have one controller but some other model might build two and it's
+> fairly trivial to do.
+> 
+>> +static void opfifo_write(u32 cmd, u32 len)
+>> +{
+>> +	u32 tmp = ((cmd & 0x1f) << 9) | (len & 0x1ff);
+>> +
+>> +	writel(tmp, REG(ENSPI_MANUAL_OPFIFO_WDATA));
+>> +
+>> +	/* Wait for room in OPFIFO */
+>> +	while (readl(REG(ENSPI_MANUAL_OPFIFO_FULL)))
+>> +		cpu_relax();
+>> +
+> 
+> Some sort of timeout would be good with these loops, if things go wrong
+> we'll just lock up which isn't good.
+> 
+>> +       ret = clk_prepare_enable(clk);
+>> +       if (ret)
+>> +               return ret;
+> 
+> Nothing ever reverses this unless clk_set_rate() fails.
+> 
+>> +	ret = clk_set_rate(clk, 40000000);
+>> +	if (ret) {
+>> +		clk_disable_unprepare(clk);
+>> +		return ret;
+>> +	}
+> 
+> Could this be pushed into DT via the clock bindings?  The hard coded
+> number might need to vary by SoC.
+> 
+>> +static int xfer_read(struct spi_transfer *xfer)
+>> +{
+>> +	int opcode;
+>> +	uint8_t *buf = xfer->rx_buf;
+>> +
+>> +	switch (xfer->rx_nbits) {
+>> +	case SPI_NBITS_SINGLE:
+>> +		opcode = OP_INS;
+>> +		break;
+>> +	case SPI_NBITS_DUAL:
+>> +		opcode = OP_IND;
+>> +		break;
+>> +	}
+> 
+> This should have a default case that returns an error.
+> 
+>> +static int transfer_one_message(struct spi_controller *ctrl, struct spi_message *msg)
+>> +{
+>> +	struct spi_transfer *xfer;
+>> +	int next_xfer_is_rx = 0;
+>> +
+>> +	manual_begin_cmd();
+>> +	set_cs(0);
+> 
+> The driver should not be setting chip select itself, it should just
+> provide the set_cs() operation to the core and let the core worry about
+> when to call it.
+> 
+>> +	ctrl->transfer_one_message = transfer_one_message;
+>> +	err = devm_spi_register_controller(&pdev->dev, ctrl);
+>> +	if (err) {
+>> +		dev_err(&pdev->dev, "Could not register SPI controller\n");
+>> +		return -ENODEV;
+>> +	}
+> 
+> Don't discard the error code that registeration returned, include it in
+> the log message and pass it back to the caller.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Bert Vermeulen
+bert@biot.com
