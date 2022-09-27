@@ -2,179 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04CC45EBE93
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 11:28:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DD0E5EBEBE
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 11:36:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231366AbiI0J25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 05:28:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46472 "EHLO
+        id S230473AbiI0JgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 05:36:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230135AbiI0J2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 05:28:37 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52275AF0CC
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 02:28:35 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id v28so1204580wrd.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 02:28:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date;
-        bh=3X71jgPXg+1alqFPpU+/3mDimmf52ETp0ZJlAFk/E/o=;
-        b=z6KgShAv0W1DLcY21kMpPukJgMWCcit/PbW4j6VHqp/qWPb+h5E343lQva1WuYrac2
-         phVMC3GXswSvrpWz9+wv9VpgN2954EShNpTAtzbANmXn6KVfbIo18gR+AqgyUbc2RIZW
-         bfn06/ibQ/J7VKYWCuPLT6+nrSdrifxWymf0QQnzK9igyRdFvcIiMvTHQGNfwp6RZOlW
-         J321TvZPI0BKX0yxuNjZnMzkTuwT1/bpoN9F9jt1toro8Y7sJ181X94TyleVounyy/E7
-         UEaqg85sNuRosNWfDdDp2dQmix+3JDgU9tdf0AMhWk9B9Vv54Lk1cC7gltyjjdIisUNi
-         AwAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=3X71jgPXg+1alqFPpU+/3mDimmf52ETp0ZJlAFk/E/o=;
-        b=PV0g6tp0AN5iReDfkXEg7YZNQMXhzhtTAl9otMDW0Ew1zJl7OsrQQsxMN0QK2Dirl0
-         t+iUt/A0C79v0RD6pVbaa66ynDIEFIgefQosWUbT9n81BQTONJh6eFxAtQhSD2V+bxMy
-         i4/0sNpCGOOJLKlCV2i5vljWke+i8+nVyc8iYnxNUrst7oLt3zEyB9ZCuAY/jHF06reg
-         wGCiO31kZrOaYIDpKgYJl9RvaoDFMN/WoWM3CmOqaIv2k6mqArwsaNaTSAp+CnNfRbH0
-         fzGbU7/Ckj4vw/M25h8Se1FcF/UNGP7j6/S4I9624juvpXPNensnWW9p8PaR3zw2YdTC
-         5zjA==
-X-Gm-Message-State: ACrzQf2/aiSc7KmLsoXmW/5aAMYeO7iUbsBXJpawBPC4uOHbTf01UeDp
-        cvUH0McqTSBqTQZ2BUHw6khkDQ==
-X-Google-Smtp-Source: AMsMyM4W0H079weu2O9TWS4Qz8MrGzq0EJNtemPEv5s8UWQrTYaDAo6b7Bn36YZ4qCZAO8MIjyA4kw==
-X-Received: by 2002:a5d:5944:0:b0:22a:c2d1:e3fe with SMTP id e4-20020a5d5944000000b0022ac2d1e3femr15788612wri.261.1664270913882;
-        Tue, 27 Sep 2022 02:28:33 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:b771:c77b:f889:9833? ([2a01:e0a:982:cbb0:b771:c77b:f889:9833])
-        by smtp.gmail.com with ESMTPSA id e18-20020adffd12000000b0022878c0cc5esm1246484wrr.69.2022.09.27.02.28.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Sep 2022 02:28:33 -0700 (PDT)
-Message-ID: <6fe2be1b-faaf-86cd-8fcc-a919d30d65c6@linaro.org>
-Date:   Tue, 27 Sep 2022 11:28:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v8 1/4] perf/amlogic: Add support for Amlogic meson G12
- SoC DDR PMU driver
-Content-Language: en-US
-To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230238AbiI0JgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 05:36:17 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C92D96749;
+        Tue, 27 Sep 2022 02:36:14 -0700 (PDT)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id C7D6410000B;
+        Tue, 27 Sep 2022 09:36:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1664271373;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=lztctaXpuBh23+RJMFSBb8KRhYG7OptTx91tvx4/3kk=;
+        b=iXC2/jH+tpxbpJ3YGexQykGVbYGfOQ1qtFA8gzE8O6LntvgnmBum8FmgxImkSNDCME4ME/
+        LhB4PXeGlQ6T0Dv67wBbuU1JyTAEVIZK9+6dwUeaXizW2pMJYRA46xh3a1BknMPl7e1/CE
+        tss8HJBzyax0/dJCQk0Djk3bYXyX5UDHu4oxn04t1gdtNgFrU8GmzJy46K7YhjKXe7PGoR
+        N8hZFQwixvw5fDmwoZL83zvkvj0am66kV92BOVUv68j7ek3iFN+8bm8dBvCAK0pPvrL1kH
+        AbDoDnEyAJBkAz/IG69ULOhioern06HvZjAr4nzFoNMe6v945CUHjrrUmhsVcA==
+Date:   Tue, 27 Sep 2022 11:36:02 +0200
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>
-References: <20220916020320.2455580-1-jiucheng.xu@amlogic.com>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20220916020320.2455580-1-jiucheng.xu@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 1/8] dt-bindings: sun6i-a31-mipi-dphy: Add the interrupts
+ property
+Message-ID: <YzLEApjzpGaDxKni@aptenodytes>
+References: <20220812075603.59375-1-samuel@sholland.org>
+ <20220812075603.59375-2-samuel@sholland.org>
+ <c85ec3a3-fa6e-aa71-a847-22062b9683e9@linaro.org>
+ <0d2bf232-8aa6-2dc1-121d-f0439bfd7b54@sholland.org>
+ <YzFwst0GpdRBx/9l@aptenodytes>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="PiLFU6KiWb8KPWLq"
+Content-Disposition: inline
+In-Reply-To: <YzFwst0GpdRBx/9l@aptenodytes>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Will, Mark,
 
-On 16/09/2022 04:03, Jiucheng Xu wrote:
-> This patch adds support Amlogic meson G12 series SoC
-> DDR bandwidth PMU driver framework and interfaces.
-> 
-> The PMU not only can monitor the total DDR bandwidth,
-> but also the bandwidth which is from individual IP module.
-> 
-> Example usage:
-> 
->   $ perf stat -a -e meson_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
-> 
-> - or -
-> 
->   $ perf stat -a -e \
->     meson_ddr_bw/total_rw_bytes/,\
->     meson_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 \
->     sleep 10
-> 
-> g12 SoC support 4 channels to monitor DDR bandwidth
-> simultaneously. Each channel can monitor up to 4 IP modules
-> simultaneously.
-> 
-> For Instance, If you want to get the sum of DDR bandwidth
-> from CPU, GPU, USB3.0 and VDEC. You can use the following
-> command parameters to display.
-> 
->   $ perf stat -a -e \
->     meson_ddr_bw/chan_2_rw_bytes,arm=1,gpu=1,usb3_0=1,nna=1/ -I 1000 \
->     sleep 10
-> 
-> Other events are supported, and advertised via perf list.
-> 
-> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
-> ---
-> Changes v7 -> v8:
->    - Add linux-amlogic@lists.infradead.org maillist for MAINTAINERS
->    - Change driver name from "amlogic,g12-ddr-pmu" to "meson-g12-ddr-pmu"
-> 
-> Changes v6 -> v7:
->    - Drop the Reported-by tag
-> 
-> Changes v5 -> v6:
->    - Add const for driver data
-> 
-> Changes v4 -> v5:
->    - Remove error message
->    - Use smp_processor_id() instead of raw_smp_processor_id()
->    - Remove EXPORT_SYMBOL()
->    - Use variant specific driver data for compatible
->    - Use module_platform_driver for modules_init/exit
->    - Change location of driver structures from .h  to .c
-> 
-> Changes v3 -> v4:
->    - No change
-> 
-> Changes v2 -> v3:
->    - Fix sh GCC 12.1.0 compiling warning
->    - Rename prefix aml to meson for files and code
-> 
-> Changes v1 -> v2:
->    - Remove inline to let GCC make the decisions
->    - Remove spinlock
->    - Remove ddr_cnt_accumulate()
->    - Remove the message which only indicate a bug
->    - Remove all dev_warn() message
->    - Use hweight64() helper instead of whole loop
->    - Remove setting of hwc
->    - Use for_each_set_bit() helper for bit loop
->    - Use sysfs_emit() in sysfs show
->    - Remove checking for bugs
->    - Replace irq_set_affinity_hint() to irq_set_affinity()
->    - Remove #ifdef CONFIG_OF
->    - Use devm_platform_ioremap_resource() instead of
->      platform_get_resource()&ioremap()
->    - Use platform_get_irq() instead of platform_get_resource()&ioremap()
->    - Replace IRQF_SHARED to IRQF_NOBALANCING
->    - Remove meaningless log like "init ok"
->    - Use compatible instead of creating new property to distinguish
->      different platform.
->    - Use the is_visible callback to avoid exposing unsupported fmt_attr
->    - Use module_platform_driver_probe() instead of module_init/exit
+--PiLFU6KiWb8KPWLq
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-<snip>
+Hi,
 
-Gentle ping, it seems all previous review comments were addressed, could you do another review round on this v8 ?
+On Mon 26 Sep 22, 11:28, Paul Kocialkowski wrote:
+> Hi Samuel,
+>=20
+> On Fri 12 Aug 22, 17:19, Samuel Holland wrote:
+> > On 8/12/22 5:45 AM, Krzysztof Kozlowski wrote:
+> > > On 12/08/2022 10:55, Samuel Holland wrote:
+> > >> The sun6i DPHY can generate several interrupts, mostly for reporting
+> > >> error conditions, but also for detecting BTA and UPLS sequences.
+> > >> Document this capability in order to accurately describe the hardwar=
+e.
+> > >>
+> > >> The DPHY has no interrupt number provided in the vendor documentation
+> > >> because its interrupt line is shared with the DSI controller.
+> > >>
+> > >> Fixes: c25b84c00826 ("dt-bindings: display: Convert Allwinner DSI to=
+ a schema")
+> > >=20
+> > > I don't understand what is being fixed in that commit. That commit did
+> > > not have interrupts in D-PHY, so what was broken by it?
+> > >=20
+> > > The Fixes tag annotates the commit which introduced a bug.
+> >=20
+> > The binding had a bug because it did not accurately describe the hardwa=
+re.
+>=20
+> [...]
+>=20
+> Coming back to this series, I don't really get the point of introducing t=
+he
+> interrupt in the bindings and the device-tree sources if the interrupt is=
+ not
+> required for normal operation. I would just drop it.
+>=20
+> I recall I was in the same situation for the MIPI CSI-2 controllers, whic=
+h also
+> have a dedicated interrupt but only useful for debugging/error reporting.
+> I was asked not to introduce it back then, so I suppose the same should a=
+pply.
 
-Thanks,
-Neil
+Coming back to this, my memories were wrong and the interrupt was in fact a=
+dded
+to the binding and the dt description.
+
+Nevermind my previous comment, I guess it does make sense to have it in the=
+ dt
+hardware description even if the driver does not use it.
+
+Sorry for the noise,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--PiLFU6KiWb8KPWLq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmMyxAIACgkQ3cLmz3+f
+v9HwAgf/duJh5AF/wrOPWoxEDWSWSf/54+O5EtPf1cpHo1tW2RMzwVgVNSiFXlUW
+Wef8LOxHWLSYdC+Aq7EmPa8t/3PW0t3j2leA4FPIUY6LArocr2HUFzoh90ivZxJE
+r8VR1P1ZbubureBZQJwFhDflDqR67qnUwEM9be++4LcBUM0RWZzYKhD1YmR6GxbV
+OVn+VWkeDSdb3fK4Prmh3ogRivMorGs7GvyFM3QJFv+arKCDBSG9/NVmVIbzgr1k
+Xa+M/cWNMfxvSuyTltrI0kAeQPpqjEDnaL6unrG/le9MZsducKOSOyGOlxPDYHqm
+lu1MFlBQGEhhcv/hIQFmJhI2e8JkTA==
+=3Zbu
+-----END PGP SIGNATURE-----
+
+--PiLFU6KiWb8KPWLq--
