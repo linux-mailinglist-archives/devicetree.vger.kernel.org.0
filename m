@@ -2,45 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6298E5ECBF9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 20:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23BB15ECC2D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 20:34:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231393AbiI0SP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 14:15:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51860 "EHLO
+        id S231689AbiI0SeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 14:34:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233152AbiI0SPs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 14:15:48 -0400
-Received: from mail-m121145.qiye.163.com (mail-m121145.qiye.163.com [115.236.121.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 117BF5300B;
-        Tue, 27 Sep 2022 11:15:44 -0700 (PDT)
-Received: from amadeus-VLT-WX0.lan (unknown [218.85.118.195])
-        by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 37D068000EC;
-        Wed, 28 Sep 2022 02:15:38 +0800 (CST)
-From:   Chukun Pan <amadeus@jmu.edu.cn>
-To:     linux.amoon@gmail.com
-Cc:     heiko@sntech.de, robh+dt@kernel.org, michael.riesch@wolfvision.net,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH 3/3] arm64: dts: rockchip: Add PCIe v3 nodes to rock-3a
-Date:   Wed, 28 Sep 2022 02:15:31 +0800
-Message-Id: <20220927181531.5546-2-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220927181531.5546-1-amadeus@jmu.edu.cn>
-References: <CANAwSgTyt2D-aEMMowO6d+0ddTQb46o0pWMahnr7ny2rjY7iaQ@mail.gmail.com>
- <20220927181531.5546-1-amadeus@jmu.edu.cn>
+        with ESMTP id S231642AbiI0Sd7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 14:33:59 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C0841B8CA4;
+        Tue, 27 Sep 2022 11:33:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 31193B81D36;
+        Tue, 27 Sep 2022 18:33:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9909C433D7;
+        Tue, 27 Sep 2022 18:33:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664303636;
+        bh=p88RSSMmSULebAyngf3hc6AaDM4Hg67OZpKwETod/JE=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=lzAHVK2Al7ph1LUauN9QbFsX5mqgFWIUCZYAFZWoQAlBU343bPfyeRDVXOWvsY1U2
+         nSK6Gnfwz85W8wxOJMoWFbI9mF3C13ZLF6LgDzs2iv+t5doQPwDW4FJLHSszZaX2Or
+         LBqPyekmnxoA6QqG2nwcDoz5c5nI0A27wlLX6jAkawLmIHwEUvKhb0MCYyUfzy8RNj
+         35k2XxUMmVc3aCsY/Av4VnWXBUb6pQo0Yoi4RHhKVqgihgcdv+nga96FWnGCPxHbpg
+         ckHjXHdagq1GdH7xInqsaXrMu/RHJIl3VmYxgnNKebif4SsAWwyE3H5xsg2Dvhw/fP
+         pxmZB5Xbg80fw==
+From:   Conor Dooley <conor@kernel.org>
+To:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Shravan Chippa <shravan.chippa@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Hugh Breslin <hugh.breslin@microchip.com>,
+        devicetree@vger.kernel.org, Cyril Jean <Cyril.Jean@microchip.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Vattipalli Praveen <praveen.kumar@microchip.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Wolfgang Grandegger <wg@aries-embedded.de>,
+        Lewis Hanly <lewis.hanly@microchip.com>
+Subject: Re: [PATCH v6 00/11] New PolarFire SoC devkit devicetrees & 22.09 reference design updates
+Date:   Tue, 27 Sep 2022 19:33:32 +0100
+Message-Id: <166430333467.135094.14015061795483453798.b4-ty@microchip.com>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20220927111922.3602838-1-conor.dooley@microchip.com>
+References: <20220927111922.3602838-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-        tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGkwYVh5PSkhOHktMSB0ZTlUTARMWGhIXJBQOD1
-        lXWRgSC1lBWUlKQ1VDTlVKSkNVSkJOWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVSktLVUtZBg++
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Py46DDo5Pj0sDA4ePRMiPAhL
-        TBwKCxJVSlVKTU1PSEtJTkhDQ0lKVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlK
-        Q1VDTlVKSkNVSkJOWVdZCAFZQU9JTks3Bg++
-X-HM-Tid: 0a8380295ec5b03akuuu37d068000ec
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,99 +64,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Nodes to Radxa ROCK3 Model A board to support PCIe v3.
-Also changed the vin-supply of vcc3v3_pcie regulator to
-ensure that pcie is probe properly.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- .../boot/dts/rockchip/rk3568-rock-3a.dts      | 52 ++++++++++++++++++-
- 1 file changed, 51 insertions(+), 1 deletion(-)
+On Tue, 27 Sep 2022 12:19:12 +0100, Conor Dooley wrote:
+> Resending with an extra patch making some more memory map changes that
+> are to be introduced in the v2022.10 reference design. Since the
+> v2022.10 and v2022.09 reference designs both indepedently break
+> backwards compat, v2022.09 is not compatible with <= v2022.05 and
+> v2022.10 is not compatible with v2022.09, I am doing the jump directly
+> to v2022.10 rather than putting an intermediate step at v2022.09.
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-index 1b195355da2a..097cee13885d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-@@ -67,6 +67,38 @@ vcc12v_dcin: vcc12v-dcin-regulator {
- 		regulator-boot-on;
- 	};
- 
-+	pcie30_avdd0v9: pcie30-avdd0v9-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie30_avdd0v9";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <900000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	pcie30_avdd1v8: pcie30-avdd1v8-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie30_avdd1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	/* pi6c pcie clock generator */
-+	vcc3v3_pi6c_03: vcc3v3-pi6c-03-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_pi6c03";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	/* actually fed by vcc5v0_sys, dependent on pi6c clock generator */
- 	vcc3v3_pcie: vcc3v3-pcie-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -76,7 +108,7 @@ vcc3v3_pcie: vcc3v3-pcie-regulator {
- 		regulator-name = "vcc3v3_pcie";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
--		vin-supply = <&vcc5v0_sys>;
-+		vin-supply = <&vcc3v3_pi6c_03>;
- 	};
- 
- 	vcc3v3_sys: vcc3v3-sys-regulator {
-@@ -547,6 +579,20 @@ &pcie2x1 {
- 	status = "okay";
- };
- 
-+&pcie30phy {
-+	phy-supply = <&vcc3v3_pi6c_03>;
-+	status = "okay";
-+};
-+
-+&pcie3x2 {
-+	/* mPCIe slot */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&minipcie_reset_h>;
-+	reset-gpios = <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_pcie>;
-+	status = "okay";
-+};
-+
- &pinctrl {
- 	cam {
- 		vcc_cam_en: vcc_cam_en {
-@@ -583,6 +629,10 @@ pcie_enable_h: pcie-enable-h {
- 			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 
-+		minipcie_reset_h: minipcie-reset-h {
-+			rockchip,pins = <2 RK_PD6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
- 		ngffpcie_reset_h: ngffpcie-reset-h {
- 			rockchip,pins = <3 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
--- 
-2.25.1
+Applied to dt-for-next (in place of v5). As I pointed out earlier, I
+will not make a PR for this until the reference design is available
+on the PolarFire SoC GitHub.
 
+[01/11] dt-bindings: riscv: microchip: document icicle reference design
+        https://git.kernel.org/conor/c/a0d49a8f77f2
+[02/11] dt-bindings: riscv: microchip: document the aries m100pfsevp
+        https://git.kernel.org/conor/c/0ebdc51787db
+[03/11] dt-bindings: riscv: microchip: document the sev kit
+        https://git.kernel.org/conor/c/db3d481698ef
+[04/11] riscv: dts: microchip: add pci dma ranges for the icicle kit
+        https://git.kernel.org/conor/c/f890e67f292d
+[05/11] riscv: dts: microchip: move the mpfs' pci node to -fabric.dtsi
+        https://git.kernel.org/conor/c/99d451a7db16
+[06/11] riscv: dts: microchip: icicle: update pci address properties
+        https://git.kernel.org/conor/c/6fc655ed4986
+[07/11] riscv: dts: microchip: icicle: re-jig fabric peripheral addresses
+        https://git.kernel.org/conor/c/ab291621a8b8
+[08/11] riscv: dts: microchip: reduce the fic3 clock rate
+        https://git.kernel.org/conor/c/fa52935abef4
+[09/11] riscv: dts: microchip: add sevkit device tree
+        https://git.kernel.org/conor/c/978a17d1a688
+[10/11] riscv: dts: microchip: add a devicetree for aries' m100pfsevp
+        https://git.kernel.org/conor/c/d49166646e44
+[11/11] riscv: dts: microchip: update memory configuration for v2022.10
+        https://git.kernel.org/conor/c/6c1193301791
+
+Thanks,
+Conor.
