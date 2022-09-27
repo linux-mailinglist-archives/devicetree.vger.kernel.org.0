@@ -2,100 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE7A75EBB92
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 09:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B07F25EBBA2
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 09:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230343AbiI0HfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 03:35:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48948 "EHLO
+        id S230267AbiI0HgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 03:36:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbiI0HfH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 03:35:07 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73F75140E4;
-        Tue, 27 Sep 2022 00:35:04 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id d15so5540628qka.9;
-        Tue, 27 Sep 2022 00:35:04 -0700 (PDT)
+        with ESMTP id S230237AbiI0HgI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 03:36:08 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F19056BB6;
+        Tue, 27 Sep 2022 00:36:02 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id t14so13596855wrx.8;
+        Tue, 27 Sep 2022 00:36:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=Iva8djnsoEGavqO2e35Aa/Y4zh21Iw1HIh/3kt9CYVw=;
-        b=TqWrNqA08yJ1QmcRmdAjVd7FE4fa1mA4kDfqKxNNf5QdtIUMQFScby3w3BRkDs9230
-         +hELU8sRtnGMLIbvgPQEmcDCwxv8I/4spFbACL9Mn9V8QGF1hLxJdQfJspwB0NAfXT11
-         +8HnU04htn7BvZpH3iiLxjdVgMASUQsxa0D2pt+vxHaHW1mFY9Y4MV7vG/fGOZbGoqCB
-         ySe02NNKpcnAzw599IMTf/5FM8lJVxc2+x9ygsfpKJ78t8M7b64I8virWuMUM+dvkNLV
-         kUUEv8FtdzsnfUAwubhVboOilZ7luwjT/4X01isILYB69/BhtQFIwizqIBvKw9Eqxg8y
-         xEmA==
+        d=jms.id.au; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=sKmAJ34A8WrJ1xqDlpDO/oGZEw5aFDM7BTPRJDupDv4=;
+        b=drIvcpwx2WFkpTuxWzA8EBs6k5UJc7GPvMiTQghl4kmiz453uJATgLRQe7qC0kdJZi
+         3Ls0dcWehPE9QD3e7x84wd/GNpd7MbCm5DOIfY7umj0A9kL3mzX/Bvca0UPUgxK2txrZ
+         5emCH1jng6L4mOEp7zyGltQ9VnwhfQ1zu8jII=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=Iva8djnsoEGavqO2e35Aa/Y4zh21Iw1HIh/3kt9CYVw=;
-        b=yrD0RYcx+9WniDbt1u6D5hMthLxmLhO7ZMKTzuKbktt4jDS0/77fBt0dLK3gIuO3tS
-         iw3KXmMAj+ZU4l1LPb9AWJeU4Lf7UzzYSgx8eLoUwQ5dEFAAiEiYUMLDMZIysHEXsnkh
-         7CIhNEJ8bmyllbq1YwkJ8JOMTTzFbaT0lFWyQOFNZlP0jQfZ7tf0jo2Q8StcNuqbvY0F
-         qRZPyBgQzqpky3nblA46RnGpl8Iajpy4hg4ToZHZVTN4CnHv6Zryb1Jmie6ENR9j6Und
-         lVMT4jklhtzyUbt2ekqa6xdwu/V60cKRQ57NXuiuxz2Gn9z3pp6vzaabYrwIXlDUvLkj
-         kLZg==
-X-Gm-Message-State: ACrzQf2gRT2fge4bgudoTYbwxnedQX0wO/DBRdiveIWkpBvgfQkXFmF3
-        YTcLYB18W5jojDJiHUtO9g8d5GwCGoysJm4Ovfo=
-X-Google-Smtp-Source: AMsMyM4wpdGeMMvg71oY+a/6SCIsiBEsaXv1cet+JHT87uV9K6xp3/eJdWBy5o7ltRI14xFiPCr7keF82xgoPKzTqLw=
-X-Received: by 2002:ae9:ed44:0:b0:6ce:19bb:7780 with SMTP id
- c65-20020ae9ed44000000b006ce19bb7780mr17046769qkg.25.1664264103481; Tue, 27
- Sep 2022 00:35:03 -0700 (PDT)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=sKmAJ34A8WrJ1xqDlpDO/oGZEw5aFDM7BTPRJDupDv4=;
+        b=yneWpBQFoJWrj1id2SzRvuYXE/WwnJiRV8R+7ArD4hYP09vGBlCZCQtUTrucU9wut3
+         zstYIev1tlBymErfHR0i9XwSpLigoCbTUXz8mG1m3x2tt7CfaUbg1GHsQVX0zLX6OGXM
+         9+BbWMtLAYnM5wdm6Lu1Dj1fUgZL8JGpRkcc7dAp7snWRsrR3Ah3ja3Tt51UIWTn69Bt
+         6PWVwkh5e1phoaBXq8HtUOuTrasEwBb4Qbnzpw4xwrkExyp/u78anpUBNtAcCHZwFPTW
+         7ot0JhvQwMuRR7VrcyaPtIdRkuIAGIJQ6FyaPOf6VZK1KZYnLgqJvJiKkGpezNLsZZb1
+         e1rg==
+X-Gm-Message-State: ACrzQf2+FeMXFonXjw0eQS5ntvcCXFmBxh+EeD6ebCNwYyapSg3tytAl
+        KRuciTF7yDvgenOr7Thn57U89dpXHpdBCvumhQ8=
+X-Google-Smtp-Source: AMsMyM4/JM+SnNVu6LYuec5gzT2SfX+XzA9grPlTz91or2/hfHTpXCihTm0uJTpB47xzG9i1TEHpi9UxpQkUmk5BPjQ=
+X-Received: by 2002:a5d:4688:0:b0:22a:f718:7f36 with SMTP id
+ u8-20020a5d4688000000b0022af7187f36mr15515102wrq.315.1664264160648; Tue, 27
+ Sep 2022 00:36:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220818220245.338396-1-robimarko@gmail.com> <20220818220245.338396-2-robimarko@gmail.com>
- <1efe2f7d-05e2-6207-f4df-5b597d00c862@linaro.org>
-In-Reply-To: <1efe2f7d-05e2-6207-f4df-5b597d00c862@linaro.org>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Tue, 27 Sep 2022 09:34:52 +0200
-Message-ID: <CAOX2RU4vDC5emP=SA6cNmxyj=zBF+uWXSm9tNVytOhV16k--Dw@mail.gmail.com>
-Subject: Re: [PATCH v7 2/5] drivers: thermal: tsens: Add support for combined interrupt
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     amitk@kernel.org, thara.gopinath@gmail.com, agross@kernel.org,
-        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
-        rafael@kernel.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+References: <20220809200701.218059-1-eajames@linux.ibm.com>
+ <20220809200701.218059-4-eajames@linux.ibm.com> <20220925180632.GA1766526@roeck-us.net>
+In-Reply-To: <20220925180632.GA1766526@roeck-us.net>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 27 Sep 2022 07:35:49 +0000
+Message-ID: <CACPK8XdkH4BZH9UCd085n=bX0EU5=2BemRfOU-zGsK2W4_SNHQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] hwmon: (occ) Check for device property for setting
+ OCC active during probe
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Eddie James <eajames@linux.ibm.com>, jdelvare@suse.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-fsi@lists.ozlabs.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Aug 2022 at 00:49, Daniel Lezcano <daniel.lezcano@linaro.org> wr=
-ote:
+On Sun, 25 Sept 2022 at 18:06, Guenter Roeck <linux@roeck-us.net> wrote:
 >
-> On 19/08/2022 00:02, Robert Marko wrote:
-> > Despite using tsens v2.3 IP, IPQ8074 and IPQ6018 only have one IRQ for
-> > signaling both up/low and critical trips.
+> On Tue, Aug 09, 2022 at 03:07:01PM -0500, Eddie James wrote:
+> > A previous commit changed the existing behavior of the driver to skip
+> > attempting to communicate with the OCC during probe. Return to the
+> > previous default behavior of automatically communicating with the OCC
+> > and make it optional with a new device-tree property.
 > >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > Signed-off-by: Eddie James <eajames@linux.ibm.com>
 >
-> I'll pick the patches 1-4 as soon as Bjorn gives its blessing for this on=
-e
+> Assuming this patch is applied as part of the series outside
+> the hwmon subsystem.
+>
+> Acked-by: Guenter Roeck <linux@roeck-us.net>
 
-Sounds good to me,
+Thanks Guenter. I have applied it to the FSI tree.
 
-Bjorn can you please take a look?
 
-Regards,
-Robert
 >
+> Guenter
 >
-> --
-> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
-M SoCs
->
-> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-> <http://twitter.com/#!/linaroorg> Twitter |
-> <http://www.linaro.org/linaro-blog/> Blog
+> > ---
+> >  drivers/hwmon/occ/common.c | 11 ++++++++++-
+> >  drivers/hwmon/occ/p9_sbe.c |  9 +++++++++
+> >  2 files changed, 19 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/hwmon/occ/common.c b/drivers/hwmon/occ/common.c
+> > index 45407b12db4b..dd690f700d49 100644
+> > --- a/drivers/hwmon/occ/common.c
+> > +++ b/drivers/hwmon/occ/common.c
+> > @@ -10,6 +10,7 @@
+> >  #include <linux/math64.h>
+> >  #include <linux/module.h>
+> >  #include <linux/mutex.h>
+> > +#include <linux/property.h>
+> >  #include <linux/sysfs.h>
+> >  #include <asm/unaligned.h>
+> >
+> > @@ -1216,8 +1217,16 @@ int occ_setup(struct occ *occ)
+> >       occ->groups[0] = &occ->group;
+> >
+> >       rc = occ_setup_sysfs(occ);
+> > -     if (rc)
+> > +     if (rc) {
+> >               dev_err(occ->bus_dev, "failed to setup sysfs: %d\n", rc);
+> > +             return rc;
+> > +     }
+> > +
+> > +     if (!device_property_read_bool(occ->bus_dev, "ibm,no-poll-on-init")) {
+> > +             rc = occ_active(occ, true);
+> > +             if (rc)
+> > +                     occ_shutdown_sysfs(occ);
+> > +     }
+> >
+> >       return rc;
+> >  }
+> > diff --git a/drivers/hwmon/occ/p9_sbe.c b/drivers/hwmon/occ/p9_sbe.c
+> > index 4a1fe4ee8e2c..3adcf8d0b4a6 100644
+> > --- a/drivers/hwmon/occ/p9_sbe.c
+> > +++ b/drivers/hwmon/occ/p9_sbe.c
+> > @@ -7,6 +7,7 @@
+> >  #include <linux/fsi-occ.h>
+> >  #include <linux/mm.h>
+> >  #include <linux/module.h>
+> > +#include <linux/mod_devicetable.h>
+> >  #include <linux/mutex.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/string.h>
+> > @@ -179,9 +180,17 @@ static int p9_sbe_occ_remove(struct platform_device *pdev)
+> >       return 0;
+> >  }
+> >
+> > +static const struct of_device_id p9_sbe_occ_of_match[] = {
+> > +     { .compatible = "ibm,p9-occ-hwmon" },
+> > +     { .compatible = "ibm,p10-occ-hwmon" },
+> > +     {}
+> > +};
+> > +MODULE_DEVICE_TABLE(of, p9_sbe_occ_of_match);
+> > +
+> >  static struct platform_driver p9_sbe_occ_driver = {
+> >       .driver = {
+> >               .name = "occ-hwmon",
+> > +             .of_match_table = p9_sbe_occ_of_match,
+> >       },
+> >       .probe  = p9_sbe_occ_probe,
+> >       .remove = p9_sbe_occ_remove,
