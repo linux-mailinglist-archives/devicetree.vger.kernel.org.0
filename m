@@ -2,190 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CF345EB8F7
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 05:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 792C15EB90E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 06:00:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbiI0DpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 23:45:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34230 "EHLO
+        id S229603AbiI0EAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 00:00:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbiI0DpQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 23:45:16 -0400
-Received: from out29-73.mail.aliyun.com (out29-73.mail.aliyun.com [115.124.29.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC329B089C;
-        Mon, 26 Sep 2022 20:45:14 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.164415|-1;BR=01201311R571S67rulernew998_84748_2000303;CH=blue;DM=|CONTINUE|false|;DS=CONTINUE|ham_alarm|0.0123924-0.00272444-0.984883;FP=14916267934538618010|1|1|2|0|-1|-1|-1;HT=ay29a033018047202;MF=info@arducam.com;NM=1;PH=DS;RN=3;RT=3;SR=0;TI=SMTPD_---.PPOc5pN_1664250281;
-Received: from localhost(mailfrom:info@arducam.com fp:SMTPD_---.PPOc5pN_1664250281)
-          by smtp.aliyun-inc.com;
-          Tue, 27 Sep 2022 11:44:42 +0800
-Date:   Tue, 27 Sep 2022 11:44:42 +0800
-From:   Lee Jackson <info@arducam.com>
-To:     linux-media@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: [RESEND PATCH 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor
- binding
-Message-ID: <20220927114442.000026f7@arducam.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        with ESMTP id S229768AbiI0EAl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 00:00:41 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81304491F4;
+        Mon, 26 Sep 2022 21:00:36 -0700 (PDT)
+X-UUID: d7636c1e3c094e3badf6b572f4aecd08-20220927
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=3ahXguKncQoP96BTrWTBp8+5vM5nwnwdJveXeSEIm9c=;
+        b=VPNODF5t4Ad3dBeM+YXSyMLxzcetbcDKcVFmO0VOS12C3TYRZkv2E3pLPWAmzA9szzy4D34N+ui5XM76adrYztg0qYPswsOjXd8rUYAx7ADFZa5OpZdCsVwqhLdwt37XH0jTmgz7UVqHRgulw4ezYb0yoLedmQ40O/szqTuk43w=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:762235ad-4de9-4145-9256-d3458c5415da,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:45
+X-CID-INFO: VERSION:1.1.11,REQID:762235ad-4de9-4145-9256-d3458c5415da,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:45
+X-CID-META: VersionHash:39a5ff1,CLOUDID:813654e4-87f9-4bb0-97b6-34957dc0fbbe,B
+        ulkID:220926150559TV5JQC0T,BulkQuantity:69,Recheck:0,SF:28|17|19|48|823|82
+        4,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BEC:nil,COL
+        :0
+X-UUID: d7636c1e3c094e3badf6b572f4aecd08-20220927
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 113336129; Tue, 27 Sep 2022 12:00:30 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 27 Sep 2022 12:00:29 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 27 Sep 2022 12:00:29 +0800
+Message-ID: <664f3b7d-d629-5af1-cae4-cb5b638a5da1@mediatek.com>
+Date:   Tue, 27 Sep 2022 12:00:28 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195-demo: fix the memory size of
+ node secmon
+Content-Language: en-US
+To:     Miles Chen <miles.chen@mediatek.com>
+CC:     <bear.wang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <fparent@baylibre.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>,
+        <macpaul@gmail.com>, <matthias.bgg@gmail.com>,
+        <pablo.sun@mediatek.com>, <robh+dt@kernel.org>,
+        <stable@vger.kernel.org>
+References: <20220922091648.2821-1-macpaul.lin@mediatek.com>
+ <20220926070544.13257-1-miles.chen@mediatek.com>
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <20220926070544.13257-1-miles.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add YAML device tree binding for IMX519 CMOS image sensor, and
-the relevant MAINTAINERS entries.
 
-Signed-off-by: Lee Jackson <info@arducam.com>
----
- .../devicetree/bindings/media/i2c/imx519.yaml | 113 ++++++++++++++++++
- MAINTAINERS                                   |   8 ++
- 2 files changed, 121 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/imx519.yaml
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/imx519.yaml b/Documentation/devicetree/bindings/media/i2c/imx519.yaml
-new file mode 100644
-index 000000000000..717230a21764
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/imx519.yaml
-@@ -0,0 +1,113 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/imx519.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sony 1/2.5-Inch 16Mpixel CMOS Digital Image Sensor
-+
-+maintainers:
-+  - Lee Jackson <info@arducam.com>
-+
-+description: |-
-+  The Sony IMX519 is a 1/2.5-inch CMOS active pixel digital image sensor
-+  with an active array size of 4656H x 3496V. It is programmable through
-+  I2C interface. The I2C address is fixed to 0x1A as per sensor data sheet.
-+  Image data is sent through MIPI CSI-2, which is configured as either 2 or
-+  4 data lanes.
-+
-+properties:
-+  compatible:
-+    const: sony,imx519
-+
-+  reg:
-+    description: I2C device address
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  VDIG-supply:
-+    description:
-+      Digital I/O voltage supply, 1.05 volts
-+
-+  VANA-supply:
-+    description:
-+      Analog voltage supply, 2.8 volts
-+
-+  VDDL-supply:
-+    description:
-+      Digital core voltage supply, 1.8 volts
-+
-+  reset-gpios:
-+    description: |-
-+      Reference to the GPIO connected to the xclr pin, if any.
-+      Must be released (set high) after all supplies and INCK are applied.
-+
-+  # See ../video-interfaces.txt for more details
-+  port:
-+    type: object
-+    properties:
-+      endpoint:
-+        type: object
-+        properties:
-+          data-lanes:
-+            description: |-
-+              The sensor supports either two-lane, or four-lane operation.
-+              For two-lane operation the property must be set to <1 2>.
-+            items:
-+              - const: 1
-+              - const: 2
-+
-+          clock-noncontinuous:
-+            type: boolean
-+            description: |-
-+              MIPI CSI-2 clock is non-continuous if this property is present,
-+              otherwise it's continuous.
-+
-+          link-frequencies:
-+            allOf:
-+              - $ref: /schemas/types.yaml#/definitions/uint64-array
-+            description:
-+              Allowed data bus frequencies.
-+
-+        required:
-+          - link-frequencies
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - VANA-supply
-+  - VDIG-supply
-+  - VDDL-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        imx519: sensor@1a {
-+            compatible = "sony,imx519";
-+            reg = <0x1a>;
-+            clocks = <&imx519_clk>;
-+            VANA-supply = <&imx519_vana>;   /* 2.8v */
-+            VDIG-supply = <&imx519_vdig>;   /* 1.05v */
-+            VDDL-supply = <&imx519_vddl>;   /* 1.8v */
-+
-+            port {
-+                imx519_0: endpoint {
-+                    remote-endpoint = <&csi1_ep>;
-+                    data-lanes = <1 2>;
-+                    clock-noncontinuous;
-+                    link-frequencies = /bits/ 64 <493500000>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a58f1fc6dd47..a2de51d71677 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19007,6 +19007,14 @@ T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
- F:	drivers/media/i2c/imx412.c
- 
-+SONY IMX519 SENSOR DRIVER
-+M:	Arducam Kernel Maintenance <info@arducam.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/imx519.yaml
-+F:	drivers/media/i2c/imx519.c
-+
- SONY MEMORYSTICK SUBSYSTEM
- M:	Maxim Levitsky <maximlevitsky@gmail.com>
- M:	Alex Dubov <oakad@yahoo.com>
--- 
-2.25.1
+On 9/26/22 15:05, Miles Chen wrote:
+> Hi Macpaul,
+> 
+>> The size of device tree node secmon (bl31_secmon_reserved) was
+>> incorrect. It should be increased to 2MiB (0x200000).
+> 
+> 192K should work when the patch(6147314aeedc) was accepted.
+> Does the trusted-firmware-a get larger now, so we need to
+> increase the size to 2MiB?
+> 
+> thanks,
+> Miles
 
+When mt8195-demo.dts sent to the upstream, at that time the size of
+BL31 was small. Because supported functions and modules in BL31 are 
+basic sets when the board was under early development stage.
+
+Now BL31 includes more firmwares of coprocessors and maturer functions
+so the size has grown bigger in real applications. According to the 
+value reported by customers, we think reserved 2MiB for BL31 might be 
+enough for maybe the following 2 or 3 years.
+
+>>
+>> The origin setting will cause some abnormal behavior due to
+>> trusted-firmware-a and related firmware didn't load correctly.
+>> The incorrect behavior may vary because of different software stacks.
+>> For example, it will cause build error in some Yocto project because
+>> it will check if there was enough memory to load trusted-firmware-a
+>> to the reserved memory.
+>>
+>> Cc: stable@vger.kernel.org      # v5.19
+>> Fixes: 6147314aeedc ("arm64: dts: mediatek: Add device-tree for MT8195 Demo board")
+>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+
+Thanks
+Macpaul Lin
