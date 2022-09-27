@@ -2,46 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 440675EC323
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 14:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B5B75EC336
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 14:47:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231161AbiI0Mnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 08:43:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49836 "EHLO
+        id S230447AbiI0Mrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 08:47:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231531AbiI0Mnv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 08:43:51 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81C9515EF93
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 05:43:49 -0700 (PDT)
-Received: from [192.168.1.101] (95.49.29.188.neoplus.adsl.tpnet.pl [95.49.29.188])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 0ED2A3F286;
-        Tue, 27 Sep 2022 14:43:48 +0200 (CEST)
-Message-ID: <fc5f7fce-2faf-23ef-ba55-a7be7d67edf5@somainline.org>
-Date:   Tue, 27 Sep 2022 14:43:47 +0200
+        with ESMTP id S231664AbiI0Mrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 08:47:40 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53E8214AD4E;
+        Tue, 27 Sep 2022 05:47:39 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id c24so8992947plo.3;
+        Tue, 27 Sep 2022 05:47:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=pBPln+b11pq6NascSrYAWIVzDopDTO1UFjPzgrUQKiU=;
+        b=dJYA1qVFTrls30OQhZaf3veaeALUiSfODWissTCXJezDmECLyxXfMoMtPTKL82hmDl
+         CrY6ytwy/jDetYrcOjo8oh2R4w87KPpX0S8ieGQrExm9deA8j2D84WHnBurDxagSQwTs
+         DoTYCFwcu7S/oSxPTBEGnBsmhapvcE0mFgFAyN9rjChRNfHXN/l6TuFOTiDMzABvepcv
+         hnWCabnHdS8vWVePDkd9KiopAEP8K4muZ57yMrWh5wI7MQHaC1tlRjZEiWv1hC4h+gVr
+         8WkVxsSWF/MhLffJvVt87uRNs0p91upP+ijU/v6xnNf6JSFPJbT/fBgIFHwZn+i3+osB
+         785w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=pBPln+b11pq6NascSrYAWIVzDopDTO1UFjPzgrUQKiU=;
+        b=A/KLWGoeuQnHi0FrLXyPBXYdbUYgVxPYOdwdU1M4a2mY1q/33twH5XnbwXxvapTrKf
+         k7H36Th8EYH8NV/d29+UrG02MU9PJZfPeunsMfxqe9d7hfViUGeA0PbVHaFyg3f34K9Y
+         jXACJVGY3evPUyG5ikhpGhf4Q8w4eViQRytV0tMYKIclBkgIdgFDKmQWgnLpnIFq8g1F
+         U9xj2UY3e+7lchJ+7QKpxKfFRSm8XnYw/vP+jSzTT3egcw5tFdcS8UjGWJQVrfuq60e2
+         sWkm9JGPvMpX9efEDN2FQ+qKTV4HuwKaRUf4SDGbMS8NBGOe4VBWM+if8ixHu9lqDp8R
+         I7zg==
+X-Gm-Message-State: ACrzQf2LKFQDR1QQ4ydDNqn7PrS1m48KVEaFGe9b7QxDrNvjgnxV8Knt
+        SkFiHHPQQcOi+ybF4lFAJcM=
+X-Google-Smtp-Source: AMsMyM45TDWdowkKlqaKWi3nqCyFhYbG6rzaPO2UM9Ls9eGYUdjA7maMKvPcHkNJGLNxBEqgd3oiSg==
+X-Received: by 2002:a17:902:e212:b0:178:5c:8248 with SMTP id u18-20020a170902e21200b00178005c8248mr27898484plb.102.1664282858901;
+        Tue, 27 Sep 2022 05:47:38 -0700 (PDT)
+Received: from [192.168.43.80] (subs28-116-206-12-58.three.co.id. [116.206.12.58])
+        by smtp.gmail.com with ESMTPSA id h16-20020a17090aea9000b00200aff02e90sm1358102pjz.18.2022.09.27.05.47.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Sep 2022 05:47:38 -0700 (PDT)
+Message-ID: <8821ae25-eb20-b673-6d57-fb2cc03d9726@gmail.com>
+Date:   Tue, 27 Sep 2022 19:47:34 +0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 2/2] ARM: dts: qcom: pm8941: fix iadc node
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH] of: device: fix repeated words in comments
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jilin Yuan <yuanjilin@cdjrlc.com>, frowand.list@gmail.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220925161821.78030-1-luca@z3ntu.xyz>
- <20220925161821.78030-2-luca@z3ntu.xyz>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220925161821.78030-2-luca@z3ntu.xyz>
+References: <20220918094915.19567-1-yuanjilin@cdjrlc.com>
+ <20220926185852.GA2581083-robh@kernel.org> <YzJaIolrTarQ4Qdn@debian.me>
+ <CAL_JsqKb595eUCL6k6yjGm=wn9AbcyvcKiD71jEw0M_y=+UVsA@mail.gmail.com>
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+In-Reply-To: <CAL_JsqKb595eUCL6k6yjGm=wn9AbcyvcKiD71jEw0M_y=+UVsA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,34 +76,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 25.09.2022 18:18, Luca Weiss wrote:
-> The iadc node name is supposed to be just 'adc' and the compatible is
-> only supposed to be qcom,spmi-iadc according to the bindings.
+On 9/27/22 19:29, Rob Herring wrote:
+>> Hi Rob,
+>>
+>> Some reviewers sent comments for similar patches from @cdjrlc.com
+>> people (including myself at [1]), with some of them requesting changes.
+>> However, there are never any responses to these reviews from @cdjrlc.com
+>> people, just like ZTE developers sending through cgel.zte ignored
+>> review comments [2] (try searching `f:"cdjrlc.com" AND s:"Re:"`, it returns
+>> nothing for now).
 > 
-> Adjust the node to match that.
+> I can't decide whether to fix it correctly myself or leave it to see
+> how many times I can get the same patch. :)
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Konrad
->  arch/arm/boot/dts/qcom-pm8941.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi b/arch/arm/boot/dts/qcom-pm8941.dtsi
-> index 3c15eecf2f21..33517cccee01 100644
-> --- a/arch/arm/boot/dts/qcom-pm8941.dtsi
-> +++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
-> @@ -131,8 +131,8 @@ adc-chan@48 {
->  			};
->  		};
->  
-> -		pm8941_iadc: iadc@3600 {
-> -			compatible = "qcom,pm8941-iadc", "qcom,spmi-iadc";
-> +		pm8941_iadc: adc@3600 {
-> +			compatible = "qcom,spmi-iadc";
->  			reg = <0x3600>;
->  			interrupts = <0x0 0x36 0x0 IRQ_TYPE_EDGE_RISING>;
->  			qcom,external-resistor-micro-ohms = <10000>;
+Hi Rob,
+
+I'm not talking about whether this patch should be picked up or not, but
+rather I'm pointing out the ignoring review behavior of @cdjrlc.com people.
+
+Thanks.
+
+-- 
+An old man doll... just what I always wanted! - Clara
