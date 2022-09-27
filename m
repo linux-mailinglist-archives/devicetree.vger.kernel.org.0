@@ -2,73 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B3305ECC6E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 20:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 116225ECC71
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 20:54:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230307AbiI0SxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 14:53:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38672 "EHLO
+        id S229508AbiI0SyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 14:54:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229898AbiI0SxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 14:53:03 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80FF01D1A5B;
-        Tue, 27 Sep 2022 11:53:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=PCjpbUZ+QNg2igyzFeDQgvZAR1MUdCMp61q0QjLtfQg=; b=nzX7un22W+2I2cYWxzR2Q8hKUh
-        EuM3Yfvz39SLw7oosYorc+3gbY//PIu2H0BE7e/2RvE02AA0MsFYi89oVvNpSQ0sFiIT60hRr+whc
-        1rtT+ChPDB1WG8wIM6pk0qcu7OfXss3OlB3WAHo+smhzoeMVljEndhl9q93LbV7W9evY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1odFhG-000R5P-SC; Tue, 27 Sep 2022 20:52:46 +0200
-Date:   Tue, 27 Sep 2022 20:52:46 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Jerry Ray <jerry.ray@microchip.com>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next][PATCH v2] dt-bindings: dsa: lan9303: Add lan9303 yaml
-Message-ID: <YzNGfk+tFApcszS7@lunn.ch>
-References: <20220927175145.32265-1-jerry.ray@microchip.com>
+        with ESMTP id S229631AbiI0SyQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 14:54:16 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C29CF1D1E0A
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 11:54:13 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.bb.vodafone.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id E56E380548;
+        Tue, 27 Sep 2022 20:54:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1664304852;
+        bh=r72X1gQ8iyScTz13BxDWYPZsve0RS4joMPFJhECXWJM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=cr+DCfdjNyWDnWemz2WGC6N7GywwAeV3piVQ97gphRdR8T7VDxoFjeoyOb59lzFu7
+         HI9JmPcWXQ2qBUYaEsFiZJa4uc3UF/mpfozxC6Ns/6Li9S+7T0M12F9F+Ddhj0XW6h
+         UyBlqS4mqXeyF/0xiO1rXbz3SCVUhjWbyc2xg0asqdDjn0o7wOzFRtQ6jWLUTtuHUq
+         p7Z6ZlCiBzC7Yics+dvyJmcWBFpNLY4NQzHWo8ynfeRb9dOgKr6g/uIMUZjgojpmEa
+         PyD1JpkynU/MZaeD6LmzbjllEppDkvuMYCl2pIJ1/VYIWbVZyQyVOxJKrpwgFr9ErK
+         Mj4QQlE80Y1ow==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Subject: [PATCH v2] ASoC: dt-bindings: Document audio OF graph dai-tdm-slot-num dai-tdm-slot-width props
+Date:   Tue, 27 Sep 2022 20:53:59 +0200
+Message-Id: <20220927185359.294322-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220927175145.32265-1-jerry.ray@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +                compatible = "smsc,lan9303-mdio";
-> +                dsa,member = <0 0>;
-> +                reg = <0>;
-> +                ethernet-ports {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                        port@0 {
-> +                            reg = <0>;
-> +                            phy-mode = "rmii";
-> +                            ethernet = <&ethernet>;
-> +                            label = "cpu";
+Document dai-tdm-slot-num and dai-tdm-slot-width props as those are
+parsed by simple graph card and may therefore appear in audio OF graph
+node.
 
-The cpu label is never used, and i think Vladimir has been removing
-them from bindings and DT blobs. So your example probably should not
-have it.
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: alsa-devel@alsa-project.org
+To: linux-arm-kernel@lists.infradead.org
+---
+V2: Drop the definition refs and just fill in type and description
+---
+ .../devicetree/bindings/sound/audio-graph-port.yaml         | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-     Andrew
+diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+index bc46a95ed8400..64654ceef2089 100644
+--- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
++++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+@@ -74,6 +74,12 @@ patternProperties:
+       convert-sample-format:
+         $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-sample-format"
+ 
++      dai-tdm-slot-num:
++        description: Number of slots in use.
++        $ref: /schemas/types.yaml#/definitions/uint32
++      dai-tdm-slot-width:
++        description: Width in bits for each slot.
++        $ref: /schemas/types.yaml#/definitions/uint32
+       dai-tdm-slot-width-map:
+         description: Mapping of sample widths to slot widths. For hardware
+           that cannot support a fixed slot width or a slot width always
+-- 
+2.35.1
+
