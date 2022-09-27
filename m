@@ -2,126 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F62F5EC1C1
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 13:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CA135EC1F2
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 13:57:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231305AbiI0Lp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 07:45:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56150 "EHLO
+        id S232060AbiI0L5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 07:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230411AbiI0Lp0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 07:45:26 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A28C82B625;
-        Tue, 27 Sep 2022 04:45:22 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id u69so9189537pgd.2;
-        Tue, 27 Sep 2022 04:45:22 -0700 (PDT)
+        with ESMTP id S231852AbiI0L5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 07:57:39 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 024D61559C7
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 04:57:38 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id d11so8854205pll.8
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 04:57:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:content-disposition:mime-version:message-id:subject:to
-         :from:date:from:to:cc:subject:date;
-        bh=uDOSqBZttnZv7P8HqZ8HwCRjONKPJ/QjDGFAByRBk1U=;
-        b=AhsmJYB7vUwD9hZbhrCt5aKSpdDXmbhi/cFdz4w53f7B9pDA+aWfVC0YNBKnkzgQgN
-         Y9g2/CUvucAlI1Oi7sxk9PGgJASvbBrcE77xLAp7aizn/yE7gFgsKP8uzwJVmirYdD1m
-         cSom14nCDEq4dyUu8yqTvHGQ5+5kDfx12wt3E8tY7gbq6JSGGpNricFxp4H5EroQVp1n
-         oD3vnt20CQqTQPaqqV90tEtFPKIgAwvLwBn+/cy1I8ZOJLAWkS/EkGhaQkJkrJoI1mzH
-         gAS8O/istinclXcRWhQXomPfbshfyPfJp2QoOef66xnYDRpp/mMj7ibOkJFi2ln9TgGF
-         sFxw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=y5lmTrzqdWHymKvsEYqPOE/O0/LRx2Cwl9fmLMzEmOQ=;
+        b=BThqsMAiTHAnOAKVC/i+CHSTU6KtShcmnXaP4LpOMeXOwGdpcrWDd38R5Rg19ZTRUa
+         nUiYKiWCANS7+odPqhmCZocOADyN9O2uDen3os/Rg9DgiOlp+7YOdOh4Q+glqiAxfd56
+         P4+TU1fqGASnTAp9myIlJljxBXbWN0JdX/8U6ACnRvAX0sk+FQFXnnQJRoylbIv2lZMM
+         E1T8KyxvFDT/hBQeI4Fw/JjZxC0LzmqyRzdUQvltdLoUMRF5+zX/p+ElNcJ1YXWDZFa+
+         YuUGPZ83QOpk7mAerRhL8P8lQJNUuLFHSK3jRHBRdOFXiTJmiZoBlR1Tpqaw98pUky/4
+         wFfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:content-disposition:mime-version:message-id:subject:to
-         :from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=uDOSqBZttnZv7P8HqZ8HwCRjONKPJ/QjDGFAByRBk1U=;
-        b=vgGlT4HBcDjZP7MfsekuD/lZEIglNbGgu6heMKxXZKnsiDhERkiuEM7+JUnY3I2ItM
-         iLl5eXZoXkjDkWgXiIgdlUYSnGxHO25Z1rGI3noJ+IpKC8iiQ2389ElegaCQEwD7lMk7
-         ow0TZ7YqpKdvym7945NMEwNWzhWsasNhUw29qNyeRz3sqpEJfTJd/iCQOWqQKbkyMJ/V
-         1Ry2sC/52AdCXsTceVG/XsHFpLRvjRtX+uhlJfB9h+SAWBL7RSedMymomWA3CjoWCoyi
-         7D8GXQ9dK8vuN6tPkqaCnuOTV07YvWpIxEQfChVqeQfNKtHH6Ng9+zuQQiqxz9sb7YTS
-         YIvQ==
-X-Gm-Message-State: ACrzQf0Fso60CIuSg/31ZUOoxlV+V59jbLGKkQE+Khaox+NNgzzV2eZd
-        jtrwkCBRodZCcT1jJCqqM30=
-X-Google-Smtp-Source: AMsMyM4biyHOCvyZbMp0yHoN0xIAZYO1CLD1sBXnTujiyM7jdoD6yUh7tJ/NNE1wHq1sO87xZ017Hw==
-X-Received: by 2002:a62:17d1:0:b0:54d:87d5:249e with SMTP id 200-20020a6217d1000000b0054d87d5249emr28803450pfx.14.1664279122155;
-        Tue, 27 Sep 2022 04:45:22 -0700 (PDT)
-Received: from hcl-ThinkPad-T495 ([2409:4072:2e86:dcf8:cdbd:fcea:ad98:effa])
-        by smtp.gmail.com with ESMTPSA id p6-20020a622906000000b00535d3caa66fsm1476441pfp.197.2022.09.27.04.45.18
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 27 Sep 2022 04:45:21 -0700 (PDT)
-Date:   Tue, 27 Sep 2022 17:15:15 +0530
-From:   Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Subject: [PATCH v6] ARM: dts: aspeed: Yosemite V2: Enable OCP debug card
-Message-ID: <20220927114515.GA22344@hcl-ThinkPad-T495>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=y5lmTrzqdWHymKvsEYqPOE/O0/LRx2Cwl9fmLMzEmOQ=;
+        b=tIc8cQ2y+O9qkO6hC7ctdfWAZB1eHyAdk22Zxfm5GzvtqAYtFdoAabJBiSgNOONsqp
+         kNIg9JAW6xMnQ2Cg2E04damuDhVw2aS41mCmzhVhWPOQpkSKvuhRS7klXzyVfYbErTpr
+         H75RZtKJOhoyWoCEC7N+WnthFUDFQMvnvnkeY4RA2lOMEPwe3le2aYa8jrVCjGKA4fKY
+         DY1UNyh7AnSn6fRHNbqj663uv1kw/m5E+QeyzjNC9ZvkP2N5UfKxyAAHal2nHJcjb5Jn
+         2lNwAzdy5WVMRMMMqeF9elj5RMCB2zbRFqMaEgsE9AIhDkBuirsT1CnTJTyjbbH+WU94
+         KWvg==
+X-Gm-Message-State: ACrzQf3317E7HjcCzBM7sBmsEjilqwgXNo7RdK1yFeetQsUDKn3+z9ME
+        LbL5q9UOfE9bzJ1GCZCdaZWIpA==
+X-Google-Smtp-Source: AMsMyM49WoPc4bVyIwg87F9mP1+nafrShy23pDex1lW27GK8scNP2rHA7ZFu84eJ+8073+3X8LC1ng==
+X-Received: by 2002:a17:902:bd02:b0:178:1a1c:889 with SMTP id p2-20020a170902bd0200b001781a1c0889mr26716846pls.107.1664279857355;
+        Tue, 27 Sep 2022 04:57:37 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1f3b:3adb:24f8:ac24:2282:1dc7? ([2401:4900:1f3b:3adb:24f8:ac24:2282:1dc7])
+        by smtp.gmail.com with ESMTPSA id y23-20020a17090264d700b00176a579fae8sm1302814pli.210.2022.09.27.04.57.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Sep 2022 04:57:36 -0700 (PDT)
+Message-ID: <96ef23e9-4bf8-a92a-ea14-990621dfd3ef@linaro.org>
+Date:   Tue, 27 Sep 2022 17:27:30 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v5] dt-bindings: qcom: document preferred compatible
+ naming
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>
+References: <20220720073326.19591-1-krzysztof.kozlowski@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <20220720073326.19591-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added IPMB-13 channel for Debug Card communication.
-which improves the readability of the machine and makes
-it easier to debug the server and it will display some
-pieces of information about the server like "system info",
-"Critical sensors" and "critical sel".
 
-Signed-off-by: Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
----
-v6:
- -Fix the commit format
+On 7/20/22 1:03 PM, Krzysztof Kozlowski wrote:
+> Compatibles can come in two formats.  Either "vendor,ip-soc" or
+> "vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
+> DT schema file documenting preferred policy and enforcing it for all new
+> compatibles, except few existing patterns.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> ---
+> 
+> Depends on:
+> https://lore.kernel.org/all/20220627143340.477120-1-krzysztof.kozlowski@linaro.org/
+> https://lore.kernel.org/all/20220628092253.21905-1-krzysztof.kozlowski@linaro.org/
+> 
+> Changes since v4:
+> 1. Add qcm.
+> 2. Add more qcom,ipq806x exceptions.
+> 3. Add Rob's tag.
+> 
+> Changes since v3:
+> 1. Add qcom,kpss-wdt-xxx to pattern for exceptions.
+> 2. Add ipq806x entries to list of exceptions.
+> 
+> Changes since v2:
+> 1. Narrow the expected pattern to be followed by dash '-' after model
+>     number (msm8996-) or by two letters and a dash (sc8280xp-).
+> 2. Add qcom,apss-wdt-xxx to list of exceptions.
+> 3. Use comment instead of description in the oneOf list.
+> 
+> Changes since v1:
+> 1. Add schema instead of readme (Rob).
+> 
+> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Alex Elder <elder@linaro.org>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>   .../devicetree/bindings/arm/qcom-soc.yaml     | 65 +++++++++++++++++++
+>   1 file changed, 65 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/arm/qcom-soc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+> new file mode 100644
+> index 000000000000..9918b20e4478
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SoC compatibles naming convention
+> +
+> +maintainers:
+> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
 
-v5:
- -Updated commit message
+Please use Bjorn's new email id.
 
-v4:
- -Resolved syntax error
+> +
+> +description: |
+> +  Guidelines for new compatibles for SoC blocks/components.
+> +  When adding new compatibles in new bindings, use the format::
+> +    qcom,SoC-IP
+> +
+> +  For example::
+> +   qcom,sdm845-llcc-bwmon
+> +
+> +  When adding new compatibles to existing bindings, use the format in the
+> +  existing binding, even if it contradicts the above.
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      # Preferred naming style for compatibles of SoC components:
+> +      - pattern: "^qcom,(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+-.*$"
+> +      - pattern: "^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$"
+> +
+> +      # Legacy namings - variations of existing patterns/compatibles are OK,
+> +      # but do not add completely new entries to these:
+> +      - pattern: "^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - pattern: "^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - pattern: "^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - pattern: "^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - pattern: "^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - enum:
+> +          - qcom,gpucc-sdm630
+> +          - qcom,gpucc-sdm660
+> +          - qcom,lcc-apq8064
+> +          - qcom,lcc-ipq8064
+> +          - qcom,lcc-mdm9615
+> +          - qcom,lcc-msm8960
+> +          - qcom,lpass-cpu-apq8016
+> +          - qcom,usb-ss-ipq4019-phy
+> +          - qcom,usb-hs-ipq4019-phy
+> +          - qcom,vqmmc-ipq4019-regulator
+> +
+> +      # Legacy compatibles with wild-cards - list cannot grow with new bindings:
+> +      - enum:
+> +          - qcom,ipq806x-gmac
+> +          - qcom,ipq806x-nand
+> +          - qcom,ipq806x-sata-phy
+> +          - qcom,ipq806x-usb-phy-ss
+> +          - qcom,ipq806x-usb-phy-hs
+> +
+> +additionalProperties: true
 
-v3:
- -Updated the title and commit
+Otherwise, LFTM, so:
 
-v2:
- -Updated the title
+Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 
-v1:
- - Initial draft
----
----
- arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-index 8864e9c312a8..84236df522dc 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-@@ -215,6 +215,17 @@
- 	};
- };
- 
-+&i2c13 {
-+	status = "okay";
-+	// Debug Card
-+	multi-master;
-+	ipmb13@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
- &pwm_tacho {
- 	status = "okay";
- 	//FSC
--- 
-2.17.1
-
+Thanks.
