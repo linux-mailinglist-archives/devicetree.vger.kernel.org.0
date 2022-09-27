@@ -2,125 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11F645EC07E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 13:06:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 902785EC081
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 13:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230384AbiI0LGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 07:06:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34524 "EHLO
+        id S231814AbiI0LGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 07:06:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231532AbiI0LFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 07:05:25 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 20042F0D;
-        Tue, 27 Sep 2022 04:04:31 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B673E1042;
-        Tue, 27 Sep 2022 04:04:18 -0700 (PDT)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 3848D3F66F;
-        Tue, 27 Sep 2022 04:04:11 -0700 (PDT)
-From:   Robin Murphy <robin.murphy@arm.com>
-To:     robh+dt@kernel.org, frowand.list@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: [PATCH] of: Fix "dma-ranges" handling for bus controllers
-Date:   Tue, 27 Sep 2022 12:04:06 +0100
-Message-Id: <6319e6d0b39b58552dcfb1c111b6ec45a5ca6bf8.1664276646.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.36.1.dirty
+        with ESMTP id S231639AbiI0LF1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 07:05:27 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C8EDF91;
+        Tue, 27 Sep 2022 04:04:33 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E5D496601F41;
+        Tue, 27 Sep 2022 12:04:28 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664276669;
+        bh=MGGRSFV4QKZ64S297uy7PnxQS7sY2jyybyoCgu9gy38=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=J95bXywUFI/OUUcoPV975N4k06sRbpqvUJRyFV0TEx/GPmwwlvTcKmu+xtjWC+2bE
+         wAA04Ysw7x4/Ac5gewLwtJHBjxv3lxPHXSZ+85bP+qLuTp64JNyTQQaQyE7KIgSUIt
+         rIQ0qAMuKDsGaopQvE5OtM6h8D4GdDhuuH0G2Jq/wlcnXKEKeNUlfyaSA+THYy3uK4
+         YIbExeus54XILWgapy1lmkrMXj+APPKTtJz+YH9fQ8x2k2yDHYjbEdT/W+e0LLVa90
+         nLNeYJb6TMOMZbE19M2D3x8OxQfhE3PsMZJCWIc04LE1oilZFEv/q5ekQGR3NhuzhC
+         n/NGrgBp2+o/g==
+Message-ID: <cb7ca8a8-14b4-0929-fd05-d37c47285176@collabora.com>
+Date:   Tue, 27 Sep 2022 13:04:26 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v3 05/11] remoteproc: mediatek: Add SCP core 1 register
+ definitions
+Content-Language: en-US
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+References: <20220927025606.26673-1-tinghan.shen@mediatek.com>
+ <20220927025606.26673-6-tinghan.shen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220927025606.26673-6-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 951d48855d86 ("of: Make of_dma_get_range() work on bus nodes")
-relaxed the handling of "dma-ranges" for any leaf node on the assumption
-that it would still represent a usage error for the property to be
-present on a non-bus leaf node. However there turns out to be a fiddly
-case where a bus also represents a DMA-capable device in its own right,
-such as a PCIe root complex with an integrated DMA engine on its
-platform side. In such cases, "dma-ranges" translation is entirely valid
-for devices discovered behind the bus, but should not be erroneously
-applied to the bus controller device itself which operates in its
-parent's address space. Fix this by restoring the previous behaviour for
-the specific case where a device is configured via its own OF node,
-since it is logical to assume that a device should never represent its
-own parent bus.
+Il 27/09/22 04:56, Tinghan Shen ha scritto:
+> Add MT8195 SCP core 1 related register definitions.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 
-Reported-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
- drivers/of/address.c    | 2 +-
- drivers/of/device.c     | 9 ++++++++-
- drivers/of/of_private.h | 5 +++++
- 3 files changed, 14 insertions(+), 2 deletions(-)
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 96f0a12e507c..497bb64e338b 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -579,7 +579,7 @@ u64 of_translate_address(struct device_node *dev, const __be32 *in_addr)
- }
- EXPORT_SYMBOL(of_translate_address);
- 
--static struct device_node *__of_get_dma_parent(const struct device_node *np)
-+struct device_node *__of_get_dma_parent(const struct device_node *np)
- {
- 	struct of_phandle_args args;
- 	int ret, index;
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 75b6cbffa755..8cefe5a7d04e 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -116,12 +116,19 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- {
- 	const struct iommu_ops *iommu;
- 	const struct bus_dma_region *map = NULL;
-+	struct device_node *bus_np;
- 	u64 dma_start = 0;
- 	u64 mask, end, size = 0;
- 	bool coherent;
- 	int ret;
- 
--	ret = of_dma_get_range(np, &map);
-+	if (np == dev->of_node)
-+		bus_np = __of_get_dma_parent(np);
-+	else
-+		bus_np = of_node_get(np);
-+
-+	ret = of_dma_get_range(bus_np, &map);
-+	of_node_put(bus_np);
- 	if (ret < 0) {
- 		/*
- 		 * For legacy reasons, we have to assume some devices need
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index 9324483397f6..fb6792d381a6 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -155,12 +155,17 @@ struct bus_dma_region;
- #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
- int of_dma_get_range(struct device_node *np,
- 		const struct bus_dma_region **map);
-+struct device_node *__of_get_dma_parent(const struct device_node *np);
- #else
- static inline int of_dma_get_range(struct device_node *np,
- 		const struct bus_dma_region **map)
- {
- 	return -ENODEV;
- }
-+static inline struct device_node *__of_get_dma_parent(const struct device_node *np)
-+{
-+	return of_get_parent(np);
-+}
- #endif
- 
- void fdt_init_reserved_mem(void);
--- 
-2.36.1.dirty
 
