@@ -2,53 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB4E45EC6BC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 16:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8959E5EC6BE
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 16:45:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230328AbiI0Opj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 10:45:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59258 "EHLO
+        id S231926AbiI0Opp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 10:45:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231627AbiI0Oo5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 10:44:57 -0400
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4F521EC53;
-        Tue, 27 Sep 2022 07:39:42 -0700 (PDT)
-Received: by mail-ot1-f51.google.com with SMTP id w22-20020a056830061600b006546deda3f9so6458966oti.4;
-        Tue, 27 Sep 2022 07:39:42 -0700 (PDT)
+        with ESMTP id S231993AbiI0Oo7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 10:44:59 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB44B3ED73;
+        Tue, 27 Sep 2022 07:39:45 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id r22-20020a9d7516000000b00659ef017e34so6421590otk.13;
+        Tue, 27 Sep 2022 07:39:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=message-id:date:subject:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=nHNtpCAaWTA+Dw1rB8DWK4iTvHhEsl/fXvnF+sWqJGE=;
-        b=6tIH01wFRvdRI+3+HRGoF2zBflHVpTpBHVwBokJG1KsfXC+6Yw3sg+O2KcDCRUFHDn
-         6RaJJAsbZSHhEsmyZ2wfUiVDwd0Fpj8D1cqM+PO+fMZ+SdUgd2RuKcM6TphPSrUJkfrZ
-         SmfT/ZkqpzCJpdI+oFVLDStd4+Jh8hXPlW06A5s4tDmQWq3SaHXLCbfOq38R3Kc64eV0
-         xd7ejaI1RMii7puGulK7UHrOGh8NZxDYLdKyaKN7SBfxZo9H6FvoiWUB7VE8Iff8RQ7y
-         qsR6CafEFb/Dt5p39sRqFvm6hYn5eOuiI14D/V4ftEmjb1lKdYmDpN12Igbn2HOSpJ7j
-         Mb5g==
-X-Gm-Message-State: ACrzQf34PQsGRCVP1oke3abcdDNXTBlCqmeEioAZiZWWExDmtpGP86rM
-        OXdYfB563sUXDl0pjF/y4Q==
-X-Google-Smtp-Source: AMsMyM51dptMOCqAKMgLE0XdvFMaNAh3lePFweSpDIrTmzRRCm1I595197gtHOUPgx7aLj/EjOpKgw==
-X-Received: by 2002:a05:6830:835:b0:65a:2135:c1b2 with SMTP id t21-20020a056830083500b0065a2135c1b2mr12638048ots.197.1664289561028;
-        Tue, 27 Sep 2022 07:39:21 -0700 (PDT)
+        bh=Wv/lnq7etpZZ5IqM9sVONW3uciXaLX/bTWFj3PI4Hqs=;
+        b=Otk7yvZgaw1WEcE5RLzJGG8khErxaAeRbgpgxezhBpnrxoN9N/+drjcnGIIuLEId7u
+         BVwo4p38YjN+DqMOf/2clqJ+6tvdJcJDpbqL1X1abNPBprNY2tinYnfR8eT8ds7/xIyr
+         WlwfsfsjzfOygiEsZmXvABhV4uJxeYXQ6mUwlQ6NvAzbklMtavN9JEiEro4Yy7fMFF/H
+         a+AxjyemXt3c/4N1EGC5PfBnZjg+SBJEpL9HYPmikh9ox9koFJphwysIJ+zJbi7NXnic
+         GRqmE9kUxPyBwJ0ihuxXmesW7ePPmuo1FQqpp7rUqvPbsOmc1/MDqWhkNz8hKRXv8WOX
+         k+Yg==
+X-Gm-Message-State: ACrzQf2Z6QKAVNox60zs8EXKB5dLmJZZcor0TULimnrb9PVka+fYDWOx
+        rH0h8Hl7YvQouxZVgox26A==
+X-Google-Smtp-Source: AMsMyM6fjL9ALpn8MexY1CA6Xq24UB81fooaiMYfvSnydXMdkXNLt9Fetdr7y+XHi5xu6r+dcYwV+Q==
+X-Received: by 2002:a05:6830:3985:b0:65c:34f7:6bb8 with SMTP id bs5-20020a056830398500b0065c34f76bb8mr2946708otb.122.1664289562323;
+        Tue, 27 Sep 2022 07:39:22 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z25-20020a9d7a59000000b0065af1b094dasm754159otm.28.2022.09.27.07.39.20
+        by smtp.gmail.com with ESMTPSA id p10-20020a0568708a0a00b0012d939eb0bfsm849916oaq.34.2022.09.27.07.39.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Sep 2022 07:39:20 -0700 (PDT)
-Received: (nullmailer pid 943215 invoked by uid 1000);
+        Tue, 27 Sep 2022 07:39:21 -0700 (PDT)
+Received: (nullmailer pid 943213 invoked by uid 1000);
         Tue, 27 Sep 2022 14:39:18 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org,
-        jh80.chung@samsung.com, linux-mmc@vger.kernel.org,
-        robh+dt@kernel.org
-In-Reply-To: <20220926140932.820050-1-dinguyen@kernel.org>
-References: <20220926140932.820050-1-dinguyen@kernel.org>
-Subject: Re: [PATCHv3 1/3] dt-bindings: mmc: synopsys-dw-mshc: document "altr,sysmgr-syscon"
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Amit Kucheria <amitk@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-pm@vger.kernel.org, "Rafael J . Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        Zhang Rui <rui.zhang@intel.com>
+In-Reply-To: <20220927013951.12833-2-zhuyinbo@loongson.cn>
+References: <20220927013951.12833-1-zhuyinbo@loongson.cn> <20220927013951.12833-2-zhuyinbo@loongson.cn>
+Subject: Re: [PATCH v3 2/3] dt-bindings: thermal: add loongson2 thermal binding
 Date:   Tue, 27 Sep 2022 09:39:18 -0500
-Message-Id: <1664289558.354045.943214.nullmailer@robh.at.kernel.org>
+Message-Id: <1664289558.346744.943212.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -60,109 +64,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Sep 2022 09:09:30 -0500, Dinh Nguyen wrote:
-> Document the optional "altr,sysmgr-syscon" binding that is used to
-> access the System Manager register that controls the SDMMC clock
-> phase.
+On Tue, 27 Sep 2022 09:39:50 +0800, Yinbo Zhu wrote:
+> Add the loongson2 thermal binding with DT schema format using
+> json-schema.
 > 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 > ---
-> v3: document that the "altr,sysmgr-syscon" binding is only applicable to
->     "altr,socfpga-dw-mshc"
-> v2: document "altr,sysmgr-syscon" in the MMC section
-> ---
->  .../bindings/mmc/synopsys-dw-mshc.yaml        | 28 +++++++++++++++++--
->  1 file changed, 25 insertions(+), 3 deletions(-)
+> Change in v3:
+> 		1. Remove the sensor id.
+> 		2. Remove the interrupt-parent in thermal required property.
+> 		3. Update the thermal binding file name.
+> 		4. Fixup the commit log information.
+> 
+>  .../thermal/loongson,loongson2-thermal.yaml   | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/loongson,loongson2-thermal.yaml
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/thermal/loongson,loongson2-thermal.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/thermal/loongson,loongson2-thermal.yaml#
+Error: Documentation/devicetree/bindings/thermal/loongson,loongson2-thermal.example.dts:25.29-30 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:384: Documentation/devicetree/bindings/thermal/loongson,loongson2-thermal.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1420: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-dwmmc0@ff704000: $nodename:0: 'dwmmc0@ff704000' does not match '^mmc(@.*)?$'
-	arch/arm/boot/dts/socfpga_arria5_socdk.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_socdk.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_sockit.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_socrates.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_sodia.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb
-	arch/arm/boot/dts/socfpga_vt.dtb
+See https://patchwork.ozlabs.org/patch/
 
-dwmmc0@ff704000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'broken-cd', 'bus-width', 'cap-mmc-highspeed', 'cap-sd-highspeed', 'cd-gpios', 'fifo-depth', 'resets', 'vmmc-supply', 'vqmmc-supply' were unexpected)
-	arch/arm/boot/dts/socfpga_cyclone5_socdk.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_sodia.dtb
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-dwmmc0@ff704000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'broken-cd', 'bus-width', 'cap-mmc-highspeed', 'cap-sd-highspeed', 'fifo-depth', 'resets', 'vmmc-supply', 'vqmmc-supply' were unexpected)
-	arch/arm/boot/dts/socfpga_arria5_socdk.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_sockit.dtb
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-dwmmc0@ff704000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'broken-cd', 'bus-width', 'cap-mmc-highspeed', 'cap-sd-highspeed', 'fifo-depth', 'resets' were unexpected)
-	arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_socrates.dtb
-	arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb
-	arch/arm/boot/dts/socfpga_vt.dtb
+pip3 install dtschema --upgrade
 
-dwmmc0@ff808000: $nodename:0: 'dwmmc0@ff808000' does not match '^mmc(@.*)?$'
-	arch/arm/boot/dts/socfpga_arria10_chameleonv3.dtb
-	arch/arm/boot/dts/socfpga_arria10_socdk_nand.dtb
-	arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb
-	arch/arm/boot/dts/socfpga_arria10_socdk_sdmmc.dtb
-
-dwmmc0@ff808000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'broken-cd', 'bus-width', 'cap-mmc-highspeed', 'cap-sd-highspeed', 'fifo-depth', 'resets' were unexpected)
-	arch/arm/boot/dts/socfpga_arria10_socdk_sdmmc.dtb
-
-dwmmc0@ff808000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'broken-cd', 'bus-width', 'cap-sd-highspeed', 'fifo-depth', 'resets' were unexpected)
-	arch/arm/boot/dts/socfpga_arria10_chameleonv3.dtb
-
-dwmmc0@ff808000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'fifo-depth', 'resets' were unexpected)
-	arch/arm/boot/dts/socfpga_arria10_socdk_nand.dtb
-	arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb
-
-mmc@ff808000: Unevaluated properties are not allowed ('altr,dw-mshc-ciu-div', 'altr,dw-mshc-sdr-timing', 'iommus' were unexpected)
-	arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dtb
-
-mmc@ff808000: Unevaluated properties are not allowed ('iommus' was unexpected)
-	arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb
-	arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dtb
-	arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dtb
-	arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb
-	arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dtb
-	arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dtb
-
-mmcsd@40004000: $nodename:0: 'mmcsd@40004000' does not match '^mmc(@.*)?$'
-	arch/arm/boot/dts/lpc4337-ciaa.dtb
-	arch/arm/boot/dts/lpc4350-hitex-eval.dtb
-	arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb
-	arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
-
-mmcsd@40004000: clock-names:0: 'biu' was expected
-	arch/arm/boot/dts/lpc4337-ciaa.dtb
-	arch/arm/boot/dts/lpc4350-hitex-eval.dtb
-	arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb
-	arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
-
-mmcsd@40004000: clock-names:1: 'ciu' was expected
-	arch/arm/boot/dts/lpc4337-ciaa.dtb
-	arch/arm/boot/dts/lpc4350-hitex-eval.dtb
-	arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb
-	arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
-
-mmcsd@40004000: Unevaluated properties are not allowed ('bus-width', 'clock-names', 'resets', 'vmmc-supply' were unexpected)
-	arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb
-	arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
-
-mmcsd@40004000: Unevaluated properties are not allowed ('clock-names', 'resets' were unexpected)
-	arch/arm/boot/dts/lpc4337-ciaa.dtb
-	arch/arm/boot/dts/lpc4350-hitex-eval.dtb
+Please check and re-submit.
 
