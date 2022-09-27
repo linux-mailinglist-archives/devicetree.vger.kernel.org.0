@@ -2,109 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 619835ECB6E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 19:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 223035ECB9D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 19:49:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233340AbiI0RmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 13:42:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45688 "EHLO
+        id S233502AbiI0Rtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 13:49:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233339AbiI0RlE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 13:41:04 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9CD91EAD46
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 10:39:21 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id o2so16744925lfc.10
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 10:39:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=eAxpH6loNU1iZeyA8GiJlas/ttJky4BrFApN1xAe7yY=;
-        b=NLyEVVNddfnTHSmbZNZ/w7X8uV5KFeKgIH8RauK4PeuC8IfmjYrsTxriGGR++Jlcp0
-         S2aoYebYYreI//5RTbL+meXTjlFCf6xlDha73PMFdAOBUw21wR0kclSZPeySXnx4U3D9
-         297XUrgbeLBbev50zRyZJd2qz8L4I3Xd12stfKPgWvSWizDXkUnN+zvNZCPegGj2GaxB
-         VDMwHLKEjOShiK+2CsNU0O8XlxmrScFqTdx4GMUed/RxlRfgoxwzsZbxSFAC9/jtzhAl
-         yN8FdV64L8AaXgn7EAEKtv/+I9DyTN47f/Sxrc0A3Kcc5H9bwinRyMtic98P1e0bdZWX
-         5t2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=eAxpH6loNU1iZeyA8GiJlas/ttJky4BrFApN1xAe7yY=;
-        b=m621sP7P1B9epjba7F1FF0rJ+5hgANbXaU5tnoM2YRZc7DLyB7AGLm47Q7EYxywc4/
-         h9oRh657VLqGXkrp4/ThPaVjo7Ib7zqmRjJIA4bgAbNgdSAmGVRHF48/ztxaNRiJrZf/
-         Wq68SGkWuBySRpoZJz9rFMo8P/jxEPmVvq8Z6jCwvivfbKSNortbCJA7Zl/RtApjWwpj
-         IDCH8gnNVvjZHcjMU++63xQzRE71MrZeP64dtEv1QN3MFrQcB1mE3y1cpzeuEC1VGDdr
-         BJAJVgEEaq/HKzty8qB09vIUvKpS43+ABeR9UZCVM7O7EyJx94FW/xkZRVQ3MXfJdzrt
-         Q/rQ==
-X-Gm-Message-State: ACrzQf2HXeZa/VmXck9G6xchXUat4h6sEvt9/YWHxb6gemkjGlpmicuC
-        w7kjnQ4tGi7SZETcIB54HgTW39xd8GJfWA==
-X-Google-Smtp-Source: AMsMyM4hMJHYiZwblEf+lFcnE65TS2ubA/NfDAnElbA++I9XUy1z/+NwnRUxUmBJwGwhT8vk/DIHVA==
-X-Received: by 2002:ac2:4945:0:b0:498:eb8d:e283 with SMTP id o5-20020ac24945000000b00498eb8de283mr11868886lfi.192.1664300361251;
-        Tue, 27 Sep 2022 10:39:21 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q12-20020ac246ec000000b00498f570aef2sm218879lfo.209.2022.09.27.10.39.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Sep 2022 10:39:20 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        krishna Lanka <quic_vamslank@quicinc.com>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 34/34] dt-bindings: pinctrl: qcom,sc8280xp: fix indentation in example (remaining piece)
-Date:   Tue, 27 Sep 2022 19:37:02 +0200
-Message-Id: <20220927173702.5200-35-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220927173702.5200-1-krzysztof.kozlowski@linaro.org>
-References: <20220927173702.5200-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S232611AbiI0RtI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 13:49:08 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EA66A1057A;
+        Tue, 27 Sep 2022 10:47:42 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 29A271042;
+        Tue, 27 Sep 2022 10:47:49 -0700 (PDT)
+Received: from [10.57.65.170] (unknown [10.57.65.170])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 026E43F73B;
+        Tue, 27 Sep 2022 10:47:40 -0700 (PDT)
+Message-ID: <e75cc292-ff7a-0daa-e2f9-fde376b5e26e@arm.com>
+Date:   Tue, 27 Sep 2022 18:47:30 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH-next v1] arm64: dts: rockchip: Enable NVM Express PCIe
+ controller on rock3a
+Content-Language: en-GB
+To:     Anand Moon <linux.amoon@gmail.com>, Chukun Pan <amadeus@jmu.edu.cn>
+Cc:     heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        michael.riesch@wolfvision.net, robh+dt@kernel.org
+References: <20220926061420.1248-1-linux.amoon@gmail.com>
+ <20220926180102.37614-1-amadeus@jmu.edu.cn>
+ <CANAwSgTyt2D-aEMMowO6d+0ddTQb46o0pWMahnr7ny2rjY7iaQ@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CANAwSgTyt2D-aEMMowO6d+0ddTQb46o0pWMahnr7ny2rjY7iaQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bindings example should be indented with 4-spaces.  Previous adjustment
-missefd one spot.
+On 2022-09-27 14:46, Anand Moon wrote:
+> Hi Chukun,
+> 
+> On Mon, 26 Sept 2022 at 23:31, Chukun Pan <amadeus@jmu.edu.cn> wrote:
+>>
+>> Hi,
+>>
+>> On 26-09-22, 06:14, Anand Moon wrote:
+>>
+>>> +     pcie30_3v3: gpio-regulator {
+>>> +             compatible = "regulator-gpio";
+>>> +             regulator-name = "pcie30_3v3";
+>>> +             regulator-min-microvolt = <100000>;
+>>> +             regulator-max-microvolt = <3300000>;
+>>> +             gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
+>>> +             gpios-states = <0x1>;
+>>> +             states = <100000 0x0>, <3300000 0x1>;
+>>> +     };
+>>
+>> This is actually no different from vcc3v3-pcie regulator?
+>>
+>>> +&pcie30phy {
+>>> +     data-lanes = <0 1 2 3>;
+>>> +     phy-supply = <&vcc3v3_pi6c_03>;
+>>> +     status = "okay";
+>>> +};
+>>
+>> It seems that there is no need to define additional data-lanes when
+>> the pcie3x1 node is not enabled, and phy-supply seems unnecessary on
+>> this board.
+>>
+> As per the schematic below pice support with 2 regulators
+> 
+> VCC3V3_PCIE        (SCT2250FPA)
+> VCC3V3_PI6C_03  (PI6C557-03 is a spread spectrum clock generator
+> supporting PCI Express and Ethernet requirements)
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
----
- .../devicetree/bindings/pinctrl/qcom,sc8280xp-pinctrl.yaml    | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Neither of which have anything to do with the phy, which is in the SoC 
+and runs off VDDA_0V9 and VCCA_1V8, see page 12. VCC3V3_PCIE is the 
+general power supply for the M.2 socket, which I doubt is supposed to 
+deliver 100mV when disabled.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-pinctrl.yaml
-index b9ab130cd558..0b251caaebf2 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-pinctrl.yaml
-@@ -139,8 +139,8 @@ examples:
-         gpio-ranges = <&tlmm 0 0 230>;
- 
-         gpio-wo-subnode-state {
--                pins = "gpio1";
--                function = "gpio";
-+            pins = "gpio1";
-+            function = "gpio";
-         };
- 
-         uart-w-subnodes-state {
--- 
-2.34.1
+(as a side note, is pcie2x1's vpcie3v3-supply as queued in -next 
+actually correct? AFAICS the other socket is effectively powered 
+straight from VCC3V3_SYS so shouldn't have needed VCC3V3_PCIE, but at 
+least it's there now ready for this one)
 
+Robin.
+
+> 
+> [0] https://dl.radxa.com/rock3/docs/hw/3a/rock3a_v1.3_sch.pdf
+> 
+>> Excuse me, can you try the patches I posted? Lspci can recognize
+>> pcie3x2 normally, but I don't have a spare nvme hard drive right
+>> now to test if it works.
+>>
+> 
+> No, it did not work on my board, see bool logs.
+> [0] https://pastebin.com/Lk93VFxg
+> 
+> [ 0.725985] phy phy-fe8c0000.phy.4: lane number 0, val 1
+> [ 0.726975] phy phy-fe8c0000.phy.4: rockchip_p3phy_rk3568_init: lock
+> failed 0x6890000, check input refclk and power supply
+> [ 0.728172] phy phy-fe8c0000.phy.4: phy init failed --> -110
+> [ 0.728704] rockchip-dw-pcie: probe of 3c0800000.pcie failed with error -110
+> [ 0.745193] ALSA device list:
+> 
+> Thanks
+> -Anand
+> 
+>> Thanks, Chukun
+>>
+>> ---
+>> Chukun Pan (3):
+>>    arm64: dts: rockchip: Add regulator suffix to ROCK3 Model A
+>>    arm64: dts: rockchip: Rename pinctrl label of pcie2x1 on rock-3a
+>>    arm64: dts: rockchip: Add PCIe v3 nodes to rock-3a
+>>
+>>   .../boot/dts/rockchip/rk3568-rock-3a.dts      | 36 ++++++++++++++-----
+>>   1 file changed, 27 insertions(+), 9 deletions(-)
+>>
+>> --
+>> 2.25.1
+>>
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
