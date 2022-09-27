@@ -2,202 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEC615EC346
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 14:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 418405EC354
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 14:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231855AbiI0MtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 08:49:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58664 "EHLO
+        id S231669AbiI0MyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 08:54:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231445AbiI0MtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 08:49:19 -0400
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4CC4167066;
-        Tue, 27 Sep 2022 05:49:17 -0700 (PDT)
-Received: by mail-qk1-f175.google.com with SMTP id x18so5911004qkn.6;
-        Tue, 27 Sep 2022 05:49:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=kxKNS5DDyDVwQYf8SSh+Z282XSXl8OO2BaUjOfJxTOs=;
-        b=xb6AyPT0DL1frZJ//0cOhbZdCmM8J0lIRf1W6Pmx9QR/wzkQOLYzooofyE033sdQT4
-         BVhg9ssWXT74uSFLT0DM+441DkrbYQJIigzv9desA8Poa3mDemECt//lO0IJGHgpA0Cq
-         V57BkUfYvtC8vIfogrIvouNHfZch3XwNYKM5jRoq1EYvbSGe9PPcfCYehdRQnZIfQViH
-         J/xMC2dAHAapwcBxP9KrV/0CKaXCkpsLIeVMGMiGT9+ex7qXXVogKizDA5HZryJPa0sq
-         i8/A03XLyzBvMIwMGW2CBuH9I0IgPEjUUoKUK3G1bZNDGypbgsh7M8guQdinP969h/J9
-         SZ6Q==
-X-Gm-Message-State: ACrzQf3rQ0d/VHEdO7GWNciJu+Az6WGZGnJeAkUJFId1thvI8UEsOBmi
-        /UPL+gM79Ns3/SPmDvi2lNIoEH5hWr5JUQ==
-X-Google-Smtp-Source: AMsMyM4CyBLabq0ZbBgwCR3Gqlzbn0bg99UnLwPevLhtmzH5TJDJkERMQLybGBIbqSfb1g5ZxmyyPA==
-X-Received: by 2002:a37:852:0:b0:6cf:7510:3c91 with SMTP id 79-20020a370852000000b006cf75103c91mr14259370qki.657.1664282956686;
-        Tue, 27 Sep 2022 05:49:16 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id c25-20020a05620a269900b006cea2984c9bsm939654qkp.100.2022.09.27.05.49.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Sep 2022 05:49:16 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id 4so3923511ybe.2;
-        Tue, 27 Sep 2022 05:49:15 -0700 (PDT)
-X-Received: by 2002:a25:8e84:0:b0:696:466c:baa with SMTP id
- q4-20020a258e84000000b00696466c0baamr24148017ybl.604.1664282955514; Tue, 27
- Sep 2022 05:49:15 -0700 (PDT)
+        with ESMTP id S231696AbiI0MyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 08:54:22 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F34BB2DBE;
+        Tue, 27 Sep 2022 05:54:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=TwOM1cbMVamtPFkYywyOaop0czuweJ5MvSviS0bOHi0=; b=dfm0iFVe5lEvCkZOgTTjD090jA
+        WZhnAw601Wp/gq2AYvLBf1KpneMIUMawkuRQzmwbnUA7EpLuWeTp24F+1DXQu+vD8UYpm35vvfeSX
+        Ul9bxMrs8nQhgzJg/mGT/RZ+C8iXQQMcrwvUfyJP9fd2KbLCUGx+y/CfNUIBs+27oFhQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1odA6A-000P5e-PC; Tue, 27 Sep 2022 14:54:06 +0200
+Date:   Tue, 27 Sep 2022 14:54:06 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v3 2/3] net: ethernet: renesas: Add Ethernet Switch driver
+Message-ID: <YzLybsJBIHtbQOwE@lunn.ch>
+References: <20220922052803.3442561-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220922052803.3442561-3-yoshihiro.shimoda.uh@renesas.com>
+ <Yy2wivbzUA2zroqy@lunn.ch>
+ <TYBPR01MB5341ACAD30E913D01C94FE08D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <YzH65W3r1IV+rHFW@lunn.ch>
+ <TYBPR01MB534189F384D8A0F5E5E00666D8559@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-References: <20220609150851.23084-1-max.oss.09@gmail.com> <CACRpkdZ0=8poNcFaCYSmMyg1GBfkHLAr3QvvzFKweLPr3UM2vg@mail.gmail.com>
- <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com>
- <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
- <20220726160337.GA41736@francesco-nb.int.toradex.com> <CAPDyKFqGFjywJ-Vmmn9=-NOzJX=24mH9A03H9djS=nJotKWK8A@mail.gmail.com>
- <20220728112146.GA97654@francesco-nb.int.toradex.com> <CAPDyKFqtCxrjALeCmhuqQ2VmmUHhi-DjXO30uHChTPFeDbp+JQ@mail.gmail.com>
- <20220909142247.GA238001@francesco-nb.int.toradex.com> <CAPDyKFrwpz=gi3iY5YsO6k4o33eLQRp-wXvBx3nQ0q=G9YrqHA@mail.gmail.com>
- <70ee4f8e-7529-307e-656c-2a65d0187af6@linaro.org> <CAPDyKFoyNWZvT+QPdX4sQuS3DL8mepfnLraHLusMi9K8MOfLgg@mail.gmail.com>
- <d19ffd93-bbb3-ac61-0ec3-58fd48443eb2@linaro.org> <CAPDyKFrDFAif3DnvPoLrgJ2+fv+aB9GyOoG_O3q-1m=2Y5eT5w@mail.gmail.com>
-In-Reply-To: <CAPDyKFrDFAif3DnvPoLrgJ2+fv+aB9GyOoG_O3q-1m=2Y5eT5w@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 27 Sep 2022 14:49:02 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVteS1va320fAAx445eFQ75XnapQbeGWEkg2aagnjN6Jg@mail.gmail.com>
-Message-ID: <CAMuHMdVteS1va320fAAx445eFQ75XnapQbeGWEkg2aagnjN6Jg@mail.gmail.com>
-Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
- which controls
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TYBPR01MB534189F384D8A0F5E5E00666D8559@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ulf,
+> > How do the CPU ports differ to the other ports? When you mention CPU
+> > ports, it makes me wonder if this should be a DSA driver?
+> 
+> I compared a DSA diagram [1] and this Ethernet Switch and then
+> this switch differs than the DSA diagram:
+> - This switch has a feature which accesses DRAM directly like an "ethernet controller".
+>   I called this feature as "cpu port", but it might be incorrect.
+> - This switch has doesn't have any "control path". Instead of that, this switch
+>   is controled by registers via APB (internal bus) directly.
+> 
+> So, IIUC, this should not be a DSA driver.
+> 
+> [1] https://bootlin.com/blog/tag/dsa/
+> 
+> > Is there a public data sheet for this device?
+> 
+> Unfortunately, we have no public data sheet for this device.
+> But, I tried to figure this switch diagram about control/data paths as below:
+> 
+> Control path:
+> +--- R-Car S4-8 SoC -------------------------+
+> |                                            |
+> | CPU ---(APB bus)---+--- Ethernet Switch ---|---(MDIO)--------------+
+> |                    |                       |                       |
+> |                    +--- Ethernet SERDES    |              External Ethernet PHY --- RJ45
+> |                                            |
+> +--------------------------------------------+
+> Notes: The switch and SERDES have 3 ports of MDIO and SGMII.
+> 
+> Data Path:
+> +--- R-Car S4-8 SoC ---------------------------------------------------------+
+> |                                                                            |
+> | CPU ---(AXI bus)---+--- DRAM        +--------+                             |
+> |                    +---(cpu port)---|        |---(ether port)--- SERDES ---|---(SGMII)--- PHY --- RJ45
+> |                    |                | Switch |---(ether port)--- SERDES ---|---(SGMII)--- PHY --- RJ45
+> |                    +---(cpu port)---|        |---(ether port)--- SERDES ---|---(SGMII)--- PHY --- RJ45
+> |                                     +--------|                             |
+> +----------------------------------------------------------------------------+
 
-On Tue, Sep 27, 2022 at 11:49 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > >>>> The main concern that was raised on this topic was that we have to
-> > >>>> somehow link the power-domain to the specific peripherals (the power
-> > >>>> domain consumer) in the device tree.
-> > >>>
-> > >>> Yes, that is needed. Although, I don't see how that is a concern?
-> > >>>
-> > >>> We already have the valid bindings to use for this, see more below.
-> > >>>
-> > >>>>
-> > >>>> Adding the power-domain property there will trigger validation errors
-> > >>>> unless we do explicitly add the power-domains to the schema for each
-> > >>>> peripheral we need this. To me this does not really work, but maybe I'm
-> > >>>> not understanding something.
-> > >>>>
-> > >>>> This is what Rob wrote on the topic [1]:
-> > >>>>   > No. For 'power-domains' bindings have to define how many there are and
-> > >>>>   > what each one is.
-> > >>>>
-> > >>>> Just as an example from patch [2]:
-> > >>>>
-> > >>>>   can1: can@0 {
-> > >>>>     compatible = "microchip,mcp251xfd";
-> > >>>>     power-domains = <&pd_sleep_moci>;
-> > >>>>   };
-> > >>>>
-> > >>>> leads to:
-> > >>>>
-> > >>>>   imx8mm-verdin-nonwifi-dahlia.dtb: can@0: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >>>>           From schema: .../bindings/net/can/microchip,mcp251xfd.yaml
-> > >>>
-> > >>> I think it should be fine to just add the below line to the DT
-> > >>> bindings, for each peripheral device to fix the above problem.
-> > >>>
-> > >>> power-domains: true
-> > >>
-> > >> Again, as Rob said, no, because it must be strictly defined. So for
-> > >> example: "maxItems: 1" for simple cases. But what if device is then part
-> > >> of two power domains?
-> > >>
-> > >>>
-> > >>> That should be okay, right?
-> > >>
-> > >> Adding it to each peripheral scales poorly. Especially that literally
-> > >> any device can be part of such power domain.
-> > >
-> > > Right.
-> > >
-> > >>
-> > >> If we are going with power domain approach, then it should be applicable
-> > >> basically to every device or to every device of some class (e.g. I2C,
-> > >> SPI). This means it should be added to respective core schema in
-> > >> dtschema repo, in a way it does not interfere with other power-domains
-> > >> properties (existing ones).
-> > >
-> > > Isn't that already taken care of [1]?
-> >
-> > No, because it does not define the items (what are the power domains and
-> > how many). This binding expects that any device has maxItems restricting it.
->
-> Right, apologize for my ignorance.
->
-> >
-> > >
-> > > If there is more than one power domain per device, perhaps we may need
-> > > to extend it with a more strict binding? But, that doesn't seem to be
-> > > the case here - and if it turns out to be needed later on, we can
-> > > always extend the bindings, no?
-> > >
-> > > Note also that we already have DT bindings specifying "power-domains:
-> > > true" to deal with the above. Isn't that what we want?
-> >
-> > You mentioned it before and both me and Rob already responded - no,
-> > because it does not restrict the number of items.
->
-> Okay, so maxItems need to be specified for each peripheral. It's not a
-> big deal, right?
->
-> Of course, it would be even easier if the core schema would use a
-> default "maxItems: 1" for power domain consumers, which of course must
-> be possible to be overridden for those consumers that need something
-> else. But perhaps it's not that simple. :-)
+This device is somewhere between a DSA switch and a pure switchdev
+switch. It probably could be modelled as a DSA switch.
 
-It's not that simple: being part of a PM Domain is not a property of the
-device being described, but a property of the integration into the SoC.
+For a pure switchdev switch, you have a set of DMA channels per user
+port. So with 3 user ports, i would expect there to be three sets of
+RX and TX DMA rings. Frames from the CPU would go directly to the user
+ports, bypassing the switch.
 
-All synchronous hardware needs power (single/multiple), clock(s), and
-reset(s).  But the granularity of control over power(s), clocks, and resets
-depends on the integration.  So the related properties can appear
-anywhere.
+For this hardware, how are the rings organised? Are the rings for the
+CPU ports, or for the user ports? How do you direct a frame from the
+CPU out a specific user port? Via the DMA ring you place it into, or
+do you need a tag on the frame to indicate its egress port?
 
-Gr{oetje,eeting}s,
+The memory mapping of the registers is not really an issue. The
+B52/SF2 can have memory mapped registers.
 
-                        Geert
+> The current driver only supports one of MDIO, cpu port and ethernet port, and it acts as an ethernet device.
+> 
+> > > Perhaps, since the current driver supports 1 ethernet port and 1 CPU port only,
+> > > I should modify this driver for the current condition strictly.
+> > 
+> > I would suggest you support all three user ports. For an initial
+> > driver you don't need to support any sort of acceleration. You don't
+> > need any hardware bridging etc. That can be added later. Just three
+> > separated ports.
+> 
+> Thank you for your suggestion. However, supporting three user ports
+> is required to modify an external ethernet PHY driver.
+> (For now, a boot loader initialized the PHY, but one port only.)
+> 
+> The PHY is 88E2110 on my environment, so Linux has a driver in
+> drivers/net/phy/marvell10g.c. However, I guess this is related to
+> configuration of the PHY chip on the board, it needs to change
+> the host 7interface mode, but the driver doesn't support it for now.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Please give us more details. The marvell10g driver will change its
+host side depending on the result of the line side negotiation. It
+changes the value of phydev->interface to indicate what is it doing on
+its host side, and you have some control over what modes it will use
+on the host side. You can probably define its initial host side mode
+via phy-mode in DT.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Also, relying on the bootloader is a bad idea. People like to change
+the bootloader, upgrade it for new features, etc. In the ARM world we
+try to avoid any dependency on the bootloader.
+
+> > In the DSA world we call these user ports.
+> 
+> I got it.
+> However, when I read the dsa document of Linux kernel,
+> it seems to call DSA ports. Perhaps, I could misunderstand the document though...
+> https://docs.kernel.org/networking/dsa/dsa.html
+
+DSA has four classes of ports:
+
+User ports:   connected to the outside world
+CPU ports:    connected to the SoC
+DSA ports:    connecting between switches. If you have two switches and want
+              to combine them into one cluster, you use DSA ports between
+	      them.
+Unused ports: Physically exist, but are unused in the board design.
+
+       Andrew
