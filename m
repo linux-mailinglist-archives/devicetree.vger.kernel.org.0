@@ -2,103 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADE0B5EB8A0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 05:22:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACEE75EB8A8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 05:24:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230514AbiI0DWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 23:22:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40496 "EHLO
+        id S231366AbiI0DYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 23:24:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230455AbiI0DVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 23:21:37 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 726CB90820
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 20:21:35 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id t62so10518053oie.10
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 20:21:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=J33Vqwf7RplwM1v1bWHoP5Dy37kFmZPW/FgJnb1/pDY=;
-        b=Mu6FJ4UX7XaPzMXvs7XhGsxRxNDG5proE5mHp5igNcNiuwlc2fklCxxDP1oLl7FptH
-         WpjHLiI/JQKSb1XXfAp+73bchgZ/OboDLCFvfmc/gVqs0n4z7lG3OTCLHPif8iuanMOA
-         VdT1fPOqMQzH/NDpIkzXHsEC70UlNeudvGs11EO3UHGKkYwgyeYqWPNSaJi+JI6SIpmO
-         1W5IOvNKyj5it2HEM79RBrRfMZff2C9fKdmzxdU8HUnxekjZpnfIShg9dCUy6yZRtWDr
-         sVjTCW00vLth/bIQCcXHmEitcMUi17b9sgEeUh6tUjULkP26MmR/Q/kOfpBfCNv/Ir59
-         oDww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=J33Vqwf7RplwM1v1bWHoP5Dy37kFmZPW/FgJnb1/pDY=;
-        b=AdbcpntWXrwdjfhewb4eOJflhnYBpEX1809BJj40AIKhX4R5leNDvI0Lc0HLL9bJ2Q
-         Br3K1WjOciPNrXLZIv9at4tadBDAruLc2bw+mBRj3rhNRHhKKk+wX0oDE8MhTDdTgjYa
-         ELBuLFBynoEwDO+EF2fTpjismd0mbPIV8+TAIfoD2LLoj43VJUtv3Wzk75V+x4ddfNpJ
-         iF2tHETYGlb6YzoObob1TZzYGFN7Yc8yMJ+buuy03t286kHXtNveCyxxVBWrxo9BzYqu
-         hVb7ANL/xsY6unJLUH2MnBMN6OXxo8Dy1/tU8KINEOuJ7jcjA8dSFiaH397D7KYqqowB
-         BLOA==
-X-Gm-Message-State: ACrzQf23UeIUVwPzjqQiierUzHALhezxVN3z6UWNPlBzMHAog63y/li4
-        Qogf65zgTJ+19uoOedYwapZ+di9Ia445ytP6JZdpSyGg46A=
-X-Google-Smtp-Source: AMsMyM6xMv73zslgWFInKQ11Omq4T6SoASH09T2d8Dr+fPazkf+lpEHinI0DDA7LgwAxUMHh2kuWn70rHHrqz2hJtVI=
-X-Received: by 2002:a05:6808:181e:b0:350:7776:9059 with SMTP id
- bh30-20020a056808181e00b0035077769059mr868930oib.83.1664248894454; Mon, 26
- Sep 2022 20:21:34 -0700 (PDT)
+        with ESMTP id S230248AbiI0DXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 23:23:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9440EE02B;
+        Mon, 26 Sep 2022 20:23:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 50D24B80D9D;
+        Tue, 27 Sep 2022 03:23:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20B3AC433C1;
+        Tue, 27 Sep 2022 03:23:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664248986;
+        bh=+WAqlaESI/TBL/hp0OKeXlB44156QT7krk6MvuFccXY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=P8GXRK8/k1qvBCOfPnC3z4J/Q9OcuTlsKtkkeOLrM/pCqGZewEiC5/qWO/2dXZUXS
+         SlzIHNqTe/IpoyDeBhQBryTr7Jbsii75iA62BihoTUuMNXVUAG/gHsp2NMHTabZanb
+         4Nf73/rVt3x3iH/DeAiruVuqSdhhZqYQne+E7wlT+iNzoJNiRrVwk02UcE4S8qfU+m
+         25kutHFfkXofvgmGpsy4+iDWkRsTr6iXETs0vCHZkrNmPEeLMw9Drg+zTbAVqY6/vW
+         RUO9UYiTBK61AZQ/+iiLKDqAIIrmSb7vn+t4GPHwUGyP04jNKz8iD1JgZuCaADOhm2
+         59QE4T7I1DRew==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     a39.skl@gmail.com
+Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sboyd@kernel.org, linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] Add DISPCC driver for SM6115
+Date:   Mon, 26 Sep 2022 22:22:57 -0500
+Message-Id: <166424897976.1766486.17695490545987558939.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220911164635.182973-1-a39.skl@gmail.com>
+References: <20220911164635.182973-1-a39.skl@gmail.com>
 MIME-Version: 1.0
-References: <20220921072817.611223-1-sergio.paracuellos@gmail.com>
- <2b5b2937-45ae-42dd-1d96-115898eb9c7f@linaro.org> <20220926182848.GA2523250-robh@kernel.org>
-In-Reply-To: <20220926182848.GA2523250-robh@kernel.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Tue, 27 Sep 2022 05:21:24 +0200
-Message-ID: <CAMhs-H-fK=F7Wy7-pti+0SKo8DqyZGWu_g74-5MYLxzBhaihmA@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: spi: migrate mt7621 text bindings to YAML
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Sun, 11 Sep 2022 18:46:17 +0200, Adam Skladowski wrote:
+> This patch series introduce support for SM6115 display clock controller,
+> this driver is based on QCM2290 one.
+> 
+> Changes since v1
+> ================
+> 1. Changed bindings file names to Vendor,SoC-IP format.
+> 2. Changed include in dispcc-sm6115 to reflect name change of bindings.
+> 
+> [...]
 
-On Mon, Sep 26, 2022 at 8:28 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Sep 21, 2022 at 09:29:00AM +0200, Krzysztof Kozlowski wrote:
-> > On 21/09/2022 09:28, Sergio Paracuellos wrote:
-> > > SoC MT7621 SPI bindings used text format, so migrate them to YAML.
-> > > There are some additions to the binding that were not in the original
-> > > file. This binding is used in MT7621 and MT7628a Ralink SoCs. To
-> > > properly match both dts nodes in tree we need to add to the schema
-> > > 'clocks', 'clock-names' and 'reset-names'. Both 'clock-names' and
-> > > 'reset-names' use 'spi' as string so maintain that as const in
-> > > the schema.
-> > >
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > > ---
-> > > Changes in v3:
-> > > - Add Krzysztof's Reviewed-by tag.
-> >
-> > There's no need to repost patches *only* to add the tags. The upstream
-> > maintainer will do that for acks received on the version they apply.
->
-> But not when they aren't Cc'ed. Please resend to Mark B and linux-spi.
+Applied, thanks!
 
-You are right. Patch already resent cc'ing also mark B and linux-spi.
+[1/2] dt-bindings: clock: add QCOM SM6115 display clock bindings
+      commit: 38557c6fc0771be5791e16837342db581daa6379
+[2/2] clk: qcom: Add display clock controller driver for SM6115
+      commit: 9b518788631cf7bc2b10d3967fd2343d1c88d65c
 
-Thanks,
-    Sergio Paracuellos
-
->
-> Rob
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
