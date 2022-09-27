@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD47C5EC000
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 12:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C040A5EC009
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 12:44:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231420AbiI0KnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 06:43:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48050 "EHLO
+        id S230344AbiI0Koz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 06:44:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230207AbiI0KnI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 06:43:08 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A168BFDFA1;
-        Tue, 27 Sep 2022 03:43:06 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28RAK197019512;
-        Tue, 27 Sep 2022 10:42:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=shKyUC3iyr8VzV/Jg6O7VgI+jnUySbJVIawvxw7r18Y=;
- b=F3HL6Q9W0mEBBwMa2jeUfMOZr1UFSUXeBZKyNMIBCJm/GPPkuHjkt556aySDm/9x47NK
- j6iAITnoLM/+QlvFxLw2yzmBW3fEM87yyAUP1NjTgDXNsKV4BVkYkS9I/KYsUY8so1PJ
- l8QPRsJ4lAZ9PH52boLrZT/Q7HgIENX498zz5sKx7dt2Xzuy3qVsjJaWMCrXJhmef6rD
- PtFq8tgoZU5HrML+z/cXnbr4FtvYftprgGmXqRjpUWqeqFAROe5AODSXnKzjr9VwJGZ6
- iPr3Om6xNtliEzD0xvXPlmui2rY59TRxJghba1NncIYrkfzMGh3rUnw9GbkZo0fJH28o gA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3juq77h4sc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 27 Sep 2022 10:42:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28RAgqvI028711
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 27 Sep 2022 10:42:52 GMT
-Received: from blr-ubuntu-173.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Tue, 27 Sep 2022 03:42:49 -0700
-From:   Rajendra Nayak <quic_rjendra@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@somainline.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-Subject: [PATCH] arm64: dts: qcom: sc7280: Add required-opps for i2c
-Date:   Tue, 27 Sep 2022 16:12:33 +0530
-Message-ID: <20220927104233.29376-1-quic_rjendra@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S229567AbiI0Kox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 06:44:53 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E0FA6B8E7;
+        Tue, 27 Sep 2022 03:44:52 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 125C96602265;
+        Tue, 27 Sep 2022 11:44:50 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664275491;
+        bh=ql4FTrakdy7CCJMp7yH+mwWBCOP+cR85Z8Ogp0SyhfQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YPYx0ZrExlZHMAFeo/WtOFIN8CcQcAPdKHAiMl1HxB5TXBC535cZvTs8W0xZmK7lF
+         +/fdeD6qWM1p33efR/YpUjibMzM/k+mXVg953aKxQoHBf3ct9lB+bdNBnX8rkNaDBt
+         pvJSrvGB21cdSfH3GXqwjlfKa16GfaGZ0vWXv9RKA9HAbodUKHphgiLLph2VDaHa4c
+         NLufBwh57PaWEyCzJclqmsBDDpq3HIG9jJJ463q+whX3ILocQY9HucQGgeTT/tI8SI
+         PQLcAyKBWa3BXTAou5taxGv4uNP7qbv2RhHaATsbjTM9gJ5XkxZ1fV/4/q6TB0UFS3
+         nlwmyFZSQbVhg==
+Message-ID: <888703a8-a8e5-e691-7a53-294f88ad7a4e@collabora.com>
+Date:   Tue, 27 Sep 2022 12:44:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: UOG--l7TV3RR3qIiKjj1AnSaf_ztxWOc
-X-Proofpoint-GUID: UOG--l7TV3RR3qIiKjj1AnSaf_ztxWOc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-27_02,2022-09-22_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
- clxscore=1011 lowpriorityscore=0 malwarescore=0 bulkscore=0 suspectscore=0
- mlxscore=0 impostorscore=0 mlxlogscore=905 phishscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2209130000
- definitions=main-2209270063
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v5 4/4] net: stmmac: Update the name of property 'clk_csr'
+Content-Language: en-US
+To:     Jianguo Zhang <jianguo.zhang@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220923052828.16581-1-jianguo.zhang@mediatek.com>
+ <20220923052828.16581-5-jianguo.zhang@mediatek.com>
+ <e0fa3ddf-575d-9e25-73d8-e0858782b73f@collabora.com>
+ <ac24dc0f-0038-5068-3ce6-bbace55c7027@linaro.org>
+ <4f205f0d-420d-8f51-ad26-0c2475c0decd@linaro.org>
+ <80c59c9462955037981a1eab6409ba69fc9b7c34.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <80c59c9462955037981a1eab6409ba69fc9b7c34.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,168 +76,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-qup-i2c devices on sc7280 are clocked with a fixed clock (19.2 MHz)
-Though qup-i2c does not support DVFS, it still needs to vote for a
-performance state on 'CX' to satisfy the 19.2 Mhz clock frequency
-requirement.
+Il 27/09/22 10:44, Jianguo Zhang ha scritto:
+> Dear Krzysztof,
+> 	Thanks for your comment.
+> 
+> On Fri, 2022-09-23 at 20:15 +0200, Krzysztof Kozlowski wrote:
+>> On 23/09/2022 20:14, Krzysztof Kozlowski wrote:
+>>>> This is going to break MT2712e on old devicetrees.
+>>>>
+>>>> The right way of doing that is to check the return value of
+>>>> of_property_read_u32()
+>>>> for "snps,clk-csr": if the property is not found, fall back to
+>>>> the old "clk_csr".
+>>>
+>>> I must admit - I don't care. That's the effect when submitter
+>>> bypasses
+>>> DT bindings review (81311c03ab4d ("net: ethernet: stmmac: add
+>>> management
+>>> of clk_csr property")).
+>>>
+>>> If anyone wants ABI, please document the properties.
+>>>
+>>> If out-of-tree users complain, please upstream your DTS or do not
+>>> use
+>>> undocumented features...
+>>>
+>>
+>> OTOH, as Angelo pointed out, handling old and new properties is quite
+>> easy to achieve, so... :)
+>>
+> So, the conclusion is as following:
+> 
+> 1. add new property 'snps,clk-csr' and document it in binding file.
+> 2. parse new property 'snps,clk-csr' firstly, if failed, fall back to
+> old property 'clk_csr' in driver.
+> 
+> Is my understanding correct?
 
-Use 'required-opps' to pass this information from
-device tree, and also add the power-domains property to specify
-the CX power-domain.
+Yes, please.
 
-Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 32 ++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+I think that bindings should also get a 'clk_csr' with deprecated: true,
+but that's Krzysztof's call.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 212580316d3e..c7c14bbc0023 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -967,6 +967,8 @@
- 						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 0 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1025,6 +1027,8 @@
- 						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma0 0 1 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 1 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1083,6 +1087,8 @@
- 						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma0 0 2 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 2 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1141,6 +1147,8 @@
- 						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma0 0 3 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 3 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1199,6 +1207,8 @@
- 						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 4 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1257,6 +1267,8 @@
- 						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma0 0 5 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 5 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1315,6 +1327,8 @@
- 						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma0 0 6 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 6 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1373,6 +1387,8 @@
- 						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma0 0 7 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 7 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1466,6 +1482,8 @@
- 						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma1 0 0 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 0 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1524,6 +1542,8 @@
- 						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma1 0 1 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 1 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1582,6 +1602,8 @@
- 						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma1 0 2 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 2 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1640,6 +1662,8 @@
- 						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma1 0 3 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 3 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1698,6 +1722,8 @@
- 						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma1 0 4 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 4 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1756,6 +1782,8 @@
- 						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma1 0 5 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 5 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1814,6 +1842,8 @@
- 						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma1 0 6 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 6 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1872,6 +1902,8 @@
- 						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
- 				interconnect-names = "qup-core", "qup-config",
- 							"qup-memory";
-+				power-domains = <&rpmhpd SC7280_CX>;
-+				required-opps = <&rpmhpd_opp_low_svs>;
- 				dmas = <&gpi_dma1 0 7 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 7 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--- 
-2.17.1
+Regards,
+Angelo
+
+> 
+>> Best regards,
+>> Krzysztof
+>>
+> BRS
+> Jianguo
+> 
+
 
