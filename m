@@ -2,94 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7257D5EC36B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 15:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D60035EC37F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 15:03:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231915AbiI0M76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 08:59:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49688 "EHLO
+        id S232040AbiI0NDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 09:03:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231869AbiI0M74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 08:59:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D0DE6CD13
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 05:59:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231772AbiI0NDN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 09:03:13 -0400
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48AF017A5FD
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 06:03:12 -0700 (PDT)
+Received: from [192.168.1.101] (95.49.29.188.neoplus.adsl.tpnet.pl [95.49.29.188])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B1F1B61948
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 12:59:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F26C6C433D6;
-        Tue, 27 Sep 2022 12:59:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664283594;
-        bh=WhKfpdHarWpwK0DfgClRr+Pyx0XKbe4sxd8WDUF78wc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=YkC10HCYIO6+PWu6UnzjKTF9WY+SrZKXkndab8qU8tMrrS2e7WfgJy8XA0j9SDETC
-         vx/qsDwpvuKHlNZSJBjk1VigqE24qHvApNwpEFlzyFfntVgVFFRmnVVSSXZx9GyXZd
-         YtfF645di+Wr6eif71wbFLJWFhhBKxTZ/GcibWzH1B62JKr39uY72sVJh7qQBzA/4y
-         WWnm4l/QNOJwwsCmCSDQh64LbCwEbdoCwBGob5LCcJGaxOWyHDPUgitlq5yaONzso+
-         31AkDq5oqSee9GGOygXTY0grT4SPdzhgdszmWlDDoaeirqOCnq+HJoDIcAhMZ3wN2i
-         2ae2YZZ11zn/Q==
-From:   Mark Brown <broonie@kernel.org>
-To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        alsa-devel@alsa-project.org,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220927002004.685108-1-marex@denx.de>
-References: <20220927002004.685108-1-marex@denx.de>
-Subject: Re: [PATCH] dt-bindings: sound: st,stm32-sai: Document audio OF graph port
-Message-Id: <166428359170.365276.17161501749228510942.b4-ty@kernel.org>
-Date:   Tue, 27 Sep 2022 13:59:51 +0100
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 39C9D3F335;
+        Tue, 27 Sep 2022 15:03:10 +0200 (CEST)
+Message-ID: <335f759a-3279-4ab3-10c0-55daa313e669@somainline.org>
+Date:   Tue, 27 Sep 2022 15:03:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH 1/2] ARM: dts: qcom: pm8941: fix vadc channel node names
+Content-Language: en-US
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220925161821.78030-1-luca@z3ntu.xyz>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20220925161821.78030-1-luca@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Sep 2022 02:20:04 +0200, Marek Vasut wrote:
-> It is expected that the SAI subnodes would contain audio OF graph port
-> with endpoint to link it with the other side of audio link. Document
-> the port: property.
+
+
+On 25.09.2022 18:18, Luca Weiss wrote:
+> Node names for the channel are supposed to be adc-chan@REG.
 > 
+> Use this format and at the same time sort the nodes by reg value.
 > 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] dt-bindings: sound: st,stm32-sai: Document audio OF graph port
-      commit: b3eec3e6670d4da653e742bae16e5a6ff3f03825
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Konrad
+>  arch/arm/boot/dts/qcom-pm8941.dtsi | 25 ++++++++++++++++---------
+>  1 file changed, 16 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi b/arch/arm/boot/dts/qcom-pm8941.dtsi
+> index 9cd49deb9fa7..3c15eecf2f21 100644
+> --- a/arch/arm/boot/dts/qcom-pm8941.dtsi
+> +++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
+> @@ -101,26 +101,33 @@ pm8941_vadc: adc@3100 {
+>  			#size-cells = <0>;
+>  			#io-channel-cells = <1>;
+>  
+> -			bat_temp {
+> -				reg = <VADC_LR_MUX1_BAT_THERM>;
+> +
+> +			adc-chan@6 {
+> +				reg = <VADC_VBAT_SNS>;
+>  			};
+> -			die_temp {
+> +
+> +			adc-chan@8 {
+>  				reg = <VADC_DIE_TEMP>;
+>  			};
+> -			ref_625mv {
+> +
+> +			adc-chan@9 {
+>  				reg = <VADC_REF_625MV>;
+>  			};
+> -			ref_1250v {
+> +
+> +			adc-chan@10 {
+>  				reg = <VADC_REF_1250MV>;
+>  			};
+> -			ref_gnd {
+> +
+> +			adc-chan@14 {
+>  				reg = <VADC_GND_REF>;
+>  			};
+> -			ref_vdd {
+> +
+> +			adc-chan@15 {
+>  				reg = <VADC_VDD_VADC>;
+>  			};
+> -			vbat_sns {
+> -				reg = <VADC_VBAT_SNS>;
+> +
+> +			adc-chan@48 {
+> +				reg = <VADC_LR_MUX1_BAT_THERM>;
+>  			};
+>  		};
+>  
