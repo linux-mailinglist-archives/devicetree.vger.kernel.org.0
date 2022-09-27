@@ -2,117 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F26BA5EBD82
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:37:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 924645EBDAA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:44:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231582AbiI0Ig7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 04:36:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44534 "EHLO
+        id S230472AbiI0IoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 04:44:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231613AbiI0IgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:36:09 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C10A21266
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 01:35:51 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id l18so1845766wrw.9
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 01:35:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date;
-        bh=wxovnf5KPHC5iL/G2DCCvsq9cB2n/hhE49OVBFVzwkI=;
-        b=UkqqOpPVPVDImx9bgWxR6E7nSNp47HRYWNmcrb0PR+agi8lTeA4L0ONGurjzu3Mdzj
-         V5Jr5TvP9HiR3noHMtbRxN00k1hZ/LyDTuvh31Hd1hgFZm2Iwe21AoaQfx3NXWndUrjA
-         mVI26+PZI6jBdxjodzaKIVkzPUCRA0P5Sa6tlgFGofcbOsqC/lPyMILG+R4953kwfg5j
-         PpDvO2gFH8RVP+z6RDyiAipux/OjAL7PZ0ybu1HqPfbaDVZlCFuohQ4D+nzaloW6qyt9
-         McgQGbvnuDEYUOnFEnXlogHwjqSZIt7IyUyLOWzf6XkqtlqVzGc5rtkr4ZT0cY7HtsMp
-         8sjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=wxovnf5KPHC5iL/G2DCCvsq9cB2n/hhE49OVBFVzwkI=;
-        b=mmdMCFj+F2McBlvtPX5lCCXxFKm4YilYv0gzmB6PF3nariS/tCj7Vl+/zvwcGpO+SO
-         2Yq95nbmPstH0iA1b/gD3u5sXzpdM2MX63PMYqMqyGd7fRXGOs4SrLcx7pcBLJG4INP9
-         pKPiGhYKvaeJQt16IeKpKtfp0CTfA4Nb2ykerDlbE4yqkgUrESyHyZKe8grS1lubYTiX
-         qoNpieCZkZ8jPDtV2QjMR3uc8idQX5Rj4Nfr+keC9dORpYJighc4837w2cYERs2IOk1P
-         H16zR2FI/WkrZTJSItfO7GWbzZk+8wqCsnauU0WTNeEGR4lNvbcN+2qj68kCGsIXHkyq
-         jeuw==
-X-Gm-Message-State: ACrzQf3vM2Dmf27fFWymjiyp4z+I3x8wkbjW36/1vwH3KUawSePdr+3h
-        1oMp2Lbg9l3EcTm6Xtd2tjZJPw==
-X-Google-Smtp-Source: AMsMyM6ODLNqJ9ymtQdYGh+Rm894BS+CNfsgKvcSY19/1pxMn2NEmnOG/8CEslYfiE98vqP7au7bjw==
-X-Received: by 2002:a5d:47c1:0:b0:22a:5858:993b with SMTP id o1-20020a5d47c1000000b0022a5858993bmr15649108wrc.99.1664267749510;
-        Tue, 27 Sep 2022 01:35:49 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id n30-20020a05600c501e00b003b492b30822sm1122120wmr.2.2022.09.27.01.35.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Sep 2022 01:35:49 -0700 (PDT)
-From:   Jerome Neanne <jneanne@baylibre.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
-        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
-        bjorn.andersson@linaro.org, shawnguo@kernel.org,
-        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com
-Cc:     afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
-        msp@baylibre.com, j-keerthy@ti.com, jneanne@baylibre.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: [PATCH v5 6/6] arm64: defconfig: Add tps65219 as modules
-Date:   Tue, 27 Sep 2022 10:35:20 +0200
-Message-Id: <20220927083520.15766-7-jneanne@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220927083520.15766-1-jneanne@baylibre.com>
-References: <20220927083520.15766-1-jneanne@baylibre.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230494AbiI0IoD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:44:03 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 986E675CD7;
+        Tue, 27 Sep 2022 01:44:01 -0700 (PDT)
+X-UUID: 0858ea5688ba4961adf2483bfe49b09e-20220927
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=CSa/p/zpHyX4lGO/pfARnTvy0LVC/OySswcI+oOiq+w=;
+        b=o/60iJHrOk9YoguZchqif/wc6aJLOzd7K7XAhtR4J8THKkgxNZkBVo23xWnuPck2ZpNMAfzwtcWWxWhWT+gTOTKuZvL0V9UqF8UxnmQYsKc9WaF87I+RIBi47y0ZqehxSjidPHgPEazf95yzjyUZvesMN5MroXiWJu/nD/xIBtU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:fef051df-6ce3-477c-a4d1-2aae656b7669,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:45
+X-CID-INFO: VERSION:1.1.11,REQID:fef051df-6ce3-477c-a4d1-2aae656b7669,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:45
+X-CID-META: VersionHash:39a5ff1,CLOUDID:ccd32907-1cee-4c38-b21b-a45f9682fdc0,B
+        ulkID:2209271643576FUGZFGP,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 0858ea5688ba4961adf2483bfe49b09e-20220927
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+        (envelope-from <jianguo.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 898136717; Tue, 27 Sep 2022 16:43:55 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 27 Sep 2022 16:43:54 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Tue, 27 Sep 2022 16:43:53 +0800
+Message-ID: <5d0980dd11afdd948059bcf9afa2484e5ee97bec.camel@mediatek.com>
+Subject: Re: [PATCH v5 4/4] net: stmmac: Update the name of property
+ 'clk_csr'
+From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "AngeloGioacchino Del Regno" 
+        <angelogioacchino.delregno@collabora.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Tue, 27 Sep 2022 16:43:53 +0800
+In-Reply-To: <4f205f0d-420d-8f51-ad26-0c2475c0decd@linaro.org>
+References: <20220923052828.16581-1-jianguo.zhang@mediatek.com>
+         <20220923052828.16581-5-jianguo.zhang@mediatek.com>
+         <e0fa3ddf-575d-9e25-73d8-e0858782b73f@collabora.com>
+         <ac24dc0f-0038-5068-3ce6-bbace55c7027@linaro.org>
+         <4f205f0d-420d-8f51-ad26-0c2475c0decd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds defconfig option to support TPS65219 PMIC, MFD, Regulators
-and power-button.
+Dear Krzysztof,
+	Thanks for your comment.
 
-Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
-Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
----
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+On Fri, 2022-09-23 at 20:15 +0200, Krzysztof Kozlowski wrote:
+> On 23/09/2022 20:14, Krzysztof Kozlowski wrote:
+> > > This is going to break MT2712e on old devicetrees.
+> > > 
+> > > The right way of doing that is to check the return value of
+> > > of_property_read_u32()
+> > > for "snps,clk-csr": if the property is not found, fall back to
+> > > the old "clk_csr".
+> > 
+> > I must admit - I don't care. That's the effect when submitter
+> > bypasses
+> > DT bindings review (81311c03ab4d ("net: ethernet: stmmac: add
+> > management
+> > of clk_csr property")).
+> > 
+> > If anyone wants ABI, please document the properties.
+> > 
+> > If out-of-tree users complain, please upstream your DTS or do not
+> > use
+> > undocumented features...
+> > 
+> 
+> OTOH, as Angelo pointed out, handling old and new properties is quite
+> easy to achieve, so... :)
+> 
+So, the conclusion is as following:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d5b2d2dd4904..d64e00355fcd 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -406,6 +406,7 @@ CONFIG_TOUCHSCREEN_GOODIX=m
- CONFIG_TOUCHSCREEN_EDT_FT5X06=m
- CONFIG_INPUT_MISC=y
- CONFIG_INPUT_PM8941_PWRKEY=y
-+CONFIG_INPUT_TPS65219_PWRBUTTON=m
- CONFIG_INPUT_PM8XXX_VIBRATOR=m
- CONFIG_INPUT_PWM_BEEPER=m
- CONFIG_INPUT_PWM_VIBRA=m
-@@ -639,6 +640,7 @@ CONFIG_MFD_SPMI_PMIC=y
- CONFIG_MFD_RK808=y
- CONFIG_MFD_SEC_CORE=y
- CONFIG_MFD_SL28CPLD=y
-+CONFIG_MFD_TPS65219=m
- CONFIG_MFD_ROHM_BD718XX=y
- CONFIG_MFD_WCD934X=m
- CONFIG_REGULATOR_FIXED_VOLTAGE=y
-@@ -666,6 +668,7 @@ CONFIG_REGULATOR_QCOM_SPMI=y
- CONFIG_REGULATOR_RK808=y
- CONFIG_REGULATOR_S2MPS11=y
- CONFIG_REGULATOR_TPS65132=m
-+CONFIG_REGULATOR_TPS65219=m
- CONFIG_REGULATOR_VCTRL=m
- CONFIG_RC_CORE=m
- CONFIG_RC_DECODERS=y
--- 
-2.17.1
+1. add new property 'snps,clk-csr' and document it in binding file.
+2. parse new property 'snps,clk-csr' firstly, if failed, fall back to
+old property 'clk_csr' in driver.
+
+Is my understanding correct?
+
+> Best regards,
+> Krzysztof
+> 
+BRS
+Jianguo
 
