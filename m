@@ -2,110 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 199065EC696
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 16:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB4E45EC6BC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 16:45:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233054AbiI0Ohj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 10:37:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60646 "EHLO
+        id S230328AbiI0Opj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 10:45:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233066AbiI0Og5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 10:36:57 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1BE51BA39F
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 07:34:09 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id a8so15980857lff.13
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 07:34:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=acCfIXSEg+p9BRvSasg6n7vxaIKD1v6nwDt9haJjID4=;
-        b=QgEOT9R7HvQuURmKpD32ePt8X/quN8Mgms7zIlqxXEcuZleC+WkiU6rnIAE+VOmA7p
-         AKzoefSiS+qwHB+RuNgQ0M3GmuolLohQFherQZ0AQBC3yixvLnOdC33YVzDDv9X7r8tK
-         aYLCscnoOlTGquASwxHmHpWsb0NAu+HbL/EVJBFbYptd9RwN96a9gdrHM1l4gRagQz3L
-         NG6fprtn5K+fQNxStOR2eiPqSzmPinMtwXA67Js/hpFtHVyh9fqsrOBNFU2kA9rJXK0g
-         /+VD+gSvlzp0OWaSUeHR9geB86zWpfjOqV9sp3iZlclo9CD0jNWyFHdPPS2N2ys74vsh
-         Qk8w==
+        with ESMTP id S231627AbiI0Oo5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 10:44:57 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4F521EC53;
+        Tue, 27 Sep 2022 07:39:42 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id w22-20020a056830061600b006546deda3f9so6458966oti.4;
+        Tue, 27 Sep 2022 07:39:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=acCfIXSEg+p9BRvSasg6n7vxaIKD1v6nwDt9haJjID4=;
-        b=0hbcr4a0cHp6JIX5M8XgjSTeqOYDEaJxsOrSISz3NRCB5wfKN/Z+7v+vDvPIQ3NwV7
-         RpB96aOommchfebmQ7xUePYI3E8/zLXT8m62fL4MJdMOOMTjOucO+BqADwUPPEd/9mCg
-         G1tlBtoR/Klk3tjbihjxX9DKz9I+aMsYcN4UpWsccD8/cKgnUYLGr1U6Hl2X4KP2TVIK
-         PQ930Fs0B9scD/RVkjNJJYzp/XKdc3HrMbE4fEOpiIlX8gPtzbc0P3jc3icFIulaPaFq
-         GQIuMs3o9WMzBBUeP0j4Rg7X68vWc9wh2qoVWKvFwWCl+wXGMFdUW2rBz6mLoYtL9fD+
-         XEBw==
-X-Gm-Message-State: ACrzQf0XdrFiOLE7ZfiGeMUuovTM7clzc4caRbdBmrOVGWXXEbzqrAKP
-        hj9hJQhaVpuiq7Y1BzO3pYd3YQ==
-X-Google-Smtp-Source: AMsMyM5HF32G8zBKxBDSRk0Co6DuTb44eQb2XOpoqNIlWhBA00YGIY7V1/dw12NficsJu7DCThiLCg==
-X-Received: by 2002:a19:654d:0:b0:49f:5309:1cb6 with SMTP id c13-20020a19654d000000b0049f53091cb6mr10928341lfj.522.1664289247824;
-        Tue, 27 Sep 2022 07:34:07 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id be43-20020a056512252b00b00498ee99a749sm176228lfb.304.2022.09.27.07.33.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Sep 2022 07:33:56 -0700 (PDT)
-Message-ID: <e7697876-f2bc-b0ef-c8bc-6737d8a54551@linaro.org>
-Date:   Tue, 27 Sep 2022 16:33:46 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v2 01/33] arm64: dts: qcom: ipq6018-cp01-c1: correct
- blspi1 pins
-Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        krishna Lanka <quic_vamslank@quicinc.com>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220926074415.53100-1-krzysztof.kozlowski@linaro.org>
- <20220926074415.53100-2-krzysztof.kozlowski@linaro.org>
- <647d12dd-9bc6-ebe3-7a72-9b9c0d4610dd@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <647d12dd-9bc6-ebe3-7a72-9b9c0d4610dd@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        bh=nHNtpCAaWTA+Dw1rB8DWK4iTvHhEsl/fXvnF+sWqJGE=;
+        b=6tIH01wFRvdRI+3+HRGoF2zBflHVpTpBHVwBokJG1KsfXC+6Yw3sg+O2KcDCRUFHDn
+         6RaJJAsbZSHhEsmyZ2wfUiVDwd0Fpj8D1cqM+PO+fMZ+SdUgd2RuKcM6TphPSrUJkfrZ
+         SmfT/ZkqpzCJpdI+oFVLDStd4+Jh8hXPlW06A5s4tDmQWq3SaHXLCbfOq38R3Kc64eV0
+         xd7ejaI1RMii7puGulK7UHrOGh8NZxDYLdKyaKN7SBfxZo9H6FvoiWUB7VE8Iff8RQ7y
+         qsR6CafEFb/Dt5p39sRqFvm6hYn5eOuiI14D/V4ftEmjb1lKdYmDpN12Igbn2HOSpJ7j
+         Mb5g==
+X-Gm-Message-State: ACrzQf34PQsGRCVP1oke3abcdDNXTBlCqmeEioAZiZWWExDmtpGP86rM
+        OXdYfB563sUXDl0pjF/y4Q==
+X-Google-Smtp-Source: AMsMyM51dptMOCqAKMgLE0XdvFMaNAh3lePFweSpDIrTmzRRCm1I595197gtHOUPgx7aLj/EjOpKgw==
+X-Received: by 2002:a05:6830:835:b0:65a:2135:c1b2 with SMTP id t21-20020a056830083500b0065a2135c1b2mr12638048ots.197.1664289561028;
+        Tue, 27 Sep 2022 07:39:21 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z25-20020a9d7a59000000b0065af1b094dasm754159otm.28.2022.09.27.07.39.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Sep 2022 07:39:20 -0700 (PDT)
+Received: (nullmailer pid 943215 invoked by uid 1000);
+        Tue, 27 Sep 2022 14:39:18 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org,
+        jh80.chung@samsung.com, linux-mmc@vger.kernel.org,
+        robh+dt@kernel.org
+In-Reply-To: <20220926140932.820050-1-dinguyen@kernel.org>
+References: <20220926140932.820050-1-dinguyen@kernel.org>
+Subject: Re: [PATCHv3 1/3] dt-bindings: mmc: synopsys-dw-mshc: document "altr,sysmgr-syscon"
+Date:   Tue, 27 Sep 2022 09:39:18 -0500
+Message-Id: <1664289558.354045.943214.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2022 16:01, Robert Marko wrote:
+On Mon, 26 Sep 2022 09:09:30 -0500, Dinh Nguyen wrote:
+> Document the optional "altr,sysmgr-syscon" binding that is used to
+> access the System Manager register that controls the SDMMC clock
+> phase.
 > 
-> On 26. 09. 2022. 09:43, Krzysztof Kozlowski wrote:
->> When BLSPI1 (originally SPI0, later renamed in commit f82c48d46852
->> ("arm64: dts: qcom: ipq6018: correct QUP peripheral labels")) was added,
->> the device node lacked respective pin configuration assignment.   It
->> used also blsp0_spi function but that was probably the same mistake as
->> naming it SPI0.
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> ---
+> v3: document that the "altr,sysmgr-syscon" binding is only applicable to
+>     "altr,socfpga-dw-mshc"
+> v2: document "altr,sysmgr-syscon" in the MMC section
+> ---
+>  .../bindings/mmc/synopsys-dw-mshc.yaml        | 28 +++++++++++++++++--
+>  1 file changed, 25 insertions(+), 3 deletions(-)
 > 
-> Hi,
-> 
-> Sorry for making it confusing, but "blsp0_spi" is the correct function.
-> Pinctrl driver and datasheets call functions blsp0-blps5, but usually in DT
-> we call the nodes blsp1-blsp6.
-> 
-> It would probably be better for me to rename the nodes to blsp0-5 instead.
 
-OK, so instead I will add blsp0_spi to the bindings.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Best regards,
-Krzysztof
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+dwmmc0@ff704000: $nodename:0: 'dwmmc0@ff704000' does not match '^mmc(@.*)?$'
+	arch/arm/boot/dts/socfpga_arria5_socdk.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_socdk.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_sockit.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_socrates.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_sodia.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb
+	arch/arm/boot/dts/socfpga_vt.dtb
+
+dwmmc0@ff704000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'broken-cd', 'bus-width', 'cap-mmc-highspeed', 'cap-sd-highspeed', 'cd-gpios', 'fifo-depth', 'resets', 'vmmc-supply', 'vqmmc-supply' were unexpected)
+	arch/arm/boot/dts/socfpga_cyclone5_socdk.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_sodia.dtb
+
+dwmmc0@ff704000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'broken-cd', 'bus-width', 'cap-mmc-highspeed', 'cap-sd-highspeed', 'fifo-depth', 'resets', 'vmmc-supply', 'vqmmc-supply' were unexpected)
+	arch/arm/boot/dts/socfpga_arria5_socdk.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_sockit.dtb
+
+dwmmc0@ff704000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'broken-cd', 'bus-width', 'cap-mmc-highspeed', 'cap-sd-highspeed', 'fifo-depth', 'resets' were unexpected)
+	arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_socrates.dtb
+	arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb
+	arch/arm/boot/dts/socfpga_vt.dtb
+
+dwmmc0@ff808000: $nodename:0: 'dwmmc0@ff808000' does not match '^mmc(@.*)?$'
+	arch/arm/boot/dts/socfpga_arria10_chameleonv3.dtb
+	arch/arm/boot/dts/socfpga_arria10_socdk_nand.dtb
+	arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb
+	arch/arm/boot/dts/socfpga_arria10_socdk_sdmmc.dtb
+
+dwmmc0@ff808000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'broken-cd', 'bus-width', 'cap-mmc-highspeed', 'cap-sd-highspeed', 'fifo-depth', 'resets' were unexpected)
+	arch/arm/boot/dts/socfpga_arria10_socdk_sdmmc.dtb
+
+dwmmc0@ff808000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'broken-cd', 'bus-width', 'cap-sd-highspeed', 'fifo-depth', 'resets' were unexpected)
+	arch/arm/boot/dts/socfpga_arria10_chameleonv3.dtb
+
+dwmmc0@ff808000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'fifo-depth', 'resets' were unexpected)
+	arch/arm/boot/dts/socfpga_arria10_socdk_nand.dtb
+	arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb
+
+mmc@ff808000: Unevaluated properties are not allowed ('altr,dw-mshc-ciu-div', 'altr,dw-mshc-sdr-timing', 'iommus' were unexpected)
+	arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dtb
+
+mmc@ff808000: Unevaluated properties are not allowed ('iommus' was unexpected)
+	arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb
+	arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dtb
+	arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dtb
+	arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb
+	arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dtb
+	arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dtb
+
+mmcsd@40004000: $nodename:0: 'mmcsd@40004000' does not match '^mmc(@.*)?$'
+	arch/arm/boot/dts/lpc4337-ciaa.dtb
+	arch/arm/boot/dts/lpc4350-hitex-eval.dtb
+	arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb
+	arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
+
+mmcsd@40004000: clock-names:0: 'biu' was expected
+	arch/arm/boot/dts/lpc4337-ciaa.dtb
+	arch/arm/boot/dts/lpc4350-hitex-eval.dtb
+	arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb
+	arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
+
+mmcsd@40004000: clock-names:1: 'ciu' was expected
+	arch/arm/boot/dts/lpc4337-ciaa.dtb
+	arch/arm/boot/dts/lpc4350-hitex-eval.dtb
+	arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb
+	arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
+
+mmcsd@40004000: Unevaluated properties are not allowed ('bus-width', 'clock-names', 'resets', 'vmmc-supply' were unexpected)
+	arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb
+	arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
+
+mmcsd@40004000: Unevaluated properties are not allowed ('clock-names', 'resets' were unexpected)
+	arch/arm/boot/dts/lpc4337-ciaa.dtb
+	arch/arm/boot/dts/lpc4350-hitex-eval.dtb
 
