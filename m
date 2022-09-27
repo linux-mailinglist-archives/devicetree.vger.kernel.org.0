@@ -2,172 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 613EE5EBD2F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D6EC5EBD69
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 10:36:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230442AbiI0IYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 04:24:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55306 "EHLO
+        id S231654AbiI0IgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 04:36:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231209AbiI0IYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:24:32 -0400
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57073B248E;
-        Tue, 27 Sep 2022 01:24:29 -0700 (PDT)
-Received: by mail-ot1-x330.google.com with SMTP id w22-20020a056830061600b006546deda3f9so5934528oti.4;
-        Tue, 27 Sep 2022 01:24:29 -0700 (PDT)
+        with ESMTP id S229810AbiI0Ifm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 04:35:42 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B281512A92
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 01:35:27 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id e10-20020a05600c4e4a00b003b4eff4ab2cso8941487wmq.4
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 01:35:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=gQ+wC3gDGV3yuaRddBzFSqfasdF4aPIO41dI/GPBHP0=;
-        b=f1JxDVnXxsZi9PYT3F3kM+EVQHsVqccvhRg+nven8l+zIOUwN6genHxiKz0kl2VkH0
-         n1q2wz5JGSFZovqkk7Wbbt/TnF2Vd3+Ugm/FpH+WVpH9RCtpRvloK2nlo3QOpXjWwOKP
-         JnNjIqvuSxekdKc3a3DARoYSkdo/qgDTGtPAL5H/RzzjUOM+YA1dsmCakLWHs66kO/ra
-         ATpuJpA+KFrh7tMP/7KUf9nJ/d2ZSv0JaQ+HUtFl3+DK1jupnUTfDqrKcin1o/GS9+iB
-         kvPCHk7bghtJUi8CAzS9IJNR2qHxRTAuh1pw99qSIiTquazsSUuu2k6LEwvsKyDA54jo
-         sYcQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=Wgzj4PEma5PTYVT9ZoB1Xyd1riKSuBv/hZE/DnlehtA=;
+        b=dhVS1R/5nouuaVhxiWKee3goPDCx1/Zb9H2ran+I5j0m2f/soQPt4tau/DCtke8DZm
+         4tBmSjPN0W1R9SKYH9wUMzPLh1tX8y+BnNwHfTpef6y2CDRXBzNvs97wqjVWvlqoZrFy
+         blZQ65qCmymBjpQHysBpwu115sn2FUuN3LdFdXAIqZjivi0d6fevLy5hUG53mnVJUsZs
+         bdtP8v8lVNRm4qMb1moZdTUGMUxVTz9SAC0Bk7nrywjzujjX0G64n7WH2poxOmXf3BHh
+         b4z11LEac58P31f438pempIAe+4VozUWPkCHGtNjOKZ9nkWyzXxQyZmMDcEUzkub/UCG
+         Lbaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=gQ+wC3gDGV3yuaRddBzFSqfasdF4aPIO41dI/GPBHP0=;
-        b=jJYFolay1ER8qCiFCWWIqm00brcmsZXEco9UEggIpVAzAGwmBi3XMjKT1pReaLfa1j
-         2P9/OI9zamzwTQ1iPaxhz1gN1Fh4ncdonlTPcbX0Yp9r174Q8U6K1X+iRIRrwdz6sFT4
-         C9LmVdMpV4fs8P/pJSUo5oDEyHP4GSL2a46vRgwDzSVe+TdDnj7UC63M4d4RVMWyKu3x
-         d8sCyFxvPonhCzmb+qh8ZpufVjqFQgKnrcIBXFPdhMIl7sPG1LoudWUL2G3dMLeXjlaL
-         hjQeVy6QdLw34/PqNHNtIo/BZOxX8xp3wQZRO8QyYTYSzH5JrLhkNbQBGB039ZlZHFkC
-         /oJg==
-X-Gm-Message-State: ACrzQf0ssNdlSyJ/YVoxmDft62oL2UWyXq6uZz4NIURARtV2q0+FRz1d
-        lbeVRQTQyor6ILTiNY+dk7rf+Q9CSrGsE96NzI8=
-X-Google-Smtp-Source: AMsMyM59clMaaD9rBZgKpedRbCzWNYmvRcTCevA4HPUI6z4ozlznlTp38zuFMk9oysvJ5O9bvU2nrRhGFl6MWVjj3DE=
-X-Received: by 2002:a05:6830:150e:b0:655:bc7d:1e5d with SMTP id
- k14-20020a056830150e00b00655bc7d1e5dmr11648947otp.272.1664267068174; Tue, 27
- Sep 2022 01:24:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220926162549.805108-1-sergio.paracuellos@gmail.com> <20220926211508.GA682626@roeck-us.net>
-In-Reply-To: <20220926211508.GA682626@roeck-us.net>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Tue, 27 Sep 2022 10:24:16 +0200
-Message-ID: <CAMhs-H-j34cfv1rJ=fUKhQrZ5FwSJezZFnw=esh4MPNw+zNUNA@mail.gmail.com>
-Subject: Re: [PATCH RESEND v2] dt-bindings: watchdog: migrate mt7621 text
- bindings to YAML
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-watchdog@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        wim@linux-watchdog.org, Matthias Brugger <matthias.bgg@gmail.com>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        bh=Wgzj4PEma5PTYVT9ZoB1Xyd1riKSuBv/hZE/DnlehtA=;
+        b=aRCsA0zEmUOHeBJIU/RdBjs/RFmwo81xprqOXz/sGWb5snNpaPNBz3ME8R/8hwYvVJ
+         SIw3AlnXw6MvezXCUJbi8TQligOEOTFPzFvMXMnZV/eUwbifI16fOLMpGXrR6rcrOZc8
+         0z7uaPywnpa2NwcmLCNyQZuByLBsPrJk2HO8nY5FRdjKQ4nQMqgTeh4bXst7LQTVdH1P
+         zBlfZppbtBaQA7bF9OA5Y/SXKSuuhVwsL4/J4t4DTAM7A7EO7Zdn0BEGQbI4xaRlxVkW
+         Z80yfGG0NIxdRhgUx5ililoblP4ejTMm0TDxLF+rPLULCYe+7hKJNb8mPNk00bUdCJJx
+         HsQw==
+X-Gm-Message-State: ACrzQf2EPtTBXR2D0v2+y0Ksvml2pZwRy37FuoL5cneJ6Ox3zivDZzg9
+        vktAy+zw+jZvZ47qBjZpi7rNKQ==
+X-Google-Smtp-Source: AMsMyM7xzvDY5xB8UD85ebsPVp6soLExVLIxGPsyigmSohRtp+2G9pnLZ+jOaw80MTkGpyYvAt5A0A==
+X-Received: by 2002:a7b:c40e:0:b0:3b3:3faa:10c2 with SMTP id k14-20020a7bc40e000000b003b33faa10c2mr1776728wmi.32.1664267726249;
+        Tue, 27 Sep 2022 01:35:26 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id n30-20020a05600c501e00b003b492b30822sm1122120wmr.2.2022.09.27.01.35.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Sep 2022 01:35:25 -0700 (PDT)
+From:   Jerome Neanne <jneanne@baylibre.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
+        bjorn.andersson@linaro.org, shawnguo@kernel.org,
+        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
+        marcel.ziswiler@toradex.com, vkoul@kernel.org,
+        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com
+Cc:     afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
+        msp@baylibre.com, j-keerthy@ti.com, jneanne@baylibre.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: [PATCH v5 0/6] Add support for TI TPS65219 PMIC.
+Date:   Tue, 27 Sep 2022 10:35:14 +0200
+Message-Id: <20220927083520.15766-1-jneanne@baylibre.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 11:16 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On Mon, Sep 26, 2022 at 06:25:49PM +0200, Sergio Paracuellos wrote:
-> > Soc Mt7621 Watchdog bindings used text format, so migrate them to YAML.
-> >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
->
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Hi everyone,
 
-Thanks, Guenter!
+Sending again v5 changing deprecated mail for Lee Jones.
+bindings and regulator are already there as it is based on the regulator tree branch for-6.1:
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git
 
-Rob, I don't know why this patch is not in devicetree patchwork list...
+Changes in v5:
+- Remove pm_power_off functionality as it is unused in ARM64 systems
+- Change mfd subject to prefixes matching subsystem
 
-Please let me know if you want me to resend this again.
+Validation:
+regulator: tps65219: Fix .bypass_val_on setting
+reported by Axel Lin has been validated on board. 
 
-Thanks,
-   Sergio Paracuellos
+Regards,
+Jerome
 
->
-> > ---
-> > Changes in v2 RESEND:
-> > - Resent sending also to watchdog maintainers.
-> >
-> > Changes in v2:
-> >  - Rebase onto last kernel version.
-> >  - Add Krzysztof Reviewed-by tag.=C2=BA
-> >
-> >  .../watchdog/mediatek,mt7621-wdt.yaml         | 33 +++++++++++++++++++
-> >  .../bindings/watchdog/mt7621-wdt.txt          | 12 -------
-> >  2 files changed, 33 insertions(+), 12 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek=
-,mt7621-wdt.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/mt7621-w=
-dt.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mt7621=
--wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.=
-yaml
-> > new file mode 100644
-> > index 000000000000..b2b17fdf4e39
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.ya=
-ml
-> > @@ -0,0 +1,33 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/watchdog/mediatek,mt7621-wdt.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Ralink Watchdog Timers
-> > +
-> > +maintainers:
-> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: watchdog.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt7621-wdt
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    watchdog@100 {
-> > +      compatible =3D "mediatek,mt7621-wdt";
-> > +      reg =3D <0x100 0x100>;
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt =
-b/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
-> > deleted file mode 100644
-> > index c15ef0ef609f..000000000000
-> > --- a/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
-> > +++ /dev/null
-> > @@ -1,12 +0,0 @@
-> > -Ralink Watchdog Timers
-> > -
-> > -Required properties:
-> > -- compatible: must be "mediatek,mt7621-wdt"
-> > -- reg: physical base address of the controller and length of the regis=
-ter range
-> > -
-> > -Example:
-> > -
-> > -     watchdog@100 {
-> > -             compatible =3D "mediatek,mt7621-wdt";
-> > -             reg =3D <0x100 0x10>;
-> > -     };
+Previous versions:
+v4 - https://lore.kernel.org/lkml/20220825150224.826258-1-msp@baylibre.com/
+v3 - https://lore.kernel.org/lkml/20220805121852.21254-1-jneanne@baylibre.com/
+v2 - https://lore.kernel.org/lkml/20220726103355.17684-1-jneanne@baylibre.com/
+v1 - https://lore.kernel.org/lkml/20220719091742.3221-1-jneanne@baylibre.com/
+
+
+Jerome Neanne (5):
+  DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC support for AM642 SK
+    board.
+  DONOTMERGE: arm64: dts: ti: Add pinmux and irq mapping for TPS65219
+    external interrupts
+  DONOTMERGE: arm64: dts: ti: k3-am642-sk: Enable tps65219 power-button
+  mfd: tps65219: Add driver for TI TPS65219 PMIC
+  arm64: defconfig: Add tps65219 as modules
+
+Markus Schneider-Pargmann (1):
+  Input: Add tps65219 interrupt driven powerbutton
+
+ MAINTAINERS                             |   1 +
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 115 ++++++++
+ arch/arm64/configs/defconfig            |   3 +
+ drivers/input/misc/Kconfig              |  10 +
+ drivers/input/misc/Makefile             |   1 +
+ drivers/input/misc/tps65219-pwrbutton.c | 149 ++++++++++
+ drivers/mfd/Kconfig                     |  14 +
+ drivers/mfd/Makefile                    |   1 +
+ drivers/mfd/tps65219.c                  | 320 ++++++++++++++++++++++
+ include/linux/mfd/tps65219.h            | 345 ++++++++++++++++++++++++
+ 10 files changed, 959 insertions(+)
+ create mode 100644 drivers/input/misc/tps65219-pwrbutton.c
+ create mode 100644 drivers/mfd/tps65219.c
+ create mode 100644 include/linux/mfd/tps65219.h
+
+-- 
+2.17.1
+
