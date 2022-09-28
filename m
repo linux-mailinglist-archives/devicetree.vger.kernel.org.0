@@ -2,112 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAE0F5ED7C5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 10:30:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 766405ED7C9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 10:30:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233778AbiI1IaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 04:30:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59680 "EHLO
+        id S233681AbiI1Iax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 04:30:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233686AbiI1IaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 04:30:07 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1C453025
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 01:30:05 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id s6so19252286lfo.7
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 01:30:05 -0700 (PDT)
+        with ESMTP id S233765AbiI1Iaq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 04:30:46 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE6472ECB
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 01:30:44 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 10so19290630lfy.5
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 01:30:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=NCs5vawQU96pEooh4cqbFuck7uG4MvVs+nCclYJ20Lc=;
-        b=izxF/Q1zZ+0VT46yoktPGdqNU3gKyH3DV0xGCXmhsQI0OCUsYpmvzfmNyAJFRYxGZX
-         RtqorzvQxpeSVHRc+l2xzolAwvOj6Jbj8ClFbiPK/FBqZAgNr1s3SNNT73Y9T9eY8lzH
-         f1nXlErTNLOzTL9g5uibixKpp47kKtcC/6hfSc63MBt6TT0ccyr6S+LAv5JORm4HarU+
-         dGGcGX9ZZMHpwYrXS5uXTQLPP7Lxme25KN/AdH4Fml+pmPqJHK0J3s3wOsxJewRjZ3Sf
-         3pQRnviXH/5+V4qAs3lZNJ8fTKaYitFjG4lcrHHxdFMn32dNrPF5XeKLSSn/GxZWwynf
-         YSzg==
+        bh=Dm3uqPAg8eoPnHxqMu1a0UAUiwGTZ3ONRjALLMb+mpA=;
+        b=YiwvPQYOdIPSHTaWtpm0Ztw/euiLF2X9COCToOuZMSrJ39DO4Q+lxRCG+k49HwIy1i
+         T/U0vwK48QaBji5MB5YLwYmkxObJop79YT/8HG8ZD6IY+o6bGxHHt1JjPZd3WNHPgeMU
+         GXqrwMBS3WJMTkghn1W2y1X9eL4JsCpA/L6N+y9Aip2j39UOpXJwvXhZVzGpdBS4htC/
+         dg3aGi4ATdZ1YHnbgHIr4Z+AzYq8xLOK8B1XNCNUqf9NtHkZUBfXkHAk/2WjcBhYOISc
+         9QYLoVyBhdU7rnk9aeGUJWNws/0fuuzes35ZW2O5Ez1EzJxQrYxaQGuC8axwKQf8uKbF
+         lgaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=NCs5vawQU96pEooh4cqbFuck7uG4MvVs+nCclYJ20Lc=;
-        b=u3oV/jVymoYEqeo6AKbCKEGUCGdfwcOdQgi7jxkWX5x6e4Tx4pq63koaF+LfaIzkZW
-         E9kww12ReG7xDG1q1Db42htfmluG1U3XBRBS1Uy22KdPuW9aNVXwZpgDvG+W2cWr5M/2
-         ZSKq/l0kjw/KrEeYvBVthGrkCdp+wmG1S7+/2KqA8Nrn4GesaIYJ8hUvDWLRQkgkPeP7
-         TZbffgkicgjToJ8QI3x69S04nZXWW4KK37nBbaiHrYKcBdJGMIufNTZcTx/7ijIc5aGv
-         tqYlrPeqRiWVndkqT/wvdoGT1e9lyut/x9fCIzElU9XCeuK0Gza6gCTX5+tEQH1eyW1C
-         +E8Q==
-X-Gm-Message-State: ACrzQf2nkVe6YvWOW05qQvV4etqwxcj9gVCP5dRkgtouh6IxDDlWRfAd
-        EqayojubQiGWgUgSKshITG7+9w==
-X-Google-Smtp-Source: AMsMyM7WVCkxYWM9czOkGqjZbJb1PFZ7Z6R2P1OEocB90/+Nr7YuvYckWdW0uC++w6j+Xcl1lkxb5Q==
-X-Received: by 2002:a05:6512:798:b0:497:aa2b:8b10 with SMTP id x24-20020a056512079800b00497aa2b8b10mr13910475lfr.636.1664353804044;
-        Wed, 28 Sep 2022 01:30:04 -0700 (PDT)
+        bh=Dm3uqPAg8eoPnHxqMu1a0UAUiwGTZ3ONRjALLMb+mpA=;
+        b=pp8uAMswPdlfDcAzv8ecB3jZczMCpAldIyCOJHN476Pfx1MzWyceXRBVwuCAh3eAoo
+         Jx+HPqUXIeM94MOkWRmHJNWQ4XXSDRLqOqnD80zD9XM0iyLf+lKJJm3Za2bUsqVMukAW
+         wYxvEMlLGIJjnGzcmGUCT0b8/NLNZpRGCgx2ixDLMPzpqqDdC59ETFdvgab4to+fAFkz
+         Il7mi42JKTME2Gwuq082CbRJC+8Ig3IAOAJhwUtAjZcTS4L8BxFf2qb8WE2odicb7Cv1
+         tGSJ4L7gkl1uNlOIpcE5zOAW1HPqCu/+jmL33+We76lXelTzeirJ73c8JBz7YqJjKBdH
+         Q6hg==
+X-Gm-Message-State: ACrzQf29RjuX2oUlU2pUth9Cg7lbNAQWHxyF79Olzjal+uQOI966crrM
+        ARFjexCzZIjlJyBCx7ngocHxZw==
+X-Google-Smtp-Source: AMsMyM5ulsXpzfd2Ir/2GftYgLXdnxDjNfTpMcf3y7fOu0+QpNaOTgfm1zuqTvzYKuUrdi4jqMrG0g==
+X-Received: by 2002:a05:6512:3981:b0:49a:d169:5808 with SMTP id j1-20020a056512398100b0049ad1695808mr12078473lfu.241.1664353843045;
+        Wed, 28 Sep 2022 01:30:43 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id k20-20020a05651c10b400b0026aba858fbfsm371190ljn.137.2022.09.28.01.30.01
+        by smtp.gmail.com with ESMTPSA id 9-20020ac25f09000000b004977e865220sm409650lfq.55.2022.09.28.01.30.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 01:30:02 -0700 (PDT)
-Message-ID: <2bd60261-a977-3225-8d41-4987252e6abb@linaro.org>
-Date:   Wed, 28 Sep 2022 10:30:00 +0200
+        Wed, 28 Sep 2022 01:30:42 -0700 (PDT)
+Message-ID: <06603279-df45-b52d-7b9d-a11230a1f9c4@linaro.org>
+Date:   Wed, 28 Sep 2022 10:30:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v4 1/5] dt-bindings: mfd: qcom-spmi-pmic: Add pm6125
- compatible
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: Separate LTE/WIFI SKU for
+ sc7280-evoker
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220926190148.283805-1-marijn.suijten@somainline.org>
- <20220926190148.283805-2-marijn.suijten@somainline.org>
- <052630d0-299e-e468-b2dd-266d371e2b0f@linaro.org>
- <20220928081055.p66huqct2wnrsrdx@SoMainline.org>
- <3f2e62f5-a6e4-7011-3f5b-29a6657eae79@linaro.org>
- <20220928082340.mkn23ersrtzb5oth@SoMainline.org>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220927112343.2700216-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20220927192234.v4.1.Ide53082044aac56877c4ff5725777769e377476a@changeid>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220928082340.mkn23ersrtzb5oth@SoMainline.org>
+In-Reply-To: <20220927192234.v4.1.Ide53082044aac56877c4ff5725777769e377476a@changeid>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 10:23, Marijn Suijten wrote:
->>
->>
->> This is a automated message, don't get it too personal. A lot of people
->> are not aware they have to do it, so I just one, same reply. I don't
->> know whether you are aware of the process and just forgot to include it.
->> If that's the case, just ignore the message.
+On 27/09/2022 13:23, Sheng-Liang Pan wrote:
+> evoker will have WIFI/LTE SKU, separate it for each different setting.
 > 
-> That's useful, what software are you using for this?  Perhaps I can run
-> it as well, both to preempt myself and others.
+> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
 
-https://gitlab.com/robherring/pw-utils/-/blob/master/mail-add-acks-reply
-https://gitlab.com/robherring/pw-utils/-/blob/master/pw-review#L97
 
-> (Side-note: I should get accustomed to `b4 shazam` to automatically pick
->  this up from the list, instead of rebasing / re-applying local patches)
-
-Would be nice if b4 could update patches in current branch adding the
-tags... but git reset --hard && b4 shazam should work as well.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
