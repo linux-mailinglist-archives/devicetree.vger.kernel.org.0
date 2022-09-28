@@ -2,138 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45B805EE275
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1E015EE27A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:01:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233426AbiI1RAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 13:00:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35642 "EHLO
+        id S234305AbiI1RBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 13:01:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbiI1RAo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:00:44 -0400
-Received: from mail-4324.protonmail.ch (mail-4324.protonmail.ch [185.70.43.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5FF580F4F;
-        Wed, 28 Sep 2022 10:00:42 -0700 (PDT)
-Date:   Wed, 28 Sep 2022 17:00:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1664384441; x=1664643641;
-        bh=gUhqstaRapz/dEFPQohg3Styf6DL29cIpA3fSfsODL0=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID;
-        b=zK2eQy6lao1+50JVyNkwsj29cMwOASBhry1NxC0TDywJaJ5F/BdobgDt4lujEAlsO
-         x9PORPUEzMrJW+ukjvWV15iIM0O3eoEfzSPjb1waaa1J2MKHlQpQsLLkYHubE3FTO9
-         MPWaz1Y8/T1PSwo8VRCbws1lavPB07FJQfrv0Sd/elUFJX5lILE4p6h+8iE5fp9ZKJ
-         6yf8V8z0Ft/po3qrjn3UnOID1VoTiXY2b8eq0bar075uhvGTM40kouGdmMHISqy7yH
-         b/ct73/PL7lVJvVD1YGxvOU+iSKakoSnBtVDmeSsibBNU1nwj63j/akkSWm6zhpKPL
-         Lcnuj98UVawuA==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        Julian Ribbeck <julian.ribbeck@gmx.de>,
-        Josef W Menad <JosefWMenad@protonmail.ch>,
-        Markuss Broks <markuss.broks@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH v3 5/5] arm64: dts: qcom: msm8916-samsung-j5-common: Add Hall sensor
-Message-ID: <20220928165944.181207-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20220928164806.179314-1-linmengbo0689@protonmail.com>
-References: <20220928164806.179314-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S229496AbiI1RBZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:01:25 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB11E7E35
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:01:20 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 7C75D82AE2;
+        Wed, 28 Sep 2022 19:01:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1664384478;
+        bh=R662rqzf5LpcAoW1egPdR05HiSRoulQxcfy+h5YeO2k=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=qESkC8I+PANyJZsBKFTVUzkdPRkKywaRRMJGWMkiElqq8E7lLsvcACiNJ3+kQEVsv
+         4DxjxDlRqdmg9FT/YV5mm/Eo9c8eXse65aw2s2GSAEirIUTcJmG3Sr+SU0BPeJLZ6/
+         kOv7EAC6spKVI5J8jIFfOm1rkdp/CEi5yaImy7oNC55m4gV3hpuWSaPmMD27vz2r5P
+         j4YfLsnWv+I0ux2CaK5aSIwTelxob0pyicIh/9ZOdIOIige+J8fXo+8Wd4q2PFJFt+
+         l3FXvVGFBxY+uv7pMfDUIa7kRRb8ySC7wX4s46aLuVqCCv5EBQDpMvk3K/h3zdM1kL
+         Zjo1ig6STKLCQ==
+Message-ID: <e787f5b1-88e6-375c-b9e7-22db346c27be@denx.de>
+Date:   Wed, 28 Sep 2022 19:01:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v2] dt-bindings: memory-controller: st,stm32: Split off MC
+ properties
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20220926225536.548139-1-marex@denx.de>
+ <846bc515-bdda-6022-0611-daaa9a632e64@linaro.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <846bc515-bdda-6022-0611-daaa9a632e64@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung Galaxy J5 2015 and 2016 have a Hall sensor on GPIO pin 52.
-Add GPIO Hall sensor for them.
+On 9/28/22 09:10, Krzysztof Kozlowski wrote:
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../boot/dts/qcom/msm8916-samsung-j3.dts      |  4 +++
- .../dts/qcom/msm8916-samsung-j5-common.dtsi   | 26 +++++++++++++++++++
- 2 files changed, 30 insertions(+)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts b/arch/arm64/b=
-oot/dts/qcom/msm8916-samsung-j3.dts
-index bf8672ebedcd..7fd357b7f728 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts
-@@ -19,3 +19,7 @@ tz-apps@85a00000 {
- =09=09};
- =09};
- };
-+
-+&gpio_hall_sensor {
-+=09status =3D "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi b/arch=
-/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-index 4f71609bf6f8..54190144f823 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-@@ -3,6 +3,7 @@
- #include "msm8916-pm8916.dtsi"
-=20
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-=20
- / {
- =09aliases {
-@@ -21,6 +22,23 @@ tz-apps@85500000 {
- =09=09};
- =09};
-=20
-+=09gpio_hall_sensor: gpio-hall-sensor {
-+=09=09compatible =3D "gpio-keys";
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&gpio_hall_sensor_default>;
-+
-+=09=09label =3D "GPIO Hall Effect Sensor";
-+
-+=09=09event-hall-sensor {
-+=09=09=09label =3D "Hall Effect Sensor";
-+=09=09=09gpios =3D <&msmgpio 52 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,input-type =3D <EV_SW>;
-+=09=09=09linux,code =3D <SW_LID>;
-+=09=09=09linux,can-disable;
-+=09=09};
-+=09};
-+
- =09gpio-keys {
- =09=09compatible =3D "gpio-keys";
-=20
-@@ -193,6 +211,14 @@ l18 {
- };
-=20
- &msmgpio {
-+=09gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+=09=09pins =3D "gpio52";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
- =09gpio_keys_default: gpio-keys-default-state {
- =09=09pins =3D "gpio107", "gpio109";
- =09=09function =3D "gpio";
---=20
-2.30.2
+[...]
 
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+>> index a1f535cececcc..49243f447eb90 100644
+>> --- a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+>> @@ -49,143 +49,6 @@ patternProperties:
+>>     "^.*@[0-4],[a-f0-9]+$":
+>>       type: object
+>>   
+>> -    properties:
+>> -      reg:
+>> -        description: Bank number, base address and size of the device.
+>> -
+> 
+> To be equivalent (and similar to SPI peripherals and controllers) this
+> should reference st,stm32-fmc2-ebi-props.yaml as well.
+> 
+> After such reference, you can add here unevaluatedProperties:false
+> (could be same or new patch as it is not related to actual split).
 
+I don't think I understand. I don't see any ref from the controller node 
+to its props in various SPI controllers (even if that would make sense):
+
+next$ git grep qspi-nor-peripheral-props.yaml
+Documentation/devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml:$id: 
+http://devicetree.org/schemas/spi/cdns,qspi-nor-peripheral-props.yaml#
+Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml:  - 
+$ref: cdns,qspi-nor-peripheral-props.yaml#
+
+No ref to cdns,qspi-nor-peripheral-props.yaml in 
+Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+
+next$ git grep tegra210-quad-peripheral-props
+Documentation/devicetree/bindings/spi/nvidia,tegra210-quad-peripheral-props.yaml:$id: 
+http://devicetree.org/schemas/spi/nvidia,tegra210-quad-peripheral-props.yaml#
+Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml:  - 
+$ref: nvidia,tegra210-quad-peripheral-props.yaml#
+
+No ref to nvidia,tegra210-quad-peripheral-props.yaml in 
+Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+
+What am I missing here ?
