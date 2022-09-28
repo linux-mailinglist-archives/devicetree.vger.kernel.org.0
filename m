@@ -2,123 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 452AE5ED8E4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 11:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D1765ED8F1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 11:29:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233919AbiI1JYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 05:24:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48440 "EHLO
+        id S231956AbiI1J3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 05:29:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233916AbiI1JYZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 05:24:25 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E53ED74DF;
-        Wed, 28 Sep 2022 02:23:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id B01DACE1DF1;
-        Wed, 28 Sep 2022 09:23:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82805C433C1;
-        Wed, 28 Sep 2022 09:23:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664357030;
-        bh=9Y7blUAL5zN9+EQU3Z3W3p8hWMps5aDqv5Tab1GFLWw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bKKOYjthvdVJdkp/WgUPyyIY6j5diqFOr36p4LlYd98uxj1Y9e/lUHtbTqi98vgyQ
-         KbRS16fpU145hd3vMZQdmELdiDLMGpX8oUnpC6Y7HhKrvI+DAXOp1Tm9DK0N44XL80
-         mdFstae3oCw2JsYi4Sw3KJbhe3HwkElht+CJ4kpn9MhojQ2oiyppWZXSjQeRYlrQSX
-         BKyF327yD4FFDPGj+fuNVpeUQ4KPGVY5bXC1MfKLj2L6YNGIBOhJkk3hHOjFVVmLNb
-         qweGNfgGyDXDw0TL9Gsif0eqTs8PORFJji2tzGF6cr8+tGLT3NT8J+3GJZe5BvY+uS
-         EHNa/rwudrMgw==
-Date:   Wed, 28 Sep 2022 10:23:42 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        ChiaEn Wu <peterwu.pub@gmail.com>, pavel@ucw.cz,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        lars@metafoo.de, andriy.shevchenko@linux.intel.com,
-        chiaen_wu@richtek.com, alice_chen@richtek.com,
-        cy_huang@richtek.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, szunichen@gmail.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v12 3/5] iio: adc: mt6370: Add MediaTek MT6370 support
-Message-ID: <YzQSnuwPjzJIgsYq@google.com>
-References: <cover.1663926551.git.chiaen_wu@richtek.com>
- <9bf36f09bc5f002f2b09b7cc26edccf109516465.1663926551.git.chiaen_wu@richtek.com>
- <20220924155525.5663bed8@jic23-huawei>
- <YzFY5FI0PrZqdAiZ@google.com>
- <CAL_JsqKKJGtacbzGqCupFniSGha610L1cay2V+AK8vehTA=F=g@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqKKJGtacbzGqCupFniSGha610L1cay2V+AK8vehTA=F=g@mail.gmail.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229838AbiI1J3x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 05:29:53 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B1D31D0C7;
+        Wed, 28 Sep 2022 02:29:50 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id e11-20020a17090a77cb00b00205edbfd646so1507146pjs.1;
+        Wed, 28 Sep 2022 02:29:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=tJu5+3r8ivCyAS03HPqEIU5aJjM4gwmSBQgnIQ+4SPM=;
+        b=VpOahVSjO5al4k6Oz8lZxxcglS9LeVuTHIsbp2xGQ34520KHaXfABa0Njr6IU1PPag
+         WPoNMLLsZY9ufUMAU10LOXwD4Wym1JEBS+K23MrfaqffgjrIVEvmnGsloVBP4bm07cPC
+         bhSl1vsFQISLsJAlkx9M19oFD/9vm/iPvSQTrlGCPBDSb3LsDf5gSJ9aoackzXY6BBU2
+         2VaXujWX+iSYrRuvhM6u9YKryf0IjYklZwpWTCwTDPgFw7rreWNCks7xz5LIdx1pncDo
+         iTwIJKbMQQi/dZpvDWIjMBvaLrDMIAR85sZtRHOzqyjNa3zddbRHSEt9zAmH6N7CoEEW
+         o7DQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=tJu5+3r8ivCyAS03HPqEIU5aJjM4gwmSBQgnIQ+4SPM=;
+        b=UX9WmiVPKrEwJcK/ieUk0g6Qxt0DmhwbdkJeSflPUxbbUCimqH2LHzLF+7JJ391MRV
+         i33plDlzqzkGFnG8GFSzAysdiXoz6Q5kasvk+33mPOo1TPHmGddgqdtzWICvAKOjDb7n
+         m+kNm+ddqBs/yCKk7ph2V5lHdY39pSKGkIKwnsCLcERNajyfyjC5BHnGpn3JLevpc8xN
+         JfxIr5K2QP0NNra+egp5+NE6HBZuqX3X9KG5KFY36G4I1ib1OJuFjku1eY4D072kW0rC
+         EmZe0TAugZhbLDwA1eZRqvkOp7iznW6/hMIKVtkMDIJbKpYO/h0y6KkBiObI3FlOhXRk
+         SmjA==
+X-Gm-Message-State: ACrzQf1BaFRnlXbQ828m1GobL3gc443Q76ktSfO7lBt2mG/YkynRk/jT
+        jK0yAmOVVKXkv8cb9Nbcx0g=
+X-Google-Smtp-Source: AMsMyM7DMllFRiL1QIaYIiPsZis835Han9NNI9x7AIEa+c2olw+/cyVJ3z/YF7gR4IyhY3NNG/rEYQ==
+X-Received: by 2002:a17:90b:358e:b0:200:9d8a:7a70 with SMTP id mm14-20020a17090b358e00b002009d8a7a70mr9288152pjb.61.1664357389723;
+        Wed, 28 Sep 2022 02:29:49 -0700 (PDT)
+Received: from xm06403pcu.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id b22-20020a17090a101600b0020071acaecasm1026831pja.42.2022.09.28.02.29.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Sep 2022 02:29:49 -0700 (PDT)
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/3] dt-bindings: gpio: Conver Unisoc GPIO controller binding to yaml
+Date:   Wed, 28 Sep 2022 17:29:35 +0800
+Message-Id: <20220928092937.27120-1-zhang.lyra@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Sep 2022, Rob Herring wrote:
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-> On Mon, Sep 26, 2022 at 2:46 AM Lee Jones <lee@kernel.org> wrote:
-> >
-> > On Sat, 24 Sep 2022, Jonathan Cameron wrote:
-> >
-> > > On Fri, 23 Sep 2022 10:51:24 +0800
-> > > ChiaEn Wu <peterwu.pub@gmail.com> wrote:
-> > >
-> > > > From: ChiaEn Wu <chiaen_wu@richtek.com>
-> > > >
-> > > > MediaTek MT6370 is a SubPMIC consisting of a single cell battery charger
-> > > > with ADC monitoring, RGB LEDs, dual channel flashlight, WLED backlight
-> > > > driver, display bias voltage supply, one general purpose LDO, and the
-> > > > USB Type-C & PD controller complies with the latest USB Type-C and PD
-> > > > standards.
-> > > >
-> > > > Add support for the MT6370 ADC driver for system monitoring, including
-> > > > charger current, voltage, and temperature.
-> > > >
-> > > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > > > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > > > Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > > Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
-> > >
-> > > This will have to either wait for next cycle, or go through mfd because
-> > > of the dt-bindings include which is in the mfd tree.
-> > >
-> > > Please make those dependencies clear in new versions.
-> >
-> > If the bindings come together in -next, then subsequently in Mainline,
-> > it shouldn't really matter.
-> 
-> Except that the bindings haven't come together and at this point may
-> not for 6.1. linux-next has been warning for weeks because the child
-> device schemas haven't been applied. I've said it before, all the
-> schemas for MFD devices need to be applied together. Or at least the
-> MFD schema needs to get applied last.
-> 
-> Furthermore, subsequent versions of this don't get tested and we end
-> up with more warnings[1].
-> 
-> It's only your IIO tree that the DT
-> > tooling with complain about, right?
-> 
-> And the MFD tree...
-> 
-> Please apply the LED bindings (patches 1 and 2) so we can get the
-> existing warnings fixed and address any new warnings.
+Convert the Unisoc gpio controller binding to DT schema format.
 
-Who usually applies LED bindings?  Looks as though they're good to go.
+Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+---
+ .../devicetree/bindings/gpio/gpio-sprd.txt    | 28 --------
+ .../devicetree/bindings/gpio/sprd,gpio.yaml   | 70 +++++++++++++++++++
+ 2 files changed, 70 insertions(+), 28 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-sprd.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
 
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-sprd.txt b/Documentation/devicetree/bindings/gpio/gpio-sprd.txt
+deleted file mode 100644
+index eca97d45388f..000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-sprd.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-Spreadtrum GPIO controller bindings
+-
+-The controller's registers are organized as sets of sixteen 16-bit
+-registers with each set controlling a bank of up to 16 pins. A single
+-interrupt is shared for all of the banks handled by the controller.
+-
+-Required properties:
+-- compatible: Should be "sprd,sc9860-gpio".
+-- reg: Define the base and range of the I/O address space containing
+-the GPIO controller registers.
+-- gpio-controller: Marks the device node as a GPIO controller.
+-- #gpio-cells: Should be <2>. The first cell is the gpio number and
+-the second cell is used to specify optional parameters.
+-- interrupt-controller: Marks the device node as an interrupt controller.
+-- #interrupt-cells: Should be <2>. Specifies the number of cells needed
+-to encode interrupt source.
+-- interrupts: Should be the port interrupt shared by all the gpios.
+-
+-Example:
+-	ap_gpio: gpio@40280000 {
+-		compatible = "sprd,sc9860-gpio";
+-		reg = <0 0x40280000 0 0x1000>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-		interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+-	};
+diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
+new file mode 100644
+index 000000000000..c0cd1ed9809b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2022 Unisoc Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/sprd,gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Unisoc GPIO controller
++
++maintainers:
++  - Orson Zhai <orsonzhai@gmail.com>
++  - Baolin Wang <baolin.wang7@gmail.com>
++  - Chunyan Zhang <zhang.lyra@gmail.com>
++
++description:
++  The controller's registers are organized as sets of sixteen 16-bit
++  registers with each set controlling a bank of up to 16 pins. A single
++  interrupt is shared for all of the banks handled by the controller.
++
++properties:
++  compatible:
++    const: sprd,sc9860-gpio
++
++  reg:
++    maxItems: 1
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    const: 2
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 2
++
++  interrupts:
++    maxItems: 1
++    description: The interrupt shared by all GPIO lines for this controller.
++
++required:
++  - compatible
++  - reg
++  - gpio-controller
++  - "#gpio-cells"
++  - interrupt-controller
++  - "#interrupt-cells"
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        ap_gpio: gpio@40280000 {
++            compatible = "sprd,sc9860-gpio";
++            reg = <0 0x40280000 0 0x1000>;
++            gpio-controller;
++            #gpio-cells = <2>;
++            interrupt-controller;
++            #interrupt-cells = <2>;
++            interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
++        };
++    };
++...
 -- 
-Lee Jones [李琼斯]
+2.25.1
+
