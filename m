@@ -2,458 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B70385EE439
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 20:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 571C05EE44B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 20:26:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232725AbiI1SUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 14:20:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50988 "EHLO
+        id S232974AbiI1S0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 14:26:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232735AbiI1SUB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 14:20:01 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDFAE8F965
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 11:19:57 -0700 (PDT)
-Received: from tr.lan (ip-86-49-12-201.bb.vodafone.cz [86.49.12.201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E6B7E84BA7;
-        Wed, 28 Sep 2022 20:19:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1664389195;
-        bh=oHUL8N7jt5BdWdd0pR9XgOFERS28uiLK5avUOBW3Ca8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=KOF8K46/RdC36v0WsEievTB5gF7g8DNX7QyACJzLokGeGkoYvFvZO+782WUOz+joX
-         gOgLEsl2Jr/SIk7q0SRLaKMmxkKEVE32D4ixpd9/H3BqrH4RJGUzhvQqOLYaOYWvFb
-         rhnWsivtZJ/iIlB0W0no+NTQr+Jn1SHh5SYV2YeXwtzuHjrakrFsB3sH71FdIlYyNi
-         TtVcpOV/jR4CsWgzkqtteGFmH0G/C4N+Mdbols1Q1gKVPnHsjVRgJORx3t1koq1sGT
-         WvkxXb3XA4dhXCERVU9Ky4MOClPzH0gX1vsGF1+sieKt32yJCawcZp59ZYW4PCek4l
-         A6eucQZs5c9cw==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v3] dt-bindings: memory-controller: st,stm32: Split off MC properties
-Date:   Wed, 28 Sep 2022 20:19:44 +0200
-Message-Id: <20220928181944.194808-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S231301AbiI1S0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 14:26:49 -0400
+Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E897A46204;
+        Wed, 28 Sep 2022 11:26:47 -0700 (PDT)
+Date:   Wed, 28 Sep 2022 18:26:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1664389605; x=1664648805;
+        bh=+Czl9vgobi2eN8vj4r6XQYDZN6y6dgqZUUlQ7ifNlFY=;
+        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID;
+        b=hhKIkoY4s9MMhZfONV8ICOIHao7XDfHX0my1PPy7QYvTwiWy4R5BW5UckE+tfj8Kf
+         jJyLCLxJ75EAvEHPsFqW5QEky5uP3/mfXgf7otpymrrg43JFvmuLvIbjZ2Z4SJ+etD
+         OuTTaNZCy43e7CFUHhhNe5g2MhxqkKbiZPpuSMDekQ56iBNDRmHI10Uo9V4eYg6tlz
+         0BuQkOw15ZabkxM7rVrYx0nUjqIjc6cLElRMSKtHqDt5uR9smKQ8jNwU0C9Z+zgL9x
+         VE/Qucmqt6TYjY11sJjpFkhepQokZjkEuwDLekqQkHRaQy1daNuBe55ydSyMi/Fmyf
+         ki3weCmrlZG7Q==
+To:     devicetree@vger.kernel.org
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Julian Ribbeck <julian.ribbeck@gmx.de>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>,
+        Josef W Menad <JosefWMenad@protonmail.ch>,
+        Markuss Broks <markuss.broks@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v4 0/4] arm64: dts: qcom: msm8916-samsung-j5: Use common device tree
+Message-ID: <20220928182435.186116-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Split st,stm32-fmc2-ebi.yaml specific properties into st,stm32-fmc2-ebi-props.yaml ,
-split memory-controller bus peripheral properties into mc-peripheral-props.yaml ,
-reference the st,stm32-fmc2-ebi-props.yaml in mc-peripheral-props.yaml and
-reference the mc-peripheral-props.yaml in micrel,ks8851.yaml .
+v4: Try "git format-patch -B -C -M -D" to fix the patches.
+v3: Drop msm8916-samsung-j5.dts temporarily before moving it.
+Minor rewords.
+v2: Reword and resend. Split common dtsi patch.
+Add missing suffix state in pinctrl.
 
-This way, the FMC2 controller properties in Micrel KSZ8851MLL ethernet
-controller node can be properly validated.
+The smartphones below are using the MSM8916 SoC,
+which are released in 2015-2016:
 
-Fixes the following warning:
+Samsung Galaxy J5 2015 (SM-J500*)
+Samsung Galaxy J5 2016 (SM-J510*)
+Samsung Galaxy J3 2016
+- SM-J3109/SM-J320Y/SM-J320YZ
+- SM-J320N0/SM-J320ZN
+- SM-J320P/SM-J320R4/SM-J320V/SM-S320VL
 
-"
-arch/arm/boot/dts/stm32mp153c-dhcor-drc-compact.dtb: ethernet@1,0: Unevaluated properties are not allowed ('bank-width', 'st,fmc2-ebi-cs-mux-enable', 'st,fmc2-ebi-cs-transaction-type', 'st,fmc2-ebi-cs-buswidth', 'st,fmc2-ebi-cs-address-setup-ns', 'st,fmc2-ebi-cs-address-hold-ns', 'st,fmc2-ebi-cs-bus-turnaround-ns', 'st,fmc2-ebi-cs-data-setup-ns', 'st,fmc2-ebi-cs-data-hold-ns', 'st,fmc2-ebi-cs-write-address-setup-ns', 'st,fmc2-ebi-cs-write-address-hold-ns', 'st,fmc2-ebi-cs-write-bus-turnaround-ns', 'st,fmc2-ebi-cs-write-data-setup-ns', 'st,fmc2-ebi-cs-write-data-hold-ns' were unexpected)
-"
+Add a common device tree for with initial support for:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Christophe Kerello <christophe.kerello@foss.st.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
-To: linux-arm-kernel@lists.infradead.org
----
-V2: - Depends on bugfix [PATCH] dt-bindings: memory-controller: st,stm32: Fix st,fmc2_ebi-cs-write-address-setup-ns
-    - Replace MC controllers with Memory Controllers
-    - Add type uint32 and enum 1,2,4 to bank-width prop
-    - Add RB from Rob
-V3: - Add ref: mc-peripheral-props.yaml# to patternProperties with great
-      explanation by Krzysztof (big thanks!)
----
- .../mc-peripheral-props.yaml                  |  38 +++++
- .../st,stm32-fmc2-ebi-props.yaml              | 144 ++++++++++++++++++
- .../memory-controllers/st,stm32-fmc2-ebi.yaml | 138 +----------------
- .../bindings/net/micrel,ks8851.yaml           |   1 +
- 4 files changed, 184 insertions(+), 137 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/mc-peripheral-props.yaml
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi-props.yaml
+- GPIO keys
+- SDHCI (internal and external storage)
+- USB Device Mode
+- UART (on USB connector via the SM5703 MUIC)
+- WCNSS (WiFi/BT)
+- Regulators
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/mc-peripheral-props.yaml b/Documentation/devicetree/bindings/memory-controllers/mc-peripheral-props.yaml
-new file mode 100644
-index 0000000000000..53ae995462db7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/mc-peripheral-props.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/mc-peripheral-props.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Peripheral-specific properties for a Memory Controller bus.
-+
-+description:
-+  Many Memory Controllers need to add properties to peripheral devices.
-+  They could be common properties like reg or they could be controller
-+  specific like delay in clock or data lines, etc. These properties need
-+  to be defined in the peripheral node because they are per-peripheral
-+  and there can be multiple peripherals attached to a controller. All
-+  those properties are listed here. The controller specific properties
-+  should go in their own separate schema that should be referenced
-+  from here.
-+
-+maintainers:
-+  - Marek Vasut <marex@denx.de>
-+
-+properties:
-+  reg:
-+    description: Bank number, base address and size of the device.
-+
-+  bank-width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Bank width of the device, in bytes.
-+    enum: [1, 2, 4]
-+
-+required:
-+  - reg
-+
-+# The controller specific properties go here.
-+allOf:
-+  - $ref: st,stm32-fmc2-ebi-props.yaml#
-+
-+additionalProperties: true
-diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi-props.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi-props.yaml
-new file mode 100644
-index 0000000000000..475e4095068c2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi-props.yaml
-@@ -0,0 +1,144 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/st,stm32-fmc2-ebi-props.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Peripheral properties for ST FMC2 Controller
-+
-+maintainers:
-+  - Christophe Kerello <christophe.kerello@foss.st.com>
-+  - Marek Vasut <marex@denx.de>
-+
-+properties:
-+  st,fmc2-ebi-cs-transaction-type:
-+    description: |
-+      Select one of the transactions type supported
-+      0: Asynchronous mode 1 SRAM/FRAM.
-+      1: Asynchronous mode 1 PSRAM.
-+      2: Asynchronous mode A SRAM/FRAM.
-+      3: Asynchronous mode A PSRAM.
-+      4: Asynchronous mode 2 NOR.
-+      5: Asynchronous mode B NOR.
-+      6: Asynchronous mode C NOR.
-+      7: Asynchronous mode D NOR.
-+      8: Synchronous read synchronous write PSRAM.
-+      9: Synchronous read asynchronous write PSRAM.
-+      10: Synchronous read synchronous write NOR.
-+      11: Synchronous read asynchronous write NOR.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 11
-+
-+  st,fmc2-ebi-cs-cclk-enable:
-+    description: Continuous clock enable (first bank must be configured
-+      in synchronous mode). The FMC_CLK is generated continuously
-+      during asynchronous and synchronous access. By default, the
-+      FMC_CLK is only generated during synchronous access.
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-+  st,fmc2-ebi-cs-mux-enable:
-+    description: Address/Data multiplexed on databus (valid only with
-+      NOR and PSRAM transactions type). By default, Address/Data
-+      are not multiplexed.
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-+  st,fmc2-ebi-cs-buswidth:
-+    description: Data bus width
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 8, 16 ]
-+    default: 16
-+
-+  st,fmc2-ebi-cs-waitpol-high:
-+    description: Wait signal polarity (NWAIT signal active high).
-+      By default, NWAIT is active low.
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-+  st,fmc2-ebi-cs-waitcfg-enable:
-+    description: The NWAIT signal indicates wheither the data from the
-+      device are valid or if a wait state must be inserted when accessing
-+      the device in synchronous mode. By default, the NWAIT signal is
-+      active one data cycle before wait state.
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-+  st,fmc2-ebi-cs-wait-enable:
-+    description: The NWAIT signal is enabled (its level is taken into
-+      account after the programmed latency period to insert wait states
-+      if asserted). By default, the NWAIT signal is disabled.
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-+  st,fmc2-ebi-cs-asyncwait-enable:
-+    description: The NWAIT signal is taken into account during asynchronous
-+      transactions. By default, the NWAIT signal is not taken into account
-+      during asynchronous transactions.
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-+  st,fmc2-ebi-cs-cpsize:
-+    description: CRAM page size. The controller splits the burst access
-+      when the memory page is reached. By default, no burst split when
-+      crossing page boundary.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 0, 128, 256, 512, 1024 ]
-+    default: 0
-+
-+  st,fmc2-ebi-cs-byte-lane-setup-ns:
-+    description: This property configures the byte lane setup timing
-+      defined in nanoseconds from NBLx low to Chip Select NEx low.
-+
-+  st,fmc2-ebi-cs-address-setup-ns:
-+    description: This property defines the duration of the address setup
-+      phase in nanoseconds used for asynchronous read/write transactions.
-+
-+  st,fmc2-ebi-cs-address-hold-ns:
-+    description: This property defines the duration of the address hold
-+      phase in nanoseconds used for asynchronous multiplexed read/write
-+      transactions.
-+
-+  st,fmc2-ebi-cs-data-setup-ns:
-+    description: This property defines the duration of the data setup phase
-+      in nanoseconds used for asynchronous read/write transactions.
-+
-+  st,fmc2-ebi-cs-bus-turnaround-ns:
-+    description: This property defines the delay in nanoseconds between the
-+      end of current read/write transaction and the next transaction.
-+
-+  st,fmc2-ebi-cs-data-hold-ns:
-+    description: This property defines the duration of the data hold phase
-+      in nanoseconds used for asynchronous read/write transactions.
-+
-+  st,fmc2-ebi-cs-clk-period-ns:
-+    description: This property defines the FMC_CLK output signal period in
-+      nanoseconds.
-+
-+  st,fmc2-ebi-cs-data-latency-ns:
-+    description: This property defines the data latency before reading or
-+      writing the first data in nanoseconds.
-+
-+  st,fmc2-ebi-cs-write-address-setup-ns:
-+    description: This property defines the duration of the address setup
-+      phase in nanoseconds used for asynchronous write transactions.
-+
-+  st,fmc2-ebi-cs-write-address-hold-ns:
-+    description: This property defines the duration of the address hold
-+      phase in nanoseconds used for asynchronous multiplexed write
-+      transactions.
-+
-+  st,fmc2-ebi-cs-write-data-setup-ns:
-+    description: This property defines the duration of the data setup
-+      phase in nanoseconds used for asynchronous write transactions.
-+
-+  st,fmc2-ebi-cs-write-bus-turnaround-ns:
-+    description: This property defines the delay between the end of current
-+      write transaction and the next transaction in nanoseconds.
-+
-+  st,fmc2-ebi-cs-write-data-hold-ns:
-+    description: This property defines the duration of the data hold phase
-+      in nanoseconds used for asynchronous write transactions.
-+
-+  st,fmc2-ebi-cs-max-low-pulse-ns:
-+    description: This property defines the maximum chip select low pulse
-+      duration in nanoseconds for synchronous transactions. When this timing
-+      reaches 0, the controller splits the current access, toggles NE to
-+      allow device refresh and restarts a new access.
-+
-+additionalProperties: true
-diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
-index a1f535cececcc..d71af02b7f16c 100644
---- a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
-@@ -48,143 +48,7 @@ properties:
- patternProperties:
-   "^.*@[0-4],[a-f0-9]+$":
-     type: object
--
--    properties:
--      reg:
--        description: Bank number, base address and size of the device.
--
--      st,fmc2-ebi-cs-transaction-type:
--        description: |
--          Select one of the transactions type supported
--          0: Asynchronous mode 1 SRAM/FRAM.
--          1: Asynchronous mode 1 PSRAM.
--          2: Asynchronous mode A SRAM/FRAM.
--          3: Asynchronous mode A PSRAM.
--          4: Asynchronous mode 2 NOR.
--          5: Asynchronous mode B NOR.
--          6: Asynchronous mode C NOR.
--          7: Asynchronous mode D NOR.
--          8: Synchronous read synchronous write PSRAM.
--          9: Synchronous read asynchronous write PSRAM.
--          10: Synchronous read synchronous write NOR.
--          11: Synchronous read asynchronous write NOR.
--        $ref: /schemas/types.yaml#/definitions/uint32
--        minimum: 0
--        maximum: 11
--
--      st,fmc2-ebi-cs-cclk-enable:
--        description: Continuous clock enable (first bank must be configured
--          in synchronous mode). The FMC_CLK is generated continuously
--          during asynchronous and synchronous access. By default, the
--          FMC_CLK is only generated during synchronous access.
--        $ref: /schemas/types.yaml#/definitions/flag
--
--      st,fmc2-ebi-cs-mux-enable:
--        description: Address/Data multiplexed on databus (valid only with
--          NOR and PSRAM transactions type). By default, Address/Data
--          are not multiplexed.
--        $ref: /schemas/types.yaml#/definitions/flag
--
--      st,fmc2-ebi-cs-buswidth:
--        description: Data bus width
--        $ref: /schemas/types.yaml#/definitions/uint32
--        enum: [ 8, 16 ]
--        default: 16
--
--      st,fmc2-ebi-cs-waitpol-high:
--        description: Wait signal polarity (NWAIT signal active high).
--          By default, NWAIT is active low.
--        $ref: /schemas/types.yaml#/definitions/flag
--
--      st,fmc2-ebi-cs-waitcfg-enable:
--        description: The NWAIT signal indicates wheither the data from the
--          device are valid or if a wait state must be inserted when accessing
--          the device in synchronous mode. By default, the NWAIT signal is
--          active one data cycle before wait state.
--        $ref: /schemas/types.yaml#/definitions/flag
--
--      st,fmc2-ebi-cs-wait-enable:
--        description: The NWAIT signal is enabled (its level is taken into
--          account after the programmed latency period to insert wait states
--          if asserted). By default, the NWAIT signal is disabled.
--        $ref: /schemas/types.yaml#/definitions/flag
--
--      st,fmc2-ebi-cs-asyncwait-enable:
--        description: The NWAIT signal is taken into account during asynchronous
--          transactions. By default, the NWAIT signal is not taken into account
--          during asynchronous transactions.
--        $ref: /schemas/types.yaml#/definitions/flag
--
--      st,fmc2-ebi-cs-cpsize:
--        description: CRAM page size. The controller splits the burst access
--          when the memory page is reached. By default, no burst split when
--          crossing page boundary.
--        $ref: /schemas/types.yaml#/definitions/uint32
--        enum: [ 0, 128, 256, 512, 1024 ]
--        default: 0
--
--      st,fmc2-ebi-cs-byte-lane-setup-ns:
--        description: This property configures the byte lane setup timing
--          defined in nanoseconds from NBLx low to Chip Select NEx low.
--
--      st,fmc2-ebi-cs-address-setup-ns:
--        description: This property defines the duration of the address setup
--          phase in nanoseconds used for asynchronous read/write transactions.
--
--      st,fmc2-ebi-cs-address-hold-ns:
--        description: This property defines the duration of the address hold
--          phase in nanoseconds used for asynchronous multiplexed read/write
--          transactions.
--
--      st,fmc2-ebi-cs-data-setup-ns:
--        description: This property defines the duration of the data setup phase
--          in nanoseconds used for asynchronous read/write transactions.
--
--      st,fmc2-ebi-cs-bus-turnaround-ns:
--        description: This property defines the delay in nanoseconds between the
--          end of current read/write transaction and the next transaction.
--
--      st,fmc2-ebi-cs-data-hold-ns:
--        description: This property defines the duration of the data hold phase
--          in nanoseconds used for asynchronous read/write transactions.
--
--      st,fmc2-ebi-cs-clk-period-ns:
--        description: This property defines the FMC_CLK output signal period in
--          nanoseconds.
--
--      st,fmc2-ebi-cs-data-latency-ns:
--        description: This property defines the data latency before reading or
--          writing the first data in nanoseconds.
--
--      st,fmc2-ebi-cs-write-address-setup-ns:
--        description: This property defines the duration of the address setup
--          phase in nanoseconds used for asynchronous write transactions.
--
--      st,fmc2-ebi-cs-write-address-hold-ns:
--        description: This property defines the duration of the address hold
--          phase in nanoseconds used for asynchronous multiplexed write
--          transactions.
--
--      st,fmc2-ebi-cs-write-data-setup-ns:
--        description: This property defines the duration of the data setup
--          phase in nanoseconds used for asynchronous write transactions.
--
--      st,fmc2-ebi-cs-write-bus-turnaround-ns:
--        description: This property defines the delay between the end of current
--          write transaction and the next transaction in nanoseconds.
--
--      st,fmc2-ebi-cs-write-data-hold-ns:
--        description: This property defines the duration of the data hold phase
--          in nanoseconds used for asynchronous write transactions.
--
--      st,fmc2-ebi-cs-max-low-pulse-ns:
--        description: This property defines the maximum chip select low pulse
--          duration in nanoseconds for synchronous transactions. When this timing
--          reaches 0, the controller splits the current access, toggles NE to
--          allow device refresh and restarts a new access.
--
--    required:
--      - reg
-+    $ref: mc-peripheral-props.yaml#
- 
- required:
-   - "#address-cells"
-diff --git a/Documentation/devicetree/bindings/net/micrel,ks8851.yaml b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
-index 5aa7cf2eacb1a..b44d83554ef57 100644
---- a/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
-+++ b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
-@@ -44,6 +44,7 @@ required:
- 
- allOf:
-   - $ref: ethernet-controller.yaml#
-+  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
-   - if:
-       properties:
-         compatible:
--- 
-2.35.1
+The three devices (some varints of J3, all other variants of J5 released
+in 2015 and J5X released in 2016) are very similar, with some differences
+in display and GPIO pins. The common parts are shared in
+msm8916-samsung-j5-common.dtsi to reduce duplication.
 
