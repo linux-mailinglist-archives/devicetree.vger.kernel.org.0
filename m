@@ -2,147 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C81A5EDD79
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 15:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 030245EDD7B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 15:09:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233544AbiI1NGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 09:06:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45972 "EHLO
+        id S233487AbiI1NJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 09:09:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233644AbiI1NGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 09:06:41 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9059FA89;
-        Wed, 28 Sep 2022 06:06:38 -0700 (PDT)
-Received: from mercury (dyndsl-095-033-171-230.ewe-ip-backbone.de [95.33.171.230])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S231587AbiI1NJG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 09:09:06 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D81C9C222;
+        Wed, 28 Sep 2022 06:09:05 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C26096602289;
-        Wed, 28 Sep 2022 14:06:36 +0100 (BST)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id F250C6602292;
+        Wed, 28 Sep 2022 14:09:02 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664370396;
-        bh=c9JtjBwjFF79SmCgeSuVKQRi+U2ANa35gBatTDWdXx0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OOelG3G2yNH+GLL44hnU0wzqsyItfNvfy8eFzQKq1odX4RcRFcjdDim/XLNURgyJv
-         +CAYnDW57CdWTzAmA5aLnbeoM/GYE1NGAULfWDTEhasSIt8CIitWPD1G5sXB1AkLHa
-         KAW7kt0aTg9Hj9pP0Nb9DF8S59Alp6kDDy3DvR8N6JADp+zFSRq/1FR8xgx6MYIqR2
-         4w8GS4ZzSZrKtvW1Gb+XdFzKUrbTl7/gCeURe7/L8B26cqpId3HoGFW2MH8U5YuvSn
-         DLge7QGIojTzHD38pPj3kjwZZGB1T25Z45xNLNhs6aAQbeys/WfBZzun1gd7xAQrqh
-         rfYpzC14Y5NjA==
-Received: by mercury (Postfix, from userid 1000)
-        id 70F9F106033C; Wed, 28 Sep 2022 15:06:34 +0200 (CEST)
-Date:   Wed, 28 Sep 2022 15:06:34 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com, linux-pwm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: pwm: rockchip: Add description for
- rk3588
-Message-ID: <20220928130634.x5cfkwegwgqer2xx@mercury.elektranox.org>
-References: <20220901135523.52151-1-sebastian.reichel@collabora.com>
- <1662059695.095333.2226883.nullmailer@robh.at.kernel.org>
- <20220913091202.2oawzrq2u5iiz6hq@pengutronix.de>
- <20220913141601.fi6pl2xdo4xmtw6t@mercury.elektranox.org>
- <YzQ0jTmJCBwV+x2y@orome>
+        s=mail; t=1664370544;
+        bh=Vf5x3tIxF1eH3jjuAIiQnki4BcokgilYkSxBESVxK/U=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=kT6WY2mznangZxCUy/BmfaTldXwdJgzvbVFsk9ylrGn9e4Gh96hhrrvCnbqvU5rVs
+         oEMJsW7WhWyeNogyyqSpMaX1czDdmmLimDgmnPThszm8rXEpGKBYEUQdH5QdO6E/6G
+         Y1xUk4/tDYpPxShkVQH0jVShB2O6j08d42mkpPazOCaDCe23grG2q5XTv+znFBpq7p
+         M2YNsc04BZePUE4ywDfhEGH6WZEiGfYEhlvtNjh2rXz3hNdUWdJCnc8K0WdJpeBDK5
+         4IY4lWnmzpaVgpBQ16mYqDFJQy5l8H5XqetGhEIY30PcLNAqPScTgojv4eAfQvStKd
+         d25y2Gl2ezH8Q==
+Message-ID: <eae3cb46-d665-a8c9-f0f6-505680470e50@collabora.com>
+Date:   Wed, 28 Sep 2022 15:09:00 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="f2ysunquf6nsloxy"
-Content-Disposition: inline
-In-Reply-To: <YzQ0jTmJCBwV+x2y@orome>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v1 16/17] drm/mediatek: dpi: Add mt8195 hdmi to DPI driver
+Content-Language: en-US
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20220919-v1-0-4844816c9808@baylibre.com>
+ <20220919-v1-16-4844816c9808@baylibre.com>
+ <812a5de2-dbe3-2f0d-492c-16ea004c996a@collabora.com>
+ <CABnWg9sSbtXYLpcCoEts73CAsciKMEeMMRwfcfGng8H-rGYvkA@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CABnWg9sSbtXYLpcCoEts73CAsciKMEeMMRwfcfGng8H-rGYvkA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 27/09/22 15:34, Guillaume Ranquet ha scritto:
+> On Tue, 20 Sep 2022 14:22, AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>> Il 19/09/22 18:56, Guillaume Ranquet ha scritto:
+>>> Add the DPI1 hdmi path support in mtk dpi driver
+>>>
+>>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>>>
+>>> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
+>>> index 630a4e301ef6..91212b7610e8 100644
+>>> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+>>> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+>>> @@ -15,7 +15,10 @@
+>>>    #include <linux/of_graph.h>
+>>>    #include <linux/pinctrl/consumer.h>
+>>>    #include <linux/platform_device.h>
+>>> +#include <linux/reset.h>
+>>>    #include <linux/types.h>
+>>> +#include <linux/regmap.h>
+>>> +#include <linux/mfd/syscon.h>
+>>>
+>>>    #include <video/videomode.h>
+>>>
+>>> @@ -66,10 +69,14 @@ struct mtk_dpi {
+>>>    	struct drm_bridge *next_bridge;
+>>>    	struct drm_connector *connector;
+>>>    	void __iomem *regs;
+>>> +	struct reset_control *reset_ctl;
+>>>    	struct device *dev;
+>>>    	struct clk *engine_clk;
+>>> +	struct clk *dpi_ck_cg;
+>>>    	struct clk *pixel_clk;
+>>> +	struct clk *dpi_sel_clk;
+>>>    	struct clk *tvd_clk;
+>>> +	struct clk *hdmi_cg;
+>>
+>>
+>> You're adding new clocks and then you're making *all clocks*, including the
+>> already existing ones... optional.
+>>
+>> That looks seriously odd.... can you please give a devicetree example for
+>> MT8195 in the next version, perhaps in the cover letter?
+>>
+>> Would also make it easier to test this entire big series.
+>>
+>> Regards,
+>> Angelo
+>>
+> 
+> The clock names are different for MT8195 HDMI than for the legacy DP.
+> Making everything optional might not have been a smart move.
+> I'll try to think of something else to make it look less odd.
+> 
+> The device tree I'm using to test things is rather "hackish" and has a bunch of
+> changes from what is found on linux-next.
+> I think Jason and Nancy are due to upstream those patches.
+> 
+> I'll try to include something minimal for you to test.
+> Otherwise would a public branch containing everything work for you?
+> 
 
---f2ysunquf6nsloxy
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Any reference would work for me, "something minimal" or a public branch, it
+doesn't really matter.
 
-Hi,
+Thanks!
+Angelo
 
-On Wed, Sep 28, 2022 at 01:48:29PM +0200, Thierry Reding wrote:
-> On Tue, Sep 13, 2022 at 04:16:01PM +0200, Sebastian Reichel wrote:
-> > Hi,
-> >=20
-> > On Tue, Sep 13, 2022 at 11:12:02AM +0200, Uwe Kleine-K=F6nig wrote:
-> > > Hello Rob,
-> > >=20
-> > > On Thu, Sep 01, 2022 at 02:14:55PM -0500, Rob Herring wrote:
-> > > > On Thu, 01 Sep 2022 15:55:23 +0200, Sebastian Reichel wrote:
-> > > > > Add "rockchip,rk3588-pwm" compatible string for PWM nodes found
-> > > > > on a rk3588 platform.
-> > > > >=20
-> > > > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > > > ---
-> > > > > No driver changes required.
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 1 +
-> > > > >  1 file changed, 1 insertion(+)
-> > > > >=20
-> > > >=20
-> > > > Running 'make dtbs_check' with the schema in this patch gives the
-> > > > following warnings. Consider if they are expected or the schema is
-> > > > incorrect. These may not be new warnings.
-> > > >=20
-> > > > Note that it is not yet a requirement to have 0 warnings for dtbs_c=
-heck.
-> > > > This will change in the future.
-> > >=20
-> > > Is this a list of *new* warnings, or is the report (somewhat) orthogo=
-nal
-> > > to the actual change and you just used the opportunity that someone
-> > > touched the pwm-rockchip binding to point out that there is some clea=
-nup
-> > > to do?
-> > >=20
-> > > > Full log is available here: https://patchwork.ozlabs.org/patch/
-> > >=20
-> > > Hm, that gives me a 404.
-> >=20
-> > This is an existing problem with the rv1108 binding.
-> > The rk3588 does not have pwm interrupts.
->=20
-> Can somebody go and fix that, then?
 
-I assume this will be taken care of with the rk3128 patchset, since
-that is affected anyways:
-
-https://lore.kernel.org/linux-pwm/f5dd0ee4-d97e-d878-ffde-c06e9b233e38@gmai=
-l.com/
-
--- Sebastian
-
---f2ysunquf6nsloxy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmM0RtQACgkQ2O7X88g7
-+prpdw/8CDA0maCo1deheKUSy8nfdV6SmgJMk9rAjqdItMm4h+mcp3HE1UBP0YB6
-QKATRpGvPYE7fkcxCNQouS7jpcZUy/wKeVrZBMRQ/KFa+FhaqxMi3s71GO43EH82
-pLegd52EYc5FrKJnEPDi9zWjEDw/qrQcrTT8xp4bFfeuo+Fpwl/xB6CniCCQhOVo
-rvI2s/SVjZjBSj4XUF4pkbEFBOwZorajRS/apfYUceMStner4ORF4ltxQFVFeXrq
-oVxRnkrgXCVhmHRRtyyXAsLtQ/7AciTZC0VlyQM9/f/Il97YKgYOX9r/YfjnvKlG
-vLFEFHZHLvt8bpgAHNlQIZSR5LifKmZFsOcegd3wuTfXETtFAYPK9p2oExp8WWJf
-FbTQD6thpSHOpT4ZvFl/UT4s5izLQAa4nfSSIVrMOpk/9ZHgrSJegrBK6LneJE1Z
-0JKAxS8JyF4R5iNVPH4j/UsAhrbeCfz/NY8XD0AFMMRiYit+75VwaUa3lPAYqW+6
-NCct/u7HPCRvqqek+qlbs17jO1XQPwEGmIF9ukgf36bPC0mGEv/ZS9C45KrEaB3l
-hvJ0ZQ7DglTsB5i8ejmNj2zMq1eU+Hn/zMQILcraiVi46+1adEHjQVFuZBKu+Ayf
-SY+pydPmmBBCSJS5bkhYEF7UHGW/fMDew7zLIAziw68K2tWAt44=
-=n053
------END PGP SIGNATURE-----
-
---f2ysunquf6nsloxy--
