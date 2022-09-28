@@ -2,120 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F53B5EDF9C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 17:04:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 030FA5EDFA0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 17:05:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbiI1PEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 11:04:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48412 "EHLO
+        id S234087AbiI1PFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 11:05:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233247AbiI1PEG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 11:04:06 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97BB088A1A;
-        Wed, 28 Sep 2022 08:04:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id ED1D4B81FA2;
-        Wed, 28 Sep 2022 15:04:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDF0CC433C1;
-        Wed, 28 Sep 2022 15:03:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664377438;
-        bh=NRllYnWOmIZn9K9w86cX3L3Nj4a7CsqYqfE3TbG8jFo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EzDIqzwOpCcuTEMA4WbMpGj+/uVLnmZvjsbMne/ABCC1CMSvRTBy/48jWaf0Hg4KY
-         bgw7smjokwizE2hSdWQHQ+cTqWj0rH+KQEeu+Uyzn+lM3xCLLFdgJM89J7TYUHAeRo
-         PX8jGzmMpXwVWpUb47Qi6TDvbxzsP+Ijx8hVO+5DJvVSy6lMnyeN1XcwNChk2gy54W
-         4ZEvIoGNRKBP5M43zUg4/UajXWDeWR+nMBA/jGnAjLu6IV7GlYvUvvk1tLJPPMke4o
-         92YBTWMlPGFYjhuo+qJ3bjl2JKgm01hr4RuLriDn5HfIn5oqsEdk2XrUOdQ0TCAu12
-         RJBE6qFFNqwlA==
-Date:   Wed, 28 Sep 2022 16:03:51 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Sergiu Moga <sergiu.moga@microchip.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com, radu_nicolae.pirea@upb.ro,
-        richard.genoud@gmail.com, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org, kavyasree.kotagiri@microchip.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 1/9] dt-bindings: mfd: atmel,sama5d2-flexcom: Add SPI
- child node ref binding
-Message-ID: <YzRiVwzJYXtat1O5@google.com>
-References: <20220922113347.144383-1-sergiu.moga@microchip.com>
- <20220922113347.144383-2-sergiu.moga@microchip.com>
+        with ESMTP id S233713AbiI1PFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 11:05:48 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AFD23ED64
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 08:05:47 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id ay7-20020a05600c1e0700b003b49861bf48so2601704wmb.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 08:05:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=LbkiTn2AAWuuc6hV3bxP0WyO4RfSlFoBB5RRyBhKRLQ=;
+        b=Od4C1bLx1Yl3Hz1HqnUnvOL+CIUbylDRF341Sr1tz74+sJKO+9rAULiR7NPW7hyipZ
+         VTab/cPzacGT1fmJD5KvIZ9ZtbAn+yWCjmiZSOBFXPr/s0GtDMmwo6M1QrDPgkk+b7L6
+         t+vKGQGUBmtCYFVWkUoptgsRh+VcRFPoOI0JBXuuQjMVvPbAgEESwsbCqtx8zQty41YZ
+         XaBMm5Wh3kom2H1VeMvQBChgapUMiovWpcSVGiRG8Udn4dYWQ8rDbI7RvAdrACcSfisS
+         QN9MWjTUgASv7pnioG6a+7EOA/ULIGSJMOp+ex8QXjolUYFj/fr3TZT19ilvBPVwzIE2
+         8z1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=LbkiTn2AAWuuc6hV3bxP0WyO4RfSlFoBB5RRyBhKRLQ=;
+        b=cYGsVHstDQ1z2lPsUUWvFY8e6rXPz/wI9CZEpAq6dmEmSLj5SOuQhe2RGOpo7KEfgC
+         qwrphziAw9x9euUXZzDDQaZOp5NEZX00IyS/VOTy+oR6hgQzCWmsW2p5sIlruq0IREW3
+         xWW8oUBKqK0o8hwJ6Moai74CvSGYQbXuEmfdg2p2zUsjCGPHdXLTzRotGzXlWso0bK8p
+         CRzhlsCfxvVIm6NARRPeinsnk3gund3rTevklz5heKs9kSSLncEkyZMRM7M7jnQdSTe8
+         f6zzhHUZ2r4iPc9Q3GjGOFjI6/enSebQRvnZ5zigCHBtUvEYgkH9K+rX3L1WQGvGQ5Qy
+         fsSQ==
+X-Gm-Message-State: ACrzQf3WphSkouyST5qVLErNjJrKFo/Q7h/tW829X5hDBc0HTsXEUooG
+        4zn3+mMprURgPemvQYGLR4D5GA==
+X-Google-Smtp-Source: AMsMyM4K0lTNM9cpGRumIQstlHDzumN0c1uVyJVGDQHeRJexGeR7LIBt+gRTfzXJUPQqpWvp8TNPHQ==
+X-Received: by 2002:a05:600c:310b:b0:3b4:c618:180d with SMTP id g11-20020a05600c310b00b003b4c618180dmr7221013wmo.25.1664377545649;
+        Wed, 28 Sep 2022 08:05:45 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id w1-20020a5d5441000000b0022cc0a2cbecsm4072327wrv.15.2022.09.28.08.05.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Sep 2022 08:05:45 -0700 (PDT)
+Message-ID: <cd9a50f4-ff42-a87d-bcea-0af0509cb592@linaro.org>
+Date:   Wed, 28 Sep 2022 16:05:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220922113347.144383-2-sergiu.moga@microchip.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH 1/3] dt-bindings: clock: move qcom,gcc-msm8939 to
+ qcom,gcc-msm8916.yaml
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220928145609.375860-1-dmitry.baryshkov@linaro.org>
+ <20220928145609.375860-2-dmitry.baryshkov@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20220928145609.375860-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Sep 2022, Sergiu Moga wrote:
+On 28/09/2022 15:56, Dmitry Baryshkov wrote:
+> The MSM8939 GCC bindings are fully comptible with MSM8916, the clock
+> controller requires the same parent clocks, move MSM8939 GCC compatible
+> to qcom,msm8916.yaml
 
-> Another functionality of FLEXCOM is that of SPI. In order for
-> the proper validation of the SPI children nodes through the binding
-> to occur, the proper binding for SPI must be referenced.
-> 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> 
-> 
-> v1 -> v2:
-> - use full schema paths
-> 
-> 
-> v2 -> v3:
-> - Added Reviewed-by tag, previously this was [PATCH 3]
-> 
-> 
-> v3 -> v4:
-> - Nothing, previously this was [PATCH 5]
-> 
-> 
-> v4 -> v5:
-> - Nothing
-> 
-> 
-> 
->  .../devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml       | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
+I'm not sure they are _all_ the same but definitely agree the two trees 
+are so close they should live in the same file.
 
-Not sure how these can be handled.
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-I guess I cannot take these until the other patches are applied.
-
-NB: The patch doesn't apply cleanly anyway, so will need to be rebased.
-
-> diff --git a/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
-> index 0c80f4e98c54..f283cfd84b2d 100644
-> --- a/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
-> @@ -78,10 +78,9 @@ patternProperties:
->        of USART bindings.
->  
->    "^spi@[0-9a-f]+$":
-> -    type: object
-> +    $ref: /schemas/spi/atmel,at91rm9200-spi.yaml
->      description:
-> -      Child node describing SPI. See ../spi/spi_atmel.txt for details
-> -      of SPI bindings.
-> +      Child node describing SPI.
->  
->    "^i2c@[0-9a-f]+$":
->      $ref: /schemas/i2c/atmel,at91sam-i2c.yaml
-
--- 
-Lee Jones [李琼斯]
