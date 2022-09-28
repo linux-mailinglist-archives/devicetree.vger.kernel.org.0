@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A0635ED6AF
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 703F05ED6C2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:50:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232142AbiI1Hsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 03:48:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54030 "EHLO
+        id S233908AbiI1Hu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 03:50:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233704AbiI1HsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:48:06 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5732355088
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:44:38 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id l18so6415445wrw.9
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:44:37 -0700 (PDT)
+        with ESMTP id S233861AbiI1Htw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:49:52 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CE5F10196E
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:47:59 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id a8so19106202lff.13
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:47:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:reply-to:from
-         :references:to:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date;
-        bh=a40ycwUQAORZ/EP8EjFJ8+hxzAMohdI5ey9LKUDQA5I=;
-        b=ej2DEi/pbBp1Qa+DcofXiiafQv/Ns28Q0o40aVH0pPtfF6xemW8LQKU4lirCFWXwIv
-         ZX6/A/kwSmkrhQwysbMgmiUhMmAWhjHESR6gT9G1Hd79fQnqiPf9ACbA1Yw9qlAvccNl
-         W2F6dOvDm8UalXovVZDbn9giOxVXOmto90IrSdNVNTJlsM/lc3GfA7KLrPsBy21TC9LI
-         0ZgoSz0jvAW+1+F3altGsknWgNeMHIwZ5CBW+UP5XyzU+ltkzsVpE069rqhchXRGnsqm
-         7MtGui/NQTgQqOEkmfCmilEzcD3VA5KSaASyB2C9bS99BlTM4RFiuSFcx2KKNjKuVmHu
-         DcOA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=3u2lwefLPXnmYQ6lmup0QT7+cqk+0mIC6fnyCD0Or/A=;
+        b=FDSHUOiHB0E5Xq30bp5wadIDxjcFsODbay2U4npKAh8hpuqDXHOBKdrKS/aVSqxOig
+         QqrWAAKqPq/mx0gtntQOOPjs5noDdeQVnA3E6QitgQZC4xflRqIADIlABwEcqLoUW1TW
+         IwQn26g/mgojT9++IqMvpupNoM7XeQ7tKFdUdFhd5cyjb+2ByJ8VxNGqhz/dChGREuT6
+         F7MX4Gfqv3nN78XqcM1UkXhPtCgVNj7ukydV4YkF2lNDhMUvdLgwZlsmoc10PUDy4Fon
+         TxIMTJgQyxkpFg4J/nh/q/PoXXboTiomplxsC0Rm8NAabGzq6F7wurHKyjkwR/uOY+cB
+         8VKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:reply-to:from
-         :references:to:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=a40ycwUQAORZ/EP8EjFJ8+hxzAMohdI5ey9LKUDQA5I=;
-        b=kUoYWseRbMffmT5Zd55D2coIE09q/4o7ZzPOOfNGz8n1KS2xarHZku6a0vIpHDjWap
-         X9VIAZaaJqgKtoCO88Q2T6RqVa28ZclpnTILhc1W8afT4BiRqEIHxVepc7QvbCVBvzBk
-         +vj5O1tO/PiLEFXNILF8wtRCO90OTG046bsL+FLNVaBA8FcWtQrWyQ4hzwub8at6dDHT
-         qvOmVYnQyCp+EQ1BIK5fb24vFZecHrye5RlyvYlSrNIbjMpZYtU64hbigPqkmz3+AdWU
-         xqmEz3p/I2eckaeraftmEb+oQIGPHv9HuiPGFF7YUFETCTM5SPHpAv8FQjXkYzx7Ky51
-         l03Q==
-X-Gm-Message-State: ACrzQf2q6+T6e3CTZq7ELaXPIOtiES9jx0drru7vzcVJXYIGba0ldPl9
-        w3oVYHiiN1FCiUqKBvpX7aVjIQ==
-X-Google-Smtp-Source: AMsMyM4rJC9W+nT3Jo3LHMeaoxrEK4S93UZ7SGe6NmOiNWniaLm+a7HcbKEfmHsH3oeUjVgaoGmZDw==
-X-Received: by 2002:adf:c713:0:b0:22a:3670:b08d with SMTP id k19-20020adfc713000000b0022a3670b08dmr19809577wrg.175.1664351069888;
-        Wed, 28 Sep 2022 00:44:29 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:11d4:7c71:accf:6521? ([2a01:e0a:982:cbb0:11d4:7c71:accf:6521])
-        by smtp.gmail.com with ESMTPSA id 7-20020a05600c020700b003b492753826sm915175wmi.43.2022.09.28.00.44.28
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=3u2lwefLPXnmYQ6lmup0QT7+cqk+0mIC6fnyCD0Or/A=;
+        b=wAuvioE0k2HlVzv+0JZe4d2AcohNEQZ5NYq1Cgp4wmbo7a/CiTmfQIxtFdlqCMatJj
+         HPoCptiKnnJofEWOkDgufV0REB8OO0ETFh9Xxpoa+yWYnXv8nCj8rJJ4RHcKfkpXWwve
+         4sAYegf1lr+ZaMMCnMbjF+Jz6nRe0Ot2hPtuwqdrl3Ta5zERHoOnOgeQgAUTlQ0cweZB
+         JumwZIxBIGJH8/OP8Y7KxXhROxMpDeAjX/ZgjEz+2MEijNRJrafNCsetHDBvi0EmHQhf
+         zY82Rnw4M9onZyjVQBR+4UCVnqUlLi8jZbfOR2OLvdOzarvW0QVW3bFvUyIzzbkawcZH
+         GXgg==
+X-Gm-Message-State: ACrzQf1JhAeQhqWHAmv9kGwNAjSTl0aGCIoF9RImsS+oPTVaPNU+ikBi
+        dSjkWBYxDSqNpPrqPsbYL1WZxQ==
+X-Google-Smtp-Source: AMsMyM5jFe8AXE9vKqxdB0+1hvio/vmanBrP0lg0x2ZB15OFwIviosmDyRIUvskqa+3GZxP87bqKIQ==
+X-Received: by 2002:a05:6512:2806:b0:498:f7ae:75ba with SMTP id cf6-20020a056512280600b00498f7ae75bamr12357796lfb.15.1664351277244;
+        Wed, 28 Sep 2022 00:47:57 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u10-20020a2e2e0a000000b0026bf04aafd2sm369148lju.9.2022.09.28.00.47.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 00:44:29 -0700 (PDT)
-Message-ID: <e157ff8a-403e-b1ce-7a7d-be141cc895f8@linaro.org>
-Date:   Wed, 28 Sep 2022 09:44:28 +0200
+        Wed, 28 Sep 2022 00:47:56 -0700 (PDT)
+Message-ID: <db7055da-b01f-3ca6-20f8-e9bc7ed892bc@linaro.org>
+Date:   Wed, 28 Sep 2022 09:47:55 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: cp01-c1: use "okay" instead of "ok"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v2] dt-bindings: net: marvell,pp2: convert to json-schema
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
+To:     =?UTF-8?Q?Micha=c5=82_Grzelak?= <mig@semihalf.com>,
+        devicetree@vger.kernel.org
+Cc:     mw@semihalf.com, linux@armlinux.org.uk, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220927201415.1265191-1-robimarko@gmail.com>
- <20220927201415.1265191-2-robimarko@gmail.com>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Organization: Linaro Developer Services
-In-Reply-To: <20220927201415.1265191-2-robimarko@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        upstream@semihalf.com
+References: <20220926232136.38567-1-mig@semihalf.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220926232136.38567-1-mig@semihalf.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -79,29 +78,181 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2022 22:14, Robert Marko wrote:
-> Use "okay" instead of "ok" in USB nodes as "ok" is deprecated.
+On 27/09/2022 01:21, Michał Grzelak wrote:
+> This converts the marvell,pp2 bindings from text to proper schema.
 > 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> Move 'marvell,system-controller' and 'dma-coherent' properties from
+> port up to the controller node, to match what is actually done in DT.
+> 
+> Signed-off-by: Michał Grzelak <mig@semihalf.com>
 > ---
->   arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
-> index eaaaaa72234f..c424b8390c78 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
-> @@ -106,9 +106,9 @@ &sdhci {
->   };
->   
->   &qusb_phy_1 {
-> -	status = "ok";
-> +	status = "okay";
->   };
->   
->   &usb2 {
-> -	status = "ok";
-> +	status = "okay";
->   };
+>  .../devicetree/bindings/net/marvell,pp2.yaml  | 241 ++++++++++++++++++
+>  .../devicetree/bindings/net/marvell-pp2.txt   | 141 ----------
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Thank you for your patch. There is something to discuss/improve.
+
+
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - marvell,armada-375-pp2
+> +      - marvell,armada-7k-pp22
+> +
+> +  reg:
+> +    minItems: 3
+> +    maxItems: 4
+> +    description: |
+> +      For "marvell,armada-375-pp2", must contain the following register sets:
+> +        - common controller registers
+> +        - LMS registers
+> +        - one register area per Ethernet port
+> +      For "marvell,armada-7k-pp22" used by 7K/8K and CN913X, must contain the following register sets:
+> +        - packet processor registers
+> +        - networking interfaces registers
+> +        - CM3 address space used for TX Flow Control
+
+Instead of this description, in define them for each variant in
+allOf:if:then (just like for clocks below)
+
+> +
+> +  clocks:
+> +    minItems: 2
+> +    items:
+> +      - description: main controller clock
+> +      - description: GOP clock
+> +      - description: MG clock
+> +      - description: MG Core clock
+> +      - description: AXI clock
+
+This needs to be restricted per variant - minItems and maxItems in
+allOf:if:then.
+
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    items:
+> +      - const: pp_clk
+> +      - const: gop_clk
+> +      - const: mg_clk
+> +      - const: mg_core_clk
+> +      - const: axi_clk
+
+The same.
+
+> +
+> +  dma-coherent: true
+> +  '#size-cells': true
+> +  '#address-cells': true
+
+You need const:X for both cells (unless they come from some other schema
+but then you would not need to list them here).
+
+> +
+> +  marvell,system-controller:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: a phandle to the system controller.
+> +
+> +patternProperties:
+> +  '^eth[0-9a-f]*(@.*)?$':
+
+The name should be "(ethernet-)?port", unless anything depends on
+particular naming?
+
+> +    type: object
+
+You need description here.
+
+> +    properties:
+> +      interrupts:
+> +        minItems: 1
+> +        maxItems: 10
+> +        description: interrupt(s) for the port
+> +
+> +      interrupt-names:
+> +        items:
+
+minItems: 1
+
+> +          - const: hif0
+> +          - const: hif1
+> +          - const: hif2
+> +          - const: hif3
+> +          - const: hif4
+> +          - const: hif5
+> +          - const: hif6
+> +          - const: hif7
+> +          - const: hif8
+> +          - const: link
+> +
+> +        description: >
+> +          if more than a single interrupt for is given, must be the
+> +          name associated to the interrupts listed. Valid names are:
+> +          "hifX", with X in [0..8], and "link". The names "tx-cpu0",
+> +          "tx-cpu1", "tx-cpu2", "tx-cpu3" and "rx-shared" are supported
+> +          for backward compatibility but shouldn't be used for new
+> +          additions.
+> +
+> +      port-id:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: ID of the port from the MAC point of view.
+> +
+> +      phy:
+> +        $ref: /schemas/types.yaml#/definitions/phandle
+> +        description: >
+> +          a phandle to a phy node defining the PHY address
+> +          (as the reg property, a single integer).
+> +
+> +      phy-mode:
+> +        $ref: "ethernet-controller.yaml#/properties/phy-mode"
+
+You can skip quotes.
+
+> +
+> +      marvell,loopback:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description: port is loopback mode.
+> +
+> +      gop-port-id:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: >
+> +          only for marvell,armada-7k-pp22, ID of the port from the
+> +          GOP (Group Of Ports) point of view. This ID is used to index the
+> +          per-port registers in the second register area.
+> +
+> +    required:
+> +      - interrupts
+> +      - port-id
+> +      - phy-mode
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: marvell,armada-7k-pp22
+> +    then:
+> +      patternProperties:
+> +        '^eth[0-9a-f]*(@.*)?$':
+> +          required:
+> +            - gop-port-id
+
+else:
+  patternProperties:
+     ....
+       gop-port-id: false
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+
+Best regards,
+Krzysztof
+
