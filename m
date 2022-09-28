@@ -2,69 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E166F5EE84E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 23:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A9DA5EE895
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 23:48:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232896AbiI1Vbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 17:31:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58836 "EHLO
+        id S233488AbiI1VsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 17:48:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233601AbiI1Vbo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 17:31:44 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B42760FE;
-        Wed, 28 Sep 2022 14:31:41 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id k3-20020a05600c1c8300b003b4fa1a85f8so1688649wms.3;
-        Wed, 28 Sep 2022 14:31:41 -0700 (PDT)
+        with ESMTP id S231269AbiI1VsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 17:48:15 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA9D590C47;
+        Wed, 28 Sep 2022 14:48:14 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-131886d366cso7387857fac.10;
+        Wed, 28 Sep 2022 14:48:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date;
-        bh=kHtcM/ZhNIQfonSbRMlI/alAAHn24v5beci83RsPETQ=;
-        b=QcPgl9ROwUeqG6rw+McsRw+ZhRgG365ZnH4zH77hwFmLx7OXhRi2n0lCo1y2KUvo99
-         1RDlXGyiTTiei5sZYSByiYiNVgKwCiLA2oGzoZZGVUOTsIV+tdhJTjIopATrZdPUScv6
-         vTKhiPK9zzzeBKZds27pPLluyiugXqWNHBNxMBlt40c6brWNOytiw0MqbwEPnYpbjBLX
-         H2SrRN2SabMXgmokbp9OuQurISROaC9JU0MnJEeJ0vcXKLMB8WArmkcM7Gd8uIJRJFbz
-         JWVmKg1lsYzz/8qzXRWXcZ90/Ukj6uTFXve9qiW0QDAIQaAchtsflLGLc4q+aMFmH3YG
-         sejQ==
+        bh=aFNSQQkHdIv3eNYnOMb7IChM7MT7DX0ilP6nUO10rBs=;
+        b=imBuE0cdGBJC3sjLmsTrSlLycr1wooEhXrt/z4Xy+SnN+bpXyFCRHZZP79JyiVjyzV
+         11AWJloBV+BL8YgB8Z/Nh3UyNGLtnq+wdBIealRrk9stZsvZAV9T6JlMdRHLA48LphJY
+         lPrFmxDSOtu4NRTs4ZsjF0L4QkTjcmQ3B/xDWI9z8+5VcFQS8H0nJmrAFM9da/1ENph8
+         u/nST4z6clh7GAJT7U/zuprmaMvtrpMcfC6GaMXE1ivfCKhN22tO/uyxzc47SSNuJjjO
+         Q0FfIQr8+UTZuvoFItrOk9CScACFp+XDlTSfXDih6a3120OxruerK4CY+QLfaOp7CxZU
+         QtXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=kHtcM/ZhNIQfonSbRMlI/alAAHn24v5beci83RsPETQ=;
-        b=UdKla1kT0B4zKY/aD2yttXv6+iJh3CxZdzfGHd12CJSSRtxwAD8+CRwF53DIKDuF8Q
-         52K7eoDGrslp5cTjWJkfGM95Qww0PVXaIBuJNv6OcnVEGcjKT0TD//pljKSLf7ZkbXWX
-         DUAsDXqY88YRzpcnH/ZtAzHFoqfF9lwCR7q4Zm/XQ7/dUPWqwq8yaBfr/itSg/ceS+DD
-         4vVTBNvXSOH+gXTGc7LjNinF/q0sG6M2XXZMnbfc7y7ZcSHcTtlUEuvZ4TapFNRQBLgm
-         eMuNWTBO6q8u2Ru1UQ3Fo2mnVuvTMYN95sRc8Ut5mc8vLHcKNh4mOhAEvSgXqQnnrsmM
-         ZCMg==
-X-Gm-Message-State: ACrzQf0/RSre0JCi7HHHN77pq4iq4BQ0DheDfRR1ZffA5VEaSoBXfMyj
-        Ss5bLfHf0DpPvBNYaCMi+1I=
-X-Google-Smtp-Source: AMsMyM7aOjoYbO4hfmIPy5nzW+hPDOHiP9ssPu0Tsdkl4upfL/5kCoMwt7VCP+e4McZiUqr1nWMk2w==
-X-Received: by 2002:a05:600c:211a:b0:3b4:75ee:c63e with SMTP id u26-20020a05600c211a00b003b475eec63emr8581535wml.44.1664400700333;
-        Wed, 28 Sep 2022 14:31:40 -0700 (PDT)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net. [80.193.200.194])
-        by smtp.gmail.com with ESMTPSA id d15-20020adffd8f000000b00228a6ce17b4sm5082891wrr.37.2022.09.28.14.31.39
+        bh=aFNSQQkHdIv3eNYnOMb7IChM7MT7DX0ilP6nUO10rBs=;
+        b=YMya5gTW1xKBtLFMhA5ofXIiwdh7kcSbpJcrLzhs1Fad6nsRrojgMgkIZUyHO5XQSZ
+         h9b59aXNgoVDTegyYDAq5Iy62+Bi2rQLS6m2AFgzZt6cyZofadLDV1VcuaU9uybor/ok
+         JIASCJdBhhMMcUyjeA9RGm8bEgMDnS5IMyI6+S37Sa5JrHXC8zDns6WW2vrf2cvD2y6T
+         AJ4REP/ltrbFiWoC/GxOweSL6D0A3jGYARa3FN8QijL0G85YOIwtWlV9JnWq7diki9bX
+         wuxDRzNWtlc7pdtbXCMDIYyUl4TXbIqRoV1Em/nWQyQrVxhjuO82+9X5FsjbvUmjrM5x
+         Y22Q==
+X-Gm-Message-State: ACrzQf24eV/GgTCT0B8O9Wdy02dhuJu5CLj/aWzNw+GmuCxxtxEqDYnO
+        c+7irte4y55AVaSnzYtcXTlds5wTRgw=
+X-Google-Smtp-Source: AMsMyM7bRb6y+nY3P0ZugUe6N/OBWdL1ZuJ3NMGuIqOoIgiIR2p0i3hRlKYGJD+gxxpu5X2CDg0MtA==
+X-Received: by 2002:a05:6870:460e:b0:12b:14cc:aa0 with SMTP id z14-20020a056870460e00b0012b14cc0aa0mr6489619oao.279.1664401693731;
+        Wed, 28 Sep 2022 14:48:13 -0700 (PDT)
+Received: from wintermute.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id m18-20020a9d6452000000b00657a221eb71sm2623211otl.65.2022.09.28.14.48.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Sep 2022 14:31:39 -0700 (PDT)
-From:   Colin Ian King <colin.i.king@gmail.com>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Christopher Ruehl <chris.ruehl@gtsys.com.hk>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] devicetree: hwmon: shtc1: Clean up spelling mistakes and grammar
-Date:   Wed, 28 Sep 2022 22:31:39 +0100
-Message-Id: <20220928213139.63819-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.37.1
+        Wed, 28 Sep 2022 14:48:12 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-input@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, rydberg@bitmath.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        dmitry.torokhov@gmail.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/3] Add Hynitron cstxxx Touchscreen
+Date:   Wed, 28 Sep 2022 16:48:03 -0500
+Message-Id: <20220928214806.13572-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,44 +68,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The yaml text contains some minor spelling mistakes and grammar issues,
-clean these up.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- .../devicetree/bindings/hwmon/sensirion,shtc1.yaml        | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+This series adds support for the Hynitron cstxxx (specifically
+the cst3xx series). The cst3xx supports 5 point multitouch with
+hardware tracking of touch points.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml b/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-index 7d49478d9668..159238efa9ed 100644
---- a/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Christopher Ruehl chris.ruehl@gtsys.com.hk
- 
- description: |
--  The SHTC1, SHTW1 and SHTC3 are digital humidity and temperature sensor
-+  The SHTC1, SHTW1 and SHTC3 are digital humidity and temperature sensors
-   designed especially for battery-driven high-volume consumer electronics
-   applications.
-   For further information refere to Documentation/hwmon/shtc1.rst
-@@ -31,13 +31,13 @@ properties:
-   sensirion,blocking-io:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
--      If set, the driver hold the i2c bus until measurement is finished.
-+      If set, the driver holds the i2c bus until the measurement is finished.
- 
-   sensirion,low-precision:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
--      If set, the sensor aquire data with low precision (not recommended).
--      The driver aquire data with high precision by default.
-+      If set, the sensor acquires data with low precision (not recommended).
-+      The driver acquires data with high precision by default.
- 
- required:
-   - compatible
+Note that a datasheet was unavailable for this device, so it was
+built based on vendor provided source code that was tagged as GPLv2.
+Some of the register functions were discovered via trial and error
+and labelled as such.
+
+Chris Morgan (3):
+  dt-bindings: vendor-prefixes: add Hynitron vendor prefix
+  dt-bindings: input: touchscreen: Add Hynitron cstxxx bindings
+  input/touchscreen: Add Hynitron cstxxx touchscreen
+
+ .../input/touchscreen/hynitron,cstxxx.yaml    |  65 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/hynitron_cstxxx.c   | 483 ++++++++++++++++++
+ 5 files changed, 563 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hynitron,cstxxx.yaml
+ create mode 100644 drivers/input/touchscreen/hynitron_cstxxx.c
+
 -- 
-2.37.1
+2.25.1
 
