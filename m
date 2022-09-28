@@ -2,256 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 703F05ED6C2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C0ED5ED6C5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:51:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233908AbiI1Hu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 03:50:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33520 "EHLO
+        id S233909AbiI1HvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 03:51:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233861AbiI1Htw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:49:52 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CE5F10196E
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:47:59 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id a8so19106202lff.13
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:47:59 -0700 (PDT)
+        with ESMTP id S232171AbiI1Hu2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:50:28 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3541EEF3
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:48:42 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id q17so13397671lji.11
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:48:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=3u2lwefLPXnmYQ6lmup0QT7+cqk+0mIC6fnyCD0Or/A=;
-        b=FDSHUOiHB0E5Xq30bp5wadIDxjcFsODbay2U4npKAh8hpuqDXHOBKdrKS/aVSqxOig
-         QqrWAAKqPq/mx0gtntQOOPjs5noDdeQVnA3E6QitgQZC4xflRqIADIlABwEcqLoUW1TW
-         IwQn26g/mgojT9++IqMvpupNoM7XeQ7tKFdUdFhd5cyjb+2ByJ8VxNGqhz/dChGREuT6
-         F7MX4Gfqv3nN78XqcM1UkXhPtCgVNj7ukydV4YkF2lNDhMUvdLgwZlsmoc10PUDy4Fon
-         TxIMTJgQyxkpFg4J/nh/q/PoXXboTiomplxsC0Rm8NAabGzq6F7wurHKyjkwR/uOY+cB
-         8VKw==
+        bh=D6L490iDHj2njK4ypcZeseNDy21C7dvSyWTdsQEPxBQ=;
+        b=wJw3d0GjcogEXixN+p9g1OfsN0pawh+fBXRh1TuDcYnls6cSo1vIS0Eoh0O/7ZueMb
+         2Mdb7ZQfKpNgVpvbaeqUX/D6C1WoQDRxxheQOiY3GR8ME7sr4/+UoZVolBSpYsOVFlG5
+         X3i2UgLzpbG+ELmwNhMhZrKGhmqGXi1RM3WlCgtKkm2Bh95J17LZoxvJ0Akdc35sE3c+
+         sz/KooOi1BNfuhWfdPvZQCN8zLV9YTwEcSr/XTfl6bTW/pufQMdrpfeEQyM6gaSdY0kx
+         aSBcX4pYjbn2YtKJwTSl9lFJPDYeuEox++mMHZ1JaWeFHVXKbg5bNymD0Hd38QtfeQ/B
+         SUnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=3u2lwefLPXnmYQ6lmup0QT7+cqk+0mIC6fnyCD0Or/A=;
-        b=wAuvioE0k2HlVzv+0JZe4d2AcohNEQZ5NYq1Cgp4wmbo7a/CiTmfQIxtFdlqCMatJj
-         HPoCptiKnnJofEWOkDgufV0REB8OO0ETFh9Xxpoa+yWYnXv8nCj8rJJ4RHcKfkpXWwve
-         4sAYegf1lr+ZaMMCnMbjF+Jz6nRe0Ot2hPtuwqdrl3Ta5zERHoOnOgeQgAUTlQ0cweZB
-         JumwZIxBIGJH8/OP8Y7KxXhROxMpDeAjX/ZgjEz+2MEijNRJrafNCsetHDBvi0EmHQhf
-         zY82Rnw4M9onZyjVQBR+4UCVnqUlLi8jZbfOR2OLvdOzarvW0QVW3bFvUyIzzbkawcZH
-         GXgg==
-X-Gm-Message-State: ACrzQf1JhAeQhqWHAmv9kGwNAjSTl0aGCIoF9RImsS+oPTVaPNU+ikBi
-        dSjkWBYxDSqNpPrqPsbYL1WZxQ==
-X-Google-Smtp-Source: AMsMyM5jFe8AXE9vKqxdB0+1hvio/vmanBrP0lg0x2ZB15OFwIviosmDyRIUvskqa+3GZxP87bqKIQ==
-X-Received: by 2002:a05:6512:2806:b0:498:f7ae:75ba with SMTP id cf6-20020a056512280600b00498f7ae75bamr12357796lfb.15.1664351277244;
-        Wed, 28 Sep 2022 00:47:57 -0700 (PDT)
+        bh=D6L490iDHj2njK4ypcZeseNDy21C7dvSyWTdsQEPxBQ=;
+        b=Mg9pZcwMlONybh1oFRubt9kyDPSzt5dtF13i5t/rL6WilLOK+ZvVPj/BsRSgcNbmlL
+         HEeX6q10MO819MJd+DnIoWhwplOaSp3Mb/M5hqSuC6EoLB76WdoZqnHUxOScHQj5a+wf
+         Urn6vOouB9rSC0aZMGltLIteXNZKAqHJr/5kbSS0nso3ccqg3qmPngFnBpaFej1+eNru
+         UPfjDPYBBQNKDjqXAm/u3VdpppQF0Df9eEUrQQ8uygpFctmfgYRv+T87fclu7jbTKn8+
+         6SLUAidJEV1UIodMIC1KSYB9u9iSs7Jrm+XpIebrX4PMstL6LT4hF+FDy/t9RruOszEp
+         iLYQ==
+X-Gm-Message-State: ACrzQf0yWO3D/lX4z0EVzwlMHXtlu6E5NdR+PMGaK3nxOWVYDgyJer6E
+        ENUPoG4JjG5xH+5cndPyWOoubQ==
+X-Google-Smtp-Source: AMsMyM6OU/EUX4mgVAAvlIdRSEs/5jIx1jMPGIGP2LYwtowiy6zTx1NmtUKgRlq6L3D/HCK6OIqKrQ==
+X-Received: by 2002:a2e:81d1:0:b0:26c:3a94:e169 with SMTP id s17-20020a2e81d1000000b0026c3a94e169mr11862324ljg.299.1664351321212;
+        Wed, 28 Sep 2022 00:48:41 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u10-20020a2e2e0a000000b0026bf04aafd2sm369148lju.9.2022.09.28.00.47.55
+        by smtp.gmail.com with ESMTPSA id bj37-20020a2eaaa5000000b0026be23f24efsm370040ljb.18.2022.09.28.00.48.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 00:47:56 -0700 (PDT)
-Message-ID: <db7055da-b01f-3ca6-20f8-e9bc7ed892bc@linaro.org>
-Date:   Wed, 28 Sep 2022 09:47:55 +0200
+        Wed, 28 Sep 2022 00:48:40 -0700 (PDT)
+Message-ID: <e35be256-047a-4bf3-2f7c-6a2b37357cb0@linaro.org>
+Date:   Wed, 28 Sep 2022 09:48:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2] dt-bindings: net: marvell,pp2: convert to json-schema
+Subject: Re: [PATCH v3 1/4] dt-bindings: dma: qcom: gpi: add fallback
+ compatible
 Content-Language: en-US
-To:     =?UTF-8?Q?Micha=c5=82_Grzelak?= <mig@semihalf.com>,
-        devicetree@vger.kernel.org
-Cc:     mw@semihalf.com, linux@armlinux.org.uk, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        upstream@semihalf.com
-References: <20220926232136.38567-1-mig@semihalf.com>
+To:     Richard Acayan <mailingradian@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220927014846.32892-1-mailingradian@gmail.com>
+ <20220927014846.32892-2-mailingradian@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220926232136.38567-1-mig@semihalf.com>
+In-Reply-To: <20220927014846.32892-2-mailingradian@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2022 01:21, Michał Grzelak wrote:
-> This converts the marvell,pp2 bindings from text to proper schema.
+On 27/09/2022 03:48, Richard Acayan wrote:
+> The drivers are transitioning from matching against lists of specific
+> compatible strings to matching against smaller lists of more generic
+> compatible strings. Use the SDM845 compatible string as a fallback in
+> the schema to support this change.
 > 
-> Move 'marvell,system-controller' and 'dma-coherent' properties from
-> port up to the controller node, to match what is actually done in DT.
-> 
-> Signed-off-by: Michał Grzelak <mig@semihalf.com>
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 > ---
->  .../devicetree/bindings/net/marvell,pp2.yaml  | 241 ++++++++++++++++++
->  .../devicetree/bindings/net/marvell-pp2.txt   | 141 ----------
-
-Thank you for your patch. There is something to discuss/improve.
 
 
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - marvell,armada-375-pp2
-> +      - marvell,armada-7k-pp22
-> +
-> +  reg:
-> +    minItems: 3
-> +    maxItems: 4
-> +    description: |
-> +      For "marvell,armada-375-pp2", must contain the following register sets:
-> +        - common controller registers
-> +        - LMS registers
-> +        - one register area per Ethernet port
-> +      For "marvell,armada-7k-pp22" used by 7K/8K and CN913X, must contain the following register sets:
-> +        - packet processor registers
-> +        - networking interfaces registers
-> +        - CM3 address space used for TX Flow Control
-
-Instead of this description, in define them for each variant in
-allOf:if:then (just like for clocks below)
-
-> +
-> +  clocks:
-> +    minItems: 2
-> +    items:
-> +      - description: main controller clock
-> +      - description: GOP clock
-> +      - description: MG clock
-> +      - description: MG Core clock
-> +      - description: AXI clock
-
-This needs to be restricted per variant - minItems and maxItems in
-allOf:if:then.
-
-> +
-> +  clock-names:
-> +    minItems: 2
-> +    items:
-> +      - const: pp_clk
-> +      - const: gop_clk
-> +      - const: mg_clk
-> +      - const: mg_core_clk
-> +      - const: axi_clk
-
-The same.
-
-> +
-> +  dma-coherent: true
-> +  '#size-cells': true
-> +  '#address-cells': true
-
-You need const:X for both cells (unless they come from some other schema
-but then you would not need to list them here).
-
-> +
-> +  marvell,system-controller:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: a phandle to the system controller.
-> +
-> +patternProperties:
-> +  '^eth[0-9a-f]*(@.*)?$':
-
-The name should be "(ethernet-)?port", unless anything depends on
-particular naming?
-
-> +    type: object
-
-You need description here.
-
-> +    properties:
-> +      interrupts:
-> +        minItems: 1
-> +        maxItems: 10
-> +        description: interrupt(s) for the port
-> +
-> +      interrupt-names:
-> +        items:
-
-minItems: 1
-
-> +          - const: hif0
-> +          - const: hif1
-> +          - const: hif2
-> +          - const: hif3
-> +          - const: hif4
-> +          - const: hif5
-> +          - const: hif6
-> +          - const: hif7
-> +          - const: hif8
-> +          - const: link
-> +
-> +        description: >
-> +          if more than a single interrupt for is given, must be the
-> +          name associated to the interrupts listed. Valid names are:
-> +          "hifX", with X in [0..8], and "link". The names "tx-cpu0",
-> +          "tx-cpu1", "tx-cpu2", "tx-cpu3" and "rx-shared" are supported
-> +          for backward compatibility but shouldn't be used for new
-> +          additions.
-> +
-> +      port-id:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: ID of the port from the MAC point of view.
-> +
-> +      phy:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description: >
-> +          a phandle to a phy node defining the PHY address
-> +          (as the reg property, a single integer).
-> +
-> +      phy-mode:
-> +        $ref: "ethernet-controller.yaml#/properties/phy-mode"
-
-You can skip quotes.
-
-> +
-> +      marvell,loopback:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description: port is loopback mode.
-> +
-> +      gop-port-id:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: >
-> +          only for marvell,armada-7k-pp22, ID of the port from the
-> +          GOP (Group Of Ports) point of view. This ID is used to index the
-> +          per-port registers in the second register area.
-> +
-> +    required:
-> +      - interrupts
-> +      - port-id
-> +      - phy-mode
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +allOf:
-> +  - $ref: ethernet-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: marvell,armada-7k-pp22
-> +    then:
-> +      patternProperties:
-> +        '^eth[0-9a-f]*(@.*)?$':
-> +          required:
-> +            - gop-port-id
-
-else:
-  patternProperties:
-     ....
-       gop-port-id: false
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
