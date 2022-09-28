@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1D905EDF48
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 16:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83B675EDF4E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 16:56:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234119AbiI1O4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 10:56:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60394 "EHLO
+        id S233713AbiI1O4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 10:56:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234309AbiI1O43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 10:56:29 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12BAF9B859
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 07:56:12 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id s10so14630596ljp.5
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 07:56:12 -0700 (PDT)
+        with ESMTP id S234454AbiI1O4b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 10:56:31 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C88109B87D
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 07:56:13 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id a14so14611717ljj.8
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 07:56:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=WD80FrVdvy3Avi4/+rEs2QAN7n7JbPi4VTfpdv+hG/M=;
-        b=dM7LSPe2Kl9eYwv5S6vYy1q/f3+nyBfzky4fq4MGyceP/DKe0isHliv1943SNArxOe
-         iRg9vIn7JJpvZVMK656df40iymHXkuM+Opu2pQmNpQWjNOVf46xYfDzDhWWPz9HJBgpn
-         A8bmiBSnbJz7jyfc7zPaJiMvt51emYU1Mx2GW/5dCoGyLCSGLQKGBKu8unA53ZiPqvbM
-         NG4xupmyRRDhjDK5OEiJbHtjKJCTon04P8x0/iE0E2BCOwfOvtw/keTOMrD+/haZlmzs
-         480sTYvd7FylEzgZY2ZzFxnTbhQaBf2BLM+VwQLLF6f/BWPSESVnqDrhVGHRe/g6vH7q
-         J9SA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=WNvCU5BgP4cLQ1KOWwPdEXpzkinKzwkXxiYmcUxdJA8=;
+        b=GdI/dJdD9k6/mJPUiQ3XGPbO4ayqezDXa2hlljGMU8eUyxmyCbCywtDxLq72TSTNN5
+         YG0RtXoIpJfr825wiKb1BLEPNq7j2I4TCv+FWsdv2tu0QI7+9RuRj0iLkccSfCsD92sZ
+         n064bcPA+GLxhu8aHIn62eiBGWbjPdQXrlEb8Hzyib3bO7hKSd5QgHAko3FGohUl9IJS
+         LusBAZFxpz9hGfa5O64BvvPHOj9j2Lf1Vg1nqjeSBh+10syliuaNnHnkRT5a40UJcrVi
+         IRHtQq5Y3M+zBxupBPWGKeI8fT9HDOw1WjeNrampTRusyXeMyXLBeoCjPSCi69ADUwU6
+         O+lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=WD80FrVdvy3Avi4/+rEs2QAN7n7JbPi4VTfpdv+hG/M=;
-        b=MazPykoqj6shxA9FPPMVbDUXy179JDLVw1vQaANNdZuGbYLisr3GMRJ/Ir7FIVah6P
-         UNlym3tvhmibqyuffQw7B0YUYecmJFTHAV6NdGxf/UQVKcRbgiN5hvip9F/B54Uz7oi+
-         Avx0MMWbu89DTyHzeqE9pnQTqjJa1sCh6DKNfQONBsJu7n6Nu4CGtcy4aL+kxCujmPV3
-         pvb6C1FxtFo2ZP7bl/Mocfb8V8m97rnfSM2wqh/0XU5FET6R4rjF8Ah2QA1ZJRDlrg8w
-         VOokepLsKlxrtC8sg8M6rbYb5A5FSJF2aRXYwcVh9eHt2f5Ki2Rn0cbMH34oV7krl0uu
-         4YHw==
-X-Gm-Message-State: ACrzQf2MArzJTNW02qjQbX2cyXpWU2A05hGEvH5Lkx/AKTG5o4XKGcwL
-        VZNlNgK6LlJ4VPxrHPK9iUgi9A==
-X-Google-Smtp-Source: AMsMyM78t54OBnJwecOi+K74O3HJ6iZUklhvHR9j8ZzUIW/X7apmgvgZ4hUazq8Uftd6Hhs0G7Q/ug==
-X-Received: by 2002:a05:651c:146:b0:26d:9eb6:7f35 with SMTP id c6-20020a05651c014600b0026d9eb67f35mr5538134ljd.311.1664376970823;
-        Wed, 28 Sep 2022 07:56:10 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=WNvCU5BgP4cLQ1KOWwPdEXpzkinKzwkXxiYmcUxdJA8=;
+        b=O1Xx/k75PEBjHOAwEgkTLOsj9Ir5d6ZsfbgKHeo0QHmX/fQUaPukPbFVL+rFPbaOmj
+         SwN7v0FNgAPNfygbR0F6a27XN9+gmShI5RV1YUoSVZ2VewA/lkb8kiR4qV2xxrUA9xAX
+         yDnGl1UqSDmmiwc1f20zy/SxHfGbpvaQiPcdmYRAMKnZJnLxsBR0Wsvbkso9YGgWseYB
+         XXxtntBFLczI1HUfgh3l+MvzfKh9jICMTCtLsFA4C6veX8nb0ywiylDE5hhNO4WMluUN
+         C8cDzOBEhQCKLUnfWyxoYuxuNKVbM7JhLL/T3bsJ4t2+ykYqnzudjtHjMJV4oUCvN9h7
+         A3CA==
+X-Gm-Message-State: ACrzQf1H5KKtBo3bcGtRzWdObbPV8M17UoeziEXCnB7suVMEUao21kfV
+        6QNrIsKieBIG7/0Vt6sYonhTDg==
+X-Google-Smtp-Source: AMsMyM7tTmymw6eXquT9dnrNh1y8Bs9UycM0h+950vViQDtRpWYwcw9CKRsCGRaRzUdnEpd0u/UMOg==
+X-Received: by 2002:a2e:a602:0:b0:264:5132:f59 with SMTP id v2-20020a2ea602000000b0026451320f59mr12405974ljp.0.1664376971585;
+        Wed, 28 Sep 2022 07:56:11 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
         by smtp.gmail.com with ESMTPSA id o6-20020a05651238a600b0048b256bb005sm498094lft.49.2022.09.28.07.56.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Sep 2022 07:56:10 -0700 (PDT)
+        Wed, 28 Sep 2022 07:56:11 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,37 +60,91 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org,
         "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Subject: [PATCH 0/3] clk: qcom: gcc-msm8939: several small fixes
-Date:   Wed, 28 Sep 2022 17:56:06 +0300
-Message-Id: <20220928145609.375860-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: clock: move qcom,gcc-msm8939 to qcom,gcc-msm8916.yaml
+Date:   Wed, 28 Sep 2022 17:56:07 +0300
+Message-Id: <20220928145609.375860-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220928145609.375860-1-dmitry.baryshkov@linaro.org>
+References: <20220928145609.375860-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Apply several small fixes used for other Qualcomm clock drivers:
-- Use ARRAY_SIZE and parent_hws where applicable in gcc-msm8939 driver
-- Move gcc-msm8939 schema from gcc-other to gcc-msm8916 to declare the
-  clocks/clock-names used by this platform.
+The MSM8939 GCC bindings are fully comptible with MSM8916, the clock
+controller requires the same parent clocks, move MSM8939 GCC compatible
+to qcom,msm8916.yaml
 
-Dmitry Baryshkov (3):
-  dt-bindings: clock: move qcom,gcc-msm8939 to qcom,gcc-msm8916.yaml
-  clk: qcom: gcc-msm8939: use parent_hws where possible
-  clk: qcom: gcc-msm8939: use ARRAY_SIZE instead of specifying
-    num_parents
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../devicetree/bindings/clock/qcom,gcc-msm8916.yaml   | 11 ++++++++---
+ .../devicetree/bindings/clock/qcom,gcc-other.yaml     |  3 ---
+ 2 files changed, 8 insertions(+), 6 deletions(-)
 
- .../bindings/clock/qcom,gcc-msm8916.yaml      |  11 +-
- .../bindings/clock/qcom,gcc-other.yaml        |   3 -
- drivers/clk/qcom/gcc-msm8939.c                | 552 +++++++++---------
- 3 files changed, 284 insertions(+), 282 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
+index 564aa764b17b..2ceb1e501ef9 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/clock/qcom,gcc-msm8916.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Qualcomm Global Clock & Reset Controller Binding for MSM8916
++title: Qualcomm Global Clock & Reset Controller Binding for MSM8916 and MSM8939
+ 
+ maintainers:
+   - Stephen Boyd <sboyd@kernel.org>
+@@ -12,14 +12,19 @@ maintainers:
+ 
+ description: |
+   Qualcomm global clock control module which supports the clocks, resets and
+-  power domains on MSM8916.
++  power domains on MSM8916 or MSM8939.
+ 
+   See also:
+   - dt-bindings/clock/qcom,gcc-msm8916.h
++  - dt-bindings/clock/qcom,gcc-msm8939.h
++  - dt-bindings/reset/qcom,gcc-msm8916.h
++  - dt-bindings/reset/qcom,gcc-msm8939.h
+ 
+ properties:
+   compatible:
+-    const: qcom,gcc-msm8916
++    enum:
++      - qcom,gcc-msm8916
++      - qcom,gcc-msm8939
+ 
+   clocks:
+     items:
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+index aae83a22b5fb..76988e04c7db 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+@@ -18,9 +18,7 @@ description: |
+   - dt-bindings/clock/qcom,gcc-ipq4019.h
+   - dt-bindings/clock/qcom,gcc-ipq6018.h
+   - dt-bindings/reset/qcom,gcc-ipq6018.h
+-  - dt-bindings/clock/qcom,gcc-msm8939.h
+   - dt-bindings/clock/qcom,gcc-msm8953.h
+-  - dt-bindings/reset/qcom,gcc-msm8939.h
+   - dt-bindings/clock/qcom,gcc-msm8974.h (qcom,gcc-msm8226 and qcom,gcc-msm8974)
+   - dt-bindings/reset/qcom,gcc-msm8974.h (qcom,gcc-msm8226 and qcom,gcc-msm8974)
+   - dt-bindings/clock/qcom,gcc-mdm9607.h
+@@ -38,7 +36,6 @@ properties:
+       - qcom,gcc-ipq6018
+       - qcom,gcc-mdm9607
+       - qcom,gcc-msm8226
+-      - qcom,gcc-msm8939
+       - qcom,gcc-msm8953
+       - qcom,gcc-msm8974
+       - qcom,gcc-msm8974pro
 -- 
 2.35.1
 
