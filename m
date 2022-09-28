@@ -2,390 +2,743 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BFE05ED363
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 05:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2C1A5ED373
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 05:27:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232557AbiI1DQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 23:16:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40844 "EHLO
+        id S231167AbiI1D1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 23:27:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232496AbiI1DQq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 23:16:46 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D34CE422D6;
-        Tue, 27 Sep 2022 20:16:41 -0700 (PDT)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cx9OGOvDNjuxAjAA--.64292S4;
-        Wed, 28 Sep 2022 11:16:38 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231986AbiI1D06 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 23:26:58 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2139.outbound.protection.outlook.com [40.107.243.139])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD720979E7;
+        Tue, 27 Sep 2022 20:26:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i8QZ7qW5KH6Vzkp0ze0d8rghGo7LjYhwZlUbB6VSFRFenOqWDN3aLGw/duiNEXrtFaDMSSre4Pz2GiAhsmS5WTpjJsCqzWNOsKJAE89R2P+esrQuWR/vDhYbPglz+kErsXJ9sk+IuqMzfKNbT0zBqNKjQXQLuJLHPcxcWwxjYOqRA5nAyGpZ3k6ARiCoNDYjulfFwzEXLxtdxWEqNSxZqv5qDE1H8OoRNjDOTn5mmEO5lycd73s5iVSRoltjLKs6qIMQnmxDzKj/xMPxCpSIwl+2pRRvbwMi63e7c8a1zISkEFJ9RITVnO7AEdsC8/eZDY7xDZsDVexCSoTrDdkYXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0Wg3hkNIZCBSOWrR/USBGQ8c0rGPgO9h/XPhN5AExVE=;
+ b=Uw97McpQB7EvhYM6Nt3oeci7cVjUiwAUsdANtwREyb50XBANVw+cefzXq1io+BZjh3k7iluzSWWWaL3sr1qj4a6ZsUtsQQgOLHWBQ4OkYsmD2CKqOGTwTzPTMQdIdI0ZAJgPkVGB6u+GzxMgcLhQbtqK/UBWdzn9RQHHOxBO2WqYrlcbPUkAC77+UoDNyydJmGmQ7TSf85P11HQxnho70Ob9NYCMLNkT49ZV6hEc+NyzpVOry5yK2PH7PVK8fhER5TystCs6PFDuP9HlF9IzZQ4CMg5IoZTvmrScoqEK0Hr4tssmTAhuINnWDOii2kz3HJC7tCWgvikm9tv6zHWJnw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0Wg3hkNIZCBSOWrR/USBGQ8c0rGPgO9h/XPhN5AExVE=;
+ b=vES2Rldl0Glba1cqVazoeDmNH+Nv3JHVpyrMUIzp7JnBq3lpeo6jq15ZuqiGfb3KFNqum+O052CtGvJaCZJU3ipeZ5Godvzdj7pVqiCzAoe0mqE7JTreqq/NGIn0hvFq6BUccaG1fcWMDxgaH8qgclLq8fQwo4V4k+u7pWi6F+U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ DM5PR01MB2731.prod.exchangelabs.com (2603:10b6:3:ff::11) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5654.19; Wed, 28 Sep 2022 03:26:50 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::7d50:e907:8e2e:1ff0]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::7d50:e907:8e2e:1ff0%3]) with mapi id 15.20.5676.017; Wed, 28 Sep 2022
+ 03:26:49 +0000
+Message-ID: <0550e082-03e3-d02b-460b-0d09eb0b1cee@os.amperecomputing.com>
+Date:   Wed, 28 Sep 2022 10:26:39 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.3.0
+Subject: Re: [PATCH v3 RESEND 2/2] ARM: dts: aspeed: Add device tree for
+ Ampere's Mt. Mitchell BMC
+Content-Language: en-CA
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com, devicetree@vger.kernel.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Andrew Jeffery <andrew@aj.id.au>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: [PATCH v4 3/3] thermal: loongson2: add thermal management support
-Date:   Wed, 28 Sep 2022 11:16:28 +0800
-Message-Id: <20220928031628.6463-3-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220928031628.6463-1-zhuyinbo@loongson.cn>
-References: <20220928031628.6463-1-zhuyinbo@loongson.cn>
+        Rob Herring <robh+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, openbmc@lists.ozlabs.org
+References: <20220926075848.206918-1-quan@os.amperecomputing.com>
+ <20220926075848.206918-3-quan@os.amperecomputing.com>
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+In-Reply-To: <20220926075848.206918-3-quan@os.amperecomputing.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI1PR02CA0049.apcprd02.prod.outlook.com
+ (2603:1096:4:1f5::18) To SJ0PR01MB7282.prod.exchangelabs.com
+ (2603:10b6:a03:3f2::24)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Cx9OGOvDNjuxAjAA--.64292S4
-X-Coremail-Antispam: 1UD129KBjvJXoW3Ww4UCrWUGrWxJr4ruFy5CFg_yoWfuF45pF
-        W3J3y5GrsrGFsrZwnrAr1UCFs0vwnIyFy3ZFZ7Gw1S9rZ3J343Wry8JFy8ZrySkryDCF15
-        ZrZ8KFWUCFWDX3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUPG14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_Jryl82xGYIkIc2
-        x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
-        Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0D
-        M2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjx
-        v20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1l
-        F7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2
-        IY04v7MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC2
-        0s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI
-        0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv2
-        0xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87
-        Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIF
-        yTuYvjfUFrcTDUUUU
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR01MB7282:EE_|DM5PR01MB2731:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2618f036-a2ea-415c-1e9f-08daa1014772
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jO6gsL46lrIUb4IGeC0SgQG0qWjS3HlzfW6WUB5Y26CbEk2gfjEbisjE0BVlowAQa/LZb+E38QvpCLQ0R29z0Nl0QWqYEakqtPrDaCAdsF9YSNsyzSeLVBBfuL+dlaKkp1Il5eAWDBSDnbqOgrMFsFd6KOj63po5y8PALmpaxgoDm3BkinKSA6zDVG80OwKF1/3UDPP4OKPEPf6cDkZmuI73ZffZgISng4LiwDqLPhr2TQJJ8DmGG909pMW2uz2V3UB3jCRTx8BJe9qSGjLFXznsco3/WXNHsEHNYR2uScCVENCICaOrtDSJePiQinUDXvGWL4yhx/NsOZ7Fiw4TDUSCy/mOMPinUbczUhJ28cDgL9i8j2YfzsDk+ynjBdxmykDZDRDNGHv36YkCIJZMmK3KbUfCESF5XxyLACTzsvzjuAvX6EJL54lyPOsrOTIWCUqejctbQ0IsEzLo90RMCbDPn0jOtBFHTnbT30liWIGRdwe7MMBCMvBXl2OdQRVHonPsD65e2MoDKFcracgYULYAqYbFX2FkqHM+Dqs2LkNC7IOqs0+UH0hQ34xRDYWIwr4msPe2YcWFUXr+ihDbKndQTL/9Zl6Z6by4hVQGJVa+AMiy6b30NSF4fkLIU6UGcOgBEwye2ebdn9FExRVV8DGI1cFc8qMOFkFv/2fg+oZwfNQjYt47iiyvR152TVgu1DRSUm0Anawzm9dUMEGN0cuAVHK6XXXDgEn3ccy0p403/jMFLpuMkJgapDltglHpUlR7uyRzY4GBAxMcAyElHmNL051WA+tf9qvXtKxo5Jq6KxXZa+ob/0tfNax21MhDQ9dTjt2sOCz/uaj4gPOHD7+o+/TM7+o3o5LimyXccTFHXMgKoHO1a/XxvP32Ir4A
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39850400004)(396003)(366004)(346002)(136003)(376002)(451199015)(5660300002)(30864003)(83380400001)(38100700002)(41300700001)(38350700002)(6512007)(66476007)(66574015)(6666004)(2906002)(52116002)(53546011)(8936002)(7416002)(31686004)(54906003)(6506007)(26005)(8676002)(66556008)(186003)(2616005)(4326008)(6486002)(66946007)(316002)(6916009)(478600001)(31696002)(86362001)(449214003)(43740500002)(414714003)(473944003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?azdUb0dDekRkTHJHNGFOTnJVV1hhR3R5RytHUXBFUXNFZ1VSWDBtckdXdnAx?=
+ =?utf-8?B?c3lUQzZUMmJ0bnZJSUpRVktTQ3hNWTFOc05EKzh1SjFwVlNYcDNVSzgzYWxw?=
+ =?utf-8?B?MGx2TEZxb2dFSkhnaGJTVCtLRG91ZFQ3bkxWTlFtZGovcXppb0hlcEFPQldz?=
+ =?utf-8?B?aVpEUlBzN3orOVV1YncwZ0kxemcvc0Z6MFM0QXdpZTRTeENGYjQzZ29QS2w3?=
+ =?utf-8?B?Z0dKYU51Zk9DUEIvdmR4TTdtTytMSGYyYkNFRTFtS2pEOWtXNWlrTHBHeUty?=
+ =?utf-8?B?Y2FURFJtemZ1a0kwdm9QdnZVQ2xwaCtCVkZxZ2g5ejRHYlExUmcvVHFOZWti?=
+ =?utf-8?B?SWNyNzU3ODdqaWhrN05iRGhOSlJhMHVEZnk3RHR3VXl1a3ZXV3pPNkhFMEkx?=
+ =?utf-8?B?UVlBeXRRa1VRZGpUSjRIZmM3Qk82Y29aVExzUldGMnkwVUNtcGMwbGNKWDhu?=
+ =?utf-8?B?MzdaL1g4UW5QZ21USCtQeDZUdEFGc2M0cnV4OHpiSTkxME1JZEFsb0NLcnN2?=
+ =?utf-8?B?dm5sQVhHR0V5a3ZqWDFQMy9Qa2NUczZXNzhrUVIvNFFWcW5BQzE0R2pZN1l0?=
+ =?utf-8?B?SVBqUTFmMHdtRE16U2JneWVkQm9KL2NDcXFranYzUVZSREw4TTNEdDM2a21x?=
+ =?utf-8?B?NWNPUEE4RzN1WkN5QkFCbFhzNUxkMEZWMXBpbmxvczR0Ymk2UGZRMDc4YUxr?=
+ =?utf-8?B?YmZiRm0yNlQwSmpLbmF1SmF5MlRjUmtDcVBWT3ExOVcySlNjdWlpanA1bkIy?=
+ =?utf-8?B?TEMyN2tzSHJlMlhZSjZsSjhRbzlLMmdON0pXeXpRV2VYMkJTcVdqOTlDVEtY?=
+ =?utf-8?B?Ky8zTHFlbitQU0d3cVlWdzhoOTJmc2g1dXpKTjJiSVJITGM5YXY3WWJhZFlC?=
+ =?utf-8?B?L0crZ0hieWQ2TG5UQ1RjOUxSazh2YkIzL0FCazNtZHBWQXN6UVdpMnQ5TXJL?=
+ =?utf-8?B?RXRWakF2NEg2SFMwUnFTZ0pCWHR1MEJuN25xR3M3QllaSnpROVMxNHVJOEU0?=
+ =?utf-8?B?Q3gwMEdYeC83Vk15REVUaVJFamdaOUxIUGJRM0FreVN4SVpYWkF3S2xRckdl?=
+ =?utf-8?B?UG5VN0xUcmQ2RjRIeC9Ea2RmL2hWUHJ0LzFOQ1BsdUdrR2pCM0xBVXZpNGNq?=
+ =?utf-8?B?dC83ZGpvZ0VSdVZqSmE3WEVXQ1pRaytnZEcwcUFQQVZxL1U1Z0dqK3MycEc4?=
+ =?utf-8?B?R1JNRVZyRTZmU283a1dOZTVPcTA4V3V2VGlSWjJ3VGlNK1J3MC9zQzQ2dWdj?=
+ =?utf-8?B?UzJLandIR281RWdWdkVZMEtEOGhQZk1vYjZjRm9ib2VtUXdWclA5N0xCdFBR?=
+ =?utf-8?B?YzBORVZoMW05MDB4c1V1M05mRm9KMkRFVkVzU0lxNUtyMTJkYXRTZ2RGeW0r?=
+ =?utf-8?B?WnJEZmRHUjkwMTYwTTFNcUg1dDlmWEw3dmo3VGg1WnVJN3VLcGgvV2xZb1cr?=
+ =?utf-8?B?eFRxOEl2czNZS29NR0pLMFgxSmt0K1dJejA2SWFScC96RTVRbnByNXlmWkFY?=
+ =?utf-8?B?dHB5bm1aelRDTWYzUlRteDVCb1FtM2x5RG9sNWgybGhSRnhraWtFTG9ORjJI?=
+ =?utf-8?B?eVF5M1UreWlveXl6dGkweXE4TDkvT1NrMjdXWDdHT0FCbHI5eDA5SzRBV3dF?=
+ =?utf-8?B?aUV2ODZyckZNOTRhMi9BOVFWY1F0T3NjR2ZXVGhqb0pxL2xVTGxlWENHUTlh?=
+ =?utf-8?B?eGlPYUJhS1kwbzcxZ1llR2RYTnp0alNrVi9yeFYrdkZkakErYldNY2FsV0I3?=
+ =?utf-8?B?NHFzV2sxSnA0aDNTZFI4Z05QbVlpRkFraGNrOFREMUZER3FSbnpQZk4zVDlx?=
+ =?utf-8?B?UHo5NWdqTVF1NVRKZWlvZkhpN0hOQTB4T3JDNG16OFZlWWNFdzRpYjdBak5O?=
+ =?utf-8?B?MkJ0ci9WSS9jb21BTmJ4eDFuQ2Z6aWZoSjRNRkhPK3BSakt5YVdyNm5vUGo5?=
+ =?utf-8?B?dmpIWStMMDV3blBLT2FPTnk5YUM5YjlwY2RRQ2RRaWhhUkd0TTJ3RUQrSHM2?=
+ =?utf-8?B?ajluUGZWUDlDYVFlV3J5aWxDcFplWmdlS29adURUY3hGZFFEOXpwWWpKVkNu?=
+ =?utf-8?B?MnJ4Q2lQdGVmS29GSmtNcmxLckl1M1R3cWpta0NNRDRCZXJiclNBbzExdk1a?=
+ =?utf-8?B?K2pibnJheGhrYjA2SDRpcDQwK1ZLcS9mUDNrTEtUTkF4U3FBcERQTWJQbk0r?=
+ =?utf-8?Q?6rsT/srclLROOs7F2SsnoFw=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2618f036-a2ea-415c-1e9f-08daa1014772
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 03:26:49.6735
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nlNvE8cJ3gGP+yXqU/cbZA4PwlRAgjayWQzAoILf7CypYFc3iLPn4xvH5UmCVCipBHxMbY/STdPh2Ts+4b5NF5Txui5lJGhGc/o97iS96DU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR01MB2731
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,WEIRD_QUOTING autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the support for loongson2 thermal sensor controller,
-which can support maximum 4 sensors.
+Dear Joel
 
-It's based on thermal of framework:
- - Trip points defined in device tree.
- - Cpufreq as cooling device registered in loongson2 cpufreq driver.
- - Pwm fan as cooling device registered in hwmon pwm-fan driver.
+Thank you for queuing the patch. Could possibly you pick it to openbmc 
+dev-5.15 branch as well?
 
-Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
----
-Change in v4:
-		1. Fixup the compatible.
+Thank you,
+- Quan
 
- drivers/thermal/Kconfig             |  10 ++
- drivers/thermal/Makefile            |   1 +
- drivers/thermal/loongson2_thermal.c | 268 ++++++++++++++++++++++++++++
- 3 files changed, 279 insertions(+)
- create mode 100644 drivers/thermal/loongson2_thermal.c
-
-diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-index e052dae614eb..6b60397e96a1 100644
---- a/drivers/thermal/Kconfig
-+++ b/drivers/thermal/Kconfig
-@@ -504,4 +504,14 @@ config KHADAS_MCU_FAN_THERMAL
- 	  If you say yes here you get support for the FAN controlled
- 	  by the Microcontroller found on the Khadas VIM boards.
- 
-+config LOONGSON2_THERMAL
-+	tristate "Loongson2 SOC series thermal driver"
-+	depends on OF
-+	default y
-+	help
-+	  Support for Thermal driver found on Loongson2 SOC series platforms.
-+	  It supports one critical trip point and one passive trip point. The
-+	  cpufreq and the pwm fan is used as the cooling device to throttle
-+	  CPUs when the passive trip is crossed.
-+
- endif
-diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-index def8e1a0399c..e99f839126fa 100644
---- a/drivers/thermal/Makefile
-+++ b/drivers/thermal/Makefile
-@@ -61,3 +61,4 @@ obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
- obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
- obj-$(CONFIG_SPRD_THERMAL)	+= sprd_thermal.o
- obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)	+= khadas_mcu_fan.o
-+obj-$(CONFIG_LOONGSON2_THERMAL)	+= loongson2_thermal.o
-diff --git a/drivers/thermal/loongson2_thermal.c b/drivers/thermal/loongson2_thermal.c
-new file mode 100644
-index 000000000000..0f9dadbd4a07
---- /dev/null
-+++ b/drivers/thermal/loongson2_thermal.c
-@@ -0,0 +1,268 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Author: zhanghongchen <zhanghongchen@loongson.cn>
-+ *         Yinbo Zhu <zhuyinbo@loongson.cn>
-+ * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
-+ */
-+
-+#include <linux/cpufreq.h>
-+#include <linux/delay.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/io.h>
-+#include <linux/of_device.h>
-+#include <linux/thermal.h>
-+#include "thermal_hwmon.h"
-+
-+#define LOONGSON2_SOC_MAX_SENSOR_NUM			4
-+
-+#define LOONGSON2_TSENSOR_CTRL_HI			0x0
-+#define LOONGSON2_TSENSOR_CTRL_LO			0x8
-+#define LOONGSON2_TSENSOR_STATUS			0x10
-+#define LOONGSON2_TSENSOR_OUT				0x14
-+
-+struct loongson2_thermal_data {
-+	struct thermal_zone_device *tzd;
-+	int irq;
-+	int id;
-+	void __iomem *regs;
-+	struct platform_device *pdev;
-+	u16 ctrl_low_val;
-+	u16 ctrl_hi_val;
-+};
-+
-+/**
-+ * @low : temperature in degree
-+ * @high: temperature in degree
-+ */
-+static int loongson2_thermal_set(struct loongson2_thermal_data *data,
-+					int low, int high, bool enable)
-+{
-+	u64 reg_ctrl = 0;
-+	int reg_off = data->id * 2;
-+
-+	if (low > high)
-+		return -EINVAL;
-+
-+	low = low < -100 ? -100 : low;
-+	high = high > 155 ? 155 : high;
-+
-+	low += 100;
-+	high += 100;
-+
-+	reg_ctrl |= low;
-+	reg_ctrl |= enable ? 0x100 : 0;
-+	writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
-+
-+	reg_ctrl = 0;
-+	reg_ctrl |= high;
-+	reg_ctrl |= enable ? 0x100 : 0;
-+	writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
-+
-+	return 0;
-+}
-+
-+static int loongson2_thermal_get_temp(void *__data, int *temp)
-+{
-+	struct loongson2_thermal_data *data = __data;
-+	u32 reg_val;
-+
-+	reg_val = readl(data->regs + LOONGSON2_TSENSOR_OUT);
-+	*temp = ((reg_val & 0xff) - 100) * 1000;
-+
-+	return 0;
-+}
-+
-+static int loongson2_thermal_get_sensor_id(void)
-+{
-+	int ret, id;
-+	struct of_phandle_args sensor_specs;
-+	struct device_node *np, *sensor_np;
-+
-+	np = of_find_node_by_name(NULL, "thermal-zones");
-+	if (!np)
-+		return -ENODEV;
-+
-+	sensor_np = of_get_next_child(np, NULL);
-+	ret = of_parse_phandle_with_args(sensor_np, "thermal-sensors",
-+			"#thermal-sensor-cells",
-+			0, &sensor_specs);
-+	if (ret) {
-+		of_node_put(np);
-+		of_node_put(sensor_np);
-+		return ret;
-+	}
-+
-+	if (sensor_specs.args_count >= 1) {
-+		id = sensor_specs.args[0];
-+		WARN(sensor_specs.args_count > 1,
-+				"%s: too many cells in sensor specifier %d\n",
-+				sensor_specs.np->name, sensor_specs.args_count);
-+	} else {
-+		id = 0;
-+	}
-+
-+	of_node_put(np);
-+	of_node_put(sensor_np);
-+
-+	return id;
-+}
-+
-+static irqreturn_t loongson2_thermal_alarm_irq(int irq, void *dev)
-+{
-+	struct loongson2_thermal_data *data = dev;
-+
-+	/* clear interrupt */
-+	writeb(0x3, data->regs + LOONGSON2_TSENSOR_STATUS);
-+
-+	disable_irq_nosync(irq);
-+
-+	return IRQ_WAKE_THREAD;
-+}
-+
-+static irqreturn_t loongson2_thermal_irq_thread(int irq, void *dev)
-+{
-+	struct loongson2_thermal_data *data = dev;
-+
-+	thermal_zone_device_update(data->tzd,
-+				   THERMAL_EVENT_UNSPECIFIED);
-+	enable_irq(data->irq);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int loongson2_thermal_set_trips(void *data, int low, int high)
-+{
-+	return loongson2_thermal_set(data, low/1000, high/1000, true);
-+}
-+
-+static const struct thermal_zone_of_device_ops loongson2_of_thermal_ops = {
-+	.get_temp = loongson2_thermal_get_temp,
-+	.set_trips = loongson2_thermal_set_trips,
-+};
-+
-+static int loongson2_thermal_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct resource *res;
-+	struct loongson2_thermal_data *data;
-+	int ret;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->pdev = pdev;
-+	platform_set_drvdata(pdev, data);
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	data->regs = devm_ioremap(dev, res->start, resource_size(res));
-+	if (IS_ERR(data->regs))
-+		return PTR_ERR(data->regs);
-+
-+	/* get irq */
-+	data->irq = platform_get_irq(pdev, 0);
-+	if (data->irq < 0)
-+		return data->irq;
-+
-+	/* get id */
-+	data->id = loongson2_thermal_get_sensor_id();
-+	if (data->id > LOONGSON2_SOC_MAX_SENSOR_NUM - 1 || data->id < 0) {
-+		dev_err(dev, "sensor id error,must be in <0 ~ %d>\n",
-+				LOONGSON2_SOC_MAX_SENSOR_NUM - 1);
-+		return -EINVAL;
-+	}
-+
-+	writeb(0xff, data->regs + LOONGSON2_TSENSOR_STATUS);
-+
-+	loongson2_thermal_set(data, 0, 0, false);
-+
-+	data->tzd = devm_thermal_zone_of_sensor_register(&pdev->dev,
-+							   data->id, data,
-+							   &loongson2_of_thermal_ops);
-+	if (IS_ERR(data->tzd)) {
-+		ret = PTR_ERR(data->tzd);
-+		data->tzd = NULL;
-+		dev_err(&pdev->dev, "failed to register %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = devm_request_threaded_irq(dev, data->irq,
-+			loongson2_thermal_alarm_irq, loongson2_thermal_irq_thread,
-+			IRQF_ONESHOT, "loongson2_thermal", data);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to request alarm irq: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/*
-+	 * Thermal_zone doesn't enable hwmon as default,
-+	 * enable it here
-+	 */
-+	data->tzd->tzp->no_hwmon = false;
-+	ret = thermal_add_hwmon_sysfs(data->tzd);
-+	if (ret) {
-+		dev_err(dev, "failed to add hwmon sysfs interface %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int loongson2_thermal_remove(struct platform_device *pdev)
-+{
-+	struct loongson2_thermal_data *data = platform_get_drvdata(pdev);
-+	int reg_off = data->id * 2;
-+
-+	/* disable interrupt */
-+	writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
-+	writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id of_loongson2_thermal_match[] = {
-+	{ .compatible = "loongson,ls2k-thermal",},
-+	{ /* end */ }
-+};
-+MODULE_DEVICE_TABLE(of, of_loongson2_thermal_match);
-+
-+static int __maybe_unused loongson2_thermal_suspend(struct device *dev)
-+{
-+	struct loongson2_thermal_data *data = dev_get_drvdata(dev);
-+	int reg_off = data->id * 2;
-+
-+	data->ctrl_low_val = readw(data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
-+	data->ctrl_hi_val = readw(data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
-+
-+	writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
-+	writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused loongson2_thermal_resume(struct device *dev)
-+{
-+	struct loongson2_thermal_data *data = dev_get_drvdata(dev);
-+	int reg_off = data->id * 2;
-+
-+	writew(data->ctrl_low_val, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
-+	writew(data->ctrl_hi_val, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(loongson2_thermal_pm_ops,
-+			 loongson2_thermal_suspend, loongson2_thermal_resume);
-+
-+static struct platform_driver loongson2_thermal_driver = {
-+	.driver = {
-+		.name		= "loongson2_thermal",
-+		.pm = &loongson2_thermal_pm_ops,
-+		.of_match_table = of_loongson2_thermal_match,
-+	},
-+	.probe	= loongson2_thermal_probe,
-+	.remove	= loongson2_thermal_remove,
-+};
-+module_platform_driver(loongson2_thermal_driver);
--- 
-2.31.1
-
+On 26/09/2022 14:58, Quan Nguyen wrote:
+> The Mt. Mitchell BMC is an ASPEED AST2600-based BMC for the Mt. Mitchell
+> hardware reference platform with AmpereOne(TM) processor.
+> 
+> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> Signed-off-by: Phong Vo <phong@os.amperecomputing.com>
+> Signed-off-by: Thang Q. Nguyen <thang@os.amperecomputing.com>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> ---
+> v3 :
+>    + Fix adc-i2c node to generic "adc" node                [Krzysztof]
+>    + Remove unused status property in adc node             [Krzysztof]
+>    + Remove trailing blank line at the end of file         [Krzysztof]
+>    + Remove the wrong comment on vga_memory nodes             [Andrew]
+>    + Remove gpio-keys                                         [Andrew]
+>    + Remove the line-name for bmc-debug-mode, eth-phy-rst-n,
+>      eth-phy-int-n, bmc-salt12-s0-ssif-n, fpga-program-b,
+>      bmc-uart-cts1, bmc-spi-fm-boot-abr-pd, emmc-rst-n gpios  [Andrew]
+>    + Update line-name for hs-csout-prochot, s1-spi-auth-fail-n  [Quan]
+>    + Add line-name [s0|s1]-heartbeat                            [Quan]
+> 
+> v2 :
+>    + Remove bootargs                                       [Krzysztof]
+>    + Fix gpio-keys nodes name to conform with device tree binding
+>    documents                                               [Krzysztof]
+>    + Fix some nodes to use generic name                    [Krzysztof]
+>    + Remove unnecessary blank line                         [Krzysztof]
+>    + Fix typo "LTC" to "LLC" in license info and corrected license
+>    info to GPL-2.0-only
+> 
+>   arch/arm/boot/dts/Makefile                    |   1 +
+>   .../boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 546 ++++++++++++++++++
+>   2 files changed, 547 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 1a718157d1a6..177fc02e5c6e 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1582,6 +1582,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>   	aspeed-ast2600-evb.dtb \
+>   	aspeed-bmc-amd-ethanolx.dtb \
+>   	aspeed-bmc-ampere-mtjade.dtb \
+> +	aspeed-bmc-ampere-mtmitchell.dtb \
+>   	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+>   	aspeed-bmc-asrock-e3c246d4i.dtb \
+>   	aspeed-bmc-asrock-romed8hm3.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+> new file mode 100644
+> index 000000000000..606cd4be245a
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+> @@ -0,0 +1,546 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +// Copyright (c) 2022, Ampere Computing LLC
+> +
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +
+> +/ {
+> +	model = "Ampere Mt.Mitchell BMC";
+> +	compatible = "ampere,mtmitchell-bmc", "aspeed,ast2600";
+> +
+> +	chosen {
+> +		stdout-path = &uart5;
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x80000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		gfx_memory: framebuffer {
+> +			size = <0x01000000>;
+> +			alignment = <0x01000000>;
+> +			compatible = "shared-dma-pool";
+> +			reusable;
+> +		};
+> +
+> +		video_engine_memory: video {
+> +			size = <0x04000000>;
+> +			alignment = <0x01000000>;
+> +			compatible = "shared-dma-pool";
+> +			reusable;
+> +		};
+> +
+> +		vga_memory: region@bf000000 {
+> +			no-map;
+> +			compatible = "shared-dma-pool";
+> +			reg = <0xbf000000 0x01000000>;  /* 16M */
+> +		};
+> +	};
+> +
+> +	voltage_mon_reg: voltage-mon-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ltc2497_reg";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	gpioI5mux: mux-controller {
+> +		compatible = "gpio-mux";
+> +		#mux-control-cells = <0>;
+> +		mux-gpios = <&gpio0 ASPEED_GPIO(I, 5) GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	adc0mux: adc0mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 0>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc1mux: adc1mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 1>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc2mux: adc2mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 2>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc3mux: adc3mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 3>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc4mux: adc4mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 4>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc5mux: adc5mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 5>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc6mux: adc6mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 6>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc7mux: adc7mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 7>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc8mux: adc8mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 0>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc9mux: adc9mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 1>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc10mux: adc10mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 2>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc11mux: adc11mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 3>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc12mux: adc12mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 4>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc13mux: adc13mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 5>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc14mux: adc14mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 6>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc15mux: adc15mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 7>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	iio-hwmon {
+> +		compatible = "iio-hwmon";
+> +		io-channels = <&adc0mux 0>, <&adc0mux 1>,
+> +			<&adc1mux 0>, <&adc1mux 1>,
+> +			<&adc2mux 0>, <&adc2mux 1>,
+> +			<&adc3mux 0>, <&adc3mux 1>,
+> +			<&adc4mux 0>, <&adc4mux 1>,
+> +			<&adc5mux 0>, <&adc5mux 1>,
+> +			<&adc6mux 0>, <&adc6mux 1>,
+> +			<&adc7mux 0>, <&adc7mux 1>,
+> +			<&adc8mux 0>, <&adc8mux 1>,
+> +			<&adc9mux 0>, <&adc9mux 1>,
+> +			<&adc10mux 0>, <&adc10mux 1>,
+> +			<&adc11mux 0>, <&adc11mux 1>,
+> +			<&adc12mux 0>, <&adc12mux 1>,
+> +			<&adc13mux 0>, <&adc13mux 1>,
+> +			<&adc14mux 0>, <&adc14mux 1>,
+> +			<&adc15mux 0>, <&adc15mux 1>,
+> +			<&adc_i2c 0>, <&adc_i2c 1>,
+> +			<&adc_i2c 2>, <&adc_i2c 3>,
+> +			<&adc_i2c 4>, <&adc_i2c 5>,
+> +			<&adc_i2c 6>, <&adc_i2c 7>,
+> +			<&adc_i2c 8>, <&adc_i2c 9>,
+> +			<&adc_i2c 10>, <&adc_i2c 11>,
+> +			<&adc_i2c 12>, <&adc_i2c 13>,
+> +			<&adc_i2c 14>, <&adc_i2c 15>;
+> +	};
+> +};
+> +
+> +&mdio0 {
+> +	status = "okay";
+> +
+> +	ethphy0: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0>;
+> +	};
+> +};
+> +
+> +&mac0 {
+> +	status = "okay";
+> +
+> +	phy-mode = "rgmii";
+> +	phy-handle = <&ethphy0>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii1_default>;
+> +};
+> +
+> +&fmc {
+> +	status = "okay";
+> +	flash@0 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "bmc";
+> +		spi-max-frequency = <50000000>;
+> +#include "openbmc-flash-layout-64.dtsi"
+> +	};
+> +
+> +	flash@1 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "alt-bmc";
+> +		spi-max-frequency = <50000000>;
+> +#include "openbmc-flash-layout-64-alt.dtsi"
+> +	};
+> +};
+> +
+> +&spi1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spi1_default>;
+> +
+> +	flash@0 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "pnor";
+> +		spi-max-frequency = <20000000>;
+> +	};
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	temperature-sensor@2e {
+> +		compatible = "adi,adt7490";
+> +		reg = <0x2e>;
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +
+> +	psu@58 {
+> +		compatible = "pmbus";
+> +		reg = <0x58>;
+> +	};
+> +
+> +	psu@59 {
+> +		compatible = "pmbus";
+> +		reg = <0x59>;
+> +	};
+> +};
+> +
+> +&i2c3 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c4 {
+> +	status = "okay";
+> +
+> +	adc_i2c: adc@16 {
+> +		compatible = "lltc,ltc2497";
+> +		reg = <0x16>;
+> +		vref-supply = <&voltage_mon_reg>;
+> +		#io-channel-cells = <1>;
+> +	 };
+> +
+> +	eeprom@50 {
+> +		compatible = "atmel,24c64";
+> +		reg = <0x50>;
+> +		pagesize = <32>;
+> +	};
+> +
+> +	i2c-mux@70 {
+> +		compatible = "nxp,pca9545";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+> +		i2c-mux-idle-disconnect;
+> +
+> +		i2c4_bus70_chn0: i2c@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x0>;
+> +
+> +			outlet_temp1: temperature-sensor@48 {
+> +				compatible = "ti,tmp75";
+> +				reg = <0x48>;
+> +			};
+> +			psu1_inlet_temp2: temperature-sensor@49 {
+> +				compatible = "ti,tmp75";
+> +				reg = <0x49>;
+> +			};
+> +		};
+> +
+> +		i2c4_bus70_chn1: i2c@1 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x1>;
+> +
+> +			pcie_zone_temp1: temperature-sensor@48 {
+> +				compatible = "ti,tmp75";
+> +				reg = <0x48>;
+> +			};
+> +			psu0_inlet_temp2: temperature-sensor@49 {
+> +				compatible = "ti,tmp75";
+> +				reg = <0x49>;
+> +			};
+> +		};
+> +
+> +		i2c4_bus70_chn2: i2c@2 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x2>;
+> +
+> +			pcie_zone_temp2: temperature-sensor@48 {
+> +				compatible = "ti,tmp75";
+> +				reg = <0x48>;
+> +			};
+> +			outlet_temp2: temperature-sensor@49 {
+> +				compatible = "ti,tmp75";
+> +				reg = <0x49>;
+> +			};
+> +		};
+> +
+> +		i2c4_bus70_chn3: i2c@3 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x3>;
+> +
+> +			mb_inlet_temp1: temperature-sensor@7c {
+> +				compatible = "microchip,emc1413";
+> +				reg = <0x7c>;
+> +			};
+> +			mb_inlet_temp2: temperature-sensor@4c {
+> +				compatible = "microchip,emc1413";
+> +				reg = <0x4c>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c5 {
+> +	status = "okay";
+> +
+> +	i2c-mux@70 {
+> +		compatible = "nxp,pca9548";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+> +		i2c-mux-idle-disconnect;
+> +	};
+> +};
+> +
+> +&i2c6 {
+> +	status = "okay";
+> +	rtc@51 {
+> +		compatible = "nxp,pcf85063a";
+> +		reg = <0x51>;
+> +	};
+> +};
+> +
+> +&i2c7 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c9 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c11 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c14 {
+> +	status = "okay";
+> +	eeprom@50 {
+> +		compatible = "atmel,24c64";
+> +		reg = <0x50>;
+> +		pagesize = <32>;
+> +	};
+> +
+> +	bmc_ast2600_cpu: temperature-sensor@35 {
+> +		compatible = "ti,tmp175";
+> +		reg = <0x35>;
+> +	};
+> +};
+> +
+> +&adc0 {
+> +	ref_voltage = <2500>;
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
+> +		&pinctrl_adc2_default &pinctrl_adc3_default
+> +		&pinctrl_adc4_default &pinctrl_adc5_default
+> +		&pinctrl_adc6_default &pinctrl_adc7_default>;
+> +};
+> +
+> +&adc1 {
+> +	ref_voltage = <2500>;
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
+> +		&pinctrl_adc10_default &pinctrl_adc11_default
+> +		&pinctrl_adc12_default &pinctrl_adc13_default
+> +		&pinctrl_adc14_default &pinctrl_adc15_default>;
+> +};
+> +
+> +&vhub {
+> +	status = "okay";
+> +};
+> +
+> +&video {
+> +	status = "okay";
+> +	memory-region = <&video_engine_memory>;
+> +};
+> +
+> +&gpio0 {
+> +	gpio-line-names =
+> +	/*A0-A7*/	"","","","","","i2c2-reset-n","i2c6-reset-n","i2c4-reset-n",
+> +	/*B0-B7*/	"","","","","host0-sysreset-n","host0-pmin-n","","",
+> +	/*C0-C7*/	"s0-vrd-fault-n","s1-vrd-fault-n","","",
+> +			"irq-n","","vrd-sel","spd-sel",
+> +	/*D0-D7*/	"presence-ps0","presence-ps1","hsc-12vmain-alt2-n","ext-high-temp-n",
+> +			"","bmc-ncsi-txen","","",
+> +	/*E0-E7*/	"","","clk50m-bmc-ncsi","","","","","",
+> +	/*F0-F7*/	"s0-pcp-oc-warn-n","s1-pcp-oc-warn-n","power-chassis-control",
+> +			"cpu-bios-recover","s0-heartbeat","hs-csout-prochot",
+> +			"s0-vr-hot-n","s1-vr-hot-n",
+> +	/*G0-G7*/	"","","hsc-12vmain-alt1-n","","","","","",
+> +	/*H0-H7*/	"","","wd-disable-n","power-chassis-good","","","","",
+> +	/*I0-I7*/	"","","","","","adc-sw","power-button","rtc-battery-voltage-read-enable",
+> +	/*J0-J7*/	"","","","","","","","",
+> +	/*K0-K7*/	"","","","","","","","",
+> +	/*L0-L7*/	"","","","","","","","",
+> +	/*M0-M7*/	"","s0-ddr-save","soc-spi-nor-access","presence-cpu0",
+> +			"s0-rtc-lock","","","",
+> +	/*N0-N7*/	"hpm-fw-recovery","hpm-stby-rst-n","jtag-sel-s0","led-sw-hb",
+> +			"jtag-dbgr-prsnt-n","s1-heartbeat","","",
+> +	/*O0-O7*/	"","","","","","","","",
+> +	/*P0-P7*/	"ps0-ac-loss-n","ps1-ac-loss-n","","",
+> +			"led-fault","cpld-user-mode","jtag-srst-n","led-bmc-hb",
+> +	/*Q0-Q7*/	"","","","","","","","",
+> +	/*R0-R7*/	"","","","","","","","",
+> +	/*S0-S7*/	"","","identify-button","led-identify",
+> +			"s1-ddr-save","spi-nor-access","sys-pgood","presence-cpu1",
+> +	/*T0-T7*/	"","","","","","","","",
+> +	/*U0-U7*/	"","","","","","","","",
+> +	/*V0-V7*/	"s0-hightemp-n","s0-fault-alert","s0-sys-auth-failure-n",
+> +			"host0-reboot-ack-n","host0-ready","host0-shd-req-n",
+> +			"host0-shd-ack-n","s0-overtemp-n",
+> +	/*W0-W7*/	"ocp-aux-pwren","ocp-main-pwren","ocp-pgood","",
+> +			"bmc-ok","bmc-ready","spi0-program-sel","spi0-backup-sel",
+> +	/*X0-X7*/	"i2c-backup-sel","s1-fault-alert","s1-fw-boot-ok",
+> +			"s1-hightemp-n","s0-spi-auth-fail-n","s1-sys-auth-failure-n",
+> +			"s1-overtemp-n","s1-spi-auth-fail-n",
+> +	/*Y0-Y7*/	"","","","","","","","host0-special-boot",
+> +	/*Z0-Z7*/	"reset-button","ps0-pgood","ps1-pgood","","","","","";
+> +};
+> +
+> +&gpio1 {
+> +	gpio-line-names =
+> +	/*18A0-18A7*/	"","","","","","","","",
+> +	/*18B0-18B7*/	"","","","","","","s0-soc-pgood","",
+> +	/*18C0-18C7*/	"uart1-mode0","uart1-mode1","uart2-mode0","uart2-mode1",
+> +			"uart3-mode0","uart3-mode1","uart4-mode0","uart4-mode1",
+> +	/*18D0-18D7*/	"","","","","","","","",
+> +	/*18E0-18E3*/	"","","","";
+> +};
