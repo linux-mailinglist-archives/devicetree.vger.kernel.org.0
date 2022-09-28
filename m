@@ -2,136 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 310015EE257
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 18:54:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C01E5EE26C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:00:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234012AbiI1Qye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 12:54:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46914 "EHLO
+        id S233396AbiI1RAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 13:00:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233629AbiI1Qyc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 12:54:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7472E9CF9;
-        Wed, 28 Sep 2022 09:54:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7A9E161F36;
-        Wed, 28 Sep 2022 16:54:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27337C4347C;
-        Wed, 28 Sep 2022 16:54:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664384069;
-        bh=BBz/NXdoZV1TV+SIB15IvaK4u6KO1qaqTj6gqSkO6lQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fc4R1bcqHRG1Weyi+mYHHzG+sOzjXZBbMvi/Pnv8oOuyoTFMpT2Y47OPtZqTdZELj
-         p12oRUJnM3UcMWdwagRMkVZyMJ9cdKPNN1XE6QYc2e+dgB1Il6MiVWomTqae3/Xshh
-         p9u43QvzBAPu7miaKXe0QZytZQT47IY0I0sgrnxT+jQF8aaL96SwK65XmwoPTkGNTH
-         F42uYaSyJtgsqaQIN7/RgeHSd7HvVPraHsx+RU09+//vJGrMoh3jw1IxVstdiCF1Jg
-         O8jVxF/mHr5VqeYCwUkxdhNwdanlIC1yLu4xHV9cnIBP7fgjUPWDxIy0fXDOBNOqfQ
-         g9gnNLxHwlnJA==
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     jh80.chung@samsung.com
-Cc:     dinguyen@kernel.org, ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCHv4 3/3] mmc: dw_mmc-pltfm: socfpga: add method to configure clk-phase
-Date:   Wed, 28 Sep 2022 11:54:20 -0500
-Message-Id: <20220928165420.1212284-3-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220928165420.1212284-1-dinguyen@kernel.org>
-References: <20220928165420.1212284-1-dinguyen@kernel.org>
+        with ESMTP id S233049AbiI1RAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:00:13 -0400
+Received: from mail-4324.protonmail.ch (mail-4324.protonmail.ch [185.70.43.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1414F78236;
+        Wed, 28 Sep 2022 10:00:11 -0700 (PDT)
+Date:   Wed, 28 Sep 2022 17:00:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1664384410; x=1664643610;
+        bh=mo7AOkHDwtAowybZCz4gOmDpXU1TRunSY5GhLVmFCfk=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID;
+        b=t4biK5LkVbgF39OHwoxgpWZfZl6skEh4lO3+EbNUMm84TRj/jS1oWkh6otxZT+HH8
+         Sr02Iz4CDnHzaBvady+u+BZfDiZxewb/VlM4/MlmSDU8lRiTGl3fOBDDVNLMhvQoxz
+         5zyyLDxurXrDdFaKzCzck+869WUrlgVbuSoFl78fExodo4T2AMcBYtsHVckYbDpSlc
+         ULQU3U1PE5dHE8ZRQvT2VAcK/cPpv32ioYnzum/MMNYav4oAIi+iLA+laW76igefgV
+         gIJJrC5Cvixl1cPO0YKPWAyT3wE/Mmkb4AZKRN67Q//90Xhmwgg/00cpPobJvuaJnk
+         s8dT7+EuDAEWg==
+To:     devicetree@vger.kernel.org
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>,
+        Julian Ribbeck <julian.ribbeck@gmx.de>,
+        Josef W Menad <JosefWMenad@protonmail.ch>,
+        Markuss Broks <markuss.broks@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: [PATCH v3 2/5] arm64: dts: qcom: msm8916-samsung-j5: Drop from Makefile
+Message-ID: <20220928165909.181028-1-linmengbo0689@protonmail.com>
+In-Reply-To: <20220928164806.179314-1-linmengbo0689@protonmail.com>
+References: <20220928164806.179314-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clock-phase settings for the SDMMC controller in the SoCFPGA
-Strarix10/Agilex/N5X platforms reside in a register in the System
-Manager. Add a method to access that register through the syscon
-interface.
+Before moving msm8916-samsung-j5.dts to msm8916-samsung-j5-common.dtsi,
+drop it from Makefile temporarily to avoid errors.
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
 ---
-v4: no change
-v3: add space before &socfpga_drv_data
-v2: simplify clk-phase calculations
----
- drivers/mmc/host/dw_mmc-pltfm.c | 41 ++++++++++++++++++++++++++++++++-
- 1 file changed, 40 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/Makefile | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/mmc/host/dw_mmc-pltfm.c b/drivers/mmc/host/dw_mmc-pltfm.c
-index 9901208be797..0f07fa6d0150 100644
---- a/drivers/mmc/host/dw_mmc-pltfm.c
-+++ b/drivers/mmc/host/dw_mmc-pltfm.c
-@@ -17,10 +17,16 @@
- #include <linux/mmc/host.h>
- #include <linux/mmc/mmc.h>
- #include <linux/of.h>
-+#include <linux/mfd/altera-sysmgr.h>
-+#include <linux/regmap.h>
- 
- #include "dw_mmc.h"
- #include "dw_mmc-pltfm.h"
- 
-+#define SOCFPGA_DW_MMC_CLK_PHASE_STEP	45
-+#define SYSMGR_SDMMC_CTRL_SET(smplsel, drvsel) \
-+	((((smplsel) & 0x7) << 4) | (((drvsel) & 0x7) << 0))
-+
- int dw_mci_pltfm_register(struct platform_device *pdev,
- 			  const struct dw_mci_drv_data *drv_data)
- {
-@@ -62,9 +68,42 @@ const struct dev_pm_ops dw_mci_pltfm_pmops = {
- };
- EXPORT_SYMBOL_GPL(dw_mci_pltfm_pmops);
- 
-+static int dw_mci_socfpga_priv_init(struct dw_mci *host)
-+{
-+	struct device_node *np = host->dev->of_node;
-+	struct regmap *sys_mgr_base_addr;
-+	u32 clk_phase[2] = {0}, reg_offset;
-+	int i, rc, hs_timing;
-+
-+	rc = of_property_read_variable_u32_array(np, "clk-phase-sd-hs", &clk_phase[0], 2, 0);
-+	if (rc) {
-+		sys_mgr_base_addr =
-+			altr_sysmgr_regmap_lookup_by_phandle(np, "altr,sysmgr-syscon");
-+		if (IS_ERR(sys_mgr_base_addr)) {
-+			pr_err("%s: failed to find altr,sys-mgr regmap!\n", __func__);
-+			return 1;
-+		}
-+	} else
-+		return 1;
-+
-+	of_property_read_u32_index(np, "altr,sysmgr-syscon", 1, &reg_offset);
-+
-+	for (i = 0; i < ARRAY_SIZE(clk_phase); i++)
-+		clk_phase[i] /= SOCFPGA_DW_MMC_CLK_PHASE_STEP;
-+
-+	hs_timing = SYSMGR_SDMMC_CTRL_SET(clk_phase[0], clk_phase[1]);
-+	regmap_write(sys_mgr_base_addr, reg_offset, hs_timing);
-+
-+	return 0;
-+}
-+
-+static const struct dw_mci_drv_data socfpga_drv_data = {
-+	.init		= dw_mci_socfpga_priv_init,
-+};
-+
- static const struct of_device_id dw_mci_pltfm_match[] = {
- 	{ .compatible = "snps,dw-mshc", },
--	{ .compatible = "altr,socfpga-dw-mshc", },
-+	{ .compatible = "altr,socfpga-dw-mshc", .data = &socfpga_drv_data, },
- 	{ .compatible = "img,pistachio-dw-mshc", },
- 	{},
- };
--- 
-2.25.1
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/M=
+akefile
+index 1d86a33de528..6db7d9d791d5 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -15,7 +15,6 @@ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-longcheer-l8910.dt=
+b
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-mtp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-a3u-eur.dtb
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-a5u-eur.dtb
+-dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-j5.dtb
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-serranove.dtb
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-wingtech-wt88047.dtb
+ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8992-lg-bullhead-rev-10.dtb
+--=20
+2.30.2
+
 
