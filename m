@@ -2,136 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A18E5EE34E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44DC45EE366
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:45:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233134AbiI1RjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 13:39:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40034 "EHLO
+        id S233534AbiI1RpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 13:45:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234368AbiI1RjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:39:17 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 651ABF3F84
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:39:15 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id j16so21481781lfg.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:39:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=IxJXSEam7tFBgvUgNhfn02/DoOyHrM5vTWh4d13Llgg=;
-        b=rTMqvq0IZYRzK+NFwXM2Ka46LsX0BfAaP7Iuvrk73pFKNeodd6XxTTEKGP03ijVY5e
-         CMZwRqiQxd7XCrpxvTQdp/TBKQKXd1P1l/VWRqvyOLXHIF7slAS2eombGYHWpiXjiHvg
-         JtoU86vrteD3HACPbExNDFEYORfMLN10O9/3/GGkZAPQapMMQXm/ilV9mTKrs0qBjfqz
-         u5LGF63Bek9XT+HFMUArSH9D5nJwEzcq4j10xvQ2DdPO+YKHYqIjJOLIOvn8RQmyGI95
-         bTR6SgO6k1WNPwX7HRs2hzEyJcs1ORBtQl/0GZiv3Drh03rC7AjjUrWCPmzDFr8aDD6f
-         lr+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=IxJXSEam7tFBgvUgNhfn02/DoOyHrM5vTWh4d13Llgg=;
-        b=cfXoWCqYWy5ggEHWDkp1dnzxR7qVB4N0oWN4CLt628w6hvbzQJD4jeWiSTfGFjF5gS
-         X/DyHc0BUw26YwJmUHIBSYRXAsKpz8X6nc23wf9HJdzgs59MIxgDzvXRskaeWhatkERT
-         EmFFMN8lDx21z+LGoXZnSKX/vsyKPwbmRsjRWxsxgxNAvBfEeBToKURuHvn5fVk6bBTW
-         nwoZFmUnsF8flqq1z9nDNA+sEbD9sHktcu53GqZVnUpRs1pH9hNMmtCQDYA0PORFuE1J
-         T2yuX7xUnney7dbgIWcahqmVr62GJk3MTKwEhmrpwcieQdjHbNYj8OgYyeae3de8OWIp
-         DWOw==
-X-Gm-Message-State: ACrzQf1av/iEJXum+kKwyVHDzP1xd9vxoXiSaffCtHOPJiicAf1mAqdk
-        0Ol0fWKgkYEcURqEJpnr9V9JR/SB3gqNLA==
-X-Google-Smtp-Source: AMsMyM4ApYrvFe6rCUKeLGAtNzo0h8VZ3efl73bxTdB0vXIGtLXoFy+UwE10qTTvxhbdMTw1xa+FoA==
-X-Received: by 2002:a05:6512:3984:b0:49e:19a6:a302 with SMTP id j4-20020a056512398400b0049e19a6a302mr13806325lfu.492.1664386753720;
-        Wed, 28 Sep 2022 10:39:13 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v18-20020a2e9612000000b0026c0158b87csm496134ljh.29.2022.09.28.10.39.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 10:39:13 -0700 (PDT)
-Message-ID: <9c733ae5-bbe4-308b-d0d1-63e5c3d24db6@linaro.org>
-Date:   Wed, 28 Sep 2022 19:39:12 +0200
+        with ESMTP id S234653AbiI1RpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:45:04 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E3B48EBC
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:45:01 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 0FFAF84B67;
+        Wed, 28 Sep 2022 19:44:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1664387099;
+        bh=gaYUOXQ4C9X/kZ+ny8vPFL/2ozYC/B1B4psO3k3Bm2E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ApiLBC8Bw+Hw9Kzi9Tetq5/m5q+LcKwerinps3C7ZutrZnqqhFtEDeL9zJWaZbra0
+         dTwgC4d+8bGlf8wDc7C5iZqa/+GDdFfMVNkpStogfjSEISpCn4uGQek0pN6RwqEmbr
+         uD5JuqkeOkPHACQDWxq/71ygC9zWcAIGmyho4JTgQ5GLVDeVwm3zUGcisVit3Qxlsk
+         FO4zBxoD67+ZLgoOg1dQmMlYmT6qVgwf+C3xxNx4gxdrMFf9p+HfkBX3+hKye0MlQ/
+         LuAGGRyEi3Oe8TmbHzNyZCKYuCijSWc/QlMpwF53/UPUrrgejHAMdSSGYn5Cr5mz+s
+         yLpARcy/xjfsQ==
+Message-ID: <7adc3299-5dd6-fd43-fd5e-c22d150a328a@denx.de>
+Date:   Wed, 28 Sep 2022 19:44:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH] dt-bindings: clock: split qcom,gcc-sdm660 to the separate
- file
+Subject: Re: [PATCH v2] dt-bindings: memory-controller: st,stm32: Split off MC
+ properties
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20220926225536.548139-1-marex@denx.de>
+ <846bc515-bdda-6022-0611-daaa9a632e64@linaro.org>
+ <e787f5b1-88e6-375c-b9e7-22db346c27be@denx.de>
+ <393eb833-0dcd-bf6c-49f3-ab8d60e3a8e5@linaro.org>
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220928145818.376250-1-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220928145818.376250-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <393eb833-0dcd-bf6c-49f3-ab8d60e3a8e5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 16:58, Dmitry Baryshkov wrote:
-> Move schema for the GCC on SDM630/SDM636/SDM660 to a separate file to be
-> able to define device-specific clock properties.
+On 9/28/22 19:24, Krzysztof Kozlowski wrote:
+> On 28/09/2022 19:01, Marek Vasut wrote:
+>> On 9/28/22 09:10, Krzysztof Kozlowski wrote:
+>>
+>> Hi,
+>>
+>> [...]
+>>
+>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+>>>> index a1f535cececcc..49243f447eb90 100644
+>>>> --- a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+>>>> @@ -49,143 +49,6 @@ patternProperties:
+>>>>      "^.*@[0-4],[a-f0-9]+$":
+>>>>        type: object
+>>>>    
+>>>> -    properties:
+>>>> -      reg:
+>>>> -        description: Bank number, base address and size of the device.
+>>>> -
+>>>
+>>> To be equivalent (and similar to SPI peripherals and controllers) this
+>>> should reference st,stm32-fmc2-ebi-props.yaml as well.
+>>>
+>>> After such reference, you can add here unevaluatedProperties:false
+>>> (could be same or new patch as it is not related to actual split).
+>>
+>> I don't think I understand. I don't see any ref from the controller node
+>> to its props in various SPI controllers (even if that would make sense):
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../bindings/clock/qcom,gcc-other.yaml        |  3 -
->  .../bindings/clock/qcom,gcc-sdm660.yaml       | 61 +++++++++++++++++++
->  2 files changed, 61 insertions(+), 3 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdm660.yaml
+> Because they reference spi peripheral props...
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> index 76988e04c7db..35fc22a19000 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> @@ -24,7 +24,6 @@ description: |
->    - dt-bindings/clock/qcom,gcc-mdm9607.h
->    - dt-bindings/clock/qcom,gcc-mdm9615.h
->    - dt-bindings/reset/qcom,gcc-mdm9615.h
-> -  - dt-bindings/clock/qcom,gcc-sdm660.h  (qcom,gcc-sdm630 and qcom,gcc-sdm660)
->  
->  allOf:
->    - $ref: "qcom,gcc.yaml#"
-> @@ -41,8 +40,6 @@ properties:
->        - qcom,gcc-msm8974pro
->        - qcom,gcc-msm8974pro-ac
->        - qcom,gcc-mdm9615
-> -      - qcom,gcc-sdm630
-> -      - qcom,gcc-sdm660
->  
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm660.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm660.yaml
-> new file mode 100644
-> index 000000000000..a39f28d37387
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm660.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,gcc-sdm660.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Global Clock & Reset Controller Binding for SDM660/SDM630/SDM636
+>>
+>> next$ git grep qspi-nor-peripheral-props.yaml
+>> Documentation/devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml:$id:
+>> http://devicetree.org/schemas/spi/cdns,qspi-nor-peripheral-props.yaml#
+>> Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml:  -
+>> $ref: cdns,qspi-nor-peripheral-props.yaml#
+>>
+>> No ref to cdns,qspi-nor-peripheral-props.yaml in
+>> Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+>>
+>> next$ git grep tegra210-quad-peripheral-props
+>> Documentation/devicetree/bindings/spi/nvidia,tegra210-quad-peripheral-props.yaml:$id:
+>> http://devicetree.org/schemas/spi/nvidia,tegra210-quad-peripheral-props.yaml#
+>> Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml:  -
+>> $ref: nvidia,tegra210-quad-peripheral-props.yaml#
+>>
+>> No ref to nvidia,tegra210-quad-peripheral-props.yaml in
+>> Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+> 
+> All your examples do it - reference spi peripheral props.
+> 
+> As I said, your change is now not equivalent. If any other device
+> appears in st,stm32-fmc2-ebi, the schema won't be applied.
+> 
+> Let me put it that way: you must have there additionalProperties:false
+> or unevaluatedProperties:false. Once you add it, you start seeing errors
+> leading to missing ref.
 
-And one more comment: drop "Binding". Title is for hardware, so for example:
-Qualcomm SDM660/SDM630/SDM636 Global Clock & Reset Controller
+Is what you are trying to convey that 
+Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml does ref 
+spi-controller.yaml# and that one does patternProperties: ref: 
+spi-peripheral-props.yaml ?
 
-Best regards,
-Krzysztof
+So the fix for V3 should be the following ?
 
+diff --git 
+a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml 
+b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+index 49243f447eb90..0448bd07f4310 100644
+--- 
+a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
++++ 
+b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+@@ -48,6 +48,7 @@ properties:
+  patternProperties:
+    "^.*@[0-4],[a-f0-9]+$":
+      type: object
++    $ref: st,stm32-fmc2-ebi-props.yaml
+
+  required:
+    - "#address-cells"
