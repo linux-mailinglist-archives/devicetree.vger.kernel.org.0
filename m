@@ -2,152 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A3BE5EE1C3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 18:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 953975EE214
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 18:42:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233638AbiI1QXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 12:23:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52498 "EHLO
+        id S233990AbiI1QmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 12:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234554AbiI1QXS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 12:23:18 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D8BA56B85;
-        Wed, 28 Sep 2022 09:23:10 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id d42so21249634lfv.0;
-        Wed, 28 Sep 2022 09:23:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=ENny02jrZKVbgPfzbkbRE4ZovlzNI+xmygHZLGPqIBs=;
-        b=ZtknbgmU/wmbcYwSVkoJB+W1EHC/7KVOArUns8X67T/KOCkbeed1buC3ysC9Phfwfi
-         ifQ9jpg5aQLgZQEQvWcamMuhilITQTXz4qnEAuPQoouDK+5gcyTD0NinNArywTuVVGki
-         bnoCGDAX32g12eoedEj2Q5wE4jQ0Wzl+ZICavftNxBx0GTr6VAGnXkIQQnEqgPlN9h5F
-         PL1x61LC9+KI06GHyaPnwnfoPUlD/dkp6kSg/4uPADRgMrZfDv1Nt93sFjswxM8h6E+p
-         0LF0GiJ6bcvKD8phn8SNduNvjHAK5McCCqZmZbtc1WY+Dx3rJgQZNcGtCoCMhaysAb59
-         gLyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=ENny02jrZKVbgPfzbkbRE4ZovlzNI+xmygHZLGPqIBs=;
-        b=QpMQUlu+Sjhh/W357+iACLr+yq9Rq02OAIpVprcaNtjJGoasA44NISGIzq7rgSnrSv
-         G+0muW/VGrIYsTuNdWpSDJiYJ8t6MTPpxUHrIRwNlQ4cGU9gmIXSvhRQ77KIuz2OwSa7
-         8QpdEm7jD/a0/7EkfrGOXV+vgL1D/7r32R4y7eZnAxBb6QbDn7QVIbagGMdbbxzCTdBd
-         9JaWgfW0mTqC33jhqMatTSNVW5N620Z3TcafsEcnXSEBdlLiDQ1Iw2WTh9DLJbkbB8V5
-         W2jt7Tcb9ZkEt2xp2s71zofFNMdFPiooWXWFF/WLUeq2UW688TiZfYAHzwZoMIaulKk6
-         vS9g==
-X-Gm-Message-State: ACrzQf1UQ5sdkU1Elp/Q8wNXRZgp4vouWYbWNFNcRlnjiIMxAoCDBk1R
-        NF1eCYceGpkr0AVwMMHi03A=
-X-Google-Smtp-Source: AMsMyM5gtxklHbrdm1xdQqDlFiUiLhPp7YuJAm3I62QCBKtAMamqNsiIC8L5zDr5KDF8j5icQVK0sA==
-X-Received: by 2002:a05:6512:104f:b0:4a1:b0e9:dd25 with SMTP id c15-20020a056512104f00b004a1b0e9dd25mr9371959lfb.454.1664382188690;
-        Wed, 28 Sep 2022 09:23:08 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
-        by smtp.gmail.com with ESMTPSA id u20-20020a197914000000b0049ade93ad24sm511834lfc.156.2022.09.28.09.23.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 09:23:07 -0700 (PDT)
-Message-ID: <e3abc0a9-ad5b-f6ef-8cba-0b4c6c8325c0@gmail.com>
-Date:   Wed, 28 Sep 2022 19:23:06 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [RFC PATCH 4/5] iio: accel: Support Kionix/ROHM KX022A
- accelerometer
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S234007AbiI1QmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 12:42:20 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 828A1D4DD4;
+        Wed, 28 Sep 2022 09:42:18 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 732B947C;
+        Wed, 28 Sep 2022 18:42:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1664383335;
+        bh=7KA1n0RAEw+lqCsVliprwKrAzzAI6PKXJUVUTsE8vvI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jhf5yymccXEDElBwJIt9EVPsMTJhdaS+OPOIzhAFb0KKYTCWvhXBCXPVq0m0n32Sw
+         rpu+rVv2WBSXKIBQc7SBwG+tCmDelTn/2MDcQNB+cLRLCfNdajVo7oyzBCQ5WlTJkW
+         1v1iGNAwQSsnpksEPl/MA7pMSfUlB4hJOx2kwMsc=
+Date:   Wed, 28 Sep 2022 19:42:14 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Mutanen, Mikko" <Mikko.Mutanen@fi.rohmeurope.com>,
-        "Haikola, Heikki" <Heikki.Haikola@fi.rohmeurope.com>
-References: <cover.1663760018.git.mazziesaccount@gmail.com>
- <fe1088cebb0de70bcb99af517004c1816b696825.1663760018.git.mazziesaccount@gmail.com>
- <20220922180339.30138141@jic23-huawei>
- <3eea7954-3faf-3fc9-7507-c318488c5524@gmail.com>
- <YzRU9aRNReonSqbg@smile.fi.intel.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <YzRU9aRNReonSqbg@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        git@xilinx.com, saikrishna12468@gmail.com
+Subject: Re: [PATCH 0/4] pinctrl: pinctrl-zynqmp: Add tri-state configuration
+ support
+Message-ID: <YzR5ZoAbaYONnmPS@pendragon.ideasonboard.com>
+References: <1655462819-28801-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <YzRvEPUWUXP4x7+h@pendragon.ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YzRvEPUWUXP4x7+h@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
-
-On 9/28/22 17:06, Andy Shevchenko wrote:
-> On Wed, Sep 28, 2022 at 02:14:14PM +0300, Matti Vaittinen wrote:
->> On 9/22/22 20:03, Jonathan Cameron wrote:
->>> On Wed, 21 Sep 2022 14:45:35 +0300
+On Wed, Sep 28, 2022 at 06:58:10PM +0300, Laurent Pinchart wrote:
+> Hi Sai,
 > 
-> ...
+> On Fri, Jun 17, 2022 at 04:16:55PM +0530, Sai Krishna Potthuri wrote:
+> > This series update the Xilinx firmware, ZynqMP dt-binding and ZynqMP
+> > pinctrl driver to handle 'output-enable' and 'bias-high-impedance'
+> > configurations. As part of these configurations, ZynqMP pinctrl driver
+> > takes care of pin tri-state setting.
+> > Also fix the kernel doc warning in ZynqMP pinctrl driver.
 > 
->>>> +		dev_err(dev, "no regmap\n");
->>>
->>> Use dev_err_probe() for all dev_err() stuff in probe paths.
->>> It ends up cleaner and we don't care about the tiny overhead
->>> of checking for deferred.
->>
->> This one bothers me a bit. It just does not feel correct to pass -EINVAL for
->> the dev_err_probe() so the dev_err_probe() can check if -EINVAL !=
->> -EPROBE_DEFER. I do understand perfectly well the consistent use of
->> dev_err_probe() for all cases where we get an error-code from a function and
->> return it - but using dev_err_probe() when we hard-code the return value in
->> code calling the dev_err_probe() does not feel like "the right thing to do"
->> (tm).
->>
->> Eg, I agree that
->> return dev_err_probe(dev, ret, "bar");
->> is nice even if we know the function that gave us the "ret" never requests
->> defer (as that can change some day).
->>
->> However, I don't like issuing:
->> return dev_err_probe(dev, -EINVAL, "bar");
+> I'm afraid this causes a regression :-( With this series applied, boot
+> breaks with the following message being printed to the serial console:
 > 
-> This case specifically was added into documentation by 7065f92255bb ("driver
-> core: Clarify that dev_err_probe() is OK even w/out -EPROBE_DEFER").
-
-Yes. And this is exactly what I meant with:
- >> Eg, I agree that
- >> return dev_err_probe(dev, ret, "bar");
- >> is nice even if we know the function that gave us the "ret" never 
-requests
- >> defer
-
-There is still (in my opinion) a significant difference if we call:
- >> return dev_err_probe(dev, -EINVAL, "bar");
-
-- where we really hard-code the -EINVAL as a parameter to the 
-dev_err_probe()
-
->> Well, please let me know if you think the dev_err_probe() should be used
->> even in cases where we hard code the return to something...
+> Received exception
+> MSR: 0x200, EAR: 0xFF180198, EDR: 0x0, ESR: 0x64
 > 
-> And this should be, of course, maintainer's decision.
+> I've traced that to the probe of the UART, when it calls into the
+> firmware to set pin MIO18 to high impedance. According to v1.7 of the
+> ZynqMP registers reference (UG1087), there is no register at address
+> 0xFF180198.
+> 
+> I am using the VCU TRD 2021.1 for testing. Does this series require a
+> firmware update ? If so backward compatibility needs to be preserved.
+> It's very late in the v6.0-rc cycle for a fix, a revert may be best at
+> this point, to give us time to fix the issue properly.
 
-Ultimately, yes.
+I've now tested the VCU TRD 2022.1 (which AFAIK is the latest available
+version), and the problem doesn't occue then. It thus seems this depends
+on a firmware update, which is impractical at best for all old designs
+:-(
 
-Best Regards
-	--Matti
+> > Note: Resending the series as i see this series didn't went out due
+> > to some issue with my mail client. Please ignore if this series is 
+> > already received.
+> > 
+> > Sai Krishna Potthuri (4):
+> >   firmware: xilinx: Add configuration values for tri-state
+> >   dt-bindings: pinctrl-zynqmp: Add output-enable configuration
+> >   pinctrl: pinctrl-zynqmp: Add support for output-enable and
+> >     bias-high-impedance
+> >   pinctrl: pinctrl-zynqmp: Fix kernel-doc warning
+> > 
+> >  .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml         |  4 ++++
+> >  drivers/pinctrl/pinctrl-zynqmp.c                      | 11 +++++++++++
+> >  include/linux/firmware/xlnx-zynqmp.h                  |  5 +++++
+> >  3 files changed, 20 insertions(+)
 
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+Regards,
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+Laurent Pinchart
