@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 268205EE985
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 00:38:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5CD55EE981
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 00:37:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234708AbiI1Whz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 18:37:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32964 "EHLO
+        id S234599AbiI1Whx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 18:37:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234758AbiI1Wha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 18:37:30 -0400
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA26FF3CB;
-        Wed, 28 Sep 2022 15:37:25 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id cm7-20020a056830650700b006587fe87d1aso9073563otb.10;
-        Wed, 28 Sep 2022 15:37:25 -0700 (PDT)
+        with ESMTP id S234620AbiI1WhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 18:37:24 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E90FFFF3CA;
+        Wed, 28 Sep 2022 15:37:23 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id v130so17028513oie.2;
+        Wed, 28 Sep 2022 15:37:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=message-id:date:subject:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=o9gZyjiSadqdv6mxfxQft+qOXfye+FPw5i97r+Tzn8A=;
-        b=anVPY9iSbIp6kplQjdn1U1/v8AticV+/uCjQt1tXDRu5RPCxiUXOdzGJtQPSbSkUaw
-         8Os3TPMRdhFHlbUXAz8xSGnLU6LnY5azg5e8wE0PsrVeNzs/0Rtk7AGoWR7v1VwDNgBy
-         QEWHDO+lFFLik8idUMfL6MUPU+2iNhkSuyzPnfHLJPEfEPVjgQf+cYwTGeImy1k2jEI4
-         ki7iIoc4j4YheysYR86qkY/JnTPqTvmQ7UyNFeClemouGklb7eWIWHuaQyBBSZ2H75Ib
-         FPv/I9Wp0aTq3LOLffYtTULtsP/wj8H9TlPd1f4EnbftUdez+m9JLulOuDebWiAyD5qh
-         7xbg==
-X-Gm-Message-State: ACrzQf1IuTG93o6gFAhMFIKdGx/EXv80xIWSr1zRcGH7F77xKJfLe60i
-        Fi+ejcYo0XjCpMSXO4zhkf6dF/hG4Q==
-X-Google-Smtp-Source: AMsMyM5H9jK6oqeqXok/cqzftUY221G7BgEdMfyoyL+nY6rOhKsS2nbUIDTFWV3cljSso/Od/TG9SA==
-X-Received: by 2002:a9d:394:0:b0:65c:3f7f:a6b7 with SMTP id f20-20020a9d0394000000b0065c3f7fa6b7mr28605otf.179.1664404644667;
-        Wed, 28 Sep 2022 15:37:24 -0700 (PDT)
-Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w7-20020a4aa987000000b0044b491ccf97sm2385428oom.25.2022.09.28.15.37.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        bh=P++xTzZTIc2lmfX8WxZXDSskvgSwQSbgUUQ1hjUxsDE=;
+        b=lQN+K+qXXArQmIECwqUhZTgZfGVaEolGQI4EIS5gZTLcAR5nA0CkabnghOr2rFAz1X
+         f6eS3wyJxuLPT0ytRr99nauMhL3LbwwZTJF18TCTXP9Ib4LAbpxWe+W6nFkHus4Gka1q
+         8Fvm8KB5P9dlQ8Tjs7cB401+9hsU8Ah8rL0N4Hz61OpDAF+vY2eRc+q77NdcunL81wmN
+         qkezu5I+0DnhD0ztiNTezQFEeLqBypzS8LzvmL4Q9d+NGIw6/0ZC36EK/HNRiwzePuJz
+         GbdTovM2XYvHXPsEZtBz566tSJaaxcanJmGFPLXKorTjg88TREvTRkh0yf4uKudzOwTo
+         /P+A==
+X-Gm-Message-State: ACrzQf2ag0u9/DR3ssYL4p6enwWUI5rQ3VJhcukviCZSsYdyEW/zkaRb
+        rtMkbg63eFc3nxCwKTVOjFhdJ2YdJQ==
+X-Google-Smtp-Source: AMsMyM7Yb+UES5pgqkzihDa67ToREa3zQpjLF+O3UGIQskhh28AQph/ir7XzhzRmrneAV+2SppQ0Lw==
+X-Received: by 2002:a05:6808:d53:b0:351:1cab:9c29 with SMTP id w19-20020a0568080d5300b003511cab9c29mr141867oik.64.1664404643080;
         Wed, 28 Sep 2022 15:37:23 -0700 (PDT)
-Received: (nullmailer pid 87026 invoked by uid 1000);
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r5-20020acac105000000b0034ffacec0basm2373165oif.15.2022.09.28.15.37.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Sep 2022 15:37:22 -0700 (PDT)
+Received: (nullmailer pid 87023 invoked by uid 1000);
         Wed, 28 Sep 2022 22:37:22 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, jh80.chung@samsung.com,
-        linux-mmc@vger.kernel.org, ulf.hansson@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-In-Reply-To: <20220928165420.1212284-1-dinguyen@kernel.org>
-References: <20220928165420.1212284-1-dinguyen@kernel.org>
-Subject: Re: [PATCHv4 1/3] dt-bindings: mmc: synopsys-dw-mshc: document "altr,sysmgr-syscon"
+To:     Erling Ljunggren <hljunggr@cisco.com>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org
+In-Reply-To: <20220928112147.358745-4-hljunggr@cisco.com>
+References: <20220928112147.358745-1-hljunggr@cisco.com> <20220928112147.358745-4-hljunggr@cisco.com>
+Subject: Re: [PATCH v3 3/5] dt-bindings: media: add cat24c208 bindings
 Date:   Wed, 28 Sep 2022 17:37:22 -0500
-Message-Id: <1664404642.110424.87025.nullmailer@macbook.herring.priv>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+Message-Id: <1664404642.089109.87022.nullmailer@macbook.herring.priv>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Sep 2022 11:54:18 -0500, Dinh Nguyen wrote:
-> Document the optional "altr,sysmgr-syscon" binding that is used to
-> access the System Manager register that controls the SDMMC clock
-> phase.
+On Wed, 28 Sep 2022 13:21:45 +0200, Erling Ljunggren wrote:
+> Add devicetree bindings for new cat24c208 EDID EEPROM driver.
 > 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
 > ---
-> v4: add else statement
-> v3: document that the "altr,sysmgr-syscon" binding is only applicable to
->     "altr,socfpga-dw-mshc"
-> v2: document "altr,sysmgr-syscon" in the MMC section
-> ---
->  .../bindings/mmc/synopsys-dw-mshc.yaml        | 31 +++++++++++++++++--
->  1 file changed, 28 insertions(+), 3 deletions(-)
+>  .../bindings/media/i2c/onnn,cat24c208.yaml    | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -82,10 +72,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml: allOf:1:if:properties:compatible:contains:const: ['altr,socfpga-dw-mshc'] is not of type 'integer', 'string'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml: ignoring, error in schema: allOf: 1: if: properties: compatible: contains: const
-Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.example.dtb:0:0: /example-0/mmc@12200000: failed to match any schema with compatible: ['snps,dw-mshc']
+Error: Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.example.dts:25.39-40 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:384: Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1420: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
