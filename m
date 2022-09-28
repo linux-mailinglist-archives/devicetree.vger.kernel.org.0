@@ -2,136 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D06E5EE37C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:50:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AC7B5EE384
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:52:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234147AbiI1Rul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 13:50:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43176 "EHLO
+        id S234039AbiI1Rwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 13:52:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234582AbiI1Ruj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:50:39 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 790594B0D4
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:50:36 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id d42so21592600lfv.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:50:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=szYRUNTBzhtYD1dEwWP+61BLschhE4HnOh0yg58NYWc=;
-        b=mC7G9bQo9HU0f6epli3GndKdWBSE8mKRNHsJbfkCwBZ7Ul8WpsecgIkm8+ZNy2E/dR
-         0HrdfJS1VZjm0/7ynVDeqMsQDJoQ0ZAurec+DhV40EWxROgQOG8HPTt0UiF2d9aKQ0BM
-         RwsL+gAlJ2kLN4JFQeKYkymK3z6xGwiVXeqOR84hVPaDIndoofLqwt3rOjJSl8pvKcJD
-         1LdIdHyU9WzWpBu7lSWCaRpFh7TB+qx+LC+nG8sbqQ+tsDoGCqE0nfUk+up8twztsbjb
-         hyKGsUKPSG37/aORpxP1YRncPExyozhskt2hNplrHLzoQpVJGBi4FDXYrClymntdLOCk
-         mj+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=szYRUNTBzhtYD1dEwWP+61BLschhE4HnOh0yg58NYWc=;
-        b=N0JUtHOObYHBXqqQoQZOCH5fuYi4vEbhhPzzLmFV7ikrR23gN27Dch0kzhlk/ZRs3w
-         q8rWjJZmPXe3GgGKjvqj3lABo+gij0s+VCKcGFdEVd122S60WXXQgttuTHVoXnttqAOV
-         XqdTzJENUUxBWdSk8iXjh0jbCoTlW7WPpunrgSBWpvUzbOg+8YirFI14Ej9bajNEry1X
-         FjGnAS+9mKlfULDcmxWF12JnlEJbdN3AVXE19JWPJ7BMzaJmnE6MaqV+ZExyW71qjpot
-         7E8RF4dpvlNsMgUCjlv6/+tQrSJQx/z4kf6SGsms+RkgWdqHBu1IrtPL9TTTtcWsiQfB
-         ayTw==
-X-Gm-Message-State: ACrzQf1SFMhtKf7jgZ9hCX64n7F722ltNf4ANB4zPZZ6UAG2JNkE+are
-        afLU/o/cSLFQ/0/xG/F/Gpn07Q==
-X-Google-Smtp-Source: AMsMyM5rxIZDytENB8AHhahxxOtrIFCEJdUiYcgZbpXU+ZEkOnoiYOmcLtFg6ddHKwNiFLOfdB0k8A==
-X-Received: by 2002:a05:6512:1056:b0:498:efaf:5bd1 with SMTP id c22-20020a056512105600b00498efaf5bd1mr13304252lfb.64.1664387434846;
-        Wed, 28 Sep 2022 10:50:34 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id x25-20020a056512131900b00498ebd60c35sm532566lfu.165.2022.09.28.10.50.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 10:50:34 -0700 (PDT)
-Message-ID: <dfb09b81-43e0-2fec-47f8-f341dea15f04@linaro.org>
-Date:   Wed, 28 Sep 2022 19:50:33 +0200
+        with ESMTP id S234333AbiI1Rwu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:52:50 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F794F8F80;
+        Wed, 28 Sep 2022 10:52:45 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28SHqPaf076937;
+        Wed, 28 Sep 2022 12:52:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1664387545;
+        bh=+nMkJVipOiVxem0Rt3I7+AhSsJ7p85+gzYWYe8Su7kw=;
+        h=From:To:CC:Subject:Date;
+        b=cxSPjhKeevtkcslAy9veL4QUcK9bKnvIALWhTlwhe3ca42N69ZXrgPWF/FUoFUHnG
+         e2GNAfe/zeJ47yrXZ8behrPXloZ1oxM9QLcsVgvAsPO4UNJxuTbrIUpeM76OyFqB/k
+         twmyC/OGksfFTuWf469gUpFYFKD6qp1a1grtos1w=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28SHqPOH029164
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 28 Sep 2022 12:52:25 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 28
+ Sep 2022 12:52:24 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Wed, 28 Sep 2022 12:52:24 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28SHqOMQ100880;
+        Wed, 28 Sep 2022 12:52:24 -0500
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+To:     Tomi Valkeinen <tomba@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>
+Subject: [RFC PATCH v5 0/6] Add DSS support for AM625 SoC
+Date:   Wed, 28 Sep 2022 23:22:17 +0530
+Message-ID: <20220928175223.15225-1-a-bhatia1@ti.com>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v3 02/11] dt-bindings: remoteproc: mediatek: Support
- MT8195 dual-core SCP
-Content-Language: en-US
-To:     =?UTF-8?B?VGluZ0hhbiBTaGVuICjmsojlu7fnv7Ap?= 
-        <TingHan.Shen@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= 
-        <tiffany.lin@mediatek.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= 
-        <Yunfei.Dong@mediatek.com>,
-        "peng.fan@oss.nxp.com" <peng.fan@oss.nxp.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "andersson@kernel.org" <andersson@kernel.org>,
-        =?UTF-8?B?QW5kcmV3LUNUIENoZW4gKOmZs+aZuui/qik=?= 
-        <Andrew-CT.Chen@mediatek.com>,
-        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>
-Cc:     "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20220927025606.26673-1-tinghan.shen@mediatek.com>
- <20220927025606.26673-3-tinghan.shen@mediatek.com>
- <08abade9-f6f5-77cf-b83d-739b0b81543a@oss.nxp.com>
- <d16002714baf1eccb9b0ef5a2ae60e9b25194701.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d16002714baf1eccb9b0ef5a2ae60e9b25194701.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 11:17, TingHan Shen (沈廷翰) wrote:
-> On Wed, 2022-09-28 at 15:01 +0800, Peng Fan wrote:
->>
->> On 9/27/2022 10:55 AM, Tinghan Shen wrote:
->>> The MT8195 SCP is a dual-core RISC-V MCU. Extend the yaml file
->>> to describe the 2nd core as a subnode of the boot core.
->>>
->>> The configuration register is shared by MT8195 SCP core 0
->>> and core 1. The core 1 can retrieve the information of configuration
->>> registers from parent node.
->>
->> I think the commit message would not convince people you put
->> scp 1 as subnode of scp 0.
->>
->> Regards,
->> Peng.
->>
-> Hi Peng,
-> 
-> Thanks for your review. I should give the most reasonable explanation
-> for why SCP 1 is a subnode.
-> 
-> Adding SCP 1 as a subnode helps to assure finish probing SCP 1
-> before starting SCP 0 by using of_platform_populate. It's because
-> that I want to probe SCP 1 as a remoteproc subdevice of SCP 0.
-> such that when SCP 0 crashed, SCP 0 can reboot SCP 1.
+This patch series adds a new compatible for the Display SubSyetem
+controller on TI's AM625 SoC. It further adds the required support for
+the same in the tidss driver. The AM625-DSS is a newer version of the DSS
+from the AM65X version with the major change being the addition of
+another OLDI TX. With the help of 2 OLDI TXes, the AM625 DSS supports
+OLDI displays with a resolution of upto 2K.
 
-As Peng noted, this is not proper description of hardware. The SCP 0/1
-do not have parent-child relationship, so do not model it that way in
-Devicetree.
+This patch set further adds support for the OLDI on AM625, and is, in
+essence, the second version of the following patch series:
+https://patchwork.kernel.org/project/dri-devel/list/?series=660970&state=%2A&archive=both
 
-Probe ordering is operating system specific, not related to bindings.
+The changes in the above-mentioned series forced some re-works in this
+series, and are better reviewed as a single set.
 
-Best regards,
-Krzysztof
+TODO:
+  - Support for OLDI Bridges that work on clone / dual-link modes is yet
+    to be added.
+
+  - The pixel clock for the OLDI VP passes through a clock divider, which
+    was being explicitly set in previous series, but that was not the
+    right way. That patch has been dropped and a newer implementation is
+    in works.
+
+Note:
+  - Due to lack of hardware, only dual-link mode has been tested.
+
+Changelog:
+V5:
+  - Rebase for current merge window
+  - Add max DT ports in DSS features
+  - Combine the OLDI support series
+
+(Changes from OLDI support series v1)
+  - Address Tomi Valkeinen's comments
+    1. Update the OLDI link detection approach
+    2. Add port #3 for 2nd OLDI TX
+    3. Configure 2 panel-bridges for cloned panels
+    4. Drop the OLDI clock set patch
+    5. Drop rgb565-to-888 patch
+
+V4:
+  - Rebase for current merge window
+  - Add acked and reviewed by tags
+
+V3:
+  - Change yaml enum in alphabetical order
+  - Correct a typo
+
+V2:
+  - Remove redundant regsiter array
+
+Aradhya Bhatia (6):
+  dt-bindings: display: ti,am65x-dss: Add am625 dss compatible
+  dt-bindings: display: ti: am65x-dss: Add new port for am625-dss
+  drm/tidss: Add support for AM625 DSS
+  drm/tidss: Add support to configure OLDI mode for am625-dss.
+  drm/tidss: Add IO CTRL and Power support for OLDI TX in am625
+  drm/tidss: Enable Dual and Duplicate Modes for OLDI
+
+ .../bindings/display/ti/ti,am65x-dss.yaml     |  22 ++-
+ drivers/gpu/drm/tidss/tidss_dispc.c           | 155 ++++++++++++++++--
+ drivers/gpu/drm/tidss/tidss_dispc.h           |  11 ++
+ drivers/gpu/drm/tidss/tidss_dispc_regs.h      |   6 +
+ drivers/gpu/drm/tidss/tidss_drv.c             |   1 +
+ drivers/gpu/drm/tidss/tidss_drv.h             |   3 +
+ drivers/gpu/drm/tidss/tidss_kms.c             | 146 ++++++++++++++---
+ 7 files changed, 304 insertions(+), 40 deletions(-)
+
+-- 
+2.37.0
 
