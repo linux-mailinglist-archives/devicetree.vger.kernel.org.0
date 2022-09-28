@@ -2,84 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2630E5EDA3F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 12:40:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 286085EDAA9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 12:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233549AbiI1Kj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 06:39:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32954 "EHLO
+        id S233971AbiI1K4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 06:56:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233557AbiI1Kjy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 06:39:54 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC15438A8;
-        Wed, 28 Sep 2022 03:39:43 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id a3so19677179lfk.9;
-        Wed, 28 Sep 2022 03:39:43 -0700 (PDT)
+        with ESMTP id S233049AbiI1Kzv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 06:55:51 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E14EE21F2;
+        Wed, 28 Sep 2022 03:54:19 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id z4so1958742lft.2;
+        Wed, 28 Sep 2022 03:54:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=EdZBNk8VJDVppuaYhVl5jrx/YbPGgB0lTI+ahlH9Qm4=;
-        b=TsL/jgEqOMG51pH+mCwGq5qkv/ihHEyMrCB8XMUy5ZiwVPMYUxR/KfMriUda/LxhvB
-         bogARgoXRdxa6Vptk28tGQpOXBRiIgd8DDuRp4JJY+FlimVvAqXvv2FwdEivOvouAIxH
-         LeLBPFe1GCLlcw3+bjmquS3YHu1qXfJxLDI3/zncbETLW8NQr1wutIOiD1i4JmpVknmn
-         UIyHccFDAk3GLW5hbIpk6I3EGza9FioU6fSOmKt6zCjp28tYcESROk3K4pQjq9xtpo80
-         j6o5K/FxlH+8Ev7Oo+Q+DLck8osl6rrScwiEF2x0ogJiEGx8OISDvpgldDzv3RKa+QEl
-         Uwvw==
+        bh=51m+2Gh5GzzXA1oZLWBMoREyLh81V5FJkxq7+9c9iyQ=;
+        b=eQpK8Dp3x3wvLl1NBHpv8IeKRexpJuT/ZtUy/lgZVDGprjmHBn62efhPZvusvPdYLC
+         ZpUQAfxUH5hTpSTYz9aSwliD8voIvAR3dAdpX/aX46euRVA+x+RiRyV/RNmT1BgKqW0z
+         B4qfRnbi55cWXv+4vGiiv47EIdRf81XSdfakYPU5oA2+UVMvcIKvZt6bN9rp2kcMJIEs
+         emc0SlLUkabcUzRY1uJCpj5EcA3e+oaoP/o1zcrdfab4u/BOAT8UqF1Fc6Yl2lTKYFdX
+         15ZceMnkvcwFDWtD3BnAJ3fbEodOPLAI0sB0RWLzDjj23k9IBYZi0s2cTPqUCxzzkl4C
+         CdgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=EdZBNk8VJDVppuaYhVl5jrx/YbPGgB0lTI+ahlH9Qm4=;
-        b=O5GR1iS/fRwP56GgMien0VX/mByUYJz9Gmc6HnMG//TnmpDdCWWDE2yeHdWMdqrdjG
-         oUNpn592TQT4+FL0b7txDqNnHCcOicwwYNje3KWiMnkHe9dTiOEX7S6xORWOQODqisUT
-         xcbtnTXkqzRAlJwYY+DqG6LO+dtoon2LjDnKpMt5MhUlpCqdHqRLzZxh0hakFle2Flh0
-         6V8VyuXF3N3kBUGLY0aPWKn1chazxYDT3wA88e1KEA2Ly2AtVzSjNtS3tc3GyIwEUHpQ
-         0FpLJhbl+KzYnfqGIZ3taeFPqRmMBsNiyMjOirZ2Vq4OwMivEmFB/bAQUKFNLqDU5RjB
-         UXkQ==
-X-Gm-Message-State: ACrzQf2IKCnzEzccGkF5H8iHtwfNinWAt0NJPyu3L2pvbSHQY9XaBubM
-        6iyxSwYxE/TCZqNlCprxde4=
-X-Google-Smtp-Source: AMsMyM54g6R4YY+tntd2IyylJg/cB5ADdZbCgCqKowRVI1cra2KWeRr80il+HDEd56OhqpcK5GJKZg==
-X-Received: by 2002:a05:6512:1325:b0:4a1:d80e:1cd5 with SMTP id x37-20020a056512132500b004a1d80e1cd5mr5458610lfu.497.1664361581974;
-        Wed, 28 Sep 2022 03:39:41 -0700 (PDT)
+        bh=51m+2Gh5GzzXA1oZLWBMoREyLh81V5FJkxq7+9c9iyQ=;
+        b=UI4Kng6oPDLU6SdKbl5zXpBT6C9qt2q8bmfZvw3OfproKu0RoNW/KYkmqLwOWjAsJy
+         kBgpYeHaZjHm52FVeXKkZXxOULFvVmg6l2+1kim70TrmaYbTIySK5HXTCyycQ/mr5kVY
+         qrdRpmbRQ8wyePQ4oE8GXl1qiB0FMhe8NBqkejXjzUgBiQw/XbQuFhNVPE2QIGnkq9ri
+         TJoabnRt813LsiFbb0nn2YqfTZaOSb5y6/gC0kGDcO8cCDTULplKjTWVVeaqNuVlPUsV
+         yLFvPo1jtTxrSZg3hPXh/iv5DUNbTkoSL3NfGcFIlPa7zleIOYEOrcVJ5Q0KNgyaoPlf
+         NgRA==
+X-Gm-Message-State: ACrzQf3CBuGxyOZxUTvjkQGUsfZP0Od7rE6RBys/aPtfNv6WMLCL2qTq
+        ILFY0EcPxElX0S77v9qbEsk=
+X-Google-Smtp-Source: AMsMyM7gc2f88K86Uln6JgpNwtUi7gJAAqHKUnRsybb9mRhAQxBLr7uRrVrYk2iBvN67FjpaWkO+5A==
+X-Received: by 2002:ac2:57c9:0:b0:49c:3e64:de95 with SMTP id k9-20020ac257c9000000b0049c3e64de95mr13228543lfo.452.1664362407479;
+        Wed, 28 Sep 2022 03:53:27 -0700 (PDT)
 Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id s18-20020a056512203200b00498fc3d4cfdsm436015lfs.189.2022.09.28.03.39.40
+        by smtp.gmail.com with ESMTPSA id x4-20020ac25dc4000000b004979e231fafsm441446lfq.38.2022.09.28.03.53.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Sep 2022 03:39:41 -0700 (PDT)
-Date:   Wed, 28 Sep 2022 13:39:38 +0300
+        Wed, 28 Sep 2022 03:53:26 -0700 (PDT)
+Date:   Wed, 28 Sep 2022 13:53:24 +0300
 From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Manish Narani <manish.narani@xilinx.com>,
+To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
         Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
         Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v2 03/15] dt-bindings: memory: snps: Convert the schema
- to being generic
-Message-ID: <20220928103938.nx44vprs6npk2eyp@mobilestation>
-References: <20220910195659.11843-1-Sergey.Semin@baikalelectronics.ru>
- <20220910195659.11843-4-Sergey.Semin@baikalelectronics.ru>
- <20220912143219.GC1170702-robh@kernel.org>
- <20220926105611.32od2rjlvybmzmut@mobilestation>
- <CAL_JsqJgkY=xb8ED_oiUBPbjV7dKRd3MRJq+jNVXuJhE3L3t_Q@mail.gmail.com>
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v4 00/15] PCI: dwc: Add hw version and dma-ranges
+ support
+Message-ID: <20220928105324.mhsvl6asvbsbogvj@mobilestation>
+References: <20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru>
+ <20220729023645.GA423256@bhelgaas>
+ <YzQBjHYI9REEaqeL@lpieralisi>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqJgkY=xb8ED_oiUBPbjV7dKRd3MRJq+jNVXuJhE3L3t_Q@mail.gmail.com>
+In-Reply-To: <YzQBjHYI9REEaqeL@lpieralisi>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -90,81 +84,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 27, 2022 at 05:02:40PM -0500, Rob Herring wrote:
-> On Mon, Sep 26, 2022 at 5:56 AM Serge Semin <fancer.lancer@gmail.com> wrote:
-> >
-> > On Mon, Sep 12, 2022 at 09:32:19AM -0500, Rob Herring wrote:
-> > > On Sat, Sep 10, 2022 at 10:56:47PM +0300, Serge Semin wrote:
-> > > > At the current state the DW uMCTL2 DDRC DT-schema can't be used as the
-> > > > common one for all the IP-core-based devices due to the compatible string
-> > > > property constraining the list of the supported device names. In order to
-> > > > fix that we suggest to update the compatible property constraints so one
-> > > > would permit having any value aside with the generic device names. At the
-> > > > same time the generic DT-schema selection must be restricted to the
-> > > > denoted generic devices only so not to permit the generic fallback
-> > > > compatibles. Finally since the generic schema will be referenced from the
-> > > > vendor-specific DT-bindings with possibly non-standard properties defined
-> > > > it must permit having additional properties specified.
-> > > >
-> > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > >
-> > > > ---
-> > > >
-> > > > Note alternatively we could drop the "additionalProperties" keyword
-> > > > modification since currently there is no actual device available with the
-> > > > properties not listed in the generic DT-schema.
-> > >
-> >
-> > > Normally, this has required 2 schema files. However, I think you can
-> > > do something like this:
-> > >
-> > > if:
-> > >   compatible:
-> > >     enum:
-> > >       - snps,ddrc-3.80a
-> > >       - snps,dw-umctl2-ddrc
-> > >       - xlnx,zynqmp-ddrc-2.40a
-> > > then:
-> > >   unevaluatedProperties: false
-> > >
-> > >
-> > > But please make sure that actually catches undocumented properties
-> > > because unevaluateProperties under 'then' is not something I've tried.
-> >
-> > Oh, I wish this would work! Alas it doesn't. AFAIU the schemas under
-> > the "then" and "else" keywords are considered as separate schemas
-> > and are independently applied to the DT node. As soon as I added the
-> > construction suggested by you the schema evaluation started failing
-> > with error as none of the DT-node properties in the examples are valid:
-> >
-> > < ... /snps,dw-umctl2-ddrc.example.dtb: memory-controller@fd070000:
-> > <     Unevaluated properties are not allowed ('compatible', 'reg', interrupts', 'interrupt-names', '$nodename' were unexpected)
-> >
-> > < ... /snps,dw-umctl2-ddrc.example.dtb: memory-controller@3d400000:
-> > <     Unevaluated properties are not allowed ('compatible', 'reg', 'interrupts', 'interrupt-names', 'clocks', 'clock-names', '$nodename' were unexpected)
-> 
-> Indeed. While unevaluatedProperties takes if/then/else into account,
-> flipping it around doesn't.
-> 
-> > Any suggestion of how this could be fixed? Perhaps updating the
-> > dtschema tool anyhow? (I failed to find a quick-fix for it) Creating
-> > an additional separate schema with the common properties seems a bit
-> > overkill in this case. On the other hand is there a decent
-> > alternative?
-> 
-> I don't think there is any other fix.
-> 
-> > What about accepting what I suggested in this patch? It does permit
-> > additional properties, but we won't need to have a separate schema
-> > with just several common properties.
+On Wed, Sep 28, 2022 at 10:10:52AM +0200, Lorenzo Pieralisi wrote:
+> On Thu, Jul 28, 2022 at 09:36:45PM -0500, Bjorn Helgaas wrote:
+> > On Fri, Jun 24, 2022 at 05:39:32PM +0300, Serge Semin wrote:
+> > > This patchset is a second one in the series created in the framework of
+> > > my Baikal-T1 PCIe/eDMA-related work:
+> > 
+> > > Serge Semin (15):
+> > >   PCI: dwc: Add more verbose link-up message
+> > >   PCI: dwc: Detect iATU settings after getting "addr_space" resource
+> > >   PCI: dwc: Convert to using native IP-core versions representation
+> > >   PCI: dwc: Add IP-core version detection procedure
+> > >   PCI: dwc: Introduce Synopsys IP-core versions/types interface
+> > >   PCI: intel-gw: Drop manual DW PCIe controller version setup
+> > >   PCI: tegra194: Drop manual DW PCIe controller version setup
+> > >   PCI: dwc: Add host de-initialization callback
+> > >   PCI: dwc: Drop inbound iATU types enumeration - dw_pcie_as_type
+> > >   PCI: dwc: Drop iATU regions enumeration - dw_pcie_region_type
+> > >   PCI: dwc: Simplify in/outbound iATU setup methods
+> > >   PCI: dwc: Add iATU regions size detection procedure
+> > >   PCI: dwc: Verify in/out regions against iATU constraints
+> > >   PCI: dwc: Check iATU in/outbound ranges setup methods status
+> > 
+> > I applied the above to pci/ctrl/dwc for v5.20, thanks!
+> > 
+> > >   PCI: dwc: Introduce dma-ranges property support for RC-host
+> > 
+> > I deferred this one for now because the current value isn't clear yet.
+> > If we have a user for it, I'll be glad to add it.
 > 
 
-> No. You can't have it both ways. Either it is a common schema or a
-> specific device schema.
+> This one is still deferred and I agree with Bjorn it should be part of
+> a series that actually requires it - it would also simplify the review.
 
-Sigh... I see. Will fix it in the next patchset round.
+Have already moved it to the next patchset:
+https://lore.kernel.org/linux-pci/20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru/
+See the patch in there:
+https://lore.kernel.org/linux-pci/20220822184701.25246-16-Sergey.Semin@baikalelectronics.ru/
 
 -Sergey
 
 > 
-> Rob
+> Lorenzo
