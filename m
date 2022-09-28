@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D01985ED5CE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:18:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8E675ED60D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:28:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233313AbiI1HSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 03:18:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38914 "EHLO
+        id S233670AbiI1H2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 03:28:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233448AbiI1HSA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:18:00 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FA2C85FBA
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:17:58 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id g1so1405980lfu.12
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:17:58 -0700 (PDT)
+        with ESMTP id S233533AbiI1H16 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:27:58 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A9049B856
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:25:00 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id bu25so17168198lfb.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:24:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=StpIC4/e1JN7d3InC2qG/A1cXpysuuFt3bky+8uNlkk=;
-        b=auBq3UZrd6BPnYIsMp59lRmrSeWKXPM6mD/QZV5eCE9J/K9GRYk0J7acHj5+Qh41Ns
-         k+NYMF8zDEbmUDBHQ4FBpm2arQIAyK946ao9/8SBOf72jziAAD+1sIs9IeqBSbTZ8s1z
-         w4nT1mcea+XkXF+YJuV17a4mN274DO8AsZnCqD8NokynyAq4xypUaT5bJgsvZfGUNcqV
-         M6jPwR7CT+vxW0kThhft/3Jwzz8KWcqWms/lKX6QwRI0EZQdkIbjZXo4ANxS6jnHOCFu
-         sUlCXqfIN4/Ve9xcPt+uEuzwhxg+mGkz9BZJ/9z2A+QWCH9ia03HFR4oqQcHB78Kw5Ej
-         TMtQ==
+        bh=1Fcjg+cr/kivPTm/GJb7y8jmzhRLvf3S0ZdXAVdnOJ4=;
+        b=pIEAF7CmpeuNeerOjifq8bpwxJUxDu0IhdixG7O6Bzt6ga6FDxRzK3xVNbtzdFk8aJ
+         qO8xeH0alV1B3+7fjnQQoIP8pUUTg2xON02V1lW+2DLgMYtwxnjqbpLKkRd6ia54NygP
+         gQPPmzMxhwfFz6CTG8z+0T7wPnGAC5HGlZ4pKwMjk0OIDDAqgU3gy4b6+iFcxOBq+Ix5
+         vfLMwYsHxSHmQh2YBNKXjAfVQwmmwbj0TSuTezApYhPO0DTMPREMpRUG+rBLal0Qyudh
+         5I0Fx9H/4zUjLCX1v69tmiU4UK5+gDf44feD4RL75X3052nPOxWT8+tulsy45arbovLF
+         kHww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=StpIC4/e1JN7d3InC2qG/A1cXpysuuFt3bky+8uNlkk=;
-        b=NbJFWMGp2wSqXJ3naTFWgN0lTIk9mpRaCpKIbsG7rZbBQ7a6MLBpQpr5WT0dA0U6KE
-         O+EJl9dTdOVNodb3rXuwgCPwCfT6esContYxSver+3GVNf48i4Aq9CFbd1PkwmMx3Jnb
-         am19jNwxLlReODr29ii1cyWlRHlDAE+IyJ14yFanjsO4wU11T1L9N9cZlAU/+U4BifAf
-         0M6lFORCacF61PwlurphxeVydvlPmU/ijLQcu/woTDaQ9aRVGGtnh4QbdFEy/Inm2Kps
-         QTLtydvrki0Do6ou71ekX1jVUSwIy+gu1VNT/oW2BKgfMO7yPZQetjMbaDUJnGFsxWss
-         KK2w==
-X-Gm-Message-State: ACrzQf0lp4bJwiCIOeE+5I66YnrynE5cK1ERkewyP2mhEBJPZjGK+uRs
-        CgQN7Z0ykThEnHXFmkiHhcuMmY/FkhuTBQ==
-X-Google-Smtp-Source: AMsMyM7TcdH9EeXzJd6F5AvHk+PaJxshmDq7BvxSsxjn32xosY24OttOLzfAUHs9wY8DWr2k/wKPVw==
-X-Received: by 2002:a05:6512:3052:b0:49e:fcb2:c1e9 with SMTP id b18-20020a056512305200b0049efcb2c1e9mr11801674lfb.260.1664349476908;
-        Wed, 28 Sep 2022 00:17:56 -0700 (PDT)
+        bh=1Fcjg+cr/kivPTm/GJb7y8jmzhRLvf3S0ZdXAVdnOJ4=;
+        b=oHgTl6c5V2yLBAvwxo+ul4Dj17Y04Z06NHD0XQvuvPcMDA0lRFLEQFpy+sHHCouKed
+         TGmdG5SMJyzC9axkTWzZZ74qZNwgZQFs0HVHR7rlO1YZ4ja7fnRN+PfTqu7KcJ/2OSIQ
+         16erDuxCAt8vzQK0dFPkEWUOsIzwMYXdLz/qN68aJgMbhB/qOM8kHdXf6cSJ9pCi92aC
+         dSM6wnUbL+/FYq7kPmd+xrFMUXEW1ivH9lJfNpg6pw7+6QSa6D+YIYJnfFQ81pOUuS4R
+         Rz/AgCpDq3+asXrTNX/pHjYutFQGIjH6j7z6eF9hyeInvJJJ5cmcyO3YeUoOuOpFqo3a
+         gDHw==
+X-Gm-Message-State: ACrzQf15sDqfCsVAEOWXsIqj3kV9Ax+/b1W+Z2xoYW7vK+L8BTV7uj6c
+        d527HBnk8+QwEnbV3g1a2N2OuA==
+X-Google-Smtp-Source: AMsMyM6kIwuBG/XkP+Hl8WnArBsRLdJDRAI28PZIjVFq8EEHgxYrmDVoYYp+8AujJn5Gftc+Hy7wFg==
+X-Received: by 2002:a19:490b:0:b0:49f:52cf:aeaf with SMTP id w11-20020a19490b000000b0049f52cfaeafmr12249740lfa.46.1664349863733;
+        Wed, 28 Sep 2022 00:24:23 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r1-20020ac25a41000000b004974da17c2bsm399358lfn.0.2022.09.28.00.17.54
+        by smtp.gmail.com with ESMTPSA id s12-20020a05651c048c00b0026da7734d7bsm357017ljc.112.2022.09.28.00.24.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 00:17:56 -0700 (PDT)
-Message-ID: <4498db5c-d2d7-2e99-9184-ce195f7c7fc8@linaro.org>
-Date:   Wed, 28 Sep 2022 09:17:53 +0200
+        Wed, 28 Sep 2022 00:24:22 -0700 (PDT)
+Message-ID: <a3d2d7db-e27b-3d6b-2bbf-9f8b258a23b4@linaro.org>
+Date:   Wed, 28 Sep 2022 09:24:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH net-next v3 1/6] dt-bindings: net: tsnep: Allow
- dma-coherent
+Subject: Re: [PATCH 2/3] ARM: dts: qcom: pm8941: adjust node names to bindings
 Content-Language: en-US
-To:     Gerhard Engleder <gerhard@engleder-embedded.com>,
-        netdev@vger.kernel.org
-Cc:     davem@davemloft.net, kuba@kernel.org, edumazet@google.com,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-References: <20220923202911.119729-1-gerhard@engleder-embedded.com>
- <20220923202911.119729-2-gerhard@engleder-embedded.com>
- <6e814bf8-7033-2f5d-9124-feaa6593a129@linaro.org>
- <773e8425-58ff-1f17-f0eb-2041f3114105@engleder-embedded.com>
- <7c7f67d3-d42e-a053-256d-706cc9dfb947@linaro.org>
- <7782924b-9664-6946-f8f6-c70cec618df9@engleder-embedded.com>
- <6e43fd39-3452-c36d-d9ff-fd508ac337c9@linaro.org>
- <12c95c44-a2ab-3ae6-23fa-24a251c4a1d7@engleder-embedded.com>
+To:     Luca Weiss <luca@z3ntu.xyz>, neil.armstrong@linaro.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220925210229.128462-1-luca@z3ntu.xyz>
+ <3070538e-fa8d-4506-bbf8-c2770d092eb5@linaro.org>
+ <3dda8e86-b92b-488a-5afb-0cb49e7e52ae@linaro.org>
+ <13105309.uLZWGnKmhe@g550jk>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <12c95c44-a2ab-3ae6-23fa-24a251c4a1d7@engleder-embedded.com>
+In-Reply-To: <13105309.uLZWGnKmhe@g550jk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,20 +83,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 19:46, Gerhard Engleder wrote:
->> That would be okay, but please add answer to why you are making this change.
+On 26/09/2022 17:07, Luca Weiss wrote:
+> Hi Krzysztof,
 > 
-> I already prepared it:
+> On Montag, 26. September 2022 12:29:11 CEST Krzysztof Kozlowski wrote:
+>> On 26/09/2022 12:04, Neil Armstrong wrote:
+>>> On 26/09/2022 11:22, Krzysztof Kozlowski wrote:
+>>>>>   		};
+>>>>>
+>>>>> -		usb_id: misc@900 {
+>>>>> +		usb_id: extcon@900 {
+>>>>
+>>>> Why? extcon is Linux specific name and should not be added to DTS.
+>>>> Anything requires it?
+>>>
+>>> It matches the current dt bindings:
+>> Then instead maybe let's fix it in the bindings and DTS?
 > 
-> Within SoCs like ZynqMP, FPGA logic can be connected to different kinds
-> of AXI master ports. Also cache coherent AXI master ports are available.
-> The property "dma-coherent" is used to signal that DMA is cache
-> coherent.
-> Add "dma-coherent" property to allow the configuration of cache coherent
-> DMA.
+> What node name do you propose? I doubt "misc" is a better name as it really 
+> doesn't describe anything so I don't really have a suggestion here..
 > 
 
-Sounds good, thanks.
+Some manufacturers call it a muic (Micro-USB IC), but maybe just
+usb-detect? The role of this device is accessory and cable detection.
 
 Best regards,
 Krzysztof
