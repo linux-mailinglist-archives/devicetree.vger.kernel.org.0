@@ -2,66 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C47415EE38B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 330325EE394
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:53:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234619AbiI1Rw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 13:52:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48370 "EHLO
+        id S234763AbiI1Rxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 13:53:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234082AbiI1Rwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:52:55 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F1C2F6F7B;
-        Wed, 28 Sep 2022 10:52:52 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28SHqYX9068372;
-        Wed, 28 Sep 2022 12:52:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1664387554;
-        bh=eBU6RB63V1iL2ffIaDQ+QSfpco5r9bcxX8wHzYv9+tw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=uKivbSj87E91akrHwPWYTdWqiuIZ+ZRgkX3n519bI128fxAZWlkNVun7oG8AIzXCZ
-         tRtVLE3+SB328hu504VRbg09u2MGIsUKxM2PGzykj/bap4ttcVoArDzMFDxZPyITfw
-         GbpJLDnoB/4wDfdnEIGiNNVfA6ZDHh/+X4gEZlBc=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28SHqXqG115197
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 28 Sep 2022 12:52:33 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 28
- Sep 2022 12:52:33 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 28 Sep 2022 12:52:33 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28SHqWQA001317;
-        Wed, 28 Sep 2022 12:52:33 -0500
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-To:     Tomi Valkeinen <tomba@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>
-Subject: [RFC PATCH v5 6/6] drm/tidss: Enable Dual and Duplicate Modes for OLDI
-Date:   Wed, 28 Sep 2022 23:22:23 +0530
-Message-ID: <20220928175223.15225-7-a-bhatia1@ti.com>
-X-Mailer: git-send-email 2.37.0
-In-Reply-To: <20220928175223.15225-1-a-bhatia1@ti.com>
-References: <20220928175223.15225-1-a-bhatia1@ti.com>
+        with ESMTP id S234784AbiI1Rxg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:53:36 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D43FB33B
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:53:11 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id i26so21485343lfp.11
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:53:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=Vcqtdnkvj8E1ldfON+g0kjMIXp26wYlPSwSJlx1Z+zI=;
+        b=byoMi1LOklJOZFggEC3HYt59rIuVIY4Dvo+Ov6JeKwMDS4MTeiIQT3AkJjA1NfqLVT
+         AEcTPXUh9FVRicqzFZqFJMCkybWI1HnQv1npA01/ROhBSBYjda0jrVVsOeId0Pyf5vp4
+         h347cFliyzHKADtvSMqeEdAyBAoi7C+DB/hv1shT6QE5LM6g6kiDAJybZX2bBifr1FaO
+         kv+RvDX0t27zZYriMdWus7AI4tK/IzWkcU5zHXzqVkBDPRmqadWRQxv62uFMf5pesOVG
+         QTLTtOgXCzBrsnNRntsYBWLzTY73PBXfad9DZYFs4yzh5Q12hsfAmB5uM40fwLmoGGo2
+         bSbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=Vcqtdnkvj8E1ldfON+g0kjMIXp26wYlPSwSJlx1Z+zI=;
+        b=5GFhqpXleHqB4sf4X+u+smyBuFe2S7Q1x988zjjne0YoNtbQn/F4D2Ytx2Cf+lXowd
+         axm/XOYERwecI7IoXaKV4KiwQjNwMPzMfCzVk+YSfBCGE0hnxumqKROvRd7H6c34W8oi
+         ZjXJdH1YG6m4Yk5n7CF1tWDOiYyUt3lSzg267C/gK1NKJzHNI2V/X8plHq9pRI5Wd9ui
+         rn9jzVdGh7A1el3Lx7KXROsCQ/a9C+MgipTN4scJwbQqWJxEZM68mUv/Q0o3i5FFboPy
+         W0slKo2xfGKdR18nhnMyFxC0x5cEW/E5Bd3T3xivfjCMNrA/Vv0nMo8c5g+KbdM/BnV7
+         HLCw==
+X-Gm-Message-State: ACrzQf1QDnxw0KOFoZHKJXaQN57eXpcAec+BlgIcQukRCC48dXrpyeUn
+        Siiz+1NtutYjNV+/QWf1DKSoBQ==
+X-Google-Smtp-Source: AMsMyM6BgzODaHTfBrx34XfoJcT/1t178R/FMLrqgzid4kU4W+U6XHasiC4SuUJmMszh6C3eQ42dFg==
+X-Received: by 2002:a05:6512:22c7:b0:49f:c780:4886 with SMTP id g7-20020a05651222c700b0049fc7804886mr13118925lfu.389.1664387589153;
+        Wed, 28 Sep 2022 10:53:09 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id bp39-20020a05651215a700b0049fb08e91cesm531101lfb.214.2022.09.28.10.53.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Sep 2022 10:53:08 -0700 (PDT)
+Message-ID: <a58a4022-ab21-6833-d13d-c3f35fc7caec@linaro.org>
+Date:   Wed, 28 Sep 2022 19:53:08 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v1 1/7] dt-bindings: arm: qcom: document the
+ swir,mangoh-green-wp8548 board
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220928-mdm9615-dt-schema-fixes-v1-0-b6e63a7df1e8@linaro.org>
+ <20220928-mdm9615-dt-schema-fixes-v1-1-b6e63a7df1e8@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220928-mdm9615-dt-schema-fixes-v1-1-b6e63a7df1e8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,64 +80,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AM625 DSS IP contains 2 OLDI TXes which can work to enable 2
-duplicated displays of smaller resolutions or enable a single Dual Link
-display with a higher resolution (1920x1200).
+On 28/09/2022 11:14, Neil Armstrong wrote:
+> The qcom.yaml was lacking documentation of this board, fix this.
 
-Configure the necessary register to enable and disable the OLDI TXes
-with necessary modes configurations.
+It is documented in:
+Documentation/devicetree/bindings/arm/swir.txt
 
-Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
----
- drivers/gpu/drm/tidss/tidss_dispc.c | 28 ++++++++++++++++++++++++++--
- 1 file changed, 26 insertions(+), 2 deletions(-)
+so remove that other file and instead describe it like a conversion.
 
-diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
-index 68444e0cd8d7..fd7f49535f0c 100644
---- a/drivers/gpu/drm/tidss/tidss_dispc.c
-+++ b/drivers/gpu/drm/tidss/tidss_dispc.c
-@@ -1003,8 +1003,8 @@ static void dispc_enable_oldi(struct dispc_device *dispc, u32 hw_videoport,
- 	int count = 0;
- 
- 	/*
--	 * For the moment DUALMODESYNC, MASTERSLAVE, MODE, and SRC
--	 * bits of DISPC_VP_DSS_OLDI_CFG are set statically to 0.
-+	 * For the moment MASTERSLAVE, and SRC bits of DISPC_VP_DSS_OLDI_CFG are
-+	 * set statically to 0.
- 	 */
- 
- 	if (fmt->data_width == 24)
-@@ -1021,6 +1021,30 @@ static void dispc_enable_oldi(struct dispc_device *dispc, u32 hw_videoport,
- 
- 	oldi_cfg |= BIT(0); /* ENABLE */
- 
-+	switch (dispc->oldi_mode) {
-+	case OLDI_MODE_OFF:
-+		oldi_cfg &= ~BIT(0); /* DISABLE */
-+		break;
-+
-+	case OLDI_SINGLE_LINK_SINGLE_MODE:
-+		/* All configuration is done for this mode.  */
-+		break;
-+
-+	case OLDI_SINGLE_LINK_CLONE_MODE:
-+		oldi_cfg |= BIT(5); /* CLONE MODE */
-+		break;
-+
-+	case OLDI_DUAL_LINK_MODE:
-+		oldi_cfg |= BIT(11); /* DUALMODESYNC */
-+		oldi_cfg |= BIT(3); /* data-mapping field also indicates dual-link mode */
-+		break;
-+
-+	default:
-+		dev_warn(dispc->dev, "%s: Incorrect oldi mode. Returning.\n",
-+			 __func__);
-+		return;
-+	}
-+
- 	dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
- 
- 	while (!(oldi_reset_bit & dispc_read(dispc, DSS_SYSSTATUS)) &&
--- 
-2.37.0
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Best regards,
+Krzysztof
 
