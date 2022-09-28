@@ -2,118 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EBCA5ED159
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 02:01:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 894115ED161
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 02:05:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231167AbiI1ABS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 20:01:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53420 "EHLO
+        id S230315AbiI1AFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 20:05:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231684AbiI1ABQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 20:01:16 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3115F71993
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 17:01:14 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id i203-20020a1c3bd4000000b003b3df9a5ecbso154835wma.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 17:01:14 -0700 (PDT)
+        with ESMTP id S229950AbiI1AFX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 20:05:23 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C8045A164
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 17:05:21 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id z6so17326631wrq.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Sep 2022 17:05:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=fMcBsEpDSyuJ1C7A9eWnkm76CW5M85rNBijPmUt8g9U=;
-        b=egbsnscIOzit4PlrMAXfcSTng8YqJBaPjpfU3XNQf8MaQNJF7SN4SH5ZccpYj017ok
-         LpTWsLDQ6O3jkadeMD3HuXrROBtbdTZINbSxrNBd43joB8qJRaAT0v81/hRc+CSYGkyQ
-         BUF3mX1/7s6JfAu+5Ks0NlurTgAXzQHdK+qs0tpDmi3PUIcw+jX3qx2ZsCHX3z4Tj79s
-         FZ8R5m3nAtP9xvnZEFeOLIHAy8FhEzc6wnnbHmhscaUku//O2++AJ7BfrMYa/Cfh1JWA
-         dh0XVy67b89ciEfal2bjoxpubIhzwejjBvBTVtBr64W25LtNy+Rv/bdkPmlJJgTSR2SP
-         iZgg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=C9Y/tMjHMpVhCXom1+2YMxBzzoCz/vTX0S8HzEvu/Jc=;
+        b=AI0x4i+sXRL8shTt+2q84chmWL7kmNyALVRqbXEHsYudI1AGageDWXT2i/7HHmJ6LH
+         AGbU/nITv2Iv7pOlkPw/ypanfCCa6ic4vlZzp6CnTzLvFZP2HciJaDAo5sEHLxHXNpQ/
+         pe23gQvvlK9scOT/nW3QrO6IUnwqxx8372ZPOiLQ8LCpTR4BN5AKho2+4R67WfcRUhZ7
+         EmAEIiexxLO36BM9uJ0Mc5FsqS2CxK9vEQZrc1GEbjem1bLwSNziKl8SSKeS4npwJ0Xm
+         vfADou2Wi3fpTeoRWbF5SlWQZ3ix25ZqmuQJT8FfZkDr12zSZLnRFHPfVUPLOVxpYoPI
+         moKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=fMcBsEpDSyuJ1C7A9eWnkm76CW5M85rNBijPmUt8g9U=;
-        b=FRL3ABPdDLbhTrFFxp+knrSK5UgkDzrd+xfcRKYAI9bS/eoJ61GUdZN0mGl6J23oco
-         8yoWOXDkkMAwJ0CmCd+lQiqz9AZHEgwxupBjPvjZOSo67YeOIZMHCThEII8/zfqqoiWC
-         dHWSA+UU6gvtcSt6XrDwDKhHxBPCnYl+J7J0f7mPK9iVi1j2axnBXUsOh9x1IyMmk7JX
-         JwfR3YsBSQrF07LNgfXYqw9PMiFNGkKNuGSmgLOexZ8K+roEpWfADKPEF8sV7sokSO5U
-         vz9dSFWWCdwnvB/LJX3cyVoB16V5VHYjPvA2pUjxafkHE6zES53s0M+KOIrsQK5faZLs
-         gmDA==
-X-Gm-Message-State: ACrzQf02litII8F3yz4lrzeMEA+JJ7GiLYVIZDH5zP8EXjlRmiG2Mmb9
-        bjOtBeuYDlTRXq+BGCIQBESnZA==
-X-Google-Smtp-Source: AMsMyM4o0M//sa+2D5J1EKjxbFe4Bcy/lfr6PR9JfqXLTsgaDNu2kTaXOakdsxnSCG1fa8OWOesWjw==
-X-Received: by 2002:a7b:c40e:0:b0:3b3:3faa:10c2 with SMTP id k14-20020a7bc40e000000b003b33faa10c2mr4644903wmi.32.1664323272671;
-        Tue, 27 Sep 2022 17:01:12 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id f13-20020a7bc8cd000000b003a62052053csm212955wml.18.2022.09.27.17.01.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Sep 2022 17:01:12 -0700 (PDT)
-Message-ID: <32557cfb-f379-c408-1e91-8a5441069be0@linaro.org>
-Date:   Wed, 28 Sep 2022 01:01:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v5 2/2] MAINTAINERS: Mark Lee as Maintainer not Supporter
- for MFD yaml
-Content-Language: en-US
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=C9Y/tMjHMpVhCXom1+2YMxBzzoCz/vTX0S8HzEvu/Jc=;
+        b=PbpacpsyndeJXiOmVptGsF60V07+IWDJNP3Qqpkg3fi2ZAZM/U5Y6cq3DtMbf7zRG0
+         Cld+CD8VpLvy2tHOQIR6g5K1WpI3AkShKSofxyj/0mBMdEQ5YrzJ+DiCHfFAa8yKWJo6
+         eez1nRNVZdR98bExZ9EyB03TGiVYO26MBPtYCkzdO2Gi7cQhF83v9qh51Y9A7zMhBLsN
+         yncddE7DqnzQ1ZyDYBMFPypvcw9n1wrI0ffFe2bkjKYwyAPFjnEM8N+ee/DNovg3xg27
+         FM4MkNC9o0tsdO8dPwLVj+x8vx01o9RcgiTd1famwhbPT1D8yW3rxS3aH5GruNljnlo5
+         vhIQ==
+X-Gm-Message-State: ACrzQf0/4+QfMOaTDxaC8d8DUsOTP0uiPybWA4ToLzisDIxJa0GDrJGQ
+        eAKgiUoLtBHugRV99fRCDbg/EQ==
+X-Google-Smtp-Source: AMsMyM75Bb4TzM5I47eiBDxEtC7PFSuR/U/GOpi0OHHd4bAa5lniv0fUKV+FZtvpJkUf3bgHbcR0Dw==
+X-Received: by 2002:a5d:4209:0:b0:22c:c778:31f2 with SMTP id n9-20020a5d4209000000b0022cc77831f2mr403212wrq.540.1664323519829;
+        Tue, 27 Sep 2022 17:05:19 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id f10-20020adff58a000000b002285f73f11dsm3365997wro.81.2022.09.27.17.05.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Sep 2022 17:05:19 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     agross@kernel.org, andersson@kernel.org,
         konrad.dybcio@somainline.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220927235108.227566-1-bryan.odonoghue@linaro.org>
- <20220927235108.227566-3-bryan.odonoghue@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20220927235108.227566-3-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Cc:     bryan.odonoghue@linaro.org
+Subject: [PATCH v6 0/1] arm64: dts: qcom: pwm: Drop PWM reg dependency + update MAINTAINERS
+Date:   Wed, 28 Sep 2022 01:05:16 +0100
+Message-Id: <20220928000517.228382-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 00:51, Bryan O'Donoghue wrote:
-> Running scripts/get_maintainer.pl on
-> Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml gives Andy Gross,
-> Bjorn Andersson, Rob Herring and Krzysztof Kozlowski but I'm told my yaml
-> changes needs to go through Lee.
-> 
-> Change up the MAINTAINERS file so that get_maintainers.pl includes Lee as
-> Maintainer in the output list as per
-> Documentation/process/submitting-patches.rst.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->   MAINTAINERS | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 936490dcc97b6..ee3bafe9a08d9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -13905,7 +13905,7 @@ F:	drivers/media/i2c/mt9v111.c
->   
->   MULTIFUNCTION DEVICES (MFD)
->   M:	Lee Jones <lee@kernel.org>
-> -S:	Supported
-> +S:	Maintained
->   T:	git git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git
->   F:	Documentation/devicetree/bindings/mfd/
->   F:	drivers/mfd/
+V6:
+- Drops the change to MAINTAINERS
+  Reading Documentation/process/submitting-patches.rst the declaration of
+  who needs to be mailed and what "Maintained" and "Supported" mean don't
+  match up at all.
 
-Hmm.
+  In any case that's out of scope for this simple yaml change so I'll send
+  along a proposed patch separately to this.
 
-Actually maybe Documentation/process/submitting-patches.rst should be 
-updated to state that anybody appearing as "supported" in 
-get_maintainers.pl should be mailed, instead.
+V5:
+- Resend the yaml fix
+- Update MAINTAINERS to mark Lee as Maintainer not Supporter of the YAML
+  files for MFD.
+  I rely on scripts/get_mainter.pl to tell me who needs to be mailed and
+  who doesn't, given the YAML change has to go through Lee, the MAINTAINERS
+  file should make that show up in get_maintainers.pl
 
-I'll V6 the yaml standalone and propose a change to 
-Documentation/process/submitting-patches.rst separately.
+V4:
+- Churn patch#1 prefix to "dt-bindings: mfd: qcom,spmi-pmic:" - Krzysztof
+- Add's Krzysztof's RB as indicated
 
----
-bod
+V3:
+- Splits dtsi and yaml
+- Uses Krzysztof's suggested commit log in the yaml
+
+V2:
+The accompanying patch removes reg = <> and pwm@reg from the yaml and dtsi.
+This follows on from discussions between Bupesh, Dmitry, Bjorn, Krzysztof and myself.
+
+https://lore.kernel.org/all/20220719205058.1004942-1-bhupesh.sharma@linaro.org/
+https://lore.kernel.org/all/20220721195502.1525214-1-bhupesh.sharma@linaro.org/
+https://lore.kernel.org/all/20220822120300.2633790-1-bryan.odonoghue@linaro.org/
+
+The previous discussion tended towards either removing pwm@reg and reg = <> or
+extending out the yaml to support multiple reg declarations for PWM compatible.
+
+This patch does the former. I've left node: label in place, dropped both pwm@reg
+and reg = <> I kept "label: nodename" though because it looked more like what we
+already have for rpm regulators.
+
+Per our previous discussion I've modified the yaml and dtsi in one go.
+
+Bryan O'Donoghue (1):
+  dt-bindings: mfd: qcom,spmi-pmic: Drop PWM reg dependency
+
+ Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+-- 
+2.37.3
+
