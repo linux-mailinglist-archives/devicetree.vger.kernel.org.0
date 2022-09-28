@@ -2,64 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 478795EDDB7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 15:32:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F17995EDDC0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 15:33:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233499AbiI1Nct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 09:32:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33934 "EHLO
+        id S233766AbiI1Nd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 09:33:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233721AbiI1Nct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 09:32:49 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9235A2610;
-        Wed, 28 Sep 2022 06:32:47 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S233534AbiI1Ndz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 09:33:55 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53361A262E;
+        Wed, 28 Sep 2022 06:33:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E9EEB84B13;
-        Wed, 28 Sep 2022 15:32:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1664371965;
-        bh=JJLde7X8BKDQyumzE/OIAI/+oFwf58w283WTVtOXriM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PkGyvz1junWK0FWLEsz0Gf355JZqvDVfgAvfehWuxE10//qQ+KpqruRLaJFp3/Gr0
-         SvUacU2c60o4A/QUlFk8GppiaCwO+qQmlttPR5wa5nxEhUj0C0E3aKcCKis0kwYD3t
-         MmhoDSOz28FZ7Zb8eljmxgEyt18j+96ajoKRMjbQNAVqUEHtEUFph/saQteknYwJw6
-         k8BV90gyv/sc2AEj0vMm1l06E5gTP61Y7hJJ2jzknGtQ04+ubYlOsCMyfo6uiuVsTN
-         JnpUBwJkLmFbPfmfotJuvH4hvFqXatOxh5hDiykgclIqO/cB0DMMCVGeHuTEP859TT
-         FtC2f0DcHXLfA==
-Message-ID: <1fa072ed-1e12-4234-a328-92c38de7b7d5@denx.de>
-Date:   Wed, 28 Sep 2022 15:32:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH] dt-bindings: media: st,stmipid02: Convert the text
- bindings to YAML
-Content-Language: en-US
-To:     Benjamin MUGNIER <benjamin.mugnier@foss.st.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylvain Petinot <sylvain.petinot@foss.st.com>,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20220927005538.690997-1-marex@denx.de>
- <7420b97c-1421-03a5-dd47-044b5e1739f1@foss.st.com>
- <162ea4dd-ded9-2905-0e4b-71809c95fd78@denx.de>
- <04cd498e-608d-e1dd-377a-18e27dee23be@foss.st.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <04cd498e-608d-e1dd-377a-18e27dee23be@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        by sin.source.kernel.org (Postfix) with ESMTPS id 9B9FACE1E3D;
+        Wed, 28 Sep 2022 13:33:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A52D5C433D7;
+        Wed, 28 Sep 2022 13:33:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664372030;
+        bh=b/FYU3aJ9ggOeVDclUSANnV7bmk+tzL6okjGvLPAgB4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=hwbitYwa7jrTpzhRAI1tqG4RiKIgY7HRXka+LcFvMHjPKCf2onHfdzt3NDIFKThRF
+         ZUts1qeD4YqT/vESskDF94vQ5pL/9spKiPvRFkLcSU5va1/gDb6CbzIAOkwgGJO+dB
+         xuFCoWhU4A8SMYb1HFZflOOs45AkOZv3t1FNN0PgxILtQPe7xf/V6puED8aIgFlbwS
+         2tOsr9OEJzTf9rYLg/gaoZ2yZd9113OrrN+Cs/EZKY4Qk88PgmrM4xb2dkw8CeNrME
+         5xEq7GHO3JoiJ38PWFAxC5VDSlWvwLDYhgc7h4xFh52+iMp+pxSfmZ/lDwDRNTRa23
+         TPu/EeLGDwwZg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1odXC8-00DI4S-FT;
+        Wed, 28 Sep 2022 14:33:48 +0100
+Date:   Wed, 28 Sep 2022 09:33:47 -0400
+Message-ID: <86mtaj7hdw.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     tglx@linutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev,
+        lznuaa@gmail.com, imx@lists.linux.dev,
+        manivannan.sadhasivam@linaro.org
+Subject: Re: [PATCH v11 0/6] PCI EP driver support MSI doorbell from host
+In-Reply-To: <20220922161246.20586-1-Frank.Li@nxp.com>
+References: <20220922161246.20586-1-Frank.Li@nxp.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: Frank.Li@nxp.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev, lznuaa@gmail.com, imx@lists.linux.dev, manivannan.sadhasivam@linaro.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,38 +73,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/28/22 10:08, Benjamin MUGNIER wrote:
-> Hi Marek,
-
-Hi,
+On Thu, 22 Sep 2022 12:12:40 -0400,
+Frank Li <Frank.Li@nxp.com> wrote:
+>=20
+>=20
+>=20
+>                   =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=90          =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+>                   =E2=94=82       =E2=94=82          =E2=94=82          =
+=E2=94=82
+> =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90   =E2=94=82=
+       =E2=94=82          =E2=94=82 PCI Host =E2=94=82
+> =E2=94=82 MSI         =E2=94=82=E2=97=84=E2=94=90 =E2=94=82       =E2=94=
+=82          =E2=94=82          =E2=94=82
+> =E2=94=82 Controller  =E2=94=82 =E2=94=82 =E2=94=82       =E2=94=82      =
+    =E2=94=82          =E2=94=82
+> =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98 =E2=94=94=
+=E2=94=80=E2=94=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=BC=E2=94=80Bar0     =E2=94=82
+>                   =E2=94=82 PCI   =E2=94=82          =E2=94=82 Bar1     =
+=E2=94=82
+>                   =E2=94=82 Func  =E2=94=82          =E2=94=82 Bar2     =
+=E2=94=82
+>                   =E2=94=82       =E2=94=82          =E2=94=82 Bar3     =
+=E2=94=82
+>                   =E2=94=82       =E2=94=82          =E2=94=82 Bar4     =
+=E2=94=82
+>                   =E2=94=82       =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BA=E2=94=82      =
+    =E2=94=82
+>                   =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=98          =E2=94=94=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+>=20
+> Many PCI controllers provided Endpoint functions.
+> Generally PCI endpoint is hardware, which is not running a rich OS,
+> like linux.
+>=20
+> But Linux also supports endpoint functions.  PCI Host write BAR<n> space
+> like write to memory. The EP side can't know memory changed by the Host
+> driver.=20
+>=20
+> PCI Spec has not defined a standard method to do that.  Only define
+> MSI(x) to let EP notified RC status change.=20
 
 [...]
 
->>>> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
->>>> @@ -0,0 +1,175 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/media/i2c/st,st-mipid02.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: STMicroelectronics MIPID02 CSI-2 to PARALLEL bridge
->>>> +
->>>> +maintainers:
->>>> +  - Mickael Guene <mickael.guene@foss.st.com>
->>>
->>> As Mickael is not the maintainer of the driver anymore, there should be both current maintainers instead, as listed in the MAINTAINER file:
->>>    - Benjamin Mugnier <benjamin.mugnier@foss.st.com>
->>>    - Sylvain Petinot <sylvain.petinot@foss.st.com>
->>> Can you change it while at it ? Thank you.
->>
->> Done and done, I also dropped myself from the list, which I hope is OK.
->>
-> 
-> No problem for dropping yourself, out of curiosity why so ?
+FWIW, I have queued the first 4 patches of this series into -next. If
+there is a need for these patches to be pulled by another subsystem, I
+have pushed out a stable branch at [1].
 
-Just because I think you and Sylvain should be enough to maintain this, 
-and it is also likely I won't be contributing to this file much beyond 
-this conversion (and get_maintainer.pl would add me on CC anyway).
+Thanks,
 
-[...]
+	M.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms.git/l=
+og/?h=3Dirq/fsl-mu-msi
+
+--=20
+Without deviation from the norm, progress is not possible.
