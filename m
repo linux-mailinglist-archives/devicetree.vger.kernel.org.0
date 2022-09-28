@@ -2,61 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E015EE27A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A33F5EE2A2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:11:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234305AbiI1RBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 13:01:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39398 "EHLO
+        id S234352AbiI1RLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 13:11:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiI1RBZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:01:25 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB11E7E35
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:01:20 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 7C75D82AE2;
-        Wed, 28 Sep 2022 19:01:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1664384478;
-        bh=R662rqzf5LpcAoW1egPdR05HiSRoulQxcfy+h5YeO2k=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=qESkC8I+PANyJZsBKFTVUzkdPRkKywaRRMJGWMkiElqq8E7lLsvcACiNJ3+kQEVsv
-         4DxjxDlRqdmg9FT/YV5mm/Eo9c8eXse65aw2s2GSAEirIUTcJmG3Sr+SU0BPeJLZ6/
-         kOv7EAC6spKVI5J8jIFfOm1rkdp/CEi5yaImy7oNC55m4gV3hpuWSaPmMD27vz2r5P
-         j4YfLsnWv+I0ux2CaK5aSIwTelxob0pyicIh/9ZOdIOIige+J8fXo+8Wd4q2PFJFt+
-         l3FXvVGFBxY+uv7pMfDUIa7kRRb8ySC7wX4s46aLuVqCCv5EBQDpMvk3K/h3zdM1kL
-         Zjo1ig6STKLCQ==
-Message-ID: <e787f5b1-88e6-375c-b9e7-22db346c27be@denx.de>
-Date:   Wed, 28 Sep 2022 19:01:16 +0200
+        with ESMTP id S234290AbiI1RLC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:11:02 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1ADEE7E17
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:11:00 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id z4so3548979lft.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:11:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=iZLMwu3BF/t4R2IMVX7ZdZKBFfNgmWUXpfgEF5atWY4=;
+        b=hFFDqFfms2s94TPUFzYYZ+siLNodOd+2HLWMfNn1e/KwtLanwfuOy3M+PpVm5gFg03
+         OnUj2b8CWyfgnhvoUry83lugF4J2puaOA/q6CvV/RAmfc3bQ/tA4WAeClyBJj6pcLSmJ
+         /NuecAgAGiro4GFDzpYwZhGgKzBN2QrQ4H6WcMIWj4OlLpINikQbRhMaf4QGXrmJHWgQ
+         bedxo5zWPiT2fCqMMe91vOojYgOh+lU7D1IuUZLPd1Jl+Yv4jmZJMOg8FeB9EAJ8KyLa
+         5nMiugsLZGiNWzJBxdlzCHddSer9UREJegFMvp24rk5o1v9sriJk/6jlIGYYsnRH90KB
+         CkRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=iZLMwu3BF/t4R2IMVX7ZdZKBFfNgmWUXpfgEF5atWY4=;
+        b=Owh6Fxst2M6LKhGFeT7iV+0P8+0fqUyH2aUPq8Ja0nO1WLgAfVYCX4qTyfyQZPRuu+
+         evE60S+AAKzD+QZYA1blZ/tjQ2wi4OYwKdzIK/EyWv0KcOEgL/8qpYHUpSLCYSg2TXBe
+         RskZG/EDsgIu0mNhODrKSwaRff6DQr6gXXDWL+GeOHiN4VMSqbiOQAjn4CzfCoxJr2US
+         tbD5Ih7i+KPmhewpFGbwo7wVXnZwkuxbRUWu0dfgUYr2v+CGnVYl6Rddn94AgKvq0qmn
+         myOcRMwgYHqnZdNz3+ZkANcfd60XZhiN3lGm3nUwIxPgvXHWZ5mbV3sAswlycn+75Hjx
+         cVnw==
+X-Gm-Message-State: ACrzQf2ESKIFIVVzrV/+kquoP+pZbTxRxINIITzqKFmbq0hW1C2F5ni6
+        ZLV4YcA32uC+9N4fwdk8u2clww==
+X-Google-Smtp-Source: AMsMyM7JNbNJ5v50tEMFjQ/PFrPlZsFEiRNawid2ZCvshRNElBT/qtWheK5uNWmOS4pBQc9PWu7cCA==
+X-Received: by 2002:ac2:4d2b:0:b0:498:fbf0:4f89 with SMTP id h11-20020ac24d2b000000b00498fbf04f89mr13322798lfk.500.1664385058974;
+        Wed, 28 Sep 2022 10:10:58 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id v13-20020a05651203ad00b00492eb7205b0sm521870lfp.210.2022.09.28.10.10.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Sep 2022 10:10:58 -0700 (PDT)
+Message-ID: <c5b6880c-de8a-026b-9a5a-7731428498d2@linaro.org>
+Date:   Wed, 28 Sep 2022 19:10:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2] dt-bindings: memory-controller: st,stm32: Split off MC
- properties
+Subject: Re: [PATCH 01/11] dt-bindings: clock: split qcom,gcc-msm8974,-msm8226
+ to the separate file
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220928145958.376288-1-dmitry.baryshkov@linaro.org>
+ <20220928145958.376288-2-dmitry.baryshkov@linaro.org>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20220926225536.548139-1-marex@denx.de>
- <846bc515-bdda-6022-0611-daaa9a632e64@linaro.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <846bc515-bdda-6022-0611-daaa9a632e64@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220928145958.376288-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,50 +83,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/28/22 09:10, Krzysztof Kozlowski wrote:
-
-Hi,
-
-[...]
-
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
->> index a1f535cececcc..49243f447eb90 100644
->> --- a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
->> +++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
->> @@ -49,143 +49,6 @@ patternProperties:
->>     "^.*@[0-4],[a-f0-9]+$":
->>       type: object
->>   
->> -    properties:
->> -      reg:
->> -        description: Bank number, base address and size of the device.
->> -
+On 28/09/2022 16:59, Dmitry Baryshkov wrote:
+> Move schema for the GCC on MSM8974 and MSM8226 platforms to a separate
+> file to be able to define device-specific clock properties.
 > 
-> To be equivalent (and similar to SPI peripherals and controllers) this
-> should reference st,stm32-fmc2-ebi-props.yaml as well.
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/clock/qcom,gcc-msm8974.yaml      | 65 +++++++++++++++++++
+>  .../bindings/clock/qcom,gcc-other.yaml        |  9 +--
+>  2 files changed, 66 insertions(+), 8 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8974.yaml
+
+Thank you for your patch. There is something to discuss/improve.
+
 > 
-> After such reference, you can add here unevaluatedProperties:false
-> (could be same or new patch as it is not related to actual split).
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8974.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8974.yaml
+> new file mode 100644
+> index 000000000000..72e8f54d0e0e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8974.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
 
-I don't think I understand. I don't see any ref from the controller node 
-to its props in various SPI controllers (even if that would make sense):
+Dual license
 
-next$ git grep qspi-nor-peripheral-props.yaml
-Documentation/devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml:$id: 
-http://devicetree.org/schemas/spi/cdns,qspi-nor-peripheral-props.yaml#
-Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml:  - 
-$ref: cdns,qspi-nor-peripheral-props.yaml#
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,gcc-msm8974.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Global Clock & Reset Controller Binding for MSM8226 and
+> +  MSM8974, including Pro variants
+> +
+> +maintainers:
+> +  - Stephen Boyd <sboyd@kernel.org>
+> +  - Taniya Das <tdas@codeaurora.org>
 
-No ref to cdns,qspi-nor-peripheral-props.yaml in 
-Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+That's not valid email anymore, I think.
 
-next$ git grep tegra210-quad-peripheral-props
-Documentation/devicetree/bindings/spi/nvidia,tegra210-quad-peripheral-props.yaml:$id: 
-http://devicetree.org/schemas/spi/nvidia,tegra210-quad-peripheral-props.yaml#
-Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml:  - 
-$ref: nvidia,tegra210-quad-peripheral-props.yaml#
+> +
+> +description: |
+> +  Qualcomm global clock control module which supports the clocks, resets and
+> +  power domains on SDM630, SDM636 and SDM660
 
-No ref to nvidia,tegra210-quad-peripheral-props.yaml in 
-Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+The model numbers need updates.
 
-What am I missing here ?
+> +
+> +  See also:
+> +  - dt-bindings/clock/qcom,gcc-msm8974.h (qcom,gcc-msm8226 and qcom,gcc-msm8974)
+> +  - dt-bindings/reset/qcom,gcc-msm8974.h (qcom,gcc-msm8226 and qcom,gcc-msm8974)
+> +
+> +$ref: qcom,gcc.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,gcc-msm8226
+> +      - qcom,gcc-msm8974
+> +      - qcom,gcc-msm8974pro
+> +      - qcom,gcc-msm8974pro-ac
+> +
+> +  clocks:
+> +    items:
+> +      - description: XO source
+> +      - description: Sleep clock source
+> +
+> +  clock-names:
+> +    items:
+> +      - const: xo
+> +      - const: sleep_clk
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  # Example for GCC for SDM660:
+
+Maybe skip the comment?
+
+> +  - |
+> +    #include <dt-bindings/clock/qcom,rpmh.h>
+> +    clock-controller@fc400000 {
+> +        compatible = "qcom,gcc-msm8974";
+> +        #clock-cells = <1>;
+> +        #reset-cells = <1>;
+> +        #power-domain-cells = <1>;
+> +        reg = <0x00100000 0x94000>;
+
+reg goes usually after compatible.
+
+> +
+> +        clock-names = "xo", "sleep_clk";
+> +        clocks = <&xo_board>,
+> +                 <&sleep_clk>;
+> +    };
+> +...
+
+Best regards,
+Krzysztof
+
