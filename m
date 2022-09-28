@@ -2,159 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A437D5EDFF2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 17:18:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4491F5EDFF8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 17:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233805AbiI1PSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 11:18:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56536 "EHLO
+        id S234334AbiI1PUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 11:20:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230520AbiI1PSy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 11:18:54 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6867674DF3;
-        Wed, 28 Sep 2022 08:18:52 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id z97so17673419ede.8;
-        Wed, 28 Sep 2022 08:18:52 -0700 (PDT)
+        with ESMTP id S234596AbiI1PUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 11:20:35 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F5C558CF
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 08:20:33 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 10so20895966lfy.5
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 08:20:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=83ANzPhUBDAvBVhFrZlJ/Dy3P0GTE4v4S/j3A1WMvaE=;
-        b=q0u/L5c0l1YAgQn410oPBSepSxTA6PiegtWUsMHDwT4vYp64XVJcCVxJ07LRKYz4XW
-         umNMNXvFCFEGsYfYCeRiKZPwGgw8tv772twmaBZvhp7smSAzg2oZqUtbrCsLkgSO9DNZ
-         kWltHFbjC/EMx9F0DMxHIfS5+5QiVsOizf1lfbgrOWOCxXvibHtcsXp31KPDXnGijoU9
-         s+z0XpNs3GBSorzROcOVTc0b7zwlH/233WV0L9+hVTnncR+wH4wHezND+YfVmFsar4/3
-         wWHB9+DUQthTYN+Au+9+bydQMqXlhw/ZPmSaVIbYDEoR1yBtTYVc2FlDYnSORsEzA/zG
-         nz4g==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=+AW8Is1FVTDso//LQSgbOHL1fMk2euaPSX4JNKxWqmE=;
+        b=PkBVVwPBc/ukSWATfGW4f47280k0JWhj5Oq60rhLuWqSQ7crRaBJGhiBuyCXUnz628
+         eBM6jXnKh7zjygxkIW8+gU+OvLeVxexNCa8xDJadVukAebqyJGlzr8N3UEHzwaMwaQyI
+         t2Zdq3WrRT7Riz8Y/sNbmjfvw31yfzlnuCxBteJM/D/+xOVZLd6czNDWQ4fp76YBBgrF
+         2voisIdVU3NErGEytTsItUC+0HmimUzJkCWdRr3OWfsKtpEej4fepQpquDwaiu2LdTTB
+         ni0sK/oXfzmOstty93omDfa+d0+oHw21TV3XBaGFkeEuhphOMZTvmpRjYus4m2jm757+
+         973Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=83ANzPhUBDAvBVhFrZlJ/Dy3P0GTE4v4S/j3A1WMvaE=;
-        b=bKGYcKKoXoWp2HsFjUcEFEc4AU/C893WK7QEYfzoqwQnK88XuHZfgKpjqe95tS+WLp
-         Q+m8yzyGYvOCXCWN3dTBnSd0aihbZRfQ9UeFycfpRTppl+2m78ZWGl5zuvKM5SYSkWyu
-         H5ggR5WljSYP+wCFcY1+mvEXUUiOSvCJ+k8ZHfolXTJL35iVRdshTpb+5oU+si2Ge3BO
-         pll+YTRhd7mWSWsp1syAKM0Y/Xmn0GVKsTKxOOF8ULjqeCzMN5LLbaiEJVc6Gg30Njl/
-         p0/0ZS/Ad4cFcelLMBbebAK4t50Up/8LeC3l8teDCmVY4E+mnfK8yR+rqCDVszX6ew6O
-         uxGQ==
-X-Gm-Message-State: ACrzQf3BFYO2A+5F436NnvX0MIl2xLKywXECq2xflQfQs98g536vE4eN
-        sSJtjzjSBMFc/xbx0eUooUs=
-X-Google-Smtp-Source: AMsMyM5B/FsKRlMcjZuQlqNk1dOP5mS51TCAI4tCXrbakuCsjkHCUFWYXjL5Gfh4MC8OWax5E2FLag==
-X-Received: by 2002:a05:6402:1053:b0:455:27b7:f1 with SMTP id e19-20020a056402105300b0045527b700f1mr31682046edu.370.1664378331003;
-        Wed, 28 Sep 2022 08:18:51 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id la22-20020a170907781600b00741a0c3f4cdsm2550482ejc.189.2022.09.28.08.18.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 08:18:50 -0700 (PDT)
-Message-ID: <2ae321ff-ffe5-6f45-46b6-05259087bb81@gmail.com>
-Date:   Wed, 28 Sep 2022 17:18:48 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/1] dt-bindings: pwm: rockchip: Add description for
- rk3588
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Rob Herring <robh@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=+AW8Is1FVTDso//LQSgbOHL1fMk2euaPSX4JNKxWqmE=;
+        b=c6l1qjvPYndMJiY7xvfMB10P9fMtiJY4uSjBLvfoPi8NLvFl6UdLn7PS2PxWPWfMyw
+         U1pMu0FR4BkHODLmYoA+WW45TJp4hz5vDvimCBX4jIrtQp+ivichgZTZyhZHcxk0vuXj
+         qBMzl1x3mXqBiMcKlFKDNigf2fXqVx0Ox6JarFpeQN6el/dPkQVR3lLTbZarlLzUUXsC
+         zgKmaTZoJf/P0q+ZQfTr2uFY2iR1MrpQInX3j1AOYzhIhrnzXQNOn++nHF7q3OPbLjV/
+         imrui0SlGPuiDQsAQL86jhpc0aVUO3nE4KEg+dmqdMZi5GrO15F6Brz8+xpUKpDm3mNB
+         IS6Q==
+X-Gm-Message-State: ACrzQf1ZVbDp9SqqavlCRNpNkYVeXc66/VgTy9gp5JyM45AF6WYH+iNy
+        yIM4QPOfDDGmn7fXXCLrVSiNFg==
+X-Google-Smtp-Source: AMsMyM5YtSktaVdhZs9z/wCj0AI6G8xAEWaPYa5/QuIed9G0+M5ewA4ekcCzfhAvb/UC+7hzod/Ddw==
+X-Received: by 2002:a19:5e4f:0:b0:497:aa47:86b8 with SMTP id z15-20020a195e4f000000b00497aa4786b8mr12346955lfi.261.1664378431688;
+        Wed, 28 Sep 2022 08:20:31 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id v2-20020a056512048200b00497a41b3a42sm503023lfq.88.2022.09.28.08.20.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Sep 2022 08:20:31 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com, linux-pwm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-References: <20220901135523.52151-1-sebastian.reichel@collabora.com>
- <1662059695.095333.2226883.nullmailer@robh.at.kernel.org>
- <20220913091202.2oawzrq2u5iiz6hq@pengutronix.de>
- <20220913141601.fi6pl2xdo4xmtw6t@mercury.elektranox.org>
- <YzQ0jTmJCBwV+x2y@orome>
- <20220928130634.x5cfkwegwgqer2xx@mercury.elektranox.org>
- <YzRSpGwUQIFT2A3g@orome>
-From:   Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <YzRSpGwUQIFT2A3g@orome>
-Content-Type: text/plain; charset=UTF-8
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 00/11] arm64/slimbus/dt-bindings: convert to DT Schema, minor cleanups
+Date:   Wed, 28 Sep 2022 17:20:16 +0200
+Message-Id: <20220928152027.489543-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+Changes since v1
+================
+1. Fix commit title typo (Steev).
+2. Add Rb/Tb tags.
 
-On 9/28/22 15:56, Thierry Reding wrote:
-> On Wed, Sep 28, 2022 at 03:06:34PM +0200, Sebastian Reichel wrote:
->> Hi,
->>
->> On Wed, Sep 28, 2022 at 01:48:29PM +0200, Thierry Reding wrote:
->>> On Tue, Sep 13, 2022 at 04:16:01PM +0200, Sebastian Reichel wrote:
->>>> Hi,
->>>>
->>>> On Tue, Sep 13, 2022 at 11:12:02AM +0200, Uwe Kleine-König wrote:
->>>>> Hello Rob,
->>>>>
->>>>> On Thu, Sep 01, 2022 at 02:14:55PM -0500, Rob Herring wrote:
->>>>>> On Thu, 01 Sep 2022 15:55:23 +0200, Sebastian Reichel wrote:
->>>>>>> Add "rockchip,rk3588-pwm" compatible string for PWM nodes found
->>>>>>> on a rk3588 platform.
->>>>>>>
->>>>>>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->>>>>>> ---
->>>>>>> No driver changes required.
->>>>>>> ---
->>>>>>>  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 1 +
->>>>>>>  1 file changed, 1 insertion(+)
->>>>>>>
->>>>>>
->>>>>> Running 'make dtbs_check' with the schema in this patch gives the
->>>>>> following warnings. Consider if they are expected or the schema is
->>>>>> incorrect. These may not be new warnings.
->>>>>>
->>>>>> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
->>>>>> This will change in the future.
->>>>>
->>>>> Is this a list of *new* warnings, or is the report (somewhat) orthogonal
->>>>> to the actual change and you just used the opportunity that someone
->>>>> touched the pwm-rockchip binding to point out that there is some cleanup
->>>>> to do?
->>>>>
->>>>>> Full log is available here: https://patchwork.ozlabs.org/patch/
->>>>>
->>>>> Hm, that gives me a 404.
->>>>
->>>> This is an existing problem with the rv1108 binding.
->>>> The rk3588 does not have pwm interrupts.
->>>
+Dependencies
+============
+No dependencies. Binding patches are independent from DTS.
 
-I can provide DT and YAML changes, but I pass for changes to the currently to me unknown PWM framework and missing hardware.
+Best regards,
+Krzysztof
 
-Johan
+Krzysztof Kozlowski (11):
+  arm64: dts: qcom: sdm845: drop unused slimbus properties
+  arm64: dts: qcom: msm8996: drop unused slimbus reg-mames
+  arm64: dts: qcom: sdm845: correct slimbus children unit addresses
+  arm64: dts: qcom: mms8996: correct slimbus children unit addresses
+  arm64: dts: qcom: sdm845: drop unused slimbus dmas
+  arm64: dts: qcom: msm8996: drop unused slimbus dmas
+  arm64: dts: qcom: sdm845: align node names with DT schema
+  arm64: dts: qcom: msm8996: align node names with DT schema
+  dt-bindings: slimbus: convert bus description to DT schema
+  dt-bindings: slimbus: qcom,slim: convert to DT schema
+  dt-bindings: slimbus: qcom,slim-ngd: convert to DT schema
 
->>
->> I assume this will be taken care of with the rk3128 patchset, since
->> that is affected anyways:
->>
->> https://lore.kernel.org/linux-pwm/f5dd0ee4-d97e-d878-ffde-c06e9b233e38@gmail.com/
-> 
-> That patch is already acked and I've pulled it in, so better make it a
-> separate patch.
-> 
-> The point I was trying to make is that somebody needs to fix this,
-> otherwise the automated checks are not going to be useful. So saying
-> things like "this is an existing problem and the new compatible is not
-> affected" is not helpful.
-> 
-> Thierry
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+ .../devicetree/bindings/slimbus/bus.txt       |  60 ---------
+ .../bindings/slimbus/qcom,slim-ngd.yaml       | 120 ++++++++++++++++++
+ .../bindings/slimbus/qcom,slim.yaml           |  86 +++++++++++++
+ .../bindings/slimbus/slim-ngd-qcom-ctrl.txt   |  84 ------------
+ .../bindings/slimbus/slim-qcom-ctrl.txt       |  39 ------
+ .../devicetree/bindings/slimbus/slimbus.yaml  |  95 ++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  18 ++-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  16 +--
+ 8 files changed, 315 insertions(+), 203 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/slimbus/bus.txt
+ create mode 100644 Documentation/devicetree/bindings/slimbus/qcom,slim-ngd.yaml
+ create mode 100644 Documentation/devicetree/bindings/slimbus/qcom,slim.yaml
+ delete mode 100644 Documentation/devicetree/bindings/slimbus/slim-ngd-qcom-ctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/slimbus/slim-qcom-ctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/slimbus/slimbus.yaml
+
+-- 
+2.34.1
+
