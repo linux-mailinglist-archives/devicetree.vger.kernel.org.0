@@ -2,121 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B9AD5EDB9F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 13:22:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F5095EDBCA
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 13:31:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233137AbiI1LWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 07:22:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60494 "EHLO
+        id S233070AbiI1Lb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 07:31:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232599AbiI1LWW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 07:22:22 -0400
-X-Greylist: delayed 64 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 28 Sep 2022 04:22:21 PDT
-Received: from aer-iport-7.cisco.com (aer-iport-7.cisco.com [173.38.203.69])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91097DCEA6
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 04:22:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=1715; q=dns/txt; s=iport;
-  t=1664364141; x=1665573741;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=B0pImiRaODAXBVOex7WftZ32/MuyBAAbJcf0KrpTF4E=;
-  b=AOXcJW0N4JGT0jvWIe6mB2OBhWTaYedvbge+ydsgXQ+A4uitukyemJUn
-   sSCpqXtrGDOJWadcha6xKuveQXKw0xInaXhopCXkPy7SEH+IPb/XeHgWP
-   zC2OQ3EhJz+T1pwDSFH2LO/Km8iyWcMfzrnI2wVzvxStqxUQASfiVBATJ
-   A=;
-X-IronPort-AV: E=Sophos;i="5.93,352,1654560000"; 
-   d="scan'208";a="1510153"
-Received: from aer-iport-nat.cisco.com (HELO aer-core-1.cisco.com) ([173.38.203.22])
-  by aer-iport-7.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 28 Sep 2022 11:21:16 +0000
-Received: from office-260.rd.cisco.com ([10.47.77.162])
-        by aer-core-1.cisco.com (8.15.2/8.15.2) with ESMTP id 28SBLFen008487;
-        Wed, 28 Sep 2022 11:21:16 GMT
-From:   Erling Ljunggren <hljunggr@cisco.com>
-To:     linux-media@vger.kernel.org
-Cc:     Erling Ljunggren <hljunggr@cisco.com>, devicetree@vger.kernel.org
-Subject: [PATCH v3 3/5] dt-bindings: media: add cat24c208 bindings
-Date:   Wed, 28 Sep 2022 13:21:45 +0200
-Message-Id: <20220928112147.358745-4-hljunggr@cisco.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220928112147.358745-1-hljunggr@cisco.com>
-References: <20220928112147.358745-1-hljunggr@cisco.com>
+        with ESMTP id S233071AbiI1Lb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 07:31:27 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA137FE66
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 04:31:25 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id z4so2093882lft.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 04:31:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=DNyd7Dp30Sf0SODKJSMM/lNDwtYbEH3SyllMKtKT77c=;
+        b=KpajDYCMGJ8vWnzB3LaNGSoHuAgM+XXgZAmX8AP20Oq7pT3oB2eVSDz2fHceIN8qMR
+         MCLtER4Zf/Gh6+SaqCUd5kbu1BVfHf+GCWMqF6zNmdJH1Nq+ENkR6ExMFPyMASuLL4aP
+         IZCKjNME4+XpcpNjdDtrPSBKs3k2PaSaz8s/tm3+77Dn3vreQLyyHL8gDpQnb/qqeHTJ
+         Eul/sNBm45v3nb79uSfd9mcv92nu1OteVTpOSwjZ6UndCcZL15VByYry+UjrYFm25FaA
+         Ib0Z5JH85SFYDf91dIXNBfSJyJnl83OkQSjWTyx6tTlQ4TYKvB5V3j+HWGwY6uEYdc7h
+         SVYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=DNyd7Dp30Sf0SODKJSMM/lNDwtYbEH3SyllMKtKT77c=;
+        b=tkZS8CcEsB1e+xLT9kMMmzcJ+4457xC1nP7QUd6VQH0wNTzT+/rlG3JpMMxr7W1z/v
+         iM2RVc0Xg+1yJTrEnUF0joLQYZFbbxXwL032PDCIOKeaLWIn2PEr/53M3KutGQ0QJJqO
+         vQzMDgZuNsdXYWHYlJp96aXqUQ3/eENN0Go4rN7nrffgBLUpjruOyKOv1fB47OvHYC1I
+         cd4NK6vkGb3BjEG6C0ZMai11wW/OHJJ0F9VhdWFXEOg6xmpHTiSrhTQh09mm7vb5bydf
+         LecSugFzYgb14xaTQ5G05qHoxyJGtVYTxy19vu4oB550V10SDzXCe7tau+7H6w16OMmx
+         69oQ==
+X-Gm-Message-State: ACrzQf1aKsD0jD1LZ+CaWxmacMsQlNqt7SHuabYx8igdr1vj0MRcsJpw
+        9gB3Ya36Ra2jeJGx0xJUaa7IJg==
+X-Google-Smtp-Source: AMsMyM5kCJeiDB/X7LyzOhLlRdLOEAIYdVt+sl12dtCLxDbBitQujSCBF9Cg1v1vNCzCKkEoTUx1zw==
+X-Received: by 2002:a05:6512:3da2:b0:499:d70a:e6bc with SMTP id k34-20020a0565123da200b00499d70ae6bcmr13914197lfv.191.1664364684179;
+        Wed, 28 Sep 2022 04:31:24 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id o22-20020ac25e36000000b004946c99e78asm448119lfg.277.2022.09.28.04.31.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Sep 2022 04:31:23 -0700 (PDT)
+Message-ID: <fca2b97c-9d4f-d372-ef2a-aae8b367bbe5@linaro.org>
+Date:   Wed, 28 Sep 2022 13:31:22 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Outbound-SMTP-Client: 10.47.77.162, [10.47.77.162]
-X-Outbound-Node: aer-core-1.cisco.com
-X-Spam-Status: No, score=-9.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        SPF_HELO_NONE,SPF_NONE,USER_IN_DEF_DKIM_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH 1/3] dt-bindings: gpio: Conver Unisoc GPIO controller
+ binding to yaml
+Content-Language: en-US
+To:     Chunyan Zhang <zhang.lyra@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20220928092937.27120-1-zhang.lyra@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220928092937.27120-1-zhang.lyra@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings for new cat24c208 EDID EEPROM driver.
+On 28/09/2022 11:29, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> 
+> Convert the Unisoc gpio controller binding to DT schema format.
+> 
 
-Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
----
- .../bindings/media/i2c/onnn,cat24c208.yaml    | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-new file mode 100644
-index 000000000000..fcfaccb5e39f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ON Semiconductor CAT24C208 EDID EEPROM driver
-+
-+maintainers:
-+  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
-+
-+description: |
-+  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
-+
-+
-+properties:
-+  compatible:
-+    const: onnn,cat24c208
-+
-+  reg:
-+    maxItems: 1
-+
-+  hpd-gpios:
-+    maxItems: 1
-+    description:
-+      References to the GPIO that controls the HDMI hot-plug detection pin.
-+      The active flag indicates the GPIO level that enables hot-plug detection.
-+
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cat24c208@31 {
-+            compatible = "onnn,cat24c208";
-+            reg = <0x31>;
-+            hpd-gpios = <&ioexp 0 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
-+...
--- 
-2.37.3
+Thank you for your patch. There is something to discuss/improve.
+
+> diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
+> new file mode 100644
+> index 000000000000..c0cd1ed9809b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2022 Unisoc Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/sprd,gpio.yaml#
+
+Use compatible as filename, so sprd,sc9860-gpio.yaml
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Unisoc GPIO controller
+> +
+
+Best regards,
+Krzysztof
 
