@@ -2,111 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30C035EDF95
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 17:02:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F53B5EDF9C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 17:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234590AbiI1PCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 11:02:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47062 "EHLO
+        id S229640AbiI1PEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 11:04:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234547AbiI1PCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 11:02:05 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 542CE93786
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 08:02:03 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id bk15so12486310wrb.13
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 08:02:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=UMwaiHo1eLQK8IfkiAfCU0lkKLmszBUs//Hb1jAlWoY=;
-        b=enbOhPsr6zIPkBsmx40qOuouUrPan0+01WARY8T73AICUgpKOA6dEbIUNaSEO5MUTU
-         p2+hCJztXY9lEySCO9QuW5pFkIycqcz2Cmde3ZCUgUPwpkmdFaHn5dVl4gjHo54gg4QE
-         7Ar9im1vCB9d6BsOs0r3APyf23A2xbY0fyG4wbSb2VO5x/rthaJNwG1p3Nc8HuEXDwB3
-         MXVF5O0e1cZxnKLOw76xhxUQ1qkVP0uLawoIIdzDlvFyf2Yqvo/OmxbYAp//SgVHSq/w
-         ybkXgYTKqrsdG4mZiyZemMpp6LUhZy0l4LMerVubMyufYovZby+mRNUbuJJgYW1L5FvI
-         DlqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=UMwaiHo1eLQK8IfkiAfCU0lkKLmszBUs//Hb1jAlWoY=;
-        b=dCvvm5J/oMu6fO4rvxREkVqC4xlz9TWMHI7ivq/D01fHHRHTVO+ZPpG2nPjIN7UQuG
-         aajsRDVGakRJ/dVXWC6IRDihSUMdUNSIju+s4R0T+Lm+/kTdOmfttFdmFV4rRygOIPH2
-         ciJLD0Bf3UevN7phQaQZXbeW6JMX2xkAu7bmRIGCSxnBL+5lHX8ErIhNUOumc56X/6He
-         pPZ6OWTrHpwFBCcyRT0JcfBvStIaj/SmkKTIpMMEQf15kIxX8xeXBFIw9FOYwlvsrWtg
-         SlTZ1c4l2K/+W6OBU7BT8QiI+aTNY4Yj/ofZwSkyzAMOJyclqSvi4RPL9aQ2PRY/BwAO
-         yhIw==
-X-Gm-Message-State: ACrzQf27VcDqyV2HOClSK4OcFr3VQ/7IXH1ChBmKe4qdUbjDRMmpkBjq
-        VmSdCKafxbjBWlSsIobn4EJzqQ==
-X-Google-Smtp-Source: AMsMyM42uI+yVH19PPnULaoaWHiL4YsvauLxANPEcxM5bMgKTHG0BrNhtSEP2dzZ5ETDA2rVtU/4zw==
-X-Received: by 2002:adf:a41e:0:b0:22c:c70e:5202 with SMTP id d30-20020adfa41e000000b0022cc70e5202mr3211113wra.412.1664377321759;
-        Wed, 28 Sep 2022 08:02:01 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id z8-20020a1cf408000000b003b56be51313sm1449795wma.44.2022.09.28.08.02.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 08:02:01 -0700 (PDT)
-Message-ID: <edbe66fd-1956-6e1f-b7a0-228e1b6ba2fa@linaro.org>
-Date:   Wed, 28 Sep 2022 16:02:00 +0100
+        with ESMTP id S233247AbiI1PEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 11:04:06 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97BB088A1A;
+        Wed, 28 Sep 2022 08:04:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id ED1D4B81FA2;
+        Wed, 28 Sep 2022 15:04:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDF0CC433C1;
+        Wed, 28 Sep 2022 15:03:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664377438;
+        bh=NRllYnWOmIZn9K9w86cX3L3Nj4a7CsqYqfE3TbG8jFo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EzDIqzwOpCcuTEMA4WbMpGj+/uVLnmZvjsbMne/ABCC1CMSvRTBy/48jWaf0Hg4KY
+         bgw7smjokwizE2hSdWQHQ+cTqWj0rH+KQEeu+Uyzn+lM3xCLLFdgJM89J7TYUHAeRo
+         PX8jGzmMpXwVWpUb47Qi6TDvbxzsP+Ijx8hVO+5DJvVSy6lMnyeN1XcwNChk2gy54W
+         4ZEvIoGNRKBP5M43zUg4/UajXWDeWR+nMBA/jGnAjLu6IV7GlYvUvvk1tLJPPMke4o
+         92YBTWMlPGFYjhuo+qJ3bjl2JKgm01hr4RuLriDn5HfIn5oqsEdk2XrUOdQ0TCAu12
+         RJBE6qFFNqwlA==
+Date:   Wed, 28 Sep 2022 16:03:51 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Sergiu Moga <sergiu.moga@microchip.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, radu_nicolae.pirea@upb.ro,
+        richard.genoud@gmail.com, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, kavyasree.kotagiri@microchip.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 1/9] dt-bindings: mfd: atmel,sama5d2-flexcom: Add SPI
+ child node ref binding
+Message-ID: <YzRiVwzJYXtat1O5@google.com>
+References: <20220922113347.144383-1-sergiu.moga@microchip.com>
+ <20220922113347.144383-2-sergiu.moga@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 3/3] clk: qcom: gcc-msm8939: use ARRAY_SIZE instead of
- specifying num_parents
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220928145609.375860-1-dmitry.baryshkov@linaro.org>
- <20220928145609.375860-4-dmitry.baryshkov@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20220928145609.375860-4-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220922113347.144383-2-sergiu.moga@microchip.com>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 15:56, Dmitry Baryshkov wrote:
-> Use ARRAY_SIZE() instead of manually specifying num_parents. This makes
-> adding/removing entries to/from parent_data easy and errorproof.
+On Thu, 22 Sep 2022, Sergiu Moga wrote:
+
+> Another functionality of FLEXCOM is that of SPI. In order for
+> the proper validation of the SPI children nodes through the binding
+> to occur, the proper binding for SPI must be referenced.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   drivers/clk/qcom/gcc-msm8939.c | 120 ++++++++++++++++-----------------
->   1 file changed, 60 insertions(+), 60 deletions(-)
 > 
-> diff --git a/drivers/clk/qcom/gcc-msm8939.c b/drivers/clk/qcom/gcc-msm8939.c
-> index 9d4f35716990..af608f165896 100644
-> --- a/drivers/clk/qcom/gcc-msm8939.c
-> +++ b/drivers/clk/qcom/gcc-msm8939.c
-> @@ -614,7 +614,7 @@ static struct clk_rcg2 pcnoc_bfdcd_clk_src = {
->   	.clkr.hw.init = &(struct clk_init_data){
->   		.name = "pcnoc_bfdcd_clk_src",
->   		.parent_data = gcc_xo_gpll0_parent_data,
-> -		.num_parents = 2,
-> +		.num_parents = ARRAY_SIZE(gcc_xo_gpll0_parent_data),
->   		.ops = &clk_rcg2_ops,
->   	},
->   };
+> 
+> v1 -> v2:
+> - use full schema paths
+> 
+> 
+> v2 -> v3:
+> - Added Reviewed-by tag, previously this was [PATCH 3]
+> 
+> 
+> v3 -> v4:
+> - Nothing, previously this was [PATCH 5]
+> 
+> 
+> v4 -> v5:
+> - Nothing
+> 
+> 
+> 
+>  .../devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml       | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
 
-Nice
+Not sure how these can be handled.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+I guess I cannot take these until the other patches are applied.
+
+NB: The patch doesn't apply cleanly anyway, so will need to be rebased.
+
+> diff --git a/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
+> index 0c80f4e98c54..f283cfd84b2d 100644
+> --- a/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
+> @@ -78,10 +78,9 @@ patternProperties:
+>        of USART bindings.
+>  
+>    "^spi@[0-9a-f]+$":
+> -    type: object
+> +    $ref: /schemas/spi/atmel,at91rm9200-spi.yaml
+>      description:
+> -      Child node describing SPI. See ../spi/spi_atmel.txt for details
+> -      of SPI bindings.
+> +      Child node describing SPI.
+>  
+>    "^i2c@[0-9a-f]+$":
+>      $ref: /schemas/i2c/atmel,at91sam-i2c.yaml
+
+-- 
+Lee Jones [李琼斯]
