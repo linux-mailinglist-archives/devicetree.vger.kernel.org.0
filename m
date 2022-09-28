@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E78625EE464
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 20:30:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F281A5EE473
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 20:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234436AbiI1SaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 14:30:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46104 "EHLO
+        id S231949AbiI1Shi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 14:37:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234430AbiI1S36 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 14:29:58 -0400
-Received: from mail-4318.protonmail.ch (mail-4318.protonmail.ch [185.70.43.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70A7DFBD
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 11:29:50 -0700 (PDT)
-Date:   Wed, 28 Sep 2022 18:29:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1664389788; x=1664648988;
-        bh=IsWhgXDQSqlqcrpGge6hF7eCE/OeZB8nSGU7RUC7f8E=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID;
-        b=hNkLqObdw9jS/gMU9PYDzVT0gJAXmxzxkvy2BH8DPG49732asHi3MYSx9AHPgEamS
-         OimyEWuS6b2XROehl63m8YoahWeApYPqBfN9Nnb0TdYYxSpcLw4yRiOwRMkTkXp+Vc
-         xy/dUDWcuSpc9EAWenRxRnnGT7HKdycMwlSzjrGVNYhjQCP/eJJ4yCfj5WVfCPTi9/
-         +dfiJLDiaiq15kveNa7cJ+/f0QlLb8HrOU528Hf/p9Ns0/hls3YUBRNNPzwsJh6s2e
-         Ht17EWsUUjQF8QyJpDoMdTaFkbXEzA9638ND0w2GVHyO1rMhtT7iF+fatKr5zVHtDD
-         s7EUunOzbiYhg==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        Julian Ribbeck <julian.ribbeck@gmx.de>,
-        Josef W Menad <JosefWMenad@protonmail.ch>,
-        Markuss Broks <markuss.broks@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH v4 4/4] arm64: dts: qcom: msm8916-samsung-j5-common: Add Hall sensor
-Message-ID: <20220928182745.186429-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20220928182435.186116-1-linmengbo0689@protonmail.com>
-References: <20220928182435.186116-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S230340AbiI1Shi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 14:37:38 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B1903120F;
+        Wed, 28 Sep 2022 11:37:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E6264B821B8;
+        Wed, 28 Sep 2022 18:37:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A22B4C433C1;
+        Wed, 28 Sep 2022 18:37:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664390254;
+        bh=wL7UOH3S4eqsJ4E3R2ab95HnIC13RJOkkXx3Tmcyk7c=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=cyewp5yDiE78tp+ep8wc1+7z0jmW/4GgKUDtZeoiVB3JIKO79gGUfSF9HlDKJounK
+         c3teRlo7MwxrXa7CgTS+Kml3BhNq9M/dYukJQOQYvrOVD7MYclfTa+UfIWGmGqHqMR
+         2lj3Hen2iJvOqfKFb/43/A4l6TKzCx/aX8MLwxzBA2Eh9A+MIvqCpDmf1kTQXUE/A9
+         qiMihaDiSCYYhU23ZVyEtoLv0wX5geEZ/7Dg9hpYuB1TRHAsSQEZbhEESVGBppje+m
+         FvVm63qF0j/prPlYGZdCuWD8FwdNxRNqiupfHoq640OTXTxC05ARgBQvJX8h3H+nj2
+         NRQi4Epe7LQ6g==
+Message-ID: <02967018-8a04-bd82-49e6-1ee475916ebb@kernel.org>
+Date:   Wed, 28 Sep 2022 13:37:32 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCHv4 1/3] dt-bindings: mmc: synopsys-dw-mshc: document
+ "altr,sysmgr-syscon"
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        jh80.chung@samsung.com
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220928165420.1212284-1-dinguyen@kernel.org>
+ <ef396764-af53-8e5a-5203-f3e103bbb7a3@linaro.org>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <ef396764-af53-8e5a-5203-f3e103bbb7a3@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,81 +60,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung Galaxy J5 2015 and 2016 have a Hall sensor on GPIO pin 52.
-Add GPIO Hall sensor for them.
+Hi,
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../boot/dts/qcom/msm8916-samsung-j3.dts      |  4 +++
- .../dts/qcom/msm8916-samsung-j5-common.dtsi   | 26 +++++++++++++++++++
- 2 files changed, 30 insertions(+)
+On 9/28/22 12:15, Krzysztof Kozlowski wrote:
+> On 28/09/2022 18:54, Dinh Nguyen wrote:
+>> Document the optional "altr,sysmgr-syscon" binding that is used to
+>> access the System Manager register that controls the SDMMC clock
+>> phase.
+>>
+>> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+>> ---
+> 
+> Thank you for your patch. There is something to discuss/improve.
+> 
+>> +
+>> +allOf:
+>> +  - $ref: "synopsys-dw-mshc-common.yaml#"
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const:
+>> +              - altr,socfpga-dw-mshc
+> 
+> It still should not be an array, even if there is no warning.
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts b/arch/arm64/b=
-oot/dts/qcom/msm8916-samsung-j3.dts
-index bf8672ebedcd..7fd357b7f728 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts
-@@ -19,3 +19,7 @@ tz-apps@85a00000 {
- =09=09};
- =09};
- };
-+
-+&gpio_hall_sensor {
-+=09status =3D "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi b/arch=
-/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-index 502b38d4a61e..5755b360c6ed 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-@@ -2,6 +2,7 @@
-=20
- #include "msm8916-pm8916.dtsi"
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-=20
- / {
- =09aliases {
-@@ -20,6 +21,23 @@ tz-apps@85500000 {
- =09=09};
- =09};
-=20
-+=09gpio_hall_sensor: gpio-hall-sensor {
-+=09=09compatible =3D "gpio-keys";
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&gpio_hall_sensor_default>;
-+
-+=09=09label =3D "GPIO Hall Effect Sensor";
-+
-+=09=09event-hall-sensor {
-+=09=09=09label =3D "Hall Effect Sensor";
-+=09=09=09gpios =3D <&msmgpio 52 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,input-type =3D <EV_SW>;
-+=09=09=09linux,code =3D <SW_LID>;
-+=09=09=09linux,can-disable;
-+=09=09};
-+=09};
-+
- =09gpio-keys {
- =09=09compatible =3D "gpio-keys";
-=20
-@@ -192,6 +210,14 @@ l18 {
- };
-=20
- &msmgpio {
-+=09gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+=09=09pins =3D "gpio52";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
- =09gpio_keys_default: gpio-keys-default-state {
- =09=09pins =3D "gpio107", "gpio109";
- =09=09function =3D "gpio";
---=20
-2.30.2
+I apologize, but I'm confused with the message. Do you mean it should 
+not be a "const"?
 
-
+Dinh
