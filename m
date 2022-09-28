@@ -2,150 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44DC45EE366
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D32E15EE36A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:47:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233534AbiI1RpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 13:45:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54364 "EHLO
+        id S234652AbiI1RrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 13:47:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234653AbiI1RpE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:45:04 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E3B48EBC
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:45:01 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 0FFAF84B67;
-        Wed, 28 Sep 2022 19:44:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1664387099;
-        bh=gaYUOXQ4C9X/kZ+ny8vPFL/2ozYC/B1B4psO3k3Bm2E=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ApiLBC8Bw+Hw9Kzi9Tetq5/m5q+LcKwerinps3C7ZutrZnqqhFtEDeL9zJWaZbra0
-         dTwgC4d+8bGlf8wDc7C5iZqa/+GDdFfMVNkpStogfjSEISpCn4uGQek0pN6RwqEmbr
-         uD5JuqkeOkPHACQDWxq/71ygC9zWcAIGmyho4JTgQ5GLVDeVwm3zUGcisVit3Qxlsk
-         FO4zBxoD67+ZLgoOg1dQmMlYmT6qVgwf+C3xxNx4gxdrMFf9p+HfkBX3+hKye0MlQ/
-         LuAGGRyEi3Oe8TmbHzNyZCKYuCijSWc/QlMpwF53/UPUrrgejHAMdSSGYn5Cr5mz+s
-         yLpARcy/xjfsQ==
-Message-ID: <7adc3299-5dd6-fd43-fd5e-c22d150a328a@denx.de>
-Date:   Wed, 28 Sep 2022 19:44:58 +0200
+        with ESMTP id S234536AbiI1RrY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:47:24 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE1DF1D4C
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:47:23 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id b24so15137236ljk.6
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:47:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=im9XgETRxegMUR78LTkoFFDmVSoYc1KHVKiHFv5Z2KY=;
+        b=a0JNO+DzxwYmo8m4zvCjgit8yewjJ/rCYwUMgSkwxCPXyb8MliNAyp3skj1+3k01/F
+         M56hDpGrQJCbaoHs9BdSfS6hcHio2xAckACPJRjtAQvTDIBD1DOrA7cC1mOzPy8GkefX
+         N1RkhaulmRkZPF7HGBB9wpJ/o23HY9wDawXIo2WTG6B3iQIOSXt32J5K+b6mrynF7Hid
+         BbFiBR0wFjTa3FLwSuODAYnbGWUv1u+FNJH3gLszI1MX7sVtsDf9zmu5i42QMCPbceEb
+         oulGVSsqEBN73DUOcJ130okuum1nwAtStdUR8qXWWsCWTscNXqXo1dKqN/7+Poj0WZPO
+         DfXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=im9XgETRxegMUR78LTkoFFDmVSoYc1KHVKiHFv5Z2KY=;
+        b=7dPB1Id+mAW8bVxKNwaB8jcirWPLoKXG/8lQ+eXC6r1+FLpM9mTEFzdOA5BVfW3eK2
+         IKQnmlhYofzDUF6kucLwwvAz+pxGOzVcw3SXrVX8ntgTYt6XHKV0X5lIETfQrEKnq8H7
+         tLGuMomPYhznGo83Y7bb03/v7luZ6/I7OfZIyG4ZfQTsyT8YNiDPyM4mcF/yNGgQmPTw
+         ebY33raUCZ9Cta+CF1zkVlPV6S4hdwHYDzkFTfobo0CZGpuUJ9bLsZXlY6FuMQOOlsXj
+         s3J+eq+b0IZ/WYZQ0BWK7tX+NMT80/Nd2RkhnpDXmeFAhT9wmXXlBsSM4nDAxH36IQv0
+         FQVg==
+X-Gm-Message-State: ACrzQf092bLavkxRINUHcp87c+WWXzdLTPExP4xJU581mRquFo54PL0m
+        98biAkyi+wcjOJCNpekbtGWR8w==
+X-Google-Smtp-Source: AMsMyM5lItS8m+a3tjAri2PadLRMGws9Z/yEkLDSyn/WAlOVnniMT1nbYT5FjnGrixQi+wl7GkLLRw==
+X-Received: by 2002:a2e:b016:0:b0:26b:f00b:a8cf with SMTP id y22-20020a2eb016000000b0026bf00ba8cfmr11755167ljk.24.1664387241691;
+        Wed, 28 Sep 2022 10:47:21 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id i8-20020a056512006800b00494935ddb88sm531221lfo.240.2022.09.28.10.47.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Sep 2022 10:47:21 -0700 (PDT)
+Message-ID: <b748aebe-09b5-d4b2-a6e4-0f13e440bc05@linaro.org>
+Date:   Wed, 28 Sep 2022 19:47:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2] dt-bindings: memory-controller: st,stm32: Split off MC
- properties
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20220926225536.548139-1-marex@denx.de>
- <846bc515-bdda-6022-0611-daaa9a632e64@linaro.org>
- <e787f5b1-88e6-375c-b9e7-22db346c27be@denx.de>
- <393eb833-0dcd-bf6c-49f3-ab8d60e3a8e5@linaro.org>
+Subject: Re: [PATCH v3 01/11] dt-bindings: remoteproc: mediatek: Give the
+ subnode a persistent name
 Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <393eb833-0dcd-bf6c-49f3-ab8d60e3a8e5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+References: <20220927025606.26673-1-tinghan.shen@mediatek.com>
+ <20220927025606.26673-2-tinghan.shen@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220927025606.26673-2-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/28/22 19:24, Krzysztof Kozlowski wrote:
-> On 28/09/2022 19:01, Marek Vasut wrote:
->> On 9/28/22 09:10, Krzysztof Kozlowski wrote:
->>
->> Hi,
->>
->> [...]
->>
->>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
->>>> index a1f535cececcc..49243f447eb90 100644
->>>> --- a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
->>>> +++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
->>>> @@ -49,143 +49,6 @@ patternProperties:
->>>>      "^.*@[0-4],[a-f0-9]+$":
->>>>        type: object
->>>>    
->>>> -    properties:
->>>> -      reg:
->>>> -        description: Bank number, base address and size of the device.
->>>> -
->>>
->>> To be equivalent (and similar to SPI peripherals and controllers) this
->>> should reference st,stm32-fmc2-ebi-props.yaml as well.
->>>
->>> After such reference, you can add here unevaluatedProperties:false
->>> (could be same or new patch as it is not related to actual split).
->>
->> I don't think I understand. I don't see any ref from the controller node
->> to its props in various SPI controllers (even if that would make sense):
+On 27/09/2022 04:55, Tinghan Shen wrote:
+> The node name doesn't matter to add the subnode as a cros-ec rpmsg device.
+> Give it a clear persistent node name to simplify scp yaml.
 > 
-> Because they reference spi peripheral props...
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  .../bindings/remoteproc/mtk,scp.yaml          | 35 ++++++++++---------
+>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  2 +-
+>  2 files changed, 20 insertions(+), 17 deletions(-)
 > 
->>
->> next$ git grep qspi-nor-peripheral-props.yaml
->> Documentation/devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml:$id:
->> http://devicetree.org/schemas/spi/cdns,qspi-nor-peripheral-props.yaml#
->> Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml:  -
->> $ref: cdns,qspi-nor-peripheral-props.yaml#
->>
->> No ref to cdns,qspi-nor-peripheral-props.yaml in
->> Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
->>
->> next$ git grep tegra210-quad-peripheral-props
->> Documentation/devicetree/bindings/spi/nvidia,tegra210-quad-peripheral-props.yaml:$id:
->> http://devicetree.org/schemas/spi/nvidia,tegra210-quad-peripheral-props.yaml#
->> Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml:  -
->> $ref: nvidia,tegra210-quad-peripheral-props.yaml#
->>
->> No ref to nvidia,tegra210-quad-peripheral-props.yaml in
->> Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> 
-> All your examples do it - reference spi peripheral props.
-> 
-> As I said, your change is now not equivalent. If any other device
-> appears in st,stm32-fmc2-ebi, the schema won't be applied.
-> 
-> Let me put it that way: you must have there additionalProperties:false
-> or unevaluatedProperties:false. Once you add it, you start seeing errors
-> leading to missing ref.
+> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+> index 7e091eaffc18..786bed897916 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+> @@ -58,6 +58,23 @@ properties:
+>    memory-region:
+>      maxItems: 1
+>  
+> +  cros-ec-rpmsg:
+> +    type: object
 
-Is what you are trying to convey that 
-Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml does ref 
-spi-controller.yaml# and that one does patternProperties: ref: 
-spi-peripheral-props.yaml ?
+additionalProperties: false on this level
 
-So the fix for V3 should be the following ?
+> +    description:
+> +      This subnode represents the rpmsg device. The names of the devices
 
-diff --git 
-a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml 
-b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
-index 49243f447eb90..0448bd07f4310 100644
---- 
-a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
-+++ 
-b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
-@@ -48,6 +48,7 @@ properties:
-  patternProperties:
-    "^.*@[0-4],[a-f0-9]+$":
-      type: object
-+    $ref: st,stm32-fmc2-ebi-props.yaml
+What are the devices? You wrote that it is one device, not devices.
 
-  required:
-    - "#address-cells"
+> +      are not important. The properties of this node are defined by the
+> +      individual bindings for the rpmsg devices.
+
+??? No, you need to define the properties of the node, e.g. by a ref.
+
+> +
+> +    properties:
+> +      mediatek,rpmsg-name:
+> +        $ref: /schemas/types.yaml#/definitions/string-array
+> +        description:
+> +          Contains the name for the rpmsg device. Used to match
+> +          the subnode to rpmsg device announced by SCP.
+
+maxItems... but is it really a string-array?
+
+> +
+> +    required:
+> +      - mediatek,rpmsg-name
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -89,21 +106,7 @@ allOf:
+>          reg-names:
+>            maxItems: 2
+>  
+
+Best regards,
+Krzysztof
+
