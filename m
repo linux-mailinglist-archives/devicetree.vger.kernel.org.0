@@ -2,138 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4D265EE48E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 20:45:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AF395EE4AF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 20:58:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234148AbiI1So4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 14:44:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47436 "EHLO
+        id S232599AbiI1S6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 14:58:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234114AbiI1Sos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 14:44:48 -0400
-Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57C7911A0B;
-        Wed, 28 Sep 2022 11:44:42 -0700 (PDT)
-Date:   Wed, 28 Sep 2022 18:44:36 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1664390681; x=1664649881;
-        bh=XpZbDM+upygRTlijf/OSRl41+UlZ87vL8pT9rplz1UM=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID;
-        b=jUQ0ZD9gOj1I7lAJragr/717l3sL05BAR8Qn+ibt4SEq7gVgrajploWcAAhKC0rFs
-         u2k+rAJgLKqAOsXQeubH0K3t3zwQNuTeneIVkYnPt38W8aIae+KiF5zJdd+/z636MY
-         xRkD9uZb9ICPQV5aZ7zr8YZhhwGEXM5MK1xI8GsNEH9F15gR9ZNk+g6lZnDIIXMU/V
-         BlD0qbdXrRnWzFbQauA/1cpbEhEkCRZT1jb32AbOXoTWI4XOmtzC6u7n5d5vNajjK/
-         gt1V2HF2HDHz8lhJPo0ljT/3p9eJKzbER8t6Spsi8sL8nrt5for3A8s7217urQV3Pl
-         mDCLcxhEXzMCg==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        Julian Ribbeck <julian.ribbeck@gmx.de>,
-        Josef W Menad <JosefWMenad@protonmail.ch>,
-        Markuss Broks <markuss.broks@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH v5 4/4] arm64: dts: qcom: msm8916-samsung-j5-common: Add Hall sensor
-Message-ID: <20220928184325.186866-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20220928184155.186632-1-linmengbo0689@protonmail.com>
-References: <20220928184155.186632-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S233675AbiI1S6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 14:58:36 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C303F3F97;
+        Wed, 28 Sep 2022 11:58:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CE599B821C3;
+        Wed, 28 Sep 2022 18:58:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59F7DC433D7;
+        Wed, 28 Sep 2022 18:58:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664391512;
+        bh=73cqCtnNsDvfXsy6P+CF5Gnpa0oRjpEWOATabkd0y9k=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=U1sH8DCduJBFVtNE7yAlXn+ak+MjNp86ZbDmHrcjAysL2CoJnUObFmS9WNGjF8SaU
+         lgeXbWR/3OJLLg8wlRs+xo69pUEwgVSTtBpJRdiKsiA/pSXsXGhOWTqDtzSTYhCvlX
+         NMHvN23fb+IA+pu6jw7hn+pcz/xe1A82Xe+wKRlRtUPpg5YySPJK/HNbotjrwsFuwd
+         6YPscxERooUYDYQu7LD6SXQ8brpzaXj+vtecP3pNaAB2t9EUy0iEhZHi/GUOIF+g86
+         CzTAkiLNISzTaJyaCQVkaCMBR2DxeXtMfFC38dtYPYc+V1DPyTGDJdfaXe4xdk4kvQ
+         AjoGrX4XAUfjA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220927075511.3147847-27-clabbe@baylibre.com>
+References: <20220927075511.3147847-1-clabbe@baylibre.com> <20220927075511.3147847-27-clabbe@baylibre.com>
+Subject: Re: [PATCH v10 26/33] clk: rk3399: use proper crypto0 name
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Rob Herring <robh@kernel.org>
+To:     Corentin Labbe <clabbe@baylibre.com>, ardb@kernel.org,
+        davem@davemloft.net, heiko@sntech.de, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        robh+dt@kernel.org
+Date:   Wed, 28 Sep 2022 11:58:30 -0700
+User-Agent: alot/0.10
+Message-Id: <20220928185832.59F7DC433D7@smtp.kernel.org>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung Galaxy J5 2015 and 2016 have a Hall sensor on GPIO pin 52.
-Add GPIO Hall sensor for them.
+Quoting Corentin Labbe (2022-09-27 00:55:04)
+> RK3399 has 2 crypto instance, named crypto0 and crypto1 in the TRM.
+> Only reset for crypto1 is correctly named, but crypto0 is not.
+> Since nobody use them , add a 0 to be consistent with the TRM and crypto1=
+ entries.
+>=20
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../boot/dts/qcom/msm8916-samsung-j3.dts      |  4 +++
- .../dts/qcom/msm8916-samsung-j5-common.dtsi   | 26 +++++++++++++++++++
- 2 files changed, 30 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts b/arch/arm64/b=
-oot/dts/qcom/msm8916-samsung-j3.dts
-index 35d3e9c6d012..7cfc6f8f5fcf 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts
-@@ -19,3 +19,7 @@ tz-apps@85800000 {
- =09=09};
- =09};
- };
-+
-+&gpio_hall_sensor {
-+=09status =3D "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi b/arch=
-/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-index 502b38d4a61e..5755b360c6ed 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-@@ -2,6 +2,7 @@
-=20
- #include "msm8916-pm8916.dtsi"
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-=20
- / {
- =09aliases {
-@@ -20,6 +21,23 @@ tz-apps@85500000 {
- =09=09};
- =09};
-=20
-+=09gpio_hall_sensor: gpio-hall-sensor {
-+=09=09compatible =3D "gpio-keys";
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&gpio_hall_sensor_default>;
-+
-+=09=09label =3D "GPIO Hall Effect Sensor";
-+
-+=09=09event-hall-sensor {
-+=09=09=09label =3D "Hall Effect Sensor";
-+=09=09=09gpios =3D <&msmgpio 52 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,input-type =3D <EV_SW>;
-+=09=09=09linux,code =3D <SW_LID>;
-+=09=09=09linux,can-disable;
-+=09=09};
-+=09};
-+
- =09gpio-keys {
- =09=09compatible =3D "gpio-keys";
-=20
-@@ -192,6 +210,14 @@ l18 {
- };
-=20
- &msmgpio {
-+=09gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+=09=09pins =3D "gpio52";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
- =09gpio_keys_default: gpio-keys-default-state {
- =09=09pins =3D "gpio107", "gpio109";
- =09=09function =3D "gpio";
---=20
-2.30.2
-
-
+Acked-by: Stephen Boyd <sboyd@kernel.org>
