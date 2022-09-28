@@ -2,352 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8220F5EE1B5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 18:21:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A3BE5EE1C3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 18:23:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229847AbiI1QVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 12:21:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50666 "EHLO
+        id S233638AbiI1QXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 12:23:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234324AbiI1QVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 12:21:38 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07CC5E21C5;
-        Wed, 28 Sep 2022 09:21:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1664382092; x=1695918092;
-  h=from:to:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=VFLlzbowANTEuTplVjxC4dIg9DEzjoClVyh1LPKwaoA=;
-  b=al0WrVlMYggAJMWUhnU8VCe65KKM6X5juciE44z3vYtpdO0TPj9xenMx
-   deRXyBXtW7uu2LQJt2PiKvNINVEJ7Z3APTiEzPDH+XpnXhkSX1tyQhlwQ
-   DMJ0pzlCZAReCbyf2O8GahOfvMPqe6K96FWiOCLzKcnAc8R0lItmaRT7n
-   bQV3aFowvQYlrvjy5B5Hlzpb3V4kypAIbMlNc7+Cya1dLOk4n4kDxBif2
-   FT+7fpuF/BJbv5tmEKjLfq4Lg2lsZL4MoaZwXM/JIl/fWqbA7CzxAEbtG
-   xdSxuONqlqI2Fkqxax+MlV2UDsqPGuQOytndIJCbPYC+gMMmfz95jP7Bj
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; 
-   d="scan'208";a="182355220"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Sep 2022 09:21:30 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 28 Sep 2022 09:21:29 -0700
-Received: from ATX-DK-C33025.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.12 via Frontend Transport; Wed, 28 Sep 2022 09:21:28 -0700
-From:   Jerry Ray <jerry.ray@microchip.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <UNGLinuxDriver@microchip.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jerry Ray <jerry.ray@microchip.com>
-Subject: [net-next][PATCH v3] dt-bindings: dsa: lan9303: Add lan9303 yaml
-Date:   Wed, 28 Sep 2022 11:21:28 -0500
-Message-ID: <20220928162128.802-1-jerry.ray@microchip.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S234554AbiI1QXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 12:23:18 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D8BA56B85;
+        Wed, 28 Sep 2022 09:23:10 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id d42so21249634lfv.0;
+        Wed, 28 Sep 2022 09:23:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=ENny02jrZKVbgPfzbkbRE4ZovlzNI+xmygHZLGPqIBs=;
+        b=ZtknbgmU/wmbcYwSVkoJB+W1EHC/7KVOArUns8X67T/KOCkbeed1buC3ysC9Phfwfi
+         ifQ9jpg5aQLgZQEQvWcamMuhilITQTXz4qnEAuPQoouDK+5gcyTD0NinNArywTuVVGki
+         bnoCGDAX32g12eoedEj2Q5wE4jQ0Wzl+ZICavftNxBx0GTr6VAGnXkIQQnEqgPlN9h5F
+         PL1x61LC9+KI06GHyaPnwnfoPUlD/dkp6kSg/4uPADRgMrZfDv1Nt93sFjswxM8h6E+p
+         0LF0GiJ6bcvKD8phn8SNduNvjHAK5McCCqZmZbtc1WY+Dx3rJgQZNcGtCoCMhaysAb59
+         gLyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=ENny02jrZKVbgPfzbkbRE4ZovlzNI+xmygHZLGPqIBs=;
+        b=QpMQUlu+Sjhh/W357+iACLr+yq9Rq02OAIpVprcaNtjJGoasA44NISGIzq7rgSnrSv
+         G+0muW/VGrIYsTuNdWpSDJiYJ8t6MTPpxUHrIRwNlQ4cGU9gmIXSvhRQ77KIuz2OwSa7
+         8QpdEm7jD/a0/7EkfrGOXV+vgL1D/7r32R4y7eZnAxBb6QbDn7QVIbagGMdbbxzCTdBd
+         9JaWgfW0mTqC33jhqMatTSNVW5N620Z3TcafsEcnXSEBdlLiDQ1Iw2WTh9DLJbkbB8V5
+         W2jt7Tcb9ZkEt2xp2s71zofFNMdFPiooWXWFF/WLUeq2UW688TiZfYAHzwZoMIaulKk6
+         vS9g==
+X-Gm-Message-State: ACrzQf1UQ5sdkU1Elp/Q8wNXRZgp4vouWYbWNFNcRlnjiIMxAoCDBk1R
+        NF1eCYceGpkr0AVwMMHi03A=
+X-Google-Smtp-Source: AMsMyM5gtxklHbrdm1xdQqDlFiUiLhPp7YuJAm3I62QCBKtAMamqNsiIC8L5zDr5KDF8j5icQVK0sA==
+X-Received: by 2002:a05:6512:104f:b0:4a1:b0e9:dd25 with SMTP id c15-20020a056512104f00b004a1b0e9dd25mr9371959lfb.454.1664382188690;
+        Wed, 28 Sep 2022 09:23:08 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id u20-20020a197914000000b0049ade93ad24sm511834lfc.156.2022.09.28.09.23.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Sep 2022 09:23:07 -0700 (PDT)
+Message-ID: <e3abc0a9-ad5b-f6ef-8cba-0b4c6c8325c0@gmail.com>
+Date:   Wed, 28 Sep 2022 19:23:06 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [RFC PATCH 4/5] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "Mutanen, Mikko" <Mikko.Mutanen@fi.rohmeurope.com>,
+        "Haikola, Heikki" <Heikki.Haikola@fi.rohmeurope.com>
+References: <cover.1663760018.git.mazziesaccount@gmail.com>
+ <fe1088cebb0de70bcb99af517004c1816b696825.1663760018.git.mazziesaccount@gmail.com>
+ <20220922180339.30138141@jic23-huawei>
+ <3eea7954-3faf-3fc9-7507-c318488c5524@gmail.com>
+ <YzRU9aRNReonSqbg@smile.fi.intel.com>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <YzRU9aRNReonSqbg@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding the dt binding yaml for the lan9303 3-port ethernet switch.
-The microchip lan9354 3-port ethernet switch will also use the
-same binding.
+Hi Andy,
 
-Signed-off-by: Jerry Ray <jerry.ray@microchip.com>
----
-v2->v3:
- - removed cpu labels
- - now patching against latest net-next
-v1->v2:
- - fixed dt_binding_check warning
- - added max-speed setting on the switches 10/100 ports.
----
- .../devicetree/bindings/net/dsa/lan9303.txt   |  99 +-------------
- .../bindings/net/dsa/microchip,lan9303.yaml   | 129 ++++++++++++++++++
- MAINTAINERS                                   |   8 ++
- 3 files changed, 139 insertions(+), 97 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
+On 9/28/22 17:06, Andy Shevchenko wrote:
+> On Wed, Sep 28, 2022 at 02:14:14PM +0300, Matti Vaittinen wrote:
+>> On 9/22/22 20:03, Jonathan Cameron wrote:
+>>> On Wed, 21 Sep 2022 14:45:35 +0300
+> 
+> ...
+> 
+>>>> +		dev_err(dev, "no regmap\n");
+>>>
+>>> Use dev_err_probe() for all dev_err() stuff in probe paths.
+>>> It ends up cleaner and we don't care about the tiny overhead
+>>> of checking for deferred.
+>>
+>> This one bothers me a bit. It just does not feel correct to pass -EINVAL for
+>> the dev_err_probe() so the dev_err_probe() can check if -EINVAL !=
+>> -EPROBE_DEFER. I do understand perfectly well the consistent use of
+>> dev_err_probe() for all cases where we get an error-code from a function and
+>> return it - but using dev_err_probe() when we hard-code the return value in
+>> code calling the dev_err_probe() does not feel like "the right thing to do"
+>> (tm).
+>>
+>> Eg, I agree that
+>> return dev_err_probe(dev, ret, "bar");
+>> is nice even if we know the function that gave us the "ret" never requests
+>> defer (as that can change some day).
+>>
+>> However, I don't like issuing:
+>> return dev_err_probe(dev, -EINVAL, "bar");
+> 
+> This case specifically was added into documentation by 7065f92255bb ("driver
+> core: Clarify that dev_err_probe() is OK even w/out -EPROBE_DEFER").
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/lan9303.txt b/Documentation/devicetree/bindings/net/dsa/lan9303.txt
-index 46a732087f5c..8c8fedd1f00e 100644
---- a/Documentation/devicetree/bindings/net/dsa/lan9303.txt
-+++ b/Documentation/devicetree/bindings/net/dsa/lan9303.txt
-@@ -1,100 +1,5 @@
- SMSC/MicroChip LAN9303 three port ethernet switch
- -------------------------------------------------
- 
--Required properties:
--
--- compatible: should be
--  - "smsc,lan9303-i2c" for I2C managed mode
--    or
--  - "smsc,lan9303-mdio" for mdio managed mode
--
--Optional properties:
--
--- reset-gpios: GPIO to be used to reset the whole device
--- reset-duration: reset duration in milliseconds, defaults to 200 ms
--
--Subnodes:
--
--The integrated switch subnode should be specified according to the binding
--described in dsa/dsa.txt. The CPU port of this switch is always port 0.
--
--Note: always use 'reg = <0/1/2>;' for the three DSA ports, even if the device is
--configured to use 1/2/3 instead. This hardware configuration will be
--auto-detected and mapped accordingly.
--
--Example:
--
--I2C managed mode:
--
--	master: masterdevice@X {
--
--		fixed-link { /* RMII fixed link to LAN9303 */
--			speed = <100>;
--			full-duplex;
--		};
--	};
--
--	switch: switch@a {
--		compatible = "smsc,lan9303-i2c";
--		reg = <0xa>;
--		reset-gpios = <&gpio7 6 GPIO_ACTIVE_LOW>;
--		reset-duration = <200>;
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@0 { /* RMII fixed link to master */
--				reg = <0>;
--				ethernet = <&master>;
--			};
--
--			port@1 { /* external port 1 */
--				reg = <1>;
--				label = "lan1";
--			};
--
--			port@2 { /* external port 2 */
--				reg = <2>;
--				label = "lan2";
--			};
--		};
--	};
--
--MDIO managed mode:
--
--	master: masterdevice@X {
--		phy-handle = <&switch>;
--
--		mdio {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			switch: switch-phy@0 {
--				compatible = "smsc,lan9303-mdio";
--				reg = <0>;
--				reset-gpios = <&gpio7 6 GPIO_ACTIVE_LOW>;
--				reset-duration = <100>;
--
--				ports {
--					#address-cells = <1>;
--					#size-cells = <0>;
--
--					port@0 {
--						reg = <0>;
--						ethernet = <&master>;
--					};
--
--					port@1 { /* external port 1 */
--						reg = <1>;
--						label = "lan1";
--					};
--
--					port@2 { /* external port 2 */
--						reg = <2>;
--						label = "lan2";
--					};
--				};
--			};
--		};
--	};
-+See Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml for the
-+device tree documentation covering the LAN9303 and LAN9354 devices.
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
-new file mode 100644
-index 000000000000..818770092a2c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/microchip,lan9303.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LAN9303 Ethernet Switch Series Tree Bindings
-+
-+allOf:
-+  - $ref: "dsa.yaml#"
-+
-+maintainers:
-+  - UNGLinuxDriver@microchip.com
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - smsc,lan9303-mdio
-+          - microchip,lan9354-mdio
-+      - enum:
-+          - smsc,lan9303-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description: Optional gpio specifier for a reset line
-+    maxItems: 1
-+
-+  reset-duration:
-+    description: Reset duration in milliseconds, defaults to 200 ms
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    //Ethernet switch connected via mdio to the host
-+    ethernet0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        phy-handle = <&lan9303switch>;
-+        phy-mode = "rmii";
-+        fixed-link {
-+            speed = <100>;
-+            full-duplex;
-+        };
-+        mdio {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            lan9303switch: switch@0 {
-+                compatible = "smsc,lan9303-mdio";
-+                dsa,member = <0 0>;
-+                reg = <0>;
-+                ethernet-ports {
-+                    #address-cells = <1>;
-+                    #size-cells = <0>;
-+                        port@0 {
-+                            reg = <0>;
-+                            phy-mode = "rmii";
-+                            ethernet = <&ethernet>;
-+                            fixed-link {
-+                                speed = <100>;
-+                                full-duplex;
-+                            };
-+                        };
-+                        port@1 {
-+                            reg = <1>;
-+                            max-speed = <100>;
-+                            label = "lan1";
-+                        };
-+                        port@2 {
-+                            reg = <2>;
-+                            max-speed = <100>;
-+                            label = "lan2";
-+                        };
-+                    };
-+                };
-+            };
-+        };
-+
-+    //Ethernet switch connected via i2c to the host
-+    ethernet1 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        phy-mode = "rmii";
-+        fixed-link {
-+            speed = <100>;
-+            full-duplex;
-+        };
-+    };
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        lan9303: switch@1a {
-+            compatible = "smsc,lan9303-i2c";
-+            reg = <0x1a>;
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                port@0 {
-+                    reg = <0>;
-+                    phy-mode = "rmii";
-+                    ethernet = <&ethernet1>;
-+                    fixed-link {
-+                        speed = <100>;
-+                        full-duplex;
-+                    };
-+                };
-+                port@1 {
-+                    reg = <1>;
-+                    max-speed = <100>;
-+                    label = "lan1";
-+                };
-+                port@2 {
-+                    reg = <2>;
-+                    max-speed = <100>;
-+                    label = "lan2";
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5d58b55c5ae5..89055ff2838a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13386,6 +13386,14 @@ L:	netdev@vger.kernel.org
- S:	Maintained
- F:	drivers/net/ethernet/microchip/lan743x_*
- 
-+MICROCHIP LAN9303/LAN9354 ETHERNET SWITCH DRIVER
-+M:	Jerry Ray <jerry.ray@microchip.com>
-+M:	UNGLinuxDriver@microchip.com
-+L:	netdev@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
-+F:	drivers/net/dsa/lan9303*
-+
- MICROCHIP LAN966X ETHERNET DRIVER
- M:	Horatiu Vultur <horatiu.vultur@microchip.com>
- M:	UNGLinuxDriver@microchip.com
+Yes. And this is exactly what I meant with:
+ >> Eg, I agree that
+ >> return dev_err_probe(dev, ret, "bar");
+ >> is nice even if we know the function that gave us the "ret" never 
+requests
+ >> defer
+
+There is still (in my opinion) a significant difference if we call:
+ >> return dev_err_probe(dev, -EINVAL, "bar");
+
+- where we really hard-code the -EINVAL as a parameter to the 
+dev_err_probe()
+
+>> Well, please let me know if you think the dev_err_probe() should be used
+>> even in cases where we hard code the return to something...
+> 
+> And this should be, of course, maintainer's decision.
+
+Ultimately, yes.
+
+Best Regards
+	--Matti
+
 -- 
-2.25.1
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
+~~ When things go utterly wrong vim users can always type :help! ~~
