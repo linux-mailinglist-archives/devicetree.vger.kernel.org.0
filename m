@@ -2,182 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DBCC5ED315
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 04:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A76A5ED31E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 04:43:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232160AbiI1ClI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 22:41:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42554 "EHLO
+        id S232851AbiI1Cnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 22:43:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231684AbiI1ClH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 22:41:07 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F09C10253C;
-        Tue, 27 Sep 2022 19:41:04 -0700 (PDT)
-X-UUID: 0116d708030d4f4794d5bae4c99aee36-20220928
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=zoVsh+lBpo2kny9dOeVB7K/RKMo8E8eyudzqFaV/N2w=;
-        b=HMLzuwVhQUv9fun+rv1k2zOt8bo+rAt3MGJQgaJsh3/LQWZY5q4MYAQK9Tb8kPs2uO7MGhsc4Ng0MfdA2/DS21g/8mypnT4pbxo7kRU9Xp2Mr90rD6eSXDhvBt0I82rYylp75lxcHcUf7JT7jb5wF4iFjbgHtS2aej+iB4jFjXw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:73bf7f0f-e40b-4efc-a84c-afd2fc491e7f,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:6faf73e4-87f9-4bb0-97b6-34957dc0fbbe,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 0116d708030d4f4794d5bae4c99aee36-20220928
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1773477499; Wed, 28 Sep 2022 10:41:01 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 28 Sep 2022 10:41:00 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 28 Sep 2022 10:40:59 +0800
-Message-ID: <da5c39fb351a7ca5a9dfa1c938d2e3d914ecb0d2.camel@mediatek.com>
-Subject: Re: [PATCH v1 14/17] phy: mediatek: add support for
- phy-mtk-hdmi-mt8195
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-CC:     <linux-mediatek@lists.infradead.org>,
-        <dri-devel@lists.freedesktop.org>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>
-Date:   Wed, 28 Sep 2022 10:40:59 +0800
-In-Reply-To: <CABnWg9v4OuAU0x7n1q09gO7u3faOsmeq_4PFpw=_wAn1+erF8A@mail.gmail.com>
-References: <20220919-v1-0-4844816c9808@baylibre.com>
-         <20220919-v1-14-4844816c9808@baylibre.com>
-         <d1346dcf6b6906d153c13c086bf963dc89c5549b.camel@mediatek.com>
-         <CABnWg9v4OuAU0x7n1q09gO7u3faOsmeq_4PFpw=_wAn1+erF8A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S231278AbiI1Cnh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 22:43:37 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21CE10B5AF;
+        Tue, 27 Sep 2022 19:43:35 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28S0DaQh028294;
+        Wed, 28 Sep 2022 02:43:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=qcppdkim1;
+ bh=WAV2Vg7f6CUq/WnEQZXIQKXJMUc1AhCzxB0OWsDh3RQ=;
+ b=FlouJ/E2BEmfD3sjQj5qHcqkx36V6u+vVwNt6J0rVMytK3KhCasOWdX89foZmugM6IP4
+ /jk3liRZU1h5IwSR++1L70MB4kJ3Kw7EjJpgOYMPuXzaWTT9SS67JAK2dY3RvfAsEP3w
+ uQogYp9jRCZVX3iUC+9YfD8vkcbw4KZt3q5k25LjjTNUD0nVUdnDKP+n14C1xA5oyJR6
+ YjPYpo+nrafeeDjowOT4tiYALtaOR4G04Og0empZowT0l4y7TDZUVP3ecoD1v/rzcgg3
+ AvJEP/GQQgMfC7rA0fjD3tladW/Cz9V7vfNVWyNHfpvJfOGPQ5DFfEv315bJDb/hi8n7 VQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3juw51ke70-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 28 Sep 2022 02:43:29 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28S2hSwG018236
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 28 Sep 2022 02:43:28 GMT
+Received: from fenglinw2-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Tue, 27 Sep 2022 19:43:26 -0700
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Pavel Machek" <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fenglin Wu <quic_fenglinw@quicinc.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>
+Subject: [PATCH v1 2/2] dt-bindings: add bindings for QCOM flash LED
+Date:   Wed, 28 Sep 2022 10:42:39 +0800
+Message-ID: <20220928024239.3843909-3-quic_fenglinw@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220928024239.3843909-1-quic_fenglinw@quicinc.com>
+References: <20220928024239.3843909-1-quic_fenglinw@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 0loG-lmSJcDsbykBWY2Et9QT5LgU33J6
+X-Proofpoint-GUID: 0loG-lmSJcDsbykBWY2Et9QT5LgU33J6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-27_12,2022-09-27_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ lowpriorityscore=0 malwarescore=0 mlxlogscore=932 mlxscore=0
+ impostorscore=0 adultscore=0 suspectscore=0 bulkscore=0 spamscore=0
+ phishscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2209130000 definitions=main-2209280015
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-09-27 at 06:23 -0700, Guillaume Ranquet wrote:
-> On Tue, 20 Sep 2022 09:46, Chunfeng Yun <chunfeng.yun@mediatek.com>
-> wrote:
-> > On Mon, 2022-09-19 at 18:56 +0200, Guillaume Ranquet wrote:
-> > > Add basic support for the mediatek hdmi phy on MT8195 SoC
-> > > 
-> > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > > 
-> > > diff --git a/drivers/gpu/drm/mediatek/mtk_mt8195_hdmi.c
-> > > b/drivers/gpu/drm/mediatek/mtk_mt8195_hdmi.c
-> > > index bb7593ea4c86..0157acdce56c 100644
-> > > --- a/drivers/gpu/drm/mediatek/mtk_mt8195_hdmi.c
-> > > +++ b/drivers/gpu/drm/mediatek/mtk_mt8195_hdmi.c
-> > > @@ -1344,6 +1344,8 @@ static void mtk_hdmi_bridge_disable(struct
-> > > drm_bridge *bridge,
-> > >  	mtk_hdmi_disable_hdcp_encrypt(hdmi);
-> > >  	usleep_range(50000, 50050);
-> > > 
-> > > +	phy_power_off(hdmi->phy);
-> > > +
-> > >  	hdmi->enabled = false;
-> > >  }
-> > > 
-> > > diff --git a/drivers/phy/mediatek/Makefile
-> > > b/drivers/phy/mediatek/Makefile
-> > > index fb1f8edaffa7..c9a50395533e 100644
-> > > --- a/drivers/phy/mediatek/Makefile
-> > > +++ b/drivers/phy/mediatek/Makefile
-> > > @@ -12,6 +12,7 @@ obj-$(CONFIG_PHY_MTK_XSPHY)		+= phy-
-> > > mtk-
-> > > xsphy.o
-> > >  phy-mtk-hdmi-drv-y			:= phy-mtk-hdmi.o
-> > >  phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-
-> > > mt2701.o
-> > >  phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-
-> > > mt8173.o
-> > > +phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-
-> > > mt8195.o
-> > >  obj-$(CONFIG_PHY_MTK_HDMI)		+= phy-mtk-hdmi-drv.o
-> > > 
-> > >  phy-mtk-mipi-dsi-drv-y			:= phy-mtk-mipi-dsi.o
-> > > diff --git a/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-> > > b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-> > > new file mode 100644
-> > > index 000000000000..149015b64c02
-> > > --- /dev/null
-> > > +++ b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-> > > @@ -0,0 +1,673 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Copyright (c) 2021 MediaTek Inc.
-> > > + * Copyright (c) 2021 BayLibre, SAS
-> > > + */
-> > > +#include <linux/delay.h>
-> > > +#include <linux/io.h>
-> > > +#include <linux/mfd/syscon.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/phy/phy.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/types.h>
-> > > +#include <linux/nvmem-consumer.h>
-> > > +
-> > > +#include "phy-mtk-hdmi.h"
-> > > +#include "phy-mtk-hdmi-mt8195.h"
-> > > +
-> > > +static void mtk_hdmi_ana_fifo_en(struct mtk_hdmi_phy *hdmi_phy)
-> > > +{
-> > > +	/* make data fifo writable for hdmi2.0 */
-> > > +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_ANA_CTL,
-> > > REG_ANA_HDMI20_FIFO_EN,
-> > > +			  REG_ANA_HDMI20_FIFO_EN);
-> > > +}
-> > > +
-> > > +static void
-> > > +mtk_mt8195_phy_tmds_high_bit_clk_ratio(struct mtk_hdmi_phy
-> > > *hdmi_phy,
-> > > +				       bool enable)
-> > > +{
-> > > +	mtk_hdmi_ana_fifo_en(hdmi_phy);
-> > > +
-> > > +	/* HDMI 2.0 specification, 3.4Gbps <= TMDS Bit Rate <= 6G,
-> > > +	 * clock bit ratio 1:40, under 3.4Gbps, clock bit ratio 1:10
-> > > +	 */
-> > > +	if (enable)
-> > > +		mtk_hdmi_phy_mask(hdmi_phy, HDMI20_CLK_CFG,
-> > > +				  0x2 << REG_TXC_DIV_SHIFT,
-> > 
-> > Use FIELD_PREP() macro, then no need define REG_TXC_DIV_SHIFT
-> > anymore.
-> > 
-> 
-> Didn't know about FIELD_* macros, will use them for V2.
-> 
-> Thx for the suggestion.
-Please use helpers defined in phy-mtk-io.h, the register access helpers
-of mtk_hdmi_phy_* are already removed in phy next branch.
+Add binding document for flash LED module inside Qualcomm Technologies,
+Inc. PMICs.
 
-Thanks a lot
+Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+---
+ .../bindings/leds/leds-qcom-flash.yaml        | 108 ++++++++++++++++++
+ 1 file changed, 108 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-qcom-flash.yaml
 
+diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-flash.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-flash.yaml
+new file mode 100644
+index 000000000000..52a99182961b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-qcom-flash.yaml
+@@ -0,0 +1,108 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/leds-qcom-flash.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Flash LED device inside Qualcomm Technologies, Inc. PMICs
++
++maintainers:
++  - Fenglin Wu <quic_fenglinw@quicinc.com>
++
++description: |
++  Flash LED controller is present inside some Qualcomm Technologies, Inc. PMICs.
++  The flash LED module can have different number of LED channels supported
++  e.g. 3 or 4. There are some different registers between them but they can
++  both support maximum current up to 1.5 A per channel and they can also support
++  ganging 2 channels together to supply maximum current up to 2 A. The current
++  will be split symmetrically on each channel and they will be enabled and
++  disabled at the same time.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - qcom,spmi-flash-led
++          - qcom,pm8150c-flash-led
++          - qcom,pm8150l-flash-led
++          - qcom,pm8350c-flash-led
++
++  reg:
++    description: address offset of the flash LED controller
++    maxItems: 1
++
++patternProperties:
++  "^led@[0-3]$":
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++    description:
++      Represents the physical LED components which are connected to the flash LED channels' output.
++
++    properties:
++      led-sources:
++        description: The HW indices of the flash LED channels that connect to the physical LED
++        allOf:
++          - minItems: 1
++            maxItems: 2
++            items:
++              enum: [1, 2, 3, 4]
++
++      led-max-microamp:
++        description: |
++          The maximum current value when LED is not operating in flash mode (i.e. torch mode)
++          Valid values when an LED is connected to one flash LED channel:
++            5000 - 500000, step by 5000
++          Valid values when an LED is connected to two flash LED channels:
++            10000 - 1000000, step by 10000
++
++      flash-max-microamp:
++        description: |
++          The maximum current value when LED is operating in flash mode.
++          Valid values when an LED is connected to one flash LED channel:
++            12500 - 1500000, step by 12500
++          Valid values when an LED is connected to two flash LED channels:
++            25000 - 2000000, step by 12500
++
++      flash-max-timeout-us:
++        description: |
++          The maximum timeout value when LED is operating in flash mode.
++          Valid values: 10000 - 1280000, step by 10000
++
++    required:
++      - led-sources
++      - led-max-microamp
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++    flash-led@ee00 {
++            compatible = "qcom,spmi-flash-led";
++            reg = <0xee00>;
++
++            led@0 {
++                    function = LED_FUNCTION_FLASH;
++                    color = <LED_COLOR_ID_WHITE>;
++                    led-sources = <1>, <4>;
++                    led-max-microamp = <300000>;
++                    flash-max-microamp = <2000000>;
++                    flash-max-timeout-us = <1280000>;
++                    function-enumerator = <0>;
++            };
++
++            led@1 {
++                    function = LED_FUNCTION_FLASH;
++                    color = <LED_COLOR_ID_YELLOW>;
++                    led-sources = <2>, <3>;
++                    led-max-microamp = <300000>;
++                    flash-max-microamp = <2000000>;
++                    flash-max-timeout-us = <1280000>;
++                    function-enumerator = <1>;
++            };
++    };
+-- 
+2.25.1
 
