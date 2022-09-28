@@ -2,70 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C986D5ED5C1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:12:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5865ED5C9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:17:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233400AbiI1HM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 03:12:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54616 "EHLO
+        id S232896AbiI1HRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 03:17:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233349AbiI1HMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:12:52 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FCF362F9
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:12:51 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id q17so13316123lji.11
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:12:51 -0700 (PDT)
+        with ESMTP id S231680AbiI1HRg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:17:36 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B6ED80499
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:17:34 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id g20so13347436ljg.7
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:17:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=J7AHnurfwGRZ0ip8GkiH7mYVTuQZ+AW1ouNTkLIseFI=;
-        b=bRxlKDNbfipIuNeXw4e/7aIUtlBCJlQ//t9YgZeP2E2OHcRVCfXLe7eAwKxCvvx90m
-         PRc+Fs8PCIsxjk9hWQYuZv/PZWCKb9906yTYAPGjprdGNkKrRKTZKbzxsCocClcRhwUs
-         Sx4D5YD0vD8aHCCxivN+rJCOs2m04rYyHo9LtYeAIcZrKHHCbRMtElFFsqMuY7VO4YoE
-         tFGEyJHvtTe1oURW2umgZg5SFtMo8MpVOBMCjmcYIdc93jVZmFIo60n8qh2XOOvqb4Ba
-         nujmHXXXWAILBW3RXa63pwf0Olgp3+KjxMHrcmRnRLkSyr3fOQ+6YfrM43nlDJYBOKk2
-         5pcg==
+        bh=TE4dxCPLnQRstcdplswZZPEWrYHTl04zyo0o16usTaA=;
+        b=As/0q82nUum+sJyLoPBd6GtuWJl33qN4O68taKfghJIh7FQcvreh6Gu11qEj8hvGul
+         fPEWOM4BF9GuUvQfEJS1gQH3PwuyGEpLTGcjHwHfxYZLsZL90hZftF/CWn0BT3CoMwOE
+         eIOtIlq4gnuT1G72keew31h6ZB5F/aKsknGcaK1NUYTiDaCmvRIQ5Kp7tUigCFD7s1Hk
+         6dVteyyPIfqTmkagSSXeufu097WmwCxuRI31twbg1vIReTe9XTK8scaDpsHHn+yJBqnP
+         JmJ1rQAmuBAf8mhBRcfvDXhHFr3Hq9662lsY5CG/NxErdutSRODVcQtyiOMRFAvvOQX3
+         +vfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=J7AHnurfwGRZ0ip8GkiH7mYVTuQZ+AW1ouNTkLIseFI=;
-        b=mWDvp2fFZWZKy9m0xmE5fEd3nFmuAhhewfNqOEY0ne3jVnEyylnhPc1LwTDAygs5hj
-         o/WCZo42OGi1vuV6rgfc3tRzz713YfqoaF+GZO80rJgSa6Jk6Ct8A6x/GD44wcy0jmTO
-         cUR+YROg/n9b786/3oG/kluV0GDWR5Lq4G9QUKn6M4xgN0164dFL+sfPxO1MNOQ7OaaI
-         PD7ehRxAEed4d8eztlQX24eN+i8/lyI6MmMyZgTJF+J7ZVGIIpQl5B3m3B2TPIHxUtWL
-         PvOhrNANbhKjYknkwLo0OzUXOsloxe+qKL4w+SGj27Di49aKY3eg6/ySCoYLp9ZGh9/1
-         /3zw==
-X-Gm-Message-State: ACrzQf3Znkgo8rh2ztx45m6mtE9patyxkrcVi21Zw/X+rbQRSX9SnKx6
-        1nz3CX4wppFn5mBq/j3DKj2M4A==
-X-Google-Smtp-Source: AMsMyM5c5bD3HKX4LBqKnBoCvSwHbUYROfgtxy9aXKlB/3kIJGYg18HrwZIG7jnwQ1ZZkS97KLCOIw==
-X-Received: by 2002:a2e:bd0e:0:b0:261:e718:e902 with SMTP id n14-20020a2ebd0e000000b00261e718e902mr11824478ljq.435.1664349169860;
-        Wed, 28 Sep 2022 00:12:49 -0700 (PDT)
+        bh=TE4dxCPLnQRstcdplswZZPEWrYHTl04zyo0o16usTaA=;
+        b=FqfXxRZ1KFjEWGzqKeCj3OX6pkYXOhpMG/ty60AuRczueOMglCrTk1k78H9iJg7g8D
+         lfP8vgysuLjnX5yGJhtTM5ENusSIr6GwQpPhQAOPMfockUwXtJN08mF8fGCZMrYio/Tq
+         fV5yEzwHWNflBKu8rZ3qMqkJD/8Bq1G0wcDjuA+D+f86ybgTmbvDEpwtISAqK2NxLg/O
+         WJX4gFtT0BWvEryB/tvRO/DkqVubRoRyAE2+yhiRjrT/VwPJVEza+j7On7XSl12wuJD3
+         fiPukzihg/zrsV4VB1Cyu7F/c6FrZfQlv/SDLNY8mf+f04vi5UxAnHcNva+lO//lZnNL
+         V19g==
+X-Gm-Message-State: ACrzQf2MM+Ajkg5RL0yXzt2OnTSZhD4I7a91Y8gyeVX1mGz2Q7Z17nHa
+        oQI5snh5TusALnfYOM3uztHCSA==
+X-Google-Smtp-Source: AMsMyM6z76iK8/Qm0pj3jD1AipgrGpEdJt+xFjKYGD79qqx9g2bJoS6FRXYROgJD1rVI1r9QXVPtHA==
+X-Received: by 2002:a2e:9b14:0:b0:26c:7f8a:e740 with SMTP id u20-20020a2e9b14000000b0026c7f8ae740mr4578796lji.256.1664349452610;
+        Wed, 28 Sep 2022 00:17:32 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h2-20020a05651c124200b0026c18aa8587sm365898ljh.75.2022.09.28.00.12.48
+        by smtp.gmail.com with ESMTPSA id v18-20020a2e9612000000b0026c0158b87csm358913ljh.29.2022.09.28.00.17.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 00:12:49 -0700 (PDT)
-Message-ID: <c54f15a6-b4e6-d512-654f-28819eeaab4c@linaro.org>
-Date:   Wed, 28 Sep 2022 09:12:48 +0200
+        Wed, 28 Sep 2022 00:17:32 -0700 (PDT)
+Message-ID: <ff577b86-44c8-3146-3388-78021bb7edb4@linaro.org>
+Date:   Wed, 28 Sep 2022 09:17:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH] dt-bindings: memory-controller: st,stm32: Fix
- st,fmc2_ebi-cs-write-address-setup-ns
+Subject: Re: [PATCH v5 4/4] net: stmmac: Update the name of property 'clk_csr'
 Content-Language: en-US
-To:     linux-arm-kernel@lists.infradead.org, marex@denx.de
-Cc:     christophe.kerello@foss.st.com, robh+dt@kernel.org,
-        mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
-        alexandre.torgue@foss.st.com,
-        linux-stm32@st-md-mailman.stormreply.com, linus.walleij@linaro.org
-References: <20220926222003.527171-1-marex@denx.de>
- <166434910296.10148.2597210651020575227.b4-ty@linaro.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jianguo Zhang <jianguo.zhang@mediatek.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220923052828.16581-1-jianguo.zhang@mediatek.com>
+ <20220923052828.16581-5-jianguo.zhang@mediatek.com>
+ <e0fa3ddf-575d-9e25-73d8-e0858782b73f@collabora.com>
+ <ac24dc0f-0038-5068-3ce6-bbace55c7027@linaro.org>
+ <4f205f0d-420d-8f51-ad26-0c2475c0decd@linaro.org>
+ <80c59c9462955037981a1eab6409ba69fc9b7c34.camel@mediatek.com>
+ <888703a8-a8e5-e691-7a53-294f88ad7a4e@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <166434910296.10148.2597210651020575227.b4-ty@linaro.org>
+In-Reply-To: <888703a8-a8e5-e691-7a53-294f88ad7a4e@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,23 +95,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 09:11, Krzysztof Kozlowski wrote:
-> On Tue, 27 Sep 2022 00:20:03 +0200, Marek Vasut wrote:
->> The property st,fmc2_ebi-cs-write-address-setup-ns should really be
->> st,fmc2-ebi-cs-write-address-setup-ns (there is underscore _ between
->> fmc2 and ebi and there should be a dash - instead). This is a remnant
->> from conversion of old non-upstream bindings. Fix it.
->>
->>
-> 
-> Applied, thanks!
-> 
-> [1/1] dt-bindings: memory-controller: st,stm32: Fix st,fmc2_ebi-cs-write-address-setup-ns
->       https://git.kernel.org/krzk/linux-mem-ctrl/c/587f9891ec9661e16df7e5268543416a7d8cb547
+On 27/09/2022 12:44, AngeloGioacchino Del Regno wrote:
 
-Just a note: it's late for me in the cycle to pick up patches. I applied
-this but there is a change it will miss this merge window. If that
-happens, I will keep it for next cycle (no need to resend).
+>>> OTOH, as Angelo pointed out, handling old and new properties is quite
+>>> easy to achieve, so... :)
+>>>
+>> So, the conclusion is as following:
+>>
+>> 1. add new property 'snps,clk-csr' and document it in binding file.
+>> 2. parse new property 'snps,clk-csr' firstly, if failed, fall back to
+>> old property 'clk_csr' in driver.
+>>
+>> Is my understanding correct?
+> 
+> Yes, please.
+> 
+> I think that bindings should also get a 'clk_csr' with deprecated: true,
+> but that's Krzysztof's call.
+
+The property was never documented, so I think we can skip it as deprecated.
 
 Best regards,
 Krzysztof
