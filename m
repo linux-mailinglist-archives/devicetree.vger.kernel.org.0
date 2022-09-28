@@ -2,203 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDB3E5ED6EF
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:57:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 179935ED6F4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:57:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233110AbiI1H5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 03:57:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59430 "EHLO
+        id S233196AbiI1H5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 03:57:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231703AbiI1H5U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:57:20 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D49221CFE6
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:57:18 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id d42so19260237lfv.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:57:18 -0700 (PDT)
+        with ESMTP id S233179AbiI1H5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:57:47 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89DB322B12
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:57:45 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id u18so19135665lfo.8
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:57:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=Ynd/xAvWC6vKNbicq++SlrgjNGg+i18HhsCYT0nkTrE=;
-        b=EA2Bu8g+PgVaQF7VlHojkLmDuEnSY7rho9cz94Ruffz4Kzy05Y8NJqrI/GKNB7FnbC
-         Xz0FJrva0gvzhSYYgfEuaGd3MgzC4nrddTHTb+xy6Zfr6vBEDs5fTjDcjjKWH1dRtoTk
-         yyprf/1TftD9xN1TJ1D7vZTZZtrngDpx35xs8YQhRQJ0fYWjaHIfPSXnVtYUjA4D+muo
-         0DtvL0Arjs9yd6s7R2AWnZr+IDuDU/W3nLVLhDeUAbx5PX4iDd8e/lNqCIRJ0vvJcYfx
-         PIQqeX0FcmCQ02ABuJirM+58Q4OscoOxpzLFofQNPhIqa03nXwx+95q7J/ghB/gyKXEW
-         qQeA==
+        bh=lilscpJXloOe6u1OCL01pzjWBX0iSF1UcV5WaZbsYBY=;
+        b=kRWHpiYIbeZtze4zW4Bv4ttblUgLFFhJ1QSnXc3Ogn7cOZPtouoHFkjtojdqrFWjxa
+         XGiILdseWv5HKtvNcmTp+gFlK2l9pCEUl/mYHFERqqx3BV890fRqQWNGmoxQ6TFaA88B
+         fJzBJyAsRcKJYtblRZii2xzX0O30HgLMEoSED5/kqu/dpIBxRH5AUd+Obro8p144jzl8
+         TNJ5nY3qzKJJdF0rCjzrBCQBQwD2IQ+GQi52rzUkAyn4eEuKATpNCuumTAD9EV1E9Eg7
+         y6IIj4Ajckxh+tKaza0fvxqSKoC+WspQ+ww6/chBgXrONJnjmgnpRNg6H72bap1JbfK1
+         /0qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=Ynd/xAvWC6vKNbicq++SlrgjNGg+i18HhsCYT0nkTrE=;
-        b=hqQ3Vodl20C+S5ZaaRkcB5IDL90tT4utg2vOriVcfZq6h+xdDvAynVk4g3a1Vhtax3
-         0YsPxYBMgZuopP3HD4MsbhbNn6uKjdsANKU7zlQDmIX6zcGdehsmogX8Wautg/yc6DL0
-         cqNqxnfnY7Mr5nJLOUsQkDjx4l6MGhURPEQy0bkVPndgxw0E92OgLGgJB7htngr0Nia5
-         iGuO+Cv2WSu1LB04JTdOvg8QOsAsABifIEOy7fiVuk3nCdszd8ZI/DkLLW/lwdOvCv/I
-         xt0tKIaYpw/IYMPZDyCP2mtg+m0AvrLmymh8PI8gi0DyVVo6zDWDUXJfyd4kofUuwjL1
-         dAnw==
-X-Gm-Message-State: ACrzQf1rGGfCTzTGLJ8m1xdgjNcXsmUDQSfptCX0Cwmv4mW8HVKlptab
-        RRVPivaJGPOt5hJt3PBTnAnP64rDAjJBsA==
-X-Google-Smtp-Source: AMsMyM5+7qBM9MwC95S/RfbFL20p37wwYy1DuBfKNARyBNJ0cO4PoB0F/2BReamTyueYn4ib6nL9yw==
-X-Received: by 2002:a05:6512:3c88:b0:499:c78:5bb1 with SMTP id h8-20020a0565123c8800b004990c785bb1mr12427112lfv.503.1664351837179;
-        Wed, 28 Sep 2022 00:57:17 -0700 (PDT)
+        bh=lilscpJXloOe6u1OCL01pzjWBX0iSF1UcV5WaZbsYBY=;
+        b=4tzUTe9bY0MMnHitWce6/I7pt/NSnuTeCWehLKgfZhP6k3P72ugdUUVHt+Av833JxN
+         JbBeBxAQZX/ZKmzrS0qwXEUotgZqH4jByOSitwOfmFWgUM6/sTuEwzuK0Taf9vJUX0ac
+         GHLmjJ3oHnjGJNzgNxHDvE6GX3yvuJHfAnQp9srEOQ5GmNlCiz/yYTbYmtQZEV11BGzZ
+         RWYga6xKct2NKsD/Bjd+Pw8i6hCfTkZfE1reRSk3pziYZ2E9d2SAu1opi3DQ3S+8GqwC
+         aMLlzZnueo5abaxu4Oa5bDePmESuam63K3Qswlp5GI6c59QzNTnmZ/KrBOxCNEj9tDwD
+         v8VQ==
+X-Gm-Message-State: ACrzQf0qVuAMNjk1hGpJzpzVuQJ70JAi4t+fr0XT4ElkUYQAzYDwFKzi
+        hztJF5gdyF40T0AlRstrD0W4xA==
+X-Google-Smtp-Source: AMsMyM6xTrGU3lbgaT76uOyGvYMUJBjZ1/b62L/96dIyBb/RE7mX81VbOIKDJ8QoQwEOR04cVy5rdg==
+X-Received: by 2002:ac2:4c48:0:b0:4a0:606f:3e85 with SMTP id o8-20020ac24c48000000b004a0606f3e85mr9832691lfk.675.1664351863916;
+        Wed, 28 Sep 2022 00:57:43 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t26-20020a05651c205a00b00261ca0f940esm357461ljo.62.2022.09.28.00.57.15
+        by smtp.gmail.com with ESMTPSA id u12-20020a2e9f0c000000b0026c446918acsm365978ljk.134.2022.09.28.00.57.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 00:57:16 -0700 (PDT)
-Message-ID: <c6fcde71-9aff-bcd9-e3a4-231e10778c83@linaro.org>
-Date:   Wed, 28 Sep 2022 09:57:15 +0200
+        Wed, 28 Sep 2022 00:57:43 -0700 (PDT)
+Message-ID: <6ab9472d-8229-65e7-dc0d-6b9e8ba9bb78@linaro.org>
+Date:   Wed, 28 Sep 2022 09:57:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: dma: qcom: gpi: add fallback
+Subject: Re: [PATCH] dt-bindings: renesas,rcar-dmac: Add r8a779g0 support
 Content-Language: en-US
-To:     Richard Acayan <mailingradian@gmail.com>, robh@kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220923210934.280034-1-mailingradian@gmail.com>
- <20220923210934.280034-2-mailingradian@gmail.com>
- <7b066e11-6e5c-c6d9-c8ed-9feccaec4c0c@linaro.org>
- <20220923222028.284561-1-mailingradian@gmail.com>
- <20220926231238.GA3132756-robh@kernel.org>
- <20220927015321.33492-1-mailingradian@gmail.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <0a4d40092a51345003742725aea512a815d27e89.1664204526.git.geert+renesas@glider.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220927015321.33492-1-mailingradian@gmail.com>
+In-Reply-To: <0a4d40092a51345003742725aea512a815d27e89.1664204526.git.geert+renesas@glider.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2022 03:53, Richard Acayan wrote:
->> On Fri, Sep 23, 2022 at 06:20:28PM -0400, Richard Acayan wrote:
->>>> On 23/09/2022 23:09, Richard Acayan wrote:
->>>>> The drivers are transitioning from matching against lists of specific
->>>>> compatible strings to matching against smaller lists of more generic
->>>>> compatible strings. Add a fallback compatible string in the schema to
->>>>> support this change.
->>>>
->>>> Thanks for the patch. I wished we discussed it a bit more. :)
->>>
->>> Ah, sorry for not replying to your original suggestion. I didn't see the
->>> opportunity for discussion as this new series wasn't that hard to come up
->>> with.
->>>
->>>> qcom,gpi-dma does not look like specific enough to be correct fallback,
->>>> at least not for all of the devices. I propose either a IP block version
->>>> (which is tricky without access to documentation) or just one of the SoC
->>>> IP blocks.
->>>
->>> Solution 1:
->>>
->>> Yes, I could use something like qcom,sdm845-gpi-dma. It would be weird to
->>> see the compatible strings for that, though:
->>
->> Why is it weird? That's how 'compatible' works. You are saying a new 
->> implementation is compatible with an older implementation.
+On 26/09/2022 17:03, Geert Uytterhoeven wrote:
+> Document support for the Direct Memory Access Controllers (DMAC) in the
+> Renesas R-Car V4H (R8A779G0) SoC.
 > 
-> Oh, I didn't think of it like that. I found it weird how I need to specify both
-> sm8150 and sdm845 in the same dts, but now it makes sense. I guess I thought
-> fallback needed to be generic, and didn't think it could just specify an older
-> version of the hardware.
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
 
-It's all over the tree. One big user of such pattern is iMX.
 
-> 
->>
->>
->>>     compatible = "qcom,sdm670-gpi-dma", "qcom,sdm845-gpi-dma";
->>>
->>
->>>     // This would need to be valid in dt schema, suggesting solution 2
->>>     compatible = "qcom,sdm845-gpi-dma";
->>>     // This just doesn't make sense
->>>     compatible = "qcom,sdm845-gpi-dma", "qcom,sdm845-gpi-dma";
->>
->> Is your question how to get the first one to work, but not the second 
->> one? You need 'oneOf' with at least an entry for each case with 
->> different number of compatible strings (1 and 2 entries). There are 
->> lot's of examples in the tree.
-> 
-> No, I thought it would be tempting to use the first one for other device trees,
-> but you maintainers know not to allow that so it doesn't matter as much.
-> 
->>
->>>
->>>     compatible = "qcom,sm8150-gpi-dma", "qcom,sdm845-gpi-dma";
->>>
->>>     compatible = "qcom,sm8250-gpi-dma", "qcom,sdm845-gpi-dma";
->>>
->>> Solution 2:
->>>
->>> I could stray from the "soc-specific compat", "fallback compat" and just
->>> have "qcom,sdm845-gpi-dma" for every SoC.
->>
->> No.
->>
->>> Solution 3:
->>>
->>> I found the original mailing list archive for this driver:
->>>
->>> https://lore.kernel.org/linux-arm-msm/20200824084712.2526079-1-vkoul@kernel.org/
->>> https://lore.kernel.org/linux-arm-msm/20200918062955.2095156-1-vkoul@kernel.org/
->>>
->>> It seems like the author originally handled the ee_offset as a dt property
->>> and removed it. It was removed because it was a Qualcomm-specific property.
->>> One option would be to bring this back against the author's wishes (or ask
->>> the author about it, since they are a recipient).
->>
->> No.
-> 
-> Ah, simple rejections with one word. You don't have to elaborate, I see why
-> these aren't a good fit.
-> 
->>
->>>
->>> Solution 4:
->>>
->>> You mentioned there being an xPU3 block here:
->>>
->>> https://lore.kernel.org/linux-arm-msm/e3bfa28a-ecbc-7a57-a996-042650043514@linaro.org/
->>>
->>> Maybe it's fine to have qcom,gpi-dma-v3?
->>
->> I don't like made up version numbers. QCom does or did have very 
->> specific version numbers, but in the end they it tended to be 1 or maybe 
->> 2 SoCs per version. So not really beneficial.
-> 
-> I got this from using the number in xPU3, because I thought xPU3 was the
-> specific hardware that had ee_offset = 0. This might not be what Krzysztof meant
-> and perhaps I just wasn't reading properly.
-
-We could go here with the versions, because indeed Qualcomm versions
-them a lot. But as Rob pointed, sometimes these versions change with
-every release of the SoC, so then easier for everyone is to use the SoC
-number. Mapping to versions can be always mentioned in commit msg.
-
-That's even more confusing with few IP blocks which in Qualcomm
-downstream sources have a version (e.g. bwmon v4, bwmon v5) but it's
-nowhere to be found in documentation of the blocks.
-
-Then another point are people without access to Qualcomm documentation.
-They cannot verify the version numbering, which one is where. Even when
-I had access to Samsung SoC documentation (kind of extract of it, not
-the one for hardware engineers) the versions were pretty often not
-explained and even we could not figure out which block is what.
-
-So based on that, just easier/better/readable is to use SoC numbers.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
