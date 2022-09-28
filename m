@@ -2,139 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 601C85EDCFD
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 14:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18D765EDD10
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 14:42:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234015AbiI1Mky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 08:40:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39734 "EHLO
+        id S233745AbiI1Mmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 08:42:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234026AbiI1Mkj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 08:40:39 -0400
-X-Greylist: delayed 5624 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 28 Sep 2022 05:40:25 PDT
-Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F16A43686C;
-        Wed, 28 Sep 2022 05:40:16 -0700 (PDT)
-Date:   Wed, 28 Sep 2022 12:40:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1664368815; x=1664628015;
-        bh=gUhqstaRapz/dEFPQohg3Styf6DL29cIpA3fSfsODL0=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID;
-        b=uKBl0duHxBU6/3DfUmYyFojQeFiDvH357JUuEaqkUNCQasEkSULs5UyM3MJhF+ZU3
-         kERKMcAta7fX7gD1vUibykJ2OY59v8LxBynlLjtQ76x6Y2nlWNRTC2kQz4m4ryuFhg
-         7JS49SLypKLK182MRKiC9Wde2xj33htrUGbIEqSjbNlxWWvPSKF8ZlU9VUv/hf2Jpk
-         zPiiGQAGibOuYze/BxGcRxRnTtu5c+glzko/2ZHEHoIBpQpowwVBkFSZQ75qQypGQ8
-         FaR8ffQ+8uiCBpOYoWI/B21YYEaF9w/m4ok7etQwAtcgXV7AaSrOUBRlNyUaV8ODoe
-         0D7cfAjKYZCBw==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        Josef W Menad <JosefWMenad@protonmail.ch>,
-        Markuss Broks <markuss.broks@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        "Lin, Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: msm8916-samsung-j5-common: Add Hall sensor
-Message-ID: <20220928123851.104761-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20220928121717.102402-1-linmengbo0689@protonmail.com>
-References: <20220928110049.96047-1-linmengbo0689@protonmail.com> <20220928121717.102402-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S233511AbiI1Mmt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 08:42:49 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5611051424
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 05:42:47 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id z2so17118852edi.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 05:42:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=+hjCG5UL8I6/ympH09ZsxGiHso7S25Rf/BVVg15oSkU=;
+        b=bYPruSwGmECkZuxS1nGmryAJEGsb1OPELVmL5cNoFOcLHOY5jGAr3JCMMpKy4xWbI5
+         EmKzsaZlS7/OxuRcJnP624lwy7Mgua220PRA8yoY4c5Xsa84NlibXFBZa8aTKB67YnA9
+         CJhLPZtl8eN49+t8zm3CtVg10KCGAgnRURVxM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=+hjCG5UL8I6/ympH09ZsxGiHso7S25Rf/BVVg15oSkU=;
+        b=UYuzXlP1O5QYNpSUFOGKHmkp+0w5k85n+0S20NJ9jgeEcAKN5haVTcxXwJmFAYdwVR
+         r3VJLDjbahCgwnvM2ec7SlYyvkMsZeW9uH712YlRSxkTvQdD7eN+zbfOtI81tm0wu+cH
+         PdpFk+Y7Zg8+fU5vOyjACpn8PYxM8gDSB90Uu2nbFm6CPMgb1neOzm8dlvzmE7pFNKdz
+         e+UyaBjB+3Xov5/XPQVarvaLFGnHOyG+YeGyDXR624URiQnyNRF5zYrBRqkbH387tJ2/
+         V9d2gy7vZuLXtv+DiExc1GWgNkJvFXzoyxqUC83BF3iKjt8qd8LM3NX/GdG4tbk7fkgl
+         EvjQ==
+X-Gm-Message-State: ACrzQf2RAeRotNfMzZQ0RPOueQ/Dp/BA+1wdtWoYGKfkNMD1cnXfekoi
+        81D+mCZljR4h2lUQl39+ot6JJnBsvpVrZABF7btqZw==
+X-Google-Smtp-Source: AMsMyM4L09hga+4vZZ+SsULLjP5VCQkFWMN77LetF1he+ktd1029o2uzUEeK6LjBCtBjRvzUcnljgtyBLAiiOCJXfF4=
+X-Received: by 2002:a05:6402:42c5:b0:44e:b640:16fb with SMTP id
+ i5-20020a05640242c500b0044eb64016fbmr33974635edc.29.1664368965904; Wed, 28
+ Sep 2022 05:42:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20220907131241.31941-1-romain.perier@gmail.com>
+ <20220907131241.31941-3-romain.perier@gmail.com> <20220927163314.rzfld7sqchsdfvfg@pengutronix.de>
+In-Reply-To: <20220927163314.rzfld7sqchsdfvfg@pengutronix.de>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Wed, 28 Sep 2022 21:47:12 +0900
+Message-ID: <CAFr9PXmWGTQoNxxY99MT_ptHMDTmai1eOrZteuP7A0TyPwVidw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] pwm: Add support for the MSTAR MSC313 PWM
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Romain Perier <romain.perier@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung Galaxy J5 2015 and 2016 have a Hall sensor on GPIO pin 52.
-Add GPIO Hall sensor for them.
+Hi Uwe,
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../boot/dts/qcom/msm8916-samsung-j3.dts      |  4 +++
- .../dts/qcom/msm8916-samsung-j5-common.dtsi   | 26 +++++++++++++++++++
- 2 files changed, 30 insertions(+)
+On Wed, 28 Sept 2022 at 01:33, Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> Hello Romain, hello Daniel,
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts b/arch/arm64/b=
-oot/dts/qcom/msm8916-samsung-j3.dts
-index bf8672ebedcd..7fd357b7f728 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts
-@@ -19,3 +19,7 @@ tz-apps@85a00000 {
- =09=09};
- =09};
- };
-+
-+&gpio_hall_sensor {
-+=09status =3D "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi b/arch=
-/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-index 4f71609bf6f8..54190144f823 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-@@ -3,6 +3,7 @@
- #include "msm8916-pm8916.dtsi"
-=20
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-=20
- / {
- =09aliases {
-@@ -21,6 +22,23 @@ tz-apps@85500000 {
- =09=09};
- =09};
-=20
-+=09gpio_hall_sensor: gpio-hall-sensor {
-+=09=09compatible =3D "gpio-keys";
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&gpio_hall_sensor_default>;
-+
-+=09=09label =3D "GPIO Hall Effect Sensor";
-+
-+=09=09event-hall-sensor {
-+=09=09=09label =3D "Hall Effect Sensor";
-+=09=09=09gpios =3D <&msmgpio 52 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,input-type =3D <EV_SW>;
-+=09=09=09linux,code =3D <SW_LID>;
-+=09=09=09linux,can-disable;
-+=09=09};
-+=09};
-+
- =09gpio-keys {
- =09=09compatible =3D "gpio-keys";
-=20
-@@ -193,6 +211,14 @@ l18 {
- };
-=20
- &msmgpio {
-+=09gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+=09=09pins =3D "gpio52";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
- =09gpio_keys_default: gpio-keys-default-state {
- =09=09pins =3D "gpio107", "gpio109";
- =09=09function =3D "gpio";
---=20
-2.30.2
+Romain is doing the fixes to this so I'll let him answer the other
+bits but on all of the "what does the hardware do?" questions I'll
+have to test that on the hardware and follow up. The only
+documentation we have is very rough listings of registers and bits and
+not much else.
 
+>
+> > +MODULE_LICENSE("GPL v2");
+> > +MODULE_DESCRIPTION("Mstar MSC313e PWM driver");
+> > +MODULE_AUTHOR("Daniel Palmer <daniel@thingy.jp>");
+>
+> That address doesn't match the author of this patch. Is this on purpose?
 
+My intention is to put all of the stuff for this MStar (Now Sigmastar)
+platform under this domain including the kernel, u-boot and PCB files
+so that at some point I can handover the whole thing to someone else
+or maybe a community that want to take over by giving them the domain.
+I should really set my email address in git for these commits to match
+but keep forgetting.
+
+Cheers,
+
+Daniel
