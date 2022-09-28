@@ -2,205 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A76A5ED31E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 04:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 849BA5ED32B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 04:54:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232851AbiI1Cnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 22:43:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44770 "EHLO
+        id S232907AbiI1Cy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 22:54:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231278AbiI1Cnh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 22:43:37 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21CE10B5AF;
-        Tue, 27 Sep 2022 19:43:35 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28S0DaQh028294;
-        Wed, 28 Sep 2022 02:43:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=WAV2Vg7f6CUq/WnEQZXIQKXJMUc1AhCzxB0OWsDh3RQ=;
- b=FlouJ/E2BEmfD3sjQj5qHcqkx36V6u+vVwNt6J0rVMytK3KhCasOWdX89foZmugM6IP4
- /jk3liRZU1h5IwSR++1L70MB4kJ3Kw7EjJpgOYMPuXzaWTT9SS67JAK2dY3RvfAsEP3w
- uQogYp9jRCZVX3iUC+9YfD8vkcbw4KZt3q5k25LjjTNUD0nVUdnDKP+n14C1xA5oyJR6
- YjPYpo+nrafeeDjowOT4tiYALtaOR4G04Og0empZowT0l4y7TDZUVP3ecoD1v/rzcgg3
- AvJEP/GQQgMfC7rA0fjD3tladW/Cz9V7vfNVWyNHfpvJfOGPQ5DFfEv315bJDb/hi8n7 VQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3juw51ke70-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Sep 2022 02:43:29 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28S2hSwG018236
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Sep 2022 02:43:28 GMT
-Received: from fenglinw2-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Tue, 27 Sep 2022 19:43:26 -0700
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Pavel Machek" <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fenglin Wu <quic_fenglinw@quicinc.com>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>
-Subject: [PATCH v1 2/2] dt-bindings: add bindings for QCOM flash LED
-Date:   Wed, 28 Sep 2022 10:42:39 +0800
-Message-ID: <20220928024239.3843909-3-quic_fenglinw@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220928024239.3843909-1-quic_fenglinw@quicinc.com>
-References: <20220928024239.3843909-1-quic_fenglinw@quicinc.com>
+        with ESMTP id S232902AbiI1Cy1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 22:54:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 311B21BCAFF;
+        Tue, 27 Sep 2022 19:54:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 889E461940;
+        Wed, 28 Sep 2022 02:54:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14D7BC433C1;
+        Wed, 28 Sep 2022 02:54:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664333664;
+        bh=eccnPEsVI/nH1CUcrbHa5Df+aFQ1BtqOCkP1lMAnNYw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=h1DgvfOOLclk3O06J9AIxjv8MFTjTspiaGvXjxqn4FV57F6QyQStC4W3dm3sNKKHs
+         Cb1JQCMvyxT/ULT/J8iS+wnajJYlpg0Dqhd+l1hyS+K+eYcNn+oIU4hzUAwHHs5OXG
+         5dhUmWKcm7aZjSLMIAQKHMkGdSxBZRzZqPLqjAP32IqkN+Y6nO+cBjFoK2jO8zGD4c
+         vKuR7XOWEboyzqgNkHF3berwb0Zwi0HdPux/745cyA3pyS24Qe2i8scMCyYHx3f1xI
+         EQVl9LKroY7lEqrbElDcZ/PX4OujtHXn+gyffVHrMFerXfQSqmUjoaYaeL33qVSPQL
+         ScfycXDXdl0KQ==
+Message-ID: <9f4ef7ff-7b62-c0a2-6be4-dd51992acae1@kernel.org>
+Date:   Tue, 27 Sep 2022 21:54:22 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0loG-lmSJcDsbykBWY2Et9QT5LgU33J6
-X-Proofpoint-GUID: 0loG-lmSJcDsbykBWY2Et9QT5LgU33J6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-27_12,2022-09-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- lowpriorityscore=0 malwarescore=0 mlxlogscore=932 mlxscore=0
- impostorscore=0 adultscore=0 suspectscore=0 bulkscore=0 spamscore=0
- phishscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2209130000 definitions=main-2209280015
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCHv3 1/3] dt-bindings: mmc: synopsys-dw-mshc: document
+ "altr,sysmgr-syscon"
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org,
+        jh80.chung@samsung.com, linux-mmc@vger.kernel.org,
+        robh+dt@kernel.org
+References: <20220926140932.820050-1-dinguyen@kernel.org>
+ <1664289558.354045.943214.nullmailer@robh.at.kernel.org>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <1664289558.354045.943214.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding document for flash LED module inside Qualcomm Technologies,
-Inc. PMICs.
+Hi Rob,
 
-Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
----
- .../bindings/leds/leds-qcom-flash.yaml        | 108 ++++++++++++++++++
- 1 file changed, 108 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/leds-qcom-flash.yaml
+On 9/27/22 09:39, Rob Herring wrote:
+> On Mon, 26 Sep 2022 09:09:30 -0500, Dinh Nguyen wrote:
+>> Document the optional "altr,sysmgr-syscon" binding that is used to 
+>> access the System Manager register that controls the SDMMC clock 
+>> phase.
+>> 
+>> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org> --- v3: document
+>> that the "altr,sysmgr-syscon" binding is only applicable to 
+>> "altr,socfpga-dw-mshc" v2: document "altr,sysmgr-syscon" in the MMC
+>> section --- .../bindings/mmc/synopsys-dw-mshc.yaml        | 28
+>> +++++++++++++++++-- 1 file changed, 25 insertions(+), 3
+>> deletions(-)
+>> 
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the 
+> following warnings. Consider if they are expected or the schema is 
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for
+> dtbs_check. This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
+> 
+> 
+> dwmmc0@ff704000: $nodename:0: 'dwmmc0@ff704000' does not match
+> '^mmc(@.*)?$' arch/arm/boot/dts/socfpga_arria5_socdk.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_socdk.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_sockit.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_socrates.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_sodia.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb 
+> arch/arm/boot/dts/socfpga_vt.dtb
+> 
+> dwmmc0@ff704000: Unevaluated properties are not allowed
+> ('#address-cells', '#size-cells', 'broken-cd', 'bus-width',
+> 'cap-mmc-highspeed', 'cap-sd-highspeed', 'cd-gpios', 'fifo-depth',
+> 'resets', 'vmmc-supply', 'vqmmc-supply' were unexpected) 
+> arch/arm/boot/dts/socfpga_cyclone5_socdk.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_sodia.dtb
+> 
+> dwmmc0@ff704000: Unevaluated properties are not allowed
+> ('#address-cells', '#size-cells', 'broken-cd', 'bus-width',
+> 'cap-mmc-highspeed', 'cap-sd-highspeed', 'fifo-depth', 'resets',
+> 'vmmc-supply', 'vqmmc-supply' were unexpected) 
+> arch/arm/boot/dts/socfpga_arria5_socdk.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_sockit.dtb
+> 
+> dwmmc0@ff704000: Unevaluated properties are not allowed
+> ('#address-cells', '#size-cells', 'broken-cd', 'bus-width',
+> 'cap-mmc-highspeed', 'cap-sd-highspeed', 'fifo-depth', 'resets' were
+> unexpected) arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_socrates.dtb 
+> arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb 
+> arch/arm/boot/dts/socfpga_vt.dtb
+> 
+> dwmmc0@ff808000: $nodename:0: 'dwmmc0@ff808000' does not match
+> '^mmc(@.*)?$' arch/arm/boot/dts/socfpga_arria10_chameleonv3.dtb 
+> arch/arm/boot/dts/socfpga_arria10_socdk_nand.dtb 
+> arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb 
+> arch/arm/boot/dts/socfpga_arria10_socdk_sdmmc.dtb
+> 
+> dwmmc0@ff808000: Unevaluated properties are not allowed
+> ('#address-cells', '#size-cells', 'broken-cd', 'bus-width',
+> 'cap-mmc-highspeed', 'cap-sd-highspeed', 'fifo-depth', 'resets' were
+> unexpected) arch/arm/boot/dts/socfpga_arria10_socdk_sdmmc.dtb
+> 
+> dwmmc0@ff808000: Unevaluated properties are not allowed
+> ('#address-cells', '#size-cells', 'broken-cd', 'bus-width',
+> 'cap-sd-highspeed', 'fifo-depth', 'resets' were unexpected) 
+> arch/arm/boot/dts/socfpga_arria10_chameleonv3.dtb
+> 
+> dwmmc0@ff808000: Unevaluated properties are not allowed
+> ('#address-cells', '#size-cells', 'fifo-depth', 'resets' were
+> unexpected) arch/arm/boot/dts/socfpga_arria10_socdk_nand.dtb 
+> arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb
+> 
+> mmc@ff808000: Unevaluated properties are not allowed
+> ('altr,dw-mshc-ciu-div', 'altr,dw-mshc-sdr-timing', 'iommus' were
+> unexpected) arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dtb
+> 
+> mmc@ff808000: Unevaluated properties are not allowed ('iommus' was
+> unexpected) arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb 
+> arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dtb 
+> arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dtb 
+> arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb 
+> arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dtb 
+> arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dtb
+> 
+> mmcsd@40004000: $nodename:0: 'mmcsd@40004000' does not match
+> '^mmc(@.*)?$' arch/arm/boot/dts/lpc4337-ciaa.dtb 
+> arch/arm/boot/dts/lpc4350-hitex-eval.dtb 
+> arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb 
+> arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
+> 
+> mmcsd@40004000: clock-names:0: 'biu' was expected 
+> arch/arm/boot/dts/lpc4337-ciaa.dtb 
+> arch/arm/boot/dts/lpc4350-hitex-eval.dtb 
+> arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb 
+> arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
+> 
+> mmcsd@40004000: clock-names:1: 'ciu' was expected 
+> arch/arm/boot/dts/lpc4337-ciaa.dtb 
+> arch/arm/boot/dts/lpc4350-hitex-eval.dtb 
+> arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb 
+> arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
+> 
+> mmcsd@40004000: Unevaluated properties are not allowed ('bus-width',
+> 'clock-names', 'resets', 'vmmc-supply' were unexpected) 
+> arch/arm/boot/dts/lpc4357-ea4357-devkit.dtb 
+> arch/arm/boot/dts/lpc4357-myd-lpc4357.dtb
+> 
+> mmcsd@40004000: Unevaluated properties are not allowed
+> ('clock-names', 'resets' were unexpected) 
+> arch/arm/boot/dts/lpc4337-ciaa.dtb 
+> arch/arm/boot/dts/lpc4350-hitex-eval.dtb
+> 
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-flash.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-flash.yaml
-new file mode 100644
-index 000000000000..52a99182961b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/leds-qcom-flash.yaml
-@@ -0,0 +1,108 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/leds-qcom-flash.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Flash LED device inside Qualcomm Technologies, Inc. PMICs
-+
-+maintainers:
-+  - Fenglin Wu <quic_fenglinw@quicinc.com>
-+
-+description: |
-+  Flash LED controller is present inside some Qualcomm Technologies, Inc. PMICs.
-+  The flash LED module can have different number of LED channels supported
-+  e.g. 3 or 4. There are some different registers between them but they can
-+  both support maximum current up to 1.5 A per channel and they can also support
-+  ganging 2 channels together to supply maximum current up to 2 A. The current
-+  will be split symmetrically on each channel and they will be enabled and
-+  disabled at the same time.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - qcom,spmi-flash-led
-+          - qcom,pm8150c-flash-led
-+          - qcom,pm8150l-flash-led
-+          - qcom,pm8350c-flash-led
-+
-+  reg:
-+    description: address offset of the flash LED controller
-+    maxItems: 1
-+
-+patternProperties:
-+  "^led@[0-3]$":
-+    type: object
-+    $ref: common.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Represents the physical LED components which are connected to the flash LED channels' output.
-+
-+    properties:
-+      led-sources:
-+        description: The HW indices of the flash LED channels that connect to the physical LED
-+        allOf:
-+          - minItems: 1
-+            maxItems: 2
-+            items:
-+              enum: [1, 2, 3, 4]
-+
-+      led-max-microamp:
-+        description: |
-+          The maximum current value when LED is not operating in flash mode (i.e. torch mode)
-+          Valid values when an LED is connected to one flash LED channel:
-+            5000 - 500000, step by 5000
-+          Valid values when an LED is connected to two flash LED channels:
-+            10000 - 1000000, step by 10000
-+
-+      flash-max-microamp:
-+        description: |
-+          The maximum current value when LED is operating in flash mode.
-+          Valid values when an LED is connected to one flash LED channel:
-+            12500 - 1500000, step by 12500
-+          Valid values when an LED is connected to two flash LED channels:
-+            25000 - 2000000, step by 12500
-+
-+      flash-max-timeout-us:
-+        description: |
-+          The maximum timeout value when LED is operating in flash mode.
-+          Valid values: 10000 - 1280000, step by 10000
-+
-+    required:
-+      - led-sources
-+      - led-max-microamp
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+    flash-led@ee00 {
-+            compatible = "qcom,spmi-flash-led";
-+            reg = <0xee00>;
-+
-+            led@0 {
-+                    function = LED_FUNCTION_FLASH;
-+                    color = <LED_COLOR_ID_WHITE>;
-+                    led-sources = <1>, <4>;
-+                    led-max-microamp = <300000>;
-+                    flash-max-microamp = <2000000>;
-+                    flash-max-timeout-us = <1280000>;
-+                    function-enumerator = <0>;
-+            };
-+
-+            led@1 {
-+                    function = LED_FUNCTION_FLASH;
-+                    color = <LED_COLOR_ID_YELLOW>;
-+                    led-sources = <2>, <3>;
-+                    led-max-microamp = <300000>;
-+                    flash-max-microamp = <2000000>;
-+                    flash-max-timeout-us = <1280000>;
-+                    function-enumerator = <1>;
-+            };
-+    };
--- 
-2.25.1
+Hmm, I see these warnings on the standard v6.0-rc1 and 
+linux-next(next-20220923), but with this patch applied I don't see any 
+warnings regarding MMC.
 
+
+DTC     arch/arm/boot/dts/socfpga_arria5_socdk.dtb
+   DTC     arch/arm/boot/dts/socfpga_arria10_chameleonv3.dtb
+   DTC     arch/arm/boot/dts/socfpga_arria10_socdk_nand.dtb
+   DTC     arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb
+   CHECK   arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb
+   CHECK   arch/arm/boot/dts/socfpga_arria5_socdk.dtb
+   CHECK   arch/arm/boot/dts/socfpga_arria10_chameleonv3.dtb
+   CHECK   arch/arm/boot/dts/socfpga_arria10_socdk_nand.dtb
+/home/dinguyen/linux_dev/linux/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb:
+pmu@ff111000: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+         From schema:
+/home/dinguyen/linux_dev/linux/Documentation/devicetree/bindings/arm/pmu.yaml
+/home/dinguyen/linux_dev/linux/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb:
+soc: amba: {'compatible': ['simple-bus'], '#address-cells': [[1]],
+'#size-cells': [[1]], 'ranges': True, 'pdma@ffda1000': {'compatible':
+['arm,pl330', 'arm,primecell'], 'reg': [[4292481024, 4096]],
+'interrupts': [[0, 83, 4], [0, 84, 4], [0, 85, 4], [0, 86, 4], [0, 87,
+4], [0, 88, 4], [0, 89, 4], [0, 90, 4], [0, 91, 4]], '#dma-cells':
+[[1]], 'clocks': [[5]], 'clock-names': ['apb_pclk'], 'resets': [[6, 48],
+[6, 53]], 'reset-names': ['dma', 'dma-ocp'], 'phandle': [[34]]}} should
+not be valid under {'type': 'object'}
+         From schema:
+/home/dinguyen/.local/lib/python3.8/site-packages/dtschema/schemas/simple-bus.yaml
+/home/dinguyen/linux_dev/linux/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb:
+soc: base_fpga_region: {'#address-cells': [[1]], '#size-cells': [[1]],
+'compatible': ['fpga-region'], 'fpga-mgr': [[7]]} should not be valid
+under {'type': 'object'}
+         From schema:
+/home/dinguyen/.local/lib/python3.8/site-packages/dtschema/schemas/simple-bus.yaml
+/home/dinguyen/linux_dev/linux/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb:
+soc: stmmac-axi-config: {'snps,wr_osr_lmt': [[15]], 'snps,rd_osr_lmt':
+[[15]], 'snps,blen': [[0, 0, 0, 0, 16, 0, 0]], 'phandle': [[30]]} should
+not be valid under {'type': 'object'}
+         From schema:
+/home/dinguyen/.local/lib/python3.8/site-packages/dtschema/schemas/simple-bus.yaml
+/home/dinguyen/linux_dev/linux/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb:
+soc: eccmgr: {'compatible': ['altr,socfpga-a10-ecc-manager'],
+'altr,sysmgr-syscon': [[28]], '#address-cells': [[1]], '#size-cells':
+[[1]], 'interrupts': [[0, 2, 4], [0, 0, 4]], 'interrupt-controller':
+True, '#interrupt-cells': [[2]], 'ranges': True, 'sdramedac':
+{'compatible': ['altr,sdram-edac-a10'], 'altr,sdr-syscon': [[39]],
+'interrupts': [[17, 4], [49, 4]]}, 'l2-ecc@ffd06010': {'compatible':
+['altr,socfpga-a10-l2-ecc'], 'reg': [[4291846160, 4]], 'interrupts':
+[[0, 4], [32, 4]]}, 'ocram-ecc@ff8c3000': {'compatible':
+['altr,socfpga-a10-ocram-ecc'], 'reg': [[4287377408, 1024]],
+'interrupts': [[1, 4], [33, 4]]}, 'emac0-rx-ecc@ff8c0800':
+{'compatible': ['altr,socfpga-eth-mac-ecc'], 'reg': [[4287367168,
+1024]], 'altr,ecc-parent': [[40]], 'interrupts': [[4, 4], [36, 4]]},
+'emac0-tx-ecc@ff8c0c00': {'compatible': ['altr,socfpga-eth-mac-ecc'],
+'reg': [[4287368192, 1024]], 'altr,ecc-parent': [[40]], 'interrupts':
+[[5, 4], [37, 4]]}, 'sdmmca-ecc@ff8c2c00': {'compatible':
+['altr,socfpga-sdmmc-ecc'], 'reg': [[4287376384, 1024]],
+'altr,ecc-parent': [[41]], 'interrupts': [[15, 4], [47, 4], [16, 4],
+[48, 4]]}, 'dma-ecc@ff8c8000': {'compatible': ['altr,socfpga-dma-ecc'],
+'reg': [[4287397888, 1024]], 'altr,ecc-parent': [[34]], 'interrupts':
+[[10, 4], [42, 4]]}, 'usb0-ecc@ff8c8800': {'compatible':
+['altr,socfpga-usb-ecc'], 'reg': [[4287399936, 1024]],
+'altr,ecc-parent': [[42]], 'interrupts': [[2, 4], [34, 4]]}} should not
+be valid under {'type': 'object'}
+         From schema:
+/home/dinguyen/.local/lib/python3.8/site-packages/dtschema/schemas/simple-bus.yaml
+/home/dinguyen/linux_dev/linux/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb:
+soc: usbphy: {'#phy-cells': [[0]], 'compatible': ['usb-nop-xceiv'],
+'status': ['okay'], 'phandle': [[47]]} should not be valid under
+{'type': 'object'}
+         From schema:
+/home/dinguyen/.local/lib/python3.8/site-packages/dtschema/schemas/simple-bus.yaml
+/home/dinguyen/linux_dev/linux/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb:
+amba: $nodename:0: 'amba' does not match
+'^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+         From schema:
+/home/dinguyen/.local/lib/python3.8/site-packages/dtschema/schemas/simple-bus.yaml
+/home/dinguyen/linux_dev/linux/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dtb:
+pdma@ffda1000: $nodename:0: 'pdma@ffda1000' does not match
+'^dma-controller(@.*)?$'
+         From schema:
+/home/dinguyen/linux_dev/linux/Documentation/devicetree/bindings/dma/arm,pl330.yaml
+
+
+
+Dinh
