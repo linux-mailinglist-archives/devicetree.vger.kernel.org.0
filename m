@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8E675ED60D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:28:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3244D5ED630
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:35:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233670AbiI1H2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 03:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33706 "EHLO
+        id S233658AbiI1HfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 03:35:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233533AbiI1H16 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:27:58 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A9049B856
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:25:00 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id bu25so17168198lfb.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:24:59 -0700 (PDT)
+        with ESMTP id S233672AbiI1Hey (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:34:54 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B2BFEE16
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:34:34 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id t16so9380131ljh.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:34:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=1Fcjg+cr/kivPTm/GJb7y8jmzhRLvf3S0ZdXAVdnOJ4=;
-        b=pIEAF7CmpeuNeerOjifq8bpwxJUxDu0IhdixG7O6Bzt6ga6FDxRzK3xVNbtzdFk8aJ
-         qO8xeH0alV1B3+7fjnQQoIP8pUUTg2xON02V1lW+2DLgMYtwxnjqbpLKkRd6ia54NygP
-         gQPPmzMxhwfFz6CTG8z+0T7wPnGAC5HGlZ4pKwMjk0OIDDAqgU3gy4b6+iFcxOBq+Ix5
-         vfLMwYsHxSHmQh2YBNKXjAfVQwmmwbj0TSuTezApYhPO0DTMPREMpRUG+rBLal0Qyudh
-         5I0Fx9H/4zUjLCX1v69tmiU4UK5+gDf44feD4RL75X3052nPOxWT8+tulsy45arbovLF
-         kHww==
+        bh=T+twYSzMPRleSE9OznXaEMFrJJUZFkK7lBSk4Vw77aA=;
+        b=D1432DOl/gFwxeJt0n2GOHt0Rhdmv87VJv4a7RA4E8I2u4j//Big6m/qFkNf6lTBpm
+         W0ksnSWkRf8ETFnZqBTyFmTQqHTLcP25jTVvmyiqLiEUcnOk1v6+pfRYrVIaVj35bdq0
+         2jIlq8lnnOtEFlfxYAOyUlLsQvHkCrDnlsv7lXjf7W1xwdN+Rbm/cBsIMogB9442XXxF
+         N3hLfFm8EtXWV+O3wC31QeV1XeN7X+oXgIzoxdirW8+WdNWVHIXhUyAuPbaAZyam9mMB
+         APAQjRpEsRTkDGMRDOjGcZF6yOmSwbUI4syZsk7yb9slQNY9s/oHiv8YYy746pT98mxP
+         NbWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=1Fcjg+cr/kivPTm/GJb7y8jmzhRLvf3S0ZdXAVdnOJ4=;
-        b=oHgTl6c5V2yLBAvwxo+ul4Dj17Y04Z06NHD0XQvuvPcMDA0lRFLEQFpy+sHHCouKed
-         TGmdG5SMJyzC9axkTWzZZ74qZNwgZQFs0HVHR7rlO1YZ4ja7fnRN+PfTqu7KcJ/2OSIQ
-         16erDuxCAt8vzQK0dFPkEWUOsIzwMYXdLz/qN68aJgMbhB/qOM8kHdXf6cSJ9pCi92aC
-         dSM6wnUbL+/FYq7kPmd+xrFMUXEW1ivH9lJfNpg6pw7+6QSa6D+YIYJnfFQ81pOUuS4R
-         Rz/AgCpDq3+asXrTNX/pHjYutFQGIjH6j7z6eF9hyeInvJJJ5cmcyO3YeUoOuOpFqo3a
-         gDHw==
-X-Gm-Message-State: ACrzQf15sDqfCsVAEOWXsIqj3kV9Ax+/b1W+Z2xoYW7vK+L8BTV7uj6c
-        d527HBnk8+QwEnbV3g1a2N2OuA==
-X-Google-Smtp-Source: AMsMyM6kIwuBG/XkP+Hl8WnArBsRLdJDRAI28PZIjVFq8EEHgxYrmDVoYYp+8AujJn5Gftc+Hy7wFg==
-X-Received: by 2002:a19:490b:0:b0:49f:52cf:aeaf with SMTP id w11-20020a19490b000000b0049f52cfaeafmr12249740lfa.46.1664349863733;
-        Wed, 28 Sep 2022 00:24:23 -0700 (PDT)
+        bh=T+twYSzMPRleSE9OznXaEMFrJJUZFkK7lBSk4Vw77aA=;
+        b=TMqNCG+W2efkAob2dm2bayjg3LSGIQAnOvtkMFDbXdMvHrPOoV+pyI8Gtp4Q8Qkwvi
+         Ne/mh2Jxs2obcpoLaUHX/xArEuEJyiOu+sjDqU4Q32LbGv9BLa8TxKZ0DqS8SheLWfmi
+         0NC917m/p7AiTKN+/IgdoqrrYSZJbqkVz7Ie5RoLahhOUc4E+o3HzsSEm6MNZeJpN1YK
+         KS7ytZSheKDG8dnb2cAqqonp+eX31iaHjUOrxbE5tXbQyqjZ4LjM7sNCYrrXrCXjRSbF
+         RYwYhFEWAaeCtD7a0Q0AJsM+d/ht9XSRZ3nYMAkfMz1c8+WL/O/SEsOln0n62hTId4sG
+         yiAg==
+X-Gm-Message-State: ACrzQf20no4dAt1tFM1CzFUaEqHUIi/ZQuWijno9B2YmC83HnWFWoDkE
+        qVSA57SV+maS0SPTrHpYHi+BDCwUGtIHUw==
+X-Google-Smtp-Source: AMsMyM79y1rM6aAQ3/1f3BKXwVvkldEwZiTCyJOd1oqYgmngq62XIbI78g6wHdKw7+NT5rAOIKRK4w==
+X-Received: by 2002:a05:6512:4005:b0:49e:6f0a:b09e with SMTP id br5-20020a056512400500b0049e6f0ab09emr12354347lfb.330.1664349972648;
+        Wed, 28 Sep 2022 00:26:12 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s12-20020a05651c048c00b0026da7734d7bsm357017ljc.112.2022.09.28.00.24.22
+        by smtp.gmail.com with ESMTPSA id u21-20020ac258d5000000b00494a27500c1sm393237lfo.163.2022.09.28.00.26.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 00:24:22 -0700 (PDT)
-Message-ID: <a3d2d7db-e27b-3d6b-2bbf-9f8b258a23b4@linaro.org>
-Date:   Wed, 28 Sep 2022 09:24:22 +0200
+        Wed, 28 Sep 2022 00:26:12 -0700 (PDT)
+Message-ID: <c36a8f26-b187-9870-ebfb-caaa893f3d86@linaro.org>
+Date:   Wed, 28 Sep 2022 09:26:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 2/3] ARM: dts: qcom: pm8941: adjust node names to bindings
+Subject: Re: [PATCH 2/2] ARM: dts: qcom: pm8941: fix iadc node
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, neil.armstrong@linaro.org,
-        linux-arm-msm@vger.kernel.org
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -65,47 +64,69 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220925210229.128462-1-luca@z3ntu.xyz>
- <3070538e-fa8d-4506-bbf8-c2770d092eb5@linaro.org>
- <3dda8e86-b92b-488a-5afb-0cb49e7e52ae@linaro.org>
- <13105309.uLZWGnKmhe@g550jk>
+References: <20220925161821.78030-1-luca@z3ntu.xyz>
+ <20220925161821.78030-2-luca@z3ntu.xyz>
+ <74ef3de8-5be0-70ec-e34b-717ba93d3d77@linaro.org> <1828122.tdWV9SEqCh@g550jk>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <13105309.uLZWGnKmhe@g550jk>
+In-Reply-To: <1828122.tdWV9SEqCh@g550jk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 17:07, Luca Weiss wrote:
+On 26/09/2022 17:05, Luca Weiss wrote:
 > Hi Krzysztof,
 > 
-> On Montag, 26. September 2022 12:29:11 CEST Krzysztof Kozlowski wrote:
->> On 26/09/2022 12:04, Neil Armstrong wrote:
->>> On 26/09/2022 11:22, Krzysztof Kozlowski wrote:
->>>>>   		};
->>>>>
->>>>> -		usb_id: misc@900 {
->>>>> +		usb_id: extcon@900 {
->>>>
->>>> Why? extcon is Linux specific name and should not be added to DTS.
->>>> Anything requires it?
+> On Montag, 26. September 2022 10:54:23 CEST Krzysztof Kozlowski wrote:
+>> On 25/09/2022 18:18, Luca Weiss wrote:
+>>> The iadc node name is supposed to be just 'adc' and the compatible is
+>>> only supposed to be qcom,spmi-iadc according to the bindings.
 >>>
->>> It matches the current dt bindings:
->> Then instead maybe let's fix it in the bindings and DTS?
+>>> Adjust the node to match that.
+>>>
+>>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+>>> ---
+>>>
+>>>  arch/arm/boot/dts/qcom-pm8941.dtsi | 4 ++--
+>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi
+>>> b/arch/arm/boot/dts/qcom-pm8941.dtsi index 3c15eecf2f21..33517cccee01
+>>> 100644
+>>> --- a/arch/arm/boot/dts/qcom-pm8941.dtsi
+>>> +++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
+>>> @@ -131,8 +131,8 @@ adc-chan@48 {
+>>>
+>>>  			};
+>>>  		
+>>>  		};
+>>>
+>>> -		pm8941_iadc: iadc@3600 {
+>>> -			compatible = "qcom,pm8941-iadc", 
+> "qcom,spmi-iadc";
+>>> +		pm8941_iadc: adc@3600 {
+>>> +			compatible = "qcom,spmi-iadc";
+>>
+>> I am not sure this is correct. Usually specific compatibles are encouraged.
 > 
-> What node name do you propose? I doubt "misc" is a better name as it really 
-> doesn't describe anything so I don't really have a suggestion here..
+> I'm happy to change it the other way also.
 > 
+> But the sibling of this compatible, qcom,spmi-vadc also only has that single 
+> compatible so it'd align it with that.
 
-Some manufacturers call it a muic (Micro-USB IC), but maybe just
-usb-detect? The role of this device is accessory and cable detection.
+Ugh, there is a mess around them. Some other ADCs have specific
+compatibles, some not, so there is no consistency.
+
+I propose to have device specific compatible with qcom,spmi-iadc
+fallback, so basically document the DTS in bindings. Maybe other IADC
+will need some quirks, so specific compatible helps here.
+
 
 Best regards,
 Krzysztof
