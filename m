@@ -2,154 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 872F35EE3ED
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 20:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C80645EE406
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 20:14:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234186AbiI1SJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 14:09:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58238 "EHLO
+        id S233194AbiI1SOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 14:14:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233137AbiI1SJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 14:09:53 -0400
-X-Greylist: delayed 115 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 28 Sep 2022 11:09:50 PDT
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB1F3640C;
-        Wed, 28 Sep 2022 11:09:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1664388585;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=CUA1rKZXJjH54FeXOtkdOiT6Q4YsuptFxBFMyFhbLR0=;
-    b=a7Wt+nCBJ5q2lfYoM/Rq6xPcAC/iYv+pjlRZ2vQnzMexLoEe1W2YEQLHjeNiuWTFpG
-    1jM6hSGi6+MyWbp7Wsy0hjzaXyzn0FxBgVXPZV1TaVsXDLBDs29pU9upz4rDIpiynH0e
-    xbXOEYUYSz3f4ZaUdXPzlxkpfBCjGcPBDmZmP5I0cb/PcWlAiFyM0v2NZJmJCvY0NTXG
-    40pqzWyQKJiWIYVvL0Y1CeeQv0tEBV9z8o26HoJ8hlfOooEec/qKAPxABXFRw0Uh4lDD
-    IYYNhhoZH+oApLR3TVkXgFx9Qzz4vsCZRURJuuyFgzuyArW9ovE66NDnSzLMYw5WmSd1
-    kdIA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK88/6Y="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 48.1.3 AUTH)
-    with ESMTPSA id 06b848y8SI9j0kC
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Wed, 28 Sep 2022 20:09:45 +0200 (CEST)
-Date:   Wed, 28 Sep 2022 20:09:44 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        krishna Lanka <quic_vamslank@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 20/34] dt-bindings: pinctrl: qcom,msm8909-tlmm: fix
- indentation in example
-Message-ID: <YzSN6KsMZiq5gEza@gerhold.net>
-References: <20220927173702.5200-1-krzysztof.kozlowski@linaro.org>
- <20220927173702.5200-21-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S230015AbiI1SOR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 14:14:17 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA502E11F9
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 11:14:15 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id l12so15234293ljg.9
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 11:14:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=BrOXUUfC0kL59Y1UmzHzsftxixuWlRc4zXH9J/eo0gI=;
+        b=VSPtJ1HnP3Jbl6tzHhrBtDVbSdlieIY7u6ddlkpRFMKUCCOcw7HGIDaUAmIXWou/3c
+         YnOj4LVd3/rs+a5y4HRmun7sL5tyZhXB5UeE7+rJCTMiKzTsvx5kU1h32YSeYx7FyOfO
+         G3dxhtCZjn9twCnqQpatdGB/n5chgqUuzQA4FzDx+G/OcrlhKSk9MdjysQr12gl0GGUu
+         XiaaAZTFJvoJfG4SC+4RWn0Nd/KQ/1aOU7mKQA7vTcQI6unS3Awx2RPk94o6EIr5EF59
+         jkrvj3dzNbA97EavqLlKCl/aAveyHXtX9B5yEgRt6AnqvtPjsqu3QQjbx4mILY3gvIa3
+         ZIKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=BrOXUUfC0kL59Y1UmzHzsftxixuWlRc4zXH9J/eo0gI=;
+        b=aGrLlFgm4kHDvtek0jaQGXiEXeqkt99AUArg92fsKjm1qMBiF/5lwYTF80bfdLgkjd
+         OyLpQsRyvtNy1fy6zKrFN7mUJz9T1cHbT8R/JUXiLmLOw0G+2U3s3HLoO86o/5v14NAD
+         Q7OCj/AQxLACjzhti0cQMUtZrO2YBaAupiSanqC3AJAcOsoNxwk10/jQdpIH7ss0w8VR
+         8KSwaa8zHDC3vwGF/vO1RB6oViv9mFbUItoO9rcMtXHahR2xvZ6Z0Fs2BBFvPZByAfkW
+         lrB6MzHYh6eqPrznfmtKsizBYkGXSEZjlM4jz0B2ASJoYinc6i0CfzKKouVx/VTuXoMz
+         KFVA==
+X-Gm-Message-State: ACrzQf3H3Bl0nz34XmXZ+sDtAVLA0mTCQeQoj6jyC49ahBj0DUDwIIIF
+        D+dGMZ3PPzGND8Wc3NYjDMUCxgUVjJZxxg==
+X-Google-Smtp-Source: AMsMyM6FIcW8vQl/oHQx5+DSxLH/9IFwShQrmQwd207vM7vZlH9NsAILtgDsuEYjcARwnUiwtRx+XA==
+X-Received: by 2002:a2e:998b:0:b0:26c:1767:43c with SMTP id w11-20020a2e998b000000b0026c1767043cmr11584534lji.342.1664388854336;
+        Wed, 28 Sep 2022 11:14:14 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id t6-20020a19ad06000000b00498f32ae907sm539511lfc.95.2022.09.28.11.14.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Sep 2022 11:14:13 -0700 (PDT)
+Message-ID: <bab96626-3296-70aa-90c6-bb639d3c6ad4@linaro.org>
+Date:   Wed, 28 Sep 2022 20:14:12 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220927173702.5200-21-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [RFC PATCH v5 2/6] dt-bindings: display: ti: am65x-dss: Add new
+ port for am625-dss
+Content-Language: en-US
+To:     Aradhya Bhatia <a-bhatia1@ti.com>,
+        Tomi Valkeinen <tomba@kernel.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>
+References: <20220928175223.15225-1-a-bhatia1@ti.com>
+ <20220928175223.15225-3-a-bhatia1@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220928175223.15225-3-a-bhatia1@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 27, 2022 at 07:36:48PM +0200, Krzysztof Kozlowski wrote:
-> Bindings example should be indented with 4-spaces.
+On 28/09/2022 19:52, Aradhya Bhatia wrote:
+> Add 3rd "port" property for am625-dss.
+> This port represents the output from the 2nd OLDI TX (OLDI TX 1) latched
+> onto the first video port (VP0) from the DSS controller on AM625 SOC.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
-
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
 > ---
->  .../bindings/pinctrl/qcom,msm8909-tlmm.yaml   | 60 +++++++++----------
->  1 file changed, 30 insertions(+), 30 deletions(-)
+>  .../bindings/display/ti/ti,am65x-dss.yaml      | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
-> index 08e2dd5cbebe..9c647e24fa9a 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
-> @@ -118,35 +118,35 @@ $defs:
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> index 6bbce921479d..99576c6ec108 100644
+> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> @@ -82,13 +82,18 @@ properties:
+>        port@0:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          description:
+> -          The DSS OLDI output port node form video port 1
+> +          The DSS OLDI output port node form video port 1 (OLDI TX 0).
 >  
->  examples:
->    - |
-> -        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> -
-> -        pinctrl@1000000 {
-> -                compatible = "qcom,msm8909-tlmm";
-> -                reg = <0x1000000 0x300000>;
-> -                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> -                gpio-controller;
-> -                #gpio-cells = <2>;
-> -                gpio-ranges = <&tlmm 0 0 117>;
-> -                interrupt-controller;
-> -                #interrupt-cells = <2>;
-> -
-> -                gpio-wo-subnode-state {
-> -                        pins = "gpio1";
-> -                        function = "gpio";
-> -                };
-> -
-> -                uart-w-subnodes-state {
-> -                        rx-pins {
-> -                                pins = "gpio4";
-> -                                function = "blsp_uart1";
-> -                                bias-pull-up;
-> -                        };
-> -
-> -                        tx-pins {
-> -                                pins = "gpio5";
-> -                                function = "blsp_uart1";
-> -                                bias-disable;
-> -                        };
-> -                };
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>        port@1:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          description:
+>            The DSS DPI output port node from video port 2
+>  
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          The DSS OLDI output port node form video port 1 (OLDI TX 1).
 > +
-> +    pinctrl@1000000 {
-> +        compatible = "qcom,msm8909-tlmm";
-> +        reg = <0x1000000 0x300000>;
-> +        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        gpio-ranges = <&tlmm 0 0 117>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <2>;
-> +
-> +        gpio-wo-subnode-state {
-> +            pins = "gpio1";
-> +            function = "gpio";
->          };
-> +
-> +        uart-w-subnodes-state {
-> +            rx-pins {
-> +                pins = "gpio4";
-> +                function = "blsp_uart1";
-> +                bias-pull-up;
-> +            };
-> +
-> +            tx-pins {
-> +                pins = "gpio5";
-> +                function = "blsp_uart1";
-> +                bias-disable;
-> +            };
-> +        };
-> +    };
->  ...
-> -- 
-> 2.34.1
-> 
+>    ti,am65x-oldi-io-ctrl:
+>      $ref: "/schemas/types.yaml#/definitions/phandle"
+>      description:
+> @@ -104,6 +109,17 @@ properties:
+>        Input memory (from main memory to dispc) bandwidth limit in
+>        bytes per second
+>  
+> +if:
+
+Entire if: block is usually put under allOf:, so when the list of
+conditions grow, you do not need to change indentation.
+
+With the change:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
