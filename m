@@ -2,458 +2,400 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EDF85EE32B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:31:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CA1C5EE33B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:35:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233534AbiI1RbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 13:31:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52890 "EHLO
+        id S231301AbiI1Rfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 13:35:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233951AbiI1RbB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:31:01 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A75C71A236
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:30:59 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id bh13so12832387pgb.4
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:30:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date;
-        bh=7SWYiaNKhmtQ3unxY0hqTaTEitWRnJQ84ZlYxegZMW0=;
-        b=zFXwTuD0zvolx0yhxmJHqDe0tV3PoaGUydiZZUunr1f1U6xKteTtDLNmm0npdDHHhW
-         M+5tpot5nePGujc6tvEVkXqMXFEGkb0rxmmcrr1JIjkpIEbkMFPRUbJVrzag1Dw+gHxW
-         l0UgRv4cKSVNiv/apd+GO5lVTCHanWWrghsth24xDupihXXmNpL/hAwK2d9mS2qS8UaZ
-         E5saFJoYXt8qLsHGvP/7SAVaHyw4OxnOYQoxgVnxkRbOMQsEyzyCx9dz72b6nYVM/f8n
-         PNde/3lCPxw6o24+COME0BUTzQTLoyW5VczhRIgwfEP+DAvnm5bGLUag0OzR05DQSwQo
-         FfoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=7SWYiaNKhmtQ3unxY0hqTaTEitWRnJQ84ZlYxegZMW0=;
-        b=PAvqjbH8nl6LXvRx8RH3wRt/vfQRqGyC0QFNf409VXhu9zvDrXOpO9N9u10DHSfNCx
-         Kz6ROTDdfGsG8UxniqIXeeZykL/AEftR9wLya0jwMmBBH8B7FgUkkm3b8T8MexPEZ3Wz
-         JJ7cvLXEU0QEZVj0knjt9Mb0L22EfVkx0skEgxAGgrzEQhiPLVWD/skvjw3+svx+1JiV
-         nLE29C9bNUsGU5bdVLAWBg4BKsNCTMg6mGLyR+Cm/0LFWUfMYMDjfceVTcFae5eRso6/
-         d8yu5Yz85eOQSUV024A1RqQA9nFcTK/N4x4cu58a2slGMWVbsQFNuzRENnjLrBxQNLt5
-         RUZw==
-X-Gm-Message-State: ACrzQf08zODqkykBQDhDsz2nIVgn8U/2WYtiXw58bLYR/qO7i1VRBSvY
-        xj1izF4SlEwVdtw7THBBHOWRjw==
-X-Google-Smtp-Source: AMsMyM7bRCSYw6DeUGvv/veAx1EPKfBAlxoP2JDdiafIdTOMoI049J4O0xHmgVdk/kUflWf6ekpN5w==
-X-Received: by 2002:a63:3e4a:0:b0:439:246d:e681 with SMTP id l71-20020a633e4a000000b00439246de681mr24051046pga.424.1664386259140;
-        Wed, 28 Sep 2022 10:30:59 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id v11-20020a17090a088b00b001f22647cb56sm1813582pjc.27.2022.09.28.10.30.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Sep 2022 10:30:57 -0700 (PDT)
-Date:   Wed, 28 Sep 2022 11:30:54 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Peng Fan <peng.fan@oss.nxp.com>
-Cc:     Peng Fan <peng.fan@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH V5 3/6] remoteproc: imx_rproc: support attaching to
- i.MX8QXP M4
-Message-ID: <20220928173054.GC2990524@p14s>
-References: <20220824011023.1493050-1-peng.fan@oss.nxp.com>
- <20220824011023.1493050-4-peng.fan@oss.nxp.com>
- <20220926232127.GB2817947@p14s>
- <DU0PR04MB9417EABB1B0A9B550E94236288559@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <20220927175649.GB2883698@p14s>
- <64c6bdc2-583d-a2d0-f8b8-c4487f8a4d97@oss.nxp.com>
- <65b7224d-d3eb-4513-d733-ec781864fb7b@oss.nxp.com>
+        with ESMTP id S234346AbiI1Rfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:35:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C8A4B48B;
+        Wed, 28 Sep 2022 10:35:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 63E7561F5F;
+        Wed, 28 Sep 2022 17:35:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B914EC433D6;
+        Wed, 28 Sep 2022 17:35:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664386535;
+        bh=sANvdCWXfmW7FMk2Fnu89EZIZpQZh/1WJV7qHUqBZoI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=rjhsJkw5S7HayPff1wfPwQJ/bp7JQxK8R9uSxTtbKDqBym23C750FPjiQtrFz+wP3
+         la6fr94V1kgS6M0P3Jqjo93TgedXV/lv74BSQn7NqKagdqlYt4DbPmSRvFfZi/Sql1
+         Oh0dT3b2mK5NW6irqlIlXZs5Of5FD9Bw2gBSGtnnHnvTsdB2QJfobB9vLEj/ywrfZ8
+         oxPH0Kp/qM504ibIadKKr8zikmrugggk2LIePt0n4+wioTeZrML/+Z3lYbI7nF0I36
+         kGT2JLZn9XsvAKv48n+EVCo9B7JPpNitYo4rSPwvT25BP2sHamCszj/ElOm3382I4Z
+         dqkSLYkzV3B/w==
+Message-ID: <fd40ba79-4fc0-9bfe-e145-aabbd631fa9e@kernel.org>
+Date:   Wed, 28 Sep 2022 19:35:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <65b7224d-d3eb-4513-d733-ec781864fb7b@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH V14 2/7] soc: qcom: dcc: Add driver support for Data
+ Capture and Compare unit(DCC)
+Content-Language: en-US
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>, vkoul@kernel.org
+References: <cover.1664383851.git.quic_schowdhu@quicinc.com>
+ <c286f5e35348253809146ef45840339509e36ff8.1664383851.git.quic_schowdhu@quicinc.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <c286f5e35348253809146ef45840339509e36ff8.1664383851.git.quic_schowdhu@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 28, 2022 at 06:01:45PM +0800, Peng Fan wrote:
-> Hi Mathieu,
+On 28/09/2022 19:11, Souradeep Chowdhury wrote:
+> The DCC is a DMA Engine designed to capture and store data
+> during system crash or software triggers. The DCC operates
+> based on user inputs via the debugfs interface. The user gives
+> addresses as inputs and these addresses are stored in the
+> dcc sram. In case of a system crash or a manual software
+> trigger by the user through the debugfs interface,
+> the dcc captures and stores the values at these addresses.
+> This patch contains the driver which has all the methods
+> pertaining to the debugfs interface, auxiliary functions to
+> support all the four fundamental operations of dcc namely
+> read, write, read/modify/write and loop. The probe method
+> here instantiates all the resources necessary for dcc to
+> operate mainly the dedicated dcc sram where it stores the
+> values. The DCC driver can be used for debugging purposes
+> without going for a reboot since it can perform software
+> triggers as well based on user inputs.
 > 
-> On 9/28/2022 3:39 PM, Peng Fan wrote:
-> > 
-> > 
-> > On 9/28/2022 1:56 AM, Mathieu Poirier wrote:
-> > > On Tue, Sep 27, 2022 at 02:48:02AM +0000, Peng Fan wrote:
-> > > > Hi Mathieu,
-> > > > 
-> > > > Thanks for reviewing this patchset.
-> > > > > Subject: Re: [PATCH V5 3/6] remoteproc: imx_rproc: support attaching to
-> > > > > i.MX8QXP M4
-> > > > > 
-> > > > > On Wed, Aug 24, 2022 at 09:10:20AM +0800, Peng Fan (OSS) wrote:
-> > > > > > From: Peng Fan <peng.fan@nxp.com>
-> > > > > > 
-> > > > > > When M4 is kicked by SCFW, M4 runs in its own hardware partition,
-> > > > > > Linux could only do IPC with M4, it could not start,
-> > > > > > stop, update image.
-> > > > > > 
-> > > > > > We disable recovery reboot when M4 is managed by SCFW, because
-> > > > > > remoteproc core still not support M4 auto-recovery without loading
-> > > > > > image.
-> > > > > > 
-> > > > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > > > > ---
-> > > > > >   drivers/remoteproc/imx_rproc.c | 108
-> > > > > > ++++++++++++++++++++++++++++++++-
-> > > > > >   1 file changed, 107 insertions(+), 1 deletion(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/remoteproc/imx_rproc.c
-> > > > > > b/drivers/remoteproc/imx_rproc.c index 7cc4fd207e2d..bcba74e90020
-> > > > > > 100644
-> > > > > > --- a/drivers/remoteproc/imx_rproc.c
-> > > > > > +++ b/drivers/remoteproc/imx_rproc.c
-> > > > > > @@ -6,6 +6,7 @@
-> > > > > >   #include <linux/arm-smccc.h>
-> > > > > >   #include <linux/clk.h>
-> > > > > >   #include <linux/err.h>
-> > > > > > +#include <linux/firmware/imx/sci.h>
-> > > > > >   #include <linux/interrupt.h>
-> > > > > >   #include <linux/kernel.h>
-> > > > > >   #include <linux/mailbox_client.h>
-> > > > > > @@ -59,6 +60,8 @@
-> > > > > >   #define IMX_SIP_RPROC_STARTED        0x01
-> > > > > >   #define IMX_SIP_RPROC_STOP        0x02
-> > > > > > 
-> > > > > > +#define IMX_SC_IRQ_GROUP_REBOOTED    5
-> > > > > > +
-> > > > > >   /**
-> > > > > >    * struct imx_rproc_mem - slim internal memory structure
-> > > > > >    * @cpu_addr: MPU virtual address of the memory region @@ -89,6
-> > > > > > +92,10 @@ struct imx_rproc {
-> > > > > >       struct work_struct        rproc_work;
-> > > > > >       struct workqueue_struct        *workqueue;
-> > > > > >       void __iomem            *rsc_table;
-> > > > > > +    struct imx_sc_ipc        *ipc_handle;
-> > > > > > +    struct notifier_block        rproc_nb;
-> > > > > > +    u32                rproc_pt;    /* partition id */
-> > > > > > +    u32                rsrc_id;    /* resource id */
-> > > > > >   };
-> > > > > > 
-> > > > > >   static const struct imx_rproc_att
-> > > > > > imx_rproc_att_imx93[] = { @@ -117,6
-> > > > > > +124,18 @@ static const struct imx_rproc_att imx_rproc_att_imx93[] = {
-> > > > > >       { 0xD0000000, 0xa0000000, 0x10000000, 0 },  };
-> > > > > > 
-> > > > > > +static const struct imx_rproc_att imx_rproc_att_imx8qxp[] = {
-> > > > > > +    { 0x08000000, 0x08000000, 0x10000000, 0 },
-> > > > > > +    /* TCML/U */
-> > > > > > +    { 0x1FFE0000, 0x34FE0000, 0x00040000, ATT_OWN | ATT_IOMEM },
-> > > > > > +    /* OCRAM(Low 96KB) */
-> > > > > > +    { 0x21000000, 0x00100000, 0x00018000, 0 },
-> > > > > > +    /* OCRAM */
-> > > > > > +    { 0x21100000, 0x00100000, 0x00040000, 0 },
-> > > > > > +    /* DDR (Data) */
-> > > > > > +    { 0x80000000, 0x80000000, 0x60000000, 0 }, };
-> > > > > > +
-> > > > > >   static const struct imx_rproc_att imx_rproc_att_imx8mn[] = {
-> > > > > >       /* dev addr , sys addr  , size        , flags */
-> > > > > >       /* ITCM   */
-> > > > > > @@ -255,6 +274,12 @@ static const struct imx_rproc_dcfg
-> > > > > imx_rproc_cfg_imx8mq = {
-> > > > > >       .method        = IMX_RPROC_MMIO,
-> > > > > >   };
-> > > > > > 
-> > > > > > +static const struct imx_rproc_dcfg imx_rproc_cfg_imx8qxp = {
-> > > > > > +    .att        = imx_rproc_att_imx8qxp,
-> > > > > > +    .att_size    = ARRAY_SIZE(imx_rproc_att_imx8qxp),
-> > > > > > +    .method        = IMX_RPROC_SCU_API,
-> > > > > > +};
-> > > > > > +
-> > > > > >   static const struct imx_rproc_dcfg imx_rproc_cfg_imx8ulp = {
-> > > > > >       .att        = imx_rproc_att_imx8ulp,
-> > > > > >       .att_size    = ARRAY_SIZE(imx_rproc_att_imx8ulp),
-> > > > > > @@ -680,6 +705,37 @@ static void imx_rproc_free_mbox(struct rproc
-> > > > > *rproc)
-> > > > > >       mbox_free_channel(priv->rx_ch);
-> > > > > >   }
-> > > > > > 
-> > > > > > +static void imx_rproc_put_scu(struct rproc *rproc) {
-> > > > > > +    struct imx_rproc *priv = rproc->priv;
-> > > > > > +    const struct imx_rproc_dcfg *dcfg = priv->dcfg;
-> > > > > > +
-> > > > > > +    if (dcfg->method != IMX_RPROC_SCU_API)
-> > > > > > +        return;
-> > > > > > +
-> > > > > > +    if (!imx_sc_rm_is_resource_owned(priv->ipc_handle,
-> > > > > > priv->rsrc_id))
-> > > > > > +        return;
-> > > > > > +
-> > > > > > +    imx_scu_irq_group_enable(IMX_SC_IRQ_GROUP_REBOOTED,
-> > > > > BIT(priv->rproc_pt), false);
-> > > > > > +    imx_scu_irq_unregister_notifier(&priv->rproc_nb);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int imx_rproc_partition_notify(struct notifier_block *nb,
-> > > > > > +                      unsigned long event, void *group) {
-> > > > > > +    struct imx_rproc *priv = container_of(nb, struct imx_rproc,
-> > > > > > +rproc_nb);
-> > > > > > +
-> > > > > > +    /* Ignore other irqs */
-> > > > > > +    if (!((event & BIT(priv->rproc_pt)) && (*(u8 *)group ==
-> > > > > IMX_SC_IRQ_GROUP_REBOOTED)))
-> > > > > > +        return 0;
-> > > > > > +
-> > > > > > +    rproc_report_crash(priv->rproc, RPROC_WATCHDOG);
-> > > > > > +
-> > > > > > +    pr_info("Partition%d reset!\n", priv->rproc_pt);
-> > > > > > +
-> > > > > > +    return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > >   static int imx_rproc_detect_mode(struct imx_rproc *priv)  {
-> > > > > >       struct regmap_config config = { .name = "imx-rproc" }; @@ -689,6
-> > > > > > +745,7 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
-> > > > > >       struct arm_smccc_res res;
-> > > > > >       int ret;
-> > > > > >       u32 val;
-> > > > > > +    u8 pt;
-> > > > > > 
-> > > > > >       switch (dcfg->method) {
-> > > > > >       case IMX_RPROC_NONE:
-> > > > > > @@ -699,6 +756,51 @@ static int imx_rproc_detect_mode(struct
-> > > > > imx_rproc *priv)
-> > > > > >           if (res.a0)
-> > > > > >               priv->rproc->state = RPROC_DETACHED;
-> > > > > >           return 0;
-> > > > > > +    case IMX_RPROC_SCU_API:
-> > > > > > +        ret = imx_scu_get_handle(&priv->ipc_handle);
-> > > > > > +        if (ret)
-> > > > > > +            return ret;
-> > > > > > +        ret = of_property_read_u32(dev->of_node, "fsl,resource-id",
-> > > > > &priv->rsrc_id);
-> > > > > > +        if (ret) {
-> > > > > > +            dev_err(dev, "No fsl,resource-id property\n");
-> > > > > > +            return ret;
-> > > > > > +        }
-> > > > > > +
-> > > > > > +        /*
-> > > > > > +         * If Mcore resource is not owned by Acore partition, It is
-> > > > > kicked by ROM,
-> > > > > > +         * and Linux could only do IPC with Mcore and nothing else.
-> > > > > > +         */
-> > > > > > +        if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv-
-> > > > > > rsrc_id))
-> > > > > > +            return 0;
-> > > > > 
-> > > > > If imx_sc_rm_is_resource_owned() return '1' than the remote
-> > > > > processor is
-> > > > > under Linux's control and what follows below is not needed. 
-> > > > > That is also
-> > > > > coherent with the comment in [1].
-> > > > 
-> > > > Case 1: If M4 is owned by Linux, here directly return 0.
-> > > > Case 2: If M4 is not owned by Linux, the following code after
-> > > > this line will set
-> > > > state as RPROC_DETACHED.
-> > > 
-> > > I understand that part.
-> > > 
-> > > > 
-> > > > Patch 3/6(this patch) is only to support case 2.
-> > > > Patch 4/6 is to support case 1.
-> > > > 
-> > > 
-> > > Let's leave the subsequent patches alone for now.
-> > > 
-> > > > > 
-> > > > > That is in contrast with what is happening in
-> > > > > imx_rproc_put_scu().  There, if
-> > > > > the remote processor is _not_ owned by Linux than the condition returns
-> > > > > without calling imx_scu_irq_group_enable() and
-> > > > > imx_scu_irq_unregister_notifier().  That seems to be a bug.
-> > > > 
-> > > > No. The two functions only needed when M4 is in a separate
-> > > > hardware partition.
-> > > > 
-> > > > The scu irq is only needed when M4 is out of linux control and need some
-> > > > notification such as M4 is reset by SCU(System Control Unit).
-> > > > That linux got
-> > > > notification that M4 is reset by SCU.
-> > > 
-> > > I also understand that part.
-> > > 
-> > > What I am underlining here is that when the M4 is independent, function
-> > > imx_scu_irq_register_notifier() and imx_scu_irq_group_enable() are
-> > > called but
-> > > their cleanup equivalent are not called in imx_rproc_put_scu()
-> > > because of the '!'
-> > > in the if() statement.
-> > 
-> > you are right, this is bug in my side. It should be as below based on
-> > patch 3/6.
-> > 
-> > diff --git a/drivers/remoteproc/imx_rproc.c
-> > b/drivers/remoteproc/imx_rproc.c
-> > index bcba74e90020..a56aecae00c6 100644
-> > --- a/drivers/remoteproc/imx_rproc.c
-> > +++ b/drivers/remoteproc/imx_rproc.c
-> > @@ -713,7 +713,7 @@ static void imx_rproc_put_scu(struct rproc *rproc)
-> >          if (dcfg->method != IMX_RPROC_SCU_API)
-> >                  return;
-> > 
-> > -       if (!imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id))
-> > +       if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id))
-
-Indeed, which raises questions about how this patchset was tested.  And it is
-not the first time we touch base on that.
-
-> >                  return;
-> > 
-> > Thanks for detailed reviewing.
+> Also added the documentation for debugfs entries and explained
+> the functionalities of each debugfs file that has been created
+> for dcc.
 > 
-> If you are fine with this change, I could send out V6. Anyway, I'll wait
-> to see if you have other comments in this patchset.
->
-
-I am out of time for this patchset and as such will not provide more comments
-on this revision.
-
-> Thanks,
-> Peng.
+> The following is the justification of using debugfs interface
+> over the other alternatives like sysfs/ioctls
 > 
-> > 
-> > Thanks,
-> > Peng.
-> > 
-> > > 
-> > > > 
-> > > > > 
-> > > > > There is also a problem in patch 4/6 associated to that.
-> > > > 
-> > > > If the upper explanation eliminate your concern, "a problem in
-> > > > patch 4/6" should
-> > > > not be a problem.
-> > > > 
-> > > > When M4 is owned by Linux, Linux need handle the power domain.
-> > > > If M4 is not owned
-> > > > by Linux, SCU firmware will handle the power domain, and Linux
-> > > > has no permission to
-> > > > touch that.
-> > > > 
-> > > > Thanks
-> > > > Peng
-> > > > 
-> > > > > 
-> > > > > Thanks,
-> > > > > Mathieu
-> > > > > 
-> > > > > 
-> > > > > [1].
-> > > > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Felixir
-> > > > > .bootlin.com%2Flinux%2Fv6.0-
-> > > > > rc7%2Fsource%2Fdrivers%2Ffirmware%2Fimx%2Frm.c%23L24&amp;data=0
-> > > > > 5%7C01%7Cpeng.fan%40nxp.com%7Cbe679e9a409a48b834b908daa015d92
-> > > > > c%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637998312946913
-> > > > > 710%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2lu
-> > > > > MzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=
-> > > > > JDRvoDGGgEiSmbhj3410V2DNxamZbDmMS0U2GvBnI74%3D&amp;reserved
-> > > > > =0
-> > > > > 
-> > > > > > +
-> > > > > > +        priv->rproc->state = RPROC_DETACHED;
-> > > > > > +        priv->rproc->recovery_disabled = true;
-> > > > > > +
-> > > > > > +        /* Get partition id and enable irq in SCFW */
-> > > > > > +        ret = imx_sc_rm_get_resource_owner(priv->ipc_handle,
-> > > > > priv->rsrc_id, &pt);
-> > > > > > +        if (ret) {
-> > > > > > +            dev_err(dev, "not able to get resource owner\n");
-> > > > > > +            return ret;
-> > > > > > +        }
-> > > > > > +
-> > > > > > +        priv->rproc_pt = pt;
-> > > > > > +        priv->rproc_nb.notifier_call = imx_rproc_partition_notify;
-> > > > > > +
-> > > > > > +        ret = imx_scu_irq_register_notifier(&priv->rproc_nb);
-> > > > > > +        if (ret) {
-> > > > > > +            dev_warn(dev, "register scu notifier failed.\n");
-> > > > > > +            return ret;
-> > > > > > +        }
-> > > > > > +
-> > > > > > +        ret =
-> > > > > imx_scu_irq_group_enable(IMX_SC_IRQ_GROUP_REBOOTED, BIT(priv-
-> > > > > > rproc_pt),
-> > > > > > +                           true);
-> > > > > > +        if (ret) {
-> > > > > > +            imx_scu_irq_unregister_notifier(&priv->rproc_nb);
-> > > > > > +            dev_warn(dev, "Enable irq failed.\n");
-> > > > > > +            return ret;
-> > > > > > +        }
-> > > > > > +
-> > > > > > +        return 0;
-> > > > > >       default:
-> > > > > >           break;
-> > > > > >       }
-> > > > > > @@ -803,7 +905,7 @@ static int imx_rproc_probe(struct platform_device
-> > > > > > *pdev)
-> > > > > > 
-> > > > > >       ret = imx_rproc_clk_enable(priv);
-> > > > > >       if (ret)
-> > > > > > -        goto err_put_mbox;
-> > > > > > +        goto err_put_scu;
-> > > > > > 
-> > > > > >       INIT_WORK(&priv->rproc_work, imx_rproc_vq_work);
-> > > > > > 
-> > > > > > @@ -820,6 +922,8 @@ static int imx_rproc_probe(struct platform_device
-> > > > > > *pdev)
-> > > > > > 
-> > > > > >   err_put_clk:
-> > > > > >       clk_disable_unprepare(priv->clk);
-> > > > > > +err_put_scu:
-> > > > > > +    imx_rproc_put_scu(rproc);
-> > > > > >   err_put_mbox:
-> > > > > >       imx_rproc_free_mbox(rproc);
-> > > > > >   err_put_wkq:
-> > > > > > @@ -837,6 +941,7 @@ static int imx_rproc_remove(struct
-> > > > > platform_device
-> > > > > > *pdev)
-> > > > > > 
-> > > > > >       clk_disable_unprepare(priv->clk);
-> > > > > >       rproc_del(rproc);
-> > > > > > +    imx_rproc_put_scu(rproc);
-> > > > > >       imx_rproc_free_mbox(rproc);
-> > > > > >       destroy_workqueue(priv->workqueue);
-> > > > > >       rproc_free(rproc);
-> > > > > > @@ -852,6 +957,7 @@ static const struct of_device_id
-> > > > > imx_rproc_of_match[] = {
-> > > > > >       { .compatible = "fsl,imx8mm-cm4", .data =
-> > > > > &imx_rproc_cfg_imx8mq },
-> > > > > >       { .compatible = "fsl,imx8mn-cm7", .data =
-> > > > > &imx_rproc_cfg_imx8mn },
-> > > > > >       { .compatible = "fsl,imx8mp-cm7", .data =
-> > > > > &imx_rproc_cfg_imx8mn },
-> > > > > > +    { .compatible = "fsl,imx8qxp-cm4", .data =
-> > > > > &imx_rproc_cfg_imx8qxp },
-> > > > > >       { .compatible = "fsl,imx8ulp-cm33", .data =
-> > > > > &imx_rproc_cfg_imx8ulp },
-> > > > > >       { .compatible = "fsl,imx93-cm33", .data =
-> > > > > > &imx_rproc_cfg_imx93 },
-> > > > > >       {},
-> > > > > > -- 
-> > > > > > 2.37.1
-> > > > > > 
+> i) As can be seen from the debugfs attribute descriptions,
+> some of the debugfs attribute files here contains multiple
+> arguments which needs to be accepted from the user. This goes
+> against the design style of sysfs.
+> 
+> ii) The user input patterns have been made simple and convenient
+> in this case with the use of debugfs interface as user doesn't
+> need to shuffle between different files to execute one instruction
+> as was the case on using other alternatives.
+> 
+> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> ---
+>  Documentation/ABI/testing/debugfs-driver-dcc |   98 ++
+>  drivers/soc/qcom/Kconfig                     |    8 +
+>  drivers/soc/qcom/Makefile                    |    1 +
+>  drivers/soc/qcom/dcc.c                       | 1352 ++++++++++++++++++++++++++
+>  4 files changed, 1459 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/debugfs-driver-dcc
+>  create mode 100644 drivers/soc/qcom/dcc.c
+> 
+> diff --git a/Documentation/ABI/testing/debugfs-driver-dcc b/Documentation/ABI/testing/debugfs-driver-dcc
+> new file mode 100644
+> index 0000000..387f67e
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/debugfs-driver-dcc
+> @@ -0,0 +1,98 @@
+> +What:           /sys/kernel/debug/dcc/.../ready
+> +Date:           September 2022
+> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This file is used to check the status of the dcc
+> +		hardware if it's ready to take the inputs. A 'Y'
+> +		here indicates dcc is in a ready condition.
+> +		Example:
+> +		cat /sys/kernel/debug/dcc/.../ready
+> +
+> +What:           /sys/kernel/debug/dcc/.../trigger
+> +Date:           September 2022
+> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This is the debugfs interface for manual software
+> +		triggers. The user can simply enter a 1 against
+> +		the debugfs file and enable a manual trigger.
+> +		Example:
+> +		echo  1 > /sys/kernel/debug/dcc/.../trigger
+> +
+> +What:           /sys/kernel/debug/dcc/.../config_reset
+> +Date:           September 2022
+> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This file is used to reset the configuration of
+> +		a dcc driver to the default configuration. This
+> +		means that all the previous addresses stored in
+> +		the driver gets removed and user needs to enter
+> +		the address values from the start.
+> +		Example:
+> +		echo  1 > /sys/kernel/debug/dcc/../config_reset
+> +
+> +What:           /sys/kernel/debug/dcc/.../[list-number]/config
+> +Date:           September 2022
+> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This stores the addresses of the registers which
+> +		should be read in case of a hardware crash or
+> +		manual software triggers. The addresses entered here
+> +		are considered under all the 4 types of dcc
+> +		instructions Read type, Write type, Read Modify Write
+> +		type and Loop type. The lists need to be configured
+> +		sequentially and not in a overlapping manner. As an
+> +		example user can jump to list x only after list y is
+> +		configured and enabled. The format for entering all
+> +		types of instructions are explained in examples as
+> +		follows.
+> +		Example:
+> +	         i)Read Type Instruction
+> +		   echo R <1> <2> <3> >/sys/kernel/debug/dcc/../[list-number]/config
+> +		   1->Address to be considered for reading the value.
+> +		   2->The word count of the addresses, read n words
+> +		      starting from address <1>. Each word is of 32 bits.
+> +		      If not entered 1 is considered.
+> +		   3->Can be 'apb' or 'ahb' which indicates if it is apb or ahb
+> +		      bus respectively. If not entered ahb is considered.
+> +		ii)Write Type Instruction
+> +		   echo W <1> <2> <3> > /sys/kernel/debug/dcc/../[list-number]/config
+> +		   1->Address to be considered for writing the value.
+> +		   2->The value that needs to be written at the location.
+> +		   3->Can be a 'apb' or 'ahb' which indicates if it is apb or ahb
+> +		      but respectively.
+> +	       iii)Read Modify Write type instruction
+> +		   echo RW <1> <2> <3> > /sys/kernel/debug/dcc/../[list-number]/config
+> +		   1->The address which needs to be considered for read then write.
+> +		   2->The value that needs to be written on the address.
+> +		   3->The mask of the value to be written.
+> +		iv)Loop Type Instruction
+> +		   echo L <1> <2> <3> > /sys/kernel/debug/dcc/../[list-number]/config
+> +		   1->The loop count, the number of times the value of the addresses will be
+> +		      captured.
+> +		   2->The address count, total number of addresses to be entered in this
+> +		      instruction.
+> +		   3->The series of addresses to be entered separated by a space like <addr1>
+> +		      <addr2>... and so on.
+> +
+> +What:           /sys/kernel/debug/dcc/.../[list-number]/enable
+> +Date:           September 2022
+> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +Description:
+> +		This debugfs interface is used for enabling the
+> +		the dcc hardware. Enable file is kept under the
+> +		directory list number for which the user wants
+> +		to enable it. For example if the user wants to
+> +		enable list 1, then he should go for
+> +		echo 1 > /sys/kernel/debug/dcc/.../1/enable.
+> +		On enabling the dcc, all the addresses entered
+> +		by the user for the corresponding list is written
+> +		into dcc sram which is read by the dcc hardware
+> +		on manual or crash induced triggers. Lists should
+> +		be enabled sequentially.For example after configuring
+> +		addresses for list 1 and enabling it, a user can
+> +		proceed to enable list 2 or vice versa.
+> +		Example:
+> +		echo  0 > /sys/kernel/debug/dcc/.../[list-number]/enable
+> +		(disable dcc for the corresponding list number)
+> +		echo  1 > /sys/kernel/debug/dcc/.../[list-number]/enable
+> +		(enable dcc for the corresponding list number)
+> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+> index 024e420..d5730bf 100644
+> --- a/drivers/soc/qcom/Kconfig
+> +++ b/drivers/soc/qcom/Kconfig
+> @@ -69,6 +69,14 @@ config QCOM_LLCC
+>  	  SDM845. This provides interfaces to clients that use the LLCC.
+>  	  Say yes here to enable LLCC slice driver.
+> 
+> +config QCOM_DCC
+> +	tristate "Qualcomm Technologies, Inc. Data Capture and Compare(DCC) engine driver"
+> +	depends on ARCH_QCOM || COMPILE_TEST
+> +	help
+> +	  This option enables driver for Data Capture and Compare engine. DCC
+> +	  driver provides interface to configure DCC block and read back
+> +	  captured data from DCC's internal SRAM.
+> +
+>  config QCOM_KRYO_L2_ACCESSORS
+>  	bool
+>  	depends on ARCH_QCOM && ARM64 || COMPILE_TEST
+> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+> index d66604a..b1fe812 100644
+> --- a/drivers/soc/qcom/Makefile
+> +++ b/drivers/soc/qcom/Makefile
+> @@ -4,6 +4,7 @@ obj-$(CONFIG_QCOM_AOSS_QMP) +=	qcom_aoss.o
+>  obj-$(CONFIG_QCOM_GENI_SE) +=	qcom-geni-se.o
+>  obj-$(CONFIG_QCOM_COMMAND_DB) += cmd-db.o
+>  obj-$(CONFIG_QCOM_CPR)		+= cpr.o
+> +obj-$(CONFIG_QCOM_DCC) += dcc.o
+>  obj-$(CONFIG_QCOM_GSBI)	+=	qcom_gsbi.o
+>  obj-$(CONFIG_QCOM_MDT_LOADER)	+= mdt_loader.o
+>  obj-$(CONFIG_QCOM_OCMEM)	+= ocmem.o
+> diff --git a/drivers/soc/qcom/dcc.c b/drivers/soc/qcom/dcc.c
+> new file mode 100644
+> index 0000000..e16c074
+> --- /dev/null
+> +++ b/drivers/soc/qcom/dcc.c
+> @@ -0,0 +1,1352 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2015-2021, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/debugfs.h>
+> +#include <linux/delay.h>
+> +#include <linux/fs.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/miscdevice.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +#include <linux/uaccess.h>
+> +
+> +#define STATUS_READY_TIMEOUT		5000  /*microseconds*/
+> +
+> +#define DCC_SRAM_NODE "dcc_sram"
+> +
+> +/* DCC registers */
+> +#define DCC_HW_INFO			0x04
+> +#define DCC_LL_NUM_INFO			0x10
+> +#define DCC_STATUS(vers)		((vers) == 1 ? 0x0c : 0x1c)
+> +#define DCC_LL_LOCK			0x00
+> +#define DCC_LL_CFG			0x04
+> +#define DCC_LL_BASE			0x08
+> +#define DCC_FD_BASE			0x0c
+> +#define DCC_LL_TIMEOUT			0x10
+> +#define DCC_LL_INT_ENABLE		0x18
+> +#define DCC_LL_INT_STATUS		0x1c
+> +#define DCC_LL_SW_TRIGGER		0x2c
+> +#define DCC_LL_BUS_ACCESS_STATUS	0x30
+> +
+> +#define DCC_MAP_LEVEL1			0x18
+> +#define DCC_MAP_LEVEL2			0x34
+> +#define DCC_MAP_LEVEL3			0x4C
+> +
+> +#define DCC_MAP_OFFSET1			0x10
+> +#define DCC_MAP_OFFSET2			0x18
+> +#define DCC_MAP_OFFSET3			0x1C
+> +#define DCC_MAP_OFFSET4			0x8
+> +
+> +/*Default value used if a bit 6 in the HW_INFO register is set.*/
+> +#define DCC_FIX_LOOP_OFFSET		16
+> +
+> +/*Mask to find version info from HW_Info register*/
+> +#define DCC_VER_INFO_MASK		BIT(9)
+> +
+> +#define DCC_READ			0
+> +#define DCC_WRITE			1
+> +#define DCC_LOOP			2
+> +#define DCC_READ_WRITE			3
+> +
+> +#define MAX_DCC_OFFSET			GENMASK(9, 2)
+> +#define MAX_DCC_LEN			GENMASK(6, 0)
+> +#define MAX_LOOP_CNT			GENMASK(7, 0)
+> +#define MAX_LOOP_ADDR			10
+> +
+> +#define DCC_ADDR_DESCRIPTOR		0x00
+> +#define DCC_ADDR_LIMIT			27
+> +#define DCC_ADDR_OFF_RANGE		8
+> +#define DCC_ADDR_RANGE_MASK		GENMASK(31, 4)
+> +#define DCC_LOOP_DESCRIPTOR		BIT(30)
+> +#define DCC_RD_MOD_WR_DESCRIPTOR	BIT(31)
+> +#define DCC_LINK_DESCRIPTOR		GENMASK(31, 30)
+> +#define DCC_STATUS_MASK			GENMASK(1, 0)
+> +#define DCC_LOCK_MASK                   BIT(0)
+> +#define DCC_LOOP_OFFSET_MASK		BIT(6)
+> +#define DCC_TRIGGER_MASK		BIT(9)
+> +
+> +#define DCC_WRITE_MASK			BIT(15)
+> +#define DCC_WRITE_OFF_MASK		GENMASK(7, 0)
+> +#define DCC_WRITE_LEN_MASK		GENMASK(14, 8)
+> +
+> +#define DCC_READ_IND			0x00
+> +#define DCC_WRITE_IND			(BIT(28))
+> +
+> +#define DCC_AHB_IND			0x00
+> +#define DCC_APB_IND			BIT(29)
+> +
+> +#define DCC_MAX_LINK_LIST		8
+> +#define DCC_INVALID_LINK_LIST		GENMASK(7, 0)
+> +
+> +#define DCC_VER_MASK1			GENMASK(6, 0)
+> +#define DCC_VER_MASK2			GENMASK(5, 0)
+> +
+> +#define DCC_SRAM_WORD_LENGTH		4
+> +
+> +#define DCC_RD_MOD_WR_ADDR              0xC105E
+> +
+> +/*DCC debugfs directory*/
+> +static struct dentry	*dcc_dbg;
+> +
+> +enum dcc_descriptor_type {
+> +	DCC_READ_TYPE,
+> +	DCC_LOOP_TYPE,
+> +	DCC_READ_WRITE_TYPE,
+> +	DCC_WRITE_TYPE
+> +};
+> +
+> +struct dcc_config_entry {
+> +	u32				base;
+> +	u32				offset;
+> +	u32				len;
+> +	u32				loop_cnt;
+> +	u32				write_val;
+> +	u32				mask;
+> +	bool				apb_bus;
+> +	enum dcc_descriptor_type	desc_type;
+> +	struct list_head		list;
+> +};
+> +
+> +/**
+> + * struct dcc_drvdata - configuration information related to a dcc device
+> + * @base:		Base Address of the dcc device
+> + * @dev:		The device attached to the driver data
+> + * @mutex:		Lock to protect access and manipulation of dcc_drvdata
+> + * @ram_base:		Base address for the SRAM dedicated for the dcc device
+> + * @ram_size:		Total size of the SRAM dedicated for the dcc device
+> + * @ram_offset:	Offset to the SRAM dedicated for dcc device
+> + * @mem_map_ver:	Memory map version of DCC hardware
+> + * @ram_cfg:		Used for address limit calculation for dcc
+> + * @ram_start:		Starting address of DCC SRAM
+> + * @sram_dev:		Miscellaneous device equivalent of dcc SRAM
+> + * @cfg_head:		Points to the head of the linked list of addresses
+
+So where is the list item? Is it dcc_config_entry?
+
+> + * @dbg_dir:		The dcc debugfs directory under which all the debugfs files are placed
+> + * @nr_link_list:	Total number of linkedlists supported by the DCC configuration
+> + * @loopoff:		Loop offset bits range for the addresses
+> + * @enable;		This contains an array of linkedlist enable flags
+
+Typo: ;
+
+Compile it with W=1 and fix all the warnings.
+
+The description of this field still looks wrong. It does not have array
+of linked lists. Linked list is list_head, this is a bool.
+
+Best regards,
+Krzysztof
+
