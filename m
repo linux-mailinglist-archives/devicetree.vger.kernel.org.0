@@ -2,73 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FA6C5ED268
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 03:02:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA6105ED2BF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 03:48:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231816AbiI1BC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 21:02:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35312 "EHLO
+        id S232618AbiI1BsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 21:48:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231899AbiI1BCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 21:02:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 584091DB57D;
-        Tue, 27 Sep 2022 18:02:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2796461BEF;
-        Wed, 28 Sep 2022 01:02:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7BC2C433D6;
-        Wed, 28 Sep 2022 01:02:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664326942;
-        bh=NF19G0GHakdi9PoRJpWc5n7cXcIUFzCnv9eq/h2pLEU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=XevUr4e3FCNI6Sp7E0pMrDRbcCzXQs5gpptgPowQY1jDRZftEcieov9BbqUkVjR00
-         swzRcX+BniaJTQAvMHH07NjwGL2U1t7BtcgLlDKRNO61RBe5+Hmsamp/PArBkvmuh+
-         W6q7f0rZ9FqQT4pEYg7ZswAR2xd/0WFu9t3Dc8eib9sdU3JaApRTtxOiHFP28D4QCv
-         7gsDNKdM4EBgkARxgyYXoUbexiUq5p+lDh2mWdi5/gK99uR4+fI7JW3xAEiCL1U9Ck
-         4IvTxc7pRGlqlwGiLEacyyInl8bt6Ebc1FZjnd2G363ZVAXUj/inXYCIWsgWsXZJY4
-         0/i/cQ6tkybYg==
-Date:   Tue, 27 Sep 2022 18:02:20 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        kernel test robot <lkp@intel.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        David Jander <david@protonic.nl>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-Subject: Re: [PATCH net-next v7 5/7] ethtool: add interface to interact with
- Ethernet Power Equipment
-Message-ID: <20220927180220.2169ff2a@kernel.org>
-In-Reply-To: <20220926112500.990705-6-o.rempel@pengutronix.de>
-References: <20220926112500.990705-1-o.rempel@pengutronix.de>
-        <20220926112500.990705-6-o.rempel@pengutronix.de>
+        with ESMTP id S229771AbiI1BsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 21:48:03 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E07B8110EC9;
+        Tue, 27 Sep 2022 18:47:57 -0700 (PDT)
+X-UUID: 2798c900a05b4374ac9f07e832846b2e-20220928
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=A+qXPRA7ywTuXXDRS+dWtKCRO57wsD96NnkHKCFHm4w=;
+        b=EiKXtB0fDGaYwn+THx+6Mzrwx6ggIQwjZnKD4BXrTg4V+C6GFmPcyqv8WsCxgK40PZ1BHDQ5yXO67jebzMgTq3Jnf8+nWMlbFj5k3ZXgInWeBjC1PBHlYgfcrBsjUYsxVcDWhGjQm2qazVwmOKDliXIqfu/jl4v3I7Youc6eWPY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:98814aa8-e18f-4e2b-bbef-61184b346dae,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:39a5ff1,CLOUDID:c97c4aa3-dc04-435c-b19b-71e131a5fc35,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:-5,EDM:-3,IP:nil,
+        URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 2798c900a05b4374ac9f07e832846b2e-20220928
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <miles.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 362543260; Wed, 28 Sep 2022 09:47:52 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 28 Sep 2022 09:47:50 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Wed, 28 Sep 2022 09:47:50 +0800
+From:   Miles Chen <miles.chen@mediatek.com>
+To:     <macpaul.lin@mediatek.com>
+CC:     <bear.wang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <fparent@baylibre.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>,
+        <macpaul@gmail.com>, <matthias.bgg@gmail.com>,
+        <miles.chen@mediatek.com>, <pablo.sun@mediatek.com>,
+        <robh+dt@kernel.org>, <stable@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195-demo: fix the memory size of
+Date:   Wed, 28 Sep 2022 09:47:50 +0800
+Message-ID: <20220928014750.17054-1-miles.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <664f3b7d-d629-5af1-cae4-cb5b638a5da1@mediatek.com>
+References: <664f3b7d-d629-5af1-cae4-cb5b638a5da1@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Sep 2022 13:24:58 +0200 Oleksij Rempel wrote:
-> +static int pse_get_pse_attributs(struct net_device *dev,
+>On 9/26/22 15:05, Miles Chen wrote:
+>> Hi Macpaul,
+>> 
+>>> The size of device tree node secmon (bl31_secmon_reserved) was
+>>> incorrect. It should be increased to 2MiB (0x200000).
+>> 
+>> 192K should work when the patch(6147314aeedc) was accepted.
+>> Does the trusted-firmware-a get larger now, so we need to
+>> increase the size to 2MiB?
+>> 
+>> thanks,
+>> Miles
+>
+>When mt8195-demo.dts sent to the upstream, at that time the size of
+>BL31 was small. Because supported functions and modules in BL31 are 
+>basic sets when the board was under early development stage.
+>
+>Now BL31 includes more firmwares of coprocessors and maturer functions
+>so the size has grown bigger in real applications. According to the 
+>value reported by customers, we think reserved 2MiB for BL31 might be 
+>enough for maybe the following 2 or 3 years.
 
-nit: missing e in attributes
+Thanks for your explanation,
+please add this to the commit message and submit next version.
+
+With that, feel free to add:
+Reviewed-by: Miles Chen <miles.chen@mediatek.com> 
+
+thanks,
+Miles
