@@ -2,69 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A9F55ED39E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 05:49:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A32A5ED3F4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 06:41:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232548AbiI1DtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 23:49:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46476 "EHLO
+        id S229907AbiI1ElF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 00:41:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231268AbiI1DtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 23:49:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 904E513D860;
-        Tue, 27 Sep 2022 20:49:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E598661D0B;
-        Wed, 28 Sep 2022 03:49:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74FB2C433D6;
-        Wed, 28 Sep 2022 03:49:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664336946;
-        bh=bOTPOJATD5WKsL9C6BuxhlFd00liXW0Fz81Jl7bSBrA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qy8jd1z39RS9n8akgfrp2gd7lFLb1RpCSRHq74lVlNpMMOfg5t9hWncqzrkZ1N6xu
-         I+8JYo/GJ+tQk/13ppKPkyo2QxKLeK/FLvChgP2o0R8jRUXFbmDcZaITc2BBT4DCOj
-         pmWGAki3kkaNvkNwB6JkpSxChWaqogKLjLn7ocvIJL/WLgNCA+3W9ZjVyXUu9BRGT9
-         RqGa0JnA6EDsUJiJjMLNs61ps9ZAVlhMSylFlNxmQvoLRhmik6HvgxAHtf8VJ+RRyS
-         UseDw/1SNmDebv5FvUUrpVrZ5enKr3OTqbobeiRZZf4pnygUI1oUMVV1sDqMRJ6Sqx
-         qGDBkALujZB4A==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, ahalaney@redhat.com, mturquette@baylibre.com,
-        agross@kernel.org, konrad.dybcio@somainline.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clocks: qcom,gcc-sc8280xp: Fix typos
-Date:   Tue, 27 Sep 2022 22:49:03 -0500
-Message-Id: <166433694019.1852584.18109303594078450499.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220921153155.279182-1-ahalaney@redhat.com>
-References: <20220921153155.279182-1-ahalaney@redhat.com>
+        with ESMTP id S232195AbiI1ElE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 00:41:04 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAB3696D0;
+        Tue, 27 Sep 2022 21:41:02 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id x1-20020a17090ab00100b001fda21bbc90so788208pjq.3;
+        Tue, 27 Sep 2022 21:41:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:from:to:cc:subject:date;
+        bh=kPq7M4Md13aOtxnmroOiniNbRX42UPy2OogHgQ3+zsQ=;
+        b=cMNEI89+UhSbr4/8mbhU00KI9G09pXfwWq11fxQZYfxYj0ElXvHVA+CKc6dSMq159Y
+         7FMFI6fZSyLpI6asddzATvRwHbftbW3O6kGhjx26nj2m2Wxp7s3U8PsaB2hLVmTyJyeD
+         rD5HcOgnao2jIBonLAzA13DbFcn0v9CcuelBEbZt2lKgxC8AkwfhPtDQcYqvqpJ00guV
+         zavexdSs8SM0e541cHRY1QXgnpiQQpfFl4yi6+q0llMmmQquGvXjt8AhpZ/tK+k4Cu1I
+         RVB7N2FDScnkXK7u8C1gliL+Ze04dmhb6/prorOe+rWIj81sA/5Pcqw3vEllIvB2tj5z
+         85Sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:x-gm-message-state:from:to:cc:subject:date;
+        bh=kPq7M4Md13aOtxnmroOiniNbRX42UPy2OogHgQ3+zsQ=;
+        b=qDx9Md3gWpxdSADZGWRRIOAb/SaQRsPDmNlnuCJrBuN5jAencNJVgPinA+z4EhgieO
+         iF2as/aFxk2HMtiZolUchVq1tmI/1g1MzdKx8zMXO73O5NPqZft5C4msIKGZxnLaaeJk
+         HdMx3p4VhvBPDxNnuISU9RUJQUNwhLwsu3ySA0E/KasVzPUTO4K1bYuEqFZxLIUHf2WI
+         sMOfD6r/mUxJmdV2osLp1P/kHtwKNh5y5Gmm1Kctt1fz/H6pa5pBJXK7JiMPMdn7X4mo
+         mo/wQVrTh6Clu6RjRNjKt+kkAYjRiFeGPURg4o3+TQ8RwmjYkalC/64+3tdNzC2LdtKO
+         s+eA==
+X-Gm-Message-State: ACrzQf1AdDEFrmTYzuP5SJQiXnFe6qqbCVTdeHlfen9irqdxDTh0vnXE
+        UXa/zSkMHDLSAeLLbh8DWro=
+X-Google-Smtp-Source: AMsMyM660N9slqQLphUogL5eege7EN0lEwmEWw2lnnK0r6Tp9knJ2WFa/VMciY6iONCGbF8NltmuWA==
+X-Received: by 2002:a17:90b:3909:b0:202:c879:51a9 with SMTP id ob9-20020a17090b390900b00202c87951a9mr8045110pjb.83.1664340061483;
+        Tue, 27 Sep 2022 21:41:01 -0700 (PDT)
+Received: from localhost.localdomain ([45.124.203.18])
+        by smtp.gmail.com with ESMTPSA id u8-20020a170902e80800b00178ac4e70dcsm2504439plg.185.2022.09.27.21.40.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Sep 2022 21:41:00 -0700 (PDT)
+Sender: "joel.stan@gmail.com" <joel.stan@gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+To:     Rob Herring <robh+dt@kernel.org>, Peter Huewe <peterhuewe@gmx.de>,
+        Jarkko Sakkinen <jarkko@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
+        Jason Gunthorpe <jgg@ziepe.ca>,
+        Johannes Holland <johannes.holland@infineon.com>,
+        eajames@linux.ibm.com
+Subject: [PATCH v2 0/3] tpm: tsi-i2c: Add compatible strings
+Date:   Wed, 28 Sep 2022 14:09:54 +0930
+Message-Id: <20220928043957.2636877-1-joel@jms.id.au>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Sep 2022 10:31:56 -0500, Andrew Halaney wrote:
-> pipegmux and SuperSpeed are the proper spelling for those terms.
-> 
-> 
+v2 removes the string from trivial devices and changes some of the
+strings in the bindings.
 
-Applied, thanks!
+Joel Stanley (2):
+  dt-bindings: trivial-devices: Remove Infineon SLB9673 TPM
+  tpm: tis-i2c: Add more compatible strings
 
-[1/1] dt-bindings: clocks: qcom,gcc-sc8280xp: Fix typos
-      commit: 6632a6adae86265ca79cefc0e48e4a672a1108df
+Johannes Holland (1):
+  dt-bindings: tpm: Add schema for TIS I2C devices
 
-Best regards,
+ drivers/char/tpm/tpm_tis_i2c.c                |  2 +
+ .../bindings/security/tpm/tpm-tis-i2c.yaml    | 50 +++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  2 -
+ 3 files changed, 52 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+
 -- 
-Bjorn Andersson <andersson@kernel.org>
+2.35.1
+
