@@ -2,106 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB8055ED9C0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 12:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C7875ED9C8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 12:06:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233387AbiI1KFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 06:05:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60590 "EHLO
+        id S233711AbiI1KG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 06:06:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233926AbiI1KEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 06:04:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386FEF2776;
-        Wed, 28 Sep 2022 03:04:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1F0BB61DF5;
-        Wed, 28 Sep 2022 10:04:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF0FC433C1;
-        Wed, 28 Sep 2022 10:04:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664359451;
-        bh=g5tPUMuRs3hd6RQfSCVRf2c4IhMii1nQlqCrOQtWa9U=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CQdz9zAAeVE7AF8DYtSxxiAcL1nBttpkPgJHxFKh30Tn8XK3xarv/P7Y6Hp/Rwt/k
-         nDoby5HtBciwSHkB4JrieQEYQulFB8kuhWgJcc7fvrDRj75vfX3zf9YaLy6IiQlzP/
-         6S67me3o5jxpfnBHOM7gxL+oehCpSBqqRGubWzVboTsc+zcgNakEg+jHHj8oVyZlRF
-         t6zNJhakBPgyl5S7Yn6XarhxQ3W0WstoKCnAZSedzAgp6rZuNDpeaZhaVsd8BCUngr
-         S/tjka/U43vDeafltuiea7iCif62+PGJc8Dwehr6PB57DlFahLZ3DDgg2ZBHdPWjdZ
-         tsiyFGFMsdoBw==
-Message-ID: <72a56f7e-e7a6-e751-c153-5e85417bc72b@kernel.org>
-Date:   Wed, 28 Sep 2022 12:04:03 +0200
+        with ESMTP id S233893AbiI1KGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 06:06:01 -0400
+Received: from mail-m121145.qiye.163.com (mail-m121145.qiye.163.com [115.236.121.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02356B6031;
+        Wed, 28 Sep 2022 03:05:57 -0700 (PDT)
+Received: from amadeus-VLT-WX0.lan (unknown [218.85.118.195])
+        by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 64787800115;
+        Wed, 28 Sep 2022 18:05:54 +0800 (CST)
+From:   Chukun Pan <amadeus@jmu.edu.cn>
+To:     robin.murphy@arm.com
+Cc:     linux.amoon@gmail.com, heiko@sntech.de, robh+dt@kernel.org,
+        michael.riesch@wolfvision.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH-next v1] arm64: dts: rockchip: Enable NVM Express PCIe controller on rock3a
+Date:   Wed, 28 Sep 2022 18:05:20 +0800
+Message-Id: <20220928100520.3886-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <e75cc292-ff7a-0daa-e2f9-fde376b5e26e@arm.com>
+References: <e75cc292-ff7a-0daa-e2f9-fde376b5e26e@arm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [V16,08/15] dt-bindings: mediatek: Add mediatek,mt8195-jpgdec
- compatible
-Content-Language: en-US
-To:     Irui Wang <irui.wang@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        angelogioacchino.delregno@collabora.com,
-        nicolas.dufresne@collabora.com, wenst@chromium.org,
-        kyrie wu <kyrie.wu@mediatek.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
-        maoguang.meng@mediatek.com, Rob Herring <robh@kernel.org>
-References: <20220928093258.32384-1-irui.wang@mediatek.com>
- <20220928093258.32384-9-irui.wang@mediatek.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220928093258.32384-9-irui.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+        tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCGRhNVhpCThpKHh9DTEpDTFUTARMWGhIXJBQOD1
+        lXWRgSC1lBWUlKQ1VDTlVKSkNVSkJOWVdZFhoPEhUdFFlBWU9LSFVKSktITUpVSktLVUtZBg++
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NE06Egw*Az0jTQwaEkwhNQI*
+        HgEwCkNVSlVKTU1PSE5CTk5OS0hIVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlK
+        Q1VDTlVKSkNVSkJOWVdZCAFZQUlJQk43Bg++
+X-HM-Tid: 0a83838f5e52b03akuuu64787800115
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 11:32, Irui Wang wrote:
-> From: kyrie wu <kyrie.wu@mediatek.com>
-> 
-> Add mediatek,mt8195-jpgdec compatible to binding document.
-> 
-> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
-> Signed-off-by: irui wang <irui.wang@mediatek.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../media/mediatek,mt8195-jpegdec.yaml        | 168 ++++++++++++++++++
->  1 file changed, 168 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
-> new file mode 100644
-> index 000000000000..1e81de4f1301
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
-> @@ -0,0 +1,168 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek,mt8195-jpegdec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek JPEG Encoder Device Tree Bindings
+Hi,
 
-Drop "Device Tree Bindings"
+On 27-09-22, 18:47, Robin Murphy wrote:
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> (as a side note, is pcie2x1's vpcie3v3-supply as queued in -next 
+> actually correct? AFAICS the other socket is effectively powered 
+> straight from VCC3V3_SYS so shouldn't have needed VCC3V3_PCIE,
+> but at least it's there now ready for this one)
 
-Best regards,
-Krzysztof
+Thanks for the correction, I didn't notice this before. You are right,
+the supply of pcie2x1 comes from VCC3V3_SYS. But if we change supply
+of pcie2x1 to VCC3V3_SYS, it will cause pcie30phy to fail to initialize
+normally. The error is the same as the following:
+
+> phy phy-fe8c0000.phy.4: rockchip_p3phy_rk3568_init: lock
+> failed 0x6890000, check input refclk and power supply
+> phy phy-fe8c0000.phy.4: phy init failed --> -110
+> rockchip-dw-pcie: probe of 3c0800000.pcie failed with error -110
+
+If both vpcie3v3-supply of pcie2x1 and pcie3x2 use VCC3V3_PCIE like
+the vendor kernel, they can initialized normally.
+
+Thanks,
+Chukun
+
+-- 
+2.25.1
 
