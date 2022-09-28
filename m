@@ -2,94 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5CD55EE981
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 00:37:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E19395EE98C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 00:47:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234599AbiI1Whx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 18:37:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33368 "EHLO
+        id S229508AbiI1WrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 18:47:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234620AbiI1WhY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 18:37:24 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E90FFFF3CA;
-        Wed, 28 Sep 2022 15:37:23 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id v130so17028513oie.2;
-        Wed, 28 Sep 2022 15:37:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=P++xTzZTIc2lmfX8WxZXDSskvgSwQSbgUUQ1hjUxsDE=;
-        b=lQN+K+qXXArQmIECwqUhZTgZfGVaEolGQI4EIS5gZTLcAR5nA0CkabnghOr2rFAz1X
-         f6eS3wyJxuLPT0ytRr99nauMhL3LbwwZTJF18TCTXP9Ib4LAbpxWe+W6nFkHus4Gka1q
-         8Fvm8KB5P9dlQ8Tjs7cB401+9hsU8Ah8rL0N4Hz61OpDAF+vY2eRc+q77NdcunL81wmN
-         qkezu5I+0DnhD0ztiNTezQFEeLqBypzS8LzvmL4Q9d+NGIw6/0ZC36EK/HNRiwzePuJz
-         GbdTovM2XYvHXPsEZtBz566tSJaaxcanJmGFPLXKorTjg88TREvTRkh0yf4uKudzOwTo
-         /P+A==
-X-Gm-Message-State: ACrzQf2ag0u9/DR3ssYL4p6enwWUI5rQ3VJhcukviCZSsYdyEW/zkaRb
-        rtMkbg63eFc3nxCwKTVOjFhdJ2YdJQ==
-X-Google-Smtp-Source: AMsMyM7Yb+UES5pgqkzihDa67ToREa3zQpjLF+O3UGIQskhh28AQph/ir7XzhzRmrneAV+2SppQ0Lw==
-X-Received: by 2002:a05:6808:d53:b0:351:1cab:9c29 with SMTP id w19-20020a0568080d5300b003511cab9c29mr141867oik.64.1664404643080;
-        Wed, 28 Sep 2022 15:37:23 -0700 (PDT)
-Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r5-20020acac105000000b0034ffacec0basm2373165oif.15.2022.09.28.15.37.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Sep 2022 15:37:22 -0700 (PDT)
-Received: (nullmailer pid 87023 invoked by uid 1000);
-        Wed, 28 Sep 2022 22:37:22 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Erling Ljunggren <hljunggr@cisco.com>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org
-In-Reply-To: <20220928112147.358745-4-hljunggr@cisco.com>
-References: <20220928112147.358745-1-hljunggr@cisco.com> <20220928112147.358745-4-hljunggr@cisco.com>
-Subject: Re: [PATCH v3 3/5] dt-bindings: media: add cat24c208 bindings
-Date:   Wed, 28 Sep 2022 17:37:22 -0500
-Message-Id: <1664404642.089109.87022.nullmailer@macbook.herring.priv>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S230431AbiI1WrZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 18:47:25 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D88AE10E5F9
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 15:47:23 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 04E3847C;
+        Thu, 29 Sep 2022 00:47:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1664405241;
+        bh=vNfK3JAPh5AdhTezq8QQBSHDg3I+Ka0v5GnTD6URbks=;
+        h=From:To:Cc:Subject:Date:From;
+        b=qbOWMV8Rbb3SxCEAwGY62QYPNOYK4JSw1zdUeHil3A4CeyCP5d7Aawd+XmE9ifxUY
+         k4Zeg7hv3MeJx9ICWexnpmLm5XuDAh4Kq6KM5pxUwW0gVf7tLfsAFBzZzOlnuL5wKN
+         K/ObbMn7MbieTIOmhcXOGSxbslm23r+m8gz4sdCk=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        Jianqiang Chen <jianqian@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 00/37] drm: xlnx: zynqmp_dpsub: Initial live video input support
+Date:   Thu, 29 Sep 2022 01:46:42 +0300
+Message-Id: <20220928224719.3291-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Sep 2022 13:21:45 +0200, Erling Ljunggren wrote:
-> Add devicetree bindings for new cat24c208 EDID EEPROM driver.
-> 
-> Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
-> ---
->  .../bindings/media/i2c/onnn,cat24c208.yaml    | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-> 
+Hello,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The DPSUB is the DisplayPort subsystem, a set of hard IP cores found in
+the ZynqMP family of SoCs. It combines a DisplayPort encoder, a video
+blender with two input channels, and a DMA engine. The zynqmp_dpsub
+driver exposes this as a DRM device with one CRTC and two planes.
 
-yamllint warnings/errors:
+In addition to those features, the DPSUB can interface with the
+programmable logic (PL) found in the ZynqMP SoC. Each input to the video
+blender can come from the PL instead of the DMA engine, and the blender
+output can also be routed to the PL. This creates a very configurable
+device that can accommodate lots of use cases, but it also makes it
+difficult to model it as a DRM/KMS device.
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.example.dts:25.39-40 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:384: Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1420: dt_binding_check] Error 2
+This patch series implements initial support for live video inputs, by
+restricting the supported use cases to a single live video input. In
+that mode, the video blender is configured in pass-through mode, with
+the whole DPSUB essentially operating as a DisplayPort encoder only. The
+CRTC and plane functions are then implemented by IP cores in the PL.
 
-doc reference errors (make refcheckdocs):
+To support this, the series start with patch 01/37 to model the
+connections to the PL in DT using OF graph bindings. This fixes a
+historical mistake that forgot to model the connection to the DP
+connector in DT.
 
-See https://patchwork.ozlabs.org/patch/
+With that in place, patches 02/37 to 10/37 refactor the driver to turn
+the DisplayPort encoder implementation, modelled as a DRM encoder, into
+a DRM bridge. Please see individual patches for details. The rework is
+internal only, simplifies the code by making use of the DRM bridge
+connector helper, but doesn't bring any functional change.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+Patches 11/37 to 31/37 continue refactoring of the driver, to cleanly
+separate the DRM planes, CRTC, encoder and connector from the DRM bridge
+implementation. The goal is to make the latter available to a DRM driver
+for the PL display pipeline without registering any DRM device in the
+DPSUB driver itself. Patches 32/37 to 35/37 implement this, reading
+information about the connection to the PL from the device tree to
+decide in which mode to operate.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Finally, patch 36/37 and 37/37 update the ZynqMP core and ZCU106A board
+device tree files to create ports and connect the DPSUB to the
+DisplayPort connector. I have tested the whole series without these two
+patches to ensure that backward compatibility with older DT isn't
+broken.
 
-pip3 install dtschema --upgrade
+With this series applied, the DPSUB can be used as a DisplayPort encoder
+by a PL display pipeline. A careful reviewer may ask me where drivers
+for such a display pipelines are, and that would be a very good
+question.
 
-Please check and re-submit.
+PL display pipelines are currently supported in the Xilinx downstream
+kernel only, which is something I want to address next. That road will
+be full of challenges, as in theory anything can be implemented in the
+PL, including pipelines that connect cameras and displays together. If
+anynoe is interested in discussing this topic, please let me know.
+
+Laurent Pinchart (37):
+  dt-bindings: display: xlnx: zynqmp-dpsub: Add OF graph ports
+  drm: xlnx: zynqmp_dpsub: Switch to atomic encoder enable/disable
+  drm: xlnx: zynqmp_dpsub: Constify mode argument to function
+  drm: xlnx: zynqmp_dpsub: Create DRM bridge to model DP encoder
+  drm: xlnx: zynqmp_dpsub: Don't access connector in
+    zynqmp_dp_set_format()
+  drm: xlnx: zynqmp_dpsub: Move connector registration to bridge attach
+  drm: xlnx: zynqmp_dpsub: Move encoder to DPSUB core
+  drm: xlnx: zynqmp_dpsub: Attach to the next bridge
+  drm: xlnx: zynqmp_dpsub: Use DRM connector bridge helper
+  drm: xlnx: zynqmp_dpsub: Report HPD through the bridge
+  drm: xlnx: zynqmp_dpsub: Drop unused zynqmp_disp.event field
+  drm: xlnx: zynqmp_dpsub: Drop unused zynqmp_disp_format.bus_fmt field
+  drm: xlnx: zynqmp_dpsub: Don't pass CRTC to zynqmp_disp_setup_clock()
+  drm: xlnx: zynqmp_dpsub: Configure blender in zynqmp_disp_enable()
+  drm: xlnx: zynqmp_dpsub: Use local variable in
+    zynqmp_disp_layer_update()
+  drm: xlnx: zynqmp_dpsub: Pass format info to
+    zynqmp_disp_layer_set_format()
+  drm: xlnx: zynqmp_dpsub: Remplace hardcoded values with ARRAY_SIZE()
+  drm: xlnx: zynqmp_dpsub: Don't use drmm_kcalloc() for temporary data
+  drm: xlnx: zynqmp_dpsub: Move pclk from zynqmp_disp to zynqmp_dpsub
+  drm: xlnx: zynqmp_dpsub: Move audio clk from zynqmp_disp to
+    zynqmp_dpsub
+  drm: xlnx: zynqmp_dpsub: Move CRTC to zynqmp_dpsub structure
+  drm: xlnx: zynqmp_dpsub: Move planes to zynqmp_dpsub structure
+  drm: xlnx: zynqmp_dpsub: Move DRM/KMS initialization to separate file
+  drm: xlnx: zynqmp_dpsub: Move CRTC handling to zynqmp_kms.c
+  drm: xlnx: zynqmp_dpsub: Move planes handling to zynqmp_kms.c
+  drm: xlnx: zynqmp_dpsub: Register AUX bus at bridge attach time
+  drm: xlnx: zynqmp_dpsub: Move DP bridge init to zynqmp_dp_probe()
+  drm: xlnx: zynqmp_dpsub: Manage DP and DISP allocations manually
+  drm: xlnx: zynqmp_dpsub: Move all DRM init and cleanup to zynqmp_kms.c
+  drm: xlnx: zynqmp_dpsub: Decouple DRM device from zynqmp_dpsub
+  drm: xlnx: zynqmp_dpsub: Rename zynqmp_dpsub_handle_vblank with DRM
+    prefix
+  drm: xlnx: zynqmp_dpsub: Parse DT to find connected ports
+  drm: xlnx: zynqmp_dpsub: Allow configuration of layer mode
+  drm: xlnx: zynqmp_dpsub: Support operation without DMA engine
+  drm: xlnx: zynqmp_dpsub: Add support for live video input
+  arm64: dts: zynqmp: Add ports for the DisplayPort subsystem
+  arm64: dts: zynqmp: zcu106a: Describe DisplayPort connector
+
+ .../display/xlnx/xlnx,zynqmp-dpsub.yaml       |  67 ++
+ .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    |  20 +
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  24 +
+ drivers/gpu/drm/xlnx/Makefile                 |   2 +-
+ drivers/gpu/drm/xlnx/zynqmp_disp.c            | 647 ++++--------------
+ drivers/gpu/drm/xlnx/zynqmp_disp.h            |  48 +-
+ drivers/gpu/drm/xlnx/zynqmp_dp.c              | 482 +++++++------
+ drivers/gpu/drm/xlnx/zynqmp_dp.h              |   4 +-
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.c           | 316 +++++----
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.h           |  46 +-
+ drivers/gpu/drm/xlnx/zynqmp_kms.c             | 534 +++++++++++++++
+ drivers/gpu/drm/xlnx/zynqmp_kms.h             |  46 ++
+ 12 files changed, 1336 insertions(+), 900 deletions(-)
+ create mode 100644 drivers/gpu/drm/xlnx/zynqmp_kms.c
+ create mode 100644 drivers/gpu/drm/xlnx/zynqmp_kms.h
+
+
+base-commit: 1c23f9e627a7b412978b4e852793c5e3c3efc555
+-- 
+Regards,
+
+Laurent Pinchart
 
