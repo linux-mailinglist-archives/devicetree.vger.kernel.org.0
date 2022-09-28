@@ -2,130 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C85A5ED68C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:43:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3771E5ED68E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:43:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233254AbiI1HnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 03:43:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41628 "EHLO
+        id S232196AbiI1HnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 03:43:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232196AbiI1Hlp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:41:45 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF3701A83B;
-        Wed, 28 Sep 2022 00:39:34 -0700 (PDT)
+        with ESMTP id S232565AbiI1HmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:42:07 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3029221244
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:39:37 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id n35-20020a05600c502300b003b4924c6868so1851223wmr.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 00:39:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1664350775; x=1695886775;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=fgYDK18w1qo3dRZOSQ9zzPBSZaRiLF9ws87GZFwPXX0=;
-  b=MgvYmSidK5wQH9IgiNne2u2pTaLSJvbMcCbWI7fUkO6b5lkZhn0OqYzE
-   tgB+PX/i0goCSq1OL8yqOsxfziMtNIqsTdlNLJNBJqWy1d79EpjefYLlM
-   eOFRY0z0wd6Oru6FAy7pw2JKWvQyid7OW/JXKnddObr4HLTby1b9quCC4
-   fNEnOJqASbZnQZq2mm0ajylNSVTCkDRR29vba1xMKleNfM34jAAwvyo5N
-   Sbqv5eEmm2fbjT8GRD7jtkTWzmbbfiTDIeO9xzi1wu8cZ7OEEdHCr6nRG
-   5Stf8Aw73hw2wIx4glmyGhrDgbZiXG889sF7X1NwU74Eg2QIf5v/IsebZ
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,351,1654552800"; 
-   d="scan'208";a="26445733"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 28 Sep 2022 09:39:33 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 28 Sep 2022 09:39:33 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 28 Sep 2022 09:39:33 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1664350773; x=1695886773;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=fgYDK18w1qo3dRZOSQ9zzPBSZaRiLF9ws87GZFwPXX0=;
-  b=pkuE71wg3ANxHGuS7Z4rUUJd15aaF6O5I7bdH7ycYqaT5BLAaFo2xriQ
-   fA+AdNPCS7uf5bEKSX01dC6UrmvDFhutEn8HSH7eKLsRm0UebSFMESKI0
-   jHTz+X3z+3qva96Zk6dWDB+PBhaosJDxRpR+sb3mtFi4/6h90ozSWbUEY
-   +vw6Rqgp/7d9UGpqi3T6nUM1wJpLCxKA/rt7x7f8DnfKfiRsONHE/d8zj
-   bORqKwj3j/smlpJ0mJ0F2FZjHGdjRl5H2nj/ovjAfvWWR7WCkyNV3BVMA
-   Uk9/VPs8O+c4KYOz0mK6QV+BkzgOHjsEe6SJ+tBhXgMePZlYrKPt1eTbm
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,351,1654552800"; 
-   d="scan'208";a="26445732"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 28 Sep 2022 09:39:33 +0200
-Received: from steina-w.localnet (unknown [10.123.49.11])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 0A9FC280056;
-        Wed, 28 Sep 2022 09:39:33 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date;
+        bh=eZ9vmIYK1QfwhenZBRouVIsuSBTYdFiZ0xlDO4qNIH8=;
+        b=YP59cW8lrVF2vOFhawusd/K5/JXcFlmeVWcAqT73dIHoqw4dH5sezATt8Hll/hbLvX
+         lYD8qnVkefTQ1h0d4S4jN64oaBrp6dsd6vKNCLiOwi8EX09JwxAPeEN2p9pH6SA9IYMN
+         DmxlZx1WEqGi2zNwBX7QxROa+6QyYLs+uS5vViRyZaRG8y9aKlmCZtz8Dj7c44RGqkro
+         M+j1HygCMomNO+hRirBWBUvA85CmmVfWvQmVpJlpfCWJ3IbB/cSH6M7IAr6qXlRDujaV
+         bExBan0gvXm+tRx8uqrS3R1YhpiVvUfOOaqQ8xkPUhyUYlKG1XKcJs+pVYZKUjqOsgbh
+         DX5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=eZ9vmIYK1QfwhenZBRouVIsuSBTYdFiZ0xlDO4qNIH8=;
+        b=D5diPvtDbDqfF18ATXk/ZmFSzNksBNxM0fotjbhqXl1ooH1p8JX+J47JN4bVZBv/Li
+         0kGpAHdHjg9aBnZ4coUI2W9BmyP7VWxfdNOfMe9F8a1wsFFum66fikGU3EbsCxAJb0Vj
+         1V7kPw7fxAkQ6xFy53VW+p4O1/qFSqUBOFmQu0pZ3NrMiVO2dvUjFU6ks5Wq7HIrYd8y
+         PLPQWLKSrs3izVgiACbfFIoqxjdEMxchVtwts6x9DsOGBE1TDS172bLNRPy/KwXqyg4n
+         xVpb+DN0LJiv6r/ivnu68iolyFvXJS3MpBPYYcQoT+oasSoyT3Fi6JI+bA9Ts8FcBW0e
+         2Acg==
+X-Gm-Message-State: ACrzQf3KOft/UDvmYt1DIyzKSWo0lqEtQrSMv7EkV0FxOHxbF3L4mkdY
+        mFqqsGv+iuKOjvJvWpUVIsevSw==
+X-Google-Smtp-Source: AMsMyM5jD0OFaMJHJ0m2ZOXngKxrXR6qa0WEz8XJGfH4kTaEpvtxFwKJlI7b68KFB4UtiSXWq7mv4g==
+X-Received: by 2002:a05:600c:2212:b0:3b4:9ab8:b24e with SMTP id z18-20020a05600c221200b003b49ab8b24emr5583208wml.127.1664350776087;
+        Wed, 28 Sep 2022 00:39:36 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:11d4:7c71:accf:6521? ([2a01:e0a:982:cbb0:11d4:7c71:accf:6521])
+        by smtp.gmail.com with ESMTPSA id m7-20020a05600c3b0700b003a1980d55c4sm912020wms.47.2022.09.28.00.39.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Sep 2022 00:39:35 -0700 (PDT)
+Message-ID: <ec137750-1c8f-d190-701a-48a9866aeefd@linaro.org>
+Date:   Wed, 28 Sep 2022 09:39:34 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 04/12] arm64: dts: qcom: sm8250: align LPASS pin
+ configuration with DT schema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>, Li Jun <jun.li@nxp.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: Re: [PATCH v2 4/4] arm64: dts: tqma8mpql: add support for 2nd USB (host) interface
-Date:   Wed, 28 Sep 2022 09:39:32 +0200
-Message-ID: <2199557.iZASKD2KPV@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <YyxnVicN/W/M2/ir@kroah.com>
-References: <20220915062855.751881-1-alexander.stein@ew.tq-group.com> <5606023.DvuYhMxLoT@steina-w> <YyxnVicN/W/M2/ir@kroah.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220927153429.55365-1-krzysztof.kozlowski@linaro.org>
+ <20220927153429.55365-5-krzysztof.kozlowski@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20220927153429.55365-5-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
-
-Am Donnerstag, 22. September 2022, 15:47:02 CEST schrieb Greg Kroah-Hartman:
-> On Thu, Sep 22, 2022 at 03:39:01PM +0200, Alexander Stein wrote:
-> > Hi Greg,
-> > 
-> > Am Donnerstag, 22. September 2022, 15:17:06 CEST schrieb Greg Kroah-
-Hartman:
-> > > On Thu, Sep 15, 2022 at 08:28:55AM +0200, Alexander Stein wrote:
-> > > > The on-board USB hub has a single reset line which needs to be
-> > > > enabled.
-> > > > 
-> > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > > ---
-> > > > 
-> > > >  .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 41
-> > > >  +++++++++++++++++++
-> > > >  1 file changed, 41 insertions(+)
-> > > 
-> > > This patch failed to apply, please rebase and resend.
-> > 
-> > If I rebase this one to usb-testing (or usb-next) this will conflict with
-> > additional patches for this file already in linux-next later on,
-> > especially
-> > fb4f0b69565e ("arm64: dts: tqma8mpql: add USB DR support"). So IMHO this
-> > might not the best idea.
-> > How to proceed here? Maybe Shawn can take this one once the other 3
-> > patches
-> > hit linux-next.
+On 27/09/2022 17:34, Krzysztof Kozlowski wrote:
+> DT schema expects LPASS pin configuration nodes to be named with
+> '-state' suffix and their optional children with '-pins' suffix.
 > 
-> Yeah, or just wait for 6.1-rc1 to come out?
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 44 ++++++++++++++--------------
+>   1 file changed, 22 insertions(+), 22 deletions(-)
 > 
-> Your call,
 
-now that patches 1 till 3 have hit linux-next, feel free to pick patch 4 into 
-your tree.
+<snip>
 
-Best regards,
-Alexander
-
-
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
