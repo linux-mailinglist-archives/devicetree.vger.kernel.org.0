@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12C705ED639
+	by mail.lfdr.de (Postfix) with ESMTP id DC2A35ED63A
 	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 09:35:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233746AbiI1Hfw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 03:35:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52118 "EHLO
+        id S233000AbiI1Hfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 03:35:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233689AbiI1HfZ (ORCPT
+        with ESMTP id S233709AbiI1HfZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 03:35:25 -0400
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C3E100ABA;
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D917FFA56;
         Wed, 28 Sep 2022 00:35:13 -0700 (PDT)
 Received: from toolbox.int.toradex.com ([81.221.243.92]) by mrelay.perfora.net
- (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0LaEeW-1p6PwX2lfK-00m0Cw;
- Wed, 28 Sep 2022 09:33:52 +0200
+ (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MVNfs-1okTEt3tqY-00YiWI;
+ Wed, 28 Sep 2022 09:33:54 +0200
 From:   Marcel Ziswiler <marcel@ziswiler.com>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
@@ -28,34 +28,34 @@ Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/5] arm: dts: colibri-imx6: move vbus-supply to module level device tree
-Date:   Wed, 28 Sep 2022 09:33:33 +0200
-Message-Id: <20220928073336.63881-3-marcel@ziswiler.com>
+Subject: [PATCH v2 3/5] arm: dts: colibri-imx6: specify usbh_pen gpio being active-low
+Date:   Wed, 28 Sep 2022 09:33:34 +0200
+Message-Id: <20220928073336.63881-4-marcel@ziswiler.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220928073336.63881-1-marcel@ziswiler.com>
 References: <20220928073336.63881-1-marcel@ziswiler.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:YYgeO2Gqz7zvBi5GyqCHTn+NZy5Nxr3/7DF7fy2w/Whp5pOrkvT
- 0tCY1fXuOzGg1y3+0ISslaS1rrIOAYgYoi5r4JzIdDePOi065NBp3iNEy9Kj6lDtLBSvGOT
- 9wftjF6CMqbjmA+5jt+ExMaHVCJlsKHdgJwx8v852XTzHRMVosTiClnrGev3pr3ZaZq0tzz
- EGjCBOkyXXPPtbkDvCrHw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:lRVIgiyO3qk=:0RTQrr0nD4xN7XdWc1hD6F
- BLawpUKcTM9+WpuqG/TjEIIttMSbNltopGn9i67Vh9TtxZG9iiL9MR/d7LGmPHVPYrGmZEqoz
- bsewwe1sGNAJGIjfskSpTZtr06HEhgDAmhWbolt9jINqciMQy8JfCGwEClW71lWsGAqOSBlDj
- NZ+HW04I3n/W5Wg7yPrVWRlGRgZiTWsfl/n8qc1vNKhCbyXZeGMxLYzfYOSzfX8FUM9PIMvuy
- F7P1NW70f8z6TXetyaVRnGbegiYAp1BYxg3zZkoUVBy6Ph32W32hkajal3geZoy0zRLe0n1/x
- sG5DXlejCafpYf3YEAkjCWAAxoUHh5Eihxi04T33/6JCHOB08KcaEW/995Gaz75KjyBQmmlm5
- j/nyvClMXeGL38tkxAWwiSv4C7t9GBsRxtB94yxovTyPA+rNXcVDH5lF/fVqdowU7cLbw/PCY
- zEruL+9HWG2imaNlBZF9NZu0ain13AUXTw2pSSm1o5xJncOR3JH6gM9BZ7I7rmY9V9+zTAQPw
- 5/Bbzu0AMzGLbFLNYg2/sQZioeXTtwmLKQbdCRZmGQs3FjSCumZoyepBPVVBW+3RUU3iVMTEh
- LeoKTpSQdbSVyVtHiEnqPNRz+TxTcHBT3hkEzrUNDBGIm/JX3H1HAVDpA+EZTkP5kW3Bn1vu/
- Kb74OlOfy8qLCThXNbs/SPNpjJmpYJfCRpCvwJ2ifJne9Mad/Zityi4dkaW55xBLKld7dwsDV
- /7phmgjWyMZE1ndJTV8cwv2wIZdFhKv/Xu2HiK0izG0Zg+/OvCud0CGJ9qfRs4IF1xmvUmY4i
- IwuS0hk
+X-Provags-ID: V03:K1:FGWmuOY2YK1iqQS2bXQ2FTeM1v9QsAVrOrGS++SDPzuGV3rfHzw
+ WDLJqWJUr2BT6I3wmREor0EGfU3eS9+Ly4NtRP8cKDO5IdxI9GPZqcnrHWKljVKIgpqNBVP
+ 3eZU34mIUsLt9thp4571uhaF5u7cTAWPtiYuxw9NIwEmxxFbNb/TvafJcOO8OoWH05ZEC+G
+ Nc9GdZH5wlaTIo805ZH4Q==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:2AlgoefTcdw=:ywpl96VcQ+KljZju0P/gB5
+ AgkPuetedxm57Wo8/Z3quESGIX20WUQhW5F2ua+5KrN0HuTn3OIG1kiSa5O+sNfNzPB3Omdu5
+ OXiUlWqZFA2MQ2Pdk0lbx7WcuPF3SF62ByCES4AUbDcIqdgmpl2xrrojR3jkeQ+gWZq/F21rt
+ tlwHJw5tJlqH6huRwS7H9+6xyRatQBjTuVZ1wvj3PoIlpCQ2aHwEGRPQxL9ebQlRkPWvAbZxh
+ bb8w66BJqREmFMRfcnj/Hn/7b7NLzIaemkUwGkiyGav8KJPkF4cO7bClGq1b3DSHtsq+iq1Wx
+ o4YdbyhZrIopR1o9E9zSg5lUPZigqPFHXg8OKIZyE3/dTvuoxPe/7mFzlMAkDM6b7s/mjibd/
+ HQlznwPjPxdmOtwLdwQ++ktpH+ch1P4/ycQCbMW6I/PDfg1r2wyiYGWCkL9B76HKBtTqxpIJP
+ /RidQ28iSMpJxIVdmCeW5mMp9IDUHheJ8lDW2wgMy1deBUG2Pubwr70dpsz13cZErPkpBMFPm
+ nodNr/T4swAXzJNOcCg8FG35O/zl2A2iIo9bsSv6/N4q5JdGvBfIRf0500PlAdKFYh3xrA6pK
+ zBfszAzUrXDEXgDQBlSVdUJncYIRINIFNbBksRDQGQUqragPIr+Iw1H+g7FT/78icC+gTl8si
+ JHdZNTXkzIhOR+NX+ZOHUuP+6UgXpkBErXoXs2hO9gkXfFwt9yxVOl7RejK/mRik556D7+0zJ
+ O1MG354uAx4XDR5OrL8FZGkcZR3ylX63/seA8unSVc/HiurIlLzwUtFaPWOGQsjHOWAqKiZ8d
+ tBze3Fp
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,90 +64,35 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Move USB VBUS supply from single carrier board to module level device
-tree. This pin is as per Colibri module family standard.
+Specify USBH_PEN GPIO being active-low rather than active-high.
+
+Note that this should not have any functional impact as for fixed
+regulators the regular GPIO polarity is ignored and a true active-high
+enable GPIO would need an additional enable-active-high property which
+is/was not the case here. However, this may be rather confusing which
+this patch fixes.
 
 Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 ---
 
 (no changes since v1)
 
- arch/arm/boot/dts/imx6dl-colibri-aster.dts   | 1 -
- arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts | 1 -
- arch/arm/boot/dts/imx6dl-colibri-iris.dts    | 1 -
- arch/arm/boot/dts/imx6qdl-colibri.dtsi       | 9 +++++++--
- 4 files changed, 7 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/imx6qdl-colibri.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx6dl-colibri-aster.dts b/arch/arm/boot/dts/imx6dl-colibri-aster.dts
-index 74e8a6cd8bed..a28e083f29d5 100644
---- a/arch/arm/boot/dts/imx6dl-colibri-aster.dts
-+++ b/arch/arm/boot/dts/imx6dl-colibri-aster.dts
-@@ -99,7 +99,6 @@ &uart3 {
- };
- 
- &usbh1 {
--	vbus-supply = <&reg_usb_host_vbus>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts b/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts
-index 7272edd85a49..a02981d4a3fc 100644
---- a/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts
-+++ b/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts
-@@ -111,7 +111,6 @@ &uart3 {
- };
- 
- &usbh1 {
--	vbus-supply = <&reg_usb_host_vbus>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm/boot/dts/imx6dl-colibri-iris.dts b/arch/arm/boot/dts/imx6dl-colibri-iris.dts
-index cf77d894f6d7..c5797ff35b71 100644
---- a/arch/arm/boot/dts/imx6dl-colibri-iris.dts
-+++ b/arch/arm/boot/dts/imx6dl-colibri-iris.dts
-@@ -138,7 +138,6 @@ &uart3 {
- };
- 
- &usbh1 {
--	vbus-supply = <&reg_usb_host_vbus>;
- 	status = "okay";
- };
- 
 diff --git a/arch/arm/boot/dts/imx6qdl-colibri.dtsi b/arch/arm/boot/dts/imx6qdl-colibri.dtsi
-index 3e98b5da0cc6..21c5049bda4e 100644
+index 21c5049bda4e..d8f985f297e4 100644
 --- a/arch/arm/boot/dts/imx6qdl-colibri.dtsi
 +++ b/arch/arm/boot/dts/imx6qdl-colibri.dtsi
 @@ -112,7 +112,7 @@ reg_module_3v3_audio: regulator-module-3v3-audio {
  
  	reg_usb_host_vbus: regulator-usb-host-vbus {
  		compatible = "regulator-fixed";
--		gpio = <&gpio3 31 GPIO_ACTIVE_HIGH>; /* USBH_PEN */
-+		gpio = <&gpio3 31 GPIO_ACTIVE_HIGH>; /* SODIMM 129 / USBH_PEN */
+-		gpio = <&gpio3 31 GPIO_ACTIVE_HIGH>; /* SODIMM 129 / USBH_PEN */
++		gpio = <&gpio3 31 GPIO_ACTIVE_LOW>; /* SODIMM 129 / USBH_PEN */
  		pinctrl-names = "default";
  		pinctrl-0 = <&pinctrl_regulator_usbh_pwr>;
  		regulator-max-microvolt = <5000000>;
-@@ -677,6 +677,11 @@ &uart3 {
- 	status = "disabled";
- };
- 
-+/* Colibri USBH */
-+&usbh1 {
-+	vbus-supply = <&reg_usb_host_vbus>;
-+};
-+
- /* Colibri USBC */
- &usbotg {
- 	disable-over-current;
-@@ -995,7 +1000,7 @@ MX6QDL_PAD_SD4_DAT2__PWM4_OUT	0x1b0b1
- 
- 	pinctrl_regulator_usbh_pwr: gpioregusbhpwrgrp {
- 		fsl,pins = <
--			/* USBH_EN */
-+			/* SODIMM 129 / USBH_PEN */
- 			MX6QDL_PAD_EIM_D31__GPIO3_IO31	0x0f058
- 		>;
- 	};
 -- 
 2.36.1
 
