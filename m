@@ -2,81 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3FCC5EE373
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:49:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D06E5EE37C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:50:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234648AbiI1Rsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 13:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35350 "EHLO
+        id S234147AbiI1Rul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 13:50:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233770AbiI1Rsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:48:47 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58DB7F6F47
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:48:45 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id j16so21517750lfg.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:48:45 -0700 (PDT)
+        with ESMTP id S234582AbiI1Ruj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:50:39 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 790594B0D4
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:50:36 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id d42so21592600lfv.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:50:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=+IT6jI/tA+QmLxNfkgpSt+mqEt8iuqK1LQzi3BmIPbM=;
-        b=R9b8iQDEllsyBMOQLZtP+YcGH+BbVQE+O7Fy/uLCYn1N+KgDPDN3RAi6JPINzEgRj4
-         j1W6ZlPiCYpwBKdnjoxFdNrRjJdF5DqCE1JSeX6FwaCWy/BHq43ZEvVAztIR6He8AHdk
-         RcyAtvhkwk5isE8VLmvcSlaOtlkUMKCpoJfcvQIbrPHpt5Cw0WzrhrruJmITMkx5M3he
-         6BYChg9o2VFLv5LqYFc39g0GfPNk4BP7k+ZVQjolNe4J3cyAh9gCz5I5rkxAOjqy46YP
-         p8+T6LEF32PkjwFCQnmA1VoR/53QUFULWbYvB4DjtkpuS/FU88xzsyKdCQ++7nXkoZAY
-         mG3w==
+        bh=szYRUNTBzhtYD1dEwWP+61BLschhE4HnOh0yg58NYWc=;
+        b=mC7G9bQo9HU0f6epli3GndKdWBSE8mKRNHsJbfkCwBZ7Ul8WpsecgIkm8+ZNy2E/dR
+         0HrdfJS1VZjm0/7ynVDeqMsQDJoQ0ZAurec+DhV40EWxROgQOG8HPTt0UiF2d9aKQ0BM
+         RwsL+gAlJ2kLN4JFQeKYkymK3z6xGwiVXeqOR84hVPaDIndoofLqwt3rOjJSl8pvKcJD
+         1LdIdHyU9WzWpBu7lSWCaRpFh7TB+qx+LC+nG8sbqQ+tsDoGCqE0nfUk+up8twztsbjb
+         hyKGsUKPSG37/aORpxP1YRncPExyozhskt2hNplrHLzoQpVJGBi4FDXYrClymntdLOCk
+         mj+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=+IT6jI/tA+QmLxNfkgpSt+mqEt8iuqK1LQzi3BmIPbM=;
-        b=WGcH+jnn7hmOiNivjx5XYydDiQdiI7kFfN2/gG0y6MZZCS/Oi2zXjEPzaJ2Piog4wB
-         hUSlHt9kS5ksBJdM2EGRJeatIjTqautTgDlIoKLu2WU8s9X92wXYGXFBqme2q9I33lJW
-         v0Fp50AvHSxL/G9sB8cc9fWFS2Uc+5SsKQdDL/NG8PB+Oo4ucix3lST54U5Fh5xZ0MnS
-         Eu3tg7AGfWVyORAIkaob2Dx2MeR2PBaxD7asmKXD789hzEuvYQiXuOU0v97eagR1y3QT
-         4l+OD17wdoMSM1QDkwbs9Vz0Ncy8x5P2m/ysFZOon2+Q1BTKvUGBGNYYPNCVtMmWEA/C
-         Hdlg==
-X-Gm-Message-State: ACrzQf1MbfRU6df5plGYtOJfthox6FfASn0qroIR/ulNUOPrPkU/Dr0y
-        jDYac+s2H/gWh2gvWKl2HzRrTg==
-X-Google-Smtp-Source: AMsMyM4vRL8hpAE9BCUWh0ZDlmMKBfh1OtC+I7+IB4GRvGBa8RJq1FWlKYBH+Gd3SIqbPQtfP1qprw==
-X-Received: by 2002:a19:2d5c:0:b0:498:3e16:b3fc with SMTP id t28-20020a192d5c000000b004983e16b3fcmr13494804lft.498.1664387323676;
-        Wed, 28 Sep 2022 10:48:43 -0700 (PDT)
+        bh=szYRUNTBzhtYD1dEwWP+61BLschhE4HnOh0yg58NYWc=;
+        b=N0JUtHOObYHBXqqQoQZOCH5fuYi4vEbhhPzzLmFV7ikrR23gN27Dch0kzhlk/ZRs3w
+         q8rWjJZmPXe3GgGKjvqj3lABo+gij0s+VCKcGFdEVd122S60WXXQgttuTHVoXnttqAOV
+         XqdTzJENUUxBWdSk8iXjh0jbCoTlW7WPpunrgSBWpvUzbOg+8YirFI14Ej9bajNEry1X
+         FjGnAS+9mKlfULDcmxWF12JnlEJbdN3AVXE19JWPJ7BMzaJmnE6MaqV+ZExyW71qjpot
+         7E8RF4dpvlNsMgUCjlv6/+tQrSJQx/z4kf6SGsms+RkgWdqHBu1IrtPL9TTTtcWsiQfB
+         ayTw==
+X-Gm-Message-State: ACrzQf1SFMhtKf7jgZ9hCX64n7F722ltNf4ANB4zPZZ6UAG2JNkE+are
+        afLU/o/cSLFQ/0/xG/F/Gpn07Q==
+X-Google-Smtp-Source: AMsMyM5rxIZDytENB8AHhahxxOtrIFCEJdUiYcgZbpXU+ZEkOnoiYOmcLtFg6ddHKwNiFLOfdB0k8A==
+X-Received: by 2002:a05:6512:1056:b0:498:efaf:5bd1 with SMTP id c22-20020a056512105600b00498efaf5bd1mr13304252lfb.64.1664387434846;
+        Wed, 28 Sep 2022 10:50:34 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p20-20020a2eba14000000b002682754293fsm504528lja.1.2022.09.28.10.48.42
+        by smtp.gmail.com with ESMTPSA id x25-20020a056512131900b00498ebd60c35sm532566lfu.165.2022.09.28.10.50.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 10:48:43 -0700 (PDT)
-Message-ID: <6df35c78-0ab1-b471-4541-7e29ea26a6ca@linaro.org>
-Date:   Wed, 28 Sep 2022 19:48:42 +0200
+        Wed, 28 Sep 2022 10:50:34 -0700 (PDT)
+Message-ID: <dfb09b81-43e0-2fec-47f8-f341dea15f04@linaro.org>
+Date:   Wed, 28 Sep 2022 19:50:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
 Subject: Re: [PATCH v3 02/11] dt-bindings: remoteproc: mediatek: Support
  MT8195 dual-core SCP
 Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
+To:     =?UTF-8?B?VGluZ0hhbiBTaGVuICjmsojlu7fnv7Ap?= 
+        <TingHan.Shen@mediatek.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= 
+        <tiffany.lin@mediatek.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= 
+        <Yunfei.Dong@mediatek.com>,
+        "peng.fan@oss.nxp.com" <peng.fan@oss.nxp.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "andersson@kernel.org" <andersson@kernel.org>,
+        =?UTF-8?B?QW5kcmV3LUNUIENoZW4gKOmZs+aZuui/qik=?= 
+        <Andrew-CT.Chen@mediatek.com>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>
+Cc:     "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
 References: <20220927025606.26673-1-tinghan.shen@mediatek.com>
  <20220927025606.26673-3-tinghan.shen@mediatek.com>
+ <08abade9-f6f5-77cf-b83d-739b0b81543a@oss.nxp.com>
+ <d16002714baf1eccb9b0ef5a2ae60e9b25194701.camel@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220927025606.26673-3-tinghan.shen@mediatek.com>
+In-Reply-To: <d16002714baf1eccb9b0ef5a2ae60e9b25194701.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -87,138 +99,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2022 04:55, Tinghan Shen wrote:
-> The MT8195 SCP is a dual-core RISC-V MCU. Extend the yaml file
-> to describe the 2nd core as a subnode of the boot core.
+On 28/09/2022 11:17, TingHan Shen (沈廷翰) wrote:
+> On Wed, 2022-09-28 at 15:01 +0800, Peng Fan wrote:
+>>
+>> On 9/27/2022 10:55 AM, Tinghan Shen wrote:
+>>> The MT8195 SCP is a dual-core RISC-V MCU. Extend the yaml file
+>>> to describe the 2nd core as a subnode of the boot core.
+>>>
+>>> The configuration register is shared by MT8195 SCP core 0
+>>> and core 1. The core 1 can retrieve the information of configuration
+>>> registers from parent node.
+>>
+>> I think the commit message would not convince people you put
+>> scp 1 as subnode of scp 0.
+>>
+>> Regards,
+>> Peng.
+>>
+> Hi Peng,
 > 
-> The configuration register is shared by MT8195 SCP core 0
-> and core 1. The core 1 can retrieve the information of configuration
-> registers from parent node.
+> Thanks for your review. I should give the most reasonable explanation
+> for why SCP 1 is a subnode.
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  .../bindings/remoteproc/mtk,scp.yaml          | 97 ++++++++++++++++++-
->  1 file changed, 92 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> index 786bed897916..c012265be4eb 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> @@ -75,6 +75,83 @@ properties:
->      required:
->        - mediatek,rpmsg-name
->  
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^scp-c[0-9]+@[a-f0-9]+$":
+> Adding SCP 1 as a subnode helps to assure finish probing SCP 1
+> before starting SCP 0 by using of_platform_populate. It's because
+> that I want to probe SCP 1 as a remoteproc subdevice of SCP 0.
+> such that when SCP 0 crashed, SCP 0 can reboot SCP 1.
 
-drop c[0-9]. Node names should be generic
+As Peng noted, this is not proper description of hardware. The SCP 0/1
+do not have parent-child relationship, so do not model it that way in
+Devicetree.
 
-> +    type: object
-> +    description:
-> +      The MediaTek SCP integrated to SoC might be a multi-core version.
-> +      The other cores are represented as child nodes of the boot core.
-> +      There are some integration differences for the IP like the usage of
-> +      address translator for translating SoC bus addresses into address space
-> +      for the processor.
-> +
-> +      Each SCP core has own cache memory. The SRAM and L1TCM are shared by
-> +      cores. The power of cache, SRAM and L1TCM power should be enabled
-> +      before booting SCP cores. The size of cache, SRAM, and L1TCM are varied
-> +      on differnt SoCs.
-> +
-> +      The SCP cores do not use an MMU, but has a set of registers to
-> +      control the translations between 32-bit CPU addresses into system bus
-> +      addresses. Cache and memory access settings are provided through a
-> +      Memory Protection Unit (MPU), programmable only from the SCP.
-> +
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - mediatek,mt8195-scp-core
-> +
-> +      reg:
-> +        description: The base address and size of SRAM.
-> +        maxItems: 1
-> +
-> +      reg-names:
-> +        const: sram
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      firmware-name:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        description:
-> +          If present, name (or relative path) of the file within the
-> +          firmware search path containing the firmware image used when
-> +          initializing sub cores of multi-core SCP.
-> +
-> +      memory-region:
-> +        maxItems: 1
-> +
-> +      cros-ec-rpmsg:
-> +        type: object
-> +        description:
-> +          This subnode represents the rpmsg device. The namesof the devices
-> +          are not important. The properties of this node are defined by the
-> +          individual bindings for the rpmsg devices.
-
-Same comments as with patch #1.
-
-> +
-> +        properties:
-> +          mediatek,rpmsg-name:
-> +            $ref: /schemas/types.yaml#/definitions/string-array
-> +            description:
-> +              Contains the name for the rpmsg device. Used to match
-> +              the subnode to rpmsg device announced by SCP.
-> +
-> +        required:
-> +          - mediatek,rpmsg-name
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - reg-names
-> +
-> +    additionalProperties: false
-> +
->  required:
->    - compatible
->    - reg
-> @@ -110,16 +187,26 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    #include <dt-bindings/clock/mt8192-clk.h>
-> -
->      scp@10500000 {
-> -        compatible = "mediatek,mt8192-scp";
-> +        compatible = "mediatek,mt8195-scp";
->          reg = <0x10500000 0x80000>,
->                <0x10700000 0x8000>,
->                <0x10720000 0xe0000>;
->          reg-names = "sram", "cfg", "l1tcm";
-> -        clocks = <&infracfg CLK_INFRA_SCPSYS>;
-> -        clock-names = "main";
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0x105a0000 0x105a0000 0x20000>;
-> +
-> +        scp-c1@105a0000 {
-> +                compatible = "mediatek,mt8195-scp-core";
-
-Messed indentation. Use 4 spaces for example indentation.
-
+Probe ordering is operating system specific, not related to bindings.
 
 Best regards,
 Krzysztof
