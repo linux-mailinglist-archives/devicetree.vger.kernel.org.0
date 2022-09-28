@@ -2,67 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18D765EDD10
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 14:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5048F5EDD2B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 14:51:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233745AbiI1Mmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 08:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45554 "EHLO
+        id S233735AbiI1Mvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 08:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233511AbiI1Mmt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 08:42:49 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5611051424
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 05:42:47 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id z2so17118852edi.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 05:42:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=+hjCG5UL8I6/ympH09ZsxGiHso7S25Rf/BVVg15oSkU=;
-        b=bYPruSwGmECkZuxS1nGmryAJEGsb1OPELVmL5cNoFOcLHOY5jGAr3JCMMpKy4xWbI5
-         EmKzsaZlS7/OxuRcJnP624lwy7Mgua220PRA8yoY4c5Xsa84NlibXFBZa8aTKB67YnA9
-         CJhLPZtl8eN49+t8zm3CtVg10KCGAgnRURVxM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=+hjCG5UL8I6/ympH09ZsxGiHso7S25Rf/BVVg15oSkU=;
-        b=UYuzXlP1O5QYNpSUFOGKHmkp+0w5k85n+0S20NJ9jgeEcAKN5haVTcxXwJmFAYdwVR
-         r3VJLDjbahCgwnvM2ec7SlYyvkMsZeW9uH712YlRSxkTvQdD7eN+zbfOtI81tm0wu+cH
-         PdpFk+Y7Zg8+fU5vOyjACpn8PYxM8gDSB90Uu2nbFm6CPMgb1neOzm8dlvzmE7pFNKdz
-         e+UyaBjB+3Xov5/XPQVarvaLFGnHOyG+YeGyDXR624URiQnyNRF5zYrBRqkbH387tJ2/
-         V9d2gy7vZuLXtv+DiExc1GWgNkJvFXzoyxqUC83BF3iKjt8qd8LM3NX/GdG4tbk7fkgl
-         EvjQ==
-X-Gm-Message-State: ACrzQf2RAeRotNfMzZQ0RPOueQ/Dp/BA+1wdtWoYGKfkNMD1cnXfekoi
-        81D+mCZljR4h2lUQl39+ot6JJnBsvpVrZABF7btqZw==
-X-Google-Smtp-Source: AMsMyM4L09hga+4vZZ+SsULLjP5VCQkFWMN77LetF1he+ktd1029o2uzUEeK6LjBCtBjRvzUcnljgtyBLAiiOCJXfF4=
-X-Received: by 2002:a05:6402:42c5:b0:44e:b640:16fb with SMTP id
- i5-20020a05640242c500b0044eb64016fbmr33974635edc.29.1664368965904; Wed, 28
- Sep 2022 05:42:45 -0700 (PDT)
+        with ESMTP id S233942AbiI1Mvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 08:51:31 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E01BF2D74F
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 05:51:29 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id C9103849E9;
+        Wed, 28 Sep 2022 14:51:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1664369487;
+        bh=niFYU9JNexGdtrIEgwWXPtoMx2e+cBNGPmmVKn0J13M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=R7YU3ac/gK49qktq9rmPGp64IHRMlOKKg7WA3GKBwUN1t4CjtOM1vyI44jbzihciD
+         cBJqSRXsgkE6gqd/TuiTPDPCXL9RqvLroPgW+Yq/2e629dg5wb/x6YebP8ih50C0yL
+         sDJ6yvdOK0glyz4dZlZHoXBNjY27dQ29ckQfrUCeniv0iPAEG8F6he6w1/QDHcF3i6
+         5QDuUn4Y+cjb5inE0WXPMAOKteZAHhpMB93NHM2Zr4orDpemaP+W/uXY7EGJBx0wzv
+         y9IFvIKI/Jzzl5zaeD/uPpzIXT3Zs6Lxnwl4pkKku+HB+mGEIL3KQJC8HlWnSe66Tw
+         siApaUOq0+9Lg==
+Message-ID: <58ce0d1b-d957-6d45-7436-a397a8426107@denx.de>
+Date:   Wed, 28 Sep 2022 14:51:26 +0200
 MIME-Version: 1.0
-References: <20220907131241.31941-1-romain.perier@gmail.com>
- <20220907131241.31941-3-romain.perier@gmail.com> <20220927163314.rzfld7sqchsdfvfg@pengutronix.de>
-In-Reply-To: <20220927163314.rzfld7sqchsdfvfg@pengutronix.de>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Wed, 28 Sep 2022 21:47:12 +0900
-Message-ID: <CAFr9PXmWGTQoNxxY99MT_ptHMDTmai1eOrZteuP7A0TyPwVidw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] pwm: Add support for the MSTAR MSC313 PWM
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Romain Perier <romain.perier@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH] dt-bindings: memory-controller: st,stm32: Fix
+ st,fmc2_ebi-cs-write-address-setup-ns
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     christophe.kerello@foss.st.com, robh+dt@kernel.org,
+        mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
+        alexandre.torgue@foss.st.com,
+        linux-stm32@st-md-mailman.stormreply.com, linus.walleij@linaro.org
+References: <20220926222003.527171-1-marex@denx.de>
+ <166434910296.10148.2597210651020575227.b4-ty@linaro.org>
+ <c54f15a6-b4e6-d512-654f-28819eeaab4c@linaro.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <c54f15a6-b4e6-d512-654f-28819eeaab4c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,33 +62,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+On 9/28/22 09:12, Krzysztof Kozlowski wrote:
+> On 28/09/2022 09:11, Krzysztof Kozlowski wrote:
+>> On Tue, 27 Sep 2022 00:20:03 +0200, Marek Vasut wrote:
+>>> The property st,fmc2_ebi-cs-write-address-setup-ns should really be
+>>> st,fmc2-ebi-cs-write-address-setup-ns (there is underscore _ between
+>>> fmc2 and ebi and there should be a dash - instead). This is a remnant
+>>> from conversion of old non-upstream bindings. Fix it.
+>>>
+>>>
+>>
+>> Applied, thanks!
+>>
+>> [1/1] dt-bindings: memory-controller: st,stm32: Fix st,fmc2_ebi-cs-write-address-setup-ns
+>>        https://git.kernel.org/krzk/linux-mem-ctrl/c/587f9891ec9661e16df7e5268543416a7d8cb547
+> 
+> Just a note: it's late for me in the cycle to pick up patches. I applied
+> this but there is a change it will miss this merge window.
 
-On Wed, 28 Sept 2022 at 01:33, Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
->
-> Hello Romain, hello Daniel,
+That's no problem really, it's been broken for so long and nobody 
+noticed, that one cycle won't make much of a difference.
 
-Romain is doing the fixes to this so I'll let him answer the other
-bits but on all of the "what does the hardware do?" questions I'll
-have to test that on the hardware and follow up. The only
-documentation we have is very rough listings of registers and bits and
-not much else.
+> If that
+> happens, I will keep it for next cycle (no need to resend).
 
->
-> > +MODULE_LICENSE("GPL v2");
-> > +MODULE_DESCRIPTION("Mstar MSC313e PWM driver");
-> > +MODULE_AUTHOR("Daniel Palmer <daniel@thingy.jp>");
->
-> That address doesn't match the author of this patch. Is this on purpose?
-
-My intention is to put all of the stuff for this MStar (Now Sigmastar)
-platform under this domain including the kernel, u-boot and PCB files
-so that at some point I can handover the whole thing to someone else
-or maybe a community that want to take over by giving them the domain.
-I should really set my email address in git for these commits to match
-but keep forgetting.
-
-Cheers,
-
-Daniel
+Nice, thanks !
