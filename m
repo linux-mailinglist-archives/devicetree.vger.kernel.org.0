@@ -2,126 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E96E85EDB51
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 13:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA3DA5EDB58
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 13:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233848AbiI1LI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 07:08:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40816 "EHLO
+        id S234040AbiI1LJK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 07:09:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234133AbiI1LIU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 07:08:20 -0400
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA3DE4DAF;
-        Wed, 28 Sep 2022 04:06:42 -0700 (PDT)
-Date:   Wed, 28 Sep 2022 11:06:30 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1664363199; x=1664622399;
-        bh=/92kCfS+GRH3XqMQ3bWJNxBIL7UNiMfLCQcS7CPJ5ng=;
-        h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID;
-        b=ug4dh8P+fEjbf1yUvdjS9tWhjxFKVKrS76WgGRIokdqHsA4kiDrsjOwP4DpuiLqUq
-         EBb9Kfb9ysKvOj1vOxj7bIvhhbdqzW46kqZBfgVIL2Ap27AZAg8QC+MCumSOvWQy0q
-         Us3+filJfEDHXn0yCayQsZfCH/sAODM4ZZEx7+qT5KdhR+NKyEsySpvx3eB9T9C5pn
-         tRdzD0HobwsegevS1f3KNNLfGHWJ6ns2LhArNphNwCaK/A4yFzESG7y6toHEbAtKNt
-         nDWYIuwfsLcVpNoVaiDEtapcdGSVUGDxY17Y2D5/E7JxsPQAEtH03jpV4Lj6knOCJO
-         g9VERuMpr9rrQ==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8916-samsung-j5-common: Add Hall sensor
-Message-ID: <20220928110529.96373-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20220928110049.96047-1-linmengbo0689@protonmail.com>
-References: <20220928110049.96047-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S229630AbiI1LIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 07:08:25 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 878C5491D8
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 04:06:51 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id z4so2007340lft.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 04:06:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=MjGw3ED/TETSi7nUoWUn1OatGY683JgODwtrOsTO7oE=;
+        b=kiMV++3umq8EfNZvf0P8iZ7HoVCBZdQcN6/qODNwLJ+b2LmGSJcL+yz/g+VRr8DoHt
+         M2gjV8AvtogvuYYqe6w59HouiKnIzQMf4oZTC0vz7dqbeoU06pWqDa4yJbW53oWkPgl9
+         nfj4nh7XKVTzQXwoTKqTq68SxMizAGk2os8jXnhJgpQQECfAYDmXdjJdkviUXDk13js7
+         yWiJFpq6+Z3ZI49f3GxSN0xYWK9Uc+8xxyQ5OIjzuP8BlMocuCJGibbf58oEBSFBRgCu
+         ZagYoDqx8Ux+rtCrkD3ca9X4Ku1CudQ2CrApqAit9TNCYnkmi+5NzXgOFvAwh3JrpEBn
+         ChYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=MjGw3ED/TETSi7nUoWUn1OatGY683JgODwtrOsTO7oE=;
+        b=KExHJVaaIsusWijjVwoKvVIIeDWW74IYselRRY1Wm8K7SAV08DMNcS3j8QMcINx+hJ
+         /BwVJl867pfyUTw1oRtSjtM7HySTGzf9ekZywKqc1YVzRkEP1bmZu6uC4bCOnPrvzRGy
+         q/hwpBSOEog8oPyhWNKTpRawatuFN27Ls2ZN03krwU9Ab9R7/2JQV2wIdKd6KifGFWeD
+         T34fejKxH4KBU0RmsYusBvHdBir4kAHKUVieiECzl8M/ZR2ti947JqiZx8e0yDA+u0+g
+         e46AYFlHN85Zn0wy0TcEE0DIRP6lez/pBZVZ+4DQWoACJb649bspeqSsMRXMoGZkvsJr
+         g7cg==
+X-Gm-Message-State: ACrzQf2d8yDMcjdVXU6iPomAuszdpZprak+y/S4JbRPMb+WX1UtRnwBm
+        UIstfSneqp4mFsEmVkq9eBuLoQ==
+X-Google-Smtp-Source: AMsMyM51CVLNFGE9FoGftyRc73rmycB450sbiyZ+NLDJ2mmk7hNmJeDHw5Q1c5JJoS0Pk9nC1BJAhg==
+X-Received: by 2002:a05:6512:402:b0:49e:e07:5e7e with SMTP id u2-20020a056512040200b0049e0e075e7emr13444379lfk.530.1664363209933;
+        Wed, 28 Sep 2022 04:06:49 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id l30-20020a2e571e000000b0026ac7cd51afsm404614ljb.57.2022.09.28.04.06.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Sep 2022 04:06:49 -0700 (PDT)
+Message-ID: <f51c63eb-150d-b38e-de9f-afde461e5059@linaro.org>
+Date:   Wed, 28 Sep 2022 13:06:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: arm64: dts: qcom: msm8916-samsung-j5: Use common init device tree
+Content-Language: en-US
+To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
+        devicetree@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Julian Ribbeck <julian.ribbeck@gmx.de>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>,
+        Josef W Menad <JosefWMenad@protonmail.ch>,
+        Markuss Broks <markuss.broks@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20220928110049.96047-1-linmengbo0689@protonmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220928110049.96047-1-linmengbo0689@protonmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung Galaxy J5 2015 and 2016 have a Hall sensor on GPIO pin 52.
-Add GPIO Hall sensor for them.
+On 28/09/2022 13:01, Lin, Meng-Bo wrote:
+> The smartphones below are using the MSM8916 SoC,
+> which are released in 2015-2016:
+> 
+> Samsung Galaxy J5 2015 (SM-J500*)
+> Samsung Galaxy J5 2016 (SM-J510*)
+> Samsung Galaxy J3 2016
+> - SM-J3109/SM-J320Y/SM-J320YZ
+> - SM-J320N0/SM-J320ZN
+> - SM-J320P/SM-J320R4/SM-J320V/SM-S320VL
+> 
+> Add a common device tree for with initial support for:
+> 
+> - GPIO keys
+> - SDHCI (internal and external storage)
+> - USB Device Mode
+> - UART (on USB connector via the SM5703 MUIC)
+> - WCNSS (WiFi/BT)
+> - Regulators
+> 
+> The three devices (some varints of J3, all other variants of J5 released
+> in 2015 and J5X released in 2016) are very similar, with some differences
+> in display and GPIO pins. The common parts are shared in
+> msm8916-samsung-j5-common.dtsi to reduce duplication.
+> 
+This is not a correct patch. Use `git format-patch` to create proper
+patches - with subject, diff etc.
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../boot/dts/qcom/msm8916-samsung-j3.dts      |  4 +++
- .../dts/qcom/msm8916-samsung-j5-common.dtsi   | 26 +++++++++++++++++++
- 2 files changed, 30 insertions(+)
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts b/arch/arm64/b=
-oot/dts/qcom/msm8916-samsung-j3.dts
-index 24e77c61ca9b..6d4e53295c30 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j3.dts
-@@ -19,3 +19,7 @@ tz-apps@85a00000 {
- =09=09};
- =09};
- };
-+
-+&gpio_hall_sensor {
-+=09status =3D "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi b/arch=
-/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-index ea2e165c2aa4..2c498d3b2c83 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-@@ -3,6 +3,7 @@
- #include "msm8916-pm8916.dtsi"
-=20
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-=20
- / {
- =09aliases {
-@@ -21,6 +22,23 @@ tz-apps@85500000 {
- =09=09};
- =09};
-=20
-+=09gpio_hall_sensor: gpio-hall-sensor {
-+=09=09compatible =3D "gpio-keys";
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&gpio_hall_sensor_default>;
-+
-+=09=09label =3D "GPIO Hall Effect Sensor";
-+
-+=09=09event-hall-sensor {
-+=09=09=09label =3D "Hall Effect Sensor";
-+=09=09=09gpios =3D <&msmgpio 52 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,input-type =3D <EV_SW>;
-+=09=09=09linux,code =3D <SW_LID>;
-+=09=09=09linux,can-disable;
-+=09=09};
-+=09};
-+
- =09gpio-keys {
- =09=09compatible =3D "gpio-keys";
-=20
-@@ -193,6 +211,14 @@ l18 {
- };
-=20
- &msmgpio {
-+=09gpio_hall_sensor_default: gpio-hall-sensor-default {
-+=09=09pins =3D "gpio52";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
- =09gpio_keys_default: gpio-keys-default {
- =09=09pins =3D "gpio107", "gpio109";
- =09=09function =3D "gpio";
---=20
-2.30.2
-
+Best regards,
+Krzysztof
 
