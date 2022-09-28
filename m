@@ -2,84 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 594F15ED33D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 05:07:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F2A05ED358
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 05:15:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232177AbiI1DG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Sep 2022 23:06:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52998 "EHLO
+        id S230321AbiI1DPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Sep 2022 23:15:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232156AbiI1DGz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 23:06:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 824681CE920;
-        Tue, 27 Sep 2022 20:06:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DA1C361CFA;
-        Wed, 28 Sep 2022 03:06:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88291C43142;
-        Wed, 28 Sep 2022 03:06:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664334413;
-        bh=VMAzbGju3fZO1yAi48S5l4Q6uictYSwvEjvrd3Y5N1w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=rwjykJ0xECTbJeXauNAF9KKIHuNFYoOhuNJv5qiVzb6RcK4btYDNqEQTTUnagUX/C
-         Ies3cenLmfSWjRRuou5m0MqxypX68AKd6ceCrRV0a4NVsNcyOAHgnWH9PZJzVkLwQU
-         VaeH2woPHHqjPOJWN9KMdPX57y6yJSbzIThC+rz/iAq++ucsNzF28x1Zgub5q38V7i
-         /CEChHalSTPgyYpibXXf5PSulkXSeGyw0e/T4+AQHF8fIZTM6BlsMKfHxxAfaYtT4Y
-         J1r10mEzzqU2e0+Es+bj7w+0YlhOoqn53sdPyWte5V3VWczjO1aZgPD7D6/fB34xpV
-         CuPPK90Lls3dg==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     konrad.dybcio@somainline.org, mturquette@baylibre.com,
-        sboyd@kernel.org, quic_bjorande@quicinc.com
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v2 0/2] clk: qcom: Add SC8280XP GPU clock controller
-Date:   Tue, 27 Sep 2022 22:06:47 -0500
-Message-Id: <166433439996.1849007.6883466236437791919.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220926173025.4747-1-quic_bjorande@quicinc.com>
-References: <20220926173025.4747-1-quic_bjorande@quicinc.com>
+        with ESMTP id S232646AbiI1DPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Sep 2022 23:15:21 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 960FBFF;
+        Tue, 27 Sep 2022 20:15:18 -0700 (PDT)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxrmtAvDNjlBAjAA--.51149S2;
+        Wed, 28 Sep 2022 11:15:13 +0800 (CST)
+Subject: Re: [PATCH v3 2/3] dt-bindings: thermal: add loongson2 thermal
+ binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Amit Kucheria <amitk@kernel.org>, linux-kernel@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-pm@vger.kernel.org, "Rafael J . Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        Zhang Rui <rui.zhang@intel.com>, zhuyinbo@loongson.cn,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-pm@vger.kernel.org, "Rafael J . Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        Zhang Rui <rui.zhang@intel.com>
+References: <20220927013951.12833-1-zhuyinbo@loongson.cn>
+ <20220927013951.12833-2-zhuyinbo@loongson.cn>
+ <1664289558.346744.943212.nullmailer@robh.at.kernel.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <7542c99d-31d1-621b-6564-d6db762947d2@loongson.cn>
+Date:   Wed, 28 Sep 2022 11:15:12 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <1664289558.346744.943212.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=gbk; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8CxrmtAvDNjlBAjAA--.51149S2
+X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+        VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUYd7AC8VAFwI0_Xr0_Wr1l1xkIjI8I6I8E
+        6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28Cjx
+        kF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8I
+        cVCY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z2
+        80aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAK
+        zVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx
+        8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwAC
+        I402YVCY1x02628vn2kIc2xKxwCYjI0SjxkI62AI1cAE67vIY487MxkIecxEwVCm-wCF04
+        k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+        MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+        1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+        IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+        A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUQvtAUUUUU=
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Sep 2022 10:30:23 -0700, Bjorn Andersson wrote:
-> What the subject says.
-> 
-> Bjorn Andersson (2):
->   dt-bindings: clock: Add Qualcomm SC8280XP GPU binding
->   clk: qcom: Add SC8280XP GPU clock controller
-> 
-> .../devicetree/bindings/clock/qcom,gpucc.yaml |   2 +
->  drivers/clk/qcom/Kconfig                      |   8 +
->  drivers/clk/qcom/Makefile                     |   1 +
->  drivers/clk/qcom/gpucc-sc8280xp.c             | 461 ++++++++++++++++++
->  .../dt-bindings/clock/qcom,gpucc-sc8280xp.h   |  35 ++
->  5 files changed, 507 insertions(+)
->  create mode 100644 drivers/clk/qcom/gpucc-sc8280xp.c
->  create mode 100644 include/dt-bindings/clock/qcom,gpucc-sc8280xp.h
-> 
-> [...]
 
-Applied, thanks!
+ÔÚ 2022/9/27 ÏÂÎç10:39, Rob Herring Ð´µÀ:
+> make DT_CHECKER_FLAGS=-m dt_binding_check
 
-[1/2] dt-bindings: clock: Add Qualcomm SC8280XP GPU binding
-      commit: 9f60eb3ec02757ab9441f2463eceddf2c71ec5e3
-[2/2] clk: qcom: Add SC8280XP GPU clock controller
-      commit: e55d937d8cf391c1fb9afad296948b3697ad96f7
+Hi Rob,
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+this issue had been fix in v4 version.
+
+TKs,
+
+Yinbo.
+
+
+
