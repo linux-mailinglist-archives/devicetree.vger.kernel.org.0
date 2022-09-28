@@ -2,91 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7FCE5ED822
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 10:47:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A11C85ED82C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 10:48:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233695AbiI1Ir4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 04:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45124 "EHLO
+        id S233722AbiI1Ir6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 04:47:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233711AbiI1IrF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 04:47:05 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF5DB75CDB
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 01:44:59 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id g20so13557479ljg.7
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 01:44:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=eoeLFJb5asYxvFvY9caZ5v4jyel1bUpDAdRO5lTcXc8=;
-        b=Ghfd2GliLGSjg3434mEt7glLAb4F1oQLctuj0fyt7cnVD7dKZTuG0PB+NXxXmfiCBe
-         nfly4vYhvKmfZsQCKVUS0RjKGoaQ1kJ0kz5HYB603f/6KoxlRYTUwiaUaCGLQvGyPru5
-         JO14SvwfLkNemgJqxTOiwY7SeYm8mVs9wzGB0LgT7EqUL3rXJqSdTn9dO3wJvQKpOgD6
-         78i4u4bV4DyfoZgTf6KFuEK6JMzAXN5Y8wBWiqOSGcb2oQeI7G77gzjlLIOIySgB2l9R
-         9SLtx+sG2gcjpPOFHSbHa7cxFPYA93sVPjlCGpQ/E9rXN0MDt8olDOZFRuPnHvnjPlbu
-         u5Vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=eoeLFJb5asYxvFvY9caZ5v4jyel1bUpDAdRO5lTcXc8=;
-        b=L6uiDuUGEfl2dq40SXz/LKJJkXHpkmExkMeimv718188vNKwNBxgr2IOcxphZV7KKG
-         JWRe1Chuilb8yKAsWxf1EK3gPzwRJBfX67tIYlWAMHLvvl3I3yfkzcH9JrlJFmvi3f5B
-         ZJ35vxts3Es/xZjUiwbA05WzChyK0sL2rgi88piHHWIfF70dJsC3BOapt3pQ0Czg9bpM
-         lDdlx4XAxUOPuTnzL9qXJxyatTca4SFujCA7IgdQA/senMxHz4Trr15HIkaGSg+LxOtS
-         2vITRV7SI2U93T2hkzFjkro26TSUKpsTSu0AEpKfFdrSdlOOOUDtcf8zWl6okXDswdWD
-         y5HQ==
-X-Gm-Message-State: ACrzQf0ft0JhpvyN43F1I+2Eb0DudaknxTl/d1KwwVMX/ezNlhvjIPif
-        RsaTj46BWWu6tdQYEPkTdTybAA==
-X-Google-Smtp-Source: AMsMyM7o2APuV/glS+yr16yBtxdmGojUCsjYP66kxFSp6E72eHSIejpreHPBLTKcFoB0C5m5jg2BrQ==
-X-Received: by 2002:a05:651c:1a26:b0:26c:4c0d:b10a with SMTP id by38-20020a05651c1a2600b0026c4c0db10amr10738404ljb.415.1664354698124;
-        Wed, 28 Sep 2022 01:44:58 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id be43-20020a056512252b00b004994117b0fdsm410403lfb.281.2022.09.28.01.44.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 01:44:57 -0700 (PDT)
-Message-ID: <3551ca67-006c-b651-fc90-2e3f0beb971c@linaro.org>
-Date:   Wed, 28 Sep 2022 10:44:56 +0200
+        with ESMTP id S233445AbiI1IrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 04:47:07 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B93A9A9C6
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 01:45:11 -0700 (PDT)
+Received: from SoMainline.org (D57D4C6E.static.ziggozakelijk.nl [213.125.76.110])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id B94B83F20B;
+        Wed, 28 Sep 2022 10:45:08 +0200 (CEST)
+Date:   Wed, 28 Sep 2022 10:45:07 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     myungjoo.ham@samsung.com, cw00.choi@samsung.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        gurus@codeaurora.org, aghayal@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/2 RESEND] Fix pm8941-misc extcon interrupt
+ dependency assumptions
+Message-ID: <20220928084249.l2qrx7mdbchdbite@SoMainline.org>
+References: <20220926113143.40768-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: power: Add MT8188 power domains
-Content-Language: en-US
-To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20220928084315.29187-1-Garmin.Chang@mediatek.com>
- <20220928084315.29187-2-Garmin.Chang@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220928084315.29187-2-Garmin.Chang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220926113143.40768-1-bryan.odonoghue@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 10:43, Garmin.Chang wrote:
-> Add power domains dt-bindings for MT8188.
+(Whoops, I didn't get CC'd in the cover letter - downloaded it from the
+lists)
+
+On 2022-09-26 12:31:41, Bryan O'Donoghue wrote:
+> RESEND:
+> - I thought I resent these at the start of this month, can't find them
+>   in linux-msm I think I just sent them to myself.
+
+It seems it made it to the lists successfully - there's a v4 RESEND from
+the 8th: https://lore.kernel.org/linux-arm-msm/20220908112556.860343-1-bryan.odonoghue@linaro.org/
+
+>   No change since July 17th
 > 
-> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
+> V4:
+> - Added suggested extra log text from Marjin to extcon patch
 
+MarIJn*, thanks :)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+- Marijn
 
-Best regards,
-Krzysztof
-
+> V3:
+> - Adds a cover-letter since we are now doing two patches a dt-bindings fix and
+>   platform_get_irq_byname_optional fix.
+> - Add Review-by -> Rob Herring, Marijn Suijten
+> - Add additional patch to negate warning when one of usb_id or usb_vbus
+>   is not declared in the platform DTS.
+> 
+> Bryan O'Donoghue (2):
+>   dt-bindings: pm8941-misc: Fix usb_id and usb_vbus definitions
+>   extcon: qcom-spmi: Switch to platform_get_irq_byname_optional
+> 
+>  .../devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 12 ++++++++----
+>  drivers/extcon/extcon-qcom-spmi-misc.c               |  4 ++--
+>  2 files changed, 10 insertions(+), 6 deletions(-)
+> 
+> -- 
+> 2.36.1
+> 
