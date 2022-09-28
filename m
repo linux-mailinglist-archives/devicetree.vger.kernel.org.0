@@ -2,347 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B685EE2F1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 495125EE2FE
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 19:24:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234124AbiI1RUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 13:20:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53386 "EHLO
+        id S233060AbiI1RYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 13:24:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234134AbiI1RUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:20:46 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3834E56032
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:20:44 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id s6so21358022lfo.7
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:20:44 -0700 (PDT)
+        with ESMTP id S234446AbiI1RYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 13:24:33 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33DAD85F9F
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:24:31 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id s6so21372558lfo.7
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 10:24:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=8eMJUTEyG5utBjCyNWFkdCC301TtmrPPwOC3aj0cxjA=;
-        b=B5bPli4nvhdtSju6yT+wzWBYTd3ibI9pBq0liBZhfuym7Tz9IgMcwqmAcgYQWSEKWU
-         Jya+tO0MQ7Jw5qKEZgxTbe658Wua8dRgqqiWgaJ3aBe5MBSvhfg4JLHj2HZs99czoA/z
-         jMp+2zujdLB1cAehZw/t8e6b71UMbGh0h2bnXccCtSW6KEKm4UxZEwRbdNZoNOvxifON
-         t0M7h/9lhxgc9P/OGJkWIL0xSmbHOduRwrEdImQgtAjsdxn6cNLDitiCdmQZHHLDWIAC
-         JlNQO0eWWpkNtEcOO2mTOPdXLadgONHWWvbZ7w9LoWJpD5wVd8q+xGqAmPsre0XNzBYG
-         CZUg==
+        bh=8Z5zh1T5tY7YbcNGtu85v/lt9i1GBE15ciJzbg3QGl8=;
+        b=v4f2dXn3NwjLAimGU1+YuNgGvvrQ5uC+PnjyYA9ihA1GIL0J5DzhFxZmRqDO786mfy
+         +M1HCSHhZOCQoCvAtg45+boFV0XyHXwjFukqZmdwUV8cVDicfR+9ei3MKE6dmWNzJ065
+         56EoD/IfyGopGKY630Dwe1LbRgf4Kqea0aWaAkoSoFXciait6ScPI+MtTeV6ekrbTuSp
+         NPHNEnrYfSJckeuMF7juN6dek2f6MCfw/x1LBff9HVHQFKir541zeLRPcZPMfy+TX97V
+         f2r9z2rYwFqIdAHWGou7gK4Dohno3jFXjWrOpVXUKkX2wboYhB3P6MwFypUUmrCGP+tz
+         jHhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=8eMJUTEyG5utBjCyNWFkdCC301TtmrPPwOC3aj0cxjA=;
-        b=pDf2PddKczfHlsl3Hbm9NeYljypxMgWzeGbHAbK9BOESgqxAaKaYa+GvzU/YrrXCCu
-         JmNLYPhVQlV/3Zs9O800AuVtUko1jdcw2thVWAJn4zeiJGe+YNUrM711lwmcLnJDjQl6
-         leSzbQa3c9SEU6/tqBUfZE381jwjE1QtwV5TckPMphJGJV7jm9uAbE5u2uxuZFSZrdR8
-         r6extvxKP2VC46Zjm4ZAFgPDaUby+BLOpgcflVqKz7zPcy+SeWa0duKjt3WNqSPkwu61
-         66EIb5gMZ+RjIFVujUqicbCZ3eL5N8HM+57s/DZ73ydt1Ld2aIu+XpoNxdxslzdZSXPO
-         EBxw==
-X-Gm-Message-State: ACrzQf3yaCM+u4NIB2Fd/EUEPhKMN1UFBl2Jd4twxIZpXaTuFmhbTAQD
-        snJtJRqcP8wDzCeaOvMJUlPCyg==
-X-Google-Smtp-Source: AMsMyM7yUQbyVbNmwXtohF1R5vFYvSmJptclBTXUrwNEEDTTMx3ywESLwMyJK+XW9p06pljle7yXOw==
-X-Received: by 2002:a05:6512:3989:b0:49f:480f:c9ae with SMTP id j9-20020a056512398900b0049f480fc9aemr13207234lfu.343.1664385642438;
-        Wed, 28 Sep 2022 10:20:42 -0700 (PDT)
+        bh=8Z5zh1T5tY7YbcNGtu85v/lt9i1GBE15ciJzbg3QGl8=;
+        b=b2wr8kCxzzyTzTGN992yI6wMfUHDjijItxfmVhqFCbYt9RtFre+SsM3DBMfyvnXFLY
+         g2FrLAsmshK2gG7I/WxJLS8RU0C7gD8qYkdlgs37+r2wzD1HDTo8gc+Nxj+j/MaY26zM
+         RJl+n6MY3z6ZZUuTryBuHXsyjVvYf8n6pQiMtKviAWDblA1BSWUKj63vPJhOJjT3HwHk
+         v3Y4yH2CisUYEufPYOFtDdjaaLd3xz9EEt4kCy0qFeUOxJtofr20nmQrJbE7zo1BobOG
+         XLn6tnrKSJDbva5ge95PZENP/fgETPJ1yi1kvbeHLyd3LnbrEVR5E8FMc2lt0EeRmHwO
+         9C3w==
+X-Gm-Message-State: ACrzQf3y0O8FH0y0doJouApBqq51qqMKQF6moGwwMRt04uqmb27bMZmn
+        aKOV51BE604VLbUoBtPhsSCLZw==
+X-Google-Smtp-Source: AMsMyM6NmGP9e9VnZSGpZi7HlyxRbi+yzCkLknJ93JX2bggmMDRITamIb4AEiUZimqPT/oDpm02zkQ==
+X-Received: by 2002:a19:6555:0:b0:49e:7d52:a4ca with SMTP id c21-20020a196555000000b0049e7d52a4camr14799398lfj.198.1664385869565;
+        Wed, 28 Sep 2022 10:24:29 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 9-20020ac25f09000000b004977e865220sm527751lfq.55.2022.09.28.10.20.41
+        by smtp.gmail.com with ESMTPSA id o1-20020ac24e81000000b0049478cc4eb9sm526728lfr.230.2022.09.28.10.24.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 10:20:41 -0700 (PDT)
-Message-ID: <f67b9a1f-73a5-e03f-a935-9bfb55a6b845@linaro.org>
-Date:   Wed, 28 Sep 2022 19:20:40 +0200
+        Wed, 28 Sep 2022 10:24:28 -0700 (PDT)
+Message-ID: <393eb833-0dcd-bf6c-49f3-ab8d60e3a8e5@linaro.org>
+Date:   Wed, 28 Sep 2022 19:24:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [net-next][PATCH v3] dt-bindings: dsa: lan9303: Add lan9303 yaml
+Subject: Re: [PATCH v2] dt-bindings: memory-controller: st,stm32: Split off MC
+ properties
 Content-Language: en-US
-To:     Jerry Ray <jerry.ray@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220928162128.802-1-jerry.ray@microchip.com>
+To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20220926225536.548139-1-marex@denx.de>
+ <846bc515-bdda-6022-0611-daaa9a632e64@linaro.org>
+ <e787f5b1-88e6-375c-b9e7-22db346c27be@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220928162128.802-1-jerry.ray@microchip.com>
+In-Reply-To: <e787f5b1-88e6-375c-b9e7-22db346c27be@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 18:21, Jerry Ray wrote:
-> Adding the dt binding yaml for the lan9303 3-port ethernet switch.
-> The microchip lan9354 3-port ethernet switch will also use the
-> same binding.
+On 28/09/2022 19:01, Marek Vasut wrote:
+> On 9/28/22 09:10, Krzysztof Kozlowski wrote:
 > 
-> Signed-off-by: Jerry Ray <jerry.ray@microchip.com>
-> ---
-> v2->v3:
->  - removed cpu labels
->  - now patching against latest net-next
-> v1->v2:
->  - fixed dt_binding_check warning
->  - added max-speed setting on the switches 10/100 ports.
-> ---
->  .../devicetree/bindings/net/dsa/lan9303.txt   |  99 +-------------
->  .../bindings/net/dsa/microchip,lan9303.yaml   | 129 ++++++++++++++++++
->  MAINTAINERS                                   |   8 ++
->  3 files changed, 139 insertions(+), 97 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
+> Hi,
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/lan9303.txt b/Documentation/devicetree/bindings/net/dsa/lan9303.txt
-> index 46a732087f5c..8c8fedd1f00e 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/lan9303.txt
-> +++ b/Documentation/devicetree/bindings/net/dsa/lan9303.txt
-> @@ -1,100 +1,5 @@
->  SMSC/MicroChip LAN9303 three port ethernet switch
->  -------------------------------------------------
+> [...]
+> 
+>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+>>> index a1f535cececcc..49243f447eb90 100644
+>>> --- a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+>>> +++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+>>> @@ -49,143 +49,6 @@ patternProperties:
+>>>     "^.*@[0-4],[a-f0-9]+$":
+>>>       type: object
+>>>   
+>>> -    properties:
+>>> -      reg:
+>>> -        description: Bank number, base address and size of the device.
+>>> -
+>>
+>> To be equivalent (and similar to SPI peripherals and controllers) this
+>> should reference st,stm32-fmc2-ebi-props.yaml as well.
+>>
+>> After such reference, you can add here unevaluatedProperties:false
+>> (could be same or new patch as it is not related to actual split).
+> 
+> I don't think I understand. I don't see any ref from the controller node 
+> to its props in various SPI controllers (even if that would make sense):
 
-Old file should be entirely removed.
+Because they reference spi peripheral props...
 
->  
-> -Required properties:
-> -
-> -- compatible: should be
-> -  - "smsc,lan9303-i2c" for I2C managed mode
-> -    or
-> -  - "smsc,lan9303-mdio" for mdio managed mode
-> -
-> -Optional properties:
-> -
-> -- reset-gpios: GPIO to be used to reset the whole device
-> -- reset-duration: reset duration in milliseconds, defaults to 200 ms
-> -
-> -Subnodes:
-> -
-> -The integrated switch subnode should be specified according to the binding
-> -described in dsa/dsa.txt. The CPU port of this switch is always port 0.
-> -
-> -Note: always use 'reg = <0/1/2>;' for the three DSA ports, even if the device is
-> -configured to use 1/2/3 instead. This hardware configuration will be
-> -auto-detected and mapped accordingly.
-> -
-> -Example:
-> -
-> -I2C managed mode:
-> -
-> -	master: masterdevice@X {
-> -
-> -		fixed-link { /* RMII fixed link to LAN9303 */
-> -			speed = <100>;
-> -			full-duplex;
-> -		};
-> -	};
-> -
-> -	switch: switch@a {
-> -		compatible = "smsc,lan9303-i2c";
-> -		reg = <0xa>;
-> -		reset-gpios = <&gpio7 6 GPIO_ACTIVE_LOW>;
-> -		reset-duration = <200>;
-> -
-> -		ports {
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -
-> -			port@0 { /* RMII fixed link to master */
-> -				reg = <0>;
-> -				ethernet = <&master>;
-> -			};
-> -
-> -			port@1 { /* external port 1 */
-> -				reg = <1>;
-> -				label = "lan1";
-> -			};
-> -
-> -			port@2 { /* external port 2 */
-> -				reg = <2>;
-> -				label = "lan2";
-> -			};
-> -		};
-> -	};
-> -
-> -MDIO managed mode:
-> -
-> -	master: masterdevice@X {
-> -		phy-handle = <&switch>;
-> -
-> -		mdio {
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -
-> -			switch: switch-phy@0 {
-> -				compatible = "smsc,lan9303-mdio";
-> -				reg = <0>;
-> -				reset-gpios = <&gpio7 6 GPIO_ACTIVE_LOW>;
-> -				reset-duration = <100>;
-> -
-> -				ports {
-> -					#address-cells = <1>;
-> -					#size-cells = <0>;
-> -
-> -					port@0 {
-> -						reg = <0>;
-> -						ethernet = <&master>;
-> -					};
-> -
-> -					port@1 { /* external port 1 */
-> -						reg = <1>;
-> -						label = "lan1";
-> -					};
-> -
-> -					port@2 { /* external port 2 */
-> -						reg = <2>;
-> -						label = "lan2";
-> -					};
-> -				};
-> -			};
-> -		};
-> -	};
-> +See Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml for the
-> +device tree documentation covering the LAN9303 and LAN9354 devices.
+> 
+> next$ git grep qspi-nor-peripheral-props.yaml
+> Documentation/devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml:$id: 
+> http://devicetree.org/schemas/spi/cdns,qspi-nor-peripheral-props.yaml#
+> Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml:  - 
+> $ref: cdns,qspi-nor-peripheral-props.yaml#
+> 
+> No ref to cdns,qspi-nor-peripheral-props.yaml in 
+> Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> 
+> next$ git grep tegra210-quad-peripheral-props
+> Documentation/devicetree/bindings/spi/nvidia,tegra210-quad-peripheral-props.yaml:$id: 
+> http://devicetree.org/schemas/spi/nvidia,tegra210-quad-peripheral-props.yaml#
+> Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml:  - 
+> $ref: nvidia,tegra210-quad-peripheral-props.yaml#
+> 
+> No ref to nvidia,tegra210-quad-peripheral-props.yaml in 
+> Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
 
-No, just remove it.
+All your examples do it - reference spi peripheral props.
 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
-> new file mode 100644
-> index 000000000000..818770092a2c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
-> @@ -0,0 +1,129 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/dsa/microchip,lan9303.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LAN9303 Ethernet Switch Series Tree Bindings
+As I said, your change is now not equivalent. If any other device
+appears in st,stm32-fmc2-ebi, the schema won't be applied.
 
-Drop "Tree Bindings"
-
-> +
-> +allOf:
-> +  - $ref: "dsa.yaml#"
-
-Drop quotes.
-
-> +
-> +maintainers:
-> +  - UNGLinuxDriver@microchip.com
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - smsc,lan9303-mdio
-> +          - microchip,lan9354-mdio
-> +      - enum:
-> +          - smsc,lan9303-i2c
-
-oneOf does not make sense. It's just one enum.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: Optional gpio specifier for a reset line
-
-Drop "gpio specifier for a"
-
-> +    maxItems: 1
-> +
-> +  reset-duration:
-> +    description: Reset duration in milliseconds, defaults to 200 ms
-
-This does not look like standard type or unit suffix, so you need here
-type. Don't you have warnings for this?
-
-default: 200
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    //Ethernet switch connected via mdio to the host
-
-Missing space before comments. Use Linux style comments, not your own.
-
-> +    ethernet0 {
-
-Drop "0".
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        phy-handle = <&lan9303switch>;
-> +        phy-mode = "rmii";
-> +        fixed-link {
-> +            speed = <100>;
-> +            full-duplex;
-> +        };
-> +        mdio {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            lan9303switch: switch@0 {
-> +                compatible = "smsc,lan9303-mdio";
-> +                dsa,member = <0 0>;
-> +                reg = <0>;
-
-reg goes after compatible.
-
-> +                ethernet-ports {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                        port@0 {
-> +                            reg = <0>;
-> +                            phy-mode = "rmii";
-> +                            ethernet = <&ethernet>;
-> +                            fixed-link {
-> +                                speed = <100>;
-> +                                full-duplex;
-> +                            };
-> +                        };
-> +                        port@1 {
-> +                            reg = <1>;
-> +                            max-speed = <100>;
-> +                            label = "lan1";
-> +                        };
-> +                        port@2 {
-> +                            reg = <2>;
-> +                            max-speed = <100>;
-> +                            label = "lan2";
-> +                        };
-> +                    };
-> +                };
-> +            };
-> +        };
-> +
-> +    //Ethernet switch connected via i2c to the host
-> +    ethernet1 {
-
-Just ethernet (and make it a second example)
-
-
+Let me put it that way: you must have there additionalProperties:false
+or unevaluatedProperties:false. Once you add it, you start seeing errors
+leading to missing ref.
 
 Best regards,
 Krzysztof
