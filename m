@@ -2,57 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF8725EDEE7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 16:37:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D905EDF48
+	for <lists+devicetree@lfdr.de>; Wed, 28 Sep 2022 16:56:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234402AbiI1OhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 10:37:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40828 "EHLO
+        id S234119AbiI1O4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 10:56:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234087AbiI1OhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 10:37:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DCCCAB419;
-        Wed, 28 Sep 2022 07:36:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2760261EC2;
-        Wed, 28 Sep 2022 14:36:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62B6AC433D6;
-        Wed, 28 Sep 2022 14:36:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664375818;
-        bh=AKYUXMSFyJEZ3MGh7qhq3oHM1Mb/mSjFZvL+qW4J4Xw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cilv0RnWY6aMcLrOusXlX2smuNnfveULRAIwVCDtx9cP9A+F7KiyS9pnTLXK8GoFN
-         iYNGFqn1cI5XffnO+PzjmkI4o2+hNjz6eyHFR9heN6HD4HrkItuvqggRHRN1jFglRA
-         o2FZCXXxFyGIXzlacxBkMPz4Aoh1Gb91/fQfMjBe6FoasNyEUEzk8sL2vgcA6hdtR8
-         336BaQCy71O1WY4us+f4/JcBHSCeBsavWWoISeUu7R87yHPm7A8jYTc5xI5l4n9m75
-         V+0upk/xVcP4CotURW7XiVT+TRuDVmSDmoH92HBcUEmlPPjmujUpt2z9SDpEHftDmN
-         7H/T/XXYM3GUg==
-Date:   Wed, 28 Sep 2022 15:36:52 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, zhangqing@rock-chips.com,
-        zyw@rock-chips.com, jon.lin@rock-chips.com,
-        maccraft123mc@gmail.com, sre@kernel.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        philip@pscan.uk, mazziesaccount@gmail.com,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V10 3/4] power: supply: Add charger driver for Rockchip
- RK817
-Message-ID: <YzRcBJ7HHstO49Eq@google.com>
-References: <20220827021623.23829-1-macroalpha82@gmail.com>
- <20220827021623.23829-4-macroalpha82@gmail.com>
+        with ESMTP id S234309AbiI1O43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 10:56:29 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12BAF9B859
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 07:56:12 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id s10so14630596ljp.5
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 07:56:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=WD80FrVdvy3Avi4/+rEs2QAN7n7JbPi4VTfpdv+hG/M=;
+        b=dM7LSPe2Kl9eYwv5S6vYy1q/f3+nyBfzky4fq4MGyceP/DKe0isHliv1943SNArxOe
+         iRg9vIn7JJpvZVMK656df40iymHXkuM+Opu2pQmNpQWjNOVf46xYfDzDhWWPz9HJBgpn
+         A8bmiBSnbJz7jyfc7zPaJiMvt51emYU1Mx2GW/5dCoGyLCSGLQKGBKu8unA53ZiPqvbM
+         NG4xupmyRRDhjDK5OEiJbHtjKJCTon04P8x0/iE0E2BCOwfOvtw/keTOMrD+/haZlmzs
+         480sTYvd7FylEzgZY2ZzFxnTbhQaBf2BLM+VwQLLF6f/BWPSESVnqDrhVGHRe/g6vH7q
+         J9SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=WD80FrVdvy3Avi4/+rEs2QAN7n7JbPi4VTfpdv+hG/M=;
+        b=MazPykoqj6shxA9FPPMVbDUXy179JDLVw1vQaANNdZuGbYLisr3GMRJ/Ir7FIVah6P
+         UNlym3tvhmibqyuffQw7B0YUYecmJFTHAV6NdGxf/UQVKcRbgiN5hvip9F/B54Uz7oi+
+         Avx0MMWbu89DTyHzeqE9pnQTqjJa1sCh6DKNfQONBsJu7n6Nu4CGtcy4aL+kxCujmPV3
+         pvb6C1FxtFo2ZP7bl/Mocfb8V8m97rnfSM2wqh/0XU5FET6R4rjF8Ah2QA1ZJRDlrg8w
+         VOokepLsKlxrtC8sg8M6rbYb5A5FSJF2aRXYwcVh9eHt2f5Ki2Rn0cbMH34oV7krl0uu
+         4YHw==
+X-Gm-Message-State: ACrzQf2MArzJTNW02qjQbX2cyXpWU2A05hGEvH5Lkx/AKTG5o4XKGcwL
+        VZNlNgK6LlJ4VPxrHPK9iUgi9A==
+X-Google-Smtp-Source: AMsMyM78t54OBnJwecOi+K74O3HJ6iZUklhvHR9j8ZzUIW/X7apmgvgZ4hUazq8Uftd6Hhs0G7Q/ug==
+X-Received: by 2002:a05:651c:146:b0:26d:9eb6:7f35 with SMTP id c6-20020a05651c014600b0026d9eb67f35mr5538134ljd.311.1664376970823;
+        Wed, 28 Sep 2022 07:56:10 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id o6-20020a05651238a600b0048b256bb005sm498094lft.49.2022.09.28.07.56.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Sep 2022 07:56:10 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Subject: [PATCH 0/3] clk: qcom: gcc-msm8939: several small fixes
+Date:   Wed, 28 Sep 2022 17:56:06 +0300
+Message-Id: <20220928145609.375860-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220827021623.23829-4-macroalpha82@gmail.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,23 +74,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Aug 2022, Chris Morgan wrote:
+Apply several small fixes used for other Qualcomm clock drivers:
+- Use ARRAY_SIZE and parent_hws where applicable in gcc-msm8939 driver
+- Move gcc-msm8939 schema from gcc-other to gcc-msm8916 to declare the
+  clocks/clock-names used by this platform.
 
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add support for the Rockchip rk817 battery charger integrated into the
-> rk817 PMIC.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> ---
->  drivers/power/supply/Kconfig         |    6 +
->  drivers/power/supply/Makefile        |    1 +
->  drivers/power/supply/rk817_charger.c | 1211 ++++++++++++++++++++++++++
->  3 files changed, 1218 insertions(+)
->  create mode 100644 drivers/power/supply/rk817_charger.c
+Dmitry Baryshkov (3):
+  dt-bindings: clock: move qcom,gcc-msm8939 to qcom,gcc-msm8916.yaml
+  clk: qcom: gcc-msm8939: use parent_hws where possible
+  clk: qcom: gcc-msm8939: use ARRAY_SIZE instead of specifying
+    num_parents
 
-Applied, thanks.
+ .../bindings/clock/qcom,gcc-msm8916.yaml      |  11 +-
+ .../bindings/clock/qcom,gcc-other.yaml        |   3 -
+ drivers/clk/qcom/gcc-msm8939.c                | 552 +++++++++---------
+ 3 files changed, 284 insertions(+), 282 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
+2.35.1
+
