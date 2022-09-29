@@ -2,83 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 081165EFE74
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 22:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D76605EFE76
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 22:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbiI2UMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 16:12:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47206 "EHLO
+        id S229696AbiI2UQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 16:16:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiI2UMj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 16:12:39 -0400
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 043DB252A4;
-        Thu, 29 Sep 2022 13:12:39 -0700 (PDT)
-Received: by mail-oo1-f45.google.com with SMTP id r136-20020a4a378e000000b004755953bc6cso863256oor.13;
-        Thu, 29 Sep 2022 13:12:38 -0700 (PDT)
+        with ESMTP id S229563AbiI2UQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 16:16:15 -0400
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1103114AD50;
+        Thu, 29 Sep 2022 13:16:15 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id l5so2740116oif.7;
+        Thu, 29 Sep 2022 13:16:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=yGYFZ4ePouD/u9A7MBvenqOXWaQw3PNpljUBB7558Qc=;
-        b=U5NuQqYphu7TFBk3eVytHC2C1SevPIeCCPP8X2AsULiEUlszgvbW+7+FzO8HZCED9R
-         e+kKCFkYWUJAyxPgT4cSxB/4TRncy/+4QLBTY0ZU6PILtH+rIMjR9lXORXsYPDjOeR0H
-         Qp5jotLfy+8xcBEVSdKAYCVzd1+TMWvhuHtWSH4NbPJgGUZDZllgKJJs296ePy0Jnh/l
-         E6nfLT2xVSYbz4DASRVMbRdr+qgSl98mSIjmpOHxJN5jqR1dNv1r41urxIHcv3PkEP+J
-         5tbCa2q50gn4c+jwt0k+20PFBtpxoZTgZHbywlV/AKoV23hZEkxeClbrJdSaCZTpYYB8
-         J70g==
-X-Gm-Message-State: ACrzQf2TCvkpmLtFd1qPbOcq2b+VJzeaLgNOUuN6evjTIwGcO4Lrwi2x
-        dKH9toW8YbMpMr6Ok7F20A==
-X-Google-Smtp-Source: AMsMyM53EGc9oig6lgi5IwYnyu2iktDu3aU/q1BoOWkcrL1ru8htz8w1H/tD/lXE74tnK1QljgTfoA==
-X-Received: by 2002:a9d:2924:0:b0:65c:424c:343d with SMTP id d33-20020a9d2924000000b0065c424c343dmr2121338otb.181.1664482358187;
-        Thu, 29 Sep 2022 13:12:38 -0700 (PDT)
+        bh=AYBgl2IPMMwmLwbaMdRgrBahV880xHZeAH0uCotc0L0=;
+        b=wv6SdqSU6A3hzW8QJB9WuBbYxK2eHVbBs0Rpj1OzmNkfRvmX/rfE8RmyAyoTGgAW4H
+         g9gywP0cFc2lbw7eHR8BxS6KJPrilTQHLKITzLnvJaqD0LISe/lF7J5PhdDV/dny/nWW
+         cUvvUhyek75bNl2wy1JSzgo8oluQ36VocUZSDjconktML84advwUqfBTL1KZtCYJw+Jp
+         aW+gaHZMeNp7ikFbsAUpLoEzvcm7RhbKNaiQ2fIEs3g3PQhlL8Rx4ID/b2AVgf0vwIH3
+         3VSwkvIsFMX7czwwNBhXctZLExC01LKBCncPTgXHsbV1jcA8Nh2ValX733yYKtQ84unN
+         T0Lw==
+X-Gm-Message-State: ACrzQf16s0Y6xhZvwdxYtCfpfo2ZtvZN+j1G3scYWr06eqM7HsnnOMSl
+        kgX+x3wk9lRHgS5ySAQmRA==
+X-Google-Smtp-Source: AMsMyM4S8IQZHV1IVoCFoklvlt4BoCTKjc+NzMKxPogIhfNkH8p9C5tkLQYwRfqsd+B7zIqizQ6FVg==
+X-Received: by 2002:a05:6808:1390:b0:350:45fd:7d31 with SMTP id c16-20020a056808139000b0035045fd7d31mr2549024oiw.253.1664482574286;
+        Thu, 29 Sep 2022 13:16:14 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a30-20020a9d2621000000b00618fa37308csm146676otb.35.2022.09.29.13.12.37
+        by smtp.gmail.com with ESMTPSA id u13-20020a056871058d00b001227148da8csm165878oan.36.2022.09.29.13.16.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 13:12:37 -0700 (PDT)
-Received: (nullmailer pid 2662331 invoked by uid 1000);
-        Thu, 29 Sep 2022 20:12:37 -0000
-Date:   Thu, 29 Sep 2022 15:12:37 -0500
+        Thu, 29 Sep 2022 13:16:13 -0700 (PDT)
+Received: (nullmailer pid 2666246 invoked by uid 1000);
+        Thu, 29 Sep 2022 20:16:12 -0000
+Date:   Thu, 29 Sep 2022 15:16:12 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Matt Ranostay <mranostay@ti.com>
-Cc:     kishon@ti.com, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, bhelgaas@google.com, krzk@kernel.org,
-        vigneshr@ti.com, robh+dt@kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: PCI: ti,j721e-pci-*: Add missing
- interrupt properties
-Message-ID: <166448233656.2661829.7240169247803923570.robh@kernel.org>
-References: <20220924223517.123343-1-mranostay@ti.com>
- <20220924223517.123343-3-mranostay@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 11/15] dt-bindings: pinctrl: qcom,sm8250: add
+ gpio-reserved-ranges and gpio-line-names
+Message-ID: <166448257197.2666184.15050572383285281044.robh@kernel.org>
+References: <20220925110608.145728-1-krzysztof.kozlowski@linaro.org>
+ <20220925110608.145728-12-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220924223517.123343-3-mranostay@ti.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220925110608.145728-12-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 24 Sep 2022 15:35:17 -0700, Matt Ranostay wrote:
-> Both interrupts, and interrupt names weren't defined in both EP and host
-> yaml. Also define the only possible interrupt-name as link_state, and
-> maxItems of interrupts to one.
+On Sun, 25 Sep 2022 13:06:04 +0200, Krzysztof Kozlowski wrote:
+> Document common GPIO properties (gpio-reserved-ranges and
+> gpio-line-names), already used on qrb5165-rb5 board.
 > 
-> This patch resolves the following warning:
-> 
-> arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: pcie-ep@2910000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts' were unexpected)
->         From schema Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
-> 
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml | 7 +++++++
->  .../devicetree/bindings/pci/ti,j721e-pci-host.yaml         | 7 +++++++
->  2 files changed, 14 insertions(+)
+>  .../devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml   | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
