@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 008FA5EEE0C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 08:50:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5A785EEE16
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 08:52:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234921AbiI2GuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 02:50:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57724 "EHLO
+        id S234957AbiI2GwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 02:52:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234907AbiI2Gt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 02:49:59 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5132B50739
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:49:54 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id g20so494211ljg.7
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:49:54 -0700 (PDT)
+        with ESMTP id S234939AbiI2Gvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 02:51:54 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F267A107DC9
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:51:52 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id z4so855151lft.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:51:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=9riNZVJHHiGAu2Pt8+qgKwtbpAbtFPq/WEzep1qznjk=;
-        b=GFmvseWTnKL9Z9WgWeMRvQvhAoDiC5Lyhwr7cz9K0gAzBAeDsFp/EhpuesebdJ+Nhn
-         x8L4Pf2vSAkcuWbARrlA/ZL2RYZdr/mhTtf4rZCPHTlFWnCI10P/aIldX3ZRk0jVQ9Xn
-         4zdT0F0R6S9vXhxy0bjwTPJgkPqasWrLCQNZAoD74sFQY3pwy7ODiaIJf5yZfuEamrtr
-         SUilrWMZSGK14TKcRNp6a1Gf8rAY0+qUpWDZnrAFXyT6x//fdJULZSyTDNxVfDv2dgNg
-         dc2vaZF/BeRvBk6rDazFkrJWCejzjVbSK6J6eDfzQVHMZ02BzJweCxq9f6PHpxLtfvXq
-         OOJQ==
+        bh=Fco6NMVSVhjPLhPkls0dH/RXUx15xfAB9MdMBpMfFz4=;
+        b=POUBwZmv07BX7QqfQ1b1U+mZxtX68uKAHirMssVC/JYRXNJUATpWFHYLCG8k3+1JEX
+         qcfIyeH+8M6phsYlI1NCFU3oPrcZZLYVC9ISDHurdu0eFoin1UzJlcjtu+IeO2o9aph4
+         z/MWhOMfSzYTe/7Wb9AgeU7J2g0cy0QPVYVa7Kl5jhgijfHHCKXOgNu/Z3FIJWiLgxZj
+         f+tjDVEm39qk3aM4Liza0cA9TKQpEje8Tv84UaESnSZzo/V0JkMHu5G9HYQ3Z5geXKiI
+         yzUph5zhCu+kBSRiTMDWi5kIsLrI04K3tmOy1mspZH9rgYV6wrhwi5iEMD54nErGn/CC
+         h9QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=9riNZVJHHiGAu2Pt8+qgKwtbpAbtFPq/WEzep1qznjk=;
-        b=XN1lyML+v7oYlDAhoHNNO4ktnUpa44pnKXkpH0dzOEDreCXF8HhbtEfhBXpET+WP7x
-         4MnHbV4dqkgGS4Npk7sSi2jyfBYkKnfBWBjy9iTAQR23SDLUGxHHtBQVimJ5ZkHYMgiV
-         It4gycEv0YX9tzN+rPp+sIegaLDYFNU+aVDH38GW29oJI7mLJs2xRgovtuM1SdBsfmnu
-         /aGRO9P74xzWyrreKmGOhxn3/JQovolFkhH8tLTszAk4+zpHzUyr5FVDNy1rKtwVbjga
-         Aw3ZXNpACR0Rsn4u2WGiczmFX7IVl7uiUnfs4TBP6M/6BLDDaNDQmY5t+WjZT3NELlTq
-         unXQ==
-X-Gm-Message-State: ACrzQf1+zLXVDi53Vto+Sg1Z2vtHmBjAtCcQc28a5Pvr3A450CpRvamr
-        dwVmMurSO8TG6kPyHe9VxBiqpQ==
-X-Google-Smtp-Source: AMsMyM6HQoJ5UNKRyCHBISkOOH4HujGYWPOKkoE98SUL/UFadadDiHyVoD70LSpaqusQ1YF5KVmSjQ==
-X-Received: by 2002:a05:651c:1504:b0:26c:6331:3463 with SMTP id e4-20020a05651c150400b0026c63313463mr607382ljf.30.1664434192564;
-        Wed, 28 Sep 2022 23:49:52 -0700 (PDT)
+        bh=Fco6NMVSVhjPLhPkls0dH/RXUx15xfAB9MdMBpMfFz4=;
+        b=fwqjWjUdnImZ4l+f/0wf8LoAxGPXl1/Ma3lpc0gH0ycuhP9FCr6ccoITgw9h0wYmTx
+         iugkETia1sATVvneKQ/6rtODeLslBeJtTIHHMWbb00JA+Urkrbefh42WXVsj0PflK1mD
+         ZD8nN8mnz0+u+STdJY3pMo73iBM1g0Ky64oh53IG033+PWbsWwXL+NjVj9NB6cNlXM3i
+         xE7uPPHeg1W7/8l5c2aDBMWlAhS5BUFW092ovWYroyeI0IAFFQH6yEDufGC+Vlhw0DCM
+         /13stRZWIIbB1hijKE1eeIHGXPcqmoRWjZQam32UfoKaaWYcrMjAbO7dezfYjznegoZO
+         p5kw==
+X-Gm-Message-State: ACrzQf1+9Uy405b2FpB7/AhsQfShVYoy0Ps8JTBZ78nWbIdKYQgkzvNP
+        DFmECSsr/MH4cAe0eh5TfpZ0vg==
+X-Google-Smtp-Source: AMsMyM7bkcsMr1PEiTGX4Bxt999WsCoUi4nb4/gpk043vx+H3mhmVUqZcxTAZg2mFgIIszFqb3HbLw==
+X-Received: by 2002:ac2:5a49:0:b0:49f:f620:b81b with SMTP id r9-20020ac25a49000000b0049ff620b81bmr696226lfn.307.1664434311372;
+        Wed, 28 Sep 2022 23:51:51 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id j14-20020a05651231ce00b0048af9576d30sm695743lfe.83.2022.09.28.23.49.51
+        by smtp.gmail.com with ESMTPSA id i19-20020a2ea233000000b0026c549bdd2fsm625724ljm.129.2022.09.28.23.51.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 23:49:52 -0700 (PDT)
-Message-ID: <dd887ce0-df72-2818-ecaf-1fcdcc0dfb42@linaro.org>
-Date:   Thu, 29 Sep 2022 08:49:51 +0200
+        Wed, 28 Sep 2022 23:51:50 -0700 (PDT)
+Message-ID: <83f9c460-3009-f123-0b82-1d0bd23b7c12@linaro.org>
+Date:   Thu, 29 Sep 2022 08:51:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCHv4 1/3] dt-bindings: mmc: synopsys-dw-mshc: document
- "altr,sysmgr-syscon"
-To:     Dinh Nguyen <dinguyen@kernel.org>, jh80.chung@samsung.com
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220928165420.1212284-1-dinguyen@kernel.org>
- <ef396764-af53-8e5a-5203-f3e103bbb7a3@linaro.org>
- <02967018-8a04-bd82-49e6-1ee475916ebb@kernel.org>
+Subject: Re: [PATCH] devicetree: hwmon: shtc1: Clean up spelling mistakes and
+ grammar
 Content-Language: en-US
+To:     Colin Ian King <colin.i.king@gmail.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Christopher Ruehl <chris.ruehl@gtsys.com.hk>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220928213139.63819-1-colin.i.king@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <02967018-8a04-bd82-49e6-1ee475916ebb@kernel.org>
+In-Reply-To: <20220928213139.63819-1-colin.i.king@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,39 +80,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 20:37, Dinh Nguyen wrote:
-> Hi,
+On 28/09/2022 23:31, Colin Ian King wrote:
+> The yaml text contains some minor spelling mistakes and grammar issues,
+> clean these up.
 > 
-> On 9/28/22 12:15, Krzysztof Kozlowski wrote:
->> On 28/09/2022 18:54, Dinh Nguyen wrote:
->>> Document the optional "altr,sysmgr-syscon" binding that is used to
->>> access the System Manager register that controls the SDMMC clock
->>> phase.
->>>
->>> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
->>> ---
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>> +
->>> +allOf:
->>> +  - $ref: "synopsys-dw-mshc-common.yaml#"
->>> +
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const:
->>> +              - altr,socfpga-dw-mshc
->>
->> It still should not be an array, even if there is no warning.
->>
-> 
-> I apologize, but I'm confused with the message. Do you mean it should 
-> not be a "const"?
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 
-No, it should not be a const. Open any other schema and check how const
-is done there.
+Subject prefix: dt-bindings: hwmon: sensirion,shtc1:
+
+With the subject fixes:
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
