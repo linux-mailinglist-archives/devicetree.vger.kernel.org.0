@@ -2,64 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CBFE5EEF29
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6998F5EEF8B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:47:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234795AbiI2HgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 03:36:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39386 "EHLO
+        id S235368AbiI2Hqe convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 29 Sep 2022 03:46:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235156AbiI2HgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:36:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED655E11FB;
-        Thu, 29 Sep 2022 00:36:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8A3B862061;
-        Thu, 29 Sep 2022 07:36:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64137C433C1;
-        Thu, 29 Sep 2022 07:36:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664436981;
-        bh=gadGtTCeRLJv1JEE9hnf/EqUmfyZC0F8hypNxMqO454=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fbQxrGZsRJRXH8B52mGdn2+H72g9thOpi/5QqR6sW0Qfkk7dX2LeSUwokOgccIgQM
-         YrRYD21upOjaXVinJkUyhybq8ysnAtu/R0EWn+Qp8iqznE8tpQQLYEbzlGBnN6owUv
-         8wFv6k/G7YsvKLKfusCAScmgbC70Hd66v4+3sZhwJvzwNscYbBsoc7dkqkcWmnMTfw
-         QxaZIp919KAi962Lo9xZ8YkwgzD6ElCcIm6DqXEc9yjGMKkTHZm9HzTXXFaGzvOaKz
-         +OctZ4Da+VbBJAEs3CPZO9zt/aRz66JAFNhGe2QntJ4H2a6EOVY9sfRbFxW4Q3S2Rr
-         YcZgv1+0af9XQ==
-Date:   Thu, 29 Sep 2022 13:06:15 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235310AbiI2HqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:46:23 -0400
+X-Greylist: delayed 561 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 29 Sep 2022 00:46:22 PDT
+Received: from relay.hostedemail.com (smtprelay0013.hostedemail.com [216.40.44.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03C13EF090;
+        Thu, 29 Sep 2022 00:46:21 -0700 (PDT)
+Received: from omf07.hostedemail.com (a10.router.float.18 [10.200.18.1])
+        by unirelay01.hostedemail.com (Postfix) with ESMTP id E3A941C60E3;
+        Thu, 29 Sep 2022 07:36:57 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf07.hostedemail.com (Postfix) with ESMTPA id E57402002C;
+        Thu, 29 Sep 2022 07:36:44 +0000 (UTC)
+Message-ID: <3c02aad6d8bde70964b403a3cb8004de969becc6.camel@perches.com>
+Subject: Re: [PATCH v4 10/14] gunyah: sysfs: Add node to describe supported
+ features
+From:   Joe Perches <joe@perches.com>
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: renesas,rcar-dmac: Add r8a779g0 support
-Message-ID: <YzVK7y2mn7fGNv67@matsya>
-References: <0a4d40092a51345003742725aea512a815d27e89.1664204526.git.geert+renesas@glider.be>
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Thu, 29 Sep 2022 00:36:50 -0700
+In-Reply-To: <20220928195633.2348848-11-quic_eberman@quicinc.com>
+References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
+         <20220928195633.2348848-11-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0a4d40092a51345003742725aea512a815d27e89.1664204526.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Stat-Signature: yfqwchey9yq5eu51co5zpzk7inon4u6t
+X-Rspamd-Server: rspamout05
+X-Rspamd-Queue-Id: E57402002C
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_NONE,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
+        version=3.4.6
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX1/SbFmnkC0u2VswP4hwzbj5pLQd0DpRqLM=
+X-HE-Tag: 1664437004-361455
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26-09-22, 17:03, Geert Uytterhoeven wrote:
-> Document support for the Direct Memory Access Controllers (DMAC) in the
-> Renesas R-Car V4H (R8A779G0) SoC.
+On Wed, 2022-09-28 at 12:56 -0700, Elliot Berman wrote:
+> Add a sysfs node to list the features that the Gunyah hypervisor and
+> Linux supports. For now, Linux support cspace (capability IDs) and
+> message queues, so only report those..
+[]
+> diff --git a/drivers/virt/gunyah/sysfs.c b/drivers/virt/gunyah/sysfs.c
+[]
+> @@ -25,9 +25,24 @@ static ssize_t variant_show(struct kobject *kobj, struct kobj_attribute *attr, c
+>  }
+>  static struct kobj_attribute variant_attr = __ATTR_RO(variant);
+>  
+> +static ssize_t features_show(struct kobject *kobj, struct kobj_attribute *attr, char *buffer)
+> +{
+> +	int len = 0;
+> +
+> +	if (GH_IDENTIFY_PARTITION_CSPACE(gunyah_api.flags))
+> +		len += sysfs_emit_at(buffer, len, "cspace ");
+> +	if (GH_IDENTIFY_MSGQUEUE(gunyah_api.flags))
+> +		len += sysfs_emit_at(buffer, len, "message-queue ");
+> +
+> +	len += sysfs_emit_at(buffer, len, "\n");
+> +	return len;
+> +}
 
-Applied, thanks
+It's generally nicer to avoid unnecessary output spaces.
 
--- 
-~Vinod
+Perhaps:
+
+{
+	int len = 0;
+
+	if (GH_IDENTIFY_PARTITION_CSPACE(gunyah_api.flags))
+		len += sysfs_emit_at(buffer, len, "cspace");
+	if (GH_IDENTIFY_MSGQUEUE(gunyah_api.flags)) {
+		if (len)
+			len += sysfs_emit_at(buffer, len, " ");
+		len += sysfs_emit_at(buffer, len, "message-queue");
+	}
+
+	len += sysfs_emit_at(buffer, len, "\n");
+
+	return len;
+}
+
