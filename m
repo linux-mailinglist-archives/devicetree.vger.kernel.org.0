@@ -2,92 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E3095EEF5C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5915EEF77
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:44:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235419AbiI2Hl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 03:41:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49144 "EHLO
+        id S235174AbiI2HoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 03:44:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235381AbiI2Hk6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:40:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D7C121116;
-        Thu, 29 Sep 2022 00:40:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B8F20B8220A;
-        Thu, 29 Sep 2022 07:40:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09CFCC433C1;
-        Thu, 29 Sep 2022 07:40:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664437242;
-        bh=C2emNc0NAZeHrems5nNVYRQ4SMC2epBUFyJLM2zmGmI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=W9BEhHgjvuv4D6muqvt5Pkw9paqZhAL7cFaBdyPd/SR4timbLw5eh25nw+lEa5O2e
-         vwz+GstAWGi5dtaKYnk+URjtXIpyKwwuRHxWIzq9rAKDjxMIiRR8E8Pk8QB/EK7IHS
-         FbKPLVW1Fbm34B3HbNLApoa2A9cWy1QrIiIHL9PfdXEmVqwOFbG1dWXHjzJS30PXeL
-         qaGHKpxoCkKXgCe8CD0XCRcZ10hknMDckSpsK6aX3zuraRPk37cvI74s1wUGGG87vG
-         kwSJ6KWxej+R0Iu/6f91rhuP/qB4xWW/DHJolj/XMBulcSC4IWr5UBkXbUvNyJ0QQO
-         5N7i3Ghm9ER6w==
-Date:   Thu, 29 Sep 2022 13:10:38 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Richard Acayan <mailingradian@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S235520AbiI2Hnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:43:45 -0400
+Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BCF27D789;
+        Thu, 29 Sep 2022 00:43:41 -0700 (PDT)
+Received: by mail-ua1-x935.google.com with SMTP id a4so209066uao.0;
+        Thu, 29 Sep 2022 00:43:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=hUW+w97bjwcMZAz2wEha3h2rI21nTjZgAo+7PEzzR7o=;
+        b=IE9LHSxpzmDUKXAXpwHaYnHjLj1WufJVEYfJ1hGOFxil3rrScoNoLneEmDUcqYGDo/
+         cmnDLwBy5pEenkueOTqCV+am/5vXym19TECHw5twZhfNwDVDerAskkddsMYTI5iyXcb9
+         DKeNtto5a2ndL2uhg4dGQ+GhgCdAK8SvkRUTbps0BQnaxHCtqGHEWrXW1L8fXhtkJtvK
+         xEbpRhYNxNBRsDCHgiwHkY7GxRqwABdkPK0KVFe4aKZvOyCNtvpSM5qwc9EXYZdj7Ccx
+         +pI87QqvzlYDGu6n8JKzdWzkbjB8p0Z8F352cBkYLNp5LL5IyZKCRiZJ4CAtoLvoTv3W
+         5eTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=hUW+w97bjwcMZAz2wEha3h2rI21nTjZgAo+7PEzzR7o=;
+        b=iA3hcRubxNaD3F5znpW2v21sAUQ02aV/Eme5ySqZHWX2XGMZ0hqc6PqrS2aNYJzCNM
+         7XOvA9WeLsxI9jSHdYHeYAUmcSjsTRoM3vxHH7+QNUAIXQhUPRmtN/p1fuQWuVwaY+yY
+         NqLdeyF/QAJmjpVkMMMVAuksYkSA7dTkMKpTXCQej3Rgmoq+bIg//oIsJuqJcTFSXN1r
+         97IbqBFpd5a90gMxtx/NJO6ArIouOZ17FKvICxpO6nIMeM+O298LNBshSr6kCFsg8oqn
+         tABsvapuLbbAg6Ba5zRcZcDTRyBDniyGf+wIk5KefrcvGObvxQA5EEAs9p+/5BzIRvy0
+         p03g==
+X-Gm-Message-State: ACrzQf1hS+urFFtsOMtrmsHyu8dYArGsdKXmUErK191kYZC4dOmVgEZT
+        yPsBZmS3mPj7refPDuVFDeUGfv+OConztQZYPD8=
+X-Google-Smtp-Source: AMsMyM7ZHbYAiRKbQseodi2xdbkJcMUR30vIeLDXSMJPODyQS/Sgc7Hny7j2kIzLs5PAY4GuSRRyTMEfCI5USrXqyrw=
+X-Received: by 2002:a9f:3767:0:b0:3d1:2de3:12a8 with SMTP id
+ a36-20020a9f3767000000b003d12de312a8mr881708uae.47.1664437420589; Thu, 29 Sep
+ 2022 00:43:40 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220928092937.27120-1-zhang.lyra@gmail.com> <fca2b97c-9d4f-d372-ef2a-aae8b367bbe5@linaro.org>
+ <CAAfSe-t=-pZAcrY0o-ct1uJaNhtkCMQKNW5gOrJfE6DEOhSZDw@mail.gmail.com> <bb61ff78-182f-f4e2-bee8-556234ca07ee@linaro.org>
+In-Reply-To: <bb61ff78-182f-f4e2-bee8-556234ca07ee@linaro.org>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Thu, 29 Sep 2022 15:43:04 +0800
+Message-ID: <CAAfSe-veC5syRMLbDDxDsYXTx=OS09DEMGS-O=c_9PSa7r9tuA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: gpio: Conver Unisoc GPIO controller
+ binding to yaml
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] dmaengine: qcom: gpi: drop redundant of_device_id
- entries
-Message-ID: <YzVL9ngfwqfwhF8Q@matsya>
-References: <20220927014846.32892-1-mailingradian@gmail.com>
- <20220927014846.32892-5-mailingradian@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220927014846.32892-5-mailingradian@gmail.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26-09-22, 21:48, Richard Acayan wrote:
-> The drivers are transitioning from matching against lists of specific
-> compatible strings to matching against smaller lists of more generic
-> compatible strings. Continue the transition in the GPI DMA driver.
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  drivers/dma/qcom/gpi.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/dma/qcom/gpi.c b/drivers/dma/qcom/gpi.c
-> index 89839864b4ec..e5f37d61f30a 100644
-> --- a/drivers/dma/qcom/gpi.c
-> +++ b/drivers/dma/qcom/gpi.c
-> @@ -2289,8 +2289,6 @@ static const struct of_device_id gpi_of_match[] = {
->  	{ .compatible = "qcom,sc7280-gpi-dma", .data = (void *)0x10000 },
->  	{ .compatible = "qcom,sdm845-gpi-dma", .data = (void *)0x0 },
->  	{ .compatible = "qcom,sm6350-gpi-dma", .data = (void *)0x10000 },
-> -	{ .compatible = "qcom,sm8150-gpi-dma", .data = (void *)0x0 },
-> -	{ .compatible = "qcom,sm8250-gpi-dma", .data = (void *)0x0 },
+On Thu, 29 Sept 2022 at 15:02, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 29/09/2022 04:29, Chunyan Zhang wrote:
+> > Hi Krzysztof,
+> >
+> > On Wed, 28 Sept 2022 at 19:31, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 28/09/2022 11:29, Chunyan Zhang wrote:
+> >>> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> >>>
+> >>> Convert the Unisoc gpio controller binding to DT schema format.
+> >>>
+> >>
+> >>
+> >> Thank you for your patch. There is something to discuss/improve.
+> >>
+> >>> diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..c0cd1ed9809b
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
+> >>> @@ -0,0 +1,70 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +# Copyright 2022 Unisoc Inc.
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/gpio/sprd,gpio.yaml#
+> >>
+> >> Use compatible as filename, so sprd,sc9860-gpio.yaml
+> >
+> > Humm... This is not only for SC9860, also for other IPs, UMS512 as an
+> > example which added in this patchset.
+> >
+>
+>
+> Then it's ok. It seems you have also typo in commit subject (Conver).
 
-We cant do this without breaking stuff...
+Ah yes -_-||, will fix that.
 
-There are DTs which have this id!
-
->  	{ .compatible = "qcom,sm8350-gpi-dma", .data = (void *)0x10000 },
->  	{ .compatible = "qcom,sm8450-gpi-dma", .data = (void *)0x10000 },
->  	{ },
-> -- 
-> 2.37.3
-
--- 
-~Vinod
+>
+> Best regards,
+> Krzysztof
+>
