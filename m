@@ -2,97 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D62A15EF1B0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:20:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA5E5EF1B4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:21:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235153AbiI2JT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 05:19:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56682 "EHLO
+        id S235430AbiI2JVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 05:21:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234957AbiI2JTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:19:55 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945FC3057F
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 02:19:52 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id bu25so1342514lfb.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 02:19:52 -0700 (PDT)
+        with ESMTP id S234939AbiI2JVt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:21:49 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5FC712FF08
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 02:21:47 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id s6so1328828lfo.7
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 02:21:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=a3atssBxjXoEzroWAbTukg7FItDTIRDpuyhop6mTfvc=;
-        b=BO0XuIN7pPFfyBzqN8GXL7LxRR6DgTITSn8rpOWqAKy4MjxgGAJCHzZ48BNeUZgS1h
-         M7Gc77bCCLRF5ikQu6IHnxstobiEpSchuL1II/RCPRBki2Y56NeLzAVq2w4z6gn7JG7S
-         +rFZZykGmVXNSpkxjFBKsssBVTS5IbikCsDyji7jo5P3MkwjDNRKRIaToAOIMO9bcRAw
-         HrXgcr7pf1YPGgyJwT/PZPsnvnhMIbj8qTnIHxnWktN71URha00KHQgOX8pMbY8CoelW
-         A0ksyuxGIGk5EMt4C8vBqwUtHEpB5oIu5bOfTDP5Ll3jNyCBPHZkPTxWfZYzfT3W/jok
-         THSw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=9dskQRpUPj5W1ioUWccp/L/Tjbt3VYPexwFmRI0ffDk=;
+        b=kX5G87deMyQxetFmP6jescjFeHw6IcRFT/4JhqRVq7XNWFNhuUIxmETx8fbKVs3f9G
+         NgXKbIeMJGXrYdmyFVKLteMKJoM10RSqEmNXbrLyNylUXKM7TApNyURGtIgELuJ7phVn
+         SWiQXT/bW1D4J1fZJxwXEHW3ywW6jveidTkbHaRDjttI14balMw9AdkjzMO2z9Ig6s73
+         OQ5VfBM7iPyripTQhdVnyh4IGtnon063hl/7oSiwBMGS3m9QlxK+ETclaD+J/9iTy/+t
+         b8GVp0h5f2SZYVHRM2oFgTjVAUZNm6dEICRTbJuHXQpWUkqeMUmEIHtoqpU6ZY0sh6cI
+         b8DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=a3atssBxjXoEzroWAbTukg7FItDTIRDpuyhop6mTfvc=;
-        b=LurMpbwO4Tu5efjQxzYF3DAsVvtbiK6FBLE05RNqZx2leQcu7CNw1WucR+HXgADe3C
-         DDM86XQq59qvfYnmzjr+dMGKQ6mgdiNCd+tg0D51vVL+RFe54itknVCul4kFWJbdW0dl
-         37r9lzer9x4yw7bSu9tLP8EVQIo2ciDi5xii5dPAUwoIPB/S0Q9dfwOH4Nh/rsKHAsrp
-         t43ez3YKz769ZmcvPq6XjTC647jMKYLfIDf2BF2kQob/ddDp/pOQmG3Lnk0wN+f2X8iS
-         gnjpeSFhQgxC9ZL0J5hfxByWTUU+SPYdIy58eo6/6Q4Lm9WWyg5JFD29apJHOCfJOkXD
-         OQmQ==
-X-Gm-Message-State: ACrzQf3jEW3X+t/nHNqeqErFHnvHcT+fngKe71w7Xnwx6UqbkBzzC8Il
-        gaJWhC65ZEuawVkY4guLGtu7MQ==
-X-Google-Smtp-Source: AMsMyM7h4ztX8XbyjYO6fw+78rlNWjdzYEjMrTInWx1Ob8XV5ZHx45CnwiZ9XY5GkjjxMjABu+gtNA==
-X-Received: by 2002:a05:6512:3052:b0:49e:fcb2:c1e9 with SMTP id b18-20020a056512305200b0049efcb2c1e9mr876563lfb.260.1664443190966;
-        Thu, 29 Sep 2022 02:19:50 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o1-20020a2e0c41000000b0026c1b85d8b3sm655247ljd.34.2022.09.29.02.19.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 02:19:50 -0700 (PDT)
-Message-ID: <c97e3355-89cb-7fca-2734-be221456b622@linaro.org>
-Date:   Thu, 29 Sep 2022 11:19:49 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v5 5/5] dt-bindings: remoteproc: wcnss-pil: Make supplies
- optionally required
-Content-Language: en-US
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=9dskQRpUPj5W1ioUWccp/L/Tjbt3VYPexwFmRI0ffDk=;
+        b=m8Wmw7zDF3Cy7plchr83NNB8iSiTpU3mCsr7cdwgq6J5duFQlp8fp/FjjAspMrKjrf
+         DMjMV8uT0TdA9FPaXZeDN5dqJWhX/G/dGEkHeaLpGxTwUp4oRypN7/0dw43Hwvz58ALm
+         oN4miyzPXHEnltLTuFv74SSEWuQXaGc92Vz8Zxr17fg8uKVPN091tK2ok9jHvXOsbE0h
+         OeQ4f/KsALU4MVM1egQtJzVtlkNSPhBW8cfwgSlKegfDJQ2wFN1EIkltpnj+Hl90Nibv
+         NEwHwv8Y5rKnr7X4OsjIhd6FS3yx6GIo69zJGjjgh/bldQEgzHSC+DlcqHNK8woDu9fI
+         LYog==
+X-Gm-Message-State: ACrzQf1Lz2rTwkdWM7xJimLdnD9m0TXNooFPmV28gjAsx6+Q0Lz2vpXk
+        BI1/OIjtrW2Cw5lHF0vX+jVFag==
+X-Google-Smtp-Source: AMsMyM5OUGY14dCBZ5WhOfGOL1Bjoou8bBBm544IiHqIEpwtjW4AGqDMGxU1eIlqIKRCWkkqBg0jwA==
+X-Received: by 2002:a05:6512:3f29:b0:4a1:c920:ebad with SMTP id y41-20020a0565123f2900b004a1c920ebadmr970154lfa.574.1664443306111;
+        Thu, 29 Sep 2022 02:21:46 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id c22-20020a2e9496000000b0026c687f9f7bsm633271ljh.107.2022.09.29.02.21.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Sep 2022 02:21:45 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20220929050209.1464526-1-sireeshkodali1@gmail.com>
- <20220929050209.1464526-6-sireeshkodali1@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220929050209.1464526-6-sireeshkodali1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 00/11] clk: qcom: update MSM8974 clock controller drivers
+Date:   Thu, 29 Sep 2022 12:21:34 +0300
+Message-Id: <20220929092145.473009-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/09/2022 07:02, Sireesh Kodali wrote:
-> On MSM8974, power domains are not yet supported. The platform uses
-> regulators. This patch marks either the power-domains or *-supply as
-> required (instead of always requiring the power domains).
-> 
-> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+Modernize drivers for global and multimedia clock controllers on the
+MSM8974 platform. Switch them to using parent_hws/parent_data, use
+clocks through the DT links rather than fetching them from the system
+clocks list, update schema and platform DT files.
 
+Changes since v1:
+- Fix typos in the commit messages (Niel)
+- Change bindings license to dual GPL + BSD (Krzysztof)
+- Fix issues in gcc bindigns pointed out by Krzysztof
+- Fix Taniyas's email (Krzysztof)
+- Removed dsi-names and changed dsi-phy node in the patch adding the
+  second DSI host+PHY (Krzysztof)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Dmitry Baryshkov (11):
+  dt-bindings: clock: split qcom,gcc-msm8974,-msm8226 to the separate
+    file
+  dt-bindings: clocks: qcom,mmcc: define clocks/clock-names for MSM8974
+  clk: qcom: gcc-msm8974: use ARRAY_SIZE instead of specifying
+    num_parents
+  clk: qcom: gcc-msm8974: move clock parent tables down
+  clk: qcom: gcc-msm8974: use parent_hws/_data instead of parent_names
+  clk: qcom: mmcc-msm8974: use ARRAY_SIZE instead of specifying
+    num_parents
+  clk: qcom: mmcc-msm8974: move clock parent tables down
+  clk: qcom: mmcc-msm8974: use parent_hws/_data instead of parent_names
+  ARM: dts: qcom: msm8974: add second DSI host and PHY
+  ARM: dts: qcom: msm8974: add clocks and clock-names to gcc device
+  ARM: dts: qcom: msm8974: add clocks and clock-names to mmcc device
 
-Best regards,
-Krzysztof
+ .../bindings/clock/qcom,gcc-msm8974.yaml      |  64 ++
+ .../bindings/clock/qcom,gcc-other.yaml        |   9 +-
+ .../devicetree/bindings/clock/qcom,mmcc.yaml  |  38 +
+ arch/arm/boot/dts/qcom-msm8974.dtsi           | 105 +++
+ drivers/clk/qcom/gcc-msm8974.c                | 682 ++++++++--------
+ drivers/clk/qcom/mmcc-msm8974.c               | 736 +++++++++---------
+ 6 files changed, 930 insertions(+), 704 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8974.yaml
+
+-- 
+2.35.1
 
