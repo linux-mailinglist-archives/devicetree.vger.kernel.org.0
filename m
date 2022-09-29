@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68D085EEEE8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:24:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90FF15EEF13
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:32:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235320AbiI2HYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 03:24:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57100 "EHLO
+        id S234906AbiI2Hcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 03:32:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235260AbiI2HYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:24:07 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13A8112CCA8
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:23:32 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id j16so957007lfg.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:23:32 -0700 (PDT)
+        with ESMTP id S235077AbiI2Hck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:32:40 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1516E137E75
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:32:39 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id u18so959476lfo.8
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:32:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=esyvo1N+gEQDFFE9aYlOLsMaB1azheI0a2UcfMkbL2s=;
-        b=VEFPX8b4WGsm4NmsL0IuayBl6rV7L13OuxxQD2rU2cKhhvzTnzLaNDOzObqriutUEY
-         syNJTUCDIe6P2bCnrTrw6r7cr07EZj6sWNZdbzavpY+oWTfDblWjUGZ1GNK1UHH4lOyJ
-         JeWmmUMqXylbCW6iVFdgNdIlQwT7yICuAJkwh6MA7tgqqDK4kJOArBNQYTMKcTtE2cek
-         Vq3PDlRUgsTe9/j8CckZoG3Q/gp7mGLplpdD7cBzqMTHycfTflw6jgaiy1zyMSEMimxx
-         RolWqf2I9KGIKjhNLtYOHqGjRgxD0SZ2ESWx2F+KTY7taDQwVBfLRRKzRNDcGoaeasdA
-         dtsA==
+        bh=W2fjpWPBdHvD2Cwc+rAoirjTMcAP6sfAcXFgOpE7B4Q=;
+        b=zFfE8XF/VEKI+2X34AQoRskkZQRelUDSPSV/CU2iP/t1u5/k8ZtYcgi8zvo1J8VACV
+         F175V6oT4y3jGPvsdH9jz9cXda/Uvg7fnpUBjpY3Lc+wc+VOqQ7vruhbvwAy0AdQBvlm
+         LI3KpRIIGhAYPchK1dl81/mnhEM2UrhOFLEJf3QfVnIHT0i5rf+kVZ/0VvamtnTq2dF8
+         Du82GP3hpz8fXpvl8duQCLSFbvZolAr6ZJENEOvCA21hus6gaGrnY9c/2DrbT28eMM11
+         FyUfka3KDcSZZuhqTdHTH9l3LXBIKQ8rvkxFgvEClpdDcZdzE0wXrazNket0e0Xs+uUm
+         c/Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=esyvo1N+gEQDFFE9aYlOLsMaB1azheI0a2UcfMkbL2s=;
-        b=MUZBnySLtRIGS6tmLOjEEpV9KDp7UTJpTIheR37G0Vfapx6FHA5pXpghBVP0JDkRyF
-         U3TMxVshUHLJB2M2Bu7C7xTxAyO1bIeuwK1zyziJxAdPMqOWUfrjpdCgt++h35FTYftt
-         f9pBpryzYkPxkGdS6Gd5pJFRJtyMmK/EDyg6xQzm1hAaJmvQeaGNYgDochwr9pdM4/2d
-         wd+kn5ULqSyWMBkhhgGeADtdpFE8YAzfY8rxKvZkPKePQ+3L2Kc/t3sJwgaqkAm48xtS
-         qk4wg8QkHPyEqtOP2uBm4RPdcj76G4EqjbGPjLx7cz4q/JZuRPDfPu/ytARFiLK+7L9Z
-         ChFQ==
-X-Gm-Message-State: ACrzQf0ZE0kAQkisxQL4DihaCB9qll2Wv5/4EnM2t9hh4VU2XubHABey
-        UhNYhFQBuh+eirnj31HByBRdeQ==
-X-Google-Smtp-Source: AMsMyM7PKTciPv1b8hkVLu+URm+0q9tPBNwvxrPJyro9cIzA9VsAKGSl+yb0bGNdqKvTN/ucLgsDUQ==
-X-Received: by 2002:a05:6512:a86:b0:499:f794:5cc2 with SMTP id m6-20020a0565120a8600b00499f7945cc2mr738095lfu.100.1664436210873;
-        Thu, 29 Sep 2022 00:23:30 -0700 (PDT)
+        bh=W2fjpWPBdHvD2Cwc+rAoirjTMcAP6sfAcXFgOpE7B4Q=;
+        b=q91baVMfeC2wQ5xzQAj4pz9DVfoT8VfMUzku8AJbFIOLmk29CEefJK6V1yaokekMy1
+         Tb8AVeWLipANdsvxyTRVqSEjY20yCz1VilARQEKkYNkXeGlQUyjQ6OdFOvOscugiX5g0
+         PcK2016/LXkfX6ZLWC1GMSwMezf6D8DioeUWhGnWzlb9Qm8J4JwZRWU/Z4FLnyaXqeju
+         xoHQu3FSX+36Od+FoyCsJrJU116DZzjy9PJImWfdZK3o9beCk6zKoZBpOV+f2U6WiO9u
+         Ujis+trz2ghf4M2g0QTQe7dBg/iiPUHb3MJ0d+HSIxGz1zGdSdNLrCg582JH+2+Jp07b
+         O0Kw==
+X-Gm-Message-State: ACrzQf0xKFLQ1Sx/Bm3JW+lltLFj1DYsj/twJ86ZZ4cEE563dzO6L39M
+        vQ4rAw9SAXabg+f10rQxq/EQFQ==
+X-Google-Smtp-Source: AMsMyM5IZD7SiBd3W+DhxzoDka965KOnWTmcNIgiYNo4v6886/2xDzjTli0TxRVlpR/KgN68vVwnYQ==
+X-Received: by 2002:a05:6512:3da9:b0:49f:1742:c692 with SMTP id k41-20020a0565123da900b0049f1742c692mr873659lfv.313.1664436757473;
+        Thu, 29 Sep 2022 00:32:37 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h15-20020ac250cf000000b00498f871f33fsm703730lfm.86.2022.09.29.00.23.30
+        by smtp.gmail.com with ESMTPSA id u13-20020a05651220cd00b0049fbf5facf4sm706661lfr.75.2022.09.29.00.32.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 00:23:30 -0700 (PDT)
-Message-ID: <89a6d523-0268-3e8c-2293-68e2de7081d5@linaro.org>
-Date:   Thu, 29 Sep 2022 09:23:29 +0200
+        Thu, 29 Sep 2022 00:32:37 -0700 (PDT)
+Message-ID: <a1a78c72-2067-1ea8-a50e-0dcf4ae4bb83@linaro.org>
+Date:   Thu, 29 Sep 2022 09:32:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2 4/4] MAINTAINERS: Point to the yaml version of
- 'qcom,ethqos' dt-bindings
+Subject: Re: [PATCH v10 1/7] dt-bindings: remoteproc: qcom: Add SC7280 ADSP
+ support
 Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, netdev@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        David Miller <davem@davemloft.net>
-References: <20220929060405.2445745-1-bhupesh.sharma@linaro.org>
- <20220929060405.2445745-5-bhupesh.sharma@linaro.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        linux-remoteproc@vger.kernel.org, agross@kernel.org,
+        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, devicetree@vger.kernel.org
+References: <1664368073-13659-1-git-send-email-quic_srivasam@quicinc.com>
+ <1664368073-13659-2-git-send-email-quic_srivasam@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220929060405.2445745-5-bhupesh.sharma@linaro.org>
+In-Reply-To: <1664368073-13659-2-git-send-email-quic_srivasam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,17 +81,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/09/2022 08:04, Bhupesh Sharma wrote:
-> Update the MAINTAINERS file to point to the yaml version of
-> 'qcom,ethqos' dt-bindings.
+On 28/09/2022 14:27, Srinivasa Rao Mandadapu wrote:
+> Add ADSP PIL loading support for SC7280 SoCs.
 > 
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: David Miller <davem@davemloft.net>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+> Changes since V9:
+> 	-- Add missing unevaluatedProperties in glink-edge.
+> Changes since V8:
+> 	-- Add glink-edge reference.
+> 	-- Remove redundant glinke-edge properties.
 
-This cannot be a separate patch - it's not bisectable.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
