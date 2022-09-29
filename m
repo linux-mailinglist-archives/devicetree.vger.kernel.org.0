@@ -2,85 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75A715EF475
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 13:39:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6842C5EF495
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 13:46:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235361AbiI2LjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 07:39:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59326 "EHLO
+        id S234987AbiI2Lqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 07:46:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234943AbiI2LjJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 07:39:09 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD5D14F8DF
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 04:39:06 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id v28so1755273wrd.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 04:39:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:reply-to:from
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date;
-        bh=1PRN1zzVAaMSHN20dZQSu82ZWzj092eeFRPND9W3hso=;
-        b=jRGy14KqPH+L5s2X3NOli1XbC51EMAQpDYGRK2P4PoL/Xf8QlHOiGmbOjJS3kWB2O/
-         Tr4MlQf5FpgUSSoVKnREH8WW7Zr9bfEMaW1c0VHiVSryp+9o/n+4Ul/c/ddRx2CFDBq9
-         rLcEFGps3AU51bAyF1GcvBAg7lJ64N/xxC0eAVULN3T2+w7DxL+Y+jSAFX6+F38bpUdG
-         fz6uMFtTdqa6N4sWW78FO0AWxvIqjnU7HdGxk4vWbP1+vRDdQqgKtj3uq34kle4YPGlK
-         Uw1ZaFX3UPnpJYYRrfYBY24JN7/lHC6HHwiIDMWa+XeO3gc4sOXlQxMojh1g4wenM5Ep
-         ttzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:reply-to:from
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=1PRN1zzVAaMSHN20dZQSu82ZWzj092eeFRPND9W3hso=;
-        b=udeXuh4GbsgyjM3kXY0UZYhn2/jqVtQ0ifOpcaQrcOGVtoyUzyz4sQt+lY9wNIWtB7
-         kQJIcKmQsBptzy974ftqkeH67FgmxJOyv362/I/2GGQVbhUFrW31kc0SZRJj2ReanHWv
-         jCoF06b7mnV8fom/FXMvA9k2CSWWfppyYMfy43Zg0C8hxSdXH/3l2pkYpKjL2gRv1bn8
-         L02P+GKCAT8IAYcaQQ6xPLteltOZxoUtbe1id3bmhZFPOe+3ywesovvuP/51JHs49ceV
-         2hFqOBcbXUnP8H16fjaEKDk70VCtz17g9fwNw+l9aeGlrQhpO+1UYtjmnJ2HJjiwZLlW
-         zL+A==
-X-Gm-Message-State: ACrzQf3NBT9x9yvWPElEqYW2ti01tODBrXfH45aMceeKc+uhGLb8iw1x
-        0SbBimsiv84SJn4owVsP3fV/jg==
-X-Google-Smtp-Source: AMsMyM7dZ8qcD+O7lmFAyw07woE1FenoJWad93RnG6drtVYO2aSkgT8ImmgIt45K1K0auHayeijmog==
-X-Received: by 2002:a05:6000:168e:b0:22a:4e45:7469 with SMTP id y14-20020a056000168e00b0022a4e457469mr1811414wrd.681.1664451544680;
-        Thu, 29 Sep 2022 04:39:04 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff? ([2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff])
-        by smtp.gmail.com with ESMTPSA id q6-20020adff506000000b0022a839d053csm6419432wro.98.2022.09.29.04.39.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 04:39:04 -0700 (PDT)
-Message-ID: <07405d0d-8534-6470-21d1-26b85dbd7de0@linaro.org>
-Date:   Thu, 29 Sep 2022 13:39:02 +0200
+        with ESMTP id S234434AbiI2Lql (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 07:46:41 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D74E7112666;
+        Thu, 29 Sep 2022 04:46:35 -0700 (PDT)
+X-UUID: 9a6424274c814cd4bc489c8d6aad0c69-20220929
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=rLy55ox0mqF8121Buqk4aymTEF8+D74q/C0Yb4uXas8=;
+        b=QyKqGegNKOigxlq2xTRnReS4xVo1ghgKtxTBiu1x8oEhJkGyDj/9+s/ifjmH1rx0T6aWV+dGps4P5TbDAUzBwzmJKWskzvHwudHE/y/vDnrUy3NzfH7oC3Y88rV+JuFetdSEQsQFNboB6yPjddifzbh9GTJLsRlfDSKF4LG+OkA=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:2d663e78-22f6-4992-879c-fdde8247ef9d,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:-25
+X-CID-META: VersionHash:39a5ff1,CLOUDID:abd080a3-dc04-435c-b19b-71e131a5fc35,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 9a6424274c814cd4bc489c8d6aad0c69-20220929
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <johnson.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 722265442; Thu, 29 Sep 2022 19:46:31 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 29 Sep 2022 19:46:29 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 29 Sep 2022 19:46:29 +0800
+From:   Johnson Wang <johnson.wang@mediatek.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <angelogioacchino.delregno@collabora.com>, <sboyd@kernel.org>
+CC:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <kuan-hsin.lee@mediatek.com>, <yu-chang.wang@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>
+Subject: [PATCH v3 0/4] Introduce MediaTek frequency hopping driver
+Date:   Thu, 29 Sep 2022 19:46:20 +0800
+Message-ID: <20220929114624.16809-1-johnson.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 5/7] arm: dts: qcom: mdm9615: remove invalid pmic
- subnodes compatibles
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220928-mdm9615-dt-schema-fixes-v1-0-b6e63a7df1e8@linaro.org>
- <20220928-mdm9615-dt-schema-fixes-v1-5-b6e63a7df1e8@linaro.org>
- <0636d53f-508f-8a86-0973-2641c9020622@linaro.org>
- <6ed642ea-424d-49ed-eb30-e09588720373@linaro.org>
- <1a3c6766-9be5-1e55-95eb-bc9656e5c9a3@linaro.org>
- <7f8572ab-ff97-54bd-a5f3-fe0e179ee48e@linaro.org>
- <84cb8941-eb15-1bbf-59b7-bbcd6c15c30d@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Organization: Linaro Developer Services
-In-Reply-To: <84cb8941-eb15-1bbf-59b7-bbcd6c15c30d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,90 +64,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/09/2022 13:12, Krzysztof Kozlowski wrote:
-> On 29/09/2022 12:56, Neil Armstrong wrote:
->> On 29/09/2022 11:12, Krzysztof Kozlowski wrote:
->>> On 29/09/2022 10:29, Neil Armstrong wrote:
->>>> Hi,
->>>>
->>>> On 28/09/2022 20:03, Krzysztof Kozlowski wrote:
->>>>> On 28/09/2022 11:14, Neil Armstrong wrote:
->>>>>> The PMIC is an PM8018, but was compatible with the PM8921. Both compatibles
->>>>>> was left but it makes no sense anymore the leave both.
->>>>>
->>>>> Why? It makes sense for backwards compatibility. If you think it does
->>>>> not make sense, please say why.
->>>>
->>>> We had the same debate at submission 7y ago, some of the pm8018 new compatible
->>>> were rejected in bindings & drivers so I left both...
->>>>
->>>> As of today only the pwrkey bindings is missing, so should I resubmit the pm8018-pwrkey bidings and
->>>> drop the pm8921-pwrkey compatible ?
->>>
->>> ~7 years ago here:
->>> https://lore.kernel.org/all/20160624220748.GB11719@dtor-ws/
->>> you proposed to add something entirely different than we have here now
->>> and than we talk about.
->>>
->>> In that thread you correctly wrote:
->>> "My point of view is that the devicetree describes the hardware and need
->>> to have SoC specific compatible string since it describes the actual
->>> silicon, and drivers must make sure to handle all the SoC or family
->>> variants using the compatible string and the match data."
->>
->> And I'm happy this is still the policy! And I'm tried my best to follow this
->> in all my DT & bindings submissions, while DT-Schema helped a lot here.
->>
->>>
->>> but implemented it entirely different. Maybe you refer to different mail
->>> thread, I don't know, but that one is indeed wrong.
->>
->> In the meantime things got much better, but at that time pushing a SoC bringup
->> was a pain (I did 2 at the time, the other one is the OX810SE) and I even
->> mentioned it in a talk ([1] slides 27 to 30).
->>
->> So I added both to be sure that at some point a driver would probe against
->> one of the compatible entries...
->>
->>>
->>> The DTS looks correct unless you have some real argument that it is not.
->>>
->>> How this should be fixed? First, drop bogus entries from drivers, then
->>> document proper compatibles.
->>
->> What do you mean ? There's no point to keep the PM8921 compatibles, the gpio
-> 
-> I asked at beginning - why? Why there is no point to keep them?
+The purpose of this serie is to enhance frequency hopping and spread spectrum
+clocking feature for MT8186.
+We introduce new PLL register APIs and some helpers for FHCTL hardware control.
+For MT8186 PLL driver, we replace mtk_clk_register_plls() with newly added API
+to support frequency hopping and SSC function for specific PLLs.
 
-Because the HW is an PM8018 and the addition of the PM8921 was for policy/organization/struggling-to-make-dt-merged-before-clear-dt-policy/...
-so you say I should modify the Bindings to reflect the actual "pm8018", "pm8921" situation instead of changing the DT even if incorrect ?
+Changes in v3:
+- Change binding file name.
+- Add some constraints for properties.
+- Rename "mediatek,hopping-ssc-percents" to "mediatek,hopping-ssc-percent".
+- Add new config symbol.
 
-> 
->> and PMIC bindings already enforces to only have the PM8018 compatible.
-> 
-> That is just partial argument because binding does not match DTS. So
-> something is not correct. Why do you assume bindings are correct?
+Changes in v2:
+- Use SoC-specific compatible instead of generic one.
+- Use standard clocks property and vendor-specific property in dt-binding.
+- Remove some unused arguments and fix some coding style.
 
-Because bindings accurately reflects HW and DT doesn't.
+Johnson Wang (4):
+  clk: mediatek: Export PLL operations symbols
+  dt-bindings: arm: mediatek: Add new bindings of MediaTek frequency
+    hopping
+  clk: mediatek: Add new clock driver to handle FHCTL hardware
+  clk: mediatek: Change PLL register API for MT8186
 
-> 
->>
->> The only issue is about the PM8018 pwrkey, where the solution would be
->> to actually re-submit [1] by documenting qcom,pm8018-pwrkey and adding the entry
->> in the drivers/input/misc/pmic8xxx-pwrkey.c driver.
->>
->> Or maybe I missed something.
->>
->> [1] https://www.slideshare.net/superna/elce-2016-neil-armstrong-no-its-never-too-late-to-upstream-your-legacy-linux-based-platform
->> [2] https://lore.kernel.org/all/1466759887-25394-3-git-send-email-narmstrong@baylibre.com/
-> 
-> So let's repeat again: the patch [2] looks wrong. The qcom,pm8018-pwrkey
-> and qcom,pm8921-pwrkey are compatible.
+ .../arm/mediatek/mediatek,mt8186-fhctl.yaml   |  53 ++++
+ drivers/clk/mediatek/Kconfig                  |   8 +
+ drivers/clk/mediatek/Makefile                 |   1 +
+ drivers/clk/mediatek/clk-fhctl.c              | 244 ++++++++++++++++
+ drivers/clk/mediatek/clk-fhctl.h              |  26 ++
+ drivers/clk/mediatek/clk-mt8186-apmixedsys.c  |  66 ++++-
+ drivers/clk/mediatek/clk-pll.c                |  84 +++---
+ drivers/clk/mediatek/clk-pll.h                |  56 ++++
+ drivers/clk/mediatek/clk-pllfh.c              | 268 ++++++++++++++++++
+ drivers/clk/mediatek/clk-pllfh.h              |  82 ++++++
+ 10 files changed, 835 insertions(+), 53 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-fhctl.yaml
+ create mode 100644 drivers/clk/mediatek/clk-fhctl.c
+ create mode 100644 drivers/clk/mediatek/clk-fhctl.h
+ create mode 100644 drivers/clk/mediatek/clk-pllfh.c
+ create mode 100644 drivers/clk/mediatek/clk-pllfh.h
 
-Ok, I need time to understand, I'm highly confused now.
-
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+2.18.0
 
