@@ -2,146 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70F3B5EF5B0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:48:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1594E5EF5BF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:53:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235265AbiI2Mss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 08:48:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55230 "EHLO
+        id S235308AbiI2MxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 08:53:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234971AbiI2Msr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:48:47 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA990160E61
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 05:48:42 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id iv17so884935wmb.4
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 05:48:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date;
-        bh=RTh6Jh7foBvpZUwlr8i45KWrX5TaOjqxs0vxrakIbik=;
-        b=X4/Ix33GrpYpIdhmhwPVXrpN4zFL1fe8qw5LptmI7s57boWioFKy6Wio27lXYW58zD
-         2HQBFJ5y9jZxJPFBjnkYDbCdINOty9WDG1YZdbcjsjUzfMJF820nIBdRrslXmsT5exet
-         3RXyteA07EpdoVv5uRVJ31C8qfZNtJzl4TCPGxJX2u3XeO6Z2ZF4+wFJ276sIPbsxI2d
-         WM9vmtVhMcLLMdgxjdGW4lpwIrjXbrIotXldt4pf5N7oRs8ggMspsBALCBOgyfUCBDE+
-         dEycT80zkOZS/FWVOvDYWTEGOQGI+hrC8bSQUYaCFcOr70AtnhLMzIJUDdSERPub7CCJ
-         nHTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=RTh6Jh7foBvpZUwlr8i45KWrX5TaOjqxs0vxrakIbik=;
-        b=Mydj0U+OldTqdeA7aWpd4JwLcmwgp2c4dwvUz3dUNEaDTfM/41NtkSBkDQfg+fsQrB
-         Jt7OJIb2ICaMErJwHXSLI8Jj0B/SZV6vmBa+g8byNsiPjPPScsMjwZ4MyBSCAC/nk43S
-         yLHfj8pb422b9aEM0/RaHoi/HML6qRdcAjOoOxPXInHuiMTHhYM4uq0Ffr04+WHSaQz5
-         RvhPAiCwkkaW0pGmLPyAUC/HdAe2/GpIcJ00cy0JE+cer7v+9eFD2quUZQ0Q1zpGzYqv
-         7yMF1FTa74GARhSjUCH8ghyvQjb1KEIxfNOFKB5SO68vp1/fxCA3K5Zvy2Cx/qobB30i
-         6yAw==
-X-Gm-Message-State: ACrzQf3eUeNmzt8dcnX+k/jQhQtnPQf5DUp6dlWKbQgVU59pzmxPCVZa
-        hkWC1e5uNMRtSmi9OYs/C5dEaw==
-X-Google-Smtp-Source: AMsMyM5QdlrG59bq5kgnMgzyzNnDabiZ0EU3o6UW21hHGi8mdF26IuOMR1PjjfrUGjrDYbDj7L/hZw==
-X-Received: by 2002:a7b:c447:0:b0:3b4:8977:4186 with SMTP id l7-20020a7bc447000000b003b489774186mr2226076wmi.74.1664455721407;
-        Thu, 29 Sep 2022 05:48:41 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff? ([2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff])
-        by smtp.gmail.com with ESMTPSA id l18-20020a05600c2cd200b003a63a3b55c3sm4686351wmc.14.2022.09.29.05.48.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 05:48:40 -0700 (PDT)
-Message-ID: <051ccc1c-ae56-932c-0be8-19abae562615@linaro.org>
-Date:   Thu, 29 Sep 2022 14:48:39 +0200
+        with ESMTP id S232380AbiI2MxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:53:18 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A249C161CD2
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 05:53:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=wl5hjzL1T9UWTLi3kl2AAO/CAVyzOuU0n1cqR3MjmgE=; b=jz8JppjaUGk/Pl0C1oy/hN0CAU
+        oguOJO8/mMeh+aWZEDKsgM/EAjBsSQQY38RsffYTNHBmcw+YTZ5XW1yUy3mhJPKOlkmtMjHCFvMpb
+        SPzIW4OFlQ4I9vYlPY0VnZBhPALxZ1qjeUPNWHbLHEmJHd04P2zoa5gh63EHqkd9iKMg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1odt2R-000cF8-Ln; Thu, 29 Sep 2022 14:53:15 +0200
+Date:   Thu, 29 Sep 2022 14:53:15 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Pawel Dembicki <paweldembicki@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Tony Dinh <mibodhi@gmail.com>
+Subject: Re: [PATCH] ARM: dts: kirkwood: Add Zyxel NSA310S  board
+Message-ID: <YzWVOyM+Z3AFSI7c@lunn.ch>
+References: <20220929080110.3182561-1-paweldembicki@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 5/7] arm: dts: qcom: mdm9615: remove invalid pmic
- subnodes compatibles
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220928-mdm9615-dt-schema-fixes-v1-0-b6e63a7df1e8@linaro.org>
- <20220928-mdm9615-dt-schema-fixes-v1-5-b6e63a7df1e8@linaro.org>
- <0636d53f-508f-8a86-0973-2641c9020622@linaro.org>
- <6ed642ea-424d-49ed-eb30-e09588720373@linaro.org>
- <1a3c6766-9be5-1e55-95eb-bc9656e5c9a3@linaro.org>
- <7f8572ab-ff97-54bd-a5f3-fe0e179ee48e@linaro.org>
- <84cb8941-eb15-1bbf-59b7-bbcd6c15c30d@linaro.org>
- <07405d0d-8534-6470-21d1-26b85dbd7de0@linaro.org>
- <f54377f0-a152-9367-1b06-f49df7466282@linaro.org>
- <3fa19362-118b-232e-0baf-ee365fa2f2e2@linaro.org>
- <07c75827-b8e5-7c70-315b-48617b9818e0@linaro.org>
- <9067ca94-cd5d-6883-d0e0-374ed7f599ad@linaro.org>
- <65c5ee36-8651-8a42-b6b1-3b8041c7edb8@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <65c5ee36-8651-8a42-b6b1-3b8041c7edb8@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220929080110.3182561-1-paweldembicki@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+> +// SPDX-License-Identifier: GPL-2.0-only
 
-On 29/09/2022 14:27, Krzysztof Kozlowski wrote:
-> 
-> We are making circles and discussion takes too much. 
+Same license comment. However, you can only change the license if it
+is your code. If you did the conversion from a board setup file to DT,
+you can change the license. If somebody else did that and you are just
+submitting it, then we need to keep to GPL-2.0-only.
 
-I'm sorry this happens, but I really want solve this stuff which in suspend since 2015.
+> +	regulators {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		pinctrl-0 = <&pmx_power>;
+> +		pinctrl-names = "default";
 
-So let me recall the original issue:
+The modern way to do regulators is to no longer user a container node.
+Most of the existing kirkwood DTS files are from long before this was
+introduced, so they do have a container. But new files should probably
+do it the 'new' way.
 
-DTBS check reports:
-
-arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dtb: pmic@0: compatible: ['qcom,pm8018', 'qcom,pm8921'] is too long
-         From schema: Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-
-arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dtb: pmic@0: rtc@11d:compatible: ['qcom,pm8018-rtc', 'qcom,pm8921-rtc'] is too long
-         From schema: Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-
-arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dtb:0:0: /soc/qcom,ssbi@500000/pmic@0/pwrkey@1c: failed to match any schema with compatible: ['qcom,pm8018-pwrkey', 'qcom,pm8921-pwrkey']
-
-arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dtb:0:0: /soc/qcom,ssbi@500000/pmic@0/pwrkey@1c: failed to match any schema with compatible: ['qcom,pm8018-pwrkey', 'qcom,pm8921-pwrkey']
-
-arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dtb: rtc@11d: compatible: ['qcom,pm8018-rtc', 'qcom,pm8921-rtc'] is too long
-         From schema: Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-
-So trying to solve those, and since the PMIC in the wp8548 module is a PM8018, and it happens to be (partially ?? potentially ??) compatible
-with the PM8921, and I had issues adding per-HW compatible for the pwrkey, the obvious solution would be to
-drop the PM8921 compatibility since it's only probable and nothing proves it's right.
-
-But what's sure: it's a PM8018 PMIC.
-
-But since the PM8018 PWRKEY interface is compatible with the PM8921 PWRKEY interface,
-it's perfectly ok to the the MP8921 compatible here.
-
-OK, so as you quoted multiple times:
-"How this should be fixed? First, drop bogus entries from drivers, then
-document proper compatibles."
-
-OK so there's no bogus entries to remove here, and the only compatible to
-potentially document is the pm8018-pwrkey but it seems to be wrong.
-
-I'll be happy to have an hint on how to handle that to I can go forward and
-stop the noise, there's still plenty of stuff to fix in the MDM9615 DT.
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
-Thanks,
-Neil
+   Andrew
