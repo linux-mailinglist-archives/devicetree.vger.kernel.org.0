@@ -2,140 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8A855EEFE6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1163A5EEFEA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:04:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234998AbiI2IDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 04:03:06 -0400
+        id S234858AbiI2IEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 04:04:04 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234858AbiI2ICp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:02:45 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956AE13D1EC
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:02:19 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id lc7so1198778ejb.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:02:19 -0700 (PDT)
+        with ESMTP id S234953AbiI2ID7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:03:59 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2121.outbound.protection.outlook.com [40.107.92.121])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE04833407;
+        Thu, 29 Sep 2022 01:03:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NLdYujNHXOeu+VaUFaC7ZfttvG1RGLniR7GgmfIRNwbzclTMXlLcc5HncWctqMwUj+byaAKHCeaOekXq5xXV2uZFcyJpH2D5nQE1q4y0+JZu9H0SgynXhvC5mkmpB20+YtWI3xPzcD/AasSU/IaVmbNnI9nmJhJB9HKZwjyGVY5MUkpeHGUSO4x0nfV8EdF1eegZt9Y9bpWDMwxcebAqanCIrbpTzjxZehp08P7owW2ZyfnMvvzuuRPdMd8FtDv+eNA/8UQvj/mDo96VDsKAx3oSZJjxzsWFTWugGZ99AQNZ45oXqOED46z8I25sBsOetl8fGZ8ar3QHD/SVZhgVCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U6ZMh9KCpzuI2KORlqz1r78LTRvAlXZoc1HYBSzNhq0=;
+ b=UCQ9ckHtT3gnPiB4MG9E+4k4bE62eLm1iJKlNZTwx2g0vCsSiyC8KkIVGXsgWBiM1vwEFm7cJQje9gbY3C2A1ILotBGjvbdB7vKgQZK7vyK7IChknnwJPjom+AKB0ejaceEC60XC1K25fUjnYb8CdTUtJ8uWNPlX6qn8jgI7ACiu/QWzj0gQKgos6UhdtEbdvGB6XUB/UeGAXTm5Jar7/mA59JadOj5rxs/9IEpp6e88bqE1hI+LibFp/mvgwcssdq73CcI8AyZ24O9+bHUy3yUdn01kNCAzWvgqw3Ps+ydcZLydbGz5FeYp4SmOUegw7Me3ybXUN+aT5X7A5oKGog==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=D2RJPCDzkl0JaLhf6TnDnD54B1Ia7Ewoe4Ns/FqzqUM=;
-        b=K44Zfwmi1ystprsLzflRoSnSe90rx6tnBw+4WMDSobGCYgNcDX7JwFPi2F5v1Rd9qi
-         JHHNs72xVI+agpOCavnafNiWFH/GnjGy0OF91ZbuqJC9CjSoSU9ZSKfq6t1a9p1I++r+
-         GKtvIS84GkPTP9CziBpQHqBGLEZzb2seXKz2WENjzBUxoAaUvCQm8epWuzPDpVLBZjvi
-         aT0QzW/DiPQ/2qEjr66st6CSI5GS5sgwotaATHS/RUdRGkUk1w6M6imkSS2WsPHSVgxk
-         dvRQ3BR/EHpCUI3278tpHECDOxmGZoWgzrOekQg3onyweVmKB7nSQXFZqaGI6Jy8D5Fo
-         VT+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=D2RJPCDzkl0JaLhf6TnDnD54B1Ia7Ewoe4Ns/FqzqUM=;
-        b=sinEDsr1HYJjEg6dWzabtLQF7rvh7c6vb5JBOzMiCHGZzOOOV6Pf3kAa5pFLpeFv2Z
-         r2RSHyJWSh8Yk1/Kfw5luuVs47RPEoB+zYisIM3SJaPiOv5Si+WlxxUIlI/Eyn16cpe8
-         bokWC1WxZGDIU5k6xe7BECbWSJpKgvOLyJpbEAfR3nmyxqmrSbO4h5Vhp5NHGBAFFT1L
-         Y5mBhGVzJAwmYVPxOUp4WkVI1sk7kY8NAfvf1obTYKawpLKwoG28u7dg7Q9cb/EARomG
-         z2CuYrEoTXX1E5nNE7aPCrjiEGLwcSDI39RAUXeRAVaQ7YBhNRABolCOksTqZQszoe45
-         mX0Q==
-X-Gm-Message-State: ACrzQf2hOIFJI5WaXE7siIQJ7nAjwSIODnHfxwolDbMq5KxsYUTzNl/i
-        ubwgC/dPMfPcTrOII4SOSlBmzoy6kIWb8w==
-X-Google-Smtp-Source: AMsMyM4JJjnroJH7xE8SAJ5SucdEHMX/sHdp0HGbe1dhZPm+Pp3n4pSVcMmcd1zndGU3fpGsMNTQsA==
-X-Received: by 2002:a17:907:97d4:b0:781:c182:c45c with SMTP id js20-20020a17090797d400b00781c182c45cmr1673786ejc.170.1664438537533;
-        Thu, 29 Sep 2022 01:02:17 -0700 (PDT)
-Received: from WBEC325.dom.lan ([2001:470:64f7:0:a03b:951f:e3a0:4dd4])
-        by smtp.gmail.com with ESMTPSA id kx17-20020a170907775100b007262a5e2204sm3596173ejc.153.2022.09.29.01.02.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 01:02:16 -0700 (PDT)
-From:   Pawel Dembicki <paweldembicki@gmail.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Cc:     Pawel Dembicki <paweldembicki@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH] ARM: dts: kirkwood: Add drivetemp thermal zone in Ctera C200V1
-Date:   Thu, 29 Sep 2022 10:02:10 +0200
-Message-Id: <20220929080210.3189925-1-paweldembicki@gmail.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U6ZMh9KCpzuI2KORlqz1r78LTRvAlXZoc1HYBSzNhq0=;
+ b=olAe0QxRRC5GuUy3Petu2sC1Z1LFIJxKmctCUkMylhAEqqmJPqy+NKHyo+8GWZBB1VXFnBPGcU/uQ3GNyur/66on5UMsb8x9qzuLWaoQWwonH117XJg/BwiACvYFvewjTid0HreL2VCd1lZ07eQR39y9RMV0NdnrTZ9LKJLlZuc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ MW2PR0102MB3497.prod.exchangelabs.com (2603:10b6:302:2::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5676.17; Thu, 29 Sep 2022 08:03:52 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::7d50:e907:8e2e:1ff0]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::7d50:e907:8e2e:1ff0%3]) with mapi id 15.20.5676.017; Thu, 29 Sep 2022
+ 08:03:51 +0000
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        Wolfram Sang <wsa@kernel.org>, Corey Minyard <minyard@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>
+Cc:     Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com,
+        Quan Nguyen <quan@os.amperecomputing.com>
+Subject: [PATCH v9 0/3] Add SSIF BMC driver
+Date:   Thu, 29 Sep 2022 15:03:23 +0700
+Message-Id: <20220929080326.752907-1-quan@os.amperecomputing.com>
+X-Mailer: git-send-email 2.35.1
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SI2P153CA0002.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::16) To SJ0PR01MB7282.prod.exchangelabs.com
+ (2603:10b6:a03:3f2::24)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR01MB7282:EE_|MW2PR0102MB3497:EE_
+X-MS-Office365-Filtering-Correlation-Id: 894cb486-c656-4b89-1eef-08daa1f1258b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rMMBkW8beUVb+vTSEkWaLBfyB6Q1NrMl+Flea91m2ckZgJMd7Yo6JUyGTUYrUXctZl167JMv+RT+Xu9xQi5eGiDojCDRZjQete/mosPXTlD9TQkENVy9ZQ9luCHYpEtsanP9e48ch/MUU14hy5A0434MgWEWskYbD/k+5iorzDNPhZzjJZB+OEftbNXPbPUobu1C6kP4CytUOTLcaJH/+BFfy+ZGWBJ6Ie/SYo/DXmlEhpqk0/Bj8MBe8EEMb//vdKo8eKMxKkafwTrGa15uZuuAkzEhKc1W7SuiU9cY1GW9cPXdvymoey9BkMh4J5qtWx2cFd4RvFkl3Wthy3X/hD9Y0cv1KxeqiePZAo2bTwFfLzODZ9nGnWw+Uzyq9rxa6w/p499IlTqA+MeIxDYdwDfodVwhy7o0HEn6OIeDlvdLKF4QrImms8/IsqYp5KF8F0JdRo4Va7OJlZ1xPb7eL1vI3xpzaqZdWZmCoQ2uzYiqI7AYEEFIsQL4ob236SKKTKUgi5yS0lGgJv1BzHzWVasr6CjwbPFhDLe+aps98/BvM2i3lyk6zDD8O2kEnQ2vPeu7LIf79qhTSkFMKEh+UMD31b/UXXfpLZ+iGg27dtcVQFlBz1/vjk48ujKYRklwVoU8+EasbFTouWDv4fVACkv3atprFfucLG46qEREQhnRiLQVD0dstgk19sUUGonxwVkCiZ2ugxkQk7H4bocdTPLW/aZeA3MdJ0W9764CeAIMPLXLvYyLruJ+bsIyJXau9FgPTob8T1CduAM6Oxv/9NW46fOaTVpzUP7RGzbhWhlPrjpZTByZkhl6dOGeJd5h
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(396003)(366004)(39850400004)(376002)(136003)(451199015)(2906002)(966005)(6486002)(6666004)(107886003)(6506007)(52116002)(54906003)(83380400001)(478600001)(38100700002)(38350700002)(316002)(66946007)(8676002)(921005)(4326008)(66556008)(86362001)(41300700001)(8936002)(110136005)(7416002)(5660300002)(2616005)(186003)(1076003)(66476007)(6512007)(26005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yf2SmzLeUqWHlJldXs0PWu/oCn2XLqCmbtBf/drLDefViauFUEoizws3MPuo?=
+ =?us-ascii?Q?ELdLDOA3DMMapRosNnvTE7iU/UTw7yIzX77NJkHNloKlkusBERVdO9Rn16UR?=
+ =?us-ascii?Q?bPz3dKJcpjBJTNdtPwkuLMtXUgVPjdcmOlhltmn53G1BnrUIKpKWf+KO4tAt?=
+ =?us-ascii?Q?cY/n5X+HNmGlAFb4uqPJVV07MBY2TxJ6rgnLOkk/Ln+wVwHGLe0TgX1RCo6S?=
+ =?us-ascii?Q?XK6EiTxEEZtxBxwsI2gKTMwEOGetJqih78QV8rPe9k8IH4fwBQmGB2PvHTCQ?=
+ =?us-ascii?Q?/4iAOUMPWygd/l5rAEDD9kcV8Q3k77Fn5jF0zZ1j92CeOcItd71VFgC9zUFM?=
+ =?us-ascii?Q?NdMBhvbxDsVjxUaQn1cMilmiW+8S6on89emy0N7fILHGePpOWDefn1/tFJN7?=
+ =?us-ascii?Q?U7zsPL8All+Dva5D7bzUhY+15ATJV9taUFTRBqzvbNFxTn2tnga3UY0gocE7?=
+ =?us-ascii?Q?baAHPHDbSgdKr2ITU+we5uwXwEy3a20BxVLJ1VcmqfV0W7cuqyndWNAftTs0?=
+ =?us-ascii?Q?6s/zjVERu2g3GUYNB23tg9fMaLx5fF2pek9as80kGtdjRhB/m1hGFATcjSqH?=
+ =?us-ascii?Q?f/j+B96ZOD2EAIRUcSfezz65OHgAcZm8GR5SR3gpyCKgpoNR2UYyV/g4CTak?=
+ =?us-ascii?Q?5zgcdu/OIRGNT7Uf2yqriQR8LpPO7FanzjTm+3loZ4wVKamwJYFqPmU/1uN2?=
+ =?us-ascii?Q?xCHPBDkyZh9Vb0Kak3CNUvyGTSSDKwW5dOHqrPG6YxMCGQI746nfHptdxRA5?=
+ =?us-ascii?Q?Pi7Gjec/CIOYSq1470jJ64WGOC8UYCIsXDHMCE82HiiNJXQHGE2SirutQM5R?=
+ =?us-ascii?Q?MDZCQUc/LzbDPbhDk0lLmBikgOTSBa+nP2K/r3x4zVeIb5YzPAhDCfthX//f?=
+ =?us-ascii?Q?C0c8OneyePOXRdsUJ1c92dBqWv2DLnflMzt42+iQ18SPSinEY2rHnjx6fWHO?=
+ =?us-ascii?Q?zijEGPWckVSxem4PFaWaEm+OuBQli3ThVIBd7Agyuj2q/wiwAvMeUQhrh0s8?=
+ =?us-ascii?Q?dZDbYXBflwC239nVD2mH8EyZHujSyn9VFGR5cN0tiv/BLDjZRYh8DueRpdac?=
+ =?us-ascii?Q?ALv/Jj/h87swb3xAAHtSrIg4cG3UEW8pGPYS/y16FfcF45UkNSKUS+L2D4Ij?=
+ =?us-ascii?Q?9sZlwv4QBD8CZsJITim46l1zYGIl3hCI4/oX3UPZVkUsWcgJ1fd4UxBQBMfi?=
+ =?us-ascii?Q?NSxUm215sv7k99AuKiYQYbdJPp/2rUU4w63Lwi09GoUAKoTfwP6nr17uvg+u?=
+ =?us-ascii?Q?Srd2LWeA+DeeS+3aMiXywyu+fpOWWoVabQbXcYlb7fPgVWcqsEgbwZN46n/J?=
+ =?us-ascii?Q?US+5p1mv9gY0ELcRm1Y6eY+n+ZgfRrwEZwHC3vzM40q2Fl4lIuApJHJ9A3ap?=
+ =?us-ascii?Q?96Edwbod+ap3nNYRjylJXBZagBleBWLzqUWlLfF2E2CJ/8A3oQC5n3oMcF02?=
+ =?us-ascii?Q?8kKl48EvX4fjCu4PHOMl30EFxDj4ZLn3smju2+1Y3Doy26h9ncyD588+mfF6?=
+ =?us-ascii?Q?TxTGWvKetfWcN+1iRYB+iBUQteZIBXB1UFf5mP14NHbjJ8wlYcJr9InZrbEA?=
+ =?us-ascii?Q?IWa/S30+C4IzYMdE5g0K3YwOVT0i1CfIgxsh52282jx5T5pnyTlJmzhdxfRd?=
+ =?us-ascii?Q?qZB/PGw2stlN2wdBUrmmCCE=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 894cb486-c656-4b89-1eef-08daa1f1258b
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2022 08:03:51.8691
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: O0HxkkH3PPiqvbspb1yzEPPeMVN8Bk8KY8l0X8u0r890Hdi5zPEf2cBgQQsdoTu0Va0JWihTcv8lxIbWKf7nJbMhdZbvSpyh+W/vLMgCYxM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR0102MB3497
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ctera C200 V1 have two SATA bays, but thermal zone is handled for only one.
-For some reason thermal zone works only with first disk.
-It was reported one year ago [1].
+This series add support the SSIF BMC driver which is to perform in-band
+IPMI communication with their host in management (BMC) side.
 
-[1] https://www.mail-archive.com/openwrt-devel@lists.openwrt.org/msg56599.html
+SSIF BMC driver in this series is tested with Aspeed AST2500 and AST2600
 
-Suggested-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
----
- arch/arm/boot/dts/kirkwood-c200-v1.dts | 37 ++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Discussion for v8:
+https://lore.kernel.org/linux-arm-kernel/20220615090259.1121405-1-quan@os.amperecomputing.com/
 
-diff --git a/arch/arm/boot/dts/kirkwood-c200-v1.dts b/arch/arm/boot/dts/kirkwood-c200-v1.dts
-index f59ff7578dfc..ffe60150a67a 100644
---- a/arch/arm/boot/dts/kirkwood-c200-v1.dts
-+++ b/arch/arm/boot/dts/kirkwood-c200-v1.dts
-@@ -156,6 +156,31 @@ led-12 {
- 			trigger-sources = <&hub_port1>;
- 		};
- 	};
-+
-+	thermal-zones {
-+		/* Thermal zone works only with first disk */
-+
-+		disk0-thermal {
-+			polling-delay = <20000>;
-+			polling-delay-passive = <2000>;
-+
-+			thermal-sensors = <&hdd0_temp>;
-+
-+			/* Tripping points from the fan.script in the rootfs */
-+			trips {
-+				disk0_alert: disk0-alert {
-+					temperature = <40000>;
-+					hysteresis = <5000>;
-+					type = "active";
-+				};
-+				disk0_crit: disk0-crit {
-+					temperature = <60000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
- };
- 
- &eth0 {
-@@ -280,6 +305,18 @@ &rtc {
- &sata {
- 	status = "okay";
- 	nr-ports = <2>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	hdd0_temp: sata-port@0 {
-+		reg = <0>;
-+		#thermal-sensor-cells = <0>;
-+	};
-+
-+	hdd1_temp: sata-port@1 {
-+		reg = <1>;
-+		#thermal-sensor-cells = <0>;
-+	};
- };
- 
- &uart0 {
+v9:
+  + Fix dependence with I2C subsystem                            [Randy]
+  + Update missing Reviewed-by tag from v7                         [Rob]
+  + Remove useless error handling path                              [CJ]
+  + Update comment for SSIF_ABORTING state                          [CJ]
+  + Fix "unknown type name --u8"                     [kernel test robot]
+  + Update commit message and add comment to explain
+    the effect of issuing RxCmdLast when Slave busy               [Quan]
+
+v8:
+  + Dropped ssif_bmc.h file and move its content to ssif_bmc.c   [Corey]
+  + Add struct ipmi_ssif_msg to include/uapi/linux/ipmi_ssif_bmc.h
+  header file                                                    [Corey]
+  + Use unsigned int for len field in struct ipmi_ssif_msg       [Corey]
+  + Avoid using packed structure                                 [Corey]
+  + Add comment to clarify the logic flow                        [Corey]
+  + Fix multipart read end with len=0 issue                      [Corey]
+  + Refactor code handle the too big request message             [Corey]
+  + Fix code indentation issue                                   [Corey]
+  + Clean buffer before receiving request to avoid garbage        [Quan]
+  + Fix the license to SPDX-License-Identifier: GPL-2.0-only      [Quan]
+
+v7:
+  + Remove unnecessary del_timer() in response_timeout()         [Corey]
+  + Change compatible string from "ampere,ssif-bmc" to "ssif-bmc"  [Jae]
+  + Dropped the use of ssif_msg_len() macro, use the len directly [Quan]
+  + Solve possible issue if both response timer and ssif_bmc_write()
+  occurred at the same time                                      [Corey]
+  + Fix wrong return type of ssif_bmc_poll()         [kernel robot test]
+  + Refactor and introduce ssif_part_buffer struct to replace the
+  response_buf to manage each send/receive part of ssif           [Quan]
+  + Change SSIF_BAD_SMBUS state to SSIF_ABORTING state           [Corey]
+  + Support abort feature to skip the current bad request/response and
+  wait until next new request                                    [Corey]
+  + Refactor the PEC calculation to avoid the re-calculate the PEC on
+  each I2C_SLAVE_WRITE_RECEIVED event                             [Quan]
+  + Fix the use of error-proned idx                              [Corey]
+  + Defer the test for valid SMBus command until the read/write part
+  is determined                                                   [Quan]
+  + Change/split unsupported_smbus_cmd() to
+  supported_[write|read]_cmd()                                   [Corey]
+  + Abort the request if somehow its size exceeded 255 bytes      [Quan]
+
+v6:
+  + Drop the use of slave_enable()                             [Wolfram]
+  + Make i2c-aspeed to issue RxCmdLast command on all
+  I2C_SLAVE_WRITE_REQUESTED event to assert NAK when slave busy   [Quan]
+  + Make i2c slave to return -EBUSY when it's busy                [Quan]
+  + Drop the aborting feature as return Completion Code 0xFF may stop
+  host to retry and make ipmi_ssif.so fails to load               [Quan]
+  + Add timer to recover slave from busy state when no response   [Quan]
+  + Clean request/response buffer appropriately                   [Quan]
+  + Add some minor change on error and warning messages           [Quan]
+
+v5:
+  + Correct the patches order to fix the bisect issue found by
+  kernel build robot
+
+v4:
+  + Fix recursive spinlock                                      [Graeme]
+  + Send response with Completion code 0xFF when aborting         [Quan]
+  + Fix warning with dt_binding_check                              [Rob]
+  + Change aspeed-ssif-bmc.yaml to ssif-bmc.yaml                  [Quan]
+  + Added bounding check on SMBus writes and the whole request     [Dan]
+  + Moved buffer to end of struct ssif_bmc_ctx to avoid context
+    corruption if somehow buffer is written past the end           [Dan]
+  + Return -EINVAL if userspace buffer too small, don't
+    silence truncate                                       [Corey, Joel]
+  + Not necessary to check NONBLOCK in lock                      [Corey]
+  + Enforce one user at a time                                    [Joel]
+  + Reject write with invalid response length from userspace     [Corey]
+  + Add state machines for better ssif bmc state handling         [Quan]
+  + Drop ssif_bmc_aspeed.c and make ssif_bmc.c is generic
+    SSIF BMC driver                                               [Quan]
+  + Change compatible string "aspeed,ast2500-ssif-bmc" to
+    "ampere,ssif-bmc"                                             [Quan]
+  + Toggle Slave enable in i2c-aspeed to turn on/off slave mode   [Ryan]
+  + Added slave_enable() to struct i2c_algorithm to control
+    slave mode and to address the recursive spinlock      [Graeme, Ryan]
+  + Abort current request with invalid SMBus write or
+    invalid command                                               [Quan]
+  + Abort all request if there is pending response                [Quan]
+  + Changed validate_pec() to validate_request()                  [Quan]
+  + Add unsupported_smbus_cmd() to handle unknown SMBus command   [Quan]
+  + Print internal state string for ease investigating issue      [Quan]
+  + Move to READY state on SLAVE_STOP event                       [Quan]
+  + Change initilize_transfer() to process_smbus_cmd()            [Quan]
+  + Introduce functions for each slave event                      [Quan]
+
+v3:
+  + Switched binding doc to use DT schema format                   [Rob]
+  + Splited into generic ssif_bmc and aspeed-specific      [Corey, Joel]
+  + Removed redundant license info                                [Joel]
+  + Switched to use traditional if-else                           [Joel]
+  + Removed unused ssif_bmc_ioctl()                               [Joel]
+  + Made handle_request()/complete_response() to return void      [Joel]
+  + Refactored send_ssif_bmc_response() and
+  receive_ssif_bmc_request()                                     [Corey]
+  + Remove mutex                                                 [Corey]
+  + Use spin_lock/unlock_irqsave/restore in callback             [Corey]
+  + Removed the unnecessary memset                               [Corey]
+  + Switch to use dev_err()                                      [Corey]
+  + Combine mask/unmask two interrupts together                  [Corey]
+  + Fixed unhandled Tx done with NAK                              [Quan]
+  + Late ack'ed Tx done w/wo Ack irq                              [Quan]
+  + Use aspeed-specific exported aspeed_set_slave_busy() when
+  slave busy to fix the deadlock                 [Graeme, Philipp, Quan]
+  + Clean buffer for last multipart read                          [Quan]
+  + Handle unknown incoming command                               [Quan]
+
+v2:
+  + Fixed compiling error with COMPILE_TEST for arc
+
+Quan Nguyen (3):
+  ipmi: ssif_bmc: Add SSIF BMC driver
+  bindings: ipmi: Add binding for SSIF BMC driver
+  i2c: aspeed: Assert NAK when slave is busy
+
+ .../devicetree/bindings/ipmi/ssif-bmc.yaml    |  38 +
+ drivers/char/ipmi/Kconfig                     |  10 +
+ drivers/char/ipmi/Makefile                    |   1 +
+ drivers/char/ipmi/ssif_bmc.c                  | 873 ++++++++++++++++++
+ drivers/i2c/busses/i2c-aspeed.c               |   9 +-
+ include/uapi/linux/ipmi_ssif_bmc.h            |  18 +
+ 6 files changed, 948 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
+ create mode 100644 drivers/char/ipmi/ssif_bmc.c
+ create mode 100644 include/uapi/linux/ipmi_ssif_bmc.h
+
 -- 
-2.34.1
+2.35.1
 
