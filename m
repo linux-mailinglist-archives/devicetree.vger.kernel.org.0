@@ -1,311 +1,186 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1D925EF609
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 15:08:05 +0200 (CEST)
+Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
+	by mail.lfdr.de (Postfix) with ESMTP id 511655EF61D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 15:11:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235223AbiI2NIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 09:08:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43730 "EHLO
+        id S234943AbiI2NLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 09:11:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230341AbiI2NIA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 09:08:00 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8649155647;
-        Thu, 29 Sep 2022 06:07:57 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S234731AbiI2NLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 09:11:00 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB4AB1CB15;
+        Thu, 29 Sep 2022 06:10:57 -0700 (PDT)
+Received: from mercury (dyndsl-037-138-185-092.ewe-ip-backbone.de [37.138.185.92])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0234A66022B2;
-        Thu, 29 Sep 2022 14:07:55 +0100 (BST)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5F99B660035A;
+        Thu, 29 Sep 2022 14:10:56 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664456876;
-        bh=RjlWLo52J1xNwaKPgALSVeCL23CVX4BxrRKCP/uj7qE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ASQJa+WfH5MA04whKpSPfFrM9asKFZ0w37qUq5KY6Vyn+4MSq5fxxwlNcDA9Eq3gn
-         MkwpQXOK1Y8utihd3I10ocrMrGYJu1fK+hOSs8fYHsaqv0/CZ3FgyU70jAV12vIrM4
-         ST7fBC8YXl6JllVli27C5pjGErQEv12Veos3SPbplvOhZJ59ZjytlqzPMA9MtCVd9m
-         ph8vIw/QLXuDzE4tKaAn5T6eVlagZD1mHu3W+MbNvJWQnWgTWsW9BtUbXiRRnQG3+C
-         rD7e5eWdG/iQlXRuzk4poiV6kwFJ3cKHE48yI/ukWccvExJITDhXgR/IcSWKG86tDz
-         5BzVdK7o/j/cQ==
-Message-ID: <7dff6595-f3e1-5a2e-0a81-2f3bf1903f12@collabora.com>
-Date:   Thu, 29 Sep 2022 15:07:53 +0200
+        s=mail; t=1664457056;
+        bh=YN0HXeldX7lu2CDgzDa8aXPTXqKCxKzZBEHVex6achI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DdlalBG9CHYJha4gAaS0XoX+ae1bJ+wOylnWStp162evoXW+xGd/ZoKpe1y2NdydA
+         kHhsqCeiHin5A/+nVHuZYRg89gtvGwNpW+jMltgDmb6/OEbZ96MWbIMXlR+0hFfsi/
+         5MahGT4amI11vWIzH+Zp3jU6jNuj0YmW0pGF7B9M7Lj3ufD3c+r0T7vuc9BAvZ5fkH
+         cOPxAucPsv4QKiRmYoHCDeHQAY2MOYLQxDdVuKDZOyGLV0izgig2xogG5dUkx8YftO
+         WxamgFc+1aeKnXb1jQ7qIYuW1m7/TvNaYNrXqZr1hW2jAjbw/Fx3UQgD4VmuQb+kiN
+         nhYFBoNlhVEzQ==
+Received: by mercury (Postfix, from userid 1000)
+        id 8ABDA106093B; Thu, 29 Sep 2022 15:10:53 +0200 (CEST)
+Date:   Thu, 29 Sep 2022 15:10:53 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com, linux-pwm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH 1/1] dt-bindings: pwm: rockchip: Add description for
+ rk3588
+Message-ID: <20220929131053.gujqusy5wx6lp3p7@mercury.elektranox.org>
+References: <20220901135523.52151-1-sebastian.reichel@collabora.com>
+ <1662059695.095333.2226883.nullmailer@robh.at.kernel.org>
+ <20220913091202.2oawzrq2u5iiz6hq@pengutronix.de>
+ <20220913141601.fi6pl2xdo4xmtw6t@mercury.elektranox.org>
+ <66b5b616-ae9f-a1aa-e2b5-450f570cfcdd@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v3 1/4] clk: mediatek: Export PLL operations symbols
-Content-Language: en-US
-To:     Johnson Wang <johnson.wang@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org
-Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        kuan-hsin.lee@mediatek.com, yu-chang.wang@mediatek.com,
-        Edward-JW Yang <edward-jw.yang@mediatek.com>
-References: <20220929114624.16809-1-johnson.wang@mediatek.com>
- <20220929114624.16809-2-johnson.wang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220929114624.16809-2-johnson.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="qov4d3yszrkvywp3"
+Content-Disposition: inline
+In-Reply-To: <66b5b616-ae9f-a1aa-e2b5-450f570cfcdd@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 29/09/22 13:46, Johnson Wang ha scritto:
-> Export PLL operations and register functions for different type
-> of clock driver used.
-> 
-> Co-developed-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
-> Signed-off-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
-> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> ---
->   drivers/clk/mediatek/clk-pll.c | 84 ++++++++++++++--------------------
->   drivers/clk/mediatek/clk-pll.h | 56 +++++++++++++++++++++++
->   2 files changed, 90 insertions(+), 50 deletions(-)
-> 
-> diff --git a/drivers/clk/mediatek/clk-pll.c b/drivers/clk/mediatek/clk-pll.c
-> index 54e6cfd29dfc..a4eca5fd539c 100644
-> --- a/drivers/clk/mediatek/clk-pll.c
-> +++ b/drivers/clk/mediatek/clk-pll.c
-> @@ -27,37 +27,10 @@
->   
->   #define AUDPLL_TUNER_EN		BIT(31)
->   
-> -#define POSTDIV_MASK		0x7
-> -
->   /* default 7 bits integer, can be overridden with pcwibits. */
->   #define INTEGER_BITS		7
->   
-> -/*
-> - * MediaTek PLLs are configured through their pcw value. The pcw value describes
-> - * a divider in the PLL feedback loop which consists of 7 bits for the integer
-> - * part and the remaining bits (if present) for the fractional part. Also they
-> - * have a 3 bit power-of-two post divider.
-> - */
-> -
-> -struct mtk_clk_pll {
-> -	struct clk_hw	hw;
-> -	void __iomem	*base_addr;
-> -	void __iomem	*pd_addr;
-> -	void __iomem	*pwr_addr;
-> -	void __iomem	*tuner_addr;
-> -	void __iomem	*tuner_en_addr;
-> -	void __iomem	*pcw_addr;
-> -	void __iomem	*pcw_chg_addr;
-> -	void __iomem	*en_addr;
-> -	const struct mtk_pll_data *data;
-> -};
-> -
-> -static inline struct mtk_clk_pll *to_mtk_clk_pll(struct clk_hw *hw)
-> -{
-> -	return container_of(hw, struct mtk_clk_pll, hw);
-> -}
-> -
-> -static int mtk_pll_is_prepared(struct clk_hw *hw)
-> +int mtk_pll_is_prepared(struct clk_hw *hw)
->   {
->   	struct mtk_clk_pll *pll = to_mtk_clk_pll(hw);
->   
-> @@ -161,8 +134,8 @@ static void mtk_pll_set_rate_regs(struct mtk_clk_pll *pll, u32 pcw,
->    * @fin:	The input frequency
->    *
->    */
-> -static void mtk_pll_calc_values(struct mtk_clk_pll *pll, u32 *pcw, u32 *postdiv,
-> -		u32 freq, u32 fin)
-> +void mtk_pll_calc_values(struct mtk_clk_pll *pll, u32 *pcw, u32 *postdiv,
-> +			 u32 freq, u32 fin)
->   {
->   	unsigned long fmin = pll->data->fmin ? pll->data->fmin : (1000 * MHZ);
->   	const struct mtk_pll_div_table *div_table = pll->data->div_table;
-> @@ -198,8 +171,8 @@ static void mtk_pll_calc_values(struct mtk_clk_pll *pll, u32 *pcw, u32 *postdiv,
->   	*pcw = (u32)_pcw;
->   }
->   
-> -static int mtk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-> -		unsigned long parent_rate)
-> +int mtk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-> +		     unsigned long parent_rate)
->   {
->   	struct mtk_clk_pll *pll = to_mtk_clk_pll(hw);
->   	u32 pcw = 0;
-> @@ -211,8 +184,7 @@ static int mtk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
->   	return 0;
->   }
->   
-> -static unsigned long mtk_pll_recalc_rate(struct clk_hw *hw,
-> -		unsigned long parent_rate)
-> +unsigned long mtk_pll_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
->   {
->   	struct mtk_clk_pll *pll = to_mtk_clk_pll(hw);
->   	u32 postdiv;
-> @@ -227,8 +199,8 @@ static unsigned long mtk_pll_recalc_rate(struct clk_hw *hw,
->   	return __mtk_pll_recalc_rate(pll, parent_rate, pcw, postdiv);
->   }
->   
-> -static long mtk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
-> -		unsigned long *prate)
-> +long mtk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
-> +			unsigned long *prate)
->   {
->   	struct mtk_clk_pll *pll = to_mtk_clk_pll(hw);
->   	u32 pcw = 0;
-> @@ -239,7 +211,7 @@ static long mtk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
->   	return __mtk_pll_recalc_rate(pll, *prate, pcw, postdiv);
->   }
->   
-> -static int mtk_pll_prepare(struct clk_hw *hw)
-> +int mtk_pll_prepare(struct clk_hw *hw)
->   {
->   	struct mtk_clk_pll *pll = to_mtk_clk_pll(hw);
->   	u32 r;
-> @@ -273,7 +245,7 @@ static int mtk_pll_prepare(struct clk_hw *hw)
->   	return 0;
->   }
->   
-> -static void mtk_pll_unprepare(struct clk_hw *hw)
-> +void mtk_pll_unprepare(struct clk_hw *hw)
->   {
->   	struct mtk_clk_pll *pll = to_mtk_clk_pll(hw);
->   	u32 r;
-> @@ -301,7 +273,7 @@ static void mtk_pll_unprepare(struct clk_hw *hw)
->   	writel(r, pll->pwr_addr);
->   }
->   
-> -static const struct clk_ops mtk_pll_ops = {
-> +const struct clk_ops mtk_pll_ops = {
->   	.is_prepared	= mtk_pll_is_prepared,
->   	.prepare	= mtk_pll_prepare,
->   	.unprepare	= mtk_pll_unprepare,
-> @@ -310,18 +282,15 @@ static const struct clk_ops mtk_pll_ops = {
->   	.set_rate	= mtk_pll_set_rate,
->   };
->   
-> -static struct clk_hw *mtk_clk_register_pll(const struct mtk_pll_data *data,
-> -		void __iomem *base)
-> +struct clk_hw *mtk_clk_register_pll_ops(struct mtk_clk_pll *pll,
-> +					const struct mtk_pll_data *data,
-> +					void __iomem *base,
-> +					const struct clk_ops *pll_ops)
->   {
-> -	struct mtk_clk_pll *pll;
->   	struct clk_init_data init = {};
->   	int ret;
->   	const char *parent_name = "clk26m";
->   
-> -	pll = kzalloc(sizeof(*pll), GFP_KERNEL);
-> -	if (!pll)
-> -		return ERR_PTR(-ENOMEM);
-> -
->   	pll->base_addr = base + data->reg;
->   	pll->pwr_addr = base + data->pwr_reg;
->   	pll->pd_addr = base + data->pd_reg;
-> @@ -343,7 +312,7 @@ static struct clk_hw *mtk_clk_register_pll(const struct mtk_pll_data *data,
->   
->   	init.name = data->name;
->   	init.flags = (data->flags & PLL_AO) ? CLK_IS_CRITICAL : 0;
-> -	init.ops = &mtk_pll_ops;
-> +	init.ops = pll_ops;
->   	if (data->parent_name)
->   		init.parent_names = &data->parent_name;
->   	else
-> @@ -360,7 +329,22 @@ static struct clk_hw *mtk_clk_register_pll(const struct mtk_pll_data *data,
->   	return &pll->hw;
->   }
->   
-> -static void mtk_clk_unregister_pll(struct clk_hw *hw)
-> +struct clk_hw *mtk_clk_register_pll(const struct mtk_pll_data *data,
-> +				    void __iomem *base)
-> +{
-> +	struct mtk_clk_pll *pll;
-> +	struct clk_hw *hw;
-> +
-> +	pll = kzalloc(sizeof(*pll), GFP_KERNEL);
-> +	if (!pll)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	hw = mtk_clk_register_pll_ops(pll, data, base, &mtk_pll_ops);
-> +
-> +	return hw;
-> +}
-> +
-> +void mtk_clk_unregister_pll(struct clk_hw *hw)
->   {
->   	struct mtk_clk_pll *pll;
->   
-> @@ -423,8 +407,8 @@ int mtk_clk_register_plls(struct device_node *node,
->   }
->   EXPORT_SYMBOL_GPL(mtk_clk_register_plls);
->   
-> -static __iomem void *mtk_clk_pll_get_base(struct clk_hw *hw,
-> -					  const struct mtk_pll_data *data)
-> +__iomem void *mtk_clk_pll_get_base(struct clk_hw *hw,
-> +				   const struct mtk_pll_data *data)
->   {
->   	struct mtk_clk_pll *pll = to_mtk_clk_pll(hw);
->   
-> diff --git a/drivers/clk/mediatek/clk-pll.h b/drivers/clk/mediatek/clk-pll.h
-> index fe3199715688..e87ab08eea9b 100644
-> --- a/drivers/clk/mediatek/clk-pll.h
-> +++ b/drivers/clk/mediatek/clk-pll.h
-> @@ -7,6 +7,7 @@
->   #ifndef __DRV_CLK_MTK_PLL_H
->   #define __DRV_CLK_MTK_PLL_H
->   
-> +#include <linux/clk-provider.h>
->   #include <linux/types.h>
->   
->   struct clk_ops;
-> @@ -20,6 +21,7 @@ struct mtk_pll_div_table {
->   
->   #define HAVE_RST_BAR	BIT(0)
->   #define PLL_AO		BIT(1)
-> +#define POSTDIV_MASK	0x7
 
-While moving this, can you please also fixup declaring this mask as GENMASK()?
+--qov4d3yszrkvywp3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-#define POSTDIV_MASK	GENMASK(2, 0)
+Hi,
 
->   
->   struct mtk_pll_data {
->   	int id;
-> @@ -48,10 +50,64 @@ struct mtk_pll_data {
->   	u8 pll_en_bit; /* Assume 0, indicates BIT(0) by default */
->   };
->   
-> +/*
-> + * MediaTek PLLs are configured through their pcw value. The pcw value describes
-> + * a divider in the PLL feedback loop which consists of 7 bits for the integer
-> + * part and the remaining bits (if present) for the fractional part. Also they
-> + * have a 3 bit power-of-two post divider.
-> + */
-> +
-> +struct mtk_clk_pll {
-> +	struct clk_hw	hw;
-> +	void __iomem	*base_addr;
-> +	void __iomem	*pd_addr;
-> +	void __iomem	*pwr_addr;
-> +	void __iomem	*tuner_addr;
-> +	void __iomem	*tuner_en_addr;
-> +	void __iomem	*pcw_addr;
-> +	void __iomem	*pcw_chg_addr;
-> +	void __iomem	*en_addr;
-> +	const struct mtk_pll_data *data;
-> +};
-> +
-> +
+On Wed, Sep 28, 2022 at 08:29:35PM +0200, Johan Jonker wrote:
+> On 9/13/22 16:16, Sebastian Reichel wrote:
+> > On Tue, Sep 13, 2022 at 11:12:02AM +0200, Uwe Kleine-K=F6nig wrote:
+> >> Hello Rob,
+> >>
+> >> On Thu, Sep 01, 2022 at 02:14:55PM -0500, Rob Herring wrote:
+> >>> On Thu, 01 Sep 2022 15:55:23 +0200, Sebastian Reichel wrote:
+> >>>> Add "rockchip,rk3588-pwm" compatible string for PWM nodes found
+> >>>> on a rk3588 platform.
+> >>>>
+> >>>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> >>>> ---
+> >>>> No driver changes required.
+> >>>> ---
+> >>>>  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 1 +
+> >>>>  1 file changed, 1 insertion(+)
+> >>>>
+> >>>
+> >>> Running 'make dtbs_check' with the schema in this patch gives the
+> >>> following warnings. Consider if they are expected or the schema is
+> >>> incorrect. These may not be new warnings.
+> >>>
+> >>> Note that it is not yet a requirement to have 0 warnings for dtbs_che=
+ck.
+> >>> This will change in the future.
+> >>
+> >> Is this a list of *new* warnings, or is the report (somewhat) orthogon=
+al
+> >> to the actual change and you just used the opportunity that someone
+> >> touched the pwm-rockchip binding to point out that there is some clean=
+up
+> >> to do?
+> >>
+> >>> Full log is available here: https://patchwork.ozlabs.org/patch/
+> >>
+> >> Hm, that gives me a 404.
+> >=20
+>=20
+> > This is an existing problem with the rv1108 binding.
+> > The rk3588 does not have pwm interrupts.
+>=20
+> Hi,
+>=20
+> Could you recheck?
+>=20
+> From Rockchip=A0RK3588=A0Datasheet=A0V0.1-20210727.pdf:
 
-Please drop this extra newline.
+Indeed. Looks like I missed the PWM interrupts because the list
+of interrupts is in two columns in the datasheet and I only looked
+through the first one assuming it was one long line. I should have
+checked this more carefully. Sorry about that.
 
-Thanks,
-Angelo
+> =3D=3D=3D
+> ARM: dts: rk3288: add the interrupts property for PWM=20
+> https://github.com/rockchip-linux/kernel/commit/16b7b284618d1652e694f6286=
+f575ce82f5f03e5
+>=20
+> Comment:
+> At the moment, we can find the remotectl pwm is needed on box.
+> We can add the property for all PWMs. AFAIK, the pwm driver don't use it
+> but the drivers/input/remotectl/rockchip_pwm_remotectl.c
+> =3D=3D=3D
+
+rk3288 !=3D rk3588. That's a different SoC. The downstream kernel I
+used is this one and does not describe the interrupts:
+
+https://github.com/radxa/kernel/tree/stable-5.10-rock5/arch/arm64/boot/dts/=
+rockchip
+
+I suppose we have these options:
+
+1. Remove the 'interrupts' property from any upstream rockchip DT,
+   since they are not used by SW? They can always be properly
+   introduced without breaking backwards compatibility.
+
+2. Describe 'interrupts' in the DT binding as optional with
+   description to shut up the warning and otherwise ignore the
+   problem until somebody has code to use the interrupts.
+
+3. Same as 2, but also add the interrupts for rk356x and rk3588
+   even though they are not used at the moment.
+
+4. Describe 'interrupts' as mandatory in the DT binding for any
+   rockchip SoC that has them and add them in DT. Considering
+   normal PWM usage does not need them at all that seems wrong
+   to me.
+
+-- Sebastian
+
+--qov4d3yszrkvywp3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmM1mVoACgkQ2O7X88g7
++pokQBAAqhup1AfHwBLA0RoqPBI4qhTOeFeQeX9dHHFtHtb8z2JpRSYrCI4mkPvs
+Ma2TVmcVTQ5+iUjfT8DJvmFbehmS37YjWVWAFgJCpj4hdokjotvQ6/UJOWnE/WUD
+uEKk3fCUDt61QR1bOtNOuRMFm5XAUZJ8dcPNu4Wkgk8fDz8e0x/s1JCOViNtgtHL
+KO6Xp/3wY6nBVE+lLHpZMUI+gYLtdhD30oS2NkCrvmiMJhR/THQVrhCuO58bVxQr
+WC66LFxeVHcUQpwF5AwLqE8jqQTLPgAeNZ4nCH/cgzAJpPCk+Uv7fsXzV6wSRzAe
+z21pKMWLTOonvz5YR0eBrE8ua1z6uZtdjMlrjxrDwHezf9cA0LRuYi2Xle1HQddU
+lqN2079fy0yJ5FPxBJJLvBa67MjVrmQWF/+qlaMK89467A450jbPer4AnKA/v4Jf
+6IqFUmsF4MhGB9o0f3JDyn2/x9dMEK3SUnQ5mrLAoAgXT/EU5S0r8Vvu7SFv1gb0
+ADQEWIhkPUwJHH6O8usJGGMqApTKJgcyIZQgdamCirDcpZ0fsPIy5bl6RXhuLSRY
+lrqDjy5SD2fZ9YB5KlazI4ibiVWR8xBsd9Srfj0XY1+OW5ennWzrwWqI3llP16O4
+MfgGe2+FHxvaDfVtHDRM0RJiRWy8MNzLbRwNOEZgoMwfhzqsf/k=
+=FjJ4
+-----END PGP SIGNATURE-----
+
+--qov4d3yszrkvywp3--
