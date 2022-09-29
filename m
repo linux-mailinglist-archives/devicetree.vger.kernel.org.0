@@ -2,116 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D6E05EEE70
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18D215EEE79
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:08:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235021AbiI2HHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 03:07:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45796 "EHLO
+        id S235033AbiI2HIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 03:08:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235050AbiI2HHZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:07:25 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4CB993846C;
-        Thu, 29 Sep 2022 00:07:21 -0700 (PDT)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxYOIaRDVjm6kjAA--.2760S2;
-        Thu, 29 Sep 2022 15:07:06 +0800 (CST)
-Subject: Re: [PATCH v5 2/3] dt-bindings: thermal: add loongson2k thermal
- binding
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, zhuyinbo@loongson.cn
-References: <20220928083702.17309-1-zhuyinbo@loongson.cn>
- <20220928083702.17309-2-zhuyinbo@loongson.cn>
- <066b55cf-4a28-89a2-56ab-572590c97c30@linaro.org>
- <9b2f2d43-981d-3ffb-7526-dc3e58a9f367@linaro.org>
- <f0946817-cc2c-449b-d93b-0dd94a0f51f1@loongson.cn>
- <ed762d71-7104-b1ad-009d-51c1a4407472@loongson.cn>
- <9b62594f-7473-9974-8ab3-4c93aae5fa64@linaro.org>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <abaf9b69-487c-0f1e-7a94-201155f5e3d2@loongson.cn>
-Date:   Thu, 29 Sep 2022 15:07:06 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S235037AbiI2HH4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:07:56 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E8C53123A;
+        Thu, 29 Sep 2022 00:07:53 -0700 (PDT)
+Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Thu, 29 Sep
+ 2022 15:07:50 +0800
+Message-ID: <095f1bd9-c390-196f-cccc-700d75c70cb0@amlogic.com>
+Date:   Thu, 29 Sep 2022 15:07:49 +0800
 MIME-Version: 1.0
-In-Reply-To: <9b62594f-7473-9974-8ab3-4c93aae5fa64@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH V3 3/6] clk: meson: S4: add support for Amlogic S4 SoC PLL
+ clock driver
 Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20220805085716.5635-1-yu.tu@amlogic.com>
+ <20220805085716.5635-4-yu.tu@amlogic.com>
+ <1jiln0yzgj.fsf@starbuckisacylon.baylibre.com>
+ <ed4038fb-c230-fc27-800c-c99bd1770a1c@amlogic.com>
+ <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
+ <1jsflftm1y.fsf@starbuckisacylon.baylibre.com>
+ <0c7e6d90-2ce3-25ab-84b6-026ce8a238a8@amlogic.com>
+ <1jtu5uz0ry.fsf@starbuckisacylon.baylibre.com>
+ <9f9cf980-c0c6-d5c3-ced8-8ab50e392470@amlogic.com>
+ <21e14cc1-6b34-e6b0-8da2-ad4b34dac149@amlogic.com>
+ <1jy1u3zfas.fsf@starbuckisacylon.baylibre.com>
+From:   Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <1jy1u3zfas.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxYOIaRDVjm6kjAA--.2760S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7tr1kGry5XrWDtFWDXF43ZFb_yoW8Xry7pF
-        y8Ja1qkFWDJrW3Kw48Kw1xtF1Yvws7tr45Xr1rGr4UArWqqw15tF1DZr1jkryDWrWfXFW7
-        trW5K3srJr4UZ3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUU9l14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-        1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
-        6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-        CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-        2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-        W8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka
-        0xkIwI1lc7I2V7IY0VAS07AlzVAYIcxG8wCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
-        8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
-        xVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
-        AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
-        cIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r
-        4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUoOJ5UUUUU
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Originating-IP: [10.18.29.47]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jerome,
+	Thank you for your reply.
 
-
-在 2022/9/29 下午3:00, Krzysztof Kozlowski 写道:
-> On 29/09/2022 05:57, Yinbo Zhu wrote:
+On 2022/9/28 23:27, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> 
+> On Wed 21 Sep 2022 at 16:40, Yu Tu <yu.tu@amlogic.com> wrote:
+> 
+>> Hi Jerome，
 >>
->>
->> 在 2022/9/29 上午11:42, Yinbo Zhu 写道:
->>>
->>>
->>> 在 2022/9/28 下午10:18, Krzysztof Kozlowski 写道:
->>>> On 28/09/2022 10:37, Krzysztof Kozlowski wrote:
->>>>> On 28/09/2022 10:37, Yinbo Zhu wrote:
->>>>>> Add the loongson2k thermal binding with DT schema format using
->>>>>> json-schema.
->>>>>>
->>>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>>>>
->>>>> Please add Acked-by/Reviewed-by tags when posting new versions. However,
->>>>> there's no need to repost patches *only* to add the tags. The upstream
->>>>> maintainer will do that for acks received on the version they apply.
->>>>>
->>>>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
->>>>>
->>>>>
->>>>> If a tag was not added on purpose, please state why and what changed.
->>>>>
->>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> On 2022/8/30 15:37, Yu Tu wrote:
+>>> On 2022/8/30 14:44, Jerome Brunet wrote:
+>>>> [ EXTERNAL EMAIL ]
 >>>>
->>>> ... and please test your patches before sending :(
->> You said is refer that "reg: [[0, 534779136], [0, 48]] is too long" ?
->> Need fix that warning, right?
+>>>>
+>>>> On Tue 30 Aug 2022 at 14:13, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>>
+>>>>> On 2022/8/29 17:48, Jerome Brunet wrote:
+>>>>>> [ EXTERNAL EMAIL ]
+>>>>>> On Mon 15 Aug 2022 at 21:20, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>>>>
+>>>>>>>>>> +
+>>>>>>>>>> +static struct clk_regmap s4_hdmi_pll_dco = {
+>>>>>>>>>> +    .data = &(struct meson_clk_pll_data){
+>>>>>>>>>> +        .en = {
+>>>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
+>>>>>>>>>> +            .shift   = 28,
+>>>>>>>>>> +            .width   = 1,
+>>>>>>>>>> +        },
+>>>>>>>>>> +        .m = {
+>>>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
+>>>>>>>>>> +            .shift   = 0,
+>>>>>>>>>> +            .width   = 8,
+>>>>>>>>>> +        },
+>>>>>>>>>> +        .n = {
+>>>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
+>>>>>>>>>> +            .shift   = 10,
+>>>>>>>>>> +            .width   = 5,
+>>>>>>>>>> +        },
+>>>>>>>>>> +        .frac = {
+>>>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL1,
+>>>>>>>>>> +            .shift   = 0,
+>>>>>>>>>> +            .width   = 17,
+>>>>>>>>>> +        },
+>>>>>>>>>> +        .l = {
+>>>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
+>>>>>>>>>> +            .shift   = 31,
+>>>>>>>>>> +            .width   = 1,
+>>>>>>>>>> +        },
+>>>>>>>>>> +        .rst = {
+>>>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
+>>>>>>>>>> +            .shift   = 29,
+>>>>>>>>>> +            .width   = 1,
+>>>>>>>>>> +        },
+>>>>>>>>>> +    },
+>>>>>>>>>> +    .hw.init = &(struct clk_init_data){
+>>>>>>>>>> +        .name = "hdmi_pll_dco",
+>>>>>>>>>> +        .ops = &meson_clk_pll_ro_ops,
+>>>>>>>>>> +        .parent_data = (const struct clk_parent_data []) {
+>>>>>>>>>> +            { .fw_name = "xtal", }
+>>>>>>>>>> +        },
+>>>>>>>>>> +        .num_parents = 1,
+>>>>>>>>>> +        /*
+>>>>>>>>>> +         * Display directly handle hdmi pll registers ATM, we need
+>>>>>>>>>> +         * NOCACHE to keep our view of the clock as accurate as
+>>>>>>>>>> +         * possible
+>>>>>>>>>> +         */
+>>>>>>>>>
+>>>>>>>>> Is it really ?
+>>>>>>>>>
+>>>>>>>>> Given that HDMI support for the s4 is there yet, the
+>>>>>>>>> addresses have changes and the region is no longer a syscon, it is
+>>>>>>>>> time
+>>>>>>>>> for the HDMI driver to get fixed.
+>>>>>>> The HDMI PLL is configured in the Uboot phase and does not change the
+>>>>>>> frequency in the kernel phase. So we use the NOCACHE flag and
+>>>>>>> "ro_ops".
+>>>>>> That's no reason to put NOCACHE or ro-ops
+>>>>>> If you want the frequencies to be statically assinged, the correct way
+>>>>>> would be through assigned-rate in DT I guess.
+>>>>>
+>>>>> Okay. You're right. However, when registering with OPS, HDMI PLL will be
+>>>>> reset. It takes time for PLL to stabilize the output frequency, which
+>>>>> will
+>>>>> lead to the startup screen flashing.
+>>>>>
+>>>>> I would like to know how to solve this problem if not using ro_ops.
+>>>>>
+>>>>>>
+>>>>
+>>>> You can add new ops or tweak the current init function.
+>>> HDMI PLL is not different from other PLLS, so I think adding OPS is
+>>> weird.
+>>>
+>>>>
+>>>> Safest would be to do the following :
+>>>>    * Check if the PLLs is already on.
+>>>>    * Check if the 'pll->init_regs' matches what is already set
+>>>>      - if so, you can skip the reset
+>>>>      - if not, you need to reset as usual
+>>> static int meson_clk_pll_init(struct clk_hw *hw)
+>>> {
+>>>           struct clk_regmap *clk = to_clk_regmap(hw);
+>>>           struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+>>>           if (pll->init_count) {
+>>>                   meson_parm_write(clk->map, &pll->rst, 1);
+>>>                   regmap_multi_reg_write(clk->map, pll->init_regs,
+>>>                                   |      pll->init_count);
+>>>                   meson_parm_write(clk->map, &pll->rst, 0);
+>>>           }
+>>>           return 0;
+>>> }
+>>> Because the init function looks like this. Therefore, HDMI PLL init_count
+>>> is not given.
 > 
-> Yes. You said you tested it but then sent with an error... so it's not
-> really a testing.
-sorry, I did do some testing. but I think It is okay that can generate a 
-dtb  without reporting an error when compile yaml file, in fact, I 
-ignore the warning,  I will fix it in v6.
+> I don't get the remark. You've got pll->init_count right there.
 > 
-> Best regards,
-> Krzysztof
+>>> Can I change it like this?
 > 
+> What change ? The function above looks a lot like  meson_clk_pll_init()
+> in the actual source
+> 
+>>
+>> I don't know if this change meets your requirements? Please give us your
+>> valuable advice.
+> 
+> What change ?
+
+static struct clk_regmap s4_hdmi_pll_dco = { 
+
+         .data = &(struct meson_clk_pll_data){ 
+
+                 .en = { 
+
+                         .reg_off = ANACTRL_HDMIPLL_CTRL0, 
+
+                         .shift   = 28, 
+
+                         .width   = 1, 
+
+                 }, 
+
+                 .m = { 
+
+                         .reg_off = ANACTRL_HDMIPLL_CTRL0, 
+
+                         .shift   = 0, 
+
+                         .width   = 8, 
+
+                 }, 
+
+                 .n = { 
+
+                         .reg_off = ANACTRL_HDMIPLL_CTRL0, 
+
+                         .shift   = 10, 
+
+                         .width   = 5, 
+
+                 }, 
+
+                 .frac = { 
+
+                         .reg_off = ANACTRL_HDMIPLL_CTRL1, 
+
+                         .shift   = 0, 
+
+                         .width   = 17, 
+
+                 }, 
+
+                 .l = { 
+
+                         .reg_off = ANACTRL_HDMIPLL_CTRL0, 
+
+                         .shift   = 31, 
+
+                         .width   = 1, 
+
+                 }, 
+
+                 .rst = { 
+
+                         .reg_off = ANACTRL_HDMIPLL_CTRL0, 
+
+                         .shift   = 29, 
+
+                         .width   = 1, 
+
+                 }, 
+
+                 .range = &s4_gp0_pll_mult_range, 
+
+         }, 
+
+         .hw.init = &(struct clk_init_data){ 
+
+                 .name = "hdmi_pll_dco", 
+
+                 .ops = &meson_clk_pll_ops, 
+
+                 .parent_data = (const struct clk_parent_data []) { 
+
+                         { .fw_name = "xtal", } 
+
+                 }, 
+
+                 .num_parents = 1, 
+
+         }, 
+
+};
+
+This is my code right now. Because init_count and init_regs are not 
+defined, HDMI PLL is not reset. In this way, the kernel will not blink 
+when the Uboot starts. Then in the kernel stage, if we want to change 
+the HDMI PLL frequency value, we can directly change M, N and OD. In 
+fact, we will not change the HDMI PLL frequency value later.
+
+I wonder if you accept this change?
+
+
 
