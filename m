@@ -2,92 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A5FD5EEAD8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 03:20:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5757A5EEAF9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 03:33:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233593AbiI2BUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 21:20:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60130 "EHLO
+        id S234269AbiI2Bdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 21:33:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231949AbiI2BUf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 21:20:35 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EE40B56D7
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 18:20:34 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id o2so33579lfc.10
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 18:20:33 -0700 (PDT)
+        with ESMTP id S234239AbiI2Bdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 21:33:45 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A07211ADC3;
+        Wed, 28 Sep 2022 18:33:43 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id f193so167422pgc.0;
+        Wed, 28 Sep 2022 18:33:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date;
-        bh=PyA6JBZ/HLPJA0MSYRFOgBZKQs1v6t/7oG2AsVljbwA=;
-        b=cnoIUXNM7y0Bx6E39zrU9pROCXP+TwDSRNusZ4S6UPUgk7lla7MB/QQzbc5dwyEX9P
-         8fNXAUPeBK6so/28gYHdEMd4sVI5/q/0+poZEl+j+NGzdhZrT4Oh6Fn8OK1RvlrO3tRc
-         faslcLLDDm6RV50iLLmFD/Kgz4ASmJmz2C1cQ=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=ZxQQLMUNaY7eMCarfGC4wOnU7JZ2k48wyRFxQNdExVs=;
+        b=kCd2f6WlsfdYuM84nHXHWUYadYtZuAR1i1gDf59TYRQcNWRcDu9+/KnJg/Uk6cv0Iw
+         MkhNOF2ITFL0bbWRHq+phwB5lVaaUtOgeQ5ix3EVwGsPzaT1f46UQdNxMwAYtZB75ARq
+         s3CsEDUoHzQGInjkSqtuvSWiBX3ou9J8GHecBX9txhrQyX9afDNBZGgGswhZ9bV6IE33
+         IH+ybP3J7Tq/CY9o90PjliIHiJ7iSfaiUbTRQqYZVsl8nDKJY+LY47HAW6qIUrpnfhjY
+         gmS5YevMqwOEbBFJae427mshElrnatZCiXzXo+vlbTPRueBMPgWJoWsOIB2ia+I0knJb
+         ZgDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=PyA6JBZ/HLPJA0MSYRFOgBZKQs1v6t/7oG2AsVljbwA=;
-        b=PFVEa62nF0S8iRRtBci5RoIePSWEQpSHUbcmrQdSleELd4JglgUe0K9AqS/Sj1cODZ
-         Q4/grAm0XV1w7/G1HMp3xNFdI5xj/PP44NYRpmk2NhGyW0dueslzqMDUvzIhQRY4surg
-         B+IjLdthRc7zY0KAaZMlrtmJ0ElS90/ts1CjGvPPd9Ad/RDpju1Sg06X8FuY2WhY4JN1
-         KuMOS9Auil/pXhuchLw97nWyqnOhhIUZrosMXPtUrpfFo9VcVTXijDBGqlwj3pBx8BTc
-         eGbJpImWlHT7XqUm1Ip1LGz/0dEH5Yl8ItuySIXPVyjuv1B3nLyMVNADoRUXGopdkswx
-         qV+g==
-X-Gm-Message-State: ACrzQf0s04WdzYq6TeAqRdFeMqczdVa8r22TKUrFIC8cCciOZ0+VFOK0
-        TKEoa6UN/HMDUD+9FRgMeOExDuD8yiW8VMBpy9vVZQ==
-X-Google-Smtp-Source: AMsMyM6UGys+TKU82G78ADGDam7TNcOi0qQ36vJR4ZLCRet+LNaUHFDhfTG2aNNJ3/LcQS7hJhR1Mv+UkmcjDfeuFVw=
-X-Received: by 2002:a05:6512:1151:b0:4a0:50f2:9509 with SMTP id
- m17-20020a056512115100b004a050f29509mr327722lfg.297.1664414432376; Wed, 28
- Sep 2022 18:20:32 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 28 Sep 2022 21:20:31 -0400
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=ZxQQLMUNaY7eMCarfGC4wOnU7JZ2k48wyRFxQNdExVs=;
+        b=HLAPycYYJ+PGpTO5uvqVXdGfOlQMaxBjwb5YZZwLVwYcsihFv0weuM7LvBm3E0qyMD
+         6WdK98anWge//5TxjV7wgochXGX93umKGKQA3Yx9Cdfj2FgswLF6Gsiqc6ru9CsB8web
+         u5QOuoKE+Z0JEjPip45fxtFmyDGcmmmZdMyiivXAzrPlC9AG85gCHhmBJrw15R1P6Fl6
+         8/9oiB/ixDs2Ruyhf7fbaPkxovD8JY574Cc1hHVO6NaXBElXg9nrDg1epKZOvCZUx9Ew
+         +kNGmKvQtkVpT+SW8EZjbEIWfSzRsr/4oHs7GXOW98s3cAeiZaCghpZ5zoRORrZuPTZH
+         EJkQ==
+X-Gm-Message-State: ACrzQf287Dnzl6LI98w8xOtWe65R2hN2Cg9L4iZT0J6lm1Wji0PCWws2
+        Fnj0J/pEYxq6Zte63/o50Rc=
+X-Google-Smtp-Source: AMsMyM6OYWGO3w4kbWcMFzFaX3GeeKCuUgKS2uXZqekStmNfKYTEM0OyTiyM7RPJvIZhUPDuYt4cXw==
+X-Received: by 2002:aa7:9801:0:b0:553:1bfb:9669 with SMTP id e1-20020aa79801000000b005531bfb9669mr941313pfl.15.1664415222945;
+        Wed, 28 Sep 2022 18:33:42 -0700 (PDT)
+Received: from localhost.localdomain (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
+        by smtp.gmail.com with ESMTPSA id w3-20020a170902ca0300b0016f85feae65sm4385587pld.87.2022.09.28.18.33.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Sep 2022 18:33:42 -0700 (PDT)
+From:   Potin Lai <potin.lai.pt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Patrick Williams <patrick@stwcx.xyz>,
+        Potin Lai <potin.lai@quantatw.com>,
+        Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH 0/2] ARM: dts: aspeed: bletchley: Update Bletchley BMC devicetree
+Date:   Thu, 29 Sep 2022 09:31:28 +0800
+Message-Id: <20220929013130.1916525-1-potin.lai.pt@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <YzQf7hf15vvLeGse@google.com>
-References: <Yr66ZZqEnBApHYMA@google.com> <YsLhxx+L3+GJDRyO@google.com>
- <bcc5f059-b991-296a-bba6-9cb1236097f2@quicinc.com> <Ys1tYAO39LKzEAOE@google.com>
- <dc737abb-041b-491a-14f1-a584f9e64a3d@quicinc.com> <CAE-0n528QaTtZFp=WAaHShegFRpKVN_67jQfUJTtsRPr6s--zA@mail.gmail.com>
- <52039cd1-4390-7abb-d296-0eb7ac0c3b15@quicinc.com> <Yuz2O+lZ5W7RviuA@google.com>
- <CAE-0n507SLeYB7XVzGFk=RO6YjOPoGpux+_N2AyrmL354mQJ-g@mail.gmail.com> <YzQf7hf15vvLeGse@google.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 28 Sep 2022 21:20:31 -0400
-Message-ID: <CAE-0n50cX5ky3By976RTecKkpeMoAjoBA4tYuWSZ150JfS9wiQ@mail.gmail.com>
-Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
-To:     Lee Jones <lee@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>,
-        Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Lee Jones (2022-09-28 03:20:30)
-> Wouldn't it make more sense to simply separate the instantiation of
-> the 2 I2C devices?  Similar to what you suggested [0] in v9.  That way
-> they can handle their own resources and we can avoid all of the I2C
-> dummy / shared Regmap passing faff.
->
-> [0] https://lore.kernel.org/all/CAE-0n53G-atsuwqcgNvi3nvWyiO3P=pSj5zDUMYj0ELVYJE54Q@mail.gmail.com/
->
+Update Facebook Bletchley BMC devicetree base on Pre-PVT HW design.
 
-You can continue reading the thread[1]. My understanding is it's one
-chip that responds on two i2c addresses, thus we don't describe that as
-two i2c device nodes in DT. Instead we describe one node and use the
-dummy API to make the second i2c device.
+Potin Lai (2):
+  ARM: dts: aspeed: bletchley: update and fix gpio-line-names
+  ARM: dts: aspeed: bletchley: enable emmc and ehci1
 
-[1] https://lore.kernel.org/all/Yk3NkNK3e+fgj4eG@sirena.org.uk/
+ .../boot/dts/aspeed-bmc-facebook-bletchley.dts   | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+-- 
+2.31.1
+
