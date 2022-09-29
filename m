@@ -2,90 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80E735EF0BB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:40:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDD555EF0C7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:47:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235597AbiI2Ikg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 04:40:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36212 "EHLO
+        id S235030AbiI2Irb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 04:47:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235646AbiI2IkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:40:22 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 348A62F64C
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:40:17 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id s14so1062076wro.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:40:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:reply-to:from
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date;
-        bh=9yCHudwWTs8iGGjOW2yzGpZ+XsTes14RKtIMcMyggXE=;
-        b=YFayQv5zccBSzwC1ZnIbDUZbLsM5Aw0c4lFGDl4BO08Fpc4xl1cSeF9XXRqN5P5wBe
-         rUvsdp0+jezwGpqFcH1QtaHdcASZqq7taW1fiJdA9oSjTXpvHWhdwa/CoOO9UXMZBZ7w
-         577un9+SStHkbJq2UtdLIG+55k8dJPgURuKlXUvVybFvIDYQnf5aWia3bF5ivDeCRVsW
-         YV0IeKrGlCWORDAyaSR278Awgf8LrUJyhCdsMhgZcEpy0rUK5tEf5qaGZAdddCm9czVw
-         645Ecj0rvYLRyzmy5GTcIB6sEWkKytHF34Tikwf4yGojhiBUIuOUewdrRPhOibhw8imB
-         hxig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:reply-to:from
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=9yCHudwWTs8iGGjOW2yzGpZ+XsTes14RKtIMcMyggXE=;
-        b=st8mmz3qQM3+Kn/wAYLijGwgbD20qK/HyWWpGxyxJhmm/l6M6xyhXjO3ING0+PGqlt
-         z+9pil444sofMhLf2D5qOyDEsrUeQyNeE2mwwpiqrND0U54BiEf65V8ayJEoCB50AZ06
-         +r9lZLKPyYjyVaGMUVDm9Y7vj6je644a13zYyjfSAmVWWRz4s3fbpc1E2JtyMpi7lf6h
-         hOluLIzv5bAO2vY5XPgfWQ8QC7jX3vwADz2Dd7AKcR6RxrACu1O0qQJzS/l6nIXNrv61
-         8F+Np++R5mpOrLq9XOnVjDHy3vllmP5PN/8c+kr0k0ru7S3eJQGfqoyJTLcKsmV43JrP
-         0/sw==
-X-Gm-Message-State: ACrzQf0lZuIss3BfiH9eEM1s7pwBM9OOJ2GajsZOFUGdJzCgK46Whnp0
-        jEABk3KP6/aj1Es/blaoyqxZKQ==
-X-Google-Smtp-Source: AMsMyM6dwuUJdxC7BENyYXPsQCOd+CranHMYc70MqG9BZMnC1YgoC1MsI3vRIn9cBDMtsz0FCbVOkg==
-X-Received: by 2002:a05:6000:98b:b0:22c:c3b1:3f2a with SMTP id by11-20020a056000098b00b0022cc3b13f2amr1359248wrb.11.1664440815789;
-        Thu, 29 Sep 2022 01:40:15 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff? ([2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff])
-        by smtp.gmail.com with ESMTPSA id e16-20020a05600c2dd000b003b47e8a5d22sm3963146wmh.23.2022.09.29.01.40.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 01:40:15 -0700 (PDT)
-Message-ID: <aaf68eff-17da-3f27-c8dc-48b9659e7b50@linaro.org>
-Date:   Thu, 29 Sep 2022 10:40:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: it6505: add properties to restrict
- output bandwidth
-Content-Language: en-US
-To:     allen <allen.chen@ite.com.tw>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        with ESMTP id S234218AbiI2Ira (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:47:30 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB0A12DEF1;
+        Thu, 29 Sep 2022 01:47:26 -0700 (PDT)
+X-UUID: 57d1a879de2e456c883ec01a9bed887e-20220929
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=WYHMETprlxCSlcsR6AUgF7th2hMnQkiMFVz9edPawAU=;
+        b=sje336XFuNVLHdoAVA7Uyta43RUR0DU1G/VEPRaLi4GGgP6QVBAKMqnnLOSd1CRzK1EGvPF6WKHZdog1YTK5pL0QR9Z5xhjQyyis/SKcMPH0A6x78lBzZ1aON4X62TXfYHmHyADMaSm87OpP+Wq/STdce3NkuqvlpCKxbEeuq9E=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:bb9a92e0-89bc-4ab8-ad00-fc3956a1c4e6,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:39a5ff1,CLOUDID:c1a87ba3-dc04-435c-b19b-71e131a5fc35,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 57d1a879de2e456c883ec01a9bed887e-20220929
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1136124860; Thu, 29 Sep 2022 16:47:21 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 29 Sep 2022 16:47:20 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 29 Sep 2022 16:47:20 +0800
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        David Airlie <airlied@linux.ie>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Pin-yen Lin <treapking@chromium.org>,
-        Hermes Wu <Hermes.Wu@ite.com.tw>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Jonas Karlman <jonas@kwiboo.se>
-References: <20220929014456.30077-1-allen.chen@ite.com.tw>
- <20220929014456.30077-2-allen.chen@ite.com.tw>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Organization: Linaro Developer Services
-In-Reply-To: <20220929014456.30077-2-allen.chen@ite.com.tw>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Miles Chen <miles.chen@mediatek.com>,
+        Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>, <linux-usb@vger.kernel.org>,
+        <stable@vger.kernel.org>
+Subject: [PATCH v2] arm64: dts: mediatek: mt8195-demo: fix the memory size of node secmon
+Date:   Thu, 29 Sep 2022 16:47:14 +0800
+Message-ID: <20220929084714.15143-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20220922091648.2821-1-macpaul.lin@mediatek.com>
+References: <20220922091648.2821-1-macpaul.lin@mediatek.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,55 +72,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The size of device tree node secmon (bl31_secmon_reserved) was
+incorrect. It should be increased to 2MiB (0x200000).
 
-On 29/09/2022 03:44, allen wrote:
-> From: allen chen <allen.chen@ite.com.tw>
-> 
-> Add properties to restrict dp output data-lanes and clock.
-> 
-> Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-> Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
-> ---
->   .../devicetree/bindings/display/bridge/ite,it6505.yaml | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> index 833d11b2303a..62b9f2192202 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> @@ -52,6 +52,14 @@ properties:
->       maxItems: 1
->       description: extcon specifier for the Power Delivery
->   
-> +  data-lanes:
-> +    maxItems: 1
-> +    description: restrict the dp output data-lanes with value of 1-4
+The origin setting will cause some abnormal behavior due to
+trusted-firmware-a and related firmware didn't load correctly.
+The incorrect behavior may vary because of different software stacks.
+For example, it will cause build error in some Yocto project because
+it will check if there was enough memory to load trusted-firmware-a
+to the reserved memory.
 
-Can't you use the data-lanes property in the first port endpoint ?
+When mt8195-demo.dts sent to the upstream, at that time the size of
+BL31 was small. Because supported functions and modules in BL31 are
+basic sets when the board was under early development stage.
 
-Look at Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+Now BL31 includes more firmwares of coprocessors and maturer functions
+so the size has grown bigger in real applications. According to the value
+reported by customers, we think reserved 2MiB for BL31 might be enough
+for maybe the following 2 or 3 years.
 
-> +
-> +  max-pixel-clock-khz:
-> +    maxItems: 1
-> +    description: restrict max pixel clock
+Cc: stable@vger.kernel.org      # v5.19
+Fixes: 6147314aeedc ("arm64: dts: mediatek: Add device-tree for MT8195 Demo board")
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Reviewed-by: Miles Chen <miles.chen@mediatek.com>
+---
+Changes for v2
+ - Add more information about the size difference for BL31 in commit message.
+   Thanks for Miles's review.
 
-New vendor specific properties should have the ite, prefix.
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> +
->     port:
->       $ref: /schemas/graph.yaml#/properties/port
->       description: A port node pointing to DPI host port node
-> @@ -84,6 +92,8 @@ examples:
->               pwr18-supply = <&it6505_pp18_reg>;
->               reset-gpios = <&pio 179 1>;
->               extcon = <&usbc_extcon>;
-> +            data-lanes = <2>;
-> +            max-pixel-clock-khz = <150000>;
->   
->               port {
->                   it6505_in: endpoint {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+index 4fbd99eb496a..dec85d254838 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+@@ -56,10 +56,10 @@
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
++		/* 2 MiB reserved for ARM Trusted Firmware (BL31) */
+ 		bl31_secmon_reserved: secmon@54600000 {
+ 			no-map;
+-			reg = <0 0x54600000 0x0 0x30000>;
++			reg = <0 0x54600000 0x0 0x200000>;
+ 		};
+ 
+ 		/* 12 MiB reserved for OP-TEE (BL32)
+-- 
+2.18.0
 
-Thanks,
-Neil
