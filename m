@@ -2,144 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ED805EEDE2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 08:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BA015EEDEE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 08:32:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234340AbiI2G30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 02:29:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45164 "EHLO
+        id S234841AbiI2GcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 02:32:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230341AbiI2G3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 02:29:25 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 361F712E430
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:29:24 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id 13so722362ejn.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:29:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=9sMUB+ufmO/jB91L+Cnkm2YRBNvfPUGNsKA+nqPeMho=;
-        b=Smds3S9XWiIBc98H2XCEGckTjhx/FBf1xzTVoxJqjvdxbov9Zg4ycsowcLPDcUScM0
-         NI/E7gh0g0jf4rjXTY55tBUfle+7azTt6UETy1ZrthkrKwFskTdJ3T9+7uToDdoCgVJk
-         y5gKkkzUZLrIyq/9U1SMchrSQDKaA0mcUEv2tvLLJcXX2/Wu+Q8zzpdnrNkXQBPVNo65
-         8N0GInKtZctPo6ADCU4/Gqi+Oj6lEKRuxHEX/KjHivtk1qlA/erg3F7FRGCLljU/xgAf
-         W6JetwSWMFg+i2NaTA9I6pyDgVcxF17uBcxFfdAVvuYVY+L4ZKYBSSUTtTqR3RbHhcZb
-         t/Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=9sMUB+ufmO/jB91L+Cnkm2YRBNvfPUGNsKA+nqPeMho=;
-        b=JhFkuno5SGJNQ/mJOLQzo5diOjcwriO4D9hZXyrhVCGIZcl2HYLZhO58Ajd2EFe38S
-         e7lQgJlgGxYqHdTEr9HQPloUSb9u4K92aD/9vQhDaRDfBDrhEJTGGvxRwtHQXJBVvp41
-         9a753bV3ej4tsPdbDmWtHtj7EaRfBZyEIXuMJQziWZQQxQTErIvmErmw16zxA2yN16fs
-         ebmIY3bxCpXPObjhwuitXLJHt2fatcYxTXzp+3NVxPzx72Jycb/HT+/QfFwPLM83IQ5I
-         WPzoxxhaSDrnT9vGpeL5xbz3tg3o4IFNCRhbh8tieMSoPD4ztk+7KXU4sYB4emysonpB
-         kLcQ==
-X-Gm-Message-State: ACrzQf0yFPBrT5LXAxdX/ywxKMz5aaiAk1TYUtnKKbJQNqwSikmK2yCF
-        hVrPMXQiDyMhxFFuv7cEGiwwLWJXfrvqBtDaPKzDCw==
-X-Google-Smtp-Source: AMsMyM5ZtREGqxKZKOpbmXG+0pP6ay1c4N1+fNX5kP26dzgQ5hEt5obAeIIeMF0AAim5INRGtCyTdjPD/2tdO9yci7s=
-X-Received: by 2002:a17:907:a05:b0:77b:b538:6476 with SMTP id
- bb5-20020a1709070a0500b0077bb5386476mr1430811ejc.324.1664432962669; Wed, 28
- Sep 2022 23:29:22 -0700 (PDT)
+        with ESMTP id S234778AbiI2GcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 02:32:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4EA12EDB4;
+        Wed, 28 Sep 2022 23:32:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A582AB8236B;
+        Thu, 29 Sep 2022 06:32:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1C28C433C1;
+        Thu, 29 Sep 2022 06:32:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664433129;
+        bh=lk/VaHPokpmBPqjQo9BUUd1mCJo94gTtsAkFfra/dt8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uwaelYiY1VxWiDtBcSOidUbr+fJAOiiJ3LkOM5MFLiBe4eKqV59dOvcZ/+byoP2OO
+         TghnO33WxYfehKa9zSGeHY6wGzWXxsbnuj3FYFdkNqbCs8HkTSlGmnq3Faxm2nLcbO
+         Fi+S5+cjsrEhJmPa5V+WRKw6d4P9XJE4a50RwRu7Ee1bNk/nq9y3gAOwShmz3GF8gG
+         Hxvq1+PedDdmd4rfCQXuanR6RoUGaAAUtbnoJiD0SWmnSo9MbYvTLbRUh6hz5WrHWp
+         UVlDy6vn5uZmLJ35oijHp2OiFZ/0kYwO1GUA3B2NioJEhx2uXxo03oyWADZNfQODmn
+         1YabrMQvJatuQ==
+Date:   Thu, 29 Sep 2022 12:02:03 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     p.zabel@pengutronix.de, l.stach@pengutronix.de,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
+        shawnguo@kernel.org, alexander.stein@ew.tq-group.com,
+        marex@denx.de, richard.leitner@linux.dev,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: Re: [PATCH v9 3/4] phy: freescale: imx8m-pcie: Refine i.MX8MM PCIe
+ PHY driver
+Message-ID: <YzU747XfZ049pMx0@matsya>
+References: <1664174463-13721-1-git-send-email-hongxing.zhu@nxp.com>
+ <1664174463-13721-4-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
-References: <20220925220319.12572-1-zev@bewilderbeest.net>
-In-Reply-To: <20220925220319.12572-1-zev@bewilderbeest.net>
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-Date:   Thu, 29 Sep 2022 08:29:19 +0200
-Message-ID: <CALNFmy1tnrJWKwGjdGOjjqB9XDS2DhAPq1rcDPgMdY3xXNoXAw@mail.gmail.com>
-Subject: Re: [PATCH 0/3] regulator: Add DT support for regulator-output connectors
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Naresh Solanki <naresh.solanki@9elements.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Mike Rapoport <rppt@kernel.org>, openbmc@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1664174463-13721-4-git-send-email-hongxing.zhu@nxp.com>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zev,
-Thanks for picking this up.
-I cannot answer the first question, but the second:
-It's sufficient for us to just have one supply per userspace-consumer instance.
+On 26-09-22, 14:41, Richard Zhu wrote:
+> To make it more flexible and easy to expand. Refine i.MX8MM PCIe PHY
+> driver.
+> - Use gpr compatible string to avoid the codes duplications when add
+>   another platform PCIe PHY support.
+> - Re-orange the codes to let it more flexible and easy to expand.
+> No functions changes basicly.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Tested-by: Marek Vasut <marex@denx.de>
+> Tested-by: Richard Leitner <richard.leitner@skidata.com>
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 108 +++++++++++++--------
+>  1 file changed, 68 insertions(+), 40 deletions(-)
+> 
+> diff --git a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> index 2377ed307b53..9752818fe990 100644
+> --- a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> +++ b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/mfd/syscon/imx7-iomuxc-gpr.h>
+>  #include <linux/module.h>
+> +#include <linux/of_device.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> @@ -45,6 +46,15 @@
+>  #define IMX8MM_GPR_PCIE_SSC_EN		BIT(16)
+>  #define IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE	BIT(9)
+>  
+> +enum imx8_pcie_phy_type {
+> +	IMX8MM,
+> +};
+> +
+> +struct imx8_pcie_phy_drvdata {
+> +	enum		imx8_pcie_phy_type variant;
+> +	const char	*gpr;
+> +};
+> +
+>  struct imx8_pcie_phy {
+>  	void __iomem		*base;
+>  	struct clk		*clk;
+> @@ -55,6 +65,7 @@ struct imx8_pcie_phy {
+>  	u32			tx_deemph_gen1;
+>  	u32			tx_deemph_gen2;
+>  	bool			clkreq_unused;
+> +	const struct imx8_pcie_phy_drvdata	*drvdata;
+>  };
+>  
+>  static int imx8_pcie_phy_init(struct phy *phy)
+> @@ -66,31 +77,17 @@ static int imx8_pcie_phy_init(struct phy *phy)
+>  	reset_control_assert(imx8_phy->reset);
+>  
+>  	pad_mode = imx8_phy->refclk_pad_mode;
+> -	/* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't hooked */
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE,
+> -			   imx8_phy->clkreq_unused ?
+> -			   0 : IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_AUX_EN,
+> -			   IMX8MM_GPR_PCIE_AUX_EN);
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_POWER_OFF, 0);
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_SSC_EN, 0);
+> -
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_REF_CLK_SEL,
+> -			   pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ?
+> -			   IMX8MM_GPR_PCIE_REF_CLK_EXT :
+> -			   IMX8MM_GPR_PCIE_REF_CLK_PLL);
+> -	usleep_range(100, 200);
+> -
+> -	/* Do the PHY common block reset */
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_CMN_RST,
+> -			   IMX8MM_GPR_PCIE_CMN_RST);
+> -	usleep_range(200, 500);
+> +	switch (imx8_phy->drvdata->variant) {
+> +	case IMX8MM:
+> +		/* Tune PHY de-emphasis setting to pass PCIe compliance. */
+> +		if (imx8_phy->tx_deemph_gen1)
+> +			writel(imx8_phy->tx_deemph_gen1,
+> +			       imx8_phy->base + PCIE_PHY_TRSV_REG5);
+> +		if (imx8_phy->tx_deemph_gen2)
+> +			writel(imx8_phy->tx_deemph_gen2,
+> +			       imx8_phy->base + PCIE_PHY_TRSV_REG6);
+> +		break;
+> +	}
+>  
+>  	if (pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ||
+>  	    pad_mode == IMX8_PCIE_REFCLK_PAD_UNUSED) {
+> @@ -118,15 +115,37 @@ static int imx8_pcie_phy_init(struct phy *phy)
+>  		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG065);
+>  	}
+>  
+> -	/* Tune PHY de-emphasis setting to pass PCIe compliance. */
+> -	if (imx8_phy->tx_deemph_gen1)
+> -		writel(imx8_phy->tx_deemph_gen1,
+> -		       imx8_phy->base + PCIE_PHY_TRSV_REG5);
+> -	if (imx8_phy->tx_deemph_gen2)
+> -		writel(imx8_phy->tx_deemph_gen2,
+> -		       imx8_phy->base + PCIE_PHY_TRSV_REG6);
+> +	/* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't hooked */
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE,
+> +			   imx8_phy->clkreq_unused ?
+> +			   0 : IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_AUX_EN,
+> +			   IMX8MM_GPR_PCIE_AUX_EN);
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_POWER_OFF, 0);
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_SSC_EN, 0);
+>  
+> -	reset_control_deassert(imx8_phy->reset);
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_REF_CLK_SEL,
+> +			   pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ?
+> +			   IMX8MM_GPR_PCIE_REF_CLK_EXT :
+> +			   IMX8MM_GPR_PCIE_REF_CLK_PLL);
+> +	usleep_range(100, 200);
+> +
+> +	/* Do the PHY common block reset */
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_CMN_RST,
+> +			   IMX8MM_GPR_PCIE_CMN_RST);
+> +
+> +	switch (imx8_phy->drvdata->variant) {
+> +	case IMX8MM:
+> +		reset_control_deassert(imx8_phy->reset);
+> +		usleep_range(200, 500);
+> +		break;
+> +	}
+>  
+>  	/* Polling to check the phy is ready or not. */
+>  	ret = readl_poll_timeout(imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG075,
+> @@ -157,6 +176,19 @@ static const struct phy_ops imx8_pcie_phy_ops = {
+>  	.owner		= THIS_MODULE,
+>  };
+>  
+> +static const struct imx8_pcie_phy_drvdata drvdata[] = {
+> +	[IMX8MM] = {
+> +		.variant = IMX8MM,
+> +		.gpr = "fsl,imx8mm-iomuxc-gpr",
+> +	},
+> +};
 
-The optional property is fine and could be useful in the future.
+Pls drop the array...
 
-Regards,
-Patrick
+static const struct imx8_pcie_phy_drvdata imx8mm_drvdata = {
+        .variant = IMX8MM,
+        .gpr = "fsl,imx8mm-iomuxc-gpr",
+};
 
-On Mon, Sep 26, 2022 at 12:04 AM Zev Weiss <zev@bewilderbeest.net> wrote:
->
-> Hello,
->
-> This series is another attempt at implementing support for
-> userspace-controlled regulator-supplied power outputs.  This is an
-> important feature for some kinds of BMC (baseboard management
-> controller) systems where the BMC provides an operator with manual
-> control of a set of DC power outputs.
->
-> As in a broadly similar patchset that was recently almost merged [0],
-> this takes the approach of providing support by extending the existing
-> userspace-consumer regulator driver.  A couple questions about the
-> userspace-consumer driver came up along the way, however.
->
-> First, how (if at all) is it currently being used?  It appears the
-> last in-tree use of it was removed a bit over two years ago in commit
-> 9d3239147d6d ("ARM: pxa: remove Compulab pxa2xx boards").  Aside from
-> just adding DT support I've made a couple small tweaks to the driver
-> in patch 3 that I hope are compatible with any current usage, but
-> without any extant examples to look at it's kind of hard to say.
->
-> Second, how critical is its support for controlling multiple
-> regulators?  (i.e. its use of regulator_bulk_data and friends instead
-> of a single struct regulator.)  As far as I can see every in-tree use
-> of it that's ever existed has used num_supplies = 1.  If it's not
-> important to retain, patch 1 of this series could be supplanted by one
-> that instead simplifies the driver slightly by removing that
-> functionality.
->
-> The DT binding added in patch 2 is very similar to one I posted in a
-> previous patchset that had an R-B from Rob [1], but has had some minor
-> rewording and gained one new (optional) property.
->
-> Laxman, Naresh, Patrick -- please let me know if there are any aspects
-> of this implementation that would be incompatible with your needs.
->
->
-> Thanks,
-> Zev
->
-> [0] https://lore.kernel.org/all/20220707081826.953449-4-Naresh.Solanki@9elements.com/
-> [1] https://lore.kernel.org/linux-kernel/20220505232557.10936-2-zev@bewilderbeest.net/
->
-> Zev Weiss (3):
->   regulator: devres: Add devm_regulator_bulk_get_exclusive()
->   dt-bindings: regulator: Add regulator-output binding
->   regulator: userspace-consumer: Handle regulator-output DT nodes
->
->  .../bindings/regulator/regulator-output.yaml  | 47 +++++++++++++
->  drivers/regulator/core.c                      | 42 +++++++-----
->  drivers/regulator/devres.c                    | 66 ++++++++++++++-----
->  drivers/regulator/internal.h                  |  2 +
->  drivers/regulator/userspace-consumer.c        | 43 ++++++++++--
->  include/linux/regulator/consumer.h            |  2 +
->  include/linux/regulator/userspace-consumer.h  |  1 +
->  7 files changed, 162 insertions(+), 41 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/regulator/regulator-output.yaml
->
-> --
-> 2.37.3
->
+
+
+> +
+> +static const struct of_device_id imx8_pcie_phy_of_match[] = {
+> +	{.compatible = "fsl,imx8mm-pcie-phy", .data = &drvdata[IMX8MM], },
+
+So this becomes:
+
+        {.compatible = "fsl,imx8mm-pcie-phy", .data = &imx8mm_drvdata },
+
+you can define new structs for newer SoCs
+
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, imx8_pcie_phy_of_match);
+> +
+>  static int imx8_pcie_phy_probe(struct platform_device *pdev)
+>  {
+>  	struct phy_provider *phy_provider;
+> @@ -169,6 +201,8 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
+>  	if (!imx8_phy)
+>  		return -ENOMEM;
+>  
+> +	imx8_phy->drvdata = of_device_get_match_data(dev);
+> +
+>  	/* get PHY refclk pad mode */
+>  	of_property_read_u32(np, "fsl,refclk-pad-mode",
+>  			     &imx8_phy->refclk_pad_mode);
+> @@ -194,7 +228,7 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
+>  
+>  	/* Grab GPR config register range */
+>  	imx8_phy->iomuxc_gpr =
+> -		 syscon_regmap_lookup_by_compatible("fsl,imx6q-iomuxc-gpr");
+> +		 syscon_regmap_lookup_by_compatible(imx8_phy->drvdata->gpr);
+>  	if (IS_ERR(imx8_phy->iomuxc_gpr)) {
+>  		dev_err(dev, "unable to find iomuxc registers\n");
+>  		return PTR_ERR(imx8_phy->iomuxc_gpr);
+> @@ -222,12 +256,6 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
+>  	return PTR_ERR_OR_ZERO(phy_provider);
+>  }
+>  
+> -static const struct of_device_id imx8_pcie_phy_of_match[] = {
+> -	{.compatible = "fsl,imx8mm-pcie-phy",},
+> -	{ },
+> -};
+> -MODULE_DEVICE_TABLE(of, imx8_pcie_phy_of_match);
+> -
+>  static struct platform_driver imx8_pcie_phy_driver = {
+>  	.probe	= imx8_pcie_phy_probe,
+>  	.driver = {
+> -- 
+> 2.25.1
+
+-- 
+~Vinod
