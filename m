@@ -2,197 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 877355EEBCB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 04:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 337005EEC81
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 05:42:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234607AbiI2Cdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 22:33:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44416 "EHLO
+        id S233770AbiI2Dmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 23:42:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234738AbiI2Cdf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 22:33:35 -0400
-Received: from rcdn-iport-1.cisco.com (rcdn-iport-1.cisco.com [173.37.86.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AAAD12578D;
-        Wed, 28 Sep 2022 19:33:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=3756; q=dns/txt; s=iport;
-  t=1664418802; x=1665628402;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=EeUjxXFbugP3qHuk1z9NW487+/6qlq6LEqrRKZ1wXAE=;
-  b=CxYGkNDaqilR/DpV1aCmwx1utehJhZjM/lYc6p0qVXwhrrSGV8NpWS+N
-   bflUAilGp8ANPrfX1G7ZSYmI9S8OTLox5Wvz5OeyINL2sKGV443mlsbSA
-   sA+kTwo6xAlfXcj/DfyxLDMgFgPw6+CReMZSACAxtnBIC+S4aEWOHKy0Q
-   U=;
-IronPort-Data: =?us-ascii?q?A9a23=3ACSrt26vXt9CBrWrUOKwqPl8PG+fnVFtfMUV32?=
- =?us-ascii?q?f8akzHdYApBsoF/qtZmKWqGOqnfMzb2fNwlaY+29UtV75Tcx9NlSAA+q39kE?=
- =?us-ascii?q?S9AgMeUXt7xwmUckM+xwmwvdK/shiknQoGowPscEzmN/39BDpC79SMmjfzRG?=
- =?us-ascii?q?OKlYAL5EnkZqTFMGX9JZS1Lw4bVsqYw6TSIK1vlVeHa+qUzC3f9s9JACV/43?=
- =?us-ascii?q?orYwP9ZUFsejxtD1rA2TagjUFYzDBD5BrpHTU26ByOQroW5goeHq+j/ILGRp?=
- =?us-ascii?q?gs1/j83Ad+j1738aEBPEvjZPBOFjTxdXK3Kbhpq/3NplP1kcqtHLx4L111ln?=
- =?us-ascii?q?PgpoDlJnZC5TwYkOrLFsO8cSBJfVSp5OMWq/ZeeeSbv7JHNkRCXG5fr67A0Z?=
- =?us-ascii?q?K0sBqUc++BqESRN+OYeJTQlcB+OnaS1zai9R+0qgd4sROHnMZ0esXx81zzUJ?=
- =?us-ascii?q?egpTIqFQKjQ49JcmjAqiahmE+zZeMMfZXxrbQ/cSxJKM1YTTpk5mY+AnH71c?=
- =?us-ascii?q?35UtHqWqLAx7myVyxZ+uJD2PdPTPNWMSchPhUGejnnL9GO/CRYfXPSWyiKA2?=
- =?us-ascii?q?natgPLf2C38RYQeHaG58fgsh0ecrkQfARsXWF+Trvi8kkO6VsxeIExS4SMo6?=
- =?us-ascii?q?KYo/UqgT8L2WFuzqTiZpXY0Qd1aE8U55RuLx66S5ByWbkAPTiRAc8AhrM87A?=
- =?us-ascii?q?zgnzFiYt9jyCiZoraXTRG/13qiVqTeaOiUPK2IGIygeQmM4D3PLyG0opgjEQ?=
- =?us-ascii?q?tAmG6mvg5ilXzrx2DuN6iM5gt0uYQcw//3T1Tj6b/iE//AlljII2zg=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3ACnEnaq3wfzDCmCd5Rp2FcwqjBIkkLtp133?=
- =?us-ascii?q?Aq2lEZdPWaSKClfqeV7ZAmPHDP5gr5NEtLpTnEAtjifZq+z+8R3WBuB9aftW?=
- =?us-ascii?q?Dd0QPCEGgh1/qB/9SKIULDH4BmuJuIWpIOb+EYdWIbsS4/izPIaurJB7K8gc?=
- =?us-ascii?q?aVuds=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0A5AAB2bIJi/5BdJa1aHQEBAQEJARI?=
- =?us-ascii?q?BBQUBgXsIAQsBgiqBSz1DjG+IapxnFIFoCwEBAQ9CBAEBhQIChT4CJTQJDgE?=
- =?us-ascii?q?CBAEBARIBAQUBAQECAQcEgQkThXWGQwYyAUYQHTRJDgYBEoJ9gxirVoIrgQG?=
- =?us-ascii?q?IGYFlFIEoAYlDhRwnHIFJRIEVgTyCLIQqhlUEk3OCKwMJBgcFgT4SgSFxAQg?=
- =?us-ascii?q?GBgcKBTIGAgwYFAQCExJNBgwSAhMMCgYWDg40EhkMDwMSAxEBBwILEggVLAg?=
- =?us-ascii?q?DAgMIAwIDIwsCAxgJBwoDHQgKHBIQFAIEEx8LCAMaHy0JAgQOA0MICwoDEQQ?=
- =?us-ascii?q?DExgLFggQBAYDCS8NKAsDBQ8PAQYDBgIFBQEDIAMUAwUnBwMhBwsmDQ0EIx0?=
- =?us-ascii?q?DAwUmAwICGwcCAgMCBhcGAgIZJzEKKA0IBAgEGAQeJQ4FBQIHMQUELwIeBAU?=
- =?us-ascii?q?GEQkCFgIGBAUCBAQWAgISCAIIJxsHFjYZAQVdBgsJIxYGLBEFBhYDJlIGIh2?=
- =?us-ascii?q?XWwYBgQ+BCIEgEpJ/kCWeKoNWgUOeLRoxqFeWZiCnB4FhPIFZMxoIGxWDI1E?=
- =?us-ascii?q?ZD5wzAVwkMTsCBgsBAQMJkRoBAQ?=
-X-IronPort-AV: E=Sophos;i="5.91,230,1647302400"; 
-   d="scan'208";a="1068556659"
-Received: from rcdn-core-8.cisco.com ([173.37.93.144])
-  by rcdn-iport-1.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 29 Sep 2022 02:33:20 +0000
-Received: from zorba.cisco.com ([10.25.129.98])
-        by rcdn-core-8.cisco.com (8.15.2/8.15.2) with ESMTP id 28T2X1Yw007711;
-        Thu, 29 Sep 2022 02:33:19 GMT
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Will Deacon <will@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Rob Herring <robh@kernel.org>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Sean Anderson <sean.anderson@seco.com>,
+        with ESMTP id S229940AbiI2Dm3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 23:42:29 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1A720124775;
+        Wed, 28 Sep 2022 20:42:26 -0700 (PDT)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxnmsMFDVj754jAA--.52949S2;
+        Thu, 29 Sep 2022 11:42:19 +0800 (CST)
+Subject: Re: [PATCH v5 2/3] dt-bindings: thermal: add loongson2k thermal
+ binding
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     xe-linux-external@cisco.com, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 7/8] of: replace command line handling
-Date:   Wed, 28 Sep 2022 19:32:53 -0700
-Message-Id: <20220929023301.3344694-8-danielwa@cisco.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220929023301.3344694-1-danielwa@cisco.com>
-References: <20220929023301.3344694-1-danielwa@cisco.com>
+Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, zhuyinbo@loongson.cn
+References: <20220928083702.17309-1-zhuyinbo@loongson.cn>
+ <20220928083702.17309-2-zhuyinbo@loongson.cn>
+ <066b55cf-4a28-89a2-56ab-572590c97c30@linaro.org>
+ <9b2f2d43-981d-3ffb-7526-dc3e58a9f367@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <f0946817-cc2c-449b-d93b-0dd94a0f51f1@loongson.cn>
+Date:   Thu, 29 Sep 2022 11:42:03 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
+In-Reply-To: <9b2f2d43-981d-3ffb-7526-dc3e58a9f367@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.25.129.98, [10.25.129.98]
-X-Outbound-Node: rcdn-core-8.cisco.com
-X-Spam-Status: No, score=-12.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_NONE,USER_IN_DEF_DKIM_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+X-CM-TRANSID: AQAAf8BxnmsMFDVj754jAA--.52949S2
+X-Coremail-Antispam: 1UD129KBjvJXoWrZw18CrW8CFy7Aw48JF48Crg_yoW8Jr4xpa
+        4xA3Z8KayDArya9w4xKa4xAF1F9wsIyFZrJr18KF48AFWDZwnxtF9Yyr1j9r1kurWFqFWx
+        Zay5urZxJw4DZ3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUU9C14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+        1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+        6r4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26F
+        4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
+        7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r
+        1j6r4UM4x0Y48IcVAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+        n2kIc2xKxwCYjI0SjxkI62AI1cAE67vIY487MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrw
+        CFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE
+        14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2
+        IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxK
+        x2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI
+        0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUdHUDUUUUU=
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring has complained about this section of code. I removed the
-command line handling code to the cmdline.h header. This hopefully makes
-it easier for Rob to maintain it (at least he doesn't have to look at it
-directly anymore). I would like to add a Kconfig option called
-OF_DEPRECATED_CMDLINE which an architecture would set if it uses this code.
-This would allow a platform to use the cmdline.h and the added function
-directly and remove the Kconfig option. This change would be in a subsequent
-patch.
 
-This code was boot tested on powerpc 32bit, powerpc 64bit without
-any generic command line conversion.
 
-Cc: xe-linux-external@cisco.com
-Signed-off-by: Daniel Walker <danielwa@cisco.com>
----
- drivers/of/fdt.c        | 22 ++--------------------
- include/linux/cmdline.h | 33 ++++++++++++++++++++++++++++++++-
- 2 files changed, 34 insertions(+), 21 deletions(-)
+在 2022/9/28 下午10:18, Krzysztof Kozlowski 写道:
+> On 28/09/2022 10:37, Krzysztof Kozlowski wrote:
+>> On 28/09/2022 10:37, Yinbo Zhu wrote:
+>>> Add the loongson2k thermal binding with DT schema format using
+>>> json-schema.
+>>>
+>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>>
+>> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+>> there's no need to repost patches *only* to add the tags. The upstream
+>> maintainer will do that for acks received on the version they apply.
+>>
+>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ... and please test your patches before sending :(
+> 
+> Best regards,
+> Krzysztof
+Hi Krzysztof,
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 1c573e7a60bc..94e8fa277857 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -27,6 +27,7 @@
- #include <linux/sysfs.h>
- #include <linux/random.h>
- #include <linux/kmemleak.h>
-+#include <linux/cmdline.h>
- 
- #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
- #include <asm/page.h>
-@@ -1177,26 +1178,7 @@ int __init early_init_dt_scan_chosen(char *cmdline)
- 
- 	/* Retrieve command line */
- 	p = of_get_flat_dt_prop(node, "bootargs", &l);
--	if (p != NULL && l > 0)
--		strlcpy(cmdline, p, min(l, COMMAND_LINE_SIZE));
--
--	/*
--	 * CONFIG_CMDLINE is meant to be a default in case nothing else
--	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
--	 * is set in which case we override whatever was found earlier.
--	 */
--#ifdef CONFIG_CMDLINE
--#if defined(CONFIG_CMDLINE_EXTEND)
--	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
--	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
--#elif defined(CONFIG_CMDLINE_FORCE)
--	strlcpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
--#else
--	/* No arguments from boot loader, use kernel's  cmdl*/
--	if (!((char *)cmdline)[0])
--		strlcpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
--#endif
--#endif /* CONFIG_CMDLINE */
-+	of_deprecated_cmdline_update(cmdline, p, l);
- 
- 	pr_debug("Command line is: %s\n", (char *)cmdline);
- 
-diff --git a/include/linux/cmdline.h b/include/linux/cmdline.h
-index a94758a0f257..dc7793265aa3 100644
---- a/include/linux/cmdline.h
-+++ b/include/linux/cmdline.h
-@@ -103,4 +103,35 @@ __cmdline_add_builtin(
- 
- #define cmdline_get_static_builtin(dest) \
- 	(CMDLINE_STATIC_PREPEND CMDLINE_STATIC_APPEND)
--#endif
-+
-+#ifndef CONFIG_GENERIC_CMDLINE
-+static inline bool of_deprecated_cmdline_update(char *cmdline, const char *dt_bootargs, int length)
-+{
-+	if (dt_bootargs != NULL && length > 0)
-+		strlcpy(cmdline, dt_bootargs, min(length, COMMAND_LINE_SIZE));
-+	/*
-+	 * CONFIG_CMDLINE is meant to be a default in case nothing else
-+	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
-+	 * is set in which case we override whatever was found earlier.
-+	 */
-+#ifdef CONFIG_CMDLINE
-+#if defined(CONFIG_CMDLINE_EXTEND)
-+	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
-+	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+#elif defined(CONFIG_CMDLINE_FORCE)
-+	strlcpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+#else
-+	/* No arguments from boot loader, use kernel's  cmdl*/
-+	if (!((char *)cmdline)[0])
-+		strlcpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+#endif /* CONFIG_CMDLINE_EXTEND */
-+#endif /* CONFIG_CMDLINE */
-+
-+	return true;
-+}
-+#else
-+static inline bool of_deprecated_cmdline_update(char *cmdline, const char *dt_bootargs, int length) { return false; }
-+#endif /* CONFIG_GENERIC_CMDLINE */
-+
-+
-+#endif /* _LINUX_CMDLINE_H */
--- 
-2.25.1
+I have a function test for these three patch, that it's okay.
+for binding patch I have a compile test, as follow, it is okay.
+root@m-pc:/home/m/workspace/test/code/upstream# make DT_CHECKER_FLAGS=-m 
+dt_binding_check 
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml
+
+BRs,
+Yinbo Zhu.
+> 
 
