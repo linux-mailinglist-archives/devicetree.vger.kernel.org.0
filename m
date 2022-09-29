@@ -2,109 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03EC95EEB19
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 03:46:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B89C5EEB28
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 03:48:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234351AbiI2BqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 21:46:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52930 "EHLO
+        id S233190AbiI2BsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 21:48:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234320AbiI2BqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 21:46:09 -0400
-Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A7D9D12FC;
-        Wed, 28 Sep 2022 18:46:07 -0700 (PDT)
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 29 Sep 2022 09:46:05 +0800
-Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL1.internal.ite.com.tw [192.168.65.58])
-        by mse.ite.com.tw with ESMTP id 28T1k1IR041764;
-        Thu, 29 Sep 2022 09:46:01 +0800 (GMT-8)
-        (envelope-from allen.chen@ite.com.tw)
-Received: from VirtualBox.internal.ite.com.tw (192.168.70.46) by
- CSBMAIL1.internal.ite.com.tw (192.168.65.58) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.14; Thu, 29 Sep 2022 09:45:13 +0800
-From:   allen <allen.chen@ite.com.tw>
-CC:     Allen Chen <allen.chen@ite.com.tw>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
-        Hermes Wu <Hermes.Wu@ite.com.tw>,
-        Pin-yen Lin <treapking@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S231419AbiI2BsR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 21:48:17 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA806DCCE4;
+        Wed, 28 Sep 2022 18:48:08 -0700 (PDT)
+X-UUID: fe686e96c221423996b018b5e88446fe-20220929
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=urU9CY/wCBejnGxksP6mrJFzU/wIGDM06gPR9xjmFHE=;
+        b=Ot93pAHU6zIxBjGggHm9r4nKb3Ts6BFXsIHP9SqcKyAFtTxZRJ9INlgGS3dxXWi9wlDAB0SVm7kjIhqZAfdpKbf8zF1ERIWI6V5ltXInkgQcb/x9ZL+x1PDvEYQq773/MZvazunVZ/vhDSFiXFcEeovqrtxjGUUYMscrpl8agx0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:d892b09e-5654-4c25-87cd-3c43444bf547,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:39a5ff1,CLOUDID:5c376ca3-dc04-435c-b19b-71e131a5fc35,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: fe686e96c221423996b018b5e88446fe-20220929
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <jianguo.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1534537709; Thu, 29 Sep 2022 09:48:04 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 29 Sep 2022 09:48:03 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Thu, 29 Sep 2022 09:48:02 +0800
+From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
+To:     "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 1/2] dt-bindings: it6505: add properties to restrict output bandwidth
-Date:   Thu, 29 Sep 2022 09:44:51 +0800
-Message-ID: <20220929014456.30077-2-allen.chen@ite.com.tw>
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Jianguo Zhang <jianguo.zhang@mediatek.com>
+Subject: [PATCH v7 0/4]  Mediatek ethernet patches for mt8188
+Date:   Thu, 29 Sep 2022 09:47:54 +0800
+Message-ID: <20220929014758.12099-1-jianguo.zhang@mediatek.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220929014456.30077-1-allen.chen@ite.com.tw>
-References: <20220929014456.30077-1-allen.chen@ite.com.tw>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.70.46]
-X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
- CSBMAIL1.internal.ite.com.tw (192.168.65.58)
-X-TM-SNTS-SMTP: BF5A8B96EF0B7234FF4D269E24F8BF4E0730398D2A235407867406EF833EED4C2002:8
-X-MAIL: mse.ite.com.tw 28T1k1IR041764
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: allen chen <allen.chen@ite.com.tw>
+Changes in v7:
 
-Add properties to restrict dp output data-lanes and clock.
+v7:
+1) Add 'Reviewed-by: AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com>' info in commit message of
+patch 'dt-bindings: net: snps,dwmac: add new property snps,clk-csr',
+'arm64: dts: mediatek: mt2712e: Update the name of property 'clk_csr''
+and 'net: stmmac: add a parse for new property 'snps,clk-csr''.
 
-Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
----
- .../devicetree/bindings/display/bridge/ite,it6505.yaml | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+v6:
+1) Update commit message of patch 'dt-bindings: net: snps,dwmac: add new property snps,clk-csr'
+2) Add a parse for new property 'snps,clk-csr' in patch
+'net: stmmac: add a parse for new property 'snps,clk-csr''
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-index 833d11b2303a..62b9f2192202 100644
---- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-@@ -52,6 +52,14 @@ properties:
-     maxItems: 1
-     description: extcon specifier for the Power Delivery
- 
-+  data-lanes:
-+    maxItems: 1
-+    description: restrict the dp output data-lanes with value of 1-4
-+
-+  max-pixel-clock-khz:
-+    maxItems: 1
-+    description: restrict max pixel clock
-+
-   port:
-     $ref: /schemas/graph.yaml#/properties/port
-     description: A port node pointing to DPI host port node
-@@ -84,6 +92,8 @@ examples:
-             pwr18-supply = <&it6505_pp18_reg>;
-             reset-gpios = <&pio 179 1>;
-             extcon = <&usbc_extcon>;
-+            data-lanes = <2>;
-+            max-pixel-clock-khz = <150000>;
- 
-             port {
-                 it6505_in: endpoint {
--- 
+v5:
+1) Rename the property 'clk_csr' as 'snps,clk-csr' in binding
+file as Krzysztof Kozlowski'comment.
+2) Add DTS patch 'arm64: dts: mediatek: mt2712e: Update the name of property 'clk_csr''
+as Krzysztof Kozlowski'comment.
+3) Add driver patch 'net: stmmac: Update the name of property 'clk_csr''
+as Krzysztof Kozlowski'comment.
+
+v4:
+1) Update the commit message of patch 'dt-bindings: net: snps,dwmac: add clk_csr property'
+as Krzysztof Kozlowski'comment.
+
+v3:
+1) List the names of SoCs mt8188 and mt8195 in correct order as
+AngeloGioacchino Del Regno's comment.
+2) Add patch version info as Krzysztof Kozlowski'comment.
+
+v2:
+1) Delete patch 'stmmac: dwmac-mediatek: add support for mt8188' as
+Krzysztof Kozlowski's comment.
+2) Update patch 'dt-bindings: net: mediatek-dwmac: add support for
+mt8188' as Krzysztof Kozlowski's comment.
+3) Add clk_csr property to fix warning ('clk_csr' was unexpected) when
+runnig 'make dtbs_check'.
+
+v1:
+1) Add ethernet driver entry for mt8188.
+2) Add binding document for ethernet on mt8188.
+
+
+Jianguo Zhang (4):
+  dt-bindings: net: mediatek-dwmac: add support for mt8188
+  dt-bindings: net: snps,dwmac: add new property snps,clk-csr
+  arm64: dts: mediatek: mt2712e: Update the name of property 'clk_csr'
+  net: stmmac: add a parse for new property 'snps,clk-csr'
+
+ .../devicetree/bindings/net/mediatek-dwmac.yaml        | 10 ++++++++--
+ Documentation/devicetree/bindings/net/snps,dwmac.yaml  |  5 +++++
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi              |  2 +-
+ drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c  |  3 ++-
+ 4 files changed, 16 insertions(+), 4 deletions(-)
+
+--
 2.25.1
+
 
