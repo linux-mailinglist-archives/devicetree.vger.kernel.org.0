@@ -2,45 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0C0D5EF7D1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 16:41:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70F5A5EF7EC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 16:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235166AbiI2OlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 10:41:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41176 "EHLO
+        id S235386AbiI2OoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 10:44:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235688AbiI2OlA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 10:41:00 -0400
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [5.144.164.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A3C12FF0D
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 07:40:58 -0700 (PDT)
-Received: from fdsafasdfasdf.mikrus.ds.pw.edu.pl (unknown [194.29.137.22])
-        (using TLSv1.3 with cipher TLS_CHACHA20_POLY1305_SHA256 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA512)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id AE93540192;
-        Thu, 29 Sep 2022 16:40:55 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Cc:     towinchenmi@gmail.com,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] irqchip/apple-aic: Add support for A7-A11 SoCs
-Date:   Thu, 29 Sep 2022 16:40:39 +0200
-Message-Id: <20220929144039.40011-2-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.32.0 (Apple Git-132)
-In-Reply-To: <20220929144039.40011-1-konrad.dybcio@somainline.org>
-References: <20220929144039.40011-1-konrad.dybcio@somainline.org>
+        with ESMTP id S234920AbiI2OoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 10:44:18 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C797712FF0D
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 07:44:15 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id a2so2583691lfb.6
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 07:44:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=LkSm2C56o8tzD3kdFz9Q2YFb7DwLBiu4clfDJbl3WmE=;
+        b=t9DQlHsq4peMX5nFQVuP+vxQAPp4QbqlqnbBY0+/JvHu3ewoOoATFKVpR2AMYRLjTV
+         BozrgV9yNKY8V8vXDs35S3zJD1S8KBd8hCSVSw5EEN1tI7yIx5OmQGrPk23fIVgZftD8
+         md3CruqOqBUGUXEbopgNI/rho7z9DsI8k402PXgHxAd26opMxTiWgStbnT3rCcxtSPg1
+         0Qq3L6NCZS04fbF4Xi4zkfScfCCKX5MFg59lYUuK3LdcmjQ/aazupohVqJs4iI/g6zZx
+         sSnSxyA8F3wh+mAmuIDvHit+qNn4SezBrvQ49dPRwW9Bry2Ahg/anhe3CeHm3fp+UbPR
+         TMgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=LkSm2C56o8tzD3kdFz9Q2YFb7DwLBiu4clfDJbl3WmE=;
+        b=Hk2Htsfbt2g7+AwJdmey69kv1yZ7HzQBZZ0TCSjHSXoH01NOlnoPA0GNtv1nU4wQer
+         9Pdfuo316h41JR4Qci0/2essm+O0eP+uIFYj2fhTU/XhTQ3UtSUKYq7O58aQgrdvIMXx
+         3lT7ie/vX4g6FCX6zqCgp/CRZruCdNhuQZ/EjQ5+PYiriz1A4CKckLRVoxc6+a5k7CKW
+         wz8uGNJQQJiL18o73qK83mhDoMj0oFg7xVI6H82x/wAoKdHaOLmvGl+BpO84MYUXqz0v
+         eNtP0L57I7YKS24NhTyJCjWe04MQEpZ2Y7zV63oFhkefBbXJMKuJ2kJCuL13nq7/Kq7E
+         Nfjg==
+X-Gm-Message-State: ACrzQf22VjPAxv4I+kUTufdze2KiWjdi28l6aNpgKZxa6j/NweyDO8py
+        ncb3Tv3N++w1g4jwUbmJTN8q/Q==
+X-Google-Smtp-Source: AMsMyM4A2Ji8bAd/eqHnyAOt7Yu02yXyV2POMDi/Exr3ksTpf9Rg8m5p0TiCMGNCeWUVS/EEqglGSA==
+X-Received: by 2002:a05:6512:688:b0:498:fe57:b5f with SMTP id t8-20020a056512068800b00498fe570b5fmr1571633lfe.209.1664462654201;
+        Thu, 29 Sep 2022 07:44:14 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id m4-20020ac24ac4000000b0049313f77755sm525234lfp.213.2022.09.29.07.44.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Sep 2022 07:44:13 -0700 (PDT)
+Message-ID: <c49ac105-f96f-fdc4-a629-fe34c85f557a@linaro.org>
+Date:   Thu, 29 Sep 2022 16:44:12 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Update SNPS Phy params for
+ SC7280
+Content-Language: en-US
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1664462290-29869-1-git-send-email-quic_kriskura@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1664462290-29869-1-git-send-email-quic_kriskura@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,170 +79,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for A7-A11 SoCs by if-ing out some features only present
-on:
+On 29/09/2022 16:38, Krishna Kurapati wrote:
+> Add SNPS HS Phy tuning parameters for herobrine variant of
+> SC7280 devices.
+> 
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
 
-* A11 & newer (implementation-defined IPI & UNCORE registers)
-* A11[1] & newer (fast IPI support).
 
-Also, annotate IPI regs support in the aic struct so that the driver
-can tell whether the SoC supports these, as they are written to,
-even if fast IPI is disabled. This in turn causes a crash on older
-platforms, as the implemention-defined registers either do
-something else or are not supposed to be touched - definitely not a
-NOP though.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[1] A11 is supposed to use this feature, but it currently doesn't work
-for reasons unknown and hence remains disabled. It can easily be enabled
-on A11 only, as there is a SoC-specific compatible in the DT with a
-fallback to apple,aic, so that the interrupt controller gets to probe
-regardless of whether IPI Sn_... registers are used or not.
-That said, it is not yet necessary, especially with only one core up,
-and it has worked a-ok so far.
-
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
-Changes since v1:
-- remove EL2 register check (dts change covered this)
-- use static_branch instead of ifs
-- rename "uncore2 registers" to "uncore registers" in added code and
-update the commit message accordingly
-- create a "legacy" config struct for pre-A11 targets
-- rewrite the commit message a bit to match actual status
-
- drivers/irqchip/irq-apple-aic.c | 56 ++++++++++++++++++++++++---------
- 1 file changed, 41 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
-index 1c2813ad8bbe..cdef99bfcfb3 100644
---- a/drivers/irqchip/irq-apple-aic.c
-+++ b/drivers/irqchip/irq-apple-aic.c
-@@ -229,6 +229,7 @@
- #define AIC_TMR_EL02_VIRT	AIC_TMR_GUEST_VIRT
- 
- static DEFINE_STATIC_KEY_TRUE(use_fast_ipi);
-+static DEFINE_STATIC_KEY_TRUE(has_uncore_regs);
- 
- struct aic_info {
- 	int version;
-@@ -246,6 +247,7 @@ struct aic_info {
- 
- 	/* Features */
- 	bool fast_ipi;
-+	bool uncore_regs;
- };
- 
- static const struct aic_info aic1_info = {
-@@ -253,6 +255,8 @@ static const struct aic_info aic1_info = {
- 
- 	.event		= AIC_EVENT,
- 	.target_cpu	= AIC_TARGET_CPU,
-+
-+	.uncore_regs	= true,
- };
- 
- static const struct aic_info aic1_fipi_info = {
-@@ -264,6 +268,13 @@ static const struct aic_info aic1_fipi_info = {
- 	.fast_ipi	= true,
- };
- 
-+static const struct aic_info aic1_legacy_info = {
-+	.version	= 1,
-+
-+	.event		= AIC_EVENT,
-+	.target_cpu	= AIC_TARGET_CPU,
-+};
-+
- static const struct aic_info aic2_info = {
- 	.version	= 2,
- 
-@@ -273,6 +284,10 @@ static const struct aic_info aic2_info = {
- };
- 
- static const struct of_device_id aic_info_match[] = {
-+	{
-+		.compatible = "apple,s5l8960x-aic",
-+		.data = &aic1_legacy_info,
-+	},
- 	{
- 		.compatible = "apple,t8103-aic",
- 		.data = &aic1_fipi_info,
-@@ -524,12 +539,14 @@ static void __exception_irq_entry aic_handle_fiq(struct pt_regs *regs)
- 	 * we check for everything here, even things we don't support yet.
- 	 */
- 
--	if (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING) {
--		if (static_branch_likely(&use_fast_ipi)) {
--			aic_handle_ipi(regs);
--		} else {
--			pr_err_ratelimited("Fast IPI fired. Acking.\n");
--			write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
-+	if (static_branch_likely(&use_fast_ipi)) {
-+		if (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING) {
-+			if (static_branch_likely(&use_fast_ipi)) {
-+				aic_handle_ipi(regs);
-+			} else {
-+				pr_err_ratelimited("Fast IPI fired. Acking.\n");
-+				write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
-+			}
- 		}
- 	}
- 
-@@ -566,12 +583,14 @@ static void __exception_irq_entry aic_handle_fiq(struct pt_regs *regs)
- 					  AIC_FIQ_HWIRQ(irq));
- 	}
- 
--	if (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) == UPMCR0_IMODE_FIQ &&
--			(read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & UPMSR_IACT)) {
--		/* Same story with uncore PMCs */
--		pr_err_ratelimited("Uncore PMC FIQ fired. Masking.\n");
--		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
--				   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-+	if (static_branch_likely(&has_uncore_regs)) {
-+		if (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) ==
-+			UPMCR0_IMODE_FIQ && (read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & UPMSR_IACT)) {
-+			/* Same story with uncore PMCs */
-+			pr_err_ratelimited("Uncore PMC FIQ fired. Masking.\n");
-+			sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
-+					FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-+		}
- 	}
- }
- 
-@@ -944,7 +963,8 @@ static int aic_init_cpu(unsigned int cpu)
- 	/* Mask all hard-wired per-CPU IRQ/FIQ sources */
- 
- 	/* Pending Fast IPI FIQs */
--	write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
-+	if (static_branch_likely(&use_fast_ipi))
-+		write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
- 
- 	/* Timer FIQs */
- 	sysreg_clear_set(cntp_ctl_el0, 0, ARCH_TIMER_CTRL_IT_MASK);
-@@ -965,8 +985,9 @@ static int aic_init_cpu(unsigned int cpu)
- 			   FIELD_PREP(PMCR0_IMODE, PMCR0_IMODE_OFF));
- 
- 	/* Uncore PMC FIQ */
--	sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
--			   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-+	if (static_branch_likely(&has_uncore_regs))
-+		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
-+				   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
- 
- 	/* Commit all of the above */
- 	isb();
-@@ -1125,6 +1146,11 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
- 	else
- 		static_branch_disable(&use_fast_ipi);
- 
-+	if (irqc->info.uncore_regs)
-+		static_branch_enable(&has_uncore_regs);
-+	else
-+		static_branch_disable(&has_uncore_regs);
-+
- 	irqc->info.die_stride = off - start_off;
- 
- 	irqc->hw_domain = irq_domain_create_tree(of_node_to_fwnode(node),
--- 
-2.30.2
+Best regards,
+Krzysztof
 
