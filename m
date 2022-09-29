@@ -2,86 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA445EF802
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 16:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39EF25EF80D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 16:54:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234956AbiI2Ouy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 10:50:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39102 "EHLO
+        id S235535AbiI2Oyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 10:54:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235011AbiI2Ouw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 10:50:52 -0400
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B898D11F125;
-        Thu, 29 Sep 2022 07:50:51 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id D3E67320092C;
-        Thu, 29 Sep 2022 10:50:47 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute2.internal (MEProxy); Thu, 29 Sep 2022 10:50:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1664463047; x=1664549447; bh=zV
-        i8bvDF9v9CQqO4nf5ikiOCShihdox9bFMrNX69BSQ=; b=m8PGiMVt5q6+eaQREp
-        4//1arnpFcH5aB6P7QyTMfS1WA15b+zLB7RLRetEucZVGqj/0J7PwdB+1QKFrh72
-        HDFesh94jpcARWFGvm/LHz8GzhKKOweyBdB2jeTo1/K3NGlcs90KEnxHVM8w1jjO
-        a8o/jOsxg4AnGfoP7wL3wZK3jj5MrNyC8atVMqF+LGQivQ91hJd8LkRQMStQ+O6N
-        /BMimEBC4AWPHFmUJ2+hD7lGP/8tNXyA442reM3lsJL2yiHFBdi5pWGMzURMMx4d
-        x2m+W0cppvKYSTlH+ckdZ4NGzyAn8gZsD4VIu2ZbY37UEVjlACOz9m5jN2sfn3Jx
-        AKxw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; t=1664463047; x=1664549447; bh=zVi8bvDF9v9CQqO4nf5ikiOCShih
-        dox9bFMrNX69BSQ=; b=gBQxq+ddv81CKB7YTZ8CtqKJYpkrUOxBl/k967j2Pk2l
-        b5YRayrraj9i2BTWkFMEz9e2da5CfI1oUJLxp0DVYePoAVthpl+g+V+EyjYOQGNc
-        Y2NOAE+D46HVvKSaHubGKpepihDDEjhRb8R7eouu4Yl62szCWdAYE0AmcsfojcL6
-        6M7L/ICUAwl7fjNTNSZ02xIDgUONNi8SiM08RMljBLcCGfMTremLmoAYEWLOBglM
-        Td1OYF5tDrYfp5ZFop5p2yvv+mWdJPzTKM46z/QPboFw1Q6Y2oqEKz0F+1IFCU8r
-        pMyDiAHEADOP9TsJdKShAjpbSP6VHhUrqDKlcNE8Sw==
-X-ME-Sender: <xms:xrA1YzeUkw2Q-USQ-CT5jWsWEl6K-PiqDmfIXSvRT01bxJ4yYl0bDQ>
-    <xme:xrA1Y5OhqfsevWxrEqxAevWDh2fY8Z9vErJRxp5Ug2cDWuDlOZ03FVr8mf1_VYe6D
-    ji3VQ5XdOFOV7vnJ7E>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeehtddgkedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedfufhv
-    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
-    grthhtvghrnhepleevgfegffehvedtieevhfekheeftedtjeetudevieehveevieelgffh
-    ieevieeunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:xrA1Y8g1SPNv61QTTaWmb60nQBNUuFk_YcIK2KVnv4edIBlMUfZSew>
-    <xmx:xrA1Y08CVL_L95n5c7J5cgfr1tZtRak1YKT9R_EU6r8JVdvzVsSQLA>
-    <xmx:xrA1Y_u578-sF0cYSNjJmNCAjkncy77IyyTP0yUHcqK1PuYb8u9uWw>
-    <xmx:x7A1Y9JUOgWSrRaC8HlkID1k9lKG1Xka5xB4l9nzTfwdIb09sBPhDg>
-Feedback-ID: i51094778:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 1716BA6007C; Thu, 29 Sep 2022 10:50:45 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-968-g04df58079d-fm-20220921.001-g04df5807
-Mime-Version: 1.0
-Message-Id: <0dd4f0ad-62bd-42c3-9518-41675c7ffda8@app.fastmail.com>
-In-Reply-To: <20220929144039.40011-2-konrad.dybcio@somainline.org>
-References: <20220929144039.40011-1-konrad.dybcio@somainline.org>
- <20220929144039.40011-2-konrad.dybcio@somainline.org>
-Date:   Thu, 29 Sep 2022 16:50:24 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Konrad Dybcio" <konrad.dybcio@somainline.org>,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Cc:     towinchenmi@gmail.com, "Hector Martin" <marcan@marcan.st>,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        "Marc Zyngier" <maz@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] irqchip/apple-aic: Add support for A7-A11 SoCs
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        with ESMTP id S234574AbiI2Oya (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 10:54:30 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88AA01332E3;
+        Thu, 29 Sep 2022 07:54:29 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.bb.vodafone.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id E8F6584964;
+        Thu, 29 Sep 2022 16:54:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1664463268;
+        bh=wA9GkixZSE2maqGyJ0YIOSU1/zCOZxfb9k7OsPEF2PE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=q+nTuJii2+lt53PgC27Sicu1Wa3VoJNHZ1DpEywO32xhWpdKUpxtHCL9V0yVqyHh9
+         PW7GeBk7oT+2N3RtXPud8DZqhtoTD8AscryRkoUJr/CUET+Ss/Yh336xNak3QEvfai
+         FyDECiYQRSaIaVlgEjsapJDcMxD+jUKN4iocshd7hyeH5rMyU2J4di70F1qhedYz9E
+         lzJ6jp+PJyNwqkbCIBcmVcvmmKntivBGLxY2JWcPC6wPo84iq1lYXrPUtvFllsuD0d
+         ayfJEWJQKhY89hEf0n28e6tSNU2oOmut+aB3x9/+RJWuQl+LdqyX9ftw6qur56v9L3
+         SXTpejjoOXHxw==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylvain Petinot <sylvain.petinot@foss.st.com>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v3] dt-bindings: media: st,stmipid02: Convert the text bindings to YAML
+Date:   Thu, 29 Sep 2022 16:54:16 +0200
+Message-Id: <20220929145416.16336-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,195 +59,323 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 29, 2022, at 16:40, Konrad Dybcio wrote:
-> Add support for A7-A11 SoCs by if-ing out some features only present
-> on:
->
-> * A11 & newer (implementation-defined IPI & UNCORE registers)
-> * A11[1] & newer (fast IPI support).
->
-> Also, annotate IPI regs support in the aic struct so that the driver
-> can tell whether the SoC supports these, as they are written to,
-> even if fast IPI is disabled. This in turn causes a crash on older
-> platforms, as the implemention-defined registers either do
-> something else or are not supposed to be touched - definitely not a
-> NOP though.
->
-> [1] A11 is supposed to use this feature, but it currently doesn't work
-> for reasons unknown and hence remains disabled. It can easily be enabled
-> on A11 only, as there is a SoC-specific compatible in the DT with a
-> fallback to apple,aic, so that the interrupt controller gets to probe
-> regardless of whether IPI Sn_... registers are used or not.
-> That said, it is not yet necessary, especially with only one core up,
-> and it has worked a-ok so far.
->
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
-> Changes since v1:
-> - remove EL2 register check (dts change covered this)
-> - use static_branch instead of ifs
-> - rename "uncore2 registers" to "uncore registers" in added code and
-> update the commit message accordingly
-> - create a "legacy" config struct for pre-A11 targets
-> - rewrite the commit message a bit to match actual status
->
->  drivers/irqchip/irq-apple-aic.c | 56 ++++++++++++++++++++++++---------
->  1 file changed, 41 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
-> index 1c2813ad8bbe..cdef99bfcfb3 100644
-> --- a/drivers/irqchip/irq-apple-aic.c
-> +++ b/drivers/irqchip/irq-apple-aic.c
-> @@ -229,6 +229,7 @@
->  #define AIC_TMR_EL02_VIRT	AIC_TMR_GUEST_VIRT
-> 
->  static DEFINE_STATIC_KEY_TRUE(use_fast_ipi);
-> +static DEFINE_STATIC_KEY_TRUE(has_uncore_regs);
-> 
->  struct aic_info {
->  	int version;
-> @@ -246,6 +247,7 @@ struct aic_info {
-> 
->  	/* Features */
->  	bool fast_ipi;
-> +	bool uncore_regs;
->  };
-> 
->  static const struct aic_info aic1_info = {
-> @@ -253,6 +255,8 @@ static const struct aic_info aic1_info = {
-> 
->  	.event		= AIC_EVENT,
->  	.target_cpu	= AIC_TARGET_CPU,
-> +
-> +	.uncore_regs	= true,
->  };
-> 
->  static const struct aic_info aic1_fipi_info = {
-> @@ -264,6 +268,13 @@ static const struct aic_info aic1_fipi_info = {
->  	.fast_ipi	= true,
->  };
-> 
-> +static const struct aic_info aic1_legacy_info = {
-> +	.version	= 1,
-> +
-> +	.event		= AIC_EVENT,
-> +	.target_cpu	= AIC_TARGET_CPU,
-> +};
-> +
->  static const struct aic_info aic2_info = {
->  	.version	= 2,
-> 
-> @@ -273,6 +284,10 @@ static const struct aic_info aic2_info = {
->  };
-> 
->  static const struct of_device_id aic_info_match[] = {
-> +	{
-> +		.compatible = "apple,s5l8960x-aic",
-> +		.data = &aic1_legacy_info,
-> +	},
+Convert the text STMIPID02 DT bindings to YAML DT format to permit
+validation of DTs using this I2C CSI-2 to CPI bridge.
 
-Maybe I'm confused but shouldn't this be the apple,aic fallback and uncore_regs
-should be enabled for e.g. t8103-aic then?
+Reviewed-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sylvain Petinot <sylvain.petinot@foss.st.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+To: linux-arm-kernel@lists.infradead.org
+---
+V2: - Update YAML DT schema maintainers, add Benjamin and Sylvain, drop myself
+    - Update MAINTAINERS file, replace st,st-mipid02.txt to st,st-mipid02.yaml
+    - Fix bus-width to be 6,7,8,10,12 and drop default:
+    - Require port@2 and either or both port@0 or port@1
+V3: - Add RB from Benjamin
+    - Fix lane-polarity property name to lane-polarities
+    - Fill in newlines
+    - Replace clock-names: subnodes with plain "const: xclk"
+---
+ .../bindings/media/i2c/st,st-mipid02.txt      |  82 --------
+ .../bindings/media/i2c/st,st-mipid02.yaml     | 176 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 177 insertions(+), 83 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/st,st-mipid02.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
 
->  	{
->  		.compatible = "apple,t8103-aic",
->  		.data = &aic1_fipi_info,
-> @@ -524,12 +539,14 @@ static void __exception_irq_entry 
-> aic_handle_fiq(struct pt_regs *regs)
->  	 * we check for everything here, even things we don't support yet.
->  	 */
-> 
-> -	if (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING) {
-> -		if (static_branch_likely(&use_fast_ipi)) {
-> -			aic_handle_ipi(regs);
-> -		} else {
-> -			pr_err_ratelimited("Fast IPI fired. Acking.\n");
-> -			write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
-> +	if (static_branch_likely(&use_fast_ipi)) {
-> +		if (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING) {
-> +			if (static_branch_likely(&use_fast_ipi)) {
-> +				aic_handle_ipi(regs);
-> +			} else {
-> +				pr_err_ratelimited("Fast IPI fired. Acking.\n");
-> +				write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
-> +			}
+diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.txt b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.txt
+deleted file mode 100644
+index 7976e6c40a80a..0000000000000
+--- a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.txt
++++ /dev/null
+@@ -1,82 +0,0 @@
+-STMicroelectronics MIPID02 CSI-2 to PARALLEL bridge
+-
+-MIPID02 has two CSI-2 input ports, only one of those ports can be active at a
+-time. Active port input stream will be de-serialized and its content outputted
+-through PARALLEL output port.
+-CSI-2 first input port is a dual lane 800Mbps per lane whereas CSI-2 second
+-input port is a single lane 800Mbps. Both ports support clock and data lane
+-polarity swap. First port also supports data lane swap.
+-PARALLEL output port has a maximum width of 12 bits.
+-Supported formats are RAW6, RAW7, RAW8, RAW10, RAW12, RGB565, RGB888, RGB444,
+-YUV420 8-bit, YUV422 8-bit and YUV420 10-bit.
+-
+-Required Properties:
+-- compatible: shall be "st,st-mipid02"
+-- clocks: reference to the xclk input clock.
+-- clock-names: shall be "xclk".
+-- VDDE-supply: sensor digital IO supply. Must be 1.8 volts.
+-- VDDIN-supply: sensor internal regulator supply. Must be 1.8 volts.
+-
+-Optional Properties:
+-- reset-gpios: reference to the GPIO connected to the xsdn pin, if any.
+-	       This is an active low signal to the mipid02.
+-
+-Required subnodes:
+-  - ports: A ports node with one port child node per device input and output
+-	   port, in accordance with the video interface bindings defined in
+-	   Documentation/devicetree/bindings/media/video-interfaces.txt. The
+-	   port nodes are numbered as follows:
+-
+-	   Port Description
+-	   -----------------------------
+-	   0    CSI-2 first input port
+-	   1    CSI-2 second input port
+-	   2    PARALLEL output
+-
+-Endpoint node required property for CSI-2 connection is:
+-- data-lanes: shall be <1> for Port 1. for Port 0 dual-lane operation shall be
+-<1 2> or <2 1>. For Port 0 single-lane operation shall be <1> or <2>.
+-Endpoint node optional property for CSI-2 connection is:
+-- lane-polarities: any lane can be inverted or not.
+-
+-Endpoint node required property for PARALLEL connection is:
+-- bus-width: shall be set to <6>, <7>, <8>, <10> or <12>.
+-Endpoint node optional properties for PARALLEL connection are:
+-- hsync-active: active state of the HSYNC signal, 0/1 for LOW/HIGH respectively.
+-LOW being the default.
+-- vsync-active: active state of the VSYNC signal, 0/1 for LOW/HIGH respectively.
+-LOW being the default.
+-
+-Example:
+-
+-mipid02: csi2rx@14 {
+-	compatible = "st,st-mipid02";
+-	reg = <0x14>;
+-	status = "okay";
+-	clocks = <&clk_ext_camera_12>;
+-	clock-names = "xclk";
+-	VDDE-supply = <&vdd>;
+-	VDDIN-supply = <&vdd>;
+-	ports {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		port@0 {
+-			reg = <0>;
+-
+-			ep0: endpoint {
+-				data-lanes = <1 2>;
+-				remote-endpoint = <&mipi_csi2_in>;
+-			};
+-		};
+-		port@2 {
+-			reg = <2>;
+-
+-			ep2: endpoint {
+-				bus-width = <8>;
+-				hsync-active = <0>;
+-				vsync-active = <0>;
+-				remote-endpoint = <&parallel_out>;
+-			};
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
+new file mode 100644
+index 0000000000000..19a39d753aade
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
+@@ -0,0 +1,176 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/st,st-mipid02.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STMicroelectronics MIPID02 CSI-2 to PARALLEL bridge
++
++maintainers:
++  - Benjamin Mugnier <benjamin.mugnier@foss.st.com>
++  - Sylvain Petinot <sylvain.petinot@foss.st.com>
++
++description:
++  MIPID02 has two CSI-2 input ports, only one of those ports can be
++  active at a time. Active port input stream will be de-serialized
++  and its content outputted through PARALLEL output port.
++  CSI-2 first input port is a dual lane 800Mbps per lane whereas CSI-2
++  second input port is a single lane 800Mbps. Both ports support clock
++  and data lane polarity swap. First port also supports data lane swap.
++  PARALLEL output port has a maximum width of 12 bits.
++  Supported formats are RAW6, RAW7, RAW8, RAW10, RAW12, RGB565, RGB888,
++  RGB444, YUV420 8-bit, YUV422 8-bit and YUV420 10-bit.
++
++properties:
++  compatible:
++    const: st,st-mipid02
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: xclk
++
++  VDDE-supply:
++    description:
++      Sensor digital IO supply. Must be 1.8 volts.
++
++  VDDIN-supply:
++    description:
++      Sensor internal regulator supply. Must be 1.8 volts.
++
++  reset-gpios:
++    description:
++      Reference to the GPIO connected to the xsdn pin, if any.
++      This is an active low signal to the mipid02.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: CSI-2 first input port
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description:
++                  Single-lane operation shall be <1> or <2> .
++                  Dual-lane operation shall be <1 2> or <2 1> .
++                minItems: 1
++                maxItems: 2
++
++              lane-polarities:
++                description:
++                  Any lane can be inverted or not.
++                minItems: 1
++                maxItems: 2
++
++            required:
++              - data-lanes
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: CSI-2 second input port
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description:
++                  Single-lane operation shall be <1> or <2> .
++                maxItems: 1
++
++              lane-polarities:
++                description:
++                  Any lane can be inverted or not.
++                maxItems: 1
++
++            required:
++              - data-lanes
++
++      port@2:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: Output port
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              bus-width:
++                enum: [6, 7, 8, 10, 12]
++
++            required:
++              - bus-width
++
++    anyOf:
++      - required:
++          - port@0
++      - required:
++          - port@1
++
++    required:
++      - port@2
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - VDDE-supply
++  - VDDIN-supply
++  - ports
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        mipid02: csi2rx@14 {
++            compatible = "st,st-mipid02";
++            reg = <0x14>;
++            status = "okay";
++            clocks = <&clk_ext_camera_12>;
++            clock-names = "xclk";
++            VDDE-supply = <&vdd>;
++            VDDIN-supply = <&vdd>;
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                port@0 {
++                    reg = <0>;
++
++                    ep0: endpoint {
++                        data-lanes = <1 2>;
++                        remote-endpoint = <&mipi_csi2_in>;
++                    };
++                };
++                port@2 {
++                    reg = <2>;
++
++                    ep2: endpoint {
++                        bus-width = <8>;
++                        hsync-active = <0>;
++                        vsync-active = <0>;
++                        remote-endpoint = <&parallel_out>;
++                    };
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 3f7082a08ac4c..5e19c109eeb37 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19444,7 +19444,7 @@ M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
+-F:	Documentation/devicetree/bindings/media/i2c/st,st-mipid02.txt
++F:	Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
+ F:	drivers/media/i2c/st-mipid02.c
+ 
+ ST STM32 I2C/SMBUS DRIVER
+-- 
+2.35.1
 
-This doesn't make much sense:
-
-if (A) {
-    if (B) {
-        if (A) { // A is already guaranteed to be true here, why check it again?
-            // ...
-        } else {
-            // how can this ever be reached then?
-        }
-    }
-}
-
->  		}
->  	}
-> 
-> @@ -566,12 +583,14 @@ static void __exception_irq_entry 
-> aic_handle_fiq(struct pt_regs *regs)
->  					  AIC_FIQ_HWIRQ(irq));
->  	}
-> 
-> -	if (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) == 
-> UPMCR0_IMODE_FIQ &&
-> -			(read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & UPMSR_IACT)) {
-> -		/* Same story with uncore PMCs */
-> -		pr_err_ratelimited("Uncore PMC FIQ fired. Masking.\n");
-> -		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
-> -				   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-> +	if (static_branch_likely(&has_uncore_regs)) {
-> +		if (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) ==
-> +			UPMCR0_IMODE_FIQ && (read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & 
-> UPMSR_IACT)) {
-> +			/* Same story with uncore PMCs */
-> +			pr_err_ratelimited("Uncore PMC FIQ fired. Masking.\n");
-> +			sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
-> +					FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-> +		}
->  	}
->  }
-> 
-> @@ -944,7 +963,8 @@ static int aic_init_cpu(unsigned int cpu)
->  	/* Mask all hard-wired per-CPU IRQ/FIQ sources */
-> 
->  	/* Pending Fast IPI FIQs */
-> -	write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
-> +	if (static_branch_likely(&use_fast_ipi))
-> +		write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
-> 
->  	/* Timer FIQs */
->  	sysreg_clear_set(cntp_ctl_el0, 0, ARCH_TIMER_CTRL_IT_MASK);
-> @@ -965,8 +985,9 @@ static int aic_init_cpu(unsigned int cpu)
->  			   FIELD_PREP(PMCR0_IMODE, PMCR0_IMODE_OFF));
-> 
->  	/* Uncore PMC FIQ */
-> -	sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
-> -			   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-> +	if (static_branch_likely(&has_uncore_regs))
-> +		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
-> +				   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-> 
->  	/* Commit all of the above */
->  	isb();
-> @@ -1125,6 +1146,11 @@ static int __init aic_of_ic_init(struct 
-> device_node *node, struct device_node *p
->  	else
->  		static_branch_disable(&use_fast_ipi);
-> 
-> +	if (irqc->info.uncore_regs)
-> +		static_branch_enable(&has_uncore_regs);
-> +	else
-> +		static_branch_disable(&has_uncore_regs);
-> +
->  	irqc->info.die_stride = off - start_off;
-> 
->  	irqc->hw_domain = irq_domain_create_tree(of_node_to_fwnode(node),
-> -- 
-> 2.30.2
-
-
-Sven
