@@ -2,130 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 952C65F155F
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 00:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA76D5F16C2
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 01:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231859AbiI3WAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 18:00:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36284 "EHLO
+        id S231697AbiI3XoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 19:44:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231487AbiI3WAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 18:00:15 -0400
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665BC6CF4E;
-        Fri, 30 Sep 2022 15:00:13 -0700 (PDT)
-Received: by mail-oo1-f46.google.com with SMTP id m11-20020a4aab8b000000b00476743c0743so3119670oon.10;
-        Fri, 30 Sep 2022 15:00:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=LLT3ZYBdhjAVbmPO/uc2xLKM7qGWQtc4/hcvgBHyd9s=;
-        b=lXG2RbSv9XLijqIIokFRQR2/4OXodHdVsheKP1uiCTaD+Ziu+WzLlBPGJBEnEYdCAn
-         HVGMhAYmHMcshXNFK21PawZn3p6PBPzMUHEcKxuMykf/6h8ksoO8PhuzLhspKz0EzWtR
-         1uZlUCusjL/kjhPxLGdTjjq0o3RIZrONvWnQiDgO+xU7R3EEBnIAFr6saWJx8QCykUny
-         efxKLDnaD9cG3K+ch/pKfn+B6LHZUrdlTo2g8u1K4c26FVoPoq2dNMLK8XqSRH0a+PFQ
-         Y9HkbaVEMpBrt0OFMt0hSs3gwkq+oRqyFWQxaJ3v3ISiFB6zaA9ncPluNx525QWLx7x1
-         p9Ew==
-X-Gm-Message-State: ACrzQf2py4r+wS0gwO3jfQsGnAkm9k5SalmObE23eti09yUCxo7CnvoH
-        9QPBbNGRxhusiug+u1x/9Q==
-X-Google-Smtp-Source: AMsMyM6IrejG/870CvnrzUlNmyBET4I5DXOzFKtUrfEAwncNQElS2UqVUUb3+tMW/6JK2TF/26FdJg==
-X-Received: by 2002:a9d:ed2:0:b0:657:438a:eefb with SMTP id 76-20020a9d0ed2000000b00657438aeefbmr4289417otj.239.1664575212616;
-        Fri, 30 Sep 2022 15:00:12 -0700 (PDT)
-Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g65-20020acab644000000b0035028730c90sm782022oif.1.2022.09.30.15.00.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 15:00:11 -0700 (PDT)
-Received: (nullmailer pid 1111251 invoked by uid 1000);
-        Fri, 30 Sep 2022 22:00:11 -0000
-Date:   Fri, 30 Sep 2022 17:00:11 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S231475AbiI3XoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 19:44:17 -0400
+X-Greylist: delayed 88199 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 30 Sep 2022 16:44:12 PDT
+Received: from post.baikalelectronics.com (post.baikalelectronics.com [213.79.110.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6EEF8157FD1;
+        Fri, 30 Sep 2022 16:44:11 -0700 (PDT)
+Received: from post.baikalelectronics.com (localhost.localdomain [127.0.0.1])
+        by post.baikalelectronics.com (Proxmox) with ESMTP id 028D6E0EBD;
+        Fri, 30 Sep 2022 01:54:14 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        baikalelectronics.ru; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:from:from:in-reply-to:message-id
+        :mime-version:references:reply-to:subject:subject:to:to; s=post;
+         bh=ZdjgTOaIl8+CYayXTtVo5NrVjc8YBMSotFVNB5jURGc=; b=O8A+TU7/pfry
+        ftzsrb0mtAIWLqLzj51mFGV1YTUc7sHG4T4N1fiQVCIFYCsXZDdA+G/0vQ2/mnP1
+        gYQi4YAcjQmm3z8ie1iVP94pe+JXYDklD/T65nK0IcXjVSGHlBw3hHHOZ3KnIGb9
+        A6bvg5HQMXgBjN2ESqAWjANIuglZ2tU=
+Received: from mail.baikal.int (mail.baikal.int [192.168.51.25])
+        by post.baikalelectronics.com (Proxmox) with ESMTP id E8873E0EBB;
+        Fri, 30 Sep 2022 01:54:13 +0300 (MSK)
+Received: from localhost (192.168.168.10) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 30 Sep 2022 01:54:14 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 1/2] media: dt-bindings: mediatek: Rename child node
- names for decoder
-Message-ID: <20220930220011.GA1107972-robh@kernel.org>
-References: <20220930112237.14411-1-allen-kh.cheng@mediatek.com>
- <20220930112237.14411-2-allen-kh.cheng@mediatek.com>
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        <linux-clk@vger.kernel.org>, <linux-mips@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH RESEND v12 6/8] dt-bindings: clk: baikal-t1: Add DDR/PCIe reset IDs
+Date:   Fri, 30 Sep 2022 01:54:00 +0300
+Message-ID: <20220929225402.9696-7-Sergey.Semin@baikalelectronics.ru>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20220929225402.9696-1-Sergey.Semin@baikalelectronics.ru>
+References: <20220929225402.9696-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220930112237.14411-2-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [192.168.168.10]
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 30, 2022 at 07:22:36PM +0800, Allen-KH Cheng wrote:
-> In order to make the names of the child nodes more generic, we rename
-> "vcodec" to "video-codec" for decoder in patternProperties and example.
+Aside with a set of the trigger-like resets Baikal-T1 CCU provides
+additional directly controlled reset signals for the DDR and PCIe
+controllers. As a preparation before adding these resets support to the
+kernel let's extent the Baikal-T1 CCU IDs list with the new IDs, which
+will be used to access the corresponding reset controls.
 
-They are either generic or they aren't. Until something generic is 
-defined, I don't think it's worth the churn to change.
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Acked-by: Rob Herring <robh@kernel.org>
+
+---
+
+Changelog v11:
+- This is a new patch created by detaching the DT-part from:
+[PATCH v10 6/7] clk: baikal-t1: Add DDR/PCIe directly controlled resets support
+  (@Krzysztof)
+---
+ include/dt-bindings/reset/bt1-ccu.h | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/include/dt-bindings/reset/bt1-ccu.h b/include/dt-bindings/reset/bt1-ccu.h
+index 3578e83026bc..c691efaa678f 100644
+--- a/include/dt-bindings/reset/bt1-ccu.h
++++ b/include/dt-bindings/reset/bt1-ccu.h
+@@ -21,5 +21,14 @@
+ 
+ #define CCU_SYS_SATA_REF_RST		0
+ #define CCU_SYS_APB_RST			1
++#define CCU_SYS_DDR_FULL_RST		2
++#define CCU_SYS_DDR_INIT_RST		3
++#define CCU_SYS_PCIE_PCS_PHY_RST	4
++#define CCU_SYS_PCIE_PIPE0_RST		5
++#define CCU_SYS_PCIE_CORE_RST		6
++#define CCU_SYS_PCIE_PWR_RST		7
++#define CCU_SYS_PCIE_STICKY_RST		8
++#define CCU_SYS_PCIE_NSTICKY_RST	9
++#define CCU_SYS_PCIE_HOT_RST		10
+ 
+ #endif /* __DT_BINDINGS_RESET_BT1_CCU_H */
+-- 
+2.37.3
 
 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml    | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> index c4f20acdc1f8..67fde48f991c 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> @@ -91,7 +91,7 @@ properties:
->  
->  # Required child node:
->  patternProperties:
-> -  '^vcodec-lat@[0-9a-f]+$':
-> +  '^video-codec-lat@[0-9a-f]+$':
-
-Just 'video-codec' doesn't work?
-
->      type: object
->  
->      properties:
-> @@ -145,7 +145,7 @@ patternProperties:
->  
->      additionalProperties: false
->  
-> -  '^vcodec-core@[0-9a-f]+$':
-> +  '^video-codec-core@[0-9a-f]+$':
->      type: object
->  
->      properties:
-> @@ -241,7 +241,7 @@ examples:
->              #size-cells = <2>;
->              ranges = <0 0 0 0x16000000 0 0x40000>;
->              reg = <0 0x16000000 0 0x1000>;		/* VDEC_SYS */
-> -            vcodec-lat@10000 {
-> +            video-codec-lat@10000 {
->                  compatible = "mediatek,mtk-vcodec-lat";
->                  reg = <0 0x10000 0 0x800>;
->                  interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
-> @@ -264,7 +264,7 @@ examples:
->                  power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
->              };
->  
-> -            vcodec-core@25000 {
-> +            video-codec-core@25000 {
->                  compatible = "mediatek,mtk-vcodec-core";
->                  reg = <0 0x25000 0 0x1000>;
->                  interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
-> -- 
-> 2.18.0
-> 
-> 
