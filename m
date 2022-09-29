@@ -2,128 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 936BD5EFDEB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 21:29:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6DFB5EFDF7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 21:33:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229932AbiI2T3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 15:29:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37040 "EHLO
+        id S229787AbiI2TdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 15:33:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbiI2T25 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 15:28:57 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2057.outbound.protection.outlook.com [40.107.237.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A79315E4D4;
-        Thu, 29 Sep 2022 12:28:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dQXalQwt1zg7/bCU7iHwswuuIooulC07CgdJwfNplFomEAdrmbNZ1MPQXTk7gffxT4czt3/SY+1tsyNwq0fTOykAGw8a+16uqGjBdZK6aJdKw68DpUREITzhionkVry9bRN0eH68KBRS+WLO9aRdNVeTow9I+STWzp7uk2oQPCM3a8g88ZaS65XqBjfesAyj349ayAsda1mN2r1mth7vxIrGW4MhF1QbTodJN0Z/uqJX7fKScnq7B71tEYkoUt+JTPxuv8DXMLvqjxTlg3BDC7n2ciKpLuLFVL+AGd4zwV00MNGv3j1rSMCfzjTWrOwA563IEx6cCCk8ftttTKuf1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4AMugPJ5thtiPGcZ3zQxt+dLF+3jtw/7+G+MH/wRE54=;
- b=Igp3BnQ4EDEbnGe5f1cbhueqZde0re2Y88Z+qTygFIbRLNDLe+1xhmUp5ocF6iHdH10ZWSJUai67OzgOrldrbHfDHW+RdeAbi2q1NGwwO5fXBNXXm2DgSVrYMn8Q073dF9hNVtH1HW20aVe7mt8jYauMHnYuO1VopB8E9ha2ml8Fub3xPQKQSxkeX3xULjOGz6tNxylRIqhSHOzQ3lCphytjjVEkoEh2pSexfAs668CQ5eNRWi1MKfp93k3l7ZROJo4UUB1RKHwCBZIDUc4GhfJonj5f57jPu0rc4cI9HVck1vikuFEW7SWVNEgszWmX9nrronGN99t1Idlj0d8o7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4AMugPJ5thtiPGcZ3zQxt+dLF+3jtw/7+G+MH/wRE54=;
- b=FInZTZwmvSVUf6JIoFqaBEt2eHMZ/v12od/jBhqcN+0c9IYYTbbLzg/Q3O08eqKEQALdc+F1ZzyidKhtxaxgIXA+r1b5qFk6q1d+3KKpwn3XjMNn404LM5X711Go6uUQkDNMNpghiGBHXvWvnG9ENWGOMYRNgP86DkpzRFNs6xo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BY5PR12MB3683.namprd12.prod.outlook.com (2603:10b6:a03:1a5::16)
- by PH8PR12MB7230.namprd12.prod.outlook.com (2603:10b6:510:226::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.18; Thu, 29 Sep
- 2022 19:28:52 +0000
-Received: from BY5PR12MB3683.namprd12.prod.outlook.com
- ([fe80::3441:5a68:b4b7:e988]) by BY5PR12MB3683.namprd12.prod.outlook.com
- ([fe80::3441:5a68:b4b7:e988%6]) with mapi id 15.20.5676.017; Thu, 29 Sep 2022
- 19:28:51 +0000
-Message-ID: <fa91ce5a-8c7e-850a-eede-1f6a61a3d651@amd.com>
-Date:   Thu, 29 Sep 2022 12:28:49 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.3.0
-Subject: Re: [PATCH v9 6/6] drivers: remoteproc: Add Xilinx r5 remoteproc
- driver
-Content-Language: en-US
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
-        ben.levinsky@xilinx.com, tanmay.shah@xilinx.com,
-        michal.simek@amd.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220708013955.2340449-1-tanmay.shah@amd.com>
- <20220708013955.2340449-7-tanmay.shah@amd.com> <20220901202517.GB626605@p14s>
- <d1cfa787-9f8e-fe8a-d816-0bd8c3a3244d@amd.com>
- <20220929172200.GB3107608@p14s>
-From:   Tanmay Shah <tanmays@amd.com>
-In-Reply-To: <20220929172200.GB3107608@p14s>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR05CA0087.namprd05.prod.outlook.com
- (2603:10b6:a03:332::32) To BY5PR12MB3683.namprd12.prod.outlook.com
- (2603:10b6:a03:1a5::16)
+        with ESMTP id S229524AbiI2Tc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 15:32:56 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 794F713D1FF;
+        Thu, 29 Sep 2022 12:32:54 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-1280590722dso3032237fac.1;
+        Thu, 29 Sep 2022 12:32:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=TxRiuJ829lvDQE6MzHjZpop4R9yzruWCxiqmDqEFGxU=;
+        b=ez6o4ZB17GvxR6NBJxIjv0Yvh/TXn0Lfm2t0XbL6+VhsEi6ZNwfzutPEiGVMPuqy3v
+         F+hCTdfdyItBk9+KPIqOJCAxmxymx0Kk+RuyALq+mvcmq+6gFDZysc+BnT3vEuQ/nzsa
+         0vMhx+f1+vYxht4Nx/wcsCHkeYoMeeRko9leMTG95Bn+qAmlz/RKyyCqKr2VvlmdPdA7
+         uFd7ya7+wkmebwJRO0X77rXTuigypA1ff5aGgKYsXZU3o7P030ik97EeejAzH9Z8tp5f
+         1QUrnIG4vqdb6LWfFNX4LTdI/zKpGfzpkM72VSz9MfSmsA/jZWujz7dwO8D8l8/x9TAH
+         4D4Q==
+X-Gm-Message-State: ACrzQf3jGHEMLB7pGxfA+7ZZWruZdfoXLCpLm9s9OkL+PsmXW2RUI7es
+        szRG16erAqzufX810AehAA==
+X-Google-Smtp-Source: AMsMyM6oGH3EsQkbKXhwfP4STXGmyq1qwqeuBO/cScEix1MGw+HPOwaySFikQlIGetU38yJNBcbHig==
+X-Received: by 2002:a05:6870:c148:b0:12b:542c:70f1 with SMTP id g8-20020a056870c14800b0012b542c70f1mr2951571oad.102.1664479972913;
+        Thu, 29 Sep 2022 12:32:52 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b20-20020a056870b25400b0012c52bd4369sm158773oam.19.2022.09.29.12.32.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Sep 2022 12:32:52 -0700 (PDT)
+Received: (nullmailer pid 2615299 invoked by uid 1000);
+        Thu, 29 Sep 2022 19:32:51 -0000
+Date:   Thu, 29 Sep 2022 14:32:51 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Roland Stigge <stigge@antcom.de>, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Marcello Sylvester Bauer <sylv@sylv.io>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add binding for max6639
+Message-ID: <20220929193251.GA2606428-robh@kernel.org>
+References: <20220922050718.1079651-1-Naresh.Solanki@9elements.com>
+ <20220922050718.1079651-2-Naresh.Solanki@9elements.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR12MB3683:EE_|PH8PR12MB7230:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9a48fc20-174c-40d7-5cbb-08daa250d71c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TQ5SuWpPKBNMCxOhcHxK0EVqM1QqapF8oi54Kf4CxryiMieKwqpnFwKtxxtu5Zmsr4vYIPmF0u/cH2ItVp5eMMfyEaxxy2mBIvzGq1oSTHePLigKqUR0C0Pk+kslwgObc3/lY3zXuIDYyxHMGTP484KGBP4RJx1AwqnX+FTBU/M8/S/GBpQ5gBru7HQwJncPXkg7jnAW+KDTPUOTZ9qPXRG2KK/5Tp56FKOqtnKxWPZ9TOH1xX9iHRC64vCQaa8jrd0BXBkwHLGfwU/lsKAsf01Khlulq8mckJfaSvIG/78m5a+PZO8hKkJZKooZarf9czrNMY2WjSpewPmXyuli26qgrrLeIoraGMI2LpNeSiwo56355oIYt+19hkZ/1tIvRt+mzWu7VVA3RJoRFIjl3UZDuw2lxdpR1cI4cyaMgZXxqfIwaxIGpbRz4slw/emSIvcpPHivUNQBfEQW5yCV9lszIEhRaYkYjJgzIkfBNptj0p54YOhGj97HKjWm/8RC+NCaBq+sUeHFcTuKiW57mbfj3QQXEW+9ty26JfaCAEv5Lk8yzNNSQXAfJm9a+dg1nXDPyBjiFt4L/fAU7LvCoewUnhzdPfznW4gbv4L9u0fTHi9CTIM5/rqBGhZS+GOaiSl1r6wx+N6kpiyZkOaGyWZ1XxVYnJUSy4ui84Si9/dXsJ0F/nt/BHBUJcxTUh+MdauP/YdeyXJhCpBdqHP/tAFlvJ57/awxNlgS8h74CaOfY8VnrKwlapJG7/r/yZl+IpB4rAv1Wk9Ere3ykJtSi8ZFYehzGWw0lQFVtEisC+s=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB3683.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(376002)(39860400002)(366004)(346002)(396003)(451199015)(31686004)(66476007)(26005)(6512007)(186003)(2616005)(83380400001)(36756003)(478600001)(6506007)(316002)(38100700002)(53546011)(4326008)(6486002)(2906002)(6916009)(8936002)(5660300002)(66556008)(8676002)(66946007)(41300700001)(31696002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?blVoekRuSGhXWlRiaGp3S3RqNTFUbkQrdFYxVU8zYWpGMXNRVXlJWlZzZkU3?=
- =?utf-8?B?Ky9DamtBMHpVbjFyZ09OOWJhaWJNNTBBdHdIbkRDL1F4OFhaT2twMjBhcDZo?=
- =?utf-8?B?ajlwUmE0aWdEQUh6Vmt6dWdMNXNPZDl2YkpDdEVzUENBZGpLcU0xSTQ1bFFx?=
- =?utf-8?B?Zm5tWFFwWTYxK1hQZGNCZzRRYURoMW9VRkhvdWgwWTZ4aklRZ3B1OHA1djMw?=
- =?utf-8?B?TGRvM3hCQTVRRUhndldZSlZhZVptWHZWK1hkV1lkTDJsbEE1Y0x0MlRuZFZ3?=
- =?utf-8?B?VUxxNVNKZnh3ZU56Yy9pN294djJ6NFA4aUtxalJnemJsV2lydWRBZHFhWWov?=
- =?utf-8?B?YmVjNkp5bHdmdGplbndHNmNULzVKTHdtNUtkY0kzbVFVNUtFbUlMcjg5RDh6?=
- =?utf-8?B?b0JRUXZBTmdFaGs1MjFNWG05eTA0ODZhNEVta21GSWkzTERaUnJMSE93LzhN?=
- =?utf-8?B?VkNMQzRHczNpWnc4RjlrMWNSTmNrQ0poTDNnbmtNVE5oOWhmRGdoeHdjNlZs?=
- =?utf-8?B?N09KdktsaE1DalAveThTWUpVY29DNWpNbDRiM2xFM3lRSFZlSTQxaUNWSWZ1?=
- =?utf-8?B?OXA1Z3A0bEp2Ti9XZUlCTUUra3IxNkQ3c2dPWFpzd2ZoTmNRMkNwSGx5UzJN?=
- =?utf-8?B?N091ajBvT1hJbHcvRndScEZDM1kxWmZXUU8zb1hrNGFLblhReCsxeHAyZXcv?=
- =?utf-8?B?ZW1mZFBCck9QZm5YQWNTQzRrdXh0SC84ODlZVmZmTFBDMnRDMWlJcWVFbGZy?=
- =?utf-8?B?cnZ3a0tZOVZYMzNmTjZNUzBCOUZLZ0tLVnRXWDIxZFZneTVjU3ZpNDViblFO?=
- =?utf-8?B?Tkw2SEx5QnowRXRNeWhsRDFvYSt4YUU4ZUwvMmttUm44WDFqbGNJNS8wMktP?=
- =?utf-8?B?cTFOelF5VGRsYVd3Q3ZaR2pyQURMN2pMTGhBdlFycHdRT2JxWmJ5SHd3TmRI?=
- =?utf-8?B?QkFIcFMzeXdPdmNXUWczZEdMSWY3a3pmZlU0R2RyRnk5clc2MEFVdmRYdWR5?=
- =?utf-8?B?SVg5RVRtbGtZQW84eEtselVXMVc0dDM4S1pvb253bFdpRHVCaUI2Ny9kaXVI?=
- =?utf-8?B?UC9WdnZxUUpHR2JVTlZhS1d4ZWg2dGI4ZlZaTy9kcVladjN2L3VGSGRrU0M3?=
- =?utf-8?B?YzExVHE1ekdVcnZubzJiT0ljU01PWU05RzQrdC9aaGo5WkdPMlcwb3pEL1J1?=
- =?utf-8?B?akZJc2pCZzdleWxCZGdDQUdSZDNoRVFTM1B0b2Z3Rnd6QU5Vd2daSFZkNmox?=
- =?utf-8?B?d0gzSjZCN3lDT0FvOCsraTQ3Zy95MjZhcDhadk9Ed3JTNlpIL0JFdko5S3R0?=
- =?utf-8?B?MVpTM3Brekg4eTVjZGU3Y3EzNExNSDNtbWFGcHpxcEpXWmZiVkZUY25wRTF5?=
- =?utf-8?B?TlVUQTM2a1FWYVlDS0EwMmI0bkxCbm9jTFhMRDB0NGlTVXZMejJhcXhXdEIr?=
- =?utf-8?B?b0hYbVQrZGp5NEtTR09MTGFaUS84M2RHNTFJTFNnR0JtTG9yVXlHclZKbllM?=
- =?utf-8?B?dEUyWjRneEdpS3E1bTJDL29aZ3N5cFFvbGMvbEdrb25PN2dYT21rRGljUkE1?=
- =?utf-8?B?bmlPeG9kYmQxamF5eHFCN1R0TmRoeTRuWUswRUtSOTdCT202MGNiMEdLMFpv?=
- =?utf-8?B?cm5OaEE0clBkc0dDQm5jR21SdmdZbkZTQ3E5N2ZnOGJWNmR6R1cya1Fvbk5q?=
- =?utf-8?B?UGZjSFRqV2RRQTM3Zk5QbnlmbUpLZGdiQWJzSVpXWi9Dc29Bd3luSHdNeFQ4?=
- =?utf-8?B?L0Y4Q3lPdU5kcnNSWWdaTzVGWWJlNXROcnhlUW1nWDZCN0FaeC96Q0NicE45?=
- =?utf-8?B?QXZhRk9ROG9rYTNXNC85WC9VMERuRTZwVUl1bHJ2ZHFRSHM3bWR3cEZzNGxG?=
- =?utf-8?B?blBoZ0E1bTVtMEsvbTNrRGZSYy9KVDVISlhEZnpPdkhadVZ2U1JJT0xrVTcw?=
- =?utf-8?B?MWcvdTNDdDFEcmpMTGoxTTNKZmtiVnp6N2pDcG5leGtzZkVacTRlZmRWSGpL?=
- =?utf-8?B?WWdzdEs3bm9jWEdoUlNjc0NCd0w5VHBEVjEvRVFPWTlrMVFWaEtJU2JiL0ht?=
- =?utf-8?B?MlhoM3pmekQ2VjF2ZzFRSmszYkt3R3BJaExqRmxVK3VHOVBtdUw4N0p1QzFz?=
- =?utf-8?Q?aWf7SV9QhlKdCw+UtfHOnskMM?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a48fc20-174c-40d7-5cbb-08daa250d71c
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3683.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2022 19:28:51.9046
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M4eQTY3K828cxchoZ0kUVbmwjU5Mm+AvpUsFjCsvPExzN/Q1RS/QFJ6hBE/R4UCQ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7230
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220922050718.1079651-2-Naresh.Solanki@9elements.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -131,86 +67,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Mathieu.
+On Thu, Sep 22, 2022 at 07:07:17AM +0200, Naresh Solanki wrote:
+> From: Marcello Sylvester Bauer <sylv@sylv.io>
+> 
+> Add Devicetree binding documentation for Maxim MAX6639 temperature
+> monitor with PWM fan-speed controller.
+> 
+> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ---
+>  .../bindings/hwmon/maxim,max6639.yaml         | 112 ++++++++++++++++++
+>  1 file changed, 112 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> new file mode 100644
+> index 000000000000..c845fb989af2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> @@ -0,0 +1,112 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim max6639
+> +
+> +maintainers:
+> +  - Roland Stigge <stigge@antcom.de>
+> +
+> +description: |
+> +  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
+> +  fan-speed controller.  It monitors its own temperature and one external
+> +  diode-connected transistor or the temperatures of two external diode-connected
+> +  transistors, typically available in CPUs, FPGAs, or GPUs.
+> +
+> +  Datasheets:
+> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max6639
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "fan@0"
+> +  - "fan@1"
+> +
+> +additionalProperties: false
+> +
+> +patternProperties:
+> +  "^fan@[0-1]$":
+> +    type: object
+> +    description: |
+> +      Represents the two fans and their specific configuration.
+> +
+> +    properties:
+> +      reg:
+> +        description: |
+> +          The fan number.
 
-Also, I see that last few revisions I have changed driver a lot based on 
-comments, but documentation in driver is not in sync.
+Addresses are a property of the parent (the fan controller), not the 
+fan. 
 
-I know we agreed initially, that I will address changes _only_ commented 
-in previous revision. However, in next revision I would like
+> +        items:
+> +          minimum: 0
+> +          maximum: 1
+> +
+> +      pwm-polarity:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [0, 1]
+> +        default: 1
+> +        description:
+> +          PWM output is low at 100% duty cycle when this bit is set to zero. PWM
+> +          output is high at 100% duty cycle when this bit is set to 1.
 
-to fix documentation all over the driver along with your comments. I 
-hope it's fine and I wanted to give you heads up so we stay on same page.
+IIRC, the PWM binding provides for this. The parent should probably be a 
+PWM provider.
 
-Thanks,
+> +
+> +      pulses-per-revolution:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [1, 2, 3, 4]
+> +        default: 2
+> +        description:
+> +          Value specifying the number of pulses per revolution of the controlled
+> +          FAN.
+> +
+> +      maxim,rpm-range:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [2000, 4000, 8000, 16000]
+> +        default: 4000
+> +        description:
+> +          Scales the tachometer counter by setting the maximum (full-scale) value
+> +          of the RPM range for max6639.
 
-Tanmay
+Is this a property of the fan? How is this maxim specific?
 
-On 9/29/22 10:22 AM, Mathieu Poirier wrote:
-> On Mon, Sep 26, 2022 at 03:02:22PM -0700, Tanmay Shah wrote:
->> On 9/1/22 1:25 PM, Mathieu Poirier wrote:
->>> On Thu, Jul 07, 2022 at 06:39:55PM -0700, Tanmay Shah wrote:
->> [ ... ]
->>>> --- /dev/null
->>>> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
->>>> @@ -0,0 +1,1055 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->> Hi Mathieu,
->>
->> I tried to fix SPDX-License-Identifier to GPL (same as MODULE_LICENSE
->> below), However checkpatch.pl reports this as following warning:
->>
->> "WARNING: 'SPDX-License-Identifier: GPL' is not supported in LICENSES/..."
->>
->> I see that GPL-1.0 is under LICENSE/deprecated directory.
->>
->>>> +/*
->>>> + * ZynqMP R5 Remote Processor driver
->>>> + *
->>>> + */
->>>> +
->>>> +#include <dt-bindings/power/xlnx-zynqmp-power.h>
->> [ ... ]
->>
->>>> +MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
->>>> +
->>>> +static struct platform_driver zynqmp_r5_remoteproc_driver = {
->>>> +	.probe = zynqmp_r5_remoteproc_probe,
->>>> +	.driver = {
->>>> +		.name = "zynqmp_r5_remoteproc",
->>>> +		.of_match_table = zynqmp_r5_remoteproc_match,
->>>> +	},
->>>> +};
->>>> +module_platform_driver(zynqmp_r5_remoteproc_driver);
->>>> +
->>>> +MODULE_DESCRIPTION("Xilinx R5F remote processor driver");
->>>> +MODULE_AUTHOR("Xilinx Inc.");
->>>> +MODULE_LICENSE("GPL");
->>> There is a discrepency between the GPL-2.0 in the SPDS identifier and the above.
->> Also, changing to MODULE_LICENSE("GPL v2") gives following warning:
->>
->> WARNING: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure
->> the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
->> #1115: FILE: drivers/remoteproc/xlnx_r5_remoteproc.c:1034:
->> +MODULE_LICENSE("GPL v2");
->>
->> So, It looks like SPDX-License-Identifier should be GPL-2.0-only and
->> MODULE_LICENSE should be change to "GPL".
-> Commit bf7fbeeae6db is an interesting read - thanks for pointing it out.
->
->> It this ok? Any other suggestions ?
-> What you have looks good, in that regard there is no need to change anything
-> from your patch.
->
->> Thanks,
->>
->> Tanmay
->>
->>> More comments tomorrow or Tuesday.
->>>
->>> Thanks,
->>> Mathieu
->>>
->>>> -- 
->>>> 2.25.1
->>>>
+
+The bigger issue here is we need a common fan binding. I'm not inclined 
+to accept any more fan controller bindings with fan properties until we 
+do.
+
+Rob
