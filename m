@@ -2,95 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9F5C5EFB71
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 18:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFC345EFB83
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 19:05:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235817AbiI2Q7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 12:59:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34654 "EHLO
+        id S235859AbiI2RFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 13:05:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236043AbiI2Q7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 12:59:19 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23DD91CFB81;
-        Thu, 29 Sep 2022 09:59:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CBF35B82576;
-        Thu, 29 Sep 2022 16:59:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCDC9C433C1;
-        Thu, 29 Sep 2022 16:59:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664470752;
-        bh=yBGZma+h0goCNzGQ3b6u10XnYurahn7ityyKftocg/k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KqtQN1dM354bqBa+U18wuRdBHHRwC13KtjP9RTmSpcgG+2WZ6uQMCLX957242HLgY
-         bS70wuyICSSmQUXyBM+L7E8TbBxH9qbZJW5V5UlSiJgvF2XOHjf9KEz+cHZ/wM9Cbn
-         s3JBc+Kdt4JJWQuejaH9h2XcP7d5pYzvPahdy5R4zjXCeSelaDrQprMIMhseaB6esu
-         ex5O8FkXJFAUA6StUL8F8n6x3715UNbVvD5ijfBLcxWhV/OMsN0IeIFFHLIoftszYt
-         VutPQ4ffc1wCKYNzbtBWr5stpv+GNQHZCKTM/Gs3a4NWjBvycClCafAdhgCDdgBy3l
-         3PipGTRuaKATA==
-Date:   Thu, 29 Sep 2022 11:59:08 -0500
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 09/14] mailbox: Add Gunyah message queue mailbox
-Message-ID: <20220929165908.zgmlujhp42ihine5@builder.lan>
-References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
- <20220928195633.2348848-10-quic_eberman@quicinc.com>
+        with ESMTP id S235147AbiI2RFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 13:05:08 -0400
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D01E4361B;
+        Thu, 29 Sep 2022 10:05:01 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 51236600879F;
+        Thu, 29 Sep 2022 18:04:58 +0100 (WEST)
+X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
+        tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+        by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+        with LMTP id l2l_SUiehblj; Thu, 29 Sep 2022 18:04:55 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id D1294600EAE6;
+        Thu, 29 Sep 2022 18:04:55 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
+        s=mail; t=1664471095;
+        bh=qNenn2KoN9zsjzwvPudq5tWXFGJfOVtrVSY36thZMz0=;
+        h=From:To:Cc:Subject:Date;
+        b=OpO/4NDjuz87aKNYsZvEOxeQ52dTnhKpraERjSySCyK5tuhWXGGMXYWPAxKWu/QRe
+         mUbgaItpqNijEHI7Mdcdxm8PkDSdGE0lqYK8HBjAnkPoEt91UjuIovpQLhrWg6ckzj
+         jiyBePpLy8UOjqS4Yiu6HiCn7+TpSfiY3R1BylNk=
+Received: from wslaptop.lan (unknown [IPv6:2001:818:dcb5:dc00:7a88:7f12:8ed8:518d])
+        (Authenticated sender: ist187313)
+        by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id D072F360086;
+        Thu, 29 Sep 2022 18:04:53 +0100 (WEST)
+From:   Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Cc:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, thierry.reding@gmail.com,
+        sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jonathanh@nvidia.com, arnd@arndb.de,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH 0/4] Add JDI LPM102A188A display panel support 
+Date:   Thu, 29 Sep 2022 18:04:58 +0100
+Message-Id: <20220929170502.1034040-1-diogo.ivo@tecnico.ulisboa.pt>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220928195633.2348848-10-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 28, 2022 at 12:56:28PM -0700, Elliot Berman wrote:
-[..]
-> diff --git a/drivers/mailbox/gunyah-msgq.c b/drivers/mailbox/gunyah-msgq.c
-[..]
-> +static int gh_msgq_send_data(struct mbox_chan *chan, void *data)
-> +{
-> +	struct gunyah_msgq *msgq = mbox_chan_to_msgq(chan);
-> +	struct gunyah_msgq_tx_data *msgq_data = data;
+Hello!
 
-The mailbox framework abstracts hardware mailboxes and @data
-should be the data to be written to the hardware.
+These patches add support for the JDI LPM102A188A display panel,
+found in the Google Pixel C.
 
-Using the void * to pass composite data types means that the client and
-provider are tightly coupled and as such the mailbox framework does not
-provide you any abstraction.
+Patch 1 adds the DT bindings for the panel.
 
-You also only expose a single channel, so a direct function call between
-the two specific drivers would be a better fit.
+Patch 2 adds an optional register clear to the Tegra DSI driver.
 
-Regards,
-Bjorn
+Patch 3 adds the panel driver, which is based on the downstream
+kernel driver published by Google and developed by Sean Paul.
+
+Patch 4 adds the DT node for the Google Pixel C. 
+
+There is one point in this series on which I would like to ask for
+some advice:
+
+Since the device's bootloader leaves the display on and in patch 3 I
+have assumed that the panel must be reset when probing, I was forced
+to add patch 2, discovered by poking at the DSI module's registers until
+the panel initialization sequence succeeded. However, if it is okay to
+keep the panel on from the bootloader then it would be possible to
+forego this second patch. Any comments on this would be highly appreciated.
+
+Thank you!
+
+Diogo Ivo (4):
+  dt-bindings: display: Add bindings for JDI LPM102A188A
+  drm/tegra: dsi: Clear enable register if powered by bootloader
+  drm/panel: Add driver for JDI LPM102A188A
+  arm64: dts: smaug: Add display panel node
+
+ .../display/panel/jdi,lpm102a188a.yaml        | 100 ++++
+ arch/arm64/boot/dts/nvidia/tegra210-smaug.dts |  72 +++
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-jdi-lpm102a188a.c | 511 ++++++++++++++++++
+ drivers/gpu/drm/tegra/dsi.c                   |  29 +
+ 6 files changed, 724 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/jdi,lpm102a188a.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-jdi-lpm102a188a.c
+
+-- 
+2.37.3
+
