@@ -2,166 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C29485EF599
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:40:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70CE95EF5A5
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:43:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235290AbiI2Mk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 08:40:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37242 "EHLO
+        id S232180AbiI2Mn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 08:43:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235606AbiI2MkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:40:14 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA0355E55D
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 05:40:09 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id c7so1369321ljm.12
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 05:40:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=dhh6nNTG3cQbu2+/UY4E9ECxQouXbUNsJMhUFHHFteY=;
-        b=kWS+mX1fzHpWgp4sKzzasMuSVtCPi3rvmO8sCBs5g2Y6chi47zlezfb2AVmU2U7U9k
-         0NpwCbbn904CxatBISjO55b5M90Yk8uaI2eW/Kk8G7iQI3GS0TCEWZGqf/Zwk2DD8D8j
-         xF0Xz9tIPS0I1th3mXRyJTRB1MS0RtK+ynTvlj0ictG8lkpVzXV9i8pij9ZlRvDGIv7X
-         J77Is8JmTttUmWu47FpWgnBtoLOrwvd2BLLzGuRfuc8YKQkupTlQihEEv0QAprebBud9
-         QKocE8xLpY8ZVurU60EDOo+wVWgytUElsVs7t1Nr8nuTT2FoxDG/WcOdJI227sChT+4K
-         HCug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=dhh6nNTG3cQbu2+/UY4E9ECxQouXbUNsJMhUFHHFteY=;
-        b=iyC70TRgSAmgi6vQCptVWJERKWAeIxN3dVl7wvTXGdkyZP1EUfrq5wMBkET0a8Bubf
-         kfkr/pjQE0qk918Yha5i3KB+mDc0mNRRTmyIAjumtaVI3eo3mn9lHwt6w1gityzij25D
-         6M/yzuwY3M3TWxzT4lMzfsswmjP9ChVE9e2YIDvSSkK4DPUyslmPCyQ9tiLPOdtEs/j7
-         MsUaU+MQ0JHBo97cEefhx+oPO0TOnjw7Rzg3xxGagZNhOmmI+zRqOcd54BJphxebRC+5
-         kYQpWghIkpg8N6E3305emJiLXW8JvmKNp1QUUV1eGlhJgdAdNbmp/ME1ROzYqFdSs0JY
-         XFOg==
-X-Gm-Message-State: ACrzQf3rf6M6x+TavrTnIkIo8jTP3D5T+QchTVsojWifkwif0IjQCcr/
-        Gc+mQNEWOvIwRnillXk4oQIjBg==
-X-Google-Smtp-Source: AMsMyM6F+WpFg+vop57ZHvOS+i+7ShMPC3QW8oqdWbw+jDkUFuaaoSf9WA/vKypuhtRzTjzyUPW98g==
-X-Received: by 2002:a2e:a0cc:0:b0:26d:b6c8:ff8a with SMTP id f12-20020a2ea0cc000000b0026db6c8ff8amr1088268ljm.492.1664455207490;
-        Thu, 29 Sep 2022 05:40:07 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o17-20020a056512051100b004a054535826sm777972lfb.24.2022.09.29.05.40.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 05:40:06 -0700 (PDT)
-Message-ID: <5445adda-80e6-41d0-9786-c26d253631c9@linaro.org>
-Date:   Thu, 29 Sep 2022 14:40:05 +0200
+        with ESMTP id S234421AbiI2Mn1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:43:27 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3491B15E4E0
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 05:43:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=fPs/yXXusB1u5Ej0kRVy4I169qITrXKLEZheTJO4bKE=; b=x4+/nUrVXJI3FUW/jl3IZGJOVS
+        NW/5Y0q9/96f9qb6OvEapGQbmuWjpqRoLgqpmRpsQD+wHzoDVGoosa/+6H4hdK7GKzaQ4CYGDI9zD
+        iU6llGWD5f65pIgA0j/H6dUdnq73Ugus6T+H3FtvF/6kcQGqSE1YluMEaRPm7Skdgo5E=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1odsst-000cDB-L1; Thu, 29 Sep 2022 14:43:23 +0200
+Date:   Thu, 29 Sep 2022 14:43:23 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Pawel Dembicki <paweldembicki@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Gregory Clement <gregory.clement@bootlin.com>
+Subject: Re: [PATCH] ARM: dts: kirkwood: Add Endian 4i Edge 200 board
+Message-ID: <YzWS6+3KXwVRS2Df@lunn.ch>
+References: <20220929080036.3179552-1-paweldembicki@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: add bindings for QCOM flash LED
-Content-Language: en-US
-To:     Fenglin Wu <quic_fenglinw@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     collinsd@codeaurora.org, subbaram@codeaurora.org
-References: <20220929121544.1064279-1-quic_fenglinw@quicinc.com>
- <20220929121544.1064279-3-quic_fenglinw@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220929121544.1064279-3-quic_fenglinw@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220929080036.3179552-1-paweldembicki@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/09/2022 14:15, Fenglin Wu wrote:
-> Add binding document for flash LED module inside Qualcomm Technologies,
-> Inc. PMICs.
-> 
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+> +// SPDX-License-Identifier: GPL-2.0-or-later
 
-Thank you for your patch. There is something to discuss/improve.
+I think the preference is that DT is dual licence GPL or MIT.
 
-> +  reg:
-> +    description: address offset of the flash LED controller
-> +    maxItems: 1
+> +	switch0: switch@11 {
+> +		compatible = "marvell,mv88e6085";
+> +		reg = <0x11>;
 > +
-> +patternProperties:
-> +  "^led[0-3]$":
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				label = "port1";
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				label = "port2";
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +				label = "port3";
+> +			};
+> +
+> +			port@3 {
+> +				reg = <3>;
+> +				label = "port4";
+> +			};
+> +
+> +			port@5 {
+> +				reg = <5>;
+> +				label = "cpu";
 
-In such case: ^led-[0-9]$"
+This label is never used by DSA, and Vladimir has been removing them
+in general. Please delete it.
 
-> +    type: object
-> +    $ref: common.yaml#
-> +    unevaluatedProperties: false
-> +    description: |
-> +      Represents the physical LED components which are connected to the
-> +      flash LED channels' output.
-> +
-> +    properties:
-> +      led-sources:
-> +        description: |
-> +          The HW indices of the flash LED channels that connect to the
-> +          physical LED
-> +        allOf:
-> +          - minItems: 1
-> +            maxItems: 2
-> +            items:
-> +              enum: [1, 2, 3, 4]
-> +
-> +      led-max-microamp:
-> +        description: |
-> +          The maximum current value when LED is not operating in flash mode (i.e. torch mode)
-> +          Valid values when an LED is connected to one flash LED channel:
-> +            5000 - 500000, step by 5000
-> +          Valid values when an LED is connected to two flash LED channels:
-> +            10000 - 1000000, step by 10000
-> +        minimum: 5000
-> +        maximum: 1000000
-> +
-> +      flash-max-microamp:
-> +        description: |
-> +          The maximum current value when LED is operating in flash mode.
-> +          Valid values when an LED is connected to one flash LED channel:
-> +            12500 - 1500000, step by 12500
-> +          Valid values when an LED is connected to two flash LED channels:
-> +            25000 - 2000000, step by 12500
-> +        minimum: 12500
-> +        maximum: 2000000
-> +
-> +      flash-max-timeout-us:
-> +        description: |
-> +          The maximum timeout value when LED is operating in flash mode.
-> +          Valid values: 10000 - 1280000, step by 10000
-> +        minimum: 10000
-> +        maximum: 1280000
-> +
-> +    required:
-> +      - led-sources
-> +      - led-max-microamp
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +    spmi_bus {
-
-No underscores in node names, so just "bus"
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-
-Best regards,
-Krzysztof
-
+   Andrew
