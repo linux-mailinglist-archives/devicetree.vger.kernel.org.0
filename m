@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C23F5EFF70
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 23:55:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF14B5EFF75
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 23:55:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbiI2Vy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 17:54:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46678 "EHLO
+        id S229550AbiI2Vzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 17:55:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbiI2Vy6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 17:54:58 -0400
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0450B4BA53
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 14:54:58 -0700 (PDT)
-Received: by mail-oo1-f53.google.com with SMTP id u19-20020a4a9e93000000b004757198549cso1037453ook.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 14:54:57 -0700 (PDT)
+        with ESMTP id S229449AbiI2Vzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 17:55:50 -0400
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF1DA122A5F;
+        Thu, 29 Sep 2022 14:55:49 -0700 (PDT)
+Received: by mail-oo1-f47.google.com with SMTP id k10-20020a4ad10a000000b004756ab911f8so1035346oor.2;
+        Thu, 29 Sep 2022 14:55:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=5Kyru7V54n+mm3GNMmsYoggBJulCetHhfXOSWSvF6ds=;
-        b=txp+EuSqk+bQA1csaox7un9XI3jhqPIiH7pO/ELmbVsD40qyLqu+twsG1OiuP91vBy
-         34d2ACWN61FAeuBI2n7t9WIarx0MeksA5Y2gCF2MCxdNW5c2CXLPdCQPwJxDh/odHNHX
-         +iVYFbpJDFFn7rcw0GkYWAS2xx51oALArUs4kyVGEssQgl108SWnuRJ1/7GJysgb99kX
-         ap0vkpYmhMOkopThkyuL+ff5/hQPqb1o+aokisD4e+scFv123VPGQ996LzCDo7Xb5gLl
-         6xVltS7kS2GHshgfemHRc13o4Nz38cm3Xy56qo8OBN5jAyXl1cAaPsZfWOM9NuHU+juU
-         baGA==
-X-Gm-Message-State: ACrzQf0k6/2Ui1rWdMOFAde+jykMdTMlMyggmFvgY3nVTalULBkhC9ll
-        Ief79jmJ9uTEvea7/VciJw==
-X-Google-Smtp-Source: AMsMyM4RsoCX7i8UL7T/BCVT9aXOd7mqR5mKU8ppEaLEDfC5SAPc4o0vtRmxjp5vFNCCdaZGPj8CXw==
-X-Received: by 2002:a05:6830:1d3:b0:65a:659:20c1 with SMTP id r19-20020a05683001d300b0065a065920c1mr2272500ota.113.1664488497211;
-        Thu, 29 Sep 2022 14:54:57 -0700 (PDT)
+        bh=Yjnh8HSMJ5NiBKFIpfMId4PU3/mtLaI+EqNPvdW0CQQ=;
+        b=fC/FLN4k1kT/aKcJFzbPRIh7ydfOIxoTlthKACNBxg/FYlzLEe0dxKofxtqQLCxquM
+         O6jlzV2z752sCpfnZyKrvHah1Dv5VxfT5Vrtjf8J9xcA4nTz0b2LOKCS3K2pcGTZ1aHe
+         /5b5QGsXO+5t2xQQRhK8tyKH0wGTz7fY3E4JpVBjF8VivPnpJ61jpYGfEErYOhgEJidp
+         SfLvErCRV122sTWa+XrLdBnlh9taYuv7CupVm9mDdJPA92uM4+93cMqxVWQa4IsitKy3
+         J8YtuV1k5yGK7YEYcUQde6fyCd3cGXHYHt79P7fV3Bs6RTyCGCYApU2d6lzxLJvpB6BK
+         /r+g==
+X-Gm-Message-State: ACrzQf2y2XWqq1OcIq3fQDWMC817+8nFCg41hHktN7oX3EsyZGrzpU04
+        CCLZfbMIDr5vZ6AAvdsptQ==
+X-Google-Smtp-Source: AMsMyM4M1XBF1QGETsNby8kbRTgmjV7LBFn+/hSYRl6r0HUxIY48AkJb/RN1U2lKLw9Cav3QZIW02A==
+X-Received: by 2002:a05:6830:10c4:b0:655:b8bc:3ffd with SMTP id z4-20020a05683010c400b00655b8bc3ffdmr2224176oto.59.1664488549196;
+        Thu, 29 Sep 2022 14:55:49 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h94-20020a9d2f67000000b0065932853f5esm188787otb.61.2022.09.29.14.54.55
+        by smtp.gmail.com with ESMTPSA id w19-20020a4aca13000000b0044afd53b102sm131391ooq.36.2022.09.29.14.55.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 14:54:56 -0700 (PDT)
-Received: (nullmailer pid 2772578 invoked by uid 1000);
-        Thu, 29 Sep 2022 21:54:55 -0000
-Date:   Thu, 29 Sep 2022 16:54:55 -0500
+        Thu, 29 Sep 2022 14:55:48 -0700 (PDT)
+Received: (nullmailer pid 2773651 invoked by uid 1000);
+        Thu, 29 Sep 2022 21:55:48 -0000
+Date:   Thu, 29 Sep 2022 16:55:48 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     devicetree@vger.kernel.org, daniel@ffwll.ch,
-        krzysztof.kozlowski+dt@linaro.org,
-        Chris Morgan <macromorgan@hotmail.com>, airlied@gmail.com,
-        sam@ravnborg.org, maccraft123mc@gmail.com,
-        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        thierry.reding@gmail.com
-Subject: Re: [PATCH V3 2/3] dt-bindings: display: panel: Add NewVision
- NV3051D bindings
-Message-ID: <166448849482.2772533.411373228159837365.robh@kernel.org>
-References: <20220926191428.4801-1-macroalpha82@gmail.com>
- <20220926191428.4801-3-macroalpha82@gmail.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-i2c@vger.kernel.org, Alain Volmat <alain.volmat@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Wolfram Sang <wsa@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Subject: Re: [PATCH] dt-bindings: i2c: st,stm32-i2c: Document interrupt-names
+ property
+Message-ID: <166448854740.2773578.2114251650376941195.robh@kernel.org>
+References: <20220926204631.381702-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220926191428.4801-3-macroalpha82@gmail.com>
+In-Reply-To: <20220926204631.381702-1-marex@denx.de>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -67,19 +67,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Sep 2022 14:14:27 -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Mon, 26 Sep 2022 22:46:31 +0200, Marek Vasut wrote:
+> Document interrupt-names property with "event" and "error" interrupt names.
+> This fixes dtbs_check warnings when building current Linux DTs:
 > 
-> Add documentation for the NewVision NV3051D panel bindings.
-> Note that for the two expected consumers of this panel binding
-> the underlying LCD model is unknown. Name "anbernic,rg353p-panel"
-> is used because the hardware itself is known as "anbernic,rg353p".
+> "
+> arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dtb: i2c@40015000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+> "
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  .../display/panel/newvision,nv3051d.yaml      | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Alain Volmat <alain.volmat@foss.st.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Wolfram Sang <wsa@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-i2c@vger.kernel.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+>  Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
