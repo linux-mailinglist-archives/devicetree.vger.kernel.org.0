@@ -2,139 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 423355EF880
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 17:18:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED7055EF912
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 17:35:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235807AbiI2PSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 11:18:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39506 "EHLO
+        id S235684AbiI2Pex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 11:34:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235605AbiI2PS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 11:18:29 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05A1A14F805;
-        Thu, 29 Sep 2022 08:18:28 -0700 (PDT)
+        with ESMTP id S235945AbiI2Pc7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 11:32:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38B20814CC;
+        Thu, 29 Sep 2022 08:32:12 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B6B64B824B7;
-        Thu, 29 Sep 2022 15:18:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1235C433C1;
-        Thu, 29 Sep 2022 15:18:24 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CAC04618EA;
+        Thu, 29 Sep 2022 15:32:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96E28C433B5;
+        Thu, 29 Sep 2022 15:32:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664464705;
-        bh=yGsaOq9kyzvgGji/8EN1OKXb4Lsu/CQzHqSAuKNquJU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=rlop4KQiRbV4FLf3OtbnMhWNrGyei2AYFTiwHCsZCysnV2HV0hIg09ZsBiP7eWedX
-         KJjhFhhMQNfaqSQBQqqp6+hKBJqmw9ejR3tlSdILRiof25BoPkfVO7p7qd2auPI0pk
-         kISeVPEr/gW+N6LZ/UmetUeWt3hddSlb9cmkmmDLtq+qGbDyALCCoIe8mCRLLHaJhS
-         KtOVzBnqpd5pP8wAxUaSQSQnrzLA2wHow/qMxqG8QOC4onC2VARuGrk9Q35QE0Y4l1
-         iRIRx5OvqAJB4swQr/dkxE4kJwwfu56CwLhSd3nLcHu54TDA9ZIL6vhc5rYDX0BgkT
-         NnE2UMgyMBwTg==
-Message-ID: <76b5195a-a11c-0c75-b3dd-36aa78c58397@kernel.org>
-Date:   Thu, 29 Sep 2022 10:18:23 -0500
+        s=k20201202; t=1664465531;
+        bh=deF2FcKisyN76jbp5jOiTyccjfcKeOLLcy3mOidROng=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nr4IAOAuWHll+BmxomIWuzsHt/jkkrEtWJnnvDlUqzR1/5hSqWBnIKiDslsAv0XTg
+         MPpQvmbegbz1BxfgXdMgGubMwF2JW6H1guzPM5cgk82Th1nZs4Wt/I4335EqZag2Nr
+         +huxVfGn1jfDy44wjtXvI7EZcKW9KE3D2BZDLxtBGm+LNUaK/qnIIQMsWWvP/moaj7
+         WJx3t+N6koyWC+3LTf0i41TtlXHsCMSF2ELjt6u9bnVT2EWN/2h7sJYJnnsHPt8q64
+         T4eRudc4EFB3oz4fQBdnmmMCcGxMm1G/akxvk0HkZaL4AnjugLfu6ATMfIjyB1d8qF
+         scqeQ33I+OOgw==
+Date:   Thu, 29 Sep 2022 16:32:04 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Hal Feng <hal.feng@linux.starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 05/30] soc: sifive: l2 cache: Convert to platform
+ driver
+Message-ID: <YzW6dEGsbSXKFtGu@spud>
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+ <20220929143225.17907-6-hal.feng@linux.starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCHv4 1/3] dt-bindings: mmc: synopsys-dw-mshc: document
- "altr,sysmgr-syscon"
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     jh80.chung@samsung.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220928165420.1212284-1-dinguyen@kernel.org>
- <CAPDyKFp5oPuOz9A=37pRTvq7JPtJRdduEgmU9g+eUm0K=dZjUg@mail.gmail.com>
- <20cbd2a2-752e-8537-4cbd-6665ef9afd69@kernel.org>
- <bd024e66-25bb-0463-b346-b110c1b46681@linaro.org>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <bd024e66-25bb-0463-b346-b110c1b46681@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-11.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220929143225.17907-6-hal.feng@linux.starfivetech.com>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 9/29/22 09:38, Krzysztof Kozlowski wrote:
-> On 29/09/2022 16:20, Dinh Nguyen wrote:
->>>
->>> So this change will not be backwards compatible with existing DTBs. I
->>> noticed that patch2 updates the DTS files for the arm64 platforms, but
->>> there seems to be some arm32 platforms too. Isn't this going to be a
->>> problem?
->>>
->>
->> The arm32 platforms makes the clk-phase adjustment through the clock
->> driver. There was a discussion when I originally submitted the support
->> for the arm32 platforms, and we landed on going through the clock driver
->> instead of using the MMC driver. The updates to the arm32 platforms can
->> be done after this patch series.
+On Thu, Sep 29, 2022 at 10:32:00PM +0800, Hal Feng wrote:
+> From: Emil Renner Berthing <kernel@esmil.dk>
 > 
-> How the update "can be done after"? Didn't you break all boards in- and
-> out-of-tree?
+> This converts the driver to use the builtin_platform_driver_probe macro
+> to initialize the driver. This macro ends up calling device_initcall as
+> was used previously, but also allocates a platform device which gives us
+> access to much nicer APIs such as platform_ioremap_resource,
+> platform_get_irq and dev_err_probe.
+
+You should resend the series ignoring this comment, but for v2, I think
+you should pay attention to following patchset:
+
+https://lore.kernel.org/linux-riscv/20220913061817.22564-1-zong.li@sifive.com/
+
+Hopefully by the time you get to a v2, that patchset will have been
+applied as 6.1 material..
+
+Thanks,
+Conor.
+
 > 
-
-I don't think so! At least, I don't see how, for the arm32 boards, here 
-are the dts entry for setting the clock-phase:
-
-sdmmc_clk: sdmmc_clk {
-	#clock-cells = <0>;
-	compatible = "altr,socfpga-gate-clk";
-	clocks = <&f2s_periph_ref_clk>, <&main_nand_sdmmc_clk>,<&per_nand_mmc_clk>;
-	clk-gate = <0xa0 8>;
-	clk-phase = <0 135>;   <-----
-};
-
-sdmmc_clk_divided: sdmmc_clk_divided {
-	#clock-cells = <0>;
-	compatible = "altr,socfpga-gate-clk";
-	clocks = <&sdmmc_clk>;
-	clk-gate = <0xa0 8>;
-	fixed-divider = <4>;
-	};
-
-...
-mmc: dwmmc0@ff704000 {
-	compatible = "altr,socfpga-dw-mshc";
-	reg = <0xff704000 0x1000>;
-	interrupts = <0 139 4>;
-	fifo-depth = <0x400>;
-	#address-cells = <1>;
-	#size-cells = <0>;
-	clocks = <&l4_mp_clk>, <&sdmmc_clk_divided>;
-	clock-names = "biu", "ciu";
-	resets = <&rst SDMMC_RESET>;
-	status = "disabled";
-	};
-
-
-So the setting for the clk-phase is done in the clock driver, 
-(drivers/clk/socfpga/clk-gate.c). This has been done many years now, 
-before the clk-phase-hs-sd concept was added to the sdmmc driver.
-
-When I originally submitted the patches for the ARM64 clock driver 
-support, I forgot to add the clk-phase support for the SD controller. 
-Now that I realized we needed it, the concept to set the clk-phase is in 
-the SD driver, thus I'm just adding the support for arm64.
-
-The arm32 support does not change in any way, so I don't see how it will 
-break it.
-
-I can update the arm32 support with the same function in patch3 after 
-this series. Because updating the arm32 will require me to remove the 
-support in the clock driver, thus, I want to break it out.
-
-Dinh
-
-
-
-
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
+> ---
+>  drivers/soc/sifive/sifive_l2_cache.c | 79 ++++++++++++++--------------
+>  1 file changed, 40 insertions(+), 39 deletions(-)
+> 
+> diff --git a/drivers/soc/sifive/sifive_l2_cache.c b/drivers/soc/sifive/sifive_l2_cache.c
+> index 59640a1d0b28..010d612f7420 100644
+> --- a/drivers/soc/sifive/sifive_l2_cache.c
+> +++ b/drivers/soc/sifive/sifive_l2_cache.c
+> @@ -7,9 +7,9 @@
+>   */
+>  #include <linux/debugfs.h>
+>  #include <linux/interrupt.h>
+> -#include <linux/of_irq.h>
+> -#include <linux/of_address.h>
+> -#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+>  #include <asm/cacheinfo.h>
+>  #include <soc/sifive/sifive_l2_cache.h>
+>  
+> @@ -96,12 +96,6 @@ static void l2_config_read(void)
+>  	pr_info("L2CACHE: Index of the largest way enabled: %d\n", regval);
+>  }
+>  
+> -static const struct of_device_id sifive_l2_ids[] = {
+> -	{ .compatible = "sifive,fu540-c000-ccache" },
+> -	{ .compatible = "sifive,fu740-c000-ccache" },
+> -	{ /* end of table */ },
+> -};
+> -
+>  static ATOMIC_NOTIFIER_HEAD(l2_err_chain);
+>  
+>  int register_sifive_l2_error_notifier(struct notifier_block *nb)
+> @@ -192,36 +186,29 @@ static irqreturn_t l2_int_handler(int irq, void *device)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static int __init sifive_l2_init(void)
+> +static int __init sifive_l2_probe(struct platform_device *pdev)
+>  {
+> -	struct device_node *np;
+> -	struct resource res;
+> -	int i, rc, intr_num;
+> -
+> -	np = of_find_matching_node(NULL, sifive_l2_ids);
+> -	if (!np)
+> -		return -ENODEV;
+> -
+> -	if (of_address_to_resource(np, 0, &res))
+> -		return -ENODEV;
+> -
+> -	l2_base = ioremap(res.start, resource_size(&res));
+> -	if (!l2_base)
+> -		return -ENOMEM;
+> -
+> -	intr_num = of_property_count_u32_elems(np, "interrupts");
+> -	if (!intr_num) {
+> -		pr_err("L2CACHE: no interrupts property\n");
+> -		return -ENODEV;
+> -	}
+> -
+> -	for (i = 0; i < intr_num; i++) {
+> -		g_irq[i] = irq_of_parse_and_map(np, i);
+> -		rc = request_irq(g_irq[i], l2_int_handler, 0, "l2_ecc", NULL);
+> -		if (rc) {
+> -			pr_err("L2CACHE: Could not request IRQ %d\n", g_irq[i]);
+> -			return rc;
+> -		}
+> +	struct device *dev = &pdev->dev;
+> +	int nirqs;
+> +	int ret;
+> +	int i;
+> +
+> +	l2_base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(l2_base))
+> +		return PTR_ERR(l2_base);
+> +
+> +	nirqs = platform_irq_count(pdev);
+> +	if (nirqs <= 0)
+> +		return dev_err_probe(dev, -ENODEV, "no interrupts\n");
+> +
+> +	for (i = 0; i < nirqs; i++) {
+> +		g_irq[i] = platform_get_irq(pdev, i);
+> +		if (g_irq[i] < 0)
+> +			return g_irq[i];
+> +
+> +		ret = devm_request_irq(dev, g_irq[i], l2_int_handler, 0, pdev->name, NULL);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "Could not request IRQ %d\n", g_irq[i]);
+>  	}
+>  
+>  	l2_config_read();
+> @@ -234,4 +221,18 @@ static int __init sifive_l2_init(void)
+>  #endif
+>  	return 0;
+>  }
+> -device_initcall(sifive_l2_init);
+> +
+> +static const struct of_device_id sifive_l2_match[] = {
+> +	{ .compatible = "sifive,fu540-c000-ccache" },
+> +	{ .compatible = "sifive,fu740-c000-ccache" },
+> +	{ /* sentinel */ }
+> +};
+> +
+> +static struct platform_driver sifive_l2_driver = {
+> +	.driver = {
+> +		.name = "sifive_l2_cache",
+> +		.of_match_table = sifive_l2_match,
+> +		.suppress_bind_attrs = true,
+> +	},
+> +};
+> +builtin_platform_driver_probe(sifive_l2_driver, sifive_l2_probe);
+> -- 
+> 2.17.1
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
