@@ -2,77 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A3F5F0005
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 00:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 266525F0008
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 00:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbiI2WWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 18:22:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38126 "EHLO
+        id S229437AbiI2WWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 18:22:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiI2WWD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 18:22:03 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 265E012BD90;
-        Thu, 29 Sep 2022 15:22:02 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id g130so2994086oia.13;
-        Thu, 29 Sep 2022 15:22:02 -0700 (PDT)
+        with ESMTP id S229489AbiI2WWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 18:22:33 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3728612BD90;
+        Thu, 29 Sep 2022 15:22:33 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-131f1494dc2so556533fac.7;
+        Thu, 29 Sep 2022 15:22:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=nwi21MnQaHdJlPOmY1nF+KNwtNvxXho+DAnFATZDOD4=;
-        b=Xehx9YGEDTMH4HrSnMXMf4xRTjKBl5qqraHg+dXQ5+oU9ZKlkob4B44hgZajOaE13+
-         FgDBTeOS4+QxpXcwLz1Wx+ksv8KdXCaycysgG5G1pTL3dvyRgM5x3soCJqihQ3nUd5k4
-         spnBO/USUHGEbpxhHkZEr9SNPvgw+ciW8d1BG/S/I8HNdWUVJI/zlOu7E5ZAQ/F+4uZx
-         Qz7O798wETbnDcph23j55Iv3P9x3B6DoCM6zXcFyxBJ592rYuUjonag48PmiRhuLVzcA
-         N9v4HN0xAqpuuoCHDo4+htuU/YLXmXE9sXq0KR9nfkAPO3Giible1IVXPt6YQWhcMHNj
-         xXAw==
-X-Gm-Message-State: ACrzQf28Z0amfJUR9MKOVKPSr/x5ZszEb5DZzQBMo1prhTKqXnRF342d
-        K19RId3zCpIOeD1xcLBhxw==
-X-Google-Smtp-Source: AMsMyM6ttsnbqtjCf/yyPwWQ3A2P5X4CWOUFq8T28o5HSGv5OQpUDuRKiY8sdc69vpKUuop47sDOlA==
-X-Received: by 2002:a05:6808:1b2a:b0:34f:f989:99c1 with SMTP id bx42-20020a0568081b2a00b0034ff98999c1mr7786648oib.173.1664490121352;
-        Thu, 29 Sep 2022 15:22:01 -0700 (PDT)
+        bh=ahVPXxQAVfA26dQ9CQePI8B2LqZP5xo7qpGwH3+hchE=;
+        b=rDoUEqBBrXkE6Qdf/oLP/EohR3nTI/uu4Ae9AsNxoSI7TVOmALqps4uiakvPFcfNIZ
+         53s/ulAzlDw/6jHIge+O5xjezQfhPK1WyNS/72FlncDwLHMiw5KQm/Y97qZQCGMzbJ99
+         nefJvcCi+UIlUWxjFTqZXSkL1CF5BGS4CwNXkmrc+mv3w1uetKPDmCWg39pwPUXwHwm8
+         HC65n9YngR8cyR4kRwChETxIHA+SYjfcTi4UjMnc1I4lt1rbEvMEhoEotVIWbwWiSkDL
+         EkLtpWYG9AV/oPhmLHnrlsJ3cxCWxBc6hKamo4ovvEjNHNfzbPJ3JpcxOa6nGtS7TCS1
+         hr9g==
+X-Gm-Message-State: ACrzQf3x9aDQglvKFEFRSo3hwpqvUKFehEevPHeFiWJhjb8fm4hyxKT8
+        IU3kNQ+1dSgniy3zR62IiQ==
+X-Google-Smtp-Source: AMsMyM7Tk757Ax+icdPGty0geMIIxcUYEzJsyLCvhhGeeDR8An5xEJGKEz0Qou16YLLsyyWqzFchSg==
+X-Received: by 2002:a05:6870:d6a6:b0:127:ef52:75db with SMTP id z38-20020a056870d6a600b00127ef5275dbmr10212704oap.232.1664490152456;
+        Thu, 29 Sep 2022 15:22:32 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m5-20020a9d7ac5000000b00655c6b2655esm203513otn.68.2022.09.29.15.22.00
+        by smtp.gmail.com with ESMTPSA id r16-20020a056870439000b00127ba61535fsm263979oah.15.2022.09.29.15.22.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 15:22:00 -0700 (PDT)
-Received: (nullmailer pid 2870767 invoked by uid 1000);
-        Thu, 29 Sep 2022 22:21:59 -0000
-Date:   Thu, 29 Sep 2022 17:21:59 -0500
+        Thu, 29 Sep 2022 15:22:32 -0700 (PDT)
+Received: (nullmailer pid 2871452 invoked by uid 1000);
+        Thu, 29 Sep 2022 22:22:31 -0000
+Date:   Thu, 29 Sep 2022 17:22:31 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Bert Vermeulen <bert@biot.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, John Crispin <john@phrozen.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Benjamin Larsson <benjamin.larsson@iopsys.eu>,
-        linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: airoha: Add documentation for
- Airoha SPI controller
-Message-ID: <166449011940.2870705.14660966610426590404.robh@kernel.org>
-References: <20220927113229.1214224-1-bert@biot.com>
- <20220927113229.1214224-2-bert@biot.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-clk@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        linux-arm-msm@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: qcom,gcc-ipq8064: add pll4 to
+ used clocks
+Message-ID: <166449015068.2871387.15544318962714747375.robh@kernel.org>
+References: <20220927113826.246241-1-dmitry.baryshkov@linaro.org>
+ <20220927113826.246241-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220927113229.1214224-2-bert@biot.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220927113826.246241-2-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Sep 2022 13:32:27 +0200, Bert Vermeulen wrote:
-> Create documentation for accessing the Airoha EN7523 SPI controller.
+On Tue, 27 Sep 2022 14:38:24 +0300, Dmitry Baryshkov wrote:
+> On IPQ8064 (and related platforms) the GCC uses PLL4 clock provided by
+> the LCC clock controller. Mention this in the bindings.
 > 
-> Signed-off-by: Bert Vermeulen <bert@biot.com>
+> To remain compatible with older bindings, make it optional, as the
+> driver will fallback to getting the `pll4' clock from the system clocks
+> list.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../bindings/spi/airoha,en7523-spi.yaml       | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/airoha,en7523-spi.yaml
+>  .../devicetree/bindings/clock/qcom,gcc-ipq8064.yaml      | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
