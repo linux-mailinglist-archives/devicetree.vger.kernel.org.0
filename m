@@ -2,172 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 508B15EF501
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:13:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD8385EF512
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234300AbiI2MNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 08:13:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56762 "EHLO
+        id S235172AbiI2MRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 08:17:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231199AbiI2MM7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:12:59 -0400
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2046.outbound.protection.outlook.com [40.107.102.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C64F0B6001;
-        Thu, 29 Sep 2022 05:12:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PZjUktVCl7MXpARXB9gC9QuIKjqh4oHt4PbYaDRmXjHrLiO7iLLwnv1C4ZdidpmKHyktCTcJbCmX11FHTOK8QBgP71RjF9FIz9lT6T6bgFqc+eypal5i60sRREvN5GXwk/xPo1rr/x4OgdQh1f/5B4IMZoWjmxFQglldOHFe3VcQcfFK4AHCx4M5MRNsEZNYytK0Xfcfj/kOIqCoPjDB+rwC/V7/7D5CSlrTputv+NAOKyIT0OwG6rXWSXAB+xjT4qKwHIpHmndWGVA1tUdx8+Dj8pcco6U6jMVEsEX8Av7lrOAwS8bGOrtuOP9fBCmwLUvnCVYDBkJ9bRc8S1XeAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l0xgSxG5xRelKdbSWSnugMAMNWZQzmhPSoALGr9R3Yg=;
- b=iFGIXNLVy+FtjgJWia6xy9wplgoc1lQqnqER+ZmdXQFg1kTJ1GUxcSivOTRIv/jnGlKJZkGV8sHZBmH82amHtwnETB32KAbK+Zj3dn7zPIEOgUjKvCKUExrDAGcVE/B5YnPiiyfdM51RYQtQ8mNvnmRjYatfnT2UsYdvLbyrFLq8YkEJ8JdqqJzqWctBeOazUdHjfS17Ok3u0eo4JsRk+61eZMy98MT+n5ptkiAsQyT9kfyH+oTYquteD2ro/HfJ58JFbZnj9x9LTZFuILxXrBFjJLyl5c0PL3t3Swo+Zhkek9WaWo0lBbvJ/muN5Kj/Jz0Ohachy/omFTBcw4+8kA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=davemloft.net smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l0xgSxG5xRelKdbSWSnugMAMNWZQzmhPSoALGr9R3Yg=;
- b=jVPOVu7gaAfhFac1qDkpfd1mnyOIvM2GB1iKxQDqrKCZRQwcvNkhliDct6tD3dk40bVHSPBZ0RQRwQ+A7ZhLnzsWLWFXmwr7k+OAukLJLmZqE1jjn0g/nhXdeSkpZwHR8EoyWtIjF8e/DdlnA/I2dS+W+rUpsFtlBb35nc3dTeE=
-Received: from DM6PR08CA0007.namprd08.prod.outlook.com (2603:10b6:5:80::20) by
- CH0PR12MB5387.namprd12.prod.outlook.com (2603:10b6:610:d6::17) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5676.17; Thu, 29 Sep 2022 12:12:55 +0000
-Received: from DM6NAM11FT110.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:80:cafe::f8) by DM6PR08CA0007.outlook.office365.com
- (2603:10b6:5:80::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.24 via Frontend
- Transport; Thu, 29 Sep 2022 12:12:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT110.mail.protection.outlook.com (10.13.173.205) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5676.17 via Frontend Transport; Thu, 29 Sep 2022 12:12:55 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 29 Sep
- 2022 07:12:54 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 29 Sep
- 2022 07:12:54 -0500
-Received: from xhdpranavis40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Thu, 29 Sep 2022 07:12:50 -0500
-From:   Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
-To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <yangbo.lu@nxp.com>, <radhey.shyam.pandey@amd.com>,
-        <anirudha.sarangi@amd.com>, <harini.katakam@amd.com>,
-        <sarath.babu.naidu.gaddam@amd.com>
-Subject: [RFC PATCH] dt-bindings: net: ethernet-controller: Add ptimer_handle
-Date:   Thu, 29 Sep 2022 06:12:49 -0600
-Message-ID: <20220929121249.18504-1-sarath.babu.naidu.gaddam@amd.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S233332AbiI2MRN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:17:13 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15E912969D;
+        Thu, 29 Sep 2022 05:17:12 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28TC6a0N011217;
+        Thu, 29 Sep 2022 12:16:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=qcppdkim1;
+ bh=Ig3jvnmNG9tfXnK/SbLfElPIPtLnqMM2dqS2NOO1tDQ=;
+ b=lwgvxAA6Q92JgvBXmWQsVlaAsf5ThMP6KbguE5i4ChRdpjRV13g88YqOH19x8OTIQB8n
+ qa1u8HZYfD/f6u3ZwquzlDxyuWtpH/64sHfduoTqfeQ39YqEi/0N6QfSEco6JejjRtc3
+ Fq4d2kf8pfi0jKg+gqwlrgt6Xhc9/xt1D2VvJP2cYwNL5OtnNuoXHcmiFzaY/lzlctVq
+ fIGxFl889yv2q8+NlQVvjB6jzS1JUtwPAKAtnQ/m6Hsqwn9pL3ziNuAfw4yeopei5RKa
+ J6Woa+hV9+gbYXg6izvD7woaGNM3os2AVRqQzuaRqY1xNyCwcHN9ZT+rFyMVNyfNv6Kh cw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jvbf0maes-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 29 Sep 2022 12:16:40 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28TCGdBC029902
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 29 Sep 2022 12:16:39 GMT
+Received: from fenglinw2-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Thu, 29 Sep 2022 05:16:36 -0700
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fenglin Wu <quic_fenglinw@quicinc.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <collinsd@codeaurora.org>, <subbaram@codeaurora.org>
+Subject: [PATCH v2 2/2] dt-bindings: add bindings for QCOM flash LED
+Date:   Thu, 29 Sep 2022 20:15:44 +0800
+Message-ID: <20220929121544.1064279-3-quic_fenglinw@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220929121544.1064279-1-quic_fenglinw@quicinc.com>
+References: <20220929121544.1064279-1-quic_fenglinw@quicinc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT110:EE_|CH0PR12MB5387:EE_
-X-MS-Office365-Filtering-Correlation-Id: f3127b5d-6987-4ca3-95b4-08daa213f0c8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YoI+jDeULwJz2zVc1haodNXFV8QoxvZcfRaU3YYP13Qq9yNeoWNCvaPN4Zp6BzelTmt1kB4TO0DfRYqHA5cYCOsBdAF7u++Yjp34WsD3Sko+ghHcfeT0R7/HFBZ4lCNom3QaTndY66eYE5thEnui6jrLTavO/yEHwhTT1q/Tpi6eTOmNLJsh3Hb5E4P66zW+DhJYaLjWe96WlwLrkDofzcEsI+ThbfJz9kUTDXS6vD7gNzrV/kGk4un31jYVx1e8K9bByTxzGD74jJCD+4mrXAd/QbzWTcmOaDMNHNALYV2QobnHFjxoCayiU1hmbLaNnCK4L45t+grHrn7OrBITwP/WXV6yz24vSCHN/LLveeWyEVAS+rQWCZjbMBbtWZvQU9JhYmQXr14VF7VJe/6lfkRoCzLFs4sRCYVJPk1BPgt3HelxhfBsG+EgYzNG1jNgURv0pp2YvUwegFdCAryx3r9Vu5+jmC9CftyqTxE+Mfad5TxqeWaVDsdLs4lPK53hH/zQeiX3NWq/agxNCdN2UqJAcu4qpCESAs7GnyCLGl1FgINyxE0hJZdhE4UJWhOc9YkPcg/G6soIHCIJlV0ZcfQjJC2i9uJF33z2ACSuyskxYo3WXbAdgB4AvMU9DUVwYDAB/Fgjs4dAbHu6lggH1Fa5s7m8QDuFRR5fvkvU8LTZsxALjs/E/aWmhqEqfbQCTtHtJHeEE3bbWuZR8p3emE6Pbn8O87yduNya8H/LP9Y+/VCRiuR9SUMK2KsEID6rN2v+MkAgT8uH3EtYhBizL/zUtulqiIR1lUumjQ0s5utpHCw/V/sxLDt3THLPwFUadqrxw8+Gt33CMZvAhVuLcQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(136003)(396003)(39860400002)(451199015)(46966006)(36840700001)(40470700004)(2906002)(36860700001)(966005)(103116003)(54906003)(36756003)(83380400001)(478600001)(82740400003)(316002)(81166007)(8676002)(70586007)(40460700003)(4326008)(70206006)(356005)(41300700001)(82310400005)(86362001)(40480700001)(8936002)(110136005)(7416002)(5660300002)(66899015)(2616005)(186003)(1076003)(426003)(47076005)(336012)(26005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2022 12:12:55.2539
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3127b5d-6987-4ca3-95b4-08daa213f0c8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT110.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5387
-X-Spam-Status: No, score=0.9 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: JISlVWSgcyyNyMVBp3EUsS3Ezr6JXz18
+X-Proofpoint-ORIG-GUID: JISlVWSgcyyNyMVBp3EUsS3Ezr6JXz18
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-29_06,2022-09-29_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ mlxscore=0 priorityscore=1501 phishscore=0 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=999 adultscore=0 clxscore=1015 bulkscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2209290076
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is currently no standard property to pass PTP device index
-information to ethernet driver when they are independent.
+Add binding document for flash LED module inside Qualcomm Technologies,
+Inc. PMICs.
 
-ptimer_handle property will contain phandle to PTP timer node.
-
-Freescale driver currently has this implementation but it will be
-good to agree on a generic (optional) property name to link to PTP
-phandle to Ethernet node. In future or any current ethernet driver
-wants to use this method of reading the PHC index,they can simply use
-this generic name and point their own PTP timer node, instead of
-creating seperate property names in each ethernet driver DT node.
-
-axiethernet driver uses this method when PTP support is integrated.
-
-Example:
-	fman0: fman@1a00000 {
-		ptimer-handle = <&ptp_timer0>;
-	}
-
-	ptp_timer0: ptp-timer@1afe000 {
-		compatible = "fsl,fman-ptp-timer";
-		reg = <0x0 0x1afe000 0x0 0x1000>;
-	}
-
-Signed-off-by: Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
+Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
 ---
-We want binding to be reviewed/accepted and then make changes in freescale
-binding documentation to use this generic binding.
+ .../bindings/leds/qcom,spmi-flash-led.yaml    | 120 ++++++++++++++++++
+ 1 file changed, 120 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
 
-DT information:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-tree/arch/arm64/boot/dts/freescale/qoriq-fman3-0.dtsi#n23
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-tree/Documentation/devicetree/bindings/net/fsl-fman.txt#n320
-
-Freescale driver:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-tree/drivers/net/ethernet/freescale/dpaa/dpaa_ethtool.c#n467
-
-Changes in V2:
-1)Added links to reference code snippets.
-2)Updated commit msg.
-
-Comments, suggestions and thoughts to have a common name are very welcome...!
----
- .../devicetree/bindings/net/ethernet-controller.yaml         | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index 4b3c590fcebf..7e726d620c6a 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -155,6 +155,11 @@ properties:
-       - auto
-       - in-band-status
- 
-+  ptimer_handle:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Specifies a reference to a node representing a IEEE1588 timer.
+diff --git a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+new file mode 100644
+index 000000000000..3ab1113a7b28
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+@@ -0,0 +1,120 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/qcom,spmi-flash-led.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-   fixed-link:
-     oneOf:
-       - $ref: /schemas/types.yaml#/definitions/uint32-array
++title: Flash LED device inside Qualcomm Technologies, Inc. PMICs
++
++maintainers:
++  - Fenglin Wu <quic_fenglinw@quicinc.com>
++
++description: |
++  Flash LED controller is present inside some Qualcomm Technologies, Inc. PMICs.
++  The flash LED module can have different number of LED channels supported
++  e.g. 3 or 4. There are some different registers between them but they can
++  both support maximum current up to 1.5 A per channel and they can also support
++  ganging 2 channels together to supply maximum current up to 2 A. The current
++  will be split symmetrically on each channel and they will be enabled and
++  disabled at the same time.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - qcom,pm8150c-flash-led
++          - qcom,pm8150l-flash-led
++          - qcom,pm8350c-flash-led
++      - const: qcom,spmi-flash-led
++  reg:
++    description: address offset of the flash LED controller
++    maxItems: 1
++
++patternProperties:
++  "^led[0-3]$":
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++    description: |
++      Represents the physical LED components which are connected to the
++      flash LED channels' output.
++
++    properties:
++      led-sources:
++        description: |
++          The HW indices of the flash LED channels that connect to the
++          physical LED
++        allOf:
++          - minItems: 1
++            maxItems: 2
++            items:
++              enum: [1, 2, 3, 4]
++
++      led-max-microamp:
++        description: |
++          The maximum current value when LED is not operating in flash mode (i.e. torch mode)
++          Valid values when an LED is connected to one flash LED channel:
++            5000 - 500000, step by 5000
++          Valid values when an LED is connected to two flash LED channels:
++            10000 - 1000000, step by 10000
++        minimum: 5000
++        maximum: 1000000
++
++      flash-max-microamp:
++        description: |
++          The maximum current value when LED is operating in flash mode.
++          Valid values when an LED is connected to one flash LED channel:
++            12500 - 1500000, step by 12500
++          Valid values when an LED is connected to two flash LED channels:
++            25000 - 2000000, step by 12500
++        minimum: 12500
++        maximum: 2000000
++
++      flash-max-timeout-us:
++        description: |
++          The maximum timeout value when LED is operating in flash mode.
++          Valid values: 10000 - 1280000, step by 10000
++        minimum: 10000
++        maximum: 1280000
++
++    required:
++      - led-sources
++      - led-max-microamp
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++    spmi_bus {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        led-controller@ee00 {
++            compatible = "qcom,pm8350c-flash-led", "qcom,spmi-flash-led";
++            reg = <0xee00>;
++
++            led0 {
++                function = LED_FUNCTION_FLASH;
++                color = <LED_COLOR_ID_WHITE>;
++                led-sources = <1>, <4>;
++                led-max-microamp = <300000>;
++                flash-max-microamp = <2000000>;
++                flash-max-timeout-us = <1280000>;
++                function-enumerator = <0>;
++            };
++
++            led1 {
++                function = LED_FUNCTION_FLASH;
++                color = <LED_COLOR_ID_YELLOW>;
++                led-sources = <2>, <3>;
++                led-max-microamp = <300000>;
++                flash-max-microamp = <2000000>;
++                flash-max-timeout-us = <1280000>;
++                function-enumerator = <1>;
++            };
++        };
++    };
 -- 
 2.25.1
 
