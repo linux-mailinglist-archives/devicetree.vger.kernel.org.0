@@ -2,116 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6998F5EEF8B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4531B5EEF30
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:37:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235368AbiI2Hqe convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 29 Sep 2022 03:46:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39886 "EHLO
+        id S235198AbiI2HhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 03:37:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235310AbiI2HqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:46:23 -0400
-X-Greylist: delayed 561 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 29 Sep 2022 00:46:22 PDT
-Received: from relay.hostedemail.com (smtprelay0013.hostedemail.com [216.40.44.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03C13EF090;
-        Thu, 29 Sep 2022 00:46:21 -0700 (PDT)
-Received: from omf07.hostedemail.com (a10.router.float.18 [10.200.18.1])
-        by unirelay01.hostedemail.com (Postfix) with ESMTP id E3A941C60E3;
-        Thu, 29 Sep 2022 07:36:57 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf07.hostedemail.com (Postfix) with ESMTPA id E57402002C;
-        Thu, 29 Sep 2022 07:36:44 +0000 (UTC)
-Message-ID: <3c02aad6d8bde70964b403a3cb8004de969becc6.camel@perches.com>
-Subject: Re: [PATCH v4 10/14] gunyah: sysfs: Add node to describe supported
- features
-From:   Joe Perches <joe@perches.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Thu, 29 Sep 2022 00:36:50 -0700
-In-Reply-To: <20220928195633.2348848-11-quic_eberman@quicinc.com>
-References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
-         <20220928195633.2348848-11-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+        with ESMTP id S235284AbiI2HhI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:37:08 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C6913941A
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:37:07 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id u18so973924lfo.8
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:37:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=C6HAcFRlUdRVNTmd1+LZDEckWRqIi/Jw90W8yfGFuaM=;
+        b=qrePgKY/Y+Vm7/UZSq1RNCj98EF+ZGGgs4eAocWnvNy3OL+hbXXhm7/hlNBWZtmh+w
+         HHpePbG503tmykGObV5MPrA42fKiouTwqXxUHeY6180cJ+hwMma60u7Mr31ZuIXyZjGk
+         CB9Ko/qcwaZ/9bEzlE5LXclzRuAQ6M7MmVNiSzr1s1P7jPgaWG/x39v200VI0dx3K5Uh
+         QgCNllL/mAQ2nJttbLYW4lxDr/Ce783BOmFE/L4c+jovVnoqxtcBGniMStFJUiG3+JhX
+         b3+WuUBiZHWhsY0POKuA/irYlQuOJ0S2R9kBBDhWDQIDWbm887eHhwRtrapD53VfNVdN
+         mzxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=C6HAcFRlUdRVNTmd1+LZDEckWRqIi/Jw90W8yfGFuaM=;
+        b=ZqaHoim5sLCDoZMWcWejOOBfDDmA98uxx3pQFAlZxdpvF/SgZXdjGVenhJuxMuq1gG
+         9WhMVlQTX2s19AXNWPpG9X8/2U//Lkld43n7SPggXH5s7cO5rEHaVT2HHOLtxwNIUrVg
+         5P7PH8EucMiLkQnLuT61B80kOctDlO9VniBrw9aoRHOk+u89k9vRtTM09mW42F73dtFv
+         laeAdvVccZC1+7+sOxV9wI1zopdbMKIwXaWkj7LvXM0rD7XXBa43lq8t9DTd5EgXXUIv
+         MK0kWcnjRXFynx6n6H3kBYTJa1bM1ipZVD3SHug3hBluCXquqkHm8aJUQbwb3YqqqykS
+         hh9g==
+X-Gm-Message-State: ACrzQf1OI7IVcLp+ezIUAIzzQ12l60069mmNi0rodEdfCQDXqnThBJ5G
+        T0bOoz26bOtekUp68txLvqvMPQ==
+X-Google-Smtp-Source: AMsMyM6auO7zd9V9y6sVWvoa5lOsJCgLzgjIBXw3FHxLXWyMNv86MEkFtRVwKPJbJmzPknh6BFI9cQ==
+X-Received: by 2002:a05:6512:511:b0:4a1:d9f3:ea10 with SMTP id o17-20020a056512051100b004a1d9f3ea10mr863530lfb.555.1664437025680;
+        Thu, 29 Sep 2022 00:37:05 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id 10-20020ac25f0a000000b004979e1ff641sm704286lfq.115.2022.09.29.00.37.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Sep 2022 00:37:05 -0700 (PDT)
+Message-ID: <65ef5f40-f8bd-045c-a9d7-6a74ceacc8e2@linaro.org>
+Date:   Thu, 29 Sep 2022 09:37:04 +0200
 MIME-Version: 1.0
-X-Stat-Signature: yfqwchey9yq5eu51co5zpzk7inon4u6t
-X-Rspamd-Server: rspamout05
-X-Rspamd-Queue-Id: E57402002C
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_NONE,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
-        version=3.4.6
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX1/SbFmnkC0u2VswP4hwzbj5pLQd0DpRqLM=
-X-HE-Tag: 1664437004-361455
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v2] dt-bindings: media: st,stmipid02: Convert the text
+ bindings to YAML
+Content-Language: en-US
+To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylvain Petinot <sylvain.petinot@foss.st.com>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20220927184657.291714-1-marex@denx.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220927184657.291714-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-09-28 at 12:56 -0700, Elliot Berman wrote:
-> Add a sysfs node to list the features that the Gunyah hypervisor and
-> Linux supports. For now, Linux support cspace (capability IDs) and
-> message queues, so only report those..
-[]
-> diff --git a/drivers/virt/gunyah/sysfs.c b/drivers/virt/gunyah/sysfs.c
-[]
-> @@ -25,9 +25,24 @@ static ssize_t variant_show(struct kobject *kobj, struct kobj_attribute *attr, c
->  }
->  static struct kobj_attribute variant_attr = __ATTR_RO(variant);
->  
-> +static ssize_t features_show(struct kobject *kobj, struct kobj_attribute *attr, char *buffer)
-> +{
-> +	int len = 0;
+On 27/09/2022 20:46, Marek Vasut wrote:
+> Convert the text STMIPID02 DT bindings to YAML DT format to permit
+> validation of DTs using this I2C CSI-2 to CPI bridge.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+
+Thank you for your patch. There is something to discuss/improve.
+
+> +properties:
+> +  compatible:
+> +    const: st,st-mipid02
 > +
-> +	if (GH_IDENTIFY_PARTITION_CSPACE(gunyah_api.flags))
-> +		len += sysfs_emit_at(buffer, len, "cspace ");
-> +	if (GH_IDENTIFY_MSGQUEUE(gunyah_api.flags))
-> +		len += sysfs_emit_at(buffer, len, "message-queue ");
+> +  reg:
+> +    maxItems: 1
 > +
-> +	len += sysfs_emit_at(buffer, len, "\n");
-> +	return len;
-> +}
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description:
+> +      Reference to the xclk input clock.
 
-It's generally nicer to avoid unnecessary output spaces.
+This usually goes to "clocks", but on the other hand it does not bring
+any value (xclk is obvious from clock-names), so I propose to skip
+entire description.
 
-Perhaps:
+> +    items:
+> +      - const: xclk
+> +
+> +  VDDE-supply:
+> +    description:
+> +      Sensor digital IO supply. Must be 1.8 volts.
+> +
+> +  VDDIN-supply:
+> +    description:
+> +      Sensor internal regulator supply. Must be 1.8 volts.
+> +
+> +  reset-gpios:
+> +    description:
+> +      Reference to the GPIO connected to the xsdn pin, if any.
+> +      This is an active low signal to the mipid02.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI-2 first input port
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                description:
+> +                  Single-lane operation shall be <1> or <2> .
+> +                  Dual-lane operation shall be <1 2> or <2 1> .
+> +                minItems: 1
+> +                maxItems: 2
 
-{
-	int len = 0;
+Blank line
 
-	if (GH_IDENTIFY_PARTITION_CSPACE(gunyah_api.flags))
-		len += sysfs_emit_at(buffer, len, "cspace");
-	if (GH_IDENTIFY_MSGQUEUE(gunyah_api.flags)) {
-		if (len)
-			len += sysfs_emit_at(buffer, len, " ");
-		len += sysfs_emit_at(buffer, len, "message-queue");
-	}
+> +              lane-polarity:
 
-	len += sysfs_emit_at(buffer, len, "\n");
+The property is "lane-polarities"
 
-	return len;
-}
+> +                description:
+> +                  Any lane can be inverted or not.
+> +                minItems: 1
+> +                maxItems: 2
+> +
+> +            required:
+> +              - data-lanes
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI-2 second input port
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                description:
+> +                  Single-lane operation shall be <1> or <2> .
+> +                maxItems: 1
+
+Blank line
+
+> +              lane-polarity:
+
+lane-polarities
+
+> +                description:
+> +                  Any lane can be inverted or not.
+> +                maxItems: 1
+> +
+> +            required:
+> +              - data-lanes
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: Output port
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-width:
+> +                enum: [6, 7, 8, 10, 12]
+
+Blank line
+
+> +              hsync-active: true
+> +              vsync-active: true
+
+You do not need these two - they come from video-interfaces.yaml
+
+
+> +
+> +            required:
+> +              - bus-width
+> +
+> +    anyOf:
+> +      - required:
+> +          - port@0
+> +      - required:
+> +          - port@1
+> +
+> +    required:
+> +      - port@2
+> +
+
+Best regards,
+Krzysztof
 
