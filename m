@@ -2,78 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2352A5EFFF2
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 00:15:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DC425F0002
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 00:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbiI2WPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 18:15:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54492 "EHLO
+        id S229760AbiI2WVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 18:21:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbiI2WPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 18:15:38 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3618AF50AF;
-        Thu, 29 Sep 2022 15:15:37 -0700 (PDT)
-Received: by mail-oi1-f181.google.com with SMTP id s125so3032069oie.4;
-        Thu, 29 Sep 2022 15:15:37 -0700 (PDT)
+        with ESMTP id S229666AbiI2WVD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 18:21:03 -0400
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7096128A2B;
+        Thu, 29 Sep 2022 15:21:01 -0700 (PDT)
+Received: by mail-oo1-f41.google.com with SMTP id z9-20020a4a4909000000b0047651b95fbdso1069792ooa.5;
+        Thu, 29 Sep 2022 15:21:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=4BfKtAN74BiuLXzY75ghMuhJ1sBHsY4RPott4OBX9j8=;
-        b=Mm19t192ciYXmvGNJr/bx1kAXjYqPK65s9InjF2an94OQls3osMlRU2eB6BZQzUO5y
-         HAyBxQizcSxNntKAkGS3Sv8C8tyomDpp5z6PQGgCJHYN0wwYGeF0JQuXqvIYpiv20Y26
-         TOylEbQujFiCBvcxtxFTSWB0+bw33FyhfuSKpAdZKhPo/TqyJu60qA+wb/vg6gqCPGnf
-         P+mVh7o4/mcZULeG2/BLLeNxg86J5OiHQtbdfckDXsaQ9quUKsrX/SvNrz+fSNHW/dXC
-         cGIbAur4MooE47HR0Hy6J3TmJEfkWNcP/auZNiJ5qU9hCgXtgnDmlq+WazPOVq36Wyep
-         1EXQ==
-X-Gm-Message-State: ACrzQf2XeDr9nQq4cw7O3AYbtJYueP9RklhamU8zVIfI38PDmdt7fSjP
-        9HqtJrq0M38GEnLqrxQArA==
-X-Google-Smtp-Source: AMsMyM793Cd8u3q+sjWrpJjjLQ0fbvmUagt931/u0RIvCAWtOjG21n+skk3xFBtXE3Ry/fZOtKPL0Q==
-X-Received: by 2002:a05:6808:d46:b0:350:cba9:1981 with SMTP id w6-20020a0568080d4600b00350cba91981mr7922656oik.130.1664489736371;
-        Thu, 29 Sep 2022 15:15:36 -0700 (PDT)
+        bh=vbV1DtvSHJhcWuXT3vdsY4xZKXVxNAIzFVbACIVlsMQ=;
+        b=J2ZY+3cVTPFLwPpxfTvvYgImutxjdx4SDd5HSsMxkYQ3Q6oQoBJvQlWrFi+/wM5wRp
+         95awWinL+oU53sScHPAlLmFqb69oFD5yXXuWC2r9ZC39o8jqV8vTd14sHg+r1Lw+rhJj
+         vgErhK4TyNr/mWrYUu/5PvrKcG8eTnS6wZcjTXgw5eXiRYjJ9TrtjwgXmJg/CrGqoeP9
+         AC1rF6u1MEw8vNAzhhhEuOBw76+hhSGV9Q3kyq43rxJLf+m9JxKNpAHVysD6MxuENQqJ
+         lvWl8iTITrNewGe8ah1fL8KUJl2I689EDecEa1mqNWJdKcBAQXg+52tMCloJO9N+0lCN
+         1THw==
+X-Gm-Message-State: ACrzQf3HyoRx11K3xJPS/PpquhV4cEOYYDa08xY/yMddjBSmgrfPkdN4
+        WPSLw+U6SbZvMnA7H8xQVbyN34xDAw==
+X-Google-Smtp-Source: AMsMyM4ojGskLItr1bfagfw9SHxFbnxPc2zqgcWTnl4VPPq9a2WeVu74EhOyJGMCk3AWvHaL0c63EQ==
+X-Received: by 2002:a05:6830:3982:b0:65c:46b7:bb63 with SMTP id bs2-20020a056830398200b0065c46b7bb63mr2302067otb.101.1664490061126;
+        Thu, 29 Sep 2022 15:21:01 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x65-20020a9d37c7000000b0065bf42c967fsm210418otb.19.2022.09.29.15.15.35
+        by smtp.gmail.com with ESMTPSA id f10-20020a056870210a00b001279f95d63bsm265391oae.7.2022.09.29.15.21.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 15:15:35 -0700 (PDT)
-Received: (nullmailer pid 2863698 invoked by uid 1000);
-        Thu, 29 Sep 2022 22:15:35 -0000
-Date:   Thu, 29 Sep 2022 17:15:35 -0500
+        Thu, 29 Sep 2022 15:21:00 -0700 (PDT)
+Received: (nullmailer pid 2869569 invoked by uid 1000);
+        Thu, 29 Sep 2022 22:20:59 -0000
+Date:   Thu, 29 Sep 2022 17:20:59 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        herbert@gondor.apana.org.au, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, davem@davemloft.net,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org
-Subject: Re: [PATCH RFT 2/5] dt-bindings: crypto: add support for
- rockchip,crypto-rk3588
-Message-ID: <166448973449.2863631.5987990052207072258.robh@kernel.org>
-References: <20220927080048.3151911-1-clabbe@baylibre.com>
- <20220927080048.3151911-3-clabbe@baylibre.com>
+To:     Srinivas Neeli <srinivas.neeli@amd.com>
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net,
+        shubhrajyoti.datta@amd.com, michal.simek@amd.com,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        git@amd.com
+Subject: Re: [PATCH 1/3] dt-bindings: watchdog: xlnx,versal-wwdt: Add binding
+ documentation for xilinx window watchdog device
+Message-ID: <20220929222059.GA2864801-robh@kernel.org>
+References: <20220927110257.41963-1-srinivas.neeli@amd.com>
+ <20220927110257.41963-2-srinivas.neeli@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220927080048.3151911-3-clabbe@baylibre.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220927110257.41963-2-srinivas.neeli@amd.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Sep 2022 08:00:45 +0000, Corentin Labbe wrote:
-> Add device tree binding documentation for the Rockchip cryptographic
-> offloader V2.
-> 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  .../crypto/rockchip,rk3588-crypto.yaml        | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3588-crypto.yaml
-> 
+On Tue, Sep 27, 2022 at 04:32:55PM +0530, Srinivas Neeli wrote:
+> Add documentation for the binding of window watchdog device.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Subject space is precious, but you say 'watchdog' and 'binding 
+documentation' (dt-bindings) twice.
+
+> 
+> Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
+> ---
+>  .../bindings/watchdog/xlnx,versal-wwdt.yaml   | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/xlnx,versal-wwdt.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/xlnx,versal-wwdt.yaml b/Documentation/devicetree/bindings/watchdog/xlnx,versal-wwdt.yaml
+> new file mode 100644
+> index 000000000000..986455efa6f4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/xlnx,versal-wwdt.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/xlnx,versal-wwdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx Versal window watchdog timer controller
+> +
+> +maintainers:
+> +  - Neeli Srinivas <srinivas.neeli@amd.com>
+> +
+> +description:
+> +  Versal watchdog driver uses window watchdog mode. Window watchdog
+> +  timer(WWDT) contains closed(first) and open(second) window with
+> +  32 bit width. Write to the watchdog timer within predefined window
+> +  periods of time. This means a period that is not too soon and a
+> +  period that is not too late. The WWDT has to be restarted within
+> +  the open window time. If software tries to restart WWDT outside of
+> +  the open window time period, it generates a reset.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - xlnx,versal-wwdt-1.0
+
+1.0 versions feel made up. Is this a soft IP, because that is really the 
+only place we use version numbers. More generally, version numbers need 
+to correspond to something.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  timeout-sec: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +        watchdog@fd4d0000 {
+> +           compatible = "xlnx,versal-wwdt-1.0";
+> +           reg = <0xfd4d0000 0x10000>;
+> +           clocks = <&clock25>;
+> +           timeout-sec = <30>;
+> +        };
+> +...
+> -- 
+> 2.17.1
+> 
+> 
