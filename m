@@ -2,78 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F32B35EEA99
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 02:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5FD5EEAD8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 03:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233350AbiI2Ahl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 20:37:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39462 "EHLO
+        id S233593AbiI2BUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Sep 2022 21:20:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231303AbiI2Ahk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 20:37:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F26BE1097;
-        Wed, 28 Sep 2022 17:37:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A110D61312;
-        Thu, 29 Sep 2022 00:37:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCB93C433D6;
-        Thu, 29 Sep 2022 00:37:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664411858;
-        bh=dgTvSGK9jrlA/BNaLNFVXJvbWxBoQXUObzJLWFXVar0=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=tWrbMTP/sWorPExempQDhceLTm3TAvsuWXDBDQhNv5fDV1o3SjdxB9wds0cbGO4qI
-         PY2gvNB4le4nIJrSweoEUSzUjBLegouto4lMDvkkgPx5LMCdW45b9u18gyohAWOo9D
-         pVde2Kt45lNWGZYVOEU8YsadiljyCY5ZWq6a0Iwkm6ZCgr+fOdUgnHOnd8XeBo+DMC
-         MBrko7XcH7tx4Y0AlVz0g48ogvFmyGt2TM+pTvxe3r8EuUIShcn8blDNfigPf1jWkT
-         50vy9DqVm6Wm0HBHjnC+zmCZeN0Z/5h/NvqH1HSsuA8k1PGJqaUFmw0SXzJKCvUh7g
-         iz8D+GEwv5qcA==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231949AbiI2BUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 21:20:35 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EE40B56D7
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 18:20:34 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id o2so33579lfc.10
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 18:20:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date;
+        bh=PyA6JBZ/HLPJA0MSYRFOgBZKQs1v6t/7oG2AsVljbwA=;
+        b=cnoIUXNM7y0Bx6E39zrU9pROCXP+TwDSRNusZ4S6UPUgk7lla7MB/QQzbc5dwyEX9P
+         8fNXAUPeBK6so/28gYHdEMd4sVI5/q/0+poZEl+j+NGzdhZrT4Oh6Fn8OK1RvlrO3tRc
+         faslcLLDDm6RV50iLLmFD/Kgz4ASmJmz2C1cQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=PyA6JBZ/HLPJA0MSYRFOgBZKQs1v6t/7oG2AsVljbwA=;
+        b=PFVEa62nF0S8iRRtBci5RoIePSWEQpSHUbcmrQdSleELd4JglgUe0K9AqS/Sj1cODZ
+         Q4/grAm0XV1w7/G1HMp3xNFdI5xj/PP44NYRpmk2NhGyW0dueslzqMDUvzIhQRY4surg
+         B+IjLdthRc7zY0KAaZMlrtmJ0ElS90/ts1CjGvPPd9Ad/RDpju1Sg06X8FuY2WhY4JN1
+         KuMOS9Auil/pXhuchLw97nWyqnOhhIUZrosMXPtUrpfFo9VcVTXijDBGqlwj3pBx8BTc
+         eGbJpImWlHT7XqUm1Ip1LGz/0dEH5Yl8ItuySIXPVyjuv1B3nLyMVNADoRUXGopdkswx
+         qV+g==
+X-Gm-Message-State: ACrzQf0s04WdzYq6TeAqRdFeMqczdVa8r22TKUrFIC8cCciOZ0+VFOK0
+        TKEoa6UN/HMDUD+9FRgMeOExDuD8yiW8VMBpy9vVZQ==
+X-Google-Smtp-Source: AMsMyM6UGys+TKU82G78ADGDam7TNcOi0qQ36vJR4ZLCRet+LNaUHFDhfTG2aNNJ3/LcQS7hJhR1Mv+UkmcjDfeuFVw=
+X-Received: by 2002:a05:6512:1151:b0:4a0:50f2:9509 with SMTP id
+ m17-20020a056512115100b004a050f29509mr327722lfg.297.1664414432376; Wed, 28
+ Sep 2022 18:20:32 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 28 Sep 2022 21:20:31 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220920202356.1451033-4-sean.anderson@seco.com>
-References: <20220920202356.1451033-1-sean.anderson@seco.com> <20220920202356.1451033-4-sean.anderson@seco.com>
-Subject: Re: [PATCH v6 3/8] dt-bindings: clock: Add ids for Lynx 10g PLLs
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Rob Herring <robh@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org
-Date:   Wed, 28 Sep 2022 17:37:35 -0700
+In-Reply-To: <YzQf7hf15vvLeGse@google.com>
+References: <Yr66ZZqEnBApHYMA@google.com> <YsLhxx+L3+GJDRyO@google.com>
+ <bcc5f059-b991-296a-bba6-9cb1236097f2@quicinc.com> <Ys1tYAO39LKzEAOE@google.com>
+ <dc737abb-041b-491a-14f1-a584f9e64a3d@quicinc.com> <CAE-0n528QaTtZFp=WAaHShegFRpKVN_67jQfUJTtsRPr6s--zA@mail.gmail.com>
+ <52039cd1-4390-7abb-d296-0eb7ac0c3b15@quicinc.com> <Yuz2O+lZ5W7RviuA@google.com>
+ <CAE-0n507SLeYB7XVzGFk=RO6YjOPoGpux+_N2AyrmL354mQJ-g@mail.gmail.com> <YzQf7hf15vvLeGse@google.com>
+From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Message-Id: <20220929003737.DCB93C433D6@smtp.kernel.org>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Wed, 28 Sep 2022 21:20:31 -0400
+Message-ID: <CAE-0n50cX5ky3By976RTecKkpeMoAjoBA4tYuWSZ150JfS9wiQ@mail.gmail.com>
+Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
+To:     Lee Jones <lee@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sean Anderson (2022-09-20 13:23:51)
-> This adds ids for the Lynx 10g SerDes's internal PLLs. These may be used
-> with assigned-clock* to specify a particular frequency to use. For
-> example, to set the second PLL (at offset 0x20)'s frequency, use
-> LYNX10G_PLLa(1). These are for use only in the device tree, and are not
-> otherwise used by the driver.
->=20
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
+Quoting Lee Jones (2022-09-28 03:20:30)
+> Wouldn't it make more sense to simply separate the instantiation of
+> the 2 I2C devices?  Similar to what you suggested [0] in v9.  That way
+> they can handle their own resources and we can avoid all of the I2C
+> dummy / shared Regmap passing faff.
+>
+> [0] https://lore.kernel.org/all/CAE-0n53G-atsuwqcgNvi3nvWyiO3P=pSj5zDUMYj0ELVYJE54Q@mail.gmail.com/
+>
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+You can continue reading the thread[1]. My understanding is it's one
+chip that responds on two i2c addresses, thus we don't describe that as
+two i2c device nodes in DT. Instead we describe one node and use the
+dummy API to make the second i2c device.
+
+[1] https://lore.kernel.org/all/Yk3NkNK3e+fgj4eG@sirena.org.uk/
