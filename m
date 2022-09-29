@@ -2,285 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 005345EF291
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A940D5EF28D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:46:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235100AbiI2JqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 05:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40240 "EHLO
+        id S235288AbiI2Jp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 05:45:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234921AbiI2JpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:45:17 -0400
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2108.outbound.protection.outlook.com [40.107.220.108])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF22210FF9;
-        Thu, 29 Sep 2022 02:44:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Kn9FzMFZ1+LeD7wHSYmKNtneq+z4t3m9Yx0Bpu1RcytALIYuWv8tah1tlc3pCecPIP0Fm6VDvN4Wg+djxGarYsaCqe2Hb2c0YOYLhilPY580yVp3sz/y6LyqLoRrmYM5Yq+w9EZWzV+0ekxEsxJD45Z4fyYp0elyXmOe3UxwsB6cgw8JnbfTJyhUDNHcNuJCn45GBOWW1Nm8BzCv4486d1M7/UffyeJ0XGo7JAw6QcQ91SOJ9f1CS/LrufVjqbvq8ymhHQio0JTIPDrf9BjHilLzfnGUePxc16/EnbFTfs5+O+8tLNLZwK49mbXXuCeDHOW7gR4xaqMwsk/It9BmSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fYHtBRlBTl2f/CuzjE06GSUC8C9hxa+md5Hl4+EAqIQ=;
- b=J2Op/l1DrH8xgGt+efwi1Y94KQZe9ilG3eowPk97zsOrHSAruBbGqmUpTPgDwYQdeQmCaNlXoK7veNDS+JXwgMuj7qQQskfu0itigRwv+H0SnBfMrb13epCvRGI97Pu57HLcwYNPXiY0nfYdkQQbxeFdUW4R3QbnnSVvK2MNm/7kGg17hErG8KIALfdnraZuXcjEoWuxAuXYiPiFYfBU8yonABQr9IvaIHR5iZoMZEEROKOkTg42ZehXVM1kVSwYt/RCPf/Xo/keWPZLNmG5Kh2p9NxRPFynR8KWdDVTSqZliI5ztMfKG0KSu4ZzM3DH3VJ41cZnUoAdOWzO11D1eA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fYHtBRlBTl2f/CuzjE06GSUC8C9hxa+md5Hl4+EAqIQ=;
- b=GY1yA5TlzIr4LenQUdi1OlgeBSjlspjNau+fBojUP9ROgKbhsQvDrwsxC4JKMftLayGdiuXdEH5Ega14pUb7CPO/p6mHuyoCGFKGGGYseEe53NjZYz86h7Kn3+9rMQ921mR3i6eUDi8ki9QFjUHyvfIqkyN5vQccDG7FlDA6BR8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
-Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
- MN2PR01MB5503.prod.exchangelabs.com (2603:10b6:208:11b::24) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5676.19; Thu, 29 Sep 2022 09:44:36 +0000
-Received: from SJ0PR01MB7282.prod.exchangelabs.com
- ([fe80::7d50:e907:8e2e:1ff0]) by SJ0PR01MB7282.prod.exchangelabs.com
- ([fe80::7d50:e907:8e2e:1ff0%3]) with mapi id 15.20.5676.017; Thu, 29 Sep 2022
- 09:44:36 +0000
-From:   Quan Nguyen <quan@os.amperecomputing.com>
-To:     macro@orcam.me.uk, Lee Jones <lee@kernel.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Quan Nguyen <quan@os.amperecomputing.com>,
-        Thu Nguyen <thu@os.amperecomputing.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Open Source Submission <patches@amperecomputing.com>
-Cc:     Phong Vo <phong@os.amperecomputing.com>,
-        thang@os.amperecomputing.com
-Subject: [PATCH v9 9/9] docs: ABI: testing: Document the Ampere Altra Family's SMpro sysfs interfaces
-Date:   Thu, 29 Sep 2022 16:43:21 +0700
-Message-Id: <20220929094321.770125-10-quan@os.amperecomputing.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220929094321.770125-1-quan@os.amperecomputing.com>
-References: <20220929094321.770125-1-quan@os.amperecomputing.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0178.apcprd01.prod.exchangelabs.com
- (2603:1096:4:28::34) To SJ0PR01MB7282.prod.exchangelabs.com
- (2603:10b6:a03:3f2::24)
+        with ESMTP id S235621AbiI2JpH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:45:07 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A0944DB08;
+        Thu, 29 Sep 2022 02:44:41 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28T9gK9Q005931;
+        Thu, 29 Sep 2022 09:44:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=5Hp4sD9jud9mlyXmC8TOXONcL2xXQQ9BwEsTMuFD2B8=;
+ b=PN+EhcqBSFwxJm9VRRDx/T+nOA23pR/G4lIy8z3B2k5WAuQoLbjsll+eIydfZYZUCagF
+ S5Srb5+N+a6vHk1oz8hNsHAzTDwgUkKJLdobgwtofqIkmSbUeWoxht8RwRuYI141mrTH
+ 9v92MnIMbPHzbEqvgivi12IXg2+gkzyHD+rsij3pdTKhWPJm+wGyToYz6lT7/vNN/QVS
+ ePp50w/Eg4YbeP6nTP/isBSWiR53kPmBqKFraJAiwQWhTi/Y1o4446RIeyrrUoa8OVFs
+ PLyhMa/+WIw0GqEeOY535W6y4bAiP/8Q2JnLMtClnLNrA9j9IN+NN4NHB/IIyJSt1uOV xQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jw4pc0v38-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 29 Sep 2022 09:44:32 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28T9iWWJ028145
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 29 Sep 2022 09:44:32 GMT
+Received: from [10.216.29.250] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 29 Sep
+ 2022 02:44:28 -0700
+Message-ID: <270b0dfe-25fb-b5a1-e0cc-6a284367a173@quicinc.com>
+Date:   Thu, 29 Sep 2022 15:14:24 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR01MB7282:EE_|MN2PR01MB5503:EE_
-X-MS-Office365-Filtering-Correlation-Id: 00dbd368-f74d-4981-6b0e-08daa1ff3832
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 82dGJQxWOwj8M2/OiWI6WhkQCJSkpmmFHFrUrLlyzwoPFPy2lSZYcPWuSVMs/I4kDkETx8xvhIIg6RzLSxUo5vtnReY37E0nQbAgjWhPxZ9XIWQKvqVWRXpHQgh5a652E84NWRv6E47yAbjfAZph+DnU9tbl8VhXXPQ+lrxW/2Rt9caolbhUI3WsY3FfM2KCMjd5e3v8qFVJAysvCMbLke8qV6y74Hm0x1cGD4QQZkhBUetojvU1DY3akC868MQkGgdIRJyVS22ZZP2L3OuMQ0Pu6Nf4ms0Q/PprlRbqR0hmJkb8GqhXR/TST++KM4KCixYRsvC8ao7RjITIpebAKJd+6jw8jjW6CizYhugbfVKqIm6V0stxDArYFt6jzbdMrIBy36U8NJkCfteKAm6Vo9OY9ZJhMz4cM5cEFkW7uzWr9D5UZeOcDLlwmi10x9L8eNsJcUdQM5oemRgeomoaPA8SZy8tqwX50WlgzVJF1OrtSGAD63wu0wO1ghWTKmwYU7ipjifjlGAdpBlumD4TxOxqBN0t6TaEH9WUruRp/OmAtcSKAV9UOe6gHVxut741ddCPbong9GbGayl6GL1TKfjT4u1e2qbNvotbjNYUhsVimGyjVTJFxmoZoEGW2zr2P3+Yfjmi4oPuT8SBN/0FlRVk0gjmikv6HNupfSScCi0eHGH1Ym6ROXKEps5aSRtKXIIJ3K1DEQKySGf6stry98lLa6ZaYAxa768RLdQEmn8bryyk3Ez5ae6eHJysfWKSrF5505L3cDa83Ioxom2WYnp/Nv0KcHXxvju87QzN4Lc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(136003)(346002)(366004)(376002)(39850400004)(451199015)(6486002)(478600001)(186003)(1076003)(110136005)(5660300002)(6506007)(7416002)(2906002)(2616005)(921005)(6666004)(107886003)(66946007)(66476007)(8676002)(66556008)(4326008)(316002)(26005)(6512007)(52116002)(8936002)(41300700001)(83380400001)(86362001)(38100700002)(38350700002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SdoqTurq34UZnNLATBE2VblyhZwHkQ7FIUB9fOTIXBNc8pZiYC+ls+yTxOIp?=
- =?us-ascii?Q?tufmkq/+PmyO3gcG2JaMhWapYr68LlDJxz7UIcXgcSVhpUqOpPyGZL/8ObkW?=
- =?us-ascii?Q?TNVEXIyYFyHtav8VBNqObWWUSrXKamDWM4Fl1+TcWAL4sKQacezGibIxa3Tn?=
- =?us-ascii?Q?pLfb0DkyBfXRGHU6TuhxUNN/V8r3pR092+65tbvD5oJ2CJ7JwlqldTpsT7jH?=
- =?us-ascii?Q?kwROp8n+m7D172R2+vzzO/xPtX4PF+Dul8aPdgQe67vcf7TEe+mXHO2tsLLr?=
- =?us-ascii?Q?aOIubY4jjkp7551bygkyfVzX4Cvq5hZExsMB88WwSidCd+X9+pU59Rd39KJB?=
- =?us-ascii?Q?LfIDg/CwM2g+dd3cyCl4H5HA+4lN9I/Z7xz71xJvhJr24Ecn60lAYJodurn7?=
- =?us-ascii?Q?ZD3IWCuzvWVELpX29ST4E471X2zNVG9g7Yvy4EO2Y3gCM6Xv3uVqER2G59jc?=
- =?us-ascii?Q?r1nbMS18PjeT+RpnTFSNel+lEXIQxKp0EAP0NARxHjsJBfiET2XSpK26o8PN?=
- =?us-ascii?Q?BNcbX2d2AZyiz1cRY8O37nvOzHVn0V74k/Q6QKdtHdf65c0Q2gNIggGaaMkx?=
- =?us-ascii?Q?Gx01QRd4DXXinEk3svdYgbelTsPFGfh8Z05f2krOqllZrCCHn//RN1zWvji7?=
- =?us-ascii?Q?PJgwT9phYbGdztAwzqnp24df53pymJElhBS7/h3/7SyQldTnVlLv4YDonusU?=
- =?us-ascii?Q?jiTUZw5P4uoS9QfoyqixEn3UONcpGM+YFMwJjnmMbuJZ8k6CM1E2wzlBWwgO?=
- =?us-ascii?Q?gobybNxO6KfkSuZaTo443RXwSiCA2SQx9SzED3WRuGZbcpzsNmjYTqTgiSAz?=
- =?us-ascii?Q?oxvk60OKOz3kAVPC8+17sRRIbYwSovbDHQ1j5yfEQAxXPbgtMHK04JVxBTnO?=
- =?us-ascii?Q?9hiAnhUGFcO+lDJdixJuqF7YesANgeMxRNbcxOIA35ZX6l/jmmSL1LLVHkor?=
- =?us-ascii?Q?hBHspQfylF0kX/FO1xfVz4OxNHRdfyFmHQFm2vwW7vb+CvDRa7BUGpDX++6u?=
- =?us-ascii?Q?b4bCsOVjkc8yS8K0U6hrIzvQqLB/dCdtyLA4AJ2CF4tz1Juv94YcsCJDm/yV?=
- =?us-ascii?Q?8z4T8Sbrom6oVkJ1WjokJ7cBroWKny7cSkIgEj6k5MAx0ZaI4egezU6K6tu0?=
- =?us-ascii?Q?XQSnJ+6l8pNQpBYuNBuLDTOTecISBWx4iL48g4G3wWEPiK6MImXBNm84UhBa?=
- =?us-ascii?Q?JVaKsftEwxtxvsIhI0wFshRcJNVLxiJApS9CKdVAHCHa97x4zB+6M4Yb2rkM?=
- =?us-ascii?Q?BYkvkkFDfhUgUYls2WXTq2jBed3ifI55cf2YtcEzNGVGEIbNSX1ggqmgT1+T?=
- =?us-ascii?Q?boLq0hIKOS58N43Eon0JdfmzAT/hK9ZGnciOSQJMVUt/JTpE2Crjd9SUink/?=
- =?us-ascii?Q?oVdT4zdWKYeU2oBsVqSXpZMfYwrk1N35Y6NzwpvTrDV9dSJ8ed0N5hY2KC6A?=
- =?us-ascii?Q?eKKN03A8ZXrhKgs3l7uTXpOz4CpUNPlE4iWVxSZAFyibXp5H0OCMXaIwlYGh?=
- =?us-ascii?Q?LTwGqv1U4pAVetnwBrqOFWGaF+lSfLpA+lOnFgMAdt+ygqSoL7KuQJnSd+ST?=
- =?us-ascii?Q?8ZnWsf6YQgCTrQI9K4uhP/XNgdKTjlgX8Uzl9hVCXh6r50eG7rlqfBHFpWEZ?=
- =?us-ascii?Q?alcupiw1GdDVHztd4Kc9vYk=3D?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 00dbd368-f74d-4981-6b0e-08daa1ff3832
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2022 09:44:36.1968
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k+oQ4dKkbwbZE/UJ5f9JSq3rxqYUEugN7b1+zSXLPru+lLDmUm53+/KZf9MbsZebmt9XaQ+xzTfHM5Bri+c+KpJBQYpVp32L1PfeGi4nmfg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR01MB5503
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Update SNPS Phy params for
+ SC7280
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1664435628-4011-1-git-send-email-quic_kriskura@quicinc.com>
+ <CAA8EJpr9pcN-SG-yQNUGEoHCmv74prChprj4f42PKpSAzGzVKQ@mail.gmail.com>
+ <0cc382cb-b76e-a5a5-3480-47a451bdc958@quicinc.com>
+ <CAA8EJprvHSFKS2ZOLyeYgUpj4Fzec01RhQ7=nUh=qDpYBe0hrA@mail.gmail.com>
+ <4d391a78-f524-5bb7-92e0-9778396ed0cb@linaro.org>
+From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <4d391a78-f524-5bb7-92e0-9778396ed0cb@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: gMy-6Q-BWkXqlv_TaoNzVGY0wN80jvQE
+X-Proofpoint-GUID: gMy-6Q-BWkXqlv_TaoNzVGY0wN80jvQE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-29_05,2022-09-29_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=986 priorityscore=1501 adultscore=0 phishscore=0 spamscore=0
+ mlxscore=0 clxscore=1011 lowpriorityscore=0 malwarescore=0 impostorscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2209290059
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the Ampere(R)'s Altra(R) SMpro sysfs interfaces
 
-Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
----
-Changes in v9:
-  + Remove unnecessary channel info for VRD and DIMM event  [Quan]
-  + Update to align with sysfs changes                      [Quan]
 
-Changes in v8:
-  + Sysfs to return single value in hex format              [Greg]
-  + Fix KernelVersion info                                  [Greg]
-  + Change errors_* to error_*                              [Quan]
-  + Added overflow_[core|mem|pcie|other]_[ce|ue]            [Quan]
+On 9/29/2022 2:44 PM, Krzysztof Kozlowski wrote:
+> On 29/09/2022 11:02, Dmitry Baryshkov wrote:
+>> On Thu, 29 Sept 2022 at 11:54, Krishna Kurapati PSSNV
+>> <quic_kriskura@quicinc.com> wrote:
+>>>
+>>>
+>>> On 9/29/2022 1:29 PM, Dmitry Baryshkov wrote:
+>>>> On Thu, 29 Sept 2022 at 10:14, Krishna Kurapati
+>>>> <quic_kriskura@quicinc.com> wrote:
+>>>>>
+>>>>> Override the SNPS Phy tuning parameters for SC7280 devices. These
+>>>>> values are common for both trogdor and herobrine variants.
+>>>>
+>>>> They are common for trogdor and herobrine, but should these parameters
+>>>> be a default? In other words, a random new device based on sc7280
+>>>> would more likely use these overrides or the hardware defaults?
+>>>>
+>>> Hi Dmitry,
+>>>
+>>>     Currently there are only two platforms, so I made these changes on
+>>> common dtsi. If a new platform comes (mostly it won't) we can override
+>>> them in platform specific file is what I thought.
+>>
+Hi Dmitry, Krzysztof,
 
-Changes in v7:
-  + First introduce in v7                                   [Greg]
+>> This is not how it usually works. The 'sc7280.dtsi' is not a 'common
+>> dtsi' for trogdor and herobrine. It describes the SoC.
+>> Thus in my opinion if these overrides should be a default to all
+>> sc7280 platforms, this patch is fine. If these overrides are
+>> applicable only to the two mentioned platforms, they should go to
+>> respective platform-specific DT files.
+> 
+> Dmitry's conclusion is correct here. The true question is whether these
+> are properties of the SoC itself (so do not depend on the board or board
+> layout) or these depend on design of board.
+> 
+> Best regards,
+> Krzysztof
+> 
+Thanks for the info. These parameters are per-board and not common to 
+SoC. I sent one patch previously for IDP platform [1]. I will let that 
+get merged and I will send a v2 of this patch adding parameters only for 
+herobrine platform.
 
- .../sysfs-bus-platform-devices-ampere-smpro   | 125 ++++++++++++++++++
- 1 file changed, 125 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
+[1] : 
+https://patchwork.kernel.org/project/linux-usb/patch/1662480933-12326-4-git-send-email-quic_kriskura@quicinc.com/
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro b/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
-new file mode 100644
-index 000000000000..d8f82a06570d
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
-@@ -0,0 +1,125 @@
-+What:		/sys/bus/platform/devices/smpro-errmon.*/error_[core|mem|pcie|other]_[ce|ue]
-+KernelVersion:	5.18
-+Contact:	quan@os.amperecomputing.com
-+Description:
-+		(RO) Contains the 48-byte Ampere (Vendor-Specific) Error Record printed
-+		in hex format.
-+
-+		The detail of each sysfs entries is as below:
-+		+-------------+---------------------------------------------------------+
-+		|   Error     |                   Sysfs entry                           |
-+		+-------------+---------------------------------------------------------+
-+		| Core's CE   | /sys/bus/platform/devices/smpro-errmon.*/error_core_ce |
-+		| Core's UE   | /sys/bus/platform/devices/smpro-errmon.*/error_core_ue |
-+		| Memory's CE | /sys/bus/platform/devices/smpro-errmon.*/error_mem_ce  |
-+		| Memory's UE | /sys/bus/platform/devices/smpro-errmon.*/error_mem_ue  |
-+		| PCIe's CE   | /sys/bus/platform/devices/smpro-errmon.*/error_pcie_ce |
-+		| PCIe's UE   | /sys/bus/platform/devices/smpro-errmon.*/error_pcie_ue |
-+		| Other's CE  | /sys/bus/platform/devices/smpro-errmon.*/error_other_ce|
-+		| Other's UE  | /sys/bus/platform/devices/smpro-errmon.*/error_other_ue|
-+		+-------------+---------------------------------------------------------+
-+		UE: Uncorrect-able Error
-+		CE: Correct-able Error
-+
-+		See section 3.3 Ampere (Vendor-Specific) Error Record Formats,
-+		Altra Family RAS Supplement.
-+
-+
-+What:		/sys/bus/platform/devices/smpro-errmon.*/overflow_[core|mem|pcie|other]_[ce|ue]
-+KernelVersion:	5.18
-+Contact:	quan@os.amperecomputing.com
-+Description:
-+		(RO) Return the overflow status of each type HW error reported:
-+		  0      : No overflow
-+		  1      : There is an overflow and the oldest HW errors are dropped
-+
-+		The detail of each sysfs entries is as below:
-+		+-------------+-----------------------------------------------------------+
-+		|   Overflow  |                   Sysfs entry                             |
-+		+-------------+-----------------------------------------------------------+
-+		| Core's CE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_core_ce |
-+		| Core's UE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_core_ue |
-+		| Memory's CE | /sys/bus/platform/devices/smpro-errmon.*/overflow_mem_ce  |
-+		| Memory's UE | /sys/bus/platform/devices/smpro-errmon.*/overflow_mem_ue  |
-+		| PCIe's CE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_pcie_ce |
-+		| PCIe's UE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_pcie_ue |
-+		| Other's CE  | /sys/bus/platform/devices/smpro-errmon.*/overflow_other_ce|
-+		| Other's UE  | /sys/bus/platform/devices/smpro-errmon.*/overflow_other_ue|
-+		+-------------+-----------------------------------------------------------+
-+		UE: Uncorrect-able Error
-+		CE: Correct-able Error
-+
-+What:           /sys/bus/platform/devices/smpro-errmon.*/[error|warn]_[smpro|pmpro]
-+KernelVersion:	5.18
-+Contact:	quan@os.amperecomputing.com
-+Description:
-+		(RO) Contains the internal firmware error/warning printed as hex format.
-+
-+		The detail of each sysfs entries is as below:
-+		+---------------+------------------------------------------------------+
-+		|   Error       |                   Sysfs entry                        |
-+		+---------------+------------------------------------------------------+
-+		| SMpro error   | /sys/bus/platform/devices/smpro-errmon.*/error_smpro |
-+		| SMpro warning | /sys/bus/platform/devices/smpro-errmon.*/warn_smpro  |
-+		| PMpro error   | /sys/bus/platform/devices/smpro-errmon.*/error_pmpro |
-+		| PMpro warning | /sys/bus/platform/devices/smpro-errmon.*/warn_pmpro  |
-+		+---------------+------------------------------------------------------+
-+		See more details in section 5.10 RAS Internal Error Register Definitions,
-+		Altra Family Soc BMC Interface Specification.
-+
-+What:           /sys/bus/platform/devices/smpro-errmon.*/event_[vrd_warn_fault|vrd_hot|dimm_hot]
-+KernelVersion:	5.18
-+Contact:	quan@os.amperecomputing.com
-+Description:
-+		(RO) Contains the detail information in case of VRD/DIMM warning/hot events
-+		in hex format as below:
-+
-+		AAAA
-+		Where:
-+		  AAAA: The event detail information data
-+
-+		See more details in section 5.7 GPI Status Registers,
-+		Altra Family Soc BMC Interface Specification.
-+
-+
-+What:		/sys/bus/platform/devices/smpro-misc.*/boot_progress
-+KernelVersion:	5.18
-+Contact:	quan@os.amperecomputing.com
-+Description:
-+		(RO) Contains the boot stages information in hex as format below:
-+
-+		AABBCCCCCCCC
-+		Where:
-+		  AA      : The boot stages
-+		              00: SMpro firmware booting
-+		              01: PMpro firmware booting
-+		              02: ATF BL1 firmware booting
-+		              03: DDR initialization
-+		              04: DDR training report status
-+		              05: ATF BL2 firmware booting
-+		              06: ATF BL31 firmware booting
-+		              07: ATF BL32 firmware booting
-+		              08: UEFI firmware booting
-+		              09: OS booting
-+		  BB      : Boot status
-+		              00: Not started
-+		              01: Started
-+		              02: Completed without error
-+		              03: Failed.
-+		  CCCCCCCC: Boot status information defined for each boot stages
-+
-+		See more details in section 5.11 Boot Stage Register Definitions,
-+		and section 6. Processor Boot Progress Codes, Altra Family Soc BMC
-+		Interface Specification.
-+
-+
-+What:           /sys/bus/platform/devices/smpro-misc*/soc_power_limit
-+KernelVersion:	5.18
-+Contact:	quan@os.amperecomputing.com
-+Description:
-+		(RW) Contains the desired SoC power limit in Watt.
-+		Writes to this sysfs set the desired SoC power limit (W).
-+		Reads from this register return the current SoC power limit (W).
-+		The value ranges:
-+		  Minimum: 120 W
-+		  Maximum: Socket TDP power
--- 
-2.35.1
-
+Thanks,
+Krishna,
