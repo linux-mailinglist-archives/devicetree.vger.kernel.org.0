@@ -2,152 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D401B5F0013
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 00:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC8A05F0016
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 00:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbiI2W1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 18:27:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45390 "EHLO
+        id S229575AbiI2W3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 18:29:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229991AbiI2W1I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 18:27:08 -0400
-Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.221.58])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EA2A15E479;
-        Thu, 29 Sep 2022 15:27:04 -0700 (PDT)
-X-QQ-mid: bizesmtp88t1664490413t16ssqjp
-Received: from localhost.localdomain ( [113.72.146.201])
-        by bizesmtp.qq.com (ESMTP) with 
-        id ; Fri, 30 Sep 2022 06:26:52 +0800 (CST)
-X-QQ-SSF: 01000000002000305000B00A0000000
-X-QQ-FEAT: YHTLUubWl26ZkpaLq7zsbw4d8O56YD7LwT0wcBWFjGJFdn4RvGt4in89BcWGS
-        U6clL3z7tkZIWNwlFhVpyr0KfLiD+6L4Z0fsnaOfFw/ykvRIRzdXo9a4m3v4nLGj8OJ+6ro
-        wYOvz1LQ7AuWSC/crvH5NIKCF1oDmolC74QTQNe7YX2te+tAYPeHVxX0X6boWdm+YILDCy5
-        EGNDuwpkZufDYaJs308Z7yglt9m7hA1eOjXvVK4FqZBTPpaQbNJT9c1oSCt8c+h6GCZyVrs
-        TC0oRjlfZonYAs86W/lahhg+ftUX496LzCyngeyGzZAyomv583Kz7NO4o/43WjLEUz53IWj
-        W2nzW0C27gumiS9wusps+Y5af8OuauMG/u9rWp6ZGlkcSJoaLzFc94tbXu0W93b73GIXw4G
-        n9xRBLJPbl/z4Lah4K4BeQ==
-X-QQ-GoodBg: 0
-From:   Hal Feng <hal.feng@linux.starfivetech.com>
-To:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Hal Feng <hal.feng@linux.starfivetech.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 17/30] dt-bindings: clock: Add starfive,jh7110-clkgen-sys bindings
-Date:   Fri, 30 Sep 2022 06:26:47 +0800
-Message-Id: <20220929222647.23816-1-hal.feng@linux.starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
-References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:linux.starfivetech.com:qybglogicsvr:qybglogicsvr2
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229563AbiI2W3I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 18:29:08 -0400
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D7A151DC6
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 15:29:08 -0700 (PDT)
+Received: by mail-oo1-f47.google.com with SMTP id c17-20020a4aa4d1000000b0047653e7c5f3so1080595oom.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 15:29:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=eIYGb01iP1uQvHx/5dIICXkInZ12bMRqgZXdcsdsQ4Y=;
+        b=0Km6qcEJ9WUd60ApJvPLxxSm+TunnPfDjfN2U6BljM1yWC9fe7iDbOXE/OXylcueaE
+         5VHk3mSfOIudGa9pM6myxl5aJEfLKz4duLzNhbRzpjU7ssV8jyGUbJFH0mJMZiivPxV2
+         3HSzJzzfaBHm5zq4TBqQvQAYd1jXiexTZH0dbwOjCXgnZIf72uFXCi3RQrKSG4pJVARh
+         noan7p9IxkReAtLwa0kXAQp5MRtkl47pPt3TQ5OOLN0HAhiHBCxC2+9E0QIBrAYiXIZd
+         yaASCBYzpE09ufbnn49Cnxj1hMqbTi+Vlw0FY0FfJuj123Z/rl3KLvjbDrKiFpSUdGY8
+         a8Sw==
+X-Gm-Message-State: ACrzQf1WPJycuOneleC4mXz6XrAiGnvqJVqvUh3JJcNR26y2op22EaKy
+        3RiCChcWTjNzhav8CPmcgw==
+X-Google-Smtp-Source: AMsMyM50FnMOFQvequxk7j7Nh7qAyE+AcDJlo33zrXe+tKrvwzRBMhdM+kIm70/KBE4j9TMMpbCaeg==
+X-Received: by 2002:a05:6830:1d3:b0:65a:659:20c1 with SMTP id r19-20020a05683001d300b0065a065920c1mr2330171ota.113.1664490547266;
+        Thu, 29 Sep 2022 15:29:07 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h94-20020a9d2f67000000b0065932853f5esm205532otb.61.2022.09.29.15.29.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Sep 2022 15:29:06 -0700 (PDT)
+Received: (nullmailer pid 2879517 invoked by uid 1000);
+        Thu, 29 Sep 2022 22:29:06 -0000
+Date:   Thu, 29 Sep 2022 17:29:06 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: display: st,stm32-dsi: Handle data-lanes in
+ DSI port node
+Message-ID: <166449054453.2879455.4591283514406157909.robh@kernel.org>
+References: <20220926234501.583115-1-marex@denx.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220926234501.583115-1-marex@denx.de>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Emil Renner Berthing <kernel@esmil.dk>
+On Tue, 27 Sep 2022 01:45:01 +0200, Marek Vasut wrote:
+> Handle 'data-lanes' property of the DSI output endpoint, it is possible
+> to describe DSI link with 1 or 2 data lanes this way.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Philippe Cornu <philippe.cornu@foss.st.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Yannick Fertre <yannick.fertre@foss.st.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+>  .../bindings/display/st,stm32-dsi.yaml          | 17 ++++++++++++++---
+>  1 file changed, 14 insertions(+), 3 deletions(-)
+> 
 
-Add bindings for the system clock generator on the JH7110
-RISC-V SoC by StarFive Technology Ltd.
-
-Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
----
- .../clock/starfive,jh7110-clkgen-sys.yaml     | 69 +++++++++++++++++++
- 1 file changed, 69 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-clkgen-sys.yaml
-
-diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-clkgen-sys.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-clkgen-sys.yaml
-new file mode 100644
-index 000000000000..290b730145ab
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-clkgen-sys.yaml
-@@ -0,0 +1,69 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/starfive,jh7110-clkgen-sys.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: StarFive JH7110 System Clock Generator
-+
-+maintainers:
-+  - Emil Renner Berthing <kernel@esmil.dk>
-+  - Xingyu Wu <xingyu.wu@linux.starfivetech.com>
-+
-+properties:
-+  compatible:
-+    const: starfive,jh7110-clkgen-sys
-+
-+  clocks:
-+    items:
-+      - description: Main Oscillator (24 MHz)
-+      - description: RMII reference clock
-+      - description: RGMII RX clock
-+      - description: I2S TX bit clock
-+      - description: I2S TX left/right clock
-+      - description: I2S RX bit clock
-+      - description: I2S RX left/right clock
-+      - description: TDM
-+      - description: mclk
-+
-+  clock-names:
-+    items:
-+      - const: osc
-+      - const: gmac1_rmii_refin
-+      - const: gmac1_rgmii_rxin
-+      - const: i2stx_bclk_ext
-+      - const: i2stx_lrck_ext
-+      - const: i2srx_bclk_ext
-+      - const: i2srx_lrck_ext
-+      - const: tdm_ext
-+      - const: mclk_ext
-+
-+  '#clock-cells':
-+    const: 1
-+    description:
-+      See <dt-bindings/clock/starfive-jh7110-sys.h> for valid indices.
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    syscrg_clk: clock-controller@13020000 {
-+        compatible = "starfive,jh7110-clkgen-sys";
-+        clocks = <&osc>, <&gmac1_rmii_refin>,
-+                 <&gmac1_rgmii_rxin>,
-+                 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
-+                 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
-+                 <&tdm_ext>, <&mclk_ext>;
-+        clock-names = "osc", "gmac1_rmii_refin",
-+                      "gmac1_rgmii_rxin",
-+                      "i2stx_bclk_ext", "i2stx_lrck_ext",
-+                      "i2srx_bclk_ext", "i2srx_lrck_ext",
-+                      "tdm_ext", "mclk_ext";
-+        #clock-cells = <1>;
-+    };
--- 
-2.17.1
-
+Applied, thanks!
