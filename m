@@ -2,69 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAFBC5EEC9A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 05:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF2CB5EECA3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 06:02:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229949AbiI2D51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Sep 2022 23:57:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41462 "EHLO
+        id S232792AbiI2ECV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 00:02:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234523AbiI2D50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Sep 2022 23:57:26 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 06735F161D;
-        Wed, 28 Sep 2022 20:57:23 -0700 (PDT)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cx72ueFzVjZ6AjAA--.64342S2;
-        Thu, 29 Sep 2022 11:57:18 +0800 (CST)
-Subject: Re: [PATCH v5 2/3] dt-bindings: thermal: add loongson2k thermal
- binding
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, zhuyinbo@loongson.cn
-References: <20220928083702.17309-1-zhuyinbo@loongson.cn>
- <20220928083702.17309-2-zhuyinbo@loongson.cn>
- <066b55cf-4a28-89a2-56ab-572590c97c30@linaro.org>
- <9b2f2d43-981d-3ffb-7526-dc3e58a9f367@linaro.org>
- <f0946817-cc2c-449b-d93b-0dd94a0f51f1@loongson.cn>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <ed762d71-7104-b1ad-009d-51c1a4407472@loongson.cn>
-Date:   Thu, 29 Sep 2022 11:57:18 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S229651AbiI2ECU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 00:02:20 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 582ACF1934;
+        Wed, 28 Sep 2022 21:02:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1664424139; x=1695960139;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=PQTvPdtfbIJpzPf1F/SRY//WCyK26Mw3kEBkRj9QTyQ=;
+  b=RFunYgSTDYOkxozPb9phlK8pXZXMbqKkOcf29MPWGL+uSQotmXu0YH7z
+   SKZvRIGxljQ0j8DORnvWyrgXC/LjC6kxQBYmtV98Yw9iKJHpbqz8P4iZ9
+   5h3Uu2e8CWPqqt5vqd4yf3GzsQg22csL7aTMaHAqRYX1w2p2s0Zo8oV4o
+   0=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 28 Sep 2022 21:02:19 -0700
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2022 21:02:18 -0700
+Received: from [10.110.116.67] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 28 Sep
+ 2022 21:02:17 -0700
+Message-ID: <e6502af5-73c1-6b06-5da7-28185477aefe@quicinc.com>
+Date:   Wed, 28 Sep 2022 21:02:17 -0700
 MIME-Version: 1.0
-In-Reply-To: <f0946817-cc2c-449b-d93b-0dd94a0f51f1@loongson.cn>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v4 01/14] docs: gunyah: Introduce Gunyah Hypervisor
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Cx72ueFzVjZ6AjAA--.64342S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Ar45Xr17ZF13XF1UJw17Awb_yoW8GFWrpF
-        yxA3ZrKFWDArya93yxK3WxAFnY9rsxtrWUXr15Kr4UAFWqqwnxtFnY9ryq9rykW3yrWFWI
-        qFW5W39rJrWDZ3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUU9C14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-        1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
-        6r4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26F
-        4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
-        7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r
-        1j6r4UM4x0Y48IcVAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-        n2kIc2xKxwCYjI0SjxkI62AI1cAE67vIY487MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrw
-        CFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE
-        14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2
-        IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxK
-        x2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI
-        0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUdHUDUUUUU=
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Bagas Sanjaya <bagasdotme@gmail.com>
+CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Marc Zyngier" <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
+ <20220928195633.2348848-2-quic_eberman@quicinc.com>
+ <YzUUaIx+azyzFDNX@debian.me>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <YzUUaIx+azyzFDNX@debian.me>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,43 +83,175 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-在 2022/9/29 上午11:42, Yinbo Zhu 写道:
+On 9/28/2022 8:43 PM, Bagas Sanjaya wrote:
+> On Wed, Sep 28, 2022 at 12:56:20PM -0700, Elliot Berman wrote:
+>> diff --git a/Documentation/virt/gunyah/index.rst b/Documentation/virt/gunyah/index.rst
+>> new file mode 100644
+>> index 000000000000..959f451caccd
+>> --- /dev/null
+>> +++ b/Documentation/virt/gunyah/index.rst
+>> @@ -0,0 +1,114 @@
+>> +.. SPDX-License-Identifier: GPL-2.0
+>> +
+>> +=================
+>> +Gunyah Hypervisor
+>> +=================
+>> +
+>> +.. toctree::
+>> +   :maxdepth: 1
+>> +
+>> +   message-queue
+>> +
+>> +Gunyah is a Type-1 hypervisor which is independent of any OS kernel, and runs in
+>> +a higher CPU privilege level. It does not depend on any lower-privileged operating system
+>> +for its core functionality. This increases its security and can support a much smaller
+>> +trusted computing base than a Type-2 hypervisor.
+>> +
+>> +Gunyah is an open source hypervisor. The source repo is available at
+>> +https://github.com/quic/gunyah-hypervisor.
+>> +
+>> +Gunyah provides these following features.
+>> +
+>> +- Scheduling:
+>> +
+>> +  A scheduler for virtual CPUs (vCPUs) on physical CPUs and enables time-sharing
+>> +  of the CPUs. Gunyah supports two models of scheduling:
+>> +
+>> +    1. "Behind the back" scheduling in which Gunyah hypervisor schedules vCPUS on its own
+>> +    2. "Proxy" scheduling in which a delegated VM can donate part of one of its vCPU slice
+>> +       to another VM's vCPU via a hypercall.
+>> +
+>> +- Memory Management:
+>> +
+>> +  APIs handling memory, abstracted as objects, limiting direct use of physical
+>> +  addresses. Memory ownership and usage tracking of all memory under its control.
+>> +  Memory partitioning between VMs is a fundamental security feature.
+>> +
+>> +- Interrupt Virtualization:
+>> +
+>> +  Uses CPU hardware interrupt virtualization capabilities. Interrupts are handled
+>> +  in the hypervisor and routed to the assigned VM.
+>> +
+>> +- Inter-VM Communication:
+>> +
+>> +  There are several different mechanisms provided for communicating between VMs.
+>> +
+>> +- Virtual platform:
+>> +
+>> +  Architectural devices such as interrupt controllers and CPU timers are directly provided
+>> +  by the hypervisor as well as core virtual platform devices and system APIs such as ARM PSCI.
+>> +
+>> +- Device Virtualization:
+>> +
+>> +  Para-virtualization of devices is supported using inter-VM communication.
+>> +
+>> +Architectures supported
+>> +=======================
+>> +AArch64 with a GIC
+>> +
+>> +Resources and Capabilities
+>> +==========================
+>> +
+>> +Some services or resources provided by the Gunyah hypervisor are described to a virtual machine by
+>> +capability IDs. For instance, inter-VM communication is performed with doorbells and message queues.
+>> +Gunyah allows access to manipulate that doorbell via the capability ID. These devices are described
+>> +in Linux as a struct gunyah_resource.
+>> +
+>> +High level management of these resources is performed by the resource manager VM. RM informs a
+>> +guest VM about resources it can access through either the device tree or via guest-initiated RPC.
+>> +
+>> +For each virtual machine, Gunyah maintains a table of resources which can be accessed by that VM.
+>> +An entry in this table is called a "capability" and VMs can only access resources via this
+>> +capability table. Hence, virtual Gunyah devices are referenced by a "capability IDs" and not a
+>> +"resource IDs". A VM can have multiple capability IDs mapping to the same resource. If 2 VMs have
+>> +access to the same resource, they may not be using the same capability ID to access that resource
+>> +since the tables are independent per VM.
+>> +
+>> +Resource Manager
+>> +================
+>> +
+>> +The resource manager (RM) is a privileged application VM supporting the Gunyah Hypervisor.
+>> +It provides policy enforcement aspects of the virtualization system. The resource manager can
+>> +be treated as an extension of the Hypervisor but is separated to its own partition to ensure
+>> +that the hypervisor layer itself remains small and secure and to maintain a separation of policy
+>> +and mechanism in the platform. On arm64, RM runs at NS-EL1 similar to other virtual machines.
+>> +
+>> +Communication with the resource manager from each guest VM happens with message-queue.rst. Details
+>> +about the specific messages can be found in drivers/virt/gunyah/rsc_mgr.c
+>> +
+>> +::
+>> +
+>> +  +-------+   +--------+   +--------+
+>> +  |  RM   |   |  VM_A  |   |  VM_B  |
+>> +  +-.-.-.-+   +---.----+   +---.----+
+>> +    | |           |            |
+>> +  +-.-.-----------.------------.----+
+>> +  | | \==========/             |    |
+>> +  |  \========================/     |
+>> +  |            Gunyah               |
+>> +  +---------------------------------+
+>> +
+>> +The source for the resource manager is available at https://github.com/quic/gunyah-resource-manager.
+>> +
+>> +The resource manager provides the following features:
+>> +
+>> +- VM lifecycle management: allocating a VM, starting VMs, destruction of VMs
+>> +- VM access control policy, including memory sharing and lending
+>> +- Interrupt routing configuration
+>> +- Forwarding of system-level events (e.g. VM shutdown) to owner VM
+>> +
+>> +When booting a virtual machine which uses a devicetree, resource manager overlays a
+>> +/hypervisor node. This node can let Linux know it is running as a Gunyah guest VM,
+>> +how to communicate with resource manager, and basic description and capabilities of
+>> +this VM. See Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml for a description
+>> +of this node.
 > 
+> The documentation LGTM.
 > 
-> 在 2022/9/28 下午10:18, Krzysztof Kozlowski 写道:
->> On 28/09/2022 10:37, Krzysztof Kozlowski wrote:
->>> On 28/09/2022 10:37, Yinbo Zhu wrote:
->>>> Add the loongson2k thermal binding with DT schema format using
->>>> json-schema.
->>>>
->>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>>
->>> Please add Acked-by/Reviewed-by tags when posting new versions. However,
->>> there's no need to repost patches *only* to add the tags. The upstream
->>> maintainer will do that for acks received on the version they apply.
->>>
->>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540 
->>>
->>>
->>> If a tag was not added on purpose, please state why and what changed.
->>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ... and please test your patches before sending :(
-You said is refer that "reg: [[0, 534779136], [0, 48]] is too long" ?
-Need fix that warning, right?
->>
->> Best regards,
->> Krzysztof
-> Hi Krzysztof,
+>> diff --git a/Documentation/virt/gunyah/message-queue.rst b/Documentation/virt/gunyah/message-queue.rst
+>> new file mode 100644
+>> index 000000000000..e130f124ed52
+>> --- /dev/null
+>> +++ b/Documentation/virt/gunyah/message-queue.rst
+>> <snipped>...
+>> +The diagram below shows how message queue works. A typical configuration involves
+>> +2 message queues. Message queue 1 allows VM_A to send messages to VM_B. Message
+>> +queue 2 allows VM_B to send messages to VM_A.
+>> +
+>> +1. VM_A sends a message of up to 1024 bytes in length. It raises a hypercall
+>> +   with the message to inform the hypervisor to add the message to
+>> +   message queue 1's queue.
+>> +2. Gunyah raises the corresponding interrupt for VM_B when any of these happens:
+>> +   a. gh_msgq_send has PUSH flag. Queue is immediately flushed. This is the typical case.
+>> +   b. Explicility with gh_msgq_push command from VM_A.
+>> +   c. Message queue has reached a threshold depth.
+>> +3. VM_B calls gh_msgq_recv and Gunyah copies message to requested buffer.
+>> +
 > 
-> I have a function test for these three patch, that it's okay.
-> for binding patch I have a compile test, as follow, it is okay.
-> root@m-pc:/home/m/workspace/test/code/upstream# make DT_CHECKER_FLAGS=-m 
-> dt_binding_check 
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml
+> The nested list above should be separated with blank lines to be
+> rendered properly:
 > 
-> BRs,
-> Yinbo Zhu.
->>
+> ---- >8 ----
+> 
+> diff --git a/Documentation/virt/gunyah/message-queue.rst b/Documentation/virt/gunyah/message-queue.rst
+> index e130f124ed525a..afaad99db215e6 100644
+> --- a/Documentation/virt/gunyah/message-queue.rst
+> +++ b/Documentation/virt/gunyah/message-queue.rst
+> @@ -20,9 +20,11 @@ queue 2 allows VM_B to send messages to VM_A.
+>      with the message to inform the hypervisor to add the message to
+>      message queue 1's queue.
+>   2. Gunyah raises the corresponding interrupt for VM_B when any of these happens:
+> +
+>      a. gh_msgq_send has PUSH flag. Queue is immediately flushed. This is the typical case.
+>      b. Explicility with gh_msgq_push command from VM_A.
+>      c. Message queue has reached a threshold depth.
+> +
+>   3. VM_B calls gh_msgq_recv and Gunyah copies message to requested buffer.
+>   
+>   For VM_B to send a message to VM_A, the process is identical, except that hypercalls
+> 
+> Thanks.
+> 
+
+Thanks! Applied for next version.
 
