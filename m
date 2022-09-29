@@ -2,335 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77FB35EEDD2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 08:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ED805EEDE2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 08:29:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234533AbiI2GWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 02:22:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33486 "EHLO
+        id S234340AbiI2G30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 02:29:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231419AbiI2GWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 02:22:16 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE4D81695
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:22:15 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id h8-20020a17090a054800b00205ccbae31eso4970194pjf.5
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:22:15 -0700 (PDT)
+        with ESMTP id S230341AbiI2G3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 02:29:25 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 361F712E430
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:29:24 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id 13so722362ejn.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:29:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=ox1GauuStOI4SK9psyOEXzOmaCJACh7EVhwmDraseFg=;
-        b=OYSIuBJ+hscx6KBaa9LaMqa68w1O41CuprZllPJ9Evi04V0zn5aq67KJlwSfYVa3e8
-         QSueGaKUaG2CubSbimzP0SdwOGmRdQKQQ/NazNHQo/paYkabsw83b4o85SjhbUBOshkM
-         gFefgbVxWpaqCR2Q0VjCOE9ODCv5xEmg543RN8Z6LDBLCnWWj/b4PPw39Uaqg/EUlQjm
-         X3zJ6nIwY9au08LDhchR8VTVVL+Bgn+P/676kfME+dylaawRysxAZ31BvCHoBCy0abqc
-         45/28p0SM30nOT7H1xWlyAqnOixINFIVUCypfO4FbZvO7NjQ6XS/DSULJNF++K04hzRq
-         gkvw==
+        d=9elements.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=9sMUB+ufmO/jB91L+Cnkm2YRBNvfPUGNsKA+nqPeMho=;
+        b=Smds3S9XWiIBc98H2XCEGckTjhx/FBf1xzTVoxJqjvdxbov9Zg4ycsowcLPDcUScM0
+         NI/E7gh0g0jf4rjXTY55tBUfle+7azTt6UETy1ZrthkrKwFskTdJ3T9+7uToDdoCgVJk
+         y5gKkkzUZLrIyq/9U1SMchrSQDKaA0mcUEv2tvLLJcXX2/Wu+Q8zzpdnrNkXQBPVNo65
+         8N0GInKtZctPo6ADCU4/Gqi+Oj6lEKRuxHEX/KjHivtk1qlA/erg3F7FRGCLljU/xgAf
+         W6JetwSWMFg+i2NaTA9I6pyDgVcxF17uBcxFfdAVvuYVY+L4ZKYBSSUTtTqR3RbHhcZb
+         t/Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=ox1GauuStOI4SK9psyOEXzOmaCJACh7EVhwmDraseFg=;
-        b=pI5CYPLBlGjhATDZtACRZc6Yv9HlEw0O79uOPAf7l+J+vmsvP2hKK6gsxNJCT4x9kN
-         i+VVy02d0zqbWIVqkJ2Aze26J+GOwBUl8KKkVJBzc6qTGiBXzbzz7txHPLvarj35RMcp
-         F5TQf3ZYMRqvWqC1iV4MpUHX7wdFn+kUPclaT1khYJ++JAc4xEkULGPbEw0UDz5H+R7Z
-         FhCDWWXpQQLSqgfe22MaEeDW3pAL3TdpXXZRQvmOj0Xw/p1GJl0lL0goEttf4o6qeWrr
-         kT7WUJfqJZ+JxWBns78BQt83TK3SHx0BWNiWC1KUQ305kK0pQPCDKI81XFhvDkJnqygj
-         VNsg==
-X-Gm-Message-State: ACrzQf3QqkBrTxwjoEufJ2hgwFbqAHUHl0Vr3oykUFJCS7MnA4MR9LVh
-        1wbbSVbo1YxylUdThnSk00Rg6TGLPShHhw==
-X-Google-Smtp-Source: AMsMyM6G5qfjtcJ5DARD473KfsEnnyfDX+1ZzyWjN6ssRcn9kkphWNTL1fKJpy6PH2mMlQC4cr7Xfw==
-X-Received: by 2002:a17:902:e5c9:b0:178:5a6f:6eb8 with SMTP id u9-20020a170902e5c900b001785a6f6eb8mr1957938plf.42.1664432534954;
-        Wed, 28 Sep 2022 23:22:14 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1f3b:3adb:24f8:ac24:2282:1dc7? ([2401:4900:1f3b:3adb:24f8:ac24:2282:1dc7])
-        by smtp.gmail.com with ESMTPSA id u18-20020a634552000000b004390b40b4a1sm4715482pgk.23.2022.09.28.23.22.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Sep 2022 23:22:14 -0700 (PDT)
-Message-ID: <0b6db6ce-a74c-66d0-dc05-b87b96b386a2@linaro.org>
-Date:   Thu, 29 Sep 2022 11:52:08 +0530
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=9sMUB+ufmO/jB91L+Cnkm2YRBNvfPUGNsKA+nqPeMho=;
+        b=JhFkuno5SGJNQ/mJOLQzo5diOjcwriO4D9hZXyrhVCGIZcl2HYLZhO58Ajd2EFe38S
+         e7lQgJlgGxYqHdTEr9HQPloUSb9u4K92aD/9vQhDaRDfBDrhEJTGGvxRwtHQXJBVvp41
+         9a753bV3ej4tsPdbDmWtHtj7EaRfBZyEIXuMJQziWZQQxQTErIvmErmw16zxA2yN16fs
+         ebmIY3bxCpXPObjhwuitXLJHt2fatcYxTXzp+3NVxPzx72Jycb/HT+/QfFwPLM83IQ5I
+         WPzoxxhaSDrnT9vGpeL5xbz3tg3o4IFNCRhbh8tieMSoPD4ztk+7KXU4sYB4emysonpB
+         kLcQ==
+X-Gm-Message-State: ACrzQf0yFPBrT5LXAxdX/ywxKMz5aaiAk1TYUtnKKbJQNqwSikmK2yCF
+        hVrPMXQiDyMhxFFuv7cEGiwwLWJXfrvqBtDaPKzDCw==
+X-Google-Smtp-Source: AMsMyM5ZtREGqxKZKOpbmXG+0pP6ay1c4N1+fNX5kP26dzgQ5hEt5obAeIIeMF0AAim5INRGtCyTdjPD/2tdO9yci7s=
+X-Received: by 2002:a17:907:a05:b0:77b:b538:6476 with SMTP id
+ bb5-20020a1709070a0500b0077bb5386476mr1430811ejc.324.1664432962669; Wed, 28
+ Sep 2022 23:29:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 1/4] dt-bindings: net: qcom,ethqos: Convert bindings to
- yaml
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, netdev@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        David Miller <davem@davemloft.net>
-References: <20220907204924.2040384-1-bhupesh.sharma@linaro.org>
- <20220907204924.2040384-2-bhupesh.sharma@linaro.org>
- <dcf449f5-ad28-d262-98d5-72c6ba2b7aea@linaro.org>
- <ccd6f6c2-458d-832a-7299-d9d9ffb652a8@linaro.org>
- <1a683d12-eee9-e35b-3808-4856fe4dc0f2@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <1a683d12-eee9-e35b-3808-4856fe4dc0f2@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220925220319.12572-1-zev@bewilderbeest.net>
+In-Reply-To: <20220925220319.12572-1-zev@bewilderbeest.net>
+From:   Patrick Rudolph <patrick.rudolph@9elements.com>
+Date:   Thu, 29 Sep 2022 08:29:19 +0200
+Message-ID: <CALNFmy1tnrJWKwGjdGOjjqB9XDS2DhAPq1rcDPgMdY3xXNoXAw@mail.gmail.com>
+Subject: Re: [PATCH 0/3] regulator: Add DT support for regulator-output connectors
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Naresh Solanki <naresh.solanki@9elements.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Mike Rapoport <rppt@kernel.org>, openbmc@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/13/22 2:20 PM, Krzysztof Kozlowski wrote:
-> On 12/09/2022 19:28, Bhupesh Sharma wrote:
->> Hi Krzysztof,
->>
->> Thanks for your comments.
->>
->> On 9/8/22 8:08 PM, Krzysztof Kozlowski wrote:
->>> On 07/09/2022 22:49, Bhupesh Sharma wrote:
->>>> Convert Qualcomm ETHQOS Ethernet devicetree binding to YAML.
->>>>
->>>> Cc: Bjorn Andersson <andersson@kernel.org>
->>>> Cc: Rob Herring <robh@kernel.org>
->>>> Cc: Vinod Koul <vkoul@kernel.org>
->>>> Cc: David Miller <davem@davemloft.net>
->>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->>>
->>> Thank you for your patch. There is something to discuss/improve.
->>>
->>>> ---
->>>>    .../devicetree/bindings/net/qcom,ethqos.txt   |  66 ---------
->>>>    .../devicetree/bindings/net/qcom,ethqos.yaml  | 139 ++++++++++++++++++
->>>
->>> You need to update maintainers - old path.
->>
->> Sure, my bad. Will do in v2.
->>
->>>>    2 files changed, 139 insertions(+), 66 deletions(-)
->>>>    delete mode 100644 Documentation/devicetree/bindings/net/qcom,ethqos.txt
->>>>    create mode 100644 Documentation/devicetree/bindings/net/qcom,ethqos.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.txt b/Documentation/devicetree/bindings/net/qcom,ethqos.txt
->>>> deleted file mode 100644
->>>> index 1f5746849a71..000000000000
->>>> --- a/Documentation/devicetree/bindings/net/qcom,ethqos.txt
->>>> +++ /dev/null
->>>> @@ -1,66 +0,0 @@
->>>> -Qualcomm Ethernet ETHQOS device
->>>> -
->>>> -This documents dwmmac based ethernet device which supports Gigabit
->>>> -ethernet for version v2.3.0 onwards.
->>>> -
->>>> -This device has following properties:
->>>> -
->>>> -Required properties:
->>>> -
->>>> -- compatible: Should be one of:
->>>> -		"qcom,qcs404-ethqos"
->>>> -		"qcom,sm8150-ethqos"
->>>> -
->>>> -- reg: Address and length of the register set for the device
->>>> -
->>>> -- reg-names: Should contain register names "stmmaceth", "rgmii"
->>>> -
->>>> -- clocks: Should contain phandle to clocks
->>>> -
->>>> -- clock-names: Should contain clock names "stmmaceth", "pclk",
->>>> -		"ptp_ref", "rgmii"
->>>> -
->>>> -- interrupts: Should contain phandle to interrupts
->>>> -
->>>> -- interrupt-names: Should contain interrupt names "macirq", "eth_lpi"
->>>> -
->>>> -Rest of the properties are defined in stmmac.txt file in same directory
->>>> -
->>>> -
->>>> -Example:
->>>> -
->>>> -ethernet: ethernet@7a80000 {
->>>> -	compatible = "qcom,qcs404-ethqos";
->>>> -	reg = <0x07a80000 0x10000>,
->>>> -		<0x07a96000 0x100>;
->>>> -	reg-names = "stmmaceth", "rgmii";
->>>> -	clock-names = "stmmaceth", "pclk", "ptp_ref", "rgmii";
->>>> -	clocks = <&gcc GCC_ETH_AXI_CLK>,
->>>> -		<&gcc GCC_ETH_SLAVE_AHB_CLK>,
->>>> -		<&gcc GCC_ETH_PTP_CLK>,
->>>> -		<&gcc GCC_ETH_RGMII_CLK>;
->>>> -	interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
->>>> -			<GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
->>>> -	interrupt-names = "macirq", "eth_lpi";
->>>> -	snps,reset-gpio = <&tlmm 60 GPIO_ACTIVE_LOW>;
->>>> -	snps,reset-active-low;
->>>> -
->>>> -	snps,txpbl = <8>;
->>>> -	snps,rxpbl = <2>;
->>>> -	snps,aal;
->>>> -	snps,tso;
->>>> -
->>>> -	phy-handle = <&phy1>;
->>>> -	phy-mode = "rgmii";
->>>> -
->>>> -	mdio {
->>>> -		#address-cells = <0x1>;
->>>> -		#size-cells = <0x0>;
->>>> -		compatible = "snps,dwmac-mdio";
->>>> -		phy1: phy@4 {
->>>> -			device_type = "ethernet-phy";
->>>> -			reg = <0x4>;
->>>> -		};
->>>> -	};
->>>> -
->>>> -};
->>>> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
->>>> new file mode 100644
->>>> index 000000000000..f05df9b0d106
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
->>>> @@ -0,0 +1,139 @@
->>>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Qualcomm Ethernet ETHQOS device
->>>> +
->>>> +maintainers:
->>>> +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
->>>> +
->>>> +description:
->>>> +  This binding describes the dwmmac based Qualcomm ethernet devices which
->>>> +  support Gigabit ethernet (version v2.3.0 onwards).
->>>> +
->>>> +  So, this file documents platform glue layer for dwmmac stmmac based Qualcomm
->>>> +  ethernet devices.
->>>> +
->>>> +allOf:
->>>> +  - $ref: "snps,dwmac.yaml#"
->>>
->>> No need for quotes.
->>
->> Ok.
->>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - qcom,qcs404-ethqos
->>>> +      - qcom,sm8150-ethqos
->>>> +
->>>> +  reg: true
->>>
->>> I think both devices use two reg spaces.
->>
->> On this platform the two reg spaces are 64-bit, whereas for other
->> platforms based on dwmmac, for e.g. stm32 have 32-bit address space.
-> 
-> Then for this platform this should be made specific/constrained, so it
-> must be two items.
-> 
->>
->>>> +
->>>> +  reg-names:
->>>> +    minItems: 1
->>>
->>> Why allowing only one item?
->>
->> Ok, let me remove this in v2.
-> 
-> And then as well you allow only one item... This should be specific. If
-> not - why?
-> 
->>
->>>> +    items:
->>>> +      - const: stmmaceth
->>>> +      - const: rgmii
->>>> +
->>>> +  interrupts: true
->>>
->>> This should be specific/fixed.
->>>
->>>> +
->>>> +  interrupt-names: true
->>>
->>> This should be specific/fixed.
->>
->> These are same as in $ref: "snps,dwmac.yaml#", so
->> do we really need to specify them here? I remember on the sdhci-msm
->> YAML patch review, Rob mentioned that we should just set the property to
->> true, in such cases.
-> 
-> But it is not specific in dwmac.yaml. You use "xxx: true" when you want
-> to accept property from other schema, assuming it is defined there
-> properly. However the snps,dwmac does not define it in specific way
-> because it expects specific implementation to narrow the details.
-> 
->>
->> Am I missing something here?
->>
->>>> +
->>>> +  clocks:
->>>> +    minItems: 1
->>>> +    maxItems: 4
->>>
->>> Why such flexibility?
->>
->> Ok, let me just keep 'maxItems: 4' here for now.
->>
->>>> +
->>>> +  clock-names:
->>>> +    minItems: 1
->>>> +    items:
->>>> +      - const: stmmaceth
->>>> +      - const: pclk
->>>> +      - const: ptp_ref
->>>> +      - const: rgmii
->>>> +
->>>> +  iommus:
->>>> +    minItems: 1
->>>> +    maxItems: 2
->>>
->>> Aren't we using only one MMU?
->>
->> It was just for future compatibility, but I get your point.
->> Let me keep the 'maxItems: 1' here for now.
->>
->>>> +
->>>> +  mdio: true
->>>> +
->>>> +  phy-handle: true
->>>> +
->>>> +  phy-mode: true
->>>> +
->>>> +  snps,reset-gpio: true
->>>> +
->>>> +  snps,tso:
->>>> +    $ref: /schemas/types.yaml#/definitions/flag
->>>> +    description:
->>>> +      Enables the TSO feature otherwise it will be managed by MAC HW capability register.
->>>> +
->>>> +  power-domains: true
->>>> +
->>>> +  resets: true
->>>> +
->>>> +  rx-fifo-depth: true
->>>> +
->>>> +  tx-fifo-depth: true
->>>
->>> You do not list all these properties, because you use
->>> unevaluatedProperties. Drop all of these "xxx :true".
->>
->> Same query as above. May be I am missing something here.
-> 
-> You do not list any properties:true from other schema, if you use
-> unevaluatedProperties:false.
+Hi Zev,
+Thanks for picking this up.
+I cannot answer the first question, but the second:
+It's sufficient for us to just have one supply per userspace-consumer instance.
 
-Ok, let me try and fix these in the v2. I will share the same soon.
+The optional property is fine and could be useful in the future.
 
-Thanks,
-Bhupesh
+Regards,
+Patrick
 
+On Mon, Sep 26, 2022 at 12:04 AM Zev Weiss <zev@bewilderbeest.net> wrote:
+>
+> Hello,
+>
+> This series is another attempt at implementing support for
+> userspace-controlled regulator-supplied power outputs.  This is an
+> important feature for some kinds of BMC (baseboard management
+> controller) systems where the BMC provides an operator with manual
+> control of a set of DC power outputs.
+>
+> As in a broadly similar patchset that was recently almost merged [0],
+> this takes the approach of providing support by extending the existing
+> userspace-consumer regulator driver.  A couple questions about the
+> userspace-consumer driver came up along the way, however.
+>
+> First, how (if at all) is it currently being used?  It appears the
+> last in-tree use of it was removed a bit over two years ago in commit
+> 9d3239147d6d ("ARM: pxa: remove Compulab pxa2xx boards").  Aside from
+> just adding DT support I've made a couple small tweaks to the driver
+> in patch 3 that I hope are compatible with any current usage, but
+> without any extant examples to look at it's kind of hard to say.
+>
+> Second, how critical is its support for controlling multiple
+> regulators?  (i.e. its use of regulator_bulk_data and friends instead
+> of a single struct regulator.)  As far as I can see every in-tree use
+> of it that's ever existed has used num_supplies = 1.  If it's not
+> important to retain, patch 1 of this series could be supplanted by one
+> that instead simplifies the driver slightly by removing that
+> functionality.
+>
+> The DT binding added in patch 2 is very similar to one I posted in a
+> previous patchset that had an R-B from Rob [1], but has had some minor
+> rewording and gained one new (optional) property.
+>
+> Laxman, Naresh, Patrick -- please let me know if there are any aspects
+> of this implementation that would be incompatible with your needs.
+>
+>
+> Thanks,
+> Zev
+>
+> [0] https://lore.kernel.org/all/20220707081826.953449-4-Naresh.Solanki@9elements.com/
+> [1] https://lore.kernel.org/linux-kernel/20220505232557.10936-2-zev@bewilderbeest.net/
+>
+> Zev Weiss (3):
+>   regulator: devres: Add devm_regulator_bulk_get_exclusive()
+>   dt-bindings: regulator: Add regulator-output binding
+>   regulator: userspace-consumer: Handle regulator-output DT nodes
+>
+>  .../bindings/regulator/regulator-output.yaml  | 47 +++++++++++++
+>  drivers/regulator/core.c                      | 42 +++++++-----
+>  drivers/regulator/devres.c                    | 66 ++++++++++++++-----
+>  drivers/regulator/internal.h                  |  2 +
+>  drivers/regulator/userspace-consumer.c        | 43 ++++++++++--
+>  include/linux/regulator/consumer.h            |  2 +
+>  include/linux/regulator/userspace-consumer.h  |  1 +
+>  7 files changed, 162 insertions(+), 41 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/regulator-output.yaml
+>
+> --
+> 2.37.3
+>
