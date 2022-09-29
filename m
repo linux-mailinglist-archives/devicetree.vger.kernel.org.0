@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 742485EED8A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 08:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A815EED84
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 08:05:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234834AbiI2GFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 02:05:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46938 "EHLO
+        id S234891AbiI2GFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 02:05:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234877AbiI2GEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 02:04:53 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE886384
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:04:51 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id s26so562611pgv.7
-        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:04:51 -0700 (PDT)
+        with ESMTP id S233911AbiI2GFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 02:05:01 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A25D4BC24
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:04:56 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id v1so389137plo.9
+        for <devicetree@vger.kernel.org>; Wed, 28 Sep 2022 23:04:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=6knmM+Buy29rS1AT6V8hgyb87xZ8MvaVTgXHXkiFVM0=;
-        b=yed+LiwzAA7lrOIeUZi+Wc+Y71agNniKS+flzcmgdh/3B8qXjqc46CKju5GSpRD185
-         h5DJVx//k1xikxT+Ya2hVF+Lxmwj+/i4xX6BrXPdP61E92OpJwv62oxoa8w2dVuXMla4
-         vi/7f9LRrLuz6rd1JlnA/7pR1nEbOemi3fZSzIISQFW/62YouyaLG5o0kSqpZL786hD1
-         lg/nqxzhyR3ts1vrROf11JDDePU3jqaQixURQ3r/A5cfOpvzS6/HrPqVo+OsFCOLPU4F
-         2kNtBv3hbs9bcizRu0lKwd1mCjL1dmPkGvR598t4NDacAmGVYDampctcdSfJx/f8Ivik
-         DT0Q==
+        bh=HerCVeEeEVRuoWPmPeo3XrTCORLU2x9PZu7uVHfJNts=;
+        b=qH2UFHbxW/Tc5qAIMeCZwPYYSmKMAPRQkek8QF54aF4tzYfW/duQO1sN9kGkdozrwL
+         jp81Kr7M1n6sO6OZBByBUY5w42ML49ZowIdQtzj14cDcGuEQgDo6Y0hUKdTKAUGHlc4s
+         aAtcZg++JBOXXuEdyhDJvqDwIdPOFneza9YgKZB9NzfQR4eD4UeKKgpXai9QqRZuzsLA
+         xjr2HJp+kS/mkWcZBNEj4/luqo2XsaD9VEwvo5+rtrqhUYrmgm6XHqgNk/MpQTqxECJG
+         mi4sve2l8Wq9Ok18n4MKvTH6mbrkmXgqqV+tmjA1P3FS2AHDUWguM8rmN4+gRnyrOiQt
+         5frQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=6knmM+Buy29rS1AT6V8hgyb87xZ8MvaVTgXHXkiFVM0=;
-        b=l1C/x6ZiNq1Qc5uRX0HHdav1g2w4ubSC09626LQsC7Wl2aaYKSsC0GhV3IKVNPvU5a
-         ifcx+c2PH7/hR7qskDG9VNnuM/xEPb7PZ3fcDfuyQb/l6Q+j3d2gR6ieM/7PzhOBHw40
-         MYq2Rj7zKdr+BM/xKl5ELSBtp3G7HXZ8AQR8clY3RiW7Hlk1rMInrHg2AEJZt+S4gjmC
-         7ttBNRcYTIFMEvaX0pB34J56x8AQBBkTncJsdX0CgzBO5ub6yc6ql9+psJr2lu01mWUf
-         V2AjTL9Z6p4EMNtrUJjIQo7XA3I4GnacN+aI9hOL3TsJb/oUPKUOaOmweNmSEiOauYae
-         zc+A==
-X-Gm-Message-State: ACrzQf2fcHxBIlGgWBFNGmfR0mpUXQAJhvHjkmoxe63uTzGJHyVaExXf
-        OEEFumMlZvINyCcQ6ZBj26aaJgDHHwJTPw==
-X-Google-Smtp-Source: AMsMyM7GsEATtJtjHkk2nfWhsRlHkTfp9IQdiIIVMegzlTtaq/GS4W1DeBoUEDKj1Ix2qr12IPO+VA==
-X-Received: by 2002:a65:604d:0:b0:43c:9d8c:813a with SMTP id a13-20020a65604d000000b0043c9d8c813amr1521105pgp.572.1664431490293;
-        Wed, 28 Sep 2022 23:04:50 -0700 (PDT)
+        bh=HerCVeEeEVRuoWPmPeo3XrTCORLU2x9PZu7uVHfJNts=;
+        b=A6iKsW8dWJcomdtVkgK22QC8YP8K2AYpMIEDP2OkFPhaBqcfxBP6TuQN7Fbv5bFwny
+         8F1tlybSfBNg6P66Z8NwgS+aGPZP9H46MgkwNneR9HSf+82L+3wcIVRi/b2Crlj4Jelx
+         cz2VtCj5gDeZXyqFZMkjNH6PvB171/XpGHpZM07Eyq1EdUddnFIeW0PhurbbHSJfWtVo
+         jLv0koplmDXw8igMdnHNnMrsv5nBxpZ8Bu363xHP7kWqFPCT3PD+V+CRwcAGjHWLIGVR
+         XBBea4jAJJpMubAWEu5LLKCAJ0WDFwBdX7PxzN8yRLvq4ouzTNCGN86jKaUvx2q8tONi
+         YS9Q==
+X-Gm-Message-State: ACrzQf0TPoO1iH+Yl42cgK3jx+Ohg8+McypcWP8pQ+Bj+ULfUb30dN57
+        MzIuB2X7pbpbHytZ3WAEPxW+usdYoRzUZg==
+X-Google-Smtp-Source: AMsMyM6q/IDq6Ld+HftBnDjBzSVENdfXKdy32ZqWMObw1suKOdLyFu8RdfCHAE4Gx1Fv5GnghrsrtQ==
+X-Received: by 2002:a17:90a:9747:b0:205:feff:7d6a with SMTP id i7-20020a17090a974700b00205feff7d6amr1887277pjw.131.1664431495088;
+        Wed, 28 Sep 2022 23:04:55 -0700 (PDT)
 Received: from localhost.localdomain ([2401:4900:1f3b:3adb:24f8:ac24:2282:1dc7])
-        by smtp.gmail.com with ESMTPSA id i1-20020aa796e1000000b00540c3b6f32fsm5037681pfq.49.2022.09.28.23.04.45
+        by smtp.gmail.com with ESMTPSA id i1-20020aa796e1000000b00540c3b6f32fsm5037681pfq.49.2022.09.28.23.04.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Sep 2022 23:04:49 -0700 (PDT)
+        Wed, 28 Sep 2022 23:04:54 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     devicetree@vger.kernel.org
 Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
@@ -57,9 +57,9 @@ Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
         David Miller <davem@davemloft.net>
-Subject: [PATCH v2 1/4] dt-bindings: net: snps,dwmac: Update interrupt-names
-Date:   Thu, 29 Sep 2022 11:34:02 +0530
-Message-Id: <20220929060405.2445745-2-bhupesh.sharma@linaro.org>
+Subject: [PATCH v2 2/4] dt-bindings: net: snps,dwmac: Add Qualcomm Ethernet ETHQOS compatibles
+Date:   Thu, 29 Sep 2022 11:34:03 +0530
+Message-Id: <20220929060405.2445745-3-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220929060405.2445745-1-bhupesh.sharma@linaro.org>
 References: <20220929060405.2445745-1-bhupesh.sharma@linaro.org>
@@ -75,12 +75,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As commit fc191af1bb0d ("net: stmmac: platform: Fix misleading
-interrupt error msg") noted, not every stmmac based platform
-makes use of the 'eth_wake_irq' or 'eth_lpi' interrupts.
-
-So, update the 'interrupt-names' inside 'snps,dwmac' YAML
-bindings to reflect the same.
+Add Qualcomm Ethernet ETHQOS compatible checks
+in snps,dwmac YAML binding document.
 
 Cc: Bjorn Andersson <andersson@kernel.org>
 Cc: Rob Herring <robh@kernel.org>
@@ -88,24 +84,31 @@ Cc: Vinod Koul <vkoul@kernel.org>
 Cc: David Miller <davem@davemloft.net>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- Documentation/devicetree/bindings/net/snps,dwmac.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/net/snps,dwmac.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 2d4e7c7c230a..37f2ed3194de 100644
+index 37f2ed3194de..35ce351a3d0c 100644
 --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
 +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -105,8 +105,8 @@ properties:
-     minItems: 1
-     items:
-       - const: macirq
--      - const: eth_wake_irq
--      - const: eth_lpi
-+      - enum: [eth_wake_irq, eth_lpi]
-+      - enum: [eth_wake_irq, eth_lpi]
- 
-   clocks:
-     minItems: 1
+@@ -65,6 +65,8 @@ properties:
+         - ingenic,x2000-mac
+         - loongson,ls2k-dwmac
+         - loongson,ls7a-dwmac
++        - qcom,qcs404-ethqos
++        - qcom,sm8150-ethqos
+         - renesas,r9a06g032-gmac
+         - renesas,rzn1-gmac
+         - rockchip,px30-gmac
+@@ -384,6 +386,8 @@ allOf:
+               - ingenic,x1600-mac
+               - ingenic,x1830-mac
+               - ingenic,x2000-mac
++              - qcom,qcs404-ethqos
++              - qcom,sm8150-ethqos
+               - snps,dwmac-4.00
+               - snps,dwmac-4.10a
+               - snps,dwmac-4.20a
 -- 
 2.37.1
 
