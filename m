@@ -2,119 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A5915EEF77
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3396B5EEF82
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235174AbiI2HoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 03:44:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52480 "EHLO
+        id S235357AbiI2Hp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 03:45:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235520AbiI2Hnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:43:45 -0400
-Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BCF27D789;
-        Thu, 29 Sep 2022 00:43:41 -0700 (PDT)
-Received: by mail-ua1-x935.google.com with SMTP id a4so209066uao.0;
-        Thu, 29 Sep 2022 00:43:41 -0700 (PDT)
+        with ESMTP id S235142AbiI2Hpz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:45:55 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F3A0EEB5E
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:45:54 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id a3so992988lfk.9
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:45:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=hUW+w97bjwcMZAz2wEha3h2rI21nTjZgAo+7PEzzR7o=;
-        b=IE9LHSxpzmDUKXAXpwHaYnHjLj1WufJVEYfJ1hGOFxil3rrScoNoLneEmDUcqYGDo/
-         cmnDLwBy5pEenkueOTqCV+am/5vXym19TECHw5twZhfNwDVDerAskkddsMYTI5iyXcb9
-         DKeNtto5a2ndL2uhg4dGQ+GhgCdAK8SvkRUTbps0BQnaxHCtqGHEWrXW1L8fXhtkJtvK
-         xEbpRhYNxNBRsDCHgiwHkY7GxRqwABdkPK0KVFe4aKZvOyCNtvpSM5qwc9EXYZdj7Ccx
-         +pI87QqvzlYDGu6n8JKzdWzkbjB8p0Z8F352cBkYLNp5LL5IyZKCRiZJ4CAtoLvoTv3W
-         5eTw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=p7ms7uqng+TRfW2+8KLEb7IsEqCgIjkUcQ5rclrFPw8=;
+        b=BBTb8i3GIiG9CaQszwD5JUyCdxCbBwlxH9N8u8bkqxNpkoUNCNT5/gIvsspbDLA+de
+         96bs2KSDzqRRZuxUeityqLuhoeJHxfKS0wAc7EXM6lvgDRvtfGffuXB0b+hv53MnW010
+         3BMtAZcmfpO8Eu1IOqbXjkiSGUihqK2ryoQa8dCKxALvE+TRI1g5U7+wx+lz4AWsckP2
+         UpM4chLJleJMWeJFM7W6NH/fvCnRKNg0lSgK9iR06OJjcRgPlAEgdlrBVDssFea6XptW
+         1Shp2VP1ndX9q7wfeuoz3AussVnb9V+lrQJtZX/DCbWW44tabOtHledw2eVfMLmql46S
+         aJ0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=hUW+w97bjwcMZAz2wEha3h2rI21nTjZgAo+7PEzzR7o=;
-        b=iA3hcRubxNaD3F5znpW2v21sAUQ02aV/Eme5ySqZHWX2XGMZ0hqc6PqrS2aNYJzCNM
-         7XOvA9WeLsxI9jSHdYHeYAUmcSjsTRoM3vxHH7+QNUAIXQhUPRmtN/p1fuQWuVwaY+yY
-         NqLdeyF/QAJmjpVkMMMVAuksYkSA7dTkMKpTXCQej3Rgmoq+bIg//oIsJuqJcTFSXN1r
-         97IbqBFpd5a90gMxtx/NJO6ArIouOZ17FKvICxpO6nIMeM+O298LNBshSr6kCFsg8oqn
-         tABsvapuLbbAg6Ba5zRcZcDTRyBDniyGf+wIk5KefrcvGObvxQA5EEAs9p+/5BzIRvy0
-         p03g==
-X-Gm-Message-State: ACrzQf1hS+urFFtsOMtrmsHyu8dYArGsdKXmUErK191kYZC4dOmVgEZT
-        yPsBZmS3mPj7refPDuVFDeUGfv+OConztQZYPD8=
-X-Google-Smtp-Source: AMsMyM7ZHbYAiRKbQseodi2xdbkJcMUR30vIeLDXSMJPODyQS/Sgc7Hny7j2kIzLs5PAY4GuSRRyTMEfCI5USrXqyrw=
-X-Received: by 2002:a9f:3767:0:b0:3d1:2de3:12a8 with SMTP id
- a36-20020a9f3767000000b003d12de312a8mr881708uae.47.1664437420589; Thu, 29 Sep
- 2022 00:43:40 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=p7ms7uqng+TRfW2+8KLEb7IsEqCgIjkUcQ5rclrFPw8=;
+        b=jq4t4brneCNgik7XTxdhWIubXiQyYV3/XHI9RqJgmkzNqZhd6Hy9H9EMNZWESIhnnh
+         53jgaU8ptFQwE0uGO8hP0hi0sh2hHvT1Rzv4IW11P0HnrtRsAgT1zYbErJzemKktI1c8
+         DzvZKqwvmV9vao8EY0bvZpKeHEnp/D2nr6LAG9JQxP80uPKjW5pVy9EKsOfEcypL06vj
+         OSb6lSXALrG0va/8awpYETrGeAwyfIbhLVQCo/6peLrWVn9XWHBv4nAOrNkHEwzOPhQL
+         jfJz7gQIYgOrkJGGgsY5lQz0KqrMM0yXOE7fLS8u/l7XczGGGFj/5J+bn3ahx8a4FmjF
+         GBWg==
+X-Gm-Message-State: ACrzQf1bcxKNdiu9h1z6qjuUBqu+kQ0ZufpnkVNgEWhHod362PscJGn6
+        E1pCU4l6VGDRqW9WQv+lQB4DgqT7NHxgrQ==
+X-Google-Smtp-Source: AMsMyM4qz40OXC+DwXTJoJOTC15xvBFpmJ5eD9N4isSloiSD+bMU6hutKIdvRpX7/Dj03+q2OsJR6g==
+X-Received: by 2002:a05:6512:3d25:b0:49a:d2a0:7208 with SMTP id d37-20020a0565123d2500b0049ad2a07208mr833485lfv.82.1664437552543;
+        Thu, 29 Sep 2022 00:45:52 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id y9-20020ac255a9000000b00499cf3e3edcsm703233lfg.296.2022.09.29.00.45.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Sep 2022 00:45:52 -0700 (PDT)
+Message-ID: <f54a40ea-99bf-e341-3bbd-851b250cc9cd@linaro.org>
+Date:   Thu, 29 Sep 2022 09:45:51 +0200
 MIME-Version: 1.0
-References: <20220928092937.27120-1-zhang.lyra@gmail.com> <fca2b97c-9d4f-d372-ef2a-aae8b367bbe5@linaro.org>
- <CAAfSe-t=-pZAcrY0o-ct1uJaNhtkCMQKNW5gOrJfE6DEOhSZDw@mail.gmail.com> <bb61ff78-182f-f4e2-bee8-556234ca07ee@linaro.org>
-In-Reply-To: <bb61ff78-182f-f4e2-bee8-556234ca07ee@linaro.org>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Thu, 29 Sep 2022 15:43:04 +0800
-Message-ID: <CAAfSe-veC5syRMLbDDxDsYXTx=OS09DEMGS-O=c_9PSa7r9tuA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: gpio: Conver Unisoc GPIO controller
- binding to yaml
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v5 2/3] dt-bindings: thermal: add loongson2k thermal
+ binding
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+References: <20220928083702.17309-1-zhuyinbo@loongson.cn>
+ <20220928083702.17309-2-zhuyinbo@loongson.cn>
+ <066b55cf-4a28-89a2-56ab-572590c97c30@linaro.org>
+ <9b2f2d43-981d-3ffb-7526-dc3e58a9f367@linaro.org>
+ <f0946817-cc2c-449b-d93b-0dd94a0f51f1@loongson.cn>
+ <ed762d71-7104-b1ad-009d-51c1a4407472@loongson.cn>
+ <9b62594f-7473-9974-8ab3-4c93aae5fa64@linaro.org>
+ <abaf9b69-487c-0f1e-7a94-201155f5e3d2@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <abaf9b69-487c-0f1e-7a94-201155f5e3d2@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Sept 2022 at 15:02, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 29/09/2022 04:29, Chunyan Zhang wrote:
-> > Hi Krzysztof,
-> >
-> > On Wed, 28 Sept 2022 at 19:31, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 28/09/2022 11:29, Chunyan Zhang wrote:
-> >>> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> >>>
-> >>> Convert the Unisoc gpio controller binding to DT schema format.
-> >>>
-> >>
-> >>
-> >> Thank you for your patch. There is something to discuss/improve.
-> >>
-> >>> diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..c0cd1ed9809b
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-> >>> @@ -0,0 +1,70 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +# Copyright 2022 Unisoc Inc.
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/gpio/sprd,gpio.yaml#
-> >>
-> >> Use compatible as filename, so sprd,sc9860-gpio.yaml
-> >
-> > Humm... This is not only for SC9860, also for other IPs, UMS512 as an
-> > example which added in this patchset.
-> >
->
->
-> Then it's ok. It seems you have also typo in commit subject (Conver).
+On 29/09/2022 09:07, Yinbo Zhu wrote:
+>>>>>
+>>>>> ... and please test your patches before sending :(
+>>> You said is refer that "reg: [[0, 534779136], [0, 48]] is too long" ?
+>>> Need fix that warning, right?
+>>
+>> Yes. You said you tested it but then sent with an error... so it's not
+>> really a testing.
+> sorry, I did do some testing. but I think It is okay that can generate a 
+> dtb  without reporting an error when compile yaml file, in fact, I 
+> ignore the warning,  I will fix it in v6.
 
-Ah yes -_-||, will fix that.
 
->
-> Best regards,
-> Krzysztof
->
+Do you also send the code with warnings reported by GCC? Judging by
+number of kernel test robot reports, it could be. So just to be very,
+very clear: do not send any code which generates any warning. For GCC
+this means W=1 builds.
+
+Best regards,
+Krzysztof
+
