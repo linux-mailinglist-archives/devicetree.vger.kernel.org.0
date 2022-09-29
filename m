@@ -2,64 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89FC05EFFE5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 00:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EECA65EFFEB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 00:12:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229472AbiI2WIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 18:08:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38522 "EHLO
+        id S229842AbiI2WMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 18:12:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiI2WIT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 18:08:19 -0400
+        with ESMTP id S229723AbiI2WMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 18:12:16 -0400
 Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B43DB654A;
-        Thu, 29 Sep 2022 15:08:16 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id q10so3009666oib.5;
-        Thu, 29 Sep 2022 15:08:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0259312B5C6;
+        Thu, 29 Sep 2022 15:12:16 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id q10so3018269oib.5;
+        Thu, 29 Sep 2022 15:12:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=6O8Jjng3iyin8rOht5eSYjzFn9Bme9u5OQK0LkD2pu8=;
-        b=afFAa1bBvksKz6COSVbXYnb7pUt6qzXpToTUPMF8v+70SBL7B0fOZSCAcN0Ri/9Pj8
-         0b4T2wbO8kHyxRsrF/qCn5bsIfysH7Ss+JWTWElT6gt/dTEusUfUOmTz7jbBzalyBLAT
-         VnUMW99LW3ma0ESU5Ln6SDy4EXtIHEPiJACDD1vRY3PdcpBTv8aIZmoFEqB8dVTLkxBD
-         KbNJypqpLIaG/t0Govcyj4gZFMx491dwdbZ8F1g6aqKWHI5EVF/SP0J1g8YBNrBL0rLz
-         5nevo7tS8rZfnuGdhT57sfgabEdHBPWhlKnn4+M0jEPG9Rf+EOETMvr9Fs1Jp2x06PuW
-         uzOw==
-X-Gm-Message-State: ACrzQf3AZAmkEgQ/8SBkQDaeJRRLHWfYILLjhMffNjjL85yriAF8yXpu
-        RlFUxFLzxPq6RX4QmClBy4E/Erjnmw==
-X-Google-Smtp-Source: AMsMyM6BAUAzcU5iHjhtArwxDH4lLKHBTagWqW15z6CnS+PiBi2+/SsRCLz0KEtcFaae12p9OiVr+Q==
-X-Received: by 2002:aca:1018:0:b0:34d:8f7a:27e1 with SMTP id 24-20020aca1018000000b0034d8f7a27e1mr8214159oiq.284.1664489295603;
-        Thu, 29 Sep 2022 15:08:15 -0700 (PDT)
+        bh=ASMxoiv4FbPhHDa+iA0oK+10NqOkogTcjb7gHSphYjg=;
+        b=Ip7gEATiRDICiswoa+PVU7OoozcBC02mZJ7Z040fpbYFstOCVx/Bw9+hoIXAg+VLFL
+         75e1MZVF1yrkZRYocoJ/3L2Eofc7mj/+QMtJpNelLJ2hVxfzMs0XwjZA9kg1HWqAYHI/
+         WoyQivdaPevq08OP2CpbvHr3owaUIuGSReUa97Bp3H4SwLl/NqPmxQiWnAMScgLM9abW
+         eGVy1x59qmZOynw6fg6iVS3iMzoD8lFOANmwlT/q/9zcCRhqHo+LOVZns5jr9vZCu4te
+         r/Kqj4P/ED3MtntHHedUpYBMVDTLu32q9b0c+11QB/5BUCw6Tz+99okMGO9/q9RwSBrh
+         TxEQ==
+X-Gm-Message-State: ACrzQf2SqMddUO0w0JvV/jqz++6IQlmmr6nmZ12h5+FN91z6IHb74IzS
+        oIYDu28YvJU909P5f3DSjo8w3qH4yw==
+X-Google-Smtp-Source: AMsMyM7VroV5624kGgEqjT2S4mOcsL/Nf1Rll39OcXzrr1TOGmG1ujykkTDq/oLQk9AkZc2eShTBVg==
+X-Received: by 2002:aca:130a:0:b0:34f:97d7:81e5 with SMTP id e10-20020aca130a000000b0034f97d781e5mr2589663oii.7.1664489535267;
+        Thu, 29 Sep 2022 15:12:15 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l13-20020a056870218d00b0010bf07976c9sm239823oae.41.2022.09.29.15.08.14
+        by smtp.gmail.com with ESMTPSA id o1-20020a056808124100b00350c5d946casm134843oiv.4.2022.09.29.15.12.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 15:08:14 -0700 (PDT)
-Received: (nullmailer pid 2832554 invoked by uid 1000);
-        Thu, 29 Sep 2022 22:08:13 -0000
-Date:   Thu, 29 Sep 2022 17:08:13 -0500
+        Thu, 29 Sep 2022 15:12:14 -0700 (PDT)
+Received: (nullmailer pid 2859839 invoked by uid 1000);
+        Thu, 29 Sep 2022 22:12:14 -0000
+Date:   Thu, 29 Sep 2022 17:12:14 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Jose Abreu <joabreu@synopsys.com>, devicetree@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Eric Dumazet <edumazet@google.com>
-Subject: Re: [PATCH] dt-bindings: net: snps,dwmac: Document stmmac-axi-config
- subnode
-Message-ID: <166448929263.2832109.15881411107607706980.robh@kernel.org>
-References: <20220927012449.698915-1-marex@denx.de>
+To:     Lee Jackson <info@arducam.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: media: i2c: Add IMX519 CMOS
+ sensor binding
+Message-ID: <20220929221214.GA2846349-robh@kernel.org>
+References: <20220927114442.000026f7@arducam.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220927012449.698915-1-marex@denx.de>
+In-Reply-To: <20220927114442.000026f7@arducam.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -70,29 +60,170 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Sep 2022 03:24:49 +0200, Marek Vasut wrote:
-> The stmmac-axi-config subnode is present in multiple dwmac instance DTs,
-> document its content per snps,axi-config property description which is
-> a phandle to this subnode.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: David S. Miller <davem@davemloft.net>
-> Cc: Eric Dumazet <edumazet@google.com>
-> Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Jose Abreu <joabreu@synopsys.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Cc: Paolo Abeni <pabeni@redhat.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> Cc: netdev@vger.kernel.org
-> To: linux-arm-kernel@lists.infradead.org
-> ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
-> 
+On Tue, Sep 27, 2022 at 11:44:42AM +0800, Lee Jackson wrote:
+> Add YAML device tree binding for IMX519 CMOS image sensor, and
+> the relevant MAINTAINERS entries.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I don't see any signs of patch 2/2...
+
+> Signed-off-by: Lee Jackson <info@arducam.com>
+> ---
+>  .../devicetree/bindings/media/i2c/imx519.yaml | 113 ++++++++++++++++++
+
+sony,imx519.yaml
+
+>  MAINTAINERS                                   |   8 ++
+>  2 files changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx519.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/imx519.yaml b/Documentation/devicetree/bindings/media/i2c/imx519.yaml
+> new file mode 100644
+> index 000000000000..717230a21764
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/imx519.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/imx519.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sony 1/2.5-Inch 16Mpixel CMOS Digital Image Sensor
+> +
+> +maintainers:
+> +  - Lee Jackson <info@arducam.com>
+> +
+> +description: |-
+> +  The Sony IMX519 is a 1/2.5-inch CMOS active pixel digital image sensor
+> +  with an active array size of 4656H x 3496V. It is programmable through
+> +  I2C interface. The I2C address is fixed to 0x1A as per sensor data sheet.
+> +  Image data is sent through MIPI CSI-2, which is configured as either 2 or
+> +  4 data lanes.
+> +
+> +properties:
+> +  compatible:
+> +    const: sony,imx519
+> +
+> +  reg:
+> +    description: I2C device address
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  VDIG-supply:
+> +    description:
+> +      Digital I/O voltage supply, 1.05 volts
+> +
+> +  VANA-supply:
+> +    description:
+> +      Analog voltage supply, 2.8 volts
+> +
+> +  VDDL-supply:
+> +    description:
+> +      Digital core voltage supply, 1.8 volts
+> +
+> +  reset-gpios:
+> +    description: |-
+> +      Reference to the GPIO connected to the xclr pin, if any.
+> +      Must be released (set high) after all supplies and INCK are applied.
+> +
+> +  # See ../video-interfaces.txt for more details
+
+What does that file say?
+
+> +  port:
+> +    type: object
+> +    properties:
+> +      endpoint:
+> +        type: object
+
+Please look at any other camera sensor schema for how this should look.
+
+> +        properties:
+> +          data-lanes:
+> +            description: |-
+> +              The sensor supports either two-lane, or four-lane operation.
+> +              For two-lane operation the property must be set to <1 2>.
+> +            items:
+> +              - const: 1
+> +              - const: 2
+> +
+> +          clock-noncontinuous:
+> +            type: boolean
+> +            description: |-
+> +              MIPI CSI-2 clock is non-continuous if this property is present,
+> +              otherwise it's continuous.
+> +
+> +          link-frequencies:
+> +            allOf:
+> +              - $ref: /schemas/types.yaml#/definitions/uint64-array
+> +            description:
+> +              Allowed data bus frequencies.
+> +
+> +        required:
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - VANA-supply
+> +  - VDIG-supply
+> +  - VDDL-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c0 {
+
+i2c {
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        imx519: sensor@1a {
+> +            compatible = "sony,imx519";
+> +            reg = <0x1a>;
+> +            clocks = <&imx519_clk>;
+> +            VANA-supply = <&imx519_vana>;   /* 2.8v */
+> +            VDIG-supply = <&imx519_vdig>;   /* 1.05v */
+> +            VDDL-supply = <&imx519_vddl>;   /* 1.8v */
+> +
+> +            port {
+> +                imx519_0: endpoint {
+> +                    remote-endpoint = <&csi1_ep>;
+> +                    data-lanes = <1 2>;
+> +                    clock-noncontinuous;
+> +                    link-frequencies = /bits/ 64 <493500000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index a58f1fc6dd47..a2de51d71677 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19007,6 +19007,14 @@ T:	git git://linuxtv.org/media_tree.git
+>  F:	Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+>  F:	drivers/media/i2c/imx412.c
+>  
+> +SONY IMX519 SENSOR DRIVER
+> +M:	Arducam Kernel Maintenance <info@arducam.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +T:	git git://linuxtv.org/media_tree.git
+> +F:	Documentation/devicetree/bindings/media/i2c/imx519.yaml
+> +F:	drivers/media/i2c/imx519.c
+> +
+>  SONY MEMORYSTICK SUBSYSTEM
+>  M:	Maxim Levitsky <maximlevitsky@gmail.com>
+>  M:	Alex Dubov <oakad@yahoo.com>
+> -- 
+> 2.25.1
+> 
+> 
