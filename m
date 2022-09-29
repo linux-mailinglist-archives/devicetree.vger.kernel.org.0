@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C015EF053
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:25:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68B215EF072
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:29:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234778AbiI2IZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 04:25:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49358 "EHLO
+        id S235525AbiI2I3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 04:29:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235176AbiI2IZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:25:02 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9BC1B85C
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:24:54 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id n40-20020a05600c3ba800b003b49aefc35fso340688wms.5
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:24:54 -0700 (PDT)
+        with ESMTP id S235542AbiI2I32 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:29:28 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06C613EAFB
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:29:25 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id l18so963649wrw.9
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:29:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:organization:from:reply-to
          :references:cc:to:content-language:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date;
-        bh=OopjgA8vzC9GdcA7Dtfq242o4VGLvu/Ywzf24vdE4bY=;
-        b=ag4uzhw8aKsIxErrBbHxW883xPqjI1HkYp0/h+XP0QCb/P6KMxySAIsxm6ZPoDKiTw
-         RqsQcDsV/yBE+ouvak9JioxH1MLwXpAffH1gvpyp3a+xozlBd4BGymjae0jlj/ZIbCa0
-         mnWvP1W14dZkpmxtZJIc+hrD/PTtSQt4GXhnZT68B4R81EV0NxMBQCfUSCdZ51p+5YHA
-         Rcof0k+cKBf4SA4w6cV+a6QIOlE55Gsd/nFwvwP9trOU6N4NEOdRb5lzFuI70Ajp2rZP
-         0s74QaiyznpQdUKxNZujP+8WZ0nJZ4WAQSAEKLWOtyGUK6ahSR7n0NLRbBFuFywQvX1n
-         DWtw==
+        bh=bpujdPbvMkKZc5tbT0tesQargul5oOFWG757hhJb/PI=;
+        b=S+MBQ80rqHpEy6NEzdghu7ouA0nlstzMZO9Saw2V8CTa/0OE+fpOyEtEpWnJ5a33MZ
+         2zwKxqsKiGGlhR/4NLysLq43VTA2zD4e1z9PcdNGWaTFDPTZoZgmMgJmpzQLLdSuXQki
+         3UxJ5CNla358jTuqu4ssay4iY3uunEAjeUnNzs6uH0RQbOux2hAcJgwpZcaRvKB2DW25
+         sHoBQ24LKekSRT/apOh73b0ZExISLGEUYJSiTewZC4btdD67F7IzGpGxTAlG4Ip+2Q/+
+         Udesxn69qPH0WMUMoGAmU2sl3+VyQpVoVmiDlE6MI4C5LpxdKhafAm7PkHE7RaOKPQGI
+         /8kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:organization:from:reply-to
          :references:cc:to:content-language:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=OopjgA8vzC9GdcA7Dtfq242o4VGLvu/Ywzf24vdE4bY=;
-        b=4TSO5Kbb52DWuJzouRe1YAu4YgiMiZJVD+wFUBiq2g9ymvELPZd/GBK/jNxhtwVZ1T
-         WL0WBASiLC6WdwD8UndYdosH0nH65Jz2u1AGj+YtBxHIgL9KRVbZQqWzChSfLKSg2umn
-         eNkRaTnCNTa9EXSdiGDd3JV8jmNh7YHa9ZdMTZElOABLK/tC+RDdJfnZtnkouCPTVp3h
-         A7hyZMT6lHH9oCr/P47LT36J48qPtsaYET6jMYzIE/pj0LRL3zQG9oE6KahpEou4FvT5
-         nlmUIJwBGq0uLfY47oiboFDaYXmbi66aDc9G9N0Jz6x3rMm0qy7MjejJ4V2frm3imCjM
-         NhVw==
-X-Gm-Message-State: ACrzQf1qwmL41eDtH/xTTEF0qIVNbtGXbIg2ZnHUgqkLPCmfBdLpz9HH
-        mE6A6SKTty7DD1Q8osozN5dJG4kAh62bI+nt
-X-Google-Smtp-Source: AMsMyM4vYNiot0JEE43ZwvudM28MvEU9xeCa+cf1fPzHDOB1ELtp99d0UcKvNTBPNPFGDTw/KRZTuw==
-X-Received: by 2002:a05:600c:2e42:b0:3b5:1134:8ec8 with SMTP id q2-20020a05600c2e4200b003b511348ec8mr1278349wmf.58.1664439892927;
-        Thu, 29 Sep 2022 01:24:52 -0700 (PDT)
+        bh=bpujdPbvMkKZc5tbT0tesQargul5oOFWG757hhJb/PI=;
+        b=z25njpM6P0Fi52colL9ZJdtWZccX411bZuiTHlstAF3EyovBvHvWKasAnQst6jRWwo
+         H4UlMJqNtWfQ0v9+343nypfLyh9XVAU8z8PEqsAhqEg88RLJ7+Y84aRCtKKtLHKyNEKb
+         ipsXMskbuxyjhNwacb/rSYiy4tyoI5MsQLXZnhFiXBE+VNegTfpNXfxpsRPcy+IWH06m
+         7w/p+5rTQNTjMULDFBzfYOPMglx0NovXNRnAyz5WouvKQR2TF5Y2xBIaN+tR7o262QcG
+         IVv1h6rz5RCuYBLQo0Ube3QQSEPKku8asXPmrmhQKbzlRUEB2LJuKq9Mb9fd9x+d1w7h
+         xNqw==
+X-Gm-Message-State: ACrzQf081INJlEpmJ85wl+d0QRt2+hBuPFkubBy7Sz1kVHonw8i8q3kk
+        Ar7WOZyMi/IfM5VuT97klUlBuQ==
+X-Google-Smtp-Source: AMsMyM6kYyKnh1/JwTgKQ0f0DN5Ba74UeFtjFSwCtJ6Xed8FffnuPm3vCjv67+qK5DVvgDx79qu+mQ==
+X-Received: by 2002:a05:6000:797:b0:22c:be73:ff82 with SMTP id bu23-20020a056000079700b0022cbe73ff82mr1331315wrb.618.1664440164403;
+        Thu, 29 Sep 2022 01:29:24 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff? ([2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff])
-        by smtp.gmail.com with ESMTPSA id t3-20020a5d5343000000b00228692033dcsm5965119wrv.91.2022.09.29.01.24.52
+        by smtp.gmail.com with ESMTPSA id z2-20020a05600c0a0200b003a4efb794d7sm4102412wmp.36.2022.09.29.01.29.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 01:24:52 -0700 (PDT)
-Message-ID: <d27c5ddd-4178-f058-7073-f276eebb0ba4@linaro.org>
-Date:   Thu, 29 Sep 2022 10:24:51 +0200
+        Thu, 29 Sep 2022 01:29:23 -0700 (PDT)
+Message-ID: <6ed642ea-424d-49ed-eb30-e09588720373@linaro.org>
+Date:   Thu, 29 Sep 2022 10:29:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v1 2/7] arm: dts: qcom: mdm9615*: add
- SPDX-License-Identifier
+Subject: Re: [PATCH v1 5/7] arm: dts: qcom: mdm9615: remove invalid pmic
+ subnodes compatibles
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>
+        Konrad Dybcio <konrad.dybcio@somainline.org>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
 References: <20220928-mdm9615-dt-schema-fixes-v1-0-b6e63a7df1e8@linaro.org>
- <20220928-mdm9615-dt-schema-fixes-v1-2-b6e63a7df1e8@linaro.org>
- <2529003b-b253-9764-1060-02aafdcd44e3@linaro.org>
+ <20220928-mdm9615-dt-schema-fixes-v1-5-b6e63a7df1e8@linaro.org>
+ <0636d53f-508f-8a86-0973-2641c9020622@linaro.org>
 Reply-To: neil.armstrong@linaro.org
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Organization: Linaro Developer Services
-In-Reply-To: <2529003b-b253-9764-1060-02aafdcd44e3@linaro.org>
+In-Reply-To: <0636d53f-508f-8a86-0973-2641c9020622@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,82 +84,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 19:55, Krzysztof Kozlowski wrote:
+Hi,
+
+On 28/09/2022 20:03, Krzysztof Kozlowski wrote:
 > On 28/09/2022 11:14, Neil Armstrong wrote:
->> Replace the licence blob by a clean SPDX-License-Identifier
+>> The PMIC is an PM8018, but was compatible with the PM8921. Both compatibles
+>> was left but it makes no sense anymore the leave both.
+> 
+> Why? It makes sense for backwards compatibility. If you think it does
+> not make sense, please say why.
+
+We had the same debate at submission 7y ago, some of the pm8018 new compatible
+were rejected in bindings & drivers so I left both...
+
+As of today only the pwrkey bindings is missing, so should I resubmit the pm8018-pwrkey bidings and
+drop the pm8921-pwrkey compatible ?
+
+> 
+>>
+>> The pwrkey compatible is left to PM8921, unlike the others because
+>> the interface is stricly compatible with the PM9821 pwrkey.
+> 
+> typo: strictly
+> typo: PM8921
+> 
+> Again, why? The old code looked correct. In all three places.
+
+The qcom,pm8018-rtc require a single compatible, same for qcom,pm8018, so what's the way to fix it ?
+
+> 
 >>
 >> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 >>
 > 
-> 
-> Rebase on linux-next - you use old Bjorn's email address.
-
-
-Yep sorry, my first submission from Linaro... I added Bjorn's new email (+mine) in my local mailmap so it won't happen anymore.
-
-> 
->> diff --git a/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts b/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
->> index 0827de5426c1..073c15354483 100644
->> --- a/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
->> +++ b/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
->> @@ -1,46 +1,9 @@
->> +// SPDX-License-Identifier: GPL-2.0+ OR X11
->>   /*
->>    * Device Tree Source for mangOH Green Board with WP8548 Module
->>    *
->>    * Copyright (C) 2016 BayLibre, SAS.
->>    * Author : Neil Armstrong <narmstrong@baylibre.com>
->> - *
->> - * This file is dual-licensed: you can use it either under the terms
->> - * of the GPL or the X11 license, at your option. Note that this dual
->> - * licensing only applies to this file, and not this project as a
->> - * whole.
->> - *
->> - *  a) This file is free software; you can redistribute it and/or
->> - *     modify it under the terms of the GNU General Public License as
->> - *     published by the Free Software Foundation; either version 2 of the
->> - *     License, or (at your option) any later version.
->> - *
->> - *     This file is distributed in the hope that it will be useful,
->> - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
->> - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
->> - *     GNU General Public License for more details.
->> - *
->> - * Or, alternatively,
->> - *
->> - *  b) Permission is hereby granted, free of charge, to any person
->> - *     obtaining a copy of this software and associated documentation
->> - *     files (the "Software"), to deal in the Software without
->> - *     restriction, including without limitation the rights to use,
->> - *     copy, modify, merge, publish, distribute, sublicense, and/or
->> - *     sell copies of the Software, and to permit persons to whom the
->> - *     Software is furnished to do so, subject to the following
->> - *     conditions:
->> - *
->> - *     The above copyright notice and this permission notice shall be
->> - *     included in all copies or substantial portions of the Software.
->> - *
->> - *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
->> - *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
->> - *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
->> - *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
->> - *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
->> - *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
->> - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
->> - *     OTHER DEALINGS IN THE SOFTWARE.
-> 
-> The text is actually MIT, not X11. I think they differ by last X11
-> trademark statement.
-
-You're right, I checked the amlogic DT SPDX migration that used the same licence blob [1],
-and we switched to SPDX-License-Identifier: (GPL-2.0+ OR MIT).
-
-> 
 > Best regards,
 > Krzysztof
 > 
-
-[1] 114abfe1aa5f ("ARM64: dts: amlogic: Convert to new-style SPDX license identifiers")
-
 Thanks,
 Neil
+
