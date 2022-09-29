@@ -2,87 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70CE95EF5A5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:43:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5F265EF5B1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:48:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232180AbiI2Mn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 08:43:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45900 "EHLO
+        id S235314AbiI2Mst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 08:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234421AbiI2Mn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:43:27 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3491B15E4E0
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 05:43:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=fPs/yXXusB1u5Ej0kRVy4I169qITrXKLEZheTJO4bKE=; b=x4+/nUrVXJI3FUW/jl3IZGJOVS
-        NW/5Y0q9/96f9qb6OvEapGQbmuWjpqRoLgqpmRpsQD+wHzoDVGoosa/+6H4hdK7GKzaQ4CYGDI9zD
-        iU6llGWD5f65pIgA0j/H6dUdnq73Ugus6T+H3FtvF/6kcQGqSE1YluMEaRPm7Skdgo5E=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1odsst-000cDB-L1; Thu, 29 Sep 2022 14:43:23 +0200
-Date:   Thu, 29 Sep 2022 14:43:23 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Pawel Dembicki <paweldembicki@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Gregory Clement <gregory.clement@bootlin.com>
-Subject: Re: [PATCH] ARM: dts: kirkwood: Add Endian 4i Edge 200 board
-Message-ID: <YzWS6+3KXwVRS2Df@lunn.ch>
-References: <20220929080036.3179552-1-paweldembicki@gmail.com>
+        with ESMTP id S235256AbiI2Msr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:48:47 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AB13615E4E4;
+        Thu, 29 Sep 2022 05:48:45 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D89F91A32;
+        Thu, 29 Sep 2022 05:48:51 -0700 (PDT)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 5162A3F792;
+        Thu, 29 Sep 2022 05:48:44 -0700 (PDT)
+From:   Robin Murphy <robin.murphy@arm.com>
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Subject: [PATCH v2] of: Fix "dma-ranges" handling for bus controllers
+Date:   Thu, 29 Sep 2022 13:48:38 +0100
+Message-Id: <112e8f3d3e7c054ecf5e12b5ac0aa5596ec00681.1664455433.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.36.1.dirty
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220929080036.3179552-1-paweldembicki@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +// SPDX-License-Identifier: GPL-2.0-or-later
+Commit 951d48855d86 ("of: Make of_dma_get_range() work on bus nodes")
+relaxed the handling of "dma-ranges" for any leaf node on the assumption
+that it would still represent a usage error for the property to be
+present on a non-bus leaf node. However there turns out to be a fiddly
+case where a bus also represents a DMA-capable device in its own right,
+such as a PCIe root complex with an integrated DMA engine on its
+platform side. In such cases, "dma-ranges" translation is entirely valid
+for devices discovered behind the bus, but should not be erroneously
+applied to the bus controller device itself which operates in its
+parent's address space. Fix this by restoring the previous behaviour for
+the specific case where a device is configured via its own OF node,
+since it is logical to assume that a device should never represent its
+own parent bus.
 
-I think the preference is that DT is dual licence GPL or MIT.
+Reported-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+---
 
-> +	switch0: switch@11 {
-> +		compatible = "marvell,mv88e6085";
-> +		reg = <0x11>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +				label = "port1";
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +				label = "port2";
-> +			};
-> +
-> +			port@2 {
-> +				reg = <2>;
-> +				label = "port3";
-> +			};
-> +
-> +			port@3 {
-> +				reg = <3>;
-> +				label = "port4";
-> +			};
-> +
-> +			port@5 {
-> +				reg = <5>;
-> +				label = "cpu";
+v2: Fix !HAS_DMA build error
 
-This label is never used by DSA, and Vladimir has been removing them
-in general. Please delete it.
+ drivers/of/address.c    | 4 +++-
+ drivers/of/device.c     | 9 ++++++++-
+ drivers/of/of_private.h | 5 +++++
+ 3 files changed, 16 insertions(+), 2 deletions(-)
 
-   Andrew
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index 96f0a12e507c..c34ac33b7338 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -579,7 +579,8 @@ u64 of_translate_address(struct device_node *dev, const __be32 *in_addr)
+ }
+ EXPORT_SYMBOL(of_translate_address);
+ 
+-static struct device_node *__of_get_dma_parent(const struct device_node *np)
++#ifdef CONFIG_HAS_DMA
++struct device_node *__of_get_dma_parent(const struct device_node *np)
+ {
+ 	struct of_phandle_args args;
+ 	int ret, index;
+@@ -596,6 +597,7 @@ static struct device_node *__of_get_dma_parent(const struct device_node *np)
+ 
+ 	return of_node_get(args.np);
+ }
++#endif
+ 
+ static struct device_node *of_get_next_dma_parent(struct device_node *np)
+ {
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index 75b6cbffa755..8cefe5a7d04e 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -116,12 +116,19 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+ {
+ 	const struct iommu_ops *iommu;
+ 	const struct bus_dma_region *map = NULL;
++	struct device_node *bus_np;
+ 	u64 dma_start = 0;
+ 	u64 mask, end, size = 0;
+ 	bool coherent;
+ 	int ret;
+ 
+-	ret = of_dma_get_range(np, &map);
++	if (np == dev->of_node)
++		bus_np = __of_get_dma_parent(np);
++	else
++		bus_np = of_node_get(np);
++
++	ret = of_dma_get_range(bus_np, &map);
++	of_node_put(bus_np);
+ 	if (ret < 0) {
+ 		/*
+ 		 * For legacy reasons, we have to assume some devices need
+diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+index 9324483397f6..fb6792d381a6 100644
+--- a/drivers/of/of_private.h
++++ b/drivers/of/of_private.h
+@@ -155,12 +155,17 @@ struct bus_dma_region;
+ #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
+ int of_dma_get_range(struct device_node *np,
+ 		const struct bus_dma_region **map);
++struct device_node *__of_get_dma_parent(const struct device_node *np);
+ #else
+ static inline int of_dma_get_range(struct device_node *np,
+ 		const struct bus_dma_region **map)
+ {
+ 	return -ENODEV;
+ }
++static inline struct device_node *__of_get_dma_parent(const struct device_node *np)
++{
++	return of_get_parent(np);
++}
+ #endif
+ 
+ void fdt_init_reserved_mem(void);
+-- 
+2.36.1.dirty
+
