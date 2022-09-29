@@ -2,201 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECFF05EF53A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AED845EF570
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:27:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235071AbiI2MWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 08:22:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53314 "EHLO
+        id S235491AbiI2M1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 08:27:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235310AbiI2MWW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:22:22 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2109.outbound.protection.outlook.com [40.107.114.109])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3020D149D2F;
-        Thu, 29 Sep 2022 05:22:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N6aQ0jpw431iJLjj2qT/whgRILsi8PwkSn3jOfBfjV4ipDP9pSggqrActWoUxvaTWIvetysBFFqhC7KTZw6FUO8sQ5FBBrLZlThjSzAVThsKrP/fO2wlnT5nUjzko2lc1TQkcjLQO/KQjJlwtntDbfJH1r+4wE/No1vGEsEvro30neDW4HpH9aTdocZfXPjL0nuYxeVlOmveXwVPF08fmQwxBRNHhT68GcX/S9M+yjpdnPoxbLFf+L27dGUT7n/4ipYlIC0vrq4AEGqP99dJAt+/PiKbaXpnQun/dUt5Bt8VN4TAx7Gd3zXUq8nVhi3UCQObNeRxA3oiOMCkIIIaWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aVvoB4+p99z+ZyyN/0CrLuhLEnQQi9Bezoie2Yhrs9w=;
- b=SzJs1PktT4oqYIGPHYY6xYvmVhoE6PRrq/QI2MTvnA5oXcgLo0UMghwDET1FjMOYTGIvi7XJFhyrAW8JADqGMwmdjtVmmXRxah6W4am6p4n1PuMa7DsVWHxlBOwdXyhn7wkrvvP+tFT4CHVUH3goTsKR7vTjhAd9bNPqP4rBvPojXSuu0m7vDGnps3TEb6gvac3F8jkM0/jaIyzgDTvCOuba9XtkwKXjgBWrkMpN6ucfhLqBq/A4VQrfNA+zPMmF4S1WDF3KsJ7XjU8c9i/f6l+RA2401GZU8Lpc6vYlUy7OHoUBF9ffHjqYP0nPyKBNCEAWIXXMQS7MSaPZWd0CDg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aVvoB4+p99z+ZyyN/0CrLuhLEnQQi9Bezoie2Yhrs9w=;
- b=T2zzcL90Hy2qIHQZ9BL27PrVXiZrjw+qlpWv0CCqKhYBS9hgEVjkkrJ8+oE/7r6k7yAIAM6SWaN651ViE6PxCSqrPUKKTeKYwvjNZb7ATvsliSnD7IUrlA20K0DpURCkYkVC+2FKr/jFw198EIokrz/SwIYskhBAoUs7hRcTwrc=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OS3PR01MB6227.jpnprd01.prod.outlook.com
- (2603:1096:604:e2::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.20; Thu, 29 Sep
- 2022 12:22:15 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::2991:1e2d:e62c:37d0]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::2991:1e2d:e62c:37d0%3]) with mapi id 15.20.5676.022; Thu, 29 Sep 2022
- 12:22:15 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v3 2/3] net: ethernet: renesas: Add Ethernet Switch driver
-Thread-Topic: [PATCH v3 2/3] net: ethernet: renesas: Add Ethernet Switch
- driver
-Thread-Index: AQHYzkQbCGZNTw1MNUuaNx/SR8stKK3s/34AgARIsfCAANSngIAAruVQgAB4MACAAQobwIAAeWqAgAGUAQA=
-Date:   Thu, 29 Sep 2022 12:22:15 +0000
-Message-ID: <TYBPR01MB53415F3D11FEBFFC8BF09FE0D8579@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20220922052803.3442561-1-yoshihiro.shimoda.uh@renesas.com>
- <20220922052803.3442561-3-yoshihiro.shimoda.uh@renesas.com>
- <Yy2wivbzUA2zroqy@lunn.ch>
- <TYBPR01MB5341ACAD30E913D01C94FE08D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <YzH65W3r1IV+rHFW@lunn.ch>
- <TYBPR01MB534189F384D8A0F5E5E00666D8559@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <YzLybsJBIHtbQOwE@lunn.ch>
- <TYBPR01MB53419D2076953EB3480BC301D8549@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <YzQ3gdO/a+jygIDa@lunn.ch>
-In-Reply-To: <YzQ3gdO/a+jygIDa@lunn.ch>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OS3PR01MB6227:EE_
-x-ms-office365-filtering-correlation-id: 9da0e72a-07b4-4147-2973-08daa2153ead
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: LUEHUxqc7rexQ5r0MOYiKwlVoMCDZqFlrWmZEOGrGZZIm+EYwRSlxuKbFvJIpE87hNpvZ1/R8oslD/Re0SdXxmU+gK3r7m1BrKEHBjvzYcLwFzv5TyNjEtZjhtFaE7hEguzA0zKObr8IvIbVyGgbzwfI1toeLK4gcf+gfj3FtvgI4bd/IyIOUj0Wuod7fMsxVPz6jetnxARtd3lJ4OEGnM7H9XsBd7+ChbNEFhR/ZQ0tEXH7NbsA0xva/tzWKrWo9urli336FRWkswCLowwQHBa0Vk7GfdaVuHxxrzMCEZCFE8gHuxhk+ryyOK/0N1nAWFohw/IWZK3mMi6aSa3bMi8ukCxnzuLXlsE/EU3ufXMxYG1nhRgL0lWiHw2jOCJpvS249b4Paud+cA7qmXGkCOXViroo+98Ng8y7lI+o04ZwFheqHhEMF73XdVRfaRq3RXYU/35hImfTJF/IjaC19oiI87OGdbDbFjXinYx9ZZi2gogvG+1sVZxYh1vrc5K1dBnVTbdcml3hgBiu8Ol/0Hwm+4kZa/wSxJsKnD7pcm6fcVYbUe996/IaSXX6zqD1EH0GoI+7mlVks5OFfqgYi5HjDQnQjVhXNvGGCFTcCwV93QFsRDwuHxrmNUlFqhz3dkPu7J9wcz1ZXGKmW4XfnEMhkEA4L98wYatdMSnNRd1kxHqMfDkuKzaNzhyg3SKXeB/ZAbqvAk0yrSChwuclNXlobhSqVsKb5rIxP2V8A1iIS6bfFPDHAZFacnG66am3u0V+VLpgyeehJFQV4x6yNY+mMaIqYJ2LvkyWUEGJdakNo8Z0s+dxu89G53YexarL
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39860400002)(396003)(136003)(346002)(376002)(451199015)(83380400001)(2906002)(38100700002)(41300700001)(316002)(7696005)(6506007)(55016003)(38070700005)(86362001)(54906003)(6916009)(76116006)(66946007)(66556008)(186003)(478600001)(66476007)(66446008)(64756008)(8676002)(4326008)(26005)(9686003)(33656002)(71200400001)(7416002)(5660300002)(52536014)(122000001)(8936002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Nnn3uLGjBo8+S/MX9wxbThVcyRG3xby0PmkYYe9uw/SNlivx7cGFGfoA61hL?=
- =?us-ascii?Q?h64mR72sAxL/YVkMDjbYbnVSte4fhxxgqlIfS99uM/wRqyaoKoRQ4hYnDInJ?=
- =?us-ascii?Q?LO3w4h8LlnhMPRqEumIX52vJwdltMett1aYLjohVyMAmYk5EUfzeDuTWPXOr?=
- =?us-ascii?Q?rptLDF5SSZmdC+7FoqibsXxVYHAefcVQ7duHe5BP/Hml+hGqm5zLxfiPhbo4?=
- =?us-ascii?Q?zi6HBpz64/mhVOop2D0kMpKGDvHYaQTx0DA/KLSWMSc/XSg0kaREcPaTRL/w?=
- =?us-ascii?Q?Bg1TIXyL5Bo48wsbe3NC7C24gZOEJ6pDhPdOvjoOm6Zzmj50sFa+VFquFaJY?=
- =?us-ascii?Q?p6dE+21GXqpB9SaiUmskzA9K1sWXONIGG0vFg/6IyNjMw+zzmZ5UubxKqYJk?=
- =?us-ascii?Q?4JDegbisl1IR4VNAskIzolbsuDYI1ePw9qu3fGqQIXWH7ypNFoz5QBoGxVsC?=
- =?us-ascii?Q?SzhodnroS4NYwaD4wRtMm3pbEOqIBE7dpGdxjJO8w2zd8IbpoViadQphEzV7?=
- =?us-ascii?Q?V5OYP8tLbEmAuLrvDaLt1Li0SF3HNrdmiMUqML3SiFBIzcQ6cn/Rtwdo4PDZ?=
- =?us-ascii?Q?Ib6LqDipiFY2PunmTu5bonLMcmGWfIMoNXSd4rAJtEiSAPquGT59iV4+VMAA?=
- =?us-ascii?Q?qM0VHvE7kuNs2dtQPDk3CtycCobbST5D+mVoWI3QPRRbCamlesKy94Kv84+I?=
- =?us-ascii?Q?naKukv9uC0aHLqsIlN6PkEmNIL8d/D7Pt9QeQ0yEsszqqbDpbygRG0RD4gdE?=
- =?us-ascii?Q?75WtOSeRugMEGGZHoNJ3ZgacR1O2+R3B+n3qw5fvtzKJMDdw4fSSFtxBK08E?=
- =?us-ascii?Q?zlHx3lz07v43Gw6kykLwiBjEGaJlZn6SIrGsAaFm1u514vl3TKNdiYCwYXRE?=
- =?us-ascii?Q?yHBhCiMut0PkuFGFqSbizeUP+HtXbIqqIwgvgH4bJlIqhp5M2X8sUsJ1f5sX?=
- =?us-ascii?Q?YJrxSZQc2BZNGlp0zustzmvQngHUi1SDKK0liLhICY2ubtCBRtrXy3DIvhTH?=
- =?us-ascii?Q?LlLHIjNyfbIyMnVMvzGE3ha034srDtF+Q+u4uuFz0I5nBh3jdQYS89N83vxc?=
- =?us-ascii?Q?sPANnjE8EAt39OzTj1hSoD0dPxFkTW+T5p4bfrHVvQ4LPJQhu61XNHlgxz76?=
- =?us-ascii?Q?hf+yaZOmi3XyYCRNQKof7+B18eC5B7Xg90t1MbzmYY8JdbLihUyH6Da02IyY?=
- =?us-ascii?Q?BwmJ8XqRcjQc7gGHNsPX8bQSC0dPjhlCjb6O2I3QzzvzuKGdA06AItlmXde6?=
- =?us-ascii?Q?12tGGyQkbPbxSnxbCYRhAs7yzZgB/PBDG3CNN0UNHr3CkMPast5CVg+JinvR?=
- =?us-ascii?Q?IrW4GVFmyIkmyhgl1lKKsHY/raPr1UYRj9DVSqQtFvQHkpKzpD3z86uzo9jV?=
- =?us-ascii?Q?ffzjj/B7bUWwr+eTXQXMiIjPuf4Tb0RXqISTDGCB+GXM+WhrWEJqo+hP22R1?=
- =?us-ascii?Q?d5TQmm9PhsxCxC45h9cBvkjcC80EMKu/PeFamT26tTECFn7u0l+KA4RozLnb?=
- =?us-ascii?Q?ZsKCzOIVUb2xbvz9Ndhfp6STG6bFx1OcULQxEtAST7K+6DeH7umjQYVulVrJ?=
- =?us-ascii?Q?CagCetdSrEbIH/1IHcM70eSfuAPPC/T/QhDypgiVV5v9pviyomdh1znnpqyx?=
- =?us-ascii?Q?nA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S235383AbiI2M1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:27:15 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5748139F50
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 05:27:13 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id a2so1989401lfb.6
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 05:27:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=uZ8rwX1Ng8wKP4KeotkJ0H96LB9Ra2ZbdIKcCc54Vck=;
+        b=nwGJbm1z4bUAzUFXtKpQ5Nl+MaLDFl8Lf8PqYk7CmaqtuBDHibP+ymOl5pcy5/q/en
+         6Um8ZIeKCpfybZ3gMXd3NUZd+qGdCtUE56thXh05Vb+F3Su4Jxw2QsTeC6ca0Oe4S4Ut
+         ADoKVSK+IYaB74GHsgcx4OwT3+2iWlWDYm/3UklWYg8nEhffXx3kRe83+DxOzYfw7pnz
+         kwnIaElbcMcEN9ktB5aJm9LeOLvgfvXGKjv5PvQkbkJP/1PfMQN++RCaZ27zvVIk2+Uj
+         oi9rs02P8wE9s0zKa48r9fC7Er6MoKeTdDev84SVSxTe06P3h2TeQR0hujd/DMWKXNs4
+         aBhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=uZ8rwX1Ng8wKP4KeotkJ0H96LB9Ra2ZbdIKcCc54Vck=;
+        b=jQAvGqlLeTksIJ2bnG21Ia+QxOHLyFAcic1/HV0G/Ce82YL2HMWGrxcKsoC1hgdKUG
+         aXTmtEweYHyMz3bECTL7hrvRBvX/NMSglPmwIcKpxqg+9K7PzSbb7TYBIFiGrzh5HvZ4
+         ewNUpRgpNiahVJgpYfn5lSVZhYp3rkCGt4X59fyBYX5zvFMzmSJPZxbZ7/xK2GDMrlPZ
+         pOTHjnxbrENtz/siKMsT5afbu2LsL1yUNjmHyfKXJNFyJ9ph4Vp/W/fhKhcav3PZXKTX
+         OsTfpV4/MrdVCe8cpxk5fbkL+v6Q0AtKVtmVgYxCyKZ3cnkcsFnPVVSx7c8qT8qBVdvW
+         c34w==
+X-Gm-Message-State: ACrzQf3++HEbeEVPk69BgZF3zQLofP2ODq/rH88XT0LMQ2/x0TzwAGXJ
+        aPaPdXgIdLTQK6DF2Je07ospdQ==
+X-Google-Smtp-Source: AMsMyM6yY4CK9NsSbytLANDXLTPMxXWpp7DlCuc55Y1okx+IBJzb2bnFGAZhHR7h3SXAF54sWwT64A==
+X-Received: by 2002:a05:6512:3584:b0:49f:517a:19da with SMTP id m4-20020a056512358400b0049f517a19damr1222244lfr.25.1664454432040;
+        Thu, 29 Sep 2022 05:27:12 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id z12-20020ac25dec000000b00493014c3d7csm765503lfq.309.2022.09.29.05.27.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Sep 2022 05:27:11 -0700 (PDT)
+Message-ID: <65c5ee36-8651-8a42-b6b1-3b8041c7edb8@linaro.org>
+Date:   Thu, 29 Sep 2022 14:27:10 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9da0e72a-07b4-4147-2973-08daa2153ead
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2022 12:22:15.5582
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vvG7ZJQGIJKLw/RamVMhkcdAp4nCM1IzvbEZBPJ+e5ROVKbDv8KgWipR2XUas2c/5DCPwCi1oFN3bPiv7pOdhQAR2ckpKGIEEdhKj+NIm7/FvvwI4g2D+nsoXysr62Ru
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6227
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v1 5/7] arm: dts: qcom: mdm9615: remove invalid pmic
+ subnodes compatibles
+Content-Language: en-US
+To:     neil.armstrong@linaro.org, Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220928-mdm9615-dt-schema-fixes-v1-0-b6e63a7df1e8@linaro.org>
+ <20220928-mdm9615-dt-schema-fixes-v1-5-b6e63a7df1e8@linaro.org>
+ <0636d53f-508f-8a86-0973-2641c9020622@linaro.org>
+ <6ed642ea-424d-49ed-eb30-e09588720373@linaro.org>
+ <1a3c6766-9be5-1e55-95eb-bc9656e5c9a3@linaro.org>
+ <7f8572ab-ff97-54bd-a5f3-fe0e179ee48e@linaro.org>
+ <84cb8941-eb15-1bbf-59b7-bbcd6c15c30d@linaro.org>
+ <07405d0d-8534-6470-21d1-26b85dbd7de0@linaro.org>
+ <f54377f0-a152-9367-1b06-f49df7466282@linaro.org>
+ <3fa19362-118b-232e-0baf-ee365fa2f2e2@linaro.org>
+ <07c75827-b8e5-7c70-315b-48617b9818e0@linaro.org>
+ <9067ca94-cd5d-6883-d0e0-374ed7f599ad@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9067ca94-cd5d-6883-d0e0-374ed7f599ad@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+On 29/09/2022 14:21, Neil Armstrong wrote:
+> On 29/09/2022 14:02, Krzysztof Kozlowski wrote:
+>> On 29/09/2022 13:59, Neil Armstrong wrote:
+>>>> That's not really an answer... Bindings are correct because they are
+>>>> correct? What is exactly correct in the bindings? How they reflect the
+>>>> HW in a proper way, while DTS does not?
+>>>>
+>>>> Or let's focus on actual hardware - what are the properties of the
+>>>> hardware which indicate that DTS is wrong?
+>>>
+>>> The actual PMIC is an PM8018
+>>
+>> And DTS is saying PMIC is PM8018, isn't it? I see clearly in DTS:
+>> qcom,pm8018
+>> qcom,pm8018-rtc
+>> qcom,pm8018-pwrkey
+>> qcom,pm8018-gpio
+> 
+> And this is why I pushed the removal of qcom,pm8921* fallback compatibles,
+> except for qcom,pm8018-pwrkey because I didn't managed to get it documented at the time.
 
-> From: Andrew Lunn, Sent: Wednesday, September 28, 2022 9:01 PM
->=20
-> > > How do you direct a frame from the
-> > > CPU out a specific user port? Via the DMA ring you place it into, or
-> > > do you need a tag on the frame to indicate its egress port?
-> >
-> > Via the DMA ring.
->=20
-> Are there bits in the ring descriptor which indicate the user port?
-> Can you set these bits to some other value which causes the switch to
-> use its MAC table to determine the egress interface?
+This does not explain at all why you wanted to remove any other
+compatibles. There is no connection, relation between these.
 
-I'm sorry, I misunderstood the hardware behaviors.
+We are making circles and discussion takes too much. I asked to bring
+the arguments about hardware that point devices are not compatible. You
+just said "PMIC is an PM8018", and that's it. Nothing more, nothing
+about hardware. Based on that you want to remove compatibility. This is
+not valid argument. It's unrelated.
 
-1) From CPU to user port: CPU sends a frame to all user ports.
-2) From user port to CPU: each user port sends a frame to each DMA ring.
+You could as well say "The actual PMIC is Qualcomm PMIC" and you would
+be right. Still not an argument.
 
-About the 1) above, the switch can have MAC tables and sends a frame to
-a specific user port. However, the driver doesn't support it.
-
-> > > > The PHY is 88E2110 on my environment, so Linux has a driver in
-> > > > drivers/net/phy/marvell10g.c. However, I guess this is related to
-> > > > configuration of the PHY chip on the board, it needs to change
-> > > > the host 7interface mode, but the driver doesn't support it for now=
-.
-> > >
-> > > Please give us more details. The marvell10g driver will change its
-> > > host side depending on the result of the line side negotiation. It
-> > > changes the value of phydev->interface to indicate what is it doing o=
-n
-> > > its host side, and you have some control over what modes it will use
-> > > on the host side. You can probably define its initial host side mode
-> > > via phy-mode in DT.
-> >
-> > I'm sorry, my explanation was completely wrong.
-> > My environment needs to change default MAC speed from 2.5G/5G to 1000M.
-> > The register of 88E2110 is 31.F000.7:6. And sets the register to "10" (=
-1000 Mbps).
-> > (Default value of the register is "11" (Speed controlled by other regis=
-ter).)
->=20
-> Is this the host side speed? The speed of the SERDES between the
-> switch and the PHY?
-
-Yes.
-
-> Normally, the PHY determines this from the line
-> side. If the line side is using 2.5G, it will set the host side to
-> 2500BaseX. If the line side is 1G, the host side is likely to be
-> SGMII.
->=20
-> You have already removed speeds you don't support. So the PHY will not
-> negotiate 2.5G or 5G. It is limited to 1G. So it should always have
-> the host side as SGMII. This should be enough to make it work.
-
-I see.
-However, if I dropped specific registers setting, it doesn't work correctly=
-.
-I'll investigate why removing speeds of PHY didn't work.
+Based on lack of arguments in this entire discussion, the patch itself
+is not correct. Use the approach I wrote some time ago and quoted one
+more time.
 
 Best regards,
-Yoshihiro Shimoda
+Krzysztof
 
->     Andrew
