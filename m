@@ -2,134 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E8A25EF101
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80E735EF0BB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:40:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234798AbiI2I4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 04:56:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48644 "EHLO
+        id S235597AbiI2Ikg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 04:40:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235545AbiI2I4a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:56:30 -0400
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A3DEB101;
-        Thu, 29 Sep 2022 01:56:17 -0700 (PDT)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 2459421BF5E;
-        Thu, 29 Sep 2022 10:56:16 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E1F0721BF49;
-        Thu, 29 Sep 2022 10:56:15 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 0025E181D0CA;
-        Thu, 29 Sep 2022 16:56:13 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     vkoul@kernel.org, p.zabel@pengutronix.de, l.stach@pengutronix.de,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
-        shawnguo@kernel.org, alexander.stein@ew.tq-group.com,
-        marex@denx.de, richard.leitner@linux.dev
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [PATCH v10 4/4] phy: freescale: imx8m-pcie: Add i.MX8MP PCIe PHY support
-Date:   Thu, 29 Sep 2022 16:37:02 +0800
-Message-Id: <1664440622-18556-5-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1664440622-18556-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1664440622-18556-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235646AbiI2IkW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:40:22 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 348A62F64C
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:40:17 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id s14so1062076wro.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:40:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:reply-to:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date;
+        bh=9yCHudwWTs8iGGjOW2yzGpZ+XsTes14RKtIMcMyggXE=;
+        b=YFayQv5zccBSzwC1ZnIbDUZbLsM5Aw0c4lFGDl4BO08Fpc4xl1cSeF9XXRqN5P5wBe
+         rUvsdp0+jezwGpqFcH1QtaHdcASZqq7taW1fiJdA9oSjTXpvHWhdwa/CoOO9UXMZBZ7w
+         577un9+SStHkbJq2UtdLIG+55k8dJPgURuKlXUvVybFvIDYQnf5aWia3bF5ivDeCRVsW
+         YV0IeKrGlCWORDAyaSR278Awgf8LrUJyhCdsMhgZcEpy0rUK5tEf5qaGZAdddCm9czVw
+         645Ecj0rvYLRyzmy5GTcIB6sEWkKytHF34Tikwf4yGojhiBUIuOUewdrRPhOibhw8imB
+         hxig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:reply-to:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=9yCHudwWTs8iGGjOW2yzGpZ+XsTes14RKtIMcMyggXE=;
+        b=st8mmz3qQM3+Kn/wAYLijGwgbD20qK/HyWWpGxyxJhmm/l6M6xyhXjO3ING0+PGqlt
+         z+9pil444sofMhLf2D5qOyDEsrUeQyNeE2mwwpiqrND0U54BiEf65V8ayJEoCB50AZ06
+         +r9lZLKPyYjyVaGMUVDm9Y7vj6je644a13zYyjfSAmVWWRz4s3fbpc1E2JtyMpi7lf6h
+         hOluLIzv5bAO2vY5XPgfWQ8QC7jX3vwADz2Dd7AKcR6RxrACu1O0qQJzS/l6nIXNrv61
+         8F+Np++R5mpOrLq9XOnVjDHy3vllmP5PN/8c+kr0k0ru7S3eJQGfqoyJTLcKsmV43JrP
+         0/sw==
+X-Gm-Message-State: ACrzQf0lZuIss3BfiH9eEM1s7pwBM9OOJ2GajsZOFUGdJzCgK46Whnp0
+        jEABk3KP6/aj1Es/blaoyqxZKQ==
+X-Google-Smtp-Source: AMsMyM6dwuUJdxC7BENyYXPsQCOd+CranHMYc70MqG9BZMnC1YgoC1MsI3vRIn9cBDMtsz0FCbVOkg==
+X-Received: by 2002:a05:6000:98b:b0:22c:c3b1:3f2a with SMTP id by11-20020a056000098b00b0022cc3b13f2amr1359248wrb.11.1664440815789;
+        Thu, 29 Sep 2022 01:40:15 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff? ([2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff])
+        by smtp.gmail.com with ESMTPSA id e16-20020a05600c2dd000b003b47e8a5d22sm3963146wmh.23.2022.09.29.01.40.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Sep 2022 01:40:15 -0700 (PDT)
+Message-ID: <aaf68eff-17da-3f27-c8dc-48b9659e7b50@linaro.org>
+Date:   Thu, 29 Sep 2022 10:40:14 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: it6505: add properties to restrict
+ output bandwidth
+Content-Language: en-US
+To:     allen <allen.chen@ite.com.tw>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
+        David Airlie <airlied@linux.ie>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Pin-yen Lin <treapking@chromium.org>,
+        Hermes Wu <Hermes.Wu@ite.com.tw>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Jonas Karlman <jonas@kwiboo.se>
+References: <20220929014456.30077-1-allen.chen@ite.com.tw>
+ <20220929014456.30077-2-allen.chen@ite.com.tw>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Organization: Linaro Developer Services
+In-Reply-To: <20220929014456.30077-2-allen.chen@ite.com.tw>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add i.MX8MP PCIe PHY support.
+Hi,
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-Tested-by: Marek Vasut <marex@denx.de>
-Tested-by: Richard Leitner <richard.leitner@skidata.com>
-Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
----
- drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 23 ++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+On 29/09/2022 03:44, allen wrote:
+> From: allen chen <allen.chen@ite.com.tw>
+> 
+> Add properties to restrict dp output data-lanes and clock.
+> 
+> Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
+> Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
+> ---
+>   .../devicetree/bindings/display/bridge/ite,it6505.yaml | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> index 833d11b2303a..62b9f2192202 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> @@ -52,6 +52,14 @@ properties:
+>       maxItems: 1
+>       description: extcon specifier for the Power Delivery
+>   
+> +  data-lanes:
+> +    maxItems: 1
+> +    description: restrict the dp output data-lanes with value of 1-4
 
-diff --git a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-index 59b46a4ae069..be5e48864c5a 100644
---- a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-+++ b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-@@ -48,6 +48,7 @@
- 
- enum imx8_pcie_phy_type {
- 	IMX8MM,
-+	IMX8MP,
- };
- 
- struct imx8_pcie_phy_drvdata {
-@@ -60,6 +61,7 @@ struct imx8_pcie_phy {
- 	struct clk		*clk;
- 	struct phy		*phy;
- 	struct regmap		*iomuxc_gpr;
-+	struct reset_control	*perst;
- 	struct reset_control	*reset;
- 	u32			refclk_pad_mode;
- 	u32			tx_deemph_gen1;
-@@ -87,6 +89,9 @@ static int imx8_pcie_phy_init(struct phy *phy)
- 			writel(imx8_phy->tx_deemph_gen2,
- 			       imx8_phy->base + PCIE_PHY_TRSV_REG6);
- 		break;
-+	case IMX8MP:
-+		reset_control_assert(imx8_phy->perst);
-+		break;
- 	}
- 
- 	if (pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ||
-@@ -141,6 +146,9 @@ static int imx8_pcie_phy_init(struct phy *phy)
- 			   IMX8MM_GPR_PCIE_CMN_RST);
- 
- 	switch (imx8_phy->drvdata->variant) {
-+	case IMX8MP:
-+		reset_control_deassert(imx8_phy->perst);
-+		fallthrough;
- 	case IMX8MM:
- 		reset_control_deassert(imx8_phy->reset);
- 		usleep_range(200, 500);
-@@ -181,8 +189,14 @@ static const struct imx8_pcie_phy_drvdata imx8mm_drvdata = {
- 	.gpr = "fsl,imx8mm-iomuxc-gpr",
- };
- 
-+static const struct imx8_pcie_phy_drvdata imx8mp_drvdata = {
-+	.variant = IMX8MP,
-+	.gpr = "fsl,imx8mp-iomuxc-gpr",
-+};
-+
- static const struct of_device_id imx8_pcie_phy_of_match[] = {
- 	{.compatible = "fsl,imx8mm-pcie-phy", .data = &imx8mm_drvdata, },
-+	{.compatible = "fsl,imx8mp-pcie-phy", .data = &imx8mp_drvdata, },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, imx8_pcie_phy_of_match);
-@@ -238,6 +252,15 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
- 		return PTR_ERR(imx8_phy->reset);
- 	}
- 
-+	if (imx8_phy->drvdata->variant == IMX8MP) {
-+		imx8_phy->perst =
-+			devm_reset_control_get_exclusive(dev, "perst");
-+		if (IS_ERR(imx8_phy->perst)) {
-+			dev_err(dev, "Failed to get PCIE PHY PERST control\n");
-+			return PTR_ERR(imx8_phy->perst);
-+		}
-+	}
-+
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	imx8_phy->base = devm_ioremap_resource(dev, res);
- 	if (IS_ERR(imx8_phy->base))
--- 
-2.25.1
+Can't you use the data-lanes property in the first port endpoint ?
 
+Look at Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+
+> +
+> +  max-pixel-clock-khz:
+> +    maxItems: 1
+> +    description: restrict max pixel clock
+
+New vendor specific properties should have the ite, prefix.
+
+> +
+>     port:
+>       $ref: /schemas/graph.yaml#/properties/port
+>       description: A port node pointing to DPI host port node
+> @@ -84,6 +92,8 @@ examples:
+>               pwr18-supply = <&it6505_pp18_reg>;
+>               reset-gpios = <&pio 179 1>;
+>               extcon = <&usbc_extcon>;
+> +            data-lanes = <2>;
+> +            max-pixel-clock-khz = <150000>;
+>   
+>               port {
+>                   it6505_in: endpoint {
+
+Thanks,
+Neil
