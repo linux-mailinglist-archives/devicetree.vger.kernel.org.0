@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 026F95EEFE3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:02:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8A855EEFE6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:03:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234708AbiI2ICa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 04:02:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37724 "EHLO
+        id S234998AbiI2IDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 04:03:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235195AbiI2IBt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:01:49 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA41F25FB
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:01:14 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id u24so850886edb.11
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:01:14 -0700 (PDT)
+        with ESMTP id S234858AbiI2ICp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:02:45 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956AE13D1EC
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:02:19 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id lc7so1198778ejb.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:02:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date;
-        bh=3LQgfLOwPhOAZ7WuseKDct1FsBcO7vtM7NEUT86ON/Q=;
-        b=JaXQRADeBE0Yn86LH2QTKKXmpC5seyoQh+nZ/Ctk4utbgfCO1cYX+qgVcZQ5v1GzH+
-         es0RMprc2mCmuGN7t36IvnDpirPMsSF+1zQUpCIm4kdwONgk0eQUrg9HgxtVADud94dL
-         1KW9OLcf20NheJ2hxBMTvew3Hsq6CMOreMuJVP08gUdp9EMWrZ1+nEuM2T3RWLDDKdBh
-         ltG1G1ehL9ELb1USIY8HDzqJI47k42mAebOgAhgiTJueBhTDV6z6/SGP/1NCSyadvBAM
-         Y0pi+FnqqLW7PIKb4Pc5uSmaBEWHDbRYbZgkclLebi3lEG9bGZXNjTtV+F4sbe2cEcrd
-         mhKA==
+        bh=D2RJPCDzkl0JaLhf6TnDnD54B1Ia7Ewoe4Ns/FqzqUM=;
+        b=K44Zfwmi1ystprsLzflRoSnSe90rx6tnBw+4WMDSobGCYgNcDX7JwFPi2F5v1Rd9qi
+         JHHNs72xVI+agpOCavnafNiWFH/GnjGy0OF91ZbuqJC9CjSoSU9ZSKfq6t1a9p1I++r+
+         GKtvIS84GkPTP9CziBpQHqBGLEZzb2seXKz2WENjzBUxoAaUvCQm8epWuzPDpVLBZjvi
+         aT0QzW/DiPQ/2qEjr66st6CSI5GS5sgwotaATHS/RUdRGkUk1w6M6imkSS2WsPHSVgxk
+         dvRQ3BR/EHpCUI3278tpHECDOxmGZoWgzrOekQg3onyweVmKB7nSQXFZqaGI6Jy8D5Fo
+         VT+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=3LQgfLOwPhOAZ7WuseKDct1FsBcO7vtM7NEUT86ON/Q=;
-        b=F3Ijbc95taLic3PggHkcSHnjoqKjdfqetYI9kORbNirNR6EUG8jNp9qtg2b8/18iv1
-         bV8+nAwESXS8MVLBAMF/B0VlmU1RmQdT/DtwZGqE0OTmoqbKTWHTJ5l4XjorYAzzfXu5
-         /IGPSlCNHmMCvGk5DmBRWfGqb30NiUqHXtVRxEtXks1srfI2lJQa+codP3qa4vud6/Zm
-         L4/KKb2AcSlkPcPkS6Hr0iQd+CIgyfQf/oRPUY+nI9VFr4sRG25Botq+xdYkIHFZHe9B
-         JVSbW/SyFE/X6MJ6XG1t9FT/4sSjdBduUCtvE+WUQKGjcl/LAI+OF7SNlT16FPOZ1pMv
-         HxFg==
-X-Gm-Message-State: ACrzQf0G8cHZGYTXwFKsbsiHt2Sv/ZNhPjFbzUb+bcolBwPm1Pc33/uw
-        yzu90fIDpr4F1UZ5ihMHMDyDqxuy7Ohdgg==
-X-Google-Smtp-Source: AMsMyM4wGGf/OhImDuauejKTakY5GeSHC9ZyD3dm59L/FVxuUNx1C/PzMssHwSzRCmEfc+LBcIZkoA==
-X-Received: by 2002:a05:6402:51d1:b0:451:ea13:1583 with SMTP id r17-20020a05640251d100b00451ea131583mr2021502edd.322.1664438472962;
-        Thu, 29 Sep 2022 01:01:12 -0700 (PDT)
+        bh=D2RJPCDzkl0JaLhf6TnDnD54B1Ia7Ewoe4Ns/FqzqUM=;
+        b=sinEDsr1HYJjEg6dWzabtLQF7rvh7c6vb5JBOzMiCHGZzOOOV6Pf3kAa5pFLpeFv2Z
+         r2RSHyJWSh8Yk1/Kfw5luuVs47RPEoB+zYisIM3SJaPiOv5Si+WlxxUIlI/Eyn16cpe8
+         bokWC1WxZGDIU5k6xe7BECbWSJpKgvOLyJpbEAfR3nmyxqmrSbO4h5Vhp5NHGBAFFT1L
+         Y5mBhGVzJAwmYVPxOUp4WkVI1sk7kY8NAfvf1obTYKawpLKwoG28u7dg7Q9cb/EARomG
+         z2CuYrEoTXX1E5nNE7aPCrjiEGLwcSDI39RAUXeRAVaQ7YBhNRABolCOksTqZQszoe45
+         mX0Q==
+X-Gm-Message-State: ACrzQf2hOIFJI5WaXE7siIQJ7nAjwSIODnHfxwolDbMq5KxsYUTzNl/i
+        ubwgC/dPMfPcTrOII4SOSlBmzoy6kIWb8w==
+X-Google-Smtp-Source: AMsMyM4JJjnroJH7xE8SAJ5SucdEHMX/sHdp0HGbe1dhZPm+Pp3n4pSVcMmcd1zndGU3fpGsMNTQsA==
+X-Received: by 2002:a17:907:97d4:b0:781:c182:c45c with SMTP id js20-20020a17090797d400b00781c182c45cmr1673786ejc.170.1664438537533;
+        Thu, 29 Sep 2022 01:02:17 -0700 (PDT)
 Received: from WBEC325.dom.lan ([2001:470:64f7:0:a03b:951f:e3a0:4dd4])
-        by smtp.gmail.com with ESMTPSA id gn36-20020a1709070d2400b007707fc31b8dsm3601710ejc.26.2022.09.29.01.01.11
+        by smtp.gmail.com with ESMTPSA id kx17-20020a170907775100b007262a5e2204sm3596173ejc.153.2022.09.29.01.02.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 01:01:12 -0700 (PDT)
+        Thu, 29 Sep 2022 01:02:16 -0700 (PDT)
 From:   Pawel Dembicki <paweldembicki@gmail.com>
 To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Gregory Clement <gregory.clement@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>, Tony Dinh <mibodhi@gmail.com>
-Cc:     Pawel Dembicki <paweldembicki@gmail.com>
-Subject: [PATCH] ARM: dts: kirkwood: Add Zyxel NSA310S  board
-Date:   Thu, 29 Sep 2022 10:01:10 +0200
-Message-Id: <20220929080110.3182561-1-paweldembicki@gmail.com>
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     Pawel Dembicki <paweldembicki@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH] ARM: dts: kirkwood: Add drivetemp thermal zone in Ctera C200V1
+Date:   Thu, 29 Sep 2022 10:02:10 +0200
+Message-Id: <20220929080210.3189925-1-paweldembicki@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -68,201 +69,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Zyxel NSA310S is a NAS based on Marvell kirkwood SoC.
+Ctera C200 V1 have two SATA bays, but thermal zone is handled for only one.
+For some reason thermal zone works only with first disk.
+It was reported one year ago [1].
 
-Specification:
- - Processor Marvell 88F6702 1 GHz
- - 256MB RAM
- - 128MB NAND
- - 1x GBE LAN port (PHY: Marvell 88E1318)
- - 2x USB 2.0
- - 1x SATA
- - 3x button
- - 7x leds
- - serial on J1 connector (115200 8N1) (GND-NOPIN-RX-TX-VCC)
+[1] https://www.mail-archive.com/openwrt-devel@lists.openwrt.org/msg56599.html
 
-Tested-by: Tony Dinh <mibodhi@gmail.com>
+Suggested-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 ---
- arch/arm/boot/dts/Makefile             |   1 +
- arch/arm/boot/dts/kirkwood-nsa310s.dts | 267 +++++++++++++++++++++++++
- 2 files changed, 268 insertions(+)
- create mode 100644 arch/arm/boot/dts/kirkwood-nsa310s.dts
+ arch/arm/boot/dts/kirkwood-c200-v1.dts | 37 ++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 05d8aef6e5d2..eae7d1139fbc 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -354,6 +354,7 @@ dtb-$(CONFIG_MACH_KIRKWOOD) += \
- 	kirkwood-ns2mini.dtb \
- 	kirkwood-nsa310.dtb \
- 	kirkwood-nsa310a.dtb \
-+	kirkwood-nsa310s.dtb \
- 	kirkwood-nsa320.dtb \
- 	kirkwood-nsa325.dtb \
- 	kirkwood-openblocks_a6.dtb \
-diff --git a/arch/arm/boot/dts/kirkwood-nsa310s.dts b/arch/arm/boot/dts/kirkwood-nsa310s.dts
-new file mode 100644
-index 000000000000..210dfdb577bb
---- /dev/null
-+++ b/arch/arm/boot/dts/kirkwood-nsa310s.dts
-@@ -0,0 +1,267 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * ZyXEL NSA310S Board Description
-+ * Copyright 2020-2022 Pawel Dembicki <paweldembicki@gmail.com>
-+ * Copyright (c) 2015-2021, Tony Dinh <mibodhi@gmail.com>
-+ * Copyright (c) 2014, Adam Baker <linux@baker-net.org.uk>
-+ * Based upon the board setup file created by Peter Schildmann
-+ */
-+/dts-v1/;
-+
-+#include "kirkwood.dtsi"
-+#include "kirkwood-6281.dtsi"
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "ZyXEL NSA310S";
-+	compatible = "zyxel,nsa310s", "marvell,kirkwood-88f6702", "marvell,kirkwood";
-+
-+	memory {
-+		device_type = "memory";
-+		reg = <0x00000000 0x10000000>;
-+	};
-+
-+	chosen {
-+		bootargs = "console=ttyS0,115200n8 earlyprintk";
-+		stdout-path = &uart0;
-+	};
-+
-+	gpio_poweroff {
-+		compatible = "gpio-poweroff";
-+		pinctrl-0 = <&pmx_pwr_off>;
-+		pinctrl-names = "default";
-+		gpios = <&gpio0 27 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	keys {
-+		compatible = "gpio-keys";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		pinctrl-0 = <&pmx_buttons>;
-+		pinctrl-names = "default";
-+
-+		power {
-+			label = "Power Button";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		copy {
-+			label = "Copy Button";
-+			linux,code = <KEY_COPY>;
-+			gpios = <&gpio0 25 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		reset {
-+			label = "Reset Button";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&pmx_leds>;
-+		pinctrl-names = "default";
-+
-+		led-1 {
-+			function = LED_FUNCTION_DISK_ERR;
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-2 {
-+			function = LED_FUNCTION_USB;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "usb-host";
-+		};
-+
-+		led-3 {
-+			function = LED_FUNCTION_DISK;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "ata1";
-+		};
-+
-+		led-4 {
-+			function = LED_FUNCTION_INDICATOR;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-5 {
-+			function = LED_FUNCTION_INDICATOR;
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-6 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		led-7 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&gpio0 29 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	regulators {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		pinctrl-0 = <&pmx_power>;
-+		pinctrl-names = "default";
-+
-+		usb0_power: regulator@1 {
-+			compatible = "regulator-fixed";
-+			reg = <1>;
-+			regulator-name = "USB Power";
-+			regulator-min-microvolt = <5000000>;
-+			regulator-max-microvolt = <5000000>;
-+			regulator-always-on;
-+			regulator-boot-on;
-+			gpio = <&gpio0 21 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		sata1_power: regulator@2 {
-+			compatible = "regulator-fixed";
-+			reg = <2>;
-+			regulator-name = "SATA1 Power";
-+			regulator-min-microvolt = <5000000>;
-+			regulator-max-microvolt = <5000000>;
-+			regulator-always-on;
-+			regulator-boot-on;
-+			gpio = <&gpio1 1 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
+diff --git a/arch/arm/boot/dts/kirkwood-c200-v1.dts b/arch/arm/boot/dts/kirkwood-c200-v1.dts
+index f59ff7578dfc..ffe60150a67a 100644
+--- a/arch/arm/boot/dts/kirkwood-c200-v1.dts
++++ b/arch/arm/boot/dts/kirkwood-c200-v1.dts
+@@ -156,6 +156,31 @@ led-12 {
+ 			trigger-sources = <&hub_port1>;
+ 		};
+ 	};
 +
 +	thermal-zones {
-+		disk-thermal {
++		/* Thermal zone works only with first disk */
++
++		disk0-thermal {
 +			polling-delay = <20000>;
 +			polling-delay-passive = <2000>;
 +
-+			thermal-sensors = <&hdd_temp>;
++			thermal-sensors = <&hdd0_temp>;
 +
++			/* Tripping points from the fan.script in the rootfs */
 +			trips {
-+				disk_alert: disk-alert {
++				disk0_alert: disk0-alert {
 +					temperature = <40000>;
 +					hysteresis = <5000>;
 +					type = "active";
 +				};
-+				disk_crit: disk-crit {
++				disk0_crit: disk0-crit {
 +					temperature = <60000>;
 +					hysteresis = <2000>;
 +					type = "critical";
@@ -270,110 +114,28 @@ index 000000000000..210dfdb577bb
 +			};
 +		};
 +	};
-+};
-+
-+
-+&eth0 {
-+	status = "okay";
-+
-+	ethernet0-port@0 {
-+		phy-handle = <&ethphy0>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	rtc@68 {
-+		compatible = "htk,ht1382";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&mdio {
-+	status = "okay";
-+
-+	ethphy0: ethernet-phy@1 {
-+		reg = <1>;
-+		phy-mode = "rgmii-id";
-+		marvell,reg-init = <0x1 0x16 0x0 0x3>,
-+						   <0x1 0x10 0x0 0x1017>,
-+						   <0x1 0x11 0x0 0x4408>,
-+						   <0x1 0x16 0x0 0x0>;
-+	};
-+};
-+
-+&nand {
-+	status = "okay";
-+	chip-delay = <35>;
-+
-+	partition@0 {
-+		label = "uboot";
-+		reg = <0x0000000 0x00c0000>;
-+		read-only;
-+	};
-+	partition@c0000 {
-+		label = "uboot_env";
-+		reg = <0x00c0000 0x0080000>;
-+	};
-+	partition@140000 {
-+		label = "ubi";
-+		reg = <0x0140000 0x7ec0000>;
-+	};
-+};
-+
-+&pciec {
-+	status = "okay";
-+};
-+
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	pinctrl-names = "default";
-+
-+	pmx_buttons: pmx-buttons {
-+		marvell,pins = "mpp24", "mpp25", "mpp26";
-+		marvell,function = "gpio";
-+	};
-+
-+	pmx_leds: pmx-leds {
-+		marvell,pins = "mpp13", "mpp15", "mpp16", "mpp22", "mpp23",
-+						"mpp28", "mpp29";
-+		marvell,function = "gpio";
-+	};
-+
-+	pmx_power: pmx-power {
-+		marvell,pins = "mpp21", "mpp33";
-+		marvell,function = "gpio";
-+	};
-+
-+	pmx_pwr_off: pmx-pwr-off {
-+		marvell,pins = "mpp27";
-+		marvell,function = "gpio";
-+	};
-+};
-+
-+&rtc {
-+	status = "disabled";
-+};
-+
-+&sata {
-+	status = "okay";
-+	nr-ports = <1>;
+ };
+ 
+ &eth0 {
+@@ -280,6 +305,18 @@ &rtc {
+ &sata {
+ 	status = "okay";
+ 	nr-ports = <2>;
 +	#address-cells = <1>;
 +	#size-cells = <0>;
 +
-+	hdd_temp: sata-port@0 {
++	hdd0_temp: sata-port@0 {
 +		reg = <0>;
 +		#thermal-sensor-cells = <0>;
 +	};
-+};
 +
-+&uart0 {
-+	status = "okay";
-+};
++	hdd1_temp: sata-port@1 {
++		reg = <1>;
++		#thermal-sensor-cells = <0>;
++	};
+ };
+ 
+ &uart0 {
 -- 
 2.34.1
 
