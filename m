@@ -2,256 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BBA15EFBB0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 19:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80A785EFBDF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 19:23:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235655AbiI2RKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 13:10:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38444 "EHLO
+        id S235001AbiI2RXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 13:23:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235976AbiI2RKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 13:10:36 -0400
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D003676474
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 10:10:34 -0700 (PDT)
-Received: from [10.2.102.158] (unknown [194.29.137.22])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id F2B9B3F70C;
-        Thu, 29 Sep 2022 19:10:31 +0200 (CEST)
-Message-ID: <4597dc21-6f91-a51d-3513-d982738c04ea@somainline.org>
-Date:   Thu, 29 Sep 2022 19:10:30 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.13.1
-Subject: Re: [PATCH v2 2/2] irqchip/apple-aic: Add support for A7-A11 SoCs
-To:     Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev,
+        with ESMTP id S235967AbiI2RXT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 13:23:19 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38FB01F11ED
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 10:22:04 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id b23so2012252pfp.9
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 10:22:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=SIbDPYXTiEpHr31cowPm5hEWT0Dsj29GpYNVG6B6LlQ=;
+        b=mB8DS4FtbYahqmKbTsOUSTFLoTQRXcbJ3S67QhTIGmqSBDz/tWrFlwMcQ+cr23xX+b
+         QjG8yy4p2rhzXPmzYoPpJETh+MOcZ4yLkpS+xe/4UC0kekmTGp2l0FOavxZbRoTOhb+3
+         XH0z/AGyy1pyfbaQ0b8WlaXjjULk5lXJ98RdhAuDRK1jZK174zRJLrai1dB3qYm7C9bi
+         mfxenLf2PEEAJXuAgS23CChpXtK7E5L++pMmei3EFlv/p6bQLa1s2fnPxLJwYph9MUyh
+         Id4k8Zu0gFKur4uSD2lyGzTjCb8tFTcmzTfGvpSNt2i8W6+NVwbl2mPn83HI9mJB9uQj
+         Gugg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=SIbDPYXTiEpHr31cowPm5hEWT0Dsj29GpYNVG6B6LlQ=;
+        b=iZ4kkKQCKh6wIUjTAsli5PC6TGoLFVhQmV73RkXmFctLg53omfaF1AWhLWJNpuYX8+
+         QD13j4M7fq6sqMN7uqG6KkqvvuZJ4iMKfBM5RyQ9kIFEczGKszz8ELDmWIt4pCklFto7
+         XG9qQZdOMKcwKy4TsYqtHuluh0nG2fTh2Z+k9ehLQCCw+KaURtiU+6WZRHX2fD4KVjo9
+         Gb+81X9XBhxE2zaJFmuosO44PncBfrggODtyguORJU/s0gtIJppuvNIIPFqUu8AoL627
+         6HXG5S0x3DrvGs2XCpGaSqBug5exA662M7KM4oRU3X+YTQjRZHGmhpWr3Qqw7MoZ/XOt
+         z9lg==
+X-Gm-Message-State: ACrzQf1zEwdFA52fL52Yb45IgyeAYzAMrciHs7Vps1QDx77Uzfr0j1iE
+        HwKWG1BQib3rIsAoxzYHFhwnbg==
+X-Google-Smtp-Source: AMsMyM4AC3DhaeWsDiKxbTYHV9WoijHDEhKnl9Ddx2dx4JeYbpJ/IXYZuywwehHTWBeATWePCuxzFg==
+X-Received: by 2002:a05:6a00:1a47:b0:52e:6a8c:5430 with SMTP id h7-20020a056a001a4700b0052e6a8c5430mr4622875pfv.48.1664472123633;
+        Thu, 29 Sep 2022 10:22:03 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id j13-20020a17090a694d00b00205da989de3sm36917pjm.17.2022.09.29.10.22.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Sep 2022 10:22:02 -0700 (PDT)
+Date:   Thu, 29 Sep 2022 11:22:00 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Tanmay Shah <tanmays@amd.com>
+Cc:     andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
+        ben.levinsky@xilinx.com, tanmay.shah@xilinx.com,
+        michal.simek@amd.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Cc:     towinchenmi@gmail.com, Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220929144039.40011-1-konrad.dybcio@somainline.org>
- <20220929144039.40011-2-konrad.dybcio@somainline.org>
- <0dd4f0ad-62bd-42c3-9518-41675c7ffda8@app.fastmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <0dd4f0ad-62bd-42c3-9518-41675c7ffda8@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v9 6/6] drivers: remoteproc: Add Xilinx r5 remoteproc
+ driver
+Message-ID: <20220929172200.GB3107608@p14s>
+References: <20220708013955.2340449-1-tanmay.shah@amd.com>
+ <20220708013955.2340449-7-tanmay.shah@amd.com>
+ <20220901202517.GB626605@p14s>
+ <d1cfa787-9f8e-fe8a-d816-0bd8c3a3244d@amd.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d1cfa787-9f8e-fe8a-d816-0bd8c3a3244d@amd.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 26, 2022 at 03:02:22PM -0700, Tanmay Shah wrote:
+> 
+> On 9/1/22 1:25 PM, Mathieu Poirier wrote:
+> > On Thu, Jul 07, 2022 at 06:39:55PM -0700, Tanmay Shah wrote:
+> [ ... ]
+> > > --- /dev/null
+> > > +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> > > @@ -0,0 +1,1055 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> 
+> Hi Mathieu,
+> 
+> I tried to fix SPDX-License-Identifier to GPL (same as MODULE_LICENSE
+> below), However checkpatch.pl reports this as following warning:
+> 
+> "WARNING: 'SPDX-License-Identifier: GPL' is not supported in LICENSES/..."
+> 
+> I see that GPL-1.0 is under LICENSE/deprecated directory.
+> 
+> > > +/*
+> > > + * ZynqMP R5 Remote Processor driver
+> > > + *
+> > > + */
+> > > +
+> > > +#include <dt-bindings/power/xlnx-zynqmp-power.h>
+> 
+> [ ... ]
+> 
+> > > +MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
+> > > +
+> > > +static struct platform_driver zynqmp_r5_remoteproc_driver = {
+> > > +	.probe = zynqmp_r5_remoteproc_probe,
+> > > +	.driver = {
+> > > +		.name = "zynqmp_r5_remoteproc",
+> > > +		.of_match_table = zynqmp_r5_remoteproc_match,
+> > > +	},
+> > > +};
+> > > +module_platform_driver(zynqmp_r5_remoteproc_driver);
+> > > +
+> > > +MODULE_DESCRIPTION("Xilinx R5F remote processor driver");
+> > > +MODULE_AUTHOR("Xilinx Inc.");
+> > > +MODULE_LICENSE("GPL");
+> > There is a discrepency between the GPL-2.0 in the SPDS identifier and the above.
+> 
+> Also, changing to MODULE_LICENSE("GPL v2") gives following warning:
+> 
+> WARNING: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure
+> the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
+> #1115: FILE: drivers/remoteproc/xlnx_r5_remoteproc.c:1034:
+> +MODULE_LICENSE("GPL v2");
+> 
+> So, It looks like SPDX-License-Identifier should be GPL-2.0-only and
+> MODULE_LICENSE should be change to "GPL".
 
-On 29/09/2022 16:50, Sven Peter wrote:
-> On Thu, Sep 29, 2022, at 16:40, Konrad Dybcio wrote:
->> Add support for A7-A11 SoCs by if-ing out some features only present
->> on:
->>
->> * A11 & newer (implementation-defined IPI & UNCORE registers)
->> * A11[1] & newer (fast IPI support).
->>
->> Also, annotate IPI regs support in the aic struct so that the driver
->> can tell whether the SoC supports these, as they are written to,
->> even if fast IPI is disabled. This in turn causes a crash on older
->> platforms, as the implemention-defined registers either do
->> something else or are not supposed to be touched - definitely not a
->> NOP though.
->>
->> [1] A11 is supposed to use this feature, but it currently doesn't work
->> for reasons unknown and hence remains disabled. It can easily be enabled
->> on A11 only, as there is a SoC-specific compatible in the DT with a
->> fallback to apple,aic, so that the interrupt controller gets to probe
->> regardless of whether IPI Sn_... registers are used or not.
->> That said, it is not yet necessary, especially with only one core up,
->> and it has worked a-ok so far.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->> ---
->> Changes since v1:
->> - remove EL2 register check (dts change covered this)
->> - use static_branch instead of ifs
->> - rename "uncore2 registers" to "uncore registers" in added code and
->> update the commit message accordingly
->> - create a "legacy" config struct for pre-A11 targets
->> - rewrite the commit message a bit to match actual status
->>
->>   drivers/irqchip/irq-apple-aic.c | 56 ++++++++++++++++++++++++---------
->>   1 file changed, 41 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
->> index 1c2813ad8bbe..cdef99bfcfb3 100644
->> --- a/drivers/irqchip/irq-apple-aic.c
->> +++ b/drivers/irqchip/irq-apple-aic.c
->> @@ -229,6 +229,7 @@
->>   #define AIC_TMR_EL02_VIRT	AIC_TMR_GUEST_VIRT
->>
->>   static DEFINE_STATIC_KEY_TRUE(use_fast_ipi);
->> +static DEFINE_STATIC_KEY_TRUE(has_uncore_regs);
->>
->>   struct aic_info {
->>   	int version;
->> @@ -246,6 +247,7 @@ struct aic_info {
->>
->>   	/* Features */
->>   	bool fast_ipi;
->> +	bool uncore_regs;
->>   };
->>
->>   static const struct aic_info aic1_info = {
->> @@ -253,6 +255,8 @@ static const struct aic_info aic1_info = {
->>
->>   	.event		= AIC_EVENT,
->>   	.target_cpu	= AIC_TARGET_CPU,
->> +
->> +	.uncore_regs	= true,
->>   };
->>
->>   static const struct aic_info aic1_fipi_info = {
->> @@ -264,6 +268,13 @@ static const struct aic_info aic1_fipi_info = {
->>   	.fast_ipi	= true,
->>   };
->>
->> +static const struct aic_info aic1_legacy_info = {
->> +	.version	= 1,
->> +
->> +	.event		= AIC_EVENT,
->> +	.target_cpu	= AIC_TARGET_CPU,
->> +};
->> +
->>   static const struct aic_info aic2_info = {
->>   	.version	= 2,
->>
->> @@ -273,6 +284,10 @@ static const struct aic_info aic2_info = {
->>   };
->>
->>   static const struct of_device_id aic_info_match[] = {
->> +	{
->> +		.compatible = "apple,s5l8960x-aic",
->> +		.data = &aic1_legacy_info,
->> +	},
-> Maybe I'm confused but shouldn't this be the apple,aic fallback and uncore_regs
-> should be enabled for e.g. t8103-aic then?
+Commit bf7fbeeae6db is an interesting read - thanks for pointing it out.
 
-Yes, looks like..
+> 
+> It this ok? Any other suggestions ?
 
+What you have looks good, in that regard there is no need to change anything
+from your patch. 
 
->
->>   	{
->>   		.compatible = "apple,t8103-aic",
->>   		.data = &aic1_fipi_info,
->> @@ -524,12 +539,14 @@ static void __exception_irq_entry
->> aic_handle_fiq(struct pt_regs *regs)
->>   	 * we check for everything here, even things we don't support yet.
->>   	 */
->>
->> -	if (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING) {
->> -		if (static_branch_likely(&use_fast_ipi)) {
->> -			aic_handle_ipi(regs);
->> -		} else {
->> -			pr_err_ratelimited("Fast IPI fired. Acking.\n");
->> -			write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
->> +	if (static_branch_likely(&use_fast_ipi)) {
->> +		if (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING) {
->> +			if (static_branch_likely(&use_fast_ipi)) {
->> +				aic_handle_ipi(regs);
->> +			} else {
->> +				pr_err_ratelimited("Fast IPI fired. Acking.\n");
->> +				write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
->> +			}
-> This doesn't make much sense:
->
-> if (A) {
->      if (B) {
->          if (A) { // A is already guaranteed to be true here, why check it again?
->              // ...
->          } else {
->              // how can this ever be reached then?
->          }
->      }
-> }
-
-Good point, I went too far with squashing "has IPI regs" and "use fast 
-IPI" together and
-
-didn't notice it's now unreachable..
-
-
-Konrad
-
->
->>   		}
->>   	}
->>
->> @@ -566,12 +583,14 @@ static void __exception_irq_entry
->> aic_handle_fiq(struct pt_regs *regs)
->>   					  AIC_FIQ_HWIRQ(irq));
->>   	}
->>
->> -	if (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) ==
->> UPMCR0_IMODE_FIQ &&
->> -			(read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & UPMSR_IACT)) {
->> -		/* Same story with uncore PMCs */
->> -		pr_err_ratelimited("Uncore PMC FIQ fired. Masking.\n");
->> -		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
->> -				   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
->> +	if (static_branch_likely(&has_uncore_regs)) {
->> +		if (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) ==
->> +			UPMCR0_IMODE_FIQ && (read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) &
->> UPMSR_IACT)) {
->> +			/* Same story with uncore PMCs */
->> +			pr_err_ratelimited("Uncore PMC FIQ fired. Masking.\n");
->> +			sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
->> +					FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
->> +		}
->>   	}
->>   }
->>
->> @@ -944,7 +963,8 @@ static int aic_init_cpu(unsigned int cpu)
->>   	/* Mask all hard-wired per-CPU IRQ/FIQ sources */
->>
->>   	/* Pending Fast IPI FIQs */
->> -	write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
->> +	if (static_branch_likely(&use_fast_ipi))
->> +		write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
->>
->>   	/* Timer FIQs */
->>   	sysreg_clear_set(cntp_ctl_el0, 0, ARCH_TIMER_CTRL_IT_MASK);
->> @@ -965,8 +985,9 @@ static int aic_init_cpu(unsigned int cpu)
->>   			   FIELD_PREP(PMCR0_IMODE, PMCR0_IMODE_OFF));
->>
->>   	/* Uncore PMC FIQ */
->> -	sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
->> -			   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
->> +	if (static_branch_likely(&has_uncore_regs))
->> +		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
->> +				   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
->>
->>   	/* Commit all of the above */
->>   	isb();
->> @@ -1125,6 +1146,11 @@ static int __init aic_of_ic_init(struct
->> device_node *node, struct device_node *p
->>   	else
->>   		static_branch_disable(&use_fast_ipi);
->>
->> +	if (irqc->info.uncore_regs)
->> +		static_branch_enable(&has_uncore_regs);
->> +	else
->> +		static_branch_disable(&has_uncore_regs);
->> +
->>   	irqc->info.die_stride = off - start_off;
->>
->>   	irqc->hw_domain = irq_domain_create_tree(of_node_to_fwnode(node),
->> -- 
->> 2.30.2
->
-> Sven
+> 
+> Thanks,
+> 
+> Tanmay
+> 
+> > 
+> > More comments tomorrow or Tuesday.
+> > 
+> > Thanks,
+> > Mathieu
+> > 
+> > > -- 
+> > > 2.25.1
+> > > 
