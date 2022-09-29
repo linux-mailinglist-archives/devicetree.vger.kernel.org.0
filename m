@@ -2,220 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD8385EF512
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:17:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BCB75EF522
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:20:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235172AbiI2MRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 08:17:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40602 "EHLO
+        id S234940AbiI2MUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 08:20:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233332AbiI2MRN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:17:13 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15E912969D;
-        Thu, 29 Sep 2022 05:17:12 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28TC6a0N011217;
-        Thu, 29 Sep 2022 12:16:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=Ig3jvnmNG9tfXnK/SbLfElPIPtLnqMM2dqS2NOO1tDQ=;
- b=lwgvxAA6Q92JgvBXmWQsVlaAsf5ThMP6KbguE5i4ChRdpjRV13g88YqOH19x8OTIQB8n
- qa1u8HZYfD/f6u3ZwquzlDxyuWtpH/64sHfduoTqfeQ39YqEi/0N6QfSEco6JejjRtc3
- Fq4d2kf8pfi0jKg+gqwlrgt6Xhc9/xt1D2VvJP2cYwNL5OtnNuoXHcmiFzaY/lzlctVq
- fIGxFl889yv2q8+NlQVvjB6jzS1JUtwPAKAtnQ/m6Hsqwn9pL3ziNuAfw4yeopei5RKa
- J6Woa+hV9+gbYXg6izvD7woaGNM3os2AVRqQzuaRqY1xNyCwcHN9ZT+rFyMVNyfNv6Kh cw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jvbf0maes-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Sep 2022 12:16:40 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28TCGdBC029902
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Sep 2022 12:16:39 GMT
-Received: from fenglinw2-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Thu, 29 Sep 2022 05:16:36 -0700
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski@linaro.org>, Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fenglin Wu <quic_fenglinw@quicinc.com>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <collinsd@codeaurora.org>, <subbaram@codeaurora.org>
-Subject: [PATCH v2 2/2] dt-bindings: add bindings for QCOM flash LED
-Date:   Thu, 29 Sep 2022 20:15:44 +0800
-Message-ID: <20220929121544.1064279-3-quic_fenglinw@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220929121544.1064279-1-quic_fenglinw@quicinc.com>
-References: <20220929121544.1064279-1-quic_fenglinw@quicinc.com>
+        with ESMTP id S233488AbiI2MU3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 08:20:29 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E19E8992B;
+        Thu, 29 Sep 2022 05:20:27 -0700 (PDT)
+Received: by mail-qt1-f180.google.com with SMTP id f26so609855qto.11;
+        Thu, 29 Sep 2022 05:20:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=0JbOCdOKk6WwUbn/XvGSZm441jy6P94HZMbRF7zv7gk=;
+        b=kxxPejVwKEc2XnhVNyVjyQWkS3qgHlW4IMDjsGSAtFp0BP2b3Js4xsJ0Qa1opR3dmB
+         BAc4cAipXgsbVbNlfmVQEjtXV+E7UyzcVsqzAS8bmYQdghTvgk3lyP2bfBjdYiFlj4Fg
+         c1gWheJ/NQQgnUrMhvOBMEFXZ59fHPDKxMiC+od6Ch7cACTcSRJ7h6gwK8sKSYqiPTy2
+         FYo0n2mHXC/2TdWdR9SxizwI0y4jrVicvuBdLiVWYNPXcqX+NH1x7oVSWrWobWO8lg8r
+         zFIA+DbHF5ZuPsCKwUMqDYe6mtRcWIVCB6+nM8ITihu8sFuBkHCcVwsNk51ih+JsUNVL
+         f+jA==
+X-Gm-Message-State: ACrzQf1MIXmTnrGX4KQlXM4nPIUURwmAg7xAGrH4F7PgktHZPOAIdSu0
+        HvrOSe0dmbuQ6WzB3z0CdifVUOvGCrVRVA==
+X-Google-Smtp-Source: AMsMyM5sEfkxWRi5K7J/t8SGo6qDH9ceaJd3Fz4VRWNa6dcdampFmAVTh/ZCYQbZNXGrmQz6azUGCg==
+X-Received: by 2002:a05:622a:1307:b0:35c:aacf:20 with SMTP id v7-20020a05622a130700b0035caacf0020mr2001075qtk.444.1664454026515;
+        Thu, 29 Sep 2022 05:20:26 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id c22-20020ac81116000000b0035d43eb67bcsm5114833qtj.91.2022.09.29.05.20.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Sep 2022 05:20:26 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-3321c2a8d4cso12524357b3.5;
+        Thu, 29 Sep 2022 05:20:25 -0700 (PDT)
+X-Received: by 2002:a81:5a57:0:b0:353:6de6:3263 with SMTP id
+ o84-20020a815a57000000b003536de63263mr2925782ywb.358.1664454025727; Thu, 29
+ Sep 2022 05:20:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: JISlVWSgcyyNyMVBp3EUsS3Ezr6JXz18
-X-Proofpoint-ORIG-GUID: JISlVWSgcyyNyMVBp3EUsS3Ezr6JXz18
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-29_06,2022-09-29_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- mlxscore=0 priorityscore=1501 phishscore=0 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 adultscore=0 clxscore=1015 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209290076
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220923205251.1387-1-alexander.helms.jy@renesas.com>
+ <20220923205251.1387-2-alexander.helms.jy@renesas.com> <20220926230438.GA3128861-robh@kernel.org>
+ <cbe89899-7f56-c43a-f8c9-887825fbe4a6@amd.com> <CAMuHMdUuzrdf4rmD3n_-S9ujrfmY5Y6VOsNapiLRR5MG9bKAjw@mail.gmail.com>
+ <5a037955-4832-e42a-eb58-719ed4672395@renesas.com> <20220928234137.71ACEC433D6@smtp.kernel.org>
+ <a89b8124-78e2-f9a9-c3bf-1e30687127ca@amd.com>
+In-Reply-To: <a89b8124-78e2-f9a9-c3bf-1e30687127ca@amd.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 29 Sep 2022 14:20:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVrQJaBmrWoMp7EFNFhEpamp7qZ-eKqyChVNvr5=BPCUg@mail.gmail.com>
+Message-ID: <CAMuHMdVrQJaBmrWoMp7EFNFhEpamp7qZ-eKqyChVNvr5=BPCUg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add bindings for Renesas ProXO
+To:     Michal Simek <michal.simek@amd.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Alex Helms <alexander.helms.jy@renesas.com>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, geert+renesas@glider.be
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding document for flash LED module inside Qualcomm Technologies,
-Inc. PMICs.
+Hi Michal,
 
-Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
----
- .../bindings/leds/qcom,spmi-flash-led.yaml    | 120 ++++++++++++++++++
- 1 file changed, 120 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+On Thu, Sep 29, 2022 at 2:01 PM Michal Simek <michal.simek@amd.com> wrote:
+> On 9/29/22 01:41, Stephen Boyd wrote:
+> > Quoting Alex Helms (2022-09-28 16:16:04)
+> >> On 9/27/2022 7:51 AM, Geert Uytterhoeven wrote:
+> >>> On Tue, Sep 27, 2022 at 4:10 PM Michal Simek <michal.simek@amd.com> wrote:
+> >>>> On 9/27/22 01:04, Rob Herring wrote:
+> >>>>> On Fri, Sep 23, 2022 at 01:52:50PM -0700, Alex Helms wrote:
+> >>>>>> Add dt bindings for the Renesas ProXO oscillator.
+> >>>>>>
+> >>>>>> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
+> >>>
+> >>>>>> --- /dev/null
+> >>>>>> +++ b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
+> >>>
+> >>>> Driver is also using clock-output-names which is not listed here.
+> >>>
+> >>> ... which is deprecated, and thus should not be used by the driver
+> >>> at all.
+> >>
+> >> Can you point me to somewhere showing it is deprecated? It is in the
+> >> current dt clock documentation.
+> >
+> > I wouldn't say it is deprecated. Instead, it isn't useful if you're able
+> > to use struct clk_parent_data and auto-generated clk names.
+>
+> I am not closely doing clk subsystem but these chips are clock provider without
+> any parent. If you mean calling function like this
+> of_clk_get_parent_name(client->dev.of_node, 0) then it should return null.
+> But maybe there is something else what you are referring to.
+>
+> I see that fixed clock driver is using node->name which is also problematic
+> because node name for these devices on i2c will look like clock-controller@XX
+> where XX could be the same when i2c muxes are used.
 
-diff --git a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
-new file mode 100644
-index 000000000000..3ab1113a7b28
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
-@@ -0,0 +1,120 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/qcom,spmi-flash-led.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Flash LED device inside Qualcomm Technologies, Inc. PMICs
-+
-+maintainers:
-+  - Fenglin Wu <quic_fenglinw@quicinc.com>
-+
-+description: |
-+  Flash LED controller is present inside some Qualcomm Technologies, Inc. PMICs.
-+  The flash LED module can have different number of LED channels supported
-+  e.g. 3 or 4. There are some different registers between them but they can
-+  both support maximum current up to 1.5 A per channel and they can also support
-+  ganging 2 channels together to supply maximum current up to 2 A. The current
-+  will be split symmetrically on each channel and they will be enabled and
-+  disabled at the same time.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - qcom,pm8150c-flash-led
-+          - qcom,pm8150l-flash-led
-+          - qcom,pm8350c-flash-led
-+      - const: qcom,spmi-flash-led
-+  reg:
-+    description: address offset of the flash LED controller
-+    maxItems: 1
-+
-+patternProperties:
-+  "^led[0-3]$":
-+    type: object
-+    $ref: common.yaml#
-+    unevaluatedProperties: false
-+    description: |
-+      Represents the physical LED components which are connected to the
-+      flash LED channels' output.
-+
-+    properties:
-+      led-sources:
-+        description: |
-+          The HW indices of the flash LED channels that connect to the
-+          physical LED
-+        allOf:
-+          - minItems: 1
-+            maxItems: 2
-+            items:
-+              enum: [1, 2, 3, 4]
-+
-+      led-max-microamp:
-+        description: |
-+          The maximum current value when LED is not operating in flash mode (i.e. torch mode)
-+          Valid values when an LED is connected to one flash LED channel:
-+            5000 - 500000, step by 5000
-+          Valid values when an LED is connected to two flash LED channels:
-+            10000 - 1000000, step by 10000
-+        minimum: 5000
-+        maximum: 1000000
-+
-+      flash-max-microamp:
-+        description: |
-+          The maximum current value when LED is operating in flash mode.
-+          Valid values when an LED is connected to one flash LED channel:
-+            12500 - 1500000, step by 12500
-+          Valid values when an LED is connected to two flash LED channels:
-+            25000 - 2000000, step by 12500
-+        minimum: 12500
-+        maximum: 2000000
-+
-+      flash-max-timeout-us:
-+        description: |
-+          The maximum timeout value when LED is operating in flash mode.
-+          Valid values: 10000 - 1280000, step by 10000
-+        minimum: 10000
-+        maximum: 1280000
-+
-+    required:
-+      - led-sources
-+      - led-max-microamp
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+    spmi_bus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        led-controller@ee00 {
-+            compatible = "qcom,pm8350c-flash-led", "qcom,spmi-flash-led";
-+            reg = <0xee00>;
-+
-+            led0 {
-+                function = LED_FUNCTION_FLASH;
-+                color = <LED_COLOR_ID_WHITE>;
-+                led-sources = <1>, <4>;
-+                led-max-microamp = <300000>;
-+                flash-max-microamp = <2000000>;
-+                flash-max-timeout-us = <1280000>;
-+                function-enumerator = <0>;
-+            };
-+
-+            led1 {
-+                function = LED_FUNCTION_FLASH;
-+                color = <LED_COLOR_ID_YELLOW>;
-+                led-sources = <2>, <3>;
-+                led-max-microamp = <300000>;
-+                flash-max-microamp = <2000000>;
-+                flash-max-timeout-us = <1280000>;
-+                function-enumerator = <1>;
-+            };
-+        };
-+    };
--- 
-2.25.1
+Indeed, drivers typically use the node name or the driver name instead,
+but that may cause conflicts in case of multiple instances.
+So you best append ".%u" obtained from e.g. <linux/idr.h>.
 
+> And in connection to deprecation. I see only one file which is saying that it is
+> deprecated.
+> Documentation/devicetree/bindings/sound/samsung-i2s.yaml
+> and it was deprecated before yaml conversion already.
+
+It was deprecated long before the introduction of json-schema (2015?).
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
