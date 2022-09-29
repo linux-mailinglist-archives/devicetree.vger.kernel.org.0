@@ -2,77 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4531B5EEF30
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD1D75EEF4B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:39:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235198AbiI2HhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 03:37:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40506 "EHLO
+        id S234306AbiI2Hjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 03:39:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235284AbiI2HhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:37:08 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C6913941A
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:37:07 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id u18so973924lfo.8
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:37:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=C6HAcFRlUdRVNTmd1+LZDEckWRqIi/Jw90W8yfGFuaM=;
-        b=qrePgKY/Y+Vm7/UZSq1RNCj98EF+ZGGgs4eAocWnvNy3OL+hbXXhm7/hlNBWZtmh+w
-         HHpePbG503tmykGObV5MPrA42fKiouTwqXxUHeY6180cJ+hwMma60u7Mr31ZuIXyZjGk
-         CB9Ko/qcwaZ/9bEzlE5LXclzRuAQ6M7MmVNiSzr1s1P7jPgaWG/x39v200VI0dx3K5Uh
-         QgCNllL/mAQ2nJttbLYW4lxDr/Ce783BOmFE/L4c+jovVnoqxtcBGniMStFJUiG3+JhX
-         b3+WuUBiZHWhsY0POKuA/irYlQuOJ0S2R9kBBDhWDQIDWbm887eHhwRtrapD53VfNVdN
-         mzxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=C6HAcFRlUdRVNTmd1+LZDEckWRqIi/Jw90W8yfGFuaM=;
-        b=ZqaHoim5sLCDoZMWcWejOOBfDDmA98uxx3pQFAlZxdpvF/SgZXdjGVenhJuxMuq1gG
-         9WhMVlQTX2s19AXNWPpG9X8/2U//Lkld43n7SPggXH5s7cO5rEHaVT2HHOLtxwNIUrVg
-         5P7PH8EucMiLkQnLuT61B80kOctDlO9VniBrw9aoRHOk+u89k9vRtTM09mW42F73dtFv
-         laeAdvVccZC1+7+sOxV9wI1zopdbMKIwXaWkj7LvXM0rD7XXBa43lq8t9DTd5EgXXUIv
-         MK0kWcnjRXFynx6n6H3kBYTJa1bM1ipZVD3SHug3hBluCXquqkHm8aJUQbwb3YqqqykS
-         hh9g==
-X-Gm-Message-State: ACrzQf1OI7IVcLp+ezIUAIzzQ12l60069mmNi0rodEdfCQDXqnThBJ5G
-        T0bOoz26bOtekUp68txLvqvMPQ==
-X-Google-Smtp-Source: AMsMyM6auO7zd9V9y6sVWvoa5lOsJCgLzgjIBXw3FHxLXWyMNv86MEkFtRVwKPJbJmzPknh6BFI9cQ==
-X-Received: by 2002:a05:6512:511:b0:4a1:d9f3:ea10 with SMTP id o17-20020a056512051100b004a1d9f3ea10mr863530lfb.555.1664437025680;
-        Thu, 29 Sep 2022 00:37:05 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 10-20020ac25f0a000000b004979e1ff641sm704286lfq.115.2022.09.29.00.37.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 00:37:05 -0700 (PDT)
-Message-ID: <65ef5f40-f8bd-045c-a9d7-6a74ceacc8e2@linaro.org>
-Date:   Thu, 29 Sep 2022 09:37:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v2] dt-bindings: media: st,stmipid02: Convert the text
- bindings to YAML
-Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        with ESMTP id S235006AbiI2Hjn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:39:43 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB2EDFBD;
+        Thu, 29 Sep 2022 00:39:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 31E56B8237F;
+        Thu, 29 Sep 2022 07:39:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A30EC433C1;
+        Thu, 29 Sep 2022 07:39:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664437178;
+        bh=/n0Q5GrDswm33XQryPk2WZzaKOv8olLq/q5OJ+haq8U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NsW8RsuHm4QnUnWi2FkTGxNhOG8d32sArCS4R36OXrkt0D32MDXCs1dNvI3AvIqdc
+         0PJeJoAMDcH9y8nXUqG8Q+jdOIfchHgskqry8mLcc1J1i66DYMhKIFBU+Am7m65+o+
+         /as1AU+60kbmZ169h55koVVqt+91s3ltF/gAxSiA7Y56GjoTzkaaUfkcEsA4OJkV4T
+         YCsmmvC/gPBvfxKq4CJaRrPpY1y4y4VZ4LtUSDj5rzJJrjqZ2NFfqBWPwNcWHUANGP
+         N2IhLoFT99em2xOc3vPMRX8WmowmfHF7DqkR19sjXPJeccmfDmGviFLNg/RhKTQynS
+         G3ngm8ghjpp8A==
+Date:   Thu, 29 Sep 2022 13:09:34 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Richard Acayan <mailingradian@gmail.com>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sylvain Petinot <sylvain.petinot@foss.st.com>,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20220927184657.291714-1-marex@denx.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220927184657.291714-1-marex@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: dma: qcom: gpi: add fallback
+ compatible
+Message-ID: <YzVLtvPk6YiDfBtb@matsya>
+References: <20220923210934.280034-1-mailingradian@gmail.com>
+ <20220923210934.280034-2-mailingradian@gmail.com>
+ <7b066e11-6e5c-c6d9-c8ed-9feccaec4c0c@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7b066e11-6e5c-c6d9-c8ed-9feccaec4c0c@linaro.org>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,146 +60,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2022 20:46, Marek Vasut wrote:
-> Convert the text STMIPID02 DT bindings to YAML DT format to permit
-> validation of DTs using this I2C CSI-2 to CPI bridge.
+On 23-09-22, 23:26, Krzysztof Kozlowski wrote:
+> On 23/09/2022 23:09, Richard Acayan wrote:
+> > The drivers are transitioning from matching against lists of specific
+> > compatible strings to matching against smaller lists of more generic
+> > compatible strings. Add a fallback compatible string in the schema to
+> > support this change.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
+> Thanks for the patch. I wished we discussed it a bit more. :)
+> qcom,gpi-dma does not look like specific enough to be correct fallback,
+> at least not for all of the devices. I propose either a IP block version
+> (which is tricky without access to documentation) or just one of the SoC
 
-Thank you for your patch. There is something to discuss/improve.
+You should have access :-)
 
-> +properties:
-> +  compatible:
-> +    const: st,st-mipid02
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description:
-> +      Reference to the xclk input clock.
+> IP blocks.
 
-This usually goes to "clocks", but on the other hand it does not bring
-any value (xclk is obvious from clock-names), so I propose to skip
-entire description.
+So knowing this IP we have two versions, one was initial sdm845 that
+should be the base compatible. Then second should be sm8350 which was
+the version we need ee_offset to be added, so these two can be the base
+ones for future...
 
-> +    items:
-> +      - const: xclk
-> +
-> +  VDDE-supply:
-> +    description:
-> +      Sensor digital IO supply. Must be 1.8 volts.
-> +
-> +  VDDIN-supply:
-> +    description:
-> +      Sensor internal regulator supply. Must be 1.8 volts.
-> +
-> +  reset-gpios:
-> +    description:
-> +      Reference to the GPIO connected to the xsdn pin, if any.
-> +      This is an active low signal to the mipid02.
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: CSI-2 first input port
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                description:
-> +                  Single-lane operation shall be <1> or <2> .
-> +                  Dual-lane operation shall be <1 2> or <2 1> .
-> +                minItems: 1
-> +                maxItems: 2
+My 0.02
 
-Blank line
-
-> +              lane-polarity:
-
-The property is "lane-polarities"
-
-> +                description:
-> +                  Any lane can be inverted or not.
-> +                minItems: 1
-> +                maxItems: 2
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: CSI-2 second input port
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                description:
-> +                  Single-lane operation shall be <1> or <2> .
-> +                maxItems: 1
-
-Blank line
-
-> +              lane-polarity:
-
-lane-polarities
-
-> +                description:
-> +                  Any lane can be inverted or not.
-> +                maxItems: 1
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: Output port
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              bus-width:
-> +                enum: [6, 7, 8, 10, 12]
-
-Blank line
-
-> +              hsync-active: true
-> +              vsync-active: true
-
-You do not need these two - they come from video-interfaces.yaml
-
-
-> +
-> +            required:
-> +              - bus-width
-> +
-> +    anyOf:
-> +      - required:
-> +          - port@0
-> +      - required:
-> +          - port@1
-> +
-> +    required:
-> +      - port@2
-> +
-
-Best regards,
-Krzysztof
-
+Thanks
+-- 
+~Vinod
