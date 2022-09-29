@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CA9E5EF1AA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:18:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D62A15EF1B0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234961AbiI2JSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 05:18:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54094 "EHLO
+        id S235153AbiI2JT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 05:19:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234315AbiI2JSd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:18:33 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DCEE14355C
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 02:18:32 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id g1so1299494lfu.12
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 02:18:31 -0700 (PDT)
+        with ESMTP id S234957AbiI2JTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:19:55 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945FC3057F
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 02:19:52 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id bu25so1342514lfb.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 02:19:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=kc3ZUAL7WQah+/Fhr7W6V5w2wd3MWGg+6pISLsDcInI=;
-        b=JbmOPO8O2IY9w37qC7AVYBpBYGgWcdUCkEiLm8j+zcd4hRAzkLPmZ+c3bnIosKBndN
-         wK9E3rxJR3x6JVVKBgsSD24SB7hLAzlfYm5Zti4nsPymgLjh34ONJr8ZvIhzIW8l0iRH
-         S/YDDAvInXynnGoumULv4WmWN4VcLm+8nQe6S4y0+S/9kugebPCatJ2TwiJfA3EgO7Zy
-         5TaExbvcociEVLuC2CTFYxkmbowZTquZEMXY7wVD6y8ygxGe72teB4jISwpqVSJYPvUr
-         kQWlGiETkGNtN4b9klUQgx+6YhEgaZ+5v+h3dgh5DJSIlodlzDGlMUf0olH2yUE7qq/y
-         2ccw==
+        bh=a3atssBxjXoEzroWAbTukg7FItDTIRDpuyhop6mTfvc=;
+        b=BO0XuIN7pPFfyBzqN8GXL7LxRR6DgTITSn8rpOWqAKy4MjxgGAJCHzZ48BNeUZgS1h
+         M7Gc77bCCLRF5ikQu6IHnxstobiEpSchuL1II/RCPRBki2Y56NeLzAVq2w4z6gn7JG7S
+         +rFZZykGmVXNSpkxjFBKsssBVTS5IbikCsDyji7jo5P3MkwjDNRKRIaToAOIMO9bcRAw
+         HrXgcr7pf1YPGgyJwT/PZPsnvnhMIbj8qTnIHxnWktN71URha00KHQgOX8pMbY8CoelW
+         A0ksyuxGIGk5EMt4C8vBqwUtHEpB5oIu5bOfTDP5Ll3jNyCBPHZkPTxWfZYzfT3W/jok
+         THSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=kc3ZUAL7WQah+/Fhr7W6V5w2wd3MWGg+6pISLsDcInI=;
-        b=ZXiTcc03lxlclgTVSM9Z2kIrg6mWXjxaHpj6D5ly+mSaAKtO66iPQDZ1g1UitgHK+V
-         AhcjJvWme4lo4ix8CkDmePu8dOFoX/5AjxHVvv8Ra9dkBT/vUrFgJFhOsbNIl/EJbH17
-         xp6j4aJ3GriytkUM0At4qdmhA/vvH1iF6j7Is7oWYGKsUbEIAQsore7M5ZGzArnLmgUY
-         1Cv4kJ9pR2cb7AbZahrePdV4oWFp/+CIV30wiPESK0JrXxL/F1riXs+S9hBkQA4s9vtJ
-         QiOb0pc5lpBkwZJpFlEXDQEdhEVaksVgOW9T6r8uN85KX3BdB1nDgMz4J3AhoERRUqbL
-         gPLA==
-X-Gm-Message-State: ACrzQf3o7ysnU5X4bKu6yD9ZEreKWe8h15qAh5tps+rtsPLmb+lseeoc
-        S0q7Kj3I74k9Px+yz52N+ZvYYQ==
-X-Google-Smtp-Source: AMsMyM4EF0p2/Ik6h93Z4rtV/D0MipOZQ/7AOh7OhdvB4Fu2GeKp4pWrtAvsv9AbEbQt1WQhZM2aog==
-X-Received: by 2002:a19:5015:0:b0:498:fe6c:39de with SMTP id e21-20020a195015000000b00498fe6c39demr857252lfb.263.1664443110397;
-        Thu, 29 Sep 2022 02:18:30 -0700 (PDT)
+        bh=a3atssBxjXoEzroWAbTukg7FItDTIRDpuyhop6mTfvc=;
+        b=LurMpbwO4Tu5efjQxzYF3DAsVvtbiK6FBLE05RNqZx2leQcu7CNw1WucR+HXgADe3C
+         DDM86XQq59qvfYnmzjr+dMGKQ6mgdiNCd+tg0D51vVL+RFe54itknVCul4kFWJbdW0dl
+         37r9lzer9x4yw7bSu9tLP8EVQIo2ciDi5xii5dPAUwoIPB/S0Q9dfwOH4Nh/rsKHAsrp
+         t43ez3YKz769ZmcvPq6XjTC647jMKYLfIDf2BF2kQob/ddDp/pOQmG3Lnk0wN+f2X8iS
+         gnjpeSFhQgxC9ZL0J5hfxByWTUU+SPYdIy58eo6/6Q4Lm9WWyg5JFD29apJHOCfJOkXD
+         OQmQ==
+X-Gm-Message-State: ACrzQf3jEW3X+t/nHNqeqErFHnvHcT+fngKe71w7Xnwx6UqbkBzzC8Il
+        gaJWhC65ZEuawVkY4guLGtu7MQ==
+X-Google-Smtp-Source: AMsMyM7h4ztX8XbyjYO6fw+78rlNWjdzYEjMrTInWx1Ob8XV5ZHx45CnwiZ9XY5GkjjxMjABu+gtNA==
+X-Received: by 2002:a05:6512:3052:b0:49e:fcb2:c1e9 with SMTP id b18-20020a056512305200b0049efcb2c1e9mr876563lfb.260.1664443190966;
+        Thu, 29 Sep 2022 02:19:50 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id k17-20020ac24f11000000b004896ed8dce3sm729637lfr.2.2022.09.29.02.18.29
+        by smtp.gmail.com with ESMTPSA id o1-20020a2e0c41000000b0026c1b85d8b3sm655247ljd.34.2022.09.29.02.19.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 02:18:30 -0700 (PDT)
-Message-ID: <3bef6840-9d68-68e5-0a7e-7e8c06c31025@linaro.org>
-Date:   Thu, 29 Sep 2022 11:18:29 +0200
+        Thu, 29 Sep 2022 02:19:50 -0700 (PDT)
+Message-ID: <c97e3355-89cb-7fca-2734-be221456b622@linaro.org>
+Date:   Thu, 29 Sep 2022 11:19:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v5 2/5] dt-bindings: remoteproc: qcom: Convert wcnss
- documentation to YAML
+Subject: Re: [PATCH v5 5/5] dt-bindings: remoteproc: wcnss-pil: Make supplies
+ optionally required
 Content-Language: en-US
 To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
@@ -68,9 +68,9 @@ Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
 References: <20220929050209.1464526-1-sireeshkodali1@gmail.com>
- <20220929050209.1464526-3-sireeshkodali1@gmail.com>
+ <20220929050209.1464526-6-sireeshkodali1@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220929050209.1464526-3-sireeshkodali1@gmail.com>
+In-Reply-To: <20220929050209.1464526-6-sireeshkodali1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,14 +84,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/09/2022 07:02, Sireesh Kodali wrote:
-> This is a direct conversion of the existing txt documentation to YAML.
-> It is in preparation for the addition of pronto-v3 to the docs. This
-> patch doesn't document any of the existing subnodes/properties that are
-> not documented in the existing txt file. That is done in a separate
-> patch.
+> On MSM8974, power domains are not yet supported. The platform uses
+> regulators. This patch marks either the power-domains or *-supply as
+> required (instead of always requiring the power domains).
 > 
 > Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
-> ---
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
