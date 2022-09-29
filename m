@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 747DC5EEFE0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 026F95EEFE3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 10:02:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235322AbiI2IBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 04:01:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41890 "EHLO
+        id S234708AbiI2ICa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 04:02:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235506AbiI2IBV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:01:21 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C75965655
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:00:42 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id 13so1135930ejn.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:00:42 -0700 (PDT)
+        with ESMTP id S235195AbiI2IBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 04:01:49 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA41F25FB
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:01:14 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id u24so850886edb.11
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 01:01:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date;
-        bh=gFhqx6IrLVXAECcsR3Ci5MRa5k8rIAUZ6GGjzLZ8vZU=;
-        b=inzWPEv8MpIDFg1oWGAHaTASZy0Z//5ZalQZM27h7rSSO3/56ei/ghVpaym2naJ/5M
-         QIITYTwDM2V4+f3eiN8cTU2g6DrqnnrOOP2As9bJxbin5Y45ubILo0v8XgtJyqSfd4dl
-         M+nNdCOaZmq1eORwv1gzDyKUst0B7lqJ+0d3SpB/TDCBixA7c698amKPHqVL5EJVo2to
-         5tkRJ741jLmJKwTlxw2XxKW0YIcsBpQO7boW4f3C+VkHMUyJSCtvd/TvTh3Qz2GNMtW/
-         VK68BiOZKv7+4vNhvdS1fuZUEpbYuZrIMACTP0/u/M4oPFMG3R+Zb5sf5TGz3c5t/+QF
-         58Zw==
+        bh=3LQgfLOwPhOAZ7WuseKDct1FsBcO7vtM7NEUT86ON/Q=;
+        b=JaXQRADeBE0Yn86LH2QTKKXmpC5seyoQh+nZ/Ctk4utbgfCO1cYX+qgVcZQ5v1GzH+
+         es0RMprc2mCmuGN7t36IvnDpirPMsSF+1zQUpCIm4kdwONgk0eQUrg9HgxtVADud94dL
+         1KW9OLcf20NheJ2hxBMTvew3Hsq6CMOreMuJVP08gUdp9EMWrZ1+nEuM2T3RWLDDKdBh
+         ltG1G1ehL9ELb1USIY8HDzqJI47k42mAebOgAhgiTJueBhTDV6z6/SGP/1NCSyadvBAM
+         Y0pi+FnqqLW7PIKb4Pc5uSmaBEWHDbRYbZgkclLebi3lEG9bGZXNjTtV+F4sbe2cEcrd
+         mhKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=gFhqx6IrLVXAECcsR3Ci5MRa5k8rIAUZ6GGjzLZ8vZU=;
-        b=qlm3loey7pn4Lo4XK6BFev6T1pjVuBsUCJ3e57kCJyvPNaWKbuZ9LUEqmPKTe9NPJd
-         DKvfouU3wPVz9CmnfERMXf3QxyXIwjLFsLSfX6tvbrH81NiLhmkavehlLeiTu+pFnkuG
-         8/PrO9usnFXW4PNB3NzN1BqKzUFeb+L6KA+bA8hdA9iR+ZWEavhm4J+5jrbGes/pnv9R
-         UJOk45TS89sPNHEF+XPPGyzkcPTzW7FqbesPZnX4NvTOb7d179E23Ot03KVsExlh5yu6
-         Y5Nf8vKY8K25eFcG6EjlAc0EthpkvAI87zVnAqxqjLV071d5Cu3HL+FPjpJ8VWrgfMlA
-         IryA==
-X-Gm-Message-State: ACrzQf170+hrurzg3H8sA0oqnaj1TVS+WSiEsrmXrs1FNomNTDGNBxzo
-        pbaKKzjn1qajGJrHFEACCNSIeNl/yoE=
-X-Google-Smtp-Source: AMsMyM5iDAeZPbXuBOYY4I8MdgnshV55qbu0Asm4g7teQwKiwJ8xjGaEKR64ct+XXJhFpWXwhmUQ6Q==
-X-Received: by 2002:a17:907:a407:b0:783:5465:902 with SMTP id sg7-20020a170907a40700b0078354650902mr1691966ejc.35.1664438439932;
-        Thu, 29 Sep 2022 01:00:39 -0700 (PDT)
+        bh=3LQgfLOwPhOAZ7WuseKDct1FsBcO7vtM7NEUT86ON/Q=;
+        b=F3Ijbc95taLic3PggHkcSHnjoqKjdfqetYI9kORbNirNR6EUG8jNp9qtg2b8/18iv1
+         bV8+nAwESXS8MVLBAMF/B0VlmU1RmQdT/DtwZGqE0OTmoqbKTWHTJ5l4XjorYAzzfXu5
+         /IGPSlCNHmMCvGk5DmBRWfGqb30NiUqHXtVRxEtXks1srfI2lJQa+codP3qa4vud6/Zm
+         L4/KKb2AcSlkPcPkS6Hr0iQd+CIgyfQf/oRPUY+nI9VFr4sRG25Botq+xdYkIHFZHe9B
+         JVSbW/SyFE/X6MJ6XG1t9FT/4sSjdBduUCtvE+WUQKGjcl/LAI+OF7SNlT16FPOZ1pMv
+         HxFg==
+X-Gm-Message-State: ACrzQf0G8cHZGYTXwFKsbsiHt2Sv/ZNhPjFbzUb+bcolBwPm1Pc33/uw
+        yzu90fIDpr4F1UZ5ihMHMDyDqxuy7Ohdgg==
+X-Google-Smtp-Source: AMsMyM4wGGf/OhImDuauejKTakY5GeSHC9ZyD3dm59L/FVxuUNx1C/PzMssHwSzRCmEfc+LBcIZkoA==
+X-Received: by 2002:a05:6402:51d1:b0:451:ea13:1583 with SMTP id r17-20020a05640251d100b00451ea131583mr2021502edd.322.1664438472962;
+        Thu, 29 Sep 2022 01:01:12 -0700 (PDT)
 Received: from WBEC325.dom.lan ([2001:470:64f7:0:a03b:951f:e3a0:4dd4])
-        by smtp.gmail.com with ESMTPSA id g18-20020a17090604d200b007806c1474e1sm3518876eja.127.2022.09.29.01.00.38
+        by smtp.gmail.com with ESMTPSA id gn36-20020a1709070d2400b007707fc31b8dsm3601710ejc.26.2022.09.29.01.01.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 01:00:39 -0700 (PDT)
+        Thu, 29 Sep 2022 01:01:12 -0700 (PDT)
 From:   Pawel Dembicki <paweldembicki@gmail.com>
 To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Gregory Clement <gregory.clement@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>
+        Andrew Lunn <andrew@lunn.ch>, Tony Dinh <mibodhi@gmail.com>
 Cc:     Pawel Dembicki <paweldembicki@gmail.com>
-Subject: [PATCH] ARM: dts: kirkwood: Add Endian 4i Edge 200 board
-Date:   Thu, 29 Sep 2022 10:00:36 +0200
-Message-Id: <20220929080036.3179552-1-paweldembicki@gmail.com>
+Subject: [PATCH] ARM: dts: kirkwood: Add Zyxel NSA310S  board
+Date:   Thu, 29 Sep 2022 10:01:10 +0200
+Message-Id: <20220929080110.3182561-1-paweldembicki@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -68,55 +68,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Endian 4i Edge 200 is 5-port firewall.
-It have also clone: Endian UTM Mini (The same hardware, with added WLAN
-card).
+Zyxel NSA310S is a NAS based on Marvell kirkwood SoC.
 
-Hardware:
-  - SoC: Marvell 88F6281-A1 ARMv5TE Processor 1.2GHz
-  - Ram: 512MB (4x Nanya NT5TU128M8GE-AC)
-  - NAND Flash: 512MB (Micron 29F4G08AAC)
-  - Lan 1-4: 4x GBE (Marvell 88E6171R-TFJ2)
-  - Lan 5: 1x GBE (Marvell 88E1116R-NNC1)
-  - Storage: MicroSD Slot
-  - MCPIE: MiniPCIe Slot present [fitted with SparkLan WPEA-110N/E
-          (Atheros AR9280 chipset) in Endian UTM Mini WLAN only]
-  - USB: 1x USB 2.0 port
-  - Console: RJ-45 port
-  - LEDs: 3x GPIO controlled
+Specification:
+ - Processor Marvell 88F6702 1 GHz
+ - 256MB RAM
+ - 128MB NAND
+ - 1x GBE LAN port (PHY: Marvell 88E1318)
+ - 2x USB 2.0
+ - 1x SATA
+ - 3x button
+ - 7x leds
+ - serial on J1 connector (115200 8N1) (GND-NOPIN-RX-TX-VCC)
 
+Tested-by: Tony Dinh <mibodhi@gmail.com>
 Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 ---
- arch/arm/boot/dts/Makefile                 |   1 +
- arch/arm/boot/dts/kirkwood-4i-edge-200.dts | 206 +++++++++++++++++++++
- 2 files changed, 207 insertions(+)
- create mode 100644 arch/arm/boot/dts/kirkwood-4i-edge-200.dts
+ arch/arm/boot/dts/Makefile             |   1 +
+ arch/arm/boot/dts/kirkwood-nsa310s.dts | 267 +++++++++++++++++++++++++
+ 2 files changed, 268 insertions(+)
+ create mode 100644 arch/arm/boot/dts/kirkwood-nsa310s.dts
 
 diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index eae7d1139fbc..81a24fe623a8 100644
+index 05d8aef6e5d2..eae7d1139fbc 100644
 --- a/arch/arm/boot/dts/Makefile
 +++ b/arch/arm/boot/dts/Makefile
-@@ -299,6 +299,7 @@ dtb-$(CONFIG_ARCH_KEYSTONE) += \
- 	keystone-k2g-evm.dtb \
- 	keystone-k2g-ice.dtb
- dtb-$(CONFIG_MACH_KIRKWOOD) += \
-+	kirkwood-4i-edge-200.dtb \
- 	kirkwood-b3.dtb \
- 	kirkwood-blackarmor-nas220.dtb \
- 	kirkwood-c200-v1.dtb \
-diff --git a/arch/arm/boot/dts/kirkwood-4i-edge-200.dts b/arch/arm/boot/dts/kirkwood-4i-edge-200.dts
+@@ -354,6 +354,7 @@ dtb-$(CONFIG_MACH_KIRKWOOD) += \
+ 	kirkwood-ns2mini.dtb \
+ 	kirkwood-nsa310.dtb \
+ 	kirkwood-nsa310a.dtb \
++	kirkwood-nsa310s.dtb \
+ 	kirkwood-nsa320.dtb \
+ 	kirkwood-nsa325.dtb \
+ 	kirkwood-openblocks_a6.dtb \
+diff --git a/arch/arm/boot/dts/kirkwood-nsa310s.dts b/arch/arm/boot/dts/kirkwood-nsa310s.dts
 new file mode 100644
-index 000000000000..45406be15533
+index 000000000000..210dfdb577bb
 --- /dev/null
-+++ b/arch/arm/boot/dts/kirkwood-4i-edge-200.dts
-@@ -0,0 +1,206 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
++++ b/arch/arm/boot/dts/kirkwood-nsa310s.dts
+@@ -0,0 +1,267 @@
++// SPDX-License-Identifier: GPL-2.0-only
 +/*
-+ * Endian 4i Edge 200 Board Description
-+ * Note: Endian UTM Mini is hardware clone of Endian Edge 200
-+ * Copyright 2021-2022 Pawel Dembicki <paweldembicki@gmail.com>
++ * ZyXEL NSA310S Board Description
++ * Copyright 2020-2022 Pawel Dembicki <paweldembicki@gmail.com>
++ * Copyright (c) 2015-2021, Tony Dinh <mibodhi@gmail.com>
++ * Copyright (c) 2014, Adam Baker <linux@baker-net.org.uk>
++ * Based upon the board setup file created by Peter Schildmann
 + */
-+
 +/dts-v1/;
 +
 +#include "kirkwood.dtsi"
@@ -124,141 +122,203 @@ index 000000000000..45406be15533
 +#include <dt-bindings/leds/common.h>
 +
 +/ {
-+	model = "Endian 4i Edge 200";
-+	compatible = "endian,4i-edge-200", "marvell,kirkwood-88f6281", "marvell,kirkwood";
++	model = "ZyXEL NSA310S";
++	compatible = "zyxel,nsa310s", "marvell,kirkwood-88f6702", "marvell,kirkwood";
 +
 +	memory {
 +		device_type = "memory";
-+		reg = <0x00000000 0x20000000>;
++		reg = <0x00000000 0x10000000>;
 +	};
 +
 +	chosen {
-+		bootargs = "console=ttyS0,115200n8";
++		bootargs = "console=ttyS0,115200n8 earlyprintk";
 +		stdout-path = &uart0;
++	};
++
++	gpio_poweroff {
++		compatible = "gpio-poweroff";
++		pinctrl-0 = <&pmx_pwr_off>;
++		pinctrl-names = "default";
++		gpios = <&gpio0 27 GPIO_ACTIVE_HIGH>;
++	};
++
++	keys {
++		compatible = "gpio-keys";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		pinctrl-0 = <&pmx_buttons>;
++		pinctrl-names = "default";
++
++		power {
++			label = "Power Button";
++			linux,code = <KEY_POWER>;
++			gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
++		};
++
++		copy {
++			label = "Copy Button";
++			linux,code = <KEY_COPY>;
++			gpios = <&gpio0 25 GPIO_ACTIVE_LOW>;
++		};
++
++		reset {
++			label = "Reset Button";
++			linux,code = <KEY_RESTART>;
++			gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
++		};
 +	};
 +
 +	leds {
 +		compatible = "gpio-leds";
-+		pinctrl-0 = <&pmx_led>;
++		pinctrl-0 = <&pmx_leds>;
 +		pinctrl-names = "default";
 +
 +		led-1 {
-+			function = LED_FUNCTION_SD;
-+			color = <LED_COLOR_ID_AMBER>;
-+			gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "mmc0";
++			function = LED_FUNCTION_DISK_ERR;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
 +		};
 +
 +		led-2 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_AMBER>;
-+			gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
++			function = LED_FUNCTION_USB;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "usb-host";
 +		};
 +
 +		led-3 {
++			function = LED_FUNCTION_DISK;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "ata1";
++		};
++
++		led-4 {
++			function = LED_FUNCTION_INDICATOR;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-5 {
++			function = LED_FUNCTION_INDICATOR;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-6 {
 +			function = LED_FUNCTION_STATUS;
 +			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
++			gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "default-on";
++		};
++
++		led-7 {
++			function = LED_FUNCTION_STATUS;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&gpio0 29 GPIO_ACTIVE_HIGH>;
 +		};
 +	};
-+};
 +
-+&eth0 {
-+	status = "okay";
-+};
++	regulators {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		pinctrl-0 = <&pmx_power>;
++		pinctrl-names = "default";
 +
-+&eth0port {
-+	speed = <1000>;
-+	duplex = <1>;
-+};
++		usb0_power: regulator@1 {
++			compatible = "regulator-fixed";
++			reg = <1>;
++			regulator-name = "USB Power";
++			regulator-min-microvolt = <5000000>;
++			regulator-max-microvolt = <5000000>;
++			regulator-always-on;
++			regulator-boot-on;
++			gpio = <&gpio0 21 GPIO_ACTIVE_HIGH>;
++		};
 +
-+&eth1 {
-+	status = "okay";
-+};
-+
-+&eth1port {
-+	phy-handle = <&ethphyb>;
-+};
-+
-+&mdio {
-+	status = "okay";
-+
-+	ethphyb: ethernet-phy@b {
-+		reg = <0x0b>;
-+
-+		marvell,reg-init =
-+			/* link-activity, bi-color mode 4 */
-+			<3 0x10 0xfff0 0xf>; /* Reg 3,16 <- 0xzzzf */
++		sata1_power: regulator@2 {
++			compatible = "regulator-fixed";
++			reg = <2>;
++			regulator-name = "SATA1 Power";
++			regulator-min-microvolt = <5000000>;
++			regulator-max-microvolt = <5000000>;
++			regulator-always-on;
++			regulator-boot-on;
++			gpio = <&gpio1 1 GPIO_ACTIVE_HIGH>;
++		};
 +	};
 +
-+	switch0: switch@11 {
-+		compatible = "marvell,mv88e6085";
-+		reg = <0x11>;
++	thermal-zones {
++		disk-thermal {
++			polling-delay = <20000>;
++			polling-delay-passive = <2000>;
 +
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++			thermal-sensors = <&hdd_temp>;
 +
-+			port@0 {
-+				reg = <0>;
-+				label = "port1";
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				label = "port2";
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+				label = "port3";
-+			};
-+
-+			port@3 {
-+				reg = <3>;
-+				label = "port4";
-+			};
-+
-+			port@5 {
-+				reg = <5>;
-+				label = "cpu";
-+				phy-mode = "rgmii-id";
-+				ethernet = <&eth0port>;
-+
-+				fixed-link {
-+					speed = <1000>;
-+					full-duplex;
++			trips {
++				disk_alert: disk-alert {
++					temperature = <40000>;
++					hysteresis = <5000>;
++					type = "active";
++				};
++				disk_crit: disk-crit {
++					temperature = <60000>;
++					hysteresis = <2000>;
++					type = "critical";
 +				};
 +			};
 +		};
 +	};
 +};
 +
++
++&eth0 {
++	status = "okay";
++
++	ethernet0-port@0 {
++		phy-handle = <&ethphy0>;
++	};
++};
++
++&i2c0 {
++	status = "okay";
++
++	rtc@68 {
++		compatible = "htk,ht1382";
++		reg = <0x68>;
++	};
++};
++
++&mdio {
++	status = "okay";
++
++	ethphy0: ethernet-phy@1 {
++		reg = <1>;
++		phy-mode = "rgmii-id";
++		marvell,reg-init = <0x1 0x16 0x0 0x3>,
++						   <0x1 0x10 0x0 0x1017>,
++						   <0x1 0x11 0x0 0x4408>,
++						   <0x1 0x16 0x0 0x0>;
++	};
++};
++
 +&nand {
 +	status = "okay";
-+	pinctrl-0 = <&pmx_nand>;
-+	pinctrl-names = "default";
++	chip-delay = <35>;
 +
 +	partition@0 {
-+		label = "u-boot";
-+		reg = <0x00000000 0x000a0000>;
++		label = "uboot";
++		reg = <0x0000000 0x00c0000>;
 +		read-only;
 +	};
-+
-+	partition@a0000 {
-+		label = "u-boot-env";
-+		reg = <0x000a0000 0x00060000>;
-+		read-only;
++	partition@c0000 {
++		label = "uboot_env";
++		reg = <0x00c0000 0x0080000>;
 +	};
-+
-+	partition@100000 {
-+		label = "kernel";
-+		reg = <0x00100000 0x00400000>;
-+	};
-+
-+	partition@500000 {
++	partition@140000 {
 +		label = "ubi";
-+		reg = <0x00500000 0x1fb00000>;
++		reg = <0x0140000 0x7ec0000>;
 +	};
 +};
 +
@@ -271,49 +331,47 @@ index 000000000000..45406be15533
 +};
 +
 +&pinctrl {
-+	pinctrl-0 = <&pmx_sysrst>;
 +	pinctrl-names = "default";
 +
-+	pmx_sysrst: pmx-sysrst {
-+		marvell,pins = "mpp6";
-+		marvell,function = "sysrst";
-+	};
-+
-+	pmx_sdio_cd: pmx-sdio-cd {
-+		marvell,pins = "mpp28";
++	pmx_buttons: pmx-buttons {
++		marvell,pins = "mpp24", "mpp25", "mpp26";
 +		marvell,function = "gpio";
 +	};
 +
-+	pmx_led: pmx-led {
-+		marvell,pins = "mpp34", "mpp35", "mpp49";
++	pmx_leds: pmx-leds {
++		marvell,pins = "mpp13", "mpp15", "mpp16", "mpp22", "mpp23",
++						"mpp28", "mpp29";
++		marvell,function = "gpio";
++	};
++
++	pmx_power: pmx-power {
++		marvell,pins = "mpp21", "mpp33";
++		marvell,function = "gpio";
++	};
++
++	pmx_pwr_off: pmx-pwr-off {
++		marvell,pins = "mpp27";
 +		marvell,function = "gpio";
 +	};
 +};
 +
 +&rtc {
-+	status = "okay";
-+};
-+
-+&sata_phy0 {
 +	status = "disabled";
 +};
 +
-+&sata_phy1 {
-+	status = "disabled";
-+};
-+
-+&sdio {
-+	pinctrl-0 = <&pmx_sdio_cd>;
-+	pinctrl-names = "default";
++&sata {
 +	status = "okay";
-+	cd-gpios = <&gpio0 28 9>;
++	nr-ports = <1>;
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	hdd_temp: sata-port@0 {
++		reg = <0>;
++		#thermal-sensor-cells = <0>;
++	};
 +};
 +
 +&uart0 {
-+	status = "okay";
-+};
-+
-+&usb0 {
 +	status = "okay";
 +};
 -- 
