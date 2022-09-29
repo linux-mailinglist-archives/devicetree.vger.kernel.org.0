@@ -2,60 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B669D5EFF85
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 23:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89FC05EFFE5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 00:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbiI2V5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 17:57:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50016 "EHLO
+        id S229472AbiI2WIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 18:08:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbiI2V5M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 17:57:12 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F99D13D1E2
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 14:57:11 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id l5so2971255oif.7
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 14:57:11 -0700 (PDT)
+        with ESMTP id S229447AbiI2WIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 18:08:19 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B43DB654A;
+        Thu, 29 Sep 2022 15:08:16 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id q10so3009666oib.5;
+        Thu, 29 Sep 2022 15:08:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=x+Q9SkY/t8f6YCH6b1kEoFXwBT3u+UL9IwDrAo5lr0M=;
-        b=lM2yZtLqDJOfwLLnJ99V/mejE2Hkqrej7RYMxhJMLCts4aZ2T4rsknfsxg6P3SPbN8
-         f75/ymNchvAg7nW0pEAk52HuvmN3qkC5JSkVtdQFZEX+Q5jM4jsubkAAL8GowRUML7i+
-         fEEvn7UyFa06JhsHbBM0e3mFm/SJgEhn3lCn+mLTNXhLbekPTEmxkQQVQBjG3OhKEzR8
-         qvovCzh1XS8Tg9+KTCVh93kETFvkDnNosK5oE9E5gJjtL22i3ZOI1IjDla98Ahv+BJH0
-         N/lpXi5nAdH3SfP6HAnIsPEmhscS2TjypImnLvUP5JbhZP2KaVfZkuvCv566WLjalAur
-         9rKg==
-X-Gm-Message-State: ACrzQf2sw0ez8gTzmPMpYvpwtK1ZSnlPsQNEx7WdTYsXIF5qWFs+N+P6
-        5gSJ/9uA0duuRLa5kEDiGA==
-X-Google-Smtp-Source: AMsMyM7nqwzi2KeUvC7ZWXcSo2fp12eGC/DnbC7wxOpemGUYP4RxavxcmcHP5Ksd8yZ1YKQYH5BBrA==
-X-Received: by 2002:a05:6808:1583:b0:350:597e:8f17 with SMTP id t3-20020a056808158300b00350597e8f17mr2637957oiw.296.1664488630799;
-        Thu, 29 Sep 2022 14:57:10 -0700 (PDT)
+        bh=6O8Jjng3iyin8rOht5eSYjzFn9Bme9u5OQK0LkD2pu8=;
+        b=afFAa1bBvksKz6COSVbXYnb7pUt6qzXpToTUPMF8v+70SBL7B0fOZSCAcN0Ri/9Pj8
+         0b4T2wbO8kHyxRsrF/qCn5bsIfysH7Ss+JWTWElT6gt/dTEusUfUOmTz7jbBzalyBLAT
+         VnUMW99LW3ma0ESU5Ln6SDy4EXtIHEPiJACDD1vRY3PdcpBTv8aIZmoFEqB8dVTLkxBD
+         KbNJypqpLIaG/t0Govcyj4gZFMx491dwdbZ8F1g6aqKWHI5EVF/SP0J1g8YBNrBL0rLz
+         5nevo7tS8rZfnuGdhT57sfgabEdHBPWhlKnn4+M0jEPG9Rf+EOETMvr9Fs1Jp2x06PuW
+         uzOw==
+X-Gm-Message-State: ACrzQf3AZAmkEgQ/8SBkQDaeJRRLHWfYILLjhMffNjjL85yriAF8yXpu
+        RlFUxFLzxPq6RX4QmClBy4E/Erjnmw==
+X-Google-Smtp-Source: AMsMyM6BAUAzcU5iHjhtArwxDH4lLKHBTagWqW15z6CnS+PiBi2+/SsRCLz0KEtcFaae12p9OiVr+Q==
+X-Received: by 2002:aca:1018:0:b0:34d:8f7a:27e1 with SMTP id 24-20020aca1018000000b0034d8f7a27e1mr8214159oiq.284.1664489295603;
+        Thu, 29 Sep 2022 15:08:15 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q19-20020a9d6313000000b0065c3bb3c72esm202464otk.14.2022.09.29.14.57.09
+        by smtp.gmail.com with ESMTPSA id l13-20020a056870218d00b0010bf07976c9sm239823oae.41.2022.09.29.15.08.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 14:57:10 -0700 (PDT)
-Received: (nullmailer pid 2775743 invoked by uid 1000);
-        Thu, 29 Sep 2022 21:57:09 -0000
-Date:   Thu, 29 Sep 2022 16:57:09 -0500
+        Thu, 29 Sep 2022 15:08:14 -0700 (PDT)
+Received: (nullmailer pid 2832554 invoked by uid 1000);
+        Thu, 29 Sep 2022 22:08:13 -0000
+Date:   Thu, 29 Sep 2022 17:08:13 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
+Cc:     Jose Abreu <joabreu@synopsys.com>, devicetree@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org,
-        Patrick Delaunay <patrick.delaunay@foss.st.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: stm32: Add compatible string for
- DH electronics DHCOR Testbench board
-Message-ID: <166448862913.2775698.5920003910831747959.robh@kernel.org>
-References: <20220926212958.505561-1-marex@denx.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Eric Dumazet <edumazet@google.com>
+Subject: Re: [PATCH] dt-bindings: net: snps,dwmac: Document stmmac-axi-config
+ subnode
+Message-ID: <166448929263.2832109.15881411107607706980.robh@kernel.org>
+References: <20220927012449.698915-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220926212958.505561-1-marex@denx.de>
+In-Reply-To: <20220927012449.698915-1-marex@denx.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,24 +70,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Sep 2022 23:29:57 +0200, Marek Vasut wrote:
-> Add DT compatible string for DHCOR Testbench board, which is a testbench
-> for testing of DHCOR SoM during manufacturing. This is effectively a
-> trimmed down version of AV96 board with CSI-2 bridge, HDMI bridge, WiFi,
-> Audio and LEDs removed and used as GPIOs instead.
+On Tue, 27 Sep 2022 03:24:49 +0200, Marek Vasut wrote:
+> The stmmac-axi-config subnode is present in multiple dwmac instance DTs,
+> document its content per snps,axi-config property description which is
+> a phandle to this subnode.
 > 
 > Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
 > Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Patrice Chotard <patrice.chotard@foss.st.com>
-> Cc: Patrick Delaunay <patrick.delaunay@foss.st.com>
+> Cc: David S. Miller <davem@davemloft.net>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Jose Abreu <joabreu@synopsys.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: Paolo Abeni <pabeni@redhat.com>
 > Cc: Rob Herring <robh+dt@kernel.org>
 > Cc: devicetree@vger.kernel.org
 > Cc: linux-stm32@st-md-mailman.stormreply.com
+> Cc: netdev@vger.kernel.org
 > To: linux-arm-kernel@lists.infradead.org
 > ---
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
