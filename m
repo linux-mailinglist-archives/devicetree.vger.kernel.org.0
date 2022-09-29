@@ -2,368 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D67205EFC5E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 19:54:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46C325EFC62
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 19:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234827AbiI2Rx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 13:53:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47760 "EHLO
+        id S234861AbiI2RyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 13:54:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234542AbiI2Rx6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 13:53:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 603D3151022;
-        Thu, 29 Sep 2022 10:53:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 58E91620CC;
-        Thu, 29 Sep 2022 17:53:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88C9BC433D6;
-        Thu, 29 Sep 2022 17:53:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664474034;
-        bh=hqNGIz74XJALiZdC92LkHNf7maYmO1ePAPxXD39SbiE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GmbncH0j0qPxY/oBF2IfwYY8fXJR6hbKUaWHCKYnDAvM3G5YOOTx+IPJa2za6cok3
-         QZlEhu29y3UNewBiEUugLbmWG55IOthtcukZcZmt14TXKLG/3Tnie8YZ+O2MMDNzrh
-         1S+177buqBIO//l2zW0ojBVUZnNXKkXr1jVk6ciaSXZYm/fxKqrZFSJjMdN6EcybeF
-         7hHypvija+A2Gn5TLv+MT2tQHsFqk9zZZZOnphW7UhbUGHIlSKmMzqikpld/JpvZbf
-         tQx1PmAx+wpzDzN4NwWiuu/2jdU3KgF0PH90KgHHQ7ZazYGT8HmQDns1KsY+SZneng
-         m77XV6uTVmWZA==
-Date:   Thu, 29 Sep 2022 18:53:49 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
+        with ESMTP id S234920AbiI2RyL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 13:54:11 -0400
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.221.58])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 071EE153A50;
+        Thu, 29 Sep 2022 10:54:07 -0700 (PDT)
+X-QQ-mid: bizesmtp87t1664474038tj1dvpe4
+Received: from localhost.localdomain ( [113.72.145.157])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Fri, 30 Sep 2022 01:53:56 +0800 (CST)
+X-QQ-SSF: 01000000002000303000B00A0000000
+X-QQ-FEAT: HMFEffFGMPGBL3l3Ij6k0E2v5J9Ylr9nwMFjgO0MAKRNRxUmgtbbpWV6IIT1D
+        O9miAkhuqaG3fnMJtFlKWs0d++ZmndFZRRUKvEf2NM8YQDkxMuiEp3zqaDqtBO2ZsOh64B1
+        rEw3hJJ82c3ZtLvQLs7yFAfSp6nxqPPEFudUMDqrJ3Ur5VSOj6voks1dXKbKjgsfoHGSfLN
+        Mc0HfiWRfKLBi1noxWyUmWJpvbRwB63OVKiuxgxVMF41JUZRhBRqisF5W+s/D2q6im+PA3/
+        DnW293cyCAiv5M6y9MwAPKf6U0UhjVy/0yNnkH+6MtqoLPYl0q/kmOU3eAqcvLFMg8M8MsP
+        MtU7DTfilOxwDIX2LzG2vnsG2FxPXdEM254WFCdnwcp0czHgPpwoyv/+mBrbEBMzmHN3oZI
+        V09ySIDgpb4=
+X-QQ-GoodBg: 0
+From:   Hal Feng <hal.feng@linux.starfivetech.com>
+To:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH RFC 1/7] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
-Message-ID: <YzXbrZNI81f1ebBt@google.com>
-References: <20220929103043.1228235-1-biju.das.jz@bp.renesas.com>
- <20220929103043.1228235-2-biju.das.jz@bp.renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220929103043.1228235-2-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Hal Feng <hal.feng@linux.starfivetech.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 13/30] reset: starfive: Add StarFive JH7110 SoC support
+Date:   Fri, 30 Sep 2022 01:53:52 +0800
+Message-Id: <20220929175352.19821-1-hal.feng@linux.starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:linux.starfivetech.com:qybglogicsvr:qybglogicsvr2
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Sep 2022, Biju Das wrote:
+Make the driver be compatible with StarFive JH7110 SoC.
+Note that the register base address of clock controller is the
+same with the reset controller one. So we store the property
+'reg' in the parent node of node 'reset-controller' and use
+syscon APIs to get regmap structure.
 
-> The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
-> the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
-> channels and one 32-bit timer channel. It supports the following
-> functions
->  - Counter
->  - Timer
->  - PWM
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> It is same as [1]. Just sending this patch to avoid any bot error for
-> the subsequent patches.
-> [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220926132114.60396-3-biju.das.jz@bp.renesas.com/
-> ---
->  .../bindings/mfd/renesas,rzg2l-mtu3.yaml      | 275 ++++++++++++++++++
->  1 file changed, 275 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
-> new file mode 100644
-> index 000000000000..c1fae8e8d9f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
-> @@ -0,0 +1,275 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/renesas,rzg2l-mtu3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L Multi-Function Timer Pulse Unit 3 (MTU3a) bindings
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +description: |
-> +  This hardware block pconsisting of eight 16-bit timer channels and one
-> +  32- bit timer channel. It supports the following specifications:
-> +    - Pulse input/output: 28 lines max.
-> +    - Pulse input 3 lines
-> +    - Count clock 11 clocks for each channel (14 clocks for MTU0, 12 clocks
-> +      for MTU2, and 10 clocks for MTU5, four clocks for MTU1-MTU2 combination
-> +      (when LWA = 1))
-> +    - Operating frequency Up to 100 MHz
-> +    - Available operations [MTU0 to MTU4, MTU6, MTU7, and MTU8]
-> +        - Waveform output on compare match
-> +        - Input capture function (noise filter setting available)
-> +        - Counter-clearing operation
-> +        - Simultaneous writing to multiple timer counters (TCNT)
-> +          (excluding MTU8).
-> +        - Simultaneous clearing on compare match or input capture
-> +          (excluding MTU8).
-> +        - Simultaneous input and output to registers in synchronization with
-> +          counter operations           (excluding MTU8).
-> +        - Up to 12-phase PWM output in combination with synchronous operation
-> +          (excluding MTU8)
-> +    - [MTU0 MTU3, MTU4, MTU6, MTU7, and MTU8]
-> +        - Buffer operation specifiable
-> +    - [MTU1, MTU2]
-> +        - Phase counting mode can be specified independently
-> +        - 32-bit phase counting mode can be specified for interlocked operation
-> +          of MTU1 and MTU2 (when TMDR3.LWA = 1)
-> +        - Cascade connection operation available
-> +    - [MTU3, MTU4, MTU6, and MTU7]
-> +        - Through interlocked operation of MTU3/4 and MTU6/7, the positive and
-> +          negative signals in six phases (12 phases in total) can be output in
-> +          complementary PWM and reset-synchronized PWM operation.
-> +        - In complementary PWM mode, values can be transferred from buffer
-> +          registers to temporary registers at crests and troughs of the timer-
-> +          counter values or when the buffer registers (TGRD registers in MTU4
-> +          and MTU7) are written to.
-> +        - Double-buffering selectable in complementary PWM mode.
-> +    - [MTU3 and MTU4]
-> +        - Through interlocking with MTU0, a mode for driving AC synchronous
-> +          motors (brushless DC motors) by using complementary PWM output and
-> +          reset-synchronized PWM output is settable and allows the selection
-> +          of two types of waveform output (chopping or level).
-> +    - [MTU5]
-> +        - Capable of operation as a dead-time compensation counter.
-> +    - [MTU0/MTU5, MTU1, MTU2, and MTU8]
-> +        - 32-bit phase counting mode specifiable by combining MTU1 and MTU2 and
-> +          through interlocked operation with MTU0/MTU5 and MTU8.
-> +    - Interrupt-skipping function
-> +        - In complementary PWM mode, interrupts on crests and troughs of counter
-> +          values and triggers to start conversion by the A/D converter can be
-> +          skipped.
-> +    - Interrupt sources: 43 sources.
-> +    - Buffer operation:
-> +        - Automatic transfer of register data (transfer from the buffer
-> +          register to the timer register).
-> +    - Trigger generation
-> +        - A/D converter start triggers can be generated
-> +        - A/D converter start request delaying function enables A/D converter
-> +          to be started with any desired timing and to be synchronized with
-> +          PWM output.
-> +    - Low power consumption function
-> +        - The MTU3a can be placed in the module-stop state.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r9a07g044-mtu3  # RZ/G2{L,LC}
-> +          - renesas,r9a07g054-mtu3  # RZ/V2L
-> +      - const: renesas,rzg2l-mtu3
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: MTU0.TGRA input capture/compare match
-> +      - description: MTU0.TGRB input capture/compare match
-> +      - description: MTU0.TGRC input capture/compare match
-> +      - description: MTU0.TGRD input capture/compare match
-> +      - description: MTU0.TCNT overflow
-> +      - description: MTU0.TGRE compare match
-> +      - description: MTU0.TGRF compare match
-> +      - description: MTU1.TGRA input capture/compare match
-> +      - description: MTU1.TGRB input capture/compare match
-> +      - description: MTU1.TCNT overflow
-> +      - description: MTU1.TCNT underflow
-> +      - description: MTU2.TGRA input capture/compare match
-> +      - description: MTU2.TGRB input capture/compare match
-> +      - description: MTU2.TCNT overflow
-> +      - description: MTU2.TCNT underflow
-> +      - description: MTU3.TGRA input capture/compare match
-> +      - description: MTU3.TGRB input capture/compare match
-> +      - description: MTU3.TGRC input capture/compare match
-> +      - description: MTU3.TGRD input capture/compare match
-> +      - description: MTU3.TCNT overflow
-> +      - description: MTU4.TGRA input capture/compare match
-> +      - description: MTU4.TGRB input capture/compare match
-> +      - description: MTU4.TGRC input capture/compare match
-> +      - description: MTU4.TGRD input capture/compare match
-> +      - description: MTU4.TCNT overflow/underflow
-> +      - description: MTU5.TGRU input capture/compare match
-> +      - description: MTU5.TGRV input capture/compare match
-> +      - description: MTU5.TGRW input capture/compare match
-> +      - description: MTU6.TGRA input capture/compare match
-> +      - description: MTU6.TGRB input capture/compare match
-> +      - description: MTU6.TGRC input capture/compare match
-> +      - description: MTU6.TGRD input capture/compare match
-> +      - description: MTU6.TCNT overflow
-> +      - description: MTU7.TGRA input capture/compare match
-> +      - description: MTU7.TGRB input capture/compare match
-> +      - description: MTU7.TGRC input capture/compare match
-> +      - description: MTU7.TGRD input capture/compare match
-> +      - description: MTU7.TCNT overflow/underflow
-> +      - description: MTU8.TGRA input capture/compare match
-> +      - description: MTU8.TGRB input capture/compare match
-> +      - description: MTU8.TGRC input capture/compare match
-> +      - description: MTU8.TGRD input capture/compare match
-> +      - description: MTU8.TCNT overflow
-> +      - description: MTU8.TCNT underflow
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: tgia0
-> +      - const: tgib0
-> +      - const: tgic0
-> +      - const: tgid0
-> +      - const: tgiv0
-> +      - const: tgie0
-> +      - const: tgif0
-> +      - const: tgia1
-> +      - const: tgib1
-> +      - const: tgiv1
-> +      - const: tgiu1
-> +      - const: tgia2
-> +      - const: tgib2
-> +      - const: tgiv2
-> +      - const: tgiu2
-> +      - const: tgia3
-> +      - const: tgib3
-> +      - const: tgic3
-> +      - const: tgid3
-> +      - const: tgiv3
-> +      - const: tgia4
-> +      - const: tgib4
-> +      - const: tgic4
-> +      - const: tgid4
-> +      - const: tgiv4
-> +      - const: tgiu5
-> +      - const: tgiv5
-> +      - const: tgiw5
-> +      - const: tgia6
-> +      - const: tgib6
-> +      - const: tgic6
-> +      - const: tgid6
-> +      - const: tgiv6
-> +      - const: tgia7
-> +      - const: tgib7
-> +      - const: tgic7
-> +      - const: tgid7
-> +      - const: tgiv7
-> +      - const: tgia8
-> +      - const: tgib8
-> +      - const: tgic8
-> +      - const: tgid8
-> +      - const: tgiv8
-> +      - const: tgiu8
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - power-domains
-> +  - resets
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    mtu3: timer@10001200 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      compatible = "renesas,r9a07g044-mtu3", "renesas,rzg2l-mtu3";
-> +      reg = <0x10001200 0xb00>;
-> +      interrupts = <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 171 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 173 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 174 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 175 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 176 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 179 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 181 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 182 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 183 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 184 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 185 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 186 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 190 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 191 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 192 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 194 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 195 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 198 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 199 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 200 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 201 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 202 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 204 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 206 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 207 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 211 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 212 IRQ_TYPE_EDGE_RISING>,
-> +                   <GIC_SPI 213 IRQ_TYPE_EDGE_RISING>;
-> +      interrupt-names = "tgia0", "tgib0", "tgic0", "tgid0", "tgiv0", "tgie0",
-> +                        "tgif0",
-> +                        "tgia1", "tgib1", "tgiv1", "tgiu1",
-> +                        "tgia2", "tgib2", "tgiv2", "tgiu2",
-> +                        "tgia3", "tgib3", "tgic3", "tgid3", "tgiv3",
-> +                        "tgia4", "tgib4", "tgic4", "tgid4", "tgiv4",
-> +                        "tgiu5", "tgiv5", "tgiw5",
-> +                        "tgia6", "tgib6", "tgic6", "tgid6", "tgiv6",
-> +                        "tgia7", "tgib7", "tgic7", "tgid7", "tgiv7",
-> +                        "tgia8", "tgib8", "tgic8", "tgid8", "tgiv8", "tgiu8";
+Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
+---
+ drivers/reset/reset-starfive.c | 35 +++++++++++++++++++++++++++-------
+ 1 file changed, 28 insertions(+), 7 deletions(-)
 
-Not sure you need to list all of the IRQs in the example.
-
-> +      clocks = <&cpg CPG_MOD R9A07G044_MTU_X_MCK_MTU3>;
-> +      power-domains = <&cpg>;
-> +      resets = <&cpg R9A07G044_MTU_X_PRESET_MTU3>;
-> +    };
-> +
-> +...
-
+diff --git a/drivers/reset/reset-starfive.c b/drivers/reset/reset-starfive.c
+index 56d07bafadd7..a953fed711fd 100644
+--- a/drivers/reset/reset-starfive.c
++++ b/drivers/reset/reset-starfive.c
+@@ -8,7 +8,7 @@
+ 
+ #include <linux/mfd/syscon.h>
+ #include <linux/of.h>
+-#include <linux/platform_device.h>
++#include <linux/of_device.h>
+ #include <linux/regmap.h>
+ #include <linux/reset-controller.h>
+ 
+@@ -134,7 +134,7 @@ static const struct reset_control_ops starfive_reset_ops = {
+ 	.status		= starfive_reset_status,
+ };
+ 
+-static int __init starfive_reset_probe(struct platform_device *pdev)
++static int reset_starfive_register(struct platform_device *pdev, const u32 *asserted)
+ {
+ 	struct starfive_reset *data;
+ 	int ret;
+@@ -145,9 +145,12 @@ static int __init starfive_reset_probe(struct platform_device *pdev)
+ 
+ 	data->regmap = device_node_to_regmap(pdev->dev.of_node);
+ 	if (IS_ERR(data->regmap)) {
+-		dev_err(&pdev->dev, "failed to get regmap (error %ld)\n",
+-			PTR_ERR(data->regmap));
+-		return PTR_ERR(data->regmap);
++		data->regmap = syscon_node_to_regmap(pdev->dev.of_node->parent);
++		if (IS_ERR(data->regmap)) {
++			dev_err(&pdev->dev, "failed to get regmap (error %ld)\n",
++				PTR_ERR(data->regmap));
++			return PTR_ERR(data->regmap);
++		}
+ 	}
+ 
+ 	ret = of_property_read_u32(pdev->dev.of_node, "starfive,assert-offset",
+@@ -177,16 +180,34 @@ static int __init starfive_reset_probe(struct platform_device *pdev)
+ 	data->rcdev.dev = &pdev->dev;
+ 	data->rcdev.of_node = pdev->dev.of_node;
+ 
+-	data->asserted = jh7100_reset_asserted;
++	data->asserted = asserted;
+ 
+ 	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
+ }
+ 
+ static const struct of_device_id starfive_reset_dt_ids[] = {
+-	{ .compatible = "starfive,jh7100-reset" },
++	{
++		.compatible = "starfive,jh7100-reset",
++		.data = jh7100_reset_asserted,
++	},
++	{
++		.compatible = "starfive,jh7110-reset",
++		.data = NULL,
++	},
+ 	{ /* sentinel */ }
+ };
+ 
++static int __init starfive_reset_probe(struct platform_device *pdev)
++{
++	const struct of_device_id *match;
++
++	match = of_match_device(starfive_reset_dt_ids, &pdev->dev);
++	if (!match)
++		return -EINVAL;
++
++	return reset_starfive_register(pdev, (u32 *)(match->data));
++}
++
+ static struct platform_driver starfive_reset_driver = {
+ 	.driver = {
+ 		.name = "starfive-reset",
 -- 
-Lee Jones [李琼斯]
+2.17.1
+
