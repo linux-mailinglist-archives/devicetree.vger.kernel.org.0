@@ -2,315 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A7E05EF2D6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 919BC5EF2E6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 12:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235106AbiI2J5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 05:57:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51764 "EHLO
+        id S235127AbiI2KAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 06:00:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234346AbiI2J5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:57:05 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE75B12DEB5;
-        Thu, 29 Sep 2022 02:57:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 00AC4B82344;
-        Thu, 29 Sep 2022 09:57:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17B52C433C1;
-        Thu, 29 Sep 2022 09:56:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1664445419;
-        bh=9RU7iPMGT9nbdWdo2TuVo6cBje8m9qLU6ca7x99RqKo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jIJ4UPSPwR3QnNrqpoAAEsO9ZPY2PSaCphOWWQ8NqH3vpMebGwSWd/LjUX0Ybopiy
-         Q469fZ/f3dDXQUronJ6BDRPvbO715HAQ4afJqcmhV4cwAl/om7k3aQDznNEk4b48h1
-         jBTR/xRZ1iF76K6weteA6UVOSvkB3m6ku5WSdU2E=
-Date:   Thu, 29 Sep 2022 11:56:57 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     macro@orcam.me.uk, Lee Jones <lee@kernel.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
+        with ESMTP id S235011AbiI2KAp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 06:00:45 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9C61AEC54B;
+        Thu, 29 Sep 2022 03:00:41 -0700 (PDT)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxBOLDbDVjMrsjAA--.1941S2;
+        Thu, 29 Sep 2022 18:00:36 +0800 (CST)
+Subject: Re: [PATCH v5 2/3] dt-bindings: thermal: add loongson2k thermal
+ binding
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Thu Nguyen <thu@os.amperecomputing.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        thang@os.amperecomputing.com
-Subject: Re: [PATCH v9 4/9] docs: misc-devices: (smpro-errmon) Add
- documentation
-Message-ID: <YzVr6e38fxYylfMA@kroah.com>
-References: <20220929094321.770125-1-quan@os.amperecomputing.com>
- <20220929094321.770125-5-quan@os.amperecomputing.com>
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, zhuyinbo@loongson.cn
+References: <20220928083702.17309-1-zhuyinbo@loongson.cn>
+ <20220928083702.17309-2-zhuyinbo@loongson.cn>
+ <066b55cf-4a28-89a2-56ab-572590c97c30@linaro.org>
+ <9b2f2d43-981d-3ffb-7526-dc3e58a9f367@linaro.org>
+ <f0946817-cc2c-449b-d93b-0dd94a0f51f1@loongson.cn>
+ <ed762d71-7104-b1ad-009d-51c1a4407472@loongson.cn>
+ <9b62594f-7473-9974-8ab3-4c93aae5fa64@linaro.org>
+ <abaf9b69-487c-0f1e-7a94-201155f5e3d2@loongson.cn>
+ <f54a40ea-99bf-e341-3bbd-851b250cc9cd@linaro.org>
+ <a205592c-9e5b-0cf2-88d7-aabe0bdcc2ae@loongson.cn>
+ <06fa0bd2-c447-d705-01be-791207a4be8a@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <550a852b-0ee4-8179-48a2-6cb11a3dd800@loongson.cn>
+Date:   Thu, 29 Sep 2022 18:00:35 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220929094321.770125-5-quan@os.amperecomputing.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <06fa0bd2-c447-d705-01be-791207a4be8a@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxBOLDbDVjMrsjAA--.1941S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7tF43AryxKF1Uuw4DuFW3Wrg_yoW8tF1xpF
+        yDK3WDKF45ZFn29w10ya1SqF1jywn3t3y5XryfWr17K3yqvasxXFy7tr4UurZ0ga1IqFW0
+        q345trWxuF4qv37anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUU9G14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+        1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+        JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+        CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+        2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+        W8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka
+        0xkIwI1lc7I2V7IY0VAS07AlzVAYIcxG8wCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
+        8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
+        xVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
+        AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
+        cIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r
+        4UJVWxJrUvcSsGvfC2KfnxnUUI43ZEXa7VUbXdbUUUUUU==
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 29, 2022 at 04:43:16PM +0700, Quan Nguyen wrote:
-> Adds documentation for Ampere(R)'s Altra(R) SMpro errmon driver.
+
+
+在 2022/9/29 下午5:04, Krzysztof Kozlowski 写道:
+> On 29/09/2022 10:23, Yinbo Zhu wrote:
+>>
+>>
+>> 在 2022/9/29 下午3:45, Krzysztof Kozlowski 写道:
+>>> On 29/09/2022 09:07, Yinbo Zhu wrote:
+>>>>>>>>
+>>>>>>>> ... and please test your patches before sending :(
+>>>>>> You said is refer that "reg: [[0, 534779136], [0, 48]] is too long" ?
+>>>>>> Need fix that warning, right?
+>>>>>
+>>>>> Yes. You said you tested it but then sent with an error... so it's not
+>>>>> really a testing.
+>>>> sorry, I did do some testing. but I think It is okay that can generate a
+>>>> dtb  without reporting an error when compile yaml file, in fact, I
+>>>> ignore the warning,  I will fix it in v6.
+>>>
+>>>
+>>> Do you also send the code with warnings reported by GCC? Judging by
+>>> number of kernel test robot reports, it could be. So just to be very,
+>>> very clear: do not send any code which generates any warning. For GCC
+>>> this means W=1 builds.
+>> I don't find about the warning about GCC when compile yaml file.
+>> and I dont't know the meaning about W=1, you said about "W=1" is to execute
+>> following command to compile the yaml, right?
 > 
-> Signed-off-by: Thu Nguyen <thu@os.amperecomputing.com>
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-> ---
-> Changes in v9:
->   + Fix issue when building htmldocs                      [Bagas]
->   + Remove unnecessary channel info for VRD and DIMM event [Quan]
->   + Update SPDX license info                               [Greg]
->   + Update document to align with new changes in sysfs     [Quan]
+> GCC is about your C code. You were sending patches knowing that they
+> have warnings. It's not good. All warnings must be fixed.
+what you said about C code warning whether is follows ? If is it, and I 
+had add a static for loongson2_thermal_remove in v3 version code, I
+think it shoud be fixed  about the warning.
+ >> drivers/thermal/loongson2_thermal.c:183:5: warning: no previous 
+prototype for function 'loongson2_thermal_remove' [-Wmissing-prototypes]
+    int loongson2_thermal_remove(struct platform_device *pdev)
+        ^
+    drivers/thermal/loongson2_thermal.c:183:1: note: declare 'static' if 
+the function is not intended to be used outside of this translation unit
+    int loongson2_thermal_remove(struct platform_device *pdev)
+    ^
+    static
+    1 warning generated.
+
+If you said about C code warning isn't about about 
+"loongson2_thermal_remove" and I may be loss a mail about that C code 
+warning, Could you foward a mail about that C code warning. because I 
+don't find any C code warning when compile C code.
+
+About the C code warning, it was base on v6 code?
+
+TKs,
+Yinbo Zhu.
 > 
-> Changes in v8:
->   + Update to reflect single value per sysfs  [Quan]
-> 
-> Changes in v7:
->   + None
-> 
-> Changes in v6:
->   + First introduced in v6 [Quan]
-> 
->  Documentation/misc-devices/index.rst        |   1 +
->  Documentation/misc-devices/smpro-errmon.rst | 193 ++++++++++++++++++++
->  2 files changed, 194 insertions(+)
->  create mode 100644 Documentation/misc-devices/smpro-errmon.rst
-> 
-> diff --git a/Documentation/misc-devices/index.rst b/Documentation/misc-devices/index.rst
-> index 756be15a49a4..b74b3b34a235 100644
-> --- a/Documentation/misc-devices/index.rst
-> +++ b/Documentation/misc-devices/index.rst
-> @@ -27,6 +27,7 @@ fit into other categories.
->     max6875
->     oxsemi-tornado
->     pci-endpoint-test
-> +   smpro-errmon
->     spear-pcie-gadget
->     uacce
->     xilinx_sdfec
-> diff --git a/Documentation/misc-devices/smpro-errmon.rst b/Documentation/misc-devices/smpro-errmon.rst
-> new file mode 100644
-> index 000000000000..b17f30a6cafd
-> --- /dev/null
-> +++ b/Documentation/misc-devices/smpro-errmon.rst
-> @@ -0,0 +1,193 @@
-> +.. SPDX-License-Identifier: GPL-2.0-only
-> +
-> +Kernel driver Ampere(R)'s Altra(R) SMpro errmon
-> +===============================================
-> +
-> +Supported chips:
-> +
-> +  * Ampere(R) Altra(R)
-> +
-> +    Prefix: 'smpro'
-> +
-> +    Preference: Altra SoC BMC Interface Specification
-> +
-> +Author: Thu Nguyen <thu@os.amperecomputing.com>
-> +
-> +Description
-> +-----------
-> +
-> +This driver supports hardware monitoring for Ampere(R) Altra(R) SoC's based on the
-> +SMpro co-processor (SMpro).
-> +The following SoC alert/event types are supported by the errmon driver:
-> +
-> +* Core CE/UE error
-> +* Memory CE/UE error
-> +* PCIe CE/UE error
-> +* Other CE/UE error
-> +* Internal SMpro/PMpro error
-> +* VRD hot
-> +* VRD warn/fault
-> +* DIMM Hot
-> +
-> +The SMpro interface provides the registers to query the status of the SoC alerts/events
-> +and their data and export to userspace by this driver.
-> +
-> +The SoC alerts/events will be referenced as error below.
-> +
-> +Usage Notes
-> +-----------
-> +
-> +SMpro errmon driver creates the sysfs files for each error type.
-> +Example: ``error_core_ce`` to get Core CE error type.
-> +
-> +* If the error is absented, the sysfs file returns empty.
-> +* If the errors are presented, one each read to the sysfs, the oldest error will be returned and clear, the next read will be returned with the next error until all the errors are read out.
-> +
-> +For each host error type, SMpro keeps a latest max number of errors. All the oldest errors that were not read out will be dropped. In that case, the read to the corresponding overflow sysfs will return 1, otherwise, return 0.
-> +Example: ``overflow_core_ce`` to report the overflow status of Core CE error type.
-> +
-> +The format of the error is depended on the error type.
-> +
-> +1) For Core/Memory/PCIe/Other CE/UE error types::
-> +
-> +The return 48-byte in hex format in table below:
-> +
-> +    =======   =============   ===========   ==========================================
-> +    OFFSET    FIELD           SIZE (BYTE)   DESCRIPTION
-> +    =======   =============   ===========   ==========================================
-> +    00        Error Type      1             See Table below for details
-> +    01        Subtype         1             See Table below for details
-> +    02        Instance        2             See Table below for details
-> +    04        Error status    4             See ARM RAS specification for details
-> +    08        Error Address   8             See ARM RAS specification for details
-> +    16        Error Misc 0    8             See ARM RAS specification for details
-> +    24        Error Misc 1    8             See ARM RAS specification for details
-> +    32        Error Misc 2    8             See ARM RAS specification for details
-> +    40        Error Misc 3    8             See ARM RAS specification for details
-> +    =======   =============   ===========   ==========================================
-> +
-> +Below table defines the value of Error types, Sub Types, Sub component and instance:
-> +
-> +    ============    ==========    =========   ===============  ====================================
-> +    Error Group     Error Type    Sub type    Sub component    Instance
-> +    ============    ==========    =========   ===============  ====================================
-> +    CPM (core)      0             0           Snoop-Logic      CPM #
-> +    CPM (core)      0             2           Armv8 Core 1     CPM #
-> +    MCU (mem)       1             1           ERR1             MCU # | SLOT << 11
-> +    MCU (mem)       1             2           ERR2             MCU # | SLOT << 11
-> +    MCU (mem)       1             3           ERR3             MCU #
-> +    MCU (mem)       1             4           ERR4             MCU #
-> +    MCU (mem)       1             5           ERR5             MCU #
-> +    MCU (mem)       1             6           ERR6             MCU #
-> +    MCU (mem)       1             7           Link Error       MCU #
-> +    Mesh (other)    2             0           Cross Point      X | (Y << 5) | NS <<11
-> +    Mesh (other)    2             1           Home Node(IO)    X | (Y << 5) | NS <<11
-> +    Mesh (other)    2             2           Home Node(Mem)   X | (Y << 5) | NS <<11 | device<<12
-> +    Mesh (other)    2             4           CCIX Node        X | (Y << 5) | NS <<11
-> +    2P Link (other) 3             0           N/A              Altra 2P Link #
-> +    GIC (other)     5             0           ERR0             0
-> +    GIC (other)     5             1           ERR1             0
-> +    GIC (other)     5             2           ERR2             0
-> +    GIC (other)     5             3           ERR3             0
-> +    GIC (other)     5             4           ERR4             0
-> +    GIC (other)     5             5           ERR5             0
-> +    GIC (other)     5             6           ERR6             0
-> +    GIC (other)     5             7           ERR7             0
-> +    GIC (other)     5             8           ERR8             0
-> +    GIC (other)     5             9           ERR9             0
-> +    GIC (other)     5             10          ERR10            0
-> +    GIC (other)     5             11          ERR11            0
-> +    GIC (other)     5             12          ERR12            0
-> +    GIC (other)     5             13-21       ERR13            RC# + 1
-> +    SMMU (other)    6             TCU         100              RC #
-> +    SMMU (other)    6             TBU0        0                RC #
-> +    SMMU (other)    6             TBU1        1                RC #
-> +    SMMU (other)    6             TBU2        2                RC #
-> +    SMMU (other)    6             TBU3        3                RC #
-> +    SMMU (other)    6             TBU4        4                RC #
-> +    SMMU (other)    6             TBU5        5                RC #
-> +    SMMU (other)    6             TBU6        6                RC #
-> +    SMMU (other)    6             TBU7        7                RC #
-> +    SMMU (other)    6             TBU8        8                RC #
-> +    SMMU (other)    6             TBU9        9                RC #
-> +    PCIe AER (pcie) 7             Root        0                RC #
-> +    PCIe AER (pcie) 7             Device      1                RC #
-> +    PCIe RC (pcie)  8             RCA HB      0                RC #
-> +    PCIe RC (pcie)  8             RCB HB      1                RC #
-> +    PCIe RC (pcie)  8             RASDP       8                RC #
-> +    OCM (other)     9             ERR0        0                0
-> +    OCM (other)     9             ERR1        1                0
-> +    OCM (other)     9             ERR2        2                0
-> +    SMpro (other)   10            ERR0        0                0
-> +    SMpro (other)   10            ERR1        1                0
-> +    SMpro (other)   10            MPA_ERR     2                0
-> +    PMpro (other)   11            ERR0        0                0
-> +    PMpro (other)   11            ERR1        1                0
-> +    PMpro (other)   11            MPA_ERR     2                0
-> +    ============    ==========    =========   ===============  ====================================
-> +
-> +    For example:
-> +    # cat error_other_ue
-> +    880807001e004010401040101500000001004010401040100c0000000000000000000000000000000000000000000000
-> +
-> +2) For the Internal SMpro/PMpro error types::
-> +
-> +The error_[smpro|pmro] sysfs returns string of 8-byte hex value:
-> +    <4-byte hex value of Error info><4-byte hex value of Error extensive data>
-> +
-> +The warn_[smpro|pmro] sysfs returns string of 4-byte hex value:
-> +    <4-byte hex value of Warning info>
-> +
-> +Reference to Altra SoC BMC Interface Specification for the details.
-> +
-> +3) For the VRD hot, VRD /warn/fault, DIMM Hot event::
-> +
-> +The return string is 2-byte hex string value. Reference to section 5.7 GPI status register in Altra SoC BMC Interface Specification for the details.
-> +
-> +    Example:
-> +    #cat event_vrd_hot
-> +    0000
-> +
-> +Sysfs entries
-> +-------------
-> +
-> +The following sysfs files are supported:
-> +
-> +* Ampere(R) Altra(R):
-> +
-> +Alert Types:
-> +
-> +    ========================  =================  ==================================================
-> +    Alert Type                Sysfs name         Description
-> +    ========================  =================  ==================================================
-> +    Core CE Error             error_core_ce      Trigger when Core has CE error
-> +    Core CE Error overflow    overflow_core_ce   Trigger when Core CE error overflow
-> +    Core UE Error             error_core_ue      Trigger when Core has UE error
-> +    Core UE Error overflow    overflow_core_ue   Trigger when Core UE error overflow
-> +    Memory CE Error           error_mem_ce       Trigger when Memory has CE error
-> +    Memory CE Error overflow  overflow_mem_ce    Trigger when Memory CE error overflow
-> +    Memory UE Error           error_mem_ue       Trigger when Memory has UE error
-> +    Memory UE Error overflow  overflow_mem_ue    Trigger when Memory UE error overflow
-> +    PCIe CE Error             error_pcie_ce      Trigger when any PCIe controller has CE error
-> +    PCIe CE Error overflow    overflow_pcie_ce   Trigger when any PCIe controller CE error overflow
-> +    PCIe UE Error             error_pcie_ue      Trigger when any PCIe controller has UE error
-> +    PCIe UE Error overflow    overflow_pcie_ue   Trigger when any PCIe controller UE error overflow
-> +    Other CE Error            error_other_ce     Trigger when any Others CE error
-> +    Other CE Error overflow   overflow_other_ce  Trigger when any Others CE error overflow
-> +    Other UE Error            error_other_ue     Trigger when any Others UE error
-> +    Other UE Error overflow   overflow_other_ue  Trigger when Others UE error overflow
-> +    SMpro Error               error_smpro        Trigger when system have SMpro error
-> +    SMpro Warning             warn_smpro         Trigger when system have SMpro warning
-> +    PMpro Error               error_pmpro        Trigger when system have PMpro error
-> +    PMpro Warning             warn_pmpro         Trigger when system have PMpro warning
-> +    ========================  =================  ==================================================
-> +
-> +Event Type:
-> +
-> +    ============================ ==========================
-> +    Event Type                   Sysfs name
-> +    ============================ ==========================
-> +    VRD HOT                      event_vrd_hot
-> +    VR Warn/Fault                event_vrd_warn_fault
-> +    DIMM Hot                     event_dimm_hot
-> +    ============================ ==========================
-> -- 
-> 2.35.1
+> Best regards,
+> Krzysztof
 > 
 
-Why not just put this in the driver itself to be generated automatically
-instead of living in a file that will never be noticed if anything ever
-changes?
-
-thanks,
-
-greg k-h
