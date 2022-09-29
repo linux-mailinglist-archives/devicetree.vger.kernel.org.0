@@ -2,113 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B15F5EEF90
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:47:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03DE05EEFA0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:48:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234858AbiI2HrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 03:47:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40908 "EHLO
+        id S234998AbiI2Hs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 03:48:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235343AbiI2HrG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:47:06 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EA9F139F68
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:47:05 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id bu25so1028724lfb.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:47:04 -0700 (PDT)
+        with ESMTP id S235479AbiI2Hsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:48:42 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9BC12111F
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:48:39 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id s6so1011644lfo.7
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:48:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=dnITc0xpMXEA7t4sgElLx+4qVX7nYEDyilpbd4CXC9k=;
-        b=uGcDNVPXkiKp0/IY8guVgHnvizB80zoouBV1zI+CcewxalPdMXFlJWZKjDLFmQe8Ew
-         8a5qUQegbDboAzpjvI3sllEEUmzijzphlGkf9tzBFw7rPk5N0XHAkhtsteKz4MtOrTp4
-         le0qhM/SdCBr1jBpyYtpJtlhGyUxyp9AjxBZn6+DSMHcZrOWmwaMFTZ00rpxU2OHaVIv
-         0yGJ6ByVRnvFZCyVMhhF2Yo+keJdb73RddGy8Ew5bqE38IEAkzeNckD8p2dK5JgF9ZPg
-         XDxlZWK5CXmuzsn5dxrPDGsVedmSNrRP0NgwyxeuXG7Xd0/v8no08f1Nbfg43NQqmx12
-         8Yqw==
+        bh=Tid/nAhFERXLfYgWORgIvhzA6ivC3KOuDpJP97O0ll0=;
+        b=wigLur9gEbEr0wd44D9cpg/Ai6w1oJAU3sb2MgRTDV0zFs+G/4xkWVf40hkE9sDP6F
+         NTH55wFMkb7l9lkHkfPp/wDhcp6Abp5zGLrGiPOOHw+lsbvUbimjZQdCmuvtmDjMJmTB
+         l3PqFo2xwZ6Okcd20GaG2Ez3FSN2/qA9cuWtJBojPvSm0VPvZzXFYWAP/+fK2af5vejf
+         LPUGZ6ciQgwbSv3zRxAXxSjncRUbX90PS1FVVmBYw/MDGsIf5mpIbcNNNYlouj+ungdG
+         YDpxeme/NiPNzyPyD77UTn+1otYwmPHHe2p1iSUeFp2esPordv0Mfub90Wha4HbjRzNz
+         qS7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=dnITc0xpMXEA7t4sgElLx+4qVX7nYEDyilpbd4CXC9k=;
-        b=liI6QXv4mRAiPUBSCTWkdVkLdgEjkiSUauRinIlOn35uPsLoFAjPe6xpQHqKskM4uf
-         43rgnLZPrOR7a5McsKxdn1bIbm93uaqOwvixXV1XOecR2/a9xn7bYzSMS3qUOJ0XFz3n
-         fh/U7ioc6sUZRlRX4fhKg7tIK/JJUcH/6POQFnT2ApxXqqdm41I0gGtU0lPtRolckIR+
-         tTBujj1BX82YcmtGe6U9Vc5te3tJGMVRC2+8ybEpg3JaA6ouz5RZkr8xTYUs21wofdqT
-         PpQgo4UaJYtQn4yXXeh1oOHW243aOt39t5lj7+tuo2YbbxWo8LQp683Im2WsSdXGUwZF
-         5uTQ==
-X-Gm-Message-State: ACrzQf2/71N1r92IuhyPIkSILoiQxywutEWaorjGBkj9HX4cM0K1M0sZ
-        drsVDRvTW36z0Dhz6xB3Aen2Zw==
-X-Google-Smtp-Source: AMsMyM4hj4TmCFv/FCH2LyFkLclQe3iKtiAqO9DG8bMvZXl/z5OzzjZ3a0sVROUTS4OrTteQNvmhnQ==
-X-Received: by 2002:a05:6512:535:b0:498:30c7:1e13 with SMTP id o21-20020a056512053500b0049830c71e13mr745638lfc.264.1664437623342;
-        Thu, 29 Sep 2022 00:47:03 -0700 (PDT)
+        bh=Tid/nAhFERXLfYgWORgIvhzA6ivC3KOuDpJP97O0ll0=;
+        b=IG4zZ3helF7Sxtu+DK9auRjmslt4fBONd+sCq3gBneHpcDGRCjP1meqJstoxftbKLD
+         7Vx3eMfHRYK7Kz2Nj+EKUAkx5bVXXLA/vXxhRFGSkZUvkYc1G1kiI+i+bw+dni4Aopg6
+         IGx0EmBmZ8ChklO8n4S37B2h0vcIBX5BDU+iO9WM5VFSO9Z7QRAwtS66dxhDgFoV8aJ+
+         LDxtH56FswVTzM+4Du0YfAmdjOzlFVdXg9DEDy+017dRzw8VBz3LAn8IHTic1XDf2sbp
+         Yzoxeu1H51hV7webr2IibdSNX/8tVt5/iVkCU9VMmORLoLKOL5cRI0SyCduHaBv/F6BO
+         83aQ==
+X-Gm-Message-State: ACrzQf2KXCirCTQ+tWGcmKSrdaD+CGiY0zhVtwbC77PeXymhTEn8Zyy6
+        SSLTuRrZ/H6zGc7s5yjuTyuzYw==
+X-Google-Smtp-Source: AMsMyM7l6fn8/Gi16rRe0GWEMt+pHsumnQ2yl2vPgSexaYofuA0kIqGglb/cacoUDi3RaHE4qLeovg==
+X-Received: by 2002:a05:6512:228b:b0:49e:f3d0:4ced with SMTP id f11-20020a056512228b00b0049ef3d04cedmr764655lfu.625.1664437717665;
+        Thu, 29 Sep 2022 00:48:37 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 145-20020a2e0997000000b0026befa96249sm631817ljj.8.2022.09.29.00.47.02
+        by smtp.gmail.com with ESMTPSA id x4-20020ac25dc4000000b00494618889c0sm711460lfq.42.2022.09.29.00.48.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 00:47:02 -0700 (PDT)
-Message-ID: <96e091f5-c593-2868-4472-267f57695997@linaro.org>
-Date:   Thu, 29 Sep 2022 09:47:02 +0200
+        Thu, 29 Sep 2022 00:48:36 -0700 (PDT)
+Message-ID: <839afeb4-a5c2-2129-53c2-602d55a5ced2@linaro.org>
+Date:   Thu, 29 Sep 2022 09:48:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: dma: qcom: gpi: add fallback
- compatible
+Subject: Re: [PATCH v6 2/3] dt-bindings: thermal: add loongson2k thermal
+ binding
 Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Richard Acayan <mailingradian@gmail.com>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220923210934.280034-1-mailingradian@gmail.com>
- <20220923210934.280034-2-mailingradian@gmail.com>
- <7b066e11-6e5c-c6d9-c8ed-9feccaec4c0c@linaro.org> <YzVLtvPk6YiDfBtb@matsya>
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+References: <20220929071312.29536-1-zhuyinbo@loongson.cn>
+ <20220929071312.29536-2-zhuyinbo@loongson.cn>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YzVLtvPk6YiDfBtb@matsya>
+In-Reply-To: <20220929071312.29536-2-zhuyinbo@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/09/2022 09:39, Vinod Koul wrote:
-> On 23-09-22, 23:26, Krzysztof Kozlowski wrote:
->> On 23/09/2022 23:09, Richard Acayan wrote:
->>> The drivers are transitioning from matching against lists of specific
->>> compatible strings to matching against smaller lists of more generic
->>> compatible strings. Add a fallback compatible string in the schema to
->>> support this change.
->>
->> Thanks for the patch. I wished we discussed it a bit more. :)
->> qcom,gpi-dma does not look like specific enough to be correct fallback,
->> at least not for all of the devices. I propose either a IP block version
->> (which is tricky without access to documentation) or just one of the SoC
+On 29/09/2022 09:13, Yinbo Zhu wrote:
+> Add the loongson2k thermal binding with DT schema format using
+> json-schema.
 > 
-> You should have access :-)
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+> Change in v6:
+> 		1. Fix the warning "reg: [[0, 534779136], [0, 48]] is too long"
+> 		   when compile the yaml.
 
-But Richard and many other community members do not...
 
-> 
->> IP blocks.
-> 
-> So knowing this IP we have two versions, one was initial sdm845 that
-> should be the base compatible. Then second should be sm8350 which was
-> the version we need ee_offset to be added, so these two can be the base
-> ones for future...
-> 
-> My 0.02
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Or just use SoC versions, not IP block versions :)
+I assume you dropped my tag on purpose, right?
 
 Best regards,
 Krzysztof
