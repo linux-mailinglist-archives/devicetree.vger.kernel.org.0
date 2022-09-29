@@ -2,120 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AA2D5EEF20
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:34:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CBFE5EEF29
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235259AbiI2HeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 03:34:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57430 "EHLO
+        id S234795AbiI2HgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 03:36:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232380AbiI2HeE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:34:04 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA8D2138F34
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:33:56 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id x18so763322wrm.7
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:33:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:to:from:date:from:to:cc
-         :subject:date;
-        bh=LGdaK3qy/JDlMc+f4v0ZcsQhNJbfdJpMi5Ol3/wPCKk=;
-        b=C7DW5l8OpKHmP6J6V6XnyMd4ELBO9nXmcVuh5O1Tuu/qJBKYpPWLDR1M36CCeg4kE2
-         jIMR3bON6AWvtvM3IRfICLSGx5mlYuHx/J1UOXL9MlX9qz6d1R7H9lx8yPn4Aqxqb/Un
-         ADycgQ1eJAkEd9cKoaSfQEqYPVMvNqCi7HVSN/efOIPDueo98/JjqZTSXcVHQ6BN9Rf7
-         93OkTEt2AzzGXOsKy67rKmC5iZyQifgAQQWVnuH18mZlFiG/8Ru/Pq/uUrWwMqJqTtUO
-         D6xd5InM5To3jRdClbT7qDwwTNEhTEgksZedemh4SG63you8vtotU5UhyiWZYZawaVsP
-         1+lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=LGdaK3qy/JDlMc+f4v0ZcsQhNJbfdJpMi5Ol3/wPCKk=;
-        b=lnyD5JXKBD4pAI4kW7zc5l+o/HvWv2QxHKDSYujWZRbYD2CCJ7B6OUTtoCSnSiW+qF
-         Jj4YW9cLeovEtwU6ggTqpSq1phgNc5b/fknyqSt6u3ZAsRO+qHbDGJKOwZ/Hc7MXvIe+
-         GrjSutkEW7BQ61N5JigCz126sjtZSNiBFDpIgFYgB2Iv504x5aDYg65WdgpvQKTConuy
-         z0Uf26Xg/MYoWztDfz9u2camu+T6+iUek9Bw+hfI9UcoPKvwHyg15tHNLl55POEOwLzh
-         pquT8tlvgV0NMzj0svb2tFHClRv/WdTpxi97Ho17cgVeAjKSQCxRbKbrlXp3oelKYZvI
-         1u/g==
-X-Gm-Message-State: ACrzQf26sJWqR9Q/wXjwE4Z7hbKnLF9by8bYi4WuRsOqSO5axwesuk6y
-        9txPpskpaxqOqk1SuV0TX1zXnA==
-X-Google-Smtp-Source: AMsMyM5HRXn6gLFEWsR4ZbAKJk9UifyyzLeCViBeeY4ueRh0LWXfbwVjiHlK38vaupC9+JIMdHfUEA==
-X-Received: by 2002:a05:6000:1d94:b0:22c:c4d1:3622 with SMTP id bk20-20020a0560001d9400b0022cc4d13622mr1095415wrb.63.1664436835053;
-        Thu, 29 Sep 2022 00:33:55 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id x12-20020a05600c2d0c00b003b51369fbbbsm3856730wmf.4.2022.09.29.00.33.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 00:33:54 -0700 (PDT)
-Date:   Thu, 29 Sep 2022 09:33:53 +0200
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     heiko@sntech.de, davem@davemloft.net, herbert@gondor.apana.org.au,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH RFT 4/5] crypto: rockchip: support the new crypto IP for
- rk3568/rk3588
-Message-ID: <YzVKYWknb6EGEgyr@Red>
-References: <20220927080048.3151911-1-clabbe@baylibre.com>
- <20220927080048.3151911-5-clabbe@baylibre.com>
- <YzNtkiR/dD0aEZrv@aurel32.net>
+        with ESMTP id S235156AbiI2HgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:36:22 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED655E11FB;
+        Thu, 29 Sep 2022 00:36:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8A3B862061;
+        Thu, 29 Sep 2022 07:36:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64137C433C1;
+        Thu, 29 Sep 2022 07:36:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664436981;
+        bh=gadGtTCeRLJv1JEE9hnf/EqUmfyZC0F8hypNxMqO454=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fbQxrGZsRJRXH8B52mGdn2+H72g9thOpi/5QqR6sW0Qfkk7dX2LeSUwokOgccIgQM
+         YrRYD21upOjaXVinJkUyhybq8ysnAtu/R0EWn+Qp8iqznE8tpQQLYEbzlGBnN6owUv
+         8wFv6k/G7YsvKLKfusCAScmgbC70Hd66v4+3sZhwJvzwNscYbBsoc7dkqkcWmnMTfw
+         QxaZIp919KAi962Lo9xZ8YkwgzD6ElCcIm6DqXEc9yjGMKkTHZm9HzTXXFaGzvOaKz
+         +OctZ4Da+VbBJAEs3CPZO9zt/aRz66JAFNhGe2QntJ4H2a6EOVY9sfRbFxW4Q3S2Rr
+         YcZgv1+0af9XQ==
+Date:   Thu, 29 Sep 2022 13:06:15 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: renesas,rcar-dmac: Add r8a779g0 support
+Message-ID: <YzVK7y2mn7fGNv67@matsya>
+References: <0a4d40092a51345003742725aea512a815d27e89.1664204526.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YzNtkiR/dD0aEZrv@aurel32.net>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <0a4d40092a51345003742725aea512a815d27e89.1664204526.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Tue, Sep 27, 2022 at 11:39:30PM +0200, Aurelien Jarno a écrit :
-> On 2022-09-27 08:00, Corentin Labbe wrote:
-> > Rockchip rk3568 and rk3588 have a common crypto offloader IP.
-> > This driver adds support for it.
-> > 
-> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> > ---
-> >  drivers/crypto/rockchip/Kconfig               |  28 +
-> >  drivers/crypto/rockchip/Makefile              |   5 +
-> >  drivers/crypto/rockchip/rk3588_crypto.c       | 646 ++++++++++++++++++
-> >  drivers/crypto/rockchip/rk3588_crypto.h       | 221 ++++++
-> >  drivers/crypto/rockchip/rk3588_crypto_ahash.c | 346 ++++++++++
-> >  .../crypto/rockchip/rk3588_crypto_skcipher.c  | 340 +++++++++
-> >  6 files changed, 1586 insertions(+)
-> >  create mode 100644 drivers/crypto/rockchip/rk3588_crypto.c
-> >  create mode 100644 drivers/crypto/rockchip/rk3588_crypto.h
-> >  create mode 100644 drivers/crypto/rockchip/rk3588_crypto_ahash.c
-> >  create mode 100644 drivers/crypto/rockchip/rk3588_crypto_skcipher.c
-> > 
-> > diff --git a/drivers/crypto/rockchip/Kconfig b/drivers/crypto/rockchip/Kconfig
-> > index 1010d897d9ef..84ca1081fd0c 100644
-> > --- a/drivers/crypto/rockchip/Kconfig
-> > +++ b/drivers/crypto/rockchip/Kconfig
-> > @@ -26,3 +26,31 @@ config CRYPTO_DEV_ROCKCHIP_DEBUG
-> >  	  Say y to enable Rockchip crypto debug stats.
-> >  	  This will create /sys/kernel/debug/rk3288_crypto/stats for displaying
-> >  	  the number of requests per algorithm and other internal stats.
-> > +
-> > +config CRYPTO_DEV_ROCKCHIP2
-> > +	tristate "Rockchip's cryptographic offloader V2"
-> > +	depends on OF && ARCH_ROCKCHIP
-> > +	depends on PM
-> > +	select CRYPTO_ECB
-> > +	select CRYPTO_CBC
-> > +	select CRYPTO_AES
-> > +	select CRYPTO_MD5
-> > +	select CRYPTO_SHA1
-> > +	select CRYPTO_SHA256
-> > +	select CRYPTO_SM3
-> 
-> That should be CRYPTO_SM3_GENERIC
+On 26-09-22, 17:03, Geert Uytterhoeven wrote:
+> Document support for the Direct Memory Access Controllers (DMAC) in the
+> Renesas R-Car V4H (R8A779G0) SoC.
 
-Thanks I will fix it.
+Applied, thanks
+
+-- 
+~Vinod
