@@ -2,59 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C898E5EF965
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 17:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A985EF970
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 17:48:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235867AbiI2PrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 11:47:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51800 "EHLO
+        id S232380AbiI2Psq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 11:48:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235960AbiI2PrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 11:47:02 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45381869BC;
-        Thu, 29 Sep 2022 08:45:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=ippxXlxAfdtPBqTbEjxB/QrdTYKNAml5gfgFwaIrYTI=; b=LNXrWcob64fBJ7qiE+e8Ej4BFv
-        bQhBHul/x8UkaxKQzgzq8L56pvKMgBK8WIWV45c5A+chAnT8ZV0YG3m5mQvtI45FlwvPmhTEU6cdu
-        bsITMMmhjRRSAZ7a5o5MiSFoe0DctlZNKtWlYiXj6ngMZGwY2kLMGOzEY9X1+um9xcOU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1odvjR-000d8c-IO; Thu, 29 Sep 2022 17:45:49 +0200
-Date:   Thu, 29 Sep 2022 17:45:49 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        yangbo.lu@nxp.com, radhey.shyam.pandey@amd.com,
-        anirudha.sarangi@amd.com, harini.katakam@amd.com
-Subject: Re: [RFC PATCH] dt-bindings: net: ethernet-controller: Add
- ptimer_handle
-Message-ID: <YzW9radTFVwciqvQ@lunn.ch>
-References: <20220929121249.18504-1-sarath.babu.naidu.gaddam@amd.com>
+        with ESMTP id S235966AbiI2PsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 11:48:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18A111C99DF;
+        Thu, 29 Sep 2022 08:47:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 99B26618D7;
+        Thu, 29 Sep 2022 15:47:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A955C433D6;
+        Thu, 29 Sep 2022 15:47:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664466475;
+        bh=D5MESLT/IXAZ2dSqhIZqRBjBjZTd0jInAaXi83xB9qU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QnQalHSqR3S+Mt2H42T4rS0/ftAxe67Og2O71ShEmJQZ7sfR70iGyipZx1so8Qucv
+         uDrZOmCqsKGUAK4kUQ9ZghqqZcncp/0LwKPd7xZf3JoNkm+qHE97hX5e3slC2WW0FU
+         CtVioZC7dOthu/LbPY+GP73XCK6zG9gImPeX020kQ42OJx6bHaF3pOVAcN2beA31Wz
+         KYZgsw//hBpfmS/SzLku/ikpiCPxCtVLci4tG6rvK5QqYDRMBlnXcNzeSO9Z0N5dca
+         NrTqsPp2wsnCtlSjoNqYBJNbalL8fhKceTZuJtK7Ppm17pXZ7NogrFZ3aMWGvHiki3
+         aONCYW4lSyEKw==
+Date:   Thu, 29 Sep 2022 21:17:50 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Deming Wang <wangdeming@inspur.com>
+Cc:     peter.ujfalusi@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Documentation: devicetree: dma: update the comments
+Message-ID: <YzW+Js6VW0duRV5z@matsya>
+References: <20220920020721.2190-1-wangdeming@inspur.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220929121249.18504-1-sarath.babu.naidu.gaddam@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220920020721.2190-1-wangdeming@inspur.com>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 29, 2022 at 06:12:49AM -0600, Sarath Babu Naidu Gaddam wrote:
-> There is currently no standard property to pass PTP device index
-> information to ethernet driver when they are independent.
+On 19-09-22, 22:07, Deming Wang wrote:
+> remove the double word to.
 
-You should Cc: the PTP maintainer....
+Applied, thanks
 
-    Andrew
+> 
+> Signed-off-by: Deming Wang <wangdeming@inspur.com>
+> ---
+>  Documentation/devicetree/bindings/dma/ti-dma-crossbar.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/ti-dma-crossbar.txt b/Documentation/devicetree/bindings/dma/ti-dma-crossbar.txt
+> index b849a1ed389d..47e477cce6d2 100644
+> --- a/Documentation/devicetree/bindings/dma/ti-dma-crossbar.txt
+> +++ b/Documentation/devicetree/bindings/dma/ti-dma-crossbar.txt
+> @@ -4,7 +4,7 @@ Required properties:
+>  - compatible:	"ti,dra7-dma-crossbar" for DRA7xx DMA crossbar
+>  		"ti,am335x-edma-crossbar" for AM335x and AM437x
+>  - reg:		Memory map for accessing module
+> -- #dma-cells:	Should be set to to match with the DMA controller's dma-cells
+> +- #dma-cells:	Should be set to match with the DMA controller's dma-cells
+>  		for ti,dra7-dma-crossbar and <3> for ti,am335x-edma-crossbar.
+>  - dma-requests:	Number of DMA requests the crossbar can receive
+>  - dma-masters:	phandle pointing to the DMA controller
+> -- 
+> 2.27.0
+
+-- 
+~Vinod
