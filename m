@@ -2,208 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6468C5EEEC7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:20:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAD525EEEDF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:24:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235198AbiI2HU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 03:20:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47586 "EHLO
+        id S235237AbiI2HXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 03:23:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235203AbiI2HUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:20:16 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323E126ADE;
-        Thu, 29 Sep 2022 00:20:11 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id n35-20020a05600c502300b003b4924c6868so3195924wmr.1;
-        Thu, 29 Sep 2022 00:20:11 -0700 (PDT)
+        with ESMTP id S235208AbiI2HW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:22:57 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8567C1181EB
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:22:49 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id x29so580348ljq.2
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:22:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=SilQIeFOIqfwLSvrNmgYyTgTLx0VsqPkOEz/SAixv60=;
-        b=YyPeNCn+dWqutClydurprDQkhtBS7hEiJcTdEpZzoMtzxo94Oxw9s5EEPyb3Aot0Og
-         sXdutRJ65dWp/G4XojGa/GD1UpEPIdbBEIV78aq7jqlbj66ihszTTEI3vW7qP1YYMlJB
-         s0TuY6QXBg8c9gARg9L73VPQlM1b1wuCIv1emacym7qsC9Rtq8xkyLK3X2uW8oZ9bm7X
-         LeRgD6dHdAY0hFDODBaXUHFE6DdeasOXdGFJmm7lPywxUdDPxNhPZwAfyqjIhMI4vLfP
-         Qylxbi3dUN8UlR3nPKSQE9FWi0dbbfXpQUcQyAyQH0HASyHGmwwT7fpR12XoxpymQATB
-         bz9A==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=MezbcwOoul10g9j1qktZYyuEnrjgCGFz14Jt2OIrWcU=;
+        b=RhniWHb7IPXZdipNBOkrg2N2RPwnujVy2ZHUcFjJqBAAyZ+M8xTFHYrzfpIMhTY3D7
+         vyACY7zKLtg0e0PQ7Jd36pZWSw6Y25tUHKDTZopGN5QzHEUNqJcR8bg7iuy/dg3m1YOe
+         9YZa+L+76BZZVi/r3qzlsQ2KyB3F1+aWNFbUqyvVFMmuzfq42OdMTB67FB/rTAu/61sq
+         xpAZyzBdHYFr+/mNGcXwLMqst/ykhLJUa89bvphSzgn3T5NkMYs41qhD0qRDfc6Om7Fl
+         7/myZVmBXsyGoTeCLw0E6gxNxUDc9qb3rHvWTQOhSD1wl9RlS/rATvrQ265OnTM/3+gv
+         b4OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=SilQIeFOIqfwLSvrNmgYyTgTLx0VsqPkOEz/SAixv60=;
-        b=H/n3Ez5OWV+2L2ak5g/WlOl7EhO7BfUB6XYyffCLb0HY11ogFFp+Mt7BvSSS9L91ja
-         mT0lB+RaLQ7k/82nXUH1YWJrr9ZCqmYcYinq/5XyrLXQ2FXuc/DhbIUQnmQEAJi3/Xxw
-         jhdMjPoy6hwgzBQeoQn5rvI+OXQWsaK7XvyiWJuaOvXvYPTjLSsQ3rZohn16VE/d7TqQ
-         IjAxM0+VqygWXeFbjQqKHJloMJdx/LbipxaMv1b7zduif8NKebYSgtSzLBi8su2GA3kF
-         C21fmXahyNadtkICFqNoDw5ozadSuo4cUKRWw9GIkETCRLtyaoAKJQ307EUQ75fXviYP
-         GK5w==
-X-Gm-Message-State: ACrzQf0sJ2EfWVWx9brlzWwlj4wg1vtO4bTgn2XdQ1egKRAPrBOI/e45
-        uN6G6b76BHSt1UuoF8Jze3wb3Q0jmoCc2w==
-X-Google-Smtp-Source: AMsMyM7x+0//EeA/jslItZnMc2J24QjcWKYfzMgbV6loMCr3P3ENmv+FrGHZgsv4mO/elbSRSyQRJg==
-X-Received: by 2002:a05:600c:1e87:b0:3b5:1e2:3c3c with SMTP id be7-20020a05600c1e8700b003b501e23c3cmr1160405wmb.130.1664436009811;
-        Thu, 29 Sep 2022 00:20:09 -0700 (PDT)
-Received: from localhost.localdomain (188.red-88-10-59.dynamicip.rima-tde.net. [88.10.59.188])
-        by smtp.gmail.com with ESMTPSA id q63-20020a1c4342000000b003b4bd18a23bsm3674250wma.12.2022.09.29.00.20.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 00:20:09 -0700 (PDT)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        hauke@hauke-m.de, zajec5@gmail.com, tsbogend@alpha.franken.de,
-        linux-mips@vger.kernel.org, arinc.unal@arinc9.com
-Subject: [PATCH v3 3/3] dt-bindings: mips: brcm: convert CPU bindings for BMIPS architecture
-Date:   Thu, 29 Sep 2022 09:20:04 +0200
-Message-Id: <20220929072004.874795-4-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220929072004.874795-1-sergio.paracuellos@gmail.com>
-References: <20220929072004.874795-1-sergio.paracuellos@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=MezbcwOoul10g9j1qktZYyuEnrjgCGFz14Jt2OIrWcU=;
+        b=KgqEV3yXUHJN+6VcWpLPCWqdEaB8mWWC4+t7EjNKqfWxRIRZz5Wi9WUCTyeLwiSwAh
+         EVa0UM3vsLliGkUrunKwnDlnsq/k8B6gUruQb4bfCju4gqr79XuwwMTGOM6vxs4987Yo
+         BO9Ma+0J6NQEObuhzAOlCuX7sm05O6Pd8h0YQiVWNxqX2JPNocG/B3uWn1omXoVSmANh
+         RACCQfmpAs0VvEcpQJkvC2QXaxtVJc2VVaZKuxI5zxgv8Itgtf23wrmlVJestEHZD0hc
+         erS1oHqjULq6vjqFYC+wqZwzFCRpReW50yv69EWFmlujgoSODWomgiOA9f0Ro9eB+//i
+         YHYQ==
+X-Gm-Message-State: ACrzQf0G4cZNvO9/KzylVrFXk0Uga629Gt4tGIE+Ovt9+hV+++9dJIXu
+        eTucLWE3XmVREvwUqy+SAxfoqIo4P8dgvQ==
+X-Google-Smtp-Source: AMsMyM6G2n0Z1F3luJ+lGSBmmYESgaPvryPRha5PxI/XaKOCaJdB1gaXz9Rb5f0m4SUJFlXrO/h+yw==
+X-Received: by 2002:a2e:98c2:0:b0:26c:5d10:63dd with SMTP id s2-20020a2e98c2000000b0026c5d1063ddmr663534ljj.326.1664436167326;
+        Thu, 29 Sep 2022 00:22:47 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id z12-20020ac2418c000000b00494813c689dsm701400lfh.219.2022.09.29.00.22.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Sep 2022 00:22:46 -0700 (PDT)
+Message-ID: <4e896382-c666-55c6-f50b-5c442e428a2b@linaro.org>
+Date:   Thu, 29 Sep 2022 09:22:45 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v2 3/4] dt-bindings: net: qcom,ethqos: Convert bindings to
+ yaml
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, netdev@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        David Miller <davem@davemloft.net>
+References: <20220929060405.2445745-1-bhupesh.sharma@linaro.org>
+ <20220929060405.2445745-4-bhupesh.sharma@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220929060405.2445745-4-bhupesh.sharma@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the yaml binding for available CPUs in BMIPS architecture.
+On 29/09/2022 08:04, Bhupesh Sharma wrote:
+> Convert Qualcomm ETHQOS Ethernet devicetree binding to YAML.
+> 
+> While at it, also add Qualcomm Ethernet ETHQOS compatible checks
+> in snps,dwmac YAML binding document.
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- .../bindings/mips/brcm/brcm,bmips-cpus.yaml   | 102 ++++++++++++++++++
- .../bindings/mips/brcm/brcm,bmips.txt         |   8 --
- 2 files changed, 102 insertions(+), 8 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.yaml
- delete mode 100644 Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
+There are no checks added to snps,dwmac.
 
-diff --git a/Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.yaml b/Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.yaml
-new file mode 100644
-index 000000000000..60aa7df9a543
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mips/brcm/brcm,bmips-cpus.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MIPS CPUs bindings
-+
-+maintainers:
-+  - Hauke Mehrtens <hauke@hauke-m.de>
-+  - Rafał Miłecki <zajec5@gmail.com>
-+
-+description: |
-+  The device tree allows to describe the layout of BMIPS CPUs.
-+
-+patternProperties:
-+  "^/":
-+    type: object
-+    $ref: "/schemas/mips/brcm/soc.yaml#"
-+
-+properties:
-+  cpus:
-+    type: object
-+    additionalProperties: true
-+    properties:
-+      '#address-cells':
-+        const: 1
-+
-+      '#size-cells':
-+        const: 0
-+
-+      mips-hpt-frequency:
-+        description: This is common to all CPUs in the system so it lives
-+          under the "cpus" node.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+
-+    patternProperties:
-+      "^cpu@[0-9]$":
-+        type: object
-+        $ref: "/schemas/mips/cpus.yaml#"
-+
-+    required:
-+      - '#address-cells'
-+      - '#size-cells'
-+
-+    allOf:
-+      - if:
-+          properties:
-+            compatible:
-+              contains:
-+                enum:
-+                  - "brcm,bcm3368"
-+                  - "brcm,bcm3384"
-+                  - "brcm,bcm33843"
-+                  - "brcm,bcm3384-viper"
-+                  - "brcm,bcm33843-viper"
-+                  - "brcm,bcm6328"
-+                  - "brcm,bcm6358"
-+                  - "brcm,bcm6362"
-+                  - "brcm,bcm6368"
-+                  - "brcm,bcm63168"
-+                  - "brcm,bcm63268"
-+                  - "brcm,bcm7125"
-+                  - "brcm,bcm7346"
-+                  - "brcm,bcm7358"
-+                  - "brcm,bcm7360"
-+                  - "brcm,bcm7362"
-+                  - "brcm,bcm7420"
-+                  - "brcm,bcm7425"
-+        then:
-+          required:
-+            - mips-hpt-frequency
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+     / {
-+         compatible = "brcm,bcm3368";
-+         #address-cells = <1>;
-+         #size-cells = <1>;
-+         model = "Broadcom 3368";
-+
-+         cpus {
-+           #address-cells = <1>;
-+           #size-cells = <0>;
-+
-+           mips-hpt-frequency = <150000000>;
-+
-+           cpu@0 {
-+             compatible = "brcm,bmips4350";
-+             device_type = "cpu";
-+             reg = <0>;
-+           };
-+
-+           cpu@1 {
-+             compatible = "brcm,bmips4350";
-+             device_type = "cpu";
-+             reg = <1>;
-+           };
-+         };
-+       };
-diff --git a/Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt b/Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
-deleted file mode 100644
-index 8ef71b4085ca..000000000000
---- a/Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
-+++ /dev/null
-@@ -1,8 +0,0 @@
--* Broadcom MIPS (BMIPS) CPUs
--
--Required properties:
--- compatible: "brcm,bmips3300", "brcm,bmips4350", "brcm,bmips4380",
--  "brcm,bmips5000"
--
--- mips-hpt-frequency: This is common to all CPUs in the system so it lives
--  under the "cpus" node.
--- 
-2.25.1
+> 
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: David Miller <davem@davemloft.net>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  .../devicetree/bindings/net/qcom,ethqos.txt   |  66 --------
+>  .../devicetree/bindings/net/qcom,ethqos.yaml  | 145 ++++++++++++++++++
+>  2 files changed, 145 insertions(+), 66 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/qcom,ethqos.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.txt b/Documentation/devicetree/bindings/net/qcom,ethqos.txt
+> deleted file mode 100644
+> index 1f5746849a71..000000000000
+> --- a/Documentation/devicetree/bindings/net/qcom,ethqos.txt
+> +++ /dev/null
+> @@ -1,66 +0,0 @@
+> -Qualcomm Ethernet ETHQOS device
+> -
+> -This documents dwmmac based ethernet device which supports Gigabit
+> -ethernet for version v2.3.0 onwards.
+> -
+> -This device has following properties:
+> -
+> -Required properties:
+> -
+> -- compatible: Should be one of:
+> -		"qcom,qcs404-ethqos"
+> -		"qcom,sm8150-ethqos"
+> -
+> -- reg: Address and length of the register set for the device
+> -
+> -- reg-names: Should contain register names "stmmaceth", "rgmii"
+> -
+> -- clocks: Should contain phandle to clocks
+> -
+> -- clock-names: Should contain clock names "stmmaceth", "pclk",
+> -		"ptp_ref", "rgmii"
+> -
+> -- interrupts: Should contain phandle to interrupts
+> -
+> -- interrupt-names: Should contain interrupt names "macirq", "eth_lpi"
+> -
+> -Rest of the properties are defined in stmmac.txt file in same directory
+> -
+> -
+> -Example:
+> -
+> -ethernet: ethernet@7a80000 {
+> -	compatible = "qcom,qcs404-ethqos";
+> -	reg = <0x07a80000 0x10000>,
+> -		<0x07a96000 0x100>;
+> -	reg-names = "stmmaceth", "rgmii";
+> -	clock-names = "stmmaceth", "pclk", "ptp_ref", "rgmii";
+> -	clocks = <&gcc GCC_ETH_AXI_CLK>,
+> -		<&gcc GCC_ETH_SLAVE_AHB_CLK>,
+> -		<&gcc GCC_ETH_PTP_CLK>,
+> -		<&gcc GCC_ETH_RGMII_CLK>;
+> -	interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
+> -			<GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
+> -	interrupt-names = "macirq", "eth_lpi";
+> -	snps,reset-gpio = <&tlmm 60 GPIO_ACTIVE_LOW>;
+> -	snps,reset-active-low;
+> -
+> -	snps,txpbl = <8>;
+> -	snps,rxpbl = <2>;
+> -	snps,aal;
+> -	snps,tso;
+> -
+> -	phy-handle = <&phy1>;
+> -	phy-mode = "rgmii";
+> -
+> -	mdio {
+> -		#address-cells = <0x1>;
+> -		#size-cells = <0x0>;
+> -		compatible = "snps,dwmac-mdio";
+> -		phy1: phy@4 {
+> -			device_type = "ethernet-phy";
+> -			reg = <0x4>;
+> -		};
+> -	};
+> -
+> -};
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+> new file mode 100644
+> index 000000000000..d3d8f6799d18
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+> @@ -0,0 +1,145 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Ethernet ETHQOS device
+> +
+> +maintainers:
+> +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> +
+> +description:
+> +  This binding describes the dwmmac based Qualcomm ethernet devices which
+> +  support Gigabit ethernet (version v2.3.0 onwards).
+> +
+> +  So, this file documents platform glue layer for dwmmac stmmac based Qualcomm
+> +  ethernet devices.
+> +
+> +allOf:
+> +  - $ref: snps,dwmac.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,qcs404-ethqos
+> +      - qcom,sm8150-ethqos
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: stmmaceth
+> +      - const: rgmii
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Combined signal for various interrupt events
+> +      - description: The interrupt that occurs when Rx exits the LPI state
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: macirq
+> +      - const: eth_lpi
+> +
+> +  clocks:
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    items:
+> +      - const: stmmaceth
+> +      - const: pclk
+> +      - const: ptp_ref
+> +      - const: rgmii
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  mdio:
+> +    $ref: mdio.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      compatible:
+> +        const: snps,dwmac-mdio
+> +
+> +  phy-handle:
+> +    maxItems: 1
+> +
+> +  phy-mode:
+> +    maxItems: 1
+> +
+> +  snps,reset-gpio:
+> +    maxItems: 1
+
+Why is this one here? It's already in snps,dwmac.
+
+Actually this applies to several other properties. You have
+unevaluatedProperties:false, so you do not have to duplicate snps,dwmac.
+You only need to constrain it, like we said about interrupts in your
+previous patch.
+
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  rx-fifo-depth:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  tx-fifo-depth:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  snps,tso:
+> +    type: boolean
+> +    description: Enables the TSO feature (otherwise managed by MAC HW capability register).
+
+You add here several new properties. Mention in commit msg changes from
+pure conversion with answer to "why".
+
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+
+Best regards,
+Krzysztof
 
