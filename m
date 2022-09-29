@@ -2,101 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90FF15EEF13
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:32:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AC725EEF1A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 09:33:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234906AbiI2Hcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 03:32:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56244 "EHLO
+        id S235316AbiI2Hdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 03:33:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235077AbiI2Hck (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:32:40 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1516E137E75
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:32:39 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id u18so959476lfo.8
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:32:38 -0700 (PDT)
+        with ESMTP id S235273AbiI2Hdf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 03:33:35 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E834137E7F
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:33:33 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id bq9so772054wrb.4
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 00:33:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=W2fjpWPBdHvD2Cwc+rAoirjTMcAP6sfAcXFgOpE7B4Q=;
-        b=zFfE8XF/VEKI+2X34AQoRskkZQRelUDSPSV/CU2iP/t1u5/k8ZtYcgi8zvo1J8VACV
-         F175V6oT4y3jGPvsdH9jz9cXda/Uvg7fnpUBjpY3Lc+wc+VOqQ7vruhbvwAy0AdQBvlm
-         LI3KpRIIGhAYPchK1dl81/mnhEM2UrhOFLEJf3QfVnIHT0i5rf+kVZ/0VvamtnTq2dF8
-         Du82GP3hpz8fXpvl8duQCLSFbvZolAr6ZJENEOvCA21hus6gaGrnY9c/2DrbT28eMM11
-         FyUfka3KDcSZZuhqTdHTH9l3LXBIKQ8rvkxFgvEClpdDcZdzE0wXrazNket0e0Xs+uUm
-         c/Tw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:to:from:date:from:to:cc
+         :subject:date;
+        bh=atACqxLtygvoatmuSiOUnja6i+2u6x+rxoy2apBcCBk=;
+        b=hsOEJmFhBKFbH0GhXrJKHUxne+LtxAIa76tyBJcZVLXdKpf4nNr26PhlcBT0DRGqsm
+         u4nuyhxyohof8xdQKBda/RvQmhKqfjCx8qM5PEasl4ZvbvmxGbni5+mHouFrF/43VcRM
+         pSBwbvxUWK4SSh9wc+kYLKRJUXOx4r1Nb3x51OvHtGu+/6qrLq3Ug5Vebf5RDlo+FDcU
+         LHybNFRvEDSCPfiDF0nKF+DPjqPto6PRCqG7jkfKwHgg3dgAISMTNaYA+qTCvDg9zqQG
+         CF0s8xmsf/Tbm4azqMxygMUlqueRh71Bd8kORz1GFVoFS69QrqS4/VZdBmHwIj0bEbLq
+         ClDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:to:from:date
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=W2fjpWPBdHvD2Cwc+rAoirjTMcAP6sfAcXFgOpE7B4Q=;
-        b=q91baVMfeC2wQ5xzQAj4pz9DVfoT8VfMUzku8AJbFIOLmk29CEefJK6V1yaokekMy1
-         Tb8AVeWLipANdsvxyTRVqSEjY20yCz1VilARQEKkYNkXeGlQUyjQ6OdFOvOscugiX5g0
-         PcK2016/LXkfX6ZLWC1GMSwMezf6D8DioeUWhGnWzlb9Qm8J4JwZRWU/Z4FLnyaXqeju
-         xoHQu3FSX+36Od+FoyCsJrJU116DZzjy9PJImWfdZK3o9beCk6zKoZBpOV+f2U6WiO9u
-         Ujis+trz2ghf4M2g0QTQe7dBg/iiPUHb3MJ0d+HSIxGz1zGdSdNLrCg582JH+2+Jp07b
-         O0Kw==
-X-Gm-Message-State: ACrzQf0xKFLQ1Sx/Bm3JW+lltLFj1DYsj/twJ86ZZ4cEE563dzO6L39M
-        vQ4rAw9SAXabg+f10rQxq/EQFQ==
-X-Google-Smtp-Source: AMsMyM5IZD7SiBd3W+DhxzoDka965KOnWTmcNIgiYNo4v6886/2xDzjTli0TxRVlpR/KgN68vVwnYQ==
-X-Received: by 2002:a05:6512:3da9:b0:49f:1742:c692 with SMTP id k41-20020a0565123da900b0049f1742c692mr873659lfv.313.1664436757473;
-        Thu, 29 Sep 2022 00:32:37 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u13-20020a05651220cd00b0049fbf5facf4sm706661lfr.75.2022.09.29.00.32.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 00:32:37 -0700 (PDT)
-Message-ID: <a1a78c72-2067-1ea8-a50e-0dcf4ae4bb83@linaro.org>
-Date:   Thu, 29 Sep 2022 09:32:36 +0200
+        bh=atACqxLtygvoatmuSiOUnja6i+2u6x+rxoy2apBcCBk=;
+        b=IBMH1JqpYw81giRaY1es7/9jTExy5ieTFabprzVr7vqNwoTwAEpPnpVazhlybgU5Dv
+         gbVpC6V6881wNysFXGgBQFxIfS498qohRYrmhG5kimrtZNvgkObwV8ccbKK3vgl6KtjJ
+         ddB2011gHY1ZqwNkh2PFWyIcy/an0MH1cvd7BCRHs2clngMRie2eZoGPf+hDYoU49MVx
+         a+fbvIK7vZVFxCq1igzdRopYujnCdvYrBs9Z9HeKo1BQg3MpC8MJPu0GRajwVN+52bX/
+         9HtMjNkWKjz8emT6UmYl/of3YgptJCwTw5SV1ldEx3LT2X/Q2Iv1b8qXrcyRXweMEyjz
+         s4pw==
+X-Gm-Message-State: ACrzQf0JUPll1pie3wW6RmFF99U+zVQeKqohntH8Fm7GA9hL8yZUFZov
+        DOomWC/ENmzr8VP0iX0lIFUn9g==
+X-Google-Smtp-Source: AMsMyM6sIk+geTplcvfjy0CSHqROztZRtQXufyAJK/PvCo/0f+wQZHMLaRAfjTq5ogK56olIr125cA==
+X-Received: by 2002:a5d:4c4c:0:b0:22c:cb1f:f7dc with SMTP id n12-20020a5d4c4c000000b0022ccb1ff7dcmr1077874wrt.504.1664436811363;
+        Thu, 29 Sep 2022 00:33:31 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id u4-20020adff884000000b0022a2dbc80fdsm5950328wrp.10.2022.09.29.00.33.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Sep 2022 00:33:30 -0700 (PDT)
+Date:   Thu, 29 Sep 2022 09:33:27 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     heiko@sntech.de, davem@davemloft.net, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH RFT 0/5] crypto: rockchip: add crypto offloader V2
+Message-ID: <YzVKR0DjpXT/bB8J@Red>
+References: <20220927080048.3151911-1-clabbe@baylibre.com>
+ <YzNsgjPFwVEDo4E4@aurel32.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v10 1/7] dt-bindings: remoteproc: qcom: Add SC7280 ADSP
- support
-Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        linux-remoteproc@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, devicetree@vger.kernel.org
-References: <1664368073-13659-1-git-send-email-quic_srivasam@quicinc.com>
- <1664368073-13659-2-git-send-email-quic_srivasam@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1664368073-13659-2-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YzNsgjPFwVEDo4E4@aurel32.net>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 14:27, Srinivasa Rao Mandadapu wrote:
-> Add ADSP PIL loading support for SC7280 SoCs.
+Le Tue, Sep 27, 2022 at 11:34:58PM +0200, Aurelien Jarno a écrit :
+> On 2022-09-27 08:00, Corentin Labbe wrote:
+> > Hello
+> > 
+> > Rockchip rk3568 and rk3588 have a common crypto offloader IP different
+> > than rk3228 one.
+> > I started to work the driver for this IP on a rk3588 based board, but this SoC
+> > is still not upstream.
+> > So it is why I send this serie asking for test since I own no rk3568 and
+> > I need to be sure datasheet is right.
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
-> Changes since V9:
-> 	-- Add missing unevaluatedProperties in glink-edge.
-> Changes since V8:
-> 	-- Add glink-edge reference.
-> 	-- Remove redundant glinke-edge properties.
+> I did a quick test, and it doesn't seem to work. I get:
+> 
+> rk3588-crypto fe380000.crypto: DMA timeout
+> rk3588-crypto fe380000.crypto: DMA timeout
+> 
+> That's on an ODROID-M1 board, so with the set of patches I sent
+> yesterday to support it.
 
+Thanks for testing it, probably I did something wrong because I got a successfull test by someone on #linux-rockchip.
+But I dont know on which board it is, and it was on my debug tree, so probably cleaned something wrong before sending the patchs.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If I sent you a link to my tree, could you retry ?
 
-Best regards,
-Krzysztof
-
+Regards
