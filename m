@@ -2,65 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43F525EF66C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 15:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19F1D5EF680
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 15:27:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235337AbiI2N0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 09:26:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57400 "EHLO
+        id S235756AbiI2N1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 09:27:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235679AbiI2NZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 09:25:41 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F39027B0D
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 06:25:38 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id v28so2211901wrd.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 06:25:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date;
-        bh=wDPVtJUkpxAb4ia1Z2nUs031++Rp/t2w7zinzfg9BkM=;
-        b=hsTFIADiWUA6pZ3wo8brfQ6BkOlPKFR9WHlriPISKQ3EBdLObeBevzxgVhMaXwRyQK
-         Us/3bf8MUDuss4NdO++vsc6B3RSM9oiAj1qYTKJukCg+vCRdeLXXilBSbDK47W55yVaK
-         lITPpTEd5vKmYZRCbzmxv7mTgbPKY2VQLitVquWCYERfqSVWAVkQXBPN6HBRZnN0h4wu
-         cwKUooocl0ESK4iurpcJ36PlYQAOqspBB1kAsxo1dHITaEMReWDwU1Y3efKf5vyhqEHX
-         DhKUcmMw3+iDN0TyPx1k84WQcpYFIQAGbd3duNl4CTSHlvnAXQA1cT8/p8w7NvAIFFRB
-         Va6g==
+        with ESMTP id S235502AbiI2N1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 09:27:12 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D3F91B2D0C;
+        Thu, 29 Sep 2022 06:26:59 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id cy15-20020a056830698f00b0065c530585afso835589otb.2;
+        Thu, 29 Sep 2022 06:26:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=wDPVtJUkpxAb4ia1Z2nUs031++Rp/t2w7zinzfg9BkM=;
-        b=S4jmZp4KocEqeyKB17Jj+1hQFvAP7RQV24MwN4aVFCifdZbL07ZeVkl4ARrswnbTWU
-         Il65IxVIpTR4lhpbOK01rzlQKr7tpyn6nsvw06p4F5co0klxgZk9AqO43pyt4HkZidEF
-         ctdJAcyXQ6yC84wwbnoA1u+1eTTvMs55RZy25zfpwtAs5+kcDFbSqe9/Ez82zF3w+Io9
-         aD1hzhGwYiieJwEPoYHmBt+aGX25sYTIsZwctHs3wTZCA8Zqi+4/QC9VeUAKUIpwbeBG
-         8WvSiYnxcdroMiQpPgP7nRNHX8WvV+rOYY0glbifAAd2Fm2wP6AYVwBIPbXXdkJ43frY
-         VJ7A==
-X-Gm-Message-State: ACrzQf2iR9qkk2O1yAPwdF2bWwO7/34K9eU53gjhHCUhazNPcPcLQHbu
-        rn3ZJp957M8pgdFZf4uFOeW2uQ==
-X-Google-Smtp-Source: AMsMyM7eNcesW60hlnrnQRh8NSlG5JqGgeAgevFkrVoXrleVZIQ+E7rZQ9K5UElh63H5KeWMVrZTRg==
-X-Received: by 2002:a5d:64cd:0:b0:22a:ba05:8bcd with SMTP id f13-20020a5d64cd000000b0022aba058bcdmr2440358wri.74.1664457938006;
-        Thu, 29 Sep 2022 06:25:38 -0700 (PDT)
-Received: from localhost.localdomain (192.201.68.85.rev.sfr.net. [85.68.201.192])
-        by smtp.gmail.com with ESMTPSA id bu24-20020a056000079800b00226dedf1ab7sm7032222wrb.76.2022.09.29.06.25.37
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=oNT1DEKI3TdF1HI/qkSD42aLEyNijprBhsci8wmzfrE=;
+        b=GSPKxDfrKkuHCHBmANXa6h42J1bc6nBqzsukqZo5J2nR6ofWGo42ZR4tGxncGEQUqL
+         wrgxcirxRGsX0MLvMXDdbIU7jm7kvD1ckOvT2yoIvRUoLjraC7xMwLRa23D5qhodLaBm
+         N/C2If0gwaPqSAF3UncffuPXxeCPeUHTsJQKoD4zf7JWXNsC7j1MY0Q1jsL7Ctezl4KJ
+         fpFOR3X1iR5xwdR/+CWalcD50JhdTSp7+GL5rW1ZyH9q7+shoBhMEysz4YghObYv4fgq
+         EmFtet4THA0QP/jalKu/HFJ1EJv5azwqTbTk/nuoDSfzDFjeO/7YVa87jHs7ldBpqFi6
+         1+xQ==
+X-Gm-Message-State: ACrzQf3ri0NBAVMtBFciz6OYMnMKy6z2vInGblKLr1xZsRM+Xbl6al4y
+        R21H6O9t+c9t1YRT+/K3Eg==
+X-Google-Smtp-Source: AMsMyM5+BBcdZkC7+B9FQICq1MumQkAyEKVPwHqYg6DLqIAVE+cqHK6wc1WEEkXaK3RVvgjFEXpomw==
+X-Received: by 2002:a05:6830:43ab:b0:658:2908:d909 with SMTP id s43-20020a05683043ab00b006582908d909mr1272894otv.294.1664458007300;
+        Thu, 29 Sep 2022 06:26:47 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id x4-20020a056870434400b0011bde9f5745sm3902079oah.23.2022.09.29.06.26.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 06:25:37 -0700 (PDT)
-From:   Jerome Neanne <jneanne@baylibre.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, msp@baylibre.com,
-        Jerome Neanne <jneanne@baylibre.com>
-Subject: [PATCH 2/2] dt-bindings: gpio-regulator: add vin-supply property support
-Date:   Thu, 29 Sep 2022 15:25:26 +0200
-Message-Id: <20220929132526.29427-3-jneanne@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220929132526.29427-1-jneanne@baylibre.com>
-References: <20220929132526.29427-1-jneanne@baylibre.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Thu, 29 Sep 2022 06:26:46 -0700 (PDT)
+Received: (nullmailer pid 1958793 invoked by uid 1000);
+        Thu, 29 Sep 2022 13:26:46 -0000
+Date:   Thu, 29 Sep 2022 08:26:46 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Erling Ljunggren <hljunggr@cisco.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] dt-bindings: media: add cat24c208 bindings
+Message-ID: <20220929132646.GA1881529-robh@kernel.org>
+References: <20220928112147.358745-1-hljunggr@cisco.com>
+ <20220928112147.358745-4-hljunggr@cisco.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220928112147.358745-4-hljunggr@cisco.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,31 +61,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is same scheme as fixed-regulator.
+On Wed, Sep 28, 2022 at 01:21:45PM +0200, Erling Ljunggren wrote:
+> Add devicetree bindings for new cat24c208 EDID EEPROM driver.
+> 
+> Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
+> ---
+>  .../bindings/media/i2c/onnn,cat24c208.yaml    | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+> new file mode 100644
+> index 000000000000..fcfaccb5e39f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ON Semiconductor CAT24C208 EDID EEPROM driver
+> +
+> +maintainers:
+> +  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> +
+> +description: |
+> +  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
+> +
+> +
+> +properties:
+> +  compatible:
+> +    const: onnn,cat24c208
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  hpd-gpios:
+> +    maxItems: 1
+> +    description:
+> +      References to the GPIO that controls the HDMI hot-plug detection pin.
+> +      The active flag indicates the GPIO level that enables hot-plug detection.
 
-Without that property used, the parent regulator can be shut down (if not an always on).
-Thus leading to inappropriate behavior:
-On am62-SP-SK this fix is required to avoid tps65219 ldo1 (SDMMC rail) to be shut down after boot completion.
+This node is supposed to represent a device, cat24c208, but that device 
+I'm guessing knows nothing about HPD. That's a property of the connector 
+and belongs in a connector node much like we have for the other side of 
+display connections. It may seem like overkill, but it frequently 
+evolves such that not having a connector node becomes a problem. See 
+'hdmi-connector' binding for example.
 
-Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
----
- .../devicetree/bindings/regulator/gpio-regulator.yaml          | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/regulator/gpio-regulator.yaml b/Documentation/devicetree/bindings/regulator/gpio-regulator.yaml
-index f7e3d8fd3b..6c3371d706 100644
---- a/Documentation/devicetree/bindings/regulator/gpio-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/gpio-regulator.yaml
-@@ -85,6 +85,9 @@ properties:
-       - current
-     default: voltage
- 
-+  vin-supply:
-+    description: Input supply phandle.
-+
- required:
-   - compatible
-   - regulator-name
--- 
-2.17.1
-
+Rob
