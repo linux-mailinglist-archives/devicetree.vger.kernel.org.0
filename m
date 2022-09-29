@@ -2,113 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F1D5EF680
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 15:27:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A1295EF695
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 15:31:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235756AbiI2N1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 09:27:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33468 "EHLO
+        id S235007AbiI2Nbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 09:31:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235502AbiI2N1M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 09:27:12 -0400
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D3F91B2D0C;
-        Thu, 29 Sep 2022 06:26:59 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id cy15-20020a056830698f00b0065c530585afso835589otb.2;
-        Thu, 29 Sep 2022 06:26:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=oNT1DEKI3TdF1HI/qkSD42aLEyNijprBhsci8wmzfrE=;
-        b=GSPKxDfrKkuHCHBmANXa6h42J1bc6nBqzsukqZo5J2nR6ofWGo42ZR4tGxncGEQUqL
-         wrgxcirxRGsX0MLvMXDdbIU7jm7kvD1ckOvT2yoIvRUoLjraC7xMwLRa23D5qhodLaBm
-         N/C2If0gwaPqSAF3UncffuPXxeCPeUHTsJQKoD4zf7JWXNsC7j1MY0Q1jsL7Ctezl4KJ
-         fpFOR3X1iR5xwdR/+CWalcD50JhdTSp7+GL5rW1ZyH9q7+shoBhMEysz4YghObYv4fgq
-         EmFtet4THA0QP/jalKu/HFJ1EJv5azwqTbTk/nuoDSfzDFjeO/7YVa87jHs7ldBpqFi6
-         1+xQ==
-X-Gm-Message-State: ACrzQf3ri0NBAVMtBFciz6OYMnMKy6z2vInGblKLr1xZsRM+Xbl6al4y
-        R21H6O9t+c9t1YRT+/K3Eg==
-X-Google-Smtp-Source: AMsMyM5+BBcdZkC7+B9FQICq1MumQkAyEKVPwHqYg6DLqIAVE+cqHK6wc1WEEkXaK3RVvgjFEXpomw==
-X-Received: by 2002:a05:6830:43ab:b0:658:2908:d909 with SMTP id s43-20020a05683043ab00b006582908d909mr1272894otv.294.1664458007300;
-        Thu, 29 Sep 2022 06:26:47 -0700 (PDT)
-Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x4-20020a056870434400b0011bde9f5745sm3902079oah.23.2022.09.29.06.26.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 06:26:46 -0700 (PDT)
-Received: (nullmailer pid 1958793 invoked by uid 1000);
-        Thu, 29 Sep 2022 13:26:46 -0000
-Date:   Thu, 29 Sep 2022 08:26:46 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Erling Ljunggren <hljunggr@cisco.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] dt-bindings: media: add cat24c208 bindings
-Message-ID: <20220929132646.GA1881529-robh@kernel.org>
-References: <20220928112147.358745-1-hljunggr@cisco.com>
- <20220928112147.358745-4-hljunggr@cisco.com>
+        with ESMTP id S234922AbiI2Nbc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 09:31:32 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A12DD137460;
+        Thu, 29 Sep 2022 06:31:27 -0700 (PDT)
+Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 6A28D1C80E70;
+        Thu, 29 Sep 2022 21:31:25 +0800 (CST)
+Received: from NTHCML01A.nuvoton.com (10.1.8.177) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 29
+ Sep 2022 21:31:25 +0800
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCML01A.nuvoton.com
+ (10.1.8.177) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Thu, 29 Sep
+ 2022 21:31:24 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS04.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Thu, 29 Sep 2022 21:31:24 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id A1B97637C4; Thu, 29 Sep 2022 16:31:23 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <olivia@selenic.com>,
+        <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <openbmc@lists.ozlabs.org>, <linux-crypto@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v2 0/2] rng: npcm: add Arbel NPCM8XX support
+Date:   Thu, 29 Sep 2022 16:31:09 +0300
+Message-ID: <20220929133111.73897-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220928112147.358745-4-hljunggr@cisco.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 28, 2022 at 01:21:45PM +0200, Erling Ljunggren wrote:
-> Add devicetree bindings for new cat24c208 EDID EEPROM driver.
-> 
-> Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
-> ---
->  .../bindings/media/i2c/onnn,cat24c208.yaml    | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-> new file mode 100644
-> index 000000000000..fcfaccb5e39f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ON Semiconductor CAT24C208 EDID EEPROM driver
-> +
-> +maintainers:
-> +  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> +
-> +description: |
-> +  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
-> +
-> +
-> +properties:
-> +  compatible:
-> +    const: onnn,cat24c208
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  hpd-gpios:
-> +    maxItems: 1
-> +    description:
-> +      References to the GPIO that controls the HDMI hot-plug detection pin.
-> +      The active flag indicates the GPIO level that enables hot-plug detection.
+This patch set adds Arbel NPCM8XX Random Number Generator(RNG) support 
+to RNG NPCM driver.
 
-This node is supposed to represent a device, cat24c208, but that device 
-I'm guessing knows nothing about HPD. That's a property of the connector 
-and belongs in a connector node much like we have for the other side of 
-display connections. It may seem like overkill, but it frequently 
-evolves such that not having a connector node becomes a problem. See 
-'hdmi-connector' binding for example.
+The NPCM8XX RNG uses different prescalar clock value.
 
-Rob
+The NPCM RNG driver was tested on the NPCM845 evaluation board.
+
+Addressed comments from:
+ - Krzysztof Kozlowski: https://www.spinics.net/lists/kernel/msg4523771.html
+			https://www.spinics.net/lists/kernel/msg4523585.html
+
+Changes since version 1:
+ - Fix dt-binding document warning.
+ - Use driver data to handle architecture specific clock prescaler.
+
+Tomer Maimon (2):
+  dt-bindings: rng: nuvoton,npcm-rng: Add npcm845 compatible string
+  hwrng: npcm: Add NPCM8XX support
+
+ .../devicetree/bindings/rng/nuvoton,npcm-rng.yaml  |  4 +++-
+ drivers/char/hw_random/npcm-rng.c                  | 14 ++++++++++----
+ 2 files changed, 13 insertions(+), 5 deletions(-)
+
+-- 
+2.33.0
+
