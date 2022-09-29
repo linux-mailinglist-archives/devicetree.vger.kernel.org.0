@@ -2,85 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A940D5EF28D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:46:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C91155EF2BB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:53:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235288AbiI2Jp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 05:45:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39954 "EHLO
+        id S231232AbiI2JxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 05:53:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235621AbiI2JpH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:45:07 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A0944DB08;
-        Thu, 29 Sep 2022 02:44:41 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28T9gK9Q005931;
-        Thu, 29 Sep 2022 09:44:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=5Hp4sD9jud9mlyXmC8TOXONcL2xXQQ9BwEsTMuFD2B8=;
- b=PN+EhcqBSFwxJm9VRRDx/T+nOA23pR/G4lIy8z3B2k5WAuQoLbjsll+eIydfZYZUCagF
- S5Srb5+N+a6vHk1oz8hNsHAzTDwgUkKJLdobgwtofqIkmSbUeWoxht8RwRuYI141mrTH
- 9v92MnIMbPHzbEqvgivi12IXg2+gkzyHD+rsij3pdTKhWPJm+wGyToYz6lT7/vNN/QVS
- ePp50w/Eg4YbeP6nTP/isBSWiR53kPmBqKFraJAiwQWhTi/Y1o4446RIeyrrUoa8OVFs
- PLyhMa/+WIw0GqEeOY535W6y4bAiP/8Q2JnLMtClnLNrA9j9IN+NN4NHB/IIyJSt1uOV xQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jw4pc0v38-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Sep 2022 09:44:32 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28T9iWWJ028145
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Sep 2022 09:44:32 GMT
-Received: from [10.216.29.250] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 29 Sep
- 2022 02:44:28 -0700
-Message-ID: <270b0dfe-25fb-b5a1-e0cc-6a284367a173@quicinc.com>
-Date:   Thu, 29 Sep 2022 15:14:24 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Update SNPS Phy params for
- SC7280
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S232166AbiI2JxT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:53:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E4A14D261;
+        Thu, 29 Sep 2022 02:53:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E7B1560ACC;
+        Thu, 29 Sep 2022 09:53:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C93E8C433C1;
+        Thu, 29 Sep 2022 09:53:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1664445197;
+        bh=R1NvDgZRtrXVFA3NssmHZXzvdQTGba15W5h1CTKdip8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TP+0EWB2thnu0XkLsi+Vrcx3gYJ+laRcE+nOsq+vSDXdSt10J+Ed4OXlHxt1bHW3E
+         fJSGWFBf77MH+Fbc9m3oFVbv3xyeXnkPNBNJknUWWzoWIBcb8ae7nK9dW8bUdmljKU
+         55+dmoe5i3yEcRyeNEdbZc2cccUDs0aiiNRe31GM=
+Date:   Thu, 29 Sep 2022 11:53:09 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     macro@orcam.me.uk, Lee Jones <lee@kernel.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1664435628-4011-1-git-send-email-quic_kriskura@quicinc.com>
- <CAA8EJpr9pcN-SG-yQNUGEoHCmv74prChprj4f42PKpSAzGzVKQ@mail.gmail.com>
- <0cc382cb-b76e-a5a5-3480-47a451bdc958@quicinc.com>
- <CAA8EJprvHSFKS2ZOLyeYgUpj4Fzec01RhQ7=nUh=qDpYBe0hrA@mail.gmail.com>
- <4d391a78-f524-5bb7-92e0-9778396ed0cb@linaro.org>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <4d391a78-f524-5bb7-92e0-9778396ed0cb@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: gMy-6Q-BWkXqlv_TaoNzVGY0wN80jvQE
-X-Proofpoint-GUID: gMy-6Q-BWkXqlv_TaoNzVGY0wN80jvQE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-29_05,2022-09-29_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=986 priorityscore=1501 adultscore=0 phishscore=0 spamscore=0
- mlxscore=0 clxscore=1011 lowpriorityscore=0 malwarescore=0 impostorscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209290059
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Thu Nguyen <thu@os.amperecomputing.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com
+Subject: Re: [PATCH v9 3/9] misc: smpro-errmon: Add Ampere's SMpro error
+ monitor driver
+Message-ID: <YzVrBZOatELcfDc5@kroah.com>
+References: <20220929094321.770125-1-quan@os.amperecomputing.com>
+ <20220929094321.770125-4-quan@os.amperecomputing.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220929094321.770125-4-quan@os.amperecomputing.com>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,54 +66,338 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 9/29/2022 2:44 PM, Krzysztof Kozlowski wrote:
-> On 29/09/2022 11:02, Dmitry Baryshkov wrote:
->> On Thu, 29 Sept 2022 at 11:54, Krishna Kurapati PSSNV
->> <quic_kriskura@quicinc.com> wrote:
->>>
->>>
->>> On 9/29/2022 1:29 PM, Dmitry Baryshkov wrote:
->>>> On Thu, 29 Sept 2022 at 10:14, Krishna Kurapati
->>>> <quic_kriskura@quicinc.com> wrote:
->>>>>
->>>>> Override the SNPS Phy tuning parameters for SC7280 devices. These
->>>>> values are common for both trogdor and herobrine variants.
->>>>
->>>> They are common for trogdor and herobrine, but should these parameters
->>>> be a default? In other words, a random new device based on sc7280
->>>> would more likely use these overrides or the hardware defaults?
->>>>
->>> Hi Dmitry,
->>>
->>>     Currently there are only two platforms, so I made these changes on
->>> common dtsi. If a new platform comes (mostly it won't) we can override
->>> them in platform specific file is what I thought.
->>
-Hi Dmitry, Krzysztof,
-
->> This is not how it usually works. The 'sc7280.dtsi' is not a 'common
->> dtsi' for trogdor and herobrine. It describes the SoC.
->> Thus in my opinion if these overrides should be a default to all
->> sc7280 platforms, this patch is fine. If these overrides are
->> applicable only to the two mentioned platforms, they should go to
->> respective platform-specific DT files.
+On Thu, Sep 29, 2022 at 04:43:15PM +0700, Quan Nguyen wrote:
+> This commit adds Ampere's SMpro error monitor driver for monitoring
+> and reporting RAS-related errors as reported by SMpro co-processor
+> found on Ampere's Altra processor family.
 > 
-> Dmitry's conclusion is correct here. The true question is whether these
-> are properties of the SoC itself (so do not depend on the board or board
-> layout) or these depend on design of board.
+> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> ---
+> Changes in v9:
+>   + Fix ugly static struct define                               [Greg]
+>   + Remove unused defines and update documentation              [Quan]
+>   + Add minor refactor code                                     [Quan]
+>   + Fix messy goto                                              [Greg]
+>   + Update SPDX licence                                         [Greg]
+>   + Use ATTRIBUTE_GROUPS()                                      [Greg]
+>   + Use dev_groups instead of sysfs_create_group() to avoid
+>   racing issue with user space                                  [Greg]
+>   + Refactor code to fix unnecessary initialization issue       [Quan]
+>   + Refactor code to avoid clever encoding issue                [Quan]
+>   + Separate error_[smpro|pmpro] to error_* and warn_*          [Quan]
+>   + Add minor code refactor                                     [Quan]
 > 
-> Best regards,
-> Krzysztof
+> Changes in v8:
+>   + Update wording for SMPRO_ERRMON on Kconfig file             [Quan]
+>   + Avoid uninitialized variable use               [kernel test robot]
+>   + Switch to use sysfs_emit()                                  [Greg]
+>   + Make sysfs to return single value                           [Greg]
+>   + Change errors_* sysfs to error_*                            [Quan]
+>   + Add overflow_[core|mem|pcie|other]_[ce|ue] sysfs to report
+>   overflow status of each type of HW errors                     [Quan]
+>   + Add some minor refactor                                     [Quan]
 > 
-Thanks for the info. These parameters are per-board and not common to 
-SoC. I sent one patch previously for IDP platform [1]. I will let that 
-get merged and I will send a v2 of this patch adding parameters only for 
-herobrine platform.
+> Changes in v7:
+>   + Remove regmap_acquire/release_lock(), read_i2c_block_data() [Quan]
+>   + Use regmap_noinc_read() instead of errmon_read_block()      [Quan]
+>   + Validate number of errors before read                       [Quan]
+>   + Fix wrong return type of *_show() function     [kernel test robot]
+>   + Adjust patch order to avoid dependence with smpro-mfd  [Lee Jones]
+>   + Use pointer instead of stack memory                         [Quan]
+> 
+> Changes in v6:
+>   + First introduced in v6 [Quan]
+> 
+>  drivers/misc/Kconfig        |  12 +
+>  drivers/misc/Makefile       |   1 +
+>  drivers/misc/smpro-errmon.c | 529 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 542 insertions(+)
+>  create mode 100644 drivers/misc/smpro-errmon.c
+> 
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 358ad56f6524..b9ceee949dab 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -176,6 +176,18 @@ config SGI_XP
+>  	  this feature will allow for direct communication between SSIs
+>  	  based on a network adapter and DMA messaging.
+>  
+> +config SMPRO_ERRMON
+> +	tristate "Ampere Computing SMPro error monitor driver"
+> +	depends on MFD_SMPRO || COMPILE_TEST
+> +	help
+> +	  Say Y here to get support for the SMpro error monitor function
+> +	  provided by Ampere Computing's Altra and Altra Max SoCs. Upon
+> +	  loading, the driver creates sysfs files which can be use to gather
+> +	  multiple HW error data reported via read and write system calls.
+> +
+> +	  To compile this driver as a module, say M here. The driver will be
+> +	  called smpro-errmon.
+> +
+>  config CS5535_MFGPT
+>  	tristate "CS5535/CS5536 Geode Multi-Function General Purpose Timer (MFGPT) support"
+>  	depends on MFD_CS5535
+> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> index ac9b3e757ba1..bbe24d4511a3 100644
+> --- a/drivers/misc/Makefile
+> +++ b/drivers/misc/Makefile
+> @@ -23,6 +23,7 @@ obj-$(CONFIG_ENCLOSURE_SERVICES) += enclosure.o
+>  obj-$(CONFIG_KGDB_TESTS)	+= kgdbts.o
+>  obj-$(CONFIG_SGI_XP)		+= sgi-xp/
+>  obj-$(CONFIG_SGI_GRU)		+= sgi-gru/
+> +obj-$(CONFIG_SMPRO_ERRMON)	+= smpro-errmon.o
+>  obj-$(CONFIG_CS5535_MFGPT)	+= cs5535-mfgpt.o
+>  obj-$(CONFIG_GEHC_ACHC)		+= gehc-achc.o
+>  obj-$(CONFIG_HP_ILO)		+= hpilo.o
+> diff --git a/drivers/misc/smpro-errmon.c b/drivers/misc/smpro-errmon.c
+> new file mode 100644
+> index 000000000000..d1431d419aa4
+> --- /dev/null
+> +++ b/drivers/misc/smpro-errmon.c
+> @@ -0,0 +1,529 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Ampere Computing SoC's SMpro Error Monitoring Driver
+> + *
+> + * Copyright (c) 2022, Ampere Computing LLC
+> + *
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +/* GPI RAS Error Registers */
+> +#define GPI_RAS_ERR		0x7E
+> +
+> +/* Core and L2C Error Registers */
+> +#define CORE_CE_ERR_CNT		0x80
+> +#define CORE_CE_ERR_LEN		0x81
+> +#define CORE_CE_ERR_DATA	0x82
+> +#define CORE_UE_ERR_CNT		0x83
+> +#define CORE_UE_ERR_LEN		0x84
+> +#define CORE_UE_ERR_DATA	0x85
+> +
+> +/* Memory Error Registers */
+> +#define MEM_CE_ERR_CNT		0x90
+> +#define MEM_CE_ERR_LEN		0x91
+> +#define MEM_CE_ERR_DATA		0x92
+> +#define MEM_UE_ERR_CNT		0x93
+> +#define MEM_UE_ERR_LEN		0x94
+> +#define MEM_UE_ERR_DATA		0x95
+> +
+> +/* RAS Error/Warning Registers */
+> +#define ERR_SMPRO_TYPE		0xA0
+> +#define ERR_PMPRO_TYPE		0xA1
+> +#define ERR_SMPRO_INFO_LO	0xA2
+> +#define ERR_SMPRO_INFO_HI	0xA3
+> +#define ERR_SMPRO_DATA_LO	0xA4
+> +#define ERR_SMPRO_DATA_HI	0xA5
+> +#define WARN_SMPRO_INFO_LO	0xAA
+> +#define WARN_SMPRO_INFO_HI	0xAB
+> +#define ERR_PMPRO_INFO_LO	0xA6
+> +#define ERR_PMPRO_INFO_HI	0xA7
+> +#define ERR_PMPRO_DATA_LO	0xA8
+> +#define ERR_PMPRO_DATA_HI	0xA9
+> +#define WARN_PMPRO_INFO_LO	0xAC
+> +#define WARN_PMPRO_INFO_HI	0xAD
+> +
+> +/* PCIE Error Registers */
+> +#define PCIE_CE_ERR_CNT		0xC0
+> +#define PCIE_CE_ERR_LEN		0xC1
+> +#define PCIE_CE_ERR_DATA	0xC2
+> +#define PCIE_UE_ERR_CNT		0xC3
+> +#define PCIE_UE_ERR_LEN		0xC4
+> +#define PCIE_UE_ERR_DATA	0xC5
+> +
+> +/* Other Error Registers */
+> +#define OTHER_CE_ERR_CNT	0xD0
+> +#define OTHER_CE_ERR_LEN	0xD1
+> +#define OTHER_CE_ERR_DATA	0xD2
+> +#define OTHER_UE_ERR_CNT	0xD8
+> +#define OTHER_UE_ERR_LEN	0xD9
+> +#define OTHER_UE_ERR_DATA	0xDA
+> +
+> +/* Event Data Registers */
+> +#define VRD_WARN_FAULT_EVENT_DATA	0x78
+> +#define VRD_HOT_EVENT_DATA		0x79
+> +#define DIMM_HOT_EVENT_DATA		0x7A
+> +
+> +#define MAX_READ_BLOCK_LENGTH	48
+> +
+> +#define RAS_SMPRO_ERR		0
+> +#define RAS_PMPRO_ERR		1
+> +
+> +enum RAS_48BYTES_ERR_TYPES {
+> +	CORE_CE_ERR,
+> +	CORE_UE_ERR,
+> +	MEM_CE_ERR,
+> +	MEM_UE_ERR,
+> +	PCIE_CE_ERR,
+> +	PCIE_UE_ERR,
+> +	OTHER_CE_ERR,
+> +	OTHER_UE_ERR,
+> +	NUM_48BYTES_ERR_TYPE,
+> +};
+> +
+> +struct smpro_error_hdr {
+> +	u8 count;	/* Number of the RAS errors */
+> +	u8 len;		/* Number of data bytes */
+> +	u8 data;	/* Start of 48-byte data */
+> +	u8 max_cnt;	/* Max num of errors */
+> +};
+> +
+> +/*
+> + * Included Address of registers to get Count, Length of data and Data
+> + * of the 48 bytes error data
+> + */
+> +static struct smpro_error_hdr smpro_error_table[] = {
+> +	[CORE_CE_ERR] = {
+> +		.count = CORE_CE_ERR_CNT,
+> +		.len = CORE_CE_ERR_LEN,
+> +		.data = CORE_CE_ERR_DATA,
+> +		.max_cnt = 32
+> +	},
+> +	[CORE_UE_ERR] = {
+> +		.count = CORE_UE_ERR_CNT,
+> +		.len = CORE_UE_ERR_LEN,
+> +		.data = CORE_UE_ERR_DATA,
+> +		.max_cnt = 32
+> +	},
+> +	[MEM_CE_ERR] = {
+> +		.count = MEM_CE_ERR_CNT,
+> +		.len = MEM_CE_ERR_LEN,
+> +		.data = MEM_CE_ERR_DATA,
+> +		.max_cnt = 16
+> +	},
+> +	[MEM_UE_ERR] = {
+> +		.count = MEM_UE_ERR_CNT,
+> +		.len = MEM_UE_ERR_LEN,
+> +		.data = MEM_UE_ERR_DATA,
+> +		.max_cnt = 16
+> +	},
+> +	[PCIE_CE_ERR] = {
+> +		.count = PCIE_CE_ERR_CNT,
+> +		.len = PCIE_CE_ERR_LEN,
+> +		.data = PCIE_CE_ERR_DATA,
+> +		.max_cnt = 96
+> +	},
+> +	[PCIE_UE_ERR] = {
+> +		.count = PCIE_UE_ERR_CNT,
+> +		.len = PCIE_UE_ERR_LEN,
+> +		.data = PCIE_UE_ERR_DATA,
+> +		.max_cnt = 96
+> +	},
+> +	[OTHER_CE_ERR] = {
+> +		.count = OTHER_CE_ERR_CNT,
+> +		.len = OTHER_CE_ERR_LEN,
+> +		.data = OTHER_CE_ERR_DATA,
+> +		.max_cnt = 8
+> +	},
+> +	[OTHER_UE_ERR] = {
+> +		.count = OTHER_UE_ERR_CNT,
+> +		.len = OTHER_UE_ERR_LEN,
+> +		.data = OTHER_UE_ERR_DATA,
+> +		.max_cnt = 8
+> +	},
+> +};
+> +
+> +/*
+> + * List of SCP registers which are used to get
+> + * one type of RAS Internal errors.
+> + */
+> +struct smpro_int_error_hdr {
+> +	u8 type;
+> +	u8 info_l;
+> +	u8 info_h;
+> +	u8 data_l;
+> +	u8 data_h;
+> +	u8 warn_l;
+> +	u8 warn_h;
+> +};
+> +
+> +static struct smpro_int_error_hdr list_smpro_int_error_hdr[] = {
+> +	[RAS_SMPRO_ERR] = {
+> +		.type = ERR_SMPRO_TYPE,
+> +		.info_l = ERR_SMPRO_INFO_LO,
+> +		.info_h = ERR_SMPRO_INFO_HI,
+> +		.data_l = ERR_SMPRO_DATA_LO,
+> +		.data_h = ERR_SMPRO_DATA_HI,
+> +		.warn_l = WARN_SMPRO_INFO_LO,
+> +		.warn_h = WARN_SMPRO_INFO_HI,
+> +	},
+> +	[RAS_PMPRO_ERR] = {
+> +		.type = ERR_PMPRO_TYPE,
+> +		.info_l = ERR_PMPRO_INFO_LO,
+> +		.info_h = ERR_PMPRO_INFO_HI,
+> +		.data_l = ERR_PMPRO_DATA_LO,
+> +		.data_h = ERR_PMPRO_DATA_HI,
+> +		.warn_l = WARN_PMPRO_INFO_LO,
+> +		.warn_h = WARN_PMPRO_INFO_HI,
+> +	},
+> +};
+> +
+> +struct smpro_errmon {
+> +	struct regmap *regmap;
+> +};
+> +
+> +enum EVENT_TYPES {
+> +	VRD_WARN_FAULT_EVENT,
+> +	VRD_HOT_EVENT,
+> +	DIMM_HOT_EVENT,
+> +	NUM_EVENTS_TYPE,
+> +};
+> +
+> +/* Included Address of event source and data registers */
+> +static u8 smpro_event_table[NUM_EVENTS_TYPE] = {
+> +	VRD_WARN_FAULT_EVENT_DATA,
+> +	VRD_HOT_EVENT_DATA,
+> +	DIMM_HOT_EVENT_DATA,
+> +};
+> +
+> +static ssize_t smpro_event_data_read(struct device *dev,
+> +				     struct device_attribute *da, char *buf,
+> +				     int channel)
+> +{
+> +	struct smpro_errmon *errmon = dev_get_drvdata(dev);
+> +	s32 event_data;
+> +	int ret;
+> +
+> +	ret = regmap_read(errmon->regmap, smpro_event_table[channel], &event_data);
+> +	if (ret)
+> +		return ret;
+> +	/* Clear event after read */
+> +	if (event_data != 0)
+> +		regmap_write(errmon->regmap, smpro_event_table[channel], event_data);
+> +
+> +	return sysfs_emit(buf, "%04x\n", event_data);
+> +}
+> +
+> +static ssize_t smpro_overflow_data_read(struct device *dev, struct device_attribute *da,
+> +					char *buf, int channel)
+> +{
+> +	struct smpro_errmon *errmon = dev_get_drvdata(dev);
+> +	struct smpro_error_hdr *err_info;
+> +	s32 err_count;
+> +	int ret;
+> +
+> +	err_info = &smpro_error_table[channel];
+> +
+> +	ret = regmap_read(errmon->regmap, err_info->count, &err_count);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Bit 8 indicates the overflow status */
+> +	return sysfs_emit(buf, "%d\n", (err_count & BIT(8)) ? 1 : 0);
+> +}
 
-[1] : 
-https://patchwork.kernel.org/project/linux-usb/patch/1662480933-12326-4-git-send-email-quic_kriskura@quicinc.com/
+Where is the Documentation/ABI/ entry for this field?
 
-Thanks,
-Krishna,
+Please put that in the same commit so that it is easier to validate that
+you really did document everything properly.
+
+thanks,
+
+greg k-h
