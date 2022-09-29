@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 033AC5EF4A5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 13:48:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B63BB5EF4E0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 14:00:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235421AbiI2LsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 07:48:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55346 "EHLO
+        id S235103AbiI2MAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 08:00:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235601AbiI2Lrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 07:47:47 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81460151B2C
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 04:47:46 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id a8so1813085lff.13
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 04:47:46 -0700 (PDT)
+        with ESMTP id S235503AbiI2L7z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 07:59:55 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68E1610561
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 04:59:53 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id r6so1814177wru.8
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 04:59:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=aSlVEfb6wnDYtrnOuzX2ls16fh7KcS4K9DsHeur+Ejk=;
-        b=lUzCaviMsGgmGJ6hkXVUgsjKl1VLH2F4cyoNzNCcn1P544z/Rx3e4kBz1KVpKxdt6G
-         bkdTBKlAI90Wy12ivOwDhEaekVGKDTa38Pbzf5n0FdB75OOOEiTN8F95qTR7fXar12FI
-         Yabk3Duj+/kPLEilpkk2sNYKPExgsQGqP5zziCnF0UZ1sFcMqrMigpDKkv4TjGnaR5o5
-         mj8JIGIjI4GI8odFpY+BrAO0Tv1urQVJVF3wCuHfP68AeYuN7F7MqGsJHZJcoI+arBHI
-         cHhFo3GzFmmRrZ1yep3lJyrgjvgx+jBLoAKrcpmhdabNQ7xaMKmFoB9CurtkA+1qSRt7
-         aBnQ==
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date;
+        bh=dUJSDU18CYMRaGiSwsSx0be26VdLB2sB4pmCGCZ1IG8=;
+        b=gfZLQB37F/ECpiUTEE8nEiJ2ocsiIimYEgyMYu3pK6czkZ5QdczYpdFtLKhvfvhvOz
+         Tn6T3q8mjioWtK17djtkQuE7zbz7j5h9rrdNk9L/sw/Il0sZ3ixTBx6Q7dOWLb9siC1/
+         hP76CTuydLQuQ/bIzpRWqnCjCuMuMxFUzhNAiuQQHWK110LYZld6UOw9/xetGEA0GiRm
+         avaKhLDoVAPfezd3dNoJopyRkwPc8tT3nobuLnATM/ikj3dj1hFlA5SxcBUqrjtXJU/T
+         7Q7ZAPFj2Ijgs51r+mQ20RoRVa7ULENXM9zsw+gDhY0JWwSQsY8ZvfsrJ67IQ9rLuqSh
+         rHMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=aSlVEfb6wnDYtrnOuzX2ls16fh7KcS4K9DsHeur+Ejk=;
-        b=AvRMYDuOzX4FKek6rRW75CQITyFX0CMIwklQ6SWuOq1cg/3L/X7EjxfHcC/Zf6NH69
-         uPMRqrNio2D1VhEpGKFigH+9P7cuaY4wbILlcQ0YxgEp5H6pFztOKT+TgE+VOvPgI4br
-         T7heeZhk9Z4yC+TGanwJJq8QipTZockZ8Bw2IL9cREn3pxxHI+Pdzx4CA7qGhHiQqEQg
-         7mBzp8xjRNUstTakYgUVh3/C6njEkq4Llu+/aLXVuP58eVqHAncsVlYMGTWyBGn4sTQa
-         ZEdnOv0vSapo+onme+hnuKo1/mZW4hCur5RO3QbVBT+KNsv2iq8VLlf8be5rNpluQ+VQ
-         TUZw==
-X-Gm-Message-State: ACrzQf1GmE4wmWY7NDpIUZ4/Jj0ask1tgJwXQympImQNE174gzJGC+xy
-        oXr0+m78MaRz8+PNVAZFkScUQ3bUM9nMTw==
-X-Google-Smtp-Source: AMsMyM5QerQ1m9hBoAB4XhpAEC/07Xcm5gSBvbF7Likl4rJSTnIN6znqFOVPa5mCe0srBo5E3lw8Fg==
-X-Received: by 2002:a05:6512:3f0e:b0:4a0:45b7:a8dc with SMTP id y14-20020a0565123f0e00b004a045b7a8dcmr1184988lfa.368.1664452064759;
-        Thu, 29 Sep 2022 04:47:44 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w7-20020a05651204c700b004979da67114sm761370lfq.255.2022.09.29.04.47.43
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=dUJSDU18CYMRaGiSwsSx0be26VdLB2sB4pmCGCZ1IG8=;
+        b=jtFQ0CUcy6i/dU6t4HXwsg+F/s+zxWZZrgKXFHwOuoJZ8QoCs8noVoUSDAAKu6Bhev
+         uNYIfQphMCbXKK5fE7IUV6jTb5xqtSlRQSHuIeKs17/jmdFpO1MfBYSnxAG+m/YPdO+F
+         1VkhC7XpbNqQg3G8TbokoQv2r+NsmZ7knTKaPoAj6lU9uc0ULf2RvEYu9cSGbaWp0YTW
+         DZh45iWc3kyPivE9Mv8vfo8ohWJO8bDFozt5lTLRuJNofvU+DMRLy6fwxu7/EydVo+Cb
+         LdJnTWge+10Hdr4ysypitsNllveqeSHz4h+G9BgmS1NTXbL374uuiTJghA5Nzvt0nVtr
+         XYLg==
+X-Gm-Message-State: ACrzQf1v+8Bbm26pLzLzUW67OUdaXAwGAETuntxSl04ZwJjdR4QjhwnE
+        lxsAfxPgsiIZRIbJL91cEIGeH7JY/YUVVmJk
+X-Google-Smtp-Source: AMsMyM5cAPD48p7fBfvz6VufLlQU5vLDMODK8UJznutNylTtmYB0V/mkXII3h//CZtHgtgBAo11pvA==
+X-Received: by 2002:adf:f482:0:b0:22c:c0f3:f067 with SMTP id l2-20020adff482000000b0022cc0f3f067mr1953249wro.517.1664452791959;
+        Thu, 29 Sep 2022 04:59:51 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff? ([2a01:e0a:982:cbb0:1f17:3ea3:4e46:dff])
+        by smtp.gmail.com with ESMTPSA id iv16-20020a05600c549000b003b4c40378casm4673941wmb.39.2022.09.29.04.59.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Sep 2022 04:47:44 -0700 (PDT)
-Message-ID: <f54377f0-a152-9367-1b06-f49df7466282@linaro.org>
-Date:   Thu, 29 Sep 2022 13:47:43 +0200
+        Thu, 29 Sep 2022 04:59:51 -0700 (PDT)
+Message-ID: <3fa19362-118b-232e-0baf-ee365fa2f2e2@linaro.org>
+Date:   Thu, 29 Sep 2022 13:59:50 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
 Subject: Re: [PATCH v1 5/7] arm: dts: qcom: mdm9615: remove invalid pmic
  subnodes compatibles
 Content-Language: en-US
-To:     neil.armstrong@linaro.org, Andy Gross <agross@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -72,9 +73,12 @@ References: <20220928-mdm9615-dt-schema-fixes-v1-0-b6e63a7df1e8@linaro.org>
  <7f8572ab-ff97-54bd-a5f3-fe0e179ee48e@linaro.org>
  <84cb8941-eb15-1bbf-59b7-bbcd6c15c30d@linaro.org>
  <07405d0d-8534-6470-21d1-26b85dbd7de0@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <07405d0d-8534-6470-21d1-26b85dbd7de0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+ <f54377f0-a152-9367-1b06-f49df7466282@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <f54377f0-a152-9367-1b06-f49df7466282@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -86,38 +90,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/09/2022 13:39, Neil Armstrong wrote:
->>>> The DTS looks correct unless you have some real argument that it is not.
+On 29/09/2022 13:47, Krzysztof Kozlowski wrote:
+> On 29/09/2022 13:39, Neil Armstrong wrote:
+>>>>> The DTS looks correct unless you have some real argument that it is not.
+>>>>>
+>>>>> How this should be fixed? First, drop bogus entries from drivers, then
+>>>>> document proper compatibles.
 >>>>
->>>> How this should be fixed? First, drop bogus entries from drivers, then
->>>> document proper compatibles.
+>>>> What do you mean ? There's no point to keep the PM8921 compatibles, the gpio
 >>>
->>> What do you mean ? There's no point to keep the PM8921 compatibles, the gpio
+>>> I asked at beginning - why? Why there is no point to keep them?
 >>
->> I asked at beginning - why? Why there is no point to keep them?
+>> Because the HW is an PM8018 and the addition of the PM8921 was for policy/organization/struggling-to-make-dt-merged-before-clear-dt-policy/...
+>> so you say I should modify the Bindings to reflect the actual "pm8018", "pm8921" situation instead of changing the DT even if incorrect ?
 > 
-> Because the HW is an PM8018 and the addition of the PM8921 was for policy/organization/struggling-to-make-dt-merged-before-clear-dt-policy/...
-> so you say I should modify the Bindings to reflect the actual "pm8018", "pm8921" situation instead of changing the DT even if incorrect ?
-
-Yes, this is what I already wrote:
-
-"How this should be fixed? First, drop bogus entries from drivers, then
-document proper compatibles."
-
->>> and PMIC bindings already enforces to only have the PM8018 compatible.
+> Yes, this is what I already wrote:
+> 
+> "How this should be fixed? First, drop bogus entries from drivers, then
+> document proper compatibles."
+> 
+>>>> and PMIC bindings already enforces to only have the PM8018 compatible.
+>>>
+>>> That is just partial argument because binding does not match DTS. So
+>>> something is not correct. Why do you assume bindings are correct?
 >>
->> That is just partial argument because binding does not match DTS. So
->> something is not correct. Why do you assume bindings are correct?
+>> Because bindings accurately reflects HW and DT doesn't.
 > 
-> Because bindings accurately reflects HW and DT doesn't.
+> That's not really an answer... Bindings are correct because they are
+> correct? What is exactly correct in the bindings? How they reflect the
+> HW in a proper way, while DTS does not?
+> 
+> Or let's focus on actual hardware - what are the properties of the
+> hardware which indicate that DTS is wrong?
 
-That's not really an answer... Bindings are correct because they are
-correct? What is exactly correct in the bindings? How they reflect the
-HW in a proper way, while DTS does not?
+The actual PMIC is an PM8018
 
-Or let's focus on actual hardware - what are the properties of the
-hardware which indicate that DTS is wrong?
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Best regards,
-Krzysztof
-
+Neil
