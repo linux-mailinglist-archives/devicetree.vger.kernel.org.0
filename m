@@ -2,102 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C2A65EF17E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 410C35EF18F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 11:13:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235778AbiI2JJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 05:09:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53060 "EHLO
+        id S235687AbiI2JM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 05:12:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234912AbiI2JIt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:08:49 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B3D14018F;
-        Thu, 29 Sep 2022 02:08:47 -0700 (PDT)
-X-UUID: c947fc08035b4bf0a5e094a4765f0fd9-20220929
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=05M3M7J7kDkTRDSeF5O8eaR0ZRr7az9EUbdWM6vT2FA=;
-        b=N9oZANvm1HKeH+fW6cUnhOHSNPJt+W1LdNsWuNfj+r13BvhosE2VpNCBX8tGNacpKRyQGIZRP9veeZ0nXG8sR4eWdX52b6nV0fduVokP5qo+gz/lRuAGaHfdqibFQZrljUmAYALD4fiei3omNge9Ws6G4AsXEy0pqCuYZbfomf4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:b66c37dc-e077-42fe-94ba-d4e84abc8c71,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:29e06e07-1cee-4c38-b21b-a45f9682fdc0,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: c947fc08035b4bf0a5e094a4765f0fd9-20220929
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 802079902; Thu, 29 Sep 2022 17:08:41 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 29 Sep 2022 17:08:39 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 29 Sep 2022 17:08:37 +0800
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S235696AbiI2JMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 05:12:33 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEEB21432BF
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 02:12:20 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id l12so840324ljg.9
+        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 02:12:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=If8WOilQ9PzmMBmCqzzeUtE56VOBe3wtjVI48jlzs/U=;
+        b=nWVITn6MkSynkIPZNerlsTMujNQYa8/JraQutVhVjiY8LzbTFTSD8NfyrFH75yMqhk
+         ThIRmlZTnsUxTUqcdrvsj1VPw9p0bK/82X5zchEr0Mms264hC/326I5d64nuPm/e5Ros
+         EDKngR5zzdhtZwPo2kqzvLf+gsoe8AQuVoJkOR6ackTyRD+ONS1qS0uTKzxKqHqRvBtU
+         kN2gYH8IVsiFBtgJfWaZpfwY4xBHtFDSScMTDD3RSeBV43rxmMHBfSgODAIkvTVC8evu
+         at7noYgsclEqzh6JXqMD5m07swrmI5VkegpACxkmlJe5pLo0FJJoSZyYygTMtf9xfuZb
+         udpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=If8WOilQ9PzmMBmCqzzeUtE56VOBe3wtjVI48jlzs/U=;
+        b=ZsGdAz2B/29QZZjq0fjbzeaDAJI22MZXjIIVUI1Q9CNF6iiEg3ejxAEF8rsWspm06u
+         byj/2DuadwVQ/oorVMCywnVqnLH3vhVLWnU9kGWA8a/TTT/KVQXauVaRNz146tDuODuM
+         DmasJ+AW+wzM0Su4wVI/YazDL0Rw2bG5CEohVRGIpdKIKQltGXhmFKYcaqyhPmQhjibk
+         U1vZRKmkHKmUmhNRlTGFwhCITs+vMICepvVwQlTM1xGdHJrTujnLOdJWIn3fNVPVyoah
+         rr2m5YJdCVYpwZzhCiW/TcCorLMY0JzUBMfDkGwL/aEpKrzO0559mqT+QDpMjSdxmBs6
+         qIzw==
+X-Gm-Message-State: ACrzQf0ZsgpwibKcxAl0/lvRHxM6A5DfyP/ZeFez1Fpjy4lW6qf+Zoo7
+        lJQzRx4+xlreuE+kiX3RkzW6tg==
+X-Google-Smtp-Source: AMsMyM5T8mjrHe0bl5/PGa1YKRjs5ZRA7sfUC3ddKYz2Wz1+BysRQoX8eim+Qe9RjdABamkS62DdBg==
+X-Received: by 2002:a2e:a601:0:b0:26c:4149:251a with SMTP id v1-20020a2ea601000000b0026c4149251amr749232ljp.348.1664442737761;
+        Thu, 29 Sep 2022 02:12:17 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id k4-20020a05651239c400b0048b143c09c2sm725091lfu.259.2022.09.29.02.12.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Sep 2022 02:12:17 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Tzung-Bi Shih" <tzungbi@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <nicolas.dufresne@collabora.com>, <wenst@chromium.org>,
-        kyrie wu <kyrie.wu@mediatek.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Tomasz Figa <tfiga@chromium.org>, <xia.jiang@mediatek.com>,
-        <maoguang.meng@mediatek.com>, irui wang <irui.wang@mediatek.com>
-Subject: [V17,15/15] mtk-jpegdec: add stop cmd interface for jpgdec
-Date:   Thu, 29 Sep 2022 17:08:17 +0800
-Message-ID: <20220929090817.24272-16-irui.wang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220929090817.24272-1-irui.wang@mediatek.com>
-References: <20220929090817.24272-1-irui.wang@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: clock: split qcom,gcc-sdm660 to the separate file
+Date:   Thu, 29 Sep 2022 12:12:16 +0300
+Message-Id: <20220929091216.471136-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: kyrie wu <kyrie.wu@mediatek.com>
+Move schema for the GCC on SDM630/SDM636/SDM660 to a separate file to be
+able to define device-specific clock properties.
 
-Add stop cmd interface for jpgdec to stop stream
-
-Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
-Signed-off-by: irui wang <irui.wang@mediatek.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c | 3 +++
- 1 file changed, 3 insertions(+)
+Changes since v1:
+- Change license to GPL-2.0 & BSD-2-Clause
+- Fix Taniya's email
+- Reword the bindings title as suggested by Krzysztof
+---
+ .../bindings/clock/qcom,gcc-other.yaml        |  3 -
+ .../bindings/clock/qcom,gcc-sdm660.yaml       | 61 +++++++++++++++++++
+ 2 files changed, 61 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdm660.yaml
 
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-index 2fe0e2a1c127..79a8f1b1965c 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-@@ -667,6 +667,9 @@ static const struct v4l2_ioctl_ops mtk_jpeg_dec_ioctl_ops = {
- 	.vidioc_streamoff               = v4l2_m2m_ioctl_streamoff,
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+index 76988e04c7db..35fc22a19000 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+@@ -24,7 +24,6 @@ description: |
+   - dt-bindings/clock/qcom,gcc-mdm9607.h
+   - dt-bindings/clock/qcom,gcc-mdm9615.h
+   - dt-bindings/reset/qcom,gcc-mdm9615.h
+-  - dt-bindings/clock/qcom,gcc-sdm660.h  (qcom,gcc-sdm630 and qcom,gcc-sdm660)
  
- 	.vidioc_unsubscribe_event	= v4l2_event_unsubscribe,
+ allOf:
+   - $ref: "qcom,gcc.yaml#"
+@@ -41,8 +40,6 @@ properties:
+       - qcom,gcc-msm8974pro
+       - qcom,gcc-msm8974pro-ac
+       - qcom,gcc-mdm9615
+-      - qcom,gcc-sdm630
+-      - qcom,gcc-sdm660
+ 
+ required:
+   - compatible
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm660.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm660.yaml
+new file mode 100644
+index 000000000000..68f47174b1b7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm660.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,gcc-sdm660.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	.vidioc_decoder_cmd = v4l2_m2m_ioctl_decoder_cmd,
-+	.vidioc_try_decoder_cmd = v4l2_m2m_ioctl_try_decoder_cmd,
- };
- 
- static int mtk_jpeg_queue_setup(struct vb2_queue *q,
++title: Qualcomm SDM660/SDM630/SDM636 Global Clock & Reset Controller
++
++maintainers:
++  - Stephen Boyd <sboyd@kernel.org>
++  - Taniya Das <quic_tdas@quicinc.com>
++
++description: |
++  Qualcomm global clock control module which supports the clocks, resets and
++  power domains on SDM630, SDM636 and SDM660
++
++  See also:
++  - dt-bindings/clock/qcom,gcc-sdm660.h  (qcom,gcc-sdm630 and qcom,gcc-sdm660)
++
++$ref: qcom,gcc.yaml#
++
++properties:
++  compatible:
++    enum:
++      - qcom,gcc-sdm630
++      - qcom,gcc-sdm660
++
++  clocks:
++    items:
++      - description: XO source
++      - description: Sleep clock source
++
++  clock-names:
++    items:
++      - const: xo
++      - const: sleep_clk
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++
++unevaluatedProperties: false
++
++examples:
++  # Example for GCC for SDM660:
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    clock-controller@100000 {
++        compatible = "qcom,gcc-sdm660";
++        reg = <0x00100000 0x94000>;
++        #clock-cells = <1>;
++        #reset-cells = <1>;
++        #power-domain-cells = <1>;
++
++        clock-names = "xo", "sleep_clk";
++        clocks = <&xo_board>,
++                 <&sleep_clk>;
++    };
++...
 -- 
-2.18.0
+2.35.1
 
