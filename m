@@ -2,154 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80A785EFBDF
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 19:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 151A95EFBE1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 19:24:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235001AbiI2RXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 13:23:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60618 "EHLO
+        id S236031AbiI2RYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 13:24:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235967AbiI2RXT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 13:23:19 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38FB01F11ED
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 10:22:04 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id b23so2012252pfp.9
-        for <devicetree@vger.kernel.org>; Thu, 29 Sep 2022 10:22:04 -0700 (PDT)
+        with ESMTP id S236055AbiI2RXm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 13:23:42 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08F921F44D0;
+        Thu, 29 Sep 2022 10:22:48 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id w13so2283889oiw.8;
+        Thu, 29 Sep 2022 10:22:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=SIbDPYXTiEpHr31cowPm5hEWT0Dsj29GpYNVG6B6LlQ=;
-        b=mB8DS4FtbYahqmKbTsOUSTFLoTQRXcbJ3S67QhTIGmqSBDz/tWrFlwMcQ+cr23xX+b
-         QjG8yy4p2rhzXPmzYoPpJETh+MOcZ4yLkpS+xe/4UC0kekmTGp2l0FOavxZbRoTOhb+3
-         XH0z/AGyy1pyfbaQ0b8WlaXjjULk5lXJ98RdhAuDRK1jZK174zRJLrai1dB3qYm7C9bi
-         mfxenLf2PEEAJXuAgS23CChpXtK7E5L++pMmei3EFlv/p6bQLa1s2fnPxLJwYph9MUyh
-         Id4k8Zu0gFKur4uSD2lyGzTjCb8tFTcmzTfGvpSNt2i8W6+NVwbl2mPn83HI9mJB9uQj
-         Gugg==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=oML0lesbLZNwdQ5fehk6s2daxEgvPhRDh/+lofYjbqM=;
+        b=UjVmnbnZArEarTWIBG2mGn6/xad7/V+PKS6pT79JAoXkINbenBF6yH3fUTa6/wPaSX
+         j4IJaEz+36gx09+ivAAlamVtU2qKYtUWmgfG7hygspic+6FBsKpt3vZ2HsxCyjVQ4uRq
+         GVGqrWsl/k8C5uAlH3cQ5Rsxvh+ABClgXAlod8NiQcG7fazSb8nR9cgqASgCjSAWnS9h
+         FOZqcqXrQPn5MeKDqgV0QLwFwWaOEDvQ1xm3ez8RriP4KVnyFAFOODJYle48MbVgD35w
+         0boXbzdkQj9OLP+Nl67RtVaDPCJnniEtfqBw60HjgvPCf2qZdaCAxTqHpsAsFsKVQ5LO
+         wAkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=SIbDPYXTiEpHr31cowPm5hEWT0Dsj29GpYNVG6B6LlQ=;
-        b=iZ4kkKQCKh6wIUjTAsli5PC6TGoLFVhQmV73RkXmFctLg53omfaF1AWhLWJNpuYX8+
-         QD13j4M7fq6sqMN7uqG6KkqvvuZJ4iMKfBM5RyQ9kIFEczGKszz8ELDmWIt4pCklFto7
-         XG9qQZdOMKcwKy4TsYqtHuluh0nG2fTh2Z+k9ehLQCCw+KaURtiU+6WZRHX2fD4KVjo9
-         Gb+81X9XBhxE2zaJFmuosO44PncBfrggODtyguORJU/s0gtIJppuvNIIPFqUu8AoL627
-         6HXG5S0x3DrvGs2XCpGaSqBug5exA662M7KM4oRU3X+YTQjRZHGmhpWr3Qqw7MoZ/XOt
-         z9lg==
-X-Gm-Message-State: ACrzQf1zEwdFA52fL52Yb45IgyeAYzAMrciHs7Vps1QDx77Uzfr0j1iE
-        HwKWG1BQib3rIsAoxzYHFhwnbg==
-X-Google-Smtp-Source: AMsMyM4AC3DhaeWsDiKxbTYHV9WoijHDEhKnl9Ddx2dx4JeYbpJ/IXYZuywwehHTWBeATWePCuxzFg==
-X-Received: by 2002:a05:6a00:1a47:b0:52e:6a8c:5430 with SMTP id h7-20020a056a001a4700b0052e6a8c5430mr4622875pfv.48.1664472123633;
-        Thu, 29 Sep 2022 10:22:03 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id j13-20020a17090a694d00b00205da989de3sm36917pjm.17.2022.09.29.10.22.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 10:22:02 -0700 (PDT)
-Date:   Thu, 29 Sep 2022 11:22:00 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tanmay Shah <tanmays@amd.com>
-Cc:     andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
-        ben.levinsky@xilinx.com, tanmay.shah@xilinx.com,
-        michal.simek@amd.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v9 6/6] drivers: remoteproc: Add Xilinx r5 remoteproc
- driver
-Message-ID: <20220929172200.GB3107608@p14s>
-References: <20220708013955.2340449-1-tanmay.shah@amd.com>
- <20220708013955.2340449-7-tanmay.shah@amd.com>
- <20220901202517.GB626605@p14s>
- <d1cfa787-9f8e-fe8a-d816-0bd8c3a3244d@amd.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=oML0lesbLZNwdQ5fehk6s2daxEgvPhRDh/+lofYjbqM=;
+        b=ZGsiM0Cn7oU/I1karI1g4IBC9lKAvc48GVb1+iEOlGGXceG3vHd2vftdNdnuWy0rpk
+         4QTCw1bQn3dFSyetlEfyHSdfUycHXSzFoub843bm0ulgDsJtW5RKviaK921Br5OYxk4g
+         lHXWblrvLv65aD3znxyPXfY2fgAB0ChiNp7w02xRdN8y5Ondmj34+ZVxtit9rhboD4pU
+         qUJwA4HZqME0yOCEzR95vjwq6tgTQrJKCxpDHrNUx+6HMnYWUVri63CmxS2aU1/Gn76z
+         MC5MIZThMGGrvqV5963A7UD5wgF8unFR+wmeNisMsPmk83YuEEjkmeOQsmTavRj6LqgL
+         MWYw==
+X-Gm-Message-State: ACrzQf2njLtz2WhiDiWSt0Wr7xn5vEjnyRdOw9rnYeevNmMpDGT9xlRm
+        b9Zjod0Uo37wAIvZaeO95QvGp2pgSG+DxyL72Tg=
+X-Google-Smtp-Source: AMsMyM57l04X4qryFVpDzl3vpgv4SiLKsym9dnt1kSc8IUgjDTpt5498fecpA0KDw80chdvsW6rnWiJbQ6Nzj8DZcv4=
+X-Received: by 2002:a05:6808:23ca:b0:350:92c4:3422 with SMTP id
+ bq10-20020a05680823ca00b0035092c43422mr2124630oib.144.1664472166706; Thu, 29
+ Sep 2022 10:22:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d1cfa787-9f8e-fe8a-d816-0bd8c3a3244d@amd.com>
+References: <20220927031929.807070-1-sergio.paracuellos@gmail.com>
+ <YzLagn9/j0w4UymU@sirena.org.uk> <CAMhs-H8664babt9xwE-iCJNCdm+kues-c6V1iPwS63EtdWCV1w@mail.gmail.com>
+ <YzLloE/AEdFiHsEj@sirena.org.uk> <CAMhs-H9+hp3yLoGyGTNLDZKX__KGwa5PwLrqiFzVP__8_nPrFw@mail.gmail.com>
+ <20220929164836.GA2297514-robh@kernel.org>
+In-Reply-To: <20220929164836.GA2297514-robh@kernel.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Thu, 29 Sep 2022 19:22:34 +0200
+Message-ID: <CAMhs-H_abY9aPYWnRQ+cMwvL9zrhGrxHFZfHJ=aDKrxH7ATEog@mail.gmail.com>
+Subject: Re: [RESEND PATCH v3] dt-bindings: spi: migrate mt7621 text bindings
+ to YAML
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 03:02:22PM -0700, Tanmay Shah wrote:
-> 
-> On 9/1/22 1:25 PM, Mathieu Poirier wrote:
-> > On Thu, Jul 07, 2022 at 06:39:55PM -0700, Tanmay Shah wrote:
-> [ ... ]
-> > > --- /dev/null
-> > > +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> > > @@ -0,0 +1,1055 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> 
-> Hi Mathieu,
-> 
-> I tried to fix SPDX-License-Identifier to GPL (same as MODULE_LICENSE
-> below), However checkpatch.pl reports this as following warning:
-> 
-> "WARNING: 'SPDX-License-Identifier: GPL' is not supported in LICENSES/..."
-> 
-> I see that GPL-1.0 is under LICENSE/deprecated directory.
-> 
-> > > +/*
-> > > + * ZynqMP R5 Remote Processor driver
-> > > + *
-> > > + */
-> > > +
-> > > +#include <dt-bindings/power/xlnx-zynqmp-power.h>
-> 
-> [ ... ]
-> 
-> > > +MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
-> > > +
-> > > +static struct platform_driver zynqmp_r5_remoteproc_driver = {
-> > > +	.probe = zynqmp_r5_remoteproc_probe,
-> > > +	.driver = {
-> > > +		.name = "zynqmp_r5_remoteproc",
-> > > +		.of_match_table = zynqmp_r5_remoteproc_match,
-> > > +	},
-> > > +};
-> > > +module_platform_driver(zynqmp_r5_remoteproc_driver);
-> > > +
-> > > +MODULE_DESCRIPTION("Xilinx R5F remote processor driver");
-> > > +MODULE_AUTHOR("Xilinx Inc.");
-> > > +MODULE_LICENSE("GPL");
-> > There is a discrepency between the GPL-2.0 in the SPDS identifier and the above.
-> 
-> Also, changing to MODULE_LICENSE("GPL v2") gives following warning:
-> 
-> WARNING: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure
-> the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
-> #1115: FILE: drivers/remoteproc/xlnx_r5_remoteproc.c:1034:
-> +MODULE_LICENSE("GPL v2");
-> 
-> So, It looks like SPDX-License-Identifier should be GPL-2.0-only and
-> MODULE_LICENSE should be change to "GPL".
+On Thu, Sep 29, 2022 at 6:48 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Sep 27, 2022 at 02:09:21PM +0200, Sergio Paracuellos wrote:
+> > On Tue, Sep 27, 2022 at 1:59 PM Mark Brown <broonie@kernel.org> wrote:
+> > >
+> > > On Tue, Sep 27, 2022 at 01:36:04PM +0200, Sergio Paracuellos wrote:
+> > > > On Tue, Sep 27, 2022 at 1:12 PM Mark Brown <broonie@kernel.org> wrote:
+> > > > > On Tue, Sep 27, 2022 at 05:19:29AM +0200, Sergio Paracuellos wrote:
+> > >
+> > > > > Please submit patches using subject lines reflecting the style for the
+> > > > > subsystem, this makes it easier for people to identify relevant patches.
+> > >
+> > > > Since this is a binding migration change I sent the patch expecting
+> > > > this going into the devicetree kernel tree. So I just use the common
+> > > > device tree change style 'dt-bindings: spi: migrate mt7621 text
+> > > > bindings to YAML' as the subject. So I don't really understand what
+> > > > you mean above, sorry. What is wrong with this subject? I submitted
+> > > > this v3 [0] and I was told by Rob to resend it to you and the
+> > > > linux-spi mail list also.
+> > >
+> > > Bindings mostly go through the subsystem rather than the DT tree.
+> >
+> > I thought when changes are only in the binding side DT tree was
+> > preferred. Sorry for the inconvenience, then. Will take into account
+> > your advice from now on.
+>
+> Sometimes they do, but that's more the exception. The ones from you I've
+> picked up don't have a subsystem really or the subsystem maintainer
+> isn't too active or doesn't pay much attention to DT only patches. Mark
+> is responsive and pays some attention to binding patches, so he takes
+> them.
 
-Commit bf7fbeeae6db is an interesting read - thanks for pointing it out.
+Thanks a lot for clarification, Rob. Much appreciated.
 
-> 
-> It this ok? Any other suggestions ?
+Best regards,
+    Sergio Paracuellos
 
-What you have looks good, in that regard there is no need to change anything
-from your patch. 
-
-> 
-> Thanks,
-> 
-> Tanmay
-> 
-> > 
-> > More comments tomorrow or Tuesday.
-> > 
-> > Thanks,
-> > Mathieu
-> > 
-> > > -- 
-> > > 2.25.1
-> > > 
+>
+> Rob
