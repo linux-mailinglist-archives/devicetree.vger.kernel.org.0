@@ -2,41 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83B855EF37E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 12:31:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40F315EF382
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 12:31:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235518AbiI2KbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 06:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54252 "EHLO
+        id S235502AbiI2KbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 06:31:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235502AbiI2KbE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 06:31:04 -0400
+        with ESMTP id S235532AbiI2KbK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 06:31:10 -0400
 Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EC195128899;
-        Thu, 29 Sep 2022 03:31:02 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 61CC112FF10;
+        Thu, 29 Sep 2022 03:31:09 -0700 (PDT)
 X-IronPort-AV: E=Sophos;i="5.93,354,1654527600"; 
-   d="scan'208";a="136619473"
+   d="scan'208";a="136619499"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 29 Sep 2022 19:31:02 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 29 Sep 2022 19:31:09 +0900
 Received: from localhost.localdomain (unknown [10.226.92.32])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4F990400F7A2;
-        Thu, 29 Sep 2022 19:30:58 +0900 (JST)
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1F218400F7A8;
+        Thu, 29 Sep 2022 19:31:05 +0900 (JST)
 From:   Biju Das <biju.das.jz@bp.renesas.com>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>, Lee Jones <lee@kernel.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
         Chris Paterson <Chris.Paterson2@renesas.com>,
         Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH RFC 3/7] dt-bindings: mfd: rz-mtu3: Document RZ/G2L MTU3 PWM
-Date:   Thu, 29 Sep 2022 11:30:39 +0100
-Message-Id: <20220929103043.1228235-4-biju.das.jz@bp.renesas.com>
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH RFC 5/7] arm64: dts: renesas: r9a07g044: Add MTU3 PWM support
+Date:   Thu, 29 Sep 2022 11:30:41 +0100
+Message-Id: <20220929103043.1228235-6-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220929103043.1228235-1-biju.das.jz@bp.renesas.com>
 References: <20220929103043.1228235-1-biju.das.jz@bp.renesas.com>
@@ -50,87 +47,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document RZ/G2L MTU3 PWM support. It supports following pwm modes.
-	1) PWM mode 1
-	2) PWM mode 2
-	3) Reset-synchronized PWM mode
-	4) Complementary PWM mode 1 (transfer at crest)
-	5) Complementary PWM mode 2 (transfer at trough)
-	6) Complementary PWM mode 3 (transfer at crest and trough)
+Add MTU3 pwm support by adding pwm nodes to RZ/G2L SoC DTSI.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- .../bindings/mfd/renesas,rzg2l-mtu3.yaml      | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 42 ++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
-index c4bcf28623d6..362fedf5bedb 100644
---- a/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
-+++ b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
-@@ -223,6 +223,50 @@ patternProperties:
-       - compatible
-       - reg
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+index 05193457502a..f853b2d0b8ff 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+@@ -249,6 +249,48 @@ counter@2 {
+ 				reg = <2>;
+ 				status = "disabled";
+ 			};
++
++			pwm@1 {
++				compatible = "renesas,rz-mtu3-pwm";
++				reg = <1>;
++				#pwm-cells = <2>;
++				status = "disabled";
++			};
++
++			pwm@2 {
++				compatible = "renesas,rz-mtu3-pwm";
++				reg = <2>;
++				#pwm-cells = <2>;
++				status = "disabled";
++			};
++
++			pwm@3 {
++				compatible = "renesas,rz-mtu3-pwm";
++				reg = <3>;
++				#pwm-cells = <2>;
++				status = "disabled";
++			};
++
++			pwm@4 {
++				compatible = "renesas,rz-mtu3-pwm";
++				reg = <4>;
++				#pwm-cells = <2>;
++				status = "disabled";
++			};
++
++			pwm@6 {
++				compatible = "renesas,rz-mtu3-pwm";
++				reg = <6>;
++				#pwm-cells = <2>;
++				status = "disabled";
++			};
++
++			pwm@7 {
++				compatible = "renesas,rz-mtu3-pwm";
++				reg = <7>;
++				#pwm-cells = <2>;
++				status = "disabled";
++			};
+ 		};
  
-+  "^pwm@([0-4]|[6-7])+$":
-+    type: object
-+
-+    properties:
-+      compatible:
-+        const: renesas,rz-mtu3-pwm
-+
-+      reg:
-+        description: Identify pwm channels.
-+        items:
-+          enum: [ 0, 1, 2, 3, 4, 6, 7 ]
-+
-+      "#pwm-cells":
-+        const: 2
-+
-+      renesas,pwm-mode1:
-+        type: boolean
-+        description: Enable PWM mode 1.
-+
-+      renesas,pwm-mode2:
-+        type: boolean
-+        description: Enable PWM mode 2.
-+
-+      renesas,reset-synchronized-pwm-mode:
-+        type: boolean
-+        description: Enable Reset-synchronized PWM mode.
-+
-+      renesas,complementary-pwm-mode1:
-+        type: boolean
-+        description: Complementary PWM mode 1 (transfer at crest).
-+
-+      renesas,complementary-pwm-mode2:
-+        type: boolean
-+        description: Complementary PWM mode 2 (transfer at trough).
-+
-+      renesas,complementary-pwm-mode3:
-+        type: boolean
-+        description: Complementary PWM mode 3 (transfer at crest and trough).
-+
-+    required:
-+      - compatible
-+      - reg
-+      - "#pwm-cells"
-+
- required:
-   - compatible
-   - reg
-@@ -305,6 +349,12 @@ examples:
-         compatible = "renesas,rzg2l-mtu3-counter";
-         reg = <1>;
-       };
-+      pwm@3 {
-+        compatible = "renesas,rz-mtu3-pwm";
-+        reg = <3>;
-+        #pwm-cells = <2>;
-+        renesas,pwm-mode1;
-+      };
-     };
- 
- ...
+ 		gpt0: pwm@10048000 {
 -- 
 2.25.1
 
