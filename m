@@ -2,86 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C6A5EFC27
-	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 19:40:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 531D35EFC45
+	for <lists+devicetree@lfdr.de>; Thu, 29 Sep 2022 19:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbiI2RkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 13:40:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49132 "EHLO
+        id S232460AbiI2Rvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 13:51:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiI2RkQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 13:40:16 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EECB210FE27;
-        Thu, 29 Sep 2022 10:40:11 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1664473208; bh=+tSZFKbdvZWoKMzR6iGa9lHAoFeV6hdZ0rUHvW7OGxA=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=aUAW32jD+aP7mmtNX2LQYWs/MD0I0GmQisxaT44WHXAVeagRLcMdq0FPNkZ32CIEA
-         hJJcMAd/KirCWXqknBO0WaSJbDPplJFsdvMyBI9CTARaupas5At9dGqhtV5Ad5MgTP
-         MOIv3M4FrMU8vxQALx0ueyOxrJ1e7PLaZJ7p7vyo=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [PATCH v1 01/10] dt-bindings: dma: apple,admac: Add iommus and
- power-domains properties
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-In-Reply-To: <YzXIVM6zGszDa2JQ@matsya>
-Date:   Thu, 29 Sep 2022 19:40:05 +0200
-Cc:     Janne Grunau <j@jannau.net>, asahi@lists.linux.dev,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Hector Martin <marcan@marcan.st>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <EE079966-79EE-47D4-A8AC-5DC404A62A1E@cutebit.org>
-References: <20220916142550.269905-1-j@jannau.net>
- <20220916142550.269905-2-j@jannau.net> <YzXIVM6zGszDa2JQ@matsya>
-To:     Vinod Koul <vkoul@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229780AbiI2Rvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 13:51:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 089A813BCDC;
+        Thu, 29 Sep 2022 10:51:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9A259620E1;
+        Thu, 29 Sep 2022 17:51:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05048C43141;
+        Thu, 29 Sep 2022 17:51:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664473900;
+        bh=/rgIw13/q7gyzY3HDMRyadzYlUbWim4MSs3xVb/+10A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cAPtwETm/aNpnZV6tOadVoZyzaLVgAp4tlpn3dyhJLP3q+4PFIkxYNT/0O8FRhkPn
+         l5q6g8iLtBP72jHr5JGT0tggqRRjsi6k4VVB0CrYu3whpcm+6sMtyQ7GVtr31R3sg9
+         zfC81dKmHz1WjsoFjX3nJ6bljXM2dcFpM+jY5UGQUR3++1AoWHsUPnZhZnPpQKKH+a
+         fzcHvsK+jjGVs5nZCGcsLrnUczCfF9jdhaorVLMaOhR29fIJ42H+P7mJVAFrz6Nl2Y
+         J0xljmp6Yc4eDfV4uWgCMKmy/FkyV2sjclCWf9sQ9hxWqdVb/VRoAZ3Nfi766oBrwa
+         xdRv+OghfH5Og==
+Date:   Thu, 29 Sep 2022 18:51:32 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        ChiaEn Wu <peterwu.pub@gmail.com>, pavel@ucw.cz,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        lars@metafoo.de, andriy.shevchenko@linux.intel.com,
+        chiaen_wu@richtek.com, alice_chen@richtek.com,
+        cy_huang@richtek.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, szunichen@gmail.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v12 3/5] iio: adc: mt6370: Add MediaTek MT6370 support
+Message-ID: <YzXbJM31s0P0nLD5@google.com>
+References: <cover.1663926551.git.chiaen_wu@richtek.com>
+ <9bf36f09bc5f002f2b09b7cc26edccf109516465.1663926551.git.chiaen_wu@richtek.com>
+ <20220924155525.5663bed8@jic23-huawei>
+ <YzFY5FI0PrZqdAiZ@google.com>
+ <CAL_JsqKKJGtacbzGqCupFniSGha610L1cay2V+AK8vehTA=F=g@mail.gmail.com>
+ <YzQSnuwPjzJIgsYq@google.com>
+ <20220929163418.GA2270491-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220929163418.GA2270491-robh@kernel.org>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 29 Sep 2022, Rob Herring wrote:
 
-> On 29. 9. 2022, at 18:31, Vinod Koul <vkoul@kernel.org> wrote:
->=20
-> On 16-09-22, 16:25, Janne Grunau wrote:
->> Apple's ADMAC is on all supported Apple silicon SoCs behind an IOMMU
->> and has its own power-domain.
->=20
-> Applied, thanks
+> On Wed, Sep 28, 2022 at 10:23:42AM +0100, Lee Jones wrote:
+> > On Mon, 26 Sep 2022, Rob Herring wrote:
+> > 
+> > > On Mon, Sep 26, 2022 at 2:46 AM Lee Jones <lee@kernel.org> wrote:
+> > > >
+> > > > On Sat, 24 Sep 2022, Jonathan Cameron wrote:
+> > > >
+> > > > > On Fri, 23 Sep 2022 10:51:24 +0800
+> > > > > ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+> > > > >
+> > > > > > From: ChiaEn Wu <chiaen_wu@richtek.com>
+> > > > > >
+> > > > > > MediaTek MT6370 is a SubPMIC consisting of a single cell battery charger
+> > > > > > with ADC monitoring, RGB LEDs, dual channel flashlight, WLED backlight
+> > > > > > driver, display bias voltage supply, one general purpose LDO, and the
+> > > > > > USB Type-C & PD controller complies with the latest USB Type-C and PD
+> > > > > > standards.
+> > > > > >
+> > > > > > Add support for the MT6370 ADC driver for system monitoring, including
+> > > > > > charger current, voltage, and temperature.
+> > > > > >
+> > > > > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > > > > > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > > > > > Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > > > > Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> > > > >
+> > > > > This will have to either wait for next cycle, or go through mfd because
+> > > > > of the dt-bindings include which is in the mfd tree.
+> > > > >
+> > > > > Please make those dependencies clear in new versions.
+> > > >
+> > > > If the bindings come together in -next, then subsequently in Mainline,
+> > > > it shouldn't really matter.
+> > > 
+> > > Except that the bindings haven't come together and at this point may
+> > > not for 6.1. linux-next has been warning for weeks because the child
+> > > device schemas haven't been applied. I've said it before, all the
+> > > schemas for MFD devices need to be applied together. Or at least the
+> > > MFD schema needs to get applied last.
+> > > 
+> > > Furthermore, subsequent versions of this don't get tested and we end
+> > > up with more warnings[1].
+> > > 
+> > > It's only your IIO tree that the DT
+> > > > tooling with complain about, right?
+> > > 
+> > > And the MFD tree...
+> > > 
+> > > Please apply the LED bindings (patches 1 and 2) so we can get the
+> > > existing warnings fixed and address any new warnings.
+> > 
+> > Who usually applies LED bindings?  Looks as though they're good to go.
+> 
+> Pavel. The issue would be I don't know if the driver side is ready and 
+> those usually go together. Other than my complaining here, how's he 
+> supposed to know that the bindings at least need to be applied?
+> 
+> Again, the process here is not working. I've said before, all the 
+> bindings for an MFD need to go via 1 tree. You obviously don't agree, so 
+> propose something. The current process of no coordination doesn't work.
 
-Hi Vinod,
+The solution would be for someone to create succinct immutable branches, like
+I do for real code.  If someone would be happy to do that, I'd be more than
+happy to pull from them.
 
-this has been picked up by Hector and is staged in asahi-soc/dt [0].
-I see you haven=E2=80=99t pushed yet. Would it be possible to drop the =
-patch
-on your end so we don=E2=80=99t end up with two commits for the same =
-change?
-(I assume that would be an issue.)
+I go to the effort of creating them to prevent actual build breakages,
+however doing so to keep a documentation helper script happy is a step
+too far for me personally, sorry.
 
-To recapitulate: There are two ADMAC binding changes to go in for 6.1,
-they are both in asahi-soc/dt. I know I initially asked you to apply
-this patch when the series was an RFC.
-
-Thanks,
-Martin
-
-[0] =
-https://github.com/AsahiLinux/linux/commit/3ac3865735a83bd1c0dae7ad73b7462=
-1774755cb
-
-> --=20
-> ~Vinod
->=20
-
+-- 
+Lee Jones [李琼斯]
