@@ -2,86 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BA0E5F0DD7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 16:45:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C43F85F0E04
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 16:52:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229566AbiI3OpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 10:45:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51098 "EHLO
+        id S232001AbiI3Owr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 10:52:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230382AbiI3OpM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 10:45:12 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 110732ED4C;
-        Fri, 30 Sep 2022 07:45:12 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id o64so4906484oib.12;
-        Fri, 30 Sep 2022 07:45:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=pc2DgYZTOFOp2GGJfV5I+GdUrAwPYjF8VqL/R6M+Uss=;
-        b=SIPVxZdpnoMNRtLxtzq7uCaGBi8xrz/TGdxv63htS6h1fG6HHmbG6iEobMz9rsP3ke
-         XcIZ4rkJtQcHEmzxZ4UAlhCLZYYXbOPey/Er2q143kz+D12F/KO43wku6xefdtdIfYlO
-         V9jzsYc/5Eji7se+UaWtIbk48tJiVLWxPNeUnpcv6aQ+axV58YffElNFxEOKWTLW1nJS
-         EhhjTf/upk4TsUrNkKDRfvGv0f0bdht8FG0Xh5tackg+xutjtk0Q1xWTFxkuxSACn4Uh
-         D3rQ1yXGzdXHbEdQcZDxyg/lLDUcgwiga9C6N6/vITybk1c4z5gQZ3Z9do+Vp0LgdNes
-         ul9A==
-X-Gm-Message-State: ACrzQf1mSf9T2jpBLDU8sYqmeZNQotZx2k7HxJNisr+FfJfQBFiVCa8C
-        e/+n+F0jagv2zA2gfVt40w==
-X-Google-Smtp-Source: AMsMyM5mkfk1Oz8S6nmEp6CE/yaDq8Vl9VqiORj4nCy50Pae0FB5XuLNAkBvy5TfTLw2Y1ITkpEjGw==
-X-Received: by 2002:a05:6808:2384:b0:351:29cc:64d5 with SMTP id bp4-20020a056808238400b0035129cc64d5mr4165294oib.136.1664549111301;
-        Fri, 30 Sep 2022 07:45:11 -0700 (PDT)
-Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a10-20020a05687073ca00b00127ebb410a4sm751532oan.11.2022.09.30.07.45.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 07:45:11 -0700 (PDT)
-Received: (nullmailer pid 290299 invoked by uid 1000);
-        Fri, 30 Sep 2022 14:45:10 -0000
-Date:   Fri, 30 Sep 2022 09:45:10 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Johannes Holland <johannes.holland@infineon.com>,
-        linux-integrity@vger.kernel.org, eajames@linux.ibm.com,
-        Peter Huewe <peterhuewe@gmx.de>, devicetree@vger.kernel.org,
+        with ESMTP id S231934AbiI3OwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 10:52:15 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 50A075814A;
+        Fri, 30 Sep 2022 07:50:14 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2C18E143D;
+        Fri, 30 Sep 2022 07:49:59 -0700 (PDT)
+Received: from pierre123.nice.arm.com (pierre123.nice.arm.com [10.34.100.116])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 87A083F792;
+        Fri, 30 Sep 2022 07:49:51 -0700 (PDT)
+From:   Pierre Gondois <pierre.gondois@arm.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Pierre Gondois <pierre.gondois@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jarkko Sakkinen <jarkko@kernel.org>,
-        Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH v2 2/3] dt-bindings: tpm: Add schema for TIS I2C devices
-Message-ID: <166454910936.290223.3190321287654108789.robh@kernel.org>
-References: <20220928043957.2636877-1-joel@jms.id.au>
- <20220928043957.2636877-3-joel@jms.id.au>
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] of: base: Shift refcount decrement in of_find_last_cache_level()
+Date:   Fri, 30 Sep 2022 16:49:36 +0200
+Message-Id: <20220930144936.2882481-1-pierre.gondois@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220928043957.2636877-3-joel@jms.id.au>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Sep 2022 14:09:56 +0930, Joel Stanley wrote:
-> From: Johannes Holland <johannes.holland@infineon.com>
-> 
-> Add a dt schema to support device tree bindings for the generic I2C
-> physical layer. Refer to the TCG PC Client Platform TPM Profile (PTP)
-> Specification for TPM 2.0 v1.04 Revision 14.
-> 
-> This includes descriptions for the Nuvoton and Infineon devices.
-> 
-> Signed-off-by: Johannes Holland <johannes.holland@infineon.com>
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
-> ---
-> v2: String changes
-> ---
->  .../bindings/security/tpm/tpm-tis-i2c.yaml    | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-> 
+Currently, of_find_next_cache_node() and of_property_read_u32()
+are called on objects after their refcount have been decremented.
+Re-order the calls to decrement the refcount after the function
+calls.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+---
+ drivers/of/base.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index 7fa960bd3df1..227819768c6e 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -2088,12 +2088,13 @@ int of_find_last_cache_level(unsigned int cpu)
+ 	struct device_node *prev = NULL, *np = of_cpu_device_node_get(cpu);
+ 
+ 	while (np) {
++		of_node_put(prev);
+ 		prev = np;
+-		of_node_put(np);
+ 		np = of_find_next_cache_node(np);
+ 	}
+ 
+ 	of_property_read_u32(prev, "cache-level", &cache_level);
++	of_node_put(prev);
+ 
+ 	return cache_level;
+ }
+-- 
+2.25.1
+
