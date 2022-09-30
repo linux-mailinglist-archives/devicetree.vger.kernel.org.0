@@ -2,530 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAA855F07C1
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 11:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4F665F07DA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 11:45:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbiI3JiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 05:38:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47038 "EHLO
+        id S231512AbiI3JpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 05:45:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbiI3JiU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 05:38:20 -0400
+        with ESMTP id S231305AbiI3Joy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 05:44:54 -0400
 Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7709012CCA0;
-        Fri, 30 Sep 2022 02:38:16 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id u92so3763238pjh.3;
-        Fri, 30 Sep 2022 02:38:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AC212CE2E;
+        Fri, 30 Sep 2022 02:44:49 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id v10-20020a17090a634a00b00205e48cf845so8517748pjs.4;
+        Fri, 30 Sep 2022 02:44:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=vGNPCEtLFhWjfK9IXcgU0eqgNukRg8dBOh1kmfIugDc=;
-        b=TlZV7Yu6bLgOiddHXSBLZd7CK9ZKlbrAxvAPMZDWN30ox2qkD4yR/fW4/s03iMLL8b
-         X8inC57H6O8bNIFUfvBR5jynzAGnLJ2MLRUd0hYevYW7fxT4DW/4R/Q6+wbASf1xXoRI
-         u/xY4KRM2nOLSpNMFhOgjZTadeveyicND3Yc4RnwAmshUYGFkWX9wBqtqHxQ6SfCX1Ux
-         SIi5oUH/8aMd211aS0yr8UJNO3rokwaVMnQKkEXaSE7dkvrBtuQylkjqy57OkAINfqmh
-         TwYLLcCgdwFs+beXEFD4x1npY8suH2CHuYbpFEyQRwyel70SExxFtEzF7USjmYURAbJX
-         kw1A==
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=M+Epxubk/iFdRfYWv+mlOr9Mlw7F3zdxgQKr6Zw2CgI=;
+        b=c0qYuvNDSgKrq8KbFNxXn5HHPpAaZJhDH+1NpdhYmjYIufbADvhFv9ukuu3AgOcANg
+         IVKmPE2b9EMjvNyeOrQmtjiQtLBbxjhGhCVoyQROuGQ4uBkxqdHlC2ktu3cpHTsIvui8
+         3MKL57V7K0szOVF/Gyu0f+aZp7SUbYS8i6PsIy7yRQ7kGT0wlel2qniHHkge+uYHuv2U
+         eVO9RtXbufIDnLN1eAVczf0PCYKcL6hp113XbvmCoME9keavCzjnOkF/Cb5uHmH3/Ewi
+         +A0/La56b56s3+eSb+N80sLJAxql9JBPDKOBFBCOhN9N3uOm0kx2dAJQ9uCBXhGukLBF
+         4Riw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=vGNPCEtLFhWjfK9IXcgU0eqgNukRg8dBOh1kmfIugDc=;
-        b=qABTtqtBWvZlCRfvMTqCu3nY0EJsvtQucUAHO61//C2iEKjU9R6+wxFe1tvLX1Evp8
-         VtzrEfltxSixSm49zDaKtBMXfS22LusdPe0N6SnP5rQpruFVGKSjZ1hzEkMwamlgCARG
-         wepp/B5yuIszRS9EaRYos8bkbh5+54g6ozcaA+h/NC58u3w+JIpZir0mCfKh7hel/IAd
-         2B7kCTd/OZh47ndAfSKRh5zoA5sSgM7S+ASeMt6krZ8SJ0cm1QFcEay+l0xlG7NVNPLi
-         FO23zXdCsYSQbkq03To1+uUkPXQjU/EzZZcEyUIBiH480ejmjRrCrVB7Nf9kIEOaUueU
-         59kA==
-X-Gm-Message-State: ACrzQf1uMs3XuLrO2xqWU8w65GI87FZmSBhn4aNmY24MWn5VM1BwqYVH
-        ZztIsbDPy0n44lQW0M7cXCc=
-X-Google-Smtp-Source: AMsMyM6Tysv9I/TfW5N5DdZ3nVlO6jJR0Vkk+lJOnV/5UmqJrpM/rddNW+Vj2qAk9z8Q/RCD2gDi8g==
-X-Received: by 2002:a17:902:d70e:b0:178:2d9d:ba7b with SMTP id w14-20020a170902d70e00b001782d9dba7bmr8014206ply.90.1664530695076;
-        Fri, 30 Sep 2022 02:38:15 -0700 (PDT)
-Received: from debian.me (subs32-116-206-28-35.three.co.id. [116.206.28.35])
-        by smtp.gmail.com with ESMTPSA id gm7-20020a17090b100700b0020599274efdsm1252960pjb.0.2022.09.30.02.38.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 02:38:14 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id 444661005BB; Fri, 30 Sep 2022 16:38:11 +0700 (WIB)
-Date:   Fri, 30 Sep 2022 16:38:11 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     macro@orcam.me.uk, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thu Nguyen <thu@os.amperecomputing.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        thang@os.amperecomputing.com
-Subject: Re: [PATCH v9 9/9] docs: ABI: testing: Document the Ampere Altra
- Family's SMpro sysfs interfaces
-Message-ID: <Yza5AyTDyM5yo7HG@debian.me>
-References: <20220929094321.770125-1-quan@os.amperecomputing.com>
- <20220929094321.770125-10-quan@os.amperecomputing.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="kUsQPpaU0BXqgnpI"
-Content-Disposition: inline
-In-Reply-To: <20220929094321.770125-10-quan@os.amperecomputing.com>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=M+Epxubk/iFdRfYWv+mlOr9Mlw7F3zdxgQKr6Zw2CgI=;
+        b=L4tw0ltik3StA37KnvVbNFhvFg74VOAR9LIgCDexRfNbecr4wTLSM7+gGXEMkY/QsD
+         mGGNIteYpwu2T81x7DZleX+JPWccnyid6W8gjPCyY+6YhoRvIYF4lpY+1j8NK1/lHa7K
+         kU+drdrI+nNUBKQyDMAx7NrZpJulyJzjghX4axEro/12hwXtEpFbqy2IyteLFzE3dEG1
+         X59tfIth0594Q8F+pj16vqpD+mGPs54nKDIs8yTc70qnXnhc8HVlPGW4C2dq4DX2M3VX
+         NhliIK2vQ051P9bItGdL4QZGO/sziXVq2YK6GBl3nO1VWCXqiuP86hGSYLlUxQDlivCU
+         LALQ==
+X-Gm-Message-State: ACrzQf35JHq2jwoecHOu+sKbfNBHqFjXqYVb57zrRv+J4+UL4sxTWip5
+        U/6HpXrnuYY0uq7IoSaYG18=
+X-Google-Smtp-Source: AMsMyM4V/pVRkSv83xEi89qHO/BXFCYo7xtEsm4hrVAGvtTLXoCeVR2/w9kxC1YhLFgfsU0M+ur0nw==
+X-Received: by 2002:a17:902:d50f:b0:17c:1b89:20ee with SMTP id b15-20020a170902d50f00b0017c1b8920eemr3661069plg.60.1664531087767;
+        Fri, 30 Sep 2022 02:44:47 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:579:1b3a:4d22:d83a:1d4a:43f1])
+        by smtp.gmail.com with ESMTPSA id b7-20020a170902650700b0016dc78d0153sm1398051plk.296.2022.09.30.02.44.43
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 30 Sep 2022 02:44:47 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        sre@kernel.org
+Cc:     mazziesaccount@gmail.com, alina_yu@richtek.com,
+        cy_huang@richtek.com, alinayu829@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/3] Add Richtek RT9471 3A battery charger support
+Date:   Fri, 30 Sep 2022 17:44:36 +0800
+Message-Id: <1664531079-15915-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: ChiYuan Huang <cy_huang@richtek.com>
 
---kUsQPpaU0BXqgnpI
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch set is to add Richtek RT9471 charger support.
 
-On Thu, Sep 29, 2022 at 04:43:21PM +0700, Quan Nguyen wrote:
-> diff --git a/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-=
-smpro b/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
-> new file mode 100644
-> index 000000000000..d8f82a06570d
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
-> @@ -0,0 +1,125 @@
-> +What:		/sys/bus/platform/devices/smpro-errmon.*/error_[core|mem|pcie|oth=
-er]_[ce|ue]
-> +KernelVersion:	5.18
-> +Contact:	quan@os.amperecomputing.com
-> +Description:
-> +		(RO) Contains the 48-byte Ampere (Vendor-Specific) Error Record printed
-> +		in hex format.
-> +
-> +		The detail of each sysfs entries is as below:
-> +		+-------------+-------------------------------------------------------=
---+
-> +		|   Error     |                   Sysfs entry                         =
-  |
-> +		+-------------+-------------------------------------------------------=
---+
-> +		| Core's CE   | /sys/bus/platform/devices/smpro-errmon.*/error_core_ce=
- |
-> +		| Core's UE   | /sys/bus/platform/devices/smpro-errmon.*/error_core_ue=
- |
-> +		| Memory's CE | /sys/bus/platform/devices/smpro-errmon.*/error_mem_ce =
- |
-> +		| Memory's UE | /sys/bus/platform/devices/smpro-errmon.*/error_mem_ue =
- |
-> +		| PCIe's CE   | /sys/bus/platform/devices/smpro-errmon.*/error_pcie_ce=
- |
-> +		| PCIe's UE   | /sys/bus/platform/devices/smpro-errmon.*/error_pcie_ue=
- |
-> +		| Other's CE  | /sys/bus/platform/devices/smpro-errmon.*/error_other_c=
-e|
-> +		| Other's UE  | /sys/bus/platform/devices/smpro-errmon.*/error_other_u=
-e|
-> +		+-------------+-------------------------------------------------------=
---+
-> +		UE: Uncorrect-able Error
-> +		CE: Correct-able Error
-> +
-> +		See section 3.3 Ampere (Vendor-Specific) Error Record Formats,
-> +		Altra Family RAS Supplement.
-> +
-> +
-> +What:		/sys/bus/platform/devices/smpro-errmon.*/overflow_[core|mem|pcie|=
-other]_[ce|ue]
-> +KernelVersion:	5.18
-> +Contact:	quan@os.amperecomputing.com
-> +Description:
-> +		(RO) Return the overflow status of each type HW error reported:
-> +		  0      : No overflow
-> +		  1      : There is an overflow and the oldest HW errors are dropped
-> +
-> +		The detail of each sysfs entries is as below:
-> +		+-------------+-------------------------------------------------------=
-----+
-> +		|   Overflow  |                   Sysfs entry                         =
-    |
-> +		+-------------+-------------------------------------------------------=
-----+
-> +		| Core's CE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_core=
-_ce |
-> +		| Core's UE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_core=
-_ue |
-> +		| Memory's CE | /sys/bus/platform/devices/smpro-errmon.*/overflow_mem_=
-ce  |
-> +		| Memory's UE | /sys/bus/platform/devices/smpro-errmon.*/overflow_mem_=
-ue  |
-> +		| PCIe's CE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_pcie=
-_ce |
-> +		| PCIe's UE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_pcie=
-_ue |
-> +		| Other's CE  | /sys/bus/platform/devices/smpro-errmon.*/overflow_othe=
-r_ce|
-> +		| Other's UE  | /sys/bus/platform/devices/smpro-errmon.*/overflow_othe=
-r_ue|
-> +		+-------------+-------------------------------------------------------=
-----+
-> +		UE: Uncorrect-able Error
-> +		CE: Correct-able Error
-> +
-> +What:           /sys/bus/platform/devices/smpro-errmon.*/[error|warn]_[s=
-mpro|pmpro]
-> +KernelVersion:	5.18
-> +Contact:	quan@os.amperecomputing.com
-> +Description:
-> +		(RO) Contains the internal firmware error/warning printed as hex forma=
-t.
-> +
-> +		The detail of each sysfs entries is as below:
-> +		+---------------+-----------------------------------------------------=
--+
-> +		|   Error       |                   Sysfs entry                       =
- |
-> +		+---------------+-----------------------------------------------------=
--+
-> +		| SMpro error   | /sys/bus/platform/devices/smpro-errmon.*/error_smpro=
- |
-> +		| SMpro warning | /sys/bus/platform/devices/smpro-errmon.*/warn_smpro =
- |
-> +		| PMpro error   | /sys/bus/platform/devices/smpro-errmon.*/error_pmpro=
- |
-> +		| PMpro warning | /sys/bus/platform/devices/smpro-errmon.*/warn_pmpro =
- |
-> +		+---------------+-----------------------------------------------------=
--+
-> +		See more details in section 5.10 RAS Internal Error Register Definitio=
-ns,
-> +		Altra Family Soc BMC Interface Specification.
-> +
-> +What:           /sys/bus/platform/devices/smpro-errmon.*/event_[vrd_warn=
-_fault|vrd_hot|dimm_hot]
-> +KernelVersion:	5.18
-> +Contact:	quan@os.amperecomputing.com
-> +Description:
-> +		(RO) Contains the detail information in case of VRD/DIMM warning/hot e=
-vents
-> +		in hex format as below:
-> +
-> +		AAAA
-> +		Where:
-> +		  AAAA: The event detail information data
-> +
-> +		See more details in section 5.7 GPI Status Registers,
-> +		Altra Family Soc BMC Interface Specification.
-> +
-> +
-> +What:		/sys/bus/platform/devices/smpro-misc.*/boot_progress
-> +KernelVersion:	5.18
-> +Contact:	quan@os.amperecomputing.com
-> +Description:
-> +		(RO) Contains the boot stages information in hex as format below:
-> +
-> +		AABBCCCCCCCC
-> +		Where:
-> +		  AA      : The boot stages
-> +		              00: SMpro firmware booting
-> +		              01: PMpro firmware booting
-> +		              02: ATF BL1 firmware booting
-> +		              03: DDR initialization
-> +		              04: DDR training report status
-> +		              05: ATF BL2 firmware booting
-> +		              06: ATF BL31 firmware booting
-> +		              07: ATF BL32 firmware booting
-> +		              08: UEFI firmware booting
-> +		              09: OS booting
-> +		  BB      : Boot status
-> +		              00: Not started
-> +		              01: Started
-> +		              02: Completed without error
-> +		              03: Failed.
-> +		  CCCCCCCC: Boot status information defined for each boot stages
-> +
-> +		See more details in section 5.11 Boot Stage Register Definitions,
-> +		and section 6. Processor Boot Progress Codes, Altra Family Soc BMC
-> +		Interface Specification.
-> +
-> +
-> +What:           /sys/bus/platform/devices/smpro-misc*/soc_power_limit
-> +KernelVersion:	5.18
-> +Contact:	quan@os.amperecomputing.com
-> +Description:
-> +		(RW) Contains the desired SoC power limit in Watt.
-> +		Writes to this sysfs set the desired SoC power limit (W).
-> +		Reads from this register return the current SoC power limit (W).
-> +		The value ranges:
-> +		  Minimum: 120 W
-> +		  Maximum: Socket TDP power
+The RT9471/D is a highly-integrated 3A switch mode battery charge management
+and system power path management device for single cell Li-Ion and Li-polymer
+battery. The low impedance power path optimizes switch-mode operation
+efficiency, reduces battery charging time and extends battery life during
+discharging phase.
 
-The documentation above produces htmldocs warnings:
+Since v7:
+- Add irq wakeup capable.
+- Add missing header 'module.h' for MODULE_DEVICE_TABLE.
 
-Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro:71: WARNI=
-NG: Unexpected indentation.
-Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro:117: WARN=
-ING: Unexpected indentation.
-Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro:86: WARNI=
-NG: Unexpected indentation.
-Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro:86: WARNI=
-NG: Definition list ends without a blank line; unexpected unindent.
+Since v6:
+- Use 'ATTRIBUTE_GROUPS' macro to simplify the attribute coding.
+- Explain more details for sysoff_enable attribute.
 
-I have applied the fixup (with fixes to technical references):
+Since v5:
+- Remove one line wrapper.
+- Merge header content into source file, remove header file.
+- Remove 'charge_term_enable' sysfs entry and merge it into
+  'charge_term_current' property control.
+- Change MODULE_LICENSE from 'GPL v2' to 'GPL'.
+  Following by the below discussion
+  https://lore.kernel.org/all/YxAVAt2eWB3NFlrk@google.com/
+- Recover all the change in sysfs-class-power.
+- New a sysfs-class-power-rt9471 file.
+- Remove 'charge_term_enable' sysfs entry, directly integrate it in
+  'charge_term_current' power supply property control.
 
----- >8 ----
+Since v4:
+- Remove the line for the owner field in driver.
+- Add the documentation for sysfs entries.
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-sm=
-pro b/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
-index d8f82a06570d88..39cf222fb6510a 100644
---- a/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
-+++ b/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
-@@ -6,23 +6,32 @@ Description:
- 		in hex format.
-=20
- 		The detail of each sysfs entries is as below:
-+
- 		+-------------+---------------------------------------------------------+
- 		|   Error     |                   Sysfs entry                           |
- 		+-------------+---------------------------------------------------------+
--		| Core's CE   | /sys/bus/platform/devices/smpro-errmon.*/error_core_ce |
--		| Core's UE   | /sys/bus/platform/devices/smpro-errmon.*/error_core_ue |
--		| Memory's CE | /sys/bus/platform/devices/smpro-errmon.*/error_mem_ce  |
--		| Memory's UE | /sys/bus/platform/devices/smpro-errmon.*/error_mem_ue  |
--		| PCIe's CE   | /sys/bus/platform/devices/smpro-errmon.*/error_pcie_ce |
--		| PCIe's UE   | /sys/bus/platform/devices/smpro-errmon.*/error_pcie_ue |
--		| Other's CE  | /sys/bus/platform/devices/smpro-errmon.*/error_other_ce|
--		| Other's UE  | /sys/bus/platform/devices/smpro-errmon.*/error_other_ue|
-+		| Core's CE   | /sys/bus/platform/devices/smpro-errmon.*/error_core_ce  |
- 		+-------------+---------------------------------------------------------+
-+		| Core's UE   | /sys/bus/platform/devices/smpro-errmon.*/error_core_ue  |
-+		+-------------+---------------------------------------------------------+
-+		| Memory's CE | /sys/bus/platform/devices/smpro-errmon.*/error_mem_ce   |
-+		+-------------+---------------------------------------------------------+
-+		| Memory's UE | /sys/bus/platform/devices/smpro-errmon.*/error_mem_ue   |
-+		+-------------+---------------------------------------------------------+
-+		| PCIe's CE   | /sys/bus/platform/devices/smpro-errmon.*/error_pcie_ce  |
-+		+-------------+---------------------------------------------------------+
-+		| PCIe's UE   | /sys/bus/platform/devices/smpro-errmon.*/error_pcie_ue  |
-+		+-------------+---------------------------------------------------------+
-+		| Other's CE  | /sys/bus/platform/devices/smpro-errmon.*/error_other_ce |
-+		+-------------+---------------------------------------------------------+
-+		| Other's UE  | /sys/bus/platform/devices/smpro-errmon.*/error_other_ue |
-+		+-------------+---------------------------------------------------------+
-+
- 		UE: Uncorrect-able Error
- 		CE: Correct-able Error
-=20
--		See section 3.3 Ampere (Vendor-Specific) Error Record Formats,
--		Altra Family RAS Supplement.
-+		For details, see section `3.3 Ampere (Vendor-Specific) Error Record Form=
-ats,
-+		Altra Family RAS Supplement`.
-=20
-=20
- What:		/sys/bus/platform/devices/smpro-errmon.*/overflow_[core|mem|pcie|ot=
-her]_[ce|ue]
-@@ -30,24 +39,36 @@ KernelVersion:	5.18
- Contact:	quan@os.amperecomputing.com
- Description:
- 		(RO) Return the overflow status of each type HW error reported:
--		  0      : No overflow
--		  1      : There is an overflow and the oldest HW errors are dropped
-+
-+		  - 0      : No overflow
-+		  - 1      : There is an overflow and the oldest HW errors are dropped
-=20
- 		The detail of each sysfs entries is as below:
-+
- 		+-------------+---------------------------------------------------------=
---+
- 		|   Overflow  |                   Sysfs entry                           =
-  |
- 		+-------------+---------------------------------------------------------=
---+
- 		| Core's CE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_core_c=
-e |
-+		+-------------+---------------------------------------------------------=
---+
- 		| Core's UE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_core_u=
-e |
-+		+-------------+---------------------------------------------------------=
---+
- 		| Memory's CE | /sys/bus/platform/devices/smpro-errmon.*/overflow_mem_ce=
-  |
-+		+-------------+---------------------------------------------------------=
---+
- 		| Memory's UE | /sys/bus/platform/devices/smpro-errmon.*/overflow_mem_ue=
-  |
-+		+-------------+---------------------------------------------------------=
---+
- 		| PCIe's CE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_pcie_c=
-e |
-+		+-------------+---------------------------------------------------------=
---+
- 		| PCIe's UE   | /sys/bus/platform/devices/smpro-errmon.*/overflow_pcie_u=
-e |
-+		+-------------+---------------------------------------------------------=
---+
- 		| Other's CE  | /sys/bus/platform/devices/smpro-errmon.*/overflow_other_=
-ce|
-+		+-------------+---------------------------------------------------------=
---+
- 		| Other's UE  | /sys/bus/platform/devices/smpro-errmon.*/overflow_other_=
-ue|
- 		+-------------+---------------------------------------------------------=
---+
--		UE: Uncorrect-able Error
--		CE: Correct-able Error
-+
-+		where:
-+
-+		  - UE: Uncorrect-able Error
-+		  - CE: Correct-able Error
-=20
- What:           /sys/bus/platform/devices/smpro-errmon.*/[error|warn]_[smp=
-ro|pmpro]
- KernelVersion:	5.18
-@@ -56,61 +77,74 @@ Description:
- 		(RO) Contains the internal firmware error/warning printed as hex format.
-=20
- 		The detail of each sysfs entries is as below:
-+
- 		+---------------+------------------------------------------------------+
- 		|   Error       |                   Sysfs entry                        |
- 		+---------------+------------------------------------------------------+
- 		| SMpro error   | /sys/bus/platform/devices/smpro-errmon.*/error_smpro |
-+		+---------------+------------------------------------------------------+
- 		| SMpro warning | /sys/bus/platform/devices/smpro-errmon.*/warn_smpro  |
-+		+---------------+------------------------------------------------------+
- 		| PMpro error   | /sys/bus/platform/devices/smpro-errmon.*/error_pmpro |
-+		+---------------+------------------------------------------------------+
- 		| PMpro warning | /sys/bus/platform/devices/smpro-errmon.*/warn_pmpro  |
- 		+---------------+------------------------------------------------------+
--		See more details in section 5.10 RAS Internal Error Register Definitions,
--		Altra Family Soc BMC Interface Specification.
-+
-+		For details, see section `5.10 RAS Internal Error Register Definitions,
-+		Altra Family Soc BMC Interface Specification`.
-=20
- What:           /sys/bus/platform/devices/smpro-errmon.*/event_[vrd_warn_f=
-ault|vrd_hot|dimm_hot]
- KernelVersion:	5.18
- Contact:	quan@os.amperecomputing.com
- Description:
- 		(RO) Contains the detail information in case of VRD/DIMM warning/hot eve=
-nts
--		in hex format as below:
-+		in hex format as below::
-=20
--		AAAA
--		Where:
--		  AAAA: The event detail information data
-+		    AAAA
-=20
--		See more details in section 5.7 GPI Status Registers,
--		Altra Family Soc BMC Interface Specification.
-+		where:
-+
-+		  - ``AAAA``: The event detail information data
-+
-+		For more details, see section `5.7 GPI Status Registers,
-+		Altra Family Soc BMC Interface Specification`.
-=20
-=20
- What:		/sys/bus/platform/devices/smpro-misc.*/boot_progress
- KernelVersion:	5.18
- Contact:	quan@os.amperecomputing.com
- Description:
--		(RO) Contains the boot stages information in hex as format below:
-+		(RO) Contains the boot stages information in hex as format below::
-=20
--		AABBCCCCCCCC
--		Where:
--		  AA      : The boot stages
--		              00: SMpro firmware booting
--		              01: PMpro firmware booting
--		              02: ATF BL1 firmware booting
--		              03: DDR initialization
--		              04: DDR training report status
--		              05: ATF BL2 firmware booting
--		              06: ATF BL31 firmware booting
--		              07: ATF BL32 firmware booting
--		              08: UEFI firmware booting
--		              09: OS booting
--		  BB      : Boot status
--		              00: Not started
--		              01: Started
--		              02: Completed without error
--		              03: Failed.
--		  CCCCCCCC: Boot status information defined for each boot stages
-+		    AABBCCCCCCCC
-=20
--		See more details in section 5.11 Boot Stage Register Definitions,
--		and section 6. Processor Boot Progress Codes, Altra Family Soc BMC
--		Interface Specification.
-+		where:
-+
-+		  - ``AA``      : The boot stages
-+
-+		    - 00: SMpro firmware booting
-+		    - 01: PMpro firmware booting
-+		    - 02: ATF BL1 firmware booting
-+		    - 03: DDR initialization
-+		    - 04: DDR training report status
-+		    - 05: ATF BL2 firmware booting
-+		    - 06: ATF BL31 firmware booting
-+		    - 07: ATF BL32 firmware booting
-+		    - 08: UEFI firmware booting
-+		    - 09: OS booting
-+
-+		  - ``BB``      : Boot status
-+
-+		    - 00: Not started
-+		    - 01: Started
-+		    - 02: Completed without error
-+		    - 03: Failed.
-+
-+		  - ``CCCCCCCC``: Boot status information defined for each boot stages
-+
-+		For details, see section `5.11 Boot Stage Register Definitions`
-+		and section `6. Processor Boot Progress Codes, Altra Family Soc BMC
-+		Interface Specification`.
-=20
-=20
- What:           /sys/bus/platform/devices/smpro-misc*/soc_power_limit
-@@ -121,5 +155,6 @@ Description:
- 		Writes to this sysfs set the desired SoC power limit (W).
- 		Reads from this register return the current SoC power limit (W).
- 		The value ranges:
--		  Minimum: 120 W
--		  Maximum: Socket TDP power
-+
-+		  - Minimum: 120 W
-+		  - Maximum: Socket TDP power
+Since v3:
+- Move unevaluatedProperties line after $ref for binding patch.
+- Add Reviewed-by tag for binding patch.
 
-Thanks.
+Since v2:
+- Remove the properties for interrupt controller things in the binding documentation.
+- Fix dtc error for typo, it's 'regulator-name', not 'regulator-compatible'.
+- Add regulator min/max microamp to allow otg vbus current adjustable in example.
+- Specify the active-level for charge-enable-gpios in binding example.
+- Fix checkpatch error about 'foo * bar' to 'foo *bar' in psy_device_to_chip function.
+- Specify the member name directly for the use of linear range.
 
---=20
-An old man doll... just what I always wanted! - Clara
+ChiYuan Huang (3):
+  dt-bindings: power: supply: Add Richtek RT9471 battery charger
+  power: supply: rt9471: Add Richtek RT9471 charger driver
+  Documentation: power: rt9471: Document exported sysfs entries
 
---kUsQPpaU0BXqgnpI
-Content-Type: application/pgp-signature; name="signature.asc"
+ Documentation/ABI/testing/sysfs-class-power-rt9471 |  32 +
+ .../bindings/power/supply/richtek,rt9471.yaml      |  73 ++
+ drivers/power/supply/Kconfig                       |  16 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/rt9471.c                      | 934 +++++++++++++++++++++
+ 5 files changed, 1056 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9471
+ create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt9471.yaml
+ create mode 100644 drivers/power/supply/rt9471.c
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.7.4
 
-iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCYza4/wAKCRD2uYlJVVFO
-o5svAQCSZ1OckshjdWjDv7dwUTOOGBgC0fNz9+j2TFy7QR45EwD9GvxlUDr42ysP
-UJgWNqn/Qxi7jKVp1cTlGl86h+PwmQw=
-=bzCY
------END PGP SIGNATURE-----
-
---kUsQPpaU0BXqgnpI--
