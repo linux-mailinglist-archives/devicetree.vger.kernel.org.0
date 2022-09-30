@@ -2,315 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DCB05F0BA4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 14:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A43CD5F0BB5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 14:25:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231268AbiI3MW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 08:22:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57840 "EHLO
+        id S231449AbiI3MZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 08:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231637AbiI3MWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 08:22:25 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BD6211401D;
-        Fri, 30 Sep 2022 05:22:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D7AF2B8289E;
-        Fri, 30 Sep 2022 12:22:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3576C433D6;
-        Fri, 30 Sep 2022 12:22:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1664540523;
-        bh=rIbGJ12SYgk+2I6draZEZwvcyTCpTsiUZ5ZhxdE6Cx0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tkLM65PqSKrKBFln2qW+m34r3Rb9biTw64Qq1nRmrwRlttKWRzGijYcPirgkj9/j7
-         KY9/lmJhODMLOFkw6NkXFSriJALSk8lH/vxej/oBf+0sTIyLi5Z4vCYEJgFmB6OVMN
-         jYUPdn6E6NMm/twBzxZYvH+FueY+Gm2FMR5SFszg=
-Date:   Fri, 30 Sep 2022 14:22:00 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231680AbiI3MZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 08:25:43 -0400
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.155.67.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD36773317;
+        Fri, 30 Sep 2022 05:25:34 -0700 (PDT)
+X-QQ-mid: bizesmtp71t1664540601timrcnbn
+Received: from ubuntu.localdomain ( [113.72.146.201])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Fri, 30 Sep 2022 20:23:20 +0800 (CST)
+X-QQ-SSF: 01000000000000305000000A0000000
+X-QQ-FEAT: dS+JUNSIibdYmLj5t1I9ugN+S0ksnIEycmIIAPYyEFfZJVg9V/kdWfTdMQPEk
+        fjiuX7Oae/U06nm1p3ELka+dZsKdTvpPxceFNxZs2W5d9q7tN+Mlh/tTsnCLp+g6MD8EPCS
+        /Omd+8wurSlmyVZfI2W/RsS4n2SttiwKTr4ZAKOIT9PVufqV9TzIFqghUyiauNZC9Ivg2gS
+        eYUqfNTfp36XhmArpqvagc+H+BPz+pO2/qJ/vSyY+mlbNx2FTcSMVqpeA7+yi8QJ5ISZxqT
+        wVnKrNoH4hnS19Rz8hErC91RmQbG1g+8wjDRa2yNP2JEJ6cXnZdrQjOle67cSq7QT7C55Mw
+        60KgXmT3qTPNobR9taWYEIhn5WBP7AMaxciOBVayF+QGM0k/4WYweBP1+XhVPm20wpK3aHZ
+        eXD32uXPZCs=
+X-QQ-GoodBg: 0
+From:   Hal Feng <hal.feng@linux.starfivetech.com>
+To:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Hal Feng <hal.feng@linux.starfivetech.com>,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 12/14] gunyah: rsc_mgr: Add RPC for console services
-Message-ID: <YzbfaCj9jvSUDfUg@kroah.com>
-References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
- <20220928195633.2348848-13-quic_eberman@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220928195633.2348848-13-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Subject: [PATCH v1 30/30] RISC-V: Add StarFive JH7100 and JH7110 SoC Kconfig options
+Date:   Fri, 30 Sep 2022 20:23:18 +0800
+Message-Id: <20220930122318.9244-1-hal.feng@linux.starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:linux.starfivetech.com:qybglogicsvr:qybglogicsvr2
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 28, 2022 at 12:56:31PM -0700, Elliot Berman wrote:
-> Gunyah resource manager defines a simple API for virtual machine log
-> sharing with the console service. A VM's own log can be opened by using
-> GH_VMID_SELF. Another VM's log can be accessed via its VMID. Once
-> opened, characters can be written to the log with a write command.
-> Characters are received with resource manager notifications (using ID
-> GH_RM_NOTIF_VM_CONSOLE_CHARS).
-> 
-> These high level rpc calls are kept in
-> drivers/virt/gunyah/rsc_mgr_rpc.c. Future RPC calls, e.g. to launch a VM
-> will also be maintained in this file.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->  drivers/virt/gunyah/Makefile      |   2 +-
->  drivers/virt/gunyah/rsc_mgr.h     |  22 +++++
->  drivers/virt/gunyah/rsc_mgr_rpc.c | 151 ++++++++++++++++++++++++++++++
->  include/linux/gunyah_rsc_mgr.h    |  16 ++++
->  4 files changed, 190 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/virt/gunyah/rsc_mgr_rpc.c
-> 
-> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
-> index 7c512490f921..73339ed445b3 100644
-> --- a/drivers/virt/gunyah/Makefile
-> +++ b/drivers/virt/gunyah/Makefile
-> @@ -1,5 +1,5 @@
->  gunyah-y += sysfs.o
->  obj-$(CONFIG_GUNYAH) += gunyah.o
->  
-> -gunyah_rsc_mgr-y += rsc_mgr.o
-> +gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o
->  obj-$(CONFIG_GUNYAH_RESORUCE_MANAGER) += gunyah_rsc_mgr.o
-> diff --git a/drivers/virt/gunyah/rsc_mgr.h b/drivers/virt/gunyah/rsc_mgr.h
-> index e4f2499267bf..deb884979209 100644
-> --- a/drivers/virt/gunyah/rsc_mgr.h
-> +++ b/drivers/virt/gunyah/rsc_mgr.h
-> @@ -28,6 +28,28 @@
->  #define GH_RM_ERROR_IRQ_INUSE		0x10
->  #define GH_RM_ERROR_IRQ_RELEASED	0x11
->  
-> +/* Message IDs: VM Management */
-> +#define GH_RM_RPC_VM_GET_VMID			0x56000024
-> +
-> +/* Message IDs: VM Services */
-> +#define GH_RM_RPC_VM_CONSOLE_OPEN_ID		0x56000081
-> +#define GH_RM_RPC_VM_CONSOLE_CLOSE_ID		0x56000082
-> +#define GH_RM_RPC_VM_CONSOLE_WRITE_ID		0x56000083
-> +#define GH_RM_RPC_VM_CONSOLE_FLUSH_ID		0x56000084
-> +
-> +/* Call: CONSOLE_OPEN, CONSOLE_CLOSE, CONSOLE_FLUSH */
-> +struct gh_vm_console_common_req {
-> +	u16 vmid;
-> +	u16 reserved0;
-> +} __packed;
-> +
-> +/* Call: CONSOLE_WRITE */
-> +struct gh_vm_console_write_req {
-> +	u16 vmid;
-> +	u16 num_bytes;
-> +	u8 data[0];
-> +} __packed;
-> +
->  int gh_rm_call(u32 message_id, void *req_buff, size_t req_buff_size,
->  		void **resp_buf, size_t *resp_buff_size);
->  
-> diff --git a/drivers/virt/gunyah/rsc_mgr_rpc.c b/drivers/virt/gunyah/rsc_mgr_rpc.c
-> new file mode 100644
-> index 000000000000..8238c6ef301f
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/rsc_mgr_rpc.c
-> @@ -0,0 +1,151 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#define pr_fmt(fmt) "gh_rsc_mgr: " fmt
-> +
-> +#include <linux/slab.h>
-> +#include <linux/types.h>
-> +#include <linux/printk.h>
-> +#include <linux/gunyah_rsc_mgr.h>
-> +
-> +#include "rsc_mgr.h"
-> +
-> +/**
-> + * gh_rm_get_vmid() - Retrieve VMID of this virtual machine
-> + * @vmid: Filled with the VMID of this VM
-> + */
-> +int gh_rm_get_vmid(u16 *vmid)
-> +{
-> +	void *resp;
-> +	size_t resp_size;
-> +	int ret;
-> +	int payload = 0;
-> +
-> +	ret = gh_rm_call(GH_RM_RPC_VM_GET_VMID, &payload, sizeof(payload), &resp, &resp_size);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (resp_size != sizeof(*vmid))
-> +		return -EIO;
-> +	*vmid = *(u16 *)resp;
-> +	kfree(resp);
-> +
-> +	return ret;
-> +}
-> +
-> +/**
-> + * gh_rm_console_open() - Open a console with a VM
-> + * @vmid: VMID of the other VM whose console to open. If VMID is GH_VMID_SELF, the
-> + *        console associated with this VM is opened.
-> + */
-> +int gh_rm_console_open(u16 vmid)
-> +{
-> +	void *resp;
-> +	struct gh_vm_console_common_req req_payload = {0};
-> +	size_t resp_size;
-> +	int ret;
-> +
-> +	req_payload.vmid = vmid;
-> +
-> +	ret = gh_rm_call(GH_RM_RPC_VM_CONSOLE_OPEN_ID,
-> +			  &req_payload, sizeof(req_payload),
-> +			  &resp, &resp_size);
-> +	kfree(resp);
-> +
-> +	if (!ret && resp_size)
-> +		pr_warn("Received unexpected payload for CONSOLE_OPEN: %lu\n", resp_size);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(gh_rm_console_open);
-> +
-> +/**
-> + * gh_rm_console_close() - Close a console with a VM
-> + * @vmid: The vmid of the vm whose console to close.
-> + */
-> +int gh_rm_console_close(u16 vmid)
-> +{
-> +	void *resp;
-> +	struct gh_vm_console_common_req req_payload = {0};
-> +	size_t resp_size;
-> +	int ret;
-> +
-> +	req_payload.vmid = vmid;
-> +
-> +	ret = gh_rm_call(GH_RM_RPC_VM_CONSOLE_CLOSE_ID,
-> +			  &req_payload, sizeof(req_payload),
-> +			  &resp, &resp_size);
-> +	kfree(resp);
-> +
-> +	if (!ret && resp_size)
-> +		pr_warn("Received unexpected payload for CONSOLE_CLOSE: %lu\n", resp_size);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(gh_rm_console_close);
-> +
-> +/**
-> + * gh_rm_console_write() - Write to a VM's console
-> + * @vmid: The vmid of the vm whose console to write to.
-> + * @buf: Buffer to write to the VM's console
-> + * @size: Size of the buffer
-> + */
-> +int gh_rm_console_write(u16 vmid, const char *buf, size_t size)
-> +{
-> +	void *resp;
-> +	struct gh_vm_console_write_req *req_payload;
-> +	size_t resp_size;
-> +	int ret = 0;
-> +	size_t req_payload_size = sizeof(*req_payload) + size;
-> +
-> +	if (size < 1 || size > (U32_MAX - sizeof(*req_payload)))
-> +		return -EINVAL;
-> +
-> +	req_payload = kzalloc(req_payload_size, GFP_KERNEL);
-> +
-> +	if (!req_payload)
-> +		return -ENOMEM;
-> +
-> +	req_payload->vmid = vmid;
-> +	req_payload->num_bytes = size;
-> +	memcpy(req_payload->data, buf, size);
-> +
-> +	ret = gh_rm_call(GH_RM_RPC_VM_CONSOLE_WRITE_ID,
-> +		   req_payload, req_payload_size,
-> +		   &resp, &resp_size);
-> +	kfree(req_payload);
-> +	kfree(resp);
-> +
-> +	if (!ret && resp_size)
-> +		pr_warn("Received unexpected payload for CONSOLE_WRITE: %lu\n", resp_size);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(gh_rm_console_write);
-> +
-> +/**
-> + * gh_rm_console_flush() - Flush a console with a VM
-> + * @vmid: The vmid of the vm whose console to flush
-> + */
-> +int gh_rm_console_flush(u16 vmid)
-> +{
-> +	void *resp;
-> +	struct gh_vm_console_common_req req_payload = {0};
-> +	size_t resp_size;
-> +	int ret;
-> +
-> +	req_payload.vmid = vmid;
-> +
-> +	ret = gh_rm_call(GH_RM_RPC_VM_CONSOLE_FLUSH_ID,
-> +			  &req_payload, sizeof(req_payload),
-> +			  &resp, &resp_size);
-> +	kfree(resp);
-> +
-> +	if (!ret && resp_size)
-> +		pr_warn("Received unexpected payload for CONSOLE_FLUSH: %lu\n", resp_size);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(gh_rm_console_flush);
-> diff --git a/include/linux/gunyah_rsc_mgr.h b/include/linux/gunyah_rsc_mgr.h
-> index b3b37225b7fb..f831ca921c26 100644
-> --- a/include/linux/gunyah_rsc_mgr.h
-> +++ b/include/linux/gunyah_rsc_mgr.h
-> @@ -23,4 +23,20 @@ struct gh_rm_notification {
->  int gh_rm_register_notifier(struct notifier_block *nb);
->  int gh_rm_unregister_notifier(struct notifier_block *nb);
->  
-> +/* Notification type Message IDs */
-> +#define GH_RM_NOTIF_VM_CONSOLE_CHARS	0x56100080
-> +
-> +struct gh_rm_notif_vm_console_chars {
-> +	u16 vmid;
-> +	u16 num_bytes;
-> +	u8 bytes[0];
+Add Kconfig options to select the specified StarFive SoC. Select
+necessary Kconfig options required by the specified SoC for booting.
 
-Please do not use [0] for new structures, otherwise we will just have to
-fix them up again as we are trying to get rid of all of these from the
-kernel. Just use "bytes[];" instead.
+Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
+---
+ arch/riscv/Kconfig.socs               | 27 ++++++++++++++++++++++++++-
+ arch/riscv/boot/dts/starfive/Makefile |  4 ++--
+ drivers/clk/starfive/Kconfig          | 14 ++++++--------
+ drivers/pinctrl/starfive/Kconfig      |  6 ++----
+ drivers/reset/Kconfig                 |  1 -
+ 5 files changed, 36 insertions(+), 16 deletions(-)
 
-thanks,
+diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+index 10f68a4359f9..321c448e7b6f 100644
+--- a/arch/riscv/Kconfig.socs
++++ b/arch/riscv/Kconfig.socs
+@@ -22,10 +22,35 @@ config SOC_STARFIVE
+ 	bool "StarFive SoCs"
+ 	select PINCTRL
+ 	select RESET_CONTROLLER
++	select RESET_STARFIVE
++	help
++	  This enables support for StarFive SoC platform hardware.
++
++if SOC_STARFIVE
++
++config SOC_JH7100
++	bool "StarFive JH7100 SoC support"
++	depends on SOC_STARFIVE
+ 	select SIFIVE_L2
+ 	select SIFIVE_PLIC
++	select CLK_STARFIVE_JH7100
++	select PINCTRL_STARFIVE_JH7100
++	default SOC_STARFIVE
+ 	help
+-	  This enables support for StarFive SoC platform hardware.
++	  This enables support for StarFive JH7100 SoC.
++
++config SOC_JH7110
++	bool "StarFive JH7110 SoC support"
++	depends on SOC_STARFIVE
++	select SIFIVE_L2
++	select SIFIVE_PLIC
++	select CLK_STARFIVE_JH7110_SYS
++	select PINCTRL_STARFIVE_JH7110
++	default SOC_STARFIVE
++	help
++	  This enables support for StarFive JH7110 SoC.
++
++endif
+ 
+ config SOC_VIRT
+ 	bool "QEMU Virt Machine"
+diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+index e1237dbc6aac..a6ecd3c2ec7d 100644
+--- a/arch/riscv/boot/dts/starfive/Makefile
++++ b/arch/riscv/boot/dts/starfive/Makefile
+@@ -1,3 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0
+-dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb
+-dtb-$(CONFIG_SOC_STARFIVE) += jh7110-starfive-visionfive-v2.dtb
++dtb-$(CONFIG_SOC_JH7100) += jh7100-beaglev-starlight.dtb
++dtb-$(CONFIG_SOC_JH7110) += jh7110-starfive-visionfive-v2.dtb
+diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
+index 42aad3b553cb..d0490e9f42db 100644
+--- a/drivers/clk/starfive/Kconfig
++++ b/drivers/clk/starfive/Kconfig
+@@ -5,36 +5,34 @@ config CLK_STARFIVE
+ 
+ config CLK_STARFIVE_JH7100
+ 	bool "StarFive JH7100 clock support"
+-	depends on SOC_STARFIVE || COMPILE_TEST
++	depends on SOC_JH7100 || COMPILE_TEST
+ 	select CLK_STARFIVE
+-	default SOC_STARFIVE
+ 	help
+ 	  Say yes here to support the clock controller on the StarFive JH7100
+ 	  SoC.
+ 
+ config CLK_STARFIVE_JH7100_AUDIO
+ 	tristate "StarFive JH7100 audio clock support"
+-	depends on SOC_STARFIVE || COMPILE_TEST
++	depends on SOC_JH7100 || COMPILE_TEST
+ 	select CLK_STARFIVE
+-	default m if SOC_STARFIVE
++	default m if SOC_JH7100
+ 	help
+ 	  Say Y or M here to support the audio clocks on the StarFive JH7100
+ 	  SoC.
+ 
+ config CLK_STARFIVE_JH7110_SYS
+ 	bool "StarFive JH7110 system clock support"
+-	depends on SOC_STARFIVE || COMPILE_TEST
++	depends on SOC_JH7110 || COMPILE_TEST
+ 	select CLK_STARFIVE
+-	default SOC_STARFIVE
+ 	help
+ 	  Say yes here to support the system clock controller on the
+ 	  StarFive JH7110 SoC.
+ 
+ config CLK_STARFIVE_JH7110_AON
+ 	tristate "StarFive JH7110 always-on clock support"
+-	depends on SOC_STARFIVE || COMPILE_TEST
++	depends on SOC_JH7110 || COMPILE_TEST
+ 	select CLK_STARFIVE
+-	default m if SOC_STARFIVE
++	default m if SOC_JH7110
+ 	help
+ 	  Say yes here to support the always-on clock controller on the
+ 	  StarFive JH7110 SoC.
+diff --git a/drivers/pinctrl/starfive/Kconfig b/drivers/pinctrl/starfive/Kconfig
+index fde39f4a7922..d09bdf6d3029 100644
+--- a/drivers/pinctrl/starfive/Kconfig
++++ b/drivers/pinctrl/starfive/Kconfig
+@@ -2,7 +2,7 @@
+ 
+ config PINCTRL_STARFIVE_JH7100
+ 	tristate "Pinctrl and GPIO driver for the StarFive JH7100 SoC"
+-	depends on SOC_STARFIVE || COMPILE_TEST
++	depends on SOC_JH7100 || COMPILE_TEST
+ 	depends on OF
+ 	select GENERIC_PINCTRL_GROUPS
+ 	select GENERIC_PINMUX_FUNCTIONS
+@@ -10,7 +10,6 @@ config PINCTRL_STARFIVE_JH7100
+ 	select GPIOLIB
+ 	select GPIOLIB_IRQCHIP
+ 	select OF_GPIO
+-	default SOC_STARFIVE
+ 	help
+ 	  Say yes here to support pin control on the StarFive JH7100 SoC.
+ 	  This also provides an interface to the GPIO pins not used by other
+@@ -28,10 +27,9 @@ config PINCTRL_STARFIVE
+ 
+ config PINCTRL_STARFIVE_JH7110
+ 	bool "Pinctrl and GPIO driver for the StarFive JH7110 SoC"
+-	depends on SOC_STARFIVE || COMPILE_TEST
++	depends on SOC_JH7110 || COMPILE_TEST
+ 	depends on OF
+ 	select PINCTRL_STARFIVE
+-	default SOC_STARFIVE
+ 	help
+ 	  Say yes here to support pin control on the StarFive JH7110 SoC.
+ 	  This also provides an interface to the GPIO pins not used by other
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index 8121de5ecc3c..c001879bd890 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -228,7 +228,6 @@ config RESET_SOCFPGA
+ config RESET_STARFIVE
+ 	bool "StarFive SoC Reset Driver"
+ 	depends on SOC_STARFIVE || COMPILE_TEST
+-	default SOC_STARFIVE
+ 	help
+ 	  This enables the reset controller driver for the StarFive SoCs.
+ 
+-- 
+2.17.1
 
-greg k-h
