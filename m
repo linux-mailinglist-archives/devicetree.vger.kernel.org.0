@@ -2,207 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5570B5F0F1E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B9935F0F32
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbiI3PkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 11:40:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36482 "EHLO
+        id S230191AbiI3PsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 11:48:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231129AbiI3PkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:40:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E2CB79A41;
-        Fri, 30 Sep 2022 08:40:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 22EF96239F;
-        Fri, 30 Sep 2022 15:40:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20DC4C433D6;
-        Fri, 30 Sep 2022 15:40:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664552411;
-        bh=BTRN9+H2vdtq8ALBlYzWaaxmawleBBNHN47RA04/iTA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=D9ahcQU1FGRkEwQoOOr7qjpezYPv60K3JG2A9/JSAyMIw18k2j2Mx7aXCKzl/VVE5
-         FBT8S6DQ+G/mp9JtgR0ToY1JZq8EMn9cIPEKXifCDYfI2m/3ANsdGh9KXueTNnMg6l
-         moeMmBj5bxr1MhmkG2nZU3j7cDgkON8I4JYyAJnXiazViKzkYHvOyCzCxS91/gSszc
-         6f8Dfg3T0XXMEQTFT+21GMCXhR1q1WQLNqk5EbyF91vu7khRgGM3Gv5iSVyQJ1m46z
-         Co1YbvgfeY2LF42hEFssWmNaVOCuCzMF5VgNg8j4nlwTSnVwPU6gsazQ4NweResLN/
-         eLVqoXawUgFBQ==
-Received: by pali.im (Postfix)
-        id F201393F; Fri, 30 Sep 2022 17:40:07 +0200 (CEST)
-Date:   Fri, 30 Sep 2022 17:40:07 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Elad Nachman <enachman@marvell.com>,
-        "maukka@ext.kapsi.fi" <maukka@ext.kapsi.fi>,
-        Andrew Lunn <andrew@lunn.ch>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net" <olof@lixom.net>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [EXT] Re: [PATCH v2 3/3] ARM: orion5x: Add D-Link DNS-323 based
- on Device Tree
-Message-ID: <20220930154007.rsrz6ezvdpwlx6d7@pali>
-References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
- <20220922202458.7592-1-maukka@ext.kapsi.fi>
- <20220922202458.7592-4-maukka@ext.kapsi.fi>
- <YyzPVMrfcOkvngxl@lunn.ch>
- <6dc27862f8460f875c31ad2de56baa9f@ext.kapsi.fi>
- <Yy2iqE8XgXe8qYd9@lunn.ch>
- <20220923180226.vmjcefxlujg2r6u3@pali>
- <74f2b413a617a4315cc34a0ef386dd8d@ext.kapsi.fi>
- <20220926122318.qmt4dnes7caua333@pali>
- <BN9PR18MB4251A251E516E3ECD35F4E94DB549@BN9PR18MB4251.namprd18.prod.outlook.com>
+        with ESMTP id S231442AbiI3PsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:48:01 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A531A88FB
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 08:48:00 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oeIF4-0001O6-4j; Fri, 30 Sep 2022 17:47:58 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oeIF4-003pOi-Ou; Fri, 30 Sep 2022 17:47:57 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oeIF2-004hZQ-DL; Fri, 30 Sep 2022 17:47:56 +0200
+Date:   Fri, 30 Sep 2022 17:47:56 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+Subject: Re: [RFC v4 02/10] pwm: dwc: allow driver to be built with
+ COMPILE_TEST
+Message-ID: <20220930154756.qestmqgekkvc5jmi@pengutronix.de>
+References: <20220816211454.237751-1-ben.dooks@sifive.com>
+ <20220816211454.237751-3-ben.dooks@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="hsqqpq2axr4ef664"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <BN9PR18MB4251A251E516E3ECD35F4E94DB549@BN9PR18MB4251.namprd18.prod.outlook.com>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220816211454.237751-3-ben.dooks@sifive.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Elad! Thank you very much for this information!
 
-With information from other resources, I think I understood it.
+--hsqqpq2axr4ef664
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hello Thierry,
 
-Andrew & Mauri: here is my recap:
+On Tue, Aug 16, 2022 at 10:14:46PM +0100, Ben Dooks wrote:
+> Allow dwc driver to be built with COMPILE_TEST should allow
+> better coverage when build testing.
+>=20
+> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
 
-On https://docs.kernel.org/arm/marvell.html is Datasheet document for
-88F5281 SoC (it is different! not 88F5181!) and in its section 3.2
-Device Pins Multiplexing it is documented. SoC pins named MPP[0], ...
-MPP[19] are configured via registers 0x10000, 0x10004 and 0x10050 as
-documented in User Manual. And SoC pins named DEV_D[16], ... DEV_D[31]
-are configured via that undocumented register 0x10008.
+You marked this patch as "changes requested" without feedback. This
+patch is part of a bigger series, but makes sense to be applied stand
+alone, too.
 
-Normally 32 DEV_D pins on 88F5281 SoC are used for Device Bus Interface
-but when SoC has configured only 16-bit or 8-bit Device Bus or it does
-not use Device Bus Interface at all then pins DEV_D[16] ... DEV_D[31]
-can be used as GPIOs.
+Ditto for patch #3 IMHO.
 
-Elad wrote that clearing particular bit _i_ in 0x10008 sets DEV_D[i] on
-88F5181 to GPIO but datasheet for 88F5281 says that clearing bit i
-(value 0x0) sets DEV_D[i] to Device Bus mode.
+Best regards
+Uwe
 
-I have no idea if 88F5281 and 88F5181 have inverted logic or if
-documentation has bugs. But at least it this explanation makes sense for
-me.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-So code "writel(0, MPP_DEV_CTRL);" either changes all DEV_D pins to GPIO
-mode or to Device Bus Interface mode.
+--hsqqpq2axr4ef664
+Content-Type: application/pgp-signature; name="signature.asc"
 
-In most cases Device Bus is used for connecting Parallel NAND or any
-similar Flash memory device. Mauri, you can check if your board has
-such memory. Or if it uses GPIOs connected on DEV_D pins. If not then it
-does not matter how you set that register.
+-----BEGIN PGP SIGNATURE-----
 
-Anyway, just for completeness, the "proper" way for using MPP_DEV_CTRL
-should have been in pinctrl/mvebu/pinctrl-orion.c driver. But I think it
-does not make sense to spend another time for this old board to convert
-this code into proper pinctrl driver.
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmM3D6kACgkQwfwUeK3K
+7Alj0Qf+PGyZlI2MRcoZJZ9qMLavu1JCUuyDaC+rxuE/7VLz6mzI2zSFXgA2S9+0
+jJJ6oaoliC4Ot9EOfa/oaiprgxJnq2294AP3xLUQIXZb4rjZsjonmsicCC25wMAU
+5iC9Eq9ZWkzgIWnY9MyAEpsKLg7VMSthqNGFJVfzmwdHki3NqEIRyMeLJ08THxjc
+fgw2LyTarJBMVqAo+dDkWRY+GTOTLcEqRs7Tkg9pJsti0BpKyUAMpl9APYi8J66e
+jB6RYum68LZ2jLzs1opgYHonDChEmebNUvtpETdVWUrREMLJ/pWtFPdHBltGh6In
+ouhc8Un7zOFUybWH9uELZhsbSKizmw==
+=d3oj
+-----END PGP SIGNATURE-----
 
-Hopes that this helps to finally understand that old undocumented mystery.
-
-On Wednesday 28 September 2022 13:32:27 Elad Nachman wrote:
-> Hi Pali,
-> 
-> I do not have documentation for this controller, as it is almost 20 years old...
-> 
-> I did manage, however, to find some very old u-boot code for it.
-> 
-> From reverse engineering this u-boot code, it looks like this is a "DEV" MPP function register, similar to the MPP0_7, MPP8_15 and the MPP16_23 registers.
-> 
-> Basically, setting bits of this registers assign the pin to the special purpose, while clearing it makes it a GPP (General Purpose Pin).
-> 
-> For all of the boards (over half a dozen) support by this u-boot, this register is set to zero (see above).
-> From user guides I have found for few of these boards, only MPPs up to MPP19 are used, hence it make sense to leave these MPPs as GPPs .
-> 
-> Hopefully this helps in some way.
-> 
-> FYI,
-> 
-> Elad.
-> 
-> 
-> -----Original Message-----
-> From: Pali Rohár <pali@kernel.org> 
-> Sent: Monday, September 26, 2022 3:23 PM
-> To: Elad Nachman <enachman@marvell.com>
-> Cc: maukka@ext.kapsi.fi; Andrew Lunn <andrew@lunn.ch>; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; arnd@arndb.de; olof@lixom.net; sebastian.hesselbarth@gmail.com; gregory.clement@bootlin.com; linux@armlinux.org.uk; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
-> Subject: [EXT] Re: [PATCH v2 3/3] ARM: orion5x: Add D-Link DNS-323 based on Device Tree
-> 
-> External Email
-> 
-> ----------------------------------------------------------------------
-> Hello Elad! I hope that would not bothering you. We are doing here cleanup of kernel code for older Marvell SoCs (Orion) and there one unknown thing about 88F5181's 0x10008 register. See below.
-> 
-> On Monday 26 September 2022 14:56:48 maukka@ext.kapsi.fi wrote:
-> > On 23.9.2022 21:02, Pali Rohár wrote:
-> > > On Friday 23 September 2022 14:12:24 Andrew Lunn wrote:
-> > > > > > > +	if (of_machine_is_compatible("dlink,dns323a1")) {
-> > > > > > > +		writel(0, MPP_DEV_CTRL);		/* DEV_D[31:16] */
-> > > > > >
-> > > > > > I spotted this in dns323-setup.c as well. Do you have any idea 
-> > > > > > what it does?
-> > > > > >
-> > > > >
-> > > > > No idea. I have tried to replicate what was in dns323-setup.c as 
-> > > > > exactly as possible.
-> > > > > I can try to leave it out and see if anything changes.
-> > > > 
-> > > > It is best to keep what we don't understand. It will be there for 
-> > > > a reason.
-> > > > 
-> > > > 	Andrew
-> > > 
-> > > Hello! I tried to index all publicly available Marvell SoC 
-> > > documentations into kernel documentation subfolder:
-> > > https://urldefense.proofpoint.com/v2/url?u=https-3A__docs.kernel.org
-> > > _arm_marvell.html&d=DwIDaQ&c=nKjWec2b6R0mOyPaz7xtfQ&r=eTeNTLEK5-TxXc
-> > > zjOcKPhANIFtlB9pP4lq9qhdlFrwQ&m=QnvtICgYrknBcrJ4SBYkL8zUxNtqo3A40bjE
-> > > TmCHhBbdWQOUaRffkiMgtuRkQ2WE&s=QiNvxcOSpDNOTgiK8nuCZ18pgJRKBtgVu-SeG
-> > > E9n7CY&e=
-> > > 
-> > > For Orion there is linked Datasheet and User Manual, so you could 
-> > > try to find in those documents that mentioned register and check 
-> > > what it is doing.
-> > 
-> > MPP_DEV_CTRL refers to register at address 0x10008. According to the 
-> > 88F5152 user manual it's 'Device Multiplex Control Register' Offset: 
-> > 0x10008.
-> > 
-> > Bits    Field     Type/InitVal     Description
-> > [31:0]  Reserved  RES 0x03FF0000   Reserved. NOTE: Must be 0x03FF0000'.
-> > 
-> > DEV_D[31:16] receives no hits in the documentation, only to 
-> > DEV_D[15:0] are referred.
-> 
-> In linked public document I found same thing. Register is for 88F5182 reserved. (You have typo in comment, it is 88F5182, not *52).
-> 
-> > Maybe 88F5151 is different, hard to say.
-> 
-> I have feeling that for 88F5181 it is not reserved and has to be configured correctly. (Also typo in your comment, it is 88F5181, not *51).
-> But I have not found any copy of 88F5181 user manual document on internet.
-> 
-> In past 88F518x and 88F528x documents and user manuals were available publicly on Marvell website, visible from web archive:
-> https://urldefense.proofpoint.com/v2/url?u=https-3A__web.archive.org_web_20080607215437_http-3A__www.marvell.com_products_media_index.jsp&d=DwIDaQ&c=nKjWec2b6R0mOyPaz7xtfQ&r=eTeNTLEK5-TxXczjOcKPhANIFtlB9pP4lq9qhdlFrwQ&m=QnvtICgYrknBcrJ4SBYkL8zUxNtqo3A40bjETmCHhBbdWQOUaRffkiMgtuRkQ2WE&s=k1vn2-NVEU2OsJYVTmuWMRKdN2t1MQ9pduTkGaasU4s&e=  
-> 
-> But Marvell deleted these documents from their public website and for kernel developers they are now probably lost. I do not know about any other backups.
-> 
-> 
-> Elad, could you please help us? Do you have access to functional specifications / user manuals for 88F518x and 88F528x or have information how kernel developers can get access to those documents?
-> Hopefully they were not totally lost. We just need explanation for register 'Device Multiplex Control Register' Offset: 0x10008.
+--hsqqpq2axr4ef664--
