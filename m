@@ -2,134 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B713D5F07E0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 11:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67D2D5F07ED
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 11:47:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231305AbiI3Jpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 05:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34838 "EHLO
+        id S231592AbiI3JrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 05:47:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231375AbiI3JpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 05:45:24 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 698534BA65;
-        Fri, 30 Sep 2022 02:45:13 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id u59-20020a17090a51c100b00205d3c44162so8545329pjh.2;
-        Fri, 30 Sep 2022 02:45:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date;
-        bh=01csQ8DlrzSvMM7Az3qJeMprGZ73Hm/q0Ht2rfrJyG4=;
-        b=Wyv2QVOiUxQayzYZmso8eCNs6aXJ+rt009E2YoWJiW+iJci2hy0oJ00fWBHnUy02k4
-         jo7R7De7gjwD4DNEfZ1ucHtQZJGyRHYy+ed6BaBMcaLK17K4BAh3sjhtlhofxEFDWSr1
-         Loabtj5CJrK3ECbt1d7bMUIOrGXNfmch6CIpRuE63YFSAtQhZZACrA86BIwrwBRjEQ7S
-         voG0GQquxkk+u8sWLShHRQFnthCyDnHUGVGqiQjaYRI+l1FDaugd0pHwUBOUvIqacIq1
-         hg8kcWaInapbnz27HU/ZE6u3m7lPq1WDmk1LJv1GCEJG35lUr3/Y4QWeiiyou0yBCNjQ
-         qx0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=01csQ8DlrzSvMM7Az3qJeMprGZ73Hm/q0Ht2rfrJyG4=;
-        b=WC8HJqlBVgAgfxnOqnXjpY1MegS/D3YhPbMtXhb/SjQsh41CVMZInVSvwukO98MO+6
-         e5g58YQPFwoRTVPSFNC1s6zGoQE9PTn3DxhPNGcLC7KV9JTlAkegzPE1njnLdJmM9ktH
-         JeiELdI2LGJIlK4rJxTjQ+9EkPwt38YnJnxE1ciA/EuNX24AzQpnZIBMcWeRGWYJkVs0
-         6aLIyJDhRd/5gYPJGDeoeA/pzLfJ9DhNkLXaoTnMibdmZL/FdU1MpGnkhfNgiUsEfPQU
-         DCIh/DN/18PtJB466hS8lE/NqyDhpQjuuqkm/UstF7QDVgYF5xIQMMce674bDNoJovG2
-         MmmA==
-X-Gm-Message-State: ACrzQf1yr8dUdfqP5uxaILmEPHwYh1J30yGfX1zPtQUFv6yzfg5pd1kL
-        6rrdTKzE90XuEQd3Anjr1zw=
-X-Google-Smtp-Source: AMsMyM7+M6z3xsySa9uNc4Ve0DDMYVrM1hZ0ipQxCygJzT9uDub59ZfDhCauAucihHL9aqBNsA4zPw==
-X-Received: by 2002:a17:902:ecc2:b0:178:1313:afc3 with SMTP id a2-20020a170902ecc200b001781313afc3mr8061981plh.139.1664531112173;
-        Fri, 30 Sep 2022 02:45:12 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:579:1b3a:4d22:d83a:1d4a:43f1])
-        by smtp.gmail.com with ESMTPSA id b7-20020a170902650700b0016dc78d0153sm1398051plk.296.2022.09.30.02.45.08
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 30 Sep 2022 02:45:11 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        sre@kernel.org
-Cc:     mazziesaccount@gmail.com, alina_yu@richtek.com,
-        cy_huang@richtek.com, alinayu829@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v7 3/3] Documentation: power: rt9471: Document exported sysfs entries
-Date:   Fri, 30 Sep 2022 17:44:39 +0800
-Message-Id: <1664531079-15915-4-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1664531079-15915-1-git-send-email-u0084500@gmail.com>
-References: <1664531079-15915-1-git-send-email-u0084500@gmail.com>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231609AbiI3Jqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 05:46:44 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A95B18B5EE;
+        Fri, 30 Sep 2022 02:46:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1664531185; x=1696067185;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=/9hzbJtvcmCDwMsTwmaZ+u2TLuGLLihxFJfWTDLRCkA=;
+  b=z/D96xRe2E2eKDKu7dfXNSXISpnpvnZ6EJ0RLl28RYLFiPgDu9c215FY
+   Okt8akHRrM1lOjKKM0u8ca7/fVdP/d/iPCm9XwKRm7brBYKQDOjmx2T7H
+   8WMe1Z995iiQh3WiVgFbq17f+hVumkmmIJ+UQEFdBUV9lsZWTXDbzgxAo
+   8ZiETFaOlSyYO8hCSKtPn5kK92hV9/SGAIrIlW3aStJF/AxbyqKPmxAcx
+   DqOGdRLeN2yLWJF48FPAD9asN0neFv9vieSdsOLlDxyGxhdXbGDKr0LnV
+   yQM21Y0W2fF8LV3I9tMOE5tAL4dUZEi4zsJpg5n9uNg0bfbMCEYW0Rr1Z
+   g==;
+X-IronPort-AV: E=Sophos;i="5.93,358,1654585200"; 
+   d="scan'208";a="116219231"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Sep 2022 02:46:23 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Fri, 30 Sep 2022 02:46:22 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Fri, 30 Sep 2022 02:46:20 -0700
+Date:   Fri, 30 Sep 2022 10:45:56 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+CC:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v10 3/4] pwm: add microchip soft ip corePWM driver
+Message-ID: <Yza61MO9hbuFytmM@wendy>
+References: <20220824091215.141577-1-conor.dooley@microchip.com>
+ <20220824091215.141577-4-conor.dooley@microchip.com>
+ <20220915072152.y346csakn7wetpz5@pengutronix.de>
+ <YyhmZBmfJvJ9/vBg@wendy>
+ <20220919135008.sahwmwbfwvgplji4@pengutronix.de>
+ <Yyh8v+MtHuc0LLf0@wendy>
+ <20220930091316.kdkf4oeu6uvxzqa6@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220930091316.kdkf4oeu6uvxzqa6@pengutronix.de>
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+On Fri, Sep 30, 2022 at 11:13:16AM +0200, Uwe Kleine-König wrote:
+> On Mon, Sep 19, 2022 at 03:29:19PM +0100, Conor Dooley wrote:
+> > Hey Uwe,
+> > 
+> > On Mon, Sep 19, 2022 at 03:50:08PM +0200, Uwe Kleine-König wrote:
+> > > On Mon, Sep 19, 2022 at 01:53:56PM +0100, Conor Dooley wrote:
+> > > > Because I was running into conflicts between the reporting here and some
+> > > > of the checks that I have added to prevent the PWM being put into an
+> > > > invalid state. On boot both negedge and posedge will be zero & this was
+> > > > preventing me from setting the period at all.
+> > > 
+> > > I don't understood that.
+> > 
+> > On startup, (negedge == posedge) is true as both are zero, but the reset
+> > values for prescale and period are actually 0x8. If on reset I try to
+> > set a small period, say "echo 1000 > period" apply() returns -EINVAL
+> > because of a check in the pwm core in pwm_apply_state() as I am
+> > attempting to set the period to lower than the out-of-reset duty cycle.
+> 
+> You're supposed to keep the period for pwm#1 untouched while configuring
+> pwm#0 only if pwm#1 already has a consumer. So if pwm#1 isn't requested,
+> you can change the period for pwm#0.
 
-Document the settings exported by rt9471 charger driver through sysfs entries:
-- sysoff_enable
-- port_detect_enable
+I must have done a bad job of explaining here, as I don't think this is
+an answer to my question.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-Since v6:
-- Explain more details for sysoff_enable attribute.
+On reset, the prescale and period_steps registers are set to 0x8. If I
+attempt to set the period to do "echo 1000 > period", I get -EINVAL back
+from pwm_apply_state() (in next-20220928 it's @ L562 in pwm/core.c) as
+the duty cycle is computed as twice the period as, on reset, we have
+posedge = negedge = 0x0. The check of state->duty_cycle > state->period
+fails in pwm_apply_state() as a result.
 
-Since v5:
-- Recover all the change in sysfs-class-power.
-- New a sysfs-class-power-rt9471 file.
-- Remove 'charge_term_enable' sysfs entry, directly integrate it in
-  'charge_term_current' power supply property control.
+This failure to assign a value is unrelated to having multiple PWMs, I
+think I may have horribly worded my statement when I originally replied
+to you with:
+> Because I was running into conflicts between the reporting here and some
+> of the checks that I have added to prevent the PWM being put into an
+> invalid state.
 
----
- Documentation/ABI/testing/sysfs-class-power-rt9471 | 32 ++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9471
+"reporting here" from that quote being the period/duty cycle
+calculations in the drivers get_state(). By "the checks" I meant making
+sure that a period where posedge = negedge is not set by the driver. I
+think I also may have mistakenly assumed the -EINVAL came from my code
+and not from the core - but I cannot be sure as it has been a few weeks.
 
-diff --git a/Documentation/ABI/testing/sysfs-class-power-rt9471 b/Documentation/ABI/testing/sysfs-class-power-rt9471
-new file mode 100644
-index 00000000..38227a8
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-power-rt9471
-@@ -0,0 +1,32 @@
-+What:		/sys/class/power_supply/rt9471-*/sysoff_enable
-+Date:		Oct 2022
-+KernelVersion:	6.1
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry allows enabling the sysoff mode of rt9471 charger devices.
-+		If enabled and the input is removed, the internal battery FET is turned
-+		off to reduce the leakage from the BAT pin. See device datasheet for details.
-+		It's commonly used when the product enter shipping stage. After entering
-+		shipping mode, only 'VBUS' or 'Power key" pressed can make it leave this
-+		mode. 'Disable' also can help to leave it, but it's more like to abort
-+		the action before the device really enter shipping mode.
-+
-+		Access: Read, Write
-+		Valid values:
-+		- 1: enabled
-+		- 0: disabled
-+
-+What:		/sys/class/power_supply/rt9471-*/port_detect_enable
-+Date:		Oct 2022
-+KernelVersion:	6.1
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry allows enabling the USB BC12 port detect function of rt9471 charger
-+		devices. If enabled and VBUS is inserted, device will start to do the BC12
-+		port detect and report the usb port type when port detect is done. See
-+		datasheet for details. Normally controlled when TypeC/USBPD port integrated.
-+
-+		Access: Read, Write
-+		Valid values:
-+		- 1: enabled
-+		- 0: disabled
--- 
-2.7.4
+The check in the core looks to be things "working as intended", and it
+looks like I am working around it here. Should I just note what the
+values are on reset in the "limitations" comment and the top & it is up
+to applications that control the PWMs to first "fix" the duty cycle
+before changing the period?
+
+Hopefully I've done a better job at explaning this time,
+Conor.
+
 
