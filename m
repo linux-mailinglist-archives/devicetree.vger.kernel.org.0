@@ -2,149 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CB685F115F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 20:09:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F22F5F1177
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 20:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232196AbiI3SJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 14:09:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33036 "EHLO
+        id S232153AbiI3SUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 14:20:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232050AbiI3SIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 14:08:43 -0400
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AE3B1E556A
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:08:33 -0700 (PDT)
-Received: from localhost.localdomain (95.49.31.201.neoplus.adsl.tpnet.pl [95.49.31.201])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 300D53F342;
-        Fri, 30 Sep 2022 20:08:30 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-bindings: display/panel: Add Sony Tama TD4353 JDI display panel
-Date:   Fri, 30 Sep 2022 20:08:10 +0200
-Message-Id: <20220930180812.32210-1-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.37.3
+        with ESMTP id S232177AbiI3SUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 14:20:47 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1966B2CED
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:20:45 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id y100so6539068ede.6
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:20:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=NjV6JEfhHgDYfkPbHulbQigSi/rTRxz40ubXfPpUaX0=;
+        b=jzGpsEEEQ5dG8pjjpuCsPWf7SrU/Vfs9DpaZdd5znvXL0pnXSYKdc8r+n8GZgLHinI
+         DHTO4jMa7eDYjiWYWVEm2fqycUD/GGadj9zwiJO9cjDWiBE870dyme66tAyqswGcq7KS
+         /9A38Vt/eNysPDRv+mS28Vs9NUbpYgaEHfaxk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=NjV6JEfhHgDYfkPbHulbQigSi/rTRxz40ubXfPpUaX0=;
+        b=59/7OSvvY8J+JgewVMdrqSYJKlTDL+9II2VF4OQPnxgBrMs2KIisUU/aBkTL/mswAf
+         KG0UAzT6BVRE1U3qwBLGmY533s+BKj2MA53QJCTHkH/C9xjukTv1cohXxZJdeT2DKOwq
+         6EJU7+8Mn8fhvTwKL71PtFEVRmhXOYhP4XCg4u+syyqGPXjMg5JRHruWtr1OvoptZT5d
+         D4h+FDgFX0G2gvUm55YxlkPntsHsjT9Qb+GaEx0nGSeoTQqK16B20Ov8qWZf7rpWUtmI
+         EwQZkstl/fKoJyzV5Wq9Fboj2FgSW/P7NuSlAvyyXhAMW/EnQYeYjMFR9ryKGPSK9Xa5
+         Yvew==
+X-Gm-Message-State: ACrzQf1T7xyW9YQO9XOlgneOPUyk1qP3MWaCzjHVDic674hExjhFgJio
+        AHQXSY5CAC157pygwN+F4V5flRTkW42VBMhR
+X-Google-Smtp-Source: AMsMyM5WGeZucgY4FX+QdbmN4Akvis9g8JqlRHGz9DceXhTsnxRv62EJRSoAj7UIHWK0tP8jiiVM6A==
+X-Received: by 2002:a05:6402:204a:b0:456:eed5:5f2c with SMTP id bc10-20020a056402204a00b00456eed55f2cmr8913690edb.200.1664562044085;
+        Fri, 30 Sep 2022 11:20:44 -0700 (PDT)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com. [209.85.221.53])
+        by smtp.gmail.com with ESMTPSA id f3-20020a170906560300b00773f3cb67ffsm1525745ejq.28.2022.09.30.11.20.43
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Sep 2022 11:20:43 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id bq9so8058290wrb.4
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:20:43 -0700 (PDT)
+X-Received: by 2002:a5d:522f:0:b0:228:dc7f:b9a8 with SMTP id
+ i15-20020a5d522f000000b00228dc7fb9a8mr6808655wra.617.1664562042954; Fri, 30
+ Sep 2022 11:20:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220930153643.2018907-1-judyhsiao@chromium.org>
+In-Reply-To: <20220930153643.2018907-1-judyhsiao@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 30 Sep 2022 11:20:30 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Vz_tijVmqf=J5ytH_5Pafr1s80zzxJV73ffRVObLMDbQ@mail.gmail.com>
+Message-ID: <CAD=FV=Vz_tijVmqf=J5ytH_5Pafr1s80zzxJV73ffRVObLMDbQ@mail.gmail.com>
+Subject: Re: [PATCH v5 0/3] Add dtsi for sc7280 boards that using rt5682
+To:     Judy Hsiao <judyhsiao@chromium.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
+        Judy Hsiao <judyhsiao@google.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the display panel used on some Sony Xperia XZ2 and XZ2
-Compact smartphones.
+Judy,
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
-Changes since v2:
-- preset -> panel-reset
-- treset -> touch-reset
- .../display/panel/sony,td4353-jdi.yaml        | 82 +++++++++++++++++++
- 1 file changed, 82 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
+On Fri, Sep 30, 2022 at 8:36 AM Judy Hsiao <judyhsiao@chromium.org> wrote:
+>
+> Put sound node and lpass_cpu node settings for boards that use rt5682
+> codec in the sc7280-herobrine-audio-rt5682.dtsi as there are different
+> choices of headset codec for herobrine projects. Common audio setting
+> for the internal speaker is in sc7280-herobrine.dtsi.
+>
+> Change Since V4
+> - Rebase and include sc7280-herobrine-villager-r0.dts change.
+>
+> Changes Since V3:
+> - Remove Change-Id in the commit message.
+> - Add dependency in cover letter.
+>
+> Changes Since V2:
+> - Fix sc7280-herobrine-audio-rt5682.dtsi syntax.
+>
+> Changes Since V1:
+> - Not to include the herobrine-villager-r0.dts changes in this patch
+>   series to avoid conflict.
+>
+> Judy Hsiao (3):
+>   arm64: dts: qcom: sc7280: herobrine: Add pinconf settings for mi2s1
+>   arm64: dts: qcom: sc7280: Add sc7280-herobrine-audio-rt5682.dtsi
+>   arm64: dts: qcom: sc7280: Include sc7280-herobrine-audio-rt5682.dtsi
+>     in herobrine-r1 and villager-r0
+>
+>  .../qcom/sc7280-herobrine-audio-rt5682.dtsi   | 122 ++++++++++++++++++
+>  .../qcom/sc7280-herobrine-herobrine-r1.dts    |   1 +
+>  .../dts/qcom/sc7280-herobrine-villager-r0.dts |   1 +
+>  .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  30 +++++
+>  4 files changed, 154 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml b/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
-new file mode 100644
-index 000000000000..b6b885b4c22d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/sony,td4353-jdi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sony TD4353 JDI 5 / 5.7" 2160x1080 MIPI-DSI Panel
-+
-+maintainers:
-+  - Konrad Dybcio <konrad.dybcio@somainline.org>
-+
-+description: |
-+  The Sony TD4353 JDI is a 5 (XZ2c) / 5.7 (XZ2) inch 2160x1080
-+  MIPI-DSI panel, used in Xperia XZ2 and XZ2 Compact smartphones.
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: sony,td4353-jdi-tama
-+
-+  reg: true
-+
-+  backlight: true
-+
-+  vddio-supply:
-+    description: VDDIO 1.8V supply
-+
-+  vsp-supply:
-+    description: Positive 5.5V supply
-+
-+  vsn-supply:
-+    description: Negative 5.5V supply
-+
-+  panel-reset-gpios:
-+    description: Display panel reset pin
-+
-+  touch-reset-gpios:
-+    description: Touch panel reset pin
-+
-+  port: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - vddio-supply
-+  - vsp-supply
-+  - vsn-supply
-+  - panel-reset-gpios
-+  - touch-reset-gpios
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    dsi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel: panel@0 {
-+            compatible = "sony,td4353-jdi-tama";
-+            reg = <0>;
-+
-+            backlight = <&pmi8998_wled>;
-+            vddio-supply = <&vreg_l14a_1p8>;
-+            vsp-supply = <&lab>;
-+            vsn-supply = <&ibb>;
-+            panel-reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
-+            touch-reset-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
-+
-+            port {
-+                panel_in: endpoint {
-+                    remote-endpoint = <&dsi0_out>;
-+                };
-+            };
-+        };
-+    };
-+...
--- 
-2.37.3
+Your two posts today were a bit confusing. You really need something
+in the explaining what's going on. Specifically:
 
+1. You posted a "v5" upstream a week ago [1].
+
+2. Then you posted another "v5" [2] today.
+
+3. Finally, you posted this "v5" [3] today.
+
+They are all marked "v5" and there's nothing to explain why there are
+3 versions of v5.
+
+--
+
+Better would have been:
+
+a) Use some type of "prefix" in the subject line to help people
+understand that the contents are the same as the previous "v5" patch
+and this is just a new posting. Usually people will use "REPOST" or
+"RESEND". So, for instance, the subject line for your cover letter
+could have been "[RESEND PATCH v5 0/3] Add dtsi for sc7280 boards that
+using rt5682". All of the individual patches would have also had the
+"RESEND" in their subject.
+
+b) You should explain somewhere _why_ you're re-sending the patches.
+If you've got a cover letter (like you do), the cover letter is the
+perfect place to explain why you're resending the patch. If you didn't
+have a cover letter, you can explain "after the cut".
+
+Brian's patch [4] is a great example of this. He has both the hint in
+the subject line and an explanation: "Resending, because I missed the
+mailing lists on the first version."
+
+--
+
+In your case, I assume you were trying to get Bjorn's email address
+correct as I requested a week ago. Thus, I would have expected your
+first patch from today [2] to say something like "I'm resending patch
+v5 to get Bjorn's email address correct. Other than that this is
+exactly the same as the previous v5". Then, I would have expected your
+second patch from today [3] to say something like "Oops, I still
+didn't get Bjorn's email address right in the earlier patch today.
+Trying yet again. Contents of all of the v5 patches are identical"
+
+--
+
+In any case, I'm not expecting you to send yet-another v5, but hopefully:
+* This explains to Bjorn what's going on this time.
+* You'll know better for next time.
+
+
+[1] https://lore.kernel.org/r/20220923140918.2825043-1-judyhsiao@chromium.org
+[2] https://lore.kernel.org/r/20220930152613.2018360-1-judyhsiao@chromium.org
+[3] https://lore.kernel.org/r/20220930153643.2018907-1-judyhsiao@chromium.org
+[4] https://lore.kernel.org/r/20210907094628.RESEND.1.If29cd838efbcee4450a62b8d84a99b23c86e0a3f@changeid/
