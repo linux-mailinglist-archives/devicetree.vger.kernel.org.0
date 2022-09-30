@@ -2,77 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4C755F066C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 10:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C5725F068F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 10:34:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231222AbiI3I3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 04:29:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55892 "EHLO
+        id S230057AbiI3Ieo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 04:34:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231177AbiI3I3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 04:29:44 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D450A2E0;
-        Fri, 30 Sep 2022 01:29:41 -0700 (PDT)
+        with ESMTP id S230484AbiI3Iel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 04:34:41 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34A3638E;
+        Fri, 30 Sep 2022 01:34:34 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DBDDF66022BC;
-        Fri, 30 Sep 2022 09:29:38 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id CE99D66022C7;
+        Fri, 30 Sep 2022 09:34:32 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664526579;
-        bh=y6RFqj7OJORRXrnb91N0f5NRhH96ycPGBPqgs9CRszM=;
+        s=mail; t=1664526873;
+        bh=9eWFbwDttTEa2f7UeZOgWcaEHQPOEJ/G5ia0l+QXprE=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=FZ9bIHSz/43QdUTsGvBEzHW6mnFUtEEz0KO/qxizXK9d5tF4HJItP32twNajrsf59
-         Q9/v9IyNIamQnKAvzOJU1gOMl4e3yDoPZSRBQ9INzaIqpFpPQRGvj3iGmAz+Nb5A6F
-         Jds+2BOcDcOVyt8bPUGx48pg1tauP6enYCmCSOKmIq8SapvcsjHcSBxCZev2igycWh
-         VJD/AdLG1vgd9gkIRyHzhLYJIVN8c+k4xcY6W2vBOotY09eO+ARBXAc5HyYY13bBYW
-         DkhBdIz2ntt43qz3KzyCeNwU+DgWGzX0M9s0xEUDh1MAgLxX0Dtc21EM+rFBfxz8wf
-         Hceb3VQhotWrg==
-Message-ID: <5d8af9a1-3afc-bd69-8f34-164284a452c2@collabora.com>
-Date:   Fri, 30 Sep 2022 10:29:36 +0200
+        b=ie3b4ifyK44UNVbz3GwiBV3b1jgXjrIAn5at4UtYJX+nyINa1ufdrsHNDNKx+5ZqK
+         Vl6AOJ2hHXoJOQBVGyRVCGovCI6hlWzolmk4atsvLHl1YK8QUsCsQZaOIPGiGPLEWM
+         y1t2b9bhLFbAcUv/wCLGTFC8/lAueFFDLtzQso+drK5Hw4pyd0/Tmrj//q/wi7HKiZ
+         A5t/h7fpzMx9/0vywOfTGNMw6OYEwc5Ga4cbbiYJei1jCnfNz00r+mHLRACHh/4nMM
+         nEsecc7juymxqZTiD2FH/NZvk66KTyxVgO1waTesQ6vXFjD7vXTme+swciqoyH+/R5
+         fxtuZpbWO4/iQ==
+Message-ID: <b5443902-ce49-10df-600b-ff3112f183ff@collabora.com>
+Date:   Fri, 30 Sep 2022 10:34:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.0
-Subject: Re: [PATCH v3 08/10] clk: mediatek: clk-mt8195-topckgen: Drop
- univplls from mfg mux parents
-To:     =?UTF-8?B?TWFuZHlKSCBMaXUgKOWKieS6uuWDlik=?= 
-        <MandyJH.Liu@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Cc:     "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "jose.exposito89@gmail.com" <jose.exposito89@gmail.com>,
-        "drinkcat@chromium.org" <drinkcat@chromium.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        =?UTF-8?B?Q2h1bi1KaWUgQ2hlbiAo6Zmz5rWa5qGAKQ==?= 
-        <Chun-Jie.Chen@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?TWlsZXMgQ2hlbiAo6Zmz5rCR5qi6KQ==?= 
-        <Miles.Chen@mediatek.com>,
-        =?UTF-8?B?V2VpeWkgTHUgKOWRguWogeWEgCk=?= <Weiyi.Lu@mediatek.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
-        <Rex-BC.Chen@mediatek.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "nfraprado@collabora.com" <nfraprado@collabora.com>
-References: <20220927101128.44758-1-angelogioacchino.delregno@collabora.com>
- <20220927101128.44758-9-angelogioacchino.delregno@collabora.com>
- <79490e834466628a1b92e51f65aeb9e9ce82ddce.camel@mediatek.com>
+Subject: Re: [PATCH v3 1/2] media: dt-bindings: mediatek: Rename child node
+ names for decoder
 Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20220929131309.18337-1-allen-kh.cheng@mediatek.com>
+ <20220929131309.18337-2-allen-kh.cheng@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <79490e834466628a1b92e51f65aeb9e9ce82ddce.camel@mediatek.com>
+In-Reply-To: <20220929131309.18337-2-allen-kh.cheng@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -82,62 +64,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 30/09/22 07:59, MandyJH Liu (劉人僖) ha scritto:
-> On Tue, 2022-09-27 at 12:11 +0200, AngeloGioacchino Del Regno wrote:
->> These PLLs are conflicting with GPU rates that can be generated by
->> the GPU-dedicated MFGPLL and would require a special clock handler
->> to be used, for very little and ignorable power consumption benefits.
->> Also, we're in any case unable to set the rate of these PLLs to
->> something else that is sensible for this task, so simply drop them:
->> this will make the GPU to be clocked exclusively from MFGPLL for
->> "fast" rates, while still achieving the right "safe" rate during
->> PLL frequency locking.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <
->> angelogioacchino.delregno@collabora.com>
->> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
->> ---
->>   drivers/clk/mediatek/clk-mt8195-topckgen.c | 9 ++++++---
->>   1 file changed, 6 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/clk/mediatek/clk-mt8195-topckgen.c
->> b/drivers/clk/mediatek/clk-mt8195-topckgen.c
->> index 4dde23bece66..8cbab5ca2e58 100644
->> --- a/drivers/clk/mediatek/clk-mt8195-topckgen.c
->> +++ b/drivers/clk/mediatek/clk-mt8195-topckgen.c
->> @@ -298,11 +298,14 @@ static const char * const ipu_if_parents[] = {
->>   	"mmpll_d4"
->>   };
->>   
->> +/*
->> + * MFG can be also parented to "univpll_d6" and "univpll_d7":
->> + * these have been removed from the parents list to let us
->> + * achieve GPU DVFS without any special clock handlers.
->> + */
->>   static const char * const mfg_parents[] = {
->>   	"clk26m",
->> -	"mainpll_d5_d2",
->> -	"univpll_d6",
->> -	"univpll_d7"
->> +	"mainpll_d5_d2"
->>   };
->>   
->>   static const char * const camtg_parents[] = {
-> There might be a problem here. Since the univpll_d6 and univpll_d7 are
-> available parents in hardware design and they can be selected other
-> than kernel stage, like bootloader, the clk tree listed in clk_summary
-> cannot show the real parent-child relationship in such case.
+Il 29/09/22 15:13, Allen-KH Cheng ha scritto:
+> In order to make the names of the child nodes more generic, we rename
+> "vcodec" to "video-codec" for decoder in patternProperties and example.
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 
-I agree about that, but the clock framework will change the parent to
-the "best parent" in that case... this was done to avoid writing complicated
-custom clock ops just for that one.
+Many thanks for doing this, Allen.
 
-This issue is present only on MT8195, so it can be safely solved this way,
-at least for now.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Should this become a thing on another couple SoCs, it'll then make sense
-to write custom clock ops just for the MFG.
-
-Regards,
-Angelo
 
