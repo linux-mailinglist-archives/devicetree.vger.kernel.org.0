@@ -2,61 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5FD55F0D32
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 16:15:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78BE05F0D7F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 16:28:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231812AbiI3OO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 10:14:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56470 "EHLO
+        id S231727AbiI3O2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 10:28:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231827AbiI3OOt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 10:14:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5353343C;
-        Fri, 30 Sep 2022 07:14:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D293C62345;
-        Fri, 30 Sep 2022 14:14:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CBDAC43142;
-        Fri, 30 Sep 2022 14:14:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664547285;
-        bh=7UnwSXOB6shKfCQHM7L0KOwifPttNCBnzJ2w0rnlzK0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=EKgvh2WZQOLQHVQIJMdTU8+8dMdHbNnxgBm2yxJJF21w2sXsPGKzJqrbrz1iEI+TP
-         kKU45+mkYZWfm4i9TrM+lH5B9Z3YJfGPKp+LXwFIdUR4lpN3s7y5Xceu8eyp1fBayX
-         qqXvlzGcxE2VW8Ejau/TQAFjzypKn8fZiM5P3B4B4pEdsfBrccSMz3GY5IY26lSZJq
-         x+GvtVlfcrmC9c2UKuxtKbRs6lsX5hBfniQqdDb32wzRz1InTjv/8SSoLl0yBbCGlU
-         XE7gVW881cFrgaZVwo6TJXSGRZPL3G98dVY65QqgcUKZ96SSi0oUlpwteRhITKxhJC
-         geig+OOOWZpWw==
-Received: by mail-ua1-f44.google.com with SMTP id b7so1760058uas.2;
-        Fri, 30 Sep 2022 07:14:45 -0700 (PDT)
-X-Gm-Message-State: ACrzQf2Flnof7ShIvtsgO5R8LRU6IHGtdiTrJJq98oYS22NU+O7XQQcF
-        8qftXU4uzuc0t864mQA9pW5ZzqlJ7Br5I5XTxQ==
-X-Google-Smtp-Source: AMsMyM6tmbeGs8WAbsagouNnCGeikv0UgHuHEpeJ7scOJRA6OHmQzWBNHAz3+EbsX5QLTinYFxLw9PZO5FxxSogzzL8=
-X-Received: by 2002:a9f:29a3:0:b0:3d6:4c6f:9d92 with SMTP id
- s32-20020a9f29a3000000b003d64c6f9d92mr1117022uas.43.1664547284059; Fri, 30
- Sep 2022 07:14:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220930132842.23421-1-r-ravikumar@ti.com> <20220930132842.23421-2-r-ravikumar@ti.com>
-In-Reply-To: <20220930132842.23421-2-r-ravikumar@ti.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 30 Sep 2022 09:14:33 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJVhAJ6TFNtndDtUX1FukuQorvm_o0eKK_CE6ANsPob1g@mail.gmail.com>
-Message-ID: <CAL_JsqJVhAJ6TFNtndDtUX1FukuQorvm_o0eKK_CE6ANsPob1g@mail.gmail.com>
+        with ESMTP id S231845AbiI3O2E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 10:28:04 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB1C1A1E86;
+        Fri, 30 Sep 2022 07:28:02 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28UERrMc020048;
+        Fri, 30 Sep 2022 09:27:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1664548073;
+        bh=dvl81mwFU/o/L5IGmw/7AvfjoqVI5wMj4L3Li6QHnmE=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=yqdxLRneoUIPgCJ9R8ESbcfqBLYASudyHN4kRs4DnBRduDncWAXuq//S7MjWe5nV+
+         N9NbnMO/V4Afj+yPotVoamE7l3vLB6m/XV1l4ZBX0v8I40p4U79AX9fZa6nCbH+3Xt
+         6L8hVthQi7d3mOTYDoqJSRjz6dKurxrE9fFI1ntk=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28UERro2045402
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 30 Sep 2022 09:27:53 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 30
+ Sep 2022 09:27:52 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 30 Sep 2022 09:27:52 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28UERpDP002164;
+        Fri, 30 Sep 2022 09:27:52 -0500
+Date:   Fri, 30 Sep 2022 19:57:51 +0530
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     <airlied@gmail.com>, <daniel@ffwll.ch>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <tomi.valkeinen@ideasonboard.com>,
+        <dri-devel@lists.freedesktop.org>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 Subject: Re: [PATCH 1/2] dt-bindings: dp-connector: Fix the property name for
  dp pwr
-To:     Rahul T R <r-ravikumar@ti.com>
-Cc:     airlied@gmail.com, daniel@ffwll.ch,
-        krzysztof.kozlowski+dt@linaro.org, tomi.valkeinen@ideasonboard.com,
-        dri-devel@lists.freedesktop.org, nm@ti.com, vigneshr@ti.com,
-        kristo@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Message-ID: <20220930142750.fmygjyie52rnzvo5@uda0490373>
+References: <20220930132842.23421-1-r-ravikumar@ti.com>
+ <20220930132842.23421-2-r-ravikumar@ti.com>
+ <CAL_JsqJVhAJ6TFNtndDtUX1FukuQorvm_o0eKK_CE6ANsPob1g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJVhAJ6TFNtndDtUX1FukuQorvm_o0eKK_CE6ANsPob1g@mail.gmail.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,20 +69,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 30, 2022 at 8:29 AM Rahul T R <r-ravikumar@ti.com> wrote:
->
-> Property name for DisplayPort regulator is not matching in
-> the binding and the driver implementation. Fix the same
-> in the binding
->
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> Reported-by: Nishanth Menon <nm@ti.com>
-> ---
->  .../devicetree/bindings/display/connector/dp-connector.yaml     | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Rob,
 
-NAK. The binding is correct.
+On 09:14-20220930, Rob Herring wrote:
+> On Fri, Sep 30, 2022 at 8:29 AM Rahul T R <r-ravikumar@ti.com> wrote:
+> >
+> > Property name for DisplayPort regulator is not matching in
+> > the binding and the driver implementation. Fix the same
+> > in the binding
+> >
+> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> > Reported-by: Nishanth Menon <nm@ti.com>
+> > ---
+> >  .../devicetree/bindings/display/connector/dp-connector.yaml     | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> NAK. The binding is correct.
+> 
+> Are you confused that the regulator framework appends '-supply' for you?
+> 
+> Rob
 
-Are you confused that the regulator framework appends '-supply' for you?
+Thanks for pointing this out
+I was confused about the difference in the property name
+now I get it
+Please ignore this set
 
-Rob
+Regards
+Rahul T R
