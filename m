@@ -2,326 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 658A55F09F4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 13:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB875F0A00
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 13:22:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232515AbiI3LV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 07:21:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38992 "EHLO
+        id S232503AbiI3LW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 07:22:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231265AbiI3LUz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 07:20:55 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 326D97DF68
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 04:09:24 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id k10so6353895lfm.4
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 04:09:23 -0700 (PDT)
+        with ESMTP id S232478AbiI3LWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 07:22:03 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F35BFA264;
+        Fri, 30 Sep 2022 04:11:15 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id u18so6350505lfo.8;
+        Fri, 30 Sep 2022 04:11:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=tdHtHF+L8WhspMis4iiPFewDbwHGxtfsKqQmXXud88E=;
-        b=tGmnFIBQmr9QlELIQAtuwtWwClhFeZsqW5T14DWkCokssrq7YlfiFRj15ZVoUC/1P8
-         N3mZ6QC50rgkyzKwlxil8ftVUg48SRsEi0yyXnMw71faySgOvUgJT4EI7hTZbe72HXpL
-         NiCIizhUp7eyQ73+9m/G7kxApuDmIdaNDt+EP8oc13U2qtpWBRM/3WpZCePzh0GPwNOA
-         RqUtUyB7MRUW8t6t3Y44Kc9H87o6ciys9ZbGolNUpirFUvk+4NiGQmWadnMAZpE29/uz
-         ZZeecXqHI8jbQTLLXQrkWq2H7SIirmdd1xP4qSUy55ZH9GAQ68vTuGzJCsm/wEDpDXux
-         a84Q==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=Sgn0jbVWHofRicUPwIWtoRVU1IAonD5a9H2Y+2tFXBY=;
+        b=RVz8TT6mPp0AGYzJusb6FU0UA/cKVLVeY7UL1uwh3Kky28nngpvzP1LIAv5v+Hx0AB
+         KA8JClZeXPuauYhXoJe5cwCAyZGnLekdrimqOWgXCKqnRHbMuViMaaxjDZNdtoI8jR5r
+         IjHLR3UE7+9m28SADB307RWeBdyr/jfJ+xXi101tlDZW0BQNQOByXvW1lxrFeHDu25fE
+         Yg2Zec1e43Iw5wAtV7+jg/ZkxpEmMtx/IHIx1uN6xlPaSiKNLxeHiOvTf9ewlvlTBl8O
+         gTuTIGmz8Oy6gWHehSJ8yrftFD4EtXHPeWnH+wi2cvuMI07iOv1HaXjuD1YwWvx9Unmr
+         P91g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=tdHtHF+L8WhspMis4iiPFewDbwHGxtfsKqQmXXud88E=;
-        b=ddM82ZQO6WKrBnBld41qGS0bvbHBtY1YPOGJM+RDe4/mZbvB/Vv39XP/LndSwzYD5G
-         eaq9o7c0QnzZzvmJ7ceYCnbYLaRgMsYnDF2/0pmdALN/4jobtstyByN2su3RIJIBJPCt
-         eiKCSJEUQbxFGWckpWnCq6YusKYDAW/0QQMD+kgbJqO0rNVrajax3T/60C1kCbZnQa3o
-         mJfurvU/0GIa9kpzD3jB8yNxrxpSdTxh2ozoVu71S5YnED88FW+LZZvwq/EwCj9YCsFO
-         nbJvJsoBt3CUdtqlsS9T9QHgeXLbvEGDncMG1DOhzSOHLDGIPS59T7bjQl4c82Xvi+yn
-         kGLg==
-X-Gm-Message-State: ACrzQf37Xtt7wJm5o90Fdj/xt9/zf356/NuvvvAb7Yi4y7lXFCptl6JQ
-        2tvcCPq+MsLZsZtoLVEDTJwl9w==
-X-Google-Smtp-Source: AMsMyM5z65vzq0NTyxq5BiAd6UIgpP759WsaUofMn8X6LLynEJE+EvhVg9aA4Mh0qlJ6nqx67+gX3Q==
-X-Received: by 2002:a19:dc54:0:b0:49f:53f3:9bcd with SMTP id f20-20020a19dc54000000b0049f53f39bcdmr3275718lfj.158.1664536162165;
-        Fri, 30 Sep 2022 04:09:22 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d15-20020ac25ecf000000b004979e231fafsm263696lfq.38.2022.09.30.04.09.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Sep 2022 04:09:21 -0700 (PDT)
-Message-ID: <727a540d-0ca9-ade3-894d-f1774d10a681@linaro.org>
-Date:   Fri, 30 Sep 2022 13:09:20 +0200
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=Sgn0jbVWHofRicUPwIWtoRVU1IAonD5a9H2Y+2tFXBY=;
+        b=VU8q53bvIRmedCnD4l93WMdHtiMYflIhJIsNlckoZq8LnW4KheCz3IeXT4uTplMRif
+         6rMHYvziBdWXikgicNTy2a3emDWx5e0hEFebkZhZP4oA6TPCIXmgTpGVa3/LOq93hox3
+         QDPQARjNHyp+ZVQQ0bfTUt/f7S9ZD4PE7ZIDzsKGSy/8vV+1tCr51T+SgbSMR95vrMRG
+         hpZ/3YA48IP8InAY7Knr4y14aWQDtQc7zDzZfHCq/44VZHeEaSlBHj+1R5EHBnqQ1Oo0
+         Yiec5QqdlyPzHL808Bvtg6dLqBUUQo0avrXGgqCVKJDcUc2DbXAALGbVfvrbi2r+yBFH
+         duMw==
+X-Gm-Message-State: ACrzQf1lFNBZEyivoN7rFIYtzNNSbX2WSG/kzLSnLfquOcCAFMWo8PAK
+        23xHdz7jNejR+4MQstkQt+c=
+X-Google-Smtp-Source: AMsMyM5b/KUNqhUaeLqKtRLGlpqJqLgvv/2loCxJAOtMeocrpkjnKhRrArpbhHBtF4iVk/uanmYHtw==
+X-Received: by 2002:a05:6512:108e:b0:49f:54bd:bf59 with SMTP id j14-20020a056512108e00b0049f54bdbf59mr3039045lfg.502.1664536273331;
+        Fri, 30 Sep 2022 04:11:13 -0700 (PDT)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id g12-20020a05651222cc00b0049472efaf7asm257523lfu.244.2022.09.30.04.11.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Sep 2022 04:11:12 -0700 (PDT)
+Date:   Fri, 30 Sep 2022 13:11:10 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Cc:     sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jonathanh@nvidia.com, arnd@arndb.de,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 2/4] drm/tegra: dsi: Clear enable register if powered by
+ bootloader
+Message-ID: <YzbOzoGDtY2kI2Dv@orome>
+References: <20220929170502.1034040-1-diogo.ivo@tecnico.ulisboa.pt>
+ <20220929170502.1034040-3-diogo.ivo@tecnico.ulisboa.pt>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH V2 2/3] dt-bindings: gpio: Convert Unisoc EIC controller
- binding to yaml
-Content-Language: en-US
-To:     Chunyan Zhang <zhang.lyra@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-References: <20220930082405.1761-1-zhang.lyra@gmail.com>
- <20220930082405.1761-3-zhang.lyra@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220930082405.1761-3-zhang.lyra@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6mCUNG/5PtLGjds5"
+Content-Disposition: inline
+In-Reply-To: <20220929170502.1034040-3-diogo.ivo@tecnico.ulisboa.pt>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2022 10:24, Chunyan Zhang wrote:
-> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> 
-> Convert the Unisoc EIC controller binding to DT schema format.
-> Update the maxItems of 'reg' property, since the current gpio-eic-sprd
-> driver supports 3 reg items. Also remove three redundant examples.
-> 
-> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+
+--6mCUNG/5PtLGjds5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Sep 29, 2022 at 06:05:00PM +0100, Diogo Ivo wrote:
+> In cases where the DSI module is left on by the bootloader
+> some panels may fail to initialize if the enable register is not cleared
+> before the panel's initialization sequence. Clear it and add an optional
+> device tree property to inform the driver if this is the case.
+>=20
+> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 > ---
->  .../bindings/gpio/gpio-eic-sprd.txt           |  97 --------------
->  .../bindings/gpio/sprd,gpio-eic.yaml          | 119 ++++++++++++++++++
->  2 files changed, 119 insertions(+), 97 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-eic-sprd.txt
->  create mode 100644 Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-eic-sprd.txt b/Documentation/devicetree/bindings/gpio/gpio-eic-sprd.txt
-> deleted file mode 100644
-> index 54040a2bfe3a..000000000000
-> --- a/Documentation/devicetree/bindings/gpio/gpio-eic-sprd.txt
-> +++ /dev/null
-> @@ -1,97 +0,0 @@
-> -Spreadtrum EIC controller bindings
-> -
-> -The EIC is the abbreviation of external interrupt controller, which can
-> -be used only in input mode. The Spreadtrum platform has 2 EIC controllers,
-> -one is in digital chip, and another one is in PMIC. The digital chip EIC
-> -controller contains 4 sub-modules: EIC-debounce, EIC-latch, EIC-async and
-> -EIC-sync. But the PMIC EIC controller contains only one EIC-debounce sub-
-> -module.
-> -
-> -The EIC-debounce sub-module provides up to 8 source input signal
-> -connections. A debounce mechanism is used to capture the input signals'
-> -stable status (millisecond resolution) and a single-trigger mechanism
-> -is introduced into this sub-module to enhance the input event detection
-> -reliability. In addition, this sub-module's clock can be shut off
-> -automatically to reduce power dissipation. Moreover the debounce range
-> -is from 1ms to 4s with a step size of 1ms. The input signal will be
-> -ignored if it is asserted for less than 1 ms.
-> -
-> -The EIC-latch sub-module is used to latch some special power down signals
-> -and generate interrupts, since the EIC-latch does not depend on the APB
-> -clock to capture signals.
-> -
-> -The EIC-async sub-module uses a 32kHz clock to capture the short signals
-> -(microsecond resolution) to generate interrupts by level or edge trigger.
-> -
-> -The EIC-sync is similar with GPIO's input function, which is a synchronized
-> -signal input register. It can generate interrupts by level or edge trigger
-> -when detecting input signals.
-> -
-> -Required properties:
-> -- compatible: Should be one of the following:
-> -  "sprd,sc9860-eic-debounce",
-> -  "sprd,sc9860-eic-latch",
-> -  "sprd,sc9860-eic-async",
-> -  "sprd,sc9860-eic-sync",
-> -  "sprd,sc2731-eic".
-> -- reg: Define the base and range of the I/O address space containing
-> -  the GPIO controller registers.
-> -- gpio-controller: Marks the device node as a GPIO controller.
-> -- #gpio-cells: Should be <2>. The first cell is the gpio number and
-> -  the second cell is used to specify optional parameters.
-> -- interrupt-controller: Marks the device node as an interrupt controller.
-> -- #interrupt-cells: Should be <2>. Specifies the number of cells needed
-> -  to encode interrupt source.
-> -- interrupts: Should be the port interrupt shared by all the gpios.
-> -
-> -Example:
-> -	eic_debounce: gpio@40210000 {
-> -		compatible = "sprd,sc9860-eic-debounce";
-> -		reg = <0 0x40210000 0 0x80>;
-> -		gpio-controller;
-> -		#gpio-cells = <2>;
-> -		interrupt-controller;
-> -		#interrupt-cells = <2>;
-> -		interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-> -	};
-> -
-> -	eic_latch: gpio@40210080 {
-> -		compatible = "sprd,sc9860-eic-latch";
-> -		reg = <0 0x40210080 0 0x20>;
-> -		gpio-controller;
-> -		#gpio-cells = <2>;
-> -		interrupt-controller;
-> -		#interrupt-cells = <2>;
-> -		interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-> -	};
-> -
-> -	eic_async: gpio@402100a0 {
-> -		compatible = "sprd,sc9860-eic-async";
-> -		reg = <0 0x402100a0 0 0x20>;
-> -		gpio-controller;
-> -		#gpio-cells = <2>;
-> -		interrupt-controller;
-> -		#interrupt-cells = <2>;
-> -		interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-> -	};
-> -
-> -	eic_sync: gpio@402100c0 {
-> -		compatible = "sprd,sc9860-eic-sync";
-> -		reg = <0 0x402100c0 0 0x20>;
-> -		gpio-controller;
-> -		#gpio-cells = <2>;
-> -		interrupt-controller;
-> -		#interrupt-cells = <2>;
-> -		interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-> -	};
-> -
-> -	pmic_eic: gpio@300 {
-> -		compatible = "sprd,sc2731-eic";
-> -		reg = <0x300>;
-> -		interrupt-parent = <&sc2731_pmic>;
-> -		interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
-> -		gpio-controller;
-> -		#gpio-cells = <2>;
-> -		interrupt-controller;
-> -		#interrupt-cells = <2>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-> new file mode 100644
-> index 000000000000..c288a8dd44c8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2022 Unisoc Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/sprd,gpio-eic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Unisoc EIC controller
-> +
-> +maintainers:
-> +  - Orson Zhai <orsonzhai@gmail.com>
-> +  - Baolin Wang <baolin.wang7@gmail.com>
-> +  - Chunyan Zhang <zhang.lyra@gmail.com>
-> +
-> +description:
-> +  The EIC is the abbreviation of external interrupt controller, which can
-> +  be used only in input mode. The Spreadtrum platform has 2 EIC controllers,
-> +  one is in digital chip, and another one is in PMIC. The digital chip EIC
-> +  controller contains 4 sub-modules, i.e. EIC-debounce, EIC-latch, EIC-async and
-> +  EIC-sync. But the PMIC EIC controller contains only one EIC-debounce sub-
-> +  module.
-> +
-> +  The EIC-debounce sub-module provides up to 8 source input signal
-> +  connections. A debounce mechanism is used to capture the input signals'
-> +  stable status (millisecond resolution) and a single-trigger mechanism
-> +  is introduced into this sub-module to enhance the input event detection
-> +  reliability. In addition, this sub-module's clock can be shut off
-> +  automatically to reduce power dissipation. Moreover the debounce range
-> +  is from 1ms to 4s with a step size of 1ms. The input signal will be
-> +  ignored if it is asserted for less than 1 ms.
-> +
-> +  The EIC-latch sub-module is used to latch some special power down signals
-> +  and generate interrupts, since the EIC-latch does not depend on the APB
-> +  clock to capture signals.
-> +
-> +  The EIC-async sub-module uses a 32kHz clock to capture the short signals
-> +  (microsecond resolution) to generate interrupts by level or edge trigger.
-> +
-> +  The EIC-sync is similar with GPIO's input function, which is a synchronized
-> +  signal input register. It can generate interrupts by level or edge trigger
-> +  when detecting input signals.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sprd,sc9860-eic-debounce
-> +      - sprd,sc9860-eic-latch
-> +      - sprd,sc9860-eic-async
-> +      - sprd,sc9860-eic-sync
-> +      - sprd,sc2731-eic
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 3
-> +    description:
-> +      EIC controller can support maximum 3 banks which has its own
-> +      address base.
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      The interrupt shared by all GPIO lines for this controller.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        eic_debounce: gpio@40210000 {
-> +            compatible = "sprd,sc9860-eic-debounce";
-> +            reg = <0 0x40210000 0 0x80>;
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            interrupt-controller;
-> +            #interrupt-cells = <2>;
-> +            interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-> +        };
-> +    };
-> +
-> +    sc2730_pmic {
+>  drivers/gpu/drm/tegra/dsi.c | 29 +++++++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/tegra/dsi.c b/drivers/gpu/drm/tegra/dsi.c
+> index de1333dc0d86..f66514379913 100644
+> --- a/drivers/gpu/drm/tegra/dsi.c
+> +++ b/drivers/gpu/drm/tegra/dsi.c
+> @@ -78,6 +78,8 @@ struct tegra_dsi {
+>  	unsigned int video_fifo_depth;
+>  	unsigned int host_fifo_depth;
+> =20
+> +	bool enabled;
 
-If you insisted to keep it, at least should be correct, so just pmic.
+There should be no need to track this. DRM/KMS internally already knows,
+so we should make use of the built-in mechanisms as much as possible.
 
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
 > +
-> +        pmic_eic: gpio@300 {
+>  	/* for ganged-mode support */
+>  	struct tegra_dsi *master;
+>  	struct tegra_dsi *slave;
+> @@ -460,6 +462,8 @@ static void tegra_dsi_enable(struct tegra_dsi *dsi)
+>  	value |=3D DSI_POWER_CONTROL_ENABLE;
+>  	tegra_dsi_writel(dsi, value, DSI_POWER_CONTROL);
+> =20
+> +	dsi->enabled =3D true;
+> +
+>  	if (dsi->slave)
+>  		tegra_dsi_enable(dsi->slave);
+>  }
+> @@ -737,6 +741,8 @@ static void tegra_dsi_disable(struct tegra_dsi *dsi)
+>  	value &=3D ~DSI_POWER_CONTROL_ENABLE;
+>  	tegra_dsi_writel(dsi, value, DSI_POWER_CONTROL);
+> =20
+> +	dsi->enabled =3D false;
+> +
+>  	if (dsi->slave)
+>  		tegra_dsi_disable(dsi->slave);
+> =20
+> @@ -912,6 +918,27 @@ static void tegra_dsi_encoder_enable(struct drm_enco=
+der *encoder)
+>  	u32 value;
+>  	int err;
+> =20
+> +	/* If the bootloader enabled DSI it needs to be disabled
+> +	 * in order for the panel initialization commands to be
+> +	 * properly sent.
+> +	 */
+> +	if (dsi->enabled) {
+> +		if (dc) {
+> +			value =3D tegra_dc_readl(dc, DC_DISP_DISP_WIN_OPTIONS);
+> +			value &=3D ~DSI_ENABLE;
+> +			tegra_dc_writel(dc, value, DC_DISP_DISP_WIN_OPTIONS);
+> +
+> +			tegra_dc_commit(dc);
+> +		}
+> +
+> +		err =3D tegra_dsi_wait_idle(dsi, 100);
+> +		if (err < 0)
+> +			dev_dbg(dsi->dev, "failed to idle DSI: %d\n", err);
+> +
+> +		/* disable DSI controller */
+> +		tegra_dsi_disable(dsi);
+> +	}
 
-It's exactly the same example as above - all same properties. Drop it or
-bring some differences.
+This is suboptimal because it is largely a duplication of what we
+already have in tegra_dsi_disable(). Also, see below.
 
+> +
+>  	err =3D tegra_dsi_prepare(dsi);
+>  	if (err < 0) {
+>  		dev_err(dsi->dev, "failed to prepare: %d\n", err);
+> @@ -1573,6 +1600,8 @@ static int tegra_dsi_probe(struct platform_device *=
+pdev)
+> =20
+>  	dsi->output.connector.polled =3D DRM_CONNECTOR_POLL_HPD;
+> =20
+> +	/* Check if the DSI module was left on by bootloader. */
+> +	dsi->enabled =3D of_property_read_bool(pdev->dev.of_node, "nvidia,boot-=
+on");
 
-Best regards,
-Krzysztof
+The isn't a documented property. But before you go and add this, are
+there no alternative ways to detect that the DSI controller is active?
+Could we not read one of the registers to find out?
 
+DRM/KMS has built-in mechanisms to read back hardware state on boot, so
+I wonder if we can hook that up. It'd make the most sense if all sub-
+drivers did this, because then we could eventually inherit the
+bootloader configuration and transition to the kernel display driver
+seamlessly, but doing this in DSI first may help prepare for that more
+extended use-case.
+
+A slightly simpler alternative would be to add the reset code to the
+encoder's or connector's ->reset() implementation. This is called at the
+right time (i.e. when the mode configuration is first reset), so you can
+run the workaround from tegra_dsi_encoder_enable() there. That's better
+than having this guarded by the dsi->enabled flag so that it is run only
+once.
+
+Thierry
+
+--6mCUNG/5PtLGjds5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmM2zssACgkQ3SOs138+
+s6EZNxAAqALLWOLtMnYed5uXD2Q/7tKrapDh2oO3/ickYPp4M/JcAgJ9Gck5ROln
+IKSB7Z91LYorXfO5Y3FXF+xCBGS0Yg+Ci+MWuzEmP5TJ/mQHMEvFB59KStty61vx
+1EoEAFJbIaTrY7yqiVOx7aKHODUUEqSa9ZcrL2vOlFwmY6n0XE78iL+dvFcQ+zgx
+fTaphYNALU5TnmUFf3pmOhkshaemCfJCa9S8UQ0QQfPuv7f2417gVz3QEd8cDs9K
+aumX0mTK8YqRtV+8wI32cr1Vac9xm73g7M1rdOsaFmrmqEh1jk4HjTJNf7v6njZ4
+KfCW49dbp/YkfJSO+mPcfwkpmctpBik4braAeW6F1vC44bm0M3PUqd+arxfxfHln
+LS8wwZsvVi2RVAtUEzoICodtrUW4+bJlYgi9cEo94QOMtafKFixjEiwxMoZA/el7
+WGIi+fLzidZXU/20fUPAEDeZBrPqG4n99BN/GrGlQrEo0VkZ4nvS8zPmKI5XWHGD
++gB0CX/nu+m3Cwgh9pY34epELn0EUYxlw/QkmR80CHCJ6/lvkAhummNzYClBifb2
+OO2nArj6XwhGhiTHJj6A6m0Vy1zN97pdCyrhaYmzyMSGOScph67Pn91lSYadHT9u
+lvKlT0WRw2svipEkaeAiKGQ4RqvOZx9PmVsH3OgqAPmsS2YRcS4=
+=tCCo
+-----END PGP SIGNATURE-----
+
+--6mCUNG/5PtLGjds5--
