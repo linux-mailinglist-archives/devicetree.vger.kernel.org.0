@@ -2,114 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28D955F0B4D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 14:07:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1000D5F0B50
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 14:07:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231451AbiI3MGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 08:06:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41862 "EHLO
+        id S230176AbiI3MHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 08:07:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231408AbiI3MGh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 08:06:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE6B8137445;
-        Fri, 30 Sep 2022 05:06:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5B59562312;
-        Fri, 30 Sep 2022 12:06:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F1F7C43470;
-        Fri, 30 Sep 2022 12:06:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1664539592;
-        bh=S0mIJgFJM3dB0uXkyvoEXDo0PcaqtEvOtb8hBS/fxbY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=heTjtm23rTZZUFi4PzjAN4DjWv/LUcSl0Yx3aXcuL+YSVPcRR7i/k72s5IUjC2MNV
-         d8et357QAxsU5Hjn26cXoms6XPU26b/l8qxlrge1FBciyMHeZjHG4UHRzW7QRoJ11S
-         M2T881APkkOAXWsSjLR2wNJwRhJSbmTolvBZQPWc=
-Date:   Fri, 30 Sep 2022 14:06:30 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229493AbiI3MHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 08:07:53 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28C2416DDD9
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 05:07:52 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id b6so4561953ljr.10
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 05:07:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=xYoUsAvXhuDV9Hv97ovHM6bRu6VbknOSFPnIdjEZnwo=;
+        b=fBZvS89+eVxzJe8xRtbBl5VdwwSnxJUtLPTBkU9Tii+utA++C6vdPZKXN/Ak9Z8GgG
+         CsR7k8b+Eo4HnPe3TIh91dOaVh1b826ThZBAk0N0uwADvDtF8XNzrNgqBT8TIAznn5ss
+         3prxp9G7ereEyQNSM3pF77/VZFtTk3FWtEd5yk5HAqSX/NWv0zL9ZCaToIxBgoKCvQAP
+         UYbn/cFE9+y3/UAlWl8FjkTdmKqi/iiy7qeoUNSyV651/af3WrrABEXQ+zx+qfxjvsrT
+         4xnzAh8cd2g8eb+xqcSgWsrrcTbsgHoP3e24I31dZZ+aOffHrsxURBUh9VFq9Q2ZLALT
+         Xr/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=xYoUsAvXhuDV9Hv97ovHM6bRu6VbknOSFPnIdjEZnwo=;
+        b=gbiNcV8sR8ZtPyWiDnOXhQktIk6B9C3UlRMHAEeqz5OUBZHzj55XSJuYEQsuCqBXkm
+         zAUrTF5xRasbfThFqSbzII/48E0sEAkFImYHLPM1C//0jDwKmh2oHesdTJEPA75bqO/H
+         AcMegRUiOgYfpeY4GBrCxGyqc2FNBV9aB8tqeyD46PYfvfqf7RnIAJxYTM+v0TfHefTf
+         9CXpn4MHKdR9oTJNxKQNhlb5RE7IomnQMA3WPPXct/3XaUprWi4qahOfzwgilyAC+E7F
+         gR1OLxjgNOogcM2uzxL5aouDQy1nOTuCMZS2aftg+4tRm3x32KEQzw0xnAjO3K5RmPmU
+         daiA==
+X-Gm-Message-State: ACrzQf0vq7gICSlBMZY7b+MMOpSm/Blcj2llhuyxuv6tdke8LrRr98/q
+        Rao1SnF7Tv4VutPlyw8O56WuBw==
+X-Google-Smtp-Source: AMsMyM4ta/2mmSPg4EgDMf+L0/KVTvVhdfbeYG+EbkN/4uW5p29tCyGKZcFdtIKrbZjock1sbevLRw==
+X-Received: by 2002:a2e:b712:0:b0:26a:d1d9:f8d1 with SMTP id j18-20020a2eb712000000b0026ad1d9f8d1mr2976103ljo.271.1664539670488;
+        Fri, 30 Sep 2022 05:07:50 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id be43-20020a056512252b00b00499cf3e3edcsm268267lfb.296.2022.09.30.05.07.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Sep 2022 05:07:50 -0700 (PDT)
+Message-ID: <dc35bb16-3edb-6369-ad8d-9a95a3066746@linaro.org>
+Date:   Fri, 30 Sep 2022 14:07:48 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v2 2/4] media: dt-bindings: Document Renesas RZ/G2L CRU
+ block
+Content-Language: en-US
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 10/14] gunyah: sysfs: Add node to describe supported
- features
-Message-ID: <YzbbxuInZwILaflH@kroah.com>
-References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
- <20220928195633.2348848-11-quic_eberman@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220928195633.2348848-11-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund@ragnatech.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220905230406.30801-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <29d456ed-620c-8dc9-01f0-54f96b670b94@linaro.org>
+ <YysHAkWBfTTAJF3E@pendragon.ideasonboard.com>
+ <ba436dd5-2ea2-b2e0-7056-5bae6b4c7bb4@linaro.org>
+ <YytJ/oJK9s2mfqPL@pendragon.ideasonboard.com>
+ <bba1ed72-d691-b51c-dce8-ab9a2e45fe86@linaro.org>
+ <YyxnJ/Ho5rZQzDDN@pendragon.ideasonboard.com>
+ <CA+V-a8vaHPbXQWyMeVWsFaf3mUSAECcJiiww5xmhC99+zm3SuQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CA+V-a8vaHPbXQWyMeVWsFaf3mUSAECcJiiww5xmhC99+zm3SuQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 28, 2022 at 12:56:29PM -0700, Elliot Berman wrote:
-> Add a sysfs node to list the features that the Gunyah hypervisor and
-> Linux supports. For now, Linux support cspace (capability IDs) and
-> message queues, so only report those..
+On 30/09/2022 12:49, Lad, Prabhakar wrote:
+> I have got the below details from the HW  team:
 > 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->  Documentation/ABI/testing/sysfs-hypervisor-gunyah | 15 +++++++++++++++
->  drivers/virt/gunyah/sysfs.c                       | 15 +++++++++++++++
->  2 files changed, 30 insertions(+)
+> CRU_SYSCLK -> System clock for CSI-2 DPHY
+> CRU_VCLK -> video clock
+> CRU_PCLK -> APB clock
+> CRU_ACLK -> AXI clock
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-hypervisor-gunyah b/Documentation/ABI/testing/sysfs-hypervisor-gunyah
-> index 7d74e74e9edd..6d0cde30355a 100644
-> --- a/Documentation/ABI/testing/sysfs-hypervisor-gunyah
-> +++ b/Documentation/ABI/testing/sysfs-hypervisor-gunyah
-> @@ -1,3 +1,18 @@
-> +What:		/sys/hypervisor/gunyah/features
-> +Date:		October 2022
-> +KernelVersion:	6.1
-> +Contact:	linux-arm-msm@vger.kernel.org
-> +Description:	If running under Gunyah:
-> +		Space separated list of features supported by Linux and Gunyah:
-> +		"cspace": Gunyah devices
-> +		"doorbell": Sending/receiving virtual interrupts via Gunyah doorbells
-> +		"message-queue": Sending/receiving messages via Gunyah message queues
-> +		"vic": Interrupt lending
-> +		"vpm": Virtual platform management
-> +		"vcpu": Virtual CPU management
-> +		"memextent": Memory lending/management
-> +		"trace": Gunyah hypervisor tracing
+> So I'll rename the clocks to below respectively:
+> 
+> +  clock-names:
+> +    items:
+> +      - const: system
+> +      - const: video
+> +      - const: apb
+> +      - const: axi
+> 
+> Does the above sound good?
 
-Please no.  Why do you really need this type of list?  What hypervisor
-will NOT have them all present already?  Who will use this file and what
-will it be used for?
+For me sounds awesome! Thank you.
 
-sysfs files should just be 1 value and not need to be parsed.  Yes, we
-have lists of features at times, but really, you need a very very good
-reason why this is the only way this information can be exposed and who
-is going to use it in order to be able to have this accepted.
+Best regards,
+Krzysztof
 
-thanks,
-
-greg k-h
