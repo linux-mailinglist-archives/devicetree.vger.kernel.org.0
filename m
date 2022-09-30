@@ -2,211 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14F8A5F168B
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 01:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F18725F16AE
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 01:35:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231686AbiI3XOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 19:14:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51918 "EHLO
+        id S230469AbiI3XfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 19:35:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231180AbiI3XOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 19:14:20 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B541D18F412
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 16:14:19 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id c2so2636097lfb.10
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 16:14:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=mDn1ZRVl5DD0yFM7lDUNpZLc1WYibNTj/87n0f3vqCk=;
-        b=GeH2L0oiU04kbCIpcWo1GVRIdZLoKbB9QS+RRLxrZ/pPtFnOrrManGGHQ9osmR9iHV
-         hlZCEiBCIV/jJBJdyqksSecWKsGbuLC9o081DEuSzMZbO/iafIFwNf7k4gBzDHAqJrS/
-         t0q8LuukHG9O+QpK1cwEXD1PeTt03mr1NdAV8Hu0RSShi+vHw/ip+Cfa9o3RPcRXnmHQ
-         ffsG1x3SS8PVfcokC323W32Byc65lFKGi4LOGy+wi8HUyAkMdfspGIjOXseH0TfkTXGR
-         YAGs/C+mWGtNmLLlWBG5stzXCoCdib5qboo+8hIP5bVOexJptYguK6AhHeVn3ylMfmhX
-         1Spw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=mDn1ZRVl5DD0yFM7lDUNpZLc1WYibNTj/87n0f3vqCk=;
-        b=EMECIcnWcJ3o+lJHRIwmBmziUAGvmdEOjcCDbaIsmooDs2lnx0mnMUdghxxFq3FU1w
-         JE7yT14VLuHhvPGCGxxrhiv7KIx7GELYQmQJDTH4aUwa2c/pZ03jaMC82Ydj8XPwsjyt
-         rtOdEKhfvjtduHQLT1NghGjR6rwa0U0NjW/1iM88uGXN1ZHeOByMlcaybLWpHH5Mr8KK
-         KBbp6s/WKRRweu6yz7epPcrLhNPlyWkz21kp+JTZ7FDAHs1Jh/ohFRnbVMzf4fsf9bhh
-         yz7xmWSx2EPmeHQuqw9zKHHDmROPz4fIuMr45+QZB1AJkEY9InUIhcpf+HVUfc5YKkWU
-         aZfA==
-X-Gm-Message-State: ACrzQf3LgY+AFDCcoHZCfn+ul93NvmgDdQXOYS1w+3SYWoABlcrrM4c9
-        4YUDVBQVZktrtQRR3WTPwMjlFg==
-X-Google-Smtp-Source: AMsMyM6WMSAXxxEllJAp3kvMd29rgDdR3Tq/RhwY+KGy/Qu12mcXZuzMLbEctS9YL/MlZGAlW9LlEA==
-X-Received: by 2002:a05:6512:3d28:b0:49f:4b31:909b with SMTP id d40-20020a0565123d2800b0049f4b31909bmr3821703lfv.669.1664579657998;
-        Fri, 30 Sep 2022 16:14:17 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s6-20020a05651c048600b0026c0f6be5dasm261666ljc.116.2022.09.30.16.14.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 16:14:17 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: soc: qcom: qcom,spm: support regulator SAW2 devics
-Date:   Sat,  1 Oct 2022 02:14:16 +0300
-Message-Id: <20220930231416.925132-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S229594AbiI3Xe7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 19:34:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67FE84598C;
+        Fri, 30 Sep 2022 16:34:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 043BE62574;
+        Fri, 30 Sep 2022 23:34:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34B79C433D6;
+        Fri, 30 Sep 2022 23:34:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664580897;
+        bh=3HSYva6mMzbFyG8Wkh1iYMj2pbX0qr9TkSQ05ARFVBA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eEZnpKcBFTwnJ2saoMsNJQBVLsMS8r8zherEhnXjFx2TEZ3j3E9nmGks+P9i5Mvpd
+         I31FBiXqmaESGWdIXp2gWfm1jNoq9WJ6/uW82Q/IrDQ43jXPKn77Ro4Y9ka3De5D/o
+         EEh6SBdNcHoYXZgqDtVzNGdb7OLxE7Emu8zPTR9gzy0U9jmd2C6vAP5ZYdvp0Q7p7i
+         l3+DqRmWUgblgNDXRNnbfbakRrI49mD+wZkR2pGLsXY7PVlsNtzDzzlOgXHPPzNYlA
+         FVSkjyLqMx5kupTetWll4ljB95Y5Fds5fX/mvODUQBwk/UA/gxPrNT6ly6HN2D2x8e
+         Mu/1fgvdhsjCA==
+Received: by pali.im (Postfix)
+        id AFB4793F; Sat,  1 Oct 2022 01:34:53 +0200 (CEST)
+Date:   Sat, 1 Oct 2022 01:34:53 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Gregory Clement <gregory.clement@bootlin.com>
+Cc:     linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/4] ARM: dts: armada-38x: Fix compatible string for
+ gpios
+Message-ID: <20220930233453.ixfj7ps2fo2jukjp@pali>
+References: <20220714115515.5748-1-pali@kernel.org>
+ <20220714183328.4137-1-pali@kernel.org>
+ <20220714183328.4137-3-pali@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220714183328.4137-3-pali@kernel.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Merge qcom,saw2.txt bindings to existing qcom,spm.yaml. This fixes
-compatibility of qcom,spm schema with regulator SAW2 devices.
+Gregory: ping
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../devicetree/bindings/arm/msm/qcom,saw2.txt | 58 -------------------
- .../bindings/soc/qcom/qcom,spm.yaml           | 44 +++++++++-----
- 2 files changed, 30 insertions(+), 72 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
-
-diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt b/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
-deleted file mode 100644
-index c0e3c3a42bea..000000000000
---- a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
-+++ /dev/null
-@@ -1,58 +0,0 @@
--SPM AVS Wrapper 2 (SAW2)
--
--The SAW2 is a wrapper around the Subsystem Power Manager (SPM) and the
--Adaptive Voltage Scaling (AVS) hardware. The SPM is a programmable
--power-controller that transitions a piece of hardware (like a processor or
--subsystem) into and out of low power modes via a direct connection to
--the PMIC. It can also be wired up to interact with other processors in the
--system, notifying them when a low power state is entered or exited.
--
--Multiple revisions of the SAW hardware are supported using these Device Nodes.
--SAW2 revisions differ in the register offset and configuration data. Also, the
--same revision of the SAW in different SoCs may have different configuration
--data due the differences in hardware capabilities. Hence the SoC name, the
--version of the SAW hardware in that SoC and the distinction between cpu (big
--or Little) or cache, may be needed to uniquely identify the SAW register
--configuration and initialization data. The compatible string is used to
--indicate this parameter.
--
--PROPERTIES
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: Must have
--			"qcom,saw2"
--		    A more specific value could be one of:
--			"qcom,apq8064-saw2-v1.1-cpu"
--			"qcom,msm8226-saw2-v2.1-cpu"
--			"qcom,msm8974-saw2-v2.1-cpu"
--			"qcom,apq8084-saw2-v2.1-cpu"
--
--- reg:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: the first element specifies the base address and size of
--		    the register region. An optional second element specifies
--		    the base address and size of the alias register region.
--
--- regulator:
--	Usage: optional
--	Value type: boolean
--	Definition: Indicates that this SPM device acts as a regulator device
--			device for the core (CPU or Cache) the SPM is attached
--			to.
--
--Example 1:
--
--	power-controller@2099000 {
--		compatible = "qcom,saw2";
--		reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
--		regulator;
--	};
--
--Example 2:
--	saw0: power-controller@f9089000 {
--		compatible = "qcom,apq8084-saw2-v2.1-cpu", "qcom,saw2";
--		reg = <0xf9089000 0x1000>, <0xf9009000 0x1000>;
--	};
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
-index f433e6e0a19f..8fe35fde70b8 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
-@@ -16,23 +16,33 @@ description: |
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - qcom,sdm660-gold-saw2-v4.1-l2
--          - qcom,sdm660-silver-saw2-v4.1-l2
--          - qcom,msm8998-gold-saw2-v4.1-l2
--          - qcom,msm8998-silver-saw2-v4.1-l2
--          - qcom,msm8909-saw2-v3.0-cpu
--          - qcom,msm8916-saw2-v3.0-cpu
--          - qcom,msm8226-saw2-v2.1-cpu
--          - qcom,msm8974-saw2-v2.1-cpu
--          - qcom,apq8084-saw2-v2.1-cpu
--          - qcom,apq8064-saw2-v1.1-cpu
-+    oneOf:
-       - const: qcom,saw2
-+      - items:
-+          - enum:
-+              - qcom,sdm660-gold-saw2-v4.1-l2
-+              - qcom,sdm660-silver-saw2-v4.1-l2
-+              - qcom,msm8998-gold-saw2-v4.1-l2
-+              - qcom,msm8998-silver-saw2-v4.1-l2
-+              - qcom,msm8909-saw2-v3.0-cpu
-+              - qcom,msm8916-saw2-v3.0-cpu
-+              - qcom,msm8226-saw2-v2.1-cpu
-+              - qcom,msm8974-saw2-v2.1-cpu
-+              - qcom,apq8084-saw2-v2.1-cpu
-+              - qcom,apq8064-saw2-v1.1-cpu
-+          - const: qcom,saw2
- 
-   reg:
--    description: Base address and size of the SPM register region
--    maxItems: 1
-+    description: Base address and size of the SPM register region. An optional
-+      second element specifies the base address and size of the alias register
-+      region.
-+    minItems: 1
-+    maxItems: 2
-+
-+  regulator:
-+    type: boolean
-+    description: Indicates that this SPM device acts as a regulator device
-+      device for the core (CPU or Cache) the SPM is attached to.
- 
- required:
-   - compatible
-@@ -79,4 +89,10 @@ examples:
-         reg = <0x17912000 0x1000>;
-     };
- 
-+  - |
-+    power-controller@2099000 {
-+        compatible = "qcom,saw2";
-+        reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
-+        regulator;
-+    };
- ...
--- 
-2.35.1
-
+On Thursday 14 July 2022 20:33:27 Pali Rohár wrote:
+> Armada 38x supports per CPU interrupts for gpios, like Armada XP. Pre-XP
+> variants like Armada 370 do not support per CPU interrupts for gpios.
+> 
+> So change compatible string for Armada 38x from "marvell,armada-370-gpio"
+> which indicates pre-XP variant to "marvell,armadaxp-gpio" which indicates
+> XP variant or new.
+> 
+> Driver gpio-mvebu.c which handles both pre-XP and XP variants already
+> provides support for per CPU interrupts on XP and newer variants.
+> 
+> Signed-off-by: Pali Rohár <pali@kernel.org>
+> Fixes: 7cb2acb3fbae ("ARM: dts: mvebu: Add PWM properties for armada-38x")
+> ---
+>  arch/arm/boot/dts/armada-38x.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/armada-38x.dtsi b/arch/arm/boot/dts/armada-38x.dtsi
+> index df3c8d1d8f64..9343de6947b3 100644
+> --- a/arch/arm/boot/dts/armada-38x.dtsi
+> +++ b/arch/arm/boot/dts/armada-38x.dtsi
+> @@ -292,7 +292,7 @@
+>  			};
+>  
+>  			gpio0: gpio@18100 {
+> -				compatible = "marvell,armada-370-gpio",
+> +				compatible = "marvell,armadaxp-gpio",
+>  					     "marvell,orion-gpio";
+>  				reg = <0x18100 0x40>, <0x181c0 0x08>;
+>  				reg-names = "gpio", "pwm";
+> @@ -310,7 +310,7 @@
+>  			};
+>  
+>  			gpio1: gpio@18140 {
+> -				compatible = "marvell,armada-370-gpio",
+> +				compatible = "marvell,armadaxp-gpio",
+>  					     "marvell,orion-gpio";
+>  				reg = <0x18140 0x40>, <0x181c8 0x08>;
+>  				reg-names = "gpio", "pwm";
+> -- 
+> 2.20.1
+> 
