@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7F855F1250
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 21:20:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 725EA5F1252
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 21:20:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231759AbiI3TUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 15:20:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50686 "EHLO
+        id S231852AbiI3TUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 15:20:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230450AbiI3TUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 15:20:46 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 824E8184EDA
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 12:20:44 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id d42so8355411lfv.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 12:20:44 -0700 (PDT)
+        with ESMTP id S230469AbiI3TUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 15:20:47 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A473018B5F2
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 12:20:45 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id by7so47602ljb.6
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 12:20:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=RLFGquZHj0Qoort9n3TIqjuxvuM8Sj3HTwawtHQ3hBQ=;
-        b=Ixn3iKlKgL1xfEseGNeJtk/X9jk40WJPjjLEpZ/GhGJY59lUUsJ/Ko18VfLl8VQF4h
-         vQf/O6v3HdBQhis8z97tS4eXCDMJiY7DpmGC//xw1QcdspcIKueFFntOG5F6lMMK9E/R
-         9QDmuSSMkmD5qltwE7pa0c+9xMxi6QpNbEeIkfzPFi/Qvy1RASERZuspnIjSmeq4eySy
-         OpUAudtWyoHDD/WTTetxsAG+EFwGuK8VUgx9yAGhgsKj2pcDTe9A/wqns1k2ltCtqg+O
-         F9M01fwcuBcU39WfekJcyzQz4kdo0SgeTx9lvRu9EIT9WuhXYHHfnvZSZJND26yFaGFl
-         492g==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=mCMgGEyaM3zh+71LDd/ajWDz/tmfPqcX4bkRvNqYiVc=;
+        b=tO+PICHmM9I3QO0wyfc6Y+2GR2yPRj1Cp4K3bZN1q7DdhEVj1i0p1kmcp0wyEt1Cag
+         jkajq8GyDH67IjCSO3kmLaDUaGebuDHu8KYp3UR7Usnf0qyQmoE47FKIkydYZ0vwhrZI
+         0gKzmExQC0bl6xUVdZMPHBCpM8DviiD1CA3dHDnOAcW9am0v3aX4cBuwFrkGKllry66m
+         B2KTX/zom8kDDtLHeC40iyw8GvzlDKCw6CqnI7+nsGNZP1Nxs+kbCJ+awsNU7aGbTWRk
+         +gxKXq7Or7UvXlzQ6gjWGnIZokfEwn/xK+5KGlu/1hppupGCL2Y+5UTLSFN//Xaf1+GA
+         KURw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=RLFGquZHj0Qoort9n3TIqjuxvuM8Sj3HTwawtHQ3hBQ=;
-        b=MdCn5GSG4y8xbEzxjiGsZ31nPKYzZ3/UZ8H6BF45l2MNmt2cLM8pGM6BWB95XnTbDn
-         cnEvTsFluyW+oGfiyBNB6Mb4Je0aIyB3fcFNb/6AG+6UUIi50VriDMX9RKBR2kIaEQUF
-         TZGab4JbcQnf/t8fAqmTnmNtSAnLgqcERT/XPOcJlWWc8qRONJwpzgWPHyrnGDAIXSsq
-         bukLC3ZQClrINWARdDAxupxzGviQywie1RkvgZDrt2mUWngAL+UFeglai8T6NAunAHev
-         +ntzO1xYbSmlSAAxBTDZnsqLB7W5RiBFfXoavhyq8TYEHoRWpM4C/Hii0+DQx7SKFh/U
-         XZnA==
-X-Gm-Message-State: ACrzQf1Z5flZGdPBbvc28RBdKJsqsaDTgyly0IWI8H0dn+qL1bwkojA8
-        AozOaDRIZAdhNPk02KxDZgHugQ==
-X-Google-Smtp-Source: AMsMyM4Gf5VZl3X7RWNEzfwB5RKS5JghDorrgS69rrv0d8aEh7BmdZG3mTlw2UB3gOtd7wP7rUkKAg==
-X-Received: by 2002:a05:6512:2388:b0:498:f8e3:5a34 with SMTP id c8-20020a056512238800b00498f8e35a34mr4153117lfv.453.1664565642863;
-        Fri, 30 Sep 2022 12:20:42 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=mCMgGEyaM3zh+71LDd/ajWDz/tmfPqcX4bkRvNqYiVc=;
+        b=anPpz1PoQtwLykOKHkcmyNDqppQI84a99Wlx+/j7sUw7dUXPJi4zASuUQBhlmW3+5F
+         u9vKD2JfWyRNLZUE4E31RSLSuFa3DuAO992D6HU+iQK30nw5/4M/CVDe3uXqOzOdwBon
+         QiMGyRSseMAUPCUkfYFbMKyQlbkyP65ZCdIM29KVuwuk8EA+wtZqJ7Xzhc5oZ/Ur4zbq
+         Rt5hn0464VscGsveW2HJvBsWXeh/EjQUbogzY3nTVCon3+fC2sOZqHkv0HoLEpRxDI5w
+         HnH6uIQrt4xW3zc8Sky3TTt7W2g71UMP0CvvTFNwwHvILWK0ZXnylaKPDZj5/2haD+dF
+         BqLA==
+X-Gm-Message-State: ACrzQf0Gb23PmVFaowBA8elAExK2QJVhg22MuOR87dHLbjUdrKLG2KBd
+        EiaxIt2ZycB3TniEMxw9oHTUPQ==
+X-Google-Smtp-Source: AMsMyM4966C8+p83RB3Y+03riKzJGnRBVvCFAj24wpc8BR1L996JBXzC+hBjp/4R9VeyY281DbNsIw==
+X-Received: by 2002:a2e:b5b5:0:b0:26a:c76d:145a with SMTP id f21-20020a2eb5b5000000b0026ac76d145amr3478682ljn.119.1664565643893;
+        Fri, 30 Sep 2022 12:20:43 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c17-20020a056512105100b0049fff3f645esm390115lfb.70.2022.09.30.12.20.41
+        by smtp.gmail.com with ESMTPSA id c17-20020a056512105100b0049fff3f645esm390115lfb.70.2022.09.30.12.20.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 12:20:42 -0700 (PDT)
+        Fri, 30 Sep 2022 12:20:43 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -62,10 +63,12 @@ To:     Andy Gross <agross@kernel.org>,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         stable@vger.kernel.org
-Subject: [PATCH 1/3] arm64: dts: qcom: sdm850-lenovo-yoga-c630: correct I2C12 pins drive strength
-Date:   Fri, 30 Sep 2022 21:20:37 +0200
-Message-Id: <20220930192039.240486-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/3] arm64: dts: qcom: sdm850-samsung-w737: correct I2C12 pins drive strength
+Date:   Fri, 30 Sep 2022 21:20:38 +0200
+Message-Id: <20220930192039.240486-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220930192039.240486-1-krzysztof.kozlowski@linaro.org>
+References: <20220930192039.240486-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,18 +88,18 @@ as expressed by bindings) requires children nodes with either:
 The qup_i2c12_default pin configuration used second method - with a
 "pinmux" child.
 
-Fixes: 44acee207844 ("arm64: dts: qcom: Add Lenovo Yoga C630")
+Fixes: d4b341269efb ("arm64: dts: qcom: Add support for Samsung Galaxy Book2")
 Cc: <stable@vger.kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 6 ++++--
+ arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts | 6 ++++--
  1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index be59a8ba9c1f..74f43da51fa5 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -487,8 +487,10 @@ pinconf {
+diff --git a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
+index f954fe5cb61a..d028a7eb364a 100644
+--- a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
++++ b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
+@@ -415,8 +415,10 @@ pinconf {
  };
  
  &qup_i2c12_default {
