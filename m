@@ -2,179 +2,901 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48C015F0C1C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 15:00:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D975F0C3E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 15:13:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbiI3NAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 09:00:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40946 "EHLO
+        id S231376AbiI3NNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 09:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230174AbiI3NAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 09:00:39 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2057.outbound.protection.outlook.com [40.107.92.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C0C91D17;
-        Fri, 30 Sep 2022 06:00:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YtR82fVa4zvnZ0ovOmMszUYXtU9i9nRNMGDq2DMgv6/Q6IuJLFIutlMt47tebk74ml5b9t6h/scQEddx4f/PL0Mp7oLSJjRlqNT7NxauJC+Z2pG9bz2rzjWdnkQHKpgOkD8nA2+r8W6K9TtCrd2k9oRrbiEO67OycGkoM4XeZIjezjjt0rrm08HYPwlhw4dK7ghZK/PVx624ZWk4PEZMq0sXz2FN5QRsKLEWiKUO6KR6UPFZfl+ZoUAxuJ7x0o1zjjVuvUHgm3nq8PdWMng3q6arzkv6BS04MfEu3bLrep17kcHzFnexsGZU2n4C87IEZlXlwQVfVR2o6+Z5GI9/zg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qmtKM0VwTnGGmvGzAOUB/bn+JT9gVDnPhnTd8SHuL5E=;
- b=gDmRuvza6kHZkJ8R+JTRhe868EL6UdYLs9FbpSYOXL+B+z2J7F3kyQFBxmPR7X0YxmUq+lmnfHERGhXXnUwEtYUNi7yXmFr3KnbTVQ5im8oTXZ+K8hS21C608JU25VV4WxaSLJzYfOvR7bY3/4ZUzeJvOW2uXZze49XEtX4v0mqonPwR1NAhFILjtNl8KCVe+kGsLLJ2DxKfn7cENjJc1sLu3TymiTg8ZM+HDIamhiNbhSHni8XYAVNSe2Ey1A7AtBqj/L6d/g9GBeJBzBXoPbDBGAUzRTWeT+wol9YXgphbaIX3DaRBbXW6ga921D7mAmJ6BJ7eIwH9UhOe1D2+bw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qmtKM0VwTnGGmvGzAOUB/bn+JT9gVDnPhnTd8SHuL5E=;
- b=IHx/fF+O2zXgj4IJCFtB7KLpAwsTRQKDRHXVIphs/KlFLRyUROGF2cgwLUbH8sPZV7HlIsjG4MZatx3ifhdJDj+jyoSB5qE6zG0WoO91ARORh57Kj1HyuEZ0sCBZ7xcmiRU0q5paOsULc0Pl47/rN8BrJDzkIX5+Qaj9/ZeA5DQ=
-Received: from MW3PR06CA0004.namprd06.prod.outlook.com (2603:10b6:303:2a::9)
- by SN7PR12MB6791.namprd12.prod.outlook.com (2603:10b6:806:268::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Fri, 30 Sep
- 2022 13:00:36 +0000
-Received: from CO1NAM11FT031.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:2a:cafe::af) by MW3PR06CA0004.outlook.office365.com
- (2603:10b6:303:2a::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.23 via Frontend
- Transport; Fri, 30 Sep 2022 13:00:36 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT031.mail.protection.outlook.com (10.13.174.118) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5676.17 via Frontend Transport; Fri, 30 Sep 2022 13:00:35 +0000
-Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 30 Sep
- 2022 08:00:31 -0500
-Message-ID: <afb3f19f-eb40-5453-a82b-295e06861f86@amd.com>
-Date:   Fri, 30 Sep 2022 15:00:28 +0200
+        with ESMTP id S231368AbiI3NNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 09:13:53 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7758718B5C2;
+        Fri, 30 Sep 2022 06:13:42 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id io19so879233plb.10;
+        Fri, 30 Sep 2022 06:13:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=X9KM69OWbNqe99lU/LyHll6cVAlUFLbhx1DFVUbHdTU=;
+        b=hFiZRArXk1ldsgpRwUMxR66IwMxUdQL8wV3UrxSuZe5QzvWykTbfY8VOSDCaN+9dlv
+         fGBr1SBBDK6Eg/7v6qjj3IpSkyBON/+Ku9IvFFs7YECy6pCyLy4nM7VMoA6SnJ+2X9Pb
+         guBCg6ExR4WfrR+WPHMJ1DRSskdhR6ZP4hNqQw+pBqTZPFP7N9JkqijPOJ2ikTGzvS7g
+         cft67T+RPkuHrEJCaH2dnEoro2FWs9TvYFlxskoygIxuOxWA11O/ra3B+Qy6Ey7bOqk2
+         IPmzWB2Lwk98ka1tLCBrkAsAphPVK17YDpYwcBb/ekcrrGWsZevc+aJGTwejvp+FrOoX
+         dbWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=X9KM69OWbNqe99lU/LyHll6cVAlUFLbhx1DFVUbHdTU=;
+        b=fzsfha/49q6/KjTmQD6YfTD+asN9BNkQcgq+7sJ8JZ5A7BE1jZ2gkEMu3a/4EtpY1+
+         VitzO3qdFTrIh0O/K02f7oDhmux2zBJCC/qPJSf1W1jLwveq6c7EVE51228CGSi3675b
+         vaLM/Xjd7UopWrxqkMgte1Yi0eWPhZltwTHPtTcbXCifIUL/jEQA+MxlqXsKoX+XwYs8
+         9NT7IRKRg4mcC4jFsNFJKnacnrPVzxhc1CrqPNvKS6mZGRCvEV0MeNfszNwZ3Ha63/1d
+         jNipg3Ckacd35mMr1gvZDu0VZLKJ3l/RsKMzNdirQ+FpMj2ueOQtZDwI+xBZUmMgnloB
+         3aTQ==
+X-Gm-Message-State: ACrzQf0lFjvdutElvmU1M9jK5jU78CWN+5lR0X9qMq94TEaGWE4b6/gV
+        4sB7bR/S13o0djVSCHlWQkA=
+X-Google-Smtp-Source: AMsMyM7gr5XYRTLNIh0EXkBR9v55nmUox3xxb6R7y4awYfxnV82mTRbGhc+iX7jkJ4ehNbnoG1am/Q==
+X-Received: by 2002:a17:902:ecc6:b0:178:3c7c:18ad with SMTP id a6-20020a170902ecc600b001783c7c18admr8882046plh.112.1664543621639;
+        Fri, 30 Sep 2022 06:13:41 -0700 (PDT)
+Received: from debian.me (subs02-180-214-232-22.three.co.id. [180.214.232.22])
+        by smtp.gmail.com with ESMTPSA id y18-20020aa78f32000000b00542e190f6bcsm1725985pfr.102.2022.09.30.06.13.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Sep 2022 06:13:40 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+        id 610671005BB; Fri, 30 Sep 2022 20:13:37 +0700 (WIB)
+Date:   Fri, 30 Sep 2022 20:13:37 +0700
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     macro@orcam.me.uk, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thu Nguyen <thu@os.amperecomputing.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com
+Subject: Re: [PATCH v9 4/9] docs: misc-devices: (smpro-errmon) Add
+ documentation
+Message-ID: <YzbrgSE0958gjjgj@debian.me>
+References: <20220929094321.770125-1-quan@os.amperecomputing.com>
+ <20220929094321.770125-5-quan@os.amperecomputing.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH 1/2] dt-bindings: clk: Add binding for versal clocking
- wizard
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-CC:     <linux-clk@vger.kernel.org>, <git@amd.com>,
-        <devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <sboyd@kernel.org>, <mturquette@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-References: <20220930080400.15619-1-shubhrajyoti.datta@amd.com>
- <20220930080400.15619-2-shubhrajyoti.datta@amd.com>
- <CAL_JsqLaqjZeZd3c-fd9f5m-4OCXgOZcOu+paik9FV_eno5sLg@mail.gmail.com>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <CAL_JsqLaqjZeZd3c-fd9f5m-4OCXgOZcOu+paik9FV_eno5sLg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT031:EE_|SN7PR12MB6791:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b20f87e-19c0-4c8d-614a-08daa2e3c45a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HKTJy4thurQOaly3+qln9txCok0vMOeF3BX1b1uBAZCF0AJo1Q7MA0Wv8lAiE9PpfrpHelEbPh2rww6qyVG8FQpanJeGGb5kirS4VshYVKoY6/hzBmgl2H0uXRkdRz818ulqPFa4Sg5aOesNZFM2ck9iJ9KCWlAWnM8QHboHdBlHGS6/XxPUN5p7lq5UvzJCOZ0d1kl52iVCPVBkVIMOOuoDKDp4D4b1xSRFxlv38KEV/q38anAbZLVjyC3XctoLYe0lg2UCsIe/huNs0KfurhqRo8HShB8kK/0/D6oIABoxk1yZLkmM/UI1c/gDrbhhFaHDJx83ZM0V1mf233kVw3sd+tTzUnUusPArjL5TBo/BCshZqAG9XyeDWP0aeKLYHd1qU454F7mPGUymWnAmwWTthxl/Xv3nRUCHLPGgNDBtcAitTOTuMbV5NSM1Ap62POp1rKt+Qr0cjTBSEDcl/SqzyosbWI3O+O9etlQ5XzElN1DTAPDLJEoQ9LFrMF/RVP7XwBRMeoGSeHjH5o61SfSu0FvMZ/DufWpWyNcYRLTT+2MpxVmtVdrEULETz9Buq5+12r3ZyE+OnEPE/dn5zArC7Q8C7I6RidoCvbdMboRcVwFEqvHxpOdSut0GyEnkmvsqi0zSCAN/xnn3npf8Igxv9HNYLBJswCEcqoXc/lwIn+Sz2th2y90CWqAHrsxbtxR1E/QVVDxBxHF3/sDjaM/pOGal5V1BIl8e++Xmt5oIrZq9koeFSQQ5FeEi4n96VGT3d8AK1CkjjHwJR3IbBcxF5hkmQutsDojHQ8gkERSRDtSvCS8LLY+nUuIAqsM90iuS9QgT6/HhKiIEnET1m1wY1nKY36yKOSfZmngZZR6yxxJP4eCz+RF5ZEIkUcKqVVvQ4YY86lt8fZxbCKAq8w==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(376002)(136003)(346002)(396003)(39860400002)(451199015)(36840700001)(40470700004)(46966006)(36860700001)(186003)(356005)(2906002)(426003)(16526019)(81166007)(2616005)(83380400001)(36756003)(82310400005)(47076005)(40480700001)(86362001)(40460700003)(82740400003)(31696002)(336012)(478600001)(70206006)(316002)(54906003)(16576012)(110136005)(8676002)(6636002)(4326008)(53546011)(5660300002)(70586007)(966005)(26005)(6666004)(44832011)(31686004)(41300700001)(8936002)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2022 13:00:35.9848
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b20f87e-19c0-4c8d-614a-08daa2e3c45a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT031.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6791
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="yJ8yI3N9HDD1ZjGC"
+Content-Disposition: inline
+In-Reply-To: <20220929094321.770125-5-quan@os.amperecomputing.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-On 9/30/22 14:25, Rob Herring wrote:
-> On Fri, Sep 30, 2022 at 3:04 AM Shubhrajyoti Datta
-> <shubhrajyoti.datta@amd.com> wrote:
->>
->> The Clocking Wizard for Versal adaptive compute acceleration platforms
->> generates multiple configurable number of clock outputs.
->> Add device tree binding for Versal clocking wizard support.
-> 
-> Really v1? I'm sure I heard of this wizard before.
-> 
-> What about this?:
-> 
-> drivers/staging/clocking-wizard/dt-binding.txt
-> 
-> That needs to be moved out of staging rather than adding a 2nd one.
+--yJ8yI3N9HDD1ZjGC
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Sep 29, 2022 at 04:43:16PM +0700, Quan Nguyen wrote:
+> Adds documentation for Ampere(R)'s Altra(R) SMpro errmon driver.
 
-Let me clarify this. This is IP which is already moved out of staging. 
-Linux-next has these changes and waiting for MW to happen (already in clock tree).
+s/Adds/Add/
 
-And this is new IP. Not sure who has chosen similar name but this targets Xilinx 
-Versal SOCs. Origin one was targeting previous families.
+> diff --git a/Documentation/misc-devices/index.rst b/Documentation/misc-de=
+vices/index.rst
+> index 756be15a49a4..b74b3b34a235 100644
+> --- a/Documentation/misc-devices/index.rst
+> +++ b/Documentation/misc-devices/index.rst
+> @@ -27,6 +27,7 @@ fit into other categories.
+>     max6875
+>     oxsemi-tornado
+>     pci-endpoint-test
+> +   smpro-errmon
+>     spear-pcie-gadget
+>     uacce
+>     xilinx_sdfec
+> diff --git a/Documentation/misc-devices/smpro-errmon.rst b/Documentation/=
+misc-devices/smpro-errmon.rst
+> new file mode 100644
+> index 000000000000..b17f30a6cafd
+> --- /dev/null
+> +++ b/Documentation/misc-devices/smpro-errmon.rst
+> @@ -0,0 +1,193 @@
+> +.. SPDX-License-Identifier: GPL-2.0-only
+> +
+> +Kernel driver Ampere(R)'s Altra(R) SMpro errmon
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Supported chips:
+> +
+> +  * Ampere(R) Altra(R)
+> +
+> +    Prefix: 'smpro'
+> +
+> +    Preference: Altra SoC BMC Interface Specification
+> +
+> +Author: Thu Nguyen <thu@os.amperecomputing.com>
+> +
+> +Description
+> +-----------
+> +
+> +This driver supports hardware monitoring for Ampere(R) Altra(R) SoC's ba=
+sed on the
+> +SMpro co-processor (SMpro).
+> +The following SoC alert/event types are supported by the errmon driver:
+> +
+> +* Core CE/UE error
+> +* Memory CE/UE error
+> +* PCIe CE/UE error
+> +* Other CE/UE error
+> +* Internal SMpro/PMpro error
+> +* VRD hot
+> +* VRD warn/fault
+> +* DIMM Hot
+> +
+> +The SMpro interface provides the registers to query the status of the So=
+C alerts/events
+> +and their data and export to userspace by this driver.
+> +
+> +The SoC alerts/events will be referenced as error below.
+> +
+> +Usage Notes
+> +-----------
+> +
+> +SMpro errmon driver creates the sysfs files for each error type.
+> +Example: ``error_core_ce`` to get Core CE error type.
+> +
+> +* If the error is absented, the sysfs file returns empty.
+> +* If the errors are presented, one each read to the sysfs, the oldest er=
+ror will be returned and clear, the next read will be returned with the nex=
+t error until all the errors are read out.
+> +
+> +For each host error type, SMpro keeps a latest max number of errors. All=
+ the oldest errors that were not read out will be dropped. In that case, th=
+e read to the corresponding overflow sysfs will return 1, otherwise, return=
+ 0.
+> +Example: ``overflow_core_ce`` to report the overflow status of Core CE e=
+rror type.
+> +
+> +The format of the error is depended on the error type.
+> +
+> +1) For Core/Memory/PCIe/Other CE/UE error types::
+> +
+> +The return 48-byte in hex format in table below:
+> +
+> +    =3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+> +    OFFSET    FIELD           SIZE (BYTE)   DESCRIPTION
+> +    =3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+> +    00        Error Type      1             See Table below for details
+> +    01        Subtype         1             See Table below for details
+> +    02        Instance        2             See Table below for details
+> +    04        Error status    4             See ARM RAS specification fo=
+r details
+> +    08        Error Address   8             See ARM RAS specification fo=
+r details
+> +    16        Error Misc 0    8             See ARM RAS specification fo=
+r details
+> +    24        Error Misc 1    8             See ARM RAS specification fo=
+r details
+> +    32        Error Misc 2    8             See ARM RAS specification fo=
+r details
+> +    40        Error Misc 3    8             See ARM RAS specification fo=
+r details
+> +    =3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+> +
+> +Below table defines the value of Error types, Sub Types, Sub component a=
+nd instance:
+> +
+> +    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +    Error Group     Error Type    Sub type    Sub component    Instance
+> +    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +    CPM (core)      0             0           Snoop-Logic      CPM #
+> +    CPM (core)      0             2           Armv8 Core 1     CPM #
+> +    MCU (mem)       1             1           ERR1             MCU # | S=
+LOT << 11
+> +    MCU (mem)       1             2           ERR2             MCU # | S=
+LOT << 11
+> +    MCU (mem)       1             3           ERR3             MCU #
+> +    MCU (mem)       1             4           ERR4             MCU #
+> +    MCU (mem)       1             5           ERR5             MCU #
+> +    MCU (mem)       1             6           ERR6             MCU #
+> +    MCU (mem)       1             7           Link Error       MCU #
+> +    Mesh (other)    2             0           Cross Point      X | (Y <<=
+ 5) | NS <<11
+> +    Mesh (other)    2             1           Home Node(IO)    X | (Y <<=
+ 5) | NS <<11
+> +    Mesh (other)    2             2           Home Node(Mem)   X | (Y <<=
+ 5) | NS <<11 | device<<12
+> +    Mesh (other)    2             4           CCIX Node        X | (Y <<=
+ 5) | NS <<11
+> +    2P Link (other) 3             0           N/A              Altra 2P =
+Link #
+> +    GIC (other)     5             0           ERR0             0
+> +    GIC (other)     5             1           ERR1             0
+> +    GIC (other)     5             2           ERR2             0
+> +    GIC (other)     5             3           ERR3             0
+> +    GIC (other)     5             4           ERR4             0
+> +    GIC (other)     5             5           ERR5             0
+> +    GIC (other)     5             6           ERR6             0
+> +    GIC (other)     5             7           ERR7             0
+> +    GIC (other)     5             8           ERR8             0
+> +    GIC (other)     5             9           ERR9             0
+> +    GIC (other)     5             10          ERR10            0
+> +    GIC (other)     5             11          ERR11            0
+> +    GIC (other)     5             12          ERR12            0
+> +    GIC (other)     5             13-21       ERR13            RC# + 1
+> +    SMMU (other)    6             TCU         100              RC #
+> +    SMMU (other)    6             TBU0        0                RC #
+> +    SMMU (other)    6             TBU1        1                RC #
+> +    SMMU (other)    6             TBU2        2                RC #
+> +    SMMU (other)    6             TBU3        3                RC #
+> +    SMMU (other)    6             TBU4        4                RC #
+> +    SMMU (other)    6             TBU5        5                RC #
+> +    SMMU (other)    6             TBU6        6                RC #
+> +    SMMU (other)    6             TBU7        7                RC #
+> +    SMMU (other)    6             TBU8        8                RC #
+> +    SMMU (other)    6             TBU9        9                RC #
+> +    PCIe AER (pcie) 7             Root        0                RC #
+> +    PCIe AER (pcie) 7             Device      1                RC #
+> +    PCIe RC (pcie)  8             RCA HB      0                RC #
+> +    PCIe RC (pcie)  8             RCB HB      1                RC #
+> +    PCIe RC (pcie)  8             RASDP       8                RC #
+> +    OCM (other)     9             ERR0        0                0
+> +    OCM (other)     9             ERR1        1                0
+> +    OCM (other)     9             ERR2        2                0
+> +    SMpro (other)   10            ERR0        0                0
+> +    SMpro (other)   10            ERR1        1                0
+> +    SMpro (other)   10            MPA_ERR     2                0
+> +    PMpro (other)   11            ERR0        0                0
+> +    PMpro (other)   11            ERR1        1                0
+> +    PMpro (other)   11            MPA_ERR     2                0
+> +    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +    For example:
+> +    # cat error_other_ue
+> +    880807001e004010401040101500000001004010401040100c000000000000000000=
+0000000000000000000000000000
+> +
+> +2) For the Internal SMpro/PMpro error types::
+> +
+> +The error_[smpro|pmro] sysfs returns string of 8-byte hex value:
+> +    <4-byte hex value of Error info><4-byte hex value of Error extensive=
+ data>
+> +
+> +The warn_[smpro|pmro] sysfs returns string of 4-byte hex value:
+> +    <4-byte hex value of Warning info>
+> +
+> +Reference to Altra SoC BMC Interface Specification for the details.
+> +
+> +3) For the VRD hot, VRD /warn/fault, DIMM Hot event::
+> +
+> +The return string is 2-byte hex string value. Reference to section 5.7 G=
+PI status register in Altra SoC BMC Interface Specification for the details.
+> +
+> +    Example:
+> +    #cat event_vrd_hot
+> +    0000
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +The following sysfs files are supported:
+> +
+> +* Ampere(R) Altra(R):
+> +
+> +Alert Types:
+> +
+> +    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +    Alert Type                Sysfs name         Description
+> +    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +    Core CE Error             error_core_ce      Trigger when Core has C=
+E error
+> +    Core CE Error overflow    overflow_core_ce   Trigger when Core CE er=
+ror overflow
+> +    Core UE Error             error_core_ue      Trigger when Core has U=
+E error
+> +    Core UE Error overflow    overflow_core_ue   Trigger when Core UE er=
+ror overflow
+> +    Memory CE Error           error_mem_ce       Trigger when Memory has=
+ CE error
+> +    Memory CE Error overflow  overflow_mem_ce    Trigger when Memory CE =
+error overflow
+> +    Memory UE Error           error_mem_ue       Trigger when Memory has=
+ UE error
+> +    Memory UE Error overflow  overflow_mem_ue    Trigger when Memory UE =
+error overflow
+> +    PCIe CE Error             error_pcie_ce      Trigger when any PCIe c=
+ontroller has CE error
+> +    PCIe CE Error overflow    overflow_pcie_ce   Trigger when any PCIe c=
+ontroller CE error overflow
+> +    PCIe UE Error             error_pcie_ue      Trigger when any PCIe c=
+ontroller has UE error
+> +    PCIe UE Error overflow    overflow_pcie_ue   Trigger when any PCIe c=
+ontroller UE error overflow
+> +    Other CE Error            error_other_ce     Trigger when any Others=
+ CE error
+> +    Other CE Error overflow   overflow_other_ce  Trigger when any Others=
+ CE error overflow
+> +    Other UE Error            error_other_ue     Trigger when any Others=
+ UE error
+> +    Other UE Error overflow   overflow_other_ue  Trigger when Others UE =
+error overflow
+> +    SMpro Error               error_smpro        Trigger when system hav=
+e SMpro error
+> +    SMpro Warning             warn_smpro         Trigger when system hav=
+e SMpro warning
+> +    PMpro Error               error_pmpro        Trigger when system hav=
+e PMpro error
+> +    PMpro Warning             warn_pmpro         Trigger when system hav=
+e PMpro warning
+> +    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Event Type:
+> +
+> +    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+> +    Event Type                   Sysfs name
+> +    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+> +    VRD HOT                      event_vrd_hot
+> +    VR Warn/Fault                event_vrd_warn_fault
+> +    DIMM Hot                     event_dimm_hot
+> +    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
 
+The documentation above produces htmldocs warnings:
+Documentation/misc-devices/smpro-errmon.rst:53: WARNING: Literal block expe=
+cted; none found.
+Documentation/misc-devices/smpro-errmon.rst:87: WARNING: Malformed table.
+Text in column margin in table line 17.
+<snipped>...
+Documentation/misc-devices/smpro-errmon.rst:135: WARNING: Literal block exp=
+ected; none found.
+Documentation/misc-devices/smpro-errmon.rst:145: WARNING: Literal block exp=
+ected; none found.
 
-> 
->>
->> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
->> ---
->>
->>   .../bindings/clock/xlnx,clk-wizard.yaml       | 66 +++++++++++++++++++
->>   1 file changed, 66 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clk-wizard.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/clock/xlnx,clk-wizard.yaml b/Documentation/devicetree/bindings/clock/xlnx,clk-wizard.yaml
->> new file mode 100644
->> index 000000000000..41a6f4bcaccd
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/xlnx,clk-wizard.yaml
->> @@ -0,0 +1,66 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/xlnx,clk-wizard.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Xilinx Versal clocking wizard
->> +
->> +maintainers:
->> +  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
->> +
->> +description:
->> +  The clocking wizard is a soft ip clocking block of Xilinx versal. The IP
->> +  uses the input clock frequencies and generates the requested
->> +  clock output.
->> +
->> +properties:
->> +  compatible:
->> +    const: xlnx,clk-wizard-1.0
-> 
-> Where does 1.0 come from? A 1.0 always feels made up. This should be
-> based on some IP versioning that's documented somewhere.
+I have applied the fixup (with grammatical and formatting fixes):
 
-Soft IP catalog name with version:
-xilinx.com:ip:clk_wizard:1.0
+---- >8 ----
 
-https://docs.xilinx.com/r/en-US/pg321-clocking-wizard/Introduction
+diff --git a/Documentation/misc-devices/smpro-errmon.rst b/Documentation/mi=
+sc-devices/smpro-errmon.rst
+index b17f30a6cafdab..de8719cc47fd3c 100644
+--- a/Documentation/misc-devices/smpro-errmon.rst
++++ b/Documentation/misc-devices/smpro-errmon.rst
+@@ -7,18 +7,18 @@ Supported chips:
+=20
+   * Ampere(R) Altra(R)
+=20
+-    Prefix: 'smpro'
++    Prefix: `smpro`
+=20
+-    Preference: Altra SoC BMC Interface Specification
++    Reference: `Altra SoC BMC Interface Specification`
+=20
+ Author: Thu Nguyen <thu@os.amperecomputing.com>
+=20
+ Description
+ -----------
+=20
+-This driver supports hardware monitoring for Ampere(R) Altra(R) SoC's base=
+d on the
+-SMpro co-processor (SMpro).
+-The following SoC alert/event types are supported by the errmon driver:
++The smpro-errmon driver supports hardware monitoring for Ampere(R) Altra(R)
++SoCs based on the SMpro co-processor (SMpro). The following SoC alert/event
++types are supported by the driver:
+=20
+ * Core CE/UE error
+ * Memory CE/UE error
+@@ -29,165 +29,178 @@ The following SoC alert/event types are supported by =
+the errmon driver:
+ * VRD warn/fault
+ * DIMM Hot
+=20
+-The SMpro interface provides the registers to query the status of the SoC =
+alerts/events
+-and their data and export to userspace by this driver.
++The SMpro interface provides the registers to query the status of the SoC
++alerts/events and their data and export to userspace by this driver.
+=20
+-The SoC alerts/events will be referenced as error below.
++The rest of this document will refer SoC alerts/events as errors.
+=20
+ Usage Notes
+ -----------
+=20
+ SMpro errmon driver creates the sysfs files for each error type.
+-Example: ``error_core_ce`` to get Core CE error type.
++See :ref:`smpro_sysfs` for the list of errors and the corresponding
++sysfs files.
+=20
+-* If the error is absented, the sysfs file returns empty.
+-* If the errors are presented, one each read to the sysfs, the oldest erro=
+r will be returned and clear, the next read will be returned with the next =
+error until all the errors are read out.
++* If there is no errors, the sysfs file is empty.
++* Otherwise, when errors occur, the oldest error
++  will be returned on sysfs file reading and cleared. The next read will
++  return the next error until all the errors are read out.
+=20
+-For each host error type, SMpro keeps a latest max number of errors. All t=
+he oldest errors that were not read out will be dropped. In that case, the =
+read to the corresponding overflow sysfs will return 1, otherwise, return 0.
+-Example: ``overflow_core_ce`` to report the overflow status of Core CE err=
+or type.
++For each host error type, SMpro keeps a latest max number of errors. All t=
+he
++oldest errors that were not read will be dropped. In that case, the read
++to the corresponding sysfs will return 1, otherwise return 0.
+=20
+-The format of the error is depended on the error type.
++The error format depends on its type.
+=20
+-1) For Core/Memory/PCIe/Other CE/UE error types::
++1) For Core/Memory/PCIe/Other CE/UE error types
+=20
+-The return 48-byte in hex format in table below:
++   These errors return 48-byte in hex format according to the table below:
+=20
+-    =3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+-    OFFSET    FIELD           SIZE (BYTE)   DESCRIPTION
+-    =3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+-    00        Error Type      1             See Table below for details
+-    01        Subtype         1             See Table below for details
+-    02        Instance        2             See Table below for details
+-    04        Error status    4             See ARM RAS specification for =
+details
+-    08        Error Address   8             See ARM RAS specification for =
+details
+-    16        Error Misc 0    8             See ARM RAS specification for =
+details
+-    24        Error Misc 1    8             See ARM RAS specification for =
+details
+-    32        Error Misc 2    8             See ARM RAS specification for =
+details
+-    40        Error Misc 3    8             See ARM RAS specification for =
+details
+-    =3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
++   =3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++   OFFSET    FIELD           SIZE (BYTE)   DESCRIPTION
++   =3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++   00        Error Type      1             See :ref:`the table below <smpr=
+o-error-types>` for details
++   01        Subtype         1             See :ref:`the table below <smpr=
+o-error-types>` for details
++   02        Instance        2             See :ref:`the table below <smpr=
+o-error-types>` for details
++   04        Error status    4             See ARM RAS specification for d=
+etails
++   08        Error Address   8             See ARM RAS specification for d=
+etails
++   16        Error Misc 0    8             See ARM RAS specification for d=
+etails
++   24        Error Misc 1    8             See ARM RAS specification for d=
+etails
++   32        Error Misc 2    8             See ARM RAS specification for d=
+etails
++   40        Error Misc 3    8             See ARM RAS specification for d=
+etails
++   =3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+=20
+-Below table defines the value of Error types, Sub Types, Sub component and=
+ instance:
++   The table below defines the value of error types, their subtype, subcom=
+ponent and instance:
+=20
+-    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+-    Error Group     Error Type    Sub type    Sub component    Instance
+-    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+-    CPM (core)      0             0           Snoop-Logic      CPM #
+-    CPM (core)      0             2           Armv8 Core 1     CPM #
+-    MCU (mem)       1             1           ERR1             MCU # | SLO=
+T << 11
+-    MCU (mem)       1             2           ERR2             MCU # | SLO=
+T << 11
+-    MCU (mem)       1             3           ERR3             MCU #
+-    MCU (mem)       1             4           ERR4             MCU #
+-    MCU (mem)       1             5           ERR5             MCU #
+-    MCU (mem)       1             6           ERR6             MCU #
+-    MCU (mem)       1             7           Link Error       MCU #
+-    Mesh (other)    2             0           Cross Point      X | (Y << 5=
+) | NS <<11
+-    Mesh (other)    2             1           Home Node(IO)    X | (Y << 5=
+) | NS <<11
+-    Mesh (other)    2             2           Home Node(Mem)   X | (Y << 5=
+) | NS <<11 | device<<12
+-    Mesh (other)    2             4           CCIX Node        X | (Y << 5=
+) | NS <<11
+-    2P Link (other) 3             0           N/A              Altra 2P Li=
+nk #
+-    GIC (other)     5             0           ERR0             0
+-    GIC (other)     5             1           ERR1             0
+-    GIC (other)     5             2           ERR2             0
+-    GIC (other)     5             3           ERR3             0
+-    GIC (other)     5             4           ERR4             0
+-    GIC (other)     5             5           ERR5             0
+-    GIC (other)     5             6           ERR6             0
+-    GIC (other)     5             7           ERR7             0
+-    GIC (other)     5             8           ERR8             0
+-    GIC (other)     5             9           ERR9             0
+-    GIC (other)     5             10          ERR10            0
+-    GIC (other)     5             11          ERR11            0
+-    GIC (other)     5             12          ERR12            0
+-    GIC (other)     5             13-21       ERR13            RC# + 1
+-    SMMU (other)    6             TCU         100              RC #
+-    SMMU (other)    6             TBU0        0                RC #
+-    SMMU (other)    6             TBU1        1                RC #
+-    SMMU (other)    6             TBU2        2                RC #
+-    SMMU (other)    6             TBU3        3                RC #
+-    SMMU (other)    6             TBU4        4                RC #
+-    SMMU (other)    6             TBU5        5                RC #
+-    SMMU (other)    6             TBU6        6                RC #
+-    SMMU (other)    6             TBU7        7                RC #
+-    SMMU (other)    6             TBU8        8                RC #
+-    SMMU (other)    6             TBU9        9                RC #
+-    PCIe AER (pcie) 7             Root        0                RC #
+-    PCIe AER (pcie) 7             Device      1                RC #
+-    PCIe RC (pcie)  8             RCA HB      0                RC #
+-    PCIe RC (pcie)  8             RCB HB      1                RC #
+-    PCIe RC (pcie)  8             RASDP       8                RC #
+-    OCM (other)     9             ERR0        0                0
+-    OCM (other)     9             ERR1        1                0
+-    OCM (other)     9             ERR2        2                0
+-    SMpro (other)   10            ERR0        0                0
+-    SMpro (other)   10            ERR1        1                0
+-    SMpro (other)   10            MPA_ERR     2                0
+-    PMpro (other)   11            ERR0        0                0
+-    PMpro (other)   11            ERR1        1                0
+-    PMpro (other)   11            MPA_ERR     2                0
+-    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++   .. _smpro-error-types:
+=20
+-    For example:
+-    # cat error_other_ue
+-    880807001e004010401040101500000001004010401040100c00000000000000000000=
+00000000000000000000000000
++   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++   Error Group     Error Type    Sub type    Sub component    Instance
++   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++   CPM (core)      0             0           Snoop-Logic      CPM #
++   CPM (core)      0             2           Armv8 Core 1     CPM #
++   MCU (mem)       1             1           ERR1             MCU # | SLOT=
+ << 11
++   MCU (mem)       1             2           ERR2             MCU # | SLOT=
+ << 11
++   MCU (mem)       1             3           ERR3             MCU #
++   MCU (mem)       1             4           ERR4             MCU #
++   MCU (mem)       1             5           ERR5             MCU #
++   MCU (mem)       1             6           ERR6             MCU #
++   MCU (mem)       1             7           Link Error       MCU #
++   Mesh (other)    2             0           Cross Point      X | (Y << 5)=
+ | NS <<11
++   Mesh (other)    2             1           Home Node(IO)    X | (Y << 5)=
+ | NS <<11
++   Mesh (other)    2             2           Home Node(Mem)   X | (Y << 5)=
+ | NS <<11 | device<<12
++   Mesh (other)    2             4           CCIX Node        X | (Y << 5)=
+ | NS <<11
++   2P Link (other) 3             0           N/A              Altra 2P Lin=
+k #
++   GIC (other)     5             0           ERR0             0
++   GIC (other)     5             1           ERR1             0
++   GIC (other)     5             2           ERR2             0
++   GIC (other)     5             3           ERR3             0
++   GIC (other)     5             4           ERR4             0
++   GIC (other)     5             5           ERR5             0
++   GIC (other)     5             6           ERR6             0
++   GIC (other)     5             7           ERR7             0
++   GIC (other)     5             8           ERR8             0
++   GIC (other)     5             9           ERR9             0
++   GIC (other)     5             10          ERR10            0
++   GIC (other)     5             11          ERR11            0
++   GIC (other)     5             12          ERR12            0
++   GIC (other)     5             13-21       ERR13            RC# + 1
++   SMMU (other)    6             TCU         100              RC #
++   SMMU (other)    6             TBU0        0                RC #
++   SMMU (other)    6             TBU1        1                RC #
++   SMMU (other)    6             TBU2        2                RC #
++   SMMU (other)    6             TBU3        3                RC #
++   SMMU (other)    6             TBU4        4                RC #
++   SMMU (other)    6             TBU5        5                RC #
++   SMMU (other)    6             TBU6        6                RC #
++   SMMU (other)    6             TBU7        7                RC #
++   SMMU (other)    6             TBU8        8                RC #
++   SMMU (other)    6             TBU9        9                RC #
++   PCIe AER (pcie) 7             Root        0                RC #
++   PCIe AER (pcie) 7             Device      1                RC #
++   PCIe RC (pcie)  8             RCA HB      0                RC #
++   PCIe RC (pcie)  8             RCB HB      1                RC #
++   PCIe RC (pcie)  8             RASDP       8                RC #
++   OCM (other)     9             ERR0        0                0
++   OCM (other)     9             ERR1        1                0
++   OCM (other)     9             ERR2        2                0
++   SMpro (other)   10            ERR0        0                0
++   SMpro (other)   10            ERR1        1                0
++   SMpro (other)   10            MPA_ERR     2                0
++   PMpro (other)   11            ERR0        0                0
++   PMpro (other)   11            ERR1        1                0
++   PMpro (other)   11            MPA_ERR     2                0
++   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+=20
+-2) For the Internal SMpro/PMpro error types::
++   Example::
+=20
+-The error_[smpro|pmro] sysfs returns string of 8-byte hex value:
+-    <4-byte hex value of Error info><4-byte hex value of Error extensive d=
+ata>
++     # cat error_other_ue
++     880807001e004010401040101500000001004010401040100c0000000000000000000=
+000000000000000000000000000
+=20
+-The warn_[smpro|pmro] sysfs returns string of 4-byte hex value:
+-    <4-byte hex value of Warning info>
++2) For the internal SMpro/PMpro error types
+=20
+-Reference to Altra SoC BMC Interface Specification for the details.
++   The ``error_[smpro|pmro]`` sysfs returns string of 8-byte hex value::
+=20
+-3) For the VRD hot, VRD /warn/fault, DIMM Hot event::
++     <4-byte hex value of Error info><4-byte hex value of Error extensive =
+data>
+=20
+-The return string is 2-byte hex string value. Reference to section 5.7 GPI=
+ status register in Altra SoC BMC Interface Specification for the details.
++   The ``warn_[smpro|pmro]`` sysfs returns string of 4-byte hex value::
+=20
+-    Example:
+-    #cat event_vrd_hot
+-    0000
++     <4-byte hex value of Warning info>
++
++   Refer to `Altra SoC BMC Interface Specification` for details.
++
++3) For the VRD hot, VRD warn/fault, DIMM Hot event
++
++   The return string is 2-byte hex string value. Refer to section `5.7 GPI
++   status register` in `Altra SoC BMC Interface Specification` for details=
+=2E=20
++
++   Example::
++
++      #cat event_vrd_hot
++      0000
++
++.. _smpro_sysfs:
+=20
+ Sysfs entries
+ -------------
+=20
+ The following sysfs files are supported:
+=20
+-* Ampere(R) Altra(R):
++* Ampere(R) Altra(R)
+=20
+-Alert Types:
++  Alert types:
+=20
+-    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+-    Alert Type                Sysfs name         Description
+-    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+-    Core CE Error             error_core_ce      Trigger when Core has CE =
+error
+-    Core CE Error overflow    overflow_core_ce   Trigger when Core CE erro=
+r overflow
+-    Core UE Error             error_core_ue      Trigger when Core has UE =
+error
+-    Core UE Error overflow    overflow_core_ue   Trigger when Core UE erro=
+r overflow
+-    Memory CE Error           error_mem_ce       Trigger when Memory has C=
+E error
+-    Memory CE Error overflow  overflow_mem_ce    Trigger when Memory CE er=
+ror overflow
+-    Memory UE Error           error_mem_ue       Trigger when Memory has U=
+E error
+-    Memory UE Error overflow  overflow_mem_ue    Trigger when Memory UE er=
+ror overflow
+-    PCIe CE Error             error_pcie_ce      Trigger when any PCIe con=
+troller has CE error
+-    PCIe CE Error overflow    overflow_pcie_ce   Trigger when any PCIe con=
+troller CE error overflow
+-    PCIe UE Error             error_pcie_ue      Trigger when any PCIe con=
+troller has UE error
+-    PCIe UE Error overflow    overflow_pcie_ue   Trigger when any PCIe con=
+troller UE error overflow
+-    Other CE Error            error_other_ce     Trigger when any Others C=
+E error
+-    Other CE Error overflow   overflow_other_ce  Trigger when any Others C=
+E error overflow
+-    Other UE Error            error_other_ue     Trigger when any Others U=
+E error
+-    Other UE Error overflow   overflow_other_ue  Trigger when Others UE er=
+ror overflow
+-    SMpro Error               error_smpro        Trigger when system have =
+SMpro error
+-    SMpro Warning             warn_smpro         Trigger when system have =
+SMpro warning
+-    PMpro Error               error_pmpro        Trigger when system have =
+PMpro error
+-    PMpro Warning             warn_pmpro         Trigger when system have =
+PMpro warning
+-    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++    Alert type                Sysfs name             Description (when the=
+ error is triggered)
++    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++    Core CE Error             ``error_core_ce``      Core has CE error
++    Core CE Error overflow    ``overflow_core_ce``   Core CE error overflow
++    Core UE Error             ``error_core_ue``      Core has UE error
++    Core UE Error overflow    ``overflow_core_ue``   Core UE error overflow
++    Memory CE Error           ``error_mem_ce``       Memory has CE error
++    Memory CE Error overflow  ``overflow_mem_ce``    Memory CE error overf=
+low
++    Memory UE Error           ``error_mem_ue``       Memory has UE error
++    Memory UE Error overflow  ``overflow_mem_ue``    Memory UE error overf=
+low
++    PCIe CE Error             ``error_pcie_ce``      any PCIe controller h=
+as CE error
++    PCIe CE Error overflow    ``overflow_pcie_ce``   any PCIe controller C=
+E error overflow
++    PCIe UE Error             ``error_pcie_ue``      any PCIe controller h=
+as UE error
++    PCIe UE Error overflow    ``overflow_pcie_ue``   any PCIe controller U=
+E error overflow
++    Other CE Error            ``error_other_ce``     any other CE error
++    Other CE Error overflow   ``overflow_other_ce``  any other CE error ov=
+erflow
++    Other UE Error            ``error_other_ue``     any other UE error
++    Other UE Error overflow   ``overflow_other_ue``  other UE error overfl=
+ow
++    SMpro Error               ``error_smpro``        system have SMpro err=
+or
++    SMpro Warning             ``warn_smpro``         system have SMpro war=
+ning
++    PMpro Error               ``error_pmpro``        system have PMpro err=
+or
++    PMpro Warning             ``warn_pmpro``         system have PMpro war=
+ning
++    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+=20
+-Event Type:
++  Event types:
+=20
+     =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+-    Event Type                   Sysfs name
++    Event type                   Sysfs name
+     =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+-    VRD HOT                      event_vrd_hot
+-    VR Warn/Fault                event_vrd_warn_fault
+-    DIMM Hot                     event_dimm_hot
++    VRD HOT                      ``event_vrd_hot``
++    VR Warn/Fault                ``event_vrd_warn_fault``
++    DIMM Hot                     ``event_dimm_hot``
+     =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
 
+Thanks.
 
-Thanks,
-Michal
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--yJ8yI3N9HDD1ZjGC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCYzbregAKCRD2uYlJVVFO
+o1FoAQDFhyGFwxZleSOB0bfl0xiG1z1TxaRA+2d2u6Tm6OX8ZAEA4QmxE1/OXqNy
+WUYHX/gsqj+Rx6WpNuSGeEGX3JrUzA4=
+=qjWM
+-----END PGP SIGNATURE-----
+
+--yJ8yI3N9HDD1ZjGC--
