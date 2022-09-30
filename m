@@ -2,73 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBC325F13FF
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 22:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 585BB5F1424
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 22:49:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231805AbiI3Upm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 16:45:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60784 "EHLO
+        id S230517AbiI3Uti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 16:49:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232118AbiI3UpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 16:45:24 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A985B36870;
-        Fri, 30 Sep 2022 13:45:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D1E87B82963;
-        Fri, 30 Sep 2022 20:45:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77E30C433C1;
-        Fri, 30 Sep 2022 20:45:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664570715;
-        bh=ZspkTH4wlIWGK9ulllRAJsIDoyBdcCbhDGVxDXKjq/I=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=MVASHu5fv18JrpGr204eAma9LTf1jEKzMNENoS92eYlNOx8PJjllmrZIuwmRKoMda
-         Su6lP3FTlZaS1Tj4yoOkIBEjw8ypx+JuXMapQjfofkt+h71XkbHNg0W1usT2+mvYP6
-         6vm2dn+9/icPpERDnEy5pm08rIZdx+obdg1Nk1Ct2vZKrFZbfTAvKY6ijqE9qOwIO/
-         Q0RbRP7suCjRlhNvS+kQaENTjzwXCWF6SKJriwNViyPsxYW9MfLwysKCSW2SkGfIei
-         O1H6au+1kCSk6G8AUCURAHFmgy0XqRyd8wqJiOyVLFI5+8B8+bdx/ixV+a4/g6ORwJ
-         ZdL5Dm04M1EzA==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220612192937.162952-13-doug@schmorgal.com>
-References: <20220612192937.162952-1-doug@schmorgal.com> <20220612192937.162952-13-doug@schmorgal.com>
-Subject: Re: [PATCH 12/12] clk: mmp: pxa168: control shared SDH bits with separate clock
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Doug Brown <doug@schmorgal.com>
-To:     Doug Brown <doug@schmorgal.com>,
+        with ESMTP id S232097AbiI3UtJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 16:49:09 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1313063FDA;
+        Fri, 30 Sep 2022 13:49:09 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-13207a86076so2536875fac.3;
+        Fri, 30 Sep 2022 13:49:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=YN8qEL8DJBJUXwLGIJhhXCICK2Erz7u2/C6FcnHwxvw=;
+        b=LLG1civW5Bz3dtCZAQ1pYC9yqFnPjnDVjDU0EniOcBWi/GVdN//JE+ISzvor587YTt
+         7q/D2ToiNp3jPOxPwzbk4r5eD108F0FFl3I4sfztr+lJcOcga9JAYs9k6OOMxw6D7/GH
+         jnMUB/Avxxfv8eBUUu3N5j/4VQ651AZT+VgAxmd1A8ffxTUPMZ1C5OCo2KQk1aSrBm39
+         bC8FiL06wq6zLywVRu3nEJIyUqV1VQR6rE3XvfasIF8O8QUrKT32uFT0pFuktygRybEd
+         YUy6Y78/smbRNYcEkUI957xMClMgBeNx8k4sZiqOBZ8z11B4N3WNh91PVRhx4/b/ltYT
+         uAXQ==
+X-Gm-Message-State: ACrzQf0uW6qRd6zXC/fPtDhFm5Ae+C+l4YttudduaCKlifFargpCo1b8
+        ygh9dfBByIuP2/R52Wca6Q==
+X-Google-Smtp-Source: AMsMyM7cQo+Xdc1zu4Ia/015WNtr0fkOMyA0Z7nPSaR5qXioETaX7bCFr8c6/ztbX7UjQ65MKT544Q==
+X-Received: by 2002:a05:6870:3451:b0:131:82bb:22e3 with SMTP id i17-20020a056870345100b0013182bb22e3mr28626oah.233.1664570948264;
+        Fri, 30 Sep 2022 13:49:08 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b42-20020a056870392a00b0013187edfde2sm971842oap.12.2022.09.30.13.49.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Sep 2022 13:49:06 -0700 (PDT)
+Received: (nullmailer pid 908078 invoked by uid 1000);
+        Fri, 30 Sep 2022 20:49:05 -0000
+Date:   Fri, 30 Sep 2022 15:49:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Hal Feng <hal.feng@linux.starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 30 Sep 2022 13:45:13 -0700
-User-Agent: alot/0.10
-Message-Id: <20220930204515.77E30C433C1@smtp.kernel.org>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 09/30] reset: starfive: jh7100: Move necessary
+ properties to device tree
+Message-ID: <20220930204905.GA903203-robh@kernel.org>
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+ <20220929143225.17907-10-hal.feng@linux.starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220929143225.17907-10-hal.feng@linux.starfivetech.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Doug Brown (2022-06-12 12:29:37)
-> The PXA168 has a peculiar setup with the AXI clock enable control for
-> the SDHC controllers. The bits in the SDH0 register control the AXI
-> clock enable for both SDH0 and SDH1. Likewise, the bits in the SDH2
-> register control both SDH2 and SDH3. This is modeled with two new
-> parentless clocks that control the shared bits.
->=20
-> Previously, SDH0 had to be enabled in order for SDH1 to be used, and
-> when SDH1 was enabled, unused bits in the SDH1 register were being
-> controlled. This fixes those issues. A future commit will add support
-> for these new shared clocks to be enabled by the PXA168 SDHC driver.
->=20
-> Signed-off-by: Doug Brown <doug@schmorgal.com>
+On Thu, Sep 29, 2022 at 10:32:04PM +0800, Hal Feng wrote:
+> Store the necessary properties in device tree instead of .c file,
+> in order to apply this reset driver to other StarFive SoCs.
+> 
+> Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
 > ---
+>  .../bindings/reset/starfive,jh7100-reset.yaml | 20 ++++++++
+>  arch/riscv/boot/dts/starfive/jh7100.dtsi      |  3 ++
+>  drivers/reset/reset-starfive-jh7100.c         | 50 +++++++++++++------
+>  3 files changed, 57 insertions(+), 16 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml b/Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
+> index 300359a5e14b..3eff3f72a1ed 100644
+> --- a/Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
+> @@ -20,19 +20,39 @@ properties:
+>    "#reset-cells":
+>      const: 1
+>  
+> +  starfive,assert-offset:
+> +    description: Offset of the first ASSERT register
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  starfive,status-offset:
+> +    description: Offset of the first STATUS register
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  starfive,nr-resets:
+> +    description: Number of reset signals
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - "#reset-cells"
+> +  - starfive,assert-offset
+> +  - starfive,status-offset
+> +  - starfive,nr-resets
 
-Applied to clk-next
+Adding required properties is a red flag. You can't add required 
+properties to an existing binding. That breaks the ABI unless the OS 
+deals with the properties being absent. If the OS has to do that, then 
+why add them in the first place? All this should be implied by the 
+compatible string.
+
+Rob
