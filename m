@@ -2,105 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB315F04CB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 08:30:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2B8E5F0530
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 08:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230033AbiI3Gak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 02:30:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58032 "EHLO
+        id S230362AbiI3GqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 02:46:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230284AbiI3Gag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 02:30:36 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 296111005EF;
-        Thu, 29 Sep 2022 23:30:34 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28TMWHdG004121;
-        Fri, 30 Sep 2022 08:30:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=Vbk+7vl2UPlDx4z5gYqs91y5clSkhvrc8BmQ9thvp+w=;
- b=mAa2YA6lkLxP2HL7StBZJzdTUtKIYOhPNku2x8S5cuEesqxBxUH9JS1Gk0kVv3l9MHL6
- PoslWCe78uhF0y9OZf2fcMx+l6dzQ+vjSFH/V6fxktElViPmHHGOtv3fAkWBHUOaLrJx
- qn6hrMq/r9sOC5ssCQ8quqS7m7TQDN9Tw7CLDDnEaYLTESeEj9lEZGiLn5QcbSOrxomM
- 5qpNQtEgJsEYveTFlWA6CWb0AhDXuWmDGU5M2EpTxHXXo3DDY5vYlWIJ4cQm7TX0ByR3
- 886FQjS2Lhb644SyoMF/uZw/Li67uSXXg6yf4Wu6lYtxITJ+8mpIUNqSkPVATxvpa6p1 OQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3jss82ur2v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Sep 2022 08:30:06 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F080E10002A;
-        Fri, 30 Sep 2022 08:30:04 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E8185212FB7;
-        Fri, 30 Sep 2022 08:30:04 +0200 (CEST)
-Received: from [10.201.21.72] (10.75.127.50) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Fri, 30 Sep
- 2022 08:30:04 +0200
-Message-ID: <b3184722-3cbe-5720-8963-3a8517ed1226@foss.st.com>
-Date:   Fri, 30 Sep 2022 08:30:03 +0200
+        with ESMTP id S230227AbiI3GqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 02:46:08 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60070.outbound.protection.outlook.com [40.107.6.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC1311A69A;
+        Thu, 29 Sep 2022 23:46:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B+6xsuWPKo0yU3dxC5Z/6NYG9fHMm7lDapM/XqI3k78FSdIhwXNH+u6mTixO04dy77xWJevdhhEQj6WG7mtTgmczxXSkmkKIVp1/pOc52mZWUG/P9/eD/UumxzTQuzhpSJJzAhnlnS6bkndahwVM8WglPprx/aZMfah+cmuqMesjmT44NQ8b3Uu33n2U9hD+jt/V+O3mBC7e41mHKb9kVv2W++RdOROcLYFl0TQ7YCvbKxYNL4bqTWv/0Ssu8IkoF/f32xVHS+OSlJuw1S42XFbKmN3y5UjeeeqvIyDGxWESupmGsgPmY1BGlVxzduk2w4TZ4HTgwYje+tSUBUdI5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2JA+lfMWEe10GCJnGuF07YDn2tTo0Tu0Qukb/4Y8U2Q=;
+ b=aRx955+3NRhiDbv1LoBbSKOnmFOxKVqEb+GmPwvz7p78vCkc/Hwi8kw1NJ5mZ9/+lAm4DH69aVnMcKwUzeChN6QfUHH393Ms//SOeRIBH0r14l0x1boooGgFrQ/YePYVAROdHv5BFbcAoPC0xGLnRj1vZ2o2pJnoTrafnLqlETiGWjasV/dH96C0bEmFQPxMIvPcwtr86/OqYC/VvEYE2fSwEA/8FXgHKsIU0tO+OBYcWA/GZ0v6Xpwp9o88FSJDmPrjpffo38yCSwkq6t7Unh+El7JHNF1JbhBoUZCL8hUDBo5BLDJA9I8pyRI/4cI3uVYkcwaCJ4/1Ts0kYk48Cw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2JA+lfMWEe10GCJnGuF07YDn2tTo0Tu0Qukb/4Y8U2Q=;
+ b=jj7T5c239VSwwFArQkc5AyYKlV/AJg7+EXmFMkkBB6d9xzrhFv8tY69h1ROx189FyxCN8OxAaBpGndF5xJV5Ya9u5GAECr2lDpgBYsxWQ36tXOoBCGngn2nvPriC8RLowyNoJlWQ07KAKInwqu4CCsmaGlcPZBx6+8LhvxZ2QFQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4222.eurprd04.prod.outlook.com (2603:10a6:803:46::19)
+ by PAXPR04MB8640.eurprd04.prod.outlook.com (2603:10a6:102:21f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.23; Fri, 30 Sep
+ 2022 06:46:00 +0000
+Received: from VI1PR04MB4222.eurprd04.prod.outlook.com
+ ([fe80::7008:1596:bb4:d904]) by VI1PR04MB4222.eurprd04.prod.outlook.com
+ ([fe80::7008:1596:bb4:d904%4]) with mapi id 15.20.5676.023; Fri, 30 Sep 2022
+ 06:46:00 +0000
+From:   Chancel Liu <chancel.liu@nxp.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        nicoleotsuka@gmail.com, linuxppc-dev@lists.ozlabs.org
+Cc:     Chancel Liu <chancel.liu@nxp.com>
+Subject: [PATCH v3 0/7] Create a new sound card to access MICFIL based on rpmsg channel
+Date:   Fri, 30 Sep 2022 14:44:34 +0800
+Message-Id: <20220930064441.2548505-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2P153CA0041.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::10)
+ To VI1PR04MB4222.eurprd04.prod.outlook.com (2603:10a6:803:46::19)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] RM: dts: stihxxx-b2120: fix polarity of reset line of
- tsin0 port
-Content-Language: en-US
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alain Volmat <avolmat@me.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <YzXuU/60TI3tc6ii@google.com>
-From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <YzXuU/60TI3tc6ii@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-30_03,2022-09-29_03,2022-06-22_01
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4222:EE_|PAXPR04MB8640:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5da9bebf-9245-4701-3405-08daa2af6f6a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LQ8yMqqvw4T+UuYQhWrffO8RM5DXhrjMXYQ0Txmo1DP3JG6LC//wkkEMNfXKH7/JisPTtg6byqxgRsRwZSwF3Z7dYbud7VZN8ZAvmVlElzK+XxNn6XQOppGYDzOWFzq6co2sri65wLJvcEexeRTUptQhZGgWC7rVH3i1CuiHWDT07/69G+yvb+6Xd/WSANNTCcHEKKY6vrajuHCBs3LgQuAJ19l/bK/DUA8tgV7B25bn+ZytISVPxWV7JGTuG0hL4AN+3eLFlfPo9RKtj+93s0Ed80k/EQvnY76JOnc4oXXU4eMQac0udRVMKFAocRybp/gQZsmlX5fnQLXWR/v/zR2MQ+9dgPXJ5YqLb7xtTP4735wDfsHtmwDu9SYfstODEcTIRUTUXcWYZ4RbXI4eIWEahloXcttKyhTjv/SNEjcGftnl2pumnNHdWOaH99xBEQF+3boPXNcZExHyPRe8kH4Lb/QZ4++rFf3N3F8SenF1aZRqPbocprs1Oi4HXNoLJT1QgBDGyAQGF3Wjnx2NtT1SpkH3MXwojULTNkGLTNbENwMnYZhdf7QTKfqGPzGx1kUjm6IyrK8QNDAngNgQHTBKC8s+M+ly/Hpi1Bjni3h5yOxtaWSKbx5GO+1cN4DIyfxdhUYAHMRPm5nnqUHvi5hl9G9kzMblMNz5qBjjGSPdZBjajrg+z1bhApWZxwDDzK5cLscpUlEoyFaFN483jP9DQeHOoE82m6V+rvIH11z6kjLodCyE00oHZ03jOaKphUhl/V9R5BG2I2BQI26CDjHLDf47p4Aaz0AM/fN+xNA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4222.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(396003)(39860400002)(376002)(346002)(136003)(451199015)(83380400001)(7416002)(44832011)(5660300002)(66476007)(66556008)(66946007)(316002)(6506007)(41300700001)(4326008)(52116002)(6512007)(26005)(6666004)(36756003)(8936002)(8676002)(86362001)(2906002)(2616005)(186003)(1076003)(38350700002)(38100700002)(921005)(478600001)(6486002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WNslTYWlFcKBpzDj3Qr9JKUFmUYlFDqPzD0Nv0YOcGAndAIsfDCesmSWL39P?=
+ =?us-ascii?Q?V8maIQYIo5dG9lUFDZveHLZIHle/0b0aaWeNBgRqyTrlyj7M9AKt3UPVRLP8?=
+ =?us-ascii?Q?pxNhR9mopak1VR9XGnsR/7P8upNL1SDpSZMpE9Qa34MoCGzcueyRMILL+eFB?=
+ =?us-ascii?Q?WCyzaprLG51327GZifFf+8y6uU5nIcnhGWp6JmknwJhqmuTapUPVHCsw9RPe?=
+ =?us-ascii?Q?9TVLvjgn+mANoR2wtuEd6shKF57jJVuyuaBPKlpo+kbmce+E/mCc4Inwud24?=
+ =?us-ascii?Q?MH5ZUR1ROzRDVb3RF+tgm0yYNlzuktCtLTZSK/Qy5SdCYi/NGvpxqHYOTI5x?=
+ =?us-ascii?Q?U/bGH1uvGRiTxh5916Svu4v5hzC4oyNaaJR1LoWhCRCAnzJJIkmIyWuyx9RL?=
+ =?us-ascii?Q?lqoRFlM/Xuqc36AE+mEgVOCKcrYkDc1cycyP36e+kWScPMb9KAOdxSNucA07?=
+ =?us-ascii?Q?+y4F0mUc3VkRucMwEkt9JoUiB3o9n08Y1E6wWYzoVsLfseHuYGQyDzVeP/L3?=
+ =?us-ascii?Q?mDOsrt+tNDIcWX7zjBtbwfDYDKn6uJcXRgYu9IfPrbcL8UguXkno+rormjzv?=
+ =?us-ascii?Q?yeP743zjBQfDYD4S6k6z6e/1PxA8gC5m2+zRU7br2JsJLOW1GWFrKMBjH6UB?=
+ =?us-ascii?Q?Lpp5IMTQ4wOY2NqwGKInCe11hJrMj0UQGJqvZstfn2JgzcbRhPEd7fVsG1up?=
+ =?us-ascii?Q?wUaHP28eWQrzppo3KpRNam2C1bqkwAcoXBeWIOJRex+OS9Y+m/lTPc5peS8g?=
+ =?us-ascii?Q?PlW2w4Wo9kWca/6fqG4YmzPqFtVyfUH8pxfpWFKpVI12ckBG4lyH+aZJe3Ub?=
+ =?us-ascii?Q?N6OhWPuE+FCiqH8nNdk8DkHW86i8YZsQ3Ig3pbmTBZDbBt0Y1a5lHwMN9Cdo?=
+ =?us-ascii?Q?LpLmiPVDm60OiuPcgnr639gjHTvdre517YPPunbx3Bjbd/w0d/vBWt4ojwmp?=
+ =?us-ascii?Q?00iNYgbhtE02v5FFAnAu6wXnkE1J37w+s4Yb8ON/W4TNGFMMpjIKXGCiaWtI?=
+ =?us-ascii?Q?FxK9dJfJ1yBPL1jsp1pf1hKjLmwQ25b/MfDUneUAJRltNxhSodxGpsPgihhq?=
+ =?us-ascii?Q?3bcgTUJ3ONY1mDw8jAEOssiit5BYN3OTK+9geeX2r9zvrUC1JgDpzm7ovsX1?=
+ =?us-ascii?Q?IfmUXTL2RdoNqIfDvj3SgQVJjWF7kpSMaQfvzB5A/U641NBlhPgJTLT7MKXr?=
+ =?us-ascii?Q?uPTgeBLVGPk/kerlQ5nkRK04K7uCZHCq3gQ7DEkPa1dVJBoZCSpRmohYEzNU?=
+ =?us-ascii?Q?/oRl1oaQG4sVINICv2TRMPqCn+8lsUkrsVEYKLwCxdGwZfI28ECncfagEXk9?=
+ =?us-ascii?Q?Svvg26gWUgfHbsBiJI7wbFNedMBaMXfL/Y5wtz75nvJVgsWuegInG5Afv6V1?=
+ =?us-ascii?Q?B9qCe1928rA26zYCOEeCv6dwj2nBff/RWtPzh8armcQp3A7tXJDbfJUI1Gj+?=
+ =?us-ascii?Q?sD6fhTzSrIYcn1uxMUi/hvMaxT/BDOI225oSwpDj19rg3SH1RHhwadlQuZEJ?=
+ =?us-ascii?Q?pG2Yz9PXnw6OBY6G3E3KmCGWMkvXSbr7vzWsuE3JvkLo0PPYu3U4iP+LmL5p?=
+ =?us-ascii?Q?fHhCwlhkVCVgN9Gy5hpAFCEh7hhXP53+AkDnhGl6?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5da9bebf-9245-4701-3405-08daa2af6f6a
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4222.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2022 06:46:00.0585
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: l9yTcWmCZlg0kixZJjHdZ47Dm0q8V6HiEmA7gOJ+Sxte4gzfSyMjM3fBLBEwWSxrgIwgUQC9xhSX7NUlKfBCeQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8640
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry
+At a previous time, we have successfully created a virtual sound card
+based on rpmsg. The sound card works under this mechanism Cortex-A core
+tells the Cortex-M core the format, rate, channel, .etc configuration
+of the PCM parameters and Cortex-M controls real hardware devices such
+as SAI and DMA. From the view of Linux side, the sound card is bound to
+a rpmsg channel through which it can access SAI.
 
-On 9/29/22 21:13, Dmitry Torokhov wrote:
-> According to c8sectpfe driver code we first drive reset line low and
-> then high to reset the port, therefore the reset line is supposed to
-> be annotated as "active low". This will be important when we convert
-> the driver to gpiod API.
-> 
-> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> ---
->  arch/arm/boot/dts/stihxxx-b2120.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/stihxxx-b2120.dtsi b/arch/arm/boot/dts/stihxxx-b2120.dtsi
-> index 2aa94605d3d4..d52a7aaa1074 100644
-> --- a/arch/arm/boot/dts/stihxxx-b2120.dtsi
-> +++ b/arch/arm/boot/dts/stihxxx-b2120.dtsi
-> @@ -178,7 +178,7 @@ tsin0: port {
->  				tsin-num = <0>;
->  				serial-not-parallel;
->  				i2c-bus = <&ssc2>;
-> -				reset-gpios = <&pio15 4 GPIO_ACTIVE_HIGH>;
-> +				reset-gpios = <&pio15 4 GPIO_ACTIVE_LOW>;
->  				dvb-card = <STV0367_TDA18212_NIMA_1>;
->  			};
->  		};
-Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
+Here these patches are introduced to create a new virtual sound card to
+access MICFIL based on a new created rpmsg channel. It's easy to create
+a new rpmsg channel for MICFIL through rpmsg name service announcment.
+Also the other ASoC components bound to this rpmsg MICFIL sound card
+will be registered with these patches.
 
-Thanks
-Patrice
+If other sound cards using different hardware devices needs to be
+created over rpmsg in the future, these patches can be referred.
+
+changes in v3
+- Delete the statement referring to linux drivers in dts
+
+changes in v2:
+- Rename property in bindings file according to Krzysztof's comments
+- Update codes and comments according to Shengjiu's comments
+
+Chancel Liu (7):
+  ASoC: dt-bindings: fsl_rpmsg: Add a property to assign the rpmsg
+    channel
+  ASoC: imx-audio-rpmsg: Create rpmsg channel for MICFIL
+  ASoC: imx-pcm-rpmsg: Register different platform drivers
+  ASoC: imx-pcm-rpmsg: Multi-channel support for sound card based on
+    rpmsg
+  ASoC: fsl_rpmsg: Register different ASoC machine devices
+  ASoC: fsl_rpmsg: Multi-channel support in CPU DAI driver
+  ASoC: imx-rpmsg: Assign platform driver used by machine driver to link
+    with
+
+ .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 36 +++++++++++++++++--
+ sound/soc/fsl/fsl_rpmsg.c                     |  6 ++--
+ sound/soc/fsl/imx-audio-rpmsg.c               |  3 +-
+ sound/soc/fsl/imx-pcm-rpmsg.c                 | 10 ++++--
+ sound/soc/fsl/imx-rpmsg.c                     |  6 +++-
+ 5 files changed, 51 insertions(+), 10 deletions(-)
+
+--
+2.25.1
+
