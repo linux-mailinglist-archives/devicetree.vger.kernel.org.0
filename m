@@ -2,156 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB0CF5F101C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 18:36:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A6EE5F106E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 19:03:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231574AbiI3Qg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 12:36:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57310 "EHLO
+        id S232297AbiI3RDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 13:03:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231938AbiI3Qg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 12:36:56 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D605B163CCB;
-        Fri, 30 Sep 2022 09:36:53 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id l14so10127121eja.7;
-        Fri, 30 Sep 2022 09:36:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=l0m+9E3RrPBGmSZwDiB5yg6wloqO1uP7wOWBDHufpvI=;
-        b=IqYgkVPxNnZS+HZ4Fydqs2C+P87Mp+AjKACFm38IcYDHP07Lk34vzrWuuctCmCEt0I
-         s4ghgmYgxxL4gOGaCmm/GcUX49SgFw8BCDlont1Pd+7ujU2QI6bsm6RswV1MCtKhpLRW
-         fC5IBBL+bKRdbeUgesaz3Z0PEPnfbomQVT9KYbAyly9cq8T6tI6NsFqom48lDbukU2+5
-         zrJe89/1PQ64UjPn9zuyYnqiPEDALb0U3iWXB0cLz/w+706nQRBDp9q8RC2ple0ysH8X
-         o9F3CoqOQ7DVRU4hOLmUV+EZcxMsRDATQK6DY5eJI2Xlw9vHj15Gv6R/BaZUeyVh82C4
-         G/RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=l0m+9E3RrPBGmSZwDiB5yg6wloqO1uP7wOWBDHufpvI=;
-        b=vznLD4DFGjucpSDDjS+0ln5cRcww/GQrC/ytCT4Cpy4rtzpN8JM2pghrYTtlZZLRt7
-         Hnrnob/eJ2EQkhzfA2ahgrfqAvkMgMN+oCS3MwKtLNnen6AajhWWAR24L/7+2y1jYR/b
-         C7vNJIPZlAygBmecI+agmfZIewE6pBLctqzY3r3hnbjaFkkJmYhM6DJ/OuvMIHyUXyAk
-         Uqwk5wH70tAoNNny1ndqmLSAl+MGiPVXo3XmqbBlAlHuAgqRrgGceGLlqgt+L6GM2CCa
-         eTPD37ZzvOxYGFV+B/bFO7P+CV8FCDpBZsFyt8UyBqUoK+aMexukowNKDmnxotZKohE5
-         tVtA==
-X-Gm-Message-State: ACrzQf3nvycH9K6DnxPm3Wtb8XPxb4WX7tboS8m6blUTrpI6hciEc6Uc
-        F7E7EMVmuunsC/CuJNZMBsc=
-X-Google-Smtp-Source: AMsMyM4rzbG75FeYajqjF9cZOtKOOqQn5jYjboiHfFP5mZmGr5AdUXqB6NwhFyTrELxTWrwBr73GcQ==
-X-Received: by 2002:a17:907:25c1:b0:77b:9966:ccf1 with SMTP id ae1-20020a17090725c100b0077b9966ccf1mr7181056ejc.763.1664555811525;
-        Fri, 30 Sep 2022 09:36:51 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id t12-20020a056402240c00b0044e7862ab3fsm2011020eda.7.2022.09.30.09.36.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 09:36:50 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Tom Rini <trini@konsulko.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Joel Peshkin <joel.peshkin@broadcom.com>,
-        William Zhang <william.zhang@broadcom.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        u-boot@lists.denx.de, bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] dt-bindings: nvmem: u-boot,env: add Broadcom's variant binding
-Date:   Fri, 30 Sep 2022 18:36:31 +0200
-Message-Id: <20220930163631.27040-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S232165AbiI3RDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 13:03:11 -0400
+Received: from smtp2.infineon.com (smtp2.infineon.com [IPv6:2a00:18f0:1e00:4::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F0771D8F16;
+        Fri, 30 Sep 2022 10:03:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1664557390; x=1696093390;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=1Knr+Hzq9RQYhEhNbMogwjiMXs3F1e3L5+MsZw1GVh8=;
+  b=Jzq/JezhSGQAH9LyEauHsNsGG4vmtXt8Y4DOGReF70u1tXWBunpof/Yl
+   kHj1xjQIIFeYJkH3WQVq6AwCYWAp0oRA4dryg9VUQurXInaQzHRDx4nU7
+   JIqHiyT774jU3NHyZVMJwedlDQPKm3wPA3n/YKuGELiEdqjOiCwr3/00+
+   M=;
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6500,9779,10486"; a="2633828"
+X-IronPort-AV: E=Sophos;i="5.93,358,1654552800"; 
+   d="scan'208";a="2633828"
+Received: from unknown (HELO mucxv003.muc.infineon.com) ([172.23.11.20])
+  by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2022 19:01:56 +0200
+Received: from MUCSE819.infineon.com (MUCSE819.infineon.com [172.23.29.45])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mucxv003.muc.infineon.com (Postfix) with ESMTPS;
+        Fri, 30 Sep 2022 19:01:56 +0200 (CEST)
+Received: from MUCSE817.infineon.com (172.23.29.43) by MUCSE819.infineon.com
+ (172.23.29.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Fri, 30 Sep
+ 2022 19:01:56 +0200
+Received: from ISCNPC0VBFBX.infineon.com (172.23.8.247) by
+ MUCSE817.infineon.com (172.23.29.43) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Fri, 30 Sep 2022 19:01:55 +0200
+From:   Alexander Steffen <Alexander.Steffen@infineon.com>
+To:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <jarkko@kernel.org>, <linux-integrity@vger.kernel.org>
+CC:     Alexander Steffen <Alexander.Steffen@infineon.com>,
+        <Johannes.Holland@infineon.com>, <benoit.houyere@st.com>,
+        <amirmizi6@gmail.com>, <peter@pjd.dev>
+Subject: [PATCH 0/7] Clean up TPM compatibles
+Date:   Fri, 30 Sep 2022 18:51:09 +0200
+Message-ID: <20220930165116.13329-1-Alexander.Steffen@infineon.com>
+X-Mailer: git-send-email 2.28.0.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [172.23.8.247]
+X-ClientProxiedBy: MUCSE802.infineon.com (172.23.29.28) To
+ MUCSE817.infineon.com (172.23.29.43)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Not all TPM compatibles were documented correctly so far. Some were not
+documented at all, others missed some properties, most of them did not use the
+latest YAML format. But by design most TPMs are very similar, so this allows to
+document them in a single trivial-tpms.yaml, similar to how
+trivial-devices.yaml documents simple I2C and SPI devices. This fixes all the
+documentation issues and ensures that dtbs_check can be used in the future to
+detect incorrect configurations automatically.
 
-Broadcom uses U-Boot for a lot of their bcmbca familiy chipsets. U-Boot
-stores its configuration in an environment data block.
+Alexander Steffen (7):
+  dt-bindings: tpm: Introduce trivial-tpms.yaml
+  dt-bindings: tpm: Improve documentation of compatibles
+  dt-bindings: tpm: Add previously undocumented properties
+  dt-bindings: tpm: Merge existing trivial TPMs to YAML
+  dt-bindings: tpm: Document previously undocumented compatibles
+  dt-bindings: tpm: Add fallbacks for all TCG-compliant TPM variants
+  tpm: Add missing compatibles to drivers
 
-Such blocks are usually stored on flash as a separated partition at
-hardcoded address. Broadcom however decided to:
-1. Store env data block inside U-Boot partition
-2. Avoid sticking to hardcoded offsets
-3. Use custom header with "uEnv" magic and env data length
+ .../bindings/security/tpm/google,cr50.txt     |  19 ---
+ .../bindings/security/tpm/tpm-i2c.txt         |  26 ----
+ .../bindings/security/tpm/tpm_tis_mmio.txt    |  25 ----
+ .../bindings/security/tpm/tpm_tis_spi.txt     |  23 ----
+ .../bindings/security/tpm/trivial-tpms.yaml   | 118 ++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  16 ---
+ drivers/char/tpm/tpm_tis_i2c.c                |   2 +
+ drivers/char/tpm/tpm_tis_spi_main.c           |   1 +
+ 8 files changed, 121 insertions(+), 109 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/google,cr50.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_mmio.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
+ create mode 100644 Documentation/devicetree/bindings/security/tpm/trivial-tpms.yaml
 
-Example (length 0x4000):
-$ hexdump -n 32 -C -s 0x40000 /dev/mtdblock0
-00040000  76 6e 45 75 00 40 00 00  34 89 7a 82 49 4d 41 47  |vnEu.@..4.z.IMAG|
-00040010  45 3d 4e 41 4e 44 3a 31  4d 2c 31 30 32 34 4d 00  |E=NAND:1M,1024M.|
-(0x40000 offset is unit specific and can change)
-
-Starting with the commit 118f3fbe517f4 ("dt-bindings: mtd: partitions:
-support label/name only partition") DT can describe partitions matching
-them by a name (without specifying actual address). With that feature
-and this binding change it's possible to:
-1. Specify DT node for Broadcom's U-Boot env data subpartition
-2. Add nodes for specific environment data variables
-3. Reference them as NVMEM cells
-
-This binding is unlikely to help Broadcom's U-Boot. U-Boot SPL needs to
-find environment data early (before it accesses DTB) and it does that by
-looking for an "uEnv" magic. Dirty way.
-
-This binding can however be used by operating systems. It allows
-describing cleanly U-Boot, its env data and variables. It tells
-operating system about Broadcom-specific env data so it can parse it.
-
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Work on better commit body & add example
----
- .../devicetree/bindings/nvmem/u-boot,env.yaml | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-index e96bca99f2d9..987957e3ffc8 100644
---- a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-@@ -38,6 +38,8 @@ properties:
-         const: u-boot,env-redundant-bool
-       - description: Two redundant blocks with active having higher counter
-         const: u-boot,env-redundant-count
-+      - description: Broadcom's variant with custom header
-+        const: brcm,env
- 
-   reg:
-     maxItems: 1
-@@ -73,3 +75,22 @@ examples:
-             };
-         };
-     };
-+  - |
-+    partitions {
-+        compatible = "fixed-partitions";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        partition@0 {
-+            reg = <0x0 0x100000>;
-+            compatible = "brcm,u-boot";
-+            label = "u-boot";
-+
-+            partition-u-boot-env {
-+                compatible = "brcm,env";
-+
-+                mac: ethaddr {
-+                };
-+            };
-+        };
-+    };
 -- 
-2.34.1
+2.25.1
 
