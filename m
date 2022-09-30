@@ -2,129 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67D2D5F07ED
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 11:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A952F5F0812
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 11:58:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231592AbiI3JrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 05:47:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41196 "EHLO
+        id S231236AbiI3J6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 05:58:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231609AbiI3Jqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 05:46:44 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A95B18B5EE;
-        Fri, 30 Sep 2022 02:46:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1664531185; x=1696067185;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=/9hzbJtvcmCDwMsTwmaZ+u2TLuGLLihxFJfWTDLRCkA=;
-  b=z/D96xRe2E2eKDKu7dfXNSXISpnpvnZ6EJ0RLl28RYLFiPgDu9c215FY
-   Okt8akHRrM1lOjKKM0u8ca7/fVdP/d/iPCm9XwKRm7brBYKQDOjmx2T7H
-   8WMe1Z995iiQh3WiVgFbq17f+hVumkmmIJ+UQEFdBUV9lsZWTXDbzgxAo
-   8ZiETFaOlSyYO8hCSKtPn5kK92hV9/SGAIrIlW3aStJF/AxbyqKPmxAcx
-   DqOGdRLeN2yLWJF48FPAD9asN0neFv9vieSdsOLlDxyGxhdXbGDKr0LnV
-   yQM21Y0W2fF8LV3I9tMOE5tAL4dUZEi4zsJpg5n9uNg0bfbMCEYW0Rr1Z
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,358,1654585200"; 
-   d="scan'208";a="116219231"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Sep 2022 02:46:23 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 30 Sep 2022 02:46:22 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Fri, 30 Sep 2022 02:46:20 -0700
-Date:   Fri, 30 Sep 2022 10:45:56 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-CC:     Thierry Reding <thierry.reding@gmail.com>,
+        with ESMTP id S230510AbiI3J6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 05:58:23 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E098F170B2F
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 02:58:21 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id s6so6086466lfo.7
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 02:58:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=mQNFTbjJsZ/QtD20aKuSgSzhrP5iLEWPqw7+b4Gc6Hk=;
+        b=vzX4Kdna3ulAbcywBUMwTPKBg4bCYSp+BihKJye2sQaculetoFPs7N927IKxjGAjUF
+         znfUuRNC6AMRkoBjuPgraGYEb5EXSDXHNMg6e+D8AQ4am8qurtJb5PSaRPVRbSM99cz8
+         P0aiTTQ690T9ZITTuhQYRIAVzkanyuPuHy2bCMBf+mIRNbFr0aOOWakeCrsSOERxQneQ
+         6iv8UgQRJZnVFcOx3qDorPZLHPIzGsXwEDDN8N4XliKBi7OZ0u55Ji3XkhrPerzIVaB4
+         TrIsqzRkTb4Ifyzlqg/eUINkI7wICim9PsGxwORaBV5ys6OhD4mvLQZDicJOAoRDEm1q
+         sfdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=mQNFTbjJsZ/QtD20aKuSgSzhrP5iLEWPqw7+b4Gc6Hk=;
+        b=YLpKgWghK4vZnkGLrIu5mTfJIlul2PZN5wocmoGTmQUHXbR02CMFnr0kJF7yK+mkZU
+         7A7qTzfOyjeXt+zCaDN62u7hCciTyG0S3pujg3VtOSE3zbwnXMl0H0SmJ/X8OevQYAUI
+         LuCT9ExrUVGSEJ0hXk5u4ttnlilW+nK0B89PPsSdtsOykJqf7fs09prleSNFOEnGi1Da
+         MF6J240vPYYH62CKxaIzQ92DXGyOK4/bAcy3YZHx7uCcQWX38hm4rzkKwzMcgtgh/sFZ
+         gEmUwzOqxYZP/hV912pYzY3hTMmrtjSSp+Qj1k6jOBO/AKxUCJ/A01CrZMXtx8I/EzBm
+         bO0Q==
+X-Gm-Message-State: ACrzQf0260lv83I67MpHWgDmPQX/JtkSX5etLlsaqicoQ2ulhuZWRh7b
+        e6hlxboP388I7Jm1THWXiZ3EeQ==
+X-Google-Smtp-Source: AMsMyM5gVssvdT8h4eN24kleMRIVAAQ4ECAC1Zk0BmlTwjnKzDA7m/P19Hsb/xFjblvC0ZT/L799UQ==
+X-Received: by 2002:a05:6512:2211:b0:496:7767:28b with SMTP id h17-20020a056512221100b004967767028bmr3270118lfu.433.1664531900257;
+        Fri, 30 Sep 2022 02:58:20 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u24-20020ac24c38000000b0048a934168c0sm249234lfq.35.2022.09.30.02.58.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Sep 2022 02:58:19 -0700 (PDT)
+Message-ID: <ba5873fa-83fc-2d16-b8c0-715ae8bf630a@linaro.org>
+Date:   Fri, 30 Sep 2022 11:58:18 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v1 2/2] dt-bindings: hpet: add loongson2k hpet binding
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v10 3/4] pwm: add microchip soft ip corePWM driver
-Message-ID: <Yza61MO9hbuFytmM@wendy>
-References: <20220824091215.141577-1-conor.dooley@microchip.com>
- <20220824091215.141577-4-conor.dooley@microchip.com>
- <20220915072152.y346csakn7wetpz5@pengutronix.de>
- <YyhmZBmfJvJ9/vBg@wendy>
- <20220919135008.sahwmwbfwvgplji4@pengutronix.de>
- <Yyh8v+MtHuc0LLf0@wendy>
- <20220930091316.kdkf4oeu6uvxzqa6@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220930091316.kdkf4oeu6uvxzqa6@pengutronix.de>
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Yun Liu <liuyun@loongson.cn>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        loongarch@lists.linux.dev
+References: <20220930093510.10781-1-zhuyinbo@loongson.cn>
+ <20220930093510.10781-2-zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220930093510.10781-2-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 30, 2022 at 11:13:16AM +0200, Uwe Kleine-König wrote:
-> On Mon, Sep 19, 2022 at 03:29:19PM +0100, Conor Dooley wrote:
-> > Hey Uwe,
-> > 
-> > On Mon, Sep 19, 2022 at 03:50:08PM +0200, Uwe Kleine-König wrote:
-> > > On Mon, Sep 19, 2022 at 01:53:56PM +0100, Conor Dooley wrote:
-> > > > Because I was running into conflicts between the reporting here and some
-> > > > of the checks that I have added to prevent the PWM being put into an
-> > > > invalid state. On boot both negedge and posedge will be zero & this was
-> > > > preventing me from setting the period at all.
-> > > 
-> > > I don't understood that.
-> > 
-> > On startup, (negedge == posedge) is true as both are zero, but the reset
-> > values for prescale and period are actually 0x8. If on reset I try to
-> > set a small period, say "echo 1000 > period" apply() returns -EINVAL
-> > because of a check in the pwm core in pwm_apply_state() as I am
-> > attempting to set the period to lower than the out-of-reset duty cycle.
+On 30/09/2022 11:35, Yinbo Zhu wrote:
+> Add the loongson2k High Precision Event Timer (HPET) binding
+> with DT schema format using json-schema.
 > 
-> You're supposed to keep the period for pwm#1 untouched while configuring
-> pwm#0 only if pwm#1 already has a consumer. So if pwm#1 isn't requested,
-> you can change the period for pwm#0.
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+>  .../bindings/timer/loongson,ls2k-hpet.yaml    | 41 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml b/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
+> new file mode 100644
+> index 000000000000..1a8785076228
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/loongson,ls2k-hpet.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson2k High Precision Event Timer (HPET)
+> +
+> +maintainers:
+> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+> +
+> +properties:
+> +  compatible:
+> +    const: loongson,ls2k-hpet
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clock-frequency: true
 
-I must have done a bad job of explaining here, as I don't think this is
-an answer to my question.
+clock frequency of what? I assume it's too early to use common clock
+framework and just get the clock?
 
-On reset, the prescale and period_steps registers are set to 0x8. If I
-attempt to set the period to do "echo 1000 > period", I get -EINVAL back
-from pwm_apply_state() (in next-20220928 it's @ L562 in pwm/core.c) as
-the duty cycle is computed as twice the period as, on reset, we have
-posedge = negedge = 0x0. The check of state->duty_cycle > state->period
-fails in pwm_apply_state() as a result.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clock-frequency
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    hpet0: hpet@1fe24000 {
 
-This failure to assign a value is unrelated to having multiple PWMs, I
-think I may have horribly worded my statement when I originally replied
-to you with:
-> Because I was running into conflicts between the reporting here and some
-> of the checks that I have added to prevent the PWM being put into an
-> invalid state.
+Node name: timer
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-"reporting here" from that quote being the period/duty cycle
-calculations in the drivers get_state(). By "the checks" I meant making
-sure that a period where posedge = negedge is not set by the driver. I
-think I also may have mistakenly assumed the -EINVAL came from my code
-and not from the core - but I cannot be sure as it has been a few weeks.
+You can drop the  "hpet0" label.
 
-The check in the core looks to be things "working as intended", and it
-looks like I am working around it here. Should I just note what the
-values are on reset in the "limitations" comment and the top & it is up
-to applications that control the PWMs to first "fix" the duty cycle
-before changing the period?
 
-Hopefully I've done a better job at explaning this time,
-Conor.
-
+Best regards,
+Krzysztof
 
