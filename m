@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D45AC5F0D07
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 16:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5FD55F0D32
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 16:15:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbiI3OGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 10:06:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33226 "EHLO
+        id S231812AbiI3OO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 10:14:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbiI3OGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 10:06:39 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91F11166F03
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 07:06:38 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oeGet-00019Q-Is; Fri, 30 Sep 2022 16:06:31 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oeGet-003oRz-T3; Fri, 30 Sep 2022 16:06:30 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oeGer-004gaS-Mc; Fri, 30 Sep 2022 16:06:29 +0200
-Date:   Fri, 30 Sep 2022 16:06:29 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v10 3/4] pwm: add microchip soft ip corePWM driver
-Message-ID: <20220930140629.nwdode4j2nwdsqay@pengutronix.de>
-References: <20220824091215.141577-1-conor.dooley@microchip.com>
- <20220824091215.141577-4-conor.dooley@microchip.com>
- <20220915072152.y346csakn7wetpz5@pengutronix.de>
- <YyhmZBmfJvJ9/vBg@wendy>
- <20220919135008.sahwmwbfwvgplji4@pengutronix.de>
- <Yyh8v+MtHuc0LLf0@wendy>
- <20220930091316.kdkf4oeu6uvxzqa6@pengutronix.de>
- <Yza61MO9hbuFytmM@wendy>
- <20220930133933.br5kanbh3clvahvr@pengutronix.de>
- <Yzbz2N28RJ8Yyg2v@wendy>
+        with ESMTP id S231827AbiI3OOt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 10:14:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5353343C;
+        Fri, 30 Sep 2022 07:14:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D293C62345;
+        Fri, 30 Sep 2022 14:14:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CBDAC43142;
+        Fri, 30 Sep 2022 14:14:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664547285;
+        bh=7UnwSXOB6shKfCQHM7L0KOwifPttNCBnzJ2w0rnlzK0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=EKgvh2WZQOLQHVQIJMdTU8+8dMdHbNnxgBm2yxJJF21w2sXsPGKzJqrbrz1iEI+TP
+         kKU45+mkYZWfm4i9TrM+lH5B9Z3YJfGPKp+LXwFIdUR4lpN3s7y5Xceu8eyp1fBayX
+         qqXvlzGcxE2VW8Ejau/TQAFjzypKn8fZiM5P3B4B4pEdsfBrccSMz3GY5IY26lSZJq
+         x+GvtVlfcrmC9c2UKuxtKbRs6lsX5hBfniQqdDb32wzRz1InTjv/8SSoLl0yBbCGlU
+         XE7gVW881cFrgaZVwo6TJXSGRZPL3G98dVY65QqgcUKZ96SSi0oUlpwteRhITKxhJC
+         geig+OOOWZpWw==
+Received: by mail-ua1-f44.google.com with SMTP id b7so1760058uas.2;
+        Fri, 30 Sep 2022 07:14:45 -0700 (PDT)
+X-Gm-Message-State: ACrzQf2Flnof7ShIvtsgO5R8LRU6IHGtdiTrJJq98oYS22NU+O7XQQcF
+        8qftXU4uzuc0t864mQA9pW5ZzqlJ7Br5I5XTxQ==
+X-Google-Smtp-Source: AMsMyM6tmbeGs8WAbsagouNnCGeikv0UgHuHEpeJ7scOJRA6OHmQzWBNHAz3+EbsX5QLTinYFxLw9PZO5FxxSogzzL8=
+X-Received: by 2002:a9f:29a3:0:b0:3d6:4c6f:9d92 with SMTP id
+ s32-20020a9f29a3000000b003d64c6f9d92mr1117022uas.43.1664547284059; Fri, 30
+ Sep 2022 07:14:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kgnvrla44hq55m67"
-Content-Disposition: inline
-In-Reply-To: <Yzbz2N28RJ8Yyg2v@wendy>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20220930132842.23421-1-r-ravikumar@ti.com> <20220930132842.23421-2-r-ravikumar@ti.com>
+In-Reply-To: <20220930132842.23421-2-r-ravikumar@ti.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 30 Sep 2022 09:14:33 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJVhAJ6TFNtndDtUX1FukuQorvm_o0eKK_CE6ANsPob1g@mail.gmail.com>
+Message-ID: <CAL_JsqJVhAJ6TFNtndDtUX1FukuQorvm_o0eKK_CE6ANsPob1g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: dp-connector: Fix the property name for
+ dp pwr
+To:     Rahul T R <r-ravikumar@ti.com>
+Cc:     airlied@gmail.com, daniel@ffwll.ch,
+        krzysztof.kozlowski+dt@linaro.org, tomi.valkeinen@ideasonboard.com,
+        dri-devel@lists.freedesktop.org, nm@ti.com, vigneshr@ti.com,
+        kristo@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,37 +64,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Sep 30, 2022 at 8:29 AM Rahul T R <r-ravikumar@ti.com> wrote:
+>
+> Property name for DisplayPort regulator is not matching in
+> the binding and the driver implementation. Fix the same
+> in the binding
+>
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> Reported-by: Nishanth Menon <nm@ti.com>
+> ---
+>  .../devicetree/bindings/display/connector/dp-connector.yaml     | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
---kgnvrla44hq55m67
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+NAK. The binding is correct.
 
-On Fri, Sep 30, 2022 at 02:49:12PM +0100, Conor Dooley wrote:
-> Would you rather I waited until after the mw to send v11?
+Are you confused that the regulator framework appends '-supply' for you?
 
-I don't see much sense in waiting.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---kgnvrla44hq55m67
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmM29+IACgkQwfwUeK3K
-7AkptAf/d9crouuQX84NiO5X1kjB0WdSbZ+NO8rvlPLh91ySVJz9eNKGFC6SPB2w
-L6NV1P1zvZQ2By+1H0EstkcZ1nd+uQK1IlyoYPS0ra6TYUltqPS4cHremYkh3eHo
-GUeGfzhvi6lcVdYbNIrhCkvYFacuZAg+M8XkXVl3ewLL8kk6jKleHMlOEio+A+C4
-SG75tQQ/3hzEVZk+UXx//Dbid+zmg+e4FckUC1vKha66RU/lZToogjmvMYxN2eO7
-qNKYI4EjTyRIvsbbWf/j7Zxmm7p++m3Uh/GZarUxObOKg9VK3qskHm/X/X5jv1ey
-OszmsaZZlKNZezj2iEqSXBdpMgrt2w==
-=OKFN
------END PGP SIGNATURE-----
-
---kgnvrla44hq55m67--
+Rob
