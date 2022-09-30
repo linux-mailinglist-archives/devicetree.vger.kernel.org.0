@@ -2,61 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F23A25F1348
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 22:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE27B5F135A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 22:12:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232397AbiI3UK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 16:10:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46498 "EHLO
+        id S232344AbiI3UMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 16:12:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232467AbiI3UKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 16:10:15 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2C7D9858F
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 13:10:08 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id bu25so8476801lfb.3
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 13:10:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=hE8hq9/oLZg/ugxnoeYHfAR8kWWIKnShL8VjClO7B7I=;
-        b=DuMu+EWxt+qrp1kO50KmiVaZQMD9bUbDEsSzHHIZ4XfHkzDPh4MpbgnYLclNsoDlXM
-         qsvCENlGRug7bN4oJJ/Rd0V3L5njIGmXcDnTe95tcK2n9hvv30yRL4lwSkC8gxPgzdK5
-         bHYhYCod5Wr8XUezmzTOdIuB20kiHvE07z4S9waabgBKRqqCPed0v1/hsFOkO5oYj2Lh
-         GxkXz0aPr4OwUWwEVckjQ1gGs/rJOtB+Nh+TqsiOSqd4PbCfxDULwFa/MWmpKql2bHyk
-         yebNk9/vI0NDIAPowHBvJUaGPjHhaJGmAUjA8r9CqTEiSJKfOMCqHTMr4vxabH86A1Fu
-         ohJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=hE8hq9/oLZg/ugxnoeYHfAR8kWWIKnShL8VjClO7B7I=;
-        b=Tdn+f1H5yofJqVlZE5pOeSxB+QzAFxL7WZ1BaUKm3G1BDgCQi46bBNsQrzLEzk2LB9
-         xMF46OajrnJW7rrFNYQpG/y5qtEK+XOSm/Y29m54SwALp+dEM+fd7/ZQYGpP5ncopho7
-         Jk7lxVOh/Xq7qkEN+Z6GxhMsS9ATJqpCqcMpyAWsMpaAPsONBskJjHaMVDn1jus9MuiU
-         8GWYwHpo8JWELx7DItj5tH0G9OTqdnZnOtlLIR2yjJZ4ZaTFDb8YX4pA7WDgXRIsggx9
-         CQ5VK6+4og0G4/59k/2K0d9bNjBYMiXXiT4zURBAtmMom0IbE5DhHZZGDHSg70r2AXGB
-         xVNQ==
-X-Gm-Message-State: ACrzQf256/LIKRdmvd+SZRhfG4qIRMdUHWLtSbTc4fSgMZSy85rLw0cY
-        9hr4v3aNAabsY3+OK1FcEUi91Q==
-X-Google-Smtp-Source: AMsMyM5YYdLv0LT1uNUtMJjvydPi69ku740a5F2lsvIJWjlm2LdThGqv1mknp35IVYVQERXV1zNuFQ==
-X-Received: by 2002:a05:6512:e9e:b0:4a2:1503:c2e7 with SMTP id bi30-20020a0565120e9e00b004a21503c2e7mr1440195lfb.476.1664568606633;
-        Fri, 30 Sep 2022 13:10:06 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q3-20020a0565123a8300b004a03d5c2140sm408295lfu.136.2022.09.30.13.10.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Sep 2022 13:10:06 -0700 (PDT)
-Message-ID: <2c1c5d8a-fb7f-bc98-ed6b-021eb00f990f@linaro.org>
-Date:   Fri, 30 Sep 2022 22:10:05 +0200
+        with ESMTP id S232500AbiI3UMO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 16:12:14 -0400
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [5.144.164.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 843DC18735D
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 13:10:55 -0700 (PDT)
+Received: from [192.168.1.101] (95.49.31.201.neoplus.adsl.tpnet.pl [95.49.31.201])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 3B70320251;
+        Fri, 30 Sep 2022 22:10:49 +0200 (CEST)
+Message-ID: <baf046ab-eda2-e8ee-d87f-8d8340823f60@somainline.org>
+Date:   Fri, 30 Sep 2022 22:10:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
 Subject: Re: [PATCH 1/8] arm64: dts: qcom: sdm845-tama: Add display nodes
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         ~postmarketos/upstreaming@lists.sr.ht
 Cc:     martin.botka@somainline.org,
         angelogioacchino.delregno@somainline.org,
@@ -69,105 +40,113 @@ Cc:     martin.botka@somainline.org,
         linux-kernel@vger.kernel.org
 References: <20220930191049.123256-1-konrad.dybcio@somainline.org>
  <20220930191049.123256-2-konrad.dybcio@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220930191049.123256-2-konrad.dybcio@somainline.org>
+ <2c1c5d8a-fb7f-bc98-ed6b-021eb00f990f@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <2c1c5d8a-fb7f-bc98-ed6b-021eb00f990f@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2022 21:10, Konrad Dybcio wrote:
-> Add required nodes to support display on XZ2/XZ2c. XZ3 has a
-> different power rail setup and needs to be handled separately.
+
+
+On 30.09.2022 22:10, Krzysztof Kozlowski wrote:
+> On 30/09/2022 21:10, Konrad Dybcio wrote:
+>> Add required nodes to support display on XZ2/XZ2c. XZ3 has a
+>> different power rail setup and needs to be handled separately.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> ---
+>>  .../qcom/sdm845-sony-xperia-tama-akari.dts    |  4 +
+>>  .../qcom/sdm845-sony-xperia-tama-akatsuki.dts | 44 ++++++++-
+>>  .../qcom/sdm845-sony-xperia-tama-apollo.dts   |  6 ++
+>>  .../dts/qcom/sdm845-sony-xperia-tama.dtsi     | 96 +++++++++++++++++++
+>>  4 files changed, 149 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
+>> index 34f84f1f1eb4..d97b7f1e7140 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
+>> @@ -11,3 +11,7 @@ / {
+>>  	model = "Sony Xperia XZ2";
+>>  	compatible = "sony,akari-row", "qcom,sdm845";
+>>  };
+>> +
+>> +&panel {
+>> +	compatible = "sony,td4353-jdi-tama";
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  .../qcom/sdm845-sony-xperia-tama-akari.dts    |  4 +
->  .../qcom/sdm845-sony-xperia-tama-akatsuki.dts | 44 ++++++++-
->  .../qcom/sdm845-sony-xperia-tama-apollo.dts   |  6 ++
->  .../dts/qcom/sdm845-sony-xperia-tama.dtsi     | 96 +++++++++++++++++++
->  4 files changed, 149 insertions(+), 1 deletion(-)
+> git grep suggests it is not documented. Is it coming via different patchset?
+As mentioned in the cover letter, yes.
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
-> index 34f84f1f1eb4..d97b7f1e7140 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
-> @@ -11,3 +11,7 @@ / {
->  	model = "Sony Xperia XZ2";
->  	compatible = "sony,akari-row", "qcom,sdm845";
->  };
-> +
-> +&panel {
-> +	compatible = "sony,td4353-jdi-tama";
+>> +};
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
+>> index 2f5e12deaada..2a16305ac5da 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
+>> @@ -10,9 +10,51 @@
+>>  / {
+>>  	model = "Sony Xperia XZ3";
+>>  	compatible = "sony,akatsuki-row", "qcom,sdm845";
+>> +
+>> +	/* Fixed DCDC for the OLED panel */
+>> +	ts_vddio_supply: ts-vddio-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "ts_vddio";
+>> +
+>> +		regulator-min-microvolt = <1840000>;
+>> +		regulator-max-microvolt = <1840000>;
+>> +
+>> +		gpio = <&tlmm 133 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +		regulator-boot-on;
+>> +	};
+>> +};
+>> +
+>> +&ibb {
+>> +	status = "disabled";
+>> +};
+>> +
+>> +&lab {
+>> +	status = "disabled";
+>> +};
+>> +
+>> +&panel {
+>> +	/* Akatsuki uses an OLED panel. */
+>> +	/delete-property/ backlight;
+>> +	/delete-property/ vsp-supply;
+>> +	/delete-property/ vsn-supply;
+>> +	/delete-property/ treset-gpios;
+>> +};
+>> +
+>> +&pmi8998_wled {
+>> +	status = "disabled";
+>> +};
+>> +
+>> +&tlmm {
+>> +	ts_vddio_en: ts-vddio-en {
+> 
+> ts-vddio-en-state
+> 
+> DT schema is coming:
+> https://lore.kernel.org/linux-devicetree/20220930200529.331223-1-krzysztof.kozlowski@linaro.org/T/#t
+Right, missed this one. Will fix.
 
-git grep suggests it is not documented. Is it coming via different patchset?
-
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
-> index 2f5e12deaada..2a16305ac5da 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
-> @@ -10,9 +10,51 @@
->  / {
->  	model = "Sony Xperia XZ3";
->  	compatible = "sony,akatsuki-row", "qcom,sdm845";
-> +
-> +	/* Fixed DCDC for the OLED panel */
-> +	ts_vddio_supply: ts-vddio-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "ts_vddio";
-> +
-> +		regulator-min-microvolt = <1840000>;
-> +		regulator-max-microvolt = <1840000>;
-> +
-> +		gpio = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +&ibb {
-> +	status = "disabled";
-> +};
-> +
-> +&lab {
-> +	status = "disabled";
-> +};
-> +
-> +&panel {
-> +	/* Akatsuki uses an OLED panel. */
-> +	/delete-property/ backlight;
-> +	/delete-property/ vsp-supply;
-> +	/delete-property/ vsn-supply;
-> +	/delete-property/ treset-gpios;
-> +};
-> +
-> +&pmi8998_wled {
-> +	status = "disabled";
-> +};
-> +
-> +&tlmm {
-> +	ts_vddio_en: ts-vddio-en {
-
-ts-vddio-en-state
-
-DT schema is coming:
-https://lore.kernel.org/linux-devicetree/20220930200529.331223-1-krzysztof.kozlowski@linaro.org/T/#t
-
-> +		pins = "gpio133";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +		output-high;
-> +	};
-
-Best regards,
-Krzysztof
-
+Konrad
+> 
+>> +		pins = "gpio133";
+>> +		function = "gpio";
+>> +		drive-strength = <2>;
+>> +		bias-disable;
+>> +		output-high;
+>> +	};
+> 
+> Best regards,
+> Krzysztof
+> 
