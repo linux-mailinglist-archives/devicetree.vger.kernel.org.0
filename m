@@ -2,141 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EB325F09B3
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 13:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 529455F09C2
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 13:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230353AbiI3LO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 07:14:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35902 "EHLO
+        id S230420AbiI3LQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 07:16:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231324AbiI3LOb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 07:14:31 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7490660F1
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 03:54:37 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id i26so6266360lfp.11
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 03:54:37 -0700 (PDT)
+        with ESMTP id S231482AbiI3LPx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 07:15:53 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 619AF5F9AA
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 03:58:15 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id t16so4408896ljh.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 03:58:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=CG46qpGi1TQneWTfKK3XJ8Vd/RFXnm0rteijyYtSCok=;
-        b=hAJZwEJ5tb88Pja8jdMLmPc14gJVC568fe0tNiO7Xr7K3DSf7/wH6bimSV5dr8k6sG
-         lnFHOzncPzITGyrq76w2yjkowH/xQCw9fVO9f7lVs6v1AXqb1vffeGcfLpzX0GTHEu8C
-         xBXCguoRhC/TUXiesLQxBg/npHrxUUjynRNmkVzcah9Q5pkLKM0BbVshR9hMZOFLiESb
-         dWBVntlfG9aGGOz3pim1JbpRMsT+5yMYUo1M0D1x8MRxIk6ACQjwvhLsxnxPFAtogBWv
-         tTC2SKTOuEcZ0Pk3f7qLhtU4HS1HMX5HEKVxR5+NTondvd00DXXhvhOMvhha32dJIpuP
-         0bAg==
+        bh=5VAtT045HhMngkmwARoPHUum6+7Xd5AahGP1N35/lRw=;
+        b=fawDO9CiFlwFpbC+3YyovBO32HiOGqZ+TrjsTr2Q6YcCJCeFCfaJEiuP3XHibreYfx
+         wmTrXtWKvlU1ywiJ18MNHJj+RSbhfYPzYo/ZQnDGj5GgluDuZ7okPUozoUJ9Bly33yV+
+         99Z1HqEmfxSxaOxu2hRBQLI/YMe6RRvV6/zPLAw5oIi08PrbCiJd9EDxTCh2vkUZ1DeE
+         gB5wvphZ3bsi5lkQQFRQrzVf4UF488cob5ENfxZInr0/UCv9a9gGzuoOW55ZT5WQtV8W
+         HTLuyjBNlC+clvHUjLjUY1yo60g20jhmRl9loUR9iM1zQH9LB+mXFS8ZnTfLUrKTAqZU
+         AXDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=CG46qpGi1TQneWTfKK3XJ8Vd/RFXnm0rteijyYtSCok=;
-        b=7QLGRrimKIuRZUPfZj6tgwcOk7VE2uZ+Uk0k0MwyQevJO6346HB8vT0M7L0IRf61tD
-         ftBtCP/T8I6hGq3qwwcDrYhx0kK6wv5/R8r9pgZQLprLaC389uk3Q/eOjn/pAOtBmag7
-         LEHi6fS9/NnmIy86PZnbhaYtDbbCaTErgrzExW7iK/dvZ6tk4vBoAWnQdIFMb8A+pE9u
-         AtiYgNCSsk1l8Gfnw8grozRhOmkYuy5WB0SHSmftvazov0EjpsbuM72mhqKAR38rhKYb
-         XExhFDJPB4/UYh+NnrvB9bfDVLl+P3mYb/P0rcdrzXUwwde6bZcvznjR3cTqVmR9dHSb
-         09Ag==
-X-Gm-Message-State: ACrzQf2yAOYZvetDeG/aCy5t7ZHhmZo1tX3SWWq7gFI4VFiEO2rdALm6
-        CiqvJGbOxKlvUtxDcPLrhwLTgw==
-X-Google-Smtp-Source: AMsMyM77gJnBWx//CtSj7aGdnpqCvDEIw/WNJrKyZaR6UpLgCffzGnbkHU8dNKZczBiny40V1iXMUw==
-X-Received: by 2002:ac2:4bd0:0:b0:497:abfd:3572 with SMTP id o16-20020ac24bd0000000b00497abfd3572mr2957436lfq.200.1664535275909;
-        Fri, 30 Sep 2022 03:54:35 -0700 (PDT)
+        bh=5VAtT045HhMngkmwARoPHUum6+7Xd5AahGP1N35/lRw=;
+        b=O+vrdZuKeG9cwnIQH/GplmD1NOkB5IMhKPxRLN7Zye8KHPcVRgdUmb8Ma4AlPToyhO
+         z/puYyEBAt4pQCnFi+j6orj2zFrhYH9Zh3FFQBbwlg6TtV7APtqn7kRW9NjxsULtdZP4
+         Hrk4LAOeX0Y6BYM3J1Vf0raPN3XvLdofcbhfJLE/Xn1Cb4BdXrRDgq+eVzpSpZbD/mLd
+         jBgn0BdALwUrXB/WCKRLxDDSkEL8OyO59Ba9nroJNTsKipwZm8hEAWOHwf1zLf5co91Y
+         ZL5gKjCp8ZovWFBIE5NlmuATjYf2TJuI3Yn1cb2+RVl/H+h9IxugVMoT5NPVpfpDWNMv
+         3kCg==
+X-Gm-Message-State: ACrzQf1TlTcrAoXzx0kcciv7iyLlQ5Mht0josBjSthAUkKDb/bF3HDUL
+        VCcMkgC2VyOGPEnAcbMqIJoh6w==
+X-Google-Smtp-Source: AMsMyM7TKpBGxyi1XbG3exK/6MQW1oPEOmmR7/XdLTYi4sSeeYzQ9S++Asikue7qCrHD8G5zL9+8Lw==
+X-Received: by 2002:a2e:7201:0:b0:26b:dd49:721b with SMTP id n1-20020a2e7201000000b0026bdd49721bmr2574829ljc.509.1664535493744;
+        Fri, 30 Sep 2022 03:58:13 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id du10-20020a056512298a00b0049487818dd9sm261454lfb.60.2022.09.30.03.54.34
+        by smtp.gmail.com with ESMTPSA id h19-20020a056512221300b00498f3ebffb2sm265007lfu.25.2022.09.30.03.58.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Sep 2022 03:54:35 -0700 (PDT)
-Message-ID: <bcf0e3fe-ba69-2898-ed99-49afd08d1f72@linaro.org>
-Date:   Fri, 30 Sep 2022 12:54:34 +0200
+        Fri, 30 Sep 2022 03:58:13 -0700 (PDT)
+Message-ID: <c99f6552-db04-fe30-ed69-4a08b0af5276@linaro.org>
+Date:   Fri, 30 Sep 2022 12:58:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 2/3] dt-bindings: input: touchscreen: Add Hynitron cstxxx
- bindings
+Subject: Re: [PATCH v1 17/30] dt-bindings: clock: Add
+ starfive,jh7110-clkgen-sys bindings
 Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, rydberg@bitmath.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        dmitry.torokhov@gmail.com, Chris Morgan <macromorgan@hotmail.com>
-References: <20220928214806.13572-1-macroalpha82@gmail.com>
- <20220928214806.13572-3-macroalpha82@gmail.com>
+To:     Hal Feng <hal.feng@linux.starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        linux-kernel@vger.kernel.org
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+ <20220929222647.23816-1-hal.feng@linux.starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220928214806.13572-3-macroalpha82@gmail.com>
+In-Reply-To: <20220929222647.23816-1-hal.feng@linux.starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2022 23:48, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 30/09/2022 00:26, Hal Feng wrote:
+> From: Emil Renner Berthing <kernel@esmil.dk>
 > 
-> Add documentation for the Hynitron cstxxx touchscreen bindings.
-> Hynitron makes a series of touchscreen controllers, however for
-> now this is expected to only be compatible with the cst3xx series.
-
-Drop redundant (second) bindings from subject.
-
+> Add bindings for the system clock generator on the JH7110
+> RISC-V SoC by StarFive Technology Ltd.
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../input/touchscreen/hynitron,cstxxx.yaml    | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hynitron,cstxxx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/hynitron,cstxxx.yaml b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cstxxx.yaml
-> new file mode 100644
-> index 000000000000..c98d14e9844a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cstxxx.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/hynitron,cstxxx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Hynitron cstxxx series touchscreen controller bindings
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
 
-Drop "bindings"
+(...)
 
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      See <dt-bindings/clock/starfive-jh7110-sys.h> for valid indices.
 > +
-> +description: |
-> +  Bindings for Hynitron cstxxx series multi-touch touchscreen
-> +  controllers.
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
 > +
-> +maintainers:
-> +  - Chris Morgan <macromorgan@hotmail.com>
+> +additionalProperties: false
 > +
-> +allOf:
-> +  - $ref: touchscreen.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - hynitron,cst3xx
+> +examples:
+> +  - |
+> +    syscrg_clk: clock-controller@13020000 {
 
-Isn't the panel CST3240? No wildcards in compatibles.
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
+> +        compatible = "starfive,jh7110-clkgen-sys";
+> +        clocks = <&osc>, <&gmac1_rmii_refin>,
+> +                 <&gmac1_rgmii_rxin>,
+> +                 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
+> +                 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
+> +                 <&tdm_ext>, <&mclk_ext>;
+> +        clock-names = "osc", "gmac1_rmii_refin",
+> +                      "gmac1_rgmii_rxin",
+> +                      "i2stx_bclk_ext", "i2stx_lrck_ext",
+> +                      "i2srx_bclk_ext", "i2srx_lrck_ext",
+> +                      "tdm_ext", "mclk_ext";
+> +        #clock-cells = <1>;
+> +    };
 
 Best regards,
 Krzysztof
