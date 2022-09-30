@@ -2,98 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78BE05F0D7F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 16:28:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 593295F0D8A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 16:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231727AbiI3O2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 10:28:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35628 "EHLO
+        id S231548AbiI3O3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 10:29:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231845AbiI3O2E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 10:28:04 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB1C1A1E86;
-        Fri, 30 Sep 2022 07:28:02 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28UERrMc020048;
-        Fri, 30 Sep 2022 09:27:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1664548073;
-        bh=dvl81mwFU/o/L5IGmw/7AvfjoqVI5wMj4L3Li6QHnmE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=yqdxLRneoUIPgCJ9R8ESbcfqBLYASudyHN4kRs4DnBRduDncWAXuq//S7MjWe5nV+
-         N9NbnMO/V4Afj+yPotVoamE7l3vLB6m/XV1l4ZBX0v8I40p4U79AX9fZa6nCbH+3Xt
-         6L8hVthQi7d3mOTYDoqJSRjz6dKurxrE9fFI1ntk=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28UERro2045402
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 30 Sep 2022 09:27:53 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 30
- Sep 2022 09:27:52 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 30 Sep 2022 09:27:52 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28UERpDP002164;
-        Fri, 30 Sep 2022 09:27:52 -0500
-Date:   Fri, 30 Sep 2022 19:57:51 +0530
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     <airlied@gmail.com>, <daniel@ffwll.ch>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <tomi.valkeinen@ideasonboard.com>,
-        <dri-devel@lists.freedesktop.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: dp-connector: Fix the property name for
- dp pwr
-Message-ID: <20220930142750.fmygjyie52rnzvo5@uda0490373>
-References: <20220930132842.23421-1-r-ravikumar@ti.com>
- <20220930132842.23421-2-r-ravikumar@ti.com>
- <CAL_JsqJVhAJ6TFNtndDtUX1FukuQorvm_o0eKK_CE6ANsPob1g@mail.gmail.com>
+        with ESMTP id S232072AbiI3O3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 10:29:43 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70C8F10FF4;
+        Fri, 30 Sep 2022 07:29:40 -0700 (PDT)
+Received: from zn.tnic (p200300ea9733e70a329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e70a:329c:23ff:fea6:a903])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id EE75C1EC0628;
+        Fri, 30 Sep 2022 16:29:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1664548175;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=CYorfwR0HGBgsRUXFErd442wKe8z+K0hQS8ajZqruqc=;
+        b=HHyyxuazb2ivTCxfuOguohE2/1mRjiDx63EcGsiM+m17T+bb+V4xQTCC3zxMkYWkUKpZDO
+        YHXrWFW1JPzfS+CAl8dzTIkX+IsNgVbhMttcGo9hRrcvktFySFdAQ2UVGCuxvMreEgkFfa
+        vOibY9wKaYCoEUevpdJbhTpG7nPQOCQ=
+Date:   Fri, 30 Sep 2022 16:29:31 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v3 00/17] EDAC/mc/synopsys: Various fixes and
+ cleanups
+Message-ID: <Yzb9SyWh31rPCFJV@zn.tnic>
+References: <20220929232712.12202-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqJVhAJ6TFNtndDtUX1FukuQorvm_o0eKK_CE6ANsPob1g@mail.gmail.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220929232712.12202-1-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 09:14-20220930, Rob Herring wrote:
-> On Fri, Sep 30, 2022 at 8:29 AM Rahul T R <r-ravikumar@ti.com> wrote:
-> >
-> > Property name for DisplayPort regulator is not matching in
-> > the binding and the driver implementation. Fix the same
-> > in the binding
-> >
-> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> > Reported-by: Nishanth Menon <nm@ti.com>
-> > ---
-> >  .../devicetree/bindings/display/connector/dp-connector.yaml     | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
+On Fri, Sep 30, 2022 at 02:26:55AM +0300, Serge Semin wrote:
+> This patchset is a first one in the series created in the framework of
+> my Baikal-T1 DDRC-related work:
 > 
-> NAK. The binding is correct.
+> [1: In-progress] EDAC/mc/synopsys: Various fixes and cleanups
+> Link: ---you are looking at it---
+> [2: In-progress] EDAC/synopsys: Add generic DDRC info and address mapping
+> Link: https://lore.kernel.org/linux-edac/20220910195007.11027-1-Sergey.Semin@baikalelectronics.ru
+> [3: In-progress] EDAC/synopsys: Add generic resources and Baikal-T1 support
+> Link: https://lore.kernel.org/linux-edac/20220910195659.11843-1-Sergey.Semin@baikalelectronics.ru
 > 
-> Are you confused that the regulator framework appends '-supply' for you?
-> 
-> Rob
+> Note the patchsets above must be merged in the same order as they are
+> placed in the list in order to prevent conflicts. Nothing prevents them
+> from being reviewed synchronously though. Any tests are very welcome.
+> Thanks in advance.
 
-Thanks for pointing this out
-I was confused about the difference in the property name
-now I get it
-Please ignore this set
+So I'd take a look slowly but I'd like for this driver's maintainer -
+Michal Simek - to have a look first.
 
-Regards
-Rahul T R
+Thx.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
