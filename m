@@ -2,83 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 817245F0221
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 03:11:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 939395F024E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 03:39:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbiI3BLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Sep 2022 21:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50264 "EHLO
+        id S229734AbiI3BjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Sep 2022 21:39:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbiI3BLS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 21:11:18 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED2E2E99B4;
-        Thu, 29 Sep 2022 18:11:15 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28U0taLj028099;
-        Fri, 30 Sep 2022 01:10:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=kTNksO62vMSkvld80APJwrcbQRnwBH/bdjxyGRtbZlE=;
- b=cdT2hri+ZaRXkmC/7xg7ifk+clNDiWAMD5e+Tjz/pES+z3QojCFFZBRR+lyyjLDvgeJV
- 4zoEAt6nz5ffwvComs8gA9WsojEuc7RvCLDJdLNX4NGr2YyCD3/7Z5/h4zf9rlfVspSk
- zCJs90VH2yGE01hHdda9jx7NX1EZjXk1wo8zRwEgbmCiCM25VU8Ihc4d7i75WmgGL4Gm
- tzipZfUbBbshlwncmiae1dNO4ExzHbVDErfW32HSLM3SY8JR9WWPNBPvBwMHzJ5LMQki
- oRJaqXJkEkkfNm4H1AcMwvJs8Iifohngw61ToQ3pyaCmB+W04AkYD4XBeYuBiqlXFs6G HQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jwehw92ny-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Sep 2022 01:10:35 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28U1AYuG024539
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Sep 2022 01:10:34 GMT
-Received: from [10.239.155.106] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 29 Sep
- 2022 18:10:31 -0700
-Message-ID: <385ad635-ddea-b3c7-7e4d-2ad18c72e145@quicinc.com>
-Date:   Fri, 30 Sep 2022 09:10:28 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v2 2/2] dt-bindings: add bindings for QCOM flash LED
-Content-Language: en-US
+        with ESMTP id S229479AbiI3BjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Sep 2022 21:39:23 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 544711FE182;
+        Thu, 29 Sep 2022 18:39:21 -0700 (PDT)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cx9OHCSDZjLQIkAA--.1902S2;
+        Fri, 30 Sep 2022 09:39:15 +0800 (CST)
+Subject: Re: [PATCH v5 2/3] dt-bindings: thermal: add loongson2k thermal
+ binding
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <collinsd@codeaurora.org>, <subbaram@codeaurora.org>
-References: <20220929121544.1064279-1-quic_fenglinw@quicinc.com>
- <20220929121544.1064279-3-quic_fenglinw@quicinc.com>
- <5445adda-80e6-41d0-9786-c26d253631c9@linaro.org>
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-In-Reply-To: <5445adda-80e6-41d0-9786-c26d253631c9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: cOq1iLM9_n1_wf7MTGSBqaNjBLuFIQAe
-X-Proofpoint-GUID: cOq1iLM9_n1_wf7MTGSBqaNjBLuFIQAe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-29_14,2022-09-29_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 mlxscore=0 phishscore=0 malwarescore=0 spamscore=0
- priorityscore=1501 suspectscore=0 clxscore=1015 impostorscore=0
- mlxlogscore=645 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2209130000 definitions=main-2209300005
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, zhuyinbo@loongson.cn
+References: <20220928083702.17309-1-zhuyinbo@loongson.cn>
+ <20220928083702.17309-2-zhuyinbo@loongson.cn>
+ <066b55cf-4a28-89a2-56ab-572590c97c30@linaro.org>
+ <9b2f2d43-981d-3ffb-7526-dc3e58a9f367@linaro.org>
+ <f0946817-cc2c-449b-d93b-0dd94a0f51f1@loongson.cn>
+ <ed762d71-7104-b1ad-009d-51c1a4407472@loongson.cn>
+ <9b62594f-7473-9974-8ab3-4c93aae5fa64@linaro.org>
+ <abaf9b69-487c-0f1e-7a94-201155f5e3d2@loongson.cn>
+ <f54a40ea-99bf-e341-3bbd-851b250cc9cd@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <e0fdf8f0-0f20-1231-0734-7559aa517de2@loongson.cn>
+Date:   Fri, 30 Sep 2022 09:39:14 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <f54a40ea-99bf-e341-3bbd-851b250cc9cd@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Cx9OHCSDZjLQIkAA--.1902S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7GFW7Cw4DCF4xXF47JF17GFg_yoWfWFg_ur
+        WqywnruFy3uan7Kw4ktFZ0qFsxt3yUGr98Xry8Jr1qgw1Yg347AFn5W3WfWas5WFZ8WFsF
+        gryqq3WfuwnIyjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+        9fnUUIcSsGvfJTRUUUbTkFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+        6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+        A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_
+        Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr
+        1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
+        7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r
+        1j6r4UM4x0Y48IcVAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+        n2kIc2xKxwCYjI0SjxkI62AI1cAE67vIY487MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrw
+        CFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE
+        14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2
+        IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxK
+        x2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI
+        0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUdHUDUUUUU=
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,91 +77,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2022/9/29 20:40, Krzysztof Kozlowski wrote:
-> On 29/09/2022 14:15, Fenglin Wu wrote:
->> Add binding document for flash LED module inside Qualcomm Technologies,
->> Inc. PMICs.
->>
->> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+在 2022/9/29 下午3:45, Krzysztof Kozlowski 写道:
+> On 29/09/2022 09:07, Yinbo Zhu wrote:
+>>>>>>
+>>>>>> ... and please test your patches before sending :(
+>>>> You said is refer that "reg: [[0, 534779136], [0, 48]] is too long" ?
+>>>> Need fix that warning, right?
+>>>
+>>> Yes. You said you tested it but then sent with an error... so it's not
+>>> really a testing.
+>> sorry, I did do some testing. but I think It is okay that can generate a
+>> dtb  without reporting an error when compile yaml file, in fact, I
+>> ignore the warning,  I will fix it in v6.
 > 
-> Thank you for your patch. There is something to discuss/improve.
 > 
->> +  reg:
->> +    description: address offset of the flash LED controller
->> +    maxItems: 1
->> +
->> +patternProperties:
->> +  "^led[0-3]$":
-> 
-> In such case: ^led-[0-9]$"
-Sure, I will update in next patchset
-> 
->> +    type: object
->> +    $ref: common.yaml#
->> +    unevaluatedProperties: false
->> +    description: |
->> +      Represents the physical LED components which are connected to the
->> +      flash LED channels' output.
->> +
->> +    properties:
->> +      led-sources:
->> +        description: |
->> +          The HW indices of the flash LED channels that connect to the
->> +          physical LED
->> +        allOf:
->> +          - minItems: 1
->> +            maxItems: 2
->> +            items:
->> +              enum: [1, 2, 3, 4]
->> +
->> +      led-max-microamp:
->> +        description: |
->> +          The maximum current value when LED is not operating in flash mode (i.e. torch mode)
->> +          Valid values when an LED is connected to one flash LED channel:
->> +            5000 - 500000, step by 5000
->> +          Valid values when an LED is connected to two flash LED channels:
->> +            10000 - 1000000, step by 10000
->> +        minimum: 5000
->> +        maximum: 1000000
->> +
->> +      flash-max-microamp:
->> +        description: |
->> +          The maximum current value when LED is operating in flash mode.
->> +          Valid values when an LED is connected to one flash LED channel:
->> +            12500 - 1500000, step by 12500
->> +          Valid values when an LED is connected to two flash LED channels:
->> +            25000 - 2000000, step by 12500
->> +        minimum: 12500
->> +        maximum: 2000000
->> +
->> +      flash-max-timeout-us:
->> +        description: |
->> +          The maximum timeout value when LED is operating in flash mode.
->> +          Valid values: 10000 - 1280000, step by 10000
->> +        minimum: 10000
->> +        maximum: 1280000
->> +
->> +    required:
->> +      - led-sources
->> +      - led-max-microamp
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/leds/common.h>
->> +    spmi_bus {
-> 
-> No underscores in node names, so just "bus"
-Sure, I will update in next patchset
-> 
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
+> Do you also send the code with warnings reported by GCC? Judging by
+> number of kernel test robot reports, it could be. So just to be very,
+> very clear: do not send any code which generates any warning. For GCC
+> this means W=1 builds.
+When use W=1, I can reproduce the warning and I will fix it in v7.
+
+BRs,
+Yinbo Zhu.
 > 
 > Best regards,
 > Krzysztof
 > 
+
