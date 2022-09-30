@@ -2,90 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 961845F0FA3
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 18:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBB035F0FCC
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 18:23:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231797AbiI3QMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 12:12:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43072 "EHLO
+        id S231993AbiI3QXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 12:23:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231953AbiI3QMd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 12:12:33 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0163F1C5CAF
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 09:12:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id DB69ECE260A
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 16:12:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97458C433C1;
-        Fri, 30 Sep 2022 16:12:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664554345;
-        bh=QEzJU0VS5kHZoLyV5Mc+p7c1jZc4wJxU/synCGYTbtg=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=bhwMItzH/LRgiLHZnJkpbEt20PHg13JMCiwnXQ62ROrEMTcsTN4HW+B+YGpSdsGil
-         5sShuZXm24UTWROjR+yisDWSa2WgKYfpe5kMUJ4j24k8bOichYgbOmoc/m+xF/6ccP
-         hyEJsdVIDPFAH7/4Scd9bKqZQdEeRLccD0UxmFQVrxRH6AeDWTn7O40m/uD43spAei
-         NP6jGC1Z6IRw7NGKD+JsXDNwlfYmwtdxN8vW568aV1evlW0CXMJUCD+3M33xgW6tBn
-         GnRZEnIXigV2MgA/cS3Zv9CA1ESwM4EeWn6NwHeTug7nrAsDabHS+iuqIB/rhPubQ3
-         BYY052k9UZ7Qg==
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20220927185359.294322-1-marex@denx.de>
-References: <20220927185359.294322-1-marex@denx.de>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: Document audio OF graph dai-tdm-slot-num dai-tdm-slot-width props
-Message-Id: <166455434333.614892.7791049768510643889.b4-ty@kernel.org>
-Date:   Fri, 30 Sep 2022 17:12:23 +0100
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231963AbiI3QXH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 12:23:07 -0400
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3DAA1280C3;
+        Fri, 30 Sep 2022 09:23:06 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-13207a86076so1768584fac.3;
+        Fri, 30 Sep 2022 09:23:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=w9hq7n2tD3rgg2F00+aPHrrD1/MYUDM391P4uFAE3cA=;
+        b=hRWFXxhE6EdV3FNJjWlFbPbLTg7Ol47yTLdVtQ7vUv7/P2VFXpQu1r4DhwN2H3vOVt
+         i2DThh4al6sX2XPEWUOw1swYNsvGDZXkZFyRoIgR0/z8otOjnJSjKfuguEbq06ZJTuNs
+         1uLe8I/fTg7f9IHIWCIQ5ZRL2EqxFKRAXSalaUoFexZ2UR0Tsn+zKzz1F+cqY1hEFwxq
+         XaumeiVdM32qykf6ujKPUIfB7R5jZnXKleX1wgmyTcCxiE/xMpTWbA3kCS4sZoTILgBz
+         ynSJ/85dZF+dDrWpkMCIyPEgSpz31vYUwVNRNcNZAvDSP+3W1uLGC0cooqchh4/QuYbc
+         wb1Q==
+X-Gm-Message-State: ACrzQf03ve+3rAD6XrDSKQUP1g3j+SiTkXUVcTo+gZ/AG2CEcs3PIzDX
+        Nzr+DKgDSA3QneVhnSQtrD3tg8/nmg==
+X-Google-Smtp-Source: AMsMyM6zcZ/ttBO2lDoYpmgwIrE+97StZEQQO1eKeFPnWuxuP8tvPZklLFGjubqpUpxqP+hmtoZtKA==
+X-Received: by 2002:a05:6870:41d2:b0:131:ea46:760f with SMTP id z18-20020a05687041d200b00131ea46760fmr3119034oac.44.1664554985954;
+        Fri, 30 Sep 2022 09:23:05 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id cp26-20020a056830661a00b006596cafaeabsm669609otb.47.2022.09.30.09.23.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Sep 2022 09:23:05 -0700 (PDT)
+Received: (nullmailer pid 465977 invoked by uid 1000);
+        Fri, 30 Sep 2022 16:23:04 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To:  <4fdb6ff47f62814aab3b06efd1d4c2d7de83b109.1664368373.git.geert+renesas@glider.be>
+References:  <4fdb6ff47f62814aab3b06efd1d4c2d7de83b109.1664368373.git.geert+renesas@glider.be>
+Message-Id: <166455498409.465975.1174917477193500313.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: irqchip: renesas,irqc: Add r8a779g0 support
+Date:   Fri, 30 Sep 2022 11:23:04 -0500
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Sep 2022 20:53:59 +0200, Marek Vasut wrote:
-> Document dai-tdm-slot-num and dai-tdm-slot-width props as those are
-> parsed by simple graph card and may therefore appear in audio OF graph
-> node.
+On Wed, 28 Sep 2022 14:33:36 +0200, Geert Uytterhoeven wrote:
+> Document support for the Interrupt Controller for External Devices
+> (INT-EX) in the Renesas R-Car V4H (R8A779G0) SoC.
 > 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  .../devicetree/bindings/interrupt-controller/renesas,irqc.yaml   | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Applied to
+Acked-by: Rob Herring <robh@kernel.org>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] ASoC: dt-bindings: Document audio OF graph dai-tdm-slot-num dai-tdm-slot-width props
-      commit: 853110992cfefec433ca58cf7d69df4f639abe18
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
