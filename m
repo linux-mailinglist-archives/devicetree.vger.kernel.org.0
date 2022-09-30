@@ -2,67 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B34E5F0E98
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:15:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A28D75F0EB0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231429AbiI3PPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 11:15:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55574 "EHLO
+        id S229730AbiI3PUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 11:20:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbiI3PPj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:15:39 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1AEC733ED
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 08:15:34 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id z4so7367445lft.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 08:15:34 -0700 (PDT)
+        with ESMTP id S229548AbiI3PUe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:20:34 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373F29F0D9
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 08:20:33 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id j6-20020a17090a31c600b0020a07b184deso1703267pjf.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 08:20:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date;
-        bh=9qe1ituoiVQ6tMTna4qx1CP35n7ZrXQ+Z8Kf3z6Up/k=;
-        b=K2ppjZpTcwMXMqHVkbUZy5/PmQebskeMbiEDI8XMJvkxqFQFIjp3zCyX+XO+iW5elo
-         UjqqE0Tk0PtRzPeodJgG5AZ7yRtcE0fgKae9x8UwrvG44G5ogXJef+8cltxvSu7VJ3ys
-         /bRnODG+csOYM0DA93DZM6WeifBH9xjcL9/+wRzw8Oj67EI4xXySgkOX7kS8ITbDrP4N
-         tS+zOo3/Lwyudf1obe7R+sQLVSTH/ALWQv7L4O4jHbwo8VoQJXHJz9S/PaJZX+NIIHEY
-         1xktlKMiSjsKRh5KR/GLSy596efrUb9Eik4ELgyYbgq5lX1kOKC+BtGhfUrU5XAh9s+B
-         Hh2g==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=sgdOKqL14yd+eVQhXQ4lHU2sZ9RqXiCCsu5egzJjzvU=;
+        b=b6HS3xgQmcuLy13TnsVpXrnxz1IqYxVpbowiK+zrSAZ5mihsN4aY45nl5+bq9FKp46
+         YzDmaIpotpnBbd/w9LR3Rw1NNxMMZu7KjVuhLyxGRbU0dIgmJxgqtldH1pLEJdMsg2UN
+         Aj3QYh0/blr5x9stIq7eUGKe5o5mTmiwyNWm1GTrUpR5fODwZhQh5pLZDUzCKxRoVR01
+         naAftOrhmiHrCv85VaUE6Ne/hxKe98PzqkzgAvd5YKVF9HHI4acfPe/HD7nkuD+sLySE
+         Pkl4rd3HSOddcx+XjxPNdgXDnImqdtKrRtFkDOoxwfDONheD0cNatyD0rizi0GtdTlqL
+         TqAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=9qe1ituoiVQ6tMTna4qx1CP35n7ZrXQ+Z8Kf3z6Up/k=;
-        b=NoSCfxMx6B6kuU7hgqBPMXwO361u7DgNYyNQ2/Zq8PkX/tlAja2jQ0GuA2IYT5Uxt/
-         MVqS2sVNajmOLIXEEdIVGtRpsBdenIjYpYu6Qwcs2ztq2qTR0wMtkcSyw+3F2hlPBh1c
-         IzaOXvBN4Wo7J1NTMw5Hr48vDoeE7mv9B8XsGYnLL1WKo5ua+fnHu+f/epq6QfkNH2HH
-         aBUcM0N70XgRXQWhdvWZeAekA8qqe4grf/Be6VycK+AaO9DVNC6Sr9/Dbg5G/Cy6rY+W
-         OiIwBaaT0whT8g5I6AbQPUm2KGriYJ8+8Qv5P9VT0LACo645+G8bSW7MVE0zVsT2Dqfr
-         S5dw==
-X-Gm-Message-State: ACrzQf3HQM0+itJNNY0j/QNk/K9hjy9rlesLIIz92motcCSzeS/OWTng
-        XRb+tljsASnbGLUztUygU1mokQ==
-X-Google-Smtp-Source: AMsMyM6OH/KU/K3lOw7qM6WdTyenUEIfcDT2JYgFrfRCgd4m0c9smxHRRRMOWigUKN/XtE2bYLMu0A==
-X-Received: by 2002:ac2:508b:0:b0:4a0:5d6b:ff14 with SMTP id f11-20020ac2508b000000b004a05d6bff14mr3370963lfm.409.1664550932897;
-        Fri, 30 Sep 2022 08:15:32 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q3-20020a0565123a8300b0049480c8e7bcsm320145lfu.176.2022.09.30.08.15.31
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=sgdOKqL14yd+eVQhXQ4lHU2sZ9RqXiCCsu5egzJjzvU=;
+        b=WiY7vbUBuTGKTdIGbNtJcGR2ymmW9ddW97UyVBz5HICdYZzxaVWZu95SjKjU8RWFq4
+         L+ZZIIFuaS9SPTeqEqQN8mUvJQbrpmx0nwOsrbRiUOjAJ0oeVRFY6TOqSrfuxDp9XCWT
+         5G/lw6Y5+6FImNUgcEAedxKOkntz9U6SP9UDHX8IeogigWYOO4IW6aJmtmBh7Lr+fXYc
+         dMgJWYn6BeqCFr3mbAbf8jtSj/QS3/dkhLRr3Jw2NzV8VS/mBKTY/L2vU/xDfUOYk+6y
+         i9Yy1diJRpnyC9AIatKR5F1Qtn1S6lOSh01M45E6CYt4Mo54G4BSHmSpEKP2LoqeOPRg
+         l+KA==
+X-Gm-Message-State: ACrzQf2RQ5RMZhlv3pU/ayCJ6lM4qlcZysY3RCk8gC21JNJbNj+YG8WD
+        RCm8znufGQFIPXzFRhCzG34y/w==
+X-Google-Smtp-Source: AMsMyM5cpZe/bWD30sfnh03xOGnFSzwvy9cROX+SsnNmIzSncaz1szx1BcFl2E7q+BHHPonkkCVXaA==
+X-Received: by 2002:a17:90a:cf92:b0:202:ae52:43a4 with SMTP id i18-20020a17090acf9200b00202ae5243a4mr10067304pju.141.1664551232728;
+        Fri, 30 Sep 2022 08:20:32 -0700 (PDT)
+Received: from desktop.hsd1.or.comcast.net ([2601:1c0:4c81:c480:feaa:14ff:fe3a:b225])
+        by smtp.gmail.com with ESMTPSA id r9-20020a655089000000b0043a09d5c32bsm1835090pgp.74.2022.09.30.08.20.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 08:15:32 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] ARM: dts: s5pv210: correct double "pins" in pinmux node
-Date:   Fri, 30 Sep 2022 17:15:30 +0200
-Message-Id: <166455092698.6630.15512850580722431230.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220926125824.477920-1-krzysztof.kozlowski@linaro.org>
-References: <20220926125824.477920-1-krzysztof.kozlowski@linaro.org>
+        Fri, 30 Sep 2022 08:20:31 -0700 (PDT)
+From:   Tadeusz Struk <tadeusz.struk@linaro.org>
+To:     David Gibson <david@gibson.dropbear.id.au>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
+        Tadeusz Struk <tadeusz.struk@linaro.org>
+Subject: [PATCH v2 1/2] libfdt: prevent integer overflow in fdt_next_tag
+Date:   Fri, 30 Sep 2022 08:20:03 -0700
+Message-Id: <20220930152004.674591-1-tadeusz.struk@linaro.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -73,16 +67,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Sep 2022 14:58:24 +0200, Krzysztof Kozlowski wrote:
-> Drop second "pins" suffix from pin configuration/mux nodes.
-> 
-> 
+Since fdt_next_tag() in a public API function all input parameters,
+including the fdt blob should not be trusted. It is possible to forge
+a blob with invalid property length that will cause integer overflow
+during offset calculation. To prevent that, validate the property length
+read from the blob before doing calculations.
 
-Applied, thanks!
+Signed-off-by: Tadeusz Struk <tadeusz.struk@linaro.org>
+--
+v2:
+* Use len local variable to avoid multiple calls to fdt32_to_cpu(*lenp)
+* Add can_assume(VALID_DTB) to the new checks
+---
+ libfdt/fdt.c | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
 
-[1/1] ARM: dts: s5pv210: correct double "pins" in pinmux node
-      https://git.kernel.org/krzk/linux/c/17fffac44943a619ec76463655b1ed7fccd8bea7
-
-Best regards,
+diff --git a/libfdt/fdt.c b/libfdt/fdt.c
+index 90a39e8..b7c202a 100644
+--- a/libfdt/fdt.c
++++ b/libfdt/fdt.c
+@@ -162,7 +162,7 @@ const void *fdt_offset_ptr(const void *fdt, int offset, unsigned int len)
+ uint32_t fdt_next_tag(const void *fdt, int startoffset, int *nextoffset)
+ {
+ 	const fdt32_t *tagp, *lenp;
+-	uint32_t tag;
++	uint32_t tag, len;
+ 	int offset = startoffset;
+ 	const char *p;
+ 
+@@ -188,12 +188,20 @@ uint32_t fdt_next_tag(const void *fdt, int startoffset, int *nextoffset)
+ 		lenp = fdt_offset_ptr(fdt, offset, sizeof(*lenp));
+ 		if (!can_assume(VALID_DTB) && !lenp)
+ 			return FDT_END; /* premature end */
++
++		len = fdt32_to_cpu(*lenp);
++		if (!can_assume(VALID_DTB) && INT_MAX <= len)
++			return FDT_END; /* premature end */
++
+ 		/* skip-name offset, length and value */
+-		offset += sizeof(struct fdt_property) - FDT_TAGSIZE
+-			+ fdt32_to_cpu(*lenp);
++		offset += sizeof(struct fdt_property) - FDT_TAGSIZE + len;
++
++		if (!can_assume(VALID_DTB) && offset < 0)
++			return FDT_END; /* premature end */
++
+ 		if (!can_assume(LATEST) &&
+-		    fdt_version(fdt) < 0x10 && fdt32_to_cpu(*lenp) >= 8 &&
+-		    ((offset - fdt32_to_cpu(*lenp)) % 8) != 0)
++		    fdt_version(fdt) < 0x10 && len >= 8 &&
++		    ((offset - len) % 8) != 0)
+ 			offset += 4;
+ 		break;
+ 
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.37.3
+
