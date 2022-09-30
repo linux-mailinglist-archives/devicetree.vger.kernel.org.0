@@ -2,71 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FADA5F065A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 10:24:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BAD25F0666
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 10:29:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbiI3IYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 04:24:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45758 "EHLO
+        id S230342AbiI3I3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 04:29:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231158AbiI3IY3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 04:24:29 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BAD21129E1;
-        Fri, 30 Sep 2022 01:24:29 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id lx7so3645063pjb.0;
-        Fri, 30 Sep 2022 01:24:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date;
-        bh=jS+l3dIGKbArOyuWAe9VWLB+9jLBaurWIwoqS5nKuX8=;
-        b=Gtd3BT7EJKCuKw82inp4gINpe1F3cv9JvLqP7vH060hkioNT5dDYVdpX17ImOSavyO
-         p/aveQYLbt0YOMnHcO2qJgODIzszyASKw54tF1yUk2AAHQYQv40lXKpIt/CnM5gNJkby
-         mwVu3a82LvRrZCfI4IzkEmQ+CA0qaPFD/04A26YpIA93qmoklwhQK3rrwyu8vlZlo5+n
-         uqRL0K3RNfooC1f0y4xpYll6PAE1HVa7Ma6EK86GzxmoVGUJNlxw9HJG6CPqqm4p2fSk
-         zDjcjnPvsjjhva1zq/SeWNLI1zm8BvfJ82VdBNkecwhlYajVtQS6xP+mqt0FF+JaoHzz
-         fEcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=jS+l3dIGKbArOyuWAe9VWLB+9jLBaurWIwoqS5nKuX8=;
-        b=Fpb1p/BqqRjUQN+4PrV7CxlPa1ZODEqFLZ3RFZ7YJiTQ3mSKzQ911BZIrJQhND9JT5
-         pYjYqgRzwu4LhIvlFofwIG9L1tAJ+neCNWnLorLfxl3IahwTdOeUfEKbGiYKbODYBnnJ
-         QNYOLGC5cVS2NhTpgMGQWZEkYdCiXjdJZkpEBaIn547pvJNUOIVrmw6+bgnAmXDZZ6ZS
-         +jg20bx9gMZEF7RCGXWkjHhfmcuQtmXsf2zCkPhhrQBrDwXAR1faaUoL9i+Yc3nueRhY
-         OBhcEBaGyzo9qBoeyPvm0R93Ub82BsCM6tk7QskoDVDLBor08BW9kOMbqW1mMSAEetCB
-         5zZg==
-X-Gm-Message-State: ACrzQf3QIBRYbHQHjpUjtr/4gfocQXiS5ND8A8YeLqPn6QMO+0CUupGj
-        k7/GCgjf0H/wVvMRAza9ey8=
-X-Google-Smtp-Source: AMsMyM4io8gqopHHzVVMNCtcfVhtrD7kfVgdDbxZ1JSbkaSsu14LDbnk/vjrkrMQR3yg4moMKtQKJA==
-X-Received: by 2002:a17:902:bcc3:b0:178:639a:1a10 with SMTP id o3-20020a170902bcc300b00178639a1a10mr7679039pls.159.1664526268625;
-        Fri, 30 Sep 2022 01:24:28 -0700 (PDT)
-Received: from xm06403pcu.spreadtrum.com ([117.18.48.102])
-        by smtp.gmail.com with ESMTPSA id 63-20020a620442000000b00540d03f3792sm1132083pfe.81.2022.09.30.01.24.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 01:24:28 -0700 (PDT)
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: [PATCH V2 3/3] dt-bindings: gpio: Add compatible string to support Unisoc UMS512
-Date:   Fri, 30 Sep 2022 16:24:05 +0800
-Message-Id: <20220930082405.1761-4-zhang.lyra@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220930082405.1761-1-zhang.lyra@gmail.com>
-References: <20220930082405.1761-1-zhang.lyra@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        with ESMTP id S229547AbiI3I3T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 04:29:19 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED97417F565
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 01:29:18 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1oeBON-0006P2-Jj; Fri, 30 Sep 2022 10:29:07 +0200
+Message-ID: <0017a1b1-f932-7bb3-7d00-a139bd4cc98d@pengutronix.de>
+Date:   Fri, 30 Sep 2022 09:28:57 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH v10 3/4] phy: freescale: imx8m-pcie: Refine i.MX8MM PCIe
+ PHY driver
+To:     Richard Zhu <hongxing.zhu@nxp.com>, vkoul@kernel.org,
+        p.zabel@pengutronix.de, l.stach@pengutronix.de,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
+        shawnguo@kernel.org, alexander.stein@ew.tq-group.com,
+        marex@denx.de, richard.leitner@linux.dev
+Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <1664440622-18556-1-git-send-email-hongxing.zhu@nxp.com>
+ <1664440622-18556-4-git-send-email-hongxing.zhu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <1664440622-18556-4-git-send-email-hongxing.zhu@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,79 +54,123 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+On 29.09.22 09:37, Richard Zhu wrote:
+> To make it more flexible and easy to expand. Refine i.MX8MM PCIe PHY
+> driver.
+> - Use gpr compatible string to avoid the codes duplications when add
+>   another platform PCIe PHY support.
+> - Re-orange the codes to let it more flexible and easy to expand.
 
-UMS512 use the same GPIO and EIC controller IP with SC9860.
+Re-arrange
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/gpio/sprd,gpio-eic.yaml          | 33 +++++++++++++++----
- .../devicetree/bindings/gpio/sprd,gpio.yaml   |  7 +++-
- 2 files changed, 33 insertions(+), 7 deletions(-)
+> No functions changes basicly.
 
-diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-index c288a8dd44c8..3b7d338d44fb 100644
---- a/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-+++ b/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-@@ -42,12 +42,33 @@ description:
- 
- properties:
-   compatible:
--    enum:
--      - sprd,sc9860-eic-debounce
--      - sprd,sc9860-eic-latch
--      - sprd,sc9860-eic-async
--      - sprd,sc9860-eic-sync
--      - sprd,sc2731-eic
-+    oneOf:
-+      - enum:
-+          - sprd,sc9860-eic-debounce
-+          - sprd,sc9860-eic-latch
-+          - sprd,sc9860-eic-async
-+          - sprd,sc9860-eic-sync
-+          - sprd,sc2731-eic
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-debounce
-+          - const: sprd,sc9860-eic-debounce
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-latch
-+          - const: sprd,sc9860-eic-latch
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-async
-+          - const: sprd,sc9860-eic-async
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-sync
-+          - const: sprd,sc9860-eic-sync
-+      - items:
-+          - enum:
-+              - sprd,sc2730-eic
-+          - const: sprd,sc2731-eic
- 
-   reg:
-     minItems: 1
-diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-index c0cd1ed9809b..a1ecb2b96a76 100644
---- a/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-@@ -19,7 +19,12 @@ description:
- 
- properties:
-   compatible:
--    const: sprd,sc9860-gpio
-+    oneOf:
-+      - const: sprd,sc9860-gpio
-+      - items:
-+          - enum:
-+              - sprd,ums512-gpio
-+          - const: sprd,sc9860-gpio
- 
-   reg:
-     maxItems: 1
+No functional change.
+
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Tested-by: Marek Vasut <marex@denx.de>
+> Tested-by: Richard Leitner <richard.leitner@skidata.com>
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 106 +++++++++++++--------
+>  1 file changed, 66 insertions(+), 40 deletions(-)
+> 
+> diff --git a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> index 2377ed307b53..59b46a4ae069 100644
+> --- a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> +++ b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/mfd/syscon/imx7-iomuxc-gpr.h>
+>  #include <linux/module.h>
+> +#include <linux/of_device.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> @@ -45,6 +46,15 @@
+>  #define IMX8MM_GPR_PCIE_SSC_EN		BIT(16)
+>  #define IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE	BIT(9)
+>  
+> +enum imx8_pcie_phy_type {
+> +	IMX8MM,
+> +};
+> +
+> +struct imx8_pcie_phy_drvdata {
+> +	enum		imx8_pcie_phy_type variant;
+
+Better do indentation on the member name.
+
+> +	const char	*gpr;
+> +};
+> +
+>  struct imx8_pcie_phy {
+>  	void __iomem		*base;
+>  	struct clk		*clk;
+> @@ -55,6 +65,7 @@ struct imx8_pcie_phy {
+>  	u32			tx_deemph_gen1;
+>  	u32			tx_deemph_gen2;
+>  	bool			clkreq_unused;
+> +	const struct imx8_pcie_phy_drvdata	*drvdata;
+>  };
+>  
+>  static int imx8_pcie_phy_init(struct phy *phy)
+> @@ -66,31 +77,17 @@ static int imx8_pcie_phy_init(struct phy *phy)
+>  	reset_control_assert(imx8_phy->reset);
+>  
+>  	pad_mode = imx8_phy->refclk_pad_mode;
+> -	/* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't hooked */
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE,
+> -			   imx8_phy->clkreq_unused ?
+> -			   0 : IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_AUX_EN,
+> -			   IMX8MM_GPR_PCIE_AUX_EN);
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_POWER_OFF, 0);
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_SSC_EN, 0);
+> -
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_REF_CLK_SEL,
+> -			   pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ?
+> -			   IMX8MM_GPR_PCIE_REF_CLK_EXT :
+> -			   IMX8MM_GPR_PCIE_REF_CLK_PLL);
+> -	usleep_range(100, 200);
+> -
+> -	/* Do the PHY common block reset */
+> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> -			   IMX8MM_GPR_PCIE_CMN_RST,
+> -			   IMX8MM_GPR_PCIE_CMN_RST);
+> -	usleep_range(200, 500);
+> +	switch (imx8_phy->drvdata->variant) {
+> +	case IMX8MM:
+> +		/* Tune PHY de-emphasis setting to pass PCIe compliance. */
+> +		if (imx8_phy->tx_deemph_gen1)
+> +			writel(imx8_phy->tx_deemph_gen1,
+> +			       imx8_phy->base + PCIE_PHY_TRSV_REG5);
+> +		if (imx8_phy->tx_deemph_gen2)
+> +			writel(imx8_phy->tx_deemph_gen2,
+> +			       imx8_phy->base + PCIE_PHY_TRSV_REG6);
+> +		break;
+> +	}
+
+If you say no functional change intended, I'd expect that register
+writes happen in the same sequence. It might be ok, that you do
+this tuning here, but I think it warrants a mention in the commit
+message why it's ok.
+
+
+Looks good otherwise. With nitpicks addressed:
+
+Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+
+
 -- 
-2.25.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
