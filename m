@@ -2,94 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 991865F1200
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 20:53:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F64A5F120F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 21:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232164AbiI3SxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 14:53:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38518 "EHLO
+        id S230111AbiI3TDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 15:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232353AbiI3Sw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 14:52:56 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B658166F13
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:52:54 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id j16so8216211lfg.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:52:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=e+txumJrTg3NbIgJt42pEv48jMVT9OfpHxOP8nlI4eI=;
-        b=nOd2/Lv5zvyJjCozAncCLSIU9wKzp9s2Q7TT6PjF/+/xMwKcmWuNPO3CBuoUdGfWGM
-         JyMhFgsPtNjjprg90Ye+ts9Uhr99BL+JaHrbo1A5vxSActHjKZRME8RAvaii/zeGHLxQ
-         WmDB76b33IqkYw2zYnPZkRzK2iIwYWjkr3h4WyzIieNENrDHStfWKbBbelIW6hAbA4kD
-         bMpsn8QfBte18PbGQpx33YKSDJKhxDoTo0CSBsVgZKEgTelV5N4Gv6XyMC5DaqJWiJ7/
-         cCmEXmKpUPcATNZMt6YGEBqi1eaK6MfJ03k+V9guYP2uoAfqPG0MUuRo0nbid+gAXHiz
-         2epQ==
+        with ESMTP id S229531AbiI3TDP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 15:03:15 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA0DB1C2F9A;
+        Fri, 30 Sep 2022 12:03:13 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id c81so5666587oif.3;
+        Fri, 30 Sep 2022 12:03:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=e+txumJrTg3NbIgJt42pEv48jMVT9OfpHxOP8nlI4eI=;
-        b=rf0WuIEnJGaJyfcvTy9OvVJ06OzQj2aTsBnWYVhH57743o2QkABNQ4hheQ2Qo+3jKt
-         N3T5/6YrC1Rpc4YLmSriI74kVP9QEWkNXd2LdnfeJMS7cIKTzDKroQqTPs0JvZEI4P/z
-         FrBon5pIjse6CM40Wj0mqzlXOvtWLBXidkssxaQ8lBugy8eGlfkvkA4vCpKouTgSMmmz
-         rftOoo9zZZKqtnFeMWd+lmTZ84RGOzffxFLBQKOcbyVpe/pMgslvccQ/frYBg+tHJUdr
-         4FDKIP9svJ9T8GVzNSG0o76248L815lYvcB8ayhTQbSyXQOD7sOAqYbxv4qVLY0mcXRj
-         cFfg==
-X-Gm-Message-State: ACrzQf3lWqGZApY165u3F7m8Oc3Wfc5qPoSsyjZpfGHm2rkudiq5+qHt
-        wrFp8zTrdfFOZ/FuJVSqAvYdbw==
-X-Google-Smtp-Source: AMsMyM5ErMjCI46XODlbU8m/rNJcueoVSZW1inTjXDRY0MRTmTLS5eFvc8bwvZ2ZmQsKMgq4Z2uKTw==
-X-Received: by 2002:a05:6512:3502:b0:496:272:6258 with SMTP id h2-20020a056512350200b0049602726258mr3495629lfs.429.1664563973979;
-        Fri, 30 Sep 2022 11:52:53 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id i8-20020a056512006800b00492cfecf1c0sm374703lfo.245.2022.09.30.11.52.53
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=0OHRs5zenWXKZ1mt9K0xoOp0gIqwP3kYjlgWnaLm514=;
+        b=4L6QM8smJruOY62z3fbNooQBRPWRZO/XEk+kWdUtbD/+U+nDsW5ArbwQ1TLqp2fwjZ
+         kqRXd4wPZk5uRLTwFcIftOhQQ51rvr+gPitQYfujM0j3zRrRZuqtHsZ/vYuSES4wIriY
+         xYDkihSXGWXsV702Uv0HvJelD8AO5/jIUsd7+5Q52Uxq0ARbPfyfFijbpIGJIBJycH/V
+         QSFT7pL/IBdYpCmlsU40O1g2Wu8IeBLNPgOf0YpGiDzZdG8/kqJkFoQg4F0IkUKnXuFm
+         dLlx6gA3uV5sYxeiuHWjh4NY3ITlS2RXIJEB0idno6IzLaECfoWJ1zN1VN7n7zP6WYOg
+         QxNw==
+X-Gm-Message-State: ACrzQf36zSRfYTm0t7+zFifj0oIGFd+Ju94xeayhJYEBSv70OJfiMYAv
+        MK1zdbrJ9f5W+TlO9w6rR1mJDMPUXg==
+X-Google-Smtp-Source: AMsMyM7EfcIivELmyIQujTJYUJ+dTRBPTGhVbKHalYXz8LgLrC20OmjVDMR0DpQIwVnNYSNSp1x4FA==
+X-Received: by 2002:aca:5808:0:b0:350:9790:7fe with SMTP id m8-20020aca5808000000b00350979007femr10435006oib.79.1664564593017;
+        Fri, 30 Sep 2022 12:03:13 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id eq24-20020a056870a91800b0011d02a3fa63sm904746oab.14.2022.09.30.12.03.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 11:52:53 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 23/23] ARM: dts: qcom: msm8660: drop qcom, prefix from SSBI node name
-Date:   Fri, 30 Sep 2022 21:52:36 +0300
-Message-Id: <20220930185236.867655-24-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220930185236.867655-1-dmitry.baryshkov@linaro.org>
-References: <20220930185236.867655-1-dmitry.baryshkov@linaro.org>
+        Fri, 30 Sep 2022 12:03:12 -0700 (PDT)
+Received: (nullmailer pid 655951 invoked by uid 1000);
+        Fri, 30 Sep 2022 19:03:11 -0000
+Date:   Fri, 30 Sep 2022 14:03:11 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH RFC 2/7] dt-bindings: mfd: rzg2l-mtu3: Document RZ/G2L
+ MTU3 counter
+Message-ID: <20220930190311.GA651384-robh@kernel.org>
+References: <20220929103043.1228235-1-biju.das.jz@bp.renesas.com>
+ <20220929103043.1228235-3-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220929103043.1228235-3-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom-msm8660.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Thu, Sep 29, 2022 at 11:30:38AM +0100, Biju Das wrote:
+> Document 16-bit and 32-bit phase counting mode support on
+> RZ/G2L MTU3 IP.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  * Updated commit header.
+> ---
+>  .../bindings/mfd/renesas,rzg2l-mtu3.yaml      | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
+> index c1fae8e8d9f9..c4bcf28623d6 100644
+> --- a/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
+> @@ -192,6 +192,37 @@ properties:
+>    "#size-cells":
+>      const: 0
+>  
+> +patternProperties:
+> +  "^counter@[1-2]+$":
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        const: renesas,rzg2l-mtu3-counter
+> +
+> +      reg:
+> +        description: Identify counter channels.
+> +        items:
+> +          enum: [ 1, 2 ]
+> +
+> +      renesas,32bit-phase-counting:
+> +        type: boolean
+> +        description: Enable 32-bit phase counting mode.
+> +
+> +      renesas,ext-input-phase-clock-select:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [ 0, 1 ]
+> +        default: 1
+> +        description: |
+> +          Selects the external clock pin for phase counting mode.
+> +            <0> : MTCLKA and MTCLKB are selected for the external phase clock.
+> +            <1> : MTCLKC and MTCLKD are selected for the external phase clock
+> +                  (default)
 
-diff --git a/arch/arm/boot/dts/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom-msm8660.dtsi
-index 60edb4bd5bbb..a5e02301178f 100644
---- a/arch/arm/boot/dts/qcom-msm8660.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8660.dtsi
-@@ -333,7 +333,7 @@ ebi2: external-bus@1a100000 {
- 			status = "disabled";
- 		};
- 
--		qcom,ssbi@500000 {
-+		ssbi@500000 {
- 			compatible = "qcom,ssbi";
- 			reg = <0x500000 0x1000>;
- 			qcom,controller-type = "pmic-arbiter";
--- 
-2.35.1
+Why do these belong in DT?
 
+
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -270,6 +301,10 @@ examples:
+>        clocks = <&cpg CPG_MOD R9A07G044_MTU_X_MCK_MTU3>;
+>        power-domains = <&cpg>;
+>        resets = <&cpg R9A07G044_MTU_X_PRESET_MTU3>;
+> +      counter@1 {
+> +        compatible = "renesas,rzg2l-mtu3-counter";
+> +        reg = <1>;
+> +      };
+>      };
+>  
+>  ...
+> -- 
+> 2.25.1
+> 
+> 
