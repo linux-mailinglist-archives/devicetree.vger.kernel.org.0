@@ -2,88 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 806405F1387
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 22:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33C9C5F13D9
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 22:43:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230240AbiI3UUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 16:20:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46720 "EHLO
+        id S232343AbiI3Unk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 16:43:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232559AbiI3UUA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 16:20:00 -0400
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF19A558C7;
-        Fri, 30 Sep 2022 13:19:55 -0700 (PDT)
-Received: from [192.168.1.101] (95.49.31.201.neoplus.adsl.tpnet.pl [95.49.31.201])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S230167AbiI3Ung (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 16:43:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D197F1EDF72;
+        Fri, 30 Sep 2022 13:43:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 88B941FFC2;
-        Fri, 30 Sep 2022 22:19:53 +0200 (CEST)
-Message-ID: <3f6ce239-a412-4839-84dd-213a6453388a@somainline.org>
-Date:   Fri, 30 Sep 2022 22:19:52 +0200
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E34A6235D;
+        Fri, 30 Sep 2022 20:43:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93AEEC43470;
+        Fri, 30 Sep 2022 20:43:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664570614;
+        bh=5pwyNqIBfDQPIsRDvz18i9ZiPLeoqKKMFJ4a1zJRijo=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=sEv+viHXPX/9jXaq9d5VqXCLlP9SY1p2MHsGds6myxAM+Tb7rrX++6IUejGRKWwgi
+         QAvInlzE2rd+uZZE+Ql0T0g+F7dSI+/haZXTmZ3PiXfVTJ1IkBfpj9jJt0SfcM1weV
+         QwxXgddgOh3m3KhHeVWIKWXWWYS9GCvXLv2wYscSafj5mfZ1Wcz5OBbaZ5JfoHamr0
+         ahZgOrYU02my6yceu6dDEReKEkI5L2QwZIliBzNQDe3IBmhsFcdKbwdK6Jyj6+Aggl
+         1Foi+HqrP3Bm+e9AtoFB3FV5f/jAFWqn2q5nMtNOpmvVpAQlIMJr21novLzBKF1J6w
+         HdgDQFcnhuI7g==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845: align TLMM pin
- configuration with DT schema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220612192937.162952-2-doug@schmorgal.com>
+References: <20220612192937.162952-1-doug@schmorgal.com> <20220612192937.162952-2-doug@schmorgal.com>
+Subject: Re: [PATCH 01/12] clk: mmp: pxa168: add additional register defines
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Doug Brown <doug@schmorgal.com>
+To:     Doug Brown <doug@schmorgal.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220930200529.331223-1-krzysztof.kozlowski@linaro.org>
- <20220930200529.331223-2-krzysztof.kozlowski@linaro.org>
- <2b1a536f-fd84-831a-8b0a-9c0cce5e6421@somainline.org>
- <1dfd2858-cc30-5cc0-0b2a-209a8bf8bace@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <1dfd2858-cc30-5cc0-0b2a-209a8bf8bace@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 30 Sep 2022 13:43:32 -0700
+User-Agent: alot/0.10
+Message-Id: <20220930204334.93AEEC43470@smtp.kernel.org>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Doug Brown (2022-06-12 12:29:26)
+> In preparation for adding additional peripherals over time, this commit
+> adds a bunch of extra APBC_* defines based on information from the
+> datasheet. It also reorganizes the list of defines to be ordered
+> sequentially by address (grouped by type).
+>=20
+> Signed-off-by: Doug Brown <doug@schmorgal.com>
+> ---
 
-
-On 30.09.2022 22:19, Krzysztof Kozlowski wrote:
-> On 30/09/2022 22:13, Konrad Dybcio wrote:
->>
->>
->> On 30.09.2022 22:05, Krzysztof Kozlowski wrote:
->>> DT schema expects TLMM pin configuration nodes to be named with
->>> '-state' suffix and their optional children with '-pins' suffix.
->>>
->>> The sdm854.dtsi file defined several pin configuration nodes which are
->> 845
->>
->>> customized by the boards.  Therefore keep a additional "default-pins"
->>> node inside so the boards can add more of configuration nodes.  Such
->>> additional configuration nodes always need 'function' property now
->>> (required by DT schema).
->> Would it not make more sense to drop this and keep the properties in the
->> root node while at it?
->>
->> Konrad
-> 
-> Not possible, because the boards set different bias/config for the pins:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sdm845.dtsi?h=v6.0-rc7#n2988
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sdm845-mtp.dts?h=v6.0-rc7#n729
-> 
-Ok, I see now.
-
-Konrad
-> Best regards,
-> Krzysztof
-> 
+Applied to clk-next
