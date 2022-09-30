@@ -2,138 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF9F15F1545
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 23:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 952C65F155F
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 00:00:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbiI3V4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 17:56:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58974 "EHLO
+        id S231859AbiI3WAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 18:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231129AbiI3V4J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 17:56:09 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC1FE2CDC
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 14:56:06 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id t62so6051736oie.10
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 14:56:06 -0700 (PDT)
+        with ESMTP id S231487AbiI3WAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 18:00:15 -0400
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665BC6CF4E;
+        Fri, 30 Sep 2022 15:00:13 -0700 (PDT)
+Received: by mail-oo1-f46.google.com with SMTP id m11-20020a4aab8b000000b00476743c0743so3119670oon.10;
+        Fri, 30 Sep 2022 15:00:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=8eiagTUk0dq8nINZQ6x8hwgIaRDOs5Q5Ub17AS+/0AA=;
-        b=2YddtjTNyOxqr3Oi3J84x+7qEgGryW5WfJJsZzuU2MYWEwInPZ1B/CNm+1ULzJL6dr
-         VrdOwbhti6096joNVadOPbiBCfxJly8Mlgaj1ayD1RU+LdlgjfxgRL5+V8dYyb1O8SFq
-         qLCUHx7qncAdvJhxDVgcJGIG7+/PyY2oRnHFbeqIY2kR7O4IXdXYlQ8zqp2TutiZgsEU
-         SX2edo24SxYw3BHFfuALFO0utriSddfh4QUOiygCSK9cYDAcsGSzbUi8YQKqQPB5oOFF
-         ZE3m5ROw/X09XWoUF+Ytf4hdNeDfH4zx/L2k2kVJNnDNJ0NQ98wleVw9Pt6oiS20EOvS
-         i3EQ==
-X-Gm-Message-State: ACrzQf0NGExPL7GmnkcYo/bjKx4C2IQkUjWzZDgVx/d7VESD9QuXDuPX
-        gjiw82Ch3v9autePifi+LQ==
-X-Google-Smtp-Source: AMsMyM6T9ScHyplV8DUMmVXsYZJDlJy44ULOarxqKrJ0om+kfJu4gyKESM4hTCRect7aLq20aYkb5w==
-X-Received: by 2002:a05:6808:bca:b0:350:b22b:1283 with SMTP id o10-20020a0568080bca00b00350b22b1283mr122648oik.82.1664574966172;
-        Fri, 30 Sep 2022 14:56:06 -0700 (PDT)
+        bh=LLT3ZYBdhjAVbmPO/uc2xLKM7qGWQtc4/hcvgBHyd9s=;
+        b=lXG2RbSv9XLijqIIokFRQR2/4OXodHdVsheKP1uiCTaD+Ziu+WzLlBPGJBEnEYdCAn
+         HVGMhAYmHMcshXNFK21PawZn3p6PBPzMUHEcKxuMykf/6h8ksoO8PhuzLhspKz0EzWtR
+         1uZlUCusjL/kjhPxLGdTjjq0o3RIZrONvWnQiDgO+xU7R3EEBnIAFr6saWJx8QCykUny
+         efxKLDnaD9cG3K+ch/pKfn+B6LHZUrdlTo2g8u1K4c26FVoPoq2dNMLK8XqSRH0a+PFQ
+         Y9HkbaVEMpBrt0OFMt0hSs3gwkq+oRqyFWQxaJ3v3ISiFB6zaA9ncPluNx525QWLx7x1
+         p9Ew==
+X-Gm-Message-State: ACrzQf2py4r+wS0gwO3jfQsGnAkm9k5SalmObE23eti09yUCxo7CnvoH
+        9QPBbNGRxhusiug+u1x/9Q==
+X-Google-Smtp-Source: AMsMyM6IrejG/870CvnrzUlNmyBET4I5DXOzFKtUrfEAwncNQElS2UqVUUb3+tMW/6JK2TF/26FdJg==
+X-Received: by 2002:a9d:ed2:0:b0:657:438a:eefb with SMTP id 76-20020a9d0ed2000000b00657438aeefbmr4289417otj.239.1664575212616;
+        Fri, 30 Sep 2022 15:00:12 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bx21-20020a056830601500b0065689e13f52sm805697otb.71.2022.09.30.14.56.05
+        by smtp.gmail.com with ESMTPSA id g65-20020acab644000000b0035028730c90sm782022oif.1.2022.09.30.15.00.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 14:56:05 -0700 (PDT)
-Received: (nullmailer pid 1106680 invoked by uid 1000);
-        Fri, 30 Sep 2022 21:56:04 -0000
-Date:   Fri, 30 Sep 2022 16:56:04 -0500
+        Fri, 30 Sep 2022 15:00:11 -0700 (PDT)
+Received: (nullmailer pid 1111251 invoked by uid 1000);
+        Fri, 30 Sep 2022 22:00:11 -0000
+Date:   Fri, 30 Sep 2022 17:00:11 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Yang Yingliang <yangyingliang@huawei.com>
-Cc:     devicetree@vger.kernel.org, frowand.list@gmail.com
-Subject: Re: [PATCH -next 1/2] of/address: introduce of_address_count() helper
-Message-ID: <20220930215604.GA1090758-robh@kernel.org>
-References: <20220930090845.503815-1-yangyingliang@huawei.com>
- <20220930090845.503815-2-yangyingliang@huawei.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 1/2] media: dt-bindings: mediatek: Rename child node
+ names for decoder
+Message-ID: <20220930220011.GA1107972-robh@kernel.org>
+References: <20220930112237.14411-1-allen-kh.cheng@mediatek.com>
+ <20220930112237.14411-2-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220930090845.503815-2-yangyingliang@huawei.com>
+In-Reply-To: <20220930112237.14411-2-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 30, 2022 at 05:08:44PM +0800, Yang Yingliang wrote:
-> Introduce of_address_count() helper to count the IO resources
-> instead of open-coding it.
-> 
-> Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
+On Fri, Sep 30, 2022 at 07:22:36PM +0800, Allen-KH Cheng wrote:
+> In order to make the names of the child nodes more generic, we rename
+> "vcodec" to "video-codec" for decoder in patternProperties and example.
+
+They are either generic or they aren't. Until something generic is 
+defined, I don't think it's worth the churn to change.
+
+
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  drivers/of/address.c       | 11 +++++++++++
->  include/linux/of_address.h |  7 +++++++
->  2 files changed, 18 insertions(+)
+>  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml    | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/of/address.c b/drivers/of/address.c
-> index 96f0a12e507c..e32846a9a8d5 100644
-> --- a/drivers/of/address.c
-> +++ b/drivers/of/address.c
-> @@ -848,6 +848,17 @@ int of_address_to_resource(struct device_node *dev, int index,
->  }
->  EXPORT_SYMBOL_GPL(of_address_to_resource);
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> index c4f20acdc1f8..67fde48f991c 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> @@ -91,7 +91,7 @@ properties:
 >  
-> +int of_address_count(struct device_node *np)
-> +{
-> +	struct resource res;
-> +	int count = 0;
-> +
-> +	while (of_address_to_resource(np, count, &res) == 0)
-> +		count++;
-> +
-> +	return count;
-> +}
+>  # Required child node:
+>  patternProperties:
+> -  '^vcodec-lat@[0-9a-f]+$':
+> +  '^video-codec-lat@[0-9a-f]+$':
 
-EXPORT?
+Just 'video-codec' doesn't work?
 
-However, I'd just make this always inline instead.
-
-> +
->  /**
->   * of_iomap - Maps the memory mapped IO for a given device_node
->   * @np:		the device whose io range will be mapped
-> diff --git a/include/linux/of_address.h b/include/linux/of_address.h
-> index 45598dbec269..63027e8f3397 100644
-> --- a/include/linux/of_address.h
-> +++ b/include/linux/of_address.h
-> @@ -43,6 +43,7 @@ extern u64 of_translate_dma_address(struct device_node *dev,
->  extern u64 of_translate_address(struct device_node *np, const __be32 *addr);
->  extern int of_address_to_resource(struct device_node *dev, int index,
->  				  struct resource *r);
-> +extern int of_address_count(struct device_node *np);
->  extern void __iomem *of_iomap(struct device_node *device, int index);
->  void __iomem *of_io_request_and_map(struct device_node *device,
->  				    int index, const char *name);
-> @@ -127,6 +128,7 @@ static inline bool of_dma_is_coherent(struct device_node *np)
->  #ifdef CONFIG_OF
->  extern int of_address_to_resource(struct device_node *dev, int index,
->  				  struct resource *r);
-> +extern int of_address_count(struct device_node *np);
-
-I'm pretty sure Sparc build is going to break. Sparc has its own 
-implementation of of_address_to_resource().
-
->  void __iomem *of_iomap(struct device_node *node, int index);
->  #else
->  static inline int of_address_to_resource(struct device_node *dev, int index,
-> @@ -139,6 +141,11 @@ static inline void __iomem *of_iomap(struct device_node *device, int index)
->  {
->  	return NULL;
->  }
-> +
-> +static inline int of_address_count(struct device_node *np)
-> +{
-> +	return 0;
-> +}
->  #endif
->  #define of_range_parser_init of_pci_range_parser_init
+>      type: object
 >  
+>      properties:
+> @@ -145,7 +145,7 @@ patternProperties:
+>  
+>      additionalProperties: false
+>  
+> -  '^vcodec-core@[0-9a-f]+$':
+> +  '^video-codec-core@[0-9a-f]+$':
+>      type: object
+>  
+>      properties:
+> @@ -241,7 +241,7 @@ examples:
+>              #size-cells = <2>;
+>              ranges = <0 0 0 0x16000000 0 0x40000>;
+>              reg = <0 0x16000000 0 0x1000>;		/* VDEC_SYS */
+> -            vcodec-lat@10000 {
+> +            video-codec-lat@10000 {
+>                  compatible = "mediatek,mtk-vcodec-lat";
+>                  reg = <0 0x10000 0 0x800>;
+>                  interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
+> @@ -264,7 +264,7 @@ examples:
+>                  power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
+>              };
+>  
+> -            vcodec-core@25000 {
+> +            video-codec-core@25000 {
+>                  compatible = "mediatek,mtk-vcodec-core";
+>                  reg = <0 0x25000 0 0x1000>;
+>                  interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
 > -- 
-> 2.25.1
+> 2.18.0
 > 
 > 
