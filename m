@@ -2,162 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D7265F165F
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 00:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F8A5F168B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 01:14:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231248AbiI3W5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 18:57:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46036 "EHLO
+        id S231686AbiI3XOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 19:14:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230283AbiI3W5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 18:57:44 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BCBC13C840;
-        Fri, 30 Sep 2022 15:57:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 28AD4B82AA2;
-        Fri, 30 Sep 2022 22:57:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECAA6C433D6;
-        Fri, 30 Sep 2022 22:57:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664578660;
-        bh=lmKL7buOIcBCLg9QEZp/Zv0D0aOHO0tS1dI9NAZLDKA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qEdnmL6pt+ncwenmBMM11NkZs6RnX5tnZJ6ZU574DjGrVdAd7xlQuXXOcweEgs/03
-         Ycp3D1UBLca4WnW0Gc7nh5A3CRI088KX/rcfsM+AnEl+AoSQKk+XrFPMyD0qzUi+83
-         JxXtCfZkWwJkjUIFxACIJb0ymWdOGXBjW1D3N1QYZUmcoYsWKz9gDAr1j2+AWgklNS
-         6B2pI9AgeZYzdUoy0UB1MutjkyiR7DAvJbgVCYuNZP7REFI+0kb5Dw+OBqggwXbVk9
-         EgdGDOc59B7w8OU3BZe1kwkbPjykctZhxl+o3LP1AqLWhhuQ9YSyLqnfhPRRLiAWHv
-         wD5i6SBN7myFw==
-Date:   Fri, 30 Sep 2022 18:57:36 -0400
-From:   William Breathitt Gray <wbg@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     William Breathitt Gray <william.gray@linaro.org>,
+        with ESMTP id S231180AbiI3XOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 19:14:20 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B541D18F412
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 16:14:19 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id c2so2636097lfb.10
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 16:14:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=mDn1ZRVl5DD0yFM7lDUNpZLc1WYibNTj/87n0f3vqCk=;
+        b=GeH2L0oiU04kbCIpcWo1GVRIdZLoKbB9QS+RRLxrZ/pPtFnOrrManGGHQ9osmR9iHV
+         hlZCEiBCIV/jJBJdyqksSecWKsGbuLC9o081DEuSzMZbO/iafIFwNf7k4gBzDHAqJrS/
+         t0q8LuukHG9O+QpK1cwEXD1PeTt03mr1NdAV8Hu0RSShi+vHw/ip+Cfa9o3RPcRXnmHQ
+         ffsG1x3SS8PVfcokC323W32Byc65lFKGi4LOGy+wi8HUyAkMdfspGIjOXseH0TfkTXGR
+         YAGs/C+mWGtNmLLlWBG5stzXCoCdib5qboo+8hIP5bVOexJptYguK6AhHeVn3ylMfmhX
+         1Spw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=mDn1ZRVl5DD0yFM7lDUNpZLc1WYibNTj/87n0f3vqCk=;
+        b=EMECIcnWcJ3o+lJHRIwmBmziUAGvmdEOjcCDbaIsmooDs2lnx0mnMUdghxxFq3FU1w
+         JE7yT14VLuHhvPGCGxxrhiv7KIx7GELYQmQJDTH4aUwa2c/pZ03jaMC82Ydj8XPwsjyt
+         rtOdEKhfvjtduHQLT1NghGjR6rwa0U0NjW/1iM88uGXN1ZHeOByMlcaybLWpHH5Mr8KK
+         KBbp6s/WKRRweu6yz7epPcrLhNPlyWkz21kp+JTZ7FDAHs1Jh/ohFRnbVMzf4fsf9bhh
+         yz7xmWSx2EPmeHQuqw9zKHHDmROPz4fIuMr45+QZB1AJkEY9InUIhcpf+HVUfc5YKkWU
+         aZfA==
+X-Gm-Message-State: ACrzQf3LgY+AFDCcoHZCfn+ul93NvmgDdQXOYS1w+3SYWoABlcrrM4c9
+        4YUDVBQVZktrtQRR3WTPwMjlFg==
+X-Google-Smtp-Source: AMsMyM6WMSAXxxEllJAp3kvMd29rgDdR3Tq/RhwY+KGy/Qu12mcXZuzMLbEctS9YL/MlZGAlW9LlEA==
+X-Received: by 2002:a05:6512:3d28:b0:49f:4b31:909b with SMTP id d40-20020a0565123d2800b0049f4b31909bmr3821703lfv.669.1664579657998;
+        Fri, 30 Sep 2022 16:14:17 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id s6-20020a05651c048600b0026c0f6be5dasm261666ljc.116.2022.09.30.16.14.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Sep 2022 16:14:17 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Lee Jones <lee@kernel.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH RFC 0/8] Add RZ/G2L MTU3a MFD and Counter driver
-Message-ID: <Yzd0YAWG/W9RNLQA@ishi>
-References: <20220926132114.60396-1-biju.das.jz@bp.renesas.com>
- <YzNztKSYQPQrnV7k@fedora>
- <OS0PR01MB59228FA93ED4D6DB8D9B799D86549@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: soc: qcom: qcom,spm: support regulator SAW2 devics
+Date:   Sat,  1 Oct 2022 02:14:16 +0300
+Message-Id: <20220930231416.925132-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="MpzE21/J3ughFNeW"
-Content-Disposition: inline
-In-Reply-To: <OS0PR01MB59228FA93ED4D6DB8D9B799D86549@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Merge qcom,saw2.txt bindings to existing qcom,spm.yaml. This fixes
+compatibility of qcom,spm schema with regulator SAW2 devices.
 
---MpzE21/J3ughFNeW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../devicetree/bindings/arm/msm/qcom,saw2.txt | 58 -------------------
+ .../bindings/soc/qcom/qcom,spm.yaml           | 44 +++++++++-----
+ 2 files changed, 30 insertions(+), 72 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
 
-On Wed, Sep 28, 2022 at 06:14:57AM +0000, Biju Das wrote:
-> Hi William Breathitt Gray,
->=20
-> Thanks for the feedback.
->=20
-> > Subject: Re: [PATCH RFC 0/8] Add RZ/G2L MTU3a MFD and Counter driver
-> >=20
-> > On Mon, Sep 26, 2022 at 02:21:06PM +0100, Biju Das wrote:
-> > > The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
-> > > the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
-> > > channels and one 32-bit timer channel. It supports the following
-> > > functions
-> > >  - Counter
-> > >  - Timer
-> > >  - PWM
-> > >
-> > > This patch series aim to add MFD and counter driver for MTU3a.
-> > > Subsequent patch seies will add TImer and PWM driver support also
-> > > enhancements to counter driver.
-> >=20
-> > Hello Biju,
-> >=20
-> > I see this device consists of several channels, but only one Count is
-> > defined in the counter patch ("Channel 1 Count"). Do all channels
-> > support counting, or is it limited to just one channel?
->=20
-> It is like this
-> MTU1 channel :- 1 16-bit phase counter
-> MTU2-Channel :- 1 16-bit phase counter
-> MTU1 + MTU2 channel combined:- 1 32-bit phase counter
-> Other channels are not supporting phase counting.
->=20
-> Each counter device will have 1 channel. Currently it supports
-> 16-bit phase counting.
->=20
-> Please see my test program. Am I missing something here?
->=20
-> My test program:-
->=20
-> echo 1 > /sys/bus/counter/devices/counter0/count0/enable
-> echo 50 > /sys/bus/counter/devices/counter0/count0/ceiling
-> devmem2 0x10001391 b 0x00 # Enable phase clock selection A for MTU2.
-> echo 1 > /sys/bus/counter/devices/counter1/count0/enable
-> echo 50 > /sys/bus/counter/devices/counter1/count0/ceiling
->=20
-> for i in {1..5};
-> do cat /sys/bus/counter/devices/counter0/count0/count ;
-> cat /sys/bus/counter/devices/counter0/count0/direction;
-> cat /sys/bus/counter/devices/counter1/count0/count;
-> cat /sys/bus/counter/devices/counter1/count0/direction;
-> done
->=20
-> Cheers,
-> Biju
+diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt b/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+deleted file mode 100644
+index c0e3c3a42bea..000000000000
+--- a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
++++ /dev/null
+@@ -1,58 +0,0 @@
+-SPM AVS Wrapper 2 (SAW2)
+-
+-The SAW2 is a wrapper around the Subsystem Power Manager (SPM) and the
+-Adaptive Voltage Scaling (AVS) hardware. The SPM is a programmable
+-power-controller that transitions a piece of hardware (like a processor or
+-subsystem) into and out of low power modes via a direct connection to
+-the PMIC. It can also be wired up to interact with other processors in the
+-system, notifying them when a low power state is entered or exited.
+-
+-Multiple revisions of the SAW hardware are supported using these Device Nodes.
+-SAW2 revisions differ in the register offset and configuration data. Also, the
+-same revision of the SAW in different SoCs may have different configuration
+-data due the differences in hardware capabilities. Hence the SoC name, the
+-version of the SAW hardware in that SoC and the distinction between cpu (big
+-or Little) or cache, may be needed to uniquely identify the SAW register
+-configuration and initialization data. The compatible string is used to
+-indicate this parameter.
+-
+-PROPERTIES
+-
+-- compatible:
+-	Usage: required
+-	Value type: <string>
+-	Definition: Must have
+-			"qcom,saw2"
+-		    A more specific value could be one of:
+-			"qcom,apq8064-saw2-v1.1-cpu"
+-			"qcom,msm8226-saw2-v2.1-cpu"
+-			"qcom,msm8974-saw2-v2.1-cpu"
+-			"qcom,apq8084-saw2-v2.1-cpu"
+-
+-- reg:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: the first element specifies the base address and size of
+-		    the register region. An optional second element specifies
+-		    the base address and size of the alias register region.
+-
+-- regulator:
+-	Usage: optional
+-	Value type: boolean
+-	Definition: Indicates that this SPM device acts as a regulator device
+-			device for the core (CPU or Cache) the SPM is attached
+-			to.
+-
+-Example 1:
+-
+-	power-controller@2099000 {
+-		compatible = "qcom,saw2";
+-		reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
+-		regulator;
+-	};
+-
+-Example 2:
+-	saw0: power-controller@f9089000 {
+-		compatible = "qcom,apq8084-saw2-v2.1-cpu", "qcom,saw2";
+-		reg = <0xf9089000 0x1000>, <0xf9009000 0x1000>;
+-	};
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+index f433e6e0a19f..8fe35fde70b8 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+@@ -16,23 +16,33 @@ description: |
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - qcom,sdm660-gold-saw2-v4.1-l2
+-          - qcom,sdm660-silver-saw2-v4.1-l2
+-          - qcom,msm8998-gold-saw2-v4.1-l2
+-          - qcom,msm8998-silver-saw2-v4.1-l2
+-          - qcom,msm8909-saw2-v3.0-cpu
+-          - qcom,msm8916-saw2-v3.0-cpu
+-          - qcom,msm8226-saw2-v2.1-cpu
+-          - qcom,msm8974-saw2-v2.1-cpu
+-          - qcom,apq8084-saw2-v2.1-cpu
+-          - qcom,apq8064-saw2-v1.1-cpu
++    oneOf:
+       - const: qcom,saw2
++      - items:
++          - enum:
++              - qcom,sdm660-gold-saw2-v4.1-l2
++              - qcom,sdm660-silver-saw2-v4.1-l2
++              - qcom,msm8998-gold-saw2-v4.1-l2
++              - qcom,msm8998-silver-saw2-v4.1-l2
++              - qcom,msm8909-saw2-v3.0-cpu
++              - qcom,msm8916-saw2-v3.0-cpu
++              - qcom,msm8226-saw2-v2.1-cpu
++              - qcom,msm8974-saw2-v2.1-cpu
++              - qcom,apq8084-saw2-v2.1-cpu
++              - qcom,apq8064-saw2-v1.1-cpu
++          - const: qcom,saw2
+ 
+   reg:
+-    description: Base address and size of the SPM register region
+-    maxItems: 1
++    description: Base address and size of the SPM register region. An optional
++      second element specifies the base address and size of the alias register
++      region.
++    minItems: 1
++    maxItems: 2
++
++  regulator:
++    type: boolean
++    description: Indicates that this SPM device acts as a regulator device
++      device for the core (CPU or Cache) the SPM is attached to.
+ 
+ required:
+   - compatible
+@@ -79,4 +89,10 @@ examples:
+         reg = <0x17912000 0x1000>;
+     };
+ 
++  - |
++    power-controller@2099000 {
++        compatible = "qcom,saw2";
++        reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
++        regulator;
++    };
+ ...
+-- 
+2.35.1
 
-I'm not familiar with this hardware, but it looks like MTU1 and MTU2 are
-on the same device. I think a more natural way to expose this
-functionality in the Counter subsystem would be to define a Count for
-each count value you can support; so something like this (all under
-/sys/bus/counter/devices/counter0):
-
-* count0 :- MTU1
-* count1 :- MTU2
-* count3 :- MTU1 + MTU2
-
-You can then control the phase selection using a top-level Counter
-device extension (e.g. /sys/bus/counter/devices/counter0/phase) that
-configures whether you're in 16-bit phase or 32-phase counting mode.
-
-William Breathitt Gray
-
---MpzE21/J3ughFNeW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCYzd0YAAKCRC1SFbKvhIj
-K1NmAP0T9ebAjj5jOdsLtJEGgcdaNQkv7lQ/geskbeNovsFycAD/d6QOE0LVfQU3
-bRDGLHemU/QsmfDjnd6eHuRDpAA2ZwQ=
-=61Rh
------END PGP SIGNATURE-----
-
---MpzE21/J3ughFNeW--
