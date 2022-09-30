@@ -2,117 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1E6F5F09C6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 13:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B50DC5F09D4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 13:17:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231540AbiI3LQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 07:16:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44820 "EHLO
+        id S231506AbiI3LRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 07:17:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231547AbiI3LQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 07:16:12 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF8332409C
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 03:59:04 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id b24so4397344ljk.6
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 03:59:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=4hzPE9oTqY0sNAFbbyjx8cS0M/EZm+X3v2vFWwcKWqU=;
-        b=vHOu28gZ/slIidoNmyLNGLt7JE69UEMTGNGAWTKkHaLClmTVqAidQOmwKnur/460Px
-         ViPf7eVqpKBG654mWEePVJGSUuM6vdQwL2NOQr9ZrySEs1hvEkkLw20ev0TNyWv1qUaa
-         ipmWGB2IhttXt5NrkcgQC5BI67lAOLe5xRjxpCQGJaPt9xYUpX9SQbZntCYlbE+WIvCX
-         JgfXC4DChU4hOlKIaZBYBgb2/EaQ538yLHmKLYDYpAxiiDB79+ax0cW+UnPIamoiOWub
-         6PZgIJkw0dIXycpSq2e4gIeuhcbAegWj8Vbu8K4i2U3MfmgIh89THvGV15ZinYhFop1V
-         lyMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=4hzPE9oTqY0sNAFbbyjx8cS0M/EZm+X3v2vFWwcKWqU=;
-        b=P2c0unM+1B8D+FLwQFhR9a+7lOvG1hU2+g6uDBLQQwiUh3d/i32jM2/Z34GW3bZOfT
-         bSA63zt1AIb1FwVLNkvqLnO2xLTZqHpemaPfsB/qSoGvv7QJbODJFIBtjGmHFWJ8CGDZ
-         PEKtnFYMXXivfiiLjWIHVpEIi/0kYlAT/lZ0a6MezRs8ZYEL8TC/+qLhg7R0mRrx/BUW
-         /8QgkHhi3W8WkBfvJxqqTsl1Azb/CAmWk8X0xenvym2JPUcx/jouJCJu1/8ABfSTEwfj
-         zqjKs1ZKYKsP2hnzhcEkIe6d/a3Oe5zj+rjbZEMIBVJShq7M/K6cj5jRXt49U4Xf+0pl
-         QdjQ==
-X-Gm-Message-State: ACrzQf1D4ezir/ZpA1SxTOguelLr13WXTBVW1ajrUeD6PlF6Vv0/Ahev
-        veaczxPFRgMxSWVoCRD1pr1b4A==
-X-Google-Smtp-Source: AMsMyM7/M35hE/mV3r6usdYHywAzNP/Z+T+a0YioD4qkM0GJQ/nt2HYQISleBq7PKvTlVL9mhfKOuQ==
-X-Received: by 2002:a2e:2e0b:0:b0:26b:f760:1c51 with SMTP id u11-20020a2e2e0b000000b0026bf7601c51mr2670898lju.494.1664535543106;
-        Fri, 30 Sep 2022 03:59:03 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d10-20020ac2544a000000b00492f45cbbfcsm250893lfn.302.2022.09.30.03.59.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Sep 2022 03:59:02 -0700 (PDT)
-Message-ID: <ff493398-7786-db0d-ae94-b52207e2a56c@linaro.org>
-Date:   Fri, 30 Sep 2022 12:59:01 +0200
+        with ESMTP id S232185AbiI3LQt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 07:16:49 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC89A7228;
+        Fri, 30 Sep 2022 04:00:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 3821DCE24CD;
+        Fri, 30 Sep 2022 11:00:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 62C0FC433D7;
+        Fri, 30 Sep 2022 11:00:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664535617;
+        bh=A1VlmBks7Q6/XSUEg+ijZ59ILJPGN/96FVPihsuhx5s=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=EPnN/kIgrTs7JjxqPKJTSARH+5KVU69JrDCJQq5DCqGhvs1WrT3FoSWGnu1kD1J4e
+         wDT6gKO72I8TdjCX+3oir32uslqQvxYFJnHrGk06byHAGCkriPUPGosDeGW90f5pKC
+         3y+aSpNSgPrbfS6Uai7zqVQB7tERxGxrVjeTEMwx8lK6gXG+SX+jX02GFndcIzbnNe
+         Ryq1DyU7h71fPHb0lBxKGMpK6Oom0IFeDdBojjLIKPE050RFl727Y+oeYV705JaYmZ
+         kdj9Eomo/UYjPFn8GqtMS7vH2ctwDuDGsrUCJtkiOMya//6MWdR03o1oE2KWdYqXR8
+         u91ZVH8+7gLmg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 45FC1E49FA5;
+        Fri, 30 Sep 2022 11:00:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v1 20/30] dt-bindings: clock: Add
- starfive,jh7110-clkgen-aon bindings
-Content-Language: en-US
-To:     Hal Feng <hal.feng@linux.starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        linux-kernel@vger.kernel.org
-References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
- <20220930055632.5136-1-hal.feng@linux.starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220930055632.5136-1-hal.feng@linux.starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v4 0/6] tsnep: multi queue support and some other
+ improvements
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166453561728.12525.13335744248938169663.git-patchwork-notify@kernel.org>
+Date:   Fri, 30 Sep 2022 11:00:17 +0000
+References: <20220927195842.44641-1-gerhard@engleder-embedded.com>
+In-Reply-To: <20220927195842.44641-1-gerhard@engleder-embedded.com>
+To:     Gerhard Engleder <gerhard@engleder-embedded.com>
+Cc:     netdev@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
+        edumazet@google.com, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2022 07:56, Hal Feng wrote:
-> From: Emil Renner Berthing <kernel@esmil.dk>
+Hello:
+
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
+
+On Tue, 27 Sep 2022 21:58:36 +0200 you wrote:
+> Add support for additional TX/RX queues along with RX flow classification
+> support.
 > 
-> Add bindings for the always-on clock generator on the JH7110
-> RISC-V SoC by StarFive Technology Ltd.
+> Binding is extended to allow additional interrupts for additional TX/RX
+> queues. Also dma-coherent is allowed as minor improvement.
 > 
+> RX path optimisation is done by using page pool as preparations for future
+> XDP support.
+> 
+> [...]
 
-(...)
+Here is the summary with links:
+  - [net-next,v4,1/6] dt-bindings: net: tsnep: Allow dma-coherent
+    https://git.kernel.org/netdev/net-next/c/ff46c610abd6
+  - [net-next,v4,2/6] dt-bindings: net: tsnep: Allow additional interrupts
+    https://git.kernel.org/netdev/net-next/c/60e1b494ef88
+  - [net-next,v4,3/6] tsnep: Move interrupt from device to queue
+    (no matching commit)
+  - [net-next,v4,4/6] tsnep: Support multiple TX/RX queue pairs
+    https://git.kernel.org/netdev/net-next/c/762031375d5c
+  - [net-next,v4,5/6] tsnep: Add EtherType RX flow classification support
+    https://git.kernel.org/netdev/net-next/c/308ce1426509
+  - [net-next,v4,6/6] tsnep: Use page pool for RX
+    https://git.kernel.org/netdev/net-next/c/bb837a37db8d
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/starfive-jh7110-sys.h>
-> +
-> +    aoncrg: clock-controller@17000000 {
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-
-
-Best regards,
-Krzysztof
 
