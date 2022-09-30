@@ -2,155 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ADF85F0E2A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 16:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 121865F0E60
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:03:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231515AbiI3O5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 10:57:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33348 "EHLO
+        id S229613AbiI3PDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 11:03:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230344AbiI3O5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 10:57:21 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1947E87F82;
-        Fri, 30 Sep 2022 07:57:16 -0700 (PDT)
-X-UUID: 925f0b8dfea04343a234308898737c1e-20220930
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=ETG24WDlQ2uPL5EVj2vGSSok7fEm7bbdqh1C2k70J14=;
-        b=UYP3fTEG3JKwlfggAfRNzA3YKLuT+YCyzFEVA19l5fFSPA4RUn9uBzvmIaVp9NTCaDEvvtBjPfAHk7B7CjoRE+zUoy9xrnEItf6iMIVKhBXIn+AtUe6QEWqnY6U8MhLTVbXfIbAv3q/fm1PAgsxYzWkyHlSJoUIlpdGA1HgI95Y=;
-X-CID-P-RULE: Spam_GS6885AD
-X-CID-O-INFO: VERSION:1.1.11,REQID:570ec36a-408e-494e-98fe-d42b7fa26336,IP:0,U
-        RL:25,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS6885AD,ACT
-        ION:quarantine,TS:120
-X-CID-INFO: VERSION:1.1.11,REQID:570ec36a-408e-494e-98fe-d42b7fa26336,IP:0,URL
-        :25,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
-        N:quarantine,TS:120
-X-CID-META: VersionHash:39a5ff1,CLOUDID:f00bcde4-87f9-4bb0-97b6-34957dc0fbbe,B
-        ulkID:220930225711MCRTV2GL,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48|823|
-        824,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:n
-        il,COL:0
-X-UUID: 925f0b8dfea04343a234308898737c1e-20220930
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1360533605; Fri, 30 Sep 2022 22:57:10 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 30 Sep 2022 22:57:09 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Fri, 30 Sep 2022 22:57:09 +0800
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <p.zabel@pengutronix.de>
-CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
-        <linux-mediatek@lists.infradead.org>,
+        with ESMTP id S231149AbiI3PDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:03:03 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D24A60E6;
+        Fri, 30 Sep 2022 08:02:59 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28UD1mL1007207;
+        Fri, 30 Sep 2022 17:02:45 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=NOdCqgkd7AQ9V7pD4WOga7YuBycqS81tG6ayojUlWeA=;
+ b=JLW5kiR2flzrYtNSpKMPEeTpI7hdMA9SBA8k6lHQ8p57Pwfn4HozA8X01QBWA3mAjtzh
+ 1rd3Q8rTESN9KNTNJAr6g6pIgjAru0i9QJo3cT/qa1wUMgJHHe4WNesZzjUZjCyKWK7f
+ /+I6dRTWJyK7ozj21md0J1PQ0Lk/qS+6v10aCxoQUsolW/grxJRj3WOiPT8NROqsCuP7
+ /MjokJWBeQNg4U4LQXrlrnDFir1ycrKynnNNXG9S8iGCUksueoRHqW13L0y2BaD/FLP1
+ M/AUpoNNIxjhnPU6xgZV4BZwtPNACLsrHpngXXIWguRvYUi/N22x7w6uyik7Ast6znLV Uw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3jwxc29nsu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Sep 2022 17:02:45 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EB8A5100038;
+        Fri, 30 Sep 2022 17:02:44 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E2CB9231DF0;
+        Fri, 30 Sep 2022 17:02:44 +0200 (CEST)
+Received: from localhost (10.75.127.50) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Fri, 30 Sep
+ 2022 17:02:44 +0200
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To:     <alexandre.torgue@foss.st.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <amelie.delaunay@foss.st.com>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH 12/12] dt-bindings: mediatek: mt8188: add mt8188-mt6359 document
-Date:   Fri, 30 Sep 2022 22:57:01 +0800
-Message-ID: <20220930145701.18790-13-trevor.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220930145701.18790-1-trevor.wu@mediatek.com>
-References: <20220930145701.18790-1-trevor.wu@mediatek.com>
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <fabrice.gasnier@foss.st.com>
+Subject: [PATCH] ARM: dts: stm32: update vbus-supply of usbphyc_port0 on stm32mp157c-ev1
+Date:   Fri, 30 Sep 2022 17:02:32 +0200
+Message-ID: <20220930150232.249573-1-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-30_04,2022-09-29_03,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add document for mt8188 board with mt6359.
+From: Amelie Delaunay <amelie.delaunay@foss.st.com>
 
-Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+phy-stm32-usbphyc bindings uses a connector node with vbus-supply
+property.
+
+Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 ---
- .../bindings/sound/mt8188-mt6359.yaml         | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mt8188-mt6359.yaml
+ arch/arm/boot/dts/stm32mp157c-ev1.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8188-mt6359.yaml b/Documentation/devicetree/bindings/sound/mt8188-mt6359.yaml
-new file mode 100644
-index 000000000000..57c7c5ceef8a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mt8188-mt6359.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mt8188-mt6359.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+index d142dd30e16b..e22e394832a8 100644
+--- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
++++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+@@ -385,6 +385,11 @@ &usbphyc_port0 {
+ 	st,tune-squelch-level = <3>;
+ 	st,tune-hs-rx-offset = <2>;
+ 	st,no-lsfs-sc;
 +
-+title: MediaTek MT8188 ASoC sound card driver
-+
-+maintainers:
-+  - Trevor Wu <trevor.wu@mediatek.com>
-+
-+description:
-+  This binding describes the MT8188 sound card.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8188-sound
-+
-+  model:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: User specified audio sound card name
-+
-+  audio-routing:
-+    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-+    description:
-+      A list of the connections between audio components. Each entry is a
-+      sink/source pair of strings. Valid names could be the input or output
-+      widgets of audio components, power supplies, MicBias of codec and the
-+      software switch.
-+
-+  mediatek,platform:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8188 ASoC platform.
-+
-+  mediatek,dptx-codec:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8188 Display Port Tx codec node.
-+
-+  mediatek,hdmi-codec:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8188 HDMI codec node.
-+
-+  mediatek,dai-link:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    description:
-+      A list of the desired dai-links in the sound card. Each entry is a
-+      name defined in the machine driver.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - mediatek,platform
-+
-+examples:
-+  - |
-+
-+    sound: mt8188-sound {
-+        compatible = "mediatek,mt8188-sound";
-+        mediatek,platform = <&afe>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&aud_pins_default>;
-+        audio-routing =
-+            "Headphone", "Headphone L",
-+            "Headphone", "Headphone R",
-+            "AIN1", "Headset Mic";
-+    };
-+
-+...
++	connector {
++		compatible = "usb-a-connector";
++		vbus-supply = <&vbus_sw>;
++	};
+ };
+ 
+ &usbphyc_port1 {
 -- 
-2.18.0
+2.25.1
 
