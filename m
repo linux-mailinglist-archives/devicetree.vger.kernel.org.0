@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAFDE5F1111
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 19:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 521675F1116
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 19:45:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231623AbiI3Rnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 13:43:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60272 "EHLO
+        id S230283AbiI3RpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 13:45:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230283AbiI3Rnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 13:43:42 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18FE62CE2D;
-        Fri, 30 Sep 2022 10:43:42 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id o64so5411915oib.12;
-        Fri, 30 Sep 2022 10:43:42 -0700 (PDT)
+        with ESMTP id S229971AbiI3RpV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 13:45:21 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0993FA5C0;
+        Fri, 30 Sep 2022 10:45:19 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id m130so5428668oif.6;
+        Fri, 30 Sep 2022 10:45:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=JjEKLed2bS/39PSQcjvnHU6CF//pE8WpWB61kVnAezA=;
-        b=mWM8sI6oAZtXf+YQ9VnupgSirEQkS0w9+h0zOpZU0er2nWavQ8oHbePUoeRvap3R5m
-         XWG5xlUkd3IG9rtpi2On2YNNcbR7EXCOCO7f2j+xb33YL1o+5c/y8dgdM/wv/AE6lT0M
-         fgeGiJGcVE2F+BJGMUn0crHvIkLG+Qok6OZL89cyIHA6PAtrdnC8YGgtWOle6uDNKK64
-         Bt4qK5h31TzmJjSWFaw6BeY+u/nCoGh3gmG31sDdwbt0Djj/fg6tvKIr5HV5aUyJ335+
-         UK5oMBErJjv9/k3XYXHdyy3PbY5inA/D9IMZFcfX30LG1ISx9LS1/XqQvGA8Owo4FTEn
-         BJ4g==
-X-Gm-Message-State: ACrzQf1t91jOQ0ucLLXGTtU68viHATMf8bMLJpDu/8w6vGpGYVhsJ63y
-        ziBpSrBLzm0uwBq4oC1iD0ljWxDfdQ==
-X-Google-Smtp-Source: AMsMyM7VDN6CTtOd11B7+OywO1gEAIKw2Yt+WDP5aDkJpc4Vd2MhUobkVwmzq+e6IuWqxMrUpHxE+Q==
-X-Received: by 2002:a05:6808:201b:b0:350:87c:a8c6 with SMTP id q27-20020a056808201b00b00350087ca8c6mr4510263oiw.228.1664559821221;
-        Fri, 30 Sep 2022 10:43:41 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=oA8vjf+oEK7/6CmiiKkGDsr2L2BO0kznifjtJdNNi7M=;
+        b=GlXOByoDUbYgXHA2FXPJcK0zhAZklfhtv7tH/NwHL7q45P4tqxXP1FQuaba5udB7Vm
+         bODU814FkZxosqih9KU+WRP35GaE/kolqf5mgeQ8kZqr4hU8RnKm8FkXJbql2J1+ajqJ
+         bu8rQf9ltYRbtcx2Z79mWE0szNXu5RIXvyBFD46FajJOG3Js//KjjQf/GjJcVvR7s3Gr
+         Z7Vv4ZyRafLx0aHuftwxE+bfcg3rHoCqdMKNB6vWTsa4LxbyV6SCaC3lgQOM0UGThe6J
+         AX5pAz3VpEHOgfj46fGtlwJcw1lFtokx2cndGT61Hf7o+bpo/mlzfwPErgCO6pqe2CWS
+         BFUw==
+X-Gm-Message-State: ACrzQf0xqMxuLISgVz+vRySS+gHoa2ZA4QqGH6hKlESKqmVZxL5TD3JJ
+        5bUthGhJUqwLXNKGLbl+G+KcFjDhJg==
+X-Google-Smtp-Source: AMsMyM6TAbFxGS4TndhN4N8aHuZF+Iz3Y4Rwch27qWsHMv3QuZnmkGXEOvRqNM7LcI6Ty/xZz7igdg==
+X-Received: by 2002:a05:6808:6cd:b0:34b:73b3:416b with SMTP id m13-20020a05680806cd00b0034b73b3416bmr4263255oih.196.1664559919167;
+        Fri, 30 Sep 2022 10:45:19 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w92-20020a9d3665000000b0061c9ccb051bsm688932otb.37.2022.09.30.10.43.40
+        by smtp.gmail.com with ESMTPSA id q19-20020a9d6313000000b0065c3bb3c72esm695038otk.14.2022.09.30.10.45.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 10:43:40 -0700 (PDT)
-Received: (nullmailer pid 565140 invoked by uid 1000);
-        Fri, 30 Sep 2022 17:43:40 -0000
-Date:   Fri, 30 Sep 2022 12:43:40 -0500
+        Fri, 30 Sep 2022 10:45:18 -0700 (PDT)
+Received: (nullmailer pid 567099 invoked by uid 1000);
+        Fri, 30 Sep 2022 17:45:17 -0000
+Date:   Fri, 30 Sep 2022 12:45:17 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        hauke@hauke-m.de, zajec5@gmail.com, tsbogend@alpha.franken.de,
-        linux-mips@vger.kernel.org, arinc.unal@arinc9.com
-Subject: Re: [PATCH v3 3/3] dt-bindings: mips: brcm: convert CPU bindings for
- BMIPS architecture
-Message-ID: <20220930174340.GA536589-robh@kernel.org>
-References: <20220929072004.874795-1-sergio.paracuellos@gmail.com>
- <20220929072004.874795-4-sergio.paracuellos@gmail.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH v2 01/11] dt-bindings: clock: split
+ qcom,gcc-msm8974,-msm8226 to the separate file
+Message-ID: <166455991729.567045.15845722857981778415.robh@kernel.org>
+References: <20220929092145.473009-1-dmitry.baryshkov@linaro.org>
+ <20220929092145.473009-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220929072004.874795-4-sergio.paracuellos@gmail.com>
+In-Reply-To: <20220929092145.473009-2-dmitry.baryshkov@linaro.org>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -65,127 +68,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 29, 2022 at 09:20:04AM +0200, Sergio Paracuellos wrote:
-> Convert the yaml binding for available CPUs in BMIPS architecture.
+On Thu, 29 Sep 2022 12:21:35 +0300, Dmitry Baryshkov wrote:
+> Move schema for the GCC on MSM8974 and MSM8226 platforms to a separate
+> file to be able to define device-specific clock properties.
 > 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../bindings/mips/brcm/brcm,bmips-cpus.yaml   | 102 ++++++++++++++++++
->  .../bindings/mips/brcm/brcm,bmips.txt         |   8 --
-
-Ah, here it is.
-
->  2 files changed, 102 insertions(+), 8 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
+>  .../bindings/clock/qcom,gcc-msm8974.yaml      | 64 +++++++++++++++++++
+>  .../bindings/clock/qcom,gcc-other.yaml        |  9 +--
+>  2 files changed, 65 insertions(+), 8 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8974.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.yaml b/Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.yaml
-> new file mode 100644
-> index 000000000000..60aa7df9a543
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.yaml
-> @@ -0,0 +1,102 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mips/brcm/brcm,bmips-cpus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MIPS CPUs bindings
-> +
-> +maintainers:
-> +  - Hauke Mehrtens <hauke@hauke-m.de>
-> +  - Rafał Miłecki <zajec5@gmail.com>
-> +
-> +description: |
 
-Don't need '|' if no formatting to preserve.
-
-> +  The device tree allows to describe the layout of BMIPS CPUs.
-> +
-> +patternProperties:
-> +  "^/":
-> +    type: object
-> +    $ref: "/schemas/mips/brcm/soc.yaml#"
-
-This is doesn't do anything.
-
-Your schema is never applied either as 'select' defaults to false if 
-there's not 'compaatible' or '$nodename' in the schema.
-
-> +
-> +properties:
-> +  cpus:
-> +    type: object
-> +    additionalProperties: true
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +      mips-hpt-frequency:
-> +        description: This is common to all CPUs in the system so it lives
-> +          under the "cpus" node.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +    patternProperties:
-> +      "^cpu@[0-9]$":
-> +        type: object
-> +        $ref: "/schemas/mips/cpus.yaml#"
-> +
-> +    required:
-> +      - '#address-cells'
-> +      - '#size-cells'
-> +
-> +    allOf:
-> +      - if:
-> +          properties:
-> +            compatible:
-> +              contains:
-> +                enum:
-> +                  - "brcm,bcm3368"
-> +                  - "brcm,bcm3384"
-> +                  - "brcm,bcm33843"
-> +                  - "brcm,bcm3384-viper"
-> +                  - "brcm,bcm33843-viper"
-> +                  - "brcm,bcm6328"
-> +                  - "brcm,bcm6358"
-> +                  - "brcm,bcm6362"
-> +                  - "brcm,bcm6368"
-> +                  - "brcm,bcm63168"
-> +                  - "brcm,bcm63268"
-> +                  - "brcm,bcm7125"
-> +                  - "brcm,bcm7346"
-> +                  - "brcm,bcm7358"
-> +                  - "brcm,bcm7360"
-> +                  - "brcm,bcm7362"
-> +                  - "brcm,bcm7420"
-> +                  - "brcm,bcm7425"
-> +        then:
-> +          required:
-> +            - mips-hpt-frequency
-
-Other than this property, the cpus.yaml schema in dtschema covers all 
-this.
-
-You allow mips-hpt-frequency on any platform including non-MIPS if this 
-schema actually got applied. Is this intended for all MIPS platforms or 
-just for Broadcom platforms? The former is hard to support as how do we 
-express which platforms are MIPS in schemas. In the latter case, 
-brcm/soc.yaml could have something like this:
-
-properties:
-  cpus:
-    $ref: /schemas/cpus.yaml#
-    unevaluatedProperties: false
-
-    properties:
-      mips-hpt-frequency:
-        ...
-
-    required:
-      - mips-hpt-frequency
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
