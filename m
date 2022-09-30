@@ -2,102 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C909B5F0F01
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:38:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC7CF5F0F06
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:39:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbiI3PiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 11:38:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59480 "EHLO
+        id S230236AbiI3PjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 11:39:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbiI3PiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:38:08 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 848FD197F3A;
-        Fri, 30 Sep 2022 08:38:07 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id c24so4298758plo.3;
-        Fri, 30 Sep 2022 08:38:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=B9/BMzQkCVFD03IIXzu2Mepnbrb2G4V1ssG+c2c8kdU=;
-        b=VHXKvIkCj7AB7fCzr3ersBMhBT2zfqoIH1V9rg+oWAXaG7VMpwqDWIx0n3r3gyUep2
-         3S+pFH0zHGyCn1yfErvHgPZo57bEfK7VmCTp1n5qv3iLqMK7cPnzjc+YUPeHx5MmCMzi
-         CPh+E9oi1lwc0KCiNUHnBKT2JqXsk84AFHU30aUE8Pkaf8flZbpAX6tXoluZg4YkG9kz
-         K0kvCd+zlBRWjZneag5LYBh0E7U3jgKI+TXTLy6zdzyNWRmBRRpDI/3nAIiLNrCUiIzj
-         GiLtWsPex8QdeYAVGsZrlccrt4OX3w8XpMwf21X4tt4A4V4CZe1u6ntRiJZkaYqaJLl9
-         p3Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=B9/BMzQkCVFD03IIXzu2Mepnbrb2G4V1ssG+c2c8kdU=;
-        b=rYLZr3HnRuNedIdzSizR0AAKAStwvB+A3JRAxdAmGmbsMgF+sNaLsUwJbDubsUIpqD
-         YjeEUWuwPh9I/PELl0nf21mSP3ofWdOxTDFGXaDhBGllAEYHcw22GfqzyLJ5ma2D8oFC
-         KHd4UfnSxKBtrXQEQaDoaDVaY5NOT/PUe5EV+H19SCmCfBt+8qnQK0U43h9exPH0/1ZY
-         zP32ZEtJ6oHqz3iUNyWRT83QukE6UH+/byh8zZ+Ni5urZa/bKAtuCeuIfVGb+G+Gbpsi
-         yebn+r/6T/NUPQ4I+dXO8Roh2w0op4Te8eQSsTq3U1duwa2dOFeS6UMuO5fEZHFSyyAj
-         Najg==
-X-Gm-Message-State: ACrzQf3OOL8DD/FcsvI7eQxgHyGAQTF5RJj8ZE4TGEclMNMduxi2+jYp
-        N3JChubam7ydWU5ggsAsQwU=
-X-Google-Smtp-Source: AMsMyM7g1/dT96J0oQmbrOILhBF7Fz0kQLdrrer9miIus4tOiG3FG4Wgv3LoyF8qZdlhhr7Ukmi0fA==
-X-Received: by 2002:a17:902:d490:b0:177:fc1d:6b0c with SMTP id c16-20020a170902d49000b00177fc1d6b0cmr9533294plg.28.1664552286800;
-        Fri, 30 Sep 2022 08:38:06 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:d016:f5be:4ff2:43f])
-        by smtp.gmail.com with ESMTPSA id u68-20020a627947000000b0053e8368ec34sm1986876pfc.32.2022.09.30.08.38.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 08:38:06 -0700 (PDT)
-Date:   Fri, 30 Sep 2022 08:38:03 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, rydberg@bitmath.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH 3/3] input/touchscreen: Add Hynitron cstxxx touchscreen
-Message-ID: <YzcNW/ZVV/KMqpds@google.com>
-References: <20220928214806.13572-1-macroalpha82@gmail.com>
- <20220928214806.13572-4-macroalpha82@gmail.com>
- <YzXGu1YeelH5CGFn@google.com>
- <SN6PR06MB5342901F1E899851B6D9670CA5569@SN6PR06MB5342.namprd06.prod.outlook.com>
+        with ESMTP id S230085AbiI3PjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:39:04 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 462CF1A0D26;
+        Fri, 30 Sep 2022 08:39:03 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-096-057-200.ewe-ip-backbone.de [91.96.57.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8750766022E9;
+        Fri, 30 Sep 2022 16:39:01 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664552341;
+        bh=xIwabsaIowPHOkc7UXM9S9J+Zyzi42pHGnL8JPyUxHs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=EFVHbz6pCL+JkEKmkwqaQmKhxpyq5uJnGVEy2bqGyvc7grGcjCMrxxGzj3nyVd8p3
+         r4nUNEUcUhgcFwTvp4moJg7a2+eC5DP764oUYeQRHWjfE5EBxotgFA1XFc9z3wPO4I
+         gWX3iNyMVTxUQ1LnY0EbCKATDvmLQPt8eUxMnQEfVrMJdYV185s/w0t35SqDXDbAh4
+         aY6JukMCCU3e8iOyD2gg8ctIm1D3qxXvq7i91ezW7+PENme0WbYAvVDwhBktwazHwe
+         RPcWnA50koWR/lYqYRnL0BYU88HoVB1sUX2NsD/P/t4CjZkhv9GPco/vaKFjGkZXbW
+         wCs4iF0xkIsQA==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id F41D4480140; Fri, 30 Sep 2022 17:38:58 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCHv2 0/9] RK3588 Clock and Reset Support
+Date:   Fri, 30 Sep 2022 17:38:48 +0200
+Message-Id: <20220930153857.299396-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN6PR06MB5342901F1E899851B6D9670CA5569@SN6PR06MB5342.namprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 30, 2022 at 10:34:50AM -0500, Chris Morgan wrote:
-> On Thu, Sep 29, 2022 at 09:24:27AM -0700, Dmitry Torokhov wrote:
-> > Hi Chris,
-> > 
-> > On Wed, Sep 28, 2022 at 04:48:06PM -0500, Chris Morgan wrote:
-> > > +
-> > > +	/*
-> > > +	 * Testing suggests command is required to allow reading of
-> > > +	 * firmware registers.
-> > > +	 */
-> > > +	buf[0] = 0xd1;
-> > > +	buf[1] = 0x01;
-> > 
-> > I wonder if we can define some symbolic names for these.
-> > 
-> 
-> I don't know what they mean, the best I can do is guess. No
-> datasheet sadly. I know from preliminary testing if I don't
-> send this initial command here the rest of them fail, so I
-> assume this command allows me to read certain registers?
+Hi,
 
-Guessing is fine, we can adjust them if we ever get a hold of the data
-sheet.
+This has been part of a bigger patchset adding basic rk3588 support.
+Since that gets more and more out of hand, I'm now sending patches
+for each subsystem as individual patchset.
 
-Thanks.
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20220623160329.239501-1-sebastian.reichel@collabora.com/
+ * split dt-binding header addition into its own patch (requested by Heiko)
+ * split dt-binding header into clock and reset one (requested by Krzysztof)
+ * use reset identifier instead of register offset (requested by Krzysztof)
+  * (involves adding lookup table support to rockchip CRU reset code)
+ * use linear, gapless clock identifier (requested by Krzysztof)
+ * reword the DT binding description
+
+Changes since PATCHv0:
+ * https://lore.kernel.org/all/20220504213251.264819-1-sebastian.reichel@collabora.com/
+ * Sync'd with latest downstream changes
+ * Update bindings according to Rob's comments, except for license
+   (no feedback from Rockchip)
+
+-- Sebastian
+
+Elaine Zhang (5):
+  dt-bindings: clock: add rk3588 cru bindings
+  clk: rockchip: add register offset of the cores select parent
+  clk: rockchip: add pll type for RK3588
+  clk: rockchip: clk-cpu: add mux setting for cpu change frequency
+  clk: rockchip: add clock controller for the RK3588
+
+Sebastian Reichel (4):
+  dt-bindings: clock: add rk3588 clock definitions
+  dt-bindings: reset: add rk3588 reset definitions
+  clk: rockchip: simplify rockchip_clk_add_lookup
+  clk: rockchip: add lookup table support
+
+ .../bindings/clock/rockchip,rk3588-cru.yaml   |   58 +
+ drivers/clk/rockchip/Kconfig                  |    8 +
+ drivers/clk/rockchip/Makefile                 |    1 +
+ drivers/clk/rockchip/clk-cpu.c                |   69 +-
+ drivers/clk/rockchip/clk-pll.c                |  218 +-
+ drivers/clk/rockchip/clk-rk3588.c             | 2531 +++++++++++++++++
+ drivers/clk/rockchip/clk.c                    |   14 +-
+ drivers/clk/rockchip/clk.h                    |   88 +-
+ drivers/clk/rockchip/rst-rk3588.c             |  857 ++++++
+ drivers/clk/rockchip/softrst.c                |   34 +-
+ .../dt-bindings/clock/rockchip,rk3588-cru.h   |  766 +++++
+ .../dt-bindings/reset/rockchip,rk3588-cru.h   |  754 +++++
+ 12 files changed, 5364 insertions(+), 34 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3588-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-rk3588.c
+ create mode 100644 drivers/clk/rockchip/rst-rk3588.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rk3588-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rk3588-cru.h
 
 -- 
-Dmitry
+2.35.1
+
