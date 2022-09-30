@@ -2,172 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 505E55F11B0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 20:35:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96A965F11D5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 20:52:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232192AbiI3Sfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 14:35:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51202 "EHLO
+        id S232266AbiI3Swm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 14:52:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231777AbiI3Sfm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 14:35:42 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7461C902A;
-        Fri, 30 Sep 2022 11:35:39 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-13207a86076so2166134fac.3;
-        Fri, 30 Sep 2022 11:35:39 -0700 (PDT)
+        with ESMTP id S230156AbiI3Swl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 14:52:41 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F9E816513A
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:52:39 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id d42so8253453lfv.0
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:52:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=9LLU1snLDBFrkDtX73UL2zieslxs0+ytoPrFegmV88I=;
+        b=aE09uo+l+I4lVZzbN2Ui+AJstpHhAwqTErfY4Mwx1Tlul4KqtPnGTaPToxM0MIn8Tp
+         aGHDdPLQSR9DEGDLgx4xqWVEdiyOHcG2q/cNfdf0Jm8uuCng0TCNuVMAvXt7UEorG1E1
+         FbNRz93axhjDII1CTuv7je0O3bVVnF845YZeDZ7he//Z1qt2SvQsghLWBoLyQvZi/b4t
+         0iE+66obHUMaFcV8133JyzVYkglxN+bazjPKcR5p8y38sStdHqQqfkUGngj+Yvz7BCmL
+         ikBwnoZKrbdBr8Ie69eSVEWSu2ve7Mim2ZsEsnED00V4E2/sP+Yb4t+XiT6cRQvpoB2W
+         2uaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=ECZe/TgJYJpt5vnmP6vYw9Bl2rC4n8fH5ZjHCSNzUO8=;
-        b=V8qV4sNzaCkF9+fmkfPXKYfu8DQ0MTM5AQmWsnhu/41gDLldCeVtzH/JUyMWzrYjJV
-         sPYAUnooD5lQZoBWXrmuMRCDglpQQnyq4O3+gsN+uMpL6wOrk8MqyKVhKu6rRybCPoBV
-         NcNaoZ25SWhqV+TZ1S8Aiwsv56WzBcaLpKKY9qb+S5pOj1GhC8NiyG6dAOro+v4GXCC8
-         VtgHhkdAyp1sXeD5WICvlmg6Maexb9OFBAeCbnEkPxx8PGYxKQgEY4tteRWIOD9DaZvC
-         FKYCFx2D9SfWE9a1fDFcpqVKiQKMQ/rRjTF6FQnl2QLerfn8z0+aas5CF1nszMNU3YOB
-         bL+A==
-X-Gm-Message-State: ACrzQf1Y/99AC8l8oAOdj1VKtUeBZhsSElI/C+r2boOF+VAz4OJ18+aC
-        /Pz2ds03E4Xgb17Dwtrgyg==
-X-Google-Smtp-Source: AMsMyM7mZiUbIMeui3eIgDHbzEvBTZpt+Nd6ZwuHg9QNdShs1EiseooReo4ahleDYAOtmzwqjR11+g==
-X-Received: by 2002:a05:6870:eaaa:b0:12b:85ee:5823 with SMTP id s42-20020a056870eaaa00b0012b85ee5823mr12317069oap.234.1664562938995;
-        Fri, 30 Sep 2022 11:35:38 -0700 (PDT)
-Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id eq24-20020a056870a91800b0011d02a3fa63sm888445oab.14.2022.09.30.11.35.37
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=9LLU1snLDBFrkDtX73UL2zieslxs0+ytoPrFegmV88I=;
+        b=aVuvtgPrG5fAtsvuUtE4cBpwXoCsyi6aqWosJoHWWIPIvV32FJRK5UZ3FhX6Jm0+vj
+         GpP2tPd76Hfesn1p/29DbdoPaQTIVz/cbp3y84eUMazD58SOWQpU0NWAFsfysTG05yfS
+         eKCACUAtZbGpa1RJL2DDUXx63MDD7CXU5NtHAIN/4AY+4pyJRv5XfHLchZDMZyMZhTib
+         uP90Y60rhM+y3TJT7abMP9B6H8T/xJgAaYY9INGrUjoj8n8BuPGBQjhrwve5YSoKs6pi
+         +Syw7EazhAkh9OQ/Trqqfr58G+cayw84yeWc7RcF7k9KMsGmALyEoYzy7BXFnASUq2Fb
+         1oQA==
+X-Gm-Message-State: ACrzQf2irJ5NUgo/u/Idg2gicCs/NqZyzekkI1Zb3DbXJ8i78Q3ufgUe
+        CryzZImBoa355jZs3ngVUdC7+ygee2iCVQ==
+X-Google-Smtp-Source: AMsMyM6/SB4MUWMhNw/o5Mj+ShTGADsUyWi/52HZJXcRKJvGSqHH25pGKR7RvXHZsQGnixIQUbqd1A==
+X-Received: by 2002:a05:6512:3d8c:b0:49a:4872:858 with SMTP id k12-20020a0565123d8c00b0049a48720858mr3568681lfv.145.1664563957816;
+        Fri, 30 Sep 2022 11:52:37 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id i8-20020a056512006800b00492cfecf1c0sm374703lfo.245.2022.09.30.11.52.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 11:35:38 -0700 (PDT)
-Received: (nullmailer pid 623088 invoked by uid 1000);
-        Fri, 30 Sep 2022 18:35:37 -0000
-Date:   Fri, 30 Sep 2022 13:35:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee@kernel.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH RFC 3/7] dt-bindings: mfd: rz-mtu3: Document RZ/G2L MTU3
- PWM
-Message-ID: <20220930183537.GB567190-robh@kernel.org>
-References: <20220929103043.1228235-1-biju.das.jz@bp.renesas.com>
- <20220929103043.1228235-4-biju.das.jz@bp.renesas.com>
+        Fri, 30 Sep 2022 11:52:37 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 00/23] ARM: dts: qcom: rework DT for apq8064, msm8960 and msm8660
+Date:   Fri, 30 Sep 2022 21:52:13 +0300
+Message-Id: <20220930185236.867655-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220929103043.1228235-4-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 29, 2022 at 11:30:39AM +0100, Biju Das wrote:
-> Document RZ/G2L MTU3 PWM support. It supports following pwm modes.
-> 	1) PWM mode 1
-> 	2) PWM mode 2
-> 	3) Reset-synchronized PWM mode
-> 	4) Complementary PWM mode 1 (transfer at crest)
-> 	5) Complementary PWM mode 2 (transfer at trough)
-> 	6) Complementary PWM mode 3 (transfer at crest and trough)
+Rework DT files for older 32-bit MSM Snapdragon platforms. Use links
+rather than replicating the whole DT structure, cleanup several DT
+issues (like erroneous node names).
 
-What does 'complementary' mean here?
+Dmitry Baryshkov (23):
+  ARM: dts: qcom: apq8064: disable HDMI nodes by default
+  ARM: dts: qcom: apq8064-ifc6410: use labels to patch device tree
+  ARM: dts: qcom: apq8064-ifc6410: pull ext-3p3v regulator from soc node
+  ARM: dts: qcom: apq8064-ifc6410: fix user1 LED node name
+  ARM: dts: qcom: apq8064-ifc6410: pull SDCC pwrseq node up one level
+  ARM: dts: qcom: apq8064-flo: use labels to patch device tree
+  ARM: dts: qcom: apq8064-nexus7-flo: fix node name for ext 3p3v
+    regulator
+  ARM: dts: qcom: apq8064-cm-qs600: use labels to patch device tree
+  ARM: dts: qcom: apq8064-cm-qs600: pull 3p3v regulator from soc node
+  ARM: dts: qcom: apq8064-cm-qs600: pull SDCC pwrseq node up one level
+  ARM: dts: qcom: apq8064-sony-xperia-lagan-yuga: use labels to patch
+    device tree
+  ARM: dts: qcom: apq8064: drop amba device node
+  ARM: dts: qcom: apq8064: drop unit ids from PMIC nodes
+  ARM: dts: qcom: apq8064: drop qcom, prefix from SSBI node name
+  ARM: dts: qcom: apq8064: fix the riva-pil node id
+  ARM: dts: qcom: msm8960: drop unit ids from PMIC nodes
+  ARM: dts: qcom: msm8960: drop qcom, prefix from SSBI node name
+  ARM: dts: qcom: msm8960-cdp: drop unit ids from regulator node
+  ARM: dts: qcom: msm8960: drop amba device node
+  ARM: dts: qcom: msm8660: move pm8058 LED devices to the main DT file
+  ARM: dts: qcom: apq8060-dragonboard: use labels to patch device tree
+  ARM: dts: qcom: msm8660: drop unit ids from PMIC nodes
+  ARM: dts: qcom: msm8660: drop qcom, prefix from SSBI node name
 
-Mode 1, 2, 3 isn't very meaningful. Do other PWMs have similar modes? No 
-way to tell without better descriptions.
+ .../arm/boot/dts/qcom-apq8060-dragonboard.dts | 1778 ++++++++---------
+ .../boot/dts/qcom-apq8064-asus-nexus7-flo.dts |  523 +++--
+ arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts   |  390 ++--
+ arch/arm/boot/dts/qcom-apq8064-ifc6410.dts    |  561 +++---
+ .../qcom-apq8064-sony-xperia-lagan-yuga.dts   |  649 +++---
+ arch/arm/boot/dts/qcom-apq8064.dtsi           |  145 +-
+ arch/arm/boot/dts/qcom-msm8660.dtsi           |   33 +-
+ arch/arm/boot/dts/qcom-msm8960-cdp.dts        |    2 +-
+ arch/arm/boot/dts/qcom-msm8960.dtsi           |   72 +-
+ 9 files changed, 2049 insertions(+), 2104 deletions(-)
 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  .../bindings/mfd/renesas,rzg2l-mtu3.yaml      | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
-> index c4bcf28623d6..362fedf5bedb 100644
-> --- a/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
-> @@ -223,6 +223,50 @@ patternProperties:
->        - compatible
->        - reg
->  
-> +  "^pwm@([0-4]|[6-7])+$":
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        const: renesas,rz-mtu3-pwm
-> +
-> +      reg:
-> +        description: Identify pwm channels.
-> +        items:
-> +          enum: [ 0, 1, 2, 3, 4, 6, 7 ]
+-- 
+2.35.1
 
-At any given level in DT, there is only 1 address space. You've created 
-2 with pwms and counters.
-
-> +
-> +      "#pwm-cells":
-> +        const: 2
-> +
-> +      renesas,pwm-mode1:
-> +        type: boolean
-> +        description: Enable PWM mode 1.
-> +
-> +      renesas,pwm-mode2:
-> +        type: boolean
-> +        description: Enable PWM mode 2.
-> +
-> +      renesas,reset-synchronized-pwm-mode:
-> +        type: boolean
-> +        description: Enable Reset-synchronized PWM mode.
-> +
-> +      renesas,complementary-pwm-mode1:
-> +        type: boolean
-> +        description: Complementary PWM mode 1 (transfer at crest).
-> +
-> +      renesas,complementary-pwm-mode2:
-> +        type: boolean
-> +        description: Complementary PWM mode 2 (transfer at trough).
-> +
-> +      renesas,complementary-pwm-mode3:
-> +        type: boolean
-> +        description: Complementary PWM mode 3 (transfer at crest and trough).
-
-These all look like client configuration and should be either runtime 
-config or part of pwm cells args.
-
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - "#pwm-cells"
-> +
->  required:
->    - compatible
->    - reg
-> @@ -305,6 +349,12 @@ examples:
->          compatible = "renesas,rzg2l-mtu3-counter";
->          reg = <1>;
->        };
-> +      pwm@3 {
-> +        compatible = "renesas,rz-mtu3-pwm";
-> +        reg = <3>;
-> +        #pwm-cells = <2>;
-> +        renesas,pwm-mode1;
-> +      };
->      };
->  
->  ...
-> -- 
-> 2.25.1
-> 
-> 
