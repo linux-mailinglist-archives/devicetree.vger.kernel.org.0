@@ -2,101 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 121865F0E60
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B34E5F0E98
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:15:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229613AbiI3PDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 11:03:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49186 "EHLO
+        id S231429AbiI3PPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 11:15:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231149AbiI3PDD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:03:03 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D24A60E6;
-        Fri, 30 Sep 2022 08:02:59 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28UD1mL1007207;
-        Fri, 30 Sep 2022 17:02:45 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=NOdCqgkd7AQ9V7pD4WOga7YuBycqS81tG6ayojUlWeA=;
- b=JLW5kiR2flzrYtNSpKMPEeTpI7hdMA9SBA8k6lHQ8p57Pwfn4HozA8X01QBWA3mAjtzh
- 1rd3Q8rTESN9KNTNJAr6g6pIgjAru0i9QJo3cT/qa1wUMgJHHe4WNesZzjUZjCyKWK7f
- /+I6dRTWJyK7ozj21md0J1PQ0Lk/qS+6v10aCxoQUsolW/grxJRj3WOiPT8NROqsCuP7
- /MjokJWBeQNg4U4LQXrlrnDFir1ycrKynnNNXG9S8iGCUksueoRHqW13L0y2BaD/FLP1
- M/AUpoNNIxjhnPU6xgZV4BZwtPNACLsrHpngXXIWguRvYUi/N22x7w6uyik7Ast6znLV Uw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3jwxc29nsu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Sep 2022 17:02:45 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EB8A5100038;
-        Fri, 30 Sep 2022 17:02:44 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E2CB9231DF0;
-        Fri, 30 Sep 2022 17:02:44 +0200 (CEST)
-Received: from localhost (10.75.127.50) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Fri, 30 Sep
- 2022 17:02:44 +0200
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-To:     <alexandre.torgue@foss.st.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <amelie.delaunay@foss.st.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <fabrice.gasnier@foss.st.com>
-Subject: [PATCH] ARM: dts: stm32: update vbus-supply of usbphyc_port0 on stm32mp157c-ev1
-Date:   Fri, 30 Sep 2022 17:02:32 +0200
-Message-ID: <20220930150232.249573-1-fabrice.gasnier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231804AbiI3PPj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:15:39 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1AEC733ED
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 08:15:34 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id z4so7367445lft.2
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 08:15:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date;
+        bh=9qe1ituoiVQ6tMTna4qx1CP35n7ZrXQ+Z8Kf3z6Up/k=;
+        b=K2ppjZpTcwMXMqHVkbUZy5/PmQebskeMbiEDI8XMJvkxqFQFIjp3zCyX+XO+iW5elo
+         UjqqE0Tk0PtRzPeodJgG5AZ7yRtcE0fgKae9x8UwrvG44G5ogXJef+8cltxvSu7VJ3ys
+         /bRnODG+csOYM0DA93DZM6WeifBH9xjcL9/+wRzw8Oj67EI4xXySgkOX7kS8ITbDrP4N
+         tS+zOo3/Lwyudf1obe7R+sQLVSTH/ALWQv7L4O4jHbwo8VoQJXHJz9S/PaJZX+NIIHEY
+         1xktlKMiSjsKRh5KR/GLSy596efrUb9Eik4ELgyYbgq5lX1kOKC+BtGhfUrU5XAh9s+B
+         Hh2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=9qe1ituoiVQ6tMTna4qx1CP35n7ZrXQ+Z8Kf3z6Up/k=;
+        b=NoSCfxMx6B6kuU7hgqBPMXwO361u7DgNYyNQ2/Zq8PkX/tlAja2jQ0GuA2IYT5Uxt/
+         MVqS2sVNajmOLIXEEdIVGtRpsBdenIjYpYu6Qwcs2ztq2qTR0wMtkcSyw+3F2hlPBh1c
+         IzaOXvBN4Wo7J1NTMw5Hr48vDoeE7mv9B8XsGYnLL1WKo5ua+fnHu+f/epq6QfkNH2HH
+         aBUcM0N70XgRXQWhdvWZeAekA8qqe4grf/Be6VycK+AaO9DVNC6Sr9/Dbg5G/Cy6rY+W
+         OiIwBaaT0whT8g5I6AbQPUm2KGriYJ8+8Qv5P9VT0LACo645+G8bSW7MVE0zVsT2Dqfr
+         S5dw==
+X-Gm-Message-State: ACrzQf3HQM0+itJNNY0j/QNk/K9hjy9rlesLIIz92motcCSzeS/OWTng
+        XRb+tljsASnbGLUztUygU1mokQ==
+X-Google-Smtp-Source: AMsMyM6OH/KU/K3lOw7qM6WdTyenUEIfcDT2JYgFrfRCgd4m0c9smxHRRRMOWigUKN/XtE2bYLMu0A==
+X-Received: by 2002:ac2:508b:0:b0:4a0:5d6b:ff14 with SMTP id f11-20020ac2508b000000b004a05d6bff14mr3370963lfm.409.1664550932897;
+        Fri, 30 Sep 2022 08:15:32 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id q3-20020a0565123a8300b0049480c8e7bcsm320145lfu.176.2022.09.30.08.15.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Sep 2022 08:15:32 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH] ARM: dts: s5pv210: correct double "pins" in pinmux node
+Date:   Fri, 30 Sep 2022 17:15:30 +0200
+Message-Id: <166455092698.6630.15512850580722431230.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220926125824.477920-1-krzysztof.kozlowski@linaro.org>
+References: <20220926125824.477920-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-30_04,2022-09-29_03,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+On Mon, 26 Sep 2022 14:58:24 +0200, Krzysztof Kozlowski wrote:
+> Drop second "pins" suffix from pin configuration/mux nodes.
+> 
+> 
 
-phy-stm32-usbphyc bindings uses a connector node with vbus-supply
-property.
+Applied, thanks!
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
----
- arch/arm/boot/dts/stm32mp157c-ev1.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+[1/1] ARM: dts: s5pv210: correct double "pins" in pinmux node
+      https://git.kernel.org/krzk/linux/c/17fffac44943a619ec76463655b1ed7fccd8bea7
 
-diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-index d142dd30e16b..e22e394832a8 100644
---- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-@@ -385,6 +385,11 @@ &usbphyc_port0 {
- 	st,tune-squelch-level = <3>;
- 	st,tune-hs-rx-offset = <2>;
- 	st,no-lsfs-sc;
-+
-+	connector {
-+		compatible = "usb-a-connector";
-+		vbus-supply = <&vbus_sw>;
-+	};
- };
- 
- &usbphyc_port1 {
+Best regards,
 -- 
-2.25.1
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
