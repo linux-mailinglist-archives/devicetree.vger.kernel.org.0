@@ -2,104 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA42E5F06A7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 10:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84EF25F06C5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 10:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbiI3Ihu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 04:37:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51072 "EHLO
+        id S231206AbiI3IpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 04:45:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230088AbiI3Iht (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 04:37:49 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D78A1EF611;
-        Fri, 30 Sep 2022 01:37:47 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0AFE866022C7;
-        Fri, 30 Sep 2022 09:37:45 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664527065;
-        bh=hXP7tMGt4lvZFrdQ9N3TpH0XDUHGm1MVYQ0cksxXiok=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bHq7DgC+/YoPhbpQ2DlRNolNFuBUJCN8LSqY3rX6aMcIdi9S2NLRVABWK6unpXPce
-         DsMs3ebPHieeU8uJzB6P9npvebFoOLixXRJKWCiNkNtXzoq1nOTsWM7b3zjXfmPVrL
-         YctNGImbPkfZ/LXBoKqvqOYbFukNjD2ONVaIK31jqXAgtqgz0apN2sC2fpM6kYpldp
-         p+P1v+8/EOxV6cllV9Qgyg50DYYCDZLne8dsOFYpOJPv5ihn7rYL/beC0On+VRaZo/
-         0x6ZGbaqNNCk25qyOeYo0qZZTeMHwfavidRRquz8i6C1TK8cK3pe7wVMg2gpOq2TrU
-         Mg6oFiKz3P0Iw==
-Message-ID: <08017725-7e32-1967-65ee-246b9e692a95@collabora.com>
-Date:   Fri, 30 Sep 2022 10:37:42 +0200
+        with ESMTP id S230425AbiI3IpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 04:45:11 -0400
+Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DBBBBC44C
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 01:45:10 -0700 (PDT)
+Received: by mail-vk1-xa2a.google.com with SMTP id g85so1898205vkf.10
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 01:45:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=eYOas3VXsXobBgGmtzAVIzPk9FBE1PJp5RKi3UmSRLI=;
+        b=GJCpgpENmZ9VS8Ex8TOfXcdTqJ+A5fhCQuiZf0REpGFr5RiUlW30OmBu6CQ3iBAp9c
+         XpttbI4sPkB7xXrID7uUnN5Vp9S+ShdFmrMQtl9TDGda1IacLjQowt6IhjlEwcm3MheE
+         Gm9wOf8DRMCL0C37Motg9BOgM+M8HIavdO7hY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=eYOas3VXsXobBgGmtzAVIzPk9FBE1PJp5RKi3UmSRLI=;
+        b=nZPMdc5BddwRfAoWyBdk2O2A4FqaOdho7lMTIKszkfOoa8fsJCqS9NU/RTlGxIztMP
+         wX2Qn9GxRsGG+CBADtrFQ/Cf+VkMAHmonMKbSxohk9q5u8VGnIywdTmTDsaArJ1zfrHC
+         S9x7pEAVd+PHpe3gnANmfZyfzgkzWb1pgtZWzcihJxvkRhjzXGMcCRpPIOf9RzdFSG2d
+         aGh12ZK2Q0CnwG3G6wO9b5lj+v4N41AJRiD912/jNRci0CmvtVTDA9C1TG6qvMQ9lj/S
+         cWpbx4paSw/k7vsRsWd+G2kUrnW7LcamzZX9Nd5QXcnJWDxKUSZLrmMyHgapnNMqQguS
+         DYfQ==
+X-Gm-Message-State: ACrzQf3pDPxM3k1u5Q5ZBpXZ8eBdiaP4x6DvPZUIKUQkdonMFQ6a3KMS
+        IlD1gLkFeWD/FksiE46cAELjMyYRniNI9lPtHN/OmA==
+X-Google-Smtp-Source: AMsMyM7ZVcX/HQPq3Iutjv+Qs5JQ+qNe+Y9ufGnOT8bZqW5T2N6SQrZRNWY+iEho68J6+dT6Sh4gm031XYqthxUycbU=
+X-Received: by 2002:a1f:9116:0:b0:3a2:362b:fea9 with SMTP id
+ t22-20020a1f9116000000b003a2362bfea9mr3616390vkd.11.1664527509413; Fri, 30
+ Sep 2022 01:45:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v3 2/2] arm64: dts: mt8192: Add vcodec lat and core nodes
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20220929131309.18337-1-allen-kh.cheng@mediatek.com>
- <20220929131309.18337-3-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
+References: <20220927101128.44758-1-angelogioacchino.delregno@collabora.com>
+ <20220927101128.44758-9-angelogioacchino.delregno@collabora.com>
+ <79490e834466628a1b92e51f65aeb9e9ce82ddce.camel@mediatek.com> <5d8af9a1-3afc-bd69-8f34-164284a452c2@collabora.com>
+In-Reply-To: <5d8af9a1-3afc-bd69-8f34-164284a452c2@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 30 Sep 2022 16:44:58 +0800
+Message-ID: <CAGXv+5EfsdjqH-gG=wcU4mGxWKmODMw3xJpNsugZJG9hdt1jcw@mail.gmail.com>
+Subject: Re: [PATCH v3 08/10] clk: mediatek: clk-mt8195-topckgen: Drop
+ univplls from mfg mux parents
+To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220929131309.18337-3-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     =?UTF-8?B?TWFuZHlKSCBMaXUgKOWKieS6uuWDlik=?= 
+        <MandyJH.Liu@mediatek.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "jose.exposito89@gmail.com" <jose.exposito89@gmail.com>,
+        "drinkcat@chromium.org" <drinkcat@chromium.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        =?UTF-8?B?Q2h1bi1KaWUgQ2hlbiAo6Zmz5rWa5qGAKQ==?= 
+        <Chun-Jie.Chen@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?TWlsZXMgQ2hlbiAo6Zmz5rCR5qi6KQ==?= 
+        <Miles.Chen@mediatek.com>,
+        =?UTF-8?B?V2VpeWkgTHUgKOWRguWogeWEgCk=?= <Weiyi.Lu@mediatek.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <Rex-BC.Chen@mediatek.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "nfraprado@collabora.com" <nfraprado@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 29/09/22 15:13, Allen-KH Cheng ha scritto:
-> Add vcodec lat and core nodes for mt8192 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 60 ++++++++++++++++++++++++
->   1 file changed, 60 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 6b20376191a7..fd3c3aaeadba 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -1449,6 +1449,66 @@
->   			power-domains = <&spm MT8192_POWER_DOMAIN_ISP2>;
->   		};
->   
-> +		vcodec_dec: video-codec@16000000 {
-> +			compatible = "mediatek,mt8192-vcodec-dec";
-> +			reg = <0 0x16000000 0 0x1000>;
-> +			mediatek,scp = <&scp>;
-> +			iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
-> +			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges = <0 0 0 0x16000000 0 0x26000>;
-> +
-> +			vcodec_lat: video-codec-lat@10000 {
+On Fri, Sep 30, 2022 at 4:29 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 30/09/22 07:59, MandyJH Liu (=E5=8A=89=E4=BA=BA=E5=83=96) ha scritto:
+> > On Tue, 2022-09-27 at 12:11 +0200, AngeloGioacchino Del Regno wrote:
+> >> These PLLs are conflicting with GPU rates that can be generated by
+> >> the GPU-dedicated MFGPLL and would require a special clock handler
+> >> to be used, for very little and ignorable power consumption benefits.
+> >> Also, we're in any case unable to set the rate of these PLLs to
+> >> something else that is sensible for this task, so simply drop them:
+> >> this will make the GPU to be clocked exclusively from MFGPLL for
+> >> "fast" rates, while still achieving the right "safe" rate during
+> >> PLL frequency locking.
+> >>
+> >> Signed-off-by: AngeloGioacchino Del Regno <
+> >> angelogioacchino.delregno@collabora.com>
+> >> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> >> ---
+> >>   drivers/clk/mediatek/clk-mt8195-topckgen.c | 9 ++++++---
+> >>   1 file changed, 6 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/drivers/clk/mediatek/clk-mt8195-topckgen.c
+> >> b/drivers/clk/mediatek/clk-mt8195-topckgen.c
+> >> index 4dde23bece66..8cbab5ca2e58 100644
+> >> --- a/drivers/clk/mediatek/clk-mt8195-topckgen.c
+> >> +++ b/drivers/clk/mediatek/clk-mt8195-topckgen.c
+> >> @@ -298,11 +298,14 @@ static const char * const ipu_if_parents[] =3D {
+> >>      "mmpll_d4"
+> >>   };
+> >>
+> >> +/*
+> >> + * MFG can be also parented to "univpll_d6" and "univpll_d7":
+> >> + * these have been removed from the parents list to let us
+> >> + * achieve GPU DVFS without any special clock handlers.
+> >> + */
+> >>   static const char * const mfg_parents[] =3D {
+> >>      "clk26m",
+> >> -    "mainpll_d5_d2",
+> >> -    "univpll_d6",
+> >> -    "univpll_d7"
+> >> +    "mainpll_d5_d2"
+> >>   };
+> >>
+> >>   static const char * const camtg_parents[] =3D {
+> > There might be a problem here. Since the univpll_d6 and univpll_d7 are
+> > available parents in hardware design and they can be selected other
+> > than kernel stage, like bootloader, the clk tree listed in clk_summary
+> > cannot show the real parent-child relationship in such case.
+>
+> I agree about that, but the clock framework will change the parent to
+> the "best parent" in that case... this was done to avoid writing complica=
+ted
+> custom clock ops just for that one.
+>
+> This issue is present only on MT8195, so it can be safely solved this way=
+,
+> at least for now.
+>
+> Should this become a thing on another couple SoCs, it'll then make sense
+> to write custom clock ops just for the MFG.
 
-There's only one more thing: why do we need the `vcodec_lat:` and `vcodec_core:`
-phandles here?
+Would CLK_SET_RATE_NO_REPARENT on the fast mux coupled with forcing
+the clk tree to a state that we like (mfgpll->fast_mux->gate) work?
 
-Platforms that do not support the vcodec can simply set `status = disabled;` on
-`vcodec_dec`... as it doesn't make real sense to disable only LAT or only CORE.
-
-Please drop these two, after which:
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-
+ChenYu
