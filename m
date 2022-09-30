@@ -2,117 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3A8D5F100B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 18:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB0CF5F101C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 18:36:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231509AbiI3QcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 12:32:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48260 "EHLO
+        id S231574AbiI3Qg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 12:36:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231224AbiI3QcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 12:32:17 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BAF82C130
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 09:32:16 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id d42so7734984lfv.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 09:32:16 -0700 (PDT)
+        with ESMTP id S231938AbiI3Qg4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 12:36:56 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D605B163CCB;
+        Fri, 30 Sep 2022 09:36:53 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id l14so10127121eja.7;
+        Fri, 30 Sep 2022 09:36:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=Ue4laGY5FoP2Mfg7r8jyegUpo8gtYdbsjMlIFQZ92ks=;
-        b=yk65nk3SPtLKdZIyDHWd3l8fLfdkCbeyz+fArVxfgtoyZ3Qy5RoMDW6I1v1TovY8Wo
-         eYunQBpgx9VDgZob62JmtV9qAS4Xx14SPmJEd7jSJ+NLrvewdUg+kVAtsdvEmooLeeul
-         M9d6moztjz2sXzoHTRMpZMxdqI7yuMt9e6dEcYC5ZoMB87Wbt76pfHlpRcSPm+lOy6bu
-         utuqfcccfhWDJPiE/BHZTVw/wUaSXK5hOqxHWlIrGqpf/DHVf344xbzqxDxlbwewVsRR
-         BhbT/x7eiP4biaorGNlFwLOCCWpPjs43tKwp29pQI5DD9SyWgWNrol/N3w9VKppXpWdW
-         iboQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=l0m+9E3RrPBGmSZwDiB5yg6wloqO1uP7wOWBDHufpvI=;
+        b=IqYgkVPxNnZS+HZ4Fydqs2C+P87Mp+AjKACFm38IcYDHP07Lk34vzrWuuctCmCEt0I
+         s4ghgmYgxxL4gOGaCmm/GcUX49SgFw8BCDlont1Pd+7ujU2QI6bsm6RswV1MCtKhpLRW
+         fC5IBBL+bKRdbeUgesaz3Z0PEPnfbomQVT9KYbAyly9cq8T6tI6NsFqom48lDbukU2+5
+         zrJe89/1PQ64UjPn9zuyYnqiPEDALb0U3iWXB0cLz/w+706nQRBDp9q8RC2ple0ysH8X
+         o9F3CoqOQ7DVRU4hOLmUV+EZcxMsRDATQK6DY5eJI2Xlw9vHj15Gv6R/BaZUeyVh82C4
+         G/RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=Ue4laGY5FoP2Mfg7r8jyegUpo8gtYdbsjMlIFQZ92ks=;
-        b=3/j9/XTahbl1Gdq1hWetzmpL402UtsvdzjOJN4Wn0BX4u4UrOYUosnfXAMEbGzG0fT
-         ltUUh8imoxEktk0fkFFjaxsL1WTMLgD91Xs2tnOSmwPlFL1kxXDr6qqSlrbAP2vfAN2w
-         Tboa484Z+V9N11K1DSpqnR60rPaSPj95EvxFuigKldRKeLQ/1NCvb80MIMmv2b7q7aa7
-         r01nhFf3/CWvmia/WAnYiSh0yUJDwphwpzeZ43FY8Lh3g2CXSqXQ0Eawf+HsCtq6e0Df
-         6/eCpqgZ3X1PX3FJJUbSMtujCUApAwMgN2oTwBnmClCMLFqpIPNd6+jnsl/twkdYqKva
-         8+FQ==
-X-Gm-Message-State: ACrzQf1faVCZddtqc6VJ7uA9Xk78sjqvTxP3CQNjSxpRMhCtbGu+7dem
-        VR4lSkuKeILcQOPvaF7p2mrC7G4SmMoSbg==
-X-Google-Smtp-Source: AMsMyM4Wq6E0irIhyr/IETDNH7BruSFrjjpngW0YMyJxLETN7/bgD5zEju3en9kAmwSo+NkxO9WV0Q==
-X-Received: by 2002:ac2:5fac:0:b0:4a1:faff:53a8 with SMTP id s12-20020ac25fac000000b004a1faff53a8mr3458256lfe.587.1664555534421;
-        Fri, 30 Sep 2022 09:32:14 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p11-20020ac246cb000000b00497a7dfe6a9sm344718lfo.64.2022.09.30.09.32.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Sep 2022 09:32:13 -0700 (PDT)
-Message-ID: <f9eb873a-91b5-1bca-ac7b-109adc3372ae@linaro.org>
-Date:   Fri, 30 Sep 2022 18:32:13 +0200
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=l0m+9E3RrPBGmSZwDiB5yg6wloqO1uP7wOWBDHufpvI=;
+        b=vznLD4DFGjucpSDDjS+0ln5cRcww/GQrC/ytCT4Cpy4rtzpN8JM2pghrYTtlZZLRt7
+         Hnrnob/eJ2EQkhzfA2ahgrfqAvkMgMN+oCS3MwKtLNnen6AajhWWAR24L/7+2y1jYR/b
+         C7vNJIPZlAygBmecI+agmfZIewE6pBLctqzY3r3hnbjaFkkJmYhM6DJ/OuvMIHyUXyAk
+         Uqwk5wH70tAoNNny1ndqmLSAl+MGiPVXo3XmqbBlAlHuAgqRrgGceGLlqgt+L6GM2CCa
+         eTPD37ZzvOxYGFV+B/bFO7P+CV8FCDpBZsFyt8UyBqUoK+aMexukowNKDmnxotZKohE5
+         tVtA==
+X-Gm-Message-State: ACrzQf3nvycH9K6DnxPm3Wtb8XPxb4WX7tboS8m6blUTrpI6hciEc6Uc
+        F7E7EMVmuunsC/CuJNZMBsc=
+X-Google-Smtp-Source: AMsMyM4rzbG75FeYajqjF9cZOtKOOqQn5jYjboiHfFP5mZmGr5AdUXqB6NwhFyTrELxTWrwBr73GcQ==
+X-Received: by 2002:a17:907:25c1:b0:77b:9966:ccf1 with SMTP id ae1-20020a17090725c100b0077b9966ccf1mr7181056ejc.763.1664555811525;
+        Fri, 30 Sep 2022 09:36:51 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id t12-20020a056402240c00b0044e7862ab3fsm2011020eda.7.2022.09.30.09.36.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Sep 2022 09:36:50 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Tom Rini <trini@konsulko.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Joel Peshkin <joel.peshkin@broadcom.com>,
+        William Zhang <william.zhang@broadcom.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        u-boot@lists.denx.de, bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2] dt-bindings: nvmem: u-boot,env: add Broadcom's variant binding
+Date:   Fri, 30 Sep 2022 18:36:31 +0200
+Message-Id: <20220930163631.27040-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 2/3] dt-bindings: input: touchscreen: Add Hynitron cstxxx
- bindings
-Content-Language: en-US
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, rydberg@bitmath.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        dmitry.torokhov@gmail.com
-References: <20220928214806.13572-1-macroalpha82@gmail.com>
- <20220928214806.13572-3-macroalpha82@gmail.com>
- <bcf0e3fe-ba69-2898-ed99-49afd08d1f72@linaro.org>
- <SN6PR06MB5342305DA33462161BC7020DA5569@SN6PR06MB5342.namprd06.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SN6PR06MB5342305DA33462161BC7020DA5569@SN6PR06MB5342.namprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2022 17:21, Chris Morgan wrote:
->>> +maintainers:
->>> +  - Chris Morgan <macromorgan@hotmail.com>
->>> +
->>> +allOf:
->>> +  - $ref: touchscreen.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - hynitron,cst3xx
->>
->> Isn't the panel CST3240? No wildcards in compatibles.
->>
-> 
-> The controller IC I'm using is CST348. This driver SHOULD
-> also work with a CST340 and a CST356 (untested though).
-> 
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Whether drivers works or not is rather orthogonal question. What if
-FreeBSD driver does not work with CST356? What if U-boot driver works
-with all three and few more?
+Broadcom uses U-Boot for a lot of their bcmbca familiy chipsets. U-Boot
+stores its configuration in an environment data block.
 
-> Should I just have 3 compatible strings then, one for each IC?
-> I could also just have cst340 as the compatible and note it
-> should work for the 3 ICs listed.
+Such blocks are usually stored on flash as a separated partition at
+hardcoded address. Broadcom however decided to:
+1. Store env data block inside U-Boot partition
+2. Avoid sticking to hardcoded offsets
+3. Use custom header with "uEnv" magic and env data length
 
-Choose either:
-1. The only the one compatible for which you have datasheet or hardware.
-2. Choose all three separate compatibles which you believe should have
-same hardware properties thus one binding fits them (based on
-experience, datasheet, other drivers).
+Example (length 0x4000):
+$ hexdump -n 32 -C -s 0x40000 /dev/mtdblock0
+00040000  76 6e 45 75 00 40 00 00  34 89 7a 82 49 4d 41 47  |vnEu.@..4.z.IMAG|
+00040010  45 3d 4e 41 4e 44 3a 31  4d 2c 31 30 32 34 4d 00  |E=NAND:1M,1024M.|
+(0x40000 offset is unit specific and can change)
 
+Starting with the commit 118f3fbe517f4 ("dt-bindings: mtd: partitions:
+support label/name only partition") DT can describe partitions matching
+them by a name (without specifying actual address). With that feature
+and this binding change it's possible to:
+1. Specify DT node for Broadcom's U-Boot env data subpartition
+2. Add nodes for specific environment data variables
+3. Reference them as NVMEM cells
 
-Best regards,
-Krzysztof
+This binding is unlikely to help Broadcom's U-Boot. U-Boot SPL needs to
+find environment data early (before it accesses DTB) and it does that by
+looking for an "uEnv" magic. Dirty way.
+
+This binding can however be used by operating systems. It allows
+describing cleanly U-Boot, its env data and variables. It tells
+operating system about Broadcom-specific env data so it can parse it.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Work on better commit body & add example
+---
+ .../devicetree/bindings/nvmem/u-boot,env.yaml | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+index e96bca99f2d9..987957e3ffc8 100644
+--- a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
++++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+@@ -38,6 +38,8 @@ properties:
+         const: u-boot,env-redundant-bool
+       - description: Two redundant blocks with active having higher counter
+         const: u-boot,env-redundant-count
++      - description: Broadcom's variant with custom header
++        const: brcm,env
+ 
+   reg:
+     maxItems: 1
+@@ -73,3 +75,22 @@ examples:
+             };
+         };
+     };
++  - |
++    partitions {
++        compatible = "fixed-partitions";
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        partition@0 {
++            reg = <0x0 0x100000>;
++            compatible = "brcm,u-boot";
++            label = "u-boot";
++
++            partition-u-boot-env {
++                compatible = "brcm,env";
++
++                mac: ethaddr {
++                };
++            };
++        };
++    };
+-- 
+2.34.1
 
