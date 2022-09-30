@@ -2,119 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACAF75F1315
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 22:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 115355F131F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 22:05:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232105AbiI3UBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 16:01:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53804 "EHLO
+        id S230512AbiI3UFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 16:05:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232077AbiI3UBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 16:01:50 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA9D15C592
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 13:01:48 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id a2so8448877lfb.6
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 13:01:48 -0700 (PDT)
+        with ESMTP id S232207AbiI3UFt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 16:05:49 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0F0113F717
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 13:05:43 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id bu25so8461152lfb.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 13:05:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=U5/0vMWKU8sv7lsQh4rhQrJ1kPMZjQyHkGhLjTOGGTA=;
-        b=o9vuw/S+H0tpAJGZB3OMoBzx97xkZoSgLPSsUgIH1wpTARdBDVnVeGDpXaJjwmYr0S
-         NCGA20AXimkV7YPLavdavA0yEK2A+s1ltHi55rwC4EBaFsDWfa+eszCaNTHM5NOfs0sg
-         bQXtPaYecSatkGAloWPktssu7uj4X+LbeGXWN7r3NyUjHJJ9QsmetjvRjRQB9p/+OzWP
-         X57k2o5GXaMWnhjEG6NZKSHBZz6OFdaiKZSG2/HU2A+pUgQY8VODxoNh5yIfWbIyF3Fa
-         xNWQ/PYdD5pg/VBa/x4MfIr1oAN3TpyNVEbLG0xxrwsGfTJfmmi9x+FI4Al/Kv5vLJqh
-         0DFw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=g/s25fFcFRGt0la+CChBB+sBdX3rR06NtZ97e/TRl5g=;
+        b=me/zb+fTWwauv6a8wKXk9yOUdj4EAtMg04lETTXuDKjgI/eZDWpd++d6SmtVz3ucXc
+         guFq17zdb/KB3klhaWvzujGg/3kTdh6Wc/q9NyIu7t1qR4OqsUjZvxdqIQ0CJrPuYFWx
+         1zE6UYdas78gySILgPwOocpOE/R2xDb/Nag81tMpJVCP4VOZhaI9abp4EK7IaA+jldy7
+         G3oQTMKmdaZSqlPVrYoMW/ws5ZARU6gn/sb8DD24/PnLlUx8nDcBkQxEcwJWZ0HT4DlX
+         axZCh9bpDTZK39OUtYCHXRokhWZ4MDFTQz4U16FLWTFDccX/jPT8C2VGNXBJ2EhVIEyE
+         JufA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=U5/0vMWKU8sv7lsQh4rhQrJ1kPMZjQyHkGhLjTOGGTA=;
-        b=NS0vsIkoSzkykLOJejd4oSTruhF4v4z21MkMB47WiddiP5pbb24/T4TlFjP9Oqj0gB
-         Vm/am52QwlzgfRgO9aYwBS/YxKK0ggWQQzJ7zCrNuJwa/pK/puRtHL+g2sSpQblLXnbX
-         hiLSyrSS+hrfp7ddMLoDG2zoct2is1KTckiE/NmxJZemamWlKCgL1SG3KArS2uSC/EhG
-         UdlXWl3M3QTqfjqh+XtsGlY8RHFHqwX79RjTuZhROMuZ+8ST+gQP7aLRO5VhZwFzNQFY
-         8DxpYGU+zAQMDg2Sb2Xw827F1U67uyR688xxRuKoNfqFJSqI9GyKELJxlfq+bpzReJe2
-         rU7Q==
-X-Gm-Message-State: ACrzQf1MVqZKHx9ePTfbMRMAYm4PYIstftZrSX3vm3DODg+9I6iu5Ya/
-        d5do683Ir0zqajDzFtaVkEYwkFVn2x7JkQ==
-X-Google-Smtp-Source: AMsMyM4KyAWKAukfRVHW/NhZRT8J8TkxFHOJuIb3idoFRiY66sfAKAC/IxMO+qd/xHgeW1VSggr8Cw==
-X-Received: by 2002:a05:6512:3084:b0:49e:2275:fbb8 with SMTP id z4-20020a056512308400b0049e2275fbb8mr3690337lfd.40.1664568107341;
-        Fri, 30 Sep 2022 13:01:47 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id g22-20020a19e056000000b00492eb7205b0sm403152lfj.210.2022.09.30.13.01.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Sep 2022 13:01:46 -0700 (PDT)
-Message-ID: <1c14b73b-46fb-29e8-0fd6-1fd4d8706cbd@linaro.org>
-Date:   Fri, 30 Sep 2022 22:01:46 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v6 2/2] dt-bindings: memory-controllers: gpmc-child: add
- wait-pin polarity
-To:     Rob Herring <robh@kernel.org>,
-        "B. Niedermayr" <benedikt.niedermayr@siemens.com>
-Cc:     devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        rogerq@kernel.org, tony@atomide.com
-References: <20220929125639.143953-1-benedikt.niedermayr@siemens.com>
- <20220929125639.143953-3-benedikt.niedermayr@siemens.com>
- <20220930194257.GA756240-robh@kernel.org>
-Content-Language: en-US
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=g/s25fFcFRGt0la+CChBB+sBdX3rR06NtZ97e/TRl5g=;
+        b=w2Gz0pe2wiAL5nsF6pubkFa5QrjC//YPwofquQtZZHaKELuS2yD4ml1uuKeB2zIaAo
+         wWsWMFdZmtzuwMlm4TVq7biOsnUHwYSUH0vsDn9X3wRcdoYmHIlHGWmCTShTGW3l2OpZ
+         OXbEtHNVhdVdubkKNAVMRtLlomq4li65BGanfqI4xLjm/KM7Uw94Ql03tsy5adgUACv6
+         s6Pb51MEDgHP4r7oXJk45y9UV0zmfY40AbTNiC/nF3/K0l0fcLB+Vfg9VmkCJB/LhxMJ
+         NM7umcD1qoHBitJNagk/a6ShdEJi2799Yt0wka252LYtW7Go95KcEvpKUZQeSilfJ1U2
+         Dwww==
+X-Gm-Message-State: ACrzQf3wuISRzaaMv5zfv/aAw8/P0uP4Os86/8ejHgpqyXozuXkd13Gn
+        I/3J5/qBCmLTfH6uAzaEA96eWQ==
+X-Google-Smtp-Source: AMsMyM6pk4TIFeOeSsegG9bum/68726TptgPM44O7vmL/VW6rcp/ziYMJNNvGEwM+T+2wd5OKKvdxQ==
+X-Received: by 2002:a05:6512:3502:b0:496:8e:9307 with SMTP id h2-20020a056512350200b00496008e9307mr3648621lfs.504.1664568342138;
+        Fri, 30 Sep 2022 13:05:42 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id d10-20020ac2544a000000b00492f45cbbfcsm398876lfn.302.2022.09.30.13.05.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Sep 2022 13:05:41 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220930194257.GA756240-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/2] pinctrl/arm64: qcom: convert sdm845 bindings to DT schema
+Date:   Fri, 30 Sep 2022 22:05:27 +0200
+Message-Id: <20220930200529.331223-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2022 21:42, Rob Herring wrote:
-> On Thu, Sep 29, 2022 at 02:56:39PM +0200, B. Niedermayr wrote:
->> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
->>
->> The GPMC controller has the ability to configure the polarity for the
->> wait pin. The current properties do not allow this configuration.
->> This binding directly configures the WAITPIN<X>POLARITY bit
->> in the GPMC_CONFIG register by setting the gpmc,wait-pin-polarity
->> dt-property.
->>
->> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
->> ---
->>  .../bindings/memory-controllers/ti,gpmc-child.yaml         | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
->> index 6e3995bb1630..477189973334 100644
->> --- a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
->> +++ b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
->> @@ -230,6 +230,13 @@ properties:
->>        Wait-pin used by client. Must be less than "gpmc,num-waitpins".
->>      $ref: /schemas/types.yaml#/definitions/uint32
->>  
->> +  gpmc,wait-pin-polarity:
-> 
-> 'gpmc' is not a vendor. Don't continue this bad pattern, use 'ti'.
-> 
->> +    description: |
->> +      Set the desired polarity for the selected wait pin.
->> +      1 for active low, 0 for active high.
-> 
-> Well that looks backwards. I assume from the commit msg above, it's the 
-> register value, but that's not what the description says. Please go with 
-> the logical state here and do the inversion in the driver.
+Hi,
 
-This was actually my suggestion to keep the same value as
-ACTIVE_HIGH/LOW in standard GPIO flags. The DTS could reuse the defines.
+Overview
+========
+This is independent patchset of my recent Qualcomm pinctrl fixes.
+
+If the total amount of patches from me around Qualcomm pinctrl is a bit
+overwhelming, well, yeah, expect more to come. One way to solve it is to
+merge/apply faster than I can create new patches. :-)
+
+Dependencies
+============
+1. No dependencies.
+2. dt-bindings are independent of DTS patches.
 
 Best regards,
 Krzysztof
+
+Krzysztof Kozlowski (2):
+  arm64: dts: qcom: sdm845: align TLMM pin configuration with DT schema
+  dt-bindings: pinctrl: qcom,sdm845: convert to dtschema
+
+ .../bindings/pinctrl/qcom,sdm845-pinctrl.txt  | 176 ---------
+ .../bindings/pinctrl/qcom,sdm845-pinctrl.yaml | 158 ++++++++
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    | 344 +++++++-----------
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  76 ++--
+ .../arm64/boot/dts/qcom/sdm845-lg-common.dtsi |  60 ++-
+ arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts |   2 +-
+ arch/arm64/boot/dts/qcom/sdm845-mtp.dts       |  60 ++-
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |  88 ++---
+ .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 138 +++----
+ .../dts/qcom/sdm845-sony-xperia-tama.dtsi     |   6 +-
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts |  26 +-
+ .../boot/dts/qcom/sdm845-xiaomi-polaris.dts   |  30 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          | 305 +++++++---------
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  33 +-
+ .../boot/dts/qcom/sdm850-samsung-w737.dts     |  96 ++---
+ 15 files changed, 671 insertions(+), 927 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml
+
+-- 
+2.34.1
 
