@@ -2,111 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01B375F0EFF
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C909B5F0F01
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 17:38:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231635AbiI3PhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 11:37:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57680 "EHLO
+        id S229839AbiI3PiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 11:38:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231648AbiI3PhP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:37:15 -0400
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E8631A10A9
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 08:37:12 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id c7so4471999pgt.11
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 08:37:12 -0700 (PDT)
+        with ESMTP id S229522AbiI3PiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 11:38:08 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 848FD197F3A;
+        Fri, 30 Sep 2022 08:38:07 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id c24so4298758plo.3;
+        Fri, 30 Sep 2022 08:38:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=LPYKbguZc/KYKDAy5XVdCd4nJdkVt/SEkrsrImBpX8M=;
-        b=Zd63G6ZoUfHEDbwl6sw1tUXxxGRU0nsMethkFkh2p6u11xvZK5YcA30HkTDpWSdI1j
-         AzlRC8NZcnJzHUtN99ukkaiwGXLlbc8TJRM+cHxlAa6pqU+sPGwNWI4jO58hmUXdLrVI
-         1C2vzo6IJReqnM8mMd+EBoGgesWJ9toi5HNhM=
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=B9/BMzQkCVFD03IIXzu2Mepnbrb2G4V1ssG+c2c8kdU=;
+        b=VHXKvIkCj7AB7fCzr3ersBMhBT2zfqoIH1V9rg+oWAXaG7VMpwqDWIx0n3r3gyUep2
+         3S+pFH0zHGyCn1yfErvHgPZo57bEfK7VmCTp1n5qv3iLqMK7cPnzjc+YUPeHx5MmCMzi
+         CPh+E9oi1lwc0KCiNUHnBKT2JqXsk84AFHU30aUE8Pkaf8flZbpAX6tXoluZg4YkG9kz
+         K0kvCd+zlBRWjZneag5LYBh0E7U3jgKI+TXTLy6zdzyNWRmBRRpDI/3nAIiLNrCUiIzj
+         GiLtWsPex8QdeYAVGsZrlccrt4OX3w8XpMwf21X4tt4A4V4CZe1u6ntRiJZkaYqaJLl9
+         p3Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=LPYKbguZc/KYKDAy5XVdCd4nJdkVt/SEkrsrImBpX8M=;
-        b=gKPnEhDsfMP5d0bCIwHf/rFS5ve9hKlGTii2g+oIY32wN7U1zAhRVEXiJ7WA3BdF+p
-         eyYG5/iwBP/IDwn01npj/AZW0dldreLI7xiGyUczIAlPEAVfUNWt2rzk8Ggk47l9I/Z3
-         otbn8tLSBQU9Ckm30sgIzh3fl9CmrjKjG78SWwF/UI0R0/dX/BTfhuG3S6ggZqVwzBGK
-         KM093lgtrAooK4oapTP3amJgQtzO2hwz610jYfMnwsDNRTdUeS5UudBzma+hTxBEWVda
-         Td+mT7+sxpUS90NYdo5AAaaKPT45qOseg+qOURZIn+o9BYDIikTDBxWkRiYYBynCyN6G
-         qdPw==
-X-Gm-Message-State: ACrzQf0A048eNqws+m0e59mv735O+giiAR9TebpXcrUXOwnws2BPHe9X
-        sZkbHuXktB196Tl27oUepEnTrA==
-X-Google-Smtp-Source: AMsMyM6xqal4/XOJLMBHQ9YrEG3UfneC0sz6YuMsdGK7ZXSUAgOfMfhQ9Ij8VoFNM1z75MU8PkTV+Q==
-X-Received: by 2002:a63:5a63:0:b0:42f:e143:80d4 with SMTP id k35-20020a635a63000000b0042fe14380d4mr8215769pgm.456.1664552231662;
-        Fri, 30 Sep 2022 08:37:11 -0700 (PDT)
-Received: from judyhsiao0523.c.googlers.com.com (21.160.199.104.bc.googleusercontent.com. [104.199.160.21])
-        by smtp.gmail.com with ESMTPSA id s13-20020a170902ea0d00b0016d72804664sm2025155plg.205.2022.09.30.08.37.08
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=B9/BMzQkCVFD03IIXzu2Mepnbrb2G4V1ssG+c2c8kdU=;
+        b=rYLZr3HnRuNedIdzSizR0AAKAStwvB+A3JRAxdAmGmbsMgF+sNaLsUwJbDubsUIpqD
+         YjeEUWuwPh9I/PELl0nf21mSP3ofWdOxTDFGXaDhBGllAEYHcw22GfqzyLJ5ma2D8oFC
+         KHd4UfnSxKBtrXQEQaDoaDVaY5NOT/PUe5EV+H19SCmCfBt+8qnQK0U43h9exPH0/1ZY
+         zP32ZEtJ6oHqz3iUNyWRT83QukE6UH+/byh8zZ+Ni5urZa/bKAtuCeuIfVGb+G+Gbpsi
+         yebn+r/6T/NUPQ4I+dXO8Roh2w0op4Te8eQSsTq3U1duwa2dOFeS6UMuO5fEZHFSyyAj
+         Najg==
+X-Gm-Message-State: ACrzQf3OOL8DD/FcsvI7eQxgHyGAQTF5RJj8ZE4TGEclMNMduxi2+jYp
+        N3JChubam7ydWU5ggsAsQwU=
+X-Google-Smtp-Source: AMsMyM7g1/dT96J0oQmbrOILhBF7Fz0kQLdrrer9miIus4tOiG3FG4Wgv3LoyF8qZdlhhr7Ukmi0fA==
+X-Received: by 2002:a17:902:d490:b0:177:fc1d:6b0c with SMTP id c16-20020a170902d49000b00177fc1d6b0cmr9533294plg.28.1664552286800;
+        Fri, 30 Sep 2022 08:38:06 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:d016:f5be:4ff2:43f])
+        by smtp.gmail.com with ESMTPSA id u68-20020a627947000000b0053e8368ec34sm1986876pfc.32.2022.09.30.08.38.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 08:37:11 -0700 (PDT)
-From:   Judy Hsiao <judyhsiao@chromium.org>
-To:     andersson@kernel.org
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
-        judyhsiao@google.com, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>
-Subject: [PATCH v5 3/3] arm64: dts: qcom: sc7280: Include sc7280-herobrine-audio-rt5682.dtsi in herobrine-r1 and villager-r0
-Date:   Fri, 30 Sep 2022 15:36:43 +0000
-Message-Id: <20220930153643.2018907-4-judyhsiao@chromium.org>
-X-Mailer: git-send-email 2.38.0.rc1.362.ged0d419d3c-goog
-In-Reply-To: <20220930153643.2018907-1-judyhsiao@chromium.org>
-References: <20220930153643.2018907-1-judyhsiao@chromium.org>
+        Fri, 30 Sep 2022 08:38:06 -0700 (PDT)
+Date:   Fri, 30 Sep 2022 08:38:03 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Chris Morgan <macromorgan@hotmail.com>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, rydberg@bitmath.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH 3/3] input/touchscreen: Add Hynitron cstxxx touchscreen
+Message-ID: <YzcNW/ZVV/KMqpds@google.com>
+References: <20220928214806.13572-1-macroalpha82@gmail.com>
+ <20220928214806.13572-4-macroalpha82@gmail.com>
+ <YzXGu1YeelH5CGFn@google.com>
+ <SN6PR06MB5342901F1E899851B6D9670CA5569@SN6PR06MB5342.namprd06.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SN6PR06MB5342901F1E899851B6D9670CA5569@SN6PR06MB5342.namprd06.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Include sc7280-herobrine-audio-rt5682.dtsi in herobrine-r1
-and villager-r0 as they use rt5682 codec.
+On Fri, Sep 30, 2022 at 10:34:50AM -0500, Chris Morgan wrote:
+> On Thu, Sep 29, 2022 at 09:24:27AM -0700, Dmitry Torokhov wrote:
+> > Hi Chris,
+> > 
+> > On Wed, Sep 28, 2022 at 04:48:06PM -0500, Chris Morgan wrote:
+> > > +
+> > > +	/*
+> > > +	 * Testing suggests command is required to allow reading of
+> > > +	 * firmware registers.
+> > > +	 */
+> > > +	buf[0] = 0xd1;
+> > > +	buf[1] = 0x01;
+> > 
+> > I wonder if we can define some symbolic names for these.
+> > 
+> 
+> I don't know what they mean, the best I can do is guess. No
+> datasheet sadly. I know from preliminary testing if I don't
+> send this initial command here the rest of them fail, so I
+> assume this command allows me to read certain registers?
 
-Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
- arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts | 1 +
- arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts  | 1 +
- 2 files changed, 2 insertions(+)
+Guessing is fine, we can adjust them if we ever get a hold of the data
+sheet.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-index c1a671968725..c569d7a5edb7 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-@@ -9,6 +9,7 @@
- 
- #include "sc7280-herobrine.dtsi"
- #include "sc7280-herobrine-lte-sku.dtsi"
-+#include "sc7280-herobrine-audio-rt5682.dtsi"
- 
- / {
- 	model = "Google Herobrine (rev1+)";
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-index 73e24cc55a09..31a57ae5af57 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-@@ -9,6 +9,7 @@
- 
- #include "sc7280-herobrine-villager.dtsi"
- #include "sc7280-herobrine-lte-sku.dtsi"
-+#include "sc7280-herobrine-audio-rt5682.dtsi"
- 
- / {
- 	model = "Google Villager (rev0)";
+Thanks.
+
 -- 
-2.37.3.998.g577e59143f-goog
-
+Dmitry
