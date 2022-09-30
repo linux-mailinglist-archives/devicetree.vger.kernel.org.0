@@ -2,105 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7729F5F0F76
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 18:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 961845F0FA3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 18:12:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231797AbiI3QBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 12:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60116 "EHLO
+        id S231797AbiI3QMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 12:12:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231772AbiI3QAy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 12:00:54 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AC8745F47;
-        Fri, 30 Sep 2022 09:00:45 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id e11-20020a17090a77cb00b00205edbfd646so9513223pjs.1;
-        Fri, 30 Sep 2022 09:00:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date;
-        bh=FS9U4HiZAsGgqY/DtnJrlxHPe7Vei1czp0bKBblV4Uc=;
-        b=br741/GY9rSbibEBjMBhau94yLKjJqtsQtO19w5CXjjsM5PsSsivKf8ppdelCmY0dO
-         FCsvwPHzbWlg243ALrMXkmpZMjJY0VBKPJDby7czLfxnMHIOEZMznCYLM6YJBRgIXcmc
-         rABibBNH53Cg7E/Ap5QwI+jtfg7MkKwiCyU5NkxzRvxwPeIXDfKU1vKTY8N9LiWy3Ves
-         nPUDe02OWKGu4/ufGGp2AU4ZPr5qB3PNMgsVfhn2cJLp0KlRvxCQLQAwkHsilFQr49sj
-         eno1qIir1FgMHKv0DzPIKprxoiL+KJRDutG2SslTvB2xLchl7Fsb+lnOQnbNrBFO3sbp
-         CkCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=FS9U4HiZAsGgqY/DtnJrlxHPe7Vei1czp0bKBblV4Uc=;
-        b=vKOFAVUDHsAhlupFK2Reb+q5ntxZoq/fkZE9r2WHK/6zA0+rSjgtOZcZ5g2ozO20D5
-         yI6cVlRwTLYvXIzTUF2f1TtI2Sxs1AcxhTnsokflZ916znj24E62BeVIUTHE2wvkGi2z
-         fWmpk1MNpwYC9I8p2I9Aczil1LCHa/0kImEce6Qxee9oRBrwfgtmFH83CLOQ4zBPIgd5
-         V80IcxOJ+6DPQL0Z1+qwI6JPLkyTebnqCaEPstpWsU5bLZE+FpJsZh5W8p3tHXKaOzUT
-         /oPo3gk9OziPpDQc6SN9mn1PMnIbHLcBOUFd/zwOGDKJe6im2m0ZRCOQI2mzebIcG7t9
-         oQpg==
-X-Gm-Message-State: ACrzQf0JCi0q9Y1fHJL2KyW6Zx48fecTnR/7T0B7sObruVE8XScUtH47
-        j05wSbsBXNdzURsgreR8y0rHUVliIxU=
-X-Google-Smtp-Source: AMsMyM7K2u60Bd00aifMbQajqGPv6qAb7CRoVEICF5d9uR5AWqPALzslMAiO4FemKpSp/kTzMSSiqA==
-X-Received: by 2002:a17:90a:8909:b0:203:ab27:a41 with SMTP id u9-20020a17090a890900b00203ab270a41mr10667520pjn.163.1664553644724;
-        Fri, 30 Sep 2022 09:00:44 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:d016:f5be:4ff2:43f])
-        by smtp.gmail.com with ESMTPSA id p6-20020a170902bd0600b0017854cee6ebsm2079059pls.72.2022.09.30.09.00.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 09:00:44 -0700 (PDT)
-Date:   Fri, 30 Sep 2022 09:00:41 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alain Volmat <avolmat@me.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: stihxxx-b2120: fix polarity of reset line of
- tsin0 port
-Message-ID: <YzcSqZdpNbdINp4Q@google.com>
+        with ESMTP id S231953AbiI3QMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 12:12:33 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0163F1C5CAF
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 09:12:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id DB69ECE260A
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 16:12:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97458C433C1;
+        Fri, 30 Sep 2022 16:12:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664554345;
+        bh=QEzJU0VS5kHZoLyV5Mc+p7c1jZc4wJxU/synCGYTbtg=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=bhwMItzH/LRgiLHZnJkpbEt20PHg13JMCiwnXQ62ROrEMTcsTN4HW+B+YGpSdsGil
+         5sShuZXm24UTWROjR+yisDWSa2WgKYfpe5kMUJ4j24k8bOichYgbOmoc/m+xF/6ccP
+         hyEJsdVIDPFAH7/4Scd9bKqZQdEeRLccD0UxmFQVrxRH6AeDWTn7O40m/uD43spAei
+         NP6jGC1Z6IRw7NGKD+JsXDNwlfYmwtdxN8vW568aV1evlW0CXMJUCD+3M33xgW6tBn
+         GnRZEnIXigV2MgA/cS3Zv9CA1ESwM4EeWn6NwHeTug7nrAsDabHS+iuqIB/rhPubQ3
+         BYY052k9UZ7Qg==
+From:   Mark Brown <broonie@kernel.org>
+To:     linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+In-Reply-To: <20220927185359.294322-1-marex@denx.de>
+References: <20220927185359.294322-1-marex@denx.de>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: Document audio OF graph dai-tdm-slot-num dai-tdm-slot-width props
+Message-Id: <166455434333.614892.7791049768510643889.b4-ty@kernel.org>
+Date:   Fri, 30 Sep 2022 17:12:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-fc921
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to c8sectpfe driver code we first drive reset line low and
-then high to reset the port, therefore the reset line is supposed to
-be annotated as "active low". This will be important when we convert
-the driver to gpiod API.
+On Tue, 27 Sep 2022 20:53:59 +0200, Marek Vasut wrote:
+> Document dai-tdm-slot-num and dai-tdm-slot-width props as those are
+> parsed by simple graph card and may therefore appear in audio OF graph
+> node.
+> 
+> 
 
-Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
-Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
----
+Applied to
 
-v2: fixed typo in the subject, added Patrice's reviewed-by
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
- arch/arm/boot/dts/stihxxx-b2120.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks!
 
-diff --git a/arch/arm/boot/dts/stihxxx-b2120.dtsi b/arch/arm/boot/dts/stihxxx-b2120.dtsi
-index 2aa94605d3d4..d52a7aaa1074 100644
---- a/arch/arm/boot/dts/stihxxx-b2120.dtsi
-+++ b/arch/arm/boot/dts/stihxxx-b2120.dtsi
-@@ -178,7 +178,7 @@ tsin0: port {
- 				tsin-num = <0>;
- 				serial-not-parallel;
- 				i2c-bus = <&ssc2>;
--				reset-gpios = <&pio15 4 GPIO_ACTIVE_HIGH>;
-+				reset-gpios = <&pio15 4 GPIO_ACTIVE_LOW>;
- 				dvb-card = <STV0367_TDA18212_NIMA_1>;
- 			};
- 		};
--- 
-2.38.0.rc1.362.ged0d419d3c-goog
+[1/1] ASoC: dt-bindings: Document audio OF graph dai-tdm-slot-num dai-tdm-slot-width props
+      commit: 853110992cfefec433ca58cf7d69df4f639abe18
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
--- 
-Dmitry
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
