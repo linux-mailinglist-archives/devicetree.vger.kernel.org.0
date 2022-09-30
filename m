@@ -2,145 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C46B5F15B0
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 00:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F5C15F15B5
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 00:06:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232473AbiI3WFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 18:05:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49456 "EHLO
+        id S232575AbiI3WGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 18:06:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232435AbiI3WFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 18:05:49 -0400
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78087A538;
-        Fri, 30 Sep 2022 15:05:47 -0700 (PDT)
-Received: by mail-oo1-f53.google.com with SMTP id d74-20020a4a524d000000b004755f8aae16so3121005oob.11;
-        Fri, 30 Sep 2022 15:05:47 -0700 (PDT)
+        with ESMTP id S232461AbiI3WFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 18:05:51 -0400
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 662E776959;
+        Fri, 30 Sep 2022 15:05:49 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id o64so6051233oib.12;
+        Fri, 30 Sep 2022 15:05:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=HJtfTBE4oBzIjRoSP4k/w5L2USOVQ9QWyL3Cv6mKKdQ=;
-        b=o1FXNkmSAtPjLT8UxzJJppo0+gbJfPJVR7ISUbhMh4fA7uDr2PtIB9tjafPJtbdiWu
-         RCc+U6HUXL0Db0IERCyh/wPLD23DQiyRf2m6KWEXKh8V5fcqzv2RgXKJU0tdaEkU8BGb
-         JLtv+FIaZ+boOcrI87Yfex/YcCP33SwXZv7w9/04ygOOJ3fqE2yl3f2k4sV713BfLe8e
-         H/UUyFN9PYukYUTeGK70I6m47j68tQ6sHn7eM/IeXgBmHRxQRLKiiEf2CUMqeYh+s6Wm
-         hUNchz1hrpGDnIY7jFMl0gCp4wBNbUr54tNNmM+yqFLMg8gzwEyI4rOnU0K7iL3YY0Xb
-         vnXA==
-X-Gm-Message-State: ACrzQf2tJYqo2pIqcmZzaygbZ3FknnuDXcMyybvztkPy8HBZtsL945iN
-        6UfvyILte1ZLQ8fA1+lARw==
-X-Google-Smtp-Source: AMsMyM4fYqHKD58rudAJVQnce+h9PCWy+Xl9vpKeXf/QgZTu/9ORgjbFS/JGgNsy1fPUibEHXPPR+A==
-X-Received: by 2002:a05:6820:1888:b0:476:1d00:9d8f with SMTP id bm8-20020a056820188800b004761d009d8fmr4084027oob.98.1664575546867;
-        Fri, 30 Sep 2022 15:05:46 -0700 (PDT)
+        bh=LZM1wmWc8bSjrCIQo1xKsVynrpi3FYOLnvvxC0dlsng=;
+        b=BAT08SxxfIVVs0kBsHc2vjcLH/RqbewN43lSq9l20WALXucc1y8PrADaGaSdGzlVg3
+         Jm5fJbz+5jAE07r03ygYRHFjUtwi0KyH5grRzgNUbTnNM/zUw5hFsX0b7NK99EpXIk7J
+         LWOKq5t6AbQzx0rtSFdoyXEJCgvQpVpkztysDadRR4lGYLprCOwpH7uKM6DL5qTSpwcQ
+         4xFduPucaB6QNrKFu3Nax7g2vMUEjtYyKn9fVRKcdyTjSnQ0ZuVrLMZO8WrHhpXY2BFn
+         7KixohDMMviJvILh8XqtZexswHhWeyhUmgPZ/Nh0UudPd3Z4Y4WDokYfuquGGo6nR3RT
+         9M7w==
+X-Gm-Message-State: ACrzQf1nbH5sUxD/H1qBKRJYY26SsOG/It088GDFNNKP3iA3zhHWPS+Y
+        IpDdw7oogPElH7jjIfIRkw==
+X-Google-Smtp-Source: AMsMyM5GNayxmuhvrl7o8dL2pxAN0tW7B0BJ2oi5mYZZltd0cOyNhGzEyh101OOg9ytUcIcN19v0aA==
+X-Received: by 2002:a05:6808:21a3:b0:350:cca1:9f40 with SMTP id be35-20020a05680821a300b00350cca19f40mr123959oib.205.1664575548627;
+        Fri, 30 Sep 2022 15:05:48 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l11-20020a056870204b00b0012796e8033dsm978279oad.57.2022.09.30.15.05.45
+        by smtp.gmail.com with ESMTPSA id t15-20020a056870e74f00b0011f00b027bdsm995652oak.45.2022.09.30.15.05.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 15:05:46 -0700 (PDT)
-Received: (nullmailer pid 1129758 invoked by uid 1000);
+        Fri, 30 Sep 2022 15:05:47 -0700 (PDT)
+Received: (nullmailer pid 1129751 invoked by uid 1000);
         Fri, 30 Sep 2022 22:05:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-In-Reply-To: <20220930200529.331223-3-krzysztof.kozlowski@linaro.org>
-References: <20220930200529.331223-1-krzysztof.kozlowski@linaro.org> <20220930200529.331223-3-krzysztof.kozlowski@linaro.org>
-Message-Id: <166457528911.1113207.5679249386040323169.robh@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: qcom,sdm845: convert to dtschema
+To:     Alexander Steffen <Alexander.Steffen@infineon.com>
+Cc:     peter@pjd.dev, amirmizi6@gmail.com, jarkko@kernel.org,
+        linux-integrity@vger.kernel.org, robh+dt@kernel.org,
+        Johannes.Holland@infineon.com, benoit.houyere@st.com,
+        devicetree@vger.kernel.org
+In-Reply-To: <20220930165116.13329-5-Alexander.Steffen@infineon.com>
+References: <20220930165116.13329-1-Alexander.Steffen@infineon.com> <20220930165116.13329-5-Alexander.Steffen@infineon.com>
+Message-Id: <166457526212.1112376.3928552824383328065.robh@kernel.org>
+Subject: Re: [PATCH 4/7] dt-bindings: tpm: Merge existing trivial TPMs to YAML
 Date:   Fri, 30 Sep 2022 17:05:43 -0500
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Sep 2022 22:05:29 +0200, Krzysztof Kozlowski wrote:
-> Convert Qualcomm SDM845 pin controller bindings to DT schema.  Keep
-> the parsing of pin configuration subnodes consistent with other Qualcomm
-> schemas (children named with '-state' suffix, their children with
-> '-pins').
+On Fri, 30 Sep 2022 18:51:13 +0200, Alexander Steffen wrote:
+> Several of the existing text files describe trivial TPMs, that fit
+> perfectly into the new trivial-tpms.yaml. Move them there.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Alexander Steffen <Alexander.Steffen@infineon.com>
 > ---
->  .../bindings/pinctrl/qcom,sdm845-pinctrl.txt  | 176 ------------------
->  .../bindings/pinctrl/qcom,sdm845-pinctrl.yaml | 158 ++++++++++++++++
->  2 files changed, 158 insertions(+), 176 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml
+>  .../bindings/security/tpm/google,cr50.txt     | 19 ----------
+>  .../bindings/security/tpm/tpm-i2c.txt         | 26 --------------
+>  .../bindings/security/tpm/tpm_tis_mmio.txt    | 25 -------------
+>  .../bindings/security/tpm/tpm_tis_spi.txt     | 23 ------------
+>  .../bindings/security/tpm/trivial-tpms.yaml   | 36 +++++++++++++++++++
+>  5 files changed, 36 insertions(+), 93 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/google,cr50.txt
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_mmio.txt
+>  delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/security/tpm/trivial-tpms.example.dts:20.11-21: Warning (reg_format): /example-0/tpm@0:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/security/tpm/trivial-tpms.example.dts:42.11-24: Warning (reg_format): /example-1/tpm@57:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/security/tpm/trivial-tpms.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/security/tpm/trivial-tpms.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/security/tpm/trivial-tpms.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/security/tpm/trivial-tpms.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/security/tpm/trivial-tpms.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
 
+doc reference errors (make refcheckdocs):
 
-pinctrl@3400000: 'ap-edp-bklten', 'ap-suspend-l-hog', 'ap_suspend_l_assert', 'ap_suspend_l_deassert', 'bios-flash-wp-r-l', 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'ec-ap-int-l', 'edp-brij-en', 'edp-brij-irq', 'en-pp3300-dx-edp', 'h1-ap-int-odl', 'pen-eject-odl', 'pen-irq-l', 'pen-pdct-l', 'pen-rst-l', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-defau
- lt', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-spi3-default', 'qup-spi4-default', 'qup-spi5-default', 'qup-spi6-default', 'qup-spi7-default', 'qup-spi8-default', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default', 'sd-cd-odl', 'sdc2-clk', 'sdc2-cmd', 'sdc2-data', 'ts-int-l', 'ts-reset-l' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
+See https://patchwork.ozlabs.org/patch/
 
-pinctrl@3400000: 'cam0_default', 'cam3_default', 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'dsi-sw-sel', 'lt9611-irq', 'pcie0-default', 'pcie0-pwren', 'pcie1-default', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-default', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-sp
- i3-default', 'qup-spi4-default', 'qup-spi5-default', 'qup-spi6-default', 'qup-spi7-default', 'qup-spi8-default', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default', 'sd-card-det-n', 'sdc2-default', 'wcd_intr_default' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-pinctrl@3400000: 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'i2c11-hid-active', 'i2c2-hid-active', 'i2c5-hid-active', 'lid-pin', 'mode-pin', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-default', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-spi3-default', 'qup-spi4-defau
- lt', 'qup-spi5-default', 'qup-spi6-default', 'qup-spi7-default', 'qup-spi8-default', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default', 'sn65dsi86-enable', 'wcd_intr_default' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-pinctrl@3400000: 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'panel-esd', 'panel-reset', 'panel-te', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-default', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-spi3-default', 'qup-spi4-default', 'qup-spi5-default', 'qup-spi6-defaul
- t', 'qup-spi7-default', 'qup-spi8-default', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default', 'tri_state_key_default', 'ts-int' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
+pip3 install dtschema --upgrade
 
-pinctrl@3400000: 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'pen-irq-l', 'pen-pdct-l', 'pen-rst-l', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-default', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-spi3-default', 'qup-spi4-default', 'qup-spi5-default', 'qup-spi6-defaul
- t', 'qup-spi7-default', 'qup-spi8-default', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default', 'wcd_intr_default' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-pinctrl@3400000: 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-default', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-spi3-default', 'qup-spi4-default', 'qup-spi5-default', 'qup-spi6-default', 'qup-spi7-default', 'qup-spi8-defaul
- t', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-
-pinctrl@3400000: 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-default', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-spi3-default', 'qup-spi4-default', 'qup-spi5-default', 'qup-spi6-default', 'qup-spi7-default', 'qup-spi8-defaul
- t', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default', 'sd-card-det-n', 'sdc2-clk', 'sdc2-cmd', 'sdc2-data' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-
-pinctrl@3400000: 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-default', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-spi3-default', 'qup-spi4-default', 'qup-spi5-default', 'qup-spi6-default', 'qup-spi7-default', 'qup-spi8-defaul
- t', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default', 'sd-card-det-n', 'sdc2-clk', 'sdc2-cmd', 'sdc2-data', 'thinq-key-default' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-
-pinctrl@3400000: 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-default', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-spi3-default', 'qup-spi4-default', 'qup-spi5-default', 'qup-spi6-default', 'qup-spi7-default', 'qup-spi8-defaul
- t', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default', 'sd-card-det-n', 'sdc2-default', 'wcd_intr_default' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-
-pinctrl@3400000: 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-default', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-spi3-default', 'qup-spi4-default', 'qup-spi5-default', 'qup-spi6-default', 'qup-spi7-default', 'qup-spi8-defaul
- t', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default', 'sde-dsi-active', 'sde-dsi-suspend', 'sde-te-active', 'sde-te-suspend', 'ts-int-active', 'ts-int-suspend', 'ts-reset-active', 'ts-reset-suspend' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-
-pinctrl@3400000: 'cci0-default', 'cci0-sleep', 'cci1-default', 'cci1-sleep', 'qspi-clk', 'qspi-cs0', 'qspi-cs1', 'qspi-data01', 'qspi-data12', 'quat_mi2s_active', 'quat_mi2s_sd0_active', 'quat_mi2s_sd0_sleep', 'quat_mi2s_sd1_active', 'quat_mi2s_sd1_sleep', 'quat_mi2s_sd2_active', 'quat_mi2s_sd2_sleep', 'quat_mi2s_sd3_active', 'quat_mi2s_sd3_sleep', 'quat_mi2s_sleep', 'qup-i2c0-default', 'qup-i2c1-default', 'qup-i2c10-default', 'qup-i2c11-default', 'qup-i2c12-default', 'qup-i2c13-default', 'qup-i2c14-default', 'qup-i2c15-default', 'qup-i2c2-default', 'qup-i2c3-default', 'qup-i2c4-default', 'qup-i2c5-default', 'qup-i2c6-default', 'qup-i2c7-default', 'qup-i2c8-default', 'qup-i2c9-default', 'qup-spi0-default', 'qup-spi1-default', 'qup-spi10-default', 'qup-spi11-default', 'qup-spi12-default', 'qup-spi13-default', 'qup-spi14-default', 'qup-spi15-default', 'qup-spi2-default', 'qup-spi3-default', 'qup-spi4-default', 'qup-spi5-default', 'qup-spi6-default', 'qup-spi7-default', 'qup-spi8-defaul
- t', 'qup-spi9-default', 'qup-uart0-default', 'qup-uart1-default', 'qup-uart10-default', 'qup-uart11-default', 'qup-uart12-default', 'qup-uart13-default', 'qup-uart14-default', 'qup-uart15-default', 'qup-uart2-default', 'qup-uart3-default', 'qup-uart4-default', 'qup-uart5-default', 'qup-uart6-default', 'qup-uart7-default', 'qup-uart8-default', 'qup-uart9-default', 'sde-dsi-active', 'sde-dsi-suspend', 'ts-int-default', 'ts-int-sleep', 'ts-reset-default', 'ts-reset-sleep', 'wcd-intr-default' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-
-pinctrl@3400000: sdc2-default-state: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
+Please check and re-submit.
 
