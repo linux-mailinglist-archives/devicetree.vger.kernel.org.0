@@ -2,166 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 303625F0BB8
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 14:26:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA52A5F0BC3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 14:31:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231684AbiI3M0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 08:26:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36164 "EHLO
+        id S230257AbiI3Mbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 08:31:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231727AbiI3MZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 08:25:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D70A3D37;
-        Fri, 30 Sep 2022 05:25:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230269AbiI3Mb3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 08:31:29 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBD5810531F;
+        Fri, 30 Sep 2022 05:31:23 -0700 (PDT)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A4F316231C;
-        Fri, 30 Sep 2022 12:25:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14CD2C433B5;
-        Fri, 30 Sep 2022 12:25:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664540740;
-        bh=jaFHJbthRg/7oVUoCPCdosVEyKRFA6i68ZVYRNWMh9w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=AA/1o6j5eYke9lQxbL9Rt795Y2Axw9/4HAcvsXZHMCrDINHq5CZqh7NwAyjauAI9B
-         3Jx6Kh5+bCbbdepYuFs9C5zvAAKxiFrGOYy+9Kw1gUjVAYTlShv24Thnzec97ndnCT
-         bG6YRy7pqWaxO2HOFVxwNSYgEYNFmZsfLZhfLQTaPtPIgt7Qbv2mCjJaIdibROk4fR
-         H0mQTnMdXoIi2mK5Y5mjpaxdbR7IUCk9YTRgBFmleI0UBmC7IT9b+nakJ33Qt/bONA
-         5EC6lAhw8qd7MrYBfm4OuLNzrWj6hkAkLTHKMQ+dIIY6hLPN98GJdKttM6aoH4fT7M
-         0jmgy2ijHd/Rg==
-Received: by mail-vk1-f174.google.com with SMTP id b15so2162063vkp.2;
-        Fri, 30 Sep 2022 05:25:40 -0700 (PDT)
-X-Gm-Message-State: ACrzQf30f3VUpuVnL4gRgmFB+5qWXeyj/92g3mU2cGSZc3TGNmZNPAxk
-        +iQvjLhby1D7TkyVMnfVdXODgI3NX855YTQveQ==
-X-Google-Smtp-Source: AMsMyM6UwFdDAXEcaxuQqwtp701//96NO2bvEUBg9jYqHqvCmJRamGq/9WU3ZvCLI0jfm/n5QlNlUEXbwMpeysC8vvk=
-X-Received: by 2002:a1f:240f:0:b0:3a3:7b48:81cd with SMTP id
- k15-20020a1f240f000000b003a37b4881cdmr4060522vkk.19.1664540739015; Fri, 30
- Sep 2022 05:25:39 -0700 (PDT)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 6F5AA1F67D;
+        Fri, 30 Sep 2022 14:31:20 +0200 (CEST)
+Date:   Fri, 30 Sep 2022 14:31:18 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/5] dt-bindings: mfd: qcom-spmi-pmic: Add pm6125
+ compatible
+Message-ID: <20220930123118.nkmajihodvxgqdvw@SoMainline.org>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
+        Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220926190148.283805-1-marijn.suijten@somainline.org>
+ <20220926190148.283805-2-marijn.suijten@somainline.org>
+ <052630d0-299e-e468-b2dd-266d371e2b0f@linaro.org>
+ <20220928081055.p66huqct2wnrsrdx@SoMainline.org>
+ <3f2e62f5-a6e4-7011-3f5b-29a6657eae79@linaro.org>
+ <20220928082340.mkn23ersrtzb5oth@SoMainline.org>
+ <2bd60261-a977-3225-8d41-4987252e6abb@linaro.org>
+ <20220928154437.if3x2zf5yozhy5kt@meerkat.local>
 MIME-Version: 1.0
-References: <20220930080400.15619-1-shubhrajyoti.datta@amd.com> <20220930080400.15619-2-shubhrajyoti.datta@amd.com>
-In-Reply-To: <20220930080400.15619-2-shubhrajyoti.datta@amd.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 30 Sep 2022 07:25:27 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLaqjZeZd3c-fd9f5m-4OCXgOZcOu+paik9FV_eno5sLg@mail.gmail.com>
-Message-ID: <CAL_JsqLaqjZeZd3c-fd9f5m-4OCXgOZcOu+paik9FV_eno5sLg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clk: Add binding for versal clocking wizard
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc:     linux-clk@vger.kernel.org, git@amd.com, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
-        mturquette@baylibre.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220928154437.if3x2zf5yozhy5kt@meerkat.local>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 30, 2022 at 3:04 AM Shubhrajyoti Datta
-<shubhrajyoti.datta@amd.com> wrote:
->
-> The Clocking Wizard for Versal adaptive compute acceleration platforms
-> generates multiple configurable number of clock outputs.
-> Add device tree binding for Versal clocking wizard support.
+On 2022-09-28 11:44:37, Konstantin Ryabitsev wrote:
+> On Wed, Sep 28, 2022 at 10:30:00AM +0200, Krzysztof Kozlowski wrote:
+> > > (Side-note: I should get accustomed to `b4 shazam` to automatically pick
+> > >  this up from the list, instead of rebasing / re-applying local patches)
+> > 
+> > Would be nice if b4 could update patches in current branch adding the
+> > tags... but git reset --hard && b4 shazam should work as well.
+> 
+> FYI, it can do just that using "b4 trailers -uF [msgid]". See:
+> https://b4.docs.kernel.org/en/stable-0.10.y/contributor/trailers.html
 
-Really v1? I'm sure I heard of this wizard before.
+That's super cool and will save a lot of time.  I'll also have to get
+accustomed to `b4 prep` and `b4 send`, though typically prefer to look
+at the `diff` between two `format-patch` revisions to make sure the
+changelog is complete and no erratic changes made it in.
 
-What about this?:
-
-drivers/staging/clocking-wizard/dt-binding.txt
-
-That needs to be moved out of staging rather than adding a 2nd one.
-
->
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> ---
->
->  .../bindings/clock/xlnx,clk-wizard.yaml       | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clk-wizard.yaml
->
-> diff --git a/Documentation/devicetree/bindings/clock/xlnx,clk-wizard.yaml b/Documentation/devicetree/bindings/clock/xlnx,clk-wizard.yaml
-> new file mode 100644
-> index 000000000000..41a6f4bcaccd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/xlnx,clk-wizard.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/xlnx,clk-wizard.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx Versal clocking wizard
-> +
-> +maintainers:
-> +  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> +
-> +description:
-> +  The clocking wizard is a soft ip clocking block of Xilinx versal. The IP
-> +  uses the input clock frequencies and generates the requested
-> +  clock output.
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,clk-wizard-1.0
-
-Where does 1.0 come from? A 1.0 always feels made up. This should be
-based on some IP versioning that's documented somewhere.
-
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  clocks:
-> +    description: List of clock specifiers which are external input
-> +      clocks to the given clock controller.
-> +    items:
-> +      - description: functional clock input
-> +      - description: axi clock or the interface clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: clk_in1
-> +      - const: s_axi_aclk
-> +
-> +  xlnx,nr-outputs:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 8
-> +    description:
-> +      Number of outputs.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +  - clocks
-> +  - clock-names
-> +  - xlnx,nr-outputs
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-generator@40040000 {
-> +        compatible = "xlnx,clk-wizard-1.0";
-> +        reg = <0x40040000 0x1000>;
-> +        #clock-cells = <1>;
-> +        clocks = <&clkc 15>, <&clkc 15>;
-> +        clock-names = "clk_in1", "s_axi_aclk";
-> +        xlnx,nr-outputs = <6>;
-> +    };
-> +...
-> --
-> 2.17.1
->
+- Marijn
