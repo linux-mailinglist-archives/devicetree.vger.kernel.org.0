@@ -2,108 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37BA75F041E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 07:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E436F5F0448
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 07:50:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230456AbiI3FNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 01:13:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53034 "EHLO
+        id S229842AbiI3FuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 01:50:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbiI3FNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 01:13:12 -0400
-Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2631664A8;
-        Thu, 29 Sep 2022 22:13:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-        ; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:References:
-        In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Content-Type:From:Reply-To:
-        Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-        bh=G/DCuas0MLgTm0P57BFgZrTVZlNe0W+v2z9cQz8Xx8I=; b=Gzu1RgYPzscghwaBKykzNVbZI/
-        dU5cBOzRq9yZJ4ddEHK3Gw9V9NNGw9N37xtJOFPeilJjeMRCtxA89cpqr9dS2ccoFqeOnW8xjYmWq
-        G+uuCKstAHHjLFGWGU/3Sh+6ILyuZLa0gAVCHY5+cEyLKR8uQOtmx8nNCjorGkpairbObyjBaDc7e
-        cYoZDn5FA8loUNV7EDmr8FyuV6UwkQ/G+LqbeGRAxJaD1lIUK1Z8Ok2gMqU9asf2yGvnkA/SfkUr1
-        1m39FfssCjIk7U8c9J3NaTegHR9z/qrWPPctUQUgbtm+Oghi2jbEvj5yZw+ofLll5gmtV3I7eOcvo
-        GJZw9tlA==;
-Received: from [2a01:e34:ec5d:a741:8a4c:7c4e:dc4c:1787] (helo=ohm.rr44.fr)
-        by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1oe8Kg-00Djg8-LL; Fri, 30 Sep 2022 07:13:06 +0200
-Received: from aurel32 by ohm.rr44.fr with local (Exim 4.96)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1oe8Kf-001dwS-34;
-        Fri, 30 Sep 2022 07:13:05 +0200
-From:   Aurelien Jarno <aurelien@aurel32.net>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229479AbiI3FuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 01:50:03 -0400
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.221.58])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEE0644564;
+        Thu, 29 Sep 2022 22:49:57 -0700 (PDT)
+X-QQ-mid: bizesmtp77t1664516986tn7ksjcj
+Received: from ubuntu.localdomain ( [113.72.146.201])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Fri, 30 Sep 2022 13:49:44 +0800 (CST)
+X-QQ-SSF: 01000000000000305000000A0000000
+X-QQ-FEAT: dcYQFNbI8vE+qoAKv14uwKmwB+isk8Bi6JVRmSKueWlrbNKei9wcurdjin6Tn
+        ISnvD+5g9odJ/SFlZ9pw09fv28J0oBeNBSVRCfuaKL1mV6mRbii1yGlUcb9B/7RfhsML+mj
+        7GctJjx3b7sZO7Iy8vqrjtmqKubrulGoleILQdZR5rou94ZixVsRHw9LTe3YJe2LwYh2Mqt
+        YAiLWksFg7y9X48cPV5uzTElKD5tFUAgUz/PmsfQOl/5yLCw7kYet8Lo5YHAcohxqFfwIOq
+        W88ZezD9JDAiM65D7SCBuggVgAtOie96KFN8Vu9Z0Vom7GIwEIt9hh6bIEj4DZmYRWIPvrK
+        r71o2PirKRT+HLVU+1YqZX0o5PGejkix77qyZeEQi2IZ/ZKlSoSWPhD/zh92J7HSgtABMHB
+        22Xyd2iVRJs1zKEXfTSoRA==
+X-QQ-GoodBg: 0
+From:   Hal Feng <hal.feng@linux.starfivetech.com>
+To:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
-        support),
-        linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support),
-        linux-kernel@vger.kernel.org (open list)
-Cc:     Dongjin Kim <tobetter@gmail.com>,
-        Aurelien Jarno <aurelien@aurel32.net>,
-        Dan Johansen <strit@manjaro.org>
-Subject: [PATCH v3 13/13] arm64: dts: rockchip: Add IR receiver node to ODROID-M1
-Date:   Fri, 30 Sep 2022 07:12:46 +0200
-Message-Id: <20220930051246.391614-14-aurelien@aurel32.net>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220930051246.391614-1-aurelien@aurel32.net>
-References: <20220930051246.391614-1-aurelien@aurel32.net>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Hal Feng <hal.feng@linux.starfivetech.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 19/30] dt-bindings: clock: Add StarFive JH7110 always-on definitions
+Date:   Fri, 30 Sep 2022 13:49:43 +0800
+Message-Id: <20220930054943.4744-1-hal.feng@linux.starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:linux.starfivetech.com:qybglogicsvr:qybglogicsvr2
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the infrared receiver and its associated pinctrl entry. Note that
-there is an external pullup to VCC3V3_SYS.
+From: Emil Renner Berthing <kernel@esmil.dk>
 
-Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-Tested-by: Dan Johansen <strit@manjaro.org>
+Add all clock outputs for the StarFive JH7110 always-on clock generator.
+
+Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ .../dt-bindings/clock/starfive-jh7110-aon.h   | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+ create mode 100644 include/dt-bindings/clock/starfive-jh7110-aon.h
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-index 2f685c606bb9..59ecf868dbd0 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-@@ -49,6 +49,13 @@ hdmi_con_in: endpoint {
- 		};
- 	};
- 
-+	ir-receiver {
-+		compatible = "gpio-ir-receiver";
-+		gpios = <&gpio0 RK_PC2 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ir_receiver_pin>;
-+	};
+diff --git a/include/dt-bindings/clock/starfive-jh7110-aon.h b/include/dt-bindings/clock/starfive-jh7110-aon.h
+new file mode 100644
+index 000000000000..5f1f7f2f1533
+--- /dev/null
++++ b/include/dt-bindings/clock/starfive-jh7110-aon.h
+@@ -0,0 +1,26 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++/*
++ * Copyright 2022 Emil Renner Berthing <kernel@esmil.dk>
++ */
 +
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -519,6 +526,13 @@ fspi_dual_io_pins: fspi-dual-io-pins {
- 		};
- 	};
- 
-+	ir-receiver {
-+		ir_receiver_pin: ir-receiver-pin {
-+			/* external pullup to VCC3V3_SYS */
-+			rockchip,pins = <0 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
++#ifndef __DT_BINDINGS_CLOCK_STARFIVE_JH7110_AON_H__
++#define __DT_BINDINGS_CLOCK_STARFIVE_JH7110_AON_H__
 +
- 	leds {
- 		led_power_pin: led-power-pin {
- 			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
++#define JH7110_AONCLK_OSC_DIV4			 0
++#define JH7110_AONCLK_APB_FUNC			 1
++#define JH7110_AONCLK_GMAC0_AHB			 2
++#define JH7110_AONCLK_GMAC0_AXI			 3
++#define JH7110_AONCLK_GMAC0_RMII_RTX		 4
++#define JH7110_AONCLK_GMAC0_TX			 5
++#define JH7110_AONCLK_GMAC0_TX_INV		 6
++#define JH7110_AONCLK_GMAC0_RX			 7
++#define JH7110_AONCLK_GMAC0_RX_INV		 8
++#define JH7110_AONCLK_OTPC_APB			 9
++#define JH7110_AONCLK_RTC_APB			10
++#define JH7110_AONCLK_RTC_INTERNAL		11
++#define JH7110_AONCLK_RTC_32K			12
++#define JH7110_AONCLK_RTC_CAL			13
++
++#define JH7110_AONCLK_END			14
++
++#endif /* __DT_BINDINGS_CLOCK_STARFIVE_JH7110_H__ */
 -- 
-2.35.1
+2.17.1
 
