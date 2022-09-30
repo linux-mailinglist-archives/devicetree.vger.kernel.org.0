@@ -2,157 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D0545F06CC
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 10:46:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53B9A5F06F8
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 10:58:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230324AbiI3Iqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 04:46:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46158 "EHLO
+        id S231245AbiI3I6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 04:58:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230085AbiI3Iqf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 04:46:35 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3701F11F7F1
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 01:46:34 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1oeBf5-0000eu-W7; Fri, 30 Sep 2022 10:46:24 +0200
-Message-ID: <070a4442-6fd0-c63c-65d9-caca18eea20a@pengutronix.de>
-Date:   Fri, 30 Sep 2022 09:46:14 +0100
+        with ESMTP id S230379AbiI3I6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 04:58:22 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 285AC10501C;
+        Fri, 30 Sep 2022 01:58:21 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E567766022C7;
+        Fri, 30 Sep 2022 09:58:18 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664528299;
+        bh=zxdofwuxNxIayRIjZB79Vj8Xca+pFxcHBS8ENGvGAGI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=hWSrC7qvOgH90ZvmWppW6hzm9sQjWPsVUKKu0PLZKXn3sR/RTEP1jAGd1Jci6SacZ
+         CismWgxOP3oblzk/riHCdV6PRZsmEZ0CcV0bvT3dU4KBBKpUC5JYYkL3RhGJkho/z0
+         C+HL/LuRdB6sHaXhPuw8PCI/UQchsu98TD31/YRXduE+Y+QOZeaM42cSv3hHaW/jsE
+         kwZNF2OlYMjFDKBE6ee3H9crldphCOZJw/qjkwrvgxkSeH1dOEIvsZfHVfabXT/FhB
+         vJdDGcbXMnWSl0X1SbHh1X4dSszW4v5XxIvdTaWtLRN42vul8Qimz+HYWMxDsXYO5o
+         47fdnh6cy23HA==
+Message-ID: <5d62200e-e058-29ea-063f-91dd1fd92cf7@collabora.com>
+Date:   Fri, 30 Sep 2022 10:58:16 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v10 4/4] phy: freescale: imx8m-pcie: Add i.MX8MP PCIe PHY
- support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v3 08/10] clk: mediatek: clk-mt8195-topckgen: Drop
+ univplls from mfg mux parents
 Content-Language: en-US
-To:     Richard Zhu <hongxing.zhu@nxp.com>, vkoul@kernel.org,
-        p.zabel@pengutronix.de, l.stach@pengutronix.de,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
-        shawnguo@kernel.org, alexander.stein@ew.tq-group.com,
-        marex@denx.de, richard.leitner@linux.dev
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <1664440622-18556-1-git-send-email-hongxing.zhu@nxp.com>
- <1664440622-18556-5-git-send-email-hongxing.zhu@nxp.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <1664440622-18556-5-git-send-email-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     =?UTF-8?B?TWFuZHlKSCBMaXUgKOWKieS6uuWDlik=?= 
+        <MandyJH.Liu@mediatek.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "jose.exposito89@gmail.com" <jose.exposito89@gmail.com>,
+        "drinkcat@chromium.org" <drinkcat@chromium.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        =?UTF-8?B?Q2h1bi1KaWUgQ2hlbiAo6Zmz5rWa5qGAKQ==?= 
+        <Chun-Jie.Chen@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?TWlsZXMgQ2hlbiAo6Zmz5rCR5qi6KQ==?= 
+        <Miles.Chen@mediatek.com>,
+        =?UTF-8?B?V2VpeWkgTHUgKOWRguWogeWEgCk=?= <Weiyi.Lu@mediatek.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <Rex-BC.Chen@mediatek.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "nfraprado@collabora.com" <nfraprado@collabora.com>
+References: <20220927101128.44758-1-angelogioacchino.delregno@collabora.com>
+ <20220927101128.44758-9-angelogioacchino.delregno@collabora.com>
+ <79490e834466628a1b92e51f65aeb9e9ce82ddce.camel@mediatek.com>
+ <5d8af9a1-3afc-bd69-8f34-164284a452c2@collabora.com>
+ <CAGXv+5EfsdjqH-gG=wcU4mGxWKmODMw3xJpNsugZJG9hdt1jcw@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5EfsdjqH-gG=wcU4mGxWKmODMw3xJpNsugZJG9hdt1jcw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 29.09.22 09:37, Richard Zhu wrote:
-> Add i.MX8MP PCIe PHY support.
+Il 30/09/22 10:44, Chen-Yu Tsai ha scritto:
+> On Fri, Sep 30, 2022 at 4:29 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Il 30/09/22 07:59, MandyJH Liu (劉人僖) ha scritto:
+>>> On Tue, 2022-09-27 at 12:11 +0200, AngeloGioacchino Del Regno wrote:
+>>>> These PLLs are conflicting with GPU rates that can be generated by
+>>>> the GPU-dedicated MFGPLL and would require a special clock handler
+>>>> to be used, for very little and ignorable power consumption benefits.
+>>>> Also, we're in any case unable to set the rate of these PLLs to
+>>>> something else that is sensible for this task, so simply drop them:
+>>>> this will make the GPU to be clocked exclusively from MFGPLL for
+>>>> "fast" rates, while still achieving the right "safe" rate during
+>>>> PLL frequency locking.
+>>>>
+>>>> Signed-off-by: AngeloGioacchino Del Regno <
+>>>> angelogioacchino.delregno@collabora.com>
+>>>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+>>>> ---
+>>>>    drivers/clk/mediatek/clk-mt8195-topckgen.c | 9 ++++++---
+>>>>    1 file changed, 6 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/drivers/clk/mediatek/clk-mt8195-topckgen.c
+>>>> b/drivers/clk/mediatek/clk-mt8195-topckgen.c
+>>>> index 4dde23bece66..8cbab5ca2e58 100644
+>>>> --- a/drivers/clk/mediatek/clk-mt8195-topckgen.c
+>>>> +++ b/drivers/clk/mediatek/clk-mt8195-topckgen.c
+>>>> @@ -298,11 +298,14 @@ static const char * const ipu_if_parents[] = {
+>>>>       "mmpll_d4"
+>>>>    };
+>>>>
+>>>> +/*
+>>>> + * MFG can be also parented to "univpll_d6" and "univpll_d7":
+>>>> + * these have been removed from the parents list to let us
+>>>> + * achieve GPU DVFS without any special clock handlers.
+>>>> + */
+>>>>    static const char * const mfg_parents[] = {
+>>>>       "clk26m",
+>>>> -    "mainpll_d5_d2",
+>>>> -    "univpll_d6",
+>>>> -    "univpll_d7"
+>>>> +    "mainpll_d5_d2"
+>>>>    };
+>>>>
+>>>>    static const char * const camtg_parents[] = {
+>>> There might be a problem here. Since the univpll_d6 and univpll_d7 are
+>>> available parents in hardware design and they can be selected other
+>>> than kernel stage, like bootloader, the clk tree listed in clk_summary
+>>> cannot show the real parent-child relationship in such case.
+>>
+>> I agree about that, but the clock framework will change the parent to
+>> the "best parent" in that case... this was done to avoid writing complicated
+>> custom clock ops just for that one.
+>>
+>> This issue is present only on MT8195, so it can be safely solved this way,
+>> at least for now.
+>>
+>> Should this become a thing on another couple SoCs, it'll then make sense
+>> to write custom clock ops just for the MFG.
 > 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Tested-by: Marek Vasut <marex@denx.de>
-> Tested-by: Richard Leitner <richard.leitner@skidata.com>
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
->  drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 23 ++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
-> 
-> diff --git a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> index 59b46a4ae069..be5e48864c5a 100644
-> --- a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> +++ b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> @@ -48,6 +48,7 @@
->  
->  enum imx8_pcie_phy_type {
->  	IMX8MM,
-> +	IMX8MP,
->  };
->  
->  struct imx8_pcie_phy_drvdata {
-> @@ -60,6 +61,7 @@ struct imx8_pcie_phy {
->  	struct clk		*clk;
->  	struct phy		*phy;
->  	struct regmap		*iomuxc_gpr;
-> +	struct reset_control	*perst;
->  	struct reset_control	*reset;
->  	u32			refclk_pad_mode;
->  	u32			tx_deemph_gen1;
-> @@ -87,6 +89,9 @@ static int imx8_pcie_phy_init(struct phy *phy)
->  			writel(imx8_phy->tx_deemph_gen2,
->  			       imx8_phy->base + PCIE_PHY_TRSV_REG6);
->  		break;
-> +	case IMX8MP:
-> +		reset_control_assert(imx8_phy->perst);
-> +		break;
->  	}
->  
->  	if (pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ||
-> @@ -141,6 +146,9 @@ static int imx8_pcie_phy_init(struct phy *phy)
->  			   IMX8MM_GPR_PCIE_CMN_RST);
->  
->  	switch (imx8_phy->drvdata->variant) {
-> +	case IMX8MP:
-> +		reset_control_deassert(imx8_phy->perst);
-> +		fallthrough;
->  	case IMX8MM:
->  		reset_control_deassert(imx8_phy->reset);
->  		usleep_range(200, 500);
-> @@ -181,8 +189,14 @@ static const struct imx8_pcie_phy_drvdata imx8mm_drvdata = {
->  	.gpr = "fsl,imx8mm-iomuxc-gpr",
->  };
->  
-> +static const struct imx8_pcie_phy_drvdata imx8mp_drvdata = {
-> +	.variant = IMX8MP,
-> +	.gpr = "fsl,imx8mp-iomuxc-gpr",
-> +};
-> +
->  static const struct of_device_id imx8_pcie_phy_of_match[] = {
->  	{.compatible = "fsl,imx8mm-pcie-phy", .data = &imx8mm_drvdata, },
-> +	{.compatible = "fsl,imx8mp-pcie-phy", .data = &imx8mp_drvdata, },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, imx8_pcie_phy_of_match);
-> @@ -238,6 +252,15 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
->  		return PTR_ERR(imx8_phy->reset);
->  	}
->  
-> +	if (imx8_phy->drvdata->variant == IMX8MP) {
-> +		imx8_phy->perst =
-> +			devm_reset_control_get_exclusive(dev, "perst");
-> +		if (IS_ERR(imx8_phy->perst)) {
-> +			dev_err(dev, "Failed to get PCIE PHY PERST control\n");
-> +			return PTR_ERR(imx8_phy->perst);
+> Would CLK_SET_RATE_NO_REPARENT on the fast mux coupled with forcing
+> the clk tree to a state that we like (mfgpll->fast_mux->gate) work?
 
-Nitpick: dev_err_probe here would be useful if user forgets to
-enable PHY driver. Anyways:
+I'm not sure that it would, and then this would mean that we'd have to add
+assigned-clock-parents to the devicetree and the day we will introduce the
+"complicated custom clock ops" for that, we'll most probably have to change
+the devicetree as well... which is something that I'm a bit reluctant to do
+as a kernel upgrade doesn't automatically mean that you upgrade the DT with
+it to get the "new full functionality".
 
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Introducing the new clock ops for the mfg mux is something that will happen
+for sure, but if we don't get new SoCs with a similar "issue", I don't feel
+confident to write them, as I fear these won't be as flexible as needed and
+will eventually need a rewrite; that's why I want to wait to get the same
+situation on "something new".
 
-Cheers,
-Ahmad
+In my opinion, it is safe to keep this change as it is, even though I do
+understand the shown concerns about the eventual unability to show the tree
+relationship in case the bootloader chooses to initialize the mfg mux with
+a univpll parent.
 
-> +		}
-> +	}
-> +
->  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	imx8_phy->base = devm_ioremap_resource(dev, res);
->  	if (IS_ERR(imx8_phy->base))
+Regards,
+Angelo
 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
