@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ADB75F09AC
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 13:13:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4E6A5F09AE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 13:14:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231214AbiI3LNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 07:13:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35914 "EHLO
+        id S230042AbiI3LOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 07:14:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231311AbiI3LNQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 07:13:16 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129F21311E8
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 03:51:10 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id g20so4380133ljg.7
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 03:51:10 -0700 (PDT)
+        with ESMTP id S230481AbiI3LNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 07:13:38 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE6A17CCFC
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 03:51:41 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id a8so6242875lff.13
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 03:51:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=vctQn9qSs7FuCLhaQLDTmKpuEEYLPcLRtdcGf2Kulu8=;
-        b=xQMgXQDX7Cbw+Y4w41fTe1Sm//2pCxed3mYlyy2Auw+7V2wjHYrk57k3NOl8Zigrui
-         H588ZQZIgQ7JsqY6zUN8UU57Gv7MPyVVKzFckFckztxpGlQj/FGHEmKOqV4XtiBvjWJJ
-         YdEQ5D+KMVFIppWrOa/aR58H2vFjRax45F236sHk6Ro2ocmjcoviP31915oW/SOIHpFv
-         hG0wfWb8mj1XpZ9l+VaDgmBjN5a9l++rdkcNMnzhkM8b9NuRjPpDj5gHtzCmjfj0y+/u
-         TSsY3Nc63VlX8tUINUCSRLeKvczWmipfQ3ILELQrgKQVPost0bbK9fzY/036UFdCMQLZ
-         /nRg==
+        bh=BXoxzPrniGP5UagRxPIaqK4JQDcPReqtFzB9YvzYgs0=;
+        b=ZzWKORmqvGAzxQLshNo4AR/12E0jIXZ5eSuDtEd3pu1bCBErT8fTpJYsSmIVE7iYV/
+         McsO0LyrDZh/waOpjgzJRaPfNskOP30j1NDwkhmKQAL/NOv4DyzKJ3LI0U3FrhSi6Xq2
+         LnCt9CNrFc75bX5FhfKuk/BdyUJPDZNjJ/XWDcmujjbbsJzQ4UZ91GhBl3olbzLoJjoa
+         6zb/wEjEZlt8SL7bUvdfoGD5UJdk1/ujkjJMlk7pY/x8L3tzHzLS+hxaMysCT+ZRXV/4
+         M8ZJDZJ/beuo7dFD8Xz9XwXVhpiLYkkVqYA7Rb8nKoUreV8XsjwOcay3AmphtWucN7Eb
+         vO3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=vctQn9qSs7FuCLhaQLDTmKpuEEYLPcLRtdcGf2Kulu8=;
-        b=kw6EvNkF3cWL9xVGWx6ILXqjViboGl0n2cG/+slWvnyP7SmGhhgvR3s4IY2CS3CGZj
-         zMgfneDkTYuv5usp4xtWeul+6LA5ZfIoPZrjjZ0u+c0EAw/RCR7kyoBB/s2n7ULPKYXG
-         pl/0Wus5GwO2IWpshdpkPXBBk8cdBORY0l32mM/+kBqZP2qG7zwIVhOvI8GHFIpahXC9
-         fX8jJGLgq16YPyaf7CPocRNwulhDHGH3CTBPXp34Yrk2ZldtJoSNyp7EF4WdEy0Ngh6O
-         p5z8YmZ6YIrBFOO0fIhogphpbflmXzYOJWCesFTB8rR0sTUngyCAs2FjaepUBDZdfNWp
-         NjpQ==
-X-Gm-Message-State: ACrzQf1DngsVQmxQINZumNZIA3JmhWCT7DJo2FXwOqC1XQ6pG/p0+ebj
-        pO4XtleYS4x1AjtbP/BdrWpBTQ==
-X-Google-Smtp-Source: AMsMyM7U0+RvpMpI946u7FIRiKfT/TPyCq1p54TSPJaH8GXCjHw/ftEk6RPODWpLAOZjysiQrhWClA==
-X-Received: by 2002:a05:651c:19a6:b0:26c:4a66:aa42 with SMTP id bx38-20020a05651c19a600b0026c4a66aa42mr2970064ljb.231.1664535068835;
-        Fri, 30 Sep 2022 03:51:08 -0700 (PDT)
+        bh=BXoxzPrniGP5UagRxPIaqK4JQDcPReqtFzB9YvzYgs0=;
+        b=X5gQoyBNv34EPj7Kyqz35qR1Z/m3gnlvTlDbPoenYN4ZZ+FIfjZErIGIq8rhwwsoPL
+         EeNf1IRfiTXAEUHxathb8X4LfSsQe48K3/2eKjbmXZbeD3/jFzYBKesppas1oeAQxER2
+         Q9Ne9YZDkHowwT2Br6JFb6GSgw+SQQa4wA93Sh1xddpOkLzLEkIkFVkXd8GVBEb5n/mk
+         pEJmbqSzc2rRcmdbjospF2GW5HP/0ZaPndfo7QGG35XtiinOwrrPENVHtTRg5PIcPshW
+         xu8CIWXf5uZjr/LHVcyRrWGPgsqlG5DdjeC0TsYhEGFpGdvYEd5DCC6DKZGAE2IADwGm
+         Nf1Q==
+X-Gm-Message-State: ACrzQf1YxaBc20M7bANmR8JvATceV++rHT351IZxif1VpsuSliEihUc7
+        rVyscw2CTXUX6VyLqYbvmUlBWw==
+X-Google-Smtp-Source: AMsMyM5E0NaL/7MuUgMPRk+Y/5nmYoFC7MJaL91SYm8sB3f4a0diyJt+DduCZMWNcjDLTiqhgVFnHA==
+X-Received: by 2002:a05:6512:3981:b0:49a:d169:5808 with SMTP id j1-20020a056512398100b0049ad1695808mr2952640lfu.241.1664535099336;
+        Fri, 30 Sep 2022 03:51:39 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id bi30-20020a0565120e9e00b004948497e07esm265561lfb.15.2022.09.30.03.51.07
+        by smtp.gmail.com with ESMTPSA id i22-20020a2e5416000000b0026455099704sm117241ljb.114.2022.09.30.03.51.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Sep 2022 03:51:08 -0700 (PDT)
-Message-ID: <23bc38b8-ed67-d243-9739-f07b7411be3a@linaro.org>
-Date:   Fri, 30 Sep 2022 12:51:07 +0200
+        Fri, 30 Sep 2022 03:51:38 -0700 (PDT)
+Message-ID: <abfc508f-1d61-8364-ce26-30893cc1489a@linaro.org>
+Date:   Fri, 30 Sep 2022 12:51:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 4/4] arm64: dts: smaug: Add display panel node
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add Hynitron vendor
+ prefix
 Content-Language: en-US
-To:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
-        arnd@arndb.de, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20220929170502.1034040-1-diogo.ivo@tecnico.ulisboa.pt>
- <20220929170502.1034040-5-diogo.ivo@tecnico.ulisboa.pt>
+To:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, rydberg@bitmath.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        dmitry.torokhov@gmail.com, Chris Morgan <macromorgan@hotmail.com>
+References: <20220928214806.13572-1-macroalpha82@gmail.com>
+ <20220928214806.13572-2-macroalpha82@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220929170502.1034040-5-diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <20220928214806.13572-2-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,87 +77,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/09/2022 19:05, Diogo Ivo wrote:
-> The Google Pixel C has a JDI LPM102A188A display panel. Add a
-> DT node for it. Tested on Pixel C.
+On 28/09/2022 23:48, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
+> Hynitron is a company based in Shanghai that makes controller ICs for
+> touchscreens.
 > 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> index 20d092812984..271ef70747f1 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> @@ -31,6 +31,39 @@ memory {
->  	};
->  
->  	host1x@50000000 {
-> +		dc@54200000 {
-> +			status = "okay";
+> http://www.hynitron.com/
+> 
 
-You should override by labels, not by full path.
 
-> +		};
-> +
-> +		dsia: dsi@54300000 {
-> +			avdd-dsi-csi-supply = <&vdd_dsi_csi>;
-> +			nvidia,boot-on;
-> +			status = "okay";
-> +
-> +			link2: panel@0 {
-> +				compatible = "jdi,lpm102a188a";
-> +				reg = <0>;
-> +			};
-> +		};
-> +
-> +		dsib: dsi@54400000 {
-> +			avdd-dsi-csi-supply = <&vdd_dsi_csi>;
-> +			nvidia,ganged-mode = <&dsia>;
-> +			nvidia,boot-on;
-> +			status = "okay";
-> +
-> +			link1: panel@0 {
-> +				compatible = "jdi,lpm102a188a";
-> +				reg = <0>;
-> +				power-supply = <&pplcd_vdd>;
-> +				ddi-supply = <&pp1800_lcdio>;
-> +				enable-gpios = <&gpio TEGRA_GPIO(V, 1) GPIO_ACTIVE_HIGH>;
-> +				reset-gpios = <&gpio TEGRA_GPIO(V, 2) GPIO_ACTIVE_LOW>;
-> +				link2 = <&link2>;
-> +				backlight = <&backlight>;
-> +			};
-> +		};
-> +
->  		dpaux: dpaux@545c0000 {
->  			status = "okay";
->  		};
-> @@ -1627,6 +1660,37 @@ nau8825@1a {
->  			status = "okay";
->  		};
->  
-> +		backlight: lp8557-backlight@2c {
-
-Node names should be generic: backlight
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +			compatible = "ti,lp8557";
-> +			reg = <0x2c>;
-> +			power-supply = <&pplcd_vdd>;
-> +			enable-supply = <&pp1800_lcdio>;
-> +			bl-name = "lp8557-backlight";
-> +			dev-ctrl = /bits/ 8 <0x01>;
-> +			init-brt = /bits/ 8 <0x80>;
-> +
-> +			/* Full scale current, 20mA */
-> +			rom_11h {
-
-No underscores in node names, unless something requires it?
-
-> +				rom-addr = /bits/ 8 <0x11>;
-> +				rom-val = /bits/ 8 <0x05>;
-> +			};
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
