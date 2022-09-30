@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA8B15F11F9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 20:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 983455F11FD
+	for <lists+devicetree@lfdr.de>; Fri, 30 Sep 2022 20:53:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232480AbiI3SxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 14:53:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38794 "EHLO
+        id S232447AbiI3SxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 14:53:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232460AbiI3Swy (ORCPT
+        with ESMTP id S232461AbiI3Swy (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 14:52:54 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD639169E59
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:52:51 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id k10so8201033lfm.4
-        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:52:51 -0700 (PDT)
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7F2B169E7B
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:52:52 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id c2so1833945lfb.10
+        for <devicetree@vger.kernel.org>; Fri, 30 Sep 2022 11:52:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=lLaIbaAZiieufLEEmr0IZ4e+KtMk5fZh+A5xCNb1n3A=;
-        b=hRzGBrBebTqAr3FhSuZoHydXtaLtaRjLRuJ+qlTbehzgpKVr5M7t+kVCyWl78x0eH3
-         mT1gacXTYIx5YsYgmIuK8wn2vCFLZuiO/JEhc//PpJJnZO68KQTbiSu5LrXRPUIspzdI
-         h10rkAU95u7/seV73PQn4ZQTiFDv8qWZGpJVy0CJy/fCewy9l3HlOvOdL5ml7wcFCccE
-         KM/z9Uu8xUW8Miymw4ScWcUFlKKJv5X7e47uh8dtiOtZ3/nn20nrOxKd1MtFvrIFDvKN
-         LCIaqfLYbvWAmfsupPf0tAkIj7q0d9j9OI8da1mOBlXeME9/TX2aJGNCRVGGRKuVszQ9
-         F9hw==
+        bh=kMnpWjv3xH0AQ6EcHb4BKirJyZECpvu2Ouogae6Oqyc=;
+        b=vaop6mzyZ9jbIm5PXmDquP3+6Js7z36FeqxugpcwPtKQzwsg8dqBayK6+VSnWWGX0I
+         fS75sMSWLR6Ru+d8cxBVBPj5yFSCrjtnyRfwwxQp+46H0xxjaPbBgn5qbbz8rIjOqRQU
+         ghUiz99fdAQNkTRghXK/fQGeK1c5F0QvNSWbGzXMxPiEjRm+mdwN3Yy+abS2XEbFxfWR
+         yOpuuC4YNjUQhS1jLw9y23wDMhaubbLUwUc7Pr/0eWb04rkgbENWVppEAvLmCqlwWuE2
+         RDMszuPmJH6ZFUJOjjXV8pCeEXXo7gt8C866VpAuV2cjG4Hf7yy/TdTLBDnUcHcqj+I2
+         81kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=lLaIbaAZiieufLEEmr0IZ4e+KtMk5fZh+A5xCNb1n3A=;
-        b=4POYqTEq6Jus0MLDTIvhItd3Pouq9NziWAJI3sLdWHa+tIn+S2byUi3QU5uXnQFiVQ
-         q5VNzcJcgEhnsXGMwVsmk/HR56vT0cxMkkuEnZoNU3vJgcJDA27Rz9MpPbiDRQnttIti
-         VJ/LadAGL7fzi6pwxYTVu2w4k2zoJCeHVQRWywMJjal4cmF8sts/AZ3rD9qa2q3YmOgr
-         CYQld/l80JAFzmZVudhIflpizgAdeyUR6l+o5raAEkl8cGG3Z7g8+1feI6GM/ujfyLl1
-         hZmukjiMV+JJOHYhHVzmEq8Nho8VZmHGZhJdSP63pgydEnNUklOWQvJrtCvaWYhA19sX
-         5ZPw==
-X-Gm-Message-State: ACrzQf1SNVZqg5ZYHtQk8VPQTwo+MB4de/RrZmnlvZ5fG+WZxZsGoCFL
-        bXQjBYCPQhwi5jH2TIwvXtjGzQ==
-X-Google-Smtp-Source: AMsMyM4I/XJmB3ExsCL/ToLriH7fXQiMV96w3xeCtBbIJn0CD3qGgiUo6WX7O80/Dd1Tg4Q75XpH8A==
-X-Received: by 2002:a05:6512:ac2:b0:49a:2fec:aa4a with SMTP id n2-20020a0565120ac200b0049a2fecaa4amr3660330lfu.348.1664563971286;
-        Fri, 30 Sep 2022 11:52:51 -0700 (PDT)
+        bh=kMnpWjv3xH0AQ6EcHb4BKirJyZECpvu2Ouogae6Oqyc=;
+        b=UBBaBg9oxv/mD6p29istApUfhFaEgGnXdo1k3kiI1Ko5srTvRpt657x4LN02lCYK55
+         O3lqHlZCHAxT+jmnLwVU7l26KDw+9SuZhNPKm6Xe/ZX52biekpau1jdxrdKy+mkyMmoB
+         AyxHSeXoMuFIK+3rFMRhzRsV0y3GEJjL+bE6sqG5YM4k09ntRv82lK8OxeBMvb/aFVpB
+         /lzZs4md8ExEsfkQjXAfPTWkjJvJPup7M4Op8/QmWGS9IRZySevCi4sjRTr02z+5C5HS
+         88C+TJTa/QJqZOQFOTVaqa93hzbdQCWym12gojmbW8DIrWfqxVXJ7AgWcI1mVsJYDtGc
+         /xmA==
+X-Gm-Message-State: ACrzQf0JhLcvev3Nx5CPfwoarkfEpgTDZgGOSE/huOThNhBdO6Xvvz25
+        pRnUAFuT+F0+RDAU279cmruzgQ==
+X-Google-Smtp-Source: AMsMyM5s+0AKHiX+0AqOpfmeGoayfc7pP4zIaxJtfsn0IXb74p6mKCYZbiu/XfMsbANJ+jqvIZqxPA==
+X-Received: by 2002:a05:6512:15a0:b0:49b:1eba:89d4 with SMTP id bp32-20020a05651215a000b0049b1eba89d4mr3467679lfb.188.1664563972018;
+        Fri, 30 Sep 2022 11:52:52 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id i8-20020a056512006800b00492cfecf1c0sm374703lfo.245.2022.09.30.11.52.50
+        by smtp.gmail.com with ESMTPSA id i8-20020a056512006800b00492cfecf1c0sm374703lfo.245.2022.09.30.11.52.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 11:52:50 -0700 (PDT)
+        Fri, 30 Sep 2022 11:52:51 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -55,9 +55,9 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 19/23] ARM: dts: qcom: msm8960: drop amba device node
-Date:   Fri, 30 Sep 2022 21:52:32 +0300
-Message-Id: <20220930185236.867655-20-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 20/23] ARM: dts: qcom: msm8660: move pm8058 LED devices to the main DT file
+Date:   Fri, 30 Sep 2022 21:52:33 +0300
+Message-Id: <20220930185236.867655-21-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220930185236.867655-1-dmitry.baryshkov@linaro.org>
 References: <20220930185236.867655-1-dmitry.baryshkov@linaro.org>
@@ -65,103 +65,115 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The separate amba device node doesn't add anything significant to the
-DT. The OF parsing code already creates ambda_device or platform_device
-depending on the compatibility lists. Drop the amba node and reorder
-sdcc nodes according to node addresses.
+Declare PM8058 LED devices in the main msm8660 DT file to allow them to
+be used by other devices.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom-msm8960.dtsi | 68 +++++++++++++----------------
- 1 file changed, 31 insertions(+), 37 deletions(-)
+ .../arm/boot/dts/qcom-apq8060-dragonboard.dts | 12 +++------
+ arch/arm/boot/dts/qcom-msm8660.dtsi           | 26 ++++++++++++++++++-
+ 2 files changed, 29 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
-index 487ab9b8d23b..30abf53b062d 100644
---- a/arch/arm/boot/dts/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
-@@ -297,44 +297,38 @@ rng@1a500000 {
- 			clock-names = "core";
+diff --git a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
+index 573e4dc66bb0..dd409ff31e21 100644
+--- a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
++++ b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
+@@ -436,39 +436,35 @@ led@48 {
+ 					 * ambient light and proximity sensor
+ 					 * Capella Microsystems CM3605.
+ 					 */
+-					compatible = "qcom,pm8058-keypad-led";
+-					reg = <0x48>;
+ 					label = "pm8058:infrared:proximitysensor";
+ 					default-state = "off";
+ 					linux,default-trigger = "cm3605";
++					status = "okay";
+ 				};
+ 				led@131 {
+-					compatible = "qcom,pm8058-led";
+-					reg = <0x131>;
+ 					label = "pm8058:red";
+ 					color = <LED_COLOR_ID_RED>;
+ 					default-state = "off";
++					status = "okay";
+ 				};
+ 				led@132 {
+ 					/*
+ 					 * This is actually green too on my
+ 					 * board, but documented as yellow.
+ 					 */
+-					compatible = "qcom,pm8058-led";
+-					reg = <0x132>;
+ 					label = "pm8058:yellow";
+ 					color = <LED_COLOR_ID_YELLOW>;
+ 					default-state = "off";
+ 					linux,default-trigger = "mmc0";
++					status = "okay";
+ 				};
+ 				led@133 {
+-					compatible = "qcom,pm8058-led";
+-					reg = <0x133>;
+ 					label = "pm8058:green";
+ 					function = LED_FUNCTION_HEARTBEAT;
+ 					color = <LED_COLOR_ID_GREEN>;
+ 					default-state = "on";
+ 					linux,default-trigger = "heartbeat";
++					status = "okay";
+ 				};
+ 			};
  		};
+diff --git a/arch/arm/boot/dts/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom-msm8660.dtsi
+index ddce7d64ba99..35e90d188e05 100644
+--- a/arch/arm/boot/dts/qcom-msm8660.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8660.dtsi
+@@ -359,6 +359,12 @@ pm8058_gpio: gpio@150 {
  
--		amba {
--			compatible = "simple-bus";
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges;
--			sdcc1: mmc@12400000 {
--				status = "disabled";
--				compatible = "arm,pl18x", "arm,primecell";
--				arm,primecell-periphid = <0x00051180>;
--				reg = <0x12400000 0x8000>;
--				interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
--				interrupt-names = "cmd_irq";
--				clocks = <&gcc SDC1_CLK>, <&gcc SDC1_H_CLK>;
--				clock-names = "mclk", "apb_pclk";
--				bus-width = <8>;
--				max-frequency = <96000000>;
--				non-removable;
--				cap-sd-highspeed;
--				cap-mmc-highspeed;
--				vmmc-supply = <&vsdcc_fixed>;
--			};
-+		sdcc3: mmc@12180000 {
-+			compatible = "arm,pl18x", "arm,primecell";
-+			arm,primecell-periphid = <0x00051180>;
-+			status = "disabled";
-+			reg = <0x12180000 0x8000>;
-+			interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "cmd_irq";
-+			clocks = <&gcc SDC3_CLK>, <&gcc SDC3_H_CLK>;
-+			clock-names = "mclk", "apb_pclk";
-+			bus-width = <4>;
-+			cap-sd-highspeed;
-+			cap-mmc-highspeed;
-+			max-frequency = <192000000>;
-+			no-1-8-v;
-+			vmmc-supply = <&vsdcc_fixed>;
-+		};
+ 				};
  
--			sdcc3: mmc@12180000 {
--				compatible = "arm,pl18x", "arm,primecell";
--				arm,primecell-periphid = <0x00051180>;
--				status = "disabled";
--				reg = <0x12180000 0x8000>;
--				interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
--				interrupt-names = "cmd_irq";
--				clocks = <&gcc SDC3_CLK>, <&gcc SDC3_H_CLK>;
--				clock-names = "mclk", "apb_pclk";
--				bus-width = <4>;
--				cap-sd-highspeed;
--				cap-mmc-highspeed;
--				max-frequency = <192000000>;
--				no-1-8-v;
--				vmmc-supply = <&vsdcc_fixed>;
--			};
-+		sdcc1: mmc@12400000 {
-+			status = "disabled";
-+			compatible = "arm,pl18x", "arm,primecell";
-+			arm,primecell-periphid = <0x00051180>;
-+			reg = <0x12400000 0x8000>;
-+			interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "cmd_irq";
-+			clocks = <&gcc SDC1_CLK>, <&gcc SDC1_H_CLK>;
-+			clock-names = "mclk", "apb_pclk";
-+			bus-width = <8>;
-+			max-frequency = <96000000>;
-+			non-removable;
-+			cap-sd-highspeed;
-+			cap-mmc-highspeed;
-+			vmmc-supply = <&vsdcc_fixed>;
- 		};
++				pm8058_led48: led@48 {
++					compatible = "qcom,pm8058-keypad-led";
++					reg = <0x48>;
++					status = "disabled";
++				};
++
+ 				pm8058_mpps: mpps@50 {
+ 					compatible = "qcom,pm8058-mpp",
+ 						     "qcom,ssbi-mpp";
+@@ -379,7 +385,25 @@ pwrkey@1c {
+ 					pull-up;
+ 				};
  
- 		tcsr: syscon@1a400000 {
+-				keypad@148 {
++				pm8058_led131: led@131 {
++					compatible = "qcom,pm8058-led";
++					reg = <0x131>;
++					status = "disabled";
++				};
++
++				pm8058_led132: led@132 {
++					compatible = "qcom,pm8058-led";
++					reg = <0x132>;
++					status = "disabled";
++				};
++
++				pm8058_led133: led@133 {
++					compatible = "qcom,pm8058-led";
++					reg = <0x133>;
++					status = "disabled";
++				};
++
++				pm8058_keypad: keypad@148 {
+ 					compatible = "qcom,pm8058-keypad";
+ 					reg = <0x148>;
+ 					interrupt-parent = <&pm8058>;
 -- 
 2.35.1
 
