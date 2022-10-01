@@ -2,163 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A46825F193C
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 05:09:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFFEF5F194D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 05:11:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233007AbiJADJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 23:09:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45304 "EHLO
+        id S233013AbiJADLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 23:11:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232633AbiJADHy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 23:07:54 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 177A1E0075;
-        Fri, 30 Sep 2022 20:07:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1664593644; x=1696129644;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=rlXZnS5UWrx9Pr783moEQVaT/CqHgzz8m0/A+8Fj5AA=;
-  b=hkExF6XdVrLq5VtMZmw2JBpehlAEdbj4IB/cCfRcoBZ4fq38/9FE/6GQ
-   TrveBZWRYZBAP52+JN0GyovY8u1t1iijtuFFPQPE/24d7qr39AIjLRSHD
-   90IfjTUL72SG6uIzaxw9+0XN8gKhlVk2P0/VxKOGLu07HsYbpDKhL9aCI
-   0=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 30 Sep 2022 20:07:18 -0700
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2022 20:07:18 -0700
-Received: from hu-molvera-sd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+        with ESMTP id S232965AbiJADJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 23:09:19 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6318E1BE79D;
+        Fri, 30 Sep 2022 20:08:01 -0700 (PDT)
+X-UUID: 5e1126fba7674c5791612e256a3b95c4-20221001
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=RTwyJ78EQUlreAtuk6YGiJk7F5TanCDI8cS4Z2YDkMY=;
+        b=SYhN476sGFHYdMmwJ3FGAdrvQt3WT4EYHvawTOwjFwR5EBBphXGR0Jt/zXFlfEGE72R+R1DTtD6Z4jMB9vuRvP7BIghrdoKPXAxyTvApuCMEytW+ILbqJO+SbTEHpW/RIYevY50f8dhS7v1BsZvjaE0TSMzJbQ/lNfRKYaLv3IU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:4828be03-ed2c-4ed0-b79f-fcb2377efed2,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:95
+X-CID-INFO: VERSION:1.1.11,REQID:4828be03-ed2c-4ed0-b79f-fcb2377efed2,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
+        :quarantine,TS:95
+X-CID-META: VersionHash:39a5ff1,CLOUDID:9b83a107-1cee-4c38-b21b-a45f9682fdc0,B
+        ulkID:221001110759BOBPXVS8,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48|823|
+        824,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:n
+        il,COL:0
+X-UUID: 5e1126fba7674c5791612e256a3b95c4-20221001
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 83364288; Sat, 01 Oct 2022 11:07:57 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Fri, 30 Sep 2022 20:07:17 -0700
-From:   Melody Olvera <quic_molvera@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+ 15.2.792.15; Sat, 1 Oct 2022 11:07:55 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Sat, 1 Oct 2022 11:07:55 +0800
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
-        Melody Olvera <quic_molvera@quicinc.com>
-Subject: [PATCH 19/19] arm64: dts: qcom: qdru1000: Add additional UART instances
-Date:   Fri, 30 Sep 2022 20:06:56 -0700
-Message-ID: <20221001030656.29365-20-quic_molvera@quicinc.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221001030656.29365-1-quic_molvera@quicinc.com>
-References: <20221001030656.29365-1-quic_molvera@quicinc.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Irui Wang <irui.wang@mediatek.com>
+Subject: [PATCH] dt-bindings: mediatek: vcodec: Add the platform compatible to schema
+Date:   Sat, 1 Oct 2022 11:07:52 +0800
+Message-ID: <20221001030752.14486-1-irui.wang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_PASS,
+        T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add remaining UART instances to the QUP nodes for the QDU1000
-and QRU1000 SoCs.
+There are venc node warnings when running dtbs_check, the clock-names
+was unexpected, missing properties '#address-cells' and '#size-cells'.
+Add the corresponding platform compatible to schema.
 
-Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+Signed-off-by: Irui Wang <irui.wang@mediatek.com>
 ---
- arch/arm64/boot/dts/qcom/qdru1000.dtsi | 57 +++++++++++++++++++++++++-
- 1 file changed, 56 insertions(+), 1 deletion(-)
+ .../bindings/media/mediatek,vcodec-encoder.yaml      | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/qdru1000.dtsi b/arch/arm64/boot/dts/qcom/qdru1000.dtsi
-index 930bb8c8ba5b..21938e3a613e 100644
---- a/arch/arm64/boot/dts/qcom/qdru1000.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qdru1000.dtsi
-@@ -290,6 +290,19 @@ qupv3_id_0: geniqup@9c0000 {
- 			ranges;
- 			status = "disabled";
+diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+index 32aee09aea33..0f2ea8d9a10c 100644
+--- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
++++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+@@ -67,6 +67,12 @@ properties:
+   power-domains:
+     maxItems: 1
  
-+			uart0: serial@980000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0x980000 0x0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_uart0_default>;
-+				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
++  "#address-cells":
++    const: 2
 +
- 			uart7: serial@99c000 {
- 				compatible = "qcom,geni-debug-uart";
- 				reg = <0x0 0x99c000 0x0 0x4000>;
-@@ -569,6 +582,33 @@ qupv3_id_1: geniqup@ac0000 {
- 			ranges;
- 			status = "disabled";
++  "#size-cells":
++    const: 2
++
+ required:
+   - compatible
+   - reg
+@@ -84,7 +90,9 @@ allOf:
+           contains:
+             enum:
+               - mediatek,mt8183-vcodec-enc
++              - mediatek,mt8188-vcodec-enc
+               - mediatek,mt8192-vcodec-enc
++              - mediatek,mt8195-vcodec-enc
  
-+			uart8: serial@a80000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xa80000 0x0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_uart8_default>;
-+				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
-+			uart13: serial@a94000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0xa94000 0x0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_uart13_default>;
-+				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
-+
- 			i2c9: i2c@a84000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0x0 0xa84000 0x0 0x4000>;
-@@ -912,7 +952,12 @@ tlmm: pinctrl@f000000 {
- 			gpio-ranges = <&tlmm 0 0 151>;
- 			wakeup-parent = <&pdc>;
+     then:
+       required:
+@@ -107,7 +115,9 @@ allOf:
+         compatible:
+           enum:
+             - mediatek,mt8173-vcodec-enc
++            - mediatek,mt8188-vcodec-enc
+             - mediatek,mt8192-vcodec-enc
++            - mediatek,mt8195-vcodec-enc
  
--			qup_uart7_default: qup-uart7-default {
-+			qup_uart0_default: qup-uart0-default {
-+				pins = "gpio6", "gpio7", "gpio8", "gpio9";
-+				function = "qup0_se0_l0";
-+			};
-+
-+			qup_uart7_default: qup-uart3-default {
- 				tx {
- 					pins = "gpio134";
- 					function = "qup0_se7_l2";
-@@ -928,6 +973,16 @@ rx {
- 				};
- 			};
- 
-+			qup_uart8_default: qup-uart8-default {
-+				pins = "gpio18", "gpio19", "gpio20", "gpio21";
-+				function = "qup1_se0_l0";
-+			};
-+
-+			qup_uart13_default: qup-uart13-default {
-+				pins = "gpio30", "gpio31", "gpio32", "gpio33";
-+				function = "qup1_se5_l0";
-+			};
-+
- 			qup_i2c1_data_clk: qup-i2c1-data-clk {
- 				pins = "gpio10", "gpio11";
- 				function = "qup0_se1_l0";
+     then:
+       properties:
+@@ -118,7 +128,7 @@ allOf:
+         clock-names:
+           items:
+             - const: venc_sel
+-    else:  # for vp8 hw decoder
++    else:  # for vp8 hw encoder
+       properties:
+         clock:
+           items:
 -- 
-2.37.3
+2.18.0
 
