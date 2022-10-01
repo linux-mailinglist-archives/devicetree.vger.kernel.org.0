@@ -2,135 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A6125F1C5B
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 15:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62C1B5F1C38
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 14:51:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbiJANgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 09:36:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34394 "EHLO
+        id S229507AbiJAMv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 08:51:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbiJANgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 09:36:03 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B08597B1CE
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 06:35:57 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 10so10752737lfy.5
-        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 06:35:57 -0700 (PDT)
+        with ESMTP id S229457AbiJAMv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 08:51:27 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAF5DE2BA7
+        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 05:51:25 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id b23so6465417pfp.9
+        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 05:51:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date;
-        bh=CG8R/L4pPWym3ANx8yZmnov0YG/TUNdQM5EA24rS0E4=;
-        b=N9J0yu8iM/3JtfDrLUqQ7eLX+G46XOkk9eo7UzHX5O/dCngza/nNFP6sKRwKRegMck
-         m+zUfXZ1UWd5SQPtZCLuUxS+cnJshjHAenZsqrdRkoE+DM60rl+XEPSi4WSMddAGtzmi
-         YAH8a87oMDq8yZwcVCt87/7+G6EqZ0HaZFCyY0utpKzvKwtg7YiezDQSSSQ69nNUPlyU
-         18Cq7UWSYds2OkpFofvAfX9fFTnAaU+Al36tPqeZbyPOZIChMytX/DHDTeb/bo6n+dXl
-         hi4WbxCUNmgsCtGiSfupJqBuxN5nUwF0Z3sn1SB5mD3yRhI3H7OjR9qv4Lt/2Zfehsm8
-         NMyg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=6CiQZZpfJa5bf7nfDlOQwTClOn8mQ3Dzv15tBFfsV6Y=;
+        b=FZZi4JJvugZnmbVREL09i5x0+O/2pTiE6mCTST5LjwmKKog6jjoDGGz1qZZpWwrHn7
+         L5bVEvL3izEZKduKrLR8loEsZZL9AEP6sOWkEJbec1pOrYcgv93kuzzd/hm4xc7Mi4t/
+         muJN7hpZXVCvjCYDLL01EeIUBIFC0k33dOp6sfupNPlGs6di2UEjKUuBXRI/jhBT4Xid
+         KwjkdrAkdXPrXkKyvEKengdqzWVrMjaGra2cbo6zKrEYsW3Tm+/Mpoy5txzp8pegOpoU
+         +cT7fcU1tbwzuxrHommdBtw2YXEjN7b5RiQeo09pMp9VXfsirvpEtv7jC4TJPw3mSCX3
+         lnqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date;
-        bh=CG8R/L4pPWym3ANx8yZmnov0YG/TUNdQM5EA24rS0E4=;
-        b=PGWSQ9814Yty6eM7dGaPwKzOHPOdDMX5/JsEU4b/gFQgnsLsOfDjNO+sTEN36tT4NS
-         u/g0+pTmc0LrG69GA6Vsf9wR8U923zxB7mj0niMQf0nHrvfT/GzEJ86DGWUv9MRD41t1
-         wbcAfYTQBlGfEt6oob4E6woBWYnUrkrbmoWLOakYIJHSjuA/QIpxQqr/VR698kKH8U1G
-         NounyOBsYEhnTF+9i6xPsykVufzWnmixoVKtuL0P1dcrTjCGIFklzwlM1FHgRrML3p49
-         0x2rysTvy4DgrlKdAY/wIKGP4NAOY7LnqB4nmIrzjz809HptqLVQbBdDiR5R48JgccT9
-         jzow==
-X-Gm-Message-State: ACrzQf1gwCdTCqRwraLGrDwQ/hslhcjDH/yC+LfgEBnhvDOhIamH+qz+
-        wqixaZ9bJyK65IuZcaje64Qq4w==
-X-Google-Smtp-Source: AMsMyM6tNn6Klrg0MZ813hnxa860FCdvafuOX5sG75uoogp4vuSYjUvohonmolvNEZP3W0ujEByI9g==
-X-Received: by 2002:a05:6512:31d1:b0:499:fa38:3d7b with SMTP id j17-20020a05651231d100b00499fa383d7bmr4763301lfe.544.1664631356000;
-        Sat, 01 Oct 2022 06:35:56 -0700 (PDT)
-Received: from [127.0.0.1] ([188.162.64.124])
-        by smtp.gmail.com with ESMTPSA id q9-20020a0565123a8900b004994c190581sm761096lfu.123.2022.10.01.06.35.55
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 01 Oct 2022 06:35:55 -0700 (PDT)
-Date:   Fri, 30 Sep 2022 11:29:17 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Doug Anderson <dianders@chromium.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>
-CC:     y@qualcomm.com, dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Vinod Polimera <quic_vpolimer@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>
-Subject: =?US-ASCII?Q?Re=3A_=5Bv5=5D_drm/msm/disp/dpu1=3A_add_suppo?= =?US-ASCII?Q?rt_for_dspp_sub_block_flush_in_sc7280?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <CAD=FV=UT-GmAOYrCBRU0bhGeXU=pOGDbk=Jq7JEk40tyEH0zLA@mail.gmail.com>
-References: <1663157784-22232-1-git-send-email-quic_kalyant@quicinc.com> <CAD=FV=UT-GmAOYrCBRU0bhGeXU=pOGDbk=Jq7JEk40tyEH0zLA@mail.gmail.com>
-Message-ID: <59745151-7A97-4640-A8A2-5D06ABE1FBF4@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=6CiQZZpfJa5bf7nfDlOQwTClOn8mQ3Dzv15tBFfsV6Y=;
+        b=7PdhOEoGE0RFPrg/B/C2j6+HJmBB7UZ6kIG95ulTwOJHudkhFxha5fhTtX8+R9aV8Y
+         xzfz4dLv5hFo0s3Np+jhskv1tJJTlzVzOco2eHgdiDz+h+0VthnNFmDa6kW7SrIDTH10
+         6CyqsYAIn6Ncs3P40Rjit362vJfEdlU5tuwhY3cBjWpavXWGEERuJuiDdkRH4134mMIR
+         BErMWG+uA7151vCg6c6Vfe3vg3oO0gakJZLJQ8eMDp5q02TblSTB64aDVxASZLUzgBid
+         XFss2aZffTg/krAo11M4B8kB3QoHKRX2Y5UfDIjiir1iJONOoKUleXlMCKzNj7v087Rl
+         UjbA==
+X-Gm-Message-State: ACrzQf36JwsVVznuvCLsznkb+djEdG/QTUYAYo+TBrWn3oZDqyjNAH9O
+        eqqnnvaI4+S5ktKKfUlBOOVi1g==
+X-Google-Smtp-Source: AMsMyM4jrSzLFdGh1E4kc2Vu0hBud0A6y+gW1mm08FiuSBpA3/yRUEBGukegVaqZHKN0BJ3H19hglQ==
+X-Received: by 2002:a63:cf56:0:b0:43c:a0a1:f749 with SMTP id b22-20020a63cf56000000b0043ca0a1f749mr11412954pgj.24.1664628685191;
+        Sat, 01 Oct 2022 05:51:25 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1f3b:3adb:24f8:ac24:2282:1dc7? ([2401:4900:1f3b:3adb:24f8:ac24:2282:1dc7])
+        by smtp.gmail.com with ESMTPSA id l6-20020a170903244600b0017832c8cc85sm3813403pls.292.2022.10.01.05.51.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Oct 2022 05:51:24 -0700 (PDT)
+Message-ID: <0aeb2c5e-9a5e-90c6-a974-f2a0b866d64f@linaro.org>
+Date:   Sat, 1 Oct 2022 18:21:18 +0530
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DATE_IN_PAST_24_48,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 3/4] dt-bindings: net: qcom,ethqos: Convert bindings to
+ yaml
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, netdev@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        David Miller <davem@davemloft.net>
+References: <20220929060405.2445745-1-bhupesh.sharma@linaro.org>
+ <20220929060405.2445745-4-bhupesh.sharma@linaro.org>
+ <4e896382-c666-55c6-f50b-5c442e428a2b@linaro.org>
+ <1163e862-d36a-9b5e-2019-c69be41cc220@linaro.org>
+ <9999a1a3-cda0-2759-f6f4-9bc7414f9ee4@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <9999a1a3-cda0-2759-f6f4-9bc7414f9ee4@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 9/30/22 3:56 PM, Krzysztof Kozlowski wrote:
+> On 30/09/2022 10:12, Bhupesh Sharma wrote:
+>>>> +  snps,reset-gpio:
+>>>> +    maxItems: 1
+>>>
+>>> Why is this one here? It's already in snps,dwmac.
+>>>
+>>> Actually this applies to several other properties. You have
+>>> unevaluatedProperties:false, so you do not have to duplicate snps,dwmac.
+>>> You only need to constrain it, like we said about interrupts in your
+>>> previous patch.
+>>
+>> I was actually getting errors like the following without the same:
+>>
+>> arm64/boot/dts/qcom/qcs404-evb-1000.dtb: ethernet@7a80000: Unevaluated
+>> properties are not allowed ('snps,tso' was unexpected)
+>> 	From schema: Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>>
+>> So, its not clear to me that even though 'snps,dwmac.yaml' is referenced
+>> here, the property appears as unevaluated.
+> 
+> Because snps,tso is not allowed, but the rest is.
+> 
+>>
+>>>> +
+>>>> +  power-domains:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  resets:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  rx-fifo-depth:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +
+>>>> +  tx-fifo-depth:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +
+>>>> +  snps,tso:
+>>>> +    type: boolean
+>>>> +    description: Enables the TSO feature (otherwise managed by MAC HW capability register).
+>>>
+>>> You add here several new properties. Mention in commit msg changes from
+>>> pure conversion with answer to "why".
+>>
+>> Right, most of them are to avoid the make dtbs_check errors / warnings
+>> like the one mentioned above.
+> 
+> All of them should not be here.
+
+I guess only 'snps,reset-gpio' need not be replicated here, as for 
+others I still see 'dtbs_check' error, if they are not replicated here:
 
 
-On 29 September 2022 19:13:20 GMT+03:00, Doug Anderson <dianders@chromium=
-=2Eorg> wrote:
->Hi,
->
->On Wed, Sep 14, 2022 at 5:16 AM Kalyan Thota <quic_kalyant@quicinc=2Ecom>=
- wrote:
->>
->> Flush mechanism for DSPP blocks has changed in sc7280 family, it
->> allows individual sub blocks to be flushed in coordination with
->> master flush control=2E
->>
->> Representation: master_flush && (PCC_flush | IGC_flush =2E=2E etc )
->>
->> This change adds necessary support for the above design=2E
->>
->> Changes in v1:
->> - Few nits (Doug, Dmitry)
->> - Restrict sub-block flush programming to dpu_hw_ctl file (Dmitry)
->>
->> Changes in v2:
->> - Move the address offset to flush macro (Dmitry)
->> - Seperate ops for the sub block flush (Dmitry)
->>
->> Changes in v3:
->> - Reuse the DPU_DSPP_xx enum instead of a new one (Dmitry)
->>
->> Changes in v4:
->> - Use shorter version for unsigned int (Stephen)
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
->> ---
->>  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc=2Ec       |  2 +-
->>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog=2Ec |  5 +++-
->>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog=2Eh |  4 +++
->>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl=2Ec     | 35 ++++++++++++++++=
-++++++++--
->>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl=2Eh     | 10 ++++++--
->>  5 files changed, 50 insertions(+), 6 deletions(-)
->
->Breadcrumbs: though this is tagged in the subject as v5 I think the
->newest version is actually "resend v4" [1] which just fixes the
->Signed-off-by=2E
+arch/arm64/boot/dts/qcom/sm8150-hdk.dtb: ethernet@20000: Unevaluated 
+properties are not allowed ('power-domains', 'resets', 'rx-fifo-depth', 
+'tx-fifo-depth' were unexpected)
+	From schema: /Documentation/devicetree/bindings/net/qcom,ethqos.yaml
 
-Not to mention that v5 misses the S-o-B tag=2E
+Am I missing something here?
 
->
->[1] https://lore=2Ekernel=2Eorg/r/1663825463-6715-1-git-send-email-quic_k=
-alyant@quicinc=2Ecom
+Thanks.
 
---=20
-With best wishes
-Dmitry
