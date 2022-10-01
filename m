@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC7755F1B55
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 11:31:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 108195F1B58
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 11:31:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbiJAJbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 05:31:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
+        id S229610AbiJAJbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 05:31:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229575AbiJAJbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 05:31:16 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8B239B88
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 02:31:14 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id a8so10164400lff.13
-        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 02:31:14 -0700 (PDT)
+        with ESMTP id S229687AbiJAJbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 05:31:42 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF4254456D
+        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 02:31:39 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id g20so7105218ljg.7
+        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 02:31:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=2IDkwXcKVh1RrSCp/Ae9caZ7+6zsWJNEEGC+RC5gb5M=;
-        b=JU+TUNXYJ2ItDysz7GCmVbLuOsXh2F/Q30cyV4SmMP8RhmBtaSo6XQNJLwrs9SYnN7
-         fGyKTUIQifno9sZsrP4SWRNG68rJpQno0whhXiKJ7wZRAaQxAc4LivbWv1+tU+iGs4VT
-         fKqTuUFvv39wog7ft8bwFXGHGVkeYarPp2tFyH+ShUW4CrFwd+OIWxAlCQ1ngrBmH2X+
-         +5FHOZUTrBZnQk3vj3t2w6/ZhkPexUNx0Xw428zg1bn1AT/u86GMjDEnSxHFs2gXOvH+
-         4yDw8+BnVWmm6NOe9mpln5/4+gNpf6sjgEYOEUVi5ymjp+LMlQoBNNZruCt01pykCYFA
-         T87g==
+        bh=OPfl25g/giEEq6/URj/gnsIrrRKtqhe3mYHzko5cpxQ=;
+        b=TRclEY31FpPbHNaYO30tTXK2AvTBa3TrAgGkSgOOHwrPokwhXdBz+eOek0rGKxsn7X
+         1oag1oKaop3aolqbv0e4VqMMfc/aPYp41y0KLbE8Lsim0clZCqECM6/d79A8ZmxAGUn9
+         G74lhKvnJ27amIX45kaC3nvXb1jZdZgGAdXXTbuemBC6u9G6mi9/DijmacxSCre/xleX
+         2i6ihQ30Jmg0LRZbOb88TD2JJ5lOQ6PshHMKj1PFcUzF/MOBelXuRyDmuZiZGavGwzs9
+         oaxpln9hMlpwgiNmCw60yvlp3VuB0vNGYJjWJlwK7iPKyj4RJwjijsgmg20kbNCnL6oc
+         /cnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=2IDkwXcKVh1RrSCp/Ae9caZ7+6zsWJNEEGC+RC5gb5M=;
-        b=zGyeNzxXKntYImPtHIOOTm2rAoALQCUqPtuMyWzMoNmW4qDiG//yHcpuovlxN/bOG2
-         ok7QdMNYV8jc3oeazw4B+4dmqNHYbTxNGsUsTnYwLh8kXjMuPAHGUAHiE7aRsfCpx5w3
-         RcNrdtWmLAbe5Zd0WpeukAkvM1VKsRhdXiS4NgrQIclKMc/Oll+odyzzLLSH5TrUesQi
-         7WEPSyV546tA/pzY4nib2Bax9KBMcRRAu9LTcpB2icOqig+Mi57sS71UtvuZUTxPo19H
-         f2tMePyzB05bf6i/Lmfl0D8g/eMDXS8mPJa+ahlnXhpxh1JuTcP8NZdNN4WHDh3b8Vki
-         OV/Q==
-X-Gm-Message-State: ACrzQf1R8YlVpYCNVEeXsXFlIjL+8gXjbrvzbDS3zESJF7DaezmGvxRb
-        ML6hcFtdJzBgfrOm0J+xTo1jng==
-X-Google-Smtp-Source: AMsMyM709JG3UouwX46iimgSSMVGuqysebClncGvfximstTKAUMWk+ekO+AA6gKx6rK543SofdtA6g==
-X-Received: by 2002:a05:6512:139c:b0:48f:da64:d050 with SMTP id p28-20020a056512139c00b0048fda64d050mr4178806lfa.268.1664616672722;
-        Sat, 01 Oct 2022 02:31:12 -0700 (PDT)
+        bh=OPfl25g/giEEq6/URj/gnsIrrRKtqhe3mYHzko5cpxQ=;
+        b=niTXuECA0LK3DxvBzTZRCnKJEfgTf62GQbgPuwnorbyRP3GFpHlgDMoKvn71nIdKpT
+         QF192MJYQ9GNTQF9MTyoboWV+pkooxaElERyNqSBPZe7FG2QcvZZ6bEBb0wICWVcpWcw
+         IvfHDutwyOWrRkqMCklsYOw7cMKAiIh8sClBQkQ5SKY7D5xlVpdavE9bLI0oG+1jzADQ
+         6FF3PNVrQEon6FoWMpMvFsgtBmc8xuZwAXix9ErIdyCvah3TXnrHI47oY72VKxcK7Pkp
+         bmGEOqJDjIn9RyTQ6aywXN+qXslWHmI3LjpEfVZS/USBDZoUzlRyWPsWRvTRYArQ+l8b
+         FB8A==
+X-Gm-Message-State: ACrzQf1uLL0R/tSrQd2mV2/2HjL8Rl/QS42IousfWldi7j4hmMNE/Ndl
+        o1MvvE62V7KFXYfNa/vBKqen6A==
+X-Google-Smtp-Source: AMsMyM4wmKBDRMvXcYVlSQLO4nVAqLejQwyddTgajyuQ/AgZxXDj4YjCOpSikKhzYVKh2x3t2jhY6w==
+X-Received: by 2002:a2e:a801:0:b0:261:91a3:bc44 with SMTP id l1-20020a2ea801000000b0026191a3bc44mr3822189ljq.497.1664616698192;
+        Sat, 01 Oct 2022 02:31:38 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id k21-20020a05651210d500b00492f1b2ac0bsm708242lfg.101.2022.10.01.02.31.11
+        by smtp.gmail.com with ESMTPSA id z13-20020a056512308d00b004946bec4e7fsm707140lfd.41.2022.10.01.02.31.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Oct 2022 02:31:12 -0700 (PDT)
-Message-ID: <0bf97760-09e0-e64f-3ef6-2b861131f83e@linaro.org>
-Date:   Sat, 1 Oct 2022 11:31:11 +0200
+        Sat, 01 Oct 2022 02:31:37 -0700 (PDT)
+Message-ID: <8e63f6a7-a133-1f20-403a-5b0965cee107@linaro.org>
+Date:   Sat, 1 Oct 2022 11:31:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Add QDU1000/QRU1000 dt
- bindings
+Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add compatible bindings for
+ QDU1000 and QRU1000
 Content-Language: en-US
 To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221001030602.28232-1-quic_molvera@quicinc.com>
- <20221001030602.28232-2-quic_molvera@quicinc.com>
+References: <20221001030615.29135-1-quic_molvera@quicinc.com>
+ <20221001030615.29135-2-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221001030602.28232-2-quic_molvera@quicinc.com>
+In-Reply-To: <20221001030615.29135-2-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,47 +81,25 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/10/2022 05:06, Melody Olvera wrote:
-> Add interconnect IDs for Qualcomm QDU1000 and QRU1000 platforms.
+> Add compatible bindings for Qualcomm QDU1000 and QRU1000 platforms.
 > 
 > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  .../bindings/interconnect/qcom,rpmh.yaml      |  8 ++
->  .../dt-bindings/interconnect/qcom,qdru1000.h  | 98 +++++++++++++++++++
->  2 files changed, 106 insertions(+)
->  create mode 100644 include/dt-bindings/interconnect/qcom,qdru1000.h
+>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> index a429a1ed1006..c524d92ee203 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> @@ -132,6 +132,14 @@ properties:
->        - qcom,sm8450-nsp-noc
->        - qcom,sm8450-pcie-anoc
->        - qcom,sm8450-system-noc
-> +      - qcom,qdu1000-clk-virt
-> +      - qcom,qdu1000-gem-noc
-> +      - qcom,qdu1000-mc-virt
-> +      - qcom,qdu1000-system-noc
-> +      - qcom,qru1000-clk-virt
-> +      - qcom,qru1000-gem-noc
-> +      - qcom,qru1000-mc-virt
-> +      - qcom,qru1000-system-noc
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> index 9066e6df1ba1..681035b6e991 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> @@ -47,6 +47,8 @@ properties:
+>                - qcom,sm8250-smmu-500
+>                - qcom,sm8350-smmu-500
+>                - qcom,sm8450-smmu-500
+> +              - qcom,qdu1000-smmu-500
+> +              - qcom,qru1000-smmu-500
 
-Not a correct order.
-
->  
->    '#interconnect-cells': true
->  
-> diff --git a/include/dt-bindings/interconnect/qcom,qdru1000.h b/include/dt-bindings/interconnect/qcom,qdru1000.h
-> new file mode 100644
-> index 000000000000..2bdfa0c15d2c
-> --- /dev/null
-> +++ b/include/dt-bindings/interconnect/qcom,qdru1000.h
-> @@ -0,0 +1,98 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-
-Dual license.
-
+Wrong order.
 
 Best regards,
 Krzysztof
