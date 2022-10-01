@@ -2,113 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 576615F1F14
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 22:02:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 500325F1F16
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 22:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbiJAUCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 16:02:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44766 "EHLO
+        id S229548AbiJAUCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 16:02:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbiJAUCP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 16:02:15 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBF50286D2
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 13:02:14 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id 3so6767088pga.1
-        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 13:02:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=schmorgal.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=2kQFssZDN0HRb1/ORSf7rWm+rHmS3Pt1sIzHwE9NrHQ=;
-        b=LcbIcbtc1nxnsfeqBhchgdsIiOxHmiUuGXPCoPwdjKZyeZNB74tNAWj9NQ8bSNF4nm
-         cLBSlsRkgRnOwyUpSQsriG7jXA7kB6VkaI8MVZXshFAS7yYi41vlxQL6TM1Ezn1S66us
-         ZUcZbaq/Q8s4HIkOvG5EP7aq5tH7p/qohPrPY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=2kQFssZDN0HRb1/ORSf7rWm+rHmS3Pt1sIzHwE9NrHQ=;
-        b=BhiCm05IAHsUrc6m1lD8yhQA6W+a43A0aVof3uYAtivuNTUTPzfiF+e1i/5LdpQ4ti
-         qfNM94QZx01atbylgMSWBTbgzhqmZtXin9SIQnAOdCtivoHU2uzPL9wEwQ9kPeCal5BY
-         KJfxmcev7jGjm9bBI5wJfCzeMadwZqmXaIyCo1eRVAajBTZ0S9PDJ25Pl167CF0r25hM
-         GzZkkwEINxWu3JxLBffhrB49w15nTK7eVj+msyQDi4nHS9Os3JM4EJIcVzCtxe2lPB9P
-         bLMOZf3WYuSqzdQAyPNPxn7Pk+bQJoZfGbqFn0CY5QEZMBCENyGupUTeMCxtYjQqiKW7
-         mNzQ==
-X-Gm-Message-State: ACrzQf079M2VGqdcAGTuB8n1hf1nwaEcHFEDHZLCrPIbF5KGZHg3Y1nw
-        c+fYgpP7ii6bfbhsucM4zkMDCQ==
-X-Google-Smtp-Source: AMsMyM42WnOIyg1fnqg/A2SJuFW1FMcCAW0FwedAGNlAlBLwpkV6Ee1dDb4FQ2dXWMbQpeZ81dXIRw==
-X-Received: by 2002:a63:65c4:0:b0:440:5352:3812 with SMTP id z187-20020a6365c4000000b0044053523812mr11370123pgb.285.1664654534328;
-        Sat, 01 Oct 2022 13:02:14 -0700 (PDT)
-Received: from doug-ryzen-5700G.. ([50.45.132.124])
-        by smtp.gmail.com with ESMTPSA id l18-20020a170903121200b0017a8aed0a5asm4313593plh.136.2022.10.01.13.02.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Oct 2022 13:02:13 -0700 (PDT)
-From:   Doug Brown <doug@schmorgal.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        with ESMTP id S229511AbiJAUCs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 16:02:48 -0400
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [5.144.164.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1CCA286C4;
+        Sat,  1 Oct 2022 13:02:47 -0700 (PDT)
+Received: from [192.168.1.101] (95.49.31.201.neoplus.adsl.tpnet.pl [95.49.31.201])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 857BD200C1;
+        Sat,  1 Oct 2022 22:02:45 +0200 (CEST)
+Message-ID: <ce228356-67ee-01cc-3ea7-cea16a548d52@somainline.org>
+Date:   Sat, 1 Oct 2022 22:02:44 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH 1/8] arm64: dts: qcom: sdm845-tama: Add display nodes
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        jamipkettunen@somainline.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, Doug Brown <doug@schmorgal.com>
-Subject: [PATCH 2/2] ASoC: wm8961: add support for devicetree
-Date:   Sat,  1 Oct 2022 13:00:39 -0700
-Message-Id: <20221001200039.21049-3-doug@schmorgal.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221001200039.21049-1-doug@schmorgal.com>
-References: <20221001200039.21049-1-doug@schmorgal.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220930191049.123256-1-konrad.dybcio@somainline.org>
+ <20220930191049.123256-2-konrad.dybcio@somainline.org>
+ <20221001145457.yvy5swfqmzothhy7@SoMainline.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20221001145457.yvy5swfqmzothhy7@SoMainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for devicetree to the WM8961 driver so it can be used
-with modern DT-based kernels.
 
-Signed-off-by: Doug Brown <doug@schmorgal.com>
----
- sound/soc/codecs/Kconfig  | 2 +-
- sound/soc/codecs/wm8961.c | 6 ++++++
- 2 files changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index e3b90c425faf..2b5787ee8d31 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -1929,7 +1929,7 @@ config SND_SOC_WM8960
- 	depends on I2C
- 
- config SND_SOC_WM8961
--	tristate
-+	tristate "Wolfson Microelectronics WM8961 CODEC"
- 	depends on I2C
- 
- config SND_SOC_WM8962
-diff --git a/sound/soc/codecs/wm8961.c b/sound/soc/codecs/wm8961.c
-index 7dc6aaf65576..539096184eda 100644
---- a/sound/soc/codecs/wm8961.c
-+++ b/sound/soc/codecs/wm8961.c
-@@ -971,6 +971,12 @@ static const struct i2c_device_id wm8961_i2c_id[] = {
- };
- MODULE_DEVICE_TABLE(i2c, wm8961_i2c_id);
- 
-+static const struct of_device_id wm8961_of_match[] = {
-+	{ .compatible = "wlf,wm8961", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, wm8961_of_match);
-+
- static struct i2c_driver wm8961_i2c_driver = {
- 	.driver = {
- 		.name = "wm8961",
--- 
-2.34.1
+On 1.10.2022 16:54, Marijn Suijten wrote:
+> On 2022-09-30 21:10:42, Konrad Dybcio wrote:
+>> Add required nodes to support display on XZ2/XZ2c. XZ3 has a
+>> different power rail setup and needs to be handled separately.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> ---
+>>  .../qcom/sdm845-sony-xperia-tama-akari.dts    |  4 +
+>>  .../qcom/sdm845-sony-xperia-tama-akatsuki.dts | 44 ++++++++-
+>>  .../qcom/sdm845-sony-xperia-tama-apollo.dts   |  6 ++
+>>  .../dts/qcom/sdm845-sony-xperia-tama.dtsi     | 96 +++++++++++++++++++
+>>  4 files changed, 149 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
+>> index 34f84f1f1eb4..d97b7f1e7140 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
+>> @@ -11,3 +11,7 @@ / {
+>>  	model = "Sony Xperia XZ2";
+>>  	compatible = "sony,akari-row", "qcom,sdm845";
+>>  };
+>> +
+>> +&panel {
+>> +	compatible = "sony,td4353-jdi-tama";
+>> +};
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
+>> index 2f5e12deaada..2a16305ac5da 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
+>> @@ -10,9 +10,51 @@
+>>  / {
+>>  	model = "Sony Xperia XZ3";
+>>  	compatible = "sony,akatsuki-row", "qcom,sdm845";
+>> +
+>> +	/* Fixed DCDC for the OLED panel */
+>> +	ts_vddio_supply: ts-vddio-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "ts_vddio";
+>> +
+>> +		regulator-min-microvolt = <1840000>;
+>> +		regulator-max-microvolt = <1840000>;
+>> +
+>> +		gpio = <&tlmm 133 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +		regulator-boot-on;
+>> +	};
+>> +};
+>> +
+>> +&ibb {
+>> +	status = "disabled";
+>> +};
+>> +
+>> +&lab {
+>> +	status = "disabled";
+>> +};
+>> +
+>> +&panel {
+>> +	/* Akatsuki uses an OLED panel. */
+>> +	/delete-property/ backlight;
+>> +	/delete-property/ vsp-supply;
+>> +	/delete-property/ vsn-supply;
+>> +	/delete-property/ treset-gpios;
+> 
+> This looks to have been a last-minute rename to
+> 
+>     touch-reset-gpios
+Yep!
 
+Konrad
+> 
+>> +};
+>> +
+>> +&pmi8998_wled {
+>> +	status = "disabled";
+>> +};
+>> +
+>> +&tlmm {
+>> +	ts_vddio_en: ts-vddio-en {
+>> +		pins = "gpio133";
+>> +		function = "gpio";
+>> +		drive-strength = <2>;
+>> +		bias-disable;
+>> +		output-high;
+>> +	};
+>>  };
+>>  
+>> -/* For the future: WLED + LAB/IBB/OLEDB are not used on Akatsuki */
+>>  &vreg_l14a_1p8 {
+>>  	regulator-min-microvolt = <1840000>;
+>>  	regulator-max-microvolt = <1840000>;
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dts b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dts
+>> index c9e62c72f60e..cd056f78070f 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dts
+>> @@ -11,3 +11,9 @@ / {
+>>  	model = "Sony Xperia XZ2 Compact";
+>>  	compatible = "sony,apollo-row", "qcom,sdm845";
+>>  };
+>> +
+>> +&panel {
+>> +	compatible = "sony,td4353-jdi-tama";
+>> +	height-mm = <112>;
+>> +	width-mm = <56>;
+>> +};
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+>> index 51ee42e3c995..ac8eb59ed010 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+>> @@ -326,6 +326,46 @@ vreg_s3c_0p6: smps3 {
+>>  	};
+>>  };
+>>  
+>> +&dsi0 {
+>> +	vdda-supply = <&vreg_l26a_1p2>;
+>> +	status = "okay";
+>> +
+>> +	panel: panel@0 {
+>> +		/* The compatible is assigned in device DTs. */
+>> +		reg = <0>;
+>> +
+>> +		backlight = <&pmi8998_wled>;
+>> +		vddio-supply = <&vreg_l14a_1p8>;
+>> +		vsp-supply = <&lab>;
+>> +		vsn-supply = <&ibb>;
+>> +		panel-reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+>> +		touch-reset-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
+> 
+> Here.
+> 
+> - Marijn
