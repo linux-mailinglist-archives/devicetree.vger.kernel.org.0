@@ -2,237 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D54775F1E16
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 19:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3083D5F1E42
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 19:11:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbiJARFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 13:05:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58316 "EHLO
+        id S229599AbiJARLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 13:11:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiJARFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 13:05:50 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D48AC4DF22
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 10:05:45 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id a20so4372877qtw.10
-        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 10:05:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=CVbzKbVXK9VXJ2ckw3mC4Ga5iU0ioYvXj4FII461hSE=;
-        b=PQ+CdhYUNhGbN9yay9mqxOdw4HShV3faVqfljyjsieiuYCoS3/OqjJElHcJ3xba7Ew
-         AzznLxoslB5kD5/KDBRKnFXU3k+grMyl6X+W9NLinoNthcczTcHWXULuWLesemZ9ibnv
-         jHmLBLVStjnHNW5kK0XamdZNZTStx/6zh6UwUYcy9GnMUGCKgdwF+OedmsKpLOiv8x4W
-         EOvyv3rpbLYPbAzcqmg4lIgf24VzdLHrCvrq9geFEKu1/JfQzVQEFkUcoXThuM3kLU1E
-         B7lUZ7BMrb0IzETqkoUtDM4SyDNZw4BRHyKeD3jWWlKzZkBHzqbJ1eevSG/Cbme0EOX1
-         pG8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=CVbzKbVXK9VXJ2ckw3mC4Ga5iU0ioYvXj4FII461hSE=;
-        b=YOzP6tMUR4mzcxjicj4PkwbWX1O+xA//z1SCS6koYGSXO9I9JCEUESovTJXaLcD9ye
-         B+eRjEyvNKcBH+4hwZSInIe/pvgo7x1DplXtAB+vBgG2M2y6CIEORCnB7H0xSDvNsSZa
-         zkF+ugvPzx/U6IFu1sw0Vpj2m/NyY1lXovKhuMRSqb0ydaBHpELOPP5IzK1cOXMOPbEd
-         5golgZvNY/AqpDHkP2X/7G0KbbntPye10Jj59GtELPnH6OPhDFXHEpvncTX/S4KSfXAH
-         hFksyt840kfBOcUcrZE2bk4LPXDmPEDIn49Yl72+CwyF+82TSdWUfj5c/Vpn2D73pahW
-         FJog==
-X-Gm-Message-State: ACrzQf3rZAlqIo9nDBJ+tg39RHOoX9gPiN7GWO+a27auxVuEdUlJyhvr
-        d2qX59sZhMgAgTP0rqhxHDEE1g==
-X-Google-Smtp-Source: AMsMyM5tUDshO757Gcb55niVouYpSz68d8uhzhm2Fns9MzSqsupMrlmP/pKW4wvLo94q6SLZQpPr5w==
-X-Received: by 2002:a05:622a:50a:b0:35d:5d18:c2a2 with SMTP id l10-20020a05622a050a00b0035d5d18c2a2mr11182480qtx.515.1664643944972;
-        Sat, 01 Oct 2022 10:05:44 -0700 (PDT)
-Received: from fedora (69-109-179-158.lightspeed.dybhfl.sbcglobal.net. [69.109.179.158])
-        by smtp.gmail.com with ESMTPSA id j129-20020a375587000000b006b953a7929csm5887841qkb.73.2022.10.01.10.05.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Oct 2022 10:05:44 -0700 (PDT)
-Date:   Sat, 1 Oct 2022 13:05:42 -0400
-From:   William Breathitt Gray <william.gray@linaro.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     William Breathitt Gray <wbg@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Lee Jones <lee@kernel.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH RFC 0/8] Add RZ/G2L MTU3a MFD and Counter driver
-Message-ID: <YzhzZiZYEKuVX3eZ@fedora>
-References: <20220926132114.60396-1-biju.das.jz@bp.renesas.com>
- <YzNztKSYQPQrnV7k@fedora>
- <OS0PR01MB59228FA93ED4D6DB8D9B799D86549@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <Yzd0YAWG/W9RNLQA@ishi>
- <OS0PR01MB59225B1CA8935C958BBA8AA186599@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        with ESMTP id S229566AbiJARLL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 13:11:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBCE65A882;
+        Sat,  1 Oct 2022 10:11:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 520BDB8076E;
+        Sat,  1 Oct 2022 17:11:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 392F2C433D6;
+        Sat,  1 Oct 2022 17:11:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664644266;
+        bh=8/44+tCSDFyhjA92zaYauwO92/g0g3Xh1rsDr7QVWcU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=qmheUtIfr5JybckX7f7bA9Sd3Py8wBG14xJCadq/+nk6NPIk5qQI/rioK0VZT9Ou3
+         qLzTCn/nLQAlNGDG6JpXFxnVCavpzpB2/OvcNreWI6yqLH9LIKn8rjUs/6cTHgI++k
+         9D58XicM9lDLXIcDIywsUITbNqDeKwLeGntsiHqKNaAp+doEnWZaEhD637mab7dlux
+         OwMPtsOK9QULS9GD6Tlcy+qKFSkh+Ojg4eoi6EDB3ymwYDjsXT/2Bpaed0JnB5LB4F
+         mov9I9irgRKH0x6IfWtrvmD/hFKht/ZbdV7jcHjeQITd2EMzJTxQRQEQ+059ise5pA
+         P5Ks5UgL1YkRg==
+Date:   Sat, 1 Oct 2022 18:11:17 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, ChiaEn Wu <peterwu.pub@gmail.com>,
+        pavel@ucw.cz, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, lars@metafoo.de,
+        andriy.shevchenko@linux.intel.com, chiaen_wu@richtek.com,
+        alice_chen@richtek.com, cy_huang@richtek.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, szunichen@gmail.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v12 3/5] iio: adc: mt6370: Add MediaTek MT6370 support
+Message-ID: <20221001181117.7b3f3297@jic23-huawei>
+In-Reply-To: <YzXbJM31s0P0nLD5@google.com>
+References: <cover.1663926551.git.chiaen_wu@richtek.com>
+        <9bf36f09bc5f002f2b09b7cc26edccf109516465.1663926551.git.chiaen_wu@richtek.com>
+        <20220924155525.5663bed8@jic23-huawei>
+        <YzFY5FI0PrZqdAiZ@google.com>
+        <CAL_JsqKKJGtacbzGqCupFniSGha610L1cay2V+AK8vehTA=F=g@mail.gmail.com>
+        <YzQSnuwPjzJIgsYq@google.com>
+        <20220929163418.GA2270491-robh@kernel.org>
+        <YzXbJM31s0P0nLD5@google.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nLXdA+NArWKb+szU"
-Content-Disposition: inline
-In-Reply-To: <OS0PR01MB59225B1CA8935C958BBA8AA186599@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 29 Sep 2022 18:51:32 +0100
+Lee Jones <lee@kernel.org> wrote:
 
---nLXdA+NArWKb+szU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Oct 01, 2022 at 04:45:55PM +0000, Biju Das wrote:
-> Hi William Breathitt Gray,
->=20
-> Thanks for the feedback.
->=20
-> > Subject: Re: [PATCH RFC 0/8] Add RZ/G2L MTU3a MFD and Counter driver
-> >=20
-> > On Wed, Sep 28, 2022 at 06:14:57AM +0000, Biju Das wrote:
-> > > Hi William Breathitt Gray,
-> > >
-> > > Thanks for the feedback.
-> > >
-> > > > Subject: Re: [PATCH RFC 0/8] Add RZ/G2L MTU3a MFD and Counter
-> > driver
-> > > >
-> > > > On Mon, Sep 26, 2022 at 02:21:06PM +0100, Biju Das wrote:
-> > > > > The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded
-> > > > > in the Renesas RZ/G2L family SoC's. It consists of eight 16-bit
-> > > > > timer channels and one 32-bit timer channel. It supports the
-> > > > > following functions
-> > > > >  - Counter
-> > > > >  - Timer
-> > > > >  - PWM
+> On Thu, 29 Sep 2022, Rob Herring wrote:
+> 
+> > On Wed, Sep 28, 2022 at 10:23:42AM +0100, Lee Jones wrote:  
+> > > On Mon, 26 Sep 2022, Rob Herring wrote:
+> > >   
+> > > > On Mon, Sep 26, 2022 at 2:46 AM Lee Jones <lee@kernel.org> wrote:  
 > > > > >
-> > > > > This patch series aim to add MFD and counter driver for MTU3a.
-> > > > > Subsequent patch seies will add TImer and PWM driver support
-> > also
-> > > > > enhancements to counter driver.
-> > > >
-> > > > Hello Biju,
-> > > >
-> > > > I see this device consists of several channels, but only one Count
-> > > > is defined in the counter patch ("Channel 1 Count"). Do all
-> > channels
-> > > > support counting, or is it limited to just one channel?
-> > >
-> > > It is like this
-> > > MTU1 channel :- 1 16-bit phase counter MTU2-Channel :- 1 16-bit
-> > phase
-> > > counter
-> > > MTU1 + MTU2 channel combined:- 1 32-bit phase counter Other channels
-> > > are not supporting phase counting.
-> > >
-> > > Each counter device will have 1 channel. Currently it supports 16-
-> > bit
-> > > phase counting.
-> > >
-> > > Please see my test program. Am I missing something here?
-> > >
-> > > My test program:-
-> > >
-> > > echo 1 > /sys/bus/counter/devices/counter0/count0/enable
-> > > echo 50 > /sys/bus/counter/devices/counter0/count0/ceiling
-> > > devmem2 0x10001391 b 0x00 # Enable phase clock selection A for MTU2.
-> > > echo 1 > /sys/bus/counter/devices/counter1/count0/enable
-> > > echo 50 > /sys/bus/counter/devices/counter1/count0/ceiling
-> > >
-> > > for i in {1..5};
-> > > do cat /sys/bus/counter/devices/counter0/count0/count ; cat
-> > > /sys/bus/counter/devices/counter0/count0/direction;
-> > > cat /sys/bus/counter/devices/counter1/count0/count;
-> > > cat /sys/bus/counter/devices/counter1/count0/direction;
-> > > done
-> > >
-> > > Cheers,
-> > > Biju
-> >=20
-> > I'm not familiar with this hardware, but it looks like MTU1 and MTU2
-> > are on the same device. I think a more natural way to expose this
-> > functionality in the Counter subsystem would be to define a Count for
-> > each count value you can support; so something like this (all under
-> > /sys/bus/counter/devices/counter0):
-> >=20
-> > * count0 :- MTU1
-> > * count1 :- MTU2
-> > * count3 :- MTU1 + MTU2
->=20
-> OK, sounds good. so count3 :- 32 bit phase counting
-> count 0 or count1 or both then 16 bit phase counting
+> > > > > On Sat, 24 Sep 2022, Jonathan Cameron wrote:
+> > > > >  
+> > > > > > On Fri, 23 Sep 2022 10:51:24 +0800
+> > > > > > ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+> > > > > >  
+> > > > > > > From: ChiaEn Wu <chiaen_wu@richtek.com>
+> > > > > > >
+> > > > > > > MediaTek MT6370 is a SubPMIC consisting of a single cell battery charger
+> > > > > > > with ADC monitoring, RGB LEDs, dual channel flashlight, WLED backlight
+> > > > > > > driver, display bias voltage supply, one general purpose LDO, and the
+> > > > > > > USB Type-C & PD controller complies with the latest USB Type-C and PD
+> > > > > > > standards.
+> > > > > > >
+> > > > > > > Add support for the MT6370 ADC driver for system monitoring, including
+> > > > > > > charger current, voltage, and temperature.
+> > > > > > >
+> > > > > > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > > > > > > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > > > > > > Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > > > > > Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>  
+> > > > > >
+> > > > > > This will have to either wait for next cycle, or go through mfd because
+> > > > > > of the dt-bindings include which is in the mfd tree.
+> > > > > >
+> > > > > > Please make those dependencies clear in new versions.  
+> > > > >
+> > > > > If the bindings come together in -next, then subsequently in Mainline,
+> > > > > it shouldn't really matter.  
+> > > > 
+> > > > Except that the bindings haven't come together and at this point may
+> > > > not for 6.1. linux-next has been warning for weeks because the child
+> > > > device schemas haven't been applied. I've said it before, all the
+> > > > schemas for MFD devices need to be applied together. Or at least the
+> > > > MFD schema needs to get applied last.
+> > > > 
+> > > > Furthermore, subsequent versions of this don't get tested and we end
+> > > > up with more warnings[1].
+> > > > 
+> > > > It's only your IIO tree that the DT  
+> > > > > tooling with complain about, right?  
+> > > > 
+> > > > And the MFD tree...
+> > > > 
+> > > > Please apply the LED bindings (patches 1 and 2) so we can get the
+> > > > existing warnings fixed and address any new warnings.  
+> > > 
+> > > Who usually applies LED bindings?  Looks as though they're good to go.  
+> > 
+> > Pavel. The issue would be I don't know if the driver side is ready and 
+> > those usually go together. Other than my complaining here, how's he 
+> > supposed to know that the bindings at least need to be applied?
+> > 
+> > Again, the process here is not working. I've said before, all the 
+> > bindings for an MFD need to go via 1 tree. You obviously don't agree, so 
+> > propose something. The current process of no coordination doesn't work.  
+> 
+> The solution would be for someone to create succinct immutable branches, like
+> I do for real code.  If someone would be happy to do that, I'd be more than
+> happy to pull from them.
+> 
+> I go to the effort of creating them to prevent actual build breakages,
+> however doing so to keep a documentation helper script happy is a step
+> too far for me personally, sorry.
+> 
 
-That "count3" should be "count2" (sorry for the typo), but yes all three
-Counts should be defined; if a particular Count can't be read/written
-due to the current phase counting mode selected, you can return -EBUSY
-or -EINVAL as appropriate.
+In this case the bindings include is included from the driver - not just the
+binding.  Obviously there are dances to get around that by using the values
+and replacing in following cycle, but that's not the case here!
 
-To clarify one more time, do you have two 16-bit registers holding count
-values (one for MTU1 and one for MTU2), and when configured for 32-bit
-phase counting mode you combine both registers to give you a 32-bit
-count value?
+Jonathan
 
-> >=20
-> > You can then control the phase selection using a top-level Counter
-> > device extension (e.g. /sys/bus/counter/devices/counter0/phase) that
-> > configures whether you're in 16-bit phase or 32-phase counting mode.
->=20
-> So I need to introduce a new sysfs called phase. Use that one for
-> Selecting the external clock pin for phase counting mode.
-> Please correct me if I am wrong??
->=20
-> Hardware supports 4 pins for phase counting mode,
->=20
-> MTCLKA Input External clock A input pin (MTU1/MTU2 phase counting mode A =
-phase input)
-> MTCLKB Input External clock B input pin (MTU1/MTU2 phase counting mode B =
-phase input)
-> MTCLKC Input External clock C input pin (MTU2 phase counting mode A phase=
- input)
-> MTCLKD Input External clock D input pin (MTU2 phase counting mode B phase=
- input)
->=20
-> For MTU1, it is fixed MTCLKA and MTCLKB.
-> But for MTU2, it can be either 0-{ MTCLKA, MTCLKB} or 1 - { MTCLKC , MTCL=
-KD}
-> On reset it is set to { MTCLKC , MTCLKD}.
->=20
-> Cheers,
-> Biju
-
-It doesn't need to be named "phase" specifically, but it seems like a
-new sysfs file will be necessary in order to select the proper phase
-counting mode.
-
-Are these MTCLK signals the quadrature A and B Signals you defined in
-the counter driver?
-
-William Breathitt Gray
-
---nLXdA+NArWKb+szU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCYzhzZgAKCRC1SFbKvhIj
-K/fVAP9AS/yjO5jckmr/UhVVqoJzJtxdfIOcRNIeXNs1T24AEAEA3B+4DPxh06qF
-zkp8kb6z7WbrMzb8dx/Fdq5r9F3NWws=
-=u2zu
------END PGP SIGNATURE-----
-
---nLXdA+NArWKb+szU--
