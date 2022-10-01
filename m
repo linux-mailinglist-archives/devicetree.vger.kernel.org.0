@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EF185F1B87
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 11:43:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 587275F1B90
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 11:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbiJAJnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 05:43:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52498 "EHLO
+        id S229627AbiJAJri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 05:47:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229805AbiJAJni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 05:43:38 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26EFD2494D
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 02:43:36 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id a8so10189498lff.13
-        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 02:43:35 -0700 (PDT)
+        with ESMTP id S229608AbiJAJrh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 05:47:37 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC4E948C8B
+        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 02:47:35 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id p5so7098183ljc.13
+        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 02:47:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=+BcMde9iqTG0NgZIkDOw61cc104nrKj0MeB80A7RRT0=;
-        b=aeiG2AGdrpDU+Fx50iTCqwDez5tHEVWfKFEoeY8XR3hMI2c6A9BHcXE9wcNInZO+Z8
-         R/fHvxMVjSX8frspWPg8Dd0QxMK1uR86jeI4CxTIcVg0p35WVy5XBM+eDrN0XhcsZhEs
-         6iQ4Lv3PHISSUd9I0TCbmLMX6Mt3eUvZX6ngz2gB5IXlqzYantcveQBHAanDkDK8Cg1T
-         QdHd+wNivamuJyfIQSF+40E2/vGPQYdKpDtJV/ndDRoDUW/m9Vtt6ZiIDYpsh6IHnXXk
-         OPU67PAcZjjPiu6rc/gCB8MhOHn/4Vidj+mDwL7Vp4lPRLeuKPA9cUJXBtMhog5IVLG0
-         EklA==
+        bh=VZz6wsPP7z+3Nm9U551l2twY4ylGLnRatB6p8NgjSzY=;
+        b=QamL+i5zZlwPemg4u+D6kKlrYYAf3A+7oslgMaO9oMI12L4qXw+tuN4iccN2bx5hQ3
+         HiXxDEQ61/tAa1L7AVds3RYDgl2Z7iJLyc8h4IHqkkhMWvb5C9p7WbjTUjgIjiDz3Sj1
+         MMa2lqsWVhB3RTAQQw3vdGCYQAXJXY8Nebgxq8rDLSRqf1DL2+eMepuSknSy/rvQgizI
+         1ghMEH6robRBNQQZHBoVV7TVtH+o9tJmIX8x3bXJQbWlNCiwclxyxukf0egC+UIJIY7u
+         zT06gYYLdkbOK43KJm+PJlpkW6RxXuOGopNk1e60JKeClDAwePcIvBDpekTyPw5KzPi6
+         swiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=+BcMde9iqTG0NgZIkDOw61cc104nrKj0MeB80A7RRT0=;
-        b=kJLWdjWtNLsluKFvJlX9VEq9wV013kvdvSHqQjKz6Kti/OhPGoCcVrxWrVqSL+ewqO
-         mrN99zBHuFUOzGSuz5ClEaDznEy0UneWump0mEQghLQfXNkU0ZYmApfhGjRW8t1TiCXZ
-         bgCmw6UQgJi4xN+DU+h2Cswek4W1BWB2S6xYvE9qyKURbkNUARwVJp4QRnUS0oLgH2JI
-         +XFDtV+4uPKcq0aw5LI5GnjVkSFcaEYELuLh9cVYuGUPftuORJcTsQux5gH9cLUnFXou
-         UGx5a4OedJ5Zdxt7cjoUYaYs/jfIJxFrJ06bvyqONP4MdBKcNsYENUMJAzo02TL85FwT
-         ncbQ==
-X-Gm-Message-State: ACrzQf3/QvclT6ygm1sVDN/XyB1M1jynCg8DHZHsqmHHgNGgpe2gHzhg
-        nQpOJMvYrzzJJ7bTXZ6eNMxc0Q==
-X-Google-Smtp-Source: AMsMyM7URN5IQv/AvVi2fZ4uNCbokWfGfei5qvrEKpOsirTEicR9uYZapMdogX+bE5Vo1Dy+hQjTyQ==
-X-Received: by 2002:a05:6512:3ca0:b0:49f:f620:b826 with SMTP id h32-20020a0565123ca000b0049ff620b826mr5111040lfv.375.1664617414347;
-        Sat, 01 Oct 2022 02:43:34 -0700 (PDT)
+        bh=VZz6wsPP7z+3Nm9U551l2twY4ylGLnRatB6p8NgjSzY=;
+        b=jIuZIPJJrbyg4qsY6W6bvLeYmRMClT40/pO3pVRrKB97q2gQQxAB8RKVFF9lcc9FWr
+         hcG56hvuoLFnohCZohZqqm1LXyaMQwx/6DTkOXamzqirryXCozBTQ8rT5h2bHhbzvHXu
+         m4wbEx5RFcRbb7W+1UmoBewO+4L4sA8mDlzBuDA5/cViV/UWkY5ox1st61lgK7pVo+fu
+         E4XTeimLE8yL+ISaH4qriyFsw8aX7ZMHUH6XOswSoxPmxz40xqqFbWWwVk3D6UudRepQ
+         TqeQPYNJGXTsRjjxMKqad9+pVzTO9jM9Ox+1cRAkDsQ9VQAwieOSdy4cLTgWxiWbdSqN
+         rvqQ==
+X-Gm-Message-State: ACrzQf39nczElIEM0jwqU5F4RuTmd99S09woOjVjXI6WnPVkGN1+yubV
+        FRnl92aGP6Lqn5A7OFGitLQ8KQ==
+X-Google-Smtp-Source: AMsMyM42pznuaeUmNhnd/UfxvEDFI8r1pzQybK1ytrxDBlcAe/8mEdsXHhIYQG3xEW05kKaqv6zrIQ==
+X-Received: by 2002:a2e:980d:0:b0:26d:c785:51b0 with SMTP id a13-20020a2e980d000000b0026dc78551b0mr1192267ljj.354.1664617654114;
+        Sat, 01 Oct 2022 02:47:34 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id g12-20020a05651222cc00b00492b0d23d24sm706287lfu.247.2022.10.01.02.43.33
+        by smtp.gmail.com with ESMTPSA id z13-20020a056512308d00b004946bec4e7fsm712916lfd.41.2022.10.01.02.47.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Oct 2022 02:43:33 -0700 (PDT)
-Message-ID: <d1a26c97-75db-5d09-4c4f-77ed4fed1683@linaro.org>
-Date:   Sat, 1 Oct 2022 11:43:33 +0200
+        Sat, 01 Oct 2022 02:47:33 -0700 (PDT)
+Message-ID: <ce6c360a-f364-72db-4f44-dea66dc5e744@linaro.org>
+Date:   Sat, 1 Oct 2022 11:47:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: YAML-ify SSBI bindings
+Subject: Re: [PATCH v4 2/2] dt-bindings: mips: brcm: convert Broadcom SoCs to
+ schema
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        hauke@hauke-m.de, zajec5@gmail.com, tsbogend@alpha.franken.de,
+        zhouyanjie@wanyeetech.com, linux-mips@vger.kernel.org,
+        arinc.unal@arinc9.com
+References: <20221001043855.933528-1-sergio.paracuellos@gmail.com>
+ <20221001043855.933528-3-sergio.paracuellos@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221001043855.933528-3-sergio.paracuellos@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -78,120 +79,153 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2022 23:20, Dmitry Baryshkov wrote:
-> Convert arm/msm/ssbi.txt yo YAML, moving it to the directory with SoC
-> bindings (soc/qcom/).
+On 01/10/2022 06:38, Sergio Paracuellos wrote:
+> Convert Broadcom cable/DSL/settop platforms to YAML schema.
 
-I think this should go to "bus" instead. Actually we could put there as
-well GSBI and few others...
+Where is the conversion? Conversion is remove+add, but there is no
+removal here.
 
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 > ---
->  .../devicetree/bindings/arm/msm/ssbi.txt      | 18 ------
->  .../bindings/soc/qcom/qcom,ssbi.yaml          | 63 +++++++++++++++++++
->  2 files changed, 63 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/msm/ssbi.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml
+>  .../devicetree/bindings/mips/brcm/soc.yaml    | 110 ++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mips/brcm/soc.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/msm/ssbi.txt b/Documentation/devicetree/bindings/arm/msm/ssbi.txt
-> deleted file mode 100644
-> index 54fd5ced3401..000000000000
-> --- a/Documentation/devicetree/bindings/arm/msm/ssbi.txt
-> +++ /dev/null
-> @@ -1,18 +0,0 @@
-> -* Qualcomm SSBI
-> -
-> -Some Qualcomm MSM devices contain a point-to-point serial bus used to
-> -communicate with a limited range of devices (mostly power management
-> -chips).
-> -
-> -These require the following properties:
-> -
-> -- compatible: "qcom,ssbi"
-> -
-> -- qcom,controller-type
-> -  indicates the SSBI bus variant the controller should use to talk
-> -  with the slave device.  This should be one of "ssbi", "ssbi2", or
-> -  "pmic-arbiter".  The type chosen is determined by the attached
-> -  slave.
-> -
-> -The slave device should be the single child node of the ssbi device
-> -with a compatible field.
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml
+> diff --git a/Documentation/devicetree/bindings/mips/brcm/soc.yaml b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
 > new file mode 100644
-> index 000000000000..6154f7222899
+> index 000000000000..0ddf1fe51802
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,ssbi.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-
-Drop quotes from both above.
-
+> +$id: http://devicetree.org/schemas/mips/brcm/soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Qualcomm Single-wire Serial Bus Interface (SSBI)
-> +
-> +description:
-> +  Some Qualcomm MSM devices contain a point-to-point serial bus used to
-> +  communicate with a limited range of devices (mostly power management
-> +  chips).
+> +title: Broadcom cable/DSL/settop platforms Device Tree Bindings
+
+Drop "Device Tree Bindings"
+
 > +
 > +maintainers:
-> +  - Andy Gross <agross@kernel.org>
-> +  - Bjorn Andersson <andersson@kernel.org>
+> +  - Hauke Mehrtens <hauke@hauke-m.de>
+> +  - Rafał Miłecki <zajec5@gmail.com>
+> +
+> +description: |
+> +    Boards Broadcom cable/DSL/settop SoC shall have the following properties.
+> +    The experimental -viper variants are for running Linux on the 3384's
+> +    BMIPS4355 cable modem CPU instead of the BMIPS5000 application processor.
 > +
 > +properties:
+> +  $nodename:
+> +    const: '/'
+
+Blank line.
+
 > +  compatible:
-> +    const: qcom,ssbi
+> +    oneOf:
+> +      - description: Boards with Broadcom bcm3368 SoC
+> +        items:
+> +          - const: brcm,bcm3368
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  qcom,controller-type:
-> +    description:
-> +      Indicates the SSBI bus variant the controller should use to talk
-> +      with the slave device. The type chosen is determined by the attached
-> +      slave.
-> +    enum:
-> +      - ssbi
-> +      - ssbi2
-> +      - pmic-arbiter
-> +
-> +  pmic:
-> +    type: object
+> +      - description: Boards with Broadcom bcm3384 SoC
+> +        items:
+> +          - const: brcm,bcm3384
 
-This is quite unspecific... Can we make it a ref to some PMICs schemas?
+I don't understand what did you want to achieve here. Either you
+document SoC or boards. If boards, where are the actual boards? If SoC,
+then why calling it boards, why making it oneOf?
+
 
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - qcom,controller-type
+> +      - description: Boards with Broadcom bcm33843 SoC
+> +        items:
+> +          - const: brcm,bcm33843
 > +
-> +additionalProperties: false
+> +      - description: Boards with Broadcom bcm3384-viper SoC
+> +        items:
+> +          - const: brcm,bcm3384-viper
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    ssbi@c00000 {
-> +        compatible = "qcom,ssbi";
-> +        reg = <0x00c00000 0x1000>;
-> +        qcom,controller-type = "pmic-arbiter";
+> +      - description: Boards with Broadcom bcm33843-viper SoC
+> +        items:
+> +          - const: brcm,bcm33843-viper
 > +
-> +        pmic {
-> +            compatible = "qcom,pm8821";
-> +            interrupt-parent = <&msmgpio>;
-> +            interrupts = <76 IRQ_TYPE_LEVEL_LOW>;
-> +            #interrupt-cells = <2>;
-> +            interrupt-controller;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +        };
-> +    };
+> +      - description: Boards with Broadcom bcm6328 SoC
+> +        items:
+> +          - const: brcm,bcm6328
+> +
+> +      - description: Boards with Broadcom bcm6358 SoC
+> +        items:
+> +          - const: brcm,bcm6358
+> +
+> +      - description: Boards with Broadcom bcm6362 SoC
+> +        items:
+> +          - const: brcm,bcm6362
+> +
+> +      - description: Boards with Broadcom bcm6368 SoC
+> +        items:
+> +          - const: brcm,bcm6368
+> +
+> +      - description: Boards with Broadcom bcm63168 SoC
+> +        items:
+> +          - const: brcm,bcm63168
+> +
+> +      - description: Boards with Broadcom bcm63268 SoC
+> +        items:
+> +          - const: brcm,bcm63268
+> +
+> +      - description: Boards with Broadcom bcm7125 SoC
+> +        items:
+> +          - const: brcm,bcm7125
+> +
+> +      - description: Boards with Broadcom bcm7346 SoC
+> +        items:
+> +          - const: brcm,bcm7346
+> +
+> +      - description: Boards with Broadcom bcm7358 SoC
+> +        items:
+> +          - const: brcm,bcm7358
+> +
+> +      - description: Boards with Broadcom bcm7360 SoC
+> +        items:
+> +          - const: brcm,bcm7360
+> +
+> +      - description: Boards with Broadcom bcm7362 SoC
+> +        items:
+> +          - const: brcm,bcm7362
+> +
+> +      - description: Boards with Broadcom bcm7420 SoC
+> +        items:
+> +          - const: brcm,bcm7420
+> +
+> +      - description: Boards with Broadcom bcm7425 SoC
+> +        items:
+> +          - const: brcm,bcm7425
+> +
+> +  cpus:
+> +    $ref: "/schemas/mips/cpus.yaml#"
+
+No need for quotes.
+
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      mips-hpt-frequency:
+> +        description: This is common to all CPUs in the system so it lives
+> +         under the "cpus" node.
+
+You need to describe what is this. Not where it lives. Because where it
+lives, we can easily see from the schema.
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +    required:
+> +      - mips-hpt-frequency
+> +
+> +additionalProperties: true
+> +
 > +...
 
 Best regards,
