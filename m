@@ -2,84 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF2905F187F
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 03:50:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2438C5F18C5
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 05:05:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231598AbiJABuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 21:50:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51022 "EHLO
+        id S232303AbiJADFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 23:05:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231454AbiJABuV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 21:50:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 123A2979E1;
-        Fri, 30 Sep 2022 18:50:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 97C46623C1;
-        Sat,  1 Oct 2022 01:50:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EE655C43470;
-        Sat,  1 Oct 2022 01:50:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664589019;
-        bh=ZvE5fLUL200qmwnMejCG1XR6hmYECrC8OFd0e/9Qo14=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=mW85VL6ZNhfWL9W2/ZzUC5QSLYNz/N0YnEQ/yj43fYy/IqXkh8EdvhaMiiUzyDG0y
-         SMfcCMw5lLdGIL42KQ1B0iKTU/XjcfbSw5iolMDeLfK7BTK5r7rtmko+b+XqPCmLvl
-         /vVXpf/XYS6iVy5Gle+sqadPKjwtAcHyws7RAmwyarstN2hYBWBEv0npx9Cs9i2hbi
-         bL7hdq7A9cUr5NpEKFCDqTeZG1CfE/H4EBa9J4fdh7TLRFUE7V8T643R55zA6hZD7/
-         o7skLRFgDqNz06HQVSQ3jubYnsQ2vsZmZtDG2FHxyK35XII15jZ9rz9WcDOlR6ul5+
-         g1e475S5QX73A==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id D3A44E52501;
-        Sat,  1 Oct 2022 01:50:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231955AbiJADFM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 23:05:12 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BF533844A;
+        Fri, 30 Sep 2022 20:04:54 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2912oaNN003721;
+        Sat, 1 Oct 2022 03:04:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=igv6niMS2DbBmnf0TO0/yZyVq6ba24oDDUVUV0BoS0o=;
+ b=DScxxCg3U0hDSS8q3E7dpQxTWia1w/n/G0SJI5yhdtewD6mug2CVgc5LgBFugQd/C31s
+ YvJUWfBfBymvwTpFXmVfeGZcxaBV118zJrl4jk1HDMsf1wUNtICkqanAOGYCzOk1SLta
+ jIDwWJhLNRssNomviwEunpWYvDBnGKZ7lCkj/BsN9Adv2Btk/XzQo8cA+JtPUjzIhmjS
+ Eqiqeqr+AyavkSubRL/BhC4dBOTtS39ylqsCdXNM7bFx2C18iWUB+FyEDAOe5vCugsYD
+ DgZe1HgGUVFQGuu7vhDOxeFazie9IKlJXyre3ubHoq7IIDDtnMt0uFE2BEkueU6N04um rA== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jx70grpfe-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 01 Oct 2022 03:04:33 +0000
+Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29134W2W029604
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 1 Oct 2022 03:04:32 GMT
+Received: from hu-molvera-sd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Fri, 30 Sep 2022 20:04:32 -0700
+From:   Melody Olvera <quic_molvera@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Melody Olvera <quic_molvera@quicinc.com>
+Subject: [PATCH 0/5] clk: qcom: Add clocks for the QDU1000 and QRU1000 SoCs
+Date:   Fri, 30 Sep 2022 20:03:58 -0700
+Message-ID: <20221001030403.27659-1-quic_molvera@quicinc.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] dt-bindings: nfc: marvell,nci: fix reset line polarity in
- examples
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166458901885.12957.13702237029386370655.git-patchwork-notify@kernel.org>
-Date:   Sat, 01 Oct 2022 01:50:18 +0000
-References: <YzX+nzJolxAKmt+z@google.com>
-In-Reply-To: <YzX+nzJolxAKmt+z@google.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: hMmyXbbYZiuXI_tEk7tPidP7-7iks5rJ
+X-Proofpoint-ORIG-GUID: hMmyXbbYZiuXI_tEk7tPidP7-7iks5rJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-10-01_02,2022-09-29_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1011 malwarescore=0 mlxlogscore=873 adultscore=0 impostorscore=0
+ bulkscore=0 phishscore=0 spamscore=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210010016
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+This series adds the GCC, RPMh, and PDC clock support required for the
+QDU1000 and QRU1000 SoCs along with the devicetree bindings for them.
 
-This patch was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
+The Qualcomm Technologies, Inc. Distributed Unit 1000 and Radio Unit
+1000 are new SoCs meant for enabling Open RAN solutions. See more at
+https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/qualcomm_5g_ran_platforms_product_brief.pdf
 
-On Thu, 29 Sep 2022 13:22:55 -0700 you wrote:
-> The reset line is supposed to be "active low" (it even says so in the
-> description), but examples incorrectly show it as "active high"
-> (likely because original examples use 0 which is technically "active
-> high" but in practice often "don't care" if the driver is using legacy
-> gpio API, as this one does).
-> 
-> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> 
-> [...]
+This patchset is based on the YAML conversion patch [1] submitted already.
 
-Here is the summary with links:
-  - dt-bindings: nfc: marvell,nci: fix reset line polarity in examples
-    https://git.kernel.org/netdev/net-next/c/70d5ab532059
+[1] https://lore.kernel.org/r/20220103074348.6039-1-luca.weiss@fairphone.com
 
-You are awesome, thank you!
+Melody Olvera (4):
+  dt-bindings: clock: Add QDU1000 and QRU1000 GCC clock bindings
+  dt-bindings: clock: Add RPMHCC bindings for QDU1000 and QRU1000
+  clk: qcom: Add support for QDU1000 and QRU1000 RPMh clocks
+  dt-bindings: clock: Introduce pdc bindings for QDU1000 and QRU1000
+
+Taniya Das (1):
+  clk: qcom: Add QDU1000 and QRU1000 GCC support
+
+ .../bindings/clock/qcom,gcc-qdru1000.yaml     |   74 +
+ .../bindings/clock/qcom,rpmhcc.yaml           |    2 +
+ .../interrupt-controller/qcom,pdc.yaml        |    2 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-branch.c                 |    5 +
+ drivers/clk/qcom/clk-branch.h                 |    2 +
+ drivers/clk/qcom/clk-rpmh.c                   |   14 +
+ drivers/clk/qcom/gcc-qdru1000.c               | 2649 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-qdru1000.h |  170 ++
+ 10 files changed, 2927 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-qdru1000.yaml
+ create mode 100644 drivers/clk/qcom/gcc-qdru1000.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-qdru1000.h
+
+
+base-commit: 987a926c1d8a40e4256953b04771fbdb63bc7938
+prerequisite-patch-id: d3a56569439f223ee220dee951400e18983fee3e
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.37.3
 
