@@ -2,22 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81B045F1EB7
+	by mail.lfdr.de (Postfix) with ESMTP id 593AE5F1EB6
 	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 20:55:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbiJASzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229436AbiJASzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sat, 1 Oct 2022 14:55:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38306 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbiJASzg (ORCPT
+        with ESMTP id S229517AbiJASzg (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 14:55:36 -0400
-X-Greylist: delayed 124 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 01 Oct 2022 11:55:34 PDT
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8149A2BB24
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 11:55:34 -0700 (PDT)
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B75B22BE1B;
+        Sat,  1 Oct 2022 11:55:34 -0700 (PDT)
 Received: from TimeMachine.lan (adsl-dyn13.78-99-1.t-com.sk [78.99.1.13])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id EE0343F203;
-        Sat,  1 Oct 2022 20:55:31 +0200 (CEST)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id C7D583F33C;
+        Sat,  1 Oct 2022 20:55:32 +0200 (CEST)
 From:   Martin Botka <martin.botka@somainline.org>
 To:     martin.botka1@gmail.com
 Cc:     ~postmarketos/upstreaming@lists.sr.ht,
@@ -35,41 +34,42 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: dma: gpi: Document SM6125 compatible
-Date:   Sat,  1 Oct 2022 20:55:24 +0200
-Message-Id: <20221001185526.494095-1-martin.botka@somainline.org>
+Subject: [PATCH 2/3] drivers: dma: gpi: Add SM6125 compatible
+Date:   Sat,  1 Oct 2022 20:55:25 +0200
+Message-Id: <20221001185526.494095-2-martin.botka@somainline.org>
 X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20221001185526.494095-1-martin.botka@somainline.org>
+References: <20221001185526.494095-1-martin.botka@somainline.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit documents the newly added SM6125 SoC
-compatible.
+This commit adds compatible for SM6125
+SoC.
 
 Signed-off-by: Martin Botka <martin.botka@somainline.org>
 ---
- Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
+ drivers/dma/qcom/gpi.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-index 7d2fc4eb5530..a21c40fc6439 100644
---- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-+++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-@@ -21,6 +21,7 @@ properties:
-     enum:
-       - qcom,sc7280-gpi-dma
-       - qcom,sdm845-gpi-dma
-+      - qcom,sm6125-gpi-dma
-       - qcom,sm8150-gpi-dma
-       - qcom,sm8250-gpi-dma
-       - qcom,sm8350-gpi-dma
+diff --git a/drivers/dma/qcom/gpi.c b/drivers/dma/qcom/gpi.c
+index 8f0c9c4e2efd..0c42b40a7586 100644
+--- a/drivers/dma/qcom/gpi.c
++++ b/drivers/dma/qcom/gpi.c
+@@ -2288,6 +2288,7 @@ static int gpi_probe(struct platform_device *pdev)
+ static const struct of_device_id gpi_of_match[] = {
+ 	{ .compatible = "qcom,sc7280-gpi-dma", .data = (void *)0x10000 },
+ 	{ .compatible = "qcom,sdm845-gpi-dma", .data = (void *)0x0 },
++	{ .compatible = "qcom,sm6125-gpi-dma", .data = (void *)0x0 },
+ 	{ .compatible = "qcom,sm8150-gpi-dma", .data = (void *)0x0 },
+ 	{ .compatible = "qcom,sm8250-gpi-dma", .data = (void *)0x0 },
+ 	{ .compatible = "qcom,sm8350-gpi-dma", .data = (void *)0x10000 },
 -- 
 2.37.3
 
