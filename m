@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6170B5F191B
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 05:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13AA45F191E
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 05:09:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232946AbiJADJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Sep 2022 23:09:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50686 "EHLO
+        id S232948AbiJADJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Sep 2022 23:09:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232578AbiJADHq (ORCPT
+        with ESMTP id S232512AbiJADHq (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 30 Sep 2022 23:07:46 -0400
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3FF72BE36;
-        Fri, 30 Sep 2022 20:07:16 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 291358bo026961;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4805DCEE95;
+        Fri, 30 Sep 2022 20:07:17 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2912eaC0005418;
         Sat, 1 Oct 2022 03:07:14 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=qcppdkim1;
- bh=aeCe/JslE/ib54A1KNHM7zUmrMI5rfrsC5UMfW5ZKM0=;
- b=nOkmM5aubuU6GsMm19j0NQZmEMfn0aNQnNV4Qz4jeL0n2i98jHZ4u3jOkzQJGaY3+6XF
- 9+/wWelySRDJAxb3Ogo0r02rHCyqDAJE8KKnP2yvhsRdceJx8sIANJJOFiEfcXnJ50iD
- wNSqwHm2vFV8m4LDXyfMJoBjueLIyZyHyotqmaS5q+/KxIkOVgBlvW8fMc4yJy/dLJnw
- Fy/g3P5xvtPa6ZbuEcIqKhHaBUDQaHUgPM4cRdcD8GxGlVt2M8vywu0RuYp9bKpb3Twv
- QklaYvb2TTKpza9fYHxAsQT003kwOo5gHPw30qIDHGUYdsZPtY6ZlUNnar5Vg885Dt2I PQ== 
+ bh=iyJGAfSzQng2YcIokV9oTsPkc6xTjns9yUnu/h51qaA=;
+ b=GL7ds0q0cEWPHWzRf+QWwuiK0zqBorq5pOZvADxhj5uneapHd8KM2tblqvNR3S4sTNq0
+ HVy6ci+XbypJQ6VjeEQ5I7R5fhgV27vcwsZYFg/sXpCvk3apt4C0lVRQ6+0sKlYflN1X
+ hnyTdIAL0632HCBIOEKoUxsl0AlDJMmbOgyfWqDEi+BULY1FzSyBN89xWXWQ+HsrwtPE
+ 7cZRyo+GFS7xEavTX3/vBuslTf0OfL25QQuj2tI5KPtdBaX5axqTolqiCbo47rYy78zb
+ EhLDSNP2t3rQbTG1FLPAMfSU6Oml4EEZPnUj70518GfJ6dOeizd7fRlKucqUhcwUnQvo Cw== 
 Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jxch0r20d-1
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jx70grpjh-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
         Sat, 01 Oct 2022 03:07:14 +0000
 Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29137D0k009836
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29137DoT009839
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
         Sat, 1 Oct 2022 03:07:13 GMT
 Received: from hu-molvera-sd.qualcomm.com (10.80.80.8) by
@@ -46,9 +46,9 @@ To:     Andy Gross <agross@kernel.org>,
 CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
         Melody Olvera <quic_molvera@quicinc.com>
-Subject: [PATCH 04/19] arm64: dts: qcom: qdu1000: Add reserved memory nodes
-Date:   Fri, 30 Sep 2022 20:06:41 -0700
-Message-ID: <20221001030656.29365-5-quic_molvera@quicinc.com>
+Subject: [PATCH 05/19] arm64: dts: qcom: qru1000: Add reserved memory nodes
+Date:   Fri, 30 Sep 2022 20:06:42 -0700
+Message-ID: <20221001030656.29365-6-quic_molvera@quicinc.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20221001030656.29365-1-quic_molvera@quicinc.com>
 References: <20221001030656.29365-1-quic_molvera@quicinc.com>
@@ -60,15 +60,15 @@ X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nasanex01b.na.qualcomm.com (10.46.141.250)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: woe-2964Vy1CLNxpnx_y5SubLNxFdfaj
-X-Proofpoint-GUID: woe-2964Vy1CLNxpnx_y5SubLNxFdfaj
+X-Proofpoint-GUID: gDgFBaSCng6g957E273jzm8Wr3UaJyFi
+X-Proofpoint-ORIG-GUID: gDgFBaSCng6g957E273jzm8Wr3UaJyFi
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
  definitions=2022-10-01_02,2022-09-29_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
- clxscore=1015 mlxlogscore=737 lowpriorityscore=0 impostorscore=0
- phishscore=0 suspectscore=0 bulkscore=0 mlxscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 mlxlogscore=765 adultscore=0 impostorscore=0
+ bulkscore=0 phishscore=0 spamscore=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2209130000 definitions=main-2210010016
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
@@ -79,27 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reserved memory nodes for QDU1000 SoCs based on downstream
+Add reserved memory nodes for QRU1000 SoCs based on downstream
 documentation.
 
 Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 ---
- arch/arm64/boot/dts/qcom/qdu1000.dtsi | 150 ++++++++++++++++++++++++++
- 1 file changed, 150 insertions(+)
+ arch/arm64/boot/dts/qcom/qru1000.dtsi | 145 ++++++++++++++++++++++++++
+ 1 file changed, 145 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-index ba195e7ffc38..e836b2c1b8df 100644
---- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-@@ -7,4 +7,154 @@
+diff --git a/arch/arm64/boot/dts/qcom/qru1000.dtsi b/arch/arm64/boot/dts/qcom/qru1000.dtsi
+index 1639a4b3c1fb..be74be4bee4b 100644
+--- a/arch/arm64/boot/dts/qcom/qru1000.dtsi
++++ b/arch/arm64/boot/dts/qcom/qru1000.dtsi
+@@ -7,4 +7,149 @@
  
  / {
- 	qcom,msm-id = <545 0x10000>, <587 0x10000>;
+ 	qcom,msm-id = <539 0x10000>, <588 0x10000>, <589 0x10000>, <590 0x10000>;
 +
 +	reserved_memory: reserved-memory {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+	ranges;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
 +
 +		hyp_mem: memory@80000000 {
 +			no-map;
@@ -183,7 +183,7 @@ index ba195e7ffc38..e836b2c1b8df 100644
 +			reg = <0x0 0x82300000 0x0 0x500000>;
 +		};
 +
-+		ta_mem: memory@82800000 {
++		truested_apps_mem: memory@82800000 {
 +			no-map;
 +			reg = <0x0 0x82800000 0x0 0xa00000>;
 +		};
@@ -225,24 +225,19 @@ index ba195e7ffc38..e836b2c1b8df 100644
 +			reg = <0x0 0x9ec00000 0x0 0x80000>;
 +		};
 +
-+		tenx_mem: memory@a0000000 {
++		oem_tenx_mem: memory@a0000000 {
 +			no-map;
-+			reg = <0x0 0xa0000000 0x0 0x19600000>;
++			reg = <0x0 0xa0000000 0x0 0x6400000>;
 +		};
 +
-+		oem_tenx_mem: memory@b9600000 {
++		mpss_diag_buffer_mem: memory@aea00000 {
 +			no-map;
-+			reg = <0x0 0xb9600000 0x0 0x6a00000>;
++			reg = <0x0 0xaea00000 0x0 0x6400000>;
 +		};
 +
-+		tenx_q6_buffer_mem: memory@c0000000 {
++		tenx_q6_buffer_mem: memory@b4e00000 {
 +			no-map;
-+			reg = <0x0 0xc0000000 0x0 0x3200000>;
-+		};
-+
-+		ipa_buffer_mem: memory@c3200000 {
-+			no-map;
-+			reg = <0x0 0xc3200000 0x0 0x12c00000>;
++			reg = <0x0 0xb4e00000 0x0 0x3200000>;
 +		};
 +	};
  };
