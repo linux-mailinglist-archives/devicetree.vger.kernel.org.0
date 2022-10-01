@@ -2,137 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B2625F1F9B
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 23:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84F8B5F1F9F
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 23:07:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229549AbiJAVFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 17:05:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50330 "EHLO
+        id S229586AbiJAVHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 17:07:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229571AbiJAVFw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 17:05:52 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B429940BE5;
-        Sat,  1 Oct 2022 14:05:51 -0700 (PDT)
-Received: from mercury (unknown [185.209.196.162])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6E9876601E6A;
-        Sat,  1 Oct 2022 22:05:50 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664658350;
-        bh=Arj8XY3vybvBQ3J7ITnL7U5IbeHE9NPvxP3IGJNaYWI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MT/PzlDp2/y2Z9+SW4qnJ0hQ9ndoIEmMk1AESOv6RJteGdNiG9ocUzIjbAy/NmFSv
-         A/4A6E0zWgfSk/NSoVTu8MlaXPfTlLYE0uBcux5IONjjgfgTOJxeR/vx6zR/X+1xct
-         PRZ2TlVDYHOHAAhjdJh0cwJz33JC34fXn5sEotq+bZBH9MBc6x/xN6C7TzKPk7X7BC
-         u3WnDVoIw+8v5C1scDPuIDuVVh6Hh0RcCA4URJCS2UvvPerLIm/Nvk+ABP1GYXLk7v
-         La1zQ6ffAvugabvo4LajYku0Yx3dCSqF41Chj+JYTXOR4J3h8UBiY/m7qhKRBA0ssC
-         wzd3PcpNu46hQ==
-Received: by mercury (Postfix, from userid 1000)
-        id F2B601061C22; Sat,  1 Oct 2022 23:05:47 +0200 (CEST)
-Date:   Sat, 1 Oct 2022 23:05:47 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     saravanan sekar <sravanhome@gmail.com>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
-        lars@metafoo.de, andy.shevchenko@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 5/6] power: supply: Add support for mp2733 battery
- charger
-Message-ID: <20221001210547.ngtkjm3ue6joxqdg@mercury.elektranox.org>
-References: <20220615145357.2370044-1-sravanhome@gmail.com>
- <20220615145357.2370044-6-sravanhome@gmail.com>
- <20220911133101.7g6hnwp3dnnqrmgb@mercury.elektranox.org>
- <77f13cfe-58dc-d150-18a9-cb14c82f222a@gmail.com>
+        with ESMTP id S229495AbiJAVHd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 17:07:33 -0400
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8EA460F8;
+        Sat,  1 Oct 2022 14:07:30 -0700 (PDT)
+Received: by mail-il1-x133.google.com with SMTP id h18so3767175ilh.3;
+        Sat, 01 Oct 2022 14:07:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=uUNFDcaL8MebU4GzPEEc+siVKONQVYVPRFWvQj9K+LQ=;
+        b=AV432ZPUJCVbB+dMQHMsJuJzzx1dVrD+0/AroUEfsyP21ZAS+GzRnTrQctuVK2aYez
+         aP6LMsElY/rKRQiH6i2sW2vrRKysMgO0yUP/Ds7sJZZICEm21Ts6JlCh84EZowZ1snQ5
+         M//lmKXQRGEPNTygX5pFFK23DWbV4SRCA4FfhplrkYe+EhDkaJn9GqK0a1+zUl5rxkTU
+         iA4oI+QXtUtiZB+vhR6UpDE2UApadaoUEQgqveFsGRhTbr5ctXspi9zkMNcuyzU6FrBe
+         aINJx6e+fqv8eqhMvbEBDtCODm733l+ZqMUknWTVG7mWFQOi2Mn17JsmJurAWuPLev8M
+         /mNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=uUNFDcaL8MebU4GzPEEc+siVKONQVYVPRFWvQj9K+LQ=;
+        b=e9VzB6jLxUOaFyYtAhV92prpYEd6Pp4jyqh/nqIyiOu29J/6sUSHqHxLbzVTI2EP7I
+         pLsser+BQs4fXTcVWrLuqB8OsqqdvI3PXzHW4dp7k+ZFlTs+1YpWxfjr7+pZZtUmFptb
+         BHFxSSUUFy6NaLFQQ/Es1uvaxBbjUqNKsnxiPVnUBEhifB7F2nlJ0VMuFnkG1g65mIwN
+         z5HjzHpuGXlh5qQWnYJlrkfZq1lZ5fAqKBCrzRcbxuL8QLXgwL1EYhlclgB155jRnjdM
+         gsPoHyleP4Bnsi8QV9k2wk3NpeiTsM+8Nhz2SJRJHUyFrQN5QT+KXWlWoru6SpF8ET5X
+         LyVQ==
+X-Gm-Message-State: ACrzQf1Bdix5YDpGhMx50cbOxOhZtCucAh21pZqPEtx1iQD9m7MgEB7f
+        ebkrefsrLFCW9oLrvFAQlDjYgAwPaTRmcw==
+X-Google-Smtp-Source: AMsMyM6qMcngEsSewBtYPhXB8P7xqcCr0x/7HnyxqKHnIOmhKaQqLEujxBGsNBg9aDhXd3Er4Mx83g==
+X-Received: by 2002:a05:6e02:1706:b0:2f1:c2ee:7fea with SMTP id u6-20020a056e02170600b002f1c2ee7feamr6927174ill.40.1664658450024;
+        Sat, 01 Oct 2022 14:07:30 -0700 (PDT)
+Received: from localhost ([2607:fea8:a2e2:2d00::1eda])
+        by smtp.gmail.com with UTF8SMTPSA id l31-20020a026a1f000000b0034a58483060sm2369377jac.56.2022.10.01.14.07.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Oct 2022 14:07:29 -0700 (PDT)
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v6 0/3] SDM670 Pin Control Driver
+Date:   Sat,  1 Oct 2022 17:07:22 -0400
+Message-Id: <20221001210725.60967-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fp56e5gruha3a2n2"
-Content-Disposition: inline
-In-Reply-To: <77f13cfe-58dc-d150-18a9-cb14c82f222a@gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes since v5:
+ - remove function requirement in schema
+ - change "-state$" regex to double quotes in schema
+ - drop quotes from qcom-tlmm-state ref in dt schema
 
---fp56e5gruha3a2n2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v4:
+ - accumulate review tag
+ - use --cover-letter
+ - this is effectively a resend
 
-Hi,
+Changes since v3:
+ - constrain gpio-reserved-ranges to 1-75 items
+ - proper indentation in dt-bindings example (actually tagged this time
+   instead of an outdated commit)
+ - remove unnecessary commit reference
+ - rename complement_fw_reserved_gpios -> complement_fw_gpio_ranges
 
-On Sun, Sep 25, 2022 at 11:26:24AM +0200, saravanan sekar wrote:
-> On 11/09/22 15:31, Sebastian Reichel wrote:
-> > On Wed, Jun 15, 2022 at 04:53:56PM +0200, Saravanan Sekar wrote:
-> > > mp2733 is updated version of mp2629 battery charge management
-> > > which supports USB fast-charge and higher range of input voltage.
-> > >=20
-> > > Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
-> > > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > > ---
-> > > [...]
-> > >   	psy_cfg.drv_data =3D charger;
-> > > -	psy_cfg.attr_grp =3D mp2629_charger_sysfs_groups;
-> > > +	if (charger->chip_info->has_impedance)
-> > > +		psy_cfg.attr_grp =3D mp2629_charger_sysfs_groups;
-> > > +
-> > > +	if (charger->chip_info->has_fast_charge)
-> > > +		psy_cfg.attr_grp =3D mp2733_charger_sysfs_groups;
-> > > +
-> > >   	charger->battery =3D devm_power_supply_register(dev,
-> > >   					 &mp2629_battery_desc, &psy_cfg);
-> > >   	if (IS_ERR(charger->battery)) {
-> >=20
-> > Instead of having has_impedance and has_fast_charge feature
-> > flag that are mutual exclusive, store the device type and
-> > use if/else or switch statement to chose the correct attr_grp.
->=20
-> these flags are not really mutual exclusive, limitation only for
-> application between mp2629 and mp2629. In future another chipset on
-> same series shall have both or none, so I would consider to control
-> flags with functionality rather than chipset!
->=20
-> Please feedback if still I have to consider your proposal.
+Changes since v2:
+ - remove quotes from pinctrl.yaml# in dt-bindings
+ - constrain gpio-reserved-ranges to 1-76 items (includes ufs_reset)
+ - indentation in dt-bindings example
+ - cite downstream kernel source
+ - remove MODULE_AUTHOR (most imported pinctrl drivers don't have this)
 
-I'm fine with this being flag based, but your code assumes that the
-flags are mutual exclusive, since psy_cfg.attr_grp is overwritten.
-This is bad style and needs to be fixed:
+Changes since v1:
+ - add a field in msm_pinctrl_soc_data to accomodate the needs of the
+   driver and device dts
+ - apply changes made to existing tlmm dt documentation
+ - add reserved gpios array
+ - rename device tree compat string to qcom,sdm670-tlmm
+ - remove dependency on ACPI
+ - move MODULE_DEVICE_TABLE macro call up
+ - add missing pins (fixes most of the debugfs problems)
+ - move qup0_pins down
+ - add whitespace between UFS_RESET macro and pins array
 
-+       if (charger->chip_info->has_impedance)
-+               psy_cfg.attr_grp =3D mp2629_charger_sysfs_groups;
-+
-+       if (charger->chip_info->has_fast_charge)
-+               psy_cfg.attr_grp =3D mp2733_charger_sysfs_groups;
+This patch series adds the driver for the Qualcomm Snapdragon 670 TLMM
+(Top-Level Mode Multiplexer) and introduces a new field so that SDM670-
+related device trees can reserve their own gpios.
 
--- Sebastian
+Richard Acayan (3):
+  dt-bindings: pinctrl: qcom: add sdm670 pinctrl
+  pinctrl: qcom: add support for complementary reserved gpios
+  pinctrl: qcom: add sdm670 pinctrl
 
---fp56e5gruha3a2n2
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/pinctrl/qcom,sdm670-tlmm.yaml    |  129 ++
+ drivers/pinctrl/qcom/Kconfig                  |    9 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-msm.c            |    5 +-
+ drivers/pinctrl/qcom/pinctrl-msm.h            |    4 +
+ drivers/pinctrl/qcom/pinctrl-sdm670.c         | 1373 +++++++++++++++++
+ 6 files changed, 1519 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sdm670.c
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.37.3
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmM4q6sACgkQ2O7X88g7
-+pqDzw/8DYNihI/5niBVAy8sxQtMYp1fODvWdL9PyBNxYrYJgicUuiYjMKw7nKuW
-c3JGR1D4bkDtBghktWBfs+BvpexpVt1YrK5dTqHnnnBNEHBv+r/f/+6Zh5y3CJKp
-0ffksLxM2mDaElxchdRXB+ObL2Kb+9HKvTQnuXVldX7LvbgHWhwnbYIDsDdin5mO
-awWkoEEdf/wr31F6seFIHkig+mBd/cuo9opbKCOp/YHDzNrHr79C5LCLmd6CeGKh
-TW78eqWlSM8ArBBpA6MXckTo9x7lW1+tsf67NDA1XPUSlwyuIsAAe2deb87gy3qZ
-O/NtL9ABfHjgQgNWeDeXoM//i/et7IJoncxqokxZOVHMapt3QTFAMbbDI7fBOH1E
-Eu7Paps0/OFp88k0aQCTYAa6mPUPKN15/s9WDHW6W074JgcN4m0wPFlzZAsa6oiM
-kXIMvZWUMOEga4UW5GS29okYuIXQQyC656B/+kVTjfhtNDaarblm5KNVMGbRxdcm
-4AwKX0GJSK1Vf0bPfSD1UtpE3R81Z0nL20QZbQm5fVWZppq3kXUZaXx8W6hVk6/P
-UwLXVClFeax1X0e/UODeNvkwA6xR92QPxDqZ8lsdFA3lJtz0K9avQMLuhpvqoZ94
-NnsOX7zTFVXBmJz6gNp2Q6f7BHSzNTVnNDkGpWyhFA1ZB2lDBhU=
-=I5wa
------END PGP SIGNATURE-----
-
---fp56e5gruha3a2n2--
