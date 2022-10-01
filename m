@@ -2,123 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDCCB5F1D6C
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 18:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 866405F1D70
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 18:01:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbiJAQAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 12:00:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48734 "EHLO
+        id S229615AbiJAQBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 12:01:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbiJAQAa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 12:00:30 -0400
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [IPv6:2a01:4f8:150:2161:1:b009:f23e:0])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A6ED6CF67;
-        Sat,  1 Oct 2022 09:00:27 -0700 (PDT)
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+        with ESMTP id S229488AbiJAQBA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 12:01:00 -0400
+Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [5.144.164.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A22BB6E8A0
+        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 09:00:57 -0700 (PDT)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-         client-signature RSA-PSS (4096 bits) client-digest SHA256)
-        (Client CN "*.hostsharing.net", Issuer "RapidSSL TLS DV RSA Mixed SHA256 2020 CA-1" (verified OK))
-        by bmailout3.hostsharing.net (Postfix) with ESMTPS id 7E929100DCEEB;
-        Sat,  1 Oct 2022 18:00:25 +0200 (CEST)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-        id 4E5BC3123; Sat,  1 Oct 2022 18:00:25 +0200 (CEST)
-Date:   Sat, 1 Oct 2022 18:00:25 +0200
-From:   Lukas Wunner <lukas@wunner.de>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     bhelgaas@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lpieralisi@kernel.org,
-        kw@linux.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
-        mani@kernel.org, Sergey.Semin@baikalelectronics.ru,
-        jszhang@kernel.org, linux-pci@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Jon Derrick <jonathan.derrick@linux.dev>
-Subject: Re: [PATCH V1 0/4] GPIO based PCIe Hot-Plug support
-Message-ID: <20221001160025.GB9324@wunner.de>
-References: <20220930192747.21471-1-vidyas@nvidia.com>
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id C85FB1F96A;
+        Sat,  1 Oct 2022 18:00:55 +0200 (CEST)
+Date:   Sat, 1 Oct 2022 18:00:54 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org,
+        Loic Poulain <loic.poulain@linaro.org>
+Subject: Re: [PATCH v3 2/2] drm/msm/dsi: Add phy configuration for QCM2290
+Message-ID: <20221001160054.gmrlnjvdwyn5ttzw@SoMainline.org>
+References: <20220924121900.222711-1-dmitry.baryshkov@linaro.org>
+ <20220924121900.222711-3-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220930192747.21471-1-vidyas@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220924121900.222711-3-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding Marek, Pali & Jon to cc as they've worked on somewhat similar
-functionality:
+On 2022-09-24 15:19:00, Dmitry Baryshkov wrote:
+> From: Loic Poulain <loic.poulain@linaro.org>
+> 
+> The QCM2290 SoC a the 14nm (V2.0) single DSI phy. The platform is not
+> fully compatible with the standard 14nm PHY, so it requires a separate
+> compatible and config entry.
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+> [DB: rebased and updated commit msg]
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.c      |  2 ++
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.h      |  1 +
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c | 17 +++++++++++++++++
+>  3 files changed, 20 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> index 7fc0975cb869..ee6051367679 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> @@ -549,6 +549,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
+>  #ifdef CONFIG_DRM_MSM_DSI_14NM_PHY
+>  	{ .compatible = "qcom,dsi-phy-14nm",
+>  	  .data = &dsi_phy_14nm_cfgs },
+> +	{ .compatible = "qcom,dsi-phy-14nm-2290",
+> +	  .data = &dsi_phy_14nm_2290_cfgs },
+>  	{ .compatible = "qcom,dsi-phy-14nm-660",
+>  	  .data = &dsi_phy_14nm_660_cfgs },
+>  	{ .compatible = "qcom,dsi-phy-14nm-8953",
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> index 60a99c6525b2..1096afedd616 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> @@ -50,6 +50,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_20nm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_28nm_8960_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs;
+> +extern const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs;
 
-https://lore.kernel.org/linux-pci/20220927141926.8895-1-kabel@kernel.org/
-https://lore.kernel.org/linux-pci/1581120007-5280-1-git-send-email-jonathan.derrick@intel.com/
+following alphabetical sorting (same as the other locations in this
+series), this should be above 660?
 
-On Sat, Oct 01, 2022 at 12:57:43AM +0530, Vidya Sagar wrote:
-> To support the Hot-plug feature, PCIe spec has a well-defined model for 
-> hardware implementation and software programming interface. There are also
-> some architectures/platforms where the Hot-plug feature is implemented in a
-> non-standard way and software support for the respective implementations is
-> available with the kernel. This patch series attempts to add support for one
-> such non-standard way of supporting the Hot-plug feature where a single GPIO
-> is used to detect and report the Hot-Plug and Unplug events to the SW.
-> The platforms that can use this piece of software need to have GPIO routed
-> from the slot to the controller which can indicate the presence/absence of
-> the downstream device through its state. This GPIO should also have the
-> capability to interrupt the system when the connection/disconnection event
-> takes place.
-> A GPIO Hot-plug framework is written which looks for a "hotplug-gpios" named
-> GPIO entry in the corresponding device-tree entry of the controller and
-> registers a hot-pluggable slot with the Hot-plug framework.
-> The platform drivers of the PCIe host bridges/root ports can register with the
-> aforementioned GPIO Hot-Plug framework along with ops to perform any platform
-> specific tasks during Hot-Plug/Unplug events.
-> 
-> Oza Pawandeep made an attempt to upstream support for a similar Hot-plug
-> feature implementation at a platform level, but the implementation as such
-> was very specific to that platform (at least the way I understood it).
-> https://patchwork.kernel.org/project/linux-pci/patch/1504155029-24729-2-git-send-email-oza.oza@broadcom.com/
-> https://patchwork.kernel.org/project/linux-pci/patch/1504155029-24729-3-git-send-email-oza.oza@broadcom.com/
-> https://patchwork.kernel.org/project/linux-pci/patch/1504155029-24729-4-git-send-email-oza.oza@broadcom.com/
-> This current series also attempts to address that by extracting out all the
-> common code to do with GPIO and Hot-plug core framework and expecting the
-> platform drivers to only register/unregister with the GPIO framework. So,
-> @Oza, could you try using the GPIO framework from this series and enable
-> Hot-plug support for your platform if it still makes sense?
-> 
-> @Rob,
-> Regarding the DT documentation change to add about 'hotplug-gpios, I'm not
-> sure if pci.txt is the right place or the dt-schema repository
-> i.e https://github.com/devicetree-org/dt-schema
-> But, in the interest of keeping all the changes related to this feature in the
-> the same repository, I made the changes to the pci.txt file in this repo itself.
-> Please let me know if the documentation change needs to be moved to the other
-> repo.
-> 
-> The Changes have been tested on the Tegra234 platform.
-> 
-> Vidya Sagar (4):
->   dt-bindings: Add "hotplug-gpios" PCIe property
->   PCI/hotplug: Add GPIO PCIe hotplug driver
->   PCI: tegra194: Add support to configure a pluggable slot
->   PCI: tegra194: Enable GPIO based Hot-Plug support
-> 
->  Documentation/devicetree/bindings/pci/pci.txt |   4 +
->  drivers/pci/controller/dwc/pcie-tegra194.c    |  85 +++++++-
->  drivers/pci/hotplug/Kconfig                   |  11 +
->  drivers/pci/hotplug/Makefile                  |   1 +
->  drivers/pci/hotplug/gpio_php.c                | 200 ++++++++++++++++++
->  drivers/pci/hotplug/gpiophp.h                 |  40 ++++
->  6 files changed, 334 insertions(+), 7 deletions(-)
->  create mode 100644 drivers/pci/hotplug/gpio_php.c
->  create mode 100644 drivers/pci/hotplug/gpiophp.h
-> 
+>  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_10nm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_10nm_8998_cfgs;
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> index 0f8f4ca46429..9f488adea7f5 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> @@ -1081,3 +1081,20 @@ const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs = {
+>  	.io_start = { 0x1a94400, 0x1a96400 },
+>  	.num_dsi_phy = 2,
+>  };
+> +
+> +const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs = {
+> +	.has_phy_lane = true,
+> +	.regulator_data = dsi_phy_14nm_17mA_regulators,
+> +	.num_regulators = ARRAY_SIZE(dsi_phy_14nm_17mA_regulators),
+> +	.ops = {
+> +		.enable = dsi_14nm_phy_enable,
+> +		.disable = dsi_14nm_phy_disable,
+> +		.pll_init = dsi_pll_14nm_init,
+> +		.save_pll_state = dsi_14nm_pll_save_state,
+> +		.restore_pll_state = dsi_14nm_pll_restore_state,
+> +	},
+> +	.min_pll_rate = VCO_MIN_RATE,
+> +	.max_pll_rate = VCO_MAX_RATE,
+> +	.io_start = { 0x5e94400 },
+
+For sm6125 we also need this exact io_start (and a single PHY), do you
+think it makes sense to add a compatible that reuses the same struct (I
+can do that in a folloup patch) and/or generalize this struct (name)?
+
+However, our regulator setup appears to be different.  I recall not
+finding any `vcca` supply in my downstream sources, and had this in my
+notes for a similar dsi_phy_14nm.c patch:
+
+    sm6125 uses an RPM regulator
+
+https://github.com/sonyxperiadev/kernel/blob/f956fbd9a234033bd18234d456a2c32c126b38f3/arch/arm64/boot/dts/qcom/trinket-sde.dtsi#L388
+
+- Marijn
+
+> +	.num_dsi_phy = 1,
+> +};
 > -- 
-> 2.17.1
+> 2.35.1
 > 
