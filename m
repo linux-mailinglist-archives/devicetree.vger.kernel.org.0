@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20D855F1A6C
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 09:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 091F95F1A73
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 09:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbiJAHAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 03:00:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32868 "EHLO
+        id S229534AbiJAHD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 03:03:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbiJAHAQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 03:00:16 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987BA4DB3F
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 00:00:05 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id k3so5844182ybk.9
-        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 00:00:05 -0700 (PDT)
+        with ESMTP id S229488AbiJAHDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 03:03:23 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C4B01A2A18
+        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 00:03:22 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-3573ed7cc15so19323897b3.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 00:03:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=PJKsBdmry9pp/p4qjkmtTRbPY3WNcZCpKNJJCK49xuc=;
-        b=l33IBhwzFr8JMiWB6aVikVWjK/TOsxDzaHohFGJCq62lfESb6uWgORm5Nx1+Bplids
-         4pKokXzPrVyJm+gL2Rronk7oBJjfiwEo30yo6rYl+njXmSVggA4hqcGLSe8D1hcejipQ
-         TByJsrkkzCv78q16bhSgyTRYQI3xsmpbLmZqhb5xlmKVSiZmLv5gjy5Yk43wcIaUPQlQ
-         7yLxJGis5H/eMH5opHarreBzyDZCXoNVN4Hj7YMSYao3au3cTNSu41LWwTDkzu56/X83
-         nLB4sC4IivKOaLwiRFznZCv7xN/CumrjQnVvEYx2BpD3zEfWfoawwHlY5BaVkCxFl/uH
-         OiIQ==
+        bh=uAsOMusmOv9rGWfhvmdzC31+QnKZUq7RRceyu2qijc8=;
+        b=cg+UZrYLhxEcM6BFlQeU7q1b0m3x2IPwY1hlYkLD+jeqOH9mJ3n5fkkurT6IHbXPSS
+         PQQ2qFiJH27ckelU65TtN2ixkSzdDu3f3MlGeNLidRZP0kI6/VjJirpRHAWqIy5TNEWF
+         xH6reTWFa0FHevbyh87LrpiCBAThHeNQp9w1zEeGNBzd2xw/tOJQ9v3BLqDlD49D8jec
+         r/hFJA1ctPMcSfPVr6/V2n4mx2ox/8T2gPWDxGOrr15ylvbIhw7xvTmrP11wlOE+iURD
+         mR9L/ASKx9UJZj87ataP2Pzu+CA8yuBe4j2bT14ZyJcagiegX4UvTodLCcyvEjHEzGRU
+         KnSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=PJKsBdmry9pp/p4qjkmtTRbPY3WNcZCpKNJJCK49xuc=;
-        b=2z7lAgWNj9uaY9ogbhqvszWO14EaEOaaNpbYszVqKlskR9gKiPdZyOIqqR4Uw2spun
-         NTKHe555VaWZzQ+BCPDgICMXgDBmhrawWEw6TXhRdNtSBKQh6S1ILDM/Ez8OBmDBcOop
-         e+EYVsKb91BojmkqL3m42Tel4UJePN3+jUpEZZIbw0xgxHM2QpQ2NLMmN7NELuBCQtP/
-         EKwaK7dsX8Aw9I28g11PU5UC+p3fPc/B6eHIQ/2sAjhmxBA7A9Z2UtpMKl7xt01SBvz1
-         CsfSF7/UgtyQD36x3MRRrwkEwN534Cty1WYuDAQzvBecVu31YPYvswrZxxZCltV9sytJ
-         PmrQ==
-X-Gm-Message-State: ACrzQf3iDVh0C5ok1/D5t3lWsULnfax3w5GABW24Gq7heasFAd2xMuh9
-        CqUOk1IIplMQc7S9zjxcOgcgdAy8+P+vFmhuvT10NQ==
-X-Google-Smtp-Source: AMsMyM5OzN8oBMlFfj9MHDQboYmmjpF5OxhNHqvlAZcsHyutiAbNkTzvP4NCKy0Mi4D0mrNTDILZrjjl2MWl2AJhDiA=
-X-Received: by 2002:a25:a502:0:b0:6bc:2835:a88a with SMTP id
- h2-20020a25a502000000b006bc2835a88amr11254803ybi.15.1664607604880; Sat, 01
- Oct 2022 00:00:04 -0700 (PDT)
+        bh=uAsOMusmOv9rGWfhvmdzC31+QnKZUq7RRceyu2qijc8=;
+        b=V+AcW3GtnuKTrAr8b5h0G3tBLUYW2s2zvcVOo15yWMzSU1n1hJktgkT2tHL8Qjxhmq
+         /oRz2DRgeCyFn/EZeZXAyhMLLUuh7t3e7ndyB/xHq0e9iqvn6jOSJnAiuYKrJz2Y//Ce
+         RtPceaTIjcZDNVV/rh2ndZV7g2emnsAbEWCWvzj6Od6hk2qB5LQRQo4abhEHvhdlswBD
+         nZStQY8gJ/H24d94U8qFUqz0X+HrrDnZzw+pwbVA1ciDYstRlJaGvegZzhwz+vMklH58
+         HiJGjoNqw7lgQNRd4l2xO4skHgRHFfr1CU2kjgWhHBB86GFBznLH9HujAACoXQdnl82D
+         w5Cw==
+X-Gm-Message-State: ACrzQf1B7kjNmAQqFVBlFGDMsF9rRlXPT97vBhe4EXEzSTHYlOWvhoud
+        oP9mSZLezo+jLkbbJoYn/iys1TNaiCltEs0zmMn1eg==
+X-Google-Smtp-Source: AMsMyM7n7fO1bBUcoE5IZG/jROB90kg3rRYMoPnOf0GeMAK4lyaVIcKkDdm9TJmTCkMfBkAnWBg42C+pR8+cM1wM/Gw=
+X-Received: by 2002:a0d:d68a:0:b0:350:a7f0:7b69 with SMTP id
+ y132-20020a0dd68a000000b00350a7f07b69mr11814671ywd.132.1664607801493; Sat, 01
+ Oct 2022 00:03:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221001030403.27659-1-quic_molvera@quicinc.com> <20221001030403.27659-3-quic_molvera@quicinc.com>
-In-Reply-To: <20221001030403.27659-3-quic_molvera@quicinc.com>
+References: <20221001030403.27659-1-quic_molvera@quicinc.com> <20221001030403.27659-5-quic_molvera@quicinc.com>
+In-Reply-To: <20221001030403.27659-5-quic_molvera@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 1 Oct 2022 09:59:34 +0300
-Message-ID: <CAA8EJpr2ZnEC3=WMns8AGNY1DwARM9xnadtaBkzctOyNLv3=Zg@mail.gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: clock: Add RPMHCC bindings for QDU1000
- and QRU1000
+Date:   Sat, 1 Oct 2022 10:03:00 +0300
+Message-ID: <CAA8EJppBfYST2VQrv6-LZBvtLcNUMkpLgXcic-fSUzFXhiYbaA@mail.gmail.com>
+Subject: Re: [PATCH 4/5] clk: qcom: Add support for QDU1000 and QRU1000 RPMh clocks
 To:     Melody Olvera <quic_molvera@quicinc.com>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -66,7 +65,8 @@ Cc:     Andy Gross <agross@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -75,29 +75,49 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sat, 1 Oct 2022 at 06:05, Melody Olvera <quic_molvera@quicinc.com> wrote:
 >
-> Add compatible strings for RPMHCC for QDU1000 and QRU1000.
+> Add support for RMPh clocks for QDU1000 and QRU1000 SoCs.
 >
 > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/clk/qcom/clk-rpmh.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
-> index 8fcaf418f84a..d613156eadb0 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
-> @@ -29,6 +29,8 @@ properties:
->        - qcom,sm8250-rpmh-clk
->        - qcom,sm8350-rpmh-clk
->        - qcom,sm8450-rpmh-clk
-> +      - qcom,qdu1000-rpmh-clk
-> +      - qcom,qru1000-rpmh-clk
-
-Alphabetic sorting please. Q comes before s.
-
+> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+> index c07cab6905cb..27d11ffac71e 100644
+> --- a/drivers/clk/qcom/clk-rpmh.c
+> +++ b/drivers/clk/qcom/clk-rpmh.c
+> @@ -628,6 +628,18 @@ static const struct clk_rpmh_desc clk_rpmh_sdx65 = {
+>         .num_clks = ARRAY_SIZE(sdx65_rpmh_clocks),
+>  };
 >
->    clocks:
->      maxItems: 1
+> +DEFINE_CLK_RPMH_ARC(qdru1000, bi_tcxo, bi_tcxo_ao, "xo.lvl", 0x3, 1);
+> +
+> +static struct clk_hw *qdru1000_rpmh_clocks[] = {
+> +       [RPMH_CXO_CLK]      = &qdru1000_bi_tcxo.hw,
+> +       [RPMH_CXO_CLK_A]    = &qdru1000_bi_tcxo_ao.hw,
+> +};
+> +
+> +static const struct clk_rpmh_desc clk_rpmh_qdru1000 = {
+> +       .clks = qdru1000_rpmh_clocks,
+> +       .num_clks = ARRAY_SIZE(qdru1000_rpmh_clocks),
+> +};
+> +
+>  static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
+>                                          void *data)
+>  {
+> @@ -723,6 +735,8 @@ static const struct of_device_id clk_rpmh_match_table[] = {
+>         { .compatible = "qcom,sm8350-rpmh-clk", .data = &clk_rpmh_sm8350},
+>         { .compatible = "qcom,sm8450-rpmh-clk", .data = &clk_rpmh_sm8450},
+>         { .compatible = "qcom,sc7280-rpmh-clk", .data = &clk_rpmh_sc7280},
+> +       { .compatible = "qcom,qdu1000-rpmh-clk", .data = &clk_rpmh_qdru1000},
+> +       { .compatible = "qcom,qru1000-rpmh-clk", .data = &clk_rpmh_qdru1000},
+
+Also the list isn't fully sorted, let's target that. Please move your
+compat strings into the beginning.
+
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(of, clk_rpmh_match_table);
 > --
 > 2.37.3
 >
