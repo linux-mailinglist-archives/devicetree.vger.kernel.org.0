@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E985F1BAF
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 12:02:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF30F5F1BB3
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 12:06:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbiJAKCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 06:02:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47628 "EHLO
+        id S229697AbiJAKGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 06:06:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbiJAKCD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 06:02:03 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08786106F67
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 03:01:58 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id a8so10227221lff.13
-        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 03:01:58 -0700 (PDT)
+        with ESMTP id S229516AbiJAKGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 06:06:17 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C501116E9
+        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 03:06:14 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 10so10312279lfy.5
+        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 03:06:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=isfPLY9jR+ZoVFd10vcMUlsBh00yNt/v6qsBgWfkVWc=;
-        b=hxNu9GOBZ6OIkmPu2dYmNAKLY1tyR/nJ1sTFR9UeuKhUBoOgnCGxi8SyBg74NCLWp8
-         asr+EAkSain2o5Hfv4mxJlgY1q9DK/lbFRUevmba9mwnKUsCCy/4mhVxHswclCRbEGQY
-         vFQ0BHJE+ruWr6x/SUodam6kiRDcr9f76jrXhNA4oDXk/pWwvguXsf8N3HGoHk0bRcuO
-         y5ylnycQY1xmgsBCrNLAaCL3AbCIsA5K/M2op7LO93dXVPG9nKqedUxoUaWCGFa6JiSo
-         wM9rIbx3A0EruJb7XuDxLZsKygLcdhiPBw7zme2vEd+YOcwaOuX448UkMyapJ+Ye0X3R
-         NGzw==
+        bh=JdYvlqF5E77ETGsiA3+iUVd/M7BniVM0ttBqGKQmW/g=;
+        b=cm2DPW+cKfk1EdEZh3iq/2iqecYirZEhqgCi2lGiBe7QUqCgd8QeCso7EWeuymDOE8
+         5qJGqBSDWlyJYG0aELHtS9PXMPiw1pSnwE2lGqdNt4f6Y0iGDVHf1n/mTZHpNC7G1vNU
+         R0dRWUpo3BNX55fvpctYeuXJ59TXG8NcCqDv7qJMzXsun4YV20yNQJOaJ2tMgW3fiV6M
+         sjAHCGPGLVNWwnORr+0Cg0QwG81dfo0JHRznCcDu1+IOuy0kIemaq1Wfz+OH9jcOKPTV
+         8ImslYg59ja2TxlIuUGosk6OB50ohAzZZlFGj9/DXmS9iTf3ZQDgfFhHVH85YJC8QOmB
+         6Zag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=isfPLY9jR+ZoVFd10vcMUlsBh00yNt/v6qsBgWfkVWc=;
-        b=DiMIak+IYXL2l5rgEtf9QxW2BLMMFErVJgETbcbLtZEo4T8Ex24U+Wd4DXSwBq65/h
-         yPVDmrpJfqT15dSn1S9g1jHZK0REh+7tXT4gVfp3ilPCiFmq7hXjcZ3/IXpIR4rnKPZG
-         kMevjCdy0DIP/tQuAE6OSXpUFKIoY3KfOHz0zOPYMmSLqR5NltlFFBZ03xNCIKz3AFqe
-         sMbgvmYkyIDu9LpmEeSmSj7BAR5/xutMzCXzmLavb1MrNtP8LGz+NZPZWmIsXueEW6Fu
-         TXLI10KwL8Sn42eq3p1MHi/JjlymPYYsVEzXcFa+ku9mEwaHpnO0x7k5repwlKJHZLuK
-         Knrg==
-X-Gm-Message-State: ACrzQf0JkaLcrcNoUopaZeMUm1SM4V3mv763dpXtEBHei08UfPNAAsmU
-        G6p6Ym9VfQ7clY0DEYlzk2AB/g==
-X-Google-Smtp-Source: AMsMyM7AETj/ipTqs1kEJZXmUiYV4pkMkE02jy6ZWJlax6twD1+N3FeRcIW9pV+jANPCJDNRYyzenQ==
-X-Received: by 2002:a05:6512:3b97:b0:497:ab81:dcb1 with SMTP id g23-20020a0565123b9700b00497ab81dcb1mr4629226lfv.496.1664618516936;
-        Sat, 01 Oct 2022 03:01:56 -0700 (PDT)
+        bh=JdYvlqF5E77ETGsiA3+iUVd/M7BniVM0ttBqGKQmW/g=;
+        b=4iM++h4Q0Ir0AvBcIEBOEFvgpUV678rfX/QvKlyNSVOksGY3r5TUCDByhRaosFIVOx
+         exFDBQHIBiaNAOpGG2xP+/z+hNdIrc2V+7GseT3OB8pVTvcqk7JAf/TllISaTX8No4If
+         cR0J5LxPOES9K4fehQAUIUN6OB8CVPAu74efTUJD9JU32AGnTrJYuXUxmOrQK+7PlwIY
+         Dd0+d7xsjnlcsi8+DLQ7EbixOXQMkTlZRrbV4aRDbI+TWcZm7L0yMucqtLG+4W3TTISL
+         7Dx85QqmOX51L75X7fQ2Co4iLKQa8pTau7MRxXg4KrWA8wfh+hQqeEQTb/60myYhMR3x
+         MA9w==
+X-Gm-Message-State: ACrzQf1fMMn4PTm0vTB0/sL2npb9x7gNvN8duMbjYpMZYdSQBc2UwShp
+        I2OSG4Lt4qYOFgHrDkBzI++eig==
+X-Google-Smtp-Source: AMsMyM45A6R0pQsdtCOvYDNxlkvuWYbEn7IGIapPLGQF9tCCYOF4+X4vI5Q9/ELGCAp7Mny8hQ8j8Q==
+X-Received: by 2002:a05:6512:3d07:b0:498:f201:5679 with SMTP id d7-20020a0565123d0700b00498f2015679mr5098811lfv.161.1664618773150;
+        Sat, 01 Oct 2022 03:06:13 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b37-20020a05651c0b2500b0026dcac60624sm219926ljr.108.2022.10.01.03.01.55
+        by smtp.gmail.com with ESMTPSA id o12-20020a056512230c00b0049a5a59aa68sm720497lfu.10.2022.10.01.03.06.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Oct 2022 03:01:56 -0700 (PDT)
-Message-ID: <11a99a84-47ec-ca3e-5781-0f17ed33dbf9@linaro.org>
-Date:   Sat, 1 Oct 2022 12:01:55 +0200
+        Sat, 01 Oct 2022 03:06:12 -0700 (PDT)
+Message-ID: <a12831f1-c9ab-357f-f7c9-f04310fbfe72@linaro.org>
+Date:   Sat, 1 Oct 2022 12:06:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sdm845-db845c: correct SPI2 pins
- drive strength
+Subject: Re: [PATCHv4 1/3] dt-bindings: mmc: synopsys-dw-mshc: document
+ "altr,sysmgr-syscon"
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        "# 4.0+" <stable@vger.kernel.org>
-References: <20220930182212.209804-1-krzysztof.kozlowski@linaro.org>
- <20220930182212.209804-2-krzysztof.kozlowski@linaro.org>
- <CAD=FV=WSbpV4aqyHgSX6rwanQmZYG1hdNourjP5DEmsfdq6aDA@mail.gmail.com>
+To:     Dinh Nguyen <dinguyen@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     jh80.chung@samsung.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220928165420.1212284-1-dinguyen@kernel.org>
+ <CAPDyKFp5oPuOz9A=37pRTvq7JPtJRdduEgmU9g+eUm0K=dZjUg@mail.gmail.com>
+ <20cbd2a2-752e-8537-4cbd-6665ef9afd69@kernel.org>
+ <bd024e66-25bb-0463-b346-b110c1b46681@linaro.org>
+ <76b5195a-a11c-0c75-b3dd-36aa78c58397@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=WSbpV4aqyHgSX6rwanQmZYG1hdNourjP5DEmsfdq6aDA@mail.gmail.com>
+In-Reply-To: <76b5195a-a11c-0c75-b3dd-36aa78c58397@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,84 +81,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2022 22:12, Doug Anderson wrote:
-> Hi,
+On 29/09/2022 17:18, Dinh Nguyen wrote:
 > 
-> On Fri, Sep 30, 2022 at 11:22 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> The pin configuration (done with generic pin controller helpers and
->> as expressed by bindings) requires children nodes with either:
->> 1. "pins" property and the actual configuration,
->> 2. another set of nodes with above point.
->>
->> The qup_spi2_default pin configuration used second method - with a
->> "pinmux" child.
->>
->> Fixes: 8d23a0040475 ("arm64: dts: qcom: db845c: add Low speed expansion i2c and spi nodes")
->> Cc: <stable@vger.kernel.org>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Not tested on hardware.
->> ---
->>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 +++-
->>  1 file changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->> index 132417e2d11e..a157eab66dee 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->> @@ -1123,7 +1123,9 @@ &wifi {
->>
->>  /* PINCTRL - additions to nodes defined in sdm845.dtsi */
->>  &qup_spi2_default {
->> -       drive-strength = <16>;
->> +       pinmux {
->> +               drive-strength = <16>;
->> +       };
 > 
-> The convention on Qualcomm boards of this era is that muxing (setting
-> the function) is done under a "pinmux" node and, unless some of the
-> pins need to be treated differently like for the UARTs, configuration
-> (bias, drive strength, etc) is done under a "pinconf" subnode.
-
-Yes, although this was not expressed in bindings.
-
-> I
-> believe that the "pinconf" subnode also needs to replicate the list of
-> pins, or at least that's what we did everywhere else on sdm845 /
-> sc7180.
-
-Yes.
-
+> On 9/29/22 09:38, Krzysztof Kozlowski wrote:
+>> On 29/09/2022 16:20, Dinh Nguyen wrote:
+>>>>
+>>>> So this change will not be backwards compatible with existing DTBs. I
+>>>> noticed that patch2 updates the DTS files for the arm64 platforms, but
+>>>> there seems to be some arm32 platforms too. Isn't this going to be a
+>>>> problem?
+>>>>
+>>>
+>>> The arm32 platforms makes the clk-phase adjustment through the clock
+>>> driver. There was a discussion when I originally submitted the support
+>>> for the arm32 platforms, and we landed on going through the clock driver
+>>> instead of using the MMC driver. The updates to the arm32 platforms can
+>>> be done after this patch series.
+>>
+>> How the update "can be done after"? Didn't you break all boards in- and
+>> out-of-tree?
+>>
 > 
-> Thus to match conventions, I assume you'd do:
+> I don't think so! At least, I don't see how, for the arm32 boards, here 
+> are the dts entry for setting the clock-phase:
 > 
-> &qup_spi2_default {
->   pinconf {
+> sdmmc_clk: sdmmc_clk {
+> 	#clock-cells = <0>;
+> 	compatible = "altr,socfpga-gate-clk";
+> 	clocks = <&f2s_periph_ref_clk>, <&main_nand_sdmmc_clk>,<&per_nand_mmc_clk>;
+> 	clk-gate = <0xa0 8>;
+> 	clk-phase = <0 135>;   <-----
 
-No, because I want a convention of all pinctrl bindings and drivers, not
-convention of old pinctrl ones. The new ones are already moved or being
-moved to "-state" and "-pins". In the same time I am also unifying the
-requirement of "function" property - enforcing it in each node, thus
-"pinconf" will not be valid anymore.
+It's different node...
 
->     pins = "gpio27", "gpio28", "gpio29", "gpio30";
->     drive-strength = <16>;
->   };
 > };
 > 
-> We've since moved away from this to a less cumbersome approach, but
-> for "older" boards like db845c we should probably match the existing
-> convention, or have a flag day and change all sdm845 boards over to
-> the new convention.
+> sdmmc_clk_divided: sdmmc_clk_divided {
+> 	#clock-cells = <0>;
+> 	compatible = "altr,socfpga-gate-clk";
+> 	clocks = <&sdmmc_clk>;
+> 	clk-gate = <0xa0 8>;
+> 	fixed-divider = <4>;
+> 	};
+> 
+> ...
+> mmc: dwmmc0@ff704000 {
+> 	compatible = "altr,socfpga-dw-mshc";
+> 	reg = <0xff704000 0x1000>;
+> 	interrupts = <0 139 4>;
+> 	fifo-depth = <0x400>;
+> 	#address-cells = <1>;
+> 	#size-cells = <0>;
+> 	clocks = <&l4_mp_clk>, <&sdmmc_clk_divided>;
+> 	clock-names = "biu", "ciu";
+> 	resets = <&rst SDMMC_RESET>;
+> 	status = "disabled";
 
-That's what my next patchset from yesterday was doing. Unifying the
-bindings with modern bindings and converting DTS to match them.
+And this one does not have clk-phase-sd-hs
 
-https://lore.kernel.org/linux-devicetree/20220930200529.331223-1-krzysztof.kozlowski@linaro.org/T/#t
+> 	};
+> 
+> 
+> So the setting for the clk-phase is done in the clock driver, 
+> (drivers/clk/socfpga/clk-gate.c). This has been done many years now, 
+> before the clk-phase-hs-sd concept was added to the sdmmc driver.
+
+Yes and the driver now requires clk-phase-sd-hs or altr,sysmgr-syscon
+which is not present in DTS.
+
+> 
+> When I originally submitted the patches for the ARM64 clock driver 
+> support, I forgot to add the clk-phase support for the SD controller. 
+> Now that I realized we needed it, the concept to set the clk-phase is in 
+> the SD driver, thus I'm just adding the support for arm64.
+> 
+> The arm32 support does not change in any way, so I don't see how it will 
+> break it.
+
+Isn't your driver returning ERRNO for all existing DTS (so without patch
+#2) and for all out of tree DTS?
+
+> 
+> I can update the arm32 support with the same function in patch3 after 
+> this series. Because updating the arm32 will require me to remove the 
+> support in the clock driver, thus, I want to break it out.
 
 
 Best regards,
