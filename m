@@ -2,361 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AE485F1B20
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 11:18:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C3195F1B29
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 11:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbiJAJSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 05:18:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36724 "EHLO
+        id S229477AbiJAJUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 05:20:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiJAJSY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 05:18:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C4DC38A11;
-        Sat,  1 Oct 2022 02:18:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2FB1360B90;
-        Sat,  1 Oct 2022 09:18:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25AB2C433C1;
-        Sat,  1 Oct 2022 09:18:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664615902;
-        bh=02yGaXzDhw+EVNVo5HmQn+on78PdgfHEixW23zyOHhs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=MCyuTfXCIVO8vYEV4XjDx6Xv5/cuaTSDLJMGK1pVucZ7X0E49vnqmibBRaD4I93w8
-         /pmuBOtLSShUwCfc0dLHmXFajenrtYi2C7uMZzw/l2DBKr341K5PY/3KgPmE6miF9U
-         cb/7it3tESSO6FmV77RZcHYSxyy7zDPsqg1fLcCX0Ush2sR2L7fXXbUKUuAWn0ceaG
-         ELGzeOVHrxrwVGFqKJ8EpbsdzcNQwEqpD6fC7m4++tMxTdeJG7lWyKRwv6BOLP2zNG
-         pDlEsp9bJ+wkf6Coe7xr+YI6BzFJnGMX6bvkId6CF1e+IQ18ZjWV1bF22KTBagzUv3
-         L7SzlfFeJJydA==
-Message-ID: <50cc79e3-1b19-bee8-fa0a-968b2a6429ed@kernel.org>
-Date:   Sat, 1 Oct 2022 12:18:18 +0300
+        with ESMTP id S229614AbiJAJUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 05:20:44 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E6DCC8E4
+        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 02:20:42 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id bu25so10192516lfb.3
+        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 02:20:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=+wucZNX0Wwe0qQzZ7D8P59CVWmW7nCgHShbe6I3lY48=;
+        b=SySlrt0VioI2J+vd5flh5fGNH5ZlxTsrRzpzbFJSBrbvZMtbDh86z64V6C0YW+NM12
+         dnvf8FfBbKEXZlpywlvX9CmO1fnniKCPkdnnswze49wGJQfuvkA7u3OjwRQPB7SGEi52
+         0UKpEcLuMLuQSrVwaK77NwCRnjKXZ/3FSxLpBoy6Ai+S9YH1tHvPmhDF31e1vtmgzD4Q
+         fcxGU0Lxp+1rZmbvwEL1MxtM7JQVkMo/n1dwNtlVXJcYrHNEu4+eFb9FwScSUna/nb5M
+         +LF/CF6KvHAEEc0B1VeU3MERZHHUnU+4+F5LNtODue5Uhzt2eKz4OmvDZn4UJsz9cwyX
+         bLiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=+wucZNX0Wwe0qQzZ7D8P59CVWmW7nCgHShbe6I3lY48=;
+        b=VsdH6yehjMnM3p2ycsS7W/CNmhhS4YHEcyNXknKAyGT1OBpXSzflM31WCMZJ0+4bCf
+         ZQ+rOgJQobqNFwDKoJpDLLkVawY7Pom9d39iIglJRPYm1QKLt5V18quROJsC6tp2JDs8
+         pEEoDlfQjedJKkut2AMGJIIwPSMepyw9y6lxnKMRdsl0wFeayyAd22AqlgwGNWG73iLl
+         D0c6fbcGMKZDs3Yl914TqJoUmbdA/Rn//OhAAuWemHWTJNHHKOyGJjExptj7wpjGKfCO
+         nHl7a+fYTPXBDv2mg2xWIxA3a6r6hoVEQVw3XxLkn9kwxzVF1vBSwrOrlEQdbU9nI5F7
+         TFRA==
+X-Gm-Message-State: ACrzQf0XreVhxZzydnm94gPOTRL7HwCztTve42O/NWxBDfVie9x90VBG
+        HmEpX5usPAXEhztWOkcdOKHZiw==
+X-Google-Smtp-Source: AMsMyM6Svfw02+ySiCJFl9MbBdIlPwjHKROPv/yWMiiGL74FoEWPw4z4aIZyr+GFy+jeTGblmX3UHg==
+X-Received: by 2002:a05:6512:3c8c:b0:498:f7ba:9a69 with SMTP id h12-20020a0565123c8c00b00498f7ba9a69mr4675399lfv.8.1664616040517;
+        Sat, 01 Oct 2022 02:20:40 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id g5-20020a2eb5c5000000b0026bf43a4d72sm372746ljn.115.2022.10.01.02.20.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Oct 2022 02:20:39 -0700 (PDT)
+Message-ID: <b12393d9-6b1a-a9cb-a964-cb2936da12cf@linaro.org>
+Date:   Sat, 1 Oct 2022 11:20:39 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v6 1/2] memory: omap-gpmc: wait pin additions
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add QDU1000 and QRU1000
+ pinctrl bindings
 Content-Language: en-US
-To:     "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org
-Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        tony@atomide.com
-References: <20220929125639.143953-1-benedikt.niedermayr@siemens.com>
- <20220929125639.143953-2-benedikt.niedermayr@siemens.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20220929125639.143953-2-benedikt.niedermayr@siemens.com>
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221001030546.28220-1-quic_molvera@quicinc.com>
+ <20221001030546.28220-2-quic_molvera@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221001030546.28220-2-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benedikt,
-
-On 29/09/2022 15:56, B. Niedermayr wrote:
-> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+On 01/10/2022 05:05, Melody Olvera wrote:
+> Add documentation details for device tree bindings for QDU1000 and QRU1000
+> TLMM devices.
 > 
-> This patch introduces support for setting the wait-pin polarity as well
-> as using the same wait-pin for different CS regions.
-> 
-> The waitpin polarity can be configured via the WAITPIN<X>POLARITY bits
-> in the GPMC_CONFIG register. This is currently not supported by the
-> driver. This patch adds support for setting the required register bits
-> with the "gpmc,wait-pin-polarity" dt-property.
-> 
-> The wait-pin can also be shared between different CS regions for special
-> usecases. Therefore gpmc must keep track of wait-pin allocations, so it
-
-s/gpmc/GPMC
-
-> knows that either gpmc itself or another driver has the ownership.
-
-s/gpmc/GPMC
-
-> 
-> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  drivers/memory/omap-gpmc.c              | 115 +++++++++++++++++++++---
->  include/linux/platform_data/gpmc-omap.h |   8 ++
->  2 files changed, 111 insertions(+), 12 deletions(-)
+>  .../pinctrl/qcom,qdru1000-pinctrl.yaml        | 133 ++++++++++++++++++
+>  1 file changed, 133 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,qdru1000-pinctrl.yaml
 > 
-> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
-> index d9bf1c2ac319..24510d19a564 100644
-> --- a/drivers/memory/omap-gpmc.c
-> +++ b/drivers/memory/omap-gpmc.c
-> @@ -132,6 +132,7 @@
->  #define GPMC_CONFIG_DEV_SIZE	0x00000002
->  #define GPMC_CONFIG_DEV_TYPE	0x00000003
->  
-> +#define GPMC_CONFIG_WAITPINPOLARITY(pin)	(BIT(pin) << 8)
->  #define GPMC_CONFIG1_WRAPBURST_SUPP     (1 << 31)
->  #define GPMC_CONFIG1_READMULTIPLE_SUPP  (1 << 30)
->  #define GPMC_CONFIG1_READTYPE_ASYNC     (0 << 29)
-> @@ -227,11 +228,18 @@ struct omap3_gpmc_regs {
->  	struct gpmc_cs_config cs_context[GPMC_CS_NUM];
->  };
->  
-> +struct gpmc_waitpin {
-> +	u32 pin;
-> +	u32 polarity;
-> +	struct gpio_desc *desc;
-> +};
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qdru1000-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qdru1000-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..e8d938303231
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,qdru1000-pinctrl.yaml
+> @@ -0,0 +1,133 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bindings/pinctrl/qcom,qdru1000-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  struct gpmc_device {
->  	struct device *dev;
->  	int irq;
->  	struct irq_chip irq_chip;
->  	struct gpio_chip gpio_chip;
-> +	struct gpmc_waitpin *waitpins;
->  	int nirqs;
->  	struct resource *data;
->  };
-> @@ -1030,6 +1038,59 @@ void gpmc_cs_free(int cs)
->  }
->  EXPORT_SYMBOL(gpmc_cs_free);
->  
-> +static bool gpmc_is_valid_waitpin(u32 waitpin)
-> +{
-> +	return waitpin >= 0 && waitpin < gpmc_nr_waitpins> +}
+> +title: Qualcomm Technologies, Inc. QDU1000/QRU1000 TLMM block
 > +
-> +static int gpmc_alloc_waitpin(struct gpmc_device *gpmc,
-> +			      struct gpmc_settings *p)
-> +{
-> +	int ret;
-> +	struct gpmc_waitpin *waitpin;
-> +	struct gpio_desc *waitpin_desc;
+> +maintainers:
+> +  - Melody Olvera <quic_molvera@quicinc.com>
 > +
-> +	if (!gpmc_is_valid_waitpin(p->wait_pin))
-> +		return -EINVAL;
+> +description: |
+> +  This binding describes the Top Level Mode Multiplexer block.
 > +
-> +	waitpin = &gpmc->waitpins[p->wait_pin];
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: qcom,qdu1000-tlmm
+> +      - const: qcom,qru1000-tlmm
 > +
+> +  reg:
+> +    items:
+> +      - description: Base address of TLMM register space
+> +      - description: Size of TLMM register space
+> +
+> +  interrupts:
+> +    minItems: 0
 
-Please add the following comment here to help future readers
+Cannot be 0 of interrupts.
 
-/* Reserve the GPIO for wait pin usage.
- * GPIO polarity doesn't matter here. Wait pin polarity
- * is set in GPMC_CONFIG register.
- */
+> +    maxItems: 1
+> +    items:
+> +      - const: TLMM summary IRQ
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  wakeup-parent:
+> +    maxItems: 1
+> +    description:
+> +      Please refer to ../gpio/gpio.txt and ../interrupt-controller/interrupts.txt for
+> +      a general description of GPIO and interrupt bindings.
+> +
+> +      Please refer to pinctrl-bindings.txt in this directory for details of the
+> +      common pinctrl bindings used by client devices, including the meaning of the
+> +      phrase "pin configuration node".
+> +
+> +      The pin configuration nodes act as a container for an arbitrary number of
+> +      subnodes. Each of these subnodes represents some desired configuration for a
+> +      pin, a group, or a list of pins or groups. This configuration can include the
+> +      mux function to select on those pin(s)/group(s), and various pin configuration
+> +      parameters, such as pull-up, drive strength, etc.
+> +
+> +
+> +# PIN CONFIGURATION NODES
+> +patternPropetries:
+> +  '^.*$':
+> +    if:
+> +      type: object
+> +    then:
+
+Nope, that's not correct binding. It does not work. It never worked.
+
+Please do it exactly like:
+https://lore.kernel.org/linux-devicetree/20220930200529.331223-1-krzysztof.kozlowski@linaro.org/T/#m08b62ef5d873a52a5cbf3c53b25eff03726e7a16
+https://lore.kernel.org/linux-devicetree/20220927173702.5200-1-krzysztof.kozlowski@linaro.org/T/#t
 
 
-> +	waitpin_desc = gpiochip_request_own_desc(&gpmc->gpio_chip,
-> +						 p->wait_pin, "WAITPIN",
-> +						 GPIO_ACTIVE_HIGH,
-> +						 GPIOD_IN);
-> +
-> +	ret = PTR_ERR(waitpin_desc);
-> +	if (IS_ERR(waitpin_desc) && ret != -EBUSY)
-> +		return ret;
-> +
-> +	/* Shared wait pin */
-> +	if (waitpin && waitpin->desc) {
-> +		/* Must use the same properties than previous allocation */
-> +		if (p->wait_pin_polarity != waitpin->polarity ||
-> +		    p->wait_pin != waitpin->pin) {
-> +			dev_err(gpmc->dev,
-> +				"shared-wait-pin: invalid configuration\n");
-> +			return -EINVAL;
-> +		}
-> +		return 0;
-> +	}
+> +      properties:
+> +        pins:
+> +          description:
+> +            List of gpio pins affected by the properties specified in
+> +            this subnode.
+> +          items:
+> +            oneOf:
+> +              - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|20[0-9])"
+> +              - enum: [ sdc2_clk, sdc2_cmd, sdc2_data, ufs_reset ]
+> +            minItems: 1
+> +            maxItems: 36
+> +        function:
+> +          description:
+> +            Specify the alternative function to be configured for the
+> +            specified pins. Functions are only valid for gpio pins.
+> +          enum: [gpio, aon_cam, atest_char, atest_char0, atest_char1, atest_char2, atest_char3,
+> +            atest_usb0, atest_usb00, atest_usb01, atest_usb02, atest_usb03, audio_ref, cam_mclk,
+> +            cci_async, cci_i2c, cci_timer0, cci_timer1, cci_timer2, cci_timer3, cci_timer4,
+> +            cmu_rng0, cmu_rng1, cmu_rng2, cmu_rng3, coex_uart1, coex_uart2, cri_trng, cri_trng0,
+> +            cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1, ddr_pxi2, ddr_pxi3, dp_hot, gcc_gp1,
+> +            gcc_gp2, gcc_gp3, ibi_i3c, jitter_bist, mdp_vsync, mdp_vsync0, mdp_vsync1, mdp_vsync2,
+> +            mdp_vsync3, mi2s0_data0, mi2s0_data1, mi2s0_sck, mi2s0_ws, mi2s2_data0, mi2s2_data1,
+> +            mi2s2_sck, mi2s2_ws, mss_grfc0, mss_grfc1, mss_grfc10, mss_grfc11, mss_grfc12,
+> +            mss_grfc2, mss_grfc3, mss_grfc4, mss_grfc5, mss_grfc6, mss_grfc7, mss_grfc8, mss_grfc9,
+> +            nav_0, nav_1, nav_2, pcie0_clkreqn, pcie1_clkreqn, phase_flag0, phase_flag1,
+> +            phase_flag10, phase_flag11, phase_flag12, phase_flag13, phase_flag14, phase_flag15,
+> +            phase_flag16, phase_flag17, phase_flag18, phase_flag19, phase_flag2, phase_flag20,
+> +            phase_flag21, phase_flag22, phase_flag23, phase_flag24, phase_flag25, phase_flag26,
+> +            phase_flag27, phase_flag28, phase_flag29, phase_flag3, phase_flag30, phase_flag31,
+> +            phase_flag4, phase_flag5, phase_flag6, phase_flag7, phase_flag8, phase_flag9, pll_bist,
+> +            pll_clk, pri_mi2s, prng_rosc0, prng_rosc1, prng_rosc2, prng_rosc3, qdss_cti, qdss_gpio,
+> +            qdss_gpio0, qdss_gpio1, qdss_gpio10, qdss_gpio11, qdss_gpio12, qdss_gpio13, qdss_gpio14,
+> +            qdss_gpio15, qdss_gpio2, qdss_gpio3, qdss_gpio4, qdss_gpio5, qdss_gpio6, qdss_gpio7,
+> +            qdss_gpio8, qdss_gpio9, qlink0_enable, qlink0_request, qlink0_wmss, qlink1_enable,
+> +            qlink1_request, qlink1_wmss, qlink2_enable, qlink2_request, qlink2_wmss, qspi0, qspi1,
+> +            qspi2, qspi3, qspi_clk, qspi_cs, qup0, qup1, qup10, qup11, qup12, qup13, qup14, qup15,
+> +            qup16, qup17, qup18, qup19, qup2, qup20, qup21, qup3, qup4, qup5, qup6, qup7, qup8,
+> +            qup9, qup_l4, qup_l5, qup_l6, sd_write, sdc40, sdc41, sdc42, sdc43, sdc4_clk, sdc4_cmd,
+> +            sec_mi2s, tb_trig, tgu_ch0, tgu_ch1, tgu_ch2, tgu_ch3, tmess_prng0, tmess_prng1,
+> +            tmess_prng2, tmess_prng3, tsense_pwm1, tsense_pwm2, uim0_clk, uim0_data, uim0_present,
+> +            uim0_reset, uim1_clk, uim1_data, uim1_present, uim1_reset, usb2phy_ac, usb_phy, vfr_0,
+> +            vfr_1, vsense_trigger]
+> +        drive-strength:
+> +          enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> +          default: 2
+> +          description:
+> +            Selects the drive strength for the specified pins, in mA.
+> +        bias-pull-down: true
+> +        bias-pull-up: true
+> +        bias-disable: true
+> +        output-high: true
+> +        output-low: true
 
-How about this instead?
-	if (!waitpin->desc) {
-		/* new wait pin */
-		waitpin_desc = gpiochip_request_own_desc(...
-		ret = PTR_ERR(waitpin_desc);
-		if (ret)
-			return ret;
-	} else {
-		/* shared wait pin */
-	}
+You miss blank lines in several places. Please do it exactly like I
+shown for sdm845.
 
+> +      required:
+> +        - pins
+> +        - function
+> +      additionalProperties: false
 > +
-> +	waitpin->desc = waitpin_desc;
-> +	waitpin->pin = p->wait_pin;
-> +	waitpin->polarity = p->wait_pin_polarity;
-> +	dev_info(gpmc->dev, "shared wait-pin: %d\n", waitpin->pin);
+> +examples:
+> +  - |
+> +    tlmm: pinctrl@03000000 {
+> +      compatible = "qcom,qdu10000-tlmm";
+> +      reg = <0x03000000 0xdc2000>;
+> +      interrupts = <0 208 0>;
 
-This will print for all cases. Please move it inside the else {}
-that I suggested above.
+Use defines.
 
-> +
-> +	return 0;
-> +}
-> +
-> +static void gpmc_free_waitpin(struct gpmc_device *gpmc,
-> +			      int wait_pin)
-> +{
-> +	if (gpmc_is_valid_waitpin(wait_pin))
-> +		gpiochip_free_own_desc(gpmc->waitpins[wait_pin].desc);
-> +}
-> +
->  /**
->   * gpmc_configure - write request to configure gpmc
->   * @cmd: command type
-> @@ -1881,6 +1942,17 @@ int gpmc_cs_program_settings(int cs, struct gpmc_settings *p)
->  
->  	gpmc_cs_write_reg(cs, GPMC_CS_CONFIG1, config1);
->  
-> +	if (p->wait_pin_polarity != GPMC_WAITPINPOLARITY_DEFAULT) {
-> +		config1 = gpmc_read_reg(GPMC_CONFIG);
-> +
-> +		if (p->wait_pin_polarity == GPMC_WAITPINPOLARITY_ACTIVE_LOW)
-> +			config1 &= ~GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
-> +		else if (p->wait_pin_polarity == GPMC_WAITPINPOLARITY_ACTIVE_HIGH)
-> +			config1 |= GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
-> +
-> +		gpmc_write_reg(GPMC_CONFIG, config1);
-> +	}
-> +
->  	return 0;
->  }
->  
-> @@ -1980,7 +2052,25 @@ void gpmc_read_settings_dt(struct device_node *np, struct gpmc_settings *p)
->  				__func__);
->  	}
->  
-> +	p->wait_pin = GPMC_WAITPIN_DEFAULT;
-> +	p->wait_pin_polarity = GPMC_WAITPINPOLARITY_DEFAULT;
-> +
->  	if (!of_property_read_u32(np, "gpmc,wait-pin", &p->wait_pin)) {
-> +		if (!gpmc_is_valid_waitpin(p->wait_pin)) {
-> +			pr_err("%s: Invalid wait-pin (%d)\n", __func__, p->wait_pin);
-> +			p->wait_pin = GPMC_WAITPIN_DEFAULT;
-> +		}
-> +
-> +		if (!of_property_read_u32(np, "gpmc,wait-pin-polarity",
-> +					  &p->wait_pin_polarity)) {
-> +			if (p->wait_pin_polarity != GPMC_WAITPINPOLARITY_ACTIVE_HIGH &&
-> +			    p->wait_pin_polarity != GPMC_WAITPINPOLARITY_ACTIVE_LOW) {
-> +				pr_err("%s: Invalid wait-pin-polarity (%d)\n",
-> +				       __func__, p->wait_pin_polarity);
-> +				p->wait_pin_polarity = GPMC_WAITPINPOLARITY_DEFAULT;
-> +				}
-> +		}
-> +
->  		p->wait_on_read = of_property_read_bool(np,
->  							"gpmc,wait-on-read");
->  		p->wait_on_write = of_property_read_bool(np,
-> @@ -2085,7 +2175,6 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
->  	const char *name;
->  	int ret, cs;
->  	u32 val;
-> -	struct gpio_desc *waitpin_desc = NULL;
->  	struct gpmc_device *gpmc = platform_get_drvdata(pdev);
->  
->  	if (of_property_read_u32(child, "reg", &cs) < 0) {
-> @@ -2214,17 +2303,9 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
->  
->  	/* Reserve wait pin if it is required and valid */
->  	if (gpmc_s.wait_on_read || gpmc_s.wait_on_write) {
-> -		unsigned int wait_pin = gpmc_s.wait_pin;
-> -
-> -		waitpin_desc = gpiochip_request_own_desc(&gpmc->gpio_chip,
-> -							 wait_pin, "WAITPIN",
-> -							 GPIO_ACTIVE_HIGH,
-> -							 GPIOD_IN);
-> -		if (IS_ERR(waitpin_desc)) {
-> -			dev_err(&pdev->dev, "invalid wait-pin: %d\n", wait_pin);
-> -			ret = PTR_ERR(waitpin_desc);
-> +		ret = gpmc_alloc_waitpin(gpmc, &gpmc_s);
-> +		if (ret < 0)
->  			goto err;
-> -		}
->  	}
->  
->  	gpmc_cs_show_timings(cs, "before gpmc_cs_program_settings");
-> @@ -2268,7 +2349,7 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
->  	ret = -ENODEV;
->  
->  err_cs:
-> -	gpiochip_free_own_desc(waitpin_desc);
-> +	gpmc_free_waitpin(gpmc, gpmc_s.wait_pin);
->  err:
->  	gpmc_cs_free(cs);
->  
-> @@ -2278,6 +2359,7 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
->  static int gpmc_probe_dt(struct platform_device *pdev)
->  {
->  	int ret;
-> +	struct gpmc_device *gpmc =  platform_get_drvdata(pdev);
->  	const struct of_device_id *of_id =
->  		of_match_device(gpmc_dt_ids, &pdev->dev);
->  
-> @@ -2305,6 +2387,12 @@ static int gpmc_probe_dt(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> +	gpmc->waitpins = devm_kzalloc(&pdev->dev,
-> +				      gpmc_nr_waitpins * sizeof(struct gpmc_waitpin),
-> +				      GFP_KERNEL);
-> +	if (!gpmc->waitpins)
-> +		return -ENOMEM;
-> +
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <2>;
+> +      wakeup-parent = <&pdc>;
 
-This allocation should happen in gpmc_probe() just after gpmc_nr_waitpins is initialized.
-I see there are 2 places where gpmc_nr_waitpins is set there. gpmc->waitpins allocation
-should happen after.
+Missing children.
 
-Also, all waitpins[i].pin are set to 0 which is a valid wait pin. This will
-break your gpmc_free_waitpin() logic as you will try to free the gpio descriptor
-for all waitpins.
+> +    };
 
-One solution could be to set all waitpins[i].pin to -1 here.
+Best regards,
+Krzysztof
 
->  	return 0;
->  }
->  
-> @@ -2505,8 +2593,11 @@ static int gpmc_probe(struct platform_device *pdev)
->  
->  static int gpmc_remove(struct platform_device *pdev)
->  {
-> +	int i;
->  	struct gpmc_device *gpmc = platform_get_drvdata(pdev);
->  
-> +	for (i = 0; i < gpmc_nr_waitpins; i++)
-> +		gpmc_free_waitpin(gpmc, i);
->  	gpmc_free_irq(gpmc);
->  	gpmc_mem_exit();
->  	pm_runtime_put_sync(&pdev->dev);
-> diff --git a/include/linux/platform_data/gpmc-omap.h b/include/linux/platform_data/gpmc-omap.h
-> index c9cc4e32435d..40481dbf793d 100644
-> --- a/include/linux/platform_data/gpmc-omap.h
-> +++ b/include/linux/platform_data/gpmc-omap.h
-> @@ -136,6 +136,13 @@ struct gpmc_device_timings {
->  #define GPMC_MUX_AAD			1	/* Addr-Addr-Data multiplex */
->  #define GPMC_MUX_AD			2	/* Addr-Data multiplex */
->  
-> +/* Wait pin polarity values */
-> +#define GPMC_WAITPINPOLARITY_DEFAULT -1
-
-Can we please say INVALID instead of DEFAULT?
-DEFAULT usually means valid but we want to indicate invalid here.
-
-> +#define GPMC_WAITPINPOLARITY_ACTIVE_LOW 1
-> +#define GPMC_WAITPINPOLARITY_ACTIVE_HIGH 0
-> +
-> +#define GPMC_WAITPIN_DEFAULT -1
-> +
->  struct gpmc_settings {
->  	bool burst_wrap;	/* enables wrap bursting */
->  	bool burst_read;	/* enables read page/burst mode */
-> @@ -149,6 +156,7 @@ struct gpmc_settings {
->  	u32 device_width;	/* device bus width (8 or 16 bit) */
->  	u32 mux_add_data;	/* multiplex address & data */
->  	u32 wait_pin;		/* wait-pin to be used */
-> +	u32 wait_pin_polarity;
->  };
->  
->  /* Data for each chip select */
-
-cheers,
--roger
