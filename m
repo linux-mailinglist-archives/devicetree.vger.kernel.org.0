@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95DE05F1B7A
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 11:40:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EF185F1B87
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 11:43:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbiJAJkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 05:40:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45356 "EHLO
+        id S229538AbiJAJnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 05:43:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbiJAJkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 05:40:40 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F8D4455D
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 02:40:34 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id x29so7128519ljq.2
-        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 02:40:34 -0700 (PDT)
+        with ESMTP id S229805AbiJAJni (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 05:43:38 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26EFD2494D
+        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 02:43:36 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id a8so10189498lff.13
+        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 02:43:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=NebNzeTAVEp7CE6tFGPFunqG+0G/HzUEgf53nY4lSIE=;
-        b=vSkY4K5Xfe6Oij89OPIvlgxqqQJzUR06AundST6WuAPp5lAZAHTDP5aJHrDsZ1Lx1G
-         UyOJ7A3d1W7Cyl645Ao41H2Rbsx0sdRJA5UckhqQ1R5S9RVr+KXShJyFo6yV5f178p5w
-         RL/820eF3JNLta0mg6aTVq+sC575+7TDy9FVB8tel+eLBT1JKbV902jVy24S0Y/N+3/D
-         Klh47gW4zUC0F3Ud9ORdJRxYCqVyKpVX/hQhwZCQI0/KDHNm58JztO4xpUxGBcrlK75y
-         A1lzAvmB9mEIn+9ICBpiq9jb4e3ghjucMuksmVhtwaNcthJvjRi2reUDicxZMRUuFwrd
-         9nHw==
+        bh=+BcMde9iqTG0NgZIkDOw61cc104nrKj0MeB80A7RRT0=;
+        b=aeiG2AGdrpDU+Fx50iTCqwDez5tHEVWfKFEoeY8XR3hMI2c6A9BHcXE9wcNInZO+Z8
+         R/fHvxMVjSX8frspWPg8Dd0QxMK1uR86jeI4CxTIcVg0p35WVy5XBM+eDrN0XhcsZhEs
+         6iQ4Lv3PHISSUd9I0TCbmLMX6Mt3eUvZX6ngz2gB5IXlqzYantcveQBHAanDkDK8Cg1T
+         QdHd+wNivamuJyfIQSF+40E2/vGPQYdKpDtJV/ndDRoDUW/m9Vtt6ZiIDYpsh6IHnXXk
+         OPU67PAcZjjPiu6rc/gCB8MhOHn/4Vidj+mDwL7Vp4lPRLeuKPA9cUJXBtMhog5IVLG0
+         EklA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=NebNzeTAVEp7CE6tFGPFunqG+0G/HzUEgf53nY4lSIE=;
-        b=4qWo7+SInEbvCfs/64WBvIlz3A/aqbeKNExoypr0ejyaby24QB6mpA0lHHswOmkGJI
-         loLzyJF4wT9sdrK3lw4ZbigdTlz+ftbYpPoGLwQKkgTPJDwCaglRZTaDY74y4w7UW+Gb
-         9BcOu6vBNbW4QwrzrI34u+hvyg5G9x33Fc186r/ONINwR/yI2JE0wnWpQopKfN6E1UdN
-         UltwRWkR+/fyqKNVIqTLgOOCaWNFIyDaTQDmkJkqqRZRIkQGq8xsYh3srlzRxmX+lrmI
-         MkKstCRijuj+k0zBlJ7fIed107IXGszBC7P9bNELOqqkDan8A2aQKl9Wn3XHtN83MxkQ
-         +04Q==
-X-Gm-Message-State: ACrzQf2KYC7wmyf32ryX76YRrSXJWC0UBeMmlU+UNo/BxwVK4vq8MRE8
-        1KiSVy3nlZtuQh/ly4RnvGxpavOb9GO+mw==
-X-Google-Smtp-Source: AMsMyM53ZwQ4w5c04teeXRq1TuZIiYrQFnkVu1piGvNVGGxXU/MmaQy98iKvPoKL3mz772Xnc/hMTA==
-X-Received: by 2002:a05:651c:510:b0:26d:ca05:c4ee with SMTP id o16-20020a05651c051000b0026dca05c4eemr973746ljp.93.1664617232913;
-        Sat, 01 Oct 2022 02:40:32 -0700 (PDT)
+        bh=+BcMde9iqTG0NgZIkDOw61cc104nrKj0MeB80A7RRT0=;
+        b=kJLWdjWtNLsluKFvJlX9VEq9wV013kvdvSHqQjKz6Kti/OhPGoCcVrxWrVqSL+ewqO
+         mrN99zBHuFUOzGSuz5ClEaDznEy0UneWump0mEQghLQfXNkU0ZYmApfhGjRW8t1TiCXZ
+         bgCmw6UQgJi4xN+DU+h2Cswek4W1BWB2S6xYvE9qyKURbkNUARwVJp4QRnUS0oLgH2JI
+         +XFDtV+4uPKcq0aw5LI5GnjVkSFcaEYELuLh9cVYuGUPftuORJcTsQux5gH9cLUnFXou
+         UGx5a4OedJ5Zdxt7cjoUYaYs/jfIJxFrJ06bvyqONP4MdBKcNsYENUMJAzo02TL85FwT
+         ncbQ==
+X-Gm-Message-State: ACrzQf3/QvclT6ygm1sVDN/XyB1M1jynCg8DHZHsqmHHgNGgpe2gHzhg
+        nQpOJMvYrzzJJ7bTXZ6eNMxc0Q==
+X-Google-Smtp-Source: AMsMyM7URN5IQv/AvVi2fZ4uNCbokWfGfei5qvrEKpOsirTEicR9uYZapMdogX+bE5Vo1Dy+hQjTyQ==
+X-Received: by 2002:a05:6512:3ca0:b0:49f:f620:b826 with SMTP id h32-20020a0565123ca000b0049ff620b826mr5111040lfv.375.1664617414347;
+        Sat, 01 Oct 2022 02:43:34 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id n5-20020a0565120ac500b00492d7a7b4e3sm711730lfu.4.2022.10.01.02.40.32
+        by smtp.gmail.com with ESMTPSA id g12-20020a05651222cc00b00492b0d23d24sm706287lfu.247.2022.10.01.02.43.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Oct 2022 02:40:32 -0700 (PDT)
-Message-ID: <b3b2dc79-30cc-a768-e7bb-d5e8ff3f6ba0@linaro.org>
-Date:   Sat, 1 Oct 2022 11:40:31 +0200
+        Sat, 01 Oct 2022 02:43:33 -0700 (PDT)
+Message-ID: <d1a26c97-75db-5d09-4c4f-77ed4fed1683@linaro.org>
+Date:   Sat, 1 Oct 2022 11:43:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 2/2] ARM: dts: qcom: mdm9615: drop unit ids from PMIC
- nodes
+Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: YAML-ify SSBI bindings
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,14 +64,14 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
- <20220930212052.894834-2-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220930212052.894834-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,27 +79,120 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 30/09/2022 23:20, Dmitry Baryshkov wrote:
-> On MDM9615 the PMICs are connected using SSBI devices, which do not have
-> any addressing scheme. Drop the unused unit ids from PMIC device nodes.
+> Convert arm/msm/ssbi.txt yo YAML, moving it to the directory with SoC
+> bindings (soc/qcom/).
+
+I think this should go to "bus" instead. Actually we could put there as
+well GSBI and few others...
+
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  arch/arm/boot/dts/qcom-mdm9615.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../devicetree/bindings/arm/msm/ssbi.txt      | 18 ------
+>  .../bindings/soc/qcom/qcom,ssbi.yaml          | 63 +++++++++++++++++++
+>  2 files changed, 63 insertions(+), 18 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/msm/ssbi.txt
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml
 > 
-> diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> index b47c86412de2..bb17a57a2b90 100644
-> --- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> +++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> @@ -283,7 +283,7 @@ qcom,ssbi@500000 {
->  			reg = <0x500000 0x1000>;
->  			qcom,controller-type = "pmic-arbiter";
->  
-> -			pmicintc: pmic@0 {
-> +			pmicintc: pmic {
+> diff --git a/Documentation/devicetree/bindings/arm/msm/ssbi.txt b/Documentation/devicetree/bindings/arm/msm/ssbi.txt
+> deleted file mode 100644
+> index 54fd5ced3401..000000000000
+> --- a/Documentation/devicetree/bindings/arm/msm/ssbi.txt
+> +++ /dev/null
+> @@ -1,18 +0,0 @@
+> -* Qualcomm SSBI
+> -
+> -Some Qualcomm MSM devices contain a point-to-point serial bus used to
+> -communicate with a limited range of devices (mostly power management
+> -chips).
+> -
+> -These require the following properties:
+> -
+> -- compatible: "qcom,ssbi"
+> -
+> -- qcom,controller-type
+> -  indicates the SSBI bus variant the controller should use to talk
+> -  with the slave device.  This should be one of "ssbi", "ssbi2", or
+> -  "pmic-arbiter".  The type chosen is determined by the attached
+> -  slave.
+> -
+> -The slave device should be the single child node of the ssbi device
+> -with a compatible field.
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml
+> new file mode 100644
+> index 000000000000..6154f7222899
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,ssbi.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 
-I think several other platforms, also with PMIC over SSBI, have the same
-problem. If that's correct, can you fix them in the same patchset?
+Drop quotes from both above.
+
+> +
+> +title: Qualcomm Single-wire Serial Bus Interface (SSBI)
+> +
+> +description:
+> +  Some Qualcomm MSM devices contain a point-to-point serial bus used to
+> +  communicate with a limited range of devices (mostly power management
+> +  chips).
+> +
+> +maintainers:
+> +  - Andy Gross <agross@kernel.org>
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,ssbi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  qcom,controller-type:
+> +    description:
+> +      Indicates the SSBI bus variant the controller should use to talk
+> +      with the slave device. The type chosen is determined by the attached
+> +      slave.
+> +    enum:
+> +      - ssbi
+> +      - ssbi2
+> +      - pmic-arbiter
+> +
+> +  pmic:
+> +    type: object
+
+This is quite unspecific... Can we make it a ref to some PMICs schemas?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - qcom,controller-type
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    ssbi@c00000 {
+> +        compatible = "qcom,ssbi";
+> +        reg = <0x00c00000 0x1000>;
+> +        qcom,controller-type = "pmic-arbiter";
+> +
+> +        pmic {
+> +            compatible = "qcom,pm8821";
+> +            interrupt-parent = <&msmgpio>;
+> +            interrupts = <76 IRQ_TYPE_LEVEL_LOW>;
+> +            #interrupt-cells = <2>;
+> +            interrupt-controller;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +        };
+> +    };
+> +...
 
 Best regards,
 Krzysztof
