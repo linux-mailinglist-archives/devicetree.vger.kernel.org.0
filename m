@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B170B5F1B39
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 11:24:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A24B95F1B3E
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 11:25:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbiJAJYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 05:24:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52778 "EHLO
+        id S229674AbiJAJZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 05:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbiJAJYQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 05:24:16 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E09B16F85B
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 02:24:14 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id d42so10254657lfv.0
-        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 02:24:13 -0700 (PDT)
+        with ESMTP id S229459AbiJAJZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 05:25:54 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D0AF40BED
+        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 02:25:52 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id a10so7142409ljq.0
+        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 02:25:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=Fc50t9UKzxVvL8PTyGxChRwbStVHfCHE+ON7VUqmF48=;
-        b=mwEtMS1SisCiOhK4RErZSzrbX+Gc4yWIxR7F0fE4iiiX5R76eIU3a6ISIuqTjK2R28
-         xvLJ7B+qkhDGoGBonxQ+NQ8n8/8uUrXcuLtm+rmTRojoMdhvG7qpDsOb33ByTudn4OGx
-         srZ17+E+GWsPvfcdxh3bFmRAJkNrl655918R8l6+xnR9H/xMRQxRQkIJdfJP02r/8KfW
-         rksFHe5OUZCVCQurs2vNcf5xuMJN6geRVfiC8fjQUZPWnigYyviTb3VVG2/e55jsSt0e
-         TqdZ1zuh4laI7TgJERHtwFXm5RIEClxuOCIrnLZG/CxNwxFWe/OCoy/g3/gtNuxXxIyi
-         B/qA==
+        bh=zDKG4xvaTROTTwvu1n5jojrvui3PrTe86kZ7nDAgig0=;
+        b=Hc5YObQXfvDHWU48NuQC+7/kgVe5mXh4LNq+HcBKh7ANpEGdWwljCCfga5Yb9COYag
+         JYq8OJUKaRJZyjsh0v45jrgcr7acCT0jk8nx9LZvAoxUi1wxUuulAd5viSS0INTyv9G0
+         xE4iBhIFiT1bqck597wQjvUxi/bNwSrgJPHpK7q+gvQepGl0YoeWZCGO6LnjOabFnbD+
+         iULEiMw+oI0vJuHjCCvZkFMOIlHseOjdAIIBAI5MxLK1/tugIlXNxhSSmeEOh5nRAK6V
+         mTpnqnRDi2lIi9DEjdVDhK9b7XI9pFWtPQ/MefVfDqOoHKdrWbNj+Z7YQ6egLsH/Tsnr
+         ytxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=Fc50t9UKzxVvL8PTyGxChRwbStVHfCHE+ON7VUqmF48=;
-        b=IcKzzdbmzEjNb292LqyG2o3qYu8VAdqIJFmtO0t4QAxLRHVifq9dkIEGKAitT66vPJ
-         W9dEYNyyZ8c7ubFrkXqjmhEOfT4+PqrWYoBnlw3dRhkgNnkV0+EDxw6v0fGaWgTyxU+d
-         f4mlIqIrsu0PqObgf9kJtX3WPElCv9slSRU6pBn5lYrmVHYLn+rOPXaQVM16sHhEUe1n
-         uYcFvoYiD700SmzqgjSDuEPEOqiM6ajsJxmefHeZhLOSFbE7FGpFapsTX216gI9kFLet
-         2YCilGcmKWPNNN4jjVfswH7zmr1fwz5+qEyZRNkJYLbLxcdPpJXCwbpiDH2d6eLbufDh
-         cN+Q==
-X-Gm-Message-State: ACrzQf32yGhDnV0eglkRK75qfVohcnRrxB2S1/f5WUBUEWxRRTb5xTek
-        KQFPwAw0Ro7qFxFy+r4TlCK6vA==
-X-Google-Smtp-Source: AMsMyM5fLHf7HBsFLnNmQZqpkbQDjqKfKtJE8Duk8BHTPlMZL17v6lNpkm1rlicTGecHpI/zN5iwqw==
-X-Received: by 2002:ac2:5928:0:b0:4a2:2819:4fb2 with SMTP id v8-20020ac25928000000b004a228194fb2mr403326lfi.183.1664616252442;
-        Sat, 01 Oct 2022 02:24:12 -0700 (PDT)
+        bh=zDKG4xvaTROTTwvu1n5jojrvui3PrTe86kZ7nDAgig0=;
+        b=ZX5DOy/THDZmLmCRVZBKGCL2eOhQ7h1H5fepxWxzfjHgPIE+7cwiGE5VcdNH07fTc6
+         HjeZzZzlA8d5Qz4VnJiES+lnhtJ8/3/gB2lnJnFbXZYRqhnq9PbemSTF6ZblGcaPJG6z
+         Dua5rF5Bb3ewxs4+DcTBWmmoPYNlhJ790vqBhdaPPBmLUsfKDIFn2LvuowIfkAvNGLyP
+         XKn/8d6GaE54sbxdvRj7bXSqHXjqIYs/5oqR+h93e+t3cvuBV2lru69LAIABZOunz1Op
+         hcOEzkUh83V/58VKkkw7oN6VD1+nmLjW0xATQkBgRQ4IVmu3ADe5iZW1QT9Hu7QxxBPK
+         k9vw==
+X-Gm-Message-State: ACrzQf1BdgrVrXD9bYFKNdjIDoAEdFsZXr5NoVdPe7fvvmJN0+apan1G
+        7rssrNj4kHqkwhrSsfLzosznrg==
+X-Google-Smtp-Source: AMsMyM6L0UreN90dNJ8WzYrRKQf6N9NmkMMy/Q1cI2aGdCdQT6mXeu+XgtWmscSuRQJZKmh0Pp+sjw==
+X-Received: by 2002:a2e:bd0e:0:b0:268:c03b:cf56 with SMTP id n14-20020a2ebd0e000000b00268c03bcf56mr4015713ljq.393.1664616350834;
+        Sat, 01 Oct 2022 02:25:50 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f5-20020a056512228500b00492dfcc0e58sm703180lfu.53.2022.10.01.02.24.11
+        by smtp.gmail.com with ESMTPSA id i8-20020a056512318800b004a05402c5c3sm705576lfe.93.2022.10.01.02.25.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Oct 2022 02:24:11 -0700 (PDT)
-Message-ID: <37926f0f-e176-929e-939a-cd43a031e224@linaro.org>
-Date:   Sat, 1 Oct 2022 11:24:10 +0200
+        Sat, 01 Oct 2022 02:25:50 -0700 (PDT)
+Message-ID: <09f5d364-320e-9ecc-2c2b-68066c61f802@linaro.org>
+Date:   Sat, 1 Oct 2022 11:25:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 1/5] dt-bindings: clock: Add QDU1000 and QRU1000 GCC clock
- bindings
+Subject: Re: [PATCH 1/5] dt-bindings: firmware: scm: Add QDU1000/QRU1000
+ compatibles
 Content-Language: en-US
 To:     Melody Olvera <quic_molvera@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-mmc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221001030403.27659-1-quic_molvera@quicinc.com>
- <20221001030403.27659-2-quic_molvera@quicinc.com>
+References: <20221001030641.29354-1-quic_molvera@quicinc.com>
+ <20221001030641.29354-2-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221001030403.27659-2-quic_molvera@quicinc.com>
+In-Reply-To: <20221001030641.29354-2-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,120 +83,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/10/2022 05:03, Melody Olvera wrote:
-> Add device tree bindings for global clock controller on QDU1000 and
-> QRU1000 SoCs.
+On 01/10/2022 05:06, Melody Olvera wrote:
+> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
 > 
 > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  .../bindings/clock/qcom,gcc-qdru1000.yaml     |  74 ++++++++
->  include/dt-bindings/clock/qcom,gcc-qdru1000.h | 170 ++++++++++++++++++
->  2 files changed, 244 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-qdru1000.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,gcc-qdru1000.h
+>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-qdru1000.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-qdru1000.yaml
-> new file mode 100644
-> index 000000000000..d92f558d547c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-qdru1000.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,gcc-qdru.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Global Clock & Reset Controller Binding for QDU1000 and QRU1000
+> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> index c5b76c9f7ad0..b47a5dda3c3e 100644
+> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> @@ -51,6 +51,8 @@ properties:
+>            - qcom,scm-sm8250
+>            - qcom,scm-sm8350
+>            - qcom,scm-sm8450
+> +          - qcom,scm-qdu1000
+> +          - qcom,scm-qru1000
 
-Drop "Binding"
+Items should be ordered alphabetically.
 
-> +
-> +maintainers:
-> +  - Melody Olvera <quic_molvera@quicinc.com>
-> +
-> +description: |
-> +  Qualcomm global clock control module which supports the clocks, resets and
-> +  power domains on QDU1000 and QRU1000
-> +
-> +  See also:
-> +  - dt-bindings/clock/qcom,gcc-qdru1000.h
+>            - qcom,scm-qcs404
+>        - const: qcom,scm
 
-Full path
+Patch is incomplete. Missing changes for allOf.
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,gcc-qdu1000
-> +      - qcom,gcc-qru1000
-> +
-> +  clocks:
-> +    items:
-> +      - description: Board XO source
-> +      - description: Sleep clock source
-> +      - description: PCIE 0 Pipe clock source (Optional clock)
-
-Skip "Optional clock"
-
-> +      - description: PCIE 0 Phy Auxiliary clock source (Optional clock)
-> +      - description: USB3 Phy wrapper pipe clock source (Optional clock)
-> +    minItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bi_tcxo
-> +      - const: sleep_clk
-> +      - const: pcie_0_pipe_clk # Optional clock
-
-Skip "Optional clock"
-
-> +      - const: pcie_0_phy_aux_clk # Optional clock
-> +      - const: usb3_phy_wrapper_gcc_usb30_pipe_clk # Optional clock
-> +    minItems: 2
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +  - '#reset-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +    clock-controller@100000 {
-> +      compatible = "qcom,gcc-qdu1000";
-> +      reg = <0x00100000 0x001f4200>;
-> +      clocks = <&rpmhcc RPMH_CXO_CLK>, <&sleep_clk>;
-> +      clock-names = "bi_tcxo", "sleep_clk";
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +    };
-> +
-> +...
-> diff --git a/include/dt-bindings/clock/qcom,gcc-qdru1000.h b/include/dt-bindings/clock/qcom,gcc-qdru1000.h
-> new file mode 100644
-> index 000000000000..cdc5d1a6a007
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,gcc-qdru1000.h
-> @@ -0,0 +1,170 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-
-Dual license.
-
+>  
 
 Best regards,
 Krzysztof
