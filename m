@@ -2,49 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 866405F1D70
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 18:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF0105F1D7E
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 18:11:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbiJAQBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 12:01:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51526 "EHLO
+        id S229702AbiJAQLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 12:11:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbiJAQBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 12:01:00 -0400
-Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [5.144.164.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A22BB6E8A0
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 09:00:57 -0700 (PDT)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229706AbiJAQLI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 12:11:08 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BD728671E;
+        Sat,  1 Oct 2022 09:11:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id C85FB1F96A;
-        Sat,  1 Oct 2022 18:00:55 +0200 (CEST)
-Date:   Sat, 1 Oct 2022 18:00:54 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Loic Poulain <loic.poulain@linaro.org>
-Subject: Re: [PATCH v3 2/2] drm/msm/dsi: Add phy configuration for QCM2290
-Message-ID: <20221001160054.gmrlnjvdwyn5ttzw@SoMainline.org>
-References: <20220924121900.222711-1-dmitry.baryshkov@linaro.org>
- <20220924121900.222711-3-dmitry.baryshkov@linaro.org>
+        by ams.source.kernel.org (Postfix) with ESMTPS id A666EB8070D;
+        Sat,  1 Oct 2022 16:11:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 426EDC433D6;
+        Sat,  1 Oct 2022 16:11:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664640662;
+        bh=+tLBwJLKoQXm1tSPzdom9fhATSE4ve/d6ppauhe85RU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ixzRqOMrsrhpJPO56KNiFtbHEDHRU3Bdq1G2MiFnrql6gnPYsSKb+qaRetAMo0t8O
+         3gKWaWAsyKYYvYYq7kzwWLJISlDp6DptC82bjJydASIvNR1+LX1Yn8n6lY4ZcWv7kh
+         DOp0cxyFq1demqdPZRatUt+31mRsVXuOR1bq0JEzW6F4P72CwIFQUWOD35GAekDVi0
+         vYjD9UlL3JA1hXQxFJAZ1qtXPaYGovhthrPslHlRFWZ/f5cxNzaJhrBKX/5ZmKD2wF
+         /jZ4vi96ihtcatVj3LvDOVKgdQEXLeV7a6xanmqcPSa1sXU9HxxlNp74N6tYWjhzwH
+         zE282A4Yclm5Q==
+Received: by pali.im (Postfix)
+        id 41C9FA15; Sat,  1 Oct 2022 18:10:59 +0200 (CEST)
+Date:   Sat, 1 Oct 2022 18:10:59 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Lukas Wunner <lukas@wunner.de>
+Cc:     Vidya Sagar <vidyas@nvidia.com>, bhelgaas@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lpieralisi@kernel.org, kw@linux.com, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, mani@kernel.org,
+        Sergey.Semin@baikalelectronics.ru, jszhang@kernel.org,
+        linux-pci@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        Jonathan Derrick <jonathan.derrick@linux.dev>
+Subject: Re: [PATCH V1 1/4] dt-bindings: Add "hotplug-gpios" PCIe property
+Message-ID: <20221001161059.5ymdptqzslh3d55x@pali>
+References: <20220930192747.21471-1-vidyas@nvidia.com>
+ <20220930192747.21471-2-vidyas@nvidia.com>
+ <20221001155626.GA9324@wunner.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220924121900.222711-3-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+In-Reply-To: <20221001155626.GA9324@wunner.de>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,91 +65,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-09-24 15:19:00, Dmitry Baryshkov wrote:
-> From: Loic Poulain <loic.poulain@linaro.org>
+On Saturday 01 October 2022 17:56:26 Lukas Wunner wrote:
+> On Sat, Oct 01, 2022 at 12:57:44AM +0530, Vidya Sagar wrote:
+> > Provide a way for the firmware to tell the OS about the GPIO that can be
+> > used to get the Hot-Plug and Unplug events.
+> [...]
+> > --- a/Documentation/devicetree/bindings/pci/pci.txt
+> > +++ b/Documentation/devicetree/bindings/pci/pci.txt
+> > @@ -32,6 +32,10 @@ driver implementation may support the following properties:
+> >     root port to downstream device and host bridge drivers can do programming
+> >     which depends on CLKREQ signal existence. For example, programming root port
+> >     not to advertise ASPM L1 Sub-States support if there is no CLKREQ signal.
+> > +- hotplug-gpios:
+> > +   If present this property specifies the GPIO to be used for Hot-Plug/Unplug
+> > +   functionality. It is used by the PCIe GPIO Hot-Plug core driver for
+> > +   PCIe device Hot-Plug/Unplug events.
 > 
-> The QCM2290 SoC a the 14nm (V2.0) single DSI phy. The platform is not
-> fully compatible with the standard 14nm PHY, so it requires a separate
-> compatible and config entry.
+> Please specify the GPIO's semantics in more detail:
+> Is the pin high as long as presence of a card is detected?
+
+Hello! In PCIe is this semantics called "Presence Detect" (see PCIe Slot
+Capabilities). So should it be rather named "presence-detect-gpios"
+instead of hotplug?
+
+> Or does it pulse when a hotplug/unplug event occurs?
 > 
-> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-> [DB: rebased and updated commit msg]
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/gpu/drm/msm/dsi/phy/dsi_phy.c      |  2 ++
->  drivers/gpu/drm/msm/dsi/phy/dsi_phy.h      |  1 +
->  drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c | 17 +++++++++++++++++
->  3 files changed, 20 insertions(+)
+> Thanks,
 > 
-> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-> index 7fc0975cb869..ee6051367679 100644
-> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-> @@ -549,6 +549,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
->  #ifdef CONFIG_DRM_MSM_DSI_14NM_PHY
->  	{ .compatible = "qcom,dsi-phy-14nm",
->  	  .data = &dsi_phy_14nm_cfgs },
-> +	{ .compatible = "qcom,dsi-phy-14nm-2290",
-> +	  .data = &dsi_phy_14nm_2290_cfgs },
->  	{ .compatible = "qcom,dsi-phy-14nm-660",
->  	  .data = &dsi_phy_14nm_660_cfgs },
->  	{ .compatible = "qcom,dsi-phy-14nm-8953",
-> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-> index 60a99c6525b2..1096afedd616 100644
-> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-> @@ -50,6 +50,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_20nm_cfgs;
->  extern const struct msm_dsi_phy_cfg dsi_phy_28nm_8960_cfgs;
->  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_cfgs;
->  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs;
-> +extern const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs;
-
-following alphabetical sorting (same as the other locations in this
-series), this should be above 660?
-
->  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs;
->  extern const struct msm_dsi_phy_cfg dsi_phy_10nm_cfgs;
->  extern const struct msm_dsi_phy_cfg dsi_phy_10nm_8998_cfgs;
-> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-> index 0f8f4ca46429..9f488adea7f5 100644
-> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-> @@ -1081,3 +1081,20 @@ const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs = {
->  	.io_start = { 0x1a94400, 0x1a96400 },
->  	.num_dsi_phy = 2,
->  };
-> +
-> +const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs = {
-> +	.has_phy_lane = true,
-> +	.regulator_data = dsi_phy_14nm_17mA_regulators,
-> +	.num_regulators = ARRAY_SIZE(dsi_phy_14nm_17mA_regulators),
-> +	.ops = {
-> +		.enable = dsi_14nm_phy_enable,
-> +		.disable = dsi_14nm_phy_disable,
-> +		.pll_init = dsi_pll_14nm_init,
-> +		.save_pll_state = dsi_14nm_pll_save_state,
-> +		.restore_pll_state = dsi_14nm_pll_restore_state,
-> +	},
-> +	.min_pll_rate = VCO_MIN_RATE,
-> +	.max_pll_rate = VCO_MAX_RATE,
-> +	.io_start = { 0x5e94400 },
-
-For sm6125 we also need this exact io_start (and a single PHY), do you
-think it makes sense to add a compatible that reuses the same struct (I
-can do that in a folloup patch) and/or generalize this struct (name)?
-
-However, our regulator setup appears to be different.  I recall not
-finding any `vcca` supply in my downstream sources, and had this in my
-notes for a similar dsi_phy_14nm.c patch:
-
-    sm6125 uses an RPM regulator
-
-https://github.com/sonyxperiadev/kernel/blob/f956fbd9a234033bd18234d456a2c32c126b38f3/arch/arm64/boot/dts/qcom/trinket-sde.dtsi#L388
-
-- Marijn
-
-> +	.num_dsi_phy = 1,
-> +};
-> -- 
-> 2.35.1
-> 
+> Lukas
