@@ -2,147 +2,413 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62C1B5F1C38
-	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 14:51:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 388BA5F1C41
+	for <lists+devicetree@lfdr.de>; Sat,  1 Oct 2022 14:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbiJAMv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Oct 2022 08:51:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51926 "EHLO
+        id S229451AbiJAM5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Oct 2022 08:57:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbiJAMv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 08:51:27 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAF5DE2BA7
-        for <devicetree@vger.kernel.org>; Sat,  1 Oct 2022 05:51:25 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id b23so6465417pfp.9
-        for <devicetree@vger.kernel.org>; Sat, 01 Oct 2022 05:51:25 -0700 (PDT)
+        with ESMTP id S229453AbiJAM5D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Oct 2022 08:57:03 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B53FAC42;
+        Sat,  1 Oct 2022 05:57:01 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id g130so5900715pfb.8;
+        Sat, 01 Oct 2022 05:57:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=6CiQZZpfJa5bf7nfDlOQwTClOn8mQ3Dzv15tBFfsV6Y=;
-        b=FZZi4JJvugZnmbVREL09i5x0+O/2pTiE6mCTST5LjwmKKog6jjoDGGz1qZZpWwrHn7
-         L5bVEvL3izEZKduKrLR8loEsZZL9AEP6sOWkEJbec1pOrYcgv93kuzzd/hm4xc7Mi4t/
-         muJN7hpZXVCvjCYDLL01EeIUBIFC0k33dOp6sfupNPlGs6di2UEjKUuBXRI/jhBT4Xid
-         KwjkdrAkdXPrXkKyvEKengdqzWVrMjaGra2cbo6zKrEYsW3Tm+/Mpoy5txzp8pegOpoU
-         +cT7fcU1tbwzuxrHommdBtw2YXEjN7b5RiQeo09pMp9VXfsirvpEtv7jC4TJPw3mSCX3
-         lnqQ==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=xatWhQa95sEQO9lHaRBN6xgiRD2Ax+LJWAymSlu3FTI=;
+        b=f90Cbc68SIIqA/cuWVfRsXTuaXeX3shlX5tOIMTNj3FX8Qbe0TOQGojKuJTxdVf9Y+
+         L1zM7ob1s5uLVTBx3lGwXjnBKu/Lx0OOKjzwTL6QeMphqcFnjNGi46rH0QTNZ9taC5qB
+         N+ZdAjIBIcd7ng3Op+mXY3FxSBxTC6ogbgdv2jCo6Gwc3VkwxmT15Z8mVPbA3eb3Y2LI
+         qexqUXgu6jN19wFllni2LMsAPcXqBLxxgz0lZtAMGNnpMCAe9BS5F7zjCFfESapWxfWi
+         99ANv2A8ApagUsVGGSnck8c6ym9O9sqCN8gRFX1QljmYaRqjUuSLI9TNne0BAgXsNv0j
+         9Zuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=6CiQZZpfJa5bf7nfDlOQwTClOn8mQ3Dzv15tBFfsV6Y=;
-        b=7PdhOEoGE0RFPrg/B/C2j6+HJmBB7UZ6kIG95ulTwOJHudkhFxha5fhTtX8+R9aV8Y
-         xzfz4dLv5hFo0s3Np+jhskv1tJJTlzVzOco2eHgdiDz+h+0VthnNFmDa6kW7SrIDTH10
-         6CyqsYAIn6Ncs3P40Rjit362vJfEdlU5tuwhY3cBjWpavXWGEERuJuiDdkRH4134mMIR
-         BErMWG+uA7151vCg6c6Vfe3vg3oO0gakJZLJQ8eMDp5q02TblSTB64aDVxASZLUzgBid
-         XFss2aZffTg/krAo11M4B8kB3QoHKRX2Y5UfDIjiir1iJONOoKUleXlMCKzNj7v087Rl
-         UjbA==
-X-Gm-Message-State: ACrzQf36JwsVVznuvCLsznkb+djEdG/QTUYAYo+TBrWn3oZDqyjNAH9O
-        eqqnnvaI4+S5ktKKfUlBOOVi1g==
-X-Google-Smtp-Source: AMsMyM4jrSzLFdGh1E4kc2Vu0hBud0A6y+gW1mm08FiuSBpA3/yRUEBGukegVaqZHKN0BJ3H19hglQ==
-X-Received: by 2002:a63:cf56:0:b0:43c:a0a1:f749 with SMTP id b22-20020a63cf56000000b0043ca0a1f749mr11412954pgj.24.1664628685191;
-        Sat, 01 Oct 2022 05:51:25 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1f3b:3adb:24f8:ac24:2282:1dc7? ([2401:4900:1f3b:3adb:24f8:ac24:2282:1dc7])
-        by smtp.gmail.com with ESMTPSA id l6-20020a170903244600b0017832c8cc85sm3813403pls.292.2022.10.01.05.51.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Oct 2022 05:51:24 -0700 (PDT)
-Message-ID: <0aeb2c5e-9a5e-90c6-a974-f2a0b866d64f@linaro.org>
-Date:   Sat, 1 Oct 2022 18:21:18 +0530
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=xatWhQa95sEQO9lHaRBN6xgiRD2Ax+LJWAymSlu3FTI=;
+        b=SP+ZfN7wRPiVxfUnLeHT0CtRuzShslwP6Vy4Utr0/3MSLheXqSGM7IAReXV4COWC73
+         PAeKHFycnFCap3n1Ld58x4t/1l5+lHNIvg/aEvOw1sWRyarbno9g+a0Q864TnYtwEimd
+         mAoqZT/Jmczhb+OI9w3XwKmaFsuKIgKLSL1WXziGq6OugmKoQF7LLnFd7KJjbEiSxWT2
+         85UTcTyxi2XtfD4IeiWIsQjH/Owf+Xb+t4JPvj9mhch5f9n/WagfS3HUGWoy0fwVN+NS
+         JDOvV0U7MAg6QoXkS3pnMxn9lc4wZUpkMoS/HV5yl7c/N7sCZFsRFbANUeQuAuSAkVl+
+         0upQ==
+X-Gm-Message-State: ACrzQf1hLXDdPYnpx4frlyjxDp7yDYnSHvl2S0C4owQLYp/9jq3n3Rom
+        7b7xMi7Qt9ozDw5O5dlVHsh4DT8elTcmjQ==
+X-Google-Smtp-Source: AMsMyM7RNjg+R3+deXal5waqx+1MgTrOaPQCG2T1snqREO1uIQhuOc7EZq8q4vp/2QSN4axmpLA2SA==
+X-Received: by 2002:a63:a61:0:b0:43c:9d3b:9c8f with SMTP id z33-20020a630a61000000b0043c9d3b9c8fmr11590165pgk.228.1664629021203;
+        Sat, 01 Oct 2022 05:57:01 -0700 (PDT)
+Received: from debian.me (subs02-180-214-232-9.three.co.id. [180.214.232.9])
+        by smtp.gmail.com with ESMTPSA id t126-20020a625f84000000b00540e1117c98sm3639598pfb.122.2022.10.01.05.57.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Oct 2022 05:57:00 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+        id 2AEAD1039FA; Sat,  1 Oct 2022 19:56:57 +0700 (WIB)
+Date:   Sat, 1 Oct 2022 19:56:56 +0700
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     macro@orcam.me.uk, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thu Nguyen <thu@os.amperecomputing.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com
+Subject: Re: [PATCH v9 2/9] docs: hwmon: (smpro-hwmon) Add documentation
+Message-ID: <Yzg5GM97kM6/Hw82@debian.me>
+References: <20220929094321.770125-1-quan@os.amperecomputing.com>
+ <20220929094321.770125-3-quan@os.amperecomputing.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 3/4] dt-bindings: net: qcom,ethqos: Convert bindings to
- yaml
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, netdev@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        David Miller <davem@davemloft.net>
-References: <20220929060405.2445745-1-bhupesh.sharma@linaro.org>
- <20220929060405.2445745-4-bhupesh.sharma@linaro.org>
- <4e896382-c666-55c6-f50b-5c442e428a2b@linaro.org>
- <1163e862-d36a-9b5e-2019-c69be41cc220@linaro.org>
- <9999a1a3-cda0-2759-f6f4-9bc7414f9ee4@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <9999a1a3-cda0-2759-f6f4-9bc7414f9ee4@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="75JGspy+0gCiqm39"
+Content-Disposition: inline
+In-Reply-To: <20220929094321.770125-3-quan@os.amperecomputing.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/30/22 3:56 PM, Krzysztof Kozlowski wrote:
-> On 30/09/2022 10:12, Bhupesh Sharma wrote:
->>>> +  snps,reset-gpio:
->>>> +    maxItems: 1
->>>
->>> Why is this one here? It's already in snps,dwmac.
->>>
->>> Actually this applies to several other properties. You have
->>> unevaluatedProperties:false, so you do not have to duplicate snps,dwmac.
->>> You only need to constrain it, like we said about interrupts in your
->>> previous patch.
->>
->> I was actually getting errors like the following without the same:
->>
->> arm64/boot/dts/qcom/qcs404-evb-1000.dtb: ethernet@7a80000: Unevaluated
->> properties are not allowed ('snps,tso' was unexpected)
->> 	From schema: Documentation/devicetree/bindings/net/qcom,ethqos.yaml
->>
->> So, its not clear to me that even though 'snps,dwmac.yaml' is referenced
->> here, the property appears as unevaluated.
-> 
-> Because snps,tso is not allowed, but the rest is.
-> 
->>
->>>> +
->>>> +  power-domains:
->>>> +    maxItems: 1
->>>> +
->>>> +  resets:
->>>> +    maxItems: 1
->>>> +
->>>> +  rx-fifo-depth:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +
->>>> +  tx-fifo-depth:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +
->>>> +  snps,tso:
->>>> +    type: boolean
->>>> +    description: Enables the TSO feature (otherwise managed by MAC HW capability register).
->>>
->>> You add here several new properties. Mention in commit msg changes from
->>> pure conversion with answer to "why".
->>
->> Right, most of them are to avoid the make dtbs_check errors / warnings
->> like the one mentioned above.
-> 
-> All of them should not be here.
 
-I guess only 'snps,reset-gpio' need not be replicated here, as for 
-others I still see 'dtbs_check' error, if they are not replicated here:
+--75JGspy+0gCiqm39
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Sep 29, 2022 at 04:43:14PM +0700, Quan Nguyen wrote:
+> diff --git a/Documentation/hwmon/smpro-hwmon.rst b/Documentation/hwmon/sm=
+pro-hwmon.rst
+> new file mode 100644
+> index 000000000000..3a9b14dacf89
+> --- /dev/null
+> +++ b/Documentation/hwmon/smpro-hwmon.rst
+> @@ -0,0 +1,101 @@
+> +.. SPDX-License-Identifier: GPL-2.0-only
+> +
+> +Kernel driver Ampere(R)'s Altra(R) SMpro hwmon
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Supported chips:
+> +
+> +  * Ampere(R) Altra(R)
+> +
+> +    Prefix: 'smpro'
+> +
+> +    Reference: Altra SoC BMC Interface Specification
+> +
+> +Author: Thu Nguyen <thu@os.amperecomputing.com>
+> +
+> +Description
+> +-----------
+> +This driver supports hardware monitoring for Ampere(R) Altra(R) SoC's ba=
+sed on the
+> +SMpro co-processor (SMpro).
+> +The following sensor types are supported by the driver:
+> +
+> +  * temperature
+> +  * voltage
+> +  * current
+> +  * power
+> +
+> +The SMpro interface provides the registers to query the various sensors =
+and
+> +their values which are then exported to userspace by this driver.
+> +
+> +Usage Notes
+> +-----------
+> +
+> +SMpro hwmon driver creates at least two sysfs files for each sensor.
+> +
+> +* File ``<sensor_type><idx>_label`` reports the sensor label.
+> +* File ``<sensor_type><idx>_input`` returns the sensor value.
+> +
+> +The sysfs files are allocated in the SMpro root fs folder.
+> +There is one root folder for each SMpro instance.
+> +
+> +When the SoC is turned off, the driver will fail to read registers
+> +and return -ENXIO.
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +The following sysfs files are supported:
+> +
+> +* Ampere(R) Altra(R):
+> +
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D   =3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+> +Name            Unit            Perm    Description
+> +temp1_input     milli Celsius   RO      SoC temperature
+> +temp2_input     milli Celsius   RO      Max temperature reported among S=
+oC VRDs
+> +temp2_crit      milli Celsius   RO      SoC VRD HOT Threshold temperature
+> +temp3_input     milli Celsius   RO      Max temperature reported among D=
+IMM VRDs
+> +temp4_input     milli Celsius   RO      Max temperature reported among C=
+ore VRDs
+> +temp5_input     milli Celsius   RO      Temperature of DIMM0 on CH0
+> +temp5_crit      milli Celsius   RO      MEM HOT Threshold for all DIMMs
+> +temp6_input     milli Celsius   RO      Temperature of DIMM0 on CH1
+> +temp6_crit      milli Celsius   RO      MEM HOT Threshold for all DIMMs
+> +temp7_input     milli Celsius   RO      Temperature of DIMM0 on CH2
+> +temp7_crit      milli Celsius   RO      MEM HOT Threshold for all DIMMs
+> +temp8_input     milli Celsius   RO      Temperature of DIMM0 on CH3
+> +temp8_crit      milli Celsius   RO      MEM HOT Threshold for all DIMMs
+> +temp9_input     milli Celsius   RO      Temperature of DIMM0 on CH4
+> +temp9_crit      milli Celsius   RO      MEM HOT Threshold for all DIMMs
+> +temp10_input    milli Celsius   RO      Temperature of DIMM0 on CH5
+> +temp10_crit     milli Celsius   RO      MEM HOT Threshold for all DIMMs
+> +temp11_input    milli Celsius   RO      Temperature of DIMM0 on CH6
+> +temp11_crit     milli Celsius   RO      MEM HOT Threshold for all DIMMs
+> +temp12_input    milli Celsius   RO      Temperature of DIMM0 on CH7
+> +temp12_crit     milli Celsius   RO      MEM HOT Threshold for all DIMMs
+> +temp13_input    milli Celsius   RO      Max temperature reported among R=
+CA VRDs
+> +in0_input       milli Volts     RO      Core voltage
+> +in1_input       milli Volts     RO      SoC voltage
+> +in2_input       milli Volts     RO      DIMM VRD1 voltage
+> +in3_input       milli Volts     RO      DIMM VRD2 voltage
+> +in4_input       milli Volts     RO      RCA VRD voltage
+> +cur1_input      milli Amperes   RO      Core VRD current
+> +cur2_input      milli Amperes   RO      SoC VRD current
+> +cur3_input      milli Amperes   RO      DIMM VRD1 current
+> +cur4_input      milli Amperes   RO      DIMM VRD2 current
+> +cur5_input      milli Amperes   RO      RCA VRD current
+> +power1_input    micro Watts     RO      Core VRD power
+> +power2_input    micro Watts     RO      SoC VRD power
+> +power3_input    micro Watts     RO      DIMM VRD1 power
+> +power4_input    micro Watts     RO      DIMM VRD2 power
+> +power5_input    micro Watts     RO      RCA VRD power
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D   =3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Example::
+> +
+> +    # cat in0_input
+> +    830
+> +    # cat temp1_input
+> +    37000
+> +    # cat curr1_input
+> +    9000
+> +    # cat power5_input
+> +    19500000
+=20
+The documentation above can be improved (both grammar and formatting):
 
-arch/arm64/boot/dts/qcom/sm8150-hdk.dtb: ethernet@20000: Unevaluated 
-properties are not allowed ('power-domains', 'resets', 'rx-fifo-depth', 
-'tx-fifo-depth' were unexpected)
-	From schema: /Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+---- >8 ----
 
-Am I missing something here?
+diff --git a/Documentation/hwmon/smpro-hwmon.rst b/Documentation/hwmon/smpr=
+o-hwmon.rst
+index 3a9b14dacf8975..fb7b3665735bba 100644
+--- a/Documentation/hwmon/smpro-hwmon.rst
++++ b/Documentation/hwmon/smpro-hwmon.rst
+@@ -7,39 +7,39 @@ Supported chips:
+=20
+   * Ampere(R) Altra(R)
+=20
+-    Prefix: 'smpro'
++    Prefix: ``smpro``
+=20
+-    Reference: Altra SoC BMC Interface Specification
++    Reference: `Altra SoC BMC Interface Specification`
+=20
+ Author: Thu Nguyen <thu@os.amperecomputing.com>
+=20
+ Description
+ -----------
+-This driver supports hardware monitoring for Ampere(R) Altra(R) SoC's base=
+d on the
+-SMpro co-processor (SMpro).
+-The following sensor types are supported by the driver:
++The smpro-hwmon driver supports hardware monitoring for Ampere(R) Altra(R)
++SoCs based on the SMpro co-processor (SMpro).  The following sensor metrics
++are supported by the driver:
+=20
+   * temperature
+   * voltage
+   * current
+   * power
+=20
+-The SMpro interface provides the registers to query the various sensors and
++The interface provides the registers to query the various sensors and
+ their values which are then exported to userspace by this driver.
+=20
+ Usage Notes
+ -----------
+=20
+-SMpro hwmon driver creates at least two sysfs files for each sensor.
++The driver creates at least two sysfs files for each sensor.
+=20
+-* File ``<sensor_type><idx>_label`` reports the sensor label.
+-* File ``<sensor_type><idx>_input`` returns the sensor value.
++* ``<sensor_type><idx>_label`` reports the sensor label.
++* ``<sensor_type><idx>_input`` returns the sensor value.
+=20
+-The sysfs files are allocated in the SMpro root fs folder.
+-There is one root folder for each SMpro instance.
++The sysfs files are allocated in the SMpro rootfs folder, with one root
++directory for each instance.
+=20
+-When the SoC is turned off, the driver will fail to read registers
+-and return -ENXIO.
++When the SoC is turned off, the driver will fail to read registers and
++return ``-ENXIO``.
+=20
+ Sysfs entries
+ -------------
+@@ -48,48 +48,49 @@ The following sysfs files are supported:
+=20
+ * Ampere(R) Altra(R):
+=20
+-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D   =3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+-Name            Unit            Perm    Description
+-temp1_input     milli Celsius   RO      SoC temperature
+-temp2_input     milli Celsius   RO      Max temperature reported among SoC=
+ VRDs
+-temp2_crit      milli Celsius   RO      SoC VRD HOT Threshold temperature
+-temp3_input     milli Celsius   RO      Max temperature reported among DIM=
+M VRDs
+-temp4_input     milli Celsius   RO      Max temperature reported among Cor=
+e VRDs
+-temp5_input     milli Celsius   RO      Temperature of DIMM0 on CH0
+-temp5_crit      milli Celsius   RO      MEM HOT Threshold for all DIMMs
+-temp6_input     milli Celsius   RO      Temperature of DIMM0 on CH1
+-temp6_crit      milli Celsius   RO      MEM HOT Threshold for all DIMMs
+-temp7_input     milli Celsius   RO      Temperature of DIMM0 on CH2
+-temp7_crit      milli Celsius   RO      MEM HOT Threshold for all DIMMs
+-temp8_input     milli Celsius   RO      Temperature of DIMM0 on CH3
+-temp8_crit      milli Celsius   RO      MEM HOT Threshold for all DIMMs
+-temp9_input     milli Celsius   RO      Temperature of DIMM0 on CH4
+-temp9_crit      milli Celsius   RO      MEM HOT Threshold for all DIMMs
+-temp10_input    milli Celsius   RO      Temperature of DIMM0 on CH5
+-temp10_crit     milli Celsius   RO      MEM HOT Threshold for all DIMMs
+-temp11_input    milli Celsius   RO      Temperature of DIMM0 on CH6
+-temp11_crit     milli Celsius   RO      MEM HOT Threshold for all DIMMs
+-temp12_input    milli Celsius   RO      Temperature of DIMM0 on CH7
+-temp12_crit     milli Celsius   RO      MEM HOT Threshold for all DIMMs
+-temp13_input    milli Celsius   RO      Max temperature reported among RCA=
+ VRDs
+-in0_input       milli Volts     RO      Core voltage
+-in1_input       milli Volts     RO      SoC voltage
+-in2_input       milli Volts     RO      DIMM VRD1 voltage
+-in3_input       milli Volts     RO      DIMM VRD2 voltage
+-in4_input       milli Volts     RO      RCA VRD voltage
+-cur1_input      milli Amperes   RO      Core VRD current
+-cur2_input      milli Amperes   RO      SoC VRD current
+-cur3_input      milli Amperes   RO      DIMM VRD1 current
+-cur4_input      milli Amperes   RO      DIMM VRD2 current
+-cur5_input      milli Amperes   RO      RCA VRD current
+-power1_input    micro Watts     RO      Core VRD power
+-power2_input    micro Watts     RO      SoC VRD power
+-power3_input    micro Watts     RO      DIMM VRD1 power
+-power4_input    micro Watts     RO      DIMM VRD2 power
+-power5_input    micro Watts     RO      RCA VRD power
+-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D   =3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
++  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D  =3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
++  Name            Unit           Perm    Description
++  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D  =3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
++  temp1_input     millicelsius   RO      SoC temperature
++  temp2_input     millicelsius   RO      Max temperature reported among So=
+C VRDs
++  temp2_crit      millicelsius   RO      SoC VRD HOT Threshold temperature
++  temp3_input     millicelsius   RO      Max temperature reported among DI=
+MM VRDs
++  temp4_input     millicelsius   RO      Max temperature reported among Co=
+re VRDs
++  temp5_input     millicelsius   RO      Temperature of DIMM0 on CH0
++  temp5_crit      millicelsius   RO      MEM HOT Threshold for all DIMMs
++  temp6_input     millicelsius   RO      Temperature of DIMM0 on CH1
++  temp6_crit      millicelsius   RO      MEM HOT Threshold for all DIMMs
++  temp7_input     millicelsius   RO      Temperature of DIMM0 on CH2
++  temp7_crit      millicelsius   RO      MEM HOT Threshold for all DIMMs
++  temp8_input     millicelsius   RO      Temperature of DIMM0 on CH3
++  temp8_crit      millicelsius   RO      MEM HOT Threshold for all DIMMs
++  temp9_input     millicelsius   RO      Temperature of DIMM0 on CH4
++  temp9_crit      millicelsius   RO      MEM HOT Threshold for all DIMMs
++  temp10_input    millicelsius   RO      Temperature of DIMM0 on CH5
++  temp10_crit     millicelsius   RO      MEM HOT Threshold for all DIMMs
++  temp11_input    millicelsius   RO      Temperature of DIMM0 on CH6
++  temp11_crit     millicelsius   RO      MEM HOT Threshold for all DIMMs
++  temp12_input    millicelsius   RO      Temperature of DIMM0 on CH7
++  temp12_crit     millicelsius   RO      MEM HOT Threshold for all DIMMs
++  temp13_input    millicelsius   RO      Max temperature reported among RC=
+A VRDs
++  in0_input       millivolts     RO      Core voltage
++  in1_input       millivolts     RO      SoC voltage
++  in2_input       millivolts     RO      DIMM VRD1 voltage
++  in3_input       millivolts     RO      DIMM VRD2 voltage
++  in4_input       millivolts     RO      RCA VRD voltage
++  cur1_input      milliamperes   RO      Core VRD current
++  cur2_input      milliamperes   RO      SoC VRD current
++  cur3_input      milliamperes   RO      DIMM VRD1 current
++  cur4_input      milliamperes   RO      DIMM VRD2 current
++  cur5_input      milliamperes   RO      RCA VRD current
++  power1_input    microwatts     RO      Core VRD power
++  power2_input    microwatts     RO      SoC VRD power
++  power3_input    microwatts     RO      DIMM VRD1 power
++  power4_input    microwatts     RO      DIMM VRD2 power
++  power5_input    microwatts     RO      RCA VRD power
++  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D  =3D=3D=3D=3D=3D=3D  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+=20
+-Example::
++  Example::
+=20
+     # cat in0_input
+     830
 
 Thanks.
 
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--75JGspy+0gCiqm39
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCYzg5EwAKCRD2uYlJVVFO
+o5dfAP96/iL331XtGwg9sJvCVECx5KZKRZ6Naxp3gwt5uSvvngD9Eh+gCcwfjayp
+8RYXNCo9Nd8HQHoZErC6CABhOYt1KAU=
+=9E6T
+-----END PGP SIGNATURE-----
+
+--75JGspy+0gCiqm39--
