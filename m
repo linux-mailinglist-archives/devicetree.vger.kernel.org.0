@@ -2,149 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A735F21DA
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 10:03:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75E585F21DB
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 10:06:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbiJBIDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 04:03:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53048 "EHLO
+        id S229591AbiJBIGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 04:06:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbiJBIDa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 04:03:30 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754DC50053
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 01:03:29 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id p5so8843367ljc.13
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 01:03:29 -0700 (PDT)
+        with ESMTP id S229461AbiJBIGf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 04:06:35 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7232B39BBD
+        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 01:06:34 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id b2so1744484lfp.6
+        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 01:06:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=N3t/YAW8VeixJOi9b+cr0ysEOUoouz6B5QXiabNpm9k=;
-        b=T+4B716cTi+f11ItCUFtaLFfpBnT1unBzw1xXr4Nb4r7r9GBknTI8hGZp3VbEUYDtX
-         G9VczEoKRJXMJwsBAJm3fPrzyH4CVY/fauuj2s8xfIO7NRsRBQV+i+mhLIEcaIAIhzwe
-         KCD5Ql7YgE/x3SlzZjmDc41TWoNByK2MOQcWx9SIyMDzwgrz3CWgvdHBCuq8pewzl+SM
-         SYGodX5PsUtx2GU68A1X0rXoJYQ9KcgITsXCGCrN1yIMHM0srYUJvd24mgUDQvJYxafa
-         JAKqnAowldSaU5xJhPja18mrwwpyRGKrHeNRyZ0ETQTi1LVrQYMuunsfSRz7BXpyEiHF
-         IPeQ==
+        bh=Ih52Hlx+eX56tVspyaU7zHlpharxBn/SjHWmXDB6OKk=;
+        b=Q3tr2avwURfk+SpVFC96h+4s6UEMfxTfFM4X1ZCQ6OVt4cWO0uTH53x9EFrf6POj5M
+         j9CbhhELYz5WkjY8dabptdCLh4HFHDLoVYWlxH1F+/phJ7I8GzQKY3nyZKQstLc39Cyo
+         wQdjmt7InEpVv713co5gUtvRGxpjJiYoBvLZAj3fyPU8XfRfZzUnzvFrZ91+JivwQsTa
+         w9ZWUdq/7ofLWUBMxfwk+9wSfWcUXMW6jp6zzHZNeQuD2xJlzeloQxkRD6FrnFVt2DtC
+         Ju3tMt4FtKr46BcFoa49APPR7O5qrGLAlczuh2U8XDwhGxENFvg8jMp64RyeGZC+eNGb
+         /5Iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=N3t/YAW8VeixJOi9b+cr0ysEOUoouz6B5QXiabNpm9k=;
-        b=xRYfrEWU8MeS0Fwze2NBvEThCY6OYInabZuLjPM+AqEfpBP5MomA+6V3PsS78B7u5N
-         eEZNdvfrNewvm0WiC7EDjMZRn2VLe3tdh9K8LlG+GcGEO8w/4AQcAxHjRvq3rjECt47u
-         9A6bNFbvLzwHQQ/jBlU0ccEv1ml7aILhYrpWzjIn8JBDglK2AhIGwa8qNlU3ga7jlWyz
-         /d0zCtBTfm1quTVBxkKTu5IkvE2ZZpY2gANR5lMNszuuFcliO8Z61v7QhwD3pm9jN2in
-         /WNhzuXDSyL8Fw92liMMNBt/E5RJl4NS+/stfD13wFbk2uEK3iq0n3FjkyShWCOODZsb
-         Q6Iw==
-X-Gm-Message-State: ACrzQf3qELbUjy0hJi0hq3G+Gzkrs2z+Uln7rZ1oR6OD1DWB0rO2Xhfk
-        QPz1ZxzPoYbwQowFbH32098Hjg==
-X-Google-Smtp-Source: AMsMyM762gfygKykIAizmzE81WFYB7jyFb8QiSOgtIw663bOpc3u1aBkPhjnB4MVlJTO3N54P8khwA==
-X-Received: by 2002:a2e:bcc6:0:b0:26d:c32d:72db with SMTP id z6-20020a2ebcc6000000b0026dc32d72dbmr2325903ljp.333.1664697807732;
-        Sun, 02 Oct 2022 01:03:27 -0700 (PDT)
+        bh=Ih52Hlx+eX56tVspyaU7zHlpharxBn/SjHWmXDB6OKk=;
+        b=j6vzy8xnuAVvS5Q48viUCFwvpy72TGwI3qiTejteuhOOk4WMiKU6sdi2uc3Y6kYbZN
+         GuLrLM33rT060moQZctBbniiG248sOKBox3XZ4QGY8QojbuKVReBoUifH6bI+nONp/L4
+         Pcfe989bJo4oh+EEp81TwbRNB2x5j2r9e2ve59g7igEhALz2dhpp9XAu5zMDiIb+8N94
+         ezAtaEZmhvWFb6bo2nmscim6wwstdq8tgEYn8GmLXFnsIuDZvlDkWoQqqA5dMXa8MPO6
+         5uxrvsG16XiN3/zb0yFaAMuBotLvB7iTpMCyJ2eSGuCn3x7FjI5fn3+hGELnC9rUXjmU
+         Hf2w==
+X-Gm-Message-State: ACrzQf0XxMpw10ixMWPB6xUTaZh3DsN0l/ZNlDnp867wbgq0wvmdfdoU
+        RKZo3UqeizMZ6n1R59x+MMmUOlsXTwx3Ww==
+X-Google-Smtp-Source: AMsMyM5OYdz5lO107vNdyJJf2kCeIrP4T47B3QliEARnAsvn/uTGZmx2R2gLTJ212FHyB/Ar0wsGSQ==
+X-Received: by 2002:a05:6512:533:b0:4a2:f36:bba5 with SMTP id o19-20020a056512053300b004a20f36bba5mr4015391lfc.224.1664697992837;
+        Sun, 02 Oct 2022 01:06:32 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id i8-20020a056512318800b00498f1eddad0sm1004343lfe.122.2022.10.02.01.03.26
+        by smtp.gmail.com with ESMTPSA id a18-20020a05651c031200b0026c5579c64csm579375ljp.89.2022.10.02.01.06.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Oct 2022 01:03:26 -0700 (PDT)
-Message-ID: <25261abe-ad91-d648-f47e-b9236b35f06f@linaro.org>
-Date:   Sun, 2 Oct 2022 10:03:25 +0200
+        Sun, 02 Oct 2022 01:06:32 -0700 (PDT)
+Message-ID: <dc2f73e4-5c8a-5018-f507-8e04d86fc6d5@linaro.org>
+Date:   Sun, 2 Oct 2022 10:06:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v4 2/2] dt-bindings: mips: brcm: convert Broadcom SoCs to
- schema
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: add schema for WM8961
 Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Doug Brown <doug@schmorgal.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>, zajec5@gmail.com,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        zhouyanjie@wanyeetech.com,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-References: <20221001043855.933528-1-sergio.paracuellos@gmail.com>
- <20221001043855.933528-3-sergio.paracuellos@gmail.com>
- <ce6c360a-f364-72db-4f44-dea66dc5e744@linaro.org>
- <CAMhs-H_999=LsUcEm6CNw5tai+v_D3xJ50JWycbqq4LZgPN9Zg@mail.gmail.com>
+        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org
+References: <20221001200039.21049-1-doug@schmorgal.com>
+ <20221001200039.21049-2-doug@schmorgal.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMhs-H_999=LsUcEm6CNw5tai+v_D3xJ50JWycbqq4LZgPN9Zg@mail.gmail.com>
+In-Reply-To: <20221001200039.21049-2-doug@schmorgal.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/10/2022 12:35, Sergio Paracuellos wrote:
->>
->>> +  compatible:
->>> +    oneOf:
->>> +      - description: Boards with Broadcom bcm3368 SoC
->>> +        items:
->>> +          - const: brcm,bcm3368
->>> +
->>> +      - description: Boards with Broadcom bcm3384 SoC
->>> +        items:
->>> +          - const: brcm,bcm3384
->>
->> I don't understand what did you want to achieve here. Either you
->> document SoC or boards. If boards, where are the actual boards? If SoC,
->> then why calling it boards, why making it oneOf?
+On 01/10/2022 22:00, Doug Brown wrote:
+> Create a simple DT schema for the existing Wolfson WM8961 driver so that
+> DT support can be added to the driver.
 > 
-> I agree with description should just say "Broadcom bcm3384 SoC", but I
-> don't understand what is wrong with oneOf here...
-
-If you document SoCs, this should be just an enum because it will take
-20% of that lines. Much smaller, easier to read.
-
-In the same time (for documenting SoCs) all the descriptions are
-redundant. We know that this is "Broadcom bcm33843 SoC" because
-compatible is "brcm,bcm33843".
-
+> Signed-off-by: Doug Brown <doug@schmorgal.com>
+> ---
+>  .../devicetree/bindings/sound/wlf,wm8961.yaml | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8961.yaml
 > 
->>
->>
->>> +
->>> +      - description: Boards with Broadcom bcm33843 SoC
->>> +        items:
->>> +          - const: brcm,bcm33843
->>> +
+> diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8961.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8961.yaml
+> new file mode 100644
+> index 000000000000..73166cf0fdcf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/wlf,wm8961.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/wlf,wm8961.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Wolfson WM8961 Ultra-Low Power Stereo CODEC
+> +
+> +maintainers:
+> +  - patches@opensource.cirrus.com
+> +
+> +properties:
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +  compatible:
+> +    const: wlf,wm8961
 
-(...)
+Please put compatible first in list of properties (and follow same order
+in "required"). It's the most important piece, so we want it to be the
+first to see. It also follows the convention of DTS, where compatible is
+expected to be first.
 
-> 
->>
->>> +    unevaluatedProperties: false
->>> +
->>> +    properties:
->>> +      mips-hpt-frequency:
->>> +        description: This is common to all CPUs in the system so it lives
->>> +         under the "cpus" node.
->>
->> You need to describe what is this. Not where it lives. Because where it
->> lives, we can easily see from the schema.
-> 
-> I have just copied this from the previous documented bmips text file. I guess
-> writing the following will be better:
-> 
-> properties:
->       mips-hpt-frequency:
->         description: MIPS counter high precision timer frequency.
->          This is common to all CPUs in the system so it lives
->          under the "cpus" node.
->         $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - '#sound-dai-cells'
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          wm8961: codec@4a {
+> +                  #sound-dai-cells = <0>;
+> +                  compatible = "wlf,wm8961";
 
-Much better, thanks.
+Here compatible first, reg second, then the rest.
 
+> +                  reg = <0x4a>;
+> +          };
+> +    };
 
 Best regards,
 Krzysztof
