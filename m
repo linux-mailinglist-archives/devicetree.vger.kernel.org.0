@@ -2,72 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26AC95F21D6
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 10:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01A735F21DA
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 10:03:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229669AbiJBIA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 04:00:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51210 "EHLO
+        id S229573AbiJBIDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 04:03:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbiJBIA5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 04:00:57 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EC434F68D
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 01:00:54 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id c2so6286423lfb.10
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 01:00:54 -0700 (PDT)
+        with ESMTP id S229461AbiJBIDa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 04:03:30 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754DC50053
+        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 01:03:29 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id p5so8843367ljc.13
+        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 01:03:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=4vfWsjY57/5il+Q1FyIltb4lN+Qrd7nGTflpU17Qi8A=;
-        b=jLbk83gCtDhr6Oc319IjTZW1fGmVAQBNCMI0L1H6XX9Rz7ppPIhCAqr+iE8SnvaU2A
-         VkSoJ6HJhWCT8xMJEy+sZ36Ko5nkwaf2cNMcut6Xw7+El6Jc9EphakEbTOCbxfP6Swp1
-         met5VMtERbykbHKHceLQFfa2mMloBkyXP1Jt3Q+8khYTlMQ59QuwGMErVzZBtuWJg4/A
-         yHzUpbB0G1pacP5r80Kbe39re4RusIWkiM5p4WdBUHBnUmpIfQb+KbGzjZsLPvugFveX
-         jveuxh90nQhhMVXRaXsipfrYpg/D8nTLDHbp1ZDYyZaz8mLDhMwqe4PIwLOl0OW0t+CI
-         478Q==
+        bh=N3t/YAW8VeixJOi9b+cr0ysEOUoouz6B5QXiabNpm9k=;
+        b=T+4B716cTi+f11ItCUFtaLFfpBnT1unBzw1xXr4Nb4r7r9GBknTI8hGZp3VbEUYDtX
+         G9VczEoKRJXMJwsBAJm3fPrzyH4CVY/fauuj2s8xfIO7NRsRBQV+i+mhLIEcaIAIhzwe
+         KCD5Ql7YgE/x3SlzZjmDc41TWoNByK2MOQcWx9SIyMDzwgrz3CWgvdHBCuq8pewzl+SM
+         SYGodX5PsUtx2GU68A1X0rXoJYQ9KcgITsXCGCrN1yIMHM0srYUJvd24mgUDQvJYxafa
+         JAKqnAowldSaU5xJhPja18mrwwpyRGKrHeNRyZ0ETQTi1LVrQYMuunsfSRz7BXpyEiHF
+         IPeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=4vfWsjY57/5il+Q1FyIltb4lN+Qrd7nGTflpU17Qi8A=;
-        b=E7egifWbmhCoka7O3OKkhRJM1LOERQSdM/mot1kuU07a91f31SkP77KugQDNsFBWly
-         gOIPVCjwmpXZVTHjVhMVMCdbZD4UwjV2xQyLvQg8RI+oWMvnRECM7D6mlAuFkhHT4ayL
-         tQ8F9bKeyVKF2OeTRdhSUAfSfMZkMvA6+ZyQq9PB4kL2nYseTox1li9MzKPH6woN46qL
-         ZIUwHVMRCuOUPtij7ZpOgSk9Do6/DNV4ePDklOWQ4uG9KSgLqyIT+EnHs0uSUsNOLHdu
-         ADDv8tMj5hqwYevIBeUbCJ6K9rfjCCgwVP2nkD/aV915DDnBg1xFn7bMAEfpA+qRBKeU
-         86Xg==
-X-Gm-Message-State: ACrzQf01/kEfTOL0k8bLDd9D2/8WqY+8Hdj7YADwj7GWwV9vuDI618Pl
-        Gdj1HhyPxSS344aiOpOSofwPIg==
-X-Google-Smtp-Source: AMsMyM7+kHoRC+VPQm9KMnd4hh8egehS2ji53cPn2tzNmurKTV6rvmEeXw8FG3kcZi/fzGyIEPUs7Q==
-X-Received: by 2002:a05:6512:224b:b0:49f:9e09:584e with SMTP id i11-20020a056512224b00b0049f9e09584emr5564423lfu.524.1664697652137;
-        Sun, 02 Oct 2022 01:00:52 -0700 (PDT)
+        bh=N3t/YAW8VeixJOi9b+cr0ysEOUoouz6B5QXiabNpm9k=;
+        b=xRYfrEWU8MeS0Fwze2NBvEThCY6OYInabZuLjPM+AqEfpBP5MomA+6V3PsS78B7u5N
+         eEZNdvfrNewvm0WiC7EDjMZRn2VLe3tdh9K8LlG+GcGEO8w/4AQcAxHjRvq3rjECt47u
+         9A6bNFbvLzwHQQ/jBlU0ccEv1ml7aILhYrpWzjIn8JBDglK2AhIGwa8qNlU3ga7jlWyz
+         /d0zCtBTfm1quTVBxkKTu5IkvE2ZZpY2gANR5lMNszuuFcliO8Z61v7QhwD3pm9jN2in
+         /WNhzuXDSyL8Fw92liMMNBt/E5RJl4NS+/stfD13wFbk2uEK3iq0n3FjkyShWCOODZsb
+         Q6Iw==
+X-Gm-Message-State: ACrzQf3qELbUjy0hJi0hq3G+Gzkrs2z+Uln7rZ1oR6OD1DWB0rO2Xhfk
+        QPz1ZxzPoYbwQowFbH32098Hjg==
+X-Google-Smtp-Source: AMsMyM762gfygKykIAizmzE81WFYB7jyFb8QiSOgtIw663bOpc3u1aBkPhjnB4MVlJTO3N54P8khwA==
+X-Received: by 2002:a2e:bcc6:0:b0:26d:c32d:72db with SMTP id z6-20020a2ebcc6000000b0026dc32d72dbmr2325903ljp.333.1664697807732;
+        Sun, 02 Oct 2022 01:03:27 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id n5-20020a0565120ac500b0048af3c090f8sm1008733lfu.13.2022.10.02.01.00.50
+        by smtp.gmail.com with ESMTPSA id i8-20020a056512318800b00498f1eddad0sm1004343lfe.122.2022.10.02.01.03.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Oct 2022 01:00:51 -0700 (PDT)
-Message-ID: <3b234066-268d-8da9-caa6-ca4d693dc0d0@linaro.org>
-Date:   Sun, 2 Oct 2022 10:00:50 +0200
+        Sun, 02 Oct 2022 01:03:26 -0700 (PDT)
+Message-ID: <25261abe-ad91-d648-f47e-b9236b35f06f@linaro.org>
+Date:   Sun, 2 Oct 2022 10:03:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2] dt-bindings: net: marvell,pp2: convert to json-schema
+Subject: Re: [PATCH v4 2/2] dt-bindings: mips: brcm: convert Broadcom SoCs to
+ schema
 Content-Language: en-US
-To:     =?UTF-8?Q?Micha=c5=82_Grzelak?= <mig@semihalf.com>
-Cc:     davem@davemloft.net, devicetree@vger.kernel.org,
-        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        linux@armlinux.org.uk, mw@semihalf.com, netdev@vger.kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org, upstream@semihalf.com
-References: <db7055da-b01f-3ca6-20f8-e9bc7ed892bc@linaro.org>
- <20221001155353.10211-1-mig@semihalf.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>, zajec5@gmail.com,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        zhouyanjie@wanyeetech.com,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+References: <20221001043855.933528-1-sergio.paracuellos@gmail.com>
+ <20221001043855.933528-3-sergio.paracuellos@gmail.com>
+ <ce6c360a-f364-72db-4f44-dea66dc5e744@linaro.org>
+ <CAMhs-H_999=LsUcEm6CNw5tai+v_D3xJ50JWycbqq4LZgPN9Zg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221001155353.10211-1-mig@semihalf.com>
+In-Reply-To: <CAMhs-H_999=LsUcEm6CNw5tai+v_D3xJ50JWycbqq4LZgPN9Zg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -78,34 +84,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/10/2022 17:53, Michał Grzelak wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your comments and time spent on reviewing my patch.
-> All of those improvements will be included in next version. 
-> Also, I would like to know your opinion about one. 
-> 
->>> +
->>> +  marvell,system-controller:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: a phandle to the system controller.
->>> +
->>> +patternProperties:
->>> +  '^eth[0-9a-f]*(@.*)?$':
+On 01/10/2022 12:35, Sergio Paracuellos wrote:
 >>
->> The name should be "(ethernet-)?port", unless anything depends on
->> particular naming?
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - description: Boards with Broadcom bcm3368 SoC
+>>> +        items:
+>>> +          - const: brcm,bcm3368
+>>> +
+>>> +      - description: Boards with Broadcom bcm3384 SoC
+>>> +        items:
+>>> +          - const: brcm,bcm3384
+>>
+>> I don't understand what did you want to achieve here. Either you
+>> document SoC or boards. If boards, where are the actual boards? If SoC,
+>> then why calling it boards, why making it oneOf?
 > 
-> What do you think about pattern "^(ethernet-)?eth[0-9a-f]+(@.*)?$"?
-> It resembles pattern found in net/ethernet-phy.yaml like
-> properties:$nodename:pattern:"^ethernet-phy(@[a-f0-9]+)?$", while 
-> still passing `dt_binding_check' and `dtbs_check'. It should also 
-> comply with your comment.
+> I agree with description should just say "Broadcom bcm3384 SoC", but I
+> don't understand what is wrong with oneOf here...
 
-Node names like ethernet-eth do not make much sense because they contain
-redundant ethernet or eth. AFAIK, all other bindings like that call
-these ethernet-ports (or sometimes shorter - ports). Unless this device
-is different than all others?
+If you document SoCs, this should be just an enum because it will take
+20% of that lines. Much smaller, easier to read.
+
+In the same time (for documenting SoCs) all the descriptions are
+redundant. We know that this is "Broadcom bcm33843 SoC" because
+compatible is "brcm,bcm33843".
+
+> 
+>>
+>>
+>>> +
+>>> +      - description: Boards with Broadcom bcm33843 SoC
+>>> +        items:
+>>> +          - const: brcm,bcm33843
+>>> +
+
+(...)
+
+> 
+>>
+>>> +    unevaluatedProperties: false
+>>> +
+>>> +    properties:
+>>> +      mips-hpt-frequency:
+>>> +        description: This is common to all CPUs in the system so it lives
+>>> +         under the "cpus" node.
+>>
+>> You need to describe what is this. Not where it lives. Because where it
+>> lives, we can easily see from the schema.
+> 
+> I have just copied this from the previous documented bmips text file. I guess
+> writing the following will be better:
+> 
+> properties:
+>       mips-hpt-frequency:
+>         description: MIPS counter high precision timer frequency.
+>          This is common to all CPUs in the system so it lives
+>          under the "cpus" node.
+>         $ref: /schemas/types.yaml#/definitions/uint32
+
+Much better, thanks.
+
 
 Best regards,
 Krzysztof
