@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49B1D5F223E
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 11:20:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 776615F2241
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 11:20:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbiJBJUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 05:20:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39372 "EHLO
+        id S229736AbiJBJUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 05:20:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbiJBJUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 05:20:04 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D10D23176
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 02:20:02 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 25so2518687lft.9
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 02:20:02 -0700 (PDT)
+        with ESMTP id S229717AbiJBJUF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 05:20:05 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F390523382
+        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 02:20:03 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id l12so8950599ljg.9
+        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 02:20:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date;
-        bh=bn11ROdfdpwm+pLhcHHe/jAlddmxiu8wNOBInX3vz4w=;
-        b=GU5T016DesMRb9PWPeNsraKqC6o3gment/4VYhGD58OgdKU09S5jsltpJEvZvLjECx
-         2H9vElfbdIhRAOeALFeqbwNUprSnbkHx1VhSQ/dVAeQACQmFI7EthGCLNk11U5eGT7qG
-         Co8IYFKnfA7aAbmXfBNdZr6mTpE1ViHMcHSWQAeSX5RNJAkwW1xZIb235UEtIKmOs1XX
-         9rJrdXbe9zE2HYGYzo1y1g6lwGny8J0EAdJtrpMEZpz+omhDeZkgQzv51M6IvHAn7cP9
-         fmxWU37f8ECDdeTMq/u48LXaYJsIlLQu3e1JZea2HoTLiMnBf/Kp57zRJ/3yzYuK+SFX
-         h/7Q==
+        bh=fl21bdW0ggFUdXB3LXql5VqnPXSvxKQM4G3EfuVCNOY=;
+        b=hcCzkPeoqEfVxt3FznZim8/ryjEYK/pg0t/rsOz6MWJJ9/qxj2CfuQFpiczpKz5hy5
+         MF7JWsy4Z3tnGX/StgHag6jl8sWl2OGwMpDoNfBL8ljqROwZ1rcAlLUoOwNdTPEoByHc
+         lwpxErqzqLMeQoEvCLMBy4dQikDFwGYrKOrvmmkPsnRaCS7IsH0BNUiMr15Nj0armPPu
+         v0oPHxcuylvZLuhoY44YC9fGFKoYrqP7LU3EVXDzXAl3+sq9knxTywcBKxuLxhmlmsLe
+         7Wy7pchOkQg1FGSL8gb1PZhvZ4MPwG3V4CrBes85nS3L7piIsk8dl023+A+Gkex92vD7
+         lBlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=bn11ROdfdpwm+pLhcHHe/jAlddmxiu8wNOBInX3vz4w=;
-        b=yxW6mpMzALBunaXxIDI2iW7EQ/PP830j7Af0XyFLMdhRiZUDO66VR057KYLbd3Sw+J
-         vfL5M291hBv77hzgiiRtn+T2wHhnqCCT3iUAbKePjuN7UyXzQOMGZdTf91kizpU7UWvA
-         d8539Hx2phIBBnMmXM6vp7uDPyNAY+ySc/DHUdg9dCk2VePBf7QzHQWaUs5mpgr+xtpX
-         i6cNjlrRRIHSl/N6TUP9NuXiy+t0YbOoozH4dDDNHH4PbUY2PCtZjsYYaMa7hrVIuzAD
-         Lrkv+/YUbRsFCg/1Ohm0bok7nW9wQU6+t9yIrOOwADznR4DkK1AtfJfxi89Kxis9JNxg
-         61uA==
-X-Gm-Message-State: ACrzQf1tUNrdBX1uSr5CVsILa2jC4cCNI8PPz4O59cKxFnTh7TEyKIsO
-        /YJJfd23PpDhOGpdz4oL5jq57Q==
-X-Google-Smtp-Source: AMsMyM4w+lYlLKZZhbkKGhO/XiQI77DNkWVpKV2Sw19tp3osAwXYr/rhRfgU7y37lA5+ODq/z3Ok9w==
-X-Received: by 2002:ac2:5384:0:b0:4a2:3a45:520 with SMTP id g4-20020ac25384000000b004a23a450520mr440227lfh.560.1664702400558;
-        Sun, 02 Oct 2022 02:20:00 -0700 (PDT)
+        bh=fl21bdW0ggFUdXB3LXql5VqnPXSvxKQM4G3EfuVCNOY=;
+        b=7YUn8k6oYziAB+U7eJ8ZZB0DnDmu1V3I0b80GRh9oVtIMngd2vpq0yMnSxi+Ig10Ka
+         0rIalOEqSMELfXzFCVtL0m9iBfFkn3Tm/N2r7IJT1t0f/7i6sxKBQK8yKIg8OjQ2K/55
+         UUO5+cmeoWvkguec21rNfZbCOeWTsaNnZ8P4gaUdMHIgr+4UYmasKI3LUm5Dm9GerL71
+         /PTL1SKwp2ukpjBkH1wuflM1i8J8z0sMAu0U5OvW0qyCQlIGjkxvBqLpla3vYruRyxyv
+         qFDPiJZaimvU1Geq0t1ldq4O1o5TCJkiBqfZFxWkVLKbbqmvLUuAc6I7si8XucSIUxhu
+         xFTA==
+X-Gm-Message-State: ACrzQf2GBJ+5EPJrn296T0dJ8vCjvT9KRaJ7gyPid0fxcclaqHL45hUW
+        HZFeHymvSoXEG6SvyfDe0+Kx1g==
+X-Google-Smtp-Source: AMsMyM6OsJ32oSuPOq8kPqjzbRY+ACT8/4mCN8qS2/hnj/34rYRUrOiEhuig2FBdcdfb5mE01xn5Ww==
+X-Received: by 2002:a05:651c:2ce:b0:26d:cada:cb3d with SMTP id f14-20020a05651c02ce00b0026dcadacb3dmr2190196ljo.484.1664702402241;
+        Sun, 02 Oct 2022 02:20:02 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id j2-20020a056512398200b0048ad4c718f3sm1026393lfu.30.2022.10.02.02.19.59
+        by smtp.gmail.com with ESMTPSA id du10-20020a056512298a00b0049487818dd9sm1026269lfb.60.2022.10.02.02.20.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Oct 2022 02:20:00 -0700 (PDT)
+        Sun, 02 Oct 2022 02:20:01 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: sunxi: correct indentation
-Date:   Sun,  2 Oct 2022 11:19:59 +0200
-Message-Id: <20221002091959.68815-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: qcom: correct indentation
+Date:   Sun,  2 Oct 2022 11:20:00 +0200
+Message-Id: <20221002092000.68844-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -76,34 +76,22 @@ Do not use spaces for indentation.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ arch/arm/boot/dts/qcom-ipq4019.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi b/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
-index e899d14f38c3..1d1d127cf38f 100644
---- a/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
-+++ b/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
-@@ -89,13 +89,13 @@ switch-4 {
- 	};
+diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+index b23591110bd2..acb08dcf9442 100644
+--- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+@@ -348,7 +348,7 @@ acc3: clock-controller@b0b8000 {
+ 		saw0: regulator@b089000 {
+ 			compatible = "qcom,saw2";
+ 			reg = <0x0b089000 0x1000>, <0x0b009000 0x1000>;
+-                        regulator;
++			regulator;
+ 		};
  
- 	reg_gmac_3v3: gmac-3v3 {
--		      compatible = "regulator-fixed";
--		      regulator-name = "gmac-3v3";
--		      regulator-min-microvolt = <3300000>;
--		      regulator-max-microvolt = <3300000>;
--		      startup-delay-us = <100000>;
--		      enable-active-high;
--		      gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>;
-+		compatible = "regulator-fixed";
-+		regulator-name = "gmac-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		startup-delay-us = <100000>;
-+		enable-active-high;
-+		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	wifi_pwrseq: wifi_pwrseq {
+ 		saw1: regulator@b099000 {
 -- 
 2.34.1
 
