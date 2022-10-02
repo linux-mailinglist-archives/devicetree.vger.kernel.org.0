@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C8E45F26EF
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 01:05:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B825F26D9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 01:01:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbiJBXE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 19:04:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34652 "EHLO
+        id S229755AbiJBXBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 19:01:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230457AbiJBXEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 19:04:25 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCC853ECEB;
-        Sun,  2 Oct 2022 16:00:11 -0700 (PDT)
+        with ESMTP id S230304AbiJBXAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 19:00:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E0D15A39;
+        Sun,  2 Oct 2022 15:57:33 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A7422B80DCE;
-        Sun,  2 Oct 2022 22:53:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FE95C43140;
-        Sun,  2 Oct 2022 22:53:11 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E0AB660EF1;
+        Sun,  2 Oct 2022 22:53:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E20CC433C1;
+        Sun,  2 Oct 2022 22:53:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664751192;
+        s=k20201202; t=1664751212;
         bh=baATQorB7E7tji15g54jQol3I3flzO4pwiVl9pgM6Bk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=C+MkRQhjlHRZ4h0tddutXAyrheSCu1R8NPZmVVJSJUJ16JnSZRXYS/P6mTuSII7yV
-         lT8fBdUdb5CuKVb0b58imV2WLZECrxJX5G8meubfABRucCtA7M3HzNFY9w5jgkfm+S
-         3xI0KOy5tpFE0cIauZZgj2r7gtFqce1yJju6mDn0WqfjiVdbyqnRr9fEK9t5bDIqRi
-         GJh4rRhmhM1f8UTCdJh1yBO/uOH0k20ZONg0vaG+TxmCXvVLN14tvr6H+4lllaXE+t
-         /O4ZrUgEDzysJXW1smCTYAZPRAgNWqV3KNVz/WZvrbfOnKFHQcaKdsk2v/Khap//0Z
-         v6gmtlIpyPqEA==
+        b=OXSsbXHssZ6NT3JPBP/SSmuPuVn7ORgfA33hYtBlj6xs3162HrJmMrJtMVIOyhwll
+         HEwCbaoqmpSiArg8gFY4KGeMtV/MZxAPD25Bq7jnpPFomB/XnyahxZCgYx2EaUhdFv
+         Elo0I1gDf6v+XwOD4dCW8H1asoMoxBVdsDrYwa/iyW/1Oenuvf4+jv7+UMO+7cQ4tF
+         6I8Lsbh75+pl9QyxvyU6doAdeHDt6oTaXYXGjczFfvt90yn25QVnZ2xWkvxm4IgmCV
+         e59aonI0pmYfN3J+Qu2gDBm/Fd4UU+pilpdOLHm8GYzjSBSazbNinZSJhzcAR5HD25
+         zJcTKIUVWsJ+A==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Sergei Antonov <saproj@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
@@ -38,12 +38,12 @@ Cc:     Sergei Antonov <saproj@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
         Sasha Levin <sashal@kernel.org>, vkoul@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         dmaengine@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 4/8] ARM: dts: fix Moxa SDIO 'compatible', remove 'sdhci' misnomer
-Date:   Sun,  2 Oct 2022 18:52:56 -0400
-Message-Id: <20221002225300.239982-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 3/6] ARM: dts: fix Moxa SDIO 'compatible', remove 'sdhci' misnomer
+Date:   Sun,  2 Oct 2022 18:53:18 -0400
+Message-Id: <20221002225323.240142-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221002225300.239982-1-sashal@kernel.org>
-References: <20221002225300.239982-1-sashal@kernel.org>
+In-Reply-To: <20221002225323.240142-1-sashal@kernel.org>
+References: <20221002225323.240142-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
