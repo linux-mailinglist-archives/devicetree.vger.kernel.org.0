@@ -2,236 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8EE75F2220
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 10:49:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACDE85F2225
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 10:55:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229594AbiJBIt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 04:49:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45442 "EHLO
+        id S229517AbiJBIzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 04:55:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbiJBIt2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 04:49:28 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 514B14E861
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 01:49:27 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id o7so5469641lfk.7
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 01:49:27 -0700 (PDT)
+        with ESMTP id S229552AbiJBIze (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 04:55:34 -0400
+Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C226F252A3;
+        Sun,  2 Oct 2022 01:55:32 -0700 (PDT)
+Received: by mail-oo1-xc33.google.com with SMTP id k11-20020a4ab28b000000b0047659ccfc28so5019761ooo.8;
+        Sun, 02 Oct 2022 01:55:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=IwRXdvg15JyBPBkAOvPX9idahFqd5EItuYjKOLK/4bU=;
-        b=DlH9FfIaq4xKyKKnr3cHhORySj90Ur807i8E/TxVdFjRumCe5s4XDfMY7pXLnNPqZQ
-         sykWMNoPq6jqk9/Ml1DBKgBOfkz9SajDgHGxKqWyFAGB3OHvRIqMpflNL/lw2JxVyaHr
-         sGfVtsdLSN/KYkb9MVHlp30LHT+1AFFl/96lyctd2vupoMWG5PcnjRBa7Jj5vDis0XTt
-         HQCBpC7nNBPtW2t4EhZAI5vVJXINJYKkzLaCBo5nT0QXso7332WUDHTxGJ+yiU0ev/JZ
-         ip9rVv7lKRFB0m5BLwqdOjiJYENcIiwDUQHPeTxt3MZy7pG8SLPyXWtuX5nArgRq4DA5
-         vMnA==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=8Cp5Q2FDKlt3Bt5D2hx1rj+q2/w4dAs/81TnS2a7Ojg=;
+        b=jpUDhH4EzlkSdPI0eSnk3gbGO1b+VxDOl6iqo8kZmYBErLZtqu20NIhwFHONnwoay8
+         aFD9Z7UOx5NBXEZEZUwDF9BNXEe4azvKB9YLVqsAZ/5JJB6CMNETGwM3bIxzFJDu9OrZ
+         b1b4E+7XY+BTDcwVKgqDDK3QGR8FnxmF31xv36QBemiWBcKZr7gGn4j1mE7PPPorC74u
+         fIq0L6o3IL9shlF4s7IOndRNIUf5KTHYc/G9O/YKVDg4jg27ut749/WU9u9d5oP32jKP
+         NdCCk+dfHddNTthYTFCH9BWqPxe4dZ/RYPYrwOWWE29Q6USJKHb1Wog/maVuanJqTMgM
+         jm7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=IwRXdvg15JyBPBkAOvPX9idahFqd5EItuYjKOLK/4bU=;
-        b=nSuy0CBO5X+n8UYdvRaTS1IYHE0s1sHs3ZzX9fQsZyt82YwkCnXahLh6zIH1ixYN5v
-         wh+SMHhclbik1EWK37hWHBTeyVgPGjTW/MTP9V2qBooli86g/+HwSH4yPOCYdUDxMG23
-         WrSUIS/KPfMJwQYyBy352N1Nn53fn9zcRgE8Mt2UqKOUOv3yamDLBk2rbYB82/Y/Rx7q
-         uZvKVKQvK4ZKc9gT/prbFQni8MnzGqIya2plSixw0Mv2BpKdBsG6LQDMYnXdI5TlwlR8
-         IFQ6dQivHcDavuXgLqEZW+Aba16Y/uZpj9f3SB3j42wNiDvVdEdd5qfr7r+r5CeJzunh
-         9yTg==
-X-Gm-Message-State: ACrzQf2QKrkP2Vaf2zOi0Wtt9awtFfILh5nmzZQAdT9UILXzaHHOfkW7
-        Ekn+kJyQ5H03nKdSB6JLM9VZcg==
-X-Google-Smtp-Source: AMsMyM5KnnciFze/GKbTePc3Yyfd9ZFjbMtig7tvLw9T3nof+XvJhjMdk3ndSTQc2n7pSFB3QVm4AQ==
-X-Received: by 2002:a05:6512:1153:b0:49d:1d20:ea47 with SMTP id m19-20020a056512115300b0049d1d20ea47mr5343912lfg.342.1664700565656;
-        Sun, 02 Oct 2022 01:49:25 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id g19-20020ac25393000000b0049fb08e91cesm1016171lfh.214.2022.10.02.01.49.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Oct 2022 01:49:25 -0700 (PDT)
-Message-ID: <a743d50f-fc59-161e-c98f-f10b26e2afe5@linaro.org>
-Date:   Sun, 2 Oct 2022 10:49:24 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=8Cp5Q2FDKlt3Bt5D2hx1rj+q2/w4dAs/81TnS2a7Ojg=;
+        b=VMK/WJmFu8HV06Ag9A0WHMrzZh8l6B3Q6IQ+jDEg1sbBhnXWvliGQAPnbarmlm1ZOq
+         9rnWFi2Sc+k4WaoBtPVacyzgp2gRjyisjKhRlcv0p/HGUFfEwev1nCkS1lVW9fat3kWK
+         4v19U9/+JmFHBssKPhSkWs4HuShDr83JbAqHOknENlTHIYTeTAIyTZHdoCWD1iV7gID5
+         BRcU6slVCLAVsmthv7EeLpMiklUUVtcSVn65XIijfjCq1RH2AbluxU3hFdYPojeD3WQ2
+         eCqckzpHKPkB16n9ZHo/B8G3iTV6BpZcZCelAjRoFDRRG+oRoaROH0LSUyoxPWhuoXqi
+         EWkA==
+X-Gm-Message-State: ACrzQf0CXMCX1hBb4O/hHzLAM3fP7s9HCp5EUuoDw6Lb91LuZB4TLQ4x
+        too0luFY/IEj2QXM4dLbSQ4GMp5Np5+ySWo7/9QuIluok78qxw==
+X-Google-Smtp-Source: AMsMyM5HnehQtTY7Kj6VSHboCxnk9lQPs0MsJO8OC5g0FyYdcSpka7vBDVBkYuM3wn9K3ri9+NKnkXPAc5Yzp3SuEd4=
+X-Received: by 2002:a05:6830:150e:b0:655:bc7d:1e5d with SMTP id
+ k14-20020a056830150e00b00655bc7d1e5dmr6272254otp.272.1664700932087; Sun, 02
+ Oct 2022 01:55:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH] dt-bindings: soc: qcom: qcom,spm: support regulator SAW2
- devics
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220930231416.925132-1-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220930231416.925132-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221001043855.933528-1-sergio.paracuellos@gmail.com>
+ <20221001043855.933528-3-sergio.paracuellos@gmail.com> <ce6c360a-f364-72db-4f44-dea66dc5e744@linaro.org>
+ <CAMhs-H_999=LsUcEm6CNw5tai+v_D3xJ50JWycbqq4LZgPN9Zg@mail.gmail.com> <25261abe-ad91-d648-f47e-b9236b35f06f@linaro.org>
+In-Reply-To: <25261abe-ad91-d648-f47e-b9236b35f06f@linaro.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Sun, 2 Oct 2022 10:55:20 +0200
+Message-ID: <CAMhs-H-PTR3QR0bPYjzNv2MnM8OP4hgdaa6Bg7tvGZCW-h1Ttg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] dt-bindings: mips: brcm: convert Broadcom SoCs to schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>, zajec5@gmail.com,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        zhouyanjie@wanyeetech.com,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/10/2022 01:14, Dmitry Baryshkov wrote:
-> Merge qcom,saw2.txt bindings to existing qcom,spm.yaml. This fixes
-> compatibility of qcom,spm schema with regulator SAW2 devices.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/arm/msm/qcom,saw2.txt | 58 -------------------
->  .../bindings/soc/qcom/qcom,spm.yaml           | 44 +++++++++-----
+Hi Krzysztof,
 
-You need to update reference in
-Documentation/devicetree/bindings/arm/cpus.yaml
+On Sun, Oct 2, 2022 at 10:03 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 01/10/2022 12:35, Sergio Paracuellos wrote:
+> >>
+> >>> +  compatible:
+> >>> +    oneOf:
+> >>> +      - description: Boards with Broadcom bcm3368 SoC
+> >>> +        items:
+> >>> +          - const: brcm,bcm3368
+> >>> +
+> >>> +      - description: Boards with Broadcom bcm3384 SoC
+> >>> +        items:
+> >>> +          - const: brcm,bcm3384
+> >>
+> >> I don't understand what did you want to achieve here. Either you
+> >> document SoC or boards. If boards, where are the actual boards? If SoC,
+> >> then why calling it boards, why making it oneOf?
+> >
+> > I agree with description should just say "Broadcom bcm3384 SoC", but I
+> > don't understand what is wrong with oneOf here...
+>
+> If you document SoCs, this should be just an enum because it will take
+> 20% of that lines. Much smaller, easier to read.
+>
+> In the same time (for documenting SoCs) all the descriptions are
+> redundant. We know that this is "Broadcom bcm33843 SoC" because
+> compatible is "brcm,bcm33843".
 
->  2 files changed, 30 insertions(+), 72 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt b/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
-> deleted file mode 100644
-> index c0e3c3a42bea..000000000000
-> --- a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
-> +++ /dev/null
-> @@ -1,58 +0,0 @@
-> -SPM AVS Wrapper 2 (SAW2)
-> -
-> -The SAW2 is a wrapper around the Subsystem Power Manager (SPM) and the
-> -Adaptive Voltage Scaling (AVS) hardware. The SPM is a programmable
-> -power-controller that transitions a piece of hardware (like a processor or
-> -subsystem) into and out of low power modes via a direct connection to
-> -the PMIC. It can also be wired up to interact with other processors in the
-> -system, notifying them when a low power state is entered or exited.
-> -
-> -Multiple revisions of the SAW hardware are supported using these Device Nodes.
-> -SAW2 revisions differ in the register offset and configuration data. Also, the
-> -same revision of the SAW in different SoCs may have different configuration
-> -data due the differences in hardware capabilities. Hence the SoC name, the
-> -version of the SAW hardware in that SoC and the distinction between cpu (big
-> -or Little) or cache, may be needed to uniquely identify the SAW register
-> -configuration and initialization data. The compatible string is used to
-> -indicate this parameter.
-> -
-> -PROPERTIES
-> -
-> -- compatible:
-> -	Usage: required
-> -	Value type: <string>
-> -	Definition: Must have
-> -			"qcom,saw2"
-> -		    A more specific value could be one of:
-> -			"qcom,apq8064-saw2-v1.1-cpu"
-> -			"qcom,msm8226-saw2-v2.1-cpu"
-> -			"qcom,msm8974-saw2-v2.1-cpu"
-> -			"qcom,apq8084-saw2-v2.1-cpu"
-> -
-> -- reg:
-> -	Usage: required
-> -	Value type: <prop-encoded-array>
-> -	Definition: the first element specifies the base address and size of
-> -		    the register region. An optional second element specifies
-> -		    the base address and size of the alias register region.
-> -
-> -- regulator:
-> -	Usage: optional
-> -	Value type: boolean
-> -	Definition: Indicates that this SPM device acts as a regulator device
-> -			device for the core (CPU or Cache) the SPM is attached
-> -			to.
-> -
-> -Example 1:
-> -
-> -	power-controller@2099000 {
-> -		compatible = "qcom,saw2";
-> -		reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
-> -		regulator;
-> -	};
-> -
-> -Example 2:
-> -	saw0: power-controller@f9089000 {
-> -		compatible = "qcom,apq8084-saw2-v2.1-cpu", "qcom,saw2";
-> -		reg = <0xf9089000 0x1000>, <0xf9009000 0x1000>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
-> index f433e6e0a19f..8fe35fde70b8 100644
-> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
-> @@ -16,23 +16,33 @@ description: |
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - qcom,sdm660-gold-saw2-v4.1-l2
-> -          - qcom,sdm660-silver-saw2-v4.1-l2
-> -          - qcom,msm8998-gold-saw2-v4.1-l2
-> -          - qcom,msm8998-silver-saw2-v4.1-l2
-> -          - qcom,msm8909-saw2-v3.0-cpu
-> -          - qcom,msm8916-saw2-v3.0-cpu
-> -          - qcom,msm8226-saw2-v2.1-cpu
-> -          - qcom,msm8974-saw2-v2.1-cpu
-> -          - qcom,apq8084-saw2-v2.1-cpu
-> -          - qcom,apq8064-saw2-v1.1-cpu
-> +    oneOf:
->        - const: qcom,saw2
+I see. Ok. I will convert this into an enum and will drop all the descriptions.
 
-I understand old bindings had it, but I don't think we really want to
-support the generic compatible on its own. Even old bindings indicated
-that there are several differences between SAWs.
+>
+> >
+> >>
+> >>
+> >>> +
+> >>> +      - description: Boards with Broadcom bcm33843 SoC
+> >>> +        items:
+> >>> +          - const: brcm,bcm33843
+> >>> +
+>
+> (...)
+>
+> >
+> >>
+> >>> +    unevaluatedProperties: false
+> >>> +
+> >>> +    properties:
+> >>> +      mips-hpt-frequency:
+> >>> +        description: This is common to all CPUs in the system so it lives
+> >>> +         under the "cpus" node.
+> >>
+> >> You need to describe what is this. Not where it lives. Because where it
+> >> lives, we can easily see from the schema.
+> >
+> > I have just copied this from the previous documented bmips text file. I guess
+> > writing the following will be better:
+> >
+> > properties:
+> >       mips-hpt-frequency:
+> >         description: MIPS counter high precision timer frequency.
+> >          This is common to all CPUs in the system so it lives
+> >          under the "cpus" node.
+> >         $ref: /schemas/types.yaml#/definitions/uint32
+>
+> Much better, thanks.
 
-Especially confusing is that once qcom,saw2 can be alone and in other
-cases must be preceded by specific compatible. IOW, you allow for
-apq8064 two cases:
-
-1. qcom,apq8064-saw2-v1.1-cpu, qcom,saw2
-2. qcom,saw2
-
-I think we should instead add everywhere specific compatibles.
-
-
-> +      - items:
-> +          - enum:
-> +              - qcom,sdm660-gold-saw2-v4.1-l2
-> +              - qcom,sdm660-silver-saw2-v4.1-l2
-> +              - qcom,msm8998-gold-saw2-v4.1-l2
-> +              - qcom,msm8998-silver-saw2-v4.1-l2
-> +              - qcom,msm8909-saw2-v3.0-cpu
-> +              - qcom,msm8916-saw2-v3.0-cpu
-> +              - qcom,msm8226-saw2-v2.1-cpu
-> +              - qcom,msm8974-saw2-v2.1-cpu
-> +              - qcom,apq8084-saw2-v2.1-cpu
-> +              - qcom,apq8064-saw2-v1.1-cpu
-> +          - const: qcom,saw2
->  
->    reg:
-> -    description: Base address and size of the SPM register region
-> -    maxItems: 1
-> +    description: Base address and size of the SPM register region. An optional
-> +      second element specifies the base address and size of the alias register
-> +      region.
-> +    minItems: 1
-> +    maxItems: 2
-
-And it seems second region is not present on some variants?
-
-> +
-> +  regulator:
-> +    type: boolean
-> +    description: Indicates that this SPM device acts as a regulator device
-> +      device for the core (CPU or Cache) the SPM is attached to.
->  
->  required:
->    - compatible
-> @@ -79,4 +89,10 @@ examples:
->          reg = <0x17912000 0x1000>;
->      };
-
-
-Best regards,
-Krzysztof
-
+Thanks,
+    Sergio Paracuellos
+>
+>
+> Best regards,
+> Krzysztof
+>
