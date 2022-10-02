@@ -2,75 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49FCF5F2466
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 19:54:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AB5F5F260F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 00:49:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbiJBRyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 13:54:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56462 "EHLO
+        id S229911AbiJBWtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 18:49:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229682AbiJBRyW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 13:54:22 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A4C939B91
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 10:54:21 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id h10so5203565plb.2
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 10:54:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=schmorgal.com; s=google;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date;
-        bh=5W29tZVkY7Gcwhc8yEWup/KXx3wVHKfaa0BxBjFL65Y=;
-        b=YuC8Y4APFIJhwUMuvqJRBlA3DDtVhe5TPvQ75K9BWgea++GLv22fP7KiIZs/MNoqIn
-         ofHQ4HYoR+IOJ9JUITRatGkNyj9RL/t+cWECfpUXOvqRP79P7BghlF2ty2yXMzukrk4q
-         rKSXTCpBuvzC+IQ0vcgFgYmL5yE6Ck77ywmgA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=5W29tZVkY7Gcwhc8yEWup/KXx3wVHKfaa0BxBjFL65Y=;
-        b=WMN1/Rvwd+dBWYAxhXO2Vt+3wZHEn73tM1SPBsc0iuU7kug7RpZgSVaC0C6c4WCDL7
-         xeFULFga/Lkl7DdJ4xhdmpQB697VL8D63VjiWG7SNdav8dJCWcefivWzHsLYOe8x7CvN
-         BsU6aHY3kUj4lJP0XhoeZc8qdESxVXnpAdQjwmZJDYddPBJTP/BeLKaMOJlvRuYQO5AD
-         h+r04GdQ9Ea+xK8t3e1xKE4lZH1AxiQjJxYphSDJ++QpFrOFaIFbPVQzHVlcC4Ap/2Ao
-         HpMSecx8Cuy4++W7LOpakCT3chnWTTc1gtzdej2W5F7+iyqk2GaKuWRDHYjbFvSwTz11
-         PFLw==
-X-Gm-Message-State: ACrzQf0nbrMN5/ftE/2Z3XzaLWo+XuWUT+AAfHhT9LLIUL1agnXCmWea
-        wKxfErJmH7BoPw7vOH4ce7tPGg==
-X-Google-Smtp-Source: AMsMyM4ycgoxPkQdx7TH7/NaqNt518nq+9R7njsWalvl4hA0vjKBB/2jxloiomvO2pmZgKL0kCmWHA==
-X-Received: by 2002:a17:90b:254a:b0:200:53f:891d with SMTP id nw10-20020a17090b254a00b00200053f891dmr8580039pjb.168.1664733260980;
-        Sun, 02 Oct 2022 10:54:20 -0700 (PDT)
-Received: from [192.168.1.33] ([50.45.132.124])
-        by smtp.googlemail.com with ESMTPSA id rm13-20020a17090b3ecd00b0020263b7177csm13363107pjb.3.2022.10.02.10.54.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Oct 2022 10:54:20 -0700 (PDT)
-Message-ID: <ca430004-7f03-b6f8-092c-0a7ab1cddcd0@schmorgal.com>
-Date:   Sun, 2 Oct 2022 10:54:18 -0700
+        with ESMTP id S229942AbiJBWtr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 18:49:47 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 625F62608;
+        Sun,  2 Oct 2022 15:49:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C7FA2B8058E;
+        Sun,  2 Oct 2022 22:49:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F1DCC433C1;
+        Sun,  2 Oct 2022 22:49:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664750976;
+        bh=4JCiA5c4NdAx7YY0hwes4pyrpsIJwxT/BMs6N3Jek1g=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=QpzQS0M7IC6XvE8v1RIX5gtDwmlqoHoWdmadoE3B92Qz8kPpC7V+UCoVSSr7qkRje
+         rTVPeis17fEEvoTXvKvGg+AIOxihkgjZC9qMY206Y1AyMg1Phi0BSBEFHSkKwQOD3C
+         DOC5UYPFAaNS/ZG9SWOTU7VRyWiY8+01ZKr0wNlQ6n2dBw1Ocimo44jV0JJDqbb4i0
+         ITeGBQ29iNPJlku+yXuagqzkf64XmzQKG924BDXbeOAltzE41rNnkHgTP98eMiirvn
+         SM/9q8E0WU8Om+hF670pns+nf0ttL83h9OWZu80cEX9rPhNw1aPFmMcE3nhbh5OCTD
+         FOzX1n6oHKfLA==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, michael.riesch@wolfvision.net,
+        f.fainelli@gmail.com, kuba@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.19 05/29] arm64: dts: rockchip: fix upper usb port on BPI-R2-Pro
+Date:   Sun,  2 Oct 2022 18:48:58 -0400
+Message-Id: <20221002224922.238837-5-sashal@kernel.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221002224922.238837-1-sashal@kernel.org>
+References: <20221002224922.238837-1-sashal@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     kbuild-all@lists.01.org, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-References: <20221001200039.21049-3-doug@schmorgal.com>
- <202210020642.ts8UPw06-lkp@intel.com>
- <a9a94d2d-5379-7e0b-b27c-cad0f569a773@schmorgal.com>
- <a5f9ec49-f921-5efa-6721-d23671ec6bc0@kernel.org>
-From:   Doug Brown <doug@schmorgal.com>
-Subject: Re: [PATCH 2/2] ASoC: wm8961: add support for devicetree
-In-Reply-To: <a5f9ec49-f921-5efa-6721-d23671ec6bc0@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,17 +59,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+From: Frank Wunderlich <frank-w@public-files.de>
 
-On 10/2/2022 1:35 AM, Krzysztof Kozlowski wrote:
+[ Upstream commit 388f9f0a7ff84b7890a24499a3a1fea0cad21373 ]
 
-> Now I see the report about issue I wrote to you. It's not particular
-> nice catch of robot... it's visible from the code and easily testable by
-> yourself. Even without compile test... The code was just not tested for
-> warnings.
+- extcon is no more needed in 5.19 - so drop it
+  commit 51a9b2c03dd3 ("phy: rockchip-inno-usb2: Handle ID IRQ")
+- dr_mode was changed from host to otg in rk356x.dtsi
+  commit bc405bb3eeee ("arm64: dts: rockchip: enable otg/drd
+    operation of usb_host0_xhci in rk356x")
+  change it back on board level as id-pin on r2pro is not connected
 
-Thanks for your thorough and timely review. It is much appreciated. I
-will address everything you mentioned in V2, and will do a better job of
-checking for warnings with multiple configs going forward.
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+Link: https://lore.kernel.org/r/20220821121929.244112-1-linux@fw-web.de
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Doug
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+index 40cf2236c0b6..ca48d9a54939 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+@@ -558,7 +558,7 @@ &usb_host0_ohci {
+ };
+ 
+ &usb_host0_xhci {
+-	extcon = <&usb2phy0>;
++	dr_mode = "host";
+ 	status = "okay";
+ };
+ 
+-- 
+2.35.1
+
