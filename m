@@ -2,63 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D79825F22DE
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 13:18:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB4D65F230C
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 14:21:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbiJBLSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 07:18:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39698 "EHLO
+        id S229882AbiJBMVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 08:21:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229877AbiJBLSq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 07:18:46 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D71727FC6;
-        Sun,  2 Oct 2022 04:18:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CB95BB80C02;
-        Sun,  2 Oct 2022 11:18:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50665C433C1;
-        Sun,  2 Oct 2022 11:18:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664709522;
-        bh=j+gtgh3ieY79gTmWUV5GeaJhlV4vmWO467y9a2eXUxk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=lpwVc2fSrNh9T+rPk+KIlM42gF69IsvyphLQig1BrhnQR7qPUZQdxVxbQqQ+KF0Yn
-         mupFQ9dLCGQDcNvkPmeadqZzgtrGZOQYTxm3IhLQGTGf6hUR73bPzZ88Fpgag+Ctsq
-         aI6u1LaH40etUs9JSXU+w5L8WxhGq0fmMRrfzF7fElnGWTOGbShHc4ycez62EWWkbJ
-         cPhrW35l1TrpQwuWeW2UB3ctuZR2I52dO7x6a0hIb92Koc90BKMGDc/pFTyAgeglhU
-         3DTYiGKXiStguQw5F+j+918ujZcH4QOX3j18j6Ygg0l/U7nKNRU7BLO35mUzRf9n5i
-         E6sRxGI1RufLw==
-Date:   Sun, 2 Oct 2022 12:18:57 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S229886AbiJBMVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 08:21:10 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 204E121242
+        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 05:21:09 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id y144so3210469yby.11
+        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 05:21:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=yyoj7KPOm1UcXOaFIK6PvbZotY/Ro2VUw6Ks/T2G+8M=;
+        b=b6j9q56JDQHAkXKJGDvlABjIML1dEzDgxP05njvj6mWdozZZiBVsfnSEHWk+SxPGcL
+         OsH8p6ZP5THnjq9Ki3xzabSC/z6rRHDqnEHWCtM/3jo/dGQ2P3umMH3pjwrW2xmWy6b9
+         UPPXCXlXTngZSUB8dnBjqIruNCadb28ptGn+Otj4DsNpGIqMbA6YX0q0hZ87aW34yuWq
+         4NRJa+3e+nFHwKle7P6t9gEY99np3rwpx5ny8bKw2sqUR5//0am4yqQPndAC6ca+xlMe
+         N+QhB50a6YZ0f6Ve/bw/Npc6GSKtAhCwQoV3hvEOWDZnm2mItA0m1t+n3vRhwkJd9DYX
+         zNKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=yyoj7KPOm1UcXOaFIK6PvbZotY/Ro2VUw6Ks/T2G+8M=;
+        b=RZEXNuKZHUzE16xFel/JubF9dSSPJK5cCuUEvtKF/1OSgzqhNNfjGi+Y7c9OVa3hXU
+         o2MyihrV4yHTB3BHTQQyxdV6b91RKD6+QK6/Cp/8im7u7ga4vpQl9YOxiEOj+YvfY7V+
+         Ac/WTk+wY5Nm3SLEKKAvXalHq4FueBY3ni/W4NApEAgiyEFjDONvTaafch8ub6msky3+
+         wO9lZIo7YuIhCPrfuaZES5KK3qKE6AML+6KEddBvNdJ3FQjOXi1FLxzAcc8nLk5VTNha
+         i8+SMubnEjpuDq4gxH1jFwju3Nec5GGq6JZj1EDP5BwGVJfR3kBiQoUYf8vP0HOYbd/J
+         umGg==
+X-Gm-Message-State: ACrzQf37XfHkBkZGICzoiKh1/aCSBFTZYvIaFCTZnbMHwl241apn3fNz
+        C3JnHI6/T4ys3Tyqsoex8LeyOlexrY7Uc2P9jS4kgQ==
+X-Google-Smtp-Source: AMsMyM6PkPHmvRM6bb4VGI9/Pk0Sbm3jOz64JhNW0ovVDiQbMLkD1ItITQc9aeJDpNOzsRTdPZvY/MfC5nnzCjdKyZA=
+X-Received: by 2002:a05:6902:102e:b0:6bd:bdd2:ac32 with SMTP id
+ x14-20020a056902102e00b006bdbdd2ac32mr154873ybt.516.1664713268310; Sun, 02
+ Oct 2022 05:21:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220930231416.925132-1-dmitry.baryshkov@linaro.org> <a743d50f-fc59-161e-c98f-f10b26e2afe5@linaro.org>
+In-Reply-To: <a743d50f-fc59-161e-c98f-f10b26e2afe5@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sun, 2 Oct 2022 15:20:57 +0300
+Message-ID: <CAA8EJpo9kSs_h28SneAwQ0FLHJ0PipmbQRm791hb-vHtGwXwDQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: soc: qcom: qcom,spm: support regulator SAW2 devics
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Mutanen, Mikko" <Mikko.Mutanen@fi.rohmeurope.com>,
-        "Haikola, Heikki" <Heikki.Haikola@fi.rohmeurope.com>
-Subject: Re: [RFC PATCH 4/5] iio: accel: Support Kionix/ROHM KX022A
- accelerometer
-Message-ID: <20221002121857.3f7d9423@jic23-huawei>
-In-Reply-To: <3eea7954-3faf-3fc9-7507-c318488c5524@gmail.com>
-References: <cover.1663760018.git.mazziesaccount@gmail.com>
-        <fe1088cebb0de70bcb99af517004c1816b696825.1663760018.git.mazziesaccount@gmail.com>
-        <20220922180339.30138141@jic23-huawei>
-        <3eea7954-3faf-3fc9-7507-c318488c5524@gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,84 +70,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Sep 2022 14:14:14 +0300
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Sun, 2 Oct 2022 at 11:49, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 01/10/2022 01:14, Dmitry Baryshkov wrote:
+> > Merge qcom,saw2.txt bindings to existing qcom,spm.yaml. This fixes
+> > compatibility of qcom,spm schema with regulator SAW2 devices.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  .../devicetree/bindings/arm/msm/qcom,saw2.txt | 58 -------------------
+> >  .../bindings/soc/qcom/qcom,spm.yaml           | 44 +++++++++-----
+>
+> You need to update reference in
+> Documentation/devicetree/bindings/arm/cpus.yaml
 
-> Hi Jonathan,
-> 
-> On 9/22/22 20:03, Jonathan Cameron wrote:
-> > On Wed, 21 Sep 2022 14:45:35 +0300
-> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:  
-> >> +
-> >> +/*
-> >> + * The sensor HW can support ODR up to 1600 Hz - which is beyond what most of
-> >> + * Linux CPUs can handle w/o dropping samples. Also, the low power mode is not
-> >> + * available for higher sample rates. Thus the driver only supports 200 Hz and
-> >> + * slower ODRs. Slowest being 0.78 Hz
-> >> + */
-> >> +static IIO_CONST_ATTR_SAMP_FREQ_AVAIL("0.78 1.563 3.125 6.25 12.5 25 50 100 200");
-> >> +static IIO_CONST_ATTR(scale_available,
-> >> +		      "598.550415 1197.10083 2394.20166 4788.40332");
-> >> +
-> >> +static struct attribute *kx022a_attributes[] = {
-> >> +	&iio_const_attr_sampling_frequency_available.dev_attr.attr,
-> >> +	&iio_const_attr_scale_available.dev_attr.attr,  
-> > 
-> > Use the read_avail() callback instead of doing these as attributes.
-> > That makes the values available to consumer drivers...  
-> 
-> Am I correct that populating the read_avail() does not add sysfs entries 
-> for available scale/frequency? Eg, if I wish to expose the supported 
-> values via sysfs I still need these attributes? Implementing the 
-> read_avail() as well is not a problem though.
+ack
 
-Need to also set the relevant bit in 
-info_mask_shared_by_xxx_avail in the channels for the sysfs files to be created
-by calling the read_avail() callback.
+>
+> >  2 files changed, 30 insertions(+), 72 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt b/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+> > deleted file mode 100644
+> > index c0e3c3a42bea..000000000000
+> > --- a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
 
-When I introduced those I thought about making it mandatory to introduce them
-for all the info_mask_shared_by_xxx entries and not having the extra bitmap
-but that meant figuring out the relevant entries for a mass of stuff whenever
-a driver was converted from the old approach like you've used here.
+[skipped]
 
-> 
-> >> +static int kx022a_turn_on_unlock(struct kx022a_data *data)
-> >> +{
-> >> +	int ret;
-> >> +  
-> > This is not used enough that I can see a strong reason for the
-> > wrapper.  Just put the two calls inline and rename the unlocked case.  
-> 
-> In my opinion the kx022a_turn_on_unlock() and  kx022a_turn_off_lock() do 
-> simplify functions. Especially after I started using the 
-> iio_device_claim_direct_mode() :) Thus I will leave these for the v2 - 
-> please ping me again if you still want to see them removed (but I think 
-> the usage of iio_device_claim_direct_mode() changed this to favour the 
-> kx022a_turn_on_unlock() and kx022a_turn_off_lock()).
-Let's see how it looks in v2.
+> > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+> > index f433e6e0a19f..8fe35fde70b8 100644
+> > --- a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+> > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+> > @@ -16,23 +16,33 @@ description: |
+> >
+> >  properties:
+> >    compatible:
+> > -    items:
+> > -      - enum:
+> > -          - qcom,sdm660-gold-saw2-v4.1-l2
+> > -          - qcom,sdm660-silver-saw2-v4.1-l2
+> > -          - qcom,msm8998-gold-saw2-v4.1-l2
+> > -          - qcom,msm8998-silver-saw2-v4.1-l2
+> > -          - qcom,msm8909-saw2-v3.0-cpu
+> > -          - qcom,msm8916-saw2-v3.0-cpu
+> > -          - qcom,msm8226-saw2-v2.1-cpu
+> > -          - qcom,msm8974-saw2-v2.1-cpu
+> > -          - qcom,apq8084-saw2-v2.1-cpu
+> > -          - qcom,apq8064-saw2-v1.1-cpu
+> > +    oneOf:
+> >        - const: qcom,saw2
+>
+> I understand old bindings had it, but I don't think we really want to
+> support the generic compatible on its own. Even old bindings indicated
+> that there are several differences between SAWs.
+>
+> Especially confusing is that once qcom,saw2 can be alone and in other
+> cases must be preceded by specific compatible. IOW, you allow for
+> apq8064 two cases:
+>
+> 1. qcom,apq8064-saw2-v1.1-cpu, qcom,saw2
+> 2. qcom,saw2
+>
+> I think we should instead add everywhere specific compatibles.
 
-> 
-> >> +static int kx022a_chip_init(struct kx022a_data *data)
-> >> +{
-> >> +	int ret, dummy;
-> >> +
-> >> +	/*
-> >> +	 * Disable IRQs because if the IRQs are left on (for example by
-> >> +	 * a shutdown which did not deactivate the accelerometer) we do
-> >> +	 * most probably end up flooding the system with unhandled IRQs
-> >> +	 * and get the line disabled from SOC side.
-> >> +	 */
-> >> +	ret = regmap_write(data->regmap, KX022A_REG_INC4, 0);  
-> > 
-> > Unusual to do this rather than a reset.  Quick look suggests there is
-> > a suitable software reset (CNTL2)  
-> 
-> I switched to the software reset as you suggested. I am not really 
-> convinced it is a better way. It seems the software reset requires us to 
-> re-init the regmap cache. 
+I see your point. Yes, it's probably worth doing that.
 
-Yup, though if you've provided the reset defaults that should be quick.
+Robert, Christian, can you possibly check the version of the SAW2 used
+on ipq4019 and ipq8064? It can be read from the SPM block at the
+register offset 0xfd0.
 
-Jonathan
+> > +      - items:
+> > +          - enum:
+> > +              - qcom,sdm660-gold-saw2-v4.1-l2
+> > +              - qcom,sdm660-silver-saw2-v4.1-l2
+> > +              - qcom,msm8998-gold-saw2-v4.1-l2
+> > +              - qcom,msm8998-silver-saw2-v4.1-l2
+> > +              - qcom,msm8909-saw2-v3.0-cpu
+> > +              - qcom,msm8916-saw2-v3.0-cpu
+> > +              - qcom,msm8226-saw2-v2.1-cpu
+> > +              - qcom,msm8974-saw2-v2.1-cpu
+> > +              - qcom,apq8084-saw2-v2.1-cpu
+> > +              - qcom,apq8064-saw2-v1.1-cpu
+> > +          - const: qcom,saw2
+> >
+> >    reg:
+> > -    description: Base address and size of the SPM register region
+> > -    maxItems: 1
+> > +    description: Base address and size of the SPM register region. An optional
+> > +      second element specifies the base address and size of the alias register
+> > +      region.
+> > +    minItems: 1
+> > +    maxItems: 2
+>
+> And it seems second region is not present on some variants?
 
+The second region is a bit of a puzzle for me as it doesn't seem to be
+used at all.
 
+-- 
+With best wishes
+Dmitry
