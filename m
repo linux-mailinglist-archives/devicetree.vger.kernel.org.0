@@ -2,98 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 058F75F2266
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 11:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48B725F2281
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 12:23:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbiJBJyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 05:54:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40568 "EHLO
+        id S229665AbiJBKXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 06:23:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbiJBJyR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 05:54:17 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B58FE4BD38
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 02:54:14 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id b2so1914480lfp.6
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 02:54:14 -0700 (PDT)
+        with ESMTP id S229648AbiJBKXi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 06:23:38 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C57D303E9
+        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 03:23:36 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-131dda37dddso9188507fac.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 03:23:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=9D/v1iQUh0ooMqPhNBkoFRvVRHxHogSQdEWPpN5Jveg=;
-        b=abp6LlJfR8XGpzHJa7WU7vfitgblEy5OzcxuhOc6GYNCw3Dwlpplj1vB8LtE8gyEEf
-         OiwP9nL+sia2KcNBSs0VLPeHy7sy9ONA8vXKIr6bNmTU83MbSMmQcJ3c3k3xMp45T67D
-         eTAMTHsyZsoNB3VDF/rYfKHj4ojoVWqCbJzUKsZ13hMfidVC5aYrw9zx3Kk7moOVaIva
-         h86Td7tbxj70bDjt8mhtf4c3GzRFAMJ7nn1509tcrP//MXrggTwEBebP3uLIHXMlObNO
-         CWCXqL7v9E3cj1u3I20qFtPdIRI5BlXBpXdFtrdfurs4UeG/v62O0Pzzwn0UQC55vTLq
-         JtLw==
+        d=semihalf.com; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=X9nF7yfV332xI2pclyCSreQbpAxeeHXwZnrfbaI8MKA=;
+        b=CffKSKbiZV8Y+eJMNntuSra4NLtLhLgasKGRaI/suxM+1HUHx1DPQ+91FdSVxePeH+
+         8M559dVec128pCO3ynZfQ2Sv4HJ8p3LwM5wS9C1TD0D+H8f1kFAVEzwM/H9Qneunr+8B
+         tzBJ+NOpPUXGHpYx8Q2FJXBZ9HJJQkbjJo/Ldiv+ib42dpzpoD0Hj3W8ZihkjQJjCFuF
+         xozSr13E0lHj5dZC4AN9ITTwhGDp2n41oYwHsR1aVC2WhCRNxpuNRvKgADPSOFQ45f+N
+         mq3dULZ/bKcH/39edv2d83c9LB0/Yc7F4PgI77d/LTMgSGdXNV8yp6N02NTiIoZ9gpNu
+         KECQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=9D/v1iQUh0ooMqPhNBkoFRvVRHxHogSQdEWPpN5Jveg=;
-        b=GDZrhqmd7uJa9phDL8Cq/D2AMJETNc+PcIBXyoucaiklaukeYlJYZn27rXMwHtyW5h
-         p3xcld22pP5Moqnnftfx1jQMrFyshlfmkruNnFiyLmQ9gLgT87JNTiDlUDoAlVTpXJVr
-         cUlsLHrg0XgPM0KcjBp+xMaBBslMnkvHMvAMIxE4B5hk9+ktXo+rbOPo57OiwF1M4H/f
-         PeggI+NFYhzfapRzCB+MG1mjLTxb3vafIVu8e/s9+jR2Gyassx0prTDmZQCmqpDYHw8h
-         nveLMVEM/OtG7tV4jJfVfVTkf8O0xXaXLAk47MqCn653pZcY19PZz33ScG2LsM5hr65t
-         sMqg==
-X-Gm-Message-State: ACrzQf0Ts1cZQOzQaYF9RiVKmITX40WEuoqfMlNYNtDzRgxTXm1K2Tb7
-        iqcKWRihsIEGUXq9HivuqIx/XQ==
-X-Google-Smtp-Source: AMsMyM5REZ14b/0IRTo1CUYbHIPHIbthp0cClLpq6doOtBk8cdSr8bLkfLil09f5LdiXYQntcKFNzA==
-X-Received: by 2002:a19:5f4b:0:b0:49f:a4b7:3f1c with SMTP id a11-20020a195f4b000000b0049fa4b73f1cmr5488979lfj.333.1664704453094;
-        Sun, 02 Oct 2022 02:54:13 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id g12-20020a05651222cc00b00492b0d23d24sm1030969lfu.247.2022.10.02.02.54.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Oct 2022 02:54:12 -0700 (PDT)
-Message-ID: <1a1e68c7-9314-0096-b069-78a9532c44ac@linaro.org>
-Date:   Sun, 2 Oct 2022 11:54:11 +0200
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=X9nF7yfV332xI2pclyCSreQbpAxeeHXwZnrfbaI8MKA=;
+        b=UXJcsVBj9XAZ83xroIwrEyKGKECqUR1+TzRBnRGpJeUJhGTQt2O9dxGKrxu69R1E2+
+         9MTEzeG+KyQvQnCoEQC6+z1OQRay8ZcHOfboiVKShFxKr/lTRTnBpSxxoD+/xO509bfJ
+         WEspcQ3UxTchwxqDlFmFigdEnevPLm/MxsrkR/x9NLzV6qVb/J9HvO4a8Wj5h2Mmq2PR
+         HtsoCM7BWQM0PG4odK5SRtA3p12+47Jih4Wfwg5e5XdgjMzH7QFlVBc273KW7Ql5YTvn
+         eGINzp66IeHZ05vCZWzjxHnxSzYY4c8SUDj1Gsl7COoGQqJFfVCkaGJDH2MPeLgcOFr8
+         q5+g==
+X-Gm-Message-State: ACrzQf2RL64daPFbuxGbzk9shUsq7qkmU3MR9OsYJnxPxA+u08TFOVHr
+        NuH3MB43bR4pEoHcMMjs4QdZqL/K1JuADoytYoVzdw==
+X-Google-Smtp-Source: AMsMyM6WuTchjp6IHVq0M6A85omP4rK9KT9JhLY6jQee51blcDvcvwrfKa1EN3Yk0cpDXufHnvUSsKeNk+VtPbQy+to=
+X-Received: by 2002:a05:6870:790:b0:131:b107:5eea with SMTP id
+ en16-20020a056870079000b00131b1075eeamr2957302oab.66.1664706215604; Sun, 02
+ Oct 2022 03:23:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: display/panel: Add Sony Tama TD4353
- JDI display panel
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220930180812.32210-1-konrad.dybcio@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220930180812.32210-1-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <db7055da-b01f-3ca6-20f8-e9bc7ed892bc@linaro.org>
+ <20221001155353.10211-1-mig@semihalf.com> <3b234066-268d-8da9-caa6-ca4d693dc0d0@linaro.org>
+In-Reply-To: <3b234066-268d-8da9-caa6-ca4d693dc0d0@linaro.org>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Sun, 2 Oct 2022 12:23:27 +0200
+Message-ID: <CAPv3WKcW+O_CYd2vY2xhTKojVobo=Bm5tdFdJ8w33FHximPTcA@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: net: marvell,pp2: convert to json-schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     =?UTF-8?Q?Micha=C5=82_Grzelak?= <mig@semihalf.com>,
+        davem@davemloft.net, devicetree@vger.kernel.org,
+        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        linux@armlinux.org.uk, netdev@vger.kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, upstream@semihalf.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2022 20:08, Konrad Dybcio wrote:
-> Add bindings for the display panel used on some Sony Xperia XZ2 and XZ2
-> Compact smartphones.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
+niedz., 2 pa=C5=BA 2022 o 10:00 Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> napisa=C5=82(a):
+>
+> On 01/10/2022 17:53, Micha=C5=82 Grzelak wrote:
+> > Hi Krzysztof,
+> >
+> > Thanks for your comments and time spent on reviewing my patch.
+> > All of those improvements will be included in next version.
+> > Also, I would like to know your opinion about one.
+> >
+> >>> +
+> >>> +  marvell,system-controller:
+> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >>> +    description: a phandle to the system controller.
+> >>> +
+> >>> +patternProperties:
+> >>> +  '^eth[0-9a-f]*(@.*)?$':
+> >>
+> >> The name should be "(ethernet-)?port", unless anything depends on
+> >> particular naming?
+> >
+> > What do you think about pattern "^(ethernet-)?eth[0-9a-f]+(@.*)?$"?
+> > It resembles pattern found in net/ethernet-phy.yaml like
+> > properties:$nodename:pattern:"^ethernet-phy(@[a-f0-9]+)?$", while
+> > still passing `dt_binding_check' and `dtbs_check'. It should also
+> > comply with your comment.
+>
+> Node names like ethernet-eth do not make much sense because they contain
+> redundant ethernet or eth. AFAIK, all other bindings like that call
+> these ethernet-ports (or sometimes shorter - ports). Unless this device
+> is different than all others?
+>
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+IMO "^(ethernet-)?port@[0-9]+$" for the subnodes' names could be fine
+(as long as we don't have to modify the existing .dtsi files) - there
+is no dependency in the driver code on that.
 
 Best regards,
-Krzysztof
-
+Marcin
