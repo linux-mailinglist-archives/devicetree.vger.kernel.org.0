@@ -2,206 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C4E45F236C
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 15:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34A7D5F2392
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 16:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229884AbiJBNrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 09:47:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47212 "EHLO
+        id S229688AbiJBOb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 10:31:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbiJBNrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 09:47:02 -0400
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE162C642
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 06:47:01 -0700 (PDT)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-356abb37122so51820867b3.6
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 06:47:01 -0700 (PDT)
+        with ESMTP id S229500AbiJBOb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 10:31:27 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24CB542AC5;
+        Sun,  2 Oct 2022 07:31:26 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id c2so6960841lfb.10;
+        Sun, 02 Oct 2022 07:31:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=vMq1GLlUF20kEgsMYV1tAQ/MEwS5+GaRhNeS6W1gqtc=;
-        b=rZifux+aDRURitEFx6UMA91HolG3SuermFTvd7daQQNqUrjIAf1dViD5uaag7cWkxJ
-         quvYpkg4F0LbmosvwUnNHRhExTnfJiIXWBRYUmS4HHILRhRK28fKNrjVYRjgQ3Vs9/Dw
-         J8JttMr6vJYw0RA+kOvvuY5F6Vm9FuwyvY9oYcDTxH9mfQEuzSjH42boCldN5sRT8Kke
-         ccDmbxQP7P2N6B8wzkltaAGJAuV8Ej2kkCnCrPy5etmGimu8uyrj/ch5u+yNjCvyY9uc
-         InS28fgCQBhEm1vbVphaaJE7jjqxvJ/MbIGyu+C8mBroUcRU7mJtlQeU+u/bjyvWmrX8
-         dcmg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=nPUjAsLi35VmxqzE3gTIZsLlhSf+oQzitgSJsWh0i5M=;
+        b=l/bPfck3ZR1lc20PMEvd9Hz+H8OJyptL4UGOuK7411/MG3PYmvi+pDN98y2W5hf35I
+         RZ64hMsN9vPZ3QY6y3unrahXDu+0vq9yqQuA2LfhYizuvxxFJphYnGXEaixC2UV2z103
+         dACWOxpwETP6Pp2Wu74o/yYHlT0qFuIVzANXE68EEcVZrzjvYM2ejKkhISORxK/n10r6
+         Tk1ursRQgqk4yCa0tdDzUYF4xOxjPX6kzW2yynOelWLjdPZ0wpHeCTqwbnXMLVz2sfTJ
+         CMJMPZjzFFLOOcrHJjWurT1XCXuUPahzqBtWmsk+0oir+0nQN8mRtuZxw23oEx8P+tTB
+         Qw6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=vMq1GLlUF20kEgsMYV1tAQ/MEwS5+GaRhNeS6W1gqtc=;
-        b=c1mpFei4V3uOE4Fr9l0nngQXDFx8mfPPk/oyVO4rU8w+6l7JXCnoF/c5fQKabyNKQz
-         wMr81XCsdJi5GsFLCdC5Qszu0uVfqQF/p8dtZAm4iahGhS2flpJ5Hi34COZH7k99Zlqe
-         8E3mnLNuw4rHIp2uVDuueHNIo7t0s4eRU8xqPtOVC2Q14CeXIe9Tb9xxZw5QXZsr9Q8S
-         hRv5/6WC3wMpQTYU77J+shvSbVcBU+H0mydUdZOxmbaw4rA9txWX2hN9HosmrHYMOGCj
-         CyT0dV+9a+Oj9nUFs4WKuBOeT+IRyNbAqF5zfvIIFHb/LaUfLkFPcAdBmIyHqxH46VqJ
-         8dCg==
-X-Gm-Message-State: ACrzQf2D08P0DN2Jut+CA5yBQioss/xejF2rJf1rzDr3DQ0pMgyt3jeZ
-        e7ri2AiMs3R9JE22nhIdQoylF3J4o7LG12gYKyGH3UeRQoI=
-X-Google-Smtp-Source: AMsMyM6Tn85hamj4pv2OxnewpHPKst2tlq8hdSk1TlSr4/p9L3z1a+N9qpuVZodypx+3uCeYyumwBTWgNMEHzCmxnB4=
-X-Received: by 2002:a0d:d68a:0:b0:350:a7f0:7b69 with SMTP id
- y132-20020a0dd68a000000b00350a7f07b69mr16544941ywd.132.1664718420530; Sun, 02
- Oct 2022 06:47:00 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=nPUjAsLi35VmxqzE3gTIZsLlhSf+oQzitgSJsWh0i5M=;
+        b=OLpwxY3MAmyUarNKXPUVeOkJPEYz7iqMlVOKqt9PH+Ko2QsF+HQttd0phX1c8p9hAs
+         27CSfMK50LLBq8ZxFt6fRMBnKvgyQPxtlBGswOzNgE8vqQnLx/LQmkz1AuYJUWWGzPmU
+         bRCIs6mAeg3dZaDArZ7Vv2qTnDIiy8cH9mB2nD9GtVbY5akUsq8Pr7hdZ6oZ9cXHimiF
+         xGlcFqYyIbw+Foee0klCtl9Aykoyh6BPvzvwlENnqXlck8iVGtux9lLIUY/OwseF7tgc
+         Pt1Ct099hvQtHq1HuopyQS563AqkPKE0W+dI05r30dCWJH2CkJdra5oA43QH2rcK0LE8
+         XxWg==
+X-Gm-Message-State: ACrzQf3dqIVMlI5h0qBIZTYyr+lDenQR13FecGjPJNOv81HCoGNNUJvO
+        d6ulo3gKOQ8HuZ/hxVK2LlM=
+X-Google-Smtp-Source: AMsMyM5PpKV39RbAH0Gv8BGs2mVxHebxMgTxLdxjouR3ISxGO4kx/IFxeyFq+48P1Teo+Zhokl5pRQ==
+X-Received: by 2002:ac2:5088:0:b0:4a2:2e18:c4c9 with SMTP id f8-20020ac25088000000b004a22e18c4c9mr1269443lfm.5.1664721084364;
+        Sun, 02 Oct 2022 07:31:24 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id cf38-20020a056512282600b0049a6a9bc0dcsm1092397lfb.134.2022.10.02.07.31.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Oct 2022 07:31:23 -0700 (PDT)
+Message-ID: <87f737af-c676-4e91-658f-55d9d78ae760@gmail.com>
+Date:   Sun, 2 Oct 2022 17:31:21 +0300
 MIME-Version: 1.0
-References: <20220930212052.894834-1-dmitry.baryshkov@linaro.org> <d1a26c97-75db-5d09-4c4f-77ed4fed1683@linaro.org>
-In-Reply-To: <d1a26c97-75db-5d09-4c4f-77ed4fed1683@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sun, 2 Oct 2022 16:46:49 +0300
-Message-ID: <CAA8EJpoUtfWFR315jiC8PzPQydM9kT3kQYeqyOav-P9=qZKO2w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: YAML-ify SSBI bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [RFC PATCH 4/5] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+Content-Language: en-US
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "Mutanen, Mikko" <Mikko.Mutanen@fi.rohmeurope.com>,
+        "Haikola, Heikki" <Heikki.Haikola@fi.rohmeurope.com>
+References: <cover.1663760018.git.mazziesaccount@gmail.com>
+ <fe1088cebb0de70bcb99af517004c1816b696825.1663760018.git.mazziesaccount@gmail.com>
+ <20220922180339.30138141@jic23-huawei>
+ <3eea7954-3faf-3fc9-7507-c318488c5524@gmail.com>
+ <20221002121857.3f7d9423@jic23-huawei>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20221002121857.3f7d9423@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 1 Oct 2022 at 12:43, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 30/09/2022 23:20, Dmitry Baryshkov wrote:
-> > Convert arm/msm/ssbi.txt yo YAML, moving it to the directory with SoC
-> > bindings (soc/qcom/).
->
-> I think this should go to "bus" instead. Actually we could put there as
-> well GSBI and few others...
+On 10/2/22 14:18, Jonathan Cameron wrote:
+> On Wed, 28 Sep 2022 14:14:14 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> Hi Jonathan,
+>>
+>> On 9/22/22 20:03, Jonathan Cameron wrote:
+>>> On Wed, 21 Sep 2022 14:45:35 +0300
+>>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+>>>> +
+>>>> +/*
+>>>> + * The sensor HW can support ODR up to 1600 Hz - which is beyond what most of
+>>>> + * Linux CPUs can handle w/o dropping samples. Also, the low power mode is not
+>>>> + * available for higher sample rates. Thus the driver only supports 200 Hz and
+>>>> + * slower ODRs. Slowest being 0.78 Hz
+>>>> + */
+>>>> +static IIO_CONST_ATTR_SAMP_FREQ_AVAIL("0.78 1.563 3.125 6.25 12.5 25 50 100 200");
+>>>> +static IIO_CONST_ATTR(scale_available,
+>>>> +		      "598.550415 1197.10083 2394.20166 4788.40332");
+>>>> +
+>>>> +static struct attribute *kx022a_attributes[] = {
+>>>> +	&iio_const_attr_sampling_frequency_available.dev_attr.attr,
+>>>> +	&iio_const_attr_scale_available.dev_attr.attr,
+>>>
+>>> Use the read_avail() callback instead of doing these as attributes.
+>>> That makes the values available to consumer drivers...
+>>
+>> Am I correct that populating the read_avail() does not add sysfs entries
+>> for available scale/frequency? Eg, if I wish to expose the supported
+>> values via sysfs I still need these attributes? Implementing the
+>> read_avail() as well is not a problem though.
+> 
+> Need to also set the relevant bit in
+> info_mask_shared_by_xxx_avail in the channels for the sysfs files to be created
 
-ack
+Thanks for the help! I missed this. I'll try that :)
 
->
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../devicetree/bindings/arm/msm/ssbi.txt      | 18 ------
-> >  .../bindings/soc/qcom/qcom,ssbi.yaml          | 63 +++++++++++++++++++
-> >  2 files changed, 63 insertions(+), 18 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/arm/msm/ssbi.txt
-> >  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/msm/ssbi.txt b/Documentation/devicetree/bindings/arm/msm/ssbi.txt
-> > deleted file mode 100644
-> > index 54fd5ced3401..000000000000
-> > --- a/Documentation/devicetree/bindings/arm/msm/ssbi.txt
-> > +++ /dev/null
-> > @@ -1,18 +0,0 @@
-> > -* Qualcomm SSBI
-> > -
-> > -Some Qualcomm MSM devices contain a point-to-point serial bus used to
-> > -communicate with a limited range of devices (mostly power management
-> > -chips).
-> > -
-> > -These require the following properties:
-> > -
-> > -- compatible: "qcom,ssbi"
-> > -
-> > -- qcom,controller-type
-> > -  indicates the SSBI bus variant the controller should use to talk
-> > -  with the slave device.  This should be one of "ssbi", "ssbi2", or
-> > -  "pmic-arbiter".  The type chosen is determined by the attached
-> > -  slave.
-> > -
-> > -The slave device should be the single child node of the ssbi device
-> > -with a compatible field.
-> > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml
-> > new file mode 100644
-> > index 000000000000..6154f7222899
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml
-> > @@ -0,0 +1,63 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/soc/qcom/qcom,ssbi.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->
-> Drop quotes from both above.
-
-ack
-
->
-> > +
-> > +title: Qualcomm Single-wire Serial Bus Interface (SSBI)
-> > +
-> > +description:
-> > +  Some Qualcomm MSM devices contain a point-to-point serial bus used to
-> > +  communicate with a limited range of devices (mostly power management
-> > +  chips).
-> > +
-> > +maintainers:
-> > +  - Andy Gross <agross@kernel.org>
-> > +  - Bjorn Andersson <andersson@kernel.org>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,ssbi
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  qcom,controller-type:
-> > +    description:
-> > +      Indicates the SSBI bus variant the controller should use to talk
-> > +      with the slave device. The type chosen is determined by the attached
-> > +      slave.
-> > +    enum:
-> > +      - ssbi
-> > +      - ssbi2
-> > +      - pmic-arbiter
-> > +
-> > +  pmic:
-> > +    type: object
->
-> This is quite unspecific... Can we make it a ref to some PMICs schemas?
-
-Yes, I thought about listing all compats, but probably a $ref:
-../mfd/qcom-pm8xxx.yaml# makes more sense.
-
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - qcom,controller-type
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    ssbi@c00000 {
-> > +        compatible = "qcom,ssbi";
-> > +        reg = <0x00c00000 0x1000>;
-> > +        qcom,controller-type = "pmic-arbiter";
-> > +
-> > +        pmic {
-> > +            compatible = "qcom,pm8821";
-> > +            interrupt-parent = <&msmgpio>;
-> > +            interrupts = <76 IRQ_TYPE_LEVEL_LOW>;
-> > +            #interrupt-cells = <2>;
-> > +            interrupt-controller;
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +        };
-> > +    };
-> > +...
->
-> Best regards,
-> Krzysztof
->
-
+Yours
+	-- Matti
 
 -- 
-With best wishes
-Dmitry
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
