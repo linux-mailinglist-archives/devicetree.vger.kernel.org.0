@@ -2,120 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9847C5F241D
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 18:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B47EC5F2428
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 18:51:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbiJBQff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 12:35:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54204 "EHLO
+        id S229734AbiJBQvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 12:51:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbiJBQfc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 12:35:32 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 120A433E2D;
-        Sun,  2 Oct 2022 09:35:32 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id s206so7943002pgs.3;
-        Sun, 02 Oct 2022 09:35:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date;
-        bh=qj8zrinpD53YrPC+7Y0Z8sstYQxviHw1lkUeDrL18TM=;
-        b=H6LRrJHWaeEEIHZKk1wQMC4mLg4QSvZNhJ1jn3/QKj6smGXZFGmlVxT2haBRk5D8nB
-         Y0tXGTALmm2IdX3i2vciGrAcMkWKsISeXUJVEZC7EHdm7j/JRfY0lIGzgo+m+t6Sdvya
-         tGnqcM5KEROjRudi9Tj6xQIVx3yyxmM+CANtZOqz2/r0rC3t2O4+zPgJGjG+yTXD/Kc+
-         YAjenmGaxJg7lvgex8gzM350VUdDyRiPrQb85fy/j2CXKQs2YTe83IYYzhLxqB/B5ZBV
-         JTkqf+ednXxvuM+RoVtEJPEHVW69yHBi7hep5I1yzX12W3+Sk5gZxYW3aHeg3i2B3hpj
-         OWxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date;
-        bh=qj8zrinpD53YrPC+7Y0Z8sstYQxviHw1lkUeDrL18TM=;
-        b=04QE6GmO0ZN+Pkbe7DlZv2eUSZkksnq0ypawYT8KacJKt1bLr8PnqE0yDjn/xeuuaY
-         nowcC8MLYk0FgEv8sybe4JyB/vE4cWoWREReQOmlqM0wHVtH0ymh1ADOuCxIAbZbkLOd
-         nVmwhS18knQ0nU2FCLTKbG7fgVd/N8Izywvv5WSburs21yJE1vPGXxSFugGLiZcua70O
-         nUaORvZNRawtbqS5w4g961eNNc5jLocJM8xWgZKnAzxYj0GzC4nob7k7dylFjAmQ+i5a
-         CCnzwwJ+tqYwvkoxzfOa5taq7/rVzq38gT0/F+FGTQ1okzantyZuZYxKFiGIPl1bUElr
-         mT/Q==
-X-Gm-Message-State: ACrzQf0AbxUEQ3UFoYfPo9P0JCmOEBNQztCBun5XGnICMr5zNf1V6wSR
-        SnpuY3jPDXOSxo3VXoghvqQ=
-X-Google-Smtp-Source: AMsMyM7dvtVU6XGeMWVblmVHB3jBR8Y4xUlr6klRvb5qPIlPMAiVBYqXgMt6ygVPu0+xyATZNAbWjA==
-X-Received: by 2002:a05:6a00:10c2:b0:547:4991:c985 with SMTP id d2-20020a056a0010c200b005474991c985mr18846688pfu.67.1664728531588;
-        Sun, 02 Oct 2022 09:35:31 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id x125-20020a626383000000b0053639773ad8sm5612416pfb.119.2022.10.02.09.35.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Oct 2022 09:35:30 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <37986fbb-0c7d-ef87-200c-6f6ff49a8414@roeck-us.net>
-Date:   Sun, 2 Oct 2022 09:35:28 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH RESEND v2] dt-bindings: watchdog: migrate mt7621 text
- bindings to YAML
+        with ESMTP id S229847AbiJBQu7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 12:50:59 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2120.outbound.protection.outlook.com [40.107.114.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 019D33C172;
+        Sun,  2 Oct 2022 09:50:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eZ3W4RhWAipq/SZJQj/no4uBAtx6nefZqemeft42wOv54IgbHC32vXCAo3qZQ1405svuT0gZxvvJgWLPet6E11D3/7qqY2x1IusP26Qrvb8d92zrBCsP1vI88zjM+S1wp9hkloSmhLdARPqiAiBKpt4RsH4A1RBW4/2cq7ad0OqQ7rMMKbfieFQVA0qdzCXH0elDWC3WX+IF4b8t/C0+o2iy6LgWcZ5JuC5FeB4qTu3b4nE9DTkyqco4afGxZJkdzjvvnMTQwcNvUl8lvA7XbyXUeXAtSm5BiNXfTS2L1MWnZeaU/ZB0WG8CPPDPWR143QtSgVYKADKU321dezbtPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fRqPfZ0hdL51O984JrrnWwdyDEX2jVviBnLIJR4C64k=;
+ b=HuQXMIKo+s3wwqSc0qWMsTsZCAmWwk4e2zhaFVGWfT24XY2DdxlKpJjCYsQr96T1JvO3dKB1Yjq4j4tUnfwUgR8wSo7SevIzHDlk9VT1+ufdiiz2I0bAt85cfl+QIfIFXjhij1HA9IzSAhQJUbzZqAGsnTqS7YnM1LUq4HgwjML9fqZeYMsT4xPk4bp3EsPemBvv39rl5bPZnzuYEX+nFHwGZDcoS9w4cYiDp35KuFxh2nZu3YpNCd+6RkuuIiWtCJRArKg1NvnLHcwiIFEcA0lZ+8eeh9ffJ96ID1U26S5kggbP/4XU4ea+eXvGwH1NscOfHCYkBNl5923SQfCpQA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fRqPfZ0hdL51O984JrrnWwdyDEX2jVviBnLIJR4C64k=;
+ b=I4khpsjDRHHH+SEdFGxnyopuJaKUJvSFoJgqrMT/AlaXRwZaAECpojYgdAW5b0+Fq1iJ520i5gmpfKvTgaS+/Mf6/HXQshUB5iEU92iQ+9R+H+2TNtYjlgQs6GxqWQqKGh+f55+xwSgoG2K4+WP7S+AIRqPWn2Z4y0EcfrdGWNo=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OS3PR01MB10072.jpnprd01.prod.outlook.com (2603:1096:604:1de::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24; Sun, 2 Oct
+ 2022 16:50:55 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::73a6:588d:1198:7262]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::73a6:588d:1198:7262%7]) with mapi id 15.20.5676.028; Sun, 2 Oct 2022
+ 16:50:55 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        William Breathitt Gray <william.gray@linaro.org>
+Subject: RE: [PATCH RFC 2/7] dt-bindings: mfd: rzg2l-mtu3: Document RZ/G2L
+ MTU3 counter
+Thread-Topic: [PATCH RFC 2/7] dt-bindings: mfd: rzg2l-mtu3: Document RZ/G2L
+ MTU3 counter
+Thread-Index: AQHY0+6QMJg3ImvQdU+tHO/G3uPsOq34VrSAgAFnmeCAAZT6oA==
+Date:   Sun, 2 Oct 2022 16:50:55 +0000
+Message-ID: <OS0PR01MB5922D4675E1075B06E62449386589@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20220929103043.1228235-1-biju.das.jz@bp.renesas.com>
+ <20220929103043.1228235-3-biju.das.jz@bp.renesas.com>
+ <20220930190311.GA651384-robh@kernel.org>
+ <OS0PR01MB5922F394728BA8ED1B2828BB86599@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922F394728BA8ED1B2828BB86599@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-watchdog@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        wim@linux-watchdog.org, Matthias Brugger <matthias.bgg@gmail.com>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20220926162549.805108-1-sergio.paracuellos@gmail.com>
- <20220926211508.GA682626@roeck-us.net>
- <CAMhs-H-j34cfv1rJ=fUKhQrZ5FwSJezZFnw=esh4MPNw+zNUNA@mail.gmail.com>
- <CAMhs-H_hPsLZh9YrckPzOqx4NOPKAc8OGeHmerpsHABs0L13Fw@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <CAMhs-H_hPsLZh9YrckPzOqx4NOPKAc8OGeHmerpsHABs0L13Fw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|OS3PR01MB10072:EE_
+x-ms-office365-filtering-correlation-id: 7252a07f-1b31-4519-cb10-08daa4964604
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 8Iv2fWuQsXJW2M3lCx/7OQaUWIRpeHHG8DJ6BhriNV0e+v49tTCXI7eSGZJ6O31ffk/phHgq0DhrWxFMFWZrwgdhj/3fm30wpUCDKWY1VfwKyweolVtoIdySDrAtMR9xFLM9PCiOBpRTloP29aP/bYIsAy5vV1vGdlVj/QuidFihDziNsS6X1WbB3HMxySQPx/OiKjLatFGCX3LRBHXHdFill3hUynHUNzQ9/nxuYJAG9G82phd4QN3SEeotZ0fq18w8Etf87t0YBi0MqpJIzRjhrzcmF3uBf3YxGe4k2B6kZHZKQC9J1erpH3O7slkF34eLRVx/SBOWsZn2QT0YFvoviSZQ3Qz/U+Qo7SqTpNvOkz4eACKpJO/y+7OkhX87kA8a0CQRcNzcc4GOx5bwyWvPsr17jq42xphK4SS2o1O0XJ6i2BRJb7IizMbJfNVcG1a48HKQE3SfATdSEILDbc0LWVGJx2rDaHanGOSNbYCwNGlQNTdW/ovcfVm0H0FAvyRLLEmDcUDL9eHzqqt6yreboJANjT78/QiY0e+h9dxoNFBk84omwNrDcjYRTwSbmSRUkpdDjYKlzHLmPtd0QKiWDc6wCMLg927OuAjHa9LO/zw8ER897acAtSWXQ2eOX46hHliCJHfdEzL2+6yEm90IH9f5ve2buPeoXJEMCpDlQJKxS4ZTE8FR+PUU1SMqLNobdEc1U1N8QB0Pfcx6B44gunnS9jevi+sg7i5sw4m2PhRzA0NL0MFqJz9gYTrPpk8bS57e/2vuqxuAfL4DTLJpq73ROZw6SHwUh5JHxm4=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(376002)(39860400002)(346002)(396003)(136003)(451199015)(122000001)(38100700002)(55016003)(86362001)(33656002)(478600001)(38070700005)(966005)(45080400002)(8936002)(2906002)(66946007)(8676002)(5660300002)(66476007)(66556008)(4326008)(66446008)(54906003)(41300700001)(316002)(6916009)(83380400001)(52536014)(64756008)(76116006)(26005)(9686003)(71200400001)(7696005)(6506007)(186003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JPO554a48+lJJIWrEdL0OAtG3X0fYmvOfqWho8XOnWqprwvAuUqLvmqBMN+8?=
+ =?us-ascii?Q?biZIfiI0kFYBQVJ6z1ntEydTp36Ll4NsEa2sXj7TtUGdqibeHbS985M53Eoh?=
+ =?us-ascii?Q?8XzmTOG0JGxcUgq7wZoxXI6ee9+xJ3y2m/Nuh594rQiYDk1eetxwxt4noICk?=
+ =?us-ascii?Q?J/eP3ClN24RouYq7UYsuqSpGh9WQkCxXWIotYSNxTztfkrefV5BCPfPAxhoi?=
+ =?us-ascii?Q?m8dQ52VWC+wveF7TOTc5wzWy1fjnM0LhbD/wws1gAjh14eQlyZB+zqzxtOs/?=
+ =?us-ascii?Q?7gJ13bqlHO2FDtIrBRQP3QCmV7UayvLT6N3TX5ZNWUbe9bZy7fjYXsaYEaDw?=
+ =?us-ascii?Q?1TwWaLcMiIUB16xByMc1jw05SzkiDHje1FVApsiaQf5pTx1NB58o2lLDuHvc?=
+ =?us-ascii?Q?Nvm3BiEnBSXxiMmRz1cSydBIczN0BhibLg0MO7PVJ170YSoRTjki1vu5RRwR?=
+ =?us-ascii?Q?7Ictb6zubDpKk9WUqIED1/bsdWSbRVfaj/WkPvMpzcCYz09ZC1mXafQjYhzz?=
+ =?us-ascii?Q?weyZAaumk40pH9ScHqOZ0gKjRaOWyCPD2203HrpWWLLNb6/jMv5T59/U9TfO?=
+ =?us-ascii?Q?7I/kVC/rH9IKg0KWoUwNbT/9J+qHTsrJnpWxllYz64HxTg2/0IWSBftVz4n/?=
+ =?us-ascii?Q?/XFD0i8Y6MhCBiFU3y/t024IkmjdNgWIsU5Ns2jgFyhz5E/OOik9uZaDT84R?=
+ =?us-ascii?Q?MveYYsWN4gKO9af/8uGbXPm3ASM+swDhKN3dUEWiH8I2j0KtjWO4uUWHlUIr?=
+ =?us-ascii?Q?EnD4MNpqwr72v+8G+HJ1iVVz4QStbvzSm3obcOEMMlrmFtrPRJgMBuBra/Yp?=
+ =?us-ascii?Q?gZ5PjY+F/JT6j0OcvOvrzMWPf3j9kvW1IrKORjG6oXuYg8VL1zzFIeaKLN2Z?=
+ =?us-ascii?Q?UKNbZqCg+s/wqXtGjIiWv92lgcfdWxxokgaIFJBfjSpuT0yXzcSDZQkvT//d?=
+ =?us-ascii?Q?5NjkFI/Nuh2dpetHgEg/Lki1sBHa1Q/xrCnbg3Bx/1lHEjCQ4Kj4vyozpRNV?=
+ =?us-ascii?Q?v1d00e8Ecl96sNWt7bje4CkE1BSQtOi0I7Dx0mg590qFA5NjRvtV0A9kbGe/?=
+ =?us-ascii?Q?O7UjsUGzBXAVFtGQ6TrJFgYhZaZQmzDtM/xCiAjDSRdjH1wP4Sd2vRS5k9Cu?=
+ =?us-ascii?Q?tmA1t2td+e7mLkzUTxlGaSnSq6zUolzcAx1BGdjZDCkM482hSdxuBeEHVKSU?=
+ =?us-ascii?Q?4IgPl1VqwTSSrUdHK8tT44htqse2IDBM9awICdqKbBgsRWilG/VSW3A4g8Np?=
+ =?us-ascii?Q?b++skEwN5OWzOSIPSyABwg42sz9JLWWEdG3U3u1sTQPrCW/Xkm2aUupgaTYt?=
+ =?us-ascii?Q?+QjEC2ZSiCHxsvYRw3lVk37Bo+WXxyoTUyg5ZC1i/vNrL9zKruRHZW4+7lAG?=
+ =?us-ascii?Q?+yw8cVtnlB28egkhqG+jlXrFC4by10SBbKoyFPK8/pR3R+/+m4zNtNYos8fQ?=
+ =?us-ascii?Q?cfivWEuiyo8KZtrYXk8VwL1d9C17sJVDwWGbjw7cqnFfhF7MnWIIlp/VYQjS?=
+ =?us-ascii?Q?BFyCVmZgYOU2VUdotLW0nR782kG2o+2yAXoIqLrqlrEzVXHYBd5ZMth66ZQc?=
+ =?us-ascii?Q?J6Li2ZUK7ouv/Sc5dY4H6uKlFf6QcQOKBUwlonq1?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7252a07f-1b31-4519-cb10-08daa4964604
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2022 16:50:55.2646
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6Eoc/ftbj4wjN+KdCPgX5cA+EPBZHwcoERvXeYD0VGGpw/9E2+MvYzWYU9a7AV9YzbLgmYUWE3/UqMV2dn9KuRzTsOpVT2f7VH33fWTCJ88=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB10072
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/29/22 10:26, Sergio Paracuellos wrote:
-> On Tue, Sep 27, 2022 at 10:24 AM Sergio Paracuellos
-> <sergio.paracuellos@gmail.com> wrote:
->>
->> On Mon, Sep 26, 2022 at 11:16 PM Guenter Roeck <linux@roeck-us.net> wrote:
->>>
->>> On Mon, Sep 26, 2022 at 06:25:49PM +0200, Sergio Paracuellos wrote:
->>>> Soc Mt7621 Watchdog bindings used text format, so migrate them to YAML.
->>>>
->>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
->>>
->>> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
->>
->> Thanks, Guenter!
->>
->> Rob, I don't know why this patch is not in devicetree patchwork list...
->>
->> Please let me know if you want me to resend this again.
->>
->> Thanks,
->>     Sergio Paracuellos
-> 
-> I guess this patch is supposed to go through the watchdog tree??
-> 
-> Thanks in advance for clarification.
-> 
+Hi Rob,
 
-Normally patches like this would be pushed through the watchdog tree.
-I added it to my watchdog-next branch, and usually Wim would
-pick it up from there. Note that I don't really care; either way
-is fine with me.
+> Subject: RE: [PATCH RFC 2/7] dt-bindings: mfd: rzg2l-mtu3: Document
+> RZ/G2L MTU3 counter
+>=20
+> Hi Rob,
+>=20
+> Thanks for the feedback.
+>=20
+> > Subject: Re: [PATCH RFC 2/7] dt-bindings: mfd: rzg2l-mtu3: Document
+> > RZ/G2L MTU3 counter
+> >
+> > On Thu, Sep 29, 2022 at 11:30:38AM +0100, Biju Das wrote:
+> > > Document 16-bit and 32-bit phase counting mode support on RZ/G2L
+> > MTU3
+> > > IP.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > ---
+> > >  * Updated commit header.
+> > > ---
+> > >  .../bindings/mfd/renesas,rzg2l-mtu3.yaml      | 35
+> > +++++++++++++++++++
+> > >  1 file changed, 35 insertions(+)
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
+> > > b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
+> > > index c1fae8e8d9f9..c4bcf28623d6 100644
+> > > --- a/Documentation/devicetree/bindings/mfd/renesas,rzg2l-
+> mtu3.yaml
+> > > +++ b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-
+> mtu3.yaml
+> > > @@ -192,6 +192,37 @@ properties:
+> > >    "#size-cells":
+> > >      const: 0
+> > >
+> > > +patternProperties:
+> > > +  "^counter@[1-2]+$":
+> > > +    type: object
+> > > +
+> > > +    properties:
+> > > +      compatible:
+> > > +        const: renesas,rzg2l-mtu3-counter
+> > > +
+> > > +      reg:
+> > > +        description: Identify counter channels.
+> > > +        items:
+> > > +          enum: [ 1, 2 ]
+> > > +
+> > > +      renesas,32bit-phase-counting:
+> > > +        type: boolean
+> > > +        description: Enable 32-bit phase counting mode.
+> > > +
+> > > +      renesas,ext-input-phase-clock-select:
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +        enum: [ 0, 1 ]
+> > > +        default: 1
+> > > +        description: |
+> > > +          Selects the external clock pin for phase counting mode.
+> > > +            <0> : MTCLKA and MTCLKB are selected for the external
+> > phase clock.
+> > > +            <1> : MTCLKC and MTCLKD are selected for the external
+> > phase clock
+> > > +                  (default)
+> >
+> > Why do these belong in DT?
+>=20
+> Hardware supports 4 pins for phase counting mode,
+>=20
+> MTCLKA Input External clock A input pin (MTU1/MTU2 phase counting mode
+> A phase input) MTCLKB Input External clock B input pin (MTU1/MTU2
+> phase counting mode B phase input) MTCLKC Input External clock C input
+> pin (MTU2 phase counting mode A phase input) MTCLKD Input External
+> clock D input pin (MTU2 phase counting mode B phase input)
+>=20
+> For MTU1, it is fixed MTCLKA and MTCLKB.
+> But for MTU2, it can be either 0-{ MTCLKA, MTCLKB} or 1 - { MTCLKC ,
+> MTCLKD} On reset it is set to { MTCLKC , MTCLKD}.
+>=20
+> If user want to change based on board design, they can use this
+> property.
+> Otherwise, runtime using sysfs. If sysfs, do we need to document here?
 
-Guenter
+As per [1], it is going to be modelled as=20
+
+  counter:
+    type: object
+
+    properties:
+      compatible:
+        const: renesas,rzg2l-mtu3-counter
+
+With the following counters taken care internally.=20
+ count0 :- MTU1 (16-bit phase counting mode)
+ count1 :- MTU2 (16-bit phase counting mode)
+ count2 :- MTU1 + MTU2 (32-bit phase counting mode)
+
+and there will be a sysfs property for Selecting the external clock pin for=
+ phase counting mode.
+
+Is it ok for you?
+
+[1]
+https://lore.kernel.org/linux-renesas-soc/OS0PR01MB59223F69EA3215528519F490=
+86599@OS0PR01MB5922.jpnprd01.prod.outlook.com/T/#m1ee6f933603c7acd480d7652d=
+1ec2e0d9858c842
+
+Cheers,
+Biju
+
+
+
+>=20
+>=20
+> >
+> >
+> > > +
+> > > +    required:
+> > > +      - compatible
+> > > +      - reg
+> > > +
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > > @@ -270,6 +301,10 @@ examples:
+> > >        clocks =3D <&cpg CPG_MOD R9A07G044_MTU_X_MCK_MTU3>;
+> > >        power-domains =3D <&cpg>;
+> > >        resets =3D <&cpg R9A07G044_MTU_X_PRESET_MTU3>;
+> > > +      counter@1 {
+> > > +        compatible =3D "renesas,rzg2l-mtu3-counter";
+> > > +        reg =3D <1>;
+> > > +      };
+> > >      };
+> > >
+> > >  ...
+> > > --
+> > > 2.25.1
+> > >
+> > >
