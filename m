@@ -2,176 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FDF15F2328
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 14:30:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 220A65F2346
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 15:06:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229961AbiJBMaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 08:30:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37638 "EHLO
+        id S229808AbiJBNGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 09:06:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229976AbiJBM3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 08:29:51 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72F5F26CA;
-        Sun,  2 Oct 2022 05:29:45 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id d26so961431ljl.2;
-        Sun, 02 Oct 2022 05:29:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=8eWUoCOV9OFPiTKwbMDBPdwIKQbitR/fBcjjdJ8WY6g=;
-        b=FsYjqVnM1UcTFpv2E65WGF6reuMPfMzjJq20ABuEfNbRsEWvBDp871VCWUxZSfQO6G
-         oQW4RLXw/x6Sf3s+t8GcLZfRQ0JLvgz/+Kf+AYB0cDgOvAoRxHbWFicYYVhIF6acvr2R
-         DYWlAVOZV7wV2Kuhtd4rsI6TJshga2eTXoBXE/J3eDGKgFcTbCqN803gBqKWtsY8+DSH
-         jxvbPVbzBvNAQ+SRKIZf7gDDG9RCWD/RCZMSVtqsqNRkRb8+kTfjdhwcatb9Aw8IUlml
-         Vj7caAXx0/V4rEVyzhKjOFNc3dEZmdkeYajzUiASzhYSqJ5+4EjnyviFTqe1nqjQ8wsh
-         r4aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=8eWUoCOV9OFPiTKwbMDBPdwIKQbitR/fBcjjdJ8WY6g=;
-        b=U9wIgXCTtL1dLPELJKA7Fu9RrzqG5KayW/R8Bw4GCH4b9umhSHUzfEgRdFJPgnMvrd
-         bDSC+F5YaRjOh6gV1/e/r3rvfeoLKbY7IxoMGbBFdlUeGS2jsURetma8dExpxQTKJozr
-         JQcH/dWGzTTbwdnfPFO6Yzy3icWIrMyMp+JXaDj7U+cHXqHwsFfaBvLsEtHOHR2RebHi
-         DJWHufEcATa2n6hT2DAN7kmfNxjwd40QzPp1vQBAALNyHgZdVZx23sxToO2XUkwrtC0X
-         Q8mufdfIrCH57QPTZQ3Mi3P3SyF0RQ/d/dyOi7JUwQUCcLOD3SpWeG6TssSyeaoIDpaV
-         pv4A==
-X-Gm-Message-State: ACrzQf3tgwV7ypgL7X+Hj1fDs78Pb9MJxzOI8wEwWMmB070MK0ByUjCM
-        tN5g0tGWhxvJvaYvk81ILitKxUr1dUcacA==
-X-Google-Smtp-Source: AMsMyM4UOsu0kDdMfepsatzyooypgRX3+Q6sT84h7MhzRVAMmjZsmVen7VJpatJ2S/fVHlF2RXhCHA==
-X-Received: by 2002:a2e:90d5:0:b0:26d:d03a:c5c4 with SMTP id o21-20020a2e90d5000000b0026dd03ac5c4mr1093551ljg.133.1664713784036;
-        Sun, 02 Oct 2022 05:29:44 -0700 (PDT)
-Received: from i-vetokaappi.home.lan (dsl-hkibng42-5673c7-93.dhcp.inet.fi. [86.115.199.93])
-        by smtp.gmail.com with ESMTPSA id v18-20020a197412000000b0049493c14b17sm1064948lfe.181.2022.10.02.05.29.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Oct 2022 05:29:43 -0700 (PDT)
-From:   =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Luca Weiss <luca@z3ntu.xyz>,
-        =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 6/6] ARM: dts: qcom: msm8974: Add CCI bus
-Date:   Sun,  2 Oct 2022 15:28:58 +0300
-Message-Id: <20221002122859.75525-7-matti.lehtimaki@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221002122859.75525-1-matti.lehtimaki@gmail.com>
-References: <20221002122859.75525-1-matti.lehtimaki@gmail.com>
+        with ESMTP id S229682AbiJBNGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 09:06:41 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB08440BEB;
+        Sun,  2 Oct 2022 06:06:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 04D56B80113;
+        Sun,  2 Oct 2022 13:06:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BB26C433C1;
+        Sun,  2 Oct 2022 13:06:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664715997;
+        bh=MSWAo/N6NpSywv+a8FzF1/ozUpCIoiEiuZ35DlUAvZk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=XIX9/hzHJ8Bw7pskYpDnJn5un08QyZt81y7k1j3c8wyLDZBLEeHqelQLfeugxjntW
+         WqfEpLFlux001md0TroFqbYXyutZPOWJKZgaAKrrYkOJsPoyViorTnsEMDsKvBU55B
+         HBXnocRlL+FhJin9u/zB8uwlb88M7p2EYHyCu757KgdKrVKQG/b8yYIgMhxLxyoWXE
+         Z8sb96+BqEWz2uM2HXjtDTUtapR8c1cjay4ZvYmwvAmQ5xVJEJHbvaJL+vvA6D6MAA
+         fDkQ26eF65usJjxGfNmkZsNzpt3BDri7Ay2gwh0DqzbUGZhWi+w4aMvvqV6hEvkbOk
+         lQePbsZFGqYUA==
+Date:   Sun, 2 Oct 2022 14:06:52 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-iio@vger.kernel.org
+Cc:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, Nuno.Sa@analog.com,
+        Nurettin.Bolucu@analog.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/3] dt-bindings: iio: adc: add adi,max11410.yaml
+Message-ID: <20221002140652.1d51109a@jic23-huawei>
+In-Reply-To: <a382fdee-3672-50b8-cd58-85563b9d9079@linaro.org>
+References: <20220927141851.279-1-Ibrahim.Tilki@analog.com>
+        <20220927141851.279-3-Ibrahim.Tilki@analog.com>
+        <a382fdee-3672-50b8-cd58-85563b9d9079@linaro.org>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Luca Weiss <luca@z3ntu.xyz>
+On Thu, 29 Sep 2022 11:35:10 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Add a node for the Camera Control Interface I2C bus found on MSM8974.
+> On 27/09/2022 16:18, Ibrahim Tilki wrote:
+> > Adding devicetree binding documentation for max11410 adc.
+> > 
+> > Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> > ---
+> >  .../bindings/iio/adc/adi,max11410.yaml        | 176 ++++++++++++++++
+> >  .../devicetree/bindings/rtc/adi,max313xx.yaml | 195 ++++++++++++++++++
+> >  2 files changed, 371 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max11410.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
+> >   
+> 
+> So it is a v6 and it is the first version you send to proper maintainers
+> using get_maintainers.pl... sigh...
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
----
- arch/arm/boot/dts/qcom-msm8974.dtsi | 66 +++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
+I only noticed the missing cc on v5 - wasn't paying attention to the binding
+as lots of stuff in the driver...
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-index 7a9be0acf3f5..b89d56590448 100644
---- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-@@ -1463,6 +1463,38 @@ blsp2_i2c6_sleep: blsp2-i2c6-sleep {
- 				bias-pull-up;
- 			};
- 
-+			cci_default: cci-default-state {
-+				cci_i2c0_default: cci-i2c0-default-pins {
-+					pins = "gpio19", "gpio20";
-+					function = "cci_i2c0";
-+					drive-strength = <2>;
-+					bias-disable;
-+				};
-+
-+				cci_i2c1_default: cci-i2c1-default-pins {
-+					pins = "gpio21", "gpio22";
-+					function = "cci_i2c1";
-+					drive-strength = <2>;
-+					bias-disable;
-+				};
-+			};
-+
-+			cci_sleep: cci-sleep-state {
-+				cci_i2c0_sleep: cci-i2c0-sleep-pins {
-+					pins = "gpio19", "gpio20";
-+					function = "gpio";
-+					drive-strength = <2>;
-+					bias-disable;
-+				};
-+
-+				cci_i2c1_sleep: cci-i2c1-sleep-pins {
-+					pins = "gpio21", "gpio22";
-+					function = "gpio";
-+					drive-strength = <2>;
-+					bias-disable;
-+				};
-+			};
-+
- 			spi8_default: spi8_default {
- 				mosi {
- 					pins = "gpio45";
-@@ -1616,6 +1648,40 @@ dsi0_phy: dsi-phy@fd922a00 {
- 			};
- 		};
- 
-+		cci: cci@fda0c000 {
-+			compatible = "qcom,msm8974-cci";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0xfda0c000 0x1000>;
-+			interrupts = <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&mmcc CAMSS_TOP_AHB_CLK>,
-+				 <&mmcc CAMSS_CCI_CCI_AHB_CLK>,
-+				 <&mmcc CAMSS_CCI_CCI_CLK>;
-+			clock-names = "camss_top_ahb",
-+				      "cci_ahb",
-+				      "cci";
-+
-+			pinctrl-names = "default", "sleep";
-+			pinctrl-0 = <&cci_default>;
-+			pinctrl-1 = <&cci_sleep>;
-+
-+			status = "disabled";
-+
-+			cci_i2c0: i2c-bus@0 {
-+				reg = <0>;
-+				clock-frequency = <100000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+
-+			cci_i2c1: i2c-bus@1 {
-+				reg = <1>;
-+				clock-frequency = <100000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+
- 		gpu: adreno@fdb00000 {
- 			compatible = "qcom,adreno-330.1", "qcom,adreno";
- 			reg = <0xfdb00000 0x10000>;
--- 
-2.34.1
+However, how did this pick up an rtc binding for a totally different part?
 
+
+> 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max11410.yaml b/Documentation/devicetree/bindings/iio/adc/adi,max11410.yaml
+> > new file mode 100644
+> > index 0000000000..46a37303da
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,max11410.yaml
+> > @@ -0,0 +1,176 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright 2022 Analog Devices Inc.
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/adc/adi,max11410.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Analog Devices MAX11410 ADC device driver
+> > +
+> > +maintainers:
+> > +  - Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> > +
+> > +description: |
+> > +  Bindings for the Analog Devices MAX11410 ADC device. Datasheet can be
+> > +  found here:
+> > +    https://datasheets.maximintegrated.com/en/ds/MAX11410.pdf
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - adi,max11410
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  interrupt-names:
+> > +    description: Name of the gpio pin of max11410 used for IRQ
+> > +    items:
+> > +      - enum:
+> > +          - gpio0
+> > +          - gpio1  
+> 
+> This is wrong. You said in interrupts you can have two items, but here
+> you list only one. I don't know what do you want to achieve here.
+
+Aim is 0, 1 or 2 interrupts + knowing which ones they are.
+Device has two pins that have very similar functionality and board
+designers are likely to pick one or the two more or less at random depending
+on which trace is easier to route.
+
+So my guess is this needs minItems, maxItems.
+
+
+> 
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  avdd-supply:
+> > +    description: Optional avdd supply. Used as reference when no explicit reference supplied.
+> > +
+> > +  vref0p-supply:
+> > +    description: vref0p supply can be used as reference for conversion.
+> > +
+> > +  vref1p-supply:
+> > +    description: vref1p supply can be used as reference for conversion.
+> > +
+> > +  vref2p-supply:
+> > +    description: vref2p supply can be used as reference for conversion.
+> > +
+> > +  vref0n-supply:
+> > +    description: vref0n supply can be used as reference for conversion.
+> > +
+> > +  vref1n-supply:
+> > +    description: vref1n supply can be used as reference for conversion.
+> > +
+> > +  vref2n-supply:
+> > +    description: vref2n supply can be used as reference for conversion.
+> > +
+> > +  spi-max-frequency:
+> > +    maximum: 8000000
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +patternProperties:  
+> 
+> This goes before required block
+> 
+> > +  "^channel(@[0-9])?$":
+> > +    $ref: "adc.yaml"
+> > +    type: object
+> > +    description: Represents the external channels which are connected to the ADC.
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description: The channel number in single-ended mode.
+> > +        minimum: 0
+> > +        maximum: 9
+> > +
+> > +      adi,reference:
+> > +        description: |
+> > +          Select the reference source to use when converting on
+> > +          the specific channel. Valid values are:
+> > +          0: VREF0P/VREF0N
+> > +          1: VREF1P/VREF1N
+> > +          2: VREF2P/VREF2N
+> > +          3: AVDD/AGND
+> > +          4: VREF0P/AGND
+> > +          5: VREF1P/AGND
+> > +          6: VREF2P/AGND
+> > +          If this field is left empty, AVDD/AGND is selected.
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        enum: [0, 1, 2, 3, 4, 5, 6]
+> > +        default: 3
+> > +
+> > +      adi,input-mode:
+> > +        description: |
+> > +          Select signal path of input channels. Valid values are:
+> > +          0: Buffered, low-power, unity-gain path (default)
+> > +          1: Bypass path
+> > +          2: PGA path
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        enum: [0, 1, 2]
+> > +        default: 0
+> > +
+> > +      diff-channels: true
+> > +
+> > +      bipolar: true
+> > +
+> > +      settling-time-us: true
+> > +
+> > +      adi,buffered-vrefp:
+> > +        description: Enable buffered mode for positive reference.
+> > +        type: boolean
+> > +
+> > +      adi,buffered-vrefn:
+> > +        description: Enable buffered mode for negative reference.
+> > +        type: boolean
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +    additionalProperties: false
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    spi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        adc@0 {
+> > +            reg = <0>;
+> > +            compatible = "adi,max11410";
+> > +            spi-max-frequency = <8000000>;
+> > +
+> > +            interrupt-parent = <&gpio>;
+> > +            interrupts = <25 2>;
+> > +            interrupt-names = "gpio1";
+> > +
+> > +            avdd-supply = <&adc_avdd>;
+> > +
+> > +            vref1p-supply = <&adc_vref1p>;
+> > +            vref1n-supply = <&adc_vref1n>;
+> > +
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +
+> > +            channel@0 {
+> > +                reg = <0>;
+> > +            };
+> > +
+> > +            channel@1 {
+> > +                reg = <1>;
+> > +                diff-channels = <2 3>;
+> > +                adi,reference = <1>;
+> > +                bipolar;
+> > +                settling-time-us = <100000>;
+> > +            };
+> > +
+> > +            channel@2 {
+> > +                reg = <2>;
+> > +                diff-channels = <7 9>;
+> > +                adi,reference = <5>;
+> > +                adi,input-mode = <2>;
+> > +                settling-time-us = <50000>;
+> > +            };
+> > +        };
+> > +    };
