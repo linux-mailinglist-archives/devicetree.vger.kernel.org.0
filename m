@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDDD75F21ED
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 10:15:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F3515F21F6
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 10:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229714AbiJBIPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 04:15:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44098 "EHLO
+        id S229754AbiJBIRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 04:17:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbiJBIPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 04:15:15 -0400
+        with ESMTP id S229727AbiJBIRc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 04:17:32 -0400
 Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E9B2DA8C
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 01:15:11 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id a8so12630646lff.13
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 01:15:11 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 968233F307
+        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 01:17:30 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id u26so4066029lfk.8
+        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 01:17:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=s2Uh3PpT13mJBJ1e61WOr6LFLJbasTKO+1hejNf0JLE=;
-        b=G8Azz3hP9CXBtBE70r+A+65q7ULxWW7RN2y0u3zIhkmPtS2nzuDLJhbxrhvbMHpdGo
-         JLmPnJRv2l6Ob3CX5KU7JeTM7KLtYb0xNsTSw5+dG8ECARBt7LR772vanwbvZWKQLDHH
-         cA6wksS99Tlgom9wuzMqaQCXRYMe9MxToDEKm3bpSSH67ysad3D6QTz+VV02PswMOVk2
-         Es6WKaGusYax+Mq1Qw7WfU/HoFJWGAO9y2g7dwZuWo1B2uHFz9K8fpbDQ0mTqt8Thrpc
-         m7b0/cFCUJ2kvof+03yDdIs0thFrWLMG82fIzPkINnKKbX6tuEVtCCUIAD9Y1JuT6JaB
-         pZlg==
+        bh=u5vwi2mv0cJCBaFXR16xTWh3Sv0rQv1R6ZlbVcZs2s0=;
+        b=Z25NH7UkqHJjPxoqbM8K0rUlPMCJlDJ8Rbzfk70/LuafFxXPRW8pq7GC9+7+PGDNcx
+         ggOMYooosvzSkdDInDFtudXttiEGnDIDBybUm7hVQp895bEvpLH98MPepdY00j3DWusE
+         00wVD/fraShm7516tBo6eF37sGuQHWHX492O0GUM9nja+x0OKJACldSfziOCFZcltNLx
+         +V2y+YSr4ZLzK8SGenBTAO5xvHJdTed4EEeR0M9KsotzlbgGoIqUCr5D2raU5E65pNKY
+         5XcO1aksk97dgT9iwAdRdfrxI7zwfRFKhxrN9W1dfxTRX2kxr/HcAd9X2Hk4ddD+Gwr7
+         eIaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=s2Uh3PpT13mJBJ1e61WOr6LFLJbasTKO+1hejNf0JLE=;
-        b=dcm4WH+gNokcrp2bmzaSJPi2suYOjKx6sljOSS1qDn9AK3gRYnKgB1oB271JAOEZy/
-         J5+eBBP0/7XY6wBwCBVFffwQ3xumxgEajjHTWicZ0Jl1aVM3RvOwZaIVKcBgO00YDeLq
-         tpI2W+VhcW8zIrFGyWL5lLoAM4a/ZKVquwyDQqzpa7vMW4rGkbnuVTXIrpsIp4ii68Z3
-         8xCkKRF0de/svmLlQu82ELDaf01i8E4UDe9CKYNqlSqJY/Ff8Vh0jIA53d9TpXzFiIk0
-         M2DB6L0l+HoLIH8VjeZ7bBRHCV9RjzuPY7frxkPQWlZ0F1c4Qxu1MazwKaoU3yTxbUSw
-         mjIQ==
-X-Gm-Message-State: ACrzQf1BtWpnbwCj6rT36lpQSt9r85bctyvuJbSwqGpn+I0zfwL1JKuu
-        P3JVB2XV10jDFjhbeLTWg+KLmg==
-X-Google-Smtp-Source: AMsMyM4Sj6uZkC2lA6Ka+K7fj8c8gZXyehTdGN5ox47TbrEQoI19qCfeJZhga1vrP3W16jlm3hWlvg==
-X-Received: by 2002:a05:6512:1047:b0:49d:a875:8d90 with SMTP id c7-20020a056512104700b0049da8758d90mr6007164lfb.630.1664698509667;
-        Sun, 02 Oct 2022 01:15:09 -0700 (PDT)
+        bh=u5vwi2mv0cJCBaFXR16xTWh3Sv0rQv1R6ZlbVcZs2s0=;
+        b=RZJvOzioi8IC6PMLBzwtDXSF0vVpMh3GPPRLZ1tZoPzO3dBmY4TYrpb/5c7xaixZ7z
+         manAzP8dkOfDJ4PquYoMC3qM+0k7W71SVP/5/tvCXjc2nYjr1dLDfcpbFfNuylGjbC4f
+         eXUSY7iR0lA6M2w1/Ydl6MOiw0/XLL6uhwE9ocAg+aNdzZZQCqoIHC96r1Ahmp7KEN7p
+         GkClbimD3TW6U+f7iJMr5YiJxG5sIGtx2AkGj1X3h+fXvb62cKa2QvSj9THwgYQm7sSs
+         8YwvfTHEu22lJPFmasQepBXJJYdsHujYec33lbBYRoirn99FpznAf1Hp1MLRqPDNWqyk
+         w0nw==
+X-Gm-Message-State: ACrzQf1u4rlL2ubRYWn+SIC1WOHvQ86X7vAQGlpPRWRPy+CpfT8QHbZ3
+        22BcjhnUly26A5QWf2wh0ne5LQ==
+X-Google-Smtp-Source: AMsMyM7MPiVwZCk7siZV+RrnjBIXnhITNfmFjP1d0jPnDwzyRQpqWoWoaW4cduej8hxjsM3h643Jxg==
+X-Received: by 2002:a19:4358:0:b0:49e:e545:3cbe with SMTP id m24-20020a194358000000b0049ee5453cbemr6278473lfj.551.1664698648739;
+        Sun, 02 Oct 2022 01:17:28 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d6-20020a2e96c6000000b0026c3ecf9a39sm592594ljj.38.2022.10.02.01.15.08
+        by smtp.gmail.com with ESMTPSA id n5-20020a0565120ac500b0048a9e899693sm1014899lfu.16.2022.10.02.01.17.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Oct 2022 01:15:09 -0700 (PDT)
-Message-ID: <dc5c1c52-efb2-34a6-5aee-e63453fc91c7@linaro.org>
-Date:   Sun, 2 Oct 2022 10:15:08 +0200
+        Sun, 02 Oct 2022 01:17:28 -0700 (PDT)
+Message-ID: <1f077808-9e04-3098-e78e-f9435bc954a9@linaro.org>
+Date:   Sun, 2 Oct 2022 10:17:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm6125: Add GPI DMA nodes
+Subject: Re: [PATCH 1/1] dt-bindings: iommu: arm-smmu: Add binding for sm6125
 Content-Language: en-US
 To:     Martin Botka <martin.botka@somainline.org>, martin.botka1@gmail.com
 Cc:     ~postmarketos/upstreaming@lists.sr.ht,
@@ -64,17 +64,16 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         Marijn Suijten <marijn.suijten@somainline.org>,
         Jami Kettunen <jamipkettunen@somainline.org>,
         Paul Bouchara <paul.bouchara@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221001185526.494095-1-martin.botka@somainline.org>
- <20221001185526.494095-3-martin.botka@somainline.org>
+References: <20221001185715.495477-1-martin.botka@somainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221001185526.494095-3-martin.botka@somainline.org>
+In-Reply-To: <20221001185715.495477-1-martin.botka@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,53 +86,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/10/2022 20:55, Martin Botka wrote:
-> This commit adds and configures GPI DMA nodes.
+On 01/10/2022 20:57, Martin Botka wrote:
+> This patch adds binding for sm6125 SoC
+
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+Fix it in all your patches, please. It is just "Add binding for SM6125 SoC".
+
+In the same time, your commit subject has redundant binding - first in
+prefix, second (redundant) in "Add binding for". So just:
+dt-bindings: iommu: arm-smmu: Add SM6125
+
+Please fix both in all your patches.
+
 > 
 > Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm6125.dtsi | 37 ++++++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> index d35ea4474234..7e135041bd42 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> @@ -6,6 +6,7 @@
->  #include <dt-bindings/clock/qcom,dispcc-sm6125.h>
->  #include <dt-bindings/clock/qcom,gcc-sm6125.h>
->  #include <dt-bindings/clock/qcom,rpmcc.h>
-> +#include <dt-bindings/dma/qcom-gpi.h>
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
-> @@ -1076,6 +1077,42 @@ sdhc_2: mmc@4784000 {
->  			status = "disabled";
->  		};
->  
-> +		gpi_dma0: dma-controller@4a00000 {
-> +			compatible = "qcom,sm6125-gpi-dma";
 
-You will need here sdm845 fallback.
+With subject and commit msg fixes:
 
-> +			#dma-cells = <5>;
-> +			reg = <0x04a00000 0x60000>;
-> +			iommus = <&apps_smmu 0x0136 0x0>;
-> +			dma-channels = <8>;
-> +			dma-channel-mask = <0x1f>;
-> +			interrupts = <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 336 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 337 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 339 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "okay";
-
-No need, its okay by default.
-
-Both comments apply everywhere.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
