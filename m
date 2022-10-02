@@ -2,73 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14F515F23BE
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 17:03:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9BF65F23FC
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 18:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbiJBPDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 11:03:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49852 "EHLO
+        id S229763AbiJBQGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 12:06:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229840AbiJBPDU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 11:03:20 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EAC72B63A;
-        Sun,  2 Oct 2022 08:03:19 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id y9-20020a17090a474900b0020a765b5d39so2252027pjg.3;
-        Sun, 02 Oct 2022 08:03:19 -0700 (PDT)
+        with ESMTP id S229714AbiJBQGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 12:06:18 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08FB327DEA;
+        Sun,  2 Oct 2022 09:06:18 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id v1so7802926plo.9;
+        Sun, 02 Oct 2022 09:06:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date;
-        bh=VYo38vs7YNezoR40xchDftBz5uoIkW9uy3klw2aQRiE=;
-        b=le5Ch+6IvUQDHM92zK/s+3t6wbJkUVXRy0PBHU+4QqECBtin5v2e189b9+eD3aQPdL
-         MWNA6X7uYUCXnhNM2jsrRiU5Okk/7Cg4UkTNJXTncdUWWbQJ6dSf0dNx5NdWlifHfy2u
-         Xr6ksR9Bz9+RdScPITwsIlzSaBgHRuiToxQ77XCop4hwbI9hP0Un4N3JRfD0y7fWrQDk
-         tfiisObonwUoBID456//fRvSeX303MxlVmnEoApkYrjztZmyhcWdJf56RTcpvUezPNJx
-         gQgJh6up+Xu+Bt7JmzRvcyNojbZ3Novg+pTNJMTx0ZNdMsXPxcSIaGJQ4KfZu9KzKr0I
-         PoCg==
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :from:to:cc:subject:date;
+        bh=oQ13gYSWb4S1WuifTJon9HYrTMGDmTftpXlb+B+NlJY=;
+        b=I7Psg0evd5eP89ZF8a99ENA4c6v5o0wtUuvZGO/CnHmrwiRzPlYw3E9tEDCqmYZukn
+         /7UtEAtqZnDoKUsWeZDQx1QphkBJJjxRAQmOIcYC9hUHXHw9oj6EAgLmQ7jplXuENgeh
+         gF6fe/wpMMQKtqonBgxantitj54Hqe3UBTfTSHS3iK/urXHgg0Rs3G2i07VnprBelHsa
+         sLZRA88l64QvGTIsaAN5yGWJHSKhQxoe8gqiCpBh82UuSSLuEnmmZbyzeJRWTnhNYFYL
+         2uCj9rpfoT1afp4TLRp+sptB/cDTzmFpk0CeTH3OgvkiOZaGLytIXcuirwvAhMOdS6OU
+         B0vQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=VYo38vs7YNezoR40xchDftBz5uoIkW9uy3klw2aQRiE=;
-        b=asfprMVch2Ekg87TgJkRfaYLeXjc3/liPFn1EUmh3sfamaqHI/Wh/Rsu8bCt9ZsRZs
-         Yh2jz4pvtFSSu3mRzQw8d5oDTjmwl3IYFOmuH+tegDYDY3wO1Rgew6B5qgIqovHfxT5G
-         jvfVsjqDEG3Z6eDjhLVGvMBO+ir/zeZCrEtv0mKdUk2qJXLmBNyDzb2B/592XUErKSOq
-         UFrbwQNBQSYAiNhKsDk5fDKgxRNcGJ++3/DAQVDgKDVPO3W3Cq/Cnau2+gS+33TtCvg9
-         9TPuI39Wc4F4BeTlHPL7I/20Z70yHmDqn+/Z2+XjcCNlbQZfNtWyaLpoWSdwAiiEnp0R
-         RkBQ==
-X-Gm-Message-State: ACrzQf3Rb3/pcjbHS5tJK6EsjAq6UOuXpECDeBGYlNk/BqpUcyOqSsd+
-        2C2KUymJ8H5VZ/5ksXzf3jM=
-X-Google-Smtp-Source: AMsMyM55t21WxrUgQuftrgKy5pa26M8T48wXLmndYkxxApzYa1Lcv1F2d7UTIvwh6tdn59zlf/h/qQ==
-X-Received: by 2002:a17:902:cecc:b0:177:f3f4:cc90 with SMTP id d12-20020a170902cecc00b00177f3f4cc90mr18087546plg.83.1664722998710;
-        Sun, 02 Oct 2022 08:03:18 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 135-20020a62148d000000b00540c8ed61ddsm1104680pfu.150.2022.10.02.08.03.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Oct 2022 08:03:17 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=oQ13gYSWb4S1WuifTJon9HYrTMGDmTftpXlb+B+NlJY=;
+        b=x2ss6qZfeC6cF/QlTUXes/F3l/NQRnuDy89xxLgo1EiAeXyWWeoP+whqPsYawcEdem
+         LnwQNirPjzIQnOuBAakQg2VsmzPjTU+n+pxYrWQhzC5Bl1gRY2d2gdAUvQrJswq6LeIe
+         Tu0cg+deOd9u8XG3mvyJ6U3sfvvU4FvKna5QfTOuqI2nuuzBsBSUQr4w4aadIQ/z1zps
+         x289h7r1uZf0QYzFki8scjnQT/4eH1eVbjJp7CrPJMBfrg5MgZZRxWN7LAuOZt8+kiCm
+         KbgmkH++VsM7GoC1qKwsSq+8wTW7rsL2u5hafR8gEq8fPCJPrU+40Jrlx+eSOCgRGJzL
+         8A9w==
+X-Gm-Message-State: ACrzQf3rM/iBkXY65PP6F37nFlFwIdfk3OqIqC2NVdSz50dvWnzzhy+i
+        XUG7yhcmr2tdhckkdUkqba9BK9WOBZKCfw==
+X-Google-Smtp-Source: AMsMyM6Drmyv7niSRAeND4bOvYx8IS/OQAdwLC+qONeHVHbvc2xn6N0sW0p60B+OwgUiHZ2vAZFW8g==
+X-Received: by 2002:a17:902:7c8f:b0:176:cdd8:7258 with SMTP id y15-20020a1709027c8f00b00176cdd87258mr17528909pll.49.1664726777456;
+        Sun, 02 Oct 2022 09:06:17 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id w20-20020aa79554000000b0056177786676sm111503pfq.102.2022.10.02.09.06.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Oct 2022 09:06:14 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sun, 2 Oct 2022 08:03:16 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Colin Ian King <colin.i.king@gmail.com>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Christopher Ruehl <chris.ruehl@gtsys.com.hk>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] devicetree: hwmon: shtc1: Clean up spelling mistakes and
- grammar
-Message-ID: <20221002150316.GA2895993@roeck-us.net>
-References: <20220928213139.63819-1-colin.i.king@gmail.com>
+Message-ID: <4e229439-1d2b-5ba3-32a3-9b70ae6dfbbd@roeck-us.net>
+Date:   Sun, 2 Oct 2022 09:06:12 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220928213139.63819-1-colin.i.king@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Srinivas Neeli <srinivas.neeli@amd.com>,
+        wim@linux-watchdog.org, shubhrajyoti.datta@amd.com,
+        michal.simek@amd.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        git@amd.com
+References: <20220927110257.41963-1-srinivas.neeli@amd.com>
+ <20220927110257.41963-3-srinivas.neeli@amd.com>
+ <c1e34c50-50ac-0e06-3af7-a1eec886bf07@linaro.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 2/3] watchdog: xilinx_wwdt: Add Versal window watchdog
+ support
+In-Reply-To: <c1e34c50-50ac-0e06-3af7-a1eec886bf07@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,49 +84,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 28, 2022 at 10:31:39PM +0100, Colin Ian King wrote:
-> The yaml text contains some minor spelling mistakes and grammar issues,
-> clean these up.
+On 9/30/22 03:35, Krzysztof Kozlowski wrote:
+> On 27/09/2022 13:02, Srinivas Neeli wrote:
+>> +
+>> +static void xwwdt_clk_disable_unprepare(void *data)
+>> +{
+>> +	clk_disable_unprepare(data);
 > 
-> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> If watchdog is stopped and then device unbound, don't you have double
+> disable? IOW, where is matching clk_enable?
+> 
 
-Applied (after changing subject as requested)
+See clok_prepare_enable() in the probe function. This kind of code
+is quite common in watchdog drivers. Alternative is to have a remove
+function and call clk_disable_unprepare() from there. The result is
+the same, and the code here is preferred.
+
+Can you be more specific with your concerns ? This is quite common
+code for watchdog drivers, so any concern would be important to
+understand.
+
+>> +}
+>> +
+>> +static const struct watchdog_info xilinx_wwdt_ident = {
+>> +	.options = WDIOF_KEEPALIVEPING |
+>> +		WDIOF_SETTIMEOUT,
+>> +	.firmware_version = 1,
+>> +	.identity = "xlnx_window watchdog",
+>> +};
+>> +
+>> +static const struct watchdog_ops xilinx_wwdt_ops = {
+>> +	.owner = THIS_MODULE,
+>> +	.start = xilinx_wwdt_start,
+>> +	.stop = xilinx_wwdt_stop,
+>> +	.set_timeout = xilinx_wwdt_set_timeout,
+>> +	.ping = xilinx_wwdt_keepalive,
+>> +};
+>> +
+>> +static int xwwdt_probe(struct platform_device *pdev)
+>> +{
+>> +	struct watchdog_device *xilinx_wwdt_wdd;
+>> +	struct device *dev = &pdev->dev;
+>> +	struct xwwdt_device *xdev;
+>> +	int ret;
+>> +
+>> +	xdev = devm_kzalloc(dev, sizeof(*xdev), GFP_KERNEL);
+>> +	if (!xdev)
+>> +		return -ENOMEM;
+>> +
+>> +	xilinx_wwdt_wdd = &xdev->xilinx_wwdt_wdd;
+>> +	xilinx_wwdt_wdd->info = &xilinx_wwdt_ident;
+>> +	xilinx_wwdt_wdd->ops = &xilinx_wwdt_ops;
+>> +	xilinx_wwdt_wdd->parent = dev;
+>> +
+>> +	xdev->base = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(xdev->base))
+>> +		return PTR_ERR(xdev->base);
+>> +
+>> +	xdev->clk = devm_clk_get(dev, NULL);
+>> +	if (IS_ERR(xdev->clk))
+>> +		return PTR_ERR(xdev->clk);
+>> +
+>> +	xdev->freq = clk_get_rate(xdev->clk);
+>> +	if (!xdev->freq)
+>> +		return -EINVAL;
+>> +
+>> +	ret = clk_prepare_enable(xdev->clk);
+>> +	if (ret) {
+>> +		dev_err(dev, "unable to enable clock\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = devm_add_action_or_reset(dev, xwwdt_clk_disable_unprepare,
+>> +				       xdev->clk);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	xilinx_wwdt_wdd->timeout = XWWDT_DEFAULT_TIMEOUT;
+>> +	xilinx_wwdt_wdd->min_timeout = XWWDT_MIN_TIMEOUT;
+>> +	xilinx_wwdt_wdd->max_timeout = XWWDT_MAX_TIMEOUT;
+>> +
+>> +	ret = watchdog_init_timeout(xilinx_wwdt_wdd,
+>> +				    xwwdt_timeout, &pdev->dev);
+>> +	if (ret)
+>> +		dev_info(&pdev->dev, "Configured default timeout value\n");
+>> +
+>> +	spin_lock_init(&xdev->spinlock);
+>> +	watchdog_set_drvdata(xilinx_wwdt_wdd, xdev);
+>> +
+>> +	ret = devm_watchdog_register_device(dev, xilinx_wwdt_wdd);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	dev_info(dev, "Xilinx window watchdog Timer with timeout %ds\n",
+>> +		 xilinx_wwdt_wdd->timeout);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct of_device_id xwwdt_of_match[] = {
+>> +	{ .compatible = "xlnx,versal-wwdt-1.0", },
+>> +	{},
+>> +};
+>> +MODULE_DEVICE_TABLE(of, xwwdt_of_match);
+>> +
+>> +static struct platform_driver xwwdt_driver = {
+>> +	.probe = xwwdt_probe,
+>> +	.driver = {
+>> +		.name = "Xilinx window watchdog",
+> 
+> Do you see spaces in other names of drivers?
+> 
+
+Easier to say that platform driver names must not include spaces (or dashes,
+for that matter).
 
 Thanks,
 Guenter
 
-> ---
->  .../devicetree/bindings/hwmon/sensirion,shtc1.yaml        | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+> Best regards,
+> Krzysztof
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml b/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-> index 7d49478d9668..159238efa9ed 100644
-> --- a/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-> @@ -10,7 +10,7 @@ maintainers:
->    - Christopher Ruehl chris.ruehl@gtsys.com.hk
->  
->  description: |
-> -  The SHTC1, SHTW1 and SHTC3 are digital humidity and temperature sensor
-> +  The SHTC1, SHTW1 and SHTC3 are digital humidity and temperature sensors
->    designed especially for battery-driven high-volume consumer electronics
->    applications.
->    For further information refere to Documentation/hwmon/shtc1.rst
-> @@ -31,13 +31,13 @@ properties:
->    sensirion,blocking-io:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
-> -      If set, the driver hold the i2c bus until measurement is finished.
-> +      If set, the driver holds the i2c bus until the measurement is finished.
->  
->    sensirion,low-precision:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
-> -      If set, the sensor aquire data with low precision (not recommended).
-> -      The driver aquire data with high precision by default.
-> +      If set, the sensor acquires data with low precision (not recommended).
-> +      The driver acquires data with high precision by default.
->  
->  required:
->    - compatible
+
