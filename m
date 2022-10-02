@@ -2,188 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 719C45F223B
-	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 11:16:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49B1D5F223E
+	for <lists+devicetree@lfdr.de>; Sun,  2 Oct 2022 11:20:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229714AbiJBJQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 05:16:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36166 "EHLO
+        id S229640AbiJBJUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 05:20:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbiJBJQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 05:16:22 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90FD838472;
-        Sun,  2 Oct 2022 02:16:17 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id r6so12837493wru.8;
-        Sun, 02 Oct 2022 02:16:17 -0700 (PDT)
+        with ESMTP id S229635AbiJBJUE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 05:20:04 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D10D23176
+        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 02:20:02 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 25so2518687lft.9
+        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 02:20:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=BCrmD7HGeq/gtUjl7FgjlsLBsFqFcCdPf3DYW6/nSiU=;
-        b=S3Zp4w0rKcRxGoVy9bKyHt0KkPtDp7O5b+m8B043FzPy7d3qQe/cExeRjDXXCwZuWH
-         +qoJDQmFAe/O1cA2W8PLqAQgR7rjAZQVgjkchdZvmaC8zwb8l0G63Jnhu0R40yLmmOET
-         NmnQlInPA1YW7r9g52lgHlZNOwMZzAfQrkL+rIiVZKYRrWXqtFje0HruG32i0MkH/+sH
-         s/wYqRYGH4fNXILquTyJpR3m2rKxVx24894pd5kNOB6GCq6XxOlzdtiUJDyStwPZuC4N
-         3b9uRe/meA7PwrJsKH59EGk+o+fCaNEcxVFiWUmsHVrfIXOU7vKGcowI7lMajpkUjxJ0
-         66aw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=bn11ROdfdpwm+pLhcHHe/jAlddmxiu8wNOBInX3vz4w=;
+        b=GU5T016DesMRb9PWPeNsraKqC6o3gment/4VYhGD58OgdKU09S5jsltpJEvZvLjECx
+         2H9vElfbdIhRAOeALFeqbwNUprSnbkHx1VhSQ/dVAeQACQmFI7EthGCLNk11U5eGT7qG
+         Co8IYFKnfA7aAbmXfBNdZr6mTpE1ViHMcHSWQAeSX5RNJAkwW1xZIb235UEtIKmOs1XX
+         9rJrdXbe9zE2HYGYzo1y1g6lwGny8J0EAdJtrpMEZpz+omhDeZkgQzv51M6IvHAn7cP9
+         fmxWU37f8ECDdeTMq/u48LXaYJsIlLQu3e1JZea2HoTLiMnBf/Kp57zRJ/3yzYuK+SFX
+         h/7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=BCrmD7HGeq/gtUjl7FgjlsLBsFqFcCdPf3DYW6/nSiU=;
-        b=N548rpNFjDiBu7Tc02VXGgzVcroEvAvetbuCHRLYU3F9jkR3YqVRIXS96b7Icdo37i
-         nRn2IvyvP9ELQthLANnvAmhNp03DSip8Anv4SNDlZQWfHi+JPTJhe5yRqDNH2GwlRM4M
-         Lz2NU1dsMJem297f/rHPuBNYq1HlIwPjuxmOP0Bw1OHJKqh21jXFF+anNxxAecxAK7ej
-         mDZ2RPo8VEawXed88HSieNJNCuGPd6HjV/sUbSnvp1NhjgZXHRNx1dMdI+h6C36TIPBQ
-         /roWYFP1ySKDNGCyeNy9Il9BFA0B0eD6bMNkryDPmm6uqi8urX5zhxd3RtIdX6MXngvs
-         5Yxw==
-X-Gm-Message-State: ACrzQf3VUSwkG+Mrp++vO76QrsSuXHhoC9dCGoiGYBJkHzphHbt7DLSy
-        5UmzV9lc5L/mFSQa/InnqY6pFdXMEg3bqA==
-X-Google-Smtp-Source: AMsMyM4wMpXiX+KgF/fCSCi3q+JnYkmst+jWZy3pAVaWmMAktNIBpmOcdTG2tj+ZmKdbUlNNiz0ZMw==
-X-Received: by 2002:a05:6000:1110:b0:22e:327d:c146 with SMTP id z16-20020a056000111000b0022e327dc146mr2933416wrw.453.1664702175803;
-        Sun, 02 Oct 2022 02:16:15 -0700 (PDT)
-Received: from localhost.localdomain (188.red-88-10-59.dynamicip.rima-tde.net. [88.10.59.188])
-        by smtp.gmail.com with ESMTPSA id bs11-20020a056000070b00b0022a2bacabbasm7107638wrb.31.2022.10.02.02.16.14
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=bn11ROdfdpwm+pLhcHHe/jAlddmxiu8wNOBInX3vz4w=;
+        b=yxW6mpMzALBunaXxIDI2iW7EQ/PP830j7Af0XyFLMdhRiZUDO66VR057KYLbd3Sw+J
+         vfL5M291hBv77hzgiiRtn+T2wHhnqCCT3iUAbKePjuN7UyXzQOMGZdTf91kizpU7UWvA
+         d8539Hx2phIBBnMmXM6vp7uDPyNAY+ySc/DHUdg9dCk2VePBf7QzHQWaUs5mpgr+xtpX
+         i6cNjlrRRIHSl/N6TUP9NuXiy+t0YbOoozH4dDDNHH4PbUY2PCtZjsYYaMa7hrVIuzAD
+         Lrkv+/YUbRsFCg/1Ohm0bok7nW9wQU6+t9yIrOOwADznR4DkK1AtfJfxi89Kxis9JNxg
+         61uA==
+X-Gm-Message-State: ACrzQf1tUNrdBX1uSr5CVsILa2jC4cCNI8PPz4O59cKxFnTh7TEyKIsO
+        /YJJfd23PpDhOGpdz4oL5jq57Q==
+X-Google-Smtp-Source: AMsMyM4w+lYlLKZZhbkKGhO/XiQI77DNkWVpKV2Sw19tp3osAwXYr/rhRfgU7y37lA5+ODq/z3Ok9w==
+X-Received: by 2002:ac2:5384:0:b0:4a2:3a45:520 with SMTP id g4-20020ac25384000000b004a23a450520mr440227lfh.560.1664702400558;
+        Sun, 02 Oct 2022 02:20:00 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id j2-20020a056512398200b0048ad4c718f3sm1026393lfu.30.2022.10.02.02.19.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Oct 2022 02:16:15 -0700 (PDT)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        hauke@hauke-m.de, zajec5@gmail.com, tsbogend@alpha.franken.de,
-        zhouyanjie@wanyeetech.com, linux-mips@vger.kernel.org,
-        arinc.unal@arinc9.com
-Subject: [PATCH v5 2/2] dt-bindings: mips: brcm: convert Broadcom SoCs to schema
-Date:   Sun,  2 Oct 2022 11:16:11 +0200
-Message-Id: <20221002091611.946210-3-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221002091611.946210-1-sergio.paracuellos@gmail.com>
-References: <20221002091611.946210-1-sergio.paracuellos@gmail.com>
+        Sun, 02 Oct 2022 02:20:00 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: sunxi: correct indentation
+Date:   Sun,  2 Oct 2022 11:19:59 +0200
+Message-Id: <20221002091959.68815-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the yaml binding for MIPS Broadcom cable/DSL/settop platforms.
+Do not use spaces for indentation.
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/mips/brcm/soc.yaml    | 97 +++++++++++++++++++
- 1 file changed, 97 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mips/brcm/soc.yaml
+ arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mips/brcm/soc.yaml b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
-new file mode 100644
-index 000000000000..a47a5bcc5e0b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mips/brcm/soc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom cable/DSL/settop platforms
-+
-+maintainers:
-+  - Hauke Mehrtens <hauke@hauke-m.de>
-+  - Rafał Miłecki <zajec5@gmail.com>
-+
-+description: |
-+    Boards Broadcom cable/DSL/settop SoC shall have the following properties.
-+    The experimental -viper variants are for running Linux on the 3384's
-+    BMIPS4355 cable modem CPU instead of the BMIPS5000 application processor.
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+
-+  compatible:
-+    enum:
-+      - brcm,bcm3368
-+      - brcm,bcm3384
-+      - brcm,bcm33843
-+      - brcm,bcm3384-viper
-+      - brcm,bcm33843-viper
-+      - brcm,bcm6328
-+      - brcm,bcm6358
-+      - brcm,bcm6362
-+      - brcm,bcm6368
-+      - brcm,bcm63168
-+      - brcm,bcm63268
-+      - brcm,bcm7125
-+      - brcm,bcm7346
-+      - brcm,bcm7358
-+      - brcm,bcm7360
-+      - brcm,bcm7362
-+      - brcm,bcm7420
-+      - brcm,bcm7425
-+
-+  cpus:
-+    type: object
-+    additionalProperties: false
-+    properties:
-+      '#address-cells':
-+        const: 1
-+
-+      '#size-cells':
-+        const: 0
-+
-+      mips-hpt-frequency:
-+        description: MIPS counter high precision timer frequency.
-+         This is common to all CPUs in the system so it lives
-+         under the "cpus" node.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+
-+    patternProperties:
-+      "^cpu@[0-9]$":
-+        type: object
-+        $ref: /schemas/mips/cpus.yaml#
-+        unevaluatedProperties: false
-+
-+    required:
-+      - mips-hpt-frequency
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+     / {
-+         compatible = "brcm,bcm3368";
-+         #address-cells = <1>;
-+         #size-cells = <1>;
-+         model = "Broadcom 3368";
-+
-+         cpus {
-+           #address-cells = <1>;
-+           #size-cells = <0>;
-+
-+           mips-hpt-frequency = <150000000>;
-+
-+           cpu@0 {
-+             compatible = "brcm,bmips4350";
-+             device_type = "cpu";
-+             reg = <0>;
-+           };
-+
-+           cpu@1 {
-+             compatible = "brcm,bmips4350";
-+             device_type = "cpu";
-+             reg = <1>;
-+           };
-+         };
-+       };
-+...
+diff --git a/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi b/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
+index e899d14f38c3..1d1d127cf38f 100644
+--- a/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
++++ b/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
+@@ -89,13 +89,13 @@ switch-4 {
+ 	};
+ 
+ 	reg_gmac_3v3: gmac-3v3 {
+-		      compatible = "regulator-fixed";
+-		      regulator-name = "gmac-3v3";
+-		      regulator-min-microvolt = <3300000>;
+-		      regulator-max-microvolt = <3300000>;
+-		      startup-delay-us = <100000>;
+-		      enable-active-high;
+-		      gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>;
++		compatible = "regulator-fixed";
++		regulator-name = "gmac-3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		startup-delay-us = <100000>;
++		enable-active-high;
++		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>;
+ 	};
+ 
+ 	wifi_pwrseq: wifi_pwrseq {
 -- 
-2.25.1
+2.34.1
 
