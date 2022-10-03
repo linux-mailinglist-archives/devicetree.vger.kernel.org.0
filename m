@@ -2,120 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 669E55F308D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 14:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 102325F3088
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 14:54:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229814AbiJCMzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 08:55:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35180 "EHLO
+        id S229627AbiJCMyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 08:54:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229844AbiJCMzm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 08:55:42 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 464BB248DF;
-        Mon,  3 Oct 2022 05:55:40 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 293ConOO019088;
-        Mon, 3 Oct 2022 12:55:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=SjrqGSp+a9K85emGYrWsJSS7eS0icYuvSLsH2fV2m9U=;
- b=GvuXXP1FLHyoGM9JMAEo82XoEs/78rrr05v42s2DkpV4fuN0VMQZlRV3Zx4/+M7/Hd35
- bPbDRY6e7cnoGmNI5/qtQHnQwNTQnlCYeGXOqWdafePCiMJyArpi9jSgYlp8wp+TkNkU
- CafoWzaK+MbVDP62eAxdzIQ0ByIPvYafRWt3B1YT4nN45A2+7+4W8SYjoWDtyzDntqOu
- PpSGyV4QVKzenlk6hm+kGs7YK72iWesoD6N/sNoddotC4bRrsQ307AqZ0teipE4ONrxI
- 8TSypTypBNKkA4V7d9GOyw8hH2lgxf+Qr835SbucoV7g/LLX95A2wLCRMXtR8PBAHRN3 mw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jxcvtun03-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Oct 2022 12:55:33 +0000
-Received: from pps.filterd (NALASPPMTA04.qualcomm.com [127.0.0.1])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 293CtWKR003044;
-        Mon, 3 Oct 2022 12:55:32 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by NALASPPMTA04.qualcomm.com (PPS) with ESMTPS id 3jxemkfkjq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Oct 2022 12:55:32 +0000
-Received: from NALASPPMTA04.qualcomm.com (NALASPPMTA04.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 293CtW2E003035;
-        Mon, 3 Oct 2022 12:55:32 GMT
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (PPS) with ESMTPS id 293CtW4q003034
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Oct 2022 12:55:32 +0000
-Received: from hu-ppareek-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Mon, 3 Oct 2022 05:55:27 -0700
-From:   Parikshit Pareek <quic_ppareek@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Andrew Halaney <ahalaney@redhat.com>,
-        "Shazad Hussain" <quic_shazhuss@quicinc.com>,
-        Brian Masney <bmasney@redhat.com>,
-        "Johan Hovold" <johan@kernel.org>,
-        Parikshit Pareek <quic_ppareek@quicinc.com>
-Subject: [PATCH v5 1/3] dt-bindings: arm: qcom: Document additional sa8540p device
-Date:   Mon, 3 Oct 2022 18:24:41 +0530
-Message-ID: <20221003125444.12975-2-quic_ppareek@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221003125444.12975-1-quic_ppareek@quicinc.com>
-References: <20221003125444.12975-1-quic_ppareek@quicinc.com>
+        with ESMTP id S229759AbiJCMyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 08:54:46 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE9065E9
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 05:54:45 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id s17so1349870ljs.12
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 05:54:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=dxMU/eC1Lunxv3B7tomlrKj0mLpSAA7arNhWezvMtIc=;
+        b=c9TPQpMBMU83n4lS/rAV8nx+CRt4XVimRM53dxNf7lt1PpFgscIs5VmEX2oNq2WnWv
+         +/TDO38pY+DZTEpzIMPGq43JfXAUYLhR+E5t+zf7g9Bhe/AsVAsjSr2KshwdKPBO+JCm
+         TKDGFI/s1wMSHwi208oka+JRvDVkB76cvja4uIkOaBmfi8VdaMp5LYg96SMg9XXlds6B
+         qYh3zNRN8WtQYnTMgt4jeMsD0wRv9RMRSEbZZfh6XN790CBVbvxk6PM8RyIs+NL+ocOZ
+         LV6o+yf2KnQLqBn+4QyYn1Acomymdl1X5KV+FIht207qHMfclNrr6CToajahMNzW7Cc9
+         EXUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=dxMU/eC1Lunxv3B7tomlrKj0mLpSAA7arNhWezvMtIc=;
+        b=Uxw29NTuR26KyhK/rk97vt86GJLUivmWxn6bEkXl1sbEp1SmsnITjiqvXnTURujiHw
+         eEyZH3Ey9IYnZolfCXjII+wFrDRmHWAHv3iabB3WmSc6VK/SovRFUlb57HKNS2Hq8VMX
+         qTCknUDUiXU4c0UkSwkYKrZdPI238tNq3ZgKddwtDTSl66pyjXp+UBf36Db0Vg+qTa1M
+         DnhefQRXNbZkJvLDAA9nudknW8/ip0EEFud6V8r9u9boAxOGVK0Cd0z0WBK4SWPXL4q6
+         2cVyGImBIlYy7S7J960VoNCrerD1UcWf81cTFS64BD3QLt/Ec8xgpKTekPnBjl9ZbgUY
+         Z4uQ==
+X-Gm-Message-State: ACrzQf2VDazH6WHu81PUQBak9Ybba0RWB9Hs0CVgjnzisescEfHma68x
+        NV97/sJ/MRz2LQT3qUIVT8nCpA==
+X-Google-Smtp-Source: AMsMyM6dwThfWQ2TjRoaPWNTQltLmPcWfLroagS3x8RfaX/fegHJZvehMnu3gTGvpTvFaRNxdFzg6g==
+X-Received: by 2002:a2e:b60d:0:b0:26d:d564:2fdb with SMTP id r13-20020a2eb60d000000b0026dd5642fdbmr1836781ljn.212.1664801683670;
+        Mon, 03 Oct 2022 05:54:43 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id k21-20020a05651210d500b00497a41b3a42sm1454937lfg.88.2022.10.03.05.54.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Oct 2022 05:54:43 -0700 (PDT)
+Message-ID: <965176be-4248-01f2-d2fe-2f9f97ef168a@linaro.org>
+Date:   Mon, 3 Oct 2022 14:54:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zdtVFgj8Auw9M3poxMYR4xl3KE-i-__m
-X-Proofpoint-ORIG-GUID: zdtVFgj8Auw9M3poxMYR4xl3KE-i-__m
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-03_02,2022-09-29_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- impostorscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015
- spamscore=0 mlxlogscore=880 adultscore=0 priorityscore=1501 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210030079
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Polyhex Technology
+ Co.
+Content-Language: en-US
+To:     Daniel Scally <dan.scally@ideasonboard.com>,
+        Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        laurent.pinchart@ideasonboard.com, kieran.bingham@ideasonboard.com,
+        debix-tech@polyhex.net
+References: <20221003083705.22495-1-dan.scally@ideasonboard.com>
+ <20221003083705.22495-2-dan.scally@ideasonboard.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221003083705.22495-2-dan.scally@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the ADP ride device to the valid device compatibles found on the
-sa8540p platform.
+On 03/10/2022 10:37, Daniel Scally wrote:
+> Add an entry for Polyhex Technology Co. to vendor-prefixes.yaml
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
 
-Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 1b5ac6b02bc5..ce6a42227249 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -670,6 +670,7 @@ properties:
-       - items:
-           - enum:
-               - qcom,sa8295p-adp
-+              - qcom,sa8540p-adp-ride
-           - const: qcom,sa8540p
- 
-       - items:
--- 
-2.17.1
+Best regards,
+Krzysztof
 
