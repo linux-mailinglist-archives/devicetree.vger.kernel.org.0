@@ -2,111 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DAF85F31DE
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 16:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FE5F5F3220
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 16:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbiJCOUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 10:20:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39744 "EHLO
+        id S230044AbiJCOqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 10:46:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229816AbiJCOUv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 10:20:51 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5FA240BE7;
-        Mon,  3 Oct 2022 07:20:49 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id q9so9788899pgq.8;
-        Mon, 03 Oct 2022 07:20:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=vF6jYskKFtL76I9VL7jQSPvHW3USZIrLaYZQO7sPj7s=;
-        b=BhRHDiqGgUdQnMTRYUV11CK7hwH49qJkPSBtM/CDKWmjemWUSWbn0BUY01ojBhembD
-         yH/w2D6+jUwSgtBwYWQ0hWL2v7LYDUHTHKWWPdqawHOQaBqJ2CpaMoBgCcGnNxPeW2SZ
-         yjxsbIMmEFlTkmm8X1F9ELHDNneTWvWzOxLdEtVR2/lRkbQgag/oGDYAmEm3ilFUwZ4H
-         ntIy1bHIAlxfI51n6VZCUOSeU4R6mftDD/EJmT1PBD9NVTlbNiTQHY3JejcTJXIdu+aX
-         UmYkLF7fsH6rPTDwVYaA19FQOinV0y27JYd3SrZePQck4/X88iivUvC3u2rjNSsHXn0C
-         DkCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=vF6jYskKFtL76I9VL7jQSPvHW3USZIrLaYZQO7sPj7s=;
-        b=3vgcqDYPmt+IdUastnBaRGYGMbDTcSGK421PfayEtgaevWu9YE/UgH6yEekO3MNk30
-         zXyXim2ouKRt0KkUFDG/P4j19hGKdyUlAr4uVsbmwMja/Lr6dxNfxByK4xGiCu7PSJae
-         NIcqhP0TWTp8O0Dvtf7iR7HVlZwClBNv8V06109vc4zZw4ebXB6JcH1z/UEjtFAEwjG6
-         9SVYRRPK4/BFPWUT75kg8WkHesidhN24S/j3Db6c5WU0IGtpui+/sJT2Qelr/vkHx6we
-         xeOLyVPZ+y7HXX1K01Ng7AtRz+P4pNGIVxbSw4wRbC4qeggWNI8VZLghhm2lE6cved7x
-         u1iA==
-X-Gm-Message-State: ACrzQf1fIrZbtheC1lK0kVB/D+d6jsjtbDR4H4AYFx9oPiZUpFID2OOe
-        MiYx52PbL8vw0BJbyXZh5q5Z8yKbXZw=
-X-Google-Smtp-Source: AMsMyM4nAzRILr9IasBeS8lmn4Z6Lth1mDgbD6QRrhKHx67ZFLJtnvnRGUhN8AG1OHIWFbFg2srjGw==
-X-Received: by 2002:a65:4bc1:0:b0:439:e6a5:122a with SMTP id p1-20020a654bc1000000b00439e6a5122amr18772158pgr.443.1664806849078;
-        Mon, 03 Oct 2022 07:20:49 -0700 (PDT)
-Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
-        by smtp.gmail.com with ESMTPSA id s4-20020a170903214400b001750b31faabsm7119081ple.262.2022.10.03.07.20.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 07:20:48 -0700 (PDT)
-Date:   Mon, 3 Oct 2022 07:20:45 -0700
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     "Gaddam, Sarath Babu Naidu" <sarath.babu.naidu.gaddam@amd.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "yangbo.lu@nxp.com" <yangbo.lu@nxp.com>,
-        "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
-        "Sarangi, Anirudha" <anirudha.sarangi@amd.com>,
-        "Katakam, Harini" <harini.katakam@amd.com>
-Subject: Re: [RFC PATCH] dt-bindings: net: ethernet-controller: Add
- ptimer_handle
-Message-ID: <YzrvveFVh+Qt6TzN@hoboy.vegasvil.org>
-References: <20220929121249.18504-1-sarath.babu.naidu.gaddam@amd.com>
- <20220930192200.GA693073-robh@kernel.org>
- <MW5PR12MB55988BE28F8879AF78B4441E875B9@MW5PR12MB5598.namprd12.prod.outlook.com>
+        with ESMTP id S229945AbiJCOqJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 10:46:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BAA02C64B;
+        Mon,  3 Oct 2022 07:46:08 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 294EF6601B15;
+        Mon,  3 Oct 2022 15:46:06 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664808367;
+        bh=/FVS6/5ZqbbGMxW7m+yjSMkIk/Rq9l4aAT/jU6ZOLi8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=bDkm/xCNVzSoHPEJRFO6q0zI5aXmON0x0NiIPKzlxTQWF4MoIUWzskOaJ3hFEaFk9
+         ODY7fHFNegpei8JwOC40L/cjUjItWdY0qaYiWy3md+w4eriBBAM572M4SAD+0prbsF
+         sN9PNTD8AG8jLtXSDlUeTxP0zIb2pKAg3+XD0dzeETTqf0Y2dRu0P3vQplZ0gwhC04
+         9a+1BHe4r746PKNIXXMSmlwRzO0Hx/CiJ1OCpADCBxyg0XWwDAOIP5YYtVdBhdcsbg
+         H0aXa+sQTJgabIPLEhO7sjGLmHo1NuJ6DbVXhplWQ46fXumAZgbXfyWxRD5pR2yFh8
+         oMlmi7fzQ+Qvw==
+Message-ID: <e3f751e4-4cca-e869-5b7b-45205f0f12c1@collabora.com>
+Date:   Mon, 3 Oct 2022 16:46:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MW5PR12MB55988BE28F8879AF78B4441E875B9@MW5PR12MB5598.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2] dt-bindings: mfd: mt6370: fix the interrupt order of
+ the charger in the example
+Content-Language: en-US
+To:     ChiaEn Wu <peterwu.pub@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        matthias.bgg@gmail.com, sre@kernel.org
+Cc:     chiaen_wu@richtek.com, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <9dda705a8d67826306f6c6129722d3ad8edc96fc.1664816175.git.chiaen_wu@richtek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <9dda705a8d67826306f6c6129722d3ad8edc96fc.1664816175.git.chiaen_wu@richtek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 03, 2022 at 09:29:00AM +0000, Gaddam, Sarath Babu Naidu wrote:
-
-> PHC(PTP Hardware clock) index is a number which is used by ptp4l
-> application. When a PTP device registers with a kernel, device node
-> will be created in the /dev.For example, /dev/ptp0, /dev/ptp1.
+Il 03/10/22 11:04, ChiaEn Wu ha scritto:
+> From: ChiaEn Wu <chiaen_wu@richtek.com>
 > 
-> When PTP and Ethernet are in the same device driver, This PHC index
-> Information is internally accessible. When they are independent drivers,
-> PTP DT node should be linked to ethernet node so that PTP timer
-> information such as PHC index is accessible.   
+> Fix the interrupt order of the charger in the binding example.
+> 
+> Fixes: 76f52f815f1a ("dt-bindings: mfd: Add MediaTek MT6370")
+> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Good explanation.  The handle you propose makes sense to me.
-Maybe let the name spell it out clearly?
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-	fman0: fman@1a00000 {
-		ptp-hardware-clock = <&phc0>;
-	}
-	phc0: ptp-timer@1afe000 {
-		compatible = "fsl,fman-ptp-timer";
-		reg = <0x0 0x1afe000 0x0 0x1000>;
-	}
 
-In any case, to me "timer" has a different connotation than "clock".
-
-Thanks,
-Richard
