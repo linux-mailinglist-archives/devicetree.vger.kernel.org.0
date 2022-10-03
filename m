@@ -2,80 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 513545F3358
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 18:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E36895F335A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 18:21:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbiJCQU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 12:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41688 "EHLO
+        id S229808AbiJCQU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 12:20:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbiJCQUu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 12:20:50 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F291CB3E;
-        Mon,  3 Oct 2022 09:20:46 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1324e7a1284so4865875fac.10;
-        Mon, 03 Oct 2022 09:20:46 -0700 (PDT)
+        with ESMTP id S229780AbiJCQU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 12:20:58 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23BE113D22
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 09:20:57 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id v128-20020a1cac86000000b003b7a6ad5ccdso3140502wme.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 09:20:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date;
+        bh=kqY6OOfgOUM95ZCJP+o85wHk1MxmbH51heuqF3gddv8=;
+        b=R352KpR/LTOEulaCgRUUqaVteUSBk1DFCKTYVy5y71yCzjD7eQ8e9wruHlODhLs+dC
+         ucHE+xZiozgap4gVoAwpf8JvyG0qZ65T1Qxc+ND4kAC9Ht8CVQZjQyPeknS2WnUIWjfP
+         BTv8bUhSVc1D/eMXQ5IKKM9WsALp33T2bEbweS51cB/LdhMklV4Va6OlatWKdQqtCAjd
+         HOoGbRoTujxvdYDgBmztt9ZkXI8nWrrBOGwiXDEG4lizr87RNu/0d1MsPZVXi4sbh/XA
+         nLyNvDsOiSvs5Ut3J7nRd4srnFQea0DnNTBRhyYeuYgKxZJav0JRnGNBjJpJIaiw6l0g
+         K11w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=SrQIQIx2drceX3SN+9GboVD+7L3gb+zcudmTPkuxG4o=;
-        b=74PA7FsdMI96xzv9bqMWG/1z88UVSaX9POETSMo4bJBNWkOElBK8jZZ77mjDsBZm8Z
-         Ga8ah6PnAyBnDe1pPW0cDzALv9lUfDZpZd5BugKnURxt9mYFZ3Nla05POwd14UDmQb6U
-         cNhNTkDX7EWfsfGGesctXNsT/PKmMNe3hFLRG2QiHnbLWSCaulQQdbTmmhAV0ad5Y1Yx
-         YdEvp9/sGqNGpqnufXJRZwdGGWU8bwk1mrL9yqg3grty+g94uOfyzzZF0duO0Oo+TBeL
-         5+aO8EI2BUW/C9z+AIv3TgowOlffIlsK/6QF4Bf9T4Jnll1/70PDQF5oCW4Xi0zwcTfM
-         Nc5g==
-X-Gm-Message-State: ACrzQf2Q005qtIGy919ih/4gpbc8sUaOueuWq1QsOiRh0sinJQgOippD
-        u4XeRaDFQsPW1O5/aYqoDQ==
-X-Google-Smtp-Source: AMsMyM6cKgji6ciyhbfcp4feIvszGehOxAdPhv6e9KCbMI8b2WBWiPgQvBwA1TqrxbMdcC2DrtjgNg==
-X-Received: by 2002:a05:6870:f60e:b0:131:b7cc:f994 with SMTP id ek14-20020a056870f60e00b00131b7ccf994mr5798922oab.113.1664814046016;
-        Mon, 03 Oct 2022 09:20:46 -0700 (PDT)
-Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u17-20020a4ac991000000b00435a8024bc1sm2146879ooq.4.2022.10.03.09.20.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 09:20:45 -0700 (PDT)
-Received: (nullmailer pid 2402827 invoked by uid 1000);
-        Mon, 03 Oct 2022 16:20:44 -0000
-Date:   Mon, 3 Oct 2022 11:20:44 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chancel Liu <chancel.liu@nxp.com>
-Cc:     robh+dt@kernel.org, broonie@kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
-        tiwai@suse.com, devicetree@vger.kernel.org,
-        shengjiu.wang@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        linuxppc-dev@lists.ozlabs.org, perex@perex.cz, lgirdwood@gmail.com
-Subject: Re: [PATCH v3 1/7] ASoC: dt-bindings: fsl_rpmsg: Add a property to
- assign the rpmsg channel
-Message-ID: <166481404372.2402771.4568296878254068845.robh@kernel.org>
-References: <20220930064441.2548505-1-chancel.liu@nxp.com>
- <20220930064441.2548505-2-chancel.liu@nxp.com>
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=kqY6OOfgOUM95ZCJP+o85wHk1MxmbH51heuqF3gddv8=;
+        b=QWRus7eROXaCOvr+de+NKr7twLmvyPxV8RMtNoNr2JkVchY+T8ZFrAKTwPIHVE1y7d
+         xohbUqHimxM14Qmva61gbYCKphWZTlEUbuIW7p6GeCwyFpyLw7l73bpBsrk6KJzPdGh8
+         RFO3lhglmmWyxXGwqncuU9nxIfAsHdwVc3521/WcNKrGBgwJ6TUJbPRs4UDug7iqsuTF
+         bCLQghSEZ+aUAoUSAT+XExn32eu8Wwq+VNmeqbGDOQ32oIcdyDAvR013GwcwQ2yMzEy/
+         oC8fxNWg549JaWfPgR0nCHmyg6WimCJgV5r/mdEjhDg8z2Cnsuo0Iwuh7MPQAb0XTmMs
+         b4/g==
+X-Gm-Message-State: ACrzQf0j/KVQkSX+JtUe2qf7Hb2RwghzEzts/Ng1qMekCXxaVESuvYmX
+        XDdo1+qKZbXeGlkD7W9ZPxcSBg==
+X-Google-Smtp-Source: AMsMyM5KNG4FRtDeDkU6pm6aVrs3IyuTz2D20TctkP7HUk6KMJW+MERxFt2aB0+RlvxtqNFaWr1+EA==
+X-Received: by 2002:a05:600c:6d2:b0:3b4:8361:6154 with SMTP id b18-20020a05600c06d200b003b483616154mr7713625wmn.89.1664814055648;
+        Mon, 03 Oct 2022 09:20:55 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:9da7:1217:d35f:d7cf? ([2a01:e0a:982:cbb0:9da7:1217:d35f:d7cf])
+        by smtp.gmail.com with ESMTPSA id h18-20020a05600c2cb200b003b51a4c61aasm17489992wmc.40.2022.10.03.09.20.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Oct 2022 09:20:55 -0700 (PDT)
+Message-ID: <4c0edc64-85cb-8f61-68e3-d86be2b25940@linaro.org>
+Date:   Mon, 3 Oct 2022 18:20:54 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220930064441.2548505-2-chancel.liu@nxp.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 10/23] ARM: dts: qcom: apq8064-cm-qs600: pull SDCC pwrseq
+ node up one level
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220930185236.867655-1-dmitry.baryshkov@linaro.org>
+ <20220930185236.867655-11-dmitry.baryshkov@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20220930185236.867655-11-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Sep 2022 14:44:35 +0800, Chancel Liu wrote:
-> Add a string property to assign the rpmsg channel this sound card sits
-> on. This property can be omitted if there is only one sound card and it
-> sits on "rpmsg-audio-channel".
+On 30/09/2022 20:52, Dmitry Baryshkov wrote:
+> There are no need to add additional simple-bus nodes just to populate
+> a single pwrseq device. Pull it up one level into /. While we are at it
+> also fix node name replacing underscore with dash.
 > 
-> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 36 +++++++++++++++++--
->  1 file changed, 34 insertions(+), 2 deletions(-)
+>   arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts | 17 +++++------------
+>   1 file changed, 5 insertions(+), 12 deletions(-)
 > 
+> diff --git a/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts b/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts
+> index 5ff0d9a275cc..d6ecfd8addb7 100644
+> --- a/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts
+> +++ b/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts
+> @@ -15,18 +15,11 @@ chosen {
+>   		stdout-path = "serial0:115200n8";
+>   	};
+>   
+> -	pwrseq {
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+> -		ranges;
+> -		compatible = "simple-bus";
+> -
+> -		sdcc4_pwrseq: sdcc4_pwrseq {
+> -			pinctrl-names = "default";
+> -			pinctrl-0 = <&wlan_default_gpios>;
+> -			compatible = "mmc-pwrseq-simple";
+> -			reset-gpios = <&pm8921_gpio 43 GPIO_ACTIVE_LOW>;
+> -		};
+> +	sdcc4_pwrseq: pwrseq-sdcc4 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wlan_default_gpios>;
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&pm8921_gpio 43 GPIO_ACTIVE_LOW>;
+>   	};
+>   
+>   	/* on board fixed 3.3v supply */
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
