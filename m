@@ -2,162 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D95005F33B2
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 18:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B67305F33B9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 18:40:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229462AbiJCQiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 12:38:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39094 "EHLO
+        id S229830AbiJCQkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 12:40:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbiJCQiy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 12:38:54 -0400
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3863255A4;
-        Mon,  3 Oct 2022 09:38:53 -0700 (PDT)
-Received: by mail-oo1-f47.google.com with SMTP id h1-20020a4aa741000000b004756c611188so7107128oom.4;
-        Mon, 03 Oct 2022 09:38:53 -0700 (PDT)
+        with ESMTP id S229930AbiJCQjh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 12:39:37 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD067D84;
+        Mon,  3 Oct 2022 09:39:36 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id u68so1626406oie.10;
+        Mon, 03 Oct 2022 09:39:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=/z8QKfMMd+WonlTY8n0DPm8aF8FNJazKFMMzbtj3WIs=;
-        b=mrb2Behz1V26meOhA5JAxn9EojUCMuslpyUwhz3pWta30a+z5K8nEDjL3T6TQpRjmf
-         C1lESN37I5ND8exOtMHfFc3DyVycNUB8lU6H/B/Ad9fTpxVh4wS+666CpxXyO38/rK79
-         Lts41eQEmyR8wzKYhmOuCqva8dBt0kfLECrGW1okjrgG3UB2NGppCqNIaj0yJOaIUKUx
-         qOpa2chZkQb95FVLZDEoFdqJ4SECxSubtDjSrGi3Bd5bm66uiCwDezdaYPhmcVY/DXgy
-         IcryJjdoRpQFwAOXcOAfh3XC/grPs+nv1kcCnHmO4nnjopIxrRYhwmLpEsjFy7ShO3yF
-         5DqQ==
-X-Gm-Message-State: ACrzQf0XZjMDl7iU0dx/pDMaf9dvsyMzWvK1dbZXC6MfbAGJEkGgEtzz
-        DE1CABfTJSsRlRbs4rTOSw==
-X-Google-Smtp-Source: AMsMyM4lszwFBCq6xZtL8Y5wePiwpGG3IHD7bBaryZPr5QpC4yM9+bd2vnHC3Cb5CLrmbhQmc34z8A==
-X-Received: by 2002:a9d:4c83:0:b0:655:f666:801d with SMTP id m3-20020a9d4c83000000b00655f666801dmr8543844otf.303.1664815132666;
-        Mon, 03 Oct 2022 09:38:52 -0700 (PDT)
+        bh=rCkVgFFm81c7XCEOFqwSIFr8KWJouyjzQpmxMv51+P0=;
+        b=yu6EoevO7HioKE1ZGVlcISPMReHkhyWq5jQuY/wdl7of3lWymzhkK0qYN2gIFyZ/oZ
+         guUKb8jWXabh+DJvcw59+Od4NmTsFp9SH3/uLXMizNaa1XnYBq7dQS1OoK0XmiW7VeJ2
+         dOeY1WejfcHaXW7EFRnrLj/QBapG5uxIn/2JOt98kH0KMwI0YfZcbUlhk12P6e7OBLZu
+         7WDgzZOGhbnBeZc0fQDnkbDNw2Y4wuoSZAQylaSJ+Vy/C5EupOYZ4ltzWxENZmPthDUu
+         9jp6CfWI+AMPjOtIDD4/oPSpejcQWYqP3SB4SC3BKxbKsR4HIvMvLhhteQoTH8CaGANI
+         FkUA==
+X-Gm-Message-State: ACrzQf25d6hW6sarTzli9SazCYkg7AaXFnJGd0kIzjVbmtqWx3PANdJL
+        Is8abbfFCugOi5ZuIoNvdQ==
+X-Google-Smtp-Source: AMsMyM5g62exClojpTpSmD9HqfcpJlqbBa2KyN+2JGz3TWulMtbWRZ3rBot/gwNKUtjp4G3ki+kjdg==
+X-Received: by 2002:aca:1c13:0:b0:350:ce21:a022 with SMTP id c19-20020aca1c13000000b00350ce21a022mr4604235oic.172.1664815176043;
+        Mon, 03 Oct 2022 09:39:36 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l6-20020a056871068600b0011e37fb5493sm3089089oao.30.2022.10.03.09.38.51
+        by smtp.gmail.com with ESMTPSA id fp18-20020a056870659200b00132741e966asm872725oab.51.2022.10.03.09.39.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 09:38:52 -0700 (PDT)
-Received: (nullmailer pid 2422556 invoked by uid 1000);
-        Mon, 03 Oct 2022 16:38:51 -0000
-Date:   Mon, 3 Oct 2022 11:38:51 -0500
+        Mon, 03 Oct 2022 09:39:35 -0700 (PDT)
+Received: (nullmailer pid 2423452 invoked by uid 1000);
+        Mon, 03 Oct 2022 16:39:34 -0000
+Date:   Mon, 3 Oct 2022 11:39:34 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Trevor Wu <trevor.wu@mediatek.com>
-Cc:     broonie@kernel.org, tiwai@suse.com, matthias.bgg@gmail.com,
-        p.zabel@pengutronix.de, alsa-devel@alsa-project.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 12/12] dt-bindings: mediatek: mt8188: add mt8188-mt6359
- document
-Message-ID: <20221003163851.GA2414624-robh@kernel.org>
-References: <20220930145701.18790-1-trevor.wu@mediatek.com>
- <20220930145701.18790-13-trevor.wu@mediatek.com>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-rockchip@lists.infradead.org,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>, kernel@collabora.com
+Subject: Re: [PATCHv2 1/9] dt-bindings: clock: add rk3588 clock definitions
+Message-ID: <166481517368.2423396.8795946691890924874.robh@kernel.org>
+References: <20220930153857.299396-1-sebastian.reichel@collabora.com>
+ <20220930153857.299396-2-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220930145701.18790-13-trevor.wu@mediatek.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220930153857.299396-2-sebastian.reichel@collabora.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 30, 2022 at 10:57:01PM +0800, Trevor Wu wrote:
-> Add document for mt8188 board with mt6359.
+On Fri, 30 Sep 2022 17:38:49 +0200, Sebastian Reichel wrote:
+> Add clock ID defines for rk3588.
 > 
-> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+> Compared to the downstream bindings written by Elaine, this uses
+> continous gapless clock IDs starting at 0. Thus all numbers are
+> different between downstream and upstream, but I kept exactly the
+> same names.
+> 
+> Co-Developed-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  .../bindings/sound/mt8188-mt6359.yaml         | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mt8188-mt6359.yaml
+>  .../dt-bindings/clock/rockchip,rk3588-cru.h   | 766 ++++++++++++++++++
+>  1 file changed, 766 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/rockchip,rk3588-cru.h
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mt8188-mt6359.yaml b/Documentation/devicetree/bindings/sound/mt8188-mt6359.yaml
-> new file mode 100644
-> index 000000000000..57c7c5ceef8a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mt8188-mt6359.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mt8188-mt6359.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT8188 ASoC sound card driver
-> +
-> +maintainers:
-> +  - Trevor Wu <trevor.wu@mediatek.com>
-> +
-> +description:
-> +  This binding describes the MT8188 sound card.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8188-sound
-> +
-> +  model:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: User specified audio sound card name
-> +
-> +  audio-routing:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    description:
-> +      A list of the connections between audio components. Each entry is a
-> +      sink/source pair of strings. Valid names could be the input or output
-> +      widgets of audio components, power supplies, MicBias of codec and the
-> +      software switch.
-> +
-> +  mediatek,platform:
-> +    $ref: "/schemas/types.yaml#/definitions/phandle"
 
-Don't need quotes.
-
-> +    description: The phandle of MT8188 ASoC platform.
-> +
-> +  mediatek,dptx-codec:
-> +    $ref: "/schemas/types.yaml#/definitions/phandle"
-> +    description: The phandle of MT8188 Display Port Tx codec node.
-> +
-> +  mediatek,hdmi-codec:
-> +    $ref: "/schemas/types.yaml#/definitions/phandle"
-> +    description: The phandle of MT8188 HDMI codec node.
-> +
-> +  mediatek,dai-link:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    description:
-> +      A list of the desired dai-links in the sound card. Each entry is a
-> +      name defined in the machine driver.
-
-Names have to be defined here.
-
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - mediatek,platform
-> +
-> +examples:
-> +  - |
-> +
-> +    sound: mt8188-sound {
-> +        compatible = "mediatek,mt8188-sound";
-> +        mediatek,platform = <&afe>:
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&aud_pins_default>;
-> +        audio-routing =
-> +            "Headphone", "Headphone L",
-> +            "Headphone", "Headphone R",
-> +            "AIN1", "Headset Mic";
-> +    };
-> +
-> +...
-> -- 
-> 2.18.0
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
