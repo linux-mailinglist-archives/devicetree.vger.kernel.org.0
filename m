@@ -2,58 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC1FD5F351C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 20:00:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40AE95F3520
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 20:01:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230034AbiJCSAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 14:00:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54132 "EHLO
+        id S229819AbiJCSBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 14:01:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbiJCR72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 13:59:28 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79DC40E25;
-        Mon,  3 Oct 2022 10:59:00 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id n83so12066010oif.11;
-        Mon, 03 Oct 2022 10:59:00 -0700 (PDT)
+        with ESMTP id S229660AbiJCSBO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 14:01:14 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A092237E9;
+        Mon,  3 Oct 2022 11:01:13 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id n83so12072218oif.11;
+        Mon, 03 Oct 2022 11:01:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=jsFBWQdyENFLVSPAWaRsFcNzTsC/248jtvvx+X5ea8g=;
-        b=hqVIMzk9aRWrpIx21W1Peb0rnSX8+0kOjC0iQ7CtnMJo4LIjN0YKSjP2hQHQZ/qJAu
-         uVlwLE7JWmifJoUDKTnbzo24bLXuc9sWS+18k1PbfFIzkBc5RlQ64r4jKBUtHQqQRvD3
-         OhMlZzHeJ8ABTV+kOqKD/8xnYpAduauoNFtVpqZbhGCRdbeumd6cmYWJHLu0FLFdlMlJ
-         QSa9ef5yxgTWRdYuauUjSYX5R0YSukoYJHjkJMr/10FG7y7EZ6UEcuYmRjUvnP/b1M69
-         WVCY19bzE4U5jjDEp1oLfo4giKwUUCIxPHBPj1KdqjGLJISaptT0I1Rj31B3dfmThedO
-         sfwA==
-X-Gm-Message-State: ACrzQf24H5sShe0EWXG1t4MazpFPjXJSgJiIPeommIu4r610GxPGhZfK
-        2Iandel9XxEExL+pycuTFw==
-X-Google-Smtp-Source: AMsMyM52zXejSllTBXcHyWmvXxfGmMUOuQa7B0+mZ10IliVgFZ0KW8GWLVHuLkmJKfcx9YOEW+vZFg==
-X-Received: by 2002:aca:6541:0:b0:350:f570:4df with SMTP id j1-20020aca6541000000b00350f57004dfmr4509157oiw.239.1664819940015;
-        Mon, 03 Oct 2022 10:59:00 -0700 (PDT)
+        bh=m1zFXN2JJGvZeq/8qjss/E/W9fw3IBmQxvPNQVYVDx4=;
+        b=6nmFJwpl67cRyrsCYlW1eIBgZkXoXzuEiXBT4m3U4fEneN+HPGgLNTiAv6XDyvhx2Q
+         s8H4xcHI1aFFhvLZ3O4zGi+GuVCQeANlSRccEyJ2cSmNE+ABITiRNlybA8Mb2ZnUhIcw
+         Me3qLfrRZce0ZFwi97M2hI4Oxl1km34JzX4u1DB+paudc01Dm7WIBAbNbh4f5u2yHmrI
+         kPwwu7W206Hxjb4q51E0nJhWZlP+T1nHp+q7jyK04QlgqtdYeOZIa8jGRLmHbB81bcFX
+         5vmu36R6EVKHO3mT95t62LqpF46hmxzf6yKycMpMn0Bf92DeQLwJqnSKg9mhZveveVM6
+         xzsA==
+X-Gm-Message-State: ACrzQf0Y1F6EQuK+UPCp0lGCYZ0TSaNLvTPFxbNsmliGgzRwoZc5fpwP
+        DSBYJutEJEZBPSBbyqfIfw==
+X-Google-Smtp-Source: AMsMyM4PAICfXmmI1z1IcWuhxgQ56/ikvQR6/qr9KoVdamltyOh1R2hTtCH5TioIaOMy2uO2qhegbw==
+X-Received: by 2002:a05:6808:bca:b0:350:b366:157 with SMTP id o10-20020a0568080bca00b00350b3660157mr4592151oik.3.1664820072465;
+        Mon, 03 Oct 2022 11:01:12 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x65-20020a9d37c7000000b0065bf42c967fsm2500694otb.19.2022.10.03.10.58.59
+        by smtp.gmail.com with ESMTPSA id z10-20020a05683010ca00b0065742df07e2sm2550027oto.26.2022.10.03.11.01.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 10:58:59 -0700 (PDT)
-Received: (nullmailer pid 2512339 invoked by uid 1000);
-        Mon, 03 Oct 2022 17:58:58 -0000
-Date:   Mon, 3 Oct 2022 12:58:58 -0500
+        Mon, 03 Oct 2022 11:01:11 -0700 (PDT)
+Received: (nullmailer pid 2514797 invoked by uid 1000);
+        Mon, 03 Oct 2022 18:01:10 -0000
+Date:   Mon, 3 Oct 2022 13:01:10 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     arinc.unal@arinc9.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        tsbogend@alpha.franken.de, linux-mips@vger.kernel.org,
-        hauke@hauke-m.de, zajec5@gmail.com, zhouyanjie@wanyeetech.com
-Subject: Re: [PATCH v5 2/2] dt-bindings: mips: brcm: convert Broadcom SoCs to
- schema
-Message-ID: <166481993839.2512291.4307743279168088281.robh@kernel.org>
-References: <20221002091611.946210-1-sergio.paracuellos@gmail.com>
- <20221002091611.946210-3-sergio.paracuellos@gmail.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Paolo Abeni <pabeni@redhat.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        linux-doc@vger.kernel.org, netdev@vger.kernel.org,
+        Robert Marko <robert.marko@sartura.hr>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        David Jander <david@protonic.nl>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, kernel@pengutronix.de,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH net-next v8 1/7] dt-bindings: net: phy: add PoDL PSE
+ property
+Message-ID: <166482007034.2514738.15249257928598328667.robh@kernel.org>
+References: <20221003065202.3889095-1-o.rempel@pengutronix.de>
+ <20221003065202.3889095-2-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221002091611.946210-3-sergio.paracuellos@gmail.com>
+In-Reply-To: <20221003065202.3889095-2-o.rempel@pengutronix.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,14 +74,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 02 Oct 2022 11:16:11 +0200, Sergio Paracuellos wrote:
-> Add the yaml binding for MIPS Broadcom cable/DSL/settop platforms.
+On Mon, 03 Oct 2022 08:51:56 +0200, Oleksij Rempel wrote:
+> Add property to reference node representing a PoDL Power Sourcing Equipment.
 > 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
->  .../devicetree/bindings/mips/brcm/soc.yaml    | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mips/brcm/soc.yaml
+> changes v5:
+> - rename ieee802.3-pse to pses
+> - rename phandle-array to phandle
+> - add maxItems: 1
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
