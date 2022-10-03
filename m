@@ -2,158 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 637645F3511
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 19:59:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6A5D5F351B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 20:00:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230013AbiJCR7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 13:59:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56696 "EHLO
+        id S229945AbiJCSAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 14:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbiJCR6f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 13:58:35 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA7EF2D76E
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 10:57:47 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id a10so12720330ljq.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 10:57:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=ZPof+jI/R1dfmUkJy1EKqNxrIvq4pry+XXXXmem36f4=;
-        b=y7ZFz/7zxfuHoIJfOY92zSTEkeSvPP+wBDhQDqvUs5aTnzb+4QOtA24ye/649cB7en
-         W5xAu+jR3rvNXDoJR7XoxjDctDA/oHdq4HQNeSP07edi7cmthudvaW79/HSW5Cljtz7C
-         H5gbKMGNZplstjbXjf8VgKfSBNQMMQULEz+uWeWH7OZUAKPtcTChITXB7eKsD7oB4An7
-         4NLSpsdX0rpLDHJW1dNrN4K+g9bo/++GkP3NzqlOKrkoYdFGfd56THhISUcuwn7YA2Mq
-         l/orygnQt4lliHozTZmynuwqEM78fTqYMf7WY6k31H0REpgzaQ0G9QxhCR9XnmwRpu8H
-         qYqg==
+        with ESMTP id S230029AbiJCR7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 13:59:24 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B27294198F;
+        Mon,  3 Oct 2022 10:58:53 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id c81so12088871oif.3;
+        Mon, 03 Oct 2022 10:58:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=ZPof+jI/R1dfmUkJy1EKqNxrIvq4pry+XXXXmem36f4=;
-        b=YcxPgGGbIGW9PcjsDLW+ohbBpMMoZrI3dtZZXdrnALW4IEsmU6AQbFsS3AbbPp7Eog
-         E0bFCSBtZfFc7aq7kd1WQs1uZQG0BMAX8pOJMyp6KM++9sxshF0j9FQJMZ2b459O6eJS
-         UKwJRc0f/7jTDmdV5Yd/oORw47pFWc7u71k8+cMMra4B2jiZb0N9Ztd+yLVw3qcBaOqy
-         iaUvyUnOG3VNqpWgMXDBgl52hWGjL5PQ82JZwt/m2nKY8UOz+GQCaDh+H11pOrjo24k2
-         itYu0uAdw9Ah/LXOQd7DbX+bJwuqyM6BSFFAtrf7BmsapmEbCJzdtUz3cT1WSNkGrCAi
-         JrOw==
-X-Gm-Message-State: ACrzQf0UNeQknqk1q8VRp1czVQnCJSfStw+wDY0GbKbelJ75KLBub5AC
-        twWYCxNffqGsOdLLWHzjCKBofw==
-X-Google-Smtp-Source: AMsMyM4zxlNrMG71JyuCr0C3hCUHzKzy3LAX/vjNbM8E1pmke49EjFhDiQMzyViR5K5PZeetOMKjlw==
-X-Received: by 2002:a2e:b4b9:0:b0:26d:d08c:1b88 with SMTP id q25-20020a2eb4b9000000b0026dd08c1b88mr2558306ljm.269.1664819866139;
-        Mon, 03 Oct 2022 10:57:46 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o20-20020a056512231400b00492d064e8f8sm1543640lfu.263.2022.10.03.10.57.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Oct 2022 10:57:45 -0700 (PDT)
-Message-ID: <c0bf359a-1ee9-04e2-2c58-9e7e8f3e12f7@linaro.org>
-Date:   Mon, 3 Oct 2022 19:57:44 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=QFAOwCvPEQ69newTdVlBlRzYqc88+vexfOUwWKRdKLA=;
+        b=bSL+caWUYucMtTfICpNrKmMuYzG2KqsMl1VGf7m+fdfwYbXEXRGmH40T90KGTeQTp1
+         a3+5fOys3Fw++Y9d0E/DNcdvwHwQ4+OiuAAksYM0fSoLiZCxS3Ebg5v7Wzty+vyUT+o0
+         y/6DkQt6yg70I3fsboXIj8CpuHDjc123RCEFr96/9GrBe/acQchhV4ySotrwA2LS48w+
+         shJSghZKBnTd6A5Gl95hAvrsLHQOi7X/3wII3KaaIIEwDuGIod2Lj8QWRNc0uYnOLTHM
+         U74rNQvTFtwwoEf13rgc0fzVzCE1u+pHKt6gTIlTHouDcP96iJ4ykXH99PD2sU9Rxlgd
+         272w==
+X-Gm-Message-State: ACrzQf1X9r+WjoRpAn01wklfn03evi/Sj0jU04gVOaeMmZ/vdwqmOKt6
+        w86DBRAeUznjQBR2YcMLrw==
+X-Google-Smtp-Source: AMsMyM7SA6zvMVxcbqiEZ7TGfRL6kPD4KABk1pxTJrUyKeakz4/ckMvfvMsa03hQxRWd/YVI7vyEeA==
+X-Received: by 2002:a05:6808:181e:b0:350:7776:9059 with SMTP id bh30-20020a056808181e00b0035077769059mr4508763oib.83.1664819932282;
+        Mon, 03 Oct 2022 10:58:52 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 6-20020aca0506000000b003509cc4ad4esm2607098oif.39.2022.10.03.10.58.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Oct 2022 10:58:51 -0700 (PDT)
+Received: (nullmailer pid 2512078 invoked by uid 1000);
+        Mon, 03 Oct 2022 17:58:50 -0000
+Date:   Mon, 3 Oct 2022 12:58:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     zhouyanjie@wanyeetech.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, zajec5@gmail.com,
+        tsbogend@alpha.franken.de, linux-mips@vger.kernel.org,
+        arinc.unal@arinc9.com, hauke@hauke-m.de
+Subject: Re: [PATCH v5 1/2] dt-bindings: mips: add CPU bindings for MIPS
+ architecture
+Message-ID: <166481993001.2512019.5640963273879940418.robh@kernel.org>
+References: <20221002091611.946210-1-sergio.paracuellos@gmail.com>
+ <20221002091611.946210-2-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sdm845-db845c: correct SPI2 pins
- drive strength
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        "# 4.0+" <stable@vger.kernel.org>
-References: <20220930182212.209804-1-krzysztof.kozlowski@linaro.org>
- <20220930182212.209804-2-krzysztof.kozlowski@linaro.org>
- <CAD=FV=WSbpV4aqyHgSX6rwanQmZYG1hdNourjP5DEmsfdq6aDA@mail.gmail.com>
- <11a99a84-47ec-ca3e-5781-0f17ed33dbf9@linaro.org>
- <CAD=FV=URMX9umJfqYOhnnnjsr09As-6mKAHs0YNZFK8n2K337g@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=URMX9umJfqYOhnnnjsr09As-6mKAHs0YNZFK8n2K337g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221002091611.946210-2-sergio.paracuellos@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/10/2022 17:40, Doug Anderson wrote:
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->>>> index 132417e2d11e..a157eab66dee 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->>>> @@ -1123,7 +1123,9 @@ &wifi {
->>>>
->>>>  /* PINCTRL - additions to nodes defined in sdm845.dtsi */
->>>>  &qup_spi2_default {
->>>> -       drive-strength = <16>;
->>>> +       pinmux {
->>>> +               drive-strength = <16>;
->>>> +       };
->>>
->>> The convention on Qualcomm boards of this era is that muxing (setting
->>> the function) is done under a "pinmux" node and, unless some of the
->>> pins need to be treated differently like for the UARTs, configuration
->>> (bias, drive strength, etc) is done under a "pinconf" subnode.
->>
->> Yes, although this was not expressed in bindings.
->>
->>> I
->>> believe that the "pinconf" subnode also needs to replicate the list of
->>> pins, or at least that's what we did everywhere else on sdm845 /
->>> sc7180.
->>
->> Yes.
->>
->>>
->>> Thus to match conventions, I assume you'd do:
->>>
->>> &qup_spi2_default {
->>>   pinconf {
->>
->> No, because I want a convention of all pinctrl bindings and drivers, not
->> convention of old pinctrl ones. The new ones are already moved or being
->> moved to "-state" and "-pins". In the same time I am also unifying the
->> requirement of "function" property - enforcing it in each node, thus
->> "pinconf" will not be valid anymore.
+On Sun, 02 Oct 2022 11:16:10 +0200, Sergio Paracuellos wrote:
+> Add the yaml binding for available CPUs in MIPS architecture.
 > 
-> Regardless of where we want to end up, it feels like as of ${SUBJECT}
-> patch this should match existing conventions in this file. If a later
-> patch wants to change the conventions in this file then it can, but
-> having just this one patch leaving things in an inconsistent state
-> isn't great IMO...
-> 
-> If this really has to be one-off then the subnode shouldn't be called
-> "pinmux". A subnode called "pinmux" implies that it just has muxing
-> information in it. After your patch this is called "pinmux" but has
-> _configuration_ in it.
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> ---
+>  .../bindings/mips/brcm/brcm,bmips.txt         |   8 --
+>  .../devicetree/bindings/mips/cpus.yaml        | 115 ++++++++++++++++++
+>  .../bindings/mips/ingenic/ingenic,cpu.yaml    |  69 -----------
+>  3 files changed, 115 insertions(+), 77 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
+>  create mode 100644 Documentation/devicetree/bindings/mips/cpus.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml
 > 
 
-It is a poor argument to keep some convention which is both
-undocumented, not kept in this file and known only to some folks
-(although that's effect of lack of documentation). Even the bindings do
-not say it should be "pinconf" but they mention "config" in example. The
-existing sdm845.dts uses config - so why now there should be "pinconf"?
-By this "convention" we have both "pinmux" and "mux", perfect. Several
-other pins do not have pinmux/mux/config at all.
-
-This convention was never implemented, so there is nothing to keep/match.
-
-Changing it to "config" (because this is the most used "convention" in
-the file and bindings) would also mean to add useless "pins" which will
-be in next patch removed.
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Rob Herring <robh@kernel.org>
