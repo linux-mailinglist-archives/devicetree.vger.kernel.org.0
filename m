@@ -2,113 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E34985F31B5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 16:02:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DAF85F31DE
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 16:20:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230051AbiJCOCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 10:02:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37330 "EHLO
+        id S229441AbiJCOUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 10:20:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbiJCOB4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 10:01:56 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 249384456D;
-        Mon,  3 Oct 2022 07:01:43 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 293DqcFh011549;
-        Mon, 3 Oct 2022 14:01:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=bTHb/iTIJ515U9ZD/ZdvnV3tGnX4kfcrHGl79HkwpXw=;
- b=kzSXosTovEm4qg1oKiF/uejTMv5JM2wcPDM2kYxlnZzZg10TGtlMMiishu/9ZCJFFEzm
- IWJceL5/vSTIVKi67qyh5ungGhrKBuDxc7tA9dy0IJD3weGxJZnKCgCtcD0afjAnKm06
- XbSzeb/jCgEpR4VabIqTIHu4acQGr4F5gnz+q3AZsG1W8HozU4CClbulytEJUxvCUo0d
- ekgXL8pspiBKeH0gGMHSUybvSe/Y8HepQE0Dxdmnu6NxVkaFGUIHnUTC7IQ0/9tJgUin
- 9e5KEX9ixYPnSlS4P8SSVy0trTtwA+lvJ74e2chWiXrT5U3+ACxneeTBpJjLu2TivxXW 7g== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jxd58kr30-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Oct 2022 14:01:33 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 293E1WsE019770
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 3 Oct 2022 14:01:32 GMT
-Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Mon, 3 Oct 2022 07:01:27 -0700
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Alex Elder <elder@ieee.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "Sai Prakash Ranjan" <quic_saipraka@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>, <vkoul@kernel.org>,
-        "Souradeep Chowdhury" <quic_schowdhu@quicinc.com>
-Subject: [PATCH V16 7/7] arm64: dts: qcom: sdm845: Add Data Capture and Compare(DCC) support node
-Date:   Mon, 3 Oct 2022 19:30:31 +0530
-Message-ID: <10acb24d06a9c7c4266b6b1689bf0e1d39a76420.1664805059.git.quic_schowdhu@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1664805059.git.quic_schowdhu@quicinc.com>
-References: <cover.1664805059.git.quic_schowdhu@quicinc.com>
+        with ESMTP id S229816AbiJCOUv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 10:20:51 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5FA240BE7;
+        Mon,  3 Oct 2022 07:20:49 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id q9so9788899pgq.8;
+        Mon, 03 Oct 2022 07:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=vF6jYskKFtL76I9VL7jQSPvHW3USZIrLaYZQO7sPj7s=;
+        b=BhRHDiqGgUdQnMTRYUV11CK7hwH49qJkPSBtM/CDKWmjemWUSWbn0BUY01ojBhembD
+         yH/w2D6+jUwSgtBwYWQ0hWL2v7LYDUHTHKWWPdqawHOQaBqJ2CpaMoBgCcGnNxPeW2SZ
+         yjxsbIMmEFlTkmm8X1F9ELHDNneTWvWzOxLdEtVR2/lRkbQgag/oGDYAmEm3ilFUwZ4H
+         ntIy1bHIAlxfI51n6VZCUOSeU4R6mftDD/EJmT1PBD9NVTlbNiTQHY3JejcTJXIdu+aX
+         UmYkLF7fsH6rPTDwVYaA19FQOinV0y27JYd3SrZePQck4/X88iivUvC3u2rjNSsHXn0C
+         DkCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=vF6jYskKFtL76I9VL7jQSPvHW3USZIrLaYZQO7sPj7s=;
+        b=3vgcqDYPmt+IdUastnBaRGYGMbDTcSGK421PfayEtgaevWu9YE/UgH6yEekO3MNk30
+         zXyXim2ouKRt0KkUFDG/P4j19hGKdyUlAr4uVsbmwMja/Lr6dxNfxByK4xGiCu7PSJae
+         NIcqhP0TWTp8O0Dvtf7iR7HVlZwClBNv8V06109vc4zZw4ebXB6JcH1z/UEjtFAEwjG6
+         9SVYRRPK4/BFPWUT75kg8WkHesidhN24S/j3Db6c5WU0IGtpui+/sJT2Qelr/vkHx6we
+         xeOLyVPZ+y7HXX1K01Ng7AtRz+P4pNGIVxbSw4wRbC4qeggWNI8VZLghhm2lE6cved7x
+         u1iA==
+X-Gm-Message-State: ACrzQf1fIrZbtheC1lK0kVB/D+d6jsjtbDR4H4AYFx9oPiZUpFID2OOe
+        MiYx52PbL8vw0BJbyXZh5q5Z8yKbXZw=
+X-Google-Smtp-Source: AMsMyM4nAzRILr9IasBeS8lmn4Z6Lth1mDgbD6QRrhKHx67ZFLJtnvnRGUhN8AG1OHIWFbFg2srjGw==
+X-Received: by 2002:a65:4bc1:0:b0:439:e6a5:122a with SMTP id p1-20020a654bc1000000b00439e6a5122amr18772158pgr.443.1664806849078;
+        Mon, 03 Oct 2022 07:20:49 -0700 (PDT)
+Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
+        by smtp.gmail.com with ESMTPSA id s4-20020a170903214400b001750b31faabsm7119081ple.262.2022.10.03.07.20.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Oct 2022 07:20:48 -0700 (PDT)
+Date:   Mon, 3 Oct 2022 07:20:45 -0700
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     "Gaddam, Sarath Babu Naidu" <sarath.babu.naidu.gaddam@amd.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "yangbo.lu@nxp.com" <yangbo.lu@nxp.com>,
+        "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
+        "Sarangi, Anirudha" <anirudha.sarangi@amd.com>,
+        "Katakam, Harini" <harini.katakam@amd.com>
+Subject: Re: [RFC PATCH] dt-bindings: net: ethernet-controller: Add
+ ptimer_handle
+Message-ID: <YzrvveFVh+Qt6TzN@hoboy.vegasvil.org>
+References: <20220929121249.18504-1-sarath.babu.naidu.gaddam@amd.com>
+ <20220930192200.GA693073-robh@kernel.org>
+ <MW5PR12MB55988BE28F8879AF78B4441E875B9@MW5PR12MB5598.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: A1qfAX5bn8QT5nPiFwVgnGPfXvp-iubS
-X-Proofpoint-ORIG-GUID: A1qfAX5bn8QT5nPiFwVgnGPfXvp-iubS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-03_02,2022-09-29_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- mlxscore=0 bulkscore=0 suspectscore=0 malwarescore=0 mlxlogscore=896
- priorityscore=1501 clxscore=1015 spamscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210030085
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MW5PR12MB55988BE28F8879AF78B4441E875B9@MW5PR12MB5598.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DCC(Data Capture and Compare) device tree node entry along with
-the address of the register region.
+On Mon, Oct 03, 2022 at 09:29:00AM +0000, Gaddam, Sarath Babu Naidu wrote:
 
-Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+> PHC(PTP Hardware clock) index is a number which is used by ptp4l
+> application. When a PTP device registers with a kernel, device node
+> will be created in the /dev.For example, /dev/ptp0, /dev/ptp1.
+> 
+> When PTP and Ethernet are in the same device driver, This PHC index
+> Information is internally accessible. When they are independent drivers,
+> PTP DT node should be linked to ethernet node so that PTP timer
+> information such as PHC index is accessible.   
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index d761da4..7d476b2 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2137,6 +2137,12 @@
- 			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		dma@10a2000 {
-+			compatible = "qcom,sdm845-dcc", "qcom,dcc";
-+			reg = <0x0 0x010a2000 0x0 0x1000>,
-+			      <0x0 0x010ae000 0x0 0x2000>;
-+		};
-+
- 		pmu@114a000 {
- 			compatible = "qcom,sdm845-llcc-bwmon";
- 			reg = <0 0x0114a000 0 0x1000>;
--- 
-2.7.4
+Good explanation.  The handle you propose makes sense to me.
+Maybe let the name spell it out clearly?
 
+	fman0: fman@1a00000 {
+		ptp-hardware-clock = <&phc0>;
+	}
+	phc0: ptp-timer@1afe000 {
+		compatible = "fsl,fman-ptp-timer";
+		reg = <0x0 0x1afe000 0x0 0x1000>;
+	}
+
+In any case, to me "timer" has a different connotation than "clock".
+
+Thanks,
+Richard
