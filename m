@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 874C55F28A3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 08:46:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 436195F28A5
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 08:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbiJCGqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 02:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57630 "EHLO
+        id S229462AbiJCGqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 02:46:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiJCGqN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 02:46:13 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215BF32077
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 23:46:12 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id p5so10675201ljc.13
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 23:46:12 -0700 (PDT)
+        with ESMTP id S229528AbiJCGqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 02:46:48 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B71732079
+        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 23:46:47 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id b6so10681177ljr.10
+        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 23:46:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=GBss2BvV7ncDn+of25u5GesYBMaFx1PDINKixp5pMKQ=;
-        b=rzkaZ6gGKlJkRBRLQQgopCIDLehxUIZuoDHUhuLMPLx9y7toK0VW1yeLXFr6qxq5N2
-         SNQQV2S1DHwabvbNlGhUFLXtHnkfpLBzwzRx7o9Nga24jt8Ps0yFPkS2kCrEz9s2p+/O
-         FRxpZX+XozR3wJYd9Nb/mHfYDno5R4LhpB2IgtkanKDRagtNIdk/2apAL8vJaLC9hOnv
-         vITW8NjHu1fe376Q/e+XDlCoAxg2LfwsEePqxdOb9i8MIcP1O127kMYip0Vg1/0S92O1
-         tfZ+1ba55UsOMLBom1Z20KeyeTmbdvDA9sqGiP+QrZ+2xT0a7jd2YrMBicvlyVHIcYR/
-         o4rQ==
+        bh=2tVQpUJpmbKtrPXhPjqRTAdA3Rm2oiD9OFSaFi8ZE8k=;
+        b=yI0wJVVP2N4DAVOagSsdSod29/ujUc/oCeH4LACWmRAV8mVc7XCy0jXeWvLmRBG7Vq
+         62Nixd2opVvJctw+VTchTAtTNiTtPYq7r8rjraoQNx2EDHBGJp6Prv0uwObZpYao9wP1
+         7832PipahvSdz+YRJH7/u3f6KqlF9Qj2rTwONY1LawYm4vAMMVY92+X+1pQaJ9aVw/xo
+         TzjAE3Md0NdTGh8FCganuyz6fkw26JDrEnzKF0qK9Fv/ZLlNXuqhyCrjiv28qpT5jjjR
+         lP+U19j8hQaQjSDCMfo5LIlUNf8ibkTRlqYvu+fHijqrsF2ky1oNZUXoMhxwbtSr55gi
+         dB9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=GBss2BvV7ncDn+of25u5GesYBMaFx1PDINKixp5pMKQ=;
-        b=1dCkN0mV90IP6aOP0MvczXWWbG6sA6W9zws1eqLsb9TL0fPYwHT8ne6tgKBdc9gx4I
-         EE4VjPODUv0/eD2fPLEeZmESgViqRuuw3pKTOLRs5LqCR5RnttWpuf/MjeZrGWCTnYaC
-         a+upkMRTYVhw+D31ZQbjca9LOX0+0FM+Zt9lmRCVV0BAUeiOkR44+s1X6yqQX9ry+FuU
-         ZPcFlYmsw9cDVEk+Hb6vDkc+vjySmWUe7C/juAYjNYzUIRGvGUUsCMb0BW2+SLLwiG4c
-         q/dednnqCc+bvHyyRSYrdgu4YCW6+4jISFtViWc2sJFIBddI7WmFlu13Zz1Xe/livym7
-         XS6w==
-X-Gm-Message-State: ACrzQf2uvHbq5sYSuBZrYH6vU10q1I8LBVFtXloUuJi/SOxeuoVLfucu
-        xw5QSuYItu3iAeKni41vl8mgpg==
-X-Google-Smtp-Source: AMsMyM6VTbrIdbgrlC/jqlj+9Qf8O2sbZGi2mGlLv5ZeU8YFBKgyJMfDrqPekzIAJBH+LU115CeeQg==
-X-Received: by 2002:a2e:9c8b:0:b0:26d:d04f:acc9 with SMTP id x11-20020a2e9c8b000000b0026dd04facc9mr1794424lji.347.1664779570538;
-        Sun, 02 Oct 2022 23:46:10 -0700 (PDT)
+        bh=2tVQpUJpmbKtrPXhPjqRTAdA3Rm2oiD9OFSaFi8ZE8k=;
+        b=ocks7GDDC92DDdXd1Rypw48ZoMAZxuBULTwv2/yUWY4EF741iCYQ7ggKifuy5P/OWv
+         1L1HxQV//tQete2hADhOS10gKzjcAHsZw0vv1/nz/eLbxA7NuOk9HiYbB4i1AtXPYC5O
+         cVM9jyakV13cVEw9O2Jvwn9t40eRnwPPPH+0J1UqDNNK2LbTFMIetfkcNzQqo9brq5WU
+         8iplVnI/WLVCo8x4ykbaAR/w50YYxicvax5PcvaEk9n6oks/JzY6H+yjyKzXhx/SCGPP
+         Faldv/bV9HFdwS7rVuglUZ7BiKilphMFv8sh3eAO72VJm+rRwfEWRULTLz/c4uGk8kHW
+         JXoA==
+X-Gm-Message-State: ACrzQf1fuc31p4HWSaQ620tNoo4w6JParalkNOwOWgR+5gg+a1dsdhJ/
+        Cwt17P2CpGjEaTqYAbczrTmFmw==
+X-Google-Smtp-Source: AMsMyM4R1MavA8WjpnVwp2tQuKzHKLFv4BqmC4HdeD3hQNoBXaIeudIfy0A7B0UzG08eFIJfTvT0NQ==
+X-Received: by 2002:a2e:a791:0:b0:26c:4fad:957 with SMTP id c17-20020a2ea791000000b0026c4fad0957mr5783992ljf.263.1664779605571;
+        Sun, 02 Oct 2022 23:46:45 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f5-20020a056512228500b0049c86ca95bfsm1332705lfu.52.2022.10.02.23.46.09
+        by smtp.gmail.com with ESMTPSA id 2-20020ac24842000000b0048b3926351bsm1339977lfy.56.2022.10.02.23.46.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Oct 2022 23:46:10 -0700 (PDT)
-Message-ID: <4658c7bc-b26f-d22b-73ea-9deb7d29f90f@linaro.org>
-Date:   Mon, 3 Oct 2022 08:46:09 +0200
+        Sun, 02 Oct 2022 23:46:45 -0700 (PDT)
+Message-ID: <c391981d-8c7e-ab86-11cb-adde44d568e4@linaro.org>
+Date:   Mon, 3 Oct 2022 08:46:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: YAML-ify SSBI bindings
+Subject: Re: [PATCH 2/2] ARM: dts: qcom: mdm9615: drop unit ids from PMIC
+ nodes
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -64,10 +65,11 @@ Cc:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
- <d1a26c97-75db-5d09-4c4f-77ed4fed1683@linaro.org>
- <CAA8EJpoUtfWFR315jiC8PzPQydM9kT3kQYeqyOav-P9=qZKO2w@mail.gmail.com>
+ <20220930212052.894834-2-dmitry.baryshkov@linaro.org>
+ <b3b2dc79-30cc-a768-e7bb-d5e8ff3f6ba0@linaro.org>
+ <CAA8EJpqA5uO+Nfo571qAbQ5KxatsVcp4Mkyxn0h5NR5dEot1eA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJpoUtfWFR315jiC8PzPQydM9kT3kQYeqyOav-P9=qZKO2w@mail.gmail.com>
+In-Reply-To: <CAA8EJpqA5uO+Nfo571qAbQ5KxatsVcp4Mkyxn0h5NR5dEot1eA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,24 +81,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/10/2022 15:46, Dmitry Baryshkov wrote:
->>> +    enum:
->>> +      - ssbi
->>> +      - ssbi2
->>> +      - pmic-arbiter
->>> +
->>> +  pmic:
->>> +    type: object
+On 02/10/2022 15:20, Dmitry Baryshkov wrote:
+>>> diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
+>>> index b47c86412de2..bb17a57a2b90 100644
+>>> --- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
+>>> +++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
+>>> @@ -283,7 +283,7 @@ qcom,ssbi@500000 {
+>>>                       reg = <0x500000 0x1000>;
+>>>                       qcom,controller-type = "pmic-arbiter";
+>>>
+>>> -                     pmicintc: pmic@0 {
+>>> +                     pmicintc: pmic {
 >>
->> This is quite unspecific... Can we make it a ref to some PMICs schemas?
+>> I think several other platforms, also with PMIC over SSBI, have the same
+>> problem. If that's correct, can you fix them in the same patchset?
 > 
-> Yes, I thought about listing all compats, but probably a $ref:
-> ../mfd/qcom-pm8xxx.yaml# makes more sense.
-
-Then full path - /schemas/mfd/qcom-....
-
+> It was a part of my previous patchset, but yeah. Let's get it done in this one.
 > 
->>
+
+Ah, if you fix them in separate patchset, it's also ok.
+
+
 
 Best regards,
 Krzysztof
