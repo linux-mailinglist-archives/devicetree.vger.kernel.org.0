@@ -2,103 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D90855F3613
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 21:06:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E2175F362C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 21:16:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbiJCTGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 15:06:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59774 "EHLO
+        id S229759AbiJCTQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 15:16:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229819AbiJCTGG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 15:06:06 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 098813FD43;
-        Mon,  3 Oct 2022 12:06:06 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id lc7so24257942ejb.0;
-        Mon, 03 Oct 2022 12:06:05 -0700 (PDT)
+        with ESMTP id S229614AbiJCTQV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 15:16:21 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C32A31219
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 12:16:18 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id nb11so24280782ejc.5
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 12:16:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=Xwi3N9ufURz0LduITDGK/fYkJbQHXdCmTWzD6dC6eX0=;
-        b=lZt4kWPTns37s1+otZvwgXHWnAt6/kr5Aqu20qAdRWBEQVDUC8HTLd8opLhfZAdAy2
-         cYeeCNaz62Lb8jtHlf6oPtRVBqUf4ZEr8kkBrz4CPlCGWymRz5q4SclO6ylr6812Dn5n
-         ZbjdA1kSpAu/7npKj5KEp7fQybtYSW1S9i8C8f8uIWlb5SxYAFOuxXLWMU5NLigifhbS
-         I0QZ5nRjgsTWhh9hHTyiX/RUgAEFfBgR27d/2vr8eI5MqOmvoP2JRU3vB+/FyOLPK7I6
-         bJ//vUjRo7oHVGEqxZxVKkC4Ka/D4HgcqlCxQFelxSu2wzzAfCTaady4KE+eEOEsSY0r
-         kE2A==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=EJmCld9y6KB8eRy9I0zDmp0PKZYGcStJe83KPH6aFr8=;
+        b=ic08+oY1jDUkZSpQ6tzgKhyeypyfmFm9NgjAp4vYRjxeBteDUC1G46Z3O/k5Y5UTkG
+         eMfPo8nRiCm2Ja3n5+iuqZzFnZ4+tS7PQ/Lbg21gq/L3+eYUUs8ZeGS1A9YHAkjggDOn
+         C6mqNANFaetO8+/pEFt+/fcrmKcYz3PvimOMrfnr96gsBL+1+poZM+PsqxCz6LBx5bJQ
+         P32RWoUsV/Z1+rzmiqZ8LmfN7kGJAPu2dz9YNI6rE+DncCPTcodsv9h7sEuL+Omx1rcG
+         l2V0qQ1gdAUxQJqvoq3dqvgMXQ5KVaOqqGjZGGWpMvull1PUaaxmqvNLqjeRDDKgIR7R
+         L2jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=Xwi3N9ufURz0LduITDGK/fYkJbQHXdCmTWzD6dC6eX0=;
-        b=J0UFDCyvfzVBFrqSKYTknSaJlGixDj10mL0Qbaw0vJgOHjeCLa84PGFROHylb7pJUs
-         P94bVtEEhQV1GqcrbCxeZqdE9jsG7RKqZ+ZN9DdmBZYVQlaogewxFHYGjoYf4qRVROJM
-         JeoDK2cqHNVyudhp1jhuCIqC/g4jz1u3Av/IKspc16+/87C9hTe48st5ac5QSSnXKQZk
-         ctWRGkSlXjFZerdJY1Fy497yVbniVcJ2HPsawGTu9zz7Udf2R0lapLY7oGwL/Kx6tezn
-         QqYMAhtsbeMTQLvUGmS+dtuzeUIb44R5EbYn/Vg/bav9MHBoosdE2eXYsk/R/dqS0EQY
-         qkVQ==
-X-Gm-Message-State: ACrzQf0/hKEOxh1NL9NM6mu+NC81G+MiRS/c/Jo7KysBFI6mn1GYDu6a
-        6bOjjFD5LwfStV9TRsq0egyfJ11djSY=
-X-Google-Smtp-Source: AMsMyM4zHtx5kFvWJGstOQno6SwvaOC6j0Q6TGi6EG9FcMvM6BWpyZhMR58610Rg4ozDqtAo+UMr1w==
-X-Received: by 2002:a17:907:7fa0:b0:782:9713:1e with SMTP id qk32-20020a1709077fa000b007829713001emr16609987ejc.394.1664823964282;
-        Mon, 03 Oct 2022 12:06:04 -0700 (PDT)
-Received: from localhost.localdomain ([46.216.9.29])
-        by smtp.googlemail.com with ESMTPSA id lc23-20020a170906dff700b00787f91a6b16sm5883975ejc.26.2022.10.03.12.06.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 12:06:03 -0700 (PDT)
-From:   Dzmitry Sankouski <dsankouski@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dzmitry Sankouski <dsankouski@gmail.com>,
-        Andy Gross <agross@kernel.org>,
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=EJmCld9y6KB8eRy9I0zDmp0PKZYGcStJe83KPH6aFr8=;
+        b=6vqqvGVNcDCsOC9z3C4kAlxhoFdg4Adpy/zoh50yfCTK6IoPub/rVbtx01Se29QpKw
+         L529gtcW9NjAJE74zd81AxqKoHt8XuJ+I8HwJXEQlY47GfssBg9Av8SC4cv9ZFt+geRH
+         p5vzhgWZ5lGsRKaj7yTCNfjtiApKUVshgVwo8TxdGmzaV8cNXfHan7OkWnEEsuxHF6NC
+         4CtsAAYOYRGIiJzF2nppib1fRxl2i2ugojseAkjzdPydrzT/i5N1NiMj0zXvy6rcdXfw
+         tPfDmxUSvBYbfiBAFbIobzQY/dlIb3AYVPwl3xjBkpyKfgE78tfBojj7LQHm23Ctr6Rf
+         +slg==
+X-Gm-Message-State: ACrzQf0Fatc4f52h7Q6Kn9Es6Q+QSbzqR8ROsIZeL45uEPc+gXg24BL/
+        r6Eef6kNVdOm0u6cqrOUjB1wSTIPVUemSdUn9CVUwQ==
+X-Google-Smtp-Source: AMsMyM5CqC5O7zpV/nIPjTWE5eb+IDXEDjT9fokGoCO+9qLYEhRLXEbVhUGylha928ZTbiRuDkD5wWHpdhWnORWiR6o=
+X-Received: by 2002:a17:906:8a46:b0:781:71fc:d23f with SMTP id
+ gx6-20020a1709068a4600b0078171fcd23fmr16486043ejc.500.1664824577115; Mon, 03
+ Oct 2022 12:16:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <20221001210725.60967-1-mailingradian@gmail.com>
+In-Reply-To: <20221001210725.60967-1-mailingradian@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 3 Oct 2022 21:16:06 +0200
+Message-ID: <CACRpkdYnFBbVqUEfqn65y-8Bit9yu_FbkX4voW1z6viZk+KCQA@mail.gmail.com>
+Subject: Re: [PATCH v6 0/3] SDM670 Pin Control Driver
+To:     Richard Acayan <mailingradian@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM SUPPORT),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH v4 2/2] dt-bindings: arm: add xiaomi,sagit board based on msm8998 chip
-Date:   Mon,  3 Oct 2022 22:05:56 +0300
-Message-Id: <20221003190556.931678-3-dsankouski@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20221003190556.931678-1-dsankouski@gmail.com>
-References: <20221003190556.931678-1-dsankouski@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add xiaomi,sagit board (Xiaomi Mi 6) binding
+On Sat, Oct 1, 2022 at 11:07 PM Richard Acayan <mailingradian@gmail.com> wrote:
+>
+> Changes since v5:
+>  - remove function requirement in schema
+>  - change "-state$" regex to double quotes in schema
+>  - drop quotes from qcom-tlmm-state ref in dt schema
 
-Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
----
-Changes for v4:
-- remove unused 'sagit' compatible line
+The DT bindings seem fine, I'm waiting for Bjorns review of the driver
+before applying.
 
- Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index fb1d00bcc847..294075bafb97 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -239,6 +239,7 @@ properties:
-               - sony,xperia-lilac
-               - sony,xperia-maple
-               - sony,xperia-poplar
-+              - xiaomi,sagit
-           - const: qcom,msm8998
- 
-       - items:
--- 
-2.30.2
-
+Yours,
+Linus Walleij
