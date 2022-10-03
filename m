@@ -2,91 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C0FE5F37CA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 23:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 313C65F37D6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 23:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbiJCVa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 17:30:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50748 "EHLO
+        id S229774AbiJCVd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 17:33:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbiJCV37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 17:29:59 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83BB518E20
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 14:24:32 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 068B52C055E;
-        Mon,  3 Oct 2022 21:24:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1664832269;
-        bh=sXKUcNWmbkNitj74uCkwwHI0mWKxvClLDL2BzNTjc7M=;
-        h=From:To:Cc:Subject:Date:From;
-        b=WmGuEyBjIenIi/zm0UBlH+hNlXRITvpP/U810M22ujrr3nFi75lZ3DZNV/jvsESl/
-         h+2X6r+0qKLC4qFOnGDyQSyQrXlg/DeiTtr+9/IazxGTQxJyZJUalUe2ZMEoOtlGvM
-         JYs4wLVpv8n7z3PpH81652gyPcBnB3mVwunO2+GlnXWUUWutHbY+4rkz3zJIMqiMqy
-         N6t4xCnpA8tM5//Oaz6eOtIiyO0eoxAaDACcgE6cxrThwm6nzapTiWvRCn9cQxScty
-         eK75HTXLKywqf1fpWqUlF46vEGHTgJdQkDCrXJhFs5XfXZNcf/SZKPbNwnnCfx4uJ4
-         ziXfnUHWWaCaQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B633b530c0000>; Tue, 04 Oct 2022 10:24:28 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id D4A9C13EE52;
-        Tue,  4 Oct 2022 10:24:28 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id CC9862A00A4; Tue,  4 Oct 2022 10:24:28 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH] ARM: dts: armada-xp-98dx3236: add interrupts for watchdog
-Date:   Tue,  4 Oct 2022 10:24:19 +1300
-Message-Id: <20221003212419.1280860-1-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.37.3
+        with ESMTP id S229847AbiJCVdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 17:33:01 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9AC55A892
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 14:28:16 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id f189so14587147yba.12
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 14:28:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=P7mjKGtMyc8QawunwNOx/A+TWkA77AQ+DO5P8txIJ90=;
+        b=aSJDF7n+TRMIJMAaOW5TszpIiy8U/gx5tCIza5mQbhBNWTRKKb3uX6gXbhMe52NS2o
+         U0JVrHCCRN3GPmMhkUqTHlqgic3M1stTJUOsfnqd9fQdO70+gIap9tYU64boLYh69QDc
+         Kx8hSKcKZoQkKtdzDBgD3Lihd1qf8yiOrg+pOXIPV8SonPKL1Tsb+K7mBPvFcHHK4782
+         A82iETH4uivtKeOkmtq3NGEMBlEAAlAAA7r6pVZnEibgqXOBgghfWjlKhAxCP91ayR/2
+         Dcw2px61IfgXldxOWpaeeI2RJEueFU5Yp236BnN7erQb8YwFUWJerAlVh9djUqzsDO4M
+         7bOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=P7mjKGtMyc8QawunwNOx/A+TWkA77AQ+DO5P8txIJ90=;
+        b=ykuTIivFCByiYwuaikBWOILk+ttqlAbFnhrVkdMP0O2jjVLLUFc+EK8ZBBOa91bStv
+         yE9QmBwh1IV2WUqUn2HRikYX1NOCfWl7XArIXDx+RK5GbHFt83WwqPmmvK0T59I8keJs
+         Yp3oPBCvcI3mt0Gzw1LKKvCoyyv1XJRlj74W1II9inqj1GMqCtt3vpmTIKCum2Yzz8Rx
+         qhP+awd2sB+PnNlgBowsilT/HrWHFk5yyRlerR4Kuz90LNIh7l7U5hkIeL3oXT58MErF
+         ZywbY0VIL/Wu3HwJx/K+83XSBAulBsuxRaRkl/8tB1PImdftAKJnU1DNnHF0MyhnDiM0
+         qV0g==
+X-Gm-Message-State: ACrzQf1/f3rmxaeucXjK8Yqg5g2OyoO1ppea3oU2tSaj5IRQGbZzVirM
+        U+wxxHFXQPX93XtX5w7F8rWSWGLwGRZ9MQTkKXUqcg==
+X-Google-Smtp-Source: AMsMyM4+WxrW8hJRzq2wDvB2clRV2zMS0NN/gRQOtDuK/4njBtSNHxXn7I3cZF9EUn4l24J8n20r3hzxvvF74STaXrI=
+X-Received: by 2002:a25:af13:0:b0:6ae:3166:1aee with SMTP id
+ a19-20020a25af13000000b006ae31661aeemr21805283ybh.288.1664832495123; Mon, 03
+ Oct 2022 14:28:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=UKij4xXy c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=Qawa6l4ZSaYA:10 a=TWcOaBxz1rIbdekP54sA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+References: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
+ <d1a26c97-75db-5d09-4c4f-77ed4fed1683@linaro.org> <CAA8EJpoUtfWFR315jiC8PzPQydM9kT3kQYeqyOav-P9=qZKO2w@mail.gmail.com>
+ <4658c7bc-b26f-d22b-73ea-9deb7d29f90f@linaro.org> <20221003171714.GA2462016-robh@kernel.org>
+ <c1e79572-e5d0-079f-76db-c9e8d4edbcd3@linaro.org>
+In-Reply-To: <c1e79572-e5d0-079f-76db-c9e8d4edbcd3@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 4 Oct 2022 00:28:04 +0300
+Message-ID: <CAA8EJpo6J4kTh6UFXM2jBNbwoxqdUY3TrP8y=S5ONucr+3qZ=Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: YAML-ify SSBI bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The first interrupt is for the regular watchdog timeout. Normally the
-RSTOUT line will trigger a reset before this interrupt fires but on
-systems with a non-standard reset it may still trigger.
+On Mon, 3 Oct 2022 at 20:32, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 03/10/2022 19:17, Rob Herring wrote:
+> > On Mon, Oct 03, 2022 at 08:46:09AM +0200, Krzysztof Kozlowski wrote:
+> >> On 02/10/2022 15:46, Dmitry Baryshkov wrote:
+> >>>>> +    enum:
+> >>>>> +      - ssbi
+> >>>>> +      - ssbi2
+> >>>>> +      - pmic-arbiter
+> >>>>> +
+> >>>>> +  pmic:
+> >>>>> +    type: object
+> >>>>
+> >>>> This is quite unspecific... Can we make it a ref to some PMICs schemas?
+> >>>
+> >>> Yes, I thought about listing all compats, but probably a $ref:
+> >>> ../mfd/qcom-pm8xxx.yaml# makes more sense.
+> >>
+> >> Then full path - /schemas/mfd/qcom-....
+> >
+> > While effectively it's always a QCom PMIC, this is a bus binding, so
+> > shouldn't it just be 'additionalProperties: { type: object }' without
+> > any reference to the type of device?
+>
+> If we treat it as generic bus, then maybe also "pmic" is not
+> appropriate. What if other devices are connected?
 
-The second interrupt is for a timer1 which is used as a pre-timeout for
-the watchdog.
+It's a 1:1 bus, so SSBI host can be connected to a single IC. This bus
+is not used in new designs (it got replaced with SPMI). All existing
+devices use SSBI to connect to PMIC. So I think it is safe to assume
+that the only ssbi child is a PMIC.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- arch/arm/boot/dts/armada-xp-98dx3236.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+>
+> Bindings were saying it is Qualcomm SoC specific bus, so I don't think
+> we can have here anything else than Qualcomm PMIC.
+>
+> Best regards,
+> Krzysztof
+>
 
-diff --git a/arch/arm/boot/dts/armada-xp-98dx3236.dtsi b/arch/arm/boot/dt=
-s/armada-xp-98dx3236.dtsi
-index 38a052a0312d..0e561dfc0ca9 100644
---- a/arch/arm/boot/dts/armada-xp-98dx3236.dtsi
-+++ b/arch/arm/boot/dts/armada-xp-98dx3236.dtsi
-@@ -286,6 +286,7 @@ &watchdog {
- 	compatible =3D "marvell,armada-xp-wdt";
- 	clocks =3D <&coreclk 2>, <&refclk>;
- 	clock-names =3D "nbclk", "fixed";
-+	interrupts =3D <93>, <38>;
- };
-=20
- &cpurst {
---=20
-2.37.3
 
+-- 
+With best wishes
+Dmitry
