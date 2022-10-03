@@ -2,206 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FBC45F28E8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 09:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF8685F296D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 09:19:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbiJCHBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 03:01:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56994 "EHLO
+        id S229836AbiJCHTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 03:19:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229657AbiJCHBH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 03:01:07 -0400
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AAFC183AB;
-        Mon,  3 Oct 2022 00:01:04 -0700 (PDT)
-Received: by mail-wr1-f51.google.com with SMTP id bv17so6306353wrb.10;
-        Mon, 03 Oct 2022 00:01:04 -0700 (PDT)
+        with ESMTP id S230008AbiJCHRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 03:17:45 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB64D46DBE
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 00:14:24 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id t16so10770365ljh.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 00:14:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=wYR4NfV8b6uyYjkuS4ioBsPmvXID6qlbvYaMpLrsWeo=;
+        b=M5IEXsDyin6ySOcRWawZaJmNk+565XVGaj7rLmvlyBrXacUxV643XlZ7s41y2KgMDK
+         5+/fS2rtB0F0eeiAOwBQ1wGhm52uJXweQzs5cbyQjf22hWmMA5V50a4Z/Z63SlsNGtQR
+         4pPk0k4Dazr+sk0255eBtOMxj1K7aK5cRSdUhO1KVn0vxMfBlAO73AF0buE1vrfQXmUN
+         5sEsw7/Zdehoj6BucczvV0RUn6kyEmAjz//wvT5nWVYl9GP0XKoN/XDu577O0IXGFeKx
+         YrhJzyc97g2sFikC++1pwf7xhu6ilH/VdfrJRjY5SjvA/yxOrWbwA4VMj7cIYmzfl+Km
+         JIng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=QZxEh5TlGS++zfFKZtN1bwu8VZwicVL3B9zKI6Kxkv4=;
-        b=3KSwQDeOnUibGP+tiAG5QhpPMcVZWgJmL2d/3Gx5HTmzObOm1htIMIENHQJG8d+nWp
-         mjNM4eKn+39aemRSi47S6xOyWrqdmxtFS8cum5vFN49LhxXM8dt4RqgKHM9/B5i5Ox32
-         89KDTuXcAFy5IHMD5W1iq/LAOWVsbdKodqlBviXnSBhgWnUKfHsbIx19TzMzJRnjZsv/
-         Y4ZHFmmztXwlTmKSHfC6adf7cKlV6K2CVJr7TUMzCH5P2BOrs+5WwILJqfuSolvSZ47n
-         BG3NLbx7+oAcX1+m3q5Q9TQ69fOwBz2rdEHIoxT231n486juzdsls/uIZChg1VZJMrGC
-         X8Wg==
-X-Gm-Message-State: ACrzQf3efDUFizHa0/GYS5lyimUQW4WjW4hIP5cHbuqwbpuhenTvrkjS
-        k4/e/CaxMgbVE+ajLO6pacL6c92qCkqnvg==
-X-Google-Smtp-Source: AMsMyM7oTmPD9TmDJpCJLB5vx4Vxbpy4WraurpF7b0hIVCUMh3x/LYxkMeo2Z1XcyBUM3+J1f7gZ4w==
-X-Received: by 2002:a5d:6484:0:b0:22e:3456:37fa with SMTP id o4-20020a5d6484000000b0022e345637famr3710653wri.203.1664780462955;
-        Mon, 03 Oct 2022 00:01:02 -0700 (PDT)
-Received: from ?IPV6:2a0b:e7c0:0:107::70f? ([2a0b:e7c0:0:107::70f])
-        by smtp.gmail.com with ESMTPSA id fc9-20020a05600c524900b003b31c560a0csm11376995wmb.12.2022.10.03.00.01.01
+        bh=wYR4NfV8b6uyYjkuS4ioBsPmvXID6qlbvYaMpLrsWeo=;
+        b=FjtB8S6zep/VR6rlCZF9Ded4M7K1tld1mDVsGMNLgXlKthBYFAQlhb93jASUKVZqFi
+         4BPAW6eUUoKnq9hIl+kzTvp6E6JaACqanmoVbVXGhb+cSUE5R10BBr7IqohA7rgw27Fe
+         r74voJX82mWmlQDJINr9eqLXvcbVyO6wkQC2lPxyqcCM3M2fGzPA5Cq8T6ft8govNq1q
+         YCH8mSuNN2UfmwecRb5UKt/QVQAmW3l0qyaHosFG5727YcR38AeIJNSCcJmgJ/6jYjsY
+         yE5r/m/vraYZb97q8PONjcbHipbAIZmXTTxTl+7r2a7FoabdkbHHiJ86FszL0+Qv2zhf
+         aNHQ==
+X-Gm-Message-State: ACrzQf0YYgQYSQG47xr73/VyIe7yI3v2aIJP1+cFo14VsTCZ6BMPXecU
+        bk9w7/TGex0VU1u0yZa0PNklDA==
+X-Google-Smtp-Source: AMsMyM4hqeB1DIMt8vJl2VZ3nxsQtjBqiz9YIXnZZtgsKSq91gR1uL9j7f2Z9PlVU83e5X+CYjtz/Q==
+X-Received: by 2002:a2e:8e62:0:b0:26d:e470:3973 with SMTP id t2-20020a2e8e62000000b0026de4703973mr209145ljk.71.1664781262835;
+        Mon, 03 Oct 2022 00:14:22 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id k16-20020a05651210d000b0049468f9e697sm1334586lfg.236.2022.10.03.00.14.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Oct 2022 00:01:02 -0700 (PDT)
-Message-ID: <bbde3488-be49-371d-3de3-89e759d639f4@kernel.org>
-Date:   Mon, 3 Oct 2022 09:01:00 +0200
+        Mon, 03 Oct 2022 00:14:22 -0700 (PDT)
+Message-ID: <fe399fb3-a8b1-14d4-3460-4c4ef36a0dc6@linaro.org>
+Date:   Mon, 3 Oct 2022 09:14:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v4 14/14] tty: gunyah: Add tty console driver for RM
- Console Services
+Subject: Re: [PATCH] dt-bindings: mfd: mt6370: fix the interrupt order of the
+ charger in the example
 Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
- <20220928195633.2348848-15-quic_eberman@quicinc.com>
-From:   Jiri Slaby <jirislaby@kernel.org>
-In-Reply-To: <20220928195633.2348848-15-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     ChiaEn Wu <peterwu.pub@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        matthias.bgg@gmail.com, sre@kernel.org
+Cc:     chiaen_wu@richtek.com, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <cc89d749eba56c5f2489d1707f7711733561b757.1664792418.git.chiaen_wu@richtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <cc89d749eba56c5f2489d1707f7711733561b757.1664792418.git.chiaen_wu@richtek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28. 09. 22, 21:56, Elliot Berman wrote:
-> --- /dev/null
-> +++ b/drivers/tty/gunyah_tty.c
-> @@ -0,0 +1,409 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#define pr_fmt(fmt) "gh_rsc_mgr_console: " fmt
-> +
-> +#include <linux/gunyah_rsc_mgr.h>
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/workqueue.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/tty_flip.h>
-> +#include <linux/console.h>
-> +#include <linux/module.h>
-> +#include <linux/kfifo.h>
-> +#include <linux/kref.h>
-> +#include <linux/slab.h>
-> +#include <linux/tty.h>
+On 03/10/2022 04:52, ChiaEn Wu wrote:
+> From: ChiaEn Wu <chiaen_wu@richtek.com>
+> 
+> Fix the interrupt order of the charger in the binding example.
+> Due to this patch modifiacation
+> (https://lore.kernel.org/all/20221001202918.me7z2qzm7cmrkzsg@mercury.elektranox.org/),
 
-Sort alphabetically, please. Not by inv. xmas tree.
+This is already a commit, so use commit syntax.
 
-> +/*
-> + * The Linux TTY code does not support dynamic addition of tty derived devices so we need to know
-> + * how many tty devices we might need when space is allocated for the tty device. Since VMs might be
-> + * added/removed dynamically, we need to make sure we have enough allocated.
-> + */
-> +#define RSC_MGR_TTY_ADAPTERS		16
-> +
-> +/* # of payload bytes that can fit in a 1-fragment CONSOLE_WRITE message */
-> +#define RM_CONS_WRITE_MSG_SIZE	((1 * (GH_MSGQ_MAX_MSG_SIZE - 8)) - 4)
+> there will get some warnings in linux-next when compiling the dts.
+> 
+> Fixes: 76f52f815f1a ("dt-bindings: mfd: Add MediaTek MT6370")
+> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
 
-"1 *" is kind of superfluous.
+With fixes in commit msg:
 
-"- 8 - 4" -- it's too many magic constants in here. Define macros for them.
-
-> +struct rm_cons_port {
-> +	struct tty_port port;
-> +	u16 vmid;
-> +	bool open;
-> +	unsigned int index;
-> +
-> +	DECLARE_KFIFO(put_fifo, char, 1024);
-
-Why is tty_port::xmit_fifo not enough?
-
-> +	spinlock_t fifo_lock;
-> +	struct work_struct put_work;
-> +
-> +	struct rm_cons_data *cons_data;
-> +};
-> +
-> +struct rm_cons_data {
-> +	struct tty_driver *tty_driver;
-
-It looks weird to have a driver per console/device.
-
-> +	struct device *dev;
-> +
-> +	spinlock_t ports_lock;
-> +	struct rm_cons_port *ports[RSC_MGR_TTY_ADAPTERS];
-> +
-> +	struct notifier_block rsc_mgr_notif;
-> +	struct console console;
-> +};
-> +
-> +static void put_work_fn(struct work_struct *ws)
-> +{
-> +	char buf[RM_CONS_WRITE_MSG_SIZE];
-
-Ugh, is this 1024-12? Do not do this on stack!
-
-> +	int count, ret;
-> +	struct rm_cons_port *port = container_of(ws, struct rm_cons_port, put_work);
-> +
-> +	while (!kfifo_is_empty(&port->put_fifo)) {
-> +		count = kfifo_out_spinlocked(&port->put_fifo, buf, sizeof(buf), &port->fifo_lock);
-> +		if (count <= 0)
-> +			continue;
-
-This does not make much sense. 1) kfifo_is_empty() is not locked; 2) 
-it's overly complicated. It can be, IMO:
-while (1) {
-   count = kfifo_out_spinlocked();
-   if (!count)
-     break;
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
-> +static int rsc_mgr_console_notif(struct notifier_block *nb, unsigned long cmd, void *data)
-> +{
-> +	int count, i;
-
-Not unsigned?
-
-> +	struct rm_cons_port *rm_port = NULL;
-> +	struct tty_port *tty_port = NULL;
-> +	struct rm_cons_data *cons_data = container_of(nb, struct rm_cons_data, rsc_mgr_notif);
-> +	const struct gh_rm_notification *notif = data;
-> +	struct gh_rm_notif_vm_console_chars const * const msg = notif->buff;
-
-Interesting mix of inconsistencies. Once you start with const, once you 
-place it after struct. Please make it consistent (start with const).
-
-ANd here, you should apply inv. xmas tree sorting.
-
-> +
-> +	if (cmd != GH_RM_NOTIF_VM_CONSOLE_CHARS ||
-> +		notif->size < sizeof(*msg))
-> +		return NOTIFY_DONE;
-
-Weird indentation. notif->size should start with either 4 spaces less or 
-one more tab.
-
-regards,
--- 
-js
-suse labs
+Best regards,
+Krzysztof
 
