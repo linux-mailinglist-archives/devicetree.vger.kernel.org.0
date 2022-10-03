@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA0655F3832
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 23:59:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 928295F3887
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 00:02:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbiJCV7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 17:59:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53476 "EHLO
+        id S229901AbiJCWCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 18:02:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229918AbiJCV7p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 17:59:45 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D872E6344
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 14:59:42 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id e18so16421717edj.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 14:59:42 -0700 (PDT)
+        with ESMTP id S229938AbiJCWCD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 18:02:03 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF5E331EDA
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 15:02:01 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id f1so7546045ejw.7
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 15:02:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=0SIK8tCoNjigsaJyP1+HHiu3azBVVEgFP3okI/eaJ3k=;
-        b=aWOPuV1quDhUmeYp9NcOTH7AMvxC2qODqNDyjz7wMxDYMCZ8m3jMXjaViNnG/E+WqY
-         TULHgotUauRa6d+e4v1aH9kJMYETVwyCGFGEx4U9VACk6jje/zq1847iU9kcmKtKzbGq
-         nli0q5xy1E2o8v7QPag4z6rg81ZO7Yqi8CFcxpjUpYfXA8v+F9sNv34JjLm2Po56ZyKA
-         gn4wVlpWES9dlxoPhcDPjuT4xWM+hgkQjgm3YNYEVrkRo6JSrlLChTp5tf44wYP6UN79
-         4aDBawwPHMktSjuFgxt6PVJsfGS8i9+w0KdYP0wsi7PSbh7M8fe3jOfRkJCgyIpJe5ic
-         la9g==
+        bh=HV8KUZ4GPFpWtPFVlTgVXPYpTAfZV/oMcB7Ni0y1cJo=;
+        b=RGdIZ/Z08zcTidBpIfZ0fUtwIMOXTxw+d9f8ATQtx5bqfwijqOxlO3TmILLjGojEI2
+         0/C5o5myNt1Z+AoGNzL0GIChH3w8BxEM7gjOO7emlAUCGpXQRh9i0w9hwJ7T+VyNVHxA
+         zom+NkFhWHw2lZYpCC0XaUpZ4OM8cvk5uBToPmMKKfqm/+d+WaBKU+5XnTXoDE86DL6k
+         /6ZO0lICunGPOsrQiBGGlXMpj364fioMKCSrUHFaHPYQzlC01cczqHltiEGI2X/tTZ8V
+         bjQzktzxjHpcn0+BEoYXCVjcxVlqrCQaL+d1wg6/pNMxX8nsi5O6ZzQ05V50eTC6I1B5
+         Y+Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=0SIK8tCoNjigsaJyP1+HHiu3azBVVEgFP3okI/eaJ3k=;
-        b=8QoLnWDBI91aoSYRUN28psvIW6CWXIdYCjthlbCJN2H4l2HOeCtiiiV9KbcFNAUxOV
-         GZ3d+XPbEwHHkoqWzGM+xC08JvOHXoGVJHt2TqLEDT0RfhHlH6n3XkcT2UVT8roPWQ8U
-         I/kjU4Uv+ad/3DH17+bA2LoNt0RwY3svuB2zKymdbzY9LJOQYpm/PjLrfaJT7Acj2bY8
-         soKY7hsiuK8pILgAP0kTFfNv+tyTUsmux6MZyzGQAbGzZFf6XNu46a+YnprN4pUN6vZF
-         FdQ/Ml11XWXRV78hmTMeaFPKkuQta+XHJ80Hc76WucN5F7i9Xuew2e6ENq6VLKWG2a87
-         XW1g==
-X-Gm-Message-State: ACrzQf36cTKyzM12TMoAmmD5s45ZI4WThU7fRj9y2LEZKWwHL8bq3gcg
-        AuSbqjRpXH+9zUl/2kx6Utz3rioKdskzvks3oKOSjg==
-X-Google-Smtp-Source: AMsMyM6Vc35m4Q9nf1n1sZmtNjTnfagyzbYCBX/RdutZnCYlhqEuUrhJQGsbcMFpw6JXvX0M8O/dpVSnSR86k1hd2BQ=
-X-Received: by 2002:aa7:c050:0:b0:453:4427:a947 with SMTP id
- k16-20020aa7c050000000b004534427a947mr20528493edo.172.1664834381395; Mon, 03
- Oct 2022 14:59:41 -0700 (PDT)
+        bh=HV8KUZ4GPFpWtPFVlTgVXPYpTAfZV/oMcB7Ni0y1cJo=;
+        b=evggF+s+ALG9TrfQ3bPs+lYhKe2uE9HgQQg33uXe4vE9hF2jldHvd8Tedu/9a7Kz/S
+         SA8tU+Zbx17jabIgOTd5o5L3Yypg39gxmXDqKJ0S7pRVSIGW39eMOzfelnmT9duD8qJd
+         d9Rlj4Tpa4deul1ITHrvpZhigtbksgnLAcRsumdZJh7Qr4N1XFAIcGJIEcLd8wnsKTVH
+         ZUnKJBi1DZRKn/N/KdAwp/r3NmcGjjBwTr2JqgKfGZBrawwN4ACeqiNWMP3F4B0rGPTK
+         jN62558VDzU1vRjjpyZhxxvEfXJNbb3qzBzE5E/T2qkTNRNs9EE6kCwTVKIErn8/TMgy
+         +v3Q==
+X-Gm-Message-State: ACrzQf3niggm8wg9XslKwsMqK1Dr5qdL2q6fjH6l7TcyN0YV/NMv0A/w
+        n0nBGBhTaNvEqwCRp9C7liu4wMY18yMAmGN/zgAmCQ==
+X-Google-Smtp-Source: AMsMyM72H+D6z11aPXLsbrptZmRmrhUBp1HI9zRSIGSONqexAiHHRxKlnMat4VIWoHNajB1Qjvswtq1P9D6cs4Gf/nY=
+X-Received: by 2002:a17:906:5d04:b0:77f:ca9f:33d1 with SMTP id
+ g4-20020a1709065d0400b0077fca9f33d1mr17295191ejt.526.1664834520528; Mon, 03
+ Oct 2022 15:02:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220922195651.345369-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220922195651.345369-1-krzysztof.kozlowski@linaro.org>
+References: <20220924080459.13084-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220924080459.13084-1-krzysztof.kozlowski@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 3 Oct 2022 23:59:29 +0200
-Message-ID: <CACRpkdZ0KnXr+iQJb5z+Lqn9Mx5NLNzvT00Mn0hCvvcp2jMHYQ@mail.gmail.com>
-Subject: Re: [PATCH 00/12] pinctrl/arm64: qcom: continued - fix Qualcomm LPASS
+Date:   Tue, 4 Oct 2022 00:01:49 +0200
+Message-ID: <CACRpkdZpCshxrLtHfnYOD2=Ua8Te1X1MEfJuaoH4QFLayYxoUA@mail.gmail.com>
+Subject: Re: [PATCH 00/32] pinctrl/arm64: qcom: continued - fix Qualcomm TLMM
  pinctrl schema warnings
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -58,7 +58,12 @@ Cc:     Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Sricharan R <sricharan@codeaurora.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        krishna Lanka <quic_vamslank@quicinc.com>,
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
@@ -71,16 +76,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 22, 2022 at 9:56 PM Krzysztof Kozlowski
+On Sat, Sep 24, 2022 at 10:05 AM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 
-> Set of fixes for LPASS (audio) pin controller bindings and DTS.
+> This is the third patchset around Qualcomm pinctrl in recent days:
+> 1. First round of TLMM fixes: merged
+> 2. LPASS fixes: https://lore.kernel.org/linux-devicetree/20220922195651.345369-1-krzysztof.kozlowski@linaro.org/T/#t
+> 3. Second round of TLMM fixes: THIS PATCHSET
 
-I certainly trust you with this stuff.
-
-Once you feel confident with the long series, please send me
-pull request(s) based on v6.1-rc1 with the binding stuff for these,
-thanks!
+Same thing with TLMM as LPASS! Stack up the bindings, send me pull
+requests, because I trust you.
 
 Yours,
 Linus Walleij
