@@ -2,129 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B7375F38A5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 00:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B79315F390F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 00:31:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbiJCWOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 18:14:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50312 "EHLO
+        id S229854AbiJCWbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 18:31:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229698AbiJCWON (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 18:14:13 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47D5A32B87
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 15:14:12 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id 203so14710722ybc.10
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 15:14:12 -0700 (PDT)
+        with ESMTP id S230049AbiJCWbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 18:31:01 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90D5256BAF;
+        Mon,  3 Oct 2022 15:31:00 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id z18so7568386qvn.6;
+        Mon, 03 Oct 2022 15:31:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=5FZVe4qgx0VvS22BuyLf2t6tSB6jCkuSkQ/O1CHtM3Q=;
-        b=VcY4r82G7gHdeYUFFoYACviWj/qy2778vE5P5cUgPX5rJ4Am9rDQT1DSnJOt7jIgQD
-         iILfYNH7faJ/NBW6BiX+bUp0RKKWXwFp6NXsQFLc2I0Z/adzj3zl0d3cjVa5xufWon4T
-         syr8jsukj9it8KBoEafQMUdtTHl9hPVELSUMMhP+clMoi19xYwuozv+T+0qopdx+l0Wl
-         dh9CWdHg7U6v3o6GjaNP5FGSMwBOT2qdP5HEsreksKBEy0wtZ62tslUg8nhx9lDqGRCZ
-         D07cmU/uJ7auZo0aCHRIHpj6Wgm7DPVCUJKJ4NwRHkiXbaH9JPpNGai6SeMcNaJxH6n8
-         EMtA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=NuITEX6P+MDGCLFsaWBYcW/pAivSy5wHmq9D4KKilv4=;
+        b=Ghi8E9W1R28C006BusoIoDEjqvBGffxFbJWyFYF6n+u82OASnAu5m/cwu4GAQKljcw
+         Poj+oljQY2Ae62b/3U1Cmg3ICWTXVS92k+WBwZktazMybPuovXeqWP/1Ra4mOnpR2bHv
+         ibDcCnoUp22G/Tv7GTpPq2kC3jOAxqdULFYSZRvDPh/KgMLEXnWqXiENMuo/qVX4UhAm
+         l2fsHWNUWts8t+JnzYelrbETLiAnzgyGWiVLPn5pEVV2a2yVHajR4BW4i9kGmp9VaLcf
+         1PYauVCnu6itzD9t+HRDh4utjfp8WJGwKEeAuGJj38N688Tq9VttA3FoMyrMc63qV7cK
+         WbFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=5FZVe4qgx0VvS22BuyLf2t6tSB6jCkuSkQ/O1CHtM3Q=;
-        b=yMTB3Wl7lJi3harkJf971rbEq9yokjC+XpCdSPFUWEjfyZuKubS9wl6SEn+Me742yA
-         eZy6W4XgEX2yGcTjqtA3vILsmtYBuvzggmvbw7z+6zAxplleVvj4GF3jc+C0LC43+4Hx
-         /hIE6bRvcK9KKQpdN1fUU20zRXnxQdcIdozitlrVDlBxnbaogCR6pm3sUaI7JOAVBZwS
-         +m1118TMjKNkM6nPNke2tbJNc+UUkvT9gCkalNOGLxtu2g5FDV0K2fi8U1vVdab8DpM1
-         f0kOgVlmWBiTpxTT1lA/D3i8NJELz8jWK6DCERi4MazbrDQPIu3fbNMcpYFjFAXx4PPX
-         fIOQ==
-X-Gm-Message-State: ACrzQf2k89ok/+SbsE3qod7YeRrpLh10xgDfPtajqgryU9uPwMsadMwj
-        L71IJLjXnZKggGAYCcXRRj+AoBQ2lYlyu/cDz2b0bA==
-X-Google-Smtp-Source: AMsMyM50iuzbg50mfv02VLKAqIUzPFceoAfv9Ta62zYqvc7Msa9SH+aEBaFaPaaRG9C/g9GCEVWNCEr29yIgQu/mqrA=
-X-Received: by 2002:a5b:c:0:b0:6bd:f84c:b63e with SMTP id a12-20020a5b000c000000b006bdf84cb63emr3690764ybp.275.1664835251547;
- Mon, 03 Oct 2022 15:14:11 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=NuITEX6P+MDGCLFsaWBYcW/pAivSy5wHmq9D4KKilv4=;
+        b=v996+thfxw81SezOsAwcmsg9TNS18EDoGIcJFRP6aTAftHoudBZfgTNb0g6/g0qslw
+         cHPQXmIKvRFmg9g0TEs7m9hzubeY0LpPKDgAgE40d4IhEe+cq2eiH+8bx6NrUI8UN6Ai
+         EmsvZk2hEztandX5tDRQprztqe9OuIsYpqXmwEA5ro4PY2Z1sfOiKUanFzRfa3axwhxw
+         +GNACti+C6z7bspYn6UV8y7xefW7QdP+hb6zgQIuMViMhwme4fbx/JOHtPN4JdGyEGpa
+         gd+kMGO7XYFaKIbwV4BZsu5YLS7kqVHC+dd3qESVY+A6/U+iP0/eNPoJDUElURzf9wBL
+         3x0A==
+X-Gm-Message-State: ACrzQf0Hm1IidGkmhVwtI642e1fd9VatHkgZMSS8DFehPYPZlYq/6bR3
+        rNawYwm/UFxBpHlRVVKFthA=
+X-Google-Smtp-Source: AMsMyM4Lzy6L7dC08yq6koQ2VoRbS+jFuLkfquLRlxUZ2uy3iUQA5Dn/wDCdrPGNVAKZX/fHWm87/A==
+X-Received: by 2002:a0c:8c4f:0:b0:4ac:94fa:a587 with SMTP id o15-20020a0c8c4f000000b004ac94faa587mr17762289qvb.40.1664836259268;
+        Mon, 03 Oct 2022 15:30:59 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id i13-20020a05620a248d00b006cbe3be300esm12606433qkn.12.2022.10.03.15.30.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Oct 2022 15:30:58 -0700 (PDT)
+Message-ID: <dbca5b5f-2fcc-8ef6-6081-e97c6304a7f2@gmail.com>
+Date:   Mon, 3 Oct 2022 15:30:55 -0700
 MIME-Version: 1.0
-References: <20221001030641.29354-1-quic_molvera@quicinc.com>
- <20221001030641.29354-2-quic_molvera@quicinc.com> <09f5d364-320e-9ecc-2c2b-68066c61f802@linaro.org>
- <e9c44e3b-b29f-0f47-b822-da0f4f2264cc@quicinc.com>
-In-Reply-To: <e9c44e3b-b29f-0f47-b822-da0f4f2264cc@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 4 Oct 2022 01:14:00 +0300
-Message-ID: <CAA8EJprE-mOOH8VF3m8TRb+0q=3_8NpvzdEAugabDaDbq6FMVQ@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: firmware: scm: Add QDU1000/QRU1000 compatibles
-To:     Melody Olvera <quic_molvera@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v5 2/2] dt-bindings: mips: brcm: convert Broadcom SoCs to
+ schema
+Content-Language: en-US
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        hauke@hauke-m.de, zajec5@gmail.com, tsbogend@alpha.franken.de,
+        zhouyanjie@wanyeetech.com, linux-mips@vger.kernel.org,
+        arinc.unal@arinc9.com
+References: <20221002091611.946210-1-sergio.paracuellos@gmail.com>
+ <20221002091611.946210-3-sergio.paracuellos@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20221002091611.946210-3-sergio.paracuellos@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 4 Oct 2022 at 01:02, Melody Olvera <quic_molvera@quicinc.com> wrote:
->
->
-> On 10/1/2022 4:25 AM, Krzysztof Kozlowski wrote:
-> > On 01/10/2022 05:06, Melody Olvera wrote:
-> >> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
-> >>
-> >> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
-> >>  1 file changed, 2 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> >> index c5b76c9f7ad0..b47a5dda3c3e 100644
-> >> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> >> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> >> @@ -51,6 +51,8 @@ properties:
-> >>            - qcom,scm-sm8250
-> >>            - qcom,scm-sm8350
-> >>            - qcom,scm-sm8450
-> >> +          - qcom,scm-qdu1000
-> >> +          - qcom,scm-qru1000
+On 10/2/22 02:16, Sergio Paracuellos wrote:
+> Add the yaml binding for MIPS Broadcom cable/DSL/settop platforms.
+> 
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> ---
+>   .../devicetree/bindings/mips/brcm/soc.yaml    | 97 +++++++++++++++++++
+>   1 file changed, 97 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/mips/brcm/soc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mips/brcm/soc.yaml b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
+> new file mode 100644
+> index 000000000000..a47a5bcc5e0b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mips/brcm/soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom cable/DSL/settop platforms
+> +
+> +maintainers:
+> +  - Hauke Mehrtens <hauke@hauke-m.de>
+> +  - Rafał Miłecki <zajec5@gmail.com>
 
-I think after seeing all the patchsets it's time to ask the following
-question. Do we really need a duplicate compatibility families:
-qdu1000 vs qru1000? I'd suggest using a single set of compatibile
-strings in most of the cases.
-Settle down onto a single name (qdu,qru, qdru, whatever) and define
-distinct compat strings only when there is an actual difference?
+Could you also list myself here, since well, I am still listed in 
+MAINTAINERS for BMIPS, and CCing would be nice, too.
 
-E.g .we don't have separate compatible strings for all the sda660,
-apq8096, etc. unless this is required by the corresponding hardware
-block not being compatible with corresponding sdm or msm counterpart.
+With that:
 
-> > Items should be ordered alphabetically.
-> Will fix.
-> >
-> >>            - qcom,scm-qcs404
-> >>        - const: qcom,scm
-> > Patch is incomplete. Missing changes for allOf.
-> Will add.
-> >
-> >>
-> > Best regards,
-> > Krzysztof
->
-> Thanks,
->
-> Melody
->
-
-
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-With best wishes
-Dmitry
+Florian
