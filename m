@@ -2,166 +2,324 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDDC55F29AE
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 09:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7187D5F2B5D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 10:00:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbiJCHXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 03:23:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37876 "EHLO
+        id S232097AbiJCIAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 04:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230308AbiJCHWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 03:22:24 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2069.outbound.protection.outlook.com [40.107.100.69])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B52F4A836;
-        Mon,  3 Oct 2022 00:16:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TMmp3AxuD3DNlLkA3aTdVAQp4iVibX1n8vgXOnwg9yy01b7jUZejdHjSSdoiAsqLED3ym9NkFl1TP6kp4HpAP40gnteDx2G65WOdVSlmH0YjoWH+t4BOeLxkfDYTvYYZoi4jbqV8VXB9cSGJYXlFkIBWUrmTzNc8WBT0ZNjyNK4EHypQVO0GP4IJ/4bLHHHNJXFg3fR1+9n3lq9OoaDCzVxQS1sKdu18JFOMYYU42pz8T0QgV0GvTbj01E4uPTGUhUEkUeKzoI1DO8cc3DDPh8HShdb0x0HLd4eF4qAvG14AEpL0U9kSNMeqigMx1uM1nw9JT9j4rs+CikVKzbOmxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y7UiQGXgV5UxpKxa7sRG/38zrGrk75jQvTpCBRzrqPc=;
- b=dCqa5BYnl9dIsYhZjdeGREwephveVqfiN/kI96V50fZ0Xz5JUdJtlAYxNL675cu2ivC9QZvW9gY9USUuwKunHYsDPdJ0wCkz7FUWksOBnYWNKuTp+3KQv3YoCbJ789j/BSb0DwaggmTiG31f8KNUZE+v2YZ2gUzU6gUV6EEBmEwm7Y3IovkvdLRiQQHu/se14AUC2e8hB0HMEIbgw8OqhB8s+uUZA+q+ayt7/m6QlJykC1gEmE2yyheCvYoVqNAEEhwAg59E7mFue+mpMpRwXlofkBdOog4SrvPaX1xR/anudp09pBrdgsgskUGvK5gtnDNClSnPWIKJfl8uLqt5dA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y7UiQGXgV5UxpKxa7sRG/38zrGrk75jQvTpCBRzrqPc=;
- b=wrwIpEh0Xyf1w1EoHnYqgNCgOD1k72W3IpOgfF/9ilY+zNKHDd57JF5w281I0ZQ2dUKXHcL+xroB3bx0C1giaIdfgGwtplQLgkh3EHs8UWZSJnghwL93A3hXHTH/gH0Xc9eSYtHlH8RPfOfGu5AYUNOSQJWCH6NMKa6JyO/yPQA=
-Received: from DM5PR07CA0111.namprd07.prod.outlook.com (2603:10b6:4:ae::40) by
- SA0PR12MB4367.namprd12.prod.outlook.com (2603:10b6:806:94::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5676.24; Mon, 3 Oct 2022 07:15:20 +0000
-Received: from DM6NAM11FT050.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:ae:cafe::65) by DM5PR07CA0111.outlook.office365.com
- (2603:10b6:4:ae::40) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.26 via Frontend
- Transport; Mon, 3 Oct 2022 07:15:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT050.mail.protection.outlook.com (10.13.173.111) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5676.17 via Frontend Transport; Mon, 3 Oct 2022 07:15:20 +0000
-Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 3 Oct
- 2022 02:15:14 -0500
-Message-ID: <6e58837e-896c-7069-7913-2afb90af5e95@amd.com>
-Date:   Mon, 3 Oct 2022 09:15:01 +0200
+        with ESMTP id S232112AbiJCH7v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 03:59:51 -0400
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB9562ABC
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 00:36:05 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id nb11so20266743ejc.5
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 00:36:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=3BjC5TdVOJG0MFJ0v+35mmv8Y28sqjeiZ/AJc3bp1Tk=;
+        b=T287oNppUAecj5zehHeownXG3/nYrMVEDZYqAgJLwv8cufCXsrE7k+ugolhcxKGKst
+         B+w2ZKqbTx2QqCEP2PlRSggq+UNQiQPE45xicSXHzfi8lpfMGZjSknDA6PJuvcLkzIgu
+         cef6ouOEiQiYuO9rZdczdPqJeF0o8bMcMcLpmQPg5HmCCT+pX7swquGu1PqERDkYt+lt
+         b/iOMtPDk/O+2VXyXejoALFboGUa4q/x/zAS2EBl/Q5UT449AzGBo5TYJQTvrh4JDCTM
+         cppJ3XCRKv+6QQAkP0wIfFETJLdedHt5D9YJEq7VI7DEO2Yzpch/x7Fi/loxuC6drDKg
+         CkOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=3BjC5TdVOJG0MFJ0v+35mmv8Y28sqjeiZ/AJc3bp1Tk=;
+        b=YSVIt2vHvMDzNljuBPq0rxgtlqPV/ZiP6Wpvb6uT9irZYN1e/FiBxwrBnU9ZB01FO2
+         0AzefzebQ61vttjC6MhERaZpdWd3abzPvEkxFmaGErCpmUAqNDgDzLzltnz+M+xZxW3j
+         UWzIJaLMsEIs+M7PcBZigXU0wVbpR5sQsUktyD+N1LU6RrL5tOLNTFwQOBD7kBp0oAzd
+         JfiP3XgSzO9YELiBVM57yn7gTedhrqE3z0O8StBJubISS9Z+6fBLwuF5FaFs/85DvBeZ
+         KZZyCkeQyq0wmKsKivMMuU8qQqkdh6QVt25Kq2gHhA7Zrf7dCSABCiWpqjYk2db0N3qg
+         3spg==
+X-Gm-Message-State: ACrzQf2YtVHDE0RYxjEsSBwQt8t5ne4e/0GSxmyl2ETd4o8rL7+VcGNv
+        krp7he8Zaq4XTpbBDj+eLAXhmhTdjFE=
+X-Google-Smtp-Source: AMsMyM706ZAhc5IrmK2CcU/x55f3phuWPgyjgMw1jn9EksoP9R8lNI2UzkI3tfbUmvb6m2ICl8Wzkw==
+X-Received: by 2002:a17:907:3fa9:b0:782:ed33:df8d with SMTP id hr41-20020a1709073fa900b00782ed33df8dmr14329249ejc.745.1664782419913;
+        Mon, 03 Oct 2022 00:33:39 -0700 (PDT)
+Received: from WBEC325.dom.lan ([2001:470:64f7:0:1c86:a9a0:86fe:7563])
+        by smtp.gmail.com with ESMTPSA id x13-20020aa7d6cd000000b00458e40e31c8sm2765242edr.15.2022.10.03.00.33.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Oct 2022 00:33:39 -0700 (PDT)
+From:   Pawel Dembicki <paweldembicki@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     Pawel Dembicki <paweldembicki@gmail.com>
+Subject: [PATCH v2] ARM: dts: kirkwood: Add Endian 4i Edge 200 board
+Date:   Mon,  3 Oct 2022 09:33:32 +0200
+Message-Id: <20221003073332.1507803-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <linux-arm-kernel@lists.infradead.org,>
+References: <linux-arm-kernel@lists.infradead.org,>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH 1/2] dt-bindings: clk: Add binding for versal clocking
- wizard
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        <linux-clk@vger.kernel.org>, <git@amd.com>,
-        <devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <sboyd@kernel.org>, <mturquette@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-References: <20220930080400.15619-1-shubhrajyoti.datta@amd.com>
- <20220930080400.15619-2-shubhrajyoti.datta@amd.com>
- <CAL_JsqLaqjZeZd3c-fd9f5m-4OCXgOZcOu+paik9FV_eno5sLg@mail.gmail.com>
- <afb3f19f-eb40-5453-a82b-295e06861f86@amd.com>
- <20220930213924.GA1079711-robh@kernel.org>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <20220930213924.GA1079711-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT050:EE_|SA0PR12MB4367:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1e96555b-ce0a-419c-a352-08daa50f07e9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HknH88+rMq7CnFnxFBCNy7q8Y0QDHKITbmuazXmwAsFfe3AW6p+PR7rhZYP1eSivahd3lgLqquTDd0j5THtHJ63HcsEi0/2jxfZQOwQxycfOzqo2ISGTGLlAHsofbbxUF2iU+Fk1vRQYUZ4t3uE3Waoi22v5l/aQMP7LOZo4a5OxECDbI2Qte5ZS31ALoPBc+oMCEf9mJHvDAt6MX1e0blxqWYc437gLvK1DCHX0un786EjPrtMWcAkvC63Nm3X1gQC2H7EwG2yoKhxJ8+nuBhhjR75ctBCOElvIO4zq9IgBZZYLEXNnHHHRjUqf4bzTq6hn51IZ2DsYNYYQrE5JUID8MXBpUlM+EyFrYKndB9WMm8kOD14pb23yV/Hk07JFN7G4X4oFFbNTofHEkkNrm8KFXMc709zvsxmtJ4w8LuE4Po2545duQx+5p0fiv1GG7zyitFre2QM9XyPC0Z9oJckx42Jpqvsv+s8N2t9MqepTWGj+OTl0js/ZOMj2qQjl1w7D7LiS2PM9KtXVCtPchoCGlGqvBDk57qLA7fiLQLUedduX4RggnL7frSKnHHiD8EvLTW7fsNoM6BcijlQxZomhXWzObCbK6woGwHnsqhZ/ijjITiZNizH4IxxSyCgPY6BfZD1vHYoB6WBPNgfOEtKHMhTSMTpOQAgVXyWqXO1ic1xO+uqTT7uPD1Yn5y9qyMH0fwIbnkV/M/ijjdMyK1mYEKZxJtGZWu4yvrvCwt5yKfjcIORXY3L4kl/ex4BWQbeoIUAUhfVlk8nfT88zTNPfOQISgoOYE9umlDkjQHhOnv5yrkdKFY8WQkBsjNoguPYNKDBBRC5yZoFODxqVwHyLZ+Np98Y/r9dJFaBtDoY=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(396003)(136003)(376002)(39860400002)(346002)(451199015)(46966006)(36840700001)(40470700004)(66899015)(31686004)(82310400005)(81166007)(356005)(966005)(316002)(82740400003)(478600001)(6916009)(54906003)(16576012)(70206006)(70586007)(8676002)(4326008)(186003)(41300700001)(6666004)(44832011)(53546011)(31696002)(2616005)(26005)(86362001)(5660300002)(8936002)(40480700001)(36756003)(426003)(47076005)(336012)(2906002)(40460700003)(36860700001)(16526019)(83380400001)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2022 07:15:20.1253
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e96555b-ce0a-419c-a352-08daa50f07e9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT050.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4367
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add Endian 4i Edge 200 is 5-port firewall.
+It have also clone: Endian UTM Mini (The same hardware, with added WLAN
+card).
 
+Hardware:
+  - SoC: Marvell 88F6281-A1 ARMv5TE Processor 1.2GHz
+  - Ram: 512MB (4x Nanya NT5TU128M8GE-AC)
+  - NAND Flash: 512MB (Micron 29F4G08AAC)
+  - Lan 1-4: 4x GBE (Marvell 88E6171R-TFJ2)
+  - Lan 5: 1x GBE (Marvell 88E1116R-NNC1)
+  - Storage: MicroSD Slot
+  - MCPIE: MiniPCIe Slot present [fitted with SparkLan WPEA-110N/E
+          (Atheros AR9280 chipset) in Endian UTM Mini WLAN only]
+  - USB: 1x USB 2.0 port
+  - Console: RJ-45 port
+  - LEDs: 3x GPIO controlled
 
-On 9/30/22 23:39, Rob Herring wrote:
-> On Fri, Sep 30, 2022 at 03:00:28PM +0200, Michal Simek wrote:
->> Hi Rob,
->>
->> On 9/30/22 14:25, Rob Herring wrote:
->>> On Fri, Sep 30, 2022 at 3:04 AM Shubhrajyoti Datta
->>> <shubhrajyoti.datta@amd.com> wrote:
->>>>
->>>> The Clocking Wizard for Versal adaptive compute acceleration platforms
->>>> generates multiple configurable number of clock outputs.
->>>> Add device tree binding for Versal clocking wizard support.
->>>
->>> Really v1? I'm sure I heard of this wizard before.
->>>
->>> What about this?:
->>>
->>> drivers/staging/clocking-wizard/dt-binding.txt
->>>
->>> That needs to be moved out of staging rather than adding a 2nd one.
->>
->>
->> Let me clarify this. This is IP which is already moved out of staging.
->> Linux-next has these changes and waiting for MW to happen (already in clock
->> tree).
-> 
-> Where does this series explain that? If the dependency is not the latest
-> rc1, then state that.
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+---
+Changes in v2:
+- added MIT licence option
+- removed "cpu" switch port label.
 
-Please take a look below.
+ arch/arm/boot/dts/Makefile                 |   1 +
+ arch/arm/boot/dts/kirkwood-4i-edge-200.dts | 205 +++++++++++++++++++++
+ 2 files changed, 206 insertions(+)
+ create mode 100644 arch/arm/boot/dts/kirkwood-4i-edge-200.dts
 
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index eae7d1139fbc..81a24fe623a8 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -299,6 +299,7 @@ dtb-$(CONFIG_ARCH_KEYSTONE) += \
+ 	keystone-k2g-evm.dtb \
+ 	keystone-k2g-ice.dtb
+ dtb-$(CONFIG_MACH_KIRKWOOD) += \
++	kirkwood-4i-edge-200.dtb \
+ 	kirkwood-b3.dtb \
+ 	kirkwood-blackarmor-nas220.dtb \
+ 	kirkwood-c200-v1.dtb \
+diff --git a/arch/arm/boot/dts/kirkwood-4i-edge-200.dts b/arch/arm/boot/dts/kirkwood-4i-edge-200.dts
+new file mode 100644
+index 000000000000..b1749d3f60b7
+--- /dev/null
++++ b/arch/arm/boot/dts/kirkwood-4i-edge-200.dts
+@@ -0,0 +1,205 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Endian 4i Edge 200 Board Description
++ * Note: Endian UTM Mini is hardware clone of Endian Edge 200
++ * Copyright 2021-2022 Pawel Dembicki <paweldembicki@gmail.com>
++ */
++
++/dts-v1/;
++
++#include "kirkwood.dtsi"
++#include "kirkwood-6281.dtsi"
++#include <dt-bindings/leds/common.h>
++
++/ {
++	model = "Endian 4i Edge 200";
++	compatible = "endian,4i-edge-200", "marvell,kirkwood-88f6281", "marvell,kirkwood";
++
++	memory {
++		device_type = "memory";
++		reg = <0x00000000 0x20000000>;
++	};
++
++	chosen {
++		bootargs = "console=ttyS0,115200n8";
++		stdout-path = &uart0;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-0 = <&pmx_led>;
++		pinctrl-names = "default";
++
++		led-1 {
++			function = LED_FUNCTION_SD;
++			color = <LED_COLOR_ID_AMBER>;
++			gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "mmc0";
++		};
++
++		led-2 {
++			function = LED_FUNCTION_STATUS;
++			color = <LED_COLOR_ID_AMBER>;
++			gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-3 {
++			function = LED_FUNCTION_STATUS;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
++		};
++	};
++};
++
++&eth0 {
++	status = "okay";
++};
++
++&eth0port {
++	speed = <1000>;
++	duplex = <1>;
++};
++
++&eth1 {
++	status = "okay";
++};
++
++&eth1port {
++	phy-handle = <&ethphyb>;
++};
++
++&mdio {
++	status = "okay";
++
++	ethphyb: ethernet-phy@b {
++		reg = <0x0b>;
++
++		marvell,reg-init =
++			/* link-activity, bi-color mode 4 */
++			<3 0x10 0xfff0 0xf>; /* Reg 3,16 <- 0xzzzf */
++	};
++
++	switch0: switch@11 {
++		compatible = "marvell,mv88e6085";
++		reg = <0x11>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				label = "port1";
++			};
++
++			port@1 {
++				reg = <1>;
++				label = "port2";
++			};
++
++			port@2 {
++				reg = <2>;
++				label = "port3";
++			};
++
++			port@3 {
++				reg = <3>;
++				label = "port4";
++			};
++
++			port@5 {
++				reg = <5>;
++				phy-mode = "rgmii-id";
++				ethernet = <&eth0port>;
++
++				fixed-link {
++					speed = <1000>;
++					full-duplex;
++				};
++			};
++		};
++	};
++};
++
++&nand {
++	status = "okay";
++	pinctrl-0 = <&pmx_nand>;
++	pinctrl-names = "default";
++
++	partition@0 {
++		label = "u-boot";
++		reg = <0x00000000 0x000a0000>;
++		read-only;
++	};
++
++	partition@a0000 {
++		label = "u-boot-env";
++		reg = <0x000a0000 0x00060000>;
++		read-only;
++	};
++
++	partition@100000 {
++		label = "kernel";
++		reg = <0x00100000 0x00400000>;
++	};
++
++	partition@500000 {
++		label = "ubi";
++		reg = <0x00500000 0x1fb00000>;
++	};
++};
++
++&pciec {
++	status = "okay";
++};
++
++&pcie0 {
++	status = "okay";
++};
++
++&pinctrl {
++	pinctrl-0 = <&pmx_sysrst>;
++	pinctrl-names = "default";
++
++	pmx_sysrst: pmx-sysrst {
++		marvell,pins = "mpp6";
++		marvell,function = "sysrst";
++	};
++
++	pmx_sdio_cd: pmx-sdio-cd {
++		marvell,pins = "mpp28";
++		marvell,function = "gpio";
++	};
++
++	pmx_led: pmx-led {
++		marvell,pins = "mpp34", "mpp35", "mpp49";
++		marvell,function = "gpio";
++	};
++};
++
++&rtc {
++	status = "okay";
++};
++
++&sata_phy0 {
++	status = "disabled";
++};
++
++&sata_phy1 {
++	status = "disabled";
++};
++
++&sdio {
++	pinctrl-0 = <&pmx_sdio_cd>;
++	pinctrl-names = "default";
++	status = "okay";
++	cd-gpios = <&gpio0 28 9>;
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&usb0 {
++	status = "okay";
++};
+-- 
+2.34.1
 
->> And this is new IP. Not sure who has chosen similar name but this targets
->> Xilinx Versal SOCs. Origin one was targeting previous families.
-> 
-> Do we need a whole new schema doc?
-
-It is completely new IP with different logic compare to origin one.
-
-> 
-> It is not ideal to define the same property, xlnx,nr-outputs, more than
-> once. And it's only a new compatible string.
-
-I can't see any issue with using dt binding for xlnx,clocking-wizard.yaml
-
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-
-also for this IP if that's fine with you.
-Only xlnx,speed-grade can be defined for previous IP which is easy to mark.
-
-But as I said, driver is different and integrating to current driver is not a 
-good idea. But if two separate drivers can use the same DT binding document with 
-adding new compatible string (and small tweak around one dt property) then it 
-shouldn't be a problem to do it in v2.
-
-Thanks,
-Michal
