@@ -2,97 +2,343 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3112A5F2F59
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 13:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9BE55F3000
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 14:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbiJCLL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 07:11:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33060 "EHLO
+        id S229779AbiJCMGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 08:06:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbiJCLL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 07:11:27 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129A03ED51
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 04:11:25 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id d26so3110306ljl.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 04:11:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=3xG7Sx36uXV+Y7O3JP3f1ZhHsXXXqdBNI1ovCRM0zfk=;
-        b=uc+N57yoLdKAirCZp+ceADu7xZOvpXfBZR94l3MC8z1//WP9eHd/Yz4LdJ7ttpEvcC
-         AQm+jq8VFfl7CDj1jAi3ss19OHsX9Jca/KgvhaDWirSRfaaYuuQByHkXWND7Wgz8J/3Z
-         Ptm4aqO9PaWNbRNXR9vCWBEVigolAhHzCCugS/FJ7KDfOIcetxUnuxtrnx9mL7ezsuS+
-         LtdauiFndPeGSb8ycG1pLE9tvM/OmhkA0TLlS34rLh6zszWhVposINXQeIdTaD612UmP
-         3HHfxDQYKzFzCtviJIJ+OLHjUk0lcJWesUIommH8/gboc1llKe+NOi7AZKgFvSy5fNTW
-         Cy2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=3xG7Sx36uXV+Y7O3JP3f1ZhHsXXXqdBNI1ovCRM0zfk=;
-        b=bTziHMJ4PCWW98GgIqcTHIIuLDH9h3hWoLTL48Fp0RO1MGX0+skLkNVFC6s0J8khKa
-         14kCtMd7UGlXnvnTbE+XjGCXRb6b47BkB8zJ6/K848jvYNSb5uZnJ0ZQNGmViaBqCQyr
-         gerV7j9FR9sgElnxed6lQn5PHDm0QjSelEyM+ejjYlgwP/evwNrc0EI77CYTvf5PxDtO
-         /1OVxFC6S3g0VT/kpRkMs5+tILiJ8tItcieUUvakPbHbHqLlHiJAz9pAStGs6dh4zheT
-         1d28YH94iEHJbydpAVi29UybDNDsEmTFZUuWwLeXbqkhB76W0LrzPlKczV45hw8y6Dhk
-         MPSw==
-X-Gm-Message-State: ACrzQf2LCT3Cz/G8asVVhIMoBxeGT+y9bLD2muk9H0A8e8YPpsIT40r3
-        98D5o8TcvVLKzGPFHL4NO0eKUw==
-X-Google-Smtp-Source: AMsMyM77y2jdFDY0J3lgTPFJ9CWeZaxwLfIHsDNfDBNt5i6Npdv9dMYYfkNRQPIE+2VkJ7zqbHG//g==
-X-Received: by 2002:a2e:b88f:0:b0:26c:4697:6914 with SMTP id r15-20020a2eb88f000000b0026c46976914mr6286749ljp.50.1664795483276;
-        Mon, 03 Oct 2022 04:11:23 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b18-20020a056512305200b0049aa20af00fsm1417760lfb.21.2022.10.03.04.11.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Oct 2022 04:11:22 -0700 (PDT)
-Message-ID: <c9791863-8ee0-739a-e7aa-da33af1ebbe8@linaro.org>
-Date:   Mon, 3 Oct 2022 13:11:21 +0200
+        with ESMTP id S229480AbiJCMGJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 08:06:09 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B8F50049
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 05:06:07 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 43240440;
+        Mon,  3 Oct 2022 14:06:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1664798765;
+        bh=u+7HQgXow3fvTWDcYsdQKktiM+OTxeIFm4JhvlDCxHo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Aink1qac0T2+J/EwqKhqqajEoEyJANi3ns0iOjq+1sNXvF4tGQVNho/GH3NKdvvq/
+         gFxQ7y7vGMGkO2jRhg0AJkJp0QtReLFiqNPxQ1/yo+HWHB3zjrYyrYAJCpF3FV/7AS
+         XW6wY87HV8xxOjb1W6rS/gumvVBQhuH46gGJQA9g=
+Date:   Mon, 3 Oct 2022 15:06:03 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Daniel Scally <dan.scally@ideasonboard.com>,
+        Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        kieran.bingham@ideasonboard.com, debix-tech@polyhex.net
+Subject: Re: [PATCH 3/3] arm64: dts: Add device tree for the Debix Model A
+ Board
+Message-ID: <YzrQKyryCafL5pYx@pendragon.ideasonboard.com>
+References: <20221003083705.22495-1-dan.scally@ideasonboard.com>
+ <20221003083705.22495-4-dan.scally@ideasonboard.com>
+ <152eb491-ddff-9639-a72b-968e3fc5949c@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v8 2/3] dt-bindings: iio: adc: add adi,max11410.yaml
-Content-Language: en-US
-To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, jic23@kernel.org
-Cc:     linux-iio@vger.kernel.org, Nuno.Sa@analog.com,
-        Nurettin.Bolucu@analog.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221003105903.229-1-Ibrahim.Tilki@analog.com>
- <20221003105903.229-3-Ibrahim.Tilki@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221003105903.229-3-Ibrahim.Tilki@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <152eb491-ddff-9639-a72b-968e3fc5949c@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/10/2022 12:59, Ibrahim Tilki wrote:
-> Adding devicetree binding documentation for max11410 adc.
+On Mon, Oct 03, 2022 at 11:26:54AM +0200, Krzysztof Kozlowski wrote:
+> On 03/10/2022 10:37, Daniel Scally wrote:
+> > Add a device tree file describing the Debix Model A board from
+> > Polyhex Technology Co.
+> > 
+> > Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+> >  .../dts/freescale/imx8mp-debix-model-a.dts    | 550 ++++++++++++++++++
+> >  2 files changed, 551 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> > index 238a83e5b8c6..f26e802cef82 100644
+> > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > @@ -79,6 +79,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
+> > +dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-model-a.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+> > new file mode 100644
+> > index 000000000000..6d0fa3930d0b
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+> > @@ -0,0 +1,550 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2019 NXP
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +#include <dt-bindings/usb/pd.h>
+> > +
+> > +#include "imx8mp.dtsi"
+> > +
+> > +/ {
+> > +	model = "Polyhex Debix Model A (2GB) i.MX8MPlus board";
+> > +	compatible = "polyhex,imx8mp-debix-modela2gb", "fsl,imx8mp";
+> > +
+> > +	chosen {
+> > +		stdout-path = &uart2;
+> > +	};
+> > +
+> > +	gpio-leds {
+> > +		compatible = "gpio-leds";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_gpio_led>;
+> > +
+> > +		status-led {
+> > +			function = LED_FUNCTION_POWER;
+> > +			color = <LED_COLOR_ID_RED>;
+> > +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
+> > +			default-state = "on";
+> > +		};
+> > +	};
+> > +
+> > +	reg_usdhc2_vmmc: regulator-usdhc2 {
+> > +		compatible = "regulator-fixed";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
+> > +		regulator-name = "VSD_3V3";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +	};
+> > +};
+> > +
+> > +&A53_0 {
+> > +	cpu-supply = <&buck2>;
+> > +};
+> > +
+> > +&A53_1 {
+> > +	cpu-supply = <&buck2>;
+> > +};
+> > +
+> > +&A53_2 {
+> > +	cpu-supply = <&buck2>;
+> > +};
+> > +
+> > +&A53_3 {
+> > +	cpu-supply = <&buck2>;
+> > +};
+> > +
+> > +&eqos {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_eqos>;
+> > +	phy-connection-type = "rgmii-id";
+> > +	phy-handle = <&ethphy0>;
+> > +	status = "okay";
+> > +
+> > +	mdio {
+> > +		compatible = "snps,dwmac-mdio";
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		ethphy0: ethernet-phy@0 {
+> > +			compatible = "ethernet-phy-ieee802.3-c22";
+> > +			reg = <0>;
+> > +			reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
+> > +			reset-assert-us = <20>;
+> > +			reset-deassert-us = <200000>;
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&fec {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_fec>;
+> > +	phy-connection-type = "rgmii-id";
+> > +	phy-handle = <&ethphy1>;
+> > +	fsl,magic-packet;
+> > +	status = "okay";
+> > +
+> > +	mdio {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		ethphy1: ethernet-phy@0 {
+> > +			compatible = "ethernet-phy-ieee802.3-c22";
+> > +			reg = <0>;
+> > +			reset-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
+> > +			reset-assert-us = <10>;
+> > +			reset-deassert-us = <150>;
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&i2c1 {
+> > +	clock-frequency = <400000>;
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_i2c1>;
+> > +	status = "okay";
+> > +
+> > +	pmic@25 {
+> > +		reg = <0x25>;
+> > +		compatible = "nxp,pca9450c";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_pmic>;
+> > +		interrupt-parent = <&gpio1>;
+> > +		interrupts = <3 GPIO_ACTIVE_LOW>;
 > 
-> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
-> ---
->  .../bindings/iio/adc/adi,max11410.yaml        | 177 ++++++++++++++++++
+> Nope, wrong flag. This is a hint for us that you based your DTS on
+> something ancient (e.g. broken downstream stuff). Please start from
+> *scratch* and write your DTS based on a board taken from mainline.
+> 
+> There is no point for us to repeat review for all the things  we already
+> fixed in mainline.
 
+We can't fully do that, as we don't have access to the schematics for
+the board. What we can do, however, is to compare this .dts to others
+from mainline and investigate all differences to see if they can be
+bugs.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > +
+> > +		regulators {
+> > +			buck1: BUCK1 {
+> > +				regulator-name = "BUCK1";
+> > +				regulator-min-microvolt = <600000>;
+> > +				regulator-max-microvolt = <2187500>;
+> > +				regulator-boot-on;
+> > +				regulator-always-on;
+> > +				regulator-ramp-delay = <3125>;
+> > +			};
+> > +
+> > +			buck2: BUCK2 {
+> > +				regulator-name = "BUCK2";
+> > +				regulator-min-microvolt = <600000>;
+> > +				regulator-max-microvolt = <2187500>;
+> > +				regulator-boot-on;
+> > +				regulator-always-on;
+> > +				regulator-ramp-delay = <3125>;
+> > +				nxp,dvs-run-voltage = <950000>;
+> > +				nxp,dvs-standby-voltage = <850000>;
+> > +			};
+> > +
+> > +			buck4: BUCK4{
+> > +				regulator-name = "BUCK4";
+> > +				regulator-min-microvolt = <600000>;
+> > +				regulator-max-microvolt = <3400000>;
+> > +				regulator-boot-on;
+> > +				regulator-always-on;
+> > +			};
+> > +
+> > +			buck5: BUCK5{
+> > +				regulator-name = "BUCK5";
+> > +				regulator-min-microvolt = <600000>;
+> > +				regulator-max-microvolt = <3400000>;
+> > +				regulator-boot-on;
+> > +				regulator-always-on;
+> > +			};
+> > +
+> > +			buck6: BUCK6 {
+> > +				regulator-name = "BUCK6";
+> > +				regulator-min-microvolt = <600000>;
+> > +				regulator-max-microvolt = <3400000>;
+> > +				regulator-boot-on;
+> > +				regulator-always-on;
+> > +			};
+> > +
+> > +			ldo1: LDO1 {
+> > +				regulator-name = "LDO1";
+> > +				regulator-min-microvolt = <1600000>;
+> > +				regulator-max-microvolt = <3300000>;
+> > +				regulator-boot-on;
+> > +				regulator-always-on;
+> > +			};
+> > +
+> > +			ldo2: LDO2 {
+> > +				regulator-name = "LDO2";
+> > +				regulator-min-microvolt = <800000>;
+> > +				regulator-max-microvolt = <1150000>;
+> > +				regulator-boot-on;
+> > +				regulator-always-on;
+> > +			};
+> > +
+> > +			ldo3: LDO3 {
+> > +				regulator-name = "LDO3";
+> > +				regulator-min-microvolt = <800000>;
+> > +				regulator-max-microvolt = <3300000>;
+> > +				regulator-boot-on;
+> > +				regulator-always-on;
+> > +			};
+> > +
+> > +			ldo4: LDO4 {
+> > +				regulator-name = "LDO4";
+> > +				regulator-min-microvolt = <800000>;
+> > +				regulator-max-microvolt = <3300000>;
+> > +				regulator-boot-on;
+> > +				regulator-always-on;
+> > +			};
+> > +
+> > +			ldo5: LDO5 {
+> > +				regulator-name = "LDO5";
+> > +				regulator-min-microvolt = <1800000>;
+> > +				regulator-max-microvolt = <3300000>;
+> > +				regulator-boot-on;
+> > +				regulator-always-on;
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&i2c2 {
+> > +	clock-frequency = <100000>;
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_i2c2>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c3 {
+> > +	clock-frequency = <400000>;
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_i2c3>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c4 {
+> > +	clock-frequency = <100000>;
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_i2c4>;
+> > +	status = "okay";
+> > +
+> > +	eeprom@50 {
+> > +		compatible = "atmel,24c02";
+> > +		reg = <0x50>;
+> > +		pagesize = <16>;
+> > +	};
+> > +
+> > +	hym8563@51 {
+> 
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Jonathan,
-With merging please wait till Rob's bot tests the patch. The status can
-be checked:
+-- 
+Regards,
 
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221003105903.229-3-Ibrahim.Tilki@analog.com/
-
-Best regards,
-Krzysztof
-
+Laurent Pinchart
