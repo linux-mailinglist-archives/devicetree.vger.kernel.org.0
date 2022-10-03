@@ -2,94 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C94005F357D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 20:21:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D72475F35D2
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 20:47:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbiJCSV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 14:21:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47634 "EHLO
+        id S229848AbiJCSra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 14:47:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbiJCSVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 14:21:54 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE894DF83;
-        Mon,  3 Oct 2022 11:21:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8F280B81205;
-        Mon,  3 Oct 2022 18:21:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2F10C433C1;
-        Mon,  3 Oct 2022 18:21:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664821311;
-        bh=fAj+g9SbF66P5R+DbPuZP8fh8Mob0CfnwzQ0Qn/TP7Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IkB7q/DCsAAZ23yI0jUQlTAvUoLoYjwOnizq91SMfhEXL4eacXEHN5L4bza/ANR2Y
-         wDGNF1/eLmYkCRdBTjNOSU1/Q/lkXNupti+tF+XwHjBxxypJlN7QcfSp78nB7dc9Dt
-         bKgQGL3uD26oBPJk0j4/nuWZ40E4wLDWs5k4eKgSnQ3S6cgN2J0NKxXVz8m8K+b+xz
-         /maJDdZeaaxf5F6OvcRu/z1M5alT+t0TiTp5qzQVH+HtckOeMpB5SeLMlX0e5b2RWf
-         erGgRFc//rgUHW1elFJRt8MwyZ7BZFNIiG2CyxubvW2/wZt+BbhH3Mujlls2Q1/S91
-         AID9dBN3qS7/A==
-Received: by pali.im (Postfix)
-        id 03D56742; Mon,  3 Oct 2022 20:21:47 +0200 (CEST)
-Date:   Mon, 3 Oct 2022 20:21:47 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Jonathan Derrick <jonathan.derrick@linux.dev>,
-        Vidya Sagar <vidyas@nvidia.com>,
-        Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Lukas Wunner <lukas@wunner.de>, bhelgaas@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lpieralisi@kernel.org, kw@linux.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, mani@kernel.org,
-        Sergey.Semin@baikalelectronics.ru, jszhang@kernel.org,
-        linux-pci@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Subject: Re: [PATCH V1 0/4] GPIO based PCIe Hot-Plug support
-Message-ID: <20221003182147.jp5gn2jpnf4gucdl@pali>
-References: <2a465222-342a-418b-95af-9948f6ce9065@linux.dev>
- <20221003180949.GA2104321@bhelgaas>
+        with ESMTP id S229813AbiJCSr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 14:47:29 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55CB843175
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 11:47:27 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 25so7618836lft.9
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 11:47:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date;
+        bh=sNHqaLvh9j7PQaVZTiLvLFSUg+LSJYbTo2qeLVIoD3Y=;
+        b=deotAUsUURWwRjphlZdfLNEaHjwUp+MLHRyXZw6CM0D9vc1Gp7uh/G3Yx//Zp1hr0n
+         yJAUSt8ogxQkJUcjJcSd3qvdQz+UK0behCYUSt8UTQFCS+rbRd9n9M0BN+AoaVPd2rFL
+         N6sq+GD5SjED8LzF6f3J+8kU6mIVhjZdY9rWI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=sNHqaLvh9j7PQaVZTiLvLFSUg+LSJYbTo2qeLVIoD3Y=;
+        b=gFHAdxBSAKNKA69tff5J6DgbKxp0G15K2J7peqnva3o/P1/qPYDa5yoBPImQOhqgPx
+         mck4rrS+/Mx1BglpnAAVKev6pCmVO9pE+k+yvZYXUR0eAMEfMrHd2NBd4JH1kzvuOBes
+         +TBmtd0ZRoJXroqQs8hb8itHVPFxC/Lsxi6oTEqdZ270WDd5aMhIoM0ibGlVtRCpDOII
+         UNcjeiKyfBIT054/3VAZI2DzUFT//K/9W8zkPMo3v8SHfIj7gfhLB6TZmbxkYIt1zIkQ
+         0cZhDQgwCyMkn7rESx//Z9mbnvwwr8kQeJXV1MKyalgu+WAoySwuiheR3wmYongnABQ7
+         xOvg==
+X-Gm-Message-State: ACrzQf24+rDy035A120xXLlWKywHkBOt4N5Cn46DwzUrW28iUFTOFm3g
+        HC2RCzGc+bWz34ZyjDSDcPt8dfOTFP6pYQTdeFlQ9g==
+X-Google-Smtp-Source: AMsMyM4Egg8t2NfbF9XrWUC3S5gmlEK1LZAho5qwWLHUfSisoykyIi/tyV7UdyDv/HxJkTxuD+6qZ3eCOHOx+TYUOOA=
+X-Received: by 2002:a19:7518:0:b0:4a2:4593:6e14 with SMTP id
+ y24-20020a197518000000b004a245936e14mr1461955lfe.82.1664822822563; Mon, 03
+ Oct 2022 11:47:02 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 3 Oct 2022 11:47:01 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221003180949.GA2104321@bhelgaas>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <YzXdhVN/Zp7DDIzB@google.com>
+References: <YsLhxx+L3+GJDRyO@google.com> <Ys1tYAO39LKzEAOE@google.com>
+ <dc737abb-041b-491a-14f1-a584f9e64a3d@quicinc.com> <CAE-0n528QaTtZFp=WAaHShegFRpKVN_67jQfUJTtsRPr6s--zA@mail.gmail.com>
+ <52039cd1-4390-7abb-d296-0eb7ac0c3b15@quicinc.com> <Yuz2O+lZ5W7RviuA@google.com>
+ <CAE-0n507SLeYB7XVzGFk=RO6YjOPoGpux+_N2AyrmL354mQJ-g@mail.gmail.com>
+ <YzQf7hf15vvLeGse@google.com> <CAE-0n50cX5ky3By976RTecKkpeMoAjoBA4tYuWSZ150JfS9wiQ@mail.gmail.com>
+ <YzXdhVN/Zp7DDIzB@google.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 3 Oct 2022 11:47:01 -0700
+Message-ID: <CAE-0n53q-8u16_7KGZ0jbm9ES=dsSJL7rbGdz6hzLWf3xvm=bQ@mail.gmail.com>
+Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
+To:     Lee Jones <lee@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 03 October 2022 13:09:49 Bjorn Helgaas wrote:
-> On Sat, Oct 01, 2022 at 05:50:07PM -0600, Jonathan Derrick wrote:
-> > On 10/1/2022 10:20 AM, Pali Rohár wrote:
-> > ...
-> 
-> > > Would not it better to rather synthesise PCIe Slot Capabilities support
-> > > in your PCIe Root Port device (e.g. via pci-bridge-emul.c) and then let
-> > > existing PCI hotplug code to take care for hotplugging? Because it
-> > > already implements all required stuff for re-scanning, registering and
-> > > unregistering PCIe devices for Root Ports with Slot Capabilities. And I
-> > > think that there is no need to have just another (GPIO based)
-> > > implementation of PCI hotplug.
+Quoting Lee Jones (2022-09-29 11:01:41)
+> On Wed, 28 Sep 2022, Stephen Boyd wrote:
+>
+> > Quoting Lee Jones (2022-09-28 03:20:30)
+> > > Wouldn't it make more sense to simply separate the instantiation of
+> > > the 2 I2C devices?  Similar to what you suggested [0] in v9.  That way
+> > > they can handle their own resources and we can avoid all of the I2C
+> > > dummy / shared Regmap passing faff.
+> > >
+> > > [0] https://lore.kernel.org/all/CAE-0n53G-atsuwqcgNvi3nvWyiO3P=pSj5zDUMYj0ELVYJE54Q@mail.gmail.com/
+> > >
 > >
-> > I did that a few years ago (rejected), but can attest to the robustness of
-> > the pcie hotplug code on non-hotplug slots.
-> > https://lwn.net/Articles/811988/
-> 
-> I think the thread is here:
-> https://lore.kernel.org/linux-pci/1581120007-5280-1-git-send-email-jonathan.derrick@intel.com/
-> and I'm sorry that my response came across as "rejected".  I intended
-> it as "this is good ideas and good work and we should keep going".
-> 
-> Bjorn
+> > You can continue reading the thread[1]. My understanding is it's one
+> > chip that responds on two i2c addresses, thus we don't describe that as
+> > two i2c device nodes in DT. Instead we describe one node and use the
+> > dummy API to make the second i2c device.
+> >
+> > [1] https://lore.kernel.org/all/Yk3NkNK3e+fgj4eG@sirena.org.uk/
+>
+> As Mark says, it's probably 2 separate dies that have been encased in
+> the same IC and are otherwise unconnected.  Not sure I understand the
+> comment about not requiring another 'struct device'.  It will still
+> require that whether it's a platform device or an I2C device, right?
+>
 
-Nice! So we have consensus that this is a good idea. Anyway, if you need
-help with designing something here, please let me know as I have good
-understanding of all (just two) consumers of pci-bridge-emul.c driver.
+Yes a 'struct device' will be required for each i2c address no matter
+what happens.
+
+It is also useful to describe the hardware as one device node in case
+there is a shared reset signal or power supply. That allows us to have
+one driver probe the DT node and deassert the reset/power the chip on. I
+think this device has one reset signal, so we really need to do this and
+not treat them as completely independent i2c devices (the 0x8 and 0x9
+addresses).
+
+Can we move forward with my plan to have another i2c device made for
+'pm8008-regulators' and have that driver be an i2c driver that probes an
+i2c device manually created in the pm8008 driver? I think that would
+handle the reset ordering problem because the pm8008 driver can deassert
+the reset and also handle the regmap passing stuff by letting the i2c
+device at 0x9 make its own regmap.
