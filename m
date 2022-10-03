@@ -2,154 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AAE75F322B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 16:50:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABA6D5F3237
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 16:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229906AbiJCOuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 10:50:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57730 "EHLO
+        id S229770AbiJCO6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 10:58:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230054AbiJCOue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 10:50:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04C8F2FC1A;
-        Mon,  3 Oct 2022 07:50:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0CF7D61127;
-        Mon,  3 Oct 2022 14:50:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1914EC433D6;
-        Mon,  3 Oct 2022 14:50:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1664808628;
-        bh=XLLdphvKCzZ4t4WwbckCMz7Zt8JS/3i7dwWsjkZq/vE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iwguR5/VjxupEk25Sa0MXGCyOX28o8clF94uICJbTYfHRr7k8V6Z8C9uiaBIV7Dow
-         EpySlQ2oZexBrFfjvCfluIYkodChiqbM1v2Fwz8/Ny13zS1CMuwNM7ffii2HJu5dFE
-         UbrYEkqh+vZFNc2YIW+kpAvJI0lb3cwzi6Pms8Fs=
-Date:   Mon, 3 Oct 2022 16:50:25 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Michal Simek <michal.simek@amd.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        linux-clk@vger.kernel.org, git@amd.com, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
-        mturquette@baylibre.com
-Subject: Re: [PATCH 1/2] dt-bindings: clk: Add binding for versal clocking
- wizard
-Message-ID: <Yzr2sbrt3uZwALnz@kroah.com>
-References: <CAL_JsqLaqjZeZd3c-fd9f5m-4OCXgOZcOu+paik9FV_eno5sLg@mail.gmail.com>
- <afb3f19f-eb40-5453-a82b-295e06861f86@amd.com>
- <20220930213924.GA1079711-robh@kernel.org>
- <6e58837e-896c-7069-7913-2afb90af5e95@amd.com>
- <b495804c-cf04-4512-ac05-424eded46468@linaro.org>
- <57989d3e-a186-1d67-cff9-6a059f94ebd3@amd.com>
- <f611237f-0401-9e3c-3a21-79b33141bb51@linaro.org>
- <YzqaXthSLBbwU+5V@kroah.com>
- <a8576f0e-b5ab-33d1-40d4-5f25c66616c7@amd.com>
- <053c0831-6bce-ff0c-a511-6f292127ca63@amd.com>
+        with ESMTP id S229445AbiJCO6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 10:58:21 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665AE27FDD;
+        Mon,  3 Oct 2022 07:58:20 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1327ba38599so2557655fac.11;
+        Mon, 03 Oct 2022 07:58:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=5cbLfqZI3Q8R3SGXiA37ed3O2MwBVAUrjqH+O7vBBxM=;
+        b=X+5T1mC+lcUtggfXw1+kRz8JcCfMYvCcqndpb9FBaIfAKMDmmn6Yl+VFjnafX17Y0O
+         KRXjlyZvb578sLl6bAdHcPMWvC2WndutLeYblk6XI4PqdLtpa5k7W58vr7ntdQY6yFzg
+         doGKh6O1tqSIE1EtC4dBHJZmhfEiV0hwBahPbqEL9sV1lxMEy1KoDvkkZbUo70mKhG4I
+         hhwredDKB9fo3b1F6A51/lfmh3g43BySv4JhnqNNrXpL4Dfr1dhrhlGcfZ+tn8n+d41x
+         nt64AeBkS7f4tu61C39fjXhrJ4nqj1AGYVQzw5AYxd8LMq1YTdlpBonmIrsAMASqFHqC
+         mlnQ==
+X-Gm-Message-State: ACrzQf2VSJL6NwK/s5BbXGKEXsQn33PbecDwcmnOys8d3Y2g1lXov9xN
+        BAOvqkgFpCVVbD2HDAT+PA==
+X-Google-Smtp-Source: AMsMyM4NsYhk/PTE/9yjhHOaP5R9tw0lmISIvFKVVGKWethMJ7ua6fEfnSkoc/gMkL45Seg9UfwCQA==
+X-Received: by 2002:a05:6871:783:b0:12d:4b84:352d with SMTP id o3-20020a056871078300b0012d4b84352dmr5484225oap.179.1664809099630;
+        Mon, 03 Oct 2022 07:58:19 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o24-20020a05680803d800b0035179b87ba5sm2501593oie.20.2022.10.03.07.58.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Oct 2022 07:58:19 -0700 (PDT)
+Received: (nullmailer pid 2249263 invoked by uid 1000);
+        Mon, 03 Oct 2022 14:58:18 -0000
+Date:   Mon, 3 Oct 2022 09:58:18 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     houlong.wei@mediatek.com, linux-kernel@vger.kernel.org,
+        jassisinghbrar@gmail.com, linux-arm-kernel@lists.infradead.org,
+        matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v4] dt-bindings: mailbox: Convert mtk-gce to DT schema
+Message-ID: <166480909049.2249063.7109234696871106188.robh@kernel.org>
+References: <20220921090006.37642-1-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <053c0831-6bce-ff0c-a511-6f292127ca63@amd.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220921090006.37642-1-angelogioacchino.delregno@collabora.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 03, 2022 at 12:41:34PM +0200, Michal Simek wrote:
-> Hi again,
+On Wed, 21 Sep 2022 11:00:06 +0200, AngeloGioacchino Del Regno wrote:
+> Convert the mtk-gce mailbox binding to DT schema format.
 > 
-> On 10/3/22 11:59, Michal Simek wrote:
-> > Hi Greg,
-> > 
-> > On 10/3/22 10:16, Greg Kroah-Hartman wrote:
-> > > On Mon, Oct 03, 2022 at 10:10:38AM +0200, Krzysztof Kozlowski wrote:
-> > > > On 03/10/2022 09:58, Michal Simek wrote:
-> > > > > 
-> > > > > 
-> > > > > On 10/3/22 09:23, Krzysztof Kozlowski wrote:
-> > > > > > On 03/10/2022 09:15, Michal Simek wrote:
-> > > > > > > > > And this is new IP. Not sure who has chosen similar name but this targets
-> > > > > > > > > Xilinx Versal SOCs. Origin one was targeting previous families.
-> > > > > > > > 
-> > > > > > > > Do we need a whole new schema doc?
-> > > > > > > 
-> > > > > > > It is completely new IP with different logic compare to origin one.
-> > > > > > > 
-> > > > > > > > 
-> > > > > > > > It is not ideal to define the same property, xlnx,nr-outputs, more than
-> > > > > > > > once. And it's only a new compatible string.
-> > > > > > > 
-> > > > > > > I can't see any issue with using dt binding for xlnx,clocking-wizard.yaml
-> > > > > > > 
-> > > > > > > https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> > > > > > > 
-> > > > > > 
-> > > > > > So we already have out of staging document:
-> > > > > > devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> > > > > 
-> > > > > in 6.1 yes.
-> > > > > 
-> > > > > > 
-> > > > > > and author wants to add one more:
-> > > > > > devicetree/bindings/clock/xlnx,clk-wizard.yaml
-> > > > > 
-> > > > > as I said it is completely different IP which requires
-> > > > > complete different driver
-> > > > > but IP designers choose similar name which is out of developer control.
-> > > > > 
-> > > > > > 
-> > > > > > Shall we expect in two years, a third document like:
-> > > > > > devicetree/bindings/clock/xlnx,clk-wzrd.yaml
-> > > > > > ?
-> > > > > 
-> > > > > Developer definitely doesn't know. If new SoC requires for the same purpose
-> > > > > different IP with completely different driver is something out of developer
-> > > > > control. As of today I am not aware about such a requirement and need and
-> > > > > personally I can just hope that if they need to do such a change they will be
-> > > > > able to keep current SW driver compatible with new HW IP.
-> > > > 
-> > > > Then please start naming them reasonable, not two (and in future
-> > > > x-times) the same names for entirely different blocks. And by name I
-> > > > mean compatible, filename and device name.
-> > > > 
-> > > > > > > also for this IP if that's fine with you.
-> > > > > > > Only xlnx,speed-grade can be defined for previous IP which is easy to mark.
-> > > > > > 
-> > > > > > That old binding also explained nr-outputs as "Number of outputs".
-> > > > > > Perfect... :(
-> > > > > 
-> > > > > Anyway if description should be improved let's just do it. I just want to get
-> > > > > guidance if we should update current dt binding for similar IP or just create
-> > > > > new one as this one is trying to do.
-> > > > 
-> > > > IMHO, new binding is extremely confusing. We already have support for
-> > > > devices named "xlnx,clocking-wizard" and now you add exactly the same
-> > > > (clk=clocking) with almost the same properties, named
-> > > > "xlnx,clk-wizard-1.0". For a different IP?
-> > > > 
-> > > > How anyone (even Xilinx' customer) can understand which block is for
-> > > > what if they have exactly the same name and (almost) the same
-> > > > properties, but as you said - these are entirely different IP?
-> > > 
-> > > Maybe we should just delete the staging one (and the staging driver),
-> > > and start over?  No one has taken the time to get the staging driver out
-> > > of there, so I have no objection to dropping it for 6.1.
-> > 
-> > As I said it is be out of staging in linux-next. When CLK tree is merged
-> > in these 2 weeks we are done at least with this driver.
+> During the conversion, the examples for client device/mutex nodes
+> were removed, as these are found in their respective bindings:
+> arm/mediatek/mediatek,mmsys.yaml for "mediatek,mt8173-mmsys"
+> soc/mediatek/mediatek,mutex.yaml for "mediatek,mt8173-disp-mutex"
 > 
-> FYI: Here is link where I asked you for your ACK to get the driver out of staging.
-> https://lore.kernel.org/all/Ys%2F%2FaPLkLGaooYYw@kroah.com/
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+> 
+> Changes in v4:
+>  - Removed deprecated examples comment
+>  - Fixed address for gce example
+>  - clock-names variation is now in allOf block
+>  - Added soc bus node with two address/size cells, as to
+>    provide a more practical example for the gce node
+> 
+> Changes in v3:
+>  - Removed '|' from description
+>  - Removed mbox client examples
+>  - Squashed patch dt-bindings: arm: mediatek:
+>    mmsys: Reference to mediatek,gce-mailbox.yaml
+> 
+> Changes in v2:
+>  - Changed mtk-gce.txt references to new yaml file
+> 
+> 
+> A previous attempt for this was made at [1], but it was changing
+> the way of getting clocks (by name for all).
+> Keeping clock-names not required for the multi-gce case makes this
+> binding simpler, hence I chose to abandon the change at [1] and go
+> for this one instead.
+> 
+> Any Reviewed-by or Acked-by tag was dropped, as this conversion was
+> completely redone from scratch and differs from [1] for the
+> aforementioned reasons.
+> 
+> [1]: https://lore.kernel.org/all/20220524151512.247435-1-angelogioacchino.delregno@collabora.com/
+> 
+>  .../bindings/arm/mediatek/mediatek,mmsys.yaml |  3 +-
+>  .../mailbox/mediatek,gce-mailbox.yaml         | 85 +++++++++++++++++++
+>  .../devicetree/bindings/mailbox/mtk-gce.txt   | 82 ------------------
+>  3 files changed, 87 insertions(+), 83 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> 
 
-Ah, good, I forgot about that, nevermind!
-
-greg k-h
+Applied, thanks!
