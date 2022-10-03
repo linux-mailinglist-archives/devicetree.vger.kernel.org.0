@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B2845F3395
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 18:30:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 658EE5F33A1
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 18:33:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229881AbiJCQaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 12:30:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57286 "EHLO
+        id S229897AbiJCQdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 12:33:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229885AbiJCQaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 12:30:17 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB9AE1C920
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 09:30:15 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id u16-20020a05600c211000b003b5152ebf09so9359908wml.5
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 09:30:15 -0700 (PDT)
+        with ESMTP id S229854AbiJCQdY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 12:33:24 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 614A436799
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 09:33:22 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id j7so12198304wrr.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 09:33:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:organization:from:reply-to
          :references:cc:to:content-language:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date;
-        bh=VCtA5gFZ0/mQDLBkx2bO7vp98n9XBfShLZr792bmy68=;
-        b=pQVwj+W3/ojdIUYDtplX6HC9FGZV5ot8htzg7BkEQuEC19j8obh8BY5G1YlS2+r4vt
-         BdHt4FwUIO3gbRfnfplnWPhcQ81BRWw2UjcThYUXNEzEokWPs9SS7tjH+XZFS0AKCTAd
-         qXglh6xHPzJrEz44e7m2q7fe2r8rDR2oUm1dm3PdY2osNtg1mxq4KtyyRsEjHx8zryIW
-         0BNGBdfRyE3G18H/PHrQ33Nx2brxcd7SYCSpPoFd1Q6o4w5Hs1mKROGKArjWjtOrLtL2
-         U6Onbcw2gzQRjjhl5Zgg74keaC5NezR4jW7enJHnMDIbI9nZVqityyvbA7o8cofAnXHi
-         Rf2A==
+        bh=n7gQQj9XhjkXVTjBSJ/G77RuMKgunnlfCjxjYXqNA/8=;
+        b=lTexKq9prOWgH6/4f7WzENeMYdIUCtAP6R8ysrGyASt4LGILvOuwfG9idYjHlfl4y0
+         3o4B35BcLMHLVqct9QYFRjqcYZBHJc7hJt3xZmIEDvg7KL+yfQuWm2QExxlNGRcEVAYg
+         7+MSB1PxPQJnpsizvfV/0/Rhpc1ORquL/sfgBIGapHlCxGa8tu2FilAW4yflzxD25sDR
+         gqY4062xxwQaVZ78DGysJ4HCc/SakBwmLDFQ2Gl296VJGCmj2IWTzqo1529VSKdlIhnW
+         B7rl/pyYRHKQ/vE9fndKYeDioRkWhE1pOdCFh+DJ4LREJ8dwxJy1RwO7/ieyOQX9LI1N
+         06OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:organization:from:reply-to
          :references:cc:to:content-language:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=VCtA5gFZ0/mQDLBkx2bO7vp98n9XBfShLZr792bmy68=;
-        b=431W1/c3md+rmoG1N7CLzlC2rFK+GwzVl+DDWd+R/kXnOPS6RlUe0dzENnzKxVuFYb
-         9wlw7h7CqYq85qBzQXGE4yT530jG16BcStLU4mEyxanJGmDb60CejTy6h/cNmh9YVKrQ
-         txDzn5SHC2/8926jb8vUgd9dQfiDi+K4T78zzjLUKd7VhLiRe7SagI2JdxC/vmAWLUwW
-         6WzGJAQXjSw49lFAf06ZnfUXh6LuXiyiDp3LoHKQ8WLrC7ViH582DuPKNZXTxuQ3t9VP
-         /Z+BF5DPCuzDkd2cMLL6DUCJoX5+CGk9ErPgL7W8mGi4kcmJaIonb5Zmq20Ya5fC9S87
-         POGg==
-X-Gm-Message-State: ACrzQf3zBiUW4eLyY5lnwOFxFc4A1TicEGP0oK61nMYlRn1WhOxMhaTI
-        2CAQIA1fEgyA0WG0FvsjA6+yyw==
-X-Google-Smtp-Source: AMsMyM7XZJW1fL7JtQnPfeVIsNG402sl+Pzl0lDyEAcAvvSAdN/CfBX0HOjCNPlTqhJW0lPbtilrRg==
-X-Received: by 2002:a05:600c:524b:b0:3b4:8c0c:f3b6 with SMTP id fc11-20020a05600c524b00b003b48c0cf3b6mr7750194wmb.50.1664814613806;
-        Mon, 03 Oct 2022 09:30:13 -0700 (PDT)
+        bh=n7gQQj9XhjkXVTjBSJ/G77RuMKgunnlfCjxjYXqNA/8=;
+        b=IjLZuBmB++THxbEECV5T/q9ayp+DWiMskiLNZC6v5BTps4ulIqXAUYMu396ewbRnX8
+         VukgMjHZHEVVOp8XDBNb4E/YjxoYLD13vJS+1l/nHg/dgMQrnSYLRx9uzz7jdzcJddsj
+         rnSdwJZfnBffcPXIKe85lguPK1yMqGgbM1/Rm0Nb7HtfLugeFI6v3sDv6D/EDIAVXPE7
+         ZcHVWRbXLqE9appddEr6E4QYUmDNOAsz8Gs4HZ0O3Vs1nj53sZ7cmH1dVGtXc8QumO7q
+         XrdjVlqM6rkht94Ms2LMSXKnyvsjfzk7Nd2pmwkO5Qf4qxsVvtG0ZxM+O2zirpoGLa5W
+         zDfA==
+X-Gm-Message-State: ACrzQf3n9Q7fvMScU8iNWgzwDy586skTV5fZ0Y70ihcH3c2Hd+tEyMRU
+        lWKNDfXlrpzcN9/bk6AUm3D2G/vcBQPqIBQF
+X-Google-Smtp-Source: AMsMyM6G6ZAXH7cqhP7bLFuqSeJ128A4RXXUA2W5Vem3HdRkYYUUXkI2dVUjfddhQj2lGPdCD9+P9Q==
+X-Received: by 2002:adf:eb4c:0:b0:22b:24d5:3786 with SMTP id u12-20020adfeb4c000000b0022b24d53786mr13274691wrn.550.1664814800815;
+        Mon, 03 Oct 2022 09:33:20 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:9da7:1217:d35f:d7cf? ([2a01:e0a:982:cbb0:9da7:1217:d35f:d7cf])
-        by smtp.gmail.com with ESMTPSA id h6-20020adfe986000000b0022cd6e852a2sm12540263wrm.45.2022.10.03.09.30.12
+        by smtp.gmail.com with ESMTPSA id m21-20020a05600c4f5500b003a5f54e3bbbsm18887451wmq.38.2022.10.03.09.33.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Oct 2022 09:30:13 -0700 (PDT)
-Message-ID: <e3249cfa-3331-ad91-79c9-c22ffc826f83@linaro.org>
-Date:   Mon, 3 Oct 2022 18:30:12 +0200
+        Mon, 03 Oct 2022 09:33:20 -0700 (PDT)
+Message-ID: <e76dc0bf-3279-4f5f-ede2-75937910f23c@linaro.org>
+Date:   Mon, 3 Oct 2022 18:33:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 06/23] ARM: dts: qcom: apq8064-flo: use labels to patch
- device tree
+Subject: Re: [PATCH 08/23] ARM: dts: qcom: apq8064-cm-qs600: use labels to
+ patch device tree
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,11 +65,11 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220930185236.867655-1-dmitry.baryshkov@linaro.org>
- <20220930185236.867655-7-dmitry.baryshkov@linaro.org>
+ <20220930185236.867655-9-dmitry.baryshkov@linaro.org>
 Reply-To: neil.armstrong@linaro.org
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Organization: Linaro Developer Services
-In-Reply-To: <20220930185236.867655-7-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220930185236.867655-9-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,8 +88,8 @@ On 30/09/2022 20:52, Dmitry Baryshkov wrote:
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->   .../boot/dts/qcom-apq8064-asus-nexus7-flo.dts | 521 +++++++++---------
->   1 file changed, 255 insertions(+), 266 deletions(-)
+>   arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts | 372 ++++++++++----------
+>   1 file changed, 183 insertions(+), 189 deletions(-)
 > 
 
 <snip>
