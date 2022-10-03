@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92B0A5F27D3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 05:24:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE4835F27D4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 05:24:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbiJCDYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 23:24:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40006 "EHLO
+        id S229517AbiJCDYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 23:24:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbiJCDYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 23:24:42 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59A2F10B6
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 20:24:41 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id v186so9105048pfv.11
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 20:24:41 -0700 (PDT)
+        with ESMTP id S229542AbiJCDYp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 23:24:45 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3023F6B
+        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 20:24:43 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id q7so1523506pfl.9
+        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 20:24:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=schmorgal.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=8qat8MFOGsaBlJAMN6joW2Dl31wIftDix6DXZPpwSoI=;
-        b=iYhueGqgEXQD0h9Rq56Zi0JzdYBV7XlZK6ggyp5xASvbpRwGq7M2xfNyg475iuzswZ
-         bTAnMFYZWw7Elv+1pQJ03gZa0qFVRLzvN9SYhNOOyvVtmprxeAiPMJnZfBtGen+VbAlT
-         OtLSL3bGIEcczmQiLJhAMh9Vm6Wh8VdNIlcgw=
+        bh=DQquaZAcXIy4M+b8mdS34VA7TR7HzahIgM8NzE1IWeY=;
+        b=S0YyQndTN+fah/mp3zVqA/pfagjsIfATDQ3UQziRxt9h8+mrZxLvlmQyE8EtyRL+U1
+         8A3ZwvPrgvcegiSczlVPSQaQD0C+POgsCUm+oKbvsi8xOL8fpLGJg6nQNn3VkYADIZnW
+         blO6kGP+xVXZo8d6Q7heb+TT+GDI2COYLl2Pk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=8qat8MFOGsaBlJAMN6joW2Dl31wIftDix6DXZPpwSoI=;
-        b=lWx5AkkfsY+Bvp/ZKNL7JC1ouy4ijRX37PnJl9NWR3QiWn6jtN35G4imofFUX313ZL
-         ztNcH9bs29gqZCDK0v+FJ8V4ElS0vFEnQteazAechwgcLDflgCrXatWXyEn2i4ucB3Eu
-         VUkWJqmTBMkg7UkoCxWoyuhSrSnwBKYy7Nj3PRxlgrP2cFCpwmuQZoRm2tWt8iqB3RZJ
-         fJiTr6DjrIBBT12AKkbEPVO2tP5XAfK6SILMebpeRHfur94G19WZJnzieBKBJFrnJxKB
-         O3UI35yPbHTGpL25Fidp8DC8XYeKzZzOE7Th/u/bkSrWXHth5s9qV+lDydr+5k/7mPr0
-         XlQA==
-X-Gm-Message-State: ACrzQf3fYxeaLPEMCDIPfW8+SDXmUyLQhuzWLiJ0paBF3morfqU+WybA
-        QUbifHtQdr/XZmPF9tUpy7jZIQ==
-X-Google-Smtp-Source: AMsMyM4m7ANca3Mqy/X9569Ol4YrR6liqnH4eA0Ko5EhrQvIgrYeHWiLvSBNUN/MAMi5eCUFAzolEA==
-X-Received: by 2002:a62:e20f:0:b0:556:4265:5de2 with SMTP id a15-20020a62e20f000000b0055642655de2mr20655788pfi.57.1664767481421;
-        Sun, 02 Oct 2022 20:24:41 -0700 (PDT)
+        bh=DQquaZAcXIy4M+b8mdS34VA7TR7HzahIgM8NzE1IWeY=;
+        b=cpfYxdUSpmaJnruuzfu42aYOGvbPJuXiwpDaiAY8QQNIgggQGkgpWzhvgMmETUdn/6
+         AFP0aqs0/DjDz/Ogwf+0jB8v1Lsk4kf9npmIvlcTgjgM6X3RJpdg8iaCI5WWrmGoHuQ6
+         n2r085piv6mrK6KPyGTNWzIAGCPueybmlzcXQxIgZB9qwXP56szKViJCFJNR711tMa51
+         NkTtEJw1mVkfgndXe3XJgS/sNF0brTZWD3R+8rT+NUCRPZXqPVymcSu3tmU9mUQNxQwe
+         v8t86q+744JfZXoQ3Dp0atyMyUsZBrp4jf5eC+1VVTC30doGExTG+O35LtYjAmB7IaZD
+         4pFg==
+X-Gm-Message-State: ACrzQf3u4P3gP/ZUQ5IS2x+1B6Whnf42yQ++33L4T6k1Zz5xaOQs+PEt
+        UawJEjy7KHuicvfyRQMnxMDpqA==
+X-Google-Smtp-Source: AMsMyM65B5CKIKoAtOoSsD0JpIFTe51j6BtOH9csjXvYeIEUaRkmVf8q4zPaQd9DaX2ABMPbeB+JHw==
+X-Received: by 2002:aa7:9710:0:b0:561:7692:fa11 with SMTP id a16-20020aa79710000000b005617692fa11mr2402055pfg.39.1664767483319;
+        Sun, 02 Oct 2022 20:24:43 -0700 (PDT)
 Received: from doug-ryzen-5700G.. ([50.45.132.124])
-        by smtp.gmail.com with ESMTPSA id y25-20020aa78f39000000b0053e7d3b8d6dsm6157977pfr.1.2022.10.02.20.24.40
+        by smtp.gmail.com with ESMTPSA id y25-20020aa78f39000000b0053e7d3b8d6dsm6157977pfr.1.2022.10.02.20.24.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Oct 2022 20:24:41 -0700 (PDT)
+        Sun, 02 Oct 2022 20:24:43 -0700 (PDT)
 From:   Doug Brown <doug@schmorgal.com>
 To:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>
@@ -53,9 +53,9 @@ Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, Doug Brown <doug@schmorgal.com>
-Subject: [PATCH v2 2/3] ASoC: wm8961: add support for devicetree
-Date:   Sun,  2 Oct 2022 20:24:13 -0700
-Message-Id: <20221003032414.248326-3-doug@schmorgal.com>
+Subject: [PATCH v2 3/3] ASoC: codecs: allow WM8961 to be selected by the user
+Date:   Sun,  2 Oct 2022 20:24:14 -0700
+Message-Id: <20221003032414.248326-4-doug@schmorgal.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221003032414.248326-1-doug@schmorgal.com>
 References: <20221003032414.248326-1-doug@schmorgal.com>
@@ -70,35 +70,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for devicetree to the WM8961 driver so it can be used with
-modern DT-based kernels.
+Allow the WM8961 driver to be enabled independently now that it is
+usable with devicetree.
 
 Signed-off-by: Doug Brown <doug@schmorgal.com>
 ---
- sound/soc/codecs/wm8961.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ sound/soc/codecs/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sound/soc/codecs/wm8961.c b/sound/soc/codecs/wm8961.c
-index 7dc6aaf65576..a4857024711d 100644
---- a/sound/soc/codecs/wm8961.c
-+++ b/sound/soc/codecs/wm8961.c
-@@ -971,9 +971,16 @@ static const struct i2c_device_id wm8961_i2c_id[] = {
- };
- MODULE_DEVICE_TABLE(i2c, wm8961_i2c_id);
+diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
+index e3b90c425faf..2b5787ee8d31 100644
+--- a/sound/soc/codecs/Kconfig
++++ b/sound/soc/codecs/Kconfig
+@@ -1929,7 +1929,7 @@ config SND_SOC_WM8960
+ 	depends on I2C
  
-+static const struct of_device_id wm8961_of_match[] __maybe_unused = {
-+	{ .compatible = "wlf,wm8961", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, wm8961_of_match);
-+
- static struct i2c_driver wm8961_i2c_driver = {
- 	.driver = {
- 		.name = "wm8961",
-+		.of_match_table = of_match_ptr(wm8961_of_match),
- 	},
- 	.probe_new = wm8961_i2c_probe,
- 	.id_table = wm8961_i2c_id,
+ config SND_SOC_WM8961
+-	tristate
++	tristate "Wolfson Microelectronics WM8961 CODEC"
+ 	depends on I2C
+ 
+ config SND_SOC_WM8962
 -- 
 2.34.1
 
