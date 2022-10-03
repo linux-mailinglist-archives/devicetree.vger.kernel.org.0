@@ -2,73 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 866765F3456
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 19:18:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48A4F5F3466
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 19:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbiJCRSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 13:18:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49408 "EHLO
+        id S229754AbiJCRXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 13:23:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiJCRSw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 13:18:52 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ACCAB78;
-        Mon,  3 Oct 2022 10:18:51 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1322fa1cf6fso6450211fac.6;
-        Mon, 03 Oct 2022 10:18:51 -0700 (PDT)
+        with ESMTP id S229680AbiJCRXo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 13:23:44 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B29D2386A2
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 10:23:40 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id g130so11926049oia.13
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 10:23:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf.com; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=WKey60YWMOJ0s2xAWRb+D/DMHBUrKOtpGet3ccL9Sr8=;
+        b=WHU0YN5qU8xbngr8MyPaaaE25995ybk85tXIW68PY4TIm/ka0afmNjFLGiACLKTdFY
+         7HK4drMXV33Gd89C9y4yRuvWRxoxWi34aZ1x2f3qTSPBElStEtmcWcfBj+jh0oGwHbNH
+         WDdIhPvcRtQFT7Fr0H+cXioj+UkL24J1p7USIzTfHAlGflIlbrQ7cbChqbTSPPIpUaOm
+         +l+fihzrocEZG59boUAEbWKJnEBt1EADlp4ef3qQ05AMhow4wq2uDYula37IOD3U7veP
+         hW2ME9ZYDhe9Lwaj/TZWylRLvZbm8XmYQdgMJX6APN/3PpLOxx+IloFWa2LvjuNtjSO1
+         rDAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=IUANyagVkWI/KVRnn7CGB2nz36goP/7bMWd4pYEwNkQ=;
-        b=quFUWecLogB9hOPu5spJAlVpDnXStAnAot0t2mQ2Ti7r3HjzKzUe61CgFytoRexgSp
-         g4UCdoTKqPwSTZiFozuf07Adh+GLRzJQ1OAoTC8tNWrBvSpuzV7Vb6wx70wXY16CDWU7
-         QsI3oEW8Lx/zYwUHjp3YAR5aXcuZ8WRztJnaAFZ22kHLscoXDMyvM5N2uuImafOypntn
-         nzF1WpVDapIK0oC7HNTRB5zVqldKQgwoxeWkgrinlmbBcfFJgTRJ2lldvlFGNQiGv+lH
-         VwAI7q6HZRTjphUcdmAsxbgWzttnJAediJU6AFuA9ndDbQ3jHWBdY5DfpupeHQaNZdgW
-         SIEw==
-X-Gm-Message-State: ACrzQf2qatkFCV40GMN+bKF+9Pf9fodw946765x0LQzxwMNahK+5sp4D
-        TXwy2eo0nrKY6AjYSsZAQw==
-X-Google-Smtp-Source: AMsMyM5eYSuSISAx3ZwBg9efptxFP3DDSHmomyG1R35znQb7JYPqKWLib2jRJVa+eBn9lv5k/+9k2g==
-X-Received: by 2002:a05:6870:828d:b0:132:c30:a8ca with SMTP id q13-20020a056870828d00b001320c30a8camr5740724oae.293.1664817530518;
-        Mon, 03 Oct 2022 10:18:50 -0700 (PDT)
-Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q83-20020acad956000000b0033b15465357sm2569409oig.5.2022.10.03.10.18.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 10:18:49 -0700 (PDT)
-Received: (nullmailer pid 2468557 invoked by uid 1000);
-        Mon, 03 Oct 2022 17:18:49 -0000
-Date:   Mon, 3 Oct 2022 12:18:49 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: YAML-ify SSBI bindings
-Message-ID: <20221003171849.GB2462016-robh@kernel.org>
-References: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=WKey60YWMOJ0s2xAWRb+D/DMHBUrKOtpGet3ccL9Sr8=;
+        b=uVKwGrp147Yb2oOa3p8bFw8YNL+zPM2DmXZvHWU4vzG4m0zI3NxpWd9HbNBUAWdD8o
+         qJNG9RzooZBhf5GCKpL0nnDVMDgNMbXhJPXn+Q8VXEKRNWpARqqw7Q8bFoESToHq8+WI
+         t3F7AbZ0WIzUthXm9lhecV5DJYK5ju+DDI9uckPko1+740FCIf4RoWAZuPjczWcqE7k5
+         37VEEoeBtxn2JQb+7/aDxJlbqDvSHZ/HRQx5aDIV2Hxgfo9CgE1HeROCAubl1KQI0Dbk
+         onIV9nL6zheGVrDoodN09JF/c1dDuqb0p0D7wYbHcx8JvBR+/CLfR55yxlnD9p8qb5mm
+         lTww==
+X-Gm-Message-State: ACrzQf0DfmMERq8K4Y5jE/Hqt9tk9467MeLGMjCRXyxGl9MIshPUnNSR
+        4Hd70pqGj9TPqEkW5H4zpVUQSYrKPpLMHb8lOBtC+g==
+X-Google-Smtp-Source: AMsMyM7jPgXBDmT/7rRqaEII/upsFwR9G0JeouCOL3p09bLGZpxJZcIvaBh1+ckedWWSprPCqdgpWA1JBoSMCMm5YMA=
+X-Received: by 2002:a05:6808:1495:b0:350:e28e:e31e with SMTP id
+ e21-20020a056808149500b00350e28ee31emr4524220oiw.66.1664817819904; Mon, 03
+ Oct 2022 10:23:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <CAPv3WKcW+O_CYd2vY2xhTKojVobo=Bm5tdFdJ8w33FHximPTcA@mail.gmail.com>
+ <20221003170613.132548-1-mig@semihalf.com>
+In-Reply-To: <20221003170613.132548-1-mig@semihalf.com>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Mon, 3 Oct 2022 19:23:28 +0200
+Message-ID: <CAPv3WKe__WcqEXtYf6YQ0Cka=EZKFyaBbFSMsg5U-MoVyERUfA@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: net: marvell,pp2: convert to json-schema
+To:     =?UTF-8?Q?Micha=C5=82_Grzelak?= <mig@semihalf.com>
+Cc:     davem@davemloft.net, devicetree@vger.kernel.org,
+        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
+        krzysztof.kozlowski@linaro.org, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        upstream@semihalf.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 01, 2022 at 12:20:51AM +0300, Dmitry Baryshkov wrote:
-> Convert arm/msm/ssbi.txt yo YAML, moving it to the directory with SoC
-> bindings (soc/qcom/).
+pon., 3 pa=C5=BA 2022 o 19:06 Micha=C5=82 Grzelak <mig@semihalf.com> napisa=
+=C5=82(a):
+>
+> On 02/10/2022 10:23, Marcin Wojtas wrote:
+> >niedz., 2 pa=C5=BA 2022 o 10:00 Krzysztof Kozlowski
+> ><krzysztof.kozlowski@linaro.org> napisa=C5=82(a):
+> >>
+> >> On 01/10/2022 17:53, Micha=C5=82 Grzelak wrote:
+> >> > Hi Krzysztof,
+> >> >
+> >> > Thanks for your comments and time spent on reviewing my patch.
+> >> > All of those improvements will be included in next version.
+> >> > Also, I would like to know your opinion about one.
+> >> >
+> >> >>> +
+> >> >>> +  marvell,system-controller:
+> >> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >> >>> +    description: a phandle to the system controller.
+> >> >>> +
+> >> >>> +patternProperties:
+> >> >>> +  '^eth[0-9a-f]*(@.*)?$':
+> >> >>
+> >> >> The name should be "(ethernet-)?port", unless anything depends on
+> >> >> particular naming?
+> >> >
+> >> > What do you think about pattern "^(ethernet-)?eth[0-9a-f]+(@.*)?$"?
+> >> > It resembles pattern found in net/ethernet-phy.yaml like
+> >> > properties:$nodename:pattern:"^ethernet-phy(@[a-f0-9]+)?$", while
+> >> > still passing `dt_binding_check' and `dtbs_check'. It should also
+> >> > comply with your comment.
+> >>
+> >> Node names like ethernet-eth do not make much sense because they conta=
+in
+> >> redundant ethernet or eth. AFAIK, all other bindings like that call
+> >> these ethernet-ports (or sometimes shorter - ports). Unless this devic=
+e
+> >> is different than all others?
+> >>
+> >
+> >IMO "^(ethernet-)?port@[0-9]+$" for the subnodes' names could be fine
+> >(as long as we don't have to modify the existing .dtsi files) - there
+> >is no dependency in the driver code on that.
+>
+> Indeed, driver's code isn't dependent; however, there is a dependency
+> on 'eth[0-2]' name in all relevant .dts and .dtsi files, e.g.:
+>
+> https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/armada-37=
+5.dtsi#L190
+> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/marvell=
+/armada-cp11x.dtsi#L72
+>
+> Ports under 'ethernet' node are named eth[0-2], thus those and all .dts f=
+iles
+> including the above would have to be modified to pass through `dtbs_check=
+'.
+>
 
-YAML-ify? Can we say 'convert to DT schema' instead like everywhere 
-else. YAML is a file format. It doesn't describe the vocabulary.
+Can you please double check?
+The .dts files use labels, the node name they relate to should be irrelevan=
+t:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arc=
+h/arm64/boot/dts/marvell/cn9130-db.dtsi?h=3Dv6.0#n122
+(BTW, for A7k8k/CN913x example please use updated names, i.e.
+s/cpm_/cp0_/ and s/cps_/cp1_/)
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arc=
+h/arm/boot/dts/armada-375-db.dts?h=3Dv6.0#n167
 
-Rob
+Best regards,
+Marcin
