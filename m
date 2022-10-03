@@ -2,104 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47E955F311E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABA3F5F3136
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:26:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbiJCNY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 09:24:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55376 "EHLO
+        id S229621AbiJCN0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 09:26:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbiJCNY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 09:24:56 -0400
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34DD51EADC;
-        Mon,  3 Oct 2022 06:24:54 -0700 (PDT)
-Received: by mail-oo1-f50.google.com with SMTP id c13-20020a4ac30d000000b0047663e3e16bso6719401ooq.6;
-        Mon, 03 Oct 2022 06:24:53 -0700 (PDT)
+        with ESMTP id S229464AbiJCN0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 09:26:43 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C3D11D0D3
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 06:26:42 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id z4so16591066lft.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 06:26:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=yRIMiFRHxfdGJDjG9K9HNpuOScDcKnyF2oEGJoSrlM4=;
+        b=CCRAtD2B/gDLVtVgCmF4Q4OjwVBw0wDfwOpTt6CScLf+G88sFEV/U0as01pkrtLJ16
+         mbfWdwO8Ozs19RiYvPdK81wU+r7P3sNtB3Oy7Y5NQbHzqzCU4kpcqnM1RXShBFJmTPZT
+         VUkLDyIh26H2AIFUyvItrin8K2vImbAVe2K5Pn2DrjRqwLcF0BZMzV1olxAh6OCqYDSI
+         8J9VYJxfljrKOO/LxRMCB9y1+rt7vzmm0iXKLw4QeFs84RtVvRK5Q+5eAMMKrgnNUjSU
+         Arwdq+AcHdKwNzpsSUC8jrNjmjXUKuYBHvBYL0p90ahVtkkf577LrrkKk8sLqA1wxy5g
+         gVMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=VwdzdygdgLbBp3fkNJZh/HpOAPaqnsjBDUAQiUXbsnM=;
-        b=vCySG/hGZcGh8uFpHPd+ExkjMFEUEFdzgs6BTJduU8W6A0qAZ521oaoipLE0ay5WFI
-         htX8rIzqbj8sJvlK5GeHgGjFRpDtPNhe5GTvm0QvEl+oqX7Y3S4jFjean5l+xw5Ut2Gd
-         CeVR5MMsFQzRs7rrLyugcw0YZPA+vMrXOLqVPMzR6kuh/VaKs5l4e2+x92zHfbr9d7FE
-         Kzcs/ElOSZ55OHquzBDTRfrfFWiptbAC9NnnlfsBAzQajfkP+7hnfxxkSbOzVsG0+vJn
-         bBS8yQKODLKjh9FBmm/aySZfG40IcK/SnBFdIY2Jih8kSj7aszKq/owohq3rtdwdfyTt
-         yDUA==
-X-Gm-Message-State: ACrzQf0z0x6YvGiotsUVryb4/DwAQzEco96kNyIhdrh4HDBx4zxGfD4k
-        UBiiP3j9l8vqS72flwi2ww==
-X-Google-Smtp-Source: AMsMyM7ArjVDwVFx++um/0TDQxPqWPgM5a1GRKKaEjx9iHWMhV8SvM4Y/13k9L5mN19NrK84JQl+6A==
-X-Received: by 2002:a9d:72d1:0:b0:65c:6650:a3c5 with SMTP id d17-20020a9d72d1000000b0065c6650a3c5mr7662551otk.286.1664803492631;
-        Mon, 03 Oct 2022 06:24:52 -0700 (PDT)
-Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d1-20020a056871040100b0010e73e252b8sm2952907oag.6.2022.10.03.06.24.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 06:24:52 -0700 (PDT)
-Received: (nullmailer pid 1863801 invoked by uid 1000);
-        Mon, 03 Oct 2022 13:24:48 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Melody Olvera <quic_molvera@quicinc.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Andy Gross <agross@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>
-In-Reply-To: <20221001030403.27659-2-quic_molvera@quicinc.com>
-References: <20221001030403.27659-1-quic_molvera@quicinc.com> <20221001030403.27659-2-quic_molvera@quicinc.com>
-Message-Id: <166479587305.1658944.6390618690246358275.robh@kernel.org>
-Subject: Re: [PATCH 1/5] dt-bindings: clock: Add QDU1000 and QRU1000 GCC clock bindings
-Date:   Mon, 03 Oct 2022 08:24:48 -0500
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        bh=yRIMiFRHxfdGJDjG9K9HNpuOScDcKnyF2oEGJoSrlM4=;
+        b=3qpkvg4eiOCE+rI7OEnGOCQ+DZeSPXzhf+4T+vLUKOcnyLXHf3HezEG5w/dmyv5b3F
+         yUI11hAJvZC9A5Ms8aGM3YiwkPIB1hcXLOochy9ViGP+ts4RYQ6ZnbqGFF+mJRtvmb7M
+         4Lg/5+Skw9MbfIzdw76kuMoJTX10mEdbBFaY51ZyZ6mee3MScWm+TVmu4z1zxvHCV8sd
+         PX+ZrxxBgPtiMVWjxWTZmpMrbiNHI5Vey5F3LfunNk81QBeYRHdNszI77W+w0Kf41+9w
+         SnLgiHwkD6kqi6EIpxAPRnl53pu51bj89Kj/Mkekce7FLgVVyIRwkBDCSm4RCCuSizuZ
+         X1Rg==
+X-Gm-Message-State: ACrzQf3AX2Q3EKbpEaTRVIwjt1lH+V3P9NEPZ9AQmA++2qxZ5jPiOvbL
+        9CxggETronjmX73aHu7vwUF7qg==
+X-Google-Smtp-Source: AMsMyM6LLORTXjbGJao6foKAioZdPQngaNSwlkj1I2jJGoa7BH0czKJEH7M00qNEosJEewFi3Y8F1w==
+X-Received: by 2002:a05:6512:234c:b0:499:9c33:af96 with SMTP id p12-20020a056512234c00b004999c33af96mr7094704lfu.545.1664803600423;
+        Mon, 03 Oct 2022 06:26:40 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id n5-20020a0565120ac500b00492d7a7b4e3sm1462850lfu.4.2022.10.03.06.26.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Oct 2022 06:26:39 -0700 (PDT)
+Message-ID: <01ead0ea-d0c7-7878-e411-c00cb5f78140@linaro.org>
+Date:   Mon, 3 Oct 2022 15:26:38 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v4 1/2] media: dt-bindings: mediatek: Rename child node
+ names for decoder
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20220930112237.14411-1-allen-kh.cheng@mediatek.com>
+ <20220930112237.14411-2-allen-kh.cheng@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220930112237.14411-2-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Sep 2022 20:03:59 -0700, Melody Olvera wrote:
-> Add device tree bindings for global clock controller on QDU1000 and
-> QRU1000 SoCs.
+On 30/09/2022 13:22, Allen-KH Cheng wrote:
+> In order to make the names of the child nodes more generic, we rename
+> "vcodec" to "video-codec" for decoder in patternProperties and example.
 > 
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../bindings/clock/qcom,gcc-qdru1000.yaml     |  74 ++++++++
->  include/dt-bindings/clock/qcom,gcc-qdru1000.h | 170 ++++++++++++++++++
->  2 files changed, 244 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-qdru1000.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,gcc-qdru1000.h
-> 
+>  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml    | 8 ++++----
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-yamllint warnings/errors:
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/clock/qcom,gcc-qdru1000.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/clock/qcom,gcc-qdru1000.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+Best regards,
+Krzysztof
 
