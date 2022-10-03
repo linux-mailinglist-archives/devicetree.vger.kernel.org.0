@@ -2,104 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BF015F3335
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 18:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 513545F3358
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 18:20:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229740AbiJCQRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 12:17:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34516 "EHLO
+        id S229779AbiJCQU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 12:20:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbiJCQQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 12:16:57 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A43D33A1A;
-        Mon,  3 Oct 2022 09:16:55 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id m130so11757321oif.6;
-        Mon, 03 Oct 2022 09:16:55 -0700 (PDT)
+        with ESMTP id S229811AbiJCQUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 12:20:50 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F291CB3E;
+        Mon,  3 Oct 2022 09:20:46 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1324e7a1284so4865875fac.10;
+        Mon, 03 Oct 2022 09:20:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=n6qNXTUxVdbW5pamC8yW/XZu0YEjyP8JbCRL+nV6Xik=;
-        b=Wl6Z63+Sc3lP6InVrLx9lI5qsA3w2iU/0SC3+DwVzCLbfoKonEcAU3nruWCDyZuXtd
-         Fyz2JZ9LxQJ4GKYB3I4/3+k3REfKC7ykxHbX9uN5kpu1XGoAm8mXIrl88g17KhYvKr+h
-         ndPFUWn7wmOmNPI3nb5g0FloXGIcj3AqwJfu4vliHCAEXfJFFWdIq9Db1w5ydO/A8mAP
-         jxDvHBFa1cxf24sLW1fMVE51kVAQP7wMFNfL273xjNjcOIsCTzcREXleZM/qGYN1vdLa
-         M4OA6aoK7biMy3A393Gv5qM+d39UwnVs2EBCyi16UmqTgcpODo8Jh1IhXqU+6bQHjovo
-         D1pQ==
-X-Gm-Message-State: ACrzQf0SPWVdNx6k7v9JRc3NqyQm9nA/Kbi78qvUTRyS1O0kHUPnqpHK
-        PDQJ0v8w7eHdy/gSDQj2cwATpESoXw==
-X-Google-Smtp-Source: AMsMyM5EYqsB+/ddWpoDpynNS+3amBvzxr+amDgwN06v0eLd9S0EKVKIRe6kbLbya8z3KvSzYFYG9g==
-X-Received: by 2002:aca:180b:0:b0:352:8bda:c428 with SMTP id h11-20020aca180b000000b003528bdac428mr4376671oih.13.1664813814275;
-        Mon, 03 Oct 2022 09:16:54 -0700 (PDT)
+        bh=SrQIQIx2drceX3SN+9GboVD+7L3gb+zcudmTPkuxG4o=;
+        b=74PA7FsdMI96xzv9bqMWG/1z88UVSaX9POETSMo4bJBNWkOElBK8jZZ77mjDsBZm8Z
+         Ga8ah6PnAyBnDe1pPW0cDzALv9lUfDZpZd5BugKnURxt9mYFZ3Nla05POwd14UDmQb6U
+         cNhNTkDX7EWfsfGGesctXNsT/PKmMNe3hFLRG2QiHnbLWSCaulQQdbTmmhAV0ad5Y1Yx
+         YdEvp9/sGqNGpqnufXJRZwdGGWU8bwk1mrL9yqg3grty+g94uOfyzzZF0duO0Oo+TBeL
+         5+aO8EI2BUW/C9z+AIv3TgowOlffIlsK/6QF4Bf9T4Jnll1/70PDQF5oCW4Xi0zwcTfM
+         Nc5g==
+X-Gm-Message-State: ACrzQf2Q005qtIGy919ih/4gpbc8sUaOueuWq1QsOiRh0sinJQgOippD
+        u4XeRaDFQsPW1O5/aYqoDQ==
+X-Google-Smtp-Source: AMsMyM6cKgji6ciyhbfcp4feIvszGehOxAdPhv6e9KCbMI8b2WBWiPgQvBwA1TqrxbMdcC2DrtjgNg==
+X-Received: by 2002:a05:6870:f60e:b0:131:b7cc:f994 with SMTP id ek14-20020a056870f60e00b00131b7ccf994mr5798922oab.113.1664814046016;
+        Mon, 03 Oct 2022 09:20:46 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ep31-20020a056870a99f00b0011bde9f5745sm3018755oab.23.2022.10.03.09.16.52
+        by smtp.gmail.com with ESMTPSA id u17-20020a4ac991000000b00435a8024bc1sm2146879ooq.4.2022.10.03.09.20.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 09:16:53 -0700 (PDT)
-Received: (nullmailer pid 2398224 invoked by uid 1000);
-        Mon, 03 Oct 2022 16:16:52 -0000
-Date:   Mon, 3 Oct 2022 11:16:52 -0500
+        Mon, 03 Oct 2022 09:20:45 -0700 (PDT)
+Received: (nullmailer pid 2402827 invoked by uid 1000);
+        Mon, 03 Oct 2022 16:20:44 -0000
+Date:   Mon, 3 Oct 2022 11:20:44 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Mikko Perttunen <cyndis@kapsi.fi>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-tegra@vger.kernel.org, Ashish Mhetre <amhetre@nvidia.com>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 3/8] dt-bindings: Add bindings for Tegra234 NVDEC
-Message-ID: <166481381193.2398163.17368666034757782768.robh@kernel.org>
-References: <20220920081203.3237744-1-cyndis@kapsi.fi>
- <20220920081203.3237744-4-cyndis@kapsi.fi>
+To:     Chancel Liu <chancel.liu@nxp.com>
+Cc:     robh+dt@kernel.org, broonie@kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
+        tiwai@suse.com, devicetree@vger.kernel.org,
+        shengjiu.wang@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        linuxppc-dev@lists.ozlabs.org, perex@perex.cz, lgirdwood@gmail.com
+Subject: Re: [PATCH v3 1/7] ASoC: dt-bindings: fsl_rpmsg: Add a property to
+ assign the rpmsg channel
+Message-ID: <166481404372.2402771.4568296878254068845.robh@kernel.org>
+References: <20220930064441.2548505-1-chancel.liu@nxp.com>
+ <20220930064441.2548505-2-chancel.liu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220920081203.3237744-4-cyndis@kapsi.fi>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220930064441.2548505-2-chancel.liu@nxp.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Sep 2022 11:11:58 +0300, Mikko Perttunen wrote:
-> From: Mikko Perttunen <mperttunen@nvidia.com>
+On Fri, 30 Sep 2022 14:44:35 +0800, Chancel Liu wrote:
+> Add a string property to assign the rpmsg channel this sound card sits
+> on. This property can be omitted if there is only one sound card and it
+> sits on "rpmsg-audio-channel".
 > 
-> Update NVDEC bindings for Tegra234. This new engine version only has
-> two memory clients, but now requires three clocks, and as a bigger
-> change the engine loads firmware from a secure carveout configured by
-> the bootloader.
-> 
-> For the latter, we need to add a phandle to the memory controller
-> to query the location of this carveout, and several other properties
-> containing offsets into the firmware inside the carveout. This
-> carveout is not accessible by the CPU, but is needed by NVDEC,
-> so we need this information to be relayed from the bootloader.
-> 
-> As the binding was getting large with many conditional properties,
-> also split the Tegra234 version out into a separate file.
-> 
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
 > ---
-> v3:
-> - Adjusted descriptions for firmware-related DT properties
->   as requested.
-> - Small update to commit message.
-> v2:
-> - Split out into separate file to avoid complexity with
->   conditionals etc.
-> ---
->  .../gpu/host1x/nvidia,tegra234-nvdec.yaml     | 156 ++++++++++++++++++
->  1 file changed, 156 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra234-nvdec.yaml
+>  .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 36 +++++++++++++++++--
+>  1 file changed, 34 insertions(+), 2 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
