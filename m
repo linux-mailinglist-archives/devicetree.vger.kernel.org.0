@@ -2,107 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB8C55F2F45
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 13:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3112A5F2F59
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 13:11:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbiJCLGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 07:06:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53832 "EHLO
+        id S229651AbiJCLL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 07:11:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbiJCLGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 07:06:39 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DF6D402DB;
-        Mon,  3 Oct 2022 04:06:38 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.27.55.162])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D625A6602297;
-        Mon,  3 Oct 2022 12:06:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664795196;
-        bh=Uknm/eeST+46BULBKRwl+r3IUY1mmXz/O75r7yudO1U=;
-        h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-        b=Ibf1wkp4l50qt4baeVbevrRUQA+SgpW1cAWfkZ3LYSmX/0ty4YUJnTAmeKyj15/sM
-         1IRcw3fnLRUvQP0Sj0JBgsCBcp7iSw6nOhPeW3YX+ga9m+Cq9Vncm9uxNHc4BMijeA
-         v53vUpmOTfYvR2pL5Ea01djCexkb/9vXMIrzIbwvrJtnMgSbsAfYbZJb8LqDIGw90k
-         JKt/eQ+hUgsWOz7C1FOYPBmCVnTqSLU5IU1vN4y87bSEuHyxj9cQfauwh9nD7Ube3Q
-         ABmQOUZY/qa/hrrbUACC9oQ9lQectosZDOj7eWon9o+ZdBMhrszxKev77az4Owm9d9
-         jW/77hBj9pv2Q==
-Message-ID: <c5169131-486e-9808-ba48-b7abe1be6a99@collabora.com>
-Date:   Mon, 3 Oct 2022 14:06:32 +0300
+        with ESMTP id S229572AbiJCLL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 07:11:27 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129A03ED51
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 04:11:25 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id d26so3110306ljl.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 04:11:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=3xG7Sx36uXV+Y7O3JP3f1ZhHsXXXqdBNI1ovCRM0zfk=;
+        b=uc+N57yoLdKAirCZp+ceADu7xZOvpXfBZR94l3MC8z1//WP9eHd/Yz4LdJ7ttpEvcC
+         AQm+jq8VFfl7CDj1jAi3ss19OHsX9Jca/KgvhaDWirSRfaaYuuQByHkXWND7Wgz8J/3Z
+         Ptm4aqO9PaWNbRNXR9vCWBEVigolAhHzCCugS/FJ7KDfOIcetxUnuxtrnx9mL7ezsuS+
+         LtdauiFndPeGSb8ycG1pLE9tvM/OmhkA0TLlS34rLh6zszWhVposINXQeIdTaD612UmP
+         3HHfxDQYKzFzCtviJIJ+OLHjUk0lcJWesUIommH8/gboc1llKe+NOi7AZKgFvSy5fNTW
+         Cy2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=3xG7Sx36uXV+Y7O3JP3f1ZhHsXXXqdBNI1ovCRM0zfk=;
+        b=bTziHMJ4PCWW98GgIqcTHIIuLDH9h3hWoLTL48Fp0RO1MGX0+skLkNVFC6s0J8khKa
+         14kCtMd7UGlXnvnTbE+XjGCXRb6b47BkB8zJ6/K848jvYNSb5uZnJ0ZQNGmViaBqCQyr
+         gerV7j9FR9sgElnxed6lQn5PHDm0QjSelEyM+ejjYlgwP/evwNrc0EI77CYTvf5PxDtO
+         /1OVxFC6S3g0VT/kpRkMs5+tILiJ8tItcieUUvakPbHbHqLlHiJAz9pAStGs6dh4zheT
+         1d28YH94iEHJbydpAVi29UybDNDsEmTFZUuWwLeXbqkhB76W0LrzPlKczV45hw8y6Dhk
+         MPSw==
+X-Gm-Message-State: ACrzQf2LCT3Cz/G8asVVhIMoBxeGT+y9bLD2muk9H0A8e8YPpsIT40r3
+        98D5o8TcvVLKzGPFHL4NO0eKUw==
+X-Google-Smtp-Source: AMsMyM77y2jdFDY0J3lgTPFJ9CWeZaxwLfIHsDNfDBNt5i6Npdv9dMYYfkNRQPIE+2VkJ7zqbHG//g==
+X-Received: by 2002:a2e:b88f:0:b0:26c:4697:6914 with SMTP id r15-20020a2eb88f000000b0026c46976914mr6286749ljp.50.1664795483276;
+        Mon, 03 Oct 2022 04:11:23 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id b18-20020a056512305200b0049aa20af00fsm1417760lfb.21.2022.10.03.04.11.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Oct 2022 04:11:22 -0700 (PDT)
+Message-ID: <c9791863-8ee0-739a-e7aa-da33af1ebbe8@linaro.org>
+Date:   Mon, 3 Oct 2022 13:11:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v3 0/3] Enable initial support for StarFive VisionFive V1
- SBC
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v8 2/3] dt-bindings: iio: adc: add adi,max11410.yaml
 Content-Language: en-US
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20220908142914.359777-1-cristian.ciocaltea@collabora.com>
-In-Reply-To: <20220908142914.359777-1-cristian.ciocaltea@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, jic23@kernel.org
+Cc:     linux-iio@vger.kernel.org, Nuno.Sa@analog.com,
+        Nurettin.Bolucu@analog.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221003105903.229-1-Ibrahim.Tilki@analog.com>
+ <20221003105903.229-3-Ibrahim.Tilki@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221003105903.229-3-Ibrahim.Tilki@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please let me know if there is anything else missing in order to get 
-this queued for merging.
+On 03/10/2022 12:59, Ibrahim Tilki wrote:
+> Adding devicetree binding documentation for max11410 adc.
+> 
+> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> ---
+>  .../bindings/iio/adc/adi,max11410.yaml        | 177 ++++++++++++++++++
 
-Thanks,
-Cristian
 
-On 9/8/22 17:29, Cristian Ciocaltea wrote:
-> The StarFive VisionFive V1 SBC [1] is similar with the already supported
-> BeagleV Starlight Beta board, both being based on the StarFive JH7100 SoC.
-> 
-> In addition to documenting the necessary compatibles, this patch series
-> moves most of the content from jh7100-beaglev-starlight.dts to a new file
-> jh7100-common.dtsi, to be shared between the two boards.
-> 
-> No other changes are required in order to successfully boot the board.
-> 
-> [1] https://github.com/starfive-tech/VisionFive
-> 
-> Changes in v3:
->   - Added Reviewed-by tag from Krzysztof in patch 1/3
->   - Optimized patch 2/3 by enabling copy detection on "git format-patch",
->     as indicated by Krzysztof
-> 
-> Changes in v2:
->   - Simplified documentation by using 'enum' instead of 'const' in
->     patch 1/3, according to Conor's review
->   - Added Reviewed-by tags from Conor
-> 
-> Cristian Ciocaltea (3):
->    dt-bindings: riscv: starfive: Add StarFive VisionFive V1 board
->    riscv: dts: starfive: Add common DT for JH7100 based boards
->    riscv: dts: starfive: Add StarFive VisionFive V1 device tree
-> 
->   .../devicetree/bindings/riscv/starfive.yaml   |   4 +-
->   arch/riscv/boot/dts/starfive/Makefile         |   2 +-
->   .../dts/starfive/jh7100-beaglev-starlight.dts | 153 +-----------------
->   ...aglev-starlight.dts => jh7100-common.dtsi} |   3 -
->   .../jh7100-starfive-visionfive-v1.dts         |  20 +++
->   5 files changed, 25 insertions(+), 157 deletions(-)
->   copy arch/riscv/boot/dts/starfive/{jh7100-beaglev-starlight.dts => jh7100-common.dtsi} (96%)
->   create mode 100644 arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
-> 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Jonathan,
+With merging please wait till Rob's bot tests the patch. The status can
+be checked:
+
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221003105903.229-3-Ibrahim.Tilki@analog.com/
+
+Best regards,
+Krzysztof
+
