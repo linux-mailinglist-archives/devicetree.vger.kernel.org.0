@@ -2,110 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23EA35F3089
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 14:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D31955F3117
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:24:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbiJCMzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 08:55:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33596 "EHLO
+        id S229918AbiJCNYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 09:24:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiJCMzR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 08:55:17 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825CF12A9F
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 05:55:16 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 10so16471118lfy.5
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 05:55:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=tXMpgtK+el5npkc3dxBkxSHklyKWpK7OszYfJYMeV7M=;
-        b=EgAvwu/AS1Bl7hcBpXHTB43HrozqHnzLNjGMVfUmnLlc4OmQt767lnL/ZfiCnzcsYZ
-         E64Bc3WpAfwRMSUlScFnNMJUodQ40vKbuDQmUffusuOWqu3mmz0HkdZIDbPdTHyb+cWH
-         Js6Mc6SxgvXqay/NV0lTXpwL1nQF9VbBjLKpdob89GRa14wXZPBSrO6rKM00jdV5U12a
-         Hgt2y823LAvgVGYONoCd7pbZg1/4UMKnczrJwSIj0RUj9dWQ3oeAwt1a7UHrPFrYHhi4
-         uu7YfGHJFMCWceogAVMSPhMMipdd3g66bB1Ck+fgXQJt6YokkO5P4T5qx7GkpJ1Gq+5e
-         bb3w==
+        with ESMTP id S229644AbiJCNYw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 09:24:52 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DFFC15838;
+        Mon,  3 Oct 2022 06:24:50 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1329abb0ec6so280842fac.8;
+        Mon, 03 Oct 2022 06:24:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=tXMpgtK+el5npkc3dxBkxSHklyKWpK7OszYfJYMeV7M=;
-        b=0AGDKKXgQynTs3Vmg6hvaWt061JLnoagdxjItGfnKNLTpOpaoyXg3TwhizI0EtZrE6
-         ecQd5UuBilH2+6G1mv9r3WDlDtKv7O6A0sVkt/EqtqT1XWkt/l6nBn45YnNQNeJ7W2RA
-         3qaQ9ZhytXkEBOHdue5CEnnNt+XLVtPjhcSM6kC2K5CUTiMtQoDRdf9ifKuVKAr8uOM6
-         nszqwdzGN/jYDU4cKrgUrYSHn5UcZc1RDP9oMp+eefCURXVfYGoQTQ5Lx+R0iOCHbhMz
-         xIxd/gR0H3Zxiu13kYQ5io9GaajpSzSiBvUsgm8Qos8D0/q4JplnX4Ft9xlglyoqcs4j
-         DiWg==
-X-Gm-Message-State: ACrzQf2bf5m7hHujV0XHyxst4QnWGZZCcEn/BB3m1/obOZqbPvj40Iye
-        05jKTiF3/4FBHIT54dhkPv1m5g==
-X-Google-Smtp-Source: AMsMyM40FMKIsxVr/71GXAry/xcu/mjQIbyPqXGeRPqsYxpTyXAYDjSk3KWxpY787/NidEssBTy26A==
-X-Received: by 2002:a05:6512:3f97:b0:4a1:f6b9:5198 with SMTP id x23-20020a0565123f9700b004a1f6b95198mr7027058lfa.588.1664801714887;
-        Mon, 03 Oct 2022 05:55:14 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u22-20020ac243d6000000b0048b064707ebsm1455287lfl.103.2022.10.03.05.55.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Oct 2022 05:55:14 -0700 (PDT)
-Message-ID: <99df1b7e-9130-3d99-b2a2-2b5afa283c73@linaro.org>
-Date:   Mon, 3 Oct 2022 14:55:13 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 2/3] dt-bindings: arm: fsl: Enumerate Debix Model A Board
-Content-Language: en-US
-To:     Daniel Scally <dan.scally@ideasonboard.com>,
-        Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        laurent.pinchart@ideasonboard.com, kieran.bingham@ideasonboard.com,
-        debix-tech@polyhex.net
-References: <20221003083705.22495-1-dan.scally@ideasonboard.com>
- <20221003083705.22495-3-dan.scally@ideasonboard.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221003083705.22495-3-dan.scally@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        bh=qSO7qnJMEoAv/N/5Guuwb7phDFolVlCpixOYlUq0vdk=;
+        b=vd9OPOKoT9g2UPQ5Vi0vKu7Y3sThXFbiICj74AI442TENygdGRIKUfaxi7KT00wtFG
+         qkNDJMVW0K6pS9l2O9P31EuKkSMIlx05WVA+1Ip3xZhfnvwPDE+NXefYBF6y12q+P0kk
+         mwNLrpDTnC4Mu0Jlfjk1YLsu8ECG04yB2R1o7nH7/X/oqfe/O3+AXt5KzNMlVs1s3LF1
+         ljAwDY07OzAtdm4mRoNrecl1f6LIBzftxGptBXqXqWhzIZswJ0AaDBC+IIlLL0vWY7tG
+         MryUjcfvglTkenVWeglKYm99RFNWo1YV7Y+xpBe7CwScfTkxmft6rBpzbqir8Ob+NuwQ
+         BagQ==
+X-Gm-Message-State: ACrzQf29fJ6YUZN9R+lkLAv6zroIUnMriY+mS3LV0J6y2fO/ueVPwUAj
+        dEV/DWgXY1+etu0eyZkANgYBK2v+OA==
+X-Google-Smtp-Source: AMsMyM6cbr9erebay9Hur/kc1XaIhAzhd2mZOMTqB/c09kEeP+5cF2bA2wir/2QQ2J8XqPGKx5Yx3A==
+X-Received: by 2002:a05:6870:168c:b0:132:9664:f6d5 with SMTP id j12-20020a056870168c00b001329664f6d5mr496866oae.243.1664803489203;
+        Mon, 03 Oct 2022 06:24:49 -0700 (PDT)
+Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v4-20020a4a9744000000b00448a3ecdc9dsm2062708ooi.22.2022.10.03.06.24.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Oct 2022 06:24:48 -0700 (PDT)
+Received: (nullmailer pid 1863792 invoked by uid 1000);
+        Mon, 03 Oct 2022 13:24:47 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Dinh Nguyen <dinguyen@kernel.org>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        James Morse <james.morse@arm.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>, linux-edac@vger.kernel.org,
+        Borislav Petkov <bp@alien8.de>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Robert Richter <rric@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        linux-arm-kernel@lists.infradead.org,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+In-Reply-To: <20220929234121.13955-3-Sergey.Semin@baikalelectronics.ru>
+References: <20220929234121.13955-1-Sergey.Semin@baikalelectronics.ru> <20220929234121.13955-3-Sergey.Semin@baikalelectronics.ru>
+Message-Id: <166479586876.1658787.6925988592765037866.robh@kernel.org>
+Subject: Re: [PATCH v3 02/13] dt-bindings: memory: Add Baikal-T1 DDRC DT-schema
+Date:   Mon, 03 Oct 2022 08:24:47 -0500
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/10/2022 10:37, Daniel Scally wrote:
-> Add an entry to the list of imx8mp boards denoting the Debix Model A
-> board from Polyhex Technology Co.
+On Fri, 30 Sep 2022 02:41:10 +0300, Serge Semin wrote:
+> Baikal-T1 DDR controller is based on the DW uMCTL2 DDRC IP-core v2.51a
+> with up to DDR3 protocol capability and 32-bit data bus + 8-bit ECC. There
+> are individual IRQs for each ECC and DFI events. The dedicated scrubber
+> clock source is absent since it's fully synchronous to the core clock.
+> In addition to that the DFI-DDR PHY CSRs can be accessed via a separate
+> registers space.
 > 
-> Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index ef524378d449..0be82122ef05 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -916,6 +916,7 @@ properties:
->            - enum:
->                - fsl,imx8mp-evk            # i.MX8MP EVK Board
->                - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
-> +              - polyhex,imx8mp-debix-modela2gb # Polyhex Debix Model A (2GB) Board
+> Changelog v2:
+> - Keep the alphabetically ordered compatible strings list. (@Krzysztof)
+> - Fix grammar nitpicks in the patch log. (@Krzysztof)
+> - Drop the PHY CSR region. (@Rob)
+> - Move the device bindings to the separate DT-schema.
+> ---
+>  .../memory-controllers/baikal,bt1-ddrc.yaml   | 91 +++++++++++++++++++
+>  1 file changed, 91 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/baikal,bt1-ddrc.yaml
+> 
 
-Which change suggested by Laurent:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+yamllint warnings/errors:
 
-Best regards,
-Krzysztof
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/memory-controllers/baikal,bt1-ddrc.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/memory-controllers/snps,dw-umctl2-common.yaml
+Error: Documentation/devicetree/bindings/memory-controllers/baikal,bt1-ddrc.example.dts:41.30-31 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:384: Documentation/devicetree/bindings/memory-controllers/baikal,bt1-ddrc.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1420: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
