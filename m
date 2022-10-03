@@ -2,113 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFAD85F2CF0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 11:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AF55F2CDF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 11:09:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230227AbiJCJJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 05:09:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44148 "EHLO
+        id S231341AbiJCJJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 05:09:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230515AbiJCJJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 05:09:01 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1BF16300;
-        Mon,  3 Oct 2022 02:05:49 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2938QkVu031095;
-        Mon, 3 Oct 2022 09:05:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=bTHb/iTIJ515U9ZD/ZdvnV3tGnX4kfcrHGl79HkwpXw=;
- b=egy6ep1ivsRcGW8c4OdMAJ89zIL2tqWIZSOJXp9UfCaKjTGRQzttYqihxYj3co01FnNv
- qjJ36gUe6XF80ZfD0QDPvyF9rhFxX9jqL5L1APLdKulv6c8EpZpFjlcqceVXtBzYFteM
- uL+2qeiT5K6srXqLr6CO04dlMXuS2Td8EO94/MSubowHOTtsMi0gBPXgxmfVYNOJD6Sf
- n7NLKmZ76pHSi5EPHy0sX2Yo13PlnONZZ4dwqCIYCy03FfusYap/sI5Z6SD9xyHgBsI0
- kgwfw0NCaJCt/m6SIBN5buuQ+eIyy7uV/bzW+puzZE6gJOR0G5d3hnik2RE6yIV2TB0j Mw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jxawu3f7r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Oct 2022 09:05:41 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29395eBi024778
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 3 Oct 2022 09:05:40 GMT
-Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Mon, 3 Oct 2022 02:05:36 -0700
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Alex Elder <elder@ieee.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "Sai Prakash Ranjan" <quic_saipraka@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>, <vkoul@kernel.org>,
-        "Souradeep Chowdhury" <quic_schowdhu@quicinc.com>
-Subject: [PATCH V15 7/7] arm64: dts: qcom: sdm845: Add Data Capture and Compare(DCC) support node
-Date:   Mon, 3 Oct 2022 14:34:13 +0530
-Message-ID: <7b69e891019181b1d041a7a2235de2da0d1cbc3d.1664557657.git.quic_schowdhu@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1664557657.git.quic_schowdhu@quicinc.com>
-References: <cover.1664557657.git.quic_schowdhu@quicinc.com>
+        with ESMTP id S231347AbiJCJIg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 05:08:36 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C550729CB4;
+        Mon,  3 Oct 2022 02:05:35 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id c24so9139074plo.3;
+        Mon, 03 Oct 2022 02:05:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=yTjG2IBq4YiYp0Z+21USaQk03ELeEIZtyL0WiW5rA6o=;
+        b=nZjOeUTkBtEqttsAo/AunR57RjNfBT0j/QhUvx3m6t9151Cm24iQ7+FjNFFysXZVsC
+         hD/gXAiiTO7HO6fZxnEX1o60KY8fxF91PX1TIsNLGsfqXDYYtNHzwWVF7By6iP7lzREz
+         Vrl6/dR+EeVp7S9/S/cWjoTCgBC2bqmlPau7fqEtagCbxP/FY1LxGiLLYF5Syzd94Nxn
+         aiuab2MjP2LQLjVyv7lzWixIkZGVgGWstPrmO88cgTSCxhujHMJL7cJwQSHTbVRavKJc
+         3dLKWfptri1YCKxnKfvcjurpKLRdqx43Q/Z9jl4fblTBNMOKyfLv58MP10pxDyRK1nq8
+         tzOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=yTjG2IBq4YiYp0Z+21USaQk03ELeEIZtyL0WiW5rA6o=;
+        b=jSe26Fyxj0m+If5QS44iCYqwllb6yfyVPYoiu8auDtF4qwfabNt4uWX8IS7Kgw4U3+
+         u35v+bNPq7iIdxs7Q+gkVnAEXqaahAUzvlz+h3GGPM1Ugm8T/sql7gM/47bcJ7TPLRAD
+         ffemTbvmkt5mUgbx4Lp9x0dPizY2OXrJvaB7RxLG2eJll2Z7JRg+QQFPqjOuw1yAc9Ly
+         +/ulDPacJzBr2l+fSbGsaJ3Nv7ZzVuRVPKhaC3ZJCRWKzEbveZN3iOI2/vu4Kx0hn4cz
+         Q/6xYMhyY2f85us9KlUwfosSRRteIiWd5xiB3a0UVbZX9X9dNhOsvwYjLW4QvhTAzGvw
+         7cMg==
+X-Gm-Message-State: ACrzQf0o1/4vgk/5cZuaX5u9BnGMdtgC1jvr4DQVB0E6uHek7uQKoW2P
+        oDzO5gDpGUrcMcNOIrqCGAMW6T31smYONA==
+X-Google-Smtp-Source: AMsMyM4ewwmWqikfbn6cyJfsan27i53/9bPAN4ryA0Mij/1Ql2UIn8IDGf3RwZDo791EHcsQsigIFg==
+X-Received: by 2002:a17:90b:3b90:b0:202:8a60:c852 with SMTP id pc16-20020a17090b3b9000b002028a60c852mr11243637pjb.169.1664787935220;
+        Mon, 03 Oct 2022 02:05:35 -0700 (PDT)
+Received: from RD-3580-24288.rt.l (42-72-45-201.emome-ip.hinet.net. [42.72.45.201])
+        by smtp.gmail.com with ESMTPSA id o16-20020a170902d4d000b00179c81f6693sm6678064plg.264.2022.10.03.02.05.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Oct 2022 02:05:34 -0700 (PDT)
+From:   ChiaEn Wu <peterwu.pub@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, matthias.bgg@gmail.com, sre@kernel.org
+Cc:     chiaen_wu@richtek.com, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: mfd: mt6370: fix the interrupt order of the charger in the example
+Date:   Mon,  3 Oct 2022 17:04:23 +0800
+Message-Id: <9dda705a8d67826306f6c6129722d3ad8edc96fc.1664816175.git.chiaen_wu@richtek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IWk45tH4Z9_zYLtTaJ8Gxhh3tz_Nju-Y
-X-Proofpoint-ORIG-GUID: IWk45tH4Z9_zYLtTaJ8Gxhh3tz_Nju-Y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-03_02,2022-09-29_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=896 phishscore=0
- clxscore=1015 malwarescore=0 spamscore=0 suspectscore=0 lowpriorityscore=0
- adultscore=0 impostorscore=0 priorityscore=1501 mlxscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2209130000
- definitions=main-2210030055
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DCC(Data Capture and Compare) device tree node entry along with
-the address of the register region.
+From: ChiaEn Wu <chiaen_wu@richtek.com>
 
-Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Fix the interrupt order of the charger in the binding example.
+
+Fixes: 76f52f815f1a ("dt-bindings: mfd: Add MediaTek MT6370")
+Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index d761da4..7d476b2 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2137,6 +2137,12 @@
- 			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
- 		};
+v2
+- Revise the commit syntax.
+
+v1
+- Due to this patch modifiacation
+  (https://lore.kernel.org/all/20221001202918.me7z2qzm7cmrkzsg@mercury.elektranox.org/),
+  there will get some warnings in linux-next when compiling the dts.
+
+---
+ Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+index 410e2d4..1f67e06 100644
+--- a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
++++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+@@ -139,8 +139,8 @@ examples:
  
-+		dma@10a2000 {
-+			compatible = "qcom,sdm845-dcc", "qcom,dcc";
-+			reg = <0x0 0x010a2000 0x0 0x1000>,
-+			      <0x0 0x010ae000 0x0 0x2000>;
-+		};
-+
- 		pmu@114a000 {
- 			compatible = "qcom,sdm845-llcc-bwmon";
- 			reg = <0 0x0114a000 0 0x1000>;
+         charger {
+           compatible = "mediatek,mt6370-charger";
+-          interrupts = <48>, <68>, <6>;
+-          interrupt-names = "attach_i", "uvp_d_evt", "mivr";
++          interrupts = <68>, <48>, <6>;
++          interrupt-names = "uvp_d_evt", "attach_i", "mivr";
+           io-channels = <&mt6370_adc MT6370_CHAN_IBUS>;
+ 
+           mt6370_otg_vbus: usb-otg-vbus-regulator {
 -- 
 2.7.4
 
