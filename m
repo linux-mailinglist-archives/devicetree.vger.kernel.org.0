@@ -2,60 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0B7A5F3122
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:25:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47E955F311E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:25:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbiJCNZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 09:25:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55704 "EHLO
+        id S230012AbiJCNY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 09:24:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230051AbiJCNY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 09:24:58 -0400
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C6361C40B;
-        Mon,  3 Oct 2022 06:24:55 -0700 (PDT)
-Received: by mail-oo1-f53.google.com with SMTP id r15-20020a4abf0f000000b004761c7e6be1so6723336oop.9;
-        Mon, 03 Oct 2022 06:24:55 -0700 (PDT)
+        with ESMTP id S229906AbiJCNY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 09:24:56 -0400
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34DD51EADC;
+        Mon,  3 Oct 2022 06:24:54 -0700 (PDT)
+Received: by mail-oo1-f50.google.com with SMTP id c13-20020a4ac30d000000b0047663e3e16bso6719401ooq.6;
+        Mon, 03 Oct 2022 06:24:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=iBHNi2Sot+ApoX2JfUGrSFvnUvo4HWe0nKSC8q7A+1M=;
-        b=ydEEhE9jutJ9O6/iADB3sewbo1uTFqPb9C0oMn4pdGDk3jpxI415G0hZ48QecY7KLC
-         XuKmFxCHowihJXXZAn7/YvJxDF7jzdUXpa4E0CDkPT2sfL+lfjLVPXeLb+6WGaCUwNPw
-         6aYn95QmSs8el36+TDz5fmfcK0+SR4FnYW5i/nZEMk6fxGYDidl9EgUf/nb05v36mP3n
-         01Wcyq6GjFYXcNYQ+wHIdaPzymwGMYTa+0qrwOZFTn7TdelfEyT8efCNjDfQsYgj07FP
-         I8yULd7MYeiakd3lXzP0AmpzIQEXyesyH2PkjCBBwFfsFOnHXIWJ3h/cJgLbBCK7qiA3
-         7LUA==
-X-Gm-Message-State: ACrzQf3NVrS7iyR/o/ycICYzx3u+RH4PO4HV7tVPpSofW6G+1+7p4EZp
-        O6LnuCW6IB7iCKpDvxTNMg==
-X-Google-Smtp-Source: AMsMyM7kZAhSu+5W9GV63exKqEjegxEDr8M2lTeVBpCtwkyiNsyTuOx97Ry5AtuTFhoZT5ROYsfsBQ==
-X-Received: by 2002:a05:6820:62a:b0:476:a722:fe3c with SMTP id e42-20020a056820062a00b00476a722fe3cmr7616925oow.95.1664803495170;
-        Mon, 03 Oct 2022 06:24:55 -0700 (PDT)
+        bh=VwdzdygdgLbBp3fkNJZh/HpOAPaqnsjBDUAQiUXbsnM=;
+        b=vCySG/hGZcGh8uFpHPd+ExkjMFEUEFdzgs6BTJduU8W6A0qAZ521oaoipLE0ay5WFI
+         htX8rIzqbj8sJvlK5GeHgGjFRpDtPNhe5GTvm0QvEl+oqX7Y3S4jFjean5l+xw5Ut2Gd
+         CeVR5MMsFQzRs7rrLyugcw0YZPA+vMrXOLqVPMzR6kuh/VaKs5l4e2+x92zHfbr9d7FE
+         Kzcs/ElOSZ55OHquzBDTRfrfFWiptbAC9NnnlfsBAzQajfkP+7hnfxxkSbOzVsG0+vJn
+         bBS8yQKODLKjh9FBmm/aySZfG40IcK/SnBFdIY2Jih8kSj7aszKq/owohq3rtdwdfyTt
+         yDUA==
+X-Gm-Message-State: ACrzQf0z0x6YvGiotsUVryb4/DwAQzEco96kNyIhdrh4HDBx4zxGfD4k
+        UBiiP3j9l8vqS72flwi2ww==
+X-Google-Smtp-Source: AMsMyM7ArjVDwVFx++um/0TDQxPqWPgM5a1GRKKaEjx9iHWMhV8SvM4Y/13k9L5mN19NrK84JQl+6A==
+X-Received: by 2002:a9d:72d1:0:b0:65c:6650:a3c5 with SMTP id d17-20020a9d72d1000000b0065c6650a3c5mr7662551otk.286.1664803492631;
+        Mon, 03 Oct 2022 06:24:52 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i9-20020a056830010900b00639443424f8sm2368532otp.8.2022.10.03.06.24.54
+        by smtp.gmail.com with ESMTPSA id d1-20020a056871040100b0010e73e252b8sm2952907oag.6.2022.10.03.06.24.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 06:24:54 -0700 (PDT)
-Received: (nullmailer pid 1863807 invoked by uid 1000);
+        Mon, 03 Oct 2022 06:24:52 -0700 (PDT)
+Received: (nullmailer pid 1863801 invoked by uid 1000);
         Mon, 03 Oct 2022 13:24:48 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm@vger.kernel.org, vkoul@kernel.org,
-        Alex Elder <elder@ieee.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
+To:     Melody Olvera <quic_molvera@quicinc.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <9448dfc974cac4f223982afaf89f65d697a93a7e.1664557657.git.quic_schowdhu@quicinc.com>
-References: <cover.1664557657.git.quic_schowdhu@quicinc.com> <9448dfc974cac4f223982afaf89f65d697a93a7e.1664557657.git.quic_schowdhu@quicinc.com>
-Message-Id: <166479587655.1659049.10913795163088414070.robh@kernel.org>
-Subject: Re: [PATCH V15 1/7] dt-bindings: Added the yaml bindings for DCC
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>
+In-Reply-To: <20221001030403.27659-2-quic_molvera@quicinc.com>
+References: <20221001030403.27659-1-quic_molvera@quicinc.com> <20221001030403.27659-2-quic_molvera@quicinc.com>
+Message-Id: <166479587305.1658944.6390618690246358275.robh@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: clock: Add QDU1000 and QRU1000 GCC clock bindings
 Date:   Mon, 03 Oct 2022 08:24:48 -0500
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -68,17 +66,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 03 Oct 2022 14:34:07 +0530, Souradeep Chowdhury wrote:
-> Documentation for Data Capture and Compare(DCC) device tree bindings
-> in yaml format.
+On Fri, 30 Sep 2022 20:03:59 -0700, Melody Olvera wrote:
+> Add device tree bindings for global clock controller on QDU1000 and
+> QRU1000 SoCs.
 > 
-> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  .../devicetree/bindings/soc/qcom/qcom,dcc.yaml     | 44 ++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,dcc.yaml
+>  .../bindings/clock/qcom,gcc-qdru1000.yaml     |  74 ++++++++
+>  include/dt-bindings/clock/qcom,gcc-qdru1000.h | 170 ++++++++++++++++++
+>  2 files changed, 244 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-qdru1000.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,gcc-qdru1000.h
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -87,8 +85,8 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/soc/qcom/qcom,dcc.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/soc/qcom/qcom,dcc.yaml#
+./Documentation/devicetree/bindings/clock/qcom,gcc-qdru1000.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/clock/qcom,gcc-qdru1000.yaml#
 
 doc reference errors (make refcheckdocs):
 
