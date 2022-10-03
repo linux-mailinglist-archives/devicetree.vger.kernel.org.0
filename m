@@ -2,112 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81E625F3276
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 17:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC4DB5F3279
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 17:28:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230148AbiJCP2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 11:28:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53316 "EHLO
+        id S230141AbiJCP2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 11:28:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbiJCP2S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 11:28:18 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2056.outbound.protection.outlook.com [40.107.244.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43AE126AD0;
-        Mon,  3 Oct 2022 08:28:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fMUPNU548rYHIrJDko5E5LOWMv6k+lcxhBVvDAvRwTVkpkdpjcdqqs6Lo/CpqsGqPf2p+GA1AVqLqyJmUYYpgU6L/zDv51AnzZHDuSUz6WFiA6l4GX3j4uSSAh5kigvWb9AlDGxdVP6hXgVjAHM+IiP9SUgxxRdqU0SCjxdf3Tw9iD/MxMxcOWbZ36AF7iRl8QmWJvCABIufwkMpOPlKhut/lxxlYndGvoDW1uHnzL4aGuCH+zjXiI81G8Ye3bpxcX/KiVCkY9gUxEL7DLublMOXvHm9Ar72rjJaZppWy8EhWVu7HKRt0lO9Dj6WZvHZJM97/UoqSLWHxr4UJ0nLFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yQITYmr6WYmw0F82NOz32u+UW+YvmJQHwzpjzkWSxKg=;
- b=kp4WjnSfdaUFvvMB/WsqOqkoYqJEhp9MGn/jS4PNytOUFFkm8t+NDr2hfZD25Xuzcvj8m+EjC+0qHiQwdX//RbLlcu4eIcxNjouDs7NEARGvptTkdm+6/W1YM5pMqsy+NHG+5U1m+aBl3IDveZJ3RpwyMauzj1k3xS5GZn3vxV5JMbChXPhGWyXQHUXRAtZjP9HX3oGdLgEOlE+kU3QBgvzYtyOo2mI+/GEglrZxBIAV5WrIlhiDAUqD80f8xVHGaHCA+Ls5uUuqQBodmMCtq4CDzX/CvhZZT0JW2LXlzljCg4EjFbWbggvAh2SXK5YNcznODNJdVzgtcIkz+FuZ2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yQITYmr6WYmw0F82NOz32u+UW+YvmJQHwzpjzkWSxKg=;
- b=AznRbPKYdxQ/7bXdsAAU7tW0RjnL8EkcpreAbx9u4R/Wv3/7ELmM6s/g5VaYdHkmUk8WAolavFUqmIm4bVAxG0hNA9U3zaMt37TH9jto/8ObG9YyDGwoqYTj0gm/BBRpXBMtFt4vqdtEL4ZfuUuwGaT4qopG0gAp9agjYr+cJ9o=
-Received: from BN8PR12CA0001.namprd12.prod.outlook.com (2603:10b6:408:60::14)
- by DM4PR12MB5247.namprd12.prod.outlook.com (2603:10b6:5:39b::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24; Mon, 3 Oct
- 2022 15:28:15 +0000
-Received: from BN8NAM11FT071.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:60:cafe::3b) by BN8PR12CA0001.outlook.office365.com
- (2603:10b6:408:60::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24 via Frontend
- Transport; Mon, 3 Oct 2022 15:28:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT071.mail.protection.outlook.com (10.13.177.92) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5676.17 via Frontend Transport; Mon, 3 Oct 2022 15:27:40 +0000
-Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 3 Oct
- 2022 10:27:20 -0500
-Message-ID: <54652831-cdcc-7735-2b1b-66475ffce476@amd.com>
-Date:   Mon, 3 Oct 2022 17:27:17 +0200
+        with ESMTP id S230128AbiJCP2e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 11:28:34 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD45926AD3;
+        Mon,  3 Oct 2022 08:28:29 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a26so22964100ejc.4;
+        Mon, 03 Oct 2022 08:28:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=6XN9T4bVHRoTLrA3LFyXh0TLPbIeGy3QK5N9LtYhnms=;
+        b=jBk+aQkNYGP8x+fcpAa+87CTAk8CddOBFFVcrUm67r3Cr5bvPdWqK1ARDyiggmv+oT
+         V8FHHyVsOse3C+Xiv55EXlwoEVLz0L0sFb1Laqg4a1lPuOlB6tGID3iRln2dA3/GR18H
+         3cNYDuwCUmnZXDZojPAcEL2mx1X4EKUTK8sFa/a9iL5Z84ivBWkw5wBMm7XQ3PspXB4f
+         ZUcJDuSlAmXbynHECJ+Ycbl0QVepuau6YvWZC3BArVnPXRCW7Ik02Ywj1YsdvF6xev3R
+         Xpli+I9du6yyi0AS5s3iqFCL8MU2iYTirKo/5sn8L5tQ7pCiE0+ZF56hOgkAHK9uErKf
+         bVAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=6XN9T4bVHRoTLrA3LFyXh0TLPbIeGy3QK5N9LtYhnms=;
+        b=I8MSDWyxO1qrEs9EnYjgP083B3W/VYJuP9G9fgPuEK3j5I/Jhd4pQliVzNDuFxR5aa
+         as3m2emRaZVCUKK9TY5CcvES+BzlhQaxFzd2Nl/G5EYiC24mJOO4GTVtdkiQ8uE1QolQ
+         Gq8TWs0+WdrTBItKAi/ViUauzQNTwf17pyn423PbbPEwRJ5UHmncxLZitlEVvEsYPXTC
+         8mFFdj5iOyGQ1/EkFT3FAJ+f9aszD7x1QzgzZAYGijR6EEBy1msb9wKLyKh0/CJ4Z7Ax
+         CRtx7oXwyp9C5CXBENk2aihUaTl7L7sKYvQCJM7jlGvD255iFUTavPorUVlRADYrYF/a
+         dvnw==
+X-Gm-Message-State: ACrzQf13X1wIDPXXUHBksA8mvdg3PLLShB2RaDvS1nsh2s0xbBsOHbpe
+        jx9PHh9Pcc229y9Rbrmo4ZQ=
+X-Google-Smtp-Source: AMsMyM49oGkn7YBZX2Wcd0AYsPGAhbs2otIECgwtKk3TCEGHk216PxkVKkLhNNoNPCDh0DyXqys6zA==
+X-Received: by 2002:a17:906:4fca:b0:782:2484:6d72 with SMTP id i10-20020a1709064fca00b0078224846d72mr15814667ejw.150.1664810907697;
+        Mon, 03 Oct 2022 08:28:27 -0700 (PDT)
+Received: from skbuf ([188.27.184.197])
+        by smtp.gmail.com with ESMTPSA id 9-20020a170906200900b00780f6071b5dsm5629510ejo.188.2022.10.03.08.28.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Oct 2022 08:28:27 -0700 (PDT)
+Date:   Mon, 3 Oct 2022 18:28:24 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 net-next 12/14] dt-bindings: net: dsa: ocelot: add
+ ocelot-ext documentation
+Message-ID: <20221003152824.fr6ufy6uf7jb34ne@skbuf>
+References: <20220926002928.2744638-1-colin.foster@in-advantage.com>
+ <20220926002928.2744638-13-colin.foster@in-advantage.com>
+ <20220927202600.hy5dr2s6j4jnmfpg@skbuf>
+ <Yzdcjh4OTI90wWyt@euler>
+ <YzeHxmYMjMoDqIHe@euler>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH 1/2] dt-bindings: clk: Add binding for versal clocking
- wizard
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-CC:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        <linux-clk@vger.kernel.org>, <git@amd.com>,
-        <devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <sboyd@kernel.org>, <mturquette@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-References: <20220930080400.15619-1-shubhrajyoti.datta@amd.com>
- <20220930080400.15619-2-shubhrajyoti.datta@amd.com>
- <CAL_JsqLaqjZeZd3c-fd9f5m-4OCXgOZcOu+paik9FV_eno5sLg@mail.gmail.com>
- <afb3f19f-eb40-5453-a82b-295e06861f86@amd.com>
- <20220930213924.GA1079711-robh@kernel.org>
- <6e58837e-896c-7069-7913-2afb90af5e95@amd.com>
- <b495804c-cf04-4512-ac05-424eded46468@linaro.org>
- <57989d3e-a186-1d67-cff9-6a059f94ebd3@amd.com>
- <f611237f-0401-9e3c-3a21-79b33141bb51@linaro.org>
- <e8507b3c-3dd5-9a65-8058-200b5a410da3@amd.com>
- <19bbea63-41d4-1b35-591e-1776eee1b2aa@linaro.org>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <19bbea63-41d4-1b35-591e-1776eee1b2aa@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT071:EE_|DM4PR12MB5247:EE_
-X-MS-Office365-Filtering-Correlation-Id: f0f42da1-08c0-42bf-c4d4-08daa553e3c4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RGUUazuhSn8qwU8GxTNxg8UrXOeiI1AxtA5dz1EUAFBt+ZxBXBQvnMEu0jWnzlB7PZM+09l1q5MkJtkWuy9BchmT5aTCY3awrR41e/PdqPQTTFVch4IkJEfdpOxOahs6DDHWxV8WEtBYeMj3QryoPuTPssb5zw00R4swUds2Ie+EJqkfHp++XlJJweJg6ejEeM7T+22tJBYJDaDfIzwZDV9hC3skmk5t1mqMqXkDxVknUbKgY/Xnss0nqJNJkdYts6dGlsa1VtUOY+0MszNOzIqAbz+vdX2nVbyMUYFfgwvysswfElUlFcqiLjjMd9begphZi9zeLAS4l7SnQfhrKv/Reqjy5KEv7rgUfF8Uu1wnYZLpC1aiiQja/kVGVVIolyA9V0II/Gewew7CECl5dYmcWHA5+gi9aX0nLQGaDmKPa05vvkz+N3TprC1hxhRxFgYe0Gstri5UGgIA2T17LEmSzhZ9LdS/qKR7OZ83Dc6bqxai+qa9JwjE7SuYtvtuvNjl9rSoFoQzBRl5ATLll6uKySxUswVBHP8EuDXEBU6wJKSZMLui+sLK97Ra9tMBAJlwtKF8L1TvyBN4WN1gQju4N09mbYLjeIz/u0f6+KHPvbHvBx4iVexvXg0uxeAL6YY4Ek30Cp6y3mwRPPTWO1cSyjQqDotKhfc6iZbfJ90ApxTsw7NjcPMo8br5n4HYhaffGRsdW2/aEyTSmZ52I4jkLjqPndLyGHLOKnAAlupw/oKtcefux9WsoJzVL1OXfGEvpqOs9nIgD1RI8g4F67MNkhqyOy186TLbIwGoa23xUb+8U/PUpNSJ+Uv5IHWUBpUvt2Bb+2t8fcTAA11399/luey9KKsQFnPFhhai6xwMQA3J5tNTPmXEBIda1zXcJGvyLuMo3UsIadJCSjWhdQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(346002)(136003)(396003)(376002)(451199015)(46966006)(40470700004)(36840700001)(36860700001)(70206006)(70586007)(4326008)(2906002)(2616005)(8676002)(186003)(16526019)(83380400001)(41300700001)(36756003)(26005)(82740400003)(966005)(81166007)(40480700001)(478600001)(356005)(53546011)(31696002)(86362001)(6666004)(110136005)(40460700003)(54906003)(316002)(16576012)(44832011)(31686004)(66899015)(82310400005)(336012)(8936002)(426003)(47076005)(5660300002)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2022 15:27:40.6687
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0f42da1-08c0-42bf-c4d4-08daa553e3c4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT071.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5247
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YzeHxmYMjMoDqIHe@euler>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -115,134 +89,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Sep 30, 2022 at 05:20:22PM -0700, Colin Foster wrote:
+> On Fri, Sep 30, 2022 at 02:15:58PM -0700, Colin Foster wrote:
+> > On Tue, Sep 27, 2022 at 11:26:00PM +0300, Vladimir Oltean wrote:
+> > > On Sun, Sep 25, 2022 at 05:29:26PM -0700, Colin Foster wrote:
+> > > > ---
+> > > > +      - phy-mode = "internal": on ports 0, 1, 2, 3
+> > > 
+> > > More PHY interface types are supported. Please document them all.
+> > > It doesn't matter what the driver supports. Drivers and device tree
+> > > blobs should be able to have different lifetimes. A driver which doesn't
+> > > support the SERDES ports should work with a device tree that defines
+> > > them, and a driver that supports the SERDES ports should work with a
+> > > device tree that doesn't.
+> > 
+> > This will change my patch a little bit then. I didn't undersand this
+> > requirement.
+> > 
+> > My current device tree has all 8 ethernet ports populated. ocelot_ext
+> > believes "all these port modes are accepted" by way of a fully-populated
+> > vsc7512_port_modes[] array.
+> > 
+> > As a result, when I'm testing, swp4 through swp7 all enumerate as
+> > devices, though they don't actually function. It isn't until serdes /
+> > phylink / pcs / pll5 come along that they become functional ports.
+> > 
+> > I doubt this is desired. Though if I'm using the a new macro
+> > OCELOT_PORT_MODE_NONE, felix.c stops after felix_validate_phy_mode.
+> > 
+> > I think the only thing I can do is to allow felix to ignore invalid phy
+> > modes on some ports (which might be desired) and continue on with the
+> > most it can do. That seems like a potential improvement to the felix
+> > driver...
+> > 
+> > The other option is to allow the ports to enumerate, but leave them
+> > non-functional. This is how my system currently acts, but as I said, I
+> > bet it would be confusing to any user.
+> > 
+> > Thoughts?
 
+Having the interfaces probe but not work isn't the worst, but if we
+could make just the SERDES ports fail to probe, it would be better.
 
-On 10/3/22 12:50, Krzysztof Kozlowski wrote:
-> On 03/10/2022 12:37, Michal Simek wrote:
->>
->>
->> On 10/3/22 10:10, Krzysztof Kozlowski wrote:
->>> On 03/10/2022 09:58, Michal Simek wrote:
->>>>
->>>>
->>>> On 10/3/22 09:23, Krzysztof Kozlowski wrote:
->>>>> On 03/10/2022 09:15, Michal Simek wrote:
->>>>>>>> And this is new IP. Not sure who has chosen similar name but this targets
->>>>>>>> Xilinx Versal SOCs. Origin one was targeting previous families.
->>>>>>>
->>>>>>> Do we need a whole new schema doc?
->>>>>>
->>>>>> It is completely new IP with different logic compare to origin one.
->>>>>>
->>>>>>>
->>>>>>> It is not ideal to define the same property, xlnx,nr-outputs, more than
->>>>>>> once. And it's only a new compatible string.
->>>>>>
->>>>>> I can't see any issue with using dt binding for xlnx,clocking-wizard.yaml
->>>>>>
->>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
->>>>>
->>>>> So we already have out of staging document:
->>>>> devicetree/bindings/clock/xlnx,clocking-wizard.yaml
->>>>
->>>> in 6.1 yes.
->>>>
->>>>>
->>>>> and author wants to add one more:
->>>>> devicetree/bindings/clock/xlnx,clk-wizard.yaml
->>>>
->>>> as I said it is completely different IP which requires complete different driver
->>>> but IP designers choose similar name which is out of developer control.
->>>>
->>>>>
->>>>> Shall we expect in two years, a third document like:
->>>>> devicetree/bindings/clock/xlnx,clk-wzrd.yaml
->>>>> ?
->>>>
->>>> Developer definitely doesn't know. If new SoC requires for the same purpose
->>>> different IP with completely different driver is something out of developer
->>>> control. As of today I am not aware about such a requirement and need and
->>>> personally I can just hope that if they need to do such a change they will be
->>>> able to keep current SW driver compatible with new HW IP.
->>>
->>> Then please start naming them reasonable, not two (and in future
->>> x-times) the same names for entirely different blocks. And by name I
->>> mean compatible, filename and device name.
->>>
->>>>>> also for this IP if that's fine with you.
->>>>>> Only xlnx,speed-grade can be defined for previous IP which is easy to mark.
->>>>>
->>>>> That old binding also explained nr-outputs as "Number of outputs".
->>>>> Perfect... :(
->>>>
->>>> Anyway if description should be improved let's just do it. I just want to get
->>>> guidance if we should update current dt binding for similar IP or just create
->>>> new one as this one is trying to do.
->>>
->>> IMHO, new binding is extremely confusing. We already have support for
->>> devices named "xlnx,clocking-wizard" and now you add exactly the same
->>> (clk=clocking) with almost the same properties, named
->>> "xlnx,clk-wizard-1.0". For a different IP?
->>>
->>> How anyone (even Xilinx' customer) can understand which block is for
->>> what if they have exactly the same name and (almost) the same
->>> properties, but as you said - these are entirely different IP?
->>
->> Let me start from last one. Xilinx has IP catalog in design tools called Vivado.
->> You choose device you have and then you will find clk wizard and you get an IP.
+> Also, for what its worth, I tried this just now by making this change:
 > 
-> So you have a specific device? Why it is not part of name and compatible?
+> err = felix_validate_phy_mode(felix, port, phy_mode);
+> if (err < 0) {
+>         dev_err(dev, "Unsupported PHY mode %s on port %d\n",
+>                 phy_modes(phy_mode), port);
+>         of_node_put(child);
+>  -      return err;
+>  +      continue;
+> }
 > 
->> It means depends on SOC you have ZynqMP or Versal and based on that one or
->> another is taken.
+> This functions in that I only see swp1-swp3, but I don't think it
+> should - it is just leaving phy_mode set to 0 (PHY_INTERFACE_MODE_NA).
+
+You could add a comment above the "continue" statement explaining this.
+
+> My guess is it'll need more logic to say "don't add these DSA ports because
+> the driver doesn't support those PHY interfaces"
 > 
-> Exactly. The names xlnx,clocking-wizard and xlnx,clk-wizard-1.0 are
-> therefore not specific enough and mixing different devices.
+> [    3.555367] ocelot-switch ocelot-switch.4.auto: Unsupported PHY mode qsgmii on port 4
+> [    3.563551] ocelot-switch ocelot-switch.4.auto: Unsupported PHY mode qsgmii on port 5
+> [    3.571570] ocelot-switch ocelot-switch.4.auto: Unsupported PHY mode qsgmii on port 6
+> [    3.579459] ocelot-switch ocelot-switch.4.auto: Unsupported PHY mode qsgmii on port 7
+> [    4.271832] ocelot-switch ocelot-switch.4.auto: PHY [ocelot-miim0.2.auto-mii:00] driver [Generic PHY] (irq=POLL)
+> [    4.282715] ocelot-switch ocelot-switch.4.auto: configuring for phy/internal link mode
+> [    4.296478] ocelot-switch ocelot-switch.4.auto swp1 (uninitialized): PHY [ocelot-miim0.2.auto-mii:01] driver [Generic PHY] (irq=POLL)
+> [    4.312876] ocelot-switch ocelot-switch.4.auto swp2 (uninitialized): PHY [ocelot-miim0.2.auto-mii:02] driver [Generic PHY] (irq=POLL)
+> [    4.328897] ocelot-switch ocelot-switch.4.auto swp3 (uninitialized): PHY [ocelot-miim0.2.auto-mii:03] driver [Generic PHY] (irq=POLL)
+> [    5.032849] ocelot-switch ocelot-switch.4.auto swp4 (uninitiailized): validation of qsgmii with support 00000000,00000000,000062ff and advertisement 00000000,00000000,000062ff failed: -EINVAL
+> [    5.051265] ocelot-switch ocelot-switch.4.auto swp4 (uninitialized): failed to connect to PHY: -EINVAL
+> [    5.060670] ocelot-switch ocelot-switch.4.auto swp4 (uninitialized): error -22 setting up PHY for tree 0, switch 0, port 4
+> (repeated for swp5-7)
 
-And just to be clear these IPs can be combined with systems where the main cpu 
-can be Microblaze. I have also seen some vendors mixing RISC-V with Xilinx IPs.
+I think the behavior is correct and sufficient. The ocelot driver always
+requires a valid phy-mode in the device tree for all ports, and
+PHY_INTERFACE_MODE_NA means the lack of one. In turn, this is enough to
+make phylink_validate() fail with any valid device tree. And DSA is
+smart enough to limp on with the rest of its ports if phylink setup
+failed for some of them - see dsa_port_setup_as_unused() in the current
+net-next git tree.
 
-Please look below.
-> 
->> And because this is fpga world none is really describing programmable logic by
->> hand because it would take a look a lot of time. That's why I created long time
->> ago device-tree generator (DTG) which gets design data and based on it generate
->> device tree description. Newest version is available for example here.
->> https://github.com/Xilinx/device-tree-xlnx
->> There is also newer version called system device tree generato
->> https://github.com/Xilinx/system-device-tree-xlnx
->>
->> Because of this infrastructure user will all the time get proper compatible
->> string which is aligned with IP catalog.
-> 
-> I don't think so. Let's skip for now "clk" and "clocking" differences
-> and assume both are "clocking". You have then compatibles:
-> 
-> xlnx,clocking-wizard and xlnx,clocking-wizard-1.0
-> 
-> and you said these are entirely different blocks.
-> 
-> There is no way this creates readable DTS.
+If you don't think this is enough, you could also patch felix_phylink_get_caps()
+to exclude ocelot->ports[port]->phy_mode == PHY_INTERFACE_MODE_NA from
+applying this assignment (which would make config->supported_interfaces
+remain empty):
 
-And I really thank you for this discussion to do it properly and have proper 
-compatible string and description for this block.
-
-Shubhrajyoti: please correct me if I am wrong.
-
-All Xilinx SOCs have programmable logic aligned with FPGAs. Zynq is based 28nm,
-ZynqMP (Ultrascale MPSOC) is based on 16nm and Versal is based on 7nm.
-
-I think these clocking IPs are using low level primitives available in PL logic.
-Which means there is connection to fpga/pl technology instead of SOC family and 
-main cpu.
-It can be of course said that if this is ZynqMP SOC that IP A is used. The same 
-for Versal SOC. But for soft cores this can't be said.
-
-Would it be better to reflect PL technology in compatible string?
-
-xlnx,clocking-wizard-vX.X (used now for ZynqMP and previous families)
-xlnx,clocking-wizard-7nm-vX.X (or find better name names which reflect PL logic 
-type)
-
-Thanks,
-Michal
+	__set_bit(ocelot->ports[port]->phy_mode,
+		  config->supported_interfaces);
