@@ -2,66 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 894CC5F2E74
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 11:49:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88AEB5F2E8E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 11:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230521AbiJCJta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 05:49:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49056 "EHLO
+        id S229768AbiJCJ7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 05:59:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230504AbiJCJtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 05:49:08 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B570F24099;
-        Mon,  3 Oct 2022 02:48:29 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id y136so9754081pfb.3;
-        Mon, 03 Oct 2022 02:48:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date;
-        bh=+mvi2JTs0dvAwwc0ZcikqL3pBiRVFH5ocOGLIEQjniw=;
-        b=qypILY/yq24wXIwO+qr1bJrABvOfG8SNkstwBQ2TdbVn/oHdvwuZEO3neJknyq3pWM
-         9+HO9wrE2/WtljZH7vjx1T0lJq7OswV+TFOB7fiUeIDHgk1so+et+sqV+lhAVyYSJbQx
-         LPoIGclcKU7ejThadKP4KDrpoz05qoqvi3iwfBlLCxOTlbr0PvEz0dS32XmrWIBVaD4L
-         dQFE0R75HeZ+SbRD0FrHx48cjtvNbhfaFzvh072KY07GiS+/OIrNuARa9zUJqYKVdJh8
-         /y3HIwf2d0QxvZqDg7b8zCwWxD0i6fkH2NPnbV5Da/h84zg2LxkOoTv217IBl/RtdezP
-         26xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=+mvi2JTs0dvAwwc0ZcikqL3pBiRVFH5ocOGLIEQjniw=;
-        b=QFKgsoJsaV7n761NdxrWHnh1SaYzAiNNy4YsVviJCMIQCahNm/b3zICy+7Zcz2288o
-         hKbMvxUzJOc4xoKteUARz5jYMmA50cKt1TxL1FIiG2ZkX85Wt4+ZK63pYpm2BscBQJQt
-         p6ga/uroS+FeQlnboTTh/7W3R4PSLA7BQ69+v+tNIAbvhwDJkJbo7rHqfgeaphGYcehG
-         USrwCsOESDBHaC/YbggDQm8u4VbwB7RussDgUCsfldqxM0PWhGmwVlDDCbWKHhEc5Y+R
-         PJcaa+cK4CTqTlbSuG/sjCv9OMoLcRNTf/2VrmMiQgbCYqQC879PYznniKusngePhA45
-         5v5w==
-X-Gm-Message-State: ACrzQf2uq4hvUSM6vb+WRq8PIz+9rHSXrjXqFDcBch4NQDqAEXKNYfVt
-        k25XHWH89n7Jysyp1eR/n5rMiXqOC9U=
-X-Google-Smtp-Source: AMsMyM4Eu0sNI9P8WSSJLTw4nTz8DfICDghJ79BLVd01qFCxHJF1rxjERJtMNv9a5VAa/gL8kI9TrQ==
-X-Received: by 2002:a05:6a00:2446:b0:528:5f22:5b6f with SMTP id d6-20020a056a00244600b005285f225b6fmr22136033pfj.73.1664790508859;
-        Mon, 03 Oct 2022 02:48:28 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:587:da00:1dbc:8208:4596:9e9c])
-        by smtp.gmail.com with ESMTPSA id t23-20020a6564d7000000b0043014f9a4c9sm6142230pgv.93.2022.10.03.02.48.26
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 03 Oct 2022 02:48:28 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        sre@kernel.org
-Cc:     cy_huang@richtek.com, allen_chiang@richtek.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] Documentation: power: rt9759: Document exported sysfs entries
-Date:   Mon,  3 Oct 2022 17:48:13 +0800
-Message-Id: <1664790493-16386-4-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1664790493-16386-1-git-send-email-u0084500@gmail.com>
-References: <1664790493-16386-1-git-send-email-u0084500@gmail.com>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        with ESMTP id S229605AbiJCJ7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 05:59:38 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2045.outbound.protection.outlook.com [40.107.220.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD63D326CD;
+        Mon,  3 Oct 2022 02:59:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HqpFl/fdmJIXJ4e9Ajjp4PL/qUawnSmYBLKNuM2sAN/yDFlPtN7mBJtF4HnDNf2o4LeUQ8dJEJbV7immMS3xLKuZPBwlqp4QQLkRmxdq3M/NvlZyXx2+UIhFXHsB1Os6o8OXRb03p2trt+D8DuylgFLyc8z7/TAWCZtqLTfh6duAaKMPkwVe439TlhPYAEYXG6RCVWrqAARQI1/4Ndtj52i32Ruy0Exe1ElAeIVne7WW7c56HDoZmvK2TCzeHzVVZ3KTDkQmaDlQPzZMawTuSjDRGxHn6UOQf7aDtdL1ngB3PixRY43xGhmSCk58teijlnbmHzcdwzXnzK0WWdo3PQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L6RkPMLrpyILbwU1WD/eUQjrpcvhtlTSrHAg/ktvV2Y=;
+ b=NnUhJkTPRyeLAxHidoi5C6NG1Sur2nzu3EpFzz1/tSVbzgyQmXjVao9Xm24LFdkD+VTvcW3QPwvL+x2HQfrJks9UKhM6ggIm+5iHMI9euFQS+44Xkbn8vL0V0GU/WI4aymylW3aAtN7gd9/igtgtv4ldBFTw64ekvbh5lc6F5XM1SOh9gCsziRopZYwtxCxgckqo6CDdHQ+QUvBGL1FoEkt3JuWYL197GibCSgb3qwT24CCExAyCU2eLK4nb9h6Wb0IDw9J14sHN6JyqPVl9vjgxiSL7MOfPNbz15P/cILfUx6hxGiXvETwpfYEyxSInDM7yyJoizAtjXSUKrKyOew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L6RkPMLrpyILbwU1WD/eUQjrpcvhtlTSrHAg/ktvV2Y=;
+ b=Gug5uRiCTvTqJuIp6Aiz2nqwDYL+sALjKQJaD+h+encwP4WSVHaEX3yg57vgnI7KbsWQnZ8vaGZdwa3JBKHJbqWllWNARujVZtWKjDqXGCxTcov9HaopCIkGztfLtorGqCinecxKd2lcALszOcN2d7MhYp93atEmlA+YHUZiT9A=
+Received: from DM6PR03CA0020.namprd03.prod.outlook.com (2603:10b6:5:40::33) by
+ DM4PR12MB6397.namprd12.prod.outlook.com (2603:10b6:8:b4::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5676.17; Mon, 3 Oct 2022 09:59:30 +0000
+Received: from DM6NAM11FT111.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:40:cafe::c0) by DM6PR03CA0020.outlook.office365.com
+ (2603:10b6:5:40::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.23 via Frontend
+ Transport; Mon, 3 Oct 2022 09:59:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT111.mail.protection.outlook.com (10.13.173.26) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5676.17 via Frontend Transport; Mon, 3 Oct 2022 09:59:30 +0000
+Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 3 Oct
+ 2022 04:59:25 -0500
+Message-ID: <a8576f0e-b5ab-33d1-40d4-5f25c66616c7@amd.com>
+Date:   Mon, 3 Oct 2022 11:59:19 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH 1/2] dt-bindings: clk: Add binding for versal clocking
+ wizard
+Content-Language: en-US
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Rob Herring <robh@kernel.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        <linux-clk@vger.kernel.org>, <git@amd.com>,
+        <devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <sboyd@kernel.org>, <mturquette@baylibre.com>
+References: <20220930080400.15619-1-shubhrajyoti.datta@amd.com>
+ <20220930080400.15619-2-shubhrajyoti.datta@amd.com>
+ <CAL_JsqLaqjZeZd3c-fd9f5m-4OCXgOZcOu+paik9FV_eno5sLg@mail.gmail.com>
+ <afb3f19f-eb40-5453-a82b-295e06861f86@amd.com>
+ <20220930213924.GA1079711-robh@kernel.org>
+ <6e58837e-896c-7069-7913-2afb90af5e95@amd.com>
+ <b495804c-cf04-4512-ac05-424eded46468@linaro.org>
+ <57989d3e-a186-1d67-cff9-6a059f94ebd3@amd.com>
+ <f611237f-0401-9e3c-3a21-79b33141bb51@linaro.org>
+ <YzqaXthSLBbwU+5V@kroah.com>
+From:   Michal Simek <michal.simek@amd.com>
+In-Reply-To: <YzqaXthSLBbwU+5V@kroah.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT111:EE_|DM4PR12MB6397:EE_
+X-MS-Office365-Filtering-Correlation-Id: 173c1661-0cfe-47f1-bc3d-08daa525f6f8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /hgm4wWmbxMBnQMWLqwVI3nnRpAzcSE4YM0yL25cBremCUtdL9ZKYcjki0MQR7B66DQkoEGSI9z0+NmTcRij6mkNBDMvhISeaecNlM0pL+Xh0znAPg/sCugzS4y+2kXMoybdKRG9xtUCM/k/2XBdFRUHdvcy3dPWL080RSmS3I16TjKDFst6Q8zvJl9s8BiWEmA2EH9gdf5ZRV6Z0EsTQ5KNW2AmzrbeVeNDg0YmqMBuMAU7e0iUVEDeG2wxqOHWu3DAT9wgGa/mLUFsstcOQJlC39eETfCvlCcAAnykQiyiVbBHCuC+bgoGyQyhsZpmJWKG+lRZYAKmVlE3eGRe6/5U/qdkvgls8OCzpvjlsdN3pdpXp4WInbjs4Q/sE8IxFqj5SbsCQaS+Y6SIbfTmJVuNP0wVbcjS1p2mVdDM04Aa/wVYTdjeXwsJS3HGsQS7dGG7BRblwEuiz0D88UkKZQ+3l4JLAEe/bdorCcDCrTmIvR/Zx4dx0D475wLoCCCSsxjXPP0ZHARKfNzSc5l8ftWd4VGZ74pQBjtQQkcsWV1RgUUfZ2sITDWfNwOHQX+WrGT2Axob8H3ieULw4cHNJEPIAlGr0aoCBj/TbxDSqSKG0AH5ivvOrZuoX+1n1iW3SEvMAbHdBgTROk6dpt/gEKwVOP4I3wtF4uc+iBqMigpfe9vvGC70fXb1TIwbss//3xyNRnKbFtOGzMEci2KY8ziEfFeFXPWuY/9wFCPaX4EuSqk/WprhgV5n/7Qq1E2exnCFmCgrBGE7/kw0q+BrN19DtZMzJ59RTEexZ1J3PiYObvGpiHkZOG1e7VKVaami38XdSRyeRVo8i6CDvz+92OYDE89Gz9AuASOqCciQKuY=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(39860400002)(396003)(376002)(451199015)(40470700004)(36840700001)(46966006)(5660300002)(478600001)(8936002)(36860700001)(2906002)(81166007)(53546011)(82740400003)(36756003)(70206006)(966005)(54906003)(16576012)(86362001)(31696002)(41300700001)(356005)(4326008)(316002)(82310400005)(8676002)(44832011)(110136005)(83380400001)(40460700003)(40480700001)(16526019)(31686004)(336012)(426003)(66899015)(6666004)(2616005)(186003)(70586007)(47076005)(26005)(43740500002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2022 09:59:30.1278
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 173c1661-0cfe-47f1-bc3d-08daa525f6f8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT111.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6397
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,64 +113,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Hi Greg,
 
-Document the settings exported by rt9759 charger driver through sysfs
-entries:
+On 10/3/22 10:16, Greg Kroah-Hartman wrote:
+> On Mon, Oct 03, 2022 at 10:10:38AM +0200, Krzysztof Kozlowski wrote:
+>> On 03/10/2022 09:58, Michal Simek wrote:
+>>>
+>>>
+>>> On 10/3/22 09:23, Krzysztof Kozlowski wrote:
+>>>> On 03/10/2022 09:15, Michal Simek wrote:
+>>>>>>> And this is new IP. Not sure who has chosen similar name but this targets
+>>>>>>> Xilinx Versal SOCs. Origin one was targeting previous families.
+>>>>>>
+>>>>>> Do we need a whole new schema doc?
+>>>>>
+>>>>> It is completely new IP with different logic compare to origin one.
+>>>>>
+>>>>>>
+>>>>>> It is not ideal to define the same property, xlnx,nr-outputs, more than
+>>>>>> once. And it's only a new compatible string.
+>>>>>
+>>>>> I can't see any issue with using dt binding for xlnx,clocking-wizard.yaml
+>>>>>
+>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+>>>>
+>>>> So we already have out of staging document:
+>>>> devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+>>>
+>>> in 6.1 yes.
+>>>
+>>>>
+>>>> and author wants to add one more:
+>>>> devicetree/bindings/clock/xlnx,clk-wizard.yaml
+>>>
+>>> as I said it is completely different IP which requires complete different driver
+>>> but IP designers choose similar name which is out of developer control.
+>>>
+>>>>
+>>>> Shall we expect in two years, a third document like:
+>>>> devicetree/bindings/clock/xlnx,clk-wzrd.yaml
+>>>> ?
+>>>
+>>> Developer definitely doesn't know. If new SoC requires for the same purpose
+>>> different IP with completely different driver is something out of developer
+>>> control. As of today I am not aware about such a requirement and need and
+>>> personally I can just hope that if they need to do such a change they will be
+>>> able to keep current SW driver compatible with new HW IP.
+>>
+>> Then please start naming them reasonable, not two (and in future
+>> x-times) the same names for entirely different blocks. And by name I
+>> mean compatible, filename and device name.
+>>
+>>>>> also for this IP if that's fine with you.
+>>>>> Only xlnx,speed-grade can be defined for previous IP which is easy to mark.
+>>>>
+>>>> That old binding also explained nr-outputs as "Number of outputs".
+>>>> Perfect... :(
+>>>
+>>> Anyway if description should be improved let's just do it. I just want to get
+>>> guidance if we should update current dt binding for similar IP or just create
+>>> new one as this one is trying to do.
+>>
+>> IMHO, new binding is extremely confusing. We already have support for
+>> devices named "xlnx,clocking-wizard" and now you add exactly the same
+>> (clk=clocking) with almost the same properties, named
+>> "xlnx,clk-wizard-1.0". For a different IP?
+>>
+>> How anyone (even Xilinx' customer) can understand which block is for
+>> what if they have exactly the same name and (almost) the same
+>> properties, but as you said - these are entirely different IP?
+> 
+> Maybe we should just delete the staging one (and the staging driver),
+> and start over?  No one has taken the time to get the staging driver out
+> of there, so I have no objection to dropping it for 6.1.
 
-- watchdog_timer
-- battery_voltage
-- battery_current
+As I said it is be out of staging in linux-next. When CLK tree is merged in 
+these 2 weeks we are done at least with this driver.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- Documentation/ABI/testing/sysfs-class-power-rt9759 | 37 ++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9759
+Thanks,
+Michal
 
-diff --git a/Documentation/ABI/testing/sysfs-class-power-rt9759 b/Documentation/ABI/testing/sysfs-class-power-rt9759
-new file mode 100644
-index 00000000..7657419
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-power-rt9759
-@@ -0,0 +1,37 @@
-+What:		/sys/class/power_supply/rt9759-*/watchdog_timer
-+Date:		Oct 2022
-+KernelVersion:	6.1
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry shows and sets the watchdog timer when rt9759 charger
-+		operates in charging mode. When the timer expires, the device
-+		will disable the charging. To prevent the timer expires, any
-+		host communication can make the timer restarted.
-+
-+		Access: Read, Write
-+
-+		Valid values:
-+		- 500, 1000, 5000 or 30000 (milliseconds),
-+		- 0: disabled
-+
-+What:		/sys/class/power_supply/rt9759-*/battery_voltage
-+Date:		Oct 2022
-+KernelVersion:	6.1
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		Reports the current BAT voltage.
-+
-+		Access: Read-Only
-+
-+		Valid values: Represented in microvolts
-+
-+What:		/sys/class/power_supply/rt9759-*/battery_current
-+Date:		Oct 2022
-+KernelVersion:	6.1
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		Reports the current BAT current.
-+
-+		Access: Read-Only
-+
-+		Valid values: Represented in microamps
--- 
-2.7.4
+
 
