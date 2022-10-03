@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28B255F313C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:29:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4AAC5F313F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbiJCN3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 09:29:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36098 "EHLO
+        id S229779AbiJCN3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 09:29:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbiJCN3D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 09:29:03 -0400
+        with ESMTP id S229696AbiJCN3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 09:29:24 -0400
 Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD2FB252A3
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 06:29:01 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id a12so1772044ljr.7
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 06:29:01 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7650A26119
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 06:29:23 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id s17so1463167ljs.12
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 06:29:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=vrjrFsK6VtRpI2UHPnLRuHMquKG/Pwu3cpXXmdq91bE=;
-        b=yzwQkK3nHvuhGjynfGxjssZTzK69/5PN7S9Ji0a7/PP5IFOak/ra0AB+VJQrA/duTK
-         Psr3Ukf6Crf9wSDrXUnVe7ueyEX2yRgckL4+EjFk+05eQwMsHFwwlBBQvJ+W4Gn1dcT9
-         S11kjxbSR3pa3VQfz196V3a9e3VTd+SxRtg52iggzc4s6O56eMrg6r5EjKoUbBufZPil
-         Y+BN/0upH+RcoF+u/FogcAa/UcwwyGbeV+4mgVK+d6QtIqRHLmZWhELnDiGWSlkFpAPr
-         9TAbjdBFJQBlTx41vdQhXP3ffKzg9EupeIxH+PN+LeixOFFvuaubm8ny2ZKXk5gupgjB
-         ZWXA==
+        bh=6TsOQ1h1v8zG9b7DSkhBBkd7Y1zM04JnBp/JF+TVzYs=;
+        b=qplxdpmVEoaA880ajX0q9Xc15xIgU7a9znpzWXqhN2xUZcoYn+OJqvotp4ktDhrnJY
+         53VJjiqPa0hlidd3rvGeahqJtB8eXMv6iQuXZ7l+FalzcT+Yc84Wf95Unr4P8vMCCcMs
+         ehCAWBrTHE/MQd+BZPUoU7CxKxSVGba211CPwmmrxSs/Lm6PUnnHLe+4duiYmx7kk7XP
+         MdzuDhH1USPRx9n70QBymXdReKvtVD5QmQg5XgTRygtL+hMf//fS3tPrkkZCbqFJVOZH
+         cwaQM/Rpp8+4aEpMjhYqUoVRvHxYU+ZejCYvEFsYsegczgc3nw8tD+B5uqqxBJ0BdGl+
+         ixfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=vrjrFsK6VtRpI2UHPnLRuHMquKG/Pwu3cpXXmdq91bE=;
-        b=fi4nbOuhZuldFjdXZ0qYNcx+he2jBnWy4lsTZEDEWLPqJ34hi4IS+FOCnnw5cVaSuh
-         hXTb0tuZ7zhOqWvboQI3nx00ZCYur44smhzjURGDiOVJPkoZDW3vD5/Zm2MGiryoIth3
-         ZlylZSPBlFg0ITgBNmlUlGMiTfIUOKtB4DncrUyFgvZdPVYdWIbPjCX407qQLq5yRL3C
-         dUuMmEStZQgiAu9P4np8rEOz9uzmd77n3o/X+Ke21qr8IhFnQu8ZScrLcv6o8AKOqrIQ
-         gvWCnxWaXGwBYbqVM2vR0TsV9SoTeQIPRUGaq/WiF2DaKBXd/2IeZ9jwOvhblP5Z4vKy
-         aHLw==
-X-Gm-Message-State: ACrzQf1BNnJ8ud+h4kfsaOUm2T/krZ5yZ6kwyn5SUO9Euym+Ppwk6Fpm
-        ZP+R0+ewCDEN/y73d+rU1Jd7UA==
-X-Google-Smtp-Source: AMsMyM5p3AJzIob/49islyUlukZuEqq1rWUMF/dALhuhcn93iz7oI2pcsVHta9Oq/1Gwij6EqZDOig==
-X-Received: by 2002:a05:651c:b22:b0:26d:cf14:7c6c with SMTP id b34-20020a05651c0b2200b0026dcf147c6cmr2641751ljr.495.1664803740062;
-        Mon, 03 Oct 2022 06:29:00 -0700 (PDT)
+        bh=6TsOQ1h1v8zG9b7DSkhBBkd7Y1zM04JnBp/JF+TVzYs=;
+        b=u1dC5aWL9woLHkBHPbljAMA/XRcu4ak/LJ08WWggx73n5f740fuDuiuwYYLplBrE+1
+         aj0X3/GRAn3ocS+F0JKGeyoM60KdNZNCik/wgVgsdPuUGaDV+RSRrG1ukPn7yQP3jdaz
+         KMHMQgmGKEBMuj41iKglKsNJVGKYp5tAmJzAxnkkLuxHEYQiVaVafOTfKc/jvdG7fgUW
+         n+7vmUjykP9BU1vw3Ae49Z+6gYaqmWVpT/bIpgq+XUDklV/nUzYlw4Y3/TQrtBdAivWV
+         D4SIW0CrEyqf0wE4uQ1U5S23jlMnYFM878avfuQ/YZthIMJ/fCh1kp3PV2NwnVMP6EAY
+         VI6w==
+X-Gm-Message-State: ACrzQf0EXyA3ld/eoll9oNjyLnQSWJg0FClekdUC5ciBDJMQH0ME50q4
+        vV5LVkfoUnglHdcgIuhgTS1Ctw==
+X-Google-Smtp-Source: AMsMyM7jJKEQi4Zcz9Re0+ixhiTC4ABYQozRTB1uQMsdG6rsg7M0TF7GZ2TwAXTHHJsmt75lplp9Ag==
+X-Received: by 2002:a2e:9906:0:b0:26d:db58:22fe with SMTP id v6-20020a2e9906000000b0026ddb5822femr1734691lji.397.1664803761722;
+        Mon, 03 Oct 2022 06:29:21 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 14-20020a2e154e000000b0026bfc8d4bbbsm891542ljv.125.2022.10.03.06.28.59
+        by smtp.gmail.com with ESMTPSA id p26-20020a2ea41a000000b00261e2aab7c2sm883752ljn.58.2022.10.03.06.29.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Oct 2022 06:28:59 -0700 (PDT)
-Message-ID: <53166a75-22b3-d936-7c70-a068993cddad@linaro.org>
-Date:   Mon, 3 Oct 2022 15:28:58 +0200
+        Mon, 03 Oct 2022 06:29:21 -0700 (PDT)
+Message-ID: <10c70d8b-efa5-f468-f4f2-ddd2f2709bb4@linaro.org>
+Date:   Mon, 3 Oct 2022 15:29:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: sa8295p: move common nodes to
- dtsi
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: introduce sa8540p-ride dts
 Content-Language: en-US
 To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
         Andy Gross <agross@kernel.org>,
@@ -69,15 +68,14 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Brian Masney <bmasney@redhat.com>,
         Johan Hovold <johan@kernel.org>
 References: <20221003125444.12975-1-quic_ppareek@quicinc.com>
- <20221003125444.12975-4-quic_ppareek@quicinc.com>
+ <20221003125444.12975-5-quic_ppareek@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221003125444.12975-4-quic_ppareek@quicinc.com>
+In-Reply-To: <20221003125444.12975-5-quic_ppareek@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,40 +83,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03/10/2022 14:54, Parikshit Pareek wrote:
-> There are many ADP boards with lot of common features. Move common
-> nodes, like remoteproc, regulators etc. to sa8540p-adp.dtsi file.
-> This will be base for many ADP boards to be introduced in near future.
-> Common nodes are like clocks, remoteproc, regulators etc.
+> Create new dts file specific for Qdrive-3 board based on sa8540p chipset.
+> Introduce common dtsi file sa8295p-adp.dtsi, to be included for ADP and
+> Qdrive-3 board.
 > 
-> The differences between the sa8295 ADP board, and sa8540p ADP board
-> (Qdrive-3), with respect to device/connector-interface, are as following:
-> 
-> PCIE: pcie nodes are not supported as of now, and will be supported
-> in subsequent patches.
-> 
-> UFS: Devices ufs_mem_hc and ufs_card_hc, both are mounted on ADP air
-> board. Whereas, only ufs_mem_hc is only mounted on Qdrive-3.
-> 
-> USB: Devices usb0 and usb2 are present on Qdrive-3 board. Whereas on sa8295
-> ADP board, usb0, usb1, and usb2 are present. On Qdrive-3, usb2 has only one
-> port supported(of the external embedded hub). Whereas on sa8295, all four
-> ports of usb2 are supported.
-> 
-> There are different connectors for ethernet and camera, but connected
-> to same interface towards soc. So, there is no need of any difference
-> regarding device tree.
-> 
-> Artificial intelligence chip SA9000P is present only on Qdrive-3 board
-> as PCIE endpoint.
+> This is quite similar to sa8295 ADP development board. Main differences
+> are related to connectors, and interface cards, like USB external ports,
+> ethernet-switch, PCIe switch etc.
 > 
 > Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts      | 528 +++++-------------
->  .../{sa8295p-adp.dts => sa8540p-adp.dtsi}     | 133 -----
->  2 files changed, 146 insertions(+), 515 deletions(-)
->  rewrite arch/arm64/boot/dts/qcom/sa8295p-adp.dts (70%)
->  copy arch/arm64/boot/dts/qcom/{sa8295p-adp.dts => sa8540p-adp.dtsi} (72%)
-> 
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
