@@ -2,59 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BF9F5F3128
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:25:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF6B25F3126
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:25:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbiJCNZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 09:25:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56242 "EHLO
+        id S229949AbiJCNZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 09:25:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230088AbiJCNZD (ORCPT
+        with ESMTP id S230063AbiJCNZD (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 09:25:03 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A191F2E6;
-        Mon,  3 Oct 2022 06:24:58 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1329abb0ec6so281302fac.8;
-        Mon, 03 Oct 2022 06:24:58 -0700 (PDT)
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC6E620BC6;
+        Mon,  3 Oct 2022 06:24:57 -0700 (PDT)
+Received: by mail-oo1-f50.google.com with SMTP id c22-20020a4a4f16000000b00474a44441c8so6736492oob.7;
+        Mon, 03 Oct 2022 06:24:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=UC6MSONY3vLkuMDaO7L4lnAgj63J2DwMG65oUzBFyAk=;
-        b=jxh95zGmLlSlqmxTDEBPzJrsEA6XIc14CXD2paAJqCfpZDsxu/r+uMnLGxzw4aFTJK
-         ofjfG2eveODmM2m3bzB31UcmOFqidTEir0pH+t/q0UwMcAnjlLFw+x1Cp0uIGIUy+8Tb
-         pR47NhDNJJQjuSexu9MHFTJJaZQv8PcqFk1rBqD8T6UYpJcAX7oXCaxrpCUjhRLBMIUD
-         H+fToOviEfQY/rl/CB2BZ6/Kj5UrIS+cMHEvYYWQnnmV0clnBDFgO84BTauRW8pymjFt
-         4hoXd61jsEIiaYAx17Nqo7CPQQ9FU1HOK7DFGSBjvdXzjxqtzjqJTQGQh9fV388XuJGw
-         lBog==
-X-Gm-Message-State: ACrzQf03Xkx1R//RHreI+ARwphOIERg9ENuqIyKg4QKpDSa1RuwzAlrd
-        3OiVDQzZYpvlHeFTFyKeGQ==
-X-Google-Smtp-Source: AMsMyM71sXM3bBdvdcws90nBNoMbSopHlJ/SFYjN9kST5ujwFHp2n7tEk53k8931au5a/27ttw6cSw==
-X-Received: by 2002:a05:6870:63a3:b0:132:8fec:b67f with SMTP id t35-20020a05687063a300b001328fecb67fmr825243oap.27.1664803498467;
-        Mon, 03 Oct 2022 06:24:58 -0700 (PDT)
+        bh=4o9FP01Wkr4A9XE1+7DHtHpJ4sgE+1LxGHWKgV35Jek=;
+        b=4WkZhRzJ3+mEZU069vYs4uf8pLpvaRwiUszS1CXFdggXeARy7VsA/AOexcaft4GP8z
+         Ia0pZfHJUng/ac5Ebjkbpg/kYIlYsOkswDU4YigTZ9VKJRAWDkc9FGMnI+cGjcKwtC3s
+         oMtBsQbrKwTkUnNy8z9wtdFsvAdyVfF9f28udht/nZCUbQIc1GJ8CcAoB6Xx3edHurlC
+         4LHnjWGJLZwu2o2IdqZwa1YCi5EeDpd86DzoArF1WIXJdh4+z3EhiD2fUlySmMXkagZh
+         nyAfE6SeAZXgLlfb9LYsiNzYHi9I7FqBddVLyZOC0l9DnHL/2avAPrxRjah/RWd9cvgC
+         Hitg==
+X-Gm-Message-State: ACrzQf2pvcL8iKblCjiIrNfc2HiA6mhrmIjNc/btbrB2AI+exza7tn6w
+        GRbBmt4E0w2TfLAmYQtZNNKZrsrhMg==
+X-Google-Smtp-Source: AMsMyM69T2VOp2Bi+KS3zdLXeZhG51kRLAqo/gqlkrKU4t/wfW5DmgV3hQhlVm5QLlq4rntBlR7eJw==
+X-Received: by 2002:a05:6830:612:b0:655:de80:d048 with SMTP id w18-20020a056830061200b00655de80d048mr8202765oti.168.1664803496323;
+        Mon, 03 Oct 2022 06:24:56 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a15-20020a056870b14f00b0013191fdeb9bsm2908984oal.38.2022.10.03.06.24.57
+        by smtp.gmail.com with ESMTPSA id o64-20020aca4143000000b00342ded07a75sm2445443oia.18.2022.10.03.06.24.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 06:24:58 -0700 (PDT)
-Received: (nullmailer pid 1863811 invoked by uid 1000);
+        Mon, 03 Oct 2022 06:24:56 -0700 (PDT)
+Received: (nullmailer pid 1863805 invoked by uid 1000);
         Mon, 03 Oct 2022 13:24:48 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+To:     Melody Olvera <quic_molvera@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-mmc@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-In-Reply-To: <20221001030752.14486-1-irui.wang@mediatek.com>
-References: <20221001030752.14486-1-irui.wang@mediatek.com>
-Message-Id: <166479591681.1661748.6265395941647267106.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mediatek: vcodec: Add the platform compatible to schema
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20221001030641.29354-3-quic_molvera@quicinc.com>
+References: <20221001030641.29354-1-quic_molvera@quicinc.com> <20221001030641.29354-3-quic_molvera@quicinc.com>
+Message-Id: <166479587535.1659013.8594790600534201114.robh@kernel.org>
+Subject: Re: [PATCH 2/5] dt-bindings: arm: qcom: Document QDU1000/QRU1000 SoCs and boards
 Date:   Mon, 03 Oct 2022 08:24:48 -0500
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -67,29 +64,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 01 Oct 2022 11:07:52 +0800, Irui Wang wrote:
-> There are venc node warnings when running dtbs_check, the clock-names
-> was unexpected, missing properties '#address-cells' and '#size-cells'.
-> Add the corresponding platform compatible to schema.
+On Fri, 30 Sep 2022 20:06:38 -0700, Melody Olvera wrote:
+> Document the QDU1000 and QRU1000 SoC bindings and the boards that use
+> them.
 > 
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  .../bindings/media/mediatek,vcodec-encoder.yaml      | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/qcom.yaml:725:18: [error] syntax error: mapping values are not allowed here (syntax)
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/arm/qcom.example.dts'
+Documentation/devicetree/bindings/arm/qcom.yaml:725:18: mapping values are not allowed in this context
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/arm/qcom.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/arm/qcom.yaml:725:18: mapping values are not allowed in this context
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/qcom.yaml: ignoring, error parsing file
+make: *** [Makefile:1420: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-vcodec@17020000: clock-names:0: 'venc_sel' was expected
-	arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dtb
-	arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dtb
-	arch/arm64/boot/dts/mediatek/mt8192-evb.dtb
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
