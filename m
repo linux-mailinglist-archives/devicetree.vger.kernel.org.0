@@ -2,324 +2,370 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7187D5F2B5D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 10:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF455F2B5B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 10:00:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232097AbiJCIAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 04:00:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42814 "EHLO
+        id S231130AbiJCH76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 03:59:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232112AbiJCH7v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 03:59:51 -0400
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB9562ABC
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 00:36:05 -0700 (PDT)
-Received: by mail-ej1-f42.google.com with SMTP id nb11so20266743ejc.5
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 00:36:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=3BjC5TdVOJG0MFJ0v+35mmv8Y28sqjeiZ/AJc3bp1Tk=;
-        b=T287oNppUAecj5zehHeownXG3/nYrMVEDZYqAgJLwv8cufCXsrE7k+ugolhcxKGKst
-         B+w2ZKqbTx2QqCEP2PlRSggq+UNQiQPE45xicSXHzfi8lpfMGZjSknDA6PJuvcLkzIgu
-         cef6ouOEiQiYuO9rZdczdPqJeF0o8bMcMcLpmQPg5HmCCT+pX7swquGu1PqERDkYt+lt
-         b/iOMtPDk/O+2VXyXejoALFboGUa4q/x/zAS2EBl/Q5UT449AzGBo5TYJQTvrh4JDCTM
-         cppJ3XCRKv+6QQAkP0wIfFETJLdedHt5D9YJEq7VI7DEO2Yzpch/x7Fi/loxuC6drDKg
-         CkOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=3BjC5TdVOJG0MFJ0v+35mmv8Y28sqjeiZ/AJc3bp1Tk=;
-        b=YSVIt2vHvMDzNljuBPq0rxgtlqPV/ZiP6Wpvb6uT9irZYN1e/FiBxwrBnU9ZB01FO2
-         0AzefzebQ61vttjC6MhERaZpdWd3abzPvEkxFmaGErCpmUAqNDgDzLzltnz+M+xZxW3j
-         UWzIJaLMsEIs+M7PcBZigXU0wVbpR5sQsUktyD+N1LU6RrL5tOLNTFwQOBD7kBp0oAzd
-         JfiP3XgSzO9YELiBVM57yn7gTedhrqE3z0O8StBJubISS9Z+6fBLwuF5FaFs/85DvBeZ
-         KZZyCkeQyq0wmKsKivMMuU8qQqkdh6QVt25Kq2gHhA7Zrf7dCSABCiWpqjYk2db0N3qg
-         3spg==
-X-Gm-Message-State: ACrzQf2YtVHDE0RYxjEsSBwQt8t5ne4e/0GSxmyl2ETd4o8rL7+VcGNv
-        krp7he8Zaq4XTpbBDj+eLAXhmhTdjFE=
-X-Google-Smtp-Source: AMsMyM706ZAhc5IrmK2CcU/x55f3phuWPgyjgMw1jn9EksoP9R8lNI2UzkI3tfbUmvb6m2ICl8Wzkw==
-X-Received: by 2002:a17:907:3fa9:b0:782:ed33:df8d with SMTP id hr41-20020a1709073fa900b00782ed33df8dmr14329249ejc.745.1664782419913;
-        Mon, 03 Oct 2022 00:33:39 -0700 (PDT)
-Received: from WBEC325.dom.lan ([2001:470:64f7:0:1c86:a9a0:86fe:7563])
-        by smtp.gmail.com with ESMTPSA id x13-20020aa7d6cd000000b00458e40e31c8sm2765242edr.15.2022.10.03.00.33.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 00:33:39 -0700 (PDT)
-From:   Pawel Dembicki <paweldembicki@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     Pawel Dembicki <paweldembicki@gmail.com>
-Subject: [PATCH v2] ARM: dts: kirkwood: Add Endian 4i Edge 200 board
-Date:   Mon,  3 Oct 2022 09:33:32 +0200
-Message-Id: <20221003073332.1507803-1-paweldembicki@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <linux-arm-kernel@lists.infradead.org,>
-References: <linux-arm-kernel@lists.infradead.org,>
+        with ESMTP id S232279AbiJCH7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 03:59:30 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E09D61B10;
+        Mon,  3 Oct 2022 00:35:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E4D5BB80E6C;
+        Mon,  3 Oct 2022 07:34:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39F33C433D6;
+        Mon,  3 Oct 2022 07:34:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664782459;
+        bh=4RxUI1jVTVDBpdOOymi4AxY4huc8egI9aLxI7fR/Dyg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mwsNXoFvQB3iKmpVVsZRQp9HE/3sBEBfOpqGqhE+wlazL3yK3vxwzdjItCGHrUyb+
+         VAqO5zQfbod82Fmqft2xH6Gke7rx94350ukdyv2ens4I6mI9MFBPEIXitIOuZKRveN
+         8yuIG2OwNHZQZFA3akB7TH6ORSy1rdo1k0s8RJLUWVgum5+wdrT2fmkHkyTYBqGVUH
+         Q58YbDE/+U4/ri4xubC+hgZEH5N9B9a6V6JD207uoYXvMcjZP25KoawqkEKGIwzBUl
+         1fqVrAPK0HDAugr3A6zJ1P4sf3UvI32GkoAhY8V9IVRCmtQ71+aDQP7Fj9K3WJzgSk
+         zbmtxX7V6eU/g==
+Date:   Mon, 3 Oct 2022 08:34:13 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH RFC 1/7] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
+Message-ID: <YzqQdUcsvu4AJPj2@google.com>
+References: <20220929103043.1228235-1-biju.das.jz@bp.renesas.com>
+ <20220929103043.1228235-2-biju.das.jz@bp.renesas.com>
+ <YzXbrZNI81f1ebBt@google.com>
+ <20220930174707.GA567190-robh@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220930174707.GA567190-robh@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Endian 4i Edge 200 is 5-port firewall.
-It have also clone: Endian UTM Mini (The same hardware, with added WLAN
-card).
+On Fri, 30 Sep 2022, Rob Herring wrote:
 
-Hardware:
-  - SoC: Marvell 88F6281-A1 ARMv5TE Processor 1.2GHz
-  - Ram: 512MB (4x Nanya NT5TU128M8GE-AC)
-  - NAND Flash: 512MB (Micron 29F4G08AAC)
-  - Lan 1-4: 4x GBE (Marvell 88E6171R-TFJ2)
-  - Lan 5: 1x GBE (Marvell 88E1116R-NNC1)
-  - Storage: MicroSD Slot
-  - MCPIE: MiniPCIe Slot present [fitted with SparkLan WPEA-110N/E
-          (Atheros AR9280 chipset) in Endian UTM Mini WLAN only]
-  - USB: 1x USB 2.0 port
-  - Console: RJ-45 port
-  - LEDs: 3x GPIO controlled
+> On Thu, Sep 29, 2022 at 06:53:49PM +0100, Lee Jones wrote:
+> > On Thu, 29 Sep 2022, Biju Das wrote:
+> > 
+> > > The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
+> > > the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
+> > > channels and one 32-bit timer channel. It supports the following
+> > > functions
+> > >  - Counter
+> > >  - Timer
+> > >  - PWM
+> > > 
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > ---
+> > > It is same as [1]. Just sending this patch to avoid any bot error for
+> > > the subsequent patches.
+> > > [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220926132114.60396-3-biju.das.jz@bp.renesas.com/
+> > > ---
+> > >  .../bindings/mfd/renesas,rzg2l-mtu3.yaml      | 275 ++++++++++++++++++
+> > >  1 file changed, 275 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
+> > > new file mode 100644
+> > > index 000000000000..c1fae8e8d9f9
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mfd/renesas,rzg2l-mtu3.yaml
+> > > @@ -0,0 +1,275 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/mfd/renesas,rzg2l-mtu3.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Renesas RZ/G2L Multi-Function Timer Pulse Unit 3 (MTU3a) bindings
+> > > +
+> > > +maintainers:
+> > > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > > +
+> > > +description: |
+> > > +  This hardware block pconsisting of eight 16-bit timer channels and one
+> > > +  32- bit timer channel. It supports the following specifications:
+> > > +    - Pulse input/output: 28 lines max.
+> > > +    - Pulse input 3 lines
+> > > +    - Count clock 11 clocks for each channel (14 clocks for MTU0, 12 clocks
+> > > +      for MTU2, and 10 clocks for MTU5, four clocks for MTU1-MTU2 combination
+> > > +      (when LWA = 1))
+> > > +    - Operating frequency Up to 100 MHz
+> > > +    - Available operations [MTU0 to MTU4, MTU6, MTU7, and MTU8]
+> > > +        - Waveform output on compare match
+> > > +        - Input capture function (noise filter setting available)
+> > > +        - Counter-clearing operation
+> > > +        - Simultaneous writing to multiple timer counters (TCNT)
+> > > +          (excluding MTU8).
+> > > +        - Simultaneous clearing on compare match or input capture
+> > > +          (excluding MTU8).
+> > > +        - Simultaneous input and output to registers in synchronization with
+> > > +          counter operations           (excluding MTU8).
+> > > +        - Up to 12-phase PWM output in combination with synchronous operation
+> > > +          (excluding MTU8)
+> > > +    - [MTU0 MTU3, MTU4, MTU6, MTU7, and MTU8]
+> > > +        - Buffer operation specifiable
+> > > +    - [MTU1, MTU2]
+> > > +        - Phase counting mode can be specified independently
+> > > +        - 32-bit phase counting mode can be specified for interlocked operation
+> > > +          of MTU1 and MTU2 (when TMDR3.LWA = 1)
+> > > +        - Cascade connection operation available
+> > > +    - [MTU3, MTU4, MTU6, and MTU7]
+> > > +        - Through interlocked operation of MTU3/4 and MTU6/7, the positive and
+> > > +          negative signals in six phases (12 phases in total) can be output in
+> > > +          complementary PWM and reset-synchronized PWM operation.
+> > > +        - In complementary PWM mode, values can be transferred from buffer
+> > > +          registers to temporary registers at crests and troughs of the timer-
+> > > +          counter values or when the buffer registers (TGRD registers in MTU4
+> > > +          and MTU7) are written to.
+> > > +        - Double-buffering selectable in complementary PWM mode.
+> > > +    - [MTU3 and MTU4]
+> > > +        - Through interlocking with MTU0, a mode for driving AC synchronous
+> > > +          motors (brushless DC motors) by using complementary PWM output and
+> > > +          reset-synchronized PWM output is settable and allows the selection
+> > > +          of two types of waveform output (chopping or level).
+> > > +    - [MTU5]
+> > > +        - Capable of operation as a dead-time compensation counter.
+> > > +    - [MTU0/MTU5, MTU1, MTU2, and MTU8]
+> > > +        - 32-bit phase counting mode specifiable by combining MTU1 and MTU2 and
+> > > +          through interlocked operation with MTU0/MTU5 and MTU8.
+> > > +    - Interrupt-skipping function
+> > > +        - In complementary PWM mode, interrupts on crests and troughs of counter
+> > > +          values and triggers to start conversion by the A/D converter can be
+> > > +          skipped.
+> > > +    - Interrupt sources: 43 sources.
+> > > +    - Buffer operation:
+> > > +        - Automatic transfer of register data (transfer from the buffer
+> > > +          register to the timer register).
+> > > +    - Trigger generation
+> > > +        - A/D converter start triggers can be generated
+> > > +        - A/D converter start request delaying function enables A/D converter
+> > > +          to be started with any desired timing and to be synchronized with
+> > > +          PWM output.
+> > > +    - Low power consumption function
+> > > +        - The MTU3a can be placed in the module-stop state.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - enum:
+> > > +          - renesas,r9a07g044-mtu3  # RZ/G2{L,LC}
+> > > +          - renesas,r9a07g054-mtu3  # RZ/V2L
+> > > +      - const: renesas,rzg2l-mtu3
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    items:
+> > > +      - description: MTU0.TGRA input capture/compare match
+> > > +      - description: MTU0.TGRB input capture/compare match
+> > > +      - description: MTU0.TGRC input capture/compare match
+> > > +      - description: MTU0.TGRD input capture/compare match
+> > > +      - description: MTU0.TCNT overflow
+> > > +      - description: MTU0.TGRE compare match
+> > > +      - description: MTU0.TGRF compare match
+> > > +      - description: MTU1.TGRA input capture/compare match
+> > > +      - description: MTU1.TGRB input capture/compare match
+> > > +      - description: MTU1.TCNT overflow
+> > > +      - description: MTU1.TCNT underflow
+> > > +      - description: MTU2.TGRA input capture/compare match
+> > > +      - description: MTU2.TGRB input capture/compare match
+> > > +      - description: MTU2.TCNT overflow
+> > > +      - description: MTU2.TCNT underflow
+> > > +      - description: MTU3.TGRA input capture/compare match
+> > > +      - description: MTU3.TGRB input capture/compare match
+> > > +      - description: MTU3.TGRC input capture/compare match
+> > > +      - description: MTU3.TGRD input capture/compare match
+> > > +      - description: MTU3.TCNT overflow
+> > > +      - description: MTU4.TGRA input capture/compare match
+> > > +      - description: MTU4.TGRB input capture/compare match
+> > > +      - description: MTU4.TGRC input capture/compare match
+> > > +      - description: MTU4.TGRD input capture/compare match
+> > > +      - description: MTU4.TCNT overflow/underflow
+> > > +      - description: MTU5.TGRU input capture/compare match
+> > > +      - description: MTU5.TGRV input capture/compare match
+> > > +      - description: MTU5.TGRW input capture/compare match
+> > > +      - description: MTU6.TGRA input capture/compare match
+> > > +      - description: MTU6.TGRB input capture/compare match
+> > > +      - description: MTU6.TGRC input capture/compare match
+> > > +      - description: MTU6.TGRD input capture/compare match
+> > > +      - description: MTU6.TCNT overflow
+> > > +      - description: MTU7.TGRA input capture/compare match
+> > > +      - description: MTU7.TGRB input capture/compare match
+> > > +      - description: MTU7.TGRC input capture/compare match
+> > > +      - description: MTU7.TGRD input capture/compare match
+> > > +      - description: MTU7.TCNT overflow/underflow
+> > > +      - description: MTU8.TGRA input capture/compare match
+> > > +      - description: MTU8.TGRB input capture/compare match
+> > > +      - description: MTU8.TGRC input capture/compare match
+> > > +      - description: MTU8.TGRD input capture/compare match
+> > > +      - description: MTU8.TCNT overflow
+> > > +      - description: MTU8.TCNT underflow
+> > > +
+> > > +  interrupt-names:
+> > > +    items:
+> > > +      - const: tgia0
+> > > +      - const: tgib0
+> > > +      - const: tgic0
+> > > +      - const: tgid0
+> > > +      - const: tgiv0
+> > > +      - const: tgie0
+> > > +      - const: tgif0
+> > > +      - const: tgia1
+> > > +      - const: tgib1
+> > > +      - const: tgiv1
+> > > +      - const: tgiu1
+> > > +      - const: tgia2
+> > > +      - const: tgib2
+> > > +      - const: tgiv2
+> > > +      - const: tgiu2
+> > > +      - const: tgia3
+> > > +      - const: tgib3
+> > > +      - const: tgic3
+> > > +      - const: tgid3
+> > > +      - const: tgiv3
+> > > +      - const: tgia4
+> > > +      - const: tgib4
+> > > +      - const: tgic4
+> > > +      - const: tgid4
+> > > +      - const: tgiv4
+> > > +      - const: tgiu5
+> > > +      - const: tgiv5
+> > > +      - const: tgiw5
+> > > +      - const: tgia6
+> > > +      - const: tgib6
+> > > +      - const: tgic6
+> > > +      - const: tgid6
+> > > +      - const: tgiv6
+> > > +      - const: tgia7
+> > > +      - const: tgib7
+> > > +      - const: tgic7
+> > > +      - const: tgid7
+> > > +      - const: tgiv7
+> > > +      - const: tgia8
+> > > +      - const: tgib8
+> > > +      - const: tgic8
+> > > +      - const: tgid8
+> > > +      - const: tgiv8
+> > > +      - const: tgiu8
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +  resets:
+> > > +    maxItems: 1
+> > > +
+> > > +  "#address-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#size-cells":
+> > > +    const: 0
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - interrupt-names
+> > > +  - clocks
+> > > +  - power-domains
+> > > +  - resets
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +
+> > > +    mtu3: timer@10001200 {
+> > > +      #address-cells = <1>;
+> > > +      #size-cells = <0>;
+> > > +      compatible = "renesas,r9a07g044-mtu3", "renesas,rzg2l-mtu3";
+> > > +      reg = <0x10001200 0xb00>;
+> > > +      interrupts = <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 171 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 173 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 174 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 175 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 176 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 179 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 181 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 182 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 183 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 184 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 185 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 186 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 190 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 191 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 192 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 194 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 195 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 198 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 199 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 200 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 201 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 202 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 204 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 206 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 207 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 211 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 212 IRQ_TYPE_EDGE_RISING>,
+> > > +                   <GIC_SPI 213 IRQ_TYPE_EDGE_RISING>;
+> > > +      interrupt-names = "tgia0", "tgib0", "tgic0", "tgid0", "tgiv0", "tgie0",
+> > > +                        "tgif0",
+> > > +                        "tgia1", "tgib1", "tgiv1", "tgiu1",
+> > > +                        "tgia2", "tgib2", "tgiv2", "tgiu2",
+> > > +                        "tgia3", "tgib3", "tgic3", "tgid3", "tgiv3",
+> > > +                        "tgia4", "tgib4", "tgic4", "tgid4", "tgiv4",
+> > > +                        "tgiu5", "tgiv5", "tgiw5",
+> > > +                        "tgia6", "tgib6", "tgic6", "tgid6", "tgiv6",
+> > > +                        "tgia7", "tgib7", "tgic7", "tgid7", "tgiv7",
+> > > +                        "tgia8", "tgib8", "tgic8", "tgid8", "tgiv8", "tgiu8";
+> > 
+> > Not sure you need to list all of the IRQs in the example.
+> 
+> You do, because that's what the schema says is valid.
 
-Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
----
-Changes in v2:
-- added MIT licence option
-- removed "cpu" switch port label.
+You have to use the exhaustive list?
 
- arch/arm/boot/dts/Makefile                 |   1 +
- arch/arm/boot/dts/kirkwood-4i-edge-200.dts | 205 +++++++++++++++++++++
- 2 files changed, 206 insertions(+)
- create mode 100644 arch/arm/boot/dts/kirkwood-4i-edge-200.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index eae7d1139fbc..81a24fe623a8 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -299,6 +299,7 @@ dtb-$(CONFIG_ARCH_KEYSTONE) += \
- 	keystone-k2g-evm.dtb \
- 	keystone-k2g-ice.dtb
- dtb-$(CONFIG_MACH_KIRKWOOD) += \
-+	kirkwood-4i-edge-200.dtb \
- 	kirkwood-b3.dtb \
- 	kirkwood-blackarmor-nas220.dtb \
- 	kirkwood-c200-v1.dtb \
-diff --git a/arch/arm/boot/dts/kirkwood-4i-edge-200.dts b/arch/arm/boot/dts/kirkwood-4i-edge-200.dts
-new file mode 100644
-index 000000000000..b1749d3f60b7
---- /dev/null
-+++ b/arch/arm/boot/dts/kirkwood-4i-edge-200.dts
-@@ -0,0 +1,205 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Endian 4i Edge 200 Board Description
-+ * Note: Endian UTM Mini is hardware clone of Endian Edge 200
-+ * Copyright 2021-2022 Pawel Dembicki <paweldembicki@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "kirkwood.dtsi"
-+#include "kirkwood-6281.dtsi"
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "Endian 4i Edge 200";
-+	compatible = "endian,4i-edge-200", "marvell,kirkwood-88f6281", "marvell,kirkwood";
-+
-+	memory {
-+		device_type = "memory";
-+		reg = <0x00000000 0x20000000>;
-+	};
-+
-+	chosen {
-+		bootargs = "console=ttyS0,115200n8";
-+		stdout-path = &uart0;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&pmx_led>;
-+		pinctrl-names = "default";
-+
-+		led-1 {
-+			function = LED_FUNCTION_SD;
-+			color = <LED_COLOR_ID_AMBER>;
-+			gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "mmc0";
-+		};
-+
-+		led-2 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_AMBER>;
-+			gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-3 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+&eth0 {
-+	status = "okay";
-+};
-+
-+&eth0port {
-+	speed = <1000>;
-+	duplex = <1>;
-+};
-+
-+&eth1 {
-+	status = "okay";
-+};
-+
-+&eth1port {
-+	phy-handle = <&ethphyb>;
-+};
-+
-+&mdio {
-+	status = "okay";
-+
-+	ethphyb: ethernet-phy@b {
-+		reg = <0x0b>;
-+
-+		marvell,reg-init =
-+			/* link-activity, bi-color mode 4 */
-+			<3 0x10 0xfff0 0xf>; /* Reg 3,16 <- 0xzzzf */
-+	};
-+
-+	switch0: switch@11 {
-+		compatible = "marvell,mv88e6085";
-+		reg = <0x11>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				label = "port1";
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				label = "port2";
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+				label = "port3";
-+			};
-+
-+			port@3 {
-+				reg = <3>;
-+				label = "port4";
-+			};
-+
-+			port@5 {
-+				reg = <5>;
-+				phy-mode = "rgmii-id";
-+				ethernet = <&eth0port>;
-+
-+				fixed-link {
-+					speed = <1000>;
-+					full-duplex;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&nand {
-+	status = "okay";
-+	pinctrl-0 = <&pmx_nand>;
-+	pinctrl-names = "default";
-+
-+	partition@0 {
-+		label = "u-boot";
-+		reg = <0x00000000 0x000a0000>;
-+		read-only;
-+	};
-+
-+	partition@a0000 {
-+		label = "u-boot-env";
-+		reg = <0x000a0000 0x00060000>;
-+		read-only;
-+	};
-+
-+	partition@100000 {
-+		label = "kernel";
-+		reg = <0x00100000 0x00400000>;
-+	};
-+
-+	partition@500000 {
-+		label = "ubi";
-+		reg = <0x00500000 0x1fb00000>;
-+	};
-+};
-+
-+&pciec {
-+	status = "okay";
-+};
-+
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	pinctrl-0 = <&pmx_sysrst>;
-+	pinctrl-names = "default";
-+
-+	pmx_sysrst: pmx-sysrst {
-+		marvell,pins = "mpp6";
-+		marvell,function = "sysrst";
-+	};
-+
-+	pmx_sdio_cd: pmx-sdio-cd {
-+		marvell,pins = "mpp28";
-+		marvell,function = "gpio";
-+	};
-+
-+	pmx_led: pmx-led {
-+		marvell,pins = "mpp34", "mpp35", "mpp49";
-+		marvell,function = "gpio";
-+	};
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&sata_phy0 {
-+	status = "disabled";
-+};
-+
-+&sata_phy1 {
-+	status = "disabled";
-+};
-+
-+&sdio {
-+	pinctrl-0 = <&pmx_sdio_cd>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	cd-gpios = <&gpio0 28 9>;
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
