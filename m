@@ -2,347 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6568C5F2EB8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 12:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A6335F2EC0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 12:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229813AbiJCKXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 06:23:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32868 "EHLO
+        id S229904AbiJCK2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 06:28:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbiJCKXA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 06:23:00 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6619249B6D
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 03:22:59 -0700 (PDT)
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C760F440;
-        Mon,  3 Oct 2022 12:22:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1664792577;
-        bh=wN2lboLgcuK6XlUJX4lcUJa+tZehKWY0dhTk+Pd6VsE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=H+vO/mPUhJGgnOadQTfIV3y432k5VD2ebQFrWBf1Vprk/DFZKkrrdNG/47e1/EQdD
-         MQAVFQSkO7Bd4oy2TAlxzj8tAJNRSI8yXRoEJvbiKZCzWogbmGhvO/5+YidLIHvPsv
-         T5sEwWfGIyxN+QBwEScxO8sPZFnT1HA2rYsmVpko=
-Message-ID: <87eb3b17-ddc5-7a1e-29e8-dbe93a049c59@ideasonboard.com>
-Date:   Mon, 3 Oct 2022 11:22:54 +0100
+        with ESMTP id S229903AbiJCK2P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 06:28:15 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 997DF2036B
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 03:28:14 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id 2so3744919pgl.7
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 03:28:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=vwTz/shfVewcrDBvcSjpajC//P90vkQhNtpNZ6DDe5A=;
+        b=yj6HwP5esn+I50lkL5E2w0oayFCvorxGV4H3QvW3nqLSELFte78H6CyJmJFJmSCQZF
+         rdLII6j/UFiolYCyXGtBKuP/ZZ7FU9PgLeX/HXEbPf2oZW9AkKupV4kEBqTKCFvBkeki
+         7LobV/AZWjuKcNblXVrioNI5ar3PUv3rAAs1e1EsZJsiHOUU1g9BVZLnGco3w8ffJtXf
+         UGuUHHLi8pyQ4Ix2fb7vHzkKVFPLoSe02/2ttcYyQTn0uZ8uLz9KoeXFO6kFlfauwXYx
+         JpC9z9G9mpdtYGgvFTyhKPlPLlqZJqwET9OqJ9sRnq0mqb1nLXQyRsT3TIAnwiFWZfOf
+         2/dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=vwTz/shfVewcrDBvcSjpajC//P90vkQhNtpNZ6DDe5A=;
+        b=vkNCkYlw9MjeK/vDCJzkTqPbMUmRc1cPFE5V+I7386QX2vff9yP/d4o2nzAB1SoqmL
+         UO4c7C/7TdhiNk7bbrIxL/MkdPV+b7SUKWyWzGvUdqR+QrXMo+aVJExQShxzMYffUYcj
+         ZAk8frS0zZQ6hLu0ZzTESoSP3lUn/CNCLWhLejOfKm4JSKlGBHua67dY7moLkDj/89jG
+         O2Sk6CXB+RMf5pAqFVx70Tzzjg5Y+HRncJK+WuAh57UKXk0OViG4wAwXE+TIjULLLhZX
+         NFwywj0RvfsuoLAgd9QWtePxvJ8So0wDxwcwJfxjgByKKJhCvZsbDFIAuxKePTATxdxn
+         7K/w==
+X-Gm-Message-State: ACrzQf2MtgeXYevCsz8/8LcCUuWHQWTqrtPhHqV4F571RbsPUVJqmHbz
+        qUwc37jD+SEUUWNzmD7QFH1NbYz0+UdRl30/
+X-Google-Smtp-Source: AMsMyM6BRtr0h4ck7dIeqAUby/GmyRQ7aZ74UiNeugdFxz/161OPtngBUffa/PAMRFoe0wlTLs3nQw==
+X-Received: by 2002:a63:2a82:0:b0:43c:1ef8:4093 with SMTP id q124-20020a632a82000000b0043c1ef84093mr18261616pgq.251.1664792894115;
+        Mon, 03 Oct 2022 03:28:14 -0700 (PDT)
+Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
+        by smtp.gmail.com with ESMTPSA id y17-20020a170902b49100b00172951ddb12sm6860249plr.42.2022.10.03.03.28.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Oct 2022 03:28:13 -0700 (PDT)
+From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org,
+        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v6 0/3] Add LTE SKU for sc7280-evoker family
+Date:   Mon,  3 Oct 2022 18:27:33 +0800
+Message-Id: <20221003102735.39028-1-sheng-liang.pan@quanta.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 3/3] arm64: dts: Add device tree for the Debix Model A
- Board
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        laurent.pinchart@ideasonboard.com, kieran.bingham@ideasonboard.com,
-        debix-tech@polyhex.net
-References: <20221003083705.22495-1-dan.scally@ideasonboard.com>
- <20221003083705.22495-4-dan.scally@ideasonboard.com>
- <152eb491-ddff-9639-a72b-968e3fc5949c@linaro.org>
-From:   Dan Scally <dan.scally@ideasonboard.com>
-In-Reply-To: <152eb491-ddff-9639-a72b-968e3fc5949c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
+This patch add common dtsi and WIFI/LTE dts for evoker.
 
-On 03/10/2022 10:26, Krzysztof Kozlowski wrote:
-> On 03/10/2022 10:37, Daniel Scally wrote:
->> Add a device tree file describing the Debix Model A board from
->> Polyhex Technology Co.
->>
->> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->> ---
->>   arch/arm64/boot/dts/freescale/Makefile        |   1 +
->>   .../dts/freescale/imx8mp-debix-model-a.dts    | 550 ++++++++++++++++++
->>   2 files changed, 551 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
->>
->> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
->> index 238a83e5b8c6..f26e802cef82 100644
->> --- a/arch/arm64/boot/dts/freescale/Makefile
->> +++ b/arch/arm64/boot/dts/freescale/Makefile
->> @@ -79,6 +79,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
->> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-model-a.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
->> new file mode 100644
->> index 000000000000..6d0fa3930d0b
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
->> @@ -0,0 +1,550 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright 2019 NXP
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/leds/common.h>
->> +#include <dt-bindings/usb/pd.h>
->> +
->> +#include "imx8mp.dtsi"
->> +
->> +/ {
->> +	model = "Polyhex Debix Model A (2GB) i.MX8MPlus board";
->> +	compatible = "polyhex,imx8mp-debix-modela2gb", "fsl,imx8mp";
->> +
->> +	chosen {
->> +		stdout-path = &uart2;
->> +	};
->> +
->> +	gpio-leds {
->> +		compatible = "gpio-leds";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_gpio_led>;
->> +
->> +		status-led {
->> +			function = LED_FUNCTION_POWER;
->> +			color = <LED_COLOR_ID_RED>;
->> +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
->> +			default-state = "on";
->> +		};
->> +	};
->> +
->> +	reg_usdhc2_vmmc: regulator-usdhc2 {
->> +		compatible = "regulator-fixed";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
->> +		regulator-name = "VSD_3V3";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +	};
->> +};
->> +
->> +&A53_0 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&A53_1 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&A53_2 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&A53_3 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&eqos {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_eqos>;
->> +	phy-connection-type = "rgmii-id";
->> +	phy-handle = <&ethphy0>;
->> +	status = "okay";
->> +
->> +	mdio {
->> +		compatible = "snps,dwmac-mdio";
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		ethphy0: ethernet-phy@0 {
->> +			compatible = "ethernet-phy-ieee802.3-c22";
->> +			reg = <0>;
->> +			reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
->> +			reset-assert-us = <20>;
->> +			reset-deassert-us = <200000>;
->> +		};
->> +	};
->> +};
->> +
->> +&fec {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_fec>;
->> +	phy-connection-type = "rgmii-id";
->> +	phy-handle = <&ethphy1>;
->> +	fsl,magic-packet;
->> +	status = "okay";
->> +
->> +	mdio {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		ethphy1: ethernet-phy@0 {
->> +			compatible = "ethernet-phy-ieee802.3-c22";
->> +			reg = <0>;
->> +			reset-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
->> +			reset-assert-us = <10>;
->> +			reset-deassert-us = <150>;
->> +		};
->> +	};
->> +};
->> +
->> +&i2c1 {
->> +	clock-frequency = <400000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c1>;
->> +	status = "okay";
->> +
->> +	pmic@25 {
->> +		reg = <0x25>;
->> +		compatible = "nxp,pca9450c";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_pmic>;
->> +		interrupt-parent = <&gpio1>;
->> +		interrupts = <3 GPIO_ACTIVE_LOW>;
-> Nope, wrong flag. This is a hint for us that you based your DTS on
-> something ancient (e.g. broken downstream stuff). Please start from
-> *scratch* and write your DTS based on a board taken from mainline.
->
-> There is no point for us to repeat review for all the things  we already
-> fixed in mainline.
+Changes in v6:
+- add removed pinctrl and align touchscreen label with herobrine board
 
+Changes in v5:
+- new patch add touchpad and touchscreen for evoker
+- remove unnecessary whitespace
+- Touchscreen / trackpad patch new for v5
 
-Ack - I'll start it from scratch, thanks.
+Changes in v4:
+- fix typo in tittle and commit
+- remove change for trackpad and touchscreen
+- remove change for trackpad and touchscreen
 
->
->
->> +
->> +		regulators {
->> +			buck1: BUCK1 {
->> +				regulator-name = "BUCK1";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <2187500>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +				regulator-ramp-delay = <3125>;
->> +			};
->> +
->> +			buck2: BUCK2 {
->> +				regulator-name = "BUCK2";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <2187500>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +				regulator-ramp-delay = <3125>;
->> +				nxp,dvs-run-voltage = <950000>;
->> +				nxp,dvs-standby-voltage = <850000>;
->> +			};
->> +
->> +			buck4: BUCK4{
->> +				regulator-name = "BUCK4";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <3400000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			buck5: BUCK5{
->> +				regulator-name = "BUCK5";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <3400000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			buck6: BUCK6 {
->> +				regulator-name = "BUCK6";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <3400000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			ldo1: LDO1 {
->> +				regulator-name = "LDO1";
->> +				regulator-min-microvolt = <1600000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			ldo2: LDO2 {
->> +				regulator-name = "LDO2";
->> +				regulator-min-microvolt = <800000>;
->> +				regulator-max-microvolt = <1150000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			ldo3: LDO3 {
->> +				regulator-name = "LDO3";
->> +				regulator-min-microvolt = <800000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			ldo4: LDO4 {
->> +				regulator-name = "LDO4";
->> +				regulator-min-microvolt = <800000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			ldo5: LDO5 {
->> +				regulator-name = "LDO5";
->> +				regulator-min-microvolt = <1800000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&i2c2 {
->> +	clock-frequency = <100000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c2>;
->> +	status = "okay";
->> +};
->> +
->> +&i2c3 {
->> +	clock-frequency = <400000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c3>;
->> +	status = "okay";
->> +};
->> +
->> +&i2c4 {
->> +	clock-frequency = <100000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c4>;
->> +	status = "okay";
->> +
->> +	eeprom@50 {
->> +		compatible = "atmel,24c02";
->> +		reg = <0x50>;
->> +		pagesize = <16>;
->> +	};
->> +
->> +	hym8563@51 {
-> Node names should be generic.
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->
->
->
-> Best regards,
-> Krzysztof
->
+Changes in v3:
+- none
+
+Changes in v2:
+- none
+
+Sheng-Liang Pan (3):
+  dt-bindings: arm: qcom: Separate LTE/WIFI SKU for sc7280-evoker
+  arm64: dts: qcom: Add LTE SKU for sc7280-evoker family
+  arm64: dts: qcom: Add touchscreen and touchpad support for evoker
+
+ .../devicetree/bindings/arm/qcom.yaml         |  5 +++++
+ arch/arm64/boot/dts/qcom/Makefile             |  3 ++-
+ .../dts/qcom/sc7280-herobrine-evoker-lte.dts  | 14 ++++++++++++
+ .../boot/dts/qcom/sc7280-herobrine-evoker.dts | 15 +++++++++++++
+ ...er-r0.dts => sc7280-herobrine-evoker.dtsi} | 22 ++++++-------------
+ 5 files changed, 43 insertions(+), 16 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
+ rename arch/arm64/boot/dts/qcom/{sc7280-herobrine-evoker-r0.dts => sc7280-herobrine-evoker.dtsi} (95%)
+
+-- 
+2.34.1
+
