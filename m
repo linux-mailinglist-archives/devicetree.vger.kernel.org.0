@@ -2,70 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DEC25F2792
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 04:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E23705F279A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 04:07:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229464AbiJCCAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 22:00:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47484 "EHLO
+        id S229470AbiJCCHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 22:07:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiJCCAe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 22:00:34 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1610917E38;
-        Sun,  2 Oct 2022 19:00:31 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id d12-20020a05600c3acc00b003b4c12e47f3so5059677wms.4;
-        Sun, 02 Oct 2022 19:00:31 -0700 (PDT)
+        with ESMTP id S229451AbiJCCHF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 22:07:05 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2129.outbound.protection.outlook.com [40.107.93.129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E9932B8F;
+        Sun,  2 Oct 2022 19:07:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KVUGOZA2Aj2BLlEsXeqPPukUv1B0k7gm6Xupia8A0cLFqVbxO72NRuJUT/Fp5hgA3Ad/2tIDqmeg/+k2leGkRE2kmK2a7Xn7b0MsAyTzhdoLYklOn6aj8JR4t44BLeZeHZsOMW48eNUf5u0xnSwIvtqXT85/vBgxKoPps5OS95+6uTv5NSihSACsyJQf9SjGTlZ3skNc92AgPuCVmXzfN6A0EQs6l4zcubkylvWMas9nporPpuNTTthuhk38XMVQjVYmyPudl/jDf1PvgcwWktEXkVDoueU8RTZuuYda1953FlGTQlGUNn4VxH3+NyqiUtL2EDLALXxCyhqA056tng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DJF7lEU29hulWOvjccvil+fYO0JjpejxOmTyumoNdbo=;
+ b=AGTdC/GTAxqBekv6M/djp7t97yJkJaitcCEwxC9sgwuen6boetBp5OBM9IvquELQGkYgqKe/A3J64+ms4CA85xwwBc5ZAWlhxKU0NIMnQ97rSBO9LiJ3Mr6h4Bg6jdxsgxEFQqxdMqeBddDLh5lYguDraV7W6S4j8GolniW5a1glk6nwCOt7xaZBx3Trf8U7MbTTRIyuL5uwuS8Ycy44xZlMf5tkFa0y7LQnkbXBAuUzaXL8KWn66UqcQfjLTlkWwZHQAaSpjp8Y0dTpVsVct2JF4fD5ye7N0p3k/aF4OxEuLf37N6isq7FmsWU24+GsJ5o9PZ7VxAwPzMLvm8bfMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=bDOn5KEWOol/POx3OY5sp8JnMcKuLfHDpdab/ZUK6II=;
-        b=AuhdV2KW79os6xuEBd5wkBE8HMNlktciIW3l3q+OiLxR3SPp5lXEWCRy9H+rHLQa3z
-         VkGVMGq9ZL6szE4KL0lBLjOyEz6aEJ4VWP8ZO/9zA4qhZ+z+oSnWU981u5uV4o5ZjJqY
-         LiqePrIzfNJSx6lmN3JcyKGLWbdqBpQyXg+rF2v3E8EP3V+MxiVrtKabdBhBmcbqkips
-         FI8kLl8p2rJjKULXwl1VO0ASndw9l7fc5LDZ9/If6BMnr7eX+xqk9usbbVSAo39t/Tk1
-         vPpx+LLXfwsazQDGzqmpre0akxExez19WXZCnUDJD5q3+46F8ip5ClDcuPoGPODCsOti
-         8pIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=bDOn5KEWOol/POx3OY5sp8JnMcKuLfHDpdab/ZUK6II=;
-        b=Nx5kuV+NqkRGhuPHQG3dT4bHAKvg0vSZ4u9OB+HrrzUsa7H2PmAsFt70qru9OP2g7i
-         tfNKDRMOh4cH8bWR4gPV5kco8/gX9wUpGZ0qsqoQf2/LfMbNlu1IgORXwf8AFAERzjwE
-         eHEY2JgBKq705LyRMwBB1VKxC7Pw3oiTZXOC9SPwXhDz6bI5CKF2NB204t4SfBZ/Gn5e
-         vVNZ0OYaz8MI0zilD/ILXaPzIjw+DdDPOFsStvJ8yQUA/pkcXvs/Q8qwCnJaC01ugLik
-         RB7gIeXtD+3UF05Z1I2BMfEohLXC8t5uMW/ADl/kkFU5rWUdiEt8bGlWarTXA1YW7qkn
-         ATkA==
-X-Gm-Message-State: ACrzQf0AWI+VWmhVvWGslTirTKKkCAfZxgBKq41Yxh7waI5MEJDM+7yq
-        wTnT7rEIvIyv20ZEyEkTw6q1GNKeO8RX1KO+bPPm6Z3QMYY=
-X-Google-Smtp-Source: AMsMyM766IiHMlhusWvnotc4ifTdnEUF7hotYZRv2hlUsagIAN3xgMTuAlIYQHfrkGd3NmC/+a8ckfYBxdjzsvmDZNk=
-X-Received: by 2002:a05:600c:1549:b0:3b4:8fd7:af4 with SMTP id
- f9-20020a05600c154900b003b48fd70af4mr5222907wmg.100.1664762430059; Sun, 02
- Oct 2022 19:00:30 -0700 (PDT)
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DJF7lEU29hulWOvjccvil+fYO0JjpejxOmTyumoNdbo=;
+ b=MVHD9lkzP8dbRH5dSM9xKB4MN3+XJmWuV6ac7eSrbudv0RsKA505DPYIhY/1vbzSuxBibeqwzPS4U5iTg9zVzOT0hVQq1fQrUtWjGkQ5myq8l+TCdTPLxMGrfQMGSAFSGSNhcN6UXyp94px+XNfIpptCnReM0d8fctn4WBGBL9k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ MN2PR01MB5776.prod.exchangelabs.com (2603:10b6:208:191::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5676.17; Mon, 3 Oct 2022 02:06:58 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::7d50:e907:8e2e:1ff0]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::7d50:e907:8e2e:1ff0%3]) with mapi id 15.20.5676.028; Mon, 3 Oct 2022
+ 02:06:57 +0000
+Message-ID: <b35f756d-08e7-6eed-5992-ad63ee419e1f@os.amperecomputing.com>
+Date:   Mon, 3 Oct 2022 09:06:46 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.3.0
+Subject: Re: [PATCH v9 3/3] i2c: aspeed: Assert NAK when slave is busy
+Content-Language: en-CA
+To:     Wolfram Sang <wsa@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Corey Minyard <minyard@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com
+References: <20220929080326.752907-1-quan@os.amperecomputing.com>
+ <20220929080326.752907-4-quan@os.amperecomputing.com>
+ <YzjFRrCRZBAaSRBL@shikoro>
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+In-Reply-To: <YzjFRrCRZBAaSRBL@shikoro>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR02CA0004.apcprd02.prod.outlook.com
+ (2603:1096:3:17::16) To SJ0PR01MB7282.prod.exchangelabs.com
+ (2603:10b6:a03:3f2::24)
 MIME-Version: 1.0
-References: <1663173015-7934-1-git-send-email-u0084500@gmail.com>
- <1663173015-7934-4-git-send-email-u0084500@gmail.com> <20220916180823.p672rojsrjbpy4ft@mercury.elektranox.org>
- <CADiBU39FMkDOrMHXTQF+0JGX2tDn_iVXCb19jM6MopnKmaXOpQ@mail.gmail.com> <20221001205800.msywk4yvqgegjqpe@mercury.elektranox.org>
-In-Reply-To: <20221001205800.msywk4yvqgegjqpe@mercury.elektranox.org>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Mon, 3 Oct 2022 10:00:18 +0800
-Message-ID: <CADiBU38vLBfvpFuOOikdZ5XsMGqCaq7hh+ZcjBx85ksw6dbShQ@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] Documentation: power: rt9471: Document exported
- sysfs entries
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mazziesaccount@gmail.com, alina_yu@richtek.com,
-        cy_huang@richtek.com, alinayu829@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR01MB7282:EE_|MN2PR01MB5776:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1490bbca-1b1b-44cc-8ddd-08daa4e3f312
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fgsekCKofs+++yhDCMllUAGltlP4IMItFEhAImraOsg3FBdMdx1YTiuL3ESPkofEb8341n2KfQzFFbu/SdiMZWUfKNwJ7G0x76liEcCGlNP0C98KxhVXSgAGMTM07NbaJFbAl7OqjmS3YOARRvCnP2Cijk5PyRMFgbHARITLL4kXqoCiLqeuxKnWq99Abvaj1qgIIoL6coxl588R00tDkWm323GHR1HBsITvz63++fDHlCY/UV+I8hpQNRENuU2BE+/w7qrzn1W4/N4lP4UCi5S+ZP7G67FxWn6Rb74M2lkXCgpjx9NAL3gMAg+hZp0XdJoLZvVE81XAz81ydhwSgKJ3aybiqQ7tGngDBlIDQtNaghkSqZAuG9QPzmxTUrMXYZUTiekrxk6j4Ly7ZfBw8Vy/JMqqd+RShHekbig01TN0IXHNThC8Tm/nrHYP8LFcEvV8HhCRJL6LCx3LzSutIp+yMcwQX7uMW5ZZxltOzfbvZ8AlQ1MqjOiBuzkqD+wwfPriAGy2vFeB+qvrU/AjrhuOEhDfRHFCmh6elNag48r1/Uwe0Tu6wbMu9diULpJNeI0gHRP+ED+XTkjeAoGaaAlX7prlD/Y5we5XuKbwtFSbTkmMS/BBF53GRNCTFY+vhuKpvN5pQ7zuRKhFf2TJtDlQGMOQlN60qA5t/pMNH1pcw5+JJ+AdSPhM9RZeGAGDl85ucn6ee1ThXkqBlK/Vj3BZfRWiJq+wwqAsSIZw/NDJkaUBQkuBwd67OKEkDLSv8nvHfcUeP3+4uEGs3W2sgQ+gnLKNSDj7cXNr2aov7yfcSnJe7kr3Lo4ujXEVZ17U
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39850400004)(376002)(346002)(366004)(136003)(396003)(451199015)(31686004)(2906002)(41300700001)(7416002)(8936002)(5660300002)(110136005)(478600001)(66556008)(66476007)(38100700002)(31696002)(38350700002)(86362001)(8676002)(6512007)(26005)(6666004)(2616005)(53546011)(52116002)(66946007)(6506007)(316002)(6636002)(6486002)(921005)(558084003)(186003)(83380400001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WTlHbzZKWnVXdFZ5ZDlBbFcvR1lNekY4NVd3REl6cE1jR08rcGo2bGFneFZP?=
+ =?utf-8?B?ZTFrTy96Smc3UHFBU05OV1JxazZXT3dGT3IwS0p3RXo0RlpmWHZLOHR4OUg1?=
+ =?utf-8?B?VmlubFQ2M3hlcW5xc05EdnBiOWt1V1RJNU9YT3JsUkZRTHM5aVFrVDhxRTRG?=
+ =?utf-8?B?Ymp2YTFpb2NyaHcrdVFLVW5QVlVTU0RYSVFlay9JMzhrTmZVb05PTkR5NDVi?=
+ =?utf-8?B?MytKbCsvK0lzeHZ4SElvbi9WckFXMTBXU1o1dnFaZGx3Y2oxVHNSbVdtanpq?=
+ =?utf-8?B?VTFid3NjRnExR3c1Tk9rZjg0ZU0rQ0dXTHNpNXN1cG1ac2RrVWZmUTEwQStW?=
+ =?utf-8?B?aERRQ2I2a2NnclI4UnJHQXhSVS9CaHFBbStUQ2l3WUl6dklGWG9JK3d6RHha?=
+ =?utf-8?B?OWQwdWozVDRySTcwL1REZGozYW8xZ1F6c21EcFYvalYzMHJjclFjVHlHSXhV?=
+ =?utf-8?B?eUtBYVZpMzc4blNjNSt4RW1Takx3RXF6K0VackdZZjhCdktXTlN1VzZsOEhj?=
+ =?utf-8?B?K1pBNFdCeVllUTJ0bWU2dXZXcGx4eW1ENE5FZ1FhdTdZdjV6eEZLRGNnNmFK?=
+ =?utf-8?B?UThsQnNUQTVsaGlrS2RBUm14OTRhdHNLM1B2M0hMYWpYS0ZsSDF0UWo0STBs?=
+ =?utf-8?B?VjFOaEN5SEZoWW5lYm9JOEw3MWdpWExMNXdZQmg0ejkyd3d6OXFqcGh4NGxE?=
+ =?utf-8?B?cU8yV2ZrNFd6NTdLUnpEYlhjWUxuMzA0N0RrSFU5QUc3MU1hVUxyMlJDOHVR?=
+ =?utf-8?B?UzY0SW94MEJUdFdqTTVDZ2VTQ1N1QTJndklrUHc4SG9Md0gxV0ZQWFdJeHp1?=
+ =?utf-8?B?WjZCSjVsYnZ4VE9QL2JPWm9HOEtkUTd0Z04yT2hQMTFlckZ5dnlmdWx4ZEg2?=
+ =?utf-8?B?UjFFR3hZR3dRTjk2SEZ2SDByM0cvaEMxVWRNNGx3S3lDMXZEc0VKWndBUVBz?=
+ =?utf-8?B?TWRrS3dYL1dZZ0dEakg2Y3lvNVdERWdybDJCeWt0THZDQ2tBL3lWQUsyVnZr?=
+ =?utf-8?B?TWZ4WU5YaERpOUxvb05rTTJlRDVPOE11djFrTHBPMmVVVnkybG16M3FWQzZD?=
+ =?utf-8?B?cWR3QWFXT01rbnFFR0hVSExnWkJ5L1gzckNaQW1FVS9kbHIzTVJQeTdnL2hO?=
+ =?utf-8?B?bkFwb0Y5RDhWOTNnUEhJQXhVc1dka0J1RFczdFd2VlZHLzYzU21HaEd4M0Fs?=
+ =?utf-8?B?RFcyckxiYjJjeGVVQmtDSkY5MEtlUDd4aVM1YTBIRU8wT2RpL1BGWlZsd2pz?=
+ =?utf-8?B?WC9jKzkrSTcvcWR4RGVDdmkrOVVSQmRTNWRSZEkvVlIxNnE0cHNjdFRsS3NQ?=
+ =?utf-8?B?c1BQUDZTNVVHUE11L09NQW5FWHpRNk5Ec3I2WWVIOFpwTXRkZzltMXEyRHJh?=
+ =?utf-8?B?NXNYYVd3aEpQL2JNYTcyQWlyYjBWZytwQ1RLcW5OSWtjbnovUVNRQ2VqekRG?=
+ =?utf-8?B?OCtyTFVJdGUzSzdqSWgxVVpjbHN5eEFGOHFYcHRFcWFCVUd2d0N2eExLcUx6?=
+ =?utf-8?B?WWhhY3VicmJXQXBMT1AySHZER2VmL2lreG9FMlBPVUdkd09wdERiVDlhbVll?=
+ =?utf-8?B?MndpcGVhV0pnbWo0WmtoeHIwL2J6MWZHRzhpMld1eFBzRW0yQnc5Q2N5RGtL?=
+ =?utf-8?B?b1kxcjVhOHAyQ1JnY1ZBN3BqSitQb3hwTUwzbzJkVzI5RlRLMDdPc2FXdW5s?=
+ =?utf-8?B?YkhCNlZDQjhPZTRkUUFkM3JnaHZQK0h2ajlVelAxZGlGekV0aHJabmxPZnd5?=
+ =?utf-8?B?Nkwwb2hBY2Z5bUF5akVleVN3eU4zRmZFMFh0Q1BSaUtEaHd4Y3czbjU1TXJQ?=
+ =?utf-8?B?YVAxVzgzQXdOSCtZVElSU2FuVWhYYmo4cm11dWtHSHdpd3VMTXV6cTVaNk5y?=
+ =?utf-8?B?MVdnWlNDVjhvTGo0RUZyaUlYYXp4ZUZyY0FUcFBnOEZzWml1bzBFRUNZS0M2?=
+ =?utf-8?B?cmhqSDZjNVA2Uy9CVU05SU5CMU1pbjBVTXplQnJFM2lFcGw5QmJRcUFZNnNB?=
+ =?utf-8?B?cWZNUWkwWGRGendLRXZYNjkvUy9kMGgwQlc4VE1iWGVNc2E5WTNjb3VDUExz?=
+ =?utf-8?B?a1lBOU9udnp4TmY4dldwZk9DL0ZKLy92RHEyWFJhNWhMU25TR2NMZ1E0K2xB?=
+ =?utf-8?B?ZkgvVHllZGtvdXIwa3U2SGpQWG5aWGRDbEsrSmtJa3lFNTdzK0NxRFZvYzd4?=
+ =?utf-8?Q?I+9o9dOAtyO4OZC4xFXBghQ=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1490bbca-1b1b-44cc-8ddd-08daa4e3f312
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2022 02:06:57.3644
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sHYOweJKfXXSqA6xmj9OR7zcYXRnhtWyowJ4eH446Z5FtYN2k1dz5bxLLAtOqx7hZ8bXZOzPjd/OELqPN8sxV2jZGn/LZVHsRY1rj0ECQUg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR01MB5776
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,162 +141,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sebastian Reichel <sebastian.reichel@collabora.com> =E6=96=BC 2022=E5=B9=B4=
-10=E6=9C=882=E6=97=A5 =E9=80=B1=E6=97=A5 =E5=87=8C=E6=99=A84:58=E5=AF=AB=E9=
-=81=93=EF=BC=9A
->
-> Hi,
->
-> On Mon, Sep 19, 2022 at 09:11:09AM +0800, ChiYuan Huang wrote:
-> > Sebastian Reichel <sebastian.reichel@collabora.com> =E6=96=BC 2022=E5=
-=B9=B49=E6=9C=8817=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=889:19=E5=AF=
-=AB=E9=81=93=EF=BC=9A
-> > > On Thu, Sep 15, 2022 at 12:30:15AM +0800, cy_huang wrote:
-> > > > From: ChiYuan Huang <cy_huang@richtek.com>
-> > > >
-> > > > Document the settings exported by rt9471 charger driver through sys=
-fs entries:
-> > > > - sysoff_enable
-> > > > - port_detect_enable
-> > > >
-> > > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > > > ---
-> > > > Since v5:
-> > > > - Recover all the change in sysfs-class-power.
-> > > > - New a sysfs-class-power-rt9471 file.
-> > > > - Remove 'charge_term_enable' sysfs entry, directly integrate it in
-> > > >   'charge_term_current' power supply property control.
-> > > >
-> > > > ---
-> > > >  Documentation/ABI/testing/sysfs-class-power-rt9471 | 29 ++++++++++=
-++++++++++++
-> > > >  1 file changed, 29 insertions(+)
-> > > >  create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9=
-471
-> > > >
-> > > > diff --git a/Documentation/ABI/testing/sysfs-class-power-rt9471 b/D=
-ocumentation/ABI/testing/sysfs-class-power-rt9471
-> > > > new file mode 100644
-> > > > index 00000000..ad5b049
-> > > > --- /dev/null
-> > > > +++ b/Documentation/ABI/testing/sysfs-class-power-rt9471
-> > > > @@ -0,0 +1,29 @@
-> > > > +What:                /sys/class/power_supply/rt9471-*/sysoff_enabl=
-e
-> > > > +Date:                Oct 2022
-> > > > +KernelVersion:       6.1
-> > > > +Contact:     ChiYuan Huang <cy_huang@richtek.com>
-> > > > +Description:
-> > > > +             This entry allows enabling the sysoff mode of rt9471 =
-charger devices.
-> > > > +             If enabled and the input is removed, the internal bat=
-tery FET is turned
-> > > > +             off to reduce the leakage from the BAT pin. See devic=
-e datasheet for details.
-> > > > +             It's commonly used when the product enter shipping st=
-age.
-> > > > +
-> > > > +             Access: Read, Write
-> > > > +             Valid values:
-> > > > +             - 1: enabled
-> > > > +             - 0: disabled
-> > >
-> > > I still fail to see why this needs to be controllable at runtime.
-> > > This looks like a hardware property. Are there any known products,
-> > > which need this disabled?
-> > It's just a switch, actually 'disabled' is not needed.
-> > For the enabled case, mostly used in below scenarios
-> > 1. Online testing, USB IN -> Factory testing -> write 1 to enable ->
-> > USB out -> immediately VSYS off -> pack
-> > 2. Offline testing no vbus -> Factory testing -> write 1 to enable ->
-> > immediately VSYS off -> pack
-> >
-> > The 'disable" can use to cancel the shipping mode in case 1 before USB =
-out.
-> > It's more like the testing.
-> >
-> > Like as you said, shipping BATFET_OFF is all the hardware behavior.
-> > To leave this mode after VSYS off, there're three ways
-> > 1. power key pressed
-> > 2. VBUS IN
-> > 3. control BATFET_OFF to 0 (But it need SOC to be alive, at the time,
-> > VSYS off, no one can execute this I2C command)
->
-> If factory testing and preperation is the only use case, I don't
-> think exposing this in sysfs and creating userspace ABI is worth
-> it. Just tell factory to use i2c-dev and poke the correct registers.
->
-I agree your comment if there's only this case will use it.
 
-So I ask our HW members about this.
-They said there's still one case I didn't consider about.
-It's the dual charger scenario.
-If the charging process is entering CV mode, the slave charger is no
-need to join the charging.
-Then in common case, slave charger need to minimize the battery leakage.
-And the BATFET_OFF is needed to lower the battery leakage.
 
-They think this sysfs entry is needed. Can this persuade you?
+On 02/10/2022 05:55, Wolfram Sang wrote:
+> 
+>> +		if (ret == -EBUSY)
+> 
+> Since we documented this:
+> 
+> "+  'ret': 0 if the backend is ready, otherwise some errno"
+> 
+> the code above should be '(ret < 0)'
+> 
 
-> > If what you care is no need to mention 'disable', then just remove it.
-> > It's fine.
-> > >
-> > > > +What:                /sys/class/power_supply/rt9471-*/port_detect_=
-enable
-> > > > +Date:                Oct 2022
-> > > > +KernelVersion:       6.1
-> > > > +Contact:     ChiYuan Huang <cy_huang@richtek.com>
-> > > > +Description:
-> > > > +             This entry allows enabling the USB BC12 port detect f=
-unction of rt9471 charger
-> > > > +             devices. If enabled and VBUS is inserted, device will=
- start to do the BC12
-> > > > +             port detect and report the usb port type when port de=
-tect is done. See
-> > > > +             datasheet for details. Normally controlled when TypeC=
-/USBPD port integrated.
-> > > > +
-> > > > +             Access: Read, Write
-> > > > +             Valid values:
-> > > > +             - 1: enabled
-> > > > +             - 0: disabled
-> > >
-> > > So basically this depends on the hardware integration (e.g. it
-> > > should be disabled when power source is a DC barrel jack instead
-> > > of USB) and is not supposed to change at all during runtime? Then
-> > > the information wether it needs to be enabled should be derived
-> > > from the device tree.
-> >
-> > It's a switching charger integrates OTG boost.
-> > For the case 'DC Jack', there's no need to use this kind of product.
-> >
-> > With typec integration, at most time, it still need bc12 to be enabled
-> > by default. Just in some case, like as power role swap (SNK -> SRC -> S=
-NK),
-> > to automatically identify the USB port, this may interrupt USB communic=
-ation.
-> >
-> > So as my understanding, keep it enabled by default, just in some case,
-> > it my need to control at runtime.
->
-> This should be part of the description. You can drop the sentence
-> "Normally controlled when TypeC/USBPD port integrated.", since
-> that's hard to comprehend. Instead add the information that this
-> is supposed to be always enabled, but can be disabled to avoid
-> USB link loss (?) when doing a USB PD role swap.
->
-Thanks for the comment.
+Will update.
+Thanks a lot for the review.
 
-I'll rewrite it as below
-'It's supposed to be always enabled, but can be disabled to avoid usb
-link interruption especially when doing a USBPD 'power' role swap.'
-
-Sorry, due to the long reply period, I already sent v6/v7/v8 to fix
-some coding like as missing header and irq wakeup check.
-Actually only missing header change is needed.
-Please ignore these noise.
-
-And after the sysfs reviewing is finished, you can just review the revision=
- v9.
-Thanks.
-> -- Sebastian
+- Quan
