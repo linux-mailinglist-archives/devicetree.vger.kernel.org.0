@@ -2,53 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBFDE5F311A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BF9F5F3128
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 15:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229899AbiJCNYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 09:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55140 "EHLO
+        id S229853AbiJCNZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 09:25:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229893AbiJCNYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 09:24:54 -0400
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 396CD1A835;
-        Mon,  3 Oct 2022 06:24:52 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-131dda37dddso11954245fac.0;
-        Mon, 03 Oct 2022 06:24:52 -0700 (PDT)
+        with ESMTP id S230088AbiJCNZD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 09:25:03 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A191F2E6;
+        Mon,  3 Oct 2022 06:24:58 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1329abb0ec6so281302fac.8;
+        Mon, 03 Oct 2022 06:24:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=kU451SIl5W9H4rqW6cWLRkVs+TNTYoxZeSEJlocEXiY=;
-        b=v0qkAibpdwzs5BiyS5xXv4BbEWf/R05jLe6YNHXRBF6PryVIqkaE38eUYAfkr05ru2
-         ZRPepyp4Jm5ff7DXdeGjvMhsRfUJyUNR3t/6h9ZqrakaQgwycVTJJpIOsS2cPiSbZV3J
-         zwezM9cYFBQSgWcJ8zrmy+5A/tPSHkSfqiMcBXzXXAHddVTZzoR3YEAz8xyw8jE59k0A
-         LRQ6C0KVNNIsKtSVjAGs+CpNu6WnCAADcMHSMqHOv7RCwUpUKNLdhsO0AhRdKoTGwBfS
-         vGqZoY4m8LrYwW22HPn5MP1jCBy4W0StxMFpGcFC+Q62igOcNzFLsbkXZnXtvuadilaT
-         cHKQ==
-X-Gm-Message-State: ACrzQf2AdiaHZFodFVOgkje73xzAM6dxxN0B8mZCvgKHq1nXNLxrxoQy
-        LkGLCDsW7GKceqyBCB7BGA==
-X-Google-Smtp-Source: AMsMyM66Yr+43935UF7qvwRbu/q3OvffSorhHYRGRaO+avE7oKZXCndv5PjrUf4KA/Eus+oq0IocBg==
-X-Received: by 2002:a05:6870:f20b:b0:12d:29e4:df2e with SMTP id t11-20020a056870f20b00b0012d29e4df2emr5777042oao.262.1664803491473;
-        Mon, 03 Oct 2022 06:24:51 -0700 (PDT)
+        bh=UC6MSONY3vLkuMDaO7L4lnAgj63J2DwMG65oUzBFyAk=;
+        b=jxh95zGmLlSlqmxTDEBPzJrsEA6XIc14CXD2paAJqCfpZDsxu/r+uMnLGxzw4aFTJK
+         ofjfG2eveODmM2m3bzB31UcmOFqidTEir0pH+t/q0UwMcAnjlLFw+x1Cp0uIGIUy+8Tb
+         pR47NhDNJJQjuSexu9MHFTJJaZQv8PcqFk1rBqD8T6UYpJcAX7oXCaxrpCUjhRLBMIUD
+         H+fToOviEfQY/rl/CB2BZ6/Kj5UrIS+cMHEvYYWQnnmV0clnBDFgO84BTauRW8pymjFt
+         4hoXd61jsEIiaYAx17Nqo7CPQQ9FU1HOK7DFGSBjvdXzjxqtzjqJTQGQh9fV388XuJGw
+         lBog==
+X-Gm-Message-State: ACrzQf03Xkx1R//RHreI+ARwphOIERg9ENuqIyKg4QKpDSa1RuwzAlrd
+        3OiVDQzZYpvlHeFTFyKeGQ==
+X-Google-Smtp-Source: AMsMyM71sXM3bBdvdcws90nBNoMbSopHlJ/SFYjN9kST5ujwFHp2n7tEk53k8931au5a/27ttw6cSw==
+X-Received: by 2002:a05:6870:63a3:b0:132:8fec:b67f with SMTP id t35-20020a05687063a300b001328fecb67fmr825243oap.27.1664803498467;
+        Mon, 03 Oct 2022 06:24:58 -0700 (PDT)
 Received: from macbook.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k14-20020a0568080e8e00b003357568e39fsm2422394oil.57.2022.10.03.06.24.50
+        by smtp.gmail.com with ESMTPSA id a15-20020a056870b14f00b0013191fdeb9bsm2908984oal.38.2022.10.03.06.24.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 06:24:51 -0700 (PDT)
-Received: (nullmailer pid 1863809 invoked by uid 1000);
+        Mon, 03 Oct 2022 06:24:58 -0700 (PDT)
+Received: (nullmailer pid 1863811 invoked by uid 1000);
         Mon, 03 Oct 2022 13:24:48 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+To:     Irui Wang <irui.wang@mediatek.com>
+Cc:     linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>
-In-Reply-To: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
-References: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
-Message-Id: <166479590716.1659638.11088026200399207863.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: YAML-ify SSBI bindings
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+In-Reply-To: <20221001030752.14486-1-irui.wang@mediatek.com>
+References: <20221001030752.14486-1-irui.wang@mediatek.com>
+Message-Id: <166479591681.1661748.6265395941647267106.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: mediatek: vcodec: Add the platform compatible to schema
 Date:   Mon, 03 Oct 2022 08:24:48 -0500
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -61,17 +67,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 01 Oct 2022 00:20:51 +0300, Dmitry Baryshkov wrote:
-> Convert arm/msm/ssbi.txt yo YAML, moving it to the directory with SoC
-> bindings (soc/qcom/).
+On Sat, 01 Oct 2022 11:07:52 +0800, Irui Wang wrote:
+> There are venc node warnings when running dtbs_check, the clock-names
+> was unexpected, missing properties '#address-cells' and '#size-cells'.
+> Add the corresponding platform compatible to schema.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
 > ---
->  .../devicetree/bindings/arm/msm/ssbi.txt      | 18 ------
->  .../bindings/soc/qcom/qcom,ssbi.yaml          | 63 +++++++++++++++++++
->  2 files changed, 63 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/msm/ssbi.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,ssbi.yaml
+>  .../bindings/media/mediatek,vcodec-encoder.yaml      | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
 > 
 
 Running 'make dtbs_check' with the schema in this patch gives the
@@ -84,19 +88,8 @@ This will change in the future.
 Full log is available here: https://patchwork.ozlabs.org/patch/
 
 
-qcom,ssbi@500000: 'pmic@0' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/qcom-apq8060-dragonboard.dtb
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dtb
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dtb
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dtb
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-lagan-yuga.dtb
-	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dtb
-	arch/arm/boot/dts/qcom-msm8660-surf.dtb
-	arch/arm/boot/dts/qcom-msm8960-cdp.dtb
-
-ssbi@c00000: 'pmic@1' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dtb
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dtb
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dtb
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-lagan-yuga.dtb
+vcodec@17020000: clock-names:0: 'venc_sel' was expected
+	arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dtb
+	arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dtb
+	arch/arm64/boot/dts/mediatek/mt8192-evb.dtb
 
