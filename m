@@ -2,124 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EA4C5F3425
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 19:06:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 500535F3424
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 19:06:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229565AbiJCRGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 13:06:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57966 "EHLO
+        id S229704AbiJCRGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 13:06:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbiJCRGs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 13:06:48 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C502C671
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 10:06:39 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id d26so4264664ljl.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 10:06:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=r0Z5yE/2rNF+pvpyQXUAi3Xvmkjk0yqwlZznS4MM2b4=;
-        b=bau++nGklIo7U08JXPGNo3iOg9p0MFPrhIGm0KZl+ya7g2hPNx7gGTLCiIuVKymW3y
-         Cn33CpKQaCpuXY297INCjISDyjOnMyXKZawwlAC6UsW1zHLOrUcJGHoEOpf5SxNbhfW9
-         HnLTGTbwhVN3mek7dbcybwTPKSYXhuS/35AQyKT9J6XoRNG15VlkkDQgHy1azjXp12pA
-         mWeprimevmA4Jf3l7W9MvnwcYFpCGHxA9p38NS1ZqMyELUnyejIkKwvCp8w+lzIuQidV
-         nMbmPQRcjScml/4s0F0rBwKzmFLw8PqwzYRjTOHJdQcVLW7QTohqJxipR9fAOt7PJpX5
-         DTgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=r0Z5yE/2rNF+pvpyQXUAi3Xvmkjk0yqwlZznS4MM2b4=;
-        b=oLkkTN8W77Yv0KCUcM6/6sWiXqTo03cD8p/DTKPFxamZbAxoFdc/0q0I9QknpkmPlx
-         j2yVAkCHhivsC9YPHgUgrp+ncJKAQKQGuQ08EgOZz4LdJ1wJjWbgGEpf5PkTw3fywrbW
-         KY/yXw+cjHD1+b8oRDOGSqzyCx7GMd08+s42ZN7PHqfRamFd1PUBf+E4clTuw5gW8b+c
-         G4YyleuFo84KfeQLUOeNlwzwP7v0SNiXxb8BWwzghbaf2G/rEqbr0LGTl/sNR5t8WzMe
-         kV8Et+w+GxZrb6zY0rjeAdLvX9yQYAjQjA/ZD1sZIT9X4I3d9kpKp98q+TUZuP2KEW5u
-         jBSg==
-X-Gm-Message-State: ACrzQf1IwkvV08V8DdFUoNw9v4hP/ACnlXDynx0zOuFDnRHTb6i7WfFc
-        KVPi0fylHCJ5m3KfU4TaslvcvA==
-X-Google-Smtp-Source: AMsMyM7TbQ/E+ZeZ5oQBBxqIr8itrpHEL8mApGbB0maUJCo2oyUmFAOIHhyw+pcmNK06WwQGFr+9bw==
-X-Received: by 2002:a2e:80d4:0:b0:26d:e557:a9ca with SMTP id r20-20020a2e80d4000000b0026de557a9camr858442ljg.311.1664816797323;
-        Mon, 03 Oct 2022 10:06:37 -0700 (PDT)
-Received: from fedora.. ([78.10.207.2])
-        by smtp.gmail.com with ESMTPSA id z3-20020a056512370300b004a2386b8cebsm659145lfr.210.2022.10.03.10.06.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Oct 2022 10:06:36 -0700 (PDT)
-From:   =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
-To:     mw@semihalf.com
-Cc:     davem@davemloft.net, devicetree@vger.kernel.org,
-        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
-        krzysztof.kozlowski@linaro.org, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
-        mig@semihalf.com, netdev@vger.kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, upstream@semihalf.com
-Subject: Re: [PATCH v2] dt-bindings: net: marvell,pp2: convert to json-schema
-Date:   Mon,  3 Oct 2022 19:06:13 +0200
-Message-Id: <20221003170613.132548-1-mig@semihalf.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <CAPv3WKcW+O_CYd2vY2xhTKojVobo=Bm5tdFdJ8w33FHximPTcA@mail.gmail.com>
-References: <CAPv3WKcW+O_CYd2vY2xhTKojVobo=Bm5tdFdJ8w33FHximPTcA@mail.gmail.com>
+        with ESMTP id S229672AbiJCRGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 13:06:18 -0400
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [IPv6:2001:690:2100:1::15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6D22A958;
+        Mon,  3 Oct 2022 10:06:15 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id D1F66600877D;
+        Mon,  3 Oct 2022 18:06:11 +0100 (WEST)
+X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
+        tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+        by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+        with LMTP id FPiKoMBdFlg5; Mon,  3 Oct 2022 18:06:09 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id DC6C06008807;
+        Mon,  3 Oct 2022 18:06:08 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
+        s=mail; t=1664816769;
+        bh=j/vj94Hq8GqMHbVdpKQEiPA9nY5yaiwfjKz3Fu0wWLY=;
+        h=Date:From:Cc:Subject:References:In-Reply-To;
+        b=ax+GMRclLYMO8Tzb5hxg6a5/MDlCg+JJ7XkUtOGkdl9udTaN4IcOxM1OcItJ9mjts
+         4Y0lflRj4SnNGY/PIUOapXFUwvoRoVQkBgfC6amciG4Hdp3QFB/7EyC4QlQSrG+MWe
+         O9yleHu/dpohpOAxFlQE58x/4tLvpfXMf7WNdxKg=
+Received: from wslaptop (unknown [IPv6:2001:818:dcb5:dc00:7a88:7f12:8ed8:518d])
+        (Authenticated sender: ist187313)
+        by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id B8741360094;
+        Mon,  3 Oct 2022 18:06:06 +0100 (WEST)
+Date:   Mon, 3 Oct 2022 18:06:34 +0100
+From:   Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
+        arnd@arndb.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: display: Add bindings for JDI
+ LPM102A188A
+Message-ID: <20221003170634.56jibls3xjxiiulg@wslaptop>
+References: <20220929170502.1034040-1-diogo.ivo@tecnico.ulisboa.pt>
+ <20220929170502.1034040-2-diogo.ivo@tecnico.ulisboa.pt>
+ <efa2f644-0a1d-00f7-970c-f17ceb0cc550@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <efa2f644-0a1d-00f7-970c-f17ceb0cc550@linaro.org>
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,MISSING_HEADERS,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/10/2022 10:23, Marcin Wojtas wrote:
->niedz., 2 paź 2022 o 10:00 Krzysztof Kozlowski
-><krzysztof.kozlowski@linaro.org> napisał(a):
->>
->> On 01/10/2022 17:53, Michał Grzelak wrote:
->> > Hi Krzysztof,
->> >
->> > Thanks for your comments and time spent on reviewing my patch.
->> > All of those improvements will be included in next version.
->> > Also, I would like to know your opinion about one.
->> >
->> >>> +
->> >>> +  marvell,system-controller:
->> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
->> >>> +    description: a phandle to the system controller.
->> >>> +
->> >>> +patternProperties:
->> >>> +  '^eth[0-9a-f]*(@.*)?$':
->> >>
->> >> The name should be "(ethernet-)?port", unless anything depends on
->> >> particular naming?
->> >
->> > What do you think about pattern "^(ethernet-)?eth[0-9a-f]+(@.*)?$"?
->> > It resembles pattern found in net/ethernet-phy.yaml like
->> > properties:$nodename:pattern:"^ethernet-phy(@[a-f0-9]+)?$", while
->> > still passing `dt_binding_check' and `dtbs_check'. It should also
->> > comply with your comment.
->>
->> Node names like ethernet-eth do not make much sense because they contain
->> redundant ethernet or eth. AFAIK, all other bindings like that call
->> these ethernet-ports (or sometimes shorter - ports). Unless this device
->> is different than all others?
->>
->
->IMO "^(ethernet-)?port@[0-9]+$" for the subnodes' names could be fine
->(as long as we don't have to modify the existing .dtsi files) - there
->is no dependency in the driver code on that.
+On Fri, Sep 30, 2022 at 12:49:31PM +0200, Krzysztof Kozlowski wrote:
+> > +  ts-reset-gpios:
+> > +    maxItems: 1
+> > +    description: |
+> > +      Specifier for a GPIO connected to the touchscreen reset control signal.
+> > +      The reset signal is active low.
+> 
+> Isn't touchscreen a separate (input) device?
 
-Indeed, driver's code isn't dependent; however, there is a dependency
-on 'eth[0-2]' name in all relevant .dts and .dtsi files, e.g.:
+Hello, thank you for the feedback.
 
-https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/armada-375.dtsi#L190
-https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi#L72
-
-Ports under 'ethernet' node are named eth[0-2], thus those and all .dts files 
-including the above would have to be modified to pass through `dtbs_check'.
+According to the downstream kernel's log, it seems like the panel and
+the touchscreen controller are considered to be embedded in the same unit
+(for example in [1]), with the touch input being transmitted via HID-over-I2C,
+and since I did not find any reset gpio handling in that driver I opted to
+include this reset here, unless there is a better way of going about this.
 
 Best regards,
-Michał
+
+Diogo
+
+[1]: https://android.googlesource.com/kernel/tegra/+/bca61c34db9f72113af058f53eeb9fbd5e69a1d0
