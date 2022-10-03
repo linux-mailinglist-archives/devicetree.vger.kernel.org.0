@@ -2,148 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 208405F27B0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 04:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3136C5F27B7
+	for <lists+devicetree@lfdr.de>; Mon,  3 Oct 2022 04:53:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbiJCCmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Oct 2022 22:42:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43104 "EHLO
+        id S229453AbiJCCxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Oct 2022 22:53:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbiJCCmt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 22:42:49 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73FB36DFC
-        for <devicetree@vger.kernel.org>; Sun,  2 Oct 2022 19:42:47 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id m81so10194882oia.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Oct 2022 19:42:47 -0700 (PDT)
+        with ESMTP id S229481AbiJCCxg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Oct 2022 22:53:36 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB19A237F9;
+        Sun,  2 Oct 2022 19:53:34 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id i6so9084158pfb.2;
+        Sun, 02 Oct 2022 19:53:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date;
-        bh=kZ54JuJ/U11o6QZTC2tSUVSElKXkiA2E63Q+E0+5Ows=;
-        b=M1kro5I7v0dN31CoUeGS0m8+9Yf45ZG6QCrky+SzJN7D4wnopN5pJ1iD4DKfrqhsd7
-         934qA5PX17Ao3ydsvtEhSgZTHMUBPtu9uNl6vusKBV/tkvItvV7gEknxWTsRhMdrLnr7
-         aTywdmbcaSLkjs79ZkeUk79OrjF/ylKboifLPFppb3jJFw2413QcVXHbF/Q3wCsNNnLE
-         iOITOomXo7ldNNpnYi9z0wDF/PInT0aSIDKnQloOkU8uB+WqmqBx36HVPhH8yLTBe46j
-         f4uOuwUtsnAaxRH9Z1trhygCxS190M6IkQj2h2d4WdUJiqa8Km70cxZ6PfucdC7AljWf
-         wOXw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=yRoV6A325jxyR0HUM0rid5flyQf24IUrJ3Inww/M+Wk=;
+        b=mC/tlH/od72vvEWCug16uB+p+mC/v9flmy8QouWf5WlJDCV4k/OSTOHVthCQTb2O4v
+         P/e0kjUbKCaBcsps2Q0eagT6xASS+YrHHI1XguzRqarzXunDXUa9avKG7POG/wnFU4AE
+         ub3F6E9dsanzvI4r3bs/kvOZk7bEsg0V4awqSuovrmQKJ8964UQfvHbP8j/nTt2SLNHI
+         0e/R/xPZIYexOkEVcp3asEqcqswBCijrOjJKy6LUGysBWpPjYxBoy4r8rL7q3ch+WuNp
+         Rczs0+1GYmAqdRNfZvb429g/KF7hpenaTIkty7b3Zdq7HoURF0kpQtLVHyGBH8sM+sSt
+         r4FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=kZ54JuJ/U11o6QZTC2tSUVSElKXkiA2E63Q+E0+5Ows=;
-        b=N1mAEv0fl3O33SqsX9bttS8Put/dXjRZfv8t/gAC+jsI0R1Ccg/Z6w70b+7P/9BRv9
-         W/QnhduumTl2HJKDqwjGmXNjLw+I2kxhfdwp/2EPkHmgTc3jtDwsTI08JCvNn44Mbhhu
-         3aJkqkEz/2GrnsZ6JFKAVFqAAebyxe/f9/tKKTBUgyxRABKcD8AFVSwJEzwZuj4/L5PZ
-         3FqL3zPLxv+kXI+yxVYYrOOR5erdlx1aSIOcbqf41XpRdG8EfTD+2HW0m1jjoG5YZbuX
-         DXDzEpj3oltfjk2Gdo/Iod9E0BXBIw9USN7oUVxn/W7eJpuh3PwGdXvVNt0zdO8Mvnsj
-         PY+w==
-X-Gm-Message-State: ACrzQf2PDZPalw8bceCmHbLDtkQvzXMRL/udGDkyBhKH3H4nPrv1i/jj
-        UISQfuiWwcpx5/94hQuKWllVnJOaRmTS9RYT5E9SbA==
-X-Google-Smtp-Source: AMsMyM5DzDNSJT7AYl3fCNPwDNPYomK9PSogJsIgE6W4jeqpRQGpNrt9ZTjcXZGRKMdL84uSEn0+9KxizakSfJAtYG8=
-X-Received: by 2002:a05:6808:150c:b0:350:df64:edf6 with SMTP id
- u12-20020a056808150c00b00350df64edf6mr3125398oiw.283.1664764966993; Sun, 02
- Oct 2022 19:42:46 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=yRoV6A325jxyR0HUM0rid5flyQf24IUrJ3Inww/M+Wk=;
+        b=q7xPhIk/eRC/W8DdvhzzElnGQJBrpxdRq40TuwXR0uN5UunEMPUwPD+wJgUMqNgLgC
+         qPVw6dwbGMyD+s+MmfBAhDf15EBDb6IFyyjnw2MkssnnSoeNUq/I0V/K8xYTQoizYi7F
+         HX+A4y/0TOv1Z4XT0FWyrR4pbfAlQvPZeV0a+AY2s0FDBXpr6eS/pmo8lagW+vWRm1KY
+         1Rehq4mHrAKO1TqPcKlebEluPT1dQmvOH69FobfPJXEPIAtI+vn1Jc+HVti96o3MyygY
+         ZZiyTR2fKMetAOCOazzeY6gzCW4TshanJtsSg1RVJxERrFlTWZ+X6Lbo09lh+mDKXQu1
+         gjVQ==
+X-Gm-Message-State: ACrzQf2DjVjsbMDnedzcjI9E+6pq+beu2hxk90m0N+RkOp0UEU4CJ1jS
+        z81ZYK/z25RDaNthpeLkEw4=
+X-Google-Smtp-Source: AMsMyM5cz6ZSFrhw9ZwKW64dwhaVwMVsudyg92p4ufDExrZg6uiHa6FJgtClHGDAyfVFCz0oL0QEnA==
+X-Received: by 2002:a05:6a00:168e:b0:53b:3f2c:3213 with SMTP id k14-20020a056a00168e00b0053b3f2c3213mr20668942pfc.56.1664765614349;
+        Sun, 02 Oct 2022 19:53:34 -0700 (PDT)
+Received: from RD-3580-24288.rt.l (42-73-173-234.emome-ip.hinet.net. [42.73.173.234])
+        by smtp.gmail.com with ESMTPSA id q17-20020a170902f35100b0017a1145eec7sm5931427ple.157.2022.10.02.19.53.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Oct 2022 19:53:33 -0700 (PDT)
+From:   ChiaEn Wu <peterwu.pub@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, matthias.bgg@gmail.com, sre@kernel.org
+Cc:     chiaen_wu@richtek.com, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: mfd: mt6370: fix the interrupt order of the charger in the example
+Date:   Mon,  3 Oct 2022 10:52:51 +0800
+Message-Id: <cc89d749eba56c5f2489d1707f7711733561b757.1664792418.git.chiaen_wu@richtek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220913061817.22564-1-zong.li@sifive.com> <CANXhq0qG-aEEHxWbtRgC+RO-wC36MtPUfu+eMpX89wOtqGJL0w@mail.gmail.com>
-In-Reply-To: <CANXhq0qG-aEEHxWbtRgC+RO-wC36MtPUfu+eMpX89wOtqGJL0w@mail.gmail.com>
-From:   Zong Li <zong.li@sifive.com>
-Date:   Mon, 3 Oct 2022 10:42:34 +0800
-Message-ID: <CANXhq0qnvUytyLOgGUiTP3nnic=FgRrezM_9vYwaGNaooU9J3w@mail.gmail.com>
-Subject: Re: [PATCH v5 0/7] Use composable cache instead of L2 cache
-To:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Ben Dooks <ben.dooks@sifive.com>, bp@alien8.de,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-edac@vger.kernel.org,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 21, 2022 at 1:09 PM Zong Li <zong.li@sifive.com> wrote:
->
-> On Tue, Sep 13, 2022 at 2:18 PM Zong Li <zong.li@sifive.com> wrote:
-> >
-> > Since composable cache may be L3 cache if private L2 cache exists, we
-> > should use its original name "composable cache" to prevent confusion.
-> >
-> > This patchset contains the modification which is related to ccache, such
-> > as DT binding and EDAC driver.
-> >
-> > The DT binding is based on top of Conor's patch, it has got ready for
-> > merging, and it looks that it would be taken into the next few 6.0-rc
-> > version. If there is any change, the next version of this series will be
-> > posted as well.
-> > https://lore.kernel.org/linux-riscv/20220825180417.1259360-2-mail@conchuod.ie/
-> >
-> > Change log in v5:
-> >  - Add a patch to modify aux vector for sysconf
-> >
-> > Change log in v4:
-> >  - Change the return value from from ENODEV to ENOENT
-> >  - Apply pr_fmt refinement to all pr_err
-> >
-> > Change log in v3:
-> >  - Merged the EDAC patch into L2 rename patch
-> >  - Define the macro for register shift and refine the relative code
-> >  - Fix some indent issues
-> >
-> > Change log in v2:
-> >  - Separate the rename and diff to different patches
-> >  - Rebase the dt-bindings based on Conor's modification
-> >  - Include the patches of Ben for refinement of printing message
-> >
-> > Ben Dooks (2):
-> >   soc: sifive: ccache: reduce printing on init
-> >   soc: sifive: ccache: use pr_fmt() to remove CCACHE: prefixes
-> >
-> > Greentime Hu (2):
-> >   soc: sifive: ccache: Rename SiFive L2 cache to Composable cache.
-> >   riscv: Add cache information in AUX vector
-> >
-> > Zong Li (3):
-> >   dt-bindings: sifive-ccache: change Sifive L2 cache to Composable cache
-> >   soc: sifive: ccache: determine the cache level from dts
-> >   soc: sifive: ccache: define the macro for the register shifts
-> >
-> >  ...five-l2-cache.yaml => sifive,ccache0.yaml} |  28 ++-
-> >  arch/riscv/include/asm/elf.h                  |   4 +
-> >  arch/riscv/include/uapi/asm/auxvec.h          |   4 +-
-> >  drivers/edac/Kconfig                          |   2 +-
-> >  drivers/edac/sifive_edac.c                    |  12 +-
-> >  drivers/soc/sifive/Kconfig                    |   6 +-
-> >  drivers/soc/sifive/Makefile                   |   2 +-
-> >  .../{sifive_l2_cache.c => sifive_ccache.c}    | 200 ++++++++++--------
-> >  .../{sifive_l2_cache.h => sifive_ccache.h}    |  16 +-
-> >  9 files changed, 158 insertions(+), 116 deletions(-)
-> >  rename Documentation/devicetree/bindings/riscv/{sifive-l2-cache.yaml => sifive,ccache0.yaml} (83%)
-> >  rename drivers/soc/sifive/{sifive_l2_cache.c => sifive_ccache.c} (31%)
-> >  rename include/soc/sifive/{sifive_l2_cache.h => sifive_ccache.h} (12%)
-> >
-> > --
-> > 2.17.1
-> >
->
-> Hi Palmer,
-> I was wondering if this series looks good to you, and could you please
-> help us to take it into riscv-tree?
-> Thanks.
+From: ChiaEn Wu <chiaen_wu@richtek.com>
 
-Hi Palmer,
-The new merge window is going to open, do you think is it suitable to
-merge this series this time? Thanks.
+Fix the interrupt order of the charger in the binding example.
+Due to this patch modifiacation
+(https://lore.kernel.org/all/20221001202918.me7z2qzm7cmrkzsg@mercury.elektranox.org/),
+there will get some warnings in linux-next when compiling the dts.
+
+Fixes: 76f52f815f1a ("dt-bindings: mfd: Add MediaTek MT6370")
+Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+---
+ Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+index 410e2d4..1f67e06 100644
+--- a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
++++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+@@ -139,8 +139,8 @@ examples:
+ 
+         charger {
+           compatible = "mediatek,mt6370-charger";
+-          interrupts = <48>, <68>, <6>;
+-          interrupt-names = "attach_i", "uvp_d_evt", "mivr";
++          interrupts = <68>, <48>, <6>;
++          interrupt-names = "uvp_d_evt", "attach_i", "mivr";
+           io-channels = <&mt6370_adc MT6370_CHAN_IBUS>;
+ 
+           mt6370_otg_vbus: usb-otg-vbus-regulator {
+-- 
+2.7.4
+
