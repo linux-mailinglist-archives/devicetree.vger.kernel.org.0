@@ -2,73 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D6005F4606
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 16:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFB885F4609
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 16:57:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbiJDO4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 10:56:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42162 "EHLO
+        id S229734AbiJDO5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 10:57:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiJDO4d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 10:56:33 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31BE363FF7
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 07:56:12 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id d6so7384836lfs.10
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 07:56:12 -0700 (PDT)
+        with ESMTP id S229625AbiJDO5S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 10:57:18 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D92220FB
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 07:57:14 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id t16so15621087ljh.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 07:57:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=hSBDHnFG8axASJ0YmwxpylUiE0wfRyjeK7fpM+KbKBU=;
-        b=m2OqE+QCgx8wp2HDVaSCfP02gyput5UXdsoF4NRp92smtE+gg37l7/IZ5r8t27g+Yb
-         qn9Gyi4ni9+zEgS80AIBDqrA2hNJ6WHtpXLadeAtFH3wbvXOk2AA+wci1GrOvddtq7wX
-         /i5ghqQyLNnNu3dy2u7ba6aW9m0Rd0jLMJDr6cgsgEfAT1tlmmKkiZftWrjahJXmaM6h
-         iFzHFCxZ2Uvc7knfrdi754vw32KebsFoMLny7RDgK6Px2NbOWPRWuMlN2K2+p7398amt
-         bqyhUJhMlDQnoPD7mPbNrbeVj37ZUnBo9C1MvlSxdjJQ89JAZGBjVefsAsZL2FNUAfLQ
-         oG2w==
+        bh=1yXZ0CWIkY+Be5TJwvLWjyqsQMykcG2932nB5Fmia7c=;
+        b=ae0FQRtj6b3RZ5fEgfrvbdBQsuvQkHIpByzRfAn3f7HQZlvHSX8Hr3nqho94miQOvL
+         nh1baKq7HxXHcwQkavOp818eo3VfVBgP/zLc9vuVzbETe/98yZQeavRD6AFT6vzzYgdO
+         cTZSagpwrj2wgV7N1wLxgd8fCma3Y9l6yVTI1oDwbcDly6626PQxTUSzP1MwPn27Yfo9
+         vLXUHDvQVQr6/eh8TeTVHxXaaag42kkMsTIpeYU6xYoGAP/Puo0i8ppox8w7krfrVgVp
+         sO6Dm1TQfWuMCcfNtgrZz1NS1E/BmmC1JYSaXZKWUCHkOixpSqQxTCsdizOINpvg/MEY
+         Zklw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=hSBDHnFG8axASJ0YmwxpylUiE0wfRyjeK7fpM+KbKBU=;
-        b=G6Zkx+xqlLox1eMqnLZ6qaZBVlVG9NerTFV3xdOCUHd1UkAbbsOjhn9UHVeWSZST1m
-         1PMhg7P+J1JnQvK6ashnGANt6ENht8VZupI72EpRoxS2yVJDD6FC7la7QycjlNM/BdGC
-         lSnAp+MCt9EFItcToJ+JOMMxN/fxdltrIwvCThcdwuplBfsephhEsCZiZXd9II2jq95Z
-         M1RKp1Ry2C6yH3/tT++TXyqJfSkLLnzRkzQt9WvCSePtNZlCz4UnuJ1EAnedoAqsIaN9
-         2aPp0kkVbz0hDNE5CFf50InguPjMdKc+qOoa0HAfPBAlA0t8TP9lw7Y3yfCuGQShbBZK
-         o2dg==
-X-Gm-Message-State: ACrzQf2OHGvqM1kP+IJ9TBG1zphrKFMEICZVPpegVioT+Pl/xSYH/SN/
-        Mu3NwmKA3HtlSF3xI77ikXrDig==
-X-Google-Smtp-Source: AMsMyM6hEOdwMh6Rly6ZZwQiF0Y4Q2QP/NbqR+8PXh/xCFmx/bUwWWfImvA58mqjM6N9yRScX4GWsg==
-X-Received: by 2002:ac2:5cd1:0:b0:4a2:291a:9460 with SMTP id f17-20020ac25cd1000000b004a2291a9460mr4818850lfq.203.1664895370389;
-        Tue, 04 Oct 2022 07:56:10 -0700 (PDT)
+        bh=1yXZ0CWIkY+Be5TJwvLWjyqsQMykcG2932nB5Fmia7c=;
+        b=E9HVrjWmy3OC6Yv6Qa2TeAMxctiMVolqiwNah+r3YmXVEycleswqAF8NXAFXWUzPwq
+         keOlplZtA283DT9aElr1WB5YRmgTnbkw1hnWeN+5jO71hb1cN1F3VxNZi7BLISwOmnAx
+         rsH7l7VhuJcCzn3AafUa1m6mdUxMBMraRJUX7jQnD3+9PW2m3qG+gcoX/W5lmZy6XscF
+         IwZrl2KXnfYr8WAwEEy9z/E8WDoMzU4/IKL21fd3DaaMiLUHLw869taH5JLH2nwt67ZZ
+         M/Tm4aHtW9g6WE4ZN1ui/iGZRSS5g1ovdNIQZtXLpkiTA4UdQeApz/TNDq9ncMbUmuCA
+         BLkQ==
+X-Gm-Message-State: ACrzQf0ujU8rBwXTuTPpm5hHzKg97T0MFAxkaPxdMYSSIVTP+1/194by
+        OJTxv9thn2om5JmmdKtTAF59zg==
+X-Google-Smtp-Source: AMsMyM4M0ZuBIqfAgIooUuidg91Pc4bHu8QL/AB+nfSqAtrM1bWqhJoApIv7Xwy5rdRCSW2vB62/eQ==
+X-Received: by 2002:a2e:bba2:0:b0:26b:e4ba:851d with SMTP id y34-20020a2ebba2000000b0026be4ba851dmr8725853lje.45.1664895433020;
+        Tue, 04 Oct 2022 07:57:13 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id cf38-20020a056512282600b00498f32ae907sm1946293lfb.95.2022.10.04.07.56.09
+        by smtp.gmail.com with ESMTPSA id v21-20020a05651203b500b0049d0a98f73csm1120402lfp.154.2022.10.04.07.57.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Oct 2022 07:56:09 -0700 (PDT)
-Message-ID: <e9d1d3b7-77d7-2c5d-8ea8-f5f6796457fd@linaro.org>
-Date:   Tue, 4 Oct 2022 16:56:09 +0200
+        Tue, 04 Oct 2022 07:57:12 -0700 (PDT)
+Message-ID: <1dcdc4e3-520c-3f6d-9994-9eedc2211c6d@linaro.org>
+Date:   Tue, 4 Oct 2022 16:57:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v1 1/2] dt-bindings:iio:adc: add documentation for TI
- LMP92064 controller
+Subject: Re: [PATCH] dt-bindings: display: panel: use
+ spi-peripheral-props.yaml
 Content-Language: en-US
-To:     =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
-        kernel@pengutronix.de, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Daniel Mack <daniel@zonque.org>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20221004134238.3144326-1-l.goehrs@pengutronix.de>
+References: <20221004120907.72767-1-krzysztof.kozlowski@linaro.org>
+ <YzwvDEKAzbqjSYjT@pendragon.ideasonboard.com>
+ <64a355f2-e9a1-dcca-cb86-48805acae8d5@linaro.org>
+ <YzwyT28hf7daYqa1@pendragon.ideasonboard.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221004134238.3144326-1-l.goehrs@pengutronix.de>
+In-Reply-To: <YzwyT28hf7daYqa1@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -79,77 +88,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/10/2022 15:42, Leonard Göhrs wrote:
-> Add binding documentation for the TI LMP92064 dual channel SPI ADC.
-
-Subject: missing spaces after ':'. Also drop "documentation" - kind of
-redundant.
-
-
+On 04/10/2022 15:17, Laurent Pinchart wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
-> ---
->  .../bindings/iio/adc/ti,lmp92064.yaml         | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml
+> On Tue, Oct 04, 2022 at 03:10:29PM +0200, Krzysztof Kozlowski wrote:
+>> On 04/10/2022 15:03, Laurent Pinchart wrote:
+>>> On Tue, Oct 04, 2022 at 02:09:07PM +0200, Krzysztof Kozlowski wrote:
+>>>> For devices connectable by SPI bus (e.g. already using
+>>>> "spi-max-frequency" property), reference the "spi-peripheral-props.yaml"
+>>>> schema to allow using all SPI device properties, even these which device
+>>>> bindings author did not tried yet.
+>>>
+>>> Isn't this done implicitly by spi-controller.yaml ? SPI devices that are
+>>> children of an SPI controller should match the patternProperties
+>>> "^.*@[0-9a-f]+$" in that file, which has a $ref: spi-peripheral-props.yaml.
+>>> Is there something I'm missing ?
+>>
+>> You are correct about one side of this - SPI controller bindings.
+>> However these schemas here have clear: additional/unevaluatedProperties:
+>> false, thus when they find DTS like:
+>> panel@xxx {
+>>   compatible = "one of these spi panels";
+>>   ...
+>>   spi-cs-high;
+>>   spi-rx-delay-us = <50>;
+>>   ... and some more from specific controllers
+>> }
+>>
+>> you will get errors, because the panel schema does not allow them.
+>>
+>> The bindings were done (some time ago) in such way, that they require
+>> that both SPI controller and SPI device reference spi-props.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml b/Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml
-> new file mode 100644
-> index 0000000000000..b7b5761baa108
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/ti,lmp92064.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments LMP92064 Precision Current and Voltage Sensor.
-> +
-> +maintainers:
-> +  - Leonard Göhrs <l.goehrs@pengutronix.de>
-> +
-> +description: |
-> +  The LMP92064 is a two channel ADC intended for combined voltage and current
-> +  measurements.
-> +
-> +  The device contains two ADCs to allow simultaneous sampling of voltage and
-> +  current and thus of instantanious power consumption.
+> You're absolutely right that additionalProperties needs to be replaced
+> by unevaluatedProperties. Can the additions of $ref be dropped, or is
+> that needed too ?
 
-Not sure if my spell-check misses a word or you meant "instantaneous"?
-
-> +
-
-Missing allOf:$ref to spi-peripheral-props.yaml
-
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,lmp92064
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency: true
-> +
-> +  shunt-resistor:
-
-This is not a valid property name.
-git grep shunt-resistor
-
-
-> +    description: |
-> +      Value of the shunt resistor (in µΩ) connected between INCP and INCN,
-> +      across which current is measured. Used to provide correct scaling of the
-> +      raw adc measurement.
-
-s/adc/ADC/
-
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
+I just wrote above  - you need to reference the spi-props. Otherwise all
+the SPI-related properties will be unknown/unevaluated.
 
 Best regards,
 Krzysztof
