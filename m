@@ -2,184 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EC245F3DD8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 10:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B72955F3E1A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 10:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbiJDII4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 04:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47380 "EHLO
+        id S230032AbiJDITY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 04:19:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229981AbiJDIIk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 04:08:40 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A79A2CDE2
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 01:08:38 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id y23-20020a1c4b17000000b003bd336914f9so331778wma.4
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 01:08:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date;
-        bh=qZ19bsx/kaW5RSDlaveR/Z1oAoKv9fyzJ240tQu1a9s=;
-        b=wpyNA+Q3dmNDSH54NYgAELyzeib0IEOVsF6nbjCLXTfb9wBTET57L2josQcJXuqA0E
-         K6nJxHko8cIkjsnUD8tiJe8mTZsKy+SO6TpkN5UR3uuPSRAgDuW0TV4KtUGMJjTw8fLg
-         ZUZEB0vB7+dM+5X2lZNOK72DLwCzt5gRN0nrqknMUAZHKzJxxA9fGXTBGOsJo7f5DC5j
-         nehhYtTyeFFl8lQV1MEyAvkg6CkMddVJsuLuwtvX5t+Jdr72b7sFw8wCEnBhDwsgy8fD
-         6qBgaoOa6hvnS0YHuAcK6JqmziXF3VLhtTbtNADZKHv4zDJvRvrus1A2YemhXurs/2nr
-         Ry/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=qZ19bsx/kaW5RSDlaveR/Z1oAoKv9fyzJ240tQu1a9s=;
-        b=OsVtpCayOmF5V/nHK8TcA3AvA4YucP9zZuLYRWG08NaZDE4brslAX0PeluhJioJ1Qt
-         eHXZ4DFDViMCEa103rusQc8buenoORJeyIenfILEBEtWnjKSs6NP7n0xAJPiuR3lno7+
-         Rfc/cQgKL6TVwp1NJa+HLjeiLJudZL2wSUfZrZ3Ytk3vKdZUe974bYs8x/MGh16IYb/L
-         7RE3JzvkpCsKcYDe6zhxa6twlT2+IdT6NBkZ2BTvC9Uz5UL4ZG9iQ2ZC8rp3QKlzT2Bq
-         +z/b5OP0hwHPK93VtJNkl+kgDEOtKabuLXD8NVSmKeFemaYRWtlBOoDPG+yAHl3lAA8r
-         NtBQ==
-X-Gm-Message-State: ACrzQf2v7olSskcGagSIlIMTU0KpI6hlHF1xn+He0ZDVXeJ0mdydTxv9
-        xMqevqR3k3gEE+pX7pZ9lE+ejQ==
-X-Google-Smtp-Source: AMsMyM5JBji6og2zUI0F155nozCgsevHcka5zAZ8mXvn02oWmuomNow9V4CUQM/TC/MALKgVWwIVeA==
-X-Received: by 2002:a05:600c:4f82:b0:3b4:a6fc:89d2 with SMTP id n2-20020a05600c4f8200b003b4a6fc89d2mr9245861wmq.53.1664870916439;
-        Tue, 04 Oct 2022 01:08:36 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id l2-20020a1c7902000000b003b33943ce5esm20228866wme.32.2022.10.04.01.08.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Oct 2022 01:08:35 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 04 Oct 2022 08:08:27 +0000
-Subject: [PATCH v2 11/11] arm: dts: qcom: mdm9615: remove useless amba subnode
+        with ESMTP id S230000AbiJDITW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 04:19:22 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E70AE9E;
+        Tue,  4 Oct 2022 01:19:21 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0398B6602295;
+        Tue,  4 Oct 2022 09:19:18 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664871559;
+        bh=QJxxjCuyw9mSyhrTPrvViT+uaUXJUxU6qTaI7W99V08=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=acJbREzg/WNoo1LXoZcqDdPTogLgcpvEkfp6EfmgiiWXh4s/g3HxP2OaPGPyWjAsS
+         6dkD2RwjhrZfgUXq/b+qhIbnOWufCbmdpmXDtDVWeEd/t34qg7o7ZDyuqe3VSdFXYO
+         PSn1/GQgFZg8ArNSVPYPRka1MlZ09G4cA9a5B1UtWYiiT+vzyddwsBwXWhndLAhcBu
+         +2Stqp8mDqPwVtwQJtoLxKhiKP1Jy6VyOIZ6AZw59C2tfzcY2Cl0aRkocrBNCIjNf1
+         Y/epfNikP5pdsdcT5VPhVHtICvoTAf3ivgGux472hWMYmWPPIokhajzhwa1t3Z19XF
+         KC4LlWRblLhnw==
+Message-ID: <ca0f9e3c-ae3f-b886-bfe9-63d7e45c9b3c@collabora.com>
+Date:   Tue, 4 Oct 2022 10:19:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20220928-mdm9615-dt-schema-fixes-v2-11-87fbeb4ae053@linaro.org>
-References: <20220928-mdm9615-dt-schema-fixes-v2-0-87fbeb4ae053@linaro.org>
-In-Reply-To: <20220928-mdm9615-dt-schema-fixes-v2-0-87fbeb4ae053@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2 2/2] soc: mediatek: pm-domains: Add support for mt8188
+Content-Language: en-US
+To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Lee Jones <lee@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-input@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org
-X-Mailer: b4 0.10.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20220928084315.29187-1-Garmin.Chang@mediatek.com>
+ <20220928084315.29187-3-Garmin.Chang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220928084315.29187-3-Garmin.Chang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The separate amba device node doesn't add anything significant to the
-DT. The OF parsing code already creates amba_device or platform_device
-depending on the compatibility lists.
+Il 28/09/22 10:43, Garmin.Chang ha scritto:
+> Add domain control data including bus protection data size
+> change due to more protection steps in mt8188.
+> 
+> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
+> ---
+>   drivers/soc/mediatek/mt8188-pm-domains.h | 623 +++++++++++++++++++++++
+>   drivers/soc/mediatek/mtk-pm-domains.c    |   5 +
+>   include/linux/soc/mediatek/infracfg.h    | 121 +++++
+>   3 files changed, 749 insertions(+)
+>   create mode 100644 drivers/soc/mediatek/mt8188-pm-domains.h
+> 
+> diff --git a/drivers/soc/mediatek/mt8188-pm-domains.h b/drivers/soc/mediatek/mt8188-pm-domains.h
+> new file mode 100644
+> index 000000000000..63181f05457e
+> --- /dev/null
+> +++ b/drivers/soc/mediatek/mt8188-pm-domains.h
+> @@ -0,0 +1,623 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2022 MediaTek Inc.
+> + * Author: Garmin Chang <garmin.chang@mediatek.com>
+> + */
+> +
+> +#ifndef __SOC_MEDIATEK_MT8188_PM_DOMAINS_H
+> +#define __SOC_MEDIATEK_MT8188_PM_DOMAINS_H
+> +
+> +#include "mtk-pm-domains.h"
+> +#include <dt-bindings/power/mediatek,mt8188-power.h>
+> +
+> +/*
+> + * MT8188 power domain support
+> + */
+> +
+> +static const struct scpsys_domain_data scpsys_domain_data_mt8188[] = {
+> +	[MT8188_POWER_DOMAIN_MFG0] = {
+> +		.name = "mfg0",
+> +		.sta_mask = BIT(1),
+> +		.ctl_offs = 0x300,
+> +		.pwr_sta_offs = 0x174,
+> +		.pwr_sta2nd_offs = 0x178,
+> +		.sram_pdn_bits = BIT(8),
+> +		.sram_pdn_ack_bits = BIT(12),
+> +		.caps = MTK_SCPD_KEEP_DEFAULT_OFF | MTK_SCPD_DOMAIN_SUPPLY,
+> +	},
+> +	[MT8188_POWER_DOMAIN_MFG1] = {
+> +		.name = "mfg1",
+> +		.sta_mask = BIT(2),
+> +		.ctl_offs = 0x304,
+> +		.pwr_sta_offs = 0x174,
+> +		.pwr_sta2nd_offs = 0x178,
+> +		.sram_pdn_bits = BIT(8),
+> +		.sram_pdn_ack_bits = BIT(12),
+> +		.bp_infracfg = {
+> +			BUS_PROT_WR(MT8188_TOP_AXI_PROT_EN_MFG1_STEP1,
+> +				    MT8188_TOP_AXI_PROT_EN_SET,
+> +				    MT8188_TOP_AXI_PROT_EN_CLR,
+> +				    MT8188_TOP_AXI_PROT_EN_STA),
+> +			BUS_PROT_WR(MT8188_TOP_AXI_PROT_EN_2_MFG1_STEP2,
+> +				    MT8188_TOP_AXI_PROT_EN_2_SET,
+> +				    MT8188_TOP_AXI_PROT_EN_2_CLR,
+> +				    MT8188_TOP_AXI_PROT_EN_2_STA),
+> +			BUS_PROT_WR(MT8188_TOP_AXI_PROT_EN_1_MFG1_STEP3,
+> +				    MT8188_TOP_AXI_PROT_EN_1_SET,
+> +				    MT8188_TOP_AXI_PROT_EN_1_CLR,
+> +				    MT8188_TOP_AXI_PROT_EN_1_STA),
+> +			BUS_PROT_WR(MT8188_TOP_AXI_PROT_EN_2_MFG1_STEP4,
+> +				    MT8188_TOP_AXI_PROT_EN_2_SET,
+> +				    MT8188_TOP_AXI_PROT_EN_2_CLR,
+> +				    MT8188_TOP_AXI_PROT_EN_2_STA),
+> +			BUS_PROT_WR(MT8188_TOP_AXI_PROT_EN_MFG1_STEP5,
+> +				    MT8188_TOP_AXI_PROT_EN_SET,
+> +				    MT8188_TOP_AXI_PROT_EN_CLR,
+> +				    MT8188_TOP_AXI_PROT_EN_STA),
+> +			BUS_PROT_WR(MT8188_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_MFG1_STEP6,
+> +				    MT8188_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_SET,
+> +				    MT8188_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_CLR,
+> +				    MT8188_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_STA),
+> +		},
+> +		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Please add MTK_SCPD_DOMAIN_SUPPLY cap to MFG1 as well.
+For more information, please look at:
+13bde169c6fe ("soc: mediatek: mtk-pm-domains: Allow probing vreg supply on two MFGs")
 
-diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-index 9d950f96280d..482fd246321c 100644
---- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
-+++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-@@ -314,49 +314,43 @@ sdcc2bam: dma-controller@12142000{
- 			qcom,ee = <0>;
- 		};
- 
--		amba {
--			compatible = "simple-bus";
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges;
--			sdcc1: mmc@12180000 {
--				status = "disabled";
--				compatible = "arm,pl18x", "arm,primecell";
--				arm,primecell-periphid = <0x00051180>;
--				reg = <0x12180000 0x2000>;
--				interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&gcc SDC1_CLK>, <&gcc SDC1_H_CLK>;
--				clock-names = "mclk", "apb_pclk";
--				bus-width = <8>;
--				max-frequency = <48000000>;
--				cap-sd-highspeed;
--				cap-mmc-highspeed;
--				vmmc-supply = <&vsdcc_fixed>;
--				dmas = <&sdcc1bam 2>, <&sdcc1bam 1>;
--				dma-names = "tx", "rx";
--				assigned-clocks = <&gcc SDC1_CLK>;
--				assigned-clock-rates = <400000>;
--			};
-+		sdcc1: mmc@12180000 {
-+			status = "disabled";
-+			compatible = "arm,pl18x", "arm,primecell";
-+			arm,primecell-periphid = <0x00051180>;
-+			reg = <0x12180000 0x2000>;
-+			interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc SDC1_CLK>, <&gcc SDC1_H_CLK>;
-+			clock-names = "mclk", "apb_pclk";
-+			bus-width = <8>;
-+			max-frequency = <48000000>;
-+			cap-sd-highspeed;
-+			cap-mmc-highspeed;
-+			vmmc-supply = <&vsdcc_fixed>;
-+			dmas = <&sdcc1bam 2>, <&sdcc1bam 1>;
-+			dma-names = "tx", "rx";
-+			assigned-clocks = <&gcc SDC1_CLK>;
-+			assigned-clock-rates = <400000>;
-+		};
- 
--			sdcc2: mmc@12140000 {
--				compatible = "arm,pl18x", "arm,primecell";
--				arm,primecell-periphid = <0x00051180>;
--				status = "disabled";
--				reg = <0x12140000 0x2000>;
--				interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&gcc SDC2_CLK>, <&gcc SDC2_H_CLK>;
--				clock-names = "mclk", "apb_pclk";
--				bus-width = <4>;
--				cap-sd-highspeed;
--				cap-mmc-highspeed;
--				max-frequency = <48000000>;
--				no-1-8-v;
--				vmmc-supply = <&vsdcc_fixed>;
--				dmas = <&sdcc2bam 2>, <&sdcc2bam 1>;
--				dma-names = "tx", "rx";
--				assigned-clocks = <&gcc SDC2_CLK>;
--				assigned-clock-rates = <400000>;
--			};
-+		sdcc2: mmc@12140000 {
-+			compatible = "arm,pl18x", "arm,primecell";
-+			arm,primecell-periphid = <0x00051180>;
-+			status = "disabled";
-+			reg = <0x12140000 0x2000>;
-+			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc SDC2_CLK>, <&gcc SDC2_H_CLK>;
-+			clock-names = "mclk", "apb_pclk";
-+			bus-width = <4>;
-+			cap-sd-highspeed;
-+			cap-mmc-highspeed;
-+			max-frequency = <48000000>;
-+			no-1-8-v;
-+			vmmc-supply = <&vsdcc_fixed>;
-+			dmas = <&sdcc2bam 2>, <&sdcc2bam 1>;
-+			dma-names = "tx", "rx";
-+			assigned-clocks = <&gcc SDC2_CLK>;
-+			assigned-clock-rates = <400000>;
- 		};
- 
- 		tcsr: syscon@1a400000 {
+Regards,
+Angelo
 
--- 
-b4 0.10.0
