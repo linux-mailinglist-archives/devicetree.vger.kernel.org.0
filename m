@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 315045F42D3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 14:17:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF0565F4300
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 14:38:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229679AbiJDMRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 08:17:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52392 "EHLO
+        id S229470AbiJDMiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 08:38:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229700AbiJDMRj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 08:17:39 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D28CB14D39;
-        Tue,  4 Oct 2022 05:17:37 -0700 (PDT)
+        with ESMTP id S229445AbiJDMiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 08:38:08 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FEB363EB;
+        Tue,  4 Oct 2022 05:38:07 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 002EA66022A9;
-        Tue,  4 Oct 2022 13:17:35 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 06B0B66022A9;
+        Tue,  4 Oct 2022 13:38:04 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664885856;
-        bh=cu5Yah5ck29bMkIycNvWBlc3sRFZHfkN4nV9X/MJBsk=;
+        s=mail; t=1664887085;
+        bh=5x9yLkue2W3jRxXgF0gPfjI2e+qXfSGyi8ojRWrUU8s=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=j6xHqimEfiapB+IhxmaUxW10jKW1BgCkqMGc5g5ONzkgg4z40XoG2/D0Lt5PwQHKU
-         5C7Y9wDRF6C9D3UwvjEEyvVippFSbyzFCpk7fXHg0IA+JqkRFTtACW9B/hMvKUIvUT
-         rMxM2eq3TkF/uURTsaTULWftwL2IZaAa0BbpIH6qWXV/xQdTWn/Kw22CFFeJcwo2FR
-         9oYxQNopplTjR7S1qQ7r6xL7EgAsM2JmxOLZ2lMa/SsNQrwRogHpzhYK6rzJRCqxpk
-         0yfCRw1QAQIrpIfwGZ6d3RHiDN3tyo72oeEDg4fHvxLhk8UWZ2DJNJNfe/Baal24m0
-         kCM+AvoikzCaQ==
-Message-ID: <15791b10-fdeb-3776-d7f5-968cb0fa85dc@collabora.com>
-Date:   Tue, 4 Oct 2022 14:17:33 +0200
+        b=bZPXHDcNzwpEc/sCsMhKAg1zLxlf5oF4zjArz11kcx+KosiDap2YAD/3O3dI+PIIU
+         fTGC68dFoUQvIRBZWe/sGRACbSNke+OknD3T+VERboXfSiHAcSLr9pcKgunMLrP4Ei
+         8sfeu9FxoRCsQlTulHz7Mhg5zBJLQhzPummHmD8qSdAUcW5w68CDD0zbIM72LZxX1K
+         LOw9P7Bd90oA3/2H7163Kw8KN+ZLvZ6ye2Qq0vifTpouZSaOPKfHBtaJh9jHFVOhrv
+         IdYCI04CW3+/3MEVo1WoqxS35bou2JKez5S3RVZs6JtbscQdj2jso+RRjVg6vGRO9Y
+         YkAVtvVyZY4KA==
+Message-ID: <42ab09ef-427d-f2dd-c480-f3e11f4aaa79@collabora.com>
+Date:   Tue, 4 Oct 2022 14:38:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.0
-Subject: Re: [PATCH v1 3/6] soc: mediatek: mmsys: add support for MT8195
- VPPSYS
+Subject: Re: [PATCH v1 5/6] soc: mediatek: mutex: Add mtk_mutex_set_mod
+ support to set MOD1
 Content-Language: en-US
 To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -49,10 +49,10 @@ Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com,
         "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
 References: <20221004093319.5069-1-moudy.ho@mediatek.com>
- <20221004093319.5069-4-moudy.ho@mediatek.com>
+ <20221004093319.5069-6-moudy.ho@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221004093319.5069-4-moudy.ho@mediatek.com>
+In-Reply-To: <20221004093319.5069-6-moudy.ho@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -67,70 +67,97 @@ X-Mailing-List: devicetree@vger.kernel.org
 Il 04/10/22 11:33, Moudy Ho ha scritto:
 > From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
 > 
-> Add MT8195 VPPSYS0 and VPPSYS1 driver data.
+> Add mtk_mutex_set_mod support to set MOD1
 > 
 > Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
 > ---
->   drivers/soc/mediatek/mtk-mmsys.c | 20 +++++++++++++++++++-
->   drivers/soc/mediatek/mtk-mmsys.h |  1 +
->   2 files changed, 20 insertions(+), 1 deletion(-)
+>   drivers/soc/mediatek/mtk-mutex.c | 27 +++++++++++++++++++--------
+>   1 file changed, 19 insertions(+), 8 deletions(-)
 > 
-> diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
-> index d2c7a87aab87..c4d15f99f853 100644
-> --- a/drivers/soc/mediatek/mtk-mmsys.c
-> +++ b/drivers/soc/mediatek/mtk-mmsys.c
-> @@ -149,11 +149,25 @@ static const struct mtk_mmsys_driver_data mt8195_vdosys1_driver_data = {
->   	.clk_driver = "clk-mt8195-vdo1",
->   };
+> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
+> index c1a33d52038e..5dcbd61fe42c 100644
+> --- a/drivers/soc/mediatek/mtk-mutex.c
+> +++ b/drivers/soc/mediatek/mtk-mutex.c
+> @@ -23,6 +23,7 @@
+>   #define DISP_REG_MUTEX(n)			(0x24 + 0x20 * (n))
+>   #define DISP_REG_MUTEX_RST(n)			(0x28 + 0x20 * (n))
+>   #define DISP_REG_MUTEX_MOD(mutex_mod_reg, n)	(mutex_mod_reg + 0x20 * (n))
+> +#define DISP_REG_MUTEX_MOD1(mutex_mod_reg, n)	((mutex_mod_reg) + 0x20 * (n) + 0x4)
+>   #define DISP_REG_MUTEX_SOF(mutex_sof_reg, n)	(mutex_sof_reg + 0x20 * (n))
+>   #define DISP_REG_MUTEX_MOD2(n)			(0x34 + 0x20 * (n))
 >   
-> +static const struct mtk_mmsys_driver_data mt8195_vppsys0_driver_data = {
-> +	.io_start = 0x14000000,
-> +	.clk_driver = "clk-mt8195-vpp0",
-> +	.is_copies = true,
-> +};
-> +
-> +static const struct mtk_mmsys_driver_data mt8195_vppsys1_driver_data = {
-> +	.io_start = 0x14f00000,
-> +	.clk_driver = "clk-mt8195-vpp1",
-> +	.is_copies = true,
-> +};
-> +
->   static const struct mtk_mmsys_match_data mt8195_mmsys_match_data = {
-> -	.num_drv_data = 2,
-> +	.num_drv_data = 4,
-
-After a long discussion, it was chosen to not use the io_start way, but to change
-the devicetree compatible....
-
-Check this series, and rebase on top of it:
-https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097
-
-Cheers,
-Angelo
-
->   	.drv_data = {
->   		&mt8195_vdosys0_driver_data,
->   		&mt8195_vdosys1_driver_data,
-> +		&mt8195_vppsys0_driver_data,
-> +		&mt8195_vppsys1_driver_data,
->   	},
->   };
+> @@ -750,14 +751,24 @@ int mtk_mutex_write_mod(struct mtk_mutex *mutex,
+>   		return -EINVAL;
+>   	}
 >   
-> @@ -360,6 +374,9 @@ static int mtk_mmsys_probe(struct platform_device *pdev)
->   	if (IS_ERR(clks))
->   		return PTR_ERR(clks);
->   
-> +	if (mmsys->data->is_copies)
+> -	offset = DISP_REG_MUTEX_MOD(mtx->data->mutex_mod_reg,
+> -				    mutex->id);
+> -	reg = readl_relaxed(mtx->regs + offset);
+> -
+> -	if (clear)
+> -		reg &= ~BIT(mtx->data->mutex_table_mod[idx]);
+> -	else
+> -		reg |= BIT(mtx->data->mutex_table_mod[idx]);
+> +	if (mtx->data->mutex_table_mod[idx] < 32) {
 
-I don't get what "is_copies" means, sorry. I'm sure that there's a better name
-for this one.
+What if we do...
 
-> +		goto out_probe_done;
-> +
->   	drm = platform_device_register_data(&pdev->dev, "mediatek-drm",
->   					    PLATFORM_DEVID_AUTO, NULL, 0);
->   	if (IS_ERR(drm)) {
+	u8 id_offset = 0;
+
+	/*
+	 * Some SoCs may have multiple MUTEX_MOD registers as more than 32 mods
+	 * are present, hence requiring multiple 32-bits registers.
+	 *
+	 * The mutex_table_mod fully represents that by defining the number of
+	 * the mod sequentially, later used as a bit number, which can be more
+	 * than 0..31.
+	 *
+	 * In order to retain compatibility with older SoCs, we perform R/W on
+	 * the single 32 bits registers, but this requires us to translate the
+	 * mutex ID bit accordingly.
+	 */
+	if (mtx->data->mutex_table_mod[idx] < 32) {
+		reg_offset = DISP_REG_MUTEX_MOD0(mtx->data->mutex_mod_reg,
+						 mutex->id);
+	} else {
+		reg_offset = DISP_REG_MUTEX_MOD1(mtx->data->mutex_mod_reg,
+						 mutex->id);
+		id_offset = 32;
+	}
+
+	reg = readl_relaxed(mtx->regs + offset);
+	if (clear)
+		reg &= ~BIT(mtx->data->mutex_table_mod[idx] - id_offset);
+	else
+		reg |= BIT(mtx->data->mutex_table_mod[idx] - id_offset);
+
+	writel_relaxed(reg, mtx->regs + offset);
+
+...like this, we give good documentation and also keep the code "short" :-)
 
 Regards,
 Angelo
+
+
+> +		offset = DISP_REG_MUTEX_MOD(mtx->data->mutex_mod_reg,
+> +					    mutex->id);
+> +		reg = readl_relaxed(mtx->regs + offset);
+> +		if (clear)
+> +			reg &= ~BIT(mtx->data->mutex_table_mod[idx]);
+> +		else
+> +			reg |= BIT(mtx->data->mutex_table_mod[idx]);
+> +
+> +	} else {
+> +		offset = DISP_REG_MUTEX_MOD1(mtx->data->mutex_mod_reg,
+> +					     mutex->id);
+> +		reg = readl_relaxed(mtx->regs + offset);
+> +		if (clear)
+> +			reg &= ~BIT(mtx->data->mutex_table_mod[idx] - 32);
+> +		else
+> +			reg |= BIT(mtx->data->mutex_table_mod[idx] - 32);
+> +	}
+>   
+>   	writel_relaxed(reg, mtx->regs + offset);
+>   
+
 
