@@ -2,104 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2580A5F47B7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 18:36:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF73D5F47BD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 18:37:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbiJDQgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 12:36:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58474 "EHLO
+        id S230125AbiJDQhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 12:37:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229571AbiJDQgy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 12:36:54 -0400
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [IPv6:2001:690:2100:1::15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 703615E579;
-        Tue,  4 Oct 2022 09:36:52 -0700 (PDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 074816005417;
-        Tue,  4 Oct 2022 17:36:50 +0100 (WEST)
-X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
-        tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
-        by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
-        with LMTP id j8yPc4mpqb_j; Tue,  4 Oct 2022 17:36:47 +0100 (WEST)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
-        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 0E566600881E;
-        Tue,  4 Oct 2022 17:36:45 +0100 (WEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
-        s=mail; t=1664901407;
-        bh=DMhcGkQbTq6SDO0SLsiFN4a0xZV0HfX1yyp+AGRsmVo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=fabVcPBNbSXlLC7+WUv5tqiPTOvXo7j6AWxsirSb9ZAAs5TBaofkbX8nH15fURDWi
-         b0YZ/T8CHc5BQt9d0Gp0oe2dJQAshoByDzia6i6beu2KnhknCX6/BpU3VC4jUwwq3Z
-         KzCcthCBp5fPl8PwJtoa0cSOlD5HAnue6jO9lJOo=
-Received: from wslaptop (unknown [IPv6:2001:818:dcb5:dc00:7a88:7f12:8ed8:518d])
-        (Authenticated sender: ist187313)
-        by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id B7304360083;
-        Tue,  4 Oct 2022 17:36:44 +0100 (WEST)
-Date:   Tue, 4 Oct 2022 17:37:18 +0100
-From:   Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
-        arnd@arndb.de, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        diogo.ivo@tecnico.ulisboa.pt
-Subject: Re: [PATCH 1/4] dt-bindings: display: Add bindings for JDI
- LPM102A188A
-Message-ID: <20221004163718.ederwgmvt24kvhms@wslaptop>
-References: <20220929170502.1034040-1-diogo.ivo@tecnico.ulisboa.pt>
- <20220929170502.1034040-2-diogo.ivo@tecnico.ulisboa.pt>
- <efa2f644-0a1d-00f7-970c-f17ceb0cc550@linaro.org>
- <20221003170634.56jibls3xjxiiulg@wslaptop>
- <98d3b42d-3f9f-9b6e-8c17-46deae4b4030@linaro.org>
+        with ESMTP id S229574AbiJDQhb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 12:37:31 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3755F209;
+        Tue,  4 Oct 2022 09:37:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1664901451; x=1696437451;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=4xKFHhMa5zfB4wwpijtIZoLRV7h1tsBYmsv6+FgEBBc=;
+  b=Fb/rbB4Ow/dwwqDqDnDPz+8p+I3x1qN2RVJMKHgv/pdi7MI5RJ/5L5ME
+   tRklxQZ6bx0doF7PSfDGEEQZfCOPYgMtz1BylCxbDFQm/XcJounr73rQL
+   vahxQzLPm2TTR0gloqp7HKhHRsUtJqXZ6YmJJpApqOtPnca1C39o2MAmP
+   o=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 04 Oct 2022 09:37:30 -0700
+X-QCInternal: smtphost
+Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2022 09:37:30 -0700
+Received: from [10.110.81.239] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 4 Oct 2022
+ 09:37:29 -0700
+Message-ID: <943ec4f3-e6a4-7614-fb6f-1adce1487857@quicinc.com>
+Date:   Tue, 4 Oct 2022 09:37:29 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <98d3b42d-3f9f-9b6e-8c17-46deae4b4030@linaro.org>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Vinod Koul <vinod.koul@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Caleb Connolly <kc@postmarketos.org>
+References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
+ <faa4e821-00e0-4ee0-0c62-b5eb6f75abf7@linaro.org>
+From:   Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <faa4e821-00e0-4ee0-0c62-b5eb6f75abf7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 04, 2022 at 01:05:04PM +0200, Krzysztof Kozlowski wrote:
-> On 03/10/2022 19:06, Diogo Ivo wrote:
-> > On Fri, Sep 30, 2022 at 12:49:31PM +0200, Krzysztof Kozlowski wrote:
-> >> Isn't touchscreen a separate (input) device?
-> > 
-> > Hello, thank you for the feedback.
-> > 
-> > According to the downstream kernel's log, it seems like the panel and
-> > the touchscreen controller are considered to be embedded in the same unit
-> > (for example in [1]), 
+On 10/4/2022 7:50 AM, Krzysztof Kozlowski wrote:
+> On 22/09/2022 16:32, Krzysztof Kozlowski wrote:
+>> Hi everyone,
+>>
+>> Quite a lot of people are working on Qualcomm DT bindings conversion
+>> (TXT->YAML) and fixups to Qualcomm DTS. We track a bit of this effort
+>> internally in Linaro, but that has many shortcomings and we would like
+>> to track it rather community-wide with the support and contributions
+>> from the community.
+>>
+>> What to track:
+>> 1. Which bindings to convert to YAML,
+>> 2. Missing compatibles (either entirely or because of missing conversion),
+>> 3. `dt_binding_check` warnings (usually connected with 1-2),
+>> 4. `dtbs_check` warnings.
+>>
+>> Rob's bot gives us daily output for 1-4, but how can we track current
+>> efforts to avoid duplication of work? Also it would allow people to find
+>> tasks for them to get contributions to Linux kernel :). Is anyone in
+>> community interested in tracking it together, in a public way?
+>>
+>> If so, where?
+>> A. elinux.org (needs some formatting when pasting the output from tools)
+>> B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
+>> C. gitlab dedicated repo - some text file
+>> D. Linux kernel TODO file (might be difficult to keep updated)
+>> E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
+>> have it for Exynos but I don't find it usable -
+>> https://exynos.wiki.kernel.org/todo_tasks)
 > 
-> Downstream kernel is not a proof of proper description of hardware. If
-> downstream says orange is an apple, does it mean orange is really an
-> apple? No... Downstream creates a lot of junk, hacks and workarounds.
-
-After some searching (which I should have done sooner, so
-apologies) I came across a teardown of the Pixel C ([1], for completeness),
-which incorporates this panel. Indeed a separate touch controller was found,
-so it seems the downstream kernel threw me off as per your warning.
-
-[1]: https://www.ifixit.com/Teardown/Google+Pixel+C+Teardown/62277 (Step 4)
-
-> > with the touch input being transmitted via HID-over-I2C,
-> > and since I did not find any reset gpio handling in that driver I opted to
-> > include this reset here, unless there is a better way of going about this.
 > 
-> Instead it should be in touch screen device.
+> Hi All,
+> 
+> Any thoughts on this? So far I did not receive any responses, so
+> probably this could mean that there is little interest in this?
 
-Noted, I will remove it from the binding in the next version. 
+My preference for tracking is gitlab. B or C. Everyone will have login 
+and understands the workflow.
 
-> Where is the DTS of that device?
-
-The relevant part of the DTS can be found here:
-https://android.googlesource.com/kernel/tegra/+/refs/heads/android-tegra-dragon-3.18-oreo/arch/arm64/boot/dts/tegra/tegra210-smaug.dtsi
-
-Best regards,
-Diogo
+---Trilok Soni
