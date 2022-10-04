@@ -2,79 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BAE85F3D43
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 09:30:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E858D5F3D47
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 09:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229710AbiJDHak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 03:30:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54010 "EHLO
+        id S229828AbiJDHc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 03:32:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229803AbiJDHai (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 03:30:38 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 657252D75B
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 00:30:35 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id nb11so26963925ejc.5
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 00:30:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=yPfd3Jwd9rlaL0Pne53MMVojSqXI9G05BY139YmW+lk=;
-        b=Ca4p3uuK71y+eMmACG00B8GkRIUI9jZUFqlyDeLV8jaWRAJnQzm8vnhB2KlJDXv6Ri
-         9lqUAtjFTMUMEjqcDtUcHApGx8J2e4DtMk5MZZKVzKXLsb3lIq01JIRWx3kkpG1GStnt
-         En56mIQXr4H+A9nuRF0iZC29egex4as+iA+1DanYegxUihLSjhbArn8w4WHdz1f5H3T5
-         puCFpZuTA2h+J2HS75ko05iA5tSz0X24AhKnXb7Tpgq0WejCwsn+dt80hn081GgxyIig
-         /0Sgtt5BZFtHHVdOOwqsI7tMvUNzV00zChCKe32uO5wNc5Hx/480fpBkeQniuGKYYlxu
-         METQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=yPfd3Jwd9rlaL0Pne53MMVojSqXI9G05BY139YmW+lk=;
-        b=B5bjnPYxx0TrZ26BQG2Xnbj1oL5/iXHS5cs5gZLId2EC/eyYMrTzTFLsZ2E4QdJHPs
-         QGuByqypaEeV3Qqn0YSXPr3+4FwOgEcs6NTpz27kAxxwM9Cl/wO2gcpjwp7YkQPRXa4P
-         NEAVryo+9sb6y3DfxTKt7SUPBkRUndz3ycZEQrA0V0lBUw2MwYWwYu9f4l5nB7HGSEB7
-         84mrZtm7260xc7q3VkGiwuY6QZDnIqZuVQHpYczfY7yh5yjbiyT22rNjmeLR/IPQUURu
-         zaJ9+U6+24UYw3oYzv2XLmYrjUfzCLITjSvvwbHFfIPEjxsPE3PU7sUZl1Gy7Heq88Iw
-         cFIw==
-X-Gm-Message-State: ACrzQf3MfXO77nO224k0AeBxzaBfTlQ7BnZULPmxUvWMrRNWUz9KTL90
-        wO5u1lAzrzqDG95bVMdiNd8WyYSj6ia/Zq1VON9jSlGuPLw=
-X-Google-Smtp-Source: AMsMyM5lxTKIiElB5NO4KnhFjeWLDqHWiPV1kLQ1/5osb1K2FqLqDKVPFtHD7xbKcQ4tqTBREj+wL8LDG64rem6vxP4=
-X-Received: by 2002:a17:907:2d0b:b0:782:76dc:e557 with SMTP id
- gs11-20020a1709072d0b00b0078276dce557mr17303700ejc.690.1664868634318; Tue, 04
- Oct 2022 00:30:34 -0700 (PDT)
+        with ESMTP id S229824AbiJDHcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 03:32:24 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 789EC4CA27;
+        Tue,  4 Oct 2022 00:32:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1664868741; x=1696404741;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=B7CtfrCbolV18LxT8S0d6Hty+iGNajgoYldBeI1fZ6g=;
+  b=xZ6IScUChAfAUbTBFRgreegluf/K5bs/vfDS/yxDStHG/U1DHN+IEfVV
+   M4hRNuLxCxWWuyK8+LLdjHEBXOt7aqNhnKpfjqLZbJEtoCbTz9FSE8i2t
+   934XF6zxqdq7X5ljwkJnbtrWjNMuTqdpFY3EYFo+Y6GdF18SSYUlHNspM
+   d1Gu4h4W7kc+yfMJ7GWOIjd/w3KlqiCzCcnGNulc2/rkhsXpYoU9wq3+P
+   HBqXYx4VLNq5JlCd/FborYwqwTG6gQnWUUqWrA1RmuTGIPixhH8Yw3XwJ
+   E3PJWWoLn1DZw8gmSfY6ncllAsbcCaN/FgdsMtFt8ye8Gmp/94x649cUn
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,367,1654585200"; 
+   d="scan'208";a="193694898"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Oct 2022 00:32:20 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 4 Oct 2022 00:32:20 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Tue, 4 Oct 2022 00:32:17 -0700
+Date:   Tue, 4 Oct 2022 08:31:55 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        <linux-renesas-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [RFC PATCH v2 1/2] dt-bindings: soc: renesas:
+ r9a07g043f-l2-cache: Add DT binding documentation for L2 cache controller
+Message-ID: <YzvhaxuZbeCwLZ5m@wendy>
+References: <20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221003223222.448551-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdX1BuvHz46QWd+ajEcwmWMeSmvN4AtODuFEysRk14ArZQ@mail.gmail.com>
+ <CA+V-a8vnNQDMgjhJfz91g++dVVv5Z5FTuFrNRHLW3PjPump0Mg@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220926061259.13491-1-shubhrajyoti.datta@amd.com> <20220926061259.13491-3-shubhrajyoti.datta@amd.com>
-In-Reply-To: <20220926061259.13491-3-shubhrajyoti.datta@amd.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 4 Oct 2022 09:30:23 +0200
-Message-ID: <CACRpkdbOvALG=LLK3QdSwscgBeTsK-dtay75DNKpdqaAAm1MAg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] gpio: pca9570: add a platform data structure
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc:     linux-gpio@vger.kernel.org, git@amd.com,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, brgl@bgdev.pl
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8vnNQDMgjhJfz91g++dVVv5Z5FTuFrNRHLW3PjPump0Mg@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 8:14 AM Shubhrajyoti Datta
-<shubhrajyoti.datta@amd.com> wrote:
+On Tue, Oct 04, 2022 at 08:26:01AM +0100, Lad, Prabhakar wrote:
+> Hi Geert,
+> 
+> Thank you for the review.
+> 
+> On Tue, Oct 4, 2022 at 7:42 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> >
+> > Hi Prabhakar,
+> >
+> > On Tue, Oct 4, 2022 at 12:32 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Add DT binding documentation for L2 cache controller found on RZ/Five SoC.
+> > >
+> > > The Renesas RZ/Five microprocessor includes a RISC-V CPU Core (AX45MP
+> > > Single) from Andes. The AX45MP core has an L2 cache controller, this patch
+> > > describes the L2 cache block.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/soc/renesas/r9a07g043f-l2-cache.yaml
+> >
+> > Not andestech,ax45mp-cache.yaml?
+> >
+> I wasn't sure as we were including this in soc/renesas so named it as
+> r9a07g043f-l2-cache.yaml if there are no issues I'll rename it
+> andestech,ax45mp-cache.yaml.
 
-> Add struct pca9570_platform_data for adding the platform data
-> structure. Also modify the existing structs for pca9570 and pca9571
->
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+I may be guilty of suggesting soc/renesas in the first place, but should
+this maybe be in soc/andestech? I have no skin in the game, so at the
+end of the day it doesnt matter to me, but I would imagine that you're
+not going to be the only users of this l2 cache? Or is it a case of "we
+will deal with future users when said future users arrive"? But either
+way, naming it after the less specific compatible makes more sense to
+me.
 
-This looks nice!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Thanks,
+Conor.
 
-Yours,
-Linus Walleij
+
+
