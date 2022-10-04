@@ -2,136 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 226BD5F4703
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 17:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5F185F4711
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 18:01:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbiJDP5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 11:57:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47530 "EHLO
+        id S229823AbiJDQBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 12:01:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbiJDP5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 11:57:04 -0400
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A33A0275F0;
-        Tue,  4 Oct 2022 08:57:03 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 5E7AE5C0113;
-        Tue,  4 Oct 2022 11:57:00 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute2.internal (MEProxy); Tue, 04 Oct 2022 11:57:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1664899020; x=1664985420; bh=8f
-        ukQVxVOSYCkUPUNcLdJutRz1dvTUy8PfzYQAo6isM=; b=l+yg/n97knmHPcEq2h
-        o1LpzdLSxj7lp0whnawB8nCPyhe8hVfE7JXmxVxcWnxyakUkc048tSTwcsaAQbPQ
-        V2aN/jRmizYCSu0O4kaLtHRHCL4lB5XgiR/HOiVFpox0DD5tGT5PbyaEXJLtcDWy
-        NA8JxGg8PEVkCKndIwphOFOx7HDpnNtlxGQcCo/bCmvWm1CPSdtHyly1fUS/n3HS
-        dna4E693G0X1I5sRxxKBU5cVPfMFED184eswbXfN9pYmuAz6ikGNnuq8YYsbqkGS
-        5NtA+j4ig0CsDXqERjQ678c0XQXc1ZDgpmkTbVRCdqN2vckjS+Fus7dN6YME6gxh
-        gP8g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; t=1664899020; x=1664985420; bh=8fukQVxVOSYCkUPUNcLdJutRz1dv
-        TUy8PfzYQAo6isM=; b=EfBHBnWPUcpmB4dRe8mtfBhdCPqVZYLyOQaIo3/Sfn7+
-        4l571zNwxZ43nLEMlJeXsqXWjo1lbVFPH625GoZSrnRkSi75+9LX8SCC9qb1v1S7
-        hY3CqLWS0tqYJ8v5ItXbLOfl+LgF7/LykgRBRSoavERLs3B4fnMp3K++g1feJj4I
-        eqlvhoc7FFol6yVRBEBVxyhtcZ9Lxb8o1TriuFNKb9YTQGu7CYD1nS9utZ/teV0m
-        WXHVnrBfOsgPLy2n7Yk4uFXA/CthMZrXPjz+SDpbKk3G59lpcP4KenOMi4W59yrl
-        busBS1ebQkybFt4IPsb6645MDwKysSBaxC4Ae1Dx/Q==
-X-ME-Sender: <xms:ylc8Y_9lBwRbUzD9LrYY5Hpd6MA_o006vt0TaafBReOqAQHYgs9Umw>
-    <xme:ylc8Y7uj081QXianIUy9lgXj11C-JMqmZneFwTMyhMb6qCzlGeqoF7oQtabI1VPMe
-    DMELx5AUIL_5KQMfLc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeeiuddgleehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedfufhv
-    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
-    grthhtvghrnhepleevgfegffehvedtieevhfekheeftedtjeetudevieehveevieelgffh
-    ieevieeunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:y1c8Y9AQ-9lCWMosRpNxUkI8JeO_T4OQN39DSEM34vEorUejlppCQg>
-    <xmx:y1c8Y7d0pIX6xTL_6iPaDyfBu5NOwMS7P-LZRIv9rc5ciKGvujodmw>
-    <xmx:y1c8Y0Pg2S7oeef4HfSthlyGiaGUORGXj_UNDHJOeX1HB7LcbjYsgg>
-    <xmx:zFc8YzoxrNezxt0kdEyiFlO-gFPLpQPBJrmMpZI43PTXUTQPoF25ow>
-Feedback-ID: i51094778:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id D834CA6007C; Tue,  4 Oct 2022 11:56:58 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1015-gaf7d526680-fm-20220929.001-gaf7d5266
-Mime-Version: 1.0
-Message-Id: <3398859f-e872-4f1d-8a03-4dcb1e46e010@app.fastmail.com>
-In-Reply-To: <20221004112724.31621-2-konrad.dybcio@somainline.org>
-References: <20221004112724.31621-1-konrad.dybcio@somainline.org>
- <20221004112724.31621-2-konrad.dybcio@somainline.org>
-Date:   Tue, 04 Oct 2022 17:56:38 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Konrad Dybcio" <konrad.dybcio@somainline.org>,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Cc:     "Nick Chan" <towinchenmi@gmail.com>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        "Marc Zyngier" <maz@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] irqchip/apple-aic: Add support for A7-A11 SoCs
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229814AbiJDQBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 12:01:42 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755CA60516;
+        Tue,  4 Oct 2022 09:01:41 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id lt21so4572758ejb.0;
+        Tue, 04 Oct 2022 09:01:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=076ekeHJUtZKNndz+8U+ypVvYOOKrZP8Jb4VjdyaYAQ=;
+        b=af5TChXiZkuIToJtLSEBIu5Y/R4iXMbvgCQAChrVYn3cTih55NaV382oZh+1lMiBe3
+         /zNwALDW8izkK2QR2A5MYtUiIzNjzzzFxRLjLLvdJD76hwNKgwy3vwqkdQ0UaeDyuqwv
+         Pv8dScDP/9Riqa4JnDH5R3YmBum2dMkueh7eqWNoRbuJuacgjDLvqV7LcQQOhkEsV/p/
+         IlJva5YocHABa2+FZDh+X5J927uY3AA6Pdjp9XIZcVpISc6H+vtnOLU+oJZPrPpDs61p
+         iZJ6Ot+U6M4/mPuF1CGciqaGAZcDC8x+kHLVLB4kFwTANPF7xELYa+CzxISMQKmZTDxi
+         hBew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=076ekeHJUtZKNndz+8U+ypVvYOOKrZP8Jb4VjdyaYAQ=;
+        b=NUTvuLQYigcdeFO3024gB28/REcpd4nXDPUrxEmftba5ot9IwgL39vMbxssbPJjKjE
+         QASWXJZzOKvqJVqR0by3IrNDGHVQTeE4phhHtTSC2DykPJ292kIRfeb9hGlnB68tXW7t
+         JL0cidYiUX2Z21NPQHMHxERyZoDlXs7rz/v1KiBrbfV3rWzV8aUjFIO+JBb/ThTLKmA7
+         ac5vdDZ+qy+TjOamyJ7W/LbrPOU+wp+ZluqZrcQpMGZMcrhUzoBWuELfkMV+q5zJFYYK
+         Svb3ASsUqDwyMVBbgbR3YkZ4vCTzCu0tv6k4Ey44oF93h5rtIhVNyUbuGi9t1t3WSlHI
+         TMfA==
+X-Gm-Message-State: ACrzQf3PvAa/9YWhoWK618RrhY5dqjxwPe7WXnfZG1XZZhsVYbwLhHyp
+        3QHfc3DcERhHpaLPbXJ+SKA=
+X-Google-Smtp-Source: AMsMyM4w8EA2+e/n3OuyrWeefhpZ+GCI9s+iwq00tHzWVmv5+UqHGkt/in9s6F+5Eq+7srB5ogJAlA==
+X-Received: by 2002:a17:907:c03:b0:781:fd5a:c093 with SMTP id ga3-20020a1709070c0300b00781fd5ac093mr19438336ejc.89.1664899299783;
+        Tue, 04 Oct 2022 09:01:39 -0700 (PDT)
+Received: from skbuf ([188.27.184.197])
+        by smtp.gmail.com with ESMTPSA id b24-20020a50ccd8000000b0044657ecfbb5sm1981806edj.13.2022.10.04.09.01.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Oct 2022 09:01:38 -0700 (PDT)
+Date:   Tue, 4 Oct 2022 19:01:35 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Colin Foster <colin.foster@in-advantage.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 net-next 12/14] dt-bindings: net: dsa: ocelot: add
+ ocelot-ext documentation
+Message-ID: <20221004160135.lqugs6cf5b7fwkxq@skbuf>
+References: <20220926002928.2744638-1-colin.foster@in-advantage.com>
+ <20220926002928.2744638-13-colin.foster@in-advantage.com>
+ <ec63b5aa-3dec-3c27-e987-25e36b1632ba@linaro.org>
+ <20221004121517.4j5637hnioepsxgd@skbuf>
+ <6444e5d1-0fc9-03e2-9b2a-ec19fa1e7757@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6444e5d1-0fc9-03e2-9b2a-ec19fa1e7757@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, Oct 04, 2022 at 04:59:02PM +0200, Krzysztof Kozlowski wrote:
+> On 04/10/2022 14:15, Vladimir Oltean wrote:
+> > On Tue, Oct 04, 2022 at 01:19:33PM +0200, Krzysztof Kozlowski wrote:
+> >>> +  # Ocelot-ext VSC7512
+> >>> +  - |
+> >>> +    spi {
+> >>> +        soc@0 {
+> >>
+> >> soc in spi is a bit confusing.
+> > 
+> > Do you have a better suggestion for a node name? This is effectively a
+> > container for peripherals which would otherwise live under a /soc node,
+> 
+> /soc node implies it does not live under /spi node. Otherwise it would
+> be /spi/soc, right?
 
+Did you read what's written right below? I can explain if you want, but
+there's no point if you're not going to read or ask other clarification
+questions.
 
-On Tue, Oct 4, 2022, at 13:27, Konrad Dybcio wrote:
-> Add support for A7-A11 SoCs by if-ing out some features only present
-> on:
->
-> * A11 & newer (implementation-defined IPI & UNCORE registers)
-> * A11[1] & newer (fast IPI support).
->
-> UNCORE/UNCORE2 and IPI registers conveniently both first appeared on
-> A11, so introduce just one check for that.
->
-> Knowing whether the SoC supports the latter is necessary, as they are
-> written to, even if fast IPI is disabled. 
+> > if they were accessed over MMIO by the internal microprocessor of the
+> > SoC, rather than by an external processor over SPI.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-AFAIK that's only an artifact in this driver: It was added to prevent an FIQ
-storm in case there were pending fast ipis (i.e. the bootloader was broken ;))
-when this driver didn't support fast ipis yet.
+The /spi/soc@0 node actually has a compatible of "mscc,vsc7512" which
+Colin did not show in the example (it is not "simple-bus"). It is covered
+by Documentation/devicetree/bindings/mfd/mscc,ocelot.yaml. Still waiting
+for a better suggestion for how to name the mfd container node.
 
-> This in turn causes a crash
-> on older platforms, as the implemention-defined registers either do
-> something else or are not supposed to be touched - definitely not a
-> NOP though.
->
-> [1] A11 is supposed to use this feature, but it currently doesn't work
-> for reasons unknown and hence remains disabled. It can easily be enabled
-> on A11 only, as there is a SoC-specific compatible in the DT with a
-> fallback to apple,aic. That said, it is not yet necessary, especially
-> with only one core up, and it has worked a-ok so far.
+> >> How is this example different than previous one (existing soc example)?
+> >> If by compatible and number of ports, then there is no much value here.
+> > 
+> > The positioning relative to the other nodes is what's different.
+> 
+> Positioning of nodes is not worth another example, if everything else is
+> the same. What is here exactly tested or shown by example? Using a
+> device in SPI controller?
 
-Just to make sure I understand this correctly - we have the following three situations:
+Everything is not the same, it is not the same hardware as what is currenly
+covered by Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml.
+The "existing soc example" (mscc,vsc9953-switch) has a different port
+count, integration with a different SERDES, interrupt controller, pin
+controller, things like that. The examples already differ in port count
+and phy-mode values, I expect they will start diverging more in the
+future. If you still believe it's not worth having an example of how to
+instantiate a SPI-controlled VSC7512 because there also exists an
+example of an MMIO-controlled VSC9953, then what can I say.
 
-- base: no fastipi, no uncore, will work on A11 and M1 though
-- A11: fastipi and uncore but fastipi is broken (possibly due to HW errata or some bug in this driver that only happens on A11)
-- M1 (or maybe even A12 already, doesn't matter though): fastipi and uncore support
+------ cut here ------
 
-If we figured out _why_ fastipi is broken on A11 we would only need a single
-feature flag to enable both uncore and fastipi but for now we need two to
-disable fastipi for A11.
+Unrelated to your "existing soc example" (the VSC9953), but relevant and
+you may want to share your opinion on this:
 
-I'm also curious: What are the symptoms when you enable fastipi on A11?
+The same hardware present in the VSC7514 SoC can also be driven by an
+integrated MIPS processor, and in that case, it is indeed expected that
+the same dt-bindings cover both the /soc and the /spi/soc@0/ relative
+positioning of their OF node. This is true for simpler peripherals like
+"mscc,ocelot-miim", "mscc,ocelot-pinctrl", "mscc,ocelot-sgpio". However
+it is not true for the main switching IP of the SoC itself.
 
+When driven by a switchdev driver, by the internal MIPS processor (the
+DMA engine is what is used for packet I/O), the switching IP follows the
+Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml binding
+document.
 
-Sven
+When driven by a DSA driver (external processor, host frames are
+redirected through an Ethernet port instead of DMA controller),
+the switching IP follows the Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml
+document.
+
+The switching IP is special in this regard because the hardware is not
+used in the same way. The DSA dt-binding also needs the 'ethernet'
+phandle to be present in a port node. The different placement of the
+bindings according to the use case of the hardware is a bit awkward, but
+is a direct consequence of the separation between DSA and pure switchdev
+drivers that has existed thus far (and the fact that DSA has its own
+folder in the dt-bindings, with common properties in dsa.yaml and
+dsa-port.yaml etc). It is relatively uncommon for a switching IP to have
+provisioning to be used in both modes, and for Linux to support both
+modes (using different drivers), yet this is what we have here.
