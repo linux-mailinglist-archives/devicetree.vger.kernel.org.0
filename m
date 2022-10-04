@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AE905F3DC3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 10:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4988E5F3DD2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 10:08:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229942AbiJDIIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 04:08:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47294 "EHLO
+        id S229963AbiJDIIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 04:08:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbiJDIIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 04:08:36 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C2E333E0C
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 01:08:34 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id ay7-20020a05600c1e0700b003b49861bf48so488053wmb.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 01:08:34 -0700 (PDT)
+        with ESMTP id S229960AbiJDIIi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 04:08:38 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC25546230
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 01:08:35 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id e10-20020a05600c4e4a00b003b4eff4ab2cso10350900wmq.4
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 01:08:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date;
-        bh=S50Kn1ZeGQjmdqGP72J9i0JCYT1m65l5LDkFZpLnWg0=;
-        b=UHWouWakO7eYHv7x/9YhTXzp4EbfNfMN3CapKv4zrEeVjaqIC0BLqhCg4WAFhIR4cX
-         EGtI/p4IXzT8lUzIogbs9/pOu3cHKjem2xUYoVNYh6EMbLFEpQVGifO+6vRkifYi960E
-         F/ZfUopbtQhcwLQSY175yeaNs9t46VXqpa8AMD5yMbWHB9PLOTHBNGkPW1H//vwGHWOp
-         E6c9V1dN9xOmETogsbG27qdoghqEfY+dwP/zWUgZ8nu0/aCttCZIWcflOpRwSQ+gqmRl
-         r/C7ISEKmFbOpKI8UrzKgqZTj3veHVqziTkhyknSjqI1v5LJ3BAsBFOq1b9HnLn+aWCo
-         KgYQ==
+        bh=ERxwEO8S5KqgbZntEyE4toOX6bTMC2xS+dmaphaUMKA=;
+        b=unqTmhZy8A+HDJaKdtS9xNPbiRKpxZ/qyJVjtzF+pammk/F5+/kfUAzats0+OEo3gU
+         OO7KTF/SuFRod0+m+UCJUD4MUuyweTseK+L68JoSJJsJA/KuG7IzU8sWIlnTkcU21pPc
+         R2WS1MknyWd7fgNvRUQ3dSFYPe+pITQ2cjjps39nUcG8ppr7+R2xhNdaSw2NyDf1CHgt
+         Sld5iW/7jYP06PcR8GxwfSs1fc70v8ujr2wMFDffshU7/rCHZb5rtiu1wKh0xcOJJs91
+         /d4zcZw9svfAA7RNhdkLfw4A3TxckzSiex1iORCM+gKYTjidxK75EIp2XGEZ7XS0T3Hc
+         wvbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=S50Kn1ZeGQjmdqGP72J9i0JCYT1m65l5LDkFZpLnWg0=;
-        b=RulRmX6kX4kzR0/EVnatfu7nxOn4ncEQB4DsMGg1jT9kQIARQKu6tq7LLwSXLAKxuF
-         Ozqn++MFHjZrNr8vjaFr2o4GYNY4RqRmpSzaYJ5Fs5MJ3lZgGzJ6UpzicHL8PonsIFo1
-         MD0+tU+LAO3cjfqNeGDU14AuxjdPuGzvVBumI+7a8sHOG393bpHdtENcbX3by7Lg6yP1
-         9QQCNpHcnFYH7fRsPdxPMj1rcQzcLXKKYZmG9nr0Xr4L6ToCOAAp9eucPx3rfSYYISZh
-         V7myCYzbX0VNXveP61489lz53eNw6d+V2YKRFs3RCfAMzZ2nZSi4KHkUX9HkEAA0rNIj
-         ax+A==
-X-Gm-Message-State: ACrzQf2Vy+pph9nGFu5R8j3yzxcFZnTKt5HboY1bzJ0e+xsZ5Ei21C4W
-        QVY4OddcuCQp2iuGyu2TivK0bNva/uzUZD9n
-X-Google-Smtp-Source: AMsMyM7BkAmAaWS1UCuRgUIYv/Vlu7YAkTsTZmhRAfq+aD94BQBJj0+MLRcqAty7VaCZwkURoKwpXQ==
-X-Received: by 2002:a05:600c:1e24:b0:3b4:6c1e:8bb7 with SMTP id ay36-20020a05600c1e2400b003b46c1e8bb7mr9716726wmb.1.1664870913039;
-        Tue, 04 Oct 2022 01:08:33 -0700 (PDT)
+        bh=ERxwEO8S5KqgbZntEyE4toOX6bTMC2xS+dmaphaUMKA=;
+        b=tO5uZWABxUXa4sZdZaOWTxN4a+4mDHEtGSzsvQayjMpwBBWqQ9atG2dbqMfQyokZ/X
+         e9Rz+hl+pQuJZYANMk0ZC4cD6nAKNWJROvus9aEC02k9b9ChP747NDDubDPL7lAb/Yqd
+         j0b2dqc9ckKhX9UqKhXmpyOckOgBKbfj6GP9/Dkf+e8do02NFwFIdSpIdqryqNZFvVpF
+         rzfL/kebL9msW6uz+uHK/6xmRmyy1/JiMwhyDC4QVcETACXh4o2TqH5KuV2BtZOH4iFF
+         k62Zm1l3SntXhHsVms2OIOxU0CQ9zohoz5eQfB7RH2NHDd91Q35h57TIDCBGWM7UJ5xY
+         WIGw==
+X-Gm-Message-State: ACrzQf2FwAuK762zJv182Ze9QI9zNBZrA90VWqp4AwVF/S0BApfF/Btd
+        paUZf3wySt1LrFsd62yWkBs1IA==
+X-Google-Smtp-Source: AMsMyM6aFDcSk++frPMO5CS7FqZcUSWmB3TRai5KAzNrnsiammXqMtCkG4/PaX3mc/O5UMVZ71r0gQ==
+X-Received: by 2002:a05:600c:3781:b0:3a6:804a:afc with SMTP id o1-20020a05600c378100b003a6804a0afcmr9181043wmr.27.1664870914251;
+        Tue, 04 Oct 2022 01:08:34 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id l2-20020a1c7902000000b003b33943ce5esm20228866wme.32.2022.10.04.01.08.31
+        by smtp.gmail.com with ESMTPSA id l2-20020a1c7902000000b003b33943ce5esm20228866wme.32.2022.10.04.01.08.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Oct 2022 01:08:32 -0700 (PDT)
+        Tue, 04 Oct 2022 01:08:33 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 04 Oct 2022 08:08:24 +0000
-Subject: [PATCH v2 08/11] mfd: qcom-pm8xxx: drop unused PM8018 compatible
+Date:   Tue, 04 Oct 2022 08:08:25 +0000
+Subject: [PATCH v2 09/11] rtc: pm8xxx: drop unused pm8018 compatible
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20220928-mdm9615-dt-schema-fixes-v2-8-87fbeb4ae053@linaro.org>
+Message-Id: <20220928-mdm9615-dt-schema-fixes-v2-9-87fbeb4ae053@linaro.org>
 References: <20220928-mdm9615-dt-schema-fixes-v2-0-87fbeb4ae053@linaro.org>
 In-Reply-To: <20220928-mdm9615-dt-schema-fixes-v2-0-87fbeb4ae053@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -85,22 +85,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 The PM8921 compatible is used as fallback when PM8018 is available,
-then remove PM8018 compatible.
+then remove the PM8018 compatible.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-diff --git a/drivers/mfd/qcom-pm8xxx.c b/drivers/mfd/qcom-pm8xxx.c
-index 2f2734ba5273..601106580e2e 100644
---- a/drivers/mfd/qcom-pm8xxx.c
-+++ b/drivers/mfd/qcom-pm8xxx.c
-@@ -497,7 +497,6 @@ static const struct pm_irq_data pm8821_data = {
- };
- 
+diff --git a/drivers/rtc/rtc-pm8xxx.c b/drivers/rtc/rtc-pm8xxx.c
+index dc6d1476baa5..716e5d9ad74d 100644
+--- a/drivers/rtc/rtc-pm8xxx.c
++++ b/drivers/rtc/rtc-pm8xxx.c
+@@ -461,7 +461,6 @@ static const struct pm8xxx_rtc_regs pmk8350_regs = {
+  */
  static const struct of_device_id pm8xxx_id_table[] = {
--	{ .compatible = "qcom,pm8018", .data = &pm8xxx_data},
- 	{ .compatible = "qcom,pm8058", .data = &pm8xxx_data},
- 	{ .compatible = "qcom,pm8821", .data = &pm8821_data},
- 	{ .compatible = "qcom,pm8921", .data = &pm8xxx_data},
+ 	{ .compatible = "qcom,pm8921-rtc", .data = &pm8921_regs },
+-	{ .compatible = "qcom,pm8018-rtc", .data = &pm8921_regs },
+ 	{ .compatible = "qcom,pm8058-rtc", .data = &pm8058_regs },
+ 	{ .compatible = "qcom,pm8941-rtc", .data = &pm8941_regs },
+ 	{ .compatible = "qcom,pmk8350-rtc", .data = &pmk8350_regs },
 
 -- 
 b4 0.10.0
