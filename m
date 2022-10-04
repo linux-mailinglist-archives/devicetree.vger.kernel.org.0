@@ -1,105 +1,107 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A36A5F3AF4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 03:13:12 +0200 (CEST)
+Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
+	by mail.lfdr.de (Postfix) with ESMTP id 8DBA15F3B21
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 04:10:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229571AbiJDBNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Oct 2022 21:13:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59820 "EHLO
+        id S229516AbiJDCKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Oct 2022 22:10:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiJDBNK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 21:13:10 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 671F739BB3
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 18:13:07 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 1C2D02C04D1;
-        Tue,  4 Oct 2022 01:13:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1664845984;
-        bh=x29jml33rjTDIC1AW0KfLG/mVZ1osUI+ufY8iDO3EpM=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=aBXyNnpP22g2MXdkhVL8XJgxNq9LuAQZJ6vRb6pxZBRwGjtxH2qIjmMNzBadg8FAv
-         Y7qFX+EF5Ao+hy5YXgVUUyE2IVzMqBJiKvRL0RFBmUyXjwJNCE6vUeqQp06Pkd2d0s
-         DcjOz1kOElAe5HKptRjb5Ue+MPkBtlNngA51QQipb4O8RXYwP1SzHC4/XxU6up4QRv
-         Fr71NudIpSw9MFtlX44D4hc4/kqyw3tjqqtvpjl3Mdc0kgN6NFk3B534fWbo7XpQI9
-         3G0Z2d3ptOLCChmn+Sa8Aw47XuyRzDbxWWLG2vR1yZGsF9Tob8PhQGvBSQIEL7bWYg
-         OhX5vOEmostKg==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B633b88a00000>; Tue, 04 Oct 2022 14:13:04 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.38; Tue, 4 Oct 2022 14:13:03 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.040; Tue, 4 Oct 2022 14:13:03 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] ARM: dts: armada-xp-98dx3236: add interrupts for watchdog
-Thread-Topic: [PATCH] ARM: dts: armada-xp-98dx3236: add interrupts for
- watchdog
-Thread-Index: AQHY126F968+A44LO0SkiKQWyPP7Ta38lBuA
-Date:   Tue, 4 Oct 2022 01:13:03 +0000
-Message-ID: <c99ca249-7135-1313-8cc4-e6d3c3f85d2a@alliedtelesis.co.nz>
-References: <20221003212419.1280860-1-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20221003212419.1280860-1-chris.packham@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
+        with ESMTP id S229624AbiJDCKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Oct 2022 22:10:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B7223153;
+        Mon,  3 Oct 2022 19:10:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D4E7861226;
+        Tue,  4 Oct 2022 02:10:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1E13DC433D7;
+        Tue,  4 Oct 2022 02:10:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664849422;
+        bh=SLkbv2B4JHPRilUVLrjFbn07v1YGDn4jS0ZXUk/n9ag=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=Xgea8fo/9mtanPdV+WOvAU+EovTzkk/JlxO4WTet1r8l0vT0gm2Rs2wbIQATB1ti4
+         w/e30WSlcQCgJA1qyxLGTxy3a0U9v5eFJxUN5fW5/mY/kkZmkicBFkjB6srGEXPJel
+         /zTiBen7vMV+RxteODKZrVnUBF+yDvgpJBwUD4A9azGsNGj2uPirWhNTfx//SpAGGF
+         rkju0YCQ2Zcx4rkPo26QpJUGa+w0xA5QIX04OM0CH7pelQ/7N5IxqeUaFnxKKeIvIZ
+         73e2tFCo8wntpUROVkD4kVLEwpiTYaZVBA5FL1ZoddNpA/cXqKIBNBbp0X90yfw+97
+         10vY4Bq26UoMQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id F0F27E4D013;
+        Tue,  4 Oct 2022 02:10:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <3DD004912570C44D866D32A2F84D5CEC@atlnz.lc>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=UKij4xXy c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=Qawa6l4ZSaYA:10 a=VwQbUJbxAAAA:8 a=PKtBWZOgI90uNcnaf6AA:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v8 0/7] add generic PSE support 
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166484942198.5153.10769126898481789778.git-patchwork-notify@kernel.org>
+Date:   Tue, 04 Oct 2022 02:10:21 +0000
+References: <20221003065202.3889095-1-o.rempel@pengutronix.de>
+In-Reply-To: <20221003065202.3889095-1-o.rempel@pengutronix.de>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     andrew@lunn.ch, hkallweit1@gmail.com, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        linux@armlinux.org.uk, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
+        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, david@protonic.nl,
+        luka.perkov@sartura.hr, robert.marko@sartura.hr
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQWxsLA0KDQpPbiA0LzEwLzIyIDEwOjI0LCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPiBUaGUg
-Zmlyc3QgaW50ZXJydXB0IGlzIGZvciB0aGUgcmVndWxhciB3YXRjaGRvZyB0aW1lb3V0LiBOb3Jt
-YWxseSB0aGUNCj4gUlNUT1VUIGxpbmUgd2lsbCB0cmlnZ2VyIGEgcmVzZXQgYmVmb3JlIHRoaXMg
-aW50ZXJydXB0IGZpcmVzIGJ1dCBvbg0KPiBzeXN0ZW1zIHdpdGggYSBub24tc3RhbmRhcmQgcmVz
-ZXQgaXQgbWF5IHN0aWxsIHRyaWdnZXIuDQo+DQo+IFRoZSBzZWNvbmQgaW50ZXJydXB0IGlzIGZv
-ciBhIHRpbWVyMSB3aGljaCBpcyB1c2VkIGFzIGEgcHJlLXRpbWVvdXQgZm9yDQo+IHRoZSB3YXRj
-aGRvZy4NCj4NCj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgUGFja2hhbSA8Y2hyaXMucGFja2hhbUBh
-bGxpZWR0ZWxlc2lzLmNvLm56Pg0KDQpJIGp1c3QgcmVhbGl6ZWQgdGhpcyBpcyBhIGR1cGxpY2F0
-ZSBvZiANCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXdhdGNoZG9nLzIwMjIwMjExMDAz
-MjU3LjIwMzczMzItMi1jaHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubnovIA0KKEkgZGlk
-IGhhdmUgYSBzdHJhbmdlIHNlbnNlIG9mIGRlamEgdnUgd2hlbiB3cml0aW5nIGl0KS4NCg0KTG9v
-a3MgbGlrZSB0aGF0IHBhdGNoIHdhcyByZXZpZXdlZCBhbmQgYWNrZWQgYnV0IG5ldmVyIGRlbGl2
-ZXJlZC4gDQpHcmVnb3J5IHdvdWxkIHlvdSBiZSBhYmxlIHRvIHBpY2sgaXQgdXAgbm93PyBUaGUg
-ZHJpdmVyIGNoYW5nZSBoYXMgYmVlbiANCmluIGZvciBhIHdoaWxlLg0KDQo+IC0tLQ0KPiAgIGFy
-Y2gvYXJtL2Jvb3QvZHRzL2FybWFkYS14cC05OGR4MzIzNi5kdHNpIHwgMSArDQo+ICAgMSBmaWxl
-IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQo+DQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290
-L2R0cy9hcm1hZGEteHAtOThkeDMyMzYuZHRzaSBiL2FyY2gvYXJtL2Jvb3QvZHRzL2FybWFkYS14
-cC05OGR4MzIzNi5kdHNpDQo+IGluZGV4IDM4YTA1MmEwMzEyZC4uMGU1NjFkZmMwY2E5IDEwMDY0
-NA0KPiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9hcm1hZGEteHAtOThkeDMyMzYuZHRzaQ0KPiAr
-KysgYi9hcmNoL2FybS9ib290L2R0cy9hcm1hZGEteHAtOThkeDMyMzYuZHRzaQ0KPiBAQCAtMjg2
-LDYgKzI4Niw3IEBAICZ3YXRjaGRvZyB7DQo+ICAgCWNvbXBhdGlibGUgPSAibWFydmVsbCxhcm1h
-ZGEteHAtd2R0IjsNCj4gICAJY2xvY2tzID0gPCZjb3JlY2xrIDI+LCA8JnJlZmNsaz47DQo+ICAg
-CWNsb2NrLW5hbWVzID0gIm5iY2xrIiwgImZpeGVkIjsNCj4gKwlpbnRlcnJ1cHRzID0gPDkzPiwg
-PDM4PjsNCj4gICB9Ow0KPiAgIA0KPiAgICZjcHVyc3Qgew==
+Hello:
+
+This series was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Mon,  3 Oct 2022 08:51:55 +0200 you wrote:
+> Add generic support for the Ethernet Power Sourcing Equipment.
+> 
+> changes are listed within patches.
+> 
+> Oleksij Rempel (7):
+>   dt-bindings: net: phy: add PoDL PSE property
+>   net: add framework to support Ethernet PSE and PDs devices
+>   net: mdiobus: fwnode_mdiobus_register_phy() rework error handling
+>   net: mdiobus: search for PSE nodes by parsing PHY nodes.
+>   ethtool: add interface to interact with Ethernet Power Equipment
+>   dt-bindings: net: pse-dt: add bindings for regulator based PoDL PSE
+>     controller
+>   net: pse-pd: add regulator based PSE driver
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,v8,1/7] dt-bindings: net: phy: add PoDL PSE property
+    https://git.kernel.org/netdev/net-next/c/e9554b31aff0
+  - [net-next,v8,2/7] net: add framework to support Ethernet PSE and PDs devices
+    https://git.kernel.org/netdev/net-next/c/3114b075eb25
+  - [net-next,v8,3/7] net: mdiobus: fwnode_mdiobus_register_phy() rework error handling
+    https://git.kernel.org/netdev/net-next/c/cfaa202a73ea
+  - [net-next,v8,4/7] net: mdiobus: search for PSE nodes by parsing PHY nodes.
+    https://git.kernel.org/netdev/net-next/c/5e82147de1cb
+  - [net-next,v8,5/7] ethtool: add interface to interact with Ethernet Power Equipment
+    https://git.kernel.org/netdev/net-next/c/18ff0bcda6d1
+  - [net-next,v8,6/7] dt-bindings: net: pse-dt: add bindings for regulator based PoDL PSE controller
+    https://git.kernel.org/netdev/net-next/c/f05dfdaf567a
+  - [net-next,v8,7/7] net: pse-pd: add regulator based PSE driver
+    https://git.kernel.org/netdev/net-next/c/66741b4e94ca
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
