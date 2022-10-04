@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 647F45F427D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 13:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F205F427F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 13:57:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbiJDL46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 07:56:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47278 "EHLO
+        id S229992AbiJDL47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 07:56:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbiJDL4y (ORCPT
+        with ESMTP id S229960AbiJDL4y (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 07:56:54 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8E0129C99
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 04:56:51 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id p5so15007135ljc.13
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 04:56:51 -0700 (PDT)
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D42C2248F2
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 04:56:52 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id q17so15022128lji.11
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 04:56:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=DsQgmXA7UbLknyyT7b+mvq0JGpkzpgAolizOzOWF2Fw=;
-        b=GtTSsAkttFYOl9LXE6InT2E4mV9ojxT2XV57bS6cuLHHZNX/Zu0OSsHnN3MUghbWVX
-         Um3Cs3HY1xoBdqyRKv6eaGGBGo2k/kf3E2fHz0xIS22wayVYRzF6kjatxGDFoMFRiGSl
-         mD7MsRi9hHoxsxCYv4fI6BxXS/wy6UX9MIGX0XbAhWz1lHmq++nMoxzuXK2y0jVr4ni8
-         UBEquRcNtXWQ46xXiaCXT2aN/NgZ584ZSI6viiGBcXZr8vOSVB3xK501A8oneUSAg7f8
-         ly+t0SiYOVRuKCeM+FX6lDpZkm2UVBTRikmhUftQj22RGOJTBOGw2bSgOt0kZmFA3iN9
-         aOMw==
+        bh=djq8t4QxKMBmEOxi2elhjqtO/Is16cDEASRN118TFbY=;
+        b=QZMQW7IlxaliINrGlEAbcfMBnTtgPZxr6S5vZirizUlbA/BzTU6Dmez3Ovw+Qaotb4
+         Z2MFtiLqWqrZkee0lsKoct2YOhLKh4MtygYrx3cBbSqja+EUN0j3wSuBrCPJoTbxD076
+         g8Z8sKTIdgZDZlAPC5/6C0ogZvnj4XM7t4PeeN4xE7fAwZ50lmJ/vZiIU9O2UDQHUBjc
+         QX0K908aPVDTQFpKYaT1Hkh3el8f7GwAJZ8Pd+qWTEskPdcEbyFrwfOth7FWb9lyOSpA
+         yfUkYczgJak0m65FP8WGd7KmfnAKGKjcTh3CD86EydB/KzWV7C/nbexbwVmSL4fb18Sm
+         vT8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=DsQgmXA7UbLknyyT7b+mvq0JGpkzpgAolizOzOWF2Fw=;
-        b=1AxsdVajuPzTYIiUVbvmuaDxke0Di4berikeaDKh3GQGeVZfKqY4ziMZkxC2Xa8gYK
-         saxtdGY25WEclefd6sP6No66V71r9FQE8m5eZboNUC401j5r7N72t4BdByEu7ijQI6Q3
-         xj3siQOWs1Vvmx9ABzak9QIej7mJuZJKB8SJN9CfIlkTDGuMGpCwvpqrjyW82MtkKpCo
-         q1A8RsA7b/wOMgeKV7SiQAPhUlMhZvNPnEizRxZvsYdOwRBpgCQekEYzbl94Av2uUUDW
-         GP4K+/3WgqqoSXgdAkVx+3WQQtkCVob8mC2weJ8V8yzdydxVweM2hNzUY8/sbm636Qxw
-         Ct7g==
-X-Gm-Message-State: ACrzQf3WGVCUfwvsu9kOSEcmBXX5EnKkJUUoemtFlD5NsxFPU6qNKZEN
-        kshEiadFL3OgO27s8YsXwa/hag==
-X-Google-Smtp-Source: AMsMyM7lE9ny5lPGYQDKgn0ZIaftf7U2RTdy+XrMhKPHLkLBTBxzJBi1Y+8QBxslEHmMFpLDRx6pzA==
-X-Received: by 2002:a2e:84ca:0:b0:25d:77e0:2566 with SMTP id q10-20020a2e84ca000000b0025d77e02566mr8543337ljh.78.1664884610081;
-        Tue, 04 Oct 2022 04:56:50 -0700 (PDT)
+        bh=djq8t4QxKMBmEOxi2elhjqtO/Is16cDEASRN118TFbY=;
+        b=a2ZE2yaSxylkDZJAolLlMxYNfKoXCF6xIZPxGIVAyY1MMDWtMoLiVVg2RFxm7Fovbi
+         2jHCkU6af1f/WC444leGUtbKncQkPqkrk8jlothHLDyc3hZqcw98KhHnoxn5uGtFxH0F
+         ZvhaHUduVCfz8ccnPDx5B/kS4JmskBI7zbBl2IV0UQCLPbI4uBkxLfwPbSAdM8DlC+eQ
+         Rl3EX1ex8Jk7hFA/qwIgnUHN0xKKdW7kliKtJ9ijXqIELyUvFWSbNHzxek8isW/r/lko
+         j4uErscBV5J5L+qYo2deVIDlBs2t0v1A8XGBgx6gTqgdpGlWgovtLpPOCfdIUH1KW0Rw
+         NyUA==
+X-Gm-Message-State: ACrzQf3g/Tdp4P0HOa4xU9lU/U1hpQAHUW8PvylL70dZ3/54F8DbyAJf
+        PFr5qtSzHqw0Jqe9ttuq92W8eg==
+X-Google-Smtp-Source: AMsMyM4uExW7RGtfOlS/wpmkIJvTsmbYHmXwXvWdC/EpmN8O7KdZ9SUCcl16A4711lrNKfj4TffMJQ==
+X-Received: by 2002:a2e:bd0e:0:b0:268:c03b:cf56 with SMTP id n14-20020a2ebd0e000000b00268c03bcf56mr8311295ljq.393.1664884611220;
+        Tue, 04 Oct 2022 04:56:51 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w8-20020a05651204c800b004a03fd4476esm1878971lfq.287.2022.10.04.04.56.49
+        by smtp.gmail.com with ESMTPSA id w8-20020a05651204c800b004a03fd4476esm1878971lfq.287.2022.10.04.04.56.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Oct 2022 04:56:49 -0700 (PDT)
+        Tue, 04 Oct 2022 04:56:50 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
         Lars-Peter Clausen <lars@metafoo.de>,
@@ -66,9 +66,9 @@ To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
         linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/8] dt-bindings: iio: imu: adi,adis16475: use spi-peripheral-props.yaml
-Date:   Tue,  4 Oct 2022 13:56:39 +0200
-Message-Id: <20221004115642.63749-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 6/8] dt-bindings: iio: pressure: use spi-peripheral-props.yaml
+Date:   Tue,  4 Oct 2022 13:56:40 +0200
+Message-Id: <20221004115642.63749-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221004115642.63749-1-krzysztof.kozlowski@linaro.org>
 References: <20221004115642.63749-1-krzysztof.kozlowski@linaro.org>
@@ -76,7 +76,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,26 +91,38 @@ bindings author did not tried yet.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/iio/pressure/meas,ms5611.yaml        | 5 ++++-
+ .../devicetree/bindings/iio/pressure/murata,zpa2326.yaml     | 5 ++++-
+ 2 files changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-index a7574210175a..5dbfae80bb28 100644
---- a/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-@@ -79,6 +79,7 @@ required:
-   - spi-cpol
- 
- allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-   - if:
-       properties:
-         compatible:
-@@ -107,7 +108,7 @@ allOf:
-       dependencies:
-         adi,sync-mode: [ clocks ]
+diff --git a/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml b/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml
+index 4f06707450bf..7fed750fa3ff 100644
+--- a/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml
++++ b/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml
+@@ -30,7 +30,10 @@ required:
+   - compatible
+   - reg
  
 -additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/iio/pressure/murata,zpa2326.yaml b/Documentation/devicetree/bindings/iio/pressure/murata,zpa2326.yaml
+index d6103be03460..c33640ddde58 100644
+--- a/Documentation/devicetree/bindings/iio/pressure/murata,zpa2326.yaml
++++ b/Documentation/devicetree/bindings/iio/pressure/murata,zpa2326.yaml
+@@ -33,7 +33,10 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
 +unevaluatedProperties: false
  
  examples:
