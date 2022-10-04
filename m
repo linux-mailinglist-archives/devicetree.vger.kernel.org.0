@@ -2,109 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F76E5F45D4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 16:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D48815F45E5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 16:50:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229843AbiJDOnR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 10:43:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49168 "EHLO
+        id S229808AbiJDOuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 10:50:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbiJDOnQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 10:43:16 -0400
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF3191D0C4;
-        Tue,  4 Oct 2022 07:43:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1664894592; bh=99g94TiL+hFwBhUbQX5X4TMC3lCGyB73fo7yYhcTiA4=;
-        h=From:To:Cc:Subject:Date:From;
-        b=o/RSqcqX5mVidZgEXMSOC1i5y5uevvYOEdlYRTh36ZM0KKE34mbxp9N/fMLhZyFoP
-         xSnnDkdHI7OPurUPgIxPwIQzdzVul6e5Hg4WEbJ39WGLuzWs3wLkrX8MoYtEefFZUm
-         fbYdDuhpqxj3B1c44PBz3SQSxJe6KtR047UGuFfw=
-From:   Ondrej Jirman <megi@xff.cz>
-To:     linux-rockchip@lists.infradead.org
-Cc:     Ondrej Jirman <megi@xff.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: rockchip: rk356x: Fix PCIe register map and ranges
-Date:   Tue,  4 Oct 2022 16:43:03 +0200
-Message-Id: <20221004144304.536023-1-megi@xff.cz>
+        with ESMTP id S229712AbiJDOuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 10:50:21 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEEF95D0EC
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 07:50:18 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 10so21514711lfy.5
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 07:50:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=nzv+esMIRxKzhWnsz3O7++Kgraggff4G+6EJKg0J3e0=;
+        b=WWPJDsyXzR4x2jXS6i5X6icrdc97I5zV/N42HEzrhgAp/FQcaxKZABHMRxsHt9oB9/
+         z64QQvs/01CO7IZ93u1D4ZtzV+VZpnLT+KVCmxvYwx+SosKNQfqEEqLp7n0BWvTioCVX
+         922KeXvvt15gTFt4yC4gz+4NwAJUIjjf0WJqZZZ9FEbmI+6H8FDiu7i1K3E4YR6PtexR
+         UXP+wPqvmoC59TafyNNTuvRGqXmhIKH4E8o+BAbu95IVxXVLyIkww20+aIX+glMVKoLc
+         tRhctj2mY6rsR3KQNg4nERd7rgbbPSygK4aWzcmj+oK0QeXhVnyw13aw7TWgcgWix6DE
+         gOhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=nzv+esMIRxKzhWnsz3O7++Kgraggff4G+6EJKg0J3e0=;
+        b=0t7tl5SkjTe1OJMnPNP3y+tb8Lf9w1L72HmGmGKtm8FPa2rfxcBszw2fHkl4k5P4X3
+         QZQyyvrg4f98CtAfxFph1OBAviLg4IPSAADp5shArQXuSMeiiE1xwsmtTeogOwquIHIN
+         Qv97kbwWXgPuHFP7+obRPaxInmpsmMHlx5RM0ICxHp2cSx59IzkpBrLDjrFtMEd56JrY
+         aHEFc7RFT40Z1HHirZX3w1YZf7v0G4AgnCqgQBQAhRWauNrIPmOo42Y2YLfdivX051qV
+         DGkRxmaa7D83Lkqb7IdHSGBJu/5ngQkJQoN0dDXBy6asnW69sw/KnQX4bukENh+EnEe1
+         ZBHw==
+X-Gm-Message-State: ACrzQf1vMXs0uKeO2fOs/T9mUElRmJY6X3RlnuE/zzNalzyZHUhc4CXy
+        Yd5p7M6+VcP+hwDAZz7nilMkuA==
+X-Google-Smtp-Source: AMsMyM7Q9FjfA4NmsV7arqxOzsqVQinIuRhWgwHu7ehLhXGok4UtaUaUjS3u5g8I64TaRRkM8y0RDA==
+X-Received: by 2002:a05:6512:1102:b0:49f:cf25:df93 with SMTP id l2-20020a056512110200b0049fcf25df93mr9949544lfg.318.1664895017023;
+        Tue, 04 Oct 2022 07:50:17 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id h13-20020a056512220d00b004979da67114sm1947557lfu.255.2022.10.04.07.50.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Oct 2022 07:50:16 -0700 (PDT)
+Message-ID: <faa4e821-00e0-4ee0-0c62-b5eb6f75abf7@linaro.org>
+Date:   Tue, 4 Oct 2022 16:50:15 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Vinod Koul <vinod.koul@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Caleb Connolly <kc@postmarketos.org>
+References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
+In-Reply-To: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I have two Realtek PCIe wifi cards connected over the 4 port
-PCIe bridge to Quartz64-A. The cards fail to work, when nvme
-SSD is connected at the same time to the bridge. Without nvme
-connected, cards work fine. The issue seems to be related
-to mixed use of devices which make use of I/O ranges and memory
-ranges.
+On 22/09/2022 16:32, Krzysztof Kozlowski wrote:
+> Hi everyone,
+> 
+> Quite a lot of people are working on Qualcomm DT bindings conversion
+> (TXT->YAML) and fixups to Qualcomm DTS. We track a bit of this effort
+> internally in Linaro, but that has many shortcomings and we would like
+> to track it rather community-wide with the support and contributions
+> from the community.
+> 
+> What to track:
+> 1. Which bindings to convert to YAML,
+> 2. Missing compatibles (either entirely or because of missing conversion),
+> 3. `dt_binding_check` warnings (usually connected with 1-2),
+> 4. `dtbs_check` warnings.
+> 
+> Rob's bot gives us daily output for 1-4, but how can we track current
+> efforts to avoid duplication of work? Also it would allow people to find
+> tasks for them to get contributions to Linux kernel :). Is anyone in
+> community interested in tracking it together, in a public way?
+> 
+> If so, where?
+> A. elinux.org (needs some formatting when pasting the output from tools)
+> B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
+> C. gitlab dedicated repo - some text file
+> D. Linux kernel TODO file (might be difficult to keep updated)
+> E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
+> have it for Exynos but I don't find it usable -
+> https://exynos.wiki.kernel.org/todo_tasks)
 
-This mapping is designed to be more straightforward, inspired by
-dt-bindings docs for sample pcie3x2 node:
 
-      reg = <0x3 0xc0800000 0x0 0x390000>,
-            <0x0 0xfe280000 0x0 0x10000>,
-            <0x3 0x80000000 0x0 0x100000>;
-      ranges = <0x81000000 0x0 0x80800000 0x3 0x80800000 0x0 0x100000>,
-               <0x83000000 0x0 0x80900000 0x3 0x80900000 0x0 0x3f700000>;
+Hi All,
 
-I noticed that this is crafted so that there doesn't need to be
-any translation other than dropping the high dword bits, and I
-modified the ranges for pcie2x1 to follow the same principle.
+Any thoughts on this? So far I did not receive any responses, so
+probably this could mean that there is little interest in this?
 
-This change to the regs/ranges makes the issue go away and both
-nvme and wifi cards work when connected at the same time to the
-bridge.
-
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 319981c3e9f7..e88e8c4fe25b 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -855,7 +855,8 @@ pcie2x1: pcie@fe260000 {
- 		compatible = "rockchip,rk3568-pcie";
- 		reg = <0x3 0xc0000000 0x0 0x00400000>,
- 		      <0x0 0xfe260000 0x0 0x00010000>,
--		      <0x3 0x3f000000 0x0 0x01000000>;
-+		      <0x3 0x00000000 0x0 0x01000000>;
-+
- 		reg-names = "dbi", "apb", "config";
- 		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
-@@ -884,8 +885,8 @@ pcie2x1: pcie@fe260000 {
- 		phys = <&combphy2 PHY_TYPE_PCIE>;
- 		phy-names = "pcie-phy";
- 		power-domains = <&power RK3568_PD_PIPE>;
--		ranges = <0x01000000 0x0 0x3ef00000 0x3 0x3ef00000 0x0 0x00100000
--			  0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x3ef00000>;
-+		ranges =  <0x01000000 0x0 0x01000000 0x3 0x01000000 0x0 0x00100000
-+			   0x02000000 0x0 0x02000000 0x3 0x02000000 0x0 0x3e000000>;
- 		resets = <&cru SRST_PCIE20_POWERUP>;
- 		reset-names = "pipe";
- 		#address-cells = <3>;
--- 
-2.37.3
+Best regards,
+Krzysztof
 
