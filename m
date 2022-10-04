@@ -2,220 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE45F5F41F7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 13:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CF3B5F421E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 13:41:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbiJDL1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 07:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59410 "EHLO
+        id S229723AbiJDLlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 07:41:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229698AbiJDL1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 07:27:40 -0400
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 322012BE3F
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 04:27:38 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2a00:f41:188c:1c74:dc7c:ae37:b483:8263])
-        (using TLSv1.3 with cipher TLS_CHACHA20_POLY1305_SHA256 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA512)
+        with ESMTP id S229605AbiJDLlY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 07:41:24 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B8624DB71;
+        Tue,  4 Oct 2022 04:41:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id CC8291FC01;
-        Tue,  4 Oct 2022 13:27:34 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Cc:     towinchenmi@gmail.com,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        by ams.source.kernel.org (Postfix) with ESMTPS id C66C8B81A0F;
+        Tue,  4 Oct 2022 11:41:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2014C433D6;
+        Tue,  4 Oct 2022 11:41:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664883680;
+        bh=BHUnSAdIZ4XNBoipAEkQYLni7TzHVBXgscOTnj86v5M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=C046NSAyTFEKa4UhRxN5fjYVH5kpQi0qziS6kPAHf5yeiZy3BAe+CnUFHsu85kwqr
+         ukXaDY9I9+V+xnC1gqt36Hy4IWv+MS5vRsyYjrZHFR6p3DEC2vhCsHE98ENaYE7Gqd
+         xItkAUqc35pJWY28ac8fG4h4wvDdrdHfyzPV/egqD2T+zTKlKXRQnkg0Kn7K8RglWl
+         YVqOFKCN/lPq7GiJ9rfCUwO85kqBPkpc5w/6MMB8PRgBJ1Xi/GpVpqYYAYmdPs5Jgx
+         519m71GhqEIpCQ7nuqOsCmf8V481JzYuNIydeGnlo8xWBgJ6z3WjWztnBK+4DRcQWC
+         XPf/UtbipovBg==
+Date:   Tue, 4 Oct 2022 12:41:13 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] irqchip/apple-aic: Add support for A7-A11 SoCs
-Date:   Tue,  4 Oct 2022 13:27:24 +0200
-Message-Id: <20221004112724.31621-2-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.32.0 (Apple Git-132)
-In-Reply-To: <20221004112724.31621-1-konrad.dybcio@somainline.org>
-References: <20221004112724.31621-1-konrad.dybcio@somainline.org>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
+Message-ID: <Yzwb2e0/CK9QbV0n@google.com>
+References: <Ys1tYAO39LKzEAOE@google.com>
+ <dc737abb-041b-491a-14f1-a584f9e64a3d@quicinc.com>
+ <CAE-0n528QaTtZFp=WAaHShegFRpKVN_67jQfUJTtsRPr6s--zA@mail.gmail.com>
+ <52039cd1-4390-7abb-d296-0eb7ac0c3b15@quicinc.com>
+ <Yuz2O+lZ5W7RviuA@google.com>
+ <CAE-0n507SLeYB7XVzGFk=RO6YjOPoGpux+_N2AyrmL354mQJ-g@mail.gmail.com>
+ <YzQf7hf15vvLeGse@google.com>
+ <CAE-0n50cX5ky3By976RTecKkpeMoAjoBA4tYuWSZ150JfS9wiQ@mail.gmail.com>
+ <YzXdhVN/Zp7DDIzB@google.com>
+ <CAE-0n53q-8u16_7KGZ0jbm9ES=dsSJL7rbGdz6hzLWf3xvm=bQ@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <CAE-0n53q-8u16_7KGZ0jbm9ES=dsSJL7rbGdz6hzLWf3xvm=bQ@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for A7-A11 SoCs by if-ing out some features only present
-on:
+On Mon, 03 Oct 2022, Stephen Boyd wrote:
 
-* A11 & newer (implementation-defined IPI & UNCORE registers)
-* A11[1] & newer (fast IPI support).
+> Quoting Lee Jones (2022-09-29 11:01:41)
+> > On Wed, 28 Sep 2022, Stephen Boyd wrote:
+> >
+> > > Quoting Lee Jones (2022-09-28 03:20:30)
+> > > > Wouldn't it make more sense to simply separate the instantiation of
+> > > > the 2 I2C devices?  Similar to what you suggested [0] in v9.  That way
+> > > > they can handle their own resources and we can avoid all of the I2C
+> > > > dummy / shared Regmap passing faff.
+> > > >
+> > > > [0] https://lore.kernel.org/all/CAE-0n53G-atsuwqcgNvi3nvWyiO3P=pSj5zDUMYj0ELVYJE54Q@mail.gmail.com/
+> > > >
+> > >
+> > > You can continue reading the thread[1]. My understanding is it's one
+> > > chip that responds on two i2c addresses, thus we don't describe that as
+> > > two i2c device nodes in DT. Instead we describe one node and use the
+> > > dummy API to make the second i2c device.
+> > >
+> > > [1] https://lore.kernel.org/all/Yk3NkNK3e+fgj4eG@sirena.org.uk/
+> >
+> > As Mark says, it's probably 2 separate dies that have been encased in
+> > the same IC and are otherwise unconnected.  Not sure I understand the
+> > comment about not requiring another 'struct device'.  It will still
+> > require that whether it's a platform device or an I2C device, right?
+> >
+> 
+> Yes a 'struct device' will be required for each i2c address no matter
+> what happens.
+> 
+> It is also useful to describe the hardware as one device node in case
+> there is a shared reset signal or power supply. That allows us to have
+> one driver probe the DT node and deassert the reset/power the chip on. I
+> think this device has one reset signal, so we really need to do this and
+> not treat them as completely independent i2c devices (the 0x8 and 0x9
+> addresses).
+> 
+> Can we move forward with my plan to have another i2c device made for
+> 'pm8008-regulators' and have that driver be an i2c driver that probes an
+> i2c device manually created in the pm8008 driver? I think that would
+> handle the reset ordering problem because the pm8008 driver can deassert
+> the reset and also handle the regmap passing stuff by letting the i2c
+> device at 0x9 make its own regmap.
 
-UNCORE/UNCORE2 and IPI registers conveniently both first appeared on
-A11, so introduce just one check for that.
+Sure, why not.  I'm pretty done talking about this now. :)
 
-Knowing whether the SoC supports the latter is necessary, as they are
-written to, even if fast IPI is disabled. This in turn causes a crash
-on older platforms, as the implemention-defined registers either do
-something else or are not supposed to be touched - definitely not a
-NOP though.
+Please work with Satya to cobble something together.
 
-[1] A11 is supposed to use this feature, but it currently doesn't work
-for reasons unknown and hence remains disabled. It can easily be enabled
-on A11 only, as there is a SoC-specific compatible in the DT with a
-fallback to apple,aic. That said, it is not yet necessary, especially
-with only one core up, and it has worked a-ok so far.
-
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
-Changes since v2:
-- has_uncore_regs now also reflects whether the soc has IPI regs (A11+)
-- apple,aic is now the default, lowest-common-denominator fallback
-compatible (Sven checked it still works on M1)
-- fixed an error where "Fast IPI fired. Acking." would be unreachable..
-oops..
-- what used to be apple,aic (yes UNCORE/IPI regs no fast IPI) is now
-used for the A11 compatible
-
- drivers/irqchip/irq-apple-aic.c | 60 ++++++++++++++++++++++++---------
- 1 file changed, 45 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
-index 1c2813ad8bbe..239115c64340 100644
---- a/drivers/irqchip/irq-apple-aic.c
-+++ b/drivers/irqchip/irq-apple-aic.c
-@@ -230,6 +230,9 @@
- 
- static DEFINE_STATIC_KEY_TRUE(use_fast_ipi);
- 
-+/* True if UNCORE/UNCORE2 and Sn_... IPI registers are present (A11+) */
-+static DEFINE_STATIC_KEY_TRUE(has_uncore_ipi_regs);
-+
- struct aic_info {
- 	int version;
- 
-@@ -246,6 +249,7 @@ struct aic_info {
- 
- 	/* Features */
- 	bool fast_ipi;
-+	bool uncore_ipi_regs;
- };
- 
- static const struct aic_info aic1_info = {
-@@ -261,18 +265,33 @@ static const struct aic_info aic1_fipi_info = {
- 	.event		= AIC_EVENT,
- 	.target_cpu	= AIC_TARGET_CPU,
- 
-+	.uncore_ipi_regs	= true,
- 	.fast_ipi	= true,
- };
- 
-+static const struct aic_info aic1_nofipi_info = {
-+	.version	= 1,
-+
-+	.event		= AIC_EVENT,
-+	.target_cpu	= AIC_TARGET_CPU,
-+
-+	.uncore_ipi_regs	= true,
-+};
-+
- static const struct aic_info aic2_info = {
- 	.version	= 2,
- 
- 	.irq_cfg	= AIC2_IRQ_CFG,
- 
-+	.uncore_ipi_regs	= true,
- 	.fast_ipi	= true,
- };
- 
- static const struct of_device_id aic_info_match[] = {
-+	{
-+		.compatible = "apple,t8015-aic",
-+		.data = &aic1_nofipi_info,
-+	},
- 	{
- 		.compatible = "apple,t8103-aic",
- 		.data = &aic1_fipi_info,
-@@ -524,12 +543,14 @@ static void __exception_irq_entry aic_handle_fiq(struct pt_regs *regs)
- 	 * we check for everything here, even things we don't support yet.
- 	 */
- 
--	if (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING) {
--		if (static_branch_likely(&use_fast_ipi)) {
--			aic_handle_ipi(regs);
--		} else {
--			pr_err_ratelimited("Fast IPI fired. Acking.\n");
--			write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
-+	if (static_branch_likely(&has_uncore_ipi_regs)) {
-+		if (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING) {
-+			if (static_branch_likely(&use_fast_ipi)) {
-+				aic_handle_ipi(regs);
-+			} else {
-+				pr_err_ratelimited("Fast IPI fired. Acking.\n");
-+				write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
-+			}
- 		}
- 	}
- 
-@@ -566,12 +587,14 @@ static void __exception_irq_entry aic_handle_fiq(struct pt_regs *regs)
- 					  AIC_FIQ_HWIRQ(irq));
- 	}
- 
--	if (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) == UPMCR0_IMODE_FIQ &&
--			(read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & UPMSR_IACT)) {
--		/* Same story with uncore PMCs */
--		pr_err_ratelimited("Uncore PMC FIQ fired. Masking.\n");
--		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
--				   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-+	if (static_branch_likely(&has_uncore_ipi_regs)) {
-+		if (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) ==
-+			UPMCR0_IMODE_FIQ && (read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & UPMSR_IACT)) {
-+			/* Same story with uncore PMCs */
-+			pr_err_ratelimited("Uncore PMC FIQ fired. Masking.\n");
-+			sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
-+					FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-+		}
- 	}
- }
- 
-@@ -944,7 +967,8 @@ static int aic_init_cpu(unsigned int cpu)
- 	/* Mask all hard-wired per-CPU IRQ/FIQ sources */
- 
- 	/* Pending Fast IPI FIQs */
--	write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
-+	if (static_branch_likely(&use_fast_ipi))
-+		write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
- 
- 	/* Timer FIQs */
- 	sysreg_clear_set(cntp_ctl_el0, 0, ARCH_TIMER_CTRL_IT_MASK);
-@@ -965,8 +989,9 @@ static int aic_init_cpu(unsigned int cpu)
- 			   FIELD_PREP(PMCR0_IMODE, PMCR0_IMODE_OFF));
- 
- 	/* Uncore PMC FIQ */
--	sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
--			   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-+	if (static_branch_likely(&has_uncore_ipi_regs))
-+		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
-+				   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
- 
- 	/* Commit all of the above */
- 	isb();
-@@ -1125,6 +1150,11 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
- 	else
- 		static_branch_disable(&use_fast_ipi);
- 
-+	if (irqc->info.uncore_ipi_regs)
-+		static_branch_enable(&has_uncore_ipi_regs);
-+	else
-+		static_branch_disable(&has_uncore_ipi_regs);
-+
- 	irqc->info.die_stride = off - start_off;
- 
- 	irqc->hw_domain = irq_domain_create_tree(of_node_to_fwnode(node),
 -- 
-2.30.2
-
+Lee Jones [李琼斯]
