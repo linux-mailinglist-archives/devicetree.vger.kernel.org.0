@@ -2,159 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A47095F4725
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 18:08:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2580A5F47B7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 18:36:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbiJDQIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 12:08:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35074 "EHLO
+        id S230109AbiJDQgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 12:36:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229921AbiJDQIi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 12:08:38 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAD8C61D6C;
-        Tue,  4 Oct 2022 09:08:36 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 294F89FZ005467;
-        Tue, 4 Oct 2022 16:08:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=5wHGUbExXthrC888gAXEgN+PenDV5HW5lAUJDffRL/g=;
- b=kSVjGVOLhVqqrlLY3Og6jzgNGzkHlrWJu6Sg7M2R5O9jpfdN8Sq86ZpA5aNHcnih4o72
- FyI3/kKBjlXFyhZc1/SjaJ/Ztwk9zaEJeMNL1kW2nBP5j6ouuPQgyA5t3DCzP4/JL74a
- l3PCtD19NHfE61Ddf76Gsx3GabkWSJM1c2QRa3fbh0L5BCnW2pm++MfsQ9ke30HmrrPd
- 5bxpBoig9lYunF/GMUhlc+JIOPVp9Y+IbEArdIrMZgwYEaGoI0QNMgaZLGXUUzU0PHXh
- 4AEhWrDVzpk79TjCkSMJswll7Ybl/6MsAWzMRgMiNr/WK8Z5yenjNn4uxziSpCuxvS/1 BQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k0m88ghdg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 04 Oct 2022 16:08:33 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 294G8X22022199
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 4 Oct 2022 16:08:33 GMT
-Received: from [10.110.73.50] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 4 Oct 2022
- 09:08:31 -0700
-Message-ID: <bd50fcb0-f0a4-6552-e9df-c356c32972f1@quicinc.com>
-Date:   Tue, 4 Oct 2022 11:08:30 -0500
+        with ESMTP id S229571AbiJDQgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 12:36:54 -0400
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [IPv6:2001:690:2100:1::15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 703615E579;
+        Tue,  4 Oct 2022 09:36:52 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 074816005417;
+        Tue,  4 Oct 2022 17:36:50 +0100 (WEST)
+X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
+        tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+        by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+        with LMTP id j8yPc4mpqb_j; Tue,  4 Oct 2022 17:36:47 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 0E566600881E;
+        Tue,  4 Oct 2022 17:36:45 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
+        s=mail; t=1664901407;
+        bh=DMhcGkQbTq6SDO0SLsiFN4a0xZV0HfX1yyp+AGRsmVo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=fabVcPBNbSXlLC7+WUv5tqiPTOvXo7j6AWxsirSb9ZAAs5TBaofkbX8nH15fURDWi
+         b0YZ/T8CHc5BQt9d0Gp0oe2dJQAshoByDzia6i6beu2KnhknCX6/BpU3VC4jUwwq3Z
+         KzCcthCBp5fPl8PwJtoa0cSOlD5HAnue6jO9lJOo=
+Received: from wslaptop (unknown [IPv6:2001:818:dcb5:dc00:7a88:7f12:8ed8:518d])
+        (Authenticated sender: ist187313)
+        by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id B7304360083;
+        Tue,  4 Oct 2022 17:36:44 +0100 (WEST)
+Date:   Tue, 4 Oct 2022 17:37:18 +0100
+From:   Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
+        arnd@arndb.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        diogo.ivo@tecnico.ulisboa.pt
+Subject: Re: [PATCH 1/4] dt-bindings: display: Add bindings for JDI
+ LPM102A188A
+Message-ID: <20221004163718.ederwgmvt24kvhms@wslaptop>
+References: <20220929170502.1034040-1-diogo.ivo@tecnico.ulisboa.pt>
+ <20220929170502.1034040-2-diogo.ivo@tecnico.ulisboa.pt>
+ <efa2f644-0a1d-00f7-970c-f17ceb0cc550@linaro.org>
+ <20221003170634.56jibls3xjxiiulg@wslaptop>
+ <98d3b42d-3f9f-9b6e-8c17-46deae4b4030@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 1/5] dt-bindings: firmware: scm: Add QDU1000/QRU1000
- compatibles
-Content-Language: en-US
-From:   Melody Olvera <quic_molvera@quicinc.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221001030641.29354-1-quic_molvera@quicinc.com>
- <20221001030641.29354-2-quic_molvera@quicinc.com>
- <09f5d364-320e-9ecc-2c2b-68066c61f802@linaro.org>
- <e9c44e3b-b29f-0f47-b822-da0f4f2264cc@quicinc.com>
- <CAA8EJprE-mOOH8VF3m8TRb+0q=3_8NpvzdEAugabDaDbq6FMVQ@mail.gmail.com>
- <9664a623-3c58-49e8-1b9a-69335d844448@linaro.org>
- <CAA8EJprQoCQzr2x0JA9_b3MDE=oOTODyHD23debEL1MCE1mWBA@mail.gmail.com>
- <095742cb-61cc-af5d-848c-48b2ea5528ea@quicinc.com>
-In-Reply-To: <095742cb-61cc-af5d-848c-48b2ea5528ea@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nwtx_dxA0ZrvqOzy_gSGdw-mag7Z23cc
-X-Proofpoint-ORIG-GUID: nwtx_dxA0ZrvqOzy_gSGdw-mag7Z23cc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-04_06,2022-09-29_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- adultscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0
- impostorscore=0 suspectscore=0 bulkscore=0 mlxlogscore=999
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210040104
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <98d3b42d-3f9f-9b6e-8c17-46deae4b4030@linaro.org>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Oct 04, 2022 at 01:05:04PM +0200, Krzysztof Kozlowski wrote:
+> On 03/10/2022 19:06, Diogo Ivo wrote:
+> > On Fri, Sep 30, 2022 at 12:49:31PM +0200, Krzysztof Kozlowski wrote:
+> >> Isn't touchscreen a separate (input) device?
+> > 
+> > Hello, thank you for the feedback.
+> > 
+> > According to the downstream kernel's log, it seems like the panel and
+> > the touchscreen controller are considered to be embedded in the same unit
+> > (for example in [1]), 
+> 
+> Downstream kernel is not a proof of proper description of hardware. If
+> downstream says orange is an apple, does it mean orange is really an
+> apple? No... Downstream creates a lot of junk, hacks and workarounds.
 
+After some searching (which I should have done sooner, so
+apologies) I came across a teardown of the Pixel C ([1], for completeness),
+which incorporates this panel. Indeed a separate touch controller was found,
+so it seems the downstream kernel threw me off as per your warning.
 
-On 10/4/2022 10:52 AM, Melody Olvera wrote:
-> On 10/4/2022 2:36 AM, Dmitry Baryshkov wrote:
->> On Tue, 4 Oct 2022 at 09:53, Krzysztof Kozlowski
->> <krzysztof.kozlowski@linaro.org> wrote:
->>> On 04/10/2022 00:14, Dmitry Baryshkov wrote:
->>>> On Tue, 4 Oct 2022 at 01:02, Melody Olvera <quic_molvera@quicinc.com> wrote:
->>>>> On 10/1/2022 4:25 AM, Krzysztof Kozlowski wrote:
->>>>>> On 01/10/2022 05:06, Melody Olvera wrote:
->>>>>>> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
->>>>>>>
->>>>>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>>>>>> ---
->>>>>>>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
->>>>>>>  1 file changed, 2 insertions(+)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>>>>> index c5b76c9f7ad0..b47a5dda3c3e 100644
->>>>>>> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>>>>> @@ -51,6 +51,8 @@ properties:
->>>>>>>            - qcom,scm-sm8250
->>>>>>>            - qcom,scm-sm8350
->>>>>>>            - qcom,scm-sm8450
->>>>>>> +          - qcom,scm-qdu1000
->>>>>>> +          - qcom,scm-qru1000
->>>> I think after seeing all the patchsets it's time to ask the following
->>>> question. Do we really need a duplicate compatibility families:
->>>> qdu1000 vs qru1000? I'd suggest using a single set of compatibile
->>>> strings in most of the cases.
->>>> Settle down onto a single name (qdu,qru, qdru, whatever) and define
->>>> distinct compat strings only when there is an actual difference?
->>>>
->>>> E.g .we don't have separate compatible strings for all the sda660,
->>>> apq8096, etc. unless this is required by the corresponding hardware
->>>> block not being compatible with corresponding sdm or msm counterpart.
->>>>
->>> I am not that fluent in Qualcomm naming, so let me ask - what are the
->>> differences between QDU and QRU?
->>>
->>> For compatible (and/or similar) devices the general recommendation is to
->>> have specific compatibles followed by fallback. Even if devices are
->>> very, very, very similar, usually the recommendation still stays.
->> Well, true. But in some cases we handle this by using a single set of
->> compatibles. Consider e.g. sa8155 vs sm8150 (sa8155 overrides just few
->> compats that differ). Or qrb5165 vs sm8250 (there is no separate
->> qrb5165.dtsi). APQ8096 (#include "msm8996.dtsi"). Etc.
->>
->> I'd say this really depends on the actual difference between qru and qdu.
-> To add some clarification, there's pretty little functional
-> difference between the QDU (Distributed Unit) and the QRU
-> (Radio Unit); they're largely the same SoC from the kernel's
-> standpoint. I wasn't sure if it made more sense to separate
-> the compat strings or mash them together (using qdru to
-> specify that it applies to both), so I kept separate compat
-> strings in case there was a separate RU/DU use case down
-> the line and also to avoid some confusion (I guess that
-> didn't work though). It makes the most sense in my mind
-> to just use the qdru compat string for the things that apply
-> to both SoCs (which is most of what's submitted currently) and
-> then we can do qdu/qru specific override strings for more
-> specific drivers. 
-> Thanks, Melody 
-Fixed formatting.
+[1]: https://www.ifixit.com/Teardown/Google+Pixel+C+Teardown/62277 (Step 4)
+
+> > with the touch input being transmitted via HID-over-I2C,
+> > and since I did not find any reset gpio handling in that driver I opted to
+> > include this reset here, unless there is a better way of going about this.
+> 
+> Instead it should be in touch screen device.
+
+Noted, I will remove it from the binding in the next version. 
+
+> Where is the DTS of that device?
+
+The relevant part of the DTS can be found here:
+https://android.googlesource.com/kernel/tegra/+/refs/heads/android-tegra-dragon-3.18-oreo/arch/arm64/boot/dts/tegra/tegra210-smaug.dtsi
+
+Best regards,
+Diogo
