@@ -2,69 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41FEA5F3D53
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 09:36:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DC0B5F3D6F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 09:45:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiJDHgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 03:36:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33166 "EHLO
+        id S229678AbiJDHpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 03:45:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbiJDHgP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 03:36:15 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A8841D39
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 00:36:13 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id 81so8435022ybf.7
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 00:36:13 -0700 (PDT)
+        with ESMTP id S229630AbiJDHpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 03:45:34 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A359722BD1
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 00:45:32 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id kg6so11689439ejc.9
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 00:45:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=epQv7F2qJ84iAW4L5349YGXrHzlAKAVIa/bBXFB0Ad4=;
-        b=P8ChbWpT0YG30J3zUr9FXH2IBiHLJImXbnh3Bp6QCr7ycn4os8DwkN4zVxe9jwYCqh
-         iIt4Vw+qQeooAwfOIFjtcyhWbY60qsSvde1i9B1qlQycypAtDrAE9i1GayX9ihwQ6Iup
-         xtPOOj2tH08HkIZX0cWdUb1kAHdMa962GNiccPwqpfScp3TLt8e6enqb+fFbr3Z8yk/W
-         JIDHS9gPyiytvYZmDh5rvQbfx8FmrC3lEQtaJwMFyLzpjXqGRkKUPbJCmKF3j7jR50zr
-         hwX2sodAOGDV29UG4gtx/51/9Ak51BAhacwwBK+R++g6UDs+C4wIosMpsOF6AMTOkWHX
-         3puQ==
+        bh=dEKMgKTBl4A3pP4kKEL9qEFFZNZP/ek6muw2I56Mj9U=;
+        b=W0S9VwDzs4n/ewPMTIVFI0DJE+9CaTsuhqfWJKtb6XnCrhPQ79EbyEq+nVXeqg5LuN
+         JwHL+gJPs+FF1wqt9t04IMVpbfUiwUDEy/ivZPk2UaAdp597eS6MugwORxIm2jgG9ORg
+         U/J0aRuk2Q01zvU/lFxU2UNdyVRPOSt1hEs0ZgeNyMi4ype+440ze3C82MhaSyBp5V35
+         U3ZmYOLVN/sgvD6PJOP+mfI8N0yskv4ZfSCmjkwUO8wjjuJ9p8NklCdGyzXTVUUWUG9a
+         uobCSBtyg9RrX3YkQwF53fA8gas1f8anYCV2AKPS1Xee5M0ELZd/X1kwF+k2q8KK7eOt
+         CqgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=epQv7F2qJ84iAW4L5349YGXrHzlAKAVIa/bBXFB0Ad4=;
-        b=DrW9zx9bYSXl1v7wjdO2iqH3C1dqCxD5fIA3DXwS2OmUxhPpOtrbD1g3IWTWHD5RJj
-         mGOkaaCT2kFu+65fM5sj/PM4rBfIiwsvmkkp1t5JT08kDlFpMUXR0Yv2ZmoLmPaIVTic
-         jgXAo99o81H8gmmZgRifQpAMtLiX3GyDZFcHEZG6OKLANeB6VbhHYDqNmLyVGrgmnOJH
-         UhqaoMczbYVMCVIk+8lZyZx4skqyoAVx47+xj31YukjQwMNdZfPD/H68Q1pOqclD4slF
-         J9xJYYACCX40HqdK6IH8JKC5bfjHQEd34tfS9dsgyg+9ShPvQsu5PJl9EPwiaoMpvxCF
-         ajXg==
-X-Gm-Message-State: ACrzQf0GYH9l7iFsx+1JY77QkCW8NSXesCq74Lp9iqyb/D22McNBcH5v
-        N1n/k+AMLLhKA1p83Pt1ZqYeidwymdNJRLxzMUksJQ==
-X-Google-Smtp-Source: AMsMyM6+w9SWD7hb7k99VJI3GyDPbYFNuQ+U244465sm48x/yJocpc335gm0ixgO8BVhLnpDafAZBq+Iq06T0RuuEUE=
-X-Received: by 2002:a05:6902:102e:b0:6bd:bdd2:ac32 with SMTP id
- x14-20020a056902102e00b006bdbdd2ac32mr8599365ybt.516.1664868972999; Tue, 04
- Oct 2022 00:36:12 -0700 (PDT)
+        bh=dEKMgKTBl4A3pP4kKEL9qEFFZNZP/ek6muw2I56Mj9U=;
+        b=muSYv+w42ONuv4wW53+lJvbW+VMzcWmh9qdd1y0cOF6j3HEejpiVMPBpd23JlPnYkj
+         8+U1EDURmgndcG1fFjS6JUh8g3bpjp9a9Y344EQXsLuqztsq/J2wS/HwhPEe1cexDRjJ
+         6q2hjEkqFGI8t648VA8a1M07wq94oZ8CFGBkykf1Z0v65cDRo86gfq29Ynk3sVGUsKKZ
+         YYQhYpcgWKqL1WI3/RPifo2Eqi3a7jRZAfPY9MRvGEm5SS8rVXHlyrrv6Pz49Id2KACm
+         TGYfTMyLX2xlu+KlUK+kmyepg3qqEkw4hK7CUZPam1kxPBTxZq86O+cIhcbe3J3lR0bw
+         Qp5A==
+X-Gm-Message-State: ACrzQf1ScQp3YPjII3nZrFRjTKYBKPwqQXlsTQlSMe3//u3FF5dFKkEO
+        loSJSauN8sb7t02CaZHS5HQJ0B2C4WuJTiCufczSIw==
+X-Google-Smtp-Source: AMsMyM6ZaA9sSj93fKwqMRRMNd1lgsDORY6G8HCgFU5dqNaEHX3TC2z9gjgTF/W6gs1cdiYAMihH7+UuEcnthdCPhdY=
+X-Received: by 2002:a17:906:9b86:b0:73d:72cf:72af with SMTP id
+ dd6-20020a1709069b8600b0073d72cf72afmr18124729ejc.440.1664869531260; Tue, 04
+ Oct 2022 00:45:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221001030641.29354-1-quic_molvera@quicinc.com>
- <20221001030641.29354-2-quic_molvera@quicinc.com> <09f5d364-320e-9ecc-2c2b-68066c61f802@linaro.org>
- <e9c44e3b-b29f-0f47-b822-da0f4f2264cc@quicinc.com> <CAA8EJprE-mOOH8VF3m8TRb+0q=3_8NpvzdEAugabDaDbq6FMVQ@mail.gmail.com>
- <9664a623-3c58-49e8-1b9a-69335d844448@linaro.org>
-In-Reply-To: <9664a623-3c58-49e8-1b9a-69335d844448@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 4 Oct 2022 10:36:02 +0300
-Message-ID: <CAA8EJprQoCQzr2x0JA9_b3MDE=oOTODyHD23debEL1MCE1mWBA@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: firmware: scm: Add QDU1000/QRU1000 compatibles
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20220928092937.27120-1-zhang.lyra@gmail.com> <20220928092937.27120-3-zhang.lyra@gmail.com>
+In-Reply-To: <20220928092937.27120-3-zhang.lyra@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 4 Oct 2022 09:45:20 +0200
+Message-ID: <CACRpkdar4-xPyVCtUoZQv=RERBhMV3Zi__y0deSgOTFkh8Y5xA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: gpio: Add compatible string for Unisoc UMS512
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -76,59 +70,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 4 Oct 2022 at 09:53, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 04/10/2022 00:14, Dmitry Baryshkov wrote:
-> > On Tue, 4 Oct 2022 at 01:02, Melody Olvera <quic_molvera@quicinc.com> wrote:
-> >>
-> >>
-> >> On 10/1/2022 4:25 AM, Krzysztof Kozlowski wrote:
-> >>> On 01/10/2022 05:06, Melody Olvera wrote:
-> >>>> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
-> >>>>
-> >>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> >>>> ---
-> >>>>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
-> >>>>  1 file changed, 2 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> >>>> index c5b76c9f7ad0..b47a5dda3c3e 100644
-> >>>> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> >>>> @@ -51,6 +51,8 @@ properties:
-> >>>>            - qcom,scm-sm8250
-> >>>>            - qcom,scm-sm8350
-> >>>>            - qcom,scm-sm8450
-> >>>> +          - qcom,scm-qdu1000
-> >>>> +          - qcom,scm-qru1000
-> >
-> > I think after seeing all the patchsets it's time to ask the following
-> > question. Do we really need a duplicate compatibility families:
-> > qdu1000 vs qru1000? I'd suggest using a single set of compatibile
-> > strings in most of the cases.
-> > Settle down onto a single name (qdu,qru, qdru, whatever) and define
-> > distinct compat strings only when there is an actual difference?
-> >
-> > E.g .we don't have separate compatible strings for all the sda660,
-> > apq8096, etc. unless this is required by the corresponding hardware
-> > block not being compatible with corresponding sdm or msm counterpart.
-> >
->
-> I am not that fluent in Qualcomm naming, so let me ask - what are the
-> differences between QDU and QRU?
->
-> For compatible (and/or similar) devices the general recommendation is to
-> have specific compatibles followed by fallback. Even if devices are
-> very, very, very similar, usually the recommendation still stays.
+On Wed, Sep 28, 2022 at 11:29 AM Chunyan Zhang <zhang.lyra@gmail.com> wrote:
 
-Well, true. But in some cases we handle this by using a single set of
-compatibles. Consider e.g. sa8155 vs sm8150 (sa8155 overrides just few
-compats that differ). Or qrb5165 vs sm8250 (there is no separate
-qrb5165.dtsi). APQ8096 (#include "msm8996.dtsi"). Etc.
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+>
+> UMS512 use the same GPIO and EIC controller with SC9860, so this
+> patch adds compatible string for UMS512 directly.
+>
+> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-I'd say this really depends on the actual difference between qru and qdu.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
--- 
-With best wishes
-Dmitry
+Yours,
+Linus Walleij
