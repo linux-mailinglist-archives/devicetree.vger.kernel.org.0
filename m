@@ -2,110 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A205F3EBF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 10:48:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B3355F3ECD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 10:51:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230233AbiJDIsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 04:48:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43474 "EHLO
+        id S230208AbiJDIvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 04:51:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbiJDIsw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 04:48:52 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF9B1CFC8
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 01:48:50 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id kg6so12012611ejc.9
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 01:48:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=sVC3cBBvDwdRDUeiwLasUQWtDpHhngctxl/vMaOSR5M=;
-        b=EyEbjvlgI3b6KcuhljzcziR00HmSK05LJbKnmHZCGAArwnuBnaaBAsozltwNPjjriY
-         sjaziasiJyT9HlpHJi6+6s2OwkoEl7oU4xjgYqs1MGg5l1aWFQfMD+A8RxC92UraF/E2
-         u9UQQWF2JNh8KtN+sNkIF18SUrPSIbJGpoeQrCmcDccgfz8CndqWXYUd/zDZfRDZ/JXL
-         9kEQu49d7jCD+xdQvBhDDgJkMQJ2J52BSMY8wOlIgynQFfaqJvB3CNffs8hbAsD1phTd
-         zisIiCQnlWlqE8+GGsadjqh1bsMk4B0zbe024mp1aUiuxvR6oMOWqoA9nlMn45kexJFd
-         uOgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=sVC3cBBvDwdRDUeiwLasUQWtDpHhngctxl/vMaOSR5M=;
-        b=CLZwXkg+4of59rLUWPlr2mokOfHRgcLzRK5YbX/IFCKDjb6Lz550PZfUsUNmZm525u
-         RKyKdDfM/dU2w0Eq6YZQjiXe/qvEd/eqTurQoqKklGV50d+HveYfMH8MHrePpT/HPLUU
-         CmHz4u0eaFcHtGdjC1R/teOk2rI7t8VQgOXMXazGX0XfiHuiqBfOHuhlEo1B1S5RKE4u
-         Xjf0rVPytqYYcka6kFJYocQOf6z1Kusfhs1xo4zJ4kpq3IXlaQ4nu+Q2JIUPn+R3MT26
-         p+Ex0sXRRyh/EdsSpVWt2xnih2/fAudRDGZihfETYP2t1qe/fL34ocJo2f6LHXVAQytf
-         44XA==
-X-Gm-Message-State: ACrzQf2Bm9F5t/P7EkqdrhulBLx4V5J24re4JC9ygnvq+3OTJL80CJEq
-        zhfmRKgqb19U3nBNw/8OX5dZJn+Yo2G9Ki6HrWKhsA==
-X-Google-Smtp-Source: AMsMyM4+MuzPA3rxpU5/7ETp/iSywQSnH9Rb7N1c+d3shN6lW+DluwyMwhY14bCye5s1tkXQlw1TFZUCGQJCnLBR3KA=
-X-Received: by 2002:a17:907:2d0b:b0:782:76dc:e557 with SMTP id
- gs11-20020a1709072d0b00b0078276dce557mr17505898ejc.690.1664873329543; Tue, 04
- Oct 2022 01:48:49 -0700 (PDT)
+        with ESMTP id S230324AbiJDIvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 04:51:00 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 128172D1DB;
+        Tue,  4 Oct 2022 01:50:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1664873458; x=1696409458;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=F3RsIyre2ozS8zNUV5H6X65Ushen9x2OSekUTs4+WvU=;
+  b=DRhfUF6vFTu/9lGSDSsCtjr5ddk6bTgbs6XS3/F+Fu4oxcUvJy5Nrzzl
+   qqeofT/8TNtkd/AQIHoZRIsqxvtTLdxFEiPMlW+qC21WyNwLMXOgR3Cp8
+   eOQQu/P96rxZFDpdOdGUWMNe3hd+ExsuEkMnWVU2f4cXM9UWcX4ZKtEsM
+   hAY3XRep95cgODx0u3kKidpRDubYrXz7eOqrToCNyY/AjkRLGC3xND9UW
+   gzKpERxPhKx+wk8dgGCWjs5rWOlinhBNooy1/BjfBNeJkQSaqrZoK4P4+
+   86pSMmHnp0uwQzggbk2AWcYsy0WH/1dTqPmTSR3wXsh5ZA7zjsep/j6QA
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="290080145"
+X-IronPort-AV: E=Sophos;i="5.93,367,1654585200"; 
+   d="scan'208";a="290080145"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2022 01:50:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="574957572"
+X-IronPort-AV: E=Sophos;i="5.93,367,1654585200"; 
+   d="scan'208";a="574957572"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga003.jf.intel.com with ESMTP; 04 Oct 2022 01:50:55 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1ofdde-001yhH-0g;
+        Tue, 04 Oct 2022 11:50:54 +0300
+Date:   Tue, 4 Oct 2022 11:50:53 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Ciprian Regus <ciprian.regus@analog.com>
+Cc:     jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] drivers: iio: dac: Add AD5754 DAC driver
+Message-ID: <Yzvz7ecXcMVp7quF@smile.fi.intel.com>
+References: <20221004071825.791307-1-ciprian.regus@analog.com>
+ <20221004071825.791307-3-ciprian.regus@analog.com>
 MIME-Version: 1.0
-References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
- <20220930061404.5418-1-hal.feng@linux.starfivetech.com> <166457324093.1075476.18009315584754055366.robh@kernel.org>
-In-Reply-To: <166457324093.1075476.18009315584754055366.robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 4 Oct 2022 10:48:38 +0200
-Message-ID: <CACRpkdZmmMjVwpHxkJP+Ui0XJgrdZx8kpVybifbwkRB1_uMhAg@mail.gmail.com>
-Subject: Re: [PATCH v1 23/30] pinctrl: starfive: Rename "pinctrl-starfive" to "pinctrl-starfive-jh7100"
-To:     Rob Herring <robh@kernel.org>
-Cc:     Hal Feng <hal.feng@linux.starfivetech.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221004071825.791307-3-ciprian.regus@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 30, 2022 at 11:28 PM Rob Herring <robh@kernel.org> wrote:
-> On Fri, 30 Sep 2022 14:14:04 +0800, Hal Feng wrote:
-> > From: Jianlong Huang <jianlong.huang@starfivetech.com>
-> >
-> > Add the SoC name to make it more clear. Also the next generation StarFive
-> > SoCs will use "pinctrl-starfive" as the core of StarFive pinctrl driver.
-> > No functional change.
-> >
-> > Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> > Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
-> > ---
-> >  .../bindings/pinctrl/starfive,jh7100-pinctrl.yaml           | 2 +-
-> >  arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts   | 2 +-
-> >  drivers/pinctrl/starfive/Kconfig                            | 2 +-
-> >  drivers/pinctrl/starfive/Makefile                           | 2 +-
-> >  .../{pinctrl-starfive.c => pinctrl-starfive-jh7100.c}       | 2 +-
-> >  .../{pinctrl-starfive.h => pinctrl-starfive-jh7100.h}       | 6 +++---
-> >  6 files changed, 8 insertions(+), 8 deletions(-)
-> >  rename drivers/pinctrl/starfive/{pinctrl-starfive.c => pinctrl-starfive-jh7100.c} (99%)
-> >  rename include/dt-bindings/pinctrl/{pinctrl-starfive.h => pinctrl-starfive-jh7100.h} (98%)
-> >
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
->
-> Would be good to pull this out separately and apply for 6.1. It's kind
-> of messy with cross tree dependencies.
+On Tue, Oct 04, 2022 at 10:18:25AM +0300, Ciprian Regus wrote:
+> The AD5724/AD5734/AD5754 are quad, 12-/14-/16-bit, serial
+> input, voltage output DACs. The devices operate from single-
+> supply voltages from +4.5 V up to +16.5 V or dual-supply
+> voltages from ±4.5 V up to ±16.5 V. The input coding is
+> user-selectable twos complement or offset binary for a bipolar
+> output (depending on the state of Pin BIN/2sComp), and straight
+> binary for a unipolar output.
 
-OK I applied this for V6.1.
+...
 
-Yours,
-Linus Walleij
+> +#define AD5754_INT_VREF			2500
+
+Units? (Like _mV or _uV or what? Note, small u is OK to have in such cases)
+
+...
+
+> +#define AD5754_CLEAR_FUNC		BIT(2)
+> +#define AD5754_LOAD_FUNC		(BIT(2) | BIT(0))
+> +#define AD5754_NOOP_FUNC		GENMASK(4, 3)
+
+Seems like abuse of BIT and GENMASK, use plain numbers as it's probably is.
+Otherwise _each_ bit should have it's own descriptive meaning.
+
+...
+
+> +#define AD5754_DAC_REG			0
+> +#define AD5754_RANGE_REG		BIT(0)
+> +#define AD5754_PWR_REG			BIT(1)
+
+...
+
+> +#define AD5754_CTRL_REG			GENMASK(1, 0)
+
+Why _REG uses GENMASK()?
+
+...
+
+> +struct ad5754_span_tbl {
+> +	int min;
+> +	int max;
+> +};
+
+I'm wondering if linear_range.h can anyhow help with this code.
+
+...
+
+> +struct ad5754_state {
+> +	struct regmap *regmap;
+> +	struct spi_device *spi;
+> +	struct device *dev;
+
+You always can derive dev from regmap, is this one different?
+
+> +
+> +	const struct ad5754_chip_info *chip_info;
+> +
+> +	u32 range_idx[AD5754_MAX_CHANNELS];
+> +	int offset[AD5754_MAX_CHANNELS];
+> +	u32 dac_max_code;
+> +	u32 data_mask;
+> +	u32 sub_lsb;
+> +	u32 vref;
+> +
+> +	/*
+> +	 * DMA (thus cache coherency maintenance) may require the
+> +	 * transfer buffers to live in their own cache lines.
+> +	 */
+> +	u8 buff[AD5754_FRAME_SIZE] __aligned(IIO_DMA_MINALIGN);
+> +};
+
+...
+
+> +static const struct regmap_config ad5754_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 16,
+> +	.reg_write = ad5754_reg_write,
+> +	.reg_read = ad5754_reg_read,
+
+No max register address?
+
+> +};
+
+...
+
+> +	struct fwnode_handle *channel_node = NULL;
+
+Redundant assignment.
+
+...
+
+> +	fwnode_for_each_available_child_node(dev_fwnode(st->dev), channel_node) {
+
+Why not device_for_each_child_node() ?
+
+(Yes, it uses available ones)
+
+> +	}
+
+...
+
+> +		range = &ad5754_range[st->range_idx[chan->channel]];
+> +		gain = (range->max - range->min) / 2500;
+> +		*val = st->vref * gain / 1000;
+> +		*val2 = st->chip_info->resolution;
+
+Yeah, looks familiar to the linear_range APIs.
+
+...
+
+> +static int ad5754_probe(struct spi_device *spi)
+> +{
+> +	struct regulator *vref_reg;
+> +	struct iio_dev *indio_dev;
+> +	struct ad5754_state *st;
+> +	struct device *dev;
+> +	int ret;
+
+> +	dev = &spi->dev;
+
+Can be done in the definition block (inline).
+
+...
+
+> +	st->chip_info = device_get_match_data(dev);
+> +	if (!st->chip_info)
+> +		st->chip_info =
+> +			(const struct ad5754_chip_info *)spi_get_device_id(spi)->driver_data;
+
+This can look better with a temporary variable. But doesn't matter since we
+would like to have these lines to be packed in a new SPI API helper in the
+future.
+
+...
+
+> +		st->vref = ret / 1000;
+
+Do we have uV_PER_mV or so?
+
+...
+
+> +static const struct spi_device_id ad5754_id[] = {
+
+> +	{},
+
+No comma for the terminator line.
+
+> +};
+
+...
+
+> +static const struct of_device_id ad5754_dt_id[] = {
+
+> +	{},
+
+Ditto.
+
+> +};
+
+...
+
+> +module_driver(ad5754_driver,
+> +	      ad5754_register_driver,
+> +	      ad5754_unregister_driver);
+
+Why not module_spi_driver()?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
