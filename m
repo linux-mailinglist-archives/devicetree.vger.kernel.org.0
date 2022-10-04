@@ -2,132 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AAF05F3CF2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 08:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E12CB5F3CF7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 08:55:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbiJDGx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 02:53:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60048 "EHLO
+        id S229534AbiJDGzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 02:55:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiJDGxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 02:53:55 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B877E2ED4C
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 23:53:53 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id f37so1443119lfv.8
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 23:53:53 -0700 (PDT)
+        with ESMTP id S229640AbiJDGza (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 02:55:30 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 041AD2D766
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 23:55:29 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id s10so14257475ljp.5
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 23:55:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=rGAbSoZZBNp1Rcgw72Rvq0ko1UR3Gj5wyM3fR9f9QcA=;
-        b=kwFzKfO/Y/xaLTNuTEfETEj4Sx9BNm+sDiWRt2m6ij+4hPyAy813ZhUuqvLUihg/w7
-         HPzk7xkR2hMGfmCel+qv+9pktl4dzA+64MlhqCGa+F/p7NbEZh0QzqNa0n2U8NJ7JSYl
-         RLD1M3i+tTIdVhZXeYovo/mNN9e9hDCpI3SqSrJ6wdLNCsaFbBCaDfKnuq9MCqK/Bjjs
-         h3H8w35Hia1srXSv2U5PUeUdXwyFOqqH+VgCKgpifXFPt/Bl+JpeMFGdhpimof7HAkvj
-         BkeyjFns0x85c8D1kEv333nbQiwXg2kt/IDzM1ibdZaX0wV50TYNEG8atXflJOHsrI0S
-         cbnQ==
+        bh=zhHds6t7Vj2FDDurokeQYOjyq3ixp4u5MQEpu4pX2fo=;
+        b=jqU8ttcDaBtmie0K269Urd3CH8YJ7NXFekdMHkTc2TeN75GnwJt5MmzKPlO9WLL47H
+         I7NSu3iT54Qym5w7mY3O9HXPmv1d0QooYq6/itirOiGpqZVaX4jyigKaYDVMdLwpwpnT
+         3ng9QbG0UoWbis1inKt5gej06nJZJHdn+zkC44X+bhHTuCZWvmuOVjQsgBvgUHgCKFaK
+         fdZeBYW8grP6awCdmGIn/Ox4rG8SfxPfM5OEAi8yVCBlFCTOfnxnms5wBETyeB9vCx0w
+         c7QePxmaK9bKMt5FmrSCrgsPX1TBCPZZyFaQj4QfvAGCCnKOKY3sFmqDsJPS7FiZR3Dy
+         TkTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=rGAbSoZZBNp1Rcgw72Rvq0ko1UR3Gj5wyM3fR9f9QcA=;
-        b=BdCaexkQY8mP8lNEGtMdeU2mRJi82IRIOswH/z4epZ6X6LpYSPw7uey4VQ2WmG0psl
-         SzHIkflIBqxuY+Gp8WXEAgdbAqSJENiUpV45X4SMxYKMD4Wom8YbF3lgEpgt67UrT5LS
-         ThUXF9QaguFqVX3PpUJb9+BY/Mq2yGV55VoXW7oNIvfzbYn2cdMA/e62qMJl1I/e5YQj
-         tGiiIPDaAypTps2QPUUKHK2CWsmlhvTGLAR3eoP2/0yn+RXeLMSeNj8Vitp/OkkCBH7l
-         gIfFa9qY+6r9RcBzta4dXf39z4qW3oXKuPn5eiKbs/WOaQSazuPtnE5NOqg0cCAGdr8j
-         wxLQ==
-X-Gm-Message-State: ACrzQf14k1ZzyRKrSrxLUiFWkrdBABbbCneFEk1sCxL5DStn/IjlqA3L
-        xQDioI1yy67xr81NDwtN8VHgAQ==
-X-Google-Smtp-Source: AMsMyM5RaCobEe+/0/5LX8MZEHgbJcoU+0O/Jr7Y0adYZZuT5CPllLO9zX3tunOqSvUAvqlyO6sYmg==
-X-Received: by 2002:ac2:51ae:0:b0:4a2:4f37:451c with SMTP id f14-20020ac251ae000000b004a24f37451cmr1309615lfk.649.1664866432124;
-        Mon, 03 Oct 2022 23:53:52 -0700 (PDT)
+        bh=zhHds6t7Vj2FDDurokeQYOjyq3ixp4u5MQEpu4pX2fo=;
+        b=nlHVdgB9ngIYPQniPHmJRSdXnVzhz/MCbeUkXstawmsq6yHTbspIe7c4mmjV1VISg6
+         gkxaO025IcG6UoYWj+nlrnL2nBX6lEgxcQVUvCiMn7LrMXsxh17L5xiMuqpdPlVXdE6y
+         UQ0LB6/SG3xmS0lM2JAfy8m4S5Aty2Toq4i+cpcyabGpgC3CILDWTuXqHopSPx3fE62t
+         uD+BIXpPSJ+59Xmnv2p792XyFNAbYj0OKD3LSoUQPopMJL2QDD5KeXyeoQOinfIX85VI
+         z5X6pOsgiKLsjHQXhuEEKlgMkAutytngN/1HMjlM4C0yl20uyrI+vnPtzTleP5WbW3/u
+         vXag==
+X-Gm-Message-State: ACrzQf3JosaWGySYWojYc4zPYCxu+CSNL4uyT6zHmbC2UkE/uGTYZVWE
+        WbFKByM2Kd+crzy8Z3mWXvFu1A==
+X-Google-Smtp-Source: AMsMyM5UcCi5dSdpAFBr/Bo/JWakaU2nYEVHh4ZqL6y4akCm2leA7Ow6PmtEqp5ck2DJA+3U5upVww==
+X-Received: by 2002:a05:651c:232:b0:26d:b4b3:a78e with SMTP id z18-20020a05651c023200b0026db4b3a78emr8120186ljn.38.1664866526886;
+        Mon, 03 Oct 2022 23:55:26 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id k2-20020a05651239c200b00499aefcf68esm1769029lfu.292.2022.10.03.23.53.50
+        by smtp.gmail.com with ESMTPSA id y9-20020a05651c106900b00261df847ab0sm1142746ljm.21.2022.10.03.23.55.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Oct 2022 23:53:51 -0700 (PDT)
-Message-ID: <9664a623-3c58-49e8-1b9a-69335d844448@linaro.org>
-Date:   Tue, 4 Oct 2022 08:53:50 +0200
+        Mon, 03 Oct 2022 23:55:26 -0700 (PDT)
+Message-ID: <f612098f-e7e1-b3b3-a738-cabccec43bf2@linaro.org>
+Date:   Tue, 4 Oct 2022 08:55:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 1/5] dt-bindings: firmware: scm: Add QDU1000/QRU1000
- compatibles
+Subject: Re: [PATCH 1/5] dt-bindings: clock: Add QDU1000 and QRU1000 GCC clock
+ bindings
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Melody Olvera <quic_molvera@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-mmc@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221001030641.29354-1-quic_molvera@quicinc.com>
- <20221001030641.29354-2-quic_molvera@quicinc.com>
- <09f5d364-320e-9ecc-2c2b-68066c61f802@linaro.org>
- <e9c44e3b-b29f-0f47-b822-da0f4f2264cc@quicinc.com>
- <CAA8EJprE-mOOH8VF3m8TRb+0q=3_8NpvzdEAugabDaDbq6FMVQ@mail.gmail.com>
+References: <20221001030403.27659-1-quic_molvera@quicinc.com>
+ <20221001030403.27659-2-quic_molvera@quicinc.com>
+ <37926f0f-e176-929e-939a-cd43a031e224@linaro.org>
+ <bb241d46-6f90-8604-e79d-30a1f3527ce4@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJprE-mOOH8VF3m8TRb+0q=3_8NpvzdEAugabDaDbq6FMVQ@mail.gmail.com>
+In-Reply-To: <bb241d46-6f90-8604-e79d-30a1f3527ce4@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/10/2022 00:14, Dmitry Baryshkov wrote:
-> On Tue, 4 Oct 2022 at 01:02, Melody Olvera <quic_molvera@quicinc.com> wrote:
->>
->>
->> On 10/1/2022 4:25 AM, Krzysztof Kozlowski wrote:
->>> On 01/10/2022 05:06, Melody Olvera wrote:
->>>> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
->>>>
->>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
->>>>  1 file changed, 2 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>> index c5b76c9f7ad0..b47a5dda3c3e 100644
->>>> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>> @@ -51,6 +51,8 @@ properties:
->>>>            - qcom,scm-sm8250
->>>>            - qcom,scm-sm8350
->>>>            - qcom,scm-sm8450
->>>> +          - qcom,scm-qdu1000
->>>> +          - qcom,scm-qru1000
-> 
-> I think after seeing all the patchsets it's time to ask the following
-> question. Do we really need a duplicate compatibility families:
-> qdu1000 vs qru1000? I'd suggest using a single set of compatibile
-> strings in most of the cases.
-> Settle down onto a single name (qdu,qru, qdru, whatever) and define
-> distinct compat strings only when there is an actual difference?
-> 
-> E.g .we don't have separate compatible strings for all the sda660,
-> apq8096, etc. unless this is required by the corresponding hardware
-> block not being compatible with corresponding sdm or msm counterpart.
-> 
+On 03/10/2022 20:47, Melody Olvera wrote:
 
-I am not that fluent in Qualcomm naming, so let me ask - what are the
-differences between QDU and QRU?
+>>> +    items:
+>>> +      - description: Board XO source
+>>> +      - description: Sleep clock source
+>>> +      - description: PCIE 0 Pipe clock source (Optional clock)
+>> Skip "Optional clock"
+>>
+>>> +      - description: PCIE 0 Phy Auxiliary clock source (Optional clock)
+>>> +      - description: USB3 Phy wrapper pipe clock source (Optional clock)
+>>> +    minItems: 2
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: bi_tcxo
+>>> +      - const: sleep_clk
+>>> +      - const: pcie_0_pipe_clk # Optional clock
+>> Skip "Optional clock"
+> 
+> Will remove all optional clock instances.
 
-For compatible (and/or similar) devices the general recommendation is to
-have specific compatibles followed by fallback. Even if devices are
-very, very, very similar, usually the recommendation still stays.
+Not the instances of clocks, just the wording, comment. Whether clock is
+optional is quite visible from minItems: 2.
 
 Best regards,
 Krzysztof
