@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F60E5F4272
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 13:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 479BB5F4275
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 13:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229819AbiJDL4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 07:56:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47230 "EHLO
+        id S229962AbiJDL4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 07:56:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229788AbiJDL4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 07:56:48 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F45B23BFD
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 04:56:47 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id z4so20784407lft.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 04:56:47 -0700 (PDT)
+        with ESMTP id S229830AbiJDL4v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 07:56:51 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D88125E9C
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 04:56:48 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id o7so13503755lfk.7
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 04:56:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=jko8CACmQdyH7KyTrf/qnIJsFbwoqds1JxVgFKlDoJI=;
-        b=eqMZrlTZoKxHhQtUEUf1645E0mKMAjbR7pCLbL1nG/4vORnzhsn4r5YM1uk+cNtZgS
-         5+pAIR04kpZM0kANkSzdAICYh/Z7WpBsRsjhUT5PDZmxJCtMwwV6yFrujojsXUCgkD4l
-         k6IjIZMsQrNUSBMymlYgAh8j4Ri2WnONfIVADvaiH/kMg94W03faoDZ99kwCow0/o15e
-         YydCkEXWXVCcn+jUUBdhzYJhZEgZnlTaERIQiUBXCGWgXxDtt1YeK3qlkFNKKf4tE9E5
-         Zuf/TQA/KNXTyciBOS85G3k2eiY0ZTOunmxfiNSyrZA4ranKlDd+qXE7bzRKmkgdQTow
-         Yqwg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=awlDJOwZPKSY5u+OaE9sW3tkpC8Xce3ufjEna4Auwe0=;
+        b=juGB9XDLeDtxWA9Qf15ABu3s9cmSa/vekBmsm40CZZYOV57LoYPnNyGOLtuf0Y+hC3
+         fCOwfytjEjTIbIDuhS9k+0zI9nXkkCGg/ViULV7BOuQHkH1g5f0AM6HZJxur3EHwRf8h
+         ObaG1dLKS7mylBAPPsy6qmbzsVejb57p7EkKWySgEX5umhyZ2EWNaqeYPpUugHbpMR5S
+         fRCKhPS1ntIwfyNys8yawwmRzKtkK5GYjvJggW4p4iVdCargu/5Jkg9pHgQw89OodEOv
+         27MkiLANAjZvn+oXptgGwUdnCmJn7w9esJGR9RIB8j6KXc2LsuhKtU67RvQhy3pb7YBC
+         z9dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=jko8CACmQdyH7KyTrf/qnIJsFbwoqds1JxVgFKlDoJI=;
-        b=3NYXQvkmFwtJxJDY6SxzBaKCboseGw+sH3ooUGG2jr/ierZwJALc8ucAGGj4l+DuRc
-         WSgsd47QdkghmzuthEId7N3cvC6rzLnglVls/3MW702QGuWcsKMGhoKfX5l9Vl0Hwtrd
-         19Ogw8pwmBG3MZq9mZistgvEPb6aTVpkSdSlw3WdDF8fxNCQHxhCk/+Bf6zwi5Mn9o5c
-         mYYpWld9F7w1LASrzrIM6M8OEmREtKsc68wLZBFsjCkrV1sX3XEJ5YYauEeB8LD2ZTYK
-         XGAOdfMiW7FVwJ8a7JgEpLLo62iSz3LGwSCGo7T4ycPyJ45jrwkIaBuQHVfFGwrDnGAc
-         XWXQ==
-X-Gm-Message-State: ACrzQf2vZ5muiulX1Oy2/N74ZXdBpCQQMBnY+Ersy5yWTqQ/3XxxEsti
-        knZHr4+brYpH+Y0D3aKc/OY1iw==
-X-Google-Smtp-Source: AMsMyM5TiCfrSWojaKL8yKcKCS4JnJI9c+RTAWdhLYBoUWbuT2QKjcuB1gsdR5aAxRK/k6oedqd3lA==
-X-Received: by 2002:ac2:4e88:0:b0:4a2:2fa8:9bd8 with SMTP id o8-20020ac24e88000000b004a22fa89bd8mr3737735lfr.621.1664884605512;
-        Tue, 04 Oct 2022 04:56:45 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=awlDJOwZPKSY5u+OaE9sW3tkpC8Xce3ufjEna4Auwe0=;
+        b=2aCzDILKIVEmmu6L2WwzRSEkIxDOa8RrGoWQ9DDoPHm+jyj21WxtQjCPHVGXMbbIzg
+         2qiqTEEv0uRNn80g7I9lVlRF+crA4gKLzUFFnM+NTZS3b1GeI4vGtg0UbrCQSbcRf747
+         ldcysJj410+bngPZuOJZADcfwmIw7dwvIWj/Mgg5aUfgGnC7LRk/Fqj4H0FX1FIkVYHW
+         Lh04hK04rlW/BTPoZTDQNkiH9c262FMSxObMy5x2nirNkIaVwupA3Kvgrk3kJYeetF6F
+         viIko4ydUUtDnarB4lpqisFnTmAtjuabSqny2dLN/v7Thv6t6zG5ugcgklLsIptQrfES
+         Eo/g==
+X-Gm-Message-State: ACrzQf1Gc1NHDMFks3pOWTPiYFXZ09Kb4eamEmFyIPsTNFhMtX2CRh/6
+        T72GFA0ACinftzeENx9QINy4hA==
+X-Google-Smtp-Source: AMsMyM77lAova/vK6lHlTNE7AAkvvu4Xfs36TTtnqIfmn8CxGSLy+6vrKg1tqL/ynremV5PxyKMdsw==
+X-Received: by 2002:ac2:4564:0:b0:4a2:504b:51a0 with SMTP id k4-20020ac24564000000b004a2504b51a0mr1296854lfm.12.1664884606599;
+        Tue, 04 Oct 2022 04:56:46 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w8-20020a05651204c800b004a03fd4476esm1878971lfq.287.2022.10.04.04.56.44
+        by smtp.gmail.com with ESMTPSA id w8-20020a05651204c800b004a03fd4476esm1878971lfq.287.2022.10.04.04.56.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Oct 2022 04:56:45 -0700 (PDT)
+        Tue, 04 Oct 2022 04:56:46 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
         Lars-Peter Clausen <lars@metafoo.de>,
@@ -65,10 +66,12 @@ To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
         linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/8] dt-bindings: iio: addac: adi,ad74413r: use spi-peripheral-props.yaml
-Date:   Tue,  4 Oct 2022 13:56:35 +0200
-Message-Id: <20221004115642.63749-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/8] dt-bindings: iio: addac: adi,ad74413r: improve example
+Date:   Tue,  4 Oct 2022 13:56:36 +0200
+Message-Id: <20221004115642.63749-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221004115642.63749-1-krzysztof.kozlowski@linaro.org>
+References: <20221004115642.63749-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,43 +83,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reference the spi-peripheral-props.yaml schema to allow using all
-properties typical for SPI-connected devices, even these which device
-bindings author did not tried yet.
-
-While changing additionalProperties->unevaluatedProperties, put it in
-typical place, just before example DTS.
+Improve example by: dropping unrelated properties (status and cs-gpios)
+and using generic node name.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/iio/addac/adi,ad74413r.yaml        | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/iio/addac/adi,ad74413r.yaml          | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
-index 03bb90a7f4f8..2e8dad9278f2 100644
+index 2e8dad9278f2..58b3ae14ccaa 100644
 --- a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
 +++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
-@@ -58,8 +58,6 @@ required:
-   - spi-cpol
-   - refin-supply
+@@ -116,10 +116,7 @@ examples:
+       #address-cells = <1>;
+       #size-cells = <0>;
  
--additionalProperties: false
+-      cs-gpios = <&gpio 17 GPIO_ACTIVE_LOW>;
+-      status = "okay";
 -
- patternProperties:
-   "^channel@[0-3]$":
-     type: object
-@@ -103,6 +101,11 @@ patternProperties:
-     required:
-       - reg
- 
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
-+
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
+-      ad74413r@0 {
++      addac@0 {
+         compatible = "adi,ad74413r";
+         reg = <0>;
+         spi-max-frequency = <1000000>;
 -- 
 2.34.1
 
