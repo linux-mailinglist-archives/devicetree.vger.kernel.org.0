@@ -2,44 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83FAF5F3D15
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 09:15:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 684415F3D22
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 09:21:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbiJDHP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 03:15:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59578 "EHLO
+        id S229700AbiJDHVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 03:21:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbiJDHPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 03:15:25 -0400
-Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706B11FCEA;
-        Tue,  4 Oct 2022 00:15:22 -0700 (PDT)
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-        id 4MhTVw4GDJz4xGm; Tue,  4 Oct 2022 18:15:20 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gibson.dropbear.id.au; s=201602; t=1664867720;
-        bh=BeJBfqp4geOWXyIkliGtRwz4fQdnsgVVa+AZMbI2YEk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l+vg5h5822kmD/AjStpUX/s0+H+J5DUJhx/4S3c5U7BTlen6RqsX2zW4IAXVH1tOh
-         98cIg61mRD6neod1PxXE1RS/17OhRSBidKTcFojGNodyshWKwXk3Daq7eVVKmUthiZ
-         GstBVO1Ch3RBky/w8ejqfiB9KrVD947Msm9WQu3c=
-Date:   Tue, 4 Oct 2022 18:15:15 +1100
-From:   David Gibson <david@gibson.dropbear.id.au>
-To:     Tadeusz Struk <tadeusz.struk@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        devicetree-compiler@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] libfdt: tests: add get_next_tag_invalid_prop_len
-Message-ID: <YzvdgweRbBi+A8G6@yekko>
-References: <20220930152004.674591-1-tadeusz.struk@linaro.org>
- <20220930152004.674591-2-tadeusz.struk@linaro.org>
+        with ESMTP id S229581AbiJDHVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 03:21:14 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D1F11F9E4;
+        Tue,  4 Oct 2022 00:21:13 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2944L7T8024494;
+        Tue, 4 Oct 2022 03:21:04 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3jxjf711mp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 04 Oct 2022 03:21:03 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 2947L2EC036294
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 4 Oct 2022 03:21:02 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 4 Oct 2022 03:21:01 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 4 Oct 2022 03:21:01 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 4 Oct 2022 03:21:01 -0400
+Received: from debian.ad.analog.com ([10.48.65.127])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 2947Ke1Q031613;
+        Tue, 4 Oct 2022 03:20:46 -0400
+From:   Ciprian Regus <ciprian.regus@analog.com>
+To:     <jic23@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>, <andriy.shevchenko@linux.intel.com>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     Ciprian Regus <ciprian.regus@analog.com>
+Subject: [PATCH 0/2] Add support for the AD5754 DAC
+Date:   Tue, 4 Oct 2022 10:18:23 +0300
+Message-ID: <20221004071825.791307-1-ciprian.regus@analog.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="CFJX5xrR0h4kScf6"
-Content-Disposition: inline
-In-Reply-To: <20220930152004.674591-2-tadeusz.struk@linaro.org>
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: uafd3-qX4aCh-BjYBCnoWXU6zPXB29Yc
+X-Proofpoint-ORIG-GUID: uafd3-qX4aCh-BjYBCnoWXU6zPXB29Yc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-10-04_02,2022-09-29_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
+ bulkscore=0 mlxscore=0 priorityscore=1501 spamscore=0 adultscore=0
+ impostorscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210040046
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,193 +72,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These patches implement support for the AD5754 DAC (both dual
+and quad channel variants).
 
---CFJX5xrR0h4kScf6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The AD5724/AD5734/AD5754 are quad, 12-/14-/16-bit, serial
+input, voltage output DACs. The devices operate from single-
+supply voltages from +4.5 V up to +16.5 V or dual-supply
+voltages from ±4.5 V up to ±16.5 V. The input coding is
+user-selectable twos complement or offset binary for a bipolar
+output (depending on the state of Pin BIN/2sComp), and straight
+binary for a unipolar output.
 
-On Fri, Sep 30, 2022 at 08:20:04AM -0700, Tadeusz Struk wrote:
-> Add a new test get_next_tag_invalid_prop_len, which covers
-> fdt_next_tag(), when it is passed an corrupted blob, with
-> invalid property len values.
->=20
-> Signed-off-by: Tadeusz Struk <tadeusz.struk@linaro.org>
-> ---
->  tests/.gitignore                      |  1 +
->  tests/Makefile.tests                  |  2 +-
->  tests/get_next_tag_invalid_prop_len.c | 65 +++++++++++++++++++++++++++
->  tests/meson.build                     |  1 +
->  tests/run_tests.sh                    |  1 +
->  5 files changed, 69 insertions(+), 1 deletion(-)
->  create mode 100644 tests/get_next_tag_invalid_prop_len.c
->=20
-> diff --git a/tests/.gitignore b/tests/.gitignore
-> index 03bdde2..3376ed9 100644
-> --- a/tests/.gitignore
-> +++ b/tests/.gitignore
-> @@ -74,3 +74,4 @@ tmp.*
->  /truncated_memrsv
->  /utilfdt_test
->  /value-labels
-> +/get_next_tag_invalid_prop_len
-> diff --git a/tests/Makefile.tests b/tests/Makefile.tests
-> index 2d36c5d..2c5b4c9 100644
-> --- a/tests/Makefile.tests
-> +++ b/tests/Makefile.tests
-> @@ -4,7 +4,7 @@ LIB_TESTS_L =3D get_mem_rsv \
->  	get_path supernode_atdepth_offset parent_offset \
->  	node_offset_by_prop_value node_offset_by_phandle \
->  	node_check_compatible node_offset_by_compatible \
-> -	get_alias \
-> +	get_alias get_next_tag_invalid_prop_len \
->  	char_literal \
->  	sized_cells \
->  	notfound \
-> diff --git a/tests/get_next_tag_invalid_prop_len.c b/tests/get_next_tag_i=
-nvalid_prop_len.c
-> new file mode 100644
-> index 0000000..c02f6a3
-> --- /dev/null
-> +++ b/tests/get_next_tag_invalid_prop_len.c
-> @@ -0,0 +1,65 @@
-> +// SPDX-License-Identifier: LGPL-2.1-or-later
-> +/*
-> + * libfdt - Flat Device Tree manipulation
-> + *	Testcase for fdt_next_tag()
-> + */
-> +#include <stdlib.h>
-> +#include <stdio.h>
-> +#include <string.h>
-> +#include <stdint.h>
-> +
-> +#include <libfdt.h>
-> +#include "tests.h"
-> +#include "testdata.h"
-> +
-> +int main(int argc, char *argv[])
-> +{
-> +	struct fdt_header *hdr;
-> +	struct fdt_property *prp;
-> +	void *fdt;
-> +	int size, nextoff =3D 0;
-> +	uint32_t tag;
-> +
-> +	test_init(argc, argv);
-> +	size =3D sizeof(*hdr) + sizeof(*prp) + 256;
-> +	fdt =3D calloc(1, size);
-> +	if (!fdt)
-> +		FAIL("Can't allocate memory");
-> +
-> +	hdr =3D fdt;
-> +	prp =3D (struct fdt_property *)(((char *) fdt) + sizeof(*hdr));
-> +	fdt_set_magic(fdt, FDT_MAGIC);
-> +	fdt_set_totalsize(fdt, size);
-> +	fdt_set_version(fdt, 0x10);
-> +	prp->tag =3D cpu_to_fdt32(FDT_PROP);
-> +	prp->len =3D cpu_to_fdt32(256);
-> +	prp->nameoff =3D 0;
+Ciprian Regus (2):
+  dt-bindings: iio: dac: add adi,ad5754.yaml
+  drivers: iio: dac: Add AD5754 DAC driver
 
-The dtb you're constructing here isn't a valid dtb, even before you
-corrupt the property lengths: it doesn't have valid offsets to the
-blocks, and you have no BEGIN_NODE tag for the root node.  That means
-that in order to test the specific thing you want to test, you're
-relying on *very* detailed knowledge of exactly how the code under
-test works and what it does and doesn't check, which makes the test
-unnecessarily fragile.
+ .../bindings/iio/dac/adi,ad5754.yaml          | 173 +++++
+ MAINTAINERS                                   |   8 +
+ drivers/iio/dac/Kconfig                       |  12 +
+ drivers/iio/dac/Makefile                      |   1 +
+ drivers/iio/dac/ad5754.c                      | 668 ++++++++++++++++++
+ 5 files changed, 862 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5754.yaml
+ create mode 100644 drivers/iio/dac/ad5754.c
 
-I'd really suggest building the initial tree with the fdt_sw functions
-- or even more declaratively in trees.S - before corrupting it to test
-the actual overflow condition.
+-- 
+2.30.2
 
-> +	tag =3D fdt_next_tag(fdt, sizeof(*hdr), &nextoff);
-> +	if (tag !=3D FDT_PROP)
-> +		FAIL("Invalid tag %X", tag);
-> +
-> +	if (nextoff !=3D size)
-> +		FAIL("Invalid next_offset");
-> +
-> +	/* int overflow case */
-> +	prp->len =3D cpu_to_fdt32(0xFFFFFFFA);
-> +	tag =3D fdt_next_tag(fdt, sizeof(*hdr), &nextoff);
-> +	if (tag !=3D FDT_END)
-> +		FAIL("Invalid tag, expected premature end");
-> +
-> +	if (nextoff !=3D -FDT_ERR_BADSTRUCTURE)
-> +		FAIL("Invalid nextoff, expected error FDT_ERR_BADSTRUCTURE");
-> +
-> +	/* negative offset case */
-
-Is there actually any meaningful difference between the "int overflow"
-and "negative offset" cases?
-
-> +	prp->len =3D cpu_to_fdt32(0x7FFFFFFA);
-> +	tag =3D fdt_next_tag(fdt, sizeof(*hdr), &nextoff);
-> +	if (tag !=3D FDT_END)
-> +		FAIL("Invalid tag, expected premature end");
-
-
-> +	if (nextoff !=3D -FDT_ERR_BADSTRUCTURE)
-> +		FAIL("Invalid nextoff, expected error FDT_ERR_BADSTRUCTURE");
-> +
-> +	free(fdt);
-> +	PASS();
-> +}
-> diff --git a/tests/meson.build b/tests/meson.build
-> index 4ac154a..29a42dd 100644
-> --- a/tests/meson.build
-> +++ b/tests/meson.build
-> @@ -47,6 +47,7 @@ tests =3D [
->    'get_path',
->    'get_phandle',
->    'get_prop_offset',
-> +  'get_next_tag_invalid_prop_len',
->    'getprop',
->    'incbin',
->    'integer-expressions',
-> diff --git a/tests/run_tests.sh b/tests/run_tests.sh
-> index 244df8a..397b9cf 100755
-> --- a/tests/run_tests.sh
-> +++ b/tests/run_tests.sh
-> @@ -346,6 +346,7 @@ tree1_tests () {
->      run_test get_prop_offset $TREE
->      run_test get_phandle $TREE
->      run_test get_path $TREE
-> +    run_test get_next_tag_invalid_prop_len $TREE #TREE not really needed
-
-This doesn't belong with tree1_tests() since it has nothing to do with
-test_tree1.  It should go under the "Specific bug tests" comment
-instead.  Also, since you're not using a passed in tree blob, you
-should modify the test code not to expect one.
-
->      run_test supernode_atdepth_offset $TREE
->      run_test parent_offset $TREE
->      run_test node_offset_by_prop_value $TREE
-
---=20
-David Gibson			| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
-				| _way_ _around_!
-http://www.ozlabs.org/~dgibson
-
---CFJX5xrR0h4kScf6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEoULxWu4/Ws0dB+XtgypY4gEwYSIFAmM73XwACgkQgypY4gEw
-YSL3kw/+KMGlZHCSP3fFyjLWMke3CgiV4cjWPk2UHAKYfUyQF24GIp0Ti4N8wuFh
-1QAGbN2G5Y/B6n9sb9dtEjm8ajlCRx9/oanituvTzDkYgZRyPy1bciPP2h4RRKvj
-kjaG/LYHEBHGox04BcgktrH13WhgUujgrf4HAhGJSukPAxehzPMsKmFMWTXRezc7
-jTJWAWj7Oc8mpfoKVveOGVdPPR+xJJQ+DxGUaXkAII6h0brgXKMwVNt8dtS8gBsk
-rYfECfZVRS1UIIdp5ES96VBLKsL+78IlWcoP00QEF0q6wnDhWsOhCTO/ESB8qoSB
-YRLayYAdRYj+gd0p+Nwi+mLIEHvUzEMn1VYCcJgSqUMv3eXq3g1Rf9QgQHvUSKN/
-JzB1SKalMYKoVwwhdcaqWRzYP6FBPqp7t5QdOOu5j9Ua3xGvrd9q1NArGFbCRxb4
-GeBQklWz6Jeh4UrEzIehGFNqh4yFVOqVO6d9w7PM6EhXxONxBWK2HX/SQs5Cxl5z
-jN0MS0TDTHUoxfX2LWrLz0Kf5tT64miUZ2qYffH6ebl2cIAKPQg2Ud5LfLQUuGrI
-rH3qbbfkyAxsBkTJmbtxwndJq3O2xMMDM3Y+MZFin5F6AUCYdiHyqkjeus9IZAAN
-IOujdXai5HPruc+CtaHAOGD4iYtnm3NoVZ/eb5n/BzH0qY0wFwA=
-=+rHQ
------END PGP SIGNATURE-----
-
---CFJX5xrR0h4kScf6--
