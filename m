@@ -2,94 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 902945F3FED
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 11:39:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F225F3FF8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 11:40:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230486AbiJDJjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 05:39:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47924 "EHLO
+        id S231338AbiJDJkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 05:40:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230385AbiJDJiK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 05:38:10 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 525FF51A1A;
-        Tue,  4 Oct 2022 02:34:08 -0700 (PDT)
-X-UUID: cbbd88093cd3471c9fc2fbfe83ce75ea-20221004
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=qldc0fRVCo0APH/0FzqZyTCrkn487lxLAcRBXAzA2AI=;
-        b=aWEEb8iViN7bhrrw/P2iE/vvd8qSAOBYuD6evLeYzqdmvAvwT2lYsLtBC+6U61m72giL3y/tbeBqtgjde7GZjh3UwoiLzccVUjuiaBVAmndkmDkczdbJiz+anE5UGGZM9DJq9pOgOj4yzwADJJC5cMirUT+zgLxZOO8/25t1Jdg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:7b132cb9-333b-4050-8b0a-6de38a16f9f4,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:4013ee07-1cee-4c38-b21b-a45f9682fdc0,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: cbbd88093cd3471c9fc2fbfe83ce75ea-20221004
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <moudy.ho@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1555811844; Tue, 04 Oct 2022 17:33:22 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Tue, 4 Oct 2022 17:33:20 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Tue, 4 Oct 2022 17:33:20 +0800
-From:   Moudy Ho <moudy.ho@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>
-Subject: [PATCH v1 0/6] add support for MT8195 VPPSYS on MMSYS and MUTEX
-Date:   Tue, 4 Oct 2022 17:33:13 +0800
-Message-ID: <20221004093319.5069-1-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        with ESMTP id S231339AbiJDJkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 05:40:18 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090D913E1E;
+        Tue,  4 Oct 2022 02:36:48 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2D1C36601A43;
+        Tue,  4 Oct 2022 10:36:46 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664876206;
+        bh=7d/Gvp/hSj0W8fL9YlWbKoSabX//KYOwXW+EbP2DhMI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=f76M3RL3SMH4JYVyrZEKOA8W5XKDOyQ/AuJSRil+nsr+YyTM/9LU0ejEDkDQyGkeX
+         gdxULrN3DJI7XWWYTyjCrqPFSTqQJ8Umbaz3IZg8MibI29m/YOq21FuQ4L+uc0ZptZ
+         kgMIQC2vjaxJBh5RFFwOU/uxDm0/bdqaUKVjoUhP217zIMAMuqUsbkdTUA9pdwVBqD
+         Me08ieEpNgykKIcdUIxLfOC/COPk3ZmD+d8v/r59+j0u7dx6XHisThMSJ6H0dHfbCa
+         39RM9hV/qmcsW8QtslAwUxa/lnbt6YhP4+xlM0vNQmU3bHArD8XGQud1pVnZZow49z
+         Ip5gyZOSojuwQ==
+Message-ID: <50e12f7a-bf15-9f27-0606-5d23b310bf2d@collabora.com>
+Date:   Tue, 4 Oct 2022 11:36:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH 08/12] ASoC: mediatek: mt8188: add platform driver
+Content-Language: en-US
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        tiwai@suse.com, robh+dt@kernel.org, matthias.bgg@gmail.com,
+        p.zabel@pengutronix.de
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220930145701.18790-1-trevor.wu@mediatek.com>
+ <20220930145701.18790-9-trevor.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220930145701.18790-9-trevor.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Il 30/09/22 16:56, Trevor Wu ha scritto:
+> Add mt8188 platform driver.
+> 
+> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+> ---
+> This patch depends on the following series that has not been accepted.
+> 
+> [1] Add power domain support for MT8188
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=681359
+> (linux/soc/mediatek/infracfg.h is included)
+> ---
+>   sound/soc/mediatek/Kconfig                 |   13 +
+>   sound/soc/mediatek/Makefile                |    1 +
+>   sound/soc/mediatek/mt8188/Makefile         |   12 +
+>   sound/soc/mediatek/mt8188/mt8188-afe-pcm.c | 2945 ++++++++++++++++++++
+>   4 files changed, 2971 insertions(+)
+>   create mode 100644 sound/soc/mediatek/mt8188/Makefile
+>   create mode 100644 sound/soc/mediatek/mt8188/mt8188-afe-pcm.c
+> 
+> diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
+> index 363fa4d47680..cf0e4c6b61e7 100644
+> --- a/sound/soc/mediatek/Kconfig
+> +++ b/sound/soc/mediatek/Kconfig
+> @@ -206,6 +206,19 @@ config SND_SOC_MTK_BTCVSD
+>   	  Select Y if you have such device.
+>   	  If unsure select "N".
+>   
+> +config SND_SOC_MT8188
+> +	tristate "ASoC support for Mediatek MT8188 chip"
+> +	depends on ARCH_MEDIATEK || COMPILE_TEST
+> +	depends on COMMON_CLK
+> +	select SND_SOC_MEDIATEK
+> +	select SND_SOC_MT6359
+> +	select MFD_SYSCON if SND_SOC_MT6359
+> +	help
+> +	  This adds ASoC platform driver support for Mediatek MT8188 chip
+> +	  that can be used with other codecs.
+> +	  Select Y if you have such device.
+> +	  If unsure select "N".
+> +
+>   config SND_SOC_MT8192
+>   	tristate "ASoC support for Mediatek MT8192 chip"
+>   	depends on ARCH_MEDIATEK
+> diff --git a/sound/soc/mediatek/Makefile b/sound/soc/mediatek/Makefile
+> index 5571c640a288..3de38cfc69e5 100644
+> --- a/sound/soc/mediatek/Makefile
+> +++ b/sound/soc/mediatek/Makefile
+> @@ -5,5 +5,6 @@ obj-$(CONFIG_SND_SOC_MT6797) += mt6797/
+>   obj-$(CONFIG_SND_SOC_MT8173) += mt8173/
+>   obj-$(CONFIG_SND_SOC_MT8183) += mt8183/
+>   obj-$(CONFIG_SND_SOC_MT8186) += mt8186/
+> +obj-$(CONFIG_SND_SOC_MT8188) += mt8188/
+>   obj-$(CONFIG_SND_SOC_MT8192) += mt8192/
+>   obj-$(CONFIG_SND_SOC_MT8195) += mt8195/
+> diff --git a/sound/soc/mediatek/mt8188/Makefile b/sound/soc/mediatek/mt8188/Makefile
+> new file mode 100644
+> index 000000000000..fa5d383c5e47
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt8188/Makefile
+> @@ -0,0 +1,12 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +# platform driver
+> +snd-soc-mt8188-afe-objs := \
+> +	mt8188-afe-clk.o \
+> +	mt8188-afe-pcm.o \
+> +	mt8188-audsys-clk.o \
+> +	mt8188-dai-adda.o \
+> +	mt8188-dai-etdm.o \
+> +	mt8188-dai-pcm.o
+> +
+> +obj-$(CONFIG_SND_SOC_MT8188) += snd-soc-mt8188-afe.o
+> diff --git a/sound/soc/mediatek/mt8188/mt8188-afe-pcm.c b/sound/soc/mediatek/mt8188/mt8188-afe-pcm.c
+> new file mode 100644
+> index 000000000000..5d8e01c99714
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt8188/mt8188-afe-pcm.c
+> @@ -0,0 +1,2945 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Mediatek ALSA SoC AFE platform driver for 8188
+> + *
+> + * Copyright (c) 2022 MediaTek Inc.
+> + * Author: Bicycle Tsai <bicycle.tsai@mediatek.com>
+> + *         Trevor Wu <trevor.wu@mediatek.com>
+> + *         Chun-Chia Chiu <chun-chia.chiu@mediatek.com>
+> + */
+> +
+> +#include <linux/arm-smccc.h>
+> +#include <linux/delay.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/module.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
+> +#include <linux/soc/mediatek/infracfg.h>
+> +#include <linux/soc/mediatek/mtk_sip_svc.h>
+> +#include <sound/pcm_params.h>
+> +#include "mt8188-afe-common.h"
+> +#include "mt8188-afe-clk.h"
+> +#include "mt8188-reg.h"
+> +#include "../common/mtk-afe-platform-driver.h"
+> +#include "../common/mtk-afe-fe-dai.h"
+> +
+> +#define MTK_SIP_AUDIO_CONTROL MTK_SIP_SMC_CMD(0x517)
 
-This series add support for MT8195's two VPPSYS(Video Processor Pipe Subsystem),
-under which there will be corresponding MMSYS and MUTEX settings that
-need to be configured.
+This definition goes to include/linux/soc/mediatek/mtk_sip_svc.h
 
-Roy-CW.Yeh (6):
-  dt-bindings: soc: mediatek: Add support for MT8195 VPPSYS
-  dts: arm64: mt8195: add MMSYS and MUTEX configuration for VPPSYS
-  soc: mediatek: mmsys: add support for MT8195 VPPSYS
-  soc: mediatek: mmsys: add config api for RSZ switching and DCM
-  soc: mediatek: mutex: Add mtk_mutex_set_mod support to set MOD1
-  soc: mediatek: mutex: support MT8195 VPPSYS
+> +
+> +#define MT8188_MEMIF_BUFFER_BYTES_ALIGN  (0x40)
+> +#define MT8188_MEMIF_DL7_MAX_PERIOD_SIZE (0x3fff)
+> +
+> +#define MEMIF_AXI_MINLEN 9 //register default value
 
- .../bindings/soc/mediatek/mediatek,mutex.yaml |   1 +
- arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  22 ++-
- drivers/soc/mediatek/mt8195-mmsys.h           |   8 ++
- drivers/soc/mediatek/mtk-mmsys.c              |  60 +++++++-
- drivers/soc/mediatek/mtk-mmsys.h              |   1 +
- drivers/soc/mediatek/mtk-mutex.c              | 129 ++++++++++++++++--
- include/linux/soc/mediatek/mtk-mmsys.h        |   4 +
- include/linux/soc/mediatek/mtk-mutex.h        |  36 +++++
- 8 files changed, 250 insertions(+), 11 deletions(-)
+...and please fix comments style.
 
--- 
-2.18.0
+> +
+> +struct mtk_dai_memif_priv {
+> +	unsigned int asys_timing_sel;
+> +	unsigned int fs_timing;
+> +};
+> +
+
+..snip..
+
+> +
+> +MODULE_DESCRIPTION("Mediatek ALSA SoC AFE platform driver for 8188");
+
+MediaTek SoC AFE platform driver for ALSA MT8188
+
+> +MODULE_AUTHOR("Chun-Chia.Chiu <chun-chia.chiu@mediatek.com>");
+> +MODULE_LICENSE("GPL");
+
+
 
