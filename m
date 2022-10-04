@@ -2,152 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 017C55F3D16
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 09:15:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE02B5F3D09
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 09:07:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229738AbiJDHP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 03:15:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59622 "EHLO
+        id S229571AbiJDHHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 03:07:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbiJDHP0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 03:15:26 -0400
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AAEF2873A;
-        Tue,  4 Oct 2022 00:15:24 -0700 (PDT)
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-        id 4MhTVw473xz4xGj; Tue,  4 Oct 2022 18:15:20 +1100 (AEDT)
+        with ESMTP id S229564AbiJDHHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 03:07:07 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EEB4402D2
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 00:07:06 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id t16so14297676ljh.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 00:07:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gibson.dropbear.id.au; s=201602; t=1664867720;
-        bh=BMxKDTCe1rTJ2jnzvpqRCQ/AxM3RNeFXr6jjIgAA1n4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Knp+YYcqdROVot0PhkxC48/UWLh5fxuTazM9H4wle2kJBQRWFhe8dzBNF4ykpXsF3
-         hh3pra0pjK5Kj69qP3vourwQIq6RP8+7CXNQMwo4P4ctDFyIleQG3We1OdsnrGBZLd
-         pwUoCVLXMm6whVsPWi+weaeXmDOel0ACEy+MOO4A=
-Date:   Tue, 4 Oct 2022 18:06:05 +1100
-From:   David Gibson <david@gibson.dropbear.id.au>
-To:     Tadeusz Struk <tadeusz.struk@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        devicetree-compiler@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] libfdt: prevent integer overflow in fdt_next_tag
-Message-ID: <YzvbXZG5lSfDL/6v@yekko>
-References: <20220930152004.674591-1-tadeusz.struk@linaro.org>
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=b3hNZwmZyFy/xOhulemGtHZ8byzYtjyXSAifiACW+Q4=;
+        b=ALgFRgtjPCe3hUl+SpgglaCF3oQaWbTsfs+CHfWQ6wvy5oy9Xll4iZUURHYz+aUFgs
+         7fVlFfBDC4ys2g/9DdgOiQh5Enln0JrbHC8VaYZhkl662Sz/IMRTWtFyBYjz45dShaGC
+         8isy7Kcg6b04rdKYQGOSzo+yI8QGGZ+/xEn9ORrl1pCVX/nZBbkASH+exzrPl7MxrRPW
+         hpwEUJYNvBkM5QcQ44+wF8ZBl4wpkLNd4iLb/wLBIhHf5j26D/KEFfUi7lxfDYpJDGff
+         14Ut7tsBFf4oJV1I5DSKnHl8GOfiBg5g6XRaHKyg614LQz1UbRYj5FxRsduUUhSJiL/d
+         TqvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=b3hNZwmZyFy/xOhulemGtHZ8byzYtjyXSAifiACW+Q4=;
+        b=UjTFt3EE8Yvvii8cXyDasGsCiZUMqNV5r94N4rn7T6pbWyC+/uPKu8xxOsY1XDbWIA
+         S7XZksj1/SqXy7Y9nkJSC/cVjFKhSiixVU1huSPmBJk1/gmG7e8lCG0ZPw06E9hKOgbH
+         CsUj65QuMGqGKttJJpuTMma/mqTFetd+wfeNmzG4+aV6Ddq1Du0zFIg9GMkqGKYkqSCl
+         GKgT2riqwI+8MzQPCNoDpnEYhjrf1lLhhRhnhBB9QiGExwnKNFVYyvzR947PqIvDKLO5
+         2mEPAwVdTbw4CUjiVtiDE+0/pQRAchQxyOhRjgmKmGzY+2QHjNMlnEz2Y7tKuKTLs4HD
+         zQAg==
+X-Gm-Message-State: ACrzQf2SBIz5Lrm21m3q26/CAr5K4JUtFvvOdfUV5OSwBbKb6dWtQ4oO
+        BY+0RASSWnfMz23yWgv1hpxy5w==
+X-Google-Smtp-Source: AMsMyM4HM5M9/Rvi0MTsnNMyZYgZrZm00DDBXJiWXvNeMHU+7P+7jyU4L/inah1+jNARgLiwnwUhNA==
+X-Received: by 2002:a2e:6d02:0:b0:26a:cf02:40c4 with SMTP id i2-20020a2e6d02000000b0026acf0240c4mr8259235ljc.513.1664867224822;
+        Tue, 04 Oct 2022 00:07:04 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id a37-20020a05651c212500b0026dc7b59d8esm978446ljq.22.2022.10.04.00.07.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Oct 2022 00:07:04 -0700 (PDT)
+Message-ID: <6e2a25b1-3158-e3fc-8290-5064009972c7@linaro.org>
+Date:   Tue, 4 Oct 2022 09:07:03 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4YxftU/A8nnR+Pvg"
-Content-Disposition: inline
-In-Reply-To: <20220930152004.674591-1-tadeusz.struk@linaro.org>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sagit: add initial device tree
+ for sagit
+Content-Language: en-US
+To:     Dzmitry Sankouski <dsankouski@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20221003185500.928608-1-dsankouski@gmail.com>
+ <20221003185500.928608-2-dsankouski@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221003185500.928608-2-dsankouski@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 03/10/2022 20:54, Dzmitry Sankouski wrote:
+> New device support - Xiaomi Mi6 phone
+> 
+> What works:
+> - storage
+> - usb
+> - power regulators
+> 
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 
---4YxftU/A8nnR+Pvg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for your patch. There is something to discuss/improve.
 
-On Fri, Sep 30, 2022 at 08:20:03AM -0700, Tadeusz Struk wrote:
-> Since fdt_next_tag() in a public API function all input parameters,
-> including the fdt blob should not be trusted. It is possible to forge
-> a blob with invalid property length that will cause integer overflow
-> during offset calculation. To prevent that, validate the property length
-> read from the blob before doing calculations.
-
-So.. yes, there can be an integer overflow here.  I think the actual
-damage it can cause is strongly mitigated by the fact that we should
-only ever use the result of that overflow via fdt_offset_ptr(), which
-will safely reject a bad offset.
-
-> Signed-off-by: Tadeusz Struk <tadeusz.struk@linaro.org>
-
-> v2:
-> * Use len local variable to avoid multiple calls to fdt32_to_cpu(*lenp)
-> * Add can_assume(VALID_DTB) to the new checks
-
->  libfdt/fdt.c | 18 +++++++++++++-----
->  1 file changed, 13 insertions(+), 5 deletions(-)
->=20
-> diff --git a/libfdt/fdt.c b/libfdt/fdt.c
-> index 90a39e8..b7c202a 100644
-> --- a/libfdt/fdt.c
-> +++ b/libfdt/fdt.c
-> @@ -162,7 +162,7 @@ const void *fdt_offset_ptr(const void *fdt, int offse=
-t, unsigned int len)
->  uint32_t fdt_next_tag(const void *fdt, int startoffset, int *nextoffset)
->  {
->  	const fdt32_t *tagp, *lenp;
-> -	uint32_t tag;
-> +	uint32_t tag, len;
->  	int offset =3D startoffset;
->  	const char *p;
-> =20
-> @@ -188,12 +188,20 @@ uint32_t fdt_next_tag(const void *fdt, int startoff=
-set, int *nextoffset)
->  		lenp =3D fdt_offset_ptr(fdt, offset, sizeof(*lenp));
->  		if (!can_assume(VALID_DTB) && !lenp)
->  			return FDT_END; /* premature end */
 > +
-> +		len =3D fdt32_to_cpu(*lenp);
-> +		if (!can_assume(VALID_DTB) && INT_MAX <=3D len)
-
-This check is redundant with the one below, isn't it?
-
-> +			return FDT_END; /* premature end */
+> +&tlmm {
+> +	gpio-reserved-ranges = <0 4>, <81 4>;
 > +
->  		/* skip-name offset, length and value */
-> -		offset +=3D sizeof(struct fdt_property) - FDT_TAGSIZE
-> -			+ fdt32_to_cpu(*lenp);
-> +		offset +=3D sizeof(struct fdt_property) - FDT_TAGSIZE + len;
+> +	cci1_default_state: cci1-default-state {
+> +		pins = "gpio19", "gpio20";
+> +		function = "cci_i2c";
+> +		bias-disable;
+> +		drive-strength = <2>;
+> +	};
 > +
-> +		if (!can_assume(VALID_DTB) && offset < 0)
-> +			return FDT_END; /* premature end */
+> +	cdc_reset_n: cdc-reset-n {
 
-Hmmm.. so, signed integer overflow is actually undefined behaviour in
-C, so checking for offset < 0 after the addition isn't actually a safe
-way to check for overflow.  To safely check for overflow, I believe
-you need to check that the *unsigned* sum of offset and len is greater
-than or equal to offset (*unsigned* integer overflow is defined to
-wrap as you'd expect for 2s complement arithmetic).  Actually given
-the constraints we've put on offsets in general, we need to check that
-that unsigned sum is both greater than offset and less than INT_MAX.
+This is a friendly reminder during the review process.
 
->  		if (!can_assume(LATEST) &&
-> -		    fdt_version(fdt) < 0x10 && fdt32_to_cpu(*lenp) >=3D 8 &&
-> -		    ((offset - fdt32_to_cpu(*lenp)) % 8) !=3D 0)
-> +		    fdt_version(fdt) < 0x10 && len >=3D 8 &&
-> +		    ((offset - len) % 8) !=3D 0)
->  			offset +=3D 4;
->  		break;
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
 
---=20
-David Gibson			| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
-				| _way_ _around_!
-http://www.ozlabs.org/~dgibson
+Thank you.
 
---4YxftU/A8nnR+Pvg
-Content-Type: application/pgp-signature; name="signature.asc"
+> +		pins = "gpio64";
+> +		function = "gpio";
+> +		bias-pull-down;
+> +		drive-strength = <16>;
+> +		output-high;
+> +	};
+> +
+> +	hall_sensor_default_state: hall-sensor-default-state {
+> +		pins = "gpio124";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +		input-enable;
+> +	};
+> +
+> +	mdss_dsi_active_state: mdss-dsi-active-state {
+> +		pins = "gpio94";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +	};
+> +
+> +	mdss_dsi_suspend_state: mdss-dsi-suspend-state {
+> +		pins = "gpio94";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+> +	mdss_te_active_state: mdss-te-active-state {
+> +		pins = "gpio10";
+> +		function = "mdp_vsync_a";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+> +	mdss_te_suspend_state: mdss-te-suspend-state {
+> +		pins = "gpio10";
+> +		function = "mdp_vsync_a";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+> +	msm_mclk0_active_state: msm-mclk0-active-state {
+> +		pins = "gpio13";
+> +		function = "cam_mclk";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	msm_mclk0_suspend_state: msm-mclk0-suspend-state {
+> +		pins = "gpio13";
+> +		function = "cam_mclk";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+> +	msm_mclk1_active_state: msm-mclk1-active-state {
+> +		pins = "gpio14";
+> +		function = "cam_mclk";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	msm_mclk1_suspend_state: msm-mclk1-suspend-state {
+> +		pins = "gpio14";
+> +		function = "cam_mclk";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+> +	nfc_int_active_state: nfc-int-active-state {
+> +		pins = "gpio92";
+> +		function = "gpio";
+> +		drive-strength = <6>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	nfc_int_suspend_state: nfc-int-suspend-state {
+> +		pins = "gpio92";
+> +		function = "gpio";
+> +		drive-strength = <6>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	nfc_enable_active_state: nfc-enable-active-state {
+> +		pins = "gpio12", "gpio116";
+> +		function = "gpio";
+> +		drive-strength = <6>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	nfc_enable_suspend_state: nfc-enable-suspend-state {
+> +		pins = "gpio12", "gpio116";
+> +		function = "gpio";
+> +		drive-strength = <6>;
+> +		bias-disable;
+> +	};
+> +
+> +	ts_active_state: ts-active-state {
+> +		pins = "gpio89", "gpio125";
+> +		function = "gpio";
+> +		drive-strength = <16>;
+> +		bias-pull-up;
+> +		input-enable;
+> +	};
+> +
+> +	ts_int_suspend_state: ts-int-suspend-state {
+> +		pins = "gpio125";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	ts_reset_suspend_state: ts-reset-suspend-state {
+> +		pins = "gpio89";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	wcd_int_n: wcd-int-n {
 
------BEGIN PGP SIGNATURE-----
+You missed here state suffix
 
-iQIzBAEBCAAdFiEEoULxWu4/Ws0dB+XtgypY4gEwYSIFAmM720gACgkQgypY4gEw
-YSLc7xAAzb28EXoIpyqyhmzzrYrzyhOmnpy5v63fQUsf5JHRk+ucejAykQpYdH7n
-Il1LvvwdRcIz3rb469p+ymy1tlcW7So+Dj/yNtNX6cZJv02PdxISCXszVOX4P862
-0wSbS9TkZKoOQrvRlhKlRwSi1D4F7MJ+UdCid5JEfojY+iWmVXe0CBNRtC22Lyh+
-4wCoPd5tZvAvTHoPNGApUdFbU4f3PmhTSrXPAbm+w0yKDsh8uR2iNS42J2GMIdL/
-4pjy5Eb+04mtz1/WtjOoXXrn2ngWBBaOymLWnrz4carnPVBX0x9BDc/hhPgMnjgI
-3ow8B7wuo5BdbjXcemqJcSvTwUD4VKzLaj7tRgEj0XJLWQJ+5yoQltmZBRptcGmY
-DNxS1WnFYOjOUk654fsOK0VZcvvteX8Mb5RAYofAQBmoTFwzmkwCI7DhC0LGNPRH
-U3IeTzjICNU9SciRhibI+tTFBKTXXRYh2CG0GYme25s1j6wfFDMe0qR8i2wfTH1q
-C08MVqRCceyKunhMfGa8EXcwamU4G0RpNLDu5dtX9u7kir6HXJqXTbwpdwC9uu6c
-MQD8TXDRpPu4oP3RNzc2nAYPkL9ihJCUKdFEBXVaa8gwoeLSDRklxy0zDs+KmCCQ
-iGMUwUB2aX+ATHp10xys/7CCgOvrgUh4GeKbLLBP8JF3Nw1fCrU=
-=33p5
------END PGP SIGNATURE-----
+> +		pins = "gpio54";
+> +		function = "gpio";
+> +		bias-pull-down;
+> +		drive-strength = <2>;
+> +		input-enable;
+> +	};
+> +
+> +	wsa_leftspk_pwr_n: wsa-leftspk-pwr-n {
 
---4YxftU/A8nnR+Pvg--
+Ditto
+
+> +		pins = "gpio65";
+> +		function = "gpio";
+> +		bias-disable;
+> +		drive-strength = <2>;
+> +		output-low;
+> +	};
+> +> +	wsa_rightspk_pwr_n: wsa-rightspk-pwr-n {
+
+Ditto
+
+> +		pins = "gpio66";
+> +		function = "gpio";
+> +		bias-disable;
+> +		drive-strength = <2>;
+> +		output-low;
+> +	};
+
+Best regards,
+Krzysztof
+
