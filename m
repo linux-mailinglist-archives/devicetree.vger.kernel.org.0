@@ -2,195 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02ACF5F415C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 13:05:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24A405F415E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 13:05:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbiJDLFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 07:05:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55282 "EHLO
+        id S229556AbiJDLFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 07:05:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229880AbiJDLFP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 07:05:15 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2054.outbound.protection.outlook.com [40.107.92.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE53A15FC2;
-        Tue,  4 Oct 2022 04:05:03 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T1NiQk7+6virCanqcIInnVUO1AMaNEiUheATaauR6hbnMr5dOSVgy9fd6zOHZZQYNgRRC4n2pxzd2aAPSSlTG/J7NozFFu2H/Tq/xCsIyVTs6I2AHmiGYM0+PXchIAMr8O+xrgrs7FYQS23N3dM1mqKnZRx2O3e8DCEFV3FMZKY2v9XfMlGRKx59aer3c2vknV609xUbgsrOh9zFDLqiU8nC2Pcbc80nw2xtDU8UcwDddlyENYxyfPgy8FCtckMVvJsnF9X7z3r+sXdkOdqevDoFZIIxkTbXX4HqCF+TfsOsKKoiHVjw2W/X92e+HrgnQjGhjNvwbG4k+kmKAZShDA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ce2elyVrNaygebWwjV0uG+g2jU0X/bjtu9qLGmIXhNk=;
- b=AasyjWKpfhkq6y7dpq+ggYkgRmijAeACQPiahJuqx21tgg/VtzD7fjNfbE8jchTnTXugl89LVS0HuFzJXUA9C+N3y8eQ1oLUUJn2OPzMP7l1L/lxe4g4yhc6gU/sLwxF9MJfVgvCrQSxU9oumtVqv+knV0HCBFfGJNvtBw68PLQNUCBnFI8nExCThKA4oy4KdNkWhgGwHS8tqlYfxHdJI6R21Zv7ak+01Fkpog7q5XZIC9nCK9w9qKjaFTrCbLWrzEDsmV7SMl1Z6rqwU4FdcR9s55PeX4Moh2iZtKR2kcf9i0MQSbtKo9Eihahtd7M8glyVYFirtH8lBBeBQPFgMA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ce2elyVrNaygebWwjV0uG+g2jU0X/bjtu9qLGmIXhNk=;
- b=YfbAxGSfkT5q4Abp+eDFBYSM1IUxPMjvDx8ZJhRmzOXdwMVhpYYODSgHZWL9akwXz3qw5qm2rXiVQ9l6DdWVsn+pnVfZBdh/VvkjQxWhqAxEaa3yZxiY63sorcIaIjO6Wz28sYYCtlWTKoGfnOhwU5a9+oE8yJDyZdIWkDA8jeE=
-Received: from BN1PR14CA0008.namprd14.prod.outlook.com (2603:10b6:408:e3::13)
- by PH7PR12MB5781.namprd12.prod.outlook.com (2603:10b6:510:1d0::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24; Tue, 4 Oct
- 2022 11:05:00 +0000
-Received: from BN8NAM11FT116.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e3:cafe::bc) by BN1PR14CA0008.outlook.office365.com
- (2603:10b6:408:e3::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.23 via Frontend
- Transport; Tue, 4 Oct 2022 11:05:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT116.mail.protection.outlook.com (10.13.176.67) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5676.17 via Frontend Transport; Tue, 4 Oct 2022 11:05:00 +0000
-Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 4 Oct
- 2022 06:04:56 -0500
-Message-ID: <e0615e11-3b89-9717-7e07-657cac1d429e@amd.com>
-Date:   Tue, 4 Oct 2022 13:04:54 +0200
+        with ESMTP id S229551AbiJDLFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 07:05:24 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02901175B9
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 04:05:08 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id bp15so7119599lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 04:05:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=CdB5pNPn1z3hOORutMayY9OylE9bDXafftjb5ZY85Ls=;
+        b=Aicc3p/LBIP8Hd7tOw2WCIqknBYo352b1b1KQPR9O/IjkKO71/O57c7Mz4gv7Ats4F
+         6Dq02RpB3MiBwI6H5tolRswKTCzujMlCDphrtPw3DoCBFbLUcSSMhbaFbj8KqUECeEyB
+         ZZb0FdgYEr1F/SR58Kf5vl7t1BDV+Sq4E+kQonxwwhbrOiQ1wa5YuKEWSEu0hG657lkg
+         Q5bwbVNQs2oqNWPcYE1LEglqVVxrN/RzJjVRdunJYo7teb7yhI3OExHJZPdd6C3F2yZ4
+         GU+t8aWxSjNcxC7osUORq7KOsKR8G6In8RWM8yOxr0rEBPRdD1oZQxMWBZUqftHV/+CQ
+         FhkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=CdB5pNPn1z3hOORutMayY9OylE9bDXafftjb5ZY85Ls=;
+        b=QOrOC4SoW6C8ljEftlv8+sokBBHJ7s9m2a7b/K86LwVfxwLWKs6/9MNoC8+lLhjRM7
+         KwxbzGjrl8l9DR0PtOyQmZDz0bi65uN4x7ClmnYmSIa04GhStBG/qVUzq6oyQWjsrlU5
+         u/qm4DyzHYO09wGAAeSfhBzLO7gA/vTdlSqD01E4qiJzMC+cAjkLbUFVh6JTJwGGAbFs
+         2IoxKKdv9SyRZth/1CR6tGiXODaIH/Etcs8bl7wFNXSFJBPjiGJ7PHHu5FoGl56SpF2T
+         69Cmz5PZDUGus4FJ0ASEUwnDV9+CIdleoa6oEMxTWG4N4OWR+kzA6Wsgzef/bxoMOjku
+         PiTg==
+X-Gm-Message-State: ACrzQf02HiPTHODomUqmvcN2lgqmlDag+w1k0Yxo2bBkwVk+roXBnRA6
+        4iXzpngIyU35L/JO1231U5karA==
+X-Google-Smtp-Source: AMsMyM6qbKEnyaJKurccIDdstvhYg0/dHAN3kIdwHg1wwhfHgZh++ybgBnDtI2SIdmUXvVbaaM5x1w==
+X-Received: by 2002:a05:6512:3a8b:b0:4a2:515e:eb51 with SMTP id q11-20020a0565123a8b00b004a2515eeb51mr1098564lfu.540.1664881506353;
+        Tue, 04 Oct 2022 04:05:06 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id p18-20020a2eb992000000b0026c47426cd0sm1177909ljp.140.2022.10.04.04.05.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Oct 2022 04:05:05 -0700 (PDT)
+Message-ID: <98d3b42d-3f9f-9b6e-8c17-46deae4b4030@linaro.org>
+Date:   Tue, 4 Oct 2022 13:05:04 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH 1/2] dt-bindings: clk: Add binding for versal clocking
- wizard
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH 1/4] dt-bindings: display: Add bindings for JDI
+ LPM102A188A
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-CC:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        <linux-clk@vger.kernel.org>, <git@amd.com>,
-        <devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <sboyd@kernel.org>, <mturquette@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-References: <20220930080400.15619-1-shubhrajyoti.datta@amd.com>
- <20220930080400.15619-2-shubhrajyoti.datta@amd.com>
- <CAL_JsqLaqjZeZd3c-fd9f5m-4OCXgOZcOu+paik9FV_eno5sLg@mail.gmail.com>
- <afb3f19f-eb40-5453-a82b-295e06861f86@amd.com>
- <20220930213924.GA1079711-robh@kernel.org>
- <6e58837e-896c-7069-7913-2afb90af5e95@amd.com>
- <b495804c-cf04-4512-ac05-424eded46468@linaro.org>
- <57989d3e-a186-1d67-cff9-6a059f94ebd3@amd.com>
- <f611237f-0401-9e3c-3a21-79b33141bb51@linaro.org>
- <e8507b3c-3dd5-9a65-8058-200b5a410da3@amd.com>
- <19bbea63-41d4-1b35-591e-1776eee1b2aa@linaro.org>
- <54652831-cdcc-7735-2b1b-66475ffce476@amd.com>
- <fcafff07-b526-bd3d-469f-0aebbb13c86c@linaro.org>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <fcafff07-b526-bd3d-469f-0aebbb13c86c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
+        arnd@arndb.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20220929170502.1034040-1-diogo.ivo@tecnico.ulisboa.pt>
+ <20220929170502.1034040-2-diogo.ivo@tecnico.ulisboa.pt>
+ <efa2f644-0a1d-00f7-970c-f17ceb0cc550@linaro.org>
+ <20221003170634.56jibls3xjxiiulg@wslaptop>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221003170634.56jibls3xjxiiulg@wslaptop>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT116:EE_|PH7PR12MB5781:EE_
-X-MS-Office365-Filtering-Correlation-Id: f5f594f4-c846-49a1-7a8b-08daa5f84809
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KLvNs3YUzxvMTlmPozwnna9Kw8el7ZiTETVxkW9VAiQ1UKdI9IJghjXvYvAmtb6BYLU7u9a/xqt1abLg/42yHj9WeJRo0cRv3F0R3vNV7acjlwVVspJ3Owf9vskgt3h6Dx3A+MRkmGTK/cgm9vsSRYpJkbyW7GykQxEKVA40YwEcAiKm90d99KDfEvszihgkkyj2JCqs8IEo05yWjnxB8UgvhQG3fuoS7IaLA4EKkiOv98nW8fIzb9u8D/0+yN7ETQI3z8EEO0WszeW75H86RvW77AqG5JFH2b9YZniFzj53br/bEHAK9UCqSXBe8yR9DLwUfK1ZRJ276IFSIoIhT3w3qvRZRwlOSTU1xzKrDcuu4NgO5ugu4Z0oPDwAL4TJIatEPPuA1hteH1n4Rv9XBlNIGEOMUoh0LqWXJFsJWA2c8uXDKfwMN9HPf8uPoTFhMDAAaEL+TJwQn0d4rz2Bh80Q/t8zD5AK/wA7lDIcxFlBXNbHSiViCw3aG9A/8RVfTdre58IABgsb9v3rFSStEF2VR3Stqm3iMVmvJdlj6fqGEAsXUorh+Gkwv1sKTYAPWMEou3S7bBc4UrrtHOh20kmDmmdW+DUNWeLw+tor1NadRF2M6ScJCy9FzqBU4GlhbwOZqsQtRSGJ27MAQifyZmRdBfDCeMHXic5JXO5l7hk7vw7WLxhbneZaeLuBumHVr4eM393pq5jNLAcxCWCLvMkKlPXh9kZIlURFocO2OaR1yoFqScXsQ6E/p+/jGPOPwhYRWk8rVoxqnzWk9y0GDBCTV5Tqh8OUVeUcA/dTZPQmce5iQEeO+WsJaOoStQRMPkR2pf3+OUWl6P0UsDsJn5Xbpy/FEDf7VXrPbQImFjHBCPEY2RKr0hu5aYWmfN4osTgJ7uDPnfWVzuwV/vZDyA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(396003)(136003)(346002)(376002)(451199015)(46966006)(36840700001)(40470700004)(966005)(31696002)(40480700001)(36860700001)(36756003)(356005)(81166007)(86362001)(82740400003)(40460700003)(478600001)(70586007)(70206006)(82310400005)(54906003)(4326008)(16526019)(110136005)(336012)(316002)(2906002)(41300700001)(8936002)(44832011)(426003)(5660300002)(2616005)(83380400001)(47076005)(186003)(8676002)(26005)(16576012)(31686004)(53546011)(36900700001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2022 11:05:00.4774
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5f594f4-c846-49a1-7a8b-08daa5f84809
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT116.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5781
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/4/22 13:00, Krzysztof Kozlowski wrote:
-> On 03/10/2022 17:27, Michal Simek wrote:
->>>
->>> Exactly. The names xlnx,clocking-wizard and xlnx,clk-wizard-1.0 are
->>> therefore not specific enough and mixing different devices.
+On 03/10/2022 19:06, Diogo Ivo wrote:
+> On Fri, Sep 30, 2022 at 12:49:31PM +0200, Krzysztof Kozlowski wrote:
+>>> +  ts-reset-gpios:
+>>> +    maxItems: 1
+>>> +    description: |
+>>> +      Specifier for a GPIO connected to the touchscreen reset control signal.
+>>> +      The reset signal is active low.
 >>
->> And just to be clear these IPs can be combined with systems where the main cpu
->> can be Microblaze. I have also seen some vendors mixing RISC-V with Xilinx IPs.
->>
->> Please look below.
->>>
->>>> And because this is fpga world none is really describing programmable logic by
->>>> hand because it would take a look a lot of time. That's why I created long time
->>>> ago device-tree generator (DTG) which gets design data and based on it generate
->>>> device tree description. Newest version is available for example here.
->>>> https://github.com/Xilinx/device-tree-xlnx
->>>> There is also newer version called system device tree generato
->>>> https://github.com/Xilinx/system-device-tree-xlnx
->>>>
->>>> Because of this infrastructure user will all the time get proper compatible
->>>> string which is aligned with IP catalog.
->>>
->>> I don't think so. Let's skip for now "clk" and "clocking" differences
->>> and assume both are "clocking". You have then compatibles:
->>>
->>> xlnx,clocking-wizard and xlnx,clocking-wizard-1.0
->>>
->>> and you said these are entirely different blocks.
->>>
->>> There is no way this creates readable DTS.
->>
->> And I really thank you for this discussion to do it properly and have proper
->> compatible string and description for this block.
->>
->> Shubhrajyoti: please correct me if I am wrong.
->>
->> All Xilinx SOCs have programmable logic aligned with FPGAs. Zynq is based 28nm,
->> ZynqMP (Ultrascale MPSOC) is based on 16nm and Versal is based on 7nm.
->>
->> I think these clocking IPs are using low level primitives available in PL logic.
->> Which means there is connection to fpga/pl technology instead of SOC family and
->> main cpu.
+>> Isn't touchscreen a separate (input) device?
 > 
-> Then maybe the compatibles (and device names) should have that fpga/pl
-> technology used to differentiate between them?
-
-I am already trying to find out better generic description without mentioning 
-sizes.
-
-
->> It can be of course said that if this is ZynqMP SOC that IP A is used. The same
->> for Versal SOC. But for soft cores this can't be said.
->>
->> Would it be better to reflect PL technology in compatible string?
+> Hello, thank you for the feedback.
 > 
-> Yes, although we might misunderstand what PL technology is. 28/16/7 nm
-> is the size of transistor or the process. Even two different processes
-> can use same type of technology, e.g. FinFET:
-> https://en.wikipedia.org/wiki/14_nm_process
-> https://en.wikipedia.org/wiki/10_nm_process
+> According to the downstream kernel's log, it seems like the panel and
+> the touchscreen controller are considered to be embedded in the same unit
+> (for example in [1]), 
+
+Downstream kernel is not a proof of proper description of hardware. If
+downstream says orange is an apple, does it mean orange is really an
+apple? No... Downstream creates a lot of junk, hacks and workarounds.
+
+> with the touch input being transmitted via HID-over-I2C,
+> and since I did not find any reset gpio handling in that driver I opted to
+> include this reset here, unless there is a better way of going about this.
+
+Instead it should be in touch screen device.
+
 > 
-> You could have very similar (or even the same) designs done in 28 nm and
-> 16 nm. Does it mean these are entirely different devices? Not
-> necessarily... Maybe they are, maybe not, but is the size of process
-> differentiating? I actually don't know what's there in 28/16/7, I am
-> just saying that number alone might not mean different technology.
-> Programming API could be the same, inputs/outputs could be the same.
-> Just the size of transistor is different...
+> Best regards,
+> 
+> Diogo
+> 
+> [1]: https://android.googlesource.com/kernel/tegra/+/bca61c34db9f72113af058f53eeb9fbd5e69a1d0
 
-I agree. Will try to come up with better name without nm inside to uniquely 
-identify PL logic type.
+Where is the DTS of that device?
 
-Thanks,
-Michal
+Best regards,
+Krzysztof
 
