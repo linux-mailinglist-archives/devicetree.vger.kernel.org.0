@@ -2,126 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4C375F4282
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 13:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B83795F428D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 13:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230007AbiJDL5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 07:57:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47278 "EHLO
+        id S229945AbiJDL7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 07:59:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbiJDL44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 07:56:56 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ECF62FC1E
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 04:56:55 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id x40so4367069ljq.9
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 04:56:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=sAksLRSTBpIX5Idm9PSytUBYqco/yvgpYmCooGsVRBk=;
-        b=CLxvrhc4qOsB4L8p7ekMsM+MubH5VYK9f9SDJRH5QF5gLdGWNLjj+sADlcwhbfAAPL
-         s0ZcMoyT4zWzD+s4ef+1RcIAshRCJo9CYob4E222PAu+pDNWm+MFcDSTjLIIWWIoxxbs
-         HwYFkPMa0FGJtuhDz8ch1X4juuuTkqoxGj59VVuX9r6JStu/W65Billb6p2n9EuvbHaU
-         SiRlXlELB5m4HdkZU29WS9R0EXwQLpXr8/eKdYovMwXD+eD6kadgWnPnCN8gOFNAAB0G
-         HyV1Rnztd2DA30TbTtIjP3k4gFl0w+yePnu9yZy65ZUAaz2Ixs8yM15xnDomzdOE9QkT
-         NADg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=sAksLRSTBpIX5Idm9PSytUBYqco/yvgpYmCooGsVRBk=;
-        b=Dpn9iEHbWsZ6yI2dk9nLMc/Zmyx64d25L7TCNlFlk8QsehHH9DirW/xssygEsgb8+b
-         5yVbwkFGH+/Oar2MdEsXIvRsUk8f2F4Vqes805NroHtyeXJXrKaB2+7eZ9aXQQo5Zkcy
-         l+9kQujdYGT14OJqrClgsRcZeDrDJTUHyq6YsLi1uasSQd5yM/bf9+9FTFqCv/Nqvhcv
-         wzpg3Eg9G1RHAggBRy58QxDHom4NiXsW0Av7bAo7AD1Xsy3seDURsEVZBN72KJCucAt7
-         ORI5KpuXBPsAAcj9exXpk6rwdlqLYhEkISU8ERVUkB1BX4Yt4Aa7FTXSRQVYKZsncvQl
-         y0NQ==
-X-Gm-Message-State: ACrzQf2zS0Lssj3TPri6Ppz5JoympjaHGa3i8q5FyPzCTsjOSBgFu7fi
-        06zb6/GetGIsKOr3VL2zzsQkFZ8kn7dkOg==
-X-Google-Smtp-Source: AMsMyM4BT9AZ/MQjlPeoZdVC4GyxjWlEVvasTULnuQzJpO/CY5vTc1I6fl7KtOvzdN7rbJBTA8Zsbw==
-X-Received: by 2002:a2e:a791:0:b0:26c:4fad:957 with SMTP id c17-20020a2ea791000000b0026c4fad0957mr7772516ljf.263.1664884613519;
-        Tue, 04 Oct 2022 04:56:53 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w8-20020a05651204c800b004a03fd4476esm1878971lfq.287.2022.10.04.04.56.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Oct 2022 04:56:53 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Nishant Malpani <nish.malpani25@gmail.com>,
-        Rui Miguel Silva <rmfrfs@gmail.com>,
-        Nuno Sa <nuno.sa@analog.com>,
-        Cristian Pop <cristian.pop@analog.com>,
-        Tomasz Duszynski <tduszyns@gmail.com>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Matheus Tavares <matheus.bernardino@usp.br>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 8/8] dt-bindings: iio: resolver: adi,ad2s90: use spi-peripheral-props.yaml
-Date:   Tue,  4 Oct 2022 13:56:42 +0200
-Message-Id: <20221004115642.63749-8-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221004115642.63749-1-krzysztof.kozlowski@linaro.org>
-References: <20221004115642.63749-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S230127AbiJDL7L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 07:59:11 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D4D050528;
+        Tue,  4 Oct 2022 04:59:09 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5F4906602295;
+        Tue,  4 Oct 2022 12:59:06 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664884747;
+        bh=uWR6mifATwteDavwCYtlxjjRbJpEMopbvXmtwSS2OCQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Kq2BHPr/TE+jy8XuU//QuqFoBiSGP8RiW/xByTgtQFcxLoi+FPmUajL9kfUuAl3+1
+         burnOiFauGGEpDWs8p3i3FP2mesx3VBbSJrwzAHQTrLMIQPTwud5Jmi2pvir1o1nQo
+         4H6MZWMqhbHPIStZ4KJCiaaaRdJgwbxGYFbSzd72KHjt461LyuqSXJRMRYk9/zg4Pu
+         nI/sLAlB0ldcJ8BsLQ0fL3OsWtyggrsV8z5y1tzqvXlzXDfEMCEuhFZZ9tiv21CZib
+         1sPKezcJN9qvGO3ImopbxGg5BP+mHCARfzEjNuoQdlN8U8vx8g6agChV4A+o8fnewt
+         f/pNZi2wasI1g==
+Message-ID: <7d37e6ae-0dca-e0ef-2841-298c1ba9784f@collabora.com>
+Date:   Tue, 4 Oct 2022 13:59:04 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2 2/3] iommu/mediatek: add support for 6-bit encoded port
+ IDs
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yong Wu <yong.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev
+References: <20221001-iommu-support-v2-0-dbfef2eeebc9@baylibre.com>
+ <20221001-iommu-support-v2-2-dbfef2eeebc9@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221001-iommu-support-v2-2-dbfef2eeebc9@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For devices connectable by SPI bus (e.g. already using
-"spi-max-frequency" property), reference the "spi-peripheral-props.yaml"
-schema to allow using all SPI device properties, even these which device
-bindings author did not tried yet.
+Il 04/10/22 12:01, Alexandre Mergnat ha scritto:
+> From: Fabien Parent <fparent@baylibre.com>
+> 
+> Until now the port ID was always encoded as a 5-bit data. On MT8365,
+> the port ID is encoded as a 6-bit data. This requires to rework the
+> macros F_MMU_INT_ID_LARB_ID, and F_MMU_INT_ID_PORT_ID in order
+> to support 5-bit and 6-bit encoded port IDs.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>   drivers/iommu/mtk_iommu.c | 24 ++++++++++++++++++++----
+>   1 file changed, 20 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index 5a4e00e4bbbc..a57ce509c8b5 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -108,8 +108,10 @@
+>   #define F_MMU_INT_ID_SUB_COMM_ID(a)		(((a) >> 7) & 0x3)
+>   #define F_MMU_INT_ID_COMM_ID_EXT(a)		(((a) >> 10) & 0x7)
+>   #define F_MMU_INT_ID_SUB_COMM_ID_EXT(a)		(((a) >> 7) & 0x7)
+> -#define F_MMU_INT_ID_LARB_ID(a)			(((a) >> 7) & 0x7)
+> -#define F_MMU_INT_ID_PORT_ID(a)			(((a) >> 2) & 0x1f)
+> +#define F_MMU_INT_ID_LARB_ID(a, int_id_port_width)	\
+> +				((a) >> (((int_id_port_width) + 2) & 0x7))
+> +#define F_MMU_INT_ID_PORT_ID(a, int_id_port_width)	\
+> +				(((a) >> 2) & GENMASK((int_id_port_width) - 1, 0))
 
-While changing additionalProperties->unevaluatedProperties, put it in
-typical place, just before example DTS.
+I can't think about any cleaner way than this one, but that's decreasing human
+readability by "quite a bit".
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/iio/resolver/adi,ad2s90.yaml       | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+The only way you can keep it readable is by adding a comment before these macros
+that explains the sub-fields of FAULT_ID, located in the INT_ID register: please
+add that.
 
-diff --git a/Documentation/devicetree/bindings/iio/resolver/adi,ad2s90.yaml b/Documentation/devicetree/bindings/iio/resolver/adi,ad2s90.yaml
-index 81e4bdfc17c4..b24e5a202a48 100644
---- a/Documentation/devicetree/bindings/iio/resolver/adi,ad2s90.yaml
-+++ b/Documentation/devicetree/bindings/iio/resolver/adi,ad2s90.yaml
-@@ -33,8 +33,6 @@ properties:
- 
-   spi-cpha: true
- 
--additionalProperties: false
--
- required:
-   - compatible
-   - reg
-@@ -43,6 +41,11 @@ dependencies:
-   spi-cpol: [ spi-cpha ]
-   spi-cpha: [ spi-cpol ]
- 
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
-+
- examples:
-   - |
-     spi {
--- 
-2.34.1
-
+Regards,
+Angelo
