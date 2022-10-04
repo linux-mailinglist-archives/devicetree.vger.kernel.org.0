@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 761075F3DE4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 10:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 700365F3DC1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 10:08:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229981AbiJDIJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 04:09:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47092 "EHLO
+        id S229925AbiJDIIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 04:08:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229885AbiJDIIa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 04:08:30 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C027436416
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 01:08:27 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id w18so11341938wro.7
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 01:08:27 -0700 (PDT)
+        with ESMTP id S229897AbiJDIIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 04:08:31 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC41C1C91C
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 01:08:28 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id a10so7729017wrm.12
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 01:08:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date;
-        bh=Y/H81FvvzyjcXGyLm+pyyMeurHJvnRCdQU6BpIgjOZ0=;
-        b=wvjmsjkhCX5rLgmbdjbYMF1S/pvU3zhW7XAp95lUB/mDwWya0P/sRBwIthnXBlazuT
-         4apINVu6fqq31MCCT0QhWuLVeXnuAcd2a7v4s8bBQEO2C9e0AwJRpNUU4UBzxW6EeQCj
-         ynmjDySkD5+AubbwGCyqZ2L0nZ1rTtjMPcISg+Q11HPyg34+bZNRWaLWl9iI169m7XY/
-         kgxqAwETJ1XtG8ku4WYm3FoJTnoRXLijtIDSaHZBrIvXyMrEjQx/JDyOP0wLPiKCu/qo
-         Z5IdA8LrseHGfalOpvR3X3psnvI4pBZgsjwuBBfdsWjm2dI/nKMn4UN73zoH6wuFKXpb
-         aLGA==
+        bh=omyJ2+Yvtg/1K+Zuwm5EWF60S7/hDyGjB124c9861qM=;
+        b=H1GaYf/JKNR0prajMrnT++ezhghOe9mNhnTs7BMdstQa2nuofxX3Zfik5EtEb8j6YH
+         CyrLCs/ECz7A+ODNNLj2xgojpPYPJIKHwz0CXm9d+tRE6CffluqMuzE60kIobly4ZzT6
+         2S/Bl5O0qyz3dsUanuldzhw+gR8phnKo1BZ8yLJroHndIxo9iTf+kDqvE3nSybYZ7HWY
+         L7Wh3/m/borYUo8YM6mJCz10TElYGxw9ICxu7LRv3eWoNrLv7gBTY78VQvEK1TJ8H5JG
+         HKa140k1V1qlJff5+i/Vu6FsVKHkdnZ+/U4BCazsi5C6iBl8v2nuyzoONpgoBG57m7SL
+         rS+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=Y/H81FvvzyjcXGyLm+pyyMeurHJvnRCdQU6BpIgjOZ0=;
-        b=BqMDgpv5b3d4q5T6Fr4grBfOU95+9KZiNwo++gJ0lTlk6L0BjMBoAYJFVEOb4qZzPE
-         Mao5KinH4KVrERuwgKLrQ83u4CGZEPw3j1nXkLaNm/M4BiJjzta9eYPPxJzPmmCmmwO5
-         Rh4owzLxrcpCscTk5M5mgvaIrG769zYjkKNDw96LOkdHwIKF1AYW75XuvfM6cswGzMiz
-         Y7eEGx+kzSTDMJWI38+8lkaIhbX/jQMQL4Jk7UjhM8xfd77pX7N3P4tnFLsEUgUKlapt
-         oxer9wcz0hJhS+lMFQtyRdLF33r7cPKPVDEoL0Zo4Z1HVYGklqwyIUd7Y3g3NyAsZOXc
-         IDjg==
-X-Gm-Message-State: ACrzQf34Nw07xS+hCZIwXzYdIXaEgdqky32/snDMY+WA3xveAnhscQEt
-        wO2Ms0OEH0CafZgm3aVi4rKdNA==
-X-Google-Smtp-Source: AMsMyM4dGQ46KsKk6TR4Si2tCr87XIGiN87a6iPV1bWqNYCqkh+HNXzhCgMmzE+RpqsMVJk0roch5w==
-X-Received: by 2002:a5d:59a6:0:b0:22a:e22f:79c7 with SMTP id p6-20020a5d59a6000000b0022ae22f79c7mr15779439wrr.511.1664870905983;
-        Tue, 04 Oct 2022 01:08:25 -0700 (PDT)
+        bh=omyJ2+Yvtg/1K+Zuwm5EWF60S7/hDyGjB124c9861qM=;
+        b=kOq3xiI+70ZReFjmtZaTo/yj6X2uaCr/4tSU4t13vK/12ll0+tJU5+9WdtzGPJLrNo
+         50pNYnRqIw6odvLHTuvjNVy7CvxY+efkW9nQ5Qqw43UQLbfpw5WoOxujBjBBPdlcsjG/
+         Fdujqa1AgS3Nap2JaJiAWcptqIFto0U/FB4ON4i0/Y2gFPFH/v1LkPvyXlIdlpzktLKX
+         bNCePXygQ6SE3ktMq7H88RguJB9/Pw0Qs6IafUgm5kQcEPnRQvBxkz4XnNjbB/Jk/QKO
+         d0lGViUBL/n21Dz0FaytsYsiWnEgFzN63XwoZ+xVwViLs7Gm7E/SKgXSdAXHM2s0m/ip
+         QCDg==
+X-Gm-Message-State: ACrzQf0YKwQllgCNI64WNnEDJ7dRI97wN9WQXN2KNQ8Dt8vI5Ue/vL6X
+        RxEbaKyl9VcdRRY6Te0lHwIBhA==
+X-Google-Smtp-Source: AMsMyM7UcsRYJRURnJD0AcBiwANc06uYZmU22chyYEmoRTyxl4E5LBN7QbSFzLpFyf+jd89PevtyhA==
+X-Received: by 2002:a05:6000:156b:b0:22a:a83a:d349 with SMTP id 11-20020a056000156b00b0022aa83ad349mr15635586wrz.277.1664870907039;
+        Tue, 04 Oct 2022 01:08:27 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id l2-20020a1c7902000000b003b33943ce5esm20228866wme.32.2022.10.04.01.08.25
+        by smtp.gmail.com with ESMTPSA id l2-20020a1c7902000000b003b33943ce5esm20228866wme.32.2022.10.04.01.08.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Oct 2022 01:08:25 -0700 (PDT)
+        Tue, 04 Oct 2022 01:08:26 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 04 Oct 2022 08:08:18 +0000
-Subject: [PATCH v2 02/11] arm: dts: qcom: mdm9615*: add SPDX-License-Identifier
+Date:   Tue, 04 Oct 2022 08:08:19 +0000
+Subject: [PATCH v2 03/11] arm: dts: qcom: mdm9615: add missing reg in cpu@0 node
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20220928-mdm9615-dt-schema-fixes-v2-2-87fbeb4ae053@linaro.org>
+Message-Id: <20220928-mdm9615-dt-schema-fixes-v2-3-87fbeb4ae053@linaro.org>
 References: <20220928-mdm9615-dt-schema-fixes-v2-0-87fbeb4ae053@linaro.org>
 In-Reply-To: <20220928-mdm9615-dt-schema-fixes-v2-0-87fbeb4ae053@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -76,174 +76,29 @@ Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 X-Mailer: b4 0.10.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace the licence blob by a clean SPDX-License-Identifier
+Fixes cpu@0: 'reg' is a required property from dtbs check.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-diff --git a/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts b/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
-index 0827de5426c1..4e53b3d70195 100644
---- a/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
-+++ b/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
-@@ -1,46 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR MIT
- /*
-  * Device Tree Source for mangOH Green Board with WP8548 Module
-  *
-  * Copyright (C) 2016 BayLibre, SAS.
-  * Author : Neil Armstrong <narmstrong@baylibre.com>
-- *
-- * This file is dual-licensed: you can use it either under the terms
-- * of the GPL or the X11 license, at your option. Note that this dual
-- * licensing only applies to this file, and not this project as a
-- * whole.
-- *
-- *  a) This file is free software; you can redistribute it and/or
-- *     modify it under the terms of the GNU General Public License as
-- *     published by the Free Software Foundation; either version 2 of the
-- *     License, or (at your option) any later version.
-- *
-- *     This file is distributed in the hope that it will be useful,
-- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *     GNU General Public License for more details.
-- *
-- * Or, alternatively,
-- *
-- *  b) Permission is hereby granted, free of charge, to any person
-- *     obtaining a copy of this software and associated documentation
-- *     files (the "Software"), to deal in the Software without
-- *     restriction, including without limitation the rights to use,
-- *     copy, modify, merge, publish, distribute, sublicense, and/or
-- *     sell copies of the Software, and to permit persons to whom the
-- *     Software is furnished to do so, subject to the following
-- *     conditions:
-- *
-- *     The above copyright notice and this permission notice shall be
-- *     included in all copies or substantial portions of the Software.
-- *
-- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
- #include <dt-bindings/input/input.h>
-diff --git a/arch/arm/boot/dts/qcom-mdm9615-wp8548.dtsi b/arch/arm/boot/dts/qcom-mdm9615-wp8548.dtsi
-index 49de1821ac3a..2fe8693dc3cd 100644
---- a/arch/arm/boot/dts/qcom-mdm9615-wp8548.dtsi
-+++ b/arch/arm/boot/dts/qcom-mdm9615-wp8548.dtsi
-@@ -1,46 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR MIT
- /*
-  * Device Tree Source for Sierra Wireless WP8548 Module
-  *
-  * Copyright (C) 2016 BayLibre, SAS.
-  * Author : Neil Armstrong <narmstrong@baylibre.com>
-- *
-- * This file is dual-licensed: you can use it either under the terms
-- * of the GPL or the X11 license, at your option. Note that this dual
-- * licensing only applies to this file, and not this project as a
-- * whole.
-- *
-- *  a) This file is free software; you can redistribute it and/or
-- *     modify it under the terms of the GNU General Public License as
-- *     published by the Free Software Foundation; either version 2 of the
-- *     License, or (at your option) any later version.
-- *
-- *     This file is distributed in the hope that it will be useful,
-- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *     GNU General Public License for more details.
-- *
-- * Or, alternatively,
-- *
-- *  b) Permission is hereby granted, free of charge, to any person
-- *     obtaining a copy of this software and associated documentation
-- *     files (the "Software"), to deal in the Software without
-- *     restriction, including without limitation the rights to use,
-- *     copy, modify, merge, publish, distribute, sublicense, and/or
-- *     sell copies of the Software, and to permit persons to whom the
-- *     Software is furnished to do so, subject to the following
-- *     conditions:
-- *
-- *     The above copyright notice and this permission notice shall be
-- *     included in all copies or substantial portions of the Software.
-- *
-- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
- #include "qcom-mdm9615.dtsi"
 diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-index b47c86412de2..de36e4545e75 100644
+index de36e4545e75..eaa3236f62db 100644
 --- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
 +++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-@@ -1,46 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR MIT
- /*
-  * Device Tree Source for Qualcomm MDM9615 SoC
-  *
-  * Copyright (C) 2016 BayLibre, SAS.
-  * Author : Neil Armstrong <narmstrong@baylibre.com>
-- *
-- * This file is dual-licensed: you can use it either under the terms
-- * of the GPL or the X11 license, at your option. Note that this dual
-- * licensing only applies to this file, and not this project as a
-- * whole.
-- *
-- *  a) This file is free software; you can redistribute it and/or
-- *     modify it under the terms of the GNU General Public License as
-- *     published by the Free Software Foundation; either version 2 of the
-- *     License, or (at your option) any later version.
-- *
-- *     This file is distributed in the hope that it will be useful,
-- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *     GNU General Public License for more details.
-- *
-- * Or, alternatively,
-- *
-- *  b) Permission is hereby granted, free of charge, to any person
-- *     obtaining a copy of this software and associated documentation
-- *     files (the "Software"), to deal in the Software without
-- *     restriction, including without limitation the rights to use,
-- *     copy, modify, merge, publish, distribute, sublicense, and/or
-- *     sell copies of the Software, and to permit persons to whom the
-- *     Software is furnished to do so, subject to the following
-- *     conditions:
-- *
-- *     The above copyright notice and this permission notice shall be
-- *     included in all copies or substantial portions of the Software.
-- *
-- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- *     OTHER DEALINGS IN THE SOFTWARE.
-  */
+@@ -27,6 +27,7 @@ cpus {
  
- /dts-v1/;
+ 		cpu0: cpu@0 {
+ 			compatible = "arm,cortex-a5";
++			reg = <0>;
+ 			device_type = "cpu";
+ 			next-level-cache = <&L2>;
+ 		};
 
 -- 
 b4 0.10.0
