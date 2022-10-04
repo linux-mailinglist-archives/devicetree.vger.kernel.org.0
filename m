@@ -2,228 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E89DF5F48C8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 19:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F6145F48CA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 19:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbiJDRnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 13:43:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51320 "EHLO
+        id S229810AbiJDRnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 13:43:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbiJDRnP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 13:43:15 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 184A066A65;
-        Tue,  4 Oct 2022 10:43:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S229939AbiJDRnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 13:43:20 -0400
+Received: from smtp11.infineon.com (smtp11.infineon.com [IPv6:2a00:18f0:1e00:4::5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 484C95A88D;
+        Tue,  4 Oct 2022 10:43:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1664905397; x=1696441397;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=WQP0E43uW/qE9I9p3SXtZSUDWWkKKHLlrTpf0C4DQMk=;
+  b=WCQXz5vFj46G0jS+Ap3eualUgz6Otw8L83N37b4PE3MnKIsWo3Rnvm/B
+   30lNvyMkK1ulwJwKHwMIn6IafNwFwfMEkoOBe7h9gqPCet3GcUmEAdyxM
+   BbYUEPFqaub+jZOx/rWhAXSght5ltsWL69E1cDagKybV5lmhY7wKrInRx
+   4=;
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="320203812"
+X-IronPort-AV: E=Sophos;i="5.95,158,1661810400"; 
+   d="scan'208";a="320203812"
+Received: from unknown (HELO mucxv001.muc.infineon.com) ([172.23.11.16])
+  by smtp11.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2022 19:43:05 +0200
+Received: from MUCSE812.infineon.com (MUCSE812.infineon.com [172.23.29.38])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id CC44BCE105F;
-        Tue,  4 Oct 2022 17:43:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8B43C433D6;
-        Tue,  4 Oct 2022 17:42:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664905382;
-        bh=qFiToPKk2o4dHCSK1eA4+ehkbWfnkHDJylCe2Xsnuvw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LRHekYh/YbdvhifLPhvyZXHx2xGGwxuw6Q1+X/h5RiwAcp4Lx+ToUXhlGGw8cyeNJ
-         GF9NYdWNWiOO8c9lNkxw5IvBQc/Kuj/V96i8iRAY5/JzDCOnShuRQoRgROnysAR5A2
-         Ax2p1aOvcPDd7nzKbrZayv1b9SbnVcV++tkdlZ5UJxM7mj4F6FCfTpoUeBHnZgOb/i
-         o8XEP3PxzYGBD/8AyHQzTH4zbRFHLGDHL2PXiO90dtToW8yWj8h6HE2qjIn2axZWQy
-         /23Q9daA5W0xF+faWWRzxiKtdNfB5JDapXBP47H2lFMnx9xsa9aQ19HJCtmcnqHckY
-         +LNLchAsuOoiw==
-Date:   Tue, 4 Oct 2022 18:42:56 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [RFC PATCH v2 2/2] soc: renesas: Add L2 cache management for
- RZ/Five SoC
-Message-ID: <YzxwoELNBctbhjJb@spud>
-References: <20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221003223222.448551-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        by mucxv001.muc.infineon.com (Postfix) with ESMTPS;
+        Tue,  4 Oct 2022 19:43:02 +0200 (CEST)
+Received: from MUCSE817.infineon.com (172.23.29.43) by MUCSE812.infineon.com
+ (172.23.29.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 4 Oct 2022
+ 19:43:02 +0200
+Received: from [10.165.68.85] (10.165.68.85) by MUCSE817.infineon.com
+ (172.23.29.43) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 4 Oct 2022
+ 19:43:02 +0200
+Message-ID: <f0711dfe-89b8-d572-3581-b8629339d2e1@infineon.com>
+Date:   Tue, 4 Oct 2022 19:43:01 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221003223222.448551-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 3/7] dt-bindings: tpm: Add previously undocumented
+ properties
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <jarkko@kernel.org>,
+        <linux-integrity@vger.kernel.org>, <Johannes.Holland@infineon.com>,
+        <benoit.houyere@st.com>, <amirmizi6@gmail.com>, <peter@pjd.dev>
+References: <20220930165116.13329-1-Alexander.Steffen@infineon.com>
+ <20220930165116.13329-4-Alexander.Steffen@infineon.com>
+ <CAL_Jsq+W=GdjdUhL4cxm6q7+YZ_Q0mizY5WLQvY3NHZVY+mFmA@mail.gmail.com>
+From:   Alexander Steffen <Alexander.Steffen@infineon.com>
+In-Reply-To: <CAL_Jsq+W=GdjdUhL4cxm6q7+YZ_Q0mizY5WLQvY3NHZVY+mFmA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.165.68.85]
+X-ClientProxiedBy: MUCSE820.infineon.com (172.23.29.46) To
+ MUCSE817.infineon.com (172.23.29.43)
+X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 03, 2022 at 11:32:22PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 01.10.22 00:20, Rob Herring wrote:
+> On Fri, Sep 30, 2022 at 12:02 PM Alexander Steffen
+> <Alexander.Steffen@infineon.com> wrote:
+>>
+>> TPM devices may use some more properties than previously allowed by
+>> trivial-devices.yaml. Document those in trivial-tpms.yaml.
+>>
+>> Signed-off-by: Alexander Steffen <Alexander.Steffen@infineon.com>
+>> ---
+>>   .../bindings/security/tpm/trivial-tpms.yaml      | 16 ++++++++++++++++
+>>   1 file changed, 16 insertions(+)
 > 
-> On the AX45MP core, cache coherency is a specification option so it may
-> not be supported. In this case DMA will fail. As a workaround, firstly we
-> allocate a global dma coherent pool from which DMA allocations are taken
-> and marked as non-cacheable + bufferable using the PMA region as specified
-> in the device tree. Synchronization callbacks are implemented to
-> synchronize when doing DMA transactions.
-> 
-> The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
-> block that allows dynamic adjustment of memory attributes in the runtime.
-> It contains a configurable amount of PMA entries implemented as CSR
-> registers to control the attributes of memory locations in interest.
-> 
-> Below are the memory attributes supported:
-> * Device, Non-bufferable
-> * Device, bufferable
-> * Memory, Non-cacheable, Non-bufferable
-> * Memory, Non-cacheable, Bufferable
-> * Memory, Write-back, No-allocate
-> * Memory, Write-back, Read-allocate
-> * Memory, Write-back, Write-allocate
-> * Memory, Write-back, Read and Write-allocate
-> 
-> This patch adds support to configure the memory attributes of the memory
-> regions as passed from the l2 cache node and exposes the cache management
-> ops. Currently the OpenSBI code implements support for "Memory,
-> Non-cacheable, Non-bufferable" option with SBI_EXT_ANDES_SET_PMA.
-> 
-> More info about PMA (section 10.3):
-> http://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.0-Datasheet.pdf
-> 
-> This feature is based on the work posted [0] by Vincent Chen
-> <vincentc@andestech.com> for the Andes AndeStart RISC-V CPU.
-> 
-> [0] https://lore.kernel.org/lkml/1540982130-28248-1-git-send-email-vincentc@andestech.com/
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  arch/riscv/include/asm/cacheflush.h    |   8 +
->  arch/riscv/include/asm/errata_list.h   |   2 +
->  arch/riscv/include/asm/sbi.h           |   1 +
->  arch/riscv/mm/dma-noncoherent.c        |  20 ++
+> Adding these here means we would need to duplicate them for any device
+> with its own schema file. You need a common TPM property schema which
+> the specific TPM device schemas can reference.
 
-Stupid question maybe, but I assume you mixed the driver addition and
-the changes to arch/riscv for the sake of easily creating the RFC?
+Good point, I'll create one.
 
->  drivers/soc/renesas/Makefile           |   4 +
->  drivers/soc/renesas/rzf/Makefile       |   3 +
->  drivers/soc/renesas/rzf/ax45mp_cache.c | 365 +++++++++++++++++++++++++
->  drivers/soc/renesas/rzf/rzf_sbi.h      |  27 ++
->  8 files changed, 430 insertions(+)
->  create mode 100644 drivers/soc/renesas/rzf/Makefile
->  create mode 100644 drivers/soc/renesas/rzf/ax45mp_cache.c
->  create mode 100644 drivers/soc/renesas/rzf/rzf_sbi.h
-> 
-
-I won't make any comments on the ALTERNATIVES usage & leave that to the
-likes of Heiko rather than make a fool of myself! But to my untrained
-eye, having to use #defines looks like you've strayed pretty far from
-the light.. My understanding was that the whole point was to avoid
-having any ifdef-ery!
-
-> diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.h
-> index 2a0ef738695e..10a7c855d125 100644
-> --- a/arch/riscv/include/asm/sbi.h
-> +++ b/arch/riscv/include/asm/sbi.h
-> @@ -37,6 +37,7 @@ enum sbi_ext_id {
-> 
->         /* Vendor extensions must lie within this range */
->         SBI_EXT_VENDOR_START = 0x09000000,
-> +       SBI_EXT_ANDES = 0x0900031E,
->         SBI_EXT_VENDOR_END = 0x09FFFFFF,
->  };
-
-Hmm, does this belong there? It certainly makes the comment look a
-little odd! /If/ it goes into this file, I think it should be in a
-separate section "heading" - but could it not be put into rzf_sbi.h?
-
-> diff --git a/drivers/soc/renesas/rzf/ax45mp_cache.c b/drivers/soc/renesas/rzf/ax45mp_cache.c
-> new file mode 100644
-> index 000000000000..6eca32aef33e
-> --- /dev/null
-> +++ b/drivers/soc/renesas/rzf/ax45mp_cache.c
-> @@ -0,0 +1,365 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * PMA setup and non-coherent cache functions for AX45MP
-> + *
-
-Given your comment in the commit message, should this also be carrying a
-copyright from Andestech?
-
-> + * Copyright (C) 2022 Renesas Electronics Corp.
-> + */
-> +
-> +#include <linux/cacheinfo.h>
-> +#include <linux/of_address.h>
-> +
-
-> +static void __iomem *l2c_base;
-> +
-> +/* -----------------------------------------------------------------------------
-
-I'll (mostly) keep my nose out of style for soc/renesas, but this /* ---
-style looks unusual!
-
-> + * PMA setup
-> + */
-
-> +static long sbi_set_pma(void *arg)
-> +static void ax45mp_configure_pma_regions(struct device_node *np, int count)
-> +static void cpu_dcache_inval_range(unsigned long start,
-> +void rzfive_cpu_dma_inval_range(void *vaddr, size_t size)
-
-There's a real mix of function name prefixes in here, sbi_ aside is
-there a reason you didn't just stick to ax45mp_foo()? Apologies if
-I missed something that should've been obvious
-
-> +static void cpu_dcache_wb_range(unsigned long start,
-> +				unsigned long end,
-> +				int line_size)
-> +{
-> +	bool ucctl_ok = false;
-> +	unsigned long pa;
-> +	int mhartid = 0;
-> +#ifdef CONFIG_SMP
-> +	mhartid = smp_processor_id();
-> +#endif
-
-Won't this produce complaints from your if you compile with CONFIG_SMP
-set?
-
-> +
-> +	ucctl_ok = cpu_cache_controlable();
-> +
-> +	while (end > start) {
-> +		if (ucctl_ok) {
-> +			csr_write(CCTL_REG_UCCTLBEGINADDR_NUM, start);
-> +			csr_write(CCTL_REG_UCCTLCOMMAND_NUM, CCTL_L1D_VA_WB);
-> +		}
-> +
-> +		if (l2c_base && (cpu_l2c_ctl_status() & L2_CACHE_CTL_CEN_MASK)) {
-> +			pa = virt_to_phys((void *)start);
-> +			writel(pa, (void *)(l2c_base + L2C_REG_CN_ACC_OFFSET(mhartid)));
-> +			writel(CCTL_L2_PA_WB, (void *)(l2c_base + L2C_REG_CN_CMD_OFFSET(mhartid)));
-> +			while ((cpu_l2c_get_cctl_status() &
-> +				CCTL_L2_STATUS_CN_MASK(mhartid)) != CCTL_L2_STATUS_IDLE)
-> +				;
-> +		}
-> +
-> +		start += line_size;
-> +	}
-> +}
-
-Thanks,
-Conor.
+>>
+>> diff --git a/Documentation/devicetree/bindings/security/tpm/trivial-tpms.yaml b/Documentation/devicetree/bindings/security/tpm/trivial-tpms.yaml
+>> index 2092341c6491..a9e2dd17b1ca 100644
+>> --- a/Documentation/devicetree/bindings/security/tpm/trivial-tpms.yaml
+>> +++ b/Documentation/devicetree/bindings/security/tpm/trivial-tpms.yaml
+>> @@ -25,6 +25,22 @@ properties:
+>>
+>>     spi-max-frequency: true
+>>
+>> +  linux,sml-base:
+>> +    $ref: /schemas/types.yaml#/definitions/uint64
+>> +    description: |
+>> +      64-bit base address of the reserved memory allocated for the firmware
+>> +      event log
+>> +
+>> +  linux,sml-size:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description: size of the memory allocated for the firmware event log
+>> +
+>> +  powered-while-suspended:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description: |
+>> +      Present when the TPM is left powered on between suspend and resume
+>> +      (makes the suspend/resume callbacks do nothing).
+>> +
+>>     compatible:
+>>       contains:
+>>         enum:
+>> --
+>> 2.25.1
+>>
