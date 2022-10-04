@@ -2,84 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC0E05F4A16
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 22:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE89E5F4A85
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 22:56:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbiJDUFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 16:05:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40530 "EHLO
+        id S229501AbiJDU4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 16:56:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbiJDUFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 16:05:13 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DAFA18381;
-        Tue,  4 Oct 2022 13:05:11 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 294Ie0Yi030247;
-        Tue, 4 Oct 2022 20:05:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=qfssT5YpFgOMBOnB5Y0BUHkDogTACkdGhU+3SYCdOyQ=;
- b=cr9gNp70L7jtzrbv/j2cMRDffhZAHaY2s1tCSvueypq1eIlpdH9YUES75R4JzTq+Hamy
- Agyb7+1heePYVR8qvjz/wtJEIOYtT/0n/yXOFQcawaSAWuk3UWhKuG05ty48/jb0mULi
- 4QzNy1vJQxMQ+FJv6RgGbjEHIZ2l/7uDfdr6+ZR6TmEduTFvibwr1MsDWDLaoKqRK/13
- vNGoTsgY0jZjYX7qgTcCA2kmXptwfc0wg/KPRGE3WjdKlHBk1OqERFK9b6/H1o2SOpZ4
- eVm/N85e4TxtrnEww2Z3EobNmsLvMQyTIC9fM9rA2kQ6M7vFycSBarVsojSe2lzpSBse Yg== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k0escsr5q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 04 Oct 2022 20:05:08 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 294K57IP027171
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 4 Oct 2022 20:05:07 GMT
-Received: from [10.110.73.50] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 4 Oct 2022
- 13:05:06 -0700
-Message-ID: <0feeb2ae-a332-d645-28b0-e16890b286e1@quicinc.com>
-Date:   Tue, 4 Oct 2022 15:05:05 -0500
+        with ESMTP id S229472AbiJDU4m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 16:56:42 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0A0F2A95D;
+        Tue,  4 Oct 2022 13:56:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 83AB7B81BD6;
+        Tue,  4 Oct 2022 20:56:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C9B8C433D6;
+        Tue,  4 Oct 2022 20:56:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664916998;
+        bh=+v1s1uuSDD/XUgsGR2kBZYKdQWHRoUn14JslXrnftKQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IhC/8yTeiQvTxSrEM6+9zdTO7RCNp51Aymw9YdTW+lkRa4/2vlLWEvSwwP/nhw2GX
+         5WwpYvNHwrFfllyz4eaxQPrKp2DsUBuZZvIuzJXqRcJBzz1OX0trGxqNwjaREjsH3W
+         +doJniO7K756WKKt9Q/gVFtcM632klnyLdzDU+cOWpu0RJTsatzi8YT6JXkWZtwMW2
+         A4tImhm9yjsMZv5MDofLYO0nHaYq7p7wUtAfvKjpKarN0RwFLa4eq+5pMUYNXxvpVq
+         I+p7Ovc8izGETVSQNhUPCxC0m303MwRkQmmNlxXxHZlZ+/fvNQy4rlLXqCoIZF1KVO
+         SKV20hG93A1eA==
+Received: by mail-vs1-f52.google.com with SMTP id n186so10150010vsc.9;
+        Tue, 04 Oct 2022 13:56:37 -0700 (PDT)
+X-Gm-Message-State: ACrzQf1nNU/PMoc13Dt3f8d9/oP8rOyTSJzhTIVvVrdSLOVrL50WwFFs
+        8pVRcH7sGpJLaM1HKKLWYThmW8jivIKU0idNMA==
+X-Google-Smtp-Source: AMsMyM7f70M/JxQGww4Jppt5Cs/DXOxkWqVwzVrUd2iWuh1bIekfiwVIfxmU57Hzwq30UwIEbi24MRz0dA4I8aGIZX4=
+X-Received: by 2002:a67:3c7:0:b0:39b:45c2:6875 with SMTP id
+ 190-20020a6703c7000000b0039b45c26875mr12151814vsd.6.1664916996943; Tue, 04
+ Oct 2022 13:56:36 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 2/2] dmaengine: qcom: gpi: Add compatible for QDU1000 and
- QRU1000
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221004120907.72767-1-krzysztof.kozlowski@linaro.org>
+ <YzwvDEKAzbqjSYjT@pendragon.ideasonboard.com> <64a355f2-e9a1-dcca-cb86-48805acae8d5@linaro.org>
+ <YzwyT28hf7daYqa1@pendragon.ideasonboard.com>
+In-Reply-To: <YzwyT28hf7daYqa1@pendragon.ideasonboard.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 4 Oct 2022 15:56:26 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLzPjAH0N01=ZOShXSweSeJg7VJTJVHwQoEAXqT3ZJ6tg@mail.gmail.com>
+Message-ID: <CAL_JsqLzPjAH0N01=ZOShXSweSeJg7VJTJVHwQoEAXqT3ZJ6tg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: panel: use spi-peripheral-props.yaml
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221001030627.29147-1-quic_molvera@quicinc.com>
- <20221001030627.29147-3-quic_molvera@quicinc.com>
- <CAA8EJppLd6dti=gbR0hbEAQyj5PHA7xWR3w+DESx1qcKcyf3YA@mail.gmail.com>
- <55b209c4-4fbb-8b09-a5cc-385ff3e5b771@linaro.org>
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <55b209c4-4fbb-8b09-a5cc-385ff3e5b771@linaro.org>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Daniel Mack <daniel@zonque.org>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: WtdxoqD4oSzA0lLjW-z-zldANM1x-bCF
-X-Proofpoint-ORIG-GUID: WtdxoqD4oSzA0lLjW-z-zldANM1x-bCF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-04_09,2022-09-29_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 mlxlogscore=999
- phishscore=0 bulkscore=0 clxscore=1015 impostorscore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210040131
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,37 +72,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/1/2022 4:30 AM, Krzysztof Kozlowski wrote:
-> On 01/10/2022 09:14, Dmitry Baryshkov wrote:
->> On Sat, 1 Oct 2022 at 06:08, Melody Olvera <quic_molvera@quicinc.com> wrote:
->>> Add compatible fields for the Qualcomm QDU1000 and QRU1000 SoCs.
->>>
->>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>> ---
->>>  drivers/dma/qcom/gpi.c | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/drivers/dma/qcom/gpi.c b/drivers/dma/qcom/gpi.c
->>> index 8f0c9c4e2efd..94f92317979c 100644
->>> --- a/drivers/dma/qcom/gpi.c
->>> +++ b/drivers/dma/qcom/gpi.c
->>> @@ -2292,6 +2292,8 @@ static const struct of_device_id gpi_of_match[] = {
->>>         { .compatible = "qcom,sm8250-gpi-dma", .data = (void *)0x0 },
->>>         { .compatible = "qcom,sm8350-gpi-dma", .data = (void *)0x10000 },
->>>         { .compatible = "qcom,sm8450-gpi-dma", .data = (void *)0x10000 },
->>> +       { .compatible = "qcom,qdu1000-gpi-dma", .data = (void *)0x10000 },
->>> +       { .compatible = "qcom,qru1000-gpi-dma", .data = (void *)0x10000 },
->> As usual
-Will address ordering.
-> I would say - drop entire patch and rebase patchset on:
+On Tue, Oct 4, 2022 at 8:17 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
 >
-> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=680815&state=*
-Sure thing; will rebase.
+> Hi Krzysztof,
 >
-> Best regards,
-> Krzysztof
-Thanks,
-Melody
+> On Tue, Oct 04, 2022 at 03:10:29PM +0200, Krzysztof Kozlowski wrote:
+> > On 04/10/2022 15:03, Laurent Pinchart wrote:
+> > > On Tue, Oct 04, 2022 at 02:09:07PM +0200, Krzysztof Kozlowski wrote:
+> > >> For devices connectable by SPI bus (e.g. already using
+> > >> "spi-max-frequency" property), reference the "spi-peripheral-props.yaml"
+> > >> schema to allow using all SPI device properties, even these which device
+> > >> bindings author did not tried yet.
+> > >
+> > > Isn't this done implicitly by spi-controller.yaml ? SPI devices that are
+> > > children of an SPI controller should match the patternProperties
+> > > "^.*@[0-9a-f]+$" in that file, which has a $ref: spi-peripheral-props.yaml.
+> > > Is there something I'm missing ?
+> >
+> > You are correct about one side of this - SPI controller bindings.
+> > However these schemas here have clear: additional/unevaluatedProperties:
+> > false, thus when they find DTS like:
+> > panel@xxx {
+> >   compatible = "one of these spi panels";
+> >   ...
+> >   spi-cs-high;
+> >   spi-rx-delay-us = <50>;
+> >   ... and some more from specific controllers
+> > }
+> >
+> > you will get errors, because the panel schema does not allow them.
+> >
+> > The bindings were done (some time ago) in such way, that they require
+> > that both SPI controller and SPI device reference spi-props.
+>
+> You're absolutely right that additionalProperties needs to be replaced
+> by unevaluatedProperties. Can the additions of $ref be dropped, or is
+> that needed too ?
 
+unevaluatedProperties doesn't work with child node schemas (from one
+or both schemas). This is because the schemas are applied
+independently and can't 'see' each other. The spi-controller.yaml
+schema is applied to the SPI bus node and SPI peripheral schemas are
+applied to SPI device nodes. This means that child node schemas have
+to either be complete or only list properties which will be listed in
+the complete schema for the child nodes. For example, 'reg' has to be
+listed anyways to define how many entries. This is also why we need a
+ref at each level in the graph binding anytime there are additional
+properties defined.
+
+Rob
