@@ -2,123 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D32C5F3CED
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 08:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AAF05F3CF2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 08:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229592AbiJDGvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 02:51:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59016 "EHLO
+        id S229642AbiJDGx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 02:53:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiJDGvl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 02:51:41 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52267481CE
-        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 23:51:25 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id bs18so12653935ljb.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 23:51:25 -0700 (PDT)
+        with ESMTP id S229451AbiJDGxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 02:53:55 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B877E2ED4C
+        for <devicetree@vger.kernel.org>; Mon,  3 Oct 2022 23:53:53 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id f37so1443119lfv.8
+        for <devicetree@vger.kernel.org>; Mon, 03 Oct 2022 23:53:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=g+2kBKCFqg27fMdvA7YfCO4+hmBpxqYEDzgwYKdhvKg=;
-        b=eRwN/H2mREJisZVjpmVJV5JEGZAry/ktEVZaYtUIpo2gLkdPbLGOOoOrFuMXGm+224
-         8dTXDwNqG7rZ5Xdv8W24ypL4xMnfQi5fXXvZ7nygb7aGdrbN/fKy4OFY0NktjXB1JBLR
-         ma7ezR7oDofG2yTcL9EHmWdsVBbuRZSr2oxPWQIIhr2CsVtyQ22BNLuQeQ2/B8FYKhzo
-         yth6j4epISgBljGZnQkWSSanZafoBgDDenkPnPtQmRcLtMkFXKEAulCtM5jPBd4//Zcw
-         AjrpLzVCrTLCuD97aYDGrDVvjjoTbkWknFwoTMTLm8rdPuctho0LlHw2+XhbWHSOsNTA
-         aFkA==
+        bh=rGAbSoZZBNp1Rcgw72Rvq0ko1UR3Gj5wyM3fR9f9QcA=;
+        b=kwFzKfO/Y/xaLTNuTEfETEj4Sx9BNm+sDiWRt2m6ij+4hPyAy813ZhUuqvLUihg/w7
+         HPzk7xkR2hMGfmCel+qv+9pktl4dzA+64MlhqCGa+F/p7NbEZh0QzqNa0n2U8NJ7JSYl
+         RLD1M3i+tTIdVhZXeYovo/mNN9e9hDCpI3SqSrJ6wdLNCsaFbBCaDfKnuq9MCqK/Bjjs
+         h3H8w35Hia1srXSv2U5PUeUdXwyFOqqH+VgCKgpifXFPt/Bl+JpeMFGdhpimof7HAkvj
+         BkeyjFns0x85c8D1kEv333nbQiwXg2kt/IDzM1ibdZaX0wV50TYNEG8atXflJOHsrI0S
+         cbnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=g+2kBKCFqg27fMdvA7YfCO4+hmBpxqYEDzgwYKdhvKg=;
-        b=0A0VrRStr6tJDmJ4QHzGgSenk1FS2KB7UTGKcoFL6+gnGz65eOkzEN373bcX4xpx7K
-         Q+EX7400j2pnT5vw6CX7+7PabtOU06jCqnHcRFFDP2Qs74C6BDwnZvYZjbX2/5+n/3gf
-         AwGk2ml/qrloa55pW7jgt2nHBdAeH6E11cCR2WECXk5pFy8Krud7AGVsfszjPTKRdE8Q
-         OyH/MDvFrfFS6/qfv4fOyYMHs/y7qlFe+i/D6bnl1ASSg6VK9jkp4/oIp75nP/xsTM3Q
-         gc2QFcMfPFBA32qrsJHM943OF06BdPz7xyOJmuk2f6Nt3c1HlDTB09J4TXvwTZ2nIcOw
-         Av/g==
-X-Gm-Message-State: ACrzQf1JoZHFFA54KkLy0MQTb/mUYde88VO6fExF+x9+3rlX5zr1/Uv+
-        zkSwmxdWHUCuyM2Gvjbp4ECupg==
-X-Google-Smtp-Source: AMsMyM7QVUE1ju3kFrqWCNbg0f/6jKhJcOftXpheLrGr9bnXzOrPVa2fNCUhZbOLTT+S7Jaa66GLvg==
-X-Received: by 2002:a2e:bc28:0:b0:26b:d979:fc72 with SMTP id b40-20020a2ebc28000000b0026bd979fc72mr7907465ljf.292.1664866283592;
-        Mon, 03 Oct 2022 23:51:23 -0700 (PDT)
+        bh=rGAbSoZZBNp1Rcgw72Rvq0ko1UR3Gj5wyM3fR9f9QcA=;
+        b=BdCaexkQY8mP8lNEGtMdeU2mRJi82IRIOswH/z4epZ6X6LpYSPw7uey4VQ2WmG0psl
+         SzHIkflIBqxuY+Gp8WXEAgdbAqSJENiUpV45X4SMxYKMD4Wom8YbF3lgEpgt67UrT5LS
+         ThUXF9QaguFqVX3PpUJb9+BY/Mq2yGV55VoXW7oNIvfzbYn2cdMA/e62qMJl1I/e5YQj
+         tGiiIPDaAypTps2QPUUKHK2CWsmlhvTGLAR3eoP2/0yn+RXeLMSeNj8Vitp/OkkCBH7l
+         gIfFa9qY+6r9RcBzta4dXf39z4qW3oXKuPn5eiKbs/WOaQSazuPtnE5NOqg0cCAGdr8j
+         wxLQ==
+X-Gm-Message-State: ACrzQf14k1ZzyRKrSrxLUiFWkrdBABbbCneFEk1sCxL5DStn/IjlqA3L
+        xQDioI1yy67xr81NDwtN8VHgAQ==
+X-Google-Smtp-Source: AMsMyM5RaCobEe+/0/5LX8MZEHgbJcoU+0O/Jr7Y0adYZZuT5CPllLO9zX3tunOqSvUAvqlyO6sYmg==
+X-Received: by 2002:ac2:51ae:0:b0:4a2:4f37:451c with SMTP id f14-20020ac251ae000000b004a24f37451cmr1309615lfk.649.1664866432124;
+        Mon, 03 Oct 2022 23:53:52 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id e16-20020a05651c111000b0026dde66326dsm527458ljo.109.2022.10.03.23.51.22
+        by smtp.gmail.com with ESMTPSA id k2-20020a05651239c200b00499aefcf68esm1769029lfu.292.2022.10.03.23.53.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Oct 2022 23:51:23 -0700 (PDT)
-Message-ID: <92bd8960-7b50-46c2-3374-9d0e0237c985@linaro.org>
-Date:   Tue, 4 Oct 2022 08:51:22 +0200
+        Mon, 03 Oct 2022 23:53:51 -0700 (PDT)
+Message-ID: <9664a623-3c58-49e8-1b9a-69335d844448@linaro.org>
+Date:   Tue, 4 Oct 2022 08:53:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sdm845-db845c: correct SPI2 pins
- drive strength
+Subject: Re: [PATCH 1/5] dt-bindings: firmware: scm: Add QDU1000/QRU1000
+ compatibles
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Melody Olvera <quic_molvera@quicinc.com>
 Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        "# 4.0+" <stable@vger.kernel.org>
-References: <20220930182212.209804-1-krzysztof.kozlowski@linaro.org>
- <20220930182212.209804-2-krzysztof.kozlowski@linaro.org>
- <CAD=FV=WSbpV4aqyHgSX6rwanQmZYG1hdNourjP5DEmsfdq6aDA@mail.gmail.com>
- <11a99a84-47ec-ca3e-5781-0f17ed33dbf9@linaro.org>
- <CAD=FV=URMX9umJfqYOhnnnjsr09As-6mKAHs0YNZFK8n2K337g@mail.gmail.com>
- <c0bf359a-1ee9-04e2-2c58-9e7e8f3e12f7@linaro.org>
- <CAD=FV=WmXbBvnC_phmTNRfYa68TObOYVRQWe-X4kv4aQPD5rFg@mail.gmail.com>
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221001030641.29354-1-quic_molvera@quicinc.com>
+ <20221001030641.29354-2-quic_molvera@quicinc.com>
+ <09f5d364-320e-9ecc-2c2b-68066c61f802@linaro.org>
+ <e9c44e3b-b29f-0f47-b822-da0f4f2264cc@quicinc.com>
+ <CAA8EJprE-mOOH8VF3m8TRb+0q=3_8NpvzdEAugabDaDbq6FMVQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=WmXbBvnC_phmTNRfYa68TObOYVRQWe-X4kv4aQPD5rFg@mail.gmail.com>
+In-Reply-To: <CAA8EJprE-mOOH8VF3m8TRb+0q=3_8NpvzdEAugabDaDbq6FMVQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/10/2022 01:03, Doug Anderson wrote:
->>> If this really has to be one-off then the subnode shouldn't be called
->>> "pinmux". A subnode called "pinmux" implies that it just has muxing
->>> information in it. After your patch this is called "pinmux" but has
->>> _configuration_ in it.
->>>
+On 04/10/2022 00:14, Dmitry Baryshkov wrote:
+> On Tue, 4 Oct 2022 at 01:02, Melody Olvera <quic_molvera@quicinc.com> wrote:
 >>
->> It is a poor argument to keep some convention which is both
->> undocumented, not kept in this file and known only to some folks
->> (although that's effect of lack of documentation). Even the bindings do
->> not say it should be "pinconf" but they mention "config" in example. The
->> existing sdm845.dts uses config - so why now there should be "pinconf"?
->> By this "convention" we have both "pinmux" and "mux", perfect. Several
->> other pins do not have pinmux/mux/config at all.
 >>
->> This convention was never implemented, so there is nothing to keep/match.
->>
->> Changing it to "config" (because this is the most used "convention" in
->> the file and bindings) would also mean to add useless "pins" which will
->> be in next patch removed.
+>> On 10/1/2022 4:25 AM, Krzysztof Kozlowski wrote:
+>>> On 01/10/2022 05:06, Melody Olvera wrote:
+>>>> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
+>>>>
+>>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
+>>>>  1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+>>>> index c5b76c9f7ad0..b47a5dda3c3e 100644
+>>>> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+>>>> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+>>>> @@ -51,6 +51,8 @@ properties:
+>>>>            - qcom,scm-sm8250
+>>>>            - qcom,scm-sm8350
+>>>>            - qcom,scm-sm8450
+>>>> +          - qcom,scm-qdu1000
+>>>> +          - qcom,scm-qru1000
 > 
-> I certainly won't make the argument that the old convention was great
-> or even that consistently followed. That's why it changed. ...but to
-> me it's more that a patch should stand on its own and not only make
-> sense in the context of future patches. After applying ${SUBJECT}
-> patch you end up with a node called "pinmux" that has more than just
-> muxing information in it. That seems less than ideal.
+> I think after seeing all the patchsets it's time to ask the following
+> question. Do we really need a duplicate compatibility families:
+> qdu1000 vs qru1000? I'd suggest using a single set of compatibile
+> strings in most of the cases.
+> Settle down onto a single name (qdu,qru, qdru, whatever) and define
+> distinct compat strings only when there is an actual difference?
+> 
+> E.g .we don't have separate compatible strings for all the sda660,
+> apq8096, etc. unless this is required by the corresponding hardware
+> block not being compatible with corresponding sdm or msm counterpart.
+> 
 
-OK, let me make it part of "config" then to match other nodes from DTSI.
+I am not that fluent in Qualcomm naming, so let me ask - what are the
+differences between QDU and QRU?
+
+For compatible (and/or similar) devices the general recommendation is to
+have specific compatibles followed by fallback. Even if devices are
+very, very, very similar, usually the recommendation still stays.
 
 Best regards,
 Krzysztof
