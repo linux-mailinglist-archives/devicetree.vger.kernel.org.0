@@ -2,131 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8987F5F4A88
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 22:57:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C8965F4AA7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 23:05:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229479AbiJDU5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 16:57:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47468 "EHLO
+        id S229557AbiJDVFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 17:05:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiJDU5u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 16:57:50 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DC632B267;
-        Tue,  4 Oct 2022 13:57:49 -0700 (PDT)
-Received: from mercury (unknown [185.209.196.162])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A791A6602293;
-        Tue,  4 Oct 2022 21:57:47 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664917067;
-        bh=rOIF7LaAC+WUVJaWsdB3dj8dPLLF/TT6iHAASQJV/bQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jyD0WRDRXBhLgr1sTa2WExTxq0q+VMMHRlGKhs96nczEb0fEuSC+ICo11R4PYpvSU
-         nlf4ITYzDetrChG53AipERX73WynNauggGFWlIyVZw7VEORqZSchn6q2vw2S7qYV9I
-         d95KgrlPRESBHfgg0EKEHMHAwuqj65bYmrtHAV/78ETAjIISLObB3opn01Y/IdyXh+
-         CeNc/OmUyc74UbxCMepkIuUR4FkoLFfbK2K6wY5ikd/lAJAI0YpDRj5lZIWo7rXfQP
-         9Kg9uQtoosj7YD7UE9TB2fFPJylUhWkVWq8Aqc2l1ESI33RhBCBFCwjBflYaXADWI8
-         cXLEvjEednbbg==
-Received: by mercury (Postfix, from userid 1000)
-        id B95411063330; Tue,  4 Oct 2022 22:57:44 +0200 (CEST)
-Date:   Tue, 4 Oct 2022 22:57:44 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     Rob Herring <robh@kernel.org>, linux-rockchip@lists.infradead.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Simon Xue <xxm@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 1/5] dt-bindings: phy: rockchip: add PCIe v3 phy
-Message-ID: <20221004205744.q5eybgbx6syszsqq@mercury.elektranox.org>
-References: <20220825193836.54262-1-linux@fw-web.de>
- <20220825193836.54262-2-linux@fw-web.de>
- <20221004150929.GA1506199-robh@kernel.org>
- <EC42D2C8-ACA5-4B6A-BC95-534CBDFC36C8@fw-web.de>
+        with ESMTP id S229547AbiJDVFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 17:05:24 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90A5D69181
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 14:05:19 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id e20so3718347ybh.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 14:05:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=LFbusFL82p6QahGy3NX4jAVtz3A0XmveDtr6G/KTqd0=;
+        b=JkVbrqS1fCmbwyPOifxNkAE37DIVc3BHc6D8OO2GbfkFc6K+QHevzWx6hGWZlLrlFw
+         /zCBm9AN0c45J6hpY43I+OBZhbnsgFzEiY7tV5QxdbGR2hBns3KAwSXsA6TbgOLdfV/p
+         BpuWH4j2b2gTHtlvEnczc7jLw1AOWcOco9Dd1l6lYYPQG7wr0EPDAw16sXSMosZSYEEC
+         XvYi7kR5wOIjPAs2B5QW4HIz/H0LCm/JgPesS7vL2iZjhy4AjrselOar60FngjA/NWbt
+         SIer4n8n0sZbfoW89u0aZw35IkSGAUa2ebLFMJmTadWF28keloCVaWKnDZy4UxOoCLsA
+         QoQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=LFbusFL82p6QahGy3NX4jAVtz3A0XmveDtr6G/KTqd0=;
+        b=cGstSuhiceCnbGI/sjnhAJmu3s0x8iIaS4UQyFNfPe+BgimJGTs2LyH5kJRNFZqHcD
+         qQoCeQHg/zJ0C1l7Qw3Mh75aNiMdvADxsklalpOxX4IlAkF/DvosQmz+ZLJkZqo+9n55
+         k+Dw3CnUOgD0VkFAr85i7PQcyYoDBXxMkJSiirfYDGEda/B07wpmuy/BErBuuMg7JCpT
+         XfpCQWMcyMyY2WJNYXtcV1hA5HdYU8F91gIZm4mIXCsfu8gyQcJA06wIiykyZ2KlSvV1
+         ZD7+JhIJD9a4fBX7ZLJj4CwLpw0aGgdKJ+LCiZRzFrE+Jaw+w00AJTrKhujxbozubuQS
+         4Z4A==
+X-Gm-Message-State: ACrzQf2kTODyrWb17HQUkmuuiJrEInPHeJHrBQ6og11OZk5EGBFP/JgU
+        074B4HwBvvjIJH6aeg4SYJZnqQiVaHUTXd+rwL1L4g==
+X-Google-Smtp-Source: AMsMyM7RnNbgz4d0o/g87+paVdolLxaOczBPWCjWjD0Yxo3BRMWskfkg+Ndq7Hy7pTl3puLN7LW63NWnAv1bZ+WjW8o=
+X-Received: by 2002:a5b:c:0:b0:6bd:f84c:b63e with SMTP id a12-20020a5b000c000000b006bdf84cb63emr8989664ybp.275.1664917518783;
+ Tue, 04 Oct 2022 14:05:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="esf23iwxvt2hw4gh"
-Content-Disposition: inline
-In-Reply-To: <EC42D2C8-ACA5-4B6A-BC95-534CBDFC36C8@fw-web.de>
+References: <20221001030641.29354-1-quic_molvera@quicinc.com>
+ <20221001030641.29354-2-quic_molvera@quicinc.com> <09f5d364-320e-9ecc-2c2b-68066c61f802@linaro.org>
+ <e9c44e3b-b29f-0f47-b822-da0f4f2264cc@quicinc.com> <CAA8EJprE-mOOH8VF3m8TRb+0q=3_8NpvzdEAugabDaDbq6FMVQ@mail.gmail.com>
+ <9664a623-3c58-49e8-1b9a-69335d844448@linaro.org> <CAA8EJprQoCQzr2x0JA9_b3MDE=oOTODyHD23debEL1MCE1mWBA@mail.gmail.com>
+ <095742cb-61cc-af5d-848c-48b2ea5528ea@quicinc.com>
+In-Reply-To: <095742cb-61cc-af5d-848c-48b2ea5528ea@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 5 Oct 2022 00:05:07 +0300
+Message-ID: <CAA8EJpoqKCj4tyX-617YJH5zqkR_C=1LVMeLXcCxZFgOPjRZ=g@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: firmware: scm: Add QDU1000/QRU1000 compatibles
+To:     Melody Olvera <quic_molvera@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---esf23iwxvt2hw4gh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Tue, Oct 04, 2022 at 05:19:11PM +0200, Frank Wunderlich wrote:
-> Am 4. Oktober 2022 17:09:29 MESZ schrieb Rob Herring <robh@kernel.org>:
-> >On Thu, Aug 25, 2022 at 09:38:32PM +0200, Frank Wunderlich wrote:
-> >> From: Frank Wunderlich <frank-w@public-files.de>
->=20
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - rockchip,rk3568-pcie3-phy
+On Tue, 4 Oct 2022 at 18:52, Melody Olvera <quic_molvera@quicinc.com> wrote=
+:
+>
+>
+> On 10/4/2022 2:36 AM, Dmitry Baryshkov wrote:
+> > On Tue, 4 Oct 2022 at 09:53, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >> On 04/10/2022 00:14, Dmitry Baryshkov wrote:
+> >>> On Tue, 4 Oct 2022 at 01:02, Melody Olvera <quic_molvera@quicinc.com>=
+ wrote:
+> >>>>
+> >>>> On 10/1/2022 4:25 AM, Krzysztof Kozlowski wrote:
+> >>>>> On 01/10/2022 05:06, Melody Olvera wrote:
+> >>>>>> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
+> >>>>>>
+> >>>>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> >>>>>> ---
+> >>>>>>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
+> >>>>>>  1 file changed, 2 insertions(+)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.y=
+aml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> >>>>>> index c5b76c9f7ad0..b47a5dda3c3e 100644
+> >>>>>> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> >>>>>> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> >>>>>> @@ -51,6 +51,8 @@ properties:
+> >>>>>>            - qcom,scm-sm8250
+> >>>>>>            - qcom,scm-sm8350
+> >>>>>>            - qcom,scm-sm8450
+> >>>>>> +          - qcom,scm-qdu1000
+> >>>>>> +          - qcom,scm-qru1000
+> >>> I think after seeing all the patchsets it's time to ask the following
+> >>> question. Do we really need a duplicate compatibility families:
+> >>> qdu1000 vs qru1000? I'd suggest using a single set of compatibile
+> >>> strings in most of the cases.
+> >>> Settle down onto a single name (qdu,qru, qdru, whatever) and define
+> >>> distinct compat strings only when there is an actual difference?
+> >>>
+> >>> E.g .we don't have separate compatible strings for all the sda660,
+> >>> apq8096, etc. unless this is required by the corresponding hardware
+> >>> block not being compatible with corresponding sdm or msm counterpart.
+> >>>
+> >> I am not that fluent in Qualcomm naming, so let me ask - what are the
+> >> differences between QDU and QRU?
+> >>
+> >> For compatible (and/or similar) devices the general recommendation is =
+to
+> >> have specific compatibles followed by fallback. Even if devices are
+> >> very, very, very similar, usually the recommendation still stays.
+> > Well, true. But in some cases we handle this by using a single set of
+> > compatibles. Consider e.g. sa8155 vs sm8150 (sa8155 overrides just few
+> > compats that differ). Or qrb5165 vs sm8250 (there is no separate
+> > qrb5165.dtsi). APQ8096 (#include "msm8996.dtsi"). Etc.
 > >
-> >The driver also has 'rockchip,rk3588-pcie3-phy'. Please send a fix=20
-> >adding it here or removing from the driver. Are they not compatible with=
-=20
-> >each other?
->=20
-> Right, original driver has rk3588 support,but we can't test it.
-> Initialization and lane-mapping (bifurcation) was bit different.
-> So we wanted to upstream rk3568 first (but have not removed this
-> part from driver).
->=20
-> I see that someone added rk3588 basic support and if he can test
-> rk3588 i can send compatible for it.
+> > I'd say this really depends on the actual difference between qru and qd=
+u.
+>
+> To add some clarification, there's pretty little functional difference be=
+tween the QDU (Distributed Unit) and the QRU (Radio Unit); they're largely =
+the same SoC from the kernel's standpoint. I wasn't sure if it made more se=
+nse to separate the compat strings or mash them together (using qdru to spe=
+cify that it applies to both), so I kept separate compat strings in case th=
+ere was a separate RU/DU use case down the line and also to avoid some conf=
+usion (I guess that didn't work though). It makes the most sense in my mind=
+ to just use the qdru compat string for the things that apply to both SoCs =
+(which is most of what's submitted currently) and then we can do qdu/qru sp=
+ecific override strings for more specific drivers.
 
-Basic rk3588 support is still WIP. At the moment patches for the CRU
-are still pending as well as base DT. I hope to land them for v6.2
-(so next merge window). At the same time I don't think PCIe support
-is realistic before v6.3.
+Unless Krzysztof or Bjorn have other opinion, I'd suggest adding a
+single compat string, It might be qcom,qdru1000-foo or just
+qcom,qdu1000-foo (with having a separate qcom,qru1000-foo where
+applicable). But the final decision is from Rob, Krzysztof and Bjorn.
 
--- Sebastian
-
---esf23iwxvt2hw4gh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmM8nkEACgkQ2O7X88g7
-+ppF5A//aMVPpjLHGUEf9ZvplEMOuOtVijERKVd+RRgN0E+HWDjY9kTSdKo0zfcU
-G3FTTyYJhZXSjZ6wAluSupAr2dnO8Ob8EnXdSUZtTKPrAZs6QkZETJpLkD25nf8i
-vOzeJcNy+8SvpO6WGhF4alc3E+T/lqVH19Cft9ZWCQM6cWy66IKpUdaWirPRmcIR
-qz8WQBUjtZ6z66itUppsc5ysDVRz0YXtNTekcfUHF3qxW4AVq07RdNCzOdPOv0Rh
-mXAMpCzm2MCAmYl3+WvtxIfHbS97ksKZ+M54UmlS+nAoaNJ/lM3FyjaYs9he8ApT
-JjDnyY2SbGhAiBXJ3WN0Ry/gxoEhm2Wjj30llsUE7ncc7UV0ADAB7zx3++V4ekLq
-MD21LyMoLY1G5mROtW8KN3SOAUrlD5f6/uWu/JbUOEXiMuJ5rgeVlwpcuqeRcLYc
-ZdTuJB/mijzlEAVr2p79gvNTrbStb6OU3o1YBJXi1lUlRk4eIgxL2ZgU/zaB2zmR
-5UVY0eNam56p2+8Y5NRsMTy2LXDWJLnagSoPuz25O0x8I4Kb0+pQ861Md6rNrj4C
-Gx4uieKw+KOnlZ8tdJ8mPflqVn7yvnT2WWhhCBi37idzZbm0CFPTKGZLCsjJPA++
-mSg0DQJtYs8tjIS3bTkNg1h0OMO4XIvfygU7pp5SsBb5hxehagA=
-=+xoE
------END PGP SIGNATURE-----
-
---esf23iwxvt2hw4gh--
+--=20
+With best wishes
+Dmitry
