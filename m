@@ -2,239 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C9005F42B4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 14:09:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F40A5F42C2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 14:15:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230058AbiJDMJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 08:09:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38164 "EHLO
+        id S229581AbiJDMP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 08:15:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229882AbiJDMJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 08:09:14 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1528D57569
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 05:09:11 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id p5so15044740ljc.13
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 05:09:10 -0700 (PDT)
+        with ESMTP id S229551AbiJDMP0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 08:15:26 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A44712768;
+        Tue,  4 Oct 2022 05:15:24 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id s30so14850964eds.1;
+        Tue, 04 Oct 2022 05:15:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=aPGidK7aepjAesrd9H3pmdchlCYA90T2ED3drHviM08=;
-        b=eUwwFFRlDQ0dPHZ7nXZ9uSzyINsHKjDxBeGQx32XdcQKTTjivd9v/k87W7R0Di/3a9
-         EXskKqoDPguV6PMERy9DnXZzXHQYOd/kUUtKqXoVVLwPBnEeYWZn8lgiIusHaipqGgsE
-         PlVw02zjug2Nr4e/wXp1J0Z6Oqr8a7wK0B8ycCITBSiTa1qPev5zne2jiaZQSCD06F9B
-         OlSCC8VylSH5cunQQY378AzMsXyuH2roJBLZz8VfjOIJcRgDnCaTAA+nZl/7QwkH/0eB
-         7LGzsP2ypr6D2z1PmLmc4zalV93+HBTjs7Z9bsX+3X+IOVnr3U4iisFBW0NVkVKTuqBK
-         269w==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=2lOHsA4YDq2IujWxO2OEfkKj+VmjOjVPd32CvU9w1c4=;
+        b=MtiN0+8DKyMoOZfm9dkixtCFFOQDi8dcF30pSFv3f78JsHYgtZQVlyGSKOnM8C9vQd
+         h2n8MQWwLwY9mLa5+1Es/JRxockRg/gB5JIGp4MlDibcA9d5y/3zkByIS8dcodmmpyFD
+         8sklYE0Bq9oE0cIrYdtMKWf9q37fXYjIImqAD8oLFaOQIvj+aptTtra/+eGUmK7qKfwF
+         6x6NPdICbxH4QZFpJNCqJNIPo8kdMOBL1mW5f091ksVHYljDOhHZNV2L269om61fIo8W
+         S0tAIXCTNSiKNgRMwQzabQsmXNh0rd2/6n5JNGviBTH+nIUJoGQaO+pA3Rfge9jJGcmH
+         EJsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=aPGidK7aepjAesrd9H3pmdchlCYA90T2ED3drHviM08=;
-        b=oE9NPTd3VihqVEU8lo95DAk5h9rHtSVIWn4kAJ9cOOP/nBwSmKItv/uaUtOHUx8IqW
-         w+w1epCyBcItqA7KYJVwOHwnOI4vlvzzCf1QUxq5Phwrfa2Rb6UgWrvtBJjH3TzTXAww
-         Uww2yeE9HxqZsRGHja0bh7iBnFFHLU67GMir8BaKOBZtRLDWkavzfgFx8heMXsnTcsjQ
-         EARWgM0QE0n6pQcdfXmnUt4rKUhCV4nphlG8dv4NMOKUNt3qwJsKixefFVYfccOzfZhz
-         gjBkaSva4XlToe2ijDlChltqMnfoE3hE7zY5pj5xdM0+AB/zuVVYu3olihRUyJ+iwq94
-         SyzQ==
-X-Gm-Message-State: ACrzQf2IbtfWrpiKnWqTwiidWUqZS+JELwPv6qyieDfcFfwEsms2IH3h
-        dTOQM4uZzXLkMXtaa/PVxseTag==
-X-Google-Smtp-Source: AMsMyM45quw5V+niXpUB6OEOrWbJDo4mYlYyBGIR2JYohc2wUst18OtOb8ZfZ9GCSKf+Bt3KV/9/9A==
-X-Received: by 2002:a2e:bc09:0:b0:26c:203:e38 with SMTP id b9-20020a2ebc09000000b0026c02030e38mr8655204ljf.249.1664885349333;
-        Tue, 04 Oct 2022 05:09:09 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id z13-20020a056512308d00b004979989028bsm1891360lfd.147.2022.10.04.05.09.08
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=2lOHsA4YDq2IujWxO2OEfkKj+VmjOjVPd32CvU9w1c4=;
+        b=qsrZrKSNRkkqCeNA1FEcBkoUcc+w+jb4VrI3zQCJxUMApcdv4ezI0batD1uCttPssM
+         W0bDmpwFvKJbcNqCMOwmlf5rQQPUG/UaXgBd01EJhCpadbe+6ULJ3xcqlXhAGxBwPEeC
+         PTsJJ+V1nB483Ly9YDE/+UDN1unmLKKaPE7KVzrD2BrXnBRRQlSDtOefMw42ckf8hQvk
+         /uXmRKNzTi1gurC6L+/6GK8d+vybiPe/0anze8Vd1Td+99LSODnKU/sSVzgWT9pTQzsF
+         ReNCXrnvjFrL96DTc7e8jq7Jfu2wCqnw4BRrwUC1Tf7+l8aQ8v4HAVZ8Xj4gLVUevtwL
+         RUrw==
+X-Gm-Message-State: ACrzQf0R9TjiGFu7lMVwq9ShA6AaNU+TMSoxx4Ui8o+EEf8f0aWMio88
+        qpSADUCRfH8zjpnhdP5+t1E=
+X-Google-Smtp-Source: AMsMyM7sGqjKVDsAcBoTJRuW2xubDE5GjBS+Bd0StTskoL/V+fhdd8EfQQhWwh77AEluye9o145tIA==
+X-Received: by 2002:aa7:cb18:0:b0:452:9071:aff with SMTP id s24-20020aa7cb18000000b0045290710affmr22877322edt.194.1664885722541;
+        Tue, 04 Oct 2022 05:15:22 -0700 (PDT)
+Received: from skbuf ([188.27.184.197])
+        by smtp.gmail.com with ESMTPSA id l21-20020a17090615d500b00779cde476e4sm6983423ejd.62.2022.10.04.05.15.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Oct 2022 05:09:08 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tue, 04 Oct 2022 05:15:20 -0700 (PDT)
+Date:   Tue, 4 Oct 2022 15:15:17 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Colin Foster <colin.foster@in-advantage.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Markuss Broks <markuss.broks@gmail.com>,
-        Daniel Mack <daniel@zonque.org>,
-        Dillon Min <dillon.minfei@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: display: panel: use spi-peripheral-props.yaml
-Date:   Tue,  4 Oct 2022 14:09:07 +0200
-Message-Id: <20221004120907.72767-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 net-next 12/14] dt-bindings: net: dsa: ocelot: add
+ ocelot-ext documentation
+Message-ID: <20221004121517.4j5637hnioepsxgd@skbuf>
+References: <20220926002928.2744638-1-colin.foster@in-advantage.com>
+ <20220926002928.2744638-13-colin.foster@in-advantage.com>
+ <ec63b5aa-3dec-3c27-e987-25e36b1632ba@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ec63b5aa-3dec-3c27-e987-25e36b1632ba@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For devices connectable by SPI bus (e.g. already using
-"spi-max-frequency" property), reference the "spi-peripheral-props.yaml"
-schema to allow using all SPI device properties, even these which device
-bindings author did not tried yet.
+On Tue, Oct 04, 2022 at 01:19:33PM +0200, Krzysztof Kozlowski wrote:
+> > +  # Ocelot-ext VSC7512
+> > +  - |
+> > +    spi {
+> > +        soc@0 {
+> 
+> soc in spi is a bit confusing.
 
-Change "additionalProperties" to "unevaluatedProperties", so the actual
-other properties from "spi-peripheral-props.yaml" can be used.  This has
-additional impact of allowing also other properties from
-panel-common.yaml to be used.
+Do you have a better suggestion for a node name? This is effectively a
+container for peripherals which would otherwise live under a /soc node,
+if they were accessed over MMIO by the internal microprocessor of the
+SoC, rather than by an external processor over SPI.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/display/panel/ilitek,ili9163.yaml    | 3 ++-
- .../devicetree/bindings/display/panel/ilitek,ili9341.yaml    | 1 +
- .../devicetree/bindings/display/panel/nec,nl8048hl11.yaml    | 3 ++-
- .../bindings/display/panel/samsung,lms380kf01.yaml           | 5 ++---
- .../bindings/display/panel/samsung,lms397kf04.yaml           | 3 ++-
- .../devicetree/bindings/display/panel/samsung,s6d27a1.yaml   | 4 ++--
- .../devicetree/bindings/display/panel/tpo,tpg110.yaml        | 1 +
- 7 files changed, 12 insertions(+), 8 deletions(-)
+> How is this example different than previous one (existing soc example)?
+> If by compatible and number of ports, then there is no much value here.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
-index 7e7a8362b951..a4154b51043e 100644
---- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
-@@ -15,6 +15,7 @@ description:
- 
- allOf:
-   - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
- properties:
-   compatible:
-@@ -41,7 +42,7 @@ required:
-   - dc-gpios
-   - reset-gpios
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-index 99e0cb9440cf..94f169ea065a 100644
---- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-@@ -16,6 +16,7 @@ description: |
- 
- allOf:
-   - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml b/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
-index aa788eaa2f71..3b09b359023e 100644
---- a/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
-@@ -15,6 +15,7 @@ maintainers:
- 
- allOf:
-   - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
- properties:
-   compatible:
-@@ -34,7 +35,7 @@ required:
-   - reset-gpios
-   - port
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/display/panel/samsung,lms380kf01.yaml b/Documentation/devicetree/bindings/display/panel/samsung,lms380kf01.yaml
-index 251f0c7115aa..70ffc88d2a08 100644
---- a/Documentation/devicetree/bindings/display/panel/samsung,lms380kf01.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/samsung,lms380kf01.yaml
-@@ -9,14 +9,13 @@ title: Samsung LMS380KF01 display panel
- description: The LMS380KF01 is a 480x800 DPI display panel from Samsung Mobile
-   Displays (SMD) utilizing the WideChips WS2401 display controller. It can be
-   used with internal or external backlight control.
--  The panel must obey the rules for a SPI slave device as specified in
--  spi/spi-controller.yaml
- 
- maintainers:
-   - Linus Walleij <linus.walleij@linaro.org>
- 
- allOf:
-   - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
- properties:
-   compatible:
-@@ -59,7 +58,7 @@ required:
-   - spi-cpol
-   - port
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml b/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml
-index cd62968426fb..5e77cee93f83 100644
---- a/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml
-@@ -14,6 +14,7 @@ maintainers:
- 
- allOf:
-   - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
- properties:
-   compatible:
-@@ -51,7 +52,7 @@ required:
-   - spi-cpol
-   - port
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6d27a1.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6d27a1.yaml
-index 26e3c820a2f7..d273faf4442a 100644
---- a/Documentation/devicetree/bindings/display/panel/samsung,s6d27a1.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/samsung,s6d27a1.yaml
-@@ -7,14 +7,14 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Samsung S6D27A1 display panel
- 
- description: The S6D27A1 is a 480x800 DPI display panel from Samsung Mobile
--  Displays (SMD). The panel must obey the rules for a SPI slave device
--  as specified in spi/spi-controller.yaml
-+  Displays (SMD).
- 
- maintainers:
-   - Markuss Broks <markuss.broks@gmail.com>
- 
- allOf:
-   - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/display/panel/tpo,tpg110.yaml b/Documentation/devicetree/bindings/display/panel/tpo,tpg110.yaml
-index 6f1f02044b4b..f0243d196191 100644
---- a/Documentation/devicetree/bindings/display/panel/tpo,tpg110.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/tpo,tpg110.yaml
-@@ -41,6 +41,7 @@ description: |+
- 
- allOf:
-   - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
- properties:
-   compatible:
--- 
-2.34.1
-
+The positioning relative to the other nodes is what's different.
