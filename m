@@ -2,162 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF0565F4300
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 14:38:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4183D5F43DB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 15:03:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbiJDMiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 08:38:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52184 "EHLO
+        id S229612AbiJDNC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 09:02:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbiJDMiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 08:38:08 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FEB363EB;
-        Tue,  4 Oct 2022 05:38:07 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S229631AbiJDNCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 09:02:34 -0400
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5EF218349;
+        Tue,  4 Oct 2022 05:59:49 -0700 (PDT)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 06B0B66022A9;
-        Tue,  4 Oct 2022 13:38:04 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664887085;
-        bh=5x9yLkue2W3jRxXgF0gPfjI2e+qXfSGyi8ojRWrUU8s=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bZPXHDcNzwpEc/sCsMhKAg1zLxlf5oF4zjArz11kcx+KosiDap2YAD/3O3dI+PIIU
-         fTGC68dFoUQvIRBZWe/sGRACbSNke+OknD3T+VERboXfSiHAcSLr9pcKgunMLrP4Ei
-         8sfeu9FxoRCsQlTulHz7Mhg5zBJLQhzPummHmD8qSdAUcW5w68CDD0zbIM72LZxX1K
-         LOw9P7Bd90oA3/2H7163Kw8KN+ZLvZ6ye2Qq0vifTpouZSaOPKfHBtaJh9jHFVOhrv
-         IdYCI04CW3+/3MEVo1WoqxS35bou2JKez5S3RVZs6JtbscQdj2jso+RRjVg6vGRO9Y
-         YkAVtvVyZY4KA==
-Message-ID: <42ab09ef-427d-f2dd-c480-f3e11f4aaa79@collabora.com>
-Date:   Tue, 4 Oct 2022 14:38:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v1 5/6] soc: mediatek: mutex: Add mtk_mutex_set_mod
- support to set MOD1
-Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 78B1B3F356;
+        Tue,  4 Oct 2022 14:59:45 +0200 (CEST)
+Date:   Tue, 4 Oct 2022 14:59:43 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Martin Botka <martin.botka@somainline.org>
+Cc:     martin.botka1@gmail.com, ~postmarketos/upstreaming@lists.sr.ht,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-References: <20221004093319.5069-1-moudy.ho@mediatek.com>
- <20221004093319.5069-6-moudy.ho@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221004093319.5069-6-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: iommu: arm-smmu: Add binding for sm6125
+Message-ID: <20221004125943.kifkeq3uugprh6jv@SoMainline.org>
+References: <20221001185715.495477-1-martin.botka@somainline.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221001185715.495477-1-martin.botka@somainline.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/10/22 11:33, Moudy Ho ha scritto:
-> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
+On 2022-10-01 20:57:15, Martin Botka wrote:
+> This patch adds binding for sm6125 SoC
 > 
-> Add mtk_mutex_set_mod support to set MOD1
-> 
-> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
 > ---
->   drivers/soc/mediatek/mtk-mutex.c | 27 +++++++++++++++++++--------
->   1 file changed, 19 insertions(+), 8 deletions(-)
+>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-> index c1a33d52038e..5dcbd61fe42c 100644
-> --- a/drivers/soc/mediatek/mtk-mutex.c
-> +++ b/drivers/soc/mediatek/mtk-mutex.c
-> @@ -23,6 +23,7 @@
->   #define DISP_REG_MUTEX(n)			(0x24 + 0x20 * (n))
->   #define DISP_REG_MUTEX_RST(n)			(0x28 + 0x20 * (n))
->   #define DISP_REG_MUTEX_MOD(mutex_mod_reg, n)	(mutex_mod_reg + 0x20 * (n))
-> +#define DISP_REG_MUTEX_MOD1(mutex_mod_reg, n)	((mutex_mod_reg) + 0x20 * (n) + 0x4)
->   #define DISP_REG_MUTEX_SOF(mutex_sof_reg, n)	(mutex_sof_reg + 0x20 * (n))
->   #define DISP_REG_MUTEX_MOD2(n)			(0x34 + 0x20 * (n))
->   
-> @@ -750,14 +751,24 @@ int mtk_mutex_write_mod(struct mtk_mutex *mutex,
->   		return -EINVAL;
->   	}
->   
-> -	offset = DISP_REG_MUTEX_MOD(mtx->data->mutex_mod_reg,
-> -				    mutex->id);
-> -	reg = readl_relaxed(mtx->regs + offset);
-> -
-> -	if (clear)
-> -		reg &= ~BIT(mtx->data->mutex_table_mod[idx]);
-> -	else
-> -		reg |= BIT(mtx->data->mutex_table_mod[idx]);
-> +	if (mtx->data->mutex_table_mod[idx] < 32) {
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> index 9066e6df1ba1..21e15b88bae7 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> @@ -41,6 +41,7 @@ properties:
+>                - qcom,sdm845-smmu-500
+>                - qcom,sdx55-smmu-500
+>                - qcom,sdx65-smmu-500
+> +              - qcom,sm6125-smmu-500
 
-What if we do...
+Shouldn't this be in the list above given that you switched the APPS to
+smmu-v2 in
+https://lore.kernel.org/linux-arm-msm/20221001185750.495874-1-martin.botka@somainline.org/
 
-	u8 id_offset = 0;
+Alas, I don't remember which of the two compatibles is correct for this
+SoC, since both were seemingly working correctly...
 
-	/*
-	 * Some SoCs may have multiple MUTEX_MOD registers as more than 32 mods
-	 * are present, hence requiring multiple 32-bits registers.
-	 *
-	 * The mutex_table_mod fully represents that by defining the number of
-	 * the mod sequentially, later used as a bit number, which can be more
-	 * than 0..31.
-	 *
-	 * In order to retain compatibility with older SoCs, we perform R/W on
-	 * the single 32 bits registers, but this requires us to translate the
-	 * mutex ID bit accordingly.
-	 */
-	if (mtx->data->mutex_table_mod[idx] < 32) {
-		reg_offset = DISP_REG_MUTEX_MOD0(mtx->data->mutex_mod_reg,
-						 mutex->id);
-	} else {
-		reg_offset = DISP_REG_MUTEX_MOD1(mtx->data->mutex_mod_reg,
-						 mutex->id);
-		id_offset = 32;
-	}
+- Marijn
 
-	reg = readl_relaxed(mtx->regs + offset);
-	if (clear)
-		reg &= ~BIT(mtx->data->mutex_table_mod[idx] - id_offset);
-	else
-		reg |= BIT(mtx->data->mutex_table_mod[idx] - id_offset);
-
-	writel_relaxed(reg, mtx->regs + offset);
-
-...like this, we give good documentation and also keep the code "short" :-)
-
-Regards,
-Angelo
-
-
-> +		offset = DISP_REG_MUTEX_MOD(mtx->data->mutex_mod_reg,
-> +					    mutex->id);
-> +		reg = readl_relaxed(mtx->regs + offset);
-> +		if (clear)
-> +			reg &= ~BIT(mtx->data->mutex_table_mod[idx]);
-> +		else
-> +			reg |= BIT(mtx->data->mutex_table_mod[idx]);
-> +
-> +	} else {
-> +		offset = DISP_REG_MUTEX_MOD1(mtx->data->mutex_mod_reg,
-> +					     mutex->id);
-> +		reg = readl_relaxed(mtx->regs + offset);
-> +		if (clear)
-> +			reg &= ~BIT(mtx->data->mutex_table_mod[idx] - 32);
-> +		else
-> +			reg |= BIT(mtx->data->mutex_table_mod[idx] - 32);
-> +	}
->   
->   	writel_relaxed(reg, mtx->regs + offset);
->   
-
-
+>                - qcom,sm6350-smmu-500
+>                - qcom,sm6375-smmu-500
+>                - qcom,sm8150-smmu-500
+> -- 
+> 2.37.3
+> 
