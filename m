@@ -2,163 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 716315F461F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 17:05:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A70A5F462F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 17:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbiJDPFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 11:05:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54070 "EHLO
+        id S229496AbiJDPJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 11:09:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbiJDPFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 11:05:16 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E0351A32
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 08:05:14 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id s20so5881554lfi.11
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 08:05:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=CWdX4tvEDe9KXAQIvWXUpR26N6THyFmklq+pYn7/wck=;
-        b=v9qAcpY/EulrMR7IHMzcNeWHI6LbF7pg8NXAg+ErSDmILTlVv9VuATHeiDFUuS0GDk
-         fMPUpg+ZIm2fvpOjwhU0jNrO51zTdX5Wo89TE4EpRBM2U6EglD08H2D49MIHAr+WLhko
-         QutFGm6gKSaXJOgqQqp0VLMjpvhTVkSYKRXOY7lsbEpK7hpvEMVYv/IOjeuYVy2lpDuy
-         RIbwA4QZi5UsdDLDWczQYuAqCNJVPlYdCGswtZoaf03Nol5+mrQy953CxoP1IFoIOrTU
-         nFaOMmcYVh/vGEvNaZPxeKoSDLmFz2Hx+xOXxbVYjjLs1Y6XZTdt5PUigU9+DBfhOe6G
-         ScPQ==
+        with ESMTP id S229507AbiJDPJd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 11:09:33 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C3EE5AC70;
+        Tue,  4 Oct 2022 08:09:32 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-131ea99262dso14503712fac.9;
+        Tue, 04 Oct 2022 08:09:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=CWdX4tvEDe9KXAQIvWXUpR26N6THyFmklq+pYn7/wck=;
-        b=hjZUmcWroaCu3uyEi0tz40XV9AKkN4VEEOBL34ed53XtwZ99MrlrJ0HsmAtAXbK8uQ
-         LWTO9vwYqm134p0EAMkEJTtB7+92Zc/tORtHTxFqZ1v25MVIOp353jJPO3QBYg2oEbbm
-         ML8Aq1OTRpqVSXPfv3vB5wE+NSsHjnvpNEfJTsN+zyQM78T1kF/VptD+CpY/O/3VqaXZ
-         jhqHEj5qPb9FDmijEjS8dWg6Lp3se18r7rXANBrEz4dOAWx5eub+AmwxbWJtqHGZ4ETT
-         d2PaMFmJHPm/VVgkSOeSFe6JQ7lT2PrtLEcWDQMLeK18FxnBwiqvKSqPGWAdxq2nVZm3
-         HEzA==
-X-Gm-Message-State: ACrzQf1gq51PaL9bgYvzTuCz2Zbhg4pzRBOraQsBL3zqOYm1jFdDhO20
-        ARYGjmJYgrDNcd+yl86y27/p6Q==
-X-Google-Smtp-Source: AMsMyM4AtZAJOWtGqNYNncGG28gDj+M6F6V0yMuWIAJhpHtFLCOUuhev79xS5vLvDH12H9Ljm6wesQ==
-X-Received: by 2002:a19:6909:0:b0:4a2:5d5a:2f49 with SMTP id e9-20020a196909000000b004a25d5a2f49mr430421lfc.66.1664895912921;
-        Tue, 04 Oct 2022 08:05:12 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a16-20020a19f810000000b00494643db68fsm1952030lff.81.2022.10.04.08.05.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Oct 2022 08:05:12 -0700 (PDT)
-Message-ID: <49daae86-e922-9a17-ebed-2a33a5eeb18e@linaro.org>
-Date:   Tue, 4 Oct 2022 17:05:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v1 17/17] drm/mediatek: Add mt8195-dpi support to drm_drv
-Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=1/SfhmEZO2JzUCSYSQdFtcYRPEgPC0CoBH/8raGMDh8=;
+        b=AwLGT+48IEx2H1uxYJr0yGe0z4u/9ObUSr2C10aG4TVQfkDEErQHD60Xi5DTqg69EK
+         H7epmk2/rKI3BSsdplrAtkeKHZV+ENHXQLylzh7Nrbj7ZT4jTvmJuRhhjncN8JWX1g/M
+         ZmOryKqEIUPZgqPnS4e6bGDvqIxGdW1XnnXLWOb20yBXqELgShF+htNTdVAR/5m7srif
+         LvsnF1x2GyoiyF8yvmUEvz9nr9jclWOHtCBG72HeawN3PbyDYms8Q0OmmBB+Vno9as/5
+         eOV5plsn+5WX8ZnjMohpkckZrr/FQd4JwXzNh2xcIieqY7ieDyFznSPCXPR4xt1xxqnp
+         jQHQ==
+X-Gm-Message-State: ACrzQf0wfr2a6SzLimoAZtrsNcTPmtUftHmSuZ3wKNyx+l47lbrwKtYI
+        fTR7mOtxlLyYt8Cbh7pYIw==
+X-Google-Smtp-Source: AMsMyM7jLjnl+O35aTbkfKDjVHvR3//Sg2sceoBCi4M/ndmVZF8lzWetnP5LNWSYt4i5fyF+WtyZkA==
+X-Received: by 2002:a05:6870:b39e:b0:10d:8d5d:a9b with SMTP id w30-20020a056870b39e00b0010d8d5d0a9bmr133280oap.144.1664896171203;
+        Tue, 04 Oct 2022 08:09:31 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r35-20020a056870582300b0011f22e74d5fsm3756563oap.20.2022.10.04.08.09.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Oct 2022 08:09:30 -0700 (PDT)
+Received: (nullmailer pid 1507385 invoked by uid 1000);
+        Tue, 04 Oct 2022 15:09:29 -0000
+Date:   Tue, 4 Oct 2022 10:09:29 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     linux-rockchip@lists.infradead.org,
+        Frank Wunderlich <frank-w@public-files.de>,
         Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        Vinod Koul <vkoul@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20220919-v1-0-4844816c9808@baylibre.com>
- <20220919-v1-17-4844816c9808@baylibre.com>
- <a0a3c427-c851-ae5d-4010-e94740bf9f6e@linaro.org>
- <CABnWg9s3N_Ua9g0S3x0uj8PN4FtOX6DO+zQcBzGFqoLTL1J24A@mail.gmail.com>
- <bc64b69d-3d65-f5ca-a688-2ad1a055ba4b@linaro.org>
- <CABnWg9sJFBAXi1bu_yHDppFOmg=H=G7QTn9Bzqkr-t7qm5vUFw@mail.gmail.com>
- <db1abf9d-ba40-f71c-0d37-c3912ac1bd8e@linaro.org>
- <CABnWg9vOHWpdLPAFdXAG3GNgsxpbzgh2gTq_tm72Tk2uR54LaQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CABnWg9vOHWpdLPAFdXAG3GNgsxpbzgh2gTq_tm72Tk2uR54LaQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Simon Xue <xxm@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 1/5] dt-bindings: phy: rockchip: add PCIe v3 phy
+Message-ID: <20221004150929.GA1506199-robh@kernel.org>
+References: <20220825193836.54262-1-linux@fw-web.de>
+ <20220825193836.54262-2-linux@fw-web.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220825193836.54262-2-linux@fw-web.de>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/10/2022 13:55, Guillaume Ranquet wrote:
->> No. You said what the code is doing. I think I understand this. You
->> still do not need more compatibles. Your sentence did not clarify it
->> because it did not answer at all to question "why". Why do you need it?
->>
->> Sorry, the change looks not correct.
->>
->> Best regards,
->> Krzysztof
->>
+On Thu, Aug 25, 2022 at 09:38:32PM +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> I need a new compatible to adress the specifics of mt8195 in the mtk_dpi driver,
-> the change is in this series with:
-> [PATCH v1 16/17] drm/mediatek: dpi: Add mt8195 hdmi to DPI driver [1]
-
-But you do not have specifics of mt8195. I wrote it in the beginning.
-
+> Add a new binding file for Rockchip PCIe v3 phy driver.
 > 
-> I then need to add that compatible to the "list" here in mtk_drm_drv.
-
-No, you do not... I checked the driver and there is no single need... or
-convince me you need.
-
-> I don't see a way around this unless I rewrite the way mtk_drm_drv works?
-
-Why rewrite? You have all compatibles in place.
-
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> v4:
+> - add reviewed-by
+> - remove minitems for clock-names as i have static list to fix error
+> - fix reg error by using 32-bit adressing in binding example
+> - change lane-map to u32 data-lanes
+> - tried to move data-lanes to phy-provider
+>   https://github.com/frank-w/dt-schema/blob/main/dtschema/schemas/phy/phy-provider.yaml#L17
+>   cloned and installed via pip install -e <local path>
+>   verified with pip show, but phy-privider seems not to be applied
 > 
-> Maybe if I declare a new compatible that is generic to all mediatek
-> dpi variants?
-
-You were asked to use fallback. Don't create some fake fallbacks. Use
-existing ones.
-
-> and have all the dts specify the node with both the generic dpi and
-> the specific compatible?
+> v3:
+> - drop quotes
+> - drop rk3588
+> - make clockcount fixed to 3
+> - full path for binding header file
+> - drop phy-mode and its header and add lane-map
 > 
-> dpi@xxx {
-> 	compatible = "mediatek,dpi", "mediatek,mt8195-dpi";
-
-I don't know what's this but certainly looks odd. Some wild-card
-compatible in front (not fallback) and none are documented.
-
-> 	...
-> }
+> v2:
+> dt-bindings: rename yaml for PCIe v3
+> rockchip-pcie3-phy.yaml => rockchip,pcie3-phy.yaml
 > 
-> Then I can "collapse" all the dpi related nodes in mtk_drm_drv under
-> "mediatek,dpi" ?
+> changes in pcie3 phy yaml
+> - change clock names to ordered const list
+> - extend pcie30-phymode description
+> - add phy-cells to required properties
+> - drop unevaluatedProperties
+> - example with 1 clock each line
+> - use default property instead of text describing it
+> - update license
+> ---
+>  .../bindings/phy/rockchip,pcie3-phy.yaml      | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
 > 
-> I guess would have to do the change for all other components that are needed in
-> mtk_drm_drv (mmsys, aal, ccor, color, dither, dsc, gamma, mutex...).
-> 
-> That's the only trivial way I can think of implementing this with the
-> current status
-> of the mtk_drm stack.
-> 
-> Do you have any other ideas in mind?
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+> new file mode 100644
+> index 000000000000..9f2d8d2cc7a5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/rockchip,pcie3-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip PCIe v3 phy
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3568-pcie3-phy
 
-Use fallback of compatible device. That's the common pattern.
-Everywhere, Mediatek as well.
+The driver also has 'rockchip,rk3588-pcie3-phy'. Please send a fix 
+adding it here or removing from the driver. Are they not compatible with 
+each other?
 
-Best regards,
-Krzysztof
-
+Rob
