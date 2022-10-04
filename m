@@ -2,116 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D3805F402B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 11:45:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D85A5F4060
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 11:54:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230419AbiJDJpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 05:45:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60732 "EHLO
+        id S229531AbiJDJyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 05:54:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231222AbiJDJoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 05:44:34 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B313458B4E
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 02:42:04 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id fn7-20020a05600c688700b003b4fb113b86so7197090wmb.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 02:42:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date;
-        bh=bQ8VTDq8eb4pIbfx/V0Mkp12Y3OVg6EUxMWx5PJKwp0=;
-        b=bfwcPl76SAXbwQlZ2K/QH+TCzC2MNU0bgvRo8DBLsfE/gmuwyMYQgPXABwPJ8wXP0Q
-         FGO/1CoVHsfzdp+FNvcC1rMQHhiQ4ChNQ3QFB00IxspxHHqvuE0wudI84Svj8LvFR6RJ
-         604rkOwcbMPr5BTCVZ1xGuLiYSz7o6RpNBbuIaNxlkQmc7dwNMbDPf3TJnu5KDgDDhLt
-         6jJ/BZw40noEFwEv8EHjlOcgJaWZmSWchsQCoGIPQuiivDcTOwf7jVm2WTZgpd67C7OG
-         wVaaE2aFWD797mBiRDdvZf+8RirnqdHZl3foNOwUVMksTQliqyru2zrDRaTjwSbat3j3
-         22IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=bQ8VTDq8eb4pIbfx/V0Mkp12Y3OVg6EUxMWx5PJKwp0=;
-        b=fK7GGwbq4qJCZRdq7KO6rQi2mm9iyUqjVTh6R9EAE+S2OLnQ+fVMcl4fV0ry5m2Z2o
-         VGAN3vbQfBmqbBswaJ60Mi9sjy48JTad4FCYNxUbrdEGyKm8eX6XOB04dtcKFYHk99as
-         arnWxwfft2znE0JhJDasQpJrSXwp7YfZaB3Fc2r3uMyD38LI1nxFKeFG+qgEZhHqkfIk
-         Q/nIeKddg9cZfdwCRtW3aHMA6M0fxFRV5CFFBK1jWFW17nq9xxMxRLfXPWxbA1/gSb0t
-         aAM9hj4AZua5kJ1uEgb2RRRxyHkp7xqtreDm0oLDUOZywrqEBfsQb/HJ5suH4y97wtRY
-         5P9g==
-X-Gm-Message-State: ACrzQf2jNH/VJQ2ReDeo6t01CG+IoABOqxjZMUtF6DNRHjYgf0lO9hIL
-        jsyG+9AFWJYQ40tKr3az+RRLWQ==
-X-Google-Smtp-Source: AMsMyM5CKOGttNNwEf/4oXMY7HJpybGxQH7bLeUC2IPBWxC8dLDvmsEGnjj5SFTncNY8tGBkkW8kVQ==
-X-Received: by 2002:a7b:cb91:0:b0:3b4:75b9:5a4b with SMTP id m17-20020a7bcb91000000b003b475b95a4bmr9303932wmi.33.1664876523143;
-        Tue, 04 Oct 2022 02:42:03 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:58f1:548b:1390:4070? ([2a01:e0a:982:cbb0:58f1:548b:1390:4070])
-        by smtp.gmail.com with ESMTPSA id m38-20020a05600c3b2600b003b4ff30e566sm3118344wms.3.2022.10.04.02.42.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Oct 2022 02:42:02 -0700 (PDT)
-Message-ID: <fccda8a1-5a40-d840-bd3f-ec44b87bb575@linaro.org>
-Date:   Tue, 4 Oct 2022 11:42:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 08/11] mfd: qcom-pm8xxx: drop unused PM8018 compatible
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229743AbiJDJxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 05:53:23 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D1EBE7;
+        Tue,  4 Oct 2022 02:52:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1664877172; x=1696413172;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WDkyn/xwXddNppq/eAkPzbUNzHf3vyZHD7Cpir1HgaU=;
+  b=mPP2OED+gPVkiwhQRaqt+HWYAA87hn1wuZhC8uN/DzJxCF8T3SbfZ7mV
+   Sxj7hcrKe8O0XGKDhEjrG8vIGE+BdDfMiLDkDNMnCLD8WuGnpFeiK2aZv
+   jrmlsy3BWFs+934JfBOOHlh6FaC2yoX6VaNFjS8qQsHljo24ciCzEZLN4
+   u5pV8qilCNffPIWhzP9yp5TdKPz9H1XOU1loCfKGPT+TmA5dK2k0+QjKz
+   rUlGtn6+gAtDrnauvCdZLuDonPeYy+vyN75vkDTdjFSWDTafDTrfZ4Xju
+   /EkuaPwDCGlaDpdMqfwd52LpvcZ1H5nN7tOpMOQ612zhiXx0cXBGjlCeU
+   w==;
+X-IronPort-AV: E=Sophos;i="5.93,367,1654585200"; 
+   d="scan'208";a="176917311"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Oct 2022 02:52:51 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 4 Oct 2022 02:52:48 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Tue, 4 Oct 2022 02:52:46 -0700
+Date:   Tue, 4 Oct 2022 10:52:24 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Lee Jones <lee@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-rtc@vger.kernel.org
-References: <20220928-mdm9615-dt-schema-fixes-v2-0-87fbeb4ae053@linaro.org>
- <20220928-mdm9615-dt-schema-fixes-v2-8-87fbeb4ae053@linaro.org>
- <48fba67d-20f3-7e53-8b5f-01f07452b4c7@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <48fba67d-20f3-7e53-8b5f-01f07452b4c7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@collabora.com>
+Subject: Re: [PATCH v3 0/3] Enable initial support for StarFive VisionFive V1
+ SBC
+Message-ID: <YzwCWDN4NyIQ8a46@wendy>
+References: <20220908142914.359777-1-cristian.ciocaltea@collabora.com>
+ <c5169131-486e-9808-ba48-b7abe1be6a99@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <c5169131-486e-9808-ba48-b7abe1be6a99@collabora.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/10/2022 11:02, Krzysztof Kozlowski wrote:
-> On 04/10/2022 10:08, Neil Armstrong wrote:
->> The PM8921 compatible is used as fallback when PM8018 is available,
->> then remove PM8018 compatible.
-> 
-> s/then/so/
-> 
-> But it's a bit confusing because PM8018 is not "available". It is
-> "present" or "is" instead, so rather:
-> "The PM8018 compatible is always used with PM8921 fallback, so PM8018
-> compatible can be safely removed from device ID table".
+On Mon, Oct 03, 2022 at 02:06:32PM +0300, Cristian Ciocaltea wrote:
+> Please let me know if there is anything else missing in order to get this
+> queued for merging.
 
-Thx for the suggestion, will use this wording, same in patch 9.
+Hey Cristian,
 
-> 
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
+LinusW has applied a conflicting change for 6.1 as he renamed the
+pinctrl header that you have moved from one file to another in this
+patch [0]. Could you rebase once that lands upstream please?
 
 Thanks,
-Neil
+Conor.
+
+0 - https://lore.kernel.org/linux-riscv/CACRpkdZmmMjVwpHxkJP+Ui0XJgrdZx8kpVybifbwkRB1_uMhAg@mail.gmail.com/
+
+> 
+> Thanks,
+> Cristian
+> 
+> On 9/8/22 17:29, Cristian Ciocaltea wrote:
+> > The StarFive VisionFive V1 SBC [1] is similar with the already supported
+> > BeagleV Starlight Beta board, both being based on the StarFive JH7100 SoC.
+> > 
+> > In addition to documenting the necessary compatibles, this patch series
+> > moves most of the content from jh7100-beaglev-starlight.dts to a new file
+> > jh7100-common.dtsi, to be shared between the two boards.
+> > 
+> > No other changes are required in order to successfully boot the board.
+> > 
+> > [1] https://github.com/starfive-tech/VisionFive
+> > 
+> > Changes in v3:
+> >   - Added Reviewed-by tag from Krzysztof in patch 1/3
+> >   - Optimized patch 2/3 by enabling copy detection on "git format-patch",
+> >     as indicated by Krzysztof
+> > 
+> > Changes in v2:
+> >   - Simplified documentation by using 'enum' instead of 'const' in
+> >     patch 1/3, according to Conor's review
+> >   - Added Reviewed-by tags from Conor
+> > 
+> > Cristian Ciocaltea (3):
+> >    dt-bindings: riscv: starfive: Add StarFive VisionFive V1 board
+> >    riscv: dts: starfive: Add common DT for JH7100 based boards
+> >    riscv: dts: starfive: Add StarFive VisionFive V1 device tree
+> > 
+> >   .../devicetree/bindings/riscv/starfive.yaml   |   4 +-
+> >   arch/riscv/boot/dts/starfive/Makefile         |   2 +-
+> >   .../dts/starfive/jh7100-beaglev-starlight.dts | 153 +-----------------
+> >   ...aglev-starlight.dts => jh7100-common.dtsi} |   3 -
+> >   .../jh7100-starfive-visionfive-v1.dts         |  20 +++
+> >   5 files changed, 25 insertions(+), 157 deletions(-)
+> >   copy arch/riscv/boot/dts/starfive/{jh7100-beaglev-starlight.dts => jh7100-common.dtsi} (96%)
+> >   create mode 100644 arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
+> > 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
