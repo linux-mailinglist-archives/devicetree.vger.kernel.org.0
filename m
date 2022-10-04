@@ -2,143 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E14D5F40B4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 12:22:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E3565F40FE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 12:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbiJDKWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 06:22:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48512 "EHLO
+        id S229453AbiJDKrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 06:47:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbiJDKWD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 06:22:03 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7B1D31DF3;
-        Tue,  4 Oct 2022 03:22:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1664878921; x=1696414921;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=tYiX0livaZV54Tpug1MQVrKJH6mQ7IQHkmnz80pYNMc=;
-  b=Lx5ecCpvJADqj4mBwKve/+zRtT8lrCSHkScQay4RtXTFEuj0ElXeZumR
-   mBnLziFdN8WFsqbdKUbm18Zl1b6ZM9+ecBpe4YYxONlzXafxDju3YM0q4
-   UM+HLpkOuVgLp/53bQlp1qjlONGwlDkdrO99fknFpWBzGmoQdBtNuKJkb
-   fM3JAn57/iwwWyQ1ex8shEuO3u3K+8ftpholn5j3EnR+W0Otp45ecz231
-   A8jNcZ5vjgzGNiIRtwM9QAfflN24NtAQtJ08JKJSesp9gQeNNcJfRGkHY
-   B3PgIwQL7+a/Ust9rf9lxXeGRgaKxW8vPy8n2kpSBISrTD8dX0vRDdlR/
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="389167470"
-X-IronPort-AV: E=Sophos;i="5.93,367,1654585200"; 
-   d="scan'208";a="389167470"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2022 03:22:00 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="657081017"
-X-IronPort-AV: E=Sophos;i="5.93,367,1654585200"; 
-   d="scan'208";a="657081017"
-Received: from kmreisi-mobl.ger.corp.intel.com ([10.252.39.196])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2022 03:21:55 -0700
-Date:   Tue, 4 Oct 2022 13:21:52 +0300 (EEST)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Irui Wang <irui.wang@mediatek.com>
-cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        angelogioacchino.delregno@collabora.com,
-        nicolas.dufresne@collabora.com,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v6, 6/8] media: mediatek: vcodec: Refactor encoder clock
- on/off function
-In-Reply-To: <20221001031737.18266-7-irui.wang@mediatek.com>
-Message-ID: <3645b24f-436e-d6a5-27cd-287712eab22@linux.intel.com>
-References: <20221001031737.18266-1-irui.wang@mediatek.com> <20221001031737.18266-7-irui.wang@mediatek.com>
+        with ESMTP id S229469AbiJDKre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 06:47:34 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CA0F5142C
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 03:47:33 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id bk15so20682128wrb.13
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 03:47:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=cEukjb2UHK5KqOanQB61zhcVE7DRFNm5dcKOe0eZBnI=;
+        b=dhKSlYdYkxEW6eonWePf90D/2Wkp27oLOK/2b1lxm0GZ2l8Rbv60TIC/4og+E/LlpZ
+         zE8hxUxVfxYcMGcewbLcPorJ6pTTOEf+ogZkrm+IZqcESkFi1KjcJh4jNpNGlmdA0FQ1
+         vAAgBLlA1+wc8iJ6CdcCUk+jhQz8AcU2Bvn+AMdw1LGeK8jbgFajfwM+5lsDE6HSB5C6
+         Xfol4ujqekdk5SSbQFqbKEJD5LdGYHO61fWF8HLwQ0OhZt0kwc5S9A9v7CDrY/qbyjhJ
+         5uzHI1SzYbt5kQtrlSO9CpPwnPCvMlex+1V5jd2/gSVlRm8XEt3aca0Kq1ABqguQS+d+
+         AruQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=cEukjb2UHK5KqOanQB61zhcVE7DRFNm5dcKOe0eZBnI=;
+        b=lBLgYYXaO318wG60LlCQNTXuDoLXISzej5nwoTTtS89QnukSBSfKoMWLIHsgjxT+4a
+         ySQsaCF3oynIle9yCS9LBzOeI6fx6/1SjY8y+HgJs7296NuZarqE4eRu060P0xAVOh99
+         waR/Sr+FtrTLYehyTIXzKgaNkVOxTGnyUd78j99TKHdAD40lx1EXB9G5SBmjbTtSiSvd
+         8fhlNYWD90xMpeDq6wBOe1OY9uOkEETqOjcMQxaoUWNT8SPq416XyODQf72uvNjfFX7k
+         Uqwb8GlHn4NgTeGOeOLc8P7qHWhAyofCOxWCoOU6UgseTyYgdbXL7e+m9sDx+84qkZHG
+         V2Jg==
+X-Gm-Message-State: ACrzQf2/dq9TmewtJbBF1TlXxqKh9r+0Kxwf91lCXSd8PBSlP12Mwyxm
+        SZEhSzOoaLFz3w512xsOzXneMw==
+X-Google-Smtp-Source: AMsMyM7ncqbuDxUiZMMmnbuthAQ80+V55LgaGgIxWvf/tI6EXifGRpjq/61Pu4DozeT85LYz66Jplg==
+X-Received: by 2002:a05:6000:4c:b0:22e:48e0:1a0b with SMTP id k12-20020a056000004c00b0022e48e01a0bmr3105069wrx.618.1664880452067;
+        Tue, 04 Oct 2022 03:47:32 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:c456:8337:99aa:2667? ([2a05:6e02:1041:c10:c456:8337:99aa:2667])
+        by smtp.googlemail.com with ESMTPSA id k18-20020a05600c1c9200b003b5054c6cd2sm25870085wms.36.2022.10.04.03.47.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Oct 2022 03:47:31 -0700 (PDT)
+Message-ID: <17f3fd40-70c1-2e8d-8002-dfe9690aed88@linaro.org>
+Date:   Tue, 4 Oct 2022 12:47:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v3] arm64: dts: mediatek: mt8183: disable thermal zones
+ without trips.
+Content-Language: en-US
+To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221004101130.17256-1-aouledameur@baylibre.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20221004101130.17256-1-aouledameur@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 1 Oct 2022, Irui Wang wrote:
 
-> when enable multi-core encoding, encoder cores use their own clock,
-> refactor clock management functions with used encoder hardware id.
+Hi Amjad,
+
+On 04/10/2022 12:11, Amjad Ouled-Ameur wrote:
+> Thermal zones without trip point are not registered by thermal core.
 > 
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> tzts1 ~ tzts6 zones of mt8183 were intially introduced for test-purpose
+> only.
+> 
+> Disable the zones above and keep only cpu_thermal enabled.
+
+It does not make sense to disable the thermal zones. Either the thermal 
+zones are needed or they are not. Keeping them for debug purpose is not 
+desired.
+
+Alternatively to removal, you can:
+
+  - remove 'sustainable-power'
+  - add a passive trip point, optionally a hot trip point and a critical 
+trip point
+
+The passive trip point will allow the userspace to set a value in order 
+to get notified about the devices temperature (writable trip point). 
+The hot temperature will send a notification to userspace so it can take 
+a last chance decision to drop the temperature before the critical 
+temperature.
+
+The passive trip point temperature could be a high temperature.
+
+The mitigation is also managed from userspace as a whole.
+
+
+> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 > ---
->  .../mediatek/vcodec/mtk_vcodec_enc_pm.c       | 89 ++++++++++++++++---
->  .../mediatek/vcodec/mtk_vcodec_enc_pm.h       |  6 +-
->  .../platform/mediatek/vcodec/venc_drv_if.c    |  4 +-
->  3 files changed, 84 insertions(+), 15 deletions(-)
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 6 ++++++
+>   1 file changed, 6 insertions(+)
 > 
-> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_pm.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_pm.c
-> index 213c3f50e9eb..2f83aade779a 100644
-> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_pm.c
-> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_pm.c
-> @@ -60,7 +60,9 @@ EXPORT_SYMBOL_GPL(mtk_vcodec_init_enc_clk);
->  static int mtk_enc_core_power_on(struct mtk_vcodec_ctx *ctx)
->  {
->  	struct mtk_venc_hw_dev *sub_core;
-> +	struct mtk_vcodec_clk *clk;
->  	int ret, i;
-> +	int j = 0;
->  
->  	/* multi-core encoding need power on all available cores */
->  	for (i = 0; i < MTK_VENC_HW_MAX; i++) {
-> @@ -73,12 +75,27 @@ static int mtk_enc_core_power_on(struct mtk_vcodec_ctx *ctx)
->  			mtk_v4l2_err("power on sub_core[%d] fail %d", i, ret);
->  			goto pm_on_fail;
->  		}
-> +
-> +		clk = &sub_core->pm.venc_clk;
-> +		for (j = 0; j < clk->clk_num; j++) {
-> +			ret = clk_prepare(clk->clk_info[j].vcodec_clk);
-> +			if (ret) {
-> +				mtk_v4l2_err("prepare clk [%s] fail %d",
-> +					     clk->clk_info[j].clk_name, ret);
-> +				goto pm_on_fail;
-> +			}
-> +		}
->  	}
->  	return ret;
->  
->  pm_on_fail:
->  	for (i -= 1; i >= 0; i--) {
->  		sub_core = (struct mtk_venc_hw_dev *)ctx->dev->enc_hw_dev[i];
-> +
-> +		clk = &sub_core->pm.venc_clk;
-> +		for (j -= 1; j >= 0; j--)
-> +			clk_unprepare(clk->clk_info[j].vcodec_clk);
-> +
->  		pm_runtime_put_sync(&sub_core->plat_dev->dev);
-
-There's more than one thing wrong here.
-
-pm_runtime_put_sync() won't be called for the ith entry when the later 
-goto pm_on_fail is taken because the loop decrements i right at the 
-start.
-
-Similarly, i and j will mismatch for the ith entry because i was 
-decremented.
-
-Third, j does not start from clk->clk_num - 1 for the other entries 
-(for those lower "i"s).
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 9d32871973a2..53f7a0fbaa88 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1191,6 +1191,7 @@ tzts1: tzts1 {
+>   				polling-delay = <0>;
+>   				thermal-sensors = <&thermal 1>;
+>   				sustainable-power = <5000>;
+> +				status = "disabled";
+>   				trips {};
+>   				cooling-maps {};
+>   			};
+> @@ -1200,6 +1201,7 @@ tzts2: tzts2 {
+>   				polling-delay = <0>;
+>   				thermal-sensors = <&thermal 2>;
+>   				sustainable-power = <5000>;
+> +				status = "disabled";
+>   				trips {};
+>   				cooling-maps {};
+>   			};
+> @@ -1209,6 +1211,7 @@ tzts3: tzts3 {
+>   				polling-delay = <0>;
+>   				thermal-sensors = <&thermal 3>;
+>   				sustainable-power = <5000>;
+> +				status = "disabled";
+>   				trips {};
+>   				cooling-maps {};
+>   			};
+> @@ -1218,6 +1221,7 @@ tzts4: tzts4 {
+>   				polling-delay = <0>;
+>   				thermal-sensors = <&thermal 4>;
+>   				sustainable-power = <5000>;
+> +				status = "disabled";
+>   				trips {};
+>   				cooling-maps {};
+>   			};
+> @@ -1227,6 +1231,7 @@ tzts5: tzts5 {
+>   				polling-delay = <0>;
+>   				thermal-sensors = <&thermal 5>;
+>   				sustainable-power = <5000>;
+> +				status = "disabled";
+>   				trips {};
+>   				cooling-maps {};
+>   			};
+> @@ -1236,6 +1241,7 @@ tztsABB: tztsABB {
+>   				polling-delay = <0>;
+>   				thermal-sensors = <&thermal 6>;
+>   				sustainable-power = <5000>;
+> +				status = "disabled";
+>   				trips {};
+>   				cooling-maps {};
+>   			};
 
 
 -- 
- i.
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
