@@ -2,145 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A70A5F462F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 17:09:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8ED25F465C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 17:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229496AbiJDPJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 11:09:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59616 "EHLO
+        id S229565AbiJDPQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 11:16:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbiJDPJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 11:09:33 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C3EE5AC70;
-        Tue,  4 Oct 2022 08:09:32 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-131ea99262dso14503712fac.9;
-        Tue, 04 Oct 2022 08:09:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=1/SfhmEZO2JzUCSYSQdFtcYRPEgPC0CoBH/8raGMDh8=;
-        b=AwLGT+48IEx2H1uxYJr0yGe0z4u/9ObUSr2C10aG4TVQfkDEErQHD60Xi5DTqg69EK
-         H7epmk2/rKI3BSsdplrAtkeKHZV+ENHXQLylzh7Nrbj7ZT4jTvmJuRhhjncN8JWX1g/M
-         ZmOryKqEIUPZgqPnS4e6bGDvqIxGdW1XnnXLWOb20yBXqELgShF+htNTdVAR/5m7srif
-         LvsnF1x2GyoiyF8yvmUEvz9nr9jclWOHtCBG72HeawN3PbyDYms8Q0OmmBB+Vno9as/5
-         eOV5plsn+5WX8ZnjMohpkckZrr/FQd4JwXzNh2xcIieqY7ieDyFznSPCXPR4xt1xxqnp
-         jQHQ==
-X-Gm-Message-State: ACrzQf0wfr2a6SzLimoAZtrsNcTPmtUftHmSuZ3wKNyx+l47lbrwKtYI
-        fTR7mOtxlLyYt8Cbh7pYIw==
-X-Google-Smtp-Source: AMsMyM7jLjnl+O35aTbkfKDjVHvR3//Sg2sceoBCi4M/ndmVZF8lzWetnP5LNWSYt4i5fyF+WtyZkA==
-X-Received: by 2002:a05:6870:b39e:b0:10d:8d5d:a9b with SMTP id w30-20020a056870b39e00b0010d8d5d0a9bmr133280oap.144.1664896171203;
-        Tue, 04 Oct 2022 08:09:31 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r35-20020a056870582300b0011f22e74d5fsm3756563oap.20.2022.10.04.08.09.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Oct 2022 08:09:30 -0700 (PDT)
-Received: (nullmailer pid 1507385 invoked by uid 1000);
-        Tue, 04 Oct 2022 15:09:29 -0000
-Date:   Tue, 4 Oct 2022 10:09:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     linux-rockchip@lists.infradead.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Simon Xue <xxm@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 1/5] dt-bindings: phy: rockchip: add PCIe v3 phy
-Message-ID: <20221004150929.GA1506199-robh@kernel.org>
-References: <20220825193836.54262-1-linux@fw-web.de>
- <20220825193836.54262-2-linux@fw-web.de>
+        with ESMTP id S229484AbiJDPQx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 11:16:53 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0713474C6;
+        Tue,  4 Oct 2022 08:16:52 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 294F8UGK003116;
+        Tue, 4 Oct 2022 15:16:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=XFEvDe0O3v7gwItvJVTiZ4zJCqwGX5S3opVkXW1SG+w=;
+ b=Eq/NQgde0oMpHWxw5MMNlMl0/8yBZzVPTvRcx7/ppUucmaxAvPb1Jj4x+nLq3F8znPS7
+ q67G18wnSlsnCIsApEDcY2GjUjAUInjXr0gkqx5GFu3IqNYUI+/UPanf/tWQgapG6tg5
+ 992aeRKWf+i30UCIngOvNrF3QjLhICgq2eT3LvwFyI35JU2eiJNnuQirWwS3TH38AMGD
+ twjFXawBldQm9wJ6nFLob5qwS5g731m67DBYQeaR1/69Z+epfO4rEHm47ryVL/ru+ync
+ va3hwJo6GOrnF+Uq5y20zqoBLppsovR7llcmjEv3IZpF6J7aqq6f0e+01wle/K2byfkc DQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k0escs09a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 04 Oct 2022 15:16:49 +0000
+Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 294FGnGA026498
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 4 Oct 2022 15:16:49 GMT
+Received: from [10.110.73.50] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 4 Oct 2022
+ 08:16:48 -0700
+Message-ID: <19a54de8-d769-ab65-6332-6a8ff68e1437@quicinc.com>
+Date:   Tue, 4 Oct 2022 10:16:47 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220825193836.54262-2-linux@fw-web.de>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 2/5] dt-bindings: arm: qcom: Document QDU1000/QRU1000 SoCs
+ and boards
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221001030641.29354-1-quic_molvera@quicinc.com>
+ <20221001030641.29354-3-quic_molvera@quicinc.com>
+ <59d306a6-989a-ecf8-0262-7562d110bf0e@linaro.org>
+From:   Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <59d306a6-989a-ecf8-0262-7562d110bf0e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 8LkLVw7seFC1JepF5_AU6A7Za_6fIRx0
+X-Proofpoint-GUID: 8LkLVw7seFC1JepF5_AU6A7Za_6fIRx0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-10-04_06,2022-09-29_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 adultscore=0 clxscore=1015 suspectscore=0 mlxscore=0
+ mlxlogscore=830 impostorscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210040099
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 25, 2022 at 09:38:32PM +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add a new binding file for Rockchip PCIe v3 phy driver.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> v4:
-> - add reviewed-by
-> - remove minitems for clock-names as i have static list to fix error
-> - fix reg error by using 32-bit adressing in binding example
-> - change lane-map to u32 data-lanes
-> - tried to move data-lanes to phy-provider
->   https://github.com/frank-w/dt-schema/blob/main/dtschema/schemas/phy/phy-provider.yaml#L17
->   cloned and installed via pip install -e <local path>
->   verified with pip show, but phy-privider seems not to be applied
-> 
-> v3:
-> - drop quotes
-> - drop rk3588
-> - make clockcount fixed to 3
-> - full path for binding header file
-> - drop phy-mode and its header and add lane-map
-> 
-> v2:
-> dt-bindings: rename yaml for PCIe v3
-> rockchip-pcie3-phy.yaml => rockchip,pcie3-phy.yaml
-> 
-> changes in pcie3 phy yaml
-> - change clock names to ordered const list
-> - extend pcie30-phymode description
-> - add phy-cells to required properties
-> - drop unevaluatedProperties
-> - example with 1 clock each line
-> - use default property instead of text describing it
-> - update license
-> ---
->  .../bindings/phy/rockchip,pcie3-phy.yaml      | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
-> new file mode 100644
-> index 000000000000..9f2d8d2cc7a5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/rockchip,pcie3-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip PCIe v3 phy
-> +
-> +maintainers:
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3568-pcie3-phy
 
-The driver also has 'rockchip,rk3588-pcie3-phy'. Please send a fix 
-adding it here or removing from the driver. Are they not compatible with 
-each other?
+On 10/1/2022 4:26 AM, Krzysztof Kozlowski wrote:
+> On 01/10/2022 05:06, Melody Olvera wrote:
+>> Document the QDU1000 and QRU1000 SoC bindings and the boards that use
+>> them.
+>>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
+>>  Documentation/devicetree/bindings/arm/qcom.yaml | 16 ++++++++++++++++
+> This patch goes with DT.
+Will move to the dt PS.
+>
+>>  1 file changed, 16 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> index fb1d00bcc847..1cfd92f4ab5d 100644
+>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> @@ -61,6 +61,8 @@ description: |
+>>          sm8250
+>>          sm8350
+>>          sm8450
+>> +        qdu1000
+>> +        qru1000
+>>  
+>>    The 'board' element must be one of the following strings:
+>>  
+>> @@ -76,6 +78,7 @@ description: |
+>>          mtp
+>>          qrd
+>>          sbc
+>> +        x100
+>>  
+>>    The 'soc_version' and 'board_version' elements take the form of v<Major>.<Minor>
+>>    where the minor number may be omitted when it's zero, i.e.  v1.0 is the same
+>> @@ -718,6 +721,19 @@ properties:
+>>                - qcom,sm8450-qrd
+>>            - const: qcom,sm8450
+>>  
+>> +      - description: Qualcomm Technologies, Inc. Distributed Unit 1000 platform
+>> +          - items:
+>> +              - enum:
+>> +                  - qcom,qdu1000-idp
+>> +                  - qcom,qdu1000-x100
+>> +              - const: qcom,qdu1000
+> Wrong order - you put it in some odd place.
+Will put in alphabetical order.
+>
+>> +
+>> +      - description: Qualcomm Technologies, Inc. Radio Unit 1000 platform
+>> +          - items:
+>> +              - enum:
+>> +                  -qcom,qru1000-idp
+> Missing space.
+Whoops; will fix.
+>
+>> +              - const: qcom,qru1000
+>> +
+>>  additionalProperties: true
+>>  
+>>  ...
+> Best regards,
+> Krzysztof
 
-Rob
+Thanks,
+
+Melody
+
