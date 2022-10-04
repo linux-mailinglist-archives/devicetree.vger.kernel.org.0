@@ -2,273 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE02B5F3D09
-	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 09:07:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83FAF5F3D15
+	for <lists+devicetree@lfdr.de>; Tue,  4 Oct 2022 09:15:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229571AbiJDHHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 03:07:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49236 "EHLO
+        id S229757AbiJDHP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 03:15:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbiJDHHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 03:07:07 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EEB4402D2
-        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 00:07:06 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id t16so14297676ljh.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 00:07:06 -0700 (PDT)
+        with ESMTP id S229738AbiJDHPZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 03:15:25 -0400
+Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706B11FCEA;
+        Tue,  4 Oct 2022 00:15:22 -0700 (PDT)
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+        id 4MhTVw4GDJz4xGm; Tue,  4 Oct 2022 18:15:20 +1100 (AEDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=b3hNZwmZyFy/xOhulemGtHZ8byzYtjyXSAifiACW+Q4=;
-        b=ALgFRgtjPCe3hUl+SpgglaCF3oQaWbTsfs+CHfWQ6wvy5oy9Xll4iZUURHYz+aUFgs
-         7fVlFfBDC4ys2g/9DdgOiQh5Enln0JrbHC8VaYZhkl662Sz/IMRTWtFyBYjz45dShaGC
-         8isy7Kcg6b04rdKYQGOSzo+yI8QGGZ+/xEn9ORrl1pCVX/nZBbkASH+exzrPl7MxrRPW
-         hpwEUJYNvBkM5QcQ44+wF8ZBl4wpkLNd4iLb/wLBIhHf5j26D/KEFfUi7lxfDYpJDGff
-         14Ut7tsBFf4oJV1I5DSKnHl8GOfiBg5g6XRaHKyg614LQz1UbRYj5FxRsduUUhSJiL/d
-         TqvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=b3hNZwmZyFy/xOhulemGtHZ8byzYtjyXSAifiACW+Q4=;
-        b=UjTFt3EE8Yvvii8cXyDasGsCiZUMqNV5r94N4rn7T6pbWyC+/uPKu8xxOsY1XDbWIA
-         S7XZksj1/SqXy7Y9nkJSC/cVjFKhSiixVU1huSPmBJk1/gmG7e8lCG0ZPw06E9hKOgbH
-         CsUj65QuMGqGKttJJpuTMma/mqTFetd+wfeNmzG4+aV6Ddq1Du0zFIg9GMkqGKYkqSCl
-         GKgT2riqwI+8MzQPCNoDpnEYhjrf1lLhhRhnhBB9QiGExwnKNFVYyvzR947PqIvDKLO5
-         2mEPAwVdTbw4CUjiVtiDE+0/pQRAchQxyOhRjgmKmGzY+2QHjNMlnEz2Y7tKuKTLs4HD
-         zQAg==
-X-Gm-Message-State: ACrzQf2SBIz5Lrm21m3q26/CAr5K4JUtFvvOdfUV5OSwBbKb6dWtQ4oO
-        BY+0RASSWnfMz23yWgv1hpxy5w==
-X-Google-Smtp-Source: AMsMyM4HM5M9/Rvi0MTsnNMyZYgZrZm00DDBXJiWXvNeMHU+7P+7jyU4L/inah1+jNARgLiwnwUhNA==
-X-Received: by 2002:a2e:6d02:0:b0:26a:cf02:40c4 with SMTP id i2-20020a2e6d02000000b0026acf0240c4mr8259235ljc.513.1664867224822;
-        Tue, 04 Oct 2022 00:07:04 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a37-20020a05651c212500b0026dc7b59d8esm978446ljq.22.2022.10.04.00.07.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Oct 2022 00:07:04 -0700 (PDT)
-Message-ID: <6e2a25b1-3158-e3fc-8290-5064009972c7@linaro.org>
-Date:   Tue, 4 Oct 2022 09:07:03 +0200
+        d=gibson.dropbear.id.au; s=201602; t=1664867720;
+        bh=BeJBfqp4geOWXyIkliGtRwz4fQdnsgVVa+AZMbI2YEk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=l+vg5h5822kmD/AjStpUX/s0+H+J5DUJhx/4S3c5U7BTlen6RqsX2zW4IAXVH1tOh
+         98cIg61mRD6neod1PxXE1RS/17OhRSBidKTcFojGNodyshWKwXk3Daq7eVVKmUthiZ
+         GstBVO1Ch3RBky/w8ejqfiB9KrVD947Msm9WQu3c=
+Date:   Tue, 4 Oct 2022 18:15:15 +1100
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     Tadeusz Struk <tadeusz.struk@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        devicetree-compiler@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] libfdt: tests: add get_next_tag_invalid_prop_len
+Message-ID: <YzvdgweRbBi+A8G6@yekko>
+References: <20220930152004.674591-1-tadeusz.struk@linaro.org>
+ <20220930152004.674591-2-tadeusz.struk@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sagit: add initial device tree
- for sagit
-Content-Language: en-US
-To:     Dzmitry Sankouski <dsankouski@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20221003185500.928608-1-dsankouski@gmail.com>
- <20221003185500.928608-2-dsankouski@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221003185500.928608-2-dsankouski@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CFJX5xrR0h4kScf6"
+Content-Disposition: inline
+In-Reply-To: <20220930152004.674591-2-tadeusz.struk@linaro.org>
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/10/2022 20:54, Dzmitry Sankouski wrote:
-> New device support - Xiaomi Mi6 phone
-> 
-> What works:
-> - storage
-> - usb
-> - power regulators
-> 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 
-Thank you for your patch. There is something to discuss/improve.
+--CFJX5xrR0h4kScf6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Sep 30, 2022 at 08:20:04AM -0700, Tadeusz Struk wrote:
+> Add a new test get_next_tag_invalid_prop_len, which covers
+> fdt_next_tag(), when it is passed an corrupted blob, with
+> invalid property len values.
+>=20
+> Signed-off-by: Tadeusz Struk <tadeusz.struk@linaro.org>
+> ---
+>  tests/.gitignore                      |  1 +
+>  tests/Makefile.tests                  |  2 +-
+>  tests/get_next_tag_invalid_prop_len.c | 65 +++++++++++++++++++++++++++
+>  tests/meson.build                     |  1 +
+>  tests/run_tests.sh                    |  1 +
+>  5 files changed, 69 insertions(+), 1 deletion(-)
+>  create mode 100644 tests/get_next_tag_invalid_prop_len.c
+>=20
+> diff --git a/tests/.gitignore b/tests/.gitignore
+> index 03bdde2..3376ed9 100644
+> --- a/tests/.gitignore
+> +++ b/tests/.gitignore
+> @@ -74,3 +74,4 @@ tmp.*
+>  /truncated_memrsv
+>  /utilfdt_test
+>  /value-labels
+> +/get_next_tag_invalid_prop_len
+> diff --git a/tests/Makefile.tests b/tests/Makefile.tests
+> index 2d36c5d..2c5b4c9 100644
+> --- a/tests/Makefile.tests
+> +++ b/tests/Makefile.tests
+> @@ -4,7 +4,7 @@ LIB_TESTS_L =3D get_mem_rsv \
+>  	get_path supernode_atdepth_offset parent_offset \
+>  	node_offset_by_prop_value node_offset_by_phandle \
+>  	node_check_compatible node_offset_by_compatible \
+> -	get_alias \
+> +	get_alias get_next_tag_invalid_prop_len \
+>  	char_literal \
+>  	sized_cells \
+>  	notfound \
+> diff --git a/tests/get_next_tag_invalid_prop_len.c b/tests/get_next_tag_i=
+nvalid_prop_len.c
+> new file mode 100644
+> index 0000000..c02f6a3
+> --- /dev/null
+> +++ b/tests/get_next_tag_invalid_prop_len.c
+> @@ -0,0 +1,65 @@
+> +// SPDX-License-Identifier: LGPL-2.1-or-later
+> +/*
+> + * libfdt - Flat Device Tree manipulation
+> + *	Testcase for fdt_next_tag()
+> + */
+> +#include <stdlib.h>
+> +#include <stdio.h>
+> +#include <string.h>
+> +#include <stdint.h>
 > +
-> +&tlmm {
-> +	gpio-reserved-ranges = <0 4>, <81 4>;
+> +#include <libfdt.h>
+> +#include "tests.h"
+> +#include "testdata.h"
 > +
-> +	cci1_default_state: cci1-default-state {
-> +		pins = "gpio19", "gpio20";
-> +		function = "cci_i2c";
-> +		bias-disable;
-> +		drive-strength = <2>;
-> +	};
+> +int main(int argc, char *argv[])
+> +{
+> +	struct fdt_header *hdr;
+> +	struct fdt_property *prp;
+> +	void *fdt;
+> +	int size, nextoff =3D 0;
+> +	uint32_t tag;
 > +
-> +	cdc_reset_n: cdc-reset-n {
+> +	test_init(argc, argv);
+> +	size =3D sizeof(*hdr) + sizeof(*prp) + 256;
+> +	fdt =3D calloc(1, size);
+> +	if (!fdt)
+> +		FAIL("Can't allocate memory");
+> +
+> +	hdr =3D fdt;
+> +	prp =3D (struct fdt_property *)(((char *) fdt) + sizeof(*hdr));
+> +	fdt_set_magic(fdt, FDT_MAGIC);
+> +	fdt_set_totalsize(fdt, size);
+> +	fdt_set_version(fdt, 0x10);
+> +	prp->tag =3D cpu_to_fdt32(FDT_PROP);
+> +	prp->len =3D cpu_to_fdt32(256);
+> +	prp->nameoff =3D 0;
 
-This is a friendly reminder during the review process.
+The dtb you're constructing here isn't a valid dtb, even before you
+corrupt the property lengths: it doesn't have valid offsets to the
+blocks, and you have no BEGIN_NODE tag for the root node.  That means
+that in order to test the specific thing you want to test, you're
+relying on *very* detailed knowledge of exactly how the code under
+test works and what it does and doesn't check, which makes the test
+unnecessarily fragile.
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
+I'd really suggest building the initial tree with the fdt_sw functions
+- or even more declaratively in trees.S - before corrupting it to test
+the actual overflow condition.
 
-Thank you.
+> +	tag =3D fdt_next_tag(fdt, sizeof(*hdr), &nextoff);
+> +	if (tag !=3D FDT_PROP)
+> +		FAIL("Invalid tag %X", tag);
+> +
+> +	if (nextoff !=3D size)
+> +		FAIL("Invalid next_offset");
+> +
+> +	/* int overflow case */
+> +	prp->len =3D cpu_to_fdt32(0xFFFFFFFA);
+> +	tag =3D fdt_next_tag(fdt, sizeof(*hdr), &nextoff);
+> +	if (tag !=3D FDT_END)
+> +		FAIL("Invalid tag, expected premature end");
+> +
+> +	if (nextoff !=3D -FDT_ERR_BADSTRUCTURE)
+> +		FAIL("Invalid nextoff, expected error FDT_ERR_BADSTRUCTURE");
+> +
+> +	/* negative offset case */
 
-> +		pins = "gpio64";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <16>;
-> +		output-high;
-> +	};
-> +
-> +	hall_sensor_default_state: hall-sensor-default-state {
-> +		pins = "gpio124";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +		input-enable;
-> +	};
-> +
-> +	mdss_dsi_active_state: mdss-dsi-active-state {
-> +		pins = "gpio94";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-disable;
-> +	};
-> +
-> +	mdss_dsi_suspend_state: mdss-dsi-suspend-state {
-> +		pins = "gpio94";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	mdss_te_active_state: mdss-te-active-state {
-> +		pins = "gpio10";
-> +		function = "mdp_vsync_a";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	mdss_te_suspend_state: mdss-te-suspend-state {
-> +		pins = "gpio10";
-> +		function = "mdp_vsync_a";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	msm_mclk0_active_state: msm-mclk0-active-state {
-> +		pins = "gpio13";
-> +		function = "cam_mclk";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	msm_mclk0_suspend_state: msm-mclk0-suspend-state {
-> +		pins = "gpio13";
-> +		function = "cam_mclk";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	msm_mclk1_active_state: msm-mclk1-active-state {
-> +		pins = "gpio14";
-> +		function = "cam_mclk";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	msm_mclk1_suspend_state: msm-mclk1-suspend-state {
-> +		pins = "gpio14";
-> +		function = "cam_mclk";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	nfc_int_active_state: nfc-int-active-state {
-> +		pins = "gpio92";
-> +		function = "gpio";
-> +		drive-strength = <6>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	nfc_int_suspend_state: nfc-int-suspend-state {
-> +		pins = "gpio92";
-> +		function = "gpio";
-> +		drive-strength = <6>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	nfc_enable_active_state: nfc-enable-active-state {
-> +		pins = "gpio12", "gpio116";
-> +		function = "gpio";
-> +		drive-strength = <6>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	nfc_enable_suspend_state: nfc-enable-suspend-state {
-> +		pins = "gpio12", "gpio116";
-> +		function = "gpio";
-> +		drive-strength = <6>;
-> +		bias-disable;
-> +	};
-> +
-> +	ts_active_state: ts-active-state {
-> +		pins = "gpio89", "gpio125";
-> +		function = "gpio";
-> +		drive-strength = <16>;
-> +		bias-pull-up;
-> +		input-enable;
-> +	};
-> +
-> +	ts_int_suspend_state: ts-int-suspend-state {
-> +		pins = "gpio125";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	ts_reset_suspend_state: ts-reset-suspend-state {
-> +		pins = "gpio89";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	wcd_int_n: wcd-int-n {
+Is there actually any meaningful difference between the "int overflow"
+and "negative offset" cases?
 
-You missed here state suffix
+> +	prp->len =3D cpu_to_fdt32(0x7FFFFFFA);
+> +	tag =3D fdt_next_tag(fdt, sizeof(*hdr), &nextoff);
+> +	if (tag !=3D FDT_END)
+> +		FAIL("Invalid tag, expected premature end");
 
-> +		pins = "gpio54";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +		input-enable;
-> +	};
+
+> +	if (nextoff !=3D -FDT_ERR_BADSTRUCTURE)
+> +		FAIL("Invalid nextoff, expected error FDT_ERR_BADSTRUCTURE");
 > +
-> +	wsa_leftspk_pwr_n: wsa-leftspk-pwr-n {
+> +	free(fdt);
+> +	PASS();
+> +}
+> diff --git a/tests/meson.build b/tests/meson.build
+> index 4ac154a..29a42dd 100644
+> --- a/tests/meson.build
+> +++ b/tests/meson.build
+> @@ -47,6 +47,7 @@ tests =3D [
+>    'get_path',
+>    'get_phandle',
+>    'get_prop_offset',
+> +  'get_next_tag_invalid_prop_len',
+>    'getprop',
+>    'incbin',
+>    'integer-expressions',
+> diff --git a/tests/run_tests.sh b/tests/run_tests.sh
+> index 244df8a..397b9cf 100755
+> --- a/tests/run_tests.sh
+> +++ b/tests/run_tests.sh
+> @@ -346,6 +346,7 @@ tree1_tests () {
+>      run_test get_prop_offset $TREE
+>      run_test get_phandle $TREE
+>      run_test get_path $TREE
+> +    run_test get_next_tag_invalid_prop_len $TREE #TREE not really needed
 
-Ditto
+This doesn't belong with tree1_tests() since it has nothing to do with
+test_tree1.  It should go under the "Specific bug tests" comment
+instead.  Also, since you're not using a passed in tree blob, you
+should modify the test code not to expect one.
 
-> +		pins = "gpio65";
-> +		function = "gpio";
-> +		bias-disable;
-> +		drive-strength = <2>;
-> +		output-low;
-> +	};
-> +> +	wsa_rightspk_pwr_n: wsa-rightspk-pwr-n {
+>      run_test supernode_atdepth_offset $TREE
+>      run_test parent_offset $TREE
+>      run_test node_offset_by_prop_value $TREE
 
-Ditto
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
 
-> +		pins = "gpio66";
-> +		function = "gpio";
-> +		bias-disable;
-> +		drive-strength = <2>;
-> +		output-low;
-> +	};
+--CFJX5xrR0h4kScf6
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Krzysztof
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAEBCAAdFiEEoULxWu4/Ws0dB+XtgypY4gEwYSIFAmM73XwACgkQgypY4gEw
+YSL3kw/+KMGlZHCSP3fFyjLWMke3CgiV4cjWPk2UHAKYfUyQF24GIp0Ti4N8wuFh
+1QAGbN2G5Y/B6n9sb9dtEjm8ajlCRx9/oanituvTzDkYgZRyPy1bciPP2h4RRKvj
+kjaG/LYHEBHGox04BcgktrH13WhgUujgrf4HAhGJSukPAxehzPMsKmFMWTXRezc7
+jTJWAWj7Oc8mpfoKVveOGVdPPR+xJJQ+DxGUaXkAII6h0brgXKMwVNt8dtS8gBsk
+rYfECfZVRS1UIIdp5ES96VBLKsL+78IlWcoP00QEF0q6wnDhWsOhCTO/ESB8qoSB
+YRLayYAdRYj+gd0p+Nwi+mLIEHvUzEMn1VYCcJgSqUMv3eXq3g1Rf9QgQHvUSKN/
+JzB1SKalMYKoVwwhdcaqWRzYP6FBPqp7t5QdOOu5j9Ua3xGvrd9q1NArGFbCRxb4
+GeBQklWz6Jeh4UrEzIehGFNqh4yFVOqVO6d9w7PM6EhXxONxBWK2HX/SQs5Cxl5z
+jN0MS0TDTHUoxfX2LWrLz0Kf5tT64miUZ2qYffH6ebl2cIAKPQg2Ud5LfLQUuGrI
+rH3qbbfkyAxsBkTJmbtxwndJq3O2xMMDM3Y+MZFin5F6AUCYdiHyqkjeus9IZAAN
+IOujdXai5HPruc+CtaHAOGD4iYtnm3NoVZ/eb5n/BzH0qY0wFwA=
+=+rHQ
+-----END PGP SIGNATURE-----
+
+--CFJX5xrR0h4kScf6--
