@@ -2,66 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE1CA5F4BAE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 00:12:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02F0E5F4C22
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 00:46:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbiJDWMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 18:12:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39870 "EHLO
+        id S229683AbiJDWq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 18:46:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231288AbiJDWLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 18:11:46 -0400
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F14D76C11A;
-        Tue,  4 Oct 2022 15:11:39 -0700 (PDT)
-Received: by mail-io1-xd36.google.com with SMTP id y189so9757158iof.5;
-        Tue, 04 Oct 2022 15:11:39 -0700 (PDT)
+        with ESMTP id S229531AbiJDWqZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 18:46:25 -0400
+Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC46501A5
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 15:46:25 -0700 (PDT)
+Received: by mail-il1-x136.google.com with SMTP id 8so6243461ilj.4
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 15:46:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=SLVJWF/SFU6Jeg5dmHMSsd0bq9GxMVu9YOSAYsOVoMM=;
-        b=NV3Rjp4/6NPSQqASzvbYFnsJIzBQ0ReVaJ0L3eHFhFakzf2OgOoAvYIcdZCgmUTfPZ
-         g7cdgdSyDEKFADAl/Y2yJnlq1mIpuG6bf9FWyimfOSM3S3WbtUdKcbUs9vaJIe84S6GU
-         Y7qqyW88AxKbNETdKDkmT3eJoKMIZPl8SmEnJM6gYpWx/Ew+XGUjfV9X1C9tEAY/rT5m
-         ZVK32FNK5o6qDysdsO0y2ab95rT8sR018MNRHqH3UbqJ7D1DbBKfc/cr1iO9lb/Rs2TC
-         KOj5ZMEi+UyC4IYcZ6sWbEUgB/oktUZrGZkuLAaM2/H4WuS6MA2Fi4wlOB//+41u9/ON
-         NgvQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=lUGmLAO+UyEHxzHYsfZWHoOtdpAGmxoVd+nS8TzFDs8=;
+        b=gJfmBcDplWY2FG/9+rfAMBZHoTO2kXKcaA5sPW9YwMR0SXbfNFLp4XQqQCoewAoUBr
+         EP9cpMbshZsXLOtqgZaCa0VY8r1aH0jni7544oRGrXKvSAnYei5/GOxSTe8pLDiq9luh
+         DQnQnwIjcP7vZcRYCX+UL+M8fzNkDTsYHfQIWkptcqulCslQvWNUgjKINOSts56JXzAE
+         Dj8W9zn+3ofri5+eMoAAZcFSpmEOlIaV/XI0y2VFbjyOCsHitD7CNpQO/snwMuZMLv1c
+         NFcf58OxrFGhm+cOcmyMENA87e8BfZSrp6iYI1yxlRSaOVL6iqV3ztpH/zedypfXfoga
+         ZA3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=SLVJWF/SFU6Jeg5dmHMSsd0bq9GxMVu9YOSAYsOVoMM=;
-        b=8EBNlKmTEp7QDChr44qA2wqn0cW3MrXBzrGO+ONCwa7NZ6Lsv9HLPRzt0ev/hS7SxP
-         Matx6n3u+4cmCB88pNnZyR/R/bZbMEUCUDHSnTwsijFkMK8BcBDk9P6qR3IadfadUE2F
-         HCdcAkHgZWwR0xa9Rhtr8ab94Iu8SD3q20Q5eC/QP1GcldeqpeymV5JFzNGGWfJcpyla
-         2Tx8YuzYTqeSF+PsBZR9wffyQQkx1mibQ+DAJhJFWjR4u4pjNuTS+A517dkiWhoy/fsY
-         VwxzF152c9JaCO4Hxjng3uMAaCXDmBb2JuRAqS+fdtumFaHBa+/LY1Lk65qChdaJ/dpl
-         9Qaw==
-X-Gm-Message-State: ACrzQf0mjfg7Qbmd5RywTLWSLChxuXrl2P8avpvAOmH1gnrnKaoJ79ek
-        n9Rm6J+SpcPg2fyd0dU4yoBEoNG8dk9JPA==
-X-Google-Smtp-Source: AMsMyM7BKIlN5WndQVQte0MHLWElsOCo02CJSGr7RkbMp1ALnPtcalWcG/x/taPuH1+Ahg4X1Gry3g==
-X-Received: by 2002:a05:6602:13c8:b0:669:c3de:776f with SMTP id o8-20020a05660213c800b00669c3de776fmr11158533iov.124.1664921499177;
-        Tue, 04 Oct 2022 15:11:39 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=lUGmLAO+UyEHxzHYsfZWHoOtdpAGmxoVd+nS8TzFDs8=;
+        b=xaEjA6+xLDFDKwnK/HDB7ud1JiZIzMjpOCB9jbSw3559U65Tqp19Ls9yjwxNLbkkLk
+         IzJpWZm/2wa0il6Xo4sbmywXVuRbQzkkYNbzuwwonEAbg2mSOQDZfWK8gxCq/ifxugZs
+         pmrXxgm0Eps6OnsP+BFvaqDYL4dM+JbT2HMRUXswITNnrKxYRFJfgQ8f/uMuXtvl5SD9
+         nRqGH/Ogqo6Vv/EJEmlK+Nk6OdyeJsOsi7BVNrpD6AtfN2ex92YNoX+OILyiphkHsblj
+         XGDbIK3P1nY6XPty6LpR9wlMJUCqJgLkmp+rYdPXQCsra++Nr6XOf47CN4kNQK0tr9QR
+         1VjA==
+X-Gm-Message-State: ACrzQf0zy20qW8wWp0tWehjT45GD8YjsG7FxNEJGi1iJZsV+eJc8NoDf
+        /f8ftlTqWww7Ie6/32LQJu4=
+X-Google-Smtp-Source: AMsMyM6qIacxLqY4+a9KJy019fK0S8GgSzgU51V8iBUspoS8E0XjiUyC/yJPSvQhQWq4h7PgWqNJng==
+X-Received: by 2002:a05:6e02:1bc9:b0:2f1:9ee8:246d with SMTP id x9-20020a056e021bc900b002f19ee8246dmr12835017ilv.246.1664923584568;
+        Tue, 04 Oct 2022 15:46:24 -0700 (PDT)
 Received: from localhost ([2607:fea8:a2e2:2d00::1eda])
-        by smtp.gmail.com with UTF8SMTPSA id k3-20020a023343000000b0035b2e0864ebsm5742581jak.160.2022.10.04.15.11.37
+        by smtp.gmail.com with UTF8SMTPSA id i9-20020a5e8509000000b006a1f242b529sm6075823ioj.13.2022.10.04.15.46.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Oct 2022 15:11:38 -0700 (PDT)
+        Tue, 04 Oct 2022 15:46:24 -0700 (PDT)
 From:   Richard Acayan <mailingradian@gmail.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     iommu@lists.linux.dev
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] soc: qcom: rpmhpd: add sdm670 power domains
-Date:   Tue,  4 Oct 2022 18:11:30 -0400
-Message-Id: <20221004221130.14076-3-mailingradian@gmail.com>
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Emma Anholt <emma@anholt.net>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rob Clark <robdclark@chromium.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] iommu: SMMU for SDM670
+Date:   Tue,  4 Oct 2022 18:46:17 -0400
+Message-Id: <20221004224619.16406-1-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221004221130.14076-1-mailingradian@gmail.com>
-References: <20221004221130.14076-1-mailingradian@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,52 +77,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Snapdragon 670 has similar power domains to SDM845 but no EBI power
-domain. Add a new array for them to avoid requesting a power domain which
-is unsupported by the hardware.
+Changes since v1 (no emails related to this series since last week):
+ - accumulate tags (both were added because it seems like the discussion
+   ended in agreement to keep adding compatible strings to the driver)
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
- drivers/soc/qcom/rpmhpd.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+This adds the compatible string for the Qualcomm Snapdragon 670's SMMU. The
+SMMU is necessary for GENI I2C, included in initial bringup because it
+doesn't need non-trivial patches except for patches conventionally added
+before the initial device tree (global clock controller and pinctrl).
 
-diff --git a/drivers/soc/qcom/rpmhpd.c b/drivers/soc/qcom/rpmhpd.c
-index 092f6ab09acf..319a2cf7e694 100644
---- a/drivers/soc/qcom/rpmhpd.c
-+++ b/drivers/soc/qcom/rpmhpd.c
-@@ -210,6 +210,23 @@ static const struct rpmhpd_desc sa8540p_desc = {
- 	.num_pds = ARRAY_SIZE(sa8540p_rpmhpds),
- };
- 
-+/* SDM670 RPMH powerdomains */
-+static struct rpmhpd *sdm670_rpmhpds[] = {
-+	[SDM670_CX] = &cx_w_mx_parent,
-+	[SDM670_CX_AO] = &cx_ao_w_mx_parent,
-+	[SDM670_GFX] = &gfx,
-+	[SDM670_LCX] = &lcx,
-+	[SDM670_LMX] = &lmx,
-+	[SDM670_MSS] = &mss,
-+	[SDM670_MX] = &mx,
-+	[SDM670_MX_AO] = &mx_ao,
-+};
-+
-+static const struct rpmhpd_desc sdm670_desc = {
-+	.rpmhpds = sdm670_rpmhpds,
-+	.num_pds = ARRAY_SIZE(sdm670_rpmhpds),
-+};
-+
- /* SDM845 RPMH powerdomains */
- static struct rpmhpd *sdm845_rpmhpds[] = {
- 	[SDM845_CX] = &cx_w_mx_parent,
-@@ -435,6 +452,7 @@ static const struct of_device_id rpmhpd_match_table[] = {
- 	{ .compatible = "qcom,sc7280-rpmhpd", .data = &sc7280_desc },
- 	{ .compatible = "qcom,sc8180x-rpmhpd", .data = &sc8180x_desc },
- 	{ .compatible = "qcom,sc8280xp-rpmhpd", .data = &sc8280xp_desc },
-+	{ .compatible = "qcom,sdm670-rpmhpd", .data = &sdm670_desc },
- 	{ .compatible = "qcom,sdm845-rpmhpd", .data = &sdm845_desc },
- 	{ .compatible = "qcom,sdx55-rpmhpd", .data = &sdx55_desc},
- 	{ .compatible = "qcom,sdx65-rpmhpd", .data = &sdx65_desc},
+Richard Acayan (2):
+  dt-bindings: iommu: arm-smmu: add sdm670 compatible
+  iommu: arm-smmu-qcom: add sdm670 compatible
+
+ Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c            | 1 +
+ 2 files changed, 2 insertions(+)
+
 -- 
 2.38.0
 
