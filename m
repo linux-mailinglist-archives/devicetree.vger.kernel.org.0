@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 647BB5F52F5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 12:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D8355F5300
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 12:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229708AbiJEK4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 06:56:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42910 "EHLO
+        id S229747AbiJEK7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 06:59:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiJEK4B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 06:56:01 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A46365831
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 03:55:59 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 25so14727203lft.9
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 03:55:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=QoDfMwxNE5RO6K45C6RWkiC9D68UwvM8sQfQYMLiAaY=;
-        b=fptdpyVHDqOxRI1n0lQOxKecoi3FTfmCVkG4foHIhI1Z4XAOyTlznEJFYreQTrQkZm
-         +665ZwY0pe0XVfgMG9L1ME8m40B+9MVadvVweswpzvIIQihSHc+o4el2lA/5RpywvLAV
-         FLqN5ya9GDY8McG6y46xKzkIavW5REjVOgyJr9ULj57ij5ymVQeIcYptEN58SPqU81U6
-         LFDG4Zha6QPxEvKx1H3l8MEiSZqULj4c5dQveebr+6+kmhZLTrpb6O7KRvVSvn2AQj3B
-         8yA9CEGISyAPbC+CrGVss1XVkAyzcW7PX2PQUkMTW4ezcU+lsnskqbpaDCWfG2FcMEbI
-         JczQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=QoDfMwxNE5RO6K45C6RWkiC9D68UwvM8sQfQYMLiAaY=;
-        b=kcBxzw7D8KrjR50KtbImngrHxQjd6RpCW83Lxvdj6dkT7tNOB1bOnX0qWYnB1bp1ve
-         z9Grvt9w3JWOOR2ekCX2w8Tx/gh8rW6Ow6OIzw1g1QfCcgw0w8oagLJmy4WyYwM6rlBo
-         VaqazVBYTL9xStofLrJOf5H5rQPypUePW3HaOattSPhc1GSVCxmTZwZ5mI8fkskwVZLf
-         jXQmtBVklifBc0MPFFzCdVhlp84bGtRZr1SQeGxYppfikBCcNSh8qjgEA6KteQyrzl0W
-         OlOEzoqHqhbJC9nMjthKlRiBmq9CRo8I8iToXwtkqp23r0dhX1PCorghFcHvcfyoyy7g
-         7eVw==
-X-Gm-Message-State: ACrzQf2RUQRi2jWlvnJtPSkfYFK2lX2EoI0IgajXika7PP9P/6HePNZX
-        He0r8TByL8DaomZQ7nOhYli+cu0K0IJmZ7OV
-X-Google-Smtp-Source: AMsMyM7cNrbXV0MiFkOqIpAXh5jjmyHmPx1eK8J8gu1cf8c17hiuvckZlMmTKiMZfr3t6f7ACe0/TQ==
-X-Received: by 2002:a05:6512:c18:b0:49a:d44b:435 with SMTP id z24-20020a0565120c1800b0049ad44b0435mr10020472lfu.468.1664967357686;
-        Wed, 05 Oct 2022 03:55:57 -0700 (PDT)
-Received: from fedora.. ([85.235.10.72])
-        by smtp.gmail.com with ESMTPSA id p5-20020a2ea4c5000000b0025e778f6f13sm1589877ljm.4.2022.10.05.03.55.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Oct 2022 03:55:57 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-usb@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: usb: dwc2: Add some missing Lantiq variants
-Date:   Wed,  5 Oct 2022 12:55:55 +0200
-Message-Id: <20221005105555.2665485-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.37.3
+        with ESMTP id S229479AbiJEK7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 06:59:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66B37F014;
+        Wed,  5 Oct 2022 03:59:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7D618B81DA3;
+        Wed,  5 Oct 2022 10:59:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0837C433D6;
+        Wed,  5 Oct 2022 10:59:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664967587;
+        bh=4jMzYU24d+yMcsfaBx4vsYUmNNj3cHQ/4Qvv5atAB90=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sTFtUD9liLjl7WLjHQo9PkZqVUv1WS49na83tXcwV1XDblWGoJS9XhIxLrHsF9bkM
+         J+wIT2LpUcp8dEWJ8A11qVMdMqtJOEfPI2TOFwhbetcMld3OzyXXRRPkvlL5Fm+aWs
+         SRGW0Oq1eyFSu8hFPfgUQoBlVbfkN9A43/7qsfsddSxl/gWfbSZoi9gZ9YNq+6jLyI
+         eqnTm+VsnAIm2SPvlTafw4kc2H/+ozTJq54/M/U7imPMSjephI7JShfTalx7rkxLzG
+         430kgIwvhOEoHOzpq/HvCGT7+QzUAhAc3gNJiqiDZLXSgSHcoN2/Z7qudBcZNFC9F+
+         C0fET9YU/C2Pg==
+Date:   Wed, 5 Oct 2022 11:59:41 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Trevor Wu =?utf-8?B?KOWQs+aWh+iJryk=?= <Trevor.Wu@mediatek.com>
+Cc:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "lkp@intel.com" <lkp@intel.com>, "tiwai@suse.com" <tiwai@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 08/12] ASoC: mediatek: mt8188: add platform driver
+Message-ID: <Yz1jnb03bsI06rQB@sirena.org.uk>
+References: <20220930145701.18790-9-trevor.wu@mediatek.com>
+ <202210011740.ZdLtxKq1-lkp@intel.com>
+ <de20b79da18bde2bbe56784cf4e209894f8235bf.camel@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="FJN3P96NgRROT9Pz"
+Content-Disposition: inline
+In-Reply-To: <de20b79da18bde2bbe56784cf4e209894f8235bf.camel@mediatek.com>
+X-Cookie: Poland has gun control.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,30 +66,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These IP block variants appear in various vendor trees and
-are distinct variants which needs to be handled.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- Documentation/devicetree/bindings/usb/dwc2.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+--FJN3P96NgRROT9Pz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-index 1bfbc6ef16eb..4378f61d7a0e 100644
---- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-+++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-@@ -42,7 +42,10 @@ properties:
-           - const: rockchip,rk3066-usb
-           - const: snps,dwc2
-       - const: lantiq,arx100-usb
-+      - const: lantiq,ase-usb
-+      - const: lantiq,danube-usb
-       - const: lantiq,xrx200-usb
-+      - const: lantiq,xrx300-usb
-       - items:
-           - enum:
-               - amlogic,meson8-usb
--- 
-2.34.1
+On Wed, Oct 05, 2022 at 06:50:53AM +0000, Trevor Wu (=E5=90=B3=E6=96=87=E8=
+=89=AF) wrote:
+> Hi maintainers,
+>=20
+> As I mentioned in the comment, this patch depends on a reviewing
+> series.
+> Should I remove the related code from this patch in case of the build
+> error?
 
+It's bit easier to do that, though it should be fine to just note in the
+cover like you've done.
+
+--FJN3P96NgRROT9Pz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmM9Y5wACgkQJNaLcl1U
+h9BpvQf/ViaTtdSwbnr8r5a/PKyi33v6+70ypVPJ7U7DC3iVnoob7xh2CQFQ2gLX
+d0Te48W6ZDxbn1e2XJDjCTizZubyJz89RbVGCg1Wibo7MkH6k5mRlmid0tlZ2Mq3
+N+9UYz7o6J3WVelnqLnjbka3ZgbDhhdK+zFzUk9GcOJ+mrum1zsSxz2DYGmyMcMc
+LXO+GljHMiR/v0NkCd8is0F9CHL51VzAr2GRuCPIpZ9k0JPUicmU6GSHonnsgDkA
+71QA9FB1l4mIx08vqkJONs2M6TqjVPtssxwsaokQZRNtSMW32QgFyKcqAa+MubXf
+kg7ZSAzRJCdkZAO9ITzwMosQFlVfbg==
+=NONF
+-----END PGP SIGNATURE-----
+
+--FJN3P96NgRROT9Pz--
