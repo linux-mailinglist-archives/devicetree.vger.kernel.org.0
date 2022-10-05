@@ -2,152 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4DA5F5CA5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 00:25:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE7885F5D38
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 01:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229566AbiJEWZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 18:25:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33192 "EHLO
+        id S229491AbiJEX3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 19:29:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbiJEWZH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 18:25:07 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F6922F390
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 15:25:06 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id e129so141528pgc.9
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 15:25:06 -0700 (PDT)
+        with ESMTP id S229625AbiJEX3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 19:29:44 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CEA5BC0F
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 16:29:43 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id q9so309699pgq.8
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 16:29:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date;
-        bh=mhMPvEXXYCPlbOQG8BzvcGNV3ML97Cg893xM+52RSgQ=;
-        b=HKuN0K2/4ikar8N5dBtbFYT2BkP1HBPMufC0LN0ASsAwWLksRCjjpnM9XlJ5SeB6n+
-         ySPGxHRhhG6mCK65FB3pcbzHpPbdxpA8sA8UbmUj0+qWBmzvCPvtBm54ktu4z08OSzFW
-         DKw5YNTHUgpDkk6JP78GbjkeqmngeyhPmmJPFX2IuqVfigmcI5bwfDHJCfcOyJb2+pCl
-         6leXfPw9laNO4XY4HtELKik3uemLvs5YG3LQ5Swyl1J31KlJ+38Ysgz9EUzuMmQKBFgf
-         rKCND9i2sBRfwe91Z9K7UZIl1aVwvXlLSLG/sI2FXXdKl52AvITTPwy2aRnCQk/9Kz2i
-         yRMA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ls8e4J359ERSH/cQAMGc5sxHoNGcYdjafEog2+NCpPc=;
+        b=VwN9fDg7dVnGRcImTO+ydpX62JZOoBCe4n2F6EuhQrG52k7mv6BLJ8WDVWAApJ6ETT
+         utF2uSXvOdrNhg8TQwG3o7vbz3i8+MYyA865JdCvfFZg8O3KcuivBD9wPR5o0EW0OQdI
+         4e7Ba+W68hAayIsYYyKSMWhFAx3zpa43IBoNzbYgdkkjSH4HWkl7palu1mysNkeU2pU6
+         aiyWmXOopwLfkNaEuEo9iIxwaF/u+Wm6vkZbZZLbFxQrD3f6yFZofH+mk+trMeAOJd9s
+         rlMs1yke15POWpPvDKuLqrFQ++LV9aI3WKzuXg7C1oVKk7clzFgiSquLMqtxAgm9EZZb
+         0CqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=mhMPvEXXYCPlbOQG8BzvcGNV3ML97Cg893xM+52RSgQ=;
-        b=Dcd1veGMNpYAHkPiaX2WnkfoQVlBrF9y9IxKAWS4KQCN/PFctGe2X97aI3fvUBnbDG
-         25B3RTOhZzAxpbgcTjRkvN9EPoy/CdF28uP5NIthq9jwCXX+/g9sAg1hnpTsqd4ATEms
-         Qsrm/hdUA7jNSbacdgkGere/ny8kVl2qMS3Ig6fOVK4akGxigeWlGn11yLdbp8Qe9DRd
-         NSBCqeffUCnnkrNerfowai1Vu5+07PJ6gvICzIM/L/dkchV77Ingo3iMyUSB18bf8e4V
-         MAFFH+LVozAVc51YqC45Gi/DQLqgWUZ1tER7pIMcCkkka1nbtoysWiXwNvHeCaCdSsVD
-         vokg==
-X-Gm-Message-State: ACrzQf0JAQm+fNmW6Y/EcIIPCVpG7ZieqcHEsDK5PZRPPQMqIQty6IVw
-        KOz3XyXvOjuleba3ttoTXAnB
-X-Google-Smtp-Source: AMsMyM6v376O9YGcV0tO2jMHWj9Uz6l4fYQHTnPsRJHku8zvGt26Cc6qQWLWAmd/MsqnDBTBNXhdIQ==
-X-Received: by 2002:a63:5d48:0:b0:43a:390b:2183 with SMTP id o8-20020a635d48000000b0043a390b2183mr1669590pgm.29.1665008705484;
-        Wed, 05 Oct 2022 15:25:05 -0700 (PDT)
-Received: from thinkpad ([27.111.75.192])
-        by smtp.gmail.com with ESMTPSA id d2-20020a17090acd0200b001ef8ab65052sm1614744pju.11.2022.10.05.15.25.00
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ls8e4J359ERSH/cQAMGc5sxHoNGcYdjafEog2+NCpPc=;
+        b=3lp9leRVUmjTd/CH3NWC8lfN0Z/QVLavmuc9i7M9DhIZskxsAABVeO0NyTGT0MMmhn
+         qCLx+nDha5gqZrMxAtTtVIcfLuTaeoFV0qE/0fLNLTF1uxV+kwXAjWoSHZE+G8cu44LL
+         Ba2C20u7DLGPpx73BEvy9++8ZWwwnsqSVdWxn3Fxt4CMTMEnxKXw/mOnzZVDLmx+Wabw
+         DDx41bBBj295KxSdChOQwsSw5+erU5Pqflt6bC+ZVOnB7WHs/2phzwFjBCJgpE28z9TJ
+         uO0isVLpS6yQUZ3d/wPnDvZ3PQknB9WmIUd14gblySgvkxWy79utArVRx0O7mfCPOv1m
+         ZIYg==
+X-Gm-Message-State: ACrzQf3xNVW85KwyG1A+HbPuTq+pGoYmLYGGeOetB0XDAfny2pvH7vtZ
+        SfNT5KagHURc2HdfbdM5YHERcAuH8cDDsXoX
+X-Google-Smtp-Source: AMsMyM4+/Ar82buuqj8uy6B22mWLt+57qbf0OuBN5NWrAGDLBgGOwOVcke4HRHy2SehkUrLCVM07ew==
+X-Received: by 2002:a65:464a:0:b0:434:883:ea21 with SMTP id k10-20020a65464a000000b004340883ea21mr1993668pgr.152.1665012582787;
+        Wed, 05 Oct 2022 16:29:42 -0700 (PDT)
+Received: from desktop.hsd1.or.comcast.net ([2601:1c0:4c81:c480:feaa:14ff:fe3a:b225])
+        by smtp.gmail.com with ESMTPSA id d7-20020a170902654700b0016c50179b1esm10882284pln.152.2022.10.05.16.29.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Oct 2022 15:25:04 -0700 (PDT)
-Date:   Thu, 6 Oct 2022 03:54:58 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org,
-        kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org,
-        Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Subject: Re: [PATCH v4 06/12] PCI: qcom-ep: Gate Master AXI clock to MHI bus
- during L1SS
-Message-ID: <20221005222458.GA6150@thinkpad>
-References: <20220914075350.7992-7-manivannan.sadhasivam@linaro.org>
- <20221005220838.GA2400326@bhelgaas>
+        Wed, 05 Oct 2022 16:29:42 -0700 (PDT)
+From:   Tadeusz Struk <tadeusz.struk@linaro.org>
+To:     David Gibson <david@gibson.dropbear.id.au>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
+        Tadeusz Struk <tadeusz.struk@linaro.org>
+Subject: [PATCH v3 1/2] libfdt: prevent integer overflow in fdt_next_tag
+Date:   Wed,  5 Oct 2022 16:29:30 -0700
+Message-Id: <20221005232931.3016047-1-tadeusz.struk@linaro.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221005220838.GA2400326@bhelgaas>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 05, 2022 at 05:08:38PM -0500, Bjorn Helgaas wrote:
-> [+cc Krishna]
-> 
-> On Wed, Sep 14, 2022 at 01:23:44PM +0530, Manivannan Sadhasivam wrote:
-> > During L1SS, gate the Master clock supplied to the MHI bus to save power.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  drivers/pci/controller/dwc/pcie-qcom-ep.c | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> > index 2dc6d4e44aff..526e98ea23f6 100644
-> > --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> > +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> > @@ -27,6 +27,7 @@
-> >  #define PARF_SYS_CTRL				0x00
-> >  #define PARF_DB_CTRL				0x10
-> >  #define PARF_PM_CTRL				0x20
-> > +#define PARF_MHI_CLOCK_RESET_CTRL		0x174
-> >  #define PARF_MHI_BASE_ADDR_LOWER		0x178
-> >  #define PARF_MHI_BASE_ADDR_UPPER		0x17c
-> >  #define PARF_DEBUG_INT_EN			0x190
-> > @@ -89,6 +90,9 @@
-> >  #define PARF_PM_CTRL_READY_ENTR_L23		BIT(2)
-> >  #define PARF_PM_CTRL_REQ_NOT_ENTR_L1		BIT(5)
-> >  
-> > +/* PARF_MHI_CLOCK_RESET_CTRL fields */
-> > +#define PARF_MSTR_AXI_CLK_EN			BIT(1)
-> > +
-> >  /* PARF_AXI_MSTR_RD_HALT_NO_WRITES register fields */
-> >  #define PARF_AXI_MSTR_RD_HALT_NO_WRITE_EN	BIT(0)
-> >  
-> > @@ -394,6 +398,11 @@ static int qcom_pcie_perst_deassert(struct dw_pcie *pci)
-> >  		       pcie_ep->parf + PARF_MHI_BASE_ADDR_LOWER);
-> >  	writel_relaxed(0, pcie_ep->parf + PARF_MHI_BASE_ADDR_UPPER);
-> >  
-> > +	/* Gate Master AXI clock to MHI bus during L1SS */
-> > +	val = readl_relaxed(pcie_ep->parf + PARF_MHI_CLOCK_RESET_CTRL);
-> > +	val &= ~PARF_MSTR_AXI_CLK_EN;
-> > +	val = readl_relaxed(pcie_ep->parf + PARF_MHI_CLOCK_RESET_CTRL);
-> 
-> Is this code executed when the link actually transitions to L1.x, or
-> is this just configuring things so that when the link does transition
-> to L1.x sometime later, hardware will gate the Master AXI clock?
-> 
+Since fdt_next_tag() in a public API function all input parameters,
+including the fdt blob should not be trusted. It is possible to forge
+a blob with invalid property length that will cause integer overflow
+during offset calculation. To prevent that, validate the property length
+read from the blob before doing calculations.
 
-It is the latter... This patch programs the EP controller in such a way that
-when the link enters L1.x, the AXI clock supplied to the MHI bus (EP function)
-will be cut-off to save power. Once the link goes out of L1.x, the clock will
-be restored by the controller.
+Signed-off-by: Tadeusz Struk <tadeusz.struk@linaro.org>
+---
+v2:
+* Use len local variable to avoid multiple calls to fdt32_to_cpu(*lenp)
+* Add can_assume(VALID_DTB) to the new checks
+v3:
+* Use unsigned integer for prop len and offset validation
+---
+ libfdt/fdt.c | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
 
-> Just curious because this looks more like *configuration*, i.e., the
-> latter, but there's the ongoing conversation about qcom system
-> suspend/resume, where IIUC, software is involved at least in some
-> L1.2 exits.
-> 
-
-Krishna's suspend/resume patches are for Qcom PCIe RC controller, but this
-series and this patch is for Qcom PCIe EP controller.
-
-Thanks,
-Mani
-
-> >  	dw_pcie_ep_init_notify(&pcie_ep->pci.ep);
-> >  
-> >  	/* Enable LTSSM */
-> > -- 
-> > 2.25.1
-> > 
-
+diff --git a/libfdt/fdt.c b/libfdt/fdt.c
+index 90a39e8..20c6415 100644
+--- a/libfdt/fdt.c
++++ b/libfdt/fdt.c
+@@ -162,7 +162,7 @@ const void *fdt_offset_ptr(const void *fdt, int offset, unsigned int len)
+ uint32_t fdt_next_tag(const void *fdt, int startoffset, int *nextoffset)
+ {
+ 	const fdt32_t *tagp, *lenp;
+-	uint32_t tag;
++	uint32_t tag, len, sum;
+ 	int offset = startoffset;
+ 	const char *p;
+ 
+@@ -188,12 +188,19 @@ uint32_t fdt_next_tag(const void *fdt, int startoffset, int *nextoffset)
+ 		lenp = fdt_offset_ptr(fdt, offset, sizeof(*lenp));
+ 		if (!can_assume(VALID_DTB) && !lenp)
+ 			return FDT_END; /* premature end */
++
++		len = fdt32_to_cpu(*lenp);
++		sum = len + offset;
++		if (!can_assume(VALID_DTB) &&
++		    (INT_MAX <= sum || sum < (uint32_t) offset))
++			return FDT_END; /* premature end */
++
+ 		/* skip-name offset, length and value */
+-		offset += sizeof(struct fdt_property) - FDT_TAGSIZE
+-			+ fdt32_to_cpu(*lenp);
++		offset += sizeof(struct fdt_property) - FDT_TAGSIZE + len;
++
+ 		if (!can_assume(LATEST) &&
+-		    fdt_version(fdt) < 0x10 && fdt32_to_cpu(*lenp) >= 8 &&
+-		    ((offset - fdt32_to_cpu(*lenp)) % 8) != 0)
++		    fdt_version(fdt) < 0x10 && len >= 8 &&
++		    ((offset - len) % 8) != 0)
+ 			offset += 4;
+ 		break;
+ 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.37.3
