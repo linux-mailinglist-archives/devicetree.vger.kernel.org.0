@@ -2,88 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F6955F5809
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 18:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF0C85F5849
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 18:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbiJEQKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 12:10:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45554 "EHLO
+        id S229844AbiJEQcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 12:32:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230310AbiJEQKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 12:10:08 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8EB620F5C
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 09:10:02 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id g1so26210175lfu.12
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 09:10:02 -0700 (PDT)
+        with ESMTP id S229722AbiJEQcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 12:32:22 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36EB7659DB
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 09:32:19 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id by36so1605345ljb.4
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 09:32:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=2w6hGoXebPoIegDYARuqnK05b0IdR9ODgaAioly0Ktc=;
-        b=C9uRIYGiPgNOdG/lUp4vq9QDJVOR4kpvX5aDKIQVnibFvliDEOJ4KnLvGOG1m9bJYd
-         0szSjcSBVI4G+rgLO1FFdzSLowVVZtXR960+drzUJqa9+vAwqZlbnxC+oFmReNECrr87
-         LoOeSge12tNaO03Wjm1SSAd3Oz7S0bKmIEPZC1UsP029lbz9Mgjl6nkwk34tyepS5+Ig
-         h46D9gElGJJXVxVROr2DPet/isIlK9P4qbulcMZzW3U7TdrOWC96wjvhCPa3uBf6cgUp
-         EP3NirBLBATvOdFwT92cyKhafVRoVvatZebvZAeOW8UzUGMWJUnn+mg1E9SKUE9cJHw2
-         CTDQ==
+        bh=3R2HKzhAxoqn6hiWZE2OL4sMSIpfHzrT9gZcR8mlyU0=;
+        b=KTBbow3QVkLZuh66UHbWJxEettCZ9PehOYjTlqNLCnUENM0S4aJqZ/Y1Tp0B3nAzCH
+         tnrQB7Orz3924b39z7cntMdQ4NYFDAq+DHHobCsMyS6wnfHZuW0rNYFxqYa+/Iw2dkMK
+         FICdUcuVW6pE3hxqNIUM2iu5fPZ7Xe6w694yZxPDtE7XI5ktbt7nja4yGfXhnVuEFwT5
+         TtN2zGrbMJjzAcdGedKn7TqYVfnFyJA/KdNqAqOpQ/D2oztqWWaXU8x9kYm/mZF6qHJe
+         OiPqwMDjrItMDXmA1E9rLL7U3xuzZwaFXsrjMdFAxqHkHF43vFyQsHiunZaWIbvWWBel
+         atlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=2w6hGoXebPoIegDYARuqnK05b0IdR9ODgaAioly0Ktc=;
-        b=fISYFuSRx285sWv7gQgzCqfe6pZ5VfaR/9q4bZnRv2tx7VBJjV5s4+jF+8SXpE1jyu
-         t1WU/CFkCywXmzIJtUAgiqgNCqabwqg4bDX/CIfZ1o1AGlB7qe1HtGSzlbdYluj+L3am
-         SQoSp4ikfOoxOZTIo6NqWh3Kw0qyZKr9z+8d0NdjLfZVqpYjOyiBeE+HWLEY6ag4olJV
-         huiYstAWPVkew2KjTGZDVQ1axjsRICCEMVgTkKHmM0nXM4COO0/dF6qcCiz2BRnEK+nN
-         vt7VLUMiDm+OgCHzqJOG0iwnCClVnElFGx5LxCeT3DjpTxO9arVqjyaw+75zEouVGpAO
-         17ug==
-X-Gm-Message-State: ACrzQf3XP5/IXR6qUpFAQwm7JEOqninXjxZ6IAm7A96LCLBroKQk/xPJ
-        a3mQI1M19MFNZul6a57QebPjQA==
-X-Google-Smtp-Source: AMsMyM6u9Jcg5Bpj/vRbbdNruCLC22wal80+Yi7bGV9KAIQkiRtpJtngykChcOEuUs9jCtHFLrP4tA==
-X-Received: by 2002:a19:3849:0:b0:49e:e07:5e7c with SMTP id d9-20020a193849000000b0049e0e075e7cmr198445lfj.357.1664986200532;
-        Wed, 05 Oct 2022 09:10:00 -0700 (PDT)
+        bh=3R2HKzhAxoqn6hiWZE2OL4sMSIpfHzrT9gZcR8mlyU0=;
+        b=7V6SHHn0yVGuZ9b5M50BfJjbawlysKOTgwC2RIoTmDMC4k8MASIFU9xn+vXv1fG0ww
+         GQjGLf9ewEF2M8NVrAlBu2oiFpSQQUH+EyFIxz1Ji1MVd5bbruKjXjnKBrhl8+peHh2w
+         UuJWEcV/Nbb9LQ3QyT3CoFcEbWY90h/r1bd+HL0Ey995FlyKAdRAzhR/JWofAObCx7my
+         fygWrM0KFXFOHhmeerFNnEmsyV6utFPpBqPncOFXGKcW/NDajif49GfZP69RchZz1mLU
+         7geFHtlTejIjF1WwPXv30zOE3Um2AoG63WfMYsYrAzht54nS4aIsIfRksfiC+JDwHAKB
+         AYXQ==
+X-Gm-Message-State: ACrzQf3VyPk9ZFTA4Z6xjh/DlxAoPNNlLLQ/NMsQhiVteKVjMZFSGq3j
+        lU9ahx/yFarR2+68aRWyn7U3LQ==
+X-Google-Smtp-Source: AMsMyM4NT+WToY5xcjbbGP+eFoVfPiLF8pCT0EcZssPUtK7JjRYcCCbVjg6jYf5v9kLAbSnImBx91w==
+X-Received: by 2002:a2e:9f17:0:b0:26c:43f6:fd9d with SMTP id u23-20020a2e9f17000000b0026c43f6fd9dmr175058ljk.176.1664987537470;
+        Wed, 05 Oct 2022 09:32:17 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id y1-20020a2e4b01000000b0026bfadf87e3sm601871lja.20.2022.10.05.09.09.59
+        by smtp.gmail.com with ESMTPSA id g22-20020a05651222d600b0048aa9d67483sm2385790lfu.160.2022.10.05.09.32.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Oct 2022 09:10:00 -0700 (PDT)
-Message-ID: <28b4d9f9-f41a-deca-aa61-26fb65dcc873@linaro.org>
-Date:   Wed, 5 Oct 2022 18:09:59 +0200
+        Wed, 05 Oct 2022 09:32:17 -0700 (PDT)
+Message-ID: <ea77fa9d-d579-b517-7b47-e6765d1a3492@linaro.org>
+Date:   Wed, 5 Oct 2022 18:32:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH v3 net-next 12/14] dt-bindings: net: dsa: ocelot: add
- ocelot-ext documentation
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
 Content-Language: en-US
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-References: <20220926002928.2744638-1-colin.foster@in-advantage.com>
- <20220926002928.2744638-13-colin.foster@in-advantage.com>
- <ec63b5aa-3dec-3c27-e987-25e36b1632ba@linaro.org>
- <YzzLCYHmTcrHbZcH@colin-ia-desktop>
- <455e31be-dc87-39b3-c7fe-22384959c556@linaro.org>
- <Yz2mSOXf68S16Xg/@colin-ia-desktop>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Lee Jones <lee@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+References: <20221005135518.876913-1-biju.das.jz@bp.renesas.com>
+ <20221005135518.876913-2-biju.das.jz@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yz2mSOXf68S16Xg/@colin-ia-desktop>
+In-Reply-To: <20221005135518.876913-2-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -95,123 +84,304 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/10/2022 17:44, Colin Foster wrote:
-> On Wed, Oct 05, 2022 at 10:03:04AM +0200, Krzysztof Kozlowski wrote:
->> On 05/10/2022 02:08, Colin Foster wrote:
->>> Hi Krzysztof,
->>>
->>> On Tue, Oct 04, 2022 at 01:19:33PM +0200, Krzysztof Kozlowski wrote:
->>>> On 26/09/2022 02:29, Colin Foster wrote:
->>>>> The ocelot-ext driver is another sub-device of the Ocelot / Felix driver
->>>>> system, which currently supports the four internal copper phys.
->>>>>
->>>>> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
->>> ...
->>>>> +  # Ocelot-ext VSC7512
->>>>> +  - |
->>>>> +    spi {
->>>>> +        soc@0 {
->>>>
->>>> soc in spi is a bit confusing.
->>>>
->>>> Does it even pass the tests? You have unit address but no reg.
->>>
->>> I omitted those from the documentation. Rob's bot is usually quick to
->>> alert me when I forgot to run dt_binding_check and something fails
->>> though. I'll double check, but I thought everything passed.
->>>
->>>>
->>>>> +            compatible = "mscc,vsc7512";
->>>>
->>>>
->>>>> +            #address-cells = <1>;
->>>>> +            #size-cells = <1>;
->>>>> +
->>>>> +            ethernet-switch@0 {
->>>>> +                compatible = "mscc,vsc7512-switch";
->>>>> +                reg = <0 0>;
->>>>
->>>> 0 is the address on which soc bus?
->>>
->>> This one Vladimir brought up as well. The MIPS cousin of this chip
->>> is the VSC7514. They have exactly (or almost exactly) the same hardware,
->>> except the 7514 has an internal MIPS while the 7512 has an 8051.
->>>
->>> Both chips can be controlled externally via SPI or PCIe. This is adding
->>> control for the chip via SPI.
->>>
->>> For the 7514, you can see there's an array of 20 register ranges that
->>> all get mmap'd to 20 different regmaps.
->>>
->>> (Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml)
->>>
->>>     switch@1010000 {
->>>       compatible = "mscc,vsc7514-switch";
->>>       reg = <0x1010000 0x10000>,
->>>             <0x1030000 0x10000>,
->>>             <0x1080000 0x100>,
->>>             <0x10e0000 0x10000>,
->>>             <0x11e0000 0x100>,
->>>             <0x11f0000 0x100>,
->>>             <0x1200000 0x100>,
->>>             <0x1210000 0x100>,
->>>             <0x1220000 0x100>,
->>>             <0x1230000 0x100>,
->>>             <0x1240000 0x100>,
->>>             <0x1250000 0x100>,
->>>             <0x1260000 0x100>,
->>>             <0x1270000 0x100>,
->>>             <0x1280000 0x100>,
->>>             <0x1800000 0x80000>,
->>>             <0x1880000 0x10000>,
->>>             <0x1040000 0x10000>,
->>>             <0x1050000 0x10000>,
->>>             <0x1060000 0x10000>,
->>>             <0x1a0 0x1c4>;
->>>       reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
->>>             "port2", "port3", "port4", "port5", "port6",
->>>             "port7", "port8", "port9", "port10", "qsys",
->>>             "ana", "s0", "s1", "s2", "fdma";
->>>
->>>
->>> The suggestion was to keep the device trees of the 7512 and 7514 as
->>> similar as possible, so this will essentially become:
->>>     switch@71010000 {
->>>       compatible = "mscc,vsc7512-switch";
->>>       reg = <0x71010000 0x10000>,
->>>             <0x71030000 0x10000>,
->>>       ...
->>
->> I don't understand how your answer relates to "reg=<0 0>;". How is it
->> going to become 0x71010000 if there is no other reg/ranges set in parent
->> nodes. The node has only one IO address, but you say the switch has 20
->> addresses...
->>
->> Are we talking about same hardware?
+On 05/10/2022 15:55, Biju Das wrote:
+> The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
+> the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
+> channels and one 32-bit timer channel. It supports the following
+> functions
+>  - Counter
+>  - Timer
+>  - PWM
 > 
-> Yes. The switch driver for both the VSC7512 and VSC7514 use up to ~20 regmaps
-> depending on what capabilities it is to have. In the 7514 they are all
-> memory-mapped from the device tree. While the 7512 does need these
-> regmaps, they are managed by the MFD, not the device tree. So there
-> isn't a _need_ for them to be here, since at the end of the day they're
-> ignored.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> RFC->v1:
+>  * Modelled counter and pwm as a single device that handles
+>    multiple channels.
+>  * Moved counter and pwm bindings to respective subsystems
+>  * Dropped 'bindings' from MFD binding title.
+>  * Updated the example
+>  * Changed the compatible names.
+
+RFC is a v1. This is a v2.
+
+> ---
+>  .../counter/renesas,rz-mtu3-counter.yaml      |  30 ++
+>  .../bindings/mfd/renesas,rz-mtu3.yaml         | 290 ++++++++++++++++++
+>  .../bindings/pwm/renesas,rz-mtu3-pwm.yaml     |  50 +++
+>  3 files changed, 370 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/counter/renesas,rz-mtu3-counter.yaml
+>  create mode 100644 Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rz-mtu3-pwm.yaml
 > 
-> The "reg=<0 0>;" was my attempt to indicate that they are ignored, but I
-> understand that isn't desired. So moving forward I'll add all the
-> regmaps back into the device tree.
+> diff --git a/Documentation/devicetree/bindings/counter/renesas,rz-mtu3-counter.yaml b/Documentation/devicetree/bindings/counter/renesas,rz-mtu3-counter.yaml
+> new file mode 100644
+> index 000000000000..c8b86ef254b6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/counter/renesas,rz-mtu3-counter.yaml
+> @@ -0,0 +1,30 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/counter/renesas,rz-mtu3-counter.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G2L MTU3a Counter Module
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
+> +description: |
+> +  This module is part of the rz-mtu3 multi-function device. For more
+> +  details see ../mfd/renesas,rz-mtu3.yaml.
+> +
+> +  There are two phase counting modes: 16-bit phase counting mode in which MTU1
+> +  and MTU2 operate independently, and cascade connection 32-bit phase counting
+> +  mode in which MTU1 and MTU2 are cascaded.
+> +
+> +  In phase counting mode, the phase difference between two external input clocks
+> +  is detected and the corresponding TCNT is incremented or decremented.
+> +
+> +properties:
+> +  compatible:
+> +    const: renesas,rz-mtu3-counter
+> +
+> +required:
+> +  - compatible
 
-You need to describe the hardware. If hardware has IO address space, how
-does it matter that some driver needs or needs not something?
+One property - compatible - does not deserve its own schema. Integrate
+with the other one.
 
-You mentioned that address space is mapped to regmaps. Regmap is Linux
-specific implementation detail, so this does not answer at all about
-hardware.
+> +
+> +additionalProperties: false
+> diff --git a/Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml b/Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+> new file mode 100644
+> index 000000000000..0413d22704c9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+> @@ -0,0 +1,290 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/renesas,rz-mtu3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G2L Multi-Function Timer Pulse Unit 3 (MTU3a)
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
+> +description: |
+> +  This hardware block pconsisting of eight 16-bit timer channels and one
+> +  32- bit timer channel. It supports the following specifications:
+> +    - Pulse input/output: 28 lines max.
+> +    - Pulse input 3 lines
+> +    - Count clock 11 clocks for each channel (14 clocks for MTU0, 12 clocks
+> +      for MTU2, and 10 clocks for MTU5, four clocks for MTU1-MTU2 combination
+> +      (when LWA = 1))
+> +    - Operating frequency Up to 100 MHz
+> +    - Available operations [MTU0 to MTU4, MTU6, MTU7, and MTU8]
+> +        - Waveform output on compare match
+> +        - Input capture function (noise filter setting available)
+> +        - Counter-clearing operation
+> +        - Simultaneous writing to multiple timer counters (TCNT)
+> +          (excluding MTU8).
+> +        - Simultaneous clearing on compare match or input capture
+> +          (excluding MTU8).
+> +        - Simultaneous input and output to registers in synchronization with
+> +          counter operations           (excluding MTU8).
+> +        - Up to 12-phase PWM output in combination with synchronous operation
+> +          (excluding MTU8)
+> +    - [MTU0 MTU3, MTU4, MTU6, MTU7, and MTU8]
+> +        - Buffer operation specifiable
+> +    - [MTU1, MTU2]
+> +        - Phase counting mode can be specified independently
+> +        - 32-bit phase counting mode can be specified for interlocked operation
+> +          of MTU1 and MTU2 (when TMDR3.LWA = 1)
+> +        - Cascade connection operation available
+> +    - [MTU3, MTU4, MTU6, and MTU7]
+> +        - Through interlocked operation of MTU3/4 and MTU6/7, the positive and
+> +          negative signals in six phases (12 phases in total) can be output in
+> +          complementary PWM and reset-synchronized PWM operation.
+> +        - In complementary PWM mode, values can be transferred from buffer
+> +          registers to temporary registers at crests and troughs of the timer-
+> +          counter values or when the buffer registers (TGRD registers in MTU4
+> +          and MTU7) are written to.
+> +        - Double-buffering selectable in complementary PWM mode.
+> +    - [MTU3 and MTU4]
+> +        - Through interlocking with MTU0, a mode for driving AC synchronous
+> +          motors (brushless DC motors) by using complementary PWM output and
+> +          reset-synchronized PWM output is settable and allows the selection
+> +          of two types of waveform output (chopping or level).
+> +    - [MTU5]
+> +        - Capable of operation as a dead-time compensation counter.
+> +    - [MTU0/MTU5, MTU1, MTU2, and MTU8]
+> +        - 32-bit phase counting mode specifiable by combining MTU1 and MTU2 and
+> +          through interlocked operation with MTU0/MTU5 and MTU8.
+> +    - Interrupt-skipping function
+> +        - In complementary PWM mode, interrupts on crests and troughs of counter
+> +          values and triggers to start conversion by the A/D converter can be
+> +          skipped.
+> +    - Interrupt sources: 43 sources.
+> +    - Buffer operation:
+> +        - Automatic transfer of register data (transfer from the buffer
+> +          register to the timer register).
+> +    - Trigger generation
+> +        - A/D converter start triggers can be generated
+> +        - A/D converter start request delaying function enables A/D converter
+> +          to be started with any desired timing and to be synchronized with
+> +          PWM output.
+> +    - Low power consumption function
+> +        - The MTU3a can be placed in the module-stop state.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,r9a07g044-mtu3  # RZ/G2{L,LC}
+> +          - renesas,r9a07g054-mtu3  # RZ/V2L
+> +      - const: renesas,rz-mtu3
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: MTU0.TGRA input capture/compare match
+> +      - description: MTU0.TGRB input capture/compare match
+> +      - description: MTU0.TGRC input capture/compare match
+> +      - description: MTU0.TGRD input capture/compare match
+> +      - description: MTU0.TCNT overflow
+> +      - description: MTU0.TGRE compare match
+> +      - description: MTU0.TGRF compare match
+> +      - description: MTU1.TGRA input capture/compare match
+> +      - description: MTU1.TGRB input capture/compare match
+> +      - description: MTU1.TCNT overflow
+> +      - description: MTU1.TCNT underflow
+> +      - description: MTU2.TGRA input capture/compare match
+> +      - description: MTU2.TGRB input capture/compare match
+> +      - description: MTU2.TCNT overflow
+> +      - description: MTU2.TCNT underflow
+> +      - description: MTU3.TGRA input capture/compare match
+> +      - description: MTU3.TGRB input capture/compare match
+> +      - description: MTU3.TGRC input capture/compare match
+> +      - description: MTU3.TGRD input capture/compare match
+> +      - description: MTU3.TCNT overflow
+> +      - description: MTU4.TGRA input capture/compare match
+> +      - description: MTU4.TGRB input capture/compare match
+> +      - description: MTU4.TGRC input capture/compare match
+> +      - description: MTU4.TGRD input capture/compare match
+> +      - description: MTU4.TCNT overflow/underflow
+> +      - description: MTU5.TGRU input capture/compare match
+> +      - description: MTU5.TGRV input capture/compare match
+> +      - description: MTU5.TGRW input capture/compare match
+> +      - description: MTU6.TGRA input capture/compare match
+> +      - description: MTU6.TGRB input capture/compare match
+> +      - description: MTU6.TGRC input capture/compare match
+> +      - description: MTU6.TGRD input capture/compare match
+> +      - description: MTU6.TCNT overflow
+> +      - description: MTU7.TGRA input capture/compare match
+> +      - description: MTU7.TGRB input capture/compare match
+> +      - description: MTU7.TGRC input capture/compare match
+> +      - description: MTU7.TGRD input capture/compare match
+> +      - description: MTU7.TCNT overflow/underflow
+> +      - description: MTU8.TGRA input capture/compare match
+> +      - description: MTU8.TGRB input capture/compare match
+> +      - description: MTU8.TGRC input capture/compare match
+> +      - description: MTU8.TGRD input capture/compare match
+> +      - description: MTU8.TCNT overflow
+> +      - description: MTU8.TCNT underflow
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: tgia0
+> +      - const: tgib0
+> +      - const: tgic0
+> +      - const: tgid0
+> +      - const: tgiv0
+> +      - const: tgie0
+> +      - const: tgif0
+> +      - const: tgia1
+> +      - const: tgib1
+> +      - const: tgiv1
+> +      - const: tgiu1
+> +      - const: tgia2
+> +      - const: tgib2
+> +      - const: tgiv2
+> +      - const: tgiu2
+> +      - const: tgia3
+> +      - const: tgib3
+> +      - const: tgic3
+> +      - const: tgid3
+> +      - const: tgiv3
+> +      - const: tgia4
+> +      - const: tgib4
+> +      - const: tgic4
+> +      - const: tgid4
+> +      - const: tgiv4
+> +      - const: tgiu5
+> +      - const: tgiv5
+> +      - const: tgiw5
+> +      - const: tgia6
+> +      - const: tgib6
+> +      - const: tgic6
+> +      - const: tgid6
+> +      - const: tgiv6
+> +      - const: tgia7
+> +      - const: tgib7
+> +      - const: tgic7
+> +      - const: tgid7
+> +      - const: tgiv7
+> +      - const: tgia8
+> +      - const: tgib8
+> +      - const: tgic8
+> +      - const: tgid8
+> +      - const: tgiv8
+> +      - const: tgiu8
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
 
-On the other hand, if your DTS design requires this is a child of
-something else and by itself it does not have address space, it would be
-understandable to skip unit address entirely... but so far it is still
-confusing, especially that you use arguments related to implementation
-to justify the DTS.
+You still do not have children with unit addresses, so these are weird.
+So again - why do you need this?
+
+> +
+> +  "counter":
+
+No need for quotes.
+
+> +    $ref: ../counter/renesas,rz-mtu3-counter.yaml
+
+> +
+> +  "pwm":
+
+No need for quotes.
+
+> +    $ref: ../pwm/renesas,rz-mtu3-pwm.yaml
+
+Full path, so /schemas/pwm/...
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - power-domains
+> +  - resets
 
 Best regards,
 Krzysztof
