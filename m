@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA9E55F52C4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 12:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1FF15F52C5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 12:43:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbiJEKnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 06:43:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51998 "EHLO
+        id S229491AbiJEKny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 06:43:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbiJEKnw (ORCPT
+        with ESMTP id S229507AbiJEKnw (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 06:43:52 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD57D21276
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 03:43:50 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id bq9so25334390wrb.4
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 03:43:50 -0700 (PDT)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 957462D1F0
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 03:43:51 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id b7so17713580wrq.9
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 03:43:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=t+w6hbnmBxGh/SnoAN51PbGzmPnoa7byBs+QlkLCahk=;
-        b=R15R3ATdN6iufu7nin46PsM+hmljQu6HCebkOcpbM86w6JXB4tLmnyYFGvzMyaTAK9
-         DATKweeG+C19s87m0osqZcX7Wv9VnlYLA46pxoDC4t3EDfSTUH2dxWw6r8HZQOZrurgW
-         Mr2tL4Ois41SkKvl7nCRc0iTbtwxokNap3lSU4anX43Xtt/OM4Ovg7Cdr5VYsRpvrb7+
-         2FLht8fwNR7E+quV80q7AkrbSt9IbjICU6kiDoY7JXZ7G4H+1dELcHMCE+VWtXcxtT4M
-         40Ta6v1SggniF9P24SFUae6kj/b8LqMY9uqlox6N0QUm1mPRCQ1SB5kH1PLK7ytH3o5m
-         sRlQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=c2/v4Shs/DVpwaIJxuNkN3bIUQOS2jaS0UYUZOSZxKg=;
+        b=Ui8cPpQJJY5mh4B9Ut/TDodgIQ5ugUeRveZLw0X2jS7EP5pCpMFyFkfTUBJISeY4q3
+         fuVWcnaezvmk95fVAFphL/U75siRe7b7uWnMhxGJBFESyMQdhlolV/BqQ/R5HSsrbVzT
+         loQNkdpthIGcYnSiPgmliFAA1nrT/HQoAtJHAVVUuuin0xGdpvtDmjpFbvQkGxojlnhy
+         uq53sXW0jG8JR6Y3R5iE3D2eaOuccGnucUxJefvCbsgIINkLAA8OCAWmZl0Zz4NqqNp9
+         v4vKArziRuSjYlgGxfpfX4MAVfQZgXZRKgbs9cZuv6BEfD+2kidAxrLUGVIqnPiN6wrc
+         EwgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=t+w6hbnmBxGh/SnoAN51PbGzmPnoa7byBs+QlkLCahk=;
-        b=kzPA761s0/lGapSJgneTLcJjEO/+AFKLV32D9j+teQrDbZwenXCWsT5jYu/JLymkIf
-         3tfqLWOcirUxXnAsAupxWoJFmlZn90zdyEkmB1rEWQXMWhXAKlETSO9D6R8O8dHojO+N
-         79B1JbjFd95nBgT/fJGb+WV92gZmz9hrD+hSUBNRJDUptjuPC8PxnYikueJjtgyr4pv7
-         odIdfjRsbsBnRQZW9uU8Ve2aD+4ThvvSK6JG7B+iJ4bEUYYgTwkKCOzC6VSOhud7M/Ql
-         QBrBWBZuEHko1wqeHZXjaTE+1NsgAaA64PcoSsHnUsUUYersfDseO12X7U36bjTcIEqm
-         +OAQ==
-X-Gm-Message-State: ACrzQf2FE3T1sGQM/1lApm/EM4DDAMdrNlfetXRIRkmzVoSUV3oJ90CG
-        ZAK6lJW+YxZ8H40NwHCEpoutug==
-X-Google-Smtp-Source: AMsMyM4S6PxB3wWBcc/2e0dkBoWv6zeqFc1QryB9JS3nHWDnAppPn5iGRCLyYPFlzPDI4dUlGlGbXQ==
-X-Received: by 2002:a5d:688f:0:b0:22c:df1c:92cd with SMTP id h15-20020a5d688f000000b0022cdf1c92cdmr4916246wru.52.1664966629401;
-        Wed, 05 Oct 2022 03:43:49 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=c2/v4Shs/DVpwaIJxuNkN3bIUQOS2jaS0UYUZOSZxKg=;
+        b=WnrpKd2rX1H/9WZiu0eH+Cbwc96gfZx4ncVysOtgMbO5orsNmY9L14f7popvQQ0TXZ
+         UQLiGcJROjLapaks6QBESk7dy1wmFhvRlT3mmMR1VlVSvJhCHcL0iR9zcCfG59g/q1z5
+         DecFyK7xW1clDp5o/YtQqPi4LiUwzM3vVUx3XRy83o0FS+WpoPKxo/4WhjIJSNI98TnB
+         9BdGPRKGPrNVxTny5+FoH1h9QtJ54Gh/tDdzwQ7Q13EwlD+llHPuPu5gOveyi8D2+veG
+         rckVDomG78iXcOsWNRI+l5TvCVW4LD4KIQ3Z/VBlmwTeDltBOls2nMjNtzUzx++F9nqu
+         FSCg==
+X-Gm-Message-State: ACrzQf3f3g6OAZZwpt4Ch3MgJ/lcL7XgL4GmXzkNOmZOvxhnivI4vqeS
+        UtdQfQh3qE20jAKdF+UTerIGuw==
+X-Google-Smtp-Source: AMsMyM4dIjOLe3K0R6Mu50htxGGwJ5r9iR5UHidn9Kh8pdAYjGdaA0xj5i3MXi3xnZ7aeRZSLvRvDA==
+X-Received: by 2002:adf:fd50:0:b0:22e:5503:9c4c with SMTP id h16-20020adffd50000000b0022e55039c4cmr4394060wrs.375.1664966630211;
+        Wed, 05 Oct 2022 03:43:50 -0700 (PDT)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id q18-20020a056000137200b0022cc7c32309sm15004694wrz.115.2022.10.05.03.43.48
+        by smtp.googlemail.com with ESMTPSA id q18-20020a056000137200b0022cc7c32309sm15004694wrz.115.2022.10.05.03.43.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 05 Oct 2022 03:43:49 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
@@ -53,61 +54,85 @@ To:     pavel@ucw.cz, robh+dt@kernel.org, jacek.anaszewski@gmail.com,
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-leds@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 1/2] dt-bindings: leds: common: add disk write/read and usb-host/usb-gadget
-Date:   Wed,  5 Oct 2022 10:43:40 +0000
-Message-Id: <20221005104341.3505550-1-clabbe@baylibre.com>
+Subject: [PATCH v4 2/2] leds: remove ide-disk trigger
+Date:   Wed,  5 Oct 2022 10:43:41 +0000
+Message-Id: <20221005104341.3505550-2-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221005104341.3505550-1-clabbe@baylibre.com>
+References: <20221005104341.3505550-1-clabbe@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The triggers enum misses 3 cases used by gemini DT.
-usb-host was added via commit 0cfbd328d60f ("usb: Add LED triggers for USB activity")
-so we add also as valid trigger usb-gadget which was added along in this
-commit.
+No user of ide-disk remains, so remove this deprecated trigger.
+Only a few platforms used this and were fixed in 2016.
 
-disk-read/disk-write were added by commit d1ed7c558612 ("leds: Extends disk trigger for reads and writes")
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 Acked-by: Rob Herring <robh@kernel.org>
-
 Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
-V1 can be seen at https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210508193654.2596119-1-clabbe@baylibre.com/
-Changes since v1:
+Change since v1:
+- remove also DEFINE_LED_TRIGGER(ledtrig_ide)
+Changes since v2:
+- Added the fact that few platforms used this and it was fixed old ago.
+- Added Rob's ack
+V3 can be seen at https://lore.kernel.org/lkml/20220208104601.3751852-1-clabbe@baylibre.com/T/
+Changes since v3:
 - rebased on recent tree
 
- Documentation/devicetree/bindings/leds/common.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/leds/common.yaml | 3 ---
+ drivers/leds/trigger/ledtrig-disk.c                | 4 ----
+ 2 files changed, 7 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index 3c14a98430e1..25f3b7cc0cdb 100644
+index 25f3b7cc0cdb..4ba0423b43c1 100644
 --- a/Documentation/devicetree/bindings/leds/common.yaml
 +++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -90,6 +90,8 @@ properties:
-           - heartbeat
-             # LED indicates disk activity
+@@ -92,9 +92,6 @@ properties:
            - disk-activity
-+          - disk-read
-+          - disk-write
-             # LED indicates IDE disk activity (deprecated), in new implementations
-             # use "disk-activity"
-           - ide-disk
-@@ -98,6 +100,8 @@ properties:
+           - disk-read
+           - disk-write
+-            # LED indicates IDE disk activity (deprecated), in new implementations
+-            # use "disk-activity"
+-          - ide-disk
+             # LED flashes at a fixed, configurable rate
+           - timer
              # LED alters the brightness for the specified duration with one software
-             # timer (requires "led-pattern" property)
-           - pattern
-+          - usb-gadget
-+          - usb-host
-         # LED is triggered by SD/MMC activity
-       - pattern: "^mmc[0-9]+$"
+diff --git a/drivers/leds/trigger/ledtrig-disk.c b/drivers/leds/trigger/ledtrig-disk.c
+index 0741910785bb..0b7dfbd04273 100644
+--- a/drivers/leds/trigger/ledtrig-disk.c
++++ b/drivers/leds/trigger/ledtrig-disk.c
+@@ -16,7 +16,6 @@
+ DEFINE_LED_TRIGGER(ledtrig_disk);
+ DEFINE_LED_TRIGGER(ledtrig_disk_read);
+ DEFINE_LED_TRIGGER(ledtrig_disk_write);
+-DEFINE_LED_TRIGGER(ledtrig_ide);
  
+ void ledtrig_disk_activity(bool write)
+ {
+@@ -24,8 +23,6 @@ void ledtrig_disk_activity(bool write)
+ 
+ 	led_trigger_blink_oneshot(ledtrig_disk,
+ 				  &blink_delay, &blink_delay, 0);
+-	led_trigger_blink_oneshot(ledtrig_ide,
+-				  &blink_delay, &blink_delay, 0);
+ 	if (write)
+ 		led_trigger_blink_oneshot(ledtrig_disk_write,
+ 					  &blink_delay, &blink_delay, 0);
+@@ -40,7 +37,6 @@ static int __init ledtrig_disk_init(void)
+ 	led_trigger_register_simple("disk-activity", &ledtrig_disk);
+ 	led_trigger_register_simple("disk-read", &ledtrig_disk_read);
+ 	led_trigger_register_simple("disk-write", &ledtrig_disk_write);
+-	led_trigger_register_simple("ide-disk", &ledtrig_ide);
+ 
+ 	return 0;
+ }
 -- 
 2.35.1
 
