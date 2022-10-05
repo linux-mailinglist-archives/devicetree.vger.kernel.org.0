@@ -2,146 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DCBD5F5054
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 09:31:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D52A5F5070
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 09:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbiJEHbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 03:31:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43540 "EHLO
+        id S229494AbiJEHsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 03:48:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbiJEHbH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 03:31:07 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 565426B8E5
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 00:31:01 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id bu25so24365442lfb.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 00:31:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=c2rUBM3uigd0IYhg9S421AlGdWRTSjf8To3ZZq+NWCQ=;
-        b=m3wGZF+gX3zyncGuUd3Pzez9su5RuKirLdKGDSC83FXdLWGxFhbTebNDgZoTiHRozC
-         nCtm1enhOOfA/sgRd19TGym256+uyw1Mu8JdCBudQqisiSAPAUMsB4QfrQRPV0eitYKi
-         C3TosYmyw8e7VrktJT7HnkzWtHl5jV66DP/iFvzyFkv5H0dkuqxzjEnzzDN4aU2m5Mej
-         jq4wPWkojK0xTR4mNhZewc6A1zdO/LUVGfRE3/6SyWD9kmFuabF73b5+IyescPFUmkOU
-         oqZes+b03aDaNgkHpkvlWAwpG2UBF7HGNtrM1a+ln/HFdETiW2CUIZi0DxIpg+VIWE+q
-         fimw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=c2rUBM3uigd0IYhg9S421AlGdWRTSjf8To3ZZq+NWCQ=;
-        b=Ko3lBzXRoOTE8pV+d2AWz/rMF925gDJVdhIUNP9qdoQQfZ5dfwB3iBS8TXTSRplJ+E
-         UQ2+mINf824demvegHD5+jyyNCGi/5beoboLuGEaZjCvdYzrFDBW11zj71bki4MZdbKy
-         YmJrp/EaU7ZWX1jQdLeMXziWW5Rlqmv/c4qDczE8GTB1xb+9XeSUE2tHyLsVQ8cSAHP0
-         NSM6HiY30XXfotyXGKtyBWapMTsJ2/45RI//+Crcn+pjxAdf47SWIlQBexzQ/Mtr8X2m
-         Z0OgrUYI/Ewz2JrijM8ROSifuyVEmsDbtQ+hiQMtiw6wpP0Ywu+WveFEZSXIN0WLp4l3
-         8iBQ==
-X-Gm-Message-State: ACrzQf0aCLzGUtDc/MiNpQ9N7lvCqPqhsvR+uQGmuCUnStsCovX5p5Hg
-        v+t7rWcknLCIfwm++4UJnIRZWQ==
-X-Google-Smtp-Source: AMsMyM5Pmg6Fb8hOCsGQtG3jJCzxwd++fUOnGu6nWEq6j5dTlkBa6OKcP6fl0JquPIxjtwCho6o8/g==
-X-Received: by 2002:a05:6512:66:b0:4a2:3c36:8c3d with SMTP id i6-20020a056512006600b004a23c368c3dmr4470782lfo.687.1664955060082;
-        Wed, 05 Oct 2022 00:31:00 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t21-20020a2e8e75000000b0026dfdcbccd4sm68034ljk.17.2022.10.05.00.30.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Oct 2022 00:30:59 -0700 (PDT)
-Message-ID: <24361bea-ecfe-b6e1-e755-5151220767f2@linaro.org>
-Date:   Wed, 5 Oct 2022 09:30:58 +0200
+        with ESMTP id S229462AbiJEHsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 03:48:41 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D0055BC36;
+        Wed,  5 Oct 2022 00:48:38 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1ofz8t-0007vf-3a; Wed, 05 Oct 2022 09:48:35 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     linux.amoon@gmail.com, Chukun Pan <amadeus@jmu.edu.cn>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        michael.riesch@wolfvision.net, robh+dt@kernel.org,
+        Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Rename pinctrl label of pcie2x1 on rock-3a
+Date:   Wed, 05 Oct 2022 09:48:34 +0200
+Message-ID: <2128313.Icojqenx9y@diego>
+In-Reply-To: <20220926180102.37614-3-amadeus@jmu.edu.cn>
+References: <20220926061420.1248-1-linux.amoon@gmail.com> <20220926180102.37614-1-amadeus@jmu.edu.cn> <20220926180102.37614-3-amadeus@jmu.edu.cn>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v4 1/2] media: dt-bindings: mediatek: Rename child node
- names for decoder
-To:     =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsyk=?= 
-        <Allen-KH.Cheng@mediatek.com>, "robh@kernel.org" <robh@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-References: <20220930112237.14411-1-allen-kh.cheng@mediatek.com>
- <20220930112237.14411-2-allen-kh.cheng@mediatek.com>
- <20220930220011.GA1107972-robh@kernel.org>
- <ffc56eb60a3ef74c815c8d3c170a0df51958e20d.camel@mediatek.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ffc56eb60a3ef74c815c8d3c170a0df51958e20d.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/10/2022 09:21, Allen-KH Cheng (程冠勳) wrote:
-> Hi Rob,
+Am Montag, 26. September 2022, 20:01:01 CEST schrieb Chukun Pan:
+> Distinguish it from the pinctrl label of pcie3x2 added later.
+> Also added comments to the pcie2x1 node.
 > 
-> On Fri, 2022-09-30 at 17:00 -0500, Rob Herring wrote:
->> On Fri, Sep 30, 2022 at 07:22:36PM +0800, Allen-KH Cheng wrote:
->>> In order to make the names of the child nodes more generic, we
->>> rename
->>> "vcodec" to "video-codec" for decoder in patternProperties and
->>> example.
->>
->> They are either generic or they aren't. Until something generic is 
->> defined, I don't think it's worth the churn to change.
->>
->>
->>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
->>> Reviewed-by: AngeloGioacchino Del Regno <
->>> angelogioacchino.delregno@collabora.com>
->>> ---
->>>  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml    | 8
->>> ++++----
->>>  1 file changed, 4 insertions(+), 4 deletions(-)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-
->>> decoder.yaml
->>> b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-
->>> decoder.yaml
->>> index c4f20acdc1f8..67fde48f991c 100644
->>> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>> subdev-decoder.yaml
->>> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>> subdev-decoder.yaml
->>> @@ -91,7 +91,7 @@ properties:
->>>  
->>>  # Required child node:
->>>  patternProperties:
->>> -  '^vcodec-lat@[0-9a-f]+$':
->>> +  '^video-codec-lat@[0-9a-f]+$':
->>
->> Just 'video-codec' doesn't work?
->>
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> Thanks for your reply.
-> 
-> hmm, I think 'vidoe-codec' does wrok.
-> 
-> There are two seperate hardwares for the MTK video codec.
-> codec-lat and codec-core.
-> 
-> Is it ok to keep two child node names for various hardwares?
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> index 8adf672709e8..1b195355da2a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> @@ -539,8 +539,9 @@ rgmii_phy1: ethernet-phy@0 {
+>  };
+>  
+>  &pcie2x1 {
+> +	/* M.2 slot */
+>  	pinctrl-names = "default";
+> -	pinctrl-0 = <&pcie_reset_h>;
+> +	pinctrl-0 = <&ngffpcie_reset_h>;
+
+please always try to use pin-names as they are in device-schematics.
+I.e. if the reset-pin is named pcie_reset_h there, it should stay that way.
+Following schematics names makes looking up things way easier.
+
+Heiko
+
+>  	reset-gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_HIGH>;
+>  	vpcie3v3-supply = <&vcc3v3_pcie>;
+>  	status = "okay";
+> @@ -582,7 +583,7 @@ pcie_enable_h: pcie-enable-h {
+>  			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
+>  		};
+>  
+> -		pcie_reset_h: pcie-reset-h {
+> +		ngffpcie_reset_h: ngffpcie-reset-h {
+>  			rockchip,pins = <3 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
+>  		};
+>  	};
 > 
 
-Aren't they still codecs?
 
-Best regards,
-Krzysztof
+
 
