@@ -2,166 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC4515F5B6B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 23:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBA905F5BAB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 23:26:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231129AbiJEVII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 17:08:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33170 "EHLO
+        id S230070AbiJEV0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 17:26:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbiJEVIH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 17:08:07 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 896F069F56;
-        Wed,  5 Oct 2022 14:08:06 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 295KUeHI029945;
-        Wed, 5 Oct 2022 21:08:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=i5CppKjYTcL74zoSy5XGrDawTtB6iQImvmz8wUI5z/Q=;
- b=ehIULqob604XAN0nJg4FNIxo0HjYEdHkOwfA6CIxUvC3xSHxqQd9cnNMrwcvQb/KhSU6
- QXqOVLEQgJWOEIpQxAU7Al6IcBkj6b5N25SKFAaHbygQRh2Gb4jTvn2H9Hh+EEJA6KLs
- DUdPdcOb+tvlKZOy2Uz0bBhzQnpHeZYs3RwnZ+egq9P01NXt0PsI7k6+7eORwwXdGx8A
- Zy7G4py2AXfl7TYe0dAV+0QgddGBoae4wPG96io20ROKbYAGuNyF2JnxXT4zrwlYgMPB
- AFQ8FkZjC+jblqFQAGxqixGcPr6f1RmQRC+j28yLszWkFijTWPF3Jv6qkfinfwJI7aqr NQ== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k0escva05-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 05 Oct 2022 21:08:03 +0000
-Received: from nasanex01a.na.qualcomm.com ([10.52.223.231])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 295L82cQ009133
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 5 Oct 2022 21:08:02 GMT
-Received: from [10.110.81.239] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 5 Oct 2022
- 14:08:01 -0700
-Message-ID: <33da6d3b-29fb-7f26-0667-419b317d8e11@quicinc.com>
-Date:   Wed, 5 Oct 2022 14:08:01 -0700
+        with ESMTP id S229681AbiJEV0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 17:26:42 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E2B6292C;
+        Wed,  5 Oct 2022 14:26:41 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id w70so4872852oie.2;
+        Wed, 05 Oct 2022 14:26:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9xTAUGvQFV5dOfW+1G7/dUfNq1caWoLnlGaJPpXqOts=;
+        b=mOOhvvOAqkWr2ul3bUmesXcHBH761tLVLz/Q4dE5WH4THtvJ/97V+nq+79uP0/lGrP
+         mOwrzGJlTeUeBRbueQF32x/XSHaFvDyHtFQX9FEBZuIe9IwaurZHWxXG20OJeh/jjSJm
+         OagfjfF/WDnd5VRSS2n25kWKnbyNaewfyKiQyrnpVHDfc2WcbNWe1qWKJjpUYwPL1/8T
+         0lrBmq4KDR/NGoAcdywxKTTlgAjs7O5YgulVmukLZ4P6A9yCtCK95L7UQvE2FbV+LOjA
+         yVSVopmgIeZ848U8b99KIk3xL2uVCX9E/v5SvwY0s6LyW2mZokt5VDX5KOlS7f7fKeQD
+         +nnw==
+X-Gm-Message-State: ACrzQf3XbTWo2MScYJUVrUkEdQM+ziUmQ/spCTxsZWgMI2353o5Hxz9k
+        IY0Gm2/67iZh2tw1BUuGFw==
+X-Google-Smtp-Source: AMsMyM7DsNQswsQGbYuUgMMC4zg/a9tHbi3BPyQPXvPExzfujz79SgKUqYx5TQQdTKa89CvFT0Oa1w==
+X-Received: by 2002:a05:6808:190e:b0:350:4905:734c with SMTP id bf14-20020a056808190e00b003504905734cmr3414960oib.158.1665005200902;
+        Wed, 05 Oct 2022 14:26:40 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i205-20020acaead6000000b00353ef11d6c9sm1815744oih.19.2022.10.05.14.26.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Oct 2022 14:26:39 -0700 (PDT)
+Received: (nullmailer pid 122305 invoked by uid 1000);
+        Wed, 05 Oct 2022 21:26:39 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Serge Semin <fancer.lancer@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: misc: Convert IDT 89HPESx to DT schema
+Date:   Wed,  5 Oct 2022 16:26:31 -0500
+Message-Id: <20221005212631.122145-1-robh@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/5] dt-bindings: firmware: scm: Add QDU1000/QRU1000
- compatibles
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Melody Olvera <quic_molvera@quicinc.com>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221001030641.29354-1-quic_molvera@quicinc.com>
- <20221001030641.29354-2-quic_molvera@quicinc.com>
- <09f5d364-320e-9ecc-2c2b-68066c61f802@linaro.org>
- <e9c44e3b-b29f-0f47-b822-da0f4f2264cc@quicinc.com>
- <CAA8EJprE-mOOH8VF3m8TRb+0q=3_8NpvzdEAugabDaDbq6FMVQ@mail.gmail.com>
- <9664a623-3c58-49e8-1b9a-69335d844448@linaro.org>
- <CAA8EJprQoCQzr2x0JA9_b3MDE=oOTODyHD23debEL1MCE1mWBA@mail.gmail.com>
- <095742cb-61cc-af5d-848c-48b2ea5528ea@quicinc.com>
- <CAA8EJpoqKCj4tyX-617YJH5zqkR_C=1LVMeLXcCxZFgOPjRZ=g@mail.gmail.com>
- <14872934-93f1-baab-7f1a-cfc55ffd0531@linaro.org>
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <14872934-93f1-baab-7f1a-cfc55ffd0531@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: a2_cbYPcYzhRJCTNqio6GYmp56K963Yy
-X-Proofpoint-ORIG-GUID: a2_cbYPcYzhRJCTNqio6GYmp56K963Yy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-05_05,2022-10-05_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 mlxlogscore=999
- phishscore=0 bulkscore=0 clxscore=1011 impostorscore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210050130
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/5/2022 1:27 AM, Krzysztof Kozlowski wrote:
-> On 04/10/2022 23:05, Dmitry Baryshkov wrote:
->> On Tue, 4 Oct 2022 at 18:52, Melody Olvera <quic_molvera@quicinc.com> wrote:
->>>
->>>
->>> On 10/4/2022 2:36 AM, Dmitry Baryshkov wrote:
->>>> On Tue, 4 Oct 2022 at 09:53, Krzysztof Kozlowski
->>>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>> On 04/10/2022 00:14, Dmitry Baryshkov wrote:
->>>>>> On Tue, 4 Oct 2022 at 01:02, Melody Olvera <quic_molvera@quicinc.com> wrote:
->>>>>>>
->>>>>>> On 10/1/2022 4:25 AM, Krzysztof Kozlowski wrote:
->>>>>>>> On 01/10/2022 05:06, Melody Olvera wrote:
->>>>>>>>> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>>>>>>>> ---
->>>>>>>>>   Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
->>>>>>>>>   1 file changed, 2 insertions(+)
->>>>>>>>>
->>>>>>>>> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>>>>>>> index c5b76c9f7ad0..b47a5dda3c3e 100644
->>>>>>>>> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>>>>>>> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>>>>>>> @@ -51,6 +51,8 @@ properties:
->>>>>>>>>             - qcom,scm-sm8250
->>>>>>>>>             - qcom,scm-sm8350
->>>>>>>>>             - qcom,scm-sm8450
->>>>>>>>> +          - qcom,scm-qdu1000
->>>>>>>>> +          - qcom,scm-qru1000
->>>>>> I think after seeing all the patchsets it's time to ask the following
->>>>>> question. Do we really need a duplicate compatibility families:
->>>>>> qdu1000 vs qru1000? I'd suggest using a single set of compatibile
->>>>>> strings in most of the cases.
->>>>>> Settle down onto a single name (qdu,qru, qdru, whatever) and define
->>>>>> distinct compat strings only when there is an actual difference?
->>>>>>
->>>>>> E.g .we don't have separate compatible strings for all the sda660,
->>>>>> apq8096, etc. unless this is required by the corresponding hardware
->>>>>> block not being compatible with corresponding sdm or msm counterpart.
->>>>>>
->>>>> I am not that fluent in Qualcomm naming, so let me ask - what are the
->>>>> differences between QDU and QRU?
->>>>>
->>>>> For compatible (and/or similar) devices the general recommendation is to
->>>>> have specific compatibles followed by fallback. Even if devices are
->>>>> very, very, very similar, usually the recommendation still stays.
->>>> Well, true. But in some cases we handle this by using a single set of
->>>> compatibles. Consider e.g. sa8155 vs sm8150 (sa8155 overrides just few
->>>> compats that differ). Or qrb5165 vs sm8250 (there is no separate
->>>> qrb5165.dtsi). APQ8096 (#include "msm8996.dtsi"). Etc.
->>>>
->>>> I'd say this really depends on the actual difference between qru and qdu.
->>>
->>> To add some clarification, there's pretty little functional difference between the QDU (Distributed Unit) and the QRU (Radio Unit); they're largely the same SoC from the kernel's standpoint. I wasn't sure if it made more sense to separate the compat strings or mash them together (using qdru to specify that it applies to both), so I kept separate compat strings in case there was a separate RU/DU use case down the line and also to avoid some confusion (I guess that didn't work though). It makes the most sense in my mind to just use the qdru compat string for the things that apply to both SoCs (which is most of what's submitted currently) and then we can do qdu/qru specific override strings for more specific drivers.
->>
->> Unless Krzysztof or Bjorn have other opinion, I'd suggest adding a
->> single compat string, It might be qcom,qdru1000-foo or just
->> qcom,qdu1000-foo (with having a separate qcom,qru1000-foo where
->> applicable). But the final decision is from Rob, Krzysztof and Bjorn.
-> 
-> If qdru1000 is a real SoC name, then it is fine. But it seems it is
-> rather a wildcard, which in general is discouraged. Go with qdu1000 and
-> optionally prepended with qru1000.
+Convert the IDT 89HPESx device binding to DT schema format.
 
-qdru1000 is not a real SOC, so let's not use that. Prefer to use qdu1000 
-and qru1000 with whatever approach we decide.
+"onsemi,24c64" was not a documented compatible string, so update the
+example to "atmel,24c64". It's not clear what's in use here as no
+upstream dts files have the eeprom child node.
 
----Trilok Soni
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Serge, Okay with dual licensing?
+---
+ .../devicetree/bindings/misc/idt,89hpesx.yaml | 72 +++++++++++++++++++
+ .../devicetree/bindings/misc/idt_89hpesx.txt  | 44 ------------
+ 2 files changed, 72 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/misc/idt,89hpesx.yaml
+ delete mode 100644 Documentation/devicetree/bindings/misc/idt_89hpesx.txt
+
+diff --git a/Documentation/devicetree/bindings/misc/idt,89hpesx.yaml b/Documentation/devicetree/bindings/misc/idt,89hpesx.yaml
+new file mode 100644
+index 000000000000..452236e79354
+--- /dev/null
++++ b/Documentation/devicetree/bindings/misc/idt,89hpesx.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/misc/idt,89hpesx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: EEPROM / CSR SMBus-slave interface of IDT 89HPESx devices
++
++maintainers:
++  - Serge Semin <fancer.lancer@gmail.com>
++
++select:
++  properties:
++    compatible:
++      contains:
++        pattern: '^idt,89hpes'
++  required:
++    - compatible
++
++properties:
++  compatible:
++    oneOf:
++      - pattern: '^idt,89hpes(8nt2|12nt3|12n3a?|24n3a?|(12|24)t3g2|4t4g2|10t4g2|[56]t5|8t5a?)$'
++      - pattern: '^idt,89hpes(6t6g2|16t7|(24t6|32t8|48t12|16t4a?)(g2)?)$'
++      - pattern: '^idt,89hpes(24nt6a|32nt8[ab]|12nt12|16nt16|24nt24|32nt24[ab])g2$'
++      - pattern: '^idt,89hpes((32h8|48h12a?|22h16|34h16|64h16a?)(g2)?|16h16)$'
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++  
++  '#size-cells':
++    const: 0
++
++patternProperties:
++  '^eeprom@':
++    $ref: /schemas/eeprom/at24.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      compatible:
++        description: Only a subset of devices are supported
++        pattern: ',24c(32|64|128|256|512)$'
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        idt@74 {
++            compatible = "idt,89hpes32nt8ag2";
++            reg = <0x74>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            eeprom@50 {
++                compatible = "atmel,24c64";
++                reg = <0x50>;
++                read-only;
++            };
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/misc/idt_89hpesx.txt b/Documentation/devicetree/bindings/misc/idt_89hpesx.txt
+deleted file mode 100644
+index b9093b79ab7d..000000000000
+--- a/Documentation/devicetree/bindings/misc/idt_89hpesx.txt
++++ /dev/null
+@@ -1,44 +0,0 @@
+-EEPROM / CSR SMBus-slave interface of IDT 89HPESx devices
+-
+-Required properties:
+-  - compatible : should be "<manufacturer>,<type>"
+-		 Basically there is only one manufacturer: idt, but some
+-		 compatible devices may be produced in future. Following devices
+-		 are supported: 89hpes8nt2, 89hpes12nt3, 89hpes24nt6ag2,
+-		 89hpes32nt8ag2, 89hpes32nt8bg2, 89hpes12nt12g2, 89hpes16nt16g2,
+-		 89hpes24nt24g2, 89hpes32nt24ag2, 89hpes32nt24bg2;
+-		 89hpes12n3, 89hpes12n3a, 89hpes24n3, 89hpes24n3a;
+-		 89hpes32h8, 89hpes32h8g2, 89hpes48h12, 89hpes48h12g2,
+-		 89hpes48h12ag2, 89hpes16h16, 89hpes22h16, 89hpes22h16g2,
+-		 89hpes34h16, 89hpes34h16g2, 89hpes64h16, 89hpes64h16g2,
+-		 89hpes64h16ag2;
+-		 89hpes12t3g2, 89hpes24t3g2, 89hpes16t4, 89hpes4t4g2,
+-		 89hpes10t4g2, 89hpes16t4g2, 89hpes16t4ag2, 89hpes5t5,
+-		 89hpes6t5, 89hpes8t5, 89hpes8t5a, 89hpes24t6, 89hpes6t6g2,
+-		 89hpes24t6g2, 89hpes16t7, 89hpes32t8, 89hpes32t8g2,
+-		 89hpes48t12, 89hpes48t12g2.
+-  - reg :	 I2C address of the IDT 89HPESx device.
+-
+-Optionally there can be EEPROM-compatible subnode:
+-  - compatible:  There are five EEPROM devices supported: 24c32, 24c64, 24c128,
+-		 24c256 and 24c512 differed by size.
+-  - reg:         Custom address of EEPROM device (If not specified IDT 89HPESx
+-    (optional)	 device will try to communicate with EEPROM sited by default
+-		 address - 0x50)
+-  - read-only :	 Parameterless property disables writes to the EEPROM
+-    (optional)
+-
+-Example:
+-	idt@60 {
+-		compatible = "idt,89hpes32nt8ag2";
+-		reg = <0x74>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		eeprom@50 {
+-			compatible = "onsemi,24c64";
+-			reg = <0x50>;
+-			read-only;
+-		};
+-	};
+-
+-- 
+2.35.1
+
