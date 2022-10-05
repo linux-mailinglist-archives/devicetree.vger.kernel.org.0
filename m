@@ -2,76 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA69A5F5085
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 09:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA3D05F5095
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 10:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230048AbiJEH7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 03:59:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47856 "EHLO
+        id S229697AbiJEIDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 04:03:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230022AbiJEH64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 03:58:56 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C249D75CD6
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 00:58:29 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id bu25so24446548lfb.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 00:58:29 -0700 (PDT)
+        with ESMTP id S229450AbiJEIDM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 04:03:12 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5882B326D1
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 01:03:10 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 25so14178593lft.9
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 01:03:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=KUsLX/hWASy12r6kYppLjzYWaxoDQvN3XOBwDMKiNOs=;
-        b=XoO3jDPWWS4/Pndkc6qxbPbxflHYBqq8Xtdl+9T3JA7WXPzxf9Xr8qAN3L+ExOlG6l
-         vB2OJB7h6jxQXiZwug0EhespStT9RcAFVPOKOGo6QT7v7LKes9sqjaSRzxKd3f2jq2DF
-         L8wiBEpFJaztuO8faVSGNcev5Rb5rz0WmPia5PoyqXOjHsAitcLCex+Qu5XQo2yH+GvA
-         vIN53mRFYyJ3mmdEhh0SbMQ0avzgdPLiMPl4LgPLrLmmP1GmJkoa8Z5lUKE76VtVEtKx
-         4yEWuy0QrUpdTCHB2F6I4Wh/As+oj8ZlWkEEg49sXfzQwzSeBoHYmjpJuHUnyVRMaouD
-         nngQ==
+        bh=vrT3/YNDGxNw6gcf7qbdcYUNYzCckFpq+zk+UqS9mFk=;
+        b=WsS0OdFvsJAy0ro0nxL688BEJuU3JmND8E16jFH22cGfbaf1AIWMoz6EkYxWN6iQSM
+         5hxEPcrf3BoFRh1Sldd+jZXMIRJDlBjO+j4+qaTzpD6eXvtlyFwbN6R4Ut2D2qejgda0
+         NX75xIlfVDxNMH73MYHk0lG4A9Oh6meZAXZes5Gq0blZVZgJkRWXzQM1B/HfARfQ2QVh
+         RgMwtRhBzhhKwQpteVES8vHyXiVwRUaxFxCoTgzW0JIXizq04G06HcicCgqvG9pUhtUp
+         7W+h1v/gEaRgja1RD4+46f8926lEH2o68CKx54Fd4lo05LmTwY2rSb/vvYcSFhaW/6lb
+         PhVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=KUsLX/hWASy12r6kYppLjzYWaxoDQvN3XOBwDMKiNOs=;
-        b=cMRRIR5dHmQSjxSubzmuKIGYjgY8tbDRkHvNVlwvdhJdjNk8tfG/RHKOpdeQCJPTxI
-         Ofy8mXSbzwNZPTeqqOHkqgW6jxVe7VqPKqr7rXOONRXiZDwHDA3WF27r128NlmFqBcSK
-         JtBZML2X7hWar6zwCYrOsIQrl/5NA44TeQd0BbJGiYw9R/Iozz7JLZH+I5sRLPzxyvcD
-         MqUFi169HCdO92mkSjl7l8shXQ/pDvnto62zih1lWiQKeyiKUkCPe7FB8IJ9pR2R2NHN
-         rOw4qwH3NSCMsFr6DSYnUkXd9444TD+iHlJ9hr8ejfkhTgUpb/ynB0T0OK0VIIozScnP
-         J9fQ==
-X-Gm-Message-State: ACrzQf36A/2TucUEmoUVdo/yoTWp0c6ZTHSya4jw5L+9XwOkbZSKfsVG
-        ZWPnkdTNAdrivr7/xMIRJB2bcw==
-X-Google-Smtp-Source: AMsMyM4+3dxfgnnUtl02AminNqeaOjFbPBjmac3Mhxv8glQtFW/MU/jdxOlIiFf6p4bAoKKNG5KGpQ==
-X-Received: by 2002:ac2:4d28:0:b0:4a2:40ef:2996 with SMTP id h8-20020ac24d28000000b004a240ef2996mr4025845lfk.425.1664956708094;
-        Wed, 05 Oct 2022 00:58:28 -0700 (PDT)
+        bh=vrT3/YNDGxNw6gcf7qbdcYUNYzCckFpq+zk+UqS9mFk=;
+        b=TZgJXJTNzqCgdN20J1wTUzhxBkRB6cwWjAVc9fTBbcnKLYDPezJw8Ve2xWPQfxTbv5
+         f/dq0LoDrwl14SYQwe9Su8KNMg6/bNWPmAZJ1RQnkGtJPsClnGJfB3va4MFCxzU2FLZs
+         4wzrQlOkVlKwf+gTtblScwUkJdIT9pOLGwqlO0dLQnkdXZtpx/ai67F2Vy6o8XTjnHys
+         aOUZKZO1GNxxN8uehdzvlG2Y2FMSM0KolwUZfglbZZbJu5jHBAVnGr0iQkiEfhtLf+FA
+         V8A8ZkzvWxygm/WRDrXZkPrX8Z7mwQJqCXiHkE0yU9KFXfsqjiutjWrWIPJg7r24CI1M
+         ycNw==
+X-Gm-Message-State: ACrzQf0AEysohBvzO/XW34aFSwkU2/KMi4tybALnBVsXdXpuQx12sBiu
+        XAcZNTMq0U1nDpb+rwIRACKohA==
+X-Google-Smtp-Source: AMsMyM7h1qQF7FFgnsGNplK/Yx7DQ4hYKkUv4Jvk1LXPHxhH+pHuufq529Adf1oaJhGaPYd8oEx6jQ==
+X-Received: by 2002:a05:6512:3185:b0:4a2:3e01:e1fc with SMTP id i5-20020a056512318500b004a23e01e1fcmr4639658lfe.404.1664956988657;
+        Wed, 05 Oct 2022 01:03:08 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 13-20020a05651c128d00b0026befa96249sm1527520ljc.8.2022.10.05.00.58.27
+        by smtp.gmail.com with ESMTPSA id g19-20020ac25393000000b0049fb08e91cesm2259763lfh.214.2022.10.05.01.03.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Oct 2022 00:58:27 -0700 (PDT)
-Message-ID: <c352896a-0e12-a946-d018-764fa0f2a95d@linaro.org>
-Date:   Wed, 5 Oct 2022 09:58:26 +0200
+        Wed, 05 Oct 2022 01:03:08 -0700 (PDT)
+Message-ID: <455e31be-dc87-39b3-c7fe-22384959c556@linaro.org>
+Date:   Wed, 5 Oct 2022 10:03:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v1 1/6] dt-bindings: soc: mediatek: Add support for MT8195
- VPPSYS
+Subject: Re: [PATCH v3 net-next 12/14] dt-bindings: net: dsa: ocelot: add
+ ocelot-ext documentation
 Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-References: <20221004093319.5069-1-moudy.ho@mediatek.com>
- <20221004093319.5069-2-moudy.ho@mediatek.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+References: <20220926002928.2744638-1-colin.foster@in-advantage.com>
+ <20220926002928.2744638-13-colin.foster@in-advantage.com>
+ <ec63b5aa-3dec-3c27-e987-25e36b1632ba@linaro.org>
+ <YzzLCYHmTcrHbZcH@colin-ia-desktop>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221004093319.5069-2-moudy.ho@mediatek.com>
+In-Reply-To: <YzzLCYHmTcrHbZcH@colin-ia-desktop>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,14 +93,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/10/2022 11:33, Moudy Ho wrote:
-> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
+On 05/10/2022 02:08, Colin Foster wrote:
+> Hi Krzysztof,
 > 
-> Add compatible for MT8195 VPPSYS.
+> On Tue, Oct 04, 2022 at 01:19:33PM +0200, Krzysztof Kozlowski wrote:
+>> On 26/09/2022 02:29, Colin Foster wrote:
+>>> The ocelot-ext driver is another sub-device of the Ocelot / Felix driver
+>>> system, which currently supports the four internal copper phys.
+>>>
+>>> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> ...
+>>> +  # Ocelot-ext VSC7512
+>>> +  - |
+>>> +    spi {
+>>> +        soc@0 {
+>>
+>> soc in spi is a bit confusing.
+>>
+>> Does it even pass the tests? You have unit address but no reg.
 > 
-> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
+> I omitted those from the documentation. Rob's bot is usually quick to
+> alert me when I forgot to run dt_binding_check and something fails
+> though. I'll double check, but I thought everything passed.
+> 
+>>
+>>> +            compatible = "mscc,vsc7512";
+>>
+>>
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <1>;
+>>> +
+>>> +            ethernet-switch@0 {
+>>> +                compatible = "mscc,vsc7512-switch";
+>>> +                reg = <0 0>;
+>>
+>> 0 is the address on which soc bus?
+> 
+> This one Vladimir brought up as well. The MIPS cousin of this chip
+> is the VSC7514. They have exactly (or almost exactly) the same hardware,
+> except the 7514 has an internal MIPS while the 7512 has an 8051.
+> 
+> Both chips can be controlled externally via SPI or PCIe. This is adding
+> control for the chip via SPI.
+> 
+> For the 7514, you can see there's an array of 20 register ranges that
+> all get mmap'd to 20 different regmaps.
+> 
+> (Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml)
+> 
+>     switch@1010000 {
+>       compatible = "mscc,vsc7514-switch";
+>       reg = <0x1010000 0x10000>,
+>             <0x1030000 0x10000>,
+>             <0x1080000 0x100>,
+>             <0x10e0000 0x10000>,
+>             <0x11e0000 0x100>,
+>             <0x11f0000 0x100>,
+>             <0x1200000 0x100>,
+>             <0x1210000 0x100>,
+>             <0x1220000 0x100>,
+>             <0x1230000 0x100>,
+>             <0x1240000 0x100>,
+>             <0x1250000 0x100>,
+>             <0x1260000 0x100>,
+>             <0x1270000 0x100>,
+>             <0x1280000 0x100>,
+>             <0x1800000 0x80000>,
+>             <0x1880000 0x10000>,
+>             <0x1040000 0x10000>,
+>             <0x1050000 0x10000>,
+>             <0x1060000 0x10000>,
+>             <0x1a0 0x1c4>;
+>       reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
+>             "port2", "port3", "port4", "port5", "port6",
+>             "port7", "port8", "port9", "port10", "qsys",
+>             "ana", "s0", "s1", "s2", "fdma";
+> 
+> 
+> The suggestion was to keep the device trees of the 7512 and 7514 as
+> similar as possible, so this will essentially become:
+>     switch@71010000 {
+>       compatible = "mscc,vsc7512-switch";
+>       reg = <0x71010000 0x10000>,
+>             <0x71030000 0x10000>,
+>       ...
 
-Missing SoB.
+I don't understand how your answer relates to "reg=<0 0>;". How is it
+going to become 0x71010000 if there is no other reg/ranges set in parent
+nodes. The node has only one IO address, but you say the switch has 20
+addresses...
+
+Are we talking about same hardware?
 
 Best regards,
 Krzysztof
