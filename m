@@ -2,173 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 285045F51C8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 11:34:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C32015F5221
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 11:58:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbiJEJeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 05:34:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42446 "EHLO
+        id S229680AbiJEJ60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 05:58:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbiJEJeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 05:34:23 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC021FCC8
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 02:34:21 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id w2so15402362pfb.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 02:34:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
-         :user-agent:from:from:to:cc:subject:date;
-        bh=W6Rjad9w9ZpkRZmKm2QHPWW580vRhPpczFar+LESCVo=;
-        b=iZI1Iyire6ZTuwbvd8W4RiiM4TT6TG8gcGVBXW3TsEr/KEeNlhMBXvnYSyExvSwn3a
-         p3ISPPu43kYjGGdL+XauTnffdEe5ijgj1m+vEor7sGOVi8FmZ4gak2VFB8dRHKrsDZFm
-         8hZQFhkbsyuLe+kUIi3QSkf9kRPTFqsSCVMtolYS8EOYfoS/GK8TkSWwnxS+FFKm9yat
-         XpIbghx5Sk12glXdcpeuYkmzht2zDqYos1e4+xuCFYhiDKk2k0G0DU59L8lru2htuZE+
-         GkJlscyAYFiO0/giotTXb8RpUDhKgqlD9Nwv/Fy/XLME4SN5KyZMbguwqExPbfAUYEE6
-         neCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
-         :user-agent:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=W6Rjad9w9ZpkRZmKm2QHPWW580vRhPpczFar+LESCVo=;
-        b=OhL/cuHGnTuC8/VpMzKPKikIXIczXVJYXjLVEQzy3RmEjyvzKFxkF0q0p6VXHU/LC2
-         4kGHy8CRNWKRxN6pOZpyzbOfEKh2U4ZNVUB8zSza/67YYNgu5qFlkUbw4MnamArhOgRB
-         spaMFVpu0EAEY1JaS/reTWXZZsDFb79+DglGwsJskrjLBNuSXyRJQpwoZJOKp2r82MRc
-         tYhKLc7bbDRufh0M2F78VebC9QbKcr4zA+8YS+gzJKYgQe8eE/Ft/Gl4uoXYztF62+ol
-         5OZpnOw5Z+VcjqTKTljqvk8qAn+Z2I6Yurf+MS/6i6Np0dgHE7FFtrLpvQ68Jqon7Ntz
-         BKFQ==
-X-Gm-Message-State: ACrzQf1qSreGbEeB/ok81jEFNgHBkqHl7q3H5PUKHW2adULaBBayDoF8
-        tGCGupiEig6dmKzWpQk3F8xtmg1VH2NBnO7ZG/0hFQ==
-X-Google-Smtp-Source: AMsMyM7IEMQ8VuBpLr4M/FXXnQHnzRBpA7qrWywzLLp9eOB5FOQsqJXreoP7ZvOaT2OaBEB8mfOoaLfZ0CauXaSBTac=
-X-Received: by 2002:aa7:83cd:0:b0:560:21ea:bb21 with SMTP id
- j13-20020aa783cd000000b0056021eabb21mr19326276pfn.1.1664962460150; Wed, 05
- Oct 2022 02:34:20 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 5 Oct 2022 02:34:19 -0700
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: meli 0.7.2
-References: <20220919-v1-0-4844816c9808@baylibre.com> <20220919-v1-17-4844816c9808@baylibre.com>
- <a0a3c427-c851-ae5d-4010-e94740bf9f6e@linaro.org> <CABnWg9s3N_Ua9g0S3x0uj8PN4FtOX6DO+zQcBzGFqoLTL1J24A@mail.gmail.com>
- <bc64b69d-3d65-f5ca-a688-2ad1a055ba4b@linaro.org> <CABnWg9sJFBAXi1bu_yHDppFOmg=H=G7QTn9Bzqkr-t7qm5vUFw@mail.gmail.com>
- <db1abf9d-ba40-f71c-0d37-c3912ac1bd8e@linaro.org> <CABnWg9vOHWpdLPAFdXAG3GNgsxpbzgh2gTq_tm72Tk2uR54LaQ@mail.gmail.com>
- <49daae86-e922-9a17-ebed-2a33a5eeb18e@linaro.org>
-In-Reply-To: <49daae86-e922-9a17-ebed-2a33a5eeb18e@linaro.org>
-MIME-Version: 1.0
-Date:   Wed, 5 Oct 2022 02:34:19 -0700
-Message-ID: <CABnWg9sPuJQQOmLGDSgE86NCRh_3GqWZ0dFAs_J2PO9HCVbExQ@mail.gmail.com>
-Subject: Re: [PATCH v1 17/17] drm/mediatek: Add mt8195-dpi support to drm_drv
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229509AbiJEJ6Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 05:58:24 -0400
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D71336EF34;
+        Wed,  5 Oct 2022 02:58:23 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id B466F580390;
+        Wed,  5 Oct 2022 05:58:20 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Wed, 05 Oct 2022 05:58:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1664963900; x=1664967500; bh=MxxMRDfEHO
+        Qi5+nDumNVbTgRThG0gUKh/x3oMnocNco=; b=mG+OYpQFz6324WqipXqg6d0xeZ
+        sOq4/cKAkQH8uMWu7ERXlX8iP1Ccrr/uOmLRnO4STFcbI8UOsVMmKR+Mlq6PVMDb
+        7jV0TmdAG060BvIT2ovC/7OJqIi1T25dGQ0poIeHjAHC3gf+CJgtfYHhDVveNWbB
+        DNSnTXnQcBS5x2UWo4L43Emmx9bq2PDeyaj6fh+izC0Rj0Z0ms7HGEedp9xFRJRT
+        IdleXCv/KYBMWtSLdzVZqmI6UqC3Am1OdlEB6c0ShG0ZPd6l0oSoq3MYdxL8bF0M
+        Ov+gd2C+VGRFCfGX579aS1NNGEYeMepl06UpC2pdW3NSJoAMVSxSfwjINqNw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1664963900; x=1664967500; bh=MxxMRDfEHOQi5+nDumNVbTgRThG0
+        gUKh/x3oMnocNco=; b=k/LgWYEQ4plZKY81euqM1y9WWeZpyTgDh+Utx34fiWcH
+        tueYqOx5ygZOjcRzXtNynTSKRum33aGLXXYtpWzAsiyR4KG0rClWluF7MG3i4CTc
+        pwANzyzUR1uO0zMrqE6l78D8A7QLD8ylv7V1vzM1SdapxxFE/qsqdWgWUvvoX1t4
+        UOvy4qeEWoYZkjxQTfhuJ/Fshddg2fA9iCKgLsAFgDTLXoBeH2noSZ8ALEQDtLtP
+        26DvVFoQ7dHTRuL3yNpBlN69M0gTX8IxnGvy9JZg0YWD4LM2iHIXNES/XOPVQKrt
+        VF6PMWY1KO8yK3qVWtvxh4+Ywj1IyxC0PTBNsbKIig==
+X-ME-Sender: <xms:OlU9Y3Xkyc3wvk78mSeW9XNVvuoQcdHfEvKVorRz4Q5Dk2Odmx69Zw>
+    <xme:OlU9Y_l_CVx44Emjsgq-GpNd4pueoGuCVgOPZHzAl8jSQQjOD4rz101njXovurXoG
+    1PqJ-Tqr77G6BuWLBs>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeeifedgvdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:OlU9YzaL8Zdmnb1Ruh3YAWIBoX_Q0Bhd0axAZaSORn9lTQyhVIQ4TQ>
+    <xmx:OlU9YyU2liM2dW_2DzP4U8zRZpFu7pQVHWixgZAWihjjnIyriFRBCA>
+    <xmx:OlU9YxkQ-lf95koBJOcUhrGcT9MizbuYjlhynvsa0ZS3T-2ZxAk1Xg>
+    <xmx:PFU9Y7pUafo5ZcQnzVLJou_wEcv5ZuS6vKgr_fOghsMP70Ldtpt4XQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id D5467B60086; Wed,  5 Oct 2022 05:58:18 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1015-gaf7d526680-fm-20220929.001-gaf7d5266
+Mime-Version: 1.0
+Message-Id: <e7340230-9a5b-4caf-a7b0-d048cc335994@app.fastmail.com>
+In-Reply-To: <YzxwoELNBctbhjJb@spud>
+References: <20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221003223222.448551-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <YzxwoELNBctbhjJb@spud>
+Date:   Wed, 05 Oct 2022 11:57:58 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Conor Dooley" <conor@kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     "Geert Uytterhoeven" <geert+renesas@glider.be>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        "Albert Ou" <aou@eecs.berkeley.edu>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Magnus Damm" <magnus.damm@gmail.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        guoren <guoren@kernel.org>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        "Philipp Tomsich" <philipp.tomsich@vrull.eu>,
+        "Nathan Chancellor" <nathan@kernel.org>,
+        "Atish Patra" <atishp@rivosinc.com>,
+        "Anup Patel" <apatel@ventanamicro.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        "Biju Das" <biju.das.jz@bp.renesas.com>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [RFC PATCH v2 2/2] soc: renesas: Add L2 cache management for RZ/Five SoC
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 04 Oct 2022 17:05, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->On 04/10/2022 13:55, Guillaume Ranquet wrote:
->>> No. You said what the code is doing. I think I understand this. You
->>> still do not need more compatibles. Your sentence did not clarify it
->>> because it did not answer at all to question "why". Why do you need it?
->>>
->>> Sorry, the change looks not correct.
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
->> I need a new compatible to adress the specifics of mt8195 in the mtk_dpi driver,
->> the change is in this series with:
->> [PATCH v1 16/17] drm/mediatek: dpi: Add mt8195 hdmi to DPI driver [1]
+On Tue, Oct 4, 2022, at 7:42 PM, Conor Dooley wrote:
+> On Mon, Oct 03, 2022 at 11:32:22PM +0100, Prabhakar wrote:
+>> 
+>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>> ---
+>>  arch/riscv/include/asm/cacheflush.h    |   8 +
+>>  arch/riscv/include/asm/errata_list.h   |   2 +
+>>  arch/riscv/include/asm/sbi.h           |   1 +
+>>  arch/riscv/mm/dma-noncoherent.c        |  20 ++
 >
->But you do not have specifics of mt8195. I wrote it in the beginning.
+> Stupid question maybe, but I assume you mixed the driver addition and
+> the changes to arch/riscv for the sake of easily creating the RFC?
 >
->>
->> I then need to add that compatible to the "list" here in mtk_drm_drv.
->
->No, you do not... I checked the driver and there is no single need... or
->convince me you need.
->
->> I don't see a way around this unless I rewrite the way mtk_drm_drv works?
->
->Why rewrite? You have all compatibles in place.
->
->>
->> Maybe if I declare a new compatible that is generic to all mediatek
->> dpi variants?
->
->You were asked to use fallback. Don't create some fake fallbacks. Use
->existing ones.
->
->> and have all the dts specify the node with both the generic dpi and
->> the specific compatible?
->>
->> dpi@xxx {
->> 	compatible = "mediatek,dpi", "mediatek,mt8195-dpi";
->
->I don't know what's this but certainly looks odd. Some wild-card
->compatible in front (not fallback) and none are documented.
->
->> 	...
->> }
->>
->> Then I can "collapse" all the dpi related nodes in mtk_drm_drv under
->> "mediatek,dpi" ?
->>
->> I guess would have to do the change for all other components that are needed in
->> mtk_drm_drv (mmsys, aal, ccor, color, dither, dsc, gamma, mutex...).
->>
->> That's the only trivial way I can think of implementing this with the
->> current status
->> of the mtk_drm stack.
->>
->> Do you have any other ideas in mind?
->
->Use fallback of compatible device. That's the common pattern.
->Everywhere, Mediatek as well.
->
+>>  drivers/soc/renesas/Makefile           |   4 +
+>>  drivers/soc/renesas/rzf/Makefile       |   3 +
+>>  drivers/soc/renesas/rzf/ax45mp_cache.c | 365 +++++++++++++++++++++++++
+>>  drivers/soc/renesas/rzf/rzf_sbi.h      |  27 ++
 
-I'm unsure about what a "fallback of compatible device" is.
-But from what I can gather, you'd have me write the dts as:
+My feeling is that L2 cache behavior should live in arch/riscv
+rather than drivers/soc/, since this is not specific to a SoC
+family but rather the CPU core. I would also expect that the
+actual implementation and DT binding can be shared with
+non-renesas SoCs using the same CPU core.
 
-dpi@xxx {
-	compatible = "mediatek,mt8195-dpi", "mediatek,mt2701-dpi";
-	...
-}
 
-so that the mtk_dpi driver will use the specific mt8195 dpi config and
-the mtk_drm driver will fallback to mt2701 to find the compatible it needs.
-
-Would you like me to use this pattern for all the other compatibles declared
-in the mtk_ddp_comp_ids array in separate patches?
-
-Thx,
-Guillaume.
-
->Best regards,
->Krzysztof
->
+    Arnd
