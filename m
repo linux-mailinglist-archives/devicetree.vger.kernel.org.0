@@ -2,93 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17D3E5F56B8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 16:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B9D5F56C5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 16:53:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbiJEOvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 10:51:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39928 "EHLO
+        id S230030AbiJEOx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 10:53:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbiJEOvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 10:51:15 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2050F7B7BB
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 07:51:14 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id bu25so25912456lfb.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 07:51:14 -0700 (PDT)
+        with ESMTP id S229910AbiJEOxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 10:53:55 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467E27CAA2
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 07:53:53 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id q17so18994959lji.11
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 07:53:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=h5EgGPVm4WtQrmT0wcNwLb1/9YJNLS2w6d18NQrshN4=;
-        b=PBjFqLnLVrlg4HIHAA83ypl9+efBowPxAevsjQQnG8DzWFZCPvTdE9KEXhj7MiXeFP
-         wHxlFtS3UzG9vHhjupbOGhmQi4nNfet9ei7LmbHNoGd8PkRYHzw+t1AuGPOZZ5gTTtuY
-         OE9TzUurr+eHetiKN6rCNp/q3mcWvqmId4oLTtf27OSWbqisnpEO7aWk8b6FpWq51Rxo
-         c0qdJUJhHuyxP48BtdTAQyCjK9T5YyYob25eoO/mKLuDzce53Lp8G60sXa5Dq8vAoGZL
-         ENnW4xs9IpJF1JePwQDndy4482Jv1c61NM2Pg0KEUKhvJQjt4AL0Pwj8SXdAbeKHiL9q
-         BQQw==
+        bh=gRO3O8xi78oTZptPglDpaTcSvMIXolMC3hbGjTWLEkE=;
+        b=rkd0hforclQhcWpTHlD5y8YCglbsV1/nuc3zv9uCelABf1vBJ1LqFZ4I+qy4C98y/D
+         wYR5H7xXkWZjWIZFtIW0tlS0NDcrkm2c3kuUcNg0JXqBsjJ4CSDL8WijhX1lDrseh8i/
+         W9fWE4EsOuWnLondke0Ky8FJZCOoFu7LZCM7otnHxNRafjATWM8gGK4mqhPVuQoZnvgs
+         mq2nbNDqwHfdSaakOwFlKOdhqNx0X+4JzmoAeBZjE7fb0oITN3Z+TPhnozzalJTjHvYF
+         7qKGHcFjEAWhz3zaO2h80PDy4pTX1QoXrQdUodADI4fo0/KCLiHAybrIX10rDpQERn52
+         GGGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=h5EgGPVm4WtQrmT0wcNwLb1/9YJNLS2w6d18NQrshN4=;
-        b=tEQrNIMxhTpPDS4JIBIf8Q/c5UgLWgUYUZm9TJyJTVg/xdO9idv4Cf/bnlLXjEIRiH
-         dSiX62II6cjwA4gk/dJZ9IAQ0lLW8LQ9NIzpNpZbI2bxeYAdO44hJPTAQ7oHv9WdBKIp
-         45ocO/byUfqa3p3izVzje7DzxvUuLM0qS4MnG4WK3huPDnXDq+kwGmYG8MqMekB0jZh2
-         pqrs1XWttzLQAUVZUaX2ukhTbRWlwU+ZYlfkKpVUtWu15y1OyZMECPZT5mjfE3o1EVnL
-         3AjWcgvg7Krs+3JhckyqNGKmdbYHqcwYIlzeI+6F8dsr6kBvDl8RAeNjLc+krI2V6fw5
-         Gihg==
-X-Gm-Message-State: ACrzQf2KIvB0ZpUYv3wDwkN0XwzDGv/e6adDprcMWvv7b46okmXAR2HX
-        9RWHZPR6M9aoF836JT7+KncnNw==
-X-Google-Smtp-Source: AMsMyM7WWzwvjZBfktTFkPyEkixiLQOffQtJBWZkxHjBUglRPsXdwgi1Zyj5wpjvUJwTQ98hIP06Gw==
-X-Received: by 2002:a05:6512:487:b0:4a2:2977:3a83 with SMTP id v7-20020a056512048700b004a229773a83mr88827lfq.88.1664981472385;
-        Wed, 05 Oct 2022 07:51:12 -0700 (PDT)
+        bh=gRO3O8xi78oTZptPglDpaTcSvMIXolMC3hbGjTWLEkE=;
+        b=swUYhsq4Bj68ZFtfXIYNo+8WzGu4rxI8NH9axG8SLCuQeiCEHXNLqBNRsmPfbDcE+r
+         mGtQaHnzsyH3ahOGnNdl/2LRwbcE60VfCxk4OkubPxWOyUzY/+T8uwjsE4w6VA1b9lfh
+         CuM7vmkpekXk4i/wVBBP+fDmz+Q261UEKLEEZZxIdfy9KkMHPmBOwVjgovAFLw68hpe/
+         ygqU/YOYLzPoW/YTr7/3ecb8mZoTp42TpLL8GfC3oLVJ7tIx4GJ/qWR/xfBBPz+H0gQj
+         GprLlBh8+pr+sbSYvzU8P82R4SBEE2mVPhuHq9VwHIUErFqJorp9REBvAuzj/bMp8/8e
+         z1sg==
+X-Gm-Message-State: ACrzQf05h3UWNVnaISuWSBk0JSPbLlylatJ7/5lTLSaxsKXU933FRxWk
+        WLXRVmfRrlgks8fbPWVrYw7xOA==
+X-Google-Smtp-Source: AMsMyM60sctRdKk2qXd9pHiqWJZhc+vjTpzAps80DCC6YisbGJKbNLJWVROzlZaDH/ZO0THjDUZAjQ==
+X-Received: by 2002:a2e:9649:0:b0:26d:e740:ea5 with SMTP id z9-20020a2e9649000000b0026de7400ea5mr5117ljh.363.1664981631600;
+        Wed, 05 Oct 2022 07:53:51 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q3-20020a0565123a8300b00499fe9ce5f2sm2369292lfu.175.2022.10.05.07.51.11
+        by smtp.gmail.com with ESMTPSA id b24-20020a05651c033800b0026dce0a5ca9sm1333111ljp.70.2022.10.05.07.53.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Oct 2022 07:51:11 -0700 (PDT)
-Message-ID: <c04cc64a-9fea-db34-b9ee-486b54fbc223@linaro.org>
-Date:   Wed, 5 Oct 2022 16:51:11 +0200
+        Wed, 05 Oct 2022 07:53:51 -0700 (PDT)
+Message-ID: <b628a3de-98a0-fa55-57d1-cd375fc8d4e4@linaro.org>
+Date:   Wed, 5 Oct 2022 16:53:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: power: supply: Add Richtek RT9467
- battery charger
+Subject: Re: [PATCH v1 17/17] drm/mediatek: Add mt8195-dpi support to drm_drv
 Content-Language: en-US
-To:     ChiaEn Wu <peterwu.pub@gmail.com>, sre@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     chiaen_wu@richtek.com, cy_huang@richtek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <cover.1664997251.git.chiaen_wu@richtek.com>
- <0a4a6dfcec35160bb89a932ff73bc2cc0bbd6555.1664997251.git.chiaen_wu@richtek.com>
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20220919-v1-0-4844816c9808@baylibre.com>
+ <20220919-v1-17-4844816c9808@baylibre.com>
+ <a0a3c427-c851-ae5d-4010-e94740bf9f6e@linaro.org>
+ <CABnWg9s3N_Ua9g0S3x0uj8PN4FtOX6DO+zQcBzGFqoLTL1J24A@mail.gmail.com>
+ <bc64b69d-3d65-f5ca-a688-2ad1a055ba4b@linaro.org>
+ <CABnWg9sJFBAXi1bu_yHDppFOmg=H=G7QTn9Bzqkr-t7qm5vUFw@mail.gmail.com>
+ <db1abf9d-ba40-f71c-0d37-c3912ac1bd8e@linaro.org>
+ <CABnWg9vOHWpdLPAFdXAG3GNgsxpbzgh2gTq_tm72Tk2uR54LaQ@mail.gmail.com>
+ <49daae86-e922-9a17-ebed-2a33a5eeb18e@linaro.org>
+ <CABnWg9sPuJQQOmLGDSgE86NCRh_3GqWZ0dFAs_J2PO9HCVbExQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0a4a6dfcec35160bb89a932ff73bc2cc0bbd6555.1664997251.git.chiaen_wu@richtek.com>
+In-Reply-To: <CABnWg9sPuJQQOmLGDSgE86NCRh_3GqWZ0dFAs_J2PO9HCVbExQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/10/2022 13:37, ChiaEn Wu wrote:
-> From: ChiaEn Wu <chiaen_wu@richtek.com>
+On 05/10/2022 11:34, Guillaume Ranquet wrote:
+> On Tue, 04 Oct 2022 17:05, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 04/10/2022 13:55, Guillaume Ranquet wrote:
+>>>> No. You said what the code is doing. I think I understand this. You
+>>>> still do not need more compatibles. Your sentence did not clarify it
+>>>> because it did not answer at all to question "why". Why do you need it?
+>>>>
+>>>> Sorry, the change looks not correct.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>>
+>>> I need a new compatible to adress the specifics of mt8195 in the mtk_dpi driver,
+>>> the change is in this series with:
+>>> [PATCH v1 16/17] drm/mediatek: dpi: Add mt8195 hdmi to DPI driver [1]
+>>
+>> But you do not have specifics of mt8195. I wrote it in the beginning.
+>>
+>>>
+>>> I then need to add that compatible to the "list" here in mtk_drm_drv.
+>>
+>> No, you do not... I checked the driver and there is no single need... or
+>> convince me you need.
+>>
+>>> I don't see a way around this unless I rewrite the way mtk_drm_drv works?
+>>
+>> Why rewrite? You have all compatibles in place.
+>>
+>>>
+>>> Maybe if I declare a new compatible that is generic to all mediatek
+>>> dpi variants?
+>>
+>> You were asked to use fallback. Don't create some fake fallbacks. Use
+>> existing ones.
+>>
+>>> and have all the dts specify the node with both the generic dpi and
+>>> the specific compatible?
+>>>
+>>> dpi@xxx {
+>>> 	compatible = "mediatek,dpi", "mediatek,mt8195-dpi";
+>>
+>> I don't know what's this but certainly looks odd. Some wild-card
+>> compatible in front (not fallback) and none are documented.
+>>
+>>> 	...
+>>> }
+>>>
+>>> Then I can "collapse" all the dpi related nodes in mtk_drm_drv under
+>>> "mediatek,dpi" ?
+>>>
+>>> I guess would have to do the change for all other components that are needed in
+>>> mtk_drm_drv (mmsys, aal, ccor, color, dither, dsc, gamma, mutex...).
+>>>
+>>> That's the only trivial way I can think of implementing this with the
+>>> current status
+>>> of the mtk_drm stack.
+>>>
+>>> Do you have any other ideas in mind?
+>>
+>> Use fallback of compatible device. That's the common pattern.
+>> Everywhere, Mediatek as well.
+>>
 > 
-> Add bindings for the Richtek RT9467 battery charger.
+> I'm unsure about what a "fallback of compatible device" is.
+> But from what I can gather, you'd have me write the dts as:
 > 
-> Co-developed-by: ChiYuan Huang <cy_huang@richtek.com>
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
-> ---
+> dpi@xxx {
+> 	compatible = "mediatek,mt8195-dpi", "mediatek,mt2701-dpi";
+> 	...
+> }
 
+Sounds reasonable. Just someone should check whether devices are
+actually compatible, because driver is just a hint.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> so that the mtk_dpi driver will use the specific mt8195 dpi config and
+> the mtk_drm driver will fallback to mt2701 to find the compatible it needs.
+> 
+> Would you like me to use this pattern for all the other compatibles declared
+> in the mtk_ddp_comp_ids array in separate patches?
+
+Could be for consistency, but it is up to you.
 
 Best regards,
 Krzysztof
