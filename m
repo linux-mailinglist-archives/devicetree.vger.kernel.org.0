@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25BA15F5A45
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 20:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D1FD5F5A54
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 21:05:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231195AbiJES67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 14:58:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38814 "EHLO
+        id S230283AbiJETFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 15:05:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231219AbiJES64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 14:58:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07F2A7FF80;
-        Wed,  5 Oct 2022 11:58:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A2B1C6177A;
-        Wed,  5 Oct 2022 18:58:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 990F8C433D6;
-        Wed,  5 Oct 2022 18:58:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664996335;
-        bh=AZxtBYB8j6Z/zGuXMZs1pYNDfoaFHW6kFA5IZNucOAg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YB9rGed3GsyoGFt6oTWcYDF+QckvGcX0PgBeml+JsOsuRVci/RQOn/CpAHV08o+AC
-         BMmSfpqyuWeNqfe8K0ROqkVg/+dOC22ZAiad4PXdys/0eAisAMX7NBGH5GJEMYq+ch
-         PtPVHbGIKl6XI/T/avDgYzJctIrA7Id9LOMH69MAgNnouNQYYW9EXWmE91+hjm5vz/
-         0boEtezFAsZaoaWBY8KSPd8UaY23V8WYO0c4Vml5AWk6Vg4CpTsk8nonhFl+uun4/I
-         7XlxrJzeAuQWuA6BDvlRsmgMXntz6yPOT7r6nWqPyoR06PXbEYvz4eaH3cIQgXRUW1
-         dr2i+r0vLETdg==
-Date:   Wed, 5 Oct 2022 20:58:50 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Matti =?utf-8?Q?Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/6] dt-bindings: i2c: qcom,i2c-cci: Document clocks
- for MSM8974
-Message-ID: <Yz3T6uTHKTiy2Atg@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Matti =?utf-8?Q?Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221002122859.75525-1-matti.lehtimaki@gmail.com>
- <20221002122859.75525-4-matti.lehtimaki@gmail.com>
+        with ESMTP id S230416AbiJETFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 15:05:05 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1FD5B1C2
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 12:05:03 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id c9so21371630ybf.5
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 12:05:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=2cJirH90HW7xVCysl0fto1HgX5uh1AW5BZAitKF9mvk=;
+        b=AVtlJeP1pvxBh/ZFwpxCpZ05pLHmDwnwthLnHgoGADKQozH+n2jfOUfw4GinGuY+yR
+         dQS2mG/UBsto1AWgjRY7Nfpj6fh66iRnsCmtUM6nnpYr9JTkdzTsHDkkwq2Yrf+Sqoal
+         9G0ATAFTP0ia3enyvnVnndt1MaLHbEZ0w+4hwwPOz1ixuxatt1m8OynVxrxKhpnymC9o
+         kHwCoq4afhhs7MpnIHyUT9q1fpaLWLRHgB2l3CnfmDopfN3964kPNipbKvrcU0e9Mv+i
+         Tn7iZLE1vNVDSv5VSwi1UUvhGhniRx73HBL/bSJFCXyCHPE3RjnyTKaJdWR73shqiVo3
+         aXIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=2cJirH90HW7xVCysl0fto1HgX5uh1AW5BZAitKF9mvk=;
+        b=hITgSxTqW6OTk5xTKJRFbLjbru980t84sJfbKl7+9THGrtevLrDZykiCOfU3e0+63R
+         d7JpWdizgfFDdgvOSmTNxVCECyP0n/1lmsgJRrLf3Jzq+A2Qx0AYsxi1SQ7uf0duGGsx
+         cdC98DncpqUSp3ensFlFJ2rxmTrIlaKZeOAFY1s9fNkXop9DkLHIXkud2Xo3i3guAPGa
+         DT4MLW2Ys7XFl0ruhdsqtM1j96aUlh6MjmBiiWCJW6bIcMSjCtLDU5AGHLZxVKjQWpzl
+         7fdcstVSu2GPs9zFsuqnBTzKwLN2syD5dB5x1JJf7D62kQCTMA+82hwWUr0GwCfT0oOq
+         Covg==
+X-Gm-Message-State: ACrzQf2A1tV17iSfzcWIHv2Zfg+CyCfWbu1JYmOC4J4YFH2HE4rzzbj5
+        FMSQrhL+4PC/Naefx4Y9QucvWZtlTvPe1PorS+RzOc6QVsA=
+X-Google-Smtp-Source: AMsMyM7Ryt6r8FGgpTov5nWzlPI52smWYCBkNF2hYk+i7FdQkz8uKfgOMr/HZ/4NTZsTwXir7+Nr5UMDJhvEUSW0EAA=
+X-Received: by 2002:a05:6902:102e:b0:6bd:bdd2:ac32 with SMTP id
+ x14-20020a056902102e00b006bdbdd2ac32mr1369818ybt.516.1664996702969; Wed, 05
+ Oct 2022 12:05:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4/X/2G7AgItRvEd/"
-Content-Disposition: inline
-In-Reply-To: <20221002122859.75525-4-matti.lehtimaki@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20220930231416.925132-1-dmitry.baryshkov@linaro.org>
+ <a743d50f-fc59-161e-c98f-f10b26e2afe5@linaro.org> <CAA8EJpo9kSs_h28SneAwQ0FLHJ0PipmbQRm791hb-vHtGwXwDQ@mail.gmail.com>
+ <4bc9033c-624e-bafb-a6f7-3915a1b27664@gmail.com>
+In-Reply-To: <4bc9033c-624e-bafb-a6f7-3915a1b27664@gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 5 Oct 2022 22:04:51 +0300
+Message-ID: <CAA8EJppRRSqLfpq1HMkubB4EErtWpOVJ7Zikwtuqjz2NXMsr8g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: soc: qcom: qcom,spm: support regulator SAW2 devics
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,38 +72,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 5 Oct 2022 at 16:50, Robert Marko <robimarko@gmail.com> wrote:
+>
+>
+> On 02. 10. 2022. 14:20, Dmitry Baryshkov wrote:
+> > On Sun, 2 Oct 2022 at 11:49, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >> On 01/10/2022 01:14, Dmitry Baryshkov wrote:
+> >>> Merge qcom,saw2.txt bindings to existing qcom,spm.yaml. This fixes
+> >>> compatibility of qcom,spm schema with regulator SAW2 devices.
+> >>>
+> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >>> ---
+> >>>   .../devicetree/bindings/arm/msm/qcom,saw2.txt | 58 -------------------
+> >>>   .../bindings/soc/qcom/qcom,spm.yaml           | 44 +++++++++-----
+> >> You need to update reference in
+> >> Documentation/devicetree/bindings/arm/cpus.yaml
+> > ack
+> >
+> >>>   2 files changed, 30 insertions(+), 72 deletions(-)
+> >>>   delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt b/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+> >>> deleted file mode 100644
+> >>> index c0e3c3a42bea..000000000000
+> >>> --- a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+> > [skipped]
+> >
+> >>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+> >>> index f433e6e0a19f..8fe35fde70b8 100644
+> >>> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+> >>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+> >>> @@ -16,23 +16,33 @@ description: |
+> >>>
+> >>>   properties:
+> >>>     compatible:
+> >>> -    items:
+> >>> -      - enum:
+> >>> -          - qcom,sdm660-gold-saw2-v4.1-l2
+> >>> -          - qcom,sdm660-silver-saw2-v4.1-l2
+> >>> -          - qcom,msm8998-gold-saw2-v4.1-l2
+> >>> -          - qcom,msm8998-silver-saw2-v4.1-l2
+> >>> -          - qcom,msm8909-saw2-v3.0-cpu
+> >>> -          - qcom,msm8916-saw2-v3.0-cpu
+> >>> -          - qcom,msm8226-saw2-v2.1-cpu
+> >>> -          - qcom,msm8974-saw2-v2.1-cpu
+> >>> -          - qcom,apq8084-saw2-v2.1-cpu
+> >>> -          - qcom,apq8064-saw2-v1.1-cpu
+> >>> +    oneOf:
+> >>>         - const: qcom,saw2
+> >> I understand old bindings had it, but I don't think we really want to
+> >> support the generic compatible on its own. Even old bindings indicated
+> >> that there are several differences between SAWs.
+> >>
+> >> Especially confusing is that once qcom,saw2 can be alone and in other
+> >> cases must be preceded by specific compatible. IOW, you allow for
+> >> apq8064 two cases:
+> >>
+> >> 1. qcom,apq8064-saw2-v1.1-cpu, qcom,saw2
+> >> 2. qcom,saw2
+> >>
+> >> I think we should instead add everywhere specific compatibles.
+> > I see your point. Yes, it's probably worth doing that.
+> >
+> > Robert, Christian, can you possibly check the version of the SAW2 used
+> > on ipq4019 and ipq8064? It can be read from the SPM block at the
+> > register offset 0xfd0.
+>
+> Hi, I completely missed this so far, sorry about that.
 
---4/X/2G7AgItRvEd/
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+No problem.
 
-On Sun, Oct 02, 2022 at 03:28:55PM +0300, Matti Lehtim=C3=A4ki wrote:
-> Uses same clocks as MSM8226.
->=20
-> Signed-off-by: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
+>
+> I checked from U-boot on multiple SAW blocks on IPQ4019 and it looks to
+> be v3.0:
+> (IPQ40xx) # md.l 0xB0B9FD0 1
+> 0b0b9fd0: 30000000    ...0
+> (IPQ40xx) # md.l 0xB089FD0 1
+> 0b089fd0: 30000000    ...0
+> (IPQ40xx) # md.l 0xB099FD0 1
+> 0b099fd0: 30000000    ...0
+> (IPQ40xx) # md.l 0xB0A9FD0 1
+> 0b0a9fd0: 30000000    ...0
 
-Applied to for-current, thanks!
+Thanks, this looks like v2.3.
+
+>
+> IPQ8064 is a bit weird, both SAW-s from DTS show all zeros:
+> (IPQ) # md.l 0x2089FD0 1
+> 02089fd0: 00000000    ....
+> (IPQ) # md.l 0x2099FD0 1
+> 02099fd0: 00000000    ....
+
+Hmm, I guess then it didn't have this register. As the rest of
+kpss/acc follows apc8064 design, I'd assume that SAW2 also follows
+apq8064 with the version 1.1
+
+>
+> However some old datasheet says: 0x02011FD0 APCS_VERSION
+>
+> (IPQ) # md.l 0x02011FD0 1
+> 02011fd0: 10010000    ....
+
+This is a part of l2cc, rather than SAW.
+
+>
+> But It also says that minor and step are both bits 15:0 which makes no
+> sense.
+>
 
 
---4/X/2G7AgItRvEd/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmM90+oACgkQFA3kzBSg
-KbawDw/8DKVQ+9RZE0plB4cd01sqJFQno6fQBVMf6NGG6HCM4wJlJJ4PR5imbmXQ
-Vz5N3eKD+Ji1jyeNyzq/afUO5VrcuyZ87wYtGR2FolYEwt+YrjnLC24IOeNPBB5/
-b7rhBQiKlqflPzT1Dff5pCP+RF79HyuMNrzMVwETeXF9QwucjiFJF80lKzMPJIIJ
-ix9WH2MPEUdRg4AEKQ1Puarxwb2t07bjIOrT7bn7OplUnb540N1r4hwc2Jl4rBUc
-GMCihIo6vDKO0yqS7R2pm+H9I2mzEI5Y2VEbSuG1tYFnYj/kKcFm+gL5rUacv0Wn
-bBi7J40Pq+YSZwinCwxW3iNsoFfASH1nnJHya08T+iHz6xqCayzCafFfGYhJBe5e
-i72nrJ1E96b3aQg9DyCvr+xMpTuxUHnng+6+5WbQGsOtTqSlKyJPvhmWCBrZmm75
-Bp42Lor8QVaobbpwiZo6Pth5Ck0vof77qniSRG6k/W+vSRGSKpxZF2FHPm+dQiIo
-UO9uQUDtBdreb7/f7MG78iIYnMuFRaJEeOxMLXGlDtieaylWa2QaBwegRIE+2ckv
-q4LHd69MFrZxZ8H/c0S8dZ7A55zzzp2ErzkYGfOZN6Lpyvoji6dzAXCKtNAXHHdM
-RGl9AVUuNcPVnfExyoqlZwZjAL+xH6ZkikRVa/aWxqm7oAr33KA=
-=vjMx
------END PGP SIGNATURE-----
-
---4/X/2G7AgItRvEd/--
+-- 
+With best wishes
+Dmitry
