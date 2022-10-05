@@ -2,203 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61B635F5C8E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 00:13:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 552265F5CA2
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 00:24:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229694AbiJEWNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 18:13:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39550 "EHLO
+        id S229659AbiJEWYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 18:24:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbiJEWNA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 18:13:00 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15408321F
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 15:12:57 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id j7so22473996wrr.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 15:12:57 -0700 (PDT)
+        with ESMTP id S229566AbiJEWYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 18:24:01 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 439B23FD50;
+        Wed,  5 Oct 2022 15:24:00 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id d196so3449729iof.11;
+        Wed, 05 Oct 2022 15:24:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=MuQJZUiYgsrv6ydPrE/ryH64TRoc2yWi4dM3ARWJNR4=;
-        b=S6BifuCtg7j9Yg/lQuw1lNviDWh59FRm5YLJA3VIdpwkWkCXro7gQlvvYPOTWyH4gU
-         T7nUGm//z73JpFf8OKGrFLYTNY6vva50NG3tsnA+yN3M66zC+cgyvaNrhCKdY5CUdczu
-         kV6RD4cbZjg4mUyObTnA3dfsi8NlBsxASXgbaZQqHpMtDVas0f99mnSX5O6Pz0JYFiGt
-         XaHLdTQJA2/HMMa3+Wda5HwmaQLoYTyOHVHObjDUFINEPxDZ/dyBiKQeuAsmFyr/uPVW
-         jaWgW8dd5+ltqixppG5TjxvF/uKmn5m8a+1iTdeQRdi0R80qR7ytDy5G54xS7TfgoRyT
-         QJ8w==
+        bh=PBQAdfl2FcAetVP79a7BmHKTI8rOne6a7XU+buA6PoY=;
+        b=EfQPNvrc7V4w8OaySbDv7YpELz+xohw9/TTNwDYU3HP3P9xxjHQKPAqHpLbZX7RyAM
+         wF0KaspbxNfMgpvjTiIUjsz44otXYrQqNS5ZtKEcR4JJQmPWZuogTB+MojMg8MyyD5GW
+         IxOM+aTdqagyOjpaApZH/KxPYAoCrRPA9e2NF/aFSal8eBbG4oS2rqai/94ulPnNpY8t
+         h6745mj2Dr6Hyg0y+cd3ZPHAbwdLIEoHM4WIIgRboHZilPaT/GVln7PxphtF+UwL6jZz
+         Sr+Cl98lMbjPtkrfVATIYzwNz8nJHulA6EqPKa6jnXZcnFhpCCiJW08GSgsJHMnXqy1U
+         gnYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=MuQJZUiYgsrv6ydPrE/ryH64TRoc2yWi4dM3ARWJNR4=;
-        b=q1qjFpJqwGc2kXQGdL2ELxmw+caD6kiOiELj2odh2+DJk3xBPoAK52SE+JjnrYIyGG
-         4WibZXB0o3MtmvL3SDOPTYfLjzEu8vnF5JmzzopbKB3LpuZdxLirr1Ofa6uubutR0D8l
-         0qg+2QwLJ9gc7y/8pFkAx7ryP3HCUxphHdJ0NgRp3JwhFTFNbo5mufgEdivPN1K+zqby
-         dLlo8GPkW+zLbKbcwBTtOGv5yJd//37GwKx8JnKjTZOjzQcR2v5plHCcW1ybxSFxUU8z
-         v8dCtdraKfTv2vh95ps6TA1p6mYebC4n67SlDwDVT8Fak/5OmpAn/giXv8xtHQZnpNI0
-         fqMA==
-X-Gm-Message-State: ACrzQf3uvWHg2D88BsGxt3u3kbjJwHPnQxbkdaDEwbk52udxNL7zxYYO
-        6+n5CZ9vqqCrRuHKCGOapSD/xA==
-X-Google-Smtp-Source: AMsMyM7k19FwtuqbY+riimgVPEMXQz/6JQL+rFU+kGr25+GC0WrX1Vhu5mmN57nPcKuJoROVKUDLlQ==
-X-Received: by 2002:a5d:6a42:0:b0:22e:6706:647b with SMTP id t2-20020a5d6a42000000b0022e6706647bmr1070556wrw.58.1665007977246;
-        Wed, 05 Oct 2022 15:12:57 -0700 (PDT)
-Received: from rainbowdash.. (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
-        by smtp.gmail.com with ESMTPSA id d2-20020adffd82000000b0022e327f849fsm12184437wrr.5.2022.10.05.15.12.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Oct 2022 15:12:56 -0700 (PDT)
-From:   Ben Dooks <ben.dooks@sifive.com>
-To:     linux-pwm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        Ben Dooks <ben.dooks@sifive.com>
-Subject: [PATCH v5 10/10] pwm: dwc: use clock rate in hz to avoid rounding issues
-Date:   Wed,  5 Oct 2022 23:12:42 +0100
-Message-Id: <20221005221242.470734-11-ben.dooks@sifive.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221005221242.470734-1-ben.dooks@sifive.com>
-References: <20221005221242.470734-1-ben.dooks@sifive.com>
+        bh=PBQAdfl2FcAetVP79a7BmHKTI8rOne6a7XU+buA6PoY=;
+        b=Iu1GTfe0TdAL7zQddFpBbc19s3u+ZM5O+gv8YYv31lbILlzwpD6G1ac44kjGaWUNPM
+         7OKl4OGHkW6bfFkcWOPG7Upcp+iVayW6DL4/mFGyQPOrOumzH9ax86jQV9UZ7tiWaG08
+         yTzDWCAHyV4Tyns/i5VIiiDBBYqaqAO17vQbPSN/2EYIFj/601mFyehtKuPL27V1XvxZ
+         5xVeOtq8Irr3koRNqDXv4q+33bS5l4KsOwOt7HuUEWD3UgMag5+yR6Cu4VCuyhCu8k9O
+         FyddoZ7wyw6cpnFQwL1s4/NJarnPplhBUEAkX4+l7r79HdmPLnIca5pOQztlbEjHcky+
+         prWg==
+X-Gm-Message-State: ACrzQf26vxjnS2zZjTe9x14RIQe5Aq5jOl7573cQQvWmDvO6dD5+hRQ1
+        9gu9qx/cU01ROluc4/bZpZA=
+X-Google-Smtp-Source: AMsMyM7FIvBR83b1QCpIUMkydqEgN/EL2pCkEn7iksPhOacYbTA6KLg0RuDK+9b5o9pO4lBlHVgEiQ==
+X-Received: by 2002:a02:6d04:0:b0:363:39b7:faa3 with SMTP id m4-20020a026d04000000b0036339b7faa3mr885328jac.156.1665008639719;
+        Wed, 05 Oct 2022 15:23:59 -0700 (PDT)
+Received: from localhost ([2607:fea8:a2e2:2d00::cb3])
+        by smtp.gmail.com with UTF8SMTPSA id q18-20020a0566380ed200b0036241880dc0sm4926104jas.148.2022.10.05.15.23.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Oct 2022 15:23:59 -0700 (PDT)
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v7 3/3] pinctrl: qcom: add sdm670 pinctrl
+Date:   Wed,  5 Oct 2022 18:23:50 -0400
+Message-Id: <20221005222350.47420-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.38.0
+In-Reply-To: <1ed91afd-74d2-1ab0-0d15-1b6e0dfba13b@linaro.org>
+References: <20221004215814.11694-1-mailingradian@gmail.com> <20221004215814.11694-4-mailingradian@gmail.com> <1ed91afd-74d2-1ab0-0d15-1b6e0dfba13b@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As noted, the clock-rate when not a nice multiple of ns is probably
-going to end up with inacurate caculations, as well as on a non pci
-system the rate may change (although we've not put a clock rate
-change notifier in this code yet) so we also add some quick checks
-of the rate when we do any calculations with it.
+> On 04/10/2022 23:58, Richard Acayan wrote:
+> > The Snapdragon 670 has a Top-Level Mode Multiplexer (TLMM) for various
+> > features. Add a driver to support it.
+> 
+> (...)
+> 
+> > +
+> > +const int sdm670_reserved_gpios[] = {
+> > +	58, 59, 60, 61, 62, 63, 64, 69, 70, 71, 72, 73, 74, 104, -1
+> > +};
+> > +
+> > +static const struct msm_pinctrl_soc_data sdm670_pinctrl = {
+> > +	.pins = sdm670_pins,
+> > +	.npins = ARRAY_SIZE(sdm670_pins),
+> > +	.functions = sdm670_functions,
+> > +	.nfunctions = ARRAY_SIZE(sdm670_functions),
+> > +	.groups = sdm670_groups,
+> > +	.ngroups = ARRAY_SIZE(sdm670_groups),
+> > +	.ngpios = 151,
+> > +	.reserved_gpios = sdm670_reserved_gpios,
+> > +	.complement_fw_gpio_ranges = true,
+> 
+> This still fails to build... v6 was not compilable, v7 is still.
 
-Signed-off-by; Ben Dooks <ben.dooks@sifive.com>
-Reported-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- drivers/pwm/pwm-dwc-of.c |  2 +-
- drivers/pwm/pwm-dwc.c    | 29 ++++++++++++++++++++---------
- drivers/pwm/pwm-dwc.h    |  2 +-
- 3 files changed, 22 insertions(+), 11 deletions(-)
+Sorry, I only see the problem with complement_fw_gpio_ranges being removed from
+the struct and not being removed here (in v7). Is there another issue that
+affected v6?
 
-diff --git a/drivers/pwm/pwm-dwc-of.c b/drivers/pwm/pwm-dwc-of.c
-index c5b4351cc7b0..5f7f066859d4 100644
---- a/drivers/pwm/pwm-dwc-of.c
-+++ b/drivers/pwm/pwm-dwc-of.c
-@@ -50,7 +50,7 @@ static int dwc_pwm_plat_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(dwc->clk),
- 				     "failed to get timer clock\n");
- 
--	dwc->clk_ns = NSEC_PER_SEC / clk_get_rate(dwc->clk);
-+	dwc->clk_rate = clk_get_rate(dwc->clk);
- 	return devm_pwmchip_add(dev, &dwc->chip);
- }
- 
-diff --git a/drivers/pwm/pwm-dwc.c b/drivers/pwm/pwm-dwc.c
-index 5ef0fe7ea3e9..f48a6245a3b5 100644
---- a/drivers/pwm/pwm-dwc.c
-+++ b/drivers/pwm/pwm-dwc.c
-@@ -43,18 +43,22 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
- 	u32 high;
- 	u32 low;
- 
-+	if (dwc->clk)
-+		dwc->clk_rate = clk_get_rate(dwc->clk);
-+
- 	/*
- 	 * Calculate width of low and high period in terms of input clock
- 	 * periods and check are the result within HW limits between 1 and
- 	 * 2^32 periods.
- 	 */
--	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, dwc->clk_ns);
-+	tmp = state->duty_cycle * dwc->clk_rate;
-+	tmp = DIV_ROUND_CLOSEST_ULL(tmp, NSEC_PER_SEC);
- 	if (tmp < 1 || tmp > (1ULL << 32))
- 		return -ERANGE;
- 	low = tmp - 1;
- 
--	tmp = DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
--				    dwc->clk_ns);
-+	tmp = (state->period - state->duty_cycle) * dwc->clk_rate;
-+	tmp = DIV_ROUND_CLOSEST_ULL(tmp, NSEC_PER_SEC);
- 	if (tmp < 1 || tmp > (1ULL << 32))
- 		return -ERANGE;
- 	high = tmp - 1;
-@@ -120,6 +124,7 @@ static void dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 			      struct pwm_state *state)
- {
- 	struct dwc_pwm *dwc = to_dwc_pwm(chip);
-+	unsigned long clk_rate;
- 	u64 duty, period;
- 	u32 ctrl, ld, ld2;
- 
-@@ -129,22 +134,28 @@ static void dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	ld = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
- 	ld2 = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
- 
-+	if (dwc->clk)
-+		dwc->clk_rate = clk_get_rate(dwc->clk);
-+
-+	clk_rate = dwc->clk_rate;
- 	state->enabled = !!(ctrl & DWC_TIM_CTRL_EN);
- 
- 	/* If we're not in PWM, technically the output is a 50-50
- 	 * based on the timer load-count only.
- 	 */
- 	if (ctrl & DWC_TIM_CTRL_PWM) {
--		duty = (ld + 1) * dwc->clk_ns;
--		period = (ld2 + 1)  * dwc->clk_ns;
-+		duty = ld + 1;
-+		period = ld2 + 1;
- 		period += duty;
- 	} else {
--		duty = (ld + 1) * dwc->clk_ns;
-+		duty = ld + 1;
- 		period = duty * 2;
- 	}
- 
--	state->period = period;
--	state->duty_cycle = duty;
-+	duty *= NSEC_PER_SEC;
-+	period *= NSEC_PER_SEC;
-+	state->period = DIV_ROUND_CLOSEST_ULL(period, clk_rate);
-+	state->duty_cycle = DIV_ROUND_CLOSEST_ULL(duty, clk_rate);
- 	state->polarity = PWM_POLARITY_INVERSED;
- 
- 	pm_runtime_put_sync(chip->dev);
-@@ -164,7 +175,7 @@ struct dwc_pwm *dwc_pwm_alloc(struct device *dev)
- 	if (!dwc)
- 		return NULL;
- 
--	dwc->clk_ns = 10;
-+	dwc->clk_rate = NSEC_PER_SEC / 10;
- 	dwc->chip.dev = dev;
- 	dwc->chip.ops = &dwc_pwm_ops;
- 	dwc->chip.npwm = DWC_TIMERS_TOTAL;
-diff --git a/drivers/pwm/pwm-dwc.h b/drivers/pwm/pwm-dwc.h
-index dc451cb2eff5..19bdc2224690 100644
---- a/drivers/pwm/pwm-dwc.h
-+++ b/drivers/pwm/pwm-dwc.h
-@@ -41,7 +41,7 @@ struct dwc_pwm {
- 	struct pwm_chip chip;
- 	void __iomem *base;
- 	struct clk *clk;
--	unsigned int clk_ns;
-+	unsigned long clk_rate;
- 	struct dwc_pwm_ctx ctx[DWC_TIMERS_TOTAL];
- };
- #define to_dwc_pwm(p)	(container_of((p), struct dwc_pwm, chip))
--- 
-2.35.1
-
+> 
+> Best regards,
+> Krzysztof
