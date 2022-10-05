@@ -2,54 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12A2E5F5C6B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 00:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 130915F5C75
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 00:12:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229847AbiJEWIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 18:08:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60372 "EHLO
+        id S229545AbiJEWMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 18:12:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbiJEWIu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 18:08:50 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB00982D08;
-        Wed,  5 Oct 2022 15:08:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 40A20B81F6B;
-        Wed,  5 Oct 2022 22:08:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74CC1C433C1;
-        Wed,  5 Oct 2022 22:08:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665007726;
-        bh=gKOVo4rUV9LgPwc755tdGNCMqjAmEyTDy12BI9mdJXg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=KJDFnz6vlfEd1fwDXYA/yBOB/hH4FpuL8bV55dTUZqTb/qL4OqfQOcKd/uSALm1GS
-         7q8u7gYql5IkId3wXpD06IzD3X8zkEHTLvFRWliHopytXGh+kZ7dYnnBm2mpelAo3r
-         oN2GbX1wNcldGi/LVSfp69PzACaYqzn6LzBSulqKnyDXxmFxOLjzBRmhw1M30K+4bE
-         9UVTBH1TUcWsblFVHA1LFct46LuS4NVCkBS5jMgWtZqiWDSD3BiuCGnNDW/bCEahBX
-         jkxZTaiPwKZacVmGmJVAN6R72Nn3xwBOGVeVaUbYpk75D7YJjKb3dIxXYs05SGjE/2
-         QPsc7zCc2jXIg==
-Date:   Wed, 5 Oct 2022 17:08:38 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org,
-        kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org,
-        Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Subject: Re: [PATCH v4 06/12] PCI: qcom-ep: Gate Master AXI clock to MHI bus
- during L1SS
-Message-ID: <20221005220838.GA2400326@bhelgaas>
+        with ESMTP id S229567AbiJEWMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 18:12:48 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22B0D83207
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 15:12:47 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id w18so19090287wro.7
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 15:12:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=ihn1c1dcXl4OV9zInkSHKqtzyH5iqpIvuzLLVJlBQKg=;
+        b=TVykR+11Ol944ioog+ZWYqIfcv4YGosJc2jnB3ricb7zGkZyXvliJAipSOL9kB8kkx
+         TByqj7Ie0MNmls48enloFT8M2/Nw5PMpqSuoi5pXUFWp4QAXsyHK8/7UZvIk7iwTTsaj
+         NHGE4kWAjY6uTgF5t7nkpZwUhGbeFThIm04T18wr1ohymDeuFDAqQYASAR4OCyIPGyn2
+         ag7QLouzCq5kcCwwV05EzXemoV7H+7DPxt1d7If724S5+ntxYw9p4DoWVGXJoBBmwT75
+         wQwwqBaoCBMzUfXs+HrmyUAKoLDUmNfqqBq8yHB6089+p0tFovmMJ7oIpTFV9z8zJl5p
+         OgdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=ihn1c1dcXl4OV9zInkSHKqtzyH5iqpIvuzLLVJlBQKg=;
+        b=z//HUhTPy5hlRGFeMRPJcQLHkRf833X8tPfdTCe60NxvopKI9v76HdjTZe79WhFC+h
+         bZqYIBxvqhV0adeZD/Klr/K2BR9wX6HBs3jsjPRkIjr5nFd80Qrz3M6CSYeV/uIXFE1f
+         bRk/s89GsGFD7MWoGfo/JJtQKikd70QfWFucGPvTWBzwey6ENn0yaSnJhwNkNrzTF8cU
+         BtSGf4SR/rIX5ToWpnK3w2TXZXQp8ztHTim8/q+PGnrLhnpaaK8DPgiww237U9eXf9B0
+         CXqrHUj/TAPTqVr4f63i+MrGwagAh1rERSYsrzWljwJGnsenoYHnDETyPazSiKHMoD1h
+         Om+g==
+X-Gm-Message-State: ACrzQf1F4kYc0E7RV0TQdSvGW4uNVlHXSqkETc38QRIojJyuFQe/IY+m
+        19/jmq92S/7xuwOuDrwxJVzE3g==
+X-Google-Smtp-Source: AMsMyM5Bk0Tz5kvrBToNKnI9m19qc2ynG08QFn559+JEQbsLWPS+FkzMgHWdyGxp2aMYtAdbCPh5uA==
+X-Received: by 2002:a05:6000:1f8f:b0:22e:627d:855c with SMTP id bw15-20020a0560001f8f00b0022e627d855cmr1036099wrb.468.1665007965538;
+        Wed, 05 Oct 2022 15:12:45 -0700 (PDT)
+Received: from rainbowdash.. (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id d2-20020adffd82000000b0022e327f849fsm12184437wrr.5.2022.10.05.15.12.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Oct 2022 15:12:44 -0700 (PDT)
+From:   Ben Dooks <ben.dooks@sifive.com>
+To:     linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Ben Dooks <ben.dooks@sifive.com>
+Subject: [PATCH v5 00/10] Designware PWM driver updates
+Date:   Wed,  5 Oct 2022 23:12:32 +0100
+Message-Id: <20221005221242.470734-1-ben.dooks@sifive.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220914075350.7992-7-manivannan.sadhasivam@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,59 +75,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[+cc Krishna]
+This is an updated version of the Designware PWM driver updates
+for OF support, which now splits the driver into PCI and OF parts
+as well as tries to sort out the review comments.
 
-On Wed, Sep 14, 2022 at 01:23:44PM +0530, Manivannan Sadhasivam wrote:
-> During L1SS, gate the Master clock supplied to the MHI bus to save power.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom-ep.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> index 2dc6d4e44aff..526e98ea23f6 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> @@ -27,6 +27,7 @@
->  #define PARF_SYS_CTRL				0x00
->  #define PARF_DB_CTRL				0x10
->  #define PARF_PM_CTRL				0x20
-> +#define PARF_MHI_CLOCK_RESET_CTRL		0x174
->  #define PARF_MHI_BASE_ADDR_LOWER		0x178
->  #define PARF_MHI_BASE_ADDR_UPPER		0x17c
->  #define PARF_DEBUG_INT_EN			0x190
-> @@ -89,6 +90,9 @@
->  #define PARF_PM_CTRL_READY_ENTR_L23		BIT(2)
->  #define PARF_PM_CTRL_REQ_NOT_ENTR_L1		BIT(5)
->  
-> +/* PARF_MHI_CLOCK_RESET_CTRL fields */
-> +#define PARF_MSTR_AXI_CLK_EN			BIT(1)
-> +
->  /* PARF_AXI_MSTR_RD_HALT_NO_WRITES register fields */
->  #define PARF_AXI_MSTR_RD_HALT_NO_WRITE_EN	BIT(0)
->  
-> @@ -394,6 +398,11 @@ static int qcom_pcie_perst_deassert(struct dw_pcie *pci)
->  		       pcie_ep->parf + PARF_MHI_BASE_ADDR_LOWER);
->  	writel_relaxed(0, pcie_ep->parf + PARF_MHI_BASE_ADDR_UPPER);
->  
-> +	/* Gate Master AXI clock to MHI bus during L1SS */
-> +	val = readl_relaxed(pcie_ep->parf + PARF_MHI_CLOCK_RESET_CTRL);
-> +	val &= ~PARF_MSTR_AXI_CLK_EN;
-> +	val = readl_relaxed(pcie_ep->parf + PARF_MHI_CLOCK_RESET_CTRL);
+I think I have sorted all the review comments out, but this has been
+rather difficult to find time to finish due to other work and being
+ill.
 
-Is this code executed when the link actually transitions to L1.x, or
-is this just configuring things so that when the link does transition
-to L1.x sometime later, hardware will gate the Master AXI clock?
+Series history;
 
-Just curious because this looks more like *configuration*, i.e., the
-latter, but there's the ongoing conversation about qcom system
-suspend/resume, where IIUC, software is involved at least in some
-L1.2 exits.
+v5:
+ - fixed kconfig string error
+ - merged pwm-nr into main of code
+ - split of code from pci code
+ - updated pwm-nr capping
+ - fix duplicate error reporting in of-code
+ - fix return in of-probe
+ - remove unecessary remove function as devm_ functions sort this
+ - fixed ordering of properties
+ - added missing reg item
+ - fixed missing split of the two clock sources.
+ - get bus clock in of code
+v4:
+ - split pci and of into new modules
+ - fixup review comments
+ - fix typos in dt-bindings
+v3:
+- change the compatible name
+- squash down pwm count patch
+- fixup patch naming
+v2:
+- fix #pwm-cells count to be 3
+- fix indetation 
+- merge the two clock patches
+- add HAS_IOMEM as a config dependency
 
->  	dw_pcie_ep_init_notify(&pcie_ep->pci.ep);
->  
->  	/* Enable LTSSM */
-> -- 
-> 2.25.1
-> 
+Ben Dooks (10):
+  dt-bindings: pwm: Document Synopsys DesignWare
+    snps,pwm-dw-apb-timers-pwm2
+  pwm: dwc: allow driver to be built with COMPILE_TEST
+  pwm: dwc: change &pci->dev to dev in probe
+  pwm: dwc: move memory alloc to own function
+  pwm: dwc: use devm_pwmchip_add
+  pwm: dwc: split pci out of core driver
+  pwm: dwc: make timer clock configurable
+  pwm: dwc: add of/platform support
+  pwm: dwc: add PWM bit unset in get_state call
+  pwm: dwc: use clock rate in hz to avoid rounding issues
+
+ .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml |  68 ++++++
+ drivers/pwm/Kconfig                           |  24 +-
+ drivers/pwm/Makefile                          |   2 +
+ drivers/pwm/pwm-dwc-of.c                      |  76 +++++++
+ drivers/pwm/pwm-dwc-pci.c                     | 134 +++++++++++
+ drivers/pwm/pwm-dwc.c                         | 210 ++++--------------
+ drivers/pwm/pwm-dwc.h                         |  59 +++++
+ 7 files changed, 402 insertions(+), 171 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
+ create mode 100644 drivers/pwm/pwm-dwc-of.c
+ create mode 100644 drivers/pwm/pwm-dwc-pci.c
+ create mode 100644 drivers/pwm/pwm-dwc.h
+
+-- 
+2.35.1
+
