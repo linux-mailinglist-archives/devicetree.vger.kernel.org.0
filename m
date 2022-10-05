@@ -2,225 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 022275F5D39
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 01:29:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C0725F5D5D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 01:53:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbiJEX3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 19:29:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60840 "EHLO
+        id S229484AbiJEXxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 19:53:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbiJEX3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 19:29:48 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8553AFAFC
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 16:29:46 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id 2so315283pgl.7
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 16:29:46 -0700 (PDT)
+        with ESMTP id S229508AbiJEXxO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 19:53:14 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA47B7C76C;
+        Wed,  5 Oct 2022 16:53:12 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id e20so177918qts.1;
+        Wed, 05 Oct 2022 16:53:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VZFRNQd/zap407HixVlnEcklt9OLciYGy385OrpA0Zk=;
-        b=c5wS0ZuyHg3OwsXTrpdT4Nf5/+5b7YOZJqCrJ3xFmjx6FwE2wrUz58Co5v4mh3ybMA
-         JN0EhQ3gHEJ2SOngVpvVupbT81ikQPJBiehW1e44D3qZ3vbc3B6dwty2M2ayzwsX9Sq2
-         bPvX3/hkQXf8BJ1S/V3XHgkmii5pd/jFRneHf1p57ejH+VrnDaxNznanQtFPFjMYzOZv
-         fxe+xPiJx+F3AQBjufRyOpS3XPeglPH9Dr67ps3KIKC8VCvR1kSfebLKeYClsvz6nUNW
-         F0/KthBEVTMO875FQpr44o4SLl/dz4noWNJSsKKhw5SYF3oYAZGDkw1MTOI63SuY1oB0
-         yDrQ==
+        bh=fUpQg31qLSafDWUcMgUao3TMT+hDdWkhTyRDacQF7uQ=;
+        b=aM4GmOwECMjw5l+6WPAkjD95HWW14o1oUdCNLymwXqDtwYnovROQVfse+/38It/BnU
+         bz6JXDMVSPU9QCZgwYQgcZsFFwnMunvi41/w24Vlyvjw9SRyFkfd0b+YF4Jupx/w1XJQ
+         5LoVH/pyiY3gnxBzZbsU5Zi8J55p7svv7P8f2rfYQpBpQzQwNOVa92u6d6U0yi1/NhjH
+         SPc8QzmVX8yfb/U3KAVJcgpp/Z2AmvFuQeGnkYk2/xGpfy+9EyyD8s8HkPJ2uSf6RLwY
+         y5ddeigsWn/6VaZsQdFBT9/RFRvv0zV9Njgqxi8xEwwl1/MV/WrrskuGmBsf56xNnCkV
+         hScQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VZFRNQd/zap407HixVlnEcklt9OLciYGy385OrpA0Zk=;
-        b=A5i7POnvJBEN1ONwHS8acjOnNfDAA4YzZySvLMRCDf2hgbY+hBNoTCxif69CcglGOR
-         0h+6V1yEjLnGGBXm5VQi+g2mOHgB5PwjB9TvLWagPvxvIpagRRj7fGXBNbvf3ia9pZ0R
-         wQ0sdOSyw59SG+bHCLHLVFJJn/dQeku2A6s531IpODlj/NvzSbMrr2W8DtX+khBMRwvX
-         GVh5DU8W+HuUPV/5r7jz5oY24nFZp16shsBcTLWEakGbejmmQXJpOHW4kErnsz0RtJR3
-         qI6GS9Bx8ABQtL8S2qhebB9HnYRlJF3VyaAMCjOirLODAcuH2A6Imc69p0KqiM92Gd+u
-         sxGg==
-X-Gm-Message-State: ACrzQf34O+D9n/RUVLOP58nn0Mnvmp2MIcW3/7Zg/nr18t2av87ldpHQ
-        B/ZV1RHVWiVcvlPcspxEdtSJ5w==
-X-Google-Smtp-Source: AMsMyM6hw5UE82o4VRnpVyk+Uvle/1NMRofD2T+TFqiC59sx5DQxsYXR9Pyhs8MeguhbbhBjxtr6gw==
-X-Received: by 2002:a05:6a00:8cb:b0:52c:6962:2782 with SMTP id s11-20020a056a0008cb00b0052c69622782mr2163553pfu.81.1665012585797;
-        Wed, 05 Oct 2022 16:29:45 -0700 (PDT)
-Received: from desktop.hsd1.or.comcast.net ([2601:1c0:4c81:c480:feaa:14ff:fe3a:b225])
-        by smtp.gmail.com with ESMTPSA id d7-20020a170902654700b0016c50179b1esm10882284pln.152.2022.10.05.16.29.45
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=fUpQg31qLSafDWUcMgUao3TMT+hDdWkhTyRDacQF7uQ=;
+        b=KY0onmYj37rVfCr9bpabpEMN2UTE81lQCGRXwvUPsiCIfoh7nkcnUpgkFHu2kuLnaH
+         bF+J5fa8fIX+/77IFSmimV4wyDdytQBzosp6ovwnzVSFsWc0bm30gJ4Il/VM0VBTDKv+
+         kIt6iHoqqlQe2udMHuiz3DWph/fGWVHqDLr9FPgLqkiYHkecXr8xBo2B/h7KPqSMeH1C
+         lOFiEsCqL8+//3mBr5/dNMeZI9y0hTPjfJyT3opXgGy0QKs1sqgAam7bdul2n2pzkmbu
+         vkSdhIkPCB30CYBKCIGkZLF5FTDqGknNFMJ0pWiY2QQvHJYdizGSrr7K4z++EBJBdBxM
+         WAng==
+X-Gm-Message-State: ACrzQf1Fy9G1K8LBvOmhzBZ8NuKom7E2hMF852xLkgwa+ywpHz2vrSnc
+        5H6OuXKN8Y9Yh2czdPb2aw==
+X-Google-Smtp-Source: AMsMyM7m3ZznC2N6vijBuwEzRYV9NyM1wkH4hn9XNVHWQUQZQGyIYol4VV1OoYMqoKHVzo1kf7YGHQ==
+X-Received: by 2002:a05:622a:1109:b0:35b:ae57:5a6c with SMTP id e9-20020a05622a110900b0035bae575a6cmr1572054qty.23.1665013991706;
+        Wed, 05 Oct 2022 16:53:11 -0700 (PDT)
+Received: from serve.minyard.net ([47.184.185.126])
+        by smtp.gmail.com with ESMTPSA id y17-20020ac83e91000000b0038d9555b580sm3526480qtf.44.2022.10.05.16.53.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Oct 2022 16:29:45 -0700 (PDT)
-From:   Tadeusz Struk <tadeusz.struk@linaro.org>
-To:     David Gibson <david@gibson.dropbear.id.au>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
-        Tadeusz Struk <tadeusz.struk@linaro.org>
-Subject: [PATCH v3 2/2] libfdt: tests: add get_next_tag_invalid_prop_len
-Date:   Wed,  5 Oct 2022 16:29:31 -0700
-Message-Id: <20221005232931.3016047-2-tadeusz.struk@linaro.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221005232931.3016047-1-tadeusz.struk@linaro.org>
-References: <20221005232931.3016047-1-tadeusz.struk@linaro.org>
+        Wed, 05 Oct 2022 16:53:11 -0700 (PDT)
+Sender: Corey Minyard <tcminyard@gmail.com>
+Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:2d13:71e3:7ea0:219])
+        by serve.minyard.net (Postfix) with ESMTPSA id 61E83180015;
+        Wed,  5 Oct 2022 23:53:10 +0000 (UTC)
+Date:   Wed, 5 Oct 2022 18:53:06 -0500
+From:   Corey Minyard <minyard@acm.org>
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     Randy Dunlap <rdunlap@infradead.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com
+Subject: Re: [PATCH v10 0/3] Add SSIF BMC driver
+Message-ID: <Yz4Y4piC+e1mftLi@minyard.net>
+Reply-To: minyard@acm.org
+References: <20221004093106.1653317-1-quan@os.amperecomputing.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221004093106.1653317-1-quan@os.amperecomputing.com>
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new test get_next_tag_invalid_prop_len, which covers
-fdt_next_tag(), when it is passed an corrupted blob, with
-invalid property len values.
+On Tue, Oct 04, 2022 at 04:31:03PM +0700, Quan Nguyen wrote:
+> This series add support the SSIF BMC driver which is to perform in-band
+> IPMI communication with their host in management (BMC) side.
+> 
+> SSIF BMC driver in this series is tested with Aspeed AST2500 and AST2600
 
-Signed-off-by: Tadeusz Struk <tadeusz.struk@linaro.org>
----
- tests/.gitignore                      |  1 +
- tests/Makefile.tests                  |  2 +-
- tests/get_next_tag_invalid_prop_len.c | 84 +++++++++++++++++++++++++++
- tests/meson.build                     |  1 +
- tests/run_tests.sh                    |  1 +
- 5 files changed, 88 insertions(+), 1 deletion(-)
- create mode 100644 tests/get_next_tag_invalid_prop_len.c
+I have applied the two IPMI patches to the IPMI tree for 6.2.  Thanks
+for sticking with this.
 
-diff --git a/tests/.gitignore b/tests/.gitignore
-index 03bdde2..3376ed9 100644
---- a/tests/.gitignore
-+++ b/tests/.gitignore
-@@ -74,3 +74,4 @@ tmp.*
- /truncated_memrsv
- /utilfdt_test
- /value-labels
-+/get_next_tag_invalid_prop_len
-diff --git a/tests/Makefile.tests b/tests/Makefile.tests
-index 2d36c5d..2c5b4c9 100644
---- a/tests/Makefile.tests
-+++ b/tests/Makefile.tests
-@@ -4,7 +4,7 @@ LIB_TESTS_L = get_mem_rsv \
- 	get_path supernode_atdepth_offset parent_offset \
- 	node_offset_by_prop_value node_offset_by_phandle \
- 	node_check_compatible node_offset_by_compatible \
--	get_alias \
-+	get_alias get_next_tag_invalid_prop_len \
- 	char_literal \
- 	sized_cells \
- 	notfound \
-diff --git a/tests/get_next_tag_invalid_prop_len.c b/tests/get_next_tag_invalid_prop_len.c
-new file mode 100644
-index 0000000..f5a6d99
---- /dev/null
-+++ b/tests/get_next_tag_invalid_prop_len.c
-@@ -0,0 +1,84 @@
-+// SPDX-License-Identifier: LGPL-2.1-or-later
-+/*
-+ * libfdt - Flat Device Tree manipulation
-+ *	Testcase for fdt_next_tag()
-+ */
-+#include <stdlib.h>
-+#include <stdio.h>
-+#include <string.h>
-+#include <stdint.h>
-+
-+#include <libfdt.h>
-+#include "tests.h"
-+#include "testdata.h"
-+
-+#define FDT_SIZE 65536
-+#define CHECK_ERR(err) \
-+({ if (err) { \
-+	free(fdt); \
-+	FAIL("%s: %d: %s", __FILE__, __LINE__, fdt_strerror(err)); \
-+	} \
-+})
-+
-+int main(int argc, char *argv[])
-+{
-+	struct fdt_property *prp;
-+	void *fdt;
-+	int nextoff = 0, offset, err;
-+	uint32_t tag, val;
-+
-+	test_init(argc, argv);
-+	fdt = calloc(1, FDT_SIZE);
-+	if (!fdt)
-+		FAIL("Can't allocate memory");
-+	err = fdt_create(fdt, FDT_SIZE);
-+	CHECK_ERR(err);
-+	err = fdt_add_reservemap_entry(fdt, 0xdeadbeefUL, 0x10000UL);
-+	CHECK_ERR(err);
-+	err = fdt_finish_reservemap(fdt);
-+	CHECK_ERR(err);
-+	err = fdt_begin_node(fdt, "");
-+	CHECK_ERR(err);
-+	err = fdt_begin_node(fdt, "subnode1");
-+	CHECK_ERR(err);
-+	err = fdt_property_u32(fdt, "prop-int-32", 0x1234);
-+	CHECK_ERR(err);
-+	err = fdt_property_u32(fdt, "prop2-int-32", 0x4321);
-+	CHECK_ERR(err);
-+	err = fdt_end_node(fdt);
-+	CHECK_ERR(err);
-+	err = fdt_end_node(fdt);
-+	CHECK_ERR(err);
-+	offset = -1;
-+	val = cpu_to_fdt32(0x1234);
-+	offset = fdt_node_offset_by_prop_value(fdt, offset,  "prop-int-32",
-+					       &val, sizeof(val));
-+	do {
-+		tag = fdt_next_tag(fdt, offset, &nextoff);
-+		offset = nextoff;
-+	} while (tag != FDT_PROP);
-+
-+	/* Calculate len to property */
-+	prp = (struct fdt_property *)(((char*)fdt) + fdt_off_dt_struct(fdt) + offset);
-+
-+	/* int overflow case */
-+	prp->len = cpu_to_fdt32(0xFFFFFFFA);
-+	tag = fdt_next_tag(fdt, offset, &nextoff);
-+	if (tag != FDT_END)
-+		FAIL("Invalid tag %x, expected premature end", tag);
-+
-+	if (nextoff != -FDT_ERR_BADSTRUCTURE)
-+		FAIL("Invalid nextoff, expected error -FDT_ERR_BADSTRUCTURE");
-+
-+	/* negative offset case */
-+	prp->len = cpu_to_fdt32(0x7FFFFFFA);
-+	tag = fdt_next_tag(fdt, offset, &nextoff);
-+	if (tag != FDT_END)
-+		FAIL("Invalid tag, expected premature end");
-+
-+	if (nextoff != -FDT_ERR_BADSTRUCTURE)
-+		FAIL("Invalid nextoff, expected error -FDT_ERR_BADSTRUCTURE");
-+
-+	free(fdt);
-+	PASS();
-+}
-diff --git a/tests/meson.build b/tests/meson.build
-index 4ac154a..29a42dd 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -47,6 +47,7 @@ tests = [
-   'get_path',
-   'get_phandle',
-   'get_prop_offset',
-+  'get_next_tag_invalid_prop_len',
-   'getprop',
-   'incbin',
-   'integer-expressions',
-diff --git a/tests/run_tests.sh b/tests/run_tests.sh
-index 244df8a..46678cb 100755
---- a/tests/run_tests.sh
-+++ b/tests/run_tests.sh
-@@ -513,6 +513,7 @@ libfdt_tests () {
-     run_dtc_test -I fs -O dts -o fs.test_tree1.test.dts $FSBASE/test_tree1
-     run_dtc_test -I fs -O dtb -o fs.test_tree1.test.dtb $FSBASE/test_tree1
-     run_test dtbs_equal_unordered -m fs.test_tree1.test.dtb test_tree1.dtb
-+    run_test get_next_tag_invalid_prop_len
- 
-     ## https://github.com/dgibson/dtc/issues/64
-     check_tests "$SRCDIR/phandle-args-overflow.dts" clocks_property
--- 
-2.37.3
+-corey
+
+> 
+> Discussion for v9:
+> https://lore.kernel.org/lkml/20220929080326.752907-1-quan@os.amperecomputing.com/
+> 
+> v10:
+>   + Issuing RxCmdLast command for all errnos                   [Wolfram]
+> 
+> v9:
+>   + Fix dependence with I2C subsystem                            [Randy]
+>   + Update missing Reviewed-by tag from v7                         [Rob]
+>   + Remove useless error handling path                              [CJ]
+>   + Update comment for SSIF_ABORTING state                          [CJ]
+>   + Fix "unknown type name --u8"                     [kernel test robot]
+>   + Update commit message and add comment to explain
+>     the effect of issuing RxCmdLast when Slave busy               [Quan]
+> 
+> v8:
+>   + Dropped ssif_bmc.h file and move its content to ssif_bmc.c   [Corey]
+>   + Add struct ipmi_ssif_msg to include/uapi/linux/ipmi_ssif_bmc.h
+>   header file                                                    [Corey]
+>   + Use unsigned int for len field in struct ipmi_ssif_msg       [Corey]
+>   + Avoid using packed structure                                 [Corey]
+>   + Add comment to clarify the logic flow                        [Corey]
+>   + Fix multipart read end with len=0 issue                      [Corey]
+>   + Refactor code handle the too big request message             [Corey]
+>   + Fix code indentation issue                                   [Corey]
+>   + Clean buffer before receiving request to avoid garbage        [Quan]
+>   + Fix the license to SPDX-License-Identifier: GPL-2.0-only      [Quan]
+> 
+> v7:
+>   + Remove unnecessary del_timer() in response_timeout()         [Corey]
+>   + Change compatible string from "ampere,ssif-bmc" to "ssif-bmc"  [Jae]
+>   + Dropped the use of ssif_msg_len() macro, use the len directly [Quan]
+>   + Solve possible issue if both response timer and ssif_bmc_write()
+>   occurred at the same time                                      [Corey]
+>   + Fix wrong return type of ssif_bmc_poll()         [kernel robot test]
+>   + Refactor and introduce ssif_part_buffer struct to replace the
+>   response_buf to manage each send/receive part of ssif           [Quan]
+>   + Change SSIF_BAD_SMBUS state to SSIF_ABORTING state           [Corey]
+>   + Support abort feature to skip the current bad request/response and
+>   wait until next new request                                    [Corey]
+>   + Refactor the PEC calculation to avoid the re-calculate the PEC on
+>   each I2C_SLAVE_WRITE_RECEIVED event                             [Quan]
+>   + Fix the use of error-proned idx                              [Corey]
+>   + Defer the test for valid SMBus command until the read/write part
+>   is determined                                                   [Quan]
+>   + Change/split unsupported_smbus_cmd() to
+>   supported_[write|read]_cmd()                                   [Corey]
+>   + Abort the request if somehow its size exceeded 255 bytes      [Quan]
+> 
+> v6:
+>   + Drop the use of slave_enable()                             [Wolfram]
+>   + Make i2c-aspeed to issue RxCmdLast command on all
+>   I2C_SLAVE_WRITE_REQUESTED event to assert NAK when slave busy   [Quan]
+>   + Make i2c slave to return -EBUSY when it's busy                [Quan]
+>   + Drop the aborting feature as return Completion Code 0xFF may stop
+>   host to retry and make ipmi_ssif.so fails to load               [Quan]
+>   + Add timer to recover slave from busy state when no response   [Quan]
+>   + Clean request/response buffer appropriately                   [Quan]
+>   + Add some minor change on error and warning messages           [Quan]
+> 
+> v5:
+>   + Correct the patches order to fix the bisect issue found by
+>   kernel build robot
+> 
+> v4:
+>   + Fix recursive spinlock                                      [Graeme]
+>   + Send response with Completion code 0xFF when aborting         [Quan]
+>   + Fix warning with dt_binding_check                              [Rob]
+>   + Change aspeed-ssif-bmc.yaml to ssif-bmc.yaml                  [Quan]
+>   + Added bounding check on SMBus writes and the whole request     [Dan]
+>   + Moved buffer to end of struct ssif_bmc_ctx to avoid context
+>     corruption if somehow buffer is written past the end           [Dan]
+>   + Return -EINVAL if userspace buffer too small, don't
+>     silence truncate                                       [Corey, Joel]
+>   + Not necessary to check NONBLOCK in lock                      [Corey]
+>   + Enforce one user at a time                                    [Joel]
+>   + Reject write with invalid response length from userspace     [Corey]
+>   + Add state machines for better ssif bmc state handling         [Quan]
+>   + Drop ssif_bmc_aspeed.c and make ssif_bmc.c is generic
+>     SSIF BMC driver                                               [Quan]
+>   + Change compatible string "aspeed,ast2500-ssif-bmc" to
+>     "ampere,ssif-bmc"                                             [Quan]
+>   + Toggle Slave enable in i2c-aspeed to turn on/off slave mode   [Ryan]
+>   + Added slave_enable() to struct i2c_algorithm to control
+>     slave mode and to address the recursive spinlock      [Graeme, Ryan]
+>   + Abort current request with invalid SMBus write or
+>     invalid command                                               [Quan]
+>   + Abort all request if there is pending response                [Quan]
+>   + Changed validate_pec() to validate_request()                  [Quan]
+>   + Add unsupported_smbus_cmd() to handle unknown SMBus command   [Quan]
+>   + Print internal state string for ease investigating issue      [Quan]
+>   + Move to READY state on SLAVE_STOP event                       [Quan]
+>   + Change initilize_transfer() to process_smbus_cmd()            [Quan]
+>   + Introduce functions for each slave event                      [Quan]
+> 
+> v3:
+>   + Switched binding doc to use DT schema format                   [Rob]
+>   + Splited into generic ssif_bmc and aspeed-specific      [Corey, Joel]
+>   + Removed redundant license info                                [Joel]
+>   + Switched to use traditional if-else                           [Joel]
+>   + Removed unused ssif_bmc_ioctl()                               [Joel]
+>   + Made handle_request()/complete_response() to return void      [Joel]
+>   + Refactored send_ssif_bmc_response() and
+>   receive_ssif_bmc_request()                                     [Corey]
+>   + Remove mutex                                                 [Corey]
+>   + Use spin_lock/unlock_irqsave/restore in callback             [Corey]
+>   + Removed the unnecessary memset                               [Corey]
+>   + Switch to use dev_err()                                      [Corey]
+>   + Combine mask/unmask two interrupts together                  [Corey]
+>   + Fixed unhandled Tx done with NAK                              [Quan]
+>   + Late ack'ed Tx done w/wo Ack irq                              [Quan]
+>   + Use aspeed-specific exported aspeed_set_slave_busy() when
+>   slave busy to fix the deadlock                 [Graeme, Philipp, Quan]
+>   + Clean buffer for last multipart read                          [Quan]
+>   + Handle unknown incoming command                               [Quan]
+> 
+> v2:
+>   + Fixed compiling error with COMPILE_TEST for arc
+> 
+> Quan Nguyen (3):
+>   ipmi: ssif_bmc: Add SSIF BMC driver
+>   bindings: ipmi: Add binding for SSIF BMC driver
+>   i2c: aspeed: Assert NAK when slave is busy
+> 
+>  .../devicetree/bindings/ipmi/ssif-bmc.yaml    |  38 +
+>  drivers/char/ipmi/Kconfig                     |  10 +
+>  drivers/char/ipmi/Makefile                    |   1 +
+>  drivers/char/ipmi/ssif_bmc.c                  | 873 ++++++++++++++++++
+>  drivers/i2c/busses/i2c-aspeed.c               |   9 +-
+>  include/uapi/linux/ipmi_ssif_bmc.h            |  18 +
+>  6 files changed, 948 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
+>  create mode 100644 drivers/char/ipmi/ssif_bmc.c
+>  create mode 100644 include/uapi/linux/ipmi_ssif_bmc.h
+> 
+> -- 
+> 2.35.1
+> 
