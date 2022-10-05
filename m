@@ -1,72 +1,104 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D8F5F59E2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 20:30:48 +0200 (CEST)
+Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
+	by mail.lfdr.de (Postfix) with ESMTP id B481D5F59FB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 20:41:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230281AbiJESap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 14:30:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52322 "EHLO
+        id S230481AbiJESlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 14:41:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230141AbiJESan (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 14:30:43 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7025A7D1D9;
-        Wed,  5 Oct 2022 11:30:42 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id r186so2715188oie.4;
-        Wed, 05 Oct 2022 11:30:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=pmNu/ohWV9pKgrYcOXdf061w6FntpgrqvLLtW7qstZM=;
-        b=KGSAKTi3jsMVdYC2bWoKQ3JnmeKliNPzqx7xT1VOATKiGB+j8oVLMn4RT0sbUeoXYk
-         429+KTAxZO2ss+tuNwuEsSYuJYmmVINbTWQeVkg6GH7V6SWd244sgt3IScRiChl2F4DD
-         ft4DQU/gPnoJ8kqL4XXh7GBRpiDuY4Ta2vCmnGG3lIWIUIqGRpa8wBt4dZRJ+/9xHYpw
-         Ybm1IBmupMHHcfpBt0LwiPsc3cfuyQ3RV8jie2V+peOFTnDidfdpHyjVKw1nvEPCX51a
-         wTnRIAa53wdFW/dUF1iPSp3btWe5WlL1bQTyh9N10dTJmvg52Lb5TTOthtjf7z8uwl4c
-         EhdA==
+        with ESMTP id S232123AbiJESlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 14:41:03 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB735C35A
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 11:39:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1664995193;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=3LWrr+mzLl+loyhMbjqGtBTsS99v10H6F/JTraBsXlM=;
+        b=iL8QgOCba+2KpwnyfUwpQeD16x4yFeagSjGLaXhdX/22s2cMH4f5E9ulJIvK//ApA8ctJR
+        4Zuuq/PcZI7uikwj2BEiAz0QyjRn3An7KQ9dIg9HLEEXPsPQIfx4wybcAQ7L5IuMyiHbjJ
+        Eyqia2BzhcKUoaealW6UslX7IVMFRa4=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-628-ES0th-rdMMOYwjnBpD2ZLg-1; Wed, 05 Oct 2022 14:39:52 -0400
+X-MC-Unique: ES0th-rdMMOYwjnBpD2ZLg-1
+Received: by mail-wm1-f72.google.com with SMTP id b7-20020a05600c4e0700b003bde2d860d1so711226wmq.8
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 11:39:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=pmNu/ohWV9pKgrYcOXdf061w6FntpgrqvLLtW7qstZM=;
-        b=vatfb9rsliL4cPl+H0ygwfE6pWOZJTXhR1Glvz8i4BCOcyhQ6Q1Sda+HXOSzne9649
-         GtOyye0XdA7QsDC8sHSEWOXvNW1NJtPVhpFceXXY3/8n1oT3ydPTQuJ5qh4c83/Jicd9
-         thskQtTD+tJYtU5aS7l96de70JdCYSejzWuDSmGRKg02NY7q1mxMqCt0fPmoW0uYXHDM
-         +jk0r0emJ7ZUl9eEoZcImWaeb/Xjt4uJQLDKMvCiP/IQ+ZbbG3oQYyfHpAfDmcsNnMXg
-         +DO3s8kA95eUF7veZam0M03FgVtWREP949kWtk3r8l+iqflCSIXcC2SW0nzpttueOC1j
-         AAbQ==
-X-Gm-Message-State: ACrzQf0vVIXnpRBzrb/M4RjM+YD5cCg6VpCOzsid6S43oq9NpUIe5MW0
-        tHpPtFMfV0Cdlrcm2fdbVrGjNQVD98jLxvNS/fRLxcS1AEw=
-X-Google-Smtp-Source: AMsMyM48P45txWGtrvELqJjukLLeVuaNYdA8/L+r8DXZhn1hYqSIuoQBJVG9FYy+fRctrYVq0iYTZu35P/DKyZGPNsM=
-X-Received: by 2002:a05:6808:1719:b0:34d:444a:58c0 with SMTP id
- bc25-20020a056808171900b0034d444a58c0mr2771924oib.11.1664994641568; Wed, 05
- Oct 2022 11:30:41 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:subject:organization:from
+         :references:cc:to:content-language:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=3LWrr+mzLl+loyhMbjqGtBTsS99v10H6F/JTraBsXlM=;
+        b=MdxZV2cOz6XpwCY67LtqyuPofRsdqYQy4Codn6Nsi5aV0cN4CyfcEF8X0b6vsoK9k8
+         eyg75KdNDEGSvz26QeD1xEP7R1LF9Qs5QB6C1BSeWFhKkyg4lUbLIk/NNVCgg8FRTXeO
+         NFgJG3kWYvA8SvKx6hxxefiu6wxPI88aOD13dRTNybW+wLltqpWcJhR6ggQTTBcfKfNC
+         pomiXnW3fYUIS6VHuZFNnW5WHz2TRkdztoc0IbUSp9QK48sfLx29o70L57MDfMVglhE1
+         uZ4k7x6jxEjzCX0OEHJFBrZgjg/M4RgEFWWx5wPvDwHa4FkfdnD5R+sBpClv0fGxZZsP
+         VT5Q==
+X-Gm-Message-State: ACrzQf0Nu6X4+p6KyCdZneGWid6iSsjT3Fsv9NDTlsuxvw3xyCfIYjsz
+        YVmRlc76Syh2kEcmIIcQ41wYfT0vAz8hG4MFU+XQJe34vyfaY0CnaG9ILGc0RucRkQOmoTl4J+r
+        RwfoMjhagiQ2udlCTs6VUpg==
+X-Received: by 2002:a5d:5552:0:b0:22e:6941:81f8 with SMTP id g18-20020a5d5552000000b0022e694181f8mr430582wrw.521.1664995189471;
+        Wed, 05 Oct 2022 11:39:49 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM7KOHX+c5fT4yvas7PB46G0drnxid10BmAo3PVPcJtv5AKCfxdItdjQLE2ZqvXfl1Mdkuxtzw==
+X-Received: by 2002:a5d:5552:0:b0:22e:6941:81f8 with SMTP id g18-20020a5d5552000000b0022e694181f8mr430551wrw.521.1664995189012;
+        Wed, 05 Oct 2022 11:39:49 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c702:5a00:b732:1c9:3697:fccf? (p200300cbc7025a00b73201c93697fccf.dip0.t-ipconnect.de. [2003:cb:c702:5a00:b732:1c9:3697:fccf])
+        by smtp.gmail.com with ESMTPSA id m13-20020adfe94d000000b0021e43b4edf0sm15571718wrn.20.2022.10.05.11.39.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Oct 2022 11:39:48 -0700 (PDT)
+Message-ID: <106669a6-fe89-f736-19ad-39de44f9a774@redhat.com>
+Date:   Wed, 5 Oct 2022 20:39:46 +0200
 MIME-Version: 1.0
-References: <20221005181528.1038629-1-dsankouski@gmail.com> <20221005181528.1038629-3-dsankouski@gmail.com>
-In-Reply-To: <20221005181528.1038629-3-dsankouski@gmail.com>
-From:   Dzmitry Sankouski <dsankouski@gmail.com>
-Date:   Wed, 5 Oct 2022 21:30:30 +0300
-Message-ID: <CABTCjFD7hLgv7VD1pbnmKvA-WsXkWT2UYEN0=CoMFaiENsCGxQ@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: sagit: add initial device tree
- for sagit
-To:     linux-kernel@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Content-Language: en-US
+To:     Doug Berger <opendmb@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Frank Rowand <frowand.list@gmail.com>,
+        Mike Kravetz <mike.kravetz@oracle.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Borislav Petkov <bp@suse.de>,
+        "Paul E. McKenney" <paulmck@kernel.org>,
+        Neeraj Upadhyay <quic_neeraju@quicinc.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Zi Yan <ziy@nvidia.com>, Oscar Salvador <osalvador@suse.de>,
+        Hari Bathini <hbathini@linux.ibm.com>,
+        Kees Cook <keescook@chromium.org>,
+        KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>,
+        Mel Gorman <mgorman@suse.de>, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mm@kvack.org, iommu@lists.linux.dev
+References: <20220913195508.3511038-1-opendmb@gmail.com>
+ <b610a7b3-d740-8d45-c270-4c638deb1cfa@redhat.com>
+ <02561695-df44-4df6-c486-1431bf152650@gmail.com>
+ <64c3aea2-331b-e482-bbb0-7fac2340163c@redhat.com>
+ <3af1da5f-6b95-1aab-60f0-d17f141782b4@gmail.com>
+From:   David Hildenbrand <david@redhat.com>
+Organization: Red Hat
+Subject: Re: [PATCH 00/21] mm: introduce Designated Movable Blocks
+In-Reply-To: <3af1da5f-6b95-1aab-60f0-d17f141782b4@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,784 +106,316 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Here is changelogs:
 
-Changes for v2:
-- remove memory nodes before redefining
-- add board compatible to schema
-- remove board msm-id, add chassis type
-- remove common dtsi
-- move resin to pm8998 dtsi file
-- dts formatting
-- unsupported properties removed
-- add copyright
-- rebase on latest master(6.0.0-rc6)
-Changes for v3:
-- regulators nodes renamed to match pattern 'regulators-[01]'
-- duplicate cci1-default node deleted
-- add state suffix to '.*(active|suspend|default)' pinctrl
-- rebase on latest master(6.0.0)
-Changes for v4:
-- fix dts compilation errors(rename pinctrl label usages)
-Changes for v5:
-- use pm8005_regulators label
-Changes for v6:
-- add state suffix to all pinctrl
-- move status nodes to last position
-- disable resin node by default
-- move the debounce param to pm8998.dtsi file
-- place this patch after dt-binding patch
+>> So whatever we do, this should in general not be the kernel sole
+>> decision to make this memory any special and let ZONE_MOVABLE manage it.
+> I believe you are stating that Designated Movable Blocks should only be
+> created as a result of special configuration (e.g. kernel parameters,
+> devicetree, ...). I would agree with that. Is that what you intended by
+> this statement, or am I missing something?
+
+Essentially, that it should mostly be the decision of an educated admin.
+
+...
+
+>>
+>>> only be located at the end of addressable memory then it will always be
+>>> located on MEMC1 of a 7278 system. This will create a tendency for user
+>>> space accesses to consume more bandwidth on the MEMC1 memory controller
+>>> and kernel space accesses to consume more bandwidth on MEMC0. A more
+>>> even distribution of ZONE_MOVABLE memory between the available memory
+>>> controllers in theory makes more memory bandwidth available to user
+>>> space intensive loads.
+>>>
+>>
+>> Sorry to be dense, is this also about different memory access latency or
+>> just memory bandwidth?
+> Broadcom memory controllers do support configurable real-time scheduling
+> with bandwidth guarantees for different memory clients so I suppose this
+> is a fair question. However, the expectation here is that the CPUs would
+> have equivalent access latencies, so it is really just about memory
+> bandwidth for the CPUs.
+
+Okay, thanks for clarifying.
+
+...
+
+>>>>
+>>>>> Unfortunately, the historical monotonic layout of zones would
+>>>>> mean that if the lowest addressed memory controller contains
+>>>>> ZONE_MOVABLE memory then all of the memory available from
+>>>>> memory controllers at higher addresses must also be in the
+>>>>> ZONE_MOVABLE zone. This would force all kernel memory accesses
+>>>>> onto the lowest addressed memory controller and significantly
+>>>>> reduce the amount of memory available for non-movable
+>>>>> allocations.
+>>>>
+>>>> We do have code that relies on zones during boot to not overlap within a
+>>>> single node.
+>>> I believe my changes address all such reliance, but if you are aware of
+>>> something I missed please let me know.
+>>>
+>>
+>> One example I'm aware of is drivers/base/memory.c:memory_block_add_nid()
+>> / early_node_zone_for_memory_block().
+>>
+>> If we get it wrong, or actually have memory blocks that span multiple
+>> zones, we can no longer offline these memory blocks. We really wanted to
+>> avoid scanning the memmap for now and it seems to get the job done in
+>> environments we care about.
+> To the extent that this implementation only supports creating Designated
+> Movable Blocks in boot memory and boot memory does not generally support
+> offlining, I wouldn't expect this to be an issue. However, if for some
+
+Sad truth is, that boot memory sometimes is supposed to support 
+offlining -- or people expect it to work to some degree. For example, 
+with special memblock hacks you can get them into ZONE_MOVABLE to be 
+able to hotunplug some NUMA nodes even after a reboot (movable_node 
+kernel parameter).
+
+There are use cases where you want to offline boot memory to save energy 
+by disabling complete memory banks -- best effort when not using 
+ZONE_MOVABLE.
+
+Having that said, I agree that it's a corner case use case.
+
+> reason offlining boot memory becomes desirable then we should use
+> dmb_intersects() along with zone_intersects() to take the appropriate
+> action. Based on the current usage of zone_intersects() I'm not entirely
+> sure what the correct action should be.
+> 
+>>
+>>>>
+>>>>>
+>>>>> The main objective of this patch set is therefore to allow a
+>>>>> block of memory to be designated as part of the ZONE_MOVABLE
+>>>>> zone where it will always only be used by the kernel page
+>>>>> allocator to satisfy requests for movable pages. The term
+>>>>> Designated Movable Block is introduced here to represent such a
+>>>>> block. The favored implementation allows modification of the
+>>>>
+>>>> Sorry to say, but that term is rather suboptimal to describe what you
+>>>> are doing here. You simply have some system RAM you'd want to have
+>>>> managed by ZONE_MOVABLE, no?
+>>> That may be true, but I found it superior to the 'sticky' movable
+>>> terminology put forth by Mel Gorman ;). I'm happy to entertain
+>>> alternatives, but they may not be as easy to find as you think.
+>>
+>> Especially the "blocks" part is confusing. Movable pageblocks? Movable
+>> Linux memory blocks?
+>>
+>> Note that the sticky movable *pageblocks* were a completely different
+>> concept than simply reusing ZONE_MOVABLE for some memory ranges.
+> I would say that is open for debate. The implementations would be
+> "completely different" but the objectives could be quite similar.
+> There appear to be a number of people that are interested in the concept
+> of memory that can only contain data that tolerates relocation for
+> various potentially non-competing reasons.
+> 
+> Fundamentally, the concept of MIGRATE_MOVABLE memory is useful to allow
+> competing user space processes to share limited physical memory supplied
+> by the kernel. The data in that memory can be relocated elsewhere by the
+> kernel when the process that owns it is not executing. This movement is
+> typically not observable to the owning process which has its own address
+> space.
+> 
+> The kernel uses MIGRATE_UNMOVABLE memory to protect the integrity of its
+> address space, but of course what the kernel considers unmovable could
+> in fact be moved by a hypervisor in a way that is analogous to what the
+> kernel does for user space.
+> 
+> For maximum flexibility the Linux memory management allows for
+> converting the migratetype of free memory to help satisfy requests to
+> allocate pages of memory through a mechanism I will call "fallback". The
+> concepts of sticky movable pageblocks and ZONE_MOVABLE have the common
+> objective of preventing the migratetype of pageblocks from getting
+> converted to anything other than MIGRATE_MOVABLE, and this is what makes
+> the memory special.
+
+Yes, good summary.
+
+> 
+> I agree with Mel Gorman that zones are meant to be about address induced
+> limitations, so using a zone for the purpose of breaking the fallback
+> mechanism of the page allocator is a misuse of the concept. A new
+> migratetype would be more appropriate for representing this change in
+> how fallback should apply to the pageblock because the desired behavior
+> has nothing to do with the address at which the memory is located. It is
+> entirely reasonable to desire "sticky" movable behavior for memory in
+> any zone. Such a solution would be directly applicable to our multiple
+> memory controller use case, and is really how Designated Movable Blocks
+> should be imagined.
+
+I usually agree with Mel, but not necessarily on that point that it's a 
+misuse of a concept. It's an extension of an existing concept, that 
+doesn't imply it's a misuse. Traditionally, it was about address 
+limitations, yes. Now it's also about allocation types. Sure, there 
+might be other ways to get it done as well.
+
+I'd compare it to the current use of NUMA nodes: traditionally, it 
+really used to be actual NUMA nodes. Nowadays, it's a mechanism, for 
+example, to expose performance-differented memory, let applications use 
+it via mbind() or have the page allocator dynamically migrate hot/cold 
+pages back and forth according to memory tiering strategies.
+
+> 
+> However, I also recognize the efficiency benefits of using a
+> ZONE_MOVABLE zone to manage the pages that have this "sticky" movable
+> behavior. Introducing a new sticky MIGRATE_MOVABLE migratetype adds a
+> new free_list to every free_area which increases the search space and
+> associated work when trying to allocate a page for all callers.
+> Introducing ZONE_MOVABLE reduces the search space by providing an early
+> separation between searches for movable and non-movable allocations. The
+> classic zone restrictions weren't a good fit for multiple memory
+> controllers, but those restrictions were lifted to overcome similar
+> issues with memory_hotplug. It is not that Designated Movable Blocks
+> want to be in ZONE_MOVABLE, but rather that ZONE_MOVABLE provides a
+> convenience for managing the page allocators use of "sticky" movable
+> memory just like it does for memory hotplug. Dumping the memory in
+> Designated Movable Blocks into the ZONE_MOVABLE zone allows an existing
+> mechanism to be reused, reducing the risk of negatively impacting the
+> page allocator behavior.
+> 
+> There are some subtle distinctions between Designated Movable Blocks and
+> the existing ZONE_MOVABLE zone. Because Designated Movable Blocks are
+> reserved when created they are protected against any early boot time
+> kernel reservations that might place unmovable allocations in them. The
+> implementation continues to track the zone_movable_pfn as the start of
+> the "classic" ZONE_MOVABLE zone on each node. A Designated Movable Block
+> can overlap any other zone including the "classic" ZONE_MOVABLE zone.
+
+What exactly to you mean with "overlay" -- I assume you mean that zone 
+span will overlay but it really "belongs" to ZONE_MOVABLE, as indicated 
+by it's struct page metadata.
+
+>>
+>> Doing it the DAX/CXL way would be to expose these memory ranges as
+>> daxdev instead, and letting the admin decide how to online these memory
+>> ranges when adding them to the buddy via the dax/kmem kernel module.
+>>
+>> That could mean that your booting with memory on MC0 only, and expose
+>> memory of MC1 via a daxdev, giving the admin the possibility do decide
+>> to which zone the memory should be onlined too.
+>>
+>> That would avoid most kernel code changes.
+> I wasn't familiar with these kernel mechanisms and did enjoy reading
+> about the somewhat oxymoronic "volatile-use of persistent memory" that
+> is dax/kmem, but this isn't performance differentiated RAM. It really is
+> just System RAM so this degree of complexity seems unwarranted.
+
+It's an existing mechanism that will get heavily used by CXL -- for all 
+kinds of memory. I feel like it could solve your use case eventually.
+
+Excluded memory cannot be allocated by the early allocator and you can 
+online it to ZONE_MOVABLE. It at least seems to roughly do something you 
+want to achieve. I'd be curious what you can't achieve or what we might 
+need to make
+
+>>>
+>>>>
+>>>> Why do we have to start using ZONE_MOVABLE for them?
+>>> One of the "other opportunities" for Designated Movable Blocks is to
+>>> allow CMA to allocate from a DMB as an alternative. This would allow
+>>> current users to continue using CMA as they want, but would allow users
+>>> (e.g. hugetlb_cma) that are not sensitive to the allocation latency to
+>>> let the kernel page allocator make more complete use (i.e. waste less)
+>>> of the shared memory. ZONE_MOVABLE pageblocks are always MIGRATE_MOVABLE
+>>> so the restrictions placed on MIGRATE_CMA pageblocks are lifted within a
+>>> DMB.
+>>
+>> The whole purpose of ZONE_MOVABLE is that *no* unmovable allocations end
+>> up on it. The biggest difference to CMA is that the CMA *owner* is able
+>> to place unmovable allocations on it.
+> I'm not sure that is a wholly fair characterization (or maybe I just
+> hope that's the case :). I would agree that the Linux page allocator
+> can't place any unmovable allocations on it. I expect that people locate
+> memory in ZONE_MOVABLE for different purposes. For example, the memory
+> hotplug users ostensibly place memory their so that any data on the hot
+> plugged memory can be moved off of the memory prior to it being hot
+> unplugged. Unplugging the memory removes the memory from the
+> ZONE_MOVABLE zone, but it is not materially different from allocating
+> the memory for a different purpose (perhaps in a different machine).
+
+Well, memory offlining is the one operation that evacuates memory) and 
+makes sure it cannot be allocated anymore (possibly with the intention 
+of removing that memory from the system). Sure, you can call it a fake 
+allocation, but there is a more fundamental difference compared to 
+random subsystems placing unmovable allocations there.
+
+> 
+> Conceptually, allowing a CMA allocator to operate on a Designated
+> Movable Block of memory that it *owns* is also removing that memory from
+> the ZONE_MOVABLE zone. Issues of ownership should be addressed which is
+> why these "other opportunities" are being deferred for now, but I do not
+> believe such use is unreasonable. Again, Designated Movable Blocks are
+> only allowed in boot memory so there shouldn't be a conflict with memory
+> hotplug. I believe the same would apply for hugetlb_cma.
+>>
+>> Using ZONE_MOVABLE for unmovable allocations (hugetlb_cma) is not
+>> acceptable as is.
+>>
+>> Using ZONE_MOVABLE in different context and calling it DMB is very
+>> confusing TBH.
+> Perhaps it is more helpful to think of a Designated Movable Block as a
+> block of memory whose migratetype is not allowed to be changed from
+> MIGRATE_MOVABLE (i.e. "sticky" migrate movable). The fact that
+
+I think that such a description might make the feature easier to grasp. 
+Although I am not sure yet if DMB as proposed is rather a hack to avoid 
+introducing real sticky movable blocks (sorry, I'm just trying to 
+connect the dots and there is a lot of complexity involved) or actually 
+a clean design. Messing with zones and memblock always implies complexity :)
+
+> ZONE_MOVABLE is being used to achieve that is an implementation detail
+> for this commit set. In the same way that memory hotplug is the concept
+> of adding System RAM during run time, but placing it in ZONE_MOVABLE is
+> an implementation detail to make it easier to unplug.
+
+Right, but there we don't play any tricks: it's just ZONE_MOVABLE 
+without any other metadata pointing out ownership. Maybe that's what you 
+are trying to describe here: A DMB inside ZONE_MOVABLE implies that 
+there is another owner and that even memory offlining should fail.
+
+> 
+>>
+>> Just a note that I described the idea of a "PREFER_MOVABLE" zone in the
+>> past. In contrast to ZONE_MOVABLE, we cannot run into weird OOM
+>> situations in a ZONE misconfiguration, and we'd end up placing only
+>> movable allocations on it as long as we can. However, especially
+>> gigantic pages could be allocated from it. It sounds kind-of more like
+>> what you want -- and maybe in combination of daxctl to let the user
+>> decide how to online memory ranges.
+> Best not let Mel hear you suggesting another zone;).
+
+He most probably read it already. ;) I can understand all theoretical 
+complains about ZONE_MOVABLE, but in the end it has been getting the job 
+done for years.
+
+> 
+>>
+>>
+>> And just to make it clear again: depending on ZONE_MOVABLE == only user
+>> space allocations is not future proof.
+> Understood.
+
+May I ask what the main purpose/use case of DMB is?
+
+Would it be sufficient, to specify that hugetlb are allocated from a 
+specific memory area, possible managed by CMA? And then simply providing 
+the application that cares these hugetlb pages? Would you need something 
+that is *not* hugetlb?
+
+But even then, how would an application be able to specify that exactly 
+it's allocation will get served from that part of ZONE_MOVABLE? Sure, if 
+you don't reserve any other hugetlb pages, it's easy.
 
 
-=D1=81=D1=80, 5 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 21:15, Dzmitry Sank=
-ouski <dsankouski@gmail.com>:
->
-> New device support - Xiaomi Mi6 phone
->
-> What works:
-> - storage
-> - usb
-> - power regulators
->
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../boot/dts/qcom/msm8998-xiaomi-sagit.dts    | 681 ++++++++++++++++++
->  arch/arm64/boot/dts/qcom/pm8998.dtsi          |   8 +
->  3 files changed, 690 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts
->
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom=
-/Makefile
-> index 1d86a33de528..0460aabf1b59 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -46,6 +46,7 @@ dtb-$(CONFIG_ARCH_QCOM)       +=3D msm8998-oneplus-dump=
-ling.dtb
->  dtb-$(CONFIG_ARCH_QCOM)        +=3D msm8998-sony-xperia-yoshino-lilac.dt=
-b
->  dtb-$(CONFIG_ARCH_QCOM)        +=3D msm8998-sony-xperia-yoshino-maple.dt=
-b
->  dtb-$(CONFIG_ARCH_QCOM)        +=3D msm8998-sony-xperia-yoshino-poplar.d=
-tb
-> +dtb-$(CONFIG_ARCH_QCOM)        +=3D msm8998-xiaomi-sagit.dtb
->  dtb-$(CONFIG_ARCH_QCOM)        +=3D qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)        +=3D qcs404-evb-4000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)        +=3D qrb5165-rb5.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts b/arch/arm=
-64/boot/dts/qcom/msm8998-xiaomi-sagit.dts
-> new file mode 100644
-> index 000000000000..e44f6a745a2c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts
-> @@ -0,0 +1,681 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Xiaomi Mi 6 (sagit) device tree source based on msm8998-mtp.dtsi
-> + *
-> + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022, Degdag Mohamed <degdagmohamed@gmail.com>
-> + * Copyright (c) 2022, Dzmitry Sankouski <dsankouski@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "msm8998.dtsi"
-> +#include "pm8005.dtsi"
-> +#include "pm8998.dtsi"
-> +#include "pmi8998.dtsi"
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +
-> +/*
-> + * Delete following upstream (msm8998.dtsi) reserved
-> + * memory mappings which are different in this device.
-> + */
-> +/delete-node/ &mpss_mem;
-> +/delete-node/ &venus_mem;
-> +/delete-node/ &mba_mem;
-> +/delete-node/ &slpi_mem;
-> +/delete-node/ &ipa_fw_mem;
-> +/delete-node/ &ipa_gsi_mem;
-> +/delete-node/ &gpu_mem;
-> +/delete-node/ &wlan_msa_mem;
-> +
-> +/ {
-> +       model =3D "Xiaomi Mi 6";
-> +       compatible =3D "xiaomi,sagit", "qcom,msm8998";
-> +       chassis-type =3D "handset";
-> +       /* Required for bootloader to select correct board */
-> +       qcom,board-id =3D <30 0>;
-> +
-> +       reserved-memory {
-> +               /*
-> +                * The following memory regions on downstream are "dynami=
-cally allocated"
-> +                * but given the same addresses every time. Hard code the=
-m as these addresses
-> +                * are where the Xiaomi signed firmware expects them to b=
-e.
-> +                */
-> +               ipa_fws_region: ipa@f7800000 {
-> +                       compatible =3D "shared-dma-pool";
-> +                       reg =3D <0x0 0xf7800000 0x0 0x5000>;
-> +                       no-map;
-> +               };
-> +
-> +               zap_shader_region: gpu@f7900000 {
-> +                       compatible =3D "shared-dma-pool";
-> +                       reg =3D <0x0 0xf7900000 0x0 0x2000>;
-> +                       no-map;
-> +               };
-> +
-> +               mpss_mem: memory@8d000000 {
-> +                       reg =3D <0x0 0x8d000000 0x0 0x7000000>;
-> +                       no-map;
-> +               };
-> +
-> +               venus_mem: memory@94000000 {
-> +                       reg =3D <0x0 0x94000000 0x0 0x500000>;
-> +                       no-map;
-> +               };
-> +
-> +               mba_mem: memory@94500000 {
-> +                       reg =3D <0x0 0x94500000 0x0 0x200000>;
-> +                       no-map;
-> +               };
-> +
-> +               slpi_mem: memory@94700000 {
-> +                       reg =3D <0x0 0x94700000 0x0 0x10000>;
-> +                       no-map;
-> +               };
-> +
-> +               ipa_fw_mem: memory@95600000 {
-> +                       reg =3D <0x0 0x95600000 0x0 0x10000>;
-> +                       no-map;
-> +               };
-> +
-> +               ipa_gsi_mem: memory@95610000 {
-> +                       reg =3D <0x0 0x95610000 0x0 0x5000>;
-> +                       no-map;
-> +               };
-> +
-> +               gpu_mem: memory@95615000 {
-> +                       reg =3D <0x0 0x95615000 0x0 0x100000>;
-> +                       no-map;
-> +               };
-> +
-> +               wlan_msa_mem: memory@95715000 {
-> +                       reg =3D <0x0 0x95715000 0x0 0x100000>;
-> +                       no-map;
-> +               };
-> +       };
-> +
-> +       gpio-keys {
-> +               compatible =3D "gpio-keys";
-> +               label =3D "Volume buttons";
-> +               autorepeat;
-> +
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&vol_up_key_default>;
-> +
-> +               key-vol-up {
-> +                       label =3D "Volume up";
-> +                       gpios =3D <&pm8998_gpio 6 GPIO_ACTIVE_LOW>;
-> +                       linux,code =3D <KEY_VOLUMEUP>;
-> +                       debounce-interval =3D <15>;
-> +                       wakeup-source;
-> +               };
-> +       };
-> +
-> +       gpio-hall-sensor {
-> +               compatible =3D "gpio-keys";
-> +               label =3D "Hall effect sensor";
-> +
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&hall_sensor_default_state>;
-> +
-> +               event-hall-sensor {
-> +                       label =3D "Hall Effect Sensor";
-> +                       gpios =3D <&tlmm 124 GPIO_ACTIVE_LOW>;
-> +                       linux,input-type =3D <EV_SW>;
-> +                       linux,code =3D <SW_LID>;
-> +                       linux,can-disable;
-> +                       wakeup-source;
-> +               };
-> +       };
-> +
-> +       vph_pwr: vph-pwr-regulator {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "vph_pwr";
-> +               regulator-min-microvolt =3D <3700000>;
-> +               regulator-max-microvolt =3D <3700000>;
-> +               regulator-always-on;
-> +               regulator-boot-on;
-> +       };
-> +
-> +       disp_vddts_vreg: disp-vddts-regulator {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "disp-vddts-regulator";
-> +               gpio =3D <&tlmm 50 GPIO_ACTIVE_HIGH>;
-> +               enable-active-high;
-> +               regulator-boot-on;
-> +       };
-> +};
-> +
-> +&blsp1_i2c5 {
-> +       pinctrl-names =3D "default", "sleep";
-> +
-> +       touchscreen@20 {
-> +               compatible =3D "syna,rmi4-i2c";
-> +               reg =3D <0x20>;
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +
-> +               interrupt-parent =3D <&tlmm>;
-> +               interrupts =3D <125 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +               pinctrl-names =3D "default", "sleep";
-> +               pinctrl-0 =3D <&ts_active_state>;
-> +               pinctrl-1 =3D <&ts_int_suspend_state &ts_reset_suspend_st=
-ate>;
-> +
-> +               vdd-supply =3D <&disp_vddts_vreg>;
-> +               vio-supply =3D <&vreg_l6a_1p8>;
-> +
-> +               syna,reset-delay-ms =3D <20>;
-> +               syna,startup-delay-ms =3D <20>;
-> +
-> +               rmi4-f01@1 {
-> +                       reg =3D <0x01>;
-> +                       syna,nosleep-mode =3D <1>;
-> +               };
-> +
-> +               rmi4-f12@12 {
-> +                       reg =3D <0x12>;
-> +                       touchscreen-x-mm =3D <64>;
-> +                       touchscreen-y-mm =3D <114>;
-> +                       syna,sensor-type =3D <1>;
-> +                       syna,rezero-wait-ms =3D <20>;
-> +               };
-> +
-> +               rmi4-f1a@1a {
-> +                       reg =3D <0x1a>;
-> +                       syna,codes =3D <KEY_BACK KEY_APPSELECT>;
-> +               };
-> +       };
-> +       status =3D "okay";
-> +};
-> +
-> +&blsp1_i2c5_sleep {
-> +       /delete-property/ bias-pull-up;
-> +       bias-disable;
-> +};
-> +
-> +&blsp1_uart3 {
-> +       bluetooth {
-> +               compatible =3D "qcom,wcn3990-bt";
-> +
-> +               vddio-supply =3D <&vreg_s4a_1p8>;
-> +               vddxo-supply =3D <&vreg_l7a_1p8>;
-> +               vddrf-supply =3D <&vreg_l17a_1p3>;
-> +               vddch0-supply =3D <&vreg_l25a_3p3>;
-> +               max-speed =3D <3200000>;
-> +       };
-> +       status =3D "okay";
-> +};
-> +
-> +&blsp1_uart3_on {
-> +       rx {
-> +               /delete-property/ bias-disable;
-> +               /*
-> +                * Configure a pull-up on 46 (RX). This is needed to
-> +                * avoid garbage data when the TX pin of the Bluetooth
-> +                * module is in tri-state (module powered off or not
-> +                * driving the signal yet).
-> +                */
-> +               bias-pull-up;
-> +       };
-> +
-> +       cts {
-> +               /delete-property/ bias-disable;
-> +               /*
-> +                * Configure a pull-down on 47 (CTS) to match the pull
-> +                * of the Bluetooth module.
-> +                */
-> +               bias-pull-down;
-> +       };
-> +};
-> +
-> +&blsp2_uart1 {
-> +       status =3D "okay";
-> +};
-> +
-> +&pm8005_regulators {
-> +       compatible =3D "qcom,pm8005-regulators";
-> +
-> +       vdd_s1-supply =3D <&vph_pwr>;
-> +
-> +       pm8005_s1: s1 { /* VDD_GFX supply */
-> +               regulator-min-microvolt =3D <524000>;
-> +               regulator-max-microvolt =3D <1100000>;
-> +               regulator-enable-ramp-delay =3D <500>;
-> +
-> +               /* hack until we rig up the gpu consumer */
-> +               regulator-always-on;
-> +       };
-> +};
-> +
-> +&pm8998_gpio {
-> +       vol_up_key_default: vol-up-key-default-state {
-> +               pins =3D "gpio6";
-> +               function =3D "normal";
-> +               bias-pull-up;
-> +               input-enable;
-> +               qcom,drive-strength =3D <PMIC_GPIO_STRENGTH_NO>;
-> +       };
-> +
-> +       audio_mclk_pin: audio-mclk-pin-active-state {
-> +               pins =3D "gpio13";
-> +               function =3D "func2";
-> +               power-source =3D <0>;
-> +       };
-> +};
-> +
-> +&qusb2phy {
-> +       vdda-pll-supply =3D <&vreg_l12a_1p8>;
-> +       vdda-phy-dpdm-supply =3D <&vreg_l24a_3p075>;
-> +       status =3D "okay";
-> +};
-> +
-> +&rpm_requests {
-> +       regulators-0 {
-> +               compatible =3D "qcom,rpm-pm8998-regulators";
-> +
-> +               vdd_s1-supply =3D <&vph_pwr>;
-> +               vdd_s2-supply =3D <&vph_pwr>;
-> +               vdd_s3-supply =3D <&vph_pwr>;
-> +               vdd_s4-supply =3D <&vph_pwr>;
-> +               vdd_s5-supply =3D <&vph_pwr>;
-> +               vdd_s6-supply =3D <&vph_pwr>;
-> +               vdd_s7-supply =3D <&vph_pwr>;
-> +               vdd_s8-supply =3D <&vph_pwr>;
-> +               vdd_s9-supply =3D <&vph_pwr>;
-> +               vdd_s10-supply =3D <&vph_pwr>;
-> +               vdd_s11-supply =3D <&vph_pwr>;
-> +               vdd_s12-supply =3D <&vph_pwr>;
-> +               vdd_s13-supply =3D <&vph_pwr>;
-> +               vdd_l1_l27-supply =3D <&vreg_s7a_1p025>;
-> +               vdd_l2_l8_l17-supply =3D <&vreg_s3a_1p35>;
-> +               vdd_l3_l11-supply =3D <&vreg_s7a_1p025>;
-> +               vdd_l4_l5-supply =3D <&vreg_s7a_1p025>;
-> +               vdd_l6-supply =3D <&vreg_s5a_2p04>;
-> +               vdd_l7_l12_l14_l15-supply =3D <&vreg_s5a_2p04>;
-> +               vdd_l9-supply =3D <&vreg_bob>;
-> +               vdd_l10_l23_l25-supply =3D <&vreg_bob>;
-> +               vdd_l13_l19_l21-supply =3D <&vreg_bob>;
-> +               vdd_l16_l28-supply =3D <&vreg_bob>;
-> +               vdd_l18_l22-supply =3D <&vreg_bob>;
-> +               vdd_l20_l24-supply =3D <&vreg_bob>;
-> +               vdd_l26-supply =3D <&vreg_s3a_1p35>;
-> +               vdd_lvs1_lvs2-supply =3D <&vreg_s4a_1p8>;
-> +
-> +               vreg_s3a_1p35: s3 {
-> +                       regulator-min-microvolt =3D <1352000>;
-> +                       regulator-max-microvolt =3D <1352000>;
-> +               };
-> +
-> +               vreg_s4a_1p8: s4 {
-> +                       regulator-min-microvolt =3D <1800000>;
-> +                       regulator-max-microvolt =3D <1800000>;
-> +                       regulator-allow-set-load;
-> +               };
-> +
-> +               vreg_s5a_2p04: s5 {
-> +                       regulator-min-microvolt =3D <1904000>;
-> +                       regulator-max-microvolt =3D <2040000>;
-> +               };
-> +
-> +               vreg_s7a_1p025: s7 {
-> +                       regulator-min-microvolt =3D <900000>;
-> +                       regulator-max-microvolt =3D <1028000>;
-> +               };
-> +
-> +               vreg_l1a_0p875: l1 {
-> +                       regulator-min-microvolt =3D <880000>;
-> +                       regulator-max-microvolt =3D <880000>;
-> +               };
-> +
-> +               vreg_l2a_1p2: l2 {
-> +                       regulator-min-microvolt =3D <1200000>;
-> +                       regulator-max-microvolt =3D <1200000>;
-> +               };
-> +
-> +               vreg_l3a_1p0: l3 {
-> +                       regulator-min-microvolt =3D <1000000>;
-> +                       regulator-max-microvolt =3D <1000000>;
-> +               };
-> +
-> +               vreg_l5a_0p8: l5 {
-> +                       regulator-min-microvolt =3D <800000>;
-> +                       regulator-max-microvolt =3D <800000>;
-> +               };
-> +
-> +               vreg_l6a_1p8: l6 {
-> +                       regulator-min-microvolt =3D <1800000>;
-> +                       regulator-max-microvolt =3D <1800000>;
-> +               };
-> +
-> +               vreg_l7a_1p8: l7 {
-> +                       regulator-min-microvolt =3D <1800000>;
-> +                       regulator-max-microvolt =3D <1800000>;
-> +               };
-> +
-> +               vreg_l8a_1p2: l8 {
-> +                       regulator-min-microvolt =3D <1200000>;
-> +                       regulator-max-microvolt =3D <1200000>;
-> +               };
-> +
-> +               vreg_l9a_1p8: l9 {
-> +                       regulator-min-microvolt =3D <1808000>;
-> +                       regulator-max-microvolt =3D <2960000>;
-> +               };
-> +
-> +               vreg_l10a_1p8: l10 {
-> +                       regulator-min-microvolt =3D <1808000>;
-> +                       regulator-max-microvolt =3D <2960000>;
-> +               };
-> +
-> +               vreg_l11a_1p0: l11 {
-> +                       regulator-min-microvolt =3D <1000000>;
-> +                       regulator-max-microvolt =3D <1000000>;
-> +               };
-> +
-> +               vreg_l12a_1p8: l12 {
-> +                       regulator-min-microvolt =3D <1800000>;
-> +                       regulator-max-microvolt =3D <1800000>;
-> +               };
-> +
-> +               vreg_l13a_2p95: l13 {
-> +                       regulator-min-microvolt =3D <1808000>;
-> +                       regulator-max-microvolt =3D <2960000>;
-> +               };
-> +
-> +               vreg_l14a_1p8: l14 {
-> +                       regulator-min-microvolt =3D <1800000>;
-> +                       regulator-max-microvolt =3D <1800000>;
-> +               };
-> +
-> +               vreg_l15a_1p8: l15 {
-> +                       regulator-min-microvolt =3D <1800000>;
-> +                       regulator-max-microvolt =3D <1800000>;
-> +               };
-> +
-> +               vreg_l16a_2p7: l16 {
-> +                       regulator-min-microvolt =3D <2704000>;
-> +                       regulator-max-microvolt =3D <2704000>;
-> +               };
-> +
-> +               vreg_l17a_1p3: l17 {
-> +                       regulator-min-microvolt =3D <1304000>;
-> +                       regulator-max-microvolt =3D <1304000>;
-> +               };
-> +
-> +               vreg_l18a_2p7: l18 {
-> +                       regulator-min-microvolt =3D <2704000>;
-> +                       regulator-max-microvolt =3D <2704000>;
-> +               };
-> +
-> +               vreg_l19a_3p0: l19 {
-> +                       regulator-min-microvolt =3D <3008000>;
-> +                       regulator-max-microvolt =3D <3008000>;
-> +               };
-> +
-> +               vreg_l20a_2p95: l20 {
-> +                       regulator-min-microvolt =3D <2960000>;
-> +                       regulator-max-microvolt =3D <2960000>;
-> +                       regulator-allow-set-load;
-> +               };
-> +
-> +               vreg_l21a_2p95: l21 {
-> +                       regulator-min-microvolt =3D <2960000>;
-> +                       regulator-max-microvolt =3D <2960000>;
-> +                       regulator-system-load =3D <800000>;
-> +                       regulator-allow-set-load;
-> +               };
-> +
-> +               vreg_l22a_2p85: l22 {
-> +                       regulator-min-microvolt =3D <2864000>;
-> +                       regulator-max-microvolt =3D <2864000>;
-> +               };
-> +
-> +               vreg_l23a_3p3: l23 {
-> +                       regulator-min-microvolt =3D <3312000>;
-> +                       regulator-max-microvolt =3D <3312000>;
-> +               };
-> +
-> +               vreg_l24a_3p075: l24 {
-> +                       regulator-min-microvolt =3D <3088000>;
-> +                       regulator-max-microvolt =3D <3088000>;
-> +               };
-> +
-> +               vreg_l25a_3p3: l25 {
-> +                       regulator-min-microvolt =3D <3104000>;
-> +                       regulator-max-microvolt =3D <3312000>;
-> +               };
-> +
-> +               vreg_l26a_1p2: l26 {
-> +                       regulator-min-microvolt =3D <1200000>;
-> +                       regulator-max-microvolt =3D <1200000>;
-> +                       regulator-allow-set-load;
-> +               };
-> +
-> +               vreg_l28_3p0: l28 {
-> +                       regulator-min-microvolt =3D <3008000>;
-> +                       regulator-max-microvolt =3D <3008000>;
-> +               };
-> +
-> +               vreg_lvs1a_1p8: lvs1 { };
-> +
-> +               vreg_lvs2a_1p8: lvs2 { };
-> +       };
-> +
-> +       regulators-1 {
-> +               compatible =3D "qcom,rpm-pmi8998-regulators";
-> +
-> +               vdd_bob-supply =3D <&vph_pwr>;
-> +
-> +               vreg_bob: bob {
-> +                       regulator-min-microvolt =3D <3312000>;
-> +                       regulator-max-microvolt =3D <3600000>;
-> +               };
-> +       };
-> +};
-> +
-> +&tlmm {
-> +       gpio-reserved-ranges =3D <0 4>, <81 4>;
-> +
-> +       cci1_default_state: cci1-default-state {
-> +               pins =3D "gpio19", "gpio20";
-> +               function =3D "cci_i2c";
-> +               bias-disable;
-> +               drive-strength =3D <2>;
-> +       };
-> +
-> +       cdc_reset_n_state: cdc-reset-n-state {
-> +               pins =3D "gpio64";
-> +               function =3D "gpio";
-> +               bias-pull-down;
-> +               drive-strength =3D <16>;
-> +               output-high;
-> +       };
-> +
-> +       hall_sensor_default_state: hall-sensor-default-state {
-> +               pins =3D "gpio124";
-> +               function =3D "gpio";
-> +               drive-strength =3D <2>;
-> +               bias-disable;
-> +               input-enable;
-> +       };
-> +
-> +       mdss_dsi_active_state: mdss-dsi-active-state {
-> +               pins =3D "gpio94";
-> +               function =3D "gpio";
-> +               drive-strength =3D <8>;
-> +               bias-disable;
-> +       };
-> +
-> +       mdss_dsi_suspend_state: mdss-dsi-suspend-state {
-> +               pins =3D "gpio94";
-> +               function =3D "gpio";
-> +               drive-strength =3D <2>;
-> +               bias-pull-down;
-> +       };
-> +
-> +       mdss_te_active_state: mdss-te-active-state {
-> +               pins =3D "gpio10";
-> +               function =3D "mdp_vsync_a";
-> +               drive-strength =3D <2>;
-> +               bias-pull-down;
-> +       };
-> +
-> +       mdss_te_suspend_state: mdss-te-suspend-state {
-> +               pins =3D "gpio10";
-> +               function =3D "mdp_vsync_a";
-> +               drive-strength =3D <2>;
-> +               bias-pull-down;
-> +       };
-> +
-> +       msm_mclk0_active_state: msm-mclk0-active-state {
-> +               pins =3D "gpio13";
-> +               function =3D "cam_mclk";
-> +               drive-strength =3D <2>;
-> +               bias-disable;
-> +       };
-> +
-> +       msm_mclk0_suspend_state: msm-mclk0-suspend-state {
-> +               pins =3D "gpio13";
-> +               function =3D "cam_mclk";
-> +               drive-strength =3D <2>;
-> +               bias-pull-down;
-> +       };
-> +
-> +       msm_mclk1_active_state: msm-mclk1-active-state {
-> +               pins =3D "gpio14";
-> +               function =3D "cam_mclk";
-> +               drive-strength =3D <2>;
-> +               bias-disable;
-> +       };
-> +
-> +       msm_mclk1_suspend_state: msm-mclk1-suspend-state {
-> +               pins =3D "gpio14";
-> +               function =3D "cam_mclk";
-> +               drive-strength =3D <2>;
-> +               bias-pull-down;
-> +       };
-> +
-> +       nfc_int_active_state: nfc-int-active-state {
-> +               pins =3D "gpio92";
-> +               function =3D "gpio";
-> +               drive-strength =3D <6>;
-> +               bias-pull-up;
-> +       };
-> +
-> +       nfc_int_suspend_state: nfc-int-suspend-state {
-> +               pins =3D "gpio92";
-> +               function =3D "gpio";
-> +               drive-strength =3D <6>;
-> +               bias-pull-up;
-> +       };
-> +
-> +       nfc_enable_active_state: nfc-enable-active-state {
-> +               pins =3D "gpio12", "gpio116";
-> +               function =3D "gpio";
-> +               drive-strength =3D <6>;
-> +               bias-pull-up;
-> +       };
-> +
-> +       nfc_enable_suspend_state: nfc-enable-suspend-state {
-> +               pins =3D "gpio12", "gpio116";
-> +               function =3D "gpio";
-> +               drive-strength =3D <6>;
-> +               bias-disable;
-> +       };
-> +
-> +       ts_active_state: ts-active-state {
-> +               pins =3D "gpio89", "gpio125";
-> +               function =3D "gpio";
-> +               drive-strength =3D <16>;
-> +               bias-pull-up;
-> +               input-enable;
-> +       };
-> +
-> +       ts_int_suspend_state: ts-int-suspend-state {
-> +               pins =3D "gpio125";
-> +               function =3D "gpio";
-> +               drive-strength =3D <2>;
-> +               bias-disable;
-> +       };
-> +
-> +       ts_reset_suspend_state: ts-reset-suspend-state {
-> +               pins =3D "gpio89";
-> +               function =3D "gpio";
-> +               drive-strength =3D <2>;
-> +               bias-disable;
-> +       };
-> +
-> +       wcd_int_n_state: wcd-int-n-state {
-> +               pins =3D "gpio54";
-> +               function =3D "gpio";
-> +               bias-pull-down;
-> +               drive-strength =3D <2>;
-> +               input-enable;
-> +       };
-> +
-> +       wsa_leftspk_pwr_n_state: wsa-leftspk-pwr-n-state {
-> +               pins =3D "gpio65";
-> +               function =3D "gpio";
-> +               bias-disable;
-> +               drive-strength =3D <2>;
-> +               output-low;
-> +       };
-> +
-> +       wsa_rightspk_pwr_n_state: wsa-rightspk-pwr-n-state {
-> +               pins =3D "gpio66";
-> +               function =3D "gpio";
-> +               bias-disable;
-> +               drive-strength =3D <2>;
-> +               output-low;
-> +       };
-> +};
-> +
-> +&pm8998_resin {
-> +       linux,code =3D <KEY_VOLUMEDOWN>;
-> +};
-> +
-> +&ufshc {
-> +       vcc-supply =3D <&vreg_l20a_2p95>;
-> +       vccq-supply =3D <&vreg_l26a_1p2>;
-> +       vccq2-supply =3D <&vreg_s4a_1p8>;
-> +       vcc-max-microamp =3D <750000>;
-> +       vccq-max-microamp =3D <560000>;
-> +       vccq2-max-microamp =3D <750000>;
-> +       status =3D "okay";
-> +};
-> +
-> +&ufsphy {
-> +       vdda-phy-supply =3D <&vreg_l1a_0p875>;
-> +       vdda-pll-supply =3D <&vreg_l2a_1p2>;
-> +       vddp-ref-clk-supply =3D <&vreg_l26a_1p2>;
-> +       status =3D "okay";
-> +};
-> +
-> +&usb3 {
-> +       /* Disable USB3 clock requirement as the device only supports USB=
-2 */
-> +       qcom,select-utmi-as-pipe-clk;
-> +       status =3D "okay";
-> +};
-> +
-> +&usb3_dwc3 {
-> +       /* Drop the unused USB 3 PHY */
-> +       phys =3D <&qusb2phy>;
-> +       phy-names =3D "usb2-phy";
-> +
-> +       /* Fastest mode for USB 2 */
-> +       maximum-speed =3D "high-speed";
-> +
-> +       /* Force to peripheral until we can switch modes */
-> +       dr_mode =3D "peripheral";
-> +};
-> +
-> +&wifi {
-> +       vdd-0.8-cx-mx-supply =3D <&vreg_l5a_0p8>;
-> +       vdd-1.8-xo-supply =3D <&vreg_l7a_1p8>;
-> +       vdd-1.3-rfa-supply =3D <&vreg_l17a_1p3>;
-> +       vdd-3.3-ch0-supply =3D <&vreg_l25a_3p3>;
-> +       status =3D "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/pm8998.dtsi b/arch/arm64/boot/dts/q=
-com/pm8998.dtsi
-> index d09f2954b6f9..7929fa64e1ef 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8998.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-> @@ -52,6 +52,14 @@ pm8998_pwrkey: pwrkey {
->                                 bias-pull-up;
->                                 linux,code =3D <KEY_POWER>;
->                         };
-> +
-> +                       pm8998_resin: resin {
-> +                               compatible =3D "qcom,pm8941-resin";
-> +                               bias-pull-up;
-> +                               interrupts =3D <GIC_SPI 0x8 1 IRQ_TYPE_ED=
-GE_BOTH>;
-> +                               debounce =3D <15625>;
-> +                               status =3D "disabled";
-> +                       };
->                 };
->
->                 pm8998_temp: temp-alarm@2400 {
-> --
-> 2.30.2
->
+I'd like to note that if you'd go with (fake) NUMA nodes like PMEM or 
+CXL you could easily let your application mbind() to that memory and 
+have it configured.
+
+-- 
+Thanks,
+
+David / dhildenb
+
