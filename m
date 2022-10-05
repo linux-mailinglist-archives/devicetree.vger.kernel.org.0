@@ -2,119 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 719BD5F5297
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 12:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA9E55F52C4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 12:43:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbiJEK3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 06:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34974 "EHLO
+        id S229530AbiJEKnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 06:43:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbiJEK3u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 06:29:50 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B2DC1571F;
-        Wed,  5 Oct 2022 03:29:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1664965789; x=1696501789;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5E4QJjuCCvDQ9v5hxdicxtlW9u5VvqxJSbrtoVqnEOg=;
-  b=17p32s08nbQ/0uGDfLKSQ1h8mkKDrKhlQC7NHFnQf8o54GQjK3mmMUcc
-   Xra1RT4Yl+53bW9of0xjPjq4BjG0l9RMYv0+dd/ybOrMY4Nb+rbCZL3/1
-   iOTxJNLwO4AF42VO6xV7BDsQGVJ/2x97qMZ+Ep3jYo/9rmRsFU/b3fhav
-   x7az5gAbB5M/AURfyMtGb2AFNdLJJXUWq8xT4mIyjZg6KYMHdJo9sryRh
-   5Mh0Q/lEMDMMKuEb6zEAj7Lc/My32oVSieCcM4iaUY7osFt3oWYWHTLBG
-   lG/865rL7NLzrDsSDAEVZfDHmYdC8xByjV/4OLf0QZWw4skoSEVcQwGH2
-   A==;
-X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; 
-   d="scan'208";a="177122166"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Oct 2022 03:29:47 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 5 Oct 2022 03:29:45 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Wed, 5 Oct 2022 03:29:41 -0700
-Date:   Wed, 5 Oct 2022 11:29:20 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-CC:     <conor@kernel.org>, <geert+renesas@glider.be>,
-        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-        <aou@eecs.berkeley.edu>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <magnus.damm@gmail.com>,
-        <heiko@sntech.de>, <guoren@kernel.org>, <philipp.tomsich@vrull.eu>,
-        <nathan@kernel.org>, <atishp@rivosinc.com>,
-        <apatel@ventanamicro.com>, <linux-renesas-soc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <biju.das.jz@bp.renesas.com>,
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [RFC PATCH v2 2/2] soc: renesas: Add L2 cache management for
- RZ/Five SoC
-Message-ID: <Yz1cgDOCdY41ip0y@wendy>
-References: <20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221003223222.448551-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <YzxwoELNBctbhjJb@spud>
- <CA+V-a8tgvF16vduoQ+ZbzTpRJUmCnN-GPQs5G8AqMOXbnznwHA@mail.gmail.com>
- <F0B6C609-6C39-4080-8F07-7FEFFAFEA993@kernel.org>
- <5254a42c-9233-6f9a-eff8-33324a184d20@microchip.com>
- <CA+V-a8tS=vsTW=SvGeAjy_M9C=ZwtaWHYhdBK=XV0M9T_c3b5A@mail.gmail.com>
+        with ESMTP id S229491AbiJEKnw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 06:43:52 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD57D21276
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 03:43:50 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id bq9so25334390wrb.4
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 03:43:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=t+w6hbnmBxGh/SnoAN51PbGzmPnoa7byBs+QlkLCahk=;
+        b=R15R3ATdN6iufu7nin46PsM+hmljQu6HCebkOcpbM86w6JXB4tLmnyYFGvzMyaTAK9
+         DATKweeG+C19s87m0osqZcX7Wv9VnlYLA46pxoDC4t3EDfSTUH2dxWw6r8HZQOZrurgW
+         Mr2tL4Ois41SkKvl7nCRc0iTbtwxokNap3lSU4anX43Xtt/OM4Ovg7Cdr5VYsRpvrb7+
+         2FLht8fwNR7E+quV80q7AkrbSt9IbjICU6kiDoY7JXZ7G4H+1dELcHMCE+VWtXcxtT4M
+         40Ta6v1SggniF9P24SFUae6kj/b8LqMY9uqlox6N0QUm1mPRCQ1SB5kH1PLK7ytH3o5m
+         sRlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=t+w6hbnmBxGh/SnoAN51PbGzmPnoa7byBs+QlkLCahk=;
+        b=kzPA761s0/lGapSJgneTLcJjEO/+AFKLV32D9j+teQrDbZwenXCWsT5jYu/JLymkIf
+         3tfqLWOcirUxXnAsAupxWoJFmlZn90zdyEkmB1rEWQXMWhXAKlETSO9D6R8O8dHojO+N
+         79B1JbjFd95nBgT/fJGb+WV92gZmz9hrD+hSUBNRJDUptjuPC8PxnYikueJjtgyr4pv7
+         odIdfjRsbsBnRQZW9uU8Ve2aD+4ThvvSK6JG7B+iJ4bEUYYgTwkKCOzC6VSOhud7M/Ql
+         QBrBWBZuEHko1wqeHZXjaTE+1NsgAaA64PcoSsHnUsUUYersfDseO12X7U36bjTcIEqm
+         +OAQ==
+X-Gm-Message-State: ACrzQf2FE3T1sGQM/1lApm/EM4DDAMdrNlfetXRIRkmzVoSUV3oJ90CG
+        ZAK6lJW+YxZ8H40NwHCEpoutug==
+X-Google-Smtp-Source: AMsMyM4S6PxB3wWBcc/2e0dkBoWv6zeqFc1QryB9JS3nHWDnAppPn5iGRCLyYPFlzPDI4dUlGlGbXQ==
+X-Received: by 2002:a5d:688f:0:b0:22c:df1c:92cd with SMTP id h15-20020a5d688f000000b0022cdf1c92cdmr4916246wru.52.1664966629401;
+        Wed, 05 Oct 2022 03:43:49 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id q18-20020a056000137200b0022cc7c32309sm15004694wrz.115.2022.10.05.03.43.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Oct 2022 03:43:49 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     pavel@ucw.cz, robh+dt@kernel.org, jacek.anaszewski@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/2] dt-bindings: leds: common: add disk write/read and usb-host/usb-gadget
+Date:   Wed,  5 Oct 2022 10:43:40 +0000
+Message-Id: <20221005104341.3505550-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8tS=vsTW=SvGeAjy_M9C=ZwtaWHYhdBK=XV0M9T_c3b5A@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 05, 2022 at 11:20:40AM +0100, Lad, Prabhakar wrote:
-> Hi Conor,
-> 
-> On Wed, Oct 5, 2022 at 10:17 AM <Conor.Dooley@microchip.com> wrote:
-> >
-> > On 05/10/2022 09:58, Conor Dooley wrote:
-> > > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > >
-> > > On 5 October 2022 09:44:56 IST, "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> > >> Hi Conor,
-> > >>
-> > >> Thank you for the review.
-> > >>
-> > >> On Tue, Oct 4, 2022 at 6:43 PM Conor Dooley <conor@kernel.org> wrote:
-> > >
-> > >>>> +static void cpu_dcache_wb_range(unsigned long start,
-> > >>>> +                             unsigned long end,
-> > >>>> +                             int line_size)
-> > >>>> +{
-> > >>>> +     bool ucctl_ok = false;
-> > >>>> +     unsigned long pa;
-> > >>>> +     int mhartid = 0;
-> > >>>> +#ifdef CONFIG_SMP
-> > >>>> +     mhartid = smp_processor_id();
-> > >>>> +#endif
-> > >>>
-> > >>> Won't this produce complaints from your if you compile with CONFIG_SMP
-> > >>> set?
-> > >>>
-> > >> No I dont see a build issue with SMP enabled, do you see any reason
-> > >> why it should fail?
-> > >
-> > > Not fail but complain about the unused variable.
-> > >
-> >
-> > Not unused variable, sorry but the unused 0 that it was initialised with*
-> 
-> No, it doesn't complain (I dont think compilers complain of such
-> unused assignments, maybe I'm wrong). BTW I am using GCC 9.4.0. Do you
-> think I need to update it?
+The triggers enum misses 3 cases used by gemini DT.
+usb-host was added via commit 0cfbd328d60f ("usb: Add LED triggers for USB activity")
+so we add also as valid trigger usb-gadget which was added along in this
+commit.
 
-Maybe it's sparse that generates those warnings, I never know which it
-is...
+disk-read/disk-write were added by commit d1ed7c558612 ("leds: Extends disk trigger for reads and writes")
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
+
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+V1 can be seen at https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210508193654.2596119-1-clabbe@baylibre.com/
+Changes since v1:
+- rebased on recent tree
+
+ Documentation/devicetree/bindings/leds/common.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index 3c14a98430e1..25f3b7cc0cdb 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -90,6 +90,8 @@ properties:
+           - heartbeat
+             # LED indicates disk activity
+           - disk-activity
++          - disk-read
++          - disk-write
+             # LED indicates IDE disk activity (deprecated), in new implementations
+             # use "disk-activity"
+           - ide-disk
+@@ -98,6 +100,8 @@ properties:
+             # LED alters the brightness for the specified duration with one software
+             # timer (requires "led-pattern" property)
+           - pattern
++          - usb-gadget
++          - usb-host
+         # LED is triggered by SD/MMC activity
+       - pattern: "^mmc[0-9]+$"
+ 
+-- 
+2.35.1
+
