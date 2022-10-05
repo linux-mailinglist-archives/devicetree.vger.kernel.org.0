@@ -2,112 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EB245F5866
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 18:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D9375F587E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 18:43:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbiJEQfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 12:35:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58056 "EHLO
+        id S229582AbiJEQnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 12:43:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbiJEQfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 12:35:46 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3D31AD95
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 09:35:45 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id j4so1376588lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 09:35:45 -0700 (PDT)
+        with ESMTP id S229592AbiJEQni (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 12:43:38 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B60DB240BE;
+        Wed,  5 Oct 2022 09:43:37 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id c7so15698501pgt.11;
+        Wed, 05 Oct 2022 09:43:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=ArbnXthF17aFuK2Rgr6+egy+HB4WLw6ceMUfORh6l5Y=;
-        b=XvUHOrQG17fhHnlsoCT7GqSjckTrNFw6Vy+GWnTE4oAEokGaLPenF5tQfc3fhpUWo1
-         qKFIPUF79oULb9lmZeVbm4Ukh3AyWcQkeK7IdEJR0M3pItEwdEyJVjZ6oSVH5OjsulVL
-         HZ1HoQL8/yCWzDe5QrL1nFvG8v3C+O8QVE2ePiFpFcWTjGTl2hryRJG8gHO7Cx/+p2RH
-         BdP6uRRj759ACtmumxm/aczNsEEz6BxVzoOJZX83Kx4eZtsdgm4Ujl1CGN2EVOy2KlhY
-         rE/TdxZOHna+0XZkJVRv8dIUKwVvCE5nWCtP6xJH2EdC4wK1DJo3WrZuooZC83oKx6b6
-         NLcA==
+        bh=tILem83EJNuvIc5+TmcyEmjOuaEfpedRH8xo74px4IM=;
+        b=gwPyQmbr7slMOsWZ7Svbjc60E0jzRoQJnXOyA9UlTczLgMCmWVcsB3tt6cKQpOgzQt
+         3esZbJKqcEYIkcgl3Lwqn6KM93N7316Rv/YIdpvDuj1fVhvv2Wmd0i+9OtnZNRXEMEH4
+         SxMrIkHmu7iZ5Nixr0OcR7v8uceju3Tb7mQ3MthrMXAqC/jGuu/SOBSthKnQdGXVUGOk
+         XkrSK1MBD4zviv+WvsDKTRxmJX/uo67/PbgYPKTCz+bV6QCO/7ZdCWOyOpU/Y30fsymu
+         0HRXk8pQw0i8grHuI9HLYb+TXKLGd+L833xaufMDqnw3fXAUa5K8RVnYAfMtb3jBPocF
+         2TZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=ArbnXthF17aFuK2Rgr6+egy+HB4WLw6ceMUfORh6l5Y=;
-        b=jTtm026Ie7ZL848rtKlUn8wWpgL78uALJuOKCXjHpIa8lZNzqV3JELordYQdhMjLDI
-         AJEriN5/bVouyjeVr6kZHzoXOazRrKfHmyruueAk/Tsr7oFomCVzTcKWP6/1xXKQe3f0
-         asOSN4IYV6OfBnKZqwLKLAhq2ep+i3jXWPCeMLWqtOq9ioZ0oBVHcUb9ulVwy0s49CWO
-         C8vEGkvJExUDTgHlDnGmXqzw79h/rnh5S18sfKRoptQfPLsP8fpZGWJ+OqAKd3ov9oL2
-         WIGVYJXJxAouSs/aAul5BEk+eHOnZ8pas89FAJAPIp3k/kTOLhtqQ9cS0T1gGE0UH6u8
-         2Tcg==
-X-Gm-Message-State: ACrzQf30nmWd+xWU92DcZp9Pe9ur3FyFlNfg/U1jfrx/JuA8E/P0nkiU
-        8SjkguxFRS/9qoADBd0XtYZOjg==
-X-Google-Smtp-Source: AMsMyM5LjKt7QvMVK5nxucMwvVVKZDMB0Zf8Ee6Jfz1lQgOYAmg2F5JK8113gHKmDPb4++HQwSS93g==
-X-Received: by 2002:ac2:4f03:0:b0:495:ec98:bcac with SMTP id k3-20020ac24f03000000b00495ec98bcacmr224149lfr.339.1664987743632;
-        Wed, 05 Oct 2022 09:35:43 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o20-20020a056512231400b0048a9b197863sm2391823lfu.235.2022.10.05.09.35.42
+        bh=tILem83EJNuvIc5+TmcyEmjOuaEfpedRH8xo74px4IM=;
+        b=V94aHi0VtUsWQUbwKv+H9ytVPX06bU/OsWl9TvonP+VS6M4bjZjw0++nvfZDuGBjjh
+         7aWeGb0n7/2M/9ioAhwsOZdKlTmi272wL7EL1SM+J3jvYOpgP/GGWztfC3n0v44gw/YE
+         R7/iuvpeNMSnnmxFQO5XasyNChErBRnoPg+RGalxuumMRCAgl/gQXM4015tdpCovRrkl
+         K/ylGBY7x9zoJvaai8IbVG+CTG/pLfX42RSdRxywzae03vkXHVxnoItggAQZ7rVJOtSi
+         JPqs4EqmIS5y9l7pPET9rFPe0RGxRBDRgfWvuIdv8SUIRI3/nAgXHIDzg1HMJX/oKS7q
+         0u/g==
+X-Gm-Message-State: ACrzQf1y5iuDyfD0WLTHihgRcWjX0rqo2S6U6Zz03WQPux01XWJAdz2m
+        tjZ0rcZcmh0hOPvZmTLRWnU3T7YXmlAHpGUMpj0=
+X-Google-Smtp-Source: AMsMyM7kQtyNZhDR0lmhv7RCt2A3DFuUNz9FnAeQRICtLaz6ostG3FIRuQIo4RmdsfYsaVXVbkSc5w==
+X-Received: by 2002:a05:6a00:302a:b0:560:950e:afd1 with SMTP id ay42-20020a056a00302a00b00560950eafd1mr332181pfb.26.1664988216904;
+        Wed, 05 Oct 2022 09:43:36 -0700 (PDT)
+Received: from [192.168.0.106] (155137199074.ctinets.com. [155.137.199.74])
+        by smtp.gmail.com with ESMTPSA id g10-20020a170902868a00b0016cf3f124e1sm10595963plo.234.2022.10.05.09.43.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Oct 2022 09:35:43 -0700 (PDT)
-Message-ID: <4e5c0d90-d1ec-15ca-c07a-d43f52d4d69a@linaro.org>
-Date:   Wed, 5 Oct 2022 18:35:42 +0200
+        Wed, 05 Oct 2022 09:43:36 -0700 (PDT)
+Message-ID: <be98b367-f29f-25d1-de01-be189ae8057a@gmail.com>
+Date:   Thu, 6 Oct 2022 00:43:31 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v2] dt-bindings: mfd: mt6370: fix the interrupt order of
- the charger in the example
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v3 2/2] irqchip/apple-aic: Add support for A7-A11 SoCs
 Content-Language: en-US
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        matthias.bgg@gmail.com, sre@kernel.org, chiaen_wu@richtek.com,
-        cy_huang@richtek.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <9dda705a8d67826306f6c6129722d3ad8edc96fc.1664816175.git.chiaen_wu@richtek.com>
- <CAL_Jsq+YeZRizJFYuU7RPTcFRe1cDjLgsTidisJ_P5PNC4eKiw@mail.gmail.com>
- <CABtFH5Ld91S65RiDu4iSpFhAMiFWaQdj-yDRM79=WUkArpA0JA@mail.gmail.com>
- <9004b427-66b7-f783-9258-4f6b893899ef@linaro.org>
- <CABtFH5LLxjaWHFLRGjVb9x1a_SJoHzD_GsOqn-e9uQAJ6mOocg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CABtFH5LLxjaWHFLRGjVb9x1a_SJoHzD_GsOqn-e9uQAJ6mOocg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Sven Peter <sven@svenpeter.dev>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Cc:     Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221004112724.31621-1-konrad.dybcio@somainline.org>
+ <20221004112724.31621-2-konrad.dybcio@somainline.org>
+ <3398859f-e872-4f1d-8a03-4dcb1e46e010@app.fastmail.com>
+From:   Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <3398859f-e872-4f1d-8a03-4dcb1e46e010@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/10/2022 10:59, ChiaEn Wu wrote:
-> On Wed, Oct 5, 2022 at 4:33 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
-> ...
->>
->> Eh, my patch was merged in July... and yours from September still does
->> not use updated multi-led bindings. Was it even tested before sending?
->>
->> Best regards,
->> Krzysztof
->>
+
+
+On 4/10/2022 23:56, Sven Peter wrote:
+> Hi,
 > 
-> Hi Krzysztof,
 > 
-> I must apologize for checking our patches are based on v5.19 (I also
-> forgot to apply your patch before checking patches......), not the
-> v6.0-rc series at that time.
-> I will update the latest code and check my patch again and again
-> before submitting the patch next time.
-> I'm very sorry for this mistake.......
+> On Tue, Oct 4, 2022, at 13:27, Konrad Dybcio wrote:
+>> Add support for A7-A11 SoCs by if-ing out some features only present
+>> on:
+>>
+>> * A11 & newer (implementation-defined IPI & UNCORE registers)
+>> * A11[1] & newer (fast IPI support).
+>>
+>> UNCORE/UNCORE2 and IPI registers conveniently both first appeared on
+>> A11, so introduce just one check for that.
+>>
+>> Knowing whether the SoC supports the latter is necessary, as they are
+>> written to, even if fast IPI is disabled.
+> 
+> AFAIK that's only an artifact in this driver: It was added to prevent an FIQ
+> storm in case there were pending fast ipis (i.e. the bootloader was broken ;))
+> when this driver didn't support fast ipis yet.
+> 
+>> This in turn causes a crash
+>> on older platforms, as the implemention-defined registers either do
+>> something else or are not supposed to be touched - definitely not a
+>> NOP though.
+>>
+>> [1] A11 is supposed to use this feature, but it currently doesn't work
+>> for reasons unknown and hence remains disabled. It can easily be enabled
+>> on A11 only, as there is a SoC-specific compatible in the DT with a
+>> fallback to apple,aic. That said, it is not yet necessary, especially
+>> with only one core up, and it has worked a-ok so far.
+> 
+> Just to make sure I understand this correctly - we have the following three situations:
+> 
+> - base: no fastipi, no uncore, will work on A11 and M1 though
+> - A11: fastipi and uncore but fastipi is broken (possibly due to HW errata or some bug in this driver that only happens on A11)
+> - M1 (or maybe even A12 already, doesn't matter though): fastipi and uncore support
+> 
+> If we figured out _why_ fastipi is broken on A11 we would only need a single
+> feature flag to enable both uncore and fastipi but for now we need two to
+> disable fastipi for A11
 
-Always base your patches on one of: latest mainline kernel, latest
-maintainer's tree or recent linux-next.
+The previous issues with fast IPI does not seem to be reproducible with thisversion of patches anymore, at least when modifying the device tree to useapple,t8103-aic the device still boots. Tested on iPhone X.
+> 
+> I'm also curious: What are the symptoms when you enable fastipi on A11?
+> 
+> 
+> Sven
 
-Best regards,
-Krzysztof
 
+Nick Chan
