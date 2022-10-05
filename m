@@ -2,137 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1FF15F52C5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 12:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 098685F52F3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 12:55:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbiJEKny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 06:43:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52004 "EHLO
+        id S229620AbiJEKz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 06:55:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbiJEKnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 06:43:52 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 957462D1F0
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 03:43:51 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id b7so17713580wrq.9
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 03:43:51 -0700 (PDT)
+        with ESMTP id S229509AbiJEKz1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 06:55:27 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C270965831
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 03:55:25 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id j16so13429393wrh.5
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 03:55:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=c2/v4Shs/DVpwaIJxuNkN3bIUQOS2jaS0UYUZOSZxKg=;
-        b=Ui8cPpQJJY5mh4B9Ut/TDodgIQ5ugUeRveZLw0X2jS7EP5pCpMFyFkfTUBJISeY4q3
-         fuVWcnaezvmk95fVAFphL/U75siRe7b7uWnMhxGJBFESyMQdhlolV/BqQ/R5HSsrbVzT
-         loQNkdpthIGcYnSiPgmliFAA1nrT/HQoAtJHAVVUuuin0xGdpvtDmjpFbvQkGxojlnhy
-         uq53sXW0jG8JR6Y3R5iE3D2eaOuccGnucUxJefvCbsgIINkLAA8OCAWmZl0Zz4NqqNp9
-         v4vKArziRuSjYlgGxfpfX4MAVfQZgXZRKgbs9cZuv6BEfD+2kidAxrLUGVIqnPiN6wrc
-         EwgA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=Hx3lo8iVf7+CPJL6lCE6hKeJnw4lGzp6yArcYS4WFY0=;
+        b=CAI2yMPZ0AfpixNqwNV8uaM/lVcWdjhCRGO9KsXgIce3L11kurZia/mIYNw1k0O52Z
+         7bhRs46EPQBa3oST9u/qbugdq7llfpVJOT09Nh2qwQiYFIm7L6GAk2F5X89w1onZ3SSG
+         TfffOft5OxE0WX35YAKaKukWlHe++Fx+DDKyUAqtW0cNmRLklLhpa2UvT4sd4UXRsbxc
+         hP2kFdr70J0BvjOZAofBmef+j7ZFtTgLJwmXRYGivnbRzj17BVHu+3fyZ/gWZeJq7qti
+         H8aBcAGQ5luLQjMEk/HFdP3pIW4NAH/IbrQPimJY+4GUXMsyxEvuFM/cT0Xou4qxMMsX
+         Q2ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=c2/v4Shs/DVpwaIJxuNkN3bIUQOS2jaS0UYUZOSZxKg=;
-        b=WnrpKd2rX1H/9WZiu0eH+Cbwc96gfZx4ncVysOtgMbO5orsNmY9L14f7popvQQ0TXZ
-         UQLiGcJROjLapaks6QBESk7dy1wmFhvRlT3mmMR1VlVSvJhCHcL0iR9zcCfG59g/q1z5
-         DecFyK7xW1clDp5o/YtQqPi4LiUwzM3vVUx3XRy83o0FS+WpoPKxo/4WhjIJSNI98TnB
-         9BdGPRKGPrNVxTny5+FoH1h9QtJ54Gh/tDdzwQ7Q13EwlD+llHPuPu5gOveyi8D2+veG
-         rckVDomG78iXcOsWNRI+l5TvCVW4LD4KIQ3Z/VBlmwTeDltBOls2nMjNtzUzx++F9nqu
-         FSCg==
-X-Gm-Message-State: ACrzQf3f3g6OAZZwpt4Ch3MgJ/lcL7XgL4GmXzkNOmZOvxhnivI4vqeS
-        UtdQfQh3qE20jAKdF+UTerIGuw==
-X-Google-Smtp-Source: AMsMyM4dIjOLe3K0R6Mu50htxGGwJ5r9iR5UHidn9Kh8pdAYjGdaA0xj5i3MXi3xnZ7aeRZSLvRvDA==
-X-Received: by 2002:adf:fd50:0:b0:22e:5503:9c4c with SMTP id h16-20020adffd50000000b0022e55039c4cmr4394060wrs.375.1664966630211;
-        Wed, 05 Oct 2022 03:43:50 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=Hx3lo8iVf7+CPJL6lCE6hKeJnw4lGzp6yArcYS4WFY0=;
+        b=dL7nKbNohc/9zRe+kNpEAjbJ40N6O9itdTezcfuuNWZ9IrELY4ieGf8EWdQyakHT/A
+         UyoOLHeVdr9d9w5rtCJlJEx6TSZHhPupaIFrshbkZy6voIMf52CKkHGhy61of0GQKbSb
+         8tPscD1noecWZDZT8e1RI6407Wi+VlgNCxkVzjujqjMSkG+G6Ds7KYSU+0nUv9VqVW3r
+         FkgpsLs3UF+KmyTipnli7QsWhwdJeioBhBaLMa6pM1FCOL2RgvdGrQFOrziTI25tmxdf
+         3zvTt+lZGf/bwdEkYOIff9lL9UNDKsoTQFBMSguGharf0HudhSJyV8ubdba+Q/Oidry6
+         DZ+g==
+X-Gm-Message-State: ACrzQf04DuKRp/LIzmdQEIUxvbJW+G1OVb87+f5yzMZzDfISWUrLtNl3
+        XgLbT8fCTICjkgCzBXpmUrYMgw==
+X-Google-Smtp-Source: AMsMyM7xVM01Ds+CYcPqh+zpNO5vwN33VsP1sxzIfyPWRVel8KOKAuV5qGXFb5XzF2ljAqzuV4oJ9A==
+X-Received: by 2002:a5d:4bcd:0:b0:22c:dfba:6b61 with SMTP id l13-20020a5d4bcd000000b0022cdfba6b61mr15668457wrt.424.1664967324393;
+        Wed, 05 Oct 2022 03:55:24 -0700 (PDT)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id q18-20020a056000137200b0022cc7c32309sm15004694wrz.115.2022.10.05.03.43.49
+        by smtp.googlemail.com with ESMTPSA id i30-20020a1c541e000000b003b486027c8asm1604133wmb.20.2022.10.05.03.55.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Oct 2022 03:43:49 -0700 (PDT)
+        Wed, 05 Oct 2022 03:55:24 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
-To:     pavel@ucw.cz, robh+dt@kernel.org, jacek.anaszewski@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 2/2] leds: remove ide-disk trigger
-Date:   Wed,  5 Oct 2022 10:43:41 +0000
-Message-Id: <20221005104341.3505550-2-clabbe@baylibre.com>
+To:     kaloz@openwrt.org, khalasa@piap.pl,
+        krzysztof.kozlowski+dt@linaro.org, linusw@kernel.org,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] ARM: dts: intel-ixp42x-welltech-epbx100: add ethernet node
+Date:   Wed,  5 Oct 2022 10:55:10 +0000
+Message-Id: <20221005105510.3512132-1-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221005104341.3505550-1-clabbe@baylibre.com>
-References: <20221005104341.3505550-1-clabbe@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-No user of ide-disk remains, so remove this deprecated trigger.
-Only a few platforms used this and were fixed in 2016.
+Add ethernet node for the first port of intel-ixp42x-welltech-epbx100.
 
-Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
-Change since v1:
-- remove also DEFINE_LED_TRIGGER(ledtrig_ide)
-Changes since v2:
-- Added the fact that few platforms used this and it was fixed old ago.
-- Added Rob's ack
-V3 can be seen at https://lore.kernel.org/lkml/20220208104601.3751852-1-clabbe@baylibre.com/T/
-Changes since v3:
-- rebased on recent tree
+ .../boot/dts/intel-ixp42x-welltech-epbx100.dts | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
- Documentation/devicetree/bindings/leds/common.yaml | 3 ---
- drivers/leds/trigger/ledtrig-disk.c                | 4 ----
- 2 files changed, 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index 25f3b7cc0cdb..4ba0423b43c1 100644
---- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -92,9 +92,6 @@ properties:
-           - disk-activity
-           - disk-read
-           - disk-write
--            # LED indicates IDE disk activity (deprecated), in new implementations
--            # use "disk-activity"
--          - ide-disk
-             # LED flashes at a fixed, configurable rate
-           - timer
-             # LED alters the brightness for the specified duration with one software
-diff --git a/drivers/leds/trigger/ledtrig-disk.c b/drivers/leds/trigger/ledtrig-disk.c
-index 0741910785bb..0b7dfbd04273 100644
---- a/drivers/leds/trigger/ledtrig-disk.c
-+++ b/drivers/leds/trigger/ledtrig-disk.c
-@@ -16,7 +16,6 @@
- DEFINE_LED_TRIGGER(ledtrig_disk);
- DEFINE_LED_TRIGGER(ledtrig_disk_read);
- DEFINE_LED_TRIGGER(ledtrig_disk_write);
--DEFINE_LED_TRIGGER(ledtrig_ide);
- 
- void ledtrig_disk_activity(bool write)
- {
-@@ -24,8 +23,6 @@ void ledtrig_disk_activity(bool write)
- 
- 	led_trigger_blink_oneshot(ledtrig_disk,
- 				  &blink_delay, &blink_delay, 0);
--	led_trigger_blink_oneshot(ledtrig_ide,
--				  &blink_delay, &blink_delay, 0);
- 	if (write)
- 		led_trigger_blink_oneshot(ledtrig_disk_write,
- 					  &blink_delay, &blink_delay, 0);
-@@ -40,7 +37,6 @@ static int __init ledtrig_disk_init(void)
- 	led_trigger_register_simple("disk-activity", &ledtrig_disk);
- 	led_trigger_register_simple("disk-read", &ledtrig_disk_read);
- 	led_trigger_register_simple("disk-write", &ledtrig_disk_write);
--	led_trigger_register_simple("ide-disk", &ledtrig_ide);
- 
- 	return 0;
- }
+diff --git a/arch/arm/boot/dts/intel-ixp42x-welltech-epbx100.dts b/arch/arm/boot/dts/intel-ixp42x-welltech-epbx100.dts
+index f5846a50e4d4..b444003c10e1 100644
+--- a/arch/arm/boot/dts/intel-ixp42x-welltech-epbx100.dts
++++ b/arch/arm/boot/dts/intel-ixp42x-welltech-epbx100.dts
+@@ -76,5 +76,23 @@ partition@fff000 {
+ 				};
+ 			};
+ 		};
++
++		/* LAN port */
++		ethernet@c8009000 {
++			status = "ok";
++			queue-rx = <&qmgr 3>;
++			queue-txready = <&qmgr 20>;
++			phy-mode = "rgmii";
++			phy-handle = <&phy5>;
++
++			mdio {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				phy5: ethernet-phy@5 {
++					reg = <5>;
++				};
++			};
++		};
+ 	};
+ };
 -- 
 2.35.1
 
