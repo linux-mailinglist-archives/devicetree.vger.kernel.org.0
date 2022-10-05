@@ -2,189 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BEB25F4D8D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 03:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F60D5F4D99
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 04:12:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbiJEBxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Oct 2022 21:53:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33390 "EHLO
+        id S229639AbiJECMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Oct 2022 22:12:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbiJEBxl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 21:53:41 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 525E467CB7;
-        Tue,  4 Oct 2022 18:53:40 -0700 (PDT)
-X-UUID: 2923a7fd4cf9447da0a843c5e09a98b5-20221005
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=gy2ytux/w9C0XwgNd3GjCzaa+hUjmK54OfaiP6kcO8Y=;
-        b=cO4F98n9Z4Yc82zW8McCfo9Lmx6W0A/emsk8HeQLBOwcJk/UO45fc3nA+TKZSmQm8V2OJgdREtLTNSjx4voEitqoFSfPnXhTZeacuIg+VUkzkljwIx5Vg3L7/GGzvbcg4iYNRobz3kvv0q0dYwCopJoCgW5pWUK8D0usQaSWC+8=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:c746b624-2acd-484a-802d-e3f5ebf2a706,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:45
-X-CID-INFO: VERSION:1.1.11,REQID:c746b624-2acd-484a-802d-e3f5ebf2a706,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-        elease,TS:45
-X-CID-META: VersionHash:39a5ff1,CLOUDID:229286b8-daef-48a8-8c50-40026d6a74c2,B
-        ulkID:221004194715I64JRJ3D,BulkQuantity:69,Recheck:0,SF:38|28|17|19|48|823
-        |824|102,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BEC:
-        nil,COL:0
-X-UUID: 2923a7fd4cf9447da0a843c5e09a98b5-20221005
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <moudy.ho@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 2115336132; Wed, 05 Oct 2022 09:53:36 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 5 Oct 2022 09:53:34 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Wed, 5 Oct 2022 09:53:34 +0800
-Message-ID: <f6d231ca6e8fbd4e9340e6fff363b29e405efba1.camel@mediatek.com>
-Subject: Re: [PATCH v1 2/6] dts: arm64: mt8195: add MMSYS and MUTEX
- configuration for VPPSYS
-From:   moudy ho <moudy.ho@mediatek.com>
-To:     Allen-KH Cheng =?UTF-8?Q?=28=E7=A8=8B=E5=86=A0=E5=8B=B3=29?= 
-        <Allen-KH.Cheng@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "Roy-CW Yeh =?UTF-8?Q?=28=E8=91=89=E4=B8=AD=E7=91=8B=29?=" 
-        <Roy-CW.Yeh@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 5 Oct 2022 09:53:34 +0800
-In-Reply-To: <c80af435ec4fec9419c47a73c0bda112ef62c76d.camel@mediatek.com>
-References: <20221004093319.5069-1-moudy.ho@mediatek.com>
-         <20221004093319.5069-3-moudy.ho@mediatek.com>
-         <c80af435ec4fec9419c47a73c0bda112ef62c76d.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229618AbiJECMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Oct 2022 22:12:02 -0400
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DFA939B9F
+        for <devicetree@vger.kernel.org>; Tue,  4 Oct 2022 19:12:01 -0700 (PDT)
+Received: by mail-qt1-x82d.google.com with SMTP id g23so9256931qtu.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Oct 2022 19:12:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=Bhak+s3ylR2FF/B/HW4Yj0hJZg7TqIKd6TKJAIyki4Q=;
+        b=QDEdwBT56HxPesX7dJ3/d/Y8GVEVHlbzvffzH2KcTza0wEnEtIvkKXCaXjXZFqvuFb
+         FZvIExCkeUhVtEFHwC/bpe2xLn9auxEEFu23pXvF8L+cI0t6OCyJ+XC9D0IL8IzECkF0
+         5llU5WQ5oVXJppl4aV800AjoFhJc8eBu2JZb+Dg55CDL6EJ53ShW+PFruQApq5QuLLxQ
+         LZVwtfGg2VjJ/NPWLPgVpSiXnJcwqZYg1WzGZvCq5Hg+wIr/Ze9ZYqncTiQpftPbUpz8
+         jonEuLX2l+OT6TfK9wR0LE6m/DB/rzGGh7omRUi1qJJjYQ336ZLMQj4DMTn3rWBhX2Js
+         D79g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=Bhak+s3ylR2FF/B/HW4Yj0hJZg7TqIKd6TKJAIyki4Q=;
+        b=BsoyLdhafB3WQazvDjLnovAhy0fgoGbom43CdyArTCuzOF4g5jWVOKT1L3FKjUEYri
+         3RkplikHkGn4GDKFmWYkjHgl8mZ0BB8CVOhngPWWpQoJ7U4qB7ZlwpMgmUtkPCU/qfqp
+         IM3uCneCVyGle4AmUPnCSXJGnpJskzhqcIzBt4+u+PocaDS1MdBsWcCSFyD8s8PMZiaB
+         2RvMYBxThFylou9w4Ot1GYCiVx0ZdC0i+luEFoqddxJtMWVLc+RFaFTAO5EwNm1yD/XX
+         r8mFJ8FBcqZgj8n80AmjFalXrBVuI5b2oTvAw7njw/iq92hUZ0DBxgW+cLi+Fy74PcVJ
+         ECCQ==
+X-Gm-Message-State: ACrzQf2CXYwSWb2MU1RwXSOtS/EYsaJ7ZgzvdIWYfkl4aYnSQTIz262+
+        H8Pwkb50mGJoZmfWO0asXn0=
+X-Google-Smtp-Source: AMsMyM6akWGi+fjuuH+6s1ZKtuPV6bhyHsAuJrb7M1HBXafmCXOAmw0Sm/F0cC+Ka+UzbzYAdD8Gdw==
+X-Received: by 2002:ac8:5bc5:0:b0:35d:129b:5104 with SMTP id b5-20020ac85bc5000000b0035d129b5104mr22555193qtb.237.1664935920366;
+        Tue, 04 Oct 2022 19:12:00 -0700 (PDT)
+Received: from [192.168.1.201] (pool-173-73-95-180.washdc.fios.verizon.net. [173.73.95.180])
+        by smtp.gmail.com with ESMTPSA id u7-20020a05620a454700b006b640efe6dasm16229376qkp.132.2022.10.04.19.11.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Oct 2022 19:11:59 -0700 (PDT)
+Message-ID: <cfb502de-6888-135f-9f85-4614d3655656@gmail.com>
+Date:   Tue, 4 Oct 2022 22:11:58 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v3] schemas: Add schema for U-Boot driver model 'phase
+ tags'
+Content-Language: en-US
+To:     Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org
+Cc:     U-Boot Mailing List <u-boot@lists.denx.de>,
+        Rob Herring <robh@kernel.org>
+References: <20221004232246.239237-1-sjg@chromium.org>
+From:   Sean Anderson <seanga2@gmail.com>
+In-Reply-To: <20221004232246.239237-1-sjg@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-10-04 at 19:46 +0800, Allen-KH Cheng (程冠勳) wrote:
-> Hi Moudy,
+On 10/4/22 19:22, Simon Glass wrote:
+> Until recently it has not been possible to add any U-Boot-specific
+> properties to the device tree schema. Now that it is somewhat separated
+> from Linux and people are feeling the enormous pain of the bifurcated
+> schema, it seems like a good time to add this and other U-Boot-specific
+> bindings.
 > 
-> On Tue, 2022-10-04 at 17:33 +0800, Moudy Ho wrote:
-> > From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-> > 
-> > Compatible names of VPPSYS0 and VPPSYS1 should be renamed to
-> > "mediatek,mt8195-mmsys" to match the description of the binding
-> > file.
-> > Also, add two nodes for MT8195 VPPSYS0/1 MUTEX.
-> > 
-> > Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
-> > ---
-> >  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 22
-> > ++++++++++++++++++++--
-> >  1 file changed, 20 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > index 905d1a90b406..7f54fa7d0185 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > @@ -1477,11 +1477,20 @@
-> >  		};
-> >  
-> >  		vppsys0: clock-controller@14000000 {
-> > -			compatible = "mediatek,mt8195-vppsys0";
-> > +			compatible = "mediatek,mt8195-mmsys";
-> >  			reg = <0 0x14000000 0 0x1000>;
-> > +			mediatek,gce-client-reg = <&gce1
-> > SUBSYS_1400XXXX 0 0x1000>;
-> >  			#clock-cells = <1>;
-> >  		};
-> >  
+> U-Boot has some particular challenges with device tree and devices which
+> are not faced with Linux:
 > 
-> I run "ARCH=arm64 make dtbs check" and some of the tests failed.
+> - U-Boot has multiple build phases, such as a Secondary Program Loader
+>    (SPL) phase which typically runs in a pre-SDRAM environment where code
+>    and data space are limited. In particular, there may not be enough
+>    space for the full device tree blob. U-Boot uses various automated
+>    techniques to reduce the size from perhaps 40KB to 3KB.
+> - Some U-Boot phases needs to run before the clocks are properly set up,
+>    where the CPU may be running very slowly. Therefore it is important to
+>    bind only those devices which are actually needed in that phase
+> - Unlike Linux or UEFI, U-Boot uses lazy initialisation for its devices,
+>    with 'bind' and 'probe' being separate steps. Even if a device is bound,
+>    it is not actually probed until it is used. This is necessary to keep
+>    the boot time reasonable, e.g. to under a second
 > 
-> The node name should be 'syscon' from mediatek/mediatek,mmsys.yaml.
-> 
-> 
-> > +		vpp0-mutex@1400f000 {
-> > +			compatible = "mediatek,mt8195-vpp-mutex";
-> > +			reg = <0 0x1400f000 0 0x1000>;
-> > +			mediatek,gce-client-reg = <&gce1
-> > SUBSYS_1400XXXX 0xf000 0x1000>;
-> > +			clocks = <&vppsys0 CLK_VPP0_MUTEX>;
-> > +			power-domains = <&spm
-> > MT8195_POWER_DOMAIN_VPPSYS0>;
-> > +		};
-> > +
-> 
-> 'interrupts' is a required property from mediatek/mediatek,mutex.yaml
-> 
-> 
-> >  		smi_sub_common_vpp0_vpp1_2x1: smi@14010000 {
-> >  			compatible = "mediatek,mt8195-smi-sub-common";
-> >  			reg = <0 0x14010000 0 0x1000>;
-> > @@ -1582,11 +1591,20 @@
-> >  		};
-> >  
-> >  		vppsys1: clock-controller@14f00000 {
-> > -			compatible = "mediatek,mt8195-vppsys1";
-> > +			compatible = "mediatek,mt8195-mmsys";
-> >  			reg = <0 0x14f00000 0 0x1000>;
-> > +			mediatek,gce-client-reg = <&gce1
-> > SUBSYS_14f0XXXX 0 0x1000>;
-> 
-> Node name: syscon.
-> 
-> >  			#clock-cells = <1>;
-> >  		};
-> >  
-> > +		vpp1-mutex@14f01000 {
-> > +			compatible = "mediatek,mt8195-vpp-mutex";
-> > +			reg = <0 0x14f01000 0 0x1000>;
-> > +			mediatek,gce-client-reg = <&gce1
-> > SUBSYS_14f0XXXX 0x1000 0x1000>;
-> > +			clocks = <&vppsys1 CLK_VPP1_DISP_MUTEX>;
-> > +			power-domains = <&spm
-> > MT8195_POWER_DOMAIN_VPPSYS1>;
-> > +		};
-> > +
-> 
-> 'interrupts' is a required property
-> 
-> Thanks,
-> Allen
-> 
+> The phases of U-Boot in order are: TPL, VPL, SPL, U-Boot (first
+> pre-relocation, then post-relocation). ALl but the last two are optional.
 
-Hi Allen,
+nit: All
 
-Apologies for the failed test, I'll check again by adding dtsb_check
-instead of just dt_binding_check .
-
-Thanks & Regards,
-Moudy
-
-> >  		larb5: larb@14f02000 {
-> >  			compatible = "mediatek,mt8195-smi-larb";
-> >  			reg = <0 0x14f02000 0 0x1000>;
 > 
+> For the above reasons, U-Boot only includes the full device tree in the
+> final 'U-Boot proper' build. Even then, before relocation U-Boot only
+> processes nodes which are marked as being needed.
 > 
+> For this to work, U-Boot's driver model[1] provides a way to mark device
+> tree nodes as applicable for a particular phase. This works by adding a
+> tag to the node, e.g.:
 > 
+>     cru: clock-controller@ff760000 {
+>        u-boot,dm-all;
+>        compatible = "rockchip,rk3399-cru";
+>        reg = <0x0 0xff760000 0x0 0x1000>;
+>        rockchip,grf = <&grf>;
+>        #clock-cells = <1>;
+>        #reset-cells = <1>;
+>        ...
+>     };
+> 
+> Here the "u-boot,dm-all" tag indicates that the node must be present in
+> all phases, since the clock driver is required
+> 
+> There has been discussion over the years about whether this could be done
+> in a property instead, e.g.
+> 
+>     options {
+>        u-boot,dm-all = <&cru> <&gpio_a> ...;
+>        ...
+>     };
+> 
+> Some problems with this:
+> 
+> - we need to be able to merge several such tags from different .dtsi files
+>    since many boards have their own specific requirements
+> - it is hard to find and cross-reference the affected nodes
+> - it is more error-prone
+> - it requires significant tool rework in U-Boot, including fdtgrep and
+>    the build system
+> - is harder (slower, more code) to process since it involves scanning
+>    another node/property to find out what to do with a particular node
+> - we don't want to add phandle arguments to the above since we are
+>    referring, e.g., to the clock device as a whole, not a paricular clock
+> - the of-platdata feature[2], which converts device tree to C for even
+>    more constrained environments, would need to become aware of the
+>    /options node
+> 
+> There is also the question about whether this needs to be U-Boot-specific,
+> or whether the tags could be generic. From what I can tell, U-Boot is the
+> only bootloader which seriously attempts to use a runtime device tree in
+> all cases. We could perhaps adopt U-Boot's naming for the phases and drop
+> the "u-boot," prefix, but that might cause confusion.
+> 
+> It should also be noted that the approach provided here has stood the test
+> of time, used in U-Boot for 8 years so far.
+> 
+> So add the schema for this. This will allow a major class of schema
+> exceptions to be dropped from the U-Boot source tree.
+> 
+> This being sent to the mailing list since it might attract more review.
+> A PR will be sent when this has had some review. That is why the file
+> path is set up for https://github.com/devicetree-org/dt-schema rather
+> than the Linux kernel.
+> 
+> [1] https://u-boot.readthedocs.io/en/latest/develop/driver-model/index.html
+> [2] https://u-boot.readthedocs.io/en/latest/develop/driver-model/of-plat.html
+> 
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+> 
+> Changes in v3:
+> - Fix an incorrect schema path in $id
+> 
+> Changes in v2:
+> - Expand docs to include a description of each tag
+> - Fix some typos and unclear wording
+> 
+>   dtschema/schemas/u-boot.yaml | 66 ++++++++++++++++++++++++++++++++++++
+>   1 file changed, 66 insertions(+)
+>   create mode 100644 dtschema/schemas/u-boot.yaml
+> 
+> diff --git a/dtschema/schemas/u-boot.yaml b/dtschema/schemas/u-boot.yaml
+> new file mode 100644
+> index 0000000..b888b3e
+> --- /dev/null
+> +++ b/dtschema/schemas/u-boot.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: BSD-2-Clause
+> +# Copyright 2022 Google LLC
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/u-boot.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bindings required by U-Boot driver model
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +
+> +patternProperties:
+> +  "^u-boot,dm-(tpl|vpl|spl|all|pre-reloc)$":
+> +    type: boolean
+> +    description: |
+> +      The device tree is often quite large (e.g. 40KB) and cannot fit into xPL
+> +      phases like SPL, TPL. Even with U-Boot proper, we normally only want to
+> +      init a small subset of devices before relocation.
+> +
+> +      U-Boot supports adding tags to device tree nodes to allow them to be
+> +      marked according to the U-Boot phases where they should be included.
+> +
+> +      Without any tags, nodes are included only in U-Boot proper after
+> +      relocation. Any untagged nodes are dropped from xPL and are ignored before
+> +      relocation in U-Boot proper.
+> +
+> +      The xPL builds use fdtgrep drop any nodes which are not needed for that
+> +      build. For example, TPL will drop any nodes which are not marked with
+> +      u-boot,dm-tpl or u-boot,dm-all tags.
+> +
+> +      The available tags are as follows:
+> +
+> +        u-boot,dm-all:
+> +          Include this node in all phases (see enum u_boot_phase)
+> +
+> +        u-boot,dm-pre-reloc:
+> +          Enable this node before relocation in U-Boot proper
+> +
+> +        u-boot,dm-tpl:
+> +          Enable this node in the Tertiary Program Loader (TPL)
+> +
+> +        u-boot,dm-vpl:
+> +          Enable this node in the Verifying Program Loader (VPL)
+> +
+> +        u-boot,dm-spl:
+> +          Enable this node in the Secondary Program Loader (SPL)
+> +
+> +      Note that xPL builds also drop the tags, since they have served their
+> +      purpose by that point. So when looking at xPL device tree files you will
+> +      not see these tags. This means, for example, that ofnode_pre_reloc()
+> +      always returns true in xPL builds. This is done to save space.
+> +
+> +      Multiple tags can be used in the same node.
+> +
+> +      One complication is that tags apply only to the node they are added to,
+> +      not to any parents. This means that you often need to add the same tag to
+> +      parent nodes so that any properties needed by the parent driver are
+> +      included. Without that, the parent node may have no properties, or may not
+> +      be bound before relocation (meaning that its child will not be bound
+> +      either).
+> +
+> +      The phases of U-Boot in order are: TPL, VPL, SPL, U-Boot (first
+> +      pre-relocation, then post-relocation). ALl but the last two are optional.
 
+nit: All
+
+> +
+> +additionalProperties: true
+
+(The rest of this LGTM)
