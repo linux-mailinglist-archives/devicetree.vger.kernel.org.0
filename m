@@ -2,142 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 727845F588F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 18:47:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24DC05F5931
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 19:44:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230242AbiJEQrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 12:47:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44368 "EHLO
+        id S230359AbiJERoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 13:44:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230239AbiJEQrU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 12:47:20 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC8347E822
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 09:47:18 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a26so36726592ejc.4
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 09:47:18 -0700 (PDT)
+        with ESMTP id S230221AbiJERoQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 13:44:16 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 889E575CC5;
+        Wed,  5 Oct 2022 10:44:15 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id bk15so27002586wrb.13;
+        Wed, 05 Oct 2022 10:44:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4CwWMo2JGRY1sMiWNR7k+Ale2KMVO8Hjg3Kq/pxZMJY=;
-        b=O6/3blg4wsZVwKDgWn9jP7CdlMdOeT7PFyrDnu5lkaB6/VWh3mr+PbMj2x4WjOqZz/
-         DdcJOO95ZVEVZAmGlbkeXkpBV3PJPv+ITijJCcfk0s+IrB/5ZBR2PwPNl0h7vTT5+XEQ
-         9ll+thaq8/DoCwd1CJfKwWOwBvzIE6vpvnGTQ=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=GOiHBfmaA8z/8lz5HmFRwUhuxBOZwEnbSHtvAmKlLks=;
+        b=f41LOjaowwAFIOKK1Wtv2Lc0LAIPKpAIhKiF6Vssrb6pni0YVqAU0fw+N0lvbGDTcs
+         MT8Kh6FYoKq77cx5YjBl4tcSiNjSDLoDwD22O73C4mmwzzVYxPzLApO4TnUm5sJg2clk
+         4SwYXCdbBiUgxLg8W3Z8lA1/S5iMk6/iXjm1WJuv42mjnFQGNnyqLqMrPIOK+KJm2b3a
+         WIlnX4YcpyW/bk0Tiv396NcEgjNMJy5enbP8zrjab43rxe9KvhHyBexwBN8QGV3AL6t3
+         WhjjUtPOV0WU+bcnKg593+K7qi/eST9i4G+vZvuq01z8CHiu63EWS+lSNPCQYBUXsXZQ
+         laYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4CwWMo2JGRY1sMiWNR7k+Ale2KMVO8Hjg3Kq/pxZMJY=;
-        b=S3pPDd21TFswQGzCIYWqGlOe0QMWVCaZ/MbEqUG2t3+Ug6ItBfFsJhcv4vYtr6yTqm
-         MZdslG7B0/LIFwIkM910cIcrcUZ2oOVI9FHuNfWLAn6NR1oqv6W/JxBCghrhDPfEAsFj
-         zJFKTrHcXjotmqOlPp5AUYEQjWHq0sWZIL2t3jtw2kQNkmk8DTUKxkoS0yzfZa1hPxNx
-         ZjEogKZaGb6TvgL29FHO+uJ9gJriosjlEsKPhr63uOebFP1dv1E1aI9+TVaM/Qf6QjnL
-         rH2lutCdjj/tGw+6Xm9x7QYTjVqOwjtFpuqhgrnNfjMCXZcLipHBu2q+ztxqaoUHf+Mm
-         XqYw==
-X-Gm-Message-State: ACrzQf0mO5lAk09btTFk8TIzF8KU5EuJQyD8jswLQoO6AS6fidLXYolI
-        tCWR6mCX7ch6tz5sy57iUYdd9tBL0m17t2Qu
-X-Google-Smtp-Source: AMsMyM5mRZaoGqypqrfRo5zO3kfbkNlZ7ktmnE+bIflJ5vElfAQRTa5JRD9mx/vYosdmqeD3v8fIUw==
-X-Received: by 2002:a17:907:7211:b0:78a:fd5:416c with SMTP id dr17-20020a170907721100b0078a0fd5416cmr374211ejc.485.1664988437249;
-        Wed, 05 Oct 2022 09:47:17 -0700 (PDT)
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com. [209.85.128.51])
-        by smtp.gmail.com with ESMTPSA id b10-20020a17090630ca00b00770812e2394sm8805816ejb.160.2022.10.05.09.47.16
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Oct 2022 09:47:16 -0700 (PDT)
-Received: by mail-wm1-f51.google.com with SMTP id o5so11166426wms.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 09:47:16 -0700 (PDT)
-X-Received: by 2002:a05:600c:19cf:b0:3b4:c8b6:15c6 with SMTP id
- u15-20020a05600c19cf00b003b4c8b615c6mr4040185wmq.85.1664988436259; Wed, 05
- Oct 2022 09:47:16 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=GOiHBfmaA8z/8lz5HmFRwUhuxBOZwEnbSHtvAmKlLks=;
+        b=lHGRc59A1kyL5ugiTemD+1o+VIO0NjLDKPM64ARJk+O2DnMvwDYNZet6WBlcrd77Jx
+         REdoojNZO7K9tYjQYnTaryHpv+YQI/DWXQd5DB+E8TOuz0B0qKkKLNLCGpPVi2X1m2P6
+         fkE6GEY0FQOKzDuHmK9SJj1H3PvQFVp2CWTDrwQDRQKuD6VRMurda9a3soio5CkgNE5I
+         lC2Ub0S8pH85o53e/uKnYi0JTf48n8nlOAoqJ24duz66BOsm5PFrqkXE6e8jtn6ISwz4
+         dMNTOafDSyOFIQTHQGJ6nj17T/KXUZAoN4PE0VuqfN5rscDE82BBFp63VmBtGkDtMWcF
+         2JOw==
+X-Gm-Message-State: ACrzQf2ttPS240YVxoEcDOsGoHxoAHwqD9VAV/pRlX47Jrxd54tewtxt
+        nRgRa/QIDDPJ4YEq0R2NJ4yryoxgRqI7UA==
+X-Google-Smtp-Source: AMsMyM5bTE3xFGk/IM9bs4NZT8IrIpQ2ces6QmIwgSu4k1Rv98OaCFr32CXpgGtu2UAnI/s2XX0Jsw==
+X-Received: by 2002:adf:d1e3:0:b0:22a:b9e2:8841 with SMTP id g3-20020adfd1e3000000b0022ab9e28841mr549084wrd.184.1664991853975;
+        Wed, 05 Oct 2022 10:44:13 -0700 (PDT)
+Received: from localhost.localdomain ([95.183.227.98])
+        by smtp.gmail.com with ESMTPSA id c6-20020a5d4146000000b0022a403954c3sm16075491wrq.42.2022.10.05.10.44.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Oct 2022 10:44:13 -0700 (PDT)
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 00/10] MediaTek pinctrl DT binding cleanup and MT6735 pinctrl support
+Date:   Wed,  5 Oct 2022 20:43:33 +0300
+Message-Id: <20221005174343.24240-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-References: <20221003102735.39028-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20221003182637.v6.3.I50d04dcbe735dda69995cf1078824d671501869e@changeid>
-In-Reply-To: <20221003182637.v6.3.I50d04dcbe735dda69995cf1078824d671501869e@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 5 Oct 2022 09:47:04 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VT88P3SbN6GhKE6_RwLM6P9oKh0Mro7P614YfzDoid_w@mail.gmail.com>
-Message-ID: <CAD=FV=VT88P3SbN6GhKE6_RwLM6P9oKh0Mro7P614YfzDoid_w@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: Add touchscreen and touchpad
- support for evoker
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
-On Mon, Oct 3, 2022 at 3:28 AM Sheng-Liang Pan
-<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
->
-> Change touchpad and touchscreen node for evoker
-> Touchpad: SA461D-1011
-> Touchscreen: GT7986U
->
-> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-> ---
->
-> Changes in v6:
-> - add removed pinctrl and align touchscreen label with herobrine board
->
-> Changes in v5:
-> - Touchscreen / trackpad patch new for v5
->
->  .../boot/dts/qcom/sc7280-herobrine-evoker.dtsi    | 15 +++++++--------
->  1 file changed, 7 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-> index e78072159d54b..d1723fbffae67 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-> @@ -23,16 +23,15 @@ ap_tp_i2c: &i2c0 {
->         status = "okay";
->         clock-frequency = <400000>;
->
-> -       trackpad: trackpad@2c {
-> -               compatible = "hid-over-i2c";
-> -               reg = <0x2c>;
-> +       trackpad: trackpad@15 {
-> +               compatible = "elan,ekth3000";
-> +               reg = <0x15>;
->                 pinctrl-names = "default";
->                 pinctrl-0 = <&tp_int_odl>;
->
->                 interrupt-parent = <&tlmm>;
->                 interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
->
-> -               hid-descr-addr = <0x20>;
->                 vcc-supply = <&pp3300_z1>;
->
->                 wakeup-source;
-> @@ -43,9 +42,9 @@ ts_i2c: &i2c13 {
->         status = "okay";
->         clock-frequency = <400000>;
->
-> -       ap_ts: touchscreen@10 {
-> -               compatible = "elan,ekth6915";
-> -               reg = <0x10>;
-> +       ap_ts: touchscreen@5d {
-> +               compatible = "goodix,gt7375p";
-> +               reg = <0x5d>;
+This series adds a driver for the pin controller found on the MediaTek MT6735
+and MT6735M SoCs. The two differ in the last 6 physical pins, which are used
+for MSDC2 on MT6735 but don't exist on MT6735M (since MSDC2 doesn't exist on it
+to begin with). In preparation to document DT bindings for this pin controller,
+the existing documents for MT67xx SoCs are combined into one in order to
+eliminate duplicate property definitions and standardize pin configuration node
+names. Necessary cleanup is done along the way.
 
-You silently ignored my feedback here:
+Changes since v1:
+ - Combine other documents into existing mediatek,mt6779-pinctrl.yaml
+   instead of creating a new document with wild card in its name.
+ - Split first patch into smaller patches focused on specific changes.
+ - Remove syscon compatible from MT6779 DT to avoid a check error.
+ - Fix interrupt count for MT6795.
 
-[1] https://lore.kernel.org/r/CAD=FV=XHr9Y6oQR19wVVHC6jzcd82hf1bHNbr62n89vuTbme9Q@mail.gmail.com
+Yassine Oudjana (10):
+  arm64: dts: mediatek: mt6779: Remove syscon compatible from pin
+    controller
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Improve description
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Make gpio-ranges
+    optional
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Add MT6797
+  dt-bindings: pinctrl: mediatek,pinctrl-mt6795: Fix interrupt count
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Add MT6795
+  arm64: dts: mediatek: mt6797: Make pin configuration nodes follow DT
+    bindings
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Document MT6765 pin
+    controller
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Document MT6735 pin
+    controller bindings
+  pinctrl: mediatek: Add MT6735 pinctrl driver
 
-Did you not see it? Did you ignore it for a reason?
+ .../pinctrl/mediatek,mt6779-pinctrl.yaml      |  247 +-
+ .../pinctrl/mediatek,mt6797-pinctrl.yaml      |  176 -
+ .../pinctrl/mediatek,pinctrl-mt6795.yaml      |  224 -
+ MAINTAINERS                                   |   10 +-
+ arch/arm64/boot/dts/mediatek/mt6779.dtsi      |    2 +-
+ arch/arm64/boot/dts/mediatek/mt6797.dtsi      |   20 +-
+ drivers/pinctrl/mediatek/Kconfig              |    6 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt6735.c     |  584 +++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt6735.h | 3993 +++++++++++++++++
+ 10 files changed, 4809 insertions(+), 454 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt6797-pinctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt6735.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt6735.h
 
--Doug
+-- 
+2.38.0
+
