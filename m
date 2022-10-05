@@ -2,207 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA905F5BAB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 23:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 834A95F5BE2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 23:48:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230070AbiJEV0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 17:26:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59600 "EHLO
+        id S229797AbiJEVsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 17:48:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbiJEV0m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 17:26:42 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E2B6292C;
-        Wed,  5 Oct 2022 14:26:41 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id w70so4872852oie.2;
-        Wed, 05 Oct 2022 14:26:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9xTAUGvQFV5dOfW+1G7/dUfNq1caWoLnlGaJPpXqOts=;
-        b=mOOhvvOAqkWr2ul3bUmesXcHBH761tLVLz/Q4dE5WH4THtvJ/97V+nq+79uP0/lGrP
-         mOwrzGJlTeUeBRbueQF32x/XSHaFvDyHtFQX9FEBZuIe9IwaurZHWxXG20OJeh/jjSJm
-         OagfjfF/WDnd5VRSS2n25kWKnbyNaewfyKiQyrnpVHDfc2WcbNWe1qWKJjpUYwPL1/8T
-         0lrBmq4KDR/NGoAcdywxKTTlgAjs7O5YgulVmukLZ4P6A9yCtCK95L7UQvE2FbV+LOjA
-         yVSVopmgIeZ848U8b99KIk3xL2uVCX9E/v5SvwY0s6LyW2mZokt5VDX5KOlS7f7fKeQD
-         +nnw==
-X-Gm-Message-State: ACrzQf3XbTWo2MScYJUVrUkEdQM+ziUmQ/spCTxsZWgMI2353o5Hxz9k
-        IY0Gm2/67iZh2tw1BUuGFw==
-X-Google-Smtp-Source: AMsMyM7DsNQswsQGbYuUgMMC4zg/a9tHbi3BPyQPXvPExzfujz79SgKUqYx5TQQdTKa89CvFT0Oa1w==
-X-Received: by 2002:a05:6808:190e:b0:350:4905:734c with SMTP id bf14-20020a056808190e00b003504905734cmr3414960oib.158.1665005200902;
-        Wed, 05 Oct 2022 14:26:40 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i205-20020acaead6000000b00353ef11d6c9sm1815744oih.19.2022.10.05.14.26.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Oct 2022 14:26:39 -0700 (PDT)
-Received: (nullmailer pid 122305 invoked by uid 1000);
-        Wed, 05 Oct 2022 21:26:39 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Serge Semin <fancer.lancer@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: misc: Convert IDT 89HPESx to DT schema
-Date:   Wed,  5 Oct 2022 16:26:31 -0500
-Message-Id: <20221005212631.122145-1-robh@kernel.org>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S229735AbiJEVsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 17:48:16 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9089480483;
+        Wed,  5 Oct 2022 14:48:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1665006495; x=1696542495;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=RFIuA9WSXf5bu+kyrwDmO//2cceXbU0tFBEkt867AhY=;
+  b=AaPfJRHcEbYbp5b/1vjJz0B7ERv78KVFSG4mPw3BbXya25UVAPxXAtwS
+   vBQxUu3YVEq/chPAJATAd+hzBICFFFmeFSHi7lJI/eB1T/2J2T2aLlDj9
+   WqyZszXrPNx1fS/NtkXT+ly8fbUFh7EOkVFortSkEh5bL5lcQCmg+xDNW
+   s=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 05 Oct 2022 14:48:15 -0700
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2022 14:48:14 -0700
+Received: from [10.71.110.212] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 5 Oct 2022
+ 14:47:53 -0700
+Message-ID: <31a4de54-9fbe-8487-903d-28528a1b42d3@quicinc.com>
+Date:   Wed, 5 Oct 2022 14:47:46 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v4 13/14] gunyah: rsc_mgr: Add auxiliary devices for
+ console
+Content-Language: en-US
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "Will Deacon" <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Arnd Bergmann" <arnd@arndb.de>, <devicetree@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
+ <20220928195633.2348848-14-quic_eberman@quicinc.com>
+ <Yzbev2mZodsZhFY3@kroah.com>
+ <1db27cda-356e-bae2-3c6a-b7916123a269@quicinc.com>
+ <Yz0ig/Dnp4ovHjeN@kroah.com>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <Yz0ig/Dnp4ovHjeN@kroah.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the IDT 89HPESx device binding to DT schema format.
 
-"onsemi,24c64" was not a documented compatible string, so update the
-example to "atmel,24c64". It's not clear what's in use here as no
-upstream dts files have the eeprom child node.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-Serge, Okay with dual licensing?
----
- .../devicetree/bindings/misc/idt,89hpesx.yaml | 72 +++++++++++++++++++
- .../devicetree/bindings/misc/idt_89hpesx.txt  | 44 ------------
- 2 files changed, 72 insertions(+), 44 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/misc/idt,89hpesx.yaml
- delete mode 100644 Documentation/devicetree/bindings/misc/idt_89hpesx.txt
+On 10/4/2022 11:21 PM, Greg Kroah-Hartman wrote:
+> On Tue, Oct 04, 2022 at 04:49:27PM -0700, Elliot Berman wrote:
+>> On 9/30/2022 5:19 AM, Greg Kroah-Hartman wrote:
+>>> On Wed, Sep 28, 2022 at 12:56:32PM -0700, Elliot Berman wrote:
+>>>> Gunyah resource manager exposes a concrete functionalities which
+>>>> complicate a single resource manager driver.
+>>>
+>>> I am sorry, but I do not understand this sentance.  What is so
+>>> complicated about individual devices being created?  Where are they
+>>> created?  What bus?
+>>
+>> There's no complexity here with using individual devices, that's why I
+>> wanted to create secondary (auxiliary devices).
+>>
+>> IOW -- "I have a platform device that does a lot of different things. Split
+>> up the different functionalities of that device into sub devices using the
+>> auxiliary bus."
+> 
+> Why not just have multiple platform devices?  You control them, don't
+> make it more complex than it should be.
+> 
+> And why are these platform devices at all?
+> 
+> As you say:
+> 
+>> A key requirement for utilizing the auxiliary bus is that there is no
+>> dependency on a physical bus, device, register accesses or regmap support.
+>> These individual devices split from the core cannot live on the platform bus
+>> as they are not physical devices that are controlled by DT/ACPI.
+> 
+> These are not in the DT.  So just make your own bus for them instead of
+> using a platform device.  Don't abuse a platform device please.
+> 
 
-diff --git a/Documentation/devicetree/bindings/misc/idt,89hpesx.yaml b/Documentation/devicetree/bindings/misc/idt,89hpesx.yaml
-new file mode 100644
-index 000000000000..452236e79354
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/idt,89hpesx.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/misc/idt,89hpesx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: EEPROM / CSR SMBus-slave interface of IDT 89HPESx devices
-+
-+maintainers:
-+  - Serge Semin <fancer.lancer@gmail.com>
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        pattern: '^idt,89hpes'
-+  required:
-+    - compatible
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - pattern: '^idt,89hpes(8nt2|12nt3|12n3a?|24n3a?|(12|24)t3g2|4t4g2|10t4g2|[56]t5|8t5a?)$'
-+      - pattern: '^idt,89hpes(6t6g2|16t7|(24t6|32t8|48t12|16t4a?)(g2)?)$'
-+      - pattern: '^idt,89hpes(24nt6a|32nt8[ab]|12nt12|16nt16|24nt24|32nt24[ab])g2$'
-+      - pattern: '^idt,89hpes((32h8|48h12a?|22h16|34h16|64h16a?)(g2)?|16h16)$'
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+  
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  '^eeprom@':
-+    $ref: /schemas/eeprom/at24.yaml#
-+    unevaluatedProperties: false
-+
-+    properties:
-+      compatible:
-+        description: Only a subset of devices are supported
-+        pattern: ',24c(32|64|128|256|512)$'
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        idt@74 {
-+            compatible = "idt,89hpes32nt8ag2";
-+            reg = <0x74>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            eeprom@50 {
-+                compatible = "atmel,24c64";
-+                reg = <0x50>;
-+                read-only;
-+            };
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/misc/idt_89hpesx.txt b/Documentation/devicetree/bindings/misc/idt_89hpesx.txt
-deleted file mode 100644
-index b9093b79ab7d..000000000000
---- a/Documentation/devicetree/bindings/misc/idt_89hpesx.txt
-+++ /dev/null
-@@ -1,44 +0,0 @@
--EEPROM / CSR SMBus-slave interface of IDT 89HPESx devices
--
--Required properties:
--  - compatible : should be "<manufacturer>,<type>"
--		 Basically there is only one manufacturer: idt, but some
--		 compatible devices may be produced in future. Following devices
--		 are supported: 89hpes8nt2, 89hpes12nt3, 89hpes24nt6ag2,
--		 89hpes32nt8ag2, 89hpes32nt8bg2, 89hpes12nt12g2, 89hpes16nt16g2,
--		 89hpes24nt24g2, 89hpes32nt24ag2, 89hpes32nt24bg2;
--		 89hpes12n3, 89hpes12n3a, 89hpes24n3, 89hpes24n3a;
--		 89hpes32h8, 89hpes32h8g2, 89hpes48h12, 89hpes48h12g2,
--		 89hpes48h12ag2, 89hpes16h16, 89hpes22h16, 89hpes22h16g2,
--		 89hpes34h16, 89hpes34h16g2, 89hpes64h16, 89hpes64h16g2,
--		 89hpes64h16ag2;
--		 89hpes12t3g2, 89hpes24t3g2, 89hpes16t4, 89hpes4t4g2,
--		 89hpes10t4g2, 89hpes16t4g2, 89hpes16t4ag2, 89hpes5t5,
--		 89hpes6t5, 89hpes8t5, 89hpes8t5a, 89hpes24t6, 89hpes6t6g2,
--		 89hpes24t6g2, 89hpes16t7, 89hpes32t8, 89hpes32t8g2,
--		 89hpes48t12, 89hpes48t12g2.
--  - reg :	 I2C address of the IDT 89HPESx device.
--
--Optionally there can be EEPROM-compatible subnode:
--  - compatible:  There are five EEPROM devices supported: 24c32, 24c64, 24c128,
--		 24c256 and 24c512 differed by size.
--  - reg:         Custom address of EEPROM device (If not specified IDT 89HPESx
--    (optional)	 device will try to communicate with EEPROM sited by default
--		 address - 0x50)
--  - read-only :	 Parameterless property disables writes to the EEPROM
--    (optional)
--
--Example:
--	idt@60 {
--		compatible = "idt,89hpes32nt8ag2";
--		reg = <0x74>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		eeprom@50 {
--			compatible = "onsemi,24c64";
--			reg = <0x50>;
--			read-only;
--		};
--	};
--
--- 
-2.35.1
+I'll avoid creating platform devices. Are there any concerns with 
+creating auxiliary device under the platform device? There will only be 
+2 auxiliary devices under this Resource Manager device: one for console, 
+and one for a VM loader.
 
+> thanks,
+> 
+> greg k-h
