@@ -2,190 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C84A5F5281
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 12:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 719BD5F5297
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 12:29:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbiJEKVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 06:21:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55984 "EHLO
+        id S229586AbiJEK3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 06:29:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbiJEKVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 06:21:36 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E8F6760ED;
-        Wed,  5 Oct 2022 03:21:35 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id j7so19885070wrr.3;
-        Wed, 05 Oct 2022 03:21:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=HAshog50Hg6lN7H+lni1kCL0WsRmHtb+odbdpswRDfg=;
-        b=eefjpfWZ6viq7VLgSGYidDJoK0enVUcRxftegGvZspm3uLeoZwzZ6mwVu5UY/1Iy5+
-         ohqR6+8g0FIWC2nVJdiRkYx+aORK2mQW09xkob3+5PwRyZwM+FHEbbHPhoR5wPTkNelx
-         sA6KI35a0jygetBBSrs/FkY9loDFb7fQ3ktXaUPJ5KzFVllG+gP+/Jzdx5W+RVT7xT5l
-         TBi/Di6XowbReNLIMPi4HkUGNeexebLZjdKBGfeX5hJ8RomixQpwGaNAGr9bx0Ery6ql
-         Pa91ycFfnkK7El25ivJEMn8kQrTd0epT9K/Niy8vWNtl2DgjtFTUwMYAjVLtFxdYuMC6
-         ER0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=HAshog50Hg6lN7H+lni1kCL0WsRmHtb+odbdpswRDfg=;
-        b=PbW5fwAS4CO6e+vKrEgbjIsEr7eL4FNIyVg2mZyheWNhdqxVUywTtIFHIWS1Ck03so
-         hjlAreO2FArN2RMf4Dd8sO/QEcme191e4+1ZOqxUlJlktm+Cf4524I/MgDGmQNsO+kAN
-         X6Z5/SpYXntibJynQ6S5vG74ZY7wmp4xKTpluN9b83CPQxqOV78tmiRQPd7pZjIvSQ5v
-         wCvW8BF+7+jfab7zWgbFcdAR1K1hEhvPFxxl9hOOMioQbhHazBpq0Dsz0XIbmbgDjGPu
-         f4hlGjqEm7OJ9fs6kXCRHrF/hm6gYGd4BprQ7qc7yxlCWDFXt3ue4xJjw9ClQkBC+olE
-         mGaQ==
-X-Gm-Message-State: ACrzQf0XkNH4VI86dZecLF5x9c+DLLKAbkMameMBTl+XJt+oA/j2w9Pk
-        DDobxz/eF6otBOdZzjNSTpT08omppp7oAg==
-X-Google-Smtp-Source: AMsMyM7dswrfxF2wJ7pLfqIexxnm9UPlD+2f9eJCJhTrbmILLpwTpWIa2TbWWX5SGaELb9k34wd0gA==
-X-Received: by 2002:a05:6000:806:b0:22a:36df:2663 with SMTP id bt6-20020a056000080600b0022a36df2663mr18579272wrb.423.1664965293633;
-        Wed, 05 Oct 2022 03:21:33 -0700 (PDT)
-Received: from localhost.localdomain (188.red-88-10-59.dynamicip.rima-tde.net. [88.10.59.188])
-        by smtp.gmail.com with ESMTPSA id az30-20020adfe19e000000b002286670bafasm4481702wrb.48.2022.10.05.03.21.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Oct 2022 03:21:33 -0700 (PDT)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        hauke@hauke-m.de, zajec5@gmail.com, tsbogend@alpha.franken.de,
-        zhouyanjie@wanyeetech.com, linux-mips@vger.kernel.org,
-        arinc.unal@arinc9.com, f.fainelli@gmail.com,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 2/2] dt-bindings: mips: brcm: add Broadcom SoCs bindings
-Date:   Wed,  5 Oct 2022 12:21:28 +0200
-Message-Id: <20221005102128.1014468-3-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221005102128.1014468-1-sergio.paracuellos@gmail.com>
-References: <20221005102128.1014468-1-sergio.paracuellos@gmail.com>
+        with ESMTP id S229532AbiJEK3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 06:29:50 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B2DC1571F;
+        Wed,  5 Oct 2022 03:29:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1664965789; x=1696501789;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5E4QJjuCCvDQ9v5hxdicxtlW9u5VvqxJSbrtoVqnEOg=;
+  b=17p32s08nbQ/0uGDfLKSQ1h8mkKDrKhlQC7NHFnQf8o54GQjK3mmMUcc
+   Xra1RT4Yl+53bW9of0xjPjq4BjG0l9RMYv0+dd/ybOrMY4Nb+rbCZL3/1
+   iOTxJNLwO4AF42VO6xV7BDsQGVJ/2x97qMZ+Ep3jYo/9rmRsFU/b3fhav
+   x7az5gAbB5M/AURfyMtGb2AFNdLJJXUWq8xT4mIyjZg6KYMHdJo9sryRh
+   5Mh0Q/lEMDMMKuEb6zEAj7Lc/My32oVSieCcM4iaUY7osFt3oWYWHTLBG
+   lG/865rL7NLzrDsSDAEVZfDHmYdC8xByjV/4OLf0QZWw4skoSEVcQwGH2
+   A==;
+X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; 
+   d="scan'208";a="177122166"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Oct 2022 03:29:47 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 5 Oct 2022 03:29:45 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Wed, 5 Oct 2022 03:29:41 -0700
+Date:   Wed, 5 Oct 2022 11:29:20 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+CC:     <conor@kernel.org>, <geert+renesas@glider.be>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <aou@eecs.berkeley.edu>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <magnus.damm@gmail.com>,
+        <heiko@sntech.de>, <guoren@kernel.org>, <philipp.tomsich@vrull.eu>,
+        <nathan@kernel.org>, <atishp@rivosinc.com>,
+        <apatel@ventanamicro.com>, <linux-renesas-soc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <biju.das.jz@bp.renesas.com>,
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [RFC PATCH v2 2/2] soc: renesas: Add L2 cache management for
+ RZ/Five SoC
+Message-ID: <Yz1cgDOCdY41ip0y@wendy>
+References: <20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221003223222.448551-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <YzxwoELNBctbhjJb@spud>
+ <CA+V-a8tgvF16vduoQ+ZbzTpRJUmCnN-GPQs5G8AqMOXbnznwHA@mail.gmail.com>
+ <F0B6C609-6C39-4080-8F07-7FEFFAFEA993@kernel.org>
+ <5254a42c-9233-6f9a-eff8-33324a184d20@microchip.com>
+ <CA+V-a8tS=vsTW=SvGeAjy_M9C=ZwtaWHYhdBK=XV0M9T_c3b5A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8tS=vsTW=SvGeAjy_M9C=ZwtaWHYhdBK=XV0M9T_c3b5A@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the yaml binding for MIPS Broadcom cable/DSL/settop platforms.
+On Wed, Oct 05, 2022 at 11:20:40AM +0100, Lad, Prabhakar wrote:
+> Hi Conor,
+> 
+> On Wed, Oct 5, 2022 at 10:17 AM <Conor.Dooley@microchip.com> wrote:
+> >
+> > On 05/10/2022 09:58, Conor Dooley wrote:
+> > > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > >
+> > > On 5 October 2022 09:44:56 IST, "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> > >> Hi Conor,
+> > >>
+> > >> Thank you for the review.
+> > >>
+> > >> On Tue, Oct 4, 2022 at 6:43 PM Conor Dooley <conor@kernel.org> wrote:
+> > >
+> > >>>> +static void cpu_dcache_wb_range(unsigned long start,
+> > >>>> +                             unsigned long end,
+> > >>>> +                             int line_size)
+> > >>>> +{
+> > >>>> +     bool ucctl_ok = false;
+> > >>>> +     unsigned long pa;
+> > >>>> +     int mhartid = 0;
+> > >>>> +#ifdef CONFIG_SMP
+> > >>>> +     mhartid = smp_processor_id();
+> > >>>> +#endif
+> > >>>
+> > >>> Won't this produce complaints from your if you compile with CONFIG_SMP
+> > >>> set?
+> > >>>
+> > >> No I dont see a build issue with SMP enabled, do you see any reason
+> > >> why it should fail?
+> > >
+> > > Not fail but complain about the unused variable.
+> > >
+> >
+> > Not unused variable, sorry but the unused 0 that it was initialised with*
+> 
+> No, it doesn't complain (I dont think compilers complain of such
+> unused assignments, maybe I'm wrong). BTW I am using GCC 9.4.0. Do you
+> think I need to update it?
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- .../devicetree/bindings/mips/brcm/soc.yaml    | 97 +++++++++++++++++++
- 1 file changed, 97 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mips/brcm/soc.yaml
-
-diff --git a/Documentation/devicetree/bindings/mips/brcm/soc.yaml b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
-new file mode 100644
-index 000000000000..506316bdf51f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mips/brcm/soc.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mips/brcm/soc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom cable/DSL/settop platforms
-+
-+maintainers:
-+  - Hauke Mehrtens <hauke@hauke-m.de>
-+  - Florian Fainelli <f.fainelli@gmail.com>
-+
-+description: |
-+    Boards Broadcom cable/DSL/settop SoC shall have the following properties.
-+    The experimental -viper variants are for running Linux on the 3384's
-+    BMIPS4355 cable modem CPU instead of the BMIPS5000 application processor.
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+
-+  compatible:
-+    enum:
-+      - brcm,bcm3368
-+      - brcm,bcm3384
-+      - brcm,bcm33843
-+      - brcm,bcm3384-viper
-+      - brcm,bcm33843-viper
-+      - brcm,bcm6328
-+      - brcm,bcm6358
-+      - brcm,bcm6362
-+      - brcm,bcm6368
-+      - brcm,bcm63168
-+      - brcm,bcm63268
-+      - brcm,bcm7125
-+      - brcm,bcm7346
-+      - brcm,bcm7358
-+      - brcm,bcm7360
-+      - brcm,bcm7362
-+      - brcm,bcm7420
-+      - brcm,bcm7425
-+
-+  cpus:
-+    type: object
-+    additionalProperties: false
-+    properties:
-+      '#address-cells':
-+        const: 1
-+
-+      '#size-cells':
-+        const: 0
-+
-+      mips-hpt-frequency:
-+        description: MIPS counter high precision timer frequency.
-+         This is common to all CPUs in the system so it lives
-+         under the "cpus" node.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+
-+    patternProperties:
-+      "^cpu@[0-9]$":
-+        type: object
-+        $ref: /schemas/mips/cpus.yaml#
-+        unevaluatedProperties: false
-+
-+    required:
-+      - mips-hpt-frequency
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+     / {
-+         compatible = "brcm,bcm3368";
-+         #address-cells = <1>;
-+         #size-cells = <1>;
-+         model = "Broadcom 3368";
-+
-+         cpus {
-+           #address-cells = <1>;
-+           #size-cells = <0>;
-+
-+           mips-hpt-frequency = <150000000>;
-+
-+           cpu@0 {
-+             compatible = "brcm,bmips4350";
-+             device_type = "cpu";
-+             reg = <0>;
-+           };
-+
-+           cpu@1 {
-+             compatible = "brcm,bmips4350";
-+             device_type = "cpu";
-+             reg = <1>;
-+           };
-+         };
-+       };
-+...
--- 
-2.25.1
-
+Maybe it's sparse that generates those warnings, I never know which it
+is...
