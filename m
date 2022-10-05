@@ -2,238 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D2375F5665
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 16:28:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B89A5F560D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 16:02:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbiJEO2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 10:28:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60316 "EHLO
+        id S229888AbiJEOCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 10:02:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229723AbiJEO2p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 10:28:45 -0400
-X-Greylist: delayed 2389 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 05 Oct 2022 07:28:41 PDT
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED5863FF4;
-        Wed,  5 Oct 2022 07:28:41 -0700 (PDT)
-Received: from cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net ([86.15.83.122] helo=[192.168.0.17])
-        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1og4lM-00A4pc-UQ; Wed, 05 Oct 2022 14:48:42 +0100
-Message-ID: <4d8a199b-f22a-a421-aae4-64e538cb97f4@codethink.co.uk>
-Date:   Wed, 5 Oct 2022 14:48:40 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v1 05/30] soc: sifive: l2 cache: Convert to platform
- driver
-Content-Language: en-GB
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Ben Dooks <ben.dooks@sifive.com>
-Cc:     Hal Feng <hal.feng@linux.starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        with ESMTP id S229781AbiJEOCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 10:02:52 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADD87C1FF;
+        Wed,  5 Oct 2022 07:02:40 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id k2so5725654ejr.2;
+        Wed, 05 Oct 2022 07:02:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date;
+        bh=FhCQ1qflB5YspXhtdG7hrYOx4eLmno3S8YD+xF0t+34=;
+        b=FKIizU3OP+jDTOOlav7bXRhJgfEVEagnAIVmj/GQG4BPjjqKtjCRv/xtBKI90jPnBH
+         xgnSQTryPAiNUim56UOMrXKlzvElnYiMyMdEQm3KjF/2qWkvIp/K+8WK5+XTBi2Sgt3v
+         wLeUi7tHe+i/YDj4t8fI128Trs5BBXuy1rZDevMZjVFmVdmB6B1dwUkrKIaDa0AQPDAv
+         43CytqBJY73wXrTMlrCMcLxhGWJhBnmdC50SKODsKIP9NRKyYHO/adIlsnUjeQHXSvfi
+         d4MI8d+X4W6DbXB0FoEFUboIWPAQlHVDMuwyuna5+/KopccaZkSQTj2XIGf4J51HkwR2
+         Hhww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=FhCQ1qflB5YspXhtdG7hrYOx4eLmno3S8YD+xF0t+34=;
+        b=OZWsx1rKsEpHwhZOt0Vmu1Ah42/6kud+3mbowhub8dYEALMyxQ4ii0pffPzilMAwlz
+         IaFL3QugqOzmxFOXzFBE52lLZFDegRXwUoUhgD9WCa/ETDe0wq0QgNomDcMyn5IuJLBg
+         m88MizpKn7I1AsH7PF0xpIpdHTLuy5iGGbgzXz5ZZgfwSCdCgORS5+oyVOAdHQQqZBoc
+         i1Z/YODGbdVhJgHDV0DM0NaQ0hKPM1XrOwpOxKQM3clfzZn2tXxjV1+Is8v77MHl8THM
+         bIyyuhrYpWvDCDX0au+BrvxPPEOh0adP0hspu++OvN6LS9jTV20Wt0G/6Ex8HToCZMtk
+         kYsg==
+X-Gm-Message-State: ACrzQf38Mdoq2dpw5hWW3acwtQvXJ37lHe0fHz+ShUUBocXFK1s6THcg
+        ruzAvvxwon6R4v5ivWWBGJg=
+X-Google-Smtp-Source: AMsMyM45VfjSdEH93LCwy0OFwVda7wpiJdtaUawRTtjD4rA9bt4ck1OLFNFs3Qzu7SZ1URQzZbICgQ==
+X-Received: by 2002:a17:906:5a4c:b0:78c:c893:74e6 with SMTP id my12-20020a1709065a4c00b0078cc89374e6mr9749439ejc.545.1664978559080;
+        Wed, 05 Oct 2022 07:02:39 -0700 (PDT)
+Received: from Ansuel-xps. (93-42-70-134.ip85.fastwebnet.it. [93.42.70.134])
+        by smtp.gmail.com with ESMTPSA id 17-20020a170906329100b0077f5e96129fsm4778326ejw.158.2022.10.05.07.02.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Oct 2022 07:02:38 -0700 (PDT)
+Message-ID: <633d8e7e.170a0220.d6c99.0630@mx.google.com>
+X-Google-Original-Message-ID: <Yz2OfRffgmBHAgCT@Ansuel-xps.>
+Date:   Wed, 5 Oct 2022 16:02:37 +0200
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        linux-kernel@vger.kernel.org, Zong Li <zong.li@sifive.com>
-References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
- <20220929143225.17907-6-hal.feng@linux.starfivetech.com>
- <40d0abb6-88dc-d315-f768-27a623f60986@sifive.com>
- <CAJM55Z-PzvM_-_6jTWX+Jyy2FQ3TJdh4uYj0evpktnEENHL6WA@mail.gmail.com>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <CAJM55Z-PzvM_-_6jTWX+Jyy2FQ3TJdh4uYj0evpktnEENHL6WA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: soc: qcom: qcom,spm: support regulator SAW2
+ devics
+References: <20220930231416.925132-1-dmitry.baryshkov@linaro.org>
+ <a743d50f-fc59-161e-c98f-f10b26e2afe5@linaro.org>
+ <CAA8EJpo9kSs_h28SneAwQ0FLHJ0PipmbQRm791hb-vHtGwXwDQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpo9kSs_h28SneAwQ0FLHJ0PipmbQRm791hb-vHtGwXwDQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/10/2022 14:44, Emil Renner Berthing wrote:
-> On Thu, 29 Sept 2022 at 19:59, Ben Dooks <ben.dooks@sifive.com> wrote:
->>
->> On 29/09/2022 15:32, Hal Feng wrote:
->>> From: Emil Renner Berthing <kernel@esmil.dk>
->>>
->>> This converts the driver to use the builtin_platform_driver_probe macro
->>> to initialize the driver. This macro ends up calling device_initcall as
->>> was used previously, but also allocates a platform device which gives us
->>> access to much nicer APIs such as platform_ioremap_resource,
->>> platform_get_irq and dev_err_probe.
->>
->> This is useful, but also there are other changes currently being sorted
->> out by Zong Li (cc'd into this message) which have already been reviewed
->> and are hopefully queued for the next kernel release.
->>
->>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->>> Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
+On Sun, Oct 02, 2022 at 03:20:57PM +0300, Dmitry Baryshkov wrote:
+> On Sun, 2 Oct 2022 at 11:49, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 01/10/2022 01:14, Dmitry Baryshkov wrote:
+> > > Merge qcom,saw2.txt bindings to existing qcom,spm.yaml. This fixes
+> > > compatibility of qcom,spm schema with regulator SAW2 devices.
+> > >
+> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > ---
+> > >  .../devicetree/bindings/arm/msm/qcom,saw2.txt | 58 -------------------
+> > >  .../bindings/soc/qcom/qcom,spm.yaml           | 44 +++++++++-----
+> >
+> > You need to update reference in
+> > Documentation/devicetree/bindings/arm/cpus.yaml
 > 
-> I'm ok with something like this being merged, but please note that if
-> we ever want to support the JH7100 which uses registers in this
-> peripheral to flush the cache for its non-coherent DMAs then this
-> driver needs to be loaded before other peripherals or we will trigger
-> the 2nd warning in arch/riscv/mm/dma-noncoherent.c. I'm not sure we
-> can do that when it's a platform driver. See this patch for an
-> alternative to support the JH71x0s:
-> https://github.com/esmil/linux/commit/9c5b29da56ae29159c9572c5bb195fe3a1b535c5
+> ack
 > 
-> /Emil
-
-Are you replying to your own patch that does the conversion to
-platform driver and then saying that it could actually cause
-issues?
-
-I'm all for dropping this for the moment and keeping the old
-early init for the ccache.
-
-
->>>    drivers/soc/sifive/sifive_l2_cache.c | 79 ++++++++++++++--------------
->>>    1 file changed, 40 insertions(+), 39 deletions(-)
->>>
->>> diff --git a/drivers/soc/sifive/sifive_l2_cache.c b/drivers/soc/sifive/sifive_l2_cache.c
->>> index 59640a1d0b28..010d612f7420 100644
->>> --- a/drivers/soc/sifive/sifive_l2_cache.c
->>> +++ b/drivers/soc/sifive/sifive_l2_cache.c
->>> @@ -7,9 +7,9 @@
->>>     */
->>>    #include <linux/debugfs.h>
->>>    #include <linux/interrupt.h>
->>> -#include <linux/of_irq.h>
->>> -#include <linux/of_address.h>
->>> -#include <linux/device.h>
->>> +#include <linux/io.h>
->>> +#include <linux/mod_devicetable.h>
->>> +#include <linux/platform_device.h>
->>>    #include <asm/cacheinfo.h>
->>>    #include <soc/sifive/sifive_l2_cache.h>
->>>
->>> @@ -96,12 +96,6 @@ static void l2_config_read(void)
->>>        pr_info("L2CACHE: Index of the largest way enabled: %d\n", regval);
->>>    }
->>>
->>> -static const struct of_device_id sifive_l2_ids[] = {
->>> -     { .compatible = "sifive,fu540-c000-ccache" },
->>> -     { .compatible = "sifive,fu740-c000-ccache" },
->>> -     { /* end of table */ },
->>> -};
->>> -
->>>    static ATOMIC_NOTIFIER_HEAD(l2_err_chain);
->>>
->>>    int register_sifive_l2_error_notifier(struct notifier_block *nb)
->>> @@ -192,36 +186,29 @@ static irqreturn_t l2_int_handler(int irq, void *device)
->>>        return IRQ_HANDLED;
->>>    }
->>>
->>> -static int __init sifive_l2_init(void)
->>> +static int __init sifive_l2_probe(struct platform_device *pdev)
->>>    {
->>> -     struct device_node *np;
->>> -     struct resource res;
->>> -     int i, rc, intr_num;
->>> -
->>> -     np = of_find_matching_node(NULL, sifive_l2_ids);
->>> -     if (!np)
->>> -             return -ENODEV;
->>> -
->>> -     if (of_address_to_resource(np, 0, &res))
->>> -             return -ENODEV;
->>> -
->>> -     l2_base = ioremap(res.start, resource_size(&res));
->>> -     if (!l2_base)
->>> -             return -ENOMEM;
->>> -
->>> -     intr_num = of_property_count_u32_elems(np, "interrupts");
->>> -     if (!intr_num) {
->>> -             pr_err("L2CACHE: no interrupts property\n");
->>> -             return -ENODEV;
->>> -     }
->>> -
->>> -     for (i = 0; i < intr_num; i++) {
->>> -             g_irq[i] = irq_of_parse_and_map(np, i);
->>> -             rc = request_irq(g_irq[i], l2_int_handler, 0, "l2_ecc", NULL);
->>> -             if (rc) {
->>> -                     pr_err("L2CACHE: Could not request IRQ %d\n", g_irq[i]);
->>> -                     return rc;
->>> -             }
->>> +     struct device *dev = &pdev->dev;
->>> +     int nirqs;
->>> +     int ret;
->>> +     int i;
->>> +
->>> +     l2_base = devm_platform_ioremap_resource(pdev, 0);
->>> +     if (IS_ERR(l2_base))
->>> +             return PTR_ERR(l2_base);
->>> +
->>> +     nirqs = platform_irq_count(pdev);
->>> +     if (nirqs <= 0)
->>> +             return dev_err_probe(dev, -ENODEV, "no interrupts\n");
->>
->> I wonder if zero irqs is an actual issue here?
->>
->>> +     for (i = 0; i < nirqs; i++) {
->>> +             g_irq[i] = platform_get_irq(pdev, i);
->>
->> I wonder if we need to keep g_irq[] around now? Is it going to be useful
->> in the future?
->>
->>> +             if (g_irq[i] < 0)
->>> +                     return g_irq[i];
->>> +
->>> +             ret = devm_request_irq(dev, g_irq[i], l2_int_handler, 0, pdev->name, NULL);
->>> +             if (ret)
->>> +                     return dev_err_probe(dev, ret, "Could not request IRQ %d\n", g_irq[i]);
->>>        }
->>>
->>>        l2_config_read();
->>> @@ -234,4 +221,18 @@ static int __init sifive_l2_init(void)
->>>    #endif
->>>        return 0;
->>>    }
->>> -device_initcall(sifive_l2_init);
->>> +
->>> +static const struct of_device_id sifive_l2_match[] = {
->>> +     { .compatible = "sifive,fu540-c000-ccache" },
->>> +     { .compatible = "sifive,fu740-c000-ccache" },
->>> +     { /* sentinel */ }
->>> +};
->>> +
->>> +static struct platform_driver sifive_l2_driver = {
->>> +     .driver = {
->>> +             .name = "sifive_l2_cache",
->>> +             .of_match_table = sifive_l2_match,
->>> +             .suppress_bind_attrs = true,
->>> +     },
->>> +};
->>> +builtin_platform_driver_probe(sifive_l2_driver, sifive_l2_probe);
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> >
+> > >  2 files changed, 30 insertions(+), 72 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt b/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+> > > deleted file mode 100644
+> > > index c0e3c3a42bea..000000000000
+> > > --- a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
 > 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> [skipped]
 > 
+> > > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+> > > index f433e6e0a19f..8fe35fde70b8 100644
+> > > --- a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+> > > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+> > > @@ -16,23 +16,33 @@ description: |
+> > >
+> > >  properties:
+> > >    compatible:
+> > > -    items:
+> > > -      - enum:
+> > > -          - qcom,sdm660-gold-saw2-v4.1-l2
+> > > -          - qcom,sdm660-silver-saw2-v4.1-l2
+> > > -          - qcom,msm8998-gold-saw2-v4.1-l2
+> > > -          - qcom,msm8998-silver-saw2-v4.1-l2
+> > > -          - qcom,msm8909-saw2-v3.0-cpu
+> > > -          - qcom,msm8916-saw2-v3.0-cpu
+> > > -          - qcom,msm8226-saw2-v2.1-cpu
+> > > -          - qcom,msm8974-saw2-v2.1-cpu
+> > > -          - qcom,apq8084-saw2-v2.1-cpu
+> > > -          - qcom,apq8064-saw2-v1.1-cpu
+> > > +    oneOf:
+> > >        - const: qcom,saw2
+> >
+> > I understand old bindings had it, but I don't think we really want to
+> > support the generic compatible on its own. Even old bindings indicated
+> > that there are several differences between SAWs.
+> >
+> > Especially confusing is that once qcom,saw2 can be alone and in other
+> > cases must be preceded by specific compatible. IOW, you allow for
+> > apq8064 two cases:
+> >
+> > 1. qcom,apq8064-saw2-v1.1-cpu, qcom,saw2
+> > 2. qcom,saw2
+> >
+> > I think we should instead add everywhere specific compatibles.
+> 
+> I see your point. Yes, it's probably worth doing that.
+> 
+> Robert, Christian, can you possibly check the version of the SAW2 used
+> on ipq4019 and ipq8064? It can be read from the SPM block at the
+> register offset 0xfd0.
+>
+
+From what I notice from QSDK it seems ipq806x doesn't have a reg to
+provide version. (there are many variant of v1 revision)
+
+Anyway these are the values from uboot
+
+(IPQ) # md.l 0x2089FD0
+02089fd0: 00000000    ....
+(IPQ) # md.l 0x2099FD0
+02099fd0: 00000000    ....
+(IPQ) # md.l 0x2012FD0
+02012fd0: 00000000    ....
+
+> > > +      - items:
+> > > +          - enum:
+> > > +              - qcom,sdm660-gold-saw2-v4.1-l2
+> > > +              - qcom,sdm660-silver-saw2-v4.1-l2
+> > > +              - qcom,msm8998-gold-saw2-v4.1-l2
+> > > +              - qcom,msm8998-silver-saw2-v4.1-l2
+> > > +              - qcom,msm8909-saw2-v3.0-cpu
+> > > +              - qcom,msm8916-saw2-v3.0-cpu
+> > > +              - qcom,msm8226-saw2-v2.1-cpu
+> > > +              - qcom,msm8974-saw2-v2.1-cpu
+> > > +              - qcom,apq8084-saw2-v2.1-cpu
+> > > +              - qcom,apq8064-saw2-v1.1-cpu
+> > > +          - const: qcom,saw2
+> > >
+> > >    reg:
+> > > -    description: Base address and size of the SPM register region
+> > > -    maxItems: 1
+> > > +    description: Base address and size of the SPM register region. An optional
+> > > +      second element specifies the base address and size of the alias register
+> > > +      region.
+> > > +    minItems: 1
+> > > +    maxItems: 2
+> >
+> > And it seems second region is not present on some variants?
+> 
+> The second region is a bit of a puzzle for me as it doesn't seem to be
+> used at all.
+> 
+> -- 
+> With best wishes
+> Dmitry
 
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
-
+	Ansuel
