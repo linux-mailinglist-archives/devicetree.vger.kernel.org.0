@@ -2,94 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F5F55F55CE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 15:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A10A55F55BB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 15:42:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229821AbiJENss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 09:48:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34566 "EHLO
+        id S229864AbiJENmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 09:42:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229750AbiJENsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 09:48:47 -0400
-X-Greylist: delayed 545 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 05 Oct 2022 06:48:45 PDT
-Received: from smtp-8fad.mail.infomaniak.ch (smtp-8fad.mail.infomaniak.ch [IPv6:2001:1600:3:17::8fad])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88B607B1FE
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 06:48:45 -0700 (PDT)
-Received: from smtp-2-0000.mail.infomaniak.ch (unknown [10.5.36.107])
-        by smtp-2-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4MjFzv2KKNzMqFpd;
-        Wed,  5 Oct 2022 15:39:39 +0200 (CEST)
-Received: from philippe-pc.toradex.int (unknown [31.10.206.125])
-        by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4MjFzv04mqzMpnPh;
-        Wed,  5 Oct 2022 15:39:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1664977179;
-        bh=5WAdU/ZfhtphXUGEjTHM+U+v64EjHQonzrwuNMeg3Tg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=r9u59RnzsjMSHIWxsH/mdFGumJpz+Xoj/fsX2l7Wk3wdvrM6mpdnxhIM/vlIkg5El
-         HlB0RWUOGC/kD20fV/nmh+/9Iy3wtpZFV7Nu6mPED9NXt7g/smG9U0u/3SWK0hinYD
-         zMAy4vfJAO0NcDXvpIpG+W0C6k4nndqtluZSeDc0=
-From:   Philippe Schenker <dev@pschenker.ch>
-To:     devicetree@vger.kernel.org
-Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm: dts: colibri-imx7: fix confusing naming
-Date:   Wed,  5 Oct 2022 15:39:29 +0200
-Message-Id: <20221005133929.1243443-4-dev@pschenker.ch>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221005133929.1243443-1-dev@pschenker.ch>
-References: <20221005133929.1243443-1-dev@pschenker.ch>
+        with ESMTP id S229581AbiJENmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 09:42:22 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC4005F91;
+        Wed,  5 Oct 2022 06:42:21 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7F5F666022BE;
+        Wed,  5 Oct 2022 14:42:19 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664977340;
+        bh=1Unni2kNmqjyicp5VGIMbg5//S+Jnj6DePPOdKiqYXc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fAGZk0RXIyvrco0hs7O+hE9ht56KacBs5hdhIIpZoXY/7fymvFsxd458StfTrLN6f
+         IpXMKp1yWj3s+J5cTQ1GI98YGy5Yvtzb6jCIgJgqRDRfAs9WorYrAeDCR+c3TfjirF
+         xNn/BnVQEgX7g+AuziDURgE0US0pH9h/l4afAB0ba8qzKV6VaJ3qL9/LAaUxcgqdo/
+         Hp2ow0NOfvAcdpX7ekj0+VFynLBMCGbD638UaLzj1DfFv/ajgE1/TAWyBpBENnVp6f
+         sMHhP/aNwlS4dtQTyoqH+npJAR4LB1mMGnCvhwbo5Ajv6Yc5iVd12hDn10ue1WHaeW
+         8CQDR39Ge2Y1w==
+Message-ID: <36ca5e72-db5d-65f6-db2c-1f0066842d18@collabora.com>
+Date:   Wed, 5 Oct 2022 15:42:16 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH 3/5] dt-bindings: watchdog: mediatek: Convert mtk-wdt to
+ json-schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        allen-kh.cheng@mediatek.com, seiya.wang@mediatek.com,
+        tinghan.shen@mediatek.com, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221005113517.70628-1-angelogioacchino.delregno@collabora.com>
+ <20221005113517.70628-4-angelogioacchino.delregno@collabora.com>
+ <20221005133848.GA3278938-robh@kernel.org>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221005133848.GA3278938-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Philippe Schenker <philippe.schenker@toradex.com>
+Il 05/10/22 15:38, Rob Herring ha scritto:
+> On Wed, Oct 05, 2022 at 01:35:15PM +0200, AngeloGioacchino Del Regno wrote:
+>> Convert the MediaTek watchdog bindings to schema.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../bindings/watchdog/mediatek,mtk-wdt.yaml   | 80 +++++++++++++++++++
+>>   .../devicetree/bindings/watchdog/mtk-wdt.txt  | 42 ----------
+>>   2 files changed, 80 insertions(+), 42 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+>>   delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+>> new file mode 100644
+>> index 000000000000..f43b5af92d40
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+>> @@ -0,0 +1,80 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/watchdog/mediatek,mtk-wdt.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek SoCs Watchdog timer
+>> +
+>> +maintainers:
+>> +  - Matthias Brugger <matthias.bgg@gmail.com>
+>> +
+>> +description:
+>> +  The watchdog supports a pre-timeout interrupt that fires
+>> +  timeout-sec/2 before the expiry.
+>> +
+>> +allOf:
+>> +  - $ref: watchdog.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - mediatek,mt2712-wdt
+>> +              - mediatek,mt6589-wdt
+>> +              - mediatek,mt7986-wdt
+>> +              - mediatek,mt8183-wdt
+>> +              - mediatek,mt8186-wdt
+>> +              - mediatek,mt8192-wdt
+>> +              - mediatek,mt8195-wdt
+> 
+> The original binding only had 4 without a fallback. It's fine to add or
+> change, but note the changes in the commit msg. Are all of these really
+> each unique and not the same?
+> 
 
-fix the naming of node-name vs label-name to the correct one, that is
-the label was always correct.
+Ok I will note the changes in the commit for v2. And... yes, they're really
+each unique and not the same, as these are exposing a reset controller of
+their own (as well with different platform data in the driver).
 
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+> 
+>> +      - items:
+>> +          - enum:
+>> +              - mediatek,mt2701-wdt
+>> +              - mediatek,mt6582-wdt
+>> +              - mediatek,mt6797-wdt
+>> +              - mediatek,mt7622-wdt
+>> +              - mediatek,mt7623-wdt
+>> +              - mediatek,mt7629-wdt
+>> +              - mediatek,mt8516-wdt
+>> +          - const: mediatek,mt6589-wdt
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    items:
+>> +      - description: Watchdog pre-timeout (bark) interrupt
+>> +
+>> +  mediatek,disable-extrst:
+>> +    description: Disable sending output reset signal
+>> +    type: boolean
+>> +
+>> +  timeout-sec: true
+> 
+> Drop this and use 'unevaluatedProperties'.
+> 
 
----
+Noted. Will do for v2.
 
- arch/arm/boot/dts/imx7-colibri.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Thanks!
+Angelo
 
-diff --git a/arch/arm/boot/dts/imx7-colibri.dtsi b/arch/arm/boot/dts/imx7-colibri.dtsi
-index a8c31ee65623..3bea7549b762 100644
---- a/arch/arm/boot/dts/imx7-colibri.dtsi
-+++ b/arch/arm/boot/dts/imx7-colibri.dtsi
-@@ -652,7 +652,7 @@ &iomuxc {
- 	 * NOTE: This pin group conflicts with pin groups pinctrl_pwm2/pinctrl_pwm3.
- 	 * Don't use them simultaneously.
- 	 */
--	pinctrl_atmel_adapter: atmelconnectorgrp {
-+	pinctrl_atmel_adapter: atmeladaptergrp {
- 		fsl,pins = <
- 			MX7D_PAD_GPIO1_IO09__GPIO1_IO9		0x74 /* SODIMM 28 / INT */
- 			MX7D_PAD_GPIO1_IO10__GPIO1_IO10		0x14 /* SODIMM 30 / RST */
-@@ -660,7 +660,7 @@ MX7D_PAD_GPIO1_IO10__GPIO1_IO10		0x14 /* SODIMM 30 / RST */
- 	};
- 
- 	/* Atmel MXT touchsceen + boards with built-in Capacitive Touch Connector */
--	pinctrl_atmel_connector: atmeladaptergrp {
-+	pinctrl_atmel_connector: atmelconnectorgrp {
- 		fsl,pins = <
- 			MX7D_PAD_EPDC_BDR0__GPIO2_IO28		0x14 /* SODIMM 106 / RST */
- 			MX7D_PAD_EPDC_DATA15__GPIO2_IO15	0x74 /* SODIMM 107 / INT */
--- 
-2.37.3
 
