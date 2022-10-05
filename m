@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE98E5F55CF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 15:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A6545F55D1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 15:48:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbiJENst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 09:48:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34570 "EHLO
+        id S229936AbiJENsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 09:48:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbiJENsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 09:48:47 -0400
-Received: from smtp-42ab.mail.infomaniak.ch (smtp-42ab.mail.infomaniak.ch [IPv6:2001:1600:3:17::42ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAFCE7B28F
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 06:48:46 -0700 (PDT)
+        with ESMTP id S229815AbiJENss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 09:48:48 -0400
+Received: from smtp-bc0f.mail.infomaniak.ch (smtp-bc0f.mail.infomaniak.ch [IPv6:2001:1600:3:17::bc0f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF6577B1F1
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 06:48:45 -0700 (PDT)
 Received: from smtp-2-0000.mail.infomaniak.ch (unknown [10.5.36.107])
-        by smtp-2-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4MjFzt0tCWzMpnRs;
+        by smtp-2-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4MjFzt3wTSzMqPdH;
         Wed,  5 Oct 2022 15:39:38 +0200 (CEST)
 Received: from philippe-pc.toradex.int (unknown [31.10.206.125])
-        by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4MjFzq6jXRzMpnPg;
-        Wed,  5 Oct 2022 15:39:35 +0200 (CEST)
+        by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4MjFzt1F4XzMpnPl;
+        Wed,  5 Oct 2022 15:39:38 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
         s=20220412; t=1664977178;
-        bh=QMQX0DS3WXjc8rDGJOqWledK9ARkl+Fl6HYi6388JDg=;
-        h=From:To:Cc:Subject:Date:From;
-        b=UR1DmoFV0iZWJkSJz0DWIS3k+3ROZ0HG7fwjxPzF6DOHXf8DHw6oEKUlvGxF9b6Gn
-         /ixjLGqB8t5mLEaxy0fJIHTbxpNhbXByQkvQNzoBWL7Pfjj95GDAij6QC9AgDWOSKf
-         O3J09AfXG2p7aqh5TAR7o82YyHDxuxHkVbbwDn2I=
+        bh=/+EZl3/OTx8ks2x/VRpo8nCPykbG6pAZD3++K1o1qeY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=LVG3ES9crLXq1hnocKzZ9r9W31xqEbV48XoVBR5HjxH+QJZgjh9zyuQyG4TyYCjnm
+         NsegaUtBIL8JEzRPMPyprCLG2p29i9F6XeJbKKpTOgpJxOCtMYlomUYyfDX+GGAU1i
+         L5BlqD6GqHV07sgh1DqssmFzcBeWqPAwToQLOEgw=
 From:   Philippe Schenker <dev@pschenker.ch>
 To:     devicetree@vger.kernel.org
 Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
@@ -38,10 +38,12 @@ Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/4] arm: dts: colibri-imx6ull: keep peripherals disabled
-Date:   Wed,  5 Oct 2022 15:39:26 +0200
-Message-Id: <20221005133929.1243443-1-dev@pschenker.ch>
+Subject: [PATCH 2/4] arm: dts: colibri-imx6ull: enable default peripherals
+Date:   Wed,  5 Oct 2022 15:39:27 +0200
+Message-Id: <20221005133929.1243443-2-dev@pschenker.ch>
 X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20221005133929.1243443-1-dev@pschenker.ch>
+References: <20221005133929.1243443-1-dev@pschenker.ch>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -55,67 +57,356 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Toradex does provide device-tree overlays to enable certain evaluation
-hardware. Keep the buses disabled by default to be enabled again with
-overlays.
-
-For customers including this device-tree this has also the advantage
-that the hardware we want by default running does not automatically
-enable signals on their end.
+For NAND modules Toradex does not provide any device-tree overlays. But
+we always had a default display output enabled on NAND modules as well
+as touchscreens that are placed on displays which can easily be plugged
+into those carrier boards. Do reenable these displays and touchscreen
+output on all device-trees that are used on NAND modules.
 
 Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 ---
 
- arch/arm/boot/dts/imx6ull-colibri.dtsi | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/imx6ull-colibri-aster.dts   | 40 +++++++++++++++++++
+ arch/arm/boot/dts/imx6ull-colibri-eval-v3.dts | 24 +++++++++++
+ arch/arm/boot/dts/imx6ull-colibri-iris-v2.dts | 40 +++++++++++++++++++
+ arch/arm/boot/dts/imx6ull-colibri-iris.dts    | 22 +++++++++-
+ .../boot/dts/imx6ull-colibri-wifi-aster.dts   | 40 +++++++++++++++++++
+ .../boot/dts/imx6ull-colibri-wifi-eval-v3.dts | 24 +++++++++++
+ .../boot/dts/imx6ull-colibri-wifi-iris-v2.dts | 24 +++++++++++
+ .../boot/dts/imx6ull-colibri-wifi-iris.dts    | 20 ++++++++++
+ 8 files changed, 233 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-index 577a424b0e1d..a4429ba1f2ae 100644
---- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-+++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-@@ -21,7 +21,7 @@ backlight: backlight {
- 		pinctrl-0 = <&pinctrl_gpio_bl_on>;
- 		power-supply = <&reg_3v3>;
- 		pwms = <&pwm4 0 5000000 1>;
--		status = "okay";
-+		status = "disabled";
- 	};
- 
- 	gpio-keys {
-@@ -42,7 +42,7 @@ panel_dpi: panel-dpi {
- 		compatible = "edt,et057090dhu";
- 		backlight = <&backlight>;
- 		power-supply = <&reg_3v3>;
--		status = "okay";
-+		status = "disabled";
- 
- 		port {
- 			lcd_panel_in: endpoint {
-@@ -159,7 +159,7 @@ &i2c1 {
- 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
- 	sda-gpios = <&gpio1 29 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	scl-gpios = <&gpio1 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
--	status = "okay";
-+	status = "disabled";
- 
- 	/* Atmel maxtouch controller */
- 	atmel_mxt_ts: touchscreen@4a {
-@@ -202,6 +202,7 @@ ad7879_ts: touchscreen@2c {
- 		adi,median-filter-size = /bits/ 8 <2>;
- 		adi,averaging = /bits/ 8 <1>;
- 		adi,conversion-interval = /bits/ 8 <255>;
-+		status = "disabled";
- 	};
+diff --git a/arch/arm/boot/dts/imx6ull-colibri-aster.dts b/arch/arm/boot/dts/imx6ull-colibri-aster.dts
+index d3f2fb7c6c1e..3e0897c3a296 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri-aster.dts
++++ b/arch/arm/boot/dts/imx6ull-colibri-aster.dts
+@@ -15,6 +15,46 @@ / {
+ 		     "fsl,imx6ull";
  };
  
-@@ -209,6 +210,7 @@ &lcdif {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_lcdif_dat
- 		     &pinctrl_lcdif_ctrl>;
++&ad7879_ts {
++	status = "okay";
++};
++
+ &atmel_mxt_ts {
+ 	status = "okay";
+ };
++
++&backlight {
++	status = "okay";
++};
++
++&i2c1 {
++	status = "okay";
++};
++
++&i2c2 {
++	status = "okay";
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&panel_dpi {
++	status = "okay";
++};
++
++&pwm4 {
++	status = "okay";
++};
++
++/* PWM <B> */
++&pwm5 {
++	/* Pin already used by atmel_mxt_ts touchscreen */
 +	status = "disabled";
++};
++
++/* PWM <C> */
++&pwm6 {
++	/* Pin already used by atmel_mxt_ts touchscreen */
++	status = "disabled";
++};
+diff --git a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dts b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dts
+index 9bf7111d7b00..d6da984e518d 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dts
++++ b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dts
+@@ -12,3 +12,27 @@ / {
+ 	model = "Toradex Colibri iMX6ULL 256/512MB on Colibri Evaluation Board V3";
+ 	compatible = "toradex,colibri-imx6ull-eval", "fsl,imx6ull";
+ };
++
++&ad7879_ts {
++	status = "okay";
++};
++
++&backlight {
++	status = "okay";
++};
++
++&i2c2 {
++	status = "okay";
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&panel_dpi {
++	status = "okay";
++};
++
++&pwm4 {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/imx6ull-colibri-iris-v2.dts b/arch/arm/boot/dts/imx6ull-colibri-iris-v2.dts
+index afc1e0119783..fac7428685b4 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri-iris-v2.dts
++++ b/arch/arm/boot/dts/imx6ull-colibri-iris-v2.dts
+@@ -15,10 +15,18 @@ / {
+ 		     "fsl,imx6ull";
+ };
  
- 	port {
- 		lcdif_out: endpoint {
++&ad7879_ts {
++	status = "okay";
++};
++
+ &atmel_mxt_ts {
+ 	status = "okay";
+ };
+ 
++&backlight {
++	status = "okay";
++};
++
+ &gpio1 {
+ 	/* This turns the LVDS transceiver on */
+ 	lvds-power-on {
+@@ -63,3 +71,35 @@ lvds-color-map {
+ 		output-low;
+ 	};
+ };
++
++&i2c1 {
++	status = "okay";
++};
++
++&i2c2 {
++	status = "okay";
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&panel_dpi {
++	status = "okay";
++};
++
++&pwm4 {
++	status = "okay";
++};
++
++/* PWM <B> */
++&pwm5 {
++	/* Pin already used by atmel_mxt_ts touchscreen */
++	status = "disabled";
++};
++
++/* PWM <C> */
++&pwm6 {
++	/* Pin already used by atmel_mxt_ts touchscreen */
++	status = "disabled";
++};
+diff --git a/arch/arm/boot/dts/imx6ull-colibri-iris.dts b/arch/arm/boot/dts/imx6ull-colibri-iris.dts
+index 4fb97b0fe30b..2a0d0fc3b9d6 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri-iris.dts
++++ b/arch/arm/boot/dts/imx6ull-colibri-iris.dts
+@@ -15,6 +15,26 @@ / {
+ 		     "fsl,imx6ull";
+ };
+ 
+-&atmel_mxt_ts {
++&ad7879_ts {
++	status = "okay";
++};
++
++&backlight {
++	status = "okay";
++};
++
++&i2c2 {
++	status = "okay";
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&panel_dpi {
++	status = "okay";
++};
++
++&pwm4 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/imx6ull-colibri-wifi-aster.dts b/arch/arm/boot/dts/imx6ull-colibri-wifi-aster.dts
+index b4f65e8c5857..c7da5b41966f 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri-wifi-aster.dts
++++ b/arch/arm/boot/dts/imx6ull-colibri-wifi-aster.dts
+@@ -15,6 +15,46 @@ / {
+ 		     "fsl,imx6ull";
+ };
+ 
++&ad7879_ts {
++	status = "okay";
++};
++
+ &atmel_mxt_ts {
+ 	status = "okay";
+ };
++
++&backlight {
++	status = "okay";
++};
++
++&i2c1 {
++	status = "okay";
++};
++
++&i2c2 {
++	status = "okay";
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&panel_dpi {
++	status = "okay";
++};
++
++&pwm4 {
++	status = "okay";
++};
++
++/* PWM <B> */
++&pwm5 {
++	/* Pin already used by atmel_mxt_ts touchscreen */
++	status = "disabled";
++};
++
++/* PWM <C> */
++&pwm6 {
++	/* Pin already used by atmel_mxt_ts touchscreen */
++	status = "disabled";
++};
+diff --git a/arch/arm/boot/dts/imx6ull-colibri-wifi-eval-v3.dts b/arch/arm/boot/dts/imx6ull-colibri-wifi-eval-v3.dts
+index 1d64d1a5d8a7..917f5dbe64ba 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri-wifi-eval-v3.dts
++++ b/arch/arm/boot/dts/imx6ull-colibri-wifi-eval-v3.dts
+@@ -12,3 +12,27 @@ / {
+ 	model = "Toradex Colibri iMX6ULL 512MB on Colibri Evaluation Board V3";
+ 	compatible = "toradex,colibri-imx6ull-wifi-eval", "fsl,imx6ull";
+ };
++
++&ad7879_ts {
++	status = "okay";
++};
++
++&backlight {
++	status = "okay";
++};
++
++&i2c2 {
++	status = "okay";
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&panel_dpi {
++	status = "okay";
++};
++
++&pwm4 {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/imx6ull-colibri-wifi-iris-v2.dts b/arch/arm/boot/dts/imx6ull-colibri-wifi-iris-v2.dts
+index ce02f8a9ddd3..ed89d07beae5 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri-wifi-iris-v2.dts
++++ b/arch/arm/boot/dts/imx6ull-colibri-wifi-iris-v2.dts
+@@ -15,10 +15,18 @@ / {
+ 		     "fsl,imx6ull";
+ };
+ 
++&ad7879_ts {
++	status = "okay";
++};
++
+ &atmel_mxt_ts {
+ 	status = "okay";
+ };
+ 
++&backlight {
++	status = "okay";
++};
++
+ &gpio1 {
+ 	/* This turns the LVDS transceiver on */
+ 	lvds-power-on {
+@@ -63,3 +71,19 @@ lvds-color-map {
+ 		output-low;
+ 	};
+ };
++
++&i2c2 {
++	status = "okay";
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&panel_dpi {
++	status = "okay";
++};
++
++&pwm4 {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/imx6ull-colibri-wifi-iris.dts b/arch/arm/boot/dts/imx6ull-colibri-wifi-iris.dts
+index 5ac1aa298ce7..e63253254754 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri-wifi-iris.dts
++++ b/arch/arm/boot/dts/imx6ull-colibri-wifi-iris.dts
+@@ -15,6 +15,26 @@ / {
+ 		     "fsl,imx6ull";
+ };
+ 
++&ad7879_ts {
++	status = "okay";
++};
++
+ &atmel_mxt_ts {
+ 	status = "okay";
+ };
++
++&backlight {
++	status = "okay";
++};
++
++&i2c2 {
++	status = "okay";
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&panel_dpi {
++	status = "okay";
++};
 -- 
 2.37.3
 
