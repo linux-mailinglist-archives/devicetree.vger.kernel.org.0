@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD28F5F543F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 14:15:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C1295F54BD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 14:49:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229976AbiJEMPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 08:15:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38296 "EHLO
+        id S230020AbiJEMtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 08:49:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229901AbiJEMPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 08:15:50 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD495491D6;
-        Wed,  5 Oct 2022 05:15:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1664972149; x=1696508149;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=I/0/uca7PMc1JB5EXowgPj8CdkujWBJBOjIoOK0lALU=;
-  b=jwt49dlHesGnub2c+Ds5OvLQDRnB37QbswMpmkptptJ26pcrJClPWHm1
-   E9bBOuGJEXkMH/X+GW3u/kXzc2KB5TbbaNE4rCKWLvJq3TRL/PAfDGjin
-   nvblShxYUnnWn5RjmxZQE23+bTsr92Hz8xmr8KyDJ+rOBVqvLh+g75Rlk
-   jvb3/5ABtBi+qHjYr6Pp161BjOkLQjGqyR6S+Gzdg5wele+R80mtrRzEF
-   pu7J/JAkPYBtqwcIB6K903uJtmBYCOx928oqwVSPidxkexjO1waQ7Z+ip
-   d1B8mOYPYi3ZqnqbyvWmT10zJbCw45W4agOKA6SjlEfuNUGl75ajC+KSh
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="304126065"
-X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; 
-   d="scan'208";a="304126065"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2022 05:15:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="799468529"
-X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; 
-   d="scan'208";a="799468529"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga005.jf.intel.com with ESMTP; 05 Oct 2022 05:15:45 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1og3JP-002eDW-0J;
-        Wed, 05 Oct 2022 15:15:43 +0300
-Date:   Wed, 5 Oct 2022 15:15:42 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        jic23@kernel.org, lars@metafoo.de, chiaen_wu@richtek.com,
-        alice_chen@richtek.com, cy_huang@richtek.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, szunichen@gmail.com
-Subject: Re: [PATCH v13 5/5] leds: flash: mt6370: Add MediaTek MT6370
- flashlight support
-Message-ID: <Yz11bkxz9lK4wOHE@smile.fi.intel.com>
-References: <cover.1664991040.git.chiaen_wu@richtek.com>
- <1bcd19dbd09650ddac7b96b0fe2932698be2731e.1664991040.git.chiaen_wu@richtek.com>
+        with ESMTP id S229830AbiJEMtG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 08:49:06 -0400
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BD5C6A489;
+        Wed,  5 Oct 2022 05:49:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1664974140; bh=xOLzlsbhoUwuP51oM+e6pJyl+G0gLf7qASwB3qWSqK8=;
+        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+        b=SwkinqedY/1RYXhfbIYOLoKqTyexnCtOJI7PuEVUThGfTFzaXRCiMchVZmCH5pNvO
+         1IMY4LQxkRrVuR+hqagiTFdqBm2OzYJYvP6twhPrnilQ4r1cfL386DUnb2XaNRUxOn
+         Lu1UWvs0XJFmRbgnJTsRr8uXf4v7vDQB/+s0iM8s=
+Date:   Wed, 5 Oct 2022 14:49:00 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
+ and ranges
+Message-ID: <20221005124900.o2bghrdtkdrajb4t@core>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+        Peter Geis <pgwipeout@gmail.com>,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20221005085439.740992-1-megi@xff.cz>
+ <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1bcd19dbd09650ddac7b96b0fe2932698be2731e.1664991040.git.chiaen_wu@richtek.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+In-Reply-To: <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,40 +75,144 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 05, 2022 at 07:43:58PM +0800, ChiaEn Wu wrote:
-> From: Alice Chen <alice_chen@richtek.com>
+Hi,
+
+On Wed, Oct 05, 2022 at 07:42:54AM -0400, Peter Geis wrote:
+> On Wed, Oct 5, 2022 at 4:54 AM Ondrej Jirman <megi@xff.cz> wrote:
+> >
 > 
-> The MediaTek MT6370 is a highly-integrated smart power management IC,
-> which includes a single cell Li-Ion/Li-Polymer switching battery
-> charger, a USB Type-C & Power Delivery (PD) controller, dual Flash
-> LED current sources, a RGB LED driver, a backlight WLED driver,
-> a display bias driver and a general LDO for portable devices.
+> Good Morning,
 > 
-> Add support for the MT6370 Flash LED driver. Flash LED in MT6370
-> has 2 channels and support torch/strobe mode.
+> > I have two Realtek PCIe wifi cards connected over the 4 port PCIe swtich
+> > to Quartz64-A. The cards fail to work, when nvme SSD is connected at the
+> > same time to the bridge. Without nvme connected, cards work fine. The
+> > issue seems to be related to mixed use of devices which make use of I/O
+> > ranges and memory ranges.
+> >
+> > This patch changes I/O, MEM and config mappings so that config and I/O
+> > mappings use the 0xf4000000 outbound address space, and MEM range uses
+> > the whole 0x300000000 outbound space.
+> >
+> > This is simialar to how BSP does the mappings.
+> 
+> This change was very recent in the BSP stuff (Jan 2022):
+> https://github.com/rockchip-linux/kernel/commit/cfab7abefc4093daa379fbd90a1e7ac1a484332b
+> A few other interesting changes there as well. They added a 32 bit
+> window in the lower range and made the entire upper range a 64 bit
+> relocatable (why?) and prefetchable window. They also set the viewport
+> number to 8. The dt-binding says this is autodetected, but I wonder if
+> the value is being detected correctly.
 
-...
+That number in BSP is equivalent in meaning to num-ob-windows in mainline. At
+least it's used in identical manner in the code.
 
-> +config LEDS_MT6370_FLASH
-> +	tristate "Flash LED Support for MediaTek MT6370 PMIC"
+> It looks like it is dependent in BSP on a backported change from mainline:
+> https://github.com/rockchip-linux/kernel/commit/50a01d3c10a6212f66364575a3c8f66c07f41591
+> 
+> Can someone weigh in why the dw core has config in the reg node
+> instead of ranges?
+> 
+> >
+> > I changed num-ob-windows to value detected by the kernel so if for whatever
+> > reason the kernel ever starts respecting this DT property, it would not
+> > switch to sharing I/O and CFG spaces via a single iATU mapping for
+> > no reason.
+> 
+> This worries me that this value may be being detected incorrectly,
+> they set it to this for a reason. It's not unheard of for Rockchip to
+> need to override what they encode in the silicon.
 
-> +	depends on LEDS_CLASS && OF
+num-ob-windows mainline == viewport-num in BSP for whatever reason. (it's used
+to decide whether there are enough windows to share config with I/O or not) So
+it's identical to BSP.
 
-Why do you have OF dependency?
+kind regards,
+	o.
 
-> +	depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
-> +	depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
-> +	depends on MFD_MT6370
-> +	help
-> +	  Support 2 channels and torch/strobe mode.
-> +	  Say Y here to enable support for
-> +	  MT6370_FLASH_LED device.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called "leds-mt6370-flash".
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> Very Respectfully,
+> Peter Geis
+> 
+> >
+> > This change to the regs/ranges makes the issue go away and both nvme and
+> > wifi cards work when connected at the same time to the bridge. I tested
+> > the nvme with large amount of reads/writes, both behind the PCIe bridge
+> > and when directly connected to Quartz64-A board.
+> >
+> > Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> > ---
+> > BSP for reference: https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L2370
+> >
+> > v2:
+> > - change ranges to use 0x300000000 fully for MEM and make use of
+> >   the 0xf4000000 outbound range for IO and config
+> > - full retest with/without the switch
+> > - if lscpi/dmesg is useful in the future for comparison, see:
+> >   https://xff.cz/kernels/random/quartz64a-pcie/
+> >
+> > I used this script for the tests:
+> >
+> > #!/bin/bash
+> >
+> > OUT=/mnt/data
+> > n=8
+> >
+> > test -f /tmp/test.dat || \
+> >     dd if=/dev/urandom of=/tmp/test.dat bs=1M count=1024
+> > md5sum /tmp/test.dat
+> >
+> > i=0
+> > while test $i -lt $n
+> > do
+> >     dd if=/tmp/test.dat of=$OUT/test$i.dat bs=4M oflag=direct
+> >
+> >     i=$(($i+1))
+> > done
+> >
+> > i=0
+> > while test $i -lt $n
+> > do
+> >     dd if=$OUT/test$i.dat bs=4M iflag=direct | md5sum
+> >
+> >     i=$(($i+1))
+> > done
+> >
+> >
+> >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 9 +++++----
+> >  1 file changed, 5 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > index 319981c3e9f7..99fd9543fc6f 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > @@ -855,7 +855,8 @@ pcie2x1: pcie@fe260000 {
+> >                 compatible = "rockchip,rk3568-pcie";
+> >                 reg = <0x3 0xc0000000 0x0 0x00400000>,
+> >                       <0x0 0xfe260000 0x0 0x00010000>,
+> > -                     <0x3 0x3f000000 0x0 0x01000000>;
+> > +                     <0x0 0xf4000000 0x0 0x01f00000>;
+> > +
+> >                 reg-names = "dbi", "apb", "config";
+> >                 interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+> >                              <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+> > @@ -877,15 +878,15 @@ pcie2x1: pcie@fe260000 {
+> >                                 <0 0 0 4 &pcie_intc 3>;
+> >                 linux,pci-domain = <0>;
+> >                 num-ib-windows = <6>;
+> > -               num-ob-windows = <2>;
+> > +               num-ob-windows = <8>;
+> >                 max-link-speed = <2>;
+> >                 msi-map = <0x0 &gic 0x0 0x1000>;
+> >                 num-lanes = <1>;
+> >                 phys = <&combphy2 PHY_TYPE_PCIE>;
+> >                 phy-names = "pcie-phy";
+> >                 power-domains = <&power RK3568_PD_PIPE>;
+> > -               ranges = <0x01000000 0x0 0x3ef00000 0x3 0x3ef00000 0x0 0x00100000
+> > -                         0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x3ef00000>;
+> > +               ranges = <0x01000000 0x0 0x00000000 0x0 0xf5f00000 0x0 0x00100000
+> > +                         0x02000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
+> >                 resets = <&cru SRST_PCIE20_POWERUP>;
+> >                 reset-names = "pipe";
+> >                 #address-cells = <3>;
+> > --
+> > 2.37.3
+> >
