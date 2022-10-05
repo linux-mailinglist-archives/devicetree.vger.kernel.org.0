@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA6415F5862
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 18:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EB245F5866
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 18:35:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230016AbiJEQen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 12:34:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51586 "EHLO
+        id S229829AbiJEQfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 12:35:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbiJEQeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 12:34:23 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D070A7EFD6
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 09:33:59 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id y5so6690546lfl.4
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 09:33:59 -0700 (PDT)
+        with ESMTP id S229771AbiJEQfq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 12:35:46 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3D31AD95
+        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 09:35:45 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id j4so1376588lfk.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 09:35:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=fsDytsrXABRiHHLdkomit3W/4SQyAKiKJzv17uaMpSE=;
-        b=f79WZ1CmFqHwvH+p6fcw9MAZwCeE4Y0jytRrvpG5oNagbKEN/cGNhxlPfDTgAilmIL
-         LRJwD/J5nWGLRSi7njSfd3FVREwQ5CEX8IOzVdF8u0kyJJ57IRIkLXOTvPecNi3A9V9c
-         Tz6NWbOT3Cj04sVi1gyeZRh0uso8A2pmY0qHVA+8lFrgZB7eBS4xucXwtn0L7zGYI9fF
-         C8gxBR7Zms4ORtGFCduxQONtzzsoZa2j+6tbzxtCyXlvoRLjKxFUjNKeC8uYEs2nSqUA
-         WNq3lUsL8gxqYu3m7vVS+ON5miMOz0ikYD84TvhHaFFINKRHkJrfywUbvmNlradLvDPa
-         qE/w==
+        bh=ArbnXthF17aFuK2Rgr6+egy+HB4WLw6ceMUfORh6l5Y=;
+        b=XvUHOrQG17fhHnlsoCT7GqSjckTrNFw6Vy+GWnTE4oAEokGaLPenF5tQfc3fhpUWo1
+         qKFIPUF79oULb9lmZeVbm4Ukh3AyWcQkeK7IdEJR0M3pItEwdEyJVjZ6oSVH5OjsulVL
+         HZ1HoQL8/yCWzDe5QrL1nFvG8v3C+O8QVE2ePiFpFcWTjGTl2hryRJG8gHO7Cx/+p2RH
+         BdP6uRRj759ACtmumxm/aczNsEEz6BxVzoOJZX83Kx4eZtsdgm4Ujl1CGN2EVOy2KlhY
+         rE/TdxZOHna+0XZkJVRv8dIUKwVvCE5nWCtP6xJH2EdC4wK1DJo3WrZuooZC83oKx6b6
+         NLcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=fsDytsrXABRiHHLdkomit3W/4SQyAKiKJzv17uaMpSE=;
-        b=QCANvxMMv72NjlSrQIdiMU+SluT9/71Ox4l0r3rWbAXtgxabvflYHKjmRQy+TxQpfW
-         Twmyj/HgJV1VHhtx4sTf/hEhvA0bWUGyBgZDmK6TAhFV3DbuJ1fk5JPv5zZ/7Z0YNcaP
-         sBy7s/TkYJFs7mwSOgrB2ove3WvE+3X+DXEv4SCZxBLgMhSq66ANKViWTogoprK8LssO
-         mrNDPzECxcIrjya3LnXoIVMFm9d5rcGPTAPMhfC7lUO3Bj8AtDCucqEroMDS/ESY+exL
-         mTXngLScbaev+PAf87Pq8o216nhS5B/sEG+dq7MfED2JgitzD/3Y+YasSWnc1QBOXGtY
-         I6mQ==
-X-Gm-Message-State: ACrzQf1Th01GJVnE/RVyuo/bk0ES1caS/E8gc+QDNuP/llmhCBb500FV
-        naHvNTw9MKRgo0q6n2f3KIP5/w==
-X-Google-Smtp-Source: AMsMyM6R1rJ0EDep0X30zwEZyQnjfv12SmZCyEK74LSEbsUR/NHwNWRbzWm06v352s5lwPYFNRhPig==
-X-Received: by 2002:a05:6512:6d4:b0:4a2:5045:db6a with SMTP id u20-20020a05651206d400b004a25045db6amr249061lff.199.1664987630856;
-        Wed, 05 Oct 2022 09:33:50 -0700 (PDT)
+        bh=ArbnXthF17aFuK2Rgr6+egy+HB4WLw6ceMUfORh6l5Y=;
+        b=jTtm026Ie7ZL848rtKlUn8wWpgL78uALJuOKCXjHpIa8lZNzqV3JELordYQdhMjLDI
+         AJEriN5/bVouyjeVr6kZHzoXOazRrKfHmyruueAk/Tsr7oFomCVzTcKWP6/1xXKQe3f0
+         asOSN4IYV6OfBnKZqwLKLAhq2ep+i3jXWPCeMLWqtOq9ioZ0oBVHcUb9ulVwy0s49CWO
+         C8vEGkvJExUDTgHlDnGmXqzw79h/rnh5S18sfKRoptQfPLsP8fpZGWJ+OqAKd3ov9oL2
+         WIGVYJXJxAouSs/aAul5BEk+eHOnZ8pas89FAJAPIp3k/kTOLhtqQ9cS0T1gGE0UH6u8
+         2Tcg==
+X-Gm-Message-State: ACrzQf30nmWd+xWU92DcZp9Pe9ur3FyFlNfg/U1jfrx/JuA8E/P0nkiU
+        8SjkguxFRS/9qoADBd0XtYZOjg==
+X-Google-Smtp-Source: AMsMyM5LjKt7QvMVK5nxucMwvVVKZDMB0Zf8Ee6Jfz1lQgOYAmg2F5JK8113gHKmDPb4++HQwSS93g==
+X-Received: by 2002:ac2:4f03:0:b0:495:ec98:bcac with SMTP id k3-20020ac24f03000000b00495ec98bcacmr224149lfr.339.1664987743632;
+        Wed, 05 Oct 2022 09:35:43 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id k16-20020a05651210d000b0048cf43c3a85sm2388561lfg.238.2022.10.05.09.33.49
+        by smtp.gmail.com with ESMTPSA id o20-20020a056512231400b0048a9b197863sm2391823lfu.235.2022.10.05.09.35.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Oct 2022 09:33:50 -0700 (PDT)
-Message-ID: <1f3ebf6f-117f-62a7-8e02-3e8a3bcf7e9f@linaro.org>
-Date:   Wed, 5 Oct 2022 18:33:49 +0200
+        Wed, 05 Oct 2022 09:35:43 -0700 (PDT)
+Message-ID: <4e5c0d90-d1ec-15ca-c07a-d43f52d4d69a@linaro.org>
+Date:   Wed, 5 Oct 2022 18:35:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH 3/5] dt-bindings: watchdog: mediatek: Convert mtk-wdt to
- json-schema
+Subject: Re: [PATCH v2] dt-bindings: mfd: mt6370: fix the interrupt order of
+ the charger in the example
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, wim@linux-watchdog.org
-Cc:     linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        allen-kh.cheng@mediatek.com, seiya.wang@mediatek.com,
-        tinghan.shen@mediatek.com, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        matthias.bgg@gmail.com, sre@kernel.org, chiaen_wu@richtek.com,
+        cy_huang@richtek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221005113517.70628-1-angelogioacchino.delregno@collabora.com>
- <20221005113517.70628-4-angelogioacchino.delregno@collabora.com>
+References: <9dda705a8d67826306f6c6129722d3ad8edc96fc.1664816175.git.chiaen_wu@richtek.com>
+ <CAL_Jsq+YeZRizJFYuU7RPTcFRe1cDjLgsTidisJ_P5PNC4eKiw@mail.gmail.com>
+ <CABtFH5Ld91S65RiDu4iSpFhAMiFWaQdj-yDRM79=WUkArpA0JA@mail.gmail.com>
+ <9004b427-66b7-f783-9258-4f6b893899ef@linaro.org>
+ <CABtFH5LLxjaWHFLRGjVb9x1a_SJoHzD_GsOqn-e9uQAJ6mOocg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221005113517.70628-4-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CABtFH5LLxjaWHFLRGjVb9x1a_SJoHzD_GsOqn-e9uQAJ6mOocg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,14 +83,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/10/2022 13:35, AngeloGioacchino Del Regno wrote:
-> Convert the MediaTek watchdog bindings to schema.
+On 05/10/2022 10:59, ChiaEn Wu wrote:
+> On Wed, Oct 5, 2022 at 4:33 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+> ...
+>>
+>> Eh, my patch was merged in July... and yours from September still does
+>> not use updated multi-led bindings. Was it even tested before sending?
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Hi Krzysztof,
+> 
+> I must apologize for checking our patches are based on v5.19 (I also
+> forgot to apply your patch before checking patches......), not the
+> v6.0-rc series at that time.
+> I will update the latest code and check my patch again and again
+> before submitting the patch next time.
+> I'm very sorry for this mistake.......
 
-There is already work in progress:
-
-https://lore.kernel.org/all/20220422121017.23920-3-allen-kh.cheng@mediatek.com/
+Always base your patches on one of: latest mainline kernel, latest
+maintainer's tree or recent linux-next.
 
 Best regards,
 Krzysztof
