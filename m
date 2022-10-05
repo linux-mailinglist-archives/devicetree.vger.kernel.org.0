@@ -2,182 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A67615F575A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 17:21:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6281B5F57B9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 17:44:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230016AbiJEPVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 11:21:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59868 "EHLO
+        id S229942AbiJEPoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 11:44:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230392AbiJEPVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 11:21:12 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FDF4481DA
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 08:21:10 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id b7so18836121wrq.9
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 08:21:10 -0700 (PDT)
+        with ESMTP id S229588AbiJEPoT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 11:44:19 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2119.outbound.protection.outlook.com [40.107.223.119])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97FE52C671;
+        Wed,  5 Oct 2022 08:44:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hf1PUYd1MfSt0+WYgUvijocNhU9N+e5/fYWaUZa/4ykq20Ly/o0EoKwFZ/mGGas6MiQlOaS/YANJ3zz6ACoATJf/tJ9FimWdiFAp+P9PSw4x2U/He+PgbsmJqpfU0AM+CJDFU2US6pghzA4Zi39wcVKfbUp+WlrbKfzIcUVqx1qqK1Ytzosup26BiYilJNP3Y7HmeogpYikXKjjn97MNzkQkYbS0g2YxWLM8i1u9jtuzGo+Yuhuz1ctJ1FvFesWEvcM9f6h//DoZVincp+WucovS2tKW5J5gH47UbVzGu9I4FkPf+bXBRKH3grdbTtVX5TeH7wJhUTOJEfi5TmdEgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r4GwRQ8ETyiVCFacxIlG/n+pxE/51LtmPOHfLUjdKMg=;
+ b=H4Fg3L83uvk1rLJqkbvXRZkVA32vPefbmMl6+IBiBBwZwrdBdZep+OK2URoNYCX5OdDdEtsQwjRb8+VRuQ7LWDec2A2utHtbYN9LXU0sk0O1aNhxBpP3VF9U5twkMMO9+vMoPGgBIQ54JJB0Qy1EvOXTFU+75jKjkWkqxnjPt21TvSHUoaEejlLHpBmUYW4vLBpEcVwn55XLsWJtgXVP+dB1WM2hDHzLC62yI8rkowZcMTWg99Lh9n+B0nI6S5fP/9qNc2ugEVcRFzr7b6Wrh2Mjk1JBDJz1lnOY3IBWNik6lRJTAv7qJRG9MEHF6fbpINqWEBf5dtYl2Z3PRNLGrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=P23Toul+yvAg8ITdVewN9IrDo8XBNapLz1MZzgSmTS0=;
-        b=hDHB7YmBPbaHebgrwJQZ13/uqZUZ8Gj9imN0rHpkqRHwUEYj9myvf8RrrIHrOTqE5W
-         HjlW9es1urBPchOjrKqlXoB6tmC4jfYgcYW/upTs63e0rq1oAyymdTPsZ5Tmj3pA1T/B
-         ZTGpZJ73Ga+onccSR42hTfhRR68yaa88Eo+sWY491qLCJTTw/PZjYcEVB64anB8+y2w2
-         Ldo56FKgIFd5QkzLtiE4LGxtq8hkF39ueqjw10KZGnyioAb/uOlrU67Rc86/ndR3gUZT
-         fFHfkDIEd0H38B7fzHc4c/XjWA5zVC7TZYK7cmqOUmxd1AbZ3BM3e7qX3ze95C72KFgs
-         BA9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=P23Toul+yvAg8ITdVewN9IrDo8XBNapLz1MZzgSmTS0=;
-        b=SHpboawpGPUxdCBWoQmkLMi50I3w/X3qkZCd+fv+iN/P3TkL+ES0IkdcbDkMYzQylP
-         2r7PVnZutnvSKwfWW+UgPxACNQynTexP4dmOwtACHagOXgUau5as0JsjAhAc1mp7G41O
-         CQ9LATSETWtomxnc5VzXUAk/HPE0XN4a20zI/Z/wH3BQaXWDOFfFOqGJIxikdqQUA9eO
-         EwdYt7KpoCATr3elSJ5sWUNlKtuM5QDQi5RxWnkyMyGY2gtUEakUlXEosn/b9v9dlndF
-         b/tUeyyRs2UqYiXKYssZvRYqzxX+NekcnQ8VgynpquEFWajouL0RRm3DdL3iivQGvWrD
-         ZzNg==
-X-Gm-Message-State: ACrzQf2SD9Y5f5HJYKreCDQJBkSBIZOj/RnscnknRMMUlpl4r3bbeJ5A
-        YLh3y6CpbNf4kbWiHWEpmEWLkA==
-X-Google-Smtp-Source: AMsMyM4mODtW+t0PJdpmPEnDU9xx0k32mkrSIOuL2GCqzCOJD3SN1VbkyHovJSd9xTWuj5Np9MdgNw==
-X-Received: by 2002:a5d:654f:0:b0:22d:ac82:f870 with SMTP id z15-20020a5d654f000000b0022dac82f870mr180639wrv.7.1664983268707;
-        Wed, 05 Oct 2022 08:21:08 -0700 (PDT)
-Received: from dave-Ubuntu2204.pitowers.org ([93.93.133.154])
-        by smtp.googlemail.com with ESMTPSA id p2-20020a05600c1d8200b003b4764442f0sm2306854wms.11.2022.10.05.08.21.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Oct 2022 08:21:08 -0700 (PDT)
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-To:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        linux-media@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: [PATCH 2/2] media: i2c: ov9282: Add support for regulators.
-Date:   Wed,  5 Oct 2022 16:20:18 +0100
-Message-Id: <20221005152018.3783890-3-dave.stevenson@raspberrypi.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221005152018.3783890-1-dave.stevenson@raspberrypi.com>
-References: <20221005152018.3783890-1-dave.stevenson@raspberrypi.com>
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r4GwRQ8ETyiVCFacxIlG/n+pxE/51LtmPOHfLUjdKMg=;
+ b=JS3f1gDs79dZG8A+LDDMliwRseLDEtSzD8mDazLQiFX7nn/rxQDdeszzfMKCyPQhou2ZQ64PPUTLoquVxopslzspmZwcQXFsP50hSaXJnEgb2CPJgcRXl+0BwDhtAo101XdiAl/4S1Ddx9GWgoyEY6zhpYfoUvU5XkC3IhMcl3M=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by BN0PR10MB5173.namprd10.prod.outlook.com
+ (2603:10b6:408:127::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24; Wed, 5 Oct
+ 2022 15:44:14 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::ee5e:cbf9:e304:942f]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::ee5e:cbf9:e304:942f%7]) with mapi id 15.20.5676.028; Wed, 5 Oct 2022
+ 15:44:14 +0000
+Date:   Wed, 5 Oct 2022 08:44:08 -0700
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 net-next 12/14] dt-bindings: net: dsa: ocelot: add
+ ocelot-ext documentation
+Message-ID: <Yz2mSOXf68S16Xg/@colin-ia-desktop>
+References: <20220926002928.2744638-1-colin.foster@in-advantage.com>
+ <20220926002928.2744638-13-colin.foster@in-advantage.com>
+ <ec63b5aa-3dec-3c27-e987-25e36b1632ba@linaro.org>
+ <YzzLCYHmTcrHbZcH@colin-ia-desktop>
+ <455e31be-dc87-39b3-c7fe-22384959c556@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <455e31be-dc87-39b3-c7fe-22384959c556@linaro.org>
+X-ClientProxiedBy: BYAPR07CA0047.namprd07.prod.outlook.com
+ (2603:10b6:a03:60::24) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|BN0PR10MB5173:EE_
+X-MS-Office365-Filtering-Correlation-Id: f1eadd62-5053-4055-6725-08daa6e873f1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8HMySK3iYLvLICY8CaBYW8h4YBboneS97FaYMEZ6HUoP4Rnae+glg/dsCUoLfPDQvEKdRh1WXN+DdmCU8fk5hQpxb8nRxZe+5ftHoi+lXVeX/rOVBClAU/KYWtlQgFWkDzRDQD/2aK+fv16icp02VKohVoG1fClRVI/PHMvJrUWVCWUHVdvgwoBkZfRkRYDAuTc7juScPYpHoKyLJk8dY5DRiPq0NM5mZBbSlYjlxjRWryOHtVD9Gf0dlNptFRIkMbqjHakzYko67ms95fK6ymV/uuGqesqn2Ck57bx30yqHbe8mNLT5/X7Ky7aOfi1alJB/dBHlHSlcaK+s8ob2y4zYZw/rR+uiLNBvX/S9lLYPK975z0+zHbnuHyvwnO7NKZOYvsSUwA0OhWt4b4EPDbNUqIaNTzLy8LIJksjyqsDGEjTA4Wt7henyOkX1NlIq1cfuCYBcEpVSjRCb9gXYk/qIs8Mxtv0B0WlYlofXxw2GGby5XTW2gd986COOei8FJAub45MJDLk07uZpLjDaMkDK3R2g6PgF1+ce0A+8p/q4yk3tcGqASxmEtQTcn2RdJ1tCytd2993S1H2o55mMg1a0pKkXIAXkqa97hpAfP4xtKKZIPy54TPkiwd+HA07MO3fFQFQD52EYqrdtfYinNS7Hc82d2vXptGHCOzWTTWSWL2ru5oqu33UKZXAy+U22+nkz0xrlFk6pSG5KkSutrA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(136003)(346002)(376002)(366004)(39830400003)(396003)(451199015)(86362001)(38100700002)(2906002)(33716001)(83380400001)(186003)(6506007)(9686003)(6512007)(53546011)(6666004)(6486002)(478600001)(26005)(54906003)(6916009)(316002)(66476007)(66946007)(66556008)(8676002)(4326008)(41300700001)(8936002)(5660300002)(44832011)(7416002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ARTYC+waE/tMJbHaZgv5lC4Vv8si4n8wbdI7Vhwdt1Waxk35rfZXNmtSVsHe?=
+ =?us-ascii?Q?Qiz8GoUZ7Vd+uqZonWdDsqlTwzAGH0v6IRpo+Rm5Lkf5xobqYb/605vnDBcf?=
+ =?us-ascii?Q?r64jnLP0lLtxiIAKU04uIJdRNS4G/zf+dIu5a3rL5sUu4B0JowhKRlCPC4UU?=
+ =?us-ascii?Q?G2H81TpebddthPKKZCBO6BNnuRN2zjQDX8KSR603utLLL8xNV/2tUNKYHhqU?=
+ =?us-ascii?Q?Wn0nryhY22NegWiv39O55mVm5LmwHsajth8AHAsYfrt5Gf4keeH8OEgaof9O?=
+ =?us-ascii?Q?BResv2w+TETjVOk53yISoonvjjLTmE0tNJzN85NNpmbcM7rivYB42XUmRwjn?=
+ =?us-ascii?Q?ws6jAGNsxsJqhqER11roP7c//OQLoHGX+oNNEmbzzjaLw1rstBjOJHZ5Ipqd?=
+ =?us-ascii?Q?WdUB1Wx29GsOy2r7nc4X6QSbHeMq3DSWAI+j2BGnEKVcEtQFO/q5TyE2AjxK?=
+ =?us-ascii?Q?n6DGRgQ8xYgtiIwGXk6M3C7n8BFNDrkuQwCBd3wakPi1kKg6lSiD6GiGVzVd?=
+ =?us-ascii?Q?FuBQ7NdAuhPjnBu4MukymoVj9KGyIf9Rzv5IkiPwkgxr3fmrg/XMo8iLBFwa?=
+ =?us-ascii?Q?0+BZfdYUSmf1YJ+dvMUCHTRKEzoTfcRajLBDRuMXothKIcnat3nadnAwE4+K?=
+ =?us-ascii?Q?024kAH4ykZ+yWiNQm1100enR/wloWT+NivoC5ZB9K1/Qpr1wltnrv7QBd7OO?=
+ =?us-ascii?Q?ESSGtgrqQKyLB6KRwSgGin6SKe0KUW8p/YPQMKABXVbNNorqxwrlgngCoBzV?=
+ =?us-ascii?Q?EJD0tsX/sjW3GnW2N5GGcOteieOuqDBDPxYXa8rd6CuAzUPPx90QViVnod13?=
+ =?us-ascii?Q?b1ii8df0THL/q4/Dq4mdUp6PPF8UJiHe9sRm/SYRaZzyT3Hk4J+zRvFIU+Ze?=
+ =?us-ascii?Q?xTqGg6Fk6B6t3/OcfCA/TPLSZO5st+nGsxx0xIJD3PoIynNtBVB8KAqtsSA2?=
+ =?us-ascii?Q?oEIrE9peweeTgY9JdXdi6MdkbGzLrggr6WuoQ1y/2aDM5qy1cRxhhHRUVvOd?=
+ =?us-ascii?Q?mMfklR+t/Z0yVirvhCdYVel09PzYvJacJg05AhWjIA66jQXdUgU8M7eCQNdo?=
+ =?us-ascii?Q?TGYgutFyRCVaxaORrYFb4R+fGhBxEmH5yN/S4v+Va9ASp5Z2WGaVsh6dL2Bv?=
+ =?us-ascii?Q?AFEwdqHwt4hnwztyS0W//H45AnsG/MM2h4CLprc/LJATqBQ1Hxr58NE53n0x?=
+ =?us-ascii?Q?DH+5gXaEAVDCC4eXmNvtp6xus9muZJzHg8iPLwMcsImuzo/SbXOPuPF4NSs2?=
+ =?us-ascii?Q?tMKIX853Mbhd1raAOlx024VVr6asv3NknuhEYMJKUJ0FHnQuUTI8iUmqaG91?=
+ =?us-ascii?Q?JlFtqdmOp/suFT90t0BaPnzd/khVcA55OP2g4Na7Cz4BneKXYRfUYitbSOLp?=
+ =?us-ascii?Q?0zvlCJw+7WyJJoAyv/29680h7Axs5BboOJLrdVii4AfDX9izgkezflDbTBnP?=
+ =?us-ascii?Q?m650hKIYyBQ2V0EdxNVYftFJLG6DSuFZV0QjPtE9qAB47h4jiD35Ug1QZWl5?=
+ =?us-ascii?Q?/By22C59DrXDzuWCzBIZuzyumFjYnkAe16BIiy1jPAz2+A2ftjEqVIZ6A1pJ?=
+ =?us-ascii?Q?SZHUGExOLgkiScBgW8mSvOoRMgOkajlifxx6MKUcIsFFiXhYmnUcNC98nIKG?=
+ =?us-ascii?Q?Gg=3D=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f1eadd62-5053-4055-6725-08daa6e873f1
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2022 15:44:14.1201
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IO5slTHsoTTrI6PWRYWCAWEaeFioIOBz0gcFzl1IZktBy+mfsru++k116Lm/scFLDTFsBLHk2kP6J071g7cYsabgtQ2rXQjaFZJs2act2QA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB5173
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sensor takes 3 supply rails - AVDD, DVDD, and DOVDD.
+On Wed, Oct 05, 2022 at 10:03:04AM +0200, Krzysztof Kozlowski wrote:
+> On 05/10/2022 02:08, Colin Foster wrote:
+> > Hi Krzysztof,
+> > 
+> > On Tue, Oct 04, 2022 at 01:19:33PM +0200, Krzysztof Kozlowski wrote:
+> >> On 26/09/2022 02:29, Colin Foster wrote:
+> >>> The ocelot-ext driver is another sub-device of the Ocelot / Felix driver
+> >>> system, which currently supports the four internal copper phys.
+> >>>
+> >>> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> > ...
+> >>> +  # Ocelot-ext VSC7512
+> >>> +  - |
+> >>> +    spi {
+> >>> +        soc@0 {
+> >>
+> >> soc in spi is a bit confusing.
+> >>
+> >> Does it even pass the tests? You have unit address but no reg.
+> > 
+> > I omitted those from the documentation. Rob's bot is usually quick to
+> > alert me when I forgot to run dt_binding_check and something fails
+> > though. I'll double check, but I thought everything passed.
+> > 
+> >>
+> >>> +            compatible = "mscc,vsc7512";
+> >>
+> >>
+> >>> +            #address-cells = <1>;
+> >>> +            #size-cells = <1>;
+> >>> +
+> >>> +            ethernet-switch@0 {
+> >>> +                compatible = "mscc,vsc7512-switch";
+> >>> +                reg = <0 0>;
+> >>
+> >> 0 is the address on which soc bus?
+> > 
+> > This one Vladimir brought up as well. The MIPS cousin of this chip
+> > is the VSC7514. They have exactly (or almost exactly) the same hardware,
+> > except the 7514 has an internal MIPS while the 7512 has an 8051.
+> > 
+> > Both chips can be controlled externally via SPI or PCIe. This is adding
+> > control for the chip via SPI.
+> > 
+> > For the 7514, you can see there's an array of 20 register ranges that
+> > all get mmap'd to 20 different regmaps.
+> > 
+> > (Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml)
+> > 
+> >     switch@1010000 {
+> >       compatible = "mscc,vsc7514-switch";
+> >       reg = <0x1010000 0x10000>,
+> >             <0x1030000 0x10000>,
+> >             <0x1080000 0x100>,
+> >             <0x10e0000 0x10000>,
+> >             <0x11e0000 0x100>,
+> >             <0x11f0000 0x100>,
+> >             <0x1200000 0x100>,
+> >             <0x1210000 0x100>,
+> >             <0x1220000 0x100>,
+> >             <0x1230000 0x100>,
+> >             <0x1240000 0x100>,
+> >             <0x1250000 0x100>,
+> >             <0x1260000 0x100>,
+> >             <0x1270000 0x100>,
+> >             <0x1280000 0x100>,
+> >             <0x1800000 0x80000>,
+> >             <0x1880000 0x10000>,
+> >             <0x1040000 0x10000>,
+> >             <0x1050000 0x10000>,
+> >             <0x1060000 0x10000>,
+> >             <0x1a0 0x1c4>;
+> >       reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
+> >             "port2", "port3", "port4", "port5", "port6",
+> >             "port7", "port8", "port9", "port10", "qsys",
+> >             "ana", "s0", "s1", "s2", "fdma";
+> > 
+> > 
+> > The suggestion was to keep the device trees of the 7512 and 7514 as
+> > similar as possible, so this will essentially become:
+> >     switch@71010000 {
+> >       compatible = "mscc,vsc7512-switch";
+> >       reg = <0x71010000 0x10000>,
+> >             <0x71030000 0x10000>,
+> >       ...
+> 
+> I don't understand how your answer relates to "reg=<0 0>;". How is it
+> going to become 0x71010000 if there is no other reg/ranges set in parent
+> nodes. The node has only one IO address, but you say the switch has 20
+> addresses...
+> 
+> Are we talking about same hardware?
 
-Add hooks into the regulator framework for each of these
-regulators.
+Yes. The switch driver for both the VSC7512 and VSC7514 use up to ~20 regmaps
+depending on what capabilities it is to have. In the 7514 they are all
+memory-mapped from the device tree. While the 7512 does need these
+regmaps, they are managed by the MFD, not the device tree. So there
+isn't a _need_ for them to be here, since at the end of the day they're
+ignored.
 
-Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
----
- drivers/media/i2c/ov9282.c | 38 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+The "reg=<0 0>;" was my attempt to indicate that they are ignored, but I
+understand that isn't desired. So moving forward I'll add all the
+regmaps back into the device tree.
 
-diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
-index 2e0b315801e5..699fc5b753b4 100644
---- a/drivers/media/i2c/ov9282.c
-+++ b/drivers/media/i2c/ov9282.c
-@@ -11,6 +11,7 @@
- #include <linux/i2c.h>
- #include <linux/module.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
- 
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-fwnode.h>
-@@ -55,6 +56,14 @@
- #define OV9282_REG_MIN		0x00
- #define OV9282_REG_MAX		0xfffff
- 
-+static const char * const ov9282_supply_names[] = {
-+	"avdd",		/* Analog power */
-+	"dovdd",	/* Digital I/O power */
-+	"dvdd",		/* Digital core power */
-+};
-+
-+#define OV9282_NUM_SUPPLIES ARRAY_SIZE(ov9282_supply_names)
-+
- /**
-  * struct ov9282_reg - ov9282 sensor register
-  * @address: Register address
-@@ -128,6 +137,7 @@ struct ov9282 {
- 	struct media_pad pad;
- 	struct gpio_desc *reset_gpio;
- 	struct clk *inclk;
-+	struct regulator_bulk_data supplies[OV9282_NUM_SUPPLIES];
- 	struct v4l2_ctrl_handler ctrl_handler;
- 	struct v4l2_ctrl *link_freq_ctrl;
- 	struct v4l2_ctrl *pclk_ctrl;
-@@ -767,6 +777,18 @@ static int ov9282_detect(struct ov9282 *ov9282)
- 	return 0;
- }
- 
-+static int ov9282_configure_regulators(struct ov9282 *ov9282)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < OV9282_NUM_SUPPLIES; i++)
-+		ov9282->supplies[i].supply = ov9282_supply_names[i];
-+
-+	return devm_regulator_bulk_get(ov9282->dev,
-+				       OV9282_NUM_SUPPLIES,
-+				       ov9282->supplies);
-+}
-+
- /**
-  * ov9282_parse_hw_config() - Parse HW configuration and check if supported
-  * @ov9282: pointer to ov9282 device
-@@ -803,6 +825,12 @@ static int ov9282_parse_hw_config(struct ov9282 *ov9282)
- 		return PTR_ERR(ov9282->inclk);
- 	}
- 
-+	ret = ov9282_configure_regulators(ov9282);
-+	if (ret) {
-+		dev_err(ov9282->dev, "Failed to get power regulators\n");
-+		return ret;
-+	}
-+
- 	rate = clk_get_rate(ov9282->inclk);
- 	if (rate != OV9282_INCLK_RATE) {
- 		dev_err(ov9282->dev, "inclk frequency mismatch");
-@@ -874,6 +902,12 @@ static int ov9282_power_on(struct device *dev)
- 	struct ov9282 *ov9282 = to_ov9282(sd);
- 	int ret;
- 
-+	ret = regulator_bulk_enable(OV9282_NUM_SUPPLIES, ov9282->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable regulators\n");
-+		return ret;
-+	}
-+
- 	usleep_range(400, 600);
- 
- 	gpiod_set_value_cansleep(ov9282->reset_gpio, 1);
-@@ -891,6 +925,8 @@ static int ov9282_power_on(struct device *dev)
- error_reset:
- 	gpiod_set_value_cansleep(ov9282->reset_gpio, 0);
- 
-+	regulator_bulk_disable(OV9282_NUM_SUPPLIES, ov9282->supplies);
-+
- 	return ret;
- }
- 
-@@ -909,6 +945,8 @@ static int ov9282_power_off(struct device *dev)
- 
- 	clk_disable_unprepare(ov9282->inclk);
- 
-+	regulator_bulk_disable(OV9282_NUM_SUPPLIES, ov9282->supplies);
-+
- 	return 0;
- }
- 
--- 
-2.34.1
-
+> 
+> Best regards,
+> Krzysztof
+> 
