@@ -2,115 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFEFE5F517E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 11:08:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F2CA5F51A5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 11:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230198AbiJEJIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 05:08:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60650 "EHLO
+        id S229754AbiJEJRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 05:17:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbiJEJIk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 05:08:40 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76FFE76978;
-        Wed,  5 Oct 2022 02:08:13 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2958upN5021784;
-        Wed, 5 Oct 2022 09:08:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=zOz9DK0Yg3l8J1gu2rZxNW57wndut0TuBanZP/1eDxQ=;
- b=gFloYDbF4iF5l5qYWZrqFTPuuD9JEjrlf/8a3JJjMB3jVSZ1xH/Kfr55WPAQWuc1NqAl
- aabs7b6VEQC2LVdEhsUDLmS5ULytHcovVfcjcmcBtD+vY7Sg2Xv16PttaPQKNYuVVYMF
- qEKn/PwX/I/OktiUTdbjb2Fkp1As0GTwCtcbAOvXHVW//1t1+EwBebHAhgi6kBQKUB78
- 1wJ3sVU8WPX1mzdTg/tX0jV2twVPn3Ww1mtIMO9lI6k8w/6u5z8RU69JT9URsdiona8J
- 2AAnXY0FcIAf4KD6Gt/qjw7G0v+PM6LrizGQSTtKvq5qo4TFadpZbzXASS999BcV8Fm0 IQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k06sjkrkx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 05 Oct 2022 09:08:03 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 295982tX021829
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 5 Oct 2022 09:08:02 GMT
-Received: from hyd-lnxbld559.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Wed, 5 Oct 2022 02:07:57 -0700
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-To:     freedreno <freedreno@lists.freedesktop.org>,
-        <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Douglas Anderson <dianders@chromium.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v7 6/6] arm64: dts: qcom: sc7280: Add Reset support for gpu
-Date:   Wed, 5 Oct 2022 14:37:04 +0530
-Message-ID: <20221005143618.v7.6.I6a1fca5d53c886c05ea3e24cd4282d31c9c0cd0b@changeid>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1664960824-20951-1-git-send-email-quic_akhilpo@quicinc.com>
-References: <1664960824-20951-1-git-send-email-quic_akhilpo@quicinc.com>
+        with ESMTP id S229618AbiJEJRR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 05:17:17 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6F406CD1B;
+        Wed,  5 Oct 2022 02:17:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1664961436; x=1696497436;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=3BM9EAWnuuxS97/6SbC9s8q/3sROK6XsCZf8Mu+dnx4=;
+  b=1r1R6812ZNXw3ATLeNPkuYO9If5WC44YA9U4yIDS5qHZ6kD+Mr+PTbn0
+   jjNMsBbtbz1TzmH+QqaFtJs5Sceiu9mw9sgbTWcDvZ4q4BMWQ9Rp5yP5b
+   6wCXrhgUVV4S5Y03GEtlPJcY9vw9KKVEFpXQ3AqwSfZJd2NY93St7uKmZ
+   y0v6rRrMM64LhqZYqcfcDsWLnkWpj/aDcuAzJmwmJn+tdOmvZAilf5WBQ
+   sG5MAWX5Nkpq1NAD0BXblwijsr8JjOeCd+wiTRaEuGPpiZU68FTIB+85m
+   WBSJXvnSIZwo+CwYcuAyoCVlkyrs2FIhRqdNXIiiCROFfEm/dbmJN9WZY
+   w==;
+X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; 
+   d="scan'208";a="177114914"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Oct 2022 02:17:14 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 5 Oct 2022 02:17:14 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Wed, 5 Oct 2022 02:17:14 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nxjHDKbw2tJEugvlbqMGwhLNAsJtKsggbgtSl5ytBSsTf7C8s4QHft+TtudZx9Yl1gPDgyZinkrBD0Z+vwovAj5UmUF8K0GD8HeKTPRoRRHwltEB3+KZ81vFd2aJSJwvyH+I41ATxGtRHW61q4/i66SbpdjFCxnHYdfgJM83bcKgCBlf8VrXTtHczeUivDzyZldTZZNz+NGClnt4sNY6yXdn+1SbwBcvBK6n0g14RfoBVxFOaDTvQf2bArcYFBgrYxTG/+e3ng8aQG8Toc+nRol+hwuuqZVLnebiw3/cZu+96yFrpxwqsjg/I5/X5u9FlHVeWH+2VgRANo+82w4wiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3BM9EAWnuuxS97/6SbC9s8q/3sROK6XsCZf8Mu+dnx4=;
+ b=LafR7xR5ByPLVekvvJhKFrwWy3jHgOTIsTeOTEZCNxLhSpjzedoWX8IugLGHUAb5cE9LUnbtAMR7UC7mBuU6Y6WmyMv/23G7DcM08RUCQh5gH6QZNGqEkkSjptTWvsasilOuGmcsDFns+ZmazOGUAxYCYW4QgQJdetRZjnwDy4f3ORT0HqsDlhST93fp1s+fkkg6XJ6XseY0TuPVXIIW3ZRb9MiIimpx85glrWr3hbTFh3L9j2PjiOWWOL8QwNKDiTT+0LNtMWEbKuhSxSxdv0ix85OFKpK+5JO2uumm38ZJD4VKj9RJIOwPPCXXuUfywroR1rZrEPhuod14PHCSGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3BM9EAWnuuxS97/6SbC9s8q/3sROK6XsCZf8Mu+dnx4=;
+ b=W4tq57Q44+zax1RlE6m0r366U3hrhOfmYebJZI9vONVJYX6De0aZQwKUGDjfPoqGMR2Hn7GkFj3M0dn0pzuwm7yHWCvx+aSjcklZFeIjRvb2Hh+N3YUdvVcZOP0CgieBI3me4gjHRUmxz8/tyPHthmVJ7BSjUE8xs5gKHv8FN7M=
+Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
+ by DM4PR11MB6066.namprd11.prod.outlook.com (2603:10b6:8:62::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.31; Wed, 5 Oct
+ 2022 09:17:09 +0000
+Received: from CO1PR11MB5154.namprd11.prod.outlook.com
+ ([fe80::68c0:270e:246d:618a]) by CO1PR11MB5154.namprd11.prod.outlook.com
+ ([fe80::68c0:270e:246d:618a%3]) with mapi id 15.20.5676.032; Wed, 5 Oct 2022
+ 09:17:09 +0000
+From:   <Conor.Dooley@microchip.com>
+To:     <conor@kernel.org>, <prabhakar.csengg@gmail.com>
+CC:     <geert+renesas@glider.be>, <paul.walmsley@sifive.com>,
+        <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <magnus.damm@gmail.com>, <heiko@sntech.de>, <guoren@kernel.org>,
+        <philipp.tomsich@vrull.eu>, <nathan@kernel.org>,
+        <atishp@rivosinc.com>, <apatel@ventanamicro.com>,
+        <linux-renesas-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <biju.das.jz@bp.renesas.com>,
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [RFC PATCH v2 2/2] soc: renesas: Add L2 cache management for
+ RZ/Five SoC
+Thread-Topic: [RFC PATCH v2 2/2] soc: renesas: Add L2 cache management for
+ RZ/Five SoC
+Thread-Index: AQHY13gcXVGHZZYv1ku7x8IJ0u88J63+gogAgAD8BACAAAOogIAABUGA
+Date:   Wed, 5 Oct 2022 09:17:09 +0000
+Message-ID: <5254a42c-9233-6f9a-eff8-33324a184d20@microchip.com>
+References: <20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221003223222.448551-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <YzxwoELNBctbhjJb@spud>
+ <CA+V-a8tgvF16vduoQ+ZbzTpRJUmCnN-GPQs5G8AqMOXbnznwHA@mail.gmail.com>
+ <F0B6C609-6C39-4080-8F07-7FEFFAFEA993@kernel.org>
+In-Reply-To: <F0B6C609-6C39-4080-8F07-7FEFFAFEA993@kernel.org>
+Accept-Language: en-IE, en-US
+Content-Language: en-IE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CO1PR11MB5154:EE_|DM4PR11MB6066:EE_
+x-ms-office365-filtering-correlation-id: 893ea1b1-cade-4e71-79b8-08daa6b2614e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0STbRnqFl+Hh6ge2gMpezGEJOFBVlEfUp6+h60jbSpBGwTRDgNdNb1OW4qeerBvguBW+RZStA8jX5KM8eelC6yoZQ7mvpgx4mGQhJ0IcxKaqf33SoE8n5kvTq67N+q4uusECgYosrM1Hnjxm402oqx+VBIrT+B5kBhLBBTZD5iHp7x/2X10nrzq5DfN97DS73rYS6HnCU8INAvE0Q1Fxbc+6W2PhUEL53+bcrWPChtF3qM85zyNIRLo2UHkSudP2ePPTrF+UFfXZaLeOAnw6wuge6ca1RoIDXjq9iAXsk8uKcpR1wZBPWHVmY2TVbblV7bcWq4IX2q8RI5b9Rdf8O+NtB3wSt4Zn8ARy5sMGwXvJfKZj6ddBh7nFHyo0uu/a/Qo6vOYqxLoQ84qolP33o1Y1XzttzPOw48iCDqYhv56t8CUParKjArUeKw0zpFpl20CHLS/R3N9ZeocJWqAz9fkfJZQD2BrY6YhwEJz2D7dswZ0yazFlgM6drpYY8rX5Y4/0j5w7iSbAAQJch95qfp9ZnPr4wmxbdivIoiPtIHhcu9oM0HRVH6i2WH1hTMxuIB/axyDDs+1J8DFPRewGGIGTNFcgWkaYFPxTiDqneFKi3mZNhHbYP31xI6LsKHVVy+loeaocG1yxCKvobxC6Qdksw+Rwg6HE3TInLQOyLrEbVkm+XZPEQFVQSjWwH0EVEvbCtkvUxq+ienOYCamVJia6PJ9ND+4MwK+fB6xXv4kbtzSTHWJQYQbvVH2e3wRxxwjWRpkI+KVhNI2hh/tU/xd6Zh9/V/sNzCNPPzyzgXRhaGzS1GuJse6O24USFdNdrpa5wnCzpHrCtxcagzsBow==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(376002)(366004)(39860400002)(346002)(136003)(396003)(451199015)(66946007)(41300700001)(6486002)(110136005)(478600001)(64756008)(66446008)(76116006)(8676002)(91956017)(4326008)(66476007)(66556008)(316002)(36756003)(122000001)(54906003)(38100700002)(6512007)(7416002)(4744005)(53546011)(5660300002)(6506007)(86362001)(26005)(8936002)(38070700005)(186003)(2906002)(2616005)(31696002)(31686004)(71200400001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Z01NYTVRMGExamtabVdCcjE1c055REtMYWR5VW1zTTVOOFVvN3BYYTRENnJL?=
+ =?utf-8?B?VEZUQnpDY3p5Y3Y3bEJrNW56cUYwZzErbHEvNEZmOWQ4TzBWdUpnc2tPNXlQ?=
+ =?utf-8?B?azhxdHhNVHFOSWpQeXVMRGFTM1NhakYrbWVuaDhycHRnendnb2RIazd1YVcr?=
+ =?utf-8?B?TjJFVzY1dWlicHVvWXBLTGNKRWx5L2FMWkRKVGJvWHhhc2o3MTdrZXdRenc1?=
+ =?utf-8?B?RURPenNnSXNSK1I1TGdsbnQ2WU91K3dSbGdJQkIvVURFLys1WEJLdG4wN0Jr?=
+ =?utf-8?B?N3UyNHVCUmg0L0pueXRZMy9Bb3QwbHJ5U0E2M0JlWDA2MFNtSndEcllZMmdy?=
+ =?utf-8?B?Zi8zWjhsSWRIaEp2ei8zMVlyUGJ4NUxMakh3NUh4VXIzMG9vWWZTY2xSVUdD?=
+ =?utf-8?B?cjEvOU51d0ZhRTFZbEQ0UDBWbkNlbEJQSXFLWExpUEFjclRHakNxS3JhYllT?=
+ =?utf-8?B?enp2UUVzWEs2aDIxSkEzTUtjQUF1YndrTVRWcG1UdjRMWndmRitBTjRCYW5L?=
+ =?utf-8?B?Y3lFN0xucUZwbFF3RlN6TlRCVHlIaXNWV0U2Z1hqVDBQa2JrbXFSR25nNmxX?=
+ =?utf-8?B?dTNyNUhhN3BmcmRqYjBlQ0tCWVpSUFNjTFpnUEliZkZBbFYvRlN5Wm9Ed0Nt?=
+ =?utf-8?B?QmZtSHhnNVgwOHhubXBrNERscnRzbDE5VVFIVFA5cXhFQmpwSzhIUk9sTnhs?=
+ =?utf-8?B?MGpwZE1tWHpvVnJ0QWN0RncwdkZ5WGNmNC84d1NaY0VUZ3o4Z1dQUVBiaVJr?=
+ =?utf-8?B?NmZKK00vU1FXS1YvQ21sdFhTRG5FL3dMYWdJLzVRamh2bTBsN0JqUEMyRDJ0?=
+ =?utf-8?B?NVBLNldLdmIyeXIvWEhRbDBSbzV5Q25XVDVSc0JqVXBWSW10NW5HYkRGZEV2?=
+ =?utf-8?B?NTkxK1BWZW1vTEQ1VVdxYkQ5VGlXSzRZWDZiTjF2bHhaMjczcGxvKzBHNlI5?=
+ =?utf-8?B?Y2RTTE9rZEdPWUh6VEVZcU9ESEU4MjU4Mm0rQ1QxaEhvaitMc3BlUHZoL1ZY?=
+ =?utf-8?B?OThaRER5a3oxa3lvd2FVcHh4blF0VTVkeTdCWGVrelcrVDBjL05mM1c1Qmgz?=
+ =?utf-8?B?VHJDK05HWnZRR2RWeldIMkVUTHJHaTIwNlRCQnN1WVludk82dmN2OXZHME5X?=
+ =?utf-8?B?NkxiczcxSUt2VGc5bWdqWHNYNldONXMvWjFJampQejlvaUJ2VnBSdmJ6U2o0?=
+ =?utf-8?B?MW9oSE5HRG1QZ0ZJbWc1TTZtcVVYTktlUmhVcXJsWFJRclZWSHRFVzVGTzl2?=
+ =?utf-8?B?MWVRWXNFWmRFNmt0czZvL1RpR1hxS0hzbzJwdktnVFdNdEVyb093VG5DN2Jt?=
+ =?utf-8?B?b1pvT2tIclF0ZDRhMS9teXNEL2lBYXRzaHNPUzRhUzBUeWlNOUFTRlBNZTBq?=
+ =?utf-8?B?TDZzcElKbnErcnN0cEJqY2hNTHIxOG5wUUJVUXpFNXVoL2tCanpKU3JFRmhq?=
+ =?utf-8?B?Qm14eFlzQzFHdThqblRmSmJNc21uSHBUY0J1cWdrdExWOVNWTkpmWjBNTW96?=
+ =?utf-8?B?MWllVEZaQ0tpL0hTMnQrK2VGcTlaTFFZeHVteU1NcTliYVNPeWJ4d3hHcDdx?=
+ =?utf-8?B?NEVudjIrZFRkLzg0eUlac2FEU1MvTlZrOVhMVURSc2pPUUhKblBQUWozSGFI?=
+ =?utf-8?B?UVVLRmpGVVNpUmdXMTdmL0o0bWR3eVlSOWZ1Z1c2L243SVFZMmMxZEJTbkNo?=
+ =?utf-8?B?emZtSEtmUUdrdDV6OXFESEwvT1lQL2pWYVA0MTI3TkxLWmtDcGVxS0lKK1Fs?=
+ =?utf-8?B?QkdabldFSG4rRFN1Vnl3QzZ1djd1TVc5aVNLb0VyRGgzTWdvaHpwVVEveWN4?=
+ =?utf-8?B?RERlWG5CWTVnd0ptZWlPeVZudmN6Sm92K09DaUY2bFBtRGtDTEN4VER2d2Nj?=
+ =?utf-8?B?Q21EN0RpNkd2akZEYmdLYXpYdTE5YmI3SkExK2R1NDlseVlvMnk2ckFUUFVt?=
+ =?utf-8?B?VThUY1BFZ0ZDaFc2NndzYjB3R01PNGlVTmhEWFFmQThnVm1kQitSZTYzWXY0?=
+ =?utf-8?B?U3poNmsyb1NOS0pNVGdhY1JkRHpqRkR4bm1RYUNFTnI4a0hIeU44azhHVzM0?=
+ =?utf-8?B?QXBMSzlSLytJU1RtWFQwbkRaNzFCR0ticjJwRUtZeHNLbzFPLzd4cXdNR1Ru?=
+ =?utf-8?Q?QNc4jCcbtwnZK2brYrHx1cHkH?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <48B0E84B17BAAE41AFD85815E3D4AF46@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Mav_tV04SwmxJ7L7HRA0Hy4wXhJxxjxB
-X-Proofpoint-GUID: Mav_tV04SwmxJ7L7HRA0Hy4wXhJxxjxB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-04_09,2022-09-29_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- mlxlogscore=999 impostorscore=0 suspectscore=0 bulkscore=0
- lowpriorityscore=0 priorityscore=1501 malwarescore=0 phishscore=0
- adultscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210050057
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 893ea1b1-cade-4e71-79b8-08daa6b2614e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Oct 2022 09:17:09.2643
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xQ99+UcEajjD5cVxqCA7INKfGaTY49Dl/jHVXSkuHhd2WBumwk3/Qd0r7mGPccV3yvHO6W11XcsI8jcVl/TCBcDdGVrRVPeoEHC3qtoffX0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6066
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Reset using GPUCC driver for GPU. This helps to ensure
-that GPU state is reset by making sure that CX head switch is collapsed.
-
-Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
----
-
-(no changes since v1)
-
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 2125803..3e559b3 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2535,6 +2535,9 @@
- 			nvmem-cells = <&gpu_speed_bin>;
- 			nvmem-cell-names = "speed_bin";
- 
-+			resets = <&gpucc GPU_CX_COLLAPSE>;
-+			reset-names = "cx_collapse";
-+
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
--- 
-2.7.4
-
+T24gMDUvMTAvMjAyMiAwOTo1OCwgQ29ub3IgRG9vbGV5IHdyb3RlOg0KPiBFWFRFUk5BTCBFTUFJ
+TDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBrbm93
+IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IE9uIDUgT2N0b2JlciAyMDIyIDA5OjQ0OjU2IElT
+VCwgIkxhZCwgUHJhYmhha2FyIiA8cHJhYmhha2FyLmNzZW5nZ0BnbWFpbC5jb20+IHdyb3RlOg0K
+Pj4gSGkgQ29ub3IsDQo+Pg0KPj4gVGhhbmsgeW91IGZvciB0aGUgcmV2aWV3Lg0KPj4NCj4+IE9u
+IFR1ZSwgT2N0IDQsIDIwMjIgYXQgNjo0MyBQTSBDb25vciBEb29sZXkgPGNvbm9yQGtlcm5lbC5v
+cmc+IHdyb3RlOg0KPiANCj4+Pj4gK3N0YXRpYyB2b2lkIGNwdV9kY2FjaGVfd2JfcmFuZ2UodW5z
+aWduZWQgbG9uZyBzdGFydCwNCj4+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdW5z
+aWduZWQgbG9uZyBlbmQsDQo+Pj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGludCBs
+aW5lX3NpemUpDQo+Pj4+ICt7DQo+Pj4+ICsgICAgIGJvb2wgdWNjdGxfb2sgPSBmYWxzZTsNCj4+
+Pj4gKyAgICAgdW5zaWduZWQgbG9uZyBwYTsNCj4+Pj4gKyAgICAgaW50IG1oYXJ0aWQgPSAwOw0K
+Pj4+PiArI2lmZGVmIENPTkZJR19TTVANCj4+Pj4gKyAgICAgbWhhcnRpZCA9IHNtcF9wcm9jZXNz
+b3JfaWQoKTsNCj4+Pj4gKyNlbmRpZg0KPj4+DQo+Pj4gV29uJ3QgdGhpcyBwcm9kdWNlIGNvbXBs
+YWludHMgZnJvbSB5b3VyIGlmIHlvdSBjb21waWxlIHdpdGggQ09ORklHX1NNUA0KPj4+IHNldD8N
+Cj4+Pg0KPj4gTm8gSSBkb250IHNlZSBhIGJ1aWxkIGlzc3VlIHdpdGggU01QIGVuYWJsZWQsIGRv
+IHlvdSBzZWUgYW55IHJlYXNvbg0KPj4gd2h5IGl0IHNob3VsZCBmYWlsPw0KPiANCj4gTm90IGZh
+aWwgYnV0IGNvbXBsYWluIGFib3V0IHRoZSB1bnVzZWQgdmFyaWFibGUuDQo+IA0KDQpOb3QgdW51
+c2VkIHZhcmlhYmxlLCBzb3JyeSBidXQgdGhlIHVudXNlZCAwIHRoYXQgaXQgd2FzIGluaXRpYWxp
+c2VkIHdpdGgqDQo=
