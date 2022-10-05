@@ -2,73 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F29165F5343
-	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 13:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8680A5F53C8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Oct 2022 13:40:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229516AbiJELUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 07:20:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48960 "EHLO
+        id S230391AbiJELkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 07:40:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229830AbiJELUR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 07:20:17 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4426F19C1A
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 04:20:16 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id y205so5677513yby.13
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 04:20:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
-         :subject:date;
-        bh=VhbT+I+m/j1zIBMdGQ5YCdD5f5II+ZRqGX/fHpao/tc=;
-        b=Akm95zcr2eRzWiYh9RhuXazaleFuN7OMQOGCmowzgFNHfkoAV9eeFU0qbuxlFMm6xx
-         Sm+nhdpHiC4ho3Lx0smbn1y/5EEL5acNzyrOn4bgLpXb5K2HueCPDuhmhDyC1Mct9Bpc
-         t1lOpAK/qE9bkswmrMIU2wI79IqV6XZ4wlkeXZJ7bfrLAn5ztlAujm+eW1KcoLlDXrMa
-         8ndyKprWqqkIznqn21bqSZGIfU2J8ld83ERy3v2Ox7YiDeuIwUtJW4yQ9RkB9IzAel9R
-         1nLKm5I3VVm6MbfkuvHsBzDXVfe7gsDmLxvNzrXLBNkSM4LYtFT3VC8NXz6lyP7Qp6bC
-         o0rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:sender:mime-version
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=VhbT+I+m/j1zIBMdGQ5YCdD5f5II+ZRqGX/fHpao/tc=;
-        b=zMHYjwn59TI87Iq/MAuZSKJowBmUOYdT/E9gDweoUI0piS0Aflhs0y2fouVqELs66z
-         gVUxWR8FNqrxAq0Uc08/DFbJ4llOfJyQ5hs1rGd0V+zj/rbQOGVQ6P+O5dtSyJvuXc5k
-         L6nBAyOgFxVXP3w+cR7HqbKWKOQNnbUFpoMobA+oTKbNf6ecF/MP55+W9KIDyi0ryLuQ
-         Ne+7QsSjGu4awamjgbMA3pX1RYtAqpWUlwen5wC156WG63v4zbAXrk7RLSaXqLC1GDG4
-         R8Sf4+35zSm0hetfkT5dSPMk062pyXh7oxrYuzzcHxBkGJ3g5EDlCvsHhlP4fPT0MrPw
-         Wwvw==
-X-Gm-Message-State: ACrzQf1UZKomWZQJjahcNQ88L+JW8loZkhf3MULiCWSvCjt34zOy/Bon
-        UIB25pdXEpqSnOyhuLen2ZTFqmSM42gKJudUDNI=
-X-Google-Smtp-Source: AMsMyM7yLOBwGtLcCXc3EpQSTm6ijjS0J9LiZHMMxW9KFfqRlqybDmI/+1PS9iV7ACuLcaP9j6nW4g4JUKA3HQYR9tw=
-X-Received: by 2002:a05:6902:1508:b0:6bd:7f26:d838 with SMTP id
- q8-20020a056902150800b006bd7f26d838mr15369085ybu.589.1664968814686; Wed, 05
- Oct 2022 04:20:14 -0700 (PDT)
+        with ESMTP id S230283AbiJELjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 07:39:53 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DC5378598;
+        Wed,  5 Oct 2022 04:37:03 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E89C966022F0;
+        Wed,  5 Oct 2022 12:35:34 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664969735;
+        bh=qULQP86b4+eOLbpwlAGXJqEihDLHn7C+UcPb7jg5t+g=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Q0yhxJbk5tyqyqWjbgBIUzlzZjuBMrTyew3wuGl1794jdF37AkJhVurw7XNMad0N/
+         N2kyyb6D74789UyOvdbRTl2YThKP8RFP5BH/id8MKWNxLRp7cI+eCMYTPlbTCTWuRo
+         kiU1uNgDtx2pQUHgYsMT6mZbYr8S/n1ZJi/K6aKbzP7oOGrBCOXZZje822OolTTUve
+         QjHUzodK7X+n0to/OZJ2TqgloJJkPN2wulPgBM1rt8kA8sUfbtAy2J7Q2BamxNNkvG
+         JFMHuPpAKg2kOq0CQmsN1ADQhB4GZAd8TckSwQR1a+1nuIxdYU/NR8fpuGrUj1wysb
+         E8dWCOA8ftrlw==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     wim@linux-watchdog.org
+Cc:     linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        allen-kh.cheng@mediatek.com, seiya.wang@mediatek.com,
+        angelogioacchino.delregno@collabora.com, tinghan.shen@mediatek.com,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] MediaTek watchdog: MT6795 support and YAML conversion
+Date:   Wed,  5 Oct 2022 13:35:12 +0200
+Message-Id: <20221005113517.70628-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Sender: mrs2017sabahibrahim@gmail.com
-Received: by 2002:a05:7010:45c5:b0:305:8507:b5fa with HTTP; Wed, 5 Oct 2022
- 04:20:14 -0700 (PDT)
-From:   Elena Tudorie <elenatudorie987@gmail.com>
-Date:   Wed, 5 Oct 2022 04:20:14 -0700
-X-Google-Sender-Auth: 4mvz--WYbnI0yi51NndgZlU8_BU
-Message-ID: <CAJvpSsJ=G=OOWnzidDz3jCYxzx9jjsCfWrz_kNVGyHXt9e9UQA@mail.gmail.com>
-Subject: Hello.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=2.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLY,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URG_BIZ autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: **
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello
-I Wish to seek your conscience about something urgently, Please reply
-this message, once you get it.
-Yours sister,
-Mrs.Elena Tudorie
-Email: tudorie_elena@outlook.com
+This series converts mtk-wdt.txt to dt-schema, fixes watchdog compatibles
+for MT8186 and MT8195, and adds support for the watchdog and toprgu reset
+found on the MediaTek Helio X10 MT6795 SoC.
+
+AngeloGioacchino Del Regno (5):
+  arm64: dts: mediatek: mt8186: Fix watchdog compatible
+  arm64: dts: mediatek: mt8195: Fix watchdog compatible
+  dt-bindings: watchdog: mediatek: Convert mtk-wdt to json-schema
+  dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible for MT6795
+  watchdog: mtk_wdt: Add support for MT6795 Helio X10 watchdog and
+    toprgu
+
+ .../bindings/watchdog/mediatek,mtk-wdt.yaml   | 81 +++++++++++++++++++
+ .../devicetree/bindings/watchdog/mtk-wdt.txt  | 42 ----------
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  3 +-
+ drivers/watchdog/mtk_wdt.c                    |  6 ++
+ 5 files changed, 89 insertions(+), 46 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+
+-- 
+2.37.2
+
