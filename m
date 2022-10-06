@@ -2,111 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C28E55F6372
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 11:16:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DB565F63AD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 11:31:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231447AbiJFJQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 05:16:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35796 "EHLO
+        id S231370AbiJFJbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 05:31:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231372AbiJFJQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 05:16:16 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D8C9835D;
-        Thu,  6 Oct 2022 02:16:09 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id ADB3566022F9;
-        Thu,  6 Oct 2022 10:16:07 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1665047768;
-        bh=GDGLsYsj0D/nebPVYIooIdcVZbO93mCgP/BtLTyCxqo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ISYCMpZUlkUQQHPE6fJGNrMrqTWoUe8kPaqYs/+I+MBK3dVUI0emcqqogWe1BmQUZ
-         3BWV/hDTLBd9Zf94zq8ZR1wrRAixEorbnKgojILa7Xqb/SlZx+eebxWO05l/qT0Gic
-         vjZG+dzOb0tX0JnVQuAPtNkwiDFId7UeDrvV/081dHdub00+mQgJkYSWCEK5B780C9
-         24B71rgmUrOwUwB2HzpvJVlfW+zZwi8eYYqXkOZo+T3ltRA9DvsY4rC56N+7AlG7mp
-         cYZFaqrL6fWcfb8orl6492aUztpC5VIquLhofLFUc1Q+wtEUe3OA0V8BtpgZmR3uhg
-         4HoaTcSf9RgiQ==
-Message-ID: <b1140018-8787-4365-14ab-16d21716a162@collabora.com>
-Date:   Thu, 6 Oct 2022 11:16:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v2 01/10] arm64: dts: mediatek: mt6779: Remove syscon
- compatible from pin controller
-Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20221005174343.24240-1-y.oudjana@protonmail.com>
- <20221005174343.24240-2-y.oudjana@protonmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221005174343.24240-2-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231480AbiJFJbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 05:31:42 -0400
+X-Greylist: delayed 432 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 06 Oct 2022 02:31:38 PDT
+Received: from lit721.phy.lolipop.jp (lit721.phy.lolipop.jp [118.27.125.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7A7A9AF85
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 02:31:38 -0700 (PDT)
+Received: by lit721.phy.lolipop.jp (Postfix, from userid 995)
+        id 006C5101058F9; Thu,  6 Oct 2022 18:24:25 +0900 (JST)
+To:     devicetree@vger.kernel.org
+Subject: =?iso-2022-jp?B?GyRCJSIlNSVSTFo5KSRoJGo8K0YwR1s/LiVhITwlaxsoQg==?=
+From:   torikon@f7.dion.ne.jp
+Reply-To: torikon@f7.dion.ne.jp
+Content-Type: text/plain;charset=iso-2022-jp
+X-Mailer: PHP/5.3.29
+Message-Id: <20221006092425.006C5101058F9@lit721.phy.lolipop.jp>
+Date:   Thu,  6 Oct 2022 18:24:25 +0900 (JST)
+X-Spam-Status: No, score=2.8 required=5.0 tests=BAYES_50,
+        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,SPF_NONE,URIBL_BLACK
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 05/10/22 19:43, Yassine Oudjana ha scritto:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> Remove syscon compatible string from pin controller to follow
-> DT bindings and pass checks. Adding the syscon compatible to
-> the DT bindings documentation instead causes a different check
-> error due to the syscon document specifying a maximum of 1 item
-> in the reg property, while this has 9.
+$B$*Ld$$9g$;$"$j$,$H$&$4$6$$$^$7$?!#(B
+$B0J2<$NFbMF$,Aw?.$5$l$^$7$?!#(B
 
-Please change this part of the description...
+-------------------------------------------------
 
-> Nothing is using the pin
-> controller as a syscon at the moment so it should be a safe
-> thing to do.
+[$B2q<RL>(B] $B~=(I?$Bc}(I$$B~:(B Alice want to meet you! CLICK HERE: http://www.kitframe.com/uploads/go.php?v5fl ?(I%0(B
+[$BIt=p(B] 783jdg
+[$BL>A0(B] wnwclv
+[$B$U$j$,$J(B] o7857w
+[$B=;=j(B] mxcbox
+[$BEEOCHV9f(B] j7cbgx
+[email] devicetree@vger.kernel.org
+[submit] c80xx2
+[reset] 6mofbe
+[$BO"MmJ}K!(B] FAX
+[$BFbMF(B] ffwtv6
 
-...to:
+-------------------------------------------------
 
-This pin controller has never been, and will never be, used as a
-syscon, hence it is safe to drop this compatible.
-
-After which, you get my
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt6779.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> index 9bdf5145966c..a6fa5212da4e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> @@ -160,7 +160,7 @@ infracfg_ao: clock-controller@10001000 {
->   		};
->   
->   		pio: pinctrl@10005000 {
-> -			compatible = "mediatek,mt6779-pinctrl", "syscon";
-> +			compatible = "mediatek,mt6779-pinctrl";
->   			reg = <0 0x10005000 0 0x1000>,
->   			      <0 0x11c20000 0 0x1000>,
->   			      <0 0x11d10000 0 0x1000>,
+$BAw?.F|;~!'(B2022/10/06 (Thu) 18:24:24
 
