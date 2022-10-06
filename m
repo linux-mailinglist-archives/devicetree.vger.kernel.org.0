@@ -2,123 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DD165F67E5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 15:26:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7979F5F68A3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 15:57:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231200AbiJFNZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 09:25:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
+        id S231438AbiJFN53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 09:57:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbiJFNZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 09:25:53 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 149FEA9268;
-        Thu,  6 Oct 2022 06:25:53 -0700 (PDT)
-Received: from zn.tnic (p200300ea9733e732329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e732:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 891AC1EC063A;
-        Thu,  6 Oct 2022 15:25:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1665062747;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=UD/kHZ1QqsxXXC+8XEN1rrv2JXKjTnMsM3a/4/yEYu8=;
-        b=gP5Qk1LjooiLMFGuExDBW0oIx3VX8koptyGrokMz6vCfLY8OAWUfMT0C/2CBbMZAAOZCUb
-        5ipbPEYifusBCp68dBHdn5ElUNq+HDkBnJLAAuQEEls4KKVqT5jH7cxVRZvH7UWENPvUwn
-        ET1kR2EexlnsDqbc2LJmOw1TLqs4x/Y=
-Date:   Thu, 6 Oct 2022 15:25:42 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230339AbiJFN52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 09:57:28 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AB738915F6;
+        Thu,  6 Oct 2022 06:57:26 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.95,164,1661785200"; 
+   d="scan'208";a="137903235"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 06 Oct 2022 22:57:24 +0900
+Received: from localhost.localdomain (unknown [10.226.92.84])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 4D5EC53EEFC8;
+        Thu,  6 Oct 2022 22:57:20 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v3 14/17] EDAC/synopsys: Detach Zynq DDRC
- controller support
-Message-ID: <Yz7XVqeopgGVR7+3@zn.tnic>
-References: <20220929232712.12202-1-Sergey.Semin@baikalelectronics.ru>
- <20220929232712.12202-15-Sergey.Semin@baikalelectronics.ru>
- <YzcAV2I/rhILfhwR@zn.tnic>
- <20221006121740.ksugoodbagr45fky@mobilestation>
+        William Breathitt Gray <william.gray@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>, Lee Jones <lee@kernel.org>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 0/4] Add RZ/G2L MTU3a MFD, Counter and pwm driver
+Date:   Thu,  6 Oct 2022 14:57:13 +0100
+Message-Id: <20221006135717.1748560-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20221006121740.ksugoodbagr45fky@mobilestation>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 06, 2022 at 03:17:40PM +0300, Serge Semin wrote:
-> In general because it needlessly overcomplicates the driver, worsen
-> it scalability, maintainability and readability, makes it much harder
-> to add new controller features. Moreover even if you still able to add
-> some more features support the driver will get to be more and more messy
-> (as Michal correctly said in the original thread [1]).
+The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
+the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
+channels and one 32-bit timer channel. It supports the following
+functions
+ - Counter
+ - Timer
+ - PWM
 
-Did you read that thread until the end?
+This patch series aim to add MFD and pwm driver for MTU3a.
 
-> It will get to be messy since you'll need to add more if-flag-else
-> conditionals or define new device-specific callbacks to select the
-> right code path for different controllers; you'll need to define
-> some private data specific to one controller and unused in another.
-> All of that you already have in the driver and all of that would be
-> unneeded should the driver author have followed the standard kernel
-> bus-device-driver model.
+The 8/16/32 bit registers are mixed in each channel. The HW
+specifications of the IP is described in patch#1.
 
-So lemme ask this again because the last time it all sounded weird and I
-don't think it got clarified fully: you cannot have more than one memory
-controller type at the same time on those systems, can you?
+Current patch set is tested for PWM mode1 on MTU3 channel
+and 16 and 32 bit phase counting modes.
 
-Because if you can and you want to support that, the current EDAC
-"design" allows to have only a single EDAC driver per system. So you
-can't do two drivers now.
+v2->v3:
+ * Dropped counter bindings and integrated with mfd as it has only one property.
+ * Removed "#address-cells" and "#size-cells" as it do not have children with
+   unit addresses.
+ * Removed quotes from counter and pwm.
+ * Provided full path for pwm bindings.
+ * Updated the binding example.
+ * removed unwanted header files
+ * Added LUT for 32 bit registers as it needed for 32-bit cascade counting.
+ * Exported 32 bit read/write functions.
+ * Modelled as a counter device supporting 3 counters(2 16-bit and 
+   32-bit)
+ * Add kernel-doc comments to document struct rz_mtu3_cnt
+ * Removed mmio variable from struct rz_mtu3_cnt
+ * Removed cnt local variable from rz_mtu3_count_read()
+ * Replaced -EINVAL->-ERANGE for out of range error conditions.
+ * Removed explicit cast from write functions.
+ * Removed local variable val from rz_mtu3_count_ceiling_read()
+ * Added lock for RMW for counter/ceiling updates.
+ * Added different synapses for counter0 and counter{1,2}
+ * Used ARRAY for assigning num_counts.
+ * Added PM runtime for managing clocks.
+ * Add MODULE_IMPORT_NS(COUNTER) to import the COUNTER namespace.
 
-If your answer to that is
+RFC->v2:
+ * replaced devm_reset_control_get->devm_reset_control_get_exclusive
+ * Dropped 'bindings' from the binding title
+ * Updated the binding example
+ * Added additionalProperties: false for counter bindings
+ * Squashed all the binding patches
+ * Modelled as a single counter device providing both 16-bit
+   and 32-bit phase counting modes
+ * Modelled as a single pwm device for supporting different pwm modes.
+ * Moved counter and pwm bindings to respective subsystems.
 
-Subject: [PATCH RESEND v3 13/17] EDAC/mc: Add MC unique index allocation procedure
+Biju Das (4):
+  dt-bindings: mfd: Document RZ/G2L MTU3a bindings
+  mfd: Add RZ/G2L MTU3 driver
+  pwm: Add support for RZ/G2L MTU3 PWM
+  counter: Add RZ/G2L MTU3 counter driver
 
-then I'm sceptical but I'd need to look at that first.
-
-And reading your commit messages, you're talking a lot about what you're
-doing. But that should be visible from the patch. What I wanna read is
-*why* you're doing it.
-
-Like in this patch above, what's that "unique index allocation
-procedure" for?
-
-edac_mc_alloc() already gets a mc_num as the MC number.
-
-And yes, if you want to do multiple driver instances like x86 does per
-NUMA node instances, then that is done with edac_mc_alloc() which gives
-you a memory controller descriptor and then you can deal with those.
-
-From all the text it sounds to me you want to add a separate driver for
-that Zynq A05 thing but I might still be missing something...
+ .../bindings/mfd/renesas,rz-mtu3.yaml         | 304 ++++++++++
+ .../bindings/pwm/renesas,rz-mtu3-pwm.yaml     |  50 ++
+ drivers/counter/Kconfig                       |   9 +
+ drivers/counter/Makefile                      |   1 +
+ drivers/counter/rz-mtu3-cnt.c                 | 568 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |   9 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/rz-mtu3.c                         | 436 ++++++++++++++
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rz-mtu3.c                     | 462 ++++++++++++++
+ include/linux/mfd/rz-mtu3.h                   | 183 ++++++
+ 12 files changed, 2035 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+ create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rz-mtu3-pwm.yaml
+ create mode 100644 drivers/counter/rz-mtu3-cnt.c
+ create mode 100644 drivers/mfd/rz-mtu3.c
+ create mode 100644 drivers/pwm/pwm-rz-mtu3.c
+ create mode 100644 include/linux/mfd/rz-mtu3.h
 
 -- 
-Regards/Gruss,
-    Boris.
+2.25.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
