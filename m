@@ -2,121 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E9C05F5E53
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 03:14:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CB055F5E7A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 03:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbiJFBN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 21:13:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34168 "EHLO
+        id S229729AbiJFBu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 21:50:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbiJFBN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 21:13:58 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE825B046;
-        Wed,  5 Oct 2022 18:13:54 -0700 (PDT)
-X-UUID: 660974c1e94240988ab2326e0c6f453d-20221006
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=i9WWBc8AgT+qWmWIUrtTH/9MaL3rSQ0+cKCWP1pOwcM=;
-        b=AhBW68x6WgauEajqKJiEYqaTCIyfHvXSrjPqMpj9LH8TOoi//o1T6NaS6SBjuFAb+lvFN7daNsVCJrQyzstdDBWEsa+NZo7S6c5+kzZmboSrYf/SKBz2QLgee5/X2bhC5Em7BTL/a9Rv5Hv/L0xrB4SZ349YZ4OL0mdRikNNWLs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:f3cbe9fc-5b41-449a-a862-e60213f87905,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:45
-X-CID-INFO: VERSION:1.1.11,REQID:f3cbe9fc-5b41-449a-a862-e60213f87905,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-        elease,TS:45
-X-CID-META: VersionHash:39a5ff1,CLOUDID:f3f8a4b8-daef-48a8-8c50-40026d6a74c2,B
-        ulkID:221006091349GWKV8DM5,BulkQuantity:0,Recheck:0,SF:28|17|19|48|102,TC:
-        nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:
-        0
-X-UUID: 660974c1e94240988ab2326e0c6f453d-20221006
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 693899008; Thu, 06 Oct 2022 09:13:48 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 6 Oct 2022 09:13:46 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs13n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 6 Oct 2022 09:13:46 +0800
-Message-ID: <ad18266e7c3234506c850cbefd6c222c359faab3.camel@mediatek.com>
-Subject: Re: [PATCH] dt-bindings: mediatek: vcodec: Add the platform
- compatible to schema
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S229468AbiJFBuz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 21:50:55 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 241032C67C;
+        Wed,  5 Oct 2022 18:50:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 62096B81F7E;
+        Thu,  6 Oct 2022 01:50:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45094C433C1;
+        Thu,  6 Oct 2022 01:50:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665021051;
+        bh=QcwagBeSbuvRCsWJIUdcRzilPwxU7LcEOFNF7wVbWwo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Spjou0Ke2vUCPkkiik+9LyrmcFtV2qX+eyjNqeSQc5B3afnB7a1l+Ef8K8XKMBxXA
+         dF1LCcWmpnBr5piKgGuIeq38stk/+3Bzl1jx9ixZm52goyH88eYzJZl5ac01+vkMUo
+         EMNRThZHgEfO1M0QQkoxTK4NmnlPNXGPkZ5cUa+mwSDulhi6VhCaJHzxDvuCEf31Bi
+         ScPxxm4vuABATmr0ZRYL+CbY1jkQLaJEhT+p97jYSDNC3T9gPZgPGz1YbjxC7YDTN4
+         e7zRydw0Ym1Z0fktYN7zr9Ykn61a8HCcnirWEz2NKI8omimuLDqG++h0lyT838uc8d
+         rBYQNqFYxz8Tw==
+Date:   Wed, 5 Oct 2022 20:50:47 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Melody Olvera <quic_molvera@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Date:   Thu, 6 Oct 2022 09:13:45 +0800
-In-Reply-To: <166479591681.1661748.6265395941647267106.robh@kernel.org>
-References: <20221001030752.14486-1-irui.wang@mediatek.com>
-         <166479591681.1661748.6265395941647267106.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] pinctrl: qcom: Add QDU1000/QRU1000 pinctrl driver
+Message-ID: <20221006015047.4ten7sjsth7sw6s7@baldur>
+References: <20221001030546.28220-1-quic_molvera@quicinc.com>
+ <20221001030546.28220-3-quic_molvera@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221001030546.28220-3-quic_molvera@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Rob,
+On Fri, Sep 30, 2022 at 08:05:46PM -0700, Melody Olvera wrote:
+[..]
+> diff --git a/drivers/pinctrl/qcom/pinctrl-qdru1000.c b/drivers/pinctrl/qcom/pinctrl-qdru1000.c
+> new file mode 100644
+> index 000000000000..8b931ff80bb4
+> --- /dev/null
+> +++ b/drivers/pinctrl/qcom/pinctrl-qdru1000.c
+> @@ -0,0 +1,59 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pinctrl/pinctrl.h>
+> +
+> +#include "pinctrl-msm.h"
+> +#include "pinctrl-qdru1000.h"
+> +
+> +static const struct msm_pinctrl_soc_data qdru1000_tlmm = {
+> +	.pins = qdru1000_pins,
+> +	.npins = ARRAY_SIZE(qdru1000_pins),
+> +	.functions = qdru1000_functions,
+> +	.nfunctions = ARRAY_SIZE(qdru1000_functions),
+> +	.groups = qdru1000_groups,
+> +	.ngroups = ARRAY_SIZE(qdru1000_groups),
+> +	.ngpios = 151,
+> +};
+> +
+> +static int qdru1000_tlmm_probe(struct platform_device *pdev)
+> +{
+> +	return msm_pinctrl_probe(pdev, &qdru1000_tlmm);
+> +}
+> +
+> +static const struct of_device_id qdru1000_tlmm_of_match[] = {
+> +	{ .compatible = "qcom,qdu1000-tlmm", },
+> +	{ .compatible = "qcom,qru1000-tlmm", },
+> +	{ },
+> +};
+> +
+> +static struct platform_driver qdru1000_tlmm_driver = {
+> +	.driver = {
+> +		.name = "qdru1000-tlmm",
+> +		.of_match_table = qdru1000_tlmm_of_match,
+> +	},
+> +	.probe = qdru1000_tlmm_probe,
+> +	.remove = msm_pinctrl_remove,
+> +};
+> +
+> +static int __init qdru1000_tlmm_init(void)
+> +{
+> +	return platform_driver_register(&qdru1000_tlmm_driver);
+> +}
+> +arch_initcall(qdru1000_tlmm_init);
+> +
+> +static void __exit qdru1000_tlmm_exit(void)
+> +{
+> +	platform_driver_unregister(&qdru1000_tlmm_driver);
+> +}
+> +module_exit(qdru1000_tlmm_exit);
+> +
+> +MODULE_DESCRIPTION("QTI QDRU1000 TLMM driver");
+> +MODULE_LICENSE("GPL v2");
 
-Thanks for your reviewing.
+"GPL" only please.
 
-On Mon, 2022-10-03 at 08:24 -0500, Rob Herring wrote:
-> On Sat, 01 Oct 2022 11:07:52 +0800, Irui Wang wrote:
-> > There are venc node warnings when running dtbs_check, the clock-
-> > names
-> > was unexpected, missing properties '#address-cells' and '#size-
-> > cells'.
-> > Add the corresponding platform compatible to schema.
-> > 
-> > Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-> > ---
-> >  .../bindings/media/mediatek,vcodec-encoder.yaml      | 12
-> > +++++++++++-
-> >  1 file changed, 11 insertions(+), 1 deletion(-)
-> > 
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for
-> dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/
+> +MODULE_DEVICE_TABLE(of, qdru1000_tlmm_of_match);
 
-Yes, it's not a new warning, the 'clock-names' in mt8192.dtsi was
-already unexpected without the patch's schema, we will fix it in the
-future patch.
+Please add this next to qdru1000_tlmm_of_match.
 
-Thanks
-Best Regards
-> 
-> 
-> vcodec@17020000: clock-names:0: 'venc_sel' was expected
-> 	arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dtb
-> 	arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dtb
-> 	arch/arm64/boot/dts/mediatek/mt8192-evb.dtb
-> 
+> diff --git a/drivers/pinctrl/qcom/pinctrl-qdru1000.h b/drivers/pinctrl/qcom/pinctrl-qdru1000.h
 
+I'm not able to see why this is in a header file and the commit message
+doesn't give a clue. Please align with the customary form, or motivate
+your choice.
+
+[..]
+> +
+> +enum qdru1000_functions {
+> +	msm_mux_gpio,
+> +	msm_mux_CMO_PRI,
+> +	msm_mux_SI5518_INT,
+> +	msm_mux_atest_char_start,
+> +	msm_mux_atest_char_status0,
+> +	msm_mux_atest_char_status1,
+> +	msm_mux_atest_char_status2,
+> +	msm_mux_atest_char_status3,
+
+For anything that denotes different pins in one function, please drop
+the suffix and make this a list of functions.
+
+[..]
+> +	msm_mux_qspi_data_0,
+> +	msm_mux_qspi_data_1,
+> +	msm_mux_qspi_data_2,
+> +	msm_mux_qspi_data_3,
+> +	msm_mux_qup0_se0_l0,
+
+E.g. msm_mux_qup0_se0 is enough, giving each pin its own function means
+that we need to define each pin separate in DT.
+
+Regards,
+Bjorn
