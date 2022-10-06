@@ -2,106 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B34785F6409
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 11:58:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 323B25F642E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 12:12:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231600AbiJFJ6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 05:58:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43210 "EHLO
+        id S230226AbiJFKMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 06:12:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231527AbiJFJ6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 05:58:18 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCFB584E43
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 02:58:16 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id r128-20020a1c4486000000b003bd44dc526fso2422427wma.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 02:58:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date;
-        bh=nih6K/iOH4NWZI3ARD7h83GsYopkCtps47Aq4lvZzNg=;
-        b=JMM7jKixtXMGtXillk7/AJX3GCp2mUoK5P3vRzS2xwfMcMRSmqa2d1B4g4SO9GTFuA
-         MYOarfSDLmml7ydx+hdZ020adhnILXB8ZIpWJ1IJY63mM3m2oFaJqos8Wtco/SO7TFgX
-         dUNwXTj+PePl9OJpNpv4oT/EXM83QwKyT6iWOpkCXEHpabxdJhilbH0n7RbMaOxpagtr
-         H5e3A0m4YGqjNi80/DHT5JG5NpHy5wvQ9mRhTPzcha2hLQZWzyhJr8g8BN9/VgwjufrJ
-         dlNdpn2kewsvO73R0/UKyPC8FYZd/FU2n7esXtRpYvXGzwD73coNdXCXkEH5f2001Ewx
-         Z3cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=nih6K/iOH4NWZI3ARD7h83GsYopkCtps47Aq4lvZzNg=;
-        b=iQCi/0Z94/A99U2cKwdRp7kl+oVy5hJf4keXJF7FD5BUBjBUFkJhfZSlSyQTrWxlkL
-         WH7gKQBIB0bZ+LBUPSIqM+OvPFicbrfPFi3mNiKwkdCHN94+fKLHM5chRWgb8QuvZ0K0
-         K2Yqan/jZ26buJN5mjetKEQ/2oxEFhL2yYVgIxOK3u98DMXBWJlx0jDRrpeBucdjUu/o
-         UaW39mzPLCMRK5tZFWLWSVkR219QVjg6iuEs+JxAxPif3AnHqCcyoHIRnjvZgDpZfBA2
-         1xg0zPQnbsfFlF3gBPsyBSWQJgf7Bj9T1++X7EwTe2vHv5MfPIZPg3U44KgAdgJ415Tu
-         cHNA==
-X-Gm-Message-State: ACrzQf2ZeRViR1r4Y4BCOC0PYRZN0ujWKlKsk5In5mGZBrauWpL+RnTE
-        tmRWTpaZvxGkeWQG7w7n3sSyTyBxPHVZE+Rb
-X-Google-Smtp-Source: AMsMyM4sjs3gknfpIApTwoNfjyL3v4ulJKadJBMHIxN8VrMkfyx7G2Cpnnf9LaLRw2P974Z5/miUcw==
-X-Received: by 2002:a05:600c:4209:b0:3b4:fb11:3b8b with SMTP id x9-20020a05600c420900b003b4fb113b8bmr6077837wmh.144.1665050286353;
-        Thu, 06 Oct 2022 02:58:06 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id q11-20020adf9dcb000000b0022ac672654dsm17935603wre.58.2022.10.06.02.58.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 02:58:05 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 06 Oct 2022 09:58:03 +0000
-Subject: [PATCH 6/6] dt-bindings: soc: qcom: ipc-rpm: refer to
- qcom,ipc-rpm-regulator.yaml
+        with ESMTP id S230155AbiJFKMN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 06:12:13 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB2566C13E;
+        Thu,  6 Oct 2022 03:12:11 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7AC1466015B2;
+        Thu,  6 Oct 2022 11:12:09 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1665051130;
+        bh=hBzLYAZ/XCWmpmRNZqgr/E9Qvcs6t9LfcYNfT2CKpww=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=R2ZkjfZ4zhjj3PpMVzH+Hs51FbnbWNdImIvMx95PfusY+CdS2Wq+wIoCzWCPIqvFN
+         MKMo/phJp7S5P0F1gsMOeXsbBAeGYvTFJDS3+al5Fy13lHRkqPP1YCtZuG9baEkAIb
+         IRv9oGQheka9FsLhZrQMTp2NSeAzjrDmGy+eaze2V3lxJ0sFqjsr1OzkPl3+opCHun
+         Gt6CDNDDA5iJMss/Pao9V1f/qC3syto1r32Fue1oHZ3InOQd8SmYsqwGZ6Zkqcv8zu
+         v/dMCUytqSqHUx19PeJjYEtXa2tfhPe1/NgvQ4jiVUWiHU++GyLf2Zml8dJvaloI8H
+         0HOay6LfSu4Fw==
+Message-ID: <a13b5dfe-2296-156c-6cd0-8fe9c5973efe@collabora.com>
+Date:   Thu, 6 Oct 2022 12:12:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20221005-mdm9615-pinctrl-yaml-v1-6-0cbc006e2a30@linaro.org>
-References: <20221005-mdm9615-pinctrl-yaml-v1-0-0cbc006e2a30@linaro.org>
-In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v1-0-0cbc006e2a30@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>, Lee Jones <lee@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2 4/5] regulator: add mt6357 regulator
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     linux-gpio@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-X-Mailer: b4 0.10.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Chen Zhong <chen.zhong@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org, Fabien Parent <fparent@baylibre.com>
+References: <20221005-mt6357-support-v2-0-f17ba2d2d0a9@baylibre.com>
+ <20221005-mt6357-support-v2-4-f17ba2d2d0a9@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221005-mt6357-support-v2-4-f17ba2d2d0a9@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now we have bindings for the expected regulators subnode, refer
-to the right qcom,ipc-rpm-regulator.yaml bindings.
+Il 05/10/22 16:57, Alexandre Mergnat ha scritto:
+> From: Fabien Parent <fparent@baylibre.com>
+> 
+> Add regulator driver for the MT6357 PMIC.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>   drivers/regulator/Kconfig                  |   9 +
+>   drivers/regulator/Makefile                 |   1 +
+>   drivers/regulator/mt6357-regulator.c       | 485 +++++++++++++++++++++++++++++
+>   include/linux/regulator/mt6357-regulator.h |  51 +++
+>   4 files changed, 546 insertions(+)
+> 
+> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> index 070e4403c6c2..a659a57438f4 100644
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -805,6 +805,15 @@ config REGULATOR_MT6332
+>   	  This driver supports the control of different power rails of device
+>   	  through regulator interface
+>   
+> +config REGULATOR_MT6357
+> +	tristate "MediaTek MT6357 PMIC"
+> +	depends on MFD_MT6397
+> +	help
+> +	  Say y here to select this option to enable the power regulator of
+> +	  MediaTek MT6357 PMIC.
+> +	  This driver supports the control of different power rails of device
+> +	  through regulator interface.
+> +
+>   config REGULATOR_MT6358
+>   	tristate "MediaTek MT6358 PMIC"
+>   	depends on MFD_MT6397
+> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+> index 5962307e1130..e4d67b7b1af6 100644
+> --- a/drivers/regulator/Makefile
+> +++ b/drivers/regulator/Makefile
+> @@ -97,6 +97,7 @@ obj-$(CONFIG_REGULATOR_MT6315) += mt6315-regulator.o
+>   obj-$(CONFIG_REGULATOR_MT6323)	+= mt6323-regulator.o
+>   obj-$(CONFIG_REGULATOR_MT6331)	+= mt6331-regulator.o
+>   obj-$(CONFIG_REGULATOR_MT6332)	+= mt6332-regulator.o
+> +obj-$(CONFIG_REGULATOR_MT6357)	+= mt6357-regulator.o
+>   obj-$(CONFIG_REGULATOR_MT6358)	+= mt6358-regulator.o
+>   obj-$(CONFIG_REGULATOR_MT6359)	+= mt6359-regulator.o
+>   obj-$(CONFIG_REGULATOR_MT6360) += mt6360-regulator.o
+> diff --git a/drivers/regulator/mt6357-regulator.c b/drivers/regulator/mt6357-regulator.c
+> new file mode 100644
+> index 000000000000..4ecd41429448
+> --- /dev/null
+> +++ b/drivers/regulator/mt6357-regulator.c
+> @@ -0,0 +1,485 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// Copyright (c) 2022 MediaTek Inc.
+> +// Copyright (c) 2022 BayLibre, SAS.
+> +// Author: Chen Zhong <chen.zhong@mediatek.com>
+> +// Author: Fabien Parent <fparent@baylibre.com>
+> +//
+> +// Based on mt6397-regulator.c
+> +//
+> +
+> +#include <linux/module.h>
+> +#include <linux/linear_range.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/mfd/mt6397/core.h>
+> +#include <linux/mfd/mt6357/registers.h>
+> +#include <linux/regulator/driver.h>
+> +#include <linux/regulator/machine.h>
+> +#include <linux/regulator/mt6357-regulator.h>
+> +#include <linux/regulator/of_regulator.h>
+> +
+> +/*
+> + * MT6357 regulators' information
+> + *
+> + * @desc: standard fields of regulator description.
+> + * @vselon_reg: Register sections for hardware control mode of bucks
+> + * @vselctrl_reg: Register for controlling the buck control mode.
+> + * @vselctrl_mask: Mask for query buck's voltage control mode.
+> + */
+> +struct mt6357_regulator_info {
+> +	struct regulator_desc desc;
+> +	const u32 *index_table;
+> +	unsigned int n_table;
+> +	u32 vsel_shift;
+> +	u32 da_vsel_reg;
+> +	u32 da_vsel_mask;
+> +	u32 da_vsel_shift;
+> +};
+> +
+> +#define MT6357_BUCK(match, vreg, min, max, step,		\
+> +	volt_ranges, vosel_reg, vosel_mask, _da_vsel_mask)		\
+> +[MT6357_ID_##vreg] = {	\
+> +	.desc = {	\
+> +		.name = #vreg,	\
+> +		.of_match = of_match_ptr(match),	\
+> +		.regulators_node = "regulators",			\
+> +		.ops = &mt6357_volt_range_ops,	\
+> +		.type = REGULATOR_VOLTAGE,	\
+> +		.id = MT6357_ID_##vreg,		\
+> +		.owner = THIS_MODULE,		\
+> +		.n_voltages = ((max) - (min)) / (step) + 1,	\
+> +		.linear_ranges = volt_ranges,		\
+> +		.n_linear_ranges = ARRAY_SIZE(volt_ranges),	\
+> +		.vsel_reg = vosel_reg,	\
+> +		.vsel_mask = vosel_mask,	\
+> +		.enable_reg = MT6357_BUCK_##vreg##_CON0,	\
+> +		.enable_mask = BIT(0),	\
+> +	},	\
+> +	.da_vsel_reg = MT6357_BUCK_##vreg##_DBG0,	\
+> +	.da_vsel_mask = vosel_mask,	\
+> +	.da_vsel_shift = 0,	\
+> +}
+> +
+> +#define MT6357_LDO(match, vreg, ldo_volt_table,	\
+> +	ldo_index_table, enreg, vosel,	\
+> +	vosel_mask)	\
+> +[MT6357_ID_##vreg] = {	\
+> +	.desc = {	\
+> +		.name = #vreg,	\
+> +		.of_match = of_match_ptr(match),	\
+> +		.regulators_node = "regulators",			\
+> +		.ops = &mt6357_volt_table_ops,	\
+> +		.type = REGULATOR_VOLTAGE,	\
+> +		.id = MT6357_ID_##vreg,	\
+> +		.owner = THIS_MODULE,	\
+> +		.n_voltages = ARRAY_SIZE(ldo_volt_table),	\
+> +		.volt_table = ldo_volt_table,	\
+> +		.vsel_reg = vosel,	\
+> +		.vsel_mask = vosel_mask << 8,	\
+> +		.enable_reg = enreg,	\
+> +		.enable_mask = BIT(0),	\
+> +	},	\
+> +	.index_table = ldo_index_table,	\
+> +	.n_table = ARRAY_SIZE(ldo_index_table),	\
+> +}
+> +
+> +#define MT6357_LDO1(match, vreg, min, max, step, volt_ranges,	\
+> +	enreg, vosel, vosel_mask)	\
+> +[MT6357_ID_##vreg] = {	\
+> +	.desc = {	\
+> +		.name = #vreg,	\
+> +		.of_match = of_match_ptr(match),	\
+> +		.regulators_node = "regulators",			\
+> +		.ops = &mt6357_volt_range_ops,	\
+> +		.type = REGULATOR_VOLTAGE,	\
+> +		.id = MT6357_ID_##vreg,	\
+> +		.owner = THIS_MODULE,	\
+> +		.n_voltages = ((max) - (min)) / (step) + 1,	\
+> +		.linear_ranges = volt_ranges,		\
+> +		.n_linear_ranges = ARRAY_SIZE(volt_ranges),	\
+> +		.vsel_reg = vosel,	\
+> +		.vsel_mask = vosel_mask,	\
+> +		.enable_reg = enreg,	\
+> +		.enable_mask = BIT(0),	\
+> +	},	\
+> +	.da_vsel_reg = MT6357_LDO_##vreg##_DBG0,	\
+> +	.da_vsel_mask = 0x7f,	\
+> +	.da_vsel_shift = 8,	\
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+There's something wrong here: ((val & 0x7f) >> 8) is always zero,
+and you're using mt6357_volt_range_ops, that is using function
+mt6357_get_buck_voltage_sel, which is doing exactly that.
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
-index d416950189d1..d18200d5c5b5 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
-@@ -47,7 +47,7 @@ properties:
- 
-   regulators:
-     type: object
--    $ref: /schemas/regulator/regulator.yaml#
-+    $ref: /schemas/regulator/qcom,ipc-rpm-regulator.yaml#
- 
- required:
-   - compatible
+Regards,
+Angelo
 
--- 
-b4 0.10.1
