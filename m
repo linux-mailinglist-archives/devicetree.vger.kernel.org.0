@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2F115F6DE6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 21:06:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F278A5F6DEF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 21:09:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231997AbiJFTGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 15:06:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59486 "EHLO
+        id S229642AbiJFTJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 15:09:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231881AbiJFTGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 15:06:40 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1E49606AF;
-        Thu,  6 Oct 2022 12:06:39 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id w70so3119019oie.2;
-        Thu, 06 Oct 2022 12:06:39 -0700 (PDT)
+        with ESMTP id S232230AbiJFTI3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 15:08:29 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D625C9E0DA;
+        Thu,  6 Oct 2022 12:08:27 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-132af5e5543so3266760fac.8;
+        Thu, 06 Oct 2022 12:08:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jPEVQe4YSet3buvo/uAwKM5bGj7XGV+aFDBmZihtmho=;
-        b=XjtctX6K32Hjrxi03GpXQtImHK92qTO6acosSISOWlVdVrrnIQ1gEkrbPvPbovY91q
-         /Htrmcx5vohXbaHGgkIGvHLILnQJs5FBmwiI3mL/t/YzazjhRuDzxm+OmTps6GAVeYfd
-         8OwBAEjoikINADTa7sZWG7qfCuyq/1zlXOdQi5inA+TRC9IpDohgMs7nrUYWBGCYNGJF
-         TJLHFXAo2oa3pT4R1S/dWRYGci5NVNoLjp1EJ/AYuJ3HuCNsP5zFuc+pctLvNNT3gzlb
-         NMLhsu3nGwnLgtOo2ID/RvBZYi0mGTGRVIsPk0LSPeXcJGI9MjSjPhnvPbrlLSda/xSV
-         jqTg==
-X-Gm-Message-State: ACrzQf2AcJEbl9YhaUJTuX7fFVe2uWQMmra5BssGVtXHUPX4KgQAiYRg
-        bdvFLrFFB+Q/RNHQmeeMah9e1r8aug==
-X-Google-Smtp-Source: AMsMyM6ACos8BQtyl2t2Tf0o2DJYhk75Lx64cxxwnaWI2x6YAJ1AcQ2zl4PUxF66xgJ8jcarfQEwEg==
-X-Received: by 2002:a05:6808:201a:b0:34f:c23e:ef28 with SMTP id q26-20020a056808201a00b0034fc23eef28mr5718022oiw.6.1665083198937;
-        Thu, 06 Oct 2022 12:06:38 -0700 (PDT)
+        bh=6KGbs2wG1XpjcFxnClmxfH82w20P++hEoah3yPVaJJE=;
+        b=cq1f9YkqhNsFDQNXVWQ3zeSUlU3mU5T9lTMSrfIu7MXIRPLYMIzehi5c4bXHDTxznJ
+         8anPkNZ47QPSbxsgTyIpMwnjHG43Hubn1wpW6TfXxQGvfFA9L0XoaEGuFZJmpkvqpgKm
+         O3ehuL4G0ekCS/torCRk+WvOq4RnmEPtnJmj7c4MmslN3Nhb+rDQEXs4IEb3y9R+astg
+         wScLvCfapqdD0TLlSmsXSiTNY9+CIOrD7xftP/llJtqo0E4pUz5VsLjDOmkFzjmSgAaI
+         cIk6DYqhDiWb57AzbhtEvZCr0d5A9v6AeC+EA/oC+7S2eTCeMQZWr4auWGP4DvH127fJ
+         Acpg==
+X-Gm-Message-State: ACrzQf21mOvE3Dvnom2l9QlS7ZmtTAkfQ/juqmva80rb7L9td/adNz5C
+        JIh0L181O51tjFQHMwrkQg==
+X-Google-Smtp-Source: AMsMyM5IxWAjxrNgwFoey5JJ9f72FNN7loa5+9TTlbM8aGx16nwY4UZktckMJSiRkRJ1UsutZqaZzg==
+X-Received: by 2002:a05:6870:d598:b0:12c:25b9:53ee with SMTP id u24-20020a056870d59800b0012c25b953eemr6536321oao.235.1665083307071;
+        Thu, 06 Oct 2022 12:08:27 -0700 (PDT)
 Received: from robh_at_kernel.org ([2607:fb90:8a65:c536:245:842:a3a4:9017])
-        by smtp.gmail.com with ESMTPSA id a48-20020a4a98b3000000b0044884c40c8asm4651443ooj.30.2022.10.06.12.06.37
+        by smtp.gmail.com with ESMTPSA id e7-20020a9d63c7000000b00660f6fa097fsm139598otl.77.2022.10.06.12.08.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 12:06:38 -0700 (PDT)
-Received: (nullmailer pid 39209 invoked by uid 1000);
-        Thu, 06 Oct 2022 19:06:37 -0000
-Date:   Thu, 6 Oct 2022 14:06:37 -0500
+        Thu, 06 Oct 2022 12:08:26 -0700 (PDT)
+Received: (nullmailer pid 40888 invoked by uid 1000);
+        Thu, 06 Oct 2022 19:08:25 -0000
+Date:   Thu, 6 Oct 2022 14:08:25 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: convert semtech,sx150xq bindings
- to dt-schema
-Message-ID: <20221006190637.GA30963-robh@kernel.org>
-References: <20221005-mdm9615-sx1509q-yaml-v1-0-0c26649b637c@linaro.org>
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        daniele.alessandrelli@intel.com, robh+dt@kernel.org,
+        paul.j.murphy@intel.com
+Subject: Re: [PATCH 1/2] dt-bindings: media: ovti,ov9282: Add optional
+ regulators
+Message-ID: <166508330490.40818.3935401811729256182.robh@kernel.org>
+References: <20221005152018.3783890-1-dave.stevenson@raspberrypi.com>
+ <20221005152018.3783890-2-dave.stevenson@raspberrypi.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221005-mdm9615-sx1509q-yaml-v1-0-0c26649b637c@linaro.org>
+In-Reply-To: <20221005152018.3783890-2-dave.stevenson@raspberrypi.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,109 +64,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 05, 2022 at 02:35:36PM +0000, Neil Armstrong wrote:
-> This converts the Semtech SX150Xq bindings to dt-schemas, add necessary
-> bindings documentation to cover all differences between HW variants
-> and current bindings usage.
+On Wed, 05 Oct 2022 16:20:17 +0100, Dave Stevenson wrote:
+> The OV9282 image sensor takes 3 voltage supplies, so
+> define the relevant regulators.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 > ---
-> To: Rob Herring <robh+dt@kernel.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: linux-gpio@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> ---
->  .../devicetree/bindings/pinctrl/pinctrl-sx150x.txt |  72 -------
->  .../bindings/pinctrl/semtech,sx1501q.yaml          | 207 +++++++++++++++++++++
->  2 files changed, 207 insertions(+), 72 deletions(-)
+>  .../devicetree/bindings/media/i2c/ovti,ov9282.yaml       | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
 
-[...]
-
-> diff --git a/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml b/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-> new file mode 100644
-> index 000000000000..5c21f54b0e2b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-> @@ -0,0 +1,207 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2022 Linaro Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/semtech,sx1501q.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Semtech SX150x GPIO expander
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - semtech,sx1501q
-> +      - semtech,sx1502q
-> +      - semtech,sx1503q
-> +      - semtech,sx1504q
-> +      - semtech,sx1505q
-> +      - semtech,sx1506q
-> +      - semtech,sx1507q
-> +      - semtech,sx1508q
-> +      - semtech,sx1509q
-> +
-> +  reg: true
-
-maxItems: 1
-
-Some I2C devices have multiple addresses.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +
-> +  interrupt-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  semtech,probe-reset:
-> +    description: Will trigger a reset of the GPIO expander on probe
-> +    type: boolean
-> +
-> +patternProperties:
-> +  '-cfg$':
-> +    type: object
-> +    properties:
-> +      pins: true
-> +
-> +      bias-disable: true
-> +      bias-pull-up: true
-> +      bias-pull-down: true
-> +      bias-pull-pin-default: true
-> +      drive-push-pull: true
-> +      output-low: true
-> +      output-high: true
-> +      drive-open-drain: true
-> +
-> +    required:
-> +      - pins
-> +
-> +    allOf:
-> +      - $ref: "pincfg-node.yaml#"
-> +      - $ref: "pinmux-node.yaml#"
-> +      - if:
-> +          properties:
-> +            pins:
-> +              contains:
-> +                const: "oscio"
-
-Don't need quotes
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
