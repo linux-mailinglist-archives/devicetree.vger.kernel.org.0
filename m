@@ -2,185 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CFA55F62C7
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 10:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C8F45F62D8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 10:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230482AbiJFIek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 04:34:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48402 "EHLO
+        id S230284AbiJFIg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 04:36:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231132AbiJFIe0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 04:34:26 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DBA895AE3
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 01:34:12 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id x40so1371158ljq.9
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 01:34:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=GzfT1UT0gTS4zyhoLR6feGjWpD8QE6QL/n6TzHcJTf8=;
-        b=ok/+z3AU0eAV/B/T0mPPzKNo/A0muOVVf5j3pP1Jiq1vXSVOu2o9wAhRKxNB/xniC1
-         fepJ1Qzz3O0PfpQiDLL6V+GjVCrXoPS6VW4M4niFjQ9BKN4nuFTJP/qs3Xie2+DF0m17
-         CCwKfIwpQHcWlEAdOKqCBHr1hBcDDBgjH0QskaZr4QJsWjelFfM1fvNlCIdkhQQNjyEY
-         U06B411pUnwYqIeW87lBOzh/sF1ZO9JQjWwWMyEU3rnuK5liwyn3DDRiCpUdpnK7PEwP
-         qHvDW9E01rnLIYvbV3tMr5+zyM5Q6zmMkzYRHX6VuA9XAvXFrjVE/RHjbjwXAgUqJNzt
-         p3Ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=GzfT1UT0gTS4zyhoLR6feGjWpD8QE6QL/n6TzHcJTf8=;
-        b=Im7BmnJL2ZGonjcYwJ4UTA4RwozSEwshzo5pFZIUKr4vKl+bBexNQM+u4TE9Gji7Kv
-         JADeDjMX96SemHGL/0GmZmo/l8w6co4nWrgCd3h6/cjN4fCd0gYJxGhqiSaHpmF2aL9W
-         w0CMza7kBurK+By7vFHZiOy/USUm5oRddTnrwg5wn6dD7pgwUcg8W0JSCt5aOhFogOFe
-         xyq5JYY62CgT1BPOd4S8eMLIMyVX+mMfyvoJh5we/tuWkrUAfWDl1nkU/5NihmI1gyve
-         5EDzwzKi2oY5GkTFZgKAxNXZCPucuV60eAhKPZ1MsXPiAkdODbAxOh0q6OWVQpIwUzjn
-         tsHA==
-X-Gm-Message-State: ACrzQf1klz3NpYKERQRT73jGifyNn+hsR1P/oJ77FBvhdFvChdJpgJag
-        KxDOH4aG0MmBzsARR9uo5+AS/A==
-X-Google-Smtp-Source: AMsMyM5nrmXNwzgd8LgZLC8M6boRSeCMaCIpT1O1Z2xDnaBPB1QYMS8iSriYVnSAr8kWso/rFTZUCA==
-X-Received: by 2002:a05:651c:2103:b0:25d:6478:2a57 with SMTP id a3-20020a05651c210300b0025d64782a57mr1304197ljq.496.1665045250038;
-        Thu, 06 Oct 2022 01:34:10 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q3-20020a0565123a8300b004a05c425cb7sm2626537lfu.184.2022.10.06.01.34.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Oct 2022 01:34:09 -0700 (PDT)
-Message-ID: <323457c6-7f7e-e127-82f4-b86f3bad243f@linaro.org>
-Date:   Thu, 6 Oct 2022 10:34:08 +0200
+        with ESMTP id S230441AbiJFIg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 04:36:26 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3368695E6A;
+        Thu,  6 Oct 2022 01:36:22 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6220E660226D;
+        Thu,  6 Oct 2022 09:36:19 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1665045380;
+        bh=wFoOAN7bFW7ZcEUlEyrquYeMDkaLoO1zFNmCBqZXDyE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=momluOxPJp6aehDMfKrO28U93jCgFg9oTviy7NW67owqYTPG4f0TkFEupHLBgRC88
+         k2W81OkStlQz7uoLtA5s6btCHdRqP6S3AX5PV7nC75yx4plhMfRTB0nCCE8l2dpWL0
+         TtOKECUYee50s+C/6dGykHim1Ja96+N4BsyOimlx3eUYe+HfJqI3hiPgzHFhD2kCVx
+         MD/W25E6ru32yDnbQZez5rUHISK6ab6OjIeslrRu5dMETwe96zK7+30CPfk04DKcz1
+         /kaB1AW13g865R7QugWoz5WMb44P0I7d7Br6RPPq6lz5BY0+N1x5qh02OUm9c/QrbK
+         BBPmjoMgb8/TA==
+Message-ID: <56aadffa-82be-f8ff-03d3-2a880b50ef49@collabora.com>
+Date:   Thu, 6 Oct 2022 10:36:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [RFCv2 PATCH 3/4] dt-bindings: gpio: add Wiegand GPIO driver dt
- documentation
+ Thunderbird/102.2.0
+Subject: Re: [PATCH 3/5] dt-bindings: watchdog: mediatek: Convert mtk-wdt to
+ json-schema
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     =?UTF-8?Q?Martin_Za=c5=a5ovi=c4=8d?= <m.zatovic1@gmail.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linus.walleij@linaro.org, brgl@bgdev.pl,
-        gregkh@linuxfoundation.org, jeffrey.l.hugo@gmail.com,
-        andersson@kernel.org, Michael.Srba@seznam.cz, saravanak@google.com,
-        mani@kernel.org, hemantk@codeaurora.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-References: <20221005145746.172138-1-m.zatovic1@gmail.com>
- <20221005145746.172138-3-m.zatovic1@gmail.com>
- <959a45b0-b4bb-98df-20be-707aa0d26700@linaro.org>
-In-Reply-To: <959a45b0-b4bb-98df-20be-707aa0d26700@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        wim@linux-watchdog.org
+Cc:     linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        allen-kh.cheng@mediatek.com, seiya.wang@mediatek.com,
+        tinghan.shen@mediatek.com, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221005113517.70628-1-angelogioacchino.delregno@collabora.com>
+ <20221005113517.70628-4-angelogioacchino.delregno@collabora.com>
+ <1f3ebf6f-117f-62a7-8e02-3e8a3bcf7e9f@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <1f3ebf6f-117f-62a7-8e02-3e8a3bcf7e9f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/10/2022 10:23, Krzysztof Kozlowski wrote:
-> On 05/10/2022 16:57, Martin Zaťovič wrote:
->> The Wiegand GPIO driver uses two GPIO lines to transmit data -
->> data-hi and data-lo. These lines need to be defined in the
->> devicetree, otherwise the driver will not probe successfully.
+Il 05/10/22 18:33, Krzysztof Kozlowski ha scritto:
+> On 05/10/2022 13:35, AngeloGioacchino Del Regno wrote:
+>> Convert the MediaTek watchdog bindings to schema.
 >>
->> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
->> ---
->>  .../bindings/gpio/gpio-wiegand.yaml           | 53 +++++++++++++++++++
->>  1 file changed, 53 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-wiegand.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/gpio/gpio-wiegand.yaml b/Documentation/devicetree/bindings/gpio/gpio-wiegand.yaml
->> new file mode 100644
->> index 000000000000..3b235667ae17
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpio/gpio-wiegand.yaml
->> @@ -0,0 +1,53 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/gpio/gpio-wiegand.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Wiegand GPIO controller
->> +
->> +description: |
->> +  Wiegand GPIO controller running under Wiegand bus.
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > 
-> GPIO controllers need "gpio-controller" property, so this seems to be
-> something else.
+> There is already work in progress:
 > 
->> +
->> +maintainers:
->> +  - Martin Zaťovič <m.zatovic1@gmail.com>
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^wiegand-gpio@[0-9a-f]+$"
+> https://lore.kernel.org/all/20220422121017.23920-3-allen-kh.cheng@mediatek.com/
 > 
-> No need to enforce node name, unless this is for a class of devices. But
-> then why "gpio" not just "wiegand"?
+> Best regards,
+> Krzysztof
 > 
->> +
->> +  compatible:
->> +    const: wiegand,wiegand-gpio
->> +
->> +  data-hi-gpios:
->> +    description: GPIO spec for data-hi line to use
->> +    maxItems: 1
->> +
->> +  data-lo-gpios:
->> +    description: GPIO spec for data-lo line to use
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - data-hi-gpios
->> +  - data-lo-gpios
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->> +
->> +    wiegand {
->> +        compatible = "wiegand";
->> +
->> +        wiegand-gpio {
-> 
-> I have troubles understanding this. The "wiegand" node is the bus,
-> right? Then what is "wiegand-gpio"? GPIO controller? Then why it is not
-> marked as GPIO controller? What GPIOs does it control?
-> 
->> +            compatible = "wiegand,wiegand-gpio";
->> +            pinctrl-names = "default";
->> +            pinctrl-0 = <&pinctrl_uart2_wiegand>;
->> +            data-hi-gpios = <&gpio2 7 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
->> +            data-lo-gpios = <&gpio2 6 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-> 
-> Aren't these properties of the bus, not the device?
 
-So this looks like specific implementation of Wiegand bus - a Wiegand
-bus controller. If it is correct, it should not be represented as child
-of a bus... because this is a bus. IOW, just like SPI or I2C controllers
-(why is this one different?), the bus is defined by SPI controller:
+I'm sorry, I forgot about that.
 
-wiegand {
-	compatible = "wiegand,wiegand-gpio";
-	data-hi-gpios = <&gpio2 7 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-	data-lo-gpios = <&gpio2 6 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+Allen, how do we proceed? Do you want to send a new version of yours, or should
+I go on with a v2 for this one?
 
-	child-device, e.g. some-card {
-		compatible = "foo,bar";
-		// more properties of the device
-	};
-};
-
-Best regards,
-Krzysztof
-
+Regards,
+Angelo
