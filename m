@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8DFB5F6290
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 10:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7896A5F62A7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 10:30:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbiJFI0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 04:26:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54594 "EHLO
+        id S230296AbiJFIaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 04:30:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229703AbiJFIZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 04:25:55 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 501C98D0D2
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 01:25:07 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id f37so1597637lfv.8
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 01:25:07 -0700 (PDT)
+        with ESMTP id S230356AbiJFI36 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 04:29:58 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5553E167DA
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 01:29:53 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id bn8so1380895ljb.6
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 01:29:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=PcvER4yAsFUdAEzHIf6hQx39Ovt47uWTRtliBIkzepk=;
-        b=Md9CTRJQC8q3giHdXRve2gJcREhkEicUTSP1EUy/gtqHEHKI7lPADVzObOeU9VCZAi
-         TSSnf1sDgtRAFHL8plNZyOfPVhEALrV1ErPUDdylQPdbE6AEL50tXy7JB1E6kBLVxVE4
-         MuenMI0oo3UdVLW3hNYrY/vC6MZAJ+FtWLhJknc7vGySlcFb1yf09miJjw0jWUfGVKWf
-         UmEo8xp83Fdsnbw3Ysl4uZjyORNs7pzBmqHOKte+86bVLLUWixV0+PgssMy/dTu29k0u
-         rtPR3Q/laL42jUGWEGJdYvX0egHUsqhP4CS75klXV1qN2gEWm14cPJRlTgw3O0scRdT2
-         NVBA==
+        bh=uAYIfN3N6hYQLcdG5GZs69RpxPFHvLDVLJ8F8G3QEWo=;
+        b=pw9hGkYx2KQyN2wfgY9vSshmp+Fj+edTmCL4mkANcmIVu84iXMHCUubYCirf6CIc9r
+         Ozrums9nd51THvGi6STK86s5aMKbzb4cCKT3E+BpEkjKxLl9b0ioJTLq4hkHbtsMWUZ2
+         kFkpyKREUTVHZ5rFBRaOI3/7cb5ti8bJuSgfbdURYZTR+kXXIT6jUA/aB4aVrEDa9g1C
+         SLgDVQVQG5wnbzmhbCowEm0AHE7VkDpTUK9ysKxDQZuSnrrhJspR7o7LtYDfCXyDWNGk
+         EUB9SYp3dOPN3AnSABZihqNpYnfSMfHJ8UPi+Qm3Bx2GbOECp7JNXaFqXqS8Z9nTcd2O
+         YvCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=PcvER4yAsFUdAEzHIf6hQx39Ovt47uWTRtliBIkzepk=;
-        b=VjWMwA5oHeTyh2pka2CkpBmLhe5Qxx173bOQUqTFx5owlKF69j6Y4ko5Z/y3JfHQGk
-         20GRPsXc1KowwUIiJxBkN6dWoEKd0WZXMrGL2JsEOMH6KTypOnF0b8DoReyp3Qcd/9pt
-         UqsuTG6uZyzVVglKLRi90v9UwXxtHReXYmSbQu5xxDWjHwYm+nOEDz4txM2OFMnvU+ea
-         ZenWjhr7MIDF/cdu6JyO/b+VftXC6C5HyPsC3lJX+oLYzPbA6AkTL5vsLjpMHmolKrvY
-         sK1Gmnhm+y7ZPeeSCR1LDwHaYwhkkdB/Pi04dYaW1xbgkC3gohzh36E8EV2h+Q73erby
-         9Zag==
-X-Gm-Message-State: ACrzQf0czNTb8pIXPRq1X5Qg6nGG1MhKXisZNCu+T6W8EWMFV+I20GCg
-        g+K/agWGeULPTbXBUSYPi3dLqg==
-X-Google-Smtp-Source: AMsMyM5tizCcWIlU8bqKz2j0VdNlYGoj3R81DvoyEDYmoUKqUknz9eH7dJzUWyIJ1BB3zqHKgFDx7g==
-X-Received: by 2002:a19:5044:0:b0:4a2:2b74:faa8 with SMTP id z4-20020a195044000000b004a22b74faa8mr1293171lfj.622.1665044705325;
-        Thu, 06 Oct 2022 01:25:05 -0700 (PDT)
+        bh=uAYIfN3N6hYQLcdG5GZs69RpxPFHvLDVLJ8F8G3QEWo=;
+        b=g2G76+MDEqtI9RjcczjNdFA3AmfdgCmO7IXbqeZvTDiZDU8o9wmyOyhk+DNzBZzPGW
+         kO0wZhWUk8XTP8hU2XoYJgMg4yGK1DemI8xBwFAoZdbMR+Aji7CeCJn0CC/YEtnXTu5z
+         q+07E7PXC2fc9B5mqJ1Fmaw6y2kv0Vlfp5XviM/pZ8G07KzRBeCWsBpwMAvercY6/0I0
+         KkAqrGP7rOYxRMcCAKQhPMO5O4eRkm0/Rzy98dgnPdKFm0r714JpGnwInNgyt0ZmydWL
+         mIENMb92sszdf50yp6mkvDLRtwICZalzm2Q0MbwpJPttUtmBf6kbMUfp+hwbhbygNJHb
+         KJwg==
+X-Gm-Message-State: ACrzQf3KCqrc5WUbUBkkRbRwpa6bzh59YgqHUVD2KIw8vbspkU6jutwV
+        bSO0FTsqzpA4x3CpIVZemResHg==
+X-Google-Smtp-Source: AMsMyM5WvUbcQT6uavWgb+MuZ7ljzT285yhajFAuaHxWUbLbKif7P7D7eXzbR0OpJlpLn775T1I1+w==
+X-Received: by 2002:a05:651c:44f:b0:26d:ff1e:131e with SMTP id g15-20020a05651c044f00b0026dff1e131emr1231310ljg.308.1665044991429;
+        Thu, 06 Oct 2022 01:29:51 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id bi9-20020a0565120e8900b004974da17c2bsm2629581lfb.0.2022.10.06.01.25.04
+        by smtp.gmail.com with ESMTPSA id k17-20020ac24f11000000b0048b365176d9sm2616201lfr.286.2022.10.06.01.29.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Oct 2022 01:25:04 -0700 (PDT)
-Message-ID: <5059f3db-7224-e8b9-74ad-5f3646925b4d@linaro.org>
-Date:   Thu, 6 Oct 2022 10:25:03 +0200
+        Thu, 06 Oct 2022 01:29:50 -0700 (PDT)
+Message-ID: <8259cc0c-93e2-4e62-3ce5-9372e2b40397@linaro.org>
+Date:   Thu, 6 Oct 2022 10:29:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [RFCv2 PATCH 1/4] dt-bindings: bus: add Wiegand bus dt
- documentation
+Subject: Re: [RFCv2 PATCH 2/4] bus: add Wiegand bus driver
 Content-Language: en-US
 To:     =?UTF-8?Q?Martin_Za=c5=a5ovi=c4=8d?= <m.zatovic1@gmail.com>,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -66,13 +65,15 @@ To:     =?UTF-8?Q?Martin_Za=c5=a5ovi=c4=8d?= <m.zatovic1@gmail.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-gpio@vger.kernel.org
 References: <20221005145746.172138-1-m.zatovic1@gmail.com>
+ <20221005145746.172138-2-m.zatovic1@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221005145746.172138-1-m.zatovic1@gmail.com>
+In-Reply-To: <20221005145746.172138-2-m.zatovic1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,89 +81,48 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 05/10/2022 16:57, Martin Zaťovič wrote:
-> This patch documents the devicetree entry for enabling Wiegand
-> bus driver. The drivers that will use Wiegand bus driver shall
-> create a sub-node of the documented node.
+> The Wiegand bus driver spawns devices and matches them with
+> drivers.
 > 
 > Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
 > ---
-> Hello again,
-> 
-> this is the second round of RFC patches in an attempt to add Wiegand
-> driver to linux kernel. Thank you for all the issues you have pointed
-> out in the first round. I have tried to fix all of them and I have
-> also implemented a Wiegand bus driver, that is now used by the GPIO
-> driver itself - as suggested by Linus.
-> 
-> Any advice you have for me regarding the patches will be appreciated!
-> 
-> With regards,
-> Martin Zaťovič
-> ---
->  .../devicetree/bindings/bus/wiegand.yaml      | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/wiegand.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/bus/wiegand.yaml b/Documentation/devicetree/bindings/bus/wiegand.yaml
-> new file mode 100644
-> index 000000000000..1ed863ab925c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/wiegand.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/wiegand.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Wiegand Bus
-> +
-> +maintainers:
-> +  - Martin Zaťovič <m.zatovic1@gmail.com>
-> +
-> +description: |
-> +  Wiegand interface is a wiring standard popularized in the 1980s. To this day
-> +  many card readers, fingerprint readers, sensors, etc. use Wiegand interface
-> +  particularly for access control applications. It utilizes two wires to
-> +  transmit the data - D0 and D1.
-> +
-> +  Both data lines are initially pulled up. To send a bit of value 1, the D1
-> +  line is set low. Similarly to send a bit of value 0, the D0 line is set low.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^wiegand(@[0-9a-f]+)?$"
-> +
-> +  compatible:
-> +    contains:
-> +      const: wiegand
-> +
+> The bus driver currently assumes that any new Wiegand driver will
+> have a matching entry in the devicetree. It is currently sufficient
+> as I will only be implementing the GPIO driver. If someone
+> implements a Wiegand driver that will not use devicetree, he will
+> also have to edit this bus driver, in order to match properly. Is
+> that a correct approach?
 
-If the bus uses two wires, shouldn't you describe them here? Otherwise
-what wires are you using?
+(...)
 
-> +required:
-> +  - compatible
+> +static struct wiegand_device *
+> +of_register_wiegand_device(struct wiegand *wiegand, struct device_node *nc)
+> +{
+> +	struct wiegand_device *dev;
+> +	const char *val;
+> +	int ret;
 > +
-> +additionalProperties: false
+> +	dev = wiegand_alloc_device(wiegand);
+> +	if (!dev) {
+> +		dev_err(wiegand->dev,
+> +			"Wiegand device alloc error for %pOF\n", nc);
+> +		return ERR_PTR(-ENOMEM);
+> +	}
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
+> +	ret = of_property_read_string(nc, "compatible", &val);
+> +	if (ret) {
+> +		dev_err(wiegand->dev, "%pOF has no valid 'compatible' property (%d)\n",
+> +			nc, ret);
+> +		goto err_put;
+> +	}
 > +
-> +    wiegand {
-> +        compatible = "wiegand";
-> +
-> +        wiegand-gpio {
-> +            compatible = "wiegand,wiegand-gpio";
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&pinctrl_uart2_wiegand>;
-> +            data-hi-gpios = <&gpio 7 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-> +            data-lo-gpios = <&gpio 6 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-> +        };
-> +    };
-> +
-> +...
+> +	if (strcmp(val, "wiegand,wiegand-gpio") == 0) {
+
+This does not look right. Bus can have any device attached, so limiting
+some bus behavior to a specific device is not really scalable.
+
+Anyway device and node matching should not be with strcmp but rather
+of_*_match().
 
 Best regards,
 Krzysztof
