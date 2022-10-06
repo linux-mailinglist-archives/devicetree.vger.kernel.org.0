@@ -2,112 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB905F5E99
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 04:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62F075F5EA9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 04:19:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbiJFCGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 22:06:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40430 "EHLO
+        id S229981AbiJFCS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 22:18:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbiJFCGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 22:06:11 -0400
-Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C2387083;
-        Wed,  5 Oct 2022 19:06:10 -0700 (PDT)
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 06 Oct 2022 10:05:03 +0800
-Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL1.internal.ite.com.tw [192.168.65.58])
-        by mse.ite.com.tw with ESMTP id 29624wid058647;
-        Thu, 6 Oct 2022 10:04:58 +0800 (GMT-8)
-        (envelope-from allen.chen@ite.com.tw)
-Received: from VirtualBox.internal.ite.com.tw (192.168.70.46) by
- CSBMAIL1.internal.ite.com.tw (192.168.65.58) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.14; Thu, 6 Oct 2022 10:04:57 +0800
-From:   allen <allen.chen@ite.com.tw>
-CC:     Allen Chen <allen.chen@ite.com.tw>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
-        Hermes Wu <Hermes.Wu@ite.com.tw>,
-        Pin-yen Lin <treapking@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229729AbiJFCS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 22:18:57 -0400
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DDA76B646;
+        Wed,  5 Oct 2022 19:18:54 -0700 (PDT)
+Received: by mail-oo1-f52.google.com with SMTP id r15-20020a4abf0f000000b004761c7e6be1so506266oop.9;
+        Wed, 05 Oct 2022 19:18:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FFOpkqjZufkAK5FiEiN5bkXOo99mfhA/7lKBcTpwlOc=;
+        b=q4VMKB9p2V8G9l+fgaF19vNq4UggxbJM6jYTCCkw5cGPvYC8jMph0hATiHKRzNT+q5
+         qhFLe+oWJP9ZYs0l6sgMb9GHfx4TMkHNqLYJyKgAUJWVyF4TE5w6rRB8PVf3JOKSg09s
+         mXumGsNRPNYU/R7oL0VRskCLgDF+iliJhUG4BB39qHayzt9egalBOF3V+YlgkxA2sJD1
+         AhhQC66I6YBBip4AcDQzbxS5Ojn8oBXcWB9VOXfMc1/gWJB3mRozfo9FSW9QVa7a+7Ez
+         ZxhJgJbp5Sly3KJo2vSoX8bym2QXgNXSf+6fRQx/i/qApVhoPWBONpy7a7NHLfK6mdRK
+         bwbg==
+X-Gm-Message-State: ACrzQf0IaOq8xQtmqlYmeYnbxC7PWjcZvZ9N1U2LFp86LaZl8Z5eVkDy
+        4HLs+XhsYgdfab5IrYqp7Q==
+X-Google-Smtp-Source: AMsMyM5K45MEbTKQlz/Q1cezYVFkM+sEQu9vC1IWWlda1XBr7rmBeSLUr2PlRAmZl67PFm7x9o9TeA==
+X-Received: by 2002:a9d:6c13:0:b0:660:e595:c723 with SMTP id f19-20020a9d6c13000000b00660e595c723mr1015983otq.2.1665022733713;
+        Wed, 05 Oct 2022 19:18:53 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e19-20020a4ad253000000b0044df311eee1sm3930650oos.33.2022.10.05.19.18.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Oct 2022 19:18:53 -0700 (PDT)
+Received: (nullmailer pid 565678 invoked by uid 1000);
+        Thu, 06 Oct 2022 02:18:50 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: it6505: add properties to restrict output bandwidth
-Date:   Thu, 6 Oct 2022 10:04:43 +0800
-Message-ID: <20221006020444.15823-2-allen.chen@ite.com.tw>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221006020444.15823-1-allen.chen@ite.com.tw>
-References: <20221006020444.15823-1-allen.chen@ite.com.tw>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.70.46]
-X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
- CSBMAIL1.internal.ite.com.tw (192.168.65.58)
-X-TM-SNTS-SMTP: 27E7FD5C63B1681BED147386BDA8FB32301068E8EE6D65B692F6A999687563E12002:8
-X-MAIL: mse.ite.com.tw 29624wid058647
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,PDS_RDNS_DYNAMIC_FP,
-        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20221005174343.24240-6-y.oudjana@protonmail.com>
+References: <20221005174343.24240-1-y.oudjana@protonmail.com> <20221005174343.24240-6-y.oudjana@protonmail.com>
+Message-Id: <166502256683.562283.5162543675574392467.robh@kernel.org>
+Subject: Re: [PATCH v2 05/10] dt-bindings: pinctrl: mediatek,pinctrl-mt6795: Fix interrupt count
+Date:   Wed, 05 Oct 2022 21:18:50 -0500
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: allen chen <allen.chen@ite.com.tw>
+On Wed, 05 Oct 2022 20:43:38 +0300, Yassine Oudjana wrote:
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
+> 
+> The document currently states a maximum of 1 interrupt, but the DT
+> has 2 specified causing a dtbs_check error. Change the limit to 2
+> to pass the check and add a minimum limit.
+> 
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+>  .../devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml   | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
 
-Add properties to restrict dp output data-lanes and clock.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
----
- .../bindings/display/bridge/ite,it6505.yaml          | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+yamllint warnings/errors:
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-index 833d11b2303a..f5482a614d05 100644
---- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-@@ -52,6 +52,16 @@ properties:
-     maxItems: 1
-     description: extcon specifier for the Power Delivery
- 
-+  ite,dp-output-data-lane-count:
-+    description: restrict the dp output data-lanes with value of 1-4
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 1, 2, 4 ]
-+
-+  ite,dp-output-max-pixel-clock-mhz:
-+    description: restrict max pixel clock
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 150
-+
-   port:
-     $ref: /schemas/graph.yaml#/properties/port
-     description: A port node pointing to DPI host port node
-@@ -84,6 +94,8 @@ examples:
-             pwr18-supply = <&it6505_pp18_reg>;
-             reset-gpios = <&pio 179 1>;
-             extcon = <&usbc_extcon>;
-+            ite,dp-output-data-lane-count = <2>;
-+            ite,dp-output-max-pixel-clock-mhz = <150>;
- 
-             port {
-                 it6505_in: endpoint {
--- 
-2.25.1
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.example.dtb: pinctrl@10005000: interrupts: [[0, 153, 4]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
