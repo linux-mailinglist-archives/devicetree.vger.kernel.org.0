@@ -2,102 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A19C75F647E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 12:46:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A59105F649C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 12:57:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231288AbiJFKqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 06:46:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58734 "EHLO
+        id S230499AbiJFK56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 06:57:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231309AbiJFKqq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 06:46:46 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 77FFB98359;
-        Thu,  6 Oct 2022 03:46:45 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7831ED6E;
-        Thu,  6 Oct 2022 03:46:51 -0700 (PDT)
-Received: from [10.57.65.170] (unknown [10.57.65.170])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E771C3F73B;
-        Thu,  6 Oct 2022 03:46:42 -0700 (PDT)
-Message-ID: <86084a28-be55-1c58-eace-1d73868c33dc@arm.com>
-Date:   Thu, 6 Oct 2022 11:46:38 +0100
+        with ESMTP id S231283AbiJFK55 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 06:57:57 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B115398371
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 03:57:55 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id j16so2116666wrh.5
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 03:57:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fbv2nHTUDzNiZ9nBgts2ji/CMIP6Gv2pRdL0he3cIgg=;
+        b=dQA1MwmY32f6mMOh4FebesRI3KpmxdKASSXF3XNuJ1f5B+AsXOFW7kU2xAamd3DN74
+         McmUWagQo3TwI39dvke4dYZr08Rr+nREfOYAyL10Sf3eYIhBxMUgqSEj0BxsvnuYIfPY
+         mDfvkk9+xKm8BOSPGU2qmuCf8mzNq32V4RZpsgHkkkWxlCekYHUHyVQ66PqZiC5M/U57
+         RhZUfbdX12Z6eHnMdyeGGssGzuY6pcRjXWSdQihGSDaQpSNCleZB0mEFi5mNVn5KjwHl
+         dgkkiGgBjNbbpH6gUZh1Y2My2qr8i2S5AsVXEmoGhkT6KLpgNm502H9GcUZd6bdx1VZb
+         7wRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fbv2nHTUDzNiZ9nBgts2ji/CMIP6Gv2pRdL0he3cIgg=;
+        b=x3YAJUgoMlXEpDVbZoTiu0VkQ9eCuxnO1gxude5Vmwv9UQR8Ciux9EWk91QYScTwue
+         fY3nk2pNzgLsqxVST2h7FGg0cQ1W7saYZrmWhlG3bBrYig32+Hmc8+5XkrfG4WMqgjrc
+         heIlHS3yk5o02F1jugkjiqn6XKDoqhoGRaoSpmU2YUIIiYyjEjeEQRaZ9B1foSs84eWp
+         YUOU2Dqly4wYNoHHCVmiV3GDO5h0FyYucytWCs8cDDVzpPmeiRSrj+VH84MHsTpOksqC
+         KNNBIBbL4UoeaqrnNGDaD+SPQ+xgC8Ly4q7s5HSYL7SqgagPd2qkdK39ZMDsoneUgIJs
+         hOaA==
+X-Gm-Message-State: ACrzQf0nPK11XH1pCYTGjSOhTJRDMHRdOnBAGMCsoDEmpAdUwhta6p35
+        byoGlSUQzPfILw83Z8Iel/ungg==
+X-Google-Smtp-Source: AMsMyM6nhQ5i2ukKQyJBrZwm0pxC9L1Un6AVLfuF3eK/z8umqKVDErHz9KN/EfjKDk5f/Rjlorlh+Q==
+X-Received: by 2002:a5d:4c8e:0:b0:22e:3979:7dc9 with SMTP id z14-20020a5d4c8e000000b0022e39797dc9mr2632995wrs.41.1665053874257;
+        Thu, 06 Oct 2022 03:57:54 -0700 (PDT)
+Received: from [192.168.0.20] (210.145.15.109.rev.sfr.net. [109.15.145.210])
+        by smtp.gmail.com with ESMTPSA id c66-20020a1c3545000000b003bdb2c7f3d1sm4819568wma.32.2022.10.06.03.57.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Oct 2022 03:57:53 -0700 (PDT)
+Message-ID: <fb2706e3-f758-a0b0-d595-75ef362a853e@baylibre.com>
+Date:   Thu, 6 Oct 2022 12:57:52 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH v2 2/3] iommu/mediatek: add support for 6-bit encoded port
- IDs
-Content-Language: en-GB
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Alexandre Mergnat <amergnat@baylibre.com>,
+Subject: Re: [PATCH v2 1/2] spi: dt-bindings: amlogic, meson-gx-spicc: Add
+ pinctrl names for SPI signal states
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Yong Wu <yong.wu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev
-References: <20221001-iommu-support-v2-0-dbfef2eeebc9@baylibre.com>
- <20221001-iommu-support-v2-2-dbfef2eeebc9@baylibre.com>
- <7d37e6ae-0dca-e0ef-2841-298c1ba9784f@collabora.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <7d37e6ae-0dca-e0ef-2841-298c1ba9784f@collabora.com>
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Da Xue <da@libre.computer>, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221004-up-aml-fix-spi-v2-0-3e8ae91a1925@baylibre.com>
+ <20221004-up-aml-fix-spi-v2-1-3e8ae91a1925@baylibre.com>
+ <d2ce98d7-1025-9c6e-e207-00e91942077a@linaro.org>
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+In-Reply-To: <d2ce98d7-1025-9c6e-e207-00e91942077a@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-10-04 12:59, AngeloGioacchino Del Regno wrote:
-> Il 04/10/22 12:01, Alexandre Mergnat ha scritto:
->> From: Fabien Parent <fparent@baylibre.com>
+Hi Krzysztof,
+
+Thank you for the review.
+
+On 10/5/22 10:14, Krzysztof Kozlowski wrote:
+> On 04/10/2022 13:10, Amjad Ouled-Ameur wrote:
+>> SPI pins of the SPICC Controller in Meson-GX needs to be controlled by
+>> pin biais when idle. Therefore define three pinctrl names:
+>> - default: SPI pins are controlled by spi function.
+>> - idle-high: SCLK pin is pulled-up, but MOSI/MISO are still controlled
+>> by spi function.
+>> - idle-low: SCLK pin is pulled-down, but MOSI/MISO are still controlled
+>> by spi function.
 >>
->> Until now the port ID was always encoded as a 5-bit data. On MT8365,
->> the port ID is encoded as a 6-bit data. This requires to rework the
->> macros F_MMU_INT_ID_LARB_ID, and F_MMU_INT_ID_PORT_ID in order
->> to support 5-bit and 6-bit encoded port IDs.
->>
->> Signed-off-by: Fabien Parent <fparent@baylibre.com>
->> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
->> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+>> Reported-by: Da Xue <da@libre.computer>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 >> ---
->>   drivers/iommu/mtk_iommu.c | 24 ++++++++++++++++++++----
->>   1 file changed, 20 insertions(+), 4 deletions(-)
+>>   .../devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml   | 15 +++++++++++++++
+>>   1 file changed, 15 insertions(+)
 >>
->> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
->> index 5a4e00e4bbbc..a57ce509c8b5 100644
->> --- a/drivers/iommu/mtk_iommu.c
->> +++ b/drivers/iommu/mtk_iommu.c
->> @@ -108,8 +108,10 @@
->>   #define F_MMU_INT_ID_SUB_COMM_ID(a)        (((a) >> 7) & 0x3)
->>   #define F_MMU_INT_ID_COMM_ID_EXT(a)        (((a) >> 10) & 0x7)
->>   #define F_MMU_INT_ID_SUB_COMM_ID_EXT(a)        (((a) >> 7) & 0x7)
->> -#define F_MMU_INT_ID_LARB_ID(a)            (((a) >> 7) & 0x7)
->> -#define F_MMU_INT_ID_PORT_ID(a)            (((a) >> 2) & 0x1f)
->> +#define F_MMU_INT_ID_LARB_ID(a, int_id_port_width)    \
->> +                ((a) >> (((int_id_port_width) + 2) & 0x7))
->> +#define F_MMU_INT_ID_PORT_ID(a, int_id_port_width)    \
->> +                (((a) >> 2) & GENMASK((int_id_port_width) - 1, 0))
-> 
-> I can't think about any cleaner way than this one, but that's decreasing 
-> human
-> readability by "quite a bit".
+>> diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+>> index 0c10f7678178..53013e27f507 100644
+>> --- a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+>> @@ -43,6 +43,14 @@ properties:
+>>       minItems: 1
+>>       maxItems: 2
+>>   
+>> +  pinctrl-0:
+>> +    minItems: 1
+> maxItems?
+>
+Will fill it in next version.
+>> +
+>> +  pinctrl-1:
+>> +    maxItems: 1
+>> +
+>> +  pinctrl-names: true
+> Why do you need all these in the bindings?
 
-In terms of readability, the best thing to do would be define separate 
-macros for each register format and make the choice at the (single) 
-callsite rather than hiding it in the macro. In fact we're already doing 
-exactly that with the HAS_SUB_COMM_2BITS and HAS_SUB_COMM_3BITS flags 
-right at the same point, so please follow that same pattern for consistency.
+SPI clock bias needs to change at runtime depending on SPI mode, here is an example of
 
-Thanks,
-Robin.
+how this is supposed to be used ("spi_idle_low_pins" and "spi_idle_low_pins" are defined
+
+in the second patch of this series):
+
+&spicc {
+     pinctrl-0 = <&spi_pins>;
+     pinctrl-1 = <&spi_pins>, <&spi_idle_high_pins>;
+     pinctrl-2 = <&spi_pins>, <&spi_idle_low_pins>;
+     pinctrl-names = "default", "idle-high", "idle-low";
+
+     [...]
+
+};
+
+>> +
+>>   if:
+>>     properties:
+>>       compatible:
+>> @@ -69,6 +77,13 @@ else:
+>>         items:
+>>           - const: core
+>>   
+>> +    pinctrl-names:
+>> +      minItems: 1
+>> +      items:
+>> +        - const: default
+>> +        - const: idle-high
+>> +        - const: idle-low
+> This does not match what you wrote in the bindings - you mentioned only
+> two set of pin controls.
+
+Right, there are actually three set of pin controls, will correct the bindings above.
+
+
+Regards,
+
+Amjad
+
+>
+> Best regards,
+> Krzysztof
+>
