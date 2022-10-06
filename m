@@ -2,54 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6FF55F626C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 10:18:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93BE95F627A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 10:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230515AbiJFISb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 04:18:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44616 "EHLO
+        id S231126AbiJFIVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 04:21:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230503AbiJFISa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 04:18:30 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5A588C452
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 01:18:28 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1ogM4x-0002S2-VO; Thu, 06 Oct 2022 10:18:04 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 7C604F5F5E;
-        Thu,  6 Oct 2022 08:18:02 +0000 (UTC)
-Date:   Thu, 6 Oct 2022 10:18:01 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, dg@emlix.com, j.zink@pengutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, system@metrotek.ru,
-        linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v14 1/2] fpga: lattice-sysconfig-spi: add Lattice
- sysCONFIG FPGA manager
-Message-ID: <20221006081801.xqnnvn6k7rmjokvt@pengutronix.de>
-References: <20221006074449.24082-1-i.bornyakov@metrotek.ru>
- <20221006074449.24082-2-i.bornyakov@metrotek.ru>
+        with ESMTP id S230508AbiJFIVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 04:21:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 757382B268;
+        Thu,  6 Oct 2022 01:21:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BD2D0B82035;
+        Thu,  6 Oct 2022 08:21:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45C19C433D6;
+        Thu,  6 Oct 2022 08:21:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665044471;
+        bh=44BmLy7CEd3jx1EOlVr8WQ8bwFyx1o6U9/3Eep9O8UY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Qsqkt02BhrmNBeBMGmJYniAXyWhYpDPph10h0ApEJF9+7Sz3e7ExWsgGqslY7/570
+         6LyO9KgmNec+KhdeH6vztGmxv0MYU4ez0I7zZMCWUQozeJTYIG0da8S3Dpn/YLdzeY
+         5tsr5o04bOsFE3ZvkUBQnPF3ry7l3JYXVOF56JIye9ymEmwW0976jkeA1JlzA4PYao
+         pg1Txl00srIOv+FkDJWrWEbDypoNXjnYdWeFrOW5mWxsbRySn7fsM1dZ6m9HXojVuZ
+         mZbr0lhwa/W3FGzxMgAv6+vJhimeCKZCx/n9Eg/70XVMIKquxs0AS2Sw5HSVFt2lzm
+         egDhzIlRVLhOg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1ogM7v-0003hg-7j; Thu, 06 Oct 2022 10:21:07 +0200
+Date:   Thu, 6 Oct 2022 10:21:07 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Vinod Koul <vinod.koul@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Caleb Connolly <kc@postmarketos.org>
+Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
+Message-ID: <Yz6P8wOPdRd9sjX2@hovoldconsulting.com>
+References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="cstclkxk6l4zuxkt"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221006074449.24082-2-i.bornyakov@metrotek.ru>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+In-Reply-To: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,79 +72,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 22, 2022 at 04:32:00PM +0200, Krzysztof Kozlowski wrote:
+> Hi everyone,
+> 
+> Quite a lot of people are working on Qualcomm DT bindings conversion
+> (TXT->YAML) and fixups to Qualcomm DTS. We track a bit of this effort
+> internally in Linaro, but that has many shortcomings and we would like
+> to track it rather community-wide with the support and contributions
+> from the community.
+> 
+> What to track:
+> 1. Which bindings to convert to YAML,
+> 2. Missing compatibles (either entirely or because of missing conversion),
+> 3. `dt_binding_check` warnings (usually connected with 1-2),
+> 4. `dtbs_check` warnings.
+> 
+> Rob's bot gives us daily output for 1-4, but how can we track current
+> efforts to avoid duplication of work? Also it would allow people to find
+> tasks for them to get contributions to Linux kernel :). Is anyone in
+> community interested in tracking it together, in a public way?
 
---cstclkxk6l4zuxkt
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Is this a real problem that needs fixing? I mean how often does it
+happen that people submit the same YAML conversion for example? Since it
+doesn't take that long to do a conversion, I'm not sure what tracking
+this on some webpage buys us. It's better to just search lore before
+starting a new conversion. Or search the linux-next tree to see what's
+still pending.
 
-On 06.10.2022 10:44:48, Ivan Bornyakov wrote:
-> Add support to the FPGA manager for programming Lattice ECP5 FPGA over
-> slave SPI sysCONFIG interface.
->=20
-> sysCONFIG interface core functionality is separate from both ECP5 and
-> SPI specifics, so support for other FPGAs with different port types can
-> be added in the future.
->=20
-> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-> ---
+Similarly for the other points above, as it doesn't take very long to
+add a missing compatible or fix a warning it seems a bit excessive to
+try to track this manually.
 
-[...]
+Perhaps a list of pending conversions or missing compatibles could be
+useful for someone who's short on work, but it's bound to get outdated
+pretty quickly.
 
-> +static int sysconfig_spi_bitstream_burst_init(struct sysconfig_priv *pri=
-v)
-> +{
-> +	const u8 lsc_bitstream_burst[] =3D SYSCONFIG_LSC_BITSTREAM_BURST;
+> If so, where?
+> A. elinux.org (needs some formatting when pasting the output from tools)
+> B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
+> C. gitlab dedicated repo - some text file
+> D. Linux kernel TODO file (might be difficult to keep updated)
+> E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
+> have it for Exynos but I don't find it usable -
+> https://exynos.wiki.kernel.org/todo_tasks)
+> 
+> I am leaning towards Gitlab pages because they could be quite automated
+> - with CI or with scripts.
+> 
+> The point would be to list all of tasks (1-4 from the first list), keep
+> it updated with new results, pick/assign tasks and mark as done.
 
-I think you're not allowed to use stack memory for SPI transfers. Better
-clarify this with the SPI people.
+I don't really see the need for more process here, sorry.
 
-> +	struct spi_device *spi =3D to_spi_device(priv->dev);
-> +	struct spi_transfer xfer =3D {
-> +		.tx_buf =3D lsc_bitstream_burst,
-> +		.len =3D sizeof(lsc_bitstream_burst),
-> +		.cs_change =3D 1,
-> +	};
-> +	struct spi_message msg;
-> +	int ret;
-> +
-> +	spi_message_init_with_transfers(&msg, &xfer, 1);
-> +
-> +	/*
-> +	 * Lock SPI bus for exclusive usage until FPGA programming is done.
-> +	 * SPI bus will be released in sysconfig_spi_bitstream_burst_complete().
-> +	 */
-> +	spi_bus_lock(spi->controller);
-> +
-> +	ret =3D spi_sync_locked(spi, &msg);
-> +	if (ret)
-> +		spi_bus_unlock(spi->controller);
-> +
-> +	return ret;
-> +}
+If I'm working on support for a new platform and the DT checker warnings
+gets too noisy I may pick some of the low hanging fruit. In the odd
+chance that someone beats me to it, it's not the end of the world.
 
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---cstclkxk6l4zuxkt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmM+jzYACgkQrX5LkNig
-013jTQf/W1QkhJsjQBwilMHgV5rq0CQ0bnolb+yuXRoE9sEDr34/oExbkJJ/PKbz
-FTDUXsv05ZZIdSDuLKmLCwRypTW2vJXQT5fTUNUIAs/DBZZZBJYrROXyeGbauhW3
-Ph67IMnJM7D45cCX2Q8r5yA0OkFIqm2s/jkIQvfG9GAtU5if6CHnSqXyhqBfrl90
-33EOOFjdP8P5Vxq13z2B9fH81PcaEUVrsvGIYS+hrnnTSQ3BQPkjDjJzukucSxIw
-480927VcumzgUfSuUVNZWme/qPnlQoaKaUCTQJxyuZgPoX3MomsWybzFRCLrjYxp
-ScEO6jcg2J/euusBd31G8wumdmLYlA==
-=XPet
------END PGP SIGNATURE-----
-
---cstclkxk6l4zuxkt--
+Johan
