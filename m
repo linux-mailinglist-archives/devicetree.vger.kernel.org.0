@@ -2,452 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F1655F68A5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 15:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27F515F68C8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 16:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231458AbiJFN5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 09:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37112 "EHLO
+        id S231349AbiJFOGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 10:06:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230339AbiJFN5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 09:57:32 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 923E3A030F;
-        Thu,  6 Oct 2022 06:57:29 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.95,164,1661785200"; 
-   d="scan'208";a="137903239"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 06 Oct 2022 22:57:29 +0900
-Received: from localhost.localdomain (unknown [10.226.92.84])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 0AEAB53EEFC8;
-        Thu,  6 Oct 2022 22:57:24 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230210AbiJFOGq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 10:06:46 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C1A4A7A8F
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 07:06:44 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id m19so1508767lfq.9
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 07:06:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=Q9PKkVz5JSd6Red0ZQhk3d2Bnwnk9qONZE4I2NARHis=;
+        b=P1yd/GPwotgXVaiYMKA7nJU5+WQr73w+H/smLgRPaht2EATD5u5hsAFELMvXtm7QXU
+         p/sA+W7SGJj9LE57tDDL9l8bPuvqgtnzx/8hg/j2W6DF8Pkgl4lkjOuIq4exUuBH5SrE
+         +NjkTy46vH9+v4HEUuii5aR7eaD4nAyWbKxL0ErVgGNsvdhVtFaq8mARzxDq5yBTJ44+
+         T4NvRYIPHRYGYtoXNoaRur0Sp3az6OHR2wFTZDz0gCFGDqZQtzyN5QLSdVkkOdNr5WEf
+         RzEKtBb3MoZ6suDpSG1qsDIXYKg3H90XdNpE5jy/xvOxm7PcschDgtHawrCZD2sSooj4
+         noKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=Q9PKkVz5JSd6Red0ZQhk3d2Bnwnk9qONZE4I2NARHis=;
+        b=prmbcMoV9mIkDnLxRelWKqLiI2r2oOl9L15tOu2eZnXnNgqZzEZMRCQyOXEmTdvOQK
+         FSaaA+OAAUkNKn5QKIowP1UICaCaMO6oO59P99cZr6E8N0aJsziLwgQxqNW3r8c8J9QI
+         AmGoEe4UApjb/B+I3zXS57g8eW4wgnbQR6wYp4y8OGQDokmnIrUWAUpA6qYjfl2k600s
+         /jlSWqDQZoSq0AquH6sN1dcUbjPtZMXGTFpNX1+I66y+be6xtJRzI4a91JKJp6I5bAq2
+         zZcxd1/Esj+EFjIWCRGIGBqCcSifdYxOonMEszjhraS84Aqbi6j0uhQVXkkO7YYQ7GKt
+         eQtw==
+X-Gm-Message-State: ACrzQf27lOgortbVN5D9d4hA0r3l1EpT7PqwStdjE+TSR8mh+aE1NQ3T
+        w+YQzClPdwcd1RlODlBJWpOrDQ==
+X-Google-Smtp-Source: AMsMyM7jNkr5nJqC81rh2I33D/cUBPIGVpbYgb6Sc/9YVIQ4bXbpknWTD/xz5aWue1udMin4LwzAgw==
+X-Received: by 2002:ac2:4c52:0:b0:4a2:6bf9:bd7e with SMTP id o18-20020ac24c52000000b004a26bf9bd7emr51873lfk.400.1665065202596;
+        Thu, 06 Oct 2022 07:06:42 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id z3-20020a056512370300b004a2386b8ce8sm1833929lfr.211.2022.10.06.07.06.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Oct 2022 07:06:42 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>, Lee Jones <lee@kernel.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
-Date:   Thu,  6 Oct 2022 14:57:14 +0100
-Message-Id: <20221006135717.1748560-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221006135717.1748560-1-biju.das.jz@bp.renesas.com>
-References: <20221006135717.1748560-1-biju.das.jz@bp.renesas.com>
+        Stephan Gerhold <stephan@gerhold.net>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        krishna Lanka <quic_vamslank@quicinc.com>,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 00/34] pinctrl/arm64: qcom: continued - fix Qualcomm TLMM pinctrl schema warnings (5th set)
+Date:   Thu,  6 Oct 2022 16:06:03 +0200
+Message-Id: <20221006140637.246665-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
-the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
-channels and one 32-bit timer channel. It supports the following
-functions
- - Counter
- - Timer
- - PWM
+Hi,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * Dropped counter bindings and integrated with mfd as it has only one property.
- * Removed "#address-cells" and "#size-cells" as it do not have children with
-   unit addresses.
- * Removed quotes from counter and pwm.
- * Provided full path for pwm bindings.
- * Updated the example.
-v1->v2:
- * Modelled counter and pwm as a single device that handles
-   multiple channels.
- * Moved counter and pwm bindings to respective subsystems
- * Dropped 'bindings' from MFD binding title.
- * Updated the example
- * Changed the compatible names.
----
- .../bindings/mfd/renesas,rz-mtu3.yaml         | 304 ++++++++++++++++++
- .../bindings/pwm/renesas,rz-mtu3-pwm.yaml     |  50 +++
- 2 files changed, 354 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
- create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rz-mtu3-pwm.yaml
+Patches are organized not by file, but rather type of change
+1. First patches is for common TLMM schema and dropping unneeded refs.
+2. Last patches are pure cleanups without functional impact.
 
-diff --git a/Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml b/Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
-new file mode 100644
-index 000000000000..44c952ad8d35
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
-@@ -0,0 +1,304 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/renesas,rz-mtu3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L Multi-Function Timer Pulse Unit 3 (MTU3a)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  This hardware block pconsisting of eight 16-bit timer channels and one
-+  32- bit timer channel. It supports the following specifications:
-+    - Pulse input/output: 28 lines max.
-+    - Pulse input 3 lines
-+    - Count clock 11 clocks for each channel (14 clocks for MTU0, 12 clocks
-+      for MTU2, and 10 clocks for MTU5, four clocks for MTU1-MTU2 combination
-+      (when LWA = 1))
-+    - Operating frequency Up to 100 MHz
-+    - Available operations [MTU0 to MTU4, MTU6, MTU7, and MTU8]
-+        - Waveform output on compare match
-+        - Input capture function (noise filter setting available)
-+        - Counter-clearing operation
-+        - Simultaneous writing to multiple timer counters (TCNT)
-+          (excluding MTU8).
-+        - Simultaneous clearing on compare match or input capture
-+          (excluding MTU8).
-+        - Simultaneous input and output to registers in synchronization with
-+          counter operations           (excluding MTU8).
-+        - Up to 12-phase PWM output in combination with synchronous operation
-+          (excluding MTU8)
-+    - [MTU0 MTU3, MTU4, MTU6, MTU7, and MTU8]
-+        - Buffer operation specifiable
-+    - [MTU1, MTU2]
-+        - Phase counting mode can be specified independently
-+        - 32-bit phase counting mode can be specified for interlocked operation
-+          of MTU1 and MTU2 (when TMDR3.LWA = 1)
-+        - Cascade connection operation available
-+    - [MTU3, MTU4, MTU6, and MTU7]
-+        - Through interlocked operation of MTU3/4 and MTU6/7, the positive and
-+          negative signals in six phases (12 phases in total) can be output in
-+          complementary PWM and reset-synchronized PWM operation.
-+        - In complementary PWM mode, values can be transferred from buffer
-+          registers to temporary registers at crests and troughs of the timer-
-+          counter values or when the buffer registers (TGRD registers in MTU4
-+          and MTU7) are written to.
-+        - Double-buffering selectable in complementary PWM mode.
-+    - [MTU3 and MTU4]
-+        - Through interlocking with MTU0, a mode for driving AC synchronous
-+          motors (brushless DC motors) by using complementary PWM output and
-+          reset-synchronized PWM output is settable and allows the selection
-+          of two types of waveform output (chopping or level).
-+    - [MTU5]
-+        - Capable of operation as a dead-time compensation counter.
-+    - [MTU0/MTU5, MTU1, MTU2, and MTU8]
-+        - 32-bit phase counting mode specifiable by combining MTU1 and MTU2 and
-+          through interlocked operation with MTU0/MTU5 and MTU8.
-+    - Interrupt-skipping function
-+        - In complementary PWM mode, interrupts on crests and troughs of counter
-+          values and triggers to start conversion by the A/D converter can be
-+          skipped.
-+    - Interrupt sources: 43 sources.
-+    - Buffer operation:
-+        - Automatic transfer of register data (transfer from the buffer
-+          register to the timer register).
-+    - Trigger generation
-+        - A/D converter start triggers can be generated
-+        - A/D converter start request delaying function enables A/D converter
-+          to be started with any desired timing and to be synchronized with
-+          PWM output.
-+    - Low power consumption function
-+        - The MTU3a can be placed in the module-stop state.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-mtu3  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-mtu3  # RZ/V2L
-+      - const: renesas,rz-mtu3
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: MTU0.TGRA input capture/compare match
-+      - description: MTU0.TGRB input capture/compare match
-+      - description: MTU0.TGRC input capture/compare match
-+      - description: MTU0.TGRD input capture/compare match
-+      - description: MTU0.TCNT overflow
-+      - description: MTU0.TGRE compare match
-+      - description: MTU0.TGRF compare match
-+      - description: MTU1.TGRA input capture/compare match
-+      - description: MTU1.TGRB input capture/compare match
-+      - description: MTU1.TCNT overflow
-+      - description: MTU1.TCNT underflow
-+      - description: MTU2.TGRA input capture/compare match
-+      - description: MTU2.TGRB input capture/compare match
-+      - description: MTU2.TCNT overflow
-+      - description: MTU2.TCNT underflow
-+      - description: MTU3.TGRA input capture/compare match
-+      - description: MTU3.TGRB input capture/compare match
-+      - description: MTU3.TGRC input capture/compare match
-+      - description: MTU3.TGRD input capture/compare match
-+      - description: MTU3.TCNT overflow
-+      - description: MTU4.TGRA input capture/compare match
-+      - description: MTU4.TGRB input capture/compare match
-+      - description: MTU4.TGRC input capture/compare match
-+      - description: MTU4.TGRD input capture/compare match
-+      - description: MTU4.TCNT overflow/underflow
-+      - description: MTU5.TGRU input capture/compare match
-+      - description: MTU5.TGRV input capture/compare match
-+      - description: MTU5.TGRW input capture/compare match
-+      - description: MTU6.TGRA input capture/compare match
-+      - description: MTU6.TGRB input capture/compare match
-+      - description: MTU6.TGRC input capture/compare match
-+      - description: MTU6.TGRD input capture/compare match
-+      - description: MTU6.TCNT overflow
-+      - description: MTU7.TGRA input capture/compare match
-+      - description: MTU7.TGRB input capture/compare match
-+      - description: MTU7.TGRC input capture/compare match
-+      - description: MTU7.TGRD input capture/compare match
-+      - description: MTU7.TCNT overflow/underflow
-+      - description: MTU8.TGRA input capture/compare match
-+      - description: MTU8.TGRB input capture/compare match
-+      - description: MTU8.TGRC input capture/compare match
-+      - description: MTU8.TGRD input capture/compare match
-+      - description: MTU8.TCNT overflow
-+      - description: MTU8.TCNT underflow
-+
-+  interrupt-names:
-+    items:
-+      - const: tgia0
-+      - const: tgib0
-+      - const: tgic0
-+      - const: tgid0
-+      - const: tgiv0
-+      - const: tgie0
-+      - const: tgif0
-+      - const: tgia1
-+      - const: tgib1
-+      - const: tgiv1
-+      - const: tgiu1
-+      - const: tgia2
-+      - const: tgib2
-+      - const: tgiv2
-+      - const: tgiu2
-+      - const: tgia3
-+      - const: tgib3
-+      - const: tgic3
-+      - const: tgid3
-+      - const: tgiv3
-+      - const: tgia4
-+      - const: tgib4
-+      - const: tgic4
-+      - const: tgid4
-+      - const: tgiv4
-+      - const: tgiu5
-+      - const: tgiv5
-+      - const: tgiw5
-+      - const: tgia6
-+      - const: tgib6
-+      - const: tgic6
-+      - const: tgid6
-+      - const: tgiv6
-+      - const: tgia7
-+      - const: tgib7
-+      - const: tgic7
-+      - const: tgid7
-+      - const: tgiv7
-+      - const: tgia8
-+      - const: tgib8
-+      - const: tgic8
-+      - const: tgid8
-+      - const: tgiv8
-+      - const: tgiu8
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  counter:
-+    description:
-+      There are two phase counting modes. 16-bit phase counting mode in which
-+      MTU1 and MTU2 operate independently, and cascade connection 32-bit phase
-+      counting mode in which MTU1 and MTU2 are cascaded.
-+
-+      In phase counting mode, the phase difference between two external input
-+      clocks is detected and the corresponding TCNT is incremented or
-+      decremented.
-+      The below counters are supported
-+        count0 - MTU1 16-bit phase counting
-+        count1 - MTU2 16-bit phase counting
-+        count2 - MTU1+ MTU2 32-bit phase counting
-+
-+    type: object
-+
-+    properties:
-+      compatible:
-+        const: renesas,rz-mtu3-counter
-+
-+    required:
-+      - compatible
-+
-+    additionalProperties: false
-+
-+  pwm:
-+    $ref: /schemas/pwm/renesas,rz-mtu3-pwm.yaml
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - power-domains
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    mtu3: timer@10001200 {
-+      compatible = "renesas,r9a07g044-mtu3", "renesas,rz-mtu3";
-+      reg = <0x10001200 0xb00>;
-+      interrupts = <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 171 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 173 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 174 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 175 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 176 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 179 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 181 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 182 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 183 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 184 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 185 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 186 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 190 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 191 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 192 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 194 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 195 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 198 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 199 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 200 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 201 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 202 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 204 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 206 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 207 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 211 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 212 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 213 IRQ_TYPE_EDGE_RISING>;
-+      interrupt-names = "tgia0", "tgib0", "tgic0", "tgid0", "tgiv0", "tgie0",
-+                        "tgif0",
-+                        "tgia1", "tgib1", "tgiv1", "tgiu1",
-+                        "tgia2", "tgib2", "tgiv2", "tgiu2",
-+                        "tgia3", "tgib3", "tgic3", "tgid3", "tgiv3",
-+                        "tgia4", "tgib4", "tgic4", "tgid4", "tgiv4",
-+                        "tgiu5", "tgiv5", "tgiw5",
-+                        "tgia6", "tgib6", "tgic6", "tgid6", "tgiv6",
-+                        "tgia7", "tgib7", "tgic7", "tgid7", "tgiv7",
-+                        "tgia8", "tgib8", "tgic8", "tgid8", "tgiv8", "tgiu8";
-+      clocks = <&cpg CPG_MOD R9A07G044_MTU_X_MCK_MTU3>;
-+      power-domains = <&cpg>;
-+      resets = <&cpg R9A07G044_MTU_X_PRESET_MTU3>;
-+
-+      counter {
-+        compatible = "renesas,rz-mtu3-counter";
-+      };
-+
-+      pwm {
-+        compatible = "renesas,rz-mtu3-pwm";
-+        #pwm-cells = <2>;
-+      };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rz-mtu3-pwm.yaml b/Documentation/devicetree/bindings/pwm/renesas,rz-mtu3-pwm.yaml
-new file mode 100644
-index 000000000000..29d7d0fdf7f2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rz-mtu3-pwm.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/renesas,rz-mtu3-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: PWM driver for the RZ/G2L multi-function timer pulse unit 3 (MTU3a)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  This module is part of the RZ/G2L MTU3a multi-function device. For more
-+  details see ../mfd/renesas,rz-mtu3.yaml.
-+
-+  The module supports PWM mode{1,2}, Reset-synchronized PWM mode and
-+  complementary PWM mode{1,2,3}.
-+
-+  In complementary PWM mode, six positive-phase and six negative-phase PWM
-+  waveforms (12 phases in total) with dead time can be output by
-+  combining MTU{3,4} and MTU{6,7}.
-+
-+  The pwm channels corresponding to each hardware channels.
-+  0  - MTU0.MTIOC0A PWM mode 1
-+  1  - MTU0.MTIOC0C PWM mode 1
-+  2  - MTU1.MTIOC1A PWM mode 1
-+  3  - MTU2.MTIOC2A PWM mode 1
-+  4  - MTU3.MTIOC3A PWM mode 1
-+  5  - MTU3.MTIOC3C PWM mode 1
-+  6  - MTU4.MTIOC4A PWM mode 1
-+  7  - MTU4.MTIOC4C PWM mode 1
-+  8  - MTU6.MTIOC6A PWM mode 1
-+  9  - MTU6.MTIOC6C PWM mode 1
-+  10 - MTU7.MTIOC7A PWM mode 1
-+  11 - MTU7.MTIOC7C PWM mode 1
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    const: renesas,rz-mtu3-pwm
-+
-+  "#pwm-cells":
-+    const: 2
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
+Overview
+========
+This is the *fifth* patchset around Qualcomm pinctrl in recent days:
+1. First round of TLMM fixes: merged
+2. LPASS fixes:
+   https://lore.kernel.org/linux-devicetree/20220927153429.55365-1-krzysztof.kozlowski@linaro.org/
+3. ARMv7 TLMM fixes:
+   https://lore.kernel.org/linux-devicetree/20221006124659.217540-1-krzysztof.kozlowski@linaro.org/
+4. ARMv8 remaining TLMM fixes:
+   https://lore.kernel.org/linux-devicetree/20220930192954.242546-1-krzysztof.kozlowski@linaro.org/
+5. Fifth clean - styles and using common TLMM schema: *THIS PATCHSET*
+
+Dependencies
+============
+1. Almost no dependencies - logically the bindings patch "dt-bindings: pinctrl:
+   qcom,sm8250: drop checks used in common TLMM" depends on patchset #3 above.
+   This is not a hard-dependency, everything will compile nicely, no warnings.
+
+2. dt-bindings are independent of DTS patches.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (34):
+  dt-bindings: pinctrl: qcom,mdm9607: drop ref to pinctrl.yaml
+  dt-bindings: pinctrl: qcom,sc7280: drop checks used in common TLMM
+  dt-bindings: pinctrl: qcom,sc8180x: drop ref to pinctrl.yaml
+  dt-bindings: pinctrl: qcom,sc8180x: drop checks used in common TLMM
+  dt-bindings: pinctrl: qcom,sc8280xp: drop checks used in common TLMM
+  dt-bindings: pinctrl: qcom,sm6115: use common TLMM schema
+  dt-bindings: pinctrl: qcom,sm6125: drop checks used in common TLMM
+  dt-bindings: pinctrl: qcom,sm6125: drop ref to pinctrl.yaml
+  dt-bindings: pinctrl: qcom,sm6350: drop ref to pinctrl.yaml
+  dt-bindings: pinctrl: qcom,sm6350: drop checks used in common TLMM
+  dt-bindings: pinctrl: qcom,sm6375-tlmm: drop ref to pinctrl.yaml
+  dt-bindings: pinctrl: qcom,sm6375-tlmm: drop checks used in common
+    TLMM
+  dt-bindings: pinctrl: qcom,sm8250: use common TLMM schema
+  dt-bindings: pinctrl: qcom,sm8350: drop ref to pinctrl.yaml
+  dt-bindings: pinctrl: qcom,sm8350: drop checks used in common TLMM
+  dt-bindings: pinctrl: qcom,sm8450: drop checks used in common TLMM
+  dt-bindings: pinctrl: qcom,mdm9607: minor style cleanups
+  dt-bindings: pinctrl: qcom,msm8909-tlmm: minor style cleanups
+  dt-bindings: pinctrl: qcom,qcm2290: minor style cleanups
+  dt-bindings: pinctrl: qcom,sdx65: minor style cleanups
+  dt-bindings: pinctrl: qcom,sc8180x: minor style cleanups
+  dt-bindings: pinctrl: qcom,sc8280xp: minor style cleanups
+  dt-bindings: pinctrl: qcom,sm6115: minor style cleanups
+  dt-bindings: pinctrl: qcom,sm6125: minor style cleanups
+  dt-bindings: pinctrl: qcom,sm6350: minor style cleanups
+  dt-bindings: pinctrl: qcom,sm6375: minor style cleanups
+  dt-bindings: pinctrl: qcom,sm8250: minor style cleanups
+  dt-bindings: pinctrl: qcom,sm8350: minor style cleanups
+  dt-bindings: pinctrl: qcom,sm8450: minor style cleanups
+  dt-bindings: pinctrl: qcom,sc7280-lpass-lpi: minor style cleanups
+  dt-bindings: pinctrl: qcom,sm8250-lpass-lpi: minor style cleanups
+  dt-bindings: pinctrl: qcom,sc8280xp-lpass-lpi: minor style cleanups
+  dt-bindings: pinctrl: qcom,sm8450-lpass-lpi: minor style cleanups
+  dt-bindings: pinctrl: qcom: adjust description
+
+ .../pinctrl/qcom,ipq6018-pinctrl.yaml         |  5 +-
+ .../pinctrl/qcom,mdm9607-pinctrl.yaml         | 16 ++---
+ .../pinctrl/qcom,msm8226-pinctrl.yaml         |  5 +-
+ .../bindings/pinctrl/qcom,msm8909-tlmm.yaml   | 11 ++-
+ .../pinctrl/qcom,msm8953-pinctrl.yaml         |  5 +-
+ .../pinctrl/qcom,qcm2290-pinctrl.yaml         | 10 ++-
+ .../qcom,sc7280-lpass-lpi-pinctrl.yaml        | 13 ++--
+ .../bindings/pinctrl/qcom,sc7280-pinctrl.yaml | 16 +----
+ .../pinctrl/qcom,sc8180x-pinctrl.yaml         | 27 +++----
+ .../qcom,sc8280xp-lpass-lpi-pinctrl.yaml      | 13 ++--
+ .../pinctrl/qcom,sc8280xp-pinctrl.yaml        | 22 ++----
+ .../bindings/pinctrl/qcom,sdx55-pinctrl.yaml  |  5 +-
+ .../bindings/pinctrl/qcom,sdx65-pinctrl.yaml  | 10 ++-
+ .../bindings/pinctrl/qcom,sm6115-pinctrl.yaml | 53 +++-----------
+ .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml | 30 +++-----
+ .../bindings/pinctrl/qcom,sm6350-pinctrl.yaml | 23 ++----
+ .../bindings/pinctrl/qcom,sm6375-tlmm.yaml    | 23 ++----
+ .../qcom,sm8250-lpass-lpi-pinctrl.yaml        | 16 ++---
+ .../bindings/pinctrl/qcom,sm8250-pinctrl.yaml | 70 ++++++-------------
+ .../bindings/pinctrl/qcom,sm8350-pinctrl.yaml | 23 ++----
+ .../qcom,sm8450-lpass-lpi-pinctrl.yaml        | 13 ++--
+ .../bindings/pinctrl/qcom,sm8450-pinctrl.yaml | 22 ++----
+ 22 files changed, 136 insertions(+), 295 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
