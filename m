@@ -2,78 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24C5F5F6FD1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 22:56:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79F445F7028
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 23:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbiJFU4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 16:56:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40400 "EHLO
+        id S229567AbiJFVZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 17:25:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230227AbiJFU4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 16:56:02 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C19CEABD61;
-        Thu,  6 Oct 2022 13:56:01 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id t79so3467918oie.0;
-        Thu, 06 Oct 2022 13:56:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DqeI+R+Wl9n6YmzBn1dp1u6WiX9q5YBC2Gudgl+n04c=;
-        b=RJR4KQO1GWUVYGah4zBrvcASMg9hgRQTAilTKDAkNiZfnmFjnp/H68tGvOs4K3QFBZ
-         QGUcWbvANTo8WPMvVi2PIJ74sNpzdnmKyjhCFQaTu83VeSFxqT0n/si36twMJTCPYkKq
-         5U/V/vAhyWdr/q/fn5FeR8YJFVyXiOwoksJQFvTQdn95h+aW8Pw+WK5ocPW9Wvl4Y94W
-         4wpfXWaClfSnXyCxXqZZlHZktv6SmgD6roEhUvhtxEvlu8Lsn71OTHarjZnAn4hMUgbe
-         is8MZMCNQtfbjIpyxt8TnT/gyxtCmBsRjjh2htq7OvZc6slHM3Trbi6uYmoSMHeBkaJn
-         1vbA==
-X-Gm-Message-State: ACrzQf10rR7dFXnCi08Y5UQILfUYrWy5uvJLUsYtkORNG6WhUGPxy/4B
-        rBaCkmMC3Q49HSastZB+nQ==
-X-Google-Smtp-Source: AMsMyM6X6LpwRO/LcfoVsg5SIuVkOuBwInx2Eda/zfB6hqIDLzgK7FK2p36n4ry++iDeYNau7IEijA==
-X-Received: by 2002:a05:6808:106:b0:354:2aa2:6d14 with SMTP id b6-20020a056808010600b003542aa26d14mr294097oie.86.1665089761039;
-        Thu, 06 Oct 2022 13:56:01 -0700 (PDT)
-Received: from robh_at_kernel.org ([2607:fb90:8a65:c536:245:842:a3a4:9017])
-        by smtp.gmail.com with ESMTPSA id u12-20020a056808114c00b00353f2786f44sm83144oiu.52.2022.10.06.13.55.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 13:56:00 -0700 (PDT)
-Received: (nullmailer pid 132399 invoked by uid 1000);
-        Thu, 06 Oct 2022 20:55:59 -0000
-Date:   Thu, 6 Oct 2022 15:55:59 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Maya Matuszczyk <maccraft123mc@gmail.com>
-Cc:     devicetree@vger.kernel.org,
+        with ESMTP id S229555AbiJFVZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 17:25:36 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B59CDA4864;
+        Thu,  6 Oct 2022 14:25:35 -0700 (PDT)
+Received: from notapiano.myfiosgateway.com (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 24154660230F;
+        Thu,  6 Oct 2022 22:25:32 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1665091533;
+        bh=aOnsKC+E1877mOO1xAIQ+QVFtrIRW/5ZxTE2f8db6Us=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IObwZSt+H9Y3Jf4eaRH+vlmt01qKOZsCrYrMTcenENW9UxdZTaEU9yHBD6l0Bi7fJ
+         Rnw9yo3is+Vigq5jnb0hwGA6sEKO69FO1PROUbB86Vxwyimdoh79QvD0f3hrXLwHMg
+         kwXu6S0ZvqApb7U8ueUu3v0GW2x8kHbjXJHC5Gls6MbxXdF86C/FyooWMF4n4JpS1h
+         NTQzvkUhxt7g64GMyU60Qawp78xRsJzvGpczQxzuB8cJXfubVxfUytb/wll56l4SK6
+         bCcfTbyJ0Tmzm7yOsrZA8q4dc7IHystR4LQt8MiQXuLM477Lzi0C6nb3egRgJNh6eL
+         B42i7GfKP1s9w==
+From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     kernel@collabora.com, Chen-Yu Tsai <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>, macroalpha@hotmail.com,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 2/3] dt-bindings: arm: rockchip: Add Odroid Go Advance
- Black Edition
-Message-ID: <166508975874.132347.8187333745126261016.robh@kernel.org>
-References: <20221006174519.46161-1-maccraft123mc@gmail.com>
- <20221006174519.46161-2-maccraft123mc@gmail.com>
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 0/5] MT8192 Asurada devicetree - Part 2
+Date:   Thu,  6 Oct 2022 17:25:23 -0400
+Message-Id: <20221006212528.103790-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221006174519.46161-2-maccraft123mc@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 06 Oct 2022 19:45:18 +0200, Maya Matuszczyk wrote:
-> Add entry for an updated revision of the Odroid Go Advance.
-> 
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+This series improves some more the support for MT8192 Asurada-based
+Chromebooks, by enabling some missing functionality, namely the internal
+display and audio.
+
+In addition to that, aliases are also added for the i2c and mmc nodes,
+which should've been done while adding the devices in the previous
+series.
+
+Some notable components that are still missing support are:
+- external display/HDMI audio (waiting for [1])
+- GPU (waiting for [2])
+
+As part of testing the audio, an UCM file was used, which has already
+been submitted upstream [3] (note that while that UCM configures HDMI,
+kernel support for HDMI audio will be added in a future series).
+
+[1] https://lore.kernel.org/all/20220622173605.1168416-1-pmalani@chromium.org/
+[2] https://lore.kernel.org/all/20221006115816.66853-1-angelogioacchino.delregno@collabora.com
+[3] https://github.com/alsa-project/alsa-ucm-conf/pull/217
+
+v1: https://lore.kernel.org/all/20220908171153.670762-1-nfraprado@collabora.com/
+
+Changes in v2:
+- Extended series to also include patches 4 and 5 enabling audio and
+  adding aliases
+- Adjusted display regulator hierarchy and voltages to reflect the
+  hardware
+
+Nícolas F. R. A. Prado (5):
+  arm64: dts: mediatek: asurada: Add display regulators
+  arm64: dts: mediatek: asurada: Add display backlight
+  arm64: dts: mediatek: asurada: Enable internal display
+  arm64: dts: mediatek: asurada: Enable audio support
+  arm64: dts: mediatek: asurada: Add aliases for i2c and mmc
+
+ .../boot/dts/mediatek/mt8192-asurada.dtsi     | 507 ++++++++++++++++++
+ 1 file changed, 507 insertions(+)
+
+-- 
+2.37.3
+
