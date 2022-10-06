@@ -2,241 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C0725F5D5D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 01:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 956205F5E22
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 02:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbiJEXxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 19:53:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
+        id S229543AbiJFA7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 20:59:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbiJEXxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 19:53:14 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA47B7C76C;
-        Wed,  5 Oct 2022 16:53:12 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id e20so177918qts.1;
-        Wed, 05 Oct 2022 16:53:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fUpQg31qLSafDWUcMgUao3TMT+hDdWkhTyRDacQF7uQ=;
-        b=aM4GmOwECMjw5l+6WPAkjD95HWW14o1oUdCNLymwXqDtwYnovROQVfse+/38It/BnU
-         bz6JXDMVSPU9QCZgwYQgcZsFFwnMunvi41/w24Vlyvjw9SRyFkfd0b+YF4Jupx/w1XJQ
-         5LoVH/pyiY3gnxBzZbsU5Zi8J55p7svv7P8f2rfYQpBpQzQwNOVa92u6d6U0yi1/NhjH
-         SPc8QzmVX8yfb/U3KAVJcgpp/Z2AmvFuQeGnkYk2/xGpfy+9EyyD8s8HkPJ2uSf6RLwY
-         y5ddeigsWn/6VaZsQdFBT9/RFRvv0zV9Njgqxi8xEwwl1/MV/WrrskuGmBsf56xNnCkV
-         hScQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:sender:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=fUpQg31qLSafDWUcMgUao3TMT+hDdWkhTyRDacQF7uQ=;
-        b=KY0onmYj37rVfCr9bpabpEMN2UTE81lQCGRXwvUPsiCIfoh7nkcnUpgkFHu2kuLnaH
-         bF+J5fa8fIX+/77IFSmimV4wyDdytQBzosp6ovwnzVSFsWc0bm30gJ4Il/VM0VBTDKv+
-         kIt6iHoqqlQe2udMHuiz3DWph/fGWVHqDLr9FPgLqkiYHkecXr8xBo2B/h7KPqSMeH1C
-         lOFiEsCqL8+//3mBr5/dNMeZI9y0hTPjfJyT3opXgGy0QKs1sqgAam7bdul2n2pzkmbu
-         vkSdhIkPCB30CYBKCIGkZLF5FTDqGknNFMJ0pWiY2QQvHJYdizGSrr7K4z++EBJBdBxM
-         WAng==
-X-Gm-Message-State: ACrzQf1Fy9G1K8LBvOmhzBZ8NuKom7E2hMF852xLkgwa+ywpHz2vrSnc
-        5H6OuXKN8Y9Yh2czdPb2aw==
-X-Google-Smtp-Source: AMsMyM7m3ZznC2N6vijBuwEzRYV9NyM1wkH4hn9XNVHWQUQZQGyIYol4VV1OoYMqoKHVzo1kf7YGHQ==
-X-Received: by 2002:a05:622a:1109:b0:35b:ae57:5a6c with SMTP id e9-20020a05622a110900b0035bae575a6cmr1572054qty.23.1665013991706;
-        Wed, 05 Oct 2022 16:53:11 -0700 (PDT)
-Received: from serve.minyard.net ([47.184.185.126])
-        by smtp.gmail.com with ESMTPSA id y17-20020ac83e91000000b0038d9555b580sm3526480qtf.44.2022.10.05.16.53.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Oct 2022 16:53:11 -0700 (PDT)
-Sender: Corey Minyard <tcminyard@gmail.com>
-Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:2d13:71e3:7ea0:219])
-        by serve.minyard.net (Postfix) with ESMTPSA id 61E83180015;
-        Wed,  5 Oct 2022 23:53:10 +0000 (UTC)
-Date:   Wed, 5 Oct 2022 18:53:06 -0500
-From:   Corey Minyard <minyard@acm.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        Wolfram Sang <wsa@kernel.org>,
+        with ESMTP id S229661AbiJFA7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 20:59:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE4F3D136;
+        Wed,  5 Oct 2022 17:59:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8B0E7617F4;
+        Thu,  6 Oct 2022 00:59:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E45E2C43143;
+        Thu,  6 Oct 2022 00:59:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665017988;
+        bh=fQf/JNM+xDB7AfCqM55geVsCDG+Rba+PXIX7GBlJE7Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Cwu6IZ1HIQu47d3LN1vv1lNCo7jtddXsCYuldGsT8WK1j4MLVxhmL41qjOYGA2GuD
+         fStm8XGomGHb41sTYh1xuR8wCs8T1gxjB5BnwMOjqein15P2NWzl+THLjr/rJe5my1
+         2/kBc05X1W5aktR71xDXJh+YCLE4MWIPvY4OmIl9Uty1jdwGOs7HwkU7NGRvKuNtYu
+         avzsNp+EJSXPnw6efqvOkPQAIbvsYuRUvj1ZkiHP/lnt0uHwUCvVFgRS0sUJVq/hpo
+         P4Fwmn/H6k4VBzfceSM1R2IdmdNTvfW5wNY/hOSt3rrzp1sNwN0CS5ueQk0Uybdgaf
+         VCqa1kru1DR5w==
+Received: by mail-oi1-f174.google.com with SMTP id w70so442864oie.2;
+        Wed, 05 Oct 2022 17:59:48 -0700 (PDT)
+X-Gm-Message-State: ACrzQf2t4lvdLk9sovd+Vi3slst9aJ1ECVgiI08eVbaBULDv0KXs9QI6
+        mHSVhufs0nSA9QlUrkF6exmP76ma9d20FSjx7D4=
+X-Google-Smtp-Source: AMsMyM7d+v+3xgGmPgvQD1qK0/F/9XFNSgoIUtuODUetfgEaCPybGyk6k711U6WxHhxo8jgLAvZdeSTkOZSUsUlQ+lA=
+X-Received: by 2002:a05:6808:151f:b0:350:1b5e:2380 with SMTP id
+ u31-20020a056808151f00b003501b5e2380mr3665247oiw.112.1665017987935; Wed, 05
+ Oct 2022 17:59:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221003223222.448551-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAJF2gTQuSX9idEyNmGRwpAsSP8V=+QKQ7UAp28T-seM8rbkwOA@mail.gmail.com>
+ <CA+V-a8smkDmQbz76sTA5XfUm7bkY4Ee-L5xYW+-xRWkE1TYiAw@mail.gmail.com>
+ <CAJF2gTQ4G-j3p_pHvVQ82R2DFQZq70xgE3ZhoRkxiSzrHnU2og@mail.gmail.com> <CA+V-a8tLYT0541FNo_o-sTsV7ywwnGTRtv6ropVu+0Wd-PsM6A@mail.gmail.com>
+In-Reply-To: <CA+V-a8tLYT0541FNo_o-sTsV7ywwnGTRtv6ropVu+0Wd-PsM6A@mail.gmail.com>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Thu, 6 Oct 2022 08:59:35 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTQ9N5tyYB46eaMJ=Z0V7pm9TxFAXQ1qxLXLqj2C9zP2Ng@mail.gmail.com>
+Message-ID: <CAJF2gTQ9N5tyYB46eaMJ=Z0V7pm9TxFAXQ1qxLXLqj2C9zP2Ng@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 2/2] soc: renesas: Add L2 cache management for
+ RZ/Five SoC
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        thang@os.amperecomputing.com
-Subject: Re: [PATCH v10 0/3] Add SSIF BMC driver
-Message-ID: <Yz4Y4piC+e1mftLi@minyard.net>
-Reply-To: minyard@acm.org
-References: <20221004093106.1653317-1-quan@os.amperecomputing.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221004093106.1653317-1-quan@os.amperecomputing.com>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 04, 2022 at 04:31:03PM +0700, Quan Nguyen wrote:
-> This series add support the SSIF BMC driver which is to perform in-band
-> IPMI communication with their host in management (BMC) side.
-> 
-> SSIF BMC driver in this series is tested with Aspeed AST2500 and AST2600
+On Wed, Oct 5, 2022 at 11:03 PM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+>
+> Hi Guo,
+>
+> On Wed, Oct 5, 2022 at 3:23 PM Guo Ren <guoren@kernel.org> wrote:
+> >
+> > On Wed, Oct 5, 2022 at 8:54 PM Lad, Prabhakar
+> > <prabhakar.csengg@gmail.com> wrote:
+> > >
+> > > Hi Guo,
+> > >
+> > > On Wed, Oct 5, 2022 at 2:29 AM Guo Ren <guoren@kernel.org> wrote:
+> > > >
+> > > > On Tue, Oct 4, 2022 at 6:32 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > > > >
+> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > >
+> > > > > On the AX45MP core, cache coherency is a specification option so it may
+> > > > > not be supported. In this case DMA will fail. As a workaround, firstly we
+> > > > > allocate a global dma coherent pool from which DMA allocations are taken
+> > > > > and marked as non-cacheable + bufferable using the PMA region as specified
+> > > > > in the device tree. Synchronization callbacks are implemented to
+> > > > > synchronize when doing DMA transactions.
+> > > > >
+> > > > > The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
+> > > > > block that allows dynamic adjustment of memory attributes in the runtime.
+> > > > > It contains a configurable amount of PMA entries implemented as CSR
+> > > > > registers to control the attributes of memory locations in interest.
+> > > > >
+> > > > > Below are the memory attributes supported:
+> > > > > * Device, Non-bufferable
+> > > > > * Device, bufferable
+> > > > > * Memory, Non-cacheable, Non-bufferable
+> > > > > * Memory, Non-cacheable, Bufferable
+> > > > > * Memory, Write-back, No-allocate
+> > > > > * Memory, Write-back, Read-allocate
+> > > > > * Memory, Write-back, Write-allocate
+> > > > > * Memory, Write-back, Read and Write-allocate
+> > > > Seems Svpbmt's PMA, IO, and NC wouldn't fit your requirements, could
+> > > > give a map list of the types of Svpbmt? And give out what you needed,
+> > > > but Svpbmt can't.
+> > > >
+> > > Sorry I didn't get what you meant here, could you please elaborate.
+> > I know there is no pbmt in AX45MP, I am just curious how many physical
+> > memory attributes you would use in linux? It seems only one type used
+> > in the series:
+> > cpu_nocache_area_set -> sbi_ecall(SBI_EXT_ANDES,
+> > SBI_EXT_ANDES_SET_PMA, offset, vaddr, size, entry_id, 0, 0);
+> >
+> Yes, currently we only use "Memory, Non-cacheable, Bufferable". I was
+> wondering if we could send these options as flags from DT something
+> like below so that it's not hard coded in the code.
+>
+> /* PMA config */
+> #define AX45MP_PMACFG_ETYP                GENMASK(1, 0)
+> /* OFF: PMA entry is disabled */
+> #define AX45MP_PMACFG_ETYP_DISABLED            0
+> /* Naturally aligned power of 2 region */
+> #define AX45MP_PMACFG_ETYP_NAPOT            3
+>
+> #define AX45MP_PMACFG_MTYP                GENMASK(5, 2)
+> /* Device, Non-bufferable */
+> #define AX45MP_PMACFG_MTYP_DEV_NON_BUF            (0 << 2)
+> /* Device, bufferable */
+> #define AX45MP_PMACFG_MTYP_DEV_BUF            (1 << 2)
+> /* Memory, Non-cacheable, Non-bufferable */
+> #define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_NON_BUF    (2 << 2)
+> /* Memory, Non-cacheable, Bufferable */
+> #define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF        (3 << 2)
+> /* Memory, Write-back, No-allocate */
+> #define AX45MP_PMACFG_MTYP_MEM_WB_NA            (8 << 2)
+> /* Memory, Write-back, Read-allocate */
+> #define AX45MP_PMACFG_MTYP_MEM_WB_RA            (9 << 2)
+> /* Memory, Write-back, Write-allocate */
+> #define AX45MP_PMACFG_MTYP_MEM_WB_WA            (10 << 2)
+> /* Memory, Write-back, Read and Write-allocate */
+> #define AX45MP_PMACFG_MTYP_MEM_WB_R_WA            (11 << 2)
+>
+> /* AMO instructions are supported */
+> #define AX45MP_PMACFG_NAMO_AMO_SUPPORT            (0 << 6)
+> /* AMO instructions are not supported */
+> #define AX45MP_PMACFG_NAMO_AMO_NO_SUPPORT        (1 << 6)
+>
+>
+>                 pma-regions = <0x0 0x00000000 0x0 0x10000000 0x0
+> AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
+> AX45MP_PMACFG_NAMO_AMO_SUPPORT>,
+>                               <0x0 0x10000000 0x0 0x04000000 0x0
+> AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
+> AX45MP_PMACFG_NAMO_AMO_SUPPORT >,
+>                               <0x0 0x20000000 0x0 0x10000000 0x0
+> AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
+> AX45MP_PMACFG_NAMO_AMO_SUPPORT>,
+>                               <0x0 0x58000000 0x0 0x08000000 0x0
+> AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
+> AX45MP_PMACFG_NAMO_AMO_SUPPORT>;
+>
+> Does the above sound good?
+I've no idea. But for working around, I would give Acked-by.
 
-I have applied the two IPMI patches to the IPMI tree for 6.2.  Thanks
-for sticking with this.
+>
+> > I'm not sure how you make emmc/usb/gmac's dma ctrl desc work around
+> > without pbmt when they don't have cache coherency protocol. Do you
+> > need to inject dma_sync for desc synchronization? What's the effect of
+> > dynamic PMA in the patch series?
+> >
+> Currently we have setup the pma regions as below:
+>
+> l2cache: cache-controller@13400000 {
+>                 compatible = "andestech,ax45mp-cache", "cache";
+>                 cache-size = <0x40000>;
+>                 cache-line-size = <64>;
+>                 cache-sets = <1024>;
+>                 cache-unified;
+>                 reg = <0x0 0x13400000 0x0 0x100000>;
+>                 pma-regions = <0x0 0x00000000 0x0 0x10000000 0x0 0xf>,
+>                               <0x0 0x10000000 0x0 0x04000000 0x0 0xf>,
+>                               <0x0 0x20000000 0x0 0x10000000 0x0 0xf>,
+>                               <0x0 0x58000000 0x0 0x08000000 0x0 0xf>;
+>                 interrupts = <SOC_PERIPHERAL_IRQ(476, IRQ_TYPE_LEVEL_HIGH)>;
+>         };
+>
+> The last pma-regions entry 0x58000000 is a DDR location this memory
+> locations is marked as shared DMA pool with below in DT,
+>
+>     reserved-memory {
+>         #address-cells = <2>;
+>         #size-cells = <2>;
+>         ranges;
+>
+>         reserved: linux,cma@58000000 {
+>             compatible = "shared-dma-pool";
+>             no-map;
+>             linux,dma-default;
+>             reg = <0x0 0x58000000 0x0 0x08000000>;
+>         };
+>     };
+>
+> And for ARCH_R9A07G043 we automatically select DMA_GLOBAL_POOL, so the
+> IP blocks (emmc/usb/gmac's) requesting DMA'able memory will
+> automatically fall into this region which is non-cacheable but
+> bufferable (set in PMA) and rest everything is taken care by clean and
+> flush callbacks. We dont have  inject dma_sync for desc
+> synchronization for existing drivers (which are shared with Renesas
+> RZ/G2L family)
+Better than I thought :). The "non-cacheable but bufferable" is "weak
+order," also raising the bufferable signal of AXI transactions. Right?
+But some drivers think ctrl desc is strong order without bufferable
+and don't put any mb() before/after IO control operations.
 
--corey
+>
+> Cheers,
+> Prabhakar
 
-> 
-> Discussion for v9:
-> https://lore.kernel.org/lkml/20220929080326.752907-1-quan@os.amperecomputing.com/
-> 
-> v10:
->   + Issuing RxCmdLast command for all errnos                   [Wolfram]
-> 
-> v9:
->   + Fix dependence with I2C subsystem                            [Randy]
->   + Update missing Reviewed-by tag from v7                         [Rob]
->   + Remove useless error handling path                              [CJ]
->   + Update comment for SSIF_ABORTING state                          [CJ]
->   + Fix "unknown type name --u8"                     [kernel test robot]
->   + Update commit message and add comment to explain
->     the effect of issuing RxCmdLast when Slave busy               [Quan]
-> 
-> v8:
->   + Dropped ssif_bmc.h file and move its content to ssif_bmc.c   [Corey]
->   + Add struct ipmi_ssif_msg to include/uapi/linux/ipmi_ssif_bmc.h
->   header file                                                    [Corey]
->   + Use unsigned int for len field in struct ipmi_ssif_msg       [Corey]
->   + Avoid using packed structure                                 [Corey]
->   + Add comment to clarify the logic flow                        [Corey]
->   + Fix multipart read end with len=0 issue                      [Corey]
->   + Refactor code handle the too big request message             [Corey]
->   + Fix code indentation issue                                   [Corey]
->   + Clean buffer before receiving request to avoid garbage        [Quan]
->   + Fix the license to SPDX-License-Identifier: GPL-2.0-only      [Quan]
-> 
-> v7:
->   + Remove unnecessary del_timer() in response_timeout()         [Corey]
->   + Change compatible string from "ampere,ssif-bmc" to "ssif-bmc"  [Jae]
->   + Dropped the use of ssif_msg_len() macro, use the len directly [Quan]
->   + Solve possible issue if both response timer and ssif_bmc_write()
->   occurred at the same time                                      [Corey]
->   + Fix wrong return type of ssif_bmc_poll()         [kernel robot test]
->   + Refactor and introduce ssif_part_buffer struct to replace the
->   response_buf to manage each send/receive part of ssif           [Quan]
->   + Change SSIF_BAD_SMBUS state to SSIF_ABORTING state           [Corey]
->   + Support abort feature to skip the current bad request/response and
->   wait until next new request                                    [Corey]
->   + Refactor the PEC calculation to avoid the re-calculate the PEC on
->   each I2C_SLAVE_WRITE_RECEIVED event                             [Quan]
->   + Fix the use of error-proned idx                              [Corey]
->   + Defer the test for valid SMBus command until the read/write part
->   is determined                                                   [Quan]
->   + Change/split unsupported_smbus_cmd() to
->   supported_[write|read]_cmd()                                   [Corey]
->   + Abort the request if somehow its size exceeded 255 bytes      [Quan]
-> 
-> v6:
->   + Drop the use of slave_enable()                             [Wolfram]
->   + Make i2c-aspeed to issue RxCmdLast command on all
->   I2C_SLAVE_WRITE_REQUESTED event to assert NAK when slave busy   [Quan]
->   + Make i2c slave to return -EBUSY when it's busy                [Quan]
->   + Drop the aborting feature as return Completion Code 0xFF may stop
->   host to retry and make ipmi_ssif.so fails to load               [Quan]
->   + Add timer to recover slave from busy state when no response   [Quan]
->   + Clean request/response buffer appropriately                   [Quan]
->   + Add some minor change on error and warning messages           [Quan]
-> 
-> v5:
->   + Correct the patches order to fix the bisect issue found by
->   kernel build robot
-> 
-> v4:
->   + Fix recursive spinlock                                      [Graeme]
->   + Send response with Completion code 0xFF when aborting         [Quan]
->   + Fix warning with dt_binding_check                              [Rob]
->   + Change aspeed-ssif-bmc.yaml to ssif-bmc.yaml                  [Quan]
->   + Added bounding check on SMBus writes and the whole request     [Dan]
->   + Moved buffer to end of struct ssif_bmc_ctx to avoid context
->     corruption if somehow buffer is written past the end           [Dan]
->   + Return -EINVAL if userspace buffer too small, don't
->     silence truncate                                       [Corey, Joel]
->   + Not necessary to check NONBLOCK in lock                      [Corey]
->   + Enforce one user at a time                                    [Joel]
->   + Reject write with invalid response length from userspace     [Corey]
->   + Add state machines for better ssif bmc state handling         [Quan]
->   + Drop ssif_bmc_aspeed.c and make ssif_bmc.c is generic
->     SSIF BMC driver                                               [Quan]
->   + Change compatible string "aspeed,ast2500-ssif-bmc" to
->     "ampere,ssif-bmc"                                             [Quan]
->   + Toggle Slave enable in i2c-aspeed to turn on/off slave mode   [Ryan]
->   + Added slave_enable() to struct i2c_algorithm to control
->     slave mode and to address the recursive spinlock      [Graeme, Ryan]
->   + Abort current request with invalid SMBus write or
->     invalid command                                               [Quan]
->   + Abort all request if there is pending response                [Quan]
->   + Changed validate_pec() to validate_request()                  [Quan]
->   + Add unsupported_smbus_cmd() to handle unknown SMBus command   [Quan]
->   + Print internal state string for ease investigating issue      [Quan]
->   + Move to READY state on SLAVE_STOP event                       [Quan]
->   + Change initilize_transfer() to process_smbus_cmd()            [Quan]
->   + Introduce functions for each slave event                      [Quan]
-> 
-> v3:
->   + Switched binding doc to use DT schema format                   [Rob]
->   + Splited into generic ssif_bmc and aspeed-specific      [Corey, Joel]
->   + Removed redundant license info                                [Joel]
->   + Switched to use traditional if-else                           [Joel]
->   + Removed unused ssif_bmc_ioctl()                               [Joel]
->   + Made handle_request()/complete_response() to return void      [Joel]
->   + Refactored send_ssif_bmc_response() and
->   receive_ssif_bmc_request()                                     [Corey]
->   + Remove mutex                                                 [Corey]
->   + Use spin_lock/unlock_irqsave/restore in callback             [Corey]
->   + Removed the unnecessary memset                               [Corey]
->   + Switch to use dev_err()                                      [Corey]
->   + Combine mask/unmask two interrupts together                  [Corey]
->   + Fixed unhandled Tx done with NAK                              [Quan]
->   + Late ack'ed Tx done w/wo Ack irq                              [Quan]
->   + Use aspeed-specific exported aspeed_set_slave_busy() when
->   slave busy to fix the deadlock                 [Graeme, Philipp, Quan]
->   + Clean buffer for last multipart read                          [Quan]
->   + Handle unknown incoming command                               [Quan]
-> 
-> v2:
->   + Fixed compiling error with COMPILE_TEST for arc
-> 
-> Quan Nguyen (3):
->   ipmi: ssif_bmc: Add SSIF BMC driver
->   bindings: ipmi: Add binding for SSIF BMC driver
->   i2c: aspeed: Assert NAK when slave is busy
-> 
->  .../devicetree/bindings/ipmi/ssif-bmc.yaml    |  38 +
->  drivers/char/ipmi/Kconfig                     |  10 +
->  drivers/char/ipmi/Makefile                    |   1 +
->  drivers/char/ipmi/ssif_bmc.c                  | 873 ++++++++++++++++++
->  drivers/i2c/busses/i2c-aspeed.c               |   9 +-
->  include/uapi/linux/ipmi_ssif_bmc.h            |  18 +
->  6 files changed, 948 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
->  create mode 100644 drivers/char/ipmi/ssif_bmc.c
->  create mode 100644 include/uapi/linux/ipmi_ssif_bmc.h
-> 
-> -- 
-> 2.35.1
-> 
+
+
+-- 
+Best Regards
+ Guo Ren
