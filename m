@@ -2,231 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E141F5F610E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 08:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD8775F6115
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 08:35:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiJFGa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 02:30:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55024 "EHLO
+        id S229453AbiJFGfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 02:35:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbiJFGa5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 02:30:57 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD22A4E636
-        for <devicetree@vger.kernel.org>; Wed,  5 Oct 2022 23:30:54 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id k2so2365915ejr.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Oct 2022 23:30:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=E5zgckpqsR7kGRebj1WoqapOqCyfPYoLK+0nxo0YmRg=;
-        b=IzdH9hbuhhKVVv/TqcfThDmJToOdCgKHWrCq5xzHeuHiIVrhrNBxWUE3r7XoCcfP6C
-         Tg7DI/aRtBPtd381HQ0NrGuDhm16brD5p+2WKyGGPoTpzk3Iiynnu05VM1jVeQp8JsAa
-         tTMxh6HTCCC+dn11a2zzjkuRhvul/kFstfHAgrzcGCqTzdB5dftaalmr3qw03+jHMUuB
-         Ek+V9yw9vHH2YeBF1aA79blOJT4tDoUnUMumL7j46TWZXvr7LyTkWaTgjYB9k1UqIQyy
-         eHEpcVskNYQxEbaDvA+A+yNu8WpW2j8g6YZqK3nn9Ke5Jdbc9f9r8eIQ58+R8INDkWDm
-         3bGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=E5zgckpqsR7kGRebj1WoqapOqCyfPYoLK+0nxo0YmRg=;
-        b=qlOTC7C1hVOIBXvqKVihsHaJvTMb8az18gMQVY+xz/czB3TJO00CzAa4mAOPDYGBha
-         HuWN0bcnkhYs0aWnZq0/bL6nqCse7BzvnL8S7jeoA8FK3W9glSN+9UylWE8q3zOSeaG3
-         25tQvL9Tnuls6DOg5thKcowoDLUvjezTXId1V37QmPGVYuis+ANy+APMhJi6FOH5nFAv
-         CBC55ONcgLS1JPgT1rG3Xevr/ZzysVPwDpgEnGy8ht8N2pqMbCLQuC2atf9uLrNzqVI+
-         l8M903vZAVVPVOg7ZtE2UBfBQvgJ/AKMTbHWq44ItV0aboBVPZ+leU68nkM5x+y40GxT
-         yL2A==
-X-Gm-Message-State: ACrzQf3c+VqmAcFyXNpCXSZ/Zq2OHpqNM/9Lg0jjC1JPCe2/aiZ1fuK3
-        ybQouE/+zgLgt23tgfppqt/vBdSa5MSvov2UIXdtrX7EeLY=
-X-Google-Smtp-Source: AMsMyM4kgiY7kYzss5XNWBII5NQwLZc9xH4OQDmzGOuyTS+Wtd+QLTUBJEIMjHJRtjlR4xF00eyN+luoNu/FquSYzJ4=
-X-Received: by 2002:a17:906:db03:b0:741:337e:3600 with SMTP id
- xj3-20020a170906db0300b00741337e3600mr2700263ejb.343.1665037853179; Wed, 05
- Oct 2022 23:30:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220922050718.1079651-1-Naresh.Solanki@9elements.com>
- <20220922050718.1079651-2-Naresh.Solanki@9elements.com> <3003378d-4283-6c05-50bf-29178c97ef8e@linaro.org>
- <a55d973b-4504-a104-a889-f9b7e264c1e9@roeck-us.net>
-In-Reply-To: <a55d973b-4504-a104-a889-f9b7e264c1e9@roeck-us.net>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Thu, 6 Oct 2022 12:00:42 +0530
-Message-ID: <CABqG17hprsbHkDnvuXkQaaJdbuNgkuZD_G8L7M9HX=w5bYo8rQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add binding for max6639
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        with ESMTP id S229508AbiJFGfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 02:35:42 -0400
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2074.outbound.protection.outlook.com [40.107.117.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF9D4BA53;
+        Wed,  5 Oct 2022 23:35:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NybPRWPWeSsvFHffjPMQEOJ1eOmrms9NN5+HBT/FFzbrWtvyzeOXBkMxiOlD1uA5RnynnfGIRr1q13IPVFkVdqg0fWnF9MQpnymnjdgaa7NhxC8K20TZg7pM98R93NfdO0/vJ5e+pvxxKzNlAProkxVTom+4SNQhD6Mi9aIBY/xurFcIl7Ig0QTgEyfZplRoyN9RhjZOMwcbC8Tl6OvriKNcgua4GHWeUXrO5tyaw9kippjSEz3zH3CehZTNUeQBSQHNpBjq6fEBOTDlgdcETsW3p34Ec0XPekNDyIZUh7N7npLDfiyI9g7jD6R4pFbGHk9/QbjoZCGWbPvJurtxTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TdRw8j6ewhSomUtXlL4QwvKdzvU0UfPN9ERnVl+oVfs=;
+ b=WhqOrGYWqVnLYYdFDybwi9e9rhPkQ6919gSu8uoPr5w3QJD+eySKnmgxbI0FpHv1UzIRccLHw9QxsmMnAfTBB3xq2LU2zxYlhwvgV3XtJ7iIyO3T8O3DrUN+Fn5rUnprM+z3wEG2r3GzXnRO8Hak3LONt1DvO7IX2IZcquEC8sS4YydXELnupbU8Qvp63yICqfcHXsabjQbCDMvlQ+bSboyibBqekU2NfF112KzAsepzPzgux3ESZZKPF4cDpSn+9O+x6p2dWmZXughFp4PDmuj5iWI+b7XiLwU4y0+7kNSYMUrl1Bnh8VEOBhAQyveCkZBS8f5uhCDBEDlB6CLAVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=linaro.or smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TdRw8j6ewhSomUtXlL4QwvKdzvU0UfPN9ERnVl+oVfs=;
+ b=mLgJulAJNhPcHu6CbVU1rOAaQm7Da3SUWyWl/s2W5jINNHwDC6kIcRanP/lcwdRoT2rzEv0U7cenrDLuk8NzJ4e2qUURrH73bkiavm9Z1+ofQcXa3poJr7MwSK4+kV6ljGu4yOy0LGAlPloM1fd3ghH3+nmo0yoooQ2YseMBOG/77v4tRFx6ZocM1mDiGSMjqSs+hUCIbj45RsH/GaZI+qfnJUcZpO2d4ib+XI7H3a3CDbi90wr+EeMJldJj315zmbNfaic2r5S2atclE6eIzlk4fU/ajprpTlSM1FAxa5nlm++dyXMJgtpOIUyZg9OaHQpraOd8ocOPcPCKoWP/iw==
+Received: from TY2PR01CA0011.jpnprd01.prod.outlook.com (2603:1096:404:a::23)
+ by TY0PR04MB6493.apcprd04.prod.outlook.com (2603:1096:400:274::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.32; Thu, 6 Oct
+ 2022 06:35:37 +0000
+Received: from TYZAPC01FT018.eop-APC01.prod.protection.outlook.com
+ (2603:1096:404:a:cafe::ec) by TY2PR01CA0011.outlook.office365.com
+ (2603:1096:404:a::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.17 via Frontend
+ Transport; Thu, 6 Oct 2022 06:35:37 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=Wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=Wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of Wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ TYZAPC01FT018.mail.protection.outlook.com (10.118.152.93) with Microsoft SMTP
+ Server id 15.20.5709.10 via Frontend Transport; Thu, 6 Oct 2022 06:35:36
+ +0000
+From:   Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+To:     krzysztof.kozlowski@linaro.or
+Cc:     patrick@stwcx.xyz, garnermic@fb.com,
+        Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Roland Stigge <stigge@antcom.de>, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 1/2] greatlakes: dts: Add Facebook greatlakes (AST2600) BMC
+Date:   Thu,  6 Oct 2022 14:35:24 +0800
+Message-Id: <20221006063527.2007802-1-Delphine_CC_Chiu@Wiwynn.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZAPC01FT018:EE_|TY0PR04MB6493:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 9312a793-7a24-4b1b-f3e0-08daa764fae9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SVHyuylit35KwXZ4L/5ebEwkZikHiaYX5we7+Ao9SH8Mqnq5gDBC9dGFkAYYMxKMvgrQmOENPChAxKdymxrBxoCii79bPEaP+thX1scSQJlUlWYG0k0S819rqrbGkrO8RoJJ/N/5jbGRI8nmmuGJLTop/sNBy/wrI6VkYCaVIB+Tbm7rd5s3LiHXIspX0ST/QmO9KBjtH7D2gE0OKAzYFu2ETlaGcuy8yELugLdgJMYm+RQ5D5WrwnoAEbzsNH+QduCWB2n1BTax17GXgdq9CcxPUFDEqFgbdWC0vauZuChHJsrponw/dv5+y4N/0v4tz+kvLqiI+gSQVnzA4B8BeWI83zgAP6IDrGMgV5b9GwesQvBZLUn6vLB5Dw4QivVckNDwy4LMMMKctzfTYI69+8uWQnqK6P9P6UdpemjD2a1698g3Zkyf9/BbYO7ptdd3aBy/NL9ngsZMWzsIl+lMbOLwC9wG9ttcdtFEYcDMJPvXAyDhTxG7rr/RViL4GpSBfe608G7IxIoAlzQsN1OwWfItoHPjB42zcZWNuVI7J94iIfSHw+cldkKE0dvJfUEOPkoiRU6joHZlzqXkU8FyHoz0XnuPaumNF36B8wbYFdp/aW5qh70oCXEaxf05qEdDc66OCR9nQowP2VLUmdQm9TW+7aXuRX+9olIQlFREiLH6qICHy8TL3tGZ3aoqnEYGT882fxsPHAP+eOD6iNhOg6HdvyMa/dgzVmge+dhwapkLF+mlZPnFtkS3bU5P2vS7
+X-Forefront-Antispam-Report: CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230022)(6069001)(4636009)(346002)(39860400002)(376002)(136003)(396003)(47680400002)(451199015)(36840700001)(46966006)(956004)(2906002)(47076005)(1076003)(82310400005)(9316004)(4326008)(6506007)(7416002)(86362001)(41300700001)(8676002)(82740400003)(36756003)(6666004)(356005)(40480700001)(336012)(2616005)(5660300002)(186003)(478600001)(36860700001)(81166007)(70206006)(54906003)(6916009)(6486002)(4744005)(6512007)(26005)(36906005)(316002)(8936002)(36736006)(70586007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2022 06:35:36.8614
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9312a793-7a24-4b1b-f3e0-08daa764fae9
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource: TYZAPC01FT018.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR04MB6493
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_H2,SCC_THREE_WORD_MONTY,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Guenter, to summarize below properties that can be configured
-based on input from
-fan datasheet:
-pwm controlled fan:
-1.  max-rpm : Defines maximum rpm the fan supports
-2.  tach-pulse/pulse-per-revolution( also referred as prescale) :
-Determines the number of
- pulses received from the sensor/tach pin of fan per revolution.
-3.  rpm-init (also ref. as fan-target-rpm): Determines the fan rpm
-driver needs to configure
-during probe.
-4. pwm-input-polarity(normal or inverse) : Specifies fan pwm input
-polarity as specified in
- fan datasheet. a fan controller driver can use this data to configure
-pwm output polarity
-accordingly during driver probe.
+Document the new compatibles used on Facebook Greatlakes
 
-For a DC output controlled fan, voltage across fan is controlled to control=
- rpm.
-Below is what I can think of:
-5. voltage-range : Specifies valid voltage range for rpm control
-example for 3V to 5V range:
-     voltage-range=3D<3000 5000>;
+Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+---
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Above mentioned properties are within the scope of fan.
-Fan controllers like max6639/max6650 etc can have additional
-properties specific to the
-feather supported by the chip.
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index 1895ce9de461..f12b94ddb9ec 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -75,6 +75,7 @@ properties:
+               - facebook,cloudripper-bmc
+               - facebook,elbert-bmc
+               - facebook,fuji-bmc
++              - facebook,greatlakes-bmc
+               - ibm,everest-bmc
+               - ibm,rainier-bmc
+               - ibm,tacoma-bmc
+-- 
+2.25.1
 
-Let me know if I can go ahead with this.
-
-Thanks,
-Naresh Solanki
-
-Regards,
-Naresh Solanki
-
-
-
-9elements GmbH, Kortumstra=C3=9Fe 19-21, 44787 Bochum, Germany
-Email:  naresh.solanki@9elements.com
-Mobile:  +91 9538631477
-
-Sitz der Gesellschaft: Bochum
-Handelsregister: Amtsgericht Bochum, HRB 17519
-Gesch=C3=A4ftsf=C3=BChrung: Sebastian Deutsch, Eray Basar
-
-Datenschutzhinweise nach Art. 13 DSGVO
-
-
-On Thu, 6 Oct 2022 at 00:10, Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 9/21/22 23:34, Krzysztof Kozlowski wrote:
-> > On 22/09/2022 07:07, Naresh Solanki wrote:
-> >> From: Marcello Sylvester Bauer <sylv@sylv.io>
-> >>
-> >> Add Devicetree binding documentation for Maxim MAX6639 temperature
-> >> monitor with PWM fan-speed controller.
-> >>
-> >> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> >> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> >> ---
-> >>   .../bindings/hwmon/maxim,max6639.yaml         | 112 ++++++++++++++++=
-++
-> >>   1 file changed, 112 insertions(+)
-> >>   create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max=
-6639.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yam=
-l b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> >> new file mode 100644
-> >> index 000000000000..c845fb989af2
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> >> @@ -0,0 +1,112 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +
-> >> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Maxim max6639
-> >> +
-> >> +maintainers:
-> >> +  - Roland Stigge <stigge@antcom.de>
-> >
-> > Ack from Roland is needed here.
-> >
-> >> +
-> >> +description: |
-> >> +  The MAX6639 is a 2-channel temperature monitor with dual, automatic=
-, PWM
-> >> +  fan-speed controller.  It monitors its own temperature and one exte=
-rnal
-> >> +  diode-connected transistor or the temperatures of two external diod=
-e-connected
-> >> +  transistors, typically available in CPUs, FPGAs, or GPUs.
-> >> +
-> >> +  Datasheets:
-> >> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - maxim,max6639
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  '#address-cells':
-> >> +    const: 1
-> >> +
-> >> +  '#size-cells':
-> >> +    const: 0
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >> +  - "fan@0"
-> >> +  - "fan@1"
-> >> +
-> >> +additionalProperties: false
-> >> +
-> >> +patternProperties:
-> >
-> > This goes after properties.
-> >
-> >> +  "^fan@[0-1]$":
-> >> +    type: object
-> >> +    description: |
-> >> +      Represents the two fans and their specific configuration.
-> >> +
-> >> +    properties:
-> >> +      reg:
-> >> +        description: |
-> >> +          The fan number.
-> >> +        items:
-> >
-> > Skip items.
-> >
-> >> +          minimum: 0
-> >> +          maximum: 1
-> >> +
-> >> +      pwm-polarity:
-> >
-> > Why is this property of fan, not of PWM source?
-> >
->
-> The chip provides pwm output to the fan. That typical for fan
-> controller chips. Typically they also have options to configure
-> the pwm frequency and either pwm or DC output (max6639 does not
-> have the latter option).
->
-> Guenter
