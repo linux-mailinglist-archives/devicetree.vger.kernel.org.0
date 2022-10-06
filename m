@@ -2,71 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A245F621C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 09:53:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6CD05F622C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 09:57:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230423AbiJFHxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 03:53:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60568 "EHLO
+        id S230264AbiJFH5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 03:57:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230292AbiJFHxa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 03:53:30 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A73B8FD6C
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 00:53:29 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id p5so1253086ljc.13
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 00:53:28 -0700 (PDT)
+        with ESMTP id S230241AbiJFH5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 03:57:36 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 726C527CD6
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 00:57:34 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id r14so1542826lfm.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 00:57:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=gbl2sqAncpllKGuOCbPF4knZ+D81ldDQn9qCCcipX7g=;
-        b=KJikq2u4YaMAiclDPOqBu7az8d5be3+5ghPcv1oUClRdCp8sawmrjfcQNiVxvJJO0S
-         I/Io/7dkU86k8naUE/KMJZyoeV8W3QWHUFhzFcaPkbYEWjV/r7PsLE2+DiCuVt9S9Tmq
-         zotrYr7KXIO+tZ6DZcTIP6kICfHlNfSQTSzh1RG1Ai1pfq6d+/WpFlQpHQLek6iujPz4
-         yIes+husiLc21yJjNMqgchyGvXpweIFAXxmAD0GONQEqIhs57xjpFH8CxFExds15GCtW
-         BRyXo5uNphwlw/DfRBS90yHJd4iilCdxlLMKIhB++iTwiI8IhL1Id1uR/n3JRV6pbV8/
-         Ua9g==
+        bh=2chuQJubRNdJDdp1cl9RnHgoqXHU1pT5hlr6URidjng=;
+        b=U/JtaJ10VjlGiL/wxSq+7uUC0YzGXGyuKxVuX03CrCZWRPrfFRv6IpkAIbiT2Myhnd
+         Uu/8PPnyucEpakdlaoj0ie1ZPu0EAtPc5bzf6E7eeZ3mSsvpeVGkAvqv1WrsKYryjMiL
+         TYHBHTYDd0Hox6RrpHF3qOy65gTlZas845EXgoteSEQIhtUNqJa5397A5h2XbeRtLsW7
+         6BmNH8UqonGuiPzx461QSyyRemsGi/ZZek6V1u4CD081qapPnyjgMkwHMO5GO1Ab2icI
+         rQ9ffdcvlGdcUUq6IJp0hlxL2e8PwbMZmvxISZpOkMcVHewfSnVnmaGlofoMM1kEK+oT
+         nYMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=gbl2sqAncpllKGuOCbPF4knZ+D81ldDQn9qCCcipX7g=;
-        b=aEjboRNOS3ogdBXRhsbAObxMToiCsBTr7XoyupLS11At5U5PjqZ2XwrcwG9vn9486b
-         daWP3NqjOOIg586r9D3//vKiZzYQ9GtUvisLD0zMXrhdpIsABZUCeHtFhdM6VZa0PLV7
-         KkYMsXJKJUtbvDARM/CbsOMcZorAiAS9G1yI/kof30pZiKFYI9vFSrPsfLaU6ydr9tat
-         fvrEetBQ657I2wKqGMJhIaPEPzqB0P2Z1kFHm2RmEIN7BgkK4YQ1ubrcLROJrR9XVKKj
-         MPPS+mnN0vxswoaa2wvG0xNVhBgTlArfoAob1gyiOgMXx/kIMEQGcXtE+6GaUV/KBQu1
-         GG2A==
-X-Gm-Message-State: ACrzQf04vWx0Jo3sYOodY2P/DFu+4Wqme5tJfHGxZ8qFg811wohMHkBZ
-        aAWURP7khX+eugqZwLuI9z3VzQ==
-X-Google-Smtp-Source: AMsMyM63+lsKjqS9rbt0n60RV+mLp4etB8Di6xPlg3WpquQtq7M5ay9DT1wK45eOy53hn25eJwctwA==
-X-Received: by 2002:a05:651c:158e:b0:26b:46a6:bf63 with SMTP id h14-20020a05651c158e00b0026b46a6bf63mr1155856ljq.21.1665042807390;
-        Thu, 06 Oct 2022 00:53:27 -0700 (PDT)
+        bh=2chuQJubRNdJDdp1cl9RnHgoqXHU1pT5hlr6URidjng=;
+        b=6oPtBdChUYKHcA+jPVQ5m+5sf66PfOpqJ3VfRyFkkysWtZlICH/4gShogKNuJ1MbPS
+         Ee5brukDJy8pITjRDe8NGAZZyWm7BfPpZmCAEv1rC4g5D4qx5YEWV/CFB/MBLF6Q1zcV
+         jceuAFmGdsc8YgiCVz9jHf6seRRerPfDo4WxT4/nOZCp6GalluLULjfkbeU8D63Q5ybX
+         arL7ckQ671xtnoj02T7QqvJ6aiNbdhv4dMKa+3wq+HwmD66lRXns8zcqnRZZawWeb3VK
+         mkioeGftE+QoGLrW7Yt2zMDaBO0QpRGduJQMEkRCOyzkJMeNkxVdFo/uASZEl5517mL8
+         Jqyw==
+X-Gm-Message-State: ACrzQf39CnIGDiLct1JvjNuEtP7sD5TNvb+7LPh3cwWFbqpdsoPS7MLu
+        kif28Bn9TFnGJa7e/EEx5qcngQ==
+X-Google-Smtp-Source: AMsMyM68eGfFa+0mtU08JX2IwKZzneavnZOjkLmX/YGBXmC5UCvuBCAu7d0S9FdlSTKLAW0B5c/D2g==
+X-Received: by 2002:a19:7003:0:b0:4a2:40b9:de8d with SMTP id h3-20020a197003000000b004a240b9de8dmr1453658lfc.0.1665043052858;
+        Thu, 06 Oct 2022 00:57:32 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o20-20020a056512231400b0049f54c5f2a4sm2600306lfu.229.2022.10.06.00.53.26
+        by smtp.gmail.com with ESMTPSA id k2-20020a05651239c200b0049876c1bb24sm2601388lfu.225.2022.10.06.00.57.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Oct 2022 00:53:26 -0700 (PDT)
-Message-ID: <6bca0fd0-395e-0fae-f500-d9c78a5dc719@linaro.org>
-Date:   Thu, 6 Oct 2022 09:53:26 +0200
+        Thu, 06 Oct 2022 00:57:32 -0700 (PDT)
+Message-ID: <0e5438a6-80ba-ace6-b10a-df292c3e82b7@linaro.org>
+Date:   Thu, 6 Oct 2022 09:57:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH] dt-bindings: leds: mt6370: Fix MT6370 LED indicator DT
- warning
+Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
 Content-Language: en-US
-To:     ChiaEn Wu <peterwu.pub@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, pavel@ucw.cz,
-        matthias.bgg@gmail.com
-Cc:     chiaen_wu@richtek.com, cy_huang@richtek.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <435f6888ebc20c5abae63eb9cb3a055b60db2ed1.1665050503.git.chiaen_wu@richtek.com>
+To:     Trilok Soni <quic_tsoni@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Vinod Koul <vinod.koul@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Caleb Connolly <kc@postmarketos.org>
+References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
+ <faa4e821-00e0-4ee0-0c62-b5eb6f75abf7@linaro.org>
+ <943ec4f3-e6a4-7614-fb6f-1adce1487857@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <435f6888ebc20c5abae63eb9cb3a055b60db2ed1.1665050503.git.chiaen_wu@richtek.com>
+In-Reply-To: <943ec4f3-e6a4-7614-fb6f-1adce1487857@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,18 +92,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/10/2022 05:16, ChiaEn Wu wrote:
-> From: ChiaEn Wu <chiaen_wu@richtek.com>
+On 04/10/2022 18:37, Trilok Soni wrote:
+>>> If so, where?
+>>> A. elinux.org (needs some formatting when pasting the output from tools)
+>>> B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
+>>> C. gitlab dedicated repo - some text file
+>>> D. Linux kernel TODO file (might be difficult to keep updated)
+>>> E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
+>>> have it for Exynos but I don't find it usable -
+>>> https://exynos.wiki.kernel.org/todo_tasks)
+>>
+>>
+>> Hi All,
+>>
+>> Any thoughts on this? So far I did not receive any responses, so
+>> probably this could mean that there is little interest in this?
 > 
-> Add '$ref' and 'unevaluatedProperties: false' in 'multi-led', and remove
-> unused 'allOf' property.
-> 
-> Fixes: 440c57dabb45 ("dt-bindings: leds: mt6370: Add MediaTek MT6370 current sink type LED indicator")
-> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
-> ---
+> My preference for tracking is gitlab. B or C. Everyone will have login 
+> and understands the workflow.
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks Trilok for the input.
 
 Best regards,
 Krzysztof
