@@ -2,241 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 956205F5E22
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 02:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E9C05F5E53
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 03:14:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbiJFA7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Oct 2022 20:59:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45710 "EHLO
+        id S229750AbiJFBN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Oct 2022 21:13:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbiJFA7x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 20:59:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE4F3D136;
-        Wed,  5 Oct 2022 17:59:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8B0E7617F4;
-        Thu,  6 Oct 2022 00:59:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E45E2C43143;
-        Thu,  6 Oct 2022 00:59:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665017988;
-        bh=fQf/JNM+xDB7AfCqM55geVsCDG+Rba+PXIX7GBlJE7Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Cwu6IZ1HIQu47d3LN1vv1lNCo7jtddXsCYuldGsT8WK1j4MLVxhmL41qjOYGA2GuD
-         fStm8XGomGHb41sTYh1xuR8wCs8T1gxjB5BnwMOjqein15P2NWzl+THLjr/rJe5my1
-         2/kBc05X1W5aktR71xDXJh+YCLE4MWIPvY4OmIl9Uty1jdwGOs7HwkU7NGRvKuNtYu
-         avzsNp+EJSXPnw6efqvOkPQAIbvsYuRUvj1ZkiHP/lnt0uHwUCvVFgRS0sUJVq/hpo
-         P4Fwmn/H6k4VBzfceSM1R2IdmdNTvfW5wNY/hOSt3rrzp1sNwN0CS5ueQk0Uybdgaf
-         VCqa1kru1DR5w==
-Received: by mail-oi1-f174.google.com with SMTP id w70so442864oie.2;
-        Wed, 05 Oct 2022 17:59:48 -0700 (PDT)
-X-Gm-Message-State: ACrzQf2t4lvdLk9sovd+Vi3slst9aJ1ECVgiI08eVbaBULDv0KXs9QI6
-        mHSVhufs0nSA9QlUrkF6exmP76ma9d20FSjx7D4=
-X-Google-Smtp-Source: AMsMyM7d+v+3xgGmPgvQD1qK0/F/9XFNSgoIUtuODUetfgEaCPybGyk6k711U6WxHhxo8jgLAvZdeSTkOZSUsUlQ+lA=
-X-Received: by 2002:a05:6808:151f:b0:350:1b5e:2380 with SMTP id
- u31-20020a056808151f00b003501b5e2380mr3665247oiw.112.1665017987935; Wed, 05
- Oct 2022 17:59:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221003223222.448551-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAJF2gTQuSX9idEyNmGRwpAsSP8V=+QKQ7UAp28T-seM8rbkwOA@mail.gmail.com>
- <CA+V-a8smkDmQbz76sTA5XfUm7bkY4Ee-L5xYW+-xRWkE1TYiAw@mail.gmail.com>
- <CAJF2gTQ4G-j3p_pHvVQ82R2DFQZq70xgE3ZhoRkxiSzrHnU2og@mail.gmail.com> <CA+V-a8tLYT0541FNo_o-sTsV7ywwnGTRtv6ropVu+0Wd-PsM6A@mail.gmail.com>
-In-Reply-To: <CA+V-a8tLYT0541FNo_o-sTsV7ywwnGTRtv6ropVu+0Wd-PsM6A@mail.gmail.com>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Thu, 6 Oct 2022 08:59:35 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTQ9N5tyYB46eaMJ=Z0V7pm9TxFAXQ1qxLXLqj2C9zP2Ng@mail.gmail.com>
-Message-ID: <CAJF2gTQ9N5tyYB46eaMJ=Z0V7pm9TxFAXQ1qxLXLqj2C9zP2Ng@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 2/2] soc: renesas: Add L2 cache management for
- RZ/Five SoC
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
+        with ESMTP id S229587AbiJFBN6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Oct 2022 21:13:58 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE825B046;
+        Wed,  5 Oct 2022 18:13:54 -0700 (PDT)
+X-UUID: 660974c1e94240988ab2326e0c6f453d-20221006
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=i9WWBc8AgT+qWmWIUrtTH/9MaL3rSQ0+cKCWP1pOwcM=;
+        b=AhBW68x6WgauEajqKJiEYqaTCIyfHvXSrjPqMpj9LH8TOoi//o1T6NaS6SBjuFAb+lvFN7daNsVCJrQyzstdDBWEsa+NZo7S6c5+kzZmboSrYf/SKBz2QLgee5/X2bhC5Em7BTL/a9Rv5Hv/L0xrB4SZ349YZ4OL0mdRikNNWLs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:f3cbe9fc-5b41-449a-a862-e60213f87905,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:45
+X-CID-INFO: VERSION:1.1.11,REQID:f3cbe9fc-5b41-449a-a862-e60213f87905,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:45
+X-CID-META: VersionHash:39a5ff1,CLOUDID:f3f8a4b8-daef-48a8-8c50-40026d6a74c2,B
+        ulkID:221006091349GWKV8DM5,BulkQuantity:0,Recheck:0,SF:28|17|19|48|102,TC:
+        nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:
+        0
+X-UUID: 660974c1e94240988ab2326e0c6f453d-20221006
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 693899008; Thu, 06 Oct 2022 09:13:48 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 6 Oct 2022 09:13:46 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs13n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Thu, 6 Oct 2022 09:13:46 +0800
+Message-ID: <ad18266e7c3234506c850cbefd6c222c359faab3.camel@mediatek.com>
+Subject: Re: [PATCH] dt-bindings: mediatek: vcodec: Add the platform
+ compatible to schema
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Date:   Thu, 6 Oct 2022 09:13:45 +0800
+In-Reply-To: <166479591681.1661748.6265395941647267106.robh@kernel.org>
+References: <20221001030752.14486-1-irui.wang@mediatek.com>
+         <166479591681.1661748.6265395941647267106.robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 5, 2022 at 11:03 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
->
-> Hi Guo,
->
-> On Wed, Oct 5, 2022 at 3:23 PM Guo Ren <guoren@kernel.org> wrote:
-> >
-> > On Wed, Oct 5, 2022 at 8:54 PM Lad, Prabhakar
-> > <prabhakar.csengg@gmail.com> wrote:
-> > >
-> > > Hi Guo,
-> > >
-> > > On Wed, Oct 5, 2022 at 2:29 AM Guo Ren <guoren@kernel.org> wrote:
-> > > >
-> > > > On Tue, Oct 4, 2022 at 6:32 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > > > >
-> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > >
-> > > > > On the AX45MP core, cache coherency is a specification option so it may
-> > > > > not be supported. In this case DMA will fail. As a workaround, firstly we
-> > > > > allocate a global dma coherent pool from which DMA allocations are taken
-> > > > > and marked as non-cacheable + bufferable using the PMA region as specified
-> > > > > in the device tree. Synchronization callbacks are implemented to
-> > > > > synchronize when doing DMA transactions.
-> > > > >
-> > > > > The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
-> > > > > block that allows dynamic adjustment of memory attributes in the runtime.
-> > > > > It contains a configurable amount of PMA entries implemented as CSR
-> > > > > registers to control the attributes of memory locations in interest.
-> > > > >
-> > > > > Below are the memory attributes supported:
-> > > > > * Device, Non-bufferable
-> > > > > * Device, bufferable
-> > > > > * Memory, Non-cacheable, Non-bufferable
-> > > > > * Memory, Non-cacheable, Bufferable
-> > > > > * Memory, Write-back, No-allocate
-> > > > > * Memory, Write-back, Read-allocate
-> > > > > * Memory, Write-back, Write-allocate
-> > > > > * Memory, Write-back, Read and Write-allocate
-> > > > Seems Svpbmt's PMA, IO, and NC wouldn't fit your requirements, could
-> > > > give a map list of the types of Svpbmt? And give out what you needed,
-> > > > but Svpbmt can't.
-> > > >
-> > > Sorry I didn't get what you meant here, could you please elaborate.
-> > I know there is no pbmt in AX45MP, I am just curious how many physical
-> > memory attributes you would use in linux? It seems only one type used
-> > in the series:
-> > cpu_nocache_area_set -> sbi_ecall(SBI_EXT_ANDES,
-> > SBI_EXT_ANDES_SET_PMA, offset, vaddr, size, entry_id, 0, 0);
-> >
-> Yes, currently we only use "Memory, Non-cacheable, Bufferable". I was
-> wondering if we could send these options as flags from DT something
-> like below so that it's not hard coded in the code.
->
-> /* PMA config */
-> #define AX45MP_PMACFG_ETYP                GENMASK(1, 0)
-> /* OFF: PMA entry is disabled */
-> #define AX45MP_PMACFG_ETYP_DISABLED            0
-> /* Naturally aligned power of 2 region */
-> #define AX45MP_PMACFG_ETYP_NAPOT            3
->
-> #define AX45MP_PMACFG_MTYP                GENMASK(5, 2)
-> /* Device, Non-bufferable */
-> #define AX45MP_PMACFG_MTYP_DEV_NON_BUF            (0 << 2)
-> /* Device, bufferable */
-> #define AX45MP_PMACFG_MTYP_DEV_BUF            (1 << 2)
-> /* Memory, Non-cacheable, Non-bufferable */
-> #define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_NON_BUF    (2 << 2)
-> /* Memory, Non-cacheable, Bufferable */
-> #define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF        (3 << 2)
-> /* Memory, Write-back, No-allocate */
-> #define AX45MP_PMACFG_MTYP_MEM_WB_NA            (8 << 2)
-> /* Memory, Write-back, Read-allocate */
-> #define AX45MP_PMACFG_MTYP_MEM_WB_RA            (9 << 2)
-> /* Memory, Write-back, Write-allocate */
-> #define AX45MP_PMACFG_MTYP_MEM_WB_WA            (10 << 2)
-> /* Memory, Write-back, Read and Write-allocate */
-> #define AX45MP_PMACFG_MTYP_MEM_WB_R_WA            (11 << 2)
->
-> /* AMO instructions are supported */
-> #define AX45MP_PMACFG_NAMO_AMO_SUPPORT            (0 << 6)
-> /* AMO instructions are not supported */
-> #define AX45MP_PMACFG_NAMO_AMO_NO_SUPPORT        (1 << 6)
->
->
->                 pma-regions = <0x0 0x00000000 0x0 0x10000000 0x0
-> AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
-> AX45MP_PMACFG_NAMO_AMO_SUPPORT>,
->                               <0x0 0x10000000 0x0 0x04000000 0x0
-> AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
-> AX45MP_PMACFG_NAMO_AMO_SUPPORT >,
->                               <0x0 0x20000000 0x0 0x10000000 0x0
-> AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
-> AX45MP_PMACFG_NAMO_AMO_SUPPORT>,
->                               <0x0 0x58000000 0x0 0x08000000 0x0
-> AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
-> AX45MP_PMACFG_NAMO_AMO_SUPPORT>;
->
-> Does the above sound good?
-I've no idea. But for working around, I would give Acked-by.
+Dear Rob,
 
->
-> > I'm not sure how you make emmc/usb/gmac's dma ctrl desc work around
-> > without pbmt when they don't have cache coherency protocol. Do you
-> > need to inject dma_sync for desc synchronization? What's the effect of
-> > dynamic PMA in the patch series?
-> >
-> Currently we have setup the pma regions as below:
->
-> l2cache: cache-controller@13400000 {
->                 compatible = "andestech,ax45mp-cache", "cache";
->                 cache-size = <0x40000>;
->                 cache-line-size = <64>;
->                 cache-sets = <1024>;
->                 cache-unified;
->                 reg = <0x0 0x13400000 0x0 0x100000>;
->                 pma-regions = <0x0 0x00000000 0x0 0x10000000 0x0 0xf>,
->                               <0x0 0x10000000 0x0 0x04000000 0x0 0xf>,
->                               <0x0 0x20000000 0x0 0x10000000 0x0 0xf>,
->                               <0x0 0x58000000 0x0 0x08000000 0x0 0xf>;
->                 interrupts = <SOC_PERIPHERAL_IRQ(476, IRQ_TYPE_LEVEL_HIGH)>;
->         };
->
-> The last pma-regions entry 0x58000000 is a DDR location this memory
-> locations is marked as shared DMA pool with below in DT,
->
->     reserved-memory {
->         #address-cells = <2>;
->         #size-cells = <2>;
->         ranges;
->
->         reserved: linux,cma@58000000 {
->             compatible = "shared-dma-pool";
->             no-map;
->             linux,dma-default;
->             reg = <0x0 0x58000000 0x0 0x08000000>;
->         };
->     };
->
-> And for ARCH_R9A07G043 we automatically select DMA_GLOBAL_POOL, so the
-> IP blocks (emmc/usb/gmac's) requesting DMA'able memory will
-> automatically fall into this region which is non-cacheable but
-> bufferable (set in PMA) and rest everything is taken care by clean and
-> flush callbacks. We dont have  inject dma_sync for desc
-> synchronization for existing drivers (which are shared with Renesas
-> RZ/G2L family)
-Better than I thought :). The "non-cacheable but bufferable" is "weak
-order," also raising the bufferable signal of AXI transactions. Right?
-But some drivers think ctrl desc is strong order without bufferable
-and don't put any mb() before/after IO control operations.
+Thanks for your reviewing.
 
->
-> Cheers,
-> Prabhakar
+On Mon, 2022-10-03 at 08:24 -0500, Rob Herring wrote:
+> On Sat, 01 Oct 2022 11:07:52 +0800, Irui Wang wrote:
+> > There are venc node warnings when running dtbs_check, the clock-
+> > names
+> > was unexpected, missing properties '#address-cells' and '#size-
+> > cells'.
+> > Add the corresponding platform compatible to schema.
+> > 
+> > Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> > ---
+> >  .../bindings/media/mediatek,vcodec-encoder.yaml      | 12
+> > +++++++++++-
+> >  1 file changed, 11 insertions(+), 1 deletion(-)
+> > 
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for
+> dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
 
+Yes, it's not a new warning, the 'clock-names' in mt8192.dtsi was
+already unexpected without the patch's schema, we will fix it in the
+future patch.
 
-
--- 
+Thanks
 Best Regards
- Guo Ren
+> 
+> 
+> vcodec@17020000: clock-names:0: 'venc_sel' was expected
+> 	arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dtb
+> 	arch/arm64/boot/dts/mediatek/mt8192-evb.dtb
+> 
+
