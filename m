@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF7C5F68E3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 16:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 947365F68ED
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 16:07:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbiJFOHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 10:07:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54424 "EHLO
+        id S231744AbiJFOH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 10:07:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231583AbiJFOG6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 10:06:58 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBF01A6C3E
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 07:06:52 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id bs18so2380846ljb.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 07:06:52 -0700 (PDT)
+        with ESMTP id S230516AbiJFOG7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 10:06:59 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39259AD99E
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 07:06:55 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id a12so2356685ljr.7
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 07:06:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=tOBbF15hJ9TYNqAughaiocWON6qhxiUlu39zAvw94ug=;
-        b=bFx3cX2R/6JU56I55rhCeSBqEVW+14r8TU3bpBlVQIZiGj0yCBMvSssfxF8pubnW2J
-         ki9I6mwEoRC7pte9l/NwOcgjRsEcgD05ZZaqu/m2T1iuA+LN/gkhxqK4H6TBJkWECb3D
-         CLNNlXFNWbptQJGFBf3NxXXg/Nr+5dFOmtVwOihScp4VsobBJyXNIHX64FOMt5NAgm3o
-         MVlB30zd4jhf6XFQBM22Oc1jX24dUHOWQ6NRY/RzicBada5cz4YYR4Zwb775ar2THays
-         CX8hRGyvsiUhzHFYA5DFGmrBlRZZMHWTD5PYsNRmr+uSJtjRdWtjQ/segUe5nlTZQoxC
-         n5Lg==
+        bh=2O452qq9ivvP2uI+u15wAuxEQuSlM8R5B96G5Fwl6Wg=;
+        b=wj1qDgl1Bn6Yw4Gq+4Cq/hxZTExCNwUufJ79bXAfDaeKzCR6/n23jPM6J4mZ2L+xsg
+         v5sCVx9MrIE770LkRGEqf9Y8JzweRHhxnxH4Xfnu0Y07cQYq2seFKYEekxlmXn/nSnrZ
+         /MOXYrqvuQhxkNlq1scPKwSApBhol7H2QwQODpDc9nm1FLsHmUaRGTCuCMQr5uqo1KYU
+         CVGebjbPUFohn4Im+R9607LajOQSt+hvOM3rxxk4cXuU6Xbz57Tv2FehCREGRRti2Avf
+         WG6L6croP1ZDn4GeZZRdnxy1wEFVptyNbU5yVavR1eZbC9MZm1SYZWisJN5Ku/1+BifQ
+         cMoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=tOBbF15hJ9TYNqAughaiocWON6qhxiUlu39zAvw94ug=;
-        b=zA+7NUqzMy55OgdZF2mRIaRbFltstN4pPHZC5+gk8FrXSYqqNZH3FdmnlyE0ybUHYP
-         /9PHcpRkvwpczSRSmrTKSdT8XdI2eaEBU2fB5M4SMqPKDMfiPZAxNUDy4ryDzy6xYdEG
-         MV3mH89+MjyzkAXItMPi48/Yx8e5CBCImFfSZ1SiiKTwD2tSroX910BUpJvU4617J+j9
-         prHlaDhYn31c+SJNBQlXkAXmcQssJ+GSnALcZqsnI9h+dT8MxtYN2BqRoBehDG5bP7b0
-         Eib6pFJZU3G0iagaDHJeYK8jaqBzpwseEsW33zYa8jW13LpQw2QXQgPtEkqShaIUpZGo
-         n1xQ==
-X-Gm-Message-State: ACrzQf0Z05v9ELfvCVLNzNAwY6CnJHd8zUBXLYB4+CDxqUMqwS/FjEQO
-        78rbwwpEBoctDUWJWm7ahSFFgQ==
-X-Google-Smtp-Source: AMsMyM4WPmQByHLjahfWmNzJVHU8K6fhLUqG2qT2UZMAZlVDrdq0xpY4RAlipHxgCw5D9Mlp1hZxjA==
-X-Received: by 2002:a2e:bc09:0:b0:26b:fb61:dd22 with SMTP id b9-20020a2ebc09000000b0026bfb61dd22mr1858220ljf.1.1665065212178;
-        Thu, 06 Oct 2022 07:06:52 -0700 (PDT)
+        bh=2O452qq9ivvP2uI+u15wAuxEQuSlM8R5B96G5Fwl6Wg=;
+        b=p91rtcggTnodYGda5/T2+cK+sT8U+qrEst4cU0s6llQAttgCcFT95NrEcCcDEUSS4k
+         1OOAQ5iwdKO7mWPf4zbWRXhw1zsxR7ELNMuZFjbIPttuzqbJE0xANhiZYkGC4VX5yJva
+         3hIbQTnvG6Mp1E78pAghjP7wXKzyr2Ac4PTBQsXiMtFimCo1t3HsjuQkxIeFL7BCT52S
+         OddlBwsGytFad5O1tpCi+7+PLQ2Gj8RksVgYGLzaHo+g43h5QJ/TXKX2zz8mt71c2OjX
+         Mpxz9qZjga4abg49e6CgvmuPWxuTaz4ny7n2n6kUjl90y1sRItVlGSdSdRNjjCMOSPpt
+         3MGQ==
+X-Gm-Message-State: ACrzQf3R53dflaIS4zNPmlgVpSzyKc2+YNZR/hhDXcPvGhEDdPfeUG/m
+        Wsy/Tb8bjgh9bK8CLEm6PGfR7A==
+X-Google-Smtp-Source: AMsMyM5MF9vyCaNC5+5uAQ00ZarCI/6Kxw1vf7l15KLJf8MiL20nETILL/iz+nuSUAuwyAR1yXh0KA==
+X-Received: by 2002:a05:651c:98a:b0:26d:fd1f:10 with SMTP id b10-20020a05651c098a00b0026dfd1f0010mr1898150ljq.323.1665065213433;
+        Thu, 06 Oct 2022 07:06:53 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id z3-20020a056512370300b004a2386b8ce8sm1833929lfr.211.2022.10.06.07.06.50
+        by smtp.gmail.com with ESMTPSA id z3-20020a056512370300b004a2386b8ce8sm1833929lfr.211.2022.10.06.07.06.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 07:06:51 -0700 (PDT)
+        Thu, 06 Oct 2022 07:06:53 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -65,9 +65,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 07/34] dt-bindings: pinctrl: qcom,sm6125: drop checks used in common TLMM
-Date:   Thu,  6 Oct 2022 16:06:10 +0200
-Message-Id: <20221006140637.246665-8-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 08/34] dt-bindings: pinctrl: qcom,sm6125: drop ref to pinctrl.yaml
+Date:   Thu,  6 Oct 2022 16:06:11 +0200
+Message-Id: <20221006140637.246665-9-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221006140637.246665-1-krzysztof.kozlowski@linaro.org>
 References: <20221006140637.246665-1-krzysztof.kozlowski@linaro.org>
@@ -83,43 +83,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The common Qualcomm TLMM pin controller schema already brings
-requirement of function for GPIO pins.
+The binding references common Qualcomm TLMM pin controller schema, which
+references pinctrl.yaml.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml         | 11 +----------
- 1 file changed, 1 insertion(+), 10 deletions(-)
+ .../devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml         | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
-index 5cb8b272cb7d..843d110df240 100644
+index 843d110df240..50f721d5f843 100644
 --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
 +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
-@@ -61,6 +61,7 @@ $defs:
-     description:
-       Pinctrl node's client devices use subnodes for desired pin configuration.
-       Client device subnodes use below standard properties.
-+    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
+@@ -13,7 +13,6 @@ description: |
+   in the SM6125 platform.
  
-     properties:
-       pins:
-@@ -112,16 +113,6 @@ $defs:
-     required:
-       - pins
+ allOf:
+-  - $ref: "pinctrl.yaml#"
+   - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
  
--    allOf:
--      - $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
--      - if:
--          properties:
--            pins:
--              pattern: "^gpio[0-9]|[1-9][0-9]|1[0-2][0-9]|13[0-2]$"
--        then:
--          required:
--            - function
--
-     additionalProperties: false
- 
- examples:
+ properties:
 -- 
 2.34.1
 
