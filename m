@@ -2,239 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B93D75F6537
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 13:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66ADF5F65B4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 14:07:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231489AbiJFL3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 07:29:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41918 "EHLO
+        id S229980AbiJFMH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 08:07:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230421AbiJFL3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 07:29:32 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E889D502
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 04:29:31 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id e10-20020a05600c4e4a00b003b4eff4ab2cso2609155wmq.4
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 04:29:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KzBoGlicy3cr5i7Md3OkU8BP9DCvHUCzxRYJ1FITrS8=;
-        b=PQPhGGy4X0icS+0U2DZWL+y2oAC8x7qKbdkkA8xEaHD3BL5dHEE+JwcqqDAN1nKEAO
-         iz50hZZshHS2CkDbAX3jyQYCov8MtfjxhvS29p4BSpiBCu1MYV4oxOig32UDIuw2/P5W
-         jBqZkOhr/2gkwBeIKYx+Ce2HnOT9B4O3eWiICLHSmijTi29KmqUmCqP8anx6cfD66PZc
-         NGfcAePJARl7raC0L/ok/65qFgVHyDImjD7i5HkwtxZNCEy8N2PQGf+ySAoC2dlnWb2w
-         Sba2uyaMtphhXPQuzYl6pnOHIzttmC9vdEyjNOIyFUBv8OQvnfq5vO9mKUuRgeW7lmJe
-         kt/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KzBoGlicy3cr5i7Md3OkU8BP9DCvHUCzxRYJ1FITrS8=;
-        b=5fSwSvki9hcnqQJx/QhFs0lJ53iTukhHmQyhkXdB0PtAuiMfw3DM7ApWvSvVNjmU/D
-         wdUvhmHnPShTsKDy6APyyKYYP8ZBgTr55bmrin3ALuck7MKDFrQeZ6pbQvxDRP9g+h8X
-         OL8L0OQuj9NnwDeoLmRN1lSiwW5e3VrMNUf1bet6T5korh7a6AfUoTiRT9Bhh5WKiUb4
-         bG6Q0PfZY301z5BUzfdh4HLIwGVTw3SWpKoh8yjjKh7mlykmVzCAjpGdz3W8834wuAOs
-         ryb9NcFRY7HYaCvo7TA1c3k1XyJNs3708OlGhqDgEgb39sM2SaCxsuZZzqOxKowezgte
-         dCYQ==
-X-Gm-Message-State: ACrzQf1clqw4Gb/qLhAGGmZ7YQSHX4Zkm7cu8d7ZFf4MlSUmRE3Yy99A
-        4a50WQ5xvshO1Pb8qEPyqdCg3w==
-X-Google-Smtp-Source: AMsMyM4D8IVPdtfX1BGMVrLvF4BEJS2QdV3t02qYVEv36AAcuIauZqgZNPTN+8DYtrOHhrsdaVUtlw==
-X-Received: by 2002:a05:600c:12c6:b0:3bd:eeec:309 with SMTP id v6-20020a05600c12c600b003bdeeec0309mr6651003wmd.167.1665055769752;
-        Thu, 06 Oct 2022 04:29:29 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:86cc:fff3:d44b:9793? ([2a05:6e02:1041:c10:86cc:fff3:d44b:9793])
-        by smtp.googlemail.com with ESMTPSA id u8-20020a5d5148000000b0022e04bfa661sm16280780wrt.59.2022.10.06.04.29.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Oct 2022 04:29:29 -0700 (PDT)
-Message-ID: <f66c795b-03e7-083c-e4ba-5b5c150b88df@linaro.org>
-Date:   Thu, 6 Oct 2022 13:29:28 +0200
+        with ESMTP id S229527AbiJFMHZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 08:07:25 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856AEBEC;
+        Thu,  6 Oct 2022 05:07:24 -0700 (PDT)
+X-UUID: 02df975237a247e195f5398ce29e8ba3-20221006
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=SNCyKo7BJ06ez7HIFpg2DZDI4Pi9Scjoe6iZS/AjYgQ=;
+        b=EpJCcbljFGcKkSNUxcY4eDsJ4MzKMvHGl+Wpy4FkvxIqQTra4up+qAgRyzelrOxFI/B++zT8L/5sVXVIjH55UU0YHzis+F9DfCp9svdiTfxdiPMtkE0WDQu2WdJ/zwNLeBTiqZUQW5Ti68h2uOuZfkM7rykld/MisIO8G3ozamM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:0374f38d-b8a6-4a65-b2bb-96fcdc035c11,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:39a5ff1,CLOUDID:85241ce1-2948-402a-a6e4-b5d31fe11eb7,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 02df975237a247e195f5398ce29e8ba3-20221006
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 489677683; Thu, 06 Oct 2022 20:07:18 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 6 Oct 2022 20:07:16 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 6 Oct 2022 20:07:16 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <nfraprado@collabora.com>
+CC:     <angelogioacchino.delregno@collabora.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH 0/8] MediaTek watchdog: Convert mtk-wdt.txt to dt-schema
+Date:   Thu, 6 Oct 2022 20:07:07 +0800
+Message-ID: <20221006120715.24815-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3] arm64: dts: mediatek: mt8183: disable thermal zones
- without trips.
-Content-Language: en-US
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221004101130.17256-1-aouledameur@baylibre.com>
- <17f3fd40-70c1-2e8d-8002-dfe9690aed88@linaro.org>
- <cdebdf53-d691-41b6-bb8e-f66bb6f56e56@baylibre.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <cdebdf53-d691-41b6-bb8e-f66bb6f56e56@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/10/2022 13:08, Amjad Ouled-Ameur wrote:
-> Hi Daniel,
-> 
-> Thank you for your feedback.
-> 
-> On 10/4/22 12:47, Daniel Lezcano wrote:
->>
->> Hi Amjad,
->>
->> On 04/10/2022 12:11, Amjad Ouled-Ameur wrote:
->>> Thermal zones without trip point are not registered by thermal core.
->>>
->>> tzts1 ~ tzts6 zones of mt8183 were intially introduced for test-purpose
->>> only.
->>>
->>> Disable the zones above and keep only cpu_thermal enabled.
->>
->> It does not make sense to disable the thermal zones. Either the 
->> thermal zones are needed or they are not. Keeping them for debug 
->> purpose is not desired.
-> As Matthias Brugger mentioned in previous versions, DTS should describe 
-> the HW as it is, the sensors are in the HW.
+Based on tag: next-20221006 linux-next/master, We use [1] and [2] as
+references to send a new series.
 
-Yes, it is here:
+This series converts mtk-wdt.txt to dt-schema and contains
+ - Fix watchdog compatibles for MT8186, MT7986 and MT8195,
+ - Fix the watchdog name of mt8516
+ - Add mt6795 and MT8173 watchdog compatible
+ - Add support for toprgu reset on the MediaTek Helio X10 MT6795 SoC.
 
-		thermal: thermal@1100b000 {
-                         #thermal-sensor-cells = <1>;
-                         compatible = "mediatek,mt8183-thermal";
-                         reg = <0 0x1100b000 0 0x1000>;
-                         clocks = <&infracfg CLK_INFRA_THERM>,
-                                  <&infracfg CLK_INFRA_AUXADC>;
-	                clock-names = "therm", "auxadc";
-                         resets = <&infracfg 
-MT8183_INFRACFG_AO_THERM_SW_RST>;
-                         interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
-                         mediatek,auxadc = <&auxadc>;
-		        mediatek,apmixedsys = <&apmixedsys>;
-                         nvmem-cells = <&thermal_calibration>;
-			nvmem-cell-names = "calibration-data";
-		};
+Changes since [1]:
+ - Drop "timeout-sec: true" and use unevaluatedProperties
 
->> Alternatively to removal, you can:
->>
->>  - remove 'sustainable-power'
->>  - add a passive trip point, optionally a hot trip point and a 
->> critical trip point
-> 
-> Why removing "sustainable-power" instead of simply disabling the device 
-> ? 
+[1] https://lore.kernel.org/all/20221005113517.70628-1-angelogioacchino.delregno@collabora.com/
+[2] https://lore.kernel.org/all/20220422121017.23920-3-allen-kh.cheng@mediatek.com/
 
-Because sustainable-power is wrong. It is probably coming from a 
-copy-paste. It does not make sense to have this.
+Allen-KH Cheng (3):
+  arm64: dts: mediatek: mt7986: Fix watchdog compatible
+  arm64: dts: mediatek: mt8516: Fix the watchdog node name
+  dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible for MT8173
 
-The sustainable-power is for the power allocator governor which is 
-limited to CPU and GPU. Here the thermal zones are for different devices.
+AngeloGioacchino Del Regno (5):
+  arm64: dts: mediatek: mt8186: Fix watchdog compatible
+  arm64: dts: mediatek: mt8195: Fix watchdog compatible
+  dt-bindings: watchdog: mediatek: Convert mtk-wdt to json-schema
+  dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible for MT6795
+  watchdog: mtk_wdt: Add support for MT6795 Helio X10 watchdog and
+    toprgu
 
-Especially that, if a user needs to use the sensor
-
-If the thermal zone is disabled, how can it use the sensor?
-
-> in the future, they might not be able to find the right 
-> sustainable-power ; thus I think it should remain the way it is.
-> 
-> As to adding tripping points, MediaTek does not have ones to add for now 
-> for those sensors.
-
-Please do this:
-
-Add:
-
-trips {
-        threshold : trip1 {
-            	temperature = <50000>;
-                 type = "passive";
-           };
-};
-
-And remove all the empty cooling maps and the sustainable power properties.
-
-
->> The passive trip point will allow the userspace to set a value in 
->> order to get notified about the devices temperature (writable trip 
->> point). The hot temperature will send a notification to userspace so 
->> it can take a last chance decision to drop the temperature before the 
->> critical temperature.
->>
->> The passive trip point temperature could be a high temperature.
->>
->> The mitigation is also managed from userspace as a whole.
->>
->>
->>> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
->>> ---
->>>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 6 ++++++
->>>   1 file changed, 6 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi 
->>> b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
->>> index 9d32871973a2..53f7a0fbaa88 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
->>> @@ -1191,6 +1191,7 @@ tzts1: tzts1 {
->>>                   polling-delay = <0>;
->>>                   thermal-sensors = <&thermal 1>;
->>>                   sustainable-power = <5000>;
->>> +                status = "disabled";
->>>                   trips {};
->>>                   cooling-maps {};
->>>               };
->>> @@ -1200,6 +1201,7 @@ tzts2: tzts2 {
->>>                   polling-delay = <0>;
->>>                   thermal-sensors = <&thermal 2>;
->>>                   sustainable-power = <5000>;
->>> +                status = "disabled";
->>>                   trips {};
->>>                   cooling-maps {};
->>>               };
->>> @@ -1209,6 +1211,7 @@ tzts3: tzts3 {
->>>                   polling-delay = <0>;
->>>                   thermal-sensors = <&thermal 3>;
->>>                   sustainable-power = <5000>;
->>> +                status = "disabled";
->>>                   trips {};
->>>                   cooling-maps {};
->>>               };
->>> @@ -1218,6 +1221,7 @@ tzts4: tzts4 {
->>>                   polling-delay = <0>;
->>>                   thermal-sensors = <&thermal 4>;
->>>                   sustainable-power = <5000>;
->>> +                status = "disabled";
->>>                   trips {};
->>>                   cooling-maps {};
->>>               };
->>> @@ -1227,6 +1231,7 @@ tzts5: tzts5 {
->>>                   polling-delay = <0>;
->>>                   thermal-sensors = <&thermal 5>;
->>>                   sustainable-power = <5000>;
->>> +                status = "disabled";
->>>                   trips {};
->>>                   cooling-maps {};
->>>               };
->>> @@ -1236,6 +1241,7 @@ tztsABB: tztsABB {
->>>                   polling-delay = <0>;
->>>                   thermal-sensors = <&thermal 6>;
->>>                   sustainable-power = <5000>;
->>> +                status = "disabled";
->>>                   trips {};
->>>                   cooling-maps {};
->>>               };
->>
->>
-
+ .../bindings/watchdog/mediatek,mtk-wdt.yaml   | 80 +++++++++++++++++++
+ .../devicetree/bindings/watchdog/mtk-wdt.txt  | 42 ----------
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi     |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8516.dtsi      |  2 +-
+ drivers/watchdog/mtk_wdt.c                    |  6 ++
+ 7 files changed, 90 insertions(+), 49 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.18.0
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
