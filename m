@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 466565F63FA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 11:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B66305F6400
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 11:58:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231533AbiJFJ6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 05:58:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42992 "EHLO
+        id S230433AbiJFJ6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 05:58:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbiJFJ6J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 05:58:09 -0400
+        with ESMTP id S231543AbiJFJ6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 05:58:10 -0400
 Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 188B289973
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 02:58:04 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id r128-20020a1c4486000000b003bd44dc526fso2422075wma.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 02:58:04 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 191B989AC9
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 02:58:06 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id c3-20020a1c3503000000b003bd21e3dd7aso2483006wma.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 02:58:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date;
-        bh=GYdVlrgjsqJltATy6SUqdjbfxJkw6ir+IzQ1WI76DV8=;
-        b=twzGrDC6kXwC4w2jz2RE6SBnWAs0jgl2tZtFpCOz+C4AkSZnmt3CibjJlh2H1yyN7x
-         hoo7I029gyobrr9BrqfBzWDkvPpfRl0kaQhRXN5YxQYQEWWs/kA5ZM2q3YKAUfwUUlfg
-         VZbUFRQuBz6sqvF7AwJnOmT0i0inI4onO0qeP1f1RlJ/z9IDjBaVWyC7PWWPrEjegvN+
-         Cnm9LD6r/ycbXl02y+Dld/z/ORjSt0kNVDTPJ/PTCzrUIynqwz4Gs6yN0NTRbDGTMG9T
-         MPKemE0i5y3TWxkOzLaPlsbmZ6A41s3G5k6vdBKuzqS3PnTg2O21S7ffFWPT/jrodMFi
-         eCmg==
+        bh=aDVuuxohN8L8ZPRLCLlwdW9F2UODgJO1tJLK75PaPoY=;
+        b=FjaAUYk8yLz+J7RTwBMVHlYLleAJ6GPpH2sp6njsj/FylHJXlskVWcZOTcwXtdLfeg
+         wTBRTuEM9MuM9/HaQIuyK/Fwn/gNWeOcRj7t8LWbA5JQA5yG3pY4Ph2hZpinMf18SSKg
+         9GeC0BjaiiWR3Vq4VavRLLSA7y0NJvmcnxq8LicGbnUiiW7oOwjsxMcf4gMEKGZI5EgM
+         CaxmNZDZu6geXz1nM6Ak/5y/Nyp1Lh5s5+JPeZMQHP/M/0v/ozhXMw9cGF0JN/FuvxUZ
+         uyVoHNDTzP6+7tgsw6jcdzkeZ8ln+jnG/sUFakQ6OsxZhnm9ER9cl2cM6qZ/zhyS1bke
+         MHDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=GYdVlrgjsqJltATy6SUqdjbfxJkw6ir+IzQ1WI76DV8=;
-        b=GfHlXuGYWj62YpShtafSlub/HnS1fs78dEeFT+TisMxitXKdM7w3I5k7EH7kPKNvyC
-         vxX7eRQMVbzCM2ie/wSE7mL3KD9QdYLn7aU3wbtUQkjFD188CXeL7JhuEl9Tls4eSWxs
-         r3qUBzpAnuwYBzVWOe88F8d2WMAF3TZ/zP7T3IkH6fVzZtQCZWTFhvDo8O4jhSGjvJbW
-         2T3ksxi7av+R8PsiIjsW99tM4AEV0Mcx20EVf2JYLkH9tWoU8dvVoOfC5P1qXmxUt1P1
-         rmMzM8VtiCd++yEdAxGBIsQC0c3NXG0JXuiHs/+zvCV73Y90YWSY4485V0vrKadOB9f0
-         S+Tg==
-X-Gm-Message-State: ACrzQf1taGljD45i+hWtvGbd2/uKxCZYNnPNcQ6hxd5fQCZNosnHNW/5
-        Ma2VYFEdxUR8FFi+I6GhqWAVzzIKILhucRwJ
-X-Google-Smtp-Source: AMsMyM78nfQ5I6EzvNj4exzL1MmMtvE9r8BH9WQ+xrhf3G8Jyy6AcYDdma+kGm7i2CG6jXB8k608ZA==
-X-Received: by 2002:a05:600c:1552:b0:3a8:4523:d16 with SMTP id f18-20020a05600c155200b003a845230d16mr6116804wmg.200.1665050283370;
-        Thu, 06 Oct 2022 02:58:03 -0700 (PDT)
+        bh=aDVuuxohN8L8ZPRLCLlwdW9F2UODgJO1tJLK75PaPoY=;
+        b=v9vtAfhsjy95K9lwufgWVf1cMWp/m4ulYHkRkNVaoi0l1ZXscvjgZUH6GJOG2rqEAb
+         o2NG42vQHUCDHYzoZ1OPzh4L4ariiRS5y/H9W45UMW26qtuDFQStCbQB6lWvcJCxMFQ5
+         DHpNGJ57exnOJOOGMDk9hDbJmfUsGJBYjlTOPDK6nvxu6VDbNsB+cSCqFEkoyWY/4y6+
+         5FSynFsnz82AUnw9I9REZdCkmlAwSaGBayKATQEIlnHB1e9blA3/8Ns4cFa9C5lWnxvg
+         7z6ha45uRJHfm7k6WTYfT8cfX4nWAC+JbKMzYbKikVTRY+zwOEl/VD6rEpt2XxtzMTzj
+         HT4w==
+X-Gm-Message-State: ACrzQf079QP8MWFIUs6/RklPcHpw2zBWWjR4Kye444rzQ08rnrApxxqJ
+        3FdTyQP9qlK9UBJuUX3+LB3JWA==
+X-Google-Smtp-Source: AMsMyM4X8o94CxKxfj/ssUFMcxzBjpK7EdIIsB8b020Bl1OvlaUBb8nXaqjc+Q1/BCZdsvYM0Go7WA==
+X-Received: by 2002:a05:600c:524d:b0:3b4:91ee:933e with SMTP id fc13-20020a05600c524d00b003b491ee933emr2619096wmb.80.1665050284332;
+        Thu, 06 Oct 2022 02:58:04 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id q11-20020adf9dcb000000b0022ac672654dsm17935603wre.58.2022.10.06.02.58.02
+        by smtp.gmail.com with ESMTPSA id q11-20020adf9dcb000000b0022ac672654dsm17935603wre.58.2022.10.06.02.58.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 02:58:02 -0700 (PDT)
+        Thu, 06 Oct 2022 02:58:03 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 06 Oct 2022 09:58:00 +0000
-Subject: [PATCH 3/6] arm: dts: qcom: mdm9615: wp8548-mangoh-green: fix sx150xq
- node names and probe-reset property
+Date:   Thu, 06 Oct 2022 09:58:01 +0000
+Subject: [PATCH 4/6] dt-bindings: soc: qcom: convert non-smd RPM bindings to
+ dt-schema
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20221005-mdm9615-pinctrl-yaml-v1-3-0cbc006e2a30@linaro.org>
+Message-Id: <20221005-mdm9615-pinctrl-yaml-v1-4-0cbc006e2a30@linaro.org>
 References: <20221005-mdm9615-pinctrl-yaml-v1-0-0cbc006e2a30@linaro.org>
 In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v1-0-0cbc006e2a30@linaro.org>
 To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
@@ -73,78 +73,152 @@ Cc:     linux-gpio@vger.kernel.org,
 X-Mailer: b4 0.10.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the sx150xq node names to pinctrl and use the right probe-reset property.
+Convert the non-SMD RPM node bindings to dt-schema, the regulators subnode
+refers to regulators,yaml until we have the proper bindings.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ Documentation/devicetree/bindings/mfd/qcom-rpm.txt | 39 +-----------
+ .../devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml | 73 ++++++++++++++++++++++
+ 2 files changed, 74 insertions(+), 38 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts b/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
-index 30a110984597..a8304769b509 100644
---- a/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
-+++ b/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
-@@ -116,7 +116,7 @@ i2c@4 {
- 			#size-cells = <0>;
- 			reg = <4>;
+diff --git a/Documentation/devicetree/bindings/mfd/qcom-rpm.txt b/Documentation/devicetree/bindings/mfd/qcom-rpm.txt
+index b823b8625243..b622359e73c2 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom-rpm.txt
++++ b/Documentation/devicetree/bindings/mfd/qcom-rpm.txt
+@@ -5,44 +5,7 @@ various Qualcomm platforms. The RPM allows each component in the system to vote
+ for state of the system resources, such as clocks, regulators and bus
+ frequencies.
  
--			gpioext0: gpio@3e {
-+			gpioext0: pinctrl@3e {
- 				/* GPIO Expander 0 Mapping :
- 				 * - 0: ARDUINO_RESET_Level shift
- 				 * - 1: BattChrgr_PG_N
-@@ -142,7 +142,7 @@ gpioext0: gpio@3e {
- 				interrupt-parent = <&gpioext1>;
- 				interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
+-- compatible:
+-	Usage: required
+-	Value type: <string>
+-	Definition: must be one of:
+-		    "qcom,rpm-apq8064"
+-		    "qcom,rpm-msm8660"
+-		    "qcom,rpm-msm8960"
+-		    "qcom,rpm-ipq8064"
+-		    "qcom,rpm-mdm9615"
+-
+-- reg:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: base address and size of the RPM's message ram
+-
+-- interrupts:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: three entries specifying the RPM's:
+-		    1. acknowledgement interrupt
+-		    2. error interrupt
+-		    3. wakeup interrupt
+-
+-- interrupt-names:
+-	Usage: required
+-	Value type: <string-array>
+-	Definition: must be the three strings "ack", "err" and "wakeup", in order
+-
+-- qcom,ipc:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-
+-	Definition: three entries specifying the outgoing ipc bit used for
+-		    signaling the RPM:
+-		    - phandle to a syscon node representing the apcs registers
+-		    - u32 representing offset to the register within the syscon
+-		    - u32 representing the ipc bit within the register
+-
++Please refer to soc/qcom/qcom,ipc-rpm.yaml
  
--				probe-reset;
-+				semtech,probe-reset;
+ = SUBNODES
  
- 				gpio-controller;
- 				interrupt-controller;
-@@ -154,7 +154,7 @@ i2c@5 {
- 			#size-cells = <0>;
- 			reg = <5>;
- 
--			gpioext1: gpio@3f {
-+			gpioext1: pinctrl@3f {
- 				/* GPIO Expander 1 Mapping :
- 				 * - 0: GPIOEXP_INT1
- 				 * - 1: Battery detect
-@@ -183,7 +183,7 @@ gpioext1: gpio@3f {
- 				interrupt-parent = <&msmgpio>;
- 				interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
- 
--				probe-reset;
-+				semtech,probe-reset;
- 
- 				gpio-controller;
- 				interrupt-controller;
-@@ -195,7 +195,7 @@ i2c@6 {
- 			#size-cells = <0>;
- 			reg = <6>;
- 
--			gpioext2: gpio@70 {
-+			gpioext2: pinctrl@70 {
- 				/* GPIO Expander 2 Mapping :
- 				 * - 0: USB_HUB_INTn
- 				 * - 1: HUB_CONNECT
-@@ -221,7 +221,7 @@ gpioext2: gpio@70 {
- 				interrupt-parent = <&gpioext1>;
- 				interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
- 
--				probe-reset;
-+				semtech,probe-reset;
- 
- 				gpio-controller;
- 				interrupt-controller;
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
+new file mode 100644
+index 000000000000..d416950189d1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/soc/qcom/qcom,ipc-rpm.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm Resource Power Manager (RPM) over IPC
++
++description: |
++  This driver is used to interface with the Resource Power Manager (RPM) found
++  in various Qualcomm platforms. The RPM allows each component in the system
++  to vote for state of the system resources, such as clocks, regulators and bus
++  frequencies.
++
++maintainers:
++  - Bjorn Andersson <andersson@kernel.org>
++
++properties:
++  compatible:
++    enum:
++      - qcom,rpm-apq8064
++      - qcom,rpm-msm8660
++      - qcom,rpm-msm8960
++      - qcom,rpm-ipq8064
++      - qcom,rpm-mdm9615
++
++  reg: true
++
++  interrupts:
++    minItems: 3
++
++  interrupt-names:
++    items:
++      - const: ack
++      - const: err
++      - const: wakeup
++
++  qcom,ipc:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to a syscon node representing the APCS registers
++          - description: u32 representing offset to the register within the syscon
++          - description: u32 representing the ipc bit within the register
++    description:
++      Three entries specifying the outgoing ipc bit used for signaling the RPM.
++
++  regulators:
++    type: object
++    $ref: /schemas/regulator/regulator.yaml#
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - qcom,ipc
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    rpm@108000 {
++      compatible = "qcom,rpm-msm8960";
++      reg = <0x108000 0x1000>;
++      qcom,ipc = <&apcs 0x8 2>;
++
++      interrupts = <GIC_SPI 19 IRQ_TYPE_NONE>, <GIC_SPI 21 IRQ_TYPE_NONE>, <GIC_SPI 22 IRQ_TYPE_NONE>;
++      interrupt-names = "ack", "err", "wakeup";
++    };
 
 -- 
 b4 0.10.1
