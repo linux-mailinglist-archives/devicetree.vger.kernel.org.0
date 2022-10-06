@@ -2,106 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8012B5F6E58
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 21:42:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 405825F6E5B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 21:43:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231987AbiJFTmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 15:42:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38418 "EHLO
+        id S232075AbiJFTnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 15:43:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231931AbiJFTmm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 15:42:42 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1410ABD78;
-        Thu,  6 Oct 2022 12:42:40 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-132af5e5543so3370677fac.8;
-        Thu, 06 Oct 2022 12:42:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TsFWLs3oj8F4sWg6UBmyv5DMTDH4cKYoE2SmcAjVX4s=;
-        b=KFrulq+pHE6dUzpBsGxB+bSwYuuNo42A/urwCBAwF7p9V2FJnAxdwQZLdUu6hiFX3W
-         izJoksktACxPVOW//0YMpRztc+C/wQA3DQUEX3sDw5qW4sM3nCiFjyxJP7ZYq5djWwJM
-         9xQWkgSJI7oIF7ZUED6NLcaCNu75SpW4q2RutX8gVTZcOkKYzSgkxVlBh+UnQO23VWBh
-         UiwfhN2dbF++YFahve7n1iQtvgxdMuYyxyAcqG9FfcQn2PwJW2R03BMUE21mVr4VrhWS
-         MB3MOz5K1KZ1iVq0ow1OE3PuJ1Fa+GwYjnDFaaAa7t3nZ8J2I3pByd7oDAk/5lzzDUZ4
-         cUbw==
-X-Gm-Message-State: ACrzQf0iWCHPF7B/P0/C6g6emCzKOvmXU9ZKrHF5K/dm5SPCfrMJau6W
-        hlPNH4Zd5CULhKmk9Mz+RXdHm8ZN8g==
-X-Google-Smtp-Source: AMsMyM42oi6zLhFx0obOpqCDseqKBUGSLCnnYF467OVUN2yvjv/jBJeXV6+C15FmARRL0/8JLVPdzg==
-X-Received: by 2002:a05:6870:15c8:b0:133:16e6:5af8 with SMTP id k8-20020a05687015c800b0013316e65af8mr2299873oad.80.1665085360263;
-        Thu, 06 Oct 2022 12:42:40 -0700 (PDT)
-Received: from robh_at_kernel.org ([2607:fb90:8a65:c536:245:842:a3a4:9017])
-        by smtp.gmail.com with ESMTPSA id j11-20020acab90b000000b003504f8f6ac5sm16962oif.38.2022.10.06.12.42.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 12:42:39 -0700 (PDT)
-Received: (nullmailer pid 69132 invoked by uid 1000);
-        Thu, 06 Oct 2022 19:42:37 -0000
-Date:   Thu, 6 Oct 2022 14:42:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Lee Jones <lee@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-gpio@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH 1/6] dt-bindings: pinctrl: convert
- qcom,mdm9615-pinctrl.txt to dt-schema
-Message-ID: <20221006194237.GA66144-robh@kernel.org>
-References: <20221005-mdm9615-pinctrl-yaml-v1-0-0cbc006e2a30@linaro.org>
- <20221005-mdm9615-pinctrl-yaml-v1-1-0cbc006e2a30@linaro.org>
- <166505882828.1602503.18185089088624527425.robh@kernel.org>
- <85c9c9ee-37c3-733c-2c67-ac22734844f8@linaro.org>
+        with ESMTP id S232091AbiJFTno (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 15:43:44 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CD43E31BE;
+        Thu,  6 Oct 2022 12:43:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=x1WQykTFdogUNfR/FNlEZcCnzyPKG+DrPzkj2b/37Xk=; b=w1lNjOWBjh4SLHvwVNZj6Wxwky
+        lSk7tlIz9Uak/Z51JxUD8K4Jy/t3c/Yx6NZNPdsU/f1luUouGUaO+cInlwbNBVtfnqa/4acurxr6P
+        j8XDC4aZmeusE4Cy1SfCxRc/2svCFbz+2VcXIgLI6mVFw6wDq3+Rj/DsTbY9w06+RLm5QfhIthGbZ
+        UEZJzfSBzwPFpvy0HDJYxuEKDn+JC3I39Wquz0LNUrxB9RuN7++bEUfNrCjeEClReBPdoDdkD0jjY
+        mXbGqsNemRrhNpd/WMwu33jUtYgB2wZY70u5nbqZMN6B92Ek9BFFgOSbRdooyzmj3mt67Flm46uA1
+        86/lZJyg==;
+Received: from [2601:1c2:d80:3110::a2e7]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1ogWmR-004pAa-55; Thu, 06 Oct 2022 19:43:39 +0000
+Message-ID: <abe23973-700f-76e7-977f-8248328ada1b@infradead.org>
+Date:   Thu, 6 Oct 2022 12:43:36 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <85c9c9ee-37c3-733c-2c67-ac22734844f8@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH] of: fdt: add stub for early_init_dt_scan()
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Rich Felker <dalias@libc.org>,
+        Arnd Bergmann <arnd@arndb.de>
+References: <20221006031116.13586-1-rdunlap@infradead.org>
+ <20221006193820.GA61296-robh@kernel.org>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20221006193820.GA61296-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 06, 2022 at 06:21:28PM +0200, Neil Armstrong wrote:
-> On 06/10/2022 14:27, Rob Herring wrote:
-> > On Thu, 06 Oct 2022 09:57:58 +0000, Neil Armstrong wrote:
-> > > Convert the MDM9515 pinctrl bindings to dt-schema.
-> > > 
-> > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > > ---
-> > >   .../bindings/pinctrl/qcom,mdm9615-pinctrl.txt      | 161 ---------------------
-> > >   .../bindings/pinctrl/qcom,mdm9615-pinctrl.yaml     | 101 +++++++++++++
-> > >   2 files changed, 101 insertions(+), 161 deletions(-)
-> > > 
-> > 
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
-> > 
-> > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > This will change in the future.
-> > 
-> > Full log is available here: https://patchwork.ozlabs.org/patch/
-> > 
-> > 
-> > pinctrl@800000: 'gpioext1_pins', 'gsbi3_pins', 'gsbi4_pins', 'gsbi5_i2c_pins', 'gsbi5_uart_pins', 'reset_out_pins', 'sdc_cd_pins' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-> > 	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dtb
-> > 
+
+
+On 10/6/22 12:38, Rob Herring wrote:
+> On Wed, Oct 05, 2022 at 08:11:16PM -0700, Randy Dunlap wrote:
+>> When CONFIG_OF_EARLY_FLATTREE and CONFIG_SH_DEVICE_TREE are not set,
+>> SH3 build fails with a call to early_init_dt_scan(), so add a stub for
+>> this function.
+>>
+>> ../arch/sh/kernel/setup.c: In function 'sh_fdt_init':
+>> ../arch/sh/kernel/setup.c:262:26: error: implicit declaration of function 'early_init_dt_scan' [-Werror=implicit-function-declaration]
+>>   262 |         if (!dt_virt || !early_init_dt_scan(dt_virt)) {
 > 
-> Yes it's fixed in the next patch, should I move the fix before the bindings conversion ?
+> I think that sh_fdt_init() needs to be enclosed in 
+> CONFIG_OF_EARLY_FLATTREE instead of CONFIG_OF_FLATTREE.
+> 
 
-No, because I don't apply the dts patches. It's just informational and 
-ignore if you already took care of it.
+OK, I'll try that. Thanks.
 
-Rob
+>>
+>> Fixes: 7480e0aabd5f ("sh: add device tree support and generic board using device tree")
+>> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Frank Rowand <frowand.list@gmail.com>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: Rich Felker <dalias@libc.org>
+>> Cc: Arnd Bergmann <arnd@arndb.de>
+>> ---
+>>  include/linux/of_fdt.h |    1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> --- a/include/linux/of_fdt.h
+>> +++ b/include/linux/of_fdt.h
+>> @@ -85,6 +85,7 @@ extern void early_init_devtree(void *);
+>>  extern void early_get_first_memblock_info(void *, phys_addr_t *);
+>>  #else /* CONFIG_OF_EARLY_FLATTREE */
+>>  static inline void early_init_dt_check_for_usable_mem_range(void) {}
+>> +static inline bool early_init_dt_scan(void *params) { return false; }
+>>  static inline int early_init_dt_scan_chosen_stdout(void) { return -ENODEV; }
+>>  static inline void early_init_fdt_scan_reserved_mem(void) {}
+>>  static inline void early_init_fdt_reserve_self(void) {}
+>>
+
+-- 
+~Randy
