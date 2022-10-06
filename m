@@ -2,119 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 283D55F617A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 09:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8EE15F61CA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 09:41:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbiJFHOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 03:14:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52438 "EHLO
+        id S230353AbiJFHk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 03:40:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbiJFHOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 03:14:10 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E4977FE60
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 00:14:08 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id by36so1195470ljb.4
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 00:14:08 -0700 (PDT)
+        with ESMTP id S230328AbiJFHkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 03:40:55 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49BD18E475
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 00:40:53 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id b7so1310041wrq.9
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 00:40:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=GE8M6ZJ5o6R2icJ1+JO0lmFsJdBKSsRC/yaJmko71mo=;
-        b=z2kC3GALZ8dDDiEWEYQdlZCcECxKbAO3Rwx1Yclyj9+WJrqQ8MRrjM6FqVsi1ob2Lm
-         qWGE+mnpRegeTDhIX4Fpwi4KOkJ5y6QowY4Go7puj/HNocWt5vQNZ3XlWCvzZolZLyGA
-         +g6C27UN6TZnLxD0F0LDFEfVtBwN2tfTJRwyq7W0yAdwlm17wyxsWwleKGsCYT7tEbk0
-         L3FH7GItgRUJ+lFYwjeMWIpCGSneZ5qD2m4lvhcmEnXW7y555yKoK4YVN82xTPJRsPdS
-         uUlglbGItc1dWhrS7M5v3/rEVyu6Wpj5GQGQsbpNFSecFxc28cirGYne877sz65arKlY
-         KHwQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=czZIXcSril+0S5W4kqc0onDmBGjrVJmOKnFUKeX4tsk=;
+        b=6qjVyGLzJP2d40EpuWNyVT7l6T1hqaLdgmVpPaEvxGoI3eNCRgjZbGBoV/FQXGFiob
+         p1/snStTlv9rq/9KQBEnbttDzx9aV9UFcCtCpTruw0x3LnutL5LIoByYqspkjd4myhFG
+         o66132ZmNOgdoO+IlS/KPAboWUZ4rxmqEi5tZR2IqESw7F5zea9zC2XndyD0QwNfiMW+
+         /nwbOLPLYFu+/Cky/cDEFK7gRRN0k+BrwlpQEh4ZaKLwj5dIr4NcKkO8p5HwaacjzsA6
+         gZ0TzxilJw76mVoMKbn+T6w4zrLCe+y6EPNId2yu4f5oz1jz2r47ME95GEpCEBO05Q/r
+         AVKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=GE8M6ZJ5o6R2icJ1+JO0lmFsJdBKSsRC/yaJmko71mo=;
-        b=hzGVH9Mtjuf2xowkAfu4by6lW8O/Th78YysDg0HNmpQ9Gr99FxKNBTipfcioXH3B+Q
-         O8CUJb5ncYri9ITWl3+E9INrPoaDb21iYGc1AazLwzJZiDQRWRDga0TB5PuMapPkkK96
-         7bIrA4RTwZykHMHxvt+OTCHl4e8/2/1hZq82jc0V7drjhA4Mc7vqLGCRKgalqwEk4YR9
-         v9haQ4IoGMvgGNbjBBHxOl2VZV1UKlgsXkbKSyN0OLXQme6pDH8LvGOa3Ipu5ELrfyr7
-         5loIkXkn+OF+6joNHXOIAUtqdeyzP2UF5UEVdf1aRUxTIlUyfqJ2mwAyjLO6t4lhfX9A
-         MBNw==
-X-Gm-Message-State: ACrzQf0isA6h1lHWKJaPyifXdJtvPS2mpAjRJUXz5xUnFBNlrIucq4n2
-        k7pC6xW0amUmROM0T6cBtVk9Ow==
-X-Google-Smtp-Source: AMsMyM7Haw1Oa/bZDStDlWRYqGsb4v1odEx6BIMGnNUEqPiohUUhxEzRrYSsjNCz5FWI62efbzpkWg==
-X-Received: by 2002:a05:651c:882:b0:261:81b3:16b3 with SMTP id d2-20020a05651c088200b0026181b316b3mr1141452ljq.142.1665040446637;
-        Thu, 06 Oct 2022 00:14:06 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d10-20020ac2544a000000b00492f45cbbfcsm2585900lfn.302.2022.10.06.00.14.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Oct 2022 00:14:06 -0700 (PDT)
-Message-ID: <80891d76-aac9-1f51-bb29-87cf9df0903f@linaro.org>
-Date:   Thu, 6 Oct 2022 09:14:05 +0200
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=czZIXcSril+0S5W4kqc0onDmBGjrVJmOKnFUKeX4tsk=;
+        b=fcv31urx2rhe4f+XRTwOVifhCsuM4bSJUG/7SOpwGxs21WkoEpy6yrjDcLPI1NdcUK
+         FypJelN7vN1bQ2ik4WfbGwqoxapXcMTwZPfcBNVuz90qkUU/V1KDbQgzXZ1UaFf76HBd
+         n+rjWB4DcDORU9klm5CnB8+GKK+bJO7hjduxzS/8mACCcty2+Er8JOA7CMf1CKgy4Snb
+         0BjIOUAj8eMFLVrXNSGEjPpwB0fEXS2uXj2z1J1xaGflClQYNoU0+f7weSspZLKpv0Ti
+         nD23VdbuYIR6bESEEWo98MMUxa2ss1SE3eJzJrGcJmerDpXHZh5PmsZLpeZaujLZdSK3
+         /HRA==
+X-Gm-Message-State: ACrzQf2hOhdsgDAKDhhjtEp9RpBrBzznC/D84uHUlxK1bp1UbivmrzrN
+        fqIBWUOmMjwqVUqtOK0qdQqwDg==
+X-Google-Smtp-Source: AMsMyM6xxcX+Jw879ZvGrzE2zvbkaNBbDJ39qRVbXxY0XUtG9zHNqjzwrFb8JpJ5s9D9VO54lzi4fg==
+X-Received: by 2002:a5d:404b:0:b0:22e:331e:1cba with SMTP id w11-20020a5d404b000000b0022e331e1cbamr2019320wrp.488.1665042051756;
+        Thu, 06 Oct 2022 00:40:51 -0700 (PDT)
+Received: from localhost ([82.66.159.240])
+        by smtp.gmail.com with ESMTPSA id j6-20020a05600c190600b003a601a1c2f7sm4346819wmq.19.2022.10.06.00.40.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Oct 2022 00:40:51 -0700 (PDT)
+From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Chen Zhong <chen.zhong@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org, Fabien Parent <fparent@baylibre.com>,
+        Alexandre Mergnat <amergnat@baylibre.com>
+Subject: Re: [PATCH v2 5/5] Input: mtk-pmic-keys: add MT6357 support
+In-Reply-To: <20221005-mt6357-support-v2-5-f17ba2d2d0a9@baylibre.com>
+References: <20221005-mt6357-support-v2-0-f17ba2d2d0a9@baylibre.com>
+ <20221005-mt6357-support-v2-5-f17ba2d2d0a9@baylibre.com>
+Date:   Thu, 06 Oct 2022 09:40:50 +0200
+Message-ID: <87czb5o0vx.fsf@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v7 3/3] pinctrl: qcom: add sdm670 pinctrl
-Content-Language: en-US
-To:     Richard Acayan <mailingradian@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        linux-gpio@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20221004215814.11694-1-mailingradian@gmail.com>
- <20221004215814.11694-4-mailingradian@gmail.com>
- <1ed91afd-74d2-1ab0-0d15-1b6e0dfba13b@linaro.org>
- <20221005222350.47420-1-mailingradian@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221005222350.47420-1-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/10/2022 00:23, Richard Acayan wrote:
->> On 04/10/2022 23:58, Richard Acayan wrote:
->>> The Snapdragon 670 has a Top-Level Mode Multiplexer (TLMM) for various
->>> features. Add a driver to support it.
->>
->> (...)
->>
->>> +
->>> +const int sdm670_reserved_gpios[] = {
->>> +	58, 59, 60, 61, 62, 63, 64, 69, 70, 71, 72, 73, 74, 104, -1
->>> +};
->>> +
->>> +static const struct msm_pinctrl_soc_data sdm670_pinctrl = {
->>> +	.pins = sdm670_pins,
->>> +	.npins = ARRAY_SIZE(sdm670_pins),
->>> +	.functions = sdm670_functions,
->>> +	.nfunctions = ARRAY_SIZE(sdm670_functions),
->>> +	.groups = sdm670_groups,
->>> +	.ngroups = ARRAY_SIZE(sdm670_groups),
->>> +	.ngpios = 151,
->>> +	.reserved_gpios = sdm670_reserved_gpios,
->>> +	.complement_fw_gpio_ranges = true,
->>
->> This still fails to build... v6 was not compilable, v7 is still.
-> 
-> Sorry, I only see the problem with complement_fw_gpio_ranges being removed from
-> the struct and not being removed here (in v7). Is there another issue that
-> affected v6?
+On Wed, Oct 05, 2022 at 16:57, Alexandre Mergnat <amergnat@baylibre.com> wrote:
 
-Check the reports from kernel build robot.
+> From: Fabien Parent <fparent@baylibre.com>
+>
+> Add PMIC Keys support on MT6357 SoC.
+>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 
-Best regards,
-Krzysztof
+Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 
+> ---
+>  drivers/input/keyboard/mtk-pmic-keys.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/drivers/input/keyboard/mtk-pmic-keys.c b/drivers/input/keyboard/mtk-pmic-keys.c
+> index 9b34da0ec260..2a63e0718eb6 100644
+> --- a/drivers/input/keyboard/mtk-pmic-keys.c
+> +++ b/drivers/input/keyboard/mtk-pmic-keys.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/mfd/mt6323/registers.h>
+>  #include <linux/mfd/mt6331/registers.h>
+> +#include <linux/mfd/mt6357/registers.h>
+>  #include <linux/mfd/mt6358/registers.h>
+>  #include <linux/mfd/mt6397/core.h>
+>  #include <linux/mfd/mt6397/registers.h>
+> @@ -90,6 +91,19 @@ static const struct mtk_pmic_regs mt6331_regs = {
+>  	.rst_lprst_mask = MTK_PMIC_MT6331_RST_DU_MASK,
+>  };
+>  
+> +static const struct mtk_pmic_regs mt6357_regs = {
+> +	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
+> +		MTK_PMIC_KEYS_REGS(MT6357_TOPSTATUS,
+> +				   0x2, MT6357_PSC_TOP_INT_CON0, 0x5,
+> +				   MTK_PMIC_PWRKEY_RST),
+> +	.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
+> +		MTK_PMIC_KEYS_REGS(MT6357_TOPSTATUS,
+> +				   0x8, MT6357_PSC_TOP_INT_CON0, 0xa,
+> +				   MTK_PMIC_HOMEKEY_INDEX),
+> +	.pmic_rst_reg = MT6357_TOP_RST_MISC,
+> +	.rst_lprst_mask = MTK_PMIC_RST_DU_MASK,
+> +};
+> +
+>  static const struct mtk_pmic_regs mt6358_regs = {
+>  	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
+>  		MTK_PMIC_KEYS_REGS(MT6358_TOPSTATUS,
+> @@ -276,6 +290,9 @@ static const struct of_device_id of_mtk_pmic_keys_match_tbl[] = {
+>  	}, {
+>  		.compatible = "mediatek,mt6331-keys",
+>  		.data = &mt6331_regs,
+> +	}, {
+> +		.compatible = "mediatek,mt6357-keys",
+> +		.data = &mt6357_regs,
+>  	}, {
+>  		.compatible = "mediatek,mt6358-keys",
+>  		.data = &mt6358_regs,
+>
+> -- 
+> b4 0.10.1
