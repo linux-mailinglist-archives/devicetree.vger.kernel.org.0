@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D68DA5F64B0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 12:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7855B5F64D0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 13:08:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231308AbiJFK7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 06:59:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45112 "EHLO
+        id S231409AbiJFLI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 07:08:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231416AbiJFK6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 06:58:54 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BE819B873
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 03:58:43 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id n7so1406639plp.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 03:58:43 -0700 (PDT)
+        with ESMTP id S231359AbiJFLIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 07:08:25 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D4EE9B856
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 04:08:23 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id e18so794785wmq.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 04:08:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jOZI8SGXdjEDl/5cRiKBB/3ohsupX4oO9Re4g9HNDWE=;
-        b=UajZwV8mWNElnB3627GtP97HZhzj0zo1scWikdcoZw1y/QJll/ClitWRvKQUVSh4hW
-         2mSnK6Z+CLt2/GOc+BEY7KvM9j4/yOYYvPoTJx5680XIE7xwZP4V1WzV6OnJTQEsl9zT
-         4DSr/H538JnJqSFjBjCCuqJ5rVsgiLIuA4Emq26c3kgpmkFbKktsSlonjIUFBNdNydEh
-         VZfItGSEyXb+4zxdeUEC9uG04Q6W+n/5Ars5jQRs7g1bfliXCaa2l7K6Sdo6IIvSp+yH
-         idOqrqH6SefFPnjY+xct8vI88Tr+ANW6sKOitKcwnAciE8+F6xxdhBVmJcj0VdLaWqBz
-         euow==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CbeeFZ+x3aHj+XaOJLuyuhdGWHomvDtrnGAOISq7ELg=;
+        b=Ck8AReTJ9PME9fyJ5bXtOD/KlktSnDb4/OtXx1sJS7huduv7GfLAMWSXKqcIN17UF3
+         R7/9ZR5n+M7+mdAm6920py5T4bhkLTORzDBj9I6CIxG5KCWswu7G7S1x119Bj+UzzPJl
+         9jnWMDHTL3WMjbMDNwEFczA8NZPaJ2FObPXXb6h8xz8DBDDSIUXoPRwhWsJQ3HG5VgWm
+         Avb9Kj4Ip+Jjb2+EbMMGAovxT+wEkgjSWxnw/wkEO5QwGvHYPdg3BTs3tl//OaryYvFo
+         C9iHLk5rpOlH14SYUmLC0aIORmgGLquwwfnn96p5hI+L54qSvraQLI3PeV3Eq5PVcqwj
+         U15Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jOZI8SGXdjEDl/5cRiKBB/3ohsupX4oO9Re4g9HNDWE=;
-        b=rAPkKH/41T59rBFAz0XXXEFDjaAtUno9/FeceOwIGIlY7Ui6qTBidsInlDc/TJVoGT
-         9g/22eEiV7UIlhJ1CDcls5tQmFQbJ7Shaos2t5+PXJrLyduMN0AXlrsx5sdwGBwfZuXn
-         N2I8wveKHUW90hQLTD5w6vW2WavG5Gx3FO6ZB3vb363gU6B/OK9ErYWVpzVDZRhAtn+A
-         gInh2KxlGmO/eXXXAAlSoHPoO/mxCG6fNQPXrWvgyJZPHtZaaoZpyeVJZCJJW3LcwCh7
-         c9guZTPdW+tbnORFkCj/ch2ZBuXQMBcBNkpdjCTpV7q1zTw8nVWLXp4zRJqTRJ8d2mdS
-         xVOw==
-X-Gm-Message-State: ACrzQf0yD9ggEPIVMQi/q4+uzJRXisUSp/JtnUHVyX5quGv/Ss0Og70T
-        ug69oAsgA1nl7H9SjjSzXcXZ4w==
-X-Google-Smtp-Source: AMsMyM5hVYB19NYs8RMrU+wMXWuCUOp0fns6L5LwE3MhmTdt8WJKRuHYX7lGe8E0Xymy2BzrcloQOQ==
-X-Received: by 2002:a17:903:244e:b0:178:4f50:1ca0 with SMTP id l14-20020a170903244e00b001784f501ca0mr4111939pls.104.1665053922749;
-        Thu, 06 Oct 2022 03:58:42 -0700 (PDT)
-Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
-        by smtp.gmail.com with ESMTPSA id c13-20020a170903234d00b0017d12d86901sm10504297plh.187.2022.10.06.03.58.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 03:58:41 -0700 (PDT)
-From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     dianders@chromium.org,
-        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v7 4/4] arm64: dts: qcom: Add touchscreen and touchpad support for evoker
-Date:   Thu,  6 Oct 2022 18:58:23 +0800
-Message-Id: <20221006185333.v7.4.I50d04dcbe735dda69995cf1078824d671501869e@changeid>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221006105823.532336-1-sheng-liang.pan@quanta.corp-partner.google.com>
-References: <20221006105823.532336-1-sheng-liang.pan@quanta.corp-partner.google.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CbeeFZ+x3aHj+XaOJLuyuhdGWHomvDtrnGAOISq7ELg=;
+        b=peuOa1ci7hapyWd68AUFm8gmjk3/Yvi77gMSqckQOrqfrbNv8K68g9p8rGz864d1sr
+         t3euloNqUOfn9fAjDC3w44hZqaj6HjZBWFH+zM3iG0iB4poJq6qxDQWElMEf6I2nVjTi
+         qjhaVKRJMkA7EOeEdNrguFhwSu+WvL9RKgaVjFHH7YB09QQZtnfQddJOiJDm40uTqxgR
+         YLXl1oFm63/cgC+6cbEM8la9HxMUSfpz8Of5h985nQHDNIsCoHS9cUmT2qcNcGpQBjMb
+         18+vGtdDKgpTP8ytUZJVDlovXnwaw6bQAhb7caeY2xA+dRAFvpMVWjiINZErSGL5Zp//
+         pqIQ==
+X-Gm-Message-State: ACrzQf07Nl8DTnMXlXcC1ABEWj35AKqzC6HBkfE4hn/uKN/czP5P9sH0
+        oDJO3Y5DhfXm0FV4IseflpdYdg==
+X-Google-Smtp-Source: AMsMyM476u1+t4iuw4iTs7clnDHL2LOAoA/r6b7hlBpiXlWfhv4Cgr5efpX+4UWm4OsdqnRY4ViAxQ==
+X-Received: by 2002:a05:600c:524b:b0:3b4:8c0c:f3b6 with SMTP id fc11-20020a05600c524b00b003b48c0cf3b6mr6717571wmb.50.1665054501394;
+        Thu, 06 Oct 2022 04:08:21 -0700 (PDT)
+Received: from [192.168.0.20] (210.145.15.109.rev.sfr.net. [109.15.145.210])
+        by smtp.gmail.com with ESMTPSA id c21-20020a05600c0a5500b003b4e009deb2sm5928180wmq.41.2022.10.06.04.08.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Oct 2022 04:08:20 -0700 (PDT)
+Message-ID: <cdebdf53-d691-41b6-bb8e-f66bb6f56e56@baylibre.com>
+Date:   Thu, 6 Oct 2022 13:08:19 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v3] arm64: dts: mediatek: mt8183: disable thermal zones
+ without trips.
+Content-Language: en-US
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221004101130.17256-1-aouledameur@baylibre.com>
+ <17f3fd40-70c1-2e8d-8002-dfe9690aed88@linaro.org>
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+In-Reply-To: <17f3fd40-70c1-2e8d-8002-dfe9690aed88@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,71 +78,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change touchpad and touchscreen node for evoker
-Touchpad: SA461D-1011
-Touchscreen: GT7986U
+Hi Daniel,
 
-Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
----
+Thank you for your feedback.
 
-Changes in v7:
-- add compiatable for gt7986
+On 10/4/22 12:47, Daniel Lezcano wrote:
+>
+> Hi Amjad,
+>
+> On 04/10/2022 12:11, Amjad Ouled-Ameur wrote:
+>> Thermal zones without trip point are not registered by thermal core.
+>>
+>> tzts1 ~ tzts6 zones of mt8183 were intially introduced for test-purpose
+>> only.
+>>
+>> Disable the zones above and keep only cpu_thermal enabled.
+>
+> It does not make sense to disable the thermal zones. Either the thermal zones are needed or they are not. Keeping them for debug purpose is not desired.
+As Matthias Brugger mentioned in previous versions, DTS should describe the HW as it is, the sensors are in the HW.
+>
+> Alternatively to removal, you can:
+>
+>  - remove 'sustainable-power'
+>  - add a passive trip point, optionally a hot trip point and a critical trip point
 
-Changes in v6:
-- add removed pinctrl and align touchscreen label with herobrine board
+Why removing "sustainable-power" instead of simply disabling the device ? Especially that, if a user needs to use the sensor
 
-Changes in v5:
-- new patch for Touchscreen/trackpad in v5
+in the future, they might not be able to find the right sustainable-power ; thus I think it should remain the way it is.
 
- .../boot/dts/qcom/sc7280-herobrine-evoker.dtsi    | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
+As to adding tripping points, MediaTek does not have ones to add for now for those sensors.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-index e78072159d54b..d713750f81019 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-@@ -23,16 +23,15 @@ ap_tp_i2c: &i2c0 {
- 	status = "okay";
- 	clock-frequency = <400000>;
- 
--	trackpad: trackpad@2c {
--		compatible = "hid-over-i2c";
--		reg = <0x2c>;
-+	trackpad: trackpad@15 {
-+		compatible = "elan,ekth3000";
-+		reg = <0x15>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&tp_int_odl>;
- 
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
- 
--		hid-descr-addr = <0x20>;
- 		vcc-supply = <&pp3300_z1>;
- 
- 		wakeup-source;
-@@ -43,9 +42,9 @@ ts_i2c: &i2c13 {
- 	status = "okay";
- 	clock-frequency = <400000>;
- 
--	ap_ts: touchscreen@10 {
--		compatible = "elan,ekth6915";
--		reg = <0x10>;
-+	ap_ts: touchscreen@5d {
-+		compatible = "goodix,gt7986u", "goodix,gt7375p";
-+		reg = <0x5d>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ts_int_conn>, <&ts_rst_conn>;
- 
-@@ -54,7 +53,7 @@ ap_ts: touchscreen@10 {
- 
- 		reset-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
- 
--		vcc33-supply = <&ts_avdd>;
-+		vdd-supply = <&ts_avdd>;
- 	};
- };
- 
--- 
-2.34.1
 
+Regards,
+
+Amjad
+
+>
+> The passive trip point will allow the userspace to set a value in order to get notified about the devices temperature (writable trip point). The hot temperature will send a notification to userspace so it can take a last chance decision to drop the temperature before the critical temperature.
+>
+> The passive trip point temperature could be a high temperature.
+>
+> The mitigation is also managed from userspace as a whole.
+>
+>
+>> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> index 9d32871973a2..53f7a0fbaa88 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> @@ -1191,6 +1191,7 @@ tzts1: tzts1 {
+>>                   polling-delay = <0>;
+>>                   thermal-sensors = <&thermal 1>;
+>>                   sustainable-power = <5000>;
+>> +                status = "disabled";
+>>                   trips {};
+>>                   cooling-maps {};
+>>               };
+>> @@ -1200,6 +1201,7 @@ tzts2: tzts2 {
+>>                   polling-delay = <0>;
+>>                   thermal-sensors = <&thermal 2>;
+>>                   sustainable-power = <5000>;
+>> +                status = "disabled";
+>>                   trips {};
+>>                   cooling-maps {};
+>>               };
+>> @@ -1209,6 +1211,7 @@ tzts3: tzts3 {
+>>                   polling-delay = <0>;
+>>                   thermal-sensors = <&thermal 3>;
+>>                   sustainable-power = <5000>;
+>> +                status = "disabled";
+>>                   trips {};
+>>                   cooling-maps {};
+>>               };
+>> @@ -1218,6 +1221,7 @@ tzts4: tzts4 {
+>>                   polling-delay = <0>;
+>>                   thermal-sensors = <&thermal 4>;
+>>                   sustainable-power = <5000>;
+>> +                status = "disabled";
+>>                   trips {};
+>>                   cooling-maps {};
+>>               };
+>> @@ -1227,6 +1231,7 @@ tzts5: tzts5 {
+>>                   polling-delay = <0>;
+>>                   thermal-sensors = <&thermal 5>;
+>>                   sustainable-power = <5000>;
+>> +                status = "disabled";
+>>                   trips {};
+>>                   cooling-maps {};
+>>               };
+>> @@ -1236,6 +1241,7 @@ tztsABB: tztsABB {
+>>                   polling-delay = <0>;
+>>                   thermal-sensors = <&thermal 6>;
+>>                   sustainable-power = <5000>;
+>> +                status = "disabled";
+>>                   trips {};
+>>                   cooling-maps {};
+>>               };
+>
+>
