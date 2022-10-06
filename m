@@ -2,86 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8F45F62D8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 10:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99BFE5F62E5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 10:39:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbiJFIg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 04:36:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56130 "EHLO
+        id S230280AbiJFIj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 04:39:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230441AbiJFIg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 04:36:26 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3368695E6A;
-        Thu,  6 Oct 2022 01:36:22 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6220E660226D;
-        Thu,  6 Oct 2022 09:36:19 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1665045380;
-        bh=wFoOAN7bFW7ZcEUlEyrquYeMDkaLoO1zFNmCBqZXDyE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=momluOxPJp6aehDMfKrO28U93jCgFg9oTviy7NW67owqYTPG4f0TkFEupHLBgRC88
-         k2W81OkStlQz7uoLtA5s6btCHdRqP6S3AX5PV7nC75yx4plhMfRTB0nCCE8l2dpWL0
-         TtOKECUYee50s+C/6dGykHim1Ja96+N4BsyOimlx3eUYe+HfJqI3hiPgzHFhD2kCVx
-         MD/W25E6ru32yDnbQZez5rUHISK6ab6OjIeslrRu5dMETwe96zK7+30CPfk04DKcz1
-         /kaB1AW13g865R7QugWoz5WMb44P0I7d7Br6RPPq6lz5BY0+N1x5qh02OUm9c/QrbK
-         BBPmjoMgb8/TA==
-Message-ID: <56aadffa-82be-f8ff-03d3-2a880b50ef49@collabora.com>
-Date:   Thu, 6 Oct 2022 10:36:17 +0200
+        with ESMTP id S229673AbiJFIj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 04:39:27 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7126395E43
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 01:39:25 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bu25so1674126lfb.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 01:39:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=ZsdVW3kv/gv6VD2XYgaX0nURVyr4iT9nt0KEf2PY+2s=;
+        b=JBvrTPjUFP/4uLZOz7I2AUPppN5MV7+lpjYtI4DRttA1LVeCNft+uZHZF6ZLHkYMkz
+         NtHA8nYW0g8CgjpHzs2nFXNLXA+wwaL88KN5Oi9xxszvJXc1vynGsrBGCIWw2JNoVqIa
+         hqmVtvo0BLlIkjHx6ze97EDuzZdTHCswMsulvzN6cYZ5kQDRO+FZZ/IPX7yVZNqm46Mz
+         /ZKrVuqh0o03hFrJ56TMF8gvIU6srwyJnwK8DewdA/k8zp4/HBVbbKlfVmiivNBuUYv/
+         NbPA/AaP5gE/enXTUIX/cm4bmDQfoiDool00JzQO+KFfNFdZvRxTEswkOlulPw1YdKMn
+         t49g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=ZsdVW3kv/gv6VD2XYgaX0nURVyr4iT9nt0KEf2PY+2s=;
+        b=BKx424bI9jjqH+oeX8ZW8LWu2Ii1GXzJvjXUybSINAqBdlahJgedCHF/1fd9gJTYNV
+         35eACE/ogrjzNc+lYZ/Y0v9AS1jGxRpl9BMeu2kTaBCNvnreCDDOn7JSMTRTuIQqHTn9
+         IoAGyPbRQt+ba6Bh5CMEfyqBpCRDW4rTwokWRRSH/ddehPX0oyOdKr2sHQkc79CBH+PL
+         KCgkNS1NLz7Xj69iQzYP/ZPZVeI2BGe/pd5yHKofly59sNmaTBkewesNk+72C+kW1hiS
+         HRBrQo4ZboA4rANDSJZOSLy+jYqiNcOSrkytltstWV7XYUtiYjxyw6EcfA6qYfpCiqzQ
+         5cng==
+X-Gm-Message-State: ACrzQf3hKCkEKrHwBBtE4Ptb+dc5Yil76vV8C11wxlTC35J0uNCU0Rxs
+        Wn4deG2s4yENjoigR4KUrjDXgw==
+X-Google-Smtp-Source: AMsMyM6kroZABrR/AA9MmR23n5+B/Y8uNck3iaId6051ZQGMOmJRMRcgbsOXYV90zyNqN56ZUDdRhA==
+X-Received: by 2002:ac2:429a:0:b0:49f:9c71:50b6 with SMTP id m26-20020ac2429a000000b0049f9c7150b6mr1370741lfh.349.1665045563763;
+        Thu, 06 Oct 2022 01:39:23 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id b18-20020a056512305200b00497b198987bsm2629176lfb.26.2022.10.06.01.39.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Oct 2022 01:39:23 -0700 (PDT)
+Message-ID: <a7e57332-f0c8-ceb0-e279-4e9a114d0cc8@linaro.org>
+Date:   Thu, 6 Oct 2022 10:39:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 3/5] dt-bindings: watchdog: mediatek: Convert mtk-wdt to
- json-schema
+ Thunderbird/102.3.1
+Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        wim@linux-watchdog.org
-Cc:     linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        allen-kh.cheng@mediatek.com, seiya.wang@mediatek.com,
-        tinghan.shen@mediatek.com, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221005113517.70628-1-angelogioacchino.delregno@collabora.com>
- <20221005113517.70628-4-angelogioacchino.delregno@collabora.com>
- <1f3ebf6f-117f-62a7-8e02-3e8a3bcf7e9f@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <1f3ebf6f-117f-62a7-8e02-3e8a3bcf7e9f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Vinod Koul <vinod.koul@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Caleb Connolly <kc@postmarketos.org>
+References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
+ <Yz6P8wOPdRd9sjX2@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Yz6P8wOPdRd9sjX2@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 05/10/22 18:33, Krzysztof Kozlowski ha scritto:
-> On 05/10/2022 13:35, AngeloGioacchino Del Regno wrote:
->> Convert the MediaTek watchdog bindings to schema.
+On 06/10/2022 10:21, Johan Hovold wrote:
+>> What to track:
+>> 1. Which bindings to convert to YAML,
+>> 2. Missing compatibles (either entirely or because of missing conversion),
+>> 3. `dt_binding_check` warnings (usually connected with 1-2),
+>> 4. `dtbs_check` warnings.
 >>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Rob's bot gives us daily output for 1-4, but how can we track current
+>> efforts to avoid duplication of work? Also it would allow people to find
+>> tasks for them to get contributions to Linux kernel :). Is anyone in
+>> community interested in tracking it together, in a public way?
 > 
-> There is already work in progress:
-> 
-> https://lore.kernel.org/all/20220422121017.23920-3-allen-kh.cheng@mediatek.com/
-> 
-> Best regards,
-> Krzysztof
-> 
+> Is this a real problem that needs fixing? I mean how often does it
+> happen that people submit the same YAML conversion for example? Since it
+> doesn't take that long to do a conversion, I'm not sure what tracking
+> this on some webpage buys us. It's better to just search lore before
+> starting a new conversion. Or search the linux-next tree to see what's
+> still pending.
 
-I'm sorry, I forgot about that.
+In terms of DT bindings conversion to DT schema:
+If I were not checking for ongoing work, I would duplicate effort like
+~10 times. Few other folks hit it few times, at least. Several bindings
+are being converted for ~1 year!
 
-Allen, how do we proceed? Do you want to send a new version of yours, or should
-I go on with a v2 for this one?
+In terms of DTS warnings - it's difficult even to check/search. For what
+do you search? Warnings? Pretty often they are not part of commit msg.
+By file? Then you might have many, many unrelated search results.
 
-Regards,
-Angelo
+> 
+> Similarly for the other points above, as it doesn't take very long to
+> add a missing compatible or fix a warning it seems a bit excessive to
+> try to track this manually.
+
+True, some are trivial. Some however need fixing the binding which takes
+time.
+
+> Perhaps a list of pending conversions or missing compatibles could be
+> useful for someone who's short on work, but it's bound to get outdated
+> pretty quickly.
+
+Another point is to have the visibility on the amount of work to be
+done. But I understand that's maybe topic just for few, e.g. me, so I
+can just track stuff for myself.
+
+> 
+>> If so, where?
+>> A. elinux.org (needs some formatting when pasting the output from tools)
+>> B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
+>> C. gitlab dedicated repo - some text file
+>> D. Linux kernel TODO file (might be difficult to keep updated)
+>> E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
+>> have it for Exynos but I don't find it usable -
+>> https://exynos.wiki.kernel.org/todo_tasks)
+>>
+>> I am leaning towards Gitlab pages because they could be quite automated
+>> - with CI or with scripts.
+>>
+>> The point would be to list all of tasks (1-4 from the first list), keep
+>> it updated with new results, pick/assign tasks and mark as done.
+> 
+> I don't really see the need for more process here, sorry.
+> 
+> If I'm working on support for a new platform and the DT checker warnings
+> gets too noisy I may pick some of the low hanging fruit. In the odd
+> chance that someone beats me to it, it's not the end of the world.
+
+Thanks for the input!
+
+Best regards,
+Krzysztof
+
