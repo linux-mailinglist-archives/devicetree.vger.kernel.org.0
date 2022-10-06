@@ -2,71 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 495BE5F6A72
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 17:21:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA4655F6A78
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 17:23:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230472AbiJFPVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 11:21:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58252 "EHLO
+        id S231451AbiJFPXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 11:23:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbiJFPVE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 11:21:04 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04507B514B;
-        Thu,  6 Oct 2022 08:21:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5BAB9B820DC;
-        Thu,  6 Oct 2022 15:21:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8D33C433C1;
-        Thu,  6 Oct 2022 15:21:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665069661;
-        bh=JrwMOulB7DpxqmtMl/R0cg81f45+oDM6yL8tNK1QWvE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=E1E3C0DN634/26yISzeoPPZE/Niz3va9T8GQgHkjFBFW8XwLCXnvCss2DC9JNGVzG
-         mi3+WFdGl2IT56r2jl9YSLjrlhrC5Ns7n66HXq9p9FLftZBIkamcGzCvirf1muLJvn
-         bL70ZUDDqcpl62duDYzWowFwgVf5pR5qsxrDWPhoDiIosSSFmfTeGRGHK4M98UqZk7
-         DdR704wl/XE+xUH40ihuOkRYfh5+6Qv411DNZe9ppyEHMIcUj1lIpHf4WOTeUPF/oN
-         Rysa+USPxVpRx/cIst/hakSej8SVJppkhYHBwTkwERbSd7dj2e80SK9+N0/1GKMR0G
-         t8MI+0b6UoDzQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ogSgD-0000DG-Te; Thu, 06 Oct 2022 17:20:58 +0200
-Date:   Thu, 6 Oct 2022 17:20:57 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Alex Elder <elder@linaro.org>,
-        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Vinod Koul <vinod.koul@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Caleb Connolly <kc@postmarketos.org>
-Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
-Message-ID: <Yz7yWRp3m8pU5eED@hovoldconsulting.com>
-References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
- <Yz6P8wOPdRd9sjX2@hovoldconsulting.com>
- <CAA8EJpqY41KSPp9-X0_+x+SnoWqvKxfV_tzgnu7HiA80Lbd5HQ@mail.gmail.com>
+        with ESMTP id S231142AbiJFPXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 11:23:10 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F06CB517B
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 08:23:08 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id q17so2589390lji.11
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 08:23:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=v5igb7gwPlo9b9xJTbh+HYwPUReqdxp8k/iwdLyM9EU=;
+        b=eYmYAeveDQX8Z1ffiggnnncFTrH0EMubH0QAEpO8D/gyMnPafpdvTGP9eXlvnw3D9J
+         w+oQ2nUztfJsZGp2tcgdPc/p+J75svQrhKVDOc+Td3WCwhHTA2drZVu8In+81LMjzjbq
+         uySqjkaH9Z/0S5D54Q9qyt0EsT7YB6Ghb5fMGYczJaW7V6mrDmBZkeQRN4dKFkrD4BrL
+         OPMavks5I21EWR+f+6gcCGPdddaaZLaXEekgD5ZEbyFW+HdX44SANbqIvAazGzk3mLYc
+         /fuZ8o04YBbHa7SqE4pX9unLbv3WT3a96qfGd95H+iUqNXNozqHBKrpt794HpBHjJ0Ts
+         U09g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=v5igb7gwPlo9b9xJTbh+HYwPUReqdxp8k/iwdLyM9EU=;
+        b=kP1rXHj3CxnXaqTziJXRObYkk6FRQhTP9pVcPQ46/zVGLYvxI4JVbIQRRgVI/cEH2p
+         DgIfmrSVC0TRmr3IZzUITe9uvwKvpFOr2Y5LHyF7Tg6QkW+/1RK0hFTvjKqSsQk8FNlZ
+         /QML+W4FNNGLLJIC+S+EOc41GkuOnl7FgXX/6T0OQUvRoHO6M+a2tQ4t7ka8O40gKITl
+         wzFEMfSun2T8P9WBgoa0aPyFCtVmADxya3A9tS8qcAA0ZLG3lyN8vBNoXHslL1PO21Mf
+         IBVS87TndVofb39cmjYTufgM62M3y7p0DR8z80Kc76mf7kfDiUb+NTZjQbkv33sNN1af
+         5Q5w==
+X-Gm-Message-State: ACrzQf3XzoyL19J/Re/3a3r44i6AwBZ3Kp/NS4FN4piwBMVGi8I0Bu+u
+        G6ECakiR9KR4Hzb4VqMbfg5hSA==
+X-Google-Smtp-Source: AMsMyM4KRHyhdJ+ushWbyAxsX2Gt18Zz+oPfj/QUFJpmQFKOOZ3Ubpx37LQSn2biWbCb1WfiIh0y3w==
+X-Received: by 2002:a05:651c:1509:b0:26c:6194:9c03 with SMTP id e9-20020a05651c150900b0026c61949c03mr74583ljf.314.1665069786936;
+        Thu, 06 Oct 2022 08:23:06 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id w20-20020a05651c119400b0026ab83298d6sm1910856ljo.77.2022.10.06.08.23.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Oct 2022 08:23:06 -0700 (PDT)
+Message-ID: <fc7c064f-074a-e66a-07b3-541f2ad56804@linaro.org>
+Date:   Thu, 6 Oct 2022 17:23:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpqY41KSPp9-X0_+x+SnoWqvKxfV_tzgnu7HiA80Lbd5HQ@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [RFC PATCH v2 3/5] dt-bindings: iio: Add KX022A accelerometer
+Content-Language: en-US
+To:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1665066397.git.mazziesaccount@gmail.com>
+ <80fa42040f385eb47f4f3c71b9b02f643a643e38.1665066397.git.mazziesaccount@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <80fa42040f385eb47f4f3c71b9b02f643a643e38.1665066397.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,26 +83,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 06, 2022 at 12:44:09PM +0300, Dmitry Baryshkov wrote:
-
-> On Thu, 6 Oct 2022 at 11:21, Johan Hovold <johan@kernel.org> wrote:
-
-> > Is this a real problem that needs fixing? I mean how often does it
-> > happen that people submit the same YAML conversion for example? Since it
-> > doesn't take that long to do a conversion, I'm not sure what tracking
-> > this on some webpage buys us. It's better to just search lore before
-> > starting a new conversion. Or search the linux-next tree to see what's
-> > still pending.
+On 06/10/2022 16:37, Matti Vaittinen wrote:
+> KX022A is a 3-axis Accelerometer from ROHM/Kionix. The sensor features
+> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+> tap/motion detection, wake-up & back-to-sleep events, four acceleration
+> ranges (2, 4, 8 and 16g) and probably some other cool features.
 > 
-> As Krzysztof wrote, fixing a warning/adding a new platform is usually
-> not a big deal. However converting old txt bindings usually results in
-> a significant amount of work. Fixing YAML and dtsi at the same time
-> can take a long time, especially for obscure cases like apq8084 or old
-> ipq boards.
 
-Yeah, if there are more than one person working on larger efforts like
-that, then that may require some coordination. But you can't expect
-drive-by developers to login to some web service before fixing dts
-checker warnings that are bugging them.
+Thank you for your patch. There is something to discuss/improve.
 
-Johan
+> +
+> +properties:
+> +  compatible:
+> +    const: kionix,kx022a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum:
+> +        - INT1
+> +        - INT2
+
+This allows any order, which I assume was your intention. However maybe
+at least fix it a bit like:
+minItems: 1
+items:
+  - enum: [ int1, int2]
+  - const: int2
+
+OTOH, the names are not really descriptive. Do they match pin names?
+
+
+Best regards,
+Krzysztof
+
