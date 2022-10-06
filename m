@@ -2,123 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E4A5F6A88
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 17:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06B9A5F6AA4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 17:32:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231756AbiJFP0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 11:26:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38384 "EHLO
+        id S231660AbiJFPc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 11:32:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231730AbiJFPZ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 11:25:56 -0400
-Received: from mail-m121145.qiye.163.com (mail-m121145.qiye.163.com [115.236.121.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10CDC5F980;
-        Thu,  6 Oct 2022 08:25:52 -0700 (PDT)
-Received: from amadeus-VLT-WX0.lan (unknown [120.37.187.24])
-        by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 90F188000CB;
-        Thu,  6 Oct 2022 23:25:46 +0800 (CST)
-From:   Chukun Pan <amadeus@jmu.edu.cn>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Michael Riesch <michael.riesch@wolfvision.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Chukun Pan <amadeus@jmu.edu.cn>,
-        Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: Add PCIe v3 nodes to rock-3a
-Date:   Thu,  6 Oct 2022 23:25:24 +0800
-Message-Id: <20221006152524.502445-3-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221006152524.502445-1-amadeus@jmu.edu.cn>
-References: <20221006152524.502445-1-amadeus@jmu.edu.cn>
+        with ESMTP id S229611AbiJFPc2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 11:32:28 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D026CA598C;
+        Thu,  6 Oct 2022 08:32:27 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id r14so3287770lfm.2;
+        Thu, 06 Oct 2022 08:32:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date;
+        bh=PSnridKMFXX1oHGe8dg+gb0bRu2roWI84V1eijz8eLg=;
+        b=Do6RRGKJ0zGQppy6Mcem1G4C9hsJ3j71Us9VPtWZnSCFiFmDLfWxiF7S9Za+jssdAA
+         NLo0eE9a72yRyC22N4Q+M1hIBoAWwGBM6PQoMweuymrCQBfMLHRB3eTQcKynCSeMMHbO
+         3l5eurRXyqE9+fmYFyExiBfqYBjxinDcbInXwcXFjs7XvO1RwEA7faE4TTegHN1NzDGV
+         ileioX25/9kxe65DuHjFJ51ZAk1174U5pF7ijRxjkAtHV4cYoPH0sHLhyUkm1nRif9X0
+         kL0EvDKtssKvmQEyds/f/Z9JVw+x4zSKXGfzK2F3TUa7cwhfDv1Do9PCfZWLxILxOI9l
+         Hh7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=PSnridKMFXX1oHGe8dg+gb0bRu2roWI84V1eijz8eLg=;
+        b=mq1N6t7QMuLgR6yfKK7kfoLQ2oHI+BWHWZpbdwIXPz5R4WTHupxWeuBUCHu56+dJx/
+         Hmv4BuE7hTIqqUzwY9fwp/CJplzAMGMHHdNkneBLp/I2GGxGx0fGZ7hUiBrjnLMnjHN1
+         IY9v4kOiJjVQr0BNlSijY2lw9IrX5Gv8EEyqaXHh9zynDuKEgwtA+M5iL+HEi0VJZOri
+         fAV3cMtFNjM7OIbowW4qC6Ws0wN/oYEU/dpPA6d4+cO7rgksV01LaqhNv4SUhV0pwwie
+         UextS+yOjj1PQhGD6P1YoD749OKENOLKayCHCKWIBRtS7EWh2fZwXgNf0rPjMYQLq3E0
+         Xb4g==
+X-Gm-Message-State: ACrzQf25RxLhoF+UIGnmILlZgIu8kid+7zmaGfWcIUD+7hDc6PxEiU9U
+        JkUQhRzbz27HaB2wYaQ0Gzw=
+X-Google-Smtp-Source: AMsMyM5EFh6FHQ971Y6DxjG1i1/HXfuJ4x9s+wR245sRDEOF2gfiEw/XgAwM9/FRsbmBp0T1wjzQ7Q==
+X-Received: by 2002:a05:6512:2314:b0:4a2:6c4a:4fb9 with SMTP id o20-20020a056512231400b004a26c4a4fb9mr216012lfu.482.1665070346182;
+        Thu, 06 Oct 2022 08:32:26 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id g17-20020a2ea4b1000000b00267232d0652sm1912189ljm.46.2022.10.06.08.32.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Oct 2022 08:32:25 -0700 (PDT)
+Message-ID: <7bbc0c04-04a8-f2c6-0436-3be0fc1013c7@gmail.com>
+Date:   Thu, 6 Oct 2022 18:32:22 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-        tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZThlPVklMTk8fGEtDSUMeSFUTARMWGhIXJBQOD1
-        lXWRgSC1lBWUpJS1VITFVKQ0xVSU9ZV1kWGg8SFR0UWUFZT0tIVUpKS0hKQ1VKS0tVS1kG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PDo6Ixw5Mz0pPk8MCwwBViJL
-        IQ0KCi5VSlVKTU1OS01CQk9MSUtMVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpJ
-        S1VITFVKQ0xVSU9ZV1kIAVlBSE5LSDcG
-X-HM-Tid: 0a83ade717beb03akuuu90f188000cb
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1665066397.git.mazziesaccount@gmail.com>
+ <80fa42040f385eb47f4f3c71b9b02f643a643e38.1665066397.git.mazziesaccount@gmail.com>
+ <fc7c064f-074a-e66a-07b3-541f2ad56804@linaro.org>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [RFC PATCH v2 3/5] dt-bindings: iio: Add KX022A accelerometer
+In-Reply-To: <fc7c064f-074a-e66a-07b3-541f2ad56804@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Nodes to Radxa ROCK3 Model A board to support PCIe v3.
+Hi dee Ho Krzysztof,
 
-Tested-by: Anand Moon <linux.amoon@gmail.com>
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- .../boot/dts/rockchip/rk3568-rock-3a.dts      | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+On 10/6/22 18:23, Krzysztof Kozlowski wrote:
+> On 06/10/2022 16:37, Matti Vaittinen wrote:
+>> KX022A is a 3-axis Accelerometer from ROHM/Kionix. The sensor features
+>> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+>> tap/motion detection, wake-up & back-to-sleep events, four acceleration
+>> ranges (2, 4, 8 and 16g) and probably some other cool features.
+>>
+> 
+> Thank you for your patch. There is something to discuss/improve.
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: kionix,kx022a
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +
+>> +  interrupt-names:
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +    items:
+>> +      enum:
+>> +        - INT1
+>> +        - INT2
+> 
+> This allows any order, which I assume was your intention.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-index 8adf672709e8..c1fa917083ba 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-@@ -67,6 +67,37 @@ vcc12v_dcin: vcc12v-dcin-regulator {
- 		regulator-boot-on;
- 	};
- 
-+	pcie30_avdd0v9: pcie30-avdd0v9-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie30_avdd0v9";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <900000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	pcie30_avdd1v8: pcie30-avdd1v8-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie30_avdd1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	/* pi6c pcie clock generator */
-+	vcc3v3_pi6c_03: vcc3v3-pi6c-03-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_pi6c_03";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
- 	vcc3v3_pcie: vcc3v3-pcie-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -546,6 +577,19 @@ &pcie2x1 {
- 	status = "okay";
- };
- 
-+&pcie30phy {
-+	phy-supply = <&vcc3v3_pi6c_03>;
-+	status = "okay";
-+};
-+
-+&pcie3x2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie30x2m1_pins>;
-+	reset-gpios = <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_pcie>;
-+	status = "okay";
-+};
-+
- &pinctrl {
- 	cam {
- 		vcc_cam_en: vcc_cam_en {
+Yes. I don't see real need to restrict ordering - besides, with my 
+yaml/schema skills it'd took eternity to find corrct example(s) ;)
+
+My intention is that the user can give either one of these - or both. 
+Order needs naturally to match the order of IRQs - but this we can't know.
+
+> However maybe
+> at least fix it a bit like:
+> minItems: 1
+> items:
+>    - enum: [ int1, int2]
+>    - const: int2
+
+If you say so XD
+I can fix this for v3 :)
+
+> 
+> OTOH, the names are not really descriptive. Do they match pin names?
+> 
+
+Yes. They match to pin names used in the data-sheet.
+
+
+Yours
+	-- Matti
+
+Ps. I've heard this year has not been that good with the mushrooms here 
+in Finland ;)
+
 -- 
-2.25.1
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
