@@ -2,218 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E62645F7121
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 00:32:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4A5D5F71A7
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 01:22:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231862AbiJFWcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 18:32:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46600 "EHLO
+        id S231997AbiJFXW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 19:22:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbiJFWcJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 18:32:09 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D6AEC6955
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 15:32:06 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id r18so3025016pgr.12
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 15:32:06 -0700 (PDT)
+        with ESMTP id S229912AbiJFXW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 19:22:27 -0400
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9295CD5EC;
+        Thu,  6 Oct 2022 16:22:26 -0700 (PDT)
+Received: by mail-il1-x129.google.com with SMTP id g13so1789740ile.0;
+        Thu, 06 Oct 2022 16:22:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mwdh57L9fckiaoWdQh7SwUz9F5rlt6m688P2601JLuo=;
-        b=lBMAwDw9P//px+C2I2lkngBb7SUzaLEM88idbFikbd5Ozs9W7zpFbIrLo9MgvdTXGg
-         VwKrOeV8NmZDIqeYgF26CHgO1QszrcsEV66xsdPCuInejuVQ0kNtbcqhPCzvG5Kbkmts
-         jmpMZJTu8H91bPxZKxpEcY3Qgh1weafylhmNejE/FuupURY7WresCyIiJofVBA2SiDwi
-         6egzSWs5ciMQFpAYl17hhmPz5zp4wMjzRiloDyeuH74yMl7IxZi5dl+Z5y5PFCGpfIQ6
-         SChJPKU1P8wULHzgoJ+XXQTV+1lPSLUWA3f0G7/1OUgdSS+YvMzdpL0v/e18NSpRc5uP
-         9CZg==
+         :to:from:from:to:cc:subject:date;
+        bh=+TEoWgEKTvbiJtOYsEhCaZpzROl8ImC9jVpcIpr9rdA=;
+        b=LEsNljBht9CfS9iP7WzSiemiu4S4Ct90L/IXFPTsG4ClZiwQXJ/ciE77IUb9WwHnuy
+         cK33AT6sQ/tdrC2P2Ho4kmtNjz1wg59WoVdUKLz6ifwvt7tmHmyUFE74w874P8zaUoI2
+         Agg6Yrmtx++jD2bHy+A8jbYJz83rYOo5cBR3kCFwpwQhdncBDFhhRsaCKLl7+IrpZkqG
+         fykMxH4NCIfT1sb8TFnF1e5e2w8kdM1LsZ5XguU23xmROGVVujwKFAvV6S9rO8HX47KZ
+         ylEj57zmvpCLUTGuMFp8x8JJBxRqGTIBYz5xOwdXolQkyZCwbaJPfhjMCqSCA64RIle7
+         ATJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Mwdh57L9fckiaoWdQh7SwUz9F5rlt6m688P2601JLuo=;
-        b=dmIVSo1DLjcDwlVizduSK6WvLIBldmcdYB1e6+hECswLX5/6UhfQ+iQ4wFoeUxFSy3
-         S9pNubz8CpsPRhgsOY2mU1R1+q9QEvf5SIz2S2bmkbZ0AN0LHR7s1edQ8fOVyxn2U/Z5
-         G4lqArxyxPCep+9OmVT/vnvczmjVknXX00GxRNmvJnsV9ZJ5EpvQeiJWrs5OKBq0n9Zv
-         ATv4VbZ8Vnqtksgqv/i5PbzU2mi5fXec2KEAiqobInEBwoXVy4EQc00q6qhTzCMCx7AC
-         L5wVlYPgIscjYazZR/t+qhM/ICHl2iPhvpA0g9F6rVgxwMXDyxg7/RU+lftgGBHpQU1K
-         rWAw==
-X-Gm-Message-State: ACrzQf2aIk+6X3H7VmB5oA3daKjkNJofkCk4TS6Kdn8h9W5PXjVPNeei
-        Qt+PG9gnvHWnIBqjNWpz3XSFFA==
-X-Google-Smtp-Source: AMsMyM5UsB3U1oOIlyj/lV9W8VQoPygqGMgMDSxlleZxTwyYlnhET4dY3Zicej7WfetFQr9IhKqIow==
-X-Received: by 2002:a05:6a02:205:b0:420:8b7e:3ff with SMTP id bh5-20020a056a02020500b004208b7e03ffmr1674716pgb.427.1665095526096;
-        Thu, 06 Oct 2022 15:32:06 -0700 (PDT)
-Received: from desktop.hsd1.or.comcast.net ([2601:1c0:4c81:c480:feaa:14ff:fe3a:b225])
-        by smtp.gmail.com with ESMTPSA id f15-20020a170902684f00b00176a2d23d1asm136578pln.56.2022.10.06.15.32.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 15:32:05 -0700 (PDT)
-From:   Tadeusz Struk <tadeusz.struk@linaro.org>
-To:     David Gibson <david@gibson.dropbear.id.au>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
-        Tadeusz Struk <tadeusz.struk@linaro.org>
-Subject: [PATCH v4] libfdt: tests: add get_next_tag_invalid_prop_len
-Date:   Thu,  6 Oct 2022 15:31:55 -0700
-Message-Id: <20221006223155.3316133-1-tadeusz.struk@linaro.org>
-X-Mailer: git-send-email 2.37.3
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=+TEoWgEKTvbiJtOYsEhCaZpzROl8ImC9jVpcIpr9rdA=;
+        b=AeMW6HFFAPhrfz3Dnu+HtLAZad4ERcyEIXvFjKzXAmqP1mVfykZCNSqF9X+2wKhEvU
+         k5lFB8HhZE37w3vhU4rjKSkqSv1Hs0Q6r0V4jP/vDlIROqmgLs6/3AYf69osJAO88KSK
+         v+wJ6BVeoszY7Ee1S8pLJJEcyEFPZKUo5e7OXdSQ40BWew62T8XRGg5kt9iHV+zdG+9D
+         6Hj0zAKTYrk+U7eb193WTuiC+I/wTAy/1FYY3TCFVZvHk8ezR/AY6QYJqS1wQQcs1ehk
+         YISagq0Gr9U9DdZ2xZxWcgeiR5B4+3NOj8cplbceuRCy7uAIDQuz6aI4jwXyZWjfkYVv
+         I2KQ==
+X-Gm-Message-State: ACrzQf38AYFQkM+nV3+MZDxa16nfAA2XPd7ZyRCBHc6s6wZ/EjXxqiIg
+        VdySaDqL77JPg7sPFLtpXPZV6DUuwxbDsg==
+X-Google-Smtp-Source: AMsMyM6AWsot4DhUoPLqLnJu+BQTwKSnXw48oIotZLDAu/blMk9OHITtBJMVXWE9n9kR37uL2drMHQ==
+X-Received: by 2002:a05:6e02:164d:b0:2f9:46bb:6ffb with SMTP id v13-20020a056e02164d00b002f946bb6ffbmr945606ilu.320.1665098546112;
+        Thu, 06 Oct 2022 16:22:26 -0700 (PDT)
+Received: from localhost ([2607:fea8:a2e2:2d00::d5cc])
+        by smtp.gmail.com with UTF8SMTPSA id x94-20020a0294e7000000b00363455b779csm264890jah.159.2022.10.06.16.22.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Oct 2022 16:22:25 -0700 (PDT)
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v8 0/3] SDM670 Pin Control Driver
+Date:   Thu,  6 Oct 2022 19:22:16 -0400
+Message-Id: <20221006232219.37505-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new test get_next_tag_invalid_prop_len, which covers
-fdt_next_tag(), when it is passed an corrupted blob, with
-invalid property len values.
+Changes since v7:
+ - remove complement_fw_reserved_gpios from patch 3
 
-Signed-off-by: Tadeusz Struk <tadeusz.struk@linaro.org>
----
-v4:
- * I didn't keep track of the changes in the test code,
-   but this version should have all the comments addressed.
----
- tests/.gitignore                      |  1 +
- tests/Makefile.tests                  |  2 +-
- tests/get_next_tag_invalid_prop_len.c | 76 +++++++++++++++++++++++++++
- tests/meson.build                     |  1 +
- tests/run_tests.sh                    |  1 +
- 5 files changed, 80 insertions(+), 1 deletion(-)
- create mode 100644 tests/get_next_tag_invalid_prop_len.c
+Changes since v6:
+ - remove bitmap_fill() call completely (original commit was 4c0efbfb2669
+   ("pinctrl: msm: Add ability for drivers to supply a reserved GPIO list"),
+   original author CC'd)
+ - group some entries in pingroup arrays for less lines
+ - accumulate review tags
 
-diff --git a/tests/.gitignore b/tests/.gitignore
-index 03bdde2..3376ed9 100644
---- a/tests/.gitignore
-+++ b/tests/.gitignore
-@@ -74,3 +74,4 @@ tmp.*
- /truncated_memrsv
- /utilfdt_test
- /value-labels
-+/get_next_tag_invalid_prop_len
-diff --git a/tests/Makefile.tests b/tests/Makefile.tests
-index 2d36c5d..2c5b4c9 100644
---- a/tests/Makefile.tests
-+++ b/tests/Makefile.tests
-@@ -4,7 +4,7 @@ LIB_TESTS_L = get_mem_rsv \
- 	get_path supernode_atdepth_offset parent_offset \
- 	node_offset_by_prop_value node_offset_by_phandle \
- 	node_check_compatible node_offset_by_compatible \
--	get_alias \
-+	get_alias get_next_tag_invalid_prop_len \
- 	char_literal \
- 	sized_cells \
- 	notfound \
-diff --git a/tests/get_next_tag_invalid_prop_len.c b/tests/get_next_tag_invalid_prop_len.c
-new file mode 100644
-index 0000000..20c51de
---- /dev/null
-+++ b/tests/get_next_tag_invalid_prop_len.c
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: LGPL-2.1-or-later
-+/*
-+ * libfdt - Flat Device Tree manipulation
-+ *	Testcase for fdt_next_tag()
-+ */
-+#include <stdlib.h>
-+#include <stdio.h>
-+#include <string.h>
-+#include <stdint.h>
-+
-+#include <libfdt.h>
-+#include "tests.h"
-+#include "testdata.h"
-+
-+#define FDT_SIZE 65536
-+#define CHECK_ERR(err) \
-+({ if (err) \
-+	FAIL("%s: %d: %s", __FILE__, __LINE__, fdt_strerror(err)); \
-+})
-+
-+int main(int argc, char *argv[])
-+{
-+	struct fdt_property *prp;
-+	void *fdt;
-+	int nextoff = 0, offset, err;
-+	uint32_t tag;
-+
-+	test_init(argc, argv);
-+	fdt = malloc(FDT_SIZE);
-+	if (!fdt)
-+		FAIL("Can't allocate memory");
-+	err = fdt_create(fdt, FDT_SIZE);
-+	CHECK_ERR(err);
-+	fdt_set_off_dt_strings(fdt, FDT_SIZE);
-+	err = fdt_begin_node(fdt, "");
-+	CHECK_ERR(err);
-+	err = fdt_property_u32(fdt, "prop-int-32", 0x1234);
-+	CHECK_ERR(err);
-+	err = fdt_property_u32(fdt, "prop2-int-32", 0x4321);
-+	CHECK_ERR(err);
-+	err = fdt_end_node(fdt);
-+	CHECK_ERR(err);
-+	offset = fdt_first_property_offset(fdt, 0);
-+	if (offset <= 0)
-+		FAIL("FAIL Invalid offset %x, expected value greater than 0\n",
-+		     offset);
-+
-+	/* Normal case */
-+	tag = fdt_next_tag(fdt, offset, &nextoff);
-+	if (tag != FDT_PROP )
-+		FAIL("FAIL Invalid tag %x, expected FDT_PROP\n", tag);
-+
-+	/* Get a writable ptr to the first property and corrupt the lenght */
-+	prp = fdt_get_property_w(fdt, 0, "prop-int-32", NULL);
-+	if (!prp)
-+		FAIL("Bad property pointer");
-+
-+	/* int overflow case */
-+	prp->len = cpu_to_fdt32(0xFFFFFFFA);
-+	tag = fdt_next_tag(fdt, offset, &nextoff);
-+	if (tag != FDT_END)
-+		FAIL("Invalid tag %x, expected premature FDT_END", tag);
-+	if (nextoff != -FDT_ERR_BADSTRUCTURE)
-+		FAIL("Invalid nextoff, expected error -FDT_ERR_BADSTRUCTURE");
-+
-+	/* negative offset case */
-+	prp->len = cpu_to_fdt32(0x7FFFFFFA);
-+	tag = fdt_next_tag(fdt, offset, &nextoff);
-+	if (tag != FDT_END)
-+		FAIL("Invalid tag, expected premature FDT_END");
-+	if (nextoff != -FDT_ERR_BADSTRUCTURE)
-+		FAIL("Invalid nextoff, expected error -FDT_ERR_BADSTRUCTURE");
-+
-+	free(fdt);
-+	PASS();
-+}
-diff --git a/tests/meson.build b/tests/meson.build
-index 4ac154a..29a42dd 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -47,6 +47,7 @@ tests = [
-   'get_path',
-   'get_phandle',
-   'get_prop_offset',
-+  'get_next_tag_invalid_prop_len',
-   'getprop',
-   'incbin',
-   'integer-expressions',
-diff --git a/tests/run_tests.sh b/tests/run_tests.sh
-index 244df8a..46678cb 100755
---- a/tests/run_tests.sh
-+++ b/tests/run_tests.sh
-@@ -513,6 +513,7 @@ libfdt_tests () {
-     run_dtc_test -I fs -O dts -o fs.test_tree1.test.dts $FSBASE/test_tree1
-     run_dtc_test -I fs -O dtb -o fs.test_tree1.test.dtb $FSBASE/test_tree1
-     run_test dtbs_equal_unordered -m fs.test_tree1.test.dtb test_tree1.dtb
-+    run_test get_next_tag_invalid_prop_len
- 
-     ## https://github.com/dgibson/dtc/issues/64
-     check_tests "$SRCDIR/phandle-args-overflow.dts" clocks_property
+Changes since v5:
+ - remove function requirement in schema
+ - change "-state$" regex to double quotes in schema
+ - drop quotes from qcom-tlmm-state ref in dt schema
+
+Changes since v4:
+ - accumulate review tag
+ - use --cover-letter
+ - this is effectively a resend
+
+Changes since v3:
+ - constrain gpio-reserved-ranges to 1-75 items
+ - proper indentation in dt-bindings example (actually tagged this time
+   instead of an outdated commit)
+ - remove unnecessary commit reference
+ - rename complement_fw_reserved_gpios -> complement_fw_gpio_ranges
+
+Changes since v2:
+ - remove quotes from pinctrl.yaml# in dt-bindings
+ - constrain gpio-reserved-ranges to 1-76 items (includes ufs_reset)
+ - indentation in dt-bindings example
+ - cite downstream kernel source
+ - remove MODULE_AUTHOR (most imported pinctrl drivers don't have this)
+
+Changes since v1:
+ - add a field in msm_pinctrl_soc_data to accomodate the needs of the
+   driver and device dts
+ - apply changes made to existing tlmm dt documentation
+ - add reserved gpios array
+ - rename device tree compat string to qcom,sdm670-tlmm
+ - remove dependency on ACPI
+ - move MODULE_DEVICE_TABLE macro call up
+ - add missing pins (fixes most of the debugfs problems)
+ - move qup0_pins down
+ - add whitespace between UFS_RESET macro and pins array
+
+This patch series adds the driver for the Qualcomm Snapdragon 670 TLMM
+(Top-Level Mode Multiplexer) and introduces a new field so that SDM670-
+related device trees can reserve their own gpios.
+
+Richard Acayan (3):
+  dt-bindings: pinctrl: qcom: add sdm670 pinctrl
+  pinctrl: qcom: do not reinitialize gpio valid mask
+  pinctrl: qcom: add sdm670 pinctrl
+
+ .../bindings/pinctrl/qcom,sdm670-tlmm.yaml    |  129 ++
+ drivers/pinctrl/qcom/Kconfig                  |    9 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-msm.c            |    3 +-
+ drivers/pinctrl/qcom/pinctrl-sdm670.c         | 1345 +++++++++++++++++
+ 5 files changed, 1485 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sdm670.c
+
 -- 
-2.37.3
+2.38.0
 
