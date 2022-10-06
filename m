@@ -2,113 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8E5E5F66F9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 14:55:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DD165F67E5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 15:26:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230469AbiJFMzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 08:55:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49718 "EHLO
+        id S231200AbiJFNZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 09:25:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231706AbiJFMzb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 08:55:31 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A26D8CE05;
-        Thu,  6 Oct 2022 05:54:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S229675AbiJFNZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 09:25:53 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 149FEA9268;
+        Thu,  6 Oct 2022 06:25:53 -0700 (PDT)
+Received: from zn.tnic (p200300ea9733e732329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e732:329c:23ff:fea6:a903])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 8D963CE1691;
-        Thu,  6 Oct 2022 12:54:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D174BC43145;
-        Thu,  6 Oct 2022 12:54:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665060857;
-        bh=MsIFn/B1+08rEbLiGduxeXGRhxZBa1pWHKmWKGsKPmw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HjKhW+QmffhhWWlm6qsN4Uz81lr19nxM/HJdG4wEwq9L9XPaX0J1su1KEdDq5zX+H
-         jacDe1k2Jy9HTQTm01rhLr7k9z2kwwBcBGt44UQDYGfLTA97W4C44qlc3jpNPCoWZh
-         UGbkop6EcgE13ItegzofWa3I06I+hIw0LBCMlH33lVJh+I/5m1tXviTau8LDsl1JmN
-         vOIcsXa0JJXK8w1E5YhF3m0/eX53oT7l2+ouFSGmlonsKXcxx1rlRXR4LnVJIqY9Pd
-         Ic1lBDcP2KQtNep343ytuBnfWaKHAbvHaNS7uiXmrkjTi1sMvz9km42+Vdt+kc8fIz
-         Z2kzXwqZInzsg==
-Received: by mail-vk1-f172.google.com with SMTP id k14so775445vkk.0;
-        Thu, 06 Oct 2022 05:54:17 -0700 (PDT)
-X-Gm-Message-State: ACrzQf0Q6XSr3jvdH+SOTVFAr4FxQ0XLhfWqiZp5W1ibh+q4laxW/RZe
-        /BSrCm+ekC/lsu6eHPT2bgIsLEvs1JFFqnUHXQ==
-X-Google-Smtp-Source: AMsMyM5YQNA460THnTExkzg+jr8ivd5DgaPTjt3P6pRYVuUbdtP71PS4b31kGlnH8wJCcBae3wbGM0+goQ7pfoEgZas=
-X-Received: by 2002:a1f:3285:0:b0:3a9:ebd7:db97 with SMTP id
- y127-20020a1f3285000000b003a9ebd7db97mr2401790vky.14.1665060856647; Thu, 06
- Oct 2022 05:54:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221006020444.15823-1-allen.chen@ite.com.tw> <20221006020444.15823-2-allen.chen@ite.com.tw>
-In-Reply-To: <20221006020444.15823-2-allen.chen@ite.com.tw>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 6 Oct 2022 07:54:06 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJvwi5wL9_POvPcQASXDzrcw0CQ2T7Xig0hCHjiSaQ7Tw@mail.gmail.com>
-Message-ID: <CAL_JsqJvwi5wL9_POvPcQASXDzrcw0CQ2T7Xig0hCHjiSaQ7Tw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: it6505: add properties to restrict
- output bandwidth
-To:     allen <allen.chen@ite.com.tw>
-Cc:     Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
-        Hermes Wu <Hermes.Wu@ite.com.tw>,
-        Pin-yen Lin <treapking@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 891AC1EC063A;
+        Thu,  6 Oct 2022 15:25:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1665062747;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=UD/kHZ1QqsxXXC+8XEN1rrv2JXKjTnMsM3a/4/yEYu8=;
+        b=gP5Qk1LjooiLMFGuExDBW0oIx3VX8koptyGrokMz6vCfLY8OAWUfMT0C/2CBbMZAAOZCUb
+        5ipbPEYifusBCp68dBHdn5ElUNq+HDkBnJLAAuQEEls4KKVqT5jH7cxVRZvH7UWENPvUwn
+        ET1kR2EexlnsDqbc2LJmOw1TLqs4x/Y=
+Date:   Thu, 6 Oct 2022 15:25:42 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v3 14/17] EDAC/synopsys: Detach Zynq DDRC
+ controller support
+Message-ID: <Yz7XVqeopgGVR7+3@zn.tnic>
+References: <20220929232712.12202-1-Sergey.Semin@baikalelectronics.ru>
+ <20220929232712.12202-15-Sergey.Semin@baikalelectronics.ru>
+ <YzcAV2I/rhILfhwR@zn.tnic>
+ <20221006121740.ksugoodbagr45fky@mobilestation>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221006121740.ksugoodbagr45fky@mobilestation>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 5, 2022 at 9:05 PM allen <allen.chen@ite.com.tw> wrote:
->
-> From: allen chen <allen.chen@ite.com.tw>
->
-> Add properties to restrict dp output data-lanes and clock.
->
-> Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-> Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
-> ---
->  .../bindings/display/bridge/ite,it6505.yaml          | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> index 833d11b2303a..f5482a614d05 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> @@ -52,6 +52,16 @@ properties:
->      maxItems: 1
->      description: extcon specifier for the Power Delivery
->
-> +  ite,dp-output-data-lane-count:
-> +    description: restrict the dp output data-lanes with value of 1-4
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 1, 2, 4 ]
+On Thu, Oct 06, 2022 at 03:17:40PM +0300, Serge Semin wrote:
+> In general because it needlessly overcomplicates the driver, worsen
+> it scalability, maintainability and readability, makes it much harder
+> to add new controller features. Moreover even if you still able to add
+> some more features support the driver will get to be more and more messy
+> (as Michal correctly said in the original thread [1]).
 
-We have a standard property for lanes: data-lanes
+Did you read that thread until the end?
 
-It goes in the endpoint.
+> It will get to be messy since you'll need to add more if-flag-else
+> conditionals or define new device-specific callbacks to select the
+> right code path for different controllers; you'll need to define
+> some private data specific to one controller and unused in another.
+> All of that you already have in the driver and all of that would be
+> unneeded should the driver author have followed the standard kernel
+> bus-device-driver model.
 
-> +
-> +  ite,dp-output-max-pixel-clock-mhz:
-> +    description: restrict max pixel clock
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 150
+So lemme ask this again because the last time it all sounded weird and I
+don't think it got clarified fully: you cannot have more than one memory
+controller type at the same time on those systems, can you?
 
-Also have a common property for this: 'link-frequencies'
+Because if you can and you want to support that, the current EDAC
+"design" allows to have only a single EDAC driver per system. So you
+can't do two drivers now.
+
+If your answer to that is
+
+Subject: [PATCH RESEND v3 13/17] EDAC/mc: Add MC unique index allocation procedure
+
+then I'm sceptical but I'd need to look at that first.
+
+And reading your commit messages, you're talking a lot about what you're
+doing. But that should be visible from the patch. What I wanna read is
+*why* you're doing it.
+
+Like in this patch above, what's that "unique index allocation
+procedure" for?
+
+edac_mc_alloc() already gets a mc_num as the MC number.
+
+And yes, if you want to do multiple driver instances like x86 does per
+NUMA node instances, then that is done with edac_mc_alloc() which gives
+you a memory controller descriptor and then you can deal with those.
+
+From all the text it sounds to me you want to add a separate driver for
+that Zynq A05 thing but I might still be missing something...
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
