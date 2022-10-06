@@ -2,69 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30A545F6A44
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 17:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1DBF5F6A52
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 17:10:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231837AbiJFPHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 11:07:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33796 "EHLO
+        id S231334AbiJFPK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 11:10:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231860AbiJFPHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 11:07:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D43C8FD7A;
-        Thu,  6 Oct 2022 08:07:30 -0700 (PDT)
+        with ESMTP id S231139AbiJFPKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 11:10:55 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C1A3FEE0;
+        Thu,  6 Oct 2022 08:10:54 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D3C15619EE;
-        Thu,  6 Oct 2022 15:07:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A7C9C433B5;
-        Thu,  6 Oct 2022 15:07:29 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BCDD6B82035;
+        Thu,  6 Oct 2022 15:10:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EBF3C433B5;
+        Thu,  6 Oct 2022 15:10:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665068849;
-        bh=aA7z4WmE7WeKFIA62daxrPvgcAETGLOKt+bLT9KeHbs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cjyb6JWFFZgyc1ok4lHC+QS2Kp03BNka/7FnseRZcMQYbSpjvUd6tvJyOEDiCeDVm
-         Aeaq8WkItdHpC9j39AohRxlhUmKUGEtP/Z0nUQ2+RZRwkc1RK4iba1Ya9OUUSezp8e
-         rBoQ9ww/m5jQKLluh7kBmw1a603UGsSx6ffEj0V0XZkr9TAiHePpsn2fun7L6AqcH9
-         n7/MiwfZKMnu4WPO3jW5wGKtO5qqn/R1SrNV2xLqHT+4OIpfTymRuM0fg9bByf9/Fe
-         ZF5UbwVGQYudEZSj1vun/6z0HHoStCFK/d6C9boDfCZ0h/0yagcPkmjuLYAHAJf8jL
-         59gHXiZiwxg8Q==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ogST1-00083i-9i; Thu, 06 Oct 2022 17:07:20 +0200
-Date:   Thu, 6 Oct 2022 17:07:19 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Alex Elder <elder@linaro.org>,
-        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Vinod Koul <vinod.koul@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Caleb Connolly <kc@postmarketos.org>
-Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
-Message-ID: <Yz7vJ9LMm16eaXaR@hovoldconsulting.com>
-References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
- <Yz6P8wOPdRd9sjX2@hovoldconsulting.com>
- <a7e57332-f0c8-ceb0-e279-4e9a114d0cc8@linaro.org>
+        s=k20201202; t=1665069051;
+        bh=EsOcPnG6SrdA7Pq8LqofCWapCMsw29KW3LBWaXqh73E=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IUXNQtJWFwyZgl6PZkiE5pSsvdmyq6/Mq8wgk6gwe3Eg3TyCCXP7E2AcRoS6iRaim
+         5WGDl3umltMsU2Qod6Rf0yoh9xtQp6J6ooFYG/cANd/RxbmFe9MkpJOov5b7qtbukx
+         5Z4W6VUPLErAE0qPdTCGffMsfl16uirOj2RP2GFWvzEQ6KQslrnekWm2+LrvmzCjTV
+         BDFAtDTvoR7parUWBkVbwQeUPDhCyyDdmSIA5EAL4KV1cUcYqjymkQnUE4gS0bNGXl
+         NbCpe+YYUmGdfhyNiNbLclSG3/9SEAdbba8lTcf33AFHKDIgO3u+o7cvI8j8cZVeOB
+         WE/PZotbbhBPQ==
+Received: by mail-ua1-f51.google.com with SMTP id p89so728639uap.12;
+        Thu, 06 Oct 2022 08:10:51 -0700 (PDT)
+X-Gm-Message-State: ACrzQf1hknNtz2A4x9uH1JXJrj2+oVrDz9fcXnjriFKSI3iyP0vfHx3M
+        eTfXCm06IJEZbUetXQqscHUUlx184YPd5hmBCw==
+X-Google-Smtp-Source: AMsMyM5EMjw94DkinhMIy3TgxlR6A1EG+W79KwecYmw4NBP3HOUDgfdpeYVtkJB5wNhODUSNoXtrxa7HoEvV+g5VmAw=
+X-Received: by 2002:ab0:25d4:0:b0:3c1:c353:31cb with SMTP id
+ y20-20020ab025d4000000b003c1c35331cbmr339075uan.63.1665069050451; Thu, 06 Oct
+ 2022 08:10:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a7e57332-f0c8-ceb0-e279-4e9a114d0cc8@linaro.org>
+References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
+ <f831f62b-004b-4f73-2a66-de9d675c44b6@gmail.com> <CAL_JsqJn=i=TT9NArHK25g1NkZN_G1GjN3EGEeTAvyW_PUhgcw@mail.gmail.com>
+ <8ea70992-d4e9-8bbd-0fca-d5700f84e071@amd.com>
+In-Reply-To: <8ea70992-d4e9-8bbd-0fca-d5700f84e071@amd.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 6 Oct 2022 10:10:39 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJA8K0nKO=O2QjyHdue6=EHYNqCTw6pKUsBKwrdrYGePA@mail.gmail.com>
+Message-ID: <CAL_JsqJA8K0nKO=O2QjyHdue6=EHYNqCTw6pKUsBKwrdrYGePA@mail.gmail.com>
+Subject: Re: [PATCH RFC 0/2] Generate device tree node for pci devices
+To:     Sonal Santan <sonal.santan@amd.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        helgaas@kernel.org, clement.leger@bootlin.com, max.zhen@amd.com,
+        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com,
+        trix@redhat.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -74,71 +66,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 06, 2022 at 10:39:22AM +0200, Krzysztof Kozlowski wrote:
-> On 06/10/2022 10:21, Johan Hovold wrote:
-> >> What to track:
-> >> 1. Which bindings to convert to YAML,
-> >> 2. Missing compatibles (either entirely or because of missing conversion),
-> >> 3. `dt_binding_check` warnings (usually connected with 1-2),
-> >> 4. `dtbs_check` warnings.
+On Fri, Sep 30, 2022 at 2:29 PM Sonal Santan <sonal.santan@amd.com> wrote:
+>
+> On 9/26/22 15:44, Rob Herring wrote:
+> > On Fri, Sep 16, 2022 at 6:15 PM Frank Rowand <frowand.list@gmail.com> wrote:
 > >>
-> >> Rob's bot gives us daily output for 1-4, but how can we track current
-> >> efforts to avoid duplication of work? Also it would allow people to find
-> >> tasks for them to get contributions to Linux kernel :). Is anyone in
-> >> community interested in tracking it together, in a public way?
-> > 
-> > Is this a real problem that needs fixing? I mean how often does it
-> > happen that people submit the same YAML conversion for example? Since it
-> > doesn't take that long to do a conversion, I'm not sure what tracking
-> > this on some webpage buys us. It's better to just search lore before
-> > starting a new conversion. Or search the linux-next tree to see what's
-> > still pending.
-> 
-> In terms of DT bindings conversion to DT schema:
-> If I were not checking for ongoing work, I would duplicate effort like
-> ~10 times. Few other folks hit it few times, at least. Several bindings
-> are being converted for ~1 year!
+> >> On 8/29/22 16:43, Lizhi Hou wrote:
+> >>> This patch series introduces OF overlay support for PCI devices which
+> >>> primarily addresses two use cases. First, it provides a data driven method
+> >>> to describe hardware peripherals that are present in a PCI endpoint and
+> >>> hence can be accessed by the PCI host. An example device is Xilinx/AMD
+> >>> Alveo PCIe accelerators. Second, it allows reuse of a OF compatible
+> >>> driver -- often used in SoC platforms -- in a PCI host based system. An
+> >>> example device is Microchip LAN9662 Ethernet Controller.
+> >>>
+> >>> This patch series consolidates previous efforts to define such an
+> >>> infrastructure:
+> >>> https://lore.kernel.org/lkml/20220305052304.726050-1-lizhi.hou@xilinx.com/
+> >>> https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
+> >>>
+> >>> Normally, the PCI core discovers PCI devices and their BARs using the
+> >>> PCI enumeration process. However, the process does not provide a way to
+> >>> discover the hardware peripherals that are present in a PCI device, and
+> >>> which can be accessed through the PCI BARs. Also, the enumeration process
+> >>> does not provide a way to associate MSI-X vectors of a PCI device with the
+> >>> hardware peripherals that are present in the device. PCI device drivers
+> >>> often use header files to describe the hardware peripherals and their
+> >>> resources as there is no standard data driven way to do so. This patch> series proposes to use flattened device tree blob to describe the
+> >>> peripherals in a data driven way.
+> >>
+> >>> Based on previous discussion, using
+> >>> device tree overlay is the best way to unflatten the blob and populate
+> >>> platform devices.
+> >>
+> >> I still do not agree with this statement.  The device tree overlay
+> >> implementation is very incomplete and should not be used until it
+> >> becomes more complete.  No need to debate this right now, but I don't want
+> >> to let this go unchallenged.
+> >
+> > Then we should remove overlay support. The only way it becomes more
+> > complete is having actual users.
+> >
+> > But really, whether this is the right solution to the problem is
+> > independent of the state of kernel overlay support.
+> >
+> >> If there is no base system device tree on an ACPI based system, then I
+> >> am not convinced that a mixed ACPI / device tree implementation is
+> >> good architecture.
+> >
+> > Most/all of this series is needed for a DT system in which the PCI
+> > devices are not populated in the DT.
+> >
+> >>   I might be more supportive of using a device tree
+> >> description of a PCI device in a detached device tree (not linked to
+> >> the system device tree, but instead freestanding).  Unfortunately the
+> >> device tree functions assume a single system devicetree, with no concept
+> >> of a freestanding tree (eg, if a NULL device tree node is provided to
+> >> a function or macro, it often defaults to the root of the system device
+> >> tree).  I need to go look at whether the flag OF_DETACHED handles this,
+> >> or if it could be leveraged to do so.
+> >
+> > Instead of worrying about a theoretical problem, we should see if
+> > there is an actual problem for a user.
+> >
+> > I'm not so worried about DT functions themselves, but places which
+> > have 'if ACPI ... else (DT) ...' paths.
+> >
+>
+> Bringing this thread back into focus. Any thoughts on how to move forward?
 
-Ok, but the conversion itself doesn't take that long even if getting it
-merged and fixing up new warnings may take some time.
+Reviewers raise concerns/issues and the submitters work to address
+them or explain why they aren't an issue. The submitter has to push
+things forward. That's how the process works.
 
-And after the initial posting, a quick lore search allows you to find
-any on-going conversion efforts.
+As I noted, much of this is needed on a DT system with PCI device not
+described in DT. So you could split out any ACPI system support to
+avoid that concern for example. Enabling others to exercise these
+patches may help too. Perhaps use QEMU to create some imaginary
+device.
 
-Perhaps that can just be mentioned in a wiki-page of sorts that lists
-remaining conversions with some suggestions for how best to go about
-things.
-
-> In terms of DTS warnings - it's difficult even to check/search. For what
-> do you search? Warnings? Pretty often they are not part of commit msg.
-> By file? Then you might have many, many unrelated search results.
-
-I wasn't suggesting to use lore for warnings, but searching the lists
-for changes to a particular dts before embarking on a clean up doesn't
-seem unreasonable.
-
-> > Similarly for the other points above, as it doesn't take very long to
-> > add a missing compatible or fix a warning it seems a bit excessive to
-> > try to track this manually.
-> 
-> True, some are trivial. Some however need fixing the binding which takes
-> time.
-
-Right.
-
-> > Perhaps a list of pending conversions or missing compatibles could be
-> > useful for someone who's short on work, but it's bound to get outdated
-> > pretty quickly.
-> 
-> Another point is to have the visibility on the amount of work to be
-> done. But I understand that's maybe topic just for few, e.g. me, so I
-> can just track stuff for myself.
-
-Yeah, I don't think that any such extra process should be needed outside
-a small group that may potentially be working on cleaning up bindings
-and dts in bulk.
-
-If you were to maintain such a list of pending and on-going conversions
-for yourself, perhaps making that public is all that's needed here?
-
-Johan
+Rob
