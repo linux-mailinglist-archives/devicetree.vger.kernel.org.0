@@ -2,83 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C7445F6EB5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 22:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 856B05F6EB9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 22:14:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231641AbiJFUMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 16:12:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33428 "EHLO
+        id S231826AbiJFUO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 16:14:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbiJFUMO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 16:12:14 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E99B2C6978;
-        Thu,  6 Oct 2022 13:12:13 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id r186so3301601oie.4;
-        Thu, 06 Oct 2022 13:12:13 -0700 (PDT)
+        with ESMTP id S231382AbiJFUO2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 16:14:28 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DD65C7066
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 13:14:26 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id x40so3463329ljq.9
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 13:14:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=YnO5PITRS5SnLid2smpNjEkJ3U0pp9+QtZmh6jQdXqc=;
+        b=y1k3uOb9DhhdgrhwnCep/XOW5UcqnP01xobEOWnxehlkE2le6UyePPRGl67RlW1f6S
+         myS/pXnsk+XVlapPD3843JuOw3PwBjlDY0ffWneioudUPHrVvd2/C7O3O4Swcb2VsZJ3
+         HsCQLLo95zC3t+eaLNyomaT3V7XqwgiB2rCLb7Jojm8Foh/jPLZo9EEcGnsBKRQDIDG+
+         sWZoLA9DnQhbTlIHXJA0G2hPZyfjYA7izcnN22qooRc/bGcBgJSFMzGAPjTxYLa2Owas
+         FCBcN3UijQS3TVSpfM5i3OiKpQq6MsqhndRhtLmcOKCdVqcDC/3JUe8GL9n439wOd1bH
+         YUGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D/Fd7V0AZhPxva2thTU44cSzp0J58T48TzpEQrhv93Q=;
-        b=NHWcE85ObPrlaMSYZ/1+B8CJ+km1B1E1ejSX6bhxoLs+57U1fsgPHNMnqxse8U5gD6
-         7ZV6Zi4UgnT0mnxtSY2zQjffmJqJFn6ZvR/kOafMAhKriTscoxgHHbCgu3pDSKR8CCjV
-         yIIhZxZJB5ehwlqqIGQVoNns6o3+4tfQoGHJNLGf39yJ6uJOzP33rdu8HzLcSl9RdqPx
-         9Vp0iqCrr4hZcTRMCJgtUdjYoA2FApn0dt2Rn653m7+shqmXAGlqfadJjPHdiC2fDgR8
-         uvKjzLKyNBouG6GFyb2WllrLie38NJNCS27j2wKpJFayEboQj0FRKuaJv+JVeQVm9Fdq
-         Avtw==
-X-Gm-Message-State: ACrzQf0+KvWZZRp9WbnVWVbPAYG1YfMj9U+VoflXfkQSzBNouz8ZQU38
-        sq3ghpCbm5b6eEhgIlNpBA==
-X-Google-Smtp-Source: AMsMyM5ZJeK4ZyzNfG4rtH8hctFnOJm7aVsdKBQi6FiocwcM81pSr8YMcutx5OsHoWKMapJylMS3zQ==
-X-Received: by 2002:a05:6808:1303:b0:350:cba9:197d with SMTP id y3-20020a056808130300b00350cba9197dmr660337oiv.83.1665087133170;
-        Thu, 06 Oct 2022 13:12:13 -0700 (PDT)
-Received: from robh_at_kernel.org ([2607:fb90:8a65:c536:245:842:a3a4:9017])
-        by smtp.gmail.com with ESMTPSA id j19-20020acaeb13000000b003430d6696e8sm70461oih.8.2022.10.06.13.12.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 13:12:12 -0700 (PDT)
-Received: (nullmailer pid 93184 invoked by uid 1000);
-        Thu, 06 Oct 2022 20:12:11 -0000
-Date:   Thu, 6 Oct 2022 15:12:11 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        nfraprado@collabora.com, angelogioacchino.delregno@collabora.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 8/8] dt-bindings: watchdog: mediatek,mtk-wdt: Add
- compatible for MT8173
-Message-ID: <166508713049.93127.2543598366027906776.robh@kernel.org>
-References: <20221006120715.24815-1-allen-kh.cheng@mediatek.com>
- <20221006120715.24815-9-allen-kh.cheng@mediatek.com>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=YnO5PITRS5SnLid2smpNjEkJ3U0pp9+QtZmh6jQdXqc=;
+        b=exerrQbgj29TtVFfRHrPvQBRKO2Nfz/yABF1SK5qrLvBJaxPIogcB+eNlgIJeRObXw
+         +hUMJvnqxj/qTvUDEbyNztH3unvDj3DZQ8+wJGL9tcHdAWn701Sg3ox56mxh/yneajg1
+         bB6/UzJ3zRnYqmiW+Y2LOUyl/jPIcwyBb9Y90WMFQTe1+pww0aQk50auY1Y9Z6orjenb
+         NyoN3D6Qrh3RMpeljDDj99TzDBBK0X8NZngCpGXVA4KRN5MIJ2JFCCrFWXy92gQm3Qy+
+         iIZ/hFtxAMYAwlVq+OG5A+YmXTt6J5w3DxvPZOoeBluACckhr/817rKQQBBy53wK6ahB
+         t5Lw==
+X-Gm-Message-State: ACrzQf0J1+Buwu0i2jQvnZ6Xapb+suedWiIwlkKWvTI/M5JhosVpo76p
+        8iVajtRDl/IkrsWuQyq+cKyGVPMFRFG+9g==
+X-Google-Smtp-Source: AMsMyM5PqWEmLXFWjkM4Pa7rOAO6UktcqFhW6HbDja0bfDUofaov/KmBMqzx9N7wRfGSeHB5BivORg==
+X-Received: by 2002:a2e:b74f:0:b0:26c:426c:60fc with SMTP id k15-20020a2eb74f000000b0026c426c60fcmr511975ljo.432.1665087264312;
+        Thu, 06 Oct 2022 13:14:24 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id i20-20020a2ea234000000b00261b4df9ec4sm6414ljm.138.2022.10.06.13.14.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Oct 2022 13:14:23 -0700 (PDT)
+Message-ID: <aa84760f-bc2a-09d0-6a57-45eb2de7ada9@linaro.org>
+Date:   Thu, 6 Oct 2022 22:14:22 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221006120715.24815-9-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH 4/4] dt-bindings: pinctrl: qcom,sdm630: convert to
+ dtschema
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>
+References: <20221006104104.171368-1-krzysztof.kozlowski@linaro.org>
+ <20221006104104.171368-4-krzysztof.kozlowski@linaro.org>
+ <166505883313.1602848.6191967643505476092.robh@kernel.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <166505883313.1602848.6191967643505476092.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 06 Oct 2022 20:07:15 +0800, Allen-KH Cheng wrote:
-> Add the mediatek,mt8173-wdt compatible using mediatek,mt6589-wdt as
-> fallback.
+On 06/10/2022 14:27, Rob Herring wrote:
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
 > 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
+> 
+> 
+> pinctrl@3100000: 'blsp1-uart1-default', 'blsp1-uart1-sleep', 'blsp1-uart2-default', 'blsp2-uart1-active', 'blsp2-uart1-sleep', 'cam-vdig-default', 'cci0_default', 'cci1_default', 'i2c1-default', 'i2c1-sleep', 'i2c2-default', 'i2c2-sleep', 'i2c3-default', 'i2c3-sleep', 'i2c4-default', 'i2c4-sleep', 'i2c5-default', 'i2c5-sleep', 'i2c6-default', 'i2c6-sleep', 'i2c7-default', 'i2c7-sleep', 'i2c8-default', 'i2c8-sleep', 'imx219-vana-default', 'imx300-vana-default', 'sdc1-off', 'sdc1-on', 'sdc2-off', 'sdc2-on', 'ts-int-active', 'ts-lcd-id-active' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dtb
 
-Acked-by: Rob Herring <robh@kernel.org>
+This is fixed by earlier DTS patches in the series. Maybe they did not
+apply cleanly.
+
+Best regards,
+Krzysztof
+
