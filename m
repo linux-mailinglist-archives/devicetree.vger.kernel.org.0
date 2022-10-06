@@ -2,115 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE6495F6B57
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 18:18:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 025DA5F6B6D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 18:20:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231624AbiJFQSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 12:18:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42290 "EHLO
+        id S231445AbiJFQUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 12:20:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231499AbiJFQSX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 12:18:23 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB24E88A09;
-        Thu,  6 Oct 2022 09:18:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1665073102; x=1696609102;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IS9/8GZEIZjGTZSUozDDT7Qbp2bCtL4B2ZSEaLpZNYA=;
-  b=Gnc+f/P7Wf3CK9GcO9dlvPNZmDYj+p6M5oK1IJL3n/l5M2BZ+KsGa1Aw
-   ZsZloP6fxCg5C2PiyrAQ9vb7DQm4G5HuOA/9Cb1hxm3xbu/+VGF1v/E3b
-   BHZpMGpe5u4U3edJxyiresKjgdNakpY2lR8VzrvSIAbv7fRkSsEeVDXou
-   wXmA1CoWQaQSV2ZqyjoyNG55tP21Fy5rsHbHeShbUyqNWXE7C140tX8ri
-   iRAktbQc0S0XDqEr2jAxfzAT+H2aJ0ilfwUlQhCAZIfXs7vOzzMHqoHwG
-   xU66VYuSI4v/wq0PWo7DOGcIfYH8E6t6j8QEItHtFP9ywh0RK/rNOWDlY
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="290752703"
-X-IronPort-AV: E=Sophos;i="5.95,164,1661842800"; 
-   d="scan'208";a="290752703"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Oct 2022 09:17:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="953684392"
-X-IronPort-AV: E=Sophos;i="5.95,164,1661842800"; 
-   d="scan'208";a="953684392"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga005.fm.intel.com with ESMTP; 06 Oct 2022 09:17:41 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1ogTZ5-003Ehi-1q;
-        Thu, 06 Oct 2022 19:17:39 +0300
-Date:   Thu, 6 Oct 2022 19:17:39 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/5] regulator: Add devm helpers for get and enable
-Message-ID: <Yz7/o1q7p8NmGKMe@smile.fi.intel.com>
-References: <cover.1665066397.git.mazziesaccount@gmail.com>
- <fa667d6870976a2cf2d60f06e262982872349d74.1665066397.git.mazziesaccount@gmail.com>
+        with ESMTP id S229687AbiJFQUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 12:20:14 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F402EF12
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 09:20:07 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id r13so3452307wrj.11
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 09:20:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date;
+        bh=MLUoGUi48ONllxDe+DGzRO52aIDPM4laO+reVTlYbgc=;
+        b=mQEmmTqBEwxwi1SSuizetewcTH7yu3yF6YuxaHSNlUjPWyOESnd1dJEzmydeTBCptw
+         kBfIrsBLmfT2TobCw6055RV+gcz6Z5BsU3eb/niGuVMvRsWFdlbsDVeEL7vhvlLI3uuk
+         TGyRRH6iH7c/hxTb4OumXUsV8gU0/ijBGMHN5N9HIlYQ7odTODW30OMtcC81A/Grt90t
+         wKhWy7WH5Qfh3Hw1KoOTBWldfbyhghs2X5uZWd8y9sZPGkOOhehulqcG4aa9pESrA868
+         DJCWGOMKdWPoOQagNEIG5DZ7B94qDU+ui+Do3Gbm0GdxmT738soKemqMucl5EuuYSeph
+         uJ8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=MLUoGUi48ONllxDe+DGzRO52aIDPM4laO+reVTlYbgc=;
+        b=3rv+ibUl7CSFSkfcqC9ItDEZmNXhJuRHFdnM2Zg3VvF4jKW6DjmK61A55o/0mD0gDj
+         AcyPhWVK43vk9fG1WYEhDsa8cOlF3oId2O8+RswfwWXmV2rfwlOdJQA0kHVdrkuCtxxn
+         p3YUMeTJC05i/lNzVhKLYxiqJEPPVajNuy5C+d2+V11Az3CZ1f39xqKGICR4FlXxuFCf
+         0HCykvoCDLKZEo9ORVYwGJE6WuxgupXrhn120paSsXfuxrcsuvYhiZ+SWObiL1Fje1kI
+         ySk0yRzjJkli+cp/sN1j3jX6enQj91tjdxQGs4jzhvY5nxfvUBIQQBkYLilPz3rgZuhK
+         RHYg==
+X-Gm-Message-State: ACrzQf0PeJu3GGVUiGWuFeObez+vDAGzJVwhfBAAXWCwcp7BC/JuIU6b
+        hs42A5KVw/H08WpQvR3JVlE6Cg==
+X-Google-Smtp-Source: AMsMyM6zFZxHV62NEiB4FXmfIrJrKbM41PVxdxdCf9MoLg7M4bRVLwLYLy5AkYr+P+tnPfIyPF1KtQ==
+X-Received: by 2002:a5d:47c7:0:b0:22e:37c6:3d7d with SMTP id o7-20020a5d47c7000000b0022e37c63d7dmr499637wrc.163.1665073205842;
+        Thu, 06 Oct 2022 09:20:05 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e032:72ae:542:774? ([2a01:e0a:982:cbb0:e032:72ae:542:774])
+        by smtp.gmail.com with ESMTPSA id l6-20020a5d5606000000b00228d52b935asm18779235wrv.71.2022.10.06.09.20.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Oct 2022 09:20:05 -0700 (PDT)
+Message-ID: <5a669cee-55b2-f5cb-56f2-279003d08578@linaro.org>
+Date:   Thu, 6 Oct 2022 18:20:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fa667d6870976a2cf2d60f06e262982872349d74.1665066397.git.mazziesaccount@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 1/6] dt-bindings: pinctrl: convert
+ qcom,mdm9615-pinctrl.txt to dt-schema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>, Lee Jones <lee@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221005-mdm9615-pinctrl-yaml-v1-0-0cbc006e2a30@linaro.org>
+ <20221005-mdm9615-pinctrl-yaml-v1-1-0cbc006e2a30@linaro.org>
+ <8213587e-681a-a948-42a6-2b1632b47ac0@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <8213587e-681a-a948-42a6-2b1632b47ac0@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 06, 2022 at 05:36:52PM +0300, Matti Vaittinen wrote:
-> A few regulator consumer drivers seem to be just getting a regulator,
-> enabling it and registering a devm-action to disable the regulator at
-> the driver detach and then forget about it.
+Hi,
+
+On 06/10/2022 13:09, Krzysztof Kozlowski wrote:
+> On 06/10/2022 11:57, Neil Armstrong wrote:
+>> Convert the MDM9515 pinctrl bindings to dt-schema.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../bindings/pinctrl/qcom,mdm9615-pinctrl.txt      | 161 ---------------------
+>>   .../bindings/pinctrl/qcom,mdm9615-pinctrl.yaml     | 101 +++++++++++++
+>>   2 files changed, 101 insertions(+), 161 deletions(-)
+>>
 > 
-> We can simplify this a bit by adding a devm-helper for this pattern.
-> Add devm_regulator_get_enable() and devm_regulator_get_enable_optional()
+> Thank you for your patch. There is something to discuss/improve.
+> 
+>> -		};
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,mdm9615-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,mdm9615-pinctrl.yaml
+>> new file mode 100644
+>> index 000000000000..6a5966fc0098
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,mdm9615-pinctrl.yaml
+>> @@ -0,0 +1,101 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/qcom,mdm9615-pinctrl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Technologies, Inc. MDM9615 TLMM block
+>> +
+>> +maintainers:
+>> +  - Bjorn Andersson <andersson@kernel.org>
+>> +
+>> +description: |
+> 
+> No need for |
 
-...
+Ack
 
-> (cherry picked from commit b6058e052b842a19c8bb639798d8692cd0e7589f)
+> 
+>> +  This binding describes the Top Level Mode Multiplexer block found in the
+>> +  MDM9615 platform.
+> 
+> Instead: "Top Level Mode Multiplexer pin controller node in Qualcomm
+> MDM9615 SoC."
+> 
+> I see this pattern is coming from other file, so I will fix all of them.
 
-Not sure:
- - why this is in the commit message
- - what it points to, since
-$ git show b6058e052b842a19c8bb639798d8692cd0e7589f
- fatal: bad object b6058e052b842a19c8bb639798d8692cd0e7589f
+Ack, wil use this.
 
-> Already in Mark's regulator tree. Not to be merged. Included just for
-> the sake of the completeness. Will be dropped when series is rebased on
-> top of the 6.1-rc1
+> 
+>> +
+>> +allOf:
+>> +  - $ref: "pinctrl.yaml#"
+> 
+> Drop it, it's included from tlmm-common
 
-Ah, I see, but does it mean the commit has been rebased or you used wrong SHA?
+Ack
 
-...
+> 
+>> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: qcom,mdm9615-pinctrl
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts: true
+>> +  interrupt-controller: true
+>> +  '#interrupt-cells': true
+>> +  gpio-controller: true
+>> +  '#gpio-cells': true
+>> +  gpio-ranges: true
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +patternProperties:
+>> +  '-state$':
+> 
+> Use " as quotes
 
-> +static void regulator_action_disable(void *d)
-> +{
-> +	struct regulator *r = (struct regulator *)d;
+Ack
 
-Cast is not needed.
+> 
+>> +    oneOf:
+>> +      - $ref: "#/$defs/qcom-mdm9615-pinctrl-state"
+>> +      - patternProperties:
+>> +          "-pins$":
+>> +            $ref: "#/$defs/qcom-mdm9615-pinctrl-state"
 
-> +	regulator_disable(r);
-> +}
+Interesting, if I add this subnode (that should be valid):
+       gsbi3-state {
+         pins = "gpio8", "gpio9", "gpio10", "gpio11";
+         function = "gsbi3";
+         drive-strength = <8>;
+         bias-disable;
+       };
 
--- 
-With Best Regards,
-Andy Shevchenko
+then I get the following warning from dt_bindings_check:
 
+Documentation/devicetree/bindings/pinctrl/qcom,mdm9615-pinctrl.example.dtb: pinctrl@1000000: gsbi3-state: More than one condition true in oneOf schema:
+         {'oneOf': [{'$ref': '#/$defs/qcom-mdm9615-pinctrl-state'},
+                    {'patternProperties': {'-pins$': {'$ref': '#/$defs/qcom-mdm9615-pinctrl-state'},
+                                           'pinctrl-[0-9]+': True},
+                     'properties': {'$nodename': True,
+                                    'phandle': True,
+                                    'pinctrl-names': True,
+                                    'secure-status': True,
+                                    'status': True}}]}
+ From schema: /Documentation/devicetree/bindings/pinctrl/qcom,mdm9615-pinctrl.yaml
 
+And I don't understand why, the nodename should not match "-pins$" nor "pinctrl-[0-9]+'...
+
+>> +
+>> +'$defs':
+> 
+> No need for quotes
+> 
+>> +  qcom-mdm9615-pinctrl-state:
+>> +    type: object
+>> +    description:
+>> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+>> +      Client device subnodes use below standard properties.
+>> +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
+> 
+> No need for quotes
+
+Ack
+
+> 
+>> +
+>> +    properties:
+>> +      pins:
+>> +        description:
+>> +          List of gpio pins affected by the properties specified in this
+>> +          subnode.
+>> +        items:
+>> +          oneOf:
+>> +            - pattern: "^gpio([0-9]|[1-7][0-9]|8[0-7])$"
+> 
+> No sd-like functions? If so, then drop oneOf
+
+Ack
+
+> 
+>> +        minItems: 1
+>> +        maxItems: 16
+>> +
+>> +      function:
+>> +        description:
+>> +          Specify the alternative function to be configured for the specified
+>> +          pins.
+>> +
+>> +        enum: [ gpio, gsbi2_i2c, gsbi3, gsbi4, gsbi5_i2c, gsbi5_uart,
+>> +                sdc2, ebi2_lcdc, ps_hold, prim_audio, sec_audio, cdc_mclk, ]
+>> +
+>> +      bias-disable: true
+>> +      bias-pull-down: true
+>> +      bias-pull-up: true
+>> +      drive-strength: true
+>> +      output-high: true
+>> +      output-low: true
+>> +      input-enable: true
+>> +
+>> +    required:
+>> +      - pins
+>> +      - function
+>> +
+>> +    additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +        tlmm: pinctrl@1000000 {
+> 
+> Use 4 spaces indentation.
+> 
+>> +          compatible = "qcom,mdm9615-pinctrl";
+>> +          reg = <0x01000000 0x300000>;
+>> +          interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+>> +          gpio-controller;
+>> +          gpio-ranges = <&msmgpio 0 0 88>;
+>> +          #gpio-cells = <2>;
+>> +          interrupt-controller;
+>> +          #interrupt-cells = <2>;
+> 
+> Add example of -state with and without -pins node.
+> 
+> You dropped it with conversion.
+
+Ack, done but I have a weird warning, see upper.
+
+> 
+> 
+>> +        };
+>>
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Thanks,
+Neil
