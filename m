@@ -2,104 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB5135F6E7A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 21:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64C705F6E93
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 22:04:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232089AbiJFTyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 15:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57180 "EHLO
+        id S232180AbiJFUEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 16:04:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232120AbiJFTyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 15:54:16 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA333A878C
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 12:54:15 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id l22so4333040edj.5
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 12:54:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=BU08DuNcVUZJqvjO5Ag8kG7jahbmjSfQDRHmDLHV0vY=;
-        b=e6qflO4uuP0oyo4HK9eiH9/EhHQ4+YTG5QVUO5+ofQB4UzmauE5TJMD/BRYelfL0va
-         j62dcE0CccIrehxfUMQRqIb7n65wabZXRtZ6Q9KmMux5bnej9T0NGkcSQ6qCU2cnXdyL
-         Qq9VBq79jj5WYphvgF2Kx1F8r/UxHHN8yXPaQ=
+        with ESMTP id S229683AbiJFUEc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 16:04:32 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EDB6B1BAD;
+        Thu,  6 Oct 2022 13:04:31 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id q10so3270547oib.5;
+        Thu, 06 Oct 2022 13:04:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BU08DuNcVUZJqvjO5Ag8kG7jahbmjSfQDRHmDLHV0vY=;
-        b=III3nISsqMHh93TCZm1u5UfqJ3q5ryBIFoiVhOa++yv68mY2lSg37r8u9sEz0s2PSm
-         WIngWjrTUmQJG4kpp2u7BaXKt4yyw7blKJTtLsvFsqqhoD94G1LWlwLxfbnS4Psc3Xov
-         s1/17LwgsoYb3vjsp4f+/M8Fupaj5CP7ciqrIYVHSK+ELHLZTT5whuNINK5TEDduu9b3
-         UBSL0/Z5QwUQV0FMUQfBEPqn+HnMrgpW8C9alISCcdcurBR1Ful6HiOMMVoz9ylr45Ys
-         7nfJPpJZBCmirPAzYa5WZDhAM360ottvB+AF/Fk1pCRddmbyarOj5JVFsaZcx6U1+epe
-         aztQ==
-X-Gm-Message-State: ACrzQf0N6IxLs3W3Vlnw5gkb4FCOV7tF3Joh3FKWN/EN+LnUVAtlv0VZ
-        tP3trGGaYT3qBwQiOl/syYMEYjBzijFHzGaA
-X-Google-Smtp-Source: AMsMyM7nnRTN40yXPkmSGX9FJWugrPeG2pRldn9fdAorFR9EQIRyyu/fHr6Eh0/UpTFdQ7O+UeMP1A==
-X-Received: by 2002:a50:fb0f:0:b0:458:df03:c3aa with SMTP id d15-20020a50fb0f000000b00458df03c3aamr1330082edq.83.1665086054072;
-        Thu, 06 Oct 2022 12:54:14 -0700 (PDT)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
-        by smtp.gmail.com with ESMTPSA id k3-20020a50c8c3000000b00456f2dbb379sm62076edh.62.2022.10.06.12.54.13
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Oct 2022 12:54:13 -0700 (PDT)
-Received: by mail-wr1-f45.google.com with SMTP id b7so4255445wrq.9
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 12:54:13 -0700 (PDT)
-X-Received: by 2002:a5d:6488:0:b0:22b:3b0b:5e72 with SMTP id
- o8-20020a5d6488000000b0022b3b0b5e72mr1064637wri.138.1665086052982; Thu, 06
- Oct 2022 12:54:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221006105823.532336-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20221006185333.v7.4.I50d04dcbe735dda69995cf1078824d671501869e@changeid>
-In-Reply-To: <20221006185333.v7.4.I50d04dcbe735dda69995cf1078824d671501869e@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 6 Oct 2022 12:54:01 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XJhKiC9zFRPnvhSzJbw_GT+nWKBtPJXdTTWw+jGd_-0Q@mail.gmail.com>
-Message-ID: <CAD=FV=XJhKiC9zFRPnvhSzJbw_GT+nWKBtPJXdTTWw+jGd_-0Q@mail.gmail.com>
-Subject: Re: [PATCH v7 4/4] arm64: dts: qcom: Add touchscreen and touchpad
- support for evoker
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8qF8uUgZw7uB5rU3ByXrhVDO91RxN/lulR0zHwr6JoU=;
+        b=DdUDVB69JpZS74z+RBE3bHgCVkSEFG/lmlm26A2IAvgngsys21xYCP11Z7eb0EoRZA
+         LD1maBBH9LvtOsiqy37LuiGS/5SKqZLlkBGVj81e4P/XvjXkeC7Te4U0726qQomkmt+m
+         xR1Asc/Q+LE1qDZbYex0NJHHw5I1yV67ucGCh2XGx81rRnxXzalkxvyIrk1TWlMvtWLZ
+         CfJNHDIhAV8/mHM76gQPtXKPvO23VDB27ibrC2Bcwa3ENMusSGzF4pT1dPPxQJVFfn1Z
+         jStrYwRwZ0vytHySjYhCdMx8Fi+xpTsVqSDvOJoYGCRH/MPi62YZZ0mlyHbJ51Qk6RL9
+         16Qw==
+X-Gm-Message-State: ACrzQf3dEW/xVt5sPUmOqy1O333ApXCbIKxVnUnNaWdelMJ8Z0gpNxN2
+        KEmYHpELsSRytVVMFoxSZg==
+X-Google-Smtp-Source: AMsMyM5ePwUNAIteXDi1GNzpz4aWevPwQYV8Ykk5sXu6RvssHaG+tu9eFHpcQQ7/SrUk+UZEN/pXRg==
+X-Received: by 2002:a05:6808:2217:b0:354:1aea:1328 with SMTP id bd23-20020a056808221700b003541aea1328mr674736oib.7.1665086670461;
+        Thu, 06 Oct 2022 13:04:30 -0700 (PDT)
+Received: from robh_at_kernel.org ([2607:fb90:8a65:c536:245:842:a3a4:9017])
+        by smtp.gmail.com with ESMTPSA id y5-20020a056808060500b00350c5d946casm65220oih.4.2022.10.06.13.04.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Oct 2022 13:04:30 -0700 (PDT)
+Received: (nullmailer pid 86412 invoked by uid 1000);
+        Thu, 06 Oct 2022 20:04:23 -0000
+Date:   Thu, 6 Oct 2022 15:04:23 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>, Lee Jones <lee@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 5/6] dt-bindings: regulators: convert non-smd RPM
+ Regulators bindings to dt-schema
+Message-ID: <20221006200423.GA77998-robh@kernel.org>
+References: <20221005-mdm9615-pinctrl-yaml-v1-0-0cbc006e2a30@linaro.org>
+ <20221005-mdm9615-pinctrl-yaml-v1-5-0cbc006e2a30@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v1-5-0cbc006e2a30@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Oct 6, 2022 at 3:58 AM Sheng-Liang Pan
-<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
->
-> Change touchpad and touchscreen node for evoker
-> Touchpad: SA461D-1011
-> Touchscreen: GT7986U
->
-> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+On Thu, Oct 06, 2022 at 09:58:02AM +0000, Neil Armstrong wrote:
+> Convert the non-SMD Regulators  bindings to dt-schema and remove the
+> old text based bindings now we have migrated all the content.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->
-> Changes in v7:
-> - add compiatable for gt7986
->
-> Changes in v6:
-> - add removed pinctrl and align touchscreen label with herobrine board
->
-> Changes in v5:
-> - new patch for Touchscreen/trackpad in v5
->
->  .../boot/dts/qcom/sc7280-herobrine-evoker.dtsi    | 15 +++++++--------
->  1 file changed, 7 insertions(+), 8 deletions(-)
+>  Documentation/devicetree/bindings/mfd/qcom-rpm.txt | 246 ---------------------
+>  .../bindings/regulator/qcom,ipc-rpm-regulator.yaml | 127 +++++++++++
+>  2 files changed, 127 insertions(+), 246 deletions(-)
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Ah, the 'regulators' node for the parent should reference this schema.
+
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,ipc-rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,ipc-rpm-regulator.yaml
+> new file mode 100644
+> index 000000000000..e18bb8b87c43
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,ipc-rpm-regulator.yaml
+> @@ -0,0 +1,127 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/qcom,ipc-rpm-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: QCOM IPC RPM REGULATOR
+> +
+> +description:
+
+'|' if you want to maintain the formatting.
+
+> +  The Qualcomm RPM over IPC regulator is modelled as a subdevice of the RPM.
+> +
+> +  Please refer to Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
+> +  for information regarding the RPM node.
+> +
+> +  The regulator node houses sub-nodes for each regulator within the device.
+> +  Each sub-node is identified using the node's name, with valid values listed
+> +  for each of the pmics below.
+> +
+> +  For pm8058 l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15,
+> +  l16, l17, l18, l19, l20, l21, l22, l23, l24, l25, s0, s1, s2, s3, s4,
+> +  lvs0, lvs1, ncp
+> +
+> +  For pm8901 l0, l1, l2, l3, l4, l5, l6, s0, s1, s2, s3, s4, lvs0, lvs1, lvs2, lvs3,
+> +  mvs
+> +
+> +  For pm8921 s1, s2, s3, s4, s7, s8, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11,
+> +  l12, l14, l15, l16, l17, l18, l21, l22, l23, l24, l25, l26, l27, l28,
+> +  l29, lvs1, lvs2, lvs3, lvs4, lvs5, lvs6, lvs7, usb-switch, hdmi-switch,
+> +  ncp
+> +
+> +  For pm8018 s1, s2, s3, s4, s5, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11,
+> +  l12, l14, lvs1
+> +
+> +  For smb208 s1a, s1b, s2a, s2b
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,rpm-pm8058-regulators
+> +      - qcom,rpm-pm8901-regulators
+> +      - qcom,rpm-pm8921-regulators
+> +      - qcom,rpm-pm8018-regulators
+> +      - qcom,rpm-smb208-regulators
+> +
+> +patternProperties:
+> +  ".*-supply$":
+> +    description: Input supply phandle(s) for this node
+> +
+> +  "^((s|l|lvs)[0-9]*)|(s[1-2][a-b])|(ncp)|(mvs)|(usb-switch)|(hdmi-switch)$":
+> +    description: List of regulators and its properties
+> +    $ref: regulator.yaml#
+
+       unevaluatedProperties: false
+
+> +    properties:
+> +      bias-pull-down:
+> +        description: enable pull down of the regulator when inactive
+> +        type: boolean
+> +
+> +      qcom,switch-mode-frequency:
+> +        description: Frequency (Hz) of the switch-mode power supply
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum:
+> +          - 19200000
+> +          - 9600000
+> +          - 6400000
+> +          - 4800000
+> +          - 3840000
+> +          - 3200000
+> +          - 2740000
+> +          - 2400000
+> +          - 2130000
+> +          - 1920000
+> +          - 1750000
+> +          - 1600000
+> +          - 1480000
+> +          - 1370000
+> +          - 1280000
+> +          - 1200000
+> +
+> +      qcom,force-mode:
+> +        description: Indicates that the regulator should be forced to a particular mode
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum:
+> +          - 0 # QCOM_RPM_FORCE_MODE_NONE do not force any mode
+> +          - 1 # QCOM_RPM_FORCE_MODE_LPM force into low power mode
+> +          - 2 # QCOM_RPM_FORCE_MODE_HPM force into high power mode
+> +          - 3 # QCOM_RPM_FORCE_MODE_AUTO allow regulator to automatically select its own mode
+> +              # based on realtime current draw, only for pm8921 smps and ftsmps
+> +
+> +      qcom,power-mode-hysteretic:
+> +        description: select that the power supply should operate in hysteretic mode,
+> +          instead of the default pwm mode
+> +        type: boolean
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/mfd/qcom-rpm.h>
+> +    regulators {
+> +      compatible = "qcom,rpm-pm8921-regulators";
+> +      vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
+> +
+> +      s1 {
+> +        regulator-min-microvolt = <1225000>;
+> +        regulator-max-microvolt = <1225000>;
+> +
+> +        bias-pull-down;
+> +
+> +        qcom,switch-mode-frequency = <3200000>;
+> +      };
+> +
+> +      pm8921_s4: s4 {
+> +        regulator-min-microvolt = <1800000>;
+> +        regulator-max-microvolt = <1800000>;
+> +
+> +        qcom,switch-mode-frequency = <1600000>;
+> +        bias-pull-down;
+> +
+> +        qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
+> +      };
+> +    };
+> +...
+> 
+> -- 
+> b4 0.10.1
+> 
