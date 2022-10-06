@@ -2,220 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 192555F63A6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 11:29:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B06805F63C9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 11:44:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231461AbiJFJ3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 05:29:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59538 "EHLO
+        id S231494AbiJFJoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 05:44:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231473AbiJFJ3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 05:29:48 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D447C6384
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 02:29:42 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id b7so1753850wrq.9
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 02:29:42 -0700 (PDT)
+        with ESMTP id S230482AbiJFJoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 05:44:22 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC62F8E0CD
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 02:44:21 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id j7so1578693ybb.8
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 02:44:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jPQhsuNCx4BuXZDwvEbm+upFmQ1m9MrY7Gt+pVyvCOA=;
-        b=Y95xcmcvuO8YfwthjuW9bE5tUhYgaotwnv3ZfbN4vQUHrIQmzHrxwVsOXt3Jluk3s/
-         nOey7OfHB/kFumj1L09KckT3c54+FGQeC9Nrg6/NHCQO67h9RpwzVNF8YAvaAyuHtfAu
-         aL/pKpwLuj0d4PdIZqjyLtfuD6hcQDrnihtcIZZ2ICiL40uAfRGlK4VbbhgKfRaetEEa
-         Lb8BQruoocn8LT4c573XsYzgOLA1MLIlRbEfjHgzKojzgrmcr9SdnLOWjObgc0M/bpVk
-         RbO49vas5Te0P7jZj3AprwT7S7vraoSKIx7rhXJ8KN41tHUlCe8UcwkerH8O/gZhAd5K
-         Fh0w==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7BWHpYbPBZcnPFvYe589pBj9X79YNxD/NcOHx4kv/CM=;
+        b=Febm/wWbExJdGGqNRevOwHUbMJEHOmIOkiZi0p1XaczbTI+iMBgT8HDzbEMgDYA1Fo
+         zSZNhg7nI7iUSot4leNXZAy/KtsaoNOFtKiREXQmQnQONNxP7H49nP1o4Em5Nla3XBWO
+         l9KWTMSmf+hirrJ8VqdT+uzyXoom0aZHnPIJoNBCuXjS+omkYFayvrAp1fDOpXtpCIGP
+         iAh3ng2NIZ2Hx+htf6G0Xwz+fHe0a6ujAYXlfzjW24kJcv88V86PEyZsFoQEYc8SjJbl
+         dysLpUJH/K7D/wY2nCv+0lZmJ5hveKNGbZiOAFR2h+01xf3oR7ygyFzYXfnnRtM6V0ch
+         bQ6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jPQhsuNCx4BuXZDwvEbm+upFmQ1m9MrY7Gt+pVyvCOA=;
-        b=7CdM7yz9kxwrmhVsCe4Dg5b6zqKriYqZ0I+Ybf5W+71H57esRXgUNJ+zFAH2gwZ+6F
-         /CNXWVVTHFYSGaIVCDMz4C3gY2GWjeBorNVPQKxO0gObm/hiTuqwJTuLofeo1/BZqx2c
-         lAKt1oK38+STuqIJhJYIhWtxm8oDPQKEFqbZ2vwWruO9PzxJtGEeOaW9vCtHUKkVFyj0
-         6x2YZnRRkxJoYPXl+si0aBfxYsBnW58i47brqzWWTjRQ+SHqyQIcy3Ep33a9qf3qRXK0
-         FSCiHzNH0xeLar+F9CSCwB58u1dh02Lqxc71pELmaSr0Ki+F+cDwKDStYcPUtbcGXYno
-         wmGA==
-X-Gm-Message-State: ACrzQf20o8JLJCELnUi4pUDiMcclaiT4t68aZJSMLEE1B6F4QKmkTUUH
-        02M1Xvr/chsPbyKcMy0G3A/96R5R8cRU9Q==
-X-Google-Smtp-Source: AMsMyM5jQfo1f11F0qvpLN17UMvJHTy+WlrfYLBvISsNZ78fF5tFicIUeJ9rdcG2oMxmTsRs7+6rKA==
-X-Received: by 2002:a05:6000:1365:b0:22a:2ee9:4363 with SMTP id q5-20020a056000136500b0022a2ee94363mr2417817wrz.393.1665048580457;
-        Thu, 06 Oct 2022 02:29:40 -0700 (PDT)
-Received: from blmsp ([2001:4090:a245:8020:2658:1f7c:362:3e99])
-        by smtp.gmail.com with ESMTPSA id b6-20020adfde06000000b0022e2eaa2bdcsm14675044wrm.98.2022.10.06.02.29.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 02:29:39 -0700 (PDT)
-Date:   Thu, 6 Oct 2022 11:29:39 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [PATCH v2 1/3] dt-bindings: iommu: mediatek: add binding
- documentation for MT8365 SoC
-Message-ID: <20221006092939.6gsdmo5vavafxd6l@blmsp>
-References: <20221001-iommu-support-v2-0-dbfef2eeebc9@baylibre.com>
- <20221001-iommu-support-v2-1-dbfef2eeebc9@baylibre.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7BWHpYbPBZcnPFvYe589pBj9X79YNxD/NcOHx4kv/CM=;
+        b=elzp4F/DuJpqQMi5y/135b/a9Qcdw/un2/ig1kAHZUEQoJgqCYbSBlKPwYbHsguDp2
+         8pGj3WUt+WJtmnUrvYh3kDz60SsoirSFIf5rvDyJ3tejDARkAxz1ph6J+lwiEvPWIb0t
+         KXxKt7L5nSkwWsx9pD6j8VShYCkHTBkO+EShMNlepJGVmhlvx1WAYdTFBrWTiaIkD9aC
+         lvbORhKjbLIwXj8NGS8EdUznZiYzAE6NgoLQ3rG+LBhDwp3JsJtoHj/5dNDAxfZdYuxx
+         +wReEAzRMR6M1dDvgvBlw5Qj+WjTkvnsngCufrcHCayUCT9ZUjeUgYLdmn/kVPs2wIe6
+         x+9w==
+X-Gm-Message-State: ACrzQf1IcjMBLoMA4DpQACCrr1nIwpg3zWm47gk+40iJ+cutX5ER0PzZ
+        PIUVwkWqRriedeIA4DwuWpJnXm9O0OsydA1bJAKEWw==
+X-Google-Smtp-Source: AMsMyM4XAM6T1VkzgchnRzF+y7euTnGNArNyFZnxnrdgYHkjkA7PISBPP+l3YJkllhMEg4Rgw87TKRw1lJC1hsnUVEg=
+X-Received: by 2002:a25:3443:0:b0:6be:e1ef:4f73 with SMTP id
+ b64-20020a253443000000b006bee1ef4f73mr273872yba.516.1665049460997; Thu, 06
+ Oct 2022 02:44:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20221001-iommu-support-v2-1-dbfef2eeebc9@baylibre.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org> <Yz6P8wOPdRd9sjX2@hovoldconsulting.com>
+In-Reply-To: <Yz6P8wOPdRd9sjX2@hovoldconsulting.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 6 Oct 2022 12:44:09 +0300
+Message-ID: <CAA8EJpqY41KSPp9-X0_+x+SnoWqvKxfV_tzgnu7HiA80Lbd5HQ@mail.gmail.com>
+Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Alex Elder <elder@linaro.org>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Vinod Koul <vinod.koul@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Caleb Connolly <kc@postmarketos.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandre,
+Hi,
 
-On Tue, Oct 04, 2022 at 12:01:39PM +0200, Alexandre Mergnat wrote:
-> From: Fabien Parent <fparent@baylibre.com>
-> 
-> Add IOMMU binding documentation for the MT8365 SoC.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  .../devicetree/bindings/iommu/mediatek,iommu.yaml  |  2 +
->  include/dt-bindings/memory/mt8365-larb-port.h      | 90 ++++++++++++++++++++++
->  2 files changed, 92 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> index fee0241b5098..4b8cf3ce6963 100644
-> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> @@ -81,6 +81,7 @@ properties:
->            - mediatek,mt8195-iommu-vdo        # generation two
->            - mediatek,mt8195-iommu-vpp        # generation two
->            - mediatek,mt8195-iommu-infra      # generation two
-> +          - mediatek,mt8365-m4u  # generation two
+On Thu, 6 Oct 2022 at 11:21, Johan Hovold <johan@kernel.org> wrote:
+>
+> On Thu, Sep 22, 2022 at 04:32:00PM +0200, Krzysztof Kozlowski wrote:
+> > Hi everyone,
+> >
+> > Quite a lot of people are working on Qualcomm DT bindings conversion
+> > (TXT->YAML) and fixups to Qualcomm DTS. We track a bit of this effort
+> > internally in Linaro, but that has many shortcomings and we would like
+> > to track it rather community-wide with the support and contributions
+> > from the community.
+> >
+> > What to track:
+> > 1. Which bindings to convert to YAML,
+> > 2. Missing compatibles (either entirely or because of missing conversion),
+> > 3. `dt_binding_check` warnings (usually connected with 1-2),
+> > 4. `dtbs_check` warnings.
+> >
+> > Rob's bot gives us daily output for 1-4, but how can we track current
+> > efforts to avoid duplication of work? Also it would allow people to find
+> > tasks for them to get contributions to Linux kernel :). Is anyone in
+> > community interested in tracking it together, in a public way?
+>
+> Is this a real problem that needs fixing? I mean how often does it
+> happen that people submit the same YAML conversion for example? Since it
+> doesn't take that long to do a conversion, I'm not sure what tracking
+> this on some webpage buys us. It's better to just search lore before
+> starting a new conversion. Or search the linux-next tree to see what's
+> still pending.
 
-This comment should probably be aligned with the ones above.
+As Krzysztof wrote, fixing a warning/adding a new platform is usually
+not a big deal. However converting old txt bindings usually results in
+a significant amount of work. Fixing YAML and dtsi at the same time
+can take a long time, especially for obscure cases like apq8084 or old
+ipq boards.
 
-Best,
-Markus
+>
+> Similarly for the other points above, as it doesn't take very long to
+> add a missing compatible or fix a warning it seems a bit excessive to
+> try to track this manually.
+>
+> Perhaps a list of pending conversions or missing compatibles could be
+> useful for someone who's short on work, but it's bound to get outdated
+> pretty quickly.
 
->  
->        - description: mt7623 generation one
->          items:
-> @@ -130,6 +131,7 @@ properties:
->        dt-binding/memory/mt8186-memory-port.h for mt8186,
->        dt-binding/memory/mt8192-larb-port.h for mt8192.
->        dt-binding/memory/mt8195-memory-port.h for mt8195.
-> +      dt-binding/memory/mt8365-larb-port.h for mt8365.
->  
->    power-domains:
->      maxItems: 1
-> diff --git a/include/dt-bindings/memory/mt8365-larb-port.h b/include/dt-bindings/memory/mt8365-larb-port.h
-> new file mode 100644
-> index 000000000000..56d5a5dd519e
-> --- /dev/null
-> +++ b/include/dt-bindings/memory/mt8365-larb-port.h
-> @@ -0,0 +1,90 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2022 MediaTek Inc.
-> + * Author: Yong Wu <yong.wu@mediatek.com>
-> + */
-> +#ifndef _DT_BINDINGS_MEMORY_MT8365_LARB_PORT_H_
-> +#define _DT_BINDINGS_MEMORY_MT8365_LARB_PORT_H_
-> +
-> +#include <dt-bindings/memory/mtk-memory-port.h>
-> +
-> +#define M4U_LARB0_ID			0
-> +#define M4U_LARB1_ID			1
-> +#define M4U_LARB2_ID			2
-> +#define M4U_LARB3_ID			3
-> +
-> +/* larb0 */
-> +#define M4U_PORT_DISP_OVL0		MTK_M4U_ID(M4U_LARB0_ID, 0)
-> +#define M4U_PORT_DISP_OVL0_2L		MTK_M4U_ID(M4U_LARB0_ID, 1)
-> +#define M4U_PORT_DISP_RDMA0		MTK_M4U_ID(M4U_LARB0_ID, 2)
-> +#define M4U_PORT_DISP_WDMA0		MTK_M4U_ID(M4U_LARB0_ID, 3)
-> +#define M4U_PORT_DISP_RDMA1		MTK_M4U_ID(M4U_LARB0_ID, 4)
-> +#define M4U_PORT_MDP_RDMA0		MTK_M4U_ID(M4U_LARB0_ID, 5)
-> +#define M4U_PORT_MDP_WROT1		MTK_M4U_ID(M4U_LARB0_ID, 6)
-> +#define M4U_PORT_MDP_WROT0		MTK_M4U_ID(M4U_LARB0_ID, 7)
-> +#define M4U_PORT_MDP_RDMA1		MTK_M4U_ID(M4U_LARB0_ID, 8)
-> +#define M4U_PORT_DISP_FAKE0		MTK_M4U_ID(M4U_LARB0_ID, 9)
-> +#define M4U_PORT_APU_READ		MTK_M4U_ID(M4U_LARB0_ID, 10)
-> +#define M4U_PORT_APU_WRITE		MTK_M4U_ID(M4U_LARB0_ID, 11)
-> +
-> +/* larb1 */
-> +#define M4U_PORT_VENC_RCPU		MTK_M4U_ID(M4U_LARB1_ID, 0)
-> +#define M4U_PORT_VENC_REC		MTK_M4U_ID(M4U_LARB1_ID, 1)
-> +#define M4U_PORT_VENC_BSDMA		MTK_M4U_ID(M4U_LARB1_ID, 2)
-> +#define M4U_PORT_VENC_SV_COMV		MTK_M4U_ID(M4U_LARB1_ID, 3)
-> +#define M4U_PORT_VENC_RD_COMV		MTK_M4U_ID(M4U_LARB1_ID, 4)
-> +#define M4U_PORT_VENC_NBM_RDMA		MTK_M4U_ID(M4U_LARB1_ID, 5)
-> +#define M4U_PORT_VENC_NBM_RDMA_LITE	MTK_M4U_ID(M4U_LARB1_ID, 6)
-> +#define M4U_PORT_JPGENC_Y_RDMA		MTK_M4U_ID(M4U_LARB1_ID, 7)
-> +#define M4U_PORT_JPGENC_C_RDMA		MTK_M4U_ID(M4U_LARB1_ID, 8)
-> +#define M4U_PORT_JPGENC_Q_TABLE		MTK_M4U_ID(M4U_LARB1_ID, 9)
-> +#define M4U_PORT_JPGENC_BSDMA		MTK_M4U_ID(M4U_LARB1_ID, 10)
-> +#define M4U_PORT_JPGDEC_WDMA		MTK_M4U_ID(M4U_LARB1_ID, 11)
-> +#define M4U_PORT_JPGDEC_BSDMA		MTK_M4U_ID(M4U_LARB1_ID, 12)
-> +#define M4U_PORT_VENC_NBM_WDMA		MTK_M4U_ID(M4U_LARB1_ID, 13)
-> +#define M4U_PORT_VENC_NBM_WDMA_LITE	MTK_M4U_ID(M4U_LARB1_ID, 14)
-> +#define M4U_PORT_VENC_CUR_LUMA		MTK_M4U_ID(M4U_LARB1_ID, 15)
-> +#define M4U_PORT_VENC_CUR_CHROMA	MTK_M4U_ID(M4U_LARB1_ID, 16)
-> +#define M4U_PORT_VENC_REF_LUMA		MTK_M4U_ID(M4U_LARB1_ID, 17)
-> +#define M4U_PORT_VENC_REF_CHROMA	MTK_M4U_ID(M4U_LARB1_ID, 18)
-> +
-> +/* larb2 */
-> +#define M4U_PORT_CAM_IMGO		MTK_M4U_ID(M4U_LARB2_ID, 0)
-> +#define M4U_PORT_CAM_RRZO		MTK_M4U_ID(M4U_LARB2_ID, 1)
-> +#define M4U_PORT_CAM_AAO		MTK_M4U_ID(M4U_LARB2_ID, 2)
-> +#define M4U_PORT_CAM_LCS		MTK_M4U_ID(M4U_LARB2_ID, 3)
-> +#define M4U_PORT_CAM_ESFKO		MTK_M4U_ID(M4U_LARB2_ID, 4)
-> +#define M4U_PORT_CAM_CAM_SV0		MTK_M4U_ID(M4U_LARB2_ID, 5)
-> +#define M4U_PORT_CAM_CAM_SV1		MTK_M4U_ID(M4U_LARB2_ID, 6)
-> +#define M4U_PORT_CAM_LSCI		MTK_M4U_ID(M4U_LARB2_ID, 7)
-> +#define M4U_PORT_CAM_LSCI_D		MTK_M4U_ID(M4U_LARB2_ID, 8)
-> +#define M4U_PORT_CAM_AFO		MTK_M4U_ID(M4U_LARB2_ID, 9)
-> +#define M4U_PORT_CAM_SPARE		MTK_M4U_ID(M4U_LARB2_ID, 10)
-> +#define M4U_PORT_CAM_BPCI		MTK_M4U_ID(M4U_LARB2_ID, 11)
-> +#define M4U_PORT_CAM_BPCI_D		MTK_M4U_ID(M4U_LARB2_ID, 12)
-> +#define M4U_PORT_CAM_UFDI		MTK_M4U_ID(M4U_LARB2_ID, 13)
-> +#define M4U_PORT_CAM_IMGI		MTK_M4U_ID(M4U_LARB2_ID, 14)
-> +#define M4U_PORT_CAM_IMG2O		MTK_M4U_ID(M4U_LARB2_ID, 15)
-> +#define M4U_PORT_CAM_IMG3O		MTK_M4U_ID(M4U_LARB2_ID, 16)
-> +#define M4U_PORT_CAM_WPE0_I		MTK_M4U_ID(M4U_LARB2_ID, 17)
-> +#define M4U_PORT_CAM_WPE1_I		MTK_M4U_ID(M4U_LARB2_ID, 18)
-> +#define M4U_PORT_CAM_WPE_O		MTK_M4U_ID(M4U_LARB2_ID, 19)
-> +#define M4U_PORT_CAM_FD0_I		MTK_M4U_ID(M4U_LARB2_ID, 20)
-> +#define M4U_PORT_CAM_FD1_I		MTK_M4U_ID(M4U_LARB2_ID, 21)
-> +#define M4U_PORT_CAM_FD0_O		MTK_M4U_ID(M4U_LARB2_ID, 22)
-> +#define M4U_PORT_CAM_FD1_O		MTK_M4U_ID(M4U_LARB2_ID, 23)
-> +
-> +/* larb3 */
-> +#define M4U_PORT_HW_VDEC_MC_EXT		MTK_M4U_ID(M4U_LARB3_ID, 0)
-> +#define M4U_PORT_HW_VDEC_UFO_EXT	MTK_M4U_ID(M4U_LARB3_ID, 1)
-> +#define M4U_PORT_HW_VDEC_PP_EXT		MTK_M4U_ID(M4U_LARB3_ID, 2)
-> +#define M4U_PORT_HW_VDEC_PRED_RD_EXT	MTK_M4U_ID(M4U_LARB3_ID, 3)
-> +#define M4U_PORT_HW_VDEC_PRED_WR_EXT	MTK_M4U_ID(M4U_LARB3_ID, 4)
-> +#define M4U_PORT_HW_VDEC_PPWRAP_EXT	MTK_M4U_ID(M4U_LARB3_ID, 5)
-> +#define M4U_PORT_HW_VDEC_TILE_EXT	MTK_M4U_ID(M4U_LARB3_ID, 6)
-> +#define M4U_PORT_HW_VDEC_VLD_EXT	MTK_M4U_ID(M4U_LARB3_ID, 7)
-> +#define M4U_PORT_HW_VDEC_VLD2_EXT	MTK_M4U_ID(M4U_LARB3_ID, 8)
-> +#define M4U_PORT_HW_VDEC_AVC_MV_EXT	MTK_M4U_ID(M4U_LARB3_ID, 9)
-> +#define M4U_PORT_HW_VDEC_RG_CTRL_DMA_EXT MTK_M4U_ID(M4U_LARB3_ID, 10)
-> +
-> +#endif
-> 
-> -- 
-> b4 0.10.1
+I'd suggest having a list of `qcom-legacy' tasks: outdated DT bindings
+(both txt and yaml), drivers using system clock list (rather than DT
+bindings). DT files pending conversion to labels. msm8974 interconnect
+driver. hsuart aliases. You name it. This can be as simple as several
+gitlab issues, one per each topic.
+At the very least this would allow us to assess legacy bits and pieces.
+
+Note: for me this is close to another topic that was discussed several
+times, but for which we never reached a conclusion. A matrix of
+supported per-SoC features.
+
+>
+> > If so, where?
+> > A. elinux.org (needs some formatting when pasting the output from tools)
+> > B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
+> > C. gitlab dedicated repo - some text file
+> > D. Linux kernel TODO file (might be difficult to keep updated)
+> > E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
+> > have it for Exynos but I don't find it usable -
+> > https://exynos.wiki.kernel.org/todo_tasks)
+> >
+> > I am leaning towards Gitlab pages because they could be quite automated
+> > - with CI or with scripts.
+> >
+> > The point would be to list all of tasks (1-4 from the first list), keep
+> > it updated with new results, pick/assign tasks and mark as done.
+>
+> I don't really see the need for more process here, sorry.
+>
+> If I'm working on support for a new platform and the DT checker warnings
+> gets too noisy I may pick some of the low hanging fruit. In the odd
+> chance that someone beats me to it, it's not the end of the world.
+
+I hope that we can finally land patches to support per-file check.
+Then fixing warnings for a new platform would be very easy. Even today
+you can run `make something.dtb CHECK_DTBS=y` and get all your
+warnings (if the processed schema is up to date). However Krzysztof's
+point is about old platforms, rather than new ones.
+
+
+-- 
+With best wishes
+Dmitry
