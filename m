@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C215F64AD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 12:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D68DA5F64B0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 12:59:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbiJFK6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 06:58:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45168 "EHLO
+        id S231308AbiJFK7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 06:59:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231417AbiJFK6t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 06:58:49 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECF339B843
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 03:58:40 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id n7so1406519plp.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 03:58:40 -0700 (PDT)
+        with ESMTP id S231416AbiJFK6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 06:58:54 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BE819B873
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 03:58:43 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id n7so1406639plp.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 03:58:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DiW8i3DPnjGma7IfUKGltSfwik2WZP+gGKeY6IhjCJo=;
-        b=0L+0OwwlP2myUklbVmYsp5ZyzEz6FHhq8EIV78l1dQRPmOjJvZarWPo0jlKlw3SLJN
-         2E9BpAYENJpbIwLq9ub/6jmSsMrJBbr1htmUF+LgTCBeeMUBDh2GyeESj6QjSpF5ncMF
-         qdFUtNq+qLhXUIaGt9yjCs/HDdvkrMqzQzDlPZ+WPBN6ehKsJ3cocE8PxQ5vi/O3aHNW
-         hAWijg6ZUR2288hNUl5ALOS4EyJVB4eiZs7RajA8ocRD3ogh+9R4NadjEoYs+JFe5Pke
-         rCeEdm3cTIjgO4aQFOAceJteLmVOjOrIS3tOWRWSAw/guTWnJLlhuepjkpaM1O5hDQ5z
-         LLLw==
+        bh=jOZI8SGXdjEDl/5cRiKBB/3ohsupX4oO9Re4g9HNDWE=;
+        b=UajZwV8mWNElnB3627GtP97HZhzj0zo1scWikdcoZw1y/QJll/ClitWRvKQUVSh4hW
+         2mSnK6Z+CLt2/GOc+BEY7KvM9j4/yOYYvPoTJx5680XIE7xwZP4V1WzV6OnJTQEsl9zT
+         4DSr/H538JnJqSFjBjCCuqJ5rVsgiLIuA4Emq26c3kgpmkFbKktsSlonjIUFBNdNydEh
+         VZfItGSEyXb+4zxdeUEC9uG04Q6W+n/5Ars5jQRs7g1bfliXCaa2l7K6Sdo6IIvSp+yH
+         idOqrqH6SefFPnjY+xct8vI88Tr+ANW6sKOitKcwnAciE8+F6xxdhBVmJcj0VdLaWqBz
+         euow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DiW8i3DPnjGma7IfUKGltSfwik2WZP+gGKeY6IhjCJo=;
-        b=NGOheQZSznZ/OEjDFgzS25faOQ9nFtECFXUyI1GfWe7/VKMK+uUaQpMnhjX5MVQlk0
-         SCkvVfrtR4Fw+yYcyz8H/kbqL9mmSJBUx/RvInK/CirZU2Yg1K9uib6xkcq4XTB+SKvz
-         nKsasaBatCxMuxyjUw4pruqtIiuCLyp/SX7m6aQloVDpoxcq3EpoSyuiY5TKc9FFiMCq
-         HHCaFQEkHZY2+leqsObiawl9/Ugir8gh6XIovRhVwynBHnBKyxjzc2Nwx631uCqleyTc
-         IbJwP2Tl9vetgke6ECwfb417uovH0GslQI/vKLoDgZqDzK6nHDGbeinxhmNUBLqoNIKb
-         /k2Q==
-X-Gm-Message-State: ACrzQf22Sed4BAiMxU8kskz3y7Es9xLwSGNJM1girgRssCVBNOlyUgOy
-        0AYJiWKyNZUgd89LiH5+qWSk0A==
-X-Google-Smtp-Source: AMsMyM5hVgrf4OGJxDnVBNvTwaN7HWXpijuChvg/k3qpDFvBVDDhHdX3ZygN+mwe4qmQJk5Oa1QTLQ==
-X-Received: by 2002:a17:903:1d0:b0:178:1d5b:faf8 with SMTP id e16-20020a17090301d000b001781d5bfaf8mr3857673plh.9.1665053919539;
-        Thu, 06 Oct 2022 03:58:39 -0700 (PDT)
+        bh=jOZI8SGXdjEDl/5cRiKBB/3ohsupX4oO9Re4g9HNDWE=;
+        b=rAPkKH/41T59rBFAz0XXXEFDjaAtUno9/FeceOwIGIlY7Ui6qTBidsInlDc/TJVoGT
+         9g/22eEiV7UIlhJ1CDcls5tQmFQbJ7Shaos2t5+PXJrLyduMN0AXlrsx5sdwGBwfZuXn
+         N2I8wveKHUW90hQLTD5w6vW2WavG5Gx3FO6ZB3vb363gU6B/OK9ErYWVpzVDZRhAtn+A
+         gInh2KxlGmO/eXXXAAlSoHPoO/mxCG6fNQPXrWvgyJZPHtZaaoZpyeVJZCJJW3LcwCh7
+         c9guZTPdW+tbnORFkCj/ch2ZBuXQMBcBNkpdjCTpV7q1zTw8nVWLXp4zRJqTRJ8d2mdS
+         xVOw==
+X-Gm-Message-State: ACrzQf0yD9ggEPIVMQi/q4+uzJRXisUSp/JtnUHVyX5quGv/Ss0Og70T
+        ug69oAsgA1nl7H9SjjSzXcXZ4w==
+X-Google-Smtp-Source: AMsMyM5hVYB19NYs8RMrU+wMXWuCUOp0fns6L5LwE3MhmTdt8WJKRuHYX7lGe8E0Xymy2BzrcloQOQ==
+X-Received: by 2002:a17:903:244e:b0:178:4f50:1ca0 with SMTP id l14-20020a170903244e00b001784f501ca0mr4111939pls.104.1665053922749;
+        Thu, 06 Oct 2022 03:58:42 -0700 (PDT)
 Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
-        by smtp.gmail.com with ESMTPSA id c13-20020a170903234d00b0017d12d86901sm10504297plh.187.2022.10.06.03.58.37
+        by smtp.gmail.com with ESMTPSA id c13-20020a170903234d00b0017d12d86901sm10504297plh.187.2022.10.06.03.58.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 03:58:39 -0700 (PDT)
+        Thu, 06 Oct 2022 03:58:41 -0700 (PDT)
 From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
 To:     LKML <linux-kernel@vger.kernel.org>
 Cc:     dianders@chromium.org,
         Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: [PATCH v7 3/4] dt-bindings: input: touchscreen: Add goodix GT7986U touchscreen chip
-Date:   Thu,  6 Oct 2022 18:58:22 +0800
-Message-Id: <20221006185333.v7.3.I52e4b4b20e2eb0ae20f2a9bb198aa6410f04cf16@changeid>
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v7 4/4] arm64: dts: qcom: Add touchscreen and touchpad support for evoker
+Date:   Thu,  6 Oct 2022 18:58:23 +0800
+Message-Id: <20221006185333.v7.4.I50d04dcbe735dda69995cf1078824d671501869e@changeid>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221006105823.532336-1-sheng-liang.pan@quanta.corp-partner.google.com>
 References: <20221006105823.532336-1-sheng-liang.pan@quanta.corp-partner.google.com>
@@ -73,34 +74,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an goodix touch screen chip GT7986U.
+Change touchpad and touchscreen node for evoker
+Touchpad: SA461D-1011
+Touchscreen: GT7986U
 
 Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
 ---
 
 Changes in v7:
-- goodix gt7986 dt bindings added in v7
+- add compiatable for gt7986
 
- Documentation/devicetree/bindings/input/goodix,gt7375p.yaml | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Changes in v6:
+- add removed pinctrl and align touchscreen label with herobrine board
 
-diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-index fe1c5016f7f31..1c191bc5a1782 100644
---- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-+++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-@@ -16,8 +16,11 @@ description:
+Changes in v5:
+- new patch for Touchscreen/trackpad in v5
+
+ .../boot/dts/qcom/sc7280-herobrine-evoker.dtsi    | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
+index e78072159d54b..d713750f81019 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
+@@ -23,16 +23,15 @@ ap_tp_i2c: &i2c0 {
+ 	status = "okay";
+ 	clock-frequency = <400000>;
  
- properties:
-   compatible:
--    items:
-+    oneOf:
-       - const: goodix,gt7375p
-+      - items:
-+          - const: goodix,gt7986u
-+          - const: goodix,gt7375p
+-	trackpad: trackpad@2c {
+-		compatible = "hid-over-i2c";
+-		reg = <0x2c>;
++	trackpad: trackpad@15 {
++		compatible = "elan,ekth3000";
++		reg = <0x15>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&tp_int_odl>;
  
-   reg:
-     enum:
+ 		interrupt-parent = <&tlmm>;
+ 		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+ 
+-		hid-descr-addr = <0x20>;
+ 		vcc-supply = <&pp3300_z1>;
+ 
+ 		wakeup-source;
+@@ -43,9 +42,9 @@ ts_i2c: &i2c13 {
+ 	status = "okay";
+ 	clock-frequency = <400000>;
+ 
+-	ap_ts: touchscreen@10 {
+-		compatible = "elan,ekth6915";
+-		reg = <0x10>;
++	ap_ts: touchscreen@5d {
++		compatible = "goodix,gt7986u", "goodix,gt7375p";
++		reg = <0x5d>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&ts_int_conn>, <&ts_rst_conn>;
+ 
+@@ -54,7 +53,7 @@ ap_ts: touchscreen@10 {
+ 
+ 		reset-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
+ 
+-		vcc33-supply = <&ts_avdd>;
++		vdd-supply = <&ts_avdd>;
+ 	};
+ };
+ 
 -- 
 2.34.1
 
