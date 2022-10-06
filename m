@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DE295F6940
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 16:09:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F3795F6943
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 16:09:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231855AbiJFOJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 10:09:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55452 "EHLO
+        id S231984AbiJFOJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 10:09:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231877AbiJFOIc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 10:08:32 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB8A1AD9A4
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 07:07:38 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id a12so2358128ljr.7
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 07:07:38 -0700 (PDT)
+        with ESMTP id S231891AbiJFOIe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 10:08:34 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03931B0B2F
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 07:07:40 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id j4so2982567lfk.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 07:07:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=pz+xQ/sudSMqZIDeQ8gYL314AARwnvQptTAk3JIoPJU=;
-        b=s69/TS1Sk9VtpdR9w5ep9mwrJWJBjMQnvJC1ZegYlR2IFS82E5yQbWZs4umydbLNR5
-         rO+Rnbxz5MOsv/xVHaXXWYgXMfZdpGE1WT/b5LqGCdESwfLe6oIKnNR1PsiQzDK1ELdR
-         9eQxXiORHEa3dOCfvw8OT52VLqz5ws1o0Tt3TpbdVm+T9Bbp10E2VYvg9blN6XpqHYD6
-         ysMS1cCInvOpugxy6sn0vIX94p/bHy8Cp1/lNmynGDaCgJMWziJ5nT5Nqhuae3DXSiT4
-         CSPANOooLUNftYbk6ZLw6wSYxW/LRz31NypvGZz0X9Qega5ls8lyGsAMDukLQ6INXBoc
-         wTng==
+        bh=h4V0LDT3i/W/TE3k636nNBBz/r2gnVYS8MZv968gs0g=;
+        b=t3jldfHDAkd1Ipu9SvllxIjAJ3AYCwj4jMQhls7jS2GXucl5joa2Hd8oYkTDj7LzGU
+         qsxs3j97lEsu7nZNvdjQeP3OKu1FB2Osf+jg8jPBNnSafpDLCixdYUVk8ZRrJ7LX/DDf
+         82E24O2Wp8wAYxjUs9boSvV/D6gEN3UswklikeXC1Rq9pwOujRRMRSON63ZxvT4T6zz3
+         NFtjnbzDLCpnJ+bCbjz5mVdbOMIr8oQ5GliHz0q0mqXVEyxrNynT4NtpZHXDBuxrleHD
+         6CjGhjiM0NegY6r81wwBP01rxl5mwucA9he9IrIhC5qC3eZ+Mxr5OPwzpmnFWnDDRIAR
+         Gmyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=pz+xQ/sudSMqZIDeQ8gYL314AARwnvQptTAk3JIoPJU=;
-        b=MBnL1nEwziiois/v5JH+r924n4BwZMtBHzIkTVXs+9ZXUycXGolibWEGxIwLl5rQ+h
-         wh6KI4uv9GYyLxJ8huLYDLj/u0nMSknUj0Rk1pFJz/DJ0SmNZW/8BWM6YXqAIvKYYrfU
-         hlUOj3F3MhMEgqAqiMDC5GxTSSbB7ZfbnW1TWnuX3woA5i9UIHSapSlAdacruSuP+d5X
-         mIe/PLJz7dzB3z3hCbnkHczILltlgc9Geu4i2nWT/LEHv0y4pvmSz4AeP1iPgGEQGVE1
-         jH4i4k4QtE+DLtwA5AhlfpZkAXhbiYF35YpMcply5cxzaKxrar97nZNsxZd47jbVWtFE
-         dVvw==
-X-Gm-Message-State: ACrzQf1i/DJ//0k316poTPTZ43PY74nax/3lZuiQ6WR5IB8XC0xAmMII
-        pt/MmhVXQ2MUp5QKvx688drnKg==
-X-Google-Smtp-Source: AMsMyM6LsOWCu5/OR7UjmdSjQoKSroH/T2CHlzmU6mqFpfG6LIiDTNntUIddYbBuxQlt5TdSBhKxiw==
-X-Received: by 2002:a2e:a54d:0:b0:26c:64ae:236a with SMTP id e13-20020a2ea54d000000b0026c64ae236amr1960445ljn.207.1665065236534;
-        Thu, 06 Oct 2022 07:07:16 -0700 (PDT)
+        bh=h4V0LDT3i/W/TE3k636nNBBz/r2gnVYS8MZv968gs0g=;
+        b=fx9eq7FPTztXWwUxKAJ29yzZcEt1BxGk9vNKwm1nOGRoFxko58rW51AcOYo1AO/05u
+         QQjp8hGa5foUoenwFWYHStPDTovjHtwdAFkrGBxmWt6HcrWex1dIW/k7U/tzJlNltuzk
+         5TXk3ipJZL/Y20JeAciYqp2+hmQGNmYeuI1kdRWfdnIdxFLiph3w7PRpmX7oe9CfbkE6
+         /iRjXYIMLF3L/nxr1ylAC24XVm9iL1PNLKsoxrOPFeitimhGKF1pDEt0lPkdKJoiFYqc
+         5NETsaTDpoaGuHeFwLMa5cDGCk1gxGABgW3DR+B3qDLBIFt9Uvw+lCH+VlKsBMV7w+Wl
+         rSrA==
+X-Gm-Message-State: ACrzQf3uT615hxvUqRwn8seBzxwMBDzyaREqQym1udl5PgZ6CMqjjiBp
+        qW8HvklOuuAXPzVYfkdYtwiSKw==
+X-Google-Smtp-Source: AMsMyM4fN/9CJBglM4Ea1/RppepdcWqKBhs0il1Wk7CVaL90lFvFMziv2DW/zPf6xUok0qecGsenpg==
+X-Received: by 2002:a05:6512:1092:b0:4a2:6a45:1f0d with SMTP id j18-20020a056512109200b004a26a451f0dmr43104lfg.483.1665065237881;
+        Thu, 06 Oct 2022 07:07:17 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id z3-20020a056512370300b004a2386b8ce8sm1833929lfr.211.2022.10.06.07.07.15
+        by smtp.gmail.com with ESMTPSA id z3-20020a056512370300b004a2386b8ce8sm1833929lfr.211.2022.10.06.07.07.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 07:07:16 -0700 (PDT)
+        Thu, 06 Oct 2022 07:07:17 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -65,9 +65,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 26/34] dt-bindings: pinctrl: qcom,sm6375: minor style cleanups
-Date:   Thu,  6 Oct 2022 16:06:29 +0200
-Message-Id: <20221006140637.246665-27-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 27/34] dt-bindings: pinctrl: qcom,sm8250: minor style cleanups
+Date:   Thu,  6 Oct 2022 16:06:30 +0200
+Message-Id: <20221006140637.246665-28-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221006140637.246665-1-krzysztof.kozlowski@linaro.org>
 References: <20221006140637.246665-1-krzysztof.kozlowski@linaro.org>
@@ -84,52 +84,76 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Drop "binding" from description (and align it with other Qualcomm
-pinctrl bindings), use double quotes consistently and drop redundant
-quotes.
+pinctrl bindings), drop redundant minItems, use double quotes
+consistently and drop redundant quotes.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/pinctrl/qcom,sm6375-tlmm.yaml | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+ .../bindings/pinctrl/qcom,sm8250-pinctrl.yaml | 36 +++++++++----------
+ 1 file changed, 17 insertions(+), 19 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6375-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6375-tlmm.yaml
-index 4482625b6b1f..d54ebb2bd5a8 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sm6375-tlmm.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6375-tlmm.yaml
-@@ -9,9 +9,8 @@ title: Qualcomm Technologies, Inc. SM6375 TLMM block
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml
+index 824a4dce1202..1e42a4c60da9 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-pinctrl.yaml
+@@ -9,23 +9,21 @@ title: Qualcomm Technologies, Inc. SM8250 TLMM block
  maintainers:
-   - Konrad Dybcio <konrad.dybcio@somainline.org>
+   - Bjorn Andersson <bjorn.andersson@linaro.org>
  
 -description: |
--  This binding describes the Top Level Mode Multiplexer (TLMM) block found
--  in the SM6375 platform.
+-  This binding describes the Top Level Mode Multiplexer block found in the
+-  SM8250 platform.
 +description:
-+  Top Level Mode Multiplexer pin controller in Qualcomm SM6375 SoC.
++  Top Level Mode Multiplexer pin controller in the Qualcomm SM8250 SoC.
  
- allOf:
-   - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
-@@ -25,10 +24,10 @@ properties:
+ properties:
+   compatible:
+     const: qcom,sm8250-pinctrl
+ 
+   reg:
+-    minItems: 3
+     maxItems: 3
+ 
+   reg-names:
+     items:
+-      - const: "west"
+-      - const: "south"
+-      - const: "north"
++      - const: west
++      - const: south
++      - const: north
  
    interrupts: true
    interrupt-controller: true
--  '#interrupt-cells': true
-+  "#interrupt-cells": true
-   gpio-controller: true
-   gpio-reserved-ranges: true
--  '#gpio-cells': true
-+  "#gpio-cells": true
-   gpio-ranges: true
-   wakeup-parent: true
- 
-@@ -39,7 +38,7 @@ required:
- additionalProperties: false
- 
- patternProperties:
--  '-state$':
-+  "-state$":
-     oneOf:
-       - $ref: "#/$defs/qcom-sm6375-tlmm-state"
-       - patternProperties:
+@@ -126,16 +124,16 @@ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     pinctrl@1f00000 {
+-            compatible = "qcom,sm8250-pinctrl";
+-            reg = <0x0f100000 0x300000>,
+-                  <0x0f500000 0x300000>,
+-                  <0x0f900000 0x300000>;
+-            reg-names = "west", "south", "north";
+-            interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+-            gpio-controller;
+-            #gpio-cells = <2>;
+-            interrupt-controller;
+-            #interrupt-cells = <2>;
+-            gpio-ranges = <&tlmm 0 0 180>;
+-            wakeup-parent = <&pdc>;
++        compatible = "qcom,sm8250-pinctrl";
++        reg = <0x0f100000 0x300000>,
++              <0x0f500000 0x300000>,
++              <0x0f900000 0x300000>;
++        reg-names = "west", "south", "north";
++        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++        gpio-controller;
++        #gpio-cells = <2>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
++        gpio-ranges = <&tlmm 0 0 180>;
++        wakeup-parent = <&pdc>;
+     };
 -- 
 2.34.1
 
