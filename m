@@ -2,76 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C0745F6DAB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 20:44:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C228A5F6DBB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Oct 2022 20:53:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231489AbiJFSoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 14:44:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47292 "EHLO
+        id S231244AbiJFSxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 14:53:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231386AbiJFSoT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 14:44:19 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F4AC5116;
-        Thu,  6 Oct 2022 11:44:18 -0700 (PDT)
-Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A6DFE6602312;
-        Thu,  6 Oct 2022 19:44:16 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1665081857;
-        bh=cg5NSP17rilsGIpsqKknfp2eLMs+z2DEvknKPSu0pN0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lobjwQM1LwYW2az1hlQhzcZHJKqP90wNCxOGrmgivOv8Q26SNG5CSZC3iyeA2x3Ec
-         L9kLYXVh6aC/G7uYzugRMo7kLdC18hB0HM3/c809hmSUlY7YPoGjs75cPFTbgVkvBi
-         Cym83YvcvctQmz3c+w6uyVtx6GvMeYELxQsuRjd+sUXZuZ9x/4KmYvByjYJ+qoDFUy
-         74jnEIZ8LA9yj9VAZLGiIiB417nZbri6QzRNNKRuei+2HTInlVMrUM9+X1anUAzQ1r
-         NZyCHUd1FljpE1oCZH66640CjbRp+nTS5WyjxZC03EzdcorqDJ8+H+iSVz3hfrUp4i
-         BhCIhbtaxfWFQ==
-Date:   Thu, 6 Oct 2022 14:44:13 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 2/2] arm64: dts: mt8192: Add vcodec lat and core nodes
-Message-ID: <20221006184413.kelie7eppmjwptnc@notapiano>
-References: <20220930112237.14411-1-allen-kh.cheng@mediatek.com>
- <20220930112237.14411-3-allen-kh.cheng@mediatek.com>
+        with ESMTP id S230189AbiJFSxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 14:53:16 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 834A9C6941;
+        Thu,  6 Oct 2022 11:53:12 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-132e9bc5ff4so3217266fac.7;
+        Thu, 06 Oct 2022 11:53:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yeee9Rr7jOAcATV5bBfTzwtN4fPcyxHttU5yk2BU/SY=;
+        b=PD6+YhNBFjFKDvDWHgARwtS7R0mI7jMoe9d3LNgl9Fjv+NbjW+K1Ep+4M8qH7+KFIT
+         fHsK+8/6Qk9RM0skiCP0k8uM0pmO/JpeVFwRoJs35APl4HysjGOIvwCNbyPFk3I2RSGB
+         2Ts5v6Aj8gGLmlIIyNLr6FdzAOf7LA9AWfFTPLiGnxvYG5fBX2UMHe0fJsRWeCRgT8Lv
+         gq9a8wolr9PX8IY9R+j1s1XZKV7KKtk4Vw5vAVnD8zgAatABtjqgobvqYB+GDc+l1swo
+         miHzVLZstl9PNqZtlAYsOuptFY3M7VyEBnR+CY8ZNrg6g8UMIO7Ms5tgcwbZ4bmjNUy3
+         +h7w==
+X-Gm-Message-State: ACrzQf0djaroc2U/a7EMhZZRC4fV2pGEWHuUSLP9xPDmnv/mxouTS1kj
+        wpFuxo6/Fic++xbGmXYrxA==
+X-Google-Smtp-Source: AMsMyM7vENBvoax0UUACSUWvm/Yhjv+8TS5Ns+hZv0leddoiFQ0qcEP9taDDKRVnqrRT53lnby1d/w==
+X-Received: by 2002:a05:6870:b01c:b0:133:3666:1ecc with SMTP id y28-20020a056870b01c00b0013336661eccmr522250oae.45.1665082391128;
+        Thu, 06 Oct 2022 11:53:11 -0700 (PDT)
+Received: from robh_at_kernel.org ([2607:fb90:8a65:c536:245:842:a3a4:9017])
+        by smtp.gmail.com with ESMTPSA id o6-20020a056870524600b0012d939eb0bfsm209379oai.34.2022.10.06.11.53.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Oct 2022 11:53:10 -0700 (PDT)
+Received: (nullmailer pid 27055 invoked by uid 1000);
+        Thu, 06 Oct 2022 18:53:09 -0000
+Date:   Thu, 6 Oct 2022 13:53:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v4 2/2] dt-bindings: gpio: Add gpio-latch binding document
+Message-ID: <166508237779.26843.14601884317777687978.robh@kernel.org>
+References: <20221006083031.2259006-1-s.hauer@pengutronix.de>
+ <20221006083031.2259006-3-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220930112237.14411-3-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221006083031.2259006-3-s.hauer@pengutronix.de>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Fri, Sep 30, 2022 at 07:22:37PM +0800, Allen-KH Cheng wrote:
-> Add vcodec lat and core nodes for mt8192 SoC.
+On Thu, 06 Oct 2022 10:30:31 +0200, Sascha Hauer wrote:
+> This adds a binding for a GPIO multiplexer driver based on latches
+> connected to other GPIOs.
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+> 
+> Notes:
+>     Changes since v3:
+>     - Introduce delays between GPIO toggles as suggested by Serge Semin
+> 
+>     Changes since v1:
+>     - Add license to binding file
+> 
+>  .../devicetree/bindings/gpio/gpio-latch.yaml  | 94 +++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-latch.yaml
+> 
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Thanks,
-Nícolas
+Reviewed-by: Rob Herring <robh@kernel.org>
