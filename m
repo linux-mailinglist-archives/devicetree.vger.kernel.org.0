@@ -2,124 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DA4D5F7378
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 06:02:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3B755F739C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 06:45:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbiJGECT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 00:02:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54344 "EHLO
+        id S229573AbiJGEpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 00:45:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbiJGECR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 00:02:17 -0400
-Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D76C45A3
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 21:02:15 -0700 (PDT)
-Received: by mail-ua1-x92a.google.com with SMTP id h25so1296297uao.13
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 21:02:15 -0700 (PDT)
+        with ESMTP id S229492AbiJGEpB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 00:45:01 -0400
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2538A2980D;
+        Thu,  6 Oct 2022 21:44:56 -0700 (PDT)
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+        id 4MkG1v6TnSz4xGm; Fri,  7 Oct 2022 15:44:51 +1100 (AEDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ONW7pwCwlyGXd37ijro89iqfnw+jYXGvO6QktN1KnzE=;
-        b=R0eQUb2ifkNhm9A7a9ekJr6xeRJsCe9k4FPFdSRJvuvSCC3kvYNPM0A7FvfZd+1jkT
-         /K9TmzB2R0/GUXenPY0dId6zMfRXw884b3zoxVzFQXvNdYTo8U0nVaji2AJGmRBJ2/2n
-         vJDnRKk4bBtC0iMqBcSUiHdD92g7OYBuXu5R8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ONW7pwCwlyGXd37ijro89iqfnw+jYXGvO6QktN1KnzE=;
-        b=23AQHQQQDBWGyJC8hfJz1VFis3g4W6ZQKCZk9Dfwl9Kxu+cso0tdQw89bfhL/7uKHl
-         fMwsGu0S1snM7b1rlDYn3pLd/jA409+uTC4ZzuM+bs8nRzDtuADV6Jlgn5tpT5DiL2t6
-         FvuMSW0AhhqPrv5mcf1T7Y88r2XchphvSd55X/Bt5paOJA6aqJc1cIKJ2+vEaFylqB1z
-         YliT1YCyySpQqOCzuqjXn7s8I0+6EfzIKNO8yFTvqzvxIuWE07hor3hOQYRKFwr0gXsd
-         uROW7XSKldHnS9qI83DVtXbJl7dwCzsYPdkJrOpQv/Yk2RzLoiSMXSxTjrU1TD5lY7kM
-         m54Q==
-X-Gm-Message-State: ACrzQf0Nbhi8dr4T+MHJDxXqWwAwAhjJnhg7OE8S+qcFlIhLp3VSprlR
-        Hf4iQwytM4HvZXdCGx4njH8lmFftqtiJKTSGMgU8qw==
-X-Google-Smtp-Source: AMsMyM4l1ulp/7lmSsZbh8zin/EMci1G3NMqRlBHpokLnB623aj1PQZYjLxHUSfOPtH8F6WLdv5y+ZxfqbbrdM67/lA=
-X-Received: by 2002:ab0:38c5:0:b0:383:eed8:dd45 with SMTP id
- l5-20020ab038c5000000b00383eed8dd45mr2157129uaw.11.1665115334922; Thu, 06 Oct
- 2022 21:02:14 -0700 (PDT)
+        d=gibson.dropbear.id.au; s=201602; t=1665117891;
+        bh=hrOjnbB4oejQaTnhGDdHYyHlciD8hGLFORyiosmnEsQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=klHIk4zLTaSzaNUww/HEFt3s0c16DLONmK4f51UTXyEeoizZdPm19Wb9rMnDcHC8q
+         YmQew/OZXXURhPKpd6Ltd0mnj3HEmOqq+ODPYGq4hwWL3iSQ4znPDqn0OvxSYYg0Op
+         I0zVevSMgOacOb9XW41T4JPg5vbTa5YfzEdY3Q94=
+Date:   Fri, 7 Oct 2022 15:11:58 +1100
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     Tadeusz Struk <tadeusz.struk@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        devicetree-compiler@vger.kernel.org
+Subject: Re: [PATCH v4] libfdt: tests: add get_next_tag_invalid_prop_len
+Message-ID: <Yz+nDsk1vmn8xzBY@yekko>
+References: <20221006223155.3316133-1-tadeusz.struk@linaro.org>
 MIME-Version: 1.0
-References: <20221006212528.103790-1-nfraprado@collabora.com>
- <20221006212528.103790-6-nfraprado@collabora.com> <CAGXv+5GmJOYnfLsovO_+piuJ1ry1R0ZQqALRGK3MNp=nUO-TNw@mail.gmail.com>
-In-Reply-To: <CAGXv+5GmJOYnfLsovO_+piuJ1ry1R0ZQqALRGK3MNp=nUO-TNw@mail.gmail.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 7 Oct 2022 12:02:03 +0800
-Message-ID: <CAGXv+5HGodRWbawEpDppZWM_EiuzdvZC9h4XBoAPo=FQ7yNotA@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] arm64: dts: mediatek: asurada: Add aliases for i2c
- and mmc
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>, kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="hO9ogC2P1PgBwg3F"
+Content-Disposition: inline
+In-Reply-To: <20221006223155.3316133-1-tadeusz.struk@linaro.org>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 7, 2022 at 11:51 AM Chen-Yu Tsai <wenst@chromium.org> wrote:
->
-> On Fri, Oct 7, 2022 at 5:25 AM N=C3=ADcolas F. R. A. Prado
-> <nfraprado@collabora.com> wrote:
-> >
-> > Add aliases for the i2c and mmc nodes on the Asurada platform DT to
-> > ensure that we get stable ids for those devices on userspace.
-> >
-> > Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> >
-> > ---
-> >
-> > Changes in v2:
-> > - Added this commit
-> >
-> >  arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/ar=
-m64/boot/dts/mediatek/mt8192-asurada.dtsi
-> > index dac2d4f5e670..758ca42a6156 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> > @@ -11,6 +11,18 @@
-> >
-> >  / {
-> >         aliases {
-> > +               i2c0 =3D &i2c0;
-> > +               i2c1 =3D &i2c1;
-> > +               i2c2 =3D &i2c2;
-> > +               i2c3 =3D &i2c3;
-> > +               i2c4 =3D &i2c4;
-> > +               i2c5 =3D &i2c5;
-> > +               i2c6 =3D &i2c6;
-> > +               i2c7 =3D &i2c7;
-> > +               i2c8 =3D &i2c8;
-> > +               i2c9 =3D &i2c9;
->
-> You should only add aliases for interfaces that are actually enabled.
->
-> Also, I think we can disable i2c6. None of the current products use it.
->
-> ChenYu
->
-> > +               mmc0 =3D &mmc0;
-> > +               mmc1 =3D &mmc1;
 
-Also, Spherion does not have an SD card slot. It might be better to move
-the mmc aliases to the end .dts files.
+--hO9ogC2P1PgBwg3F
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-ChenYu
+On Thu, Oct 06, 2022 at 03:31:55PM -0700, Tadeusz Struk wrote:
+> Add a new test get_next_tag_invalid_prop_len, which covers
+> fdt_next_tag(), when it is passed an corrupted blob, with
+> invalid property len values.
+>=20
+> Signed-off-by: Tadeusz Struk <tadeusz.struk@linaro.org>
+
+Sorry, I was hoping I'd be able to apply this variant, but
+unfortunately I realize I've given you some misleading advice in
+earlier reviews, so there are still a few nits to squash, details
+below.  Thanks for your patience.
+
+> ---
+> v4:
+>  * I didn't keep track of the changes in the test code,
+>    but this version should have all the comments addressed.
+> ---
+>  tests/.gitignore                      |  1 +
+>  tests/Makefile.tests                  |  2 +-
+>  tests/get_next_tag_invalid_prop_len.c | 76 +++++++++++++++++++++++++++
+>  tests/meson.build                     |  1 +
+>  tests/run_tests.sh                    |  1 +
+>  5 files changed, 80 insertions(+), 1 deletion(-)
+>  create mode 100644 tests/get_next_tag_invalid_prop_len.c
+>=20
+> diff --git a/tests/.gitignore b/tests/.gitignore
+> index 03bdde2..3376ed9 100644
+> --- a/tests/.gitignore
+> +++ b/tests/.gitignore
+> @@ -74,3 +74,4 @@ tmp.*
+>  /truncated_memrsv
+>  /utilfdt_test
+>  /value-labels
+> +/get_next_tag_invalid_prop_len
+> diff --git a/tests/Makefile.tests b/tests/Makefile.tests
+> index 2d36c5d..2c5b4c9 100644
+> --- a/tests/Makefile.tests
+> +++ b/tests/Makefile.tests
+> @@ -4,7 +4,7 @@ LIB_TESTS_L =3D get_mem_rsv \
+>  	get_path supernode_atdepth_offset parent_offset \
+>  	node_offset_by_prop_value node_offset_by_phandle \
+>  	node_check_compatible node_offset_by_compatible \
+> -	get_alias \
+> +	get_alias get_next_tag_invalid_prop_len \
+>  	char_literal \
+>  	sized_cells \
+>  	notfound \
+> diff --git a/tests/get_next_tag_invalid_prop_len.c b/tests/get_next_tag_i=
+nvalid_prop_len.c
+> new file mode 100644
+> index 0000000..20c51de
+> --- /dev/null
+> +++ b/tests/get_next_tag_invalid_prop_len.c
+> @@ -0,0 +1,76 @@
+> +// SPDX-License-Identifier: LGPL-2.1-or-later
+> +/*
+> + * libfdt - Flat Device Tree manipulation
+> + *	Testcase for fdt_next_tag()
+> + */
+> +#include <stdlib.h>
+> +#include <stdio.h>
+> +#include <string.h>
+> +#include <stdint.h>
+> +
+> +#include <libfdt.h>
+> +#include "tests.h"
+> +#include "testdata.h"
+> +
+> +#define FDT_SIZE 65536
+> +#define CHECK_ERR(err) \
+> +({ if (err) \
+> +	FAIL("%s: %d: %s", __FILE__, __LINE__, fdt_strerror(err)); \
+> +})
+> +
+> +int main(int argc, char *argv[])
+> +{
+> +	struct fdt_property *prp;
+> +	void *fdt;
+> +	int nextoff =3D 0, offset, err;
+> +	uint32_t tag;
+> +
+> +	test_init(argc, argv);
+> +	fdt =3D malloc(FDT_SIZE);
+> +	if (!fdt)
+> +		FAIL("Can't allocate memory");
+> +	err =3D fdt_create(fdt, FDT_SIZE);
+> +	CHECK_ERR(err);
+> +	fdt_set_off_dt_strings(fdt, FDT_SIZE);
+
+My comment about not needing to create the dummy reservemap entry was
+misleading, sorry.  I was just referring to the actual dummy entry you
+created with fdt_add_reservemap_entry.  You should still call
+fdt_finish_reservemap() so that the blob is in the right state to call
+fdt_begin_node().  Directly manipulating with fdt_set_off_dt_strings()
+is unnecesarily fragile since it requires internal knowledge of how
+the sw functions keep track of the state.
+
+> +	err =3D fdt_begin_node(fdt, "");
+> +	CHECK_ERR(err);
+> +	err =3D fdt_property_u32(fdt, "prop-int-32", 0x1234);
+> +	CHECK_ERR(err);
+> +	err =3D fdt_property_u32(fdt, "prop2-int-32", 0x4321);
+> +	CHECK_ERR(err);
+> +	err =3D fdt_end_node(fdt);
+> +	CHECK_ERR(err);
+
+One more minor deficiency here I missed earlier.  You're not calling
+fdt_finish(), so the blob is in sw state.  The read-only libfdt
+functions are designed to work on sw state trees as well as finished
+trees, but there are some internal logic differences to handle this.
+
+You're probably mostly concerned with the original fdt_next_tag() bug
+for finished trees, so it's probably better to call fdt_finish() so
+that's the case you're testing.  Alternatively, you could test both
+variants.  Since you're corrupting the tree, you'll need to
+reconstruct the test blob for each variant.  You could either make a
+helper function taking a parameter and call it twice, or make the
+whole test binary take a parameter and invoke it twice from
+run_tests.sh.
+
+> +	offset =3D fdt_first_property_offset(fdt, 0);
+> +	if (offset <=3D 0)
+> +		FAIL("FAIL Invalid offset %x, expected value greater than 0\n",
+> +		     offset);
+> +
+> +	/* Normal case */
+> +	tag =3D fdt_next_tag(fdt, offset, &nextoff);
+> +	if (tag !=3D FDT_PROP )
+> +		FAIL("FAIL Invalid tag %x, expected FDT_PROP\n", tag);
+> +
+> +	/* Get a writable ptr to the first property and corrupt the lenght */
+> +	prp =3D fdt_get_property_w(fdt, 0, "prop-int-32", NULL);
+> +	if (!prp)
+> +		FAIL("Bad property pointer");
+
+My comment about using fdt_get_property_w() was also a bit misleading,
+since I wasn't thinking about the fact that you need both the offset
+(for fdt_next_tag()) and the direct pointer to the property struct.
+
+This code is relying on the offset from fdt_first_property_offset()
+and the pointer from fdt_get_property_w() referring to the same
+location in the blob.  They will be, but it would be better to have
+that be obvious by construction.
+
+I'd suggest you first get the offset with fdt_first_property_offset(),
+then compute the prp pointer from that with
+fdt_get_property_by_offset().  You'll need a cast to remove the const
+=66rom the latter in order to mangle the tree, of course.  If you wanted
+to add a new fdt_get_property_by_offset_w() wrapper to do that cast,
+that would also be fine (if you do, make it a separate patch please).
+There's no particular rationale to which functions have _w() variants
+and which don't (so far), I just made the _w() variants when I needed
+them for other functions internally.
+
+> +
+> +	/* int overflow case */
+> +	prp->len =3D cpu_to_fdt32(0xFFFFFFFA);
+> +	tag =3D fdt_next_tag(fdt, offset, &nextoff);
+> +	if (tag !=3D FDT_END)
+> +		FAIL("Invalid tag %x, expected premature FDT_END", tag);
+> +	if (nextoff !=3D -FDT_ERR_BADSTRUCTURE)
+> +		FAIL("Invalid nextoff, expected error -FDT_ERR_BADSTRUCTURE");
+> +
+> +	/* negative offset case */
+> +	prp->len =3D cpu_to_fdt32(0x7FFFFFFA);
+> +	tag =3D fdt_next_tag(fdt, offset, &nextoff);
+> +	if (tag !=3D FDT_END)
+> +		FAIL("Invalid tag, expected premature FDT_END");
+> +	if (nextoff !=3D -FDT_ERR_BADSTRUCTURE)
+> +		FAIL("Invalid nextoff, expected error -FDT_ERR_BADSTRUCTURE");
+> +
+> +	free(fdt);
+> +	PASS();
+> +}
+> diff --git a/tests/meson.build b/tests/meson.build
+> index 4ac154a..29a42dd 100644
+> --- a/tests/meson.build
+> +++ b/tests/meson.build
+> @@ -47,6 +47,7 @@ tests =3D [
+>    'get_path',
+>    'get_phandle',
+>    'get_prop_offset',
+> +  'get_next_tag_invalid_prop_len',
+>    'getprop',
+>    'incbin',
+>    'integer-expressions',
+> diff --git a/tests/run_tests.sh b/tests/run_tests.sh
+> index 244df8a..46678cb 100755
+> --- a/tests/run_tests.sh
+> +++ b/tests/run_tests.sh
+> @@ -513,6 +513,7 @@ libfdt_tests () {
+>      run_dtc_test -I fs -O dts -o fs.test_tree1.test.dts $FSBASE/test_tre=
+e1
+>      run_dtc_test -I fs -O dtb -o fs.test_tree1.test.dtb $FSBASE/test_tre=
+e1
+>      run_test dtbs_equal_unordered -m fs.test_tree1.test.dtb test_tree1.d=
+tb
+> +    run_test get_next_tag_invalid_prop_len
+> =20
+>      ## https://github.com/dgibson/dtc/issues/64
+>      check_tests "$SRCDIR/phandle-args-overflow.dts" clocks_property
+
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
+
+--hO9ogC2P1PgBwg3F
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEoULxWu4/Ws0dB+XtgypY4gEwYSIFAmM/pvQACgkQgypY4gEw
+YSL3nxAAn1MEILHuAaDAJ9fWRmsl/f6RGiZMZHzYmiHaVFrgMHuKfn4rwrr7BS8f
+wZXK/leHoKw7KERoeCbewG6fKOtifU+C0u3QxZ6URfwY2TRJMWMoKPxuVtS37LM9
+EaJ5H0ucF4VtVcEM1IUYpFx0PSzkfCEhpY5+erCkXviI1jBT4jwweVgTcIoMsa4D
+Cw8CGbfdTu1hAkk0dTo588CZ7Jee3mECHCRPKh90ecXGQzKEHVm8i7/G9W1ewBWl
+65mUdk26JqN0mowQzmbS3N9VXX6nDvoXapjqDTaDSLk4INqDar4ZknhbOw1jlt6u
+Bm6UB2x/gebiWAnDC1y58RX9hNfOJ1A2Z+pLIBNsYDNOoJcoHbqLoV/wdm5/Y3Qo
+XW8IXqrR9FgVueHmAq2G9qdgzYLmveaq0iNsMilcoaLsawB0RMvuI3wLBc1O+jrq
+ysCFt0/osziOTG172gPX6Nj0So79OdXGIbVtw1yzjJt5Kf7TVztYArbaFN+TXtsv
+w0ry6DIILGZzwKgoG5bR3l1pIXQT7i5dIbVCPlKTCIp/naKoWHSPSyiDlwPSxJD1
+wsgajmCmNGaEdo6ZqwMsw3gdGAAb3rKSCq0T5UlDNUvM1xa45MtUXQsen95dsVfd
+rLNzPYUwsKyN+J4+6dP4nf3mwXwMLgKaUyqAlKhRanVF8qAJoW0=
+=UHHF
+-----END PGP SIGNATURE-----
+
+--hO9ogC2P1PgBwg3F--
