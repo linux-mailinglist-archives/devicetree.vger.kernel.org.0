@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DA945F7B2F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:11:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 195E15F7B35
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:12:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229890AbiJGQLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 12:11:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
+        id S229768AbiJGQMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 12:12:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbiJGQLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:11:08 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A16F5D77ED
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 09:11:04 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id d24so2018580ljl.9
-        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 09:11:04 -0700 (PDT)
+        with ESMTP id S229700AbiJGQMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:12:34 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8930CDD881
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 09:12:33 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id d6so7941921lfs.10
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 09:12:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6Gvc8fqi/2AEmdHY604fpet8nsmZJz86UxEHbRfCTg4=;
-        b=Wu6OTYc9nqxwhKUhzjWzKdAigZFIIZdvCmxw3qO2c+L5VA1Sb/kW0GqiBJNy5+eul0
-         7JziFuVTEH4M9qYXM+kMTXf1uf52ne5JuuPHVAXtWwwKahIzZ/lKPBPIC1saXb2sz3A7
-         1m5bXCtijVS7shIGzKwnmtoRsfmOSmImviwe9RxP9iGH3ufZ4pMpXkMbn9w9nWIiidVE
-         t3lxE3rRg23XT8r219PxluxI/oXSukV+Q1D6b+ja2Wp8RIwQTH+aR3dBXG2BbkI20ntg
-         nV8cl8PhWJpmWfhqtxStSjg3MOfZTnu7lgANgcPpB952EtUBn+Re5csSw+koe6cgHGJ5
-         yvlA==
+        bh=A8tlFzRr5PaJFwlIwm9GBuMbfRHqOtAY2JydGxcD8TM=;
+        b=AsBMu4d7kHj3ZjKHzmYBUDwyc/ovOkWmCo6Y556oJZzIZwOdUQBVbWOqxapV3gLBFn
+         AjGpKKgyZavDkAQA62JesgQLYg0doJC+0o/jIfKl023od/xtfn83WGfIOs2Zb/chziYb
+         MuSHsDNWFO+GSlRrb0Qeuk7D1JUdAaftiSbjZdiHOp0onK2UcrApPuneKhKOcYNhp/Md
+         OyAckksPuV7v6eswvxBIZ/d3v/Rad/swjKkUYmx9ukacLv04TsBMPt31jduKclArFNuY
+         LG6efbZKLpAVWZAUw9M82iL0FbeYc/s2WUc1xEeLzCQOj2910oQVEiodHQdWsFTZrqCc
+         8xuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Gvc8fqi/2AEmdHY604fpet8nsmZJz86UxEHbRfCTg4=;
-        b=h+zkn+F9+TzNsFEilPJ3gIAXL54eBPRCXEuicJ/RRFOxUnlgUvlFaa7Sq6+S98yBgX
-         vLrZCgTtoMe/xHqLMt82XPzwX2H8bK08hrpr/OMohf2ivhCMuz8I1OWOZowy0WAQGx9v
-         YS92BN0+2OeRcF/Fg8BO26bCCUVCS6nmFgikSBd+QfRe34BTG8kjFv9z0F3OIcZpeq9w
-         8Ue7IVJgbZNPqZqSeBX3Vam36G+pL3qfbcolfXvgj4P2IzSjhJ2isE8nJdGUx0Y5FMcn
-         tMJyzkT9uIZPTurp9Dudvk6rSzdziYboj8F/aAQw12Gp8aoP3Lh+cGIqQ35TbRC50sPl
-         D0rA==
-X-Gm-Message-State: ACrzQf2mIqKiGmbHhN1Ojbh4xKWDGt1JDuO4BIucOvsgU562Evoo1vsy
-        u+GwPpnOOYE2PnsoDbPYObeflg==
-X-Google-Smtp-Source: AMsMyM6VMpmNNV/gW1o9aka3SLcAVhWfc/YLrY6/6MpXiONtY0MwwaXzKw7mrS6jwyOhtOE/UZ6hxw==
-X-Received: by 2002:a2e:a4c7:0:b0:26e:89d6:e6e7 with SMTP id p7-20020a2ea4c7000000b0026e89d6e6e7mr277356ljm.179.1665159063028;
-        Fri, 07 Oct 2022 09:11:03 -0700 (PDT)
+        bh=A8tlFzRr5PaJFwlIwm9GBuMbfRHqOtAY2JydGxcD8TM=;
+        b=NXX4lb6LdSI4/y8LWUDpjhJT3tsFiT7Q23jvind4SHYf4Cfy/AGBeLvRTWPp1yxiD7
+         a74pGNaVUvb9zT7Ua4TSph16FmLA4U+hLM1qF63SF3FpekV2exjCjwpaEMBl6TrrG3G9
+         ubglKcwpu+5gWo4XVl/9SMaJzjIU4uKQjKSqF5mUs0XEJUegZlfsw9cwt6OKwax2aS1d
+         l+UpBP1DYybqUoKzZbfpgNedm1LVo6pcZxAfCHwDzO307jfUMN+XqDGaatJuENivFF8B
+         EJSo9X7LK4TeSmBPxM2My7S5Hu5FFePIwwrPdhEcpYwbxY9RByOj50Z7BSh2ysuAtRmk
+         hbXw==
+X-Gm-Message-State: ACrzQf0qEhMA5vf1O5Q+MTGF5EqlT8/GAw8Cj4ScB9YL0JhdK/tZLOxt
+        bgsRJeONUNdGs+hKpqhQam1lDw==
+X-Google-Smtp-Source: AMsMyM7EC1svtAnzEBYUfnBsoQ1ddsfwAE50qB7frYZPgOYvwHe2G/NccZx7R7BLXhAaS3Nx4KEFHw==
+X-Received: by 2002:a05:6512:3606:b0:4a2:71df:7938 with SMTP id f6-20020a056512360600b004a271df7938mr2209143lfs.279.1665159151676;
+        Fri, 07 Oct 2022 09:12:31 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u9-20020ac258c9000000b004979df1c1fasm346005lfo.61.2022.10.07.09.11.01
+        by smtp.gmail.com with ESMTPSA id z15-20020a2ebe0f000000b00261e2aab7c2sm319999ljq.58.2022.10.07.09.12.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Oct 2022 09:11:02 -0700 (PDT)
-Message-ID: <bc8d020f-9026-84c0-42b0-27ca11ddfeae@linaro.org>
-Date:   Fri, 7 Oct 2022 18:11:01 +0200
+        Fri, 07 Oct 2022 09:12:31 -0700 (PDT)
+Message-ID: <4f44c3a8-13e6-4062-86f3-f3721df71a44@linaro.org>
+Date:   Fri, 7 Oct 2022 18:12:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH v5 0/3] Add dtsi for sc7280 boards that using rt5682
+Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: sc7280: Add
+ sc7280-herobrine-audio-rt5682.dtsi
 Content-Language: en-US
 To:     Judy Hsiao <judyhsiao@chromium.org>, bjorn.andersson@linaro.org
 Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -65,13 +66,15 @@ Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20220930152613.2018360-1-judyhsiao@chromium.org>
+ <20220930152613.2018360-3-judyhsiao@chromium.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220930152613.2018360-1-judyhsiao@chromium.org>
+In-Reply-To: <20220930152613.2018360-3-judyhsiao@chromium.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,18 +82,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 30/09/2022 17:26, Judy Hsiao wrote:
-> Put sound node and lpass_cpu node settings for boards that use rt5682
-> codec in the sc7280-herobrine-audio-rt5682.dtsi as there are different
-> choices of headset codec for herobrine projects. Common audio setting
-> for the internal speaker is in sc7280-herobrine.dtsi.
+> Audio dtsi for sc7280 boards that using rt5682 headset codec:
+> 1. Add dt nodes for sound card which use I2S playback and record
+>    through rt5682s and I2S playback through max98357a.
+> 2. Enable lpass cpu node and add pin control and dai-links.
 > 
-> Change Since V4
-> - Rebase and include sc7280-herobrine-villager-r0.dts change.
+> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> ---
+>  .../qcom/sc7280-herobrine-audio-rt5682.dtsi   | 122 ++++++++++++++++++
+>  1 file changed, 122 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+> new file mode 100644
+> index 000000000000..2dbdeeb29ece
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+> @@ -0,0 +1,122 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + *
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
+Skip empty comment line.
+
+> + * This file defines the common audio settings for the child boards
+> + * using rt5682 codec.
+> + *
+> + * Copyright 2022 Google LLC.
+> + */
+> +
+> +/ {
+> +	/* BOARD-SPECIFIC TOP LEVEL NODES */
+> +	sound: sound {
+> +		compatible = "google,sc7280-herobrine";
+> +		model = "sc7280-rt5682-max98360a-1mic";
+> +
+> +		status = "okay";
+
+No need.
+
+> +		audio-routing =
+> +			"Headphone Jack", "HPOL",
+> +			"Headphone Jack", "HPOR";
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
 
 Best regards,
 Krzysztof
