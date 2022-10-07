@@ -2,65 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53B875F7B80
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C2435F7B88
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:33:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229672AbiJGQcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 12:32:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37228 "EHLO
+        id S229945AbiJGQdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 12:33:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229616AbiJGQcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:32:35 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DED3F102DE8;
-        Fri,  7 Oct 2022 09:32:33 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id de14so3394968qvb.5;
-        Fri, 07 Oct 2022 09:32:33 -0700 (PDT)
+        with ESMTP id S229804AbiJGQdw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:33:52 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00B65FBCD6;
+        Fri,  7 Oct 2022 09:33:50 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id bs18so6330874ljb.1;
+        Fri, 07 Oct 2022 09:33:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QqBD3ksm/42W3ZOFARVPpcH3gaO+fK+GYGFaj+UPlDI=;
-        b=h8LZ7ri8UcgOJHgobw3oPpAa4rlYp4LWGdqt/eYl4Pl7EFSv+cgBTP0Slsz8mnuF/e
-         3ffTnLA5Y56rRQRO1p/ymA0XPK/bNeRVkAVRid2y8BjWpAKkvszaYFZtwM5iax1NUsFl
-         /SQK7RsL99oGAxMYld4xhQ4Kp7Cyh9EuTbyXxTlj0B9yGbLUjPBL6cjD2GL0niL8I9aO
-         aEkIhXe6kWWGjWv75xvsUQ5+Ekl3auCZY0xgGSnxcfNXcszUeIOQJbnLF0Sx7HEdrp9B
-         uKJMXx/6YBOOdNKQ8/s8E129r8NFt5h3grqUZqXNuhd4PbyrWLY61Ymbk/+jA+IYbHpK
-         tKlA==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rqq2/VeGbko7o9i7By0eflUe922IrbulvOMLp8wLa2U=;
+        b=kqbrp/wq3NXY6uDw6V+svNSXhJ4W4EezCyFDa07T2lQuO1ejE8djxlGGZX1p4P1Mvc
+         qu8JLpBgdkKjvKjE/z5OWjTVgbO2RJ9vKjitCH0UM/pgeY0P+PQqSxkOY1zGVr88Wcfa
+         TvuGZB0EQWpY2mVRkG0DJe0l6YoWjhXR+f50KOIeDT15iAwb9Git9zD8IzHtE6HIbtuP
+         VX1PhvRt+iwERLCjob7BLaShfH3HeFisGNaZ7KWihNWornQoX6dpdESF7wkXD2fF1nWe
+         lQ+pF18NUV3ZrME0PoxNHpvGvThtxTqcDdkzMRreoijscHbjI3CJSetnr0jkrAbHmW7x
+         XT9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QqBD3ksm/42W3ZOFARVPpcH3gaO+fK+GYGFaj+UPlDI=;
-        b=jlFWafOXZEIQekRd0RznVI2NR5STTYCl0oj+E9Wo6LwzkxL91ldAzyVXHOw9DUECzs
-         UcbLZaDMgRMvSM1Bxn/V51KM3GBs88fibbo8tmezJu65XrEd0cLTeUzUG9mC10s8/4wG
-         A7J/yKiVGeGtWRESDS9OpwcObtcI1KeAwMrzWNSb/gv3A2Mtkt1EArpngt7kqWmSV0+B
-         80lJpPLmWMg/G+duLKrpZbD6HwnjAhtXvwHrklrqYGBdhFqwEGIZD4DBqg44/mhYN20r
-         aeSIX8qacui8NhXtmUTuldxzemFrzCX34UQY7L9I28HNYf13FH8OATPh06XnWKioiTSw
-         e1Dg==
-X-Gm-Message-State: ACrzQf1SnMszRDwdxZaG4EDdsj6srrnNuq9ejn7MNM9UPmAZnLLo/4L3
-        2AfGNdf9e2+zqYOaE0nKQjfPElJ3GCi195lUmSU=
-X-Google-Smtp-Source: AMsMyM4FrN/lLzBMdXd6EEVNCo60otuO1WIl9EytSx8UsuYUcHVCyRwaUVrQdaNHZjtkwlB62cmyl4Otb7WMHqX0xzg=
-X-Received: by 2002:a05:6214:762:b0:4b1:c5d2:3fd0 with SMTP id
- f2-20020a056214076200b004b1c5d23fd0mr4873243qvz.97.1665160352745; Fri, 07 Oct
- 2022 09:32:32 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rqq2/VeGbko7o9i7By0eflUe922IrbulvOMLp8wLa2U=;
+        b=L8X1kg+YSDpRs1OY0AG0g3t4KsBWyVbeQAUAIYr2BtPVhLWSGZsZAsswUiCEmVbRpr
+         bnyFvtVJ6eFfWhyXYl02YY+nzdzpEECoK2urhqxX5dqAHnITF4lEzo2tlArvK3DD6uWC
+         KLJ84/M4TPjN21/AHdqc8g73likGADD+G8bYKa7BEHd7ZL2d0egExDkcrgHNr3/uc5lO
+         7EZYGS9ImChSoc+IGE6Z7NKfc8UHe5fyQUA9GOSYqGxmalHsH+NG0RrFj6PxGMLqmG0/
+         SZBfaFPT3Kf4oxrnt4nINHn40IBpNZbY3bfbnpsVA/f+9BwZO1fNpZv92chENgxYYM+R
+         YwTw==
+X-Gm-Message-State: ACrzQf0qVGXu6KGf4wOEbVnmxzG1z7zKqjzCEAinvmPR8PlDiRkoWYdg
+        msAff645D8YLg2K75+eJIb4=
+X-Google-Smtp-Source: AMsMyM5CFk6g9ekSGlP8uE3tpFTHLVKBNvkbaIQeImDnpGdjLVw/tf4dLIb+h+N0vXjEZRfaajs4gg==
+X-Received: by 2002:a05:651c:19a5:b0:26c:3556:c7a9 with SMTP id bx37-20020a05651c19a500b0026c3556c7a9mr2121205ljb.430.1665160429348;
+        Fri, 07 Oct 2022 09:33:49 -0700 (PDT)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id h2-20020a2ea202000000b0026dcd805c92sm330202ljm.95.2022.10.07.09.33.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Oct 2022 09:33:48 -0700 (PDT)
+Date:   Fri, 7 Oct 2022 19:33:47 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, kernel@pengutronix.de,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 2/2] dt-bindings: gpio: Add gpio-latch binding document
+Message-ID: <20221007163347.f4swjph7624eueay@mobilestation>
+References: <20221007114647.2723457-1-s.hauer@pengutronix.de>
+ <20221007114647.2723457-3-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-References: <20221007145641.3307075-1-jjhiblot@traphandler.com> <20221007145641.3307075-7-jjhiblot@traphandler.com>
-In-Reply-To: <20221007145641.3307075-7-jjhiblot@traphandler.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 7 Oct 2022 19:31:56 +0300
-Message-ID: <CAHp75VcwcOqz_8yCYL09Nh7vqw5ZWOUR+1EJjpiNEz_tis-s+A@mail.gmail.com>
-Subject: Re: [PATCH v4 6/6] leds: Add a multicolor LED driver to group
- monochromatic LEDs
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     lee.jones@linaro.org, pavel@ucw.cz, robh+dt@kernel.org,
-        sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
-        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221007114647.2723457-3-s.hauer@pengutronix.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -71,120 +74,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 7, 2022 at 5:56 PM Jean-Jacques Hiblot
-<jjhiblot@traphandler.com> wrote:
->
-> By allowing to group multiple monochrome LED into multicolor LEDs,
-> all involved LEDs can be controlled in-sync. This enables using effects
-> using triggers, etc.
+On Fri, Oct 07, 2022 at 01:46:47PM +0200, Sascha Hauer wrote:
+> This adds a binding for a GPIO multiplexer driver based on latches
+> connected to other GPIOs.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-...
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
-> +config LEDS_GRP_MULTICOLOR
-> +       tristate "Multi-color LED grouping support"
+Just a note. In accordance with [1] the DT-bindings patches should come
+in the series before the code implementing the bindings.
 
-> +       depends on OF
+[1] Documentation/devicetree/bindings/submitting-patches.rst, unit I.5).
 
-But there is no compilation requirement for that.
-If you want to tell that this is functional requirement, you may use
+-Sergey
 
-    depends on COMPILE_TEST || OF
-
-pattern
-
-...
-
-> +       struct device *dev = &pdev->dev;
-> +       struct led_init_data init_data = {};
-> +       struct led_classdev *cdev;
-> +       struct mc_subled *subled;
-> +       struct led_mcg_priv *priv;
-
-> +       int i, count, ret;
-
-> +       unsigned int max_brightness;
-
-Perhaps keep it before previous line?
-
-> +       count = 0;
-> +       max_brightness = 0;
-> +       for (;;) {
-> +               struct led_classdev *led_cdev;
+> ---
+> 
+> Notes:
+>     Changes since v3:
+>     - Introduce delays between GPIO toggles as suggested by Serge Semin
+>     
+>     Changes since v1:
+>     - Add license to binding file
+> 
+>  .../devicetree/bindings/gpio/gpio-latch.yaml  | 94 +++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-latch.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-latch.yaml b/Documentation/devicetree/bindings/gpio/gpio-latch.yaml
+> new file mode 100644
+> index 0000000000000..1ed82a2cebdaa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-latch.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/gpio-latch.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +               led_cdev = devm_of_led_get_optional(dev, count);
-
-> +               if (!led_cdev)
-
-> +                       /* Reached the end of the list */
-> +                       break;
-
-This will require {} according to the style guide. Maybe move the
-comment on top of the if (!led_cdev) check?
-
-> +               if (IS_ERR(led_cdev))
-> +                       return dev_err_probe(dev, PTR_ERR(led_cdev),
-> +                                            "Unable to get led #%d", count);
-
-I would check for an error first, this is a common pattern in the Linux kernel.
-
-> +               count++;
+> +title: GPIO latch controller
 > +
-> +               priv->monochromatics = devm_krealloc_array(dev, priv->monochromatics,
-> +                                       count, sizeof(*priv->monochromatics),
-> +                                       GFP_KERNEL);
-> +               if (!priv->monochromatics)
-> +                       return -ENOMEM;
+> +maintainers:
+> +  - Sascha Hauer <s.hauer@pengutronix.de>
 > +
-> +               priv->monochromatics[count - 1] = led_cdev;
+> +description: |
+> +  This binding describes a GPIO multiplexer based on latches connected to
+> +  other GPIOs, like this:
 > +
-> +               max_brightness = max(max_brightness, led_cdev->max_brightness);
-> +       }
+> +  CLK0 ----------------------.        ,--------.
+> +  CLK1 -------------------.  `--------|>    #0 |
+> +                          |           |        |
+> +  OUT0 ----------------+--|-----------|D0    Q0|-----|<
+> +  OUT1 --------------+-|--|-----------|D1    Q1|-----|<
+> +  OUT2 ------------+-|-|--|-----------|D2    Q2|-----|<
+> +  OUT3 ----------+-|-|-|--|-----------|D3    Q3|-----|<
+> +  OUT4 --------+-|-|-|-|--|-----------|D4    Q4|-----|<
+> +  OUT5 ------+-|-|-|-|-|--|-----------|D5    Q5|-----|<
+> +  OUT6 ----+-|-|-|-|-|-|--|-----------|D6    Q6|-----|<
+> +  OUT7 --+-|-|-|-|-|-|-|--|-----------|D7    Q7|-----|<
+> +         | | | | | | | |  |           `--------'
+> +         | | | | | | | |  |
+> +         | | | | | | | |  |           ,--------.
+> +         | | | | | | | |  `-----------|>    #1 |
+> +         | | | | | | | |              |        |
+> +         | | | | | | | `--------------|D0    Q0|-----|<
+> +         | | | | | | `----------------|D1    Q1|-----|<
+> +         | | | | | `------------------|D2    Q2|-----|<
+> +         | | | | `--------------------|D3    Q3|-----|<
+> +         | | | `----------------------|D4    Q4|-----|<
+> +         | | `------------------------|D5    Q5|-----|<
+> +         | `--------------------------|D6    Q6|-----|<
+> +         `----------------------------|D7    Q7|-----|<
+> +                                      `--------'
 > +
-> +       subled = devm_kcalloc(dev, count, sizeof(*subled), GFP_KERNEL);
-> +       if (!subled)
-> +               return -ENOMEM;
-> +       priv->mc_cdev.subled_info = subled;
+> +  The number of clk-gpios and latched-gpios is not fixed. The actual number
+> +  of number of latches and the number of inputs per latch is derived from
+> +  the number of GPIOs given in the corresponding device tree properties.
 > +
-> +       for (i = 0; i < count; i++) {
-> +               struct led_classdev *led_cdev = priv->monochromatics[i];
+> +properties:
+> +  compatible:
+> +    const: gpio-latch
+> +  "#gpio-cells":
+> +    const: 2
 > +
-> +               subled[i].color_index = led_cdev->color;
-> +               /* configure the LED intensity to its maximum */
-> +               subled[i].intensity = max_brightness;
-> +       }
+> +  clk-gpios:
+> +    description: Array of GPIOs to be used to clock a latch
 > +
-> +       /* init the multicolor's LED class device */
-> +       cdev = &priv->mc_cdev.led_cdev;
-> +       cdev->flags = LED_CORE_SUSPENDRESUME;
-> +       cdev->brightness_set_blocking = led_mcg_set;
-> +       cdev->max_brightness = max_brightness;
-> +       cdev->color = LED_COLOR_ID_MULTI;
-> +       priv->mc_cdev.num_colors = count;
+> +  latched-gpios:
+> +    description: Array of GPIOs to be used as inputs per latch
 > +
-> +       init_data.fwnode = dev_fwnode(dev);
-> +       ret = devm_led_classdev_multicolor_register_ext(dev, &priv->mc_cdev,
-> +                                                       &init_data);
-> +       if (ret)
-> +               return dev_err_probe(dev, ret,
-> +                       "failed to register multicolor led for %s.\n",
-> +                       cdev->name);
+> +  setup-duration-ns:
+> +    description: Delay in nanoseconds to wait after the latch inputs have been
+> +      set up
 > +
-> +       ret = led_mcg_set(cdev, cdev->brightness);
-> +       if (ret)
-> +               return dev_err_probe(dev, ret,
-> +                                    "failed to set led value for %s.",
-> +                                    cdev->name);
+> +  clock-duration-ns:
+> +    description: Delay in nanoseconds to wait between clock output changes
 > +
-> +       for (i = 0; i < count; i++) {
-> +               struct led_classdev *led_cdev = priv->monochromatics[i];
+> +  gpio-controller: true
 > +
-> +               /* Make the sysfs of the monochromatic LED read-only */
-> +               led_cdev->flags |= LED_SYSFS_DISABLE;
-> +       }
+> +  gpio-line-names: true
 > +
-> +       return 0;
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
+> +required:
+> +  - compatible
+> +  - "#gpio-cells"
+> +  - gpio-controller
+> +  - clk-gpios
+> +  - latched-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpio-latch {
+> +        #gpio-cells = <2>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_di_do_leds>;
+> +        compatible = "gpio-latch";
+> +        gpio-controller;
+> +        setup-duration-ns = <100>;
+> +        clock-duration-ns = <100>;
+> +
+> +        clk-gpios = <&gpio3 7 0>, <&gpio3 8 0>;
+> +        latched-gpios = <&gpio3 21 0>, <&gpio3 22 0>,
+> +                       <&gpio3 23 0>, <&gpio3 24 0>,
+> +                       <&gpio3 25 0>, <&gpio3 26 0>,
+> +                       <&gpio3 27 0>, <&gpio3 28 0>;
+> +    };
+> -- 
+> 2.30.2
+> 
