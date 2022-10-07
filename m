@@ -2,381 +2,676 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26BBD5F7407
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 07:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0219D5F7412
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 08:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbiJGFzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 01:55:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60954 "EHLO
+        id S229620AbiJGGAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 02:00:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbiJGFzR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 01:55:17 -0400
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2086.outbound.protection.outlook.com [40.107.117.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F2804CA26;
-        Thu,  6 Oct 2022 22:55:15 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bsSEypmpGwKIHy2rf7XP6ZCstm3f+9xanLsYnsAncymh8k7VhQnCjFzQD7Udm3bwhzWxiqiYPNvJLiiTuoHPkSSLOvDxG/DqcWYTvdmFk26Wo7Cy+hDAxtYSIo15CKAp2eI+TxapDMSl9WyXNX6mEarb3U2m1iLqOTvaEmxVpUuyWvxxj3Lx3F/CXfNILyqAPIh1ASYZUflmUrA9QA/liL8NO0OdWJ2taaUF/TZahVzY4ZxlshLZfO5qWL3cveLj91IeciSwjLnmBOMLeuC0O56GQEU9opmJrIvQBbvTZb5FXPHLA8QjZeLS1gGXOdKZT3SoCehxQn6S+aXx8bYv4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uQMz1hVZMicFHw73g1vElVHjNCasi0lD2dYdaynVkNQ=;
- b=jdBg6lrYSmZXdhyhVIs8/1SmUIK3XIGlJ7st0ug90+I+ZH2Zl9DYfHJjHkeX1JqgLL2CHldscpg/vkdd/B+DBQ3PGevFGKnxeyYcmLzL53nzmiV7V0o482SR88lfPKw7HDDo7JnbjMPjHP//NmNsTXn+Atb4jabYJhX7hJvRSQAQwUp80sftsoqavfsfndhlOhLjyzmdpBhdjiuyzQljQhornouTd0hE4kgPAk1aJjxKY7ljsrQZGri2Ie2Yx4d1vVRCUD3teqE1hryurRJB0vnn0XBU9BjFzkaJf39OgdPIc/M6oz3rWIdNvDoqc7HVxIWUxByLTuvpVQ0XzSfCVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=linaro.or smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uQMz1hVZMicFHw73g1vElVHjNCasi0lD2dYdaynVkNQ=;
- b=qT3F6p/wtC1uSnE0Jf4bXuMOIKUPejRtv208mxaiGBBXlTbXcgGBwGPJWRp8JEeZHpYCfTeWQLgaZ1CVpTkAwDsiywgrg7bLeO/TtuBPmnq2nVvu7OUllVlI0N9/2c9TiRiJXnGfeLJ3S11eZ4n6Z8fHRFmbCSZS9bEUHstPlW3dyNoupLbwdWaDR217MjJ0Nnc9UAT2KBL1Tjbp4EJKxeObA4IDW2mxShPzG71YjH9ig3j72VKEq+/FCW4MnZphhlI2dj529/htQWZRuf1asS6/wKjD5jTkS0iPv0jkL9eeOUEciLTBrtTQcDApMpAZorqkOsCFMl8nN73mxDMGIg==
-Received: from SG2PR02CA0078.apcprd02.prod.outlook.com (2603:1096:4:90::18) by
- SEYPR04MB5883.apcprd04.prod.outlook.com (2603:1096:101:6a::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5676.31; Fri, 7 Oct 2022 05:55:11 +0000
-Received: from SG2APC01FT0047.eop-APC01.prod.protection.outlook.com
- (2603:1096:4:90:cafe::8e) by SG2PR02CA0078.outlook.office365.com
- (2603:1096:4:90::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.34 via Frontend
- Transport; Fri, 7 Oct 2022 05:55:11 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=Wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=Wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of Wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- SG2APC01FT0047.mail.protection.outlook.com (10.13.36.133) with Microsoft SMTP
- Server id 15.20.5709.10 via Frontend Transport; Fri, 7 Oct 2022 05:55:09
- +0000
-From:   Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
-To:     krzysztof.kozlowski@linaro.or
-Cc:     patrick@stwcx.xyz, garnermic@fb.com,
-        Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>,
-        Bonnie Lo <Bonnie_Lo@Wiwynn.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org
-Subject: [PATCH v3] greatlakes: dts: Add Facebook greatlakes (AST2600) BMC
-Date:   Fri,  7 Oct 2022 13:53:39 +0800
-Message-Id: <20221007055346.3484180-1-Delphine_CC_Chiu@Wiwynn.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229482AbiJGF76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 01:59:58 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78C4D367B0;
+        Thu,  6 Oct 2022 22:59:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1665122395; x=1696658395;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=74vV4+pzVui5Au/fDiJjrYNzkiOFv9+21ricurqn7VM=;
+  b=nOCmdyH87B9FgjwmyyrUDZFLWnPq/JexJlNqeO75miSuDObkNBjnW5M9
+   6WHR89oXsyeWvziqSCWuYfYGVj6f3t4exsbg7y0TgMkftqOCxu1AsM5KO
+   XckVjo3pdY0d4fwvrxfFYNDNm91BCzX1L5sAYUu0RPQVIgnNe/QzbDf0o
+   c=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 06 Oct 2022 22:59:53 -0700
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Oct 2022 22:59:53 -0700
+Received: from [10.110.42.201] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 6 Oct 2022
+ 22:59:52 -0700
+Message-ID: <14d0ff9f-60f3-71cc-ea42-ceee389298ac@quicinc.com>
+Date:   Thu, 6 Oct 2022 22:59:51 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2APC01FT0047:EE_|SEYPR04MB5883:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: e60bed13-96f7-4800-eda1-08daa8287eea
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sNScBUSzpwrgOVDPViezKxyAtKhFG0wU6f8H+8RREC0TNL3npsrGrnDOCn8B5mChkCImGMqKQ5gC6IsKRgecVHOHArsT8l5aSirV4iBeMavLX/e/nr7gIo+lVChOsYaNZBo5bn0FQce8ApKINFkkNpHm//60ceHPXBopb2XZjlT3sTAFsTCrRo9o1vVROXsJxlv1FO27xZG9TGC/HSQrK7K7kIj2k7ZspwKlQRIRISZ9WM+sB7Fqn8Ox+oWbKBJpFa4zWIbcXJK3SEKQ+CU26TY9/qSNEnjFSokYPb1lheLMSSzRFhYpa7JyOD3zhwMdZlkreNi31Yq7wWjzBCA8ggrZ3I4EEa/iztOHtaw4TLIlm/fgs7sWomEzgCM5o4xaGMN38JpEZcsX5UHCUDpfNpdiy4VUu/JrbvXdct1t/ZkmQsFHZaLuUbmvEOYj7HcS1UM+9yj8E3Gwe5rko7rE07DOWZDkDMhhTWx5Mn7bJ4CSWcxKxCyYUKucGBRFsCsfEs4OugBcGYA5QKt4TQKbR4xFodIp9tEngxOtN6oLbuSCH2xT0aIH9ZIcm0Tt3DtpvAF7uS0m02qa/9za38Fv+HMxz/zTEof7yD8TYVS28I6oE31ARj9oXLxbueE2ZuMUO/njdRFCfEF5TuZBLB770vi/B7GMIWE+7KFeJ5PhEduf6SGbkOH0y3e93nUIUADTWpVDxgmqJ6SKhFSAUGO6Hv2X7ardm8ESw57esw4LrBYAx4iaYPSyPTvKSBfY82Fw
-X-Forefront-Antispam-Report: CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230022)(6069001)(4636009)(136003)(346002)(396003)(39860400002)(376002)(47680400002)(451199015)(46966006)(36840700001)(6486002)(81166007)(82740400003)(6506007)(1076003)(26005)(36860700001)(2616005)(336012)(47076005)(478600001)(6666004)(956004)(356005)(186003)(36736006)(6916009)(36906005)(316002)(54906003)(6512007)(7416002)(8936002)(41300700001)(86362001)(70206006)(5660300002)(70586007)(2906002)(8676002)(36756003)(4326008)(82310400005)(40480700001)(9316004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2022 05:55:09.7829
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e60bed13-96f7-4800-eda1-08daa8287eea
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource: SG2APC01FT0047.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR04MB5883
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SCC_THREE_WORD_MONTY,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v4 14/14] tty: gunyah: Add tty console driver for RM
+ Console Services
+Content-Language: en-US
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        "Trilok Soni" <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "Will Deacon" <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Arnd Bergmann" <arnd@arndb.de>, <devicetree@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
+ <20220928195633.2348848-15-quic_eberman@quicinc.com>
+ <YzbePxTF8hRbWNRU@kroah.com>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <YzbePxTF8hRbWNRU@kroah.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add linux device tree entry related to
-greatlakes specific devices connected to BMC SoC.
 
----
---- v3 - Add documentation of board compatible (bindings)
----    - Add board compatible
----    - Remove the bootargs
----    - Revise the DTS node name
----
---- v2 - Add binding document
----
---- v1 - Initial draft
----
 
-Signed-off-by: Bonnie Lo <Bonnie_Lo@Wiwynn.com>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../dts/aspeed-bmc-facebook-greatlakes.dts    | 241 ++++++++++++++++++
- 2 files changed, 242 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
+On 9/30/2022 5:17 AM, Greg Kroah-Hartman wrote:
+> On Wed, Sep 28, 2022 at 12:56:33PM -0700, Elliot Berman wrote:
+>> Gunyah provides a console for each VM using the VM console resource
+>> manager APIs. This driver allows console data from other
+>> VMs to be accessed via a TTY device and exports a console device to dump
+>> Linux's own logs to our console.
+>>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> ---
+>>   MAINTAINERS              |   1 +
+>>   drivers/tty/Kconfig      |   8 +
+>>   drivers/tty/Makefile     |   1 +
+>>   drivers/tty/gunyah_tty.c | 409 +++++++++++++++++++++++++++++++++++++++
+>>   4 files changed, 419 insertions(+)
+>>   create mode 100644 drivers/tty/gunyah_tty.c
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index a0cba618e5f6..e8d4a6d9491a 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -8890,6 +8890,7 @@ F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+>>   F:	Documentation/virt/gunyah/
+>>   F:	arch/arm64/gunyah/
+>>   F:	drivers/mailbox/gunyah-msgq.c
+>> +F:	drivers/tty/gunyah_tty.c
+>>   F:	drivers/virt/gunyah/
+>>   F:	include/asm-generic/gunyah.h
+>>   F:	include/linux/gunyah*.h
+>> diff --git a/drivers/tty/Kconfig b/drivers/tty/Kconfig
+>> index cc30ff93e2e4..ff86e977f9ac 100644
+>> --- a/drivers/tty/Kconfig
+>> +++ b/drivers/tty/Kconfig
+>> @@ -380,6 +380,14 @@ config RPMSG_TTY
+>>   	  To compile this driver as a module, choose M here: the module will be
+>>   	  called rpmsg_tty.
+>>   
+>> +config GUNYAH_CONSOLE
+>> +	tristate "Gunyah Consoles"
+>> +	depends on GUNYAH
+>> +	help
+>> +	  This enables support for console output using Gunyah's Resource Manager RPC.
+>> +	  This is normally used when a secondary VM which does not have exclusive access
+>> +	  to a real or virtualized serial device and virtio-console is unavailable.
+> 
+> module name?
+> 
+>> +
+>>   endif # TTY
+>>   
+>>   source "drivers/tty/serdev/Kconfig"
+>> diff --git a/drivers/tty/Makefile b/drivers/tty/Makefile
+>> index 07aca5184a55..d183fbfd835b 100644
+>> --- a/drivers/tty/Makefile
+>> +++ b/drivers/tty/Makefile
+>> @@ -27,5 +27,6 @@ obj-$(CONFIG_GOLDFISH_TTY)	+= goldfish.o
+>>   obj-$(CONFIG_MIPS_EJTAG_FDC_TTY) += mips_ejtag_fdc.o
+>>   obj-$(CONFIG_VCC)		+= vcc.o
+>>   obj-$(CONFIG_RPMSG_TTY)		+= rpmsg_tty.o
+>> +obj-$(CONFIG_GUNYAH_CONSOLE)	+= gunyah_tty.o
+>>   
+>>   obj-y += ipwireless/
+>> diff --git a/drivers/tty/gunyah_tty.c b/drivers/tty/gunyah_tty.c
+>> new file mode 100644
+>> index 000000000000..80a20da11ad0
+>> --- /dev/null
+>> +++ b/drivers/tty/gunyah_tty.c
+>> @@ -0,0 +1,409 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#define pr_fmt(fmt) "gh_rsc_mgr_console: " fmt
+> 
+> You are a driver, use dev_printk() functions, no need for pr_fmt() at
+> all, right?
+> 
+>> +
+>> +#include <linux/gunyah_rsc_mgr.h>
+>> +#include <linux/auxiliary_bus.h>
+>> +#include <linux/workqueue.h>
+>> +#include <linux/spinlock.h>
+>> +#include <linux/tty_flip.h>
+>> +#include <linux/console.h>
+>> +#include <linux/module.h>
+>> +#include <linux/kfifo.h>
+>> +#include <linux/kref.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/tty.h>
+>> +
+>> +/*
+>> + * The Linux TTY code does not support dynamic addition of tty derived devices so we need to know
+>> + * how many tty devices we might need when space is allocated for the tty device. Since VMs might be
+>> + * added/removed dynamically, we need to make sure we have enough allocated.
+> 
+> Wrap comments at 80 columns please.
+> 
+>> + */
+>> +#define RSC_MGR_TTY_ADAPTERS		16
+> 
+> We can have dynamic tty devices, so I don't understand this comment.
+> What really is the problem here?
+> 
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 05d8aef6e5d2..d9f417f2d7df 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1586,6 +1586,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-elbert.dtb \
- 	aspeed-bmc-facebook-fuji.dtb \
- 	aspeed-bmc-facebook-galaxy100.dtb \
-+	aspeed-bmc-facebook-greatlakes.dtb \
- 	aspeed-bmc-facebook-minipack.dtb \
- 	aspeed-bmc-facebook-tiogapass.dtb \
- 	aspeed-bmc-facebook-wedge40.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-new file mode 100644
-index 000000000000..8c05bd56ce1e
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-@@ -0,0 +1,241 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright 2022 Facebook Inc.
-+
-+/dts-v1/;
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/leds/leds-pca955x.h>
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/ {
-+	model = "Facebook Greatlakes BMC";
-+	compatible = "facebook,greatlakes-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+				<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+				<&adc1 0>, <&adc1 2>, <&adc1 3>, <&adc1 4>,
-+				<&adc1 5>, <&adc1 6>;
-+	};
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&wdt1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdtrst1_default>;
-+	aspeed,reset-type = "soc";
-+	aspeed,external-signal;
-+	aspeed,ext-push-pull;
-+	aspeed,ext-active-high;
-+	aspeed,ext-pulse-duration = <256>;
-+};
-+
-+&mac3 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii4_default>;
-+	no-hw-checksum;
-+	use-ncsi;
-+	mlx,multi-host;
-+	ncsi-ctrl,start-redo-probe;
-+	ncsi-ctrl,no-channel-monitor;
-+	ncsi-package = <1>;
-+	ncsi-channel = <1>;
-+	ncsi-rexmit = <1>;
-+	ncsi-timeout = <2>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-rx-bus-width = <4>;
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-64.dtsi"
-+	};
-+	flash@1 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc2";
-+		spi-rx-bus-width = <4>;
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+	multi-master;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	multi-master;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+	multi-master;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	multi-master;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+	temperature-sensor@1f {
-+		compatible = "ti,tmp421";
-+		reg = <0x1f>;
-+	};
-+	// NIC EEPROM
-+	eeprom@50 {
-+		compatible = "st,24c32";
-+		reg = <0x50>;
-+	};
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+	multi-master;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+	eeprom@51 {
-+		compatible = "atmel,24c128";
-+		reg = <0x51>;
-+	};
-+	eeprom@54 {
-+		compatible = "atmel,24c128";
-+		reg = <0x54>;
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+	temperature-sensor@4f {
-+		compatible = "lm75";
-+		reg = <0x4f>;
-+	};
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+};
-+
-+&adc0 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+			&pinctrl_adc2_default &pinctrl_adc3_default
-+			&pinctrl_adc4_default &pinctrl_adc5_default
-+			&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc10_default
-+			&pinctrl_adc11_default &pinctrl_adc12_default
-+			&pinctrl_adc13_default &pinctrl_adc14_default>;
-+};
-+
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&uhci {
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpiu1_default &pinctrl_gpiu7_default>;
-+};
--- 
-2.25.1
+Yes, I see the confusion. Dynamic device addition of tty devices is 
+supported. As I understand, you need to know the maximum number of lines 
+that could be added, and that is limitation I was referring to.
 
+Is this comment better?
+
+The Linux TTY code requires us to know ahead of time how many lines we
+might need. Each line here corresponds to a VM. 16 seems like a
+reasonable number of lines for systems that are running Gunyah and using
+the provided console interface.
+
+>> +
+>> +/* # of payload bytes that can fit in a 1-fragment CONSOLE_WRITE message */
+>> +#define RM_CONS_WRITE_MSG_SIZE	((1 * (GH_MSGQ_MAX_MSG_SIZE - 8)) - 4)
+>> +
+>> +struct rm_cons_port {
+>> +	struct tty_port port;
+>> +	u16 vmid;
+>> +	bool open;
+> 
+> Why do you care if it is open or not?
+> 
+
+I can clean it out.
+
+>> +	unsigned int index;
+>> +
+>> +	DECLARE_KFIFO(put_fifo, char, 1024);
+>> +	spinlock_t fifo_lock;
+>> +	struct work_struct put_work;
+>> +
+>> +	struct rm_cons_data *cons_data;
+>> +};
+>> +
+>> +struct rm_cons_data {
+>> +	struct tty_driver *tty_driver;
+>> +	struct device *dev;
+>> +
+>> +	spinlock_t ports_lock;
+>> +	struct rm_cons_port *ports[RSC_MGR_TTY_ADAPTERS];
+>> +
+>> +	struct notifier_block rsc_mgr_notif;
+>> +	struct console console;
+>> +};
+>> +
+>> +static void put_work_fn(struct work_struct *ws)
+>> +{
+>> +	char buf[RM_CONS_WRITE_MSG_SIZE];
+>> +	int count, ret;
+>> +	struct rm_cons_port *port = container_of(ws, struct rm_cons_port, put_work);
+>> +
+>> +	while (!kfifo_is_empty(&port->put_fifo)) {
+>> +		count = kfifo_out_spinlocked(&port->put_fifo, buf, sizeof(buf), &port->fifo_lock);
+>> +		if (count <= 0)
+>> +			continue;
+>> +
+>> +		ret = gh_rm_console_write(port->vmid, buf, count);
+>> +		if (ret) {
+>> +			pr_warn_once("failed to send characters: %d\n", ret);
+> 
+> What will this warning help with?
+> 
+>> +			break;
+> 
+> If an error happens, shouldn't you keep trying to send the rest of the
+> data?
+> 
+
+I'll update to retry on anything but ENOMEM.
+
+>> +		}
+>> +	}
+>> +}
+>> +
+>> +static int rsc_mgr_console_notif(struct notifier_block *nb, unsigned long cmd, void *data)
+>> +{
+>> +	int count, i;
+>> +	struct rm_cons_port *rm_port = NULL;
+>> +	struct tty_port *tty_port = NULL;
+>> +	struct rm_cons_data *cons_data = container_of(nb, struct rm_cons_data, rsc_mgr_notif);
+>> +	const struct gh_rm_notification *notif = data;
+>> +	struct gh_rm_notif_vm_console_chars const * const msg = notif->buff;
+>> +
+>> +	if (cmd != GH_RM_NOTIF_VM_CONSOLE_CHARS ||
+>> +		notif->size < sizeof(*msg))
+>> +		return NOTIFY_DONE;
+>> +
+>> +	spin_lock(&cons_data->ports_lock);
+>> +	for (i = 0; i < RSC_MGR_TTY_ADAPTERS; i++) {
+>> +		if (!cons_data->ports[i])
+>> +			continue;
+>> +		if (cons_data->ports[i]->vmid == msg->vmid) {
+>> +			rm_port = cons_data->ports[i];
+>> +			break;
+>> +		}
+>> +	}
+>> +	if (rm_port)
+>> +		tty_port = tty_port_get(&rm_port->port);
+>> +	spin_unlock(&cons_data->ports_lock);
+>> +
+>> +	if (!rm_port)
+>> +		pr_warn("Received unexpected console characters for VMID %u\n", msg->vmid);
+>> +	if (!tty_port)
+>> +		return NOTIFY_DONE;
+>> +
+>> +	count = tty_buffer_request_room(tty_port, msg->num_bytes);
+>> +	tty_insert_flip_string(tty_port, msg->bytes, count);
+>> +	tty_flip_buffer_push(tty_port);
+>> +
+>> +	tty_port_put(tty_port);
+>> +	return NOTIFY_OK;
+>> +}
+>> +
+>> +static ssize_t vmid_show(struct device *dev, struct device_attribute *attr, char *buf)
+>> +{
+>> +	struct rm_cons_port *rm_port = dev_get_drvdata(dev);
+>> +
+>> +	if (rm_port->vmid == GH_VMID_SELF)
+>> +		return sysfs_emit(buf, "self\n");
+>> +
+>> +	return sysfs_emit(buf, "%u\n", rm_port->vmid);
+> 
+> You didn't document this sysfs file, why not?
+> 
+> And tty drivers should not have random sysfs files, please don't add
+> this.
+> 
+
+Removed
+
+>> +}
+>> +
+>> +static DEVICE_ATTR_RO(vmid);
+>> +
+>> +static struct attribute *rsc_mgr_tty_dev_attrs[] = {
+>> +	&dev_attr_vmid.attr,
+>> +	NULL
+>> +};
+>> +
+>> +static const struct attribute_group rsc_mgr_tty_dev_attr_group = {
+>> +	.attrs = rsc_mgr_tty_dev_attrs,
+>> +};
+>> +
+>> +static const struct attribute_group *rsc_mgr_tty_dev_attr_groups[] = {
+>> +	&rsc_mgr_tty_dev_attr_group,
+>> +	NULL
+>> +};
+>> +
+>> +static int rsc_mgr_tty_open(struct tty_struct *tty, struct file *filp)
+>> +{
+>> +	int ret;
+>> +	struct rm_cons_port *rm_port = dev_get_drvdata(tty->dev);
+>> +
+>> +	if (!rm_port->open) {
+> 
+> Why are you caring if the port is open already or not?
+> 
+>> +		ret = gh_rm_console_open(rm_port->vmid);
+> 
+> Can't this just be called for every open()?
+> 
+> And what happens if this changes right after it is checked?
+> 
+
+I've moved the open/close callbacks to the activate/shutdown 
+tty_port_operations.
+
+>> +		if (ret) {
+>> +			pr_err("Failed to open RM console for vmid %x: %d\n", rm_port->vmid, ret);
+> 
+> dev_err()
+> 
+>> +			return ret;
+>> +		}
+>> +		rm_port->open = true;
+>> +	}
+>> +
+>> +	return tty_port_open(&rm_port->port, tty, filp);
+>> +}
+>> +
+>> +static void rsc_mgr_tty_close(struct tty_struct *tty, struct file *filp)
+>> +{
+>> +	int ret;
+>> +	struct rm_cons_port *rm_port = dev_get_drvdata(tty->dev);
+>> +
+>> +	if (rm_port->open) {
+>> +		if (rm_port->vmid != GH_VMID_SELF) {
+>> +			ret = gh_rm_console_close(rm_port->vmid);
+>> +			if (ret)
+>> +				pr_warn("Failed to close RM console for vmid %d: %d\n",
+>> +					rm_port->vmid, ret);
+>> +		}
+>> +		rm_port->open = false;
+> 
+> So if you had multiple open/close this would close the console the first
+> close call, but not the second?
+> 
+> Are you sure you tested this out properly?
+> 
+>> +
+>> +		tty_port_close(&rm_port->port, tty, filp);
+>> +	}
+>> +
+>> +}
+>> +
+>> +static int rsc_mgr_tty_write(struct tty_struct *tty, const unsigned char *buf, int count)
+>> +{
+>> +	struct rm_cons_port *rm_port = dev_get_drvdata(tty->dev);
+>> +	int ret;
+>> +
+>> +	ret = kfifo_in_spinlocked(&rm_port->put_fifo, buf, count, &rm_port->fifo_lock);
+>> +	if (ret > 0)
+>> +		schedule_work(&rm_port->put_work);
+> 
+> Why not just do the write here?  Why is a work queue needed?
+> 
+
+The gh_rm_console_* calls will sleep. console_write can be called in an 
+atomic context, so I put the characters on FIFO. I'll update so that 
+FIFO only used for console.
+
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static unsigned int rsc_mgr_mgr_tty_write_room(struct tty_struct *tty)
+>> +{
+>> +	struct rm_cons_port *rm_port = dev_get_drvdata(tty->dev);
+>> +
+>> +	return kfifo_avail(&rm_port->put_fifo);
+>> +}
+>> +
+>> +static void rsc_mgr_console_write(struct console *co, const char *buf, unsigned count)
+>> +{
+>> +	struct rm_cons_port *rm_port = co->data;
+>> +	int ret;
+>> +
+>> +	ret = kfifo_in_spinlocked(&rm_port->put_fifo, buf, count, &rm_port->fifo_lock);
+>> +	if (ret > 0)
+>> +		schedule_work(&rm_port->put_work);
+> 
+> Same here, why not just send the data now?
+> 
+>> +}
+>> +
+>> +static struct tty_driver *rsc_mgr_console_device(struct console *co, int *index)
+>> +{
+>> +	struct rm_cons_port *rm_port = co->data;
+>> +
+>> +	*index = rm_port->index;
+>> +	return rm_port->port.tty->driver;
+> 
+> Love the locking :(
+> 
+>> +}
+>> +
+>> +static int rsc_mgr_console_setup(struct console *co, char *unused)
+>> +{
+>> +	int ret;
+>> +	struct rm_cons_port *rm_port = co->data;
+>> +
+>> +	if (!rm_port->open) {
+>> +		ret = gh_rm_console_open(rm_port->vmid);
+>> +		if (ret) {
+>> +			pr_err("Failed to open RM console for vmid %x: %d\n", rm_port->vmid, ret);
+>> +			return ret;
+>> +		}
+>> +		rm_port->open = true;
+> 
+> Again, don't mess with open/close.
+>
+
+In general, is it acceptable to use tty_port(_set)_initialized in the 
+console_setup/console_exit?
+
+static int rsc_mgr_console_setup(struct console *co, char *unused)
+{
+	struct rm_cons_port *rm_port = co->data;
+	int ret;
+
+	if (!tty_port_get(&rm_port->port))
+		return -ENODEV;
+
+	mutex_lock(&rm_port->port.mutex);
+	if (!tty_port_initialized(&rm_port->port)) {
+		ret = gh_rm_console_open(rm_port->vmid);
+		if (ret) {
+			dev_err(rm_port->port.tty->dev, "Failed to open %s%d: %d\n",
+				co->name, rm_port->index, ret);
+			goto err;
+		}
+		tty_port_set_initialized(&rm_port->port, true);
+	}
+	rm_port->port.console = true;
+	mutex_unlock(&rm_port->port.mutex);
+
+	return 0;
+err:
+	mutex_unlock(&rm_port->port.mutex);
+	tty_port_put(&rm_port->port);
+	return ret;
+}
+
+static int rsc_mgr_console_exit(struct console *co)
+{
+	int ret;
+	struct rm_cons_port *rm_port = co->data;
+
+	mutex_lock(&rm_port->port.mutex);
+	rm_port->port.console = false;
+
+	if (!tty_port_active(&rm_port->port)) {
+		ret = gh_rm_console_close(rm_port->vmid);
+		if (ret)
+			dev_err(rm_port->port.tty->dev, "Failed to close %s%d: %d\n",
+				co->name, rm_port->index, ret);
+		tty_port_set_initialized(&rm_port->port, false);
+	}
+
+	mutex_unlock(&rm_port->port.mutex);
+	tty_port_put(&rm_port->port);
+
+	return 0;
+}
+
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int rsc_mgr_console_exit(struct console *co)
+>> +{
+>> +	int ret;
+>> +	struct rm_cons_port *rm_port = co->data;
+>> +
+>> +	if (rm_port->open) {
+>> +		ret = gh_rm_console_close(rm_port->vmid);
+>> +		if (ret) {
+>> +			pr_err("Failed to close RM console for vmid %x: %d\n", rm_port->vmid, ret);
+>> +			return ret;
+>> +		}
+>> +		rm_port->open = false;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct tty_operations rsc_mgr_tty_ops = {
+>> +	.open = rsc_mgr_tty_open,
+>> +	.close = rsc_mgr_tty_close,
+>> +	.write = rsc_mgr_tty_write,
+>> +	.write_room = rsc_mgr_mgr_tty_write_room,
+>> +};
+>> +
+>> +static void rsc_mgr_port_destruct(struct tty_port *port)
+>> +{
+>> +	struct rm_cons_port *rm_port = container_of(port, struct rm_cons_port, port);
+>> +	struct rm_cons_data *cons_data = rm_port->cons_data;
+>> +
+>> +	spin_lock(&cons_data->ports_lock);
+>> +	WARN_ON(cons_data->ports[rm_port->index] != rm_port);
+> 
+> Does this mean you just crashed the system if something went wrong?
+> 
+> How can this ever happen?
+> 
+> 
+
+This can't happen and was added defensively. Will drop.
+
+>> +	cons_data->ports[rm_port->index] = NULL;
+>> +	spin_unlock(&cons_data->ports_lock);
+>> +	kfree(rm_port);
+>> +}
+>> +
+>> +static const struct tty_port_operations rsc_mgr_port_ops = {
+>> +	.destruct = rsc_mgr_port_destruct,
+>> +};
+>> +
+>> +static struct rm_cons_port *rsc_mgr_port_create(struct rm_cons_data *cons_data, u16 vmid)
+>> +{
+>> +	struct rm_cons_port *rm_port;
+>> +	struct device *ttydev;
+>> +	unsigned int index;
+>> +	int ret;
+>> +
+>> +	rm_port = kzalloc(sizeof(*rm_port), GFP_KERNEL);
+>> +	rm_port->vmid = vmid;
+>> +	INIT_KFIFO(rm_port->put_fifo);
+>> +	spin_lock_init(&rm_port->fifo_lock);
+>> +	INIT_WORK(&rm_port->put_work, put_work_fn);
+>> +	tty_port_init(&rm_port->port);
+>> +	rm_port->port.ops = &rsc_mgr_port_ops;
+>> +
+>> +	spin_lock(&cons_data->ports_lock);
+>> +	for (index = 0; index < RSC_MGR_TTY_ADAPTERS; index++) {
+>> +		if (!cons_data->ports[index]) {
+>> +			cons_data->ports[index] = rm_port;
+>> +			rm_port->index = index;
+>> +			break;
+>> +		}
+>> +	}
+>> +	spin_unlock(&cons_data->ports_lock);
+>> +	if (index >= RSC_MGR_TTY_ADAPTERS) {
+>> +		ret = -ENOSPC;
+>> +		goto err_put_port;
+>> +	}
+>> +
+>> +	ttydev = tty_port_register_device_attr(&rm_port->port, cons_data->tty_driver, index,
+>> +					      cons_data->dev, rm_port, rsc_mgr_tty_dev_attr_groups);
+>> +	if (IS_ERR(ttydev)) {
+>> +		ret = PTR_ERR(ttydev);
+>> +		goto err_put_port;
+>> +	}
+>> +
+>> +	return rm_port;
+>> +err_put_port:
+>> +	tty_port_put(&rm_port->port);
+>> +	return ERR_PTR(ret);
+>> +}
+>> +
+>> +static int rsc_mgr_console_probe(struct auxiliary_device *auxdev,
+>> +	const struct auxiliary_device_id *aux_dev_id)
+>> +{
+>> +	struct rm_cons_data *cons_data;
+>> +	struct rm_cons_port *rm_port;
+>> +	int ret;
+>> +	u16 vmid;
+>> +
+>> +	cons_data = devm_kzalloc(&auxdev->dev, sizeof(*cons_data), GFP_KERNEL);
+>> +	if (!cons_data)
+>> +		return -ENOMEM;
+>> +	dev_set_drvdata(&auxdev->dev, cons_data);
+>> +	cons_data->dev = &auxdev->dev;
+>> +
+>> +	cons_data->tty_driver = tty_alloc_driver(RSC_MGR_TTY_ADAPTERS,
+>> +						 TTY_DRIVER_REAL_RAW | TTY_DRIVER_DYNAMIC_DEV);
+>> +	if (IS_ERR(cons_data->tty_driver))
+>> +		return PTR_ERR(cons_data->tty_driver);
+>> +
+>> +	cons_data->tty_driver->driver_name = "gh";
+>> +	cons_data->tty_driver->name = "ttyGH";
+> 
+> Where did you pick this name from?
+> 
+> Where is it documented?
+> 
+
+"GH" is the shorthand we've been using for "Gunyah". I didn't find 
+documentation for dynamically assigned char devices, but if it exists, I 
+can add entry for ttyGH.
+
+>> +	cons_data->tty_driver->type = TTY_DRIVER_TYPE_SYSTEM;
+>> +	cons_data->tty_driver->init_termios = tty_std_termios;
+>> +	tty_set_operations(cons_data->tty_driver, &rsc_mgr_tty_ops);
+>> +
+>> +	ret = tty_register_driver(cons_data->tty_driver);
+>> +	if (ret) {
+>> +		dev_err(&auxdev->dev, "Could not register tty driver: %d\n", ret);
+>> +		goto err_put_tty;
+>> +	}
+>> +
+>> +	spin_lock_init(&cons_data->ports_lock);
+>> +
+>> +	cons_data->rsc_mgr_notif.notifier_call = rsc_mgr_console_notif;
+>> +	ret = gh_rm_register_notifier(&cons_data->rsc_mgr_notif);
+>> +	if (ret) {
+>> +		dev_err(&auxdev->dev, "Could not register for resource manager notifications: %d\n",
+>> +			ret);
+>> +		goto err_put_tty;
+>> +	}
+>> +
+>> +	rm_port = rsc_mgr_port_create(cons_data, GH_VMID_SELF);
+>> +	if (IS_ERR(rm_port)) {
+>> +		ret = PTR_ERR(rm_port);
+>> +		dev_err(&auxdev->dev, "Could not create own console: %d\n", ret);
+>> +		goto err_unreg_notif;
+>> +	}
+>> +
+>> +	strncpy(cons_data->console.name, "ttyGH", sizeof(cons_data->console.name));
+> 
+> Again, where did this name come from?
+> 
+> thanks,
+> 
+> greg k-h
