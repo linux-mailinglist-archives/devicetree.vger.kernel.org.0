@@ -2,57 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFEA35F7349
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 05:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E4E5F736F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 05:51:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbiJGDVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 23:21:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49256 "EHLO
+        id S229487AbiJGDve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 23:51:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbiJGDUF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 23:20:05 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62404115C2F;
-        Thu,  6 Oct 2022 20:19:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3C7C4B82188;
-        Fri,  7 Oct 2022 03:18:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FDA4C433C1;
-        Fri,  7 Oct 2022 03:18:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665112723;
-        bh=VIRCARV4gIGvlbOIUNJTjqc5GfsC7pCcDdS4M+4yack=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l6Eauuy4UH/9AcNPIArm8dP6MAw8uQ2qCtPExmACJ97QcM0AL9Q/uPXAlCJl6i/Bh
-         ZgZVf5U233XrjrbtLBaqaCotvJTEfwzHvLYJXdjhz0EehRVS4m6Xv2ZG7bF4z8PekA
-         LM8UQhTB8NBawC4/zGIg//RwrwcE4HaXzb9GZaP/M4Wcs4Zd/ZaEoMxAWL4C8yDbV5
-         7hr/g9yoRjhFSPEBHBI/MIGBie8+fxe8mBR+s5jOmwgSB0E0NdSB8fDGtJprUE7cTV
-         vweQeWqivC2Wlg7WfFHIwJMdgbWLghxcpe29WTMNr5k3fGlhZ43urFK15gXCyVxHa4
-         mfai3tzsJAxfg==
-Date:   Thu, 6 Oct 2022 22:18:40 -0500
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 16/16] dt-bindings: pinctrl: qcom,sc7280: correct
- number of GPIOs
-Message-ID: <20221007031840.bce6x3put5zpcd67@builder.lan>
-References: <20220930192954.242546-1-krzysztof.kozlowski@linaro.org>
- <20220930192954.242546-17-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229623AbiJGDvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 23:51:33 -0400
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F1D5BE2CC
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 20:51:32 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-132af5e5543so4371540fac.8
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 20:51:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ywOJjC1iAeM1WckDzdDR6XJ9UsRidM3rIQ+Y2hJNDKM=;
+        b=Cm8A2XN+mF9SQCfZ8U83Xr2/sdIj3A4gzywnUW/7Rg8Ps6TUj4mhzqhCDtGqP7rbCX
+         cR0e5rS0OPRwXdYsVNItxkjYH46iUD/Bd/+KUmlHvltKz67cwSfZ1QPHMg10zi1Iw9bm
+         vDZbb+QvIf3iyYRqE/pS19gScSSw1GkfnatsP8vKo8rbOgn6RPhSaNJX1B1SkuM2/vq7
+         1ro4NazkBLM0NjJ1s+DFBjBdE1QhYGBWWpOMpKVLCIXLv5L9XAAnJtiRU9u+E/g+SHEl
+         qm19+eysnC3NebtYzE6Z6Mi6JCPSiZIIXR689VTSW5J1/AfsM2qmJLQlgJZEeJllTKHy
+         aB6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ywOJjC1iAeM1WckDzdDR6XJ9UsRidM3rIQ+Y2hJNDKM=;
+        b=bFl1OM07roihkG3zfsQQwyOiPiO5GcftjFk1mu+IkjXXJ8/GsKioUp94AzKjGBTmJ/
+         S3o3h4mBM+pKQBeJOLrSM4BGvAhssGCpkxkaCBKg+7M5mJeUb6bfz+7Xzn1w0jGzgHxT
+         DhkHCTZtDixjdBMG8WacVt7x6ZvWUZIthaIBj0n5yJi2kBcGCFwH8N/HJw2uGZhmCNqI
+         Nd02ZyaOESUoewZzkf2MAKsX1C04xiqa3nnc5r+Ds2DEfRuE27dQuZo7sJypYwTpbgPP
+         4XTWB49QGLgQmrtb8pIAJIwQlPVew89VKFsB33u6Ny1SW17PXNJMNlJQJ9Ffbxt5bA9M
+         lGLQ==
+X-Gm-Message-State: ACrzQf0O2SYQZxZeucPNb9WjdvuZayXu+CLUJXSLXV8N0eSNUTb1sTLu
+        b+9hckcV3AIdSXWpw3psWykuF0492ALECwdBFMcPqQPvMZtFmg==
+X-Google-Smtp-Source: AMsMyM58r3x61gcQz490WPKR8f7M4ASa5M+2B+LqM+DSCDhS6Ek4QKEKnabKgdcccswhnXNdVIOArInEoUBb8fej4mo=
+X-Received: by 2002:a05:6870:ac21:b0:132:f716:1804 with SMTP id
+ kw33-20020a056870ac2100b00132f7161804mr4707931oab.248.1665114691420; Thu, 06
+ Oct 2022 20:51:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220930192954.242546-17-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20220829062202.3287-2-zong.li@sifive.com> <mhng-050016e5-0f50-4366-b4bd-98b4b36a56bb@palmer-ri-x1c9>
+In-Reply-To: <mhng-050016e5-0f50-4366-b4bd-98b4b36a56bb@palmer-ri-x1c9>
+From:   Zong Li <zong.li@sifive.com>
+Date:   Fri, 7 Oct 2022 11:51:20 +0800
+Message-ID: <CANXhq0qMuU3-R=5fM6WK28259dBBbM+6Sg6-=ayiSVLuccx9TQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: sifive-ccache: rename SiFive L2 cache to
+ composible cache
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, greentime.hu@sifive.com,
+        conor.dooley@microchip.com, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,50 +69,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 30, 2022 at 09:29:54PM +0200, Krzysztof Kozlowski wrote:
-> SC7280 has 175 GPIOs (gpio0-174), so correct size of gpio-line-names and
-> narrow the pattern for matching pin names.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Rob Herring <robh@kernel.org>
+On Fri, Oct 7, 2022 at 10:58 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+>
+> On Sun, 28 Aug 2022 23:22:00 PDT (-0700), zong.li@sifive.com wrote:
+> > Since composible cache may be L3 cache if private L2 cache exists, it
+> > should use its original name composible cache to prevent confusion.
+> >
+> > Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> > Signed-off-by: Zong Li <zong.li@sifive.com>
+> > ---
+> >  .../riscv/{sifive-l2-cache.yaml => sifive-ccache.yaml}      | 6 ++++--
+> >  1 file changed, 4 insertions(+), 2 deletions(-)
+> >  rename Documentation/devicetree/bindings/riscv/{sifive-l2-cache.yaml => sifive-ccache.yaml} (92%)
+> >
+> > diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-ccache.yaml
+> > similarity index 92%
+> > rename from Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> > rename to Documentation/devicetree/bindings/riscv/sifive-ccache.yaml
+> > index 69cdab18d629..1a64a5384e36 100644
+> > --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/sifive-ccache.yaml
+> > @@ -12,8 +12,8 @@ maintainers:
+> >    - Paul Walmsley  <paul.walmsley@sifive.com>
+> >
+> >  description:
+> > -  The SiFive Level 2 Cache Controller is used to provide access to fast copies
+> > -  of memory for masters in a Core Complex. The Level 2 Cache Controller also
+> > +  The SiFive Composable Cache Controller is used to provide access to fast copies
+> > +  of memory for masters in a Core Complex. The Composable Cache Controller also
+> >    acts as directory-based coherency manager.
+> >    All the properties in ePAPR/DeviceTree specification applies for this platform.
+> >
+> > @@ -27,6 +27,7 @@ select:
+> >          enum:
+> >            - sifive,fu540-c000-ccache
+> >            - sifive,fu740-c000-ccache
+> > +          - sifive,ccache0
+>
+> Looks like Rob's bot had comments and I don't see a v2.  Sorry if I'm
+> missing something.
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+Hi Palmer,
+We moved this series to the following patch set:
+http://lists.infradead.org/pipermail/linux-riscv/2022-October/020196.html
 
-> ---
->  .../devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml    | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
-> index 1db05c43d58c..2a6b5a719d18 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
-> @@ -43,7 +43,7 @@ properties:
->      maxItems: 1
->  
->    gpio-line-names:
-> -    maxItems: 174
-> +    maxItems: 175
->  
->    wakeup-parent: true
->  
-> @@ -70,7 +70,7 @@ $defs:
->            subnode.
->          items:
->            oneOf:
-> -            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-7][0-9]|18[0-2])$"
-> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-6][0-9]|17[0-4])$"
->              - enum: [ sdc1_rclk, sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk,
->                        sdc2_cmd, sdc2_data, ufs_reset ]
->          minItems: 1
-> @@ -132,7 +132,7 @@ $defs:
->        - if:
->            properties:
->              pins:
-> -              pattern: "^gpio([0-9]|[1-9][0-9]|1[0-7][0-9]|18[0-2])$"
-> +              pattern: "^gpio([0-9]|[1-9][0-9]|1[0-6][0-9]|17[0-4])$"
->          then:
->            required:
->              - function
-> -- 
-> 2.34.1
-> 
+Sorry for the confusion. Many thanks for considering this series.
+
+>
+> Also: I'd guess that we only had the SOC-specific mappings on purpose.
+> It's kind of a grey area and I'm OK either way, but I'd definately
+> prefer the DT folks to get a chance to review these.  My guess is that
+> they're not looking due to the bot comments, but sorry again if I've
+> missed it.
+>
+> >    required:
+> >      - compatible
+> > @@ -37,6 +38,7 @@ properties:
+> >        - enum:
+> >            - sifive,fu540-c000-ccache
+> >            - sifive,fu740-c000-ccache
+> > +          - sifive,ccache0
+> >        - const: cache
+> >
+> >    cache-block-size:
