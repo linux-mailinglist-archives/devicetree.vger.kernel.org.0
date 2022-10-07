@@ -2,96 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B83105F7472
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 08:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D02C5F7482
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 09:04:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229786AbiJGG7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 02:59:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41920 "EHLO
+        id S229602AbiJGHE3 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 7 Oct 2022 03:04:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229773AbiJGG7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 02:59:37 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B27F8FDB5C
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 23:59:32 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id g1so5938917lfu.12
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 23:59:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=VW3+3oss6LB7BSPpMVbQ+o0wN4V6S0JUswgw6rXnncU=;
-        b=y5WDIRdgh4FHvyzVk6cJyj3DMEBu8HeWt6R4yjMVOeSxAZeWMSDLQvyS2k6g4jVcz5
-         OBBgNWCEhIQTUgtef2TD8WhJRDi2WK6oekasCNu+RQ4dD9jBHsuH38vZOHGVe/GCT197
-         uF8geGQa7+XUfzyV5P8pGb4PUXt4oXLYymJ1+A9ZIK3NGMFff6dnhcpqoJb685it+7sn
-         RMKTkr+2ng62iavwX+a3K1ccS+VdKjUe2PgZ6j7FXnE6KvyPVQS/3JeHM3HTZhXUk85h
-         +jmvKEP6vT31euC5pjjJyUlWWvAftxwLcal4yCJN/5rlC763QLp4T0qA/QHRv9bDOZwJ
-         5o/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=VW3+3oss6LB7BSPpMVbQ+o0wN4V6S0JUswgw6rXnncU=;
-        b=7NXDO7iFBhnIxkmo9ua1h+VGlzpZyJWTYNIXJV9fV5Qeg2tGiDp1ygmOIqH/ztCMzS
-         S0dYXSuqV29g0CGyzK1GYjbTZ2qkqTcKLwBJkuy578rxXRMDnXm5DmUNXbw8Xuh8gRj6
-         dlpiOz7yHur4CSQlcAw3JNVQVc5PdepavfUEigumksNYQFoTJ6hqBBzhDMD8ObxDGN8t
-         MeaakFLsrjOdsjJ+jpmdbclxZ07SQBYruaTO39WfQ2ggjheKmcUjLmY6ednaMOWW4MyP
-         za+U57fUHiEmX0GpmKeNO1W5tYbo3IWkO6BBghm3ri19dgDE5i21XXliv+DkVw+4/FUq
-         qWPw==
-X-Gm-Message-State: ACrzQf3dEgGs7C6BtnINUVk2xoA2YfvoDSPzT3uKHiq9af09R+fniFwG
-        2BUxERlHh7EzyAosqMZjy1eP9A==
-X-Google-Smtp-Source: AMsMyM7zFfC/u5V00RksOcmN4PrHawK1b1BsN+nXUsr9jhVs1GAmiTNwWp+Ud4iYkQSolvGVKtAmUg==
-X-Received: by 2002:ac2:4a73:0:b0:4a2:4f2c:199d with SMTP id q19-20020ac24a73000000b004a24f2c199dmr1240104lfp.443.1665125971044;
-        Thu, 06 Oct 2022 23:59:31 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c19-20020ac25f73000000b00499fe9ce5f2sm174403lfc.175.2022.10.06.23.59.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Oct 2022 23:59:30 -0700 (PDT)
-Message-ID: <f14ae849-cb1d-d039-00d8-6ae230e8dc13@linaro.org>
-Date:   Fri, 7 Oct 2022 08:59:29 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8150: align TLMM pin
- configuration with DT schema
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S229469AbiJGHE2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 03:04:28 -0400
+Received: from relay.hostedemail.com (smtprelay0015.hostedemail.com [216.40.44.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EB481AF24;
+        Fri,  7 Oct 2022 00:04:27 -0700 (PDT)
+Received: from omf05.hostedemail.com (a10.router.float.18 [10.200.18.1])
+        by unirelay06.hostedemail.com (Postfix) with ESMTP id 2D8FAABA2D;
+        Fri,  7 Oct 2022 07:04:25 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf05.hostedemail.com (Postfix) with ESMTPA id 99AB82000D;
+        Fri,  7 Oct 2022 07:04:01 +0000 (UTC)
+Message-ID: <c83f7ad5b5f67da86bec222f970305a1990e8181.camel@perches.com>
+Subject: Re: [RFC PATCH v2 4/5] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+From:   Joe Perches <joe@perches.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221006144518.256956-1-krzysztof.kozlowski@linaro.org>
- <20221007025735.5iceh26gd3agawx2@builder.lan>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221007025735.5iceh26gd3agawx2@builder.lan>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Fri, 07 Oct 2022 00:04:20 -0700
+In-Reply-To: <Yz8fK7j8pxlU76xt@smile.fi.intel.com>
+References: <cover.1665066397.git.mazziesaccount@gmail.com>
+         <88e24b01da9f44ebf5fcd8344ded0b75ff742fbf.1665066397.git.mazziesaccount@gmail.com>
+         <Yz8fK7j8pxlU76xt@smile.fi.intel.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+MIME-Version: 1.0
+X-Rspamd-Server: rspamout08
+X-Rspamd-Queue-Id: 99AB82000D
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,FORGED_SPF_HELO,
+        KHOP_HELO_FCRDNS,SPF_HELO_PASS,SPF_NONE,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
+X-Stat-Signature: c1jiphiuugrgpshknkept1gm8aheyjnx
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX18zpQ10rQZNQA3E4z97aM0AIla/lSnoV1Q=
+X-HE-Tag: 1665126241-288885
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2022 04:57, Bjorn Andersson wrote:
-> On Thu, Oct 06, 2022 at 04:45:17PM +0200, Krzysztof Kozlowski wrote:
->> DT schema expects TLMM pin configuration nodes to be named with
->> '-state' suffix and their optional children with '-pins' suffix.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Thu, 2022-10-06 at 21:32 +0300, Andy Shevchenko wrote:
+> On Thu, Oct 06, 2022 at 05:38:14PM +0300, Matti Vaittinen wrote:
+> > KX022A is a 3-axis accelerometer from ROHM/Kionix. The senosr features
+> > include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+> > tap/motion detection, wake-up & back-to-sleep events, four acceleration
+> > ranges (2, 4, 8 and 16g) and probably some other cool features.
+[]
+> > +/*
+> > + * Threshold for deciding our HW fifo is unrecoverably corrupt and should be
+> > + * cleared
 > 
-> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> Multi-line comments have to follow English grammar and punctuation,
+> i.e. trailing period.
 
-This one is a DTS, so it is supposed to go via your tree. :)
-
-Best regards,
-Krzysztof
+I disagree.  I think that would be a silly rule to enforce.
 
