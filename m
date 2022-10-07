@@ -2,91 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8D105F77F1
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 14:28:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC51A5F77F4
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 14:30:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229605AbiJGM24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 08:28:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60120 "EHLO
+        id S229651AbiJGMa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 08:30:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbiJGM2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 08:28:55 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC23AA377
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 05:28:54 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id m19so5708759lfq.9
-        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 05:28:54 -0700 (PDT)
+        with ESMTP id S229650AbiJGMaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 08:30:55 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C76DC06BE
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 05:30:54 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id f9so5509734ljk.12
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 05:30:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AaaH4Hzpc+BWxzk2RGTWufBjtoYuA+LOvqpi3Lw3mMY=;
-        b=JimTXh/0MZ1L5q5YlKnUBaL7g2yVNCqJFefLV7S7pBS22G1gGhIph68C0apbMB8qQq
-         jWqj7S4q9PcZhvdwMvBaGwifdZ0usoCgy6COmg6zABI77dNCUKLne9z9trZUaAkcUpFy
-         HJwVVByGoPIH5JLUTc4lhcJnDZdqvzC/OKRy2YgHI+jyrDXUAHHTeow3Yh/6rBq9kswm
-         1ygzt+2T1ghghERjhYUybteaZJJ8qQWF1LbLKJT7+X7xd7bu2oMJ9hw2puw3Qybgqvzc
-         8/5k3GIXazHdOqfFMa1SKgWKhvlBvzWr5D8Xwc+1kciMKNBEH3VGtWAOoeGhJv342AHY
-         /FwA==
+        bh=Sl0pmb3uiIXfqxJIrjyGTopaOTOA1QmL6GGeThbq/gk=;
+        b=VreGiA1OECe4NiF0/XwhBtbi4eB9KZ+9NV6+f9Y8RfxwX8ca1jR97+cSqkuMYPqqgj
+         yUCU3r9ibdxxQhDMirdHIlYloVqOygrknPwP9qYYeRJtN56J1U0HoR4yFEc2Ryr5wL86
+         qmxLbiUXDmter6bhvWAytZijz1IJKvlJbclPVMa2ktQEhLMHTLewkyazDwq20AnXCk7M
+         CcznWHFZpNAM4vT+Q0f0IeEebevPTi6lSXS5qFgo1A9K1Ux/pQPLtCeGqpSVeLozRir1
+         wo69SiapPq+LsG3UszabHAfE9Jp5pbiQ/iRRLgzBH/jYfBCxOt2pSLUeTtDiEWhu9aWj
+         EPSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AaaH4Hzpc+BWxzk2RGTWufBjtoYuA+LOvqpi3Lw3mMY=;
-        b=UflEpeaFpsHR+bsbGAyP/pT2Hg+rV/IGH5xC16lCI987LrYWQTdUCe/hlpbBG/OGKs
-         Gywn0SUs6WhqpIlyM+eB6hD5J3cafhrU/4yYJ4pdWei17AA5hT5icgM1NSAXDzIS5jah
-         F0//fD85TLldX6fTE5ecj8a8mHRV1MXf0E/E2gE+gtRD1ZNwkHUFN3qatB+WBT0QfKMc
-         +0yqum6SrKTgm9zvAnh99dnZ62i5znR9+w1Fkff7MzETag1PirtcocIoOcdSNtoFMXGg
-         mD6AtX8SMwpcsJKJsiFy4MKTZGOddz78jEOjY6ojXaYx1L85b5+CqvluG6lte8IhsJce
-         NrRw==
-X-Gm-Message-State: ACrzQf1cZxOT38f58lKBWgzOAgQE/ZchJG0wF2SD+caf5VGo/7M8DOme
-        T5DPh3UytlEal+jyzJyGq5Wzrg==
-X-Google-Smtp-Source: AMsMyM7mciDeK4YJsQJNGOMn8IAMb4ygr5ZASg/buDnVtEEy6/BWFjR4RTN1izCeik5DNvsqVlPFWg==
-X-Received: by 2002:ac2:5a44:0:b0:4a2:5c3d:d68c with SMTP id r4-20020ac25a44000000b004a25c3dd68cmr1649669lfn.347.1665145732626;
-        Fri, 07 Oct 2022 05:28:52 -0700 (PDT)
+        bh=Sl0pmb3uiIXfqxJIrjyGTopaOTOA1QmL6GGeThbq/gk=;
+        b=N25JRMJ9hjvihNVKmL1fH6J0EQdlUvsui1/qN+UGkM5O6qw6EYOnR+xtRTejLbx1Nd
+         32s9szmjQwaTwboHbeW3CEl8BTGdKPRP6cEPzPg0YIkJu4JP9vuJd+USD6P5KVh66/I0
+         AqoUgHs7K3t2fhfIXKZf3EtF4+csgZUaAF8IvTNmuJaGTGt8/4ZMbbs6BVBT9EpLnyeF
+         VHrX4fYBjzaBR6gGbqmel/Oy0WbCMPdYUZrJ8QmjyfQIklwOD5Rv9Z5ZBS0m0SyTbnMt
+         +zzXz/93pIaWtLhLpbDlpOaGXh4j4Hg2utqfz7hfpUnJyHZi7WxEZ6KaQT7BtCwHbJjm
+         OdRg==
+X-Gm-Message-State: ACrzQf1io/SY3vXo7oom9DoYx6M7VW1XZxTNklFSW9oIOx1+wwhffoz6
+        4Gxwog0cCDI4eHKBGgz4rAGK1Q==
+X-Google-Smtp-Source: AMsMyM5r2nYzPj6PjLR2AsCaxJAvVIodoql/ZB8ZdFLqj/nH2kD2KVdtp2g2gTuR2TniG3+VD3pEsg==
+X-Received: by 2002:a2e:bd0e:0:b0:261:e718:e902 with SMTP id n14-20020a2ebd0e000000b00261e718e902mr1719392ljq.435.1665145852795;
+        Fri, 07 Oct 2022 05:30:52 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id z18-20020a05651c11d200b0026c0f6be5dasm244298ljo.116.2022.10.07.05.28.51
+        by smtp.gmail.com with ESMTPSA id u1-20020a056512128100b0049f530939aasm281434lfs.126.2022.10.07.05.30.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Oct 2022 05:28:51 -0700 (PDT)
-Message-ID: <5847d571-34d8-0af0-300b-019e6a628d6b@linaro.org>
-Date:   Fri, 7 Oct 2022 14:28:51 +0200
+        Fri, 07 Oct 2022 05:30:51 -0700 (PDT)
+Message-ID: <e1e89092-272e-3cca-6459-f129d8c5627c@linaro.org>
+Date:   Fri, 7 Oct 2022 14:30:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH] dt-bindings: mfd: qcom,tcsr: add sc8280xp binding
+Subject: Re: [EXT] Re: [PATCH v5 1/2] dt-bindings: uwb: Device tree
+ information for Nxp SR1XX SOCs
 Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221007121110.5432-1-johan+linaro@kernel.org>
+To:     Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>,
+        Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+        robh+dt@kernel.org
+Cc:     mb@lightnvm.io, ckeepax@opensource.cirrus.com, arnd@arndb.d,
+        mst@redhat.com, javier@javigon.com, mikelley@microsoft.com,
+        jasowang@redhat.com, sunilmut@microsoft.com,
+        bjorn.andersson@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, ashish.deshpande@nxp.com,
+        rvmanjumce@gmail.com
+References: <20220914142944.576482-1-manjunatha.venkatesh@nxp.com>
+ <20220914142944.576482-2-manjunatha.venkatesh@nxp.com>
+ <78651e07-6b3e-4243-8e1f-fcd1dfb3ffe1@www.fastmail.com>
+ <425858dc-59fe-2311-61ae-3b6dc77a2576@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221007121110.5432-1-johan+linaro@kernel.org>
+In-Reply-To: <425858dc-59fe-2311-61ae-3b6dc77a2576@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2022 14:11, Johan Hovold wrote:
-> Add a binding for the SC8280XP TCSR.
+On 07/10/2022 13:39, Manjunatha Venkatesh wrote:
 > 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+> On 9/14/2022 8:06 PM, Arnd Bergmann wrote:
+>> Caution: EXT Email
+>>
+>> On Wed, Sep 14, 2022, at 4:29 PM, Manjunatha Venkatesh wrote:
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - nxp,sr1xx
+>>> +
+>> You should not have wildcard names in the compatible string.
+>> Make this a specific model number without 'xx', and
+>> have the devices list their own name along with the oldest
+>> one they are compatible with.
+>>
+>>       Arnd
+> This driver is common for both sr100 and sr150,so we have used sr1xx
+> naming convention or can we use name with highest version(sr150)?
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In general each device needs its compatible, so you would need two of
+them. However if one is compatible with the other, then express it as
+well. IOW, driver binds to one compatible, binding describes both (one
+as fallback). There are many, many of such examples in the kernel.
 
 Best regards,
 Krzysztof
