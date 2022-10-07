@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71A125F72F2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 04:58:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E031C5F72F3
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 04:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229549AbiJGC6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 22:58:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44422 "EHLO
+        id S229543AbiJGC6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 22:58:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbiJGC6I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 22:58:08 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4E80FE779
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 19:58:06 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id 204so3748634pfx.10
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 19:58:06 -0700 (PDT)
+        with ESMTP id S229547AbiJGC6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 22:58:09 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8F1FF8E6
+        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 19:58:08 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id 204so3748681pfx.10
+        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 19:58:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:to:from:cc
          :in-reply-to:subject:date:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zoj5EGA0RYL9Ka7luDj/60Kyu1sOVCj/9jFFGeRwP9Y=;
-        b=TnY1XKauPWQ8k6BJT+TkH6jngPwzD2M3I3/ivPWAnBOsOtikW4DiG4DRqNmcDv5jsP
-         3T+fYGrtt72fkJ1McvY1lk7El+YU43Duy+HskVv6oQ62Trw+yHvgEz8kkSbVukb1Dv3K
-         DT/dQSDulksE1an7I8Lr/HA4FsE6gzs3MlzQ5M9mufsti74syB7DQmfPiurh7MedYo5J
-         e5MTPJTo8YnKq52+gl9WFVBKMeCnpKX11vgZEDBSJMn7M2oWkXK/wxxO6U5+W2BvSujY
-         VtjiE0O0Y+OkvTmVeh6GsPy2C07afAa5xFm3rica75E5DK/xkgnbepy9AiXEbvsX2WoN
-         zZlg==
+        bh=HHqtVs8j+ID4jgqw57yAt3FtHMv/XStpjtf/AugVE1Y=;
+        b=FhXOA3SGFnbaWCxieNMDC1nYdp/i+xNk1Qz42dQC7LPITUdJcbeCD8MXgS1lEAl+Ff
+         4Q7YoMcKPvYOvGsh593C5ovx3865nXrA4jLf7wZ6cTMZUoq9waJYSMYXPSQEZ+w3HOfW
+         SISSGdo5Z4e4aPv8ylbZrhV5D33e1LqZ6TLSZgZCWwGJxqu9Znv9u20bgyXS8gVa0ASs
+         6oMiHtBzpvqB4UNYNn2PU4RhiMUmuVPtXdpJnizixXLqZONDEPwtTxWTvvvXE6FfdHDg
+         qTnnVa5pvh83sPhZySmfb1IUP1QM5OkEgfI1ZDKgrJT5AWmx6IBhYMpJj9qfGXXUNk4O
+         NuLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:to:from:cc
          :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zoj5EGA0RYL9Ka7luDj/60Kyu1sOVCj/9jFFGeRwP9Y=;
-        b=YfUw9iXDI8Cjr0SVygXl9UPhBN/Idac7xizTSM3fSLVsA4w8AlSSkSOe0Z5uCCA2QJ
-         KpjUuNSx5MS9iol1zJjvMbNunoi+mIwGXsCdrwjP5fiC0aU6rmIwbii5aFIQgQbR/BIJ
-         RGMQ93LHGVZhlswRtIFpHq8pMKfRu6H92v89voTQjPQD2EKHGat8vgp2lL7RfJCsYbNe
-         k+n11T3G282WVQlCV5VpQKuE6Bo5CpVRq5j9SIAeEIqaPec3KfXClyoH4GXTzPdkl28t
-         0TDWP8MbCZmRykDsx8GNt33dMblwJSZN9NBija1aVvW/B9VBHtWLOl4P1REE+Lmw1vSr
-         hp+g==
-X-Gm-Message-State: ACrzQf1g1wUgdkThNNQwovg2sAaiDbuL4Wc7teJyHAiTkaCP3wZDBCVl
-        T38MLbuGEqJzRNnvBdEm6xcctQ==
-X-Google-Smtp-Source: AMsMyM4aHddStVwHJEdJraLuB8qK0pz3TytQVfIvQWiHygu27A1LUyhoO+y89+6zBj1fLgqb9CWA1w==
-X-Received: by 2002:a63:6986:0:b0:43c:8417:8dac with SMTP id e128-20020a636986000000b0043c84178dacmr2559548pgc.286.1665111486224;
-        Thu, 06 Oct 2022 19:58:06 -0700 (PDT)
+        bh=HHqtVs8j+ID4jgqw57yAt3FtHMv/XStpjtf/AugVE1Y=;
+        b=5EvislaF5abIdtgGof04Yc+JKvZPSjseRukW1LpAaOYKqRTKU60oTp2J+Jkmb2OdSS
+         xJoB4FcjKBZtsYvphjBqCWVCXO2MvISSdWy+0Ns6vmE0i5a3VOHKF7Kt+7Lz9Uj929uP
+         UEz4cmcQoA4p6Wki+/4kA7rcjbh/lDlX1lP8LJe615nobB6QFIhFB7oMo6NZiYXrwy4I
+         n43dQf5JeL6yUkZ3xYQaomT1LWaAvpIvAhTZHwKoVA9fwj9oSB7OWYQuPagKHStMSxIw
+         Y6J33RUknM7iHmAq89sdhMn71WDGTdPmHNQtcE+oLBIlod936Y2y1HBzOJT82X9kcMiP
+         vjfw==
+X-Gm-Message-State: ACrzQf0wbKEuF5nLOoNzfljx9tH80N/+1XR0C3oo0YqvYtod9SnzQksG
+        /OnVEZG7Bfo29HDMWgOfI3Rutg==
+X-Google-Smtp-Source: AMsMyM53dmoZUhAeR2ad3+PvCeAPrlnhjAul4X/Pb1ufZcrCsgu+iGRJpvj0OGds7mcXRXSYxl4bQA==
+X-Received: by 2002:a05:6a00:14d3:b0:546:e93c:4768 with SMTP id w19-20020a056a0014d300b00546e93c4768mr2621000pfu.36.1665111487824;
+        Thu, 06 Oct 2022 19:58:07 -0700 (PDT)
 Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id v66-20020a622f45000000b00561b6705d6esm337550pfv.219.2022.10.06.19.58.05
+        by smtp.gmail.com with ESMTPSA id f17-20020a170902ce9100b00172f4835f60sm333199plg.189.2022.10.06.19.58.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 19:58:05 -0700 (PDT)
-Date:   Thu, 06 Oct 2022 19:58:05 -0700 (PDT)
-X-Google-Original-Date: Thu, 06 Oct 2022 19:51:34 PDT (-0700)
-Subject:     Re: [PATCH 1/3] dt-bindings: sifive-ccache: rename SiFive L2 cache to composible cache
-In-Reply-To: <20220829062202.3287-2-zong.li@sifive.com>
+        Thu, 06 Oct 2022 19:58:07 -0700 (PDT)
+Date:   Thu, 06 Oct 2022 19:58:07 -0700 (PDT)
+X-Google-Original-Date: Thu, 06 Oct 2022 19:57:50 PDT (-0700)
+Subject:     Re: [PATCH 3/3] EDAC/sifive: use sifive_ccache instead of sifive_l2
+In-Reply-To: <20220829062202.3287-4-zong.li@sifive.com>
 CC:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         Paul Walmsley <paul.walmsley@sifive.com>,
         aou@eecs.berkeley.edu, greentime.hu@sifive.com,
@@ -61,7 +61,7 @@ CC:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         zong.li@sifive.com
 From:   Palmer Dabbelt <palmer@dabbelt.com>
 To:     zong.li@sifive.com
-Message-ID: <mhng-050016e5-0f50-4366-b4bd-98b4b36a56bb@palmer-ri-x1c9>
+Message-ID: <mhng-fe7df193-2cac-4022-928d-a18e63f5e1c1@palmer-ri-x1c9>
 Mime-Version: 1.0 (MHng)
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
@@ -74,57 +74,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 28 Aug 2022 23:22:00 PDT (-0700), zong.li@sifive.com wrote:
-> Since composible cache may be L3 cache if private L2 cache exists, it
-> should use its original name composible cache to prevent confusion.
+On Sun, 28 Aug 2022 23:22:02 PDT (-0700), zong.li@sifive.com wrote:
+> The sifive L2 has been renamed to sifive CCACHE, EDAC driver needs to
+> apply the change as well
+
+That means the build would be broken before this patch, which we 
+generally try to avoid as it breaks things like bisecting.
+
 >
-> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
 > Signed-off-by: Zong Li <zong.li@sifive.com>
 > ---
->  .../riscv/{sifive-l2-cache.yaml => sifive-ccache.yaml}      | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->  rename Documentation/devicetree/bindings/riscv/{sifive-l2-cache.yaml => sifive-ccache.yaml} (92%)
+>  drivers/edac/Kconfig       |  2 +-
+>  drivers/edac/sifive_edac.c | 12 ++++++------
+>  2 files changed, 7 insertions(+), 7 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-ccache.yaml
-> similarity index 92%
-> rename from Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> rename to Documentation/devicetree/bindings/riscv/sifive-ccache.yaml
-> index 69cdab18d629..1a64a5384e36 100644
-> --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/sifive-ccache.yaml
-> @@ -12,8 +12,8 @@ maintainers:
->    - Paul Walmsley  <paul.walmsley@sifive.com>
+> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
+> index 17562cf1fe97..456602d373b7 100644
+> --- a/drivers/edac/Kconfig
+> +++ b/drivers/edac/Kconfig
+> @@ -473,7 +473,7 @@ config EDAC_ALTERA_SDMMC
 >
->  description:
-> -  The SiFive Level 2 Cache Controller is used to provide access to fast copies
-> -  of memory for masters in a Core Complex. The Level 2 Cache Controller also
-> +  The SiFive Composable Cache Controller is used to provide access to fast copies
-> +  of memory for masters in a Core Complex. The Composable Cache Controller also
->    acts as directory-based coherency manager.
->    All the properties in ePAPR/DeviceTree specification applies for this platform.
+>  config EDAC_SIFIVE
+>  	bool "Sifive platform EDAC driver"
+> -	depends on EDAC=y && SIFIVE_L2
+> +	depends on EDAC=y && SIFIVE_CCACHE
+>  	help
+>  	  Support for error detection and correction on the SiFive SoCs.
 >
-> @@ -27,6 +27,7 @@ select:
->          enum:
->            - sifive,fu540-c000-ccache
->            - sifive,fu740-c000-ccache
-> +          - sifive,ccache0
-
-Looks like Rob's bot had comments and I don't see a v2.  Sorry if I'm 
-missing something.
-
-Also: I'd guess that we only had the SOC-specific mappings on purpose.  
-It's kind of a grey area and I'm OK either way, but I'd definately 
-prefer the DT folks to get a chance to review these.  My guess is that 
-they're not looking due to the bot comments, but sorry again if I've 
-missed it.
-
->    required:
->      - compatible
-> @@ -37,6 +38,7 @@ properties:
->        - enum:
->            - sifive,fu540-c000-ccache
->            - sifive,fu740-c000-ccache
-> +          - sifive,ccache0
->        - const: cache
+> diff --git a/drivers/edac/sifive_edac.c b/drivers/edac/sifive_edac.c
+> index ee800aec7d47..b844e2626fd5 100644
+> --- a/drivers/edac/sifive_edac.c
+> +++ b/drivers/edac/sifive_edac.c
+> @@ -2,7 +2,7 @@
+>  /*
+>   * SiFive Platform EDAC Driver
+>   *
+> - * Copyright (C) 2018-2019 SiFive, Inc.
+> + * Copyright (C) 2018-2022 SiFive, Inc.
+>   *
+>   * This driver is partially based on octeon_edac-pc.c
+>   *
+> @@ -10,7 +10,7 @@
+>  #include <linux/edac.h>
+>  #include <linux/platform_device.h>
+>  #include "edac_module.h"
+> -#include <soc/sifive/sifive_l2_cache.h>
+> +#include <soc/sifive/sifive_ccache.h>
 >
->    cache-block-size:
+>  #define DRVNAME "sifive_edac"
+>
+> @@ -32,9 +32,9 @@ int ecc_err_event(struct notifier_block *this, unsigned long event, void *ptr)
+>
+>  	p = container_of(this, struct sifive_edac_priv, notifier);
+>
+> -	if (event == SIFIVE_L2_ERR_TYPE_UE)
+> +	if (event == SIFIVE_CCACHE_ERR_TYPE_UE)
+>  		edac_device_handle_ue(p->dci, 0, 0, msg);
+> -	else if (event == SIFIVE_L2_ERR_TYPE_CE)
+> +	else if (event == SIFIVE_CCACHE_ERR_TYPE_CE)
+>  		edac_device_handle_ce(p->dci, 0, 0, msg);
+>
+>  	return NOTIFY_OK;
+> @@ -67,7 +67,7 @@ static int ecc_register(struct platform_device *pdev)
+>  		goto err;
+>  	}
+>
+> -	register_sifive_l2_error_notifier(&p->notifier);
+> +	register_sifive_ccache_error_notifier(&p->notifier);
+>
+>  	return 0;
+>
+> @@ -81,7 +81,7 @@ static int ecc_unregister(struct platform_device *pdev)
+>  {
+>  	struct sifive_edac_priv *p = platform_get_drvdata(pdev);
+>
+> -	unregister_sifive_l2_error_notifier(&p->notifier);
+> +	unregister_sifive_ccache_error_notifier(&p->notifier);
+>  	edac_device_del_device(&pdev->dev);
+>  	edac_device_free_ctl_info(p->dci);
