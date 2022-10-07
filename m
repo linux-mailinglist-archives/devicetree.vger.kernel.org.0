@@ -2,281 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3B755F739C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 06:45:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6F5C5F73A3
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 06:53:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbiJGEpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 00:45:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50994 "EHLO
+        id S229453AbiJGExy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 00:53:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiJGEpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 00:45:01 -0400
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2538A2980D;
-        Thu,  6 Oct 2022 21:44:56 -0700 (PDT)
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-        id 4MkG1v6TnSz4xGm; Fri,  7 Oct 2022 15:44:51 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gibson.dropbear.id.au; s=201602; t=1665117891;
-        bh=hrOjnbB4oejQaTnhGDdHYyHlciD8hGLFORyiosmnEsQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=klHIk4zLTaSzaNUww/HEFt3s0c16DLONmK4f51UTXyEeoizZdPm19Wb9rMnDcHC8q
-         YmQew/OZXXURhPKpd6Ltd0mnj3HEmOqq+ODPYGq4hwWL3iSQ4znPDqn0OvxSYYg0Op
-         I0zVevSMgOacOb9XW41T4JPg5vbTa5YfzEdY3Q94=
-Date:   Fri, 7 Oct 2022 15:11:58 +1100
-From:   David Gibson <david@gibson.dropbear.id.au>
-To:     Tadeusz Struk <tadeusz.struk@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        devicetree-compiler@vger.kernel.org
-Subject: Re: [PATCH v4] libfdt: tests: add get_next_tag_invalid_prop_len
-Message-ID: <Yz+nDsk1vmn8xzBY@yekko>
-References: <20221006223155.3316133-1-tadeusz.struk@linaro.org>
+        with ESMTP id S229452AbiJGExx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 00:53:53 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01olkn2101.outbound.protection.outlook.com [40.92.99.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C2ABEF8E;
+        Thu,  6 Oct 2022 21:53:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dPisCov5ujOra4dT0gIp9aVLVbbPjVl27LcSHszcKxQtzUZ4lmpA9b8/Zlv/9/XyZ2Cq43wRz4V9u2aXs0npUDzrKTic1jU6rAQzB2nSWceF8G9ShjfVs5t3iQTwp9Zv6eFgPPHAAqv0wB009jw/qw/9VsmjXshm2pSruibp5V1r4b3R7byQzzJTRz3RkabNiDIhpW6x7c5sZ5Wl/Hx7DO8yXTas2S9rihpXRLIRMaJGtwWyV8PjSW3Hq5E57EOi9z7aSzcIqZCUSD+k2Cu5G4kVkUbY0St2qolLGgHpkPxADW+V5dF2UjBQz6jxK/GTQfllm03wiLuNeaYyWgm7xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DBgcEtGSwfrmAXMTFxX3P8TCc/LuaVFAUzlc2/vlMes=;
+ b=nrAp4vvAio4WMO1FiZdsY/6/ZVO5gZNFaXU8mqPGngQ0jb1gFHPHazsKJfSaefqaLKsNF3fM2IoM8pZyFjCd2zgFMx1uabiLhS+HAnnZ8QtartxwjeV0K/vn1MSHDN8xFEiLwe1EjvCAd96EGA7voEpwhicMpv3TD45EnWKukMz6OWzbINvC6aitKqwkZCu8RVxL0g5cf4b6ij3pko6gWbd6B4aJ3Quq6+GZ+d+9pODxa2dYWGOMqm1+2PO3Mjd8mRm457J4ssM9v5JAzgUt4k/O9j3lmpe/eSC3J3Q+Y4gVj9yOlGRjBoZq+zJ4kbStqvoL50cy3we9Go0fRUKoAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DBgcEtGSwfrmAXMTFxX3P8TCc/LuaVFAUzlc2/vlMes=;
+ b=ohmz6xXHGdb5EwWFjyv6+LiEcVqrgDyjG02eAu0G2fXE4FZoyNC8AJsMRafBTH/SZtAOHQNjp+bYdUzMxRqxNLC69nJpOhlg70sOXxZARMd2KHQFpt5zMEB7DuXNXT0i1uvpacd4SxZZJrt8OohMvgyBL7zir7Vz/Roglo6HTuDgCbd12LbVbaDNwO3Vy+t+d+qXBlQqHFTXqpkf8RgK5nxn/pR4+gC0vqWe5UlE+p+uc7OCIFwgeDbgfWHI+jIDiUBBitAXys8MfHUnak5d/OTDlEIqcHtTvZjzbgN+hXjqZ91OpAmNfNe3Rm4Q6bJ9ovN6X3yedX6yLiIKluPNPA==
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:252::12)
+ by TYWP286MB2234.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:171::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5709.15; Fri, 7 Oct
+ 2022 04:53:48 +0000
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::2260:9c8e:887:2057]) by TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::2260:9c8e:887:2057%6]) with mapi id 15.20.5676.031; Fri, 7 Oct 2022
+ 04:53:48 +0000
+Message-ID: <TY3P286MB261125CD3D2FCB6F390F34D1985F9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+Date:   Fri, 7 Oct 2022 12:53:42 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+To:     clabbe@baylibre.com
+Cc:     davem@davemloft.net, devicetree@vger.kernel.org, heiko@sntech.de,
+        herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org
+References: <20220927080048.3151911-5-clabbe@baylibre.com>
+From:   Shengyu Qu <wiagn233@outlook.com>
+Subject: Re: [PATCH RFT 4/5] crypto: rockchip: support the new crypto IP for
+ rk3568/rk3588
+In-Reply-To: <20220927080048.3151911-5-clabbe@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN:  [0vdiqqlHM1zUuViTnuXij3RxWTAVsg9W]
+X-ClientProxiedBy: SG2PR02CA0135.apcprd02.prod.outlook.com
+ (2603:1096:4:188::23) To TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:252::12)
+X-Microsoft-Original-Message-ID: <1ffb32b1-3dcf-593f-018b-54024d437348@outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="hO9ogC2P1PgBwg3F"
-Content-Disposition: inline
-In-Reply-To: <20221006223155.3316133-1-tadeusz.struk@linaro.org>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY3P286MB2611:EE_|TYWP286MB2234:EE_
+X-MS-Office365-Filtering-Correlation-Id: 69f666d0-383a-41ae-ab8b-08daa81feb60
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5XNkUzoQ6/sNHC7Q+FQLl2y+h2phgAtizg/3hPObNYrvFt/Y2NaXSfjz+THvYmme7PSJm4ebkrgkUnMh9sC//W9MS1y7WFe0UjJjr5Y1kB36Y9AlEwII8yKd0wkqm1MAlFngR9Wxc1a+IFmfBONzkjBxc2deNyWzREJAqpuH6MZpjiAVdxuW7/pG0r+llUub2inOAoEa8UaZwKTGuarEoV8T7MHXPVly5QNyo8WCmIFwTWjbVE9U6L7hp7ffZP7uBt0VldS9ad32efPS9oUYGFjCl6wpnL6pi5SG9wqeqjwW2KItiOoKViKcgds+qRcrLp/4MdcAmzcnQHWTpSUPFcLB5eaCcfXTC53na/d0sRmiGjQMCky7rZlxmUavoaJVEqs8lmjAkh+/XYPuwUpZyF0dVf7R1exnbjx908RAQTT4VR5dqNNyOl2IY8cvQOKvfhS7mym4D6JFicrnP041VGYBCroxP+Wri3aLPI5W3RbltFBOLmYtFAX3LUkIcSbQ9gF2QVSApgkNKVs2FXx+E4QUtiFRAv0J7Lpl9ilI8x8ssnNZycqtlPMErsh1urDHiwWT/IJV8u62rP/khwRmWtkcX62kXm9ccoc28DTelE+U6nQt2+Ab6NLeZl4G8uOcoy+9l6uRzs44H1G4S3PTcey2hWKmOZ6XsbBSgZuKGN8=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N21WeUJuMWM5dDVFQXRpZXZVZXFBVEREM2MvSytZbjQxaTRLVGF3bDgwQjZG?=
+ =?utf-8?B?dFB2NFNnVmZlSXg2THlFRDZPYWxVT3JkWlhlNXpZVFFPVC9yVE54U05qUGRN?=
+ =?utf-8?B?NUxETFdSVFVwS1R4L2lJYmtFVnRKeDE3U2tGeTFIeGdYTU5nR0pIeHJBdHNq?=
+ =?utf-8?B?ejhkbjBVcTlBRm1yQkdXRStJSUZhOVVjc1U0SnAwdFY4aElMdjNMQVVUbHFE?=
+ =?utf-8?B?UU5wbWhVSFQzK1hwcjhQQm43ZTFkK1c2R2dRNFMrMTZTcEVlMk5EWFp2am9N?=
+ =?utf-8?B?bU9sYjhTUWJ0eTlLN3FHTG5sMTVELzltSEd6OG1Ia056T2FMRUVGNVZyMTEy?=
+ =?utf-8?B?WVA4dkgyVmhWT2xtT3hLQUFMOTZERUZqa0dJRGtPcmNvTW0rODk4cTNNTUFG?=
+ =?utf-8?B?ZVRPVVBud1NMRGRlckh0Qk0xYmZlam5jakd4RnN1MUpHcWNLWFFoWGdxZmpo?=
+ =?utf-8?B?TENtdjB6RW9ob2FvcDZLbXpFdzVjcFRNcXQyaHBNQmFSczlGT3pjMUpmQTdO?=
+ =?utf-8?B?NWxHaFExMk14ODI3cU5rdlM0N0o0MzZJMlhBR0p0MmUwMXNjQXByUXBKcTBp?=
+ =?utf-8?B?WDJBWUVuMVVEQ3VMTS95cGtjQkZrOVN1L1pmd05ZVk9uNzlDQkp0RXhUVzF0?=
+ =?utf-8?B?NnJIaVEzUEQ3Lzd3U3ZLOW9vWTYyRFNoU2JqQzE5S3FzK3FoNnV1Wll6Tkhh?=
+ =?utf-8?B?MndLTThHRlRHTkRIZDZrQXhqWU5TbnZuVDQzR2gzZUREZ3JSTm9zUnF4ZTN1?=
+ =?utf-8?B?MTA3TldJZlhhVFJ3bHpUbCs2ZStvRTUySkJ4Sm1USnVhNm1xNHBrWFY3eHBD?=
+ =?utf-8?B?N1NpLzhXNjE0d1N4OWhrcFhCTVRlLzBxdE9OeVNyTlZZL0FSZGxBV0IydGlC?=
+ =?utf-8?B?aUEvV01FSjFTbmxYMk1wOXhvQ2NtdW1xbTVSTkl0UVZubWF5UXB5Ym8rNUtS?=
+ =?utf-8?B?YVNjK0J3UExuM09CUGhGZTFPa0I1Z0R5NzNkZExDNWpXN1ZNYmlyV3pmWEtF?=
+ =?utf-8?B?eEYvQWNtcWFWQzI2R1draFh3RXVycks5azNueFAvc1Z2RHVORFNMSWZPVzJr?=
+ =?utf-8?B?UGFuekF5S2R4S3hybkFMMnBKSEdJV3dZSFVJdWhRTkRkdzRSUmFuTDNQWEdX?=
+ =?utf-8?B?NE1MVlNJRmVybjJTMFZqWU1zcVRMcFZkVFhhYXJ6RitHY0ZSUTNHYjVDbEJt?=
+ =?utf-8?B?anU1M3pqRkszQlpEM05pYTRZK1VlejJ6WWRPL0dEbjB0TmlIWldsOGR4QWVi?=
+ =?utf-8?B?ZkIraEQ1aW8yQW94RnFURC9RRGEzODdYL1czVlA2TGRLTmEzVzlWQ1hHUWU2?=
+ =?utf-8?B?VlNMc3crL3U4ZFc4bnMrcHNVQnduSXp4eWZDdEI2Q3dRUXdQU2ZTc2hMblBY?=
+ =?utf-8?B?WWg2b014MXdqcnNVNGdIK3QvZUVJZjJWZFRaVldXNSt6MlZZNTJWRUpSL3RV?=
+ =?utf-8?B?SGFnOG16bFhxUVpmTzJyLzRCbTlvdkNjQXVqam95ZzJiZ0FWRlBjZ2JBQjZa?=
+ =?utf-8?B?enpWVk81UkNxVC8wZ3gzZUdTNG1WUUZxdTlVRUVlN2ZVb0tjeVJrVkNGK29z?=
+ =?utf-8?B?R3FBM3k5cDNQS3c5VldobjJBdG9WZkpVL2ZpVnVvV1g5YXRtekdnYk5sVUV4?=
+ =?utf-8?B?TGROK3pYejZBWU83dXJYWUdTZHJBZE50ek5oQXlGNDF2Q3k2MUJRY0JQNld3?=
+ =?utf-8?B?MjB2K0pkdmZoWUJWTnRUVFU1Q0NGaWs5Mk5rMXROYkhuM3hZNkowV2ZnPT0=?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69f666d0-383a-41ae-ab8b-08daa81feb60
+X-MS-Exchange-CrossTenant-AuthSource: TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2022 04:53:48.5158
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWP286MB2234
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dear Corentin,
 
---hO9ogC2P1PgBwg3F
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+According to official document
 
-On Thu, Oct 06, 2022 at 03:31:55PM -0700, Tadeusz Struk wrote:
-> Add a new test get_next_tag_invalid_prop_len, which covers
-> fdt_next_tag(), when it is passed an corrupted blob, with
-> invalid property len values.
->=20
-> Signed-off-by: Tadeusz Struk <tadeusz.struk@linaro.org>
+(https://github.com/JeffyCN/rockchip_mirrors/blob/docs/Common/CRYPTO/Rockchip_Developer_Guide_Crypto_HWRNG_CN.pdf)
 
-Sorry, I was hoping I'd be able to apply this variant, but
-unfortunately I realize I've given you some misleading advice in
-earlier reviews, so there are still a few nits to squash, details
-below.  Thanks for your patience.
+Seems they have just updated downstream source to support more algorithms
 
-> ---
-> v4:
->  * I didn't keep track of the changes in the test code,
->    but this version should have all the comments addressed.
-> ---
->  tests/.gitignore                      |  1 +
->  tests/Makefile.tests                  |  2 +-
->  tests/get_next_tag_invalid_prop_len.c | 76 +++++++++++++++++++++++++++
->  tests/meson.build                     |  1 +
->  tests/run_tests.sh                    |  1 +
->  5 files changed, 80 insertions(+), 1 deletion(-)
->  create mode 100644 tests/get_next_tag_invalid_prop_len.c
->=20
-> diff --git a/tests/.gitignore b/tests/.gitignore
-> index 03bdde2..3376ed9 100644
-> --- a/tests/.gitignore
-> +++ b/tests/.gitignore
-> @@ -74,3 +74,4 @@ tmp.*
->  /truncated_memrsv
->  /utilfdt_test
->  /value-labels
-> +/get_next_tag_invalid_prop_len
-> diff --git a/tests/Makefile.tests b/tests/Makefile.tests
-> index 2d36c5d..2c5b4c9 100644
-> --- a/tests/Makefile.tests
-> +++ b/tests/Makefile.tests
-> @@ -4,7 +4,7 @@ LIB_TESTS_L =3D get_mem_rsv \
->  	get_path supernode_atdepth_offset parent_offset \
->  	node_offset_by_prop_value node_offset_by_phandle \
->  	node_check_compatible node_offset_by_compatible \
-> -	get_alias \
-> +	get_alias get_next_tag_invalid_prop_len \
->  	char_literal \
->  	sized_cells \
->  	notfound \
-> diff --git a/tests/get_next_tag_invalid_prop_len.c b/tests/get_next_tag_i=
-nvalid_prop_len.c
-> new file mode 100644
-> index 0000000..20c51de
-> --- /dev/null
-> +++ b/tests/get_next_tag_invalid_prop_len.c
-> @@ -0,0 +1,76 @@
-> +// SPDX-License-Identifier: LGPL-2.1-or-later
-> +/*
-> + * libfdt - Flat Device Tree manipulation
-> + *	Testcase for fdt_next_tag()
-> + */
-> +#include <stdlib.h>
-> +#include <stdio.h>
-> +#include <string.h>
-> +#include <stdint.h>
-> +
-> +#include <libfdt.h>
-> +#include "tests.h"
-> +#include "testdata.h"
-> +
-> +#define FDT_SIZE 65536
-> +#define CHECK_ERR(err) \
-> +({ if (err) \
-> +	FAIL("%s: %d: %s", __FILE__, __LINE__, fdt_strerror(err)); \
-> +})
-> +
-> +int main(int argc, char *argv[])
-> +{
-> +	struct fdt_property *prp;
-> +	void *fdt;
-> +	int nextoff =3D 0, offset, err;
-> +	uint32_t tag;
-> +
-> +	test_init(argc, argv);
-> +	fdt =3D malloc(FDT_SIZE);
-> +	if (!fdt)
-> +		FAIL("Can't allocate memory");
-> +	err =3D fdt_create(fdt, FDT_SIZE);
-> +	CHECK_ERR(err);
-> +	fdt_set_off_dt_strings(fdt, FDT_SIZE);
+such as RSA. So it would be better to sync your code with downstream driver
 
-My comment about not needing to create the dummy reservemap entry was
-misleading, sorry.  I was just referring to the actual dummy entry you
-created with fdt_add_reservemap_entry.  You should still call
-fdt_finish_reservemap() so that the blob is in the right state to call
-fdt_begin_node().  Directly manipulating with fdt_set_off_dt_strings()
-is unnecesarily fragile since it requires internal knowledge of how
-the sw functions keep track of the state.
+for more feature.
 
-> +	err =3D fdt_begin_node(fdt, "");
-> +	CHECK_ERR(err);
-> +	err =3D fdt_property_u32(fdt, "prop-int-32", 0x1234);
-> +	CHECK_ERR(err);
-> +	err =3D fdt_property_u32(fdt, "prop2-int-32", 0x4321);
-> +	CHECK_ERR(err);
-> +	err =3D fdt_end_node(fdt);
-> +	CHECK_ERR(err);
+Shengyu
 
-One more minor deficiency here I missed earlier.  You're not calling
-fdt_finish(), so the blob is in sw state.  The read-only libfdt
-functions are designed to work on sw state trees as well as finished
-trees, but there are some internal logic differences to handle this.
-
-You're probably mostly concerned with the original fdt_next_tag() bug
-for finished trees, so it's probably better to call fdt_finish() so
-that's the case you're testing.  Alternatively, you could test both
-variants.  Since you're corrupting the tree, you'll need to
-reconstruct the test blob for each variant.  You could either make a
-helper function taking a parameter and call it twice, or make the
-whole test binary take a parameter and invoke it twice from
-run_tests.sh.
-
-> +	offset =3D fdt_first_property_offset(fdt, 0);
-> +	if (offset <=3D 0)
-> +		FAIL("FAIL Invalid offset %x, expected value greater than 0\n",
-> +		     offset);
-> +
-> +	/* Normal case */
-> +	tag =3D fdt_next_tag(fdt, offset, &nextoff);
-> +	if (tag !=3D FDT_PROP )
-> +		FAIL("FAIL Invalid tag %x, expected FDT_PROP\n", tag);
-> +
-> +	/* Get a writable ptr to the first property and corrupt the lenght */
-> +	prp =3D fdt_get_property_w(fdt, 0, "prop-int-32", NULL);
-> +	if (!prp)
-> +		FAIL("Bad property pointer");
-
-My comment about using fdt_get_property_w() was also a bit misleading,
-since I wasn't thinking about the fact that you need both the offset
-(for fdt_next_tag()) and the direct pointer to the property struct.
-
-This code is relying on the offset from fdt_first_property_offset()
-and the pointer from fdt_get_property_w() referring to the same
-location in the blob.  They will be, but it would be better to have
-that be obvious by construction.
-
-I'd suggest you first get the offset with fdt_first_property_offset(),
-then compute the prp pointer from that with
-fdt_get_property_by_offset().  You'll need a cast to remove the const
-=66rom the latter in order to mangle the tree, of course.  If you wanted
-to add a new fdt_get_property_by_offset_w() wrapper to do that cast,
-that would also be fine (if you do, make it a separate patch please).
-There's no particular rationale to which functions have _w() variants
-and which don't (so far), I just made the _w() variants when I needed
-them for other functions internally.
-
-> +
-> +	/* int overflow case */
-> +	prp->len =3D cpu_to_fdt32(0xFFFFFFFA);
-> +	tag =3D fdt_next_tag(fdt, offset, &nextoff);
-> +	if (tag !=3D FDT_END)
-> +		FAIL("Invalid tag %x, expected premature FDT_END", tag);
-> +	if (nextoff !=3D -FDT_ERR_BADSTRUCTURE)
-> +		FAIL("Invalid nextoff, expected error -FDT_ERR_BADSTRUCTURE");
-> +
-> +	/* negative offset case */
-> +	prp->len =3D cpu_to_fdt32(0x7FFFFFFA);
-> +	tag =3D fdt_next_tag(fdt, offset, &nextoff);
-> +	if (tag !=3D FDT_END)
-> +		FAIL("Invalid tag, expected premature FDT_END");
-> +	if (nextoff !=3D -FDT_ERR_BADSTRUCTURE)
-> +		FAIL("Invalid nextoff, expected error -FDT_ERR_BADSTRUCTURE");
-> +
-> +	free(fdt);
-> +	PASS();
-> +}
-> diff --git a/tests/meson.build b/tests/meson.build
-> index 4ac154a..29a42dd 100644
-> --- a/tests/meson.build
-> +++ b/tests/meson.build
-> @@ -47,6 +47,7 @@ tests =3D [
->    'get_path',
->    'get_phandle',
->    'get_prop_offset',
-> +  'get_next_tag_invalid_prop_len',
->    'getprop',
->    'incbin',
->    'integer-expressions',
-> diff --git a/tests/run_tests.sh b/tests/run_tests.sh
-> index 244df8a..46678cb 100755
-> --- a/tests/run_tests.sh
-> +++ b/tests/run_tests.sh
-> @@ -513,6 +513,7 @@ libfdt_tests () {
->      run_dtc_test -I fs -O dts -o fs.test_tree1.test.dts $FSBASE/test_tre=
-e1
->      run_dtc_test -I fs -O dtb -o fs.test_tree1.test.dtb $FSBASE/test_tre=
-e1
->      run_test dtbs_equal_unordered -m fs.test_tree1.test.dtb test_tree1.d=
-tb
-> +    run_test get_next_tag_invalid_prop_len
-> =20
->      ## https://github.com/dgibson/dtc/issues/64
->      check_tests "$SRCDIR/phandle-args-overflow.dts" clocks_property
-
---=20
-David Gibson			| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
-				| _way_ _around_!
-http://www.ozlabs.org/~dgibson
-
---hO9ogC2P1PgBwg3F
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEoULxWu4/Ws0dB+XtgypY4gEwYSIFAmM/pvQACgkQgypY4gEw
-YSL3nxAAn1MEILHuAaDAJ9fWRmsl/f6RGiZMZHzYmiHaVFrgMHuKfn4rwrr7BS8f
-wZXK/leHoKw7KERoeCbewG6fKOtifU+C0u3QxZ6URfwY2TRJMWMoKPxuVtS37LM9
-EaJ5H0ucF4VtVcEM1IUYpFx0PSzkfCEhpY5+erCkXviI1jBT4jwweVgTcIoMsa4D
-Cw8CGbfdTu1hAkk0dTo588CZ7Jee3mECHCRPKh90ecXGQzKEHVm8i7/G9W1ewBWl
-65mUdk26JqN0mowQzmbS3N9VXX6nDvoXapjqDTaDSLk4INqDar4ZknhbOw1jlt6u
-Bm6UB2x/gebiWAnDC1y58RX9hNfOJ1A2Z+pLIBNsYDNOoJcoHbqLoV/wdm5/Y3Qo
-XW8IXqrR9FgVueHmAq2G9qdgzYLmveaq0iNsMilcoaLsawB0RMvuI3wLBc1O+jrq
-ysCFt0/osziOTG172gPX6Nj0So79OdXGIbVtw1yzjJt5Kf7TVztYArbaFN+TXtsv
-w0ry6DIILGZzwKgoG5bR3l1pIXQT7i5dIbVCPlKTCIp/naKoWHSPSyiDlwPSxJD1
-wsgajmCmNGaEdo6ZqwMsw3gdGAAb3rKSCq0T5UlDNUvM1xa45MtUXQsen95dsVfd
-rLNzPYUwsKyN+J4+6dP4nf3mwXwMLgKaUyqAlKhRanVF8qAJoW0=
-=UHHF
------END PGP SIGNATURE-----
-
---hO9ogC2P1PgBwg3F--
