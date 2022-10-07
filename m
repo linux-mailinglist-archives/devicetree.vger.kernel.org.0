@@ -2,125 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9141F5F71F8
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 01:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8722F5F7286
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 03:28:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232277AbiJFXmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 19:42:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52912 "EHLO
+        id S231499AbiJGB2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 21:28:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230527AbiJFXmw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 19:42:52 -0400
-Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA585B7EE0;
-        Thu,  6 Oct 2022 16:42:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:In-Reply-To:References;
-        bh=EHXjKJCl8P229+ixHF+hwry+sLAzC+giK/HCO4UhZtM=; b=rdbs0XlVMVxA2TXDEOYmo3yly1
-        q/rGmxrWlhuDOOfvnNidJy50/DJ8nB5+ObMV2EOuIm7w6jsOgg0Q9xTlZ1LXB4flXR52icvhMjSLK
-        8Ojueht35o3yVb5joRTEBzK4Iv3ssNZ/TSgUluoYYEKwbdiFS54MXp7Rx1IdIJKtEsQupYYlGEqQm
-        rsuSB6+6aBNGkmzOMWqtI+BMllrEaqhL4jYN0JRt/t8mTwfXYiVxCRCfBzVmFhmqTf3RTsFCIOUip
-        n0rQhOcAS3O2Ytdq7vpD59YHTP4Lh/+dQkMDzq/FI043EyJFxMB9MPSJLQyGA/i0LDXtaf8JjWBxq
-        aJoQ27Jg==;
-Received: from [2601:1c2:d80:3110::a2e7] (helo=casper.infradead.org)
-        by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1ogaVt-001WuB-5Z; Thu, 06 Oct 2022 23:42:49 +0000
-From:   Randy Dunlap <rdunlap@infradead.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Rich Felker <dalias@libc.org>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Arnd Bergmann <arnd@arndb.de>, linux-sh@vger.kernel.org
-Subject: [PATCH] sh: init: use OF_EARLY_FLATTREE for early init
-Date:   Thu,  6 Oct 2022 16:42:40 -0700
-Message-Id: <20221006234240.7755-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.37.3
+        with ESMTP id S229919AbiJGB2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 21:28:54 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2EDFABF30;
+        Thu,  6 Oct 2022 18:28:53 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id h6so2137630qkl.11;
+        Thu, 06 Oct 2022 18:28:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2/GnsvYzCny+dmNEkGgCTHzZXDk1Ni5cyCk/C+scny4=;
+        b=IvwFqG6QTISSBPWrff3K0Yby7ayx52bqFJHGFO//qR4HBeOA1JXm4BWw+7SmmPlDo3
+         b34Dpjuq1Q5wy10h6jHJZRpcPCJqvsQAmmRHgZ7BiFJcf7F8KWCYPtowKste1uSmcKrJ
+         upUcDf3MhctPe9CQie5bXHVfFsCJFeVGNNQ/ztZMg2ImXo/+PxmU79m+hTNsvrSr8Hsz
+         QPt7D4Cq6Qfo73/vthAyqsDvqtfX0XWUwzZS89OXGOwLuuzTz9EqHhnhYkEX3RDMLxaL
+         7z2/voo8CugkZXPLKdyNMRIDzoIFoUjHysv9jlrZXUWEybuyQtbtekjc9VKCtnAo1ZLB
+         MDSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2/GnsvYzCny+dmNEkGgCTHzZXDk1Ni5cyCk/C+scny4=;
+        b=jYnIDdRiCOVI+wZqk3vVj6tTc2HB/4e+/cmXF6jrMrxlZot9L8YyCcoGIOJNMrdHM7
+         pj4ZAsp39ryJz+0bRZOS6mJ3FjKadLR/Pd1tkE/3me+cQub6TQAV70EpJdx88fugkSkl
+         x8HsgUw5QlznUKxOvIlZyXrsB9IOpJ46KMQtN1WT0thDawyI1NMDPfcUykdIaCVNoDQ6
+         NcKFShgvoBbJj/JvWUFyemnS4JyVb1h75L4G8P5prmG45XWpCE7hEt6ORIzdKHSLzDul
+         DwOibSobZGRHwaYowwqrVlWSZhJL1OhysycGnkcE8diSu9+bp5u5LBezzQshLGchIkOH
+         1aJQ==
+X-Gm-Message-State: ACrzQf1caoQXL2SE7cvfKVWaPuNt75zq4mhkVP88lGnRY6igFQo/xI4S
+        ravYLMTiMSeV/oeb0tqvrVjdQ7JKEX6ZK/lo8GGgHZfYhUN0KA==
+X-Google-Smtp-Source: AMsMyM5+Qt0mAKsm6JZ0FNZOg7WcADIEReJ8PsguLHKw330lri9d1l77gvVWvXsGj3Sle/+oqHSPJhUiyjkUSjttX0Q=
+X-Received: by 2002:a05:620a:3720:b0:6dd:beba:b3a1 with SMTP id
+ de32-20020a05620a372000b006ddbebab3a1mr2262149qkb.138.1665106133111; Thu, 06
+ Oct 2022 18:28:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1664991040.git.chiaen_wu@richtek.com> <1bcd19dbd09650ddac7b96b0fe2932698be2731e.1664991040.git.chiaen_wu@richtek.com>
+ <Yz11bkxz9lK4wOHE@smile.fi.intel.com>
+In-Reply-To: <Yz11bkxz9lK4wOHE@smile.fi.intel.com>
+From:   ChiaEn Wu <peterwu.pub@gmail.com>
+Date:   Fri, 7 Oct 2022 09:28:17 +0800
+Message-ID: <CABtFH5J2r=Qq1kNb=yp6Hf7=oKJH9qeiwsO+4ejy5m9N+ZODXg@mail.gmail.com>
+Subject: Re: [PATCH v13 5/5] leds: flash: mt6370: Add MediaTek MT6370
+ flashlight support
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        jic23@kernel.org, lars@metafoo.de, chiaen_wu@richtek.com,
+        alice_chen@richtek.com, cy_huang@richtek.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, szunichen@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When CONFIG_OF_EARLY_FLATTREE and CONFIG_SH_DEVICE_TREE are not set,
-SH3 build fails with a call to early_init_dt_scan(), so in
-arch/sh/kernel/setup.c and arch/sh/kernel/head_32.S, use
-CONFIG_OF_EARLY_FLATTREE instead of CONFIG_OF_FLATTREE.
+On Wed, Oct 5, 2022 at 8:15 PM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
 
-Fixes this build error:
-../arch/sh/kernel/setup.c: In function 'sh_fdt_init':
-../arch/sh/kernel/setup.c:262:26: error: implicit declaration of function 'early_init_dt_scan' [-Werror=implicit-function-declaration]
-  262 |         if (!dt_virt || !early_init_dt_scan(dt_virt)) {
+...
 
-Fixes: 03767daa1387 ("sh: fix build regression with CONFIG_OF && !CONFIG_OF_FLATTREE")
-Fixes: eb6b6930a70f ("sh: fix memory corruption of unflattened device tree")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org
-Cc: Rich Felker <dalias@libc.org>
-Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: linux-sh@vger.kernel.org
----
- arch/sh/kernel/head_32.S |    6 +++---
- arch/sh/kernel/setup.c   |    4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
+> > +config LEDS_MT6370_FLASH
+> > +     tristate "Flash LED Support for MediaTek MT6370 PMIC"
+>
+> > +     depends on LEDS_CLASS && OF
+>
+> Why do you have OF dependency?
+>
 
---- a/arch/sh/kernel/setup.c
-+++ b/arch/sh/kernel/setup.c
-@@ -244,7 +244,7 @@ void __init __weak plat_early_device_set
- {
- }
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- void __ref sh_fdt_init(phys_addr_t dt_phys)
- {
- 	static int done = 0;
-@@ -326,7 +326,7 @@ void __init setup_arch(char **cmdline_p)
- 	/* Let earlyprintk output early console messages */
- 	sh_early_platform_driver_probe("earlyprintk", 1, 1);
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- #ifdef CONFIG_USE_BUILTIN_DTB
- 	unflatten_and_copy_device_tree();
- #else
---- a/arch/sh/kernel/head_32.S
-+++ b/arch/sh/kernel/head_32.S
-@@ -64,7 +64,7 @@ ENTRY(_stext)
- 	ldc	r0, r6_bank
- #endif
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- 	mov	r4, r12		! Store device tree blob pointer in r12
- #endif
- 	
-@@ -315,7 +315,7 @@ ENTRY(_stext)
- 10:		
- #endif
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- 	mov.l	8f, r0		! Make flat device tree available early.
- 	jsr	@r0
- 	 mov	r12, r4
-@@ -346,7 +346,7 @@ ENTRY(stack_start)
- 5:	.long	start_kernel
- 6:	.long	cpu_init
- 7:	.long	init_thread_union
--#if defined(CONFIG_OF_FLATTREE)
-+#if defined(CONFIG_OF_EARLY_FLATTREE)
- 8:	.long	sh_fdt_init
- #endif
- 
+Hi Andy,
+The original idea is to use the "fwnode_property_*" related function.
+But this side may only consider just "Build Pass" (?)
+I will remove "OF" in the v14 patch.
+Thanks for your review.
+
+-- 
+Best Regards,
+ChiaEn Wu
