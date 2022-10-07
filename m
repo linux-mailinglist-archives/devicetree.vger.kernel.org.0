@@ -2,103 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2663B5F791C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 15:38:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A3085F792F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 15:46:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbiJGNi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 09:38:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44424 "EHLO
+        id S229906AbiJGNq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 09:46:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229641AbiJGNi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 09:38:27 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3402A9DD8B
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 06:38:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1665149904; x=1696685904;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tsmSIjIJ46YXGPAI+5kmgawlLLaMNxEFDnlFEJVg1h4=;
-  b=wwfsRmngrnsTw0sC4s75r8gXg6QdLkJ4V1QlyRAZxZ7qIzMtPRLPlbsG
-   0gipOb/YdeM7cigPZer0MxX66xhiYFwxo+q2hkfAewcTtcgp/U6b1o2ne
-   LAvvUycRulmsHt6I+U0Gtm+P0xcjsBYGwe29sulAUsx5QrzBAAuZs2DKO
-   857Cwo1g5lmN0hB5KsP39IxYS62zmvvQQYWIao+/6On1S8m1q1UNrKQAK
-   GDYNZVfBMu5xiFxLyCmKzYCCtiQRZQzpuq1NlS+NtWUEwvbwmcdTQKgMa
-   7WWKX63i/0GM2q7zIrXJBYGbiKIzN/m1hpKQ0Ix999EPqV06Wvvv4woOt
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.95,166,1661842800"; 
-   d="scan'208";a="180892143"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Oct 2022 06:38:22 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 7 Oct 2022 06:38:22 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Fri, 7 Oct 2022 06:38:21 -0700
-Date:   Fri, 7 Oct 2022 14:37:59 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daire McNamara <daire.mcnamara@microchip.com>
-CC:     Hugh Breslin <hugh.breslin@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH] riscv: dts: microchip: fix fabric i2c reg size
-Message-ID: <Y0Art7TVBW8vTeUv@wendy>
-References: <20220920093734.29287-1-conor.dooley@microchip.com>
+        with ESMTP id S229736AbiJGNq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 09:46:26 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E395CBBE28;
+        Fri,  7 Oct 2022 06:46:24 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B92BA106F;
+        Fri,  7 Oct 2022 06:46:30 -0700 (PDT)
+Received: from [10.57.65.170] (unknown [10.57.65.170])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 422043F67D;
+        Fri,  7 Oct 2022 06:46:22 -0700 (PDT)
+Message-ID: <3fb949ad-74c4-1bac-7e14-5d056afcef5f@arm.com>
+Date:   Fri, 7 Oct 2022 14:45:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220920093734.29287-1-conor.dooley@microchip.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v9 1/5] dt-bindings: reserved-memory: Document
+ iommu-addresses
+Content-Language: en-GB
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     Will Deacon <will@kernel.org>, Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev,
+        Rob Herring <robh@kernel.org>
+References: <20220923123557.866972-1-thierry.reding@gmail.com>
+ <20220923123557.866972-2-thierry.reding@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220923123557.866972-2-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 20, 2022 at 10:37:35AM +0100, Conor Dooley wrote:
-> The size of the reg should've been changed when the address was changed,
-> but obviously I forgot to do so.
+On 2022-09-23 13:35, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Fixes: 7f3be227e818 ("riscv: dts: microchip: icicle: re-jig fabric peripheral addresses")
+> This adds the "iommu-addresses" property to reserved-memory nodes, which
+> allow describing the interaction of memory regions with IOMMUs. Two use-
+> cases are supported:
+> 
+>    1. Static mappings can be described by pairing the "iommu-addresses"
+>       property with a "reg" property. This is mostly useful for adopting
+>       firmware-allocated buffers via identity mappings. One common use-
+>       case where this is required is if early firmware or bootloaders
+>       have set up a bootsplash framebuffer that a display controller is
+>       actively scanning out from during the operating system boot
+>       process.
+> 
+>    2. If an "iommu-addresses" property exists without a "reg" property,
+>       the reserved-memory node describes an IOVA reservation. Such memory
+>       regions are excluded from the IOVA space available to operating
+>       system drivers and can be used for regions that must not be used to
+>       map arbitrary buffers.
 
-Forgot about this patch... Changed the fixes tag since I had to rebase
-the branch it was based on, and applied:
-https://git.kernel.org/conor/c/c210b91818e81068ca2573c20684644b8e110a07
+Bah, I've only just realised: don't we also need to change the "oneOf: 
+required: ..." schema to permit "iommu-addresses" without "reg" or "size"?
 
-Figured it was better to apply despite being in the merge window rather
-than submit a PR for a dt that I know is not right.
+Thanks,
+Robin.
 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Each mapping or reservation is tied to a specific device via a phandle
+> to the device's device tree node. This allows a reserved-memory region
+> to be reused across multiple devices.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Changes in v9:
+> - add Reviewed-by tags
 > 
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-> index c196bbfc0c24..917ed4c7b18f 100644
-> --- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-> +++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-> @@ -17,7 +17,7 @@ core_pwm0: pwm@40000000 {
->  
->  	i2c2: i2c@40000200 {
->  		compatible = "microchip,corei2c-rtl-v7";
-> -		reg = <0x0 0x40000200 0x0 0x1000>;
-> +		reg = <0x0 0x40000200 0x0 0x100>;
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  		clocks = <&ccc_nw CLK_CCC_PLL0_OUT3>;
-> -- 
-> 2.37.3
+> Changes in v8:
+> - include validation warnings that had crept into an unrelated patch
 > 
+> Changes in v7:
+> - keep reserved-memory.txt to avoid broken references
 > 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> Changes in v6:
+> - add device phandle to iommu-addresses property in examples
+> - remove now unused dt-bindings/reserved-memory.h header
 > 
+>   .../reserved-memory/reserved-memory.yaml      | 70 +++++++++++++++++++
+>   1 file changed, 70 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> index 44f72bcf1782..fb48d016e368 100644
+> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> @@ -52,6 +52,30 @@ properties:
+>         Address and Length pairs. Specifies regions of memory that are
+>         acceptable to allocate from.
+>   
+> +  iommu-addresses:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: >
+> +      A list of phandle and specifier pairs that describe static IO virtual
+> +      address space mappings and carveouts associated with a given reserved
+> +      memory region. The phandle in the first cell refers to the device for
+> +      which the mapping or carveout is to be created.
+> +
+> +      The specifier consists of an address/size pair and denotes the IO
+> +      virtual address range of the region for the given device. The exact
+> +      format depends on the values of the "#address-cells" and "#size-cells"
+> +      properties of the device referenced via the phandle.
+> +
+> +      When used in combination with a "reg" property, an IOVA mapping is to
+> +      be established for this memory region. One example where this can be
+> +      useful is to create an identity mapping for physical memory that the
+> +      firmware has configured some hardware to access (such as a bootsplash
+> +      framebuffer).
+> +
+> +      If no "reg" property is specified, the "iommu-addresses" property
+> +      defines carveout regions in the IOVA space for the given device. This
+> +      can be useful if a certain memory region should not be mapped through
+> +      the IOMMU.
+> +
+>     no-map:
+>       type: boolean
+>       description: >
+> @@ -97,4 +121,50 @@ oneOf:
+>   
+>   additionalProperties: true
+>   
+> +examples:
+> +  - |
+> +    / {
+> +      compatible = "foo";
+> +      model = "foo";
+> +
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      reserved-memory {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        ranges;
+> +
+> +        adsp_resv: reservation-adsp {
+> +          /*
+> +           * Restrict IOVA mappings for ADSP buffers to the 512 MiB region
+> +           * from 0x40000000 - 0x5fffffff. Anything outside is reserved by
+> +           * the ADSP for I/O memory and private memory allocations.
+> +           */
+> +          iommu-addresses = <&adsp 0x0 0x00000000 0x00 0x40000000>,
+> +                            <&adsp 0x0 0x60000000 0xff 0xa0000000>;
+> +        };
+> +
+> +        fb: framebuffer@90000000 {
+> +          reg = <0x0 0x90000000 0x0 0x00800000>;
+> +          iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00800000>;
+> +        };
+> +      };
+> +
+> +      bus@0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0x0 0x0 0x0 0x40000000>;
+> +
+> +        adsp: adsp@2990000 {
+> +          reg = <0x2990000 0x2000>;
+> +          memory-region = <&adsp_resv>;
+> +        };
+> +
+> +        dc0: display@15200000 {
+> +          reg = <0x15200000 0x10000>;
+> +          memory-region = <&fb>;
+> +        };
+> +      };
+> +    };
+>   ...
