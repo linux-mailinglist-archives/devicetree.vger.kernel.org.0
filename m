@@ -2,171 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A2F55F74EE
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 09:55:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C03B5F7521
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 10:18:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbiJGHzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 03:55:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51616 "EHLO
+        id S229695AbiJGISI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 04:18:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbiJGHzT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 03:55:19 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95BC69F74F
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 00:55:17 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id kg6so9538822ejc.9
-        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 00:55:17 -0700 (PDT)
+        with ESMTP id S229655AbiJGISF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 04:18:05 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1B24B7EFE
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 01:18:03 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id m19so4854799lfq.9
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 01:18:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tipzJfhoPrPCegKX++Rgd/gqgDZoB8bwOjI9b3+6wlM=;
-        b=EKaWKLNPo2nQO3u8MiVwHe5jcphecx07+dFdDbvuksLwA9koPd04uiqcwt9itNfA1C
-         ni8+Z6jvMyWicfrkNHGGXNaay5A1rN71frAkx7aVSJp5ZeMUYbrv7V/mv/gpryACwiQl
-         U+quLN9o347sazffUsDHkD8t6rriy0Ozi0fbmUqoZApmDuxyBHdF3HK5S35vCzWVninj
-         6xuBH7uJZcbuIE1CkB2WCCcIRZtXP2EsiKFkOBC9/SF0m+HMiWXrows0pxm27Ly6OdZ/
-         z3KzlQ2wAoKRi3/eplsX7o0iS+LtWhuV+eckGgDUnMwSS0/Cvrgm+R0ZaFp626RJaAlB
-         m8Vw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=AoVjw78GbpU+AjrkJU2K9o3JUXYwMLmjzxFbox+6q/Y=;
+        b=VP2rugN7Bgs7isqx1TLJPn93UgEBqBLNYLHf6Jh5VYRWeztgg72Hqqmd6XRMEuXNAT
+         QJfYk+UTSnwvsZOCLmWd22AlvRhifP4wJh0gt+vGJtYirtwNa2ulg5jLwHEHfye5vmWt
+         md91rKn4NuESJYLrAXwc1ZGQa4yJDgeN7cEjnkt8cQF/NeRvqeOFj+9vRkL4eyqmLVJg
+         IDSodAYi3DNT1gOemlf03ZYIhJsZm1PcusWWDsfnuiIl+c+aw1TeMZqVbG4LZHC9gmDr
+         tlui44vcFgGiWPyT29UdBaj+7WMSbJCfN9pMFVvu9dwTMOmTTFrXj4ATaW9ZjjzfBVw+
+         9vCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tipzJfhoPrPCegKX++Rgd/gqgDZoB8bwOjI9b3+6wlM=;
-        b=phqayKg4wLkMnaTVVdu8cIymbS/+Vt5kzmo2VWyc8Ky9NBFQxhTms927b1GrJm4U/p
-         Q57brWWJie7/g3Bw5J78bkI+hWSCuIm4AgJJEgMXamvY8tK6VGN+hlGdtT1+PyzqRsJ3
-         fl0m0lEHja2dDIEpP71FBaWmmKwmw1IFfzJXvUtr0rTvu0MLpZMfBrqeTEoWeIJ+tLVE
-         uOZQ6KE4VyTFF1ujz7y0NoaYarWCYgpKD7kYKPLabUm57QXjQc6M53JJQm/+pKKkluc9
-         ukvbHN59RQj+UF8VT71uBWPx9Ros91Pyt9oPxmlt0vw980OKF20x4g4709oU/rTddJIx
-         irYA==
-X-Gm-Message-State: ACrzQf22e3SRfJoR/iVl5lY33WlFyuf7H3zdK/F+MtVjTNh0LiKbS2KN
-        mWgITjEoFfCp1dya+RafZ9+lCg==
-X-Google-Smtp-Source: AMsMyM7revYPkS3AA8AdrLnBhuq07TxztXSu70zQWk/sqHIiSqMyEXRNFEKZyZg4jG894S4UHgPbYg==
-X-Received: by 2002:a17:907:d07:b0:72e:ec79:ad0f with SMTP id gn7-20020a1709070d0700b0072eec79ad0fmr3229360ejc.296.1665129316138;
-        Fri, 07 Oct 2022 00:55:16 -0700 (PDT)
-Received: from fedora.sec.9e.network (ip-094-114-232-236.um31.pools.vodafone-ip.de. [94.114.232.236])
-        by smtp.gmail.com with ESMTPSA id hv13-20020a17090760cd00b00741a0c3f4cdsm782281ejc.189.2022.10.07.00.55.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Oct 2022 00:55:15 -0700 (PDT)
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-To:     Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     robh@kernel.org, wsa@kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [v9 1/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Date:   Fri,  7 Oct 2022 09:53:50 +0200
-Message-Id: <20221007075354.568752-2-patrick.rudolph@9elements.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221007075354.568752-1-patrick.rudolph@9elements.com>
-References: <20221007075354.568752-1-patrick.rudolph@9elements.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=AoVjw78GbpU+AjrkJU2K9o3JUXYwMLmjzxFbox+6q/Y=;
+        b=RRmQC7P0RUEo/bkHiHxvpjZuZsoU+7CPdpTeNr0wukwc70jmpJJpf3YTw8N1U6KMTM
+         omhxBNL3X3tHAp9AhVlObbQ7mNOlLKL8IqtbTC+EbEFGADgLt4p0TR83AFQ2LMD7Klhm
+         LwFmLAX/v9ciGzdDh4wNsTT1PqcROzy0o/aB7p4vVou7HspBIwhFbgPwgWT+wmAE7AOu
+         aMjLKPlpOjesneVjUc2TFwvWV03cwBG2HyJkggUl2YYtaebJvSoLeKhVVsUzmeo8qfSQ
+         vfh3BpmJM8ExXJjEGjq7n8Sx+RMqZXw3XaD0OpPNpV5Nyx5Lzr99nCFxS4V/1BVoKwE3
+         Hpuw==
+X-Gm-Message-State: ACrzQf0x/bW5i9kI2gso12RonXfaD8hr0U6c6QbWG1TgD/4APDllU/NM
+        kwP0CYokZUbrfp0QlmI+RwzTIw==
+X-Google-Smtp-Source: AMsMyM4OP9t48H5JdeSqZeXqArIQWhO/8DDCchMQldqBAxER5Q/AO8OlQbCNFtLjLnPCP8zROdOekg==
+X-Received: by 2002:ac2:4e06:0:b0:4a2:6e63:e919 with SMTP id e6-20020ac24e06000000b004a26e63e919mr1465693lfr.37.1665130681724;
+        Fri, 07 Oct 2022 01:18:01 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id f22-20020a2eb5b6000000b0026bf0d71b1esm152969ljn.93.2022.10.07.01.17.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Oct 2022 01:18:01 -0700 (PDT)
+Message-ID: <dbc3bcbf-cc46-79a3-8ce6-2d981d9e7d05@linaro.org>
+Date:   Fri, 7 Oct 2022 10:17:59 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v2 1/2] spi: dt-bindings: amlogic, meson-gx-spicc: Add
+ pinctrl names for SPI signal states
+Content-Language: en-US
+To:     neil.armstrong@linaro.org,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Da Xue <da@libre.computer>, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221004-up-aml-fix-spi-v2-0-3e8ae91a1925@baylibre.com>
+ <20221004-up-aml-fix-spi-v2-1-3e8ae91a1925@baylibre.com>
+ <d2ce98d7-1025-9c6e-e207-00e91942077a@linaro.org>
+ <fb2706e3-f758-a0b0-d595-75ef362a853e@baylibre.com>
+ <7bcb9ef1-6b56-2f5f-3ac9-acc9ed9370df@linaro.org>
+ <2c22e3b9-3da4-78c4-e068-78b84e24b2c3@linaro.org>
+ <83649505-d8eb-b0b5-da9d-4536f58a7daa@linaro.org>
+ <96160129-e9a0-ec0f-20d9-c92d1487eac6@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <96160129-e9a0-ec0f-20d9-c92d1487eac6@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-chips. The functionality will be provided by the exisintg pca954x driver.
+On 07/10/2022 09:45, neil.armstrong@linaro.org wrote:
+> Hi,
+> 
+> On 07/10/2022 09:04, Krzysztof Kozlowski wrote:
+>> On 06/10/2022 17:48, Neil Armstrong wrote:
+>>> On 06/10/2022 16:11, Krzysztof Kozlowski wrote:
+>>>> On 06/10/2022 12:57, Amjad Ouled-Ameur wrote:
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> Thank you for the review.
+>>>>>
+>>>>> On 10/5/22 10:14, Krzysztof Kozlowski wrote:
+>>>>>> On 04/10/2022 13:10, Amjad Ouled-Ameur wrote:
+>>>>>>> SPI pins of the SPICC Controller in Meson-GX needs to be controlled by
+>>>>>>> pin biais when idle. Therefore define three pinctrl names:
+>>>>>>> - default: SPI pins are controlled by spi function.
+>>>>>>> - idle-high: SCLK pin is pulled-up, but MOSI/MISO are still controlled
+>>>>>>> by spi function.
+>>>>>>> - idle-low: SCLK pin is pulled-down, but MOSI/MISO are still controlled
+>>>>>>> by spi function.
+>>>>>>>
+>>>>>>> Reported-by: Da Xue <da@libre.computer>
+>>>>>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>>>>>>> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+>>>>>>> ---
+>>>>>>>     .../devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml   | 15 +++++++++++++++
+>>>>>>>     1 file changed, 15 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+>>>>>>> index 0c10f7678178..53013e27f507 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+>>>>>>> @@ -43,6 +43,14 @@ properties:
+>>>>>>>         minItems: 1
+>>>>>>>         maxItems: 2
+>>>>>>>     
+>>>>>>> +  pinctrl-0:
+>>>>>>> +    minItems: 1
+>>>>>> maxItems?
+>>>>>>
+>>>>> Will fill it in next version.
+>>>>>>> +
+>>>>>>> +  pinctrl-1:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  pinctrl-names: true
+>>>>>> Why do you need all these in the bindings?
+>>>>>
+>>>>> SPI clock bias needs to change at runtime depending on SPI mode, here is an example of
+>>>>>
+>>>>> how this is supposed to be used ("spi_idle_low_pins" and "spi_idle_low_pins" are defined
+>>>>>
+>>>>> in the second patch of this series):
+>>>>
+>>>> I know what it the point in general of pinctrl configuration... But the
+>>>> question is why do you need to specify them in the bindings? Core
+>>>> handles that. IOW, do you require them and missing/incomplete pinctrl
+>>>> should be reported?
+>>>
+>>> Looking at other bindings, when specific pinctrl state names were requires, they were
+>>> documented.
+>>
+>> Yes, the required and/or necessary entries were added to few other
+>> bindings. Since Amjad did not make them required, why adding them? So I
+>> repeat the question for the third time - why do you need to add them to
+>> the bindings?
+>>
+>>> There's some bindings with pinctrl-names for specific states like rockchip/rockchip,dw-hdmi.yaml,
+>>> mediatek/mediatek,dpi.yaml, mmc/mtk-sd.yaml or mmc/fsl-imx-esdhc.yaml
+>>
+>> And? Just because someone did something is not itself an argument. They
+>> might have their reasons. If their reasons are applicable here, please
+>> state them.
+> 
+> OK, I thought the reason was explicit, we find it worth documenting
+> those optional pinctrl states for when the spi lines are in idle state.
+> 
+> If it's not an enough good reason, we'll drop this patch.
 
-While on it make the interrupts support conditionally as not all of the
-existing chips have interrupts.
+No one wrote here any reason... The post from Amjad was about DTS usage,
+yours about other bindings. Neither of them are reasons.
 
-For chips that are powered off by default add an optional regulator
-called vdd-supply.
+Core schema already documents pinctrl states. This can be documented if
+it is different than what core checks for, e.g. required or some
+specific names are being enforced.
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
----
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 39 ++++++++++++++++---
- 1 file changed, 34 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 9f1726d0356b..efad0a95806f 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -4,21 +4,25 @@
- $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: NXP PCA954x I2C bus switch
-+title: NXP PCA954x I2C and compatible bus switches
- 
- maintainers:
-   - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
- 
- description:
--  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
--
--allOf:
--  - $ref: /schemas/i2c/i2c-mux.yaml#
-+  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices,
-+  and the Maxim MAX735x and MAX736x I2C mux/switch devices.
- 
- properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - maxim,max7356
-+          - maxim,max7357
-+          - maxim,max7358
-+          - maxim,max7367
-+          - maxim,max7368
-+          - maxim,max7369
-           - nxp,pca9540
-           - nxp,pca9542
-           - nxp,pca9543
-@@ -59,10 +63,33 @@ properties:
-     description: if present, overrides i2c-mux-idle-disconnect
-     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
- 
-+  vdd-supply:
-+    description: A voltage regulator supplying power to the chip.
-+
- required:
-   - compatible
-   - reg
- 
-+allOf:
-+  - $ref: /schemas/i2c/i2c-mux.yaml#
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - maxim,max7367
-+                - maxim,max7369
-+                - nxp,pca9542
-+                - nxp,pca9543
-+                - nxp,pca9544
-+                - nxp,pca9545
-+    then:
-+      properties:
-+        interrupts: false
-+        "#interrupt-cells": false
-+        interrupt-controller: false
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -79,6 +106,8 @@ examples:
-             #size-cells = <0>;
-             reg = <0x74>;
- 
-+            vdd-supply = <&p3v3>;
-+
-             interrupt-parent = <&ipic>;
-             interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-             interrupt-controller;
--- 
-2.37.3
+Best regards,
+Krzysztof
 
