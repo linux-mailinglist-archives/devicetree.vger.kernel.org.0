@@ -2,77 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B91985F7854
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 14:52:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82B065F7857
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 14:53:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbiJGMv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 08:51:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45592 "EHLO
+        id S229749AbiJGMxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 08:53:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbiJGMv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 08:51:58 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E621FBCBA6;
-        Fri,  7 Oct 2022 05:51:57 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id z97so6894328ede.8;
-        Fri, 07 Oct 2022 05:51:57 -0700 (PDT)
+        with ESMTP id S229737AbiJGMxn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 08:53:43 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7809FBBE3B;
+        Fri,  7 Oct 2022 05:53:42 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id x1-20020a17090ab00100b001fda21bbc90so7137787pjq.3;
+        Fri, 07 Oct 2022 05:53:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UVR4A7rTDXaDZT2ap3V+IDUaXiwWgE+SqvzF3iigsYM=;
-        b=Dzw3kT/irBpT48ntV/1nFrgfbswZ7E69GOVn7keVyflPBLViOYJ9hzLNiOuekVDCQI
-         13mi33qu0hnQxkbA/pyteGQ9o2b6QaKUo78KHCl/r/5pXctYZhMWbAu/e360d2aDBHlK
-         YAiE6IZVBQCzNFD/xgRxuHhFuD1u2rIx+nTCJ0eAUKjXZl8jpwrKYwXVXlHmaywfUMYd
-         XxJO9nuSOLsr+7NsQmAXGxesLNdYREunmNZtmzaQsyWZdOVzOpUY9EM77oKc3O6KfeCa
-         kxCINd0LDTdsK4bDekAuqdtSrhNHHuBUMrRHCTblrhEHbZAExgCLQWMs3YGfVTOmklO8
-         O5BA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=4pSvickso+xjP5saP8efXvMNhX5H+k95vAykSoJJVdY=;
+        b=Ua1xRLZ6TqGxaLz7s2IFEr6t8pX3xNBkZ+Icpsp00BbaZd90vT1eLOmtLWzuNOocla
+         PwW9V/FztBVwY/C1Dm7nM1s4kMq8pjOfc6lyDmP2aZWH+Puzuf2ijZWtA0Um+IsZPPgv
+         0pDUep6oidImMzpDMjdFBtSLtFUHavAX4R7OIh+znxHbsP8flX/tR+ShB06GDL1WcyP7
+         dy1zylcDFwtohDWRUAaS8/DxZ4xC90jpYsip2fZtrmrK0UVH7hvPM4G/bDI3cr68X0Ud
+         IRCsGv913wxPi/JOzzEOF5H5Kr+wvOUh7BGkEQPL3LvgI8E5Fejin3CtQlN2r4DE4UdP
+         Szbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UVR4A7rTDXaDZT2ap3V+IDUaXiwWgE+SqvzF3iigsYM=;
-        b=XgAZzbQsb6Tzdwp2CD6aZ4qAcJDsVVllKf+Tp18y+/kSgZEZB05dZiwFkhqJPhBOlN
-         ELVnDgAEUJkeoS0LxtRjRxCVlx/jzZl7T1ZrnoE9A/seDW1MAg6a+Z5rIbJ4PW6qKicR
-         Wnj6PPLeTcpAxGxdcf3elJSeVh+xYk/s/HNWLL52UBDPduB2EYH7AGIBiwwPuoOe7OrL
-         5Ys2/C/xTLjwb0XVy6y6lQaKCMNMZn0Po2rJUq5NTWSAdvWnEJPwG2SJ6QJ7Tu4GtfHW
-         jglG8buO+B+g/cDbXh32ZYoOeWdqCBxBeq+ZcOt/j/LT5P39G8GmCoinrk6y2LR3kYuh
-         6MFg==
-X-Gm-Message-State: ACrzQf1npuLkchal9Ii8YX5LSN1lvXEBXcAGWe6VzS+WfHgpXe1Rzkjn
-        IK6N8FLJZH7CcXm4vpuDRy4=
-X-Google-Smtp-Source: AMsMyM72M6aPDsfwBObYtVFL0p8t0YHAzYNzlKS+HyicbULufboz6R4lgnogFL6VLCkU+wcFIWnz5A==
-X-Received: by 2002:a05:6402:35d3:b0:459:ddca:4db7 with SMTP id z19-20020a05640235d300b00459ddca4db7mr4377016edc.393.1665147116313;
-        Fri, 07 Oct 2022 05:51:56 -0700 (PDT)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ti5-20020a170907c20500b0073d9630cbafsm1171837ejc.126.2022.10.07.05.51.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Oct 2022 05:51:55 -0700 (PDT)
-Date:   Fri, 7 Oct 2022 14:51:53 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
-Subject: Re: [PATCH v9 0/5] iommu: Support mappings/reservations in
- reserved-memory regions
-Message-ID: <Y0Ag6QkQ+DPOElhm@orome>
-References: <20220923123557.866972-1-thierry.reding@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4pSvickso+xjP5saP8efXvMNhX5H+k95vAykSoJJVdY=;
+        b=diSsQx+fhFeEqOmSJpvloL33f6V1bCEPmqwC0U4IvfeWX8foNgy9uzBfaPPVI2Hz6v
+         FyriACVkFzHu63NgvLbLMvmCsjWcH1j16Dh/D7oU6INk9CYs8Z4RAgZaWo7v9Yi1WcC2
+         mYLgG2NQ2F4BArjTPC7oEScvYUhVltILLO0KMpNstb0uE3TC/oed2MmN46ArE4JojRqv
+         lijY0rCrojrn/t8X7k2nqOY1EEzHFJTVFtIBv6jYPVmzgeH1cOPquL72xqLHhLCRpOMW
+         25mjgPttB8nn5IWCCStci1tyIlA2jXtx2NQ0uAX/R+lR6rX613Wra/Wy8Xlhri3xm0S/
+         7uqA==
+X-Gm-Message-State: ACrzQf1/fpTYCrjCnt1a/upgI8PkNTR9zNVF+o7Aj31u2nzElvYllDQo
+        KwO3OqSPGabCzd34UQCItq0=
+X-Google-Smtp-Source: AMsMyM5yY0egVUtyRxt7kKLrVc2niCJmEChtOTkK8lcnf67hgWzfvKi+Vp3ZQFRQY8gY/KEC+p9zBg==
+X-Received: by 2002:a17:90a:e7ce:b0:20a:c658:c183 with SMTP id kb14-20020a17090ae7ce00b0020ac658c183mr5361370pjb.5.1665147221992;
+        Fri, 07 Oct 2022 05:53:41 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id c1-20020a056a00008100b00562657a7b11sm1547574pfj.8.2022.10.07.05.53.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Oct 2022 05:53:41 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <65d83f3e-b0ce-c199-c653-c948b9f015b5@roeck-us.net>
+Date:   Fri, 7 Oct 2022 05:53:38 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="JGYHqtEsfJ0xq16p"
-Content-Disposition: inline
-In-Reply-To: <20220923123557.866972-1-thierry.reding@gmail.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 5/8] dt-bindings: watchdog: mediatek: Convert mtk-wdt
+ to json-schema
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com
+Cc:     angelogioacchino.delregno@collabora.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20221007093437.12228-1-allen-kh.cheng@mediatek.com>
+ <20221007093437.12228-6-allen-kh.cheng@mediatek.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20221007093437.12228-6-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,120 +85,158 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/7/22 02:34, Allen-KH Cheng wrote:
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> Convert the MediaTek watchdog bindings to schema.
+> 
+> The original binding only had 4 without a fallback but there is a reset
+> controller on the "mediatek,mt7986-wdt", "mediatek,mt8186-wdt" and
+> "mediatek,mt8195-wdt". Since there is no reset controller for the mt6589,
+> we remove "mediatek,mt6589-wdt" as a fallback.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Co-developed-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 
---JGYHqtEsfJ0xq16p
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-On Fri, Sep 23, 2022 at 02:35:52PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
->=20
-> Hi,
->=20
-> This version has several fixes over the previous v8, which can be found
-> here:
->=20
->   https://lore.kernel.org/all/20220905170833.396892-1-thierry.reding@gmai=
-l.com/
->=20
-> An example is included in the DT bindings, but here is an extract of
-> what I've used to test this:
->=20
->         reserved-memory {
->                 #address-cells =3D <2>;
->                 #size-cells =3D <2>;
->                 ranges;
->=20
->                 /*
->                  * Creates an identity mapping for the framebuffer that
->                  * the firmware has setup to scan out a bootsplash from.
->                  */
->                 fb: framebuffer@92cb2000 {
->                         reg =3D <0x0 0x92cb2000 0x0 0x00800000>;
->                         iommu-addresses =3D <&dc0 0x0 0x92cb2000 0x0 0x00=
-800000>;
->                 };
->=20
->                 /*
->                  * Creates a reservation in the IOVA space to prevent
->                  * any buffers from being mapped to that region. Note
->                  * that on Tegra the range is actually quite different
->                  * from this, but it would conflict with the display
->                  * driver that I tested this against, so this is just
->                  * a dummy region for testing.
->                  */
->                 adsp: reservation-adsp {
->                         iommu-addresses =3D <&dc0 0x0 0x90000000 0x0 0x00=
-010000>;
->                 };
->         };
->=20
->         host1x@50000000 {
->                 dc@54200000 {
->                         memory-region =3D <&fb>, <&adsp>;
->                 };
->         };
->=20
-> This is abbreviated a little to focus on the essentials. Note also that
-> the ADSP reservation is not actually used on this device and the driver
-> for this doesn't exist yet, but I wanted to include this variant for
-> testing, because we'll want to use these bindings for the reservation
-> use-case as well at some point.
->=20
-> I've also been able to make use of this binding and the IOMMU code in
-> conjunction with the simple-framebuffer driver to hand over a display
-> configuration set up by UEFI to the Linux kernel.
->=20
-> Janne has confirmed[0] this to be suitable for indirect mappings as
-> well, though these patches don't implement that feature yet. Potential
-> extensions to this have been discussed but are not yet included at this
-> time to not further complicate things.
->=20
-> Thierry
->=20
-> [0]: https://lore.kernel.org/all/20220909144504.GA4024@jannau.net/
->=20
-> Navneet Kumar (1):
->   iommu/tegra-smmu: Support managed domains
->=20
-> Thierry Reding (4):
->   dt-bindings: reserved-memory: Document iommu-addresses
->   iommu: Implement of_iommu_get_resv_regions()
->   iommu: dma: Use of_iommu_get_resv_regions()
->   iommu/tegra-smmu: Add support for reserved regions
->=20
->  .../reserved-memory/reserved-memory.yaml      |  70 ++++++++++++
->  drivers/iommu/dma-iommu.c                     |   3 +
->  drivers/iommu/of_iommu.c                      | 104 ++++++++++++++++++
->  drivers/iommu/tegra-smmu.c                    |  86 ++++++++++++---
->  include/linux/of_iommu.h                      |   8 ++
->  5 files changed, 254 insertions(+), 17 deletions(-)
+> ---
+>   .../bindings/watchdog/mediatek,mtk-wdt.yaml   | 77 +++++++++++++++++++
+>   .../devicetree/bindings/watchdog/mtk-wdt.txt  | 42 ----------
+>   2 files changed, 77 insertions(+), 42 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> new file mode 100644
+> index 000000000000..6805fbeace11
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/mediatek,mtk-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek SoCs Watchdog timer
+> +
+> +maintainers:
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+> +
+> +description:
+> +  The watchdog supports a pre-timeout interrupt that fires
+> +  timeout-sec/2 before the expiry.
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt2712-wdt
+> +          - mediatek,mt6589-wdt
+> +          - mediatek,mt7986-wdt
+> +          - mediatek,mt8183-wdt
+> +          - mediatek,mt8186-wdt
+> +          - mediatek,mt8192-wdt
+> +          - mediatek,mt8195-wdt
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt2701-wdt
+> +              - mediatek,mt6582-wdt
+> +              - mediatek,mt6797-wdt
+> +              - mediatek,mt7622-wdt
+> +              - mediatek,mt7623-wdt
+> +              - mediatek,mt7629-wdt
+> +              - mediatek,mt8516-wdt
+> +          - const: mediatek,mt6589-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Watchdog pre-timeout (bark) interrupt
+> +
+> +  mediatek,disable-extrst:
+> +    description: Disable sending output reset signal
+> +    type: boolean
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        watchdog: watchdog@10007000 {
+> +            compatible = "mediatek,mt8183-wdt";
+> +            reg = <0 0x10007000 0 0x100>;
+> +            interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_LOW>;
+> +            mediatek,disable-extrst;
+> +            timeout-sec = <10>;
+> +            #reset-cells = <1>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> deleted file mode 100644
+> index 762c62e428ef..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> +++ /dev/null
+> @@ -1,42 +0,0 @@
+> -Mediatek SoCs Watchdog timer
+> -
+> -The watchdog supports a pre-timeout interrupt that fires timeout-sec/2
+> -before the expiry.
+> -
+> -Required properties:
+> -
+> -- compatible should contain:
+> -	"mediatek,mt2701-wdt", "mediatek,mt6589-wdt": for MT2701
+> -	"mediatek,mt2712-wdt": for MT2712
+> -	"mediatek,mt6582-wdt", "mediatek,mt6589-wdt": for MT6582
+> -	"mediatek,mt6589-wdt": for MT6589
+> -	"mediatek,mt6797-wdt", "mediatek,mt6589-wdt": for MT6797
+> -	"mediatek,mt7622-wdt", "mediatek,mt6589-wdt": for MT7622
+> -	"mediatek,mt7623-wdt", "mediatek,mt6589-wdt": for MT7623
+> -	"mediatek,mt7629-wdt", "mediatek,mt6589-wdt": for MT7629
+> -	"mediatek,mt7986-wdt", "mediatek,mt6589-wdt": for MT7986
+> -	"mediatek,mt8183-wdt": for MT8183
+> -	"mediatek,mt8186-wdt", "mediatek,mt6589-wdt": for MT8186
+> -	"mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
+> -	"mediatek,mt8192-wdt": for MT8192
+> -	"mediatek,mt8195-wdt", "mediatek,mt6589-wdt": for MT8195
+> -
+> -- reg : Specifies base physical address and size of the registers.
+> -
+> -Optional properties:
+> -- mediatek,disable-extrst: disable send output reset signal
+> -- interrupts: Watchdog pre-timeout (bark) interrupt.
+> -- timeout-sec: contains the watchdog timeout in seconds.
+> -- #reset-cells: Should be 1.
+> -
+> -Example:
+> -
+> -watchdog: watchdog@10007000 {
+> -	compatible = "mediatek,mt8183-wdt",
+> -		     "mediatek,mt6589-wdt";
+> -	mediatek,disable-extrst;
+> -	reg = <0 0x10007000 0 0x100>;
+> -	interrupts = <GIC_SPI 139 IRQ_TYPE_NONE>;
+> -	timeout-sec = <10>;
+> -	#reset-cells = <1>;
+> -};
 
-Joerg, if there are no further concerns on this, can you pick this up
-once v6.1-rc1 is released?
-
-Thanks,
-Thierry
-
---JGYHqtEsfJ0xq16p
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNAIOkACgkQ3SOs138+
-s6HMOw/9EzfFTbPIHJ55dk8c2dHNzdSSSd0VIS6K9XFP1CTDRcmSNrM32GN1jL5X
-Eo/cDhXNNj8hBHOK8ejI0QP2mSRaEGOEQ4AN+a/I4FKQ6UQqRR6S9h14eyCkWoIm
-s0IbugJCLcKIJ6pZ+TrzdbqicAZHTUih0r5BWfaMGWi6Dz4GC0YD+xflDKm3Ysp2
-DOpEzGHOYfOTJ3DIilCWiMMHqSXFeuexMj9WYoSoH192BClik3JEHUJEk9VpI+fo
-YvFLmbsutf4YapyUcyV2jJ8rA9gFmccCmtSg5xziqnoHnmRqlnSECDimDVMlfr2s
-HwbS0mLUe9nYxlpRWk5e/i63lEJx/5/EhXWeXp9zP7mIXnWC4/BAfpSXq6A8Dv3v
-vmTEuzadcWkrAPcz6o4aeVb7S/34IAkTEBr7jzV37Mm2i20E065FlXuOeUpwv+1j
-ePyqbDfAOvnFnnNpdZHlcIEJoXL5+pUaPcuNx+2PlPnS8ychYfoZxkStRueEqAfs
-SfrtV4T02Pq+ASUya8i6Qd80q06uNwzA0gtY4+R+Vu/K27b5TH3Eze1Sr9jhiJM1
-5t37qbbzC3chPFc9uPLr6aDBhEC5uZg1xLFMOVDEiKSsMJiuRY0tRyebh8++RB8Y
-yT4/+IAy8b0SUKyxpNIomSfBpIVya2B7cGuL1hkICSM+wo/8Ksk=
-=OhtH
------END PGP SIGNATURE-----
-
---JGYHqtEsfJ0xq16p--
