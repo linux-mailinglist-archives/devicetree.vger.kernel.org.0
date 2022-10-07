@@ -2,67 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFA015F7B5D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20C3F5F7B62
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:26:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbiJGQZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 12:25:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52862 "EHLO
+        id S229959AbiJGQ0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 12:26:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbiJGQZA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:25:00 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B77C2F38B;
-        Fri,  7 Oct 2022 09:24:58 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id o22so2786265qkl.8;
-        Fri, 07 Oct 2022 09:24:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iKT+wdRexw/JjQOAd3/flUgevUBDOrgkhpmB6roT2ak=;
-        b=qj7ooJnN6e+ZwRZMl6qqsenjlYJ7OztD8FNgRYb6Fafep9VxsflFZ7Z2/SjBiBgs9Z
-         RFDJPepY1mHfRjnzTu8p0C6WNyBzebyeZpzz5x9uR7nkdyP/dch9VDVqqRg5gkpfpf3W
-         Qs4g7zb0XVgIk9e/QCEEr4UaD3adeOFxF1kTvitV3VGrKMFPjpuRDLZglOysK5nXLKCP
-         cWYUwPgcK4wWoyasFU/ElKGT1dWQWYqnhsSJoqGYTuobsBJUb+nM00UyX6cZRVT8OU75
-         IT0RgmpAQuoNFcIpzlSwlrmMuEUCkN0F483IN9zuiaPaKqp7Kbh6ehGl/SLAgF/5+Phs
-         73Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iKT+wdRexw/JjQOAd3/flUgevUBDOrgkhpmB6roT2ak=;
-        b=fkcHNYcSPO6hZpE9oJZqeu0M0c9A6Nief/C8iu0Vtp/n5I1XVt5OqczBY1TpIg2x7q
-         czyXK8WAJUFhzT2G89Bgn1hxttjfjsyx+hogPz6+Op3LUeV2O4+hKcb70Dhop2OHgnzr
-         l/6yw1vY8djdn1uHR4371fJEb8jXPMhePJ92Tdp2m4WeRJrvmKesIDj6Ga5sR2pjPwQ/
-         aHR8FF/rQ2TQ2Vvw6zYBUy1JhUA3ZDMGYco2+3tyQQQGzucWaIOHL6dtRahq/jS5OVWq
-         /LxhtPRR48RrOJmbKI1nXKqtRfMTctIc6DbTQWcGCW2PzLN1riYEyepgiGjo3xbiSgs1
-         BSxQ==
-X-Gm-Message-State: ACrzQf1Q3pRLkQugMIE0bpr69YPQRWqRBleQJ6h4YgG8Dhpv/NXLN+4o
-        HyVFxWjVYZORWcxdNVlZP//68T6rntFIoY2ucC8=
-X-Google-Smtp-Source: AMsMyM5pvo30eHPRQ5wPaC2Y7IDx7ogLgaibNazJSu09wD3RD1Y7tGassO91a0w40+9wGOy29vGvwRtmTvErS1eOdFI=
-X-Received: by 2002:a05:620a:4454:b0:6ce:bfbf:7e3f with SMTP id
- w20-20020a05620a445400b006cebfbf7e3fmr4253002qkp.748.1665159897817; Fri, 07
- Oct 2022 09:24:57 -0700 (PDT)
+        with ESMTP id S229947AbiJGQ0T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:26:19 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 717853ECC3;
+        Fri,  7 Oct 2022 09:26:18 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6E45A106F;
+        Fri,  7 Oct 2022 09:26:24 -0700 (PDT)
+Received: from [10.57.65.170] (unknown [10.57.65.170])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4B50D3F67D;
+        Fri,  7 Oct 2022 09:26:15 -0700 (PDT)
+Message-ID: <b33e92ef-9156-18f4-4e74-1f09b43deeab@arm.com>
+Date:   Fri, 7 Oct 2022 17:25:52 +0100
 MIME-Version: 1.0
-References: <20221007145641.3307075-1-jjhiblot@traphandler.com> <20221007145641.3307075-4-jjhiblot@traphandler.com>
-In-Reply-To: <20221007145641.3307075-4-jjhiblot@traphandler.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 7 Oct 2022 19:24:21 +0300
-Message-ID: <CAHp75VdUt-SZxesD-f+647vG8ZANkC4mrtJ4VGu5b=q4PN+d-g@mail.gmail.com>
-Subject: Re: [PATCH v4 3/6] leds: provide devm_of_led_get_optional()
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     lee.jones@linaro.org, pavel@ucw.cz, robh+dt@kernel.org,
-        sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
-        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v9 1/5] dt-bindings: reserved-memory: Document
+ iommu-addresses
+Content-Language: en-GB
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev,
+        Rob Herring <robh@kernel.org>
+References: <20220923123557.866972-1-thierry.reding@gmail.com>
+ <20220923123557.866972-2-thierry.reding@gmail.com>
+ <3fb949ad-74c4-1bac-7e14-5d056afcef5f@arm.com> <Y0AvkshNYmqc3UGo@orome>
+ <75bebf10-6b89-464c-f9ad-c53f9f830c20@arm.com> <Y0BELav7cgHdW0eT@orome>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <Y0BELav7cgHdW0eT@orome>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,87 +56,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 7, 2022 at 5:56 PM Jean-Jacques Hiblot
-<jjhiblot@traphandler.com> wrote:
->
-> This version of devm_of_led_get() doesn't fail if a LED is not found.
-> Instead it returns a NULL pointer.
+On 2022-10-07 16:22, Thierry Reding wrote:
+> On Fri, Oct 07, 2022 at 03:21:46PM +0100, Robin Murphy wrote:
+>> On 2022-10-07 14:54, Thierry Reding wrote:
+>>> On Fri, Oct 07, 2022 at 02:45:31PM +0100, Robin Murphy wrote:
+>>>> On 2022-09-23 13:35, Thierry Reding wrote:
+>>>>> From: Thierry Reding <treding@nvidia.com>
+>>>>>
+>>>>> This adds the "iommu-addresses" property to reserved-memory nodes, which
+>>>>> allow describing the interaction of memory regions with IOMMUs. Two use-
+>>>>> cases are supported:
+>>>>>
+>>>>>      1. Static mappings can be described by pairing the "iommu-addresses"
+>>>>>         property with a "reg" property. This is mostly useful for adopting
+>>>>>         firmware-allocated buffers via identity mappings. One common use-
+>>>>>         case where this is required is if early firmware or bootloaders
+>>>>>         have set up a bootsplash framebuffer that a display controller is
+>>>>>         actively scanning out from during the operating system boot
+>>>>>         process.
+>>>>>
+>>>>>      2. If an "iommu-addresses" property exists without a "reg" property,
+>>>>>         the reserved-memory node describes an IOVA reservation. Such memory
+>>>>>         regions are excluded from the IOVA space available to operating
+>>>>>         system drivers and can be used for regions that must not be used to
+>>>>>         map arbitrary buffers.
+>>>>
+>>>> Bah, I've only just realised: don't we also need to change the "oneOf:
+>>>> required: ..." schema to permit "iommu-addresses" without "reg" or "size"?
+>>>
+>>> Hm... good point. I think at least we'll want another:
+>>>
+>>>        - required:
+>>>            - iommu-addresses
+>>>
+>>> in there. I wonder if we also need to avoid the combination of "size"
+>>> and "iommu-addresses". When "size" is specified, is it guaranteed that
+>>> those regions will be allocated before the direct mapping needs to be
+>>> created?
+>>
+>> Well, it couldn't really be a direct mapping anyway. In general I don't
+>> think that combination makes any sense, since the presence of
+>> "iommu-addresses" means one of two things; either it says the IOVA range is
+>> carved out for some special purpose or just unusable, in which case
+>> allocating any memory to back it would surely be pointless, or it's saying
+>> don't touch these addresses because the device is already accessing them,
+>> thus the underlying physical memory must be allocated somewhere already.
+> 
+> I thought perhaps there could be cases where it is known that a
+> controller needs to access memory in a certain I/O virtual region but
+> doesn't actually care where that lives in physical memory and also does
+> not rely on that memory have been previously set up (pre-filled, or
+> whatever). Say you've got a micro-controller in a system that needs its
+> firmware in a given region, but the OS can set up that region without
+> any other limitations. One could use "size" and "iommu-addresses" to
+> make sure the region is allocated with a specific size and located in a
+> specific I/O virtual region. Not sure if that's perhaps a bit exotic,
+> though.
 
-Yep, thanks!
+Yeah, that was the closest case I could think of as well, but I'd really 
+rather not encourage people to abuse DT that way. If a kernel driver is 
+loading firmware and initialising the device from scratch then it should 
+be able to sort everything out at runtime without DT involvement. Even 
+if the firmware is somehow massive enough to warrant an early dynamic 
+carveout rather than a regular page/CMA allocation, there's still no 
+good excuse for the driver not to manage its own address space constraints.
 
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+On the other hand if the device really does need its firmware at a 
+specific hard-coded address than that would need a fixed physical 
+reservation anyway, since the DT can't assume that the OS is definitely 
+going to use IOMMU translation.
 
-> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-> ---
->  drivers/leds/led-class.c | 25 +++++++++++++++++++++++++
->  include/linux/leds.h     |  2 ++
->  2 files changed, 27 insertions(+)
->
-> diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-> index 2c0d979d0c8a..2fea79a2300d 100644
-> --- a/drivers/leds/led-class.c
-> +++ b/drivers/leds/led-class.c
-> @@ -295,6 +295,31 @@ struct led_classdev *__must_check devm_of_led_get(struct device *dev,
->  }
->  EXPORT_SYMBOL_GPL(devm_of_led_get);
->
-> +/**
-> + * devm_of_led_get_optional - Resource-managed request of an optional LED device
-
-I'm not sure we need to keep "_of" here in the name, but it's not
-harmful anyway.
-
-> + * @dev:       LED consumer
-> + * @index:     index of the LED to obtain in the consumer
-> + *
-> + * The device node of the device is parse to find the request LED device.
-
-I guess you copy'n'pasted this, but this has some spelling issues, I
-would change
-
-parse --> parsed
-request --> requested
-
-> + * The LED device returned from this function is automatically released
-> + * on driver detach.
-> + *
-> + * @return a pointer to a LED device, ERR_PTR(errno) on failure and NULL if the
-> + * led was not found.
-> + */
-> +struct led_classdev *__must_check devm_of_led_get_optional(struct device *dev,
-> +                                                       int index)
-> +{
-> +       struct led_classdev *led;
-> +
-> +       led = devm_of_led_get(dev, index);
-> +       if (IS_ERR(led) && PTR_ERR(led) == -ENOENT)
-> +               return NULL;
-> +
-> +       return led;
-> +}
-> +EXPORT_SYMBOL_GPL(devm_of_led_get_optional);
-> +
->  static int led_classdev_next_name(const char *init_name, char *name,
->                                   size_t len)
->  {
-> diff --git a/include/linux/leds.h b/include/linux/leds.h
-> index ba4861ec73d3..41df18f42d00 100644
-> --- a/include/linux/leds.h
-> +++ b/include/linux/leds.h
-> @@ -215,6 +215,8 @@ extern struct led_classdev *of_led_get(struct device_node *np, int index);
->  extern void led_put(struct led_classdev *led_cdev);
->  struct led_classdev *__must_check devm_of_led_get(struct device *dev,
->                                                   int index);
-> +struct led_classdev *__must_check devm_of_led_get_optional(struct device *dev,
-> +                                                 int index);
->
->  /**
->   * led_blink_set - set blinking with software fallback
-> --
-> 2.25.1
->
-
-
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks,
+Robin.
