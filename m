@@ -2,213 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB5045F7B0A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 17:53:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB1515F7B16
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 17:57:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229916AbiJGPxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 11:53:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54524 "EHLO
+        id S229707AbiJGP5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 11:57:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229908AbiJGPxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 11:53:18 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A53FFC1CC
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 08:53:16 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id r22so4875577ljn.10
-        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 08:53:16 -0700 (PDT)
+        with ESMTP id S229634AbiJGP5c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 11:57:32 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60373A87BB
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 08:57:31 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id r22so4888479ljn.10
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 08:57:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ke80GF96XIn5dnJKIcuCkBMxiAcfiTBdb+oRsJGr3GY=;
-        b=XAA47aQG1XFomJxq7ypgUxXnVpvGgm9AhLskN22erxqeylEByrxSAVRMorIMMMiFWw
-         EpN+riIF0QrsH0N/Xq8P1BMGm5nEnj1fGTYAY+tOh3JkczzpaB0UTaJjpWToieHrZ1xB
-         S+ZCS7hln7rO6CYTftV85r8s791Xmy/hebogxhWO04HCFCQkbqEptRkME1cd79OvMLco
-         liIFRNYUPB9oNhPxqtQhhRM246KIYH7uyITbhfkp2qz0WZB6DI1r0EqCd6D/jlLhjgUc
-         v4EqlWiyi9ClJKA6OvvPnRznxDHm+Ch/9Vxn+gIZ1VcQIhD9zXjN7BhC2Klk5CnDE4jY
-         unkw==
+        bh=m5HuWaiBxYc9lI4KqIWMCv5yIi0RRFxzG1NnVl7MMOE=;
+        b=ak/dQlFN+CtlNnUw49riVpZvBwA21CcPyo4J7WkbfMnXxK+iew8WeMXf/qKQ6zhTBA
+         EoE8vIr7FTJqsV5aribkJf+wRUvDeKdC8diY8RmcZDedMs8TeM9RGMsQnKg5k+EzCSlx
+         GyzZnbX5NQAxmWCSZ/UBhzf/SbASZFMx1Hr+nQw62HVStTQk7hhgsmVKSnfd1zFqWLB1
+         iZIzCZ4KxD1VIYMM2oBhj6LIyYUoZmWtIyyMzNehYf3DTBeDfy8N+h7fEtEB/K3KSkB4
+         TvgY9Os3qPd8Jyv7iN8RR7JKM7+/V7CRjp0g+wNEEsgk/Kftw5AdihGzCBK/yaNer+0A
+         KGVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ke80GF96XIn5dnJKIcuCkBMxiAcfiTBdb+oRsJGr3GY=;
-        b=bokATx8iV9lnzrds72M/KyfFDubVlbwMkIwzwz0HZNGzF2roHRrwe6SgyfkWw467Mk
-         m+6JVeGAz9tOQ1nng8sk5RXSkrqfK+6C9GqHUjI5o4dwePlRjcNPOF7vm/EAuwUmll3J
-         6/DjzslGKm0P/IjZAQUpurRmOdB2aKRX/pLP8B96f2FrCQRJCJRYProUtq1V8DDSlf57
-         K9+p6POfTujDAd+/RqCumNRSv4LB5JLCfmvsfW27da2i4wv695Mt5EdncmXgBzwUqfxz
-         O3X33sWoLsK2dW1D3629z6zdgu4DDE58I7wE+BF0ibB0Jghj3bP7ip5bLvjd42qOLeBJ
-         O/wg==
-X-Gm-Message-State: ACrzQf3pO/rPt7Z36/ZBM+PTOwdvoh5+XvwTvhNBoPpQiNKaRpM+PTCK
-        Gn2tuRtVtg5IBKBPgdnL+TW4Pg==
-X-Google-Smtp-Source: AMsMyM4bSnybE3WOr1MN+mIV7WG4biaIIqbIpy7mKbpcu2nqBicmv2kL5rtSTMvg8au/AHy1C1Mx5A==
-X-Received: by 2002:a2e:7211:0:b0:26d:fea5:c7e3 with SMTP id n17-20020a2e7211000000b0026dfea5c7e3mr1860778ljc.101.1665157994928;
-        Fri, 07 Oct 2022 08:53:14 -0700 (PDT)
+        bh=m5HuWaiBxYc9lI4KqIWMCv5yIi0RRFxzG1NnVl7MMOE=;
+        b=wWHNMP8L15w9VHw1fpgLiH2oqdAvZIeWuINVcw1f3n2gtVm5Za8e7Wg6C+C6Pubefy
+         Wa+nJ87NmtywHdsv4+4rvi2hfSVh3h0vePtRFEeNHKENcGtpyZx752uvDRqxokKpEuHh
+         Jy0dTjem0dn9A4mwaa+u0hS4WfgCAtXPg1WWnWpyLSyiY9oGk1ZARqHTgvzFXO9Yycfk
+         ALL3mg5wNpGcf/EiN0cjfVco9+fdYpkAQOKNsQv2PcgI4sOybpbL96dO2/aLi4HJG0l3
+         y6WMPJPAuUfMKfqZ3AbWKwS75aSQ8iDiXbSn9MLWou2bFgxLt8UqJlmNSNXib1/AzD2U
+         98eA==
+X-Gm-Message-State: ACrzQf1UUD1ThwU/G/fU6pPKNWip26UM47B34hS4aGLVcad/whVDgGii
+        O4+Z76+zfwgzpACA7xOkusZo2w==
+X-Google-Smtp-Source: AMsMyM43XNH71np2bAVnS27qMV7G6nXKrqTTHy5zZmJF94oJjA09EWdUEbskt0R24ZpJCmxFUpYVOQ==
+X-Received: by 2002:a05:651c:b13:b0:26c:679f:ea66 with SMTP id b19-20020a05651c0b1300b0026c679fea66mr2085382ljr.516.1665158249732;
+        Fri, 07 Oct 2022 08:57:29 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d12-20020ac244cc000000b00497ad8e6d07sm334078lfm.222.2022.10.07.08.53.12
+        by smtp.gmail.com with ESMTPSA id cf11-20020a056512280b00b004a03fd4476esm331324lfb.287.2022.10.07.08.57.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Oct 2022 08:53:14 -0700 (PDT)
-Message-ID: <530a4682-c7d8-d4e1-8050-bc2baa0a1877@linaro.org>
-Date:   Fri, 7 Oct 2022 17:53:12 +0200
+        Fri, 07 Oct 2022 08:57:29 -0700 (PDT)
+Message-ID: <7bf3f70a-4af6-c62a-75fc-89591d5de04b@linaro.org>
+Date:   Fri, 7 Oct 2022 17:57:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH v6 06/17] dt-bindings: mfd: amd,pensando-elbasr: Add AMD
- Pensando Elba System Resource chip
+Subject: Re: [PATCH v2] arm64: tegra: Add Tegra234 SDMMC1 device tree node
 Content-Language: en-US
-To:     "Larson, Bradley" <Bradley.Larson@amd.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-        "alcooperx@gmail.com" <alcooperx@gmail.com>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "brijeshkumar.singh@amd.com" <brijeshkumar.singh@amd.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "gsomlo@gmail.com" <gsomlo@gmail.com>,
-        "gerg@linux-m68k.org" <gerg@linux-m68k.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "yamada.masahiro@socionext.com" <yamada.masahiro@socionext.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "piotrs@cadence.com" <piotrs@cadence.com>,
-        "p.yadav@ti.com" <p.yadav@ti.com>,
-        "rdunlap@infradead.org" <rdunlap@infradead.org>,
-        "samuel@sholland.org" <samuel@sholland.org>,
-        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
-        "Suthikulpanit, Suravee" <Suravee.Suthikulpanit@amd.com>,
-        "Lendacky, Thomas" <Thomas.Lendacky@amd.com>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "will@kernel.org" <will@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20220820195750.70861-1-brad@pensando.io>
- <20220820195750.70861-7-brad@pensando.io>
- <20220822142544.GA3770388-robh@kernel.org>
- <554f33b4-d235-5516-e8ff-5bf80d63a9b9@amd.com>
- <936c5623-07b9-c49d-e113-fc056a4eb9bc@linaro.org>
- <b064ed4c-d5a7-614f-008e-61ff2ac27f88@amd.com>
- <0852ffa5-9996-0f42-c5a8-d1fe9d39887e@linaro.org>
- <9a98d026-7f70-a69b-64de-c77419888e42@amd.com>
- <9e006307-f7c7-c68a-e5c3-d0d0b2807d87@linaro.org>
- <8ce3ee59-bc37-ea97-c94d-b6f4f9c28751@amd.com>
+To:     Prathamesh Shete <pshete@nvidia.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     smangipudi@nvidia.com, kyarlagadda@nvidia.com, anrao@nvidia.com
+References: <80d046b9-ff8c-58dc-d149-e984d509fe5a@linaro.org>
+ <20221007124424.16037-1-pshete@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8ce3ee59-bc37-ea97-c94d-b6f4f9c28751@amd.com>
+In-Reply-To: <20221007124424.16037-1-pshete@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2022 00:50, Larson, Bradley wrote:
-> On 9/16/22 2:56 AM, Krzysztof Kozlowski wrote:
->> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
->>
->>
->> On 13/09/2022 22:57, Larson, Bradley wrote:
->>> On 9/8/22 4:27 AM, Krzysztof Kozlowski wrote:
->>>> On 01/09/2022 22:37, Larson, Bradley wrote:
->>>>> On 9/1/22 12:20 AM, Krzysztof Kozlowski wrote:
->>>>>> On 01/09/2022 02:01, Larson, Bradley wrote:
->>>>>>
->> Wait, can we skip the driver entirely? I am not reviewing your driver 
->> and what it creates under /dev. 
+On 07/10/2022 14:44, Prathamesh Shete wrote:
+> Add device tree node for Tegra234 SDMMC1 instance.
+> Add and enable SD card instance in device tree.
 > 
-> Yes, see precise answer requested below.
-> 
->>> In comparision, the pensando device is also on the other end of spi,
->>> four chip selects with /dev created for each for userspace control,
->>> and one child device on cs0 for hw reset emmc that the Linux block
->>> layer controls (single bit managed only by kernel).
->>>
->>> Pensando:
->>> &spi0 {
->>>           num-cs = <4>;
->>>           cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
->>>                      <&porta 7 GPIO_ACTIVE_LOW>;
->>>           status = "okay";
->>>           system-controller@0 {
->>>                   compatible = "amd,pensando-elbasr";
->>>                   reg = <0>;
->>>                   #address-cells = <1>;
->>>                   #size-cells = <0>;
->>>                   spi-max-frequency = <12000000>;
->>>
->>>                   rstc: reset-controller {
->>>                           compatible = "amd,pensando-elbasr-reset";
->>>                           #reset-cells = <1>;
->>>                   };
->>>           };
->>>
->>>           system-controller@1 {
->>>                   compatible = "amd,pensando-elbasr";
->>>                   reg = <1>;
->>>                   spi-max-frequency = <12000000>;
->>>           };
->>>
->>>           system-controller@2 {
->>>                   compatible = "amd,pensando-elbasr";
->>>                   reg = <2>;
->>>                   spi-max-frequency = <12000000>;
->>>                   interrupt-parent = <&porta>;
->>>                   interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
->>>           };
->>>
->>>           system-controller@3 {
->>>                   compatible = "amd,pensando-elbasr";
->>>                   reg = <3>;
->>>                   spi-max-frequency = <12000000>;
->>>           };
->>> };
->> You replied with quite a response of which 90% is unrelated talk about 
->> driver. Please be specific. We talk here only about hardware.
->> Your last DTS might be the answer, but you never explicitly wrote 
->> it... So let's check if I understand it correctly. Only some of elbasr 
->> block contain reset control?
-> 
-> Yes, only the elbasr block accessed on CS0 provides reset control.  The 
-> other 3 blocks don't have any reset control and never will.
+> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
 
-I see, that could explain the subnode. However:
-1. You still do not use any resources in the subnode (it does not have
-any in DT).
+> +
+>  		mmc@3460000 {
+>  			compatible = "nvidia,tegra234-sdhci", "nvidia,tegra186-sdhci";
+>  			reg = <0x03460000 0x20000>;
+> @@ -1541,6 +1581,25 @@
+>  
+>  			#interrupt-cells = <2>;
+>  			interrupt-controller;
 
-2. Your driver instantiates subdevice not based on existing of subnode
-or characteristics of a device (e.g. compatible), but on hard-coded
-chip-select line. The reset driver directly takes parent's regmap - no
-other resources.
+The blank line which you incorrectly placed, should be here...
 
-Therefore this does not look like dedicated piece of hardware and should
-be just part of parent node.
+> +			sdmmc1_3v3: sdmmc1-3v3 {
+> +				pins = "sdmmc1-hv";
+> +				power-source = <TEGRA_IO_PAD_VOLTAGE_3V3>;
+> +			};
+> +
+> +			sdmmc1_1v8: sdmmc1-1v8 {
+> +				pins = "sdmmc1-hv";
+> +				power-source = <TEGRA_IO_PAD_VOLTAGE_1V8>;
+> +			};
+> +
+> +			sdmmc3_3v3: sdmmc3-3v3 {
+> +				pins = "sdmmc3-hv";
+> +				power-source = <TEGRA_IO_PAD_VOLTAGE_3V3>;
+> +			};
+> +
+> +			sdmmc3_1v8: sdmmc3-1v8 {
+> +				pins = "sdmmc3-hv";
+> +				power-source = <TEGRA_IO_PAD_VOLTAGE_1V8>;
+> +			};
 
-> 
->> This however does not answer my questions before.... You keep ignoring 
->> them. So please answer yes or no: "Are there other sub-devices?"
-> 
-> No
-> 
->> " and your binding is incomplete?"
-> 
-> No
-> 
->> and a new question: "Is reset block (amd,pensando-elbasr-reset) 
->> re-usable so it will appear in different device (not in 
->> amd,pensando-elbasr)?"
-> 
-> No its not re-usable
-
-So squash it with parent node.
 
 Best regards,
 Krzysztof
