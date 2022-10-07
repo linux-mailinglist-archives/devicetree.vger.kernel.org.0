@@ -2,81 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79AB05F7B91
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AAE5F7B97
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:37:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbiJGQf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 12:35:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45940 "EHLO
+        id S229890AbiJGQhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 12:37:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbiJGQfw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:35:52 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 360C99E2F7;
-        Fri,  7 Oct 2022 09:35:49 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3CF3A106F;
-        Fri,  7 Oct 2022 09:35:55 -0700 (PDT)
-Received: from [10.57.65.170] (unknown [10.57.65.170])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1CFF13F67D;
-        Fri,  7 Oct 2022 09:35:45 -0700 (PDT)
-Message-ID: <be053004-2d51-5d06-58b2-00e44dd93034@arm.com>
-Date:   Fri, 7 Oct 2022 17:35:24 +0100
+        with ESMTP id S229749AbiJGQhN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:37:13 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0811A2A702;
+        Fri,  7 Oct 2022 09:37:11 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8EE7EBBE;
+        Fri,  7 Oct 2022 18:37:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1665160629;
+        bh=97pBNmV86ZVOaN6D4MpiNCBGOD0ODinP3LiNmN/vpLs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ee22JhDOhnYR/K/k+LlBrNKDbjJHUe1V3rK+T1JtDqjfc8hU3Ye07BUQpwGwGp8OL
+         FvccFRJPj77oLpXzTjA3nuVJXuhbSGx2PwsDpZht3leklhX86nYZV5/rRLfQg5SXrd
+         hqZ0Pc20MheOjEcwu0azX7S1hvjw3H+JuDFnz/O8=
+Date:   Fri, 7 Oct 2022 19:37:04 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: renesas,tpu: Add r8a779g0 support
+Message-ID: <Y0BVsLW6KRdxiU3s@pendragon.ideasonboard.com>
+References: <f5ad691051f69f2dbfcb5c5a722960bd9cd41b06.1665156364.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v9 2/5] iommu: Implement of_iommu_get_resv_regions()
-Content-Language: en-GB
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh@kernel.org>
-References: <20220923123557.866972-1-thierry.reding@gmail.com>
- <20220923123557.866972-3-thierry.reding@gmail.com>
- <c95801a2-4d37-ecd9-fc01-e2c32b6a6fdc@arm.com> <Y0BFkudEGLlAqeFj@orome>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <Y0BFkudEGLlAqeFj@orome>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <f5ad691051f69f2dbfcb5c5a722960bd9cd41b06.1665156364.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-10-07 16:28, Thierry Reding wrote:
-[...]
->>> @@ -172,3 +173,106 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
->>>    	return ops;
->>>    }
->>> +
->>> +static inline bool check_direct_mapping(struct device *dev, struct resource *phys,
->>
->> Where "phys" is the virtual address, right? :(
+Hi Geert,
+
+Thank you for the patch.
+
+On Fri, Oct 07, 2022 at 05:26:37PM +0200, Geert Uytterhoeven wrote:
+> Document support for the 16-Bit Timer Pulse Unit (TPU) in the Renesas
+> R-Car V4H (R8A779G0) SoC.
 > 
-> No, phys is actually res passed in from of_iommu_get_resv_regions()
-> where it is the address read from the "reg" property. So that's the
-> physical address of the reserved region. Perhaps it'd be useful to
-> rename "res" to "phys" in that function to be a little more consistent.
-> It's actually the "start" and "end" values that are passed into this
-> function that refer to the I/O virtual addresses from iommu-addresses.
+> Based on a patch in the BSP by CongDang.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Oh, so it's the phys_addr_t's that aren't physical addresses - well, it 
-had to be wrong one way or the other :)
+Easy enough.
 
-I agree that s/res/phys/ in the main function, and maybe s/start/iova/ 
-too, would be helpful.
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-Thanks,
-Robin.
+> ---
+>  Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+> index c6b2ab56b7feade7..a3e52b22dd180422 100644
+> --- a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+> @@ -40,6 +40,7 @@ properties:
+>            - renesas,tpu-r8a77970  # R-Car V3M
+>            - renesas,tpu-r8a77980  # R-Car V3H
+>            - renesas,tpu-r8a779a0  # R-Car V3U
+> +          - renesas,tpu-r8a779g0  # R-Car V4H
+>        - const: renesas,tpu
+>  
+>    reg:
+
+-- 
+Regards,
+
+Laurent Pinchart
