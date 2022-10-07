@@ -2,56 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC3635F77D8
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 14:11:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8D105F77F1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 14:28:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229509AbiJGMLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 08:11:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39218 "EHLO
+        id S229605AbiJGM24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 08:28:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbiJGMLp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 08:11:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C703C897C;
-        Fri,  7 Oct 2022 05:11:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DC86C61CCE;
-        Fri,  7 Oct 2022 12:11:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C402C433D6;
-        Fri,  7 Oct 2022 12:11:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665144704;
-        bh=0pN/KKvgXNTMlPUD7QSUeOpqyBrffihcXMWu6MhPQiM=;
-        h=From:To:Cc:Subject:Date:From;
-        b=nmmFoPjEDUzOUP9DBzwSLDZ3gLvz7kL0F8cxCuFSgCO7Ms3JHwkykpi5JLsE9hZJA
-         0+chcMkQ4IbSFmoWstQJOCHX0DTCG+jnLCUt/MxL/l0Gp/vRWyEh8u2kY9c2EDL1E/
-         5/fXBSjJI9CjzRWjdUUfly77v98lyGMNieg6Ju+53Qf0QRAYw48skLPuhRACJkg2C5
-         A5o2q24H3d9EsgbwBsp8IS7i6o+22OJzNqSKrlXq/IB5WeNBDniQAKQZbg0CB4h8LT
-         LRWDPyvpG2Fdv+94bL83+h54f3wKmRj4kPC/8rWYhhRKBYM1VuF4EJ9uyjI03c1Qmf
-         q2YgrSNS//GWw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1ogmCZ-0001Q0-Vh; Fri, 07 Oct 2022 14:11:40 +0200
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Lee Jones <lee@kernel.org>
+        with ESMTP id S229620AbiJGM2z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 08:28:55 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC23AA377
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 05:28:54 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id m19so5708759lfq.9
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 05:28:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AaaH4Hzpc+BWxzk2RGTWufBjtoYuA+LOvqpi3Lw3mMY=;
+        b=JimTXh/0MZ1L5q5YlKnUBaL7g2yVNCqJFefLV7S7pBS22G1gGhIph68C0apbMB8qQq
+         jWqj7S4q9PcZhvdwMvBaGwifdZ0usoCgy6COmg6zABI77dNCUKLne9z9trZUaAkcUpFy
+         HJwVVByGoPIH5JLUTc4lhcJnDZdqvzC/OKRy2YgHI+jyrDXUAHHTeow3Yh/6rBq9kswm
+         1ygzt+2T1ghghERjhYUybteaZJJ8qQWF1LbLKJT7+X7xd7bu2oMJ9hw2puw3Qybgqvzc
+         8/5k3GIXazHdOqfFMa1SKgWKhvlBvzWr5D8Xwc+1kciMKNBEH3VGtWAOoeGhJv342AHY
+         /FwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AaaH4Hzpc+BWxzk2RGTWufBjtoYuA+LOvqpi3Lw3mMY=;
+        b=UflEpeaFpsHR+bsbGAyP/pT2Hg+rV/IGH5xC16lCI987LrYWQTdUCe/hlpbBG/OGKs
+         Gywn0SUs6WhqpIlyM+eB6hD5J3cafhrU/4yYJ4pdWei17AA5hT5icgM1NSAXDzIS5jah
+         F0//fD85TLldX6fTE5ecj8a8mHRV1MXf0E/E2gE+gtRD1ZNwkHUFN3qatB+WBT0QfKMc
+         +0yqum6SrKTgm9zvAnh99dnZ62i5znR9+w1Fkff7MzETag1PirtcocIoOcdSNtoFMXGg
+         mD6AtX8SMwpcsJKJsiFy4MKTZGOddz78jEOjY6ojXaYx1L85b5+CqvluG6lte8IhsJce
+         NrRw==
+X-Gm-Message-State: ACrzQf1cZxOT38f58lKBWgzOAgQE/ZchJG0wF2SD+caf5VGo/7M8DOme
+        T5DPh3UytlEal+jyzJyGq5Wzrg==
+X-Google-Smtp-Source: AMsMyM7mciDeK4YJsQJNGOMn8IAMb4ygr5ZASg/buDnVtEEy6/BWFjR4RTN1izCeik5DNvsqVlPFWg==
+X-Received: by 2002:ac2:5a44:0:b0:4a2:5c3d:d68c with SMTP id r4-20020ac25a44000000b004a25c3dd68cmr1649669lfn.347.1665145732626;
+        Fri, 07 Oct 2022 05:28:52 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id z18-20020a05651c11d200b0026c0f6be5dasm244298ljo.116.2022.10.07.05.28.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Oct 2022 05:28:51 -0700 (PDT)
+Message-ID: <5847d571-34d8-0af0-300b-019e6a628d6b@linaro.org>
+Date:   Fri, 7 Oct 2022 14:28:51 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH] dt-bindings: mfd: qcom,tcsr: add sc8280xp binding
+Content-Language: en-US
+To:     Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH] dt-bindings: mfd: qcom,tcsr: add sc8280xp binding
-Date:   Fri,  7 Oct 2022 14:11:10 +0200
-Message-Id: <20221007121110.5432-1-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.35.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        linux-kernel@vger.kernel.org
+References: <20221007121110.5432-1-johan+linaro@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221007121110.5432-1-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,25 +78,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding for the SC8280XP TCSR.
+On 07/10/2022 14:11, Johan Hovold wrote:
+> Add a binding for the SC8280XP TCSR.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-index d3c25daa995e..914d4ff6d3d7 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-@@ -22,6 +22,7 @@ properties:
-               - qcom,qcs404-tcsr
-               - qcom,sc7180-tcsr
-               - qcom,sc7280-tcsr
-+              - qcom,sc8280xp-tcsr
-               - qcom,sdm630-tcsr
-               - qcom,sdm845-tcsr
-               - qcom,sm8150-tcsr
--- 
-2.35.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
