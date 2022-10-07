@@ -2,97 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8722F5F7286
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 03:28:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 033F95F72B9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 04:24:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231499AbiJGB2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 21:28:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37422 "EHLO
+        id S232045AbiJGCYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 22:24:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229919AbiJGB2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 21:28:54 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2EDFABF30;
-        Thu,  6 Oct 2022 18:28:53 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id h6so2137630qkl.11;
-        Thu, 06 Oct 2022 18:28:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2/GnsvYzCny+dmNEkGgCTHzZXDk1Ni5cyCk/C+scny4=;
-        b=IvwFqG6QTISSBPWrff3K0Yby7ayx52bqFJHGFO//qR4HBeOA1JXm4BWw+7SmmPlDo3
-         b34Dpjuq1Q5wy10h6jHJZRpcPCJqvsQAmmRHgZ7BiFJcf7F8KWCYPtowKste1uSmcKrJ
-         upUcDf3MhctPe9CQie5bXHVfFsCJFeVGNNQ/ztZMg2ImXo/+PxmU79m+hTNsvrSr8Hsz
-         QPt7D4Cq6Qfo73/vthAyqsDvqtfX0XWUwzZS89OXGOwLuuzTz9EqHhnhYkEX3RDMLxaL
-         7z2/voo8CugkZXPLKdyNMRIDzoIFoUjHysv9jlrZXUWEybuyQtbtekjc9VKCtnAo1ZLB
-         MDSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2/GnsvYzCny+dmNEkGgCTHzZXDk1Ni5cyCk/C+scny4=;
-        b=jYnIDdRiCOVI+wZqk3vVj6tTc2HB/4e+/cmXF6jrMrxlZot9L8YyCcoGIOJNMrdHM7
-         pj4ZAsp39ryJz+0bRZOS6mJ3FjKadLR/Pd1tkE/3me+cQub6TQAV70EpJdx88fugkSkl
-         x8HsgUw5QlznUKxOvIlZyXrsB9IOpJ46KMQtN1WT0thDawyI1NMDPfcUykdIaCVNoDQ6
-         NcKFShgvoBbJj/JvWUFyemnS4JyVb1h75L4G8P5prmG45XWpCE7hEt6ORIzdKHSLzDul
-         DwOibSobZGRHwaYowwqrVlWSZhJL1OhysycGnkcE8diSu9+bp5u5LBezzQshLGchIkOH
-         1aJQ==
-X-Gm-Message-State: ACrzQf1caoQXL2SE7cvfKVWaPuNt75zq4mhkVP88lGnRY6igFQo/xI4S
-        ravYLMTiMSeV/oeb0tqvrVjdQ7JKEX6ZK/lo8GGgHZfYhUN0KA==
-X-Google-Smtp-Source: AMsMyM5+Qt0mAKsm6JZ0FNZOg7WcADIEReJ8PsguLHKw330lri9d1l77gvVWvXsGj3Sle/+oqHSPJhUiyjkUSjttX0Q=
-X-Received: by 2002:a05:620a:3720:b0:6dd:beba:b3a1 with SMTP id
- de32-20020a05620a372000b006ddbebab3a1mr2262149qkb.138.1665106133111; Thu, 06
- Oct 2022 18:28:53 -0700 (PDT)
+        with ESMTP id S231984AbiJGCYM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 22:24:12 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3D7AA4871;
+        Thu,  6 Oct 2022 19:24:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5AF97B821DC;
+        Fri,  7 Oct 2022 02:24:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25A12C433C1;
+        Fri,  7 Oct 2022 02:24:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665109449;
+        bh=8N7UMpEz3/SSvxJT6QHcIUGcHLWegYsdTBx/dctVBCU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BLRIPRQyIIRZokJhkBezersg9mJWrP6qXiuq0iR6ocZ4c1DloE4jlhS6Pp5d0/2Ik
+         cSmK+E2weqLP8oqLcA0IVEzIb3/tu4p0caZ8oLWzQWugN080k+/Vk6QtLLpokGZXel
+         q7aNRUqsr/WArdGVEltEgVf/qFwVvcpqJIoMw6bGTPRmkYYPS8TYO1xcRncT/YCykA
+         rTvunmwJAvpipkwpkhCnPXCnb3e99pWaEoO5zaxmRk5ophcTzjSV7g2qL8/pOuLQvW
+         sCILBIMxAzb3Xp+SVHGP2gXg3NVNTBK7V95PnMCOFYtmQ26iO6H8sw6QZoUV/eTDH1
+         AylRf95LYkwJg==
+Date:   Thu, 6 Oct 2022 21:24:06 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Richard Acayan <mailingradian@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v8 2/3] pinctrl: qcom: do not reinitialize gpio valid mask
+Message-ID: <20221007022406.kggtrbh52iamn2dv@builder.lan>
+References: <20221006232219.37505-1-mailingradian@gmail.com>
+ <20221006232219.37505-3-mailingradian@gmail.com>
 MIME-Version: 1.0
-References: <cover.1664991040.git.chiaen_wu@richtek.com> <1bcd19dbd09650ddac7b96b0fe2932698be2731e.1664991040.git.chiaen_wu@richtek.com>
- <Yz11bkxz9lK4wOHE@smile.fi.intel.com>
-In-Reply-To: <Yz11bkxz9lK4wOHE@smile.fi.intel.com>
-From:   ChiaEn Wu <peterwu.pub@gmail.com>
-Date:   Fri, 7 Oct 2022 09:28:17 +0800
-Message-ID: <CABtFH5J2r=Qq1kNb=yp6Hf7=oKJH9qeiwsO+4ejy5m9N+ZODXg@mail.gmail.com>
-Subject: Re: [PATCH v13 5/5] leds: flash: mt6370: Add MediaTek MT6370
- flashlight support
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        jic23@kernel.org, lars@metafoo.de, chiaen_wu@richtek.com,
-        alice_chen@richtek.com, cy_huang@richtek.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, szunichen@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221006232219.37505-3-mailingradian@gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 5, 2022 at 8:15 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
+On Thu, Oct 06, 2022 at 07:22:18PM -0400, Richard Acayan wrote:
+> It may be necessary for some devices to specify reserved gpios in the
+> device-specific DTS, in addition to the reserved gpios common to all
+> devices with a given SoC. Remove this bitmap_fill() call so that the
+> settings applied to the gpio valid mask by DTS are not overridden by
+> the driver's reserved gpios.
+> 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  drivers/pinctrl/qcom/pinctrl-msm.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pinctrl/qcom/pinctrl-msm.c b/drivers/pinctrl/qcom/pinctrl-msm.c
+> index a2abfe987ab1..f697e9f64360 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-msm.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-msm.c
+> @@ -687,9 +687,8 @@ static int msm_gpio_init_valid_mask(struct gpio_chip *gc,
+>  	const int *reserved = pctrl->soc->reserved_gpios;
+>  	u16 *tmp;
+>  
+> -	/* Driver provided reserved list overrides DT and ACPI */
+> +	/* Driver provided reserved list overrides other settings here */
 
-...
+IMHO this no longer overrides things, how about changing it to:
 
-> > +config LEDS_MT6370_FLASH
-> > +     tristate "Flash LED Support for MediaTek MT6370 PMIC"
->
-> > +     depends on LEDS_CLASS && OF
->
-> Why do you have OF dependency?
->
+	/* Remove driver-provided reserved GPIOs from valid_mask */
 
-Hi Andy,
-The original idea is to use the "fwnode_property_*" related function.
-But this side may only consider just "Build Pass" (?)
-I will remove "OF" in the v14 patch.
-Thanks for your review.
 
--- 
-Best Regards,
-ChiaEn Wu
+The rest of the change looks good and the commit message looks good. So
+please consider updating the comment and feel free to add my
+
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+
+Regards,
+Bjorn
+
+>  	if (reserved) {
+> -		bitmap_fill(valid_mask, ngpios);
+>  		for (i = 0; reserved[i] >= 0; i++) {
+>  			if (i >= ngpios || reserved[i] >= ngpios) {
+>  				dev_err(pctrl->dev, "invalid list of reserved GPIOs\n");
+> -- 
+> 2.38.0
+> 
