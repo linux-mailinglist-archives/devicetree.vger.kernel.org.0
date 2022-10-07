@@ -2,106 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6425F5F78B5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 15:14:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46E3F5F78BC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 15:16:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbiJGNOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 09:14:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56396 "EHLO
+        id S229650AbiJGNQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 09:16:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbiJGNOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 09:14:51 -0400
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 230B515725;
-        Fri,  7 Oct 2022 06:14:49 -0700 (PDT)
-Received: by mail-qv1-xf2b.google.com with SMTP id mx8so3031231qvb.8;
-        Fri, 07 Oct 2022 06:14:49 -0700 (PDT)
+        with ESMTP id S229666AbiJGNQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 09:16:06 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C35D9CBFED
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 06:16:03 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id t4so2868049wmj.5
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 06:16:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=AzbAsuzX0C6YbjqXLy++AIOWnufxc1YAQDpDKuGwvH0=;
-        b=QmnEpMRK65VegZLV3ihViFzn4hnbLxPFE7Z+19fXajLm4FMxfl1/JRRCCOROSTM48e
-         69136BXMrGC3n8wxaC+loAUB6rL5H6SDKRzVcdB8Z2NFSCeqBbGICUna4pmR8Dm0qVNG
-         yOej4vBYrhQPVGRccu0VyXgCmnzveFFCASAcUrtrn4Rone75P4eKKbf/maeWJHls7fF3
-         arWnVCPnmxpT0kOCi+Mi9qx6pv0xE14vExdlZCfmHGMqA8+lYiJjJZV5qm403pLaeWP6
-         89xacW4ILpctcIuDse8CUw9sBPfATKiq48xUwI0qlNICXB9aJXkqIgLdJOMO9Wnj7sjA
-         KeOA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CuebKUt/o5xM09dLmXwbPm4CgIe7jmPFtsjnDvA9tKI=;
+        b=i1dwJW1v3nbq8/ZbfaLV/q+zn1sU//XNom3IUeBfzQ47KQrxRVXRWBhf7VhQLzaRqz
+         Xa41Ph/vP3D9pyURZCHhBE6X6NL4EUbY1KsWz5Z4BJc+24oonkMrNlHKV4g9bhDliMad
+         4iUkum035btQ98tHX/ty/hzGiMALrkMUS2zyFiT3Ac+DPOtqqYyABjo1qr72AO41FWXG
+         BVdeKpFykv0hU/1EL0KK3iYvoBLjqkQWFhnPr+3zSUpAyGSkNoxEcjxF28rsXgh1u4y9
+         zSJW1sMCM4IuI6SPoQKtKkz2Zi5dlBo0zqAn16djw1RWXomTURPlaZnN3NeK9HCgirlV
+         Kwzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AzbAsuzX0C6YbjqXLy++AIOWnufxc1YAQDpDKuGwvH0=;
-        b=WxRhCTuEOC21t1naWfBOaBZ72US2dh8WdPw7XjSPLX9I1Px0hgT6fn0qQHhhFb2NF5
-         WvXxVscGNEtNC4qPNdKF+Q58NV/Zkb1E0bMndztsQ16gEbSJ9T6KbLmZ8mfSPHjXdl9W
-         Tsq6a1yCTSj5NXZOMibSUCalyzatLuerUEp7QFQhiSTJx9QS5r7M9dp/znb+kobzCZIc
-         uBI0qeKgL/O8xojoXFz5WAsqBYsCTRB6mBte6GrXMTIQtc+9REbpkhv6MlRNd6G951GE
-         rG+R+g5XGbn0bPBhwIUUhLC1Me1nkBvmlDjj/WUiRJwv2d+scxdb97pgolukBW6VSHtg
-         CNOw==
-X-Gm-Message-State: ACrzQf2qg2cB5dy2UZl6RXprDGwXpL0Ih6NqdVdo0WkgAy0UXR4hA+jf
-        MAFmWmvuDa+xP6OJfO8IB0ag481kbXQ+ZPeetok=
-X-Google-Smtp-Source: AMsMyM5FnnPkT2Qie1lciKjHd7i0Qx9Zg1w71RR9bBTG8Xn1gboFF82194uF6xaubjxsBzT8OQxvNRnwXuEvMh2Y8UU=
-X-Received: by 2002:a05:6214:300c:b0:4b3:cefd:fae0 with SMTP id
- ke12-20020a056214300c00b004b3cefdfae0mr685570qvb.48.1665148488225; Fri, 07
- Oct 2022 06:14:48 -0700 (PDT)
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CuebKUt/o5xM09dLmXwbPm4CgIe7jmPFtsjnDvA9tKI=;
+        b=2FoV3wQXzqOw2l4Rrb/JRjQZ/Zv1fZHkguIDilbesb0Ba3YsC0r2IPIOMWibId3+oU
+         Y0nueN9NBOnh/JTPJzBCK0kznv5jH8eScZvZQM6F192iCr3XfMLAJi6YSd0TCftISSF/
+         17lzgYgrUXiSNQ/aoPmR4j2ojAFfJvSlMX1IeCEPnSbDBTYa7RBwWAD2WAu/tESq29lm
+         K7PPpzDlXmcBjrX/qOLeoFOlN23N7hWoTfgKN5gL9Qx2bKVvfDM4g5AIkr0GTo6TKNzl
+         Lha39xLQoOjChlwvv3X5jehWRxVr0OOOO59BH/EsmYDSu2OoZwfjSRPqlEIfDttE97bq
+         xc7Q==
+X-Gm-Message-State: ACrzQf2PAWWVjurCNNEIDHLOt4UVewGzU+ehrogylFO+2OMZQHGxffaS
+        jdkmF+ja7+AS8BsvjjTcHbJ31Q==
+X-Google-Smtp-Source: AMsMyM5WE5gyZlSRRvvTJwc/xJmU91KkhbrBZ4+EaqgS7WNTriOMVwleLdCDeQlKdvk4b7EmjrYegw==
+X-Received: by 2002:a1c:288:0:b0:3c3:d770:1756 with SMTP id 130-20020a1c0288000000b003c3d7701756mr587097wmc.134.1665148561936;
+        Fri, 07 Oct 2022 06:16:01 -0700 (PDT)
+Received: from localhost ([2a01:cb19:85e6:1900:5f1e:d910:dd1e:5b09])
+        by smtp.gmail.com with ESMTPSA id d9-20020adff2c9000000b0021badf3cb26sm2594809wrp.63.2022.10.07.06.16.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Oct 2022 06:16:01 -0700 (PDT)
+From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
+To:     Jeff LaBundy <jeff@labundy.com>, dmitry.torokhov@gmail.com,
+        robh+dt@kernel.org
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        jeff@labundy.com
+Subject: Re: [PATCH v2 7/7] Input: iqs7222 - add support for IQS7222A v1.13+
+In-Reply-To: <YyP8Sc6k4lF9e72H@nixie71>
+References: <YyP7l/ts6SFI9iM2@nixie71> <YyP8Sc6k4lF9e72H@nixie71>
+Date:   Fri, 07 Oct 2022 15:16:00 +0200
+Message-ID: <87lepr7p0v.fsf@mkorpershoek-xps-13-9370.home>
 MIME-Version: 1.0
-References: <20220917081339.3354075-1-jjhiblot@traphandler.com>
- <20220917081339.3354075-5-jjhiblot@traphandler.com> <CAHp75VeAnJQt7kS8UE+OKcqnScYnmHnVvL+QNW6jR=yF0=oMAA@mail.gmail.com>
- <6d3d2dfd-4d44-c91a-2145-bae624926259@traphandler.com> <CAHp75VePiAs_qz2fxAheoGbq4wk39x5uoVUKZdbN254RDevgsQ@mail.gmail.com>
- <60fcb1ba-f5d4-deaf-d251-7d8c127c353b@traphandler.com>
-In-Reply-To: <60fcb1ba-f5d4-deaf-d251-7d8c127c353b@traphandler.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 7 Oct 2022 16:14:12 +0300
-Message-ID: <CAHp75Vdg3JTvvzTZv3=wDsczBhtBc0u8_6x53q2Gq4W9jEsR0g@mail.gmail.com>
-Subject: Re: [RESEND PATCH v3 4/4] leds: Add a multicolor LED driver to group
- monochromatic LEDs
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     pavel@ucw.cz, robh+dt@kernel.org,
-        sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sha@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 7, 2022 at 3:03 PM Jean-Jacques Hiblot
-<jjhiblot@traphandler.com> wrote:
-> On 07/10/2022 10:53, Andy Shevchenko wrote:
-> > On Fri, Oct 7, 2022 at 9:34 AM Jean-Jacques Hiblot
-> > <jjhiblot@traphandler.com> wrote:
-> >> On 17/09/2022 10:37, Andy Shevchenko wrote:
-> >>> On Sat, Sep 17, 2022 at 11:14 AM Jean-Jacques Hiblot
-> >>> <jjhiblot@traphandler.com> wrote:
+On Thu, Sep 15, 2022 at 23:32, Jeff LaBundy <jeff@labundy.com> wrote:
 
-...
-
-> >>>> +               led_cdev = devm_of_led_get(dev, count);
-> >>> Why _of_ variant? Please, make this OF independent since it's
-> >>> pretending to cover not only OF-based systems.
-> >> This is not OF independent. It could be, but that will wait until
-> >> someone needs it. I don't know much about ACPI and have no hardware to
-> >> test it on.
-> >>
-> >> I'll add the missing  dependency on OF in the Kconfig.
-> > No, please consider getting rid of OF-centric API usage.
+> IQS7222A revisions 1.13 and later widen the gesture multiplier from
+> x4 ms to x16 ms. Add a means to scale the gesture timings specified
+> in the device tree based on the revision of the device.
 >
-> The trouble is that the OF-agnostic API for leds doesn't exist yet and I
-> don't really want to add it without any way to test it.
+> Fixes: e505edaedcb9 ("Input: add support for Azoteq IQS7222A/B/C")
+> Signed-off-by: Jeff LaBundy <jeff@labundy.com>
+> ---
+> Changes in v2:
+>  - Rebased to account for changes earlier in series
+>
+>  drivers/input/misc/iqs7222.c | 111 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 111 insertions(+)
 
-Yeah, that might be a problem due to unestablished descriptions
-outside DT. Anyway, it seems harmless to call that function when there
-is no OF dependency. In such cases it will fail with a deferred probe.
+Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 
--- 
-With Best Regards,
-Andy Shevchenko
+>
+> diff --git a/drivers/input/misc/iqs7222.c b/drivers/input/misc/iqs7222.c
+> index 0a592b90f471..3340de51fb2d 100644
+> --- a/drivers/input/misc/iqs7222.c
+> +++ b/drivers/input/misc/iqs7222.c
+> @@ -86,7 +86,9 @@ enum iqs7222_reg_key_id {
+>  	IQS7222_REG_KEY_TOUCH,
+>  	IQS7222_REG_KEY_DEBOUNCE,
+>  	IQS7222_REG_KEY_TAP,
+> +	IQS7222_REG_KEY_TAP_LEGACY,
+>  	IQS7222_REG_KEY_AXIAL,
+> +	IQS7222_REG_KEY_AXIAL_LEGACY,
+>  	IQS7222_REG_KEY_WHEEL,
+>  	IQS7222_REG_KEY_NO_WHEEL,
+>  	IQS7222_REG_KEY_RESERVED
+> @@ -202,10 +204,68 @@ struct iqs7222_dev_desc {
+>  	int allow_offset;
+>  	int event_offset;
+>  	int comms_offset;
+> +	bool legacy_gesture;
+>  	struct iqs7222_reg_grp_desc reg_grps[IQS7222_NUM_REG_GRPS];
+>  };
+>  
+>  static const struct iqs7222_dev_desc iqs7222_devs[] = {
+> +	{
+> +		.prod_num = IQS7222_PROD_NUM_A,
+> +		.fw_major = 1,
+> +		.fw_minor = 13,
+> +		.sldr_res = U8_MAX * 16,
+> +		.touch_link = 1768,
+> +		.allow_offset = 9,
+> +		.event_offset = 10,
+> +		.comms_offset = 12,
+> +		.reg_grps = {
+> +			[IQS7222_REG_GRP_STAT] = {
+> +				.base = IQS7222_SYS_STATUS,
+> +				.num_row = 1,
+> +				.num_col = 8,
+> +			},
+> +			[IQS7222_REG_GRP_CYCLE] = {
+> +				.base = 0x8000,
+> +				.num_row = 7,
+> +				.num_col = 3,
+> +			},
+> +			[IQS7222_REG_GRP_GLBL] = {
+> +				.base = 0x8700,
+> +				.num_row = 1,
+> +				.num_col = 3,
+> +			},
+> +			[IQS7222_REG_GRP_BTN] = {
+> +				.base = 0x9000,
+> +				.num_row = 12,
+> +				.num_col = 3,
+> +			},
+> +			[IQS7222_REG_GRP_CHAN] = {
+> +				.base = 0xA000,
+> +				.num_row = 12,
+> +				.num_col = 6,
+> +			},
+> +			[IQS7222_REG_GRP_FILT] = {
+> +				.base = 0xAC00,
+> +				.num_row = 1,
+> +				.num_col = 2,
+> +			},
+> +			[IQS7222_REG_GRP_SLDR] = {
+> +				.base = 0xB000,
+> +				.num_row = 2,
+> +				.num_col = 11,
+> +			},
+> +			[IQS7222_REG_GRP_GPIO] = {
+> +				.base = 0xC000,
+> +				.num_row = 1,
+> +				.num_col = 3,
+> +			},
+> +			[IQS7222_REG_GRP_SYS] = {
+> +				.base = IQS7222_SYS_SETUP,
+> +				.num_row = 1,
+> +				.num_col = 13,
+> +			},
+> +		},
+> +	},
+>  	{
+>  		.prod_num = IQS7222_PROD_NUM_A,
+>  		.fw_major = 1,
+> @@ -215,6 +275,7 @@ static const struct iqs7222_dev_desc iqs7222_devs[] = {
+>  		.allow_offset = 9,
+>  		.event_offset = 10,
+>  		.comms_offset = 12,
+> +		.legacy_gesture = true,
+>  		.reg_grps = {
+>  			[IQS7222_REG_GRP_STAT] = {
+>  				.base = IQS7222_SYS_STATUS,
+> @@ -874,6 +935,16 @@ static const struct iqs7222_prop_desc iqs7222_props[] = {
+>  		.reg_offset = 9,
+>  		.reg_shift = 8,
+>  		.reg_width = 8,
+> +		.val_pitch = 16,
+> +		.label = "maximum gesture time",
+> +	},
+> +	{
+> +		.name = "azoteq,gesture-max-ms",
+> +		.reg_grp = IQS7222_REG_GRP_SLDR,
+> +		.reg_key = IQS7222_REG_KEY_TAP_LEGACY,
+> +		.reg_offset = 9,
+> +		.reg_shift = 8,
+> +		.reg_width = 8,
+>  		.val_pitch = 4,
+>  		.label = "maximum gesture time",
+>  	},
+> @@ -884,6 +955,16 @@ static const struct iqs7222_prop_desc iqs7222_props[] = {
+>  		.reg_offset = 9,
+>  		.reg_shift = 3,
+>  		.reg_width = 5,
+> +		.val_pitch = 16,
+> +		.label = "minimum gesture time",
+> +	},
+> +	{
+> +		.name = "azoteq,gesture-min-ms",
+> +		.reg_grp = IQS7222_REG_GRP_SLDR,
+> +		.reg_key = IQS7222_REG_KEY_TAP_LEGACY,
+> +		.reg_offset = 9,
+> +		.reg_shift = 3,
+> +		.reg_width = 5,
+>  		.val_pitch = 4,
+>  		.label = "minimum gesture time",
+>  	},
+> @@ -897,6 +978,16 @@ static const struct iqs7222_prop_desc iqs7222_props[] = {
+>  		.val_pitch = 16,
+>  		.label = "gesture distance",
+>  	},
+> +	{
+> +		.name = "azoteq,gesture-dist",
+> +		.reg_grp = IQS7222_REG_GRP_SLDR,
+> +		.reg_key = IQS7222_REG_KEY_AXIAL_LEGACY,
+> +		.reg_offset = 10,
+> +		.reg_shift = 8,
+> +		.reg_width = 8,
+> +		.val_pitch = 16,
+> +		.label = "gesture distance",
+> +	},
+>  	{
+>  		.name = "azoteq,gesture-max-ms",
+>  		.reg_grp = IQS7222_REG_GRP_SLDR,
+> @@ -904,6 +995,16 @@ static const struct iqs7222_prop_desc iqs7222_props[] = {
+>  		.reg_offset = 10,
+>  		.reg_shift = 0,
+>  		.reg_width = 8,
+> +		.val_pitch = 16,
+> +		.label = "maximum gesture time",
+> +	},
+> +	{
+> +		.name = "azoteq,gesture-max-ms",
+> +		.reg_grp = IQS7222_REG_GRP_SLDR,
+> +		.reg_key = IQS7222_REG_KEY_AXIAL_LEGACY,
+> +		.reg_offset = 10,
+> +		.reg_shift = 0,
+> +		.reg_width = 8,
+>  		.val_pitch = 4,
+>  		.label = "maximum gesture time",
+>  	},
+> @@ -2133,8 +2234,18 @@ static int iqs7222_parse_sldr(struct iqs7222_private *iqs7222,
+>  		if (!event_node)
+>  			continue;
+>  
+> +		/*
+> +		 * Depending on the device, gestures are either offered using
+> +		 * one of two timing resolutions, or are not supported at all.
+> +		 */
+>  		if (reg_offset)
+>  			reg_key = IQS7222_REG_KEY_RESERVED;
+> +		else if (dev_desc->legacy_gesture &&
+> +			 iqs7222_sl_events[i].reg_key == IQS7222_REG_KEY_TAP)
+> +			reg_key = IQS7222_REG_KEY_TAP_LEGACY;
+> +		else if (dev_desc->legacy_gesture &&
+> +			 iqs7222_sl_events[i].reg_key == IQS7222_REG_KEY_AXIAL)
+> +			reg_key = IQS7222_REG_KEY_AXIAL_LEGACY;
+>  		else
+>  			reg_key = iqs7222_sl_events[i].reg_key;
+>  
+> -- 
+> 2.34.1
