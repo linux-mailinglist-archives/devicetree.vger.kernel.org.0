@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB1515F7B16
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 17:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DA945F7B2F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:11:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbiJGP5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 11:57:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34568 "EHLO
+        id S229890AbiJGQLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 12:11:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbiJGP5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 11:57:32 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60373A87BB
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 08:57:31 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id r22so4888479ljn.10
-        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 08:57:31 -0700 (PDT)
+        with ESMTP id S229704AbiJGQLI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:11:08 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A16F5D77ED
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 09:11:04 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id d24so2018580ljl.9
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 09:11:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=m5HuWaiBxYc9lI4KqIWMCv5yIi0RRFxzG1NnVl7MMOE=;
-        b=ak/dQlFN+CtlNnUw49riVpZvBwA21CcPyo4J7WkbfMnXxK+iew8WeMXf/qKQ6zhTBA
-         EoE8vIr7FTJqsV5aribkJf+wRUvDeKdC8diY8RmcZDedMs8TeM9RGMsQnKg5k+EzCSlx
-         GyzZnbX5NQAxmWCSZ/UBhzf/SbASZFMx1Hr+nQw62HVStTQk7hhgsmVKSnfd1zFqWLB1
-         iZIzCZ4KxD1VIYMM2oBhj6LIyYUoZmWtIyyMzNehYf3DTBeDfy8N+h7fEtEB/K3KSkB4
-         TvgY9Os3qPd8Jyv7iN8RR7JKM7+/V7CRjp0g+wNEEsgk/Kftw5AdihGzCBK/yaNer+0A
-         KGVQ==
+        bh=6Gvc8fqi/2AEmdHY604fpet8nsmZJz86UxEHbRfCTg4=;
+        b=Wu6OTYc9nqxwhKUhzjWzKdAigZFIIZdvCmxw3qO2c+L5VA1Sb/kW0GqiBJNy5+eul0
+         7JziFuVTEH4M9qYXM+kMTXf1uf52ne5JuuPHVAXtWwwKahIzZ/lKPBPIC1saXb2sz3A7
+         1m5bXCtijVS7shIGzKwnmtoRsfmOSmImviwe9RxP9iGH3ufZ4pMpXkMbn9w9nWIiidVE
+         t3lxE3rRg23XT8r219PxluxI/oXSukV+Q1D6b+ja2Wp8RIwQTH+aR3dBXG2BbkI20ntg
+         nV8cl8PhWJpmWfhqtxStSjg3MOfZTnu7lgANgcPpB952EtUBn+Re5csSw+koe6cgHGJ5
+         yvlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m5HuWaiBxYc9lI4KqIWMCv5yIi0RRFxzG1NnVl7MMOE=;
-        b=wWHNMP8L15w9VHw1fpgLiH2oqdAvZIeWuINVcw1f3n2gtVm5Za8e7Wg6C+C6Pubefy
-         Wa+nJ87NmtywHdsv4+4rvi2hfSVh3h0vePtRFEeNHKENcGtpyZx752uvDRqxokKpEuHh
-         Jy0dTjem0dn9A4mwaa+u0hS4WfgCAtXPg1WWnWpyLSyiY9oGk1ZARqHTgvzFXO9Yycfk
-         ALL3mg5wNpGcf/EiN0cjfVco9+fdYpkAQOKNsQv2PcgI4sOybpbL96dO2/aLi4HJG0l3
-         y6WMPJPAuUfMKfqZ3AbWKwS75aSQ8iDiXbSn9MLWou2bFgxLt8UqJlmNSNXib1/AzD2U
-         98eA==
-X-Gm-Message-State: ACrzQf1UUD1ThwU/G/fU6pPKNWip26UM47B34hS4aGLVcad/whVDgGii
-        O4+Z76+zfwgzpACA7xOkusZo2w==
-X-Google-Smtp-Source: AMsMyM43XNH71np2bAVnS27qMV7G6nXKrqTTHy5zZmJF94oJjA09EWdUEbskt0R24ZpJCmxFUpYVOQ==
-X-Received: by 2002:a05:651c:b13:b0:26c:679f:ea66 with SMTP id b19-20020a05651c0b1300b0026c679fea66mr2085382ljr.516.1665158249732;
-        Fri, 07 Oct 2022 08:57:29 -0700 (PDT)
+        bh=6Gvc8fqi/2AEmdHY604fpet8nsmZJz86UxEHbRfCTg4=;
+        b=h+zkn+F9+TzNsFEilPJ3gIAXL54eBPRCXEuicJ/RRFOxUnlgUvlFaa7Sq6+S98yBgX
+         vLrZCgTtoMe/xHqLMt82XPzwX2H8bK08hrpr/OMohf2ivhCMuz8I1OWOZowy0WAQGx9v
+         YS92BN0+2OeRcF/Fg8BO26bCCUVCS6nmFgikSBd+QfRe34BTG8kjFv9z0F3OIcZpeq9w
+         8Ue7IVJgbZNPqZqSeBX3Vam36G+pL3qfbcolfXvgj4P2IzSjhJ2isE8nJdGUx0Y5FMcn
+         tMJyzkT9uIZPTurp9Dudvk6rSzdziYboj8F/aAQw12Gp8aoP3Lh+cGIqQ35TbRC50sPl
+         D0rA==
+X-Gm-Message-State: ACrzQf2mIqKiGmbHhN1Ojbh4xKWDGt1JDuO4BIucOvsgU562Evoo1vsy
+        u+GwPpnOOYE2PnsoDbPYObeflg==
+X-Google-Smtp-Source: AMsMyM6VMpmNNV/gW1o9aka3SLcAVhWfc/YLrY6/6MpXiONtY0MwwaXzKw7mrS6jwyOhtOE/UZ6hxw==
+X-Received: by 2002:a2e:a4c7:0:b0:26e:89d6:e6e7 with SMTP id p7-20020a2ea4c7000000b0026e89d6e6e7mr277356ljm.179.1665159063028;
+        Fri, 07 Oct 2022 09:11:03 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id cf11-20020a056512280b00b004a03fd4476esm331324lfb.287.2022.10.07.08.57.28
+        by smtp.gmail.com with ESMTPSA id u9-20020ac258c9000000b004979df1c1fasm346005lfo.61.2022.10.07.09.11.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Oct 2022 08:57:29 -0700 (PDT)
-Message-ID: <7bf3f70a-4af6-c62a-75fc-89591d5de04b@linaro.org>
-Date:   Fri, 7 Oct 2022 17:57:28 +0200
+        Fri, 07 Oct 2022 09:11:02 -0700 (PDT)
+Message-ID: <bc8d020f-9026-84c0-42b0-27ca11ddfeae@linaro.org>
+Date:   Fri, 7 Oct 2022 18:11:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH v2] arm64: tegra: Add Tegra234 SDMMC1 device tree node
+Subject: Re: [PATCH v5 0/3] Add dtsi for sc7280 boards that using rt5682
 Content-Language: en-US
-To:     Prathamesh Shete <pshete@nvidia.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     smangipudi@nvidia.com, kyarlagadda@nvidia.com, anrao@nvidia.com
-References: <80d046b9-ff8c-58dc-d149-e984d509fe5a@linaro.org>
- <20221007124424.16037-1-pshete@nvidia.com>
+To:     Judy Hsiao <judyhsiao@chromium.org>, bjorn.andersson@linaro.org
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
+        judyhsiao@google.com, swboyd@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220930152613.2018360-1-judyhsiao@chromium.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221007124424.16037-1-pshete@nvidia.com>
+In-Reply-To: <20220930152613.2018360-1-judyhsiao@chromium.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,43 +78,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2022 14:44, Prathamesh Shete wrote:
-> Add device tree node for Tegra234 SDMMC1 instance.
-> Add and enable SD card instance in device tree.
+On 30/09/2022 17:26, Judy Hsiao wrote:
+> Put sound node and lpass_cpu node settings for boards that use rt5682
+> codec in the sc7280-herobrine-audio-rt5682.dtsi as there are different
+> choices of headset codec for herobrine projects. Common audio setting
+> for the internal speaker is in sc7280-herobrine.dtsi.
 > 
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
+> Change Since V4
+> - Rebase and include sc7280-herobrine-villager-r0.dts change.
 
-> +
->  		mmc@3460000 {
->  			compatible = "nvidia,tegra234-sdhci", "nvidia,tegra186-sdhci";
->  			reg = <0x03460000 0x20000>;
-> @@ -1541,6 +1581,25 @@
->  
->  			#interrupt-cells = <2>;
->  			interrupt-controller;
-
-The blank line which you incorrectly placed, should be here...
-
-> +			sdmmc1_3v3: sdmmc1-3v3 {
-> +				pins = "sdmmc1-hv";
-> +				power-source = <TEGRA_IO_PAD_VOLTAGE_3V3>;
-> +			};
-> +
-> +			sdmmc1_1v8: sdmmc1-1v8 {
-> +				pins = "sdmmc1-hv";
-> +				power-source = <TEGRA_IO_PAD_VOLTAGE_1V8>;
-> +			};
-> +
-> +			sdmmc3_3v3: sdmmc3-3v3 {
-> +				pins = "sdmmc3-hv";
-> +				power-source = <TEGRA_IO_PAD_VOLTAGE_3V3>;
-> +			};
-> +
-> +			sdmmc3_1v8: sdmmc3-1v8 {
-> +				pins = "sdmmc3-hv";
-> +				power-source = <TEGRA_IO_PAD_VOLTAGE_1V8>;
-> +			};
-
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
 
 Best regards,
 Krzysztof
