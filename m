@@ -2,322 +2,2658 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 305165F79BC
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 16:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3147A5F79F2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 16:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbiJGOek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 10:34:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45660 "EHLO
+        id S229772AbiJGOv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 10:51:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbiJGOei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 10:34:38 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC50DDBB;
-        Fri,  7 Oct 2022 07:34:36 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 297EQFPA003158;
-        Fri, 7 Oct 2022 14:34:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=qcppdkim1;
- bh=/PVXKktjRfwXCB3WLecYGg4gYT4qWLshcAWi1sSNel4=;
- b=etYZaeIk7Rx3l4kfwqac2p/Tw8AolTpTBtLFZAMJw6ev5AMw8EyPC5V56mBVF+sMl9ir
- r5rswdw6jT3AkTdim9WDhsM3oOJDvNVQRsAMfj9ikajK8ONwz7H+BJgKTS01LbEs0RRL
- jzU2Z8lQqicAZCXGdgKJquN1DbsYWjNzhi//HjyZYEbObjDqr85n+G4XdsAYmBdqgLVc
- Yzj2X5C99YVpZmpyhphuGC9nb1JnToKWd+OGheKLZMemPOkOFD6XHr3fI8NiYyqCUGUH
- LyaTJ7qpBabYa7+G64jsR9QwvuO1p2qW/EFAtJOKOiHWCKDVecSj3GrWi7nRhTiOmV/b Kg== 
-Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2168.outbound.protection.outlook.com [104.47.58.168])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k295e9d3h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 07 Oct 2022 14:34:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IbTVUUKXwckqH5djm2ZzPaB+QYlofcSK37CUBdH2Y9UVquRhlUNEKr4KKrchMji7H4afdO4po7Z4vbazg8bGAh+ofpZ+A1Ezwwkvzlk7FkXcj34Z5lkN3saGkGSmqdw/Sc8PZTWLLYeGPb9uOYF+McsO6yJudyhM6Fj0tTIiDOMsPcpVwRR5Td+m/FIcNQC13h3nrD/7r6z78C7Bsb2xH1zPptsEtE7Mq+Ldavh/EFYWa/9004ewnONp/l+bDqOCLS4V9/oGxcxt1zvnLAd5RtdSQDNhPXzAFZ8O6SLOHlsMvvx7HbgRJZntMixYDgGIKd9m5qX4uN48n8TkgU7D9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/PVXKktjRfwXCB3WLecYGg4gYT4qWLshcAWi1sSNel4=;
- b=RJbuOYlu76/IGVOuWNEZyNcXnH0lOKXLRT9XgI5ZrhoZmEYtL/2m9s5sFfEEFp4VZnPNMn8V8Knc8rc5Ao02OEjpRDx31X0iG6EIQkp1bFQxvm2cSdSJxzlUDFfeHfR9w+h9ekGSVo1x1LiHg+etos8o0be8pVIZeql5btzN2ss5GUcTHw5iN6BD8FT8rYpr308SGrpVGwnSO3Upk3vft/iRXbZAr5UpCozlOgPvVGFM3wjWx/0PN5jaDkqvEj+AZtSH5T3lCYZUcCmkzWcUOL33Zz01dHj5IEfgab2uyNIRiUAgEu+2N4six7XAxgJKm7JI52du/QijcQ5hMq6VOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=qti.qualcomm.com; dmarc=pass action=none
- header.from=qti.qualcomm.com; dkim=pass header.d=qti.qualcomm.com; arc=none
-Received: from BN0PR02MB8142.namprd02.prod.outlook.com (2603:10b6:408:16a::19)
- by PH0PR02MB7848.namprd02.prod.outlook.com (2603:10b6:510:5d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.23; Fri, 7 Oct
- 2022 14:34:24 +0000
-Received: from BN0PR02MB8142.namprd02.prod.outlook.com
- ([fe80::60f2:dd20:67dc:8baf]) by BN0PR02MB8142.namprd02.prod.outlook.com
- ([fe80::60f2:dd20:67dc:8baf%9]) with mapi id 15.20.5676.034; Fri, 7 Oct 2022
- 14:34:23 +0000
-From:   Kalyan Thota <kalyant@qti.qualcomm.com>
-To:     "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>
-CC:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robdclark@chromium.org" <robdclark@chromium.org>,
-        "dianders@chromium.org" <dianders@chromium.org>,
-        "swboyd@chromium.org" <swboyd@chromium.org>,
-        "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>
-Subject: RE: [v6] drm/msm/disp/dpu1: add support for dspp sub block flush in
- sc7280
-Thread-Topic: [v6] drm/msm/disp/dpu1: add support for dspp sub block flush in
- sc7280
-Thread-Index: AQHY1g07DGaOHAZ0WkOzMFWvelzODK3+UGiAgAMREDA=
-Date:   Fri, 7 Oct 2022 14:34:23 +0000
-Message-ID: <BN0PR02MB81425BBF428308C3B2797320965F9@BN0PR02MB8142.namprd02.prod.outlook.com>
-References: <1664680506-8336-1-git-send-email-quic_kalyant@quicinc.com>
- <CAA8EJpoLeo9EQnuOMhDh=SvYiRZsw-L-9L+62O39GAv8=6SaLw@mail.gmail.com>
-In-Reply-To: <CAA8EJpoLeo9EQnuOMhDh=SvYiRZsw-L-9L+62O39GAv8=6SaLw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN0PR02MB8142:EE_|PH0PR02MB7848:EE_
-x-ms-office365-filtering-correlation-id: a9f4a8b7-79da-4d58-29f7-08daa87107a8
-x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: rSBDkjVkex4tEKAf0ffhOj5DM8QpkD+/7e19s42Yo2BNzPFUuERzUuSEBdUREAhXcEsfDl99SeKKn5xTosOsvdfJqbyn9zScHhNxa5YP9zwU8B7RYwd2dw4bIhEC30cyyoPHADxzhAlygJB9gywBGWvsjYfzB6l/IByF69OZz7gx9ZWzDOypMt9glSQ2ACfDLogpFk3H/GpN93HM390Vizj+IknQGOIAj47ktES5euKtfST14WFqsGD0syTBQtTq7DfHK8CTJeysep5pcNN1rO/NYbwDA/gOinnHmBHZTM6Aprrwk/YUxkYv/w4pH/7+N65n2fPHYEfZLiSoiUS/PPcajCIWZZ+hyfqju3J8hL01dsEFqsx8+bGson2P7zw0t7cb045o3Se5B+F4LIn94BCTpse4wuGTUa6KaIXZgVQg6srzyfIrxX520QWNsZ9NGKb0NY1QmQD5BsMpsOrSlbdY9sXMr1YCpoSr8dvwrpVYfzmifvxBo816Wd7aMTI9+jjslURdyNiQ6y3WFaA2GU8YEoG8PESYUhLIIls5FK21tflhh2wEghvPh6VLM2OX81OFml+HP4FlPFFE5gcv6DVbPC9hT1NA/kUGDTFJehnBde3NWI5y3D/lnnMfpW+idgra1mVcbk+FrMmx51+7/Jq0VoRBMcra3MhjmWFOppey1sutA0ifAUNizThbiaC7rEkzgMgWKRVoO8JPAVq8VnHuw6qg2fTDWadGZEMRPMPVaFjy6uSaTvASpIfbux6qIkXGZKc3rOFJNNya2oXjZg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN0PR02MB8142.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(346002)(366004)(376002)(136003)(451199015)(478600001)(316002)(71200400001)(52536014)(8936002)(5660300002)(38070700005)(55016003)(86362001)(83380400001)(6506007)(107886003)(7696005)(41300700001)(2906002)(26005)(9686003)(38100700002)(122000001)(33656002)(186003)(66476007)(66556008)(8676002)(64756008)(66446008)(66946007)(4326008)(76116006)(54906003)(110136005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dE9uR3hkKzUyQmgyb2s0a2NqeFpmMlVSeVJta2NFSkFlY1hhNGt3QnFwOHk5?=
- =?utf-8?B?QU1Vd21wTTd0aytJbVVCc2d6T2VOVTVtMCtaY1J2eUhuSm9HdTA0UXlEL01q?=
- =?utf-8?B?ZGtVUGpWclBBRisrdzdlQXdoV2g4QS9uRzUzcEV0enFmRUo4ZHhoSkRuS0hV?=
- =?utf-8?B?eWRSSWpsR1VuNHk0ZDd2TnlzcWdZN0c0S3JVcUVJNEo4YjVFM3JWNkpMTFhj?=
- =?utf-8?B?enR3SkNvd2lkeEtBYVRZUmk4a1UwZUFLb29XdW1mdmdhNHBweFdlTzJLaWND?=
- =?utf-8?B?cDRqQUNCbmYvUjFHa2tSQWhvbXB3RFV1bGJMMXk5azNLUzAyMUxweGtkb09C?=
- =?utf-8?B?dTQ5Q3dYYkgxQkx0dG8ydC9uUEllUHdZU2ZJbUFrL1VMRjNETXFjZVppNmhj?=
- =?utf-8?B?U1Q4MkVpdVYyKy8wNDdLQzhYcHV1KzVab2FJUmFhMzIydkFGdTFSSys0SXRO?=
- =?utf-8?B?by9zeEJXcnhtL3JZZFk1U3Y5T01uNzU3QjM2M1FxZzBRVHMrdGlRRXhuRkZh?=
- =?utf-8?B?aDhHYVNxSFR6S3c3NkdUM1BmQ0VNTkIrTUh3UTlFWm5VQTVQQUhIcnZCRXpB?=
- =?utf-8?B?NWlWVFdkd1pJZjlKL0FySDVkK2FlR0sySk9YNC94N251K3pMYmhpNWZneC96?=
- =?utf-8?B?Z0Rya3BqNnU5VmFSc0V4RitrdnRsTG9mVnV3RDE3MHBTQkZWdnlxME5rWlJ1?=
- =?utf-8?B?dVdIamszUzQrMmFIS2ZHcjV3clhXd25IOGsraXJPblhaTXRNYnRybU1FTStF?=
- =?utf-8?B?MG45QXMxQmZSZE1UdmJPaFFPYkpVaUZDdmFaQzJVNWhVVmQvdUVTWkdlN1JZ?=
- =?utf-8?B?bVBZUHdXdHUxYm1ublhPNWprMHIyMFFydFYzZlN0WkZEVnhlTmhEY2dEb2VL?=
- =?utf-8?B?dkNhQjhPbHRsWU9iazJWUm12WTBKeUg1ek83Yy9pRkMrRTc1eDBsaDZFc1B2?=
- =?utf-8?B?cHBXMThBNHBuZGE2cU1ySlphSUhNL3BJQ2ZDOEcrZXRZeDhQMTJVVGFQQXBn?=
- =?utf-8?B?QnpVRHJVMGdqSWNMY0hlUUZSSExuSVVyeW9VWXVFVmxkcG40K0VTU0dWVVJl?=
- =?utf-8?B?Wk9HRHNUWHkrcncvVC9KZHRLeW9EYzBwRVRPMDlrdDg0Zi9EMUQyaVN2WUVw?=
- =?utf-8?B?eEVMU0VpS294MUxUdHVZQ0lkeGJ1OWsrQWZPcHJTVEs5dGtwUW5OK3dhRFJU?=
- =?utf-8?B?aks3dnB4WEsvT1BYRnpUQi9uWG9IVWFSemNWb0FCZzV5Vkt3SFZLRU51UFkr?=
- =?utf-8?B?T041T2tMQnU2SFlnVDV0MDNGS3VLVFpGSGJSMUtSRnFFUjVlaFN1SXBNR2ZE?=
- =?utf-8?B?dUdyb3ZGNkVHenBQbUoydmRCYUFGcno1WndSZExRWlRLUE12VFh4blpVNzJW?=
- =?utf-8?B?TVRNbGtMY3cvYi9ETUZlZjhYOGc1M1l2elhUNHBFSEJnazRJM3BhRnIrTjNW?=
- =?utf-8?B?a1QrTnNJWGhRMloraU9TRUFtd1BTb3VkNHpPRE5JcUlnY2ZxbE9iRS9uc2dL?=
- =?utf-8?B?YzVuN0RQY3NlVDlVcUptRVlyN3ZuY3hNeFJJUlpDVUF3dmZJU1I3aGhPMXJo?=
- =?utf-8?B?Rk55NHp6bmhaZVhyNHYrQjlkcXNxeGN4WFRhYTRrWDZweHYvMGRyWFBldVB3?=
- =?utf-8?B?QmNOWTlyOTNuNFJQZWpQMW9xbGJhVHJ1M0dtYzlYMDUrUWVRM2ZvbytUVG1V?=
- =?utf-8?B?Y1FQN3gvLzdQeHVvYjhxT2V1TkcxbVhxWHhPRlJiaDBSdHpsZHIzSWh2bkJs?=
- =?utf-8?B?RXlvalpEcFdEdXZ5VjFVV2hIeFlGY3hCSXFSYWxjaWVHUmJOUmt0M01Id0Mz?=
- =?utf-8?B?NnZramJyMUtza2t1RW1UOVoyam9KaEd1UnVhM2RleDdNM1JRRkVEVk00WUdG?=
- =?utf-8?B?eVF6d00xYUVHRzYvaWF4QnR5ZjJlRnRtQ01iRUE2RStYbVlURU1Ec1BHajls?=
- =?utf-8?B?QmMrV2dBNHlHNFN1bTBMTjk0V3BzaXdHeHJ6QkxVcWxZMGtQUllQNnI3Zlpz?=
- =?utf-8?B?eWxQS25PVzdPUDdYSXRIZlRrTEFOaFFJV0ZvbWIyMm1KcWZMbVZxbjFreHV2?=
- =?utf-8?B?ckMvSnRweU9hbE5ac1pZaEV3aVNqUFp4Z3N5WVpsMTArcVJhVXlsSEpscHhz?=
- =?utf-8?B?Mm5PU0NlSzZyazhvVk5TMnJacU1ZYkJHSzJQUjYxSzh4Q2tpSHhTZjFFTmNv?=
- =?utf-8?B?b2c9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229805AbiJGOv2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 10:51:28 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B535D8EE4
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 07:51:21 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id q7so3509069ljp.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 07:51:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=daqFvc0WKe/QFHtwNAOWXS8mTosCTs8s4VCPcJN0f4I=;
+        b=dUlurrmfTyn00S9NQqhowJhKTiATR5JqtpvEUudbFAbnp9Q6mD9wuhJs4W8vEIjRwO
+         Q40HWLJV1yZZEnrIi1Wa4EGp+ol4QJfHSWvqNBvWLd88E72VCoCSbvgor4N9zO6HKOew
+         c77n5wRQ1u+B69DZ+9bF/RbfjX4KsKxPuZJ6ALjrgqED9XOaIUaZdySafrGCbQBHKlZ7
+         GeibQXn3qY+DTzhIlKFAMDHushodtfH/22tC/FUDnjQAuByrTD7xe829BYc8SZ2SuRf1
+         W5dVUBViczC4miw5tlinh8XujbOQca1ywoxjA/5VnNuv9RnXhOCYeLmqg39EZ6R9BYsO
+         t6lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=daqFvc0WKe/QFHtwNAOWXS8mTosCTs8s4VCPcJN0f4I=;
+        b=NFZZJhmNFuUahHr1w1xXUI4fAjWAzdimKUVHDpsMe95ndBGl8HXTyjGgr3aBKYCzFz
+         teRVRXPGw9rqEp5T9ytCI3znjMvfMbomXb/yi6imczjBMOgua2JoSRoj45Q/FQFPSLdT
+         LFsYJ8Y9NDb1nDjRlD4MVb1Jmc44Gt0DlMx3UfSi3PUwl7PyfcGb1wiRLfF/r5eZswRT
+         +54YXlv6li8/OCSs2hEL3ZB6nvBUqbTMO14WodfE88ejFbasy+N1zKUN9DHJuI0DQDbk
+         fWjHuxKTu28dG0ua6ejdWqcJQ7QY5Rj2vQeM1xa0uWWtkShiKyrffg3j1VsbHruydNJd
+         gakA==
+X-Gm-Message-State: ACrzQf2GRId262LXfi1YDuWPtxcdN88fATqNYpFFu4LOGApWPYOxKOY0
+        uhmK3T7k18y0ty7Ch9VexgrjnA==
+X-Google-Smtp-Source: AMsMyM5SqSb5xwy32+QjnYBiZLnFb7X/pfMXXKYwIFnqDr4muaPtaf+S25CDVf9i9K+eXi/+hOV93g==
+X-Received: by 2002:a2e:be22:0:b0:26c:27da:2692 with SMTP id z34-20020a2ebe22000000b0026c27da2692mr1838307ljq.481.1665154279415;
+        Fri, 07 Oct 2022 07:51:19 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id v12-20020ac2592c000000b0049876c1bb24sm315624lfi.225.2022.10.07.07.51.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Oct 2022 07:51:18 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Doug Anderson <dianders@chromium.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sc7180: align TLMM pin configuration with DT schema
+Date:   Fri,  7 Oct 2022 16:51:15 +0200
+Message-Id: <20221007145116.46554-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-OriginatorOrg: qti.qualcomm.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN0PR02MB8142.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9f4a8b7-79da-4d58-29f7-08daa87107a8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2022 14:34:23.8797
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BZdeZLgD6GwFKqrOwCmu+jXw3SmJROk5gRP7aVEgG9gqsmCW5rkalCm7SkBsOGvoRfyXng3oSOtMzABct+m/zbjBiqSGXLifaqDPx6x8TQM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7848
-X-Proofpoint-ORIG-GUID: CmjkrJMGohuoMr_aJl1XbiZP7e47Z09J
-X-Proofpoint-GUID: CmjkrJMGohuoMr_aJl1XbiZP7e47Z09J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-06_05,2022-10-07_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 adultscore=0 mlxlogscore=999 impostorscore=0
- lowpriorityscore=0 malwarescore=0 bulkscore=0 spamscore=0 clxscore=1011
- mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210070087
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IERtaXRyeSBCYXJ5c2hrb3Yg
-PGRtaXRyeS5iYXJ5c2hrb3ZAbGluYXJvLm9yZz4NCj5TZW50OiBUdWVzZGF5LCBPY3RvYmVyIDQs
-IDIwMjIgODowMyBQTQ0KPlRvOiBLYWx5YW4gVGhvdGEgKFFVSUMpIDxxdWljX2thbHlhbnRAcXVp
-Y2luYy5jb20+DQo+Q2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGxpbnV4LWFy
-bS1tc21Admdlci5rZXJuZWwub3JnOw0KPmZyZWVkcmVub0BsaXN0cy5mcmVlZGVza3RvcC5vcmc7
-IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC0NCj5rZXJuZWxAdmdlci5rZXJuZWwu
-b3JnOyByb2JkY2xhcmtAZ21haWwuY29tOyBkaWFuZGVyc0BjaHJvbWl1bS5vcmc7DQo+c3dib3lk
-QGNocm9taXVtLm9yZzsgVmlub2QgUG9saW1lcmEgKFFVSUMpIDxxdWljX3Zwb2xpbWVyQHF1aWNp
-bmMuY29tPjsNCj5BYmhpbmF2IEt1bWFyIChRVUlDKSA8cXVpY19hYmhpbmF2a0BxdWljaW5jLmNv
-bT4NCj5TdWJqZWN0OiBSZTogW3Y2XSBkcm0vbXNtL2Rpc3AvZHB1MTogYWRkIHN1cHBvcnQgZm9y
-IGRzcHAgc3ViIGJsb2NrIGZsdXNoIGluDQo+c2M3MjgwDQo+DQo+V0FSTklORzogVGhpcyBlbWFp
-bCBvcmlnaW5hdGVkIGZyb20gb3V0c2lkZSBvZiBRdWFsY29tbS4gUGxlYXNlIGJlIHdhcnkgb2YN
-Cj5hbnkgbGlua3Mgb3IgYXR0YWNobWVudHMsIGFuZCBkbyBub3QgZW5hYmxlIG1hY3Jvcy4NCj4N
-Cj5PbiBTdW4sIDIgT2N0IDIwMjIgYXQgMDY6MTUsIEthbHlhbiBUaG90YSA8cXVpY19rYWx5YW50
-QHF1aWNpbmMuY29tPiB3cm90ZToNCj4+DQo+PiBGbHVzaCBtZWNoYW5pc20gZm9yIERTUFAgYmxv
-Y2tzIGhhcyBjaGFuZ2VkIGluIHNjNzI4MCBmYW1pbHksIGl0DQo+PiBhbGxvd3MgaW5kaXZpZHVh
-bCBzdWIgYmxvY2tzIHRvIGJlIGZsdXNoZWQgaW4gY29vcmRpbmF0aW9uIHdpdGggbWFzdGVyDQo+
-PiBmbHVzaCBjb250cm9sLg0KPj4NCj4+IFJlcHJlc2VudGF0aW9uOiBtYXN0ZXJfZmx1c2ggJiYg
-KFBDQ19mbHVzaCB8IElHQ19mbHVzaCAuLiBldGMgKQ0KPj4NCj4+IFRoaXMgY2hhbmdlIGFkZHMg
-bmVjZXNzYXJ5IHN1cHBvcnQgZm9yIHRoZSBhYm92ZSBkZXNpZ24uDQo+Pg0KPj4gQ2hhbmdlcyBp
-biB2MToNCj4+IC0gRmV3IG5pdHMgKERvdWcsIERtaXRyeSkNCj4+IC0gUmVzdHJpY3Qgc3ViLWJs
-b2NrIGZsdXNoIHByb2dyYW1taW5nIHRvIGRwdV9od19jdGwgZmlsZSAoRG1pdHJ5KQ0KPj4NCj4+
-IENoYW5nZXMgaW4gdjI6DQo+PiAtIE1vdmUgdGhlIGFkZHJlc3Mgb2Zmc2V0IHRvIGZsdXNoIG1h
-Y3JvIChEbWl0cnkpDQo+PiAtIFNlcGVyYXRlIG9wcyBmb3IgdGhlIHN1YiBibG9jayBmbHVzaCAo
-RG1pdHJ5KQ0KPj4NCj4+IENoYW5nZXMgaW4gdjM6DQo+PiAtIFJldXNlIHRoZSBEUFVfRFNQUF94
-eCBlbnVtIGluc3RlYWQgb2YgYSBuZXcgb25lIChEbWl0cnkpDQo+Pg0KPj4gQ2hhbmdlcyBpbiB2
-NDoNCj4+IC0gVXNlIHNob3J0ZXIgdmVyc2lvbiBmb3IgdW5zaWduZWQgaW50IChTdGVwaGVuKQ0K
-Pj4NCj4+IENoYW5nZXMgaW4gdjU6DQo+PiAtIFNwdXJpb3VzIHBhdGNoIHBsZWFzZSBpZ25vcmUu
-DQo+Pg0KPj4gQ2hhbmdlcyBpbiB2NjoNCj4+IC0gQWRkIFNPQiB0YWcgKERvdWcsIERtaXRyeSkN
-Cj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBLYWx5YW4gVGhvdGEgPHF1aWNfa2FseWFudEBxdWljaW5j
-LmNvbT4NCj4+IFJldmlld2VkLWJ5OiBEbWl0cnkgQmFyeXNoa292IDxkbWl0cnkuYmFyeXNoa292
-QGxpbmFyby5vcmc+DQo+PiAtLS0NCj4+ICBkcml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9k
-cHVfY3J0Yy5jICAgICAgIHwgIDIgKy0NCj4+ICBkcml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1
-MS9kcHVfaHdfY2F0YWxvZy5jIHwgIDUgKysrLQ0KPj4gZHJpdmVycy9ncHUvZHJtL21zbS9kaXNw
-L2RwdTEvZHB1X2h3X2NhdGFsb2cuaCB8ICA0ICsrKw0KPj4gIGRyaXZlcnMvZ3B1L2RybS9tc20v
-ZGlzcC9kcHUxL2RwdV9od19jdGwuYyAgICAgfCAzNQ0KPisrKysrKysrKysrKysrKysrKysrKysr
-Ky0tDQo+PiAgZHJpdmVycy9ncHUvZHJtL21zbS9kaXNwL2RwdTEvZHB1X2h3X2N0bC5oICAgICB8
-IDEwICsrKysrKy0tDQo+PiAgNSBmaWxlcyBjaGFuZ2VkLCA1MCBpbnNlcnRpb25zKCspLCA2IGRl
-bGV0aW9ucygtKQ0KPj4NCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3Av
-ZHB1MS9kcHVfY3J0Yy5jDQo+PiBiL2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9j
-cnRjLmMNCj4+IGluZGV4IDYwMWQ2ODcuLjQxNzBmYmUgMTAwNjQ0DQo+PiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9kcHVfY3J0Yy5jDQo+PiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbXNtL2Rpc3AvZHB1MS9kcHVfY3J0Yy5jDQo+PiBAQCAtNzY2LDcgKzc2Niw3IEBAIHN0YXRp
-YyB2b2lkIF9kcHVfY3J0Y19zZXR1cF9jcF9ibG9ja3Moc3RydWN0DQo+PiBkcm1fY3J0YyAqY3J0
-YykNCj4+DQo+PiAgICAgICAgICAgICAgICAgLyogc3RhZ2UgY29uZmlnIGZsdXNoIG1hc2sgKi8N
-Cj4+ICAgICAgICAgICAgICAgICBjdGwtPm9wcy51cGRhdGVfcGVuZGluZ19mbHVzaF9kc3BwKGN0
-bCwNCj4+IC0gICAgICAgICAgICAgICAgICAgICAgIG1peGVyW2ldLmh3X2RzcHAtPmlkeCk7DQo+
-PiArICAgICAgICAgICAgICAgICAgICAgICBtaXhlcltpXS5od19kc3BwLT5pZHgsIERQVV9EU1BQ
-X1BDQyk7DQo+PiAgICAgICAgIH0NCj4+ICB9DQo+Pg0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9od19jYXRhbG9nLmMNCj4+IGIvZHJpdmVycy9ncHUv
-ZHJtL21zbS9kaXNwL2RwdTEvZHB1X2h3X2NhdGFsb2cuYw0KPj4gaW5kZXggMjdmMDI5Zi4uMGVl
-Y2IyZiAxMDA2NDQNCj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9o
-d19jYXRhbG9nLmMNCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9o
-d19jYXRhbG9nLmMNCj4+IEBAIC02NSw3ICs2NSwxMCBAQA0KPj4gICAgICAgICAoUElOR1BPTkdf
-U0RNODQ1X01BU0sgfCBCSVQoRFBVX1BJTkdQT05HX1RFMikpDQo+Pg0KPj4gICNkZWZpbmUgQ1RM
-X1NDNzI4MF9NQVNLIFwNCj4+IC0gICAgICAgKEJJVChEUFVfQ1RMX0FDVElWRV9DRkcpIHwgQklU
-KERQVV9DVExfRkVUQ0hfQUNUSVZFKSB8DQo+QklUKERQVV9DVExfVk1fQ0ZHKSkNCj4+ICsgICAg
-ICAgKEJJVChEUFVfQ1RMX0FDVElWRV9DRkcpIHwgXA0KPj4gKyAgICAgICAgQklUKERQVV9DVExf
-RkVUQ0hfQUNUSVZFKSB8IFwNCj4+ICsgICAgICAgIEJJVChEUFVfQ1RMX1ZNX0NGRykgfCBcDQo+
-PiArICAgICAgICBCSVQoRFBVX0NUTF9EU1BQX1NVQl9CTE9DS19GTFVTSCkpDQo+Pg0KPj4gICNk
-ZWZpbmUgTUVSR0VfM0RfU004MTUwX01BU0sgKDApDQo+Pg0KPj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9od19jYXRhbG9nLmgNCj4+IGIvZHJpdmVycy9n
-cHUvZHJtL21zbS9kaXNwL2RwdTEvZHB1X2h3X2NhdGFsb2cuaA0KPj4gaW5kZXggMzhhYTM4YS4u
-ODE0OGU5MSAxMDA2NDQNCj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2Rw
-dV9od19jYXRhbG9nLmgNCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2Rw
-dV9od19jYXRhbG9nLmgNCj4+IEBAIC0xNjEsMTAgKzE2MSwxMiBAQCBlbnVtIHsNCj4+ICAgKiBE
-U1BQIHN1Yi1ibG9ja3MNCj4+ICAgKiBARFBVX0RTUFBfUENDICAgICAgICAgICAgIFBhbmVsIGNv
-bG9yIGNvcnJlY3Rpb24gYmxvY2sNCj4+ICAgKiBARFBVX0RTUFBfR0MgICAgICAgICAgICAgIEdh
-bW1hIGNvcnJlY3Rpb24gYmxvY2sNCj4+ICsgKiBARFBVX0RTUFBfSUdDICAgICAgICAgICAgIElu
-dmVyc2UgR2FtbWEgY29ycmVjdGlvbiBibG9jaw0KPj4gICAqLw0KPj4gIGVudW0gew0KPj4gICAg
-ICAgICBEUFVfRFNQUF9QQ0MgPSAweDEsDQo+PiAgICAgICAgIERQVV9EU1BQX0dDLA0KPj4gKyAg
-ICAgICBEUFVfRFNQUF9JR0MsDQo+PiAgICAgICAgIERQVV9EU1BQX01BWA0KPj4gIH07DQo+Pg0K
-Pj4gQEAgLTE5MSw2ICsxOTMsNyBAQCBlbnVtIHsNCj4+ICAgKiBARFBVX0NUTF9TUExJVF9ESVNQ
-TEFZOiAgICAgQ1RMIHN1cHBvcnRzIHZpZGVvIG1vZGUgc3BsaXQgZGlzcGxheQ0KPj4gICAqIEBE
-UFVfQ1RMX0ZFVENIX0FDVElWRTogICAgICBBY3RpdmUgQ1RMIGZvciBmZXRjaCBIVyAoU1NQUHMp
-DQo+PiAgICogQERQVV9DVExfVk1fQ0ZHOiAgICAgICAgICAgIENUTCBjb25maWcgdG8gc3VwcG9y
-dCBtdWx0aXBsZSBWTXMNCj4+ICsgKiBARFBVX0NUTF9EU1BQX0JMT0NLX0ZMVVNIOiBDVEwgY29u
-ZmlnIHRvIHN1cHBvcnQgZHNwcCBzdWItYmxvY2sNCj4+ICsgZmx1c2gNCj4+ICAgKiBARFBVX0NU
-TF9NQVgNCj4+ICAgKi8NCj4+ICBlbnVtIHsNCj4+IEBAIC0xOTgsNiArMjAxLDcgQEAgZW51bSB7
-DQo+PiAgICAgICAgIERQVV9DVExfQUNUSVZFX0NGRywNCj4+ICAgICAgICAgRFBVX0NUTF9GRVRD
-SF9BQ1RJVkUsDQo+PiAgICAgICAgIERQVV9DVExfVk1fQ0ZHLA0KPj4gKyAgICAgICBEUFVfQ1RM
-X0RTUFBfU1VCX0JMT0NLX0ZMVVNILA0KPj4gICAgICAgICBEUFVfQ1RMX01BWA0KPj4gIH07DQo+
-Pg0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9od19j
-dGwuYw0KPj4gYi9kcml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9kcHVfaHdfY3RsLmMNCj4+
-IGluZGV4IGEzNWVjYjYuLmYyNmY0ODQgMTAwNjQ0DQo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-bXNtL2Rpc3AvZHB1MS9kcHVfaHdfY3RsLmMNCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tc20v
-ZGlzcC9kcHUxL2RwdV9od19jdGwuYw0KPj4gQEAgLTMzLDYgKzMzLDcgQEANCj4+ICAjZGVmaW5l
-ICAgQ1RMX0lOVEZfRkxVU0ggICAgICAgICAgICAgICAgMHgxMTANCj4+ICAjZGVmaW5lICAgQ1RM
-X0lOVEZfTUFTVEVSICAgICAgICAgICAgICAgMHgxMzQNCj4+ICAjZGVmaW5lICAgQ1RMX0ZFVENI
-X1BJUEVfQUNUSVZFICAgICAgICAgMHgwRkMNCj4+ICsjZGVmaW5lICAgQ1RMX0RTUFBfbl9GTFVT
-SChuKSAgICAgICAgICAoKDB4MTNDKSArICgobiAtIDEpICogNCkpDQo+Pg0KPj4gICNkZWZpbmUg
-Q1RMX01JWEVSX0JPUkRFUl9PVVQgICAgICAgICAgICBCSVQoMjQpDQo+PiAgI2RlZmluZSBDVExf
-RkxVU0hfTUFTS19DVEwgICAgICAgICAgICAgIEJJVCgxNykNCj4+IEBAIC0yODcsOCArMjg4LDkg
-QEAgc3RhdGljIHZvaWQNCj4+IGRwdV9od19jdGxfdXBkYXRlX3BlbmRpbmdfZmx1c2hfbWVyZ2Vf
-M2RfdjEoc3RydWN0IGRwdV9od19jdGwgKmN0eCwgIH0NCj4+DQo+PiAgc3RhdGljIHZvaWQgZHB1
-X2h3X2N0bF91cGRhdGVfcGVuZGluZ19mbHVzaF9kc3BwKHN0cnVjdCBkcHVfaHdfY3RsICpjdHgs
-DQo+PiAtICAgICAgIGVudW0gZHB1X2RzcHAgZHNwcCkNCj4+ICsgICAgICAgZW51bSBkcHVfZHNw
-cCBkc3BwLCB1MzIgZHNwcF9zdWJfYmxrKQ0KPj4gIHsNCj4+ICsNCj4+ICAgICAgICAgc3dpdGNo
-IChkc3BwKSB7DQo+PiAgICAgICAgIGNhc2UgRFNQUF8wOg0KPj4gICAgICAgICAgICAgICAgIGN0
-eC0+cGVuZGluZ19mbHVzaF9tYXNrIHw9IEJJVCgxMyk7IEBAIC0zMDcsNiArMzA5LDMxDQo+PiBA
-QCBzdGF0aWMgdm9pZCBkcHVfaHdfY3RsX3VwZGF0ZV9wZW5kaW5nX2ZsdXNoX2RzcHAoc3RydWN0
-IGRwdV9od19jdGwNCj4qY3R4LA0KPj4gICAgICAgICB9DQo+PiAgfQ0KPj4NCj4+ICtzdGF0aWMg
-dm9pZCBkcHVfaHdfY3RsX3VwZGF0ZV9wZW5kaW5nX2ZsdXNoX2RzcHBfc3ViYmxvY2tzKA0KPj4g
-KyAgICAgICBzdHJ1Y3QgZHB1X2h3X2N0bCAqY3R4LCBlbnVtIGRwdV9kc3BwIGRzcHAsIHUzMiBk
-c3BwX3N1Yl9ibGspDQo+PiArew0KPj4gKyAgICAgICB1MzIgZmx1c2hiaXRzID0gMCwgYWN0aXZl
-Ow0KPj4gKw0KPj4gKyAgICAgICBzd2l0Y2ggKGRzcHBfc3ViX2Jsaykgew0KPj4gKyAgICAgICBj
-YXNlIERQVV9EU1BQX0lHQzoNCj4+ICsgICAgICAgICAgICAgICBmbHVzaGJpdHMgPSBCSVQoMik7
-DQo+PiArICAgICAgICAgICAgICAgYnJlYWs7DQo+PiArICAgICAgIGNhc2UgRFBVX0RTUFBfUEND
-Og0KPj4gKyAgICAgICAgICAgICAgIGZsdXNoYml0cyA9IEJJVCg0KTsNCj4+ICsgICAgICAgICAg
-ICAgICBicmVhazsNCj4+ICsgICAgICAgY2FzZSBEUFVfRFNQUF9HQzoNCj4+ICsgICAgICAgICAg
-ICAgICBmbHVzaGJpdHMgPSBCSVQoNSk7DQo+PiArICAgICAgICAgICAgICAgYnJlYWs7DQo+PiAr
-ICAgICAgIGRlZmF1bHQ6DQo+PiArICAgICAgICAgICAgICAgcmV0dXJuOw0KPj4gKyAgICAgICB9
-DQo+PiArDQo+PiArICAgICAgIGFjdGl2ZSA9IERQVV9SRUdfUkVBRCgmY3R4LT5odywgQ1RMX0RT
-UFBfbl9GTFVTSChkc3BwKSk7DQo+PiArICAgICAgIERQVV9SRUdfV1JJVEUoJmN0eC0+aHcsIENU
-TF9EU1BQX25fRkxVU0goZHNwcCksIGFjdGl2ZSB8DQo+PiArIGZsdXNoYml0cyk7DQo+PiArDQo+
-PiArICAgICAgIGN0eC0+cGVuZGluZ19mbHVzaF9tYXNrIHw9IEJJVCgyOSk7IH0NCj4+ICsNCj4+
-ICBzdGF0aWMgdTMyIGRwdV9od19jdGxfcG9sbF9yZXNldF9zdGF0dXMoc3RydWN0IGRwdV9od19j
-dGwgKmN0eCwgdTMyDQo+PiB0aW1lb3V0X3VzKSAgew0KPj4gICAgICAgICBzdHJ1Y3QgZHB1X2h3
-X2Jsa19yZWdfbWFwICpjID0gJmN0eC0+aHc7IEBAIC02NzUsNyArNzAyLDExIEBADQo+PiBzdGF0
-aWMgdm9pZCBfc2V0dXBfY3RsX29wcyhzdHJ1Y3QgZHB1X2h3X2N0bF9vcHMgKm9wcywNCj4+ICAg
-ICAgICAgb3BzLT5zZXR1cF9ibGVuZHN0YWdlID0gZHB1X2h3X2N0bF9zZXR1cF9ibGVuZHN0YWdl
-Ow0KPj4gICAgICAgICBvcHMtPnVwZGF0ZV9wZW5kaW5nX2ZsdXNoX3NzcHAgPQ0KPmRwdV9od19j
-dGxfdXBkYXRlX3BlbmRpbmdfZmx1c2hfc3NwcDsNCj4+ICAgICAgICAgb3BzLT51cGRhdGVfcGVu
-ZGluZ19mbHVzaF9taXhlciA9DQo+ZHB1X2h3X2N0bF91cGRhdGVfcGVuZGluZ19mbHVzaF9taXhl
-cjsNCj4+IC0gICAgICAgb3BzLT51cGRhdGVfcGVuZGluZ19mbHVzaF9kc3BwID0NCj5kcHVfaHdf
-Y3RsX3VwZGF0ZV9wZW5kaW5nX2ZsdXNoX2RzcHA7DQo+PiArICAgICAgIGlmIChjYXAgJiBCSVQo
-RFBVX0NUTF9EU1BQX1NVQl9CTE9DS19GTFVTSCkpDQo+PiArICAgICAgICAgICAgICAgb3BzLT51
-cGRhdGVfcGVuZGluZ19mbHVzaF9kc3BwID0NCj5kcHVfaHdfY3RsX3VwZGF0ZV9wZW5kaW5nX2Zs
-dXNoX2RzcHBfc3ViYmxvY2tzOw0KPj4gKyAgICAgICBlbHNlDQo+PiArICAgICAgICAgICAgICAg
-b3BzLT51cGRhdGVfcGVuZGluZ19mbHVzaF9kc3BwID0NCj4+ICsgZHB1X2h3X2N0bF91cGRhdGVf
-cGVuZGluZ19mbHVzaF9kc3BwOw0KPj4gKw0KPj4gICAgICAgICBpZiAoY2FwICYgQklUKERQVV9D
-VExfRkVUQ0hfQUNUSVZFKSkNCj4+ICAgICAgICAgICAgICAgICBvcHMtPnNldF9hY3RpdmVfcGlw
-ZXMgPQ0KPj4gZHB1X2h3X2N0bF9zZXRfZmV0Y2hfcGlwZV9hY3RpdmU7ICB9OyBkaWZmIC0tZ2l0
-DQo+PiBhL2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9od19jdGwuaA0KPj4gYi9k
-cml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9kcHVfaHdfY3RsLmgNCj4+IGluZGV4IDk2YzAx
-MmUuLjE3NDM1NzIgMTAwNjQ0DQo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1
-MS9kcHVfaHdfY3RsLmgNCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2Rw
-dV9od19jdGwuaA0KPj4gQEAgLTE0OSwxMiArMTQ5LDE4IEBAIHN0cnVjdCBkcHVfaHdfY3RsX29w
-cyB7DQo+Pg0KPj4gICAgICAgICAvKioNCj4+ICAgICAgICAgICogT1IgaW4gdGhlIGdpdmVuIGZs
-dXNoYml0cyB0byB0aGUgY2FjaGVkIHBlbmRpbmdfZmx1c2hfbWFzaw0KPj4gLSAgICAgICAgKiBO
-byBlZmZlY3Qgb24gaGFyZHdhcmUNCj4+ICsgICAgICAgICoNCj4+ICsgICAgICAgICogSWYgdGhl
-IGhhcmR3YXJlIHN1cHBvcnRzIGRzcHAgc3ViIGJsb2NrIGZsdXNoLCB0aGVuIHN1Yi1ibG9jaw0K
-Pj4gKyAgICAgICAgKiBmbHVzaGVzIGFyZSB3cml0dGVuIHRvIHRoZSBoYXJkd2FyZSBhbmQgbWFp
-biBkc3BwIGZsdXNoIHdpbGwNCj4+ICsgICAgICAgICogYmUgY2FjaGVkIGluIHRoZSBwZW5kaW5n
-X2ZsdXNoX21hc2suDQo+DQo+T2ssIHRoaXMgY2hhbmdlcyB0aGUgc2VtYW50aWMgb2YgdGhlIHVw
-ZGF0ZV9wZW5kaW5nX0ZPT19tYXNrLg0KPkNhbiB3ZSBjYWNoZSB0aGUgcGVuZGluZyBEU1BQIGJs
-b2NrcyBpbnN0ZWFkIGFuZCBmbHVzaCB0aGVtIHRvZ2V0aGVyIHdpdGggdGhlDQo+cmVzdCBvZiBw
-ZW5kaW5nIGZsdXNoZXM/DQo+DQpTdXJlLCBJIHRob3VnaHQgYWJvdXQgaXQgZHVyaW5nIGluaXRp
-YWwgaW1wbGVtZW50YXRpb24sIHRoZSBvbmx5IHJlYXNvbiB0byBwdWxsIGJhY2sgd2FzIHRoYXQg
-Y2FjaGluZyB0aGUgDQp2YWx1ZXMgd2lsbCBicmluZyBpbiBhZGRpdGlvbmFsIG92ZXJoZWFkIG9m
-IGNsZWFyaW5nIHRoZW0sIHdoZXJlYXMgSFcgd2lsbCBzZWxmLWNsZWFyIHRoZSBiaXRzIGFmdGVy
-IHRoZXkNCmFyZSBjb25zdW1lZCByZW1vdmluZyB0aGUgb3ZlcmhlYWQuIE1haW4gZmx1c2ggd2hp
-Y2ggaW5jbHVkZXMgbWFzdGVyIGRzcHAgZmx1c2ggYml0IGlzIGhvd2V2ZXIgY2xlYXJlZCBpbiB0
-aGUgY3VycmVudCBpbXBsZW1lbnRhdGlvbi4NCg0KTGV0IG1lIGtub3cgaWYgeW91IHRoaW5rIGRz
-cHAgZmx1c2ggY2FjaGluZyBpcyBiZXR0ZXIsIEknbGwgcHVzaCBhIHBhdGNoIGZvciBpdC4NCg0K
-Pj4gKyAgICAgICAgKg0KPj4gICAgICAgICAgKiBAY3R4ICAgICAgIDogY3RsIHBhdGggY3R4IHBv
-aW50ZXINCj4+ICAgICAgICAgICogQGJsayAgICAgICA6IERTUFAgYmxvY2sgaW5kZXgNCj4+ICsg
-ICAgICAgICogQGRzcHBfc3ViX2JsayA6IERTUFAgc3ViLWJsb2NrIGluZGV4DQo+PiAgICAgICAg
-ICAqLw0KPj4gICAgICAgICB2b2lkICgqdXBkYXRlX3BlbmRpbmdfZmx1c2hfZHNwcCkoc3RydWN0
-IGRwdV9od19jdGwgKmN0eCwNCj4+IC0gICAgICAgICAgICAgICBlbnVtIGRwdV9kc3BwIGJsayk7
-DQo+PiArICAgICAgICAgICAgICAgZW51bSBkcHVfZHNwcCBibGssICB1MzIgZHNwcF9zdWJfYmxr
-KTsNCj4+ICsNCj4+ICAgICAgICAgLyoqDQo+PiAgICAgICAgICAqIFdyaXRlIHRoZSB2YWx1ZSBv
-ZiB0aGUgcGVuZGluZ19mbHVzaF9tYXNrIHRvIGhhcmR3YXJlDQo+PiAgICAgICAgICAqIEBjdHgg
-ICAgICAgOiBjdGwgcGF0aCBjdHggcG9pbnRlcg0KPj4gLS0NCj4+IDIuNy40DQo+Pg0KPg0KPg0K
-Pi0tDQo+V2l0aCBiZXN0IHdpc2hlcw0KPkRtaXRyeQ0K
+DT schema expects TLMM pin configuration nodes to be named with
+'-state' suffix and their optional children with '-pins' suffix.
+
+Merge subnodes named 'pinconf' and 'pinmux' into one entry, add function
+where missing (required by bindings for GPIOs) and reorganize overriding
+pins by boards.
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+---
+
+Not tested on hardware.
+
+Doug,
+
+I think this implements our conclusion from SDM845 patches (alignment of
+pinctrl with DT schema).
+
+Cc: Doug Anderson <dianders@chromium.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts       | 211 +++---
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  36 +-
+ .../dts/qcom/sc7180-trogdor-homestar.dtsi     |  41 +-
+ .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  16 +-
+ .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   |   8 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  16 +-
+ .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  25 +-
+ .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi |  72 +-
+ .../qcom/sc7180-trogdor-parade-ps8640.dtsi    |  32 +-
+ .../boot/dts/qcom/sc7180-trogdor-pazquel.dtsi |   8 +-
+ .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  14 +-
+ .../qcom/sc7180-trogdor-quackingstick.dtsi    |  56 +-
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |   8 +-
+ .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi |  16 +-
+ .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  25 +-
+ .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  |  72 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 655 +++++++-----------
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          | 410 +++++------
+ 18 files changed, 613 insertions(+), 1108 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+index 9dee131b1e24..3e93b13d275e 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+@@ -481,160 +481,114 @@ pinconf {
+ };
+ 
+ &qspi_clk {
+-	pinconf {
+-		pins = "gpio63";
+-		bias-disable;
+-	};
++	bias-disable;
+ };
+ 
+ &qspi_cs0 {
+-	pinconf {
+-		pins = "gpio68";
+-		bias-disable;
+-	};
++	bias-disable;
+ };
+ 
+ &qspi_data01 {
+-	pinconf {
+-		pins = "gpio64", "gpio65";
+-
+-		/* High-Z when no transfers; nice to park the lines */
+-		bias-pull-up;
+-	};
++	/* High-Z when no transfers; nice to park the lines */
++	bias-pull-up;
+ };
+ 
+ &qup_i2c2_default {
+-	pinconf {
+-		pins = "gpio15", "gpio16";
+-		drive-strength = <2>;
++	drive-strength = <2>;
+ 
+-		/* Has external pullup */
+-		bias-disable;
+-	};
++	/* Has external pullup */
++	bias-disable;
+ };
+ 
+ &qup_i2c4_default {
+-	pinconf {
+-		pins = "gpio115", "gpio116";
+-		drive-strength = <2>;
++	drive-strength = <2>;
+ 
+-		/* Has external pullup */
+-		bias-disable;
+-	};
++	/* Has external pullup */
++	bias-disable;
+ };
+ 
+ &qup_i2c7_default {
+-	pinconf {
+-		pins = "gpio6", "gpio7";
+-		drive-strength = <2>;
++	drive-strength = <2>;
+ 
+-		/* Has external pullup */
+-		bias-disable;
+-	};
++	/* Has external pullup */
++	bias-disable;
+ };
+ 
+ &qup_i2c9_default {
+-	pinconf {
+-		pins = "gpio46", "gpio47";
+-		drive-strength = <2>;
++	drive-strength = <2>;
+ 
+-		/* Has external pullup */
+-		bias-disable;
+-	};
++	/* Has external pullup */
++	bias-disable;
+ };
+ 
+-&qup_uart3_default {
+-	pinconf-cts {
+-		/*
+-		 * Configure a pull-down on CTS to match the pull of
+-		 * the Bluetooth module.
+-		 */
+-		pins = "gpio38";
+-		bias-pull-down;
+-	};
++&qup_uart3_cts {
++	/*
++	 * Configure a pull-down on CTS to match the pull of
++	 * the Bluetooth module.
++	 */
++	bias-pull-down;
++};
+ 
+-	pinconf-rts {
+-		/* We'll drive RTS, so no pull */
+-		pins = "gpio39";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++&qup_uart3_rts {
++	/* We'll drive RTS, so no pull */
++	drive-strength = <2>;
++	bias-disable;
++};
+ 
+-	pinconf-tx {
+-		/* We'll drive TX, so no pull */
+-		pins = "gpio40";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++&qup_uart3_tx {
++	/* We'll drive TX, so no pull */
++	drive-strength = <2>;
++	bias-disable;
++};
+ 
+-	pinconf-rx {
+-		/*
+-		 * Configure a pull-up on RX. This is needed to avoid
+-		 * garbage data when the TX pin of the Bluetooth module is
+-		 * in tri-state (module powered off or not driving the
+-		 * signal yet).
+-		 */
+-		pins = "gpio41";
+-		bias-pull-up;
+-	};
++&qup_uart3_rx {
++	/*
++	 * Configure a pull-up on RX. This is needed to avoid
++	 * garbage data when the TX pin of the Bluetooth module is
++	 * in tri-state (module powered off or not driving the
++	 * signal yet).
++	 */
++	bias-pull-up;
+ };
+ 
+-&qup_uart8_default {
+-	pinconf-tx {
+-		pins = "gpio44";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++&qup_uart8_tx {
++	drive-strength = <2>;
++	bias-disable;
++};
+ 
+-	pinconf-rx {
+-		pins = "gpio45";
+-		drive-strength = <2>;
+-		bias-pull-up;
+-	};
++&qup_uart8_rx {
++	drive-strength = <2>;
++	bias-pull-up;
+ };
+ 
+ &qup_spi0_default {
+-	pinconf {
+-		pins = "gpio34", "gpio35", "gpio36", "gpio37";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++	drive-strength = <2>;
++	bias-disable;
+ };
+ 
+ &qup_spi6_default {
+-	pinconf {
+-		pins = "gpio59", "gpio60", "gpio61", "gpio62";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++	drive-strength = <2>;
++	bias-disable;
+ };
+ 
+ &qup_spi10_default {
+-	pinconf {
+-		pins = "gpio86", "gpio87", "gpio88", "gpio89";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++	drive-strength = <2>;
++	bias-disable;
+ };
+ 
+ &tlmm {
+-	qup_uart3_sleep: qup-uart3-sleep {
+-		pinmux {
+-			pins = "gpio38", "gpio39",
+-			       "gpio40", "gpio41";
+-			function = "gpio";
+-		};
+-
+-		pinconf-cts {
++	qup_uart3_sleep: qup-uart3-sleep-state {
++		cts-pins {
+ 			/*
+ 			 * Configure a pull-down on CTS to match the pull of
+ 			 * the Bluetooth module.
+ 			 */
+ 			pins = "gpio38";
++			function = "gpio";
+ 			bias-pull-down;
+ 		};
+ 
+-		pinconf-rts {
++		rts-pins {
+ 			/*
+ 			 * Configure pull-down on RTS. As RTS is active low
+ 			 * signal, pull it low to indicate the BT SoC that it
+@@ -642,126 +596,131 @@ pinconf-rts {
+ 			 * pulling RX low (by sending wakeup bytes).
+ 			 */
+ 			 pins = "gpio39";
++			function = "gpio";
+ 			 bias-pull-down;
+ 		};
+ 
+-		pinconf-tx {
++		tx-pins {
+ 			/*
+ 			 * Configure pull-up on TX when it isn't actively driven
+ 			 * to prevent BT SoC from receiving garbage during sleep.
+ 			 */
+ 			pins = "gpio40";
++			function = "gpio";
+ 			bias-pull-up;
+ 		};
+ 
+-		pinconf-rx {
++		rx-pins {
+ 			/*
+ 			 * Configure a pull-up on RX. This is needed to avoid
+ 			 * garbage data when the TX pin of the Bluetooth module
+ 			 * is floating which may cause spurious wakeups.
+ 			 */
+ 			pins = "gpio41";
++			function = "gpio";
+ 			bias-pull-up;
+ 		};
+ 	};
+ 
+-	sdc1_on: sdc1-on {
+-		pinconf-clk {
++	sdc1_on: sdc1-on-state {
++		clk-pins {
+ 			pins = "sdc1_clk";
+ 			bias-disable;
+ 			drive-strength = <16>;
+ 		};
+ 
+-		pinconf-cmd {
++		cmd-pins {
+ 			pins = "sdc1_cmd";
+ 			bias-pull-up;
+ 			drive-strength = <10>;
+ 		};
+ 
+-		pinconf-data {
++		data-pins {
+ 			pins = "sdc1_data";
+ 			bias-pull-up;
+ 			drive-strength = <10>;
+ 		};
+ 
+-		pinconf-rclk {
++		rclk-pins {
+ 			pins = "sdc1_rclk";
+ 			bias-pull-down;
+ 		};
+ 	};
+ 
+-	sdc1_off: sdc1-off {
+-		pinconf-clk {
++	sdc1_off: sdc1-off-state {
++		clk-pins {
+ 			pins = "sdc1_clk";
+ 			bias-disable;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-cmd {
++		cmd-pins {
+ 			pins = "sdc1_cmd";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-data {
++		data-pins {
+ 			pins = "sdc1_data";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-rclk {
++		rclk-pins {
+ 			pins = "sdc1_rclk";
+ 			bias-pull-down;
+ 		};
+ 	};
+ 
+-	sdc2_on: sdc2-on {
+-		pinconf-clk {
++	sdc2_on: sdc2-on-state {
++		clk-pins {
+ 			pins = "sdc2_clk";
+ 			bias-disable;
+ 			drive-strength = <16>;
+ 		};
+ 
+-		pinconf-cmd {
++		cmd-pins {
+ 			pins = "sdc2_cmd";
+ 			bias-pull-up;
+ 			drive-strength = <10>;
+ 		};
+ 
+-		pinconf-data {
++		data-pins {
+ 			pins = "sdc2_data";
+ 			bias-pull-up;
+ 			drive-strength = <10>;
+ 		};
+ 
+-		pinconf-sd-cd {
++		sd-cd-pins {
+ 			pins = "gpio69";
++			function = "gpio";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 	};
+ 
+-	sdc2_off: sdc2-off {
+-		pinconf-clk {
++	sdc2_off: sdc2-off-state {
++		clk-pins {
+ 			pins = "sdc2_clk";
+ 			bias-disable;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-cmd {
++		cmd-pins {
+ 			pins = "sdc2_cmd";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-data {
++		data-pins {
+ 			pins = "sdc2_data";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-sd-cd {
++		sd-cd-pins {
+ 			pins = "gpio69";
++			function = "gpio";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+index 7ee407f7b6bb..8b8ea8af165d 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+@@ -181,23 +181,15 @@ &sound_multimedia0_codec {
+ /* PINCTRL - modifications to sc7180-trogdor.dtsi */
+ 
+ &en_pp3300_dx_edp {
+-	pinmux  {
+-		pins = "gpio67";
+-	};
+-
+-	pinconf {
+-		pins = "gpio67";
+-	};
++	pins = "gpio67";
+ };
+ 
+ &ts_reset_l {
+-	pinconf {
+-		/*
+-		 * We want reset state by default and it will be up to the
+-		 * driver to disable this when it's ready.
+-		 */
+-		output-low;
+-	};
++	/*
++	 * We want reset state by default and it will be up to the
++	 * driver to disable this when it's ready.
++	 */
++	output-low;
+ };
+ 
+ /* PINCTRL - board-specific pinctrl */
+@@ -327,16 +319,10 @@ &tlmm {
+ 			  "DP_HOT_PLUG_DET",
+ 			  "EC_IN_RW_ODL";
+ 
+-	dmic_clk_en: dmic_clk_en {
+-		pinmux {
+-			pins = "gpio83";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio83";
+-			drive-strength = <8>;
+-			bias-pull-up;
+-		};
++	dmic_clk_en: dmic-clk-en-state {
++		pins = "gpio83";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-pull-up;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+index 1bd6c7dcd9e9..c66568a882b3 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+@@ -180,30 +180,19 @@ &wifi {
+ /* PINCTRL - modifications to sc7180-trogdor.dtsi */
+ 
+ &en_pp3300_dx_edp {
+-	pinmux {
+-		pins = "gpio67";
+-	};
+-
+-	pinconf {
+-		pins = "gpio67";
+-	};
++	pins = "gpio67";
+ };
+ 
+ &sec_mi2s_active{
+-	pinmux {
+-		pins = "gpio49", "gpio50", "gpio51", "gpio52";
+-		function = "mi2s_1";
+-	};
++	pins = "gpio49", "gpio50", "gpio51", "gpio52";
+ };
+ 
+ &ts_reset_l {
+-	pinconf {
+-		/*
+-		 * We want reset state by default and it will be up to the
+-		 * driver to disable this when it's ready.
+-		 */
+-		output-low;
+-	};
++	/*
++	 * We want reset state by default and it will be up to the
++	 * driver to disable this when it's ready.
++	 */
++	output-low;
+ };
+ 
+ /* PINCTRL - board-specific pinctrl */
+@@ -333,16 +322,10 @@ &tlmm {
+ 			  "DP_HOT_PLUG_DET",
+ 			  "EC_IN_RW_ODL";
+ 
+-	en_pp3300_touch: en-pp3300-touch {
+-		pinmux {
+-			pins = "gpio87";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio87";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	en_pp3300_touch: en-pp3300-touch-state {
++		pins = "gpio87";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
+index 1a62e8d435ab..3abd6222fe46 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
+@@ -29,16 +29,10 @@ &pp3300_fp_tp {
+ };
+ 
+ &tlmm {
+-	en_fp_rails: en-fp-rails {
+-		pinmux {
+-			pins = "gpio74";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio74";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	en_fp_rails: en-fp-rails-state {
++		pins = "gpio74";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
+index 74f0e07ea5cf..4156ad6dbd96 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
+@@ -87,13 +87,7 @@ &wifi {
+ /* PINCTRL - modifications to sc7180-trogdor.dtsi */
+ 
+ &en_pp3300_dx_edp {
+-	pinmux {
+-		pins = "gpio67";
+-	};
+-
+-	pinconf {
+-		pins = "gpio67";
+-	};
++	pins = "gpio67";
+ };
+ 
+ /* PINCTRL - board-specific pinctrl */
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+index 002663d752da..269007d73162 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+@@ -75,21 +75,13 @@ &wifi {
+ /* PINCTRL - modifications to sc7180-trogdor.dtsi */
+ 
+ &trackpad_int_1v8_odl {
+-	pinmux {
+-		pins = "gpio58";
+-	};
+-
+-	pinconf {
+-		pins = "gpio58";
+-	};
++	pins = "gpio58";
+ };
+ 
+ &ts_reset_l {
+-	pinconf {
+-		/* This pin is not connected on -rev0, pull up to park. */
+-		/delete-property/bias-disable;
+-		bias-pull-up;
+-	};
++	/* This pin is not connected on -rev0, pull up to park. */
++	/delete-property/bias-disable;
++	bias-pull-up;
+ };
+ 
+ /* PINCTRL - board-specific pinctrl */
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
+index 7bc8402c018e..f4c1f3813664 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
+@@ -24,30 +24,13 @@ &v1p8_mipi {
+ 
+ /* PINCTRL - modifications to sc7180-trogdor-mrbland.dtsi */
+ &avdd_lcd_en {
+-	pinmux {
+-		pins = "gpio80";
+-	};
+-
+-	pinconf {
+-		pins = "gpio80";
+-	};
++	pins = "gpio80";
+ };
+ 
+ &mipi_1800_en {
+-	pinmux {
+-		pins = "gpio81";
+-	};
+-
+-	pinconf {
+-		pins = "gpio81";
+-	};
++	pins = "gpio81";
+ };
+-&vdd_reset_1800 {
+-	pinmux {
+-		pins = "gpio76";
+-	};
+ 
+-	pinconf {
+-		pins = "gpio76";
+-	};
++&vdd_reset_1800 {
++	pins = "gpio76";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
+index 97cba7f8064f..5e563655baec 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
+@@ -160,13 +160,7 @@ pp3300_disp_on: &pp3300_dx_edp {
+  */
+ 
+ tp_en: &en_pp3300_dx_edp {
+-	pinmux {
+-		pins = "gpio85";
+-	};
+-
+-	pinconf {
+-		pins = "gpio85";
+-	};
++	pins = "gpio85";
+ };
+ 
+ /* PINCTRL - board-specific pinctrl */
+@@ -296,55 +290,31 @@ &tlmm {
+ 			  "DP_HOT_PLUG_DET",
+ 			  "EC_IN_RW_ODL";
+ 
+-	avdd_lcd_en: avdd-lcd-en {
+-		pinmux {
+-			pins = "gpio88";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio88";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	avdd_lcd_en: avdd-lcd-en-state {
++		pins = "gpio88";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	avee_lcd_en: avee-lcd-en {
+-		pinmux {
+-			pins = "gpio21";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio21";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	avee_lcd_en: avee-lcd-en-state {
++		pins = "gpio21";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	mipi_1800_en: mipi-1800-en {
+-		pinmux {
+-			pins = "gpio86";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio86";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	mipi_1800_en: mipi-1800-en-state {
++		pins = "gpio86";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	vdd_reset_1800: vdd-reset-1800 {
+-		pinmux {
+-			pins = "gpio87";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio87";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	vdd_reset_1800: vdd-reset-1800-state {
++		pins = "gpio87";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
+index 6a84fba178d6..070b3acb7baa 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
+@@ -83,29 +83,17 @@ panel_in_edp: endpoint {
+ };
+ 
+ &tlmm {
+-	edp_brij_ps8640_rst: edp-brij-ps8640-rst {
+-		pinmux {
+-			pins = "gpio11";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio11";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	edp_brij_ps8640_rst: edp-brij-ps8640-rst-state {
++		pins = "gpio11";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	en_pp3300_edp_brij_ps8640: en-pp3300-edp-brij-ps8640 {
+-		pinmux {
+-			pins = "gpio32";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio32";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	en_pp3300_edp_brij_ps8640: en-pp3300-edp-brij-ps8640-state {
++		pins = "gpio32";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
+index 56d787785fd5..d06cc4ea3375 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
+@@ -84,13 +84,7 @@ &pp3300_dx_edp {
+ };
+ 
+ &en_pp3300_dx_edp {
+-	pinmux {
+-		pins = "gpio67";
+-	};
+-
+-	pinconf {
+-		pins = "gpio67";
+-	};
++	pins = "gpio67";
+ };
+ 
+ /* PINCTRL - board-specific pinctrl */
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
+index a7582fb547ee..6c5287bd27d6 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
+@@ -312,15 +312,9 @@ &tlmm {
+ 			  "DP_HOT_PLUG_DET",
+ 			  "EC_IN_RW_ODL";
+ 
+-	dmic_sel: dmic-sel {
+-		pinmux {
+-			pins = "gpio86";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio86";
+-			bias-pull-down;
+-		};
++	dmic_sel: dmic-sel-state {
++		pins = "gpio86";
++		function = "gpio";
++		bias-pull-down;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
+index 695b04fe7221..c1367999eafb 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
+@@ -147,13 +147,7 @@ pp3300_disp_on: &pp3300_dx_edp {
+  */
+ 
+ tp_en: &en_pp3300_dx_edp {
+-	pinmux {
+-		pins = "gpio67";
+-	};
+-
+-	pinconf {
+-		pins = "gpio67";
+-	};
++	pins = "gpio67";
+ };
+ 
+ /* PINCTRL - board-specific pinctrl */
+@@ -283,42 +277,24 @@ &tlmm {
+ 			  "DP_HOT_PLUG_DET",
+ 			  "EC_IN_RW_ODL";
+ 
+-	lcd_rst: lcd-rst {
+-		pinmux {
+-			pins = "gpio87";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio87";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	lcd_rst: lcd-rst-state {
++		pins = "gpio87";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	ppvar_lcd_en: ppvar-lcd-en {
+-		pinmux {
+-			pins = "gpio88";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio88";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	ppvar_lcd_en: ppvar-lcd-en-state {
++		pins = "gpio88";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	pp1800_disp_on: pp1800-disp-on {
+-		pinmux {
+-			pins = "gpio86";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio86";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	pp1800_disp_on: pp1800-disp-on-state {
++		pins = "gpio86";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+index bc097d1b1b23..671b3691f1bb 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+@@ -63,13 +63,7 @@ &usb_hub_3_x {
+ /* PINCTRL - modifications to sc7180-trogdor.dtsi */
+ 
+ &trackpad_int_1v8_odl {
+-	pinmux {
+-		pins = "gpio58";
+-	};
+-
+-	pinconf {
+-		pins = "gpio58";
+-	};
++	pins = "gpio58";
+ };
+ 
+ /* PINCTRL - board-specific pinctrl */
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
+index f869e6a343c1..65333709e529 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
+@@ -76,16 +76,10 @@ panel_in_edp: endpoint {
+ };
+ 
+ &tlmm {
+-	edp_brij_irq: edp-brij-irq {
+-		pinmux {
+-			pins = "gpio11";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio11";
+-			drive-strength = <2>;
+-			bias-pull-down;
+-		};
++	edp_brij_irq: edp-brij-irq-state {
++		pins = "gpio11";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-down;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+index db29e0cba29d..7f272c6e95f6 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+@@ -24,30 +24,13 @@ &v1p8_mipi {
+ 
+ /* PINCTRL - modifications to sc7180-trogdor-wormdingler.dtsi */
+ &avdd_lcd_en {
+-	pinmux {
+-		pins = "gpio80";
+-	};
+-
+-	pinconf {
+-		pins = "gpio80";
+-	};
++	pins = "gpio80";
+ };
+ 
+ &mipi_1800_en {
+-	pinmux {
+-		pins = "gpio81";
+-	};
+-
+-	pinconf {
+-		pins = "gpio81";
+-	};
++	pins = "gpio81";
+ };
+-&vdd_reset_1800 {
+-	pinmux {
+-		pins = "gpio76";
+-	};
+ 
+-	pinconf {
+-		pins = "gpio76";
+-	};
++&vdd_reset_1800 {
++	pins = "gpio76";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+index 6312108e8b3e..123989ba97e1 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+@@ -222,13 +222,7 @@ pp3300_disp_on: &pp3300_dx_edp {
+  */
+ 
+ tp_en: &en_pp3300_dx_edp {
+-	pinmux {
+-		pins = "gpio85";
+-	};
+-
+-	pinconf {
+-		pins = "gpio85";
+-	};
++	pins = "gpio85";
+ };
+ 
+ /* PINCTRL - board-specific pinctrl */
+@@ -358,55 +352,31 @@ &tlmm {
+ 			  "DP_HOT_PLUG_DET",
+ 			  "EC_IN_RW_ODL";
+ 
+-	avdd_lcd_en: avdd-lcd-en {
+-		pinmux {
+-			pins = "gpio88";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio88";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	avdd_lcd_en: avdd-lcd-en-state {
++		pins = "gpio88";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	avee_lcd_en: avee-lcd-en {
+-		pinmux {
+-			pins = "gpio21";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio21";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	avee_lcd_en: avee-lcd-en-state {
++		pins = "gpio21";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	mipi_1800_en: mipi-1800-en {
+-		pinmux {
+-			pins = "gpio86";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio86";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	mipi_1800_en: mipi-1800-en-state {
++		pins = "gpio86";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	vdd_reset_1800: vdd-reset-1800 {
+-		pinmux {
+-			pins = "gpio87";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio87";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	vdd_reset_1800: vdd-reset-1800-state {
++		pins = "gpio87";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index eae22e6e97c1..d923ddca8b8b 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -880,17 +880,17 @@ &sdhc_2 {
+ };
+ 
+ &spi0 {
+-	pinctrl-0 = <&qup_spi0_cs_gpio_init_high>, <&qup_spi0_cs_gpio>;
++	pinctrl-0 = <&qup_spi0_cs_gpio>;
+ 	cs-gpios = <&tlmm 37 GPIO_ACTIVE_LOW>;
+ };
+ 
+ &spi6 {
+-	pinctrl-0 = <&qup_spi6_cs_gpio_init_high>, <&qup_spi6_cs_gpio>;
++	pinctrl-0 = <&qup_spi6_cs_gpio>;
+ 	cs-gpios = <&tlmm 62 GPIO_ACTIVE_LOW>;
+ };
+ 
+ ap_spi_fp: &spi10 {
+-	pinctrl-0 = <&qup_spi10_cs_gpio_init_high>, <&qup_spi10_cs_gpio>;
++	pinctrl-0 = <&qup_spi10_cs_gpio>;
+ 	cs-gpios = <&tlmm 89 GPIO_ACTIVE_LOW>;
+ 
+ 	cros_ec_fp: ec@0 {
+@@ -997,175 +997,144 @@ wifi-firmware {
+ /* PINCTRL - additions to nodes defined in sc7180.dtsi */
+ 
+ &dp_hot_plug_det {
+-	pinconf {
+-		pins = "gpio117";
+-		bias-disable;
+-	};
++	bias-disable;
+ };
+ 
+ &pri_mi2s_active {
+-	pinconf {
+-		pins = "gpio53", "gpio54", "gpio55", "gpio56";
+-		drive-strength = <2>;
+-		bias-pull-down;
+-	};
++	drive-strength = <2>;
++	bias-pull-down;
+ };
+ 
+ &pri_mi2s_mclk_active {
+-	pinconf {
+-		pins = "gpio57";
+-		drive-strength = <2>;
+-		bias-pull-down;
+-	};
++	drive-strength = <2>;
++	bias-pull-down;
+ };
+ 
+ &qspi_cs0 {
+-	pinconf {
+-		pins = "gpio68";
+-		bias-disable;
+-	};
++	bias-disable;
+ };
+ 
+ &qspi_clk {
+-	pinconf {
+-		pins = "gpio63";
+-		drive-strength = <8>;
+-		bias-disable;
+-	};
++	drive-strength = <8>;
++	bias-disable;
+ };
+ 
+ &qspi_data01 {
+-	pinconf {
+-		pins = "gpio64", "gpio65";
+-
+-		/* High-Z when no transfers; nice to park the lines */
+-		bias-pull-up;
+-	};
++	/* High-Z when no transfers; nice to park the lines */
++	bias-pull-up;
+ };
+ 
+ &qup_i2c2_default {
+-	pinconf {
+-		pins = "gpio15", "gpio16";
+-		drive-strength = <2>;
++	drive-strength = <2>;
+ 
+-		/* Has external pullup */
+-		bias-disable;
+-	};
++	/* Has external pullup */
++	bias-disable;
+ };
+ 
+ &qup_i2c4_default {
+-	pinconf {
+-		pins = "gpio115", "gpio116";
+-		drive-strength = <2>;
++	drive-strength = <2>;
+ 
+-		/* Has external pullup */
+-		bias-disable;
+-	};
++	/* Has external pullup */
++	bias-disable;
+ };
+ 
+ &qup_i2c5_default {
+-	pinconf {
+-		pins = "gpio25", "gpio26";
+-		drive-strength = <2>;
++	drive-strength = <2>;
+ 
+-		/* Has external pullup */
+-		bias-disable;
+-	};
++	/* Has external pullup */
++	bias-disable;
+ };
+ 
+ &qup_i2c7_default {
+-	pinconf {
+-		pins = "gpio6", "gpio7";
+-		drive-strength = <2>;
++	drive-strength = <2>;
+ 
+-		/* Has external pullup */
+-		bias-disable;
+-	};
++	/* Has external pullup */
++	bias-disable;
+ };
+ 
+ &qup_i2c9_default {
+-	pinconf {
+-		pins = "gpio46", "gpio47";
+-		drive-strength = <2>;
++	drive-strength = <2>;
+ 
+-		/* Has external pullup */
+-		bias-disable;
+-	};
++	/* Has external pullup */
++	bias-disable;
+ };
+ 
+-&qup_spi0_cs_gpio {
+-	pinconf {
+-		pins = "gpio34", "gpio35", "gpio36", "gpio37";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++&qup_spi0_spi {
++	drive-strength = <2>;
++	bias-disable;
+ };
+ 
+-&qup_spi6_cs_gpio {
+-	pinconf {
+-		pins = "gpio59", "gpio60", "gpio61", "gpio62";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++&qup_spi0_cs {
++	drive-strength = <2>;
++	bias-disable;
++	output-high;
+ };
+ 
+-&qup_spi10_cs_gpio {
+-	pinconf {
+-		pins = "gpio86", "gpio87", "gpio88", "gpio89";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++&qup_spi6_spi {
++	drive-strength = <2>;
++	bias-disable;
+ };
+ 
+-&qup_uart3_default {
+-	pinconf-cts {
+-		/*
+-		 * Configure a pull-down on CTS to match the pull of
+-		 * the Bluetooth module.
+-		 */
+-		pins = "gpio38";
+-		bias-pull-down;
+-	};
++&qup_spi6_cs {
++	drive-strength = <2>;
++	bias-disable;
++	output-high;
++};
+ 
+-	pinconf-rts-tx {
+-		/* We'll drive RTS and TX, so no pull */
+-		pins = "gpio39", "gpio40";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++&qup_spi10_spi {
++	drive-strength = <2>;
++	bias-disable;
++};
+ 
+-	pinconf-rx {
+-		/*
+-		 * Configure a pull-up on RX. This is needed to avoid
+-		 * garbage data when the TX pin of the Bluetooth module is
+-		 * in tri-state (module powered off or not driving the
+-		 * signal yet).
+-		 */
+-		pins = "gpio41";
+-		bias-pull-up;
+-	};
++&qup_spi10_cs {
++	drive-strength = <2>;
++	bias-disable;
++	output-high;
+ };
+ 
+-&qup_uart8_default {
+-	pinconf-tx {
+-		pins = "gpio44";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
++&qup_uart3_cts {
++	/*
++	 * Configure a pull-down on CTS to match the pull of
++	 * the Bluetooth module.
++	 */
++	bias-pull-down;
++};
+ 
+-	pinconf-rx {
+-		pins = "gpio45";
+-		drive-strength = <2>;
+-		bias-pull-up;
+-	};
++&qup_uart3_rts {
++	/* We'll drive RTS, so no pull */
++	drive-strength = <2>;
++	bias-disable;
++};
++
++&qup_uart3_tx {
++	/* We'll drive TX, so no pull */
++	drive-strength = <2>;
++	bias-disable;
++};
++
++&qup_uart3_rx {
++	/*
++	 * Configure a pull-up on RX. This is needed to avoid
++	 * garbage data when the TX pin of the Bluetooth module is
++	 * in tri-state (module powered off or not driving the
++	 * signal yet).
++	 */
++	bias-pull-up;
++};
++
++&qup_uart8_tx {
++	drive-strength = <2>;
++	bias-disable;
++};
++
++&qup_uart8_rx {
++	drive-strength = <2>;
++	bias-pull-up;
+ };
+ 
+ &sec_mi2s_active {
+-	pinconf {
+-		pins = "gpio49", "gpio50", "gpio51";
+-		drive-strength = <2>;
+-		bias-pull-down;
+-	};
++	drive-strength = <2>;
++	bias-pull-down;
+ };
+ 
+ /* PINCTRL - board-specific pinctrl */
+@@ -1196,270 +1165,149 @@ &tlmm {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&bios_flash_wp_l>, <&ap_suspend_l_neuter>;
+ 
+-	amp_en: amp-en {
+-		pinmux {
+-			pins = "gpio23";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio23";
+-			bias-pull-down;
+-		};
+-	};
+-
+-	ap_ec_int_l: ap-ec-int-l {
+-		pinmux {
+-			pins = "gpio94";
+-			function = "gpio";
+-			input-enable;
+-		};
+-
+-		pinconf {
+-			pins = "gpio94";
+-			bias-pull-up;
+-		};
++	amp_en: amp-en-state {
++		pins = "gpio23";
++		function = "gpio";
++		bias-pull-down;
+ 	};
+ 
+-	ap_edp_bklten: ap-edp-bklten {
+-		pinmux {
+-			pins = "gpio12";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio12";
+-			drive-strength = <2>;
+-			bias-disable;
+-
+-			/* Force backlight to be disabled to match state at boot. */
+-			output-low;
+-		};
++	ap_ec_int_l: ap-ec-int-l-state {
++		pins = "gpio94";
++		function = "gpio";
++		input-enable;
++		bias-pull-up;
+ 	};
+ 
+-	ap_suspend_l_neuter: ap-suspend-l-neuter {
+-		pinmux  {
+-			pins = "gpio27";
+-			function = "gpio";
+-		};
++	ap_edp_bklten: ap-edp-bklten-state {
++		pins = "gpio12";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 
+-		pinconf {
+-			pins = "gpio27";
+-			bias-disable;
+-		};
++		/* Force backlight to be disabled to match state at boot. */
++		output-low;
+ 	};
+ 
+-	bios_flash_wp_l: bios-flash-wp-l {
+-		pinmux {
+-			pins = "gpio66";
+-			function = "gpio";
+-			input-enable;
+-		};
+-
+-		pinconf {
+-			pins = "gpio66";
+-			bias-disable;
+-		};
++	ap_suspend_l_neuter: ap-suspend-l-neuter-state {
++		pins = "gpio27";
++		function = "gpio";
++		bias-disable;
+ 	};
+ 
+-	edp_brij_en: edp-brij-en {
+-		pinmux {
+-			pins = "gpio104";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio104";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	bios_flash_wp_l: bios-flash-wp-l-state {
++		pins = "gpio66";
++		function = "gpio";
++		input-enable;
++		bias-disable;
+ 	};
+ 
+-	en_pp3300_codec: en-pp3300-codec {
+-		pinmux {
+-			pins = "gpio83";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio83";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	edp_brij_en: edp-brij-en-state {
++		pins = "gpio104";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	en_pp3300_dx_edp: en-pp3300-dx-edp {
+-		pinmux {
+-			pins = "gpio30";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio30";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	en_pp3300_codec: en-pp3300-codec-state {
++		pins = "gpio83";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	en_pp3300_hub: en-pp3300-hub {
+-		pinmux {
+-			pins = "gpio84";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio84";
+-			drive-strength = <2>;
+-			bias-disable;
+-		};
++	en_pp3300_dx_edp: en-pp3300-dx-edp-state {
++		pins = "gpio30";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	fp_to_ap_irq_l: fp-to-ap-irq-l {
+-		pinmux {
+-			pins = "gpio4";
+-			function = "gpio";
+-			input-enable;
+-		};
+-
+-		pinconf {
+-			pins = "gpio4";
+-
+-			/* Has external pullup */
+-			bias-disable;
+-		};
++	en_pp3300_hub: en-pp3300-hub-state {
++		pins = "gpio84";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
+ 	};
+ 
+-	h1_ap_int_odl: h1-ap-int-odl {
+-		pinmux {
+-			pins = "gpio42";
+-			function = "gpio";
+-			input-enable;
+-		};
++	fp_to_ap_irq_l: fp-to-ap-irq-l-state {
++		pins = "gpio4";
++		function = "gpio";
++		input-enable;
+ 
+-		pinconf {
+-			pins = "gpio42";
+-			bias-pull-up;
+-		};
++		/* Has external pullup */
++		bias-disable;
+ 	};
+ 
+-	hp_irq: hp-irq {
+-		pinmux {
+-			pins = "gpio28";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio28";
+-			bias-pull-up;
+-		};
++	h1_ap_int_odl: h1-ap-int-odl-state {
++		pins = "gpio42";
++		function = "gpio";
++		input-enable;
++		bias-pull-up;
+ 	};
+ 
+-	pen_irq_l: pen-irq-l {
+-		pinmux {
+-			pins = "gpio21";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio21";
+-
+-			/* Has external pullup */
+-			bias-disable;
+-		};
++	hp_irq: hp-irq-state {
++		pins = "gpio28";
++		function = "gpio";
++		bias-pull-up;
+ 	};
+ 
+-	pen_pdct_l: pen-pdct-l {
+-		pinmux {
+-			pins = "gpio52";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio52";
++	pen_irq_l: pen-irq-l-state {
++		pins = "gpio21";
++		function = "gpio";
+ 
+-			/* Has external pullup */
+-			bias-disable;
+-		};
++		/* Has external pullup */
++		bias-disable;
+ 	};
+ 
+-	pen_rst_odl: pen-rst-odl {
+-		pinmux  {
+-			pins = "gpio18";
+-			function = "gpio";
+-		};
++	pen_pdct_l: pen-pdct-l-state-state {
++		pins = "gpio52";
++		function = "gpio";
+ 
+-		pinconf {
+-			pins = "gpio18";
+-			bias-disable;
+-			drive-strength = <2>;
+-
+-			/*
+-			 * The pen driver doesn't currently support
+-			 * driving this reset line.  By specifying
+-			 * output-high here we're relying on the fact
+-			 * that this pin has a default pulldown at boot
+-			 * (which makes sure the pen was in reset if it
+-			 * was powered) and then we set it high here to
+-			 * take it out of reset.  Better would be if the
+-			 * pen driver could control this and we could
+-			 * remove "output-high" here.
+-			 */
+-			output-high; /* TODO: Remove this? */
+-		};
++		/* Has external pullup */
++		bias-disable;
+ 	};
+ 
+-	p_sensor_int_l: p-sensor-int-l {
+-		pinmux {
+-			pins = "gpio24";
+-			function = "gpio";
+-			input-enable;
+-		};
+-
+-		pinconf {
+-			pins = "gpio24";
+-			/* Has external pullup */
+-			bias-disable;
+-		};
+-	};
++	pen_rst_odl: pen-rst-odl-state {
++		pins = "gpio18";
++		function = "gpio";
++		bias-disable;
++		drive-strength = <2>;
+ 
+-	qup_spi0_cs_gpio_init_high: qup-spi0-cs-gpio-init-high {
+-		pinconf {
+-			pins = "gpio37";
+-			output-high;
+-		};
++		/*
++		 * The pen driver doesn't currently support
++		 * driving this reset line.  By specifying
++		 * output-high here we're relying on the fact
++		 * that this pin has a default pulldown at boot
++		 * (which makes sure the pen was in reset if it
++		 * was powered) and then we set it high here to
++		 * take it out of reset.  Better would be if the
++		 * pen driver could control this and we could
++		 * remove "output-high" here.
++		 */
++		output-high; /* TODO: Remove this? */
+ 	};
+ 
+-	qup_spi6_cs_gpio_init_high: qup-spi6-cs-gpio-init-high {
+-		pinconf {
+-			pins = "gpio62";
+-			output-high;
+-		};
+-	};
++	p_sensor_int_l: p-sensor-int-l-state {
++		pins = "gpio24";
++		function = "gpio";
++		input-enable;
+ 
+-	qup_spi10_cs_gpio_init_high: qup-spi10-cs-gpio-init-high {
+-		pinconf {
+-			pins = "gpio89";
+-			output-high;
+-		};
++		/* Has external pullup */
++		bias-disable;
+ 	};
+ 
+-	qup_uart3_sleep: qup-uart3-sleep {
+-		pinmux {
+-			pins = "gpio38", "gpio39",
+-			       "gpio40", "gpio41";
+-			function = "gpio";
+-		};
+-
+-		pinconf-cts {
++	qup_uart3_sleep: qup-uart3-sleep-state {
++		cts-pins {
+ 			/*
+ 			 * Configure a pull-down on CTS to match the pull of
+ 			 * the Bluetooth module.
+ 			 */
+ 			pins = "gpio38";
++			function = "gpio";
+ 			bias-pull-down;
+ 		};
+ 
+-		pinconf-rts {
++		rts-pins {
+ 			/*
+ 			 * Configure pull-down on RTS. As RTS is active low
+ 			 * signal, pull it low to indicate the BT SoC that it
+@@ -1467,197 +1315,174 @@ pinconf-rts {
+ 			 * pulling RX low (by sending wakeup bytes).
+ 			 */
+ 			 pins = "gpio39";
++			function = "gpio";
+ 			 bias-pull-down;
+ 		};
+ 
+-		pinconf-tx {
++		tx-pins {
+ 			/*
+ 			 * Configure pull-up on TX when it isn't actively driven
+ 			 * to prevent BT SoC from receiving garbage during sleep.
+ 			 */
+ 			pins = "gpio40";
++			function = "gpio";
+ 			bias-pull-up;
+ 		};
+ 
+-		pinconf-rx {
++		rx-pins {
+ 			/*
+ 			 * Configure a pull-up on RX. This is needed to avoid
+ 			 * garbage data when the TX pin of the Bluetooth module
+ 			 * is floating which may cause spurious wakeups.
+ 			 */
+ 			pins = "gpio41";
++			function = "gpio";
+ 			bias-pull-up;
+ 		};
+ 	};
+ 
+ 	/* Named trackpad_int_1v8_odl on earlier revision schematics */
+ 	trackpad_int_1v8_odl:
+-	tp_int_odl: tp-int-odl {
+-		pinmux {
+-			pins = "gpio0";
+-			function = "gpio";
+-		};
++	tp_int_odl: tp-int-odl-state {
++		pins = "gpio0";
++		function = "gpio";
+ 
+-		pinconf {
+-			pins = "gpio0";
+-
+-			/* Has external pullup */
+-			bias-disable;
+-		};
++		/* Has external pullup */
++		bias-disable;
+ 	};
+ 
+-	ts_int_l: ts-int-l {
+-		pinmux  {
+-			pins = "gpio9";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio9";
+-			bias-pull-up;
+-		};
++	ts_int_l: ts-int-l-state {
++		pins = "gpio9";
++		function = "gpio";
++		bias-pull-up;
+ 	};
+ 
+-	ts_reset_l: ts-reset-l {
+-		pinmux  {
+-			pins = "gpio8";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio8";
+-			bias-disable;
+-			drive-strength = <2>;
+-		};
++	ts_reset_l: ts-reset-l-state {
++		pins = "gpio8";
++		function = "gpio";
++		bias-disable;
++		drive-strength = <2>;
+ 	};
+ 
+-	sdc1_on: sdc1-on {
+-		pinconf-clk {
++	sdc1_on: sdc1-on-state {
++		clk-pins {
+ 			pins = "sdc1_clk";
+ 			bias-disable;
+ 			drive-strength = <16>;
+ 		};
+ 
+-		pinconf-cmd {
++		cmd-pins {
+ 			pins = "sdc1_cmd";
+ 			bias-pull-up;
+ 			drive-strength = <16>;
+ 		};
+ 
+-		pinconf-data {
++		data-pins {
+ 			pins = "sdc1_data";
+ 			bias-pull-up;
+ 			drive-strength = <16>;
+ 		};
+ 
+-		pinconf-rclk {
++		rclk-pins {
+ 			pins = "sdc1_rclk";
+ 			bias-pull-down;
+ 		};
+ 	};
+ 
+-	sdc1_off: sdc1-off {
+-		pinconf-clk {
++	sdc1_off: sdc1-off-state {
++		clk-pins {
+ 			pins = "sdc1_clk";
+ 			bias-disable;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-cmd {
++		cmd-pins {
+ 			pins = "sdc1_cmd";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-data {
++		data-pins {
+ 			pins = "sdc1_data";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-rclk {
++		rclk-pins {
+ 			pins = "sdc1_rclk";
+ 			bias-pull-down;
+ 		};
+ 	};
+ 
+-	sdc2_on: sdc2-on {
+-		pinconf-clk {
++	sdc2_on: sdc2-on-state {
++		clk-pins {
+ 			pins = "sdc2_clk";
+ 			bias-disable;
+ 			drive-strength = <16>;
+ 		};
+ 
+-		pinconf-cmd {
++		cmd-pins {
+ 			pins = "sdc2_cmd";
+ 			bias-pull-up;
+ 			drive-strength = <10>;
+ 		};
+ 
+-		pinconf-data {
++		data-pins {
+ 			pins = "sdc2_data";
+ 			bias-pull-up;
+ 			drive-strength = <10>;
+ 		};
+ 
+-		pinconf-sd-cd {
++		sd-cd-pins {
+ 			pins = "gpio69";
++			function = "gpio";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 	};
+ 
+-	sdc2_off: sdc2-off {
+-		pinconf-clk {
++	sdc2_off: sdc2-off-state {
++		clk-pins {
+ 			pins = "sdc2_clk";
+ 			bias-disable;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-cmd {
++		cmd-pins {
+ 			pins = "sdc2_cmd";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-data {
++		data-pins {
+ 			pins = "sdc2_data";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 
+-		pinconf-sd-cd {
++		sd-cd-pins {
+ 			pins = "gpio69";
++			function = "gpio";
+ 			bias-pull-up;
+ 			drive-strength = <2>;
+ 		};
+ 	};
+ 
+-	uf_cam_en: uf-cam-en {
+-		pinmux {
+-			pins = "gpio6";
+-			function = "gpio";
+-		};
++	uf_cam_en: uf-cam-en-state {
++		pins = "gpio6";
++		function = "gpio";
++		drive-strength = <2>;
+ 
+-		pinconf {
+-			pins = "gpio6";
+-			drive-strength = <2>;
+-			/* External pull down */
+-			bias-disable;
+-		};
++		/* External pull down */
++		bias-disable;
+ 	};
+ 
+-	wf_cam_en: wf-cam-en {
+-		pinmux {
+-			pins = "gpio7";
+-			function = "gpio";
+-		};
++	wf_cam_en: wf-cam-en-state {
++		pins = "gpio7";
++		function = "gpio";
++		drive-strength = <2>;
+ 
+-		pinconf {
+-			pins = "gpio7";
+-			drive-strength = <2>;
+-			/* External pull down */
+-			bias-disable;
+-		};
++		/* External pull down */
++		bias-disable;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 58976a1ba06b..8f7845fa669c 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -1486,410 +1486,336 @@ tlmm: pinctrl@3500000 {
+ 			gpio-ranges = <&tlmm 0 0 120>;
+ 			wakeup-parent = <&pdc>;
+ 
+-			dp_hot_plug_det: dp-hot-plug-det {
+-				pinmux {
+-					pins = "gpio117";
+-					function = "dp_hot";
+-				};
++			dp_hot_plug_det: dp-hot-plug-det-state {
++				pins = "gpio117";
++				function = "dp_hot";
+ 			};
+ 
+-			qspi_clk: qspi-clk {
+-				pinmux {
+-					pins = "gpio63";
+-					function = "qspi_clk";
+-				};
++			qspi_clk: qspi-clk-state {
++				pins = "gpio63";
++				function = "qspi_clk";
+ 			};
+ 
+-			qspi_cs0: qspi-cs0 {
+-				pinmux {
+-					pins = "gpio68";
+-					function = "qspi_cs";
+-				};
++			qspi_cs0: qspi-cs0-state {
++				pins = "gpio68";
++				function = "qspi_cs";
+ 			};
+ 
+-			qspi_cs1: qspi-cs1 {
+-				pinmux {
+-					pins = "gpio72";
+-					function = "qspi_cs";
+-				};
++			qspi_cs1: qspi-cs1-state {
++				pins = "gpio72";
++				function = "qspi_cs";
+ 			};
+ 
+-			qspi_data01: qspi-data01 {
+-				pinmux-data {
+-					pins = "gpio64", "gpio65";
+-					function = "qspi_data";
+-				};
++			qspi_data01: qspi-data01-state {
++				pins = "gpio64", "gpio65";
++				function = "qspi_data";
+ 			};
+ 
+-			qspi_data12: qspi-data12 {
+-				pinmux-data {
+-					pins = "gpio66", "gpio67";
+-					function = "qspi_data";
+-				};
++			qspi_data12: qspi-data12-state {
++				pins = "gpio66", "gpio67";
++				function = "qspi_data";
+ 			};
+ 
+-			qup_i2c0_default: qup-i2c0-default {
+-				pinmux {
+-					pins = "gpio34", "gpio35";
+-					function = "qup00";
+-				};
++			qup_i2c0_default: qup-i2c0-default-state {
++				pins = "gpio34", "gpio35";
++				function = "qup00";
+ 			};
+ 
+-			qup_i2c1_default: qup-i2c1-default {
+-				pinmux {
+-					pins = "gpio0", "gpio1";
+-					function = "qup01";
+-				};
++			qup_i2c1_default: qup-i2c1-default-state {
++				pins = "gpio0", "gpio1";
++				function = "qup01";
+ 			};
+ 
+-			qup_i2c2_default: qup-i2c2-default {
+-				pinmux {
+-					pins = "gpio15", "gpio16";
+-					function = "qup02_i2c";
+-				};
++			qup_i2c2_default: qup-i2c2-default-state {
++				pins = "gpio15", "gpio16";
++				function = "qup02_i2c";
+ 			};
+ 
+-			qup_i2c3_default: qup-i2c3-default {
+-				pinmux {
+-					pins = "gpio38", "gpio39";
+-					function = "qup03";
+-				};
++			qup_i2c3_default: qup-i2c3-default-state {
++				pins = "gpio38", "gpio39";
++				function = "qup03";
+ 			};
+ 
+-			qup_i2c4_default: qup-i2c4-default {
+-				pinmux {
+-					pins = "gpio115", "gpio116";
+-					function = "qup04_i2c";
+-				};
++			qup_i2c4_default: qup-i2c4-default-state {
++				pins = "gpio115", "gpio116";
++				function = "qup04_i2c";
+ 			};
+ 
+-			qup_i2c5_default: qup-i2c5-default {
+-				pinmux {
+-					pins = "gpio25", "gpio26";
+-					function = "qup05";
+-				};
++			qup_i2c5_default: qup-i2c5-default-state {
++				pins = "gpio25", "gpio26";
++				function = "qup05";
+ 			};
+ 
+-			qup_i2c6_default: qup-i2c6-default {
+-				pinmux {
+-					pins = "gpio59", "gpio60";
+-					function = "qup10";
+-				};
++			qup_i2c6_default: qup-i2c6-default-state {
++				pins = "gpio59", "gpio60";
++				function = "qup10";
+ 			};
+ 
+-			qup_i2c7_default: qup-i2c7-default {
+-				pinmux {
+-					pins = "gpio6", "gpio7";
+-					function = "qup11_i2c";
+-				};
++			qup_i2c7_default: qup-i2c7-default-state {
++				pins = "gpio6", "gpio7";
++				function = "qup11_i2c";
+ 			};
+ 
+-			qup_i2c8_default: qup-i2c8-default {
+-				pinmux {
+-					pins = "gpio42", "gpio43";
+-					function = "qup12";
+-				};
++			qup_i2c8_default: qup-i2c8-default-state {
++				pins = "gpio42", "gpio43";
++				function = "qup12";
+ 			};
+ 
+-			qup_i2c9_default: qup-i2c9-default {
+-				pinmux {
+-					pins = "gpio46", "gpio47";
+-					function = "qup13_i2c";
+-				};
++			qup_i2c9_default: qup-i2c9-default-state {
++				pins = "gpio46", "gpio47";
++				function = "qup13_i2c";
+ 			};
+ 
+-			qup_i2c10_default: qup-i2c10-default {
+-				pinmux {
+-					pins = "gpio86", "gpio87";
+-					function = "qup14";
+-				};
++			qup_i2c10_default: qup-i2c10-default-state {
++				pins = "gpio86", "gpio87";
++				function = "qup14";
+ 			};
+ 
+-			qup_i2c11_default: qup-i2c11-default {
+-				pinmux {
+-					pins = "gpio53", "gpio54";
+-					function = "qup15";
+-				};
++			qup_i2c11_default: qup-i2c11-default-state {
++				pins = "gpio53", "gpio54";
++				function = "qup15";
+ 			};
+ 
+-			qup_spi0_default: qup-spi0-default {
+-				pinmux {
+-					pins = "gpio34", "gpio35",
+-					       "gpio36", "gpio37";
+-					function = "qup00";
+-				};
++			qup_spi0_default: qup-spi0-default-state {
++				pins = "gpio34", "gpio35", "gpio36", "gpio37";
++				function = "qup00";
+ 			};
+ 
+-			qup_spi0_cs_gpio: qup-spi0-cs-gpio {
+-				pinmux {
++			qup_spi0_cs_gpio: qup-spi0-cs-gpio-state {
++				qup_spi0_spi: spi-pins {
+ 					pins = "gpio34", "gpio35",
+ 					       "gpio36";
+ 					function = "qup00";
+ 				};
+ 
+-				pinmux-cs {
++				qup_spi0_cs: cs-pins {
+ 					pins = "gpio37";
+ 					function = "gpio";
+ 				};
+ 			};
+ 
+-			qup_spi1_default: qup-spi1-default {
+-				pinmux {
+-					pins = "gpio0", "gpio1",
+-					       "gpio2", "gpio3";
+-					function = "qup01";
+-				};
++			qup_spi1_default: qup-spi1-default-state {
++				pins = "gpio0", "gpio1", "gpio2", "gpio3";
++				function = "qup01";
+ 			};
+ 
+-			qup_spi1_cs_gpio: qup-spi1-cs-gpio {
+-				pinmux {
++			qup_spi1_cs_gpio: qup-spi1-cs-gpio-state {
++				spi-pins {
+ 					pins = "gpio0", "gpio1",
+ 					       "gpio2";
+ 					function = "qup01";
+ 				};
+ 
+-				pinmux-cs {
++				cs-pins {
+ 					pins = "gpio3";
+ 					function = "gpio";
+ 				};
+ 			};
+ 
+-			qup_spi3_default: qup-spi3-default {
+-				pinmux {
+-					pins = "gpio38", "gpio39",
+-					       "gpio40", "gpio41";
+-					function = "qup03";
+-				};
++			qup_spi3_default: qup-spi3-default-state {
++				pins = "gpio38", "gpio39", "gpio40", "gpio41";
++				function = "qup03";
+ 			};
+ 
+-			qup_spi3_cs_gpio: qup-spi3-cs-gpio {
+-				pinmux {
++			qup_spi3_cs_gpio: qup-spi3-cs-gpio-state {
++				spi-pins {
+ 					pins = "gpio38", "gpio39",
+ 					       "gpio40";
+ 					function = "qup03";
+ 				};
+ 
+-				pinmux-cs {
++				cs-pins {
+ 					pins = "gpio41";
+ 					function = "gpio";
+ 				};
+ 			};
+ 
+-			qup_spi5_default: qup-spi5-default {
+-				pinmux {
+-					pins = "gpio25", "gpio26",
+-					       "gpio27", "gpio28";
+-					function = "qup05";
+-				};
++			qup_spi5_default: qup-spi5-default-state {
++				pins = "gpio25", "gpio26", "gpio27", "gpio28";
++				function = "qup05";
+ 			};
+ 
+-			qup_spi5_cs_gpio: qup-spi5-cs-gpio {
+-				pinmux {
++			qup_spi5_cs_gpio: qup-spi5-cs-gpio-state {
++				spi-pins {
+ 					pins = "gpio25", "gpio26",
+ 					       "gpio27";
+ 					function = "qup05";
+ 				};
+ 
+-				pinmux-cs {
++				cs-pins {
+ 					pins = "gpio28";
+ 					function = "gpio";
+ 				};
+ 			};
+ 
+-			qup_spi6_default: qup-spi6-default {
+-				pinmux {
+-					pins = "gpio59", "gpio60",
+-					       "gpio61", "gpio62";
+-					function = "qup10";
+-				};
++			qup_spi6_default: qup-spi6-default-state {
++				pins = "gpio59", "gpio60", "gpio61", "gpio62";
++				function = "qup10";
+ 			};
+ 
+-			qup_spi6_cs_gpio: qup-spi6-cs-gpio {
+-				pinmux {
++			qup_spi6_cs_gpio: qup-spi6-cs-gpio-state {
++				qup_spi6_spi: spi-pins {
+ 					pins = "gpio59", "gpio60",
+ 					       "gpio61";
+ 					function = "qup10";
+ 				};
+ 
+-				pinmux-cs {
++				qup_spi6_cs: cs-pins {
+ 					pins = "gpio62";
+ 					function = "gpio";
+ 				};
+ 			};
+ 
+-			qup_spi8_default: qup-spi8-default {
+-				pinmux {
+-					pins = "gpio42", "gpio43",
+-					       "gpio44", "gpio45";
+-					function = "qup12";
+-				};
++			qup_spi8_default: qup-spi8-default-state {
++				pins = "gpio42", "gpio43", "gpio44", "gpio45";
++				function = "qup12";
+ 			};
+ 
+-			qup_spi8_cs_gpio: qup-spi8-cs-gpio {
+-				pinmux {
++			qup_spi8_cs_gpio: qup-spi8-cs-gpio-state {
++				spi-pins {
+ 					pins = "gpio42", "gpio43",
+ 					       "gpio44";
+ 					function = "qup12";
+ 				};
+ 
+-				pinmux-cs {
++				cs-pins {
+ 					pins = "gpio45";
+ 					function = "gpio";
+ 				};
+ 			};
+ 
+-			qup_spi10_default: qup-spi10-default {
+-				pinmux {
+-					pins = "gpio86", "gpio87",
+-					       "gpio88", "gpio89";
+-					function = "qup14";
+-				};
++			qup_spi10_default: qup-spi10-default-state {
++				pins = "gpio86", "gpio87", "gpio88", "gpio89";
++				function = "qup14";
+ 			};
+ 
+-			qup_spi10_cs_gpio: qup-spi10-cs-gpio {
+-				pinmux {
++			qup_spi10_cs_gpio: qup-spi10-cs-gpio-state {
++				qup_spi10_spi: spi-pins {
+ 					pins = "gpio86", "gpio87",
+ 					       "gpio88";
+ 					function = "qup14";
+ 				};
+ 
+-				pinmux-cs {
++				qup_spi10_cs: cs-pins {
+ 					pins = "gpio89";
+ 					function = "gpio";
+ 				};
+ 			};
+ 
+-			qup_spi11_default: qup-spi11-default {
+-				pinmux {
+-					pins = "gpio53", "gpio54",
+-					       "gpio55", "gpio56";
+-					function = "qup15";
+-				};
++			qup_spi11_default: qup-spi11-default-state {
++				pins = "gpio53", "gpio54", "gpio55", "gpio56";
++				function = "qup15";
+ 			};
+ 
+-			qup_spi11_cs_gpio: qup-spi11-cs-gpio {
+-				pinmux {
+-					pins = "gpio53", "gpio54",
+-					       "gpio55";
++			qup_spi11_cs_gpio: qup-spi11-cs-gpio-state {
++				spi-pins {
++					pins = "gpio53", "gpio54", "gpio55";
+ 					function = "qup15";
+ 				};
+ 
+-				pinmux-cs {
++				cs-pins {
+ 					pins = "gpio56";
+ 					function = "gpio";
+ 				};
+ 			};
+ 
+-			qup_uart0_default: qup-uart0-default {
+-				pinmux {
+-					pins = "gpio34", "gpio35",
+-					       "gpio36", "gpio37";
+-					function = "qup00";
+-				};
++			qup_uart0_default: qup-uart0-default-state {
++				pins = "gpio34", "gpio35", "gpio36", "gpio37";
++				function = "qup00";
+ 			};
+ 
+-			qup_uart1_default: qup-uart1-default {
+-				pinmux {
+-					pins = "gpio0", "gpio1",
+-					       "gpio2", "gpio3";
+-					function = "qup01";
+-				};
++			qup_uart1_default: qup-uart1-default-state {
++				pins = "gpio0", "gpio1", "gpio2", "gpio3";
++				function = "qup01";
+ 			};
+ 
+-			qup_uart2_default: qup-uart2-default {
+-				pinmux {
+-					pins = "gpio15", "gpio16";
+-					function = "qup02_uart";
+-				};
++			qup_uart2_default: qup-uart2-default-state {
++				pins = "gpio15", "gpio16";
++				function = "qup02_uart";
+ 			};
+ 
+-			qup_uart3_default: qup-uart3-default {
+-				pinmux {
+-					pins = "gpio38", "gpio39",
+-					       "gpio40", "gpio41";
++			qup_uart3_default: qup-uart3-default-state {
++				qup_uart3_cts: cts-pins {
++					pins = "gpio38";
+ 					function = "qup03";
+ 				};
+-			};
+ 
+-			qup_uart4_default: qup-uart4-default {
+-				pinmux {
+-					pins = "gpio115", "gpio116";
+-					function = "qup04_uart";
++				qup_uart3_rts: rts-pins {
++					pins = "gpio39";
++					function = "qup03";
+ 				};
+-			};
+ 
+-			qup_uart5_default: qup-uart5-default {
+-				pinmux {
+-					pins = "gpio25", "gpio26",
+-					       "gpio27", "gpio28";
+-					function = "qup05";
++				qup_uart3_tx: tx-pins {
++					pins = "gpio40";
++					function = "qup03";
+ 				};
+-			};
+ 
+-			qup_uart6_default: qup-uart6-default {
+-				pinmux {
+-					pins = "gpio59", "gpio60",
+-					       "gpio61", "gpio62";
+-					function = "qup10";
++				qup_uart3_rx: rx-pins {
++					pins = "gpio41";
++					function = "qup03";
+ 				};
+ 			};
+ 
+-			qup_uart7_default: qup-uart7-default {
+-				pinmux {
+-					pins = "gpio6", "gpio7";
+-					function = "qup11_uart";
+-				};
++			qup_uart4_default: qup-uart4-default-state {
++				pins = "gpio115", "gpio116";
++				function = "qup04_uart";
+ 			};
+ 
+-			qup_uart8_default: qup-uart8-default {
+-				pinmux {
+-					pins = "gpio44", "gpio45";
++			qup_uart5_default: qup-uart5-default-state {
++				pins = "gpio25", "gpio26", "gpio27", "gpio28";
++				function = "qup05";
++			};
++
++			qup_uart6_default: qup-uart6-default-state {
++				pins = "gpio59", "gpio60", "gpio61", "gpio62";
++				function = "qup10";
++			};
++
++			qup_uart7_default: qup-uart7-default-state {
++				pins = "gpio6", "gpio7";
++				function = "qup11_uart";
++			};
++
++			qup_uart8_default: qup-uart8-default-state {
++				qup_uart8_tx: tx-pins {
++					pins = "gpio44";
+ 					function = "qup12";
+ 				};
+-			};
+ 
+-			qup_uart9_default: qup-uart9-default {
+-				pinmux {
+-					pins = "gpio46", "gpio47";
+-					function = "qup13_uart";
++				qup_uart8_rx: rx-pins {
++					pins = "gpio45";
++					function = "qup12";
+ 				};
+ 			};
+ 
+-			qup_uart10_default: qup-uart10-default {
+-				pinmux {
+-					pins = "gpio86", "gpio87",
+-					       "gpio88", "gpio89";
+-					function = "qup14";
+-				};
++			qup_uart9_default: qup-uart9-default-state {
++				pins = "gpio46", "gpio47";
++				function = "qup13_uart";
+ 			};
+ 
+-			qup_uart11_default: qup-uart11-default {
+-				pinmux {
+-					pins = "gpio53", "gpio54",
+-					       "gpio55", "gpio56";
+-					function = "qup15";
+-				};
++			qup_uart10_default: qup-uart10-default-state {
++				pins = "gpio86", "gpio87", "gpio88", "gpio89";
++				function = "qup14";
+ 			};
+ 
+-			sec_mi2s_active: sec-mi2s-active {
+-				pinmux {
+-					pins = "gpio49", "gpio50", "gpio51";
+-					function = "mi2s_1";
+-				};
++			qup_uart11_default: qup-uart11-default-state {
++				pins = "gpio53", "gpio54", "gpio55", "gpio56";
++				function = "qup15";
+ 			};
+ 
+-			pri_mi2s_active: pri-mi2s-active {
+-				pinmux {
+-					pins = "gpio53", "gpio54", "gpio55", "gpio56";
+-					function = "mi2s_0";
+-				};
++			sec_mi2s_active: sec-mi2s-active-state {
++				pins = "gpio49", "gpio50", "gpio51";
++				function = "mi2s_1";
+ 			};
+ 
+-			pri_mi2s_mclk_active: pri-mi2s-mclk-active {
+-				pinmux {
+-					pins = "gpio57";
+-					function = "lpass_ext";
+-				};
++			pri_mi2s_active: pri-mi2s-active-state {
++				pins = "gpio53", "gpio54", "gpio55", "gpio56";
++				function = "mi2s_0";
++			};
++
++			pri_mi2s_mclk_active: pri-mi2s-mclk-active-state {
++				pins = "gpio57";
++				function = "lpass_ext";
+ 			};
+ 		};
+ 
+-- 
+2.34.1
+
