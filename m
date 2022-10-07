@@ -2,232 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 860A05F7AAF
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 17:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB5045F7B0A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 17:53:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229798AbiJGPk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 11:40:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60664 "EHLO
+        id S229916AbiJGPxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 11:53:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229896AbiJGPk6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 11:40:58 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7528DD01A2;
-        Fri,  7 Oct 2022 08:40:57 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id g27so7546935edf.11;
-        Fri, 07 Oct 2022 08:40:57 -0700 (PDT)
+        with ESMTP id S229908AbiJGPxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 11:53:18 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A53FFC1CC
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 08:53:16 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id r22so4875577ljn.10
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 08:53:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o+gW9C0VZ1bsrVLiur8UHsUKxv1dbzktHbSlNmxzLFI=;
-        b=F17Xi/Er9Nn2ezln1ZD2l6hsGP+8YdcNnsdv2QG+1jJRgki64NfqkSE/ATkyb9QbRS
-         QVcCtnV7nkTdi9mrdnLsYZ4uMHlOmL6K7UzUYtHNLXxYKhkFNTjG9G3H9A1VIy/Dnuqk
-         tKWxFaGQ/lSN77UZpVRV+XnnfrYGmyS19v+qGloQWZydpjMSBqQxDpz4WXhFi089YisZ
-         mN7Xe6iTsKy6RsY+Jl3KzQwXNBeSFgoipMd2ex8dnPu0iwgyTOB2raqT4tkjtY/Hjkaw
-         sCjG+iIWrtRA88kDEic3y69IATHK1R4MaYxgyDodK23rOsupMYNGtUWSCLvzFUh8Ld+o
-         o7HQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ke80GF96XIn5dnJKIcuCkBMxiAcfiTBdb+oRsJGr3GY=;
+        b=XAA47aQG1XFomJxq7ypgUxXnVpvGgm9AhLskN22erxqeylEByrxSAVRMorIMMMiFWw
+         EpN+riIF0QrsH0N/Xq8P1BMGm5nEnj1fGTYAY+tOh3JkczzpaB0UTaJjpWToieHrZ1xB
+         S+ZCS7hln7rO6CYTftV85r8s791Xmy/hebogxhWO04HCFCQkbqEptRkME1cd79OvMLco
+         liIFRNYUPB9oNhPxqtQhhRM246KIYH7uyITbhfkp2qz0WZB6DI1r0EqCd6D/jlLhjgUc
+         v4EqlWiyi9ClJKA6OvvPnRznxDHm+Ch/9Vxn+gIZ1VcQIhD9zXjN7BhC2Klk5CnDE4jY
+         unkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o+gW9C0VZ1bsrVLiur8UHsUKxv1dbzktHbSlNmxzLFI=;
-        b=fTTx13JNNr3uKe4AiW2+ugDhUVVEqdeD/m6yEtKb0X9WRdWrjbaAqsefrf/MBBwLnM
-         Cj8pa8jhrSi8w23Ss6JHIdbErjh9ZpKO0bIBsDD1CgszqQHk81laUobxnYdYQ/PVAiTJ
-         Ps664OrBKlWBxtvfX8mOjsXQJokC33uN+Ip53AvEzCKisZ3P2/goZVzo0hNJ2lo7V41V
-         e+Qf1HaMgQG8egtJNLEAzu1op9bI0Qi63y7FFseiXMNDk3XPrx/15FiWbKR3Sf1mFjo/
-         pIkNG+KjuPPOQ0lp4Kc9m8myQxjmvFtbEzTFF3wetsOJagZA0dO1JH3sqLbyN6oie6sl
-         B9DQ==
-X-Gm-Message-State: ACrzQf1kKbUybUn+ugyd1y3zoiGzKDH4kqc9i/PK9Mu8VMExn4wqVMfS
-        HJPYF/RVND1eCflL7uM1KCg=
-X-Google-Smtp-Source: AMsMyM7NHBrNt9fSbolkv9LkttKd0T512D67DSDdKafFVf+EIjL3Y0iXWvIhkplLKJGggSFxn2W3IA==
-X-Received: by 2002:a05:6402:4505:b0:451:1551:7b14 with SMTP id ez5-20020a056402450500b0045115517b14mr5216471edb.300.1665157255800;
-        Fri, 07 Oct 2022 08:40:55 -0700 (PDT)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id q25-20020a50cc99000000b0044ef2ac2650sm1612961edi.90.2022.10.07.08.40.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Oct 2022 08:40:54 -0700 (PDT)
-Date:   Fri, 7 Oct 2022 17:40:52 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
-Subject: Re: [PATCH v9 5/5] iommu/tegra-smmu: Support managed domains
-Message-ID: <Y0BIhMMO51m6jpVN@orome>
-References: <20220923123557.866972-1-thierry.reding@gmail.com>
- <20220923123557.866972-6-thierry.reding@gmail.com>
- <b541eb50-fd9d-1105-4ae1-640ec7df1c68@arm.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ke80GF96XIn5dnJKIcuCkBMxiAcfiTBdb+oRsJGr3GY=;
+        b=bokATx8iV9lnzrds72M/KyfFDubVlbwMkIwzwz0HZNGzF2roHRrwe6SgyfkWw467Mk
+         m+6JVeGAz9tOQ1nng8sk5RXSkrqfK+6C9GqHUjI5o4dwePlRjcNPOF7vm/EAuwUmll3J
+         6/DjzslGKm0P/IjZAQUpurRmOdB2aKRX/pLP8B96f2FrCQRJCJRYProUtq1V8DDSlf57
+         K9+p6POfTujDAd+/RqCumNRSv4LB5JLCfmvsfW27da2i4wv695Mt5EdncmXgBzwUqfxz
+         O3X33sWoLsK2dW1D3629z6zdgu4DDE58I7wE+BF0ibB0Jghj3bP7ip5bLvjd42qOLeBJ
+         O/wg==
+X-Gm-Message-State: ACrzQf3pO/rPt7Z36/ZBM+PTOwdvoh5+XvwTvhNBoPpQiNKaRpM+PTCK
+        Gn2tuRtVtg5IBKBPgdnL+TW4Pg==
+X-Google-Smtp-Source: AMsMyM4bSnybE3WOr1MN+mIV7WG4biaIIqbIpy7mKbpcu2nqBicmv2kL5rtSTMvg8au/AHy1C1Mx5A==
+X-Received: by 2002:a2e:7211:0:b0:26d:fea5:c7e3 with SMTP id n17-20020a2e7211000000b0026dfea5c7e3mr1860778ljc.101.1665157994928;
+        Fri, 07 Oct 2022 08:53:14 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id d12-20020ac244cc000000b00497ad8e6d07sm334078lfm.222.2022.10.07.08.53.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Oct 2022 08:53:14 -0700 (PDT)
+Message-ID: <530a4682-c7d8-d4e1-8050-bc2baa0a1877@linaro.org>
+Date:   Fri, 7 Oct 2022 17:53:12 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Nwrt3c0txmHLc4Qy"
-Content-Disposition: inline
-In-Reply-To: <b541eb50-fd9d-1105-4ae1-640ec7df1c68@arm.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v6 06/17] dt-bindings: mfd: amd,pensando-elbasr: Add AMD
+ Pensando Elba System Resource chip
+Content-Language: en-US
+To:     "Larson, Bradley" <Bradley.Larson@amd.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "alcooperx@gmail.com" <alcooperx@gmail.com>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "brijeshkumar.singh@amd.com" <brijeshkumar.singh@amd.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "gsomlo@gmail.com" <gsomlo@gmail.com>,
+        "gerg@linux-m68k.org" <gerg@linux-m68k.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "yamada.masahiro@socionext.com" <yamada.masahiro@socionext.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "piotrs@cadence.com" <piotrs@cadence.com>,
+        "p.yadav@ti.com" <p.yadav@ti.com>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "samuel@sholland.org" <samuel@sholland.org>,
+        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
+        "Suthikulpanit, Suravee" <Suravee.Suthikulpanit@amd.com>,
+        "Lendacky, Thomas" <Thomas.Lendacky@amd.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20220820195750.70861-1-brad@pensando.io>
+ <20220820195750.70861-7-brad@pensando.io>
+ <20220822142544.GA3770388-robh@kernel.org>
+ <554f33b4-d235-5516-e8ff-5bf80d63a9b9@amd.com>
+ <936c5623-07b9-c49d-e113-fc056a4eb9bc@linaro.org>
+ <b064ed4c-d5a7-614f-008e-61ff2ac27f88@amd.com>
+ <0852ffa5-9996-0f42-c5a8-d1fe9d39887e@linaro.org>
+ <9a98d026-7f70-a69b-64de-c77419888e42@amd.com>
+ <9e006307-f7c7-c68a-e5c3-d0d0b2807d87@linaro.org>
+ <8ce3ee59-bc37-ea97-c94d-b6f4f9c28751@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8ce3ee59-bc37-ea97-c94d-b6f4f9c28751@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 30/09/2022 00:50, Larson, Bradley wrote:
+> On 9/16/22 2:56 AM, Krzysztof Kozlowski wrote:
+>> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
+>>
+>>
+>> On 13/09/2022 22:57, Larson, Bradley wrote:
+>>> On 9/8/22 4:27 AM, Krzysztof Kozlowski wrote:
+>>>> On 01/09/2022 22:37, Larson, Bradley wrote:
+>>>>> On 9/1/22 12:20 AM, Krzysztof Kozlowski wrote:
+>>>>>> On 01/09/2022 02:01, Larson, Bradley wrote:
+>>>>>>
+>> Wait, can we skip the driver entirely? I am not reviewing your driver 
+>> and what it creates under /dev. 
+> 
+> Yes, see precise answer requested below.
+> 
+>>> In comparision, the pensando device is also on the other end of spi,
+>>> four chip selects with /dev created for each for userspace control,
+>>> and one child device on cs0 for hw reset emmc that the Linux block
+>>> layer controls (single bit managed only by kernel).
+>>>
+>>> Pensando:
+>>> &spi0 {
+>>>           num-cs = <4>;
+>>>           cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
+>>>                      <&porta 7 GPIO_ACTIVE_LOW>;
+>>>           status = "okay";
+>>>           system-controller@0 {
+>>>                   compatible = "amd,pensando-elbasr";
+>>>                   reg = <0>;
+>>>                   #address-cells = <1>;
+>>>                   #size-cells = <0>;
+>>>                   spi-max-frequency = <12000000>;
+>>>
+>>>                   rstc: reset-controller {
+>>>                           compatible = "amd,pensando-elbasr-reset";
+>>>                           #reset-cells = <1>;
+>>>                   };
+>>>           };
+>>>
+>>>           system-controller@1 {
+>>>                   compatible = "amd,pensando-elbasr";
+>>>                   reg = <1>;
+>>>                   spi-max-frequency = <12000000>;
+>>>           };
+>>>
+>>>           system-controller@2 {
+>>>                   compatible = "amd,pensando-elbasr";
+>>>                   reg = <2>;
+>>>                   spi-max-frequency = <12000000>;
+>>>                   interrupt-parent = <&porta>;
+>>>                   interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+>>>           };
+>>>
+>>>           system-controller@3 {
+>>>                   compatible = "amd,pensando-elbasr";
+>>>                   reg = <3>;
+>>>                   spi-max-frequency = <12000000>;
+>>>           };
+>>> };
+>> You replied with quite a response of which 90% is unrelated talk about 
+>> driver. Please be specific. We talk here only about hardware.
+>> Your last DTS might be the answer, but you never explicitly wrote 
+>> it... So let's check if I understand it correctly. Only some of elbasr 
+>> block contain reset control?
+> 
+> Yes, only the elbasr block accessed on CS0 provides reset control.  The 
+> other 3 blocks don't have any reset control and never will.
 
---Nwrt3c0txmHLc4Qy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I see, that could explain the subnode. However:
+1. You still do not use any resources in the subnode (it does not have
+any in DT).
 
-On Fri, Oct 07, 2022 at 02:48:19PM +0100, Robin Murphy wrote:
-> On 2022-09-23 13:35, Thierry Reding wrote:
-> > From: Navneet Kumar <navneetk@nvidia.com>
-> >=20
-> > Allow creating identity and DMA API compatible IOMMU domains. When
-> > creating a DMA API compatible domain, make sure to also create the
-> > required cookie.
->=20
-> Nit: this description is now confusingly outdated.
->=20
-> > Signed-off-by: Navneet Kumar <navneetk@nvidia.com>
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> > Changes in v5:
-> > - remove DMA cookie initialization that's now no longer needed
-> >=20
-> >   drivers/iommu/tegra-smmu.c | 38 +++++++++++++++++++++-----------------
-> >   1 file changed, 21 insertions(+), 17 deletions(-)
-> >=20
-> > diff --git a/drivers/iommu/tegra-smmu.c b/drivers/iommu/tegra-smmu.c
-> > index 57b4f2b37447..7ad993330634 100644
-> > --- a/drivers/iommu/tegra-smmu.c
-> > +++ b/drivers/iommu/tegra-smmu.c
-> > @@ -20,6 +20,8 @@
-> >   #include <soc/tegra/ahb.h>
-> >   #include <soc/tegra/mc.h>
-> > +#include "dma-iommu.h"
-> > +
-> >   struct tegra_smmu_group {
-> >   	struct list_head list;
-> >   	struct tegra_smmu *smmu;
-> > @@ -277,7 +279,9 @@ static struct iommu_domain *tegra_smmu_domain_alloc=
-(unsigned type)
-> >   {
-> >   	struct tegra_smmu_as *as;
-> > -	if (type !=3D IOMMU_DOMAIN_UNMANAGED)
-> > +	if (type !=3D IOMMU_DOMAIN_UNMANAGED &&
-> > +	    type !=3D IOMMU_DOMAIN_DMA &&
-> > +	    type !=3D IOMMU_DOMAIN_IDENTITY)
->=20
-> Since there's apparently no actual handling of IOMMU_DOMAIN_IDENTITY being
-> added anywhere, AFAICS it's still going to set up an address space for
-> translation with nothing mapped in its pagetable, which is pretty much the
-> opposite of what's required :/
+2. Your driver instantiates subdevice not based on existing of subnode
+or characteristics of a device (e.g. compatible), but on hard-coded
+chip-select line. The reset driver directly takes parent's regmap - no
+other resources.
 
-Yeah, I think we can safely skip identity domains. I don't think I've
-ever seen them get used on Tegra.
+Therefore this does not look like dedicated piece of hardware and should
+be just part of parent node.
 
->=20
-> >   		return NULL;
-> >   	as =3D kzalloc(sizeof(*as), GFP_KERNEL);
-> > @@ -287,25 +291,16 @@ static struct iommu_domain *tegra_smmu_domain_all=
-oc(unsigned type)
-> >   	as->attr =3D SMMU_PD_READABLE | SMMU_PD_WRITABLE | SMMU_PD_NONSECURE;
-> >   	as->pd =3D alloc_page(GFP_KERNEL | __GFP_DMA | __GFP_ZERO);
-> > -	if (!as->pd) {
-> > -		kfree(as);
-> > -		return NULL;
-> > -	}
-> > +	if (!as->pd)
-> > +		goto free_as;
-> >   	as->count =3D kcalloc(SMMU_NUM_PDE, sizeof(u32), GFP_KERNEL);
-> > -	if (!as->count) {
-> > -		__free_page(as->pd);
-> > -		kfree(as);
-> > -		return NULL;
-> > -	}
-> > +	if (!as->count)
-> > +		goto free_pd_range;
-> >   	as->pts =3D kcalloc(SMMU_NUM_PDE, sizeof(*as->pts), GFP_KERNEL);
-> > -	if (!as->pts) {
-> > -		kfree(as->count);
-> > -		__free_page(as->pd);
-> > -		kfree(as);
-> > -		return NULL;
-> > -	}
-> > +	if (!as->pts)
-> > +		goto free_pts;
->=20
-> Nit: all this part is now just unrelated refactoring.
+> 
+>> This however does not answer my questions before.... You keep ignoring 
+>> them. So please answer yes or no: "Are there other sub-devices?"
+> 
+> No
+> 
+>> " and your binding is incomplete?"
+> 
+> No
+> 
+>> and a new question: "Is reset block (amd,pensando-elbasr-reset) 
+>> re-usable so it will appear in different device (not in 
+>> amd,pensando-elbasr)?"
+> 
+> No its not re-usable
 
-Okay, I'll see if I can pull this into a separate patch. Or perhaps just
-drop it.
+So squash it with parent node.
 
-Frankly, at this point it's unlikely that all of this will ever be
-deployed on Tegra210 (and earlier) that used this SMMU, so I've included
-this particular patch here primarily because Tegra210 was originally
-meant to be the primary target. This patch is now close to 4 years
-old...
+Best regards,
+Krzysztof
 
-Thierry
-
->=20
-> Thanks,
-> Robin.
->=20
-> >   	spin_lock_init(&as->lock);
-> > @@ -315,6 +310,15 @@ static struct iommu_domain *tegra_smmu_domain_allo=
-c(unsigned type)
-> >   	as->domain.geometry.force_aperture =3D true;
-> >   	return &as->domain;
-> > +
-> > +free_pts:
-> > +	kfree(as->pts);
-> > +free_pd_range:
-> > +	__free_page(as->pd);
-> > +free_as:
-> > +	kfree(as);
-> > +
-> > +	return NULL;
-> >   }
-> >   static void tegra_smmu_domain_free(struct iommu_domain *domain)
-> > @@ -1012,7 +1016,7 @@ static const struct iommu_ops tegra_smmu_ops =3D {
-> >   	.probe_device =3D tegra_smmu_probe_device,
-> >   	.release_device =3D tegra_smmu_release_device,
-> >   	.device_group =3D tegra_smmu_device_group,
-> > -	.get_resv_regions =3D of_iommu_get_resv_regions,
-> > +	.get_resv_regions =3D iommu_dma_get_resv_regions,
-> >   	.of_xlate =3D tegra_smmu_of_xlate,
-> >   	.pgsize_bitmap =3D SZ_4K,
-> >   	.default_domain_ops =3D &(const struct iommu_domain_ops) {
-
---Nwrt3c0txmHLc4Qy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNASIIACgkQ3SOs138+
-s6E2Ug/9G0BR+PMsaLH0eMNOFjha/8/B/KqvEyV3HhJOrfa8rE/vkzuog6gxKOtT
-icaCvh/sQIazWgsqSFgg3IraIXK1/9fXnj2k5YbnZoUw+/9y1be8dWjVcx2JKNri
-8NF+Np7ocHbZC//c70O8K5P2WHPk85mEgJ0mJ6cGPV3QKqRDmxHGd/PZjtF1qVDw
-59SDquTSjQhYtfjKuKjKXemiOeop6JGm/YH1PD5dG5h/Ac/ZnJS3OEkThFdf2XXN
-LD4TaqWsvBuoc/D8i2gOvsW+mjxbTMKEuSFcljhRNkjhsd5MQHL0qHjY1Say3tq4
-7h+TeY8/zwxpJPtCkkhgg/OHkDD6xAG0ux5lK/rBtKtM8X8LyB0ZAVXfvUQUc3aP
-L3+KIGEMvjmIzrWLzEnvPTTs2SsVGBeSnzdLCnE2Nqp3G6G937uhCeaAFrybtxZ5
-PC2d6e9J7mxjMrE+tL3eBOKcvJcNNp+okShaXqaOPhplKMhXK474JFGYkhJA2DFn
-kbNfW+Kmlf6wzo+OQUF6/6RqnBurdAC+ivK6S4ojiwIHWIrQ1d30b7gn28psKr/x
-KlpIUBnOCVMeuLEu4HPDRPr7whqEM/tqOd4RAxIaa6OCanHRqZFraXbpK3Pm1PNR
-k1fBL7w0/hgi5XptnsIKn745ATNHBkDPsGL8mqEQBbxdtq7AjLc=
-=HD2A
------END PGP SIGNATURE-----
-
---Nwrt3c0txmHLc4Qy--
