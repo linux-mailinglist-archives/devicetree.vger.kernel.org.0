@@ -2,92 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A272C5F7B7C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:31:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53B875F7B80
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 18:32:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229761AbiJGQbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 12:31:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36820 "EHLO
+        id S229672AbiJGQcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 12:32:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229672AbiJGQbX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:31:23 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 277C4102DFD
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 09:31:22 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id bs18so6322923ljb.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 09:31:22 -0700 (PDT)
+        with ESMTP id S229616AbiJGQcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 12:32:35 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DED3F102DE8;
+        Fri,  7 Oct 2022 09:32:33 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id de14so3394968qvb.5;
+        Fri, 07 Oct 2022 09:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wps2XPzyoQxJCRCgPjDDBxYyJh4/U/3epD9Q85qlSaM=;
-        b=u/dIgJCkhb9Qm/TxY8iaZR2y22X0sEjQGESJeGj2HBsbd9TPr/v596xsHL4dHQHQXP
-         zx5XGKWaOwKrTV7FNTDUFdj4v/LNAiF+rc7sFZbXiMx5l9aP4LXdVVABbMwD51rI9Juy
-         ZUavj9awkwVcTyWkjzDWql+VvrOUligsGYMcY95DXBKi9/vX4wRF2qK+dLqnZSSw953d
-         Mg/Npt06gwY2cvAh1QH57O+C5F7KJ6s6hGA9aCsRf+MMuKseOscKO8JkUZCalKkVTQy9
-         n83dp9HsyLfr3ceMnp6lDfC6ACOvtS6o36fEob9LkVS4BcLdCwegK74hZSSXdfesiGgL
-         z9Eg==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QqBD3ksm/42W3ZOFARVPpcH3gaO+fK+GYGFaj+UPlDI=;
+        b=h8LZ7ri8UcgOJHgobw3oPpAa4rlYp4LWGdqt/eYl4Pl7EFSv+cgBTP0Slsz8mnuF/e
+         3ffTnLA5Y56rRQRO1p/ymA0XPK/bNeRVkAVRid2y8BjWpAKkvszaYFZtwM5iax1NUsFl
+         /SQK7RsL99oGAxMYld4xhQ4Kp7Cyh9EuTbyXxTlj0B9yGbLUjPBL6cjD2GL0niL8I9aO
+         aEkIhXe6kWWGjWv75xvsUQ5+Ekl3auCZY0xgGSnxcfNXcszUeIOQJbnLF0Sx7HEdrp9B
+         uKJMXx/6YBOOdNKQ8/s8E129r8NFt5h3grqUZqXNuhd4PbyrWLY61Ymbk/+jA+IYbHpK
+         tKlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wps2XPzyoQxJCRCgPjDDBxYyJh4/U/3epD9Q85qlSaM=;
-        b=rE0b3qPFk8xaVchk8N56RL9nvvbJHi1j6KSCts8oY/+7Q8oKmvFhnM7ZUsuq3hmBGx
-         nVRKLFMdQ+yv9BslSfV0hDMbun1M9VGYF+BPcBhcz7ORtnGOgyXapsObmUBzB+MI1AqE
-         PrsNFl2bTTCGeB82xwmbeN2GW07gnTq5OG5hGCoWkuHSSVLu8gGaCWUttK4brq7RGYoa
-         tcrBWP4hx4KM4e371I83WgnypKpHD6wYS/eXAHYEqcWdFdgMEHQbBY7oQ9E0gvxPmre3
-         HykTqb10Blo+0gmpkUWibru3bN/1TIfbt9UPcmQo5n31oFid1+GyP63Kl1aFhORPhUbR
-         9jVw==
-X-Gm-Message-State: ACrzQf2/ery1lStYbDoXANmunZyKWci617j9lMCqZ8u/vuBoyy/JtMkJ
-        /+P9hYY5EczH95uNd07VUkjpbKLJ3ideVw==
-X-Google-Smtp-Source: AMsMyM4zXnsg4AQoc9IvgEEFeekUcCkeQIp5LGwqXPDTLlXnb6QUoO1vfL9uexO+KDSsMXdb5ppqkQ==
-X-Received: by 2002:a2e:7211:0:b0:26d:fea5:c7e3 with SMTP id n17-20020a2e7211000000b0026dfea5c7e3mr1923621ljc.101.1665160280530;
-        Fri, 07 Oct 2022 09:31:20 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t16-20020a05651c205000b0026de7400f3bsm334161ljo.5.2022.10.07.09.31.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Oct 2022 09:31:19 -0700 (PDT)
-Message-ID: <9e2c95fb-1806-15e6-faca-0140b3c419bd@linaro.org>
-Date:   Fri, 7 Oct 2022 18:31:19 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QqBD3ksm/42W3ZOFARVPpcH3gaO+fK+GYGFaj+UPlDI=;
+        b=jlFWafOXZEIQekRd0RznVI2NR5STTYCl0oj+E9Wo6LwzkxL91ldAzyVXHOw9DUECzs
+         UcbLZaDMgRMvSM1Bxn/V51KM3GBs88fibbo8tmezJu65XrEd0cLTeUzUG9mC10s8/4wG
+         A7J/yKiVGeGtWRESDS9OpwcObtcI1KeAwMrzWNSb/gv3A2Mtkt1EArpngt7kqWmSV0+B
+         80lJpPLmWMg/G+duLKrpZbD6HwnjAhtXvwHrklrqYGBdhFqwEGIZD4DBqg44/mhYN20r
+         aeSIX8qacui8NhXtmUTuldxzemFrzCX34UQY7L9I28HNYf13FH8OATPh06XnWKioiTSw
+         e1Dg==
+X-Gm-Message-State: ACrzQf1SnMszRDwdxZaG4EDdsj6srrnNuq9ejn7MNM9UPmAZnLLo/4L3
+        2AfGNdf9e2+zqYOaE0nKQjfPElJ3GCi195lUmSU=
+X-Google-Smtp-Source: AMsMyM4FrN/lLzBMdXd6EEVNCo60otuO1WIl9EytSx8UsuYUcHVCyRwaUVrQdaNHZjtkwlB62cmyl4Otb7WMHqX0xzg=
+X-Received: by 2002:a05:6214:762:b0:4b1:c5d2:3fd0 with SMTP id
+ f2-20020a056214076200b004b1c5d23fd0mr4873243qvz.97.1665160352745; Fri, 07 Oct
+ 2022 09:32:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH] dt-bindings: pwm: renesas,pwm-rcar: Add r8a779g0 support
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <7785f163a5a798574c68495de8b0ca7a02e35f07.1665156318.git.geert+renesas@glider.be>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7785f163a5a798574c68495de8b0ca7a02e35f07.1665156318.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20221007145641.3307075-1-jjhiblot@traphandler.com> <20221007145641.3307075-7-jjhiblot@traphandler.com>
+In-Reply-To: <20221007145641.3307075-7-jjhiblot@traphandler.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 7 Oct 2022 19:31:56 +0300
+Message-ID: <CAHp75VcwcOqz_8yCYL09Nh7vqw5ZWOUR+1EJjpiNEz_tis-s+A@mail.gmail.com>
+Subject: Re: [PATCH v4 6/6] leds: Add a multicolor LED driver to group
+ monochromatic LEDs
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     lee.jones@linaro.org, pavel@ucw.cz, robh+dt@kernel.org,
+        sven.schwermer@disruptive-technologies.com,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
+        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2022 17:25, Geert Uytterhoeven wrote:
-> Document support for the PWM timers in the Renesas R-Car V4H (R8A779G0)
-> SoC.
-> 
-> Based on a patch in the BSP by CongDang.
+On Fri, Oct 7, 2022 at 5:56 PM Jean-Jacques Hiblot
+<jjhiblot@traphandler.com> wrote:
+>
+> By allowing to group multiple monochrome LED into multicolor LEDs,
+> all involved LEDs can be controlled in-sync. This enables using effects
+> using triggers, etc.
 
+...
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +config LEDS_GRP_MULTICOLOR
+> +       tristate "Multi-color LED grouping support"
 
-Best regards,
-Krzysztof
+> +       depends on OF
 
+But there is no compilation requirement for that.
+If you want to tell that this is functional requirement, you may use
+
+    depends on COMPILE_TEST || OF
+
+pattern
+
+...
+
+> +       struct device *dev = &pdev->dev;
+> +       struct led_init_data init_data = {};
+> +       struct led_classdev *cdev;
+> +       struct mc_subled *subled;
+> +       struct led_mcg_priv *priv;
+
+> +       int i, count, ret;
+
+> +       unsigned int max_brightness;
+
+Perhaps keep it before previous line?
+
+> +       count = 0;
+> +       max_brightness = 0;
+> +       for (;;) {
+> +               struct led_classdev *led_cdev;
+> +
+> +               led_cdev = devm_of_led_get_optional(dev, count);
+
+> +               if (!led_cdev)
+
+> +                       /* Reached the end of the list */
+> +                       break;
+
+This will require {} according to the style guide. Maybe move the
+comment on top of the if (!led_cdev) check?
+
+> +               if (IS_ERR(led_cdev))
+> +                       return dev_err_probe(dev, PTR_ERR(led_cdev),
+> +                                            "Unable to get led #%d", count);
+
+I would check for an error first, this is a common pattern in the Linux kernel.
+
+> +               count++;
+> +
+> +               priv->monochromatics = devm_krealloc_array(dev, priv->monochromatics,
+> +                                       count, sizeof(*priv->monochromatics),
+> +                                       GFP_KERNEL);
+> +               if (!priv->monochromatics)
+> +                       return -ENOMEM;
+> +
+> +               priv->monochromatics[count - 1] = led_cdev;
+> +
+> +               max_brightness = max(max_brightness, led_cdev->max_brightness);
+> +       }
+> +
+> +       subled = devm_kcalloc(dev, count, sizeof(*subled), GFP_KERNEL);
+> +       if (!subled)
+> +               return -ENOMEM;
+> +       priv->mc_cdev.subled_info = subled;
+> +
+> +       for (i = 0; i < count; i++) {
+> +               struct led_classdev *led_cdev = priv->monochromatics[i];
+> +
+> +               subled[i].color_index = led_cdev->color;
+> +               /* configure the LED intensity to its maximum */
+> +               subled[i].intensity = max_brightness;
+> +       }
+> +
+> +       /* init the multicolor's LED class device */
+> +       cdev = &priv->mc_cdev.led_cdev;
+> +       cdev->flags = LED_CORE_SUSPENDRESUME;
+> +       cdev->brightness_set_blocking = led_mcg_set;
+> +       cdev->max_brightness = max_brightness;
+> +       cdev->color = LED_COLOR_ID_MULTI;
+> +       priv->mc_cdev.num_colors = count;
+> +
+> +       init_data.fwnode = dev_fwnode(dev);
+> +       ret = devm_led_classdev_multicolor_register_ext(dev, &priv->mc_cdev,
+> +                                                       &init_data);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret,
+> +                       "failed to register multicolor led for %s.\n",
+> +                       cdev->name);
+> +
+> +       ret = led_mcg_set(cdev, cdev->brightness);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret,
+> +                                    "failed to set led value for %s.",
+> +                                    cdev->name);
+> +
+> +       for (i = 0; i < count; i++) {
+> +               struct led_classdev *led_cdev = priv->monochromatics[i];
+> +
+> +               /* Make the sysfs of the monochromatic LED read-only */
+> +               led_cdev->flags |= LED_SYSFS_DISABLE;
+> +       }
+> +
+> +       return 0;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
