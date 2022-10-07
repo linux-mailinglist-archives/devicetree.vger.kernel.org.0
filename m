@@ -2,153 +2,466 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E031C5F72F3
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 04:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37AB35F7303
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 05:04:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbiJGC6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Oct 2022 22:58:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44440 "EHLO
+        id S229507AbiJGDEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Oct 2022 23:04:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbiJGC6J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 22:58:09 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8F1FF8E6
-        for <devicetree@vger.kernel.org>; Thu,  6 Oct 2022 19:58:08 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id 204so3748681pfx.10
-        for <devicetree@vger.kernel.org>; Thu, 06 Oct 2022 19:58:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HHqtVs8j+ID4jgqw57yAt3FtHMv/XStpjtf/AugVE1Y=;
-        b=FhXOA3SGFnbaWCxieNMDC1nYdp/i+xNk1Qz42dQC7LPITUdJcbeCD8MXgS1lEAl+Ff
-         4Q7YoMcKPvYOvGsh593C5ovx3865nXrA4jLf7wZ6cTMZUoq9waJYSMYXPSQEZ+w3HOfW
-         SISSGdo5Z4e4aPv8ylbZrhV5D33e1LqZ6TLSZgZCWwGJxqu9Znv9u20bgyXS8gVa0ASs
-         6oMiHtBzpvqB4UNYNn2PU4RhiMUmuVPtXdpJnizixXLqZONDEPwtTxWTvvvXE6FfdHDg
-         qTnnVa5pvh83sPhZySmfb1IUP1QM5OkEgfI1ZDKgrJT5AWmx6IBhYMpJj9qfGXXUNk4O
-         NuLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HHqtVs8j+ID4jgqw57yAt3FtHMv/XStpjtf/AugVE1Y=;
-        b=5EvislaF5abIdtgGof04Yc+JKvZPSjseRukW1LpAaOYKqRTKU60oTp2J+Jkmb2OdSS
-         xJoB4FcjKBZtsYvphjBqCWVCXO2MvISSdWy+0Ns6vmE0i5a3VOHKF7Kt+7Lz9Uj929uP
-         UEz4cmcQoA4p6Wki+/4kA7rcjbh/lDlX1lP8LJe615nobB6QFIhFB7oMo6NZiYXrwy4I
-         n43dQf5JeL6yUkZ3xYQaomT1LWaAvpIvAhTZHwKoVA9fwj9oSB7OWYQuPagKHStMSxIw
-         Y6J33RUknM7iHmAq89sdhMn71WDGTdPmHNQtcE+oLBIlod936Y2y1HBzOJT82X9kcMiP
-         vjfw==
-X-Gm-Message-State: ACrzQf0wbKEuF5nLOoNzfljx9tH80N/+1XR0C3oo0YqvYtod9SnzQksG
-        /OnVEZG7Bfo29HDMWgOfI3Rutg==
-X-Google-Smtp-Source: AMsMyM53dmoZUhAeR2ad3+PvCeAPrlnhjAul4X/Pb1ufZcrCsgu+iGRJpvj0OGds7mcXRXSYxl4bQA==
-X-Received: by 2002:a05:6a00:14d3:b0:546:e93c:4768 with SMTP id w19-20020a056a0014d300b00546e93c4768mr2621000pfu.36.1665111487824;
-        Thu, 06 Oct 2022 19:58:07 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id f17-20020a170902ce9100b00172f4835f60sm333199plg.189.2022.10.06.19.58.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Oct 2022 19:58:07 -0700 (PDT)
-Date:   Thu, 06 Oct 2022 19:58:07 -0700 (PDT)
-X-Google-Original-Date: Thu, 06 Oct 2022 19:57:50 PDT (-0700)
-Subject:     Re: [PATCH 3/3] EDAC/sifive: use sifive_ccache instead of sifive_l2
-In-Reply-To: <20220829062202.3287-4-zong.li@sifive.com>
-CC:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, greentime.hu@sifive.com,
-        conor.dooley@microchip.com, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        zong.li@sifive.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     zong.li@sifive.com
-Message-ID: <mhng-fe7df193-2cac-4022-928d-a18e63f5e1c1@palmer-ri-x1c9>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229566AbiJGDE3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Oct 2022 23:04:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02270142988;
+        Thu,  6 Oct 2022 20:04:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6132060C6E;
+        Fri,  7 Oct 2022 03:04:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1022AC43146;
+        Fri,  7 Oct 2022 03:04:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665111855;
+        bh=pKHD9Tnv8FHK/6+i4AV9NL4BirZAh7JDg35uVpnGi+I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=muFi6duSeeP10pvbwy5WY0yCMu97IXbn3WLkk58EfHi2DET4lD4aKeBHGL3eUZrP2
+         yYMqLEsUNNxsC9WemXFH5rJIvHaVon+/TKGpwt7p3M+HQITRSX30iVWiEeorm+BOhy
+         uycgEVAkGUooaBxqMaeRwgf6IrO/KQYV0+m62K9i9/My9AZPwKgHov2v8xQcYM9rXV
+         LXe4AEW2fCvOieMI0eVQ3++RYIFtTQBmWbkgLpzH+UC25mEcKZWVj9cw1t4cvg9wGh
+         0jngw++gAo9L9J8KEQPthX9OPo/RbsuLqTp1W5ZhW9KURfyD6v/tvDI2uzGNP56RiS
+         xLJBO8w2DCSJg==
+Date:   Thu, 6 Oct 2022 22:04:13 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: qcom,sm8150: convert to
+ dtschema
+Message-ID: <20221007030413.thdvhrgsqfczui62@builder.lan>
+References: <20221006144518.256956-1-krzysztof.kozlowski@linaro.org>
+ <20221006144518.256956-2-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221006144518.256956-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 28 Aug 2022 23:22:02 PDT (-0700), zong.li@sifive.com wrote:
-> The sifive L2 has been renamed to sifive CCACHE, EDAC driver needs to
-> apply the change as well
+On Thu, Oct 06, 2022 at 04:45:18PM +0200, Krzysztof Kozlowski wrote:
+> Convert Qualcomm SM8150 pin controller bindings to DT schema.  Keep the
+> parsing of pin configuration subnodes consistent with other Qualcomm
+> schemas (children named with '-state' suffix, their children with
+> '-pins').
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-That means the build would be broken before this patch, which we 
-generally try to avoid as it breaks things like bisecting.
+There are a few differences between the old and new binding, nice to see
+those mistakes being corrected.
 
->
-> Signed-off-by: Zong Li <zong.li@sifive.com>
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+
+Regards,
+Bjorn
+
 > ---
->  drivers/edac/Kconfig       |  2 +-
->  drivers/edac/sifive_edac.c | 12 ++++++------
->  2 files changed, 7 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-> index 17562cf1fe97..456602d373b7 100644
-> --- a/drivers/edac/Kconfig
-> +++ b/drivers/edac/Kconfig
-> @@ -473,7 +473,7 @@ config EDAC_ALTERA_SDMMC
->
->  config EDAC_SIFIVE
->  	bool "Sifive platform EDAC driver"
-> -	depends on EDAC=y && SIFIVE_L2
-> +	depends on EDAC=y && SIFIVE_CCACHE
->  	help
->  	  Support for error detection and correction on the SiFive SoCs.
->
-> diff --git a/drivers/edac/sifive_edac.c b/drivers/edac/sifive_edac.c
-> index ee800aec7d47..b844e2626fd5 100644
-> --- a/drivers/edac/sifive_edac.c
-> +++ b/drivers/edac/sifive_edac.c
-> @@ -2,7 +2,7 @@
->  /*
->   * SiFive Platform EDAC Driver
->   *
-> - * Copyright (C) 2018-2019 SiFive, Inc.
-> + * Copyright (C) 2018-2022 SiFive, Inc.
->   *
->   * This driver is partially based on octeon_edac-pc.c
->   *
-> @@ -10,7 +10,7 @@
->  #include <linux/edac.h>
->  #include <linux/platform_device.h>
->  #include "edac_module.h"
-> -#include <soc/sifive/sifive_l2_cache.h>
-> +#include <soc/sifive/sifive_ccache.h>
->
->  #define DRVNAME "sifive_edac"
->
-> @@ -32,9 +32,9 @@ int ecc_err_event(struct notifier_block *this, unsigned long event, void *ptr)
->
->  	p = container_of(this, struct sifive_edac_priv, notifier);
->
-> -	if (event == SIFIVE_L2_ERR_TYPE_UE)
-> +	if (event == SIFIVE_CCACHE_ERR_TYPE_UE)
->  		edac_device_handle_ue(p->dci, 0, 0, msg);
-> -	else if (event == SIFIVE_L2_ERR_TYPE_CE)
-> +	else if (event == SIFIVE_CCACHE_ERR_TYPE_CE)
->  		edac_device_handle_ce(p->dci, 0, 0, msg);
->
->  	return NOTIFY_OK;
-> @@ -67,7 +67,7 @@ static int ecc_register(struct platform_device *pdev)
->  		goto err;
->  	}
->
-> -	register_sifive_l2_error_notifier(&p->notifier);
-> +	register_sifive_ccache_error_notifier(&p->notifier);
->
->  	return 0;
->
-> @@ -81,7 +81,7 @@ static int ecc_unregister(struct platform_device *pdev)
->  {
->  	struct sifive_edac_priv *p = platform_get_drvdata(pdev);
->
-> -	unregister_sifive_l2_error_notifier(&p->notifier);
-> +	unregister_sifive_ccache_error_notifier(&p->notifier);
->  	edac_device_del_device(&pdev->dev);
->  	edac_device_free_ctl_info(p->dci);
+>  .../bindings/pinctrl/qcom,sm8150-pinctrl.txt  | 190 ------------------
+>  .../bindings/pinctrl/qcom,sm8150-pinctrl.yaml | 178 ++++++++++++++++
+>  2 files changed, 178 insertions(+), 190 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.txt
+> deleted file mode 100644
+> index fa37733e5102..000000000000
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.txt
+> +++ /dev/null
+> @@ -1,190 +0,0 @@
+> -Qualcomm SM8150 TLMM block
+> -
+> -This binding describes the Top Level Mode Multiplexer block found in the
+> -QCS404 platform.
+> -
+> -- compatible:
+> -	Usage: required
+> -	Value type: <string>
+> -	Definition: must be "qcom,sm8150-pinctrl"
+> -
+> -- reg:
+> -	Usage: required
+> -	Value type: <prop-encoded-array>
+> -	Definition: the base address and size of the north, south, west
+> -		    and east TLMM tiles.
+> -
+> -- reg-names:
+> -	Usage: required
+> -	Value type: <prop-encoded-array>
+> -	Defintiion: names for the cells of reg, must contain "north", "south"
+> -		    "west" and "east".
+> -
+> -- interrupts:
+> -	Usage: required
+> -	Value type: <prop-encoded-array>
+> -	Definition: should specify the TLMM summary IRQ.
+> -
+> -- interrupt-controller:
+> -	Usage: required
+> -	Value type: <none>
+> -	Definition: identifies this node as an interrupt controller
+> -
+> -- #interrupt-cells:
+> -	Usage: required
+> -	Value type: <u32>
+> -	Definition: must be 2. Specifying the pin number and flags, as defined
+> -		    in <dt-bindings/interrupt-controller/irq.h>
+> -
+> -- gpio-controller:
+> -	Usage: required
+> -	Value type: <none>
+> -	Definition: identifies this node as a gpio controller
+> -
+> -- #gpio-cells:
+> -	Usage: required
+> -	Value type: <u32>
+> -	Definition: must be 2. Specifying the pin number and flags, as defined
+> -		    in <dt-bindings/gpio/gpio.h>
+> -
+> -- gpio-ranges:
+> -	Usage: required
+> -	Value type: <prop-encoded-array>
+> -	Definition:  see ../gpio/gpio.txt
+> -
+> -- gpio-reserved-ranges:
+> -	Usage: optional
+> -	Value type: <prop-encoded-array>
+> -	Definition: see ../gpio/gpio.txt
+> -
+> -Please refer to ../gpio/gpio.txt and ../interrupt-controller/interrupts.txt for
+> -a general description of GPIO and interrupt bindings.
+> -
+> -Please refer to pinctrl-bindings.txt in this directory for details of the
+> -common pinctrl bindings used by client devices, including the meaning of the
+> -phrase "pin configuration node".
+> -
+> -The pin configuration nodes act as a container for an arbitrary number of
+> -subnodes. Each of these subnodes represents some desired configuration for a
+> -pin, a group, or a list of pins or groups. This configuration can include the
+> -mux function to select on those pin(s)/group(s), and various pin configuration
+> -parameters, such as pull-up, drive strength, etc.
+> -
+> -
+> -PIN CONFIGURATION NODES:
+> -
+> -The name of each subnode is not important; all subnodes should be enumerated
+> -and processed purely based on their content.
+> -
+> -Each subnode only affects those parameters that are explicitly listed. In
+> -other words, a subnode that lists a mux function but no pin configuration
+> -parameters implies no information about any pin configuration parameters.
+> -Similarly, a pin subnode that describes a pullup parameter implies no
+> -information about e.g. the mux function.
+> -
+> -
+> -The following generic properties as defined in pinctrl-bindings.txt are valid
+> -to specify in a pin configuration subnode:
+> -
+> -- pins:
+> -	Usage: required
+> -	Value type: <string-array>
+> -	Definition: List of gpio pins affected by the properties specified in
+> -		    this subnode.
+> -
+> -		    Valid pins are:
+> -		      gpio0-gpio149
+> -		        Supports mux, bias and drive-strength
+> -
+> -		      sdc1_clk, sdc1_cmd, sdc1_data sdc2_clk, sdc2_cmd,
+> -		      sdc2_data sdc1_rclk
+> -		        Supports bias and drive-strength
+> -
+> -		      ufs_reset
+> -		        Supports bias and drive-strength
+> -
+> -- function:
+> -	Usage: required
+> -	Value type: <string>
+> -	Definition: Specify the alternative function to be configured for the
+> -		    specified pins. Functions are only valid for gpio pins.
+> -		    Valid values are:
+> -
+> -		    adsp_ext, agera_pll, aoss_cti, ddr_pxi2, atest_char,
+> -		    atest_char0, atest_char1, atest_char2, atest_char3,
+> -		    audio_ref, atest_usb1, atest_usb2, atest_usb10,
+> -		    atest_usb11, atest_usb12, atest_usb13, atest_usb20,
+> -		    atest_usb21, atest_usb22, atest_usb2, atest_usb23,
+> -		    btfm_slimbus, cam_mclk, cci_async, cci_i2c, cci_timer0,
+> -		    cci_timer1, cci_timer2, cci_timer3, cci_timer4,
+> -		    cri_trng, cri_trng0, cri_trng1, dbg_out, ddr_bist,
+> -		    ddr_pxi0, ddr_pxi1, ddr_pxi3, edp_hot, edp_lcd,
+> -		    emac_phy, emac_pps, gcc_gp1, gcc_gp2, gcc_gp3, gpio,
+> -		    hs1_mi2s, hs2_mi2s, hs3_mi2s, jitter_bist,
+> -		    lpass_slimbus, mdp_vsync, mdp_vsync0, mdp_vsync1,
+> -		    mdp_vsync2, mdp_vsync3, mss_lte, m_voc, nav_pps,
+> -		    pa_indicator, pci_e0, phase_flag, pll_bypassnl,
+> -		    pll_bist, pci_e1, pll_reset, pri_mi2s, pri_mi2s_ws,
+> -		    prng_rosc, qdss, qdss_cti, qlink_request, qlink_enable,
+> -		    qspi0, qspi1, qspi2, qspi3, qspi_clk, qspi_cs, qua_mi2s,
+> -		    qup0, qup1, qup2, qup3, qup4, qup5, qup6, qup7, qup8,
+> -		    qup9, qup10, qup11, qup12, qup13, qup14, qup15, qup16,
+> -		    qup17, qup18, qup19, qup_l4, qup_l5, qup_l6, rgmii,
+> -		    sdc4, sd_write, sec_mi2s, spkr_i2s, sp_cmu, ter_mi2s,
+> -		    tgu_ch0, tgu_ch1, tgu_ch2, tgu_ch3, tsense_pwm1,
+> -		    tsense_pwm2, tsif1, tsif2, uim1, uim2, uim_batt,
+> -		    usb2phy_ac, usb_phy, vfr_1, vsense_trigger, wlan1_adc0,
+> -		    wlan1_adc1, wlan2_adc0, wlan2_adc1, wmss_reset
+> -
+> -- bias-disable:
+> -	Usage: optional
+> -	Value type: <none>
+> -	Definition: The specified pins should be configued as no pull.
+> -
+> -- bias-pull-down:
+> -	Usage: optional
+> -	Value type: <none>
+> -	Definition: The specified pins should be configued as pull down.
+> -
+> -- bias-pull-up:
+> -	Usage: optional
+> -	Value type: <none>
+> -	Definition: The specified pins should be configued as pull up.
+> -
+> -- output-high:
+> -	Usage: optional
+> -	Value type: <none>
+> -	Definition: The specified pins are configured in output mode, driven
+> -		    high.
+> -		    Not valid for sdc pins.
+> -
+> -- output-low:
+> -	Usage: optional
+> -	Value type: <none>
+> -	Definition: The specified pins are configured in output mode, driven
+> -		    low.
+> -		    Not valid for sdc pins.
+> -
+> -- drive-strength:
+> -	Usage: optional
+> -	Value type: <u32>
+> -	Definition: Selects the drive strength for the specified pins, in mA.
+> -		    Valid values are: 2, 4, 6, 8, 10, 12, 14 and 16
+> -
+> -Example:
+> -
+> -	tlmm: pinctrl@3000000 {
+> -		compatible = "qcom,sm8150-pinctrl";
+> -		reg = <0x03100000 0x300000>,
+> -		      <0x03500000 0x300000>,
+> -		      <0x03900000 0x300000>,
+> -		      <0x03D00000 0x300000>;
+> -		reg-names = "west", "east", "north", "south";
+> -		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -		gpio-ranges = <&tlmm 0 0 175>;
+> -		gpio-reserved-ranges = <0 4>, <126 4>;
+> -		interrupt-controller;
+> -		#interrupt-cells = <2>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..41066d88dc57
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8150-pinctrl.yaml
+> @@ -0,0 +1,178 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm8150-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SM8150 TLMM pin controller
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +description:
+> +  Top Level Mode Multiplexer pin controller in Qualcomm SM8150 SoC.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm8150-pinctrl
+> +
+> +  reg:
+> +    maxItems: 4
+> +
+> +  reg-names:
+> +    items:
+> +      - const: west
+> +      - const: east
+> +      - const: north
+> +      - const: south
+> +
+> +  interrupts: true
+> +  interrupt-controller: true
+> +  "#interrupt-cells": true
+> +  gpio-controller: true
+> +  "#gpio-cells": true
+> +  gpio-ranges: true
+> +  wakeup-parent: true
+> +
+> +  gpio-reserved-ranges:
+> +    minItems: 1
+> +    maxItems: 88
+> +
+> +  gpio-line-names:
+> +    maxItems: 175
+> +
+> +patternProperties:
+> +  "-state$":
+> +    oneOf:
+> +      - $ref: "#/$defs/qcom-sm8150-tlmm-state"
+> +      - patternProperties:
+> +          "-pins$":
+> +            $ref: "#/$defs/qcom-sm8150-tlmm-state"
+> +        additionalProperties: false
+> +
+> +$defs:
+> +  qcom-sm8150-tlmm-state:
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-6][0-9]|17[0-4])$"
+> +            - enum: [ sdc2_clk, sdc2_cmd, sdc2_data, ufs_reset ]
+> +        minItems: 1
+> +        maxItems: 36
+> +
+> +      function:
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins.
+> +
+> +        enum: [ adsp_ext, agera_pll, aoss_cti, ddr_pxi2, atest_char,
+> +                atest_char0, atest_char1, atest_char2, atest_char3, audio_ref,
+> +                atest_usb1, atest_usb2, atest_usb10, atest_usb11, atest_usb12,
+> +                atest_usb13, atest_usb20, atest_usb21, atest_usb22, atest_usb2,
+> +                atest_usb23, btfm_slimbus, cam_mclk, cci_async, cci_i2c,
+> +                cci_timer0, cci_timer1, cci_timer2, cci_timer3, cci_timer4,
+> +                cri_trng, cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0,
+> +                ddr_pxi1, ddr_pxi3, edp_hot, edp_lcd, emac_phy, emac_pps,
+> +                gcc_gp1, gcc_gp2, gcc_gp3, gpio, hs1_mi2s, hs2_mi2s, hs3_mi2s,
+> +                jitter_bist, lpass_slimbus, mdp_vsync, mdp_vsync0, mdp_vsync1,
+> +                mdp_vsync2, mdp_vsync3, mss_lte, m_voc, nav_pps, pa_indicator,
+> +                pci_e0, phase_flag, pll_bypassnl, pll_bist, pci_e1, pll_reset,
+> +                pri_mi2s, pri_mi2s_ws, prng_rosc, qdss, qdss_cti,
+> +                qlink_request, qlink_enable, qspi0, qspi1, qspi2, qspi3,
+> +                qspi_clk, qspi_cs, qua_mi2s, qup0, qup1, qup2, qup3, qup4,
+> +                qup5, qup6, qup7, qup8, qup9, qup10, qup11, qup12, qup13,
+> +                qup14, qup15, qup16, qup17, qup18, qup19, qup_l4, qup_l5,
+> +                qup_l6, rgmii, sdc4, sd_write, sec_mi2s, spkr_i2s, sp_cmu,
+> +                ter_mi2s, tgu_ch0, tgu_ch1, tgu_ch2, tgu_ch3, tsense_pwm1,
+> +                tsense_pwm2, tsif1, tsif2, uim1, uim2, uim_batt, usb2phy_ac,
+> +                usb_phy, vfr_1, vsense_trigger, wlan1_adc0, wlan1_adc1,
+> +                wlan2_adc0, wlan2_adc1, wmss_reset ]
+> +
+> +      drive-strength:
+> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> +        default: 2
+> +        description:
+> +          Selects the drive strength for the specified pins, in mA.
+> +
+> +      bias-pull-down: true
+> +      bias-pull-up: true
+> +      bias-disable: true
+> +      input-enable: true
+> +      output-high: true
+> +      output-low: true
+> +
+> +    required:
+> +      - pins
+> +
+> +    additionalProperties: false
+> +
+> +allOf:
+> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    tlmm: pinctrl@3100000 {
+> +        compatible = "qcom,sm8150-pinctrl";
+> +        reg = <0x03100000 0x300000>,
+> +              <0x03500000 0x300000>,
+> +              <0x03900000 0x300000>,
+> +              <0x03d00000 0x300000>;
+> +        reg-names = "west", "east", "north", "south";
+> +        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> +        gpio-ranges = <&tlmm 0 0 176>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        interrupt-controller;
+> +        #interrupt-cells = <2>;
+> +        wakeup-parent = <&pdc>;
+> +
+> +        qup-spi0-default-state {
+> +            pins = "gpio0", "gpio1", "gpio2", "gpio3";
+> +            function = "qup0";
+> +            drive-strength = <6>;
+> +            bias-disable;
+> +        };
+> +
+> +        pcie1-default-state {
+> +            perst-pins {
+> +                pins = "gpio102";
+> +                function = "gpio";
+> +                drive-strength = <2>;
+> +                bias-pull-down;
+> +            };
+> +
+> +            clkreq-pins {
+> +                pins = "gpio103";
+> +                function = "pci_e1";
+> +                drive-strength = <2>;
+> +                bias-pull-up;
+> +            };
+> +
+> +            wake-pins {
+> +                pins = "gpio104";
+> +                function = "gpio";
+> +                drive-strength = <2>;
+> +                bias-pull-up;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.34.1
+> 
