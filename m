@@ -2,207 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 966AF5F78B0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 15:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6425F5F78B5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 15:14:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229776AbiJGNMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 09:12:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54178 "EHLO
+        id S229591AbiJGNOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 09:14:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbiJGNMV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 09:12:21 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D307CBFEF
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 06:12:20 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id bv10so3682214wrb.4
-        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 06:12:20 -0700 (PDT)
+        with ESMTP id S229821AbiJGNOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 09:14:51 -0400
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 230B515725;
+        Fri,  7 Oct 2022 06:14:49 -0700 (PDT)
+Received: by mail-qv1-xf2b.google.com with SMTP id mx8so3031231qvb.8;
+        Fri, 07 Oct 2022 06:14:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EEm6FlglyEw+PwAhNins+2eN0cPVDwBCRDy1asUjVfU=;
-        b=xR12Li+sKJSlhiVzwLCB8DvnQ+p2w8iJxeUFMPrBZDR4W6HAssKW+3rJILNuCYFYB3
-         yq7Suqiza6CzZnqe0wK2H5eDDsAZ1ENfDEUSSxGzytLMzr/P4Weh7m7dYaWGzh0waJlu
-         TNYhmjZpGRXF5M7J5vv0s0+ThjrzqC+tPkKnLvcly9+qWUlPxlQ9Rvx2i1dcOHEdkN+B
-         5+Vknlk501oFxtRlhZQMKq48ZVc3ii5iMYHVOhkfQbxj7qKpw5K8NgKNuc+nQCbzdCAs
-         pz0jWdUKNQF4nQC8tIqA7yEaxmlpDk5e4Le/0EnZe2nCxj5BloUORfR9U/a1RxTukO8o
-         DuwA==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=AzbAsuzX0C6YbjqXLy++AIOWnufxc1YAQDpDKuGwvH0=;
+        b=QmnEpMRK65VegZLV3ihViFzn4hnbLxPFE7Z+19fXajLm4FMxfl1/JRRCCOROSTM48e
+         69136BXMrGC3n8wxaC+loAUB6rL5H6SDKRzVcdB8Z2NFSCeqBbGICUna4pmR8Dm0qVNG
+         yOej4vBYrhQPVGRccu0VyXgCmnzveFFCASAcUrtrn4Rone75P4eKKbf/maeWJHls7fF3
+         arWnVCPnmxpT0kOCi+Mi9qx6pv0xE14vExdlZCfmHGMqA8+lYiJjJZV5qm403pLaeWP6
+         89xacW4ILpctcIuDse8CUw9sBPfATKiq48xUwI0qlNICXB9aJXkqIgLdJOMO9Wnj7sjA
+         KeOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EEm6FlglyEw+PwAhNins+2eN0cPVDwBCRDy1asUjVfU=;
-        b=1fumyzGqPWRHK1M93zq1iNDxF0gLHVmhvrauKVmJmAKcfdIqtY/iu4ILiPBaTkKVTq
-         iV5d4egXqwh90sSZ+aZC9jr2Fqs+Z9Y4q1MZWPUElPEkrRk2mZEqiu+xB0ttxxeTdD5L
-         VVXCB4BTKUaVJCSzVQfsUy3I7Nwks/yF/nTmOVtpQy8qLb3qIF9Mis6piGRRB3UHIgR6
-         xqfGjvplaz6z8aZ9dCpSH9O7e0HiXzcBiTKfR5aJEiwl1Osl2PQ7/uzYGvdI+TjOqDJ9
-         yBlYtJTGbPQSKqoFvvsWAUi4KNIVDhtKrao8XPfx/mJrI/lWON75GdPJEaXMWZKCt+p6
-         r/AA==
-X-Gm-Message-State: ACrzQf3GlrhEFDvZbWUdfI7RcYi9q2FhQqn60be6qHfUO1Qt0qzQRYzs
-        YdIVL7YKf+vYIJPSBWveVwgkbKutNCpu+A==
-X-Google-Smtp-Source: AMsMyM7W0EbkAOpuDIHa4+M4/2LeLrhQH+7E1eHg5/mm75fElKp5+byX0U7C7TLMLGxykVKKodLQSQ==
-X-Received: by 2002:adf:a3da:0:b0:22c:d73b:38a5 with SMTP id m26-20020adfa3da000000b0022cd73b38a5mr3086755wrb.541.1665148339078;
-        Fri, 07 Oct 2022 06:12:19 -0700 (PDT)
-Received: from localhost ([2a01:cb19:85e6:1900:5f1e:d910:dd1e:5b09])
-        by smtp.gmail.com with ESMTPSA id o11-20020a05600c510b00b003a5c244fc13sm8080918wms.2.2022.10.07.06.12.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Oct 2022 06:12:18 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Jeff LaBundy <jeff@labundy.com>, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        jeff@labundy.com
-Subject: Re: [PATCH v2 3/7] Input: iqs7222 - report malformed properties
-In-Reply-To: <YyP8GaYqdwVUNzPe@nixie71>
-References: <YyP7l/ts6SFI9iM2@nixie71> <YyP8GaYqdwVUNzPe@nixie71>
-Date:   Fri, 07 Oct 2022 15:12:17 +0200
-Message-ID: <87o7un7p72.fsf@mkorpershoek-xps-13-9370.home>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AzbAsuzX0C6YbjqXLy++AIOWnufxc1YAQDpDKuGwvH0=;
+        b=WxRhCTuEOC21t1naWfBOaBZ72US2dh8WdPw7XjSPLX9I1Px0hgT6fn0qQHhhFb2NF5
+         WvXxVscGNEtNC4qPNdKF+Q58NV/Zkb1E0bMndztsQ16gEbSJ9T6KbLmZ8mfSPHjXdl9W
+         Tsq6a1yCTSj5NXZOMibSUCalyzatLuerUEp7QFQhiSTJx9QS5r7M9dp/znb+kobzCZIc
+         uBI0qeKgL/O8xojoXFz5WAsqBYsCTRB6mBte6GrXMTIQtc+9REbpkhv6MlRNd6G951GE
+         rG+R+g5XGbn0bPBhwIUUhLC1Me1nkBvmlDjj/WUiRJwv2d+scxdb97pgolukBW6VSHtg
+         CNOw==
+X-Gm-Message-State: ACrzQf2qg2cB5dy2UZl6RXprDGwXpL0Ih6NqdVdo0WkgAy0UXR4hA+jf
+        MAFmWmvuDa+xP6OJfO8IB0ag481kbXQ+ZPeetok=
+X-Google-Smtp-Source: AMsMyM5FnnPkT2Qie1lciKjHd7i0Qx9Zg1w71RR9bBTG8Xn1gboFF82194uF6xaubjxsBzT8OQxvNRnwXuEvMh2Y8UU=
+X-Received: by 2002:a05:6214:300c:b0:4b3:cefd:fae0 with SMTP id
+ ke12-20020a056214300c00b004b3cefdfae0mr685570qvb.48.1665148488225; Fri, 07
+ Oct 2022 06:14:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20220917081339.3354075-1-jjhiblot@traphandler.com>
+ <20220917081339.3354075-5-jjhiblot@traphandler.com> <CAHp75VeAnJQt7kS8UE+OKcqnScYnmHnVvL+QNW6jR=yF0=oMAA@mail.gmail.com>
+ <6d3d2dfd-4d44-c91a-2145-bae624926259@traphandler.com> <CAHp75VePiAs_qz2fxAheoGbq4wk39x5uoVUKZdbN254RDevgsQ@mail.gmail.com>
+ <60fcb1ba-f5d4-deaf-d251-7d8c127c353b@traphandler.com>
+In-Reply-To: <60fcb1ba-f5d4-deaf-d251-7d8c127c353b@traphandler.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 7 Oct 2022 16:14:12 +0300
+Message-ID: <CAHp75Vdg3JTvvzTZv3=wDsczBhtBc0u8_6x53q2Gq4W9jEsR0g@mail.gmail.com>
+Subject: Re: [RESEND PATCH v3 4/4] leds: Add a multicolor LED driver to group
+ monochromatic LEDs
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     pavel@ucw.cz, robh+dt@kernel.org,
+        sven.schwermer@disruptive-technologies.com,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sha@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 15, 2022 at 23:31, Jeff LaBundy <jeff@labundy.com> wrote:
+On Fri, Oct 7, 2022 at 3:03 PM Jean-Jacques Hiblot
+<jjhiblot@traphandler.com> wrote:
+> On 07/10/2022 10:53, Andy Shevchenko wrote:
+> > On Fri, Oct 7, 2022 at 9:34 AM Jean-Jacques Hiblot
+> > <jjhiblot@traphandler.com> wrote:
+> >> On 17/09/2022 10:37, Andy Shevchenko wrote:
+> >>> On Sat, Sep 17, 2022 at 11:14 AM Jean-Jacques Hiblot
+> >>> <jjhiblot@traphandler.com> wrote:
 
-> Nonzero return values of several calls to fwnode_property_read_u32()
-> are silently ignored, leaving no way to know the properties were not
-> applied in the event of an error.
+...
+
+> >>>> +               led_cdev = devm_of_led_get(dev, count);
+> >>> Why _of_ variant? Please, make this OF independent since it's
+> >>> pretending to cover not only OF-based systems.
+> >> This is not OF independent. It could be, but that will wait until
+> >> someone needs it. I don't know much about ACPI and have no hardware to
+> >> test it on.
+> >>
+> >> I'll add the missing  dependency on OF in the Kconfig.
+> > No, please consider getting rid of OF-centric API usage.
 >
-> Solve this problem by evaluating fwnode_property_read_u32()'s return
-> value, and reporting an error for any nonzero return value not equal
-> to -EINVAL which indicates the property was absent altogether.
->
-> Fixes: e505edaedcb9 ("Input: add support for Azoteq IQS7222A/B/C")
-> Signed-off-by: Jeff LaBundy <jeff@labundy.com>
-> ---
-> Changes in v2:
->  - Used -EINVAL returned by fwnode_property_read_u32() to indicate an absent
->    optional property as opposed to calling fwnode_property_present()
->  - Updated commit message
->
->  drivers/input/misc/iqs7222.c | 43 +++++++++++++++++++++++++++++-------
->  1 file changed, 35 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/input/misc/iqs7222.c b/drivers/input/misc/iqs7222.c
-> index d39b3fdfb849..36c3b24e99a3 100644
-> --- a/drivers/input/misc/iqs7222.c
-> +++ b/drivers/input/misc/iqs7222.c
-> @@ -1820,8 +1820,9 @@ static int iqs7222_parse_chan(struct iqs7222_private *iqs7222,
->  		chan_setup[0] |= IQS7222_CHAN_SETUP_0_REF_MODE_FOLLOW;
->  		chan_setup[4] = val * 42 + 1048;
->  
-> -		if (!fwnode_property_read_u32(chan_node, "azoteq,ref-weight",
-> -					      &val)) {
-> +		error = fwnode_property_read_u32(chan_node, "azoteq,ref-weight",
-> +						 &val);
-> +		if (!error) {
->  			if (val > U16_MAX) {
->  				dev_err(&client->dev,
->  					"Invalid %s reference weight: %u\n",
-> @@ -1830,6 +1831,11 @@ static int iqs7222_parse_chan(struct iqs7222_private *iqs7222,
->  			}
->  
->  			chan_setup[5] = val;
-> +		} else if (error != -EINVAL) {
-> +			dev_err(&client->dev,
-> +				"Failed to read %s reference weight: %d\n",
-> +				fwnode_get_name(chan_node), error);
-> +			return error;
->  		}
->  
->  		/*
-> @@ -1902,9 +1908,10 @@ static int iqs7222_parse_chan(struct iqs7222_private *iqs7222,
->  		if (!event_node)
->  			continue;
->  
-> -		if (!fwnode_property_read_u32(event_node,
-> -					      "azoteq,timeout-press-ms",
-> -					      &val)) {
-> +		error = fwnode_property_read_u32(event_node,
-> +						 "azoteq,timeout-press-ms",
-> +						 &val);
-> +		if (!error) {
->  			/*
->  			 * The IQS7222B employs a global pair of press timeout
->  			 * registers as opposed to channel-specific registers.
-> @@ -1924,6 +1931,11 @@ static int iqs7222_parse_chan(struct iqs7222_private *iqs7222,
->  
->  			*setup &= ~(U8_MAX << i * 8);
->  			*setup |= (val / 500 << i * 8);
-> +		} else if (error != -EINVAL) {
-> +			dev_err(&client->dev,
-> +				"Failed to read %s press timeout: %d\n",
-> +				fwnode_get_name(event_node), error);
+> The trouble is that the OF-agnostic API for leds doesn't exist yet and I
+> don't really want to add it without any way to test it.
 
-Shouldn't we call fwnode_handle_put(event_node); here?
-It's what we do in the error path just above (line 2029)
+Yeah, that might be a problem due to unestablished descriptions
+outside DT. Anyway, it seems harmless to call that function when there
+is no OF dependency. In such cases it will fail with a deferred probe.
 
-With that added, feel free to include:
-
-Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-
-> +			return error;
->  		}
->  
->  		error = iqs7222_parse_event(iqs7222, event_node, chan_index,
-> @@ -2028,7 +2040,8 @@ static int iqs7222_parse_sldr(struct iqs7222_private *iqs7222,
->  	if (fwnode_property_present(sldr_node, "azoteq,use-prox"))
->  		sldr_setup[4 + reg_offset] -= 2;
->  
-> -	if (!fwnode_property_read_u32(sldr_node, "azoteq,slider-size", &val)) {
-> +	error = fwnode_property_read_u32(sldr_node, "azoteq,slider-size", &val);
-> +	if (!error) {
->  		if (!val || val > dev_desc->sldr_res) {
->  			dev_err(&client->dev, "Invalid %s size: %u\n",
->  				fwnode_get_name(sldr_node), val);
-> @@ -2042,9 +2055,14 @@ static int iqs7222_parse_sldr(struct iqs7222_private *iqs7222,
->  			sldr_setup[2] |= (val / 16 <<
->  					  IQS7222_SLDR_SETUP_2_RES_SHIFT);
->  		}
-> +	} else if (error != -EINVAL) {
-> +		dev_err(&client->dev, "Failed to read %s size: %d\n",
-> +			fwnode_get_name(sldr_node), error);
-> +		return error;
->  	}
->  
-> -	if (!fwnode_property_read_u32(sldr_node, "azoteq,top-speed", &val)) {
-> +	error = fwnode_property_read_u32(sldr_node, "azoteq,top-speed", &val);
-> +	if (!error) {
->  		if (val > (reg_offset ? U16_MAX : U8_MAX * 4)) {
->  			dev_err(&client->dev, "Invalid %s top speed: %u\n",
->  				fwnode_get_name(sldr_node), val);
-> @@ -2057,9 +2075,14 @@ static int iqs7222_parse_sldr(struct iqs7222_private *iqs7222,
->  			sldr_setup[2] &= ~IQS7222_SLDR_SETUP_2_TOP_SPEED_MASK;
->  			sldr_setup[2] |= (val / 4);
->  		}
-> +	} else if (error != -EINVAL) {
-> +		dev_err(&client->dev, "Failed to read %s top speed: %d\n",
-> +			fwnode_get_name(sldr_node), error);
-> +		return error;
->  	}
->  
-> -	if (!fwnode_property_read_u32(sldr_node, "linux,axis", &val)) {
-> +	error = fwnode_property_read_u32(sldr_node, "linux,axis", &val);
-> +	if (!error) {
->  		u16 sldr_max = sldr_setup[3] - 1;
->  
->  		if (!reg_offset) {
-> @@ -2073,6 +2096,10 @@ static int iqs7222_parse_sldr(struct iqs7222_private *iqs7222,
->  
->  		input_set_abs_params(iqs7222->keypad, val, 0, sldr_max, 0, 0);
->  		iqs7222->sl_axis[sldr_index] = val;
-> +	} else if (error != -EINVAL) {
-> +		dev_err(&client->dev, "Failed to read %s axis: %d\n",
-> +			fwnode_get_name(sldr_node), error);
-> +		return error;
->  	}
->  
->  	if (dev_desc->wheel_enable) {
-> -- 
-> 2.34.1
+-- 
+With Best Regards,
+Andy Shevchenko
