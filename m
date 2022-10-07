@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67BE15F74A7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 09:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4747A5F74C5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 09:40:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229854AbiJGHZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 03:25:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57456 "EHLO
+        id S229618AbiJGHkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 03:40:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229772AbiJGHZK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 03:25:10 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A4073A156
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 00:25:08 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id f37so6037886lfv.8
-        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 00:25:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=z6pbeOdotLRHHyLhHXUxZEFAlmYdp5RIPKSKkUaT36I=;
-        b=kWfYkegF/+NHSvikV88fmsB5HHGNrSmdsbvrlTz+ZjHyvsTnFHTHErFlERfNG4k+mX
-         iXEV5AmyM6hlAKwP9J62BWOrqMCDJ11vqIWOx3qBQJ73nvuy4/4nGEwbFjtg99qZLFUD
-         5YxJFG8AGtHAiOr2F+fh1i6CKLV81PHMY0PDq1nrfeRxWm9+ySayR865kxIjGHDoWkMg
-         YeOBn0+1m2t1a56kyIq7EMWZYkrf7Vixenscdlz9WOaXSwQQMq0utTS0VOEDKTHtdhl2
-         yzqG2R74Nq3zEQZqLpKKVRCN1Wb0oZ4yEDgQGJDuD36I9woMxY1p+/LJNE72rey95LPe
-         GtyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=z6pbeOdotLRHHyLhHXUxZEFAlmYdp5RIPKSKkUaT36I=;
-        b=wwmqrwvn5PZNCHAbWhU+zTm2YmxOqc9BdIag7+G90k+0PRENaQumYio+r3wxqBRCFq
-         bfFsw5uGmcwJy/QEGC3QmohoCsnnhSb5561Twjed9snm30W2PnPdIdMoovlu+gs2V0TR
-         XZ26iovxPrIukMd5YjZ8zL9et35BNfFmRJhEbFuVq7kz7AtXVTFB40loEfIpWG+eNCcu
-         FeKdWibsORYOfmRRgeKeSlQgg+3VAbTS5b9m6FOU9IkCDnIrbv/NgBTx6VABVeRJl9wb
-         Lyt1Ac/11GWfNltfEeUeyXEDE/bY4VRYW2iYwMVrYYBuFzUw8t6UayWpFe2X5mU4r5cM
-         dxMw==
-X-Gm-Message-State: ACrzQf3/Swq3FxLqx7NbbnRtNvpwUf16CsnWtmbpPMo9GItd/9cM/Vn9
-        AOu0c0/zVF+vbSRtHy66CDRjEA==
-X-Google-Smtp-Source: AMsMyM7SxRlA7vcJhHDTJ/TZj8w8L3BIV84OHGGZg8Q4LrVBRLncdVeqKKKFwQSWXpyYZn2PkGvmkw==
-X-Received: by 2002:ac2:4e03:0:b0:485:74c4:97ce with SMTP id e3-20020ac24e03000000b0048574c497cemr1273773lfr.13.1665127507027;
-        Fri, 07 Oct 2022 00:25:07 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id g6-20020a056512118600b00492dadd8143sm182607lfr.168.2022.10.07.00.25.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Oct 2022 00:25:06 -0700 (PDT)
-Message-ID: <e9fe9674-8b33-dd6f-2db4-1ea4ed8d17af@linaro.org>
-Date:   Fri, 7 Oct 2022 09:25:05 +0200
+        with ESMTP id S229611AbiJGHkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 03:40:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 188253FA16;
+        Fri,  7 Oct 2022 00:40:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A079461C0A;
+        Fri,  7 Oct 2022 07:40:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BCCEC433D6;
+        Fri,  7 Oct 2022 07:40:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1665128411;
+        bh=GKlx4XpC4V4eNmFalCE62eQxE/iy5Kh4EpFqqS1kpA4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GZ9K3KULO5a/jrGADpCK92s3OF1ZGtLpoouHlBzykdZSDl0a2f+PvoVCMOjyp6M1m
+         gRhvzgyze5T4gAMbmuIN2Rbf55/EcfXwHIOLLEBo7YdDr2wCeDU692KjAriyVZTObK
+         bg1lFSw6AE8+Y1jZPiql6aBLW7DexwIQyoABzIrc=
+Date:   Fri, 7 Oct 2022 09:40:52 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 14/14] tty: gunyah: Add tty console driver for RM
+ Console Services
+Message-ID: <Yz/YBDqqwBUlswgX@kroah.com>
+References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
+ <20220928195633.2348848-15-quic_eberman@quicinc.com>
+ <YzbePxTF8hRbWNRU@kroah.com>
+ <14d0ff9f-60f3-71cc-ea42-ceee389298ac@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH 5/8] dt-bindings: watchdog: mediatek: Convert mtk-wdt to
- json-schema
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com
-Cc:     angelogioacchino.delregno@collabora.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20221006120715.24815-1-allen-kh.cheng@mediatek.com>
- <20221006120715.24815-6-allen-kh.cheng@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221006120715.24815-6-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <14d0ff9f-60f3-71cc-ea42-ceee389298ac@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,36 +73,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/10/2022 14:07, Allen-KH Cheng wrote:
+On Thu, Oct 06, 2022 at 10:59:51PM -0700, Elliot Berman wrote:
+> > > + */
+> > > +#define RSC_MGR_TTY_ADAPTERS		16
+> > 
+> > We can have dynamic tty devices, so I don't understand this comment.
+> > What really is the problem here?
+> > 
+> 
+> Yes, I see the confusion. Dynamic device addition of tty devices is
+> supported. As I understand, you need to know the maximum number of lines
+> that could be added, and that is limitation I was referring to.
 
-Thank you for your patch. There is something to discuss/improve.
+What do you mean by "lines"?  That's not a tty kernel term.
 
+> Is this comment better?
+> 
+> The Linux TTY code requires us to know ahead of time how many lines we
+> might need. Each line here corresponds to a VM. 16 seems like a
+> reasonable number of lines for systems that are running Gunyah and using
+> the provided console interface.
 
-> +  - Matthias Brugger <matthias.bgg@gmail.com>
-> +
-> +description:
-> +  The watchdog supports a pre-timeout interrupt that fires
-> +  timeout-sec/2 before the expiry.
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
+Again, line?  Do you mean port?
 
-This is just one enum in "items", so no need for the "items".
+> > > +	cons_data->tty_driver->driver_name = "gh";
 
-> +              - mediatek,mt2712-wdt
-> +              - mediatek,mt6589-wdt
-> +              - mediatek,mt7986-wdt
-> +              - mediatek,mt8183-wdt
-> +              - mediatek,mt8186-wdt
-> +              - mediatek,mt8192-wdt
-> +              - mediatek,mt8195-wdt
+KBUILD_MODNAME?
 
-Best regards,
-Krzysztof
+> > > +	cons_data->tty_driver->name = "ttyGH";
+> > 
+> > Where did you pick this name from?
+> > 
+> > Where is it documented?
+> > 
+> 
+> "GH" is the shorthand we've been using for "Gunyah". I didn't find
+> documentation for dynamically assigned char devices, but if it exists, I can
+> add entry for ttyGH.
 
+Why use a new name at all?  Why not stick with the existing tty names
+and device numbers?
+
+thanks,
+
+greg k-h
