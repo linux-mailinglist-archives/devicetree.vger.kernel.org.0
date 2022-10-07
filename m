@@ -2,115 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC51A5F77F4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 14:30:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E00E25F77FC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 14:34:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbiJGMa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 08:30:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37588 "EHLO
+        id S229489AbiJGMeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 08:34:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbiJGMaz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 08:30:55 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C76DC06BE
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 05:30:54 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id f9so5509734ljk.12
-        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 05:30:54 -0700 (PDT)
+        with ESMTP id S229491AbiJGMeC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 08:34:02 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F097CAD98A
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 05:34:00 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id q17so5516369lji.11
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 05:34:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sl0pmb3uiIXfqxJIrjyGTopaOTOA1QmL6GGeThbq/gk=;
-        b=VreGiA1OECe4NiF0/XwhBtbi4eB9KZ+9NV6+f9Y8RfxwX8ca1jR97+cSqkuMYPqqgj
-         yUCU3r9ibdxxQhDMirdHIlYloVqOygrknPwP9qYYeRJtN56J1U0HoR4yFEc2Ryr5wL86
-         qmxLbiUXDmter6bhvWAytZijz1IJKvlJbclPVMa2ktQEhLMHTLewkyazDwq20AnXCk7M
-         CcznWHFZpNAM4vT+Q0f0IeEebevPTi6lSXS5qFgo1A9K1Ux/pQPLtCeGqpSVeLozRir1
-         wo69SiapPq+LsG3UszabHAfE9Jp5pbiQ/iRRLgzBH/jYfBCxOt2pSLUeTtDiEWhu9aWj
-         EPSA==
+        bh=HkOmdE+hZtMPQTiOZSsH7S2sa0ul444Iw/UaaGdANrc=;
+        b=Or4uUZRyPfCNpCFenKV5qDSe38AGCsQ6lJR9TV5pLr5DipWB4odgPWTxVYtWPh+Pvc
+         b8cYFZ51OqBPRkJwzGQpnnPJ+ZHjKWqZC9bRhXAiC36DcKHc1ujJtjuxKfJD+INGx/yi
+         peye1G5IiXFREiiVd76wvOh6VwtZ6BX12QiBGyIDoEgSjXQdDK5WLfv1Psxlv6i9XC2I
+         TGx8ZZjqsBo3C12vxFv6gOFACeZdSgE6o3F2Ni8eqgLbEAh4mkbAhassCuTVHBG0FRQQ
+         /J/qJLBIrNnfid+aSepAO4nfua3ZKwIsb0fo6kZ3B+QvL2Qq9DjL9gemMNjoHj1UrXvz
+         olwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sl0pmb3uiIXfqxJIrjyGTopaOTOA1QmL6GGeThbq/gk=;
-        b=N25JRMJ9hjvihNVKmL1fH6J0EQdlUvsui1/qN+UGkM5O6qw6EYOnR+xtRTejLbx1Nd
-         32s9szmjQwaTwboHbeW3CEl8BTGdKPRP6cEPzPg0YIkJu4JP9vuJd+USD6P5KVh66/I0
-         AqoUgHs7K3t2fhfIXKZf3EtF4+csgZUaAF8IvTNmuJaGTGt8/4ZMbbs6BVBT9EpLnyeF
-         VHrX4fYBjzaBR6gGbqmel/Oy0WbCMPdYUZrJ8QmjyfQIklwOD5Rv9Z5ZBS0m0SyTbnMt
-         +zzXz/93pIaWtLhLpbDlpOaGXh4j4Hg2utqfz7hfpUnJyHZi7WxEZ6KaQT7BtCwHbJjm
-         OdRg==
-X-Gm-Message-State: ACrzQf1io/SY3vXo7oom9DoYx6M7VW1XZxTNklFSW9oIOx1+wwhffoz6
-        4Gxwog0cCDI4eHKBGgz4rAGK1Q==
-X-Google-Smtp-Source: AMsMyM5r2nYzPj6PjLR2AsCaxJAvVIodoql/ZB8ZdFLqj/nH2kD2KVdtp2g2gTuR2TniG3+VD3pEsg==
-X-Received: by 2002:a2e:bd0e:0:b0:261:e718:e902 with SMTP id n14-20020a2ebd0e000000b00261e718e902mr1719392ljq.435.1665145852795;
-        Fri, 07 Oct 2022 05:30:52 -0700 (PDT)
+        bh=HkOmdE+hZtMPQTiOZSsH7S2sa0ul444Iw/UaaGdANrc=;
+        b=o9Vrkx01R1Zf6Ggc4hlDZgOrPf8/aKA+dFng5d1+X2EB0ISioZUfhnN6FRVj4tzQ/E
+         teHbo7Al0hmSlaAbbFuNio4FOvWX7+lUMbQX5tjsbKsLmm13Cn/W7xipieq6hidmNFs9
+         cMoqVoYozNvdT4Vaqrul6eDbfApu1Kf3t//+Pnic3zXkNDvUKV+UpVHw7KZY+k4ueQLm
+         gNbfCwGzzgFuxRu75RXu1tXOP03IE+fuXwL+elhY3kWRzGYY1Uj1SV9wYiN2rw//R3EC
+         EJJ7DXwNgp8u/KC24UDguxuq5F0sLoHZK/P/s+DQzX0HosxnVkp9Lx5/cKiW66dz1Bzh
+         cFHg==
+X-Gm-Message-State: ACrzQf0xFRaVaH0XGCucm6uH3/7dPDIsIV64Iyf80gHWK8P6b+Phw2vI
+        NArz4lEGcEVZGMPCNvGeta8HTg==
+X-Google-Smtp-Source: AMsMyM4QjaDTmAAncZ6sOC0VRZ2SYXni2dM5ZSghqXwDA5ghu3Lt8IqZREKDQSWBQVOuxZrvujU9Ow==
+X-Received: by 2002:a05:651c:4c9:b0:26c:79cd:2819 with SMTP id e9-20020a05651c04c900b0026c79cd2819mr1736770lji.159.1665146039325;
+        Fri, 07 Oct 2022 05:33:59 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u1-20020a056512128100b0049f530939aasm281434lfs.126.2022.10.07.05.30.50
+        by smtp.gmail.com with ESMTPSA id p6-20020a056512328600b004a03d5c2140sm278808lfe.136.2022.10.07.05.33.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Oct 2022 05:30:51 -0700 (PDT)
-Message-ID: <e1e89092-272e-3cca-6459-f129d8c5627c@linaro.org>
-Date:   Fri, 7 Oct 2022 14:30:50 +0200
+        Fri, 07 Oct 2022 05:33:58 -0700 (PDT)
+Message-ID: <80d046b9-ff8c-58dc-d149-e984d509fe5a@linaro.org>
+Date:   Fri, 7 Oct 2022 14:33:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [EXT] Re: [PATCH v5 1/2] dt-bindings: uwb: Device tree
- information for Nxp SR1XX SOCs
+Subject: Re: [PATCH] arm64: tegra: Add Tegra234 SDMMC1 device tree node
 Content-Language: en-US
-To:     Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>,
-        Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-        robh+dt@kernel.org
-Cc:     mb@lightnvm.io, ckeepax@opensource.cirrus.com, arnd@arndb.d,
-        mst@redhat.com, javier@javigon.com, mikelley@microsoft.com,
-        jasowang@redhat.com, sunilmut@microsoft.com,
-        bjorn.andersson@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, ashish.deshpande@nxp.com,
-        rvmanjumce@gmail.com
-References: <20220914142944.576482-1-manjunatha.venkatesh@nxp.com>
- <20220914142944.576482-2-manjunatha.venkatesh@nxp.com>
- <78651e07-6b3e-4243-8e1f-fcd1dfb3ffe1@www.fastmail.com>
- <425858dc-59fe-2311-61ae-3b6dc77a2576@nxp.com>
+To:     Prathamesh Shete <pshete@nvidia.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     smangipudi@nvidia.com, kyarlagadda@nvidia.com, anrao@nvidia.com
+References: <20221007102605.15828-1-pshete@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <425858dc-59fe-2311-61ae-3b6dc77a2576@nxp.com>
+In-Reply-To: <20221007102605.15828-1-pshete@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2022 13:39, Manjunatha Venkatesh wrote:
+On 07/10/2022 12:26, Prathamesh Shete wrote:
+> Add device tree node for Tegra234 SDMMC1 instance.
+> Add and enable SD card instance in device tree.
 > 
-> On 9/14/2022 8:06 PM, Arnd Bergmann wrote:
->> Caution: EXT Email
->>
->> On Wed, Sep 14, 2022, at 4:29 PM, Manjunatha Venkatesh wrote:
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - nxp,sr1xx
->>> +
->> You should not have wildcard names in the compatible string.
->> Make this a specific model number without 'xx', and
->> have the devices list their own name along with the oldest
->> one they are compatible with.
->>
->>       Arnd
-> This driver is common for both sr100 and sr150,so we have used sr1xx
-> naming convention or can we use name with highest version(sr150)?
+> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
+> ---
+>  .../boot/dts/nvidia/tegra234-p3701-0000.dtsi  |  7 +++
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi      | 59 +++++++++++++++++++
+>  2 files changed, 66 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
+> index 9e4d72cfa69f..fe52810e5b9d 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
+> @@ -55,6 +55,13 @@
+>  			};
+>  		};
+>  
+> +		mmc@3400000 {
+> +			status = "okay";
+> +			bus-width = <4>;
+> +			cd-gpios = <&gpio TEGRA234_MAIN_GPIO(G, 7) GPIO_ACTIVE_LOW>;
+> +			disable-wp;
+> +		};
+> +
+>  		mmc@3460000 {
+>  			status = "okay";
+>  			bus-width = <8>;
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+> index 0170bfa8a467..87f6b8be79a5 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+> @@ -7,6 +7,7 @@
+>  #include <dt-bindings/memory/tegra234-mc.h>
+>  #include <dt-bindings/power/tegra234-powergate.h>
+>  #include <dt-bindings/reset/tegra234-reset.h>
+> +#include <dt-bindings/pinctrl/pinctrl-tegra-io-pad.h>
+>  
+>  / {
+>  	compatible = "nvidia,tegra234";
+> @@ -895,6 +896,45 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		mmc@3400000 {
+> +			compatible = "nvidia,tegra194-sdhci", "nvidia,tegra234-sdhci";
+> +			reg = <0x03400000 0x20000>;
+> +			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&bpmp TEGRA234_CLK_SDMMC1>,
+> +				 <&bpmp TEGRA234_CLK_SDMMC_LEGACY_TM>;
+> +			clock-names = "sdhci", "tmclk";
+> +			assigned-clocks = <&bpmp TEGRA234_CLK_SDMMC1>,
+> +					<&bpmp TEGRA234_CLK_PLLC4_MUXED>;
+> +			assigned-clock-parents =
+> +					  <&bpmp TEGRA234_CLK_PLLC4_MUXED>,
+> +					  <&bpmp TEGRA234_CLK_PLLC4_VCO_DIV2>;
+> +			resets = <&bpmp TEGRA234_RESET_SDMMC1>;
+> +			reset-names = "sdhci";
+> +			interconnects = <&mc TEGRA234_MEMORY_CLIENT_SDMMCRA &emc>,
+> +					<&mc TEGRA234_MEMORY_CLIENT_SDMMCWA &emc>;
+> +			interconnect-names = "dma-mem", "write";
+> +			iommus = <&smmu_niso1 TEGRA234_SID_SDMMC1A>;
+> +			pinctrl-names = "sdmmc-3v3", "sdmmc-1v8";
+> +			pinctrl-0 = <&sdmmc1_3v3>;
+> +			pinctrl-1 = <&sdmmc1_1v8>;
+> +			nvidia,pad-autocal-pull-up-offset-3v3-timeout =
+> +								      <0x07>;
+> +			nvidia,pad-autocal-pull-down-offset-3v3-timeout =
+> +									<0x07>;
+> +			nvidia,pad-autocal-pull-up-offset-1v8-timeout = <0x06>;
+> +			nvidia,pad-autocal-pull-down-offset-1v8-timeout =
+> +									<0x07>;
+> +			nvidia,pad-autocal-pull-up-offset-sdr104 = <0x00>;
+> +			nvidia,pad-autocal-pull-down-offset-sdr104 = <0x00>;
+> +			nvidia,default-tap = <14>;
+> +			nvidia,default-trim = <0x8>;
+> +			sd-uhs-sdr25;
+> +			sd-uhs-sdr50;
+> +			sd-uhs-ddr50;
+> +			sd-uhs-sdr104;
+> +			status = "disabled";
+> +		};
+> +
+>  		mmc@3460000 {
+>  			compatible = "nvidia,tegra234-sdhci", "nvidia,tegra186-sdhci";
+>  			reg = <0x03460000 0x20000>;
+> @@ -1541,6 +1581,25 @@
+>  
+>  			#interrupt-cells = <2>;
+>  			interrupt-controller;
+> +			sdmmc1_3v3: sdmmc1-3v3 {
+> +				pins = "sdmmc1-hv";
+> +				power-source = <TEGRA_IO_PAD_VOLTAGE_3V3>;
+> +			};
+> +
+> +			sdmmc1_1v8: sdmmc1-1v8 {
+> +				pins = "sdmmc1-hv";
+> +				power-source = <TEGRA_IO_PAD_VOLTAGE_1V8>;
+> +			};
+> +			sdmmc3_3v3: sdmmc3-3v3 {
+> +				pins = "sdmmc3-hv";
+> +				power-source = <TEGRA_IO_PAD_VOLTAGE_3V3>;
+> +			};
+> +
+> +			sdmmc3_1v8: sdmmc3-1v8 {
+> +				pins = "sdmmc3-hv";
+> +				power-source = <TEGRA_IO_PAD_VOLTAGE_1V8>;
+> +			};
+> +
 
-In general each device needs its compatible, so you would need two of
-them. However if one is compatible with the other, then express it as
-well. IOW, driver binds to one compatible, binding describes both (one
-as fallback). There are many, many of such examples in the kernel.
+Wrong conflict resolution... blank line went into the wrong place.
+
+>  		};
+>  
+>  		aon-fabric@c600000 {
 
 Best regards,
 Krzysztof
