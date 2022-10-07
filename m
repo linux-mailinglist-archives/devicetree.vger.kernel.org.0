@@ -2,646 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF9B95F7D85
-	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 20:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C23755F7D9E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Oct 2022 21:07:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbiJGSr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 14:47:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51404 "EHLO
+        id S229513AbiJGTHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 15:07:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229662AbiJGSrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 14:47:24 -0400
-Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5888B3B970;
-        Fri,  7 Oct 2022 11:47:22 -0700 (PDT)
-Received: by mail-oo1-xc2f.google.com with SMTP id c13-20020a4ac30d000000b0047663e3e16bso4062053ooq.6;
-        Fri, 07 Oct 2022 11:47:22 -0700 (PDT)
+        with ESMTP id S229445AbiJGTHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 15:07:49 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9770DA4B92
+        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 12:07:46 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id o9-20020a17090a0a0900b0020ad4e758b3so5483972pjo.4
+        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 12:07:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xgOXBaNta78tUyehO6c34MzHzaubAX6RdRAoh3EohLo=;
-        b=CNJE21h+y4Hky7WyoNXZRjJxIfwyDi4PaC3NZfH+Z3o1yhU42HYM6I/9IFO+Zr2Z80
-         7tsXTI85R9BHF/HSfNKmeTYUVrtBbn78MOR3o8RlsyExGh07I1SO4zcLXp/GuWycQzIl
-         eg6+crwWv4DuTl7uhbcL5Qg7YabrK/8cN7+sXPv26Zcw/6uRuFPoWzYEqTvFssHYrTKs
-         hhPjUp14DyrWq0Bnfd6g8PD85tplWXxmN7GOnHtW/gfsfzaWe8doaebkUFTDAQG4briB
-         Sju4GiMxOg3AcUvVEFEXTY30xki8LLzhyxmi24Zy8AUiFp8kSJQB39ArjWnRP2hYLPxH
-         AQdg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YWnjKIGsrwm0RR3JbG+t276cYqqvh/NaCnOZ7FG2A1I=;
+        b=G6CT+P//QCJgWPFQygtNauD412X99iyKzIiOPh4a4xMfSXPz4j/TH72YbKtLnuajnX
+         qrc6oHHNgYnezgVpkfckyDZmfaP4BaNZLBhFL6w/WS/Yp9PmEiR6qc/b3T7LaavjVkYb
+         iXAzl6IGg9oRhw5gO2Te6NBEYmHwNx9zfynauAmkWmvYze9o1ML7TpLOV9J9TpBGtTza
+         DtQLeZOLDd2SZlGpjqsldp+p6ciG0MErsmkNniuBzadgLWAPwiGNXBgpbtkfFBcOm3Hv
+         iIB0GcY3bi+PZLdX/51kY3djqj7cCgtMczlHurgmACqYvNlbcYxb6AoJ9XHx0JK6GLww
+         7Q6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xgOXBaNta78tUyehO6c34MzHzaubAX6RdRAoh3EohLo=;
-        b=VVlLUSDAPjA8hbpn91153tDJ27/VZHDEu8tkokAVngGlL9Rm3f+Rfj5kh/Dp0KxXe/
-         Jn9YeGGljVXtALPXB4B78bJPeLmFmvoie4o6wFakK5CUvpXdmqsXmByGxNm/HANFYsyV
-         6UzTC9Vy/d9+0BmI7ioDyBPOT0zY2zP1WIBMuTlDD++fUQeYK6jSMkGCpiHnDYKZVGRw
-         amSGRTUcZ+5464J3GbS4Vun5KhzlGgwFdy6K8JOL99xuQdCnaQxrWdcAUjYgemmcb6bo
-         A2osENaPB0QaQPyQUL1U2aefbtYp+guvcdskdmoKjYMkg8NaBuD/EHt6Fl09eO2KZnkY
-         98eQ==
-X-Gm-Message-State: ACrzQf39oOCxnyCMndQy4CRX4urKWdR8KzhYBv/zQ4L+qQQrXDZQyFR2
-        wPMusbVYtQbZ/yjq5gaoTu2PKCylM+Q=
-X-Google-Smtp-Source: AMsMyM4/iRpwf7Ts4Pdj/nM82joJfWEmZ+bQyHT1nDfYCgIFKRkGQtKpz4HYxc+0Qb0Ozt483MbM9A==
-X-Received: by 2002:a05:6820:54c:b0:476:6897:f249 with SMTP id n12-20020a056820054c00b004766897f249mr2431276ooj.10.1665168440825;
-        Fri, 07 Oct 2022 11:47:20 -0700 (PDT)
-Received: from wintermute.localdomain ([76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id n6-20020a4ad626000000b00425806a20f5sm1267861oon.3.2022.10.07.11.47.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Oct 2022 11:47:20 -0700 (PDT)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     linux-input@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, jeff@labundy.com,
-        neil.armstrong@linaro.org, arnd@arndb.de, robert.jarzmik@free.fr,
-        Jonathan.Cameron@huawei.com, christianshewitt@gmail.com,
-        stano.jakubek@gmail.com, rydberg@bitmath.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        dmitry.torokhov@gmail.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v2 3/3] input/touchscreen: Add Hynitron cstxxx touchscreen
-Date:   Fri,  7 Oct 2022 13:47:10 -0500
-Message-Id: <20221007184710.6395-4-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221007184710.6395-1-macroalpha82@gmail.com>
-References: <20221007184710.6395-1-macroalpha82@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YWnjKIGsrwm0RR3JbG+t276cYqqvh/NaCnOZ7FG2A1I=;
+        b=liBPBtcKmmFs+SCjSDIhpijq3072tPuyLZbOs6ttkhyBEACoBG2UpjE3NXuPp9WGLA
+         Q3N1O740lA2A3uTcKfeTA2klL4SJi7fSFQ9vDTLDj7lSuiF44QJFWpE7NtFqVjDfsCdf
+         y7B3prMaebNifh2h4QIotSoEjs5Nrzihl75tGPmo++IvLdUqsKDLX5ZUD6gW4Np15aPX
+         KDStRG0pAMFfiV9ogvw94NIwSbIcwBIAEo0t5n1Mc4AKoVlkThQ2nUUUHfXX1Hq4s6rp
+         E8FMhobYRzYaI8D8P9wqeHwezBC9WFBxnneNnR3xL7EAfTcbK4Gs1m+JFLpAY+n/hhX4
+         EGig==
+X-Gm-Message-State: ACrzQf2jxn3CXmwDfc4Y2uffGxBCLhxi7TttGFg/+WnedEDaLtPBob8E
+        jGrpbeZR8gK4+kET9SOqTvVndg==
+X-Google-Smtp-Source: AMsMyM59jz9eb+SdIRW/RQyGOxWbS9y8PM7Js9nvN3zLH8KSnkVBJuY9s8HmjEqiuYx0TJq55xLcjw==
+X-Received: by 2002:a17:902:cecf:b0:178:3b53:ebf5 with SMTP id d15-20020a170902cecf00b001783b53ebf5mr6683992plg.122.1665169665984;
+        Fri, 07 Oct 2022 12:07:45 -0700 (PDT)
+Received: from ?IPV6:2601:1c0:4c81:c480:feaa:14ff:fe3a:b225? ([2601:1c0:4c81:c480:feaa:14ff:fe3a:b225])
+        by smtp.gmail.com with ESMTPSA id b13-20020a170902d88d00b00176be23bbb3sm1850229plz.172.2022.10.07.12.07.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Oct 2022 12:07:45 -0700 (PDT)
+Message-ID: <15a9e0bd-bb20-c996-3773-b71bafc0d24b@linaro.org>
+Date:   Fri, 7 Oct 2022 12:07:44 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v4] libfdt: tests: add get_next_tag_invalid_prop_len
+Content-Language: en-US
+To:     David Gibson <david@gibson.dropbear.id.au>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        devicetree-compiler@vger.kernel.org
+References: <20221006223155.3316133-1-tadeusz.struk@linaro.org>
+ <Yz+nDsk1vmn8xzBY@yekko>
+From:   Tadeusz Struk <tadeusz.struk@linaro.org>
+In-Reply-To: <Yz+nDsk1vmn8xzBY@yekko>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On 10/6/22 21:11, David Gibson wrote:
+> On Thu, Oct 06, 2022 at 03:31:55PM -0700, Tadeusz Struk wrote:
+>> Add a new test get_next_tag_invalid_prop_len, which covers
+>> fdt_next_tag(), when it is passed an corrupted blob, with
+>> invalid property len values.
+>>
+>> Signed-off-by: Tadeusz Struk<tadeusz.struk@linaro.org>
+> Sorry, I was hoping I'd be able to apply this variant, but
+> unfortunately I realize I've given you some misleading advice in
+> earlier reviews, so there are still a few nits to squash, details
+> below.  Thanks for your patience.
+> 
+>> ---
+>> v4:
+>>   * I didn't keep track of the changes in the test code,
+>>     but this version should have all the comments addressed.
+>> ---
+>>   tests/.gitignore                      |  1 +
+>>   tests/Makefile.tests                  |  2 +-
+>>   tests/get_next_tag_invalid_prop_len.c | 76 +++++++++++++++++++++++++++
+>>   tests/meson.build                     |  1 +
+>>   tests/run_tests.sh                    |  1 +
+>>   5 files changed, 80 insertions(+), 1 deletion(-)
+>>   create mode 100644 tests/get_next_tag_invalid_prop_len.c
+>>
+>> diff --git a/tests/.gitignore b/tests/.gitignore
+>> index 03bdde2..3376ed9 100644
+>> --- a/tests/.gitignore
+>> +++ b/tests/.gitignore
+>> @@ -74,3 +74,4 @@ tmp.*
+>>   /truncated_memrsv
+>>   /utilfdt_test
+>>   /value-labels
+>> +/get_next_tag_invalid_prop_len
+>> diff --git a/tests/Makefile.tests b/tests/Makefile.tests
+>> index 2d36c5d..2c5b4c9 100644
+>> --- a/tests/Makefile.tests
+>> +++ b/tests/Makefile.tests
+>> @@ -4,7 +4,7 @@ LIB_TESTS_L = get_mem_rsv \
+>>   	get_path supernode_atdepth_offset parent_offset \
+>>   	node_offset_by_prop_value node_offset_by_phandle \
+>>   	node_check_compatible node_offset_by_compatible \
+>> -	get_alias \
+>> +	get_alias get_next_tag_invalid_prop_len \
+>>   	char_literal \
+>>   	sized_cells \
+>>   	notfound \
+>> diff --git a/tests/get_next_tag_invalid_prop_len.c b/tests/get_next_tag_invalid_prop_len.c
+>> new file mode 100644
+>> index 0000000..20c51de
+>> --- /dev/null
+>> +++ b/tests/get_next_tag_invalid_prop_len.c
+>> @@ -0,0 +1,76 @@
+>> +// SPDX-License-Identifier: LGPL-2.1-or-later
+>> +/*
+>> + * libfdt - Flat Device Tree manipulation
+>> + *	Testcase for fdt_next_tag()
+>> + */
+>> +#include <stdlib.h>
+>> +#include <stdio.h>
+>> +#include <string.h>
+>> +#include <stdint.h>
+>> +
+>> +#include <libfdt.h>
+>> +#include "tests.h"
+>> +#include "testdata.h"
+>> +
+>> +#define FDT_SIZE 65536
+>> +#define CHECK_ERR(err) \
+>> +({ if (err) \
+>> +	FAIL("%s: %d: %s", __FILE__, __LINE__, fdt_strerror(err)); \
+>> +})
+>> +
+>> +int main(int argc, char *argv[])
+>> +{
+>> +	struct fdt_property *prp;
+>> +	void *fdt;
+>> +	int nextoff = 0, offset, err;
+>> +	uint32_t tag;
+>> +
+>> +	test_init(argc, argv);
+>> +	fdt = malloc(FDT_SIZE);
+>> +	if (!fdt)
+>> +		FAIL("Can't allocate memory");
+>> +	err = fdt_create(fdt, FDT_SIZE);
+>> +	CHECK_ERR(err);
+>> +	fdt_set_off_dt_strings(fdt, FDT_SIZE);
+> My comment about not needing to create the dummy reservemap entry was
+> misleading, sorry.  I was just referring to the actual dummy entry you
+> created with fdt_add_reservemap_entry.  You should still call
+> fdt_finish_reservemap() so that the blob is in the right state to call
+> fdt_begin_node().  Directly manipulating with fdt_set_off_dt_strings()
+> is unnecesarily fragile since it requires internal knowledge of how
+> the sw functions keep track of the state.
+> 
+>> +	err = fdt_begin_node(fdt, "");
+>> +	CHECK_ERR(err);
+>> +	err = fdt_property_u32(fdt, "prop-int-32", 0x1234);
+>> +	CHECK_ERR(err);
+>> +	err = fdt_property_u32(fdt, "prop2-int-32", 0x4321);
+>> +	CHECK_ERR(err);
+>> +	err = fdt_end_node(fdt);
+>> +	CHECK_ERR(err);
+> One more minor deficiency here I missed earlier.  You're not calling
+> fdt_finish(), so the blob is in sw state.  The read-only libfdt
+> functions are designed to work on sw state trees as well as finished
+> trees, but there are some internal logic differences to handle this.
+> 
+> You're probably mostly concerned with the original fdt_next_tag() bug
+> for finished trees, so it's probably better to call fdt_finish() so
+> that's the case you're testing.  Alternatively, you could test both
+> variants.  Since you're corrupting the tree, you'll need to
+> reconstruct the test blob for each variant.  You could either make a
+> helper function taking a parameter and call it twice, or make the
+> whole test binary take a parameter and invoke it twice from
+> run_tests.sh.
+> 
+>> +	offset = fdt_first_property_offset(fdt, 0);
+>> +	if (offset <= 0)
+>> +		FAIL("FAIL Invalid offset %x, expected value greater than 0\n",
+>> +		     offset);
+>> +
+>> +	/* Normal case */
+>> +	tag = fdt_next_tag(fdt, offset, &nextoff);
+>> +	if (tag != FDT_PROP )
+>> +		FAIL("FAIL Invalid tag %x, expected FDT_PROP\n", tag);
+>> +
+>> +	/* Get a writable ptr to the first property and corrupt the lenght */
+>> +	prp = fdt_get_property_w(fdt, 0, "prop-int-32", NULL);
+>> +	if (!prp)
+>> +		FAIL("Bad property pointer");
+> My comment about using fdt_get_property_w() was also a bit misleading,
+> since I wasn't thinking about the fact that you need both the offset
+> (for fdt_next_tag()) and the direct pointer to the property struct.
+> 
+> This code is relying on the offset from fdt_first_property_offset()
+> and the pointer from fdt_get_property_w() referring to the same
+> location in the blob.  They will be, but it would be better to have
+> that be obvious by construction.
+> 
+> I'd suggest you first get the offset with fdt_first_property_offset(),
+> then compute the prp pointer from that with
+> fdt_get_property_by_offset().  You'll need a cast to remove the const
+> from the latter in order to mangle the tree, of course.  If you wanted
+> to add a new fdt_get_property_by_offset_w() wrapper to do that cast,
+> that would also be fine (if you do, make it a separate patch please).
+> There's no particular rationale to which functions have _w() variants
+> and which don't (so far), I just made the _w() variants when I needed
+> them for other functions internally.
 
-Add support for the Hynitron cst3xx controller found on devices such
-as the Anbernic RG353P and RG353V (the Hynitron CST340). This driver
-was built from sources provided by Hynitron to Anbernic (possibly
-via Rockchip as an intermediary) and marked as GPLv2 in the code.
-This driver was written strictly for the cst3xx series, but in
-most places was left somewhat generic so support could be easily
-added to other devices in the future.
+I have added a new helper and used it to get the pointer at the same
+offset. I also addressed your comments above. New version on its way.
+There will be 2 new patches, first with the helper, and second with
+the updated test (v5), and they supposed to be applied on the v3 1/1
+I sent before. Thanks for your feedback.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- drivers/input/touchscreen/Kconfig           |  12 +
- drivers/input/touchscreen/Makefile          |   1 +
- drivers/input/touchscreen/hynitron_cstxxx.c | 508 ++++++++++++++++++++
- 3 files changed, 521 insertions(+)
- create mode 100644 drivers/input/touchscreen/hynitron_cstxxx.c
-
-diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index 2d70c945b20a..9a9528e59c36 100644
---- a/drivers/input/touchscreen/Kconfig
-+++ b/drivers/input/touchscreen/Kconfig
-@@ -422,6 +422,18 @@ config TOUCHSCREEN_HYCON_HY46XX
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called hycon-hy46xx.
- 
-+config TOUCHSCREEN_HYNITRON_CSTXXX
-+	tristate "Hynitron touchscreen support"
-+	depends on I2C
-+	help
-+	  Say Y here if you have a touchscreen using a Hynitron
-+	  touchscreen controller.
-+
-+	  If unsure, say N.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called hynitron-cstxxx.
-+
- config TOUCHSCREEN_ILI210X
- 	tristate "Ilitek ILI210X based touchscreen"
- 	depends on I2C
-diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index 557f84fd2075..43860ca19b98 100644
---- a/drivers/input/touchscreen/Makefile
-+++ b/drivers/input/touchscreen/Makefile
-@@ -47,6 +47,7 @@ obj-$(CONFIG_TOUCHSCREEN_EXC3000)	+= exc3000.o
- obj-$(CONFIG_TOUCHSCREEN_FUJITSU)	+= fujitsu_ts.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX)	+= goodix_ts.o
- obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
-+obj-$(CONFIG_TOUCHSCREEN_HYNITRON_CSTXXX)	+= hynitron_cstxxx.o
- obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
- obj-$(CONFIG_TOUCHSCREEN_ILITEK)	+= ilitek_ts_i2c.o
- obj-$(CONFIG_TOUCHSCREEN_IMAGIS)	+= imagis.o
-diff --git a/drivers/input/touchscreen/hynitron_cstxxx.c b/drivers/input/touchscreen/hynitron_cstxxx.c
-new file mode 100644
-index 000000000000..39d87b3a225a
---- /dev/null
-+++ b/drivers/input/touchscreen/hynitron_cstxxx.c
-@@ -0,0 +1,508 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ *  Driver for Hynitron cstxxx Touchscreen
-+ *
-+ *  Copyright (c) 2022 Chris Morgan <macromorgan@hotmail.com>
-+ *
-+ *  This code is based on hynitron_core.c authored by Hynitron.
-+ *  Note that no datasheet was available, so much of these registers
-+ *  are undocumented. This is essentially a cleaned-up version of the
-+ *  vendor driver with support removed for hardware I cannot test and
-+ *  device-specific functions replated with generic functions wherever
-+ *  possible.
-+ */
-+
-+#include <asm/unaligned.h>
-+#include <linux/delay.h>
-+#include <linux/gpio.h>
-+#include <linux/i2c.h>
-+#include <linux/input.h>
-+#include <linux/input/mt.h>
-+#include <linux/input/touchscreen.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+
-+/* Per chip data */
-+struct hynitron_ts_chip_data {
-+	unsigned int max_touch_num;
-+	u32 ic_chkcode;
-+	int (*firmware_info)(struct i2c_client *client);
-+	int (*bootloader_enter)(struct i2c_client *client);
-+	int (*init_input)(struct i2c_client *client);
-+	void (*report_touch)(struct i2c_client *client);
-+};
-+
-+/* Data generic to all (supported and non-supported) controllers. */
-+struct hynitron_ts_data {
-+	const struct hynitron_ts_chip_data *pdata;
-+	struct i2c_client *client;
-+	struct input_dev *input_dev;
-+	struct touchscreen_properties prop;
-+	struct gpio_desc *reset_gpio;
-+	struct gpio_desc *irq_gpio;
-+};
-+
-+/*
-+ * Since I have no datasheet, these values are guessed and/or assumed
-+ * based on observation and testing.
-+ */
-+#define CST3XX_FIRMWARE_INFO_START_CMD		0x01d1
-+#define CST3XX_FIRMWARE_INFO_END_CMD		0x09d1
-+#define CST3XX_FIRMWARE_CHK_CODE_REG		0xfcd1
-+#define CST3XX_FIRMWARE_VERSION_REG		0x08d2
-+#define CST3XX_FIRMWARE_VER_INVALID_VAL		0xa5a5a5a5
-+
-+#define CST3XX_BOOTLDR_PROG_CMD			0xaa01a0
-+#define CST3XX_BOOTLDR_PROG_CHK_REG		0x02a0
-+#define CST3XX_BOOTLDR_CHK_VAL			0xac
-+
-+#define CST3XX_TOUCH_DATA_PART_REG		0x00d0
-+#define CST3XX_TOUCH_DATA_FULL_REG		0x07d0
-+#define CST3XX_TOUCH_DATA_CHK_VAL		0xab
-+#define CST3XX_TOUCH_DATA_TOUCH_VAL		0x03
-+#define CST3XX_TOUCH_DATA_STOP_CMD		0xab00d0
-+#define CST3XX_TOUCH_COUNT_MASK			GENMASK(6, 0)
-+
-+
-+/*
-+ * Hard coded reset delay value of 20ms not IC dependent in
-+ * vendor driver.
-+ */
-+void hyn_reset_proc(struct i2c_client *client, int delay)
-+{
-+	struct hynitron_ts_data *ts_data = i2c_get_clientdata(client);
-+
-+	gpiod_set_value_cansleep(ts_data->reset_gpio, 1);
-+	mdelay(20);
-+	gpiod_set_value_cansleep(ts_data->reset_gpio, 0);
-+	if (delay)
-+		mdelay(delay);
-+}
-+
-+static irqreturn_t hyn_interrupt_handler(int irq, void *dev_id)
-+{
-+	struct i2c_client *client = dev_id;
-+	struct hynitron_ts_data *ts_data = i2c_get_clientdata(client);
-+
-+	ts_data->pdata->report_touch(client);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+/*
-+ * The vendor driver would retry twice before failing to read or write
-+ * to the i2c device.
-+ */
-+
-+int cst3xx_i2c_write(struct i2c_client *client,
-+		     unsigned char *buf, int len)
-+{
-+	int ret;
-+	int retries = 0;
-+
-+	while (retries < 2) {
-+		ret = i2c_master_send(client, buf, len);
-+		if (ret == len)
-+			return 0;
-+		if (ret <= 0)
-+			retries++;
-+		else
-+			break;
-+	}
-+
-+	return ret < 0 ? ret : -EIO;
-+}
-+
-+int cst3xx_i2c_read_register(struct i2c_client *client, u16 reg,
-+			     u8 *val, u16 len)
-+{
-+	__le16 buf = cpu_to_le16(reg);
-+	struct i2c_msg msgs[] = {
-+		{
-+			.addr = client->addr,
-+			.flags = 0,
-+			.len = 2,
-+			.buf = (u8 *)&buf,
-+		},
-+		{
-+			.addr = client->addr,
-+			.flags = I2C_M_RD,
-+			.len = len,
-+			.buf = val,
-+		}
-+	};
-+	int ret;
-+
-+	ret = i2c_transfer(client->adapter, msgs, 2);
-+	if (ret >= 0)
-+		ret = (ret == ARRAY_SIZE(msgs) ? 0 : -EIO);
-+
-+	if (ret)
-+		dev_err(&client->dev,
-+			"Error reading %d bytes from 0x%04x: %d\n",
-+			len, reg, ret);
-+
-+	return ret;
-+}
-+
-+int cst3xx_firmware_info(struct i2c_client *client)
-+{
-+	struct hynitron_ts_data *ts_data = i2c_get_clientdata(client);
-+	int ret;
-+	u32 tmp;
-+	unsigned char buf[4];
-+
-+	/*
-+	 * Tests suggest this command needed to read firmware regs.
-+	 */
-+	put_unaligned_le16(CST3XX_FIRMWARE_INFO_START_CMD, buf);
-+	ret = cst3xx_i2c_write(client, buf, 2);
-+	if (ret < 0)
-+		return -EIO;
-+
-+	mdelay(10);
-+
-+	/*
-+	 * Read register for check-code to determine if device detected
-+	 * correctly.
-+	 */
-+	ret = cst3xx_i2c_read_register(client, CST3XX_FIRMWARE_CHK_CODE_REG,
-+				       buf, 4);
-+	if (ret < 0)
-+		return -EIO;
-+
-+	tmp = get_unaligned_le32(buf);
-+	if ((tmp & 0xffff0000) != ts_data->pdata->ic_chkcode) {
-+		dev_err(&client->dev, "%s ic mismatch\n", __func__);
-+		return -ENODEV;
-+	}
-+
-+	mdelay(10);
-+
-+	/* Read firmware version and test if firmware missing. */
-+	ret = cst3xx_i2c_read_register(client, CST3XX_FIRMWARE_VERSION_REG,
-+				       buf, 4);
-+	if (ret < 0)
-+		return -EIO;
-+
-+	tmp = get_unaligned_le32(buf);
-+	if (tmp == CST3XX_FIRMWARE_VER_INVALID_VAL) {
-+		dev_err(&client->dev, "Device firmware missing\n");
-+		return -ENODEV;
-+	}
-+
-+	/*
-+	 * Tests suggest cmd required to exit reading firmware regs.
-+	 */
-+	put_unaligned_le16(CST3XX_FIRMWARE_INFO_END_CMD, buf);
-+	ret = cst3xx_i2c_write(client, buf, 2);
-+	if (ret < 0)
-+		return -EIO;
-+
-+	mdelay(5);
-+
-+	return 0;
-+}
-+
-+int cst3xx_bootloader_enter(struct i2c_client *client)
-+{
-+	int ret;
-+	u8 retry;
-+	u32 tmp;
-+	unsigned char buf[3];
-+
-+	for (retry = 0; retry < 5; retry++) {
-+		hyn_reset_proc(client, (7 + retry));
-+		/* set cmd to enter program mode */
-+		put_unaligned_le24(CST3XX_BOOTLDR_PROG_CMD, buf);
-+		ret = cst3xx_i2c_write(client, buf, 3);
-+		if (ret < 0)
-+			continue;
-+		mdelay(2);
-+
-+		/* check whether in program mode */
-+		ret = cst3xx_i2c_read_register(client,
-+					       CST3XX_BOOTLDR_PROG_CHK_REG,
-+					       buf, 1);
-+		tmp = get_unaligned(buf);
-+
-+		if (ret < 0)
-+			continue;
-+
-+		if (tmp == CST3XX_BOOTLDR_CHK_VAL)
-+			break;
-+	}
-+
-+	if (tmp != CST3XX_BOOTLDR_CHK_VAL) {
-+		dev_err(&client->dev, "%s unable to enter bootloader mode\n",
-+			__func__);
-+		return -ENODEV;
-+	}
-+
-+	hyn_reset_proc(client, 40);
-+
-+	return 0;
-+}
-+
-+static void cst3xx_touch_update(struct hynitron_ts_data *ts_data, s32 id,
-+				s32 x, s32 y, s32 w)
-+{
-+	input_mt_slot(ts_data->input_dev, id);
-+	input_mt_report_slot_state(ts_data->input_dev, MT_TOOL_FINGER, 1);
-+	touchscreen_report_pos(ts_data->input_dev, &ts_data->prop, x, y, true);
-+	input_report_abs(ts_data->input_dev, ABS_MT_TOUCH_MAJOR, w);
-+}
-+
-+int cst3xx_finish_touch_read(struct i2c_client *client)
-+{
-+	unsigned char buf[3];
-+	int err;
-+
-+	put_unaligned_le24(CST3XX_TOUCH_DATA_STOP_CMD, buf);
-+	err = cst3xx_i2c_write(client, buf, 3);
-+	if (err < 0) {
-+		dev_err(&client->dev, "send read touch info ending failed.\n");
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+/*
-+ * Handle events from IRQ. Note that for cst3xx it appears that IRQ
-+ * fires continuously while touched, otherwise once every 1500ms
-+ * when not touched (assume touchscreen waking up periodically).
-+ * Note buffer is sized for 5 fingers, if more needed buffer must
-+ * be increased. The buffer contains 5 bytes for each touch point,
-+ * a touch count byte, a check byte, and then a second check byte after
-+ * all other touch points.
-+ *
-+ * For example 1 touch would look like this:
-+ * touch1[5]:touch_count[1]:chk_byte[1]
-+ *
-+ * 3 touches would look like this:
-+ * touch1[5]:touch_count[1]:chk_byte[1]:touch2[5]:touch3[5]:chk_byte[1]
-+ */
-+static void cst3xx_touch_report(struct i2c_client *client)
-+{
-+	struct hynitron_ts_data *ts_data = i2c_get_clientdata(client);
-+	unsigned char buf[28];
-+	unsigned char finger_id, sw;
-+	unsigned int input_x = 0;
-+	unsigned int input_y = 0;
-+	unsigned int input_w = 0;
-+	int idx = 0;
-+	int i, err;
-+	int touch_cnt, end_byte;
-+
-+	/* Read and validate the first bits of input data. */
-+	err = cst3xx_i2c_read_register(client, CST3XX_TOUCH_DATA_PART_REG,
-+				       buf, 28);
-+	if ((err < 0) || (buf[6] != CST3XX_TOUCH_DATA_CHK_VAL) ||
-+	    (buf[0] == CST3XX_TOUCH_DATA_CHK_VAL)) {
-+		dev_err(&client->dev, "cst3xx touch read failure\n");
-+		return;
-+	}
-+
-+	/* Report to the device we're done reading the touch data. */
-+	err = cst3xx_finish_touch_read(client);
-+	if (err < 0) {
-+		dev_err(&client->dev, "cst3xx touch read failure\n");
-+		return;
-+	}
-+
-+	touch_cnt = buf[5] & CST3XX_TOUCH_COUNT_MASK;
-+
-+	/* If no touches registered, clear the input slots. */
-+	if (touch_cnt == 0) {
-+		input_mt_sync_frame(ts_data->input_dev);
-+		input_sync(ts_data->input_dev);
-+		return;
-+	}
-+
-+	/*
-+	 * Check the check bit of the last touch slot. The check bit is
-+	 * always present after touch point 1 for valid data, and then
-+	 * appears as the last byte after all other touch data.
-+	 */
-+	if (touch_cnt > 1) {
-+		end_byte = touch_cnt * 5 + 2;
-+		if (buf[end_byte] != CST3XX_TOUCH_DATA_CHK_VAL) {
-+			dev_err(&client->dev, "cst3xx touch read failure\n");
-+			return;
-+		}
-+	}
-+
-+	/* Parse through the buffer to capture touch data. */
-+	for (i = 0; i < touch_cnt; i++) {
-+		input_x = ((buf[idx + 1] << 4) | ((buf[idx + 3] >> 4) & 0x0f));
-+		input_y = ((buf[idx + 2] << 4) | (buf[idx + 3] & 0x0f));
-+		input_w = (buf[idx + 4] >> 3);
-+		sw = (buf[idx] & 0x0f) >> 1;
-+		finger_id = (buf[idx] >> 4) & 0x0f;
-+
-+		/* Sanity check we don't have more fingers than we expect */
-+		if (ts_data->pdata->max_touch_num < finger_id) {
-+			dev_err(&client->dev, "cst3xx touch read failure\n");
-+			break;
-+		}
-+
-+		/* sw value of 0 means no touch, 0x03 means touch */
-+		if (sw == CST3XX_TOUCH_DATA_TOUCH_VAL)
-+			cst3xx_touch_update(ts_data, finger_id,
-+					    input_x, input_y, input_w);
-+
-+		idx += 5;
-+
-+		/* Skip the 2 bits between point 1 and point 2 */
-+		if (i == 0)
-+			idx += 2;
-+	}
-+
-+	input_mt_sync_frame(ts_data->input_dev);
-+	input_sync(ts_data->input_dev);
-+}
-+
-+int cst3xx_input_dev_int(struct i2c_client *client)
-+{
-+	struct hynitron_ts_data *ts_data = i2c_get_clientdata(client);
-+	int err;
-+
-+	ts_data->input_dev = devm_input_allocate_device(&ts_data->client->dev);
-+	if (!ts_data->input_dev) {
-+		dev_err(&ts_data->client->dev,
-+			"Failed to allocate input device.\n");
-+		return -ENOMEM;
-+	}
-+
-+	ts_data->input_dev->name = "Hynitron cst3xx Touchscreen";
-+	ts_data->input_dev->phys = "input/ts";
-+	ts_data->input_dev->id.bustype = BUS_I2C;
-+
-+	input_set_drvdata(ts_data->input_dev, ts_data);
-+
-+	input_set_capability(ts_data->input_dev, EV_ABS, ABS_MT_POSITION_X);
-+	input_set_capability(ts_data->input_dev, EV_ABS, ABS_MT_POSITION_Y);
-+	input_set_abs_params(ts_data->input_dev, ABS_MT_TOUCH_MAJOR,
-+			     0, 255, 0, 0);
-+
-+	touchscreen_parse_properties(ts_data->input_dev, true, &ts_data->prop);
-+
-+	if (!ts_data->prop.max_x || !ts_data->prop.max_y) {
-+		dev_err(&client->dev,
-+			"Invalid x/y (%d, %d), using defaults\n",
-+			ts_data->prop.max_x, ts_data->prop.max_y);
-+		ts_data->prop.max_x = 1152;
-+		ts_data->prop.max_y = 1920;
-+		input_abs_set_max(ts_data->input_dev,
-+				  ABS_MT_POSITION_X, ts_data->prop.max_x);
-+		input_abs_set_max(ts_data->input_dev,
-+				  ABS_MT_POSITION_Y, ts_data->prop.max_y);
-+	}
-+
-+	err = input_mt_init_slots(ts_data->input_dev,
-+				  ts_data->pdata->max_touch_num,
-+				  INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
-+	if (err < 0) {
-+		dev_err(&ts_data->client->dev,
-+			"Input device registration failed\n");
-+		return err;
-+	}
-+
-+	err = input_register_device(ts_data->input_dev);
-+	if (err < 0) {
-+		dev_err(&ts_data->client->dev,
-+			"Input device registration failed\n");
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int hyn_probe(struct i2c_client *client)
-+{
-+	struct hynitron_ts_data *ts_data;
-+	int err;
-+
-+	ts_data = devm_kzalloc(&client->dev, sizeof(*ts_data), GFP_KERNEL);
-+	if (!ts_data)
-+		return -ENOMEM;
-+
-+	ts_data->client = client;
-+	i2c_set_clientdata(client, ts_data);
-+
-+	ts_data->reset_gpio = devm_gpiod_get(&client->dev,
-+					     "reset", GPIOD_OUT_LOW);
-+	err = PTR_ERR_OR_ZERO(ts_data->reset_gpio);
-+	if (err < 0) {
-+		dev_err(&client->dev, "request reset gpio failed: %d\n", err);
-+		return err;
-+	}
-+
-+	ts_data->pdata = of_device_get_match_data(&client->dev);
-+	if (!ts_data->pdata)
-+		return -EINVAL;
-+
-+	hyn_reset_proc(client, 60);
-+
-+	err = ts_data->pdata->bootloader_enter(client);
-+	if (err < 0)
-+		return err;
-+
-+	err = ts_data->pdata->init_input(client);
-+	if (err < 0)
-+		return err;
-+
-+	err = ts_data->pdata->firmware_info(client);
-+	if (err < 0)
-+		return err;
-+
-+	err = devm_request_threaded_irq(&client->dev, client->irq, NULL,
-+					hyn_interrupt_handler,
-+					IRQF_ONESHOT,
-+					"Hynitron Touch Int", client);
-+	if (err < 0) {
-+		dev_err(&client->dev, "failed to request IRQ\n");
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct hynitron_ts_chip_data cst3xx_data = {
-+	.max_touch_num		= 5,
-+	.ic_chkcode		= 0xcaca0000,
-+	.firmware_info		= &cst3xx_firmware_info,
-+	.bootloader_enter	= &cst3xx_bootloader_enter,
-+	.init_input		= &cst3xx_input_dev_int,
-+	.report_touch		= &cst3xx_touch_report,
-+};
-+
-+static const struct i2c_device_id hyn_tpd_id[] = {
-+	{ .name = "hynitron_ts", 0 },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(i2c, hyn_tpd_id);
-+
-+static const struct of_device_id hyn_dt_match[] = {
-+	{ .compatible = "hynitron,cst340", .data = &cst3xx_data },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, hyn_dt_match);
-+
-+static struct i2c_driver hynitron_i2c_driver = {
-+	.driver = {
-+		.name = "Hynitron-TS",
-+		.of_match_table = of_match_ptr(hyn_dt_match),
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+	},
-+	.id_table = hyn_tpd_id,
-+	.probe_new = hyn_probe,
-+};
-+
-+module_i2c_driver(hynitron_i2c_driver);
-+
-+MODULE_AUTHOR("Chris Morgan");
-+MODULE_DESCRIPTION("Hynitron Touchscreen Driver");
-+MODULE_LICENSE("GPL");
 -- 
-2.25.1
+Thanks,
+Tadeusz
 
