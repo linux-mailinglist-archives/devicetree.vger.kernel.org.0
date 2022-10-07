@@ -2,179 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A752B5F80BF
-	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 00:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0F2C5F80D3
+	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 00:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229748AbiJGWXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 18:23:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49834 "EHLO
+        id S229495AbiJGWib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 18:38:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229732AbiJGWXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 18:23:21 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53F0FD18C0
-        for <devicetree@vger.kernel.org>; Fri,  7 Oct 2022 15:23:18 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id n12so9098336wrp.10
-        for <devicetree@vger.kernel.org>; Fri, 07 Oct 2022 15:23:18 -0700 (PDT)
+        with ESMTP id S229453AbiJGWia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 18:38:30 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC7782620;
+        Fri,  7 Oct 2022 15:38:29 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id bj12so14075668ejb.13;
+        Fri, 07 Oct 2022 15:38:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EgD3kP0sSWca4YlP6hR+kz5HlaxlTP+KMXKfvr3kHec=;
-        b=z63HRGkupvMD+4NoIkCzY3uaFYo3KuZmH3T8nJDC4ZochdKfAnbnWQdZnAGzkqABb3
-         XjlyFEz/9uBVyhBH/ZN7x0P5/2YsPKxNipJwmw+vF5UCaAXGUJ1RhZhQfg62wFxjlFU6
-         IYOHwfblWD2ksdNi3861EBVdnSbgYvfgUkWqpZtf6AQEotEYe21Fn/CJR6Sp5RJfKKlI
-         gSWL6dQ969oP/m06Z07secgniiZiX8gYMIpe8OTZkNLjbwTtfYLbBJReC8tEqKKhUqte
-         TISvk8Mp+iTDMNBhlaf0qTZWx4xEq3rSklP3ivDDY6Wu7SrIJPBdJh/fu5JDOCicsSSu
-         +RKA==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=t8oJ8uBoYKbakm2xp42zEcxh+wgG/wSoLfz35djbU/4=;
+        b=DlXrTOSDvLfazgkLEPef9AnZOEtZ2+YrtJpz/sXI0zMUAGn+P43fOVtQw7m5zh5AJP
+         J5BoGFHRMDuHCdSDabqg75/Vkr0abZMyuZ92GS1xGGM1L/bWJ3HwEJz59JtbCO3Z9cX+
+         4DKOF2YepJNhP0Bup72VAgQjXUtE9bnX4WIVkiGMm2BuaFVY6GspNJCIGayp62lXnJ/k
+         ZXEVqctH62gTEbk0iVdVtadkYHe/i9tKR6S/hEE+Tc1v0k+wiXt4vw6bEnPcSQ8rn9bI
+         fF0W835PXI/vMaDE5zcUno1W39B+FEjaY7pyydh3stU2WqqaKacBd3KqG+CSv5Q1y/Sh
+         TVIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EgD3kP0sSWca4YlP6hR+kz5HlaxlTP+KMXKfvr3kHec=;
-        b=eEv//oS9krFufC5aIGOMuZpRwaxJshPd5LXbOdIXkaEZpdehTS/7U3DZRPZesQVty6
-         AnK9SDGIWJ4dGdfkNNHZnuXwHW/M/qjhJu9XMnuOvxGu4PFYBVugCSe6Q1pJpCtEovmN
-         r7C0V+97B7zK5jiuYEzmVxmlv1gp2yFKZOv1G8d4XXPXynEMFIOL4/ARvNLA5nWy40Tr
-         O2rgdMii0WtJ6rNBZA9aD4d611mkl43SGXsW0qfIHHpjSvJdBIkkomoUbxMfT/IjP9IG
-         TN+ikv54VBnw3BICQKWoi5fHphi0Y9HWs+TSalImWLQvW+p4V1iCFLWqqw/2IshJyF04
-         AHXA==
-X-Gm-Message-State: ACrzQf0Qsr15aeEGEyNHhUhcXH9MjcgcT8erkgZfKa/ejP0yovcdZJqi
-        PIhYEAj3Smdlw2UBnlF52V5zeA==
-X-Google-Smtp-Source: AMsMyM7vQZ2ZelfYFnQ1aAbj9mX8p4kUIk0V07qM6lRdjM4l+jCcYtdp2gvBBx9dFie930EjaQ6ufA==
-X-Received: by 2002:adf:ee88:0:b0:22e:330a:f741 with SMTP id b8-20020adfee88000000b0022e330af741mr4562322wro.199.1665181396846;
-        Fri, 07 Oct 2022 15:23:16 -0700 (PDT)
-Received: from localhost.localdomain (cpc76482-cwma10-2-0-cust629.7-3.cable.virginm.net. [86.14.22.118])
-        by smtp.gmail.com with ESMTPSA id d5-20020a05600c34c500b003c409244bb0sm1115777wmq.6.2022.10.07.15.23.16
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t8oJ8uBoYKbakm2xp42zEcxh+wgG/wSoLfz35djbU/4=;
+        b=H1yrslxuKtm+yHmZCDZ0c8n74atKakNUISI/tRqd3eaFjTm6I7XxfIe8hlNbjCndeX
+         ZF5RUXwnwcIumHgoqv4ZSVBOU6kYacrRnnd3jRmps55Jl+aywb5SnUD1NttZL5p76mSd
+         K8usgNnFCOH+FlFMDyysnSlnfW15lVZ5wHrJPDVDT4WcD0AXnjZhfI0D/oWZ2znuiwEt
+         wtj1cl7f4Z4sqnXcTBJOWGEOahno+RSuvpZSxpCj5ErdXnCE3Nn17tD0Y8Ec0P8ovo/8
+         kEMXJfc1hXkH470R6tNhrHaWu16qcCpYvuZugffLaY7cvRRfhOI0b+3Mz/2mRWiIEJ4N
+         xpmQ==
+X-Gm-Message-State: ACrzQf2iYkrDgBSB/Slhzrgx3XIe5C+IqQE2e7i4FQKbLPXpZ0motVpg
+        KGMxMj7KGpzFk04/KGhUFCU=
+X-Google-Smtp-Source: AMsMyM7yo7t/qh9RZubKlbdW93yEvgrdgtZYdCAstPJOKqo34tY4aTvR8YCrjuTk9B3Li4qp36C9KQ==
+X-Received: by 2002:a17:907:7629:b0:776:a147:8524 with SMTP id jy9-20020a170907762900b00776a1478524mr5806800ejc.632.1665182308244;
+        Fri, 07 Oct 2022 15:38:28 -0700 (PDT)
+Received: from skbuf ([188.27.184.197])
+        by smtp.gmail.com with ESMTPSA id s26-20020a056402165a00b00456d40f6b73sm2223299edx.87.2022.10.07.15.38.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Oct 2022 15:23:16 -0700 (PDT)
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        Sebastian Reichel <sre@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        phone-devel@vger.kernel.org,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Fri, 07 Oct 2022 15:38:26 -0700 (PDT)
+Date:   Sat, 8 Oct 2022 01:38:24 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 2/2] dt-bindings: power: supply: qcom,pmi8998-charger: add bindings for smb2 driver
-Date:   Fri,  7 Oct 2022 23:22:03 +0100
-Message-Id: <20221007222205.126190-3-caleb.connolly@linaro.org>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221007222205.126190-1-caleb.connolly@linaro.org>
-References: <20221007222205.126190-1-caleb.connolly@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 net-next 12/14] dt-bindings: net: dsa: ocelot: add
+ ocelot-ext documentation
+Message-ID: <20221007223824.xf7aga3rs74fmcup@skbuf>
+References: <20220926002928.2744638-1-colin.foster@in-advantage.com>
+ <20220926002928.2744638-13-colin.foster@in-advantage.com>
+ <20220927202600.hy5dr2s6j4jnmfpg@skbuf>
+ <Y0CPmuxTRr799AR5@euler>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y0CPmuxTRr799AR5@euler>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings for the Qualcomm PMI8998/PM660 SMB2 charger
-driver.
+On Fri, Oct 07, 2022 at 01:44:10PM -0700, Colin Foster wrote:
+> With regards to the interrupts - I don't really have a concept of how
+> those will work, since there isn't a processor for those lines to
+> interrupt. So while there is this for the 7514:
+> 
+> interrupts = <18 21 16>;
+> interrupt-names = "ptp_rdy", "xtr", "fdma";
+> 
+> it seems like there isn't anything to add there.
+> 
+> That is, unless there's something deeper that is going on that I don't
+> fully understand yet. It wouldn't be the first time and, realistically,
+> won't be the last. I'll copy the 7514 for now, as I plan to send out an
+> RFC shortly with all these updates.
 
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../power/supply/qcom,pmi8998-charger.yaml    | 82 +++++++++++++++++++
- 1 file changed, 82 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
+I was under the impression that the interrupt controller could be
+configured to route the interrupts to external destinations EXT_DST0 or
+EXT_DST1, which have the indices 2 and 3, respectively, in the DST_INTR_*
+set of registers of the ICPU_CFG:INTR block. I could be wrong, though,
+maybe this is just for PCIe, I never looked at the pinout of this chip
+to study whether it's possible to use these as I expect, but normally
+for things like PTP TX timestamping, you'd expect that the switch
+notifies the external host when a packet has been timestamped and that
+timestamp is available in the FIFO. The interrupts out of this switch
+could also be useful for the PHY state machine, to disable polling.
 
-diff --git a/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml b/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
-new file mode 100644
-index 000000000000..277c47e048b6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/supply/qcom,pmi8998-charger.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm PMI8998/PM660 Switch-Mode Battery Charger "2"
-+
-+maintainers:
-+  - Caleb Connolly <caleb.connolly@linaro.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,pmi8998-charger
-+      - qcom,pm660-charger
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 4
-+
-+  interrupt-names:
-+    items:
-+      - const: usb-plugin
-+      - const: bat-ov
-+      - const: wdog-bark
-+      - const: usbin-icl-change
-+
-+  io-channels:
-+    items:
-+      - description: USB in current in uA
-+      - description: USB in voltage in uV
-+
-+  io-channel-names:
-+    items:
-+      - const: usbin_i
-+      - const: usbin_v
-+
-+  monitored-battery:
-+    description: phandle to the simple-battery node
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - io-channels
-+  - io-channel-names
-+  - monitored-battery
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    pmic {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      #interrupt-cells = <4>;
-+
-+      charger@1000 {
-+        compatible = "qcom,pmi8998-charger";
-+        reg = <0x1000>;
-+
-+        interrupts = <0x2 0x12 0x2 IRQ_TYPE_EDGE_BOTH>,
-+                     <0x2 0x13 0x4 IRQ_TYPE_EDGE_BOTH>,
-+                     <0x2 0x13 0x6 IRQ_TYPE_EDGE_RISING>,
-+                     <0x2 0x16 0x1 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "usb-plugin", "bat-ov", "wdog-bark", "usbin-icl-change";
-+
-+        io-channels = <&pmi8998_rradc 3>,
-+                      <&pmi8998_rradc 4>;
-+        io-channel-names = "usbin_i",
-+                           "usbin_v";
-+
-+        monitored-battery = <&battery>;
-+      };
-+    };
--- 
-2.38.0
-
+Although in the general sense I agree with you, it's better not to add
+anything than to add something and be wrong about it. This is where the
+limitations start showing for the idea that "device tree describes
+hardware, which is independent of software implementation". It's all too
+easy to say this when you have an implementation already written.
+Anyway.  DT doesn't describe hardware, but what software wants to
+understand of it, and that makes it inseparable to some degree from
+software implementation.
