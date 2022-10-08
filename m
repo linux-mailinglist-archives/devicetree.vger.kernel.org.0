@@ -2,96 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2615F86F8
-	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 20:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B36D5F8864
+	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 00:56:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbiJHS7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Oct 2022 14:59:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43098 "EHLO
+        id S229463AbiJHW4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Oct 2022 18:56:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229926AbiJHS5w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Oct 2022 14:57:52 -0400
-Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.155.67.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D736042E7A;
-        Sat,  8 Oct 2022 11:55:58 -0700 (PDT)
-X-QQ-mid: bizesmtp88t1665255258tpzq9y8b
-Received: from [192.168.0.179] ( [113.85.219.225])
-        by bizesmtp.qq.com (ESMTP) with 
-        id ; Sun, 09 Oct 2022 02:54:17 +0800 (CST)
-X-QQ-SSF: 0100000000200090B000B00A0000000
-X-QQ-FEAT: 2aB7Y8UOkmPkPMNeCU9D3ga5YoRbEIqL1KC8KFDdIkY5MNJpOgc3ZKG/gxh+q
-        tIyW3rJ0wzkKyCuqCwoV2xIymEMWMJR/4HtKSUyu9CcbfHPW2xl6doxSioe1Aq4sNtqB7Sl
-        BrSm/RhQbI7TXLjPpS7BHqE519HdiFmr0p5w2bcojiCUgvNJUJVkXdVypW3hsrfcjtXMFLR
-        VGSCOGgc2XZitLhR9u+wbmZTKeHiUSt9IoO86ERYSRJ9Q54pVg27NKhvLjjQsysXCkNiTRY
-        dQcuk2HrH6f2vaB154XQi22zeSyIutnuoqgtSBv/VrT0luU4VeVcZV2v1WkWCPMr2mpC8tT
-        xBNm/NlHq30bjtNhU3Mr6Ov5UNtMVhFiFrSG0nMyypZH2m2dlCTK6G1ilkXcA==
-X-QQ-GoodBg: 0
-Message-ID: <F3EFC1097B3F50DD+9675984c-d18b-f70e-1e07-715c7ce23836@linux.starfivetech.com>
-Date:   Sun, 9 Oct 2022 02:54:15 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v1 04/30] dt-bindings: sifive-l2-cache: Support StarFive
- JH71x0 SoCs
-Content-Language: en-US
-To:     Ben Dooks <ben.dooks@codethink.co.uk>
-Cc:     Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229459AbiJHW4e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Oct 2022 18:56:34 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFBD133373;
+        Sat,  8 Oct 2022 15:56:33 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id u21so11394370edi.9;
+        Sat, 08 Oct 2022 15:56:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6VH5NDIzcp7fJXtMgvbmUefDmE2RrqbTEDEbwjqt8MY=;
+        b=F/wCTdaGDtylRoVdcS4cDFh/5sI7hfRCO1QDt3FfK0j9g7Ly6lb9eSMnbOj+dS+JNo
+         KufpOrwPh+bIIb8IOvDDYb8NvPGBcN6+XlEtk39oEhpcXyp/NznrRuS0sJrHJdRntDa6
+         AoUIrAIMw3RMVpXlx9akNgOt4cvqAN4AQwuOoVe6O8ohIN0DOf/t6oLhRbiu3N5Rmwoh
+         CjuGVS0hxUj8iPeDj01u2Xl+5smGOfAyxhcN2ZbrThfR9LIEZiL/42zn7tN62I13kqt0
+         fNlersZj2CWqsZ5jhcaL+mAyKN96MeXMWTvg6SsPzo+/VkgnovTC1fGUL+iw1mzOwtuP
+         Kvbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6VH5NDIzcp7fJXtMgvbmUefDmE2RrqbTEDEbwjqt8MY=;
+        b=SPdI+IqjOCNlS5zOg15x2/S/AKSbzJ1gAj5ORxGOhJslF3J0YFaqjft1r3OllQJyF8
+         OXU4RwNewkeFH3kmT0ViFvsi+B/XPt8lrELTk6ZtRQw+aj6oYxm/YzSgkHSNPvxuRSP6
+         qwAPEPw506Y7v2383G+Kwqun2KMXdLErmjkQpBikog4jYpuZaELQSBEgEMSyLRLofRaW
+         fBI/v+Tq/FIKRfjAUvqHN5B2CpJ6aByFquvrvOM/LICW21uJazwcc626S3ABoBNs3VRE
+         YYxF0n1gPFlZ6PkVqmxvKQFW90LTzzG2qnWvWpKy1etvN8/Xud+UVQnAnHBbQk8gfT8+
+         aYyQ==
+X-Gm-Message-State: ACrzQf1Dge3ochuqRk24iJa5xQ0DH7H73HwPXR60GNml1bnsC5U92Rc/
+        q50848FXYHNHorGJwRnlsTY=
+X-Google-Smtp-Source: AMsMyM5jEUNZygRNI7UaoF+A18zmA52rMmCUAWiCEKe1AsoKggJqzTUhzyh1uqbWh9F6nQEyQXqLAw==
+X-Received: by 2002:a05:6402:1052:b0:459:2c49:1aed with SMTP id e18-20020a056402105200b004592c491aedmr10889998edu.212.1665269792277;
+        Sat, 08 Oct 2022 15:56:32 -0700 (PDT)
+Received: from skbuf ([188.27.184.197])
+        by smtp.gmail.com with ESMTPSA id 18-20020a170906201200b0078c213ad441sm3291604ejo.101.2022.10.08.15.56.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Oct 2022 15:56:31 -0700 (PDT)
+Date:   Sun, 9 Oct 2022 01:56:28 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Jerry Ray <jerry.ray@microchip.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        linux-kernel@vger.kernel.org
-References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
- <20220929143225.17907-5-hal.feng@linux.starfivetech.com>
- <YzW60PDwnJ7GeLYK@spud>
- <b2880b7b-c50d-9161-4278-615cf66c2094@codethink.co.uk>
-From:   Hal Feng <hal.feng@linux.starfivetech.com>
-In-Reply-To: <b2880b7b-c50d-9161-4278-615cf66c2094@codethink.co.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:linux.starfivetech.com:qybglogicsvr:qybglogicsvr2
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
-        NICE_REPLY_A,SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no
-        version=3.4.6
+        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next][PATCH v4] dt-bindings: dsa: Add lan9303 yaml
+Message-ID: <20221008225628.pslsnwilrpvg3xdf@skbuf>
+References: <20221003164624.4823-1-jerry.ray@microchip.com>
+ <20221003164624.4823-1-jerry.ray@microchip.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221003164624.4823-1-jerry.ray@microchip.com>
+ <20221003164624.4823-1-jerry.ray@microchip.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 Oct 2022 10:26:44 +0100, Ben Dooks wrote:
-> On 29/09/2022 16:33, Conor Dooley wrote:
-> > On Thu, Sep 29, 2022 at 10:31:59PM +0800, Hal Feng wrote:
-> >> From: Emil Renner Berthing <kernel@esmil.dk>
-> >>
-> >> This cache controller is also used on the StarFive JH7100 and JH7110
-> >> SoCs.
-> >
-> > Ditto this patch, hopefully [0] will have landed as 6.1 material
-> > before you get around to an actual v2.
-> >
-> > Thanks,
-> > Conor
-> >
-> > 0 - https://lore.kernel.org/linux-riscv/20220913061817.22564-1-zong.li@sifive.com/
-> 
-> Also, the l2 cache is being proprely named the ccache (composable cache)
-> as it is not necessarily an L2 cache.
+On Mon, Oct 03, 2022 at 11:46:24AM -0500, Jerry Ray wrote:
+> ---
+> v3->v4:
+>  - Addressed v3 community feedback
+
+More specifically?
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    // Ethernet switch connected via mdio to the host
+> +    ethernet {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        phy-handle = <&lan9303switch>;
+> +        phy-mode = "rmii";
+> +        fixed-link {
+> +            speed = <100>;
+> +            full-duplex;
+> +        };
+
+I see the phy-handle to the switch is inherited from the .txt dt-binding,
+but I don't understand it. The switch is an mdio_device, not a phy_device,
+so what will this do?
+
+Also, any reasonable host driver will error out if it finds a phy-handle
+and a fixed-link in its OF node. So one of phy-handle or fixed-link must
+be dropped, they are bogus.
+
+Even better, just stick to the mdio node as root and drop the DSA master
+OF node, like other DSA dt-binding examples do. You can have dangling
+phandles, so "ethernet = <&ethernet>" below is not an issue.
+
+> +        mdio {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            lan9303switch: switch@0 {
+> +                compatible = "smsc,lan9303-mdio";
+> +                reg = <0>;
+> +                dsa,member = <0 0>;
+
+Redundant, please remove.
+
+> +                ethernet-ports {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +                        port@0 {
+> +                            reg = <0>;
+> +                            phy-mode = "rmii";
+
+FWIW, RMII has a MAC mode and a PHY mode. Two RMII interfaces connected
+in MAC mode to one another don't work. You'll have problems if you also
+have an RMII PHY connected to one of the xMII ports, and you describe
+phy-mode = "rmii" for both. There exists a "rev-rmii" phy-mode to denote
+an RMII interface working in PHY mode. Wonder if you should be using
+that here.
+
+> +                            ethernet = <&ethernet>;
+> +                            fixed-link {
+> +                                speed = <100>;
+> +                                full-duplex;
+> +                            };
+> +                        };
+> +                        port@1 {
+> +                            reg = <1>;
+> +                            max-speed = <100>;
+> +                            label = "lan1";
+> +                        };
+> +                        port@2 {
+> +                            reg = <2>;
+> +                            max-speed = <100>;
+> +                            label = "lan2";
+> +                        };
+> +                    };
+> +                };
+> +            };
+> +        };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    // Ethernet switch connected via i2c to the host
+> +    ethernet {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        phy-mode = "rmii";
+> +            speed = <100>;
+> +        fixed-link {
+> +            full-duplex;
+> +        };
+> +    };
+
+No need for this node.
+
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        lan9303: switch@1a {
+> +            compatible = "smsc,lan9303-i2c";
+> +            reg = <0x1a>;
+> +            ethernet-ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                port@0 {
+> +                    reg = <0>;
+> +                    phy-mode = "rmii";
+> +                    ethernet = <&ethernet>;
+> +                    fixed-link {
+> +                        speed = <100>;
+> +                        full-duplex;
+> +                    };
+> +                };
+> +                port@1 {
+> +                    reg = <1>;
+> +                    max-speed = <100>;
+> +                    label = "lan1";
+> +                };
+> +                port@2 {
+> +                    reg = <2>;
+> +                    max-speed = <100>;
+> +                    label = "lan2";
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5d58b55c5ae5..89055ff2838a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -13386,6 +13386,14 @@ L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/net/ethernet/microchip/lan743x_*
+>  
+> +MICROCHIP LAN9303/LAN9354 ETHERNET SWITCH DRIVER
+> +M:	Jerry Ray <jerry.ray@microchip.com>
+> +M:	UNGLinuxDriver@microchip.com
+> +L:	netdev@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
+> +F:	drivers/net/dsa/lan9303*
+> +
+
+Separate patch please? Changes to the MAINTAINERS file get applied to
+the "net" tree.
+
+>  MICROCHIP LAN966X ETHERNET DRIVER
+>  M:	Horatiu Vultur <horatiu.vultur@microchip.com>
+>  M:	UNGLinuxDriver@microchip.com
+> -- 
+> 2.25.1
 > 
 
-Thanks for reminding. I will modify the code, based on the patches from Zong Li.
-I hope his patch series will be merged as soon as possible.
-
-Best regards,
-Hal
