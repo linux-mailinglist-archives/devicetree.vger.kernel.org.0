@@ -2,126 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C6E45F829E
-	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 05:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24B815F82AF
+	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 05:18:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbiJHDAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 23:00:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53212 "EHLO
+        id S229646AbiJHDSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 23:18:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbiJHDAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 23:00:07 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9B9933AB03;
-        Fri,  7 Oct 2022 20:00:03 -0700 (PDT)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxTWus50BjQyEoAA--.19966S2;
-        Sat, 08 Oct 2022 10:59:56 +0800 (CST)
-Subject: Re: [PATCH v1 1/2] clocksource: loongson2_hpet: add hpet driver
- support
-To:     WANG Xuerui <kernel@xen0n.name>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S229570AbiJHDSv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 23:18:51 -0400
+Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2D7D7F099;
+        Fri,  7 Oct 2022 20:18:42 -0700 (PDT)
+X-QQ-mid: bizesmtp81t1665199102tpuhbm7o
+Received: from [192.168.0.179] ( [113.85.219.225])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Sat, 08 Oct 2022 11:18:20 +0800 (CST)
+X-QQ-SSF: 0100000000000060B000000A0000000
+X-QQ-FEAT: Xz3VOcA7Mr3FZ3OhgK4//97wG8mXezqudifr+ShDF71jo6ZVNegJFLWSbQFjs
+        41Jkwc4FOs1oe/FY1u2vbwzyJsrWi07okA/K9Kw8EcCWxzXCDMZjCtIecmdYWkahSCFZmq2
+        FlZUaOWjGBheO9+8V1nF8nJLhkK0tq1vOo2Y865x5+gXgoM+figV3SUenuKBQBYi2ppIYYt
+        zbUI+FFvvQwk1WTagPRUVB8dtcleD3gu0azJcoLMfx49m0J8R5r3y4EK17gIkJR0yc1c+UG
+        0ia8wSy9vJGL0dNANOgjtjEu6Or+njZqd8XIbyahDoFBISbvIxLs9uVPIdQnfhor+THm8xL
+        NaZwtBbKzX7gkQpcg1bdYyZpa4QAljGfhbt9pfnHJUJbPI+HtcKLhzm2vIcyg==
+X-QQ-GoodBg: 0
+Message-ID: <98CA462042A5283C+38a7a131-b02a-e4a2-180d-1e64cb788af3@linux.starfivetech.com>
+Date:   Sat, 8 Oct 2022 11:18:19 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v1 00/30] Basic StarFive JH7110 RISC-V SoC support
+Content-Language: en-US
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yun Liu <liuyun@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        loongarch@lists.linux.dev, zhuyinbo@loongson.cn
-References: <20220930093510.10781-1-zhuyinbo@loongson.cn>
- <bc62d053-1e26-d7b7-3611-f0c9237d86f3@xen0n.name>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <1b1f167f-a9be-fc1c-ffe7-0fb1bdf7c429@loongson.cn>
-Date:   Sat, 8 Oct 2022 10:59:56 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <bc62d053-1e26-d7b7-3611-f0c9237d86f3@xen0n.name>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxTWus50BjQyEoAA--.19966S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Aw1fJw4xXrW7GFWfAw15XFb_yoW8tFy3pF
-        4xG3Z8KrWDXr4fZwsxXryDCF98Cw1xJw15G3W7t3WkArykJF1jqr4jqa4Yg3W7Xr4rJ342
-        vFZYqr1UuFyDAF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUU9K14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-        1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-        JVWxJr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxV
-        WxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2Wl
-        Yx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbV
-        WUJVW8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-        Y2ka0xkIwI1lc7I2V7IY0VAS07AlzVAYIcxG8wCY02Avz4vE-syl42xK82IYc2Ij64vIr4
-        1l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK
-        67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI
-        8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAv
-        wI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14
-        v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUoOJ5UUUUU
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        linux-kernel@vger.kernel.org
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+ <CAJM55Z8zg=-meSGhFnVh4Tb4=5M3sHis1oapzXCEipyDkuyvyg@mail.gmail.com>
+From:   Hal Feng <hal.feng@linux.starfivetech.com>
+In-Reply-To: <CAJM55Z8zg=-meSGhFnVh4Tb4=5M3sHis1oapzXCEipyDkuyvyg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:linux.starfivetech.com:qybglogicsvr:qybglogicsvr2
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-在 2022/9/30 下午10:43, WANG Xuerui 写道:
-> Hi,
+On Wed, 5 Oct 2022 15:05:45 +0200, Emil Renner Berthing wrote:
+> On Thu, 29 Sept 2022 at 16:34, Hal Feng <hal.feng@linux.starfivetech.com> wrote:
+> > This series adds basic support for the StarFive JH7110 RISC-V SoC to
+> > boot up and get a serial console. This series includes basic clock,
+> > reset, pinctrl and uart drivers, which are necessary for booting.
+> > It's should be noted that the reset and clock driver codes of JH7110
+> > are partly common with those of JH7100, so the common codes are
+> > factored out and can be reused by drivers of JH7110 and other more
+> > SoCs from StarFive.
+> >
+> > The JH7110 is the upgraded version of JH7100 and also the first official
+> > released version of JH71XX series SoCs from StarFive Technology Ltd.
+> > The VisionFive 2 boards equipped with JH7110 SoCs are launched
+> > recently [1]. More information and support can visit RVspace wiki [2].
+> >
+> > This series is also available at
+> > https://github.com/hal-feng/linux/commits/visionfive2-minimal
+> >
+> > [1] https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/
+> > [2] https://wiki.rvspace.org/
 > 
-> On 9/30/22 17:35, Yinbo Zhu wrote:
->> HPET (High Precision Event Timer) defines a new set of timers, which
->> are used by the operating system to schedule threads, interrupt the
->> kernel and interrupt the multimedia timer server. The operating
->> system can assign different timers to different applications. By
->> configuration, each timer can generate interrupt independently.
->>
->> The loongson2 HPET module includes a main count and three comparators
->> , all of which are 32 bits wide. Among the three comparators, only
->> one comparator supports periodic interrupt, all three comparators
->> support non periodic interrupts.
->>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> ---
->>   MAINTAINERS                          |   6 +
->>   arch/loongarch/kernel/time.c         |   3 +
->>   drivers/clocksource/Kconfig          |   9 +
->>   drivers/clocksource/Makefile         |   1 +
->>   drivers/clocksource/loongson2_hpet.c | 332 +++++++++++++++++++++++++++
->>   5 files changed, 351 insertions(+)
->>   create mode 100644 drivers/clocksource/loongson2_hpet.c
+> Hi Hal,
 > 
-> Thanks for the contribution, but as HPET is a fairly common peripheral 
-> that have well standardized behavior, why not simply add DT support to 
-> the drivers/char/hpet.c and be done with it?
-At present, the drivers/char/hpet.c doesn't support DT(dts parse) and
-loongson2 soc wasn't belong to X86 or IA64 architecture, Although it is
-an option to add DT support for this driver, I consider that the hpet
-design of loongson2 series socs may not be universal. In addition, I
-notice that mips and x86 have their own hpet drivers. In order to reduce
-the impact on the public driver and make more flexible modifications to
-the loongson2 hpet driver under its own architecture, a separate
-loongson2 hpet driver was submitted.
+> Firstly thanks for working on this! And sorry about the late reply. On
+> the next version could you please cc
+> emil.renner.berthing@canonical.com since it seems to handle the
+> mailing list a bit better.
 
-config HPET
-         bool "HPET - High Precision Event Timer" if (X86 || IA64)
-         default n
-         depends on ACPI
-         help
-           If you say Y here, you will have a miscdevice named 
-"/dev/hpet/".  Each
-           open selects one of the timers supported by the HPET.  The 
-timers are
-           non-periodic and/or periodic.
+OK, I will cc to your new email instead on v2.
 
+Best Regards,
+Hal
 
-BRs
-Yinbo Zhu.
-
-> 
+> I see you've changed the clock/reset and pinctrl quite a bit, so I'll
+> comment on that separatel
 
