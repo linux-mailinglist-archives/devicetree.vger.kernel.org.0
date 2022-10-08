@@ -2,70 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 867AF5F8559
-	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 15:08:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 382E45F8570
+	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 15:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbiJHNIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Oct 2022 09:08:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45618 "EHLO
+        id S229494AbiJHNTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Oct 2022 09:19:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbiJHNIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Oct 2022 09:08:35 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF8F4457C;
-        Sat,  8 Oct 2022 06:08:34 -0700 (PDT)
+        with ESMTP id S229492AbiJHNT3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Oct 2022 09:19:29 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D0A39111;
+        Sat,  8 Oct 2022 06:19:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1665234508;
-        bh=sUJ7rGrDhsXyiLiiUOI9cGeDVhb61syNCQPU8vfJcWQ=;
+        s=badeba3b8450; t=1665235160;
+        bh=jEHvMUCQRRCEO/jqzijoupUp1nOWB4b8v070TsC6ZPA=;
         h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=GosGbCrvX5QT+MZy6sI9ivd71Ru6yotEaj5u8GsHB8FW7bMkNaXjI52y3uDjMeFxv
-         +Y4EyYxpExeGc9WEeA+dIgn3Jp7f3YciGikabUSsqPBaz3uGBSLjiJLRNhfwXRUbfP
-         NxL2fJlf0pzKSWIz1vAf5pFauX+QbDNGIh22we4s=
+        b=gQfmBHOjuwRuPVS1JFywMk0QnjMZO3vt11lnuv5WmBT9qj1RiV3pwVnH2So3oUV1W
+         9VF0+bRJYUDSuRd9dRCAuD3XY7rW9UgxBYAfNY1lvim6qoiIvNJCWhQVMlWFRIaViH
+         N/ril2VIx4qAXd35esx5JpqoilFgK6ZIpwGrETd4=
 X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from probook ([78.35.76.13]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MkYc0-1pT6dm1nSg-00m0Il; Sat, 08
- Oct 2022 15:08:28 +0200
+Received: from probook ([78.35.76.13]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MLQxX-1oPlZj13gJ-00IXTf; Sat, 08
+ Oct 2022 15:19:20 +0200
 From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     openbmc@lists.ozlabs.org
+To:     linux-leds@vger.kernel.org
 Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4] ARM: dts: nuvoton: wpcm450: Add missing aliases for serial0/serial1
-Date:   Sat,  8 Oct 2022 15:08:22 +0200
-Message-Id: <20221008130822.1227104-1-j.neuschaefer@gmx.net>
+Subject: [PATCH v2] dt-bindings: leds: Fix reference to definition of default-state
+Date:   Sat,  8 Oct 2022 15:19:18 +0200
+Message-Id: <20221008131918.1235397-1-j.neuschaefer@gmx.net>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:yq01Se6miRqCnyzl5NuCHJ5fjVBViQ3GCFFnp367xQNi6yKx1tf
- ejENkYCyaoIyezJUH3We2JvBqgKTB6hcI9OKBrMnQycn1Fg2h+ctNetgRF4MNgvA+1eq7y/
- HPZLCVs/y1p+GXIB5vwqhDjbt0vBJgNjD8NLbsyvmybkECkZIIPKLC0/oO5/Kz5xK5zopO0
- nqGKxMGUEPgxJWug5yIvg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:oeket5Z0JLs=:Y6a/Z1Q9bovDN9yelseRtr
- PKdqn1dkME9rGjrmmTY3otCBVRAySK9eoGz4/v7frJRf9qrVv1UIuYjOYVF9vIrTjf/p8JRT5
- 3my6e152POFG1pngk7tmYH1Timl3ISFiLoAl718UEliQlogzcf6V6PXp7Cyl/gU3Zfpp2J3PR
- IhrJ4M2NcncCg/ZaA9g7Fx6GmqsaIZ4a9z9w8RW+SyLXB0zZu4CikTsnN2oIg42GC0386PaPs
- e0Iv3WapYNZYSJbIjCkdrjLnrS5sxG0J/xITrkiNwNxKSXY/YB3spNx7XRK7n4TWrwhVZdKVj
- HPpbI7BEMOhksdhbUWjG0hecowtZvxUbKE6WS/aaJc9WROPfCSnhegpm0hi/mh6VWi+k+Fbq1
- sj5dJu+qhrcTv1gbpTQf/X+WVgj/nVM7qQ1+aori/9wjYD/DilUnHlqWTuNL9H1UqoNvFBZIR
- 212rDqmq9SLkY/XgGEWAmNWKkmiiRUwt2HxfXCaWy1NPkP5ttwjykyMLIY4NdHBUlRcZXKGDh
- a8dWwu+5mO3D6e0uuK29lOc4XsIv8sMNwlyyvjmhhyzYhQkfbJ9Iq+bv66qOHTui4j8zLmjJu
- kY2IQpXsIhNocYOen2w9iDRa3xZSnFkB2OzdVvAB/h+tLF99+gnSDfOS0siovCmn782ZG/6zD
- 8+/EhwZsUNYyx3a29Bv/qWKTdu4jjpFcrBKZ8hQ0tsGoa9i4HnYNj2yryW/bRh3SNBtmYC1Hf
- bdDaCe7B/qyfnUiLhcCswTPHRStC3vrV2jfYNFBubT6mmW1HFBjxbqCmimyNz/GFLfTWlw2mz
- WN5/TESeh8HePsvguWSc5MdBvt62WB847zztS6SDR/hgg8+PXZG1dM2UEjVHF78tNIrH2/egD
- Q2LuWxWSB9oaKwr6q1uUYomDj6rqcTGNFPl0hToH8AMqSE8KfRGDfdhnyO5L97ZIQxMLsImRW
- osyIdVbspiukkDpgTKI71RWVXKmIUXq+EdrUglYlvyvxwpVqNA6KCgJ6Isw0xI2s3Q6iHTU0Y
- NmxDn5dYp5mFstyMEZICrf19aevhKDUeczROPOCZfeD5dyAUlb0REZqagXf6cZfnwimIA1L7K
- PssLKNhT8jJGKN9SXoPZLXcb8vbhQyetqR08UQi6vAmE2NtQJllTTSIuaGE04FAeR+AKMVy5D
- /To1/2WgscWfP/ecY5WtBRa3AIVxO5Ci29KvqHL1YelIg2b/DLOFo/SohM2OSYY8Sp63PxCD4
- kcVJPFMi8U/Ga5exo28QZIvND+27p4tIc4VcO1oXbBd8qK8/fCidLDVF5xUBPbwCpdfVP4CCR
- 6YEkyBpcLbZMv0L9/I/z4vRzUveKpYw3fNyckdEDGQrIdKpS3R/ZzTpYEBqBgxNKeBnNczE78
- Z4Wf59d+XScfF8BWqPLd6/iFU1/HLM8bpEU7duHWSIyUMCoKgh6TRysWYMvV8KKgYKldgSp5o
- 1PkhYk7Rvd7uNz3H+4Pq4JcLBNyT4yQUzf0uoJxPHnpN9teCmy7Dj5keOGwG3eU99lOKSsKNG
- DLINR73fOGlzWX3bgIye5syVP3DVzh1ySPb4KCHSbU/wZ
+X-Provags-ID: V03:K1:s2OreZEqHqiOMvR52Gp7PzIpv94IgqKuzVJIQfqB7hGdo4QhmfF
+ q4BG6kY7T+lM6e1DDnGKRCyKuoRTyeu2JaBYmyKyV+S4NVHnt05kv0mgAkG8NJago+RbYaT
+ gqGO8T4fG1Y4Q5CVCqPEP+g8jrqsE7INY1jkC7duiWO/u3msg97+B1gsbefK3XP69bEvFIs
+ AGkyH87a4Z1oIG6KR9LLA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:7En4xnBQYcI=:G3XZOiCsbUGEZAtafFJTn+
+ omyHygZ/s3E7pUrSGF4In6zkuWplArjZsssi75hsYdDL8nbqRxm1FA0X7UcLkf6hrXxKIvcNI
+ goCs8VBhsdlJr6WSsf5LSEgW3Iv8jMc3YSKMwNSydE8OdeVOG1LS4QCQxu8JE/PlQecYakxGu
+ KldDRTMwuLggnyy6+XeX2c3wrg7pnwljJaUIS+oabo32Xq5p4EItjPnauDx7EgLXDporLQ3LF
+ OZ9WoahdxrHgl3gjupBxyvBcFxJhiRRxaKJktaOPucoC+XLIlUDV7CA3XwFSI1OXRhd5T0iPi
+ PF1FsObDIczm4Gq42WCPaIr4GjD5xztMW/RNSzHUvUW1W5bccxMzdUZPPHQfnkqRQ9uNJsNw7
+ O1A/DeD9UdLCWYjjHV3X7VaUeapbGXZcYDV9HNGijcUJWiEKCDoiASGBY72n6/Loj6mNTLHsF
+ jT7mjGvePQ++AWzm31+7+6H82FIR5fTMTgUvPruaanc7zs0fimqtcejlHdDzcnfvC8Kd5JPsS
+ JlfuuW5i6MdNi8RHNkMcqZzGBuL58pWjQwiAWBbrHzf4Ivg/aAP7kF8+lSHGAwEYXzBwQpBNq
+ d3zhl/dTuxdb7Hr9nfp9ff71d23/fkDT/rHnEROlZUjq8uG7DrfA+VFobqBBqq+Rwk4Uxlg2R
+ UDPnaOWdlW4TzEgZxTVfq+XbCVBj0tiOdwxOzrMOYWz2f6PNtPX+dm+BbROLBGf44dRvHCsGk
+ lFpfk9ycjOFBoHBnNDgJkiQP+caZ1nqO5kECr3kaAgeZHSjTyI3g4Iex2U0d8RIeGwYlJ9Ea/
+ aF3E1GvYKiZwij93qs+hM3mp+JPgn2z6kh+OR70oE12y4RHmwPuosAJ2N2nLscm9vDPKU2Fo4
+ 4bk9fs6kuOStyhGCcMo4ScLISQuEGnLt4tYNjzS6H199LS3V1uZvvVAb1Xf1oQRD83kjSGRQC
+ 1+/THjj+BzHD6T6GkERHbitmCD42PEXbXyqQygSF9pLrbiR02Mm688MzlnaBqMCDba33sP1VP
+ jGC42kH4jV1MBbQsDnII9C1zphtS3QiMrehXVGEqKD1U2hd9W8Pi9nCyA/7Vi3s9cTbRurkFe
+ 7ZWJdv0KpulBqAPMEuMesCNZM/YLxuFWzf6GxnmmAiE9da6etjkieoIyIpNh99/HXmAtv74cd
+ UhF7ek7MNni4kQ6uIGJ0UW+Ks1710n9TOJBd4ce+5+N3HNf6CldhHM0Ogz8iNAZmRbwoc+mhn
+ EHPuXJ/jDP8EyfHcu2degpEW/bKm7/bXbHgv7kZp/8y1d6nRBe+W/aKelP3QsjVYF2C/zzTqK
+ ORFlS/6lsd76xkkE2QgeX2+NcOGI11wNtoFmlKnG2K6fs/STxXV0jr6bKsKVXE7MDTRXwSvjo
+ 4iC1LX9cwjSqbKwst6fNVpkMStbITlCsKn9ZHjv7jDFDJrtufz2Yc0LL51KSglr5XhBb9A/O3
+ q0Ly+m/edzvP5zUj+UvYHtVd8VJ/+Pwzb8OzLChny2/Ti7m5TpBbJwwl/rA750dRhXLR9Wuwr
+ E59x89HwtqaR1kh8CCYpfWwJGxbZkPVd0gpEuA2y6i+0I
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
         RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -76,40 +77,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Without these, /chosen/stdout-path =3D "serial0:115200n8" does not work.
+At least since the YAML conversion, the default-state property is
+described in leds/common.yaml, so there's no need to point to another
+file for its definition.
 
 Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
 =2D--
-v4:
-- Add R-b tag
-
-v3:
-- Move serial aliases to board-specific file
 
 v2:
-- mention WPCM450 in the summary
+- Add Rob's ACK
+- Rebase on Marek Vasut's patch in -next
 =2D--
- arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+ Documentation/devicetree/bindings/leds/common.yaml | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts b=
-/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-index 3ee61251a16d0..83363c578f53c 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-+++ b/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-@@ -15,6 +15,11 @@ / {
- 	model =3D "Supermicro X9SCi-LN4F BMC";
- 	compatible =3D "supermicro,x9sci-ln4f-bmc", "nuvoton,wpcm450";
-
-+	aliases {
-+		serial0 =3D &serial0;
-+		serial1 =3D &serial1;
-+	};
-+
- 	chosen {
- 		stdout-path =3D "serial0:115200n8";
- 	};
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Document=
+ation/devicetree/bindings/leds/common.yaml
+index 3c14a98430e19..75a9497a5ba1d 100644
+=2D-- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -83,8 +83,7 @@ properties:
+       - enum:
+             # LED will act as a back-light, controlled by the framebuffer=
+ system
+           - backlight
+-            # LED will turn on (but for leds-gpio see "default-state" pro=
+perty in
+-            # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
++            # LED will turn on (see also "default-state" property)
+           - default-on
+             # LED "double" flashes at a load average based rate
+           - heartbeat
 =2D-
 2.35.1
 
