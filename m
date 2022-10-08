@@ -2,160 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A299D5F850D
-	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 13:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 307755F851E
+	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 13:50:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbiJHLml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Oct 2022 07:42:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35554 "EHLO
+        id S229676AbiJHLu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Oct 2022 07:50:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiJHLmj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Oct 2022 07:42:39 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E84E847B85;
-        Sat,  8 Oct 2022 04:42:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=Btkb2gtW6RKewRf9IoFqqlzQlwIj6C4A6/4lF9dHJ4A=;
-        b=l5dAPNgrvCo7vGhGb9h3bk+B2VHAZieU04UEdznvKO91rBBD04NAO9GXWUcZVQfmG6k7TKjJe7JtK
-         +G8R4ZfbqVqbEZ+v8RU/qqBztHZgpFMjRbXYDQxyAVkvjm4KqskzYTXJ3bU6g1HDp3LQRgOHy9RlbG
-         tTN3eSupX5P92/HLLJ0Vw0yUWxjMgUe5vwtzw73PDzz5UOkQ6NZGAyiF8mtHoPgN59FnoteMAskjvW
-         Q/QUaHS5U39KrjGPCJ/tItGDQ9Ry0RbTeoLh17sIWjml3egzZH/1Q1sPj8ttfjFTPZmGYL8pbRby4X
-         9wNrlKdhl5IOb+8wRMnrBDMSkMAjZ7Q==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000013,0.013095)], BW: [Enabled, t: (0.000022,0.000001)], RTDA: [Enabled, t: (0.078530), Hit: No, Details: v2.42.0; Id: 15.52k8bv.1germeqff.93rot; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from localhost.localdomain ([92.100.86.33])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Sat, 8 Oct 2022 14:42:27 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, dg@emlix.com, j.zink@pengutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     Ivan Bornyakov <brnkv.i1@gmail.com>, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, system@metrotek.ru,
-        Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v15 2/2] dt-bindings: fpga: document Lattice sysCONFIG FPGA manager
-Date:   Sat,  8 Oct 2022 14:14:19 +0300
-Message-Id: <20221008111419.21245-3-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221008111419.21245-1-i.bornyakov@metrotek.ru>
-References: <20221008111419.21245-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S229547AbiJHLuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Oct 2022 07:50:25 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 770551C117;
+        Sat,  8 Oct 2022 04:50:24 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id b1so5632723lfs.7;
+        Sat, 08 Oct 2022 04:50:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dji2Yw3SxEqIXHoPCkkOxGjvaONXRxPb3yOPhNs389g=;
+        b=pcr8plzA5CjmEreaQB9NbfeIgWGA26IPHwvzgpWz8IqLAM8QW4AfwD7/PpJq8geUsw
+         PFfuJp8MAM1B180Rrt8Hp4MXNa8G0QPTN2/EFHVN5yxhxedf8VHY0m+bUlkrNY0g2Y5s
+         8ppvQvzGIP1TcpMXT1mIv8LCd9XaPxsh8eiSqJ+x8lP7JIsq0K8GAVjj80QI6/dtOVPp
+         FWGJfnbpn0e+jRi5v6qPC2NxzDcsCuw1miGB3po+adJ4HTpe2y/kY/GRToshN9E/Y4+V
+         5WYiwvN+BWPNjtkvmjXN7v4D3WI0bkqsWKu6coU73BEkqSB9dHG6tjMR/gy41cPHoCfg
+         LqBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Dji2Yw3SxEqIXHoPCkkOxGjvaONXRxPb3yOPhNs389g=;
+        b=Pa3Qxqntl8pxSbop8HZEs8dWjK2pTJPFZQLNhHha//3Yzzn0kuCR2ARSK2gyFMmzbD
+         leKrHuGaLNg8YEF+EjiHAbcCth7WbMcw5+OYLWrOht4qA7LBmNlp2Gp4sreLIqcjtzOO
+         D7vPW98Zj4mcz00b/JKmF5xafMKL7TcWLnKqmUKA6BWpWYPsxXxoJbY5VCy7hxstB+Dk
+         Ac0+KT+DOwsZV2SycfyJlVSsvDG5mgrM5s9CjTbBviqHDJ2CI3ti3qc1ubty+BjVpAXb
+         BfNAoHLGwzqAknfTelhM5QWCl8Y+6C/u2cCBmupxV/rH37gOIKlFVerrFdZzlWITRa77
+         qZtQ==
+X-Gm-Message-State: ACrzQf0n3OIlQQGOHoYkZTHL3nt7ADRBlkkvlickUScK9ndbDoLLAP51
+        s5W5+zP3EqRW9tJbxpit33E=
+X-Google-Smtp-Source: AMsMyM6Nil25Amkth0D58wMtsIVBBye5sPIdEv2BPNWT4MRn2Fzuyxvfn6ISWfxb1bacB6OckC6fKA==
+X-Received: by 2002:a05:6512:224d:b0:4a2:7710:9b8b with SMTP id i13-20020a056512224d00b004a277109b8bmr3137394lfu.128.1665229822628;
+        Sat, 08 Oct 2022 04:50:22 -0700 (PDT)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id v18-20020a05651203b200b00494813c689dsm657418lfp.219.2022.10.08.04.50.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Oct 2022 04:50:21 -0700 (PDT)
+Date:   Sat, 8 Oct 2022 14:50:19 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Peter Rosin <peda@axentia.se>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        robh@kernel.org, wsa@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [v9 1/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
+Message-ID: <20221008115019.6jxsbawtye7cdkfh@mobilestation>
+References: <20221007075354.568752-1-patrick.rudolph@9elements.com>
+ <20221007075354.568752-2-patrick.rudolph@9elements.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221007075354.568752-2-patrick.rudolph@9elements.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree Binding doc for configuring Lattice ECP5 FPGA over
-Slave SPI sysCONFIG interface.
+On Fri, Oct 07, 2022 at 09:53:50AM +0200, Patrick Rudolph wrote:
+> Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
+> chips. The functionality will be provided by the exisintg pca954x driver.
+> 
+> While on it make the interrupts support conditionally as not all of the
+> existing chips have interrupts.
+> 
+> For chips that are powered off by default add an optional regulator
+> called vdd-supply.
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> ---
+>  .../bindings/i2c/i2c-mux-pca954x.yaml         | 39 ++++++++++++++++---
+>  1 file changed, 34 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> index 9f1726d0356b..efad0a95806f 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> @@ -4,21 +4,25 @@
+>  $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: NXP PCA954x I2C bus switch
+> +title: NXP PCA954x I2C and compatible bus switches
+>  
+>  maintainers:
+>    - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>  
+>  description:
+> -  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
+> -
 
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/fpga/lattice,sysconfig.yaml      | 81 +++++++++++++++++++
- 1 file changed, 81 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+> -allOf:
+> -  - $ref: /schemas/i2c/i2c-mux.yaml#
 
-diff --git a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-new file mode 100644
-index 000000000000..4fb05eb84e2a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/lattice,sysconfig.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lattice Slave SPI sysCONFIG FPGA manager
-+
-+maintainers:
-+  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+
-+description: |
-+  Lattice sysCONFIG port, which is used for FPGA configuration, among others,
-+  have Slave Serial Peripheral Interface. Only full reconfiguration is
-+  supported.
-+
-+  Programming of ECP5 is done by writing uncompressed bitstream image in .bit
-+  format into FPGA's SRAM configuration memory.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - lattice,sysconfig-ecp5
-+
-+  reg:
-+    maxItems: 1
-+
-+  program-gpios:
-+    description:
-+      A GPIO line connected to PROGRAMN (active low) pin of the device.
-+      Initiates configuration sequence.
-+    maxItems: 1
-+
-+  init-gpios:
-+    description:
-+      A GPIO line connected to INITN (active low) pin of the device.
-+      Indicates that the FPGA is ready to be configured.
-+    maxItems: 1
-+
-+  done-gpios:
-+    description:
-+      A GPIO line connected to DONE (active high) pin of the device.
-+      Indicates that the configuration sequence is complete.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: lattice,sysconfig-ecp5
-+    then:
-+      properties:
-+        spi-max-frequency:
-+          maximum: 60000000
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        fpga-mgr@0 {
-+            compatible = "lattice,sysconfig-ecp5";
-+            reg = <0>;
-+            spi-max-frequency = <20000000>;
-+            program-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
-+            init-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
-+            done-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
--- 
-2.35.1
+Why do you move the allOf statement to the bottom of the schema?
 
+> +  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices,
+> +  and the Maxim MAX735x and MAX736x I2C mux/switch devices.
 
+What about combining the sentence: "The binding supports NXP
+PCA954x/PCA984x and Maxim MAX735x/MAX736x I2C mux/switch devices." ?
+Currently it does look a bit bulky.
+
+>  
+>  properties:
+>    compatible:
+>      oneOf:
+>        - enum:
+> +          - maxim,max7356
+> +          - maxim,max7357
+> +          - maxim,max7358
+> +          - maxim,max7367
+> +          - maxim,max7368
+> +          - maxim,max7369
+>            - nxp,pca9540
+>            - nxp,pca9542
+>            - nxp,pca9543
+> @@ -59,10 +63,33 @@ properties:
+>      description: if present, overrides i2c-mux-idle-disconnect
+>      $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
+>  
+> +  vdd-supply:
+> +    description: A voltage regulator supplying power to the chip.
+> +
+>  required:
+>    - compatible
+>    - reg
+>  
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-mux.yaml#
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - maxim,max7367
+> +                - maxim,max7369
+> +                - nxp,pca9542
+> +                - nxp,pca9543
+> +                - nxp,pca9544
+> +                - nxp,pca9545
+> +    then:
+
+> +      properties:
+> +        interrupts: false
+> +        "#interrupt-cells": false
+> +        interrupt-controller: false
+
+I'd suggest to add an opposite definition. Evaluate the properties for
+the devices which expect them being evaluated instead of falsing their
+existence for the devices which don't support the interrupts.
+
+-Sergey
+
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+> @@ -79,6 +106,8 @@ examples:
+>              #size-cells = <0>;
+>              reg = <0x74>;
+>  
+> +            vdd-supply = <&p3v3>;
+> +
+>              interrupt-parent = <&ipic>;
+>              interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
+>              interrupt-controller;
+> -- 
+> 2.37.3
+> 
