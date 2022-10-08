@@ -2,57 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 065B55F861F
-	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 18:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B8B15F8647
+	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 19:47:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230174AbiJHQ4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Oct 2022 12:56:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60126 "EHLO
+        id S229724AbiJHRrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Oct 2022 13:47:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230143AbiJHQ4h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Oct 2022 12:56:37 -0400
-Received: from mxout4.routing.net (mxout4.routing.net [IPv6:2a03:2900:1:a::9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 986804362E;
-        Sat,  8 Oct 2022 09:56:36 -0700 (PDT)
-Received: from mxbox4.masterlogin.de (unknown [192.168.10.79])
-        by mxout4.routing.net (Postfix) with ESMTP id 156D310094F;
-        Sat,  8 Oct 2022 16:56:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1665248195;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9YIiUZlTrjdPAMVHM7klpVqQezdSDroJaCTYC5nvEj0=;
-        b=km4yddHkV4sqnpW12lvMpNkYt0xlfCd/XoPJkbX2q5TzkkJ15fP0GURXfYijVVwgWvcFqM
-        J7lkGHlJzS9GlSneVrjbcFOb63GQGMrOLBkFUop/w/ijXHNC8YBaMnqZNRqqIgSZFbcXbx
-        vzZ8mV1EmsEEeu0Zuqz5ZJ08ksUE5ag=
-Received: from frank-G5.. (fttx-pool-217.61.149.60.bambit.de [217.61.149.60])
-        by mxbox4.masterlogin.de (Postfix) with ESMTPSA id 5DE3E80098;
-        Sat,  8 Oct 2022 16:56:34 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: [PATCH 2/2] mmc: mediatek: add support for MT7986 SoC
-Date:   Sat,  8 Oct 2022 18:56:27 +0200
-Message-Id: <20221008165627.114782-3-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221008165627.114782-1-linux@fw-web.de>
-References: <20221008165627.114782-1-linux@fw-web.de>
+        with ESMTP id S230309AbiJHRrL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Oct 2022 13:47:11 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D0643641A;
+        Sat,  8 Oct 2022 10:47:10 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id d24so7135852pls.4;
+        Sat, 08 Oct 2022 10:47:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PjOpq6xMtwZ+a3cDZHo77w5YYPm/GULCq55aoUGSZUY=;
+        b=k2PdDqrMFH9TDVs4NNmkDNVW1tZ4DZI2Om3NlqRmVHq/ORP6Ek4CTPo2ChxBkffpqG
+         +exGCZ37mPRtxWvp6qBnqE51uk026LglhI9PMAO1O0WUkbcNgu4Y2BZXkX4t0sjQd2vv
+         6opOW+kcQSbdkSpElJuHFi30ya2mMiySGYPTaFGq0WxOmKGXV06z3yEjDfIXrmXuxfwG
+         LY02yLVqQiOuRSdG3YwNVAoAWHltYXP64dKm09HkasL6+NSyzt6Bu3TtVqj+KdzVFqrD
+         wkzEcXMbwaFHyPvrYgZndfNKbNlXQQI3cU0OG8RlRAKS1Hh8l7+Wf+c1raSlJVQu6xVB
+         w1dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PjOpq6xMtwZ+a3cDZHo77w5YYPm/GULCq55aoUGSZUY=;
+        b=Gz9JEEyc6WAgib6HJwb4+3Z6UQVpsqk18K4/sm5HjgTN7KrVBg5GJ6kGrgjNIVBoiR
+         NYhsCBKDEMfRE24zjdoXx8uDRX5PH+xAM6slwOlssfJPA81f92cd7Nx6TVZvkU6ze9sk
+         QlJaBrR3wyPPl9VFw32o1V/0UX+GSIipcQ+nxIezQ10yapN5GPKsbofO0IxYXuvDb1gt
+         +Kr30rSAd+JJ6Jwjq8qiY/zBzWxbxttKisgJZvKiv2wYUoGOvsBuHpldme91ZyS5fonb
+         prT/aoRetxUXxlE3JIlQcWGJ4gwthqpm0dzqpD/DbJ/znzvQBcsYKIhblFz5e7+Vd3PE
+         tq7g==
+X-Gm-Message-State: ACrzQf1mhYUfOxk6D3Cm5gLWH/Cr0mTO58oxcx3aWDW4QoQpKJ6n213l
+        oo4krmoopl+R1txDapLTokfvydvtyygNog==
+X-Google-Smtp-Source: AMsMyM5PNS0KaEXVCBl5n03E5vdpEpUJXbhW17H5h1iuFum/emGaclK/NUUxFJWQgBx3uTysCD1PQg==
+X-Received: by 2002:a17:90b:1d4c:b0:20a:8db1:da52 with SMTP id ok12-20020a17090b1d4c00b0020a8db1da52mr22216569pjb.98.1665251229287;
+        Sat, 08 Oct 2022 10:47:09 -0700 (PDT)
+Received: from skynet-linux.local ([2406:7400:61:5d7c:3fe4:8f6d:b1b6:f2bf])
+        by smtp.googlemail.com with ESMTPSA id o9-20020a170903210900b0017f7d7e95d3sm3583270ple.167.2022.10.08.10.47.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Oct 2022 10:47:08 -0700 (PDT)
+From:   Sireesh Kodali <sireeshkodali1@gmail.com>
+To:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        dmitry.baryshkov@linaro.org,
+        Sireesh Kodali <sireeshkodali1@gmail.com>
+Subject: [PATCH v3 0/2] remoteproc: qcom: Add support for MSM8953 ADSP
+Date:   Sat,  8 Oct 2022 23:16:56 +0530
+Message-Id: <20221008174658.336470-1-sireeshkodali1@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mail-ID: 8ce3f27c-43c1-411d-b25c-a3173c96a672
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,49 +71,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sam Shih <sam.shih@mediatek.com>
+This patch series adds support for the ADSP PIL as found on the MSM8953
+platform. It is a subset of a previous patch series.
 
-Adding mt7986 own characteristics and of_device_id to have support
-of MT7986 SoC.
+Changes since v2:
+ * Made ordering of compatible strings lexical in doc patch
 
-Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- drivers/mmc/host/mtk-sd.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Link to v1: https://lkml.org/lkml/2022/10/6/18
 
-diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-index df941438aef5..3f7f3a1e0df8 100644
---- a/drivers/mmc/host/mtk-sd.c
-+++ b/drivers/mmc/host/mtk-sd.c
-@@ -552,6 +552,19 @@ static const struct mtk_mmc_compatible mt7622_compat = {
- 	.support_64g = false,
- };
- 
-+static const struct mtk_mmc_compatible mt7986_compat = {
-+	.clk_div_bits = 12,
-+	.recheck_sdio_irq = true,
-+	.hs400_tune = false,
-+	.pad_tune_reg = MSDC_PAD_TUNE0,
-+	.async_fifo = true,
-+	.data_tune = true,
-+	.busy_check = true,
-+	.stop_clk_fix = true,
-+	.enhance_rx = true,
-+	.support_64g = true,
-+};
-+
- static const struct mtk_mmc_compatible mt8135_compat = {
- 	.clk_div_bits = 8,
- 	.recheck_sdio_irq = true,
-@@ -609,6 +622,7 @@ static const struct of_device_id msdc_of_ids[] = {
- 	{ .compatible = "mediatek,mt6795-mmc", .data = &mt6795_compat},
- 	{ .compatible = "mediatek,mt7620-mmc", .data = &mt7620_compat},
- 	{ .compatible = "mediatek,mt7622-mmc", .data = &mt7622_compat},
-+	{ .compatible = "mediatek,mt7986-mmc", .data = &mt7986_compat},
- 	{ .compatible = "mediatek,mt8135-mmc", .data = &mt8135_compat},
- 	{ .compatible = "mediatek,mt8173-mmc", .data = &mt8173_compat},
- 	{ .compatible = "mediatek,mt8183-mmc", .data = &mt8183_compat},
+Sireesh Kodali (2):
+  remoteproc: qcom: pas: Add MSM8953 ADSP PIL support
+  dt-bindings: remoteproc: qcom: adsp: Add ADSP on MSM8953
+
+ Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 5 +++++
+ drivers/remoteproc/qcom_q6v5_pas.c                          | 1 +
+ 2 files changed, 6 insertions(+)
+
 -- 
-2.34.1
+2.37.3
 
