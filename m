@@ -2,153 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8B965F82B1
-	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 05:21:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ED1D5F82D0
+	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 05:45:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbiJHDVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Oct 2022 23:21:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55180 "EHLO
+        id S229639AbiJHDp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Oct 2022 23:45:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiJHDVP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 23:21:15 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 96F0CF473B;
-        Fri,  7 Oct 2022 20:21:13 -0700 (PDT)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Axy2qd7EBjHiQoAA--.12248S2;
-        Sat, 08 Oct 2022 11:21:02 +0800 (CST)
-Subject: Re: [PATCH v1 2/2] dt-bindings: hpet: add loongson2k hpet binding
+        with ESMTP id S229481AbiJHDpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Oct 2022 23:45:18 -0400
+Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 570883385D;
+        Fri,  7 Oct 2022 20:45:10 -0700 (PDT)
+X-QQ-mid: bizesmtp83t1665200686tzpdo9vx
+Received: from [192.168.0.179] ( [113.85.219.225])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Sat, 08 Oct 2022 11:44:44 +0800 (CST)
+X-QQ-SSF: 0100000000000070B000000A0000000
+X-QQ-FEAT: 5q30pvLz2icsEuufAGCipRcNEAph5F1NreXxmwTiOB81pjLvIeHTUCJHoejvj
+        xszPS/H7HnRPCCwPI76Wy6OgloCXqv3WBfz+JCNR6CvwHY8jIiK7OaSs4BSz3FHgyDWm18M
+        oaRfvlN9I9TAJ/2luWIMMslqd4pAJ145pQsI/sT7o95rfvr4YXDu0luZFoV6fOraDZRqXO0
+        L26Ewd0+jc8P1Z3CUfFEnzxgZ9lx63QvxRxuB6Dz+LQUh7b5oTbz6pQNde69BTIYZ8u+HBX
+        Ci8t6uuccQ+2QZ4hm7IqzvkW5164wMP8NVGAMap/WQup2FhDKWi5GRwuHDBVd1GVM0KjYIT
+        s3RB1I3QAnJPYSb7Io2o/DVdiLtoOjnthc396jbELnR/+r20Y1tyoa9xl8g70IipdeIRQDt
+X-QQ-GoodBg: 0
+Message-ID: <394AB2D3535D9461+093b7754-53cb-87c7-8f0e-68326a1ab3c5@linux.starfivetech.com>
+Date:   Sat, 8 Oct 2022 11:44:43 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v1 01/30] dt-bindings: riscv: Add StarFive JH7110 bindings
+Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yun Liu <liuyun@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        loongarch@lists.linux.dev, zhuyinbo@loongson.cn
-References: <20220930093510.10781-1-zhuyinbo@loongson.cn>
- <20220930093510.10781-2-zhuyinbo@loongson.cn>
- <ba5873fa-83fc-2d16-b8c0-715ae8bf630a@linaro.org>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <80af028d-d123-6894-189a-a26134ec89ee@loongson.cn>
-Date:   Sat, 8 Oct 2022 11:21:01 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <ba5873fa-83fc-2d16-b8c0-715ae8bf630a@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Axy2qd7EBjHiQoAA--.12248S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7ZFWDuFyxWFy7ZFyrWFyUJrb_yoW8tFy8pF
-        4fCFs8AF409F13u392qF1UuFn8Zw1kAF17Gr17J34UCF98G3Wft3WjgryDZ3yfCr4xJay7
-        ZF1F9r12ga15uFJanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUU9G14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-        1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-        6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr
-        1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
-        6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
-        0_Gr1lF7xvr2IY64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
-        n2IY04v7Mxk0xIA0c2IEe2xFo4CEbIxvr21lc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
-        C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
-        wI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
-        vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v2
-        0xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxV
-        W8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbXdbUUUUUU==
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        linux-kernel@vger.kernel.org
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+ <20220929143225.17907-2-hal.feng@linux.starfivetech.com>
+ <5cd77839-d75b-9290-5d34-90d6464938d6@linaro.org>
+From:   Hal Feng <hal.feng@linux.starfivetech.com>
+In-Reply-To: <5cd77839-d75b-9290-5d34-90d6464938d6@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:linux.starfivetech.com:qybglogicsvr:qybglogicsvr2
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_NONE,T_SPF_HELO_TEMPERROR
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 29 Sep 2022 16:34:22 +0200, Krzysztof Kozlowski wrote:
+> On 29/09/2022 16:31, Hal Feng wrote:
+> > From: Emil Renner Berthing <kernel@esmil.dk>
+> 
+> Drop last "bindings" from subject, it's redundant.
 
+Will fix. Thanks.
 
-在 2022/9/30 下午5:58, Krzysztof Kozlowski 写道:
-> On 30/09/2022 11:35, Yinbo Zhu wrote:
->> Add the loongson2k High Precision Event Timer (HPET) binding
->> with DT schema format using json-schema.
->>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> ---
->>   .../bindings/timer/loongson,ls2k-hpet.yaml    | 41 +++++++++++++++++++
->>   MAINTAINERS                                   |  1 +
->>   2 files changed, 42 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml b/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
->> new file mode 100644
->> index 000000000000..1a8785076228
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
->> @@ -0,0 +1,41 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/timer/loongson,ls2k-hpet.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Loongson2k High Precision Event Timer (HPET)
->> +
->> +maintainers:
->> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->> +
->> +properties:
->> +  compatible:
->> +    const: loongson,ls2k-hpet
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clock-frequency: true
 > 
-> clock frequency of what? I assume it's too early to use common clock
-> framework and just get the clock?
-The clock-frequency is 125000000, It doesn't support use common clock 
-framework and just get the clock from dts, and I refer 
-"arm,armv7m-systick" to add the clock-frequency information:
+> > 
+> > Add device tree bindings for the StarFive JH7110 RISC-V SoC and the
+> > VisionFive2 board for it.
+> > 
+> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
+> > ---
+> >  Documentation/devicetree/bindings/riscv/starfive.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > index 5b36243fd674..543be573921d 100644
+> > --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > @@ -21,6 +21,9 @@ properties:
+> >        - items:
+> >            - const: beagle,beaglev-starlight-jh7100-r0
+> >            - const: starfive,jh7100
+> 
+> Blank line.
 
-   clock-frequency: true
+Will fix. Thanks.
 
-oneOf:
-   - required:
-       - clocks
-   - required:
-       - clock-frequency
-> 
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clock-frequency
->> +  - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    hpet0: hpet@1fe24000 {
-> 
-> Node name: timer
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> You can drop the  "hpet0" label.
-okay, I got it.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Best Regards,
+Hal
 
