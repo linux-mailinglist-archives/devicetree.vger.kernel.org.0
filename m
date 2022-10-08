@@ -2,113 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 382E45F8570
-	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 15:19:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A05815F857F
+	for <lists+devicetree@lfdr.de>; Sat,  8 Oct 2022 15:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229494AbiJHNTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Oct 2022 09:19:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34192 "EHLO
+        id S229573AbiJHNyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Oct 2022 09:54:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiJHNT3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Oct 2022 09:19:29 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D0A39111;
-        Sat,  8 Oct 2022 06:19:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1665235160;
-        bh=jEHvMUCQRRCEO/jqzijoupUp1nOWB4b8v070TsC6ZPA=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=gQfmBHOjuwRuPVS1JFywMk0QnjMZO3vt11lnuv5WmBT9qj1RiV3pwVnH2So3oUV1W
-         9VF0+bRJYUDSuRd9dRCAuD3XY7rW9UgxBYAfNY1lvim6qoiIvNJCWhQVMlWFRIaViH
-         N/ril2VIx4qAXd35esx5JpqoilFgK6ZIpwGrETd4=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from probook ([78.35.76.13]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MLQxX-1oPlZj13gJ-00IXTf; Sat, 08
- Oct 2022 15:19:20 +0200
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-leds@vger.kernel.org
-Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Rob Herring <robh@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S229459AbiJHNyP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Oct 2022 09:54:15 -0400
+Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A4AC3FD6D;
+        Sat,  8 Oct 2022 06:54:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+        ; s=202004.hall; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:Reply-To:
+        Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+        bh=Zs3yse/FCc/d/dZqMfl/7G2TNvLufktmf9MIa0JGpys=; b=UFvvdHiVxRouMXUh+R18sax4A7
+        K/xKg4nWLVld9dBRwZatPGbocpqoozbMOIAbhonSn6953ElnavnoVuWW8oqraZtM7jBl5Sy5zCUPA
+        pps9CdY4CabpcvC1IGEOYuxpP8aOBGTCb2AZ1uWlXYBuKe7q3ojlaciEh4hJ6DIOSeitCZ5cmrwh2
+        fHB6fyI51TObKQgBPtMym1DRUEY1fqByGJIM02dzpyO0pWRIBCtDbwuMoUaaTB/C4oV6rrOjCvsod
+        sjSEn9qP/le7yP8UDBd6Yy43zDcK2Ee5Zhs8KF7ruZdI1z9US0wI/GUUIil3yHHsnfOi7AWULYV+8
+        5HUrJdag==;
+Received: from aurel32 by hall.aurel32.net with local (Exim 4.94.2)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1ohAH9-0022Yw-9i; Sat, 08 Oct 2022 15:53:59 +0200
+Date:   Sat, 8 Oct 2022 15:53:59 +0200
+From:   Aurelien Jarno <aurelien@aurel32.net>
+To:     Dan Johansen <strit@manjaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Dongjin Kim <tobetter@gmail.com>
+Subject: Re: [PATCH v3 00/13] Add support for the Hardkernel ODROID-M1 board
+Message-ID: <Y0GA92rYss1Wslgr@aurel32.net>
+Mail-Followup-To: Dan Johansen <strit@manjaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: leds: Fix reference to definition of default-state
-Date:   Sat,  8 Oct 2022 15:19:18 +0200
-Message-Id: <20221008131918.1235397-1-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.35.1
+        Heiko Stuebner <heiko@sntech.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Dongjin Kim <tobetter@gmail.com>
+References: <20220930051246.391614-1-aurelien@aurel32.net>
+ <8e84786d-8ae9-0f51-3438-24fb340199c6@manjaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:s2OreZEqHqiOMvR52Gp7PzIpv94IgqKuzVJIQfqB7hGdo4QhmfF
- q4BG6kY7T+lM6e1DDnGKRCyKuoRTyeu2JaBYmyKyV+S4NVHnt05kv0mgAkG8NJago+RbYaT
- gqGO8T4fG1Y4Q5CVCqPEP+g8jrqsE7INY1jkC7duiWO/u3msg97+B1gsbefK3XP69bEvFIs
- AGkyH87a4Z1oIG6KR9LLA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:7En4xnBQYcI=:G3XZOiCsbUGEZAtafFJTn+
- omyHygZ/s3E7pUrSGF4In6zkuWplArjZsssi75hsYdDL8nbqRxm1FA0X7UcLkf6hrXxKIvcNI
- goCs8VBhsdlJr6WSsf5LSEgW3Iv8jMc3YSKMwNSydE8OdeVOG1LS4QCQxu8JE/PlQecYakxGu
- KldDRTMwuLggnyy6+XeX2c3wrg7pnwljJaUIS+oabo32Xq5p4EItjPnauDx7EgLXDporLQ3LF
- OZ9WoahdxrHgl3gjupBxyvBcFxJhiRRxaKJktaOPucoC+XLIlUDV7CA3XwFSI1OXRhd5T0iPi
- PF1FsObDIczm4Gq42WCPaIr4GjD5xztMW/RNSzHUvUW1W5bccxMzdUZPPHQfnkqRQ9uNJsNw7
- O1A/DeD9UdLCWYjjHV3X7VaUeapbGXZcYDV9HNGijcUJWiEKCDoiASGBY72n6/Loj6mNTLHsF
- jT7mjGvePQ++AWzm31+7+6H82FIR5fTMTgUvPruaanc7zs0fimqtcejlHdDzcnfvC8Kd5JPsS
- JlfuuW5i6MdNi8RHNkMcqZzGBuL58pWjQwiAWBbrHzf4Ivg/aAP7kF8+lSHGAwEYXzBwQpBNq
- d3zhl/dTuxdb7Hr9nfp9ff71d23/fkDT/rHnEROlZUjq8uG7DrfA+VFobqBBqq+Rwk4Uxlg2R
- UDPnaOWdlW4TzEgZxTVfq+XbCVBj0tiOdwxOzrMOYWz2f6PNtPX+dm+BbROLBGf44dRvHCsGk
- lFpfk9ycjOFBoHBnNDgJkiQP+caZ1nqO5kECr3kaAgeZHSjTyI3g4Iex2U0d8RIeGwYlJ9Ea/
- aF3E1GvYKiZwij93qs+hM3mp+JPgn2z6kh+OR70oE12y4RHmwPuosAJ2N2nLscm9vDPKU2Fo4
- 4bk9fs6kuOStyhGCcMo4ScLISQuEGnLt4tYNjzS6H199LS3V1uZvvVAb1Xf1oQRD83kjSGRQC
- 1+/THjj+BzHD6T6GkERHbitmCD42PEXbXyqQygSF9pLrbiR02Mm688MzlnaBqMCDba33sP1VP
- jGC42kH4jV1MBbQsDnII9C1zphtS3QiMrehXVGEqKD1U2hd9W8Pi9nCyA/7Vi3s9cTbRurkFe
- 7ZWJdv0KpulBqAPMEuMesCNZM/YLxuFWzf6GxnmmAiE9da6etjkieoIyIpNh99/HXmAtv74cd
- UhF7ek7MNni4kQ6uIGJ0UW+Ks1710n9TOJBd4ce+5+N3HNf6CldhHM0Ogz8iNAZmRbwoc+mhn
- EHPuXJ/jDP8EyfHcu2degpEW/bKm7/bXbHgv7kZp/8y1d6nRBe+W/aKelP3QsjVYF2C/zzTqK
- ORFlS/6lsd76xkkE2QgeX2+NcOGI11wNtoFmlKnG2K6fs/STxXV0jr6bKsKVXE7MDTRXwSvjo
- 4iC1LX9cwjSqbKwst6fNVpkMStbITlCsKn9ZHjv7jDFDJrtufz2Yc0LL51KSglr5XhBb9A/O3
- q0Ly+m/edzvP5zUj+UvYHtVd8VJ/+Pwzb8OzLChny2/Ti7m5TpBbJwwl/rA750dRhXLR9Wuwr
- E59x89HwtqaR1kh8CCYpfWwJGxbZkPVd0gpEuA2y6i+0I
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <8e84786d-8ae9-0f51-3438-24fb340199c6@manjaro.org>
+User-Agent: Mutt/2.0.5 (2021-01-21)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-At least since the YAML conversion, the default-state property is
-described in leds/common.yaml, so there's no need to point to another
-file for its definition.
+On 2022-10-08 14:11, Dan Johansen wrote:
+>=20
+> Den 30.09.2022 kl. 07.12 skrev Aurelien Jarno:
+> > On the ODROID forum, Dongjin Kim said he is not planning to submit a new
+> > version of the patchset adding support for the Hardkernel ODROID-M1
+> > board. I therefore decided to address the issues reported during the
+> > initial review, and I also did some small fixes either because some
+> > things changed in the meantime on the kernel side or because I noticed
+> > some warning or issues when using the hardware.
+> >=20
+> > I continued writing some additional patches to complete the ODROID M1
+> > DTS to almost fully support the hardware, the drivers being already
+> > present in the kernel.
+> >=20
+> > This new version includes feedback from the linux-rockchip mailing list
+> > and from the Odroid forum.
+> >=20
+> > Changes since v2:
+> > * Renamed "Rockchip RK3568 Hardkernel ODROID-M1" into "Hardkernel Odroid
+> >    M1" and fix the sorting.
+> > * Fix sorting of arch/arm64/boot/dts/rockchip/Makefile
+> > * Collected Acked-by and Tested-by
+>=20
+> Even though I added my Tested-by to this series, it seems I didn't test it
+> on eMMC.
+>=20
+> This fails to boot for me on eMMC, but works on SD card and NVMe.
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-Acked-by: Rob Herring <robh@kernel.org>
-=2D--
+Thanks for the feedback. I do not have an eMMC, so this the only part
+=66rom the patchset that I haven't been able to test.
 
-v2:
-- Add Rob's ACK
-- Rebase on Marek Vasut's patch in -next
-=2D--
- Documentation/devicetree/bindings/leds/common.yaml | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+First of all, which version have you tested? The v2 includes fixes for
+the eMMC, there was a conflict with the NOR flash. If the problem is
+still there in the v2, could you please send the boot log or the error
+message?
 
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Document=
-ation/devicetree/bindings/leds/common.yaml
-index 3c14a98430e19..75a9497a5ba1d 100644
-=2D-- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -83,8 +83,7 @@ properties:
-       - enum:
-             # LED will act as a back-light, controlled by the framebuffer=
- system
-           - backlight
--            # LED will turn on (but for leds-gpio see "default-state" pro=
-perty in
--            # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
-+            # LED will turn on (see also "default-state" property)
-           - default-on
-             # LED "double" flashes at a load average based rate
-           - heartbeat
-=2D-
-2.35.1
+Thanks
+Aurelien
 
+--=20
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                 http://www.aurel32.net
