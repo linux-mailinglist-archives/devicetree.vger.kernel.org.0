@@ -2,51 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0F865F8AF9
-	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 13:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30B2C5F8B04
+	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 13:57:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbiJILsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Oct 2022 07:48:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35030 "EHLO
+        id S230057AbiJIL5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Oct 2022 07:57:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbiJILsm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 07:48:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C75C72D74F;
-        Sun,  9 Oct 2022 04:48:41 -0700 (PDT)
+        with ESMTP id S229615AbiJIL5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 07:57:04 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9195927FD6;
+        Sun,  9 Oct 2022 04:57:03 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 626AF60B9E;
-        Sun,  9 Oct 2022 11:48:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6786C433C1;
-        Sun,  9 Oct 2022 11:48:40 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 41DE7B80C69;
+        Sun,  9 Oct 2022 11:57:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6954C433C1;
+        Sun,  9 Oct 2022 11:57:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665316120;
-        bh=RNdMc/upqP/HYJ68heIn2uj20s8Dh7LI83jmdVsUqQY=;
+        s=k20201202; t=1665316621;
+        bh=hYjoxctxSezsq5WfQzlrPURoHBTIkye+1k5THiZzHcc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AZ5xZ6ARsO2+lgGO0XIhGF+DcKU5XmGYroe3bkUgrjpHzhRQlMjr67ipvsQT8O9S+
-         rbFfzIU2zpvzjWzBYstka3bthUJtk13BYsvHYvnmyhXgfIXD+jJGBkG+0vj/08gJog
-         q5vynTIGFBkdmuoLwRauWe/+FS8RuB5qd4KNHv7wgQtvt2cJTnvndL02PqiZpjkajF
-         Z5/rI+q/PGmtc48QTdXpyFj+Kw9uJj545VmU4e6E/pGISnearvw22uOZYlsauACM+H
-         xcEDumiky/Ch50ka9IxHEP8G/JmzcNuCXZcLtvmmE8ieWttBm03W5V3dVYpsirqCVV
-         KbHpPBgzc+u8w==
+        b=Yp+jQhKloviZsn82Kw5Z4ALBrWWIwmG0JDFno3WV3TDAIW7qu3ebJQiGjC4zTel/u
+         mgW0m4avS92jJRk7hOW9hOIAGzXsq36hmVQ78GAu/uFOEl+DK1uazREpesFwpa1Wl6
+         Je4wafpeQ98MfkDO0OzpE3Djaz9r8Y3Pc2Op6Tut9p+tWgi7/POkC/QZEv7tkQhIBt
+         Z9ocDqYIJO30FW1se/D/MCM4VLhFVxtW8gFKN4ZxIRUAMoTaRcVYRgyTxo+EbjSvTy
+         0seoxjEOmy+9lvYfGO5J5+nvRpTGp6HzLqcgQ3oaKTjh7iVeFbE0IJiDbU5JBgRHpY
+         zOpknG7Mt1azQ==
 Received: by pali.im (Postfix)
-        id 37E697C1; Sun,  9 Oct 2022 13:48:38 +0200 (CEST)
-Date:   Sun, 9 Oct 2022 13:48:38 +0200
+        id 363F57C1; Sun,  9 Oct 2022 13:56:58 +0200 (CEST)
+Date:   Sun, 9 Oct 2022 13:56:58 +0200
 From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Gregory Clement <gregory.clement@bootlin.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: armada-3720-turris-mox: Add missing
- interrupt for RTC
-Message-ID: <20221009114838.fsw5xqa3dtntejde@pali>
-References: <20220924115826.7891-1-pali@kernel.org>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: marvell: Update Armada 37xx platform
+ bindings
+Message-ID: <20221009115658.to3yu7zs5iu2goh7@pali>
+References: <20220713200123.22612-1-pali@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220924115826.7891-1-pali@kernel.org>
+In-Reply-To: <20220713200123.22612-1-pali@kernel.org>
 User-Agent: NeoMutt/20180716
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -57,34 +56,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gregory: PING
+Gregory: ping
 
-On Saturday 24 September 2022 13:58:26 Pali Rohár wrote:
-> MCP7940MT-I/MNY RTC has connected interrupt line to GPIO2_5.
+On Wednesday 13 July 2022 22:01:23 Pali Rohár wrote:
+> Distinguish between Armada 3700 family, Armada 3710 SoC and Armada 3720 SoC.
+> Armada 3720 DB is name of the board with Armada 3720 SoC, so correctly
+> indicate SoC in example.
 > 
-> Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
 > Signed-off-by: Pali Rohár <pali@kernel.org>
 > ---
->  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/arm/marvell/armada-37xx.txt        | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> index 5840ed129309..802862fe2060 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> @@ -125,9 +125,12 @@
->  	/delete-property/ mrvl,i2c-fast-mode;
->  	status = "okay";
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+> index f6d6642d81c0..d2ca008de266 100644
+> --- a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+> @@ -4,6 +4,11 @@ Marvell Armada 37xx Platforms Device Tree Bindings
+>  Boards using a SoC of the Marvell Armada 37xx family must carry the
+>  following root node property:
 >  
-> +	/* MCP7940MT-I/MNY RTC */
->  	rtc@6f {
->  		compatible = "microchip,mcp7940x";
->  		reg = <0x6f>;
-> +		interrupt-parent = <&gpiosb>;
-> +		interrupts = <5 0>; /* GPIO2_5 */
->  	};
->  };
+> + - compatible: must contain "marvell,armada3700"
+> +
+> +In addition, boards using the Marvell Armada 3710 SoC shall have the
+> +following property before the previous one:
+> +
+>   - compatible: must contain "marvell,armada3710"
 >  
+>  In addition, boards using the Marvell Armada 3720 SoC shall have the
+> @@ -13,7 +18,7 @@ following property before the previous one:
+>  
+>  Example:
+>  
+> -compatible = "marvell,armada-3720-db", "marvell,armada3720", "marvell,armada3710";
+> +compatible = "marvell,armada-3720-db", "marvell,armada3720", "marvell,armada3700";
+>  
+>  
+>  Power management
 > -- 
 > 2.20.1
 > 
