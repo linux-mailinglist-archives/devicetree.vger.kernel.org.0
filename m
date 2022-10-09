@@ -2,59 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 590295F8C3D
-	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 18:16:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72BA15F8C62
+	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 18:41:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229937AbiJIQQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Oct 2022 12:16:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46738 "EHLO
+        id S229691AbiJIQlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Oct 2022 12:41:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbiJIQQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 12:16:25 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B285D2B265;
-        Sun,  9 Oct 2022 09:15:51 -0700 (PDT)
+        with ESMTP id S230058AbiJIQle (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 12:41:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26935BC98;
+        Sun,  9 Oct 2022 09:41:34 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 45661B80D6F;
-        Sun,  9 Oct 2022 16:15:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D6F9C433C1;
-        Sun,  9 Oct 2022 16:15:41 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7CB3F60C41;
+        Sun,  9 Oct 2022 16:41:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D117BC433C1;
+        Sun,  9 Oct 2022 16:41:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665332146;
-        bh=4cm2c0fOvu9nkij3uX1+ze9n1lMXyfLq2WBLGR1H5wo=;
+        s=k20201202; t=1665333692;
+        bh=zVR71JU/UpAI0sS5K+0vpB9MY/SnZLjg19Qy4gojgDw=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=EcJLppsNNuahtyuUcfoXT+8pjXqwSxL/2UEBG+kfkXIEv0S6/CphyUb5XUmPvA7DX
-         PpLNJoBzaRlyAJ73xUnsC7b3WTKIiSNJkBwLyl3d/tQb/5sqVVqPJ93ScoHEbTpvVw
-         opgdc6R7zX79avXxV5t0OIY5+UgZI5TA36WGvVN5PrfW19cgzU0dJoNcZzDbXkVKXx
-         OaWaQUlXr/I9bM1TygJqg3TiHuHwsOS/R2rgYAPsBv+lGmNRRFW/n2/vC4S7Zk9ESC
-         9ifG1cSJ1OKWmjHPFGmG//Hg0/4VjwDM+2jtjvuEVa//6FUwEZnNpCwjT8zFfrBzLX
-         mfoVnbCInvnQg==
-Date:   Sun, 9 Oct 2022 17:16:05 +0100
+        b=t1dOg6WeadbkxoyduvoN1TE/xZfxSZabyGLxzS2zpiLHeHzXvDFF7CHVDHGhgQvxu
+         5N4pbD/IbE9I+NiPU0jzD7mLpbh4PURZjS31cYVrIqzxCeOTkyW3mUZdLm78BchDlk
+         dazV0KS1xcCpHo4bEJUXjFWg++BAV70kga4tfCPPdDqzd+sM6+naXhZk1LsALrBsS9
+         ep+3v4qHvjG39IhqqMj27UwbV0UHD14Hlx0Bkb4MRzPUgXrQdOjHB+1rlNhw1pZMq6
+         EAH01FuyL3GoaNhgdTquqE4jWaVRIAnqdwD6O7wA03hIX3uGhBfny6dcienvtuJrVg
+         oa8Bt2+5yLQXw==
+Date:   Sun, 9 Oct 2022 17:41:54 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Matheus Tavares <matheus.bernardino@usp.br>,
-        linux-iio@vger.kernel.org,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Nuno Sa <nuno.sa@analog.com>, linux-kernel@vger.kernel.org,
-        Nishant Malpani <nish.malpani25@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Tomasz Duszynski <tduszyns@gmail.com>,
-        Cristian Pop <cristian.pop@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rui Miguel Silva <rmfrfs@gmail.com>,
-        Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/8] dt-bindings: iio: addac: adi,ad74413r: use
- spi-peripheral-props.yaml
-Message-ID: <20221009171605.12017856@jic23-huawei>
-In-Reply-To: <166497632690.3268685.6335632613671776795.robh@kernel.org>
-References: <20221004115642.63749-1-krzysztof.kozlowski@linaro.org>
-        <166497632690.3268685.6335632613671776795.robh@kernel.org>
+To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+Cc:     <linux-iio@vger.kernel.org>, <Nuno.Sa@analog.com>,
+        <Nurettin.Bolucu@analog.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v8 1/3] iio: adc: add max11410 adc driver
+Message-ID: <20221009174154.41569d52@jic23-huawei>
+In-Reply-To: <20221003105903.229-2-Ibrahim.Tilki@analog.com>
+References: <20221003105903.229-1-Ibrahim.Tilki@analog.com>
+        <20221003105903.229-2-Ibrahim.Tilki@analog.com>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -68,34 +56,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 5 Oct 2022 08:25:27 -0500
-Rob Herring <robh@kernel.org> wrote:
+On Mon, 3 Oct 2022 13:59:01 +0300
+Ibrahim Tilki <Ibrahim.Tilki@analog.com> wrote:
 
-> On Tue, 04 Oct 2022 13:56:35 +0200, Krzysztof Kozlowski wrote:
-> > Reference the spi-peripheral-props.yaml schema to allow using all
-> > properties typical for SPI-connected devices, even these which device
-> > bindings author did not tried yet.
-> > 
-> > While changing additionalProperties->unevaluatedProperties, put it in
-> > typical place, just before example DTS.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  .../devicetree/bindings/iio/addac/adi,ad74413r.yaml        | 7 +++++--
-> >  1 file changed, 5 insertions(+), 2 deletions(-)
-> >   
+> Adding support for max11410 24-bit, 1.9ksps delta-sigma adc which
+> has 3 differential reference and 10 differential channel inputs.
+> Inputs and references can be buffered internally. Inputs can also
+> be amplified with internal PGA.
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
+> Device has four digital filter modes: FIR50/60, FIR50, FIR60 and SINC4.
+> FIR 50Hz and 60Hz rejections can be enabled/disabled separately.
+> Digital filter selection affects sampling frequency range so driver
+> has to consider the configured filter when configuring sampling frequency.
+> 
+> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+One small thing inline that I tidied up whilst applying.
 
-Series applied,.
 
-Kryzsztof, thanks for your continuing work to clean this stuff up.
-One small request for future similar series. Please add a cover
-letter with a very minimal intro. If nothing else it gives me an
-obviously place to reply to in order to say I applied them all!
+> +static int max11410_configure_channel(struct max11410_state *st,
+> +				      struct iio_chan_spec const *chan)
+> +{
+> +	struct max11410_channel_config cfg = st->channels[chan->address];
+> +	unsigned int regval;
+> +	int ret;
+> +
+> +	if (chan->differential)
+> +		ret = max11410_set_input_mux(st, chan->channel, chan->channel2);
+> +	else
+> +		ret = max11410_set_input_mux(st, chan->channel,
+> +					     MAX11410_AINN_GND);
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	regval = FIELD_PREP(MAX11410_CTRL_VREFP_BUF_BIT, cfg.buffered_vrefp) |
+> +		 FIELD_PREP(MAX11410_CTRL_VREFN_BUF_BIT, cfg.buffered_vrefn) |
+> +		 FIELD_PREP(MAX11410_CTRL_REFSEL_MASK, cfg.refsel) |
+> +		 FIELD_PREP(MAX11410_CTRL_UNIPOLAR_BIT, !cfg.bipolar);
+drivers/iio/adc/max11410.c:370:18: warning: dubious: x & !y 
 
-Also works for anyone who wants to give series wide tags.
+I've fixed it with
+... cfg.bipolar ? 0 : 1);
 
-Thanks,
+Shout if that's an issue (I've gotten these backwards in the past ;)
 
-Jonathan
