@@ -2,57 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5A415F8AEF
-	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 13:40:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0F865F8AF9
+	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 13:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230003AbiJILku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Oct 2022 07:40:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55234 "EHLO
+        id S230060AbiJILsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Oct 2022 07:48:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbiJILkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 07:40:49 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E53F325EA7;
-        Sun,  9 Oct 2022 04:40:48 -0700 (PDT)
+        with ESMTP id S229940AbiJILsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 07:48:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C75C72D74F;
+        Sun,  9 Oct 2022 04:48:41 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 90C5BB80C69;
-        Sun,  9 Oct 2022 11:40:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21CCCC433C1;
-        Sun,  9 Oct 2022 11:40:46 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 626AF60B9E;
+        Sun,  9 Oct 2022 11:48:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6786C433C1;
+        Sun,  9 Oct 2022 11:48:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665315646;
-        bh=D458pyFePFvs7htAJzZC7c6ouO/HzFuwkez6kvkqbTI=;
+        s=k20201202; t=1665316120;
+        bh=RNdMc/upqP/HYJ68heIn2uj20s8Dh7LI83jmdVsUqQY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tCEdDtaQUc+ldqMTI6Vptm6LnqeUq/ODJGbAvw0Q+r383J8KO1ki9iO3cIB4pSyOd
-         D1jTvIaf65aIdxdwZKQY2km2cLV01+rB7cR3FrcvmSyNESGyiyAWWA8iOourrQuXau
-         ERbwl5f8946yyWhUIiaicizXZH06Wrq5TG4gNtJa1xFl3/cVg1YU3QYAGCGZ/HbBGD
-         WGWsC+iATmYrOE/9EjeX7dKXaQGugPxscdtgbhK8Yl9qzrUhylNKn0HhnD0x8P19Va
-         2rk4hCCZh7HO1QrBxcZd7ChHaPIkhxqXQ5TJxHaMdJ+ShYLeWbx0sSTQQvoGBMdLp4
-         5PwVy1/kgGAWw==
+        b=AZ5xZ6ARsO2+lgGO0XIhGF+DcKU5XmGYroe3bkUgrjpHzhRQlMjr67ipvsQT8O9S+
+         rbFfzIU2zpvzjWzBYstka3bthUJtk13BYsvHYvnmyhXgfIXD+jJGBkG+0vj/08gJog
+         q5vynTIGFBkdmuoLwRauWe/+FS8RuB5qd4KNHv7wgQtvt2cJTnvndL02PqiZpjkajF
+         Z5/rI+q/PGmtc48QTdXpyFj+Kw9uJj545VmU4e6E/pGISnearvw22uOZYlsauACM+H
+         xcEDumiky/Ch50ka9IxHEP8G/JmzcNuCXZcLtvmmE8ieWttBm03W5V3dVYpsirqCVV
+         KbHpPBgzc+u8w==
 Received: by pali.im (Postfix)
-        id 7FD797C1; Sun,  9 Oct 2022 13:40:43 +0200 (CEST)
-Date:   Sun, 9 Oct 2022 13:40:43 +0200
+        id 37E697C1; Sun,  9 Oct 2022 13:48:38 +0200 (CEST)
+Date:   Sun, 9 Oct 2022 13:48:38 +0200
 From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Gregory Clement <gregory.clement@bootlin.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] leds: syscon: Implement support for active-low
- property
-Message-ID: <20221009114043.6rdgpgzkngd527o7@pali>
-References: <20220818172528.23062-1-pali@kernel.org>
- <20220818172528.23062-2-pali@kernel.org>
- <CACRpkdYWQVW_akJS7hvtU2=c063LCMfjN22X-neTfuTZRbt+yw@mail.gmail.com>
- <20220831114936.vukjsovdxw3cmj6h@pali>
+Subject: Re: [PATCH] arm64: dts: armada-3720-turris-mox: Add missing
+ interrupt for RTC
+Message-ID: <20221009114838.fsw5xqa3dtntejde@pali>
+References: <20220924115826.7891-1-pali@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220831114936.vukjsovdxw3cmj6h@pali>
+In-Reply-To: <20220924115826.7891-1-pali@kernel.org>
 User-Agent: NeoMutt/20180716
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -63,20 +57,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 31 August 2022 13:49:36 Pali Rohár wrote:
-> On Friday 26 August 2022 10:05:26 Linus Walleij wrote:
-> > On Thu, Aug 18, 2022 at 7:25 PM Pali Rohár <pali@kernel.org> wrote:
-> > 
-> > > This new active-low property specify that LED has inverted logic
-> > > (0 - enable LED, 1 - disable LED).
-> > >
-> > > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > 
-> > Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> > 
-> > Yours,
-> > Linus Walleij
-> 
-> Is something else needed for this patch series?
+Gregory: PING
 
-PING?
+On Saturday 24 September 2022 13:58:26 Pali Rohár wrote:
+> MCP7940MT-I/MNY RTC has connected interrupt line to GPIO2_5.
+> 
+> Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
+> Signed-off-by: Pali Rohár <pali@kernel.org>
+> ---
+>  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> index 5840ed129309..802862fe2060 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> @@ -125,9 +125,12 @@
+>  	/delete-property/ mrvl,i2c-fast-mode;
+>  	status = "okay";
+>  
+> +	/* MCP7940MT-I/MNY RTC */
+>  	rtc@6f {
+>  		compatible = "microchip,mcp7940x";
+>  		reg = <0x6f>;
+> +		interrupt-parent = <&gpiosb>;
+> +		interrupts = <5 0>; /* GPIO2_5 */
+>  	};
+>  };
+>  
+> -- 
+> 2.20.1
+> 
