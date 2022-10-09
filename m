@@ -2,117 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE68A5F8BE8
-	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 17:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A131C5F8BF1
+	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 17:18:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230034AbiJIPRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Oct 2022 11:17:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44638 "EHLO
+        id S230109AbiJIPSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Oct 2022 11:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbiJIPRH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 11:17:07 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9594229CB5
-        for <devicetree@vger.kernel.org>; Sun,  9 Oct 2022 08:17:05 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id a18so2601023qko.0
-        for <devicetree@vger.kernel.org>; Sun, 09 Oct 2022 08:17:05 -0700 (PDT)
+        with ESMTP id S230100AbiJIPSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 11:18:44 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD6A02A26A
+        for <devicetree@vger.kernel.org>; Sun,  9 Oct 2022 08:18:43 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id a5so469546qkl.6
+        for <devicetree@vger.kernel.org>; Sun, 09 Oct 2022 08:18:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BL4JcwH1BlRKSaTgiWa7XnjgnxHiKgi2LESv8tz4pQc=;
-        b=S9qa8hsBVXQ5Wa9ivzeKnrF+utOFKYvTcRw5ht9qe1pf33nZkeHef7bOPazbUoM4Z1
-         L1U2VI1+NovXH2sWunMrQW+a4sGbroPvBlYrHuuybNMOxluCnxSarwAFvZr7K1B9TZKJ
-         7XB6VDvHfYd6OLci8MfKV7a0y/c5tBBuDd7Wc1dIntKr78vhgdqcVvUnG58df1HA0LrX
-         i83xYrRE7iI/u7HGNFtICWvlTudnlRqtMQC71sZYFzMzrl71fjK0P8P3kLNV5izPEyFr
-         TePLTVZLHBkKc2IIX9WmHOkg1h3e87nTNYrKnZf6oQOq9oM9KYpogZry6LdEkkKAMzFR
-         66gA==
+        bh=akrQmjJ5ANNV9oJ9U081ngxumiXjo/3S9Mc5SAIBAo4=;
+        b=zY2GkVGgwwzE6TzX4K9RcSkWVEvq1t01CH68PG0NUS2gh/e9MkdC2BH9pkwJKNczCR
+         HhT8beTnLqIeI+++qrQYlklUCPXaD0kgfp13PQwzuYedG3pYjg6dT2pLNMXatzYzSCjk
+         d+03YtbjJIKR5WsSTLsQHFneqyhW7Dnm6+a0xRCCJDCBdVeoCY53Ak8wO20XD/meqBrL
+         x8Wvhsq38xtA5uPh786ACn11NfkuITyp1dym/4Q1NUEnRiFZ3AIOIemsnHavcclGovom
+         qDWnXC/gG6fKQjGY7iwX9gnUm+AFJ3IsNY3hKlgrnQOOkdJCx3ehcaJaS91CsJAhztnA
+         3yzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BL4JcwH1BlRKSaTgiWa7XnjgnxHiKgi2LESv8tz4pQc=;
-        b=LXTCY7tWmMur+0WTb2fKm6RZb0bUr3f6VCqJ9I7cBsDS+EtTrS9sBhhjn2BVaLhpez
-         npKWJlFTKjz2XjjS6zg5pHqyg1GCVF1rWRKTfUpDEvH3vC/l1Wf8TTFJ97iQ39ZHA4S1
-         RSdaB1yrgH3SA+qEJ1ku7BuFCjSStrztWs51ArLUcAo1K/T6qafjnptQU1IhBTwdD5d8
-         QCUl54WAx0CgQLQJ+mVIZijivqzOow/Cn9K63UBuTtIkGWFd/YFq2wWEbQQWoW4J1o+2
-         LVN+uWhmgpZGC42flbRogakwDtx+O+E0yLZOTni+9tQEV+WKCOccRGpeBgLSuZNT0MV1
-         TApg==
-X-Gm-Message-State: ACrzQf3HqqdAffuhTnpzBmGYBIe582P3LsSHto2jYH+FjgupaBYzfpCl
-        TKKTHraj0Xu3kr/5XZAgJzfbFQ==
-X-Google-Smtp-Source: AMsMyM48598dwVSzpKD3PGz7P0JYzUO8QVxlhEllywy9x1o+yQGHTuYmtfTS71hXXXsBsbNKrlZ+5w==
-X-Received: by 2002:a05:620a:254f:b0:6bc:5763:de4b with SMTP id s15-20020a05620a254f00b006bc5763de4bmr9889170qko.207.1665328624785;
-        Sun, 09 Oct 2022 08:17:04 -0700 (PDT)
+        bh=akrQmjJ5ANNV9oJ9U081ngxumiXjo/3S9Mc5SAIBAo4=;
+        b=jwncdNi/S41KnS9/NhaS5OvZ3fQNZM487zjBZSb9Jkq/X1FkZ5PpnVOkRMBnKdeJYa
+         WyqtAC0bOJ31aBMKJEBlEVD03rmymxrZMnvDpQhPNQBnSo13JHgYY/dfrbPpDgWPcgyr
+         37SbqeJoe9zhW/Csbj14jXlYTWJwshu5ofMtYgolSgppxAo/ODLn904wRBdzLiNEq+Gf
+         KnPhD4gQeDhBwWOs4xkDXkDwyyQ5S+JtLphGyBagM8gCdcG0EPbbXJKwmh4Fmkb2abgE
+         IXhCzREbDdoqlj9R2IavCp32R6IJ3r9l1CxMc86hiHD4ZYZ9pwIvFfWAHILOqjs3s/Ad
+         Skww==
+X-Gm-Message-State: ACrzQf1UvWwPaYRKXhoCbeQy5Hp5qJvyi0QgtZMWO6ATO/uZjhUNhqQj
+        KD4sqTGYFrKtram920uIe5NvRw==
+X-Google-Smtp-Source: AMsMyM7wkO+uNHublLqxbJQRkrkJLB4Tdfxa8dNbZoat2NF6x6vAN9JwuDKqfO3jpnBNaKGD+syWqg==
+X-Received: by 2002:a05:620a:a03:b0:6ec:bf65:d0fc with SMTP id i3-20020a05620a0a0300b006ecbf65d0fcmr864584qka.381.1665328723009;
+        Sun, 09 Oct 2022 08:18:43 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id 1-20020ac85741000000b003998bb7b83asm1383567qtx.90.2022.10.09.08.17.03
+        by smtp.gmail.com with ESMTPSA id t28-20020a37ea1c000000b006cdd0939ffbsm7756178qkj.86.2022.10.09.08.18.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Oct 2022 08:17:03 -0700 (PDT)
-Message-ID: <e0d69843-4b37-2e0d-66c7-fc8fd09ed385@linaro.org>
-Date:   Sun, 9 Oct 2022 17:14:51 +0200
+        Sun, 09 Oct 2022 08:18:42 -0700 (PDT)
+Message-ID: <8b4a2bfd-ce7f-6bb9-4e50-ecd9bda881a2@linaro.org>
+Date:   Sun, 9 Oct 2022 17:16:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH V2 2/3] dt-bindings: gpio: Convert Unisoc EIC controller
- binding to yaml
+Subject: Re: [PATCH v3 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
 Content-Language: en-US
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-References: <20220930082405.1761-1-zhang.lyra@gmail.com>
- <20220930082405.1761-3-zhang.lyra@gmail.com>
- <727a540d-0ca9-ade3-894d-f1774d10a681@linaro.org>
- <CAAfSe-u4y84kjjksv-Y7=zyosV=34M-=_wrDQC9884znvx9V4Q@mail.gmail.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh@kernel.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20221006135717.1748560-1-biju.das.jz@bp.renesas.com>
+ <20221006135717.1748560-2-biju.das.jz@bp.renesas.com>
+ <20221006201746.GA93297-robh@kernel.org>
+ <OS0PR01MB5922F8058FC8FD1E35C17755865F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <OS0PR01MB59221BDEB7E6B39AEFD31C44865E9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAAfSe-u4y84kjjksv-Y7=zyosV=34M-=_wrDQC9884znvx9V4Q@mail.gmail.com>
+In-Reply-To: <OS0PR01MB59221BDEB7E6B39AEFD31C44865E9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/10/2022 04:57, Chunyan Zhang wrote:
->>> +        eic_debounce: gpio@40210000 {
->>> +            compatible = "sprd,sc9860-eic-debounce";
->>> +            reg = <0 0x40210000 0 0x80>;
->>> +            gpio-controller;
->>> +            #gpio-cells = <2>;
->>> +            interrupt-controller;
->>> +            #interrupt-cells = <2>;
->>> +            interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
->>> +        };
->>> +    };
->>> +
->>> +    sc2730_pmic {
+On 08/10/2022 09:42, Biju Das wrote:
+
+>>>> +                        "tgia8", "tgib8", "tgic8", "tgid8",
+>>> "tgiv8", "tgiu8";
+>>>> +      clocks = <&cpg CPG_MOD R9A07G044_MTU_X_MCK_MTU3>;
+>>>> +      power-domains = <&cpg>;
+>>>> +      resets = <&cpg R9A07G044_MTU_X_PRESET_MTU3>;
+>>>> +
+>>>> +      counter {
+>>>> +        compatible = "renesas,rz-mtu3-counter";
+>>>
+>>> You don't have any resources for the counter in DT, so you don't
+>> even
+>>> need a node here. Just have the parent driver instaniate the counter
+>>> driver.
 >>
->> If you insisted to keep it, at least should be correct, so just pmic.
->>
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +
->>> +        pmic_eic: gpio@300 {
->>
->> It's exactly the same example as above - all same properties. Drop it or
->> bring some differences.
 > 
-> The differences are on #address-cells and #size-cells.
+> If I remove "renesas,rz-mtu3-counter" and "renesas,rz-mtu3-pwm" then instantiating 
+> the counter and pwm driver from parent driver by directly calling probe function is
+> giving cyclic dependency error[1].
+
+How is this related to DT? Purpose of DT is not to solve your probe
+problems.
+
+> 
+> So looks like either we need to use compatible "renesas,rz-mtu3-counter" and 
+> "renesas,rz-mtu3-pwm" if these functionalities to be in respective subsystem tree
 > 
 
-Which don't really matter...
+No, you don't need. Your driver implementation is not really related to
+the bindings.
+
 
 Best regards,
 Krzysztof
