@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C47025F8BFB
-	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 17:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 087F25F8C04
+	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 17:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230115AbiJIPWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Oct 2022 11:22:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53576 "EHLO
+        id S230150AbiJIPZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Oct 2022 11:25:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230034AbiJIPWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 11:22:17 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC22D2AC52
-        for <devicetree@vger.kernel.org>; Sun,  9 Oct 2022 08:22:16 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id l27so5347425qtv.4
-        for <devicetree@vger.kernel.org>; Sun, 09 Oct 2022 08:22:16 -0700 (PDT)
+        with ESMTP id S230151AbiJIPZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 11:25:27 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677811DF3B
+        for <devicetree@vger.kernel.org>; Sun,  9 Oct 2022 08:25:25 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id f14so5940101qvo.3
+        for <devicetree@vger.kernel.org>; Sun, 09 Oct 2022 08:25:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gi30W6qO/QQQISv8PyR3uP8MA6T/Qkq2eAnyNWkaPQo=;
-        b=fsIhbyW+5LNxRUzfAm5uDLNs5RL1XrhuBUaER46mnIrpINGRiHQEtOrFksaO0mC+mr
-         hdaW5Ixjo3ypZ6ITLqz5MMq9sfvMr0JsxnK8xmnyMqRcD6I+nwnJ90cj2o0nfIwGSOKv
-         zJgXmu565F0ZkyD3iIoxRyy5mj4VEWfPy/eJShSnqQRX2izpOIHySyiOHeWWfoE4WmOK
-         6V8X9pA7KmWzvugqfTbJPwE0sOnXhlJ7czlGNpu56/Xh6rL5RHIo/imZyqaLdagL2iRO
-         cqOKLnO73l+FtSDG3uxXMWfBNHpOFSFQpOt3jMuVXFlBdhgcO5dPiEWZb3yyJJhPCdUi
-         lJjw==
+        bh=7PawHfS9TB644mU5735pYGa+FDnienqhSf5bbathaXc=;
+        b=La05bCIRIhhzTeRo2u35kbHPgO/kBHLBMYBaso1QRasLAKZiqPN7OgoNXYc57OMU98
+         Idw0EXfVhQFBkXVyNuVGGyI1pcxOjS5Vfz5qjJZ+gTYlF7Hee+7lg3UML2oW90HtX9lZ
+         EI/0+jt2ycjNW+SHYPElu74SzHzYKeVCGkQIRbo0vcKwl33nvNAuTe5st1AFzVDXcZY3
+         dYrbrfToCq+ZUC51ornwpRBndX2kiqtTcDrkez2m411aEyxccMscUo5WCuth/Av+4lK3
+         n8eeOwVxuya7Aa5BLyk1lPq5/DAAg7AUuaERfVscwyu4EQ1ILGWh7+IWpSLc+b0CIaI/
+         C96Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gi30W6qO/QQQISv8PyR3uP8MA6T/Qkq2eAnyNWkaPQo=;
-        b=xQivc4Aa3pNYz6MZCKl+uyodQhCbESO7MC8ZcLVn1Oi0li5DhAHjaaZNqHtZinxPcq
-         R+JbKoJMxlr6SgYjhv59lsqSYoFNSvGNgCUDlXvt3kHqcEXVwuJlL91LEuk1JVlG7YSF
-         VV7PoEhqCvVbvyOUHo1GZVkPFM+LQALLPs42E/XABLIdysPBdZFv4oBjlvd1BGKniqlb
-         Vxs6+qcMuosk3eo//gbHdDLE2jYnvH+SHc84OWDcZw3GZbxvAEFiDv54VteV8zejxTfD
-         sTztO/2G6CC9T6Id9b4ruVgchh9qcL6Oopfv8PtjfhsDVhWJ6++ogNsa9eLYS3Bp4OYG
-         AErQ==
-X-Gm-Message-State: ACrzQf0AORKxdq3DH+9Eh6G40vQIb1EXCF0A4tG6hlbFOECo+rDQ0zIY
-        tiSbaBzmKem8URwugpyq/96/Yw==
-X-Google-Smtp-Source: AMsMyM77qc2qXgZ3zI7eVyqJTBsbEuOolRRKQMmDBZCGvXmo38imssALA4dp/8f9g+G6wgTdYPaxaA==
-X-Received: by 2002:ac8:7e82:0:b0:35b:b24e:2159 with SMTP id w2-20020ac87e82000000b0035bb24e2159mr11961830qtj.623.1665328935853;
-        Sun, 09 Oct 2022 08:22:15 -0700 (PDT)
+        bh=7PawHfS9TB644mU5735pYGa+FDnienqhSf5bbathaXc=;
+        b=u+kwpWPcxt6MleuzBQkaPjPqCu2VX96Py3cf/t7UVwrH8ooou4LT+hjbcYNfpElhH9
+         2g4pcw0siBH2+BDwgR3PD4dl463z8x8N4ih/rnxUH1PjqcLxA/73422EEOgqjERFkC0y
+         A+Q/r1ksNve9zcE0nRpH4uhOljc6xK0BaQhvZrhJiIMHCwD4Q0e/WjtTY4fUkdpiK+bT
+         ZUgFTHsWgcodZSfSt46pQ819PsAn7MktrMBHVuUhMJj9MStV/rbC88cM+66Y8iPAqZSr
+         ivWMFK+gevAF8wftZ73F7dvFLRUUYZESdVaz/oPgqOQ44469gUUtKb+coSZzvLTYWGhg
+         h9nA==
+X-Gm-Message-State: ACrzQf1OjEqf0jbCpe6yev1qWpIGonNWSdEPRGT2hu3JFeyjERSW8/Eb
+        vPw04tiDl42cGEWjnOjf4gBy3Q==
+X-Google-Smtp-Source: AMsMyM7krx54u0UGGKpdEUxnZtTyufgiQ9fkcw8RwlHcjjLxBLNORQDcvl+DxeAtg1ks9+695JzlMQ==
+X-Received: by 2002:ad4:5bc5:0:b0:4af:b73f:1914 with SMTP id t5-20020ad45bc5000000b004afb73f1914mr11586573qvt.117.1665329124420;
+        Sun, 09 Oct 2022 08:25:24 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id y11-20020ac8128b000000b0039a275607c3sm536833qti.55.2022.10.09.08.22.14
+        by smtp.gmail.com with ESMTPSA id l18-20020a37f912000000b006ce580c2663sm7532093qkj.35.2022.10.09.08.25.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Oct 2022 08:22:15 -0700 (PDT)
-Message-ID: <e49eb069-c66b-532c-0e8e-43575304187b@linaro.org>
-Date:   Sun, 9 Oct 2022 17:20:03 +0200
+        Sun, 09 Oct 2022 08:25:23 -0700 (PDT)
+Message-ID: <68327197-6835-1ec4-e8f1-217b5d2ef947@linaro.org>
+Date:   Sun, 9 Oct 2022 17:25:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [net-next][PATCH v4] dt-bindings: dsa: Add lan9303 yaml
+Subject: Re: [v9 1/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
 Content-Language: en-US
-To:     Vladimir Oltean <olteanv@gmail.com>,
-        Jerry Ray <jerry.ray@microchip.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Serge Semin <fancer.lancer@gmail.com>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Peter Rosin <peda@axentia.se>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        robh@kernel.org, wsa@kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221003164624.4823-1-jerry.ray@microchip.com>
- <20221003164624.4823-1-jerry.ray@microchip.com>
- <20221008225628.pslsnwilrpvg3xdf@skbuf>
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221007075354.568752-1-patrick.rudolph@9elements.com>
+ <20221007075354.568752-2-patrick.rudolph@9elements.com>
+ <20221008115019.6jxsbawtye7cdkfh@mobilestation>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221008225628.pslsnwilrpvg3xdf@skbuf>
+In-Reply-To: <20221008115019.6jxsbawtye7cdkfh@mobilestation>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,21 +81,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/10/2022 00:56, Vladimir Oltean wrote:
+On 08/10/2022 13:50, Serge Semin wrote:
+> On Fri, Oct 07, 2022 at 09:53:50AM +0200, Patrick Rudolph wrote:
+>> Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
+>> chips. The functionality will be provided by the exisintg pca954x driver.
+>>
+>> While on it make the interrupts support conditionally as not all of the
+>> existing chips have interrupts.
+>>
+>> For chips that are powered off by default add an optional regulator
+>> called vdd-supply.
+>>
+>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> ---
+>>  .../bindings/i2c/i2c-mux-pca954x.yaml         | 39 ++++++++++++++++---
+>>  1 file changed, 34 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+>> index 9f1726d0356b..efad0a95806f 100644
+>> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+>> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+>> @@ -4,21 +4,25 @@
+>>  $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
+>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
 >>  
->> +MICROCHIP LAN9303/LAN9354 ETHERNET SWITCH DRIVER
->> +M:	Jerry Ray <jerry.ray@microchip.com>
->> +M:	UNGLinuxDriver@microchip.com
->> +L:	netdev@vger.kernel.org
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
->> +F:	drivers/net/dsa/lan9303*
->> +
+>> -title: NXP PCA954x I2C bus switch
+>> +title: NXP PCA954x I2C and compatible bus switches
+>>  
+>>  maintainers:
+>>    - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>  
+>>  description:
+>> -  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
+>> -
 > 
-> Separate patch please? Changes to the MAINTAINERS file get applied to
-> the "net" tree.
+>> -allOf:
+>> -  - $ref: /schemas/i2c/i2c-mux.yaml#
+> 
+> Why do you move the allOf statement to the bottom of the schema?
 
-This will also go via net tree, so there is no real need to split it.
+Because it goes with 'ifs' at the bottom of the schema...
+
+> 
+>> +  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices,
+>> +  and the Maxim MAX735x and MAX736x I2C mux/switch devices.
+> 
+> What about combining the sentence: "The binding supports NXP
+> PCA954x/PCA984x and Maxim MAX735x/MAX736x I2C mux/switch devices." ?
+> Currently it does look a bit bulky.
+
+Drop "The binding supports". Instead describe the hardware.
+
+> 
+>>  
+>>  properties:
+>>    compatible:
+>>      oneOf:
+>>        - enum:
+>> +          - maxim,max7356
+>> +          - maxim,max7357
+>> +          - maxim,max7358
+>> +          - maxim,max7367
+>> +          - maxim,max7368
+>> +          - maxim,max7369
+>>            - nxp,pca9540
+>>            - nxp,pca9542
+>>            - nxp,pca9543
+>> @@ -59,10 +63,33 @@ properties:
+>>      description: if present, overrides i2c-mux-idle-disconnect
+>>      $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
+>>  
+>> +  vdd-supply:
+>> +    description: A voltage regulator supplying power to the chip.
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>>  
+>> +allOf:
+>> +  - $ref: /schemas/i2c/i2c-mux.yaml#
+>> +  - if:
+>> +      not:
+>> +        properties:
+>> +          compatible:
+>> +            contains:
+>> +              enum:
+>> +                - maxim,max7367
+>> +                - maxim,max7369
+>> +                - nxp,pca9542
+>> +                - nxp,pca9543
+>> +                - nxp,pca9544
+>> +                - nxp,pca9545
+>> +    then:
+> 
+>> +      properties:
+>> +        interrupts: false
+>> +        "#interrupt-cells": false
+>> +        interrupt-controller: false
+> 
+> I'd suggest to add an opposite definition. Evaluate the properties for
+> the devices which expect them being evaluated instead of falsing their
+> existence for the devices which don't support the interrupts.
+
+The properties rather should be defined in top-level than in "if", so I
+am not sure how would you want to achieve opposite way.
+
 
 Best regards,
 Krzysztof
