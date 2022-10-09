@@ -2,112 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F6AB5F8DE3
-	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 22:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8CBC5F8ED0
+	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 23:10:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229716AbiJIUl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Oct 2022 16:41:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58024 "EHLO
+        id S231219AbiJIVKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Oct 2022 17:10:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbiJIUl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 16:41:56 -0400
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33A261659F
-        for <devicetree@vger.kernel.org>; Sun,  9 Oct 2022 13:41:55 -0700 (PDT)
-Received: by mail-oo1-xc29.google.com with SMTP id s1-20020a4a81c1000000b0047d5e28cdc0so6834741oog.12
-        for <devicetree@vger.kernel.org>; Sun, 09 Oct 2022 13:41:55 -0700 (PDT)
+        with ESMTP id S231225AbiJIVKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 17:10:16 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9241238697;
+        Sun,  9 Oct 2022 14:04:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linux-foundation.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tvaot2L15NY1QUpSajE/jgPmRugZzKKTWuvwSu4wnMI=;
-        b=bK7HmiQjmO4dSo5b7wHYga7E610PKTFoUB3bEyEy/8+nbyN9WwPP9DeVd16OFiMjU8
-         ufgzyQWLqpAjSYrnbK4kP6bQgYxG9wmcAORtTCQaKpV18LAbrL9J6kJ0lzJAyX1Svf+W
-         dK1S7BadL1d2E4QpzliZr2T4WE44tC1oePd20=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tvaot2L15NY1QUpSajE/jgPmRugZzKKTWuvwSu4wnMI=;
-        b=rrmviQ+bNVZhkjITDuxPsFiY+aqkH5axriZKWoS3tkdGE9QnCSeC0snh2qQpyHIU1g
-         x4Zseveqxa0MVh9uwMEUZepcpmUVTh8jilTLXjjomDHo8+CJRlmJnuQVzbTNoDeYo6os
-         Sm1cFocScRQ2WiacSAETvz+tzdGcIQQW5NSv/Huu4IOPhNdzplEdQgkNLWmUPHQFBKJ2
-         bI3qzc7imK0IKuE339A76IQfEGR3AVANkFKYAbVBm27HtjhRIKR3jHb+P8r88NMR1QjB
-         NrwhTjRuaAwZY2RmmFEhj9mlhZEJTVbCm1IWAa4QNjnuJ2pyEdGKzcCg0otsgJC+nsDk
-         v9qg==
-X-Gm-Message-State: ACrzQf3v3HRpxAThSxGa6Onaoin2+8k1dYgIHRcr0OSHg/ZPQS2SQ9me
-        YuSegiLHQIqZb5Nj+1IOOeXJgagYcZm7kw==
-X-Google-Smtp-Source: AMsMyM7LAAx4ZTvE5nAQxordXh7JKLHa6EMw5bg2gciym22AYw27Slkn8CnA90rbW3X9gSrXGGBFHQ==
-X-Received: by 2002:a05:6830:600b:b0:661:152:5de9 with SMTP id bx11-20020a056830600b00b0066101525de9mr6703585otb.143.1665348113587;
-        Sun, 09 Oct 2022 13:41:53 -0700 (PDT)
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com. [209.85.160.41])
-        by smtp.gmail.com with ESMTPSA id u19-20020a056870441300b0010d7242b623sm4245637oah.21.2022.10.09.13.41.51
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Oct 2022 13:41:52 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-134072c15c1so7461002fac.2
-        for <devicetree@vger.kernel.org>; Sun, 09 Oct 2022 13:41:51 -0700 (PDT)
-X-Received: by 2002:a05:6870:c0c9:b0:127:c4df:5b50 with SMTP id
- e9-20020a056870c0c900b00127c4df5b50mr7800531oad.126.1665348111500; Sun, 09
- Oct 2022 13:41:51 -0700 (PDT)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1665349471; x=1696885471;
+  h=message-id:date:mime-version:from:subject:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=YEYGFGEhRUF1GvIBQpFpZ4vv7/I8t1gr51UudbUv544=;
+  b=Bs7jzHJRIvuHHpNEGGD1xeqCUt9TOTEHsqX+75/607+77Vnmzr5KzyMF
+   8JJmog56YXTl1O9mnCwoFOykHY6lmiYkCbUT9ErTAspZbZtOUngjoyn8V
+   1ZszqJJKBBsdQ+5uA2j+ZhKp89G/9qgZ0HRvLYOuCKV6zxeqhomYFMXIk
+   4=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 09 Oct 2022 13:59:23 -0700
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2022 13:59:23 -0700
+Received: from [10.110.10.240] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Sun, 9 Oct 2022
+ 13:59:22 -0700
+Message-ID: <615493a8-449d-b105-709e-0642dfb5359b@quicinc.com>
+Date:   Sun, 9 Oct 2022 13:59:21 -0700
 MIME-Version: 1.0
-References: <20221003203129.GA2767725-robh@kernel.org> <CAL_JsqLR=9czyHPngjKczSxK8icw1=vBFHKgiRNz2AdvVRKC2A@mail.gmail.com>
-In-Reply-To: <CAL_JsqLR=9czyHPngjKczSxK8icw1=vBFHKgiRNz2AdvVRKC2A@mail.gmail.com>
-From:   Linus Torvalds <torvalds@linux-foundation.org>
-Date:   Sun, 9 Oct 2022 13:41:35 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wjNaJWvvUKTk43H-OtdP+wnM31tw8v4oz5t1TzfO4x+TQ@mail.gmail.com>
-Message-ID: <CAHk-=wjNaJWvvUKTk43H-OtdP+wnM31tw8v4oz5t1TzfO4x+TQ@mail.gmail.com>
-Subject: Re: [GIT PULL] Devicetree updates for v6.1
-To:     Rob Herring <robh@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+From:   Elliot Berman <quic_eberman@quicinc.com>
+Subject: Re: [PATCH v4 14/14] tty: gunyah: Add tty console driver for RM
+ Console Services
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>
+CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        Jonathan Corbet <corbet@lwn.net>,
+        "Will Deacon" <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Arnd Bergmann" <arnd@arndb.de>, <devicetree@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
+ <20220928195633.2348848-15-quic_eberman@quicinc.com>
+ <YzbePxTF8hRbWNRU@kroah.com>
+ <14d0ff9f-60f3-71cc-ea42-ceee389298ac@quicinc.com>
+ <Yz/YBDqqwBUlswgX@kroah.com>
+Content-Language: en-US
+In-Reply-To: <Yz/YBDqqwBUlswgX@kroah.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 9, 2022 at 11:32 AM Rob Herring <robh@kernel.org> wrote:
->
-> Linus, Did you miss this?
 
-No, it's still in my queue.
 
-Right now I'm doing merges (very slowly) on my laptop, while waiting
-for new ECC memory DIMMs to arrive.
+On 10/7/2022 12:40 AM, Greg Kroah-Hartman wrote:
+> On Thu, Oct 06, 2022 at 10:59:51PM -0700, Elliot Berman wrote:
+>>
+>> "GH" is the shorthand we've been using for "Gunyah". I didn't find
+>> documentation for dynamically assigned char devices, but if it exists, I can
+>> add entry for ttyGH.
+> 
+> Why use a new name at all?  Why not stick with the existing tty names
+> and device numbers?
+> 
 
-I have had some instability on my main desktop the last couple of
-days, with random memory corruption in user space resulting in my
-allmodconfig builds randomly failing with internal compiler errors
-etc.
+I can use hvc framework, although driver-level buffering is needed on
+both the get_chars/put_chars paths because:
 
-When that happens during the merge window, it's obviously a new kernel
-bug causing problems, which is never a great thing.
+  - get_chars wants to poll for characters, but Gunyah will push
+    characters to Linux
+  - put_chars can be called in atomic context in the printk console path.
+    Gunyah RM calls can sleep, so we add to buffer and queue work to
+    write the characters.
 
-Except this time it wasn't - it was literally a DIMM going bad in my
-machine randomly after 2.5 years of it being perfectly stable. Go
-figure. Verified first by booting an old kernel, and then with
-memtest86+ overnight.
+I also chose to use new tty driver because the Gunyah hypervisor call to 
+open the console (gh_rm_console_open) can only be done after starting 
+the VM. Gunyah will only forward characters sent from the other VM to 
+Linux after the gh_rm_console_open call is made. When launching a VM, 
+users would want to open console before VM starts so they can get 
+startup messages from the VM. I planned to use the carrier_raised() to 
+hold tty_port_block_until_ready until the VM is started and the 
+gh_rm_console_open() happens.
 
-My new memory is "out for delivery", so hopefully I'll be back up to
-full speed by this evening, but I'll probably leave memtest86+ for
-another overnight with the new DIMMs just because this wasn't the
-greatest experience ever. A fair amount of wasted time blaming all the
-wrong things, because _obviously_ it wasn't my hardware suddenly going
-bad.
-
-              Linus
-
-PS. And yes, my system is all set up for ECC - except I built it
-during the early days of COVID when there wasn't any ECC memory
-available at any sane prices. And then I never got around to fixing
-it, until I had to detect errors the hard wat. I absolutely *detest*
-the crazy industry politics and bad vendors that have made ECC memory
-so "special".
+Thanks,
+Elliot
