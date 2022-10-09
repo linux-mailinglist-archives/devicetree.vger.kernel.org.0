@@ -2,102 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9785F8A82
-	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 12:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41F6D5F8AD9
+	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 13:15:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229913AbiJIKQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Oct 2022 06:16:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47190 "EHLO
+        id S229663AbiJILPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Oct 2022 07:15:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229772AbiJIKQo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 06:16:44 -0400
-Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A029514029;
-        Sun,  9 Oct 2022 03:16:42 -0700 (PDT)
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-        by mxout2.routing.net (Postfix) with ESMTP id 0F4C25FF91;
-        Sun,  9 Oct 2022 10:16:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1665310601;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=UvX5JZ3bRps1L5sLKCfsTQTlmDO/mXO5YN2RtdaxIBM=;
-        b=MOdHhfKXcvq4XKXfTBYUtQIVY8JT5DNuGCzThIZ4oxr311CtMPUbYozvXeGiWbpVX/01dF
-        iYHVXAWanNasveWEuBgthHPS5D73E2LQJgKaGA+mT+7a9bQv50gBET3+8A9/yaAHYJiQAb
-        QsePUUY3LBmUHTm2krLE2XgpbhzA41Q=
-Received: from frank-G5.. (fttx-pool-217.61.145.235.bambit.de [217.61.145.235])
-        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 646791005FA;
-        Sun,  9 Oct 2022 10:16:40 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Qii Wang <qii.wang@mediatek.com>,
+        with ESMTP id S229959AbiJILPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 07:15:41 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4777E2B24C;
+        Sun,  9 Oct 2022 04:15:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 48064B80CB9;
+        Sun,  9 Oct 2022 11:15:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF917C433C1;
+        Sun,  9 Oct 2022 11:15:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665314133;
+        bh=wccPJLuH2DYbLdfSoyHm5U/6vyVfxSEwO2LCbBJoTmI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZAkjhh3wUFCs0GYGGZ9pZ1dsGpWfE69dKhRZTTCMzzjAx+079DTo1wkrqXH5yiKPe
+         bN+W3QxzOWnvM8UsuY/qkgLD+xwwZbyFEV4JpBHfvdVgNnSo69wnyAqcr/Hg3XhgSl
+         Z2TFiosUqGaNAOSopU7przq4zwTXZ3AZIrDUDWByqDW67BNt2/I+Ty8nVfu1vkmWAx
+         urKUZQ6beZoqbfW+HZR9W+9N+pzCiQ7mij4K8IRXb+0pSmet1b4MtahQWEqDHaA2PR
+         uLYbf8VXptd28KvqFbB+AHry00Q2EaLwX5s6tl7LVvTwJy+qIh5YYIIQmp/gKM2yIm
+         SGln/Ve6gFTYg==
+Received: by pali.im (Postfix)
+        id E03897C1; Sun,  9 Oct 2022 13:15:29 +0200 (CEST)
+Date:   Sun, 9 Oct 2022 13:15:29 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Gregory Clement <gregory.clement@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] i2c: mediatek: add mt7986 support
-Date:   Sun,  9 Oct 2022 12:16:31 +0200
-Message-Id: <20221009101631.82380-3-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221009101631.82380-1-linux@fw-web.de>
-References: <20221009101631.82380-1-linux@fw-web.de>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+Subject: Re: [PATCH 0/6] ARM: dts: pci-mvebu: Fix assigned-addresses for
+ every PCIe Root Port
+Message-ID: <20221009111529.2eo2mwca3ywfkajy@pali>
+References: <20220817223053.31141-1-pali@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mail-ID: a3c6661a-5cf1-4138-9773-e2eb642628db
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220817223053.31141-1-pali@kernel.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+Gregory, ping?
 
-Add i2c support for MT7986 SoC.
-
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- drivers/i2c/busses/i2c-mt65xx.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-index fc7bfd98156b..d80e59340d97 100644
---- a/drivers/i2c/busses/i2c-mt65xx.c
-+++ b/drivers/i2c/busses/i2c-mt65xx.c
-@@ -431,6 +431,19 @@ static const struct mtk_i2c_compatible mt8168_compat = {
- 	.max_dma_support = 33,
- };
- 
-+static const struct mtk_i2c_compatible mt7986_compat = {
-+	.quirks = &mt7622_i2c_quirks,
-+	.regs = mt_i2c_regs_v1,
-+	.pmic_i2c = 0,
-+	.dcm = 1,
-+	.auto_restart = 1,
-+	.aux_len_reg = 1,
-+	.timing_adjust = 0,
-+	.dma_sync = 1,
-+	.ltiming_adjust = 0,
-+	.max_dma_support = 32,
-+};
-+
- static const struct mtk_i2c_compatible mt8173_compat = {
- 	.regs = mt_i2c_regs_v1,
- 	.pmic_i2c = 0,
-@@ -503,6 +516,7 @@ static const struct of_device_id mtk_i2c_of_match[] = {
- 	{ .compatible = "mediatek,mt6577-i2c", .data = &mt6577_compat },
- 	{ .compatible = "mediatek,mt6589-i2c", .data = &mt6589_compat },
- 	{ .compatible = "mediatek,mt7622-i2c", .data = &mt7622_compat },
-+	{ .compatible = "mediatek,mt7986-i2c", .data = &mt7986_compat },
- 	{ .compatible = "mediatek,mt8168-i2c", .data = &mt8168_compat },
- 	{ .compatible = "mediatek,mt8173-i2c", .data = &mt8173_compat },
- 	{ .compatible = "mediatek,mt8183-i2c", .data = &mt8183_compat },
--- 
-2.34.1
-
+On Thursday 18 August 2022 00:30:47 Pali Rohár wrote:
+> Per IEEE Std 1275-1994 bindings documentation (to which kernel DT
+> bindings refers), DT property assigned-addresses contains BDF address
+> of resource. Currently more PCIe Root Port nodes have BDF address in
+> assigned-addresses which points to different PCIe Root Port nodes. This
+> obviously does not make sense as the address resource specified in
+> assigned-addresses of every PCIe Root Port describes address range of
+> internal registers which are specific for corresponding Marvell PCIe
+> Root Port. Fix this issue and align all BDF addresses in
+> assigned-addresses DT property to specify correct BDF address of the
+> current PCIe Root Port.
+> 
+> Note that current version of pci-mvebu.c controller driver, which
+> registers Marvell PCIe Root Ports, ignores BDF value in DT property
+> assigned-addresses. It expects that Root Port's assigned-addresses
+> contains address range of that root port. That is why driver currently
+> works without any issue and nobody spotted it. But if driver or
+> something else would do device tree validation then this issue should be
+> spotted and throws error. Also device tree files may be used by other
+> projects where drivers may require correct values.
+> 
+> This patch series aligns BDF address of every Marvell PCIe Root Port in
+> node name, config space in reg property and mem in assigned-address
+> property of internal registers resource.
+> 
+> Pali Rohár (6):
+>   ARM: dts: dove: Fix assigned-addresses for every PCIe Root Port
+>   ARM: dts: armada-370: Fix assigned-addresses for every PCIe Root Port
+>   ARM: dts: armada-xp: Fix assigned-addresses for every PCIe Root Port
+>   ARM: dts: armada-375: Fix assigned-addresses for every PCIe Root Port
+>   ARM: dts: armada-38x: Fix assigned-addresses for every PCIe Root Port
+>   ARM: dts: armada-39x: Fix assigned-addresses for every PCIe Root Port
+> 
+>  arch/arm/boot/dts/armada-370.dtsi        |  2 +-
+>  arch/arm/boot/dts/armada-375.dtsi        |  2 +-
+>  arch/arm/boot/dts/armada-380.dtsi        |  4 ++--
+>  arch/arm/boot/dts/armada-385.dtsi        |  6 +++---
+>  arch/arm/boot/dts/armada-39x.dtsi        |  6 +++---
+>  arch/arm/boot/dts/armada-xp-mv78230.dtsi |  8 ++++----
+>  arch/arm/boot/dts/armada-xp-mv78260.dtsi | 16 ++++++++--------
+>  arch/arm/boot/dts/dove.dtsi              |  2 +-
+>  8 files changed, 23 insertions(+), 23 deletions(-)
+> 
+> -- 
+> 2.20.1
+> 
