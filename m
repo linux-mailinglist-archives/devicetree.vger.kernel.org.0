@@ -2,81 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B4D5F8C27
-	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 17:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 959AF5F8C39
+	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 18:15:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbiJIP6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Oct 2022 11:58:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45400 "EHLO
+        id S229899AbiJIQPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Oct 2022 12:15:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbiJIP6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 11:58:39 -0400
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBBC329C90
-        for <devicetree@vger.kernel.org>; Sun,  9 Oct 2022 08:58:37 -0700 (PDT)
-Received: by mail-qt1-x82f.google.com with SMTP id c23so1367564qtw.8
-        for <devicetree@vger.kernel.org>; Sun, 09 Oct 2022 08:58:37 -0700 (PDT)
+        with ESMTP id S229849AbiJIQPN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 12:15:13 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFAE624F03
+        for <devicetree@vger.kernel.org>; Sun,  9 Oct 2022 09:15:11 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id a22so5547559qkk.7
+        for <devicetree@vger.kernel.org>; Sun, 09 Oct 2022 09:15:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5orZ+DziI6W/f9HXFXiv87iJt/PGMb8hqSKXkaX84tc=;
-        b=pDtyOlPFSEP4qgQu4T4B0J+N6vslW87IBxWwnSCJRaYWRvfrQl5xZPlP4qHbqI5jJp
-         ++g8/YCyJypk9U66/2nV0jQB0MMElG/FkqptlK3x99XpNe8FW9Wrala+Ev0qYtfT29Ae
-         pRzIs1KyCR/MJgtSbhTgIv5K0riCp3V3pMdrvy/vGk74qtvoHkA7Ke9rTMB1FpVRg4kW
-         6FhAye5EgQ6RRP9+lOuzdIDSEq1AVJk5UB3xetdC4AJVOed9vNA93bDWzziliEMjYdB8
-         szjXCvJDTVirSdRcOvDdqYa2KPepL3HWpcL5mvdf7JSunRyJuL/THL2rSC1U9kGQJW3i
-         Pgeg==
+        bh=MPuV4OxPJUlg/BenC0+lIzHK/2HLlqgu9oU374zZOXM=;
+        b=n2X21I8kPzZAtcmp9X3n+Y4+1f2hEhVp45W/+u+SfiSdDPIrzPdo8tKmumjC006hiT
+         /6bRekPOhFejZksOhvlv7REfPJ4mEQv2vE92tMNeTv7mt9fMONiH0w/oHnfRbTZNBfn9
+         mmjUcZESuTCJftjhq8q2Sst1x9QV8E1LSlFLZMJkCjiL+LgguiMUKYBoVEiswWm07+hP
+         Q7+j+IZI9XBRpBu/vg4BK022bmgS9LLsyEBKPKavUtXyqDod0KDs9aDgvFBzP6VG3IQd
+         n2PKsPSvatShT2BXAtvyLTrSicR5UtQ9U+Wrsjl0Y2/AhqsfldKiu4nZ2yHrRwOeYYWl
+         aPow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5orZ+DziI6W/f9HXFXiv87iJt/PGMb8hqSKXkaX84tc=;
-        b=zeB6SxeIIaIrbjN2oEonHuXSDq5h6a838ykrZUtVBJvrmbq+S48YIN8yoMt+M0Db7T
-         RnmnnheIKDoHeyuWCPYs8FTVe+SFn85eW94fV7lhMmanbWiiixNlIghgrNvXAD5zfO0O
-         LedM2LVdA4EOBLbMFwCyGi1Ut3FRAs87xnXiwVKjzdve1LDhQLQD8YLaCz0kdGwIPbn7
-         aKHZKAZq+lbc+Fs1VxPVkTP+hPv3Q4KN5sA/aj9oG3o7MdQQlJxTSwpzZxxuHQ6uvEYZ
-         oCtnMdZLC4Qix3FmJeR2NO3fB3FAJUqf0D68hRQhMmNN+/AJ6yTG4Gnk4Df5CJpuA+d0
-         rRXQ==
-X-Gm-Message-State: ACrzQf0NhxcazSAqCQYYP6cqL35X2374jhbzdV4iHtwY1l2QQFXt0gI7
-        e+WzbCMHii40hvh5YYw6Rviddw==
-X-Google-Smtp-Source: AMsMyM61dS16RMHrOhhdFqzjMyzmt/ixs7MQZED+RHxiW4UwQ7zvJ3sbsnu7g9hRJd8ZSKgz/1GIeA==
-X-Received: by 2002:ac8:5a16:0:b0:391:8800:a78e with SMTP id n22-20020ac85a16000000b003918800a78emr11937707qta.273.1665331117127;
-        Sun, 09 Oct 2022 08:58:37 -0700 (PDT)
+        bh=MPuV4OxPJUlg/BenC0+lIzHK/2HLlqgu9oU374zZOXM=;
+        b=tJIOSMs5hmin6pdizi+IcsxzEckS5HhiVWZGKiSIhfIoaZB7rjxfOZeEKrcI3WYLc+
+         YTAL7cYJ4WbPwaheDcrQSv6MONJA9aoWMvfSnaA82mezAWPJ30+Md2/oBocAX4rTAx2o
+         wm/L+S9NNC2g/An5yDMx8ayyZOZTCRBs69SoIckGWdkjy6FVnHVkC4yEjP25HqO00twn
+         BxUVPgqbnN01vAfKDgd3HQry5yJxtevGjUkp4QH37lSS5gzWpjW4rAhIUFPjALImrWGe
+         sx4pBh+glgS2eT2lBUIwyTD8K5Oxq+IMqYKK/t7Q9bku5uOP+ItfIMx1zgcyL9O5HsBs
+         l1kg==
+X-Gm-Message-State: ACrzQf2pvt0ZyPCgWrYjMMYq5Dladiq65XEEmfgQhPCVaWcQvmZJ++Ac
+        J2o2kAtm/wqNijflVC3gcZU8yQ==
+X-Google-Smtp-Source: AMsMyM5294O4SSjjoEqkQLO/lrBvUllt3Wz9tSaV2Bm/EG7Y7Eh6sn98z098vDU0Z8CBSj4JW5gmgQ==
+X-Received: by 2002:a05:620a:6082:b0:6cf:f086:a70f with SMTP id dx2-20020a05620a608200b006cff086a70fmr10131303qkb.324.1665332110933;
+        Sun, 09 Oct 2022 09:15:10 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id s13-20020a05620a0bcd00b006b95b0a714esm8064135qki.17.2022.10.09.08.58.35
+        by smtp.gmail.com with ESMTPSA id bn35-20020a05620a2ae300b006ce60296f97sm7531742qkb.68.2022.10.09.09.15.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Oct 2022 08:58:36 -0700 (PDT)
-Message-ID: <97f77164-264b-68e3-3d77-1a5ed1d44d34@linaro.org>
-Date:   Sun, 9 Oct 2022 17:58:34 +0200
+        Sun, 09 Oct 2022 09:15:10 -0700 (PDT)
+Message-ID: <c9ce1d83-d1ca-4640-bba2-724e18e6e56b@linaro.org>
+Date:   Sun, 9 Oct 2022 12:14:22 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [RFC v4 net-next 15/17] dt-bindings: net: dsa: ocelot: add
+Subject: Re: [PATCH v3 net-next 12/14] dt-bindings: net: dsa: ocelot: add
  ocelot-ext documentation
 Content-Language: en-US
-To:     Colin Foster <colin.foster@in-advantage.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Russell King <linux@armlinux.org.uk>, UNGLinuxDriver@microchip.com,
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Colin Foster <colin.foster@in-advantage.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
         Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Eric Dumazet <edumazet@google.com>,
         "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>
-References: <20221008185152.2411007-1-colin.foster@in-advantage.com>
- <20221008185152.2411007-16-colin.foster@in-advantage.com>
+        Andrew Lunn <andrew@lunn.ch>
+References: <20220926002928.2744638-1-colin.foster@in-advantage.com>
+ <20220926002928.2744638-13-colin.foster@in-advantage.com>
+ <ec63b5aa-3dec-3c27-e987-25e36b1632ba@linaro.org>
+ <YzzLCYHmTcrHbZcH@colin-ia-desktop>
+ <455e31be-dc87-39b3-c7fe-22384959c556@linaro.org>
+ <Yz2mSOXf68S16Xg/@colin-ia-desktop>
+ <28b4d9f9-f41a-deca-aa61-26fb65dcc873@linaro.org>
+ <20221008000014.vs2m3vei5la2r2nd@skbuf>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221008185152.2411007-16-colin.foster@in-advantage.com>
+In-Reply-To: <20221008000014.vs2m3vei5la2r2nd@skbuf>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,61 +97,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/10/2022 20:51, Colin Foster wrote:
-> The ocelot-ext driver is another sub-device of the Ocelot / Felix driver
-> system. It requires a register array similar to the VSC7514 and has
-> different ports layout than existing devices.
+On 08/10/2022 02:00, Vladimir Oltean wrote:
+> On Wed, Oct 05, 2022 at 06:09:59PM +0200, Krzysztof Kozlowski wrote:
+>>>> I don't understand how your answer relates to "reg=<0 0>;". How is it
+>>>> going to become 0x71010000 if there is no other reg/ranges set in parent
+>>>> nodes. The node has only one IO address, but you say the switch has 20
+>>>> addresses...
+>>>>
+>>>> Are we talking about same hardware?
+>>>
+>>> Yes. The switch driver for both the VSC7512 and VSC7514 use up to ~20 regmaps
+>>> depending on what capabilities it is to have. In the 7514 they are all
+>>> memory-mapped from the device tree. While the 7512 does need these
+>>> regmaps, they are managed by the MFD, not the device tree. So there
+>>> isn't a _need_ for them to be here, since at the end of the day they're
+>>> ignored.
+>>>
+>>> The "reg=<0 0>;" was my attempt to indicate that they are ignored, but I
+>>> understand that isn't desired. So moving forward I'll add all the
+>>> regmaps back into the device tree.
+>>
+>> You need to describe the hardware. If hardware has IO address space, how
+>> does it matter that some driver needs or needs not something?
 > 
+> What do you mean by IO address space exactly? It is a SPI device with registers.
+> Does that constitute an IO address space to you?
 
-Thank you for your patch. There is something to discuss/improve.
+By IO I meant MMIO (or similar) which resides in reg (thus in unit
+address). The SPI devices have only chip-select as reg, AFAIR.
 
-> @@ -54,9 +54,24 @@ description: |
->        - phy-mode = "1000base-x": on ports 0, 1, 2, 3
->        - phy-mode = "2500base-x": on ports 0, 1, 2, 3
->  
-> +  VSC7512 (Ocelot-Ext):
-> +
-> +    The Ocelot family consists of four devices, the VSC7511, VSC7512, VSC7513,
-> +    and the VSC7514. The VSC7513 and VSC7514 both have an internal MIPS
-> +    processor that natively support Linux. Additionally, all four devices
-> +    support control over external interfaces, SPI and PCIe. The Ocelot-Ext
-> +    driver is for the external control portion.
-> +
-> +    The following PHY interface types are supported:
-> +
-> +      - phy-mode = "internal": on ports 0, 1, 2, 3
-> +      - phy-mode = "sgmii": on ports 4, 5, 7, 8, 9, 10
-> +      - phy-mode = "qsgmii": on ports 4, 5, 6, 7, 8, 10
-> +
->  properties:
->    compatible:
->      enum:
-> +      - mscc,vsc7512-switch
->        - mscc,vsc9953-switch
->        - pci1957,eef0
->  
-> @@ -258,3 +273,100 @@ examples:
->              };
->          };
->      };
+> 
+> The driver need matters because you don't usually see DT nodes of SPI,
+> I2C, MDIO devices describing the address space of their registers, and
+> having child nodes with unit addresses in that address space. Only when
+> those devices are so complex that the need arises to identify smaller
+> building blocks is when you will end up needing that. And this is an
+> implementation detail which shapes how the dt-bindings will look like.
 
-Blank line
+So probably I misunderstood here. If this is I2C or SPI device, then of
+course reg and unit address do not represent registers.
 
-> +  # Ocelot-ext VSC7512
-> +  - |
-> +    #include <dt-bindings/phy/phy-ocelot-serdes.h>
-> +
-> +    soc@0 {
-> +        compatible = "mscc,vsc7512";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        reg = <0 0>;
-> +
-> +        ethernet-switch@0 {
+> 
+>> You mentioned that address space is mapped to regmaps. Regmap is Linux
+>> specific implementation detail, so this does not answer at all about
+>> hardware.
+>>
+>> On the other hand, if your DTS design requires this is a child of
+>> something else and by itself it does not have address space, it would be
+>> understandable to skip unit address entirely... but so far it is still
+>> confusing, especially that you use arguments related to implementation
+>> to justify the DTS.
+> 
+> If Colin skips the unit address entirely, then how could he distinguish
+> between the otherwise identical MDIO controllers mdio@7107009c and
+> mdio@710700c0 from Documentation/devicetree/bindings/mfd/mscc,ocelot.yaml?
+> The ethernet-switch node added here is on the same hierarchical level
+> with the MDIO controller nodes, so it must have a unit address just like
+> them.
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
+So what is @710700c0? It's not chip-select, but MMIO or some other bus
+(specific to the device), right?
+
+The mscc,ocelot.yaml has a soc@0 SPI device. Children of soc@0 use unit
+addresses/reg meaningful for that soc@0.
+
+> 
+> But I don't support Colin's choice of "reg=<0 0>;" either. A choice must
+> be made between 2 options:
+> - mapping all 20 regions of the SPI address space into "reg" values
+> - mapping a single region from the smallest until the largest address of
+>   those 20, and hope nothing overlaps with some other peripheral, or
+>   worse, that this region will never need to be expanded to the left.
+
+Yeah, at least to my limited knowledge of this hardware.
+
+
+> What information do you need to provide some best practices that can be
+> applied here and are more useful than "you need to describe the
+> hardware"? 
+
+Describe the hardware properties in terms of it fit in to the whole
+system - so some inputs (clocks, GPIOs), outputs (interrupts),
+characteristics of a device (e.g. clock provider -> clock cells) and
+properties configuring hardware per specific implementation.
+
+But mostly this argument "describe hardware" should be understood like:
+do not describe software (Linux drivers) and software policies (driver
+choices)...
+
+> Verilog/VHDL is what the hardware description that's
+> independent of software implementation is, good luck parsing that.
 
 Best regards,
 Krzysztof
