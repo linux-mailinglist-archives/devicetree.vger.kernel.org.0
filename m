@@ -2,55 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41F6D5F8AD9
-	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 13:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56C835F8AE9
+	for <lists+devicetree@lfdr.de>; Sun,  9 Oct 2022 13:38:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229663AbiJILPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Oct 2022 07:15:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46144 "EHLO
+        id S229913AbiJILie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Oct 2022 07:38:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbiJILPl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 07:15:41 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4777E2B24C;
-        Sun,  9 Oct 2022 04:15:36 -0700 (PDT)
+        with ESMTP id S229657AbiJILid (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 07:38:33 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DEC9B8C
+        for <devicetree@vger.kernel.org>; Sun,  9 Oct 2022 04:38:32 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 48064B80CB9;
-        Sun,  9 Oct 2022 11:15:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF917C433C1;
-        Sun,  9 Oct 2022 11:15:32 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 638C3CE0A23
+        for <devicetree@vger.kernel.org>; Sun,  9 Oct 2022 11:38:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39625C433D6;
+        Sun,  9 Oct 2022 11:38:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665314133;
-        bh=wccPJLuH2DYbLdfSoyHm5U/6vyVfxSEwO2LCbBJoTmI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZAkjhh3wUFCs0GYGGZ9pZ1dsGpWfE69dKhRZTTCMzzjAx+079DTo1wkrqXH5yiKPe
-         bN+W3QxzOWnvM8UsuY/qkgLD+xwwZbyFEV4JpBHfvdVgNnSo69wnyAqcr/Hg3XhgSl
-         Z2TFiosUqGaNAOSopU7przq4zwTXZ3AZIrDUDWByqDW67BNt2/I+Ty8nVfu1vkmWAx
-         urKUZQ6beZoqbfW+HZR9W+9N+pzCiQ7mij4K8IRXb+0pSmet1b4MtahQWEqDHaA2PR
-         uLYbf8VXptd28KvqFbB+AHry00Q2EaLwX5s6tl7LVvTwJy+qIh5YYIIQmp/gKM2yIm
-         SGln/Ve6gFTYg==
+        s=k20201202; t=1665315508;
+        bh=c9fYzp3ChdzyeU6d0vpM4MQ6poAI5TY35aSd13RcgYs=;
+        h=Date:From:To:Subject:References:In-Reply-To:From;
+        b=k6VihLAWyixlZYsPaCs9rd7c9XBZ+qk9qAefK+uHrwPOdHQhIgIjvDZpsFszg4LMH
+         7cXDbK1nlNsodzZcKVwAYiftyseGp4pV0k92+MSbKcw3c7PXmVp+4sn+nNKmDvheHV
+         HWvLc03wjtqNR6wUntuOjZhvA7r/SS7nsS48BpdC38i4Nm/ORzOstOUb3phMu7wccm
+         1I6WpuaSaOE70HqTDIb4RlzIALiIjVixE6iXmEoWcHVGKkQACnGAyrISSsaMpFub9f
+         iyDL3W6mlqqvydGuQn0PX2rXpvoz1ZovxiOMnTLu7fYRDnNiTxUMQjXZeU8YlxLyMF
+         fbfM3Yp6JOSag==
 Received: by pali.im (Postfix)
-        id E03897C1; Sun,  9 Oct 2022 13:15:29 +0200 (CEST)
-Date:   Sun, 9 Oct 2022 13:15:29 +0200
+        id 67BA37C1; Sun,  9 Oct 2022 13:38:25 +0200 (CEST)
+Date:   Sun, 9 Oct 2022 13:38:25 +0200
 From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Gregory Clement <gregory.clement@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Subject: Re: [PATCH 0/6] ARM: dts: pci-mvebu: Fix assigned-addresses for
- every PCIe Root Port
-Message-ID: <20221009111529.2eo2mwca3ywfkajy@pali>
-References: <20220817223053.31141-1-pali@kernel.org>
+Subject: Re: [PATCH] dt-bindings: bus: add device tree bindings for
+ fsl,p1021rdb-pc-cpld
+Message-ID: <20221009113825.l67w4qvv6v5kmst4@pali>
+References: <20220705175450.11886-1-kabel@kernel.org>
+ <20220831114640.qwfr7lea3lvcfl2v@pali>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220817223053.31141-1-pali@kernel.org>
+In-Reply-To: <20220831114640.qwfr7lea3lvcfl2v@pali>
 User-Agent: NeoMutt/20180716
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -61,51 +57,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gregory, ping?
+PING?
 
-On Thursday 18 August 2022 00:30:47 Pali Rohár wrote:
-> Per IEEE Std 1275-1994 bindings documentation (to which kernel DT
-> bindings refers), DT property assigned-addresses contains BDF address
-> of resource. Currently more PCIe Root Port nodes have BDF address in
-> assigned-addresses which points to different PCIe Root Port nodes. This
-> obviously does not make sense as the address resource specified in
-> assigned-addresses of every PCIe Root Port describes address range of
-> internal registers which are specific for corresponding Marvell PCIe
-> Root Port. Fix this issue and align all BDF addresses in
-> assigned-addresses DT property to specify correct BDF address of the
-> current PCIe Root Port.
+If you really do not care about documentation then just tell people to
+not waste time on doing it. Because dts files can be compiled and used
+on the real hardware without those superfluous YAML files.
+
+On Wednesday 31 August 2022 13:46:40 Pali Rohár wrote:
+> PING? Documentation binding patch is waiting there fore two months.
+> Could we move forward?
 > 
-> Note that current version of pci-mvebu.c controller driver, which
-> registers Marvell PCIe Root Ports, ignores BDF value in DT property
-> assigned-addresses. It expects that Root Port's assigned-addresses
-> contains address range of that root port. That is why driver currently
-> works without any issue and nobody spotted it. But if driver or
-> something else would do device tree validation then this issue should be
-> spotted and throws error. Also device tree files may be used by other
-> projects where drivers may require correct values.
+> Note that meanwhile turris1x.dts which uses this was merged.
 > 
-> This patch series aligns BDF address of every Marvell PCIe Root Port in
-> node name, config space in reg property and mem in assigned-address
-> property of internal registers resource.
-> 
-> Pali Rohár (6):
->   ARM: dts: dove: Fix assigned-addresses for every PCIe Root Port
->   ARM: dts: armada-370: Fix assigned-addresses for every PCIe Root Port
->   ARM: dts: armada-xp: Fix assigned-addresses for every PCIe Root Port
->   ARM: dts: armada-375: Fix assigned-addresses for every PCIe Root Port
->   ARM: dts: armada-38x: Fix assigned-addresses for every PCIe Root Port
->   ARM: dts: armada-39x: Fix assigned-addresses for every PCIe Root Port
-> 
->  arch/arm/boot/dts/armada-370.dtsi        |  2 +-
->  arch/arm/boot/dts/armada-375.dtsi        |  2 +-
->  arch/arm/boot/dts/armada-380.dtsi        |  4 ++--
->  arch/arm/boot/dts/armada-385.dtsi        |  6 +++---
->  arch/arm/boot/dts/armada-39x.dtsi        |  6 +++---
->  arch/arm/boot/dts/armada-xp-mv78230.dtsi |  8 ++++----
->  arch/arm/boot/dts/armada-xp-mv78260.dtsi | 16 ++++++++--------
->  arch/arm/boot/dts/dove.dtsi              |  2 +-
->  8 files changed, 23 insertions(+), 23 deletions(-)
-> 
-> -- 
-> 2.20.1
-> 
+> On Tuesday 05 July 2022 19:54:50 Marek Behún wrote:
+> > Add binding for CPLD bus interface of Freescale P1021RDB Combo Board
+> > CPLD Design.
+> > 
+> > Signed-off-by: Marek Behún <kabel@kernel.org>
+> > ---
+> >  .../bindings/bus/fsl,p1021rdb-pc-cpld.yaml    | 73 +++++++++++++++++++
+> >  1 file changed, 73 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml b/Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml
+> > new file mode 100644
+> > index 000000000000..822dfb93dcd8
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml
+> > @@ -0,0 +1,73 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/bus/fsl,p1021rdb-pc-cpld.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: CPLD Bus Inteface for Freescale P1021RDB Combo Board CPLD Design
+> > +
+> > +maintainers:
+> > +  - Pali Rohár <pali@kernel.org>
+> > +
+> > +description: |
+> > +  A simple bus enabling access to peripherals on boards with use Freescale
+> > +  P1021RDB Combo Board CPLD Design.
+> > +
+> > +  The "fsl,p1021rdb-pc-cpld" follows the "simple-bus" set of properties, as
+> > +  specified in the Devicetree Specification. It is an extension of "simple-bus"
+> > +  because some registers are CPLD specific and allows to identify if board has
+> > +  wired CPLD according to Freescale P1021RDB Combo Board CPLD Design.
+> > +
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: fsl,p1021rdb-pc-cpld
+> > +  required:
+> > +    - compatible
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^cpld(@[0-9a-f]+(,[0-9a-f]+)?)?$"
+> > +
+> > +  compatible:
+> > +    items:
+> > +      - const: fsl,p1021rdb-pc-cpld
+> > +      - const: simple-bus
+> > +
+> > +  '#address-cells':
+> > +    enum: [ 1, 2 ]
+> > +
+> > +  '#size-cells':
+> > +    enum: [ 1, 2 ]
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  ranges: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - '#address-cells'
+> > +  - '#size-cells'
+> > +  - reg
+> > +  - ranges
+> > +
+> > +additionalProperties:
+> > +  type: object
+> > +
+> > +examples:
+> > +  - |
+> > +
+> > +    localbus {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <1>;
+> > +
+> > +        cpld@3,0 {
+> > +            #address-cells = <1>;
+> > +            #size-cells = <1>;
+> > +            compatible = "fsl,p1021rdb-pc-cpld", "simple-bus";
+> > +            reg = <0x3 0x0 0x20000>;
+> > +            ranges = <0x0 0x3 0x0 0x20000>;
+> > +        };
+> > +    };
+> > -- 
+> > 2.35.1
+> > 
