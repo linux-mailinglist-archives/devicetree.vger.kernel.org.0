@@ -2,102 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43B5E5F982D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 08:15:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 188105F984D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 08:23:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231278AbiJJGPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 02:15:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46192 "EHLO
+        id S230230AbiJJGXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 02:23:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231303AbiJJGPc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 02:15:32 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF7DF46216;
-        Sun,  9 Oct 2022 23:15:31 -0700 (PDT)
+        with ESMTP id S231635AbiJJGXj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 02:23:39 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EE9151A2D;
+        Sun,  9 Oct 2022 23:23:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1665382531; x=1696918531;
+  t=1665383018; x=1696919018;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=hdadVB/NuyPjliUxW9jJSkSFml/0KgUKfluek+C+iNI=;
-  b=T9Jf6iBKRHmN80Z8a4vfNVCU1j2aVuO7rKY/HggX3dC0Ja4qXHzgWquo
-   gnB1NOtKTk+JUBnW8WkYqgUwmfRKTSNFSQAmpDMnO2qGhhSIehCe0W1xp
-   zYKPZlI6791W9i4mCWEnYf5iC7no36ck6RwmsifQwWsI8J8M8yv4h8rWN
-   7ckP57e+FtaH64vtZO1fHta3+CsCPMmv9HELQoaaKY2gM1zcVXt6oN6OZ
-   Yd0ix1vyHavAqzNEaGvk0yirY//eIGjk+XaE7wOU2Jm2tiqqKOO6UXi2K
-   wFXiA7IUuGkfcRJ/LdPuOAuqH8bhn6hLYCYvnfacytkgsC5faO+9OYMRa
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="366115181"
+  bh=9JYb5cHyGp+9KJ6PeduxCp/1k+kpG2Pd37pUyCuJev4=;
+  b=NG/76/+V9XTWCMXKrOS4+HwtMygPbVjcZwisbk6a/3hc38lN6M/7MNKK
+   fyMcGcpXqBuxhVSS28ABMOcxu77lccSEk1BpFqa3+CNtdyLYXVzA3CFmI
+   aB17BzUpdy80U8YTkJEBAj79M3p6GfvNpxgli7YPi/fuMgupEeb4LjQ63
+   CUnQJNLtTmyD3XGvjN6ETD7vl4trSlEfkytkktFTqIE32eM3WVwANS3wm
+   RK/ohATqDH0AP3zdlLSKb4j6im6f/wC3ZIH24C8HOhNOGogCOEwbhxwHU
+   7O0ClWXWa53yV/8e6e0FKPsoibNFOXXbOyUWvxDuazRZJuPlM0CbAh/yi
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="291439346"
 X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; 
-   d="scan'208";a="366115181"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2022 23:15:31 -0700
+   d="scan'208";a="291439346"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2022 23:23:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="694513968"
+X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="659043114"
 X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; 
-   d="scan'208";a="694513968"
+   d="scan'208";a="659043114"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP; 09 Oct 2022 23:15:28 -0700
+  by orsmga001.jf.intel.com with ESMTP; 09 Oct 2022 23:23:35 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.96)
         (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1ohm4U-004kEG-2G;
-        Mon, 10 Oct 2022 09:15:26 +0300
-Date:   Mon, 10 Oct 2022 09:15:26 +0300
+        id 1ohmCL-004kNx-2m;
+        Mon, 10 Oct 2022 09:23:33 +0300
+Date:   Mon, 10 Oct 2022 09:23:33 +0300
 From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Soha Jin <soha@lohu.info>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
         linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 4/5] iio: accel: Support Kionix/ROHM KX022A
- accelerometer
-Message-ID: <Y0O4fiQQX0M317h/@smile.fi.intel.com>
-References: <cover.1665066397.git.mazziesaccount@gmail.com>
- <88e24b01da9f44ebf5fcd8344ded0b75ff742fbf.1665066397.git.mazziesaccount@gmail.com>
- <Yz8fK7j8pxlU76xt@smile.fi.intel.com>
- <20221009133351.6ff4894b@jic23-huawei>
+Subject: Re: [PATCH 0/3] Case-insensitive match_string and
+ fwnode_is_compatible()
+Message-ID: <Y0O6ZZe6RqlibDxB@smile.fi.intel.com>
+References: <20221009162155.1318-1-soha@lohu.info>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221009133351.6ff4894b@jic23-huawei>
+In-Reply-To: <20221009162155.1318-1-soha@lohu.info>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 09, 2022 at 01:33:51PM +0100, Jonathan Cameron wrote:
-> On Thu, 6 Oct 2022 21:32:11 +0300
-> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > On Thu, Oct 06, 2022 at 05:38:14PM +0300, Matti Vaittinen wrote:
-
-...
-
-> > > +module_param(g_kx022a_use_buffer, bool, 0);
-> > > +MODULE_PARM_DESC(g_kx022a_use_buffer,
-> > > +		 "Buffer samples. Use at own risk. Fifo must not overflow");  
-> > 
-> > Why?! We usually do not allow module parameters in the new code.
+On Mon, Oct 10, 2022 at 12:21:52AM +0800, Soha Jin wrote:
+> I am introducing these patches for the patch for ethernet driver which I
+> will send later.
 > 
-> Badly broken hardware - was my suggestion.  Alternatives if there are usecases
-> that need to use the fifo, but it can wedge hard in a fashion that is impossible
-> to prevent from the driver?  My gut feeling is still drop the support entirely
-> with a strong comment in the code that the hardware is broken in a fashion we don't
-> know how to work around.
+> In Patch 1, I abstract `match_string` to `__match_string` with a comparison
+> function, make the original name calling it with `strcmp` and add
+> `match_string_nocase` calling it with `strcasecmp`.
+> 
+> In Patch 2 & 3, I implement `{device,fwnode}_property_match_string_nocase`
+> and `fwnode_is_compatible` for compatible property matching.
 
-I also would drop this from upstream and if anybody curious, provide some kind
-of GitHub gist for that. Also it needs some communication with a vendor to
-clarify the things.
+Let's ask Rob about usage of case-insensitive comparator for compatible
+strings.
+
+So, why do we have such in the OF code and do we really need it in the modern
+world?
 
 -- 
 With Best Regards,
