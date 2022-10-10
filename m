@@ -2,71 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D6D5F9EB5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 14:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E8B25F9EE9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 14:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230344AbiJJM13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 08:27:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50922 "EHLO
+        id S229964AbiJJMyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 08:54:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230164AbiJJM12 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 08:27:28 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B1C85F225;
-        Mon, 10 Oct 2022 05:27:27 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-12c8312131fso12281360fac.4;
-        Mon, 10 Oct 2022 05:27:27 -0700 (PDT)
+        with ESMTP id S231307AbiJJMyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 08:54:19 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF3FE69F46
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 05:54:17 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id bu30so16883626wrb.8
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 05:54:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=Lojkaj6JUR8NyKzpyCgf7aYSFB/ui7IP7hjT3HzGmaA=;
+        b=2ZVTfASKsVZRl4/2uxi09rzItvsxEmUaSC6u4Utu/B/bHQB90LPh3Wdj1roBQdV2us
+         dfWvNaLI16Bg1Djx1qzyPkXWIMN8XwBCChGgnBFQ8xFfaZDIxoIT122x5mtJcDziLXLs
+         U3DP2l/8XvMF+FDqz93DqxmgpIE2edQNVidX0P6X04cyEcX5FXPAWYHFUkXDr0EUoqkj
+         VbVHTe2/W5VVWC2LaodYp78M5UdITPrFhbCy7cKOAGaPuXNGLpjpewKfM0ns2Dt5xco2
+         tF/XwTI4VbqPcXTBOHThczPRDzcW1gh+6BCBeTEwmofEBo/RA22GhQ/Ler4YtUBnJ8Jv
+         hIoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3XimozxtCM3OTFQP29kmIOvI38zdZ6QInZnUvN9y4CQ=;
-        b=ooDAWRy+Ua7ow2fbN4i30Z1+WcLRwoRzamViqj9UO0W8OTey/VcVtc9snMREQ2vef2
-         TiE6AwXWDn5oSx4hnBORfQPYwqwiKUtq2kr1F+dyOvD5/d/czWH0nYMUlCMoCpJuh48t
-         c0j6jWOO4wa7l1l/5r6QVhSsDcH9lCKSml/eo1Ob1DZHUDUiR1U2zM1G9zUtwdm8uIAh
-         dFgay5jUEDhB0T+iO2yFp3JRtsTgki0uWTGRoUySiRAhaeuV2U3T4dgW1GJ1ChpYNQja
-         Y0cHwNOErTXiCDiZRu7BFdqJLGTTH/aaKPfWva2aBl76MuIx6lDRAD5UR0oN2/0MIoAK
-         hfQg==
-X-Gm-Message-State: ACrzQf23C4rzhGcAGi2/a/PZ0SOZNXLFluNbtg3kbDlDao/oEINwRkfO
-        YspaqrKlyZnvXpvvDdTqdA==
-X-Google-Smtp-Source: AMsMyM4Wraf8Vgk7cNKGKpmIo2CmacT/qVRhLbZIlf30aykw5iXbY/fXUC23XjS4RuVb6w1V6WP4Ow==
-X-Received: by 2002:a05:6870:9a05:b0:132:ebf:dc61 with SMTP id fo5-20020a0568709a0500b001320ebfdc61mr9506149oab.76.1665404846584;
-        Mon, 10 Oct 2022 05:27:26 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q13-20020a9d654d000000b0066193fe498bsm2043389otl.28.2022.10.10.05.27.25
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Lojkaj6JUR8NyKzpyCgf7aYSFB/ui7IP7hjT3HzGmaA=;
+        b=hERRUDyrqA9O1cZWzs9bLG8k+FjRCi/rj40WS2DmlZdMO02+VMTYTOc7IuGXajPUTF
+         gugmiZ05k3AEaeu+2qX40izeBWOP4Ftu7QG8ch2KvZVeC6QhJV4sV19c4qXr2aeJUu5H
+         JcDODVKWqK/EWsS8EG+oZWfSrxdi8/gD+xhiDzQyUcHT+o4VTVCNqtpk6JkfFw09AbUs
+         nuKaTBlzUqIG5DqMh+Frenyj1LjOGzKxN42h/LadnnuWG6cq8PJS5pOSvZt11193zRQi
+         qkfke5tOF9Oulxk8/cxUWVKFNw83bNxi07WSzWx2i5hf+8FsdxA+Z1NtUgnAv0Em0IRf
+         UPLQ==
+X-Gm-Message-State: ACrzQf2uR022MFaB9dG6Xpo/erAT8uhp4qlkxt3V2H7n/1RQttkAbJ7V
+        f1Z4f4zOGcSDa+c4cxTD9KaiWA==
+X-Google-Smtp-Source: AMsMyM4XniwUCqXkT/kyXAQIx7tOlQsLDaDX9ILnMkLAe9rrtg3Kg5KL/zu92SdukYFKEL6OAoBQCg==
+X-Received: by 2002:a05:6000:1087:b0:22e:3731:e6d with SMTP id y7-20020a056000108700b0022e37310e6dmr12059977wrw.614.1665406455931;
+        Mon, 10 Oct 2022 05:54:15 -0700 (PDT)
+Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id v24-20020a1cf718000000b003a6125562e1sm9767020wmh.46.2022.10.10.05.54.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Oct 2022 05:27:26 -0700 (PDT)
-Received: (nullmailer pid 442613 invoked by uid 1000);
-        Mon, 10 Oct 2022 12:27:27 -0000
-Date:   Mon, 10 Oct 2022 07:27:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: apple,aic: Document A7-A11
- compatibles
-Message-ID: <20221010122727.GA432201-robh@kernel.org>
-References: <20221007200022.22844-1-konrad.dybcio@somainline.org>
- <20221007200022.22844-2-konrad.dybcio@somainline.org>
+        Mon, 10 Oct 2022 05:54:15 -0700 (PDT)
+Subject: [PATCH v3 0/3] iommu/mediatek: Add mt8365 iommu support
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221007200022.22844-2-konrad.dybcio@somainline.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIAO4VRGMC/32OwarCMBBFf0WyNhKnabWu/A9x0UlubaBtJLEFkf67897uPbSr4V44585LZaSArE
+ 6bl0qYQw5xlFBsN8p1zXiDDl6yIkO0N2avQxyGSefpfo/poVtraneAqS0qJQw3GZpTM7pOqHHqeym7
+ kB8xPX83ZpJz+aabSRtd1cwHX3ljqDxz8+wDJ+xcHH4G1kDPLVoCwK7+C16FnIvV5UIE7lgwWjgi+A 8CuyqwIoCr5IfSgkv+J1iW5Q3CS3zibQEAAA==
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Mon, 10 Oct 2022 14:54:06 +0200
+Message-Id: <20221001-iommu-support-v3-0-c7b3059b0d16@baylibre.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     iommu@lists.linux.dev,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        linux-mediatek@lists.infradead.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2223; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=XUk8/lOWPvVlbar9Sj5jb7E2IzZ+DCs5b4DX9AOqtU8=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjRBX2CvJiV0u11Odk4wfnnsc0QlUSNAIRzMiBf9FW
+ lPHO9ESJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY0QV9gAKCRArRkmdfjHURc8kEA
+ CmDE5S4KSKuL571DM65xTKRR7BeNwAxstvQDxxvLvkU3wxrntz5KQSdxjrxvnsLywQmGQswkytyGg1
+ TDK+cLya1B+U+Dui/pRnIEryMbPPmyMkaQ/6M16zOjQqP70m82NS/SXJ90k7aoG7p/hGRbVdqwLLpB
+ GA7T8yaiLZ+6ph6fgWRDyeqvQoFKtW80qznkbGXubfEM2V2pCB14v3tX6Q9mnH31aRJgSvEXemi32v
+ bkbemnbBnEAELnqJqddn3f/pRh0eoVbO9+ft6kJDOGMUnGKWmmUDCEesf+DrpCUVt23zF7lH15tEsx
+ RecUB8GI+1SBeEW7D7JurBJAn7P96WHbtdI8QGS0xQ4VV6cWg8iF5G7x9tcTMkKlg3jQevEnUqUB/w
+ NrGP/81wNRc6bTv4Q/7KrzhtD+qNHJbdYkHNn5Aa6hgYFNyyiB+35PmpOECbEvLBJdJpt5o6D8weKC
+ EngaDSNXu5UNwvncvRBP8Mv/SWvn/rRE69gDGjUp7nPUuB79kfBOawwQCflozcTNAW8NKaEIfi+6BS
+ 6sy+b9wk4eB1meYPcEbrqzXNLeXvviaJQPYqdWh8prbW8sGg11bsHWYNgi5BisDRUaPHoVlO3iWLkd
+ 2qhYVeRhp6uqQ0PDtcq2Pm76E9pddyliIq3p2PgWWsStwSzt6OuXxNPzv1xg==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,54 +99,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 07, 2022 at 10:00:21PM +0200, Konrad Dybcio wrote:
-> Document the compatibles for Apple A7-A11 SoCs.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
-> Changes since v3:
-> - Bindings: A7-A10+M1 only get SoC compat and generic fallback,
-> A11 gets M1 fallback and generic fallback (removed A11 compatible)
+Hi,
 
-I have no idea if that makes sense or not. Do I have to go read the 
-rationale in the prior version?
+This series contains patches related to the support of mt8365 iommu.
+Thanks for your feedback so far.
 
-The question to ask on fallbacks, is would s/w that only understands the 
-fallback compatible work as-is?
+Regards,
+Alex
 
-> - Drop Rob's A-b as this is essentially yet another rewrite..
-> 
->  .../bindings/interrupt-controller/apple,aic.yaml | 16 +++++++++++++---
->  1 file changed, 13 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
-> index e18107eafe7c..1427ea9b04a2 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
-> @@ -36,9 +36,19 @@ allOf:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - const: apple,t8103-aic
-> -      - const: apple,aic
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - apple,s5l8960x-aic
-> +              - apple,s8000-aic
-> +              - apple,t7000-aic
-> +              - apple,t8010-aic
-> +              - apple,t8103-aic
-> +          - const: apple,aic
-> +      - items:
-> +          - const: apple,t8015-aic
-> +          - const: apple,t8103-aic
-> +          - const: apple,aic
->  
->    interrupt-controller: true
->  
-> -- 
-> 2.37.3
-> 
-> 
+Changes in v3:
+- Rename "mt8365-larb-port.h" to "mediatek,mt8365-larb-port.h"
+- Rework the macros which retrieve larb/port ID to improve human readability
+- Link to v2: https://lore.kernel.org/r/20221001-iommu-support-v2-0-dbfef2eeebc9@baylibre.com
+
+Changes in v2:
+- Rebase.
+- Change M4U_PORT_APU_READ & M4U_PORT_APU_WRITE port to avoid display
+  conflict in larb0. These definitions are used for vpu0 device node.
+- Add dual license.
+- Retitle commit.
+- Rename to int_id_port_width for more detail.
+- Fix typo.
+- Set banks_enable and banks_num in mt8365_data to fix kernel panic at boot.
+- Link to v1 - https://lore.kernel.org/lkml/20220530180328.845692-1-fparent@baylibre.com/
+
+To: Yong Wu <yong.wu@mediatek.com>
+To: Joerg Roedel <joro@8bytes.org>
+To: Will Deacon <will@kernel.org>
+To: Robin Murphy <robin.murphy@arm.com>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: iommu@lists.linux.dev
+Cc: linux-mediatek@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: Fabien Parent <fparent@baylibre.com>
+Cc: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+
+---
+Fabien Parent (3):
+      dt-bindings: iommu: mediatek: add binding documentation for MT8365 SoC
+      iommu/mediatek: add support for 6-bit encoded port IDs
+      iommu/mediatek: add support for MT8365 SoC
+
+ .../devicetree/bindings/iommu/mediatek,iommu.yaml  |  2 +
+ drivers/iommu/mtk_iommu.c                          | 30 +++++++-
+ .../dt-bindings/memory/mediatek,mt8365-larb-port.h | 90 ++++++++++++++++++++++
+ 3 files changed, 120 insertions(+), 2 deletions(-)
+---
+base-commit: 11082343e3bf2953a937509f0316cabf69dbf908
+change-id: 20221001-iommu-support-f409c7e094e6
+
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
