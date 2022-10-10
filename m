@@ -2,640 +2,341 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B49DF5F9F6C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 15:32:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 195B35F9F80
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 15:37:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbiJJNcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 09:32:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54872 "EHLO
+        id S229471AbiJJNhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 09:37:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbiJJNcJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 09:32:09 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9769C7285D
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 06:32:07 -0700 (PDT)
-Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D8FAD11C1;
-        Mon, 10 Oct 2022 15:32:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1665408721;
-        bh=Iucf4s8NXFo3X+nUSlparcmyRbuG1IscX1w4UxnWu3s=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JRucmVscl+kgIS4Hne+/GASRlKUsyt5sNLlcipgeBpbLhsfIG4mCW2tiIlpfSzlOX
-         d2W7qJOtIdNTXP6VTf4hWIZZtBC6eLAtly8Z7o3YVVd78OFXEwZTinJlUEEaxigEwA
-         vsK7E8I3R50KtxQwmyacZ5J5Ac+IYw1PFQGCIlSw=
-From:   Daniel Scally <dan.scally@ideasonboard.com>
-To:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
-        kieran.bingham@ideasonboard.com, debix-tech@polyhex.net,
-        Daniel Scally <dan.scally@ideasonboard.com>
-Subject: [PATCH v2 3/3] arm64: dts: Add device tree for the Debix Model A Board
-Date:   Mon, 10 Oct 2022 14:31:46 +0100
-Message-Id: <20221010133146.1430768-4-dan.scally@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221010133146.1430768-1-dan.scally@ideasonboard.com>
-References: <20221010133146.1430768-1-dan.scally@ideasonboard.com>
+        with ESMTP id S229461AbiJJNh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 09:37:29 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C14235E54D
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 06:37:27 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id ay9so6487859qtb.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 06:37:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vkuK5BKe2xjQkr/RcXbg8y9N+ayQn7NQBCiNKHV/VJ4=;
+        b=Cc9dsYY3Ns5gpbAsjA9eoNHsK/PdkfsTRAQYm4d7Yxa28pltyytcsPDOyAbjEb4Vfy
+         fV9CvxhHZ+QohzNZCH40PwvqEKQpZ/DBQHFHR2r+NsS1/GU9rCLfuGykRtsjkBYpittF
+         4sUiieWnV2SpWKMy/6umjJ1sx6XQH88UXKtgi4jhNTsr2YrNTdoEEqIvteHJk/AnIvbe
+         Se1g7yK7eKDoyaUJ6zXRjsTMJMDKqmAoe8A2dVsbVTpITeHV7bDerqUzdhU0uMzAXucq
+         BWT6u7k1zoX21YeXr1VSSo3FEKteHLUx8EL2micF0LUjCBuK6DUIj1UM7AobCdNRbqas
+         p4lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vkuK5BKe2xjQkr/RcXbg8y9N+ayQn7NQBCiNKHV/VJ4=;
+        b=u7LPaMQGUYn98VvpsKM/Isw73uwrRPloTTYjXZJeW00ScEsIJswzExQj4tGhKAxSiP
+         0foqNAY7UHfvUGGTFiiyrKEmDB9zlOqzfiWm2+aybalwIaQoYJbuOnNO1LO6rdAJ/v9u
+         YHlImpN1x3zYWjR6/poDlc6hl7dgbrOUl2alk5JG+WDQmvxf/Ex7bxb1PdeICjUM57uP
+         9GF4o4KeeosHaQJKClPCZsOVDK4lQ9hDLs5oUNNTQCcEJFS1jNMXN7KAmsVvccyo5gH+
+         krn2GEbk8cxgMWtKET7yWQEXn6eYou1+1qLol0Tn/TSTJ6fmdENGjVeaK+jWNwBHxm9q
+         O/4Q==
+X-Gm-Message-State: ACrzQf1J20fY1lORnn31k5gsId1b9hL8PNrIiWjZypwddj+ObwLDmw7R
+        Z/y50LAqpoJoc4cbJvq+XZlaAA==
+X-Google-Smtp-Source: AMsMyM5B2PMSgTHUQeRVmWgnVQAXgXXfhmXI03btwQHLLUhnuKk8abdqNAj1w+SE3UvwJDKnlBB8eA==
+X-Received: by 2002:ac8:580d:0:b0:35c:3fcc:2442 with SMTP id g13-20020ac8580d000000b0035c3fcc2442mr14849984qtg.501.1665409046788;
+        Mon, 10 Oct 2022 06:37:26 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id x14-20020a05620a448e00b006b949afa980sm10390657qkp.56.2022.10.10.06.37.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Oct 2022 06:37:26 -0700 (PDT)
+Message-ID: <d27d7740-bf35-b8d4-d68c-bb133513fa19@linaro.org>
+Date:   Mon, 10 Oct 2022 09:37:23 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v3 net-next 12/14] dt-bindings: net: dsa: ocelot: add
+ ocelot-ext documentation
+Content-Language: en-US
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Colin Foster <colin.foster@in-advantage.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+References: <20220926002928.2744638-1-colin.foster@in-advantage.com>
+ <20220926002928.2744638-13-colin.foster@in-advantage.com>
+ <ec63b5aa-3dec-3c27-e987-25e36b1632ba@linaro.org>
+ <YzzLCYHmTcrHbZcH@colin-ia-desktop>
+ <455e31be-dc87-39b3-c7fe-22384959c556@linaro.org>
+ <Yz2mSOXf68S16Xg/@colin-ia-desktop>
+ <28b4d9f9-f41a-deca-aa61-26fb65dcc873@linaro.org>
+ <20221008000014.vs2m3vei5la2r2nd@skbuf>
+ <c9ce1d83-d1ca-4640-bba2-724e18e6e56b@linaro.org>
+ <20221010130707.6z63hsl43ipd5run@skbuf>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221010130707.6z63hsl43ipd5run@skbuf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device tree file describing the Debix Model A board from
-Polyhex Technology Co.
+On 10/10/2022 09:07, Vladimir Oltean wrote:
+> On Sun, Oct 09, 2022 at 12:14:22PM -0400, Krzysztof Kozlowski wrote:
+>> On 08/10/2022 02:00, Vladimir Oltean wrote:
+>>> On Wed, Oct 05, 2022 at 06:09:59PM +0200, Krzysztof Kozlowski wrote:
+>>>>>> I don't understand how your answer relates to "reg=<0 0>;". How is it
+>>>>>> going to become 0x71010000 if there is no other reg/ranges set in parent
+>>>>>> nodes. The node has only one IO address, but you say the switch has 20
+>>>>>> addresses...
+>>>>>>
+>>>>>> Are we talking about same hardware?
+>>>>>
+>>>>> Yes. The switch driver for both the VSC7512 and VSC7514 use up to ~20 regmaps
+>>>>> depending on what capabilities it is to have. In the 7514 they are all
+>>>>> memory-mapped from the device tree. While the 7512 does need these
+>>>>> regmaps, they are managed by the MFD, not the device tree. So there
+>>>>> isn't a _need_ for them to be here, since at the end of the day they're
+>>>>> ignored.
+>>>>>
+>>>>> The "reg=<0 0>;" was my attempt to indicate that they are ignored, but I
+>>>>> understand that isn't desired. So moving forward I'll add all the
+>>>>> regmaps back into the device tree.
+>>>>
+>>>> You need to describe the hardware. If hardware has IO address space, how
+>>>> does it matter that some driver needs or needs not something?
+>>>
+>>> What do you mean by IO address space exactly? It is a SPI device with registers.
+>>> Does that constitute an IO address space to you?
+>>
+>> By IO I meant MMIO (or similar) which resides in reg (thus in unit
+>> address). The SPI devices have only chip-select as reg, AFAIR.
+> 
+> Again, the SPI device (soc@0) has a unit address that describes the chip
+> select, yes. The children of the SPI device have a unit address that
+> describes the address space of the SPI registers of the mini-peripherals
+> within that SPI device.
+> 
+>>> The driver need matters because you don't usually see DT nodes of SPI,
+>>> I2C, MDIO devices describing the address space of their registers, and
+>>> having child nodes with unit addresses in that address space. Only when
+>>> those devices are so complex that the need arises to identify smaller
+>>> building blocks is when you will end up needing that. And this is an
+>>> implementation detail which shapes how the dt-bindings will look like.
+>>
+>> So probably I misunderstood here. If this is I2C or SPI device, then of
+>> course reg and unit address do not represent registers.
+> 
+> Except we're not talking about the SPI device, I'm reminding you that we
+> are talking about "reg = <0 0>" which Colin used to describe the
+> /spi/soc@0/ethernet-switch node.
+> 
+> Colin made the incorrect decision to describe "reg = <0 0>" for the
+> switch OF node in an attempt to point out that "reg" will *not* be used
+> by his implementation, whatever value it has. You may want to revisit
+> some of the things that were said.
+> 
+> What *is* used in the implementation is the array of resources from
+> struct mfd_cell vsc7512_devs[] in drivers/mfd/ocelot-core.c, because MFD
+> allows you to do this (and I suppose because it is more convenient than
+> to rely on the DT). Colin's entire confusion comes from the fact that he
+> thought it wouldn't be necessary to describe the unit addresses of MFD
+> children if those addresses won't be retrieved from DT.
+> 
+>>>> You mentioned that address space is mapped to regmaps. Regmap is Linux
+>>>> specific implementation detail, so this does not answer at all about
+>>>> hardware.
+>>>>
+>>>> On the other hand, if your DTS design requires this is a child of
+>>>> something else and by itself it does not have address space, it would be
+>>>> understandable to skip unit address entirely... but so far it is still
+>>>> confusing, especially that you use arguments related to implementation
+>>>> to justify the DTS.
+>>>
+>>> If Colin skips the unit address entirely, then how could he distinguish
+>>> between the otherwise identical MDIO controllers mdio@7107009c and
+>>> mdio@710700c0 from Documentation/devicetree/bindings/mfd/mscc,ocelot.yaml?
+>>> The ethernet-switch node added here is on the same hierarchical level
+>>> with the MDIO controller nodes, so it must have a unit address just like
+>>> them.
+>>
+>> So what is @710700c0?
+> 
+> @710700c0 is VSC7512_MIIM1_RES_START, i.e. the base address of the
+> second MDIO controller embedded within the SoC (accessed over whatever;
+> SPI or MMIO).
+> 
+>> It's not chip-select, but MMIO or some other bus (specific to the
+>> device), right?
+> 
+> Yes, it is not chip select. Think of the /spi/soc@0 node as an AHB to
+> SPI bridge (it is possibly not quite that, but for the sake of imagination
+> it's a good enough description), and the children of /spi/soc@0 are
+> nodes whose registers are accessed through that AHB to SPI bridge.
+> The same addresses can also be accessed via direct MMIO by the processor
+> *inside* the switch SoC, which in some cases can also run Linux
+> (although not here in VSC7512, but in VSC7514).
+> 
+>> The mscc,ocelot.yaml has a soc@0 SPI device. Children of soc@0 use unit
+>> addresses/reg meaningful for that soc@0.
+> 
+> Which they do.
+> 
+>>> But I don't support Colin's choice of "reg=<0 0>;" either. A choice must
+>>> be made between 2 options:
+>>> - mapping all 20 regions of the SPI address space into "reg" values
+>>> - mapping a single region from the smallest until the largest address of
+>>>   those 20, and hope nothing overlaps with some other peripheral, or
+>>>   worse, that this region will never need to be expanded to the left.
+>>
+>> Yeah, at least to my limited knowledge of this hardware.
+> 
+> Yeah what? That a decision must be made?
 
-Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
----
-Changes in v2:
+Yep. That's it. You ask me to learn this hardware, read datasheet and
+design it instead of Colin or other people working on it. I can give you
+generic guidelines how it should look, but that's it.
 
-    - Fixed the interrupt flag for i2c1/pmic@25
-    - Fixed the node name for i2c4/rtc@51 (was "hym8563@51")
-    - Fixed a group control name that didn't match the bindings pattern
-    - Re-compared the rest of the DT with the EVK's .dts file to try to
-    make sure it complies with the way things should be, hopefully without
-    missing anything...
+> 
+>>> What information do you need to provide some best practices that can be
+>>> applied here and are more useful than "you need to describe the
+>>> hardware"? 
+>>
+>> Describe the hardware properties in terms of it fit in to the whole
+>> system - so some inputs (clocks, GPIOs), outputs (interrupts),
+>> characteristics of a device (e.g. clock provider -> clock cells) and
+>> properties configuring hardware per specific implementation.
+>>
+>> But mostly this argument "describe hardware" should be understood like:
+>> do not describe software (Linux drivers) and software policies (driver
+>> choices)...
+> 
+> Let's bring this back on track. The discussion started with you saying:
+> 
+> | soc in spi is a bit confusing.
+> 
+> which I completely agree with, it really is. But it's also not wrong
+> (or at least you didn't point out reasons why it would be, despite being
+> asked to), and very descriptive of what actually takes place here:
+> SoC registers are being accessed over SPI by an external host.
 
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx8mp-debix-model-a.dts    | 550 ++++++++++++++++++
- 2 files changed, 551 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+My comment was not only about this. My comment was about soc@0 not
+having reg. And then having ethernet@0 with reg=<0,0> which is unusual,
+because - as you explained - it is not a SPI device.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 8bf7f7ecebaa..6a33a08946ac 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -80,6 +80,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-model-a.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-new file mode 100644
-index 000000000000..71c0fbfef180
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-@@ -0,0 +1,550 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2019 NXP
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/usb/pd.h>
-+
-+#include "imx8mp.dtsi"
-+
-+/ {
-+	model = "Polyhex Debix Model A (2GB) i.MX8MPlus board";
-+	compatible = "polyhex,imx8mp-debix-model-a", "fsl,imx8mp";
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_led>;
-+
-+		status-led {
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VSD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+};
-+
-+&A53_0 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&A53_1 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&A53_2 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&A53_3 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&eqos {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_eqos>;
-+	phy-connection-type = "rgmii-id";
-+	phy-handle = <&ethphy0>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <20>;
-+			reset-deassert-us = <200000>;
-+		};
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec>;
-+	phy-connection-type = "rgmii-id";
-+	phy-handle = <&ethphy1>;
-+	fsl,magic-packet;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy1: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			reset-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10>;
-+			reset-deassert-us = <150>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	pmic@25 {
-+		reg = <0x25>;
-+		compatible = "nxp,pca9450c";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <3 IRQ_TYPE_EDGE_RISING>;
-+
-+		regulators {
-+			buck1: BUCK1 {
-+				regulator-name = "BUCK1";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <2187500>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			buck2: BUCK2 {
-+				regulator-name = "BUCK2";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <2187500>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+				nxp,dvs-run-voltage = <950000>;
-+				nxp,dvs-standby-voltage = <850000>;
-+			};
-+
-+			buck4: BUCK4{
-+				regulator-name = "BUCK4";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck5: BUCK5{
-+				regulator-name = "BUCK5";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck6: BUCK6 {
-+				regulator-name = "BUCK6";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1: LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo2: LDO2 {
-+				regulator-name = "LDO2";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1150000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo3: LDO3 {
-+				regulator-name = "LDO3";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4: LDO4 {
-+				regulator-name = "LDO4";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo5: LDO5 {
-+				regulator-name = "LDO5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c4>;
-+	status = "okay";
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c02";
-+		reg = <0x50>;
-+		pagesize = <16>;
-+	};
-+
-+	rtc@51 {
-+		compatible = "haoyu,hym8563";
-+		reg = <0x51>;
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		clock-output-names = "xin32k";
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rtc_int>;
-+	};
-+};
-+
-+&i2c6 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c6>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL					0x400001c3
-+			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA					0x400001c3
-+			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD						0x40000019
-+			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC						0x40000019
-+		>;
-+	};
-+
-+	pinctrl_eqos: eqosgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC							0x3
-+			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO						0x3
-+			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0					0x91
-+			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1					0x91
-+			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2					0x91
-+			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3					0x91
-+			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x91
-+			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL				0x91
-+			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0					0x1f
-+			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1					0x1f
-+			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2					0x1f
-+			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3					0x1f
-+			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL				0x1f
-+			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x1f
-+			MX8MP_IOMUXC_SAI1_RXFS__ENET1_1588_EVENT0_IN				0x1f
-+			MX8MP_IOMUXC_SAI1_RXC__ENET1_1588_EVENT0_OUT				0x1f
-+			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18							0x19
-+		>;
-+	};
-+
-+	pinctrl_fec: fecgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC							0x3
-+			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO							0x3
-+			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0						0x91
-+			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1						0x91
-+			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2						0x91
-+			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3						0x91
-+			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC						0x91
-+			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL					0x91
-+			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0						0x1f
-+			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1						0x1f
-+			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2						0x1f
-+			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3						0x1f
-+			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL					0x1f
-+			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC						0x1f
-+			MX8MP_IOMUXC_SAI1_RXD1__ENET1_1588_EVENT1_OUT				0x1f
-+			MX8MP_IOMUXC_SAI1_RXD0__ENET1_1588_EVENT1_IN				0x1f
-+			MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19							0x19
-+		>;
-+	};
-+
-+	pinctrl_gpio_led: gpioledgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16						0x19
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL								0x400001c2
-+			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA								0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL								0x400001c2
-+			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA								0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL								0x400001c2
-+			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA								0x400001c2
-+		>;
-+	};
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL								0x400001c3
-+			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA								0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c6: i2c6grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI5_RXFS__I2C6_SCL							0x400001c3
-+			MX8MP_IOMUXC_SAI5_RXC__I2C6_SDA								0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_rtc_int: rtcintgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11							0x140
-+		>;
-+	};
-+
-+	pinctrl_pmic: pmicirqgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03							0x41
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19						0x41
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX						0x14f
-+			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX						0x14f
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX						0x49
-+			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX						0x49
-+		>;
-+	};
-+
-+	pinctrl_uart4: uart4grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART4_RXD__UART4_DCE_RX						0x49
-+			MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX						0x49
-+		>;
-+	};
-+
-+	pinctrl_usb1_vbus: usb1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI2_TXC__GPIO4_IO25							0x19
-+			MX8MP_IOMUXC_SAI2_TXD0__GPIO4_IO26							0x19
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK							0x190
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD							0x1d0
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0						0x1d0
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1						0x1d0
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2						0x1d0
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3						0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT						0xc1
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK							0x194
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD							0x1d4
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0						0x1d4
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1						0x1d4
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2						0x1d4
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3						0x1d4
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT						0xc1
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK							0x196
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD							0x1d6
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0						0x1d6
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1						0x1d6
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2						0x1d6
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3						0x1d6
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT						0xc1
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12							0x1c4
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK							0x190
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD							0x1d0
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0						0x1d0
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1						0x1d0
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2						0x1d0
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3						0x1d0
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4						0x1d0
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5						0x1d0
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6						0x1d0
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7							0x1d0
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE						0x190
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK							0x194
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD							0x1d4
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0						0x1d4
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1						0x1d4
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2						0x1d4
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3						0x1d4
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4						0x1d4
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5						0x1d4
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6						0x1d4
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7							0x1d4
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE						0x194
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK							0x196
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD							0x1d6
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0						0x1d6
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1						0x1d6
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2						0x1d6
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3						0x1d6
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4						0x1d6
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5						0x1d6
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6						0x1d6
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7							0x1d6
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE						0x196
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B						0xc6
-+		>;
-+	};
-+};
-+
-+&snvs_pwrkey {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	/* console */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart4>;
-+	status = "okay";
-+};
-+
-+/* SD Card */
-+&usdhc2 {
-+	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
-+	assigned-clock-rates = <400000000>;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+/* eMMc */
-+&usdhc3 {
-+	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
-+	assigned-clock-rates = <400000000>;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+	status = "okay";
-+};
--- 
-2.34.1
+> 
+> If you're going to keep giving mechanical review to this, my fear is
+> that a very complex set of schemas is going to fall through the cracks
+> of bureaucracy, and while it will end up being formally correct,
+> absolutely no one will understand what is actually required when
+> piecing everything together.
+> 
+> In your review of the example provided by Colin here, you first have
+> this comment about "soc in spi" being confusing, then you seem to forget
+> everything about that, and ask "How is this example different than
+> previous one (existing soc example)?"
+
+That one was a different topic, but we stopped discussing it. You
+explained the differences and its fine.
+
+> 
+> There are more things to unpack in order to answer that.
+> 
+> The main point is that we wanted to reuse the existing MMIO-based
+> drivers when accessing the devices over SPI. So the majority of
+> peripherals have the same dt-bindings whether they are on /soc or on
+> /spi/soc. Linux also provides us with the mfd and regmap abstractions,
+> so all is good there. So you are not completely wrong to expect that an
+> ethernet-switch with the "mscc,vsc7512-switch" compatible string should
+> have the same bindings regardless of whatever its parent is.
+> 
+> Except this is not actually true, and the risk is that this will appear
+> as seamless as just that when it actually isn't.
+> 
+> First (and here Colin is also wrong), the switch Colin adds support for
+> is not directly comparable with "the existing soc example" (vsc9953).
+> That is different (NXP) hardware which just happens to be supported by
+> the same driver (drivers/net/dsa/ocelot). 
+
+If it is different hardware, then you have different compatible, so why
+this is a problem?
+
+> It's worth reiterating that
+> dissimilar hardware driven by a common driver should not necessarily
+> have the same dt-bindings.
+
+Which is obvious...
+
+> Case in point, the NXP switches have a single
+> (larger) "reg", because the SoC integration was tidier and the switch
+> doesn't have 20 regions spread out through the SoC's guts, which overlap
+> with other peripherals as in the case of VSC7512/VSC7514.
+> 
+> Anyway, Colin's SPI-controlled VSC7512 switch is most similar to
+> mscc,vsc7514-switch.yaml (to the point of the hardware being identical),
+> and I believe that this is the schema he should append his information to,
+> rather than what he's currently proposing in his patches.
+> 
+> *But* accessing an Ethernet switch over SPI is not functionally
+> identical to accessing it over MMIO, unless you want to have an Ethernet
+> throughput in the order of tens of bits per second.
+> 
+> This is where implementation starts to matter, and while mscc,vsc7514-switch.yaml
+
+Not really, implementation still does not matter to the bindings and
+that argument proves nothing. No one forces you to model it as SPI in
+bindings...
+
+> describes a switch where packets are sent and received over MMIO (which
+> wouldn't be feasible over SPI), Colin's VSC7512 schema describes a
+> switch used in DSA mode (packets are sent/received over a host Ethernet
+> port, fact which helps overcome the bandwidth limitations of SPI).
+> To make matters worse, even VSC7514 can be used in DSA mode. When used
+> in DSA mode, a *different* driver, with *different* dt-bindings (because
+> of different histories) controls it.
+
+The histories also do not matter here - you can deprecate bindings, e.g.
+with a new compatible, and write everything a bit more generic (to cover
+different setups).
+
+> 
+> So what must be done is that mscc,vsc7514-switch.yaml must incorporate
+> *elements* of dsa.yaml, but *only* when it is not accessed using MMIO
+> (i.e. the Linux on the MIPS VSC7514 doesn't support an external host
+> driving the switch in DSA mode).
+
+Yes and? You write such stuff like there was any objection from my side...
+
+> 
+> I was kind of expecting this discussion to converge towards ways in
+> which we can modify mscc,vsc7514-switch.yaml to support a switch used
+> in DSA mode or in switchdev mode. Most notable in dsa-port.yaml is the
+> presence of an 'ethernet' phandle, but there are also other subtle
+> differences, like the 'label' property which mscc,vsc7514-switch.yaml
+> does not have (and which in the switchdev implementation at
+> drivers/net/ethernet/mscc/ does not support, either).
+
+What stops you from doing that? What do you need from me?
+
+
+Best regards,
+Krzysztof
 
