@@ -2,72 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85D9C5F96AC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 03:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E09F5F9755
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 06:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbiJJBwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Oct 2022 21:52:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60672 "EHLO
+        id S230446AbiJJEN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 00:13:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230027AbiJJBwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Oct 2022 21:52:51 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CEC152447;
-        Sun,  9 Oct 2022 18:52:50 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id qw20so21388081ejc.8;
-        Sun, 09 Oct 2022 18:52:50 -0700 (PDT)
+        with ESMTP id S230040AbiJJEN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 00:13:27 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A041350055;
+        Sun,  9 Oct 2022 21:13:26 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id m14so11901625ljg.2;
+        Sun, 09 Oct 2022 21:13:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hMN/0XKaehZTPiIjRfY4AUhMkMfxo7i6QjUWrNELrpw=;
-        b=UAAjCxS9fzHa83gTX0criIjsQ3aBW17KID049GgaVIxAikOB6Lf3EEJvRlzwRYfNsr
-         J7MScAOjQ4XuTGDFSCVPjAgrDuXebExBrmUsk1J377ZRwyQktHrhw4s75/GG32SqnW28
-         lHBxZy0BlNbeZ0LYDxnr2b8OMQLO5esKoxzUqAPimC4Q+vdJtYpwxCqBtK2RxWy6sj47
-         0II/nW8ZmKpXIVnv0EFE1k9M5j/39ZnqcXuE2/vc+I1lUVaDb3r1eRxzoyGAs2IMy3EE
-         Fv+djMqxkUawb+IMEniVu/oZReWbHrS9TOU3Z96uCPe4pdQoWsUg4+5eu1atUFXuuDLT
-         Oi8Q==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vfmnCF2JkZ212xJuEQBcv/tw0uOJJMilOQ3nQbPwxvU=;
+        b=kdClPiJ/QFimo9CaXWkUw/AJJsojYvRQqSokGBMuvPNppDfZnoHV0cu78Aa48JG1mI
+         9LKqf0UF6T5d+9WiGhVBXGB/6Um8ZKdM/kYE3zXfvdf3Shpvg6fJOLPJUDCkHxWgM4D4
+         jR4RrqNDKzTqc9ckgaLNW1aHzg8xuJSjPrkW8xjvyXAWKsVcZa0xYlJb//6IQAADp1pg
+         8tYI83PH9SXy1lgktSCEZ23cmWux7AgjTBEUTYNJ+GS6FI38bIOZcjKaqeJKq2rtEtjK
+         jygzzGrjLH1yKAdyldNlB0P4iD3z2HOySVkR1y/X5RYBoVxn5hS2oh2zEf4aPZpNXxse
+         79Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hMN/0XKaehZTPiIjRfY4AUhMkMfxo7i6QjUWrNELrpw=;
-        b=jgR1tshTgLdKMMGyJXNtXUSkX67iLRYFx9QVfW8Dfl9/YeWNMu1F7x+jcGyMqgxGxt
-         FMJT7tjPdZ0TEb/6jxUs91IeLLO/TEs6xiy9fz1PhgDkNftWDaJWtpaFNLO1S8UgH2Rs
-         35AHrXKJfqk7DeQ+m0kxivFHF1T9E8r0YeD/rZ/mrHfvEjPOSuAaHiNFasVNGb8OlY1V
-         sN/TuSLEFmX4Jg7KRYd32c9/pKQGfI2bR1hCmmjwKaE/gNlf0am7vEST6R2ECLh4CSSd
-         Q9lb9PgSPn0BssIn3WZuQx2n1aZ/giBgA3FNtg40JT5T7HuGQ4QOoUtQC6FvMMJ6MMtt
-         e71g==
-X-Gm-Message-State: ACrzQf3K6nrKZ0nX5hHkDtHOVHr4JDw1lT7g+DU1WdkcMgakNLtVkVyW
-        6jGUz9gqjnASvtqe/E32SbZdYTSwYH+Yden+Iy5q+AsI
-X-Google-Smtp-Source: AMsMyM7y9rMvCnHmx1yWMfOO6isdFJZ6dOD7ysHiut1RJAIm9J5MoP5Jhw5d39KMc+yfCrNHyE1pzT1Aj5ohPDchV04=
-X-Received: by 2002:a17:906:36d1:b0:76c:a723:9445 with SMTP id
- b17-20020a17090636d100b0076ca7239445mr12477078ejc.548.1665366768709; Sun, 09
- Oct 2022 18:52:48 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vfmnCF2JkZ212xJuEQBcv/tw0uOJJMilOQ3nQbPwxvU=;
+        b=fKjmPDTwIcYTYcDHPLMuUqVdad7avcuEBacY9AfHX8pNG+4jhCIkevDJWI21nv/ggg
+         Xj7EWBsjg5rX9HggN30kPxl/4p3JLZnfsET+b85FrX9gJmsziHP26PuH0rk1svfUQwTl
+         JdU2Ne8nRJC4OLA1hPtL2qPXczEwFZjjs3wxpK1n4RX7fwHKEHjaXDHzUhCBMsARYFUj
+         ng8EhpQq/3pbU7CUjdrclyc6RAMwlwafPw2jKFyR+PVXzBrA04bBRyX3e2acswqIDxxO
+         2z/sa5a37pQrCPjGX1a02nwgyvMDKeVJ1BME9TxQGbVZyGLHPexqc+LbaJqkHuXK3nf3
+         YR9g==
+X-Gm-Message-State: ACrzQf3MhaOeO6tNY/i6+0Tbdoq5lS3EqdKlbLFbY4IQuqO6VJI8zGyW
+        e2ch9mIGFeGiQaQqKAA7kXgFj0Mc1uI=
+X-Google-Smtp-Source: AMsMyM7ZmXHBUd2X3Kq7Q1+PaPvekcA0qVHbEr4eDwDTWuWCAZLWoIgP2aB5UUzLuHJ8C8ia4m8Tqg==
+X-Received: by 2002:a2e:9b81:0:b0:26e:190:378c with SMTP id z1-20020a2e9b81000000b0026e0190378cmr5812957lji.66.1665375204525;
+        Sun, 09 Oct 2022 21:13:24 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id s5-20020a2e1505000000b0026548b59479sm1435233ljd.64.2022.10.09.21.13.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Oct 2022 21:13:24 -0700 (PDT)
+Message-ID: <c25ce92b-ea93-1bd8-11ba-4812b040724d@gmail.com>
+Date:   Mon, 10 Oct 2022 07:13:23 +0300
 MIME-Version: 1.0
-References: <20220930082405.1761-1-zhang.lyra@gmail.com> <20220930082405.1761-3-zhang.lyra@gmail.com>
- <727a540d-0ca9-ade3-894d-f1774d10a681@linaro.org> <CAAfSe-u4y84kjjksv-Y7=zyosV=34M-=_wrDQC9884znvx9V4Q@mail.gmail.com>
- <e0d69843-4b37-2e0d-66c7-fc8fd09ed385@linaro.org>
-In-Reply-To: <e0d69843-4b37-2e0d-66c7-fc8fd09ed385@linaro.org>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Mon, 10 Oct 2022 09:52:11 +0800
-Message-ID: <CAAfSe-vQ3Vhjpp9kwRxmha1WR=kfW08BmuYEW+r1POBD1oFqnQ@mail.gmail.com>
-Subject: Re: [PATCH V2 2/3] dt-bindings: gpio: Convert Unisoc EIC controller
- binding to yaml
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [RFC PATCH v2 1/5] regulator: Add devm helpers for get and enable
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1665066397.git.mazziesaccount@gmail.com>
+ <fa667d6870976a2cf2d60f06e262982872349d74.1665066397.git.mazziesaccount@gmail.com>
+ <Yz7/o1q7p8NmGKMe@smile.fi.intel.com>
+Content-Language: en-US
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <Yz7/o1q7p8NmGKMe@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,41 +84,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 9 Oct 2022 at 23:17, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 08/10/2022 04:57, Chunyan Zhang wrote:
-> >>> +        eic_debounce: gpio@40210000 {
-> >>> +            compatible = "sprd,sc9860-eic-debounce";
-> >>> +            reg = <0 0x40210000 0 0x80>;
-> >>> +            gpio-controller;
-> >>> +            #gpio-cells = <2>;
-> >>> +            interrupt-controller;
-> >>> +            #interrupt-cells = <2>;
-> >>> +            interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-> >>> +        };
-> >>> +    };
-> >>> +
-> >>> +    sc2730_pmic {
-> >>
-> >> If you insisted to keep it, at least should be correct, so just pmic.
-> >>
-> >>> +        #address-cells = <1>;
-> >>> +        #size-cells = <0>;
-> >>> +
-> >>> +        pmic_eic: gpio@300 {
-> >>
-> >> It's exactly the same example as above - all same properties. Drop it or
-> >> bring some differences.
-> >
-> > The differences are on #address-cells and #size-cells.
-> >
->
-> Which don't really matter...
+Hi Andy,
 
-Alright, will drop it in the next version.
+On 10/6/22 19:17, Andy Shevchenko wrote:
+> On Thu, Oct 06, 2022 at 05:36:52PM +0300, Matti Vaittinen wrote:
+>> A few regulator consumer drivers seem to be just getting a regulator,
+>> enabling it and registering a devm-action to disable the regulator at
+>> the driver detach and then forget about it.
+>>
+>> We can simplify this a bit by adding a devm-helper for this pattern.
+>> Add devm_regulator_get_enable() and devm_regulator_get_enable_optional()
+> 
+> ...
+> 
+>> (cherry picked from commit b6058e052b842a19c8bb639798d8692cd0e7589f)
+> 
+> Not sure:
+>   - why this is in the commit message
+>   - what it points to, since
+> $ git show b6058e052b842a19c8bb639798d8692cd0e7589f
+>   fatal: bad object b6058e052b842a19c8bb639798d8692cd0e7589f
+> 
+>> Already in Mark's regulator tree. Not to be merged. Included just for
+>> the sake of the completeness. Will be dropped when series is rebased on
+>> top of the 6.1-rc1
+> 
+> Ah, I see, but does it mean the commit has been rebased or you used wrong SHA?
 
->
-> Best regards,
-> Krzysztof
->
+I did probably cherry-pick this from my local development branch and not 
+from Mark's tree. Sorry for the confusion. I thought people would ignore 
+these first two patches when reviewing as was requested in cover-letter.
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
