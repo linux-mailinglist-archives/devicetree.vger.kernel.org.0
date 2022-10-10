@@ -2,56 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7149E5F9A72
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 09:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7E545F9A96
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 10:05:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232530AbiJJHvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 03:51:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38756 "EHLO
+        id S231278AbiJJIF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 04:05:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231953AbiJJHuy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 03:50:54 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0BE917E05;
-        Mon, 10 Oct 2022 00:49:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0017E60E75;
-        Mon, 10 Oct 2022 07:49:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64026C433D6;
-        Mon, 10 Oct 2022 07:49:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665388192;
-        bh=XzSPUlFclW0ZT9yGjU4jJfL3cyzm5SGlmsXOFLYFHS0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FEfi9vyV9guaQaHEIdM695B2FrzfkFzQTIO4Ay1e0PeVo5hvT7bCPVw91eW+m1hBR
-         gogYIj1z3Drml0eEpCzJdRb4hpixLpfiVUzcgy9vmbJQuZ6wwEIu+Rvc21mpVKUX6p
-         T2vSFb5+6j4b0IqjTxq8osZDLu6EGYTOY0sAIFj3fH524B7r3PLpBairUX1JuCLntr
-         m/tzIA/nR4C6e/Eig1rFmxkdBqeR4K/EQct/JcBa3BcZVDxKnWAYSUAj6nr27LguKn
-         wmg2kjRwF7Ji3kFdTC7jmQgUNFSjbduoFQBH67ZWO9X7/kgRTtJZ6bm8X3hmzgGQ3d
-         ixznRVnddti4A==
-Date:   Mon, 10 Oct 2022 08:49:45 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Richard Acayan <mailingradian@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v9 0/3] SDM670 Pin Control Driver
-Message-ID: <Y0POmQ+xrQ/HT7RF@google.com>
-References: <20221007213241.84962-1-mailingradian@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221007213241.84962-1-mailingradian@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        with ESMTP id S230437AbiJJIFz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 04:05:55 -0400
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3807B30F6D;
+        Mon, 10 Oct 2022 01:05:53 -0700 (PDT)
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id CEBC7201E22;
+        Mon, 10 Oct 2022 10:05:51 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8A5AA201E43;
+        Mon, 10 Oct 2022 10:05:51 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 519BE180222C;
+        Mon, 10 Oct 2022 16:05:49 +0800 (+08)
+From:   Richard Zhu <hongxing.zhu@nxp.com>
+To:     vkoul@kernel.org, a.fatoum@pengutronix.de, p.zabel@pengutronix.de,
+        l.stach@pengutronix.de, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, robh@kernel.org, shawnguo@kernel.org,
+        alexander.stein@ew.tq-group.com, marex@denx.de,
+        richard.leitner@linux.dev
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: [PATCH v12 0/4] Add the iMX8MP PCIe support
+Date:   Mon, 10 Oct 2022 15:46:07 +0800
+Message-Id: <1665387971-17114-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,24 +46,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 07 Oct 2022, Richard Acayan wrote:
-> Richard Acayan (3):
->   dt-bindings: pinctrl: qcom: add sdm670 pinctrl
->   pinctrl: qcom: do not reinitialize gpio valid mask
->   pinctrl: qcom: add sdm670 pinctrl
-> 
->  .../bindings/pinctrl/qcom,sdm670-tlmm.yaml    |  127 ++
->  drivers/pinctrl/qcom/Kconfig                  |    9 +
->  drivers/pinctrl/qcom/Makefile                 |    1 +
->  drivers/pinctrl/qcom/pinctrl-msm.c            |    3 +-
->  drivers/pinctrl/qcom/pinctrl-sdm670.c         | 1345 +++++++++++++++++
+Based on the 6.0-rc1 of the pci/next branch. 
+This series adds the i.MX8MP PCIe support and tested on i.MX8MP
+EVK board when one PCIe NVME device is used.
 
-And I'm receiving this because ... ?
+- i.MX8MP PCIe has reversed initial PERST bit value refer to i.MX8MQ/i.MX8MM.
+  Add the PHY PERST explicitly for i.MX8MP PCIe PHY.
+- Add the i.MX8MP PCIe PHY support in the i.MX8M PCIe PHY driver.
+  And share as much as possible codes with i.MX8MM PCIe PHY.
+- Add the i.MX8MP PCIe support in binding document, DTS files, and PCIe
+  driver.
 
->  5 files changed, 1483 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml
->  create mode 100644 drivers/pinctrl/qcom/pinctrl-sdm670.c
-> 
+Main changes v11-->v12:
+ - In the local down kernel(6.0-rc7 plus local codes) PM tests, i.MX8MP
+   PCIe encounters link failure during resume.
+   To resolve this failure, the resets of i.MX8MP PCIe PHY should be always
+   kept 1b'1. Merge the fix into v12 patches here.
 
--- 
-Lee Jones [李琼斯]
+Main changes v10-->v11:
+Refer to Ahmad's comments do the following changes;
+ - Correct the spell mistake and refine the commit log.
+ - Make codes indent by the member name
+ - Use the dev_err_probe replace the dev_err.
+
+Main changes v9-->v10:
+- Refer to Vinod's review comments, drop the array, and use the static data
+  structure directly in the drvdata definition.
+
+Main changes v8-->v9:
+- Split the PHY driver changes into three patches.
+  - To keep the format consistent, re-define the PHY_CMN_REG75, and remove
+    two useless BIT definitions.
+  - Refine the i.MX8MM PCIe PHY driver, let it more reviewable, flexible,
+    and easy to expand.
+  - Add the i.MX8MP PCIe PHY support.
+- Only PHY related patches in v9, Since the others patches had been merged
+  by Phillipp/Shawn/Lorenzo.
+
+Main changes v7-->v8:
+- Add the Reviewed-by tag, no other changes.
+  Only two patches in v8, Since the others patches had been merged by
+  Phillipp/Shawn/Lorenzo.
+
+<snipped.>
+
+Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |  16 ++++++++--
+drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 142 ++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------
+2 files changed, 106 insertions(+), 52 deletions(-)
+
+[PATCH v12 1/4] dt-binding: phy: Add i.MX8MP PCIe PHY binding
+[PATCH v12 2/4] phy: freescale: imx8m-pcie: Refine register
+[PATCH v12 3/4] phy: freescale: imx8m-pcie: Refine i.MX8MM PCIe PHY
+[PATCH v12 4/4] phy: freescale: imx8m-pcie: Add i.MX8MP PCIe PHY
