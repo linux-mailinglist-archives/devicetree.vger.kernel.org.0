@@ -2,128 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B5BA5F9F57
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 15:26:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C37915F9F69
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 15:32:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229454AbiJJN0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 09:26:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46066 "EHLO
+        id S229471AbiJJNcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 09:32:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiJJN0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 09:26:21 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C29A75C971
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 06:26:19 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id l28so920859qtv.4
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 06:26:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bECZwqwp/UMUC2akq1A/CRAdUXQ8y+lySs9e81GJPvo=;
-        b=wFLua3qNoxv1oK422WS3Z0arUW43Mk/9YaiEu598KyMxUreaiHVlStJNCYindCI14l
-         0uih9J2kqd84xdRN2futlUGJ509Lgr0RHsCZxptFQ/CEi0EbJ4DYxtTtJ7nfsRAi5FH5
-         yQa+s18iY7BYG1txW5XasmdW/pnqnle4EKdUHckr68cK+WWlCNEbifbF/BwNLoXjjpWy
-         7hdOXNAEa9cf6nqCAQWPPR6TkkyB4J+L2ZAsE9uEpGVN8tSImHMblrh+LJR1vsQv/Nys
-         XHaWRC/3q0osdP33TtZGwBWlxyY8/rXeMolzTBml+Msj6rDrgR15IvztiGkkSOaivGWy
-         Le5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bECZwqwp/UMUC2akq1A/CRAdUXQ8y+lySs9e81GJPvo=;
-        b=bgszuNm4z4DCv75/f6pHGhQF3XnkUPn9+d1BmxxTeJkB3wzxGVdro+dnJX+a1LJ1MP
-         B0xgbJ3U2duvEHgFW9VpJt5IUaD44Pmb41V6AM7elBszfvXFWp+uuCrexGLO6jMj2y2K
-         ckV4BjUz+sZtteyz8CO3m3Z9DGg1c/2krbmdFmE+s+fWboCpIN4bpTD8V8NTiCM/lwhs
-         lzOGQJ7p3aN4TVq27nj1JtypUsiMKifRFXDtQIvnFDDIWw9HS7Bs6Wz/lU/SkF62sZdU
-         6zXnS0QGYC4oaDVZ2kYThSS9M6Oog8vQGK/6wkNP/hEeQu/0dgD1e0nUz9TkaZFO6rwH
-         YTFQ==
-X-Gm-Message-State: ACrzQf0HlL/p8dLfhAzseg6CGGbMCH7Oh3v19c1gtCTH52DR2ZXEA8Wp
-        qqjwaGVYNxFxkefbBWwLxVvOaA==
-X-Google-Smtp-Source: AMsMyM5Y+JwiozPaIKFDE8rg9TBm8NsqgNP92weuetrqvm8DbETgSFdxRpjy0dqfKP9ATq6rHESYnw==
-X-Received: by 2002:ac8:7f4b:0:b0:35c:bfa2:8bd2 with SMTP id g11-20020ac87f4b000000b0035cbfa28bd2mr14587635qtk.644.1665408378940;
-        Mon, 10 Oct 2022 06:26:18 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id i14-20020a05620a248e00b006bba46e5eeasm10660953qkn.37.2022.10.10.06.26.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Oct 2022 06:26:17 -0700 (PDT)
-Message-ID: <ebf9e667-6b08-4a04-2241-04295cc28058@linaro.org>
-Date:   Mon, 10 Oct 2022 09:24:05 -0400
+        with ESMTP id S229520AbiJJNcG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 09:32:06 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0675572B50
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 06:32:01 -0700 (PDT)
+Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B4F67BB0;
+        Mon, 10 Oct 2022 15:31:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1665408718;
+        bh=GZ9V7PAMl9t1SJW86CjCS4yI0ToudvJ+jOKUuLnnYNI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gz8IO0/K7jXxpwagc+cVt4NhU+bXcguigq7nD1MdqPMWf13GIHVWkNz3B+XY80Nn+
+         3c+oypkpqj5pUUrd6gcykGwL4dMdlfghIH19YZVHz71yz0WpOTBDcUU6L4ubrt7kqC
+         +Xs/XzA5WBzs7Cs/nl2NqEMePGKTkybEOtXT3gYg=
+From:   Daniel Scally <dan.scally@ideasonboard.com>
+To:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
+        kieran.bingham@ideasonboard.com, debix-tech@polyhex.net,
+        Daniel Scally <dan.scally@ideasonboard.com>
+Subject: [PATCH v2 0/3] Debix Model A board devicetree
+Date:   Mon, 10 Oct 2022 14:31:43 +0100
+Message-Id: <20221010133146.1430768-1-dan.scally@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH] arm64: dts: fix drive strength macros as per FSD HW UM
-To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        alim.akhtar@samsung.com, chanho61.park@samsung.com,
-        linus.walleij@linaro.org, pankaj.dubey@samsung.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <CGME20221010123120epcas5p3ba947a3a982bc6a78310472c2a65ebfe@epcas5p3.samsung.com>
- <20221010120438.80680-1-p.rajanbabu@samsung.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221010120438.80680-1-p.rajanbabu@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/10/2022 08:04, Padmanabhan Rajanbabu wrote:
-> In FSD pinctrl implementation, the pinctrl driver is using drive strength
-> MACROs, which are deviating from the actual values specified in FSD HW UM
+Hello
 
-But you are changing DTS, not pinctrl driver. The message is a bit
-confusing.
+This series adds a .dts file for the Polyhex Debix Model A board [1]
+A binding for the vendor is also added.
 
-Add full stop to the sentence.
+[1] http://www.polyhex.net/product/embedded-motherboard/board/nxp.html?id=483
 
-> 
-> This patch adds the right pinctrl drive strength values for FSD SoC. This
+Thanks
+Dan
 
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+Daniel Scally (3):
+  dt-bindings: vendor-prefixes: Add Polyhex Technology Co.
+  dt-bindings: arm: fsl: Enumerate Debix Model A Board
+  arm64: dts: Add device tree for the Debix Model A Board
 
-> patch also ensures that the peripherals are using right drive strength
-> MACROs in-order to function as expected
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mp-debix-model-a.dts    | 550 ++++++++++++++++++
+ 4 files changed, 554 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
 
-Full stop
-
-Which commit introduced it? Add a Fixes tag.
-
-
-> 
-> Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
-> ---
->  arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi | 34 +++++++++++-----------
->  arch/arm64/boot/dts/tesla/fsd-pinctrl.h    |  6 ++--
->  2 files changed, 20 insertions(+), 20 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> index d0abb9aa0e9e..e3852c946352 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> +++ b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> @@ -55,14 +55,14 @@
->  		samsung,pins = "gpf5-0";
->  		samsung,pin-function = <FSD_PIN_FUNC_2>;
->  		samsung,pin-pud = <FSD_PIN_PULL_NONE>;
-> -		samsung,pin-drv = <FSD_PIN_DRV_LV2>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-
-Are you sure? The original commit used here value of "2", your change
-also set value of "2", so what deviates from actual values?
-
-You need to describe better the problem.
-
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
