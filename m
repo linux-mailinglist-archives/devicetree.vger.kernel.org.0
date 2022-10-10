@@ -2,208 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00A275F9C37
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 11:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6502D5F9C64
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 12:06:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231466AbiJJJru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 05:47:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39950 "EHLO
+        id S231582AbiJJKGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 06:06:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231215AbiJJJrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 05:47:49 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B69865675;
-        Mon, 10 Oct 2022 02:47:48 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29A7VSOh021186;
-        Mon, 10 Oct 2022 09:47:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=S06w9rvEa830S5qbSrhluBM4E6Rpm9SaC0dYDr7rCi4=;
- b=HSNRK4PrLCDy3wyf1HK8kgxSgLqN4Fpi7XNTIVMm4loTfs0O5UBDk0xNtF/ChPIR6Vb0
- Yz80eCuMf326Wcm81GEy0PUwpUCeTgSgBuwMPwoeXF5MwCLCBU6ogConyVY/G9ngySpI
- NOUb3CO07d+mdQmjz3SRWM+e/Z/L98jPUliwFo+p/qwZ/VYjF3zG+wiQnNYE+CZc/0n3
- mxGcXt+51L2iDmpypMNwZV+XSnh9M3TXc7cvXKzQ2XlqRPlm0fg2v0uBcvVmgXbYOb67
- iUprFfbEAyU1kv/9fS6R0oqI1bfrfc4IM7rfDkwjAp0zThH/74n/EicxCQaA3xM/mBsp 6Q== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k32csbsj2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 10 Oct 2022 09:47:38 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29A9lbfP010122
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 10 Oct 2022 09:47:37 GMT
-Received: from [10.239.155.106] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 10 Oct
- 2022 02:47:34 -0700
-Message-ID: <c3a6c664-d52e-4de4-07f3-b15537d29d5a@quicinc.com>
-Date:   Mon, 10 Oct 2022 17:47:20 +0800
+        with ESMTP id S231430AbiJJKG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 06:06:29 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150053.outbound.protection.outlook.com [40.107.15.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC4866A5E;
+        Mon, 10 Oct 2022 03:06:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Deu94H1VIRhccMHu/b3puSveVBOntCMXvKwq8eBKtuOw+V6jz6gnS/qVd7q6uyq8/iruXRKbhUZO5qTba0VVmZDF5N7aTUnTUYGN98FFC2r0Q+ju3PXPKHusKfwHrenzD3RvjebF3FoU++FzrU6Ut0s8NCSH2I7CATGCzB5+sww/nX864yv0hlfBBlH35oFjdM6HCw3yPnJAteDOMJTrH+NZB5SA2/NWWRfXZLfWfYSF7nNdqa4gfAQnCMjTMPqwcxZ2MA9wev7CsOhlQka7nRuqqM3t+PkuXXgTrA6aXPAylWE+Bb26GARyHZ2zwI9uYa47HpvEPFU+NUHD/fxbmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+8KDLIExg4Mqf43a8Paq5AME8XTVoLM6VHQvRilQlvw=;
+ b=DWufprA6YVW2nkt64APM6CB/wuJBpV2/TdNvADmK1fH3cNZT4t8/qWAM7qNay4Ln6kxcVbo+d+2DgVkJcwMxGgFcn1rwhRBU5MQs6fDx8RwggqEygHcwcX/3ajcVdhhLL7B9zBG57tG2A22G5PysLz8NDwOeeCLmtNsGW4pXhC62VhPLHjbHccVO3WBF0/A1iXdu1jFmNd4BmdQwhqb81xfAzwjkqWwhgMk+NWztsrpZMU65M6UZpWzUNfS0+4V0Kmuj+95mNZy/V7AEiva7UDOrxXvLmfcw3hW4EdSJnd+TX1ICrn1WNBR1xHo4XeoVRWaTPj40GHidq32okz53Fw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+8KDLIExg4Mqf43a8Paq5AME8XTVoLM6VHQvRilQlvw=;
+ b=RmD+NdOVz4/P8r5cJSpxknVIDhgcmkJFlIZvfekOY98/44DLhb/l/muIvg+EmTlSE3RUcRY2YoEHJUX/L9eLeWL1GyB/95RkaLT+otXkWke15b4SvW6T0d2tQiaXNe5QfCTUDAnCbrBRDtEcPUiEiq9GMKz2mkChOJmt0jeLqwk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by VE1PR04MB7374.eurprd04.prod.outlook.com (2603:10a6:800:1ac::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5709.15; Mon, 10 Oct
+ 2022 10:06:18 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::ba6:d7ae:a7c9:7a3a]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::ba6:d7ae:a7c9:7a3a%4]) with mapi id 15.20.5676.028; Mon, 10 Oct 2022
+ 10:06:18 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org
+Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH] arm64: dts: imx8: correct clock order
+Date:   Mon, 10 Oct 2022 18:07:47 +0800
+Message-Id: <20221010100747.289644-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR04CA0006.apcprd04.prod.outlook.com
+ (2603:1096:4:197::13) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v2 2/2] dt-bindings: add bindings for QCOM flash LED
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "Subbaraman Narayanamurthy" <quic_subbaram@quicinc.com>,
-        <quic_collinsd@quicinc.com>
-References: <20220929121544.1064279-1-quic_fenglinw@quicinc.com>
- <20220929121544.1064279-3-quic_fenglinw@quicinc.com>
- <5445adda-80e6-41d0-9786-c26d253631c9@linaro.org>
- <20220930193308.GA741352-robh@kernel.org>
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-In-Reply-To: <20220930193308.GA741352-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -N9EX9PEnXfiL1OOkr4IylsRLzPvUOeQ
-X-Proofpoint-ORIG-GUID: -N9EX9PEnXfiL1OOkr4IylsRLzPvUOeQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-10_05,2022-10-07_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- impostorscore=0 adultscore=0 suspectscore=0 bulkscore=0 mlxlogscore=999
- priorityscore=1501 clxscore=1011 mlxscore=0 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210100059
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|VE1PR04MB7374:EE_
+X-MS-Office365-Filtering-Correlation-Id: 86a81174-b85e-4660-9fa3-08daaaa71273
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cNlSQ9xVuFEkkmOZJDsmfb8OvPX+2wa+d9LLRGSofFDTXnHz5Rqc7MvIKzGOvjwk4B6DDuGmqMyEqyIJiatTQrbGQzdFj95M3a/HxUdrlqc6DWGR6LmfVAJodKWDGAvgVcMnCm0uRlZPLCKINR3rktGpB5VbUOmWD3sepz1OE7qjpIhdNhaKWm5aXdbXjCL6shnqI4UznvgQqOJx/Jil8BuSjrSY2hbHfm92hJiloOgDIYC12ceOo4A+Vj0iqs5RBuPgFgowgjKoKrQEiWpYElBqUWuFFh2RiChSzDp2JRpNO9EqOVDUMK7LRD2jXXuyPUcqRqgve45GQVThURNYNDjfD5MZfnO0yc3/iB5Kj4cFAEfMtmthQVj6kN61+fm6W75802D7gB/EX5klzUs9khNtJeF5KtWHNLHUh32QWQMZORDr+75HBrjbIROnYNSsj84yvLC0yjC184Kxi5dwjGBPGI03gAim0+OSkUBcBSuF70m9XOh7GsN2WoJ5NcU6igAsKfbQAircRyJhhkIirmK5c1Os4MMUMQ04ifcokGgOYtlHWTHDYt8hCHXOsm+6ff2eZNC7JWQTYB0WAnW/iz89vHYuaayugkuuWDfEWv/JppQejkG1tghmJTZp1eAa29KyXA861SFWKl96z6wVuTysjjRivcXG1RVYzKql10pswjwzVw7oF1cHctsy0t2FQmqF8RNOR2hsyPKzI4ByvxeUDyCSLe7zzhlA0oPFBqD0hFb5WP4pbYKnuuNBVETcOffMiywN3id1K/hhkTP+FA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(451199015)(2616005)(83380400001)(6512007)(186003)(1076003)(26005)(66556008)(4326008)(2906002)(66946007)(86362001)(66476007)(5660300002)(8676002)(6666004)(38100700002)(6506007)(6486002)(478600001)(52116002)(41300700001)(8936002)(316002)(38350700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WOGtmJaLM82PxdUD1sKCKylLrtHIj9B+cuhZYpxcFsaPI726wIQERt0zr/JB?=
+ =?us-ascii?Q?bnn7oQH8talUJXZMwxfEJm876I9UOIx7zf5BehEaRANXkYZFbU6FkEnWNZ71?=
+ =?us-ascii?Q?iFVbIC9iEipRTyPizxaUo6csDnwmsTNMTfiR/YNIr5rckWhow8Dt3lY48Dts?=
+ =?us-ascii?Q?37hKz0JGTjykOmy+TS4okRSzT4nxzP6hOiJtwlZIhezcSixKil4NZj7mZ4FR?=
+ =?us-ascii?Q?K7ZEiRUdDSZQMKpRKF8xpp9zeLMsyr/qVy771k3f7Ii2VDWS0VUgCdGwcL6M?=
+ =?us-ascii?Q?s5luzc1cYYVk0+Ljih8sRFTlfqkjGK7akmtFr5ior9YHmvZ1Pgv7ktGnt+1U?=
+ =?us-ascii?Q?7IjYcgyY+1B8e0JztaZN9jpidNV/XZ4Ysb0ePaMYv6wJpg8ge+vQaazHO+2w?=
+ =?us-ascii?Q?JvJlEjKdSFd+1f2mng86uMkawyXxRGTCsTvlMyjuPMYtHaIi5I7zcrwGet/6?=
+ =?us-ascii?Q?jM0Iy/rRstlq/84nKghZhweSZ42njB9L2NuoMGwIBE1eL5ghlXIfLz8BH6lQ?=
+ =?us-ascii?Q?WJ11f3SxPvRiDIUOP9V+pks2uDD6UI2LYHKMMbFOD/oYYw9vi90k9VBnOCtI?=
+ =?us-ascii?Q?6PZT9Ew+zd7OBg8cb0V28Ek7PXxdamtHkM2R8yQ8T7yFyR4hC9wQdoyaZwBP?=
+ =?us-ascii?Q?6FSp/QaouNppOUqt1wkzM+1p+h/BSh9tDhLj/JJsPWflSAZepswB3KRrr4Bn?=
+ =?us-ascii?Q?QDKzBHmbXN6Mu+5vXLnsxMlR1sgZHpkmtxMHMKVMvR9W7a5BwuQIFWEMOCHB?=
+ =?us-ascii?Q?VdbpbvhUr+aXj8MC74CGszCpozITymtfEN43W+3VcC5iNYIE0pL92cN0peO0?=
+ =?us-ascii?Q?g4o5b1z4i7DC1vk2xlDa10LZxdGrB9YUYMyqfxQdt6K1S59sPO+fVrA8LAIO?=
+ =?us-ascii?Q?7vNxyqrAzfHCn7dMflTMAOA/dL2ny8WytRDutgCMOVIa3W+YACbRIX8USP4f?=
+ =?us-ascii?Q?DRlfO+MY2aftQz8if0vx2BmcMxVaSuhYbsI5uUi+VvP6WvLS+snaT3oF7+E9?=
+ =?us-ascii?Q?9ULhYQUeLz0o3Gc2lSOnLittPNeFENU7AFz9CL5kmEA0iIMcjxxeB3LS4mVv?=
+ =?us-ascii?Q?HAMGeNpCYt5rLUfQPXenbXk77sLidhsTgUxIZu+g9HEQ/oic6tmZE9SboEaI?=
+ =?us-ascii?Q?7HnRM3Hpy+UK0ZGRdG2uMzmWgbgymWpPE77rACXJ3JCyXzorCPoFipm8KmPZ?=
+ =?us-ascii?Q?qS14cXODyCNBYRhWkcZjRIGdPJVGn1FGLJX7uW45nkXzx1aB4g7kDdgKjFrO?=
+ =?us-ascii?Q?O9558f9qqgpAQmC3/YR0G2CoZM7ARanexNg90L3c6lkq3f3kwzvOLd5oWsDB?=
+ =?us-ascii?Q?G7ZgIa5Xx5rln965gRW4SMgtOZppD8ZL+2vdKIiZiuaLsrvZLV0shT8NxzkV?=
+ =?us-ascii?Q?hcchfNqE37+BMeRpeDfXRpBE5H6CiIAibQBvKCpjsyIrssyLRpsF84GxjJex?=
+ =?us-ascii?Q?6clnOb9yaTXAdgXnLxqYs79afLiQA3yit047DFLIBMNo4JsrHtUzGzJll3iq?=
+ =?us-ascii?Q?/XEEk/oYqdeyzXro0LdpVqQ+aJnle3MsRtj7CWm+I2fVVGrOgYKCJChJNavk?=
+ =?us-ascii?Q?MCnJxZsZ63kwYMueEmrk/ELrI4/0qMgChhEqFl+l?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86a81174-b85e-4660-9fa3-08daaaa71273
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2022 10:06:18.0467
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zPDkicl9XxJE2XGAQe5+YP0541pDITgq4fQ8n3saIfUuCEHQBLOEsXRBXQ8eF1xB55tQMEnxLdIzzzqqPRQ86A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7374
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Peng Fan <peng.fan@nxp.com>
 
+Per bindings/mmc/fsl-imx-esdhc.yaml, the clock order is ipg, ahb, per,
+otherwise warning: "
+mmc@5b020000: clock-names:1: 'ahb' was expected
+mmc@5b020000: clock-names:2: 'per' was expected "
 
-On 2022/10/1 3:33, Rob Herring wrote:
-> On Thu, Sep 29, 2022 at 02:40:05PM +0200, Krzysztof Kozlowski wrote:
->> On 29/09/2022 14:15, Fenglin Wu wrote:
->>> Add binding document for flash LED module inside Qualcomm Technologies,
->>> Inc. PMICs.
->>>
->>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>> +  reg:
->>> +    description: address offset of the flash LED controller
->>> +    maxItems: 1
->>> +
->>> +patternProperties:
->>> +  "^led[0-3]$":
->>
->> In such case: ^led-[0-9]$"
->>
->>> +    type: object
->>> +    $ref: common.yaml#
->>> +    unevaluatedProperties: false
->>> +    description: |
->>> +      Represents the physical LED components which are connected to the
->>> +      flash LED channels' output.
->>> +
->>> +    properties:
->>> +      led-sources:
-> 
-> This is for when the power source and LED connection are programmable.
-> IOW, when 'reg' is not enough to describe the configuration. If you only
-> have LED channels 1-4 with a fixed connection to LED pins/output 1-4,
-> then use 'reg'.
-> 
-I think using led-sources here is more appropriate. The LED connection 
-can be programmable to match with the board design. The flash module has 
-4 channels (current outputs, indexed from 1 to 4) and the LEDs can be 
-connected to either one or two of them depends on the design. Such as, 
-if the design only requires LEDs with 1.5 A maximum current, then the HW 
-just connects one channel to each LED and specify the corresponding 
-channel index in the led-sources. Or if the design requires LEDs 
-supporting up to 2 A maximum current, then the HW needs to gang 2 
-channels' output together and specify the HW indices in led-sources 
-accordingly.
+Fixes: 16c4ea7501b1 ("arm64: dts: imx8: switch to new lpcg clock binding")
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+ .../arm64/boot/dts/freescale/imx8-ss-conn.dtsi | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
->>> +        description: |
->>> +          The HW indices of the flash LED channels that connect to the
->>> +          physical LED
->>> +        allOf:
->>> +          - minItems: 1
->>> +            maxItems: 2
->>> +            items:
->>> +              enum: [1, 2, 3, 4]
->>> +
->>> +      led-max-microamp:
->>> +        description: |
->>> +          The maximum current value when LED is not operating in flash mode (i.e. torch mode)
->>> +          Valid values when an LED is connected to one flash LED channel:
->>> +            5000 - 500000, step by 5000
->>> +          Valid values when an LED is connected to two flash LED channels:
->>> +            10000 - 1000000, step by 10000
->>> +        minimum: 5000
->>> +        maximum: 1000000
-> 
-> anyOf:
->    - minimum: 5000
->      maximum: 500000
->      multipleOf: 5000
->    - minimum: 10000
->      maximum: 1000000
->      multipleOf: 10000
-> 
-> Drop any description that's captured by the constraints.
-Thanks for the suggestion. I will update it accordingly.
-> 
->>> +
->>> +      flash-max-microamp:
->>> +        description: |
->>> +          The maximum current value when LED is operating in flash mode.
->>> +          Valid values when an LED is connected to one flash LED channel:
->>> +            12500 - 1500000, step by 12500
->>> +          Valid values when an LED is connected to two flash LED channels:
->>> +            25000 - 2000000, step by 12500
->>> +        minimum: 12500
->>> +        maximum: 2000000
->>> +
->>> +      flash-max-timeout-us:
->>> +        description: |
->>> +          The maximum timeout value when LED is operating in flash mode.
->>> +          Valid values: 10000 - 1280000, step by 10000
->>> +        minimum: 10000
->>> +        maximum: 1280000
-> 
-> Similar comment for these 2.
-Done
-> 
->>> +
->>> +    required:
->>> +      - led-sources
->>> +      - led-max-microamp
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/leds/common.h>
->>> +    spmi_bus {
->>
->> No underscores in node names, so just "bus"
-> 
-> SPMI is something else though...
-Sure, will update it to spmi
-> 
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+index 82a1c4488378..10370d1a6c6d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+@@ -38,9 +38,9 @@ usdhc1: mmc@5b010000 {
+ 		interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
+ 		reg = <0x5b010000 0x10000>;
+ 		clocks = <&sdhc0_lpcg IMX_LPCG_CLK_4>,
+-			 <&sdhc0_lpcg IMX_LPCG_CLK_5>,
+-			 <&sdhc0_lpcg IMX_LPCG_CLK_0>;
+-		clock-names = "ipg", "per", "ahb";
++			 <&sdhc0_lpcg IMX_LPCG_CLK_0>,
++			 <&sdhc0_lpcg IMX_LPCG_CLK_5>;
++		clock-names = "ipg", "ahb", "per";
+ 		power-domains = <&pd IMX_SC_R_SDHC_0>;
+ 		status = "disabled";
+ 	};
+@@ -49,9 +49,9 @@ usdhc2: mmc@5b020000 {
+ 		interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
+ 		reg = <0x5b020000 0x10000>;
+ 		clocks = <&sdhc1_lpcg IMX_LPCG_CLK_4>,
+-			 <&sdhc1_lpcg IMX_LPCG_CLK_5>,
+-			 <&sdhc1_lpcg IMX_LPCG_CLK_0>;
+-		clock-names = "ipg", "per", "ahb";
++			 <&sdhc1_lpcg IMX_LPCG_CLK_0>,
++			 <&sdhc1_lpcg IMX_LPCG_CLK_5>;
++		clock-names = "ipg", "ahb", "per";
+ 		power-domains = <&pd IMX_SC_R_SDHC_1>;
+ 		fsl,tuning-start-tap = <20>;
+ 		fsl,tuning-step = <2>;
+@@ -62,9 +62,9 @@ usdhc3: mmc@5b030000 {
+ 		interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
+ 		reg = <0x5b030000 0x10000>;
+ 		clocks = <&sdhc2_lpcg IMX_LPCG_CLK_4>,
+-			 <&sdhc2_lpcg IMX_LPCG_CLK_5>,
+-			 <&sdhc2_lpcg IMX_LPCG_CLK_0>;
+-		clock-names = "ipg", "per", "ahb";
++			 <&sdhc2_lpcg IMX_LPCG_CLK_0>,
++			 <&sdhc2_lpcg IMX_LPCG_CLK_5>;
++		clock-names = "ipg", "ahb", "per";
+ 		power-domains = <&pd IMX_SC_R_SDHC_2>;
+ 		status = "disabled";
+ 	};
+-- 
+2.37.1
+
