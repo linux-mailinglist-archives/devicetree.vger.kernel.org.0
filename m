@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E76095FA0F1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 17:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 463225FA0F5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 17:12:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbiJJPM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 11:12:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
+        id S229915AbiJJPMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 11:12:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiJJPMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 11:12:25 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAD32A949
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 08:12:24 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id o22so6419330qkl.8
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 08:12:24 -0700 (PDT)
+        with ESMTP id S229907AbiJJPMk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 11:12:40 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E15FF356CB
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 08:12:38 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id y1so6813671qky.12
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 08:12:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XZGY0NmxkHIMgYKNHWFtIegzfS1Q0kFucYbxjq5grdE=;
-        b=qnswpzqPS89CiDSi/t25CtkoGPZgYTiZxQBa9kmHRP7Q7XqYBNb8cPcCt6pPL1Y5Is
-         fXisPJtqz3hLOdunzcLyc07+C8sfI0cB/rjim6p6nfh0Six7cUDIIclybpTsFp2cL7wE
-         oiWBubiHWhRAJBOj7NNGhjvBYgDeB73yIPzVkzMBuAVIvn1naTrerp4h3rATJf3WI3S8
-         6WG0ZuU0SQ28sULfHcYgdPLaFTmYkDmFK0H37FrDPgEN9lRHjtKh966vcXxlfe8WPU0g
-         xRc6/LZAwEbRpU3R1yT3prksPPO9iSqihTZs7zsblw7biKyWVOwpjFnLEtK/mHvzszSf
-         Kx9g==
+        bh=ti2zc/Z9SUfzOTKjMdPbdScQnFxu1+kQxfOPj1Dyv/4=;
+        b=P+cSwsbsj8eeXmcNaU0tj5PPMA8pvwLNEUxSMpRHreBTVx/duWlWqqBCR7IxvbwqE/
+         /e7hVkvWGDaEBBy8eiK5kU7wpGo1sABikjgzqGeqKe8ievVRAUBoaXo7cGJ70BcIxuGL
+         X7u76obg2MxsnUemiEBXJYbSzz7gEChLft0E5BbD8xtLT1Pk8BDj7impzEZMm5IlEpMW
+         tVuQE1q4VElBQjWth9dKtGoIpEdNJmbUN0osfF5ESysRr48eKj7pVmfF2NHTo3ANmEjB
+         ubpvv2QbczyPby/xC10THFpqMzorLVkY8pvyHTiWfMEvPwDTGATXEcEzn+FIfw7BB12x
+         496Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XZGY0NmxkHIMgYKNHWFtIegzfS1Q0kFucYbxjq5grdE=;
-        b=nhI4gvgppTqp06/rfPuilNNNCgb3UnxIo8BJyqaG73E5S41/wcp5TnTIROQc+i2lOT
-         clfNVhiOuI5aQRYhfoONxqQT1zfh2256b3Pxmerp8cAmPhTKEdAmvR/mMyAXD1U7/jj8
-         VMtRLqfUyZdBq5EyUoh7xggxc2hLjhcq0sO/il61Rhxm9UA6xps1EqgjzC8yw9FFQ93O
-         kXTrBo2DzSVP0p1R6OELh4bVR5xV9nhh/i54DV/txiFYoWotdlpYbspqpB6cVy++UNQj
-         i6iMvy2EL6GU+bEHFv96CHjO/Wpmyyuegnsr+pb/GfbfO5QINsPmljQTJn4Pf1xcPpH8
-         aYFg==
-X-Gm-Message-State: ACrzQf05nwq4zcbtfiDXlKfvD4yqnZuG7sQGJ/amlzsmj9TM/e1pC4yI
-        v1Eds11cW+XgOHr6XzOIdM60AA==
-X-Google-Smtp-Source: AMsMyM48ML6UIOrLAYNHJ8rAYhllA4/FRkJ5zqOSsXyh37G21vGKIYEfFedyKtJoVx7nH5hDgVC1tg==
-X-Received: by 2002:a05:620a:4709:b0:6ce:cb19:3eb2 with SMTP id bs9-20020a05620a470900b006cecb193eb2mr13003526qkb.272.1665414743163;
-        Mon, 10 Oct 2022 08:12:23 -0700 (PDT)
+        bh=ti2zc/Z9SUfzOTKjMdPbdScQnFxu1+kQxfOPj1Dyv/4=;
+        b=LB0ziXnmZAEhNLtkmT582JK1xtxqGiaK64KUfNlOrdDHo/hArGpHZHnf6w65jq0j+m
+         df12cB8WNLoZ5OYjHAZ/04CEwap0HAEV4+8a691cNayjlY+LyVBgQkOtH3j2hFlOd0N/
+         OThHXciwI57SF8LomVR865wkkW1gTe66JycEmfHTIyCIeP8vAmmT0oxlP0u4Rh1Rsp2u
+         Jrh74I8gV1r7dt1bY442mijBx3jG58wAHC0AgNWOOFpMevJRKOR6xfDlw+a4qVn/Fprl
+         Mn9SB8X4p1Jy8UKy7AeV5wNJawqoZoA0SAnFcHMKOJyEAXQjn+zf7bqmkFB6NRhEglZv
+         AhFg==
+X-Gm-Message-State: ACrzQf1p2Q2Dsmx2zeqA7EOoy7qfSwqCPvkc4D8VAqib6PTY57Su7C4x
+        tC3tqcGc0AE0JwsKcQ7XIATtfQ==
+X-Google-Smtp-Source: AMsMyM6XEIzAH7k3ByxOxBQsO2chVqu/ElA1zMj+jxzv1G/EWOY/HrhZ9L5YugdL4CR4DJ0YWre7kg==
+X-Received: by 2002:a05:620a:6009:b0:6ec:ed49:b93c with SMTP id dw9-20020a05620a600900b006eced49b93cmr3606460qkb.180.1665414758089;
+        Mon, 10 Oct 2022 08:12:38 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id y8-20020ac87048000000b00342f8d4d0basm8868279qtm.43.2022.10.10.08.12.21
+        by smtp.gmail.com with ESMTPSA id p16-20020a05620a057000b006bb29d932e1sm524135qkp.105.2022.10.10.08.12.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Oct 2022 08:12:22 -0700 (PDT)
-Message-ID: <bada584a-a2d5-9487-bfc0-f6eb983d91e1@linaro.org>
-Date:   Mon, 10 Oct 2022 11:10:09 -0400
+        Mon, 10 Oct 2022 08:12:37 -0700 (PDT)
+Message-ID: <45e2734d-fc4d-2dcb-ee20-98504d8c336a@linaro.org>
+Date:   Mon, 10 Oct 2022 11:10:25 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
 Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
+To:     Caleb Connolly <caleb@connolly.tech>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
@@ -72,30 +72,29 @@ To:     Luca Weiss <luca.weiss@fairphone.com>,
         Robert Foss <robert.foss@linaro.org>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Johan Hovold <johan+linaro@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
         Vinod Koul <vinod.koul@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Caleb Connolly <kc@postmarketos.org>
+        Stephan Gerhold <stephan@gerhold.net>
 References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
  <faa4e821-00e0-4ee0-0c62-b5eb6f75abf7@linaro.org>
- <CNI6AL1JKZ1L.2QLO9D3KZJ2MR@otso>
+ <a5bc5342-be84-9a1b-e40a-1cb9ceea47ae@connolly.tech>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CNI6AL1JKZ1L.2QLO9D3KZJ2MR@otso>
+In-Reply-To: <a5bc5342-be84-9a1b-e40a-1cb9ceea47ae@connolly.tech>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/10/2022 06:32, Luca Weiss wrote:
-> Hi Krzysztof,
+On 10/10/2022 07:34, Caleb Connolly wrote:
 > 
-> On Tue Oct 4, 2022 at 4:50 PM CEST, Krzysztof Kozlowski wrote:
+> 
+> On 04/10/2022 15:50, Krzysztof Kozlowski wrote:
 >> On 22/09/2022 16:32, Krzysztof Kozlowski wrote:
 >>> Hi everyone,
 >>>
@@ -131,30 +130,13 @@ On 10/10/2022 06:32, Luca Weiss wrote:
 >> Any thoughts on this? So far I did not receive any responses, so
 >> probably this could mean that there is little interest in this?
 > 
-> I'd also appreciate having something there. Similar to the count of
-> similar warnings that Rob is sometimes posting, I personally don't
-> see those apart from checking my boards (msm8226, msm8974, msm8953,
-> sm6350), where I recently did a cleanup spree for 8974 for low-hanging
-> fruit. Of course given that not every device uses all the functionality
-> some things that are disabled on my fairphone-fp2 device I won't see,
-> but only when checking other devices e.g. lg-hammerhead.
+> Hi Krzysztof,
 > 
-> So some gitlab project with issues for each thing would be pretty nice I
-> believe. While I probably won't tackle big topics like mdss+mdp5 because
-> it's just very complex, I'm happy to pick up some small tasks that are
-> (comparatively) quick to fix.
-> 
+> I think a GitLab repo with some automatically generated issues and some sort of
+> overall coverage map might be a good way to track this. Especially if it can be
+> shown on a per-device basis as well.
 
-Thanks Lucas. I am not sure how easy is to create automatically a set of
-gitlab issues based on some file with warnings, thus probably in the
-beginning this might be just a TXT file or set of files.
-
-I don't want to put too much effort on the mechanism of tracking, rather
-have something working, editable by many (e.g. restricted only to a
-Gitlab account) and with some ways of automation.
-
-Caleb mentioned splitting results per board, which could be done easily
-with some scripts.
+Thanks for the feedback!
 
 Best regards,
 Krzysztof
