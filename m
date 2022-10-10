@@ -2,106 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E3355F9A30
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 09:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1B765F9A64
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 09:49:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231975AbiJJHmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 03:42:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40626 "EHLO
+        id S231921AbiJJHtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 03:49:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231958AbiJJHlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 03:41:15 -0400
-Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.221.58])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8439218E3F;
-        Mon, 10 Oct 2022 00:36:31 -0700 (PDT)
-X-QQ-mid: bizesmtpipv601t1665387382tp83
-Received: from SJRobe ( [255.42.121.1])
-        by bizesmtp.qq.com (ESMTP) with 
-        id ; Mon, 10 Oct 2022 15:36:20 +0800 (CST)
-X-QQ-SSF: 01100000000000G0Z000000A0000000
-X-QQ-FEAT: +ynUkgUhZJmOErIScuxpTx/+0Yy0w+SE0SOStwMtyuLup+vynL+Az30prc0Ug
-        +wzeVBNTlFUDbI3+TALPy/YBcuVY/smxl75x4UEFnR0MsE2NXAumFx73qIl2khhQxTN/R68
-        gbzUL+loxLJkv5p7OcNl+f9sVvmJCZnllcOarracExwPMgxYiYTJHBXXgHvTCBakJHbNeQw
-        FGMFpx9ryMSI58IO42MT13wlNAV2K3UARp0CE0CLea4rjdUpvUceh+VyzQiZ1yeKBYu5EI2
-        t1i/mtz5QQAM3dO+0O8f/zwSwjEX0P56tFFX8tnk67RKp6fXSkXi1Wy4p9OJJEd3jm25+U3
-        ueyPI7Wc/fvBjBkbQyeWpDb/8IJR8wZSFH++CYDJekPX/p385KmZIjUAM9F1A==
-X-QQ-GoodBg: 0
-From:   "Soha Jin" <soha@lohu.info>
-To:     "'Greg Kroah-Hartman'" <gregkh@linuxfoundation.org>,
-        "'Andy Shevchenko'" <andriy.shevchenko@linux.intel.com>,
-        "'Rob Herring'" <robh+dt@kernel.org>
-Cc:     "'Rafael J. Wysocki'" <rafael@kernel.org>,
-        "'Daniel Scally'" <djrscally@gmail.com>,
-        "'Heikki Krogerus'" <heikki.krogerus@linux.intel.com>,
-        "'Sakari Ailus'" <sakari.ailus@linux.intel.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20221009162155.1318-1-soha@lohu.info> <20221009162155.1318-2-soha@lohu.info> <Y0MR+uSDEm2bPgcD@kroah.com> <EE2940315EA6EAA4+1b3101d8dc54$c2f83680$48e8a380$@lohu.info> <Y0O6kDQ9Bxi9jMfo@kroah.com>
-In-Reply-To: <Y0O6kDQ9Bxi9jMfo@kroah.com>
-Subject: RE: [PATCH 1/3] string: add match_string_nocase() for case-insensitive match
-Date:   Mon, 10 Oct 2022 15:36:17 +0800
-Message-ID: <9963070D38F093DB+25d201d8dc7a$fca3e570$f5ebb050$@lohu.info>
+        with ESMTP id S231371AbiJJHsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 03:48:01 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CFB44F672
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 00:45:10 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id w18so15729368wro.7
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 00:45:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=kiOsL5cICcDRzWTGbQ0RBDU5GIe3E8Ke/5ZDrHfFOEo=;
+        b=e0epfFCzwAzD7RkP89KgT8E566eSJvXnKGAWPhy6vQaRCSrlFcUDCFTBKnKwgWInog
+         wOnZbRQwOaQGIGq47tD1Wnl7QiSG0+cJgEV9vI+2UNwyc2NxVptQu0i9T0mWN8jcnrTm
+         uPA3ROhBNPFMWhvNBa5teXbbMdky4T5PftaBj8BfFuor9MzN0snuxdkXZfuFMEYDEeHc
+         eSs/eh+zAdBrn2SCep2XiySBSUZ8FZeHtJsoydGy4Rynu/WG5PGKQ8qmn29WHV7BnnZp
+         RZGNr8mIrhuBzIE0aBi2tNrEQQ+CGYdrMPwY/BpjGidtgpzBgexgt9Xvc1qpZlXEq96G
+         OoYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kiOsL5cICcDRzWTGbQ0RBDU5GIe3E8Ke/5ZDrHfFOEo=;
+        b=OrxpFBLrznqigbaLxxtxPhtbENDOqTahOlvykHnadRkhZq0LFt3kFxCpd6SNEzpG1E
+         mBEfFxNsIDAGhEg4gkgISo5FbUoxG9mM0k5HiSx9cpCWIFUJFz8ocWVz067Hnn1vLqTR
+         3Sb9h1lrdI5Y2x4bVpSL/MA5UGczV7Hn0dyPc8Kx1B6N1tfc4l5RqExPpT7I0tFujKGy
+         tiig0QUqe/dGPlHg8QEtyWHNaGVVcNyXYsg163DkbBdSU9tnJ5UFjY0g/h7YYZgWSh8S
+         5cJMaVZJnIVvWBbWcFFe/7Q66k96kiW4gsSlMxqsxoRYPobFscYT7kV2mxhJ6/lXxkOf
+         fXdg==
+X-Gm-Message-State: ACrzQf2N0SjQKRklKvf37TCHyykOxG9vHklTkVwxPDn//Gp4Lw+9nFGf
+        6Kthz3sD6MMXO0WzgU+X76aqNQ==
+X-Google-Smtp-Source: AMsMyM6iXMsVhCIb4A5KG4utEI03o8KNAqHGfnuF6WCXQAOHdyaX3APXfdLpqicME3hEWRpNpBAfWA==
+X-Received: by 2002:a5d:4c4f:0:b0:22e:6c5b:a4b0 with SMTP id n15-20020a5d4c4f000000b0022e6c5ba4b0mr10905320wrt.574.1665387906354;
+        Mon, 10 Oct 2022 00:45:06 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1d81:c6ce:69e8:c0? ([2a01:e0a:982:cbb0:1d81:c6ce:69e8:c0])
+        by smtp.gmail.com with ESMTPSA id m22-20020a7bce16000000b003bd44dc524csm9464778wmc.34.2022.10.10.00.45.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Oct 2022 00:45:05 -0700 (PDT)
+Message-ID: <4f00f098-439e-71ad-ea45-3960a9d3bacd@linaro.org>
+Date:   Mon, 10 Oct 2022 09:45:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH 3/6] arm: dts: qcom: mdm9615: wp8548-mangoh-green: fix
+ sx150xq node names and probe-reset property
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>, Lee Jones <lee@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221005-mdm9615-pinctrl-yaml-v1-0-0cbc006e2a30@linaro.org>
+ <20221005-mdm9615-pinctrl-yaml-v1-3-0cbc006e2a30@linaro.org>
+ <450d2490-2640-6a4a-946f-e401ba68d52c@somainline.org>
+Content-Language: en-US
+Reply-To: neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <450d2490-2640-6a4a-946f-e401ba68d52c@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJ3YxYd+FPcuiJVmWEOx+0wAFDAtAEC1QTIAidE924DQPre+AIsXv4YrIVsQLA=
-Content-Language: fr
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpipv:lohu.info:qybglogicsvr:qybglogicsvr3
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,RCVD_ILLEGAL_IP,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg and Andy,
-
-> From: 'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-> Sent: Monday, October 10, 2022 2:24 PM
+On 07/10/2022 21:38, Konrad Dybcio wrote:
 > 
-> > I am writing regarding the compatibility. In
-> > `of_device_is_compatible`, it uses `of_compat_cmp` which calls
-> `strcasecmp` to match compatible property.
-> >
-> > As the `fwnode_is_compatible` should be the replacement of the OF way,
-> > I think we should make the fwnode way and the OF way the same, i.e.
-> > either both case-insensitive or case-sensitive, to keep the
-> > consistency. I am afraid that make `of_compat_cmp` case-sensitive may
-> > break a great many of devices, that is why I am doing this.
 > 
-> Ok, but if you change this with the series, what will break? 
+> On 6.10.2022 11:58, Neil Armstrong wrote:
+>> Fix the sx150xq node names to pinctrl and use the right probe-reset property.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+> Could you please also fix up the property order (may be in a separate patchset ofc)?
 
-My changeset will not break something, and make comparison case-sensitive
-does. Some old device firmwares that did not care about letter case might
-not function correctly in a newer kernel, because the current kernel checks
-compatibility case-insensitively and the former developer did not notice
-this with the just working kernel.
+Yup, sure
 
-> What needs this
-> new case-insensitive comparison that does not work today?
-
-> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Sent: Monday, October 10, 2022 2:24 PM
 > 
-> So, why do we have such in the OF code and do we really need it in the
-> modern world?
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> 
+> Konrad
 
-Frankly speaking, I think case-insensitive comparison is not needed TODAY,
-and before I compose this change, I can see codes in kernel like this:
-    of_device_is_compatible(np, "U4-pcie") ||
-    of_device_is_compatible(np, "u4-pcie")
-which means kernel codes is de facto case-sensitive, although this function
-calls `strcasecmp`.
+Thanks
+Neil
 
-I do not know kernel maintainers' mind when I am composing this change, I
-just chose the way which will not break anything. Anyway, I am also glad to
-edit the patch to make it case-sensitive once maintainers have made the
-final decision.
-
-Regards,
-Soha
-
+<snip>
