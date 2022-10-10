@@ -2,81 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BA895FA0B4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 16:56:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E76095FA0F1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 17:12:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230110AbiJJO4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 10:56:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36322 "EHLO
+        id S229811AbiJJPM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 11:12:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230005AbiJJO4b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 10:56:31 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3DF72C677
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 07:56:08 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id cj27so6596474qtb.7
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 07:56:08 -0700 (PDT)
+        with ESMTP id S229470AbiJJPMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 11:12:25 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAD32A949
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 08:12:24 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id o22so6419330qkl.8
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 08:12:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UwsU1fn/1SfZtcqL1Zfll3O9hBAK2GV/zHS0qbctt9A=;
-        b=vFfv1QykuX1R6T4Pv3s7wuWLMBDo5sYCAxir3KGVHEjCi0mdzbZew2vk7h7L4rix3k
-         Rf9SYZNWSKxwJzDt0MinCCWk2PmF6aLaMXl9clOTRhhkSAK0KWc7C0aO7U54037TBtBp
-         4WFqQ2HLFcob6z8Ev57+FwoAg7h4Bm28VhWB77XX8IRaKjbKaqyq77FLWnJ0q2FteKKn
-         psQcN8rXlsCo7oPYfisgs70YCbhs13QHkG2xCSvUGtoeOKERdZN72m1KwwMTeyBq5B82
-         tCIPlwoZiF7YhC9lP40IqRPJAuxZrd15FL1yLQZqZtt6u0BAhCS62zqGejhDSUBQCqv9
-         rcIQ==
+        bh=XZGY0NmxkHIMgYKNHWFtIegzfS1Q0kFucYbxjq5grdE=;
+        b=qnswpzqPS89CiDSi/t25CtkoGPZgYTiZxQBa9kmHRP7Q7XqYBNb8cPcCt6pPL1Y5Is
+         fXisPJtqz3hLOdunzcLyc07+C8sfI0cB/rjim6p6nfh0Six7cUDIIclybpTsFp2cL7wE
+         oiWBubiHWhRAJBOj7NNGhjvBYgDeB73yIPzVkzMBuAVIvn1naTrerp4h3rATJf3WI3S8
+         6WG0ZuU0SQ28sULfHcYgdPLaFTmYkDmFK0H37FrDPgEN9lRHjtKh966vcXxlfe8WPU0g
+         xRc6/LZAwEbRpU3R1yT3prksPPO9iSqihTZs7zsblw7biKyWVOwpjFnLEtK/mHvzszSf
+         Kx9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UwsU1fn/1SfZtcqL1Zfll3O9hBAK2GV/zHS0qbctt9A=;
-        b=IR5bfVxKqw1jn79yWwcRs2SP204ybNLEBT1G5AhDgDykTVHWSvz6I/HSMo+P0yRALA
-         0N5ByfoWSpAjfCRgNZoWkZ9/s23HoOnmQnDyEF6CoqxyHS9auCeZoe4svWYahEoiiTZU
-         e/etDudIfK/WtV5IxppDJK+Fqa0WyzMRF9A1waru6MK/qKhfMGTG2TUxgHOkpZdemZWn
-         G1/GB45sV3j6fu7Xxsweh2s7L8ovdDb4LAvjP6KxYrUYpB2aJG4UnXYGNc2bIAsQ3aud
-         CTyTfHzkZ435PR+8oO0k6xqLir6E+x4CXhEd2dXaB68lkHtUlXAAv7UVVJW6wGK7RVYs
-         wzxw==
-X-Gm-Message-State: ACrzQf3M0gMq7tqUjFEphS8S2YlVAsYFEcUSm4J7pmQ954qaYy7JCvLz
-        jUG27y9f8jSXbdaRyenT3CaHaQ==
-X-Google-Smtp-Source: AMsMyM4wUdL69r1gqbyekIM8UU8nT+Iwy6V3/bmUUZzogalJHEIVc9ztR+cgKUf3W7pIPUCmGyr9vg==
-X-Received: by 2002:a05:622a:13c6:b0:39b:e62:cfc3 with SMTP id p6-20020a05622a13c600b0039b0e62cfc3mr2150730qtk.687.1665413740678;
-        Mon, 10 Oct 2022 07:55:40 -0700 (PDT)
+        bh=XZGY0NmxkHIMgYKNHWFtIegzfS1Q0kFucYbxjq5grdE=;
+        b=nhI4gvgppTqp06/rfPuilNNNCgb3UnxIo8BJyqaG73E5S41/wcp5TnTIROQc+i2lOT
+         clfNVhiOuI5aQRYhfoONxqQT1zfh2256b3Pxmerp8cAmPhTKEdAmvR/mMyAXD1U7/jj8
+         VMtRLqfUyZdBq5EyUoh7xggxc2hLjhcq0sO/il61Rhxm9UA6xps1EqgjzC8yw9FFQ93O
+         kXTrBo2DzSVP0p1R6OELh4bVR5xV9nhh/i54DV/txiFYoWotdlpYbspqpB6cVy++UNQj
+         i6iMvy2EL6GU+bEHFv96CHjO/Wpmyyuegnsr+pb/GfbfO5QINsPmljQTJn4Pf1xcPpH8
+         aYFg==
+X-Gm-Message-State: ACrzQf05nwq4zcbtfiDXlKfvD4yqnZuG7sQGJ/amlzsmj9TM/e1pC4yI
+        v1Eds11cW+XgOHr6XzOIdM60AA==
+X-Google-Smtp-Source: AMsMyM48ML6UIOrLAYNHJ8rAYhllA4/FRkJ5zqOSsXyh37G21vGKIYEfFedyKtJoVx7nH5hDgVC1tg==
+X-Received: by 2002:a05:620a:4709:b0:6ce:cb19:3eb2 with SMTP id bs9-20020a05620a470900b006cecb193eb2mr13003526qkb.272.1665414743163;
+        Mon, 10 Oct 2022 08:12:23 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id fp3-20020a05622a508300b0039b26d92989sm1083673qtb.86.2022.10.10.07.55.38
+        by smtp.gmail.com with ESMTPSA id y8-20020ac87048000000b00342f8d4d0basm8868279qtm.43.2022.10.10.08.12.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Oct 2022 07:55:39 -0700 (PDT)
-Message-ID: <1c10a474-7014-b56e-d2e1-3e422ae82401@linaro.org>
-Date:   Mon, 10 Oct 2022 10:55:37 -0400
+        Mon, 10 Oct 2022 08:12:22 -0700 (PDT)
+Message-ID: <bada584a-a2d5-9487-bfc0-f6eb983d91e1@linaro.org>
+Date:   Mon, 10 Oct 2022 11:10:09 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v3 1/3] dt-bindings: iommu: mediatek: add binding
- documentation for MT8365 SoC
+Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
 Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Will Deacon <will@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     iommu@lists.linux.dev,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        linux-mediatek@lists.infradead.org
-References: <20221001-iommu-support-v3-0-c7b3059b0d16@baylibre.com>
- <20221001-iommu-support-v3-1-c7b3059b0d16@baylibre.com>
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vinod.koul@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Caleb Connolly <kc@postmarketos.org>
+References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
+ <faa4e821-00e0-4ee0-0c62-b5eb6f75abf7@linaro.org>
+ <CNI6AL1JKZ1L.2QLO9D3KZJ2MR@otso>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221001-iommu-support-v3-1-c7b3059b0d16@baylibre.com>
+In-Reply-To: <CNI6AL1JKZ1L.2QLO9D3KZJ2MR@otso>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,20 +92,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/10/2022 08:54, Alexandre Mergnat wrote:
-> From: Fabien Parent <fparent@baylibre.com>
+On 10/10/2022 06:32, Luca Weiss wrote:
+> Hi Krzysztof,
 > 
-> Add IOMMU binding documentation for the MT8365 SoC.
+> On Tue Oct 4, 2022 at 4:50 PM CEST, Krzysztof Kozlowski wrote:
+>> On 22/09/2022 16:32, Krzysztof Kozlowski wrote:
+>>> Hi everyone,
+>>>
+>>> Quite a lot of people are working on Qualcomm DT bindings conversion
+>>> (TXT->YAML) and fixups to Qualcomm DTS. We track a bit of this effort
+>>> internally in Linaro, but that has many shortcomings and we would like
+>>> to track it rather community-wide with the support and contributions
+>>> from the community.
+>>>
+>>> What to track:
+>>> 1. Which bindings to convert to YAML,
+>>> 2. Missing compatibles (either entirely or because of missing conversion),
+>>> 3. `dt_binding_check` warnings (usually connected with 1-2),
+>>> 4. `dtbs_check` warnings.
+>>>
+>>> Rob's bot gives us daily output for 1-4, but how can we track current
+>>> efforts to avoid duplication of work? Also it would allow people to find
+>>> tasks for them to get contributions to Linux kernel :). Is anyone in
+>>> community interested in tracking it together, in a public way?
+>>>
+>>> If so, where?
+>>> A. elinux.org (needs some formatting when pasting the output from tools)
+>>> B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
+>>> C. gitlab dedicated repo - some text file
+>>> D. Linux kernel TODO file (might be difficult to keep updated)
+>>> E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
+>>> have it for Exynos but I don't find it usable -
+>>> https://exynos.wiki.kernel.org/todo_tasks)
+>>
+>>
+>> Hi All,
+>>
+>> Any thoughts on this? So far I did not receive any responses, so
+>> probably this could mean that there is little interest in this?
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
+> I'd also appreciate having something there. Similar to the count of
+> similar warnings that Rob is sometimes posting, I personally don't
+> see those apart from checking my boards (msm8226, msm8974, msm8953,
+> sm6350), where I recently did a cleanup spree for 8974 for low-hanging
+> fruit. Of course given that not every device uses all the functionality
+> some things that are disabled on my fairphone-fp2 device I won't see,
+> but only when checking other devices e.g. lg-hammerhead.
+> 
+> So some gitlab project with issues for each thing would be pretty nice I
+> believe. While I probably won't tackle big topics like mdss+mdp5 because
+> it's just very complex, I'm happy to pick up some small tasks that are
+> (comparatively) quick to fix.
+> 
 
+Thanks Lucas. I am not sure how easy is to create automatically a set of
+gitlab issues based on some file with warnings, thus probably in the
+beginning this might be just a TXT file or set of files.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I don't want to put too much effort on the mechanism of tracking, rather
+have something working, editable by many (e.g. restricted only to a
+Gitlab account) and with some ways of automation.
 
-(for DT bindings and memory-controllers)
+Caleb mentioned splitting results per board, which could be done easily
+with some scripts.
 
 Best regards,
 Krzysztof
