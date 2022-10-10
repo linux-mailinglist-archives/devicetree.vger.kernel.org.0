@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22D2A5F9D1E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 12:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A4C25F9D4A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 13:06:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231776AbiJJKys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 06:54:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51804 "EHLO
+        id S232010AbiJJLGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 07:06:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231618AbiJJKyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 06:54:45 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0053DD1
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 03:54:41 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id d13so79768qko.5
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 03:54:41 -0700 (PDT)
+        with ESMTP id S231690AbiJJLGm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 07:06:42 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 160825BC3B
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 04:06:38 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id hh9so6227805qtb.13
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 04:06:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uXXYDLeVdr+oeSI3cVKv2RSRyFOoMDL4kVkyRGqfMsE=;
-        b=HbSPlcRkvUARSNgWzE/kaRZEiL6bRpHcWUtODxc0yRQnJ4kg2S2wLpE4EyZIQLSxl9
-         HHij2wUkpj9Cw/ktkXzWoefg0NHEG2A98eRRJIDwV9jAv4cO6dW9ZQ4/d9hLKrYnrTH+
-         amXnMDac+9ffziz+SEzF9I2fHwuTG1b9T94uWYPAZlwA0EjyI+pjEhqFkIICyW+zchjc
-         ZufWkL0Xjkxx1CQ7BWGqyrfbhAm/94Q66KCGefr0tC6hSfalmSnkqR9gS6cZ+2jqRL5T
-         ui9Cbe7KWdOmKglg5j4+SgKqRWdMvDDBubaHyuMuVZxkKaQKiG363AiirV9j1Z2mmvdI
-         d+nQ==
+        bh=5qLfkh3nuU6Ka/OP3hjAffMuHsumXScWzDebeiU99Q8=;
+        b=xRX2mWvjy6iLzYrkox0cONugvJGLzWxyDJjYjYgwtqQXfAUWOH0Drq05tENlHAhB8O
+         a4/ii5BUsgP4aaBG3wf0V2fj5xXp1Q6OUfxh3BcDVq6NqfGU20V1B15TaZVHBK0T54g8
+         wrwu3x0zh/6GNXdvJCOBHovVbWiz60W5lZZXKyN9tZTb2mQ8d4fhB9zG2He/khGYwDEL
+         cvPXnjY7aOt2eHPlSC2uF1mWP+94PLmfFIQWjrwJyf+lpXk8/NBoS76NsHRmqA/LpSQ5
+         eyftWc7wyVM8V5cnZu+qMW6VDy6fybmQTYF6vGsf2wRK/oeCkjWjojCzH8dA58vdITcv
+         gMYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uXXYDLeVdr+oeSI3cVKv2RSRyFOoMDL4kVkyRGqfMsE=;
-        b=xM0TzgT3i1GVpBmLPnCanekdM2VVajqzHnEGMN5FzJBaDGFGLqaOR6s9hTnl+vYVWS
-         c2EbCduLxZ7HfWz5oqa7FLv4ZCJwvMslagViydWK9cFdBRExd2IRWXztKHgH0Zwko8kq
-         0k7RXI8tTjaUU7emRASeqL1hiKRKqb1KRR5jehkkUMrXizlJxHOJ0c6XizMRg3MJa7jS
-         JNRkSq9SoZtmJmYKFNuXjVPazxVLUGtL+T8cLf4wTYKcEgE5DriV9+jAqjogyZJz02cs
-         aRfWBLaKrTCr2SQ1lQHcZO1eadz69a0Vh4BtyU6CfMBA/DmtUHotM9Q1DcHCouSkuwGi
-         +cug==
-X-Gm-Message-State: ACrzQf3gVkX5iGLFrLP0wM7CoFCO1gRj4dr4EwLZ+/qSXwUf3YztslX/
-        6jhrP8g63A1ZgKuNIc6X3he7gw==
-X-Google-Smtp-Source: AMsMyM6HgL7CmREkM9Ir3/Yzattwf4yjiAvs4gDfZZCee4JCXTl0C5mU8Hv2c6Yx2OkfiBPSITS6Ig==
-X-Received: by 2002:a37:64cd:0:b0:6ec:545f:9095 with SMTP id y196-20020a3764cd000000b006ec545f9095mr4519053qkb.133.1665399280515;
-        Mon, 10 Oct 2022 03:54:40 -0700 (PDT)
+        bh=5qLfkh3nuU6Ka/OP3hjAffMuHsumXScWzDebeiU99Q8=;
+        b=dVLgcWGL0DdjyFfw170dBxqnSb3CPjA6tButtscyxF7m552MQZmTCXDpVI9fRgxN5Q
+         0hZQlcyk39PhxhuoS0j+Cr/Nyhu9TGWp7M+Gckh1KF8CbahmRq7r2frSiBaKGxAfs2cb
+         Fek2AL/lpUuSVUTFjLWV9cCNrT0PQjnlo+Ig3FLW1ehPbzsrUCJhnNzKucRERsQIyyll
+         cppnvUyCszxHpFa/oN6d93uPAPiqAP54hUJ5yRpLT9+Q6EoZntGCJ4np2Me8JmscPoaA
+         OFyp2y18NIRfQ8j8lylFDUhfpN/hPcF8rbFbtdSXZLIBN4j36tP8O5y5WNvmtFJFWcmj
+         og1Q==
+X-Gm-Message-State: ACrzQf27+q8/mbxGfkgh5S5nDrDA+mzTCh/KlKPdpM9Xb7wA6dEMcANt
+        4LQIoWi433rz0bJcF8DwbJSMTw==
+X-Google-Smtp-Source: AMsMyM51oAqQLcZw2xz4SYWn7cDC6BSKCuoXtWwktjJA50ZtK8BENmXQjejKSiXx6Xjn4kHz3HLdtw==
+X-Received: by 2002:a05:622a:651:b0:398:5034:9e85 with SMTP id a17-20020a05622a065100b0039850349e85mr7502651qtb.277.1665399996684;
+        Mon, 10 Oct 2022 04:06:36 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id v4-20020a05622a014400b00343057845f7sm1414470qtw.20.2022.10.10.03.54.39
+        by smtp.gmail.com with ESMTPSA id ey23-20020a05622a4c1700b0035cf31005e2sm8282037qtb.73.2022.10.10.04.06.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Oct 2022 03:54:39 -0700 (PDT)
-Message-ID: <56e8fc84-aad0-b153-e415-8c1bd1647c2b@linaro.org>
-Date:   Mon, 10 Oct 2022 06:52:27 -0400
+        Mon, 10 Oct 2022 04:06:35 -0700 (PDT)
+Message-ID: <eb066d99-f0b6-96db-1f37-dec99b3abdf0@linaro.org>
+Date:   Mon, 10 Oct 2022 07:06:34 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH v3 1/2] remoteproc: qcom: pas: Add MSM8953 ADSP PIL
- support
+Subject: Re: [PATCH v2 2/3] dt-bindings: input: touchscreen: Add Hynitron
+ cstxxx
 Content-Language: en-US
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        dmitry.baryshkov@linaro.org, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-References: <20221008174658.336470-1-sireeshkodali1@gmail.com>
- <20221008174658.336470-2-sireeshkodali1@gmail.com>
+To:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, jeff@labundy.com,
+        neil.armstrong@linaro.org, arnd@arndb.de, robert.jarzmik@free.fr,
+        Jonathan.Cameron@huawei.com, christianshewitt@gmail.com,
+        stano.jakubek@gmail.com, rydberg@bitmath.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        dmitry.torokhov@gmail.com, Chris Morgan <macromorgan@hotmail.com>
+References: <20221007184710.6395-1-macroalpha82@gmail.com>
+ <20221007184710.6395-3-macroalpha82@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221008174658.336470-2-sireeshkodali1@gmail.com>
+In-Reply-To: <20221007184710.6395-3-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,28 +79,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/10/2022 13:46, Sireesh Kodali wrote:
-> Add support for the Audio DSP PIL found on the Qualcomm MSM8953
-> platform. The same configuration is used on all SoCs based on the
-> MSM8953 platform (SDM450, SDA450, SDM625, SDM632, APQ8053).
+On 07/10/2022 14:47, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
-> ---
->  drivers/remoteproc/qcom_q6v5_pas.c | 1 +
->  1 file changed, 1 insertion(+)
+> Add documentation for the Hynitron cstxxx touchscreen bindings.
+> Hynitron makes a series of touchscreen controllers, however for
+> now this is expected to only be compatible with the cst3xx series,
+> specifically the CST340, CST348, and CST356.
 > 
-> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-> index 6afd0941e552..70b3a37c4814 100644
-> --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-> @@ -950,6 +950,7 @@ static const struct of_device_id adsp_of_match[] = {
->  	{ .compatible = "qcom,msm8226-adsp-pil", .data = &adsp_resource_init},
->  	{ .compatible = "qcom,msm8974-adsp-pil", .data = &adsp_resource_init},
->  	{ .compatible = "qcom,msm8996-adsp-pil", .data = &msm8996_adsp_resource},
-> +	{ .compatible = "qcom,msm8953-adsp-pil", .data = &msm8996_adsp_resource},
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 
-This one also in alphanumeric order, by compatible.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
