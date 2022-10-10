@@ -2,146 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78DB25FA320
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 20:04:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8E5A5FA326
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 20:06:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbiJJSEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 14:04:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32950 "EHLO
+        id S229587AbiJJSGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 14:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbiJJSEc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 14:04:32 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B6378206;
-        Mon, 10 Oct 2022 11:04:30 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id y1so4255736pfr.3;
-        Mon, 10 Oct 2022 11:04:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iqm9CVgn+kW4HfPyiUnaMeFl30Q6IABDDhBs2wPsJt8=;
-        b=A2PJRdVcfbhm6nKDfokFMdxjYrpiSG3A4L5AsylMNB7KWpc04WjyBf1DPB5kO4pZz6
-         FHdpXDhtVD02kl7k145LFNvqafRpExtpXpvtiLiscsljc6GrdVbaMRyU5ZI9O9uuL95Q
-         fVrvfW+B28HFKAPaZsLwIeww/gPenfcO6FdL9ikuvZDW3oBLTvcxAIAcy5Yqolty2SDo
-         SXbpjGzqqFa5U/XEk1HqvY0a6ffFz6ScEQ0sa5HLpv0XcZYsFCLDUsWLTP3KOIi4PX4s
-         BG/fjbo9bPuCikKWtlaZd1kJVUmukbZBGBr0JuAbPMCTzfTJ7q79Radhe1xeQlW+u/Af
-         VLhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iqm9CVgn+kW4HfPyiUnaMeFl30Q6IABDDhBs2wPsJt8=;
-        b=rn17EMxZeY8nElSH6YK1KOjHEgHm0JgVSulfRY3VzH+M1D5uhq9dZLUObg1c3xCxP0
-         hsTzLS+y08fukIxLB6wIrLnahbHApUA6CX471dq0lW/4dEZDExnAJTzqJ/OH7YY8MvY6
-         498IhK3HLQZDAmMmwduQ7KD5gaxpUrPSIszAEN66eeMBnjBAdghzdnS8RdQ9PpUr6CFb
-         t2vR3nn1t3Yz69hqExhI+8i5vWaOQhs8dm9ncshb96b8e/mWNaJxAySkDrGvT+sFpBAd
-         hQOvqxaMykxRrPdstl+6RybaEO8nBp+FogAuEAioz343cBC7gcSUMmEKNgU16RubpNtS
-         1e0g==
-X-Gm-Message-State: ACrzQf3nqOJE2YIiyc9ETiAHXQ6n3FM2h++xghU4wX4V2bsI089nqrS8
-        TvrWsOd+XaNfkh54TWMWZsc=
-X-Google-Smtp-Source: AMsMyM5J5FVo9mNe1Zc+Y7OpqNKgLUl0RAHmsZbJrDII9arkrOq1Q+BsxPnFewT4XfclXkbXoDbWGw==
-X-Received: by 2002:a63:8ac2:0:b0:460:6480:8c59 with SMTP id y185-20020a638ac2000000b0046064808c59mr11102218pgd.472.1665425069945;
-        Mon, 10 Oct 2022 11:04:29 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:bff:9bd3:c2da:5f42])
-        by smtp.gmail.com with ESMTPSA id u6-20020a17090341c600b00178ab008364sm7052943ple.37.2022.10.10.11.04.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Oct 2022 11:04:29 -0700 (PDT)
-Date:   Mon, 10 Oct 2022 11:04:26 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org, Fabien Parent <fparent@baylibre.com>
-Subject: Re: [PATCH v2 5/5] Input: mtk-pmic-keys: add MT6357 support
-Message-ID: <Y0ReqmnLfKo20HO5@google.com>
-References: <20221005-mt6357-support-v2-0-f17ba2d2d0a9@baylibre.com>
- <20221005-mt6357-support-v2-5-f17ba2d2d0a9@baylibre.com>
+        with ESMTP id S229520AbiJJSGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 14:06:48 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1802425E6;
+        Mon, 10 Oct 2022 11:06:47 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29AGe0ox019138;
+        Mon, 10 Oct 2022 18:06:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=xsnSaR6uUCBZjp+kEvtpUBOjoyoCrGfxoWHGbQH9hK8=;
+ b=Y2IpNu0x0N92zWMM7xlYwfaoZkveojVZioEmCl8myrbZxOjk4wqxdkAvRjClwk2th4Vm
+ u+hHA2TOysCXrF6ABS49ntiotF7JDRdFZUryZ1kgpHRnyZvGy2zxKb78J3pFvw9r6OpS
+ PRkmwScPtWAX4O+fTAsjMzlZ2PpMyN4CXoPzMP14OiJiuLTbmL3AaFDB4ASjEkebfsuL
+ y+AMa9iOwY4CoPw9gXkjAQpFlEkLSPGfgdCx2Y4lA3fXo3tKVTN+CRRvtlq3LMb+locs
+ xjJc/esTv/LowpeSaxu4gZXvlm9o4gayHr2G8mOQDoN2Q6gnktDNDN5G/HBL3fmFtXAm 3A== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k32csd1m6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 10 Oct 2022 18:06:32 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29AI6Vno019634
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 10 Oct 2022 18:06:31 GMT
+Received: from [10.110.10.240] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 10 Oct
+ 2022 11:06:30 -0700
+Message-ID: <b52e0f1f-0554-e751-fa59-8f129b4b990f@quicinc.com>
+Date:   Mon, 10 Oct 2022 11:06:30 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221005-mt6357-support-v2-5-f17ba2d2d0a9@baylibre.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v4 14/14] tty: gunyah: Add tty console driver for RM
+ Console Services
+Content-Language: en-US
+To:     Jiri Slaby <jirislaby@kernel.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Marc Zyngier" <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>, <devicetree@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220928195633.2348848-1-quic_eberman@quicinc.com>
+ <20220928195633.2348848-15-quic_eberman@quicinc.com>
+ <bbde3488-be49-371d-3de3-89e759d639f4@kernel.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <bbde3488-be49-371d-3de3-89e759d639f4@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 1vKR6j1K9w1xJaKYNVwGChQ-CHUvk2tO
+X-Proofpoint-ORIG-GUID: 1vKR6j1K9w1xJaKYNVwGChQ-CHUvk2tO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-10-10_12,2022-10-10_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ impostorscore=0 adultscore=0 suspectscore=0 bulkscore=0 mlxlogscore=908
+ priorityscore=1501 clxscore=1011 mlxscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210100106
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 05, 2022 at 04:57:25PM +0200, Alexandre Mergnat wrote:
-> From: Fabien Parent <fparent@baylibre.com>
+
+On 10/3/2022 12:01 AM, Jiri Slaby wrote:
+> On 28. 09. 22, 21:56, Elliot Berman wrote:
+>> +struct rm_cons_port {
+>> +    struct tty_port port;
+>> +    u16 vmid;
+>> +    bool open;
+>> +    unsigned int index;
+>> +
+>> +    DECLARE_KFIFO(put_fifo, char, 1024);
 > 
-> Add PMIC Keys support on MT6357 SoC.
+> Why is tty_port::xmit_fifo not enough?
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+xmit_fifo gave me some inspiration to avoid using KFIFO here and skip 
+extra an extra memcpy into/out of the FIFO.
 
-Please merge through MFD tree with the rest of the patches.
+I've also dropped out the FIFO usage for tty_operations and this 
+buffering is only used for printk console.
 
-> ---
->  drivers/input/keyboard/mtk-pmic-keys.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/drivers/input/keyboard/mtk-pmic-keys.c b/drivers/input/keyboard/mtk-pmic-keys.c
-> index 9b34da0ec260..2a63e0718eb6 100644
-> --- a/drivers/input/keyboard/mtk-pmic-keys.c
-> +++ b/drivers/input/keyboard/mtk-pmic-keys.c
-> @@ -10,6 +10,7 @@
->  #include <linux/kernel.h>
->  #include <linux/mfd/mt6323/registers.h>
->  #include <linux/mfd/mt6331/registers.h>
-> +#include <linux/mfd/mt6357/registers.h>
->  #include <linux/mfd/mt6358/registers.h>
->  #include <linux/mfd/mt6397/core.h>
->  #include <linux/mfd/mt6397/registers.h>
-> @@ -90,6 +91,19 @@ static const struct mtk_pmic_regs mt6331_regs = {
->  	.rst_lprst_mask = MTK_PMIC_MT6331_RST_DU_MASK,
->  };
->  
-> +static const struct mtk_pmic_regs mt6357_regs = {
-> +	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
-> +		MTK_PMIC_KEYS_REGS(MT6357_TOPSTATUS,
-> +				   0x2, MT6357_PSC_TOP_INT_CON0, 0x5,
-> +				   MTK_PMIC_PWRKEY_RST),
-> +	.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
-> +		MTK_PMIC_KEYS_REGS(MT6357_TOPSTATUS,
-> +				   0x8, MT6357_PSC_TOP_INT_CON0, 0xa,
-> +				   MTK_PMIC_HOMEKEY_INDEX),
-> +	.pmic_rst_reg = MT6357_TOP_RST_MISC,
-> +	.rst_lprst_mask = MTK_PMIC_RST_DU_MASK,
-> +};
-> +
->  static const struct mtk_pmic_regs mt6358_regs = {
->  	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
->  		MTK_PMIC_KEYS_REGS(MT6358_TOPSTATUS,
-> @@ -276,6 +290,9 @@ static const struct of_device_id of_mtk_pmic_keys_match_tbl[] = {
->  	}, {
->  		.compatible = "mediatek,mt6331-keys",
->  		.data = &mt6331_regs,
-> +	}, {
-> +		.compatible = "mediatek,mt6357-keys",
-> +		.data = &mt6357_regs,
->  	}, {
->  		.compatible = "mediatek,mt6358-keys",
->  		.data = &mt6358_regs,
-> 
-> -- 
-> b4 0.10.1
-
-Thanks.
-
--- 
-Dmitry
+Thanks,
+Elliot
