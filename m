@@ -2,65 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E76635F9F06
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 15:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA4E15F9F0F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 15:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbiJJNB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 09:01:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58566 "EHLO
+        id S229803AbiJJNEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 09:04:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiJJNBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 09:01:55 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 025FC558EB;
-        Mon, 10 Oct 2022 06:01:55 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id m130so12608650oif.6;
-        Mon, 10 Oct 2022 06:01:54 -0700 (PDT)
+        with ESMTP id S229747AbiJJNEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 09:04:54 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23EE112D35;
+        Mon, 10 Oct 2022 06:04:52 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id n83so12594545oif.11;
+        Mon, 10 Oct 2022 06:04:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jfVkBTG8SNv9Tulxii1+DdNRE/eocOHXxVG3G/nIC5M=;
-        b=IZe+ZYIWwmKXuLgRe/bjrnVuoLh89Hr7/571/WYRAF0dJxN/el0lmRcQllJVl8r/UI
-         wtz1CqOIYKED99R/+FFXtelfVt6LzEo52RqI16lZgjr3Wlf07fhDUn1QnJW5tEg1sBzj
-         h7uOfVQLA2g4qWJcuOTPgLvWCpNFmcd1bz78CzJbg7ZXtPtIxEfg0nbG0X/lgIQe7Dls
-         rnry4ATxHsDgTBUDKw8OfC7vWKvdfnUrGogVnN4t/vzky0fqszbaUgSt69strmdtu5wM
-         ytmj9SDlFWtU1XBofIoWXNPTM3spcYJS2aOFXd5/0sHsEu4lpkML5gaG55qeRYXrFa1P
-         ijdw==
-X-Gm-Message-State: ACrzQf3Ziq1qKfl2hzhukuPlMfVnuuXJ+/zMoAJvvKsZeIM839zlSkIY
-        7ug7kQ4YoJ5JHn7vnKnvWw==
-X-Google-Smtp-Source: AMsMyM5lgFvJ9fLliV+V4FcCSGJENE49rAo3hL62foOpnMFIQYg3mQbq65Qw1Gm/4qIDH33vBplIxw==
-X-Received: by 2002:a05:6808:2118:b0:350:3c8e:404d with SMTP id r24-20020a056808211800b003503c8e404dmr9122517oiw.227.1665406914045;
-        Mon, 10 Oct 2022 06:01:54 -0700 (PDT)
+        bh=6lm2S6p7VPlLo+Kc/ZQ+8NqMDhlla7JGgp2wlIKkBks=;
+        b=ltzx3ChxlhBKXI2o5f2P0yckhlG0QGOLi8l/fTg+571xEhFlGqZvnnKq4qQ4f1ADsU
+         Dz2PAAN5HDtlkVD4KaCROliAkiGkWq93mJlh0uMl2o2Kx4jdiuDFpfKq7iluXc0lhm+A
+         fnydMKjviW8lcQo6JQ53krtE81Xe8hFCOQItRmYs3Lg1NveVLW/CBbaCP6HQsP5LAw3M
+         xqmORyp2NIo10Xme3nqdYu0HIxCo6XEgGbxw7HLDhTxNzt8SUMVTO58J9m8e59349Klg
+         ajwEy3nPPGPkY39m1R0aeEwtmlAcKwyETcK/XN3AvVQQ+tlunGBvf/IOv+4GRy3fO0Vb
+         Ky1Q==
+X-Gm-Message-State: ACrzQf2Hkj0sohYKclMDDa0hyOBRuIgorC/UC8CNJ92LQjpWM18EfKdN
+        Ep686l+Y5sVVtgHFVdO59A==
+X-Google-Smtp-Source: AMsMyM5J/JuIjQl3C0ten6ocXj1sk6nbEOlYNykegpDE87fe//pDYjb5k9JFQmxrNWu/mJy0Q73TfQ==
+X-Received: by 2002:a05:6808:1648:b0:347:b631:cc80 with SMTP id az8-20020a056808164800b00347b631cc80mr9059217oib.238.1665407092143;
+        Mon, 10 Oct 2022 06:04:52 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w1-20020a9d6381000000b006339b36127dsm4803925otk.3.2022.10.10.06.01.52
+        by smtp.gmail.com with ESMTPSA id r10-20020a056870e98a00b001327e6f230bsm4922004oao.27.2022.10.10.06.04.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Oct 2022 06:01:52 -0700 (PDT)
-Received: (nullmailer pid 480632 invoked by uid 1000);
-        Mon, 10 Oct 2022 13:01:53 -0000
-Date:   Mon, 10 Oct 2022 08:01:53 -0500
+        Mon, 10 Oct 2022 06:04:49 -0700 (PDT)
+Received: (nullmailer pid 488759 invoked by uid 1000);
+        Mon, 10 Oct 2022 13:04:49 -0000
+Date:   Mon, 10 Oct 2022 08:04:49 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     devicetree@vger.kernel.org, Sam Shih <sam.shih@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
+Cc:     linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: Add compatible for Mediatek MT7986
-Message-ID: <166540691329.480578.14649778257492089320.robh@kernel.org>
-References: <20221008165627.114782-1-linux@fw-web.de>
- <20221008165627.114782-2-linux@fw-web.de>
+        Qii Wang <qii.wang@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: update bindings for mt7986 soc
+Message-ID: <166540708908.488703.4873523437218276438.robh@kernel.org>
+References: <20221009101631.82380-1-linux@fw-web.de>
+ <20221009101631.82380-2-linux@fw-web.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221008165627.114782-2-linux@fw-web.de>
+In-Reply-To: <20221009101631.82380-2-linux@fw-web.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -71,16 +69,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 08 Oct 2022 18:56:26 +0200, Frank Wunderlich wrote:
-> From: Sam Shih <sam.shih@mediatek.com>
+On Sun, 09 Oct 2022 12:16:30 +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> This commit adds dt-binding documentation of mmc for Mediatek MT7986 SoC
-> Platform.
+> Add i2c compatible for MT7986 SOC.
 > 
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
 > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
->  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 1 +
+>  Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
