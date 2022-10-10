@@ -2,666 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC77C5FA012
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 16:18:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB5415FA07D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 16:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbiJJOSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 10:18:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55470 "EHLO
+        id S229481AbiJJOwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 10:52:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbiJJOSm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 10:18:42 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C9A07172B
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 07:18:40 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 79B93BB0;
-        Mon, 10 Oct 2022 16:18:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1665411518;
-        bh=oeNOQ4LfwyTtByVfUxwE8FrYnRvcoHKFYzznuZ6fTgo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tLlLWD/Jgr4KC2VCjzoBrEviavxJmw3cMaBUrqrVJaJ63gdouGCWcvxWFUmhpM1dT
-         A8q5N+ZIv8NPsrTVkkuhiUZnMe/HWsVNAcWyeJSe1KAk8pNRzlpZj818IoddxnXe+y
-         ITya4GWIl4L65V6nJ7O4s6HIUFf7E9oswaZm66NQ=
-Date:   Mon, 10 Oct 2022 17:18:32 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Daniel Scally <dan.scally@ideasonboard.com>
-Cc:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, kieran.bingham@ideasonboard.com,
-        debix-tech@polyhex.net
-Subject: Re: [PATCH v2 3/3] arm64: dts: Add device tree for the Debix Model A
- Board
-Message-ID: <Y0QpuI3NKIJuNNOm@pendragon.ideasonboard.com>
-References: <20221010133146.1430768-1-dan.scally@ideasonboard.com>
- <20221010133146.1430768-4-dan.scally@ideasonboard.com>
+        with ESMTP id S229519AbiJJOwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 10:52:32 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5A0CC40BEB;
+        Mon, 10 Oct 2022 07:52:30 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.95,173,1661785200"; 
+   d="scan'208";a="138354530"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 10 Oct 2022 23:52:28 +0900
+Received: from localhost.localdomain (unknown [10.226.92.95])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id B1CA842F5162;
+        Mon, 10 Oct 2022 23:52:24 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>, Lee Jones <lee@kernel.org>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v4 0/4] Add RZ/G2L MTU3a MFD, Counter and pwm driver
+Date:   Mon, 10 Oct 2022 15:52:18 +0100
+Message-Id: <20221010145222.1047748-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20221010133146.1430768-4-dan.scally@ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dan,
+The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
+the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
+channels and one 32-bit timer channel. It supports the following
+functions
+ - Counter
+ - Timer
+ - PWM
 
-Thank you for the patch.
+This patch series aim to add MFD and pwm driver for MTU3a.
 
-On Mon, Oct 10, 2022 at 02:31:46PM +0100, Daniel Scally wrote:
-> Add a device tree file describing the Debix Model A board from
-> Polyhex Technology Co.
-> 
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v2:
-> 
->     - Fixed the interrupt flag for i2c1/pmic@25
->     - Fixed the node name for i2c4/rtc@51 (was "hym8563@51")
->     - Fixed a group control name that didn't match the bindings pattern
->     - Re-compared the rest of the DT with the EVK's .dts file to try to
->     make sure it complies with the way things should be, hopefully without
->     missing anything...
-> 
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../dts/freescale/imx8mp-debix-model-a.dts    | 550 ++++++++++++++++++
->  2 files changed, 551 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 8bf7f7ecebaa..6a33a08946ac 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -80,6 +80,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-model-a.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> new file mode 100644
-> index 000000000000..71c0fbfef180
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> @@ -0,0 +1,550 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2019 NXP
+The 8/16/32 bit registers are mixed in each channel. The HW
+specifications of the IP is described in patch#1.
 
-Not entirely sure about this one.
+Current patch set is tested for PWM mode1 on MTU3 channel
+and 16 and 32 bit phase counting modes.
 
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/usb/pd.h>
-> +
-> +#include "imx8mp.dtsi"
-> +
-> +/ {
-> +	model = "Polyhex Debix Model A (2GB) i.MX8MPlus board";
+v3->v4:
+ * Dropped counter and pwm compatibeles as they don't have any resources.
+ * Made rz-mtu3 as pwm provider.
+ * Updated the example and description.
+ * A single driver that registers both the counter and the pwm functionalities
+   that binds against "renesas,rz-mtu3".
+ * Moved PM handling from child devices to here.
+ * replaced include/linux/mfd/rz-mtu3.h->drivers/mfd/rz-mtu3.h
+ * Removed "remove" callback from mfd driver
+ * There is no resource associated with "rz-mtu3-counter" and "rz-mtu3-pwm"
+   compatible and moved the code to mfd subsystem as it binds against "rz-mtu".
+ * Removed struct platform_driver rz_mtu3_cnt_driver.
+ * Removed struct platform_driver rz_mtu3_pwm_driver.
+ * Updated commit description
+ * Updated Kconfig description
+ * Added macros RZ_MTU3_16_BIT_MTU{1,2}_CH for MTU1 and MTU2 channels
+ * Added RZ_MTU3_GET_HW_CH macro for getting channel ID.
+ * replaced priv->ch[id]->priv->ch[0] in rz_mtu3_count_read()
+ * Cached counter max values
+ * replaced cnt->tsr in rz_mtu3_count_direction_read()
+ * Added comments for RZ_MTU3_TCR_CCLR_NONE
+ * Replaced if with switch in rz_mtu3_initialize_counter() and
+   rz_mtu3_count_ceiling_write()
+ * Added locks in initialize, terminate and enable_read to prevent races.
+ * Updated rz_mtu3_action_read to take care of MTU2 signals.
+ * Added separate distinct array for each group of Synapse.
+ * Moved pm handling to parent.
+v2->v3:
+ * Dropped counter bindings and integrated with mfd as it has only one property.
+ * Removed "#address-cells" and "#size-cells" as it do not have children with
+   unit addresses.
+ * Removed quotes from counter and pwm.
+ * Provided full path for pwm bindings.
+ * Updated the binding example.
+ * removed unwanted header files
+ * Added LUT for 32 bit registers as it needed for 32-bit cascade counting.
+ * Exported 32 bit read/write functions.
+ * Modelled as a counter device supporting 3 counters(2 16-bit and 
+   32-bit)
+ * Add kernel-doc comments to document struct rz_mtu3_cnt
+ * Removed mmio variable from struct rz_mtu3_cnt
+ * Removed cnt local variable from rz_mtu3_count_read()
+ * Replaced -EINVAL->-ERANGE for out of range error conditions.
+ * Removed explicit cast from write functions.
+ * Removed local variable val from rz_mtu3_count_ceiling_read()
+ * Added lock for RMW for counter/ceiling updates.
+ * Added different synapses for counter0 and counter{1,2}
+ * Used ARRAY for assigning num_counts.
+ * Added PM runtime for managing clocks.
+ * Add MODULE_IMPORT_NS(COUNTER) to import the COUNTER namespace.
 
-s/(2GB) //
+RFC->v2:
+ * replaced devm_reset_control_get->devm_reset_control_get_exclusive
+ * Dropped 'bindings' from the binding title
+ * Updated the binding example
+ * Added additionalProperties: false for counter bindings
+ * Squashed all the binding patches
+ * Modelled as a single counter device providing both 16-bit
+   and 32-bit phase counting modes
+ * Modelled as a single pwm device for supporting different pwm modes.
+ * Moved counter and pwm bindings to respective subsystems.
 
-> +	compatible = "polyhex,imx8mp-debix-model-a", "fsl,imx8mp";
-> +
-> +	chosen {
-> +		stdout-path = &uart2;
-> +	};
-> +
-> +	gpio-leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_gpio_led>;
-> +
-> +		status-led {
-> +			function = LED_FUNCTION_POWER;
-> +			color = <LED_COLOR_ID_RED>;
-> +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +		};
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-> +		regulator-name = "VSD_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_1 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&eqos {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_eqos>;
-> +	phy-connection-type = "rgmii-id";
-> +	phy-handle = <&ethphy0>;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		compatible = "snps,dwmac-mdio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy0: ethernet-phy@0 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <0>;
-> +			reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <20>;
-> +			reset-deassert-us = <200000>;
-> +		};
-> +	};
-> +};
-> +
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec>;
-> +	phy-connection-type = "rgmii-id";
-> +	phy-handle = <&ethphy1>;
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy1: ethernet-phy@0 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <0>;
-> +			reset-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <10>;
-> +			reset-deassert-us = <150>;
-> +		};
-> +	};
-> +};
+Biju Das (4):
+  dt-bindings: mfd: Document RZ/G2L MTU3a bindings
+  mfd: Add RZ/G2L MTU3 driver
+  mfd: Add RZ/G2L MTU3 counter driver
+  mfd: Add RZ/G2L MTU3 PWM driver
 
-Unless I'm mistaken, only one of the two ethernet controllers is used on
-the base board, the second one requires the I/O extension board. I would
-remove the one used by the I/O board from this DT file, and add it to
-the (future) overlay for the I/O board.
-
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-> +
-> +	pmic@25 {
-> +		reg = <0x25>;
-> +		compatible = "nxp,pca9450c";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <3 IRQ_TYPE_EDGE_RISING>;
-> +
-> +		regulators {
-> +			buck1: BUCK1 {
-> +				regulator-name = "BUCK1";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +			};
-> +
-> +			buck2: BUCK2 {
-> +				regulator-name = "BUCK2";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +				nxp,dvs-run-voltage = <950000>;
-> +				nxp,dvs-standby-voltage = <850000>;
-> +			};
-> +
-> +			buck4: BUCK4{
-> +				regulator-name = "BUCK4";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck5: BUCK5{
-> +				regulator-name = "BUCK5";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck6: BUCK6 {
-> +				regulator-name = "BUCK6";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1: LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <1600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2: LDO2 {
-> +				regulator-name = "LDO2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1150000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3: LDO3 {
-> +				regulator-name = "LDO3";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4: LDO4 {
-> +				regulator-name = "LDO4";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo5: LDO5 {
-> +				regulator-name = "LDO5";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c3 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c4 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c4>;
-> +	status = "okay";
-> +
-> +	eeprom@50 {
-> +		compatible = "atmel,24c02";
-> +		reg = <0x50>;
-> +		pagesize = <16>;
-> +	};
-> +
-> +	rtc@51 {
-> +		compatible = "haoyu,hym8563";
-> +		reg = <0x51>;
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		clock-output-names = "xin32k";
-> +		interrupt-parent = <&gpio2>;
-> +		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_rtc_int>;
-> +	};
-> +};
-> +
-> +&i2c6 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c6>;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hog>;
-> +
-> +	pinctrl_hog: hoggrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL					0x400001c3
-> +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA					0x400001c3
-> +			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD						0x40000019
-> +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC						0x40000019
-> +		>;
-> +	};
-> +
-> +	pinctrl_eqos: eqosgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC							0x3
-> +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO						0x3
-> +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0					0x91
-> +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1					0x91
-> +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2					0x91
-> +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3					0x91
-> +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x91
-> +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL				0x91
-> +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0					0x1f
-> +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1					0x1f
-> +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2					0x1f
-> +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3					0x1f
-> +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL				0x1f
-> +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x1f
-> +			MX8MP_IOMUXC_SAI1_RXFS__ENET1_1588_EVENT0_IN				0x1f
-> +			MX8MP_IOMUXC_SAI1_RXC__ENET1_1588_EVENT0_OUT				0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18							0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_fec: fecgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC							0x3
-> +			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO							0x3
-> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0						0x91
-> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1						0x91
-> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2						0x91
-> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3						0x91
-> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC						0x91
-> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL					0x91
-> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0						0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1						0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2						0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3						0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL					0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC						0x1f
-> +			MX8MP_IOMUXC_SAI1_RXD1__ENET1_1588_EVENT1_OUT				0x1f
-> +			MX8MP_IOMUXC_SAI1_RXD0__ENET1_1588_EVENT1_IN				0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19							0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_gpio_led: gpioledgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16						0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL								0x400001c2
-> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA								0x400001c2
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL								0x400001c2
-> +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA								0x400001c2
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL								0x400001c2
-> +			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA								0x400001c2
-> +		>;
-> +	};
-> +	pinctrl_i2c4: i2c4grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL								0x400001c3
-> +			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA								0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c6: i2c6grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI5_RXFS__I2C6_SCL							0x400001c3
-> +			MX8MP_IOMUXC_SAI5_RXC__I2C6_SDA								0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_rtc_int: rtcintgrp {
-
-This should go a bit below in alphabetical order.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11							0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_pmic: pmicirqgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03							0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19						0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX						0x14f
-> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX						0x14f
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart3: uart3grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX						0x49
-> +			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX						0x49
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart4: uart4grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART4_RXD__UART4_DCE_RX						0x49
-> +			MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX						0x49
-> +		>;
-> +	};
-> +
-> +	pinctrl_usb1_vbus: usb1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI2_TXC__GPIO4_IO25							0x19
-> +			MX8MP_IOMUXC_SAI2_TXD0__GPIO4_IO26							0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK							0x190
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD							0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0						0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1						0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2						0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3						0x1d0
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT						0xc1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK							0x194
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD							0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0						0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1						0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2						0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3						0x1d4
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT						0xc1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK							0x196
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD							0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0						0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1						0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2						0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3						0x1d6
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT						0xc1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12							0x1c4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK							0x190
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD							0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0						0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1						0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2						0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3						0x1d0
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4						0x1d0
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5						0x1d0
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6						0x1d0
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7							0x1d0
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE						0x190
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK							0x194
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD							0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0						0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1						0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2						0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3						0x1d4
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4						0x1d4
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5						0x1d4
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6						0x1d4
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7							0x1d4
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE						0x194
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK							0x196
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD							0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0						0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1						0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2						0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3						0x1d6
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4						0x1d6
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5						0x1d6
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6						0x1d6
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7							0x1d6
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE						0x196
-> +		>;
-> +	};
-> +
-> +	pinctrl_wdog: wdoggrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B						0xc6
-> +		>;
-> +	};
-> +};
-> +
-> +&snvs_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	/* console */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +	status = "okay";
-> +};
-> +
-> +&uart3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart3>;
-> +	status = "okay";
-> +};
-> +
-> +&uart4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart4>;
-> +	status = "okay";
-> +};
-> +
-> +/* SD Card */
-> +&usdhc2 {
-> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
-> +	assigned-clock-rates = <400000000>;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-> +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +/* eMMc */
-> +&usdhc3 {
-> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
-> +	assigned-clock-rates = <400000000>;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
+ .../bindings/mfd/renesas,rz-mtu3.yaml         | 305 ++++++++++
+ drivers/mfd/Kconfig                           |  26 +
+ drivers/mfd/Makefile                          |   5 +
+ drivers/mfd/rz-mtu3-cnt.c                     | 554 ++++++++++++++++++
+ drivers/mfd/rz-mtu3-core.c                    | 476 +++++++++++++++
+ drivers/mfd/rz-mtu3-pwm.c                     | 405 +++++++++++++
+ drivers/mfd/rz-mtu3.h                         | 221 +++++++
+ 7 files changed, 1992 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+ create mode 100644 drivers/mfd/rz-mtu3-cnt.c
+ create mode 100644 drivers/mfd/rz-mtu3-core.c
+ create mode 100644 drivers/mfd/rz-mtu3-pwm.c
+ create mode 100644 drivers/mfd/rz-mtu3.h
 
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
