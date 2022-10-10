@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5716F5F9EEC
+	by mail.lfdr.de (Postfix) with ESMTP id A77145F9EED
 	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 14:54:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230214AbiJJMyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 08:54:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37410 "EHLO
+        id S230240AbiJJMyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 08:54:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230376AbiJJMyW (ORCPT
+        with ESMTP id S231388AbiJJMyW (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 08:54:22 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365D6558EA
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 05:54:20 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id t4so6778725wmj.5
-        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 05:54:20 -0700 (PDT)
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A494B69F46
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 05:54:21 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id w18so16900893wro.7
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 05:54:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hmxR3um4spniKrU53rveTwc+P5yMRl5wO2vmfcVu86g=;
-        b=vh/8DDdSud/RVv13pylyII+LJFPvrAuNJ5y7jA56FMFVURoDylE9N5z2OIOqNfrzlY
-         XYapgbnrP9TeFlOWCsH4ujw+WN+VxGALgDnmKiE7XQK9n2XQQruAlzf7xuaFUhseFHcx
-         3olE+TW2NIsQjY4hvGL5llKiEAi1PguqI9YwqEUi39hf70jHEeo4Oa83fhmKSEIjDn2s
-         KJIMsbUgQhaIiDfyiTLgp/uM0NvJkE1bQ79dZ2V38jQdy6OHR3OkRTatmvijRolYIiGO
-         BLfjAD53e32gjMsRJ/y7NUU1DAvvCZb4ZUur0ENiLBfQFW7yv2yovPMhRuTGH44Kr/nj
-         uggg==
+        bh=vZ4L3eGmqKYAclKSwyEel3UxVWUej6QJpYaCconox5E=;
+        b=rgdAIwlkpvnub0RaiX4fefvk5wCulG8vp0BP+WcJrCUzbBspaWp2GtmBMF2ij7UeLB
+         Vp5SkCMp1ZSqvsLBcT4POcX4auHkHhOq7FB0ywft1Pa/l7hKPZ+xAzRMLY6gPjWTVmA8
+         xg6qQ+G78hQntai3/+GlX8xjMlTDLggQNzZLhq/MikBC1eNglLYCGniTx9YWcfTmpEMI
+         BnWGwWk0ysejp7Jm80d3IzfhR6Sa65sJSw+Ed18KeOvxIf+WX0CQS4j0RsvYxNFruZXH
+         IrLWWQz5qw+moFKHLqvUzIyQ636wdqjcZ/l4qvx0+BS5yg6A1E/UbL96D6wQaMYh7aSC
+         CN8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hmxR3um4spniKrU53rveTwc+P5yMRl5wO2vmfcVu86g=;
-        b=EdZru6SjhmLBF9AJMHBpvLGnHR50ZOMHAHSpQi5DP4CxBHE/DO+WACmW9wFPip1+KT
-         OXt3saRzxn9WKyi8brRysKiQraFvWnu3z/PIKzcxaMAWQBOBF4s24c8cScLCbYBNjwnd
-         gK7Z8x/QVvkg0PM5gLkiHYBOjvOhaZmgGdpeRPwj/pujrAQWuqwAs2sZzKCpHj6b8rZS
-         /UJV+Qpwqf2R64WIlQAX6gFxI5vOJQlmXj8cHV8Bew/0Cx1Jj5zKtvw20g+KRxXTWoE3
-         VTtN3m9lwcRafmQd+a9XJfRxapF7NbGm0044b4pTqZ0V/LfEEC7ro9OALF4GNRyg3Phw
-         yOKg==
-X-Gm-Message-State: ACrzQf1Y2QQ0MuwnKAZJ4bIGRS6ASEgd4W8njQBrXYKL/qVrEHUkKEkM
-        v6ixS7NLb9EstIiDq0VbKy/TRmKvmCkb3qhj
-X-Google-Smtp-Source: AMsMyM5e/ro8Q9KiuUwPEt9wTVF1C8YnK/+Kpd/WM6NPHdzx+3DtpxssO50mMBicIMeImLelqerAnA==
-X-Received: by 2002:a1c:2743:0:b0:3b3:f017:f23a with SMTP id n64-20020a1c2743000000b003b3f017f23amr20455356wmn.137.1665406458413;
-        Mon, 10 Oct 2022 05:54:18 -0700 (PDT)
+        bh=vZ4L3eGmqKYAclKSwyEel3UxVWUej6QJpYaCconox5E=;
+        b=U3YdmK3vm4ZkjH0geAkhMDQmjY+ogmIVSl79Z7htdj9Gz+a+xx9U1wkxwE7ByIIQDD
+         SP9At7gzKSgs9FZuTWvmldNqVAzMGbm8tBWd+dF4i0AqE0KO3+ALN/z8oWsAuuDf3CPM
+         EI5jGrM/h/7i2rMvR65eeS0V0STvTywpRuCKhpRPTP0XXckoJofQaHbXuE58eSpnaWSv
+         q99gXW/vLosG5rU+QL9FO/HGY8gFmjUUdwSvsg+i8h8fwLwVCEwxbiK5kLDFoQ6Dxwxu
+         JrSqNt9ZsGvl0HgVYQ+oi0tDTmg1KWmS18/QS/MqL/uP6IPbpdptC9/szvsD6sfMtMEO
+         +nfg==
+X-Gm-Message-State: ACrzQf2/3agN8HOJiBejXhaA9mizbHlcFHv+9/S9cRC6Ye259c6KZRuD
+        SPXAWFf2a6WC6O8VXVV7bRYCoA==
+X-Google-Smtp-Source: AMsMyM6jeFIQqxlWum39mAdlhTnkevmmnxlbs7XGdKPUqz8uSEIoAoVBL7h0xE0OUAXWWR6OqM8iUQ==
+X-Received: by 2002:a5d:674f:0:b0:22e:3d59:cf0f with SMTP id l15-20020a5d674f000000b0022e3d59cf0fmr11451686wrw.304.1665406459794;
+        Mon, 10 Oct 2022 05:54:19 -0700 (PDT)
 Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id v24-20020a1cf718000000b003a6125562e1sm9767020wmh.46.2022.10.10.05.54.17
+        by smtp.googlemail.com with ESMTPSA id v24-20020a1cf718000000b003a6125562e1sm9767020wmh.46.2022.10.10.05.54.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Oct 2022 05:54:17 -0700 (PDT)
+        Mon, 10 Oct 2022 05:54:19 -0700 (PDT)
 From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Mon, 10 Oct 2022 14:54:08 +0200
-Subject: [PATCH v3 2/3] iommu/mediatek: add support for 6-bit encoded port IDs
+Date:   Mon, 10 Oct 2022 14:54:09 +0200
+Subject: [PATCH v3 3/3] iommu/mediatek: add support for MT8365 SoC
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20221001-iommu-support-v3-2-c7b3059b0d16@baylibre.com>
+Message-Id: <20221001-iommu-support-v3-3-c7b3059b0d16@baylibre.com>
 References: <20221001-iommu-support-v3-0-c7b3059b0d16@baylibre.com>
 In-Reply-To: <20221001-iommu-support-v3-0-c7b3059b0d16@baylibre.com>
 To:     Matthias Brugger <matthias.bgg@gmail.com>,
@@ -75,19 +75,19 @@ Cc:     iommu@lists.linux.dev,
         Amjad Ouled-Ameur <aouledameur@baylibre.com>,
         linux-mediatek@lists.infradead.org
 X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2694; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=BCe+/ykFa/fn5SOJye+/BgPzDIeybFkkbiXBZtITeNI=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjRBX2NMVamMxV4iKNdLs5Ytoj7x609EByzseEUlTr
- DCfCrwmJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY0QV9gAKCRArRkmdfjHURXkqD/
- 4kl4rMFWfYv99V/bLZVANdkEu77lQ589T720XVn8pm3TCt7R3wPnDPW1pQ5PFpUNw8QrFVzCl0FLTH
- rob/5QlnOXrSsP7UbptiAySmzifaGslwWa1nkumPRIWRn3yVfV+Lufs3rb7RoWdQuKX5VcN1rmg2kV
- uAeh4NkOxuUmjSiNJ6ZRBrVMye2vwFCk/3zQpB+vd/dVDKkaANhDrO7ZscT3xO+Mgy4Wjsuu85mHQk
- KETF3RFnwN51wwb90GaA8S4sfnT4tuG3RxGP+BFHaWCq80lpKo0EcxZXYbf9sNVUYUpNUThwqsGpOV
- KwGy0YIJ3rOSTQ31GyYYix6QuhUhqE/+K9jQjwSJJ5k4U5mpa+XEOinGJR/7G5CahDb5G6i2mxVXSW
- OrqyacrT2yjFKLO2s9HsO1sUUy5kbMIpQcUwlyIqMaxOBkK9QoLVQ2Q+DxtVP20ZyDeF6+NrmdHZB/
- VK3EoniLFX22BqXAtrWrr+rGA2gfkCf0lfyce7LyP1u31swSk/lXzxxbrmDnK9ODBczX+4U2Ng5Eb+
- n60sRNliqSmm/o3DBKXHSt2BU4IZyq5cizoPK29RPGjUuC/rJx7YD/n2QmwBIPs6j2QauZr+9b0sB5
- 5v4E94mRCBs8r8PgKsoyur1k6BK6w+wdwVfj5OIl/DZbyFRUbhEfvLzlvVnw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1965; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=cCyHI5RY2bhm2xuqZZiDh/1knZLz2wwqAtcDhxPnQwM=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjRBX2YK800J3vnj2EsuGIXwS9BVe1DVrvkohAErig
+ dhZktjuJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY0QV9gAKCRArRkmdfjHURe/sEA
+ CqnQVlGZAtTO0mYLapEecmZMAnuNd/teKEJA8sNJsOZRnbBG0YUkf6TAt8LhIl+iuHeAM2CKth1FHx
+ CJ1Zq4fdOAHjzYHc4z2qtkH0lhTGqqFv5xqz6NLWf8w8/MzplFOiyTlSAPJY7Ombcs6ZCoZiF4fSOh
+ 7NfKlgQbESF62kYa1+JVBHZCnFljcMVtJpDL+BrtJd+ec9G+tU0sg1O/ojEyr1NgmJI3c41HVBIm06
+ MG6HmMXV0m2uCkj+bxbbhN4qrAaX/ZkmC5YKk349IxlG9/Rp2F4jpl0FD3HRC7WUCH2lhvFSKNLROj
+ 7uVkGx5NeZv2/xjKLaoJzUfy4ylMkNxaJDSXI5TLFwl0R/DbY6JAyluQ+/SAp88dLQpnTLVcv2CL1S
+ ov1LgNIq5KsSfhhSj9CknfVJ1PS5X5xNtwtEvPc0E8LvvUDmOuY5I/q6TMOYEi/kA4j6cBJ5eYbRNX
+ 6JowXJLr7o9SRuqEgWmMacKQnsNwpE40pJqfNLJFhYESCIrvQwZ9TwCLXLgkSFJqW7YFYqiwXyael9
+ FZ9jPNXcb090aJKlNKujeQw2Y0jBzRRMcBjLpuq4NzAVJCHnY14IJ/EGK2O1drZr2k7KavWCBOC2VQ
+ s4I8rbJJE4AmsYYN8WMAOJKWU+x7cSujgWPZs0VBausgpWGQrlaoQkCjRawg==
 X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
  fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -101,69 +101,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabien Parent <fparent@baylibre.com>
 
-Until now the port ID was always encoded as a 5-bit data. On MT8365,
-the port ID is encoded as a 6-bit data. This requires to add extra
-macro F_MMU_INT_ID_LARB_ID_EXT, and F_MMU_INT_ID_PORT_ID_EXT in order
-to support 6-bit encoded port IDs.
+Add IOMMU support for MT8365 SoC.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Reviewed-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Tested-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
- drivers/iommu/mtk_iommu.c | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+ drivers/iommu/mtk_iommu.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-index 5a4e00e4bbbc..35e9731c3441 100644
+index 35e9731c3441..50ee1f833c2b 100644
 --- a/drivers/iommu/mtk_iommu.c
 +++ b/drivers/iommu/mtk_iommu.c
-@@ -108,8 +108,12 @@
- #define F_MMU_INT_ID_SUB_COMM_ID(a)		(((a) >> 7) & 0x3)
- #define F_MMU_INT_ID_COMM_ID_EXT(a)		(((a) >> 10) & 0x7)
- #define F_MMU_INT_ID_SUB_COMM_ID_EXT(a)		(((a) >> 7) & 0x7)
-+/* Macro for 5 bits lenght port ID field (default) */
- #define F_MMU_INT_ID_LARB_ID(a)			(((a) >> 7) & 0x7)
- #define F_MMU_INT_ID_PORT_ID(a)			(((a) >> 2) & 0x1f)
-+/* Macro for 6 bits lenght port ID field */
-+#define F_MMU_INT_ID_LARB_ID_EXT(a)		(((a) >> 8) & 0x7)
-+#define F_MMU_INT_ID_PORT_ID_EXT(a)		(((a) >> 2) & 0x3f)
+@@ -170,6 +170,7 @@ enum mtk_iommu_plat {
+ 	M4U_MT8186,
+ 	M4U_MT8192,
+ 	M4U_MT8195,
++	M4U_MT8365,
+ };
  
- #define MTK_PROTECT_PA_ALIGN			256
- #define MTK_IOMMU_BANK_SZ			0x1000
-@@ -139,6 +143,7 @@
- #define IFA_IOMMU_PCIE_SUPPORT		BIT(16)
- #define PGTABLE_PA_35_EN		BIT(17)
- #define TF_PORT_TO_ADDR_MT8173		BIT(18)
-+#define HAS_INT_ID_PORT_WIDTH_6		BIT(19)
+ struct mtk_iommu_iova_region {
+@@ -1528,6 +1529,17 @@ static const struct mtk_iommu_plat_data mt8195_data_vpp = {
+ 			   {4, MTK_INVALID_LARBID, MTK_INVALID_LARBID, MTK_INVALID_LARBID, 6}},
+ };
  
- #define MTK_IOMMU_HAS_FLAG_MASK(pdata, _x, mask)	\
- 				((((pdata)->flags) & (mask)) == (_x))
-@@ -441,7 +446,11 @@ static irqreturn_t mtk_iommu_isr(int irq, void *dev_id)
- 	fault_pa |= (u64)pa34_32 << 32;
++static const struct mtk_iommu_plat_data mt8365_data = {
++	.m4u_plat	= M4U_MT8365,
++	.flags		= RESET_AXI | HAS_INT_ID_PORT_WIDTH_6,
++	.inv_sel_reg	= REG_MMU_INV_SEL_GEN1,
++	.banks_num	= 1,
++	.banks_enable	= {true},
++	.iova_region	= single_domain,
++	.iova_region_nr	= ARRAY_SIZE(single_domain),
++	.larbid_remap	= {{0}, {1}, {2}, {3}, {4}, {5}}, /* Linear mapping. */
++};
++
+ static const struct of_device_id mtk_iommu_of_ids[] = {
+ 	{ .compatible = "mediatek,mt2712-m4u", .data = &mt2712_data},
+ 	{ .compatible = "mediatek,mt6779-m4u", .data = &mt6779_data},
+@@ -1540,6 +1552,7 @@ static const struct of_device_id mtk_iommu_of_ids[] = {
+ 	{ .compatible = "mediatek,mt8195-iommu-infra", .data = &mt8195_data_infra},
+ 	{ .compatible = "mediatek,mt8195-iommu-vdo",   .data = &mt8195_data_vdo},
+ 	{ .compatible = "mediatek,mt8195-iommu-vpp",   .data = &mt8195_data_vpp},
++	{ .compatible = "mediatek,mt8365-m4u", .data = &mt8365_data},
+ 	{}
+ };
  
- 	if (MTK_IOMMU_IS_TYPE(plat_data, MTK_IOMMU_TYPE_MM)) {
--		fault_port = F_MMU_INT_ID_PORT_ID(regval);
-+		if (MTK_IOMMU_HAS_FLAG(plat_data, HAS_INT_ID_PORT_WIDTH_6)) {
-+			fault_port = F_MMU_INT_ID_PORT_ID_EXT(regval);
-+		} else {
-+			fault_port = F_MMU_INT_ID_PORT_ID(regval);
-+		}
- 		if (MTK_IOMMU_HAS_FLAG(plat_data, HAS_SUB_COMM_2BITS)) {
- 			fault_larb = F_MMU_INT_ID_COMM_ID(regval);
- 			sub_comm = F_MMU_INT_ID_SUB_COMM_ID(regval);
-@@ -449,7 +458,11 @@ static irqreturn_t mtk_iommu_isr(int irq, void *dev_id)
- 			fault_larb = F_MMU_INT_ID_COMM_ID_EXT(regval);
- 			sub_comm = F_MMU_INT_ID_SUB_COMM_ID_EXT(regval);
- 		} else {
--			fault_larb = F_MMU_INT_ID_LARB_ID(regval);
-+			if (MTK_IOMMU_HAS_FLAG(plat_data, HAS_INT_ID_PORT_WIDTH_6)) {
-+				fault_larb = F_MMU_INT_ID_LARB_ID_EXT(regval);
-+			} else {
-+				fault_larb = F_MMU_INT_ID_LARB_ID(regval);
-+			}
- 		}
- 		fault_larb = data->plat_data->larbid_remap[fault_larb][sub_comm];
- 	}
 
 -- 
 b4 0.10.1
