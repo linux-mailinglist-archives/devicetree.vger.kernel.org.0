@@ -2,159 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AFD75F9C0D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 11:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 375245F9C23
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 11:42:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231417AbiJJJhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 05:37:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50562 "EHLO
+        id S229462AbiJJJmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 05:42:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231362AbiJJJhk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 05:37:40 -0400
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 269DF67170;
-        Mon, 10 Oct 2022 02:37:39 -0700 (PDT)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id BDB641F45B;
-        Mon, 10 Oct 2022 09:37:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1665394657; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=/CzLQqselFaO64Gr4MPH3pU6ari91gGhdizZb4SEU7E=;
-        b=oM9oA8ZeB2JdD8sEtHzAKwhdXjHbwhuXEaP/wbGKGHC0hDx+9GtBATkLoXxBTtRPWPAqkl
-        7ZKh/bhPOkX3pzAodXxs2Yp8149NUzTB31srnH/YsP7CGguQF8tOfcLDp1LH4kIPFNu6ln
-        VNZBaesi6CtV4J5iNuMOKSjd1ty3RI4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1665394657;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=/CzLQqselFaO64Gr4MPH3pU6ari91gGhdizZb4SEU7E=;
-        b=WcDsRWU1udA0MPUa4//GuVQkrBtWQsW+RInIzGq/FGRMkgyDuXea7UFwaOadzGQSCvut0U
-        Ai3VPfZMn33eqXDQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 810BF13479;
-        Mon, 10 Oct 2022 09:37:37 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id 1346HuHnQ2MkEQAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Mon, 10 Oct 2022 09:37:37 +0000
-Message-ID: <44567457-2062-6e16-9a7f-c4ad23809ac9@suse.de>
-Date:   Mon, 10 Oct 2022 11:37:37 +0200
+        with ESMTP id S230083AbiJJJmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 05:42:04 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 670EB647E0;
+        Mon, 10 Oct 2022 02:42:03 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id z3so14123634edc.10;
+        Mon, 10 Oct 2022 02:42:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6+VUqgiuTjQeU7l/kUlUaXroa9OGkZIBVKyyM//tCkE=;
+        b=cOlIQVEPtsG0/kS92o9AAxQRvGADlegSQ8wMhpusAZLn/yq6ZeAZvk5NUIH98Cm1dc
+         ez1l5+ixbepOhoYD2hHYoRkHY7OX/oJeFwwOuHCfk+syJUKWrmzQXPD4KZS3Sb6Ahzz8
+         nmMyQSsdd1hZ0tEOESMtoa5/UXcLtlujg82xYx9mVSx6OzQ99H3pY8O1LdRi76ud3DCq
+         r6WudUjHXXTMmrFcFFeC+Tav2r8dai0EEdNia0uLalEgz9NoOLQjGEKZYnkk2Jh3VP5x
+         hcTrlnRq4vM27T38cOqY/5vy82whi3VQxHfQSYjTVk5oh6pIhZGd3xkVUYVMlmZgU+g4
+         CSyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6+VUqgiuTjQeU7l/kUlUaXroa9OGkZIBVKyyM//tCkE=;
+        b=P2hJU7hUk1lLJuQIWGjdJXNj9tk3qe+Q0v93GTHwvHoSvum9dddxhnzKTTIiR1WycW
+         /UluroLS8cGDjam+4eTYn/BrNdk0ytDt95zxghxQpXCYrY8K+BGTTYTvQ1wrV6Dd8Y1O
+         s3DkLRtmMHIw6004GXb44CkiFTveMwh5rXJ+IwOaZ7MC9JgHrkyJ0xYJy3PQ60Dn9J5S
+         JjRCB31gkmC9twUMuazy2wdznEKG2YSa9VpWHlIojEgzkkLvLCUjbzrZ+pzOlEoy+eGR
+         2UUyAmTVEfr6/JLIwFJFI97AMXGYZdLd7rWc1cXfBaYToFIY0h27H1+EaQYCRr70M3O4
+         OfCA==
+X-Gm-Message-State: ACrzQf3t6xE0VyOJkzLDrBB0XSnjSWwV6ICTCarnSCnNh7E3eFGnbl2t
+        GqwsDTCkIhXFWA/B9AZd9Vvpb9vkVngwaWtUT2I=
+X-Google-Smtp-Source: AMsMyM5uf3VBi7wDQS52pr75/TL9qL/dFM8EyIsrXPwepN7iHNubY9D8z0yViEy8YHNOHkmbJ1lJGMTwWDU1EbB6m/Q=
+X-Received: by 2002:a05:6402:40c6:b0:459:6749:9e1f with SMTP id
+ z6-20020a05640240c600b0045967499e1fmr17085133edb.319.1665394921761; Mon, 10
+ Oct 2022 02:42:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v2 1/7] dt-bindings: display: simple-framebuffer: Support
- system memory framebuffers
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+References: <20220929172356.301342-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220929172356.301342-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 10 Oct 2022 10:41:35 +0100
+Message-ID: <CA+V-a8vD1+kbby8rbZqYv2Ux1GaT=7n7V9qHJS3Djv-fKdWrAQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/2] RZ/G2UL separate out SoC specific parts
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        Robin Murphy <robin.murphy@arm.com>
-References: <20221007124946.406808-1-thierry.reding@gmail.com>
- <20221007124946.406808-2-thierry.reding@gmail.com>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20221007124946.406808-2-thierry.reding@gmail.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------a0wIL5ytpXFqM0nZv7pvRqjW"
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        DT <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------a0wIL5ytpXFqM0nZv7pvRqjW
-Content-Type: multipart/mixed; boundary="------------sIbpmdC2orz54ETODCdR3EK0";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Thierry Reding <thierry.reding@gmail.com>, David Airlie
- <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
- Robin Murphy <robin.murphy@arm.com>
-Message-ID: <44567457-2062-6e16-9a7f-c4ad23809ac9@suse.de>
-Subject: Re: [PATCH v2 1/7] dt-bindings: display: simple-framebuffer: Support
- system memory framebuffers
-References: <20221007124946.406808-1-thierry.reding@gmail.com>
- <20221007124946.406808-2-thierry.reding@gmail.com>
-In-Reply-To: <20221007124946.406808-2-thierry.reding@gmail.com>
+Hi Rob, Krzysztof,
 
---------------sIbpmdC2orz54ETODCdR3EK0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+On Thu, Sep 29, 2022 at 6:24 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+>
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Hi All,
+>
+> This patch series aims to split up the RZ/G2UL SoC DTSI into common parts
+> so that this can be shared with the RZ/Five SoC.
+>
+> Implementation is based on the discussion [0] where I have used option#2.
+>
+> The Renesas RZ/G2UL (ARM64) and RZ/Five (RISC-V) have almost the same
+> identical blocks to avoid duplication a base SoC dtsi (r9a07g043.dtsi) is
+> created which will be used by the RZ/G2UL (r9a07g043u.dtsi) and RZ/Five
+> (r9a07g043F.dtsi)
+>
+> Sending this as an RFC to get some feedback.
+>
+> r9a07g043f.dtsi will look something like below:
+>
+> #include <dt-bindings/interrupt-controller/irq.h>
+>
+> #define SOC_PERIPHERAL_IRQ_NUMBER(nr)   (nr + 32)
+> #define SOC_PERIPHERAL_IRQ(nr, na)      SOC_PERIPHERAL_IRQ_NUMBER(nr) na
+>
+> #include <arm64/renesas/r9a07g043.dtsi>
+>
+> / {
+>    ...
+>    ...
+> };
+>
+> Although patch#2 can be merged into patch#1 just wanted to keep them separated
+> for easier review.
+>
+> [0] https://lore.kernel.org/linux-arm-kernel/Yyt8s5+pyoysVNeC@spud/T/
+>
+> Cheers,
+> Prabhakar
+>
+> Lad Prabhakar (2):
+>   arm64: dts: renesas: r9a07g043: Introduce SOC_PERIPHERAL_IRQ() macro
+>     to specify interrupt property
 
-SGkNCg0KQW0gMDcuMTAuMjIgdW0gMTQ6NDkgc2NocmllYiBUaGllcnJ5IFJlZGluZzoNCj4g
-RnJvbTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4NCj4gDQo+IEluIG9y
-ZGVyIHRvIHN1cHBvcnQgZnJhbWVidWZmZXJzIHJlc2lkaW5nIGluIHN5c3RlbSBtZW1vcnks
-IGFsbG93IHRoZQ0KPiBtZW1vcnktcmVnaW9uIHByb3BlcnR5IHRvIG92ZXJyaWRlIHRoZSBm
-cmFtZWJ1ZmZlciBtZW1vcnkgc3BlY2lmaWNhdGlvbg0KPiBpbiB0aGUgInJlZyIgcHJvcGVy
-dHkuDQoNCldoYXQgaGFwcGVucyBpZiBib3RoIHByb3BlcnRpZXMgYXJlIHByZXNlbnQgYW5k
-IHRoZXkgZGlzYWdyZWUgd2l0aCBlYWNoIA0Kb3RoZXI/DQoNCkkgdW5kZXJzdGFuZCB0aGF0
-IHRoZSBmcmFtZWJ1ZmZlciBpcyBiZWhpbmQgJ21lbW9yeS1yZWdpb24nLCBidXQgZG9lcyAN
-CidyZWcnIHN0aWxsIGNvbnRhaW4gZGV2aWNlIG1lbW9yeT8gIERvIHdlIG5lZWQgdG8gYWNx
-dWlyZSBvd25lcnNoaXAgZnJvbSANCndpdGhpbiB0aGUgZHJpdmVyPw0KDQpCZXN0IHJlZ2Fy
-ZHMNClRob21hcw0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBUaGllcnJ5IFJlZGluZyA8dHJl
-ZGluZ0BudmlkaWEuY29tPg0KPiAtLS0NCj4gICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9k
-aXNwbGF5L3NpbXBsZS1mcmFtZWJ1ZmZlci55YW1sICAgICAgfCA1ICsrKysrDQo+ICAgMSBm
-aWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL0RvY3Vt
-ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L3NpbXBsZS1mcmFtZWJ1ZmZl
-ci55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvc2lt
-cGxlLWZyYW1lYnVmZmVyLnlhbWwNCj4gaW5kZXggZGQ2NGY3MGI1MDE0Li4zZTk4NTdlYjAw
-MmUgMTAwNjQ0DQo+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9k
-aXNwbGF5L3NpbXBsZS1mcmFtZWJ1ZmZlci55YW1sDQo+ICsrKyBiL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L3NpbXBsZS1mcmFtZWJ1ZmZlci55YW1sDQo+
-IEBAIC02Myw2ICs2MywxMSBAQCBwcm9wZXJ0aWVzOg0KPiAgICAgcmVnOg0KPiAgICAgICBk
-ZXNjcmlwdGlvbjogTG9jYXRpb24gYW5kIHNpemUgb2YgdGhlIGZyYW1lYnVmZmVyIG1lbW9y
-eQ0KPiAgIA0KPiArICBtZW1vcnktcmVnaW9uOg0KPiArICAgIG1heEl0ZW1zOiAxDQo+ICsg
-ICAgZGVzY3JpcHRpb246IFBoYW5kbGUgdG8gYSBub2RlIGRlc2NyaWJpbmcgdGhlIG1lbW9y
-eSB0byBiZSB1c2VkIGZvciB0aGUNCj4gKyAgICAgIGZyYW1lYnVmZmVyLiBJZiBwcmVzZW50
-LCBvdmVycmlkZXMgdGhlICJyZWciIHByb3BlcnR5IChpZiBvbmUgZXhpc3RzKS4NCj4gKw0K
-PiAgICAgY2xvY2tzOg0KPiAgICAgICBkZXNjcmlwdGlvbjogTGlzdCBvZiBjbG9ja3MgdXNl
-ZCBieSB0aGUgZnJhbWVidWZmZXIuDQo+ICAgDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4N
-CkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdl
-cm1hbnkgR21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQoo
-SFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2
-DQo=
+Can either of you please review patch #1.
 
---------------sIbpmdC2orz54ETODCdR3EK0--
+Cheers,
+Prabhakar
 
---------------a0wIL5ytpXFqM0nZv7pvRqjW
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmND5+EFAwAAAAAACgkQlh/E3EQov+B9
-+hAAhXAu898Lk0j0xMR/DP3Wv4Bt7o83ickLkgRKznHT3B7MTjurCOoXYovrdQ/bAwVq8o3PvvPa
-18zhiOOaz0LJUs0oUD6F38KnmjxZYZa4Ag+YoOJvOOzGUZB6njpGlzF0+KqrWOvZGCZFyIvUUhaZ
-pG4NbWGp9jcLs3c5KxQBeMcwxX36sip+m/EtEKtFCNiaFAnN11mgAgYfwfhW2hS1/tqE8ORPYokX
-UfTZ+5O2/VMnsSiEwdY41jtglUGFExIuIjKD39qzQQ2oiSqf21KEbuauWw5JfmA3reX4TTUeOJLI
-GFJKpD9fHhO8FxRgGTAeawSPZ0g2Z+FcHIJ+ZTXFl982hgTN87h+ljE+fyWb1+t1JEslHE3ASORO
-hTlJ8h9C95VovbIIpKb7GrqfmvZ0ZWNWG4PxafEFVWVSKIMPaILRdNStzDnWtQxhctq0LqhEA5sW
-8xM0v8OkXr+G7o7gVCYwz/Io68bSULH8kKJee0w+rmuQsZHkXkOpy7q3gQv7guZZsjHrd/0du8ab
-KPrGwT4rNdmXOIsjW434cXjU20ZFZgjW0SZk6Qk4F/t5n8D7TZrf0AaQ3iIkxRwYQXmCr3KvEv4Y
-hZUE6/wGk+Wtcgo0zNlr59TmQnV1+3lnfeM6vcgX4B/jOgW1ZxXqI78IfLpD9EsyOGQKYZYEx9js
-vpA=
-=JYB5
------END PGP SIGNATURE-----
-
---------------a0wIL5ytpXFqM0nZv7pvRqjW--
+>   arm64: dts: renesas: r9a07g043: Split out RZ/G2UL SoC specific parts
+>
+>  arch/arm64/boot/dts/renesas/r9a07g043.dtsi    | 362 +++++++-----------
+>  arch/arm64/boot/dts/renesas/r9a07g043u.dtsi   |  87 +++++
+>  .../boot/dts/renesas/r9a07g043u11-smarc.dts   |   2 +-
+>  3 files changed, 235 insertions(+), 216 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
+>
+> --
+> 2.25.1
+>
