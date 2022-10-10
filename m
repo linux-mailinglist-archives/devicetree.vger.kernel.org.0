@@ -2,118 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3493E5F9CC7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 12:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 003285F9CCF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Oct 2022 12:32:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231849AbiJJK3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Oct 2022 06:29:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58682 "EHLO
+        id S231470AbiJJKcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Oct 2022 06:32:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231853AbiJJK3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 06:29:21 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E011B2BB32;
-        Mon, 10 Oct 2022 03:29:19 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id d26so16781850eje.10;
-        Mon, 10 Oct 2022 03:29:19 -0700 (PDT)
+        with ESMTP id S231682AbiJJKcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Oct 2022 06:32:11 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5483ECE2
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 03:32:08 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id q9so19388114ejd.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Oct 2022 03:32:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=njppD24n5PIRmmY3cy/ZzK4o8fKv+xhzrU1bZQKEb9Y=;
-        b=boFeSypNiz4u7dhczuzC640JQsjk2byVSqAtDrQCAEG1/lcNSPo0AUqc3Dck7yZIDN
-         p0jS/ThrskTtgEyDGMOgU+AvIDBceIUYkhFlBiMsXLzTRnzJ6tVrQF9fej/bSUiib5ba
-         mwqfJ/xnplw7PeBfeMlYYDHxnyGwQ99U/E3F4dj6FPN1DIpVccWaRCTW4EHLUfzDauxu
-         EbIdo+9saWUiddQyYJ6XpDW3Ofs/sa0+rVZM3MXbhjJjlJeK8tD9cwYLRypE28UfB+BZ
-         Lzplf0UbWf+i793hTiTMI3uLUOjUaLDR93tPNzkHdRA7lPM/PS/T4/vOHunnktuwxSxw
-         ld7w==
+        d=fairphone.com; s=fair;
+        h=in-reply-to:references:subject:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sUmw0IHEGVDgOguiSCvP9wAQuCGVsQC+HnuP25zWN0U=;
+        b=LmRr3kNfZrjya+cXTq6NOY9D9HWbQCawhGqHsLhSpWXlrNAEPQIm50xmC9ce6ayxWb
+         VXHsMsnSbQGsNS6ohnkNOlbBtIErwKG7Vel5nq9L9MBKef0ctH2iwKRybQlhWyT7FgSI
+         0IhTlD2paGZRZRX2f6GVEAxTsnlkW8essDcyTreCzDweSlhPal4GtwxVtl1yo9np8E/3
+         XAg0fPCYjMr6GZJRgBRxrpBxegzsxj6bHTS9/4veev3TnzsScYxTHPQXUKIKxChZBgqy
+         vKdl8ZzPgTPZDVFecGzd1/t96eS4BOfjFGoD8PDBp3AGq700vUjZInavp4hh6HmoHqJF
+         2Idg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=njppD24n5PIRmmY3cy/ZzK4o8fKv+xhzrU1bZQKEb9Y=;
-        b=w0uSFWq8X4v2LE0f7pepBg0cDWjeQ4PlOWKvOzytWdvtzRwrnDejrAJJNhSzlVB4tP
-         9GtHYmp3APaeQn3PRpTgCBaXQhZPuy/Y1LBdscf5xRkI5TklV9yW8aC+gprpBpwUKhNL
-         tQWIfZBHUwERGFVjNA3ngTQ+jMQ0dXZ3QZtvDWmPUnUkiWcpplGVS+ql130nwckRZmTZ
-         CtTWHH27LNzGOHC27+fLGVb0qH9q6oeBlc/pUwRNdH35RUsxnlLZr2ZFus136VCYcjjh
-         1fUPTMtNj4tMaVZg3PCx2ygwU/8sap7gYJQcWlJxP8ubuB2DpyPdrgDKTl+4eC2j3aIc
-         b1nw==
-X-Gm-Message-State: ACrzQf0jNcXMxYWYaopghYwnw391KetAf4uDAht7TBVMlX2ZCPSh+zGs
-        yr+8kqV/7V3m4Q8W/1BSUg8=
-X-Google-Smtp-Source: AMsMyM70nNI2Ly3JYMHMxaxpeMQx76PthktJ7R25K6o1CQZ6bcoHPEHp/HVV0bQQyjLZiU4AP52oKg==
-X-Received: by 2002:a17:907:72c1:b0:783:34ce:87b9 with SMTP id du1-20020a17090772c100b0078334ce87b9mr14032357ejc.115.1665397758147;
-        Mon, 10 Oct 2022 03:29:18 -0700 (PDT)
-Received: from skbuf ([188.27.184.197])
-        by smtp.gmail.com with ESMTPSA id cn22-20020a0564020cb600b00459012e5145sm6786119edb.70.2022.10.10.03.29.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Oct 2022 03:29:16 -0700 (PDT)
-Date:   Mon, 10 Oct 2022 13:29:14 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Jerry Ray <jerry.ray@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next][PATCH v4] dt-bindings: dsa: Add lan9303 yaml
-Message-ID: <20221010102914.ut364d57sjhnb3lj@skbuf>
-References: <20221003164624.4823-1-jerry.ray@microchip.com>
- <20221003164624.4823-1-jerry.ray@microchip.com>
- <20221008225628.pslsnwilrpvg3xdf@skbuf>
- <e49eb069-c66b-532c-0e8e-43575304187b@linaro.org>
- <20221009222257.f3fcl7mw3hdtp4p2@skbuf>
- <551ca020-d4bb-94bf-7091-755506d76f58@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <551ca020-d4bb-94bf-7091-755506d76f58@linaro.org>
+        h=in-reply-to:references:subject:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=sUmw0IHEGVDgOguiSCvP9wAQuCGVsQC+HnuP25zWN0U=;
+        b=KacgnBi7YgW6S2jl1CoaR/K/1DGUL4kE5id4mj63Wgb6P2DYEP8p9f6ryJVoopZHtS
+         95tlKNE31kM6GryWTX21JM1NLLdjEJMAm7W1spAaH0EtBmErBPdA+3Fx0QAZBL4nI0hF
+         zGKufkwluK4IYl1UtN+LmBHcEkDA35QXUv+UOrp4r/RFpFLQPdpIv1DdD3esxzLYhZtN
+         xM0EHu/iISvdG8wPOabAMV4LlEk8nIlj5NbobZvFkqOQTLgByzu2EJAE1561bmmZtG1T
+         yzF5rUJGbvOiYdbtFRlssN2GMJisOc4j2QwtDdJV0/UFwl9ajbupsLP1h7NCAJXWOeqp
+         ay3Q==
+X-Gm-Message-State: ACrzQf2LB2AiyokbTZiFNAw+dywv4Cdbgh6PHSxl/HiB1wtlyY6bJD+F
+        FFxQPd5viZhLmqI34WFw5UREKA==
+X-Google-Smtp-Source: AMsMyM6qC8gsE/9iSUwLTzN2y/cZjDjz7nNKiEj5v3E8mrkTZ2TT2fyMPxM5Khu1zEiilpzvPd8U6A==
+X-Received: by 2002:a17:906:8a76:b0:781:7530:8b05 with SMTP id hy22-20020a1709068a7600b0078175308b05mr14279569ejc.489.1665397927517;
+        Mon, 10 Oct 2022 03:32:07 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id j10-20020a17090623ea00b007838e332d78sm5108915ejg.128.2022.10.10.03.32.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Oct 2022 03:32:06 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 10 Oct 2022 12:32:05 +0200
+Message-Id: <CNI6AL1JKZ1L.2QLO9D3KZJ2MR@otso>
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
+        "linux-arm-msm" <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
+        "Alex Elder" <elder@linaro.org>,
+        "Nicolas Dechesne" <nicolas.dechesne@linaro.org>,
+        "Manivannan Sadhasivam" <manivannan.sadhasivam@linaro.org>,
+        "Bhupesh Sharma" <bhupesh.sharma@linaro.org>,
+        "Abel Vesa" <abel.vesa@linaro.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        "Robert Foss" <robert.foss@linaro.org>,
+        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
+        "Johan Hovold" <johan+linaro@kernel.org>,
+        "Vinod Koul" <vinod.koul@linaro.org>,
+        "Stephan Gerhold" <stephan@gerhold.net>,
+        "Caleb Connolly" <kc@postmarketos.org>
+Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
+X-Mailer: aerc 0.12.0
+References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
+ <faa4e821-00e0-4ee0-0c62-b5eb6f75abf7@linaro.org>
+In-Reply-To: <faa4e821-00e0-4ee0-0c62-b5eb6f75abf7@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 10, 2022 at 06:23:24AM -0400, Krzysztof Kozlowski wrote:
-> On 09/10/2022 18:22, Vladimir Oltean wrote:
-> > On Sun, Oct 09, 2022 at 05:20:03PM +0200, Krzysztof Kozlowski wrote:
-> >> On 09/10/2022 00:56, Vladimir Oltean wrote:
-> >>>>  
-> >>>> +MICROCHIP LAN9303/LAN9354 ETHERNET SWITCH DRIVER
-> >>>> +M:	Jerry Ray <jerry.ray@microchip.com>
-> >>>> +M:	UNGLinuxDriver@microchip.com
-> >>>> +L:	netdev@vger.kernel.org
-> >>>> +S:	Maintained
-> >>>> +F:	Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
-> >>>> +F:	drivers/net/dsa/lan9303*
-> >>>> +
-> >>>
-> >>> Separate patch please? Changes to the MAINTAINERS file get applied to
-> >>> the "net" tree.
-> >>
-> >> This will also go via net tree, so there is no real need to split it.
-> > 
-> > I meant exactly what I wrote, "net" tree as in the networking tree where
-> > fixes to the current master branch are sent:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git, or in
-> > other words, not net-next.git where new features are sent:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
-> 
-> Ah, but how it can go to fixes? It has invalid path (in the context of
-> net-fixes) and it is not related to anything in the current cycle.
+Hi Krzysztof,
 
-Personally I'd split the patch into 2 pieces, the MAINTAINERS entry for
-the drivers/net/dsa/lan9303* portion, plus the current .txt schema,
-which goes to "net" right away, wait until the net tree gets merged back
-into net-next (happens when submissions for net-next reopen), then add
-the dt-bindings and rename the .txt schema from MAINTAINERS to .yaml.
+On Tue Oct 4, 2022 at 4:50 PM CEST, Krzysztof Kozlowski wrote:
+> On 22/09/2022 16:32, Krzysztof Kozlowski wrote:
+> > Hi everyone,
+> >=20
+> > Quite a lot of people are working on Qualcomm DT bindings conversion
+> > (TXT->YAML) and fixups to Qualcomm DTS. We track a bit of this effort
+> > internally in Linaro, but that has many shortcomings and we would like
+> > to track it rather community-wide with the support and contributions
+> > from the community.
+> >=20
+> > What to track:
+> > 1. Which bindings to convert to YAML,
+> > 2. Missing compatibles (either entirely or because of missing conversio=
+n),
+> > 3. `dt_binding_check` warnings (usually connected with 1-2),
+> > 4. `dtbs_check` warnings.
+> >=20
+> > Rob's bot gives us daily output for 1-4, but how can we track current
+> > efforts to avoid duplication of work? Also it would allow people to fin=
+d
+> > tasks for them to get contributions to Linux kernel :). Is anyone in
+> > community interested in tracking it together, in a public way?
+> >=20
+> > If so, where?
+> > A. elinux.org (needs some formatting when pasting the output from tools=
+)
+> > B. gitlab pages/wiki (maybe scripts could parse tools and create the pa=
+ge?)
+> > C. gitlab dedicated repo - some text file
+> > D. Linux kernel TODO file (might be difficult to keep updated)
+> > E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
+> > have it for Exynos but I don't find it usable -
+> > https://exynos.wiki.kernel.org/todo_tasks)
+>
+>
+> Hi All,
+>
+> Any thoughts on this? So far I did not receive any responses, so
+> probably this could mean that there is little interest in this?
+
+I'd also appreciate having something there. Similar to the count of
+similar warnings that Rob is sometimes posting, I personally don't
+see those apart from checking my boards (msm8226, msm8974, msm8953,
+sm6350), where I recently did a cleanup spree for 8974 for low-hanging
+fruit. Of course given that not every device uses all the functionality
+some things that are disabled on my fairphone-fp2 device I won't see,
+but only when checking other devices e.g. lg-hammerhead.
+
+So some gitlab project with issues for each thing would be pretty nice I
+believe. While I probably won't tackle big topics like mdss+mdp5 because
+it's just very complex, I'm happy to pick up some small tasks that are
+(comparatively) quick to fix.
+
+Regards
+Luca
+
+>
+> Best regards,
+> Krzysztof
+
