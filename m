@@ -2,147 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C4235FB402
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:00:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 581EB5FB41F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:06:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbiJKOAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 10:00:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48472 "EHLO
+        id S229977AbiJKOGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 10:06:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229889AbiJKOAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:00:11 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BF0120374;
-        Tue, 11 Oct 2022 07:00:09 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id g130so15898362oia.13;
-        Tue, 11 Oct 2022 07:00:09 -0700 (PDT)
+        with ESMTP id S229941AbiJKOGA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:06:00 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF35B1DA4D
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 07:05:56 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id ay36so8703612wmb.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 07:05:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JcaFOKZyiS3+I2osyalTT+TO0sy9sHe6rL6zc8VNAUU=;
+        b=Qb8JETzFWj62avgqJnKeCBzLel/wA3p733CwJz8qtRjZ79GeqOp/HRtwpk6dFn2kqE
+         lh6awZJ1Uerm/QHQXpU0uUsA89pk4UlfayQWlQpC76Kkxsp8Ca877TBI3Y9ElzJ3+JbM
+         N5lpzkzvK52OoQ38LlWh2D8iRgX6pQfoYu3GXFLFDVCJAr1GwZfnTPVaR4VcFtNRmSUd
+         JOi0SnpaMph+pBxDYHazUEPIxnhiGvbGVkuEV0GUhjmmrGwVFbGAzzy04xEErsVWyJOB
+         BAj9yI0fVXLmEIZKGPuq6EF3G3JP2zjdBjo10mvj6T8xVBRvvxbWpnM6fKQsvVb2iS+0
+         0O3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fpinFLGyfMz5LuoFScjs1SYGNlDOoMK18vHAn2nhxCo=;
-        b=5ZybirFQCUgwVRA4joHZ/hUemxB3JPKlCCjx4mOyFeoDCBeI1m7mSqgeRrkB7N6mRp
-         VY7foDCblqKgvVU5o5jX6Mav4oPImMevSY2IIWl3G8OhzJZs1qo+1IRtLROeIPprIuU4
-         nIyGdtW+Nl8f6QOZ4u0Qr4VpLujv7uz7melkcUZmAFHz4J43hW18hGulNXKdO899LB9E
-         8vHkCZG7d8gm0ftcXW4Kcb1YJ4CL6JnUIgJRLdniyrgWD2WSCPlWYZFXsIbiSEQZq1on
-         PjU2dVcSjOLmFb9+uaqbDtkgWuCw8a00Im8YZJkBIge9v3AJlih7jePdjKXvRvz7qUcF
-         B0Vg==
-X-Gm-Message-State: ACrzQf3aPNSm14kBl4cYqQe3qFI4UTbQXSREMHgSmjPKhQ6ZyEddx67h
-        TEpiMmO6FopdxR+1hXoM5Y9uGdhmpA==
-X-Google-Smtp-Source: AMsMyM5HM5siP22QE9AFMbURQF+/Q7yQHyaDxP66PMEWANnBNS8+u9VKkNiJULC0pZeLlabGvBFvog==
-X-Received: by 2002:aca:f056:0:b0:350:f0ba:9caa with SMTP id o83-20020acaf056000000b00350f0ba9caamr11984375oih.198.1665496808582;
-        Tue, 11 Oct 2022 07:00:08 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r12-20020a4abf0c000000b0044897475dd0sm5292461oop.43.2022.10.11.07.00.07
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JcaFOKZyiS3+I2osyalTT+TO0sy9sHe6rL6zc8VNAUU=;
+        b=bDg72ydMUYl6MUMtC1arRj2XpWAyIAtirK1LnEG/oRBhA7bSAumT46Gwq7QU4wRCQY
+         v0DkfjnHACz1etvFDngg8KLdNwK2N9UCVmdP4oHFdb3er5/QsrPKV/IL7/Pm+a0JKbDl
+         fpJ6zKpDf436zY1qbJ3pBqc+uDWuidyH1a5MP3voyP81Lzgnf0Nxr/GKxN9diypS3AqU
+         iekLtTu42N1Y0w9asLO8RPmhj7+vOZRHhTCZIymA3iJeYvQ5Q2j0Oyp2W+sk9IDG4Ylh
+         U/lSnVpYBwetN1Q6uLvOYLzdCw9N2som3rbKmMGw281wdL3Cgz0ceSBqY4LXWJ84xD8x
+         Wp5g==
+X-Gm-Message-State: ACrzQf1l+uqRaedxgbps5pnN85zF/nkaKEyFYIjYd9GfwTytZqN+fCtE
+        SYA6p3i06DXaxcWexPErtWRhMQ==
+X-Google-Smtp-Source: AMsMyM51kNiy2OQX6zFt2Ln9Qp8sp2w2oHjrFzWWJ5n7mgfX/EzIc4GEtVta1JL+fuztvdtzrpURkA==
+X-Received: by 2002:a05:600c:a09:b0:3b9:f70f:aa72 with SMTP id z9-20020a05600c0a0900b003b9f70faa72mr23744191wmp.97.1665497155263;
+        Tue, 11 Oct 2022 07:05:55 -0700 (PDT)
+Received: from localhost.localdomain (192.201.68.85.rev.sfr.net. [85.68.201.192])
+        by smtp.gmail.com with ESMTPSA id z2-20020a5d44c2000000b0022e55f40bc7sm11437453wrr.82.2022.10.11.07.05.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Oct 2022 07:00:08 -0700 (PDT)
-Received: (nullmailer pid 2787286 invoked by uid 1000);
-        Tue, 11 Oct 2022 14:00:09 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Alexander Shiyan <shc_work@mail.ru>, linux-ide@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: ata: Add 'ata-generic' binding
-Date:   Tue, 11 Oct 2022 08:58:50 -0500
-Message-Id: <20221011135849.2785834-1-robh@kernel.org>
-X-Mailer: git-send-email 2.35.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Tue, 11 Oct 2022 07:05:54 -0700 (PDT)
+From:   Jerome Neanne <jneanne@baylibre.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
+        bjorn.andersson@linaro.org, shawnguo@kernel.org,
+        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
+        marcel.ziswiler@toradex.com, vkoul@kernel.org,
+        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com
+Cc:     afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
+        msp@baylibre.com, j-keerthy@ti.com, jneanne@baylibre.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: [PATCH v6 0/6] Add support for TI TPS65219 PMIC.
+Date:   Tue, 11 Oct 2022 16:05:43 +0200
+Message-Id: <20221011140549.16761-1-jneanne@baylibre.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'ata-generic' binding has been around since 2008, but never
-documented.
+Hi everyone,
 
-Cc: Alexander Shiyan <shc_work@mail.ru>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-AFAICT, the ata-generic,use16bit property has no effect in Linux. The
-32-bit transfers fallback to 16-bit if ATA_PFLAG_PIO32 flag is not set
-which it doesn't appear to ever be set. Looking at the history, the
-driver always used 16-bit mode.
+bindings and regulator are already there as it is based on the regulator tree branch for-6.1:
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git
+All review feedback except one have been integrated in v5. Waiting ack/nack for mfd part. 
 
-Linus, Okay with being maintainer here?
+Changes in v6:
+- Remove not needed dev assignment reported by Dmitry Torokhov in Input. 
 
----
- .../devicetree/bindings/ata/ata-generic.yaml  | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/ata/ata-generic.yaml
+Regards,
+Jerome
 
-diff --git a/Documentation/devicetree/bindings/ata/ata-generic.yaml b/Documentation/devicetree/bindings/ata/ata-generic.yaml
-new file mode 100644
-index 000000000000..0697927f3d7e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/ata-generic.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/ata-generic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic Parallel ATA Controller
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  Generic Parallel ATA controllers supporting PIO modes only.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - arm,vexpress-cf
-+          - fsl,mpc8349emitx-pata
-+      - const: ata-generic
-+
-+  reg:
-+    items:
-+      - description: Command interface registers
-+      - description: Control interface registers
-+
-+  reg-shift:
-+    enum: [ 1, 2 ]
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ata-generic,use16bit:
-+    type: boolean
-+    description: Use 16-bit accesses instead of 32-bit for data transfers
-+
-+  pio-mode:
-+    description: Maximum ATA PIO transfer mode
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 6
-+    default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    compact-flash@1a000 {
-+        compatible = "arm,vexpress-cf", "ata-generic";
-+        reg = <0x1a000 0x100>,
-+              <0x1a100 0xf00>;
-+        reg-shift = <2>;
-+    };
-+...
+Previous versions:
+v5 - https://lore.kernel.org/lkml/20220913121419.15420-1-jneanne@baylibre.com/
+v4 - https://lore.kernel.org/lkml/20220825150224.826258-1-msp@baylibre.com/
+v3 - https://lore.kernel.org/lkml/20220805121852.21254-1-jneanne@baylibre.com/
+v2 - https://lore.kernel.org/lkml/20220726103355.17684-1-jneanne@baylibre.com/
+v1 - https://lore.kernel.org/lkml/20220719091742.3221-1-jneanne@baylibre.com/
+
+Jerome Neanne (5):
+  DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC support for AM642 SK
+    board.
+  DONOTMERGE: arm64: dts: ti: Add pinmux and irq mapping for TPS65219
+    external interrupts
+  DONOTMERGE: arm64: dts: ti: k3-am642-sk: Enable tps65219 power-button
+  mfd: tps65219: Add driver for TI TPS65219 PMIC
+  arm64: defconfig: Add tps65219 as modules
+
+Markus Schneider-Pargmann (1):
+  Input: Add tps65219 interrupt driven powerbutton
+
+ MAINTAINERS                             |   1 +
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 115 ++++++++
+ arch/arm64/configs/defconfig            |   3 +
+ drivers/input/misc/Kconfig              |  10 +
+ drivers/input/misc/Makefile             |   1 +
+ drivers/input/misc/tps65219-pwrbutton.c | 148 ++++++++++
+ drivers/mfd/Kconfig                     |  14 +
+ drivers/mfd/Makefile                    |   1 +
+ drivers/mfd/tps65219.c                  | 320 ++++++++++++++++++++++
+ include/linux/mfd/tps65219.h            | 345 ++++++++++++++++++++++++
+ 10 files changed, 958 insertions(+)
+ create mode 100644 drivers/input/misc/tps65219-pwrbutton.c
+ create mode 100644 drivers/mfd/tps65219.c
+ create mode 100644 include/linux/mfd/tps65219.h
+
 -- 
-2.35.1
+2.17.1
 
