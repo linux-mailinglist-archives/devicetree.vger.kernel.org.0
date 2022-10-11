@@ -2,107 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 452CA5FAD9D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 09:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3EC05FADA9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 09:45:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229446AbiJKHjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 03:39:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54954 "EHLO
+        id S229824AbiJKHpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 03:45:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbiJKHjd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 03:39:33 -0400
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E3067D7B9;
-        Tue, 11 Oct 2022 00:39:32 -0700 (PDT)
-Received: by mail-qt1-f173.google.com with SMTP id bb5so2439604qtb.11;
-        Tue, 11 Oct 2022 00:39:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KX79hRYrJFKUEMZlOxyb11gwPJYvnPLuU5eWyjSCPsM=;
-        b=iUmEpr4cnrDOUmpD1MvHl1hzNd4cGo8gCqad96cHA0rvmPi9nMsFl2XOfXNT+t9E9R
-         ijLHg1UQILfxC0V0mw4qrLiH687VBQrBok2FabgpmVnGCs9lK/uMtzheCnYGrs4jJhRQ
-         8ODkEf7cguelCrYZv4bhmb7RCXrgBELAzNTh/ywGQ2Q7Pk92efdxmiUZ7/2wDV0oWVrH
-         4HvP5kKwJDBHF0Ui89HDuDQYs+BBO09TDHcuRHAjY+6xh6Ng5HswWsbTC/izNtkv1y/a
-         fwT6hksfCeq6X0eWZELVia7N2bAiDW7sNiMRpswXLGBKnG/lJB+tOB2qKbO020eQroeu
-         erLA==
-X-Gm-Message-State: ACrzQf0R+qxtjYmqS50oJ0p1N26pr8sgxL3matQN2WkTjE9EfELWGKOh
-        uNhIv2N+vV1VvJBoRcfWFPZt6+rXJls+iA==
-X-Google-Smtp-Source: AMsMyM5oM3GeSE8hQAS110nTE6Y0Et2EwFt5jCwZUwlFMLyxHCmhPFN1L6tsyktSS1nkJPJXvEktEA==
-X-Received: by 2002:a05:622a:130a:b0:35b:b454:8644 with SMTP id v10-20020a05622a130a00b0035bb4548644mr18143695qtk.624.1665473971001;
-        Tue, 11 Oct 2022 00:39:31 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id u21-20020ac87515000000b00391d15f13f9sm10009487qtq.11.2022.10.11.00.39.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Oct 2022 00:39:28 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id y205so15498733yby.13;
-        Tue, 11 Oct 2022 00:39:25 -0700 (PDT)
-X-Received: by 2002:a5b:104:0:b0:6b0:429:3fe9 with SMTP id 4-20020a5b0104000000b006b004293fe9mr21604885ybx.543.1665473965578;
- Tue, 11 Oct 2022 00:39:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221009230044.10961-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221009230044.10961-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Y0PBdDtFzcsmbtMv@shikoro> <CA+V-a8sOxyQj8J06kqnRN5G=L6KPdusJ-qLWntVa8kgFBh-MEQ@mail.gmail.com>
-In-Reply-To: <CA+V-a8sOxyQj8J06kqnRN5G=L6KPdusJ-qLWntVa8kgFBh-MEQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 11 Oct 2022 09:39:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXoDmwNnYNt6mVnHNYoNQY5fN207iyR_TopOsux6RKhnA@mail.gmail.com>
-Message-ID: <CAMuHMdXoDmwNnYNt6mVnHNYoNQY5fN207iyR_TopOsux6RKhnA@mail.gmail.com>
-Subject: Re: [PATCH 1/5] arm64: dts: renesas: rzg2l-smarc-som: Drop enabling WDT2
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Wolfram Sang <wsa@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+        with ESMTP id S229867AbiJKHpU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 03:45:20 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B00483DF24
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 00:45:17 -0700 (PDT)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id A82611F886;
+        Tue, 11 Oct 2022 09:45:14 +0200 (CEST)
+Date:   Tue, 11 Oct 2022 09:45:12 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 10/16] arm64: dts: qcom: sm6125: align TLMM pin
+ configuration with DT schema
+Message-ID: <20221011074512.anifehocqjnxuf35@SoMainline.org>
+References: <20220930192954.242546-1-krzysztof.kozlowski@linaro.org>
+ <20220930192954.242546-11-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220930192954.242546-11-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+On 2022-09-30 21:29:48, Krzysztof Kozlowski wrote:
+> DT schema expects TLMM pin configuration nodes to be named with
+> '-state' suffix and their optional children with '-pins' suffix.
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Mon, Oct 10, 2022 at 10:01 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Mon, Oct 10, 2022 at 7:53 AM Wolfram Sang <wsa@kernel.org> wrote:
-> > On Mon, Oct 10, 2022 at 12:00:40AM +0100, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > WDT CH2 is specifically to check the operation of Cortex-M33 CPU and if
-> > > used from CA55 CPU would result in an unexpected behaviour. Hence drop
-> > > enabling WDT2.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> >
-> > I'd squash patches 1+2, but that's minor.
-> >
-> OK, I'll wait for Geert before sending a v2.
+Thanks!
 
-I'd even squash the whole series into a single patch
-"arm64: dts: renesas: rzg2l: Drop WDT2 node".
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 
-If that would be the only change for v2, I can take care of that while
-applying.
+Perhaps mention more clearly that this is fixing up an earlier patch
+that tried to address missing `-pins`?
 
-Gr{oetje,eeting}s,
+- Marijn
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> ---
+>  arch/arm64/boot/dts/qcom/sm6125.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+> index 1fe3fa3ad877..af49a748e511 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+> @@ -407,13 +407,13 @@ data-pins {
+>  			};
+>  
+>  			sdc2_on_state: sdc2-on-state {
+> -				clk {
+> +				clk-pins {
+>  					pins = "sdc2_clk";
+>  					drive-strength = <16>;
+>  					bias-disable;
+>  				};
+>  
+> -				cmd-pins-pins {
+> +				cmd-pins {
+>  					pins = "sdc2_cmd";
+>  					drive-strength = <10>;
+>  					bias-pull-up;
+> -- 
+> 2.34.1
+> 
