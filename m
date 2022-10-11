@@ -2,47 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0E4D5FB60A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 17:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FFFD5FB68A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 17:07:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231251AbiJKPAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 11:00:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54850 "EHLO
+        id S231487AbiJKPHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 11:07:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231528AbiJKO7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:59:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD2C422BDB;
-        Tue, 11 Oct 2022 07:54:52 -0700 (PDT)
+        with ESMTP id S231636AbiJKPG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 11:06:29 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D327324BFD;
+        Tue, 11 Oct 2022 07:59:50 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8B508611C0;
-        Tue, 11 Oct 2022 14:54:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20158C433D7;
-        Tue, 11 Oct 2022 14:54:12 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 36521CE1887;
+        Tue, 11 Oct 2022 14:54:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84709C433D6;
+        Tue, 11 Oct 2022 14:54:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665500053;
-        bh=zoFxjc2mgYvumVpJfu85SBiBqI1woCwVxCC0Oqpikew=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=rNFCeZCHDFbRsbnb2wh5OFi/1SgF2Po8zUJ6UiS0eT5XYuDWlJUv+vwb4+nP0XnKQ
-         Ae0nJTgHqhL6i9WzcGmErRNxRb+n5pYILofvHZqa8h1WL944IV7iagoVwbVOQTfcWE
-         Bihq6b6mXdEXPLBFj0sQHiSZWgkfrnXgIhemeyG7/GK9sZqkV+OADQ7oTIAtJpk9Fk
-         4BEEFFRdMqdnG/QEjieM4S/7fNRjmr4Hgq+LocZ1f/NuKu4gG4CsC+41v/YAb9llPi
-         D484zVkUfUBwvfVHAYUPg3uRuDnagJ0bQ6gT2LGY0Hi+2zAkeutnkxoBFZ5jn5YIBB
-         Y1e1eY87rB8EA==
+        s=k20201202; t=1665500057;
+        bh=WC1ulE7Ies0zrXhN0pffVnnWHJ7Z0UYNsWlmR/6egmY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=M8l9Z0Jmn8N1ODmADaNxnYplZO29kOoWgb8p6PKvoSQ60j6eiVC5vfrTFkrxfRcW6
+         /6hNI4SXnr8ht1x5gBmxDjTJ99tq5CpfAt8lgzVKEsJyeEiEQ/Oy5XECLKbXxce75M
+         IEfffaiK1o1tZxVsX0hOFE6F4v+T2DwNWRyKv9+r47X1S4QFwZvzm0RsKVkMd7VSkB
+         Hv5UnQtxtSO1XMfmW3Kymn5KKQD4XArntsnpdz2yyKtVko6yMeLZqm/oNBGPUskpVf
+         lhQzTGaxoJU28iJojgqCr9lDcDssXkch4P8NydizyKfKPmIVKdSkir5FSiQtwbRHrH
+         xHEIixSKaB3Mw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 10/11] arm64: dts: uniphier: Add USB-device support for PXs3 reference board
-Date:   Tue, 11 Oct 2022 10:53:57 -0400
-Message-Id: <20221011145358.1624959-10-sashal@kernel.org>
+Cc:     Haibo Chen <haibo.chen@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.14 1/7] ARM: dts: imx7d-sdb: config the max pressure for tsc2046
+Date:   Tue, 11 Oct 2022 10:54:08 -0400
+Message-Id: <20221011145414.1625237-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221011145358.1624959-1-sashal@kernel.org>
-References: <20221011145358.1624959-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -56,160 +53,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+From: Haibo Chen <haibo.chen@nxp.com>
 
-[ Upstream commit 19fee1a1096d21ab1f1e712148b5417bda2939a2 ]
+[ Upstream commit e7c4ebe2f9cd68588eb24ba4ed122e696e2d5272 ]
 
-PXs3 reference board can change each USB port 0 and 1 to device mode
-with jumpers. Prepare devicetree sources for USB port 0 and 1.
+Use the general touchscreen method to config the max pressure for
+touch tsc2046(data sheet suggest 8 bit pressure), otherwise, for
+ABS_PRESSURE, when config the same max and min value, weston will
+meet the following issue,
 
-This specifies dr_mode, pinctrl, and some quirks and removes nodes for
-unused phys and vbus-supply properties.
+[17:19:39.183] event1  - ADS7846 Touchscreen: is tagged by udev as: Touchscreen
+[17:19:39.183] event1  - ADS7846 Touchscreen: kernel bug: device has min == max on ABS_PRESSURE
+[17:19:39.183] event1  - ADS7846 Touchscreen: was rejected
+[17:19:39.183] event1  - not using input device '/dev/input/event1'
 
-Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Link: https://lore.kernel.org/r/20220913042321.4817-8-hayashi.kunihiko@socionext.com'
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+This will then cause the APP weston-touch-calibrator can't list touch devices.
+
+root@imx6ul7d:~# weston-touch-calibrator
+could not load cursor 'dnd-move'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+No devices listed.
+
+And accroding to binding Doc, "ti,x-max", "ti,y-max", "ti,pressure-max"
+belong to the deprecated properties, so remove them. Also for "ti,x-min",
+"ti,y-min", "ti,x-plate-ohms", the value set in dts equal to the default
+value in driver, so are redundant, also remove here.
+
+Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/uniphier-pinctrl.dtsi       | 10 +++++
- arch/arm64/boot/dts/socionext/Makefile        |  4 +-
- .../socionext/uniphier-pxs3-ref-gadget0.dts   | 41 +++++++++++++++++++
- .../socionext/uniphier-pxs3-ref-gadget1.dts   | 40 ++++++++++++++++++
- 4 files changed, 94 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget0.dts
- create mode 100644 arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget1.dts
+ arch/arm/boot/dts/imx7d-sdb.dts | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/arch/arm/boot/dts/uniphier-pinctrl.dtsi b/arch/arm/boot/dts/uniphier-pinctrl.dtsi
-index 51f0e69f49fd..21cc91110439 100644
---- a/arch/arm/boot/dts/uniphier-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/uniphier-pinctrl.dtsi
-@@ -156,11 +156,21 @@ pinctrl_usb0: usb0 {
- 		function = "usb0";
+diff --git a/arch/arm/boot/dts/imx7d-sdb.dts b/arch/arm/boot/dts/imx7d-sdb.dts
+index 255e64ba32e2..7cf6557f4afc 100644
+--- a/arch/arm/boot/dts/imx7d-sdb.dts
++++ b/arch/arm/boot/dts/imx7d-sdb.dts
+@@ -179,12 +179,7 @@ tsc2046@0 {
+ 		interrupt-parent = <&gpio2>;
+ 		interrupts = <29 0>;
+ 		pendown-gpio = <&gpio2 29 GPIO_ACTIVE_HIGH>;
+-		ti,x-min = /bits/ 16 <0>;
+-		ti,x-max = /bits/ 16 <0>;
+-		ti,y-min = /bits/ 16 <0>;
+-		ti,y-max = /bits/ 16 <0>;
+-		ti,pressure-max = /bits/ 16 <0>;
+-		ti,x-plate-ohms = /bits/ 16 <400>;
++		touchscreen-max-pressure = <255>;
+ 		wakeup-source;
  	};
- 
-+	pinctrl_usb0_device: usb0-device {
-+		groups = "usb0_device";
-+		function = "usb0";
-+	};
-+
- 	pinctrl_usb1: usb1 {
- 		groups = "usb1";
- 		function = "usb1";
- 	};
- 
-+	pinctrl_usb1_device: usb1-device {
-+		groups = "usb1_device";
-+		function = "usb1";
-+	};
-+
- 	pinctrl_usb2: usb2 {
- 		groups = "usb2";
- 		function = "usb2";
-diff --git a/arch/arm64/boot/dts/socionext/Makefile b/arch/arm64/boot/dts/socionext/Makefile
-index d45441249cb5..c922d9303b69 100644
---- a/arch/arm64/boot/dts/socionext/Makefile
-+++ b/arch/arm64/boot/dts/socionext/Makefile
-@@ -4,4 +4,6 @@ dtb-$(CONFIG_ARCH_UNIPHIER) += \
- 	uniphier-ld11-ref.dtb \
- 	uniphier-ld20-global.dtb \
- 	uniphier-ld20-ref.dtb \
--	uniphier-pxs3-ref.dtb
-+	uniphier-pxs3-ref.dtb \
-+	uniphier-pxs3-ref-gadget0.dtb \
-+	uniphier-pxs3-ref-gadget1.dtb
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget0.dts b/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget0.dts
-new file mode 100644
-index 000000000000..7069f51bc120
---- /dev/null
-+++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget0.dts
-@@ -0,0 +1,41 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+//
-+// Device Tree Source for UniPhier PXs3 Reference Board (for USB-Device #0)
-+//
-+// Copyright (C) 2021 Socionext Inc.
-+//   Author: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-+
-+/dts-v1/;
-+#include "uniphier-pxs3-ref.dts"
-+
-+/ {
-+	model = "UniPhier PXs3 Reference Board (USB-Device #0)";
-+};
-+
-+/* I2C3 pinctrl is shared with USB*VBUSIN */
-+&i2c3 {
-+	status = "disabled";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+	dr_mode = "peripheral";
-+	pinctrl-0 = <&pinctrl_usb0_device>;
-+	snps,dis_enblslpm_quirk;
-+	snps,dis_u2_susphy_quirk;
-+	snps,dis_u3_susphy_quirk;
-+	snps,usb2_gadget_lpm_disable;
-+	phy-names = "usb2-phy", "usb3-phy";
-+	phys = <&usb0_hsphy0>, <&usb0_ssphy0>;
-+};
-+
-+&usb0_hsphy0 {
-+	/delete-property/ vbus-supply;
-+};
-+
-+&usb0_ssphy0 {
-+	/delete-property/ vbus-supply;
-+};
-+
-+/delete-node/ &usb0_hsphy1;
-+/delete-node/ &usb0_ssphy1;
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget1.dts b/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget1.dts
-new file mode 100644
-index 000000000000..a3cfa8113ffb
---- /dev/null
-+++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget1.dts
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+//
-+// Device Tree Source for UniPhier PXs3 Reference Board (for USB-Device #1)
-+//
-+// Copyright (C) 2021 Socionext Inc.
-+//   Author: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-+
-+/dts-v1/;
-+#include "uniphier-pxs3-ref.dts"
-+
-+/ {
-+	model = "UniPhier PXs3 Reference Board (USB-Device #1)";
-+};
-+
-+/* I2C3 pinctrl is shared with USB*VBUSIN */
-+&i2c3 {
-+	status = "disabled";
-+};
-+
-+&usb1 {
-+	status = "okay";
-+	dr_mode = "peripheral";
-+	pinctrl-0 = <&pinctrl_usb1_device>;
-+	snps,dis_enblslpm_quirk;
-+	snps,dis_u2_susphy_quirk;
-+	snps,dis_u3_susphy_quirk;
-+	snps,usb2_gadget_lpm_disable;
-+	phy-names = "usb2-phy", "usb3-phy";
-+	phys = <&usb1_hsphy0>, <&usb1_ssphy0>;
-+};
-+
-+&usb1_hsphy0 {
-+	/delete-property/ vbus-supply;
-+};
-+
-+&usb1_ssphy0 {
-+	/delete-property/ vbus-supply;
-+};
-+
-+/delete-node/ &usb1_hsphy1;
+ };
 -- 
 2.35.1
 
