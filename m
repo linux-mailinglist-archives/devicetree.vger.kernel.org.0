@@ -2,162 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86F885FBAC2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 20:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC9885FBAD7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 20:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbiJKSu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 14:50:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36040 "EHLO
+        id S230006AbiJKS5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 14:57:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229682AbiJKSu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 14:50:27 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3EB3BC4D;
-        Tue, 11 Oct 2022 11:50:26 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29BHqAff007303;
-        Tue, 11 Oct 2022 18:50:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=yx83ODU0cPJasyXRsJAI2S6FHFdoRtcJCX0/f6l0EqA=;
- b=bEfE32zWn7KrmMgIarQ496mPN8Z/WKvtqkDlzvpj47GbwdYXJXmbrACEjIg1/eJ81j3X
- egBns0xPdhIMQMZlp3oj+irg2Kc35773DXjp2dykUOnQbn6hRB2BuIVrvdQTJQJqBu6b
- /WeMfzMR46oP+WE4DdRIu3dxWETDZJiZanaNcoMg9QrNaGq7+vOiv9rrs1k2subFDwXP
- NjIbs31x0hm1h+uH1PZklYWMPmtljs2vu3fYD0nX2lsmviuXx1lSp/TAvY3K3hGoJyUm
- B/TisbedQKzXnsNcf+p1kDU/9VGtBLqcY9AIwihcaA0Y7NMdnHRyZrhLN2rNg4qVFI9x Ew== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k4rx5u3h7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Oct 2022 18:50:07 +0000
-Received: from nasanex01a.na.qualcomm.com ([10.52.223.231])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29BIo5i7027318
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Oct 2022 18:50:05 GMT
-Received: from [10.110.45.33] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 11 Oct
- 2022 11:50:04 -0700
-Message-ID: <b738a208-26a8-03fa-b54f-811dd7c649dd@quicinc.com>
-Date:   Tue, 11 Oct 2022 11:50:04 -0700
+        with ESMTP id S229960AbiJKS5c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 14:57:32 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B9788A1C
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 11:57:16 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id b25so3254636qkk.7
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 11:57:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=H7MRNW6m6g8CYG+UQ5OATy25MtYysQqA6sH5xmW6Gss=;
+        b=qA9kaTexUkWg+qp1UcnfMNvLehR4FV9cS5z82Hj0lXBIFCZAhXO80XCI2VQa3o03pk
+         Hc6Vl/F2KCyVLgLQhr6+lxnGy//pLe6YiTJ1itudB/yJGct2TaiapQmRnMIpM5G5io/u
+         1M9xPZY9qd6IkxLFbM7+GX2U5IhWdHkNdyr3Rp8DVEWg02S2vq66nhQXZ4Qi0FoN5Kga
+         ozAVzu4qrS/3BjU2NlX1aas/GlaX05rJjJRDbI9RzWqn3p4JmgQ2pluyEisktyF/AqQ1
+         nXtB7O+mITpxtgOaMU+YbbkYggCDj4OJ5Y75PvMMdD/LVcJ98wvmXNU+390TaQka/dPh
+         ORLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H7MRNW6m6g8CYG+UQ5OATy25MtYysQqA6sH5xmW6Gss=;
+        b=o4bY9zy7dAi9nMcaZBzrQwbwiKKc4oQioyRcdFOLTzjdxVfPzP9J209MdgJXgEkvRE
+         4as2A0W5w0MLRSb5XUsnXcFSfE7jPRFxAuoWdR6t5ip0oq68fT1E+IEKkujD478oPNEc
+         oS/hlZpuHSuFUrPdsT2iFRlZOuFimhBwrUmJRvzwNc/kq/vq7ct2eiaT2zT+MuZ2B+cc
+         na5tg1trCEeTGsm0RIWeZFJc2iHGQAZOEfPV+HSbPgl+ZkQJiRiHgZZIvOYfh/M8mqW+
+         4pA1NrfHhpoMuQMclwQ84qwilrcEofC65dBBnM2ayOdvA5yJcwvmggKURosbmqbSiX1l
+         pb6w==
+X-Gm-Message-State: ACrzQf3lIc5wWy/xEf/nTxkxnrwYQlB1+RW1SDtkI3aKdBgSrkGsjkAu
+        rHjk830ABTd1Po8yplGb15GnVg==
+X-Google-Smtp-Source: AMsMyM7gg7zRTMEQzLbIJsSJqlfTkKEGfwR/4SKbS8dVaDQ3ub/GEkm+hdHd0tPRkG0b/Z/8ks093Q==
+X-Received: by 2002:a05:620a:2043:b0:6ee:8874:f5bc with SMTP id d3-20020a05620a204300b006ee8874f5bcmr2201786qka.134.1665514625359;
+        Tue, 11 Oct 2022 11:57:05 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id i14-20020a05620a248e00b006bba46e5eeasm14509356qkn.37.2022.10.11.11.57.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Oct 2022 11:57:04 -0700 (PDT)
+Message-ID: <ad2e4445-052b-d65a-bdba-5759c169aafd@linaro.org>
+Date:   Tue, 11 Oct 2022 14:54:53 -0400
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v5 03/13] gunyah: Common types and error codes for Gunyah
- hypercalls
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
 Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Elliot Berman <quic_eberman@quicinc.com>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Will Deacon" <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-4-quic_eberman@quicinc.com>
- <Y0UZcLl20HobX4w3@kroah.com>
- <52b07662-666a-2fc7-cb18-a9d294f7ae9b@quicinc.com>
- <Y0W6gVcxTRg/m5Nb@kroah.com>
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <Y0W6gVcxTRg/m5Nb@kroah.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        William Breathitt Gray <william.gray@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Lee Jones <lee@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20221010145222.1047748-1-biju.das.jz@bp.renesas.com>
+ <20221010145222.1047748-2-biju.das.jz@bp.renesas.com>
+ <8d6b8f0e-d9d7-0d77-aa99-379de768fd5d@linaro.org>
+ <OS0PR01MB592232C831CCA84FC302212F86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <OS0PR01MB592232C831CCA84FC302212F86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: MakJf8Uy2Uc5r14b727p4qI5WGEgw1cT
-X-Proofpoint-ORIG-GUID: MakJf8Uy2Uc5r14b727p4qI5WGEgw1cT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-11_08,2022-10-11_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- clxscore=1011 mlxscore=0 priorityscore=1501 spamscore=0 bulkscore=0
- malwarescore=0 adultscore=0 suspectscore=0 mlxlogscore=865 impostorscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210110109
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2022 11:48 AM, Greg Kroah-Hartman wrote:
-> On Tue, Oct 11, 2022 at 11:21:36AM -0700, Elliot Berman wrote:
->>
->>
->> On 10/11/2022 12:21 AM, Greg Kroah-Hartman wrote:
->>> On Mon, Oct 10, 2022 at 05:08:30PM -0700, Elliot Berman wrote:
->>>> Add architecture-independent standard error codes, types, and macros for
->>>> Gunyah hypercalls.
->>>>
->>>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->>>> ---
->>>>    MAINTAINERS                  |  1 +
->>>>    include/asm-generic/gunyah.h | 74 ++++++++++++++++++++++++++++++++++++
->>>>    2 files changed, 75 insertions(+)
->>>>    create mode 100644 include/asm-generic/gunyah.h
->>>>
->>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>> index ef6de7599d98..4fe8cec61551 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -8886,6 +8886,7 @@ L:	linux-arm-msm@vger.kernel.org
->>>>    S:	Supported
->>>>    F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->>>>    F:	Documentation/virt/gunyah/
->>>> +F:	include/asm-generic/gunyah.h
->>>>    HABANALABS PCI DRIVER
->>>>    M:	Oded Gabbay <ogabbay@kernel.org>
->>>> diff --git a/include/asm-generic/gunyah.h b/include/asm-generic/gunyah.h
->>>> new file mode 100644
->>>> index 000000000000..64a02dd3b5ad
->>>> --- /dev/null
->>>> +++ b/include/asm-generic/gunyah.h
->>>
->>> Why not include/linux/gunyah.h?  Why asm-generic?  This is not an
->>> architecture.
->>>
->>
->> My idea here is to differentiate between code that interacts with hypercalls
->> and code that uses the abstractions provided on top of those hypercalls.
->> include/asm-generic/gunyah.h contains architecture-independent definitions
->> for hypercalls. Hypercalls are architecture-specific.
->>
->> For instance, I wanted to avoid a header file that mixes the definitions for
->> the message-queue mailbox with the hypercall definitions that the
->> message-queue mailbox driver itself uses.
->>
->> I can put it all in include/linux/gunyah.h and delineate with some clear
->> comments, but I initially felt it would be better to have separate header
->> file.
+On 11/10/2022 10:55, Biju Das wrote:
 > 
-> Please put it all in one place, this is just one tiny driver and should
-> not abuse the asm-generic location at all, no one is only going to want
-> just this one file, they are going to need the whole thing or nothing.
+>>>  .../bindings/mfd/renesas,rz-mtu3.yaml         | 305
+>> ++++++++++++++++++
+>>>  1 file changed, 305 insertions(+)
+>>>  create mode 100644
+>>> Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+>>
+>> This should not be in MFD. Just because some device has few features,
+>> does not mean it should go to MFD... Choose either timer or pwm.
 > 
+> MFD is for multifunction device. This IP supports multiple functions
+> like timer, pwm, clock source/events. That is the reason I have added 
+> here. MFD is core which provides register access for client devices.
+> 
+> For me moving it to pwm or counter is not a big problem.
+> Why do you think it cannot be MFD?
 
-Let's say when we do the RISC-V port for Gunyah, we may need to move it 
-back to asm-generic then?
 
----Trilok Soni
+Because it makes MFD a dump for everything where author did not want to
+think about real device aspects, but instead represented driver design
+(MFD driver).
+
+MFDs are pretty often combining unrelated features, e.g. PMICs which
+have wakeup and system power control, regulator, 32 kHz clocks, RTC and
+some USB connector.
+
+Just because you will have clocksource driver, PWM driver and timer
+driver does not make it a MFD.
+
+Best regards,
+Krzysztof
+
