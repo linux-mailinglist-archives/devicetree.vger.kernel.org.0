@@ -2,99 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C5105FB448
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C92245FB495
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229569AbiJKOJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 10:09:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41356 "EHLO
+        id S229548AbiJKOaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 10:30:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiJKOJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:09:52 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8964E11161
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 07:09:49 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id j21so6306938qkk.9
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 07:09:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qgU+j7ZCV4AebDJiRH1Omm0iISpODuroU2FgUcdEDTg=;
-        b=seXhbOEhZADT/FVNxI4w1XWvaYjMs/WuJw173RmYw9Lz9ak9rrFtWsfI36w/x3cWv6
-         lANw7RoHfKUGEKy8zo10jZ26LuwpR5BT9iiuqHZecFX9RJfz3zBYRbu+gxiDnPoDj04h
-         AwWh1OizT/eE5i3CgZaJMGzn22bsnSC+eUpyiMWGNzmygg/Z3qNJcC2BiI84o5CHm+Hy
-         /76+e3UGICFddX0KwkHCk+z+HGVww804HwyhCowTtFFbfoW2+NEiw+bQVUjvbjiASSkf
-         LYLwOrLf0YVcTKHzzEFxxrMxcyrxa88JtRMvmhkoA9zzKfKPl4BVToK7M9QWCUkrKNBx
-         4CCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qgU+j7ZCV4AebDJiRH1Omm0iISpODuroU2FgUcdEDTg=;
-        b=YQ0+N5iKGuUbsPYs/Al+AzpReMnnPf9gH5JOLIpd8Ml1eihzKjpoUPdioYyGFSX9ZR
-         hyQB87tbR8h26aK/IZQzO7SOMRt3nE4nZK3kUUAIlH8QplFEmP5LwlNZdtuOsQrIhNb5
-         /WTvyVhLbxuzGftDE3eX1Kz1lLjgbMe3TjLg4ye04063iT3J/dCUNw1h1BAjUDI6pyNv
-         IQ7ssyX9kAn2M2ytNxVFF4Ot3UXWOhHlR66DgpXroikM7JdccJ12+EpM8LXIO/kX/SG9
-         diIN5L9hdG2HJyVWo7oKDjQiGlv/KOXq/1K6YGxqT6VaXVkY8u5ekt+sQ7WJRqBrYtvR
-         8esA==
-X-Gm-Message-State: ACrzQf1ijyF4thZuhhtAW/Zw6LGsVBAtHrUSiepm6/z1wf6rox7ngtKQ
-        RGxGm9YBcolwlhAVTNkVZ1/0iA==
-X-Google-Smtp-Source: AMsMyM63pcT5iolfTdSHTX2Z5yyeLUsOx4E2TKrAbo2GoYbKsBLReUG06WldGlINrnSQbw17CFpp4w==
-X-Received: by 2002:a05:620a:791:b0:6ec:b7ad:e936 with SMTP id 17-20020a05620a079100b006ecb7ade936mr7442568qka.637.1665497388081;
-        Tue, 11 Oct 2022 07:09:48 -0700 (PDT)
-Received: from krzk-bin.home (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id h3-20020a05620a244300b006d94c499d8fsm13265726qkn.50.2022.10.11.07.09.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Oct 2022 07:09:47 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: interconnect: qcom,msm8998-bwmon: Correct SC7280 CPU compatible
-Date:   Tue, 11 Oct 2022 10:07:44 -0400
-Message-Id: <20221011140744.29829-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229464AbiJKOaQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:30:16 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2E0C9357F8;
+        Tue, 11 Oct 2022 07:30:15 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 49BB080F9;
+        Tue, 11 Oct 2022 14:21:26 +0000 (UTC)
+Date:   Tue, 11 Oct 2022 17:30:12 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] ARM: dts: omap3-n900: fix LCD reset line polarity
+Message-ID: <Y0V99Agad6Ma+yTC@atomide.com>
+References: <20221004213503.848262-1-dmitry.torokhov@gmail.com>
+ <Y0UDEtQlN5Y9h7BU@atomide.com>
+ <20221011123726.elsr53ue7nxzhvww@mercury.elektranox.org>
+ <Y0V4cLGbYe4j+ls6@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y0V4cLGbYe4j+ls6@google.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Two different compatibles for SC7280 CPU BWMON instance were used
-in DTS and bindings.  Correct the bindings to use the same one as in
-DTS, because it is more specific.
+* Dmitry Torokhov <dmitry.torokhov@gmail.com> [221011 13:57]:
+> Hi Sebastian,
+> 
+> On Tue, Oct 11, 2022 at 02:37:26PM +0200, Sebastian Reichel wrote:
+> > Hi,
+> > 
+> > On Tue, Oct 11, 2022 at 08:45:54AM +0300, Tony Lindgren wrote:
+> > > * Dmitry Torokhov <dmitry.torokhov@gmail.com> [221004 21:26]:
+> > > > The LCD driver (panel-sony-acx565akm), when probing, starts with line
+> > > > driven low, and then toggles it to high and keeps it there. Also, the
+> > > > line is driven low when powering off the device, and ls released when
+> > > > powering it back on. This means that the reset line should be described
+> > > > as "active low" in DTS. This will be important when the driver is
+> > > > converted to gpiod API which respects the polarity declared in DTS.
+> > > 
+> > > We should ensure these patches get merged together with the driver
+> > > change to avoid breaking LCD for booting. Probably no need to have
+> > > the driver quirk handling for inverted polartity in this case.
+> > > 
+> > > It's probably easiest to have an immutable branch for the driver
+> > > changes I can base the dts changes on. Or I can ack the dts changes
+> > > if they get merged with the driver.
+> > 
+> > Both drivers are already using gpiod API:
+> > 
+> > drivers/gpu/drm/panel/panel-sony-acx565akm.c
+> > drivers/gpu/drm/panel/panel-dsi-cm.c
+> 
+> I was looking at
+> 
+> drivers/video/fbdev/omap2/omapfb/displays/panel-sony-acx565akm.c
+> drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c
 
-Fixes: b7c84ae757c2 ("dt-bindings: interconnect: qcom,msm8998-bwmon: Add support for sc7280 BWMONs")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml    | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ah OK that explains :)
 
-diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-index 2684562df4d9..be29e0b80995 100644
---- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-@@ -24,7 +24,7 @@ properties:
-     oneOf:
-       - items:
-           - enum:
--              - qcom,sc7280-bwmon
-+              - qcom,sc7280-cpu-bwmon
-               - qcom,sdm845-bwmon
-           - const: qcom,msm8998-bwmon
-       - const: qcom,msm8998-bwmon       # BWMON v4
--- 
-2.34.1
+> which are not using gpiod. Should they be retired?
 
+Yes we should just get rid of them with omapdrm working just fine.
+
+> > So this just breaks things.
+> 
+> I missed the drivers in drivers/gpu/... and I see that they essentially
+> abuse gpiod API as gpiod_set_value() operates on logical level
+> (active/inactive) and not absolute (high/low). They should either use
+> the gpiod_*_raw() variants, or they should be adjusted to do the proper
+> thing together with the accompanying DTS change.
+> 
+> What are your preferences?
+
+Seems like high/low at the connected device end is what we should use,
+right? Otherwise things will misbehave if the panel is connected to
+some other SoC possibly.
+
+Regards,
+
+Tony
