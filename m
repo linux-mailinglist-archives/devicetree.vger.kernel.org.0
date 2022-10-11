@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 841445FBC1A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 22:34:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A50765FBC8D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 22:58:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbiJKUee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 16:34:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39270 "EHLO
+        id S229508AbiJKU6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 16:58:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbiJKUed (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 16:34:33 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31807B786
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 13:34:31 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id u15so11232197oie.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 13:34:31 -0700 (PDT)
+        with ESMTP id S229454AbiJKU6d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 16:58:33 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 670EAA026E
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 13:58:31 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id df9so9736081qvb.9
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 13:58:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K1hrqeMqcrecJQqIBuIb6NTt7na4rSliwCpyxyTURNo=;
-        b=F9vfNa/5kId1sULp3PZu4PxADFGT14i+6QGWtBUyQKpHTSAGfukcnJLFoJXQtCWKY2
-         sSDPkDoVelg36OBhKUAudAFS8CHHmoqXL5hKxUQHG2IM1RosouDh/H8fIuYWf2O0GABz
-         ddGQ8Dug4usa4M21lAZVQsdUldsPZtu5uucNuZ0AcgMhGwLBJ+erqMUKnS9eNyIusjfL
-         udGJq0Ab51nGT1LDe4WM4Np2De/rEiiSKelf6x4PBJ324m5d18jG975MS1b0LQQwORJd
-         EdqJfHV10zNI84hWgHRolGqjht9Q2gjKoY7gGhi6B0bVTbITnUZ8z2ohi2BqtABNfvjX
-         WoXA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+mAHY6RXJ0nyPOXmiZe+CE8JvmNJU/Rv6H1VrtQQpaY=;
+        b=YzVPehwVEYa5twQoFeGI45fkEkYXwVmX6VSDI0sLF59itZz8N5lt3HukThIAub9Uoi
+         glaQr5ZUPcuGqfw2a/oa4HBN2ljScw/Z98y50iXxUCiEdBgP+iI9IJJTHgc86J4ZDQMQ
+         HHrJFkORoOrxtskJlxsCq4vkzSowgZdLgtzajS8JQtVwNVi47qEOlmIlkK3uzVrc0WS8
+         2yTJy6sBlmE9wkuaA1BXPCrIWbEdZVSGNQ0OAugke5lBvhZinLvcIjhPk1HfKvezcKhs
+         yk5kp14weVRyUipL/d8iCq/xURXsrJF1gKkSE/e6jsAW+tI0QeFvaz7NPkZ1E2ZRlJk2
+         wBrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K1hrqeMqcrecJQqIBuIb6NTt7na4rSliwCpyxyTURNo=;
-        b=dp5d89tcU8VBhhA9ysLEjk/55E5WhLspUt0Si0eSCdJK727nvKU7XVVFV2hhmWspo1
-         sKwMXuBeolxaOUjpIWrTzAcvFW0crgQU4zWjF9nym6zJPaVmAWLv0FAs50ZcwgC892yj
-         GzKLvc0pxOLk2RAX2P71dvvZMfYWlUY06F26d6t3iHqIRYssYv6J2CTKCDrJUND8hwsJ
-         V17Px7Q0/BLWfbSmYVFp1IQgu0eBWX7CDs8GREXR9xd8ZGPXyu7+SUxErJ1iSEkfq/50
-         MnJjJ6ZMfdoQ65LaF+uzAOBMsA2M/MLhvSaJ7be8A8ctRP483LRq7oXr4SCfoSdF3kWa
-         TAAg==
-X-Gm-Message-State: ACrzQf3vCpvPH5kFm2Acf7QkF0nztah3Kh+hIdaBwBvyaB7SBYkryaMH
-        X5IBnxegHyuh8Z8F4R88cc7tvcY1wBtgrWnaB8LxBg==
-X-Google-Smtp-Source: AMsMyM5NHjnR6NrvSHIvvuxyX4HjfOUVSrI0LRMDkc/nfT9Jbe71lDLRt+qg9RI3Ink6nJAEZ8oq1znmVG566EBTJmg=
-X-Received: by 2002:aca:2806:0:b0:354:82ad:4173 with SMTP id
- 6-20020aca2806000000b0035482ad4173mr486268oix.66.1665520470751; Tue, 11 Oct
- 2022 13:34:30 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+mAHY6RXJ0nyPOXmiZe+CE8JvmNJU/Rv6H1VrtQQpaY=;
+        b=NIGkah5MSsgizeBi+fyMgxWF5VsonOgB6ejxIdfi11f1psdSfP+PjUmGogw8IvtJya
+         WssosXZdJAJm5js5zT2mBmdkpit3rd3Ed4NA5uDFaB0h+fZC0C8Jp7dXN7EIMErw/dn/
+         i9atwELnyW0nHNw8H5pa4g+1J0qKyBlLbvmjjtpEB+af4Hnk798JDGXmNMRt+16wuNra
+         0vOVkDcUV9iSb3B0JEbGqLslgAnlwE6WCxqO6VpFGS4K11C28h9r8KVf0xtrtNbr6IOT
+         4NxmIlwRpxuGTt+glCCIPCIId8PDHBoCBlIAJsPSClrQV8bY5Q88c4oxd4tIPFvVhhc/
+         Dvgw==
+X-Gm-Message-State: ACrzQf0Zcq7lRsAW98mOC81s70dT8rGV9nJb/A5ERsGr7Jb4vgd7mSei
+        FRdY8XtX2i0y0hu3O2dd2WUEWg==
+X-Google-Smtp-Source: AMsMyM5WexhRoKAuqE1aNkWUn9DwGaVN5NqqdcUsKdNKxRxdcaFeCrG0LLK5l0onZLNKntt2qlysKQ==
+X-Received: by 2002:ad4:5ba1:0:b0:4b1:9a15:4766 with SMTP id 1-20020ad45ba1000000b004b19a154766mr20628926qvq.6.1665521910121;
+        Tue, 11 Oct 2022 13:58:30 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id r4-20020a05622a034400b00398a7c860c2sm7680696qtw.4.2022.10.11.13.58.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Oct 2022 13:58:29 -0700 (PDT)
+Message-ID: <fa7c6054-7076-299d-ed0f-9e4fc0ffc194@linaro.org>
+Date:   Tue, 11 Oct 2022 16:58:28 -0400
 MIME-Version: 1.0
-References: <20221011190613.13008-1-mig@semihalf.com> <20221011190613.13008-2-mig@semihalf.com>
- <ad015bc9-a6d2-491d-463a-42a6a0afbf75@linaro.org>
-In-Reply-To: <ad015bc9-a6d2-491d-463a-42a6a0afbf75@linaro.org>
-From:   Marcin Wojtas <mw@semihalf.com>
-Date:   Tue, 11 Oct 2022 22:34:20 +0200
-Message-ID: <CAPv3WKcY=erFTBDLP1AhQa0+CP6C8KJinmKFEkR2xh4mHHv_aQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: marvell,pp2: convert to json-schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     =?UTF-8?Q?Micha=C5=82_Grzelak?= <mig@semihalf.com>,
-        devicetree@vger.kernel.org, linux@armlinux.org.uk,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, upstream@semihalf.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH V2] arm64: dts: fix drive strength macros as per FSD HW UM
+Content-Language: en-US
+To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        alim.akhtar@samsung.com, chanho61.park@samsung.com,
+        linus.walleij@linaro.org, pankaj.dubey@samsung.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <CGME20221011083029epcas5p3cef6047d23d0682a9cb70ba6178067a8@epcas5p3.samsung.com>
+ <20221011080359.76220-1-p.rajanbabu@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221011080359.76220-1-p.rajanbabu@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,215 +77,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 11/10/2022 04:03, Padmanabhan Rajanbabu wrote:
+> Drive strength macros defined for FSD platform is not reflecting actual
+> name and values as per HW UM. FSD SoC pinctrl has following four levels of
 
-Let me chime in.
+s/name/names/
 
-wt., 11 pa=C5=BA 2022 o 21:50 Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> napisa=C5=82(a):
->
-> On 11/10/2022 15:06, Micha=C5=82 Grzelak wrote:
-> > Convert the marvell,pp2 bindings from text to proper schema.
-> >
-> > Move 'marvell,system-controller' and 'dma-coherent' properties from
-> > port up to the controller node, to match what is actually done in DT.
->
-> You need to also mention other changes done during conversion -
-> requiring subnodes to be named "(ethernet-)?ports", deprecating port-id.
->
-> >
-> > Signed-off-by: Micha=C5=82 Grzelak <mig@semihalf.com>
-> > ---
-> >  .../devicetree/bindings/net/marvell,pp2.yaml  | 286 ++++++++++++++++++
-> >  .../devicetree/bindings/net/marvell-pp2.txt   | 141 ---------
-> >  MAINTAINERS                                   |   2 +-
-> >  3 files changed, 287 insertions(+), 142 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/net/marvell,pp2.y=
-aml
-> >  delete mode 100644 Documentation/devicetree/bindings/net/marvell-pp2.t=
-xt
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/marvell,pp2.yaml b/D=
-ocumentation/devicetree/bindings/net/marvell,pp2.yaml
-> > new file mode 100644
-> > index 000000000000..24c6aeb46814
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/marvell,pp2.yaml
-> > @@ -0,0 +1,286 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/marvell,pp2.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Marvell CN913X / Marvell Armada 375, 7K, 8K Ethernet Controller
-> > +
-> > +maintainers:
-> > +  - Marcin Wojtas <mw@semihalf.com>
-> > +  - Russell King <linux@armlinux.org>
-> > +
-> > +description: |
-> > +  Marvell Armada 375 Ethernet Controller (PPv2.1)
-> > +  Marvell Armada 7K/8K Ethernet Controller (PPv2.2)
-> > +  Marvell CN913X Ethernet Controller (PPv2.3)
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - marvell,armada-375-pp2
-> > +      - marvell,armada-7k-pp22
-> > +
-> > +  reg:
-> > +    minItems: 3
-> > +    maxItems: 4
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
-> > +  clocks:
-> > +    minItems: 2
-> > +    items:
-> > +      - description: main controller clock
-> > +      - description: GOP clock
-> > +      - description: MG clock
-> > +      - description: MG Core clock
-> > +      - description: AXI clock
-> > +
-> > +  clock-names:
-> > +    minItems: 2
-> > +    items:
-> > +      - const: pp_clk
-> > +      - const: gop_clk
-> > +      - const: mg_clk
-> > +      - const: mg_core_clk
-> > +      - const: axi_clk
-> > +
-> > +  dma-coherent: true
-> > +
-> > +  marvell,system-controller:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: a phandle to the system controller.
-> > +
-> > +patternProperties:
-> > +  '^(ethernet-)?port@[0-9]+$':
-> > +    type: object
-> > +    description: subnode for each ethernet port.
-> > +
-> > +    properties:
-> > +      interrupts:
-> > +        minItems: 1
-> > +        maxItems: 10
-> > +        description: interrupt(s) for the port
-> > +
-> > +      interrupt-names:
-> > +        minItems: 1
-> > +        items:
-> > +          - const: hif0
-> > +          - const: hif1
-> > +          - const: hif2
-> > +          - const: hif3
-> > +          - const: hif4
-> > +          - const: hif5
-> > +          - const: hif6
-> > +          - const: hif7
-> > +          - const: hif8
-> > +          - const: link
-> > +
-> > +        description: >
-> > +          if more than a single interrupt for is given, must be the
-> > +          name associated to the interrupts listed. Valid names are:
-> > +          "hifX", with X in [0..8], and "link". The names "tx-cpu0",
-> > +          "tx-cpu1", "tx-cpu2", "tx-cpu3" and "rx-shared" are supporte=
-d
-> > +          for backward compatibility but shouldn't be used for new
-> > +          additions.
-> > +
-> > +      reg:
-> > +        description: ID of the port from the MAC point of view.
-> > +
-> > +      port-id:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
->
->         deprecated: true
->
-> > +        description: >
-> > +          ID of the port from the MAC point of view.
-> > +          Legacy binding for backward compatibility.
-> > +
-> > +      phy:
-> > +        $ref: /schemas/types.yaml#/definitions/phandle
-> > +        description: >
-> > +          a phandle to a phy node defining the PHY address
-> > +          (as the reg property, a single integer).
-> > +
-> > +      phy-mode:
-> > +        $ref: ethernet-controller.yaml#/properties/phy-mode
-> > +
-> > +      marvell,loopback:
-> > +        $ref: /schemas/types.yaml#/definitions/flag
-> > +        description: port is loopback mode.
-> > +
-> > +      gop-port-id:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description: >
-> > +          only for marvell,armada-7k-pp22, ID of the port from the
-> > +          GOP (Group Of Ports) point of view. This ID is used to index=
- the
-> > +          per-port registers in the second register area.
-> > +
-> > +    required:
-> > +      - interrupts
-> > +      - port-id
-> > +      - phy-mode
-> > +      - reg
->
-> Keep the same order of items here as in list of properties
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +
-> > +allOf:
-> > +  - $ref: ethernet-controller.yaml#
->
-> Hmm, are you sure this applies to top-level properties, not to
-> ethernet-port subnodes? Your ports have phy-mode and phy - just like
-> ethernet-controller. If I understand correctly, your Armada Ethernet
-> Controller actually consists of multiple ethernet controllers?
->
+> drive-strength and their corresponding values:
+> Level-1 <-> 0
+> Level-2 <-> 1
+> Level-4 <-> 2
+> Level-6 <-> 3
+> 
+> The commit 684dac402f21 ("arm64: dts: fsd: Add initial pinctrl support")
+> used drive strength macros defined for Exynos4 SoC family. For some IPs
+> the macros values of Exynos4 matched and worked well, but Exynos4 SoC
+> family drive-strength (names and values) is not exactly matching with
+> FSD SoC.
+> 
+> Fix the drive strength macros to reflect actual names and values given
+> in FSD HW UM. This also ensures that the existing peripherals in device
+> tree file is using correct drive strength MACROs to function as
+> expected.
+> 
+> Fixes: 684dac402f21 ("arm64: dts: fsd: Add initial pinctrl support")
+> Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+> ---
 
-PP2 is a single controller with common HW blocks, such as queue/buffer
-management, parser/classifier, register space, and more. It controls
-up to 3 MAC's (ports) that can be connected to phys, sfp cages, etc.
-The latter cannot exist on their own and IMO the current hierarchy -
-the main controller with subnodes (ports) properly reflects the
-hardware.
+Rest of commit msg looks ok.
 
-Anyway, the ethernet-controller.yaml properties fit to the subnodes.
-Apart from the name. The below is IMO a good description:.
+>  arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi | 34 +++++++++++-----------
+>  arch/arm64/boot/dts/tesla/fsd-pinctrl.h    |  6 ++--
+>  2 files changed, 20 insertions(+), 20 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+> index d0abb9aa0e9e..e3852c946352 100644
+> --- a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+> +++ b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+> @@ -55,14 +55,14 @@
+>  		samsung,pins = "gpf5-0";
+>  		samsung,pin-function = <FSD_PIN_FUNC_2>;
+>  		samsung,pin-pud = <FSD_PIN_PULL_NONE>;
+> -		samsung,pin-drv = <FSD_PIN_DRV_LV2>;
+> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
+>  	};
+>  
+>  	ufs_refclk_out: ufs-refclk-out-pins {
+>  		samsung,pins = "gpf5-1";
+>  		samsung,pin-function = <FSD_PIN_FUNC_2>;
+>  		samsung,pin-pud = <FSD_PIN_PULL_NONE>;
+> -		samsung,pin-drv = <FSD_PIN_DRV_LV2>;
+> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
+>  	};
+>  };
+>  
+> @@ -239,105 +239,105 @@
+>  		samsung,pins = "gpb6-1";
+>  		samsung,pin-function = <FSD_PIN_FUNC_2>;
+>  		samsung,pin-pud = <FSD_PIN_PULL_UP>;
+> -		samsung,pin-drv = <FSD_PIN_DRV_LV2>;
+> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
+>  	};
+>  
+>  	pwm1_out: pwm1-out-pins {
+>  		samsung,pins = "gpb6-5";
+>  		samsung,pin-function = <FSD_PIN_FUNC_2>;
+>  		samsung,pin-pud = <FSD_PIN_PULL_UP>;
+> -		samsung,pin-drv = <FSD_PIN_DRV_LV2>;
+> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
+>  	};
+>  
+>  	hs_i2c0_bus: hs-i2c0-bus-pins {
+>  		samsung,pins = "gpb0-0", "gpb0-1";
+>  		samsung,pin-function = <FSD_PIN_FUNC_2>;
+>  		samsung,pin-pud = <FSD_PIN_PULL_UP>;
+> -		samsung,pin-drv = <FSD_PIN_DRV_LV1>;
+> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
 
-> If so, this should be moved to proper place inside patternProperties.
-> Maybe the subnodes should also be renamed from ports to just "ethernet"
-> (as ethernet-controller.yaml expects), but other schemas do not follow
-> this convention,
+You are now changing both the value for register and the meaning (name).
+Your commit msg indicated that the names are not correct, not the
+values. Based on the commit msg, I expect the DTBs are the same. Are
+they? If not, it these are two different commits with their own
+explanations/reasoning.
 
-ethernet@
-{
-    ethernet-port@0
-    {
-     }
-     ethernet-port@1
-     {
-     }
-}
+Best regards,
+Krzysztof
 
-What do you recommend?
-
-Thanks,
-Marcin
