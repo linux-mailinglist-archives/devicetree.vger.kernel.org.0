@@ -2,339 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11F8E5FBE08
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 01:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BE9E5FBE32
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 01:13:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbiJKXB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 19:01:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40978 "EHLO
+        id S229456AbiJKXNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 19:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbiJKXB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 19:01:26 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B285F986
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 16:01:24 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-131dda37dddso17754974fac.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 16:01:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1NmhxoB5FfeDLQSOCmHfU2Us6Bf0La5Ymj1Q8d1Ci+Y=;
-        b=hikWRSPJtZ8VgEI+7O08taRL31Iuz4MeLJoGC3SNfDE8lzz9/5U7qHVs0JOqSwbb74
-         0/9FAAHaNLYp5fTy5fJXOEHD9Y4+gV7fZJayd+8eWkvHpXfuesOZLzAGCl6qRvZSh4UX
-         uA1Je/OFgiw1jMkUxkNeSEBzVsFkooPN4sh6UjJ9eIZgZjzFnzqvnYnquwhMF9jbxQPz
-         I918R1C3D5WxRB4js8CSyu1tUmt2YIhawgGfzgViQdnxCvYO66g2GwZ+O3a7M3kx87eP
-         8i28++Kyxuu7LjUOM8ibFEfJXcltBbgLpRWOpOKU42ZjZ/Odl8fQTmMGv+ZkjX8pwkWV
-         DnpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1NmhxoB5FfeDLQSOCmHfU2Us6Bf0La5Ymj1Q8d1Ci+Y=;
-        b=yt2V67bUmYVorX2KtLVkhjtqo0Fu0FPivdbMwp6KMKH2fuJ+MNySYclXGVVVowXICc
-         TPvoSxJ428Z+ST5FMNsJSEWVtJy5CLVgGSE5kPOXvNI2jO7AJHz4qdcYqmruwG8lEhPV
-         G92RmSRJJ933/dctaPv4cxkPIsCuBMN4LCpPaBTp3G56w2eAt8nL8kawZ/wgbHO0xUyu
-         88YE/4tN2cjaD23GA+wQHWHoC8s3cOIDNSfEm/iTZqgY3gzC/IR94cWdRKbE0NIDEzkF
-         fYaCzJqWksPKPY9g3Hgjo7t259uXhPMBsT9Thr4euSWzdM2YKlLbD2XAVYnaZxmH90Gy
-         VI4A==
-X-Gm-Message-State: ACrzQf2igQbepQC3iQuBgq4iwmqFpydzN4O00n+4uAjKneUnuNv1QGs6
-        FrtvkMS2yZOuzJ5VU99ClVJttgcvTjrZll1vB8Z5eA==
-X-Google-Smtp-Source: AMsMyM5N0L4L3FOVl+mGmuvzLjnRyLQ9Hgcq2jpnXWweheGK6eoLgzIp/P4hGoetZKJhy7Ds098DMbaUVMNhz/RjXvM=
-X-Received: by 2002:a05:6870:c082:b0:12b:542c:71cf with SMTP id
- c2-20020a056870c08200b0012b542c71cfmr848222oad.45.1665529283863; Tue, 11 Oct
- 2022 16:01:23 -0700 (PDT)
+        with ESMTP id S229517AbiJKXNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 19:13:36 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A76F59E0EC;
+        Tue, 11 Oct 2022 16:13:28 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 706FF84DB7;
+        Wed, 12 Oct 2022 01:13:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1665530005;
+        bh=l+dlg0AQEU9Qd30nOIVb+gtSSQPQJSUwCrZ7VHzam6Y=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=nWBnCuXLlXu1DwS9AKbkWVVkSy39PRAiDXtGzcpF+x0Eh86mx3PtUAv6byce79P3f
+         w7bq5RVntAuB4Ibz/XaX0qH9Akm6ik0oNcM7uqrS+fn2YraUhxppHZVcfYYLxx/5jR
+         321TvSd7YMwGZgYGrLM2uC8KdqmUZbapiXdxYdeGDg1PrNSaAPoex0jANd4Njdrc03
+         Ihr6cxz84jF1AAFtheiautbmTFgpSKB2cSV6yWb1DgPJDl6UP0G8BR5VF4SDPcBU6I
+         8Dh+K4ddBuHabP4XpxPReqYIxoX3YT8fdyuTXzMxCVgad0IBX6rMkhET7BbUpXmhW7
+         JvkK9ToBKfdjA==
+Message-ID: <ec599991-44da-7b83-9374-d0043b32f053@denx.de>
+Date:   Wed, 12 Oct 2022 01:13:23 +0200
 MIME-Version: 1.0
-References: <20221011190613.13008-1-mig@semihalf.com> <20221011190613.13008-2-mig@semihalf.com>
- <ad015bc9-a6d2-491d-463a-42a6a0afbf75@linaro.org> <CAPv3WKcY=erFTBDLP1AhQa0+CP6C8KJinmKFEkR2xh4mHHv_aQ@mail.gmail.com>
-In-Reply-To: <CAPv3WKcY=erFTBDLP1AhQa0+CP6C8KJinmKFEkR2xh4mHHv_aQ@mail.gmail.com>
-From:   Marcin Wojtas <mw@semihalf.com>
-Date:   Wed, 12 Oct 2022 01:01:13 +0200
-Message-ID: <CAPv3WKdon28ntGQ=xbmL+CEFQ7=xzOQOcV9qN_8MOt-uiLHoXg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: marvell,pp2: convert to json-schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     =?UTF-8?Q?Micha=C5=82_Grzelak?= <mig@semihalf.com>,
-        devicetree@vger.kernel.org, linux@armlinux.org.uk,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, upstream@semihalf.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH V4 0/7] imx: blk-ctrl: Add interconnect for i.MX8MP
+To:     Tim Harvey <tharvey@gateworks.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     djakov@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, abelvesa@kernel.org,
+        abailon@baylibre.com, l.stach@pengutronix.de,
+        laurent.pinchart@ideasonboard.com, paul.elder@ideasonboard.com,
+        Markus.Niebel@ew.tq-group.com, aford173@gmail.com,
+        kernel@pengutronix.de, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+References: <20220708085632.1918323-1-peng.fan@oss.nxp.com>
+ <CAJ+vNU3uYtDGMd6fPi7skWKL8UNXntfAEODARF0NVz9k7DCT7w@mail.gmail.com>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAJ+vNU3uYtDGMd6fPi7skWKL8UNXntfAEODARF0NVz9k7DCT7w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-wt., 11 pa=C5=BA 2022 o 22:34 Marcin Wojtas <mw@semihalf.com> napisa=C5=82(=
-a):
->
-> Hi Krzysztof,
->
-> Let me chime in.
->
-> wt., 11 pa=C5=BA 2022 o 21:50 Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> napisa=C5=82(a):
-> >
-> > On 11/10/2022 15:06, Micha=C5=82 Grzelak wrote:
-> > > Convert the marvell,pp2 bindings from text to proper schema.
-> > >
-> > > Move 'marvell,system-controller' and 'dma-coherent' properties from
-> > > port up to the controller node, to match what is actually done in DT.
-> >
-> > You need to also mention other changes done during conversion -
-> > requiring subnodes to be named "(ethernet-)?ports", deprecating port-id=
-.
-> >
-> > >
-> > > Signed-off-by: Micha=C5=82 Grzelak <mig@semihalf.com>
-> > > ---
-> > >  .../devicetree/bindings/net/marvell,pp2.yaml  | 286 ++++++++++++++++=
-++
-> > >  .../devicetree/bindings/net/marvell-pp2.txt   | 141 ---------
-> > >  MAINTAINERS                                   |   2 +-
-> > >  3 files changed, 287 insertions(+), 142 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/net/marvell,pp2=
-.yaml
-> > >  delete mode 100644 Documentation/devicetree/bindings/net/marvell-pp2=
-.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/net/marvell,pp2.yaml b=
-/Documentation/devicetree/bindings/net/marvell,pp2.yaml
-> > > new file mode 100644
-> > > index 000000000000..24c6aeb46814
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/net/marvell,pp2.yaml
-> > > @@ -0,0 +1,286 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/net/marvell,pp2.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Marvell CN913X / Marvell Armada 375, 7K, 8K Ethernet Controll=
-er
-> > > +
-> > > +maintainers:
-> > > +  - Marcin Wojtas <mw@semihalf.com>
-> > > +  - Russell King <linux@armlinux.org>
-> > > +
-> > > +description: |
-> > > +  Marvell Armada 375 Ethernet Controller (PPv2.1)
-> > > +  Marvell Armada 7K/8K Ethernet Controller (PPv2.2)
-> > > +  Marvell CN913X Ethernet Controller (PPv2.3)
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - marvell,armada-375-pp2
-> > > +      - marvell,armada-7k-pp22
-> > > +
-> > > +  reg:
-> > > +    minItems: 3
-> > > +    maxItems: 4
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 0
-> > > +
-> > > +  clocks:
-> > > +    minItems: 2
-> > > +    items:
-> > > +      - description: main controller clock
-> > > +      - description: GOP clock
-> > > +      - description: MG clock
-> > > +      - description: MG Core clock
-> > > +      - description: AXI clock
-> > > +
-> > > +  clock-names:
-> > > +    minItems: 2
-> > > +    items:
-> > > +      - const: pp_clk
-> > > +      - const: gop_clk
-> > > +      - const: mg_clk
-> > > +      - const: mg_core_clk
-> > > +      - const: axi_clk
-> > > +
-> > > +  dma-coherent: true
-> > > +
-> > > +  marvell,system-controller:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description: a phandle to the system controller.
-> > > +
-> > > +patternProperties:
-> > > +  '^(ethernet-)?port@[0-9]+$':
-> > > +    type: object
-> > > +    description: subnode for each ethernet port.
-> > > +
-> > > +    properties:
-> > > +      interrupts:
-> > > +        minItems: 1
-> > > +        maxItems: 10
-> > > +        description: interrupt(s) for the port
-> > > +
-> > > +      interrupt-names:
-> > > +        minItems: 1
-> > > +        items:
-> > > +          - const: hif0
-> > > +          - const: hif1
-> > > +          - const: hif2
-> > > +          - const: hif3
-> > > +          - const: hif4
-> > > +          - const: hif5
-> > > +          - const: hif6
-> > > +          - const: hif7
-> > > +          - const: hif8
-> > > +          - const: link
-> > > +
-> > > +        description: >
-> > > +          if more than a single interrupt for is given, must be the
-> > > +          name associated to the interrupts listed. Valid names are:
-> > > +          "hifX", with X in [0..8], and "link". The names "tx-cpu0",
-> > > +          "tx-cpu1", "tx-cpu2", "tx-cpu3" and "rx-shared" are suppor=
-ted
-> > > +          for backward compatibility but shouldn't be used for new
-> > > +          additions.
-> > > +
-> > > +      reg:
-> > > +        description: ID of the port from the MAC point of view.
-> > > +
-> > > +      port-id:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> >
-> >         deprecated: true
-> >
-> > > +        description: >
-> > > +          ID of the port from the MAC point of view.
-> > > +          Legacy binding for backward compatibility.
-> > > +
-> > > +      phy:
-> > > +        $ref: /schemas/types.yaml#/definitions/phandle
-> > > +        description: >
-> > > +          a phandle to a phy node defining the PHY address
-> > > +          (as the reg property, a single integer).
-> > > +
-> > > +      phy-mode:
-> > > +        $ref: ethernet-controller.yaml#/properties/phy-mode
-> > > +
-> > > +      marvell,loopback:
-> > > +        $ref: /schemas/types.yaml#/definitions/flag
-> > > +        description: port is loopback mode.
-> > > +
-> > > +      gop-port-id:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > +        description: >
-> > > +          only for marvell,armada-7k-pp22, ID of the port from the
-> > > +          GOP (Group Of Ports) point of view. This ID is used to ind=
-ex the
-> > > +          per-port registers in the second register area.
-> > > +
-> > > +    required:
-> > > +      - interrupts
-> > > +      - port-id
-> > > +      - phy-mode
-> > > +      - reg
-> >
-> > Keep the same order of items here as in list of properties
-> >
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - clocks
-> > > +  - clock-names
-> > > +
-> > > +allOf:
-> > > +  - $ref: ethernet-controller.yaml#
-> >
-> > Hmm, are you sure this applies to top-level properties, not to
-> > ethernet-port subnodes? Your ports have phy-mode and phy - just like
-> > ethernet-controller. If I understand correctly, your Armada Ethernet
-> > Controller actually consists of multiple ethernet controllers?
-> >
->
-> PP2 is a single controller with common HW blocks, such as queue/buffer
-> management, parser/classifier, register space, and more. It controls
-> up to 3 MAC's (ports) that can be connected to phys, sfp cages, etc.
-> The latter cannot exist on their own and IMO the current hierarchy -
-> the main controller with subnodes (ports) properly reflects the
-> hardware.
->
-> Anyway, the ethernet-controller.yaml properties fit to the subnodes.
-> Apart from the name. The below is IMO a good description:.
->
-> > If so, this should be moved to proper place inside patternProperties.
-> > Maybe the subnodes should also be renamed from ports to just "ethernet"
-> > (as ethernet-controller.yaml expects), but other schemas do not follow
-> > this convention,
->
-> ethernet@
-> {
->     ethernet-port@0
->     {
->      }
->      ethernet-port@1
->      {
->      }
-> }
->
-> What do you recommend?
->
+On 10/11/22 22:10, Tim Harvey wrote:
+> On Fri, Jul 8, 2022 at 1:57 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
+>>
+>> From: Peng Fan <peng.fan@nxp.com>
+>>
+>> V4:
+>>   Because the header is not included when adding NoC node, the fsl,imx8mp.h
+>>   needs be included in this patchset. So include it in patch 6
+>>
+>> V3:
+>>   Move adding NoC node patch to i.MX8MP ICC driver patchset
+>>   Per Lucas's comments, warn once when icc bulk get not return probe defer and continue.
+>>
+>> V2:
+>>   Use a low bandwidth value instead INT_MAX
+>>   Minor fix to move fsl,imx8mp.h out to dts patch, not driver patch
+>>   Add A-b tag from DT maintainer
+>>
+>> i.MX8MP NoC settings is invalid after related power domain up. So
+>> need to set valid values after power domain up.
+>>
+>> This patchset is to bind interconnect for each entry in blk ctrl.
+>>
+>> This patchset is not include DVFS DDRC feature.
+>>
+>> Peng Fan (7):
+>>    dt-bindings: soc: imx: add interconnect property for i.MX8MP media blk
+>>      ctrl
+>>    dt-bindings: soc: imx: add interconnect property for i.MX8MP hdmi blk
+>>      ctrl
+>>    dt-bindings: soc: imx: add interconnect property for i.MX8MP hsio blk
+>>      ctrl
+>>    soc: imx: add icc paths for i.MX8MP media blk ctrl
+>>    soc: imx: add icc paths for i.MX8MP hsio/hdmi blk ctrl
+>>    arm64: dts: imx8mp: add interconnects for media blk ctrl
+>>    arm64: dts: imx8mp: add interconnect for hsio blk ctrl
+>>
+>>   .../soc/imx/fsl,imx8mp-hdmi-blk-ctrl.yaml     |  9 +++++
+>>   .../soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml     | 10 +++++
+>>   .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 14 +++++++
+>>   arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 18 +++++++++
+>>   drivers/soc/imx/imx8m-blk-ctrl.c              | 39 +++++++++++++++++++
+>>   drivers/soc/imx/imx8mp-blk-ctrl.c             | 35 +++++++++++++++++
+>>   6 files changed, 125 insertions(+)
+>>
+>> --
+>> 2.25.1
+>>
+> 
+> Hi Peng,
+> 
+> I built origin/master from commit 041bc24d867a today for an imx8mp
+> board and am running into errors that appear to be introduced by this
+> series:
+> [   15.177372] platform 381f0040.usb-phy: deferred probe pending
+> [   15.183155] platform 382f0040.usb-phy: deferred probe pending
+> [   15.188928] platform 33800000.pcie: deferred probe pending
+> [   15.194439] platform 32ec0000.blk-ctrl: deferred probe pending
+> [   15.200287] platform 38330000.blk-ctrl: deferred probe pending
+> [   15.206129] platform 32f10000.blk-ctrl: deferred probe pending
+> [   15.211974] platform 32f10100.usb: deferred probe pending
+> [   15.217382] platform 32f10108.usb: deferred probe pending
+> [   15.222791] platform cpufreq-dt: deferred probe pending
+> # cat /sys/kernel/debug/devices_deferred
+> 381f0040.usb-phy        platform: supplier 32f10000.blk-ctrl not ready
+> 382f0040.usb-phy        platform: supplier 32f10000.blk-ctrl not ready
+> 33800000.pcie   platform: supplier 32f10000.blk-ctrl not ready
+> 32ec0000.blk-ctrl       imx8m-blk-ctrl: failed to get noc entries
+> 38330000.blk-ctrl       imx8m-blk-ctrl: failed to get noc entries
+> 32f10000.blk-ctrl       imx8mp-blk-ctrl: failed to get noc entries
+> 32f10100.usb    platform: supplier 32f10000.blk-ctrl not ready
+> 32f10108.usb    platform: supplier 32f10000.blk-ctrl not ready
+> cpufreq-dt
+> 
+> Is there a driver I'm perhaps missing that is needed now or are there
+> some patches that come from a different unmerged tree needed?
 
-I moved the ethernet-controller.yaml reference to under the subnode
-(this allowed me to remove phy and phy-mode description)) and it
-doesn't complain about the node naming. Please let me know if below
-would be acceptable.
+Do you have these enabled ?
 
---- a/Documentation/devicetree/bindings/net/marvell,pp2.yaml
-+++ b/Documentation/devicetree/bindings/net/marvell,pp2.yaml
-@@ -61,7 +61,11 @@ patternProperties:
-     type: object
-     description: subnode for each ethernet port.
-
-+    allOf:
-+      - $ref: ethernet-controller.yaml#
-+
-     properties:
-       interrupts:
-         minItems: 1
-         maxItems: 10
-@@ -95,19 +99,11 @@ patternProperties:
-
-       port-id:
-         $ref: /schemas/types.yaml#/definitions/uint32
-+        deprecated: true
-         description: >
-           ID of the port from the MAC point of view.
-           Legacy binding for backward compatibility.
-
--      phy:
--        $ref: /schemas/types.yaml#/definitions/phandle
--        description: >
--          a phandle to a phy node defining the PHY address
--          (as the reg property, a single integer).
--
--      phy-mode:
--        $ref: ethernet-controller.yaml#/properties/phy-mode
--
-       marvell,loopback:
-         $ref: /schemas/types.yaml#/definitions/flag
-         description: port is loopback mode.
-@@ -132,7 +128,6 @@ required:
-   - clock-names
-
- allOf:
--  - $ref: ethernet-controller.yaml#
-   - if:
-
-Best regards,
-Marcin
+CONFIG_INTERCONNECT_IMX8MM=y
+CONFIG_INTERCONNECT_IMX8MN=y
+CONFIG_INTERCONNECT_IMX8MQ=y
+CONFIG_INTERCONNECT_IMX8MP=y
