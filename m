@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACA845FB436
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 951915FB42F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:06:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230022AbiJKOHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 10:07:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33854 "EHLO
+        id S230061AbiJKOGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 10:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230128AbiJKOGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:06:39 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62F399412A
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 07:06:21 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id z97so20287656ede.8
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 07:06:21 -0700 (PDT)
+        with ESMTP id S230072AbiJKOGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:06:21 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32AE65F123
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 07:06:12 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id bv10so18236388wrb.4
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 07:06:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=WIzxr5nZexO1FxXGdVJNZa1N49u2iSyEWqopWkSvo2A=;
-        b=MgigEhGpaKokMwdkMs7sJQO+ksJB5pJ4+ffIzaMtOC4tMDk+4fcRCo3kF+8eOalD9D
-         UizVqpHyfGwT7SBfwtIez5tvkCeVp4dD+3ri6f5CvUpeer/AqCPN0tei6ZtXlX6MOwhk
-         CJz5555i3YyL0CBG7xSfxrWG0CU6p2g4u+gJio8bpSng/yudRONkgjXQWFPRnseCuvMI
-         cSgkTGPewcVLuddXtxdcqpCLtHkIoWs0O0yNnzm5Dj+IesiyGL4yJuEHWHicwpcTMTrw
-         txBTr76SPYChdpg8yobja2Nuaio+yTIQLIsUOQ0np6Zzarf2AE8jRX2QL8xJkmnFT8gx
-         sQXg==
+        bh=wxovnf5KPHC5iL/G2DCCvsq9cB2n/hhE49OVBFVzwkI=;
+        b=DH/SoT0wITUGF88uMh2ROZmuK9cjDJ/nRr7WDfE6px/3tX7Vfr/FoOIiUTYOiF9+jn
+         YOgqQ9e6jW0sLB4AaevSHG290ExfzAHTsCX3fZ6MQ9HEhO0L4fN2tVcy7q/N8nHLz5m9
+         ReL3op0wFuQfvyR+iVM0q2QSUewHTIArPrNCzOzWBp/QTCF7tdAjoAHIO+BFzLskVJvq
+         ljjr9D8gzXA0iJy/MjR/TUkUsOEyeaGz0s1tPS/UC1ND0BhmA8TL1K4ATUIUUJwGDJbI
+         X5CZd9FGV0tQY89IxA+cyNYCVa3ej10B7kU7MnpTbWY9De+alEnJIrk9Suj7KL5f50ie
+         ESKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=references:in-reply-to:message-id:date:subject:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WIzxr5nZexO1FxXGdVJNZa1N49u2iSyEWqopWkSvo2A=;
-        b=sWa11qKOdExUNhFnCnl6LwaMTtYhyh1dnlWDuAIWJ7laRxbkf1p9gwFQqNJf48FPbJ
-         nLcg8X1I88HShhju8ap3xY5Bn5Or+KZrJDpDs8S6yLj+K1VI6onvi2ASQ57V0GdrYbN4
-         QAcu3pACadNu6+0J/SlyBntqQ3Wp6dNa4LHQZO6Uq6R4oKXkFvaiQ5H9QVVEECqgcnOO
-         QiuI4r4zbr6Yc16v52L8cwqa+tDsjZM0foT5MZ7o7i9tBj4l6BiuQu6guMM5Ew7y+rZk
-         UsC7iixQPAiVTsgF/wgK/i1FpjbBc+VcF+UeGvkk2jmchTsenqbKD0uB7rRDGRvBF0Tm
-         FH1w==
-X-Gm-Message-State: ACrzQf3ovnPWrTYPGY9oCnDsz41jI0BS8/nqw29vBWRT3z3n5yAKTKqY
-        fK7od7KRbBFr6qqS+pjHoXlIroRe5pcqCgWl
-X-Google-Smtp-Source: AMsMyM4Pj4ttACgOqP2xdHy84J1vw9Nl7jhJtJItNWVizul460SgCOJzMGvSjg5EOGrbcuFGHyXTUw==
-X-Received: by 2002:a5d:64aa:0:b0:230:71e5:c540 with SMTP id m10-20020a5d64aa000000b0023071e5c540mr7452734wrp.625.1665497168765;
-        Tue, 11 Oct 2022 07:06:08 -0700 (PDT)
+        bh=wxovnf5KPHC5iL/G2DCCvsq9cB2n/hhE49OVBFVzwkI=;
+        b=ICAFotfIvQnnTsHyMWNMXmGumvaIwJeLwULacqHjWb+4AZ3YzKMBUGnEO3SWRwyDMh
+         bO1dZ9f403NhudpE6MA8tidhZMR9W4Km/wWJ5BldEJHybYg9QCrhbUxO98fAdquNnzyV
+         L3aq8FPUGKV9tRIGLp27RNPw057ZanIpTWlkhn9QpYJxzF9SVC59Uijf+tnNMKnN26RC
+         mWsSmvugKSVL0TVYihTgY7CkRlY1ggk/IoSGnkjuDEFhmCnm+3A2zEp3Pco3MF0xOo8k
+         bF6K2vKPlcY+cG90yUDR0/H9WIfL1tEYBB8ANm83D6FBQ4Rbxj4V55T3A5Of5PJOhoss
+         2saw==
+X-Gm-Message-State: ACrzQf37nc9VPtQGPCsPB6ZOGxOsQv3xweNmEQirIq00Z+tr7mB9UXFz
+        3bu34jAsHx8RuRwKy/JSHznVhg==
+X-Google-Smtp-Source: AMsMyM7St/4AzKTmYF8VoJKAU/rwjst+scZir1Gz1v9WV1F9VbgDMyy8GRFqA5twBa7xST+afZ5cpw==
+X-Received: by 2002:a5d:6745:0:b0:22f:ed4:65d7 with SMTP id l5-20020a5d6745000000b0022f0ed465d7mr12823623wrw.259.1665497171065;
+        Tue, 11 Oct 2022 07:06:11 -0700 (PDT)
 Received: from localhost.localdomain (192.201.68.85.rev.sfr.net. [85.68.201.192])
-        by smtp.gmail.com with ESMTPSA id z2-20020a5d44c2000000b0022e55f40bc7sm11437453wrr.82.2022.10.11.07.06.07
+        by smtp.gmail.com with ESMTPSA id z2-20020a5d44c2000000b0022e55f40bc7sm11437453wrr.82.2022.10.11.07.06.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Oct 2022 07:06:08 -0700 (PDT)
+        Tue, 11 Oct 2022 07:06:10 -0700 (PDT)
 From:   Jerome Neanne <jneanne@baylibre.com>
 To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
         nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
@@ -61,9 +61,9 @@ Cc:     afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
         linux-omap@vger.kernel.org
-Subject: [PATCH v6 5/6] Input: Add tps65219 interrupt driven powerbutton
-Date:   Tue, 11 Oct 2022 16:05:48 +0200
-Message-Id: <20221011140549.16761-6-jneanne@baylibre.com>
+Subject: [PATCH v6 6/6] arm64: defconfig: Add tps65219 as modules
+Date:   Tue, 11 Oct 2022 16:05:49 +0200
+Message-Id: <20221011140549.16761-7-jneanne@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20221011140549.16761-1-jneanne@baylibre.com>
 References: <20221011140549.16761-1-jneanne@baylibre.com>
@@ -76,211 +76,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Markus Schneider-Pargmann <msp@baylibre.com>
+This adds defconfig option to support TPS65219 PMIC, MFD, Regulators
+and power-button.
 
-TPS65219 has different interrupts compared to other TPS6521* chips.
-TPS65219 defines two interrupts for the powerbutton one for push and one
-for release.
-
-This driver is very simple in that it maps the push interrupt to a key
-input and the release interrupt to a key release.
-
-Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
+Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 ---
- drivers/input/misc/Kconfig              |  10 ++
- drivers/input/misc/Makefile             |   1 +
- drivers/input/misc/tps65219-pwrbutton.c | 148 ++++++++++++++++++++++++
- 3 files changed, 159 insertions(+)
- create mode 100644 drivers/input/misc/tps65219-pwrbutton.c
+ arch/arm64/configs/defconfig | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-index a18ab7358d8f..18d4a321e7ff 100644
---- a/drivers/input/misc/Kconfig
-+++ b/drivers/input/misc/Kconfig
-@@ -468,6 +468,16 @@ config INPUT_TPS65218_PWRBUTTON
- 	  To compile this driver as a module, choose M here. The module will
- 	  be called tps65218-pwrbutton.
- 
-+config INPUT_TPS65219_PWRBUTTON
-+	tristate "TPS65219 Power button driver"
-+	depends on MFD_TPS65219
-+	help
-+	  Say Y here if you want to enable power button reporting for
-+	  TPS65219 Power Management IC devices.
-+
-+	  To compile this driver as a module, choose M here. The module will
-+	  be called tps65219-pwrbutton.
-+
- config INPUT_AXP20X_PEK
- 	tristate "X-Powers AXP20X power button driver"
- 	depends on MFD_AXP20X
-diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-index 28dfc444f0a9..fe8f47402d12 100644
---- a/drivers/input/misc/Makefile
-+++ b/drivers/input/misc/Makefile
-@@ -78,6 +78,7 @@ obj-$(CONFIG_INPUT_SOC_BUTTON_ARRAY)	+= soc_button_array.o
- obj-$(CONFIG_INPUT_SPARCSPKR)		+= sparcspkr.o
- obj-$(CONFIG_INPUT_STPMIC1_ONKEY)  	+= stpmic1_onkey.o
- obj-$(CONFIG_INPUT_TPS65218_PWRBUTTON)	+= tps65218-pwrbutton.o
-+obj-$(CONFIG_INPUT_TPS65219_PWRBUTTON)	+= tps65219-pwrbutton.o
- obj-$(CONFIG_INPUT_TWL4030_PWRBUTTON)	+= twl4030-pwrbutton.o
- obj-$(CONFIG_INPUT_TWL4030_VIBRA)	+= twl4030-vibra.o
- obj-$(CONFIG_INPUT_TWL6040_VIBRA)	+= twl6040-vibra.o
-diff --git a/drivers/input/misc/tps65219-pwrbutton.c b/drivers/input/misc/tps65219-pwrbutton.c
-new file mode 100644
-index 000000000000..245134bdb59e
---- /dev/null
-+++ b/drivers/input/misc/tps65219-pwrbutton.c
-@@ -0,0 +1,148 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Driver for TPS65219 Push Button
-+//
-+// Copyright (C) 2022 BayLibre Incorporated - https://www.baylibre.com/
-+
-+#include <linux/init.h>
-+#include <linux/input.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/tps65219.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+
-+struct tps65219_pwrbutton {
-+	struct device *dev;
-+	struct input_dev *idev;
-+	char phys[32];
-+};
-+
-+static irqreturn_t tps65219_pb_push_irq(int irq, void *_pwr)
-+{
-+	struct tps65219_pwrbutton *pwr = _pwr;
-+
-+	input_report_key(pwr->idev, KEY_POWER, 1);
-+	pm_wakeup_event(pwr->dev, 0);
-+	input_sync(pwr->idev);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t tps65219_pb_release_irq(int irq, void *_pwr)
-+{
-+	struct tps65219_pwrbutton *pwr = _pwr;
-+
-+	input_report_key(pwr->idev, KEY_POWER, 0);
-+	input_sync(pwr->idev);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int tps65219_pb_probe(struct platform_device *pdev)
-+{
-+	struct tps65219 *tps = dev_get_drvdata(pdev->dev.parent);
-+	struct device *dev = &pdev->dev;
-+	struct tps65219_pwrbutton *pwr;
-+	struct input_dev *idev;
-+	int error;
-+	int push_irq;
-+	int release_irq;
-+
-+	pwr = devm_kzalloc(dev, sizeof(*pwr), GFP_KERNEL);
-+	if (!pwr)
-+		return -ENOMEM;
-+
-+	idev = devm_input_allocate_device(dev);
-+	if (!idev)
-+		return -ENOMEM;
-+
-+	idev->name = pdev->name;
-+	snprintf(pwr->phys, sizeof(pwr->phys), "%s/input0",
-+		 pdev->name);
-+	idev->phys = pwr->phys;
-+	idev->id.bustype = BUS_I2C;
-+
-+	input_set_capability(idev, EV_KEY, KEY_POWER);
-+
-+	pwr->dev = dev;
-+	pwr->idev = idev;
-+	device_init_wakeup(dev, true);
-+
-+	push_irq = platform_get_irq(pdev, 0);
-+	if (push_irq < 0)
-+		return -EINVAL;
-+
-+	release_irq = platform_get_irq(pdev, 1);
-+	if (release_irq < 0)
-+		return -EINVAL;
-+
-+	error = devm_request_threaded_irq(dev, push_irq, NULL,
-+					  tps65219_pb_push_irq,
-+					  IRQF_ONESHOT,
-+					  dev->init_name, pwr);
-+	if (error) {
-+		dev_err(dev, "failed to request push IRQ #%d: %d\n", push_irq,
-+			error);
-+		return error;
-+	}
-+
-+	error = devm_request_threaded_irq(dev, release_irq, NULL,
-+					  tps65219_pb_release_irq,
-+					  IRQF_ONESHOT,
-+					  dev->init_name, pwr);
-+	if (error) {
-+		dev_err(dev, "failed to request release IRQ #%d: %d\n",
-+			release_irq, error);
-+		return error;
-+	}
-+
-+	error = input_register_device(idev);
-+	if (error) {
-+		dev_err(dev, "Can't register power button: %d\n", error);
-+		return error;
-+	}
-+
-+	/* Enable interrupts for the pushbutton */
-+	regmap_clear_bits(tps->regmap, TPS65219_REG_MASK_CONFIG,
-+			  TPS65219_REG_MASK_INT_FOR_PB_MASK);
-+
-+	/* Set PB/EN/VSENSE pin to be a pushbutton */
-+	regmap_update_bits(tps->regmap, TPS65219_REG_MFP_2_CONFIG,
-+			   TPS65219_MFP_2_EN_PB_VSENSE_MASK, TPS65219_MFP_2_PB);
-+
-+	return 0;
-+}
-+
-+static int tps65219_pb_remove(struct platform_device *pdev)
-+{
-+	struct tps65219 *tps = dev_get_drvdata(pdev->dev.parent);
-+
-+	/* Disable interrupt for the pushbutton */
-+	return regmap_update_bits(tps->regmap, TPS65219_REG_MASK_CONFIG,
-+				  TPS65219_REG_MASK_INT_FOR_PB_MASK,
-+				  TPS65219_REG_MASK_INT_FOR_PB_MASK);
-+}
-+
-+static const struct platform_device_id tps65219_pwrbtn_id_table[] = {
-+	{ "tps65219-pwrbutton", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(platform, tps65219_pwrbtn_id_table);
-+
-+static struct platform_driver tps65219_pb_driver = {
-+	.probe = tps65219_pb_probe,
-+	.remove = tps65219_pb_remove,
-+	.driver = {
-+		.name = "tps65219_pwrbutton",
-+	},
-+	.id_table = tps65219_pwrbtn_id_table,
-+};
-+module_platform_driver(tps65219_pb_driver);
-+
-+MODULE_DESCRIPTION("TPS65219 Power Button");
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Markus Schneider-Pargmann <msp@baylibre.com");
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index d5b2d2dd4904..d64e00355fcd 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -406,6 +406,7 @@ CONFIG_TOUCHSCREEN_GOODIX=m
+ CONFIG_TOUCHSCREEN_EDT_FT5X06=m
+ CONFIG_INPUT_MISC=y
+ CONFIG_INPUT_PM8941_PWRKEY=y
++CONFIG_INPUT_TPS65219_PWRBUTTON=m
+ CONFIG_INPUT_PM8XXX_VIBRATOR=m
+ CONFIG_INPUT_PWM_BEEPER=m
+ CONFIG_INPUT_PWM_VIBRA=m
+@@ -639,6 +640,7 @@ CONFIG_MFD_SPMI_PMIC=y
+ CONFIG_MFD_RK808=y
+ CONFIG_MFD_SEC_CORE=y
+ CONFIG_MFD_SL28CPLD=y
++CONFIG_MFD_TPS65219=m
+ CONFIG_MFD_ROHM_BD718XX=y
+ CONFIG_MFD_WCD934X=m
+ CONFIG_REGULATOR_FIXED_VOLTAGE=y
+@@ -666,6 +668,7 @@ CONFIG_REGULATOR_QCOM_SPMI=y
+ CONFIG_REGULATOR_RK808=y
+ CONFIG_REGULATOR_S2MPS11=y
+ CONFIG_REGULATOR_TPS65132=m
++CONFIG_REGULATOR_TPS65219=m
+ CONFIG_REGULATOR_VCTRL=m
+ CONFIG_RC_CORE=m
+ CONFIG_RC_DECODERS=y
 -- 
 2.17.1
 
