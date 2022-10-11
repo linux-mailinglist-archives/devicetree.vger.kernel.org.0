@@ -2,99 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 529575FBA7E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 20:38:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DC805FBA95
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 20:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229594AbiJKSiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 14:38:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37318 "EHLO
+        id S229785AbiJKSky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 14:40:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiJKSiS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 14:38:18 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60BAA62AA2;
-        Tue, 11 Oct 2022 11:38:16 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id o65so11591632iof.4;
-        Tue, 11 Oct 2022 11:38:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yzz7HPfd9lZbybLpIqjBSIyTMfCLBxbv1l1ZEl4GhoA=;
-        b=Qk8QJCIatrsXIrxE/1a4v6fwYn2G9ANRwZ/uX2kjiTr0NSt5poOiPAzTxoj7e31W5K
-         IxvyMMHhBnGzATsf2wbexpgSf4zz/Wkt0/SEY0PEw2afmrFu0B1UJxD0pEVx8Wy1mHPg
-         lH6Z4XxiwccfnyyEQJYRweI8lQYUEA8DQOpmcsouqwJl7HmSm8uLgjV2FkkljSHscw3T
-         fn6teUcifNDJ7ie9w8jtZ6nqiygnDbEYlU4dNv2o/pTOmZrXH2975YeOdjVmaMZTzrGk
-         yL0XXjeYRtGF47M/8oNKAqys/gANbdBwVKroEMOaKef47BWqV1hbWsW2s9G/kDLIEWE1
-         8dIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yzz7HPfd9lZbybLpIqjBSIyTMfCLBxbv1l1ZEl4GhoA=;
-        b=RBUWEPJncbllp7NdDpzODxwZqNzMpxDciKKcx7eos4OP5dPuvpp3X5NA/jX7pmjz7n
-         tVIQInk9i9OvSUsIoMBWOaGOBshwucSjuxwPhv1zuxGJvvtT9kn2g+SNqiCZuXkoDj+t
-         kFclitraEDBTW8llh3vGyauda/5yiM4L+P+xB+pUYPglMdSVCXYzGlmBf4nt1aIr/Ifb
-         rX+apHaSi7CQ8uYRcHA28oiA62vXfaohXSAx4Eyqm5wzhiS0byPogHKwOuEFPt5SxIHV
-         xUHoPP1zLMSVdxqsDv25/mgMxdFAUmFCeiPLSsOugiHn9u+92y1YeU4zQGSaqWp4GHM8
-         53yQ==
-X-Gm-Message-State: ACrzQf0s2nQOBM6TRf3yrsUjfR5DwUfWM+dhWzAb/7ALLwfDdY3rqcYC
-        HZ+foYn2JZt6o+j7/Wf6UlgeWJBsNZNgAhlyKws=
-X-Google-Smtp-Source: AMsMyM6K6r8LdVzpVWYq8QtcvBsfHdBteWilO2KZnECnX0n0rcAd1mM+RWpr1skNfc7yA9u6pPfyByjCewD57Mlv1r4=
-X-Received: by 2002:a05:6638:2494:b0:363:db4f:c870 with SMTP id
- x20-20020a056638249400b00363db4fc870mr1579414jat.65.1665513494686; Tue, 11
- Oct 2022 11:38:14 -0700 (PDT)
+        with ESMTP id S229675AbiJKSkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 14:40:52 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2EE7CB67;
+        Tue, 11 Oct 2022 11:40:50 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29BBeKYZ030456;
+        Tue, 11 Oct 2022 18:40:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=h1BvboPV+q0O/fs3qxdcsJfGYHdo3ib28v+3LY8CB1k=;
+ b=JL5G78K3BcH4pq2z2MiK+KQ0tT7p1lAGpPEIkl3QFQJuEnd+BXe/srHQ394xZmr0K+5p
+ IIcEYR1vANcO5xzA3TVeL5uVUzcBOB6/yCzYvcsglKS9Sat/jn+uCOs/HSBAjj7HJ2vG
+ qDrYNJy6hsVCP6aq/XCPcGxcAzisvYxL11zf4vB5pvFYAPqv5po8RijuStA1Zjs+fxk+
+ ObNEDMLsw6hyzef/y3Z4RBq96noQBPdtAtbRff+c5OHwwY/qSiBG9fL/V6WGraVfWNkR
+ mTFusYn7drSOxdfa4libsT5eEdrAmDi4ZGpDUJ/ZS1mFb1ni03oqkmC0EO/QbLDrY5ga Zg== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k4rwxuv48-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Oct 2022 18:40:47 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29BIekZU032317
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Oct 2022 18:40:47 GMT
+Received: from [10.110.3.66] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 11 Oct
+ 2022 11:40:46 -0700
+Message-ID: <401219d2-43f1-5816-54c2-80be8a4afb1c@quicinc.com>
+Date:   Tue, 11 Oct 2022 11:40:46 -0700
 MIME-Version: 1.0
-References: <20221009181338.2896660-1-lis8215@gmail.com> <20221009181338.2896660-8-lis8215@gmail.com>
- <Y0R+q7BdxtFqeiT1@kroah.com>
-In-Reply-To: <Y0R+q7BdxtFqeiT1@kroah.com>
-From:   Siarhei Volkau <lis8215@gmail.com>
-Date:   Tue, 11 Oct 2022 21:38:03 +0300
-Message-ID: <CAKNVLfaNJjdVCeVCrOOw5xjsJ=gzJ2uFxAjgMA9tWHE=qFEECA@mail.gmail.com>
-Subject: Re: [PATCH 7/8] serial: 8250/ingenic: Add support for the
- JZ4750/JZ4755 SoCs
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 03/19] arm64: dts: qcom: qdru1000: Add tlmm nodes
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221001030656.29365-1-quic_molvera@quicinc.com>
+ <20221001030656.29365-4-quic_molvera@quicinc.com>
+ <CAA8EJpp2h3j9cPLPzCzgnYm07D5PPZg3H5_LkcXizhXt9ekkiQ@mail.gmail.com>
+From:   Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <CAA8EJpp2h3j9cPLPzCzgnYm07D5PPZg3H5_LkcXizhXt9ekkiQ@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: i3X1gpRH1cqkzW_EGShuDoN16EMgwD3H
+X-Proofpoint-GUID: i3X1gpRH1cqkzW_EGShuDoN16EMgwD3H
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-11_08,2022-10-11_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 bulkscore=0 spamscore=0 clxscore=1015 malwarescore=0
+ adultscore=0 impostorscore=0 priorityscore=1501 mlxscore=0 phishscore=0
+ mlxlogscore=819 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210110108
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=BF=D0=BD, 10 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 23:20, Greg Kroah-=
-Hartman <gregkh@linuxfoundation.org>:
-> What does "clkdiv" mean here?
 
-That means a clock divisor between the input oscillator and UART
-peripheral clock source. Most Ingenic SoCs don't have that divisor,
-so 1 is always in effect for them.
-However, the JZ4750 and JZ4755 have switchable /2 clock divisor.
 
-> If you only have 1 or 2 as an option
-
-Yes, it is.
-
-> just have 2 functions instead please.
-
-Got it, will do that.
-
-Thank you.
+On 10/1/2022 12:26 AM, Dmitry Baryshkov wrote:
+> On Sat, 1 Oct 2022 at 06:09, Melody Olvera <quic_molvera@quicinc.com> wrote:
+>> Add tlmm node for the QDU1000 and QRU1000 SoCs and the uart pin
+>> configuration.
+>>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/qdru1000.dtsi | 30 ++++++++++++++++++++++++++
+>>  1 file changed, 30 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qdru1000.dtsi b/arch/arm64/boot/dts/qcom/qdru1000.dtsi
+>> index 3610f94bef35..39b9a00d3ad8 100644
+>> --- a/arch/arm64/boot/dts/qcom/qdru1000.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qdru1000.dtsi
+>> @@ -235,6 +235,8 @@ uart7: serial@99c000 {
+>>                                 reg = <0x0 0x99c000 0x0 0x4000>;
+>>                                 clock-names = "se";
+>>                                 clocks = <&gcc GCC_QUPV3_WRAP0_S7_CLK>;
+>> +                               pinctrl-names = "default";
+>> +                               pinctrl-0 = <&qup_uart7_default>;
+>>                                 interrupts = <GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>;
+>>                                 #address-cells = <1>;
+>>                                 #size-cells = <0>;
+>> @@ -248,6 +250,34 @@ tcsr_mutex: hwlock@1f40000 {
+>>                         #hwlock-cells = <1>;
+>>                 };
+>>
+>> +               tlmm: pinctrl@f000000 {
+>> +                       compatible = "qcom,qdu1000-tlmm", "qcom,qru1000-tlmm";
+>> +                       reg = <0x0 0xf000000 0x0 0x1000000>;
+>> +                       interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+>> +                       gpio-controller;
+>> +                       #gpio-cells = <2>;
+>> +                       interrupt-controller;
+>> +                       #interrupt-cells = <2>;
+>> +                       gpio-ranges = <&tlmm 0 0 151>;
+>> +                       wakeup-parent = <&pdc>;
+>> +
+>> +                       qup_uart7_default: qup-uart7-default {
+>> +                               tx {
+>> +                                       pins = "gpio134";
+>> +                                       function = "qup0_se7_l2";
+> This looks strange. Usually we'd have a single 'qup7' function here.
+> I'd go back to the interconnect driver. Maybe the functions are not
+> correctly defined there.
+Yeah; will correct. Pinctrl driver was not in line with upstream standards.
+>
+>> +                                       drive-strength = <2>;
+>> +                                       bias-disable;
+> 'drive-strength' and 'bias-disable' are to be patched in in the board dts file.
+Really? Looking at sm8450.dtsi and sm8350.dtsi I see them defined in the dtsi file instead of the
+dts file. Is this new?
+>
+>> +                               };
+>> +
+>> +                               rx {
+>> +                                       pins = "gpio135";
+>> +                                       function = "qup0_se7_l3";
+>> +                                       drive-strength = <2>;
+>> +                                       bias-disable;
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>>                 pdc: interrupt-controller@b220000 {
+>>                         compatible = "qcom,pdc";
+>>                         reg = <0x0 0xb220000 0x0 0x30000>, <0x0 0x174000f0 0x0 0x64>;
+>> --
+>> 2.37.3
+>>
+>
+Thanks,
+Melody
