@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91EAF5FB255
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 14:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8F495FB25C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 14:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229639AbiJKMWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 08:22:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52504 "EHLO
+        id S229794AbiJKMXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 08:23:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbiJKMWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 08:22:10 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8B918E442
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 05:22:09 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id x13so5782485qkg.11
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 05:22:09 -0700 (PDT)
+        with ESMTP id S229824AbiJKMXh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 08:23:37 -0400
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A85758F976
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 05:23:35 -0700 (PDT)
+Received: by mail-qv1-xf2b.google.com with SMTP id de14so8808677qvb.5
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 05:23:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xdgKVcoruOsRI1gFQDV7XWiemaEJpElOt29w8YNp/Nc=;
-        b=y7Ve5W6HIEwm38hukIED5K6i5gpPSmtxTMyBbepdqdk8UqLxqRcPy/0rh/YIqI0vO5
-         hxGfWrODjkTjoXnPyKULFUUxe2J73iDRYhDP6NdP2sW92U59eRsinDsqZ1GqD2RLchK4
-         bhWolJ0qyAQ2PRery/1MmoYtInO7+pir24FWFWhI3TcB7CsioRd3wp4CmT4gN9JE+R43
-         dk46jcrXMw32B9pNqSdzjk6udVoxjsy1vH7KQ/TeO8bybA23glWzWeHMyqo+cwKPcTrP
-         /XVquPJI7jj7pDpqGasihag+LvPRBdVErOFZyR6hHg3qAQ+dGRSmlVoR45JosE9KfkAc
-         I/ow==
+        bh=ZDcL9+bBzbkp+KJx7T0xtbSPbbNIbsOAPMQB2E5GrtY=;
+        b=N+NatMm2WFYZ9mlYoAn0l9SfSVSiVLQceQHaHCdUaWDDV5dzyZGrZFCohOqc6+l/Wy
+         UL/lnRKlEhyWOhIYKablbsfREcV+noOV6VdWjGj0fpWW8ko2oTT6CVh/OcJrNZF8dEhB
+         UFJomVk8jdBWafzbWL9DJobEwBdpEyNvPvikaiFZtuQW5eBVRj6QBOIlXxCoCcZbp4CK
+         pP4scW0ATERDCFzEQok7RfNm0PdmdcKnmg5Sdy4N6mov7vn1IvqShkpDfTkpTtvDepB3
+         e9gvkJvdPWsKYlnFac7mznRbl0yATAzgZFQ8jbaH5XxoDOMHjiC5xkcSEj7oRJCIrd1q
+         qjRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xdgKVcoruOsRI1gFQDV7XWiemaEJpElOt29w8YNp/Nc=;
-        b=0FyfSHqbYpxzSJbHOEu7a7DRHclJtVhs3m5FoHWJ5cHWRkDF2Qaon+dGv4oyO8Ao+k
-         rRvI0NCMf/f8sWiuaNrrOCU2X41kBuRBS6WhjTOsHyegB5ssMViWrU/WjlpN3xGJVJRA
-         Zge073WCpDp+BrnDlcD1V2IriuSw7BImUZTIvMh9vUJ3IdRID752qSoTQY07nengEXs5
-         RYy4zVDODH6q7ja+5q+sb8ulgtpmahQrdllQB4JGND9zOFFRLJQAvQYYGNs5lBwV1R/E
-         g0QSfOFBie2wFY1+pjssxbPR6uy3UHITkMCI4hU9IV2jFhagz4aTPMfEbX+1xRBbNLrU
-         ZSrg==
-X-Gm-Message-State: ACrzQf1I2VaxG6tOiVG5ULqhL4SenerEPqrumFYq08boIh8ZObaZSpDS
-        LnEQs61nIrW0pfH8xwa2UOtXEA==
-X-Google-Smtp-Source: AMsMyM41xqpDQ5in9l8801A7p7/zmkHU8JUE3v76Ofg1mojAArmpRMuqq/6uStoW8ppkc1uqM0prug==
-X-Received: by 2002:a05:620a:1b89:b0:6ce:8b2b:7f0e with SMTP id dv9-20020a05620a1b8900b006ce8b2b7f0emr16345274qkb.15.1665490929135;
-        Tue, 11 Oct 2022 05:22:09 -0700 (PDT)
+        bh=ZDcL9+bBzbkp+KJx7T0xtbSPbbNIbsOAPMQB2E5GrtY=;
+        b=jWAh8sOgysCKrSljrU8rLIpjzSLx5TlanSyypmV15uQG8yteUszbxYA5aDLZdWfFBs
+         iqM2hfmBEqk/rYWzcNiwJlHIZxfawsAC/wMdrrZ6MmW83igjjAK8m9RfGVex83MEIf9u
+         Dujwd8PNejjinFS34prmU+gvHd8ex2JzPICrJRp88v6XENKMcepLg+Z4zqmSCJl/GioY
+         5aGG6tiuRyat6kSFFznuLDKmvHFexDxOBSwM9AhcqiGTC40yIdQmE3fFntWUbVHyVVdR
+         s8/8O9ZnyZPZwa3LHyoH4k0ehmIc6aEwaveEnuFSUDBCOJ6XwZ4L/gl+/1vYI8t9r4lu
+         84aQ==
+X-Gm-Message-State: ACrzQf3+E0BtbjgVp4tmaexYT//y7EOZKcUdSZGZTMJAn11xU+PlSpiV
+        f3A8MJCEb7XHCF14/6otJSfahw==
+X-Google-Smtp-Source: AMsMyM5WBAgPEtbDPqvpOtzVhrgo36KGJWwWy4bAnO2SXyUL6V2OnRATsznb7iVc9nuz8KjnaB3sCg==
+X-Received: by 2002:a05:6214:2464:b0:4b3:6cce:9860 with SMTP id im4-20020a056214246400b004b36cce9860mr16026754qvb.120.1665491014660;
+        Tue, 11 Oct 2022 05:23:34 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id ff13-20020a05622a4d8d00b0035d420c4ba7sm10597119qtb.54.2022.10.11.05.22.07
+        by smtp.gmail.com with ESMTPSA id bp36-20020a05620a45a400b006ce7bb8518bsm4348208qkb.5.2022.10.11.05.23.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Oct 2022 05:22:08 -0700 (PDT)
-Message-ID: <15a251de-d78f-b3d3-936a-32ace29671be@linaro.org>
-Date:   Tue, 11 Oct 2022 08:22:07 -0400
+        Tue, 11 Oct 2022 05:23:34 -0700 (PDT)
+Message-ID: <1d2613aa-3225-a2b6-521a-b2df70a30ed5@linaro.org>
+Date:   Tue, 11 Oct 2022 08:23:32 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v2 2/7] dt-bindings: soc: mediatek: Add support for MT8195
- VPPSYS
+Subject: Re: [PATCH v2 3/7] dts: arm64: mt8195: add MMSYS and MUTEX
+ configuration for VPPSYS
 Content-Language: en-US
 To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -69,9 +69,9 @@ Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com,
         "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
 References: <20221011070356.682-1-moudy.ho@mediatek.com>
- <20221011070356.682-3-moudy.ho@mediatek.com>
+ <20221011070356.682-4-moudy.ho@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221011070356.682-3-moudy.ho@mediatek.com>
+In-Reply-To: <20221011070356.682-4-moudy.ho@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,13 +86,48 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 11/10/2022 03:03, Moudy Ho wrote:
 > From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
 > 
-> Add compatible for MT8195 VPPSYS on MUTEX.
+> Compatible names, node names, and GCE client registers for
+> VPPSYS0 and VPPSYS1 should be renamed or added to match
+> the binding file requirements.
+> Also, add two nodes for MT8195 VPPSYS MUTEX.
 > 
 > Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
 > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
 
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 30 ++++++++++++++++++++----
+>  1 file changed, 26 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 905d1a90b406..3e73bd58e54d 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1476,12 +1476,23 @@
+>  			#clock-cells = <1>;
+>  		};
+>  
+> -		vppsys0: clock-controller@14000000 {
+> -			compatible = "mediatek,mt8195-vppsys0";
+> +		vppsys0: syscon@14000000 {
+> +			compatible = "mediatek,mt8195-vppsys0",
+> +				     "mediatek,mt8195-mmsys", "syscon";
+
+No. You change multiple pieces in one patch, some of them have much
+bigger impact, like adding compatibles.
+
+Split and describe *why* you are changing it.
+
+>  			reg = <0 0x14000000 0 0x1000>;
+> +			mediatek,gce-client-reg = <&gce1 SUBSYS_1400XXXX 0 0x1000>;
+>  			#clock-cells = <1>;
+>  		};
+>  
+> +		mutex@1400f000 {
+> +			compatible = "mediatek,mt8195-vpp-mutex";
+
+And you add some new nodes in a cleanup patch...
 
 Best regards,
 Krzysztof
