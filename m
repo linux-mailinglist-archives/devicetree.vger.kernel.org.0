@@ -2,211 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 120025FAC50
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 08:12:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE5BD5FAC89
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 08:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbiJKGMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 02:12:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33016 "EHLO
+        id S229508AbiJKGUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 02:20:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiJKGMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 02:12:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0642D46D9F;
-        Mon, 10 Oct 2022 23:12:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E1A5610F4;
-        Tue, 11 Oct 2022 06:12:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5229CC433C1;
-        Tue, 11 Oct 2022 06:12:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1665468758;
-        bh=Ae6IjMS4Ec5euaDJykUWdGTe4JqhT1q+WOE58vseVdU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uDuLkvVPKI/uwLy5mWPQ6svVSYpIIKSlkIg2UhbmwLouim6Ig8h4KeDidCu1ObR9T
-         LEwYCVOKC+Rvi6MkN6Q2uDpSnRc0XoMEatLj2BgYIOGRr6vNgjkWEVy2hXPeOzH9Z3
-         EmCXTXZhbl218Pmb+BkNgQJdSK9X2gjAtTwXDgMw=
-Date:   Tue, 11 Oct 2022 08:13:21 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 06/13] virt: gunyah: Identify hypervisor version
-Message-ID: <Y0UJgcc0+AEbHTIM@kroah.com>
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-7-quic_eberman@quicinc.com>
+        with ESMTP id S229462AbiJKGUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 02:20:49 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2059.outbound.protection.outlook.com [40.107.94.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D90CD2739;
+        Mon, 10 Oct 2022 23:20:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YxigkVhQ9fYf9W91LJnzvBEUvRQYhyR950ucOMMEnIUUNKNYgjGEaxE/xL/48nCFvsicQ0Lw0XWSiA7xnih90d3hDbzk+xm22use5mXvNpdN0pvwjl/63O9IqN7pIv7bYLfmElmBV2utR3qK5fE/iPhDvFuxEzWOZbUaADJDjpkIXBY8c/a+nQTNfcZPNKuXlFdzUxLnwY1yn/zP6qtsaHa2fwPBD9pCozEYu8/rssKBk7I2cofinxUJK2qOPaG37ZgGxQf8SCXjbhRenYRsNoss1+6e5Mn1HRoy5DPyEj1UK7awtqkRGvqO+WavEw2Q9X4f8jlUMhzmrUkEK+SQPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WVLHWReibXH1v3nZrgS93beRwxbYUKNpAcbDCKvqe3Y=;
+ b=XEtoa/Rmre3hvbho0+No8ShcrLG503Fpjk8IeOCfEXupzB6fURW27Otom7pxRxZtsi13ExM3IRo5MP4zE4sZ0fCyOFURRPf8JfIHoRNL/uZKw2CU8+iOm2jwsvs4CEFKD2ZhzRCNUZDjAKM5dpZQjUvUiVIF8c4G9nb+xMivOPiCR9Sgszz+Fi7zisCiTfHDwdOqAxzlOHyWnA6aa7wU4zFCws5/BSmATxld3VWiy2KDFluqtuIQlDiRg5Qwx3DBSLSA4T0PVT/oY+QBM6eV9dWNPKlpuN5zes/HODOZy1If+5TMIZAVbWpAVaXZknIITpZqEvpNFwSpmBAsswNKkQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WVLHWReibXH1v3nZrgS93beRwxbYUKNpAcbDCKvqe3Y=;
+ b=ypLjgzgtZrc7cHtwzyEQ0Dp/F2xBveKPkYj+rWNtiXw8KwTlxUsTLDZIGIPyp1DktSfKrTbQzuHE7yOMYtDyJgxV6xIo+daVG1TiMLGdl31R9zdvSo68ZIjvRJZL6BKV6N9vG3IPpmviox+BZLLLxj5bJ+Tz9bFo8u2YgfLizbk=
+Received: from BN9PR03CA0431.namprd03.prod.outlook.com (2603:10b6:408:113::16)
+ by SJ0PR12MB5472.namprd12.prod.outlook.com (2603:10b6:a03:3bb::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5709.15; Tue, 11 Oct
+ 2022 06:20:45 +0000
+Received: from BN8NAM11FT032.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:113:cafe::40) by BN9PR03CA0431.outlook.office365.com
+ (2603:10b6:408:113::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5709.15 via Frontend
+ Transport; Tue, 11 Oct 2022 06:20:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT032.mail.protection.outlook.com (10.13.177.88) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5709.10 via Frontend Transport; Tue, 11 Oct 2022 06:20:45 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 11 Oct
+ 2022 01:20:44 -0500
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
+ Transport; Tue, 11 Oct 2022 01:20:42 -0500
+From:   Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <git@amd.com>, <michal.simek@amd.com>, <linux-spi@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Subject: [PATCH v4 0/7] spi: spi-zyqnmp-gqspi: Add tap delay and Versal platform support
+Date:   Tue, 11 Oct 2022 11:50:33 +0530
+Message-ID: <20221011062040.12116-1-amit.kumar-mahapatra@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221011000840.289033-7-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT032:EE_|SJ0PR12MB5472:EE_
+X-MS-Office365-Filtering-Correlation-Id: d436c894-ed5b-492c-ff13-08daab50bb75
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: upTY3BMqGTuLadZd8srUAnikMMX4zGLvzCAheo5TZCvzmSlcernvQ03JF7za3Fw4h2Rlk5M5393MK7VEtHA5XuZSzfy8FfI6MKLM7utptGyUx4b3ypAZkI7l4zbXQv08B0l2rwM1vzENyb2aAky5OapF4Tko27TqfM+z9F5u3n+PdHzWzWR8airrRm55cDaAzpLvjTLt5juk4ScjRzQXzdMAhIsk4Wqb6KNw47HhWwSRTEKamz5SW5VkFn14NE9Fi51ALvuP0/a8jN0ozyYkpGYo7GkmOMarlX6zscZ1inIv6b4JkkxG4NpL7vN4evxoDNLhScwctW9yK2w2xMTEqj0Etf9t5XjP0MGnEPfVKGiSKfhbjyG264pxe91u6fVCfxmbBeS8jC/0OmAHmaQoucowZSopGw9v4F2JrNB3iGFjMOzO/n4bJ0sFdAJsbNmaNMIl1AyB86zJWNaN1e0FJpfi2tbVXY6eBa+ClBlAFdtLNyw4LwccCihA1aQdA1g5dQFJofx8GtcTbb5jeEYpvQ4YJ0pEZAnv6Td87KO+fkpFe8fJbw8z1B5YoFsS66+GHXsEYFMPpnrADwcviSGNXA+nUX/XLcfdcXlmO+6A7Yg/esSyyUAUKU5HR06dT4ieselgaHuqRaWTdDzHeG6lwB3U5mouKiGs21h0hhbfOqY2jF2dciMtQuqvfdf+pq7HYSEAS7X9DQwj78JWXegwRsEs1p63Y1vPE6d7XAIpK8vSmSwqvl5PWEsqhhHqO/Syd3fywT6EQUOiy32KSZou7IkoGhvHQ/7h6HZNFrkPwOITLE18/Eeh07S3xUKm2H+q
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(136003)(39860400002)(376002)(396003)(346002)(451199015)(40470700004)(46966006)(36840700001)(186003)(5660300002)(2616005)(83380400001)(2906002)(336012)(426003)(1076003)(8936002)(41300700001)(40460700003)(356005)(81166007)(40480700001)(82740400003)(82310400005)(86362001)(36756003)(47076005)(36860700001)(70206006)(478600001)(6666004)(316002)(54906003)(110136005)(8676002)(26005)(4326008)(70586007)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2022 06:20:45.6683
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d436c894-ed5b-492c-ff13-08daab50bb75
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT032.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5472
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 10, 2022 at 05:08:33PM -0700, Elliot Berman wrote:
-> Export the version of Gunyah which is reported via the hyp_identify
-> hypercall. Increments of the major API version indicate possibly
-> backwards incompatible changes. Export the hypervisor identity so that
-> Gunyah drivers can act according to the major API version.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->  MAINTAINERS                  |  1 +
->  drivers/virt/Makefile        |  1 +
->  drivers/virt/gunyah/Makefile |  2 ++
->  drivers/virt/gunyah/gunyah.c | 41 ++++++++++++++++++++++++++++++++++++
->  include/asm-generic/gunyah.h |  3 +++
->  5 files changed, 48 insertions(+)
->  create mode 100644 drivers/virt/gunyah/Makefile
->  create mode 100644 drivers/virt/gunyah/gunyah.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ed2bc98c3818..c5458aeec023 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8884,6 +8884,7 @@ M:	Elliot Berman <quic_eberman@quicinc.com>
->  M:	Murali Nalajala <quic_mnalajal@quicinc.com>
->  L:	linux-arm-msm@vger.kernel.org
->  S:	Supported
-> +F:	Documentation/ABI/testing/sysfs-hypervisor-gunyah
+- Fix kernel-doc warnings in GQSPI driver.
+- Avoid setting CPOL, CPHA & baud rate multiple times.
+- Add Versal platform support in GQSPI driver.
+- Add tap delay support in GQSPI driver.
+---
+BRANCH: mtd/next
 
-That file is not in this patch :(
+changes in v2:
+ - Used of_device_get_match_data( ) API to retrive match->data.
+ - Removed oneOf and used only enum.
+changes in v3:
+ - Arrange compatible string in alphabetical order.
+changes in v4:
+ - Used subject prefixes matching the subsystem
+---
+Amit Kumar Mahapatra (5):
+  spi: spi-zynqmp-gqspi: Fix kernel-doc warnings
+  spi: spi-zynqmp-gqspi: Set CPOL and CPHA during hardware init
+  spi: spi-zynqmp-gqspi: Avoid setting baud rate multiple times for same
+    SPI frequency
+  spi: dt-bindings: zynqmp-qspi: Add support for Xilinx Versal QSPI
+  spi: spi-zynqmp-gqspi: Add tap delay support for GQSPI controller on
+    Versal platform
 
->  F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->  F:	Documentation/virt/gunyah/
->  F:	arch/arm64/gunyah/
-> diff --git a/drivers/virt/Makefile b/drivers/virt/Makefile
-> index 093674e05c40..10b87f934730 100644
-> --- a/drivers/virt/Makefile
-> +++ b/drivers/virt/Makefile
-> @@ -11,3 +11,4 @@ obj-$(CONFIG_NITRO_ENCLAVES)	+= nitro_enclaves/
->  obj-$(CONFIG_ACRN_HSM)		+= acrn/
->  obj-$(CONFIG_EFI_SECRET)	+= coco/efi_secret/
->  obj-$(CONFIG_SEV_GUEST)		+= coco/sev-guest/
-> +obj-$(CONFIG_GUNYAH)		+= gunyah/
-> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
-> new file mode 100644
-> index 000000000000..dc081e2dc02b
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/Makefile
-> @@ -0,0 +1,2 @@
-> +gunyah-y += gunyah.o
-> +obj-$(CONFIG_GUNYAH) += gunyah.o
-> diff --git a/drivers/virt/gunyah/gunyah.c b/drivers/virt/gunyah/gunyah.c
-> new file mode 100644
-> index 000000000000..2893a56f3dfc
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/gunyah.c
-> @@ -0,0 +1,41 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#define pr_fmt(fmt) "gunyah: " fmt
-> +
-> +#include <linux/module.h>
-> +#include <linux/printk.h>
-> +#include <linux/init.h>
-> +#include <asm-generic/gunyah.h>
-> +
-> +struct gh_hypercall_hyp_identify_resp gunyah_api;
-> +EXPORT_SYMBOL(gunyah_api);
+Naga Sureshkumar Relli (1):
+  spi: spi-zynqmp-gqspi: Add tap delay support for ZynqMP GQSPI
+    Controller
 
-EXPORT_SYMBOL_GPL()?  I have to ask.
+Rajan Vaja (1):
+  firmware: xilinx: Add qspi firmware interface
 
-But why is it exported at all?  No one is using it in this patch.
+ .../bindings/spi/spi-zynqmp-qspi.yaml         |   4 +-
+ drivers/firmware/xilinx/zynqmp.c              |   7 +
+ drivers/spi/spi-zynqmp-gqspi.c                | 191 ++++++++++++++----
+ include/linux/firmware/xlnx-zynqmp.h          |  19 ++
+ 4 files changed, 184 insertions(+), 37 deletions(-)
 
-> +
-> +static int __init gunyah_init(void)
-> +{
-> +	u32 uid[4];
-> +
-> +	gh_hypercall_get_uid(uid);
-> +
-> +	if (!(gh_uid_matches(GUNYAH, uid) || gh_uid_matches(QC_HYP, uid)))
-> +		return 0;
+-- 
+2.17.1
 
-Why return success if this is not true?  Shouldn't you return an error
-and fail to load?
-
-> +
-> +	gh_hypercall_hyp_identify(&gunyah_api);
-> +
-> +	pr_info("Running under Gunyah hypervisor %llx/v%lld\n",
-> +		  GH_API_INFO_VARIANT(gunyah_api.api_info),
-> +		  GH_API_INFO_API_VERSION(gunyah_api.api_info));
-> +
-> +	return 0;
-> +}
-> +arch_initcall(gunyah_init);
-> +
-> +static void __exit gunyah_exit(void)
-> +{
-> +}
-> +module_exit(gunyah_exit);
-
-Why do you need a module_exit() call?
-
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("Gunyah Hypervisor Driver");
-
-What will cause this module to be properly automatically loaded?  I do
-not see that happening here at all.
-
-> diff --git a/include/asm-generic/gunyah.h b/include/asm-generic/gunyah.h
-> index 86eb59e203ef..8f9d4c649ba8 100644
-> --- a/include/asm-generic/gunyah.h
-> +++ b/include/asm-generic/gunyah.h
-> @@ -85,6 +85,8 @@ static inline int gh_remap_error(int gh_error)
->  	((uid)[0] == prefix ## _UID0 && (uid)[1] == prefix ## _UID1 && \
->  	 (uid)[2] == prefix ## _UID2 && (uid)[3] == prefix ## _UID3)
->  
-> +#define GUNYAH_API_V1			1
-
-You do not use this define anywhere in this patch.
-
-
-> +
->  #define GH_API_INFO_API_VERSION(x)	(((x) >> 0) & 0x3fff)
->  #define GH_API_INFO_BIG_ENDIAN(x)	(((x) >> 14) & 1)
->  #define GH_API_INFO_IS_64BIT(x)		(((x) >> 15) & 1)
-> @@ -103,6 +105,7 @@ struct gh_hypercall_hyp_identify_resp {
->  	u64 api_info;
->  	u64 flags[3];
->  };
-> +extern struct gh_hypercall_hyp_identify_resp gunyah_api;
-
-Again, not used.
-
-thanks,
-
-greg k-h
