@@ -2,45 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08DA15FB52F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:52:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B8605FB579
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230158AbiJKOwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 10:52:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35962 "EHLO
+        id S230301AbiJKOye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 10:54:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbiJKOvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:51:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B879837B;
-        Tue, 11 Oct 2022 07:50:52 -0700 (PDT)
+        with ESMTP id S230297AbiJKOxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:53:33 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F8B59B856;
+        Tue, 11 Oct 2022 07:51:26 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AE1BD611C3;
-        Tue, 11 Oct 2022 14:50:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38694C4347C;
-        Tue, 11 Oct 2022 14:50:50 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C3337B8124E;
+        Tue, 11 Oct 2022 14:51:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93A6DC43149;
+        Tue, 11 Oct 2022 14:51:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665499851;
-        bh=nyiYCt6mhFl8NKKhnEpgJZ9DLSChqFQ3/CufAzPYGbw=;
+        s=k20201202; t=1665499881;
+        bh=/vjPFn6aiS8PXqIl4mDIzUxIFIt0BU90h2SuA14McLg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SQB6opUHlJFyTiOiJJX/8MzaXErGMzj3ULNtuzRZZ5860akpTE826yipSWzKqEerc
-         56HsKzPWl4vuWI16jCkVRNIuIlMAednrF7MnzPHkpVTp8svdVWlmriZAIERGp8Va2H
-         SS8AnyZ9OaHETsW/3Rs/9mKg3oc/WY8Ay9IXvg6bF3nG9DT9swRsQwDdu15Eri7K/s
-         QKUhFUU/caad64n1I7PCfGb55svQMOifKeXkTAl0lMZp1+wWDs+puwvzAQjzObwCOd
-         tMZVnzgvYGjyIDbZXL8DqeHRvDOP5c3s1Z+pxZC7doIGknl+tZyL7/ULQWH8U14V27
-         c+y9XUty6ThKQ==
+        b=txnPc7/aN/cjGB2Op9fO3341ij10AtmRcaPKEJHyq5iY2q4dtWFTwm5yUUw6l4hlJ
+         y5M2/6oZkAyN1/mdeR+6meYVryK2j4U7lBsk6k0SnPnwUPklgj3IMmaS/VNvE7Le4M
+         kgoZGevcQP3qHVTF+Fy8pxNAetISTFIGy5rfN0fx4zq2/RIGoE+LiFsh9orutcQOH4
+         0RmgRBuYYdNJfRe2ga7ZpgG2WrOzMw3CfdHq8EaRuI5GNeQwRuVyf2R+ZhXN/SOrz9
+         s9YKUXwGjI8dSYs+jw1cmfRw0fi9ZOUkL27A7wC7aWOsAEiJP4SpWPoDE8WFLwkdTK
+         nHWBBHTBrbZpg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.0 21/46] arm64: dts: imx8mq-librem5: Add bq25895 as max17055's power supply
-Date:   Tue, 11 Oct 2022 10:49:49 -0400
-Message-Id: <20221011145015.1622882-21-sashal@kernel.org>
+Cc:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.0 42/46] arm64: dts: uniphier: Add USB-device support for PXs3 reference board
+Date:   Tue, 11 Oct 2022 10:50:10 -0400
+Message-Id: <20221011145015.1622882-42-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221011145015.1622882-1-sashal@kernel.org>
 References: <20221011145015.1622882-1-sashal@kernel.org>
@@ -57,34 +56,160 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 
-[ Upstream commit 6effe295e1a87408033c29dbcea9d5a5c8b937d5 ]
+[ Upstream commit 19fee1a1096d21ab1f1e712148b5417bda2939a2 ]
 
-This allows the userspace to notice that there's not enough
-current provided to charge the battery, and also fixes issues
-with 0% SOC values being considered invalid.
+PXs3 reference board can change each USB port 0 and 1 to device mode
+with jumpers. Prepare devicetree sources for USB port 0 and 1.
 
-Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+This specifies dr_mode, pinctrl, and some quirks and removes nodes for
+unused phys and vbus-supply properties.
+
+Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Link: https://lore.kernel.org/r/20220913042321.4817-8-hayashi.kunihiko@socionext.com'
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/uniphier-pinctrl.dtsi       | 10 +++++
+ arch/arm64/boot/dts/socionext/Makefile        |  4 +-
+ .../socionext/uniphier-pxs3-ref-gadget0.dts   | 41 +++++++++++++++++++
+ .../socionext/uniphier-pxs3-ref-gadget1.dts   | 40 ++++++++++++++++++
+ 4 files changed, 94 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget0.dts
+ create mode 100644 arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget1.dts
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index 9eec8a7eecfc..127fc7f904c8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -1077,6 +1077,7 @@ bat: fuel-gauge@36 {
- 		interrupts = <20 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_gauge>;
-+		power-supplies = <&bq25895>;
- 		maxim,over-heat-temp = <700>;
- 		maxim,over-volt = <4500>;
- 		maxim,rsns-microohm = <5000>;
+diff --git a/arch/arm/boot/dts/uniphier-pinctrl.dtsi b/arch/arm/boot/dts/uniphier-pinctrl.dtsi
+index c0fd029b37e5..f909ec2e5333 100644
+--- a/arch/arm/boot/dts/uniphier-pinctrl.dtsi
++++ b/arch/arm/boot/dts/uniphier-pinctrl.dtsi
+@@ -196,11 +196,21 @@ pinctrl_usb0: usb0 {
+ 		function = "usb0";
+ 	};
+ 
++	pinctrl_usb0_device: usb0-device {
++		groups = "usb0_device";
++		function = "usb0";
++	};
++
+ 	pinctrl_usb1: usb1 {
+ 		groups = "usb1";
+ 		function = "usb1";
+ 	};
+ 
++	pinctrl_usb1_device: usb1-device {
++		groups = "usb1_device";
++		function = "usb1";
++	};
++
+ 	pinctrl_usb2: usb2 {
+ 		groups = "usb2";
+ 		function = "usb2";
+diff --git a/arch/arm64/boot/dts/socionext/Makefile b/arch/arm64/boot/dts/socionext/Makefile
+index dda3da33614b..33989a9643ac 100644
+--- a/arch/arm64/boot/dts/socionext/Makefile
++++ b/arch/arm64/boot/dts/socionext/Makefile
+@@ -5,4 +5,6 @@ dtb-$(CONFIG_ARCH_UNIPHIER) += \
+ 	uniphier-ld20-akebi96.dtb \
+ 	uniphier-ld20-global.dtb \
+ 	uniphier-ld20-ref.dtb \
+-	uniphier-pxs3-ref.dtb
++	uniphier-pxs3-ref.dtb \
++	uniphier-pxs3-ref-gadget0.dtb \
++	uniphier-pxs3-ref-gadget1.dtb
+diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget0.dts b/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget0.dts
+new file mode 100644
+index 000000000000..7069f51bc120
+--- /dev/null
++++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget0.dts
+@@ -0,0 +1,41 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++//
++// Device Tree Source for UniPhier PXs3 Reference Board (for USB-Device #0)
++//
++// Copyright (C) 2021 Socionext Inc.
++//   Author: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
++
++/dts-v1/;
++#include "uniphier-pxs3-ref.dts"
++
++/ {
++	model = "UniPhier PXs3 Reference Board (USB-Device #0)";
++};
++
++/* I2C3 pinctrl is shared with USB*VBUSIN */
++&i2c3 {
++	status = "disabled";
++};
++
++&usb0 {
++	status = "okay";
++	dr_mode = "peripheral";
++	pinctrl-0 = <&pinctrl_usb0_device>;
++	snps,dis_enblslpm_quirk;
++	snps,dis_u2_susphy_quirk;
++	snps,dis_u3_susphy_quirk;
++	snps,usb2_gadget_lpm_disable;
++	phy-names = "usb2-phy", "usb3-phy";
++	phys = <&usb0_hsphy0>, <&usb0_ssphy0>;
++};
++
++&usb0_hsphy0 {
++	/delete-property/ vbus-supply;
++};
++
++&usb0_ssphy0 {
++	/delete-property/ vbus-supply;
++};
++
++/delete-node/ &usb0_hsphy1;
++/delete-node/ &usb0_ssphy1;
+diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget1.dts b/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget1.dts
+new file mode 100644
+index 000000000000..a3cfa8113ffb
+--- /dev/null
++++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3-ref-gadget1.dts
+@@ -0,0 +1,40 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++//
++// Device Tree Source for UniPhier PXs3 Reference Board (for USB-Device #1)
++//
++// Copyright (C) 2021 Socionext Inc.
++//   Author: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
++
++/dts-v1/;
++#include "uniphier-pxs3-ref.dts"
++
++/ {
++	model = "UniPhier PXs3 Reference Board (USB-Device #1)";
++};
++
++/* I2C3 pinctrl is shared with USB*VBUSIN */
++&i2c3 {
++	status = "disabled";
++};
++
++&usb1 {
++	status = "okay";
++	dr_mode = "peripheral";
++	pinctrl-0 = <&pinctrl_usb1_device>;
++	snps,dis_enblslpm_quirk;
++	snps,dis_u2_susphy_quirk;
++	snps,dis_u3_susphy_quirk;
++	snps,usb2_gadget_lpm_disable;
++	phy-names = "usb2-phy", "usb3-phy";
++	phys = <&usb1_hsphy0>, <&usb1_ssphy0>;
++};
++
++&usb1_hsphy0 {
++	/delete-property/ vbus-supply;
++};
++
++&usb1_ssphy0 {
++	/delete-property/ vbus-supply;
++};
++
++/delete-node/ &usb1_hsphy1;
 -- 
 2.35.1
 
