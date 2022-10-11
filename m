@@ -2,74 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A50765FBC8D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 22:58:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07E6F5FBCA3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 23:08:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbiJKU6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 16:58:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57512 "EHLO
+        id S229520AbiJKVIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 17:08:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiJKU6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 16:58:33 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 670EAA026E
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 13:58:31 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id df9so9736081qvb.9
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 13:58:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+mAHY6RXJ0nyPOXmiZe+CE8JvmNJU/Rv6H1VrtQQpaY=;
-        b=YzVPehwVEYa5twQoFeGI45fkEkYXwVmX6VSDI0sLF59itZz8N5lt3HukThIAub9Uoi
-         glaQr5ZUPcuGqfw2a/oa4HBN2ljScw/Z98y50iXxUCiEdBgP+iI9IJJTHgc86J4ZDQMQ
-         HHrJFkORoOrxtskJlxsCq4vkzSowgZdLgtzajS8JQtVwNVi47qEOlmIlkK3uzVrc0WS8
-         2yTJy6sBlmE9wkuaA1BXPCrIWbEdZVSGNQ0OAugke5lBvhZinLvcIjhPk1HfKvezcKhs
-         yk5kp14weVRyUipL/d8iCq/xURXsrJF1gKkSE/e6jsAW+tI0QeFvaz7NPkZ1E2ZRlJk2
-         wBrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+mAHY6RXJ0nyPOXmiZe+CE8JvmNJU/Rv6H1VrtQQpaY=;
-        b=NIGkah5MSsgizeBi+fyMgxWF5VsonOgB6ejxIdfi11f1psdSfP+PjUmGogw8IvtJya
-         WssosXZdJAJm5js5zT2mBmdkpit3rd3Ed4NA5uDFaB0h+fZC0C8Jp7dXN7EIMErw/dn/
-         i9atwELnyW0nHNw8H5pa4g+1J0qKyBlLbvmjjtpEB+af4Hnk798JDGXmNMRt+16wuNra
-         0vOVkDcUV9iSb3B0JEbGqLslgAnlwE6WCxqO6VpFGS4K11C28h9r8KVf0xtrtNbr6IOT
-         4NxmIlwRpxuGTt+glCCIPCIId8PDHBoCBlIAJsPSClrQV8bY5Q88c4oxd4tIPFvVhhc/
-         Dvgw==
-X-Gm-Message-State: ACrzQf0Zcq7lRsAW98mOC81s70dT8rGV9nJb/A5ERsGr7Jb4vgd7mSei
-        FRdY8XtX2i0y0hu3O2dd2WUEWg==
-X-Google-Smtp-Source: AMsMyM5WexhRoKAuqE1aNkWUn9DwGaVN5NqqdcUsKdNKxRxdcaFeCrG0LLK5l0onZLNKntt2qlysKQ==
-X-Received: by 2002:ad4:5ba1:0:b0:4b1:9a15:4766 with SMTP id 1-20020ad45ba1000000b004b19a154766mr20628926qvq.6.1665521910121;
-        Tue, 11 Oct 2022 13:58:30 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id r4-20020a05622a034400b00398a7c860c2sm7680696qtw.4.2022.10.11.13.58.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Oct 2022 13:58:29 -0700 (PDT)
-Message-ID: <fa7c6054-7076-299d-ed0f-9e4fc0ffc194@linaro.org>
-Date:   Tue, 11 Oct 2022 16:58:28 -0400
+        with ESMTP id S229456AbiJKVIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 17:08:35 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A063D82D0E;
+        Tue, 11 Oct 2022 14:08:33 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29BIv4SX012886;
+        Tue, 11 Oct 2022 21:08:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=s5n7RieS+QX0vyLm4zKb3TDOg7fnrU66Ryn5H6Oe7Bw=;
+ b=Yvsn8wReITDi6XSvyVS+O6S44nuvUnWSReH2uer+q7oj42LYnCEJTcfOJEngsI0iUmoq
+ On9m7Qqu0EYwdCP90GSJKKQ0cjhcLtj7D9wE6dS5ch4FG+lcvrW3y+YjEjOghx3ETz43
+ E4qB0H4zDLuZjOEy8Nrt2o6yfsYOfcic4pp3mJJ1Hz6PPN4w7UZjMnu6OIcXSOiuKbwf
+ TbtuTI93tiTFuw7Tu6s1gpySALbUpAhr8USO23evRigF49ouBHMTyLcCzMoWW9D5ffBj
+ PpVNK11pjRWO0RBrVIaaTvkXziwDk74sK+5vrVYmQIxrlQOX3+mQclD/BKOfDJcbiyOz kg== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k5e7fg99w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Oct 2022 21:08:26 +0000
+Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29BL8QAX017740
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Oct 2022 21:08:26 GMT
+Received: from [10.110.3.66] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 11 Oct
+ 2022 14:08:25 -0700
+Message-ID: <f3b2cd0e-d7b0-8d3a-1330-9c833321f94a@quicinc.com>
+Date:   Tue, 11 Oct 2022 14:08:25 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH V2] arm64: dts: fix drive strength macros as per FSD HW UM
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 07/19] arm64: dts: qcom: qdu1000-idp: Add RPMH regulators
+ nodes
 Content-Language: en-US
-To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        alim.akhtar@samsung.com, chanho61.park@samsung.com,
-        linus.walleij@linaro.org, pankaj.dubey@samsung.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <CGME20221011083029epcas5p3cef6047d23d0682a9cb70ba6178067a8@epcas5p3.samsung.com>
- <20221011080359.76220-1-p.rajanbabu@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221011080359.76220-1-p.rajanbabu@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221001030656.29365-1-quic_molvera@quicinc.com>
+ <20221001030656.29365-8-quic_molvera@quicinc.com>
+ <79975718-ab91-f781-d46c-ac274e97a668@linaro.org>
+From:   Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <79975718-ab91-f781-d46c-ac274e97a668@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GikwzQpgEfwbbN1gTaOWDSm-aXb8VdmA
+X-Proofpoint-GUID: GikwzQpgEfwbbN1gTaOWDSm-aXb8VdmA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-11_08,2022-10-11_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=961 spamscore=0
+ impostorscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ malwarescore=0 adultscore=0 mlxscore=0 priorityscore=1501 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210110121
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,89 +84,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2022 04:03, Padmanabhan Rajanbabu wrote:
-> Drive strength macros defined for FSD platform is not reflecting actual
-> name and values as per HW UM. FSD SoC pinctrl has following four levels of
 
-s/name/names/
 
-> drive-strength and their corresponding values:
-> Level-1 <-> 0
-> Level-2 <-> 1
-> Level-4 <-> 2
-> Level-6 <-> 3
-> 
-> The commit 684dac402f21 ("arm64: dts: fsd: Add initial pinctrl support")
-> used drive strength macros defined for Exynos4 SoC family. For some IPs
-> the macros values of Exynos4 matched and worked well, but Exynos4 SoC
-> family drive-strength (names and values) is not exactly matching with
-> FSD SoC.
-> 
-> Fix the drive strength macros to reflect actual names and values given
-> in FSD HW UM. This also ensures that the existing peripherals in device
-> tree file is using correct drive strength MACROs to function as
-> expected.
-> 
-> Fixes: 684dac402f21 ("arm64: dts: fsd: Add initial pinctrl support")
-> Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
-> ---
-
-Rest of commit msg looks ok.
-
->  arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi | 34 +++++++++++-----------
->  arch/arm64/boot/dts/tesla/fsd-pinctrl.h    |  6 ++--
->  2 files changed, 20 insertions(+), 20 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> index d0abb9aa0e9e..e3852c946352 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> +++ b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> @@ -55,14 +55,14 @@
->  		samsung,pins = "gpf5-0";
->  		samsung,pin-function = <FSD_PIN_FUNC_2>;
->  		samsung,pin-pud = <FSD_PIN_PULL_NONE>;
-> -		samsung,pin-drv = <FSD_PIN_DRV_LV2>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
->  	};
->  
->  	ufs_refclk_out: ufs-refclk-out-pins {
->  		samsung,pins = "gpf5-1";
->  		samsung,pin-function = <FSD_PIN_FUNC_2>;
->  		samsung,pin-pud = <FSD_PIN_PULL_NONE>;
-> -		samsung,pin-drv = <FSD_PIN_DRV_LV2>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
->  	};
->  };
->  
-> @@ -239,105 +239,105 @@
->  		samsung,pins = "gpb6-1";
->  		samsung,pin-function = <FSD_PIN_FUNC_2>;
->  		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> -		samsung,pin-drv = <FSD_PIN_DRV_LV2>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
->  	};
->  
->  	pwm1_out: pwm1-out-pins {
->  		samsung,pins = "gpb6-5";
->  		samsung,pin-function = <FSD_PIN_FUNC_2>;
->  		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> -		samsung,pin-drv = <FSD_PIN_DRV_LV2>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
->  	};
->  
->  	hs_i2c0_bus: hs-i2c0-bus-pins {
->  		samsung,pins = "gpb0-0", "gpb0-1";
->  		samsung,pin-function = <FSD_PIN_FUNC_2>;
->  		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> -		samsung,pin-drv = <FSD_PIN_DRV_LV1>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-
-You are now changing both the value for register and the meaning (name).
-Your commit msg indicated that the names are not correct, not the
-values. Based on the commit msg, I expect the DTBs are the same. Are
-they? If not, it these are two different commits with their own
-explanations/reasoning.
-
-Best regards,
-Krzysztof
-
+On 10/1/2022 2:15 AM, Krzysztof Kozlowski wrote:
+> On 01/10/2022 05:06, Melody Olvera wrote:
+>> Add RPMH regulators for the QDU1000 IDP platform.
+>>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 200 +++++++++++++++++++++++
+>>  1 file changed, 200 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>> index 0ecf9a7c41ec..654b50220c2e 100644
+>> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>> @@ -5,6 +5,7 @@
+>>  
+>>  /dts-v1/;
+>>  
+>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>  #include "qdu1000.dtsi"
+>>  
+>>  / {
+>> @@ -19,6 +20,205 @@ aliases {
+>>  	chosen {
+>>  		stdout-path = "serial0:115200n8";
+>>  	};
+>> +
+>> +	ppvar_sys: ppvar-sys-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "ppvar_sys";
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>> +	vph_pwr: vph-pwr-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vph_pwr";
+>> +		regulator-min-microvolt = <3700000>;
+>> +		regulator-max-microvolt = <3700000>;
+>> +
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +
+>> +		vin-supply = <&ppvar_sys>;
+>> +	};
+>> +};
+>> +
+>> +&apps_rsc {
+>> +	pm8150-rpmh-regulators {
+> regulators
+Will fix.
+>> +		compatible = "qcom,pm8150-rpmh-regulators";
+>> +		qcom,pmic-id = "a";
+>> +
+> Best regards,
+> Krzysztof
+>
+Thanks,
+Melody
