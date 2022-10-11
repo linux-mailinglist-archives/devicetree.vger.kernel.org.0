@@ -2,127 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A17FF5FB10B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 13:09:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B41B35FB1FE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 14:06:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbiJKLJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 07:09:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57044 "EHLO
+        id S229595AbiJKMG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 08:06:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbiJKLJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 07:09:41 -0400
-Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com [64.147.123.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60591D73;
-        Tue, 11 Oct 2022 04:09:37 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.west.internal (Postfix) with ESMTP id 005F72B066FE;
-        Tue, 11 Oct 2022 07:09:34 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Tue, 11 Oct 2022 07:09:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1665486574; x=1665490174; bh=RM6oJ+Wm8I
-        //KZ/oFLABpSMFlOHOa+xN+BM+5SLLxTE=; b=aSIYxCtYdt1yek8Ky0J+MBBZGd
-        YNsaNQ38C8MlliiHZiynR73WHIEKlaMYrUM/xptOq/d1VGxGKHilri/wt4TPhIFl
-        64pWwEtnf3Mm+GBlyIbpVJpQnIu9y4g0d9eCxZLWYdqXFtjPyxTjbNw9ilvakv0s
-        kTrl5vahN583XPq/hWNgme/dnMN0//GaRZfS9XwvyoL/O8sPfeDb8mVlY1H3DBz1
-        tsPsgCvF/r+aJNF6QQAjG70KR4G0PF6amSQjNEACaEL8rf2MK4osNJnaWCfaBIl3
-        xyB1psknJFftHp9vNRmjc1vTmSguTPn70u5jJmIgnouMXY3jQ+mF8YwbruLA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1665486574; x=1665490174; bh=RM6oJ+Wm8I//KZ/oFLABpSMFlOHO
-        a+xN+BM+5SLLxTE=; b=jflLYEknFINqe7qRTsk0daaR0znwMVl7nJ1IGdyv2ncY
-        bVqpuAfif81zf9VlFFkyx4IUQoxDrHT8FtR/CGpTze63zrHIVbL1Q+fMroo/Z2dY
-        pyd8G7jevH56aCaY4REcLf7jDd/DM4ioJvsToesOIgYmUg/Pp9v0fjWsbM/ULdQU
-        1llbnH6kO5bK+hMIMfzpiS1/CL6hZahPp9t3/yDhMt37JQWUfw/SiWQgJwCEJvVY
-        PvBWDFObOFEzSiPMWB9n8kguEKV6oVYvvMC84SfDlTANpR8pJEx/QXM66QIjwJv/
-        UnKlF1rNoJ6V+kVms7q4RXjJxWsUchfap5IawwCxrQ==
-X-ME-Sender: <xms:7k5FY_vwrB21dr5I-_tycqIxrn-vjDge8tsH9Kv-V3NzbDTGvWAYaA>
-    <xme:7k5FYwc5fhyKd0kE9p10FFRWBbghqc2bpSz8sAVxmXT-fPPSE19_4I3ahqnTcZyWJ
-    Frr_J0OVNjkEC2Muhs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeejiedgfedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:7k5FYyzqziQBZRQ0Hlsh_jpYvdINfcj15npmDLShu1EAKIwtbms89g>
-    <xmx:7k5FY-Oo8N9U2caNl5qYk7udqrpZq0DOZs-IaO1W7RR3e_HA2KbNNg>
-    <xmx:7k5FY_-eu1g9YafbA0dDkaMf1xZB_23gMIJaN56laXcOXrjUYnx6oA>
-    <xmx:7k5FY384T46l2ky4ckvjowwTBWaP2xs0Q-JhSsNpZGfEEsn6w0lE2z_SfE0>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 2CA43B60086; Tue, 11 Oct 2022 07:09:34 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1015-gaf7d526680-fm-20220929.001-gaf7d5266
-Mime-Version: 1.0
-Message-Id: <85ca7eb4-3e0c-4ffb-8bac-a435594ca0f7@app.fastmail.com>
-In-Reply-To: <7438406d-b446-201e-0ec3-5cf0a5b9f32c@kernel.org>
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-14-quic_eberman@quicinc.com>
- <7438406d-b446-201e-0ec3-5cf0a5b9f32c@kernel.org>
-Date:   Tue, 11 Oct 2022 13:09:13 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Jiri Slaby" <jirislaby@kernel.org>,
-        "Elliot Berman" <quic_eberman@quicinc.com>,
-        "Bjorn Andersson" <quic_bjorande@quicinc.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
-Cc:     "Murali Nalajala" <quic_mnalajal@quicinc.com>,
-        "Trilok Soni" <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        "Carl van Schaik" <quic_cvanscha@quicinc.com>,
-        "Prakruthi Deepak Heragu" <quic_pheragu@quicinc.com>,
-        "Andy Gross" <agross@kernel.org>,
-        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
-        "Jassi Brar" <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Lorenzo Pieralisi" <lorenzo.pieralisi@arm.com>,
-        "Sudeep Holla" <sudeep.holla@arm.com>,
-        "Marc Zyngier" <maz@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        "Will Deacon" <will@kernel.org>,
-        "Catalin Marinas" <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 13/13] tty: gunyah: Add tty console driver for RM Console
- Services
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229487AbiJKMGX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 08:06:23 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B17E45F54
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 05:06:15 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id z30so8275707qkz.13
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 05:06:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AVRPkDEbACvmkZC8kApIS7yMdkHthYtuVHRwDkmsTFY=;
+        b=NhH0A06ZPTKy45tcwzqP78rP8uzdihSRJD6UVIGQ2MBlCI+YSqrT1HQVWUnG8YAcAz
+         gPj/dwH7zowzWBnlmrUG0QyMpQEWPR1mid7e0+IeeTlzWVubMTzwtKjlqtpEAVEPnesJ
+         RE4rWeqdhXj4NMbVcXvcXxueWvvP+HJ7QmW/i93RLKOenyQmJ+7YrXQaCTWII3oF2LEs
+         AQ+4sKPQSqXi4e4IvbmQ24fUD2rpEw7Jf/10Pbc7VtClMuNVy8p2YvX4ZF5JvyAYac8M
+         OVgtlrgxYEytL0G7Itva+hbTYfuZDSINva/G24TC48CsG3eR1P84ktPC750qZSZnGFB6
+         ZSHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AVRPkDEbACvmkZC8kApIS7yMdkHthYtuVHRwDkmsTFY=;
+        b=yHJNiidMguLyUT60ludFAF1hTXlRchYmAIlXRzJ/Adozns2ucJU6Vm+Eu2CSJClfao
+         g6uG6I1LMSNzgOa+cZI45L+7n6vb8I4PJ3Bkc6Qw5VyvsEuMHIIHAwXb5ieIX8WXojKA
+         k8aQ/tTo0yVhv57MajgAQfaqFCXMlQfZM2TBehRH7788u/yq0LZN4ADl4LB8p+azBWTx
+         LmCDYrxTz6HB7gkKpEEu6JGzGk84lrLZwws7qV9g7NeFYKzrH+xQJccRLYy0WrNrPwXy
+         4mrvsymWp5aM8YA8yhJhW5Ib0cfh8WHhJt3xwn5ixrz7gcxHh+KDAqwsGOnj/AQTHQum
+         qRbg==
+X-Gm-Message-State: ACrzQf324LnB5Y3LW3RUT68Wz6RTwwcJjHw/ieR3N4WsOK2sd0w9f/Cp
+        pVuzxkWIpQBYI1pMchtVbdRanQ==
+X-Google-Smtp-Source: AMsMyM6OjIpqGMDaEgzj3/3BoL+9VrEq3Jr15zfY2zwCSrdjnFPPz0n+ElpXLJIs9GfTLc4SnGylRQ==
+X-Received: by 2002:a05:620a:1b9b:b0:6ed:35f0:9b56 with SMTP id dv27-20020a05620a1b9b00b006ed35f09b56mr5955854qkb.196.1665489974107;
+        Tue, 11 Oct 2022 05:06:14 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id b26-20020a05620a089a00b006ce3cffa2c8sm3428470qka.43.2022.10.11.05.06.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Oct 2022 05:06:12 -0700 (PDT)
+Message-ID: <9afce114-1a0e-a0be-c07b-a78740e2f108@linaro.org>
+Date:   Tue, 11 Oct 2022 08:03:58 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v2 3/5] dt-bindings: regulator: Add binding schema for
+ mt6357 regulators
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     broonie@kernel.org, chen.zhong@mediatek.com,
+        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
+        fparent@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, lgirdwood@gmail.com,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org, robh@kernel.org
+References: <cdb4e9f7-c7b3-3a1f-bf61-e42bdb021570@linaro.org>
+ <972ba839-2fd3-2b45-3477-0c7e3d32f149@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <972ba839-2fd3-2b45-3477-0c7e3d32f149@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 11, 2022, at 8:02 AM, Jiri Slaby wrote:
-> On 11. 10. 22, 2:08, Elliot Berman wrote:
->> +
->> +	/* below are for printk console.
->> +	 * gh_rm_console_* calls will sleep and console_write can be called from
->> +	 * atomic ctx. Two xmit buffers are used. The active buffer is tracked with
->> +	 * co_xmit_idx. Writes go into the co_xmit_buf[co_xmit_idx] buffer.
->> +	 * A work is scheduled to flush the bytes. The work will swap the active buffer
->> +	 * and write out the other buffer.
->> +	 */
->
-> Ugh, why? This is too ugly and unnecessary. What about passing the kfifo 
-> to gh_rm_console_write() instead? You do memcpy() there anyway.
+On 11/10/2022 05:30, Alexandre Mergnat wrote:
+> Hi Krzysztof,
+> 
+> Thanks for your review !
+> 
+>  >> +
+>  >> +    properties:
+>  >> +      regulator-name:
+>  >> +        pattern: "^v(core|modem|pa|proc|s1)$"
+>  >
+>  > Why enforcing particular name of the regulator?
+> 
+> The regulator names are forced to match with the datasheet names.
+> 
+> I think it's a good practice to increase visibility between HW & SW.
 
-Another problem here is that you really want the console output to be
-printed from atomic context, otherwise one would never see e.g. the
-output of a panic() call. Having a deferred write is probably fine for
-normal tty operations, but you probably want a different device for the
-console here, e.g. the hvc_dcc driver.
+Enforcing is not a good practice.
 
-     Arnd
+> 
+> Also, that keep consistency with other Mediatek PMIC schema.
+
+So there is a bad practice and instead of fixing it, you align to it... No.
+
+
+Best regards,
+Krzysztof
+
