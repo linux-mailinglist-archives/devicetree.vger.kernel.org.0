@@ -2,145 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 786175FB3FA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 15:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C4235FB402
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:00:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229863AbiJKN7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 09:59:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44262 "EHLO
+        id S229656AbiJKOAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 10:00:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbiJKN7U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 09:59:20 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81DCF8D0F6
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 06:59:18 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id o67so8531038qvo.13
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 06:59:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2YVyCU1GyrgH/o8lcSvAoAfWW/XK1pu5VGWnGETyseE=;
-        b=mI4TFQLi0+TZmxLnwmkbsVFlVqUMsPyDpOEOH83Eb4KcFWutHMNhymkYm1YlA3LGo0
-         mXKEb2EkGw20UZraBrUBizSDkm07hhzT2JfCPhVDW14KiyX2WOqRHXZqiYoljcPUbndu
-         lH0lIXFkpXfQn6o8wx7Nn9LRfISPcfHEYqbGBKHUOqDvQDLxbqOwhX0aZJmTsFA780iJ
-         sxwdvQpugzzUKnsTTOIxJFqED2gwD7kB/zP4Ftyx/LI3yIEaTBYMVIntOFRqavfJ+Vah
-         5H5hOVHXXCC/zjxWWMKSPrQ7EsYgF3wa5xpAYNTqZXVE7vxtyDBkGiWu2L9FZQm1NUd4
-         pEew==
+        with ESMTP id S229889AbiJKOAL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:00:11 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BF0120374;
+        Tue, 11 Oct 2022 07:00:09 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id g130so15898362oia.13;
+        Tue, 11 Oct 2022 07:00:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2YVyCU1GyrgH/o8lcSvAoAfWW/XK1pu5VGWnGETyseE=;
-        b=1Ujq7ktNnL5Wohyk066cLjUABkxHVbyrJY7t0uXb5+qrEQ6qYTYBC5HmNSRZeNeh1q
-         dSI/T50Xh48XEmSdjITXoB7nCRV+SsFV+40zMN6gfqy9eulR5dcZDzfstJyqcOo5Jmhf
-         DkVlf5jby1DwzrX3PcZkis9Eru8Y6qXzrEIE5luD0B6nOI80/rq76SfeTrRq3gx+7BjT
-         7X4GXMmxF5wEHFgITH47qhsBeSl1c5nZKrffgkYxPBhBl0ZMJdNsSlgiDxi2Y2+vKgZy
-         tXYeVLnbrHcqxe1I2gevzWYzhKwZ0LdtorXPgwnns4LJ1Ji+un8nsObmvpR6emymakzh
-         Pi/Q==
-X-Gm-Message-State: ACrzQf2HR+tyOCYntMI4hIeM3PeTwh6cgnw8h1vRZI2ODWXnoVxKOBH1
-        TDeDa+bARoBsiES2/KtTYn6ZZQ==
-X-Google-Smtp-Source: AMsMyM6MUJbFVRMNY9hUSOWI/089zqY1BN3IH3YZz20z5RhRcBMV5IifDF8pNrEArjODrrmry5bfxQ==
-X-Received: by 2002:ad4:5dea:0:b0:4b2:e813:7c35 with SMTP id jn10-20020ad45dea000000b004b2e8137c35mr17933397qvb.74.1665496757499;
-        Tue, 11 Oct 2022 06:59:17 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id o8-20020ac841c8000000b00398313f286dsm7424666qtm.40.2022.10.11.06.59.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Oct 2022 06:59:16 -0700 (PDT)
-Message-ID: <0f5bb12f-814d-37f2-9307-b2b649aedfe3@linaro.org>
-Date:   Tue, 11 Oct 2022 09:57:03 -0400
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fpinFLGyfMz5LuoFScjs1SYGNlDOoMK18vHAn2nhxCo=;
+        b=5ZybirFQCUgwVRA4joHZ/hUemxB3JPKlCCjx4mOyFeoDCBeI1m7mSqgeRrkB7N6mRp
+         VY7foDCblqKgvVU5o5jX6Mav4oPImMevSY2IIWl3G8OhzJZs1qo+1IRtLROeIPprIuU4
+         nIyGdtW+Nl8f6QOZ4u0Qr4VpLujv7uz7melkcUZmAFHz4J43hW18hGulNXKdO899LB9E
+         8vHkCZG7d8gm0ftcXW4Kcb1YJ4CL6JnUIgJRLdniyrgWD2WSCPlWYZFXsIbiSEQZq1on
+         PjU2dVcSjOLmFb9+uaqbDtkgWuCw8a00Im8YZJkBIge9v3AJlih7jePdjKXvRvz7qUcF
+         B0Vg==
+X-Gm-Message-State: ACrzQf3aPNSm14kBl4cYqQe3qFI4UTbQXSREMHgSmjPKhQ6ZyEddx67h
+        TEpiMmO6FopdxR+1hXoM5Y9uGdhmpA==
+X-Google-Smtp-Source: AMsMyM5HM5siP22QE9AFMbURQF+/Q7yQHyaDxP66PMEWANnBNS8+u9VKkNiJULC0pZeLlabGvBFvog==
+X-Received: by 2002:aca:f056:0:b0:350:f0ba:9caa with SMTP id o83-20020acaf056000000b00350f0ba9caamr11984375oih.198.1665496808582;
+        Tue, 11 Oct 2022 07:00:08 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r12-20020a4abf0c000000b0044897475dd0sm5292461oop.43.2022.10.11.07.00.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Oct 2022 07:00:08 -0700 (PDT)
+Received: (nullmailer pid 2787286 invoked by uid 1000);
+        Tue, 11 Oct 2022 14:00:09 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Alexander Shiyan <shc_work@mail.ru>, linux-ide@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: ata: Add 'ata-generic' binding
+Date:   Tue, 11 Oct 2022 08:58:50 -0500
+Message-Id: <20221011135849.2785834-1-robh@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Alex Elder <elder@linaro.org>,
-        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Vinod Koul <vinod.koul@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Johan Hovold <johan@kernel.org>
-References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
-In-Reply-To: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 10:32, Krzysztof Kozlowski wrote:
-> Hi everyone,
-> 
-> Quite a lot of people are working on Qualcomm DT bindings conversion
-> (TXT->YAML) and fixups to Qualcomm DTS. We track a bit of this effort
-> internally in Linaro, but that has many shortcomings and we would like
-> to track it rather community-wide with the support and contributions
-> from the community.
-> 
-> What to track:
-> 1. Which bindings to convert to YAML,
-> 2. Missing compatibles (either entirely or because of missing conversion),
-> 3. `dt_binding_check` warnings (usually connected with 1-2),
-> 4. `dtbs_check` warnings.
-> 
-> Rob's bot gives us daily output for 1-4, but how can we track current
-> efforts to avoid duplication of work? Also it would allow people to find
-> tasks for them to get contributions to Linux kernel :). Is anyone in
-> community interested in tracking it together, in a public way?
-> 
-> If so, where?
-> A. elinux.org (needs some formatting when pasting the output from tools)
-> B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
-> C. gitlab dedicated repo - some text file
-> D. Linux kernel TODO file (might be difficult to keep updated)
-> E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
-> have it for Exynos but I don't find it usable -
-> https://exynos.wiki.kernel.org/todo_tasks)
-> 
-> I am leaning towards Gitlab pages because they could be quite automated
-> - with CI or with scripts.
+The 'ata-generic' binding has been around since 2008, but never
+documented.
 
-This could be looking like that - the list of missing compatibles from
-Rob's tasks:
-https://gitlab.com/krzkoz/linux-dt-todo/-/blob/main/todo-compatibles.rst
+Cc: Alexander Shiyan <shc_work@mail.ru>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+AFAICT, the ata-generic,use16bit property has no effect in Linux. The
+32-bit transfers fallback to 16-bit if ATA_PFLAG_PIO32 flag is not set
+which it doesn't appear to ever be set. Looking at the history, the
+driver always used 16-bit mode.
 
-There is a script which will automatically add new entries to the list
-(above RST file), once fed with Rob's job output. Further this could be
-probably pipelined with Rob's jobs.
+Linus, Okay with being maintainer here?
 
-List anyway has to be manually updated with work in progress.
+---
+ .../devicetree/bindings/ata/ata-generic.yaml  | 58 +++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/ata/ata-generic.yaml
 
-This is for the compatibles. Missing part is doing something similar for
-the dtbs_check warnings.
-
-In replies Luca, Caleb and Neil mentioned GitLab issues. That could be
-useful, so if someone would like to hook into GitLab API - feel free to
-work on that (either in that repo or in separate).
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/ata/ata-generic.yaml b/Documentation/devicetree/bindings/ata/ata-generic.yaml
+new file mode 100644
+index 000000000000..0697927f3d7e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ata/ata-generic.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ata/ata-generic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Generic Parallel ATA Controller
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description:
++  Generic Parallel ATA controllers supporting PIO modes only.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - arm,vexpress-cf
++          - fsl,mpc8349emitx-pata
++      - const: ata-generic
++
++  reg:
++    items:
++      - description: Command interface registers
++      - description: Control interface registers
++
++  reg-shift:
++    enum: [ 1, 2 ]
++
++  interrupts:
++    maxItems: 1
++
++  ata-generic,use16bit:
++    type: boolean
++    description: Use 16-bit accesses instead of 32-bit for data transfers
++
++  pio-mode:
++    description: Maximum ATA PIO transfer mode
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 6
++    default: 0
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    compact-flash@1a000 {
++        compatible = "arm,vexpress-cf", "ata-generic";
++        reg = <0x1a000 0x100>,
++              <0x1a100 0xf00>;
++        reg-shift = <2>;
++    };
++...
+-- 
+2.35.1
 
