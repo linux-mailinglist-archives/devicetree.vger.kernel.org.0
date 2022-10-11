@@ -2,85 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88B8F5FAD5F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 09:21:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B02165FAD6B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 09:25:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbiJKHVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 03:21:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50824 "EHLO
+        id S229979AbiJKHZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 03:25:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbiJKHVl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 03:21:41 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B9AA7B788;
-        Tue, 11 Oct 2022 00:21:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DBC94B811FC;
-        Tue, 11 Oct 2022 07:21:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 205ECC433D6;
-        Tue, 11 Oct 2022 07:21:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1665472897;
-        bh=fpA2CLhghAgNp9uGr6caPeXx7Hj5XJxzoPmmKzYbBJ0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EFbTwl1zWi6KSjSh2HZ5tF2hdOae8JeUNQ9giF1cqh0NYIlLbEuMwFLAukqeahUTn
-         prDbiB+guW0eS952j8R0i5W126UCXd7AQD88GSv69Ck2AdmPiud8w0/X5gJvCVkE96
-         H72TBsQ1lq+qZcPM/dJCdBGDkrw2/LniowzoTGaY=
-Date:   Tue, 11 Oct 2022 09:22:20 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 04/13] arm64: smccc: Include alternative-macros.h
-Message-ID: <Y0UZrAavHNxkJVm9@kroah.com>
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-5-quic_eberman@quicinc.com>
+        with ESMTP id S229972AbiJKHZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 03:25:27 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC77B1F2F2;
+        Tue, 11 Oct 2022 00:25:24 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 82DD82000F;
+        Tue, 11 Oct 2022 07:25:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1665473123;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=R00HyJQ8h7D6q517xGqAlwuwVUZyP19hq6nl7qda6sY=;
+        b=JUF0wF5vnUyA7i4HzyyMl7/f1PSqESAkrw1gU4X/0/no9Y5CzumnvMJCUROtfrQxh2McOj
+        LudnBkNDwJ9Lk8Q/seixn5BBJB3SU3V52Lr5E90/WWF1IRyuLL1cCFflRrlde8aOxRhJrf
+        lY446Y6vulqnRuJCTsEVBje0iSJNIWh10NmkPxlB4Ta648NMDR4ouJUOBgIuUbCcQLbgzq
+        IU2uaJFOfKxMV0Hl9Bz1Qu92KRkNVfzDlm/uM6+eLVX5fMmBTmleE/J8wNSPlQ/zIIVbkr
+        odi3Ia9Vw1NDIkG4+yp9emQtnuIn0P1y+E4BKjKLNcf5ZAC3VAeB2AtvjdK6Ww==
+Date:   Tue, 11 Oct 2022 09:26:54 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 1/2] of: create of_root if no dtb provided
+Message-ID: <20221011092654.6c7d7ec3@fixe.home>
+In-Reply-To: <6d40876c-2751-01bb-94ab-7c9ab90e636f@gmail.com>
+References: <20220624034327.2542112-1-frowand.list@gmail.com>
+        <20220624034327.2542112-2-frowand.list@gmail.com>
+        <20220624141320.3c473605@fixe.home>
+        <6d40876c-2751-01bb-94ab-7c9ab90e636f@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221011000840.289033-5-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 10, 2022 at 05:08:31PM -0700, Elliot Berman wrote:
-> Fix build error when CONFIG_ARM64_SVE is selected and
-> asm/alternative-macros.h wasn't implicitly included by another header.
-> 
-> Fixes: cfa7ff959a78 ("arm64: smccc: Support SMCCC v1.3 SVE register saving hint")
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+Le Fri, 24 Jun 2022 11:44:07 -0500,
+Frank Rowand <frowand.list@gmail.com> a =C3=A9crit :
 
-Shouldn't this be independant of this whole series and get merged now
-and backported to stable kernels if it really is causing a build problem
-today?
+> On 6/24/22 08:13, Cl=C3=A9ment L=C3=A9ger wrote:
+> > Le Thu, 23 Jun 2022 22:43:26 -0500,
+> > frowand.list@gmail.com a =C3=A9crit :
+> >  =20
+> >> =20
+> >> +/*
+> >> + * __dtb_empty_root_begin[] magically created by cmd_dt_S_dtb in
+> >> + * scripts/Makefile.lib
+> >> + */
+> >> +extern void *__dtb_empty_root_begin;
+> >> +
+> >>  /*
+> >>   * of_fdt_limit_memory - limit the number of regions in the /memory n=
+ode
+> >>   * @limit: maximum entries
+> >> @@ -1332,8 +1338,13 @@ bool __init early_init_dt_scan(void *params)
+> >>   */
+> >>  void __init unflatten_device_tree(void)
+> >>  { =20
+> >=20
 
-thanks,
 
-greg k-h
+Any news on this series ?
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
