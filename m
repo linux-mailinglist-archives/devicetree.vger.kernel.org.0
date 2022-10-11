@@ -2,123 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC9885FBAD7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 20:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C8FE5FBACB
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 20:56:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbiJKS5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 14:57:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45186 "EHLO
+        id S229790AbiJKS4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 14:56:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229960AbiJKS5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 14:57:32 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B9788A1C
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 11:57:16 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id b25so3254636qkk.7
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 11:57:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=H7MRNW6m6g8CYG+UQ5OATy25MtYysQqA6sH5xmW6Gss=;
-        b=qA9kaTexUkWg+qp1UcnfMNvLehR4FV9cS5z82Hj0lXBIFCZAhXO80XCI2VQa3o03pk
-         Hc6Vl/F2KCyVLgLQhr6+lxnGy//pLe6YiTJ1itudB/yJGct2TaiapQmRnMIpM5G5io/u
-         1M9xPZY9qd6IkxLFbM7+GX2U5IhWdHkNdyr3Rp8DVEWg02S2vq66nhQXZ4Qi0FoN5Kga
-         ozAVzu4qrS/3BjU2NlX1aas/GlaX05rJjJRDbI9RzWqn3p4JmgQ2pluyEisktyF/AqQ1
-         nXtB7O+mITpxtgOaMU+YbbkYggCDj4OJ5Y75PvMMdD/LVcJ98wvmXNU+390TaQka/dPh
-         ORLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H7MRNW6m6g8CYG+UQ5OATy25MtYysQqA6sH5xmW6Gss=;
-        b=o4bY9zy7dAi9nMcaZBzrQwbwiKKc4oQioyRcdFOLTzjdxVfPzP9J209MdgJXgEkvRE
-         4as2A0W5w0MLRSb5XUsnXcFSfE7jPRFxAuoWdR6t5ip0oq68fT1E+IEKkujD478oPNEc
-         oS/hlZpuHSuFUrPdsT2iFRlZOuFimhBwrUmJRvzwNc/kq/vq7ct2eiaT2zT+MuZ2B+cc
-         na5tg1trCEeTGsm0RIWeZFJc2iHGQAZOEfPV+HSbPgl+ZkQJiRiHgZZIvOYfh/M8mqW+
-         4pA1NrfHhpoMuQMclwQ84qwilrcEofC65dBBnM2ayOdvA5yJcwvmggKURosbmqbSiX1l
-         pb6w==
-X-Gm-Message-State: ACrzQf3lIc5wWy/xEf/nTxkxnrwYQlB1+RW1SDtkI3aKdBgSrkGsjkAu
-        rHjk830ABTd1Po8yplGb15GnVg==
-X-Google-Smtp-Source: AMsMyM7gg7zRTMEQzLbIJsSJqlfTkKEGfwR/4SKbS8dVaDQ3ub/GEkm+hdHd0tPRkG0b/Z/8ks093Q==
-X-Received: by 2002:a05:620a:2043:b0:6ee:8874:f5bc with SMTP id d3-20020a05620a204300b006ee8874f5bcmr2201786qka.134.1665514625359;
-        Tue, 11 Oct 2022 11:57:05 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id i14-20020a05620a248e00b006bba46e5eeasm14509356qkn.37.2022.10.11.11.57.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Oct 2022 11:57:04 -0700 (PDT)
-Message-ID: <ad2e4445-052b-d65a-bdba-5759c169aafd@linaro.org>
-Date:   Tue, 11 Oct 2022 14:54:53 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Lee Jones <lee@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20221010145222.1047748-1-biju.das.jz@bp.renesas.com>
- <20221010145222.1047748-2-biju.das.jz@bp.renesas.com>
- <8d6b8f0e-d9d7-0d77-aa99-379de768fd5d@linaro.org>
- <OS0PR01MB592232C831CCA84FC302212F86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB592232C831CCA84FC302212F86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229963AbiJKS42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 14:56:28 -0400
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C3880BE9;
+        Tue, 11 Oct 2022 11:56:27 -0700 (PDT)
+Received: from pps.filterd (m0150244.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29BHNtK7000518;
+        Tue, 11 Oct 2022 18:56:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
+ date : message-id; s=pps0720;
+ bh=2xXCj9pupcZ+eq8rcJhUB7SjmJADAHy3fewK97q3xic=;
+ b=lXFVnIYfcCd3nwoEkKyVr4kQ1tYHDYZPGgezrljIaOSux0N5DSTOtuq+6LaBidsJMKg1
+ q/vzYCDJHf6pssHeEPHURPDJy3j9POgHYGzb5BJXm+Xk2TShCpeSFpIGn8s2BprvKuZz
+ Z9RFRBdcib6vJGE9bmrWO7RnVq/PSvl4Rtx62mhT7ZjHBHfvaKl5B82UxocIPdCMOdM6
+ 75wiihcBPqeFK1z5ArahBVNY9UI1WqGK+dpOho/gf53hvt0zHx+gpCEy0sP8WMfyVfIN
+ rjTHq0ud3rp8IZJVqQYZNyRFimzVj7LX15t2SId52wa/klC4ypaQB6cIMwfmKlO81K/l Fg== 
+Received: from p1lg14879.it.hpe.com (p1lg14879.it.hpe.com [16.230.97.200])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3k5cd4gvkw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Oct 2022 18:56:01 +0000
+Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by p1lg14879.it.hpe.com (Postfix) with ESMTPS id A33BAD25E;
+        Tue, 11 Oct 2022 18:56:00 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.36])
+        by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id E689580873C;
+        Tue, 11 Oct 2022 18:55:59 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     verdun@hpe.com, nick.hawkins@hpe.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v1 0/5] Add PLREG and SPI Driver GXP Support
+Date:   Tue, 11 Oct 2022 13:55:20 -0500
+Message-Id: <20221011185525.94210-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-GUID: gHh7P8wiBi4bMmCE8x7PkeHT3OUR5IZ0
+X-Proofpoint-ORIG-GUID: gHh7P8wiBi4bMmCE8x7PkeHT3OUR5IZ0
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-11_08,2022-10-11_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ impostorscore=0 mlxlogscore=999 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 clxscore=1015 adultscore=0 bulkscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210110110
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2022 10:55, Biju Das wrote:
-> 
->>>  .../bindings/mfd/renesas,rz-mtu3.yaml         | 305
->> ++++++++++++++++++
->>>  1 file changed, 305 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
->>
->> This should not be in MFD. Just because some device has few features,
->> does not mean it should go to MFD... Choose either timer or pwm.
-> 
-> MFD is for multifunction device. This IP supports multiple functions
-> like timer, pwm, clock source/events. That is the reason I have added 
-> here. MFD is core which provides register access for client devices.
-> 
-> For me moving it to pwm or counter is not a big problem.
-> Why do you think it cannot be MFD?
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
+The GXP SoC is interfaced with a programmable logic device that takes
+inputs/outputs from the server board. All these inputs/outputs are
+presented in register form to the SoC. The Programmable Logic
+Register driver enables access to these registers and provides a
+standard way to provide access across the HPE portfolio. Additionally
+this patchset also enables the SPI driver that already exists in linux
+in the spi driver as spi-gxp file
 
-Because it makes MFD a dump for everything where author did not want to
-think about real device aspects, but instead represented driver design
-(MFD driver).
+Nick Hawkins (5):
+  soc: hpe: add support for HPE GXP Programmable Register Driver
+  dt-bindings: soc: hpe: Add hpe,gxp-plreg
+  ARM: dts: hpe: Add PLREG/SPI Support
+  ARM: multi_v7_defconfig: Enable GXP SPI and PLREG Drivers
+  MAINTAINERS: Add HPE SOC Drivers
 
-MFDs are pretty often combining unrelated features, e.g. PMICs which
-have wakeup and system power control, regulator, 32 kHz clocks, RTC and
-some USB connector.
+ .../bindings/soc/hpe/hpe,gxp-plreg.yaml       |   43 +
+ MAINTAINERS                                   |    3 +
+ arch/arm/boot/dts/hpe-bmc-dl360gen10.dts      |  275 ++++
+ arch/arm/boot/dts/hpe-gxp.dtsi                |   28 +-
+ arch/arm/configs/multi_v7_defconfig           |    2 +
+ drivers/soc/Kconfig                           |    1 +
+ drivers/soc/Makefile                          |    1 +
+ drivers/soc/hpe/Kconfig                       |   19 +
+ drivers/soc/hpe/Makefile                      |    7 +
+ drivers/soc/hpe/gxp-plreg.c                   | 1207 +++++++++++++++++
+ drivers/soc/hpe/gxp-soclib.c                  |   19 +
+ drivers/soc/hpe/gxp-soclib.h                  |   15 +
+ include/linux/soc/hpe/gxp.h                   |   15 +
+ 13 files changed, 1634 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/hpe/hpe,gxp-plreg.yaml
+ create mode 100644 drivers/soc/hpe/Kconfig
+ create mode 100644 drivers/soc/hpe/Makefile
+ create mode 100644 drivers/soc/hpe/gxp-plreg.c
+ create mode 100644 drivers/soc/hpe/gxp-soclib.c
+ create mode 100644 drivers/soc/hpe/gxp-soclib.h
+ create mode 100644 include/linux/soc/hpe/gxp.h
 
-Just because you will have clocksource driver, PWM driver and timer
-driver does not make it a MFD.
-
-Best regards,
-Krzysztof
+-- 
+2.17.1
 
