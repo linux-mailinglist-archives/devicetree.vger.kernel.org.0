@@ -2,43 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF2915FB4F9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:50:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B7E45FB4FD
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:50:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbiJKOu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 10:50:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34692 "EHLO
+        id S229942AbiJKOue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 10:50:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbiJKOuX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:50:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA0D62AB6;
-        Tue, 11 Oct 2022 07:50:22 -0700 (PDT)
+        with ESMTP id S229912AbiJKOu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:50:29 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8404C63F27;
+        Tue, 11 Oct 2022 07:50:27 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B8E70611C1;
-        Tue, 11 Oct 2022 14:50:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 468BEC433D7;
-        Tue, 11 Oct 2022 14:50:20 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BA1F7B811F5;
+        Tue, 11 Oct 2022 14:50:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CF33C433C1;
+        Tue, 11 Oct 2022 14:50:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665499821;
-        bh=N1ozdVjEK45DZAaHym9tlga1lHMtoLkWk36OeDCc6bQ=;
+        s=k20201202; t=1665499824;
+        bh=ZYbi87LgBg+80gUmBUZx6nrSVZcZ5HUBUxquNwvkUcw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qdwI7VcJEx2rSWQIr/51prN5OI0W8sLWHPSybV2fACaQHkVq5hW6UveN6b6R+xuHI
-         jf1+PUjjtsM2NuHYp3Et0hBTLd7E8kmm2n8xdmlSv1aU1swLuoCwW02ETP7/hW1gPS
-         v5QTCiAMiiRiZie7/9ppeOebb9WGBD3KRe7QxQ7YZwSaFTxClvBnUHKwT0dJ7JTAiF
-         E9q67zy4Hz4xjyCqxO5n0VYdCnJUWi04VChmWww+XQRRYaMdvfrAKP3HWaLd04+4oP
-         Fw9P5gs67XCOBf4VnG4BAI6o+CA9KYvKg35mQGbNxTuBOj7TQja+hb6eltOfwNah1K
-         2BIfXEQ0WMtfw==
+        b=ixhqRd8Y95gSRjBByLgCn1RseuHHCzs3tuORPWUyHNBLoNNpleLNBJtMmT4dWfILB
+         219EUCFDnbuzvhA15yD6B2NMcgeair9WGKMlOlTxCFvlF642FHppoiJoxFqA8lRwUc
+         5qe5ROGa8CGvGaWIH6SjshpMyvJPIuqyzw2PFAkxqWNwGXxH57ltjCha5XnctQvNOJ
+         vOe8EVFFHq9LS/N4rhxww8NgAle0F/oPOuV6Jlp4NfeC54FfTyQ2qeEdM2lPe6msT/
+         bqnZiObPdn79+lmyF04sINXH6svNMMw6QdRQl/LH5VHpu2gG8K5yelExYABOJK8Qxu
+         j0Ra822q0yBDA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Haibo Chen <haibo.chen@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.0 03/46] ARM: dts: imx7d-sdb: config the max pressure for tsc2046
-Date:   Tue, 11 Oct 2022 10:49:31 -0400
-Message-Id: <20221011145015.1622882-3-sashal@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        David Heidelberg <david@ixit.cz>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.0 05/46] arm64: dts: qcom: sc7280-idp: correct ADC channel node name and unit address
+Date:   Tue, 11 Oct 2022 10:49:33 -0400
+Message-Id: <20221011145015.1622882-5-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221011145015.1622882-1-sashal@kernel.org>
 References: <20221011145015.1622882-1-sashal@kernel.org>
@@ -55,58 +59,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Haibo Chen <haibo.chen@nxp.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[ Upstream commit e7c4ebe2f9cd68588eb24ba4ed122e696e2d5272 ]
+[ Upstream commit 5589ffb2da2a66988ab3a68334dad3e68b42e3a9 ]
 
-Use the general touchscreen method to config the max pressure for
-touch tsc2046(data sheet suggest 8 bit pressure), otherwise, for
-ABS_PRESSURE, when config the same max and min value, weston will
-meet the following issue,
+Correct SPMI PMIC VADC channel node name:
+1. Use hyphens instead of underscores,
+2. Add missing unit address.
 
-[17:19:39.183] event1  - ADS7846 Touchscreen: is tagged by udev as: Touchscreen
-[17:19:39.183] event1  - ADS7846 Touchscreen: kernel bug: device has min == max on ABS_PRESSURE
-[17:19:39.183] event1  - ADS7846 Touchscreen: was rejected
-[17:19:39.183] event1  - not using input device '/dev/input/event1'
+This fixes `make dtbs_check` warnings like:
 
-This will then cause the APP weston-touch-calibrator can't list touch devices.
+  qcom/sc7280-idp.dtb: pmic@0: adc@3100: 'pmk8350_die_temp', 'pmr735a_die_temp' do not match any of the regexes: '^.*@[0-9a-f]+$', 'pinctrl-[0-9]+'
 
-root@imx6ul7d:~# weston-touch-calibrator
-could not load cursor 'dnd-move'
-could not load cursor 'dnd-copy'
-could not load cursor 'dnd-none'
-No devices listed.
-
-And accroding to binding Doc, "ti,x-max", "ti,y-max", "ti,pressure-max"
-belong to the deprecated properties, so remove them. Also for "ti,x-min",
-"ti,y-min", "ti,x-plate-ohms", the value set in dts equal to the default
-value in driver, so are redundant, also remove here.
-
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
+Reviewed-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Link: https://lore.kernel.org/r/20220828084341.112146-12-krzysztof.kozlowski@linaro.org
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx7d-sdb.dts | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts  | 2 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx7d-sdb.dts b/arch/arm/boot/dts/imx7d-sdb.dts
-index 78f4224a9bf4..e93b9cd9c27b 100644
---- a/arch/arm/boot/dts/imx7d-sdb.dts
-+++ b/arch/arm/boot/dts/imx7d-sdb.dts
-@@ -206,12 +206,7 @@ tsc2046@0 {
- 		interrupt-parent = <&gpio2>;
- 		interrupts = <29 0>;
- 		pendown-gpio = <&gpio2 29 GPIO_ACTIVE_HIGH>;
--		ti,x-min = /bits/ 16 <0>;
--		ti,x-max = /bits/ 16 <0>;
--		ti,y-min = /bits/ 16 <0>;
--		ti,y-max = /bits/ 16 <0>;
--		ti,pressure-max = /bits/ 16 <0>;
--		ti,x-plate-ohms = /bits/ 16 <400>;
-+		touchscreen-max-pressure = <255>;
- 		wakeup-source;
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+index 6d3ff80582ae..e2e37a0292ad 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+@@ -78,7 +78,7 @@ &nvme_3v3_regulator {
  };
+ 
+ &pmk8350_vadc {
+-	pmr735a_die_temp {
++	pmr735a-die-temp@403 {
+ 		reg = <PMR735A_ADC7_DIE_TEMP>;
+ 		label = "pmr735a_die_temp";
+ 		qcom,pre-scaling = <1 1>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index a74e0b730db6..27c47ddbdf02 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -264,7 +264,7 @@ &pcie1_phy {
+ };
+ 
+ &pmk8350_vadc {
+-	pmk8350_die_temp {
++	pmk8350-die-temp@3 {
+ 		reg = <PMK8350_ADC7_DIE_TEMP>;
+ 		label = "pmk8350_die_temp";
+ 		qcom,pre-scaling = <1 1>;
 -- 
 2.35.1
 
