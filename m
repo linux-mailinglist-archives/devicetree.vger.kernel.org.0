@@ -2,150 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2097A5FB4B2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:39:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 699575FB4E7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 16:48:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiJKOi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 10:38:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37244 "EHLO
+        id S229863AbiJKOsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 10:48:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbiJKOi5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:38:57 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 271E297EE2;
-        Tue, 11 Oct 2022 07:38:48 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id c24so13401475plo.3;
-        Tue, 11 Oct 2022 07:38:48 -0700 (PDT)
+        with ESMTP id S229691AbiJKOsG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 10:48:06 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD6605B7AE
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 07:48:02 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id s3so58082qtn.12
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 07:48:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wvityC9bORmPy0KdL5pxTNPzzms/gV5YTGcGv0rJ5jU=;
-        b=muCcXqIbOpFqx9v2UQxN+fR02hHqFGN+7ieXYDNA+vRnVFsiAzLxfRAXCud5VQ9Uqw
-         995NXbV3LgA9N/1xTN0MmhRraQRY/yrDoHckgJ05d7bH+P6+BjXUXJ2MyMEpiVNBGZFK
-         oTFo3X/HswZXXZHCNYr44c0HwC9YDjbPCItMTkV9ULpxjur76VOZFBnpjibSojKY+ooF
-         t+nJwl9951C//PulZuVewmKkRCN+dt3vCjIbK2N/xufp8RIZ1WcKRCotUIqaSC6SKhv5
-         uOfWW/6Ufax1RUR3ZQGbW0kftIheaTCTo+LV2JA6uBGzwgmfxzl2n6svcoEDi9PqQnOa
-         wKWA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NNtqRYxDNEfihRF5QefJQz25yKJmze/w7Ghq2bpMKzQ=;
+        b=A7Ebks0DDm8Brcx+96Mp6zlGn790bpTzawzPpZK/MMOgLbo+qTXBYfo2iCl8iG0sBr
+         IZccMy7odYcxMae+hFQchhMS1Gfx0njxyw+NDEC1ONq60A4sRYQoEqWA1IvFymS2sRfs
+         0evCtRJTKDm1hwId+phP/HoqvXnEmUZ46OcPDZWg/ORsWRXEfdvAnxJ67xlZYZAgsz6H
+         1M8u1IqCggLVnyjsKUkVvhfTbTTj7Ju3ndiRi6GH4H17iVHzQqrT2X2uCIqRq7bnlmX6
+         AThw43Y5NJMEa39MRR41Pr79z+mJ3P/WTBcHaC+9oNK1uciwQslk1ASiGZ3E57nl8lzU
+         2Fzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wvityC9bORmPy0KdL5pxTNPzzms/gV5YTGcGv0rJ5jU=;
-        b=N2uAHKkXLoGBMyeFWv3kNnCuDGKbNGJ7f8k0+nj9MMMHkjEHSPWbzBuDcCoSHhF8tk
-         I8RWT/Fm0SDD1UqfLbiBaG/jgFOOSQijVG7e9S/jtsbxJjcNYYr5P9mmc6K2Lf0lOSol
-         iEuCrMQXRyye9XAJauwKUKkxQtQMz2QqlpkkCvkvE1Wy6v6IGtm/MoDPiWMuRtx8CXFH
-         SopA216AkkXN12PdILPggf7oa3d1wWD3iVetfiulHjOHdhc8q2PXrvHmFiUO6nye/kAy
-         5i/d0itYRF3YEMpMDQIq/TnSvK9xoawStucX99yUPSm2avMn5ox6/tMFmuJAk79wEoIJ
-         BriA==
-X-Gm-Message-State: ACrzQf1Garx3WujQP0q46RzedQmij/I+vrC2BMtgGPuXj63RW9lldOog
-        1FOV6DTVEdNdBxNofh4znIo=
-X-Google-Smtp-Source: AMsMyM6Y/mzfcChT9fJT+Ry58ZiLUPUYSUipi5EiBxOLq9RMY55bplWw9U82Dy2o7tJn5hCwKQwp4A==
-X-Received: by 2002:a17:90a:930b:b0:20b:a5d:35d6 with SMTP id p11-20020a17090a930b00b0020b0a5d35d6mr30874953pjo.146.1665499127595;
-        Tue, 11 Oct 2022 07:38:47 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:bff:9bd3:c2da:5f42])
-        by smtp.gmail.com with ESMTPSA id q17-20020aa79831000000b00563ce1905f4sm1529869pfl.5.2022.10.11.07.38.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Oct 2022 07:38:46 -0700 (PDT)
-Date:   Tue, 11 Oct 2022 07:38:43 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] ARM: dts: omap3-n900: fix LCD reset line polarity
-Message-ID: <Y0V/82JsRVZh6PlL@google.com>
-References: <20221004213503.848262-1-dmitry.torokhov@gmail.com>
- <Y0UDEtQlN5Y9h7BU@atomide.com>
- <20221011123726.elsr53ue7nxzhvww@mercury.elektranox.org>
- <Y0V4cLGbYe4j+ls6@google.com>
- <Y0V99Agad6Ma+yTC@atomide.com>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NNtqRYxDNEfihRF5QefJQz25yKJmze/w7Ghq2bpMKzQ=;
+        b=BxfkAOSeCFiZitz2IaOQV77F2QnklvFxSIUS/ETiIK5q4kgUNKgI2LiMsp7HXuHkTy
+         7krU5si+ZmhkWdGUSU9c95zkiwEqt3cBkgNLV+rPcyMVHYuM7FzDj2tu9SeSPkzbFwIl
+         x+AMVfxoL/Lb5h5NJ5z63sKtWOEZy5Ozo/xto3zfc531sJmqJ7iCZpnnkOkq9res/utV
+         Z6SmnZpDTL0P1YXxPxwhpH2rtnWVO9N+rGr9C6NGmOoCoeUWF+9H3aFFgbwilVsMM4vW
+         i9XkzLVrBUA5xyYwaouICQNOK3ocUWJBCLbIkwnNEJETjjTve0aHwt9eoZrv7KUMbzDx
+         DkyA==
+X-Gm-Message-State: ACrzQf1Q5mgFSyPQ92xEI/p7rXqqmmCIjfsgrp2aXdHOhYgj18aREGKN
+        KtGFQkDMIoygLzM8iTVOJwSSdg==
+X-Google-Smtp-Source: AMsMyM4M/PsdaNdoSwh2bCfVsJEe9LHVxaQ4Xy4/bPTVGlg6k1gNq1gzkbwTIH06/KaPx4FH9j677w==
+X-Received: by 2002:ac8:5fca:0:b0:35c:d2a:3d8a with SMTP id k10-20020ac85fca000000b0035c0d2a3d8amr19933012qta.460.1665499681730;
+        Tue, 11 Oct 2022 07:48:01 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id w41-20020a05622a192900b0035d5e5660cbsm1789278qtc.59.2022.10.11.07.48.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Oct 2022 07:48:01 -0700 (PDT)
+Message-ID: <8d6b8f0e-d9d7-0d77-aa99-379de768fd5d@linaro.org>
+Date:   Tue, 11 Oct 2022 10:45:49 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y0V99Agad6Ma+yTC@atomide.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Lee Jones <lee@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+References: <20221010145222.1047748-1-biju.das.jz@bp.renesas.com>
+ <20221010145222.1047748-2-biju.das.jz@bp.renesas.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221010145222.1047748-2-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 11, 2022 at 05:30:12PM +0300, Tony Lindgren wrote:
-> * Dmitry Torokhov <dmitry.torokhov@gmail.com> [221011 13:57]:
-> > Hi Sebastian,
-> > 
-> > On Tue, Oct 11, 2022 at 02:37:26PM +0200, Sebastian Reichel wrote:
-> > > Hi,
-> > > 
-> > > On Tue, Oct 11, 2022 at 08:45:54AM +0300, Tony Lindgren wrote:
-> > > > * Dmitry Torokhov <dmitry.torokhov@gmail.com> [221004 21:26]:
-> > > > > The LCD driver (panel-sony-acx565akm), when probing, starts with line
-> > > > > driven low, and then toggles it to high and keeps it there. Also, the
-> > > > > line is driven low when powering off the device, and ls released when
-> > > > > powering it back on. This means that the reset line should be described
-> > > > > as "active low" in DTS. This will be important when the driver is
-> > > > > converted to gpiod API which respects the polarity declared in DTS.
-> > > > 
-> > > > We should ensure these patches get merged together with the driver
-> > > > change to avoid breaking LCD for booting. Probably no need to have
-> > > > the driver quirk handling for inverted polartity in this case.
-> > > > 
-> > > > It's probably easiest to have an immutable branch for the driver
-> > > > changes I can base the dts changes on. Or I can ack the dts changes
-> > > > if they get merged with the driver.
-> > > 
-> > > Both drivers are already using gpiod API:
-> > > 
-> > > drivers/gpu/drm/panel/panel-sony-acx565akm.c
-> > > drivers/gpu/drm/panel/panel-dsi-cm.c
-> > 
-> > I was looking at
-> > 
-> > drivers/video/fbdev/omap2/omapfb/displays/panel-sony-acx565akm.c
-> > drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c
+On 10/10/2022 10:52, Biju Das wrote:
+> The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
+> the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
+> channels and one 32-bit timer channel. It supports the following
+> functions
+>  - Counter
+>  - Timer
+>  - PWM
 > 
-> Ah OK that explains :)
-> 
-> > which are not using gpiod. Should they be retired?
-> 
-> Yes we should just get rid of them with omapdrm working just fine.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v3->v4:
+>  * Dropped counter and pwm compatibeles as they don't have any resources.
+>  * Made rz-mtu3 as pwm provider.
+>  * Updated the example and description.
+> v2->v3:
+>  * Dropped counter bindings and integrated with mfd as it has only one property.
+>  * Removed "#address-cells" and "#size-cells" as it do not have children with
+>    unit addresses.
+>  * Removed quotes from counter and pwm.
+>  * Provided full path for pwm bindings.
+>  * Updated the example.
+> v1->v2:
+>  * Modelled counter and pwm as a single device that handles
+>    multiple channels.
+>  * Moved counter and pwm bindings to respective subsystems
+>  * Dropped 'bindings' from MFD binding title.
+>  * Updated the example
+>  * Changed the compatible names.
+> ---
+>  .../bindings/mfd/renesas,rz-mtu3.yaml         | 305 ++++++++++++++++++
+>  1 file changed, 305 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
 
-Will you be submitting such patches? I'd like to get rid of
-of_get_named_gpio() and friends if I can...
+This should not be in MFD. Just because some device has few features,
+does not mean it should go to MFD... Choose either timer or pwm.
+
 
 > 
-> > > So this just breaks things.
-> > 
-> > I missed the drivers in drivers/gpu/... and I see that they essentially
-> > abuse gpiod API as gpiod_set_value() operates on logical level
-> > (active/inactive) and not absolute (high/low). They should either use
-> > the gpiod_*_raw() variants, or they should be adjusted to do the proper
-> > thing together with the accompanying DTS change.
-> > 
-> > What are your preferences?
-> 
-> Seems like high/low at the connected device end is what we should use,
-> right? Otherwise things will misbehave if the panel is connected to
-> some other SoC possibly.
+> diff --git a/Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml b/Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+> new file mode 100644
+> index 000000000000..1b0be9f5cd18
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+> @@ -0,0 +1,305 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/renesas,rz-mtu3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G2L Multi-Function Timer Pulse Unit 3 (MTU3a)
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
+> +description: |
+> +  This hardware block pconsisting of eight 16-bit timer channels and one
 
-It is exactly because of this case the driver should use active/inactive
-and follow polarity described in DTS. If the driver does:
+"This hardware block consists of..."
 
-	gpiod_set_value_cansleep(d->reset, 1);
+> +  32- bit timer channel. It supports the following specifications:
+> +    - Pulse input/output: 28 lines max.
+> +    - Pulse input 3 lines
+> +    - Count clock 11 clocks for each channel (14 clocks for MTU0, 12 clocks
+> +      for MTU2, and 10 clocks for MTU5, four clocks for MTU1-MTU2 combination
+> +      (when LWA = 1))
+> +    - Operating frequency Up to 100 MHz
 
-then if DTS is saying that the reset line is active low, under the wraps
-the line will be driven to "0", but if DTS is saying that the line is
-active high, then the very same call will drive the line to "1".
+Best regards,
+Krzysztof
 
-This allows accommodating different designs without having to change the
-driver code.
-
--- 
-Dmitry
