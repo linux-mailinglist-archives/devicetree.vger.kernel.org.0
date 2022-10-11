@@ -2,88 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3851A5FBBCD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 22:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE8A05FBBE1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 22:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbiJKUGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 16:06:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48672 "EHLO
+        id S229764AbiJKUKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 16:10:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229907AbiJKUGI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 16:06:08 -0400
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E9FE9B85F
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 13:06:05 -0700 (PDT)
-Received: by mail-qt1-x82f.google.com with SMTP id bb5so3640110qtb.11
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 13:06:05 -0700 (PDT)
+        with ESMTP id S229786AbiJKUKw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 16:10:52 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7495B7CABF
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 13:10:51 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id fw14so13440528pjb.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 13:10:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3OrZY7gIg9zPCoylQJvUfFiRJxU0iGXU0m3H3P5gtWU=;
-        b=rdtVBvQJThBQQslavzfRL0NGn0XKxFbgKLZ8RSgo9qc7wBNUI92ALfHucerU3cJXt+
-         UDfO+inM11rDNfJXzrR4x4RVGVMVHXxZJwuEaNXaFX4mhqBvSMYGLyGlPFhsjGXH5Qe1
-         EpbjmomZ91jXxh4E0wMQnbQo4Hs6QA/CegS1UEdXv05QjpxlnoO/3GLYKQ5jWucTXlU6
-         Y0zEvG4i3Z/ybLqdam7zKZHcbpmcEuon7cVFPkpEEZv2uZlC3amiKPmSt2J3BDQk+WIY
-         KL7rCUfDKFS3cR/K/uIcnUYwOESgMK8salvH0dTgZhag+L+1xMrCDbMAPFf1jjf98q/q
-         gCfQ==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gdwf1KGq05Jj2wBDUsBe9H2+KCNJMFX0ODf5icvl56Y=;
+        b=YkR7uAg5WXHLuK+YB1M8Ivl3ryL5ttl3PLx8SDWmIk5lSJKuGIzsAHyc3wXjJjswhf
+         5RwXRItZh+nBi2hMD8JvcXfubJi94JUg997gSQ7Ue9VHPQx7I9BkqoNrO0iB1W5UemoE
+         4125IB2XHOy9l409FliXKklm7etV1o3mddhmDMEQvgK0+fMSYy0/U8uGjvERAUF/EBbQ
+         NFBBpaJuDANPwNJ8EZN9wF4CoilYffJ4cFSlzGHod/K+kybE7FUGu0RfGq+d93mrHTiY
+         eE09Aj/iUHQWFOQJwLa+pzIGD9zH/QRnO+OsGGx/No6c3Wa/GocDvlE/0DbFXJnkt6a2
+         WEnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3OrZY7gIg9zPCoylQJvUfFiRJxU0iGXU0m3H3P5gtWU=;
-        b=ZbaKv5O/Ti9uN+w6HlkiQdMtDX+NHGVPD58kgOox0axYUF5jww4fDtUXCHHpqmk7s5
-         qtGYvnpuJmV2ic7/Sn9auCUCl/GWXq1yVxwhhOQDPq064ZL9Ism+7RQ8L1PLyyB4EHBg
-         bQsA2yA5TsXF5zpo9vOK0BMcgTgWYyTvp4daGRuviFqmSlUtQRXfHKL1ONn4nBmgPNao
-         PmD02jkCTpgYZgSLhOO+DISJ/shsRa2GBS1NzTsyI5jsIvW5EHfVV1ARQISw/ZVFRk8i
-         Womt768qT5lRtR606gikk5reHBfjYmyX0m8c97ZyDjzAYarIpajzCfD0AlbrPP8WS37R
-         J8Cw==
-X-Gm-Message-State: ACrzQf0fke/ay+blM3VVjMrzcYpkw6v5nU+X/eCboS/hV1FbcEbftMuT
-        gMiO1XmJURp4wPV0ND3TmhFwBg==
-X-Google-Smtp-Source: AMsMyM5Pm5yBgd1Uwjmp6b6XGLhAMyZ5AKaOb/Se/KGbnqz5sobAkxFFaNthpw0yeaMeXrr6q80KTg==
-X-Received: by 2002:a05:622a:389:b0:39c:bca4:587e with SMTP id j9-20020a05622a038900b0039cbca4587emr856599qtx.491.1665518763970;
-        Tue, 11 Oct 2022 13:06:03 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id bn42-20020a05620a2aea00b006ee8874f5d8sm1418876qkb.28.2022.10.11.13.06.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Oct 2022 13:06:03 -0700 (PDT)
-Message-ID: <c362aad4-e920-b5f1-d490-8256789b68cb@linaro.org>
-Date:   Tue, 11 Oct 2022 16:06:02 -0400
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gdwf1KGq05Jj2wBDUsBe9H2+KCNJMFX0ODf5icvl56Y=;
+        b=ZW9qpSLUn2Nk7/9CT7zhLcr8FGgqn5GWi8f6UkZTndTbmEMQOOx2TLM+fg+WeGCW94
+         D9j9EL3iF8p66gwdikohHs/ZIuWPmV95mXqzbZPEgNXQ2XDTrkMWXzBji9kjG03HDI7a
+         2mZjpDviYqGEFkhblhwlUZvTpG78pNvatkQoYhaPytf0ChOHmgcbWYYK10sBQ3R1kAx2
+         cESnV0X15vQfAN/2h8262xqH/zfITsGcjdAhTS4iUY9+56xtx30LbBlF28TvJhEpjeam
+         +y8+YnqL7g1JI0dppztSsa7GGzjMsZibIFbTMUfu4jfstTpo5OoZWv3+CptTuuQf/IaV
+         WIgA==
+X-Gm-Message-State: ACrzQf28bb//xCIT3cWG6zYu/HLwbHBhaH/R+hTNXFZSgTDxcKKFWR0s
+        sbBLXDRudmUACugNi0Q3vmvwMNVFeOFqz1X+QYlsCw==
+X-Google-Smtp-Source: AMsMyM508ceCmi/EResRMaolUhhT5785fFLEEM2lQzYkZA2L+M/ZK2bABzAGyKsCygnQdtEGlLmtXhO5OWYAmKavRQA=
+X-Received: by 2002:a17:902:eb8e:b0:17f:637b:9548 with SMTP id
+ q14-20020a170902eb8e00b0017f637b9548mr25784213plg.158.1665519050412; Tue, 11
+ Oct 2022 13:10:50 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v1 5/5] MAINTAINERS: Add HPE SOC Drivers
-Content-Language: en-US
-To:     nick.hawkins@hpe.com, verdun@hpe.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20221011185525.94210-1-nick.hawkins@hpe.com>
- <20221011185525.94210-6-nick.hawkins@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221011185525.94210-6-nick.hawkins@hpe.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220708085632.1918323-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20220708085632.1918323-1-peng.fan@oss.nxp.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Tue, 11 Oct 2022 13:10:39 -0700
+Message-ID: <CAJ+vNU3uYtDGMd6fPi7skWKL8UNXntfAEODARF0NVz9k7DCT7w@mail.gmail.com>
+Subject: Re: [PATCH V4 0/7] imx: blk-ctrl: Add interconnect for i.MX8MP
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     djakov@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, abelvesa@kernel.org,
+        abailon@baylibre.com, l.stach@pengutronix.de,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
+        aford173@gmail.com, kernel@pengutronix.de,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2022 14:55, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> Add the HPE GXP SOC Include files, yaml files, and driver files.
+On Fri, Jul 8, 2022 at 1:57 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
+>
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> V4:
+>  Because the header is not included when adding NoC node, the fsl,imx8mp.h
+>  needs be included in this patchset. So include it in patch 6
+>
+> V3:
+>  Move adding NoC node patch to i.MX8MP ICC driver patchset
+>  Per Lucas's comments, warn once when icc bulk get not return probe defer and continue.
+>
+> V2:
+>  Use a low bandwidth value instead INT_MAX
+>  Minor fix to move fsl,imx8mp.h out to dts patch, not driver patch
+>  Add A-b tag from DT maintainer
+>
+> i.MX8MP NoC settings is invalid after related power domain up. So
+> need to set valid values after power domain up.
+>
+> This patchset is to bind interconnect for each entry in blk ctrl.
+>
+> This patchset is not include DVFS DDRC feature.
+>
+> Peng Fan (7):
+>   dt-bindings: soc: imx: add interconnect property for i.MX8MP media blk
+>     ctrl
+>   dt-bindings: soc: imx: add interconnect property for i.MX8MP hdmi blk
+>     ctrl
+>   dt-bindings: soc: imx: add interconnect property for i.MX8MP hsio blk
+>     ctrl
+>   soc: imx: add icc paths for i.MX8MP media blk ctrl
+>   soc: imx: add icc paths for i.MX8MP hsio/hdmi blk ctrl
+>   arm64: dts: imx8mp: add interconnects for media blk ctrl
+>   arm64: dts: imx8mp: add interconnect for hsio blk ctrl
+>
+>  .../soc/imx/fsl,imx8mp-hdmi-blk-ctrl.yaml     |  9 +++++
+>  .../soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml     | 10 +++++
+>  .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 14 +++++++
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 18 +++++++++
+>  drivers/soc/imx/imx8m-blk-ctrl.c              | 39 +++++++++++++++++++
+>  drivers/soc/imx/imx8mp-blk-ctrl.c             | 35 +++++++++++++++++
+>  6 files changed, 125 insertions(+)
+>
+> --
+> 2.25.1
+>
 
-YAML is a format, you added before bindings, so just "bindings". And no
-need to repeat files three times.
+Hi Peng,
 
-Best regards,
-Krzysztof
+I built origin/master from commit 041bc24d867a today for an imx8mp
+board and am running into errors that appear to be introduced by this
+series:
+[   15.177372] platform 381f0040.usb-phy: deferred probe pending
+[   15.183155] platform 382f0040.usb-phy: deferred probe pending
+[   15.188928] platform 33800000.pcie: deferred probe pending
+[   15.194439] platform 32ec0000.blk-ctrl: deferred probe pending
+[   15.200287] platform 38330000.blk-ctrl: deferred probe pending
+[   15.206129] platform 32f10000.blk-ctrl: deferred probe pending
+[   15.211974] platform 32f10100.usb: deferred probe pending
+[   15.217382] platform 32f10108.usb: deferred probe pending
+[   15.222791] platform cpufreq-dt: deferred probe pending
+# cat /sys/kernel/debug/devices_deferred
+381f0040.usb-phy        platform: supplier 32f10000.blk-ctrl not ready
+382f0040.usb-phy        platform: supplier 32f10000.blk-ctrl not ready
+33800000.pcie   platform: supplier 32f10000.blk-ctrl not ready
+32ec0000.blk-ctrl       imx8m-blk-ctrl: failed to get noc entries
+38330000.blk-ctrl       imx8m-blk-ctrl: failed to get noc entries
+32f10000.blk-ctrl       imx8mp-blk-ctrl: failed to get noc entries
+32f10100.usb    platform: supplier 32f10000.blk-ctrl not ready
+32f10108.usb    platform: supplier 32f10000.blk-ctrl not ready
+cpufreq-dt
 
+Is there a driver I'm perhaps missing that is needed now or are there
+some patches that come from a different unmerged tree needed?
+
+Best Regards,
+
+Tim
