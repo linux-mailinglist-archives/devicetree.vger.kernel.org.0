@@ -2,117 +2,339 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA3885FBDEB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 00:46:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11F8E5FBE08
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 01:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbiJKWp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 18:45:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41842 "EHLO
+        id S229577AbiJKXB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 19:01:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbiJKWp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 18:45:58 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A4C06C773;
-        Tue, 11 Oct 2022 15:45:56 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29BM0qn0021810;
-        Tue, 11 Oct 2022 22:45:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=57BPCXUaF1qOQpkMOq8mYxbHJHy+Ow2FgOHfSPu9WPA=;
- b=LUMfglt1snlvkNQdXmeIPCOOCXipr9veVW+HoeO04ojycjNFyBar+zYLKhBIxoi/0hO0
- 0SdEYFaxvJLxLulSJOVWgOUqBXsnS8VWPNU56SdlhKohPFsvvuKqzVBUuFMm7qF1CJP8
- WlBE5FxkqVokymt63kYPSFF0d/SkDlBdbNsS/4vgJ6tDmMv1LprXrg5yISrl8C/AyiEC
- bGyn79vT0lxArEFJ8dNgIPqvXS3wYV1WtZ8wr8ECkFC3FSaaqmit1mBPwtmdh01qO4Lt
- h1e0fcCnzs1lZGjVgkzA4DUuJdC3DxhgpJVx3p7bpZIjNosWUVrPzKZmhtvSGlMyjnWu Cg== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k4rx5ugjq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Oct 2022 22:45:42 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29BMjfn9008190
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Oct 2022 22:45:41 GMT
-Received: from [10.134.65.5] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 11 Oct
- 2022 15:45:41 -0700
-Message-ID: <f0e7fdfb-6439-ac27-5119-38cf99010269@quicinc.com>
-Date:   Tue, 11 Oct 2022 15:45:40 -0700
+        with ESMTP id S229445AbiJKXB0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 19:01:26 -0400
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B285F986
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 16:01:24 -0700 (PDT)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-131dda37dddso17754974fac.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 16:01:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf.com; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1NmhxoB5FfeDLQSOCmHfU2Us6Bf0La5Ymj1Q8d1Ci+Y=;
+        b=hikWRSPJtZ8VgEI+7O08taRL31Iuz4MeLJoGC3SNfDE8lzz9/5U7qHVs0JOqSwbb74
+         0/9FAAHaNLYp5fTy5fJXOEHD9Y4+gV7fZJayd+8eWkvHpXfuesOZLzAGCl6qRvZSh4UX
+         uA1Je/OFgiw1jMkUxkNeSEBzVsFkooPN4sh6UjJ9eIZgZjzFnzqvnYnquwhMF9jbxQPz
+         I918R1C3D5WxRB4js8CSyu1tUmt2YIhawgGfzgViQdnxCvYO66g2GwZ+O3a7M3kx87eP
+         8i28++Kyxuu7LjUOM8ibFEfJXcltBbgLpRWOpOKU42ZjZ/Odl8fQTmMGv+ZkjX8pwkWV
+         DnpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1NmhxoB5FfeDLQSOCmHfU2Us6Bf0La5Ymj1Q8d1Ci+Y=;
+        b=yt2V67bUmYVorX2KtLVkhjtqo0Fu0FPivdbMwp6KMKH2fuJ+MNySYclXGVVVowXICc
+         TPvoSxJ428Z+ST5FMNsJSEWVtJy5CLVgGSE5kPOXvNI2jO7AJHz4qdcYqmruwG8lEhPV
+         G92RmSRJJ933/dctaPv4cxkPIsCuBMN4LCpPaBTp3G56w2eAt8nL8kawZ/wgbHO0xUyu
+         88YE/4tN2cjaD23GA+wQHWHoC8s3cOIDNSfEm/iTZqgY3gzC/IR94cWdRKbE0NIDEzkF
+         fYaCzJqWksPKPY9g3Hgjo7t259uXhPMBsT9Thr4euSWzdM2YKlLbD2XAVYnaZxmH90Gy
+         VI4A==
+X-Gm-Message-State: ACrzQf2igQbepQC3iQuBgq4iwmqFpydzN4O00n+4uAjKneUnuNv1QGs6
+        FrtvkMS2yZOuzJ5VU99ClVJttgcvTjrZll1vB8Z5eA==
+X-Google-Smtp-Source: AMsMyM5N0L4L3FOVl+mGmuvzLjnRyLQ9Hgcq2jpnXWweheGK6eoLgzIp/P4hGoetZKJhy7Ds098DMbaUVMNhz/RjXvM=
+X-Received: by 2002:a05:6870:c082:b0:12b:542c:71cf with SMTP id
+ c2-20020a056870c08200b0012b542c71cfmr848222oad.45.1665529283863; Tue, 11 Oct
+ 2022 16:01:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v5 04/13] arm64: smccc: Include alternative-macros.h
-Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        "Sudeep Holla" <sudeep.holla@arm.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "Jassi Brar" <jassisinghbrar@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Marc Zyngier" <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-5-quic_eberman@quicinc.com>
- <Y0UZrAavHNxkJVm9@kroah.com>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <Y0UZrAavHNxkJVm9@kroah.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: i23mEmHpoR8MCPu3G1VMD8WNzRTHc_kg
-X-Proofpoint-ORIG-GUID: i23mEmHpoR8MCPu3G1VMD8WNzRTHc_kg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-11_08,2022-10-11_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- clxscore=1015 mlxscore=0 priorityscore=1501 spamscore=0 bulkscore=0
- malwarescore=0 adultscore=0 suspectscore=0 mlxlogscore=730 impostorscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210110131
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221011190613.13008-1-mig@semihalf.com> <20221011190613.13008-2-mig@semihalf.com>
+ <ad015bc9-a6d2-491d-463a-42a6a0afbf75@linaro.org> <CAPv3WKcY=erFTBDLP1AhQa0+CP6C8KJinmKFEkR2xh4mHHv_aQ@mail.gmail.com>
+In-Reply-To: <CAPv3WKcY=erFTBDLP1AhQa0+CP6C8KJinmKFEkR2xh4mHHv_aQ@mail.gmail.com>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Wed, 12 Oct 2022 01:01:13 +0200
+Message-ID: <CAPv3WKdon28ntGQ=xbmL+CEFQ7=xzOQOcV9qN_8MOt-uiLHoXg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: marvell,pp2: convert to json-schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     =?UTF-8?Q?Micha=C5=82_Grzelak?= <mig@semihalf.com>,
+        devicetree@vger.kernel.org, linux@armlinux.org.uk,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, upstream@semihalf.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+wt., 11 pa=C5=BA 2022 o 22:34 Marcin Wojtas <mw@semihalf.com> napisa=C5=82(=
+a):
+>
+> Hi Krzysztof,
+>
+> Let me chime in.
+>
+> wt., 11 pa=C5=BA 2022 o 21:50 Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> napisa=C5=82(a):
+> >
+> > On 11/10/2022 15:06, Micha=C5=82 Grzelak wrote:
+> > > Convert the marvell,pp2 bindings from text to proper schema.
+> > >
+> > > Move 'marvell,system-controller' and 'dma-coherent' properties from
+> > > port up to the controller node, to match what is actually done in DT.
+> >
+> > You need to also mention other changes done during conversion -
+> > requiring subnodes to be named "(ethernet-)?ports", deprecating port-id=
+.
+> >
+> > >
+> > > Signed-off-by: Micha=C5=82 Grzelak <mig@semihalf.com>
+> > > ---
+> > >  .../devicetree/bindings/net/marvell,pp2.yaml  | 286 ++++++++++++++++=
+++
+> > >  .../devicetree/bindings/net/marvell-pp2.txt   | 141 ---------
+> > >  MAINTAINERS                                   |   2 +-
+> > >  3 files changed, 287 insertions(+), 142 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/net/marvell,pp2=
+.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/net/marvell-pp2=
+.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/net/marvell,pp2.yaml b=
+/Documentation/devicetree/bindings/net/marvell,pp2.yaml
+> > > new file mode 100644
+> > > index 000000000000..24c6aeb46814
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/net/marvell,pp2.yaml
+> > > @@ -0,0 +1,286 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/net/marvell,pp2.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Marvell CN913X / Marvell Armada 375, 7K, 8K Ethernet Controll=
+er
+> > > +
+> > > +maintainers:
+> > > +  - Marcin Wojtas <mw@semihalf.com>
+> > > +  - Russell King <linux@armlinux.org>
+> > > +
+> > > +description: |
+> > > +  Marvell Armada 375 Ethernet Controller (PPv2.1)
+> > > +  Marvell Armada 7K/8K Ethernet Controller (PPv2.2)
+> > > +  Marvell CN913X Ethernet Controller (PPv2.3)
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - marvell,armada-375-pp2
+> > > +      - marvell,armada-7k-pp22
+> > > +
+> > > +  reg:
+> > > +    minItems: 3
+> > > +    maxItems: 4
+> > > +
+> > > +  "#address-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#size-cells":
+> > > +    const: 0
+> > > +
+> > > +  clocks:
+> > > +    minItems: 2
+> > > +    items:
+> > > +      - description: main controller clock
+> > > +      - description: GOP clock
+> > > +      - description: MG clock
+> > > +      - description: MG Core clock
+> > > +      - description: AXI clock
+> > > +
+> > > +  clock-names:
+> > > +    minItems: 2
+> > > +    items:
+> > > +      - const: pp_clk
+> > > +      - const: gop_clk
+> > > +      - const: mg_clk
+> > > +      - const: mg_core_clk
+> > > +      - const: axi_clk
+> > > +
+> > > +  dma-coherent: true
+> > > +
+> > > +  marvell,system-controller:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +    description: a phandle to the system controller.
+> > > +
+> > > +patternProperties:
+> > > +  '^(ethernet-)?port@[0-9]+$':
+> > > +    type: object
+> > > +    description: subnode for each ethernet port.
+> > > +
+> > > +    properties:
+> > > +      interrupts:
+> > > +        minItems: 1
+> > > +        maxItems: 10
+> > > +        description: interrupt(s) for the port
+> > > +
+> > > +      interrupt-names:
+> > > +        minItems: 1
+> > > +        items:
+> > > +          - const: hif0
+> > > +          - const: hif1
+> > > +          - const: hif2
+> > > +          - const: hif3
+> > > +          - const: hif4
+> > > +          - const: hif5
+> > > +          - const: hif6
+> > > +          - const: hif7
+> > > +          - const: hif8
+> > > +          - const: link
+> > > +
+> > > +        description: >
+> > > +          if more than a single interrupt for is given, must be the
+> > > +          name associated to the interrupts listed. Valid names are:
+> > > +          "hifX", with X in [0..8], and "link". The names "tx-cpu0",
+> > > +          "tx-cpu1", "tx-cpu2", "tx-cpu3" and "rx-shared" are suppor=
+ted
+> > > +          for backward compatibility but shouldn't be used for new
+> > > +          additions.
+> > > +
+> > > +      reg:
+> > > +        description: ID of the port from the MAC point of view.
+> > > +
+> > > +      port-id:
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> >
+> >         deprecated: true
+> >
+> > > +        description: >
+> > > +          ID of the port from the MAC point of view.
+> > > +          Legacy binding for backward compatibility.
+> > > +
+> > > +      phy:
+> > > +        $ref: /schemas/types.yaml#/definitions/phandle
+> > > +        description: >
+> > > +          a phandle to a phy node defining the PHY address
+> > > +          (as the reg property, a single integer).
+> > > +
+> > > +      phy-mode:
+> > > +        $ref: ethernet-controller.yaml#/properties/phy-mode
+> > > +
+> > > +      marvell,loopback:
+> > > +        $ref: /schemas/types.yaml#/definitions/flag
+> > > +        description: port is loopback mode.
+> > > +
+> > > +      gop-port-id:
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +        description: >
+> > > +          only for marvell,armada-7k-pp22, ID of the port from the
+> > > +          GOP (Group Of Ports) point of view. This ID is used to ind=
+ex the
+> > > +          per-port registers in the second register area.
+> > > +
+> > > +    required:
+> > > +      - interrupts
+> > > +      - port-id
+> > > +      - phy-mode
+> > > +      - reg
+> >
+> > Keep the same order of items here as in list of properties
+> >
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - clock-names
+> > > +
+> > > +allOf:
+> > > +  - $ref: ethernet-controller.yaml#
+> >
+> > Hmm, are you sure this applies to top-level properties, not to
+> > ethernet-port subnodes? Your ports have phy-mode and phy - just like
+> > ethernet-controller. If I understand correctly, your Armada Ethernet
+> > Controller actually consists of multiple ethernet controllers?
+> >
+>
+> PP2 is a single controller with common HW blocks, such as queue/buffer
+> management, parser/classifier, register space, and more. It controls
+> up to 3 MAC's (ports) that can be connected to phys, sfp cages, etc.
+> The latter cannot exist on their own and IMO the current hierarchy -
+> the main controller with subnodes (ports) properly reflects the
+> hardware.
+>
+> Anyway, the ethernet-controller.yaml properties fit to the subnodes.
+> Apart from the name. The below is IMO a good description:.
+>
+> > If so, this should be moved to proper place inside patternProperties.
+> > Maybe the subnodes should also be renamed from ports to just "ethernet"
+> > (as ethernet-controller.yaml expects), but other schemas do not follow
+> > this convention,
+>
+> ethernet@
+> {
+>     ethernet-port@0
+>     {
+>      }
+>      ethernet-port@1
+>      {
+>      }
+> }
+>
+> What do you recommend?
+>
 
+I moved the ethernet-controller.yaml reference to under the subnode
+(this allowed me to remove phy and phy-mode description)) and it
+doesn't complain about the node naming. Please let me know if below
+would be acceptable.
 
-On 10/11/2022 12:22 AM, Greg Kroah-Hartman wrote:
-> On Mon, Oct 10, 2022 at 05:08:31PM -0700, Elliot Berman wrote:
->> Fix build error when CONFIG_ARM64_SVE is selected and
->> asm/alternative-macros.h wasn't implicitly included by another header.
->>
->> Fixes: cfa7ff959a78 ("arm64: smccc: Support SMCCC v1.3 SVE register saving hint")
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> 
-> Shouldn't this be independant of this whole series and get merged now
-> and backported to stable kernels if it really is causing a build problem
-> today?
+--- a/Documentation/devicetree/bindings/net/marvell,pp2.yaml
++++ b/Documentation/devicetree/bindings/net/marvell,pp2.yaml
+@@ -61,7 +61,11 @@ patternProperties:
+     type: object
+     description: subnode for each ethernet port.
 
-I'll drop the "Fixes:" tag here since there is no build problem today. 
-asm/alternative-macros.h was already implicitly included in all the 
-cases where arm-smccc.h was being included. When I introduced the Gunyah 
-hypercalls, I noticed the assumption.
++    allOf:
++      - $ref: ethernet-controller.yaml#
++
+     properties:
+       interrupts:
+         minItems: 1
+         maxItems: 10
+@@ -95,19 +99,11 @@ patternProperties:
+
+       port-id:
+         $ref: /schemas/types.yaml#/definitions/uint32
++        deprecated: true
+         description: >
+           ID of the port from the MAC point of view.
+           Legacy binding for backward compatibility.
+
+-      phy:
+-        $ref: /schemas/types.yaml#/definitions/phandle
+-        description: >
+-          a phandle to a phy node defining the PHY address
+-          (as the reg property, a single integer).
+-
+-      phy-mode:
+-        $ref: ethernet-controller.yaml#/properties/phy-mode
+-
+       marvell,loopback:
+         $ref: /schemas/types.yaml#/definitions/flag
+         description: port is loopback mode.
+@@ -132,7 +128,6 @@ required:
+   - clock-names
+
+ allOf:
+-  - $ref: ethernet-controller.yaml#
+   - if:
+
+Best regards,
+Marcin
