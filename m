@@ -2,204 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDEA65FBB0D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 21:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAB3D5FBB11
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 21:07:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230048AbiJKTGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 15:06:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38878 "EHLO
+        id S229626AbiJKTHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 15:07:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230079AbiJKTF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 15:05:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6D0B88A1E;
-        Tue, 11 Oct 2022 12:05:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A32EEB8162A;
-        Tue, 11 Oct 2022 19:05:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CFD0C433D6;
-        Tue, 11 Oct 2022 19:05:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665515152;
-        bh=lA8HVxH8Er792775c7b2bmBxc830NlnM5GgCsTOYHks=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LO0t4Vfe0i2latyWK/FVonMg7g1msj84dQ+ijhC0V2dpTfVDM4iOTXwQTKdNz/uuN
-         VRZaBssxHRTMZDseKg1+/6uJRhadkGhv56q2BrlPXD9rQNiYfiyXb7FQzxlsO/BQVd
-         QDdzBCH6TYF5g+lW56kXW13SknWpl6ywH3tgiWsplZpaqZWeRTHoMAxsbXl5Vw/ydx
-         XFgrL6gd0WU9iM2wAuitKRBPhlJnvUv4M+Hp3sCEsZcIe8rmJk5qVhgo7qPrfgQ8eZ
-         K9UcWqX4KGDOt3UAvBKjxjprGJV3/bVKMT/R/hKd2F/DPkfh3O18w2l5Z2PPiX5XJc
-         k87WePE9BwNeA==
-Received: by mail-vk1-f171.google.com with SMTP id e5so7115529vkg.6;
-        Tue, 11 Oct 2022 12:05:52 -0700 (PDT)
-X-Gm-Message-State: ACrzQf2ckWLDZUy3jDQTMuVtC0ls3LxBqiRedVimEdK2qqBV4pAHtSuw
-        KRA4in6A5yXLAsWBt0/jXl5uvgFWZI2T7PM/mA==
-X-Google-Smtp-Source: AMsMyM5H3zqGHE8PRlHKOHMAwzqh7D8ZkbW5K5Q+eh4cP7JlkLwY2IdoTbpAIx6vMrdlK9Fv+pFPkJdxgzOt3IgRlqc=
-X-Received: by 2002:a1f:60cd:0:b0:3ae:da42:89d0 with SMTP id
- u196-20020a1f60cd000000b003aeda4289d0mr1844824vkb.15.1665515151438; Tue, 11
- Oct 2022 12:05:51 -0700 (PDT)
+        with ESMTP id S229469AbiJKTHA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 15:07:00 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B751EAE6
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 12:06:58 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id b1so17569124lfs.7
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 12:06:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yTgWeajzUik/wX4AtUecfU2eGL0YO972G/Xn1vBhwCM=;
+        b=sy+hXByYVLz567exgGzOBYbvpi87ZeK3JuTTIRD/XGsigG63/rzDJpfDhgwQpACfjW
+         9zvKR4pi5JBiecW3anJCDGc5gpPWlwCP+WDdwi8m8FDXEW/PoafGD3WLfB6kx5T84Cuk
+         jyjosHjfxtbEWxME5lxRLOJ7936qQohvAgMZsXhsf91cgKHOCDEhT1yrLMtSlzYITu9s
+         5Aknas5QZtBiYJlvF/Z+YgO/I2J1S+LRrNNQRiKLgk8IP7gGpC/4S4F//dNJ+7w2KHqt
+         1PmZ7nMDqO03JVxjjyFVLMoCzNlEahdxNJJv5uQfWcusKzV5w2Xurev9gqXxtaxm2W+U
+         D43g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yTgWeajzUik/wX4AtUecfU2eGL0YO972G/Xn1vBhwCM=;
+        b=kkLkc6+umqnFAkzu3LwDv2SMklNaUIgTPoOyyoANm+nzlTnV/uu3iE+ZETjdbSEXMe
+         kN5Bpcwc9ais8mvpeKwhbpTj0qrSjiCAvNmgK3+zW99UtzDU0MuqePHJM7rcnCCbSOYi
+         OqXj7Cfw36rT0g1fCvzOzSuyo6Sh47LzMvwf5XGdfx0nH380pNpKLehADI4sfdOneID4
+         RpwzUdp6fBP29ks1te4YEHDXBDVSjMlu3akBJdShI3Zcx7SyWIpcfosHnT0hQD2BEFH4
+         uxLL1TEllwOIafAlOTsdXZflvJqJilopICRWjbUQDRYbceRvLbIoFZcLvCLzi6a6b2P6
+         fiRA==
+X-Gm-Message-State: ACrzQf2DPCSHaX6ntmn/fa9nmOX46yATrvFHi0WN57cpFZlmFCmobtIh
+        lDl7KyrVCzIQGrkKdAS82iB+a5ExpyB/02pgCaM=
+X-Google-Smtp-Source: AMsMyM69LHz4pad3omDX9Ac0rmEAZ9RxnAPNWESsNWh5VOrfr0q9zt/MscFu3WmDdQeXYD16XsAEDQ==
+X-Received: by 2002:ac2:551d:0:b0:4a2:7c75:6e37 with SMTP id j29-20020ac2551d000000b004a27c756e37mr9656913lfk.398.1665515216393;
+        Tue, 11 Oct 2022 12:06:56 -0700 (PDT)
+Received: from michal-H370M-DS3H.office.semihalf.net ([83.142.187.84])
+        by smtp.googlemail.com with ESMTPSA id p9-20020a2eb7c9000000b00262fae1ffe6sm2270477ljo.110.2022.10.11.12.06.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Oct 2022 12:06:56 -0700 (PDT)
+From:   =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
+To:     devicetree@vger.kernel.org
+Cc:     mw@semihalf.com, linux@armlinux.org.uk, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        upstream@semihalf.com,
+        =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
+Subject: [PATCH v3 0/3] marvell,pp2.yaml and .dtsi improvements
+Date:   Tue, 11 Oct 2022 21:06:10 +0200
+Message-Id: <20221011190613.13008-1-mig@semihalf.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20221011104739.53262-1-Naresh.Solanki@9elements.com> <20221011104739.53262-2-Naresh.Solanki@9elements.com>
-In-Reply-To: <20221011104739.53262-2-Naresh.Solanki@9elements.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 11 Oct 2022 14:05:42 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLmzcM2m6iU_hvy8=a1QP=Xm9HU0U=R_GkO4UxW+Fn=fQ@mail.gmail.com>
-Message-ID: <CAL_JsqLmzcM2m6iU_hvy8=a1QP=Xm9HU0U=R_GkO4UxW+Fn=fQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 11, 2022 at 5:47 AM Naresh Solanki
-<naresh.solanki@9elements.com> wrote:
->
-> Add common fan properties bindings to a schema.
->
-> Bindings for fan controllers can reference the common schema for the
-> fan
->
-> child nodes:
->
->   patternProperties:
->     "^fan@[0-2]":
->       type: object
->       allOf:
+Hi,
 
-Don't allOf here.
+This patch series introduces changes of port names from ethX to 
+ethernet-port@X in all relevant .dtsi files. It includes also all
+considerations from thread about v2. 
 
->         - $ref: fan-common.yaml#
->
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../devicetree/bindings/hwmon/fan-common.yaml | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
->
-> diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> new file mode 100644
-> index 000000000000..abc8375da646
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
+Would appreciate if you had time to review that version.
 
-Dual license with BSD-2-Clause.
+Best regards,
+Michał
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/fan-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common fan properties
-> +
-> +maintainers:
-> +  - Naresh Solanki <naresh.solanki@9elements.com>
-> +
-> +properties:
-> +  max-rpm:
-> +    description:
-> +      Max RPM supported by fan
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pulse-per-revolution:
+---
+Changelog:
+v2->v3
+- move 'reg:description' to 'allOf:if:then'
+- change '#size-cells: true' and '#address-cells: true'
+  to '#size-cells: const: 0' and '#address-cells: const: 1'
+- replace all occurences of pattern "^eth\{hex_num}*"
+  with "^(ethernet-)?port@[0-9]+$"
+- add description in 'patternProperties:^...'
+- add 'patternProperties:^...:interrupt-names:minItems: 1'
+- add 'patternProperties:^...:reg:description'
+- update 'patternProperties:^...:port-id:description'
+- add 'patternProperties:^...:required: - reg'
+- update '*:description:' to uppercase
+- add 'allOf:then:required:marvell,system-controller'
+- skip quotation marks from 'allOf:$ref'
+- add 'else' schema to match 'allOf:if:then'
+- restrict 'clocks' in 'allOf:if:then'
+- restrict 'clock-names' in 'allOf:if:then'
+- add #address-cells=<1>; #size-cells=<0>; in 'examples:'
+- change every "ethX" to "ethernet-port@X" in 'examples:'
+- add "reg" and comment in all ports in 'examples:'
+- change /ethernet/eth0/phy-mode in examples://Armada-375
+  to "rgmii-id"
+- replace each cpm_ with cp0_ in 'examples:'
+- replace each _syscon0 with _clk0 in 'examples:'
+- remove each eth0X label in 'examples:'
+- update armada-375.dtsi and armada-cp11x.dtsi to match
+  marvell,pp2.yaml
 
-The already in use property is 'pulses-per-revolution'.
+v1->v2
+- move 'properties' to the front of the file
+- remove blank line after 'properties'
+- move 'compatible' to the front of 'properties'
+- move 'clocks', 'clock-names' and 'reg' definitions to 'properties' 
+- substitute all occurences of 'marvell,armada-7k-pp2' with
+  'marvell,armada-7k-pp22'
+- add properties:#size-cells and properties:#address-cells 
+- specify list in 'interrupt-names'
+- remove blank lines after 'patternProperties'
+- remove '^interrupt' and '^#.*-cells$' patterns
+- remove blank line after 'allOf'
+- remove first 'if-then-else' block from 'allOf'
+- negate the condition in allOf:if schema
+- delete 'interrupt-controller' from section 'examples'
+- delete '#interrupt-cells' from section 'examples'
 
-> +    description:
-> +      The number of pulse from fan sensor per revolution.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+Marcin Wojtas (2):
+  arm64: dts: marvell: Update network description to match schema
+  ARM: dts: armada-375: Update network description to match schema
 
-I assume there's a known set of values various fans have?
+Michał Grzelak (1):
+  dt-bindings: net: marvell,pp2: convert to json-schema
 
-> +
-> +  target-rpm:
-> +    description:
-> +      Target RPM the fan should be configured during driver probe.
+ .../devicetree/bindings/net/marvell,pp2.yaml  | 286 ++++++++++++++++++
+ .../devicetree/bindings/net/marvell-pp2.txt   | 141 ---------
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/armada-375.dtsi             |  12 +-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |  17 +-
+ 5 files changed, 306 insertions(+), 152 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/marvell,pp2.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/marvell-pp2.txt
 
-Which driver? I think 'default-rpm' would be a better name.
+-- 
+2.25.1
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pwm-frequency:
-> +    description:
-> +      PWM frequency for fan.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pwm-polarity-inverse:
-> +    description:
-> +      PWM polarity for fan.
-> +    type: boolean
-
-Both of these properties are handled by the PWM binding already. I
-think this should use it even though the PWMs are just connected to
-the child nodes. There's always the possibility that someone hooks up
-a fan controller PWM to something else besides a fan.
-
-> +
-> +  label:
-> +    description:
-> +      Optional fan label
-> +    $ref: /schemas/types.yaml#/definitions/string
-
-Doesn't a fan need power? 'fan-supply' is already in use, so that could be used.
-
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-
-Drop the example here as you have it in the max6639 schema.
-
-> +
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        fan-controller@30 {
-> +            compatible = "maxim,max6639";
-> +            reg = <0x30>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            fan@0 {
-> +                reg = <0>;
-> +                label = "CPU0_Fan";
-> +                max-rpm = <32000>;
-> +                pulse-per-revolution = <2>;
-> +                target-rpm = <2000>;
-> +                pwm-frequency = <25000>;
-> +            };
-> +
-> +            fan@1 {
-> +                reg = <1>;
-> +                label = "PCIe0_Fan";
-> +                max-rpm = <32000>;
-> +                pulse-per-revolution = <2>;
-> +                target-rpm = <2000>;
-> +                pwm-frequency = <25000>;
-> +            };
-> +
-> +        };
-> +    };
-> +
-> +...
->
-> base-commit: 0cf46a653bdae56683fece68dc50340f7520e6c4
-> --
-> 2.37.3
->
