@@ -2,169 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 557645FBA98
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 20:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F8EC5FBAB9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 20:48:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbiJKSlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 14:41:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45776 "EHLO
+        id S229933AbiJKSs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 14:48:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229799AbiJKSlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 14:41:24 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A277CAA2;
-        Tue, 11 Oct 2022 11:41:23 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-12c8312131fso16975807fac.4;
-        Tue, 11 Oct 2022 11:41:23 -0700 (PDT)
+        with ESMTP id S229822AbiJKSsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 14:48:54 -0400
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB0284E57
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 11:48:52 -0700 (PDT)
+Received: by mail-qk1-x72d.google.com with SMTP id j21so6887025qkk.9
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 11:48:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mG2zwWYNxIWtSztSKOnvPD7xgArPRkO20SvzB1RsUNA=;
+        b=tn3AqHoMOmYRGqInNP1wFi2+uneFjRWwKgRnzxxWnAoLwMoGE+Qc2A4wcVzs5FIAgd
+         2BgGs4gWUlQGa+PN8IWz4PKv1vpNSaU5tQIQEA+F/h02K52N3BtaJlZGdCVI0T6816YU
+         NYWuXrQmgRAvTnGpbEYJxAJO6/s/4nRIZwDnTNaEoquHHsIfcI/2oqxLMvBQPLSboQKN
+         yeCjs+gd6TvLMeQ+kQbNA1v47CCIPXHqKMn8HHzg5aFJ2fEwRxom5C4lgTaJ3KHNGko9
+         A723vHMxJAvZk0snb3tsTDKO9a2Y0ncIqgcyZUFdD4txzQEOsh77MAj0gQWN89jm3dU7
+         BToQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4JAJVk0JnsSinL2EcEIankDF1nDr2CRkvvuRQlFNUCo=;
-        b=tIVwN7GsywVN+eRcBJrK2VFN5O+JS5uHMmEVeEBnKcu4W3ovR5K9tqAaDKz1PtiL8w
-         byUm6W3Ox2nGXY+75CT7aJXWxsTNgXYNd6xu5uVgAOHhe0ACDCw4r7VZQ1mnYKx8eJC+
-         yCaeLlwTQxZ8+Rlkz5PRNJ5nduwBLb9sWZnVW+vffs94wGtECmfo+7VyUdjNybzzwm97
-         gAPKk2a2fR4XTWlK4xspKgJvOZeS2C8GNknVo9s7U8FYKOhJncXyFetF+9MXaDzpJFdt
-         iN589XtWZogNqX3AlUrwGN4xKiNnjvQDhZ8jdst1RpIoLrFRtCqP2vTQo/brfpov3W++
-         Tb9A==
-X-Gm-Message-State: ACrzQf0ddeVRUu5D9aNNQFKimvkQ50+mcmDqIrG6C3cSqZFzCvPuaqPN
-        wYi6265byuCPQE8rx6QVLA==
-X-Google-Smtp-Source: AMsMyM6NnHYJgkyLWS5L0o44ZzcDSOea6RklSLt6jGqdzkkxoYu8wriiAf7by2811mt0dFqqdYz6Yg==
-X-Received: by 2002:a05:6870:424d:b0:132:5c64:dd5a with SMTP id v13-20020a056870424d00b001325c64dd5amr344320oac.128.1665513683076;
-        Tue, 11 Oct 2022 11:41:23 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e22-20020a056820061600b00480816a5b8csm117789oow.18.2022.10.11.11.41.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Oct 2022 11:41:22 -0700 (PDT)
-Received: (nullmailer pid 3755271 invoked by uid 1000);
-        Tue, 11 Oct 2022 18:41:24 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: Convert dmic-codec to DT schema
-Date:   Tue, 11 Oct 2022 13:41:19 -0500
-Message-Id: <20221011184119.3754096-1-robh@kernel.org>
-X-Mailer: git-send-email 2.35.1
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mG2zwWYNxIWtSztSKOnvPD7xgArPRkO20SvzB1RsUNA=;
+        b=Ij/sYMOTcX7CQUm6CAYVTXCQxsWsiOWyPsacXwoI8l298tfFlnv+AZUZPjYgc+UZCe
+         Kfa+J8AC+eo5XYOMAk/j859F7vJ0ioBeyD5+y4wtE1NHI1/e9dWf2fZSMVyLUXa2Hwhn
+         oxEp3JCz3MwSTVNuFDDt7H2D0e9/8HEr1QmiFSOzb8xPzxXsIaVrkNmmISufYrjbYi7k
+         Ub+1QkX8gbO9hGwe4tBgaQOzHST5GEbgZKvwbF3kguilw4PR2ytCVXHYhkBQ06npp+iH
+         uWsRFFowrvDUDD9DKKM9Friw/1GsKGtSGpKNj84iJ6q4PSgYVJMgLsJIjOo6Nm8PCmvw
+         FHuA==
+X-Gm-Message-State: ACrzQf050pBMqSQvzuAq2Sp6tKWNO5rKXaze4aABM13VyUh7tjDGuv99
+        oROjHQ1fZ6iLmFaxQj4HkzU3lA==
+X-Google-Smtp-Source: AMsMyM4CGlYrpnjNHBvMf8M1YQruOkuVcEl81tyRMWUVOnRYQmss7kRrR3+p43tvKMpt7CWIviYv2w==
+X-Received: by 2002:a05:620a:4008:b0:6ce:8725:cb7 with SMTP id h8-20020a05620a400800b006ce87250cb7mr18157000qko.480.1665514131819;
+        Tue, 11 Oct 2022 11:48:51 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id bw5-20020a05622a098500b0039cba52974fsm566090qtb.94.2022.10.11.11.48.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Oct 2022 11:48:51 -0700 (PDT)
+Message-ID: <d94d99e0-195c-4b27-a928-debe3f20e7d4@linaro.org>
+Date:   Tue, 11 Oct 2022 14:46:38 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH] dt-bindings: thermal: Convert generic-adc-thermal to DT
+ schema
+To:     Rob Herring <robh@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221011175235.3191509-1-robh@kernel.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221011175235.3191509-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the dmic-codec binding to DT schema format.
+On 11/10/2022 13:52, Rob Herring wrote:
+> Convert the 'generic-adc-thermal' binding to DT schema format.
+> 
+> The binding said '#thermal-sensor-cells' should be 1, but all in tree
+> users are 0 and 1 doesn't make sense for a single channel.
+> 
+> Drop the example's related providers and consumers of the
+> 'generic-adc-thermal' node as the convention is to not have those in
+> the examples.
 
-The '#sound-dai-cells' and 'sound-name-prefix' properties were not
-documented, but are in use, so add them.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/sound/dmic-codec.yaml | 55 +++++++++++++++++++
- .../devicetree/bindings/sound/dmic.txt        | 22 --------
- 2 files changed, 55 insertions(+), 22 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/dmic-codec.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/dmic.txt
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/sound/dmic-codec.yaml b/Documentation/devicetree/bindings/sound/dmic-codec.yaml
-new file mode 100644
-index 000000000000..767152fa99cc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/dmic-codec.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/dmic-codec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic PDM Digital microphone (DMIC) codec
-+
-+maintainers:
-+  - Arnaud Pouliquen <arnaud.pouliquen@st.com>
-+
-+allOf:
-+  - $ref: name-prefix.yaml#
-+
-+properties:
-+  compatible:
-+    const: dmic-codec
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  dmicen-gpios:
-+    description: GPIO specifier for DMIC to control start and stop
-+    maxItems: 1
-+
-+  num-channels:
-+    description: Number of microphones on this DAI
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 8
-+    default: 8
-+
-+  modeswitch-delay-ms:
-+    description: Delay (in ms) to complete DMIC mode switch
-+
-+  wakeup-delay-ms:
-+    description: Delay (in ms) after enabling the DMIC
-+
-+required:
-+  - compatible
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio.h>
-+
-+    dmic {
-+        compatible = "dmic-codec";
-+        dmicen-gpios = <&gpio4 3 GPIO_ACTIVE_HIGH>;
-+        num-channels = <1>;
-+        wakeup-delay-ms <50>;
-+        modeswitch-delay-ms <35>;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/sound/dmic.txt b/Documentation/devicetree/bindings/sound/dmic.txt
-deleted file mode 100644
-index 32e871037269..000000000000
---- a/Documentation/devicetree/bindings/sound/dmic.txt
-+++ /dev/null
-@@ -1,22 +0,0 @@
--Device-Tree bindings for Digital microphone (DMIC) codec
--
--This device support generic PDM digital microphone.
--
--Required properties:
--	- compatible: should be "dmic-codec".
--
--Optional properties:
--	- dmicen-gpios: GPIO specifier for dmic to control start and stop
--	- num-channels: Number of microphones on this DAI
--	- wakeup-delay-ms: Delay (in ms) after enabling the DMIC
--	- modeswitch-delay-ms: Delay (in ms) to complete DMIC mode switch
--
--Example node:
--
--	dmic_codec: dmic@0 {
--		compatible = "dmic-codec";
--		dmicen-gpios = <&gpio4 3 GPIO_ACTIVE_HIGH>;
--		num-channels = <1>;
--		wakeup-delay-ms <50>;
--		modeswitch-delay-ms <35>;
--	};
--- 
-2.35.1
+Best regards,
+Krzysztof
 
