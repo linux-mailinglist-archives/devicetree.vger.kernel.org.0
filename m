@@ -2,76 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE8DC5FB02B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 12:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C88A05FB089
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 12:36:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbiJKKJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 06:09:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35624 "EHLO
+        id S229699AbiJKKgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 06:36:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbiJKKJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 06:09:18 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D07E6AEA9;
-        Tue, 11 Oct 2022 03:09:17 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S229587AbiJKKgT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 06:36:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6E35F7C0;
+        Tue, 11 Oct 2022 03:36:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A30756602356;
-        Tue, 11 Oct 2022 11:09:15 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1665482956;
-        bh=KheL8efT8Q96RJOrwtrfyrYEayKrb6iY+HjU4M1eBgc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jqKA6J73hIKrKBEqpcEJcrdREuyXUU5x/u6yBt8FzQAFAQ09wq0+7LIIaHtSrknfn
-         yx8RoLy+0ftvaDrzjzI/aww7kiVRy65tFqrhu22T9zn5qv42su1GjwVIF8xHBq9yaI
-         uzTafVxfA6HQq90mcefcqHKzXemNg9UTeOjyl1qDX59BpwTigHsXW4CiZ9VhYbvYwT
-         USWMdHktLCCpH02ReXVpJCUTgLjMEKO485KYWOciySUC90pQVvtYkHvt4lI+K+RfWt
-         KDI2/Ee0kmOhg0+E8Lhmj0o3a7WaTsh5/Lzm69miFYeCt4F88Dm2ZyDdr93DxnPdDY
-         bjN2Nu3hcvQBA==
-Message-ID: <a7831463-c4a3-d89e-3f33-fbf00441b517@collabora.com>
-Date:   Tue, 11 Oct 2022 12:09:13 +0200
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5F97061170;
+        Tue, 11 Oct 2022 10:36:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86D46C433C1;
+        Tue, 11 Oct 2022 10:36:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665484577;
+        bh=AcvorbeO7IeezbFs7GQqmszANLwT9CFP0PPWa4yQhSY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XScz9NDzzIDweBEQWQD6uEatQsLYoKNf0V2UUAz2Ok8Vh+bpNmD5bHaErD5CDQJ0z
+         +A8MwfoSbbgfkfVagPurQwVWzBaBDkBr1Po5IklakKfXI7qc2a3O4dRXyfWvke+eZz
+         vu+HXDH+Mltm90I8gKbr6jDua8NFm3FQxU5FKz9mgA1+CC3Jy/591280vpYuUb3aee
+         l3DAZh3esPC9S+P+5u+hZOnHi1Jf8mGdnImnKZFGH+1K/VCZDwsum4QOIOKICYbp+a
+         ChGvxntxgOXD0nEEABwPgkmunMwXZx70XwQYwJDjfvsxqnveR6VRg5XFUfcWRGfbzq
+         EK8gnpHkbj2zw==
+Date:   Tue, 11 Oct 2022 11:36:10 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     krzysztof.kozlowski@linaro.org, chen.zhong@mediatek.com,
+        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
+        fparent@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, lgirdwood@gmail.com,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org, robh@kernel.org
+Subject: Re: [PATCH v2 3/5] dt-bindings: regulator: Add binding schema for
+ mt6357 regulators
+Message-ID: <Y0VHGh/GavvuZY2A@sirena.org.uk>
+References: <cdb4e9f7-c7b3-3a1f-bf61-e42bdb021570@linaro.org>
+ <972ba839-2fd3-2b45-3477-0c7e3d32f149@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v2 6/7] soc: mediatek: mutex: Add mtk_mutex_set_mod
- support to set MOD1
-Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-References: <20221011070356.682-1-moudy.ho@mediatek.com>
- <20221011070356.682-7-moudy.ho@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221011070356.682-7-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Qy+sdSDVmD8xz5a1"
+Content-Disposition: inline
+In-Reply-To: <972ba839-2fd3-2b45-3477-0c7e3d32f149@baylibre.com>
+X-Cookie: I had pancake makeup for brunch!
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 11/10/22 09:03, Moudy Ho ha scritto:
-> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-> 
-> Add mtk_mutex_set_mod support to set MOD1
-> 
-> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+--Qy+sdSDVmD8xz5a1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Tue, Oct 11, 2022 at 11:30:58AM +0200, Alexandre Mergnat wrote:
 
+> > Why enforcing particular name of the regulator?
+
+> The regulator names are forced to match with the datasheet names.
+
+> I think it's a good practice to increase visibility between HW & SW.
+
+> Also, that keep consistency with other Mediatek PMIC schema.
+
+No, this is bad practice which completely misses the point of what the
+names are for and the other Mediatek drivers are broken.
+
+--Qy+sdSDVmD8xz5a1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNFRxkACgkQJNaLcl1U
+h9DNVAf+IAfeWJtE4IzcYAbU8KiaUeVALAXjWr2ios39H9Rp6rmG3HbUm0Hn4YQ7
+z6mOZsA/dxM0GBcC+0E4GaJBb9nPdNcsm5he5cnG53JCzLZEli8b5hd+d4vrhtai
+PSNcNlwd5gr4bBnISeOXqsmHy1VvwkGpJuo84sA4Rre//0tocfPmJX8i+tINms4k
+MfSgehyBSxsGwFFwxo8sxFrR/mP1zsTe+XQKZ/pPaQHI/2/OfxSuUzn8qtCI3g1X
+ySN2o41nmq+Jg7CWmAXQnQuTa5b3CBGW0bCRb6x728A/+VSHaNKp4fU4VcfalpeW
+LDQ7MYIWTvgZK3ffGffopei5AOipng==
+=QZoS
+-----END PGP SIGNATURE-----
+
+--Qy+sdSDVmD8xz5a1--
