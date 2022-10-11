@@ -2,97 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51FF45FAD2B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 09:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB4EA5FAD55
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 09:20:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbiJKHEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 03:04:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47562 "EHLO
+        id S229655AbiJKHUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 03:20:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229805AbiJKHEC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 03:04:02 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3EAC857DB;
-        Tue, 11 Oct 2022 00:04:01 -0700 (PDT)
-X-UUID: 753ee6d0e73d4e049f7389ee0d2678ff-20221011
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=jx+9FQ9pVAzpmeUBEDy+ewK0F0bmclelNRbxoHM9CgA=;
-        b=mUpbgQR+E2I41V4GG0bRYHqKW7Io271tBw+9rvZL6EJON6cXfIjiespGJu8+mKEk11JugPExV/3vRzxzs02eeNmG/ppFGWN0QQcxLLM3aTTXcfXmoRMWfjOaTsH9KgYaZ4ROZJjURMWsIYF/odTnW09RMb1aiJlDVG3hOrVZHvQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:a5984953-b579-45de-8136-dad0160fbe7e,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:e43087e1-2948-402a-a6e4-b5d31fe11eb7,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 753ee6d0e73d4e049f7389ee0d2678ff-20221011
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <moudy.ho@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 2073484023; Tue, 11 Oct 2022 15:03:58 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 11 Oct 2022 15:03:57 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 11 Oct 2022 15:03:57 +0800
-From:   Moudy Ho <moudy.ho@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229446AbiJKHUl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 03:20:41 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8037333A2F;
+        Tue, 11 Oct 2022 00:20:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2DEF9B81201;
+        Tue, 11 Oct 2022 07:20:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54C60C433D7;
+        Tue, 11 Oct 2022 07:20:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1665472837;
+        bh=/8HeXdDL44KxP1+8V4r577mz41Pbncg8nfnzpe0Uy+o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UWNzE2f7GJx+sDmABCspUuoQSud9KlR8uPRpFPqVr2JkoWMDNvixagqxNIrtW5UEg
+         WqEVhe4rprezKarJQ+N65K9SlqMd3+4vxSa1TO+2sN3ghNBbjmQ56Q2F9m8usre6xn
+         R4MhKFJ3d7zWSbs7ITCCKyM8njzdaTl4AlTThUTk=
+Date:   Tue, 11 Oct 2022 09:21:20 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>
-Subject: [PATCH v2 1/7] dt-bindings: arm: mediatek: mmsys: Add support for MT8195 VPPSYS
-Date:   Tue, 11 Oct 2022 15:03:50 +0800
-Message-ID: <20221011070356.682-2-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20221011070356.682-1-moudy.ho@mediatek.com>
-References: <20221011070356.682-1-moudy.ho@mediatek.com>
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 03/13] gunyah: Common types and error codes for Gunyah
+ hypercalls
+Message-ID: <Y0UZcLl20HobX4w3@kroah.com>
+References: <20221011000840.289033-1-quic_eberman@quicinc.com>
+ <20221011000840.289033-4-quic_eberman@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221011000840.289033-4-quic_eberman@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For MT8195, VPPSYS0 and VPPSYS1 are 2 display pipes with
-hardware differences in power domains, clocks and subsystem counts,
-which should be determined by compatible names.
+On Mon, Oct 10, 2022 at 05:08:30PM -0700, Elliot Berman wrote:
+> Add architecture-independent standard error codes, types, and macros for
+> Gunyah hypercalls.
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> ---
+>  MAINTAINERS                  |  1 +
+>  include/asm-generic/gunyah.h | 74 ++++++++++++++++++++++++++++++++++++
+>  2 files changed, 75 insertions(+)
+>  create mode 100644 include/asm-generic/gunyah.h
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ef6de7599d98..4fe8cec61551 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8886,6 +8886,7 @@ L:	linux-arm-msm@vger.kernel.org
+>  S:	Supported
+>  F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+>  F:	Documentation/virt/gunyah/
+> +F:	include/asm-generic/gunyah.h
+>  
+>  HABANALABS PCI DRIVER
+>  M:	Oded Gabbay <ogabbay@kernel.org>
+> diff --git a/include/asm-generic/gunyah.h b/include/asm-generic/gunyah.h
+> new file mode 100644
+> index 000000000000..64a02dd3b5ad
+> --- /dev/null
+> +++ b/include/asm-generic/gunyah.h
 
-Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
----
- .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml     | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Why not include/linux/gunyah.h?  Why asm-generic?  This is not an
+architecture.
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-index 0711f1834fbd..493aa9e8d484 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-@@ -48,7 +48,10 @@ properties:
-           - const: syscon
- 
-       - items:
--          - const: mediatek,mt8195-vdosys0
-+          - enum:
-+              - mediatek,mt8195-vdosys0
-+              - mediatek,mt8195-vppsys0
-+              - mediatek,mt8195-vppsys1
-           - const: mediatek,mt8195-mmsys
-           - const: syscon
- 
--- 
-2.18.0
+thanks,
 
+greg k-h
