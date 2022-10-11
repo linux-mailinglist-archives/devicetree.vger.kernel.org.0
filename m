@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F8EC5FBAB9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 20:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F8B35FBAB2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 20:48:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229933AbiJKSs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 14:48:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57672 "EHLO
+        id S229863AbiJKSr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 14:47:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbiJKSsy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 14:48:54 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB0284E57
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 11:48:52 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id j21so6887025qkk.9
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 11:48:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mG2zwWYNxIWtSztSKOnvPD7xgArPRkO20SvzB1RsUNA=;
-        b=tn3AqHoMOmYRGqInNP1wFi2+uneFjRWwKgRnzxxWnAoLwMoGE+Qc2A4wcVzs5FIAgd
-         2BgGs4gWUlQGa+PN8IWz4PKv1vpNSaU5tQIQEA+F/h02K52N3BtaJlZGdCVI0T6816YU
-         NYWuXrQmgRAvTnGpbEYJxAJO6/s/4nRIZwDnTNaEoquHHsIfcI/2oqxLMvBQPLSboQKN
-         yeCjs+gd6TvLMeQ+kQbNA1v47CCIPXHqKMn8HHzg5aFJ2fEwRxom5C4lgTaJ3KHNGko9
-         A723vHMxJAvZk0snb3tsTDKO9a2Y0ncIqgcyZUFdD4txzQEOsh77MAj0gQWN89jm3dU7
-         BToQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mG2zwWYNxIWtSztSKOnvPD7xgArPRkO20SvzB1RsUNA=;
-        b=Ij/sYMOTcX7CQUm6CAYVTXCQxsWsiOWyPsacXwoI8l298tfFlnv+AZUZPjYgc+UZCe
-         Kfa+J8AC+eo5XYOMAk/j859F7vJ0ioBeyD5+y4wtE1NHI1/e9dWf2fZSMVyLUXa2Hwhn
-         oxEp3JCz3MwSTVNuFDDt7H2D0e9/8HEr1QmiFSOzb8xPzxXsIaVrkNmmISufYrjbYi7k
-         Ub+1QkX8gbO9hGwe4tBgaQOzHST5GEbgZKvwbF3kguilw4PR2ytCVXHYhkBQ06npp+iH
-         uWsRFFowrvDUDD9DKKM9Friw/1GsKGtSGpKNj84iJ6q4PSgYVJMgLsJIjOo6Nm8PCmvw
-         FHuA==
-X-Gm-Message-State: ACrzQf050pBMqSQvzuAq2Sp6tKWNO5rKXaze4aABM13VyUh7tjDGuv99
-        oROjHQ1fZ6iLmFaxQj4HkzU3lA==
-X-Google-Smtp-Source: AMsMyM4CGlYrpnjNHBvMf8M1YQruOkuVcEl81tyRMWUVOnRYQmss7kRrR3+p43tvKMpt7CWIviYv2w==
-X-Received: by 2002:a05:620a:4008:b0:6ce:8725:cb7 with SMTP id h8-20020a05620a400800b006ce87250cb7mr18157000qko.480.1665514131819;
-        Tue, 11 Oct 2022 11:48:51 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id bw5-20020a05622a098500b0039cba52974fsm566090qtb.94.2022.10.11.11.48.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Oct 2022 11:48:51 -0700 (PDT)
-Message-ID: <d94d99e0-195c-4b27-a928-debe3f20e7d4@linaro.org>
-Date:   Tue, 11 Oct 2022 14:46:38 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH] dt-bindings: thermal: Convert generic-adc-thermal to DT
- schema
-To:     Rob Herring <robh@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        with ESMTP id S229802AbiJKSr5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 14:47:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8375784E43;
+        Tue, 11 Oct 2022 11:47:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1CB6F61277;
+        Tue, 11 Oct 2022 18:47:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07C6DC4314C;
+        Tue, 11 Oct 2022 18:47:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1665514069;
+        bh=d5RRKxQbKRz2TycMKkEiQane8TWoQjQVycIG9gWcv6c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=zuE3UyQu22I/ykCVQKxDAlyPkucwHD77jc3RLRZKQUEf1GrkYa7W1w45bi2jwZ2FH
+         hmEoKx/IAIwylgeOUAlAcDiBqQbw90YreVNrudvc/vpqvKzP/YzSisNvb2uRwxTuir
+         YdT4/XvzLuZPkxIK4hDGXSUSV2dGPyxFttixWZtY=
+Date:   Tue, 11 Oct 2022 20:48:33 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laxman Dewangan <ldewangan@nvidia.com>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221011175235.3191509-1-robh@kernel.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221011175235.3191509-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 03/13] gunyah: Common types and error codes for Gunyah
+ hypercalls
+Message-ID: <Y0W6gVcxTRg/m5Nb@kroah.com>
+References: <20221011000840.289033-1-quic_eberman@quicinc.com>
+ <20221011000840.289033-4-quic_eberman@quicinc.com>
+ <Y0UZcLl20HobX4w3@kroah.com>
+ <52b07662-666a-2fc7-cb18-a9d294f7ae9b@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <52b07662-666a-2fc7-cb18-a9d294f7ae9b@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,19 +73,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2022 13:52, Rob Herring wrote:
-> Convert the 'generic-adc-thermal' binding to DT schema format.
+On Tue, Oct 11, 2022 at 11:21:36AM -0700, Elliot Berman wrote:
 > 
-> The binding said '#thermal-sensor-cells' should be 1, but all in tree
-> users are 0 and 1 doesn't make sense for a single channel.
 > 
-> Drop the example's related providers and consumers of the
-> 'generic-adc-thermal' node as the convention is to not have those in
-> the examples.
+> On 10/11/2022 12:21 AM, Greg Kroah-Hartman wrote:
+> > On Mon, Oct 10, 2022 at 05:08:30PM -0700, Elliot Berman wrote:
+> > > Add architecture-independent standard error codes, types, and macros for
+> > > Gunyah hypercalls.
+> > > 
+> > > Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> > > ---
+> > >   MAINTAINERS                  |  1 +
+> > >   include/asm-generic/gunyah.h | 74 ++++++++++++++++++++++++++++++++++++
+> > >   2 files changed, 75 insertions(+)
+> > >   create mode 100644 include/asm-generic/gunyah.h
+> > > 
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index ef6de7599d98..4fe8cec61551 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -8886,6 +8886,7 @@ L:	linux-arm-msm@vger.kernel.org
+> > >   S:	Supported
+> > >   F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+> > >   F:	Documentation/virt/gunyah/
+> > > +F:	include/asm-generic/gunyah.h
+> > >   HABANALABS PCI DRIVER
+> > >   M:	Oded Gabbay <ogabbay@kernel.org>
+> > > diff --git a/include/asm-generic/gunyah.h b/include/asm-generic/gunyah.h
+> > > new file mode 100644
+> > > index 000000000000..64a02dd3b5ad
+> > > --- /dev/null
+> > > +++ b/include/asm-generic/gunyah.h
+> > 
+> > Why not include/linux/gunyah.h?  Why asm-generic?  This is not an
+> > architecture.
+> > 
+> 
+> My idea here is to differentiate between code that interacts with hypercalls
+> and code that uses the abstractions provided on top of those hypercalls.
+> include/asm-generic/gunyah.h contains architecture-independent definitions
+> for hypercalls. Hypercalls are architecture-specific.
+> 
+> For instance, I wanted to avoid a header file that mixes the definitions for
+> the message-queue mailbox with the hypercall definitions that the
+> message-queue mailbox driver itself uses.
+> 
+> I can put it all in include/linux/gunyah.h and delineate with some clear
+> comments, but I initially felt it would be better to have separate header
+> file.
 
+Please put it all in one place, this is just one tiny driver and should
+not abuse the asm-generic location at all, no one is only going to want
+just this one file, they are going to need the whole thing or nothing.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+thanks,
 
-Best regards,
-Krzysztof
-
+greg k-h
