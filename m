@@ -2,68 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3B7C5FBB9B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 21:55:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D8785FBB99
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 21:54:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbiJKTzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 15:55:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52840 "EHLO
+        id S229666AbiJKTyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 15:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbiJKTzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 15:55:47 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 024767268C
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 12:55:46 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id m6so4120936qkm.4
-        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 12:55:45 -0700 (PDT)
+        with ESMTP id S229695AbiJKTyQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 15:54:16 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 151A47D7BE
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 12:54:14 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id i9so9672515qvo.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Oct 2022 12:54:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ss0HZNXbaBlRsDGVHZxLf0e+LjVtH8J66SlzaV39VFg=;
-        b=RI6G4Kub0A2958/mWKsFwhr4EB9R3R3b8zX7dA/n0HvwKihz/TRp2NJxR3qeJ7od5m
-         QedvEyL9p3AIO/BVt5YYwjvg7RMnkPKcBHifx7yoHSTrAgLHIeVfIt9fhF1UC89ojIvt
-         pVD6SGxRpuTV/19wiBCWOSvXEsOQQVDo9SvRQI3tstjn9xzxiDxQVR/NgPubwz5kGflL
-         oaDErNOVrCNkyS2zjuQ9eHOY7N9K5w1Lld+WA7+/oDEl4G7zNIObomS5Vc+PPrtL9kVI
-         jJJlfyaHFH7snOsRYWrfOih+rJvdcN/KG8R6t93BHC2d4FS7xJHOSfYSVLQA7KVpki1m
-         cdbw==
+        bh=sslcfDW3BZnjxJOzXU+bZ3YMR6XY0q1cZ2iVJRTDRVk=;
+        b=dPaAEuVDxDtXPEwzGLqsjaNTL+1KZKNie24yZ9SYlP5pHpnEXEvsgcLHNzjx/cQ1cn
+         6q0zdfPrqGPUsI7EWFYgWRHumPQJQMxR5RLsiugtjXHZ+MAOxmk2o1I0AYaGdJjyFx08
+         MxIItMJgpAHn9nPRJLRvMwo24tD/Yk96G9BxbP+2wyO3HI0DvRC+ocimKJ8u7Z3QNMSp
+         0n23oak/JydBhAzXRluJC0/Z9MJIIKF+NSMKzEXIsGjmFa92c0Gu76VaZWl3xfIoDwbp
+         Zc8tdUf95yxil6z5MXUkplWBCZxd7GhOHSVgxGXcyKRvRWU/lLifQ7xmLC3/KC9NMtky
+         T7Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ss0HZNXbaBlRsDGVHZxLf0e+LjVtH8J66SlzaV39VFg=;
-        b=LHmanDX6yjkcOxcZJVdDxKuswRqYxMWkTLhWuGogHkiiI7+Og/ObaibxFow+hsNkGM
-         lfAB889XzwNRKgi2DehA4Bv4HDbxnBiCVi+uybUJCkzOvlPW/jTzROxvpSmw2ABdhSwu
-         UuNSW8UL1tfcZHpPKfLn+Fu2IbwOjwFRF2wMc+ThppGxRE8yBWqwS7hjBA9uOHv7Z9m1
-         okH0M6EDnCVWhO7X94Vvi7BKffMNk2PW1zC/unEMFsFbJMEtxcBTMgvcLlvpdMWmc92H
-         KMPeMiBNH3jpGwaE//nUZeEAi7VKTZG1ZQDdGUd1sErpJrY2ANi3mUZDZXvLV7/MK9Ln
-         VMjQ==
-X-Gm-Message-State: ACrzQf3eJhmz/K4JyggrfnrFtdsg/0pKGmWQzl7i+1s7HRoIXFhzlyxd
-        SaSZXCFG0jY/J7UCI1CumVJPywooq++BTw==
-X-Google-Smtp-Source: AMsMyM7D2VeB+d6vTssoh5MSAciecMJc8W8AMfT5JPq20ykCBGVBwyOk8aJq91NaZilpPYxU5D3UnA==
-X-Received: by 2002:a05:620a:4054:b0:6ec:56e0:bb87 with SMTP id i20-20020a05620a405400b006ec56e0bb87mr9557470qko.782.1665518145104;
-        Tue, 11 Oct 2022 12:55:45 -0700 (PDT)
+        bh=sslcfDW3BZnjxJOzXU+bZ3YMR6XY0q1cZ2iVJRTDRVk=;
+        b=dLIqGo7s4mtWw+JxlLxrv6aBs4lxjvmuj8hGzgOXH8pY/KcgqFKc4s0/7h0enMqjRV
+         rmJoekTWmIB90VhJ+FNsiDx/JOe0dw9Mo4HBrXtgHlwx5YGuvPC6t5D9muQQraf4Kz5p
+         fQV2SvwsZAbZmjkwCNw94TvNkjK/K8qgVmkEUupHE8nQIsH3aMcTib1YnJmHKqetgkZK
+         iHZpOb/c5IRbt3LeL2xjydhmSW2jAiXJQrdhDlj/UkFeCbMUxQZV/BQ/RCfMY/5/jJa4
+         +xM68njm6oK6NJcMW/H0wxDzh2ZwSYON9ypKTmcwwIQLvvl7rdcRQLpr7klCIWOOL9w0
+         tijA==
+X-Gm-Message-State: ACrzQf16DBetijjs2r4ck4Ixdp/3/7nNWcYXaWOZ9vEMcmBoXfuvOnvp
+        2sad2NrW4PPNubJQm97ceIXfHA==
+X-Google-Smtp-Source: AMsMyM5+aTQaWcFsQOU25ufUA3VeLfaxfhjr2Z6/mP3HOZlDLnAlkvbygkKOM06/oyBcHYBG0jAYEA==
+X-Received: by 2002:a05:6214:5cc5:b0:4b3:e05a:bbb9 with SMTP id lk5-20020a0562145cc500b004b3e05abbb9mr14260326qvb.42.1665518053305;
+        Tue, 11 Oct 2022 12:54:13 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id t3-20020a05620a034300b006ecdfcf9d81sm6050560qkm.84.2022.10.11.12.55.43
+        by smtp.gmail.com with ESMTPSA id h10-20020a05620a284a00b006b9c9b7db8bsm13663527qkp.82.2022.10.11.12.54.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Oct 2022 12:55:44 -0700 (PDT)
-Message-ID: <1cda400d-7ca1-9dcc-1d33-427dfd4ec92b@linaro.org>
-Date:   Tue, 11 Oct 2022 15:53:34 -0400
+        Tue, 11 Oct 2022 12:54:12 -0700 (PDT)
+Message-ID: <157f3d65-3cd1-043a-165d-a27b7d34ee65@linaro.org>
+Date:   Tue, 11 Oct 2022 15:54:11 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v1 3/5] ARM: dts: hpe: Add PLREG/SPI Support
+Subject: Re: [PATCH v1 4/5] ARM: multi_v7_defconfig: Enable GXP SPI and PLREG
+ Drivers
 Content-Language: en-US
 To:     nick.hawkins@hpe.com, verdun@hpe.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20221011185525.94210-1-nick.hawkins@hpe.com>
- <20221011185525.94210-4-nick.hawkins@hpe.com>
+ <20221011185525.94210-5-nick.hawkins@hpe.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221011185525.94210-4-nick.hawkins@hpe.com>
+In-Reply-To: <20221011185525.94210-5-nick.hawkins@hpe.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,370 +79,16 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 11/10/2022 14:55, nick.hawkins@hpe.com wrote:
 > From: Nick Hawkins <nick.hawkins@hpe.com>
 > 
-> Adding support for the Programmable Logic Register driver in the HPE GXP
-> SoC. Additionally adding support for the SPI driver that has already
-> been committed to linux (See: drivers/spi/spi-gxp.c).
+> Adding support for the GXP SPI and PLREG Drivers.
+
+This we see in the diff. You must explain why. Why are you doing it? Why
+do we want it in the kernel?
+
 > 
 > Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 > ---
->  arch/arm/boot/dts/hpe-bmc-dl360gen10.dts | 275 +++++++++++++++++++++++
->  arch/arm/boot/dts/hpe-gxp.dtsi           |  28 ++-
->  2 files changed, 302 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-> index 3a7382ce40ef..c97b052c4868 100644
-> --- a/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-> +++ b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-> @@ -23,4 +23,279 @@
->  		device_type = "memory";
->  		reg = <0x40000000 0x20000000>;
->  	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-power {
-> +			gpios = <&plreg 6 0>;
-> +			default_state = "off";
+>  arch/arm/configs/multi_v7_defconfig | 2 ++
 
-Use generic properties for color and function. Same applies to other nodes.
-
-> +		};
-> +
-> +		led-heartbeat {
-> +			gpios = <&plreg 7 0>;
-> +			default_state = "off";
-> +		};
-> +
-> +		led-identify {
-> +			gpios = <&plreg 56 0>;
-> +			default-state = "off";
-> +		};
-> +
-> +		led-health_red {
-> +			gpios = <&plreg 57 0>;
-> +			default_state = "off";
-> +		};
-> +
-> +		led-health_amber {
-> +			gpios = <&plreg 58 0>;
-> +			default-state = "off";
-> +		};
-> +	};
-> +};
-> +
-> +&spifi {
-> +	status = "okay";
-
-Blank line
-
-> +	flash@0 {
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			u-boot@0 {
-> +				label = "u-boot";
-> +				reg = <0x0 0x60000>;
-> +			};
-> +
-> +			u-boot-env@60000 {
-> +				label = "u-boot-env";
-> +				reg = <0x60000 0x20000>;
-> +			};
-> +
-> +			kernel@80000 {
-> +				label = "kernel";
-> +				reg = <0x80000 0x4c0000>;
-> +			};
-> +
-> +			rofs@540000 {
-> +				label = "rofs";
-> +				reg = <0x540000 0x1740000>;
-> +			};
-> +
-> +			rwfs@1c80000 {
-> +				label = "rwfs";
-> +				reg = <0x1c80000 0x250000>;
-> +			};
-> +
-> +			section@1ed0000{
-> +				label = "section";
-> +				reg = <0x1ed0000 0x130000>;
-> +			};
-> +		};
-> +	};
-
-Blank line
-
-
-> +	flash@1 {
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			host-prime@0 {
-> +				label = "host-prime";
-> +				reg = <0x0 0x02000000>;
-> +			};
-> +
-> +			host-second@2000000 {
-> +				label = "host-second";
-> +				reg = <0x02000000 0x02000000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&plreg {
-> +	gpio-controller;
-> +	#gpio-cells = <2>;
-> +	gpio-line-names =
-> +	"", "", "", "", "",
-
-Messed indentation.
-
-> +	"", "POWER", "HEARTBEAT", "FAN1_INST", "FAN2_INST",
-> +	"FAN3_INST", "FAN4_INST", "FAN5_INST", "FAN6_INST", "FAN7_INST",
-> +	"FAN8_INST", "FAN9_INST", "FAN10_INST", "FAN11_INST", "FAN12_INST",
-> +	"FAN13_INST", "FAN14_INST", "FAN15_INST", "FAN16_INST", "FAN1_FAIL",
-> +	"FAN2_FAIL", "FAN3_FAIL", "FAN4_FAIL", "FAN5_FAIL", "FAN6_FAIL",
-> +	"FAN7_FAIL", "FAN8_FAIL", "FAN9_FAIL", "FAN10_FAIL", "FAN11_FAIL",
-> +	"FAN12_FAIL", "FAN13_FAIL", "FAN14_FAIL", "FAN15_FAIL", "FAN16_FAIL",
-> +	"", "", "", "", "",
-> +	"", "", "", "", "",
-> +	"", "", "", "", "",
-> +	"", "IDENTIFY", "HEALTH_RED", "HEALTH_AMBER", "POWER_BUTTON",
-> +	"", "SIO_POWER_GOOD", "NMI_BUTTON", "RESET_BUTTON", "SIO_S5",
-> +	"SIO_ONCONTROL", "", "", "", "",
-> +	"", "", "", "", "",
-> +	"", "", "", "", "",
-> +	"", "", "", "", "",
-> +	"", "", "", "", "",
-> +	"", "", "", "", "",
-> +	"", "", "", "", "";
-> +	fan1 {
-
-fan-1? Difficult to suggest as you did not explain this in the binding.
-
-> +		inst = <0x27>;
-> +		fail = <0x29>;
-> +		id = <0x2B>;
-> +		bit = <0x01>;
-> +	};
-> +	fan2 {
-> +		inst = <0x27>;
-> +		fail = <0x29>;
-> +		id = <0x2B>;
-> +		bit = <0x02>;
-> +	};
-> +	fan3 {
-> +		inst = <0x27>;
-> +		fail = <0x29>;
-> +		id = <0x2B>;
-> +		bit = <0x04>;
-> +	};
-> +	fan4 {
-> +		inst = <0x27>;
-> +		fail = <0x29>;
-> +		id = <0x2B>;
-> +		bit = <0x08>;
-> +	};
-> +	fan5 {
-> +		inst = <0x27>;
-> +		fail = <0x29>;
-> +		id = <0x2B>;
-> +		bit = <0x10>;
-> +	};
-> +	fan6 {
-> +		inst = <0x27>;
-> +		fail = <0x29>;
-> +		id = <0x2B>;
-> +		bit = <0x40>;
-> +	};
-> +	fan7 {
-> +		inst = <0x27>;
-> +		fail = <0x29>;
-> +		id = <0x2B>;
-> +		bit = <0x40>;
-> +	};
-> +	fan8 {
-> +		inst = <0x27>;
-> +		fail = <0x29>;
-> +		id = <0x2B>;
-> +		bit = <0x80>;
-> +	};
-> +	fan9 {
-> +		inst = <0x28>;
-> +		fail = <0x2A>;
-> +		id = <0x2C>;
-> +		bit = <0x01>;
-> +	};
-> +	fan10 {
-> +		inst = <0x28>;
-> +		fail = <0x2A>;
-> +		id = <0x2C>;
-> +		bit = <0x02>;
-> +	};
-> +	fan11 {
-> +		inst = <0x28>;
-> +		fail = <0x2A>;
-> +		id = <0x2C>;
-> +		bit = <0x04>;
-> +	};
-> +	fan12 {
-> +		inst = <0x28>;
-> +		fail = <0x2A>;
-> +		id = <0x2C>;
-> +		bit = <0x08>;
-> +	};
-> +	fan13 {
-> +		inst = <0x28>;
-> +		fail = <0x2A>;
-> +		id = <0x2C>;
-> +		bit = <0x10>;
-> +	};
-> +	fan14 {
-> +		inst = <0x28>;
-> +		fail = <0x2A>;
-> +		id = <0x2C>;
-> +		bit = <0x20>;
-> +	};
-> +	fan15 {
-> +		inst = <0x28>;
-> +		fail = <0x2A>;
-> +		id = <0x2C>;
-> +		bit = <0x40>;
-> +	};
-> +	fan16 {
-> +		inst = <0x28>;
-> +		fail = <0x2A>;
-> +		id = <0x2C>;
-> +		bit = <0x80>;
-> +	};
-> +	healthled {
-> +		red = <0x0D 0x20>;
-> +		amber = <0x0D 0x30>;
-> +		green = <0x0D 0x10>;
-> +	};
-> +	iopled1 {
-> +		on = <0x04 0x01>;
-> +	};
-> +	iopled2 {
-> +		on = <0x04 0x02>;
-> +	};
-> +	iopled3 {
-> +		on = <0x04 0x04>;
-> +	};
-> +	iopled4 {
-> +		on = <0x04 0x08>;
-> +	};
-> +	iopled5 {
-> +		on = <0x04 0x10>;
-> +	};
-> +	iopled6 {
-> +		on = <0x04 0x20>;
-> +	};
-> +	iopled7 {
-> +		on = <0x04 0x40>;
-> +	};
-> +	iopled8 {
-> +		on = <0x04 0x80>;
-> +	};
-> +	identifyled {
-> +		on = <0x05 0xC0>;
-> +		off = <0x05 0x40>;
-> +	};
-> +	acm {
-> +		forceoff = <0x0A 0x01>;
-> +		removed = <0x0A 0x02>;
-> +		unlatchreq = <0x0A 0x04>;
-> +	};
-> +	serverid {
-> +		lower = <0x01 0xFF>;
-> +		upper = <0x02 0xFF>;
-> +	};
-> +	sideband {
-> +		disabled = <0x40 0x03>;
-> +		embedded = <0x40 0x02>;
-> +		adaptive = <0x40 0x01>;
-> +	};
-> +	grp5intflag {
-> +		ack = <0xB0 0xFF>;
-> +		pwrbtn = <0xB0 0x01>;
-> +		uidpress = <0xB0 0x02>;
-> +		slpint = <0xB0 0x04>;
-> +	};
-> +	grp5intmask {
-> +		pwrbtn = <0xB1 0x01>;
-> +		slpint = <0xB1 0x40>;
-> +	};
-> +	grpintsmasks {
-> +		grp5 = <0x88 0x10>;
-> +	};
-> +	grpintsflags {
-> +		grp5 = <0x8C 0x10>;
-> +	};
-> +	pwrbtn {
-> +		latch = <0x0F 0xFF 0x04>;
-> +	};
->  };
-> diff --git a/arch/arm/boot/dts/hpe-gxp.dtsi b/arch/arm/boot/dts/hpe-gxp.dtsi
-> index cf735b3c4f35..96003667bebe 100644
-> --- a/arch/arm/boot/dts/hpe-gxp.dtsi
-> +++ b/arch/arm/boot/dts/hpe-gxp.dtsi
-> @@ -56,9 +56,28 @@
->  			compatible = "simple-bus";
->  			#address-cells = <1>;
->  			#size-cells = <1>;
-> -			ranges = <0x0 0xc0000000 0x30000000>;
-> +			ranges = <0x0 0xc0000000 0x40000000>;
->  			dma-ranges;
->  
-> +			spifi: spi@200 {
-> +				compatible = "hpe,gxp-spifi";
-> +				reg = <0x200 0x80>, <0xc000 0x100>, <0x38000000 0x8000000>;
-> +				interrupts = <20>;
-> +				interrupt-parent = <&vic0>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-
-Blank line.
-
-> +				flash@0 {
-> +					reg = <0>;
-> +					compatible = "jedec,spi-nor";
-> +				};
-> +
-> +				flash@1 {
-> +					reg = <1>;
-> +					compatible = "jedec,spi-nor";
-> +				};
-> +			};
-> +
->  			vic0: interrupt-controller@eff0000 {
->  				compatible = "arm,pl192-vic";
->  				reg = <0xeff0000 0x1000>;
-> @@ -122,6 +141,13 @@
->  				interrupts = <6>;
->  				interrupt-parent = <&vic0>;
->  			};
-> +
-> +			plreg: plreg@d1000000 {
-
-Use same node name as in bindings example...
-
-> +				compatible = "hpe,gxp-plreg", "simple-mfd", "syscon";
-> +				reg = <0xd1000000 0xff>;
-> +				interrupts = <26>;
-> +				interrupt-parent = <&vic0>;
-> +			};
->  		};
->  	};
->  };
 
 Best regards,
 Krzysztof
