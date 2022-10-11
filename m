@@ -2,123 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49E8E5FAF6C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 11:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CC385FAF84
+	for <lists+devicetree@lfdr.de>; Tue, 11 Oct 2022 11:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbiJKJgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Oct 2022 05:36:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55240 "EHLO
+        id S229600AbiJKJjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Oct 2022 05:39:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbiJKJgV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 05:36:21 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56CE280F7F;
-        Tue, 11 Oct 2022 02:36:20 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id l1so12657959pld.13;
-        Tue, 11 Oct 2022 02:36:20 -0700 (PDT)
+        with ESMTP id S229436AbiJKJjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Oct 2022 05:39:07 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F14083210;
+        Tue, 11 Oct 2022 02:39:06 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id g27so19270235edf.11;
+        Tue, 11 Oct 2022 02:39:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IjEDzCZ7FMePv51+qKNV+Auv7I6iSTsYL37Gle+Fwyc=;
-        b=NXfKM567zgYtZA7LDsbzhbC+Pvmgn4PnLcx1kwCHYGgJBm0o4SYOJnxOaBQWprRrLF
-         S/NEBBXdxZYzk/7cSjBhU2UNpokd+ZjYdmMbbwsWFBIaLn0dH6W1d28ibXODolxh9dfR
-         EsbDWrS71dp2RdeIN2DotRAbrE41OuT4Y1r+XMboP0Y2pfbIqnwrFl+Au86IIgSoCzOV
-         4XX0qkJKBrrXaGRL8quhHeszk1W1LWJwkCuTRrMhipphUmr8jmPPES89s8/RmCwkQQnc
-         zgK0cwCYYtiSjRiluB7yzvW9FrHyZCY8tm5Gg3S2F6+4exdzPQB+cu0E8YBRsQ7QkjJy
-         tpcA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=D55xBJdzZd3G0gzyrwnQOsU8gdqp6jvIE702hQrC/TI=;
+        b=qlJH5YjdH3UIFbXs47otmBb9kUWitKkRbrly8b0b3PJFQNOEz5mz+8L+5iJ+jb8W5f
+         tVxB8Qoa3D4NK53V4ASrMJvvAiovI5AZSFyAimcAzyaWNmTpiCqkAFy4uCyCgyJGS2jV
+         +QIesnZUwb2+tpbVcQX43TOrLHUJbBsQWUstCnkcrV/gp/DsV5Q3c2pa561iqZFx0mwf
+         an1Mcvn79mCWtCE4agnd/orLjtHNUO6UjmtpK0036OFz8tjqgY9PbSBlH4dkZlONoTy0
+         0iRkZwAIMz1GWzfdv+UaunVgQSOiPxZi5osGGmvcozpB+z6vyeC+GCSQfwF+0pgQ3a1I
+         1BSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IjEDzCZ7FMePv51+qKNV+Auv7I6iSTsYL37Gle+Fwyc=;
-        b=CkqtUZUrLrEObHv7kZZP/LtSwL8RNqPvPUKKmJ3gdPNmjeB1n/1JPWnOmDoUNByqvi
-         S0FwbREki0XEovyHIlK+ha5k6KZTwEk7i/gE669j94nyiuhcKJhPxDa8BgaeLqNmcTQm
-         MkInILiefAU/L1llMZ1bmmq3o97ehpIeZudRJcdcuFtvAM5eor5BeOrNM0hKZaGaFxJ9
-         YhDEyrPlO0G2FJiv/hFGDZNuDTkyAIpGCFurCBzPSqwcNH5CtXbm3QgK3kwOWeOZXs76
-         BZJbLQXGrsxen1Pq7aLFkkagZ5W4a1dMpSH43rdzsp9Rp7EMBvrfyy52TFS+yuYAkoEL
-         DbAg==
-X-Gm-Message-State: ACrzQf0V8/GH5qqGwSKAlNsWBE+mUdfwA1KrF4LrXO6Mo5PIjoZbVNoC
-        Ihy3Xd3DyhLCYz4t1Bds0Nk=
-X-Google-Smtp-Source: AMsMyM7WhVZF+nawGLSBaVkAAb7yHhMnsbIsfdU06GHec1RRjpnYOayT9epY9SV/ItigASfR9LongQ==
-X-Received: by 2002:a17:90b:1b4f:b0:20d:363d:7943 with SMTP id nv15-20020a17090b1b4f00b0020d363d7943mr12728402pjb.106.1665480979825;
-        Tue, 11 Oct 2022 02:36:19 -0700 (PDT)
-Received: from [192.168.43.80] (subs32-116-206-28-57.three.co.id. [116.206.28.57])
-        by smtp.gmail.com with ESMTPSA id n15-20020a65488f000000b0042bf6034b3fsm7537757pgs.55.2022.10.11.02.36.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Oct 2022 02:36:19 -0700 (PDT)
-Message-ID: <e60a114b-b99a-8a11-ac39-c9ddc3ed926e@gmail.com>
-Date:   Tue, 11 Oct 2022 16:36:10 +0700
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D55xBJdzZd3G0gzyrwnQOsU8gdqp6jvIE702hQrC/TI=;
+        b=lpavzbIN9iRVATE2s3QbEZi7e1Qzlpq/I73Mt8keAOE7oKLKctAHShqP+6lMUThHkt
+         IzIGhSDozuO5tFgd9LZ54WWeiRobhwPSisc0Xe+pb/w2pjeIgQCQ1n+enTZsiNQQ7OHc
+         LhLVUhwg6Iad9+cIikN53ohsZnVFLzw/NNR86cs1lK/WhxHLDsKAHxKHe+FYhdSTHXUj
+         COF7UZ0D2kQ2Lhtfw7r37a5bR0Rj0axPtrL5JlNAnaZ17UNhnqrA/UvE8bm0w0WrJQ+V
+         YwJJ36gbiKtTmNFJNi3SZ1B70kwgNY12ErzkyRGCUndFHnrUoSwtw5pcklWjs4HR1r1I
+         NgQg==
+X-Gm-Message-State: ACrzQf1Wmj3vUHTzdmrXVWy5kc/MtrwIf18pJmepCQstE6difyF7cNEP
+        rtST2lv/3LlgRRWaMCmg8pm77OGxShL72CZs4oU=
+X-Google-Smtp-Source: AMsMyM4d7db93lrsLvedfkViHIlnKp66afWaF8xAx5TTHTRuE/dWsFR5PnrXjm27xS/4KAHunWy+vrS34AI5U7lVbLI=
+X-Received: by 2002:a05:6402:5485:b0:459:147a:d902 with SMTP id
+ fg5-20020a056402548500b00459147ad902mr22724025edb.263.1665481144726; Tue, 11
+ Oct 2022 02:39:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v5 01/13] docs: gunyah: Introduce Gunyah Hypervisor
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
+References: <20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221003223222.448551-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAJF2gTQuSX9idEyNmGRwpAsSP8V=+QKQ7UAp28T-seM8rbkwOA@mail.gmail.com>
+ <CA+V-a8smkDmQbz76sTA5XfUm7bkY4Ee-L5xYW+-xRWkE1TYiAw@mail.gmail.com>
+ <CAJF2gTQ4G-j3p_pHvVQ82R2DFQZq70xgE3ZhoRkxiSzrHnU2og@mail.gmail.com>
+ <CA+V-a8tLYT0541FNo_o-sTsV7ywwnGTRtv6ropVu+0Wd-PsM6A@mail.gmail.com> <CAJF2gTQ9N5tyYB46eaMJ=Z0V7pm9TxFAXQ1qxLXLqj2C9zP2Ng@mail.gmail.com>
+In-Reply-To: <CAJF2gTQ9N5tyYB46eaMJ=Z0V7pm9TxFAXQ1qxLXLqj2C9zP2Ng@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 11 Oct 2022 10:38:38 +0100
+Message-ID: <CA+V-a8sTQzbXC6j4+fNAYiM7_zciPaxb=uOzD9iWrvLwUBgDqA@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 2/2] soc: renesas: Add L2 cache management for
+ RZ/Five SoC
+To:     Guo Ren <guoren@kernel.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-2-quic_eberman@quicinc.com>
-Content-Language: en-US
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-In-Reply-To: <20221011000840.289033-2-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/22 07:08, Elliot Berman wrote:
-> +The diagram below shows how message queue works. A typical configuration involves
-> +2 message queues. Message queue 1 allows VM_A to send messages to VM_B. Message
-> +queue 2 allows VM_B to send messages to VM_A.
-> +
-> +1. VM_A sends a message of up to 1024 bytes in length. It raises a hypercall
-> +   with the message to inform the hypervisor to add the message to
-> +   message queue 1's queue.
-> +
-> +2. Gunyah raises the corresponding interrupt for VM_B when any of these happens:
-> +   a. gh_msgq_send has PUSH flag. Queue is immediately flushed. This is the typical case.
-> +   b. Explicility with gh_msgq_push command from VM_A.
-> +   c. Message queue has reached a threshold depth.
-> +
-> +3. VM_B calls gh_msgq_recv and Gunyah copies message to requested buffer.
-> +
+Hi Guo,
 
-Seems like you forget to apply my suggestion fixes at [1].
+On Thu, Oct 6, 2022 at 1:59 AM Guo Ren <guoren@kernel.org> wrote:
+>
+> On Wed, Oct 5, 2022 at 11:03 PM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+> >
+> > Hi Guo,
+> >
+> > On Wed, Oct 5, 2022 at 3:23 PM Guo Ren <guoren@kernel.org> wrote:
+> > >
+> > > On Wed, Oct 5, 2022 at 8:54 PM Lad, Prabhakar
+> > > <prabhakar.csengg@gmail.com> wrote:
+> > > >
+> > > > Hi Guo,
+> > > >
+> > > > On Wed, Oct 5, 2022 at 2:29 AM Guo Ren <guoren@kernel.org> wrote:
+> > > > >
+> > > > > On Tue, Oct 4, 2022 at 6:32 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > > > > >
+> > > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > >
+> > > > > > On the AX45MP core, cache coherency is a specification option so it may
+> > > > > > not be supported. In this case DMA will fail. As a workaround, firstly we
+> > > > > > allocate a global dma coherent pool from which DMA allocations are taken
+> > > > > > and marked as non-cacheable + bufferable using the PMA region as specified
+> > > > > > in the device tree. Synchronization callbacks are implemented to
+> > > > > > synchronize when doing DMA transactions.
+> > > > > >
+> > > > > > The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
+> > > > > > block that allows dynamic adjustment of memory attributes in the runtime.
+> > > > > > It contains a configurable amount of PMA entries implemented as CSR
+> > > > > > registers to control the attributes of memory locations in interest.
+> > > > > >
+> > > > > > Below are the memory attributes supported:
+> > > > > > * Device, Non-bufferable
+> > > > > > * Device, bufferable
+> > > > > > * Memory, Non-cacheable, Non-bufferable
+> > > > > > * Memory, Non-cacheable, Bufferable
+> > > > > > * Memory, Write-back, No-allocate
+> > > > > > * Memory, Write-back, Read-allocate
+> > > > > > * Memory, Write-back, Write-allocate
+> > > > > > * Memory, Write-back, Read and Write-allocate
+> > > > > Seems Svpbmt's PMA, IO, and NC wouldn't fit your requirements, could
+> > > > > give a map list of the types of Svpbmt? And give out what you needed,
+> > > > > but Svpbmt can't.
+> > > > >
+> > > > Sorry I didn't get what you meant here, could you please elaborate.
+> > > I know there is no pbmt in AX45MP, I am just curious how many physical
+> > > memory attributes you would use in linux? It seems only one type used
+> > > in the series:
+> > > cpu_nocache_area_set -> sbi_ecall(SBI_EXT_ANDES,
+> > > SBI_EXT_ANDES_SET_PMA, offset, vaddr, size, entry_id, 0, 0);
+> > >
+> > Yes, currently we only use "Memory, Non-cacheable, Bufferable". I was
+> > wondering if we could send these options as flags from DT something
+> > like below so that it's not hard coded in the code.
+> >
+> > /* PMA config */
+> > #define AX45MP_PMACFG_ETYP                GENMASK(1, 0)
+> > /* OFF: PMA entry is disabled */
+> > #define AX45MP_PMACFG_ETYP_DISABLED            0
+> > /* Naturally aligned power of 2 region */
+> > #define AX45MP_PMACFG_ETYP_NAPOT            3
+> >
+> > #define AX45MP_PMACFG_MTYP                GENMASK(5, 2)
+> > /* Device, Non-bufferable */
+> > #define AX45MP_PMACFG_MTYP_DEV_NON_BUF            (0 << 2)
+> > /* Device, bufferable */
+> > #define AX45MP_PMACFG_MTYP_DEV_BUF            (1 << 2)
+> > /* Memory, Non-cacheable, Non-bufferable */
+> > #define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_NON_BUF    (2 << 2)
+> > /* Memory, Non-cacheable, Bufferable */
+> > #define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF        (3 << 2)
+> > /* Memory, Write-back, No-allocate */
+> > #define AX45MP_PMACFG_MTYP_MEM_WB_NA            (8 << 2)
+> > /* Memory, Write-back, Read-allocate */
+> > #define AX45MP_PMACFG_MTYP_MEM_WB_RA            (9 << 2)
+> > /* Memory, Write-back, Write-allocate */
+> > #define AX45MP_PMACFG_MTYP_MEM_WB_WA            (10 << 2)
+> > /* Memory, Write-back, Read and Write-allocate */
+> > #define AX45MP_PMACFG_MTYP_MEM_WB_R_WA            (11 << 2)
+> >
+> > /* AMO instructions are supported */
+> > #define AX45MP_PMACFG_NAMO_AMO_SUPPORT            (0 << 6)
+> > /* AMO instructions are not supported */
+> > #define AX45MP_PMACFG_NAMO_AMO_NO_SUPPORT        (1 << 6)
+> >
+> >
+> >                 pma-regions = <0x0 0x00000000 0x0 0x10000000 0x0
+> > AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
+> > AX45MP_PMACFG_NAMO_AMO_SUPPORT>,
+> >                               <0x0 0x10000000 0x0 0x04000000 0x0
+> > AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
+> > AX45MP_PMACFG_NAMO_AMO_SUPPORT >,
+> >                               <0x0 0x20000000 0x0 0x10000000 0x0
+> > AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
+> > AX45MP_PMACFG_NAMO_AMO_SUPPORT>,
+> >                               <0x0 0x58000000 0x0 0x08000000 0x0
+> > AX45MP_PMACFG_ETYP_NAPOT |  AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF |
+> > AX45MP_PMACFG_NAMO_AMO_SUPPORT>;
+> >
+> > Does the above sound good?
+> I've no idea. But for working around, I would give Acked-by.
+>
+> >
+> > > I'm not sure how you make emmc/usb/gmac's dma ctrl desc work around
+> > > without pbmt when they don't have cache coherency protocol. Do you
+> > > need to inject dma_sync for desc synchronization? What's the effect of
+> > > dynamic PMA in the patch series?
+> > >
+> > Currently we have setup the pma regions as below:
+> >
+> > l2cache: cache-controller@13400000 {
+> >                 compatible = "andestech,ax45mp-cache", "cache";
+> >                 cache-size = <0x40000>;
+> >                 cache-line-size = <64>;
+> >                 cache-sets = <1024>;
+> >                 cache-unified;
+> >                 reg = <0x0 0x13400000 0x0 0x100000>;
+> >                 pma-regions = <0x0 0x00000000 0x0 0x10000000 0x0 0xf>,
+> >                               <0x0 0x10000000 0x0 0x04000000 0x0 0xf>,
+> >                               <0x0 0x20000000 0x0 0x10000000 0x0 0xf>,
+> >                               <0x0 0x58000000 0x0 0x08000000 0x0 0xf>;
+> >                 interrupts = <SOC_PERIPHERAL_IRQ(476, IRQ_TYPE_LEVEL_HIGH)>;
+> >         };
+> >
+> > The last pma-regions entry 0x58000000 is a DDR location this memory
+> > locations is marked as shared DMA pool with below in DT,
+> >
+> >     reserved-memory {
+> >         #address-cells = <2>;
+> >         #size-cells = <2>;
+> >         ranges;
+> >
+> >         reserved: linux,cma@58000000 {
+> >             compatible = "shared-dma-pool";
+> >             no-map;
+> >             linux,dma-default;
+> >             reg = <0x0 0x58000000 0x0 0x08000000>;
+> >         };
+> >     };
+> >
+> > And for ARCH_R9A07G043 we automatically select DMA_GLOBAL_POOL, so the
+> > IP blocks (emmc/usb/gmac's) requesting DMA'able memory will
+> > automatically fall into this region which is non-cacheable but
+> > bufferable (set in PMA) and rest everything is taken care by clean and
+> > flush callbacks. We dont have  inject dma_sync for desc
+> > synchronization for existing drivers (which are shared with Renesas
+> > RZ/G2L family)
+> Better than I thought :). The "non-cacheable but bufferable" is "weak
+> order," also raising the bufferable signal of AXI transactions. Right?
+Yes, I have confirmed from the HW team it does raise bufferable signal
+of AXI transactions. So far with the drivers (ETH/USB/DMAC) we haven't
+seen issues so far.
 
-[1]: https://lore.kernel.org/all/YzUUaIx+azyzFDNX@debian.me/
+Do you foresee any issues?
 
-Thanks.
-
--- 
-An old man doll... just what I always wanted! - Clara
-
+Cheers,
+Prabhakar
