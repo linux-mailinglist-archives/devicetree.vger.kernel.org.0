@@ -2,122 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 009485FC397
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 12:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 463385FC3A5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 12:21:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229594AbiJLKPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 06:15:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54526 "EHLO
+        id S229540AbiJLKVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 06:21:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbiJLKPX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 06:15:23 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48497A4B80;
-        Wed, 12 Oct 2022 03:13:59 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29C800fG009831;
-        Wed, 12 Oct 2022 10:12:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=jctT1Pwbyirimd7TO/R3ucHPbd2O7TZgkHQcGAnQzcE=;
- b=mDaEmnruhCBRO4sHkUCIUrOCSHsVhPuVkrvmyEUKEbDcfEVIGTi5xhmSlYOceEYceCas
- ivYwIHs/M0YvxD/SqyLE2iRniYDlR0JmFxe5lmcU3m5ACXOHwRNqkZE4ZNc0yj6ew600
- mIlcoihpnMbnqZB4sKIDGmFROPXyEJFCwKQy5mGdmGwk0M7jJSngUdkBzxB3S34rHhK6
- gB+SAeU+YFQ4uapWoq4s1/XQ18jkDWDtnKbBlTxYaLOVqNMeXWsIxV940HyrxBG4QoRf
- To5UtMSNY7JoMKV0LUFJKkygJVt28BqIr3CrwcdnRauPvBozSFkszsFqIgnyUEwWq//h YQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k5kar1bh8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Oct 2022 10:12:59 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29CACwbR030429
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Oct 2022 10:12:58 GMT
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Wed, 12 Oct 2022 03:12:52 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <devicetree@vger.kernel.org>
-CC:     Srinivasa Rao Mandadapu 
-        <srivasam@qualcomm.corp-partner.google.com>
-Subject: [PATCH] ASoC: qcom: lpass-cpu: mark HDMI TX registers as volatile
-Date:   Wed, 12 Oct 2022 15:42:40 +0530
-Message-ID: <1665569560-28943-1-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        with ESMTP id S229495AbiJLKVu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 06:21:50 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C48C8B2E4
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 03:21:49 -0700 (PDT)
+Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B27EF492;
+        Wed, 12 Oct 2022 12:21:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1665570107;
+        bh=UywV9EwflqN7o1P8wZQ+8poHiBexF6cgCeCSBfcFieA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=B8z39ru8oQiBEWQZJ5kKHt807OzexVcVPQdxSFaV9ZHtc0rVAd3TZYfZip/8AQ91C
+         vramd+8e97Pqbff+YLfw46SI6jJaS+xu72YLI/vzWCIGQ3R5Ci7zByPATNoqhduM/H
+         2fRDykHMv0MzdBDow7o3B9CLCP+G13MDIlbbE7qk=
+From:   Daniel Scally <dan.scally@ideasonboard.com>
+To:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
+        kieran.bingham@ideasonboard.com, debix-tech@polyhex.net,
+        Daniel Scally <dan.scally@ideasonboard.com>
+Subject: [PATCH v3 0/3]  Debix Model A board devicetree
+Date:   Wed, 12 Oct 2022 11:21:18 +0100
+Message-Id: <20221012102121.1747491-1-dan.scally@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: anEvL3smAJq0G8EM2dcP5k2_E3FANk6p
-X-Proofpoint-GUID: anEvL3smAJq0G8EM2dcP5k2_E3FANk6p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-12_04,2022-10-12_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
- phishscore=0 suspectscore=0 adultscore=0 malwarescore=0 impostorscore=0
- priorityscore=1501 mlxscore=0 bulkscore=0 lowpriorityscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210120066
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Srinivasa Rao Mandadapu <srivasam@qualcomm.corp-partner.google.com>
+Hello
 
-Update HDMI volatile registers list as DMA, Channel Selection registers
-, vbit control registers are being reflected by hardware DP port
-disconnection.
-This update is required to fix no display and no sound issue
-observed after reconnecting TAMA/SANWA DP cables.
-Once DP cable is unplugged, DMA control registers are being reset by
-hardware, however at second plugin, new dma control values does not
-updated to the dma hardware registers since new register value and
-cached values at the time of first plugin are same.
+This series adds a .dts file for the Polyhex Debix Model A board [1]
+A binding for the vendor is also added.
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@qualcomm.corp-partner.google.com>
----
- sound/soc/qcom/lpass-cpu.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+[1] http://www.polyhex.net/product/embedded-motherboard/board/nxp.html?id=483
 
-diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-index 8a56f38..99a3b44 100644
---- a/sound/soc/qcom/lpass-cpu.c
-+++ b/sound/soc/qcom/lpass-cpu.c
-@@ -782,10 +782,18 @@ static bool lpass_hdmi_regmap_volatile(struct device *dev, unsigned int reg)
- 		return true;
- 	if (reg == LPASS_HDMI_TX_LEGACY_ADDR(v))
- 		return true;
-+	if (reg == LPASS_HDMI_TX_VBIT_CTL_ADDR(v))
-+		return true;
- 
- 	for (i = 0; i < v->hdmi_rdma_channels; ++i) {
- 		if (reg == LPAIF_HDMI_RDMACURR_REG(v, i))
- 			return true;
-+		if (reg == LPASS_HDMI_TX_DMA_ADDR(v, i))
-+			return true;
-+		if (reg == LPASS_HDMI_TX_CH_LSB_ADDR(v, i))
-+			return true;
-+		if (reg == LPASS_HDMI_TX_CH_MSB_ADDR(v, i))
-+			return true;
- 	}
- 	return false;
- }
+Thanks
+Dan
+
+Daniel Scally (3):
+  dt-bindings: vendor-prefixes: Add Polyhex Technology Co.
+  dt-bindings: arm: fsl: Enumerate Debix Model A Board
+  arm64: dts: Add device tree for the Debix Model A Board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mp-debix-model-a.dts    | 529 ++++++++++++++++++
+ 4 files changed, 533 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+
 -- 
-2.7.4
+2.34.1
 
