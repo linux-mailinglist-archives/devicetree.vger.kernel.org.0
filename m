@@ -2,65 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 417665FC91A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 18:22:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1E735FC924
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 18:23:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbiJLQWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 12:22:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52744 "EHLO
+        id S230022AbiJLQXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 12:23:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbiJLQWP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 12:22:15 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441F7F253F;
-        Wed, 12 Oct 2022 09:22:03 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-1324e7a1284so20011468fac.10;
-        Wed, 12 Oct 2022 09:22:03 -0700 (PDT)
+        with ESMTP id S229988AbiJLQW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 12:22:57 -0400
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B941F4191;
+        Wed, 12 Oct 2022 09:22:37 -0700 (PDT)
+Received: by mail-oo1-f54.google.com with SMTP id g15-20020a4a894f000000b0047f8e899623so12476217ooi.5;
+        Wed, 12 Oct 2022 09:22:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=w9ooysRCPWwfkOQsofxa8c0vAZXT4BQ/v/BacIsjsJw=;
-        b=ZoN2S3I8tMdJi5TGESstwejE8OxWDtshhO482ynUMnoYJNfyohQ6Plc/dx58Cd0BS7
-         8hBWIVgdzlk6cPQ5u5ueok0fD2/ayXrNmD7xWHxxndoce89SpP+/+n51MaTLWl0RqtCr
-         eSN36jOFJQ55K6M2GBb4UfS8z1F8eELU9Ay38Rp7dEDNgHZjTNthNNaPmoPppJ/otF+i
-         MVjLOyDmsj9+HJY8X8H7cAU2opXFGUQsifZRtMERgRR6Kv/gb+hV7Wq4OEJv67neaJl2
-         4GWJkq1RBN3lckPNPykCVLzeRo5pdzBmtKMU6ZvIuyk4Icr/UmvO0Ybwj9sJXmzi20O8
-         Jfnw==
-X-Gm-Message-State: ACrzQf1YMZniz0o6m+HE6hYXOI+bYmNjfW6r3KeHZmMfWUx6dOyGctqW
-        /C8f+HjiJuDG/RpYtPBOdw==
-X-Google-Smtp-Source: AMsMyM7ax+7oJeMRo/K68gvl3SyHLdXhw2E4wnkt/VLvxvFuCGm6zdglL8IJeCxdEDXSHOc0BNd6UQ==
-X-Received: by 2002:a05:6870:88a9:b0:133:605:bb1d with SMTP id m41-20020a05687088a900b001330605bb1dmr2849384oam.220.1665591719121;
-        Wed, 12 Oct 2022 09:21:59 -0700 (PDT)
+        bh=rF616PFiM3a+4SBOR6qRryxHACAfp+96mQUr4nWBRVM=;
+        b=KNttITCxWRPkoSlsNKSMj33nc3FmAd8POeN3IRuzmUZVnKtgKwcVNWwrhiVc9Dr6A9
+         B/2m4IRKJD7WPB/u5MQEa8/swm+Zq5FQW9gOA0FDCiFfSvPXEvQn1q2mFfgjBZ/6Zycd
+         x+lQZ2RCZ+Y95EHgiVS+2ZNhQo8y9WLRNQvwl1OzNEayINrmpXhQdjVrnQihN375L9/7
+         smBQDikPwsI64OB9v5GC2mZwCAJiDDhmYzHPkHIbE23zDVHdWEbFsUGII8tLflOnaHOV
+         AXrGRyV2fNEIRxA0tcVGg22kAkc5MbJ2BGeH22MaKSJ/qMlStPCmdqllUE0SxwzaQ6Ab
+         JPTQ==
+X-Gm-Message-State: ACrzQf2SflTFTc8TydGvMTkKXPJxcqTftbgsSJXDaVRy+I9hn0UFHqu/
+        mEuMoFfijyCEnNhptutQytZBDwxTYA==
+X-Google-Smtp-Source: AMsMyM5YR9G+IoiB8RVUl5Mw0iIY8ze/NZWuJb2yC5K7gVYAFmXIh3+94GEkL5N/H9ZkPjiS8eHpuQ==
+X-Received: by 2002:a05:6830:1644:b0:661:8b9f:16c3 with SMTP id h4-20020a056830164400b006618b9f16c3mr10940674otr.235.1665591751648;
+        Wed, 12 Oct 2022 09:22:31 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r26-20020a4ae51a000000b00425806a20f5sm1139604oot.3.2022.10.12.09.21.57
+        by smtp.gmail.com with ESMTPSA id cy24-20020a056870b69800b00131c3d4d38fsm1361683oab.39.2022.10.12.09.22.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 09:21:58 -0700 (PDT)
-Received: (nullmailer pid 2282719 invoked by uid 1000);
-        Wed, 12 Oct 2022 16:21:59 -0000
-Date:   Wed, 12 Oct 2022 11:21:59 -0500
+        Wed, 12 Oct 2022 09:22:31 -0700 (PDT)
+Received: (nullmailer pid 2283425 invoked by uid 1000);
+        Wed, 12 Oct 2022 16:22:32 -0000
+Date:   Wed, 12 Oct 2022 11:22:32 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
-Cc:     Ondrej Ille <ondrej.ille@gmail.com>, linux-can@vger.kernel.org,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pavel Pisa <pisa@cmp.felk.cvut.cz>,
-        Eric Dumazet <edumazet@google.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Jakub Kicinski <kuba@kernel.org>
-Subject: Re: [PATCH v5 1/4] dt-bindings: can: ctucanfd: add another clock for
- HW timestamping
-Message-ID: <166559171895.2282669.6983651717616748049.robh@kernel.org>
-References: <20221012062558.732930-1-matej.vasilevski@seznam.cz>
- <20221012062558.732930-2-matej.vasilevski@seznam.cz>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Hai Pham <hai.pham.ud@renesas.com>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document R-Car V4H
+ support
+Message-ID: <166559175196.2283372.14409157945762538966.robh@kernel.org>
+References: <c268cb4497cbe79773bb6568f36c37adc6fb5bbe.1665582645.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221012062558.732930-2-matej.vasilevski@seznam.cz>
+In-Reply-To: <c268cb4497cbe79773bb6568f36c37adc6fb5bbe.1665582645.git.geert+renesas@glider.be>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -72,13 +67,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Oct 2022 08:25:55 +0200, Matej Vasilevski wrote:
-> Add second clock phandle to specify the timestamping clock.
+On Wed, 12 Oct 2022 15:51:46 +0200, Geert Uytterhoeven wrote:
+> From: Hai Pham <hai.pham.ud@renesas.com>
 > 
-> Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
+> Document support for the SPI Multi I/O Bus Controller (RPC-IF) in the
+> R-Car V4H SoC.
+> 
+> Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../bindings/net/can/ctu,ctucanfd.yaml        | 19 +++++++++++++++----
->  1 file changed, 15 insertions(+), 4 deletions(-)
+>  .../bindings/memory-controllers/renesas,rpc-if.yaml          | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
