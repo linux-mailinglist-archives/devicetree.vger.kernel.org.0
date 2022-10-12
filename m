@@ -2,111 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D525FC220
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 10:39:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E65F5FC22D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 10:44:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbiJLIj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 04:39:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38854 "EHLO
+        id S229694AbiJLIol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 04:44:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbiJLIjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 04:39:25 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC59FB40ED
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 01:39:21 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id n9so4441062wms.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 01:39:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hvXoD/VVs1JfrFZOMMsbQhdRyKbY5BarUuX5aidq38Y=;
-        b=B+dmcHrOFnDJsNByaCqbLwnBYeVR0T8Bbjj3U7qdrXVj+1tlt6etlBxhzxZQD9fV7y
-         ii2Wmb6253awru1Ql/zEWAvmzKzJMSRiDIypHxoeSWnJGwD8p+QROKqnaCRDTv4qm4Wj
-         6klF17H7g7eUfj4mxwU+iQRgEx9+RUnam1+PgUNhAaIaYPXGydBlz0CP/1CdylTXQTtW
-         1C9E8U+kkXhHAsPalclwWpNztwrDX3PhoQ8F5Up4H7ZjvVZo8RLx9LFOC9wPOJAVXM9E
-         gmdlfbGdN6qK+2ZDVkRYaSfYvxJwBe5MJ7nkySW7VS4oZ+hN53V5Jo3+ySXIgvJDkEj7
-         eDkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hvXoD/VVs1JfrFZOMMsbQhdRyKbY5BarUuX5aidq38Y=;
-        b=6svZwuV5vEnA7Z1elwN2avUAR5Ii17F1KqVa78boGMDxt9OH8OKj8Cj/XwF3GzPfVg
-         m7j7byCjYlemfIDu6u5hU0HY9eiPsRejAgfomDnOkhWc2WNIn6XHLtUU0tIhNbHLX5B6
-         fsVrpoG6J+Vsrogp6EbKIR/0p3dHK7iZQymnnuqp92+nz+0CnD9MSFYnaIxhYoLtxAo3
-         +bf3QQN1bmDGe05lsTn9O8yC9TDXUi8GPs94l/wU5lg+/yhg1BXSnvn8xEC3jPKzNLpi
-         m3Tskr4+NQFYF9Uc4HVpVio6bAEumQSU7LOdL+t8uJFRrMpqKOv91zHIktZy1HLXTcn3
-         LCZA==
-X-Gm-Message-State: ACrzQf3G1BSrC3oxnagwSnrS7D/JJZJgWo9O3EvgRNiC0g02GaoUm6b/
-        5/hogymJ4mt7Rh2js9grUIK8dA==
-X-Google-Smtp-Source: AMsMyM4glDiV7BhepjKeAzqByR/Sam3MmgQWqu5AXGC5xtStDmrfsF0R1HiAZt9kVwUa0NaJu/4VSQ==
-X-Received: by 2002:a05:600c:46c9:b0:3c6:d853:4cb7 with SMTP id q9-20020a05600c46c900b003c6d8534cb7mr79213wmo.77.1665563960276;
-        Wed, 12 Oct 2022 01:39:20 -0700 (PDT)
-Received: from [192.168.1.91] (192.201.68.85.rev.sfr.net. [85.68.201.192])
-        by smtp.gmail.com with ESMTPSA id p1-20020a5d68c1000000b0022cce7689d3sm16438399wrw.36.2022.10.12.01.39.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 01:39:19 -0700 (PDT)
-Message-ID: <60507e87-cf92-13d9-29d0-83f18a648f4b@baylibre.com>
-Date:   Wed, 12 Oct 2022 10:39:18 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v6 6/6] arm64: defconfig: Add tps65219 as modules
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
-        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
-        bjorn.andersson@linaro.org, shawnguo@kernel.org,
-        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com
-Cc:     afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
-        msp@baylibre.com, j-keerthy@ti.com, linux-kernel@vger.kernel.org,
+        with ESMTP id S229635AbiJLIoj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 04:44:39 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C751010;
+        Wed, 12 Oct 2022 01:44:38 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id D346A3200B1D;
+        Wed, 12 Oct 2022 04:44:36 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Wed, 12 Oct 2022 04:44:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1665564275; x=
+        1665650675; bh=0o82D+Vbr1Qqh8x9aEShWRywyoLoGwve0G5fih60HmI=; b=Z
+        XYDKeC5/DveUPpoOMVoz4/DdJeyl3m9weqgTrXfyQqwWvzYaAalORZR0wMUfauVm
+        USKsoTbCslmUlBAf5XKvoSkIhrqkHUKn9gKekULLRrxID3DBS5ccxKFFDBILr1et
+        dX5NHk+inqoJHJpifN0CzWqPwftdqF9THcmcBEFYYcBnl1S5cJZEO8NLlmtP1+lk
+        ZeYN5va3qjZCDyPWKhr21ftBm/DHvqFaoH2X/Rd/UrgduswGAGyUKAdJ0Vc+9qs1
+        kc+x2L+4b30Y/RPRDl5DlAjlLT7N0m77LIBehKY6hugHfbqONfqHtsJi2bwH47ey
+        KoPOeGtLHUPVqb+GfWezg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1665564275; x=
+        1665650675; bh=0o82D+Vbr1Qqh8x9aEShWRywyoLoGwve0G5fih60HmI=; b=I
+        fd6FpfmZQJ/ksNwvJQyxRNn6SC59iUAGrEXcNKYMClJKz7W1Z+mxFscdTkhJjlFT
+        MF0MBsvtxu2XA4kTEI1px5oZKSKueQtGs6tQ1LyRrdaGm7uxuPfJbqinecpjy8WG
+        2enjQVu2xOxybglwpvpV5yIcnnUmIluzjctMSiofN1bH9pYoMfWQWYb3IcH6r6iM
+        5jSErtaiKUZAO6AiH7GLRAtrK3hyExTY5v5joHPfi2kekxejuZUY2d/P/25n6Qxz
+        UJwO/nNHaZRDd7o8XgWcLbmKEQ0pShU7Bz+n3Err89Sj3xMY/DRbC4ZcsyiVUAD4
+        xjNGrtQum+JtiemLcFvhQ==
+X-ME-Sender: <xms:cn5GYwiS-Lu3wZlU07-So25sNnbspw80O20Rpqhkwb-BUEKGjIWPhg>
+    <xme:cn5GY5B5XzOgMcTZoI-5Sf7PCFtaihj6jUBBILKZBPrNUhXzeEfnI-iH3CH61ldck
+    sselZSWuf-Mg303vF0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeejkedgtdejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpefgkeeuleegieeghfduudeltdekfeffjeeuleehleefudettddtgfevueef
+    feeigeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:cn5GY4F6_o7WHad7WyUmypGGKpD_vD0KkfNIBdvEFDLW02hBxmxJJw>
+    <xmx:cn5GYxR7OZYcUuleHSsy1KxWC8O2IELM0B8vwjg077WUkbEyySyKhQ>
+    <xmx:cn5GY9wjwaVU9py0PKfgtkocDW9kcvxaSGy4lQKfkVEB0mreU8mmVg>
+    <xmx:c35GYwrdS9nADqpBxus3AqE0rdPeKImSwUA7AKKztmYEwewsiQPD9Q>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id E64ADB60086; Wed, 12 Oct 2022 04:44:34 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1047-g9e4af4ada4-fm-20221005.001-g9e4af4ad
+Mime-Version: 1.0
+Message-Id: <970b59a5-9fcb-494c-a07e-1443bdd5072c@app.fastmail.com>
+In-Reply-To: <695a13341db63965a22799dd78698751ed95448c.camel@icenowy.me>
+References: <20221012055602.1544944-1-uwu@icenowy.me>
+ <20221012055602.1544944-2-uwu@icenowy.me>
+ <60a2cb70-bde4-4423-9a54-7abc1ba466f8@app.fastmail.com>
+ <695a13341db63965a22799dd78698751ed95448c.camel@icenowy.me>
+Date:   Wed, 12 Oct 2022 10:44:14 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Icenowy Zheng" <uwu@icenowy.me>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Chen-Yu Tsai" <wens@csie.org>,
+        "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+        "Samuel Holland" <samuel@sholland.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Andre Przywara" <andre.przywara@arm.com>
+Cc:     soc@kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-omap@vger.kernel.org
-References: <20221011140549.16761-1-jneanne@baylibre.com>
- <20221011140549.16761-7-jneanne@baylibre.com>
- <72b9809e-d6d7-862a-26b8-221d14ea4322@linaro.org>
-From:   jerome Neanne <jneanne@baylibre.com>
-In-Reply-To: <72b9809e-d6d7-862a-26b8-221d14ea4322@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v2 01/10] mailmap: update Icenowy Zheng's mail address
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2022 16:48, Krzysztof Kozlowski wrote:
-> On 11/10/2022 10:05, Jerome Neanne wrote:
->> This adds defconfig option to support TPS65219 PMIC, MFD, Regulators
-> 
-> Do not use "This commit/patch".
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> 
->> and power-button.
-> 
-> You explained what you did, which is easily visible. You did not explain
-> why you are doing it.
-> 
-> Best regards,
-> Krzysztof
-> 
-Thanks for pointing me to the detailed guidelines
-I'm new to upstream and not well aware of all good practices.
+On Wed, Oct 12, 2022, at 10:35 AM, Icenowy Zheng wrote:
+> =E5=9C=A8 2022-10-12=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 10:31 +0200=EF=
+=BC=8CArnd Bergmann=E5=86=99=E9=81=93=EF=BC=9A
+>> On Wed, Oct 12, 2022, at 7:55 AM, Icenowy Zheng wrote:
+>>=20
+>> I don't see a patch for updating the MAINTAINERS file here, if you
+>> haven't already sent that another way, you should probably change
+>> both at the same time.
+>
+> Good point. If this patchset is going to have a v3, I will contain it
+> there; otherwise I will independently send it.
 
-Would below commit message be more suitable:
+Ok. If you make a separate patch for the maintainers file, feel
+free to send this to me at soc@kernel.org, I can then put it into
+the fixes branch so it makes it into 6.1, otherwise I assume this
+gets picked up through the normal path along with the rest of the
+series.
 
-Add support for the TPS65219 PMIC by enabling MFD, regulator and 
-power-button drivers.  All drivers enabled as modules.
+>> As a driver maintainer, you can also apply for a kernel.org account
+>> [https://korg.docs.kernel.org/accounts.html] and use that for
+>> sending patches and forwarding to another address.
+>
+> Well I am in China now and not so easy to get my PGP key signed...
 
-Best regards
-Jerome
+Right, that can be a problem. In an urgent case, you could probably
+do a video meeting with someone you've previously met that is already
+on the kernel keyring, but that is perhaps not worth the hassle
+if your current setup otherwise works fine.
+
+     Arnd
