@@ -2,68 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 169175FC90B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 18:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 417665FC91A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 18:22:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbiJLQVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 12:21:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51834 "EHLO
+        id S229785AbiJLQWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 12:22:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiJLQVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 12:21:18 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC6A622528;
-        Wed, 12 Oct 2022 09:21:17 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-132af5e5543so19995905fac.8;
-        Wed, 12 Oct 2022 09:21:17 -0700 (PDT)
+        with ESMTP id S229552AbiJLQWP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 12:22:15 -0400
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441F7F253F;
+        Wed, 12 Oct 2022 09:22:03 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-1324e7a1284so20011468fac.10;
+        Wed, 12 Oct 2022 09:22:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mdkjtjQe9y7QrqNfE9DE704tTUxuuSLHdhelufYZEXY=;
-        b=ujkdGq1ktp3lf3tYeTdVKOtlQQRAjPaVt9dRGLLmLuX+fgAZmGi/kmUcM7+kvX0X9Y
-         0lZi6JOxXMorLtfbKREGxjAMRPdB2eWfeo2LoIg0MeTJpwB69zZHP3kIn1Qkp6Eqc/CY
-         uEEk4JLWmojl05jY7vPAqucfJBCfr1h6G/DXNg2qCIbuwBmqBuOwSdSVASPTJ+9Oiz/Q
-         3hcaOlWLz4VoZsTYIsY3zG+zp9djPVTqkIyZUF1PBV0+DJztUuLGBKyeVMgwZiY8g8AZ
-         Tztm/QzRlWZRnusK8Djt50FUAjb5MIyG8GajXxJLNeeElOmU4q3qDxod2WbVT4sHyQJ8
-         bcRg==
-X-Gm-Message-State: ACrzQf3sZCpVp7557L+7iogAChPIjbM7ERs7qMnWfHEV1r8DN81Pbu9I
-        qXQ4jUKurMLCdNqvLTvD+g==
-X-Google-Smtp-Source: AMsMyM7nAruUoSXYjluWMGl/KdX94bPKk33igtUxV/7Po/YMVByuG51WIBady0DgwT4LlWbabg9ulQ==
-X-Received: by 2002:a05:6870:eaaa:b0:132:e501:4053 with SMTP id s42-20020a056870eaaa00b00132e5014053mr3005462oap.186.1665591676702;
-        Wed, 12 Oct 2022 09:21:16 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=w9ooysRCPWwfkOQsofxa8c0vAZXT4BQ/v/BacIsjsJw=;
+        b=ZoN2S3I8tMdJi5TGESstwejE8OxWDtshhO482ynUMnoYJNfyohQ6Plc/dx58Cd0BS7
+         8hBWIVgdzlk6cPQ5u5ueok0fD2/ayXrNmD7xWHxxndoce89SpP+/+n51MaTLWl0RqtCr
+         eSN36jOFJQ55K6M2GBb4UfS8z1F8eELU9Ay38Rp7dEDNgHZjTNthNNaPmoPppJ/otF+i
+         MVjLOyDmsj9+HJY8X8H7cAU2opXFGUQsifZRtMERgRR6Kv/gb+hV7Wq4OEJv67neaJl2
+         4GWJkq1RBN3lckPNPykCVLzeRo5pdzBmtKMU6ZvIuyk4Icr/UmvO0Ybwj9sJXmzi20O8
+         Jfnw==
+X-Gm-Message-State: ACrzQf1YMZniz0o6m+HE6hYXOI+bYmNjfW6r3KeHZmMfWUx6dOyGctqW
+        /C8f+HjiJuDG/RpYtPBOdw==
+X-Google-Smtp-Source: AMsMyM7ax+7oJeMRo/K68gvl3SyHLdXhw2E4wnkt/VLvxvFuCGm6zdglL8IJeCxdEDXSHOc0BNd6UQ==
+X-Received: by 2002:a05:6870:88a9:b0:133:605:bb1d with SMTP id m41-20020a05687088a900b001330605bb1dmr2849384oam.220.1665591719121;
+        Wed, 12 Oct 2022 09:21:59 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ek19-20020a056870f61300b0012c52bd4369sm1335901oab.19.2022.10.12.09.21.15
+        by smtp.gmail.com with ESMTPSA id r26-20020a4ae51a000000b00425806a20f5sm1139604oot.3.2022.10.12.09.21.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 09:21:16 -0700 (PDT)
-Received: (nullmailer pid 2281844 invoked by uid 1000);
-        Wed, 12 Oct 2022 16:21:17 -0000
-Date:   Wed, 12 Oct 2022 11:21:17 -0500
+        Wed, 12 Oct 2022 09:21:58 -0700 (PDT)
+Received: (nullmailer pid 2282719 invoked by uid 1000);
+        Wed, 12 Oct 2022 16:21:59 -0000
+Date:   Wed, 12 Oct 2022 11:21:59 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
+Cc:     Ondrej Ille <ondrej.ille@gmail.com>, linux-can@vger.kernel.org,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        John Crispin <john@phrozen.org>,
-        =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2 1/2] dt-bindings: mtd: partitions: add TP-Link
- SafeLoader layout
-Message-ID: <20221012162117.GA2275712-robh@kernel.org>
-References: <20221012050442.6815-1-zajec5@gmail.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Pavel Pisa <pisa@cmp.felk.cvut.cz>,
+        Eric Dumazet <edumazet@google.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Jakub Kicinski <kuba@kernel.org>
+Subject: Re: [PATCH v5 1/4] dt-bindings: can: ctucanfd: add another clock for
+ HW timestamping
+Message-ID: <166559171895.2282669.6983651717616748049.robh@kernel.org>
+References: <20221012062558.732930-1-matej.vasilevski@seznam.cz>
+ <20221012062558.732930-2-matej.vasilevski@seznam.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221012050442.6815-1-zajec5@gmail.com>
+In-Reply-To: <20221012062558.732930-2-matej.vasilevski@seznam.cz>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -75,86 +72,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 12, 2022 at 07:04:41AM +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, 12 Oct 2022 08:25:55 +0200, Matej Vasilevski wrote:
+> Add second clock phandle to specify the timestamping clock.
 > 
-> Most TP-Link home routers use the same partitioning system based on a
-> custom ASCII table.
-> 
-> It doesn't seem to have any official name. GPL sources contain tool
-> named simply "make_flash" and Makefile target "FlashMaker".
-> 
-> This partitions table format was first found in devices with a custom
-> SafeLoader bootloader so it was called SafeLoader by a community. Later
-> it was ported to other bootloaders but it seems the name sticked.
-> 
-> Add binding for describing flashes with SafeLoader partitions table. It
-> allows operating systems to parse it properly and register proper flash
-> layout.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
 > ---
-> V2: Fix typo in commit: s/same/name/
-> ---
->  .../tplink,safeloader-partitions.yaml         | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml
+>  .../bindings/net/can/ctu,ctucanfd.yaml        | 19 +++++++++++++++----
+>  1 file changed, 15 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml
-> new file mode 100644
-> index 000000000000..e38aaea5aa11
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/partitions/tplink,safeloader-partitions.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TP-Link SafeLoader partitions
-> +
-> +description: |
-> +  TP-Link home routers store various data on flash (e.g. bootloader,
-> +  flash layout, firmware, product info, configuration, calibration
-> +  data). That requires flash partitioning.
-> +
-> +  Flash space layout of TP-Link devices is stored on flash itself using
-> +  a custom ASCII-based format. That format was first found in TP-Link
-> +  devices with a custom SafeLoader bootloader. Later it was adapted to
-> +  CFE and U-Boot bootloaders.
-> +
-> +  This binding describes partitioning method and defines offset of ASCII
-> +  based partitions table. That offset is picked at manufacturing process
-> +  and doesn't change.
-> +
-> +maintainers:
-> +  - Rafał Miłecki <rafal@milecki.pl>
-> +
-> +properties:
-> +  compatible:
-> +    const: tplink,safeloader-partitions
-> +
-> +  partitions-table-offset:
-> +    description: Flash offset of partitions table
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
 
-Don't need quotes.
-
-> +
-> +required:
-> +  - partitions-table-offset
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    partitions {
-> +        compatible = "tplink,safeloader-partitions";
-> +        partitions-table-offset = <0x100000>;
-
-What is in the space before this? It is part of the safeloader 
-partitions? If the safeloader partitions are not the entire device, then 
-perhaps we still need fixed partitions.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
