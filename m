@@ -2,163 +2,377 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED0B45FC158
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 09:40:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 030B55FC18F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 10:01:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbiJLHkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 03:40:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44892 "EHLO
+        id S229839AbiJLIB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 04:01:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiJLHkq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 03:40:46 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D6595AFD;
-        Wed, 12 Oct 2022 00:40:41 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id r22so18342788ljn.10;
-        Wed, 12 Oct 2022 00:40:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a+IYmi8tEOzQZXwBg2WQPAuUHlGeEUS5FrkTkjk+8r4=;
-        b=FOPJ9nrj9y5QZ8FojeBTK5zlj/pB+V9L1nBdMphMqh/X69LUfrnDyKffKpTkvzRrya
-         WzDqax1bXpZ2azImvJwrIYIvQYnBcWOIsYWkTsRjbun2XkRQuJkqKgJRUew5W5EPh2W6
-         d3U4QXHAZQBoL9JQhWBgCHu+MSeBqd4UPq8MBUN+/zdxEVD8yv4nhjJmoALtj75UaI3t
-         S5kN5E2o5yj8bdKj2HyKPnIMigQuYenZFsCdd3D65xq4s6LtPn2Lcp+OwoaL6FIR9FAR
-         Frs6oVs3IVlxKQR6VRPXwHvnzHfP3vtfqA9LFpFloSSnw9mC/Sd3Tic5EYrTEXxnBttE
-         uetQ==
+        with ESMTP id S229613AbiJLIBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 04:01:55 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A56B03D4
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 01:01:53 -0700 (PDT)
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1A6BD3F474
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 08:01:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1665561710;
+        bh=pPu9MmXkeNI2LOd8j8J0zuYhlY1BtgVw8LblJb0SHAk=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=F1mbsIVAKIMQU6KGVDzXmSyy+3BAXNl2VXmZ38UhmBNDt+NbYirACDPfS1PMWXSYh
+         A3MwxtMT9v32nWCx6wwzC+YaBDsdU/x4imJ0qw4/CHCVljQ92jOsM+GENZkwEx7vHu
+         V/ihaM1jw7wsQ/3jD8zsp0I8JLGVMl431QSHsB3OsOmNGF9E8pbKj2kpSNW4xvb7k6
+         pustVKmzvO8kEKSy+oROIXetlY93S975XA1Es9oHxupQDI/Yrkdh7gA//i9DG/6YsW
+         LVQ+hSPPDFUMsVZytiVCWCmjV1S5/KZZhtQnxIokVhx8HgnYlCFV7KQ8NWD4gIci+6
+         cmPrERBpiCmzA==
+Received: by mail-qv1-f69.google.com with SMTP id y2-20020a0ce802000000b004b1ce1c4a70so9245294qvn.9
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 01:01:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a+IYmi8tEOzQZXwBg2WQPAuUHlGeEUS5FrkTkjk+8r4=;
-        b=wpVnqnKr41o7y9lVFeh0zt4xdI3JO+9aF1pPkpPnPGFQzkguvNCC4uJRQr1sBbALIu
-         D5K/pTeUImfcsQM78nBfCxXKhOr0dzwu0J5wrd0bi52H2JxxbB7voAcCotBu1/lvS2zM
-         Oey48ViV9hfxsZiHOubZnhtR9MROrGXA1OZDhZuCehaPmpuVUDgzEWUmLMPXkPwMHiJL
-         FBDBIGFrqv1slib3q5EAsLBqP5F6wzSRbW/tdz2favQrhHPJ3OKah3GGHzuUxbHfu4+2
-         1dCKYvjRns1J8B2Qh+5msTZmh7HA1Vz0ljKieD/9pX+0qtQPHiebQp0OZRKTh1NukZfR
-         Y1Hg==
-X-Gm-Message-State: ACrzQf35r6d8GcMVBJSSDH7FO2BeAw3aCI/oap3oQR2Rlzn3JNLdWMxE
-        +Ah/nNnMtvgKv2gR7wssKLg=
-X-Google-Smtp-Source: AMsMyM7Bx7O5hrdirsTUZ5eU0BSzcJT7QqqMLDiJPPkhbIOX9ZLjuOyM2YM/6mObCPUwrE759uFqXw==
-X-Received: by 2002:a2e:a54d:0:b0:26c:64ae:236a with SMTP id e13-20020a2ea54d000000b0026c64ae236amr10808580ljn.207.1665560440059;
-        Wed, 12 Oct 2022 00:40:40 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::4? (dc75zzyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::4])
-        by smtp.gmail.com with ESMTPSA id dt11-20020a0565122a8b00b00497c3fdf995sm2183545lfb.152.2022.10.12.00.40.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 00:40:39 -0700 (PDT)
-Message-ID: <b1700ea7-4a7a-263c-595c-0f7a56763c10@gmail.com>
-Date:   Wed, 12 Oct 2022 10:40:38 +0300
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pPu9MmXkeNI2LOd8j8J0zuYhlY1BtgVw8LblJb0SHAk=;
+        b=sM/gyECa3rJlYjtG4xCvKkRi+1FexBej3yKYxmnW1vO+gkBu6coE/YWaHPQGx7WRce
+         825OhI1h6PckIeOLcR1jzd8oFbElSbSBV9C6rrtKXn525SxBTl1CuWHdHOX23q5OPVO0
+         WxHcJW+d9j+0QtCHXe02m2xyVdb5K9hzqRPJq8F3czKfKmy9IFNkSr/uWEkCW5m68lWJ
+         7oJfGQU3LZLk7HFVKvV+hkEnb5a11cduRaAJyP+YIn7aMT8rwktHwCUY6tie9/aXK7/u
+         7R23e8PUDbzHcFQkEPWF+82OZugNOyTlE7zx4y7UAsjZ2hZxEfZZuqTypOt4TAK3M4aG
+         IfjA==
+X-Gm-Message-State: ACrzQf2FRcwndvq0Nw47exjTaURf1stWfK7AEUP16VU8//dq6mIy2Jhk
+        0JgpWbo6TY/OeeEdHAxzkfQvm9tqwx1VkK7whF7GEIs2zQIvrAxLsS0tafC69b37yg+3MJtQyjS
+        t2ZVun1L3u5EA+2xgYHboC3wJ7e8cfCrVohqo+q1NR7hNJlswkL4KwZU=
+X-Received: by 2002:a05:6214:2301:b0:498:9f6f:28d with SMTP id gc1-20020a056214230100b004989f6f028dmr22305193qvb.5.1665561708949;
+        Wed, 12 Oct 2022 01:01:48 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM4BjVdcXzAwhXOcUXbaOEBSXPtiNTrEjbg/sZEuK9myUumUG1dG5KFTbU9zJywZ/QJNO+Cw30ztSSVCjbByWhU=
+X-Received: by 2002:a05:6214:2301:b0:498:9f6f:28d with SMTP id
+ gc1-20020a056214230100b004989f6f028dmr22305160qvb.5.1665561708558; Wed, 12
+ Oct 2022 01:01:48 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+ <20220929175147.19749-1-hal.feng@linux.starfivetech.com> <20220929184349.GA2551443-robh@kernel.org>
+ <8BEAFAD2C4CE6E4A+0a00376c-1e3e-f597-bcf6-106ff294859a@linux.starfivetech.com>
+In-Reply-To: <8BEAFAD2C4CE6E4A+0a00376c-1e3e-f597-bcf6-106ff294859a@linux.starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Wed, 12 Oct 2022 10:01:32 +0200
+Message-ID: <CAJM55Z9HwxTmgnPGvFpM_CtaghP0d_kc55bZcrFs3Q0fAEXPng@mail.gmail.com>
+Subject: Re: [PATCH v1 12/30] dt-bindings: reset: Add starfive,jh7110-reset bindings
+To:     Hal Feng <hal.feng@linux.starfivetech.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <cover.1665066397.git.mazziesaccount@gmail.com>
- <88e24b01da9f44ebf5fcd8344ded0b75ff742fbf.1665066397.git.mazziesaccount@gmail.com>
- <Yz8fK7j8pxlU76xt@smile.fi.intel.com>
- <98b59ad5-8c29-be41-4da1-a961db67827c@gmail.com>
- <Y0QIzf2cAH9ehSeO@smile.fi.intel.com>
- <19a6db0f-40a8-dacf-4583-cdb9d74e1243@fi.rohmeurope.com>
-Content-Language: en-US
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [RFC PATCH v2 4/5] iio: accel: Support Kionix/ROHM KX022A
- accelerometer
-In-Reply-To: <19a6db0f-40a8-dacf-4583-cdb9d74e1243@fi.rohmeurope.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/10/22 16:20, Vaittinen, Matti wrote:
-> On 10/10/22 14:58, Andy Shevchenko wrote:
->> On Mon, Oct 10, 2022 at 12:12:34PM +0300, Matti Vaittinen wrote:
->> ...
->>
->>>>> +	ret = regmap_bulk_read(data->regmap, chan->address, &data->buffer,
->>>>> +			       sizeof(s16));
->>
->>>> No endianess awareness (sizeof __le16 / __be16)
->>
->>>>> +	if (ret)
->>>>> +		return ret;
->>>>> +
->>>>> +	*val = data->buffer[0];
->>>>
->>>> Ditto (get_unaligned_be16/le16 / le16/be16_to_cpup()).
->>>
->>> I have probably misunderstood something but I don't see why we should use
->>> 'endianess awareness' in drivers? I thought the IIO framework code takes
->>> care of the endianes conversions based on scan_type so each individual
->>> driver does not need to do that. That however has been just my assumption. I
->>> will need to check this. Thanks for pointing it out.
->>
->> The IIO core uses endianness field only once in iio_show_fixed_type() AFAICS.
+On Tue, 11 Oct 2022 at 18:21, Hal Feng <hal.feng@linux.starfivetech.com> wrote:
+>
+> On Thu, 29 Sep 2022 13:43:49 -0500, Rob Herring wrote:
+> > On Fri, Sep 30, 2022 at 01:51:47AM +0800, Hal Feng wrote:
+> > > Add bindings for the reset controller on the JH7110 RISC-V
+> > > SoC by StarFive Technology Ltd.
+> > >
+> > > Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
+> > > ---
+> > >  .../bindings/reset/starfive,jh7110-reset.yaml | 54 +++++++++++++++++++
+> > >  1 file changed, 54 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/reset/starfive,jh7110-reset.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/reset/starfive,jh7110-reset.yaml b/Documentation/devicetree/bindings/reset/starfive,jh7110-reset.yaml
+> > > new file mode 100644
+> > > index 000000000000..bb0010c200f9
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/reset/starfive,jh7110-reset.yaml
+> > > @@ -0,0 +1,54 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/reset/starfive,jh7110-reset.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: StarFive JH7110 SoC Reset Controller Device Tree Bindings
+> > > +
+> > > +maintainers:
+> > > +  - Emil Renner Berthing <kernel@esmil.dk>
+> > > +  - Hal Feng <hal.feng@linux.starfivetech.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - starfive,jh7110-reset
+> >
+> > 'reg' needed? Is this a sub-block of something else?
+>
+> Yes, the reset node is a child node of the syscon node, see patch 27 for detail.
+> You might not see the complete patches at that time due to technical issue of
+> our smtp email server. Again, I feel so sorry about that.
+>
+>         syscrg: syscrg@13020000 {
+>                 compatible = "syscon", "simple-mfd";
+>                 reg = <0x0 0x13020000 0x0 0x10000>;
+>
+>                 syscrg_clk: clock-controller@13020000 {
+>                         compatible = "starfive,jh7110-clkgen-sys";
+>                         clocks = <&osc>, <&gmac1_rmii_refin>,
+>                                  <&gmac1_rgmii_rxin>,
+>                                  <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
+>                                  <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
+>                                  <&tdm_ext>, <&mclk_ext>;
+>                         clock-names = "osc", "gmac1_rmii_refin",
+>                                 "gmac1_rgmii_rxin",
+>                                 "i2stx_bclk_ext", "i2stx_lrck_ext",
+>                                 "i2srx_bclk_ext", "i2srx_lrck_ext",
+>                                 "tdm_ext", "mclk_ext";
+>                         #clock-cells = <1>;
+>                 };
+>
+>                 syscrg_rst: reset-controller@13020000 {
+>                         compatible = "starfive,jh7110-reset";
+>                         #reset-cells = <1>;
+>                         starfive,assert-offset = <0x2F8>;
+>                         starfive,status-offset= <0x308>;
+>                         starfive,nr-resets = <JH7110_SYSRST_END>;
+>                 };
+>         };
+>
+> In this case, we get the memory mapped space through the parent node with syscon
+> APIs. You can see patch 13 for detail.
+>
+> static int reset_starfive_register(struct platform_device *pdev, const u32 *asserted)
+> {
+>         struct starfive_reset *data;
+>         int ret;
+>
+>         data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+>         if (!data)
+>                 return -ENOMEM;
+>
+>         data->regmap = device_node_to_regmap(pdev->dev.of_node);                  //for JH7100
+>         if (IS_ERR(data->regmap)) {
+>                 data->regmap = syscon_node_to_regmap(pdev->dev.of_node->parent);  //for JH7110
+>                 if (IS_ERR(data->regmap)) {
+>                         dev_err(&pdev->dev, "failed to get regmap (error %ld)\n",
+>                                 PTR_ERR(data->regmap));
+>                         return PTR_ERR(data->regmap);
+>                 }
+>         }
+>         ...
+> }
+>
+> We use this method to avoid errors when remapping the same address in two
+> different drivers, because clock and reset of StarFive JH7110 share a common
+> register address region. For similar implementation, refer to file [1] and [2].
+>
+> [1] arch/riscv/boot/dts/canaan/k210.dtsi
+>
+>         sysctl: syscon@50440000 {
+>                 compatible = "canaan,k210-sysctl",
+>                              "syscon", "simple-mfd";
+>                 reg = <0x50440000 0x100>;
+>                 clocks = <&sysclk K210_CLK_APB1>;
+>                 clock-names = "pclk";
+>
+>                 sysclk: clock-controller {
+>                         #clock-cells = <1>;
+>                         compatible = "canaan,k210-clk";
+>                         clocks = <&in0>;
+>                 };
+>
+>                 sysrst: reset-controller {
+>                         compatible = "canaan,k210-rst";
+>                         #reset-cells = <1>;
+>                 };
+>
+>                 reboot: syscon-reboot {
+>                         compatible = "syscon-reboot";
+>                         regmap = <&sysctl>;
+>                         offset = <48>;
+>                         mask = <1>;
+>                         value = <1>;
+>                 };
+>         };
+>
+> [2] drivers/reset/reset-k210.c
 
-Following is some hand waving and speculation after my quick code read. 
-So, I may be utterly wrong in which case please do correct me...
+Here the syscon makes a little more sense since the same memory area
+does at least 3 different things, but on the JH7110 it is a dedicated
+"clock and reset generator", CRG. So this is much better modelled with
+a single driver taking care of both the clock and resets like the
+original driver did. If you do
 
-Anyways, it seems to me that you're correct. The endianness field is 
-only used by the IIO to build the channel information for user-space so 
-that applications reading data can parse it. As far as I understand, the 
-driver does not need to do the conversions for user-space, but the 
-user-space tools should inspect the type information and do the 
-conversion. I think it makes sense as user-space applications may be 
-better equipped to do some maths. It also may be some applications do 
-not want to spend cycles doing the conversion but the conversions can be 
-done later "offline" for the captured raw data. So omitting conversion 
-in the IIO driver kind of makes sense to me.
+git grep reset_controller_register drivers/clk
 
-I haven't thoroughly looked (and I have never used) the in-kernel IIO 
-APIs for getting the data. A quick look at the 
-include/linux/iio/consumer.h allows me to assume the iio_chan_spec can 
-be obtained by the consumer drivers. This should make the endianess 
-information available for the consumer drivers as well. So, again, 
-consumer drivers can parse the raw-format data themself.
+..you can see that there are lots of other drivers for such
+peripherals that combine clock and reset.
 
-I have this far only used the sysfs and iio_generic_buffer on a 
-little-endian machine so I have had no issues with the little-endian 
-data and I have only observed the code. Hence I can not really say if my 
-reasoning is correct - or if it is how IIO has been designed to operate. 
-But based on my quick study I don't see a need for the IIO driver to do 
-endianess conversion to any other format but what is indicated by 
-scan_type. Specifically for KX022A, the data is already 16B LE when read 
-from the sensor. This is also advertised by scan_type so no conversion 
-should be needed (unless, of course, I am mistaken :]).
-
->> And it does nothing with it. Maybe Jonathan can shed a light what is it for
->> (I mean the field)?
->>
-
-I agree. It'd be great to listen to someone who actually knows what he 
-is talking about and is not just guessing as I am ^_^;
-
-Yours,
-	-- Matti
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+> >
+> > > +
+> > > +  "#reset-cells":
+> > > +    const: 1
+> > > +
+> > > +  starfive,assert-offset:
+> > > +    description: Offset of the first ASSERT register
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +
+> > > +  starfive,status-offset:
+> > > +    description: Offset of the first STATUS register
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >
+> > These can't be implied from the compatible string?
+>
+> These two properties are the key differences among different reset controllers.
+> There are five memory regions for clock and reset in StarFive JH7110 SoC. They
+> are "syscrg", "aoncrg", "stgcrg", "ispcrg" and "voutcrg". Each memory region
+> has different reset ASSERT/STATUS register offset and different number of reset
+> signals. After storing them in dt, the reset driver can register all reset
+> controllers with the same compatible string. All we expect is that all reset
+> controllers in a single SoC use the same compatible string for matching and the
+> reset driver can be applied to all StarFive SoCs using different compatible strings.
+> Just like
+>
+> arch/riscv/boot/dts/starfive/jh7100.dtsi:
+>
+>         rstgen: reset-controller@11840000 {
+>                 compatible = "starfive,jh7100-reset";
+>                 reg = <0x0 0x11840000 0x0 0x10000>;
+>                 #reset-cells = <1>;
+>                 starfive,assert-offset = <0x0>;
+>                 starfive,status-offset= <0x10>;
+>                 starfive,nr-resets = <JH7100_RSTN_END>;
+>         };
+>
+> arch/riscv/boot/dts/starfive/jh7110.dtsi:
+>
+>         syscrg: syscrg@13020000 {
+>                 compatible = "syscon", "simple-mfd";
+>                 reg = <0x0 0x13020000 0x0 0x10000>;
+>
+>                 syscrg_clk: clock-controller@13020000 {
+>                         compatible = "starfive,jh7110-clkgen-sys";
+>                         ...
+>                 };
+>
+>                 syscrg_rst: reset-controller@13020000 {
+>                         compatible = "starfive,jh7110-reset";
+>                         #reset-cells = <1>;
+>                         starfive,assert-offset = <0x2F8>;
+>                         starfive,status-offset= <0x308>;
+>                         starfive,nr-resets = <JH7110_SYSRST_END>;
+>                 };
+>         };
+>
+>         aoncrg: aoncrg@17000000 {
+>                 compatible = "syscon", "simple-mfd";
+>                 reg = <0x0 0x17000000 0x0 0x10000>;
+>
+>                 aoncrg_clk: clock-controller@17000000 {
+>                         compatible = "starfive,jh7110-clkgen-aon";
+>                         ...
+>                 };
+>
+>                 aoncrg_rst: reset-controller@17000000 {
+>                         compatible = "starfive,jh7110-reset";
+>                         #reset-cells = <1>;
+>                         starfive,assert-offset = <0x38>;
+>                         starfive,status-offset= <0x3C>;
+>                         starfive,nr-resets = <JH7110_AONRST_END>;
+>                 };
+>         };
+>
+>         stgcrg: stgcrg@10230000 {       //Not submmited yet
+>                 compatible = "syscon", "simple-mfd";
+>                 reg = <0x0 0x10230000 0x0 0x10000>;
+>
+>                 stgcrg_clk: clock-controller@10230000 {
+>                         compatible = "starfive,jh7110-clkgen-stg";
+>                         ...
+>                 };
+>
+>                 stgcrg_rst: reset-controller@10230000 {
+>                         compatible = "starfive,jh7110-reset";
+>                         #reset-cells = <1>;
+>                         starfive,assert-offset = <0x74>;
+>                         starfive,status-offset= <0x78>;
+>                         starfive,nr-resets = <JH7110_STGRST_END>;
+>                 };
+>         };
+>         ...
+>
+> >
+> > > +
+> > > +  starfive,nr-resets:
+> > > +    description: Number of reset signals
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >
+> > Why do you need this? Most bindings don't. If just to validate 'resets'
+> > args, then don't.
+>
+> Can be removed. Instead, the reset driver should includes some related
+> binding headers or defines some macros for pointing out the number of
+> reset signals of each reset controller.
+>
+> Best regards,
+> Hal
+>
+> >
+> >
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - "#reset-cells"
+> > > +  - starfive,assert-offset
+> > > +  - starfive,status-offset
+> > > +  - starfive,nr-resets
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/reset/starfive-jh7110.h>
+> > > +
+> > > +    syscrg_rst: reset-controller@13020000 {
+> > > +        compatible = "starfive,jh7110-reset";
+> > > +        #reset-cells = <1>;
+> > > +        starfive,assert-offset = <0x2F8>;
+> > > +        starfive,status-offset= <0x308>;
+> > > +        starfive,nr-resets = <JH7110_SYSRST_END>;
+> > > +    };
+> > > +
+> > > +...
+> > > --
+> > > 2.17.1
+> > >
+> > >
+> >
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
