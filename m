@@ -2,140 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D1115FC67C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3CB75FC68E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230026AbiJLNaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 09:30:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33620 "EHLO
+        id S229569AbiJLNf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 09:35:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229803AbiJLNaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:30:17 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 165E43FA1C
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:30:15 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id 8so2947804qka.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:30:15 -0700 (PDT)
+        with ESMTP id S229527AbiJLNf6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:35:58 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B054AC39F
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:35:56 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id cj27so10137211qtb.7
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:35:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=afx1ZUqeiYFFIsDIPyGi6jdl/Bfo8+YGidTSsospIO8=;
-        b=G9I0WOy7GRTJuGqu7tFU2yADPFJn79gPN93sAfqSaFuxUizi+cvINq5ZOE/10RRud/
-         nLfXRA2z+Qgherce0oM66BDsgEq97pQmAKKJUmwgl/pSkEZsBqpObvDy/fZRbqFMZ2Yf
-         nbusbD13vN0it7E5AJBK4ye0ehbgbHoElKcnU5uWe4zSlhlEHWnrcSwcvKzbFQCTSOXG
-         hGN36i8jPD+FuknRWNjBhjlSbzT/utr6cuthM1wmqJhV7XOTOUxjN2wSVviYcJV69UXz
-         mtAfmlzZwsjcg7JpCrRZdKrZW+WfvGrcWApXhYgb2WBIBoEkPn6uhVeaoOkhJ5EVTA/A
-         SOdQ==
+        bh=p9wv8237wgiOHnZzBeahRRwwZUTEpSK22YpW0WQ8ENQ=;
+        b=CjpoFkyKt2Uj/f6Lutf+q+eujpjTXoQucjGCs5xN1wirDfpq/0VvBPWcYKcLddDJXy
+         djpKrpZvTmv3ZoHid7/65Bnf/1/dOnIcA5QYJ156coiid0vDg+n0PMHRSSGQcxwTxuNU
+         NyWVYMO9YA+CLepPyiIQi3efN6EZpZxCkC8M7MROypc7fzVg+XJo/mxouo3fBC1NEq4j
+         SqVrnI8AflI1sBsvVftUCjYx7d4qk1fuHfM4I+fnkPZ6HtusEJ16xDYm8Jq/hSLyBeZK
+         WIKAs2sSxNdCBQ03vVFfFeezd/VBd1nLR3vZWiszCzozsTpFLjRf2EwYSdZCJSMNzDGy
+         eX5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=afx1ZUqeiYFFIsDIPyGi6jdl/Bfo8+YGidTSsospIO8=;
-        b=qVHHcm91a9TczgSek8fbMbaod/WuY0u8jV2sOZhIJerdLzh6/2HpW46WuJCGj+MsdY
-         H7bFBSlTvynezosZR7W5VjAVCLovhdsz2/z7JinlOprXp6Hgw08IOq3AUBo4u2vfzNtL
-         rONeNziQZffgwEYqU92VfSOqnJcFFx5UG9gkjXsvpV4cR9cTfdi6WZApYkKCcgPbUotV
-         06oLn1927S9V01DRAI94Tq3sic7hef9xbnNgNDC1466NWDSbjZ39R31FBjCD/FqxTdyB
-         DZgwSqKDLDUSLoS5U6FVqzzn35bEczFQ1eGLxg4ut5eJ6FgUDLzY8dD40xP5zvGGYoF/
-         OwNg==
-X-Gm-Message-State: ACrzQf0LUbHRjqqKaoIrowCZpayDxEsVlu0Y049ioShdYT8u7W79f6af
-        nHmIv5+PNTID5o9wJhtR9OB1vA==
-X-Google-Smtp-Source: AMsMyM4tIyXqJb2NSCtLgGnokhnQqKWd4N0bJ0FSwi5lzOrDt/guBCmXfFMCdKH+nEzyqIH7vgdRaQ==
-X-Received: by 2002:a05:620a:4709:b0:6ce:d97a:fc9a with SMTP id bs9-20020a05620a470900b006ced97afc9amr19891291qkb.340.1665581414179;
-        Wed, 12 Oct 2022 06:30:14 -0700 (PDT)
+        bh=p9wv8237wgiOHnZzBeahRRwwZUTEpSK22YpW0WQ8ENQ=;
+        b=oGy2GVgvHAYIetGGziayu69/LQjuhF+Z6c9S37i2AMk6gZvFC7Cs4opaui3qHV39Yq
+         8Y6e3VpciOhPBmc3b4MJh3HDvYQizi+bRcpstJRAjQocFiQzFfVfFiK+LBbxAESbo7zA
+         5uQs+xQE8UM7+7RkHto5zkBoYmO4VAdh1Mdhqj15pQZo3jLauaSMnCSApC83VigpC6Ln
+         8Qn/BCWwzF6jz0pRjGK74Ma4Fzsf3GmNuhkVfyrrIiSYej3C0BzXiBoALJfYj586r4aB
+         mmcfbTn8rluTyANF/P0e9Nt8I814LWKfAZF5wlVKtv++caGbmwEL8BUZY8ZhSgeXO03A
+         QV6w==
+X-Gm-Message-State: ACrzQf2kLAnSH82d67lXMa8aqJcJiUP58blEqloUwGt4IN7fLiiBv47s
+        l+fTbj6aShdp1FKJ0v20JccNjA==
+X-Google-Smtp-Source: AMsMyM7q7HOB8fihkeRyzWXkhwIJbD9lX9nJvsCeMqMfFiR6wEnE4o8DM3wgIHiz9qtWeHFh2y6ftw==
+X-Received: by 2002:a05:622a:60b:b0:399:69c8:9b54 with SMTP id z11-20020a05622a060b00b0039969c89b54mr14464320qta.180.1665581755389;
+        Wed, 12 Oct 2022 06:35:55 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id e8-20020ac85988000000b0034305a91aaesm5894919qte.83.2022.10.12.06.30.12
+        by smtp.gmail.com with ESMTPSA id p16-20020a05620a057000b006bb29d932e1sm5669503qkp.105.2022.10.12.06.35.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 06:30:13 -0700 (PDT)
-Message-ID: <f68cdc01-2195-70fa-df11-521cca3505f0@linaro.org>
-Date:   Wed, 12 Oct 2022 09:28:00 -0400
+        Wed, 12 Oct 2022 06:35:54 -0700 (PDT)
+Message-ID: <9f04267d-2592-b303-9b79-9cef672c970a@linaro.org>
+Date:   Wed, 12 Oct 2022 09:33:42 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH 4/6] dt-bindings: usb: usbmisc-imx: convert to yaml
+Subject: Re: [PATCH v1 12/30] dt-bindings: reset: Add starfive,jh7110-reset
+ bindings
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jun.li@nxp.com, Peng Fan <peng.fan@nxp.com>
-References: <20221010101816.298334-1-peng.fan@oss.nxp.com>
- <20221010101816.298334-5-peng.fan@oss.nxp.com>
+To:     Hal Feng <hal.feng@linux.starfivetech.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        linux-kernel@vger.kernel.org
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+ <20220929175147.19749-1-hal.feng@linux.starfivetech.com>
+ <20220929184349.GA2551443-robh@kernel.org>
+ <8BEAFAD2C4CE6E4A+0a00376c-1e3e-f597-bcf6-106ff294859a@linux.starfivetech.com>
+ <2f1d1afd-3c97-6ce0-8247-6e1c4a24e548@linaro.org>
+ <4769BE3503398017+b1699221-ccc9-a0c1-0b11-141ce9644d74@linux.starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221010101816.298334-5-peng.fan@oss.nxp.com>
+In-Reply-To: <4769BE3503398017+b1699221-ccc9-a0c1-0b11-141ce9644d74@linux.starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/10/2022 06:18, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 12/10/2022 09:16, Hal Feng wrote:
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - starfive,jh7110-reset
+>>>>
+>>>> 'reg' needed? Is this a sub-block of something else?
+>>>
+>>> Yes, the reset node is a child node of the syscon node, see patch 27 for detail.
+>>> You might not see the complete patches at that time due to technical issue of
+>>> our smtp email server. Again, I feel so sorry about that.
+>>>
+>>> 	syscrg: syscrg@13020000 {
+>>> 		compatible = "syscon", "simple-mfd";
+>>> 		reg = <0x0 0x13020000 0x0 0x10000>;
+>>>
+>>> 		syscrg_clk: clock-controller@13020000 {
+>>> 			compatible = "starfive,jh7110-clkgen-sys";
+>>> 			clocks = <&osc>, <&gmac1_rmii_refin>,
+>>> 				 <&gmac1_rgmii_rxin>,
+>>> 				 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
+>>> 				 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
+>>> 				 <&tdm_ext>, <&mclk_ext>;
+>>> 			clock-names = "osc", "gmac1_rmii_refin",
+>>> 				"gmac1_rgmii_rxin",
+>>> 				"i2stx_bclk_ext", "i2stx_lrck_ext",
+>>> 				"i2srx_bclk_ext", "i2srx_lrck_ext",
+>>> 				"tdm_ext", "mclk_ext";
+>>> 			#clock-cells = <1>;
+>>> 		};
+>>>
+>>> 		syscrg_rst: reset-controller@13020000 {
+>>> 			compatible = "starfive,jh7110-reset";
+>>> 			#reset-cells = <1>;
+>>
+>> So the answer to the "reg needed?" is what? You have unit address but no
+>> reg, so this is not correct.
 > 
-> Convert usbmisc-imx to yaml format.
+> Not needed in the reset-controller node, but needed in its parent node. 
+
+We do not talk about parent node. Rob's question was in this bindings.
+Is this document a binding for the parent node or for this node?
+
+> I am sorry
+> for missing description to point it out in the bindings. I will rewrite all bindings
+> for the next version. Unit address here should be deleted.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/usb/usbmisc-imx.txt   | 18 -------
->  .../devicetree/bindings/usb/usbmisc-imx.yaml  | 52 +++++++++++++++++++
->  2 files changed, 52 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/usbmisc-imx.txt
->  create mode 100644 Documentation/devicetree/bindings/usb/usbmisc-imx.yaml
+>>
+>>> 			starfive,assert-offset = <0x2F8>;
+>>> 			starfive,status-offset= <0x308>;
+>>> 			starfive,nr-resets = <JH7110_SYSRST_END>;
+>>> 		};
+>>> 	};
+>>>
+>>> In this case, we get the memory mapped space through the parent node with syscon
+>>> APIs. You can see patch 13 for detail.
+>>>
+>>> static int reset_starfive_register(struct platform_device *pdev, const u32 *asserted)
+>>> {
+>>
+>>
+>> (...)
+>>
+>>>
+>>>>
+>>>>> +
+>>>>> +  "#reset-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  starfive,assert-offset:
+>>>>> +    description: Offset of the first ASSERT register
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +
+>>>>> +  starfive,status-offset:
+>>>>> +    description: Offset of the first STATUS register
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>
+>>>> These can't be implied from the compatible string?
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/usbmisc-imx.txt b/Documentation/devicetree/bindings/usb/usbmisc-imx.txt
-> deleted file mode 100644
-> index b796836d2ce7..000000000000
-> --- a/Documentation/devicetree/bindings/usb/usbmisc-imx.txt
-> +++ /dev/null
-> @@ -1,18 +0,0 @@
-> -* Freescale i.MX non-core registers
-> -
-> -Required properties:
-> -- #index-cells: Cells used to describe usb controller index. Should be <1>
-> -- compatible: Should be one of below:
-> -	"fsl,imx6q-usbmisc" for imx6q
-> -	"fsl,vf610-usbmisc" for Vybrid vf610
-> -	"fsl,imx6sx-usbmisc" for imx6sx
-> -	"fsl,imx7d-usbmisc" for imx7d
-> -	"fsl,imx7ulp-usbmisc" for imx7ulp
-> -- reg: Should contain registers location and length
-> -
-> -Examples:
-> -usbmisc@2184800 {
-> -	#index-cells = <1>;
-> -	compatible = "fsl,imx6q-usbmisc";
-> -	reg = <0x02184800 0x200>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/usb/usbmisc-imx.yaml b/Documentation/devicetree/bindings/usb/usbmisc-imx.yaml
+> Definitely can. We do this is for simplifying the reset driver.
 
-Filename: fsl,usbmisc.yaml
+The role of the bindings is not to simplify some specific driver in some
+specific OS...
 
-> new file mode 100644
-> index 000000000000..c0741ce9b523
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/usbmisc-imx.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/usbmisc-imx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX non-core registers
+> Otherwise, we may need to define more compatibles because there
+> are multiple reset blocks in JH7110. Another case can be found at
+> https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/reset/altr,rst-mgr.yaml
 
-non-core registers? Does not look right.
+And why is this a problem? You have different hardware, so should have
+different compatibles. Otherwise we would have a compatible
+"all,everything" and use it in all possible devices.
 
+>>> These two properties are the key differences among different reset controllers.
+>>
+>> Different as in different compatibles? Please answer the questions..> 
+>>> There are five memory regions for clock and reset in StarFive JH7110 SoC. They
+>>> are "syscrg", "aoncrg", "stgcrg", "ispcrg" and "voutcrg". Each memory region
+>>> has different reset ASSERT/STATUS register offset and different number of reset
+>>> signals. 
+>>
+>> Then these are not exactly the same devices, so using one compatible for
+>> them does not look correct.
+> 
+> One compatible can just be matched by one device? I think this is what
+> confuses me.
+
+I don't understand the question.
+
+> 
+> Best regards,
+> Hal
+> 
+
+Trim the replies - no need to quote everything (entire message following
+last reply/quote).
 
 Best regards,
 Krzysztof
