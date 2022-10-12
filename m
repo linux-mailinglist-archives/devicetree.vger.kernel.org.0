@@ -2,107 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 311995FC660
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:26:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D1115FC67C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:30:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbiJLNZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 09:25:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54616 "EHLO
+        id S230026AbiJLNaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 09:30:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbiJLNZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:25:57 -0400
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18835BB064;
-        Wed, 12 Oct 2022 06:25:50 -0700 (PDT)
-Received: by mail-qk1-f174.google.com with SMTP id 8so2939630qka.1;
-        Wed, 12 Oct 2022 06:25:50 -0700 (PDT)
+        with ESMTP id S229803AbiJLNaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:30:17 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 165E43FA1C
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:30:15 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id 8so2947804qka.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=afx1ZUqeiYFFIsDIPyGi6jdl/Bfo8+YGidTSsospIO8=;
+        b=G9I0WOy7GRTJuGqu7tFU2yADPFJn79gPN93sAfqSaFuxUizi+cvINq5ZOE/10RRud/
+         nLfXRA2z+Qgherce0oM66BDsgEq97pQmAKKJUmwgl/pSkEZsBqpObvDy/fZRbqFMZ2Yf
+         nbusbD13vN0it7E5AJBK4ye0ehbgbHoElKcnU5uWe4zSlhlEHWnrcSwcvKzbFQCTSOXG
+         hGN36i8jPD+FuknRWNjBhjlSbzT/utr6cuthM1wmqJhV7XOTOUxjN2wSVviYcJV69UXz
+         mtAfmlzZwsjcg7JpCrRZdKrZW+WfvGrcWApXhYgb2WBIBoEkPn6uhVeaoOkhJ5EVTA/A
+         SOdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OYKvj3GVd5Tg+NDlIwQQt8ZJzcXS92tatY/+DrOpNx0=;
-        b=KrQOKqI4omqX9KwgG0d35aQQPfUYQfu4psZM3xxYp8iNWUe4FHq+c4Sfrc+WJpDQOw
-         JfjzcNpIMo2h1cfvAK6409T1si8CMr79MogOtfhbz6zP/8pfFps7rd/JIzm/ZYRxCKBK
-         NvyoP+EExP++/tb8Mw4mHRczCTHPd8ZE7bZ71DEjKIVl38bPaMrf4pOV5KI4RKEXoAZ4
-         RnRtPGLfEjDpb12FvrUOQe2lCU3nbrCFzQC+sBnZiDD1PuGkMrNhjx0Nf0RWoXN9bSow
-         Lr8KWZFfftzxjTSkFnWV8RkyfQdYdO0C6kko2ZDnLLXtp8NjkxoyNUMEP0NaK5H/fXJ0
-         VQyA==
-X-Gm-Message-State: ACrzQf3GQ/4RhRyIq/tOtw7uno45Kaq0LiGQn66KeekvOfEoLgQeXcVN
-        Ei8RZhXFiQMWEl0FrcZiVIIMfLvBvOFz+g==
-X-Google-Smtp-Source: AMsMyM5JYC344l9EsauacZWTiz5vALdpOPusV5XZAsjANwQx+toYpgioYa42VdS5gNlDAZAznY5Y+Q==
-X-Received: by 2002:a05:620a:12d5:b0:6ee:9a95:8c72 with SMTP id e21-20020a05620a12d500b006ee9a958c72mr1552530qkl.362.1665581149655;
-        Wed, 12 Oct 2022 06:25:49 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id h19-20020a05620a245300b006ccc96c78easm16053213qkn.134.2022.10.12.06.25.48
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=afx1ZUqeiYFFIsDIPyGi6jdl/Bfo8+YGidTSsospIO8=;
+        b=qVHHcm91a9TczgSek8fbMbaod/WuY0u8jV2sOZhIJerdLzh6/2HpW46WuJCGj+MsdY
+         H7bFBSlTvynezosZR7W5VjAVCLovhdsz2/z7JinlOprXp6Hgw08IOq3AUBo4u2vfzNtL
+         rONeNziQZffgwEYqU92VfSOqnJcFFx5UG9gkjXsvpV4cR9cTfdi6WZApYkKCcgPbUotV
+         06oLn1927S9V01DRAI94Tq3sic7hef9xbnNgNDC1466NWDSbjZ39R31FBjCD/FqxTdyB
+         DZgwSqKDLDUSLoS5U6FVqzzn35bEczFQ1eGLxg4ut5eJ6FgUDLzY8dD40xP5zvGGYoF/
+         OwNg==
+X-Gm-Message-State: ACrzQf0LUbHRjqqKaoIrowCZpayDxEsVlu0Y049ioShdYT8u7W79f6af
+        nHmIv5+PNTID5o9wJhtR9OB1vA==
+X-Google-Smtp-Source: AMsMyM4tIyXqJb2NSCtLgGnokhnQqKWd4N0bJ0FSwi5lzOrDt/guBCmXfFMCdKH+nEzyqIH7vgdRaQ==
+X-Received: by 2002:a05:620a:4709:b0:6ce:d97a:fc9a with SMTP id bs9-20020a05620a470900b006ced97afc9amr19891291qkb.340.1665581414179;
+        Wed, 12 Oct 2022 06:30:14 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id e8-20020ac85988000000b0034305a91aaesm5894919qte.83.2022.10.12.06.30.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 06:25:49 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-354c7abf786so155804027b3.0;
-        Wed, 12 Oct 2022 06:25:48 -0700 (PDT)
-X-Received: by 2002:a81:5a57:0:b0:353:6de6:3263 with SMTP id
- o84-20020a815a57000000b003536de63263mr26251333ywb.358.1665581148424; Wed, 12
- Oct 2022 06:25:48 -0700 (PDT)
+        Wed, 12 Oct 2022 06:30:13 -0700 (PDT)
+Message-ID: <f68cdc01-2195-70fa-df11-521cca3505f0@linaro.org>
+Date:   Wed, 12 Oct 2022 09:28:00 -0400
 MIME-Version: 1.0
-References: <7ee7fdb6a46fc9f0e50c2b803ede6b4b2fdfa450.1665558324.git.geert+renesas@glider.be>
- <166558066055.1938423.17466826000089973236.robh@kernel.org>
-In-Reply-To: <166558066055.1938423.17466826000089973236.robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 12 Oct 2022 15:25:36 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWg=G0NfFARtixMWTdPuQFYMy7f+JJTr420+shXRYD8=A@mail.gmail.com>
-Message-ID: <CAMuHMdWg=G0NfFARtixMWTdPuQFYMy7f+JJTr420+shXRYD8=A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: renesas,sdhi: Document R-Car V4H support
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-renesas-soc@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH 4/6] dt-bindings: usb: usbmisc-imx: convert to yaml
+Content-Language: en-US
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jun.li@nxp.com, Peng Fan <peng.fan@nxp.com>
+References: <20221010101816.298334-1-peng.fan@oss.nxp.com>
+ <20221010101816.298334-5-peng.fan@oss.nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221010101816.298334-5-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob(ot),
+On 10/10/2022 06:18, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Convert usbmisc-imx to yaml format.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/usb/usbmisc-imx.txt   | 18 -------
+>  .../devicetree/bindings/usb/usbmisc-imx.yaml  | 52 +++++++++++++++++++
+>  2 files changed, 52 insertions(+), 18 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/usb/usbmisc-imx.txt
+>  create mode 100644 Documentation/devicetree/bindings/usb/usbmisc-imx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/usbmisc-imx.txt b/Documentation/devicetree/bindings/usb/usbmisc-imx.txt
+> deleted file mode 100644
+> index b796836d2ce7..000000000000
+> --- a/Documentation/devicetree/bindings/usb/usbmisc-imx.txt
+> +++ /dev/null
+> @@ -1,18 +0,0 @@
+> -* Freescale i.MX non-core registers
+> -
+> -Required properties:
+> -- #index-cells: Cells used to describe usb controller index. Should be <1>
+> -- compatible: Should be one of below:
+> -	"fsl,imx6q-usbmisc" for imx6q
+> -	"fsl,vf610-usbmisc" for Vybrid vf610
+> -	"fsl,imx6sx-usbmisc" for imx6sx
+> -	"fsl,imx7d-usbmisc" for imx7d
+> -	"fsl,imx7ulp-usbmisc" for imx7ulp
+> -- reg: Should contain registers location and length
+> -
+> -Examples:
+> -usbmisc@2184800 {
+> -	#index-cells = <1>;
+> -	compatible = "fsl,imx6q-usbmisc";
+> -	reg = <0x02184800 0x200>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/usb/usbmisc-imx.yaml b/Documentation/devicetree/bindings/usb/usbmisc-imx.yaml
 
-On Wed, Oct 12, 2022 at 3:19 PM Rob Herring <robh@kernel.org> wrote:
-> On Wed, 12 Oct 2022 09:05:56 +0200, Geert Uytterhoeven wrote:
-> > Document support for the SD Card/MMC Interface on the Renesas R-Car V4H
-> > (R8A779G0) SoC.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> >  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
->
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
->
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
->
-> Full log is available here: https://patchwork.ozlabs.org/patch/
->
->
-> mmc@ee100000: Unevaluated properties are not allowed ('iommus' was unexpected)
+Filename: fsl,usbmisc.yaml
 
-JFYI, your tree is missing commit 1de7307270f5f203 ("dt-bindings: mmc:
-renesas,sdhi: Add iommus property") in linus/master.
+> new file mode 100644
+> index 000000000000..c0741ce9b523
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/usbmisc-imx.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/usbmisc-imx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX non-core registers
 
-Gr{oetje,eeting}s,
+non-core registers? Does not look right.
 
-                        Geert
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Best regards,
+Krzysztof
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
