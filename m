@@ -2,96 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25FB85FC87A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 17:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E06375FC886
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 17:38:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbiJLPgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 11:36:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53232 "EHLO
+        id S229886AbiJLPih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 11:38:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbiJLPgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 11:36:35 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35621D9978;
-        Wed, 12 Oct 2022 08:36:34 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id j188so12496649oih.4;
-        Wed, 12 Oct 2022 08:36:34 -0700 (PDT)
+        with ESMTP id S229663AbiJLPig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 11:38:36 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A64DB740
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 08:38:35 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id f14so11124662qvo.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 08:38:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Z+NMoPOZq1erzKnfhYuGIlvnqtWcZGNnxl2pMMZiBdo=;
+        b=Lz+j6HeJDCFOKr1Gyj43KK/P7fM0J4lk/iKn6dVTn+y8wEIYuHfAh5SyfCA8cJWXhY
+         obM6zp6Ht3x/RTCY18QHtftkGoImtad9ussJ+nBB6PIRujcV9ZF0ToMVFfYrz+uHJyE7
+         O//8XUzkLvspmUOeE2JoBqBQBcO2ByxXbSDnawaDVa9lyljOqF8Nz/iHhC9J119RmLXI
+         c+5t48cJNJRzvuxh441WXhpgdKnpqzzUmU4EioMXHDK5qgeeO8/JrWImvlCVnDVAFvk2
+         vlAcmZCnHC+XdxOJ6l+Va0KmA13NT4iQFf8tNrTrDNbrGO2uouR5BVVtGumAzxTYgWb8
+         ZBZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n5lptyW3ie5pClcDGn5r9fNjFpkWHmTzbf2OcN0VuAU=;
-        b=mCkEIB+J+Ljz0kUI9auglrJwIkJm74kgGhA8UUHrgOdLu8Q7uT8OZTpMBfUoVhyUfg
-         DUiAzb5HEKY+4ntFmsSirnGlzBZQ/eGTHTiTt/90TKEsDMmKiXK6Dfch1OLJ3McikDD+
-         2UEMWiUP6DqMTw1mRHFwkEfESobi5Fx+0bX6c71DABLmy7PNZK+nB9+NX6RboDP4uHyp
-         fAbfBkrFGvUuaYLJbuA7FVlb40NNUzjMvzASkrgYZqKyiHH40lgUyUDOp46pbzSotL41
-         H+MQTBBBRERrj4cRu7h/kl6CA/iAsCU9iA+Fe004g7ZNX3jlcwtman9X7C7TmzEezBut
-         0sAw==
-X-Gm-Message-State: ACrzQf0rPn5MzUGi3gDoW3rB9pXHENSsJZtMXgxuMk6Zp6js1tx7NFU0
-        I61Xh+C6nuTbkQpiRL+H0g==
-X-Google-Smtp-Source: AMsMyM7YihuyUnIzLG6/okwQkls3Kbv8bMnGi6YmV46cxfr/5CDfSMZlI0ueMUzM8VQx2RPDXUmARA==
-X-Received: by 2002:a05:6808:1487:b0:354:923c:bc7a with SMTP id e7-20020a056808148700b00354923cbc7amr2454582oiw.145.1665588993393;
-        Wed, 12 Oct 2022 08:36:33 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a28-20020a544e1c000000b00339befdfad0sm6746011oiy.50.2022.10.12.08.36.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 08:36:32 -0700 (PDT)
-Received: (nullmailer pid 2164100 invoked by uid 1000);
-        Wed, 12 Oct 2022 15:36:34 -0000
-Date:   Wed, 12 Oct 2022 10:36:34 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        lee@kernel.org, robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        chiaen_wu@richtek.com, matthias.bgg@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        krzysztof.kozlowski+dt@linaro.org, cy_huang@richtek.com,
-        sre@kernel.org
-Subject: Re: [PATCH v3] dt-bindings: mfd: mt6370: fix the interrupt order of
- the charger in the example
-Message-ID: <166558333754.1988433.10175192101178879616.robh@kernel.org>
-References: <fcf4e7e7594070a8698dc0d4b96e031bcaa9b3a3.1665585952.git.chiaen_wu@richtek.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z+NMoPOZq1erzKnfhYuGIlvnqtWcZGNnxl2pMMZiBdo=;
+        b=xtbwY6drej/d2otPSf7t3VsN6M9mx6TF4izEKz3/bRdraLcxxrZhOi3nzO7JWYMnAc
+         53hbCSmUzu1X/eC22mvkISYHAq5MSMe3WuIavFvMufDoXUE4duKQ+oOTGe3EpAS1pfNi
+         MTHugcjWQAWeu8tOQ8aXwj2S7XMlHCieEkah/TqeLAgkM9bb6Fvzc44T71Ws7hx3fxMN
+         cruTHPQzD+0AB4KERcpZdGErzvz3YqwSYuk+45eA/Ej6dqMbqvwYnMo03XTceW+fX0dM
+         WcGiDlSkrPVx6jFwBFkBgd+z0Ap++R+qHOk2hxMP8+Br1UcpCYws9ocdI2nfds5Q6oy3
+         HeNw==
+X-Gm-Message-State: ACrzQf2h1VrPkNlvBBl3PfYFfUZVR/jcmg1PUE0XI0dy3kJOfko/k9EW
+        dpPOt+dDDmJgEoNJs/Vt6JEMIQ==
+X-Google-Smtp-Source: AMsMyM6FgPeEeq6o1hXq7OPXCciAymFLlQ+QAF+otIX2xa/uUftSe2ABcXLoRVZM1hDWaM/wexNsPQ==
+X-Received: by 2002:a05:6214:1d01:b0:4b0:b782:15a6 with SMTP id e1-20020a0562141d0100b004b0b78215a6mr24569885qvd.43.1665589114407;
+        Wed, 12 Oct 2022 08:38:34 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id m15-20020a05620a13af00b006cfc1d827cbsm15705502qki.9.2022.10.12.08.38.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Oct 2022 08:38:33 -0700 (PDT)
+Message-ID: <57e454f4-6767-bf42-8337-ce1f486137ca@linaro.org>
+Date:   Wed, 12 Oct 2022 11:38:17 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fcf4e7e7594070a8698dc0d4b96e031bcaa9b3a3.1665585952.git.chiaen_wu@richtek.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [RFC PATCH 0/2] RZ/G2UL separate out SoC specific parts
+Content-Language: en-US
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        DT <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220929172356.301342-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CA+V-a8vD1+kbby8rbZqYv2Ux1GaT=7n7V9qHJS3Djv-fKdWrAQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CA+V-a8vD1+kbby8rbZqYv2Ux1GaT=7n7V9qHJS3Djv-fKdWrAQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Oct 2022 15:08:14 +0800, ChiaEn Wu wrote:
-> From: ChiaEn Wu <chiaen_wu@richtek.com>
+On 10/10/2022 05:41, Lad, Prabhakar wrote:
+> Hi Rob, Krzysztof,
 > 
-> Fix the interrupt order of the charger in the binding example.
+> On Thu, Sep 29, 2022 at 6:24 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+>>
+>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>
+>> Hi All,
+>>
+>> This patch series aims to split up the RZ/G2UL SoC DTSI into common parts
+>> so that this can be shared with the RZ/Five SoC.
+>>
+>> Implementation is based on the discussion [0] where I have used option#2.
+>>
+>> The Renesas RZ/G2UL (ARM64) and RZ/Five (RISC-V) have almost the same
+>> identical blocks to avoid duplication a base SoC dtsi (r9a07g043.dtsi) is
+>> created which will be used by the RZ/G2UL (r9a07g043u.dtsi) and RZ/Five
+>> (r9a07g043F.dtsi)
+>>
+>> Sending this as an RFC to get some feedback.
+>>
+>> r9a07g043f.dtsi will look something like below:
+>>
+>> #include <dt-bindings/interrupt-controller/irq.h>
+>>
+>> #define SOC_PERIPHERAL_IRQ_NUMBER(nr)   (nr + 32)
+>> #define SOC_PERIPHERAL_IRQ(nr, na)      SOC_PERIPHERAL_IRQ_NUMBER(nr) na
+>>
+>> #include <arm64/renesas/r9a07g043.dtsi>
+>>
+>> / {
+>>    ...
+>>    ...
+>> };
+>>
+>> Although patch#2 can be merged into patch#1 just wanted to keep them separated
+>> for easier review.
+>>
+>> [0] https://lore.kernel.org/linux-arm-kernel/Yyt8s5+pyoysVNeC@spud/T/
+>>
+>> Cheers,
+>> Prabhakar
+>>
+>> Lad Prabhakar (2):
+>>   arm64: dts: renesas: r9a07g043: Introduce SOC_PERIPHERAL_IRQ() macro
+>>     to specify interrupt property
 > 
-> Fixes: 76f52f815f1a ("dt-bindings: mfd: Add MediaTek MT6370")
-> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
-> v3
-> - Add a 'Reviewed-by' tag.
-> 
-> v2
-> - Revise the commit syntax.
-> 
-> v1
-> - Due to this patch modifiacation
->   (https://lore.kernel.org/all/20221001202918.me7z2qzm7cmrkzsg@mercury.elektranox.org/),
->   there will get some warnings in linux-next when compiling the dts.
-> ---
->  Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Can either of you please review patch #1.
 > 
 
-Applying to go into rc1 along with the other mt6370 fix, thanks!
+Why? This is a DTS patch, isn't it? You should CC rather platform
+maintainers, architecture maintainers and SoC folks (the latter you
+missed for sure). You missed them, so please resend.
+
+Best regards,
+Krzysztof
+
