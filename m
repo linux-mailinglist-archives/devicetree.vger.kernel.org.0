@@ -2,116 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A3F25FC0F5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 08:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60F285FC10C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 09:06:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbiJLGym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 02:54:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52784 "EHLO
+        id S229542AbiJLHGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 03:06:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbiJLGyk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 02:54:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE7E8DCA;
-        Tue, 11 Oct 2022 23:54:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EE15C6143F;
-        Wed, 12 Oct 2022 06:54:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D20C0C433C1;
-        Wed, 12 Oct 2022 06:54:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1665557678;
-        bh=07544IyluCqQFbZ6NhjfAsCj/GMjAj2uXv4G4GnQgo0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jHaasYph0Rv0oQDVh9RCvdB7C3uVY/726M2EM4fiJ8JofAJG2WY1pX+OXcP45+Bs7
-         QcHzyj5wQFv4So6S8rBhGsnuNJ3WUpZ4/1REKgJzwr2OvO2FDhoZdfskZTTSV0qYvH
-         rokhHfhx0M5Zh3WF1J38E/Dn0BxrB5P63++JeybU=
-Date:   Wed, 12 Oct 2022 08:55:22 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Jiri Slaby <jirislaby@kernel.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229519AbiJLHGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 03:06:03 -0400
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5763E61B39
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 00:06:02 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:3da6:62e6:8ab0:ff90])
+        by baptiste.telenet-ops.be with bizsmtp
+        id Wv602800H32x5mf01v60XN; Wed, 12 Oct 2022 09:06:00 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1oiVoW-001Lqu-3p; Wed, 12 Oct 2022 09:06:00 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1oiVoV-006ju5-JU; Wed, 12 Oct 2022 09:05:59 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 13/13] tty: gunyah: Add tty console driver for RM
- Console Services
-Message-ID: <Y0Zk2hN4uEbxCp56@kroah.com>
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-14-quic_eberman@quicinc.com>
- <7438406d-b446-201e-0ec3-5cf0a5b9f32c@kernel.org>
- <85ca7eb4-3e0c-4ffb-8bac-a435594ca0f7@app.fastmail.com>
- <b7cca9c7-5170-bf40-c030-d676944b03c6@quicinc.com>
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: mmc: renesas,sdhi: Document R-Car V4H support
+Date:   Wed, 12 Oct 2022 09:05:56 +0200
+Message-Id: <7ee7fdb6a46fc9f0e50c2b803ede6b4b2fdfa450.1665558324.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b7cca9c7-5170-bf40-c030-d676944b03c6@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 11, 2022 at 03:04:47PM -0700, Elliot Berman wrote:
-> 
-> 
-> On 10/11/2022 4:09 AM, Arnd Bergmann wrote:
-> > On Tue, Oct 11, 2022, at 8:02 AM, Jiri Slaby wrote:
-> > > On 11. 10. 22, 2:08, Elliot Berman wrote:
-> > > > +
-> > > > +	/* below are for printk console.
-> > > > +	 * gh_rm_console_* calls will sleep and console_write can be called from
-> > > > +	 * atomic ctx. Two xmit buffers are used. The active buffer is tracked with
-> > > > +	 * co_xmit_idx. Writes go into the co_xmit_buf[co_xmit_idx] buffer.
-> > > > +	 * A work is scheduled to flush the bytes. The work will swap the active buffer
-> > > > +	 * and write out the other buffer.
-> > > > +	 */
-> > > 
-> > > Ugh, why? This is too ugly and unnecessary. What about passing the kfifo
-> > > to gh_rm_console_write() instead? You do memcpy() there anyway.
-> > 
-> > Another problem here is that you really want the console output to be
-> > printed from atomic context, otherwise one would never see e.g. the
-> > output of a panic() call. Having a deferred write is probably fine for
-> > normal tty operations, but you probably want a different device for the
-> > console here, e.g. the hvc_dcc driver.
-> > 
-> 
-> Yes, that is our perspective on the RM console driver as well. I'll make
-> this more explicit in the Kconfig/commit text. We expect most VMs
-> (especially Linux) to use some other console mechanism provided by their
-> VMM. I'm submitting here because we are presently using RM console on some
-> of our VMs where we have other ways to collects logs on panic. It also makes
-> it easier to implement a simple virtual machine manager that does not want
-> to virtualize a serial device or have a virtio stack.
+Document support for the SD Card/MMC Interface on the Renesas R-Car V4H
+(R8A779G0) SoC.
 
-The whole goal of virtio was so that we would not have all of these
-random custom drivers for new hypervisors all over the place, requiring
-custom userspace interaction with them.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Please use virtio, that's what it is there for, don't create a new
-console device if you do not have to.
+diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+index 0424b06cb6551e00..7bfb10c6256602e2 100644
+--- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
++++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+@@ -64,6 +64,7 @@ properties:
+           - enum:
+               - renesas,sdhi-r8a779a0  # R-Car V3U
+               - renesas,sdhi-r8a779f0  # R-Car S4-8
++              - renesas,sdhi-r8a779g0  # R-Car V4H
+           - const: renesas,rcar-gen4-sdhi # R-Car Gen4
+ 
+   reg:
+-- 
+2.25.1
 
-greg k-h
