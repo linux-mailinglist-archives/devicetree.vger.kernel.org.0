@@ -2,117 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56C1A5FC9E6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 19:29:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07CAB5FC9ED
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 19:31:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbiJLR33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 13:29:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39714 "EHLO
+        id S229436AbiJLRb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 13:31:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiJLR32 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 13:29:28 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7D423BF7;
-        Wed, 12 Oct 2022 10:29:27 -0700 (PDT)
-Received: from zn.tnic (p200300ea9733e705329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e705:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 8D4501EC0304;
-        Wed, 12 Oct 2022 19:29:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1665595762;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=yQ3NJCYhGzQnwvOx2Fbc1ZbVY18C8OhIiN6ipKV7+4Y=;
-        b=JZOAjQ0shdBqZOR9jqUdFuqz2kiUEYIEFgLRh+D6pM3KurzGFbfhqt3gopRykRl42J/303
-        6cNHZeSM8eHtTeZwMCFsQ7F6X3F7/ZjQlK1bRzAQJYpvKtDAD5frQiu9GXNxzWaBoFZNPP
-        SWMwHhjbMtFNXCNM2a5jgiKfjyiVBfw=
-Date:   Wed, 12 Oct 2022 19:29:22 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Michal Simek <michal.simek@xilinx.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
+        with ESMTP id S229516AbiJLRb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 13:31:57 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CAD473C15
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 10:31:55 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id bj12so39402232ejb.13
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 10:31:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7g3dd5oDblHSvi18BkA/g8g+g7bbmFZJfYmI1TEETpo=;
+        b=NynZaqiW8iZBWr74bVjdNFWdXcRTfSd282NrBTXL3fuag703GobvYOkLPxqyhXQS48
+         7VZKSimGgc+CFlVqetGlUZZYWlECy91Xqw7ymAjZ0OdCsKsqKEqOOmqji6hO182aNtjB
+         47eFZ3fudM9qwmG2j9liKzxFKIPGKZquutDxs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7g3dd5oDblHSvi18BkA/g8g+g7bbmFZJfYmI1TEETpo=;
+        b=emH/TjBmWCF9eNrVcaKo5ozEiZSqXh2UTOz1syuPV1I2q3kyK8sg8M/2G3O/o5djIM
+         STclMH+IAI1ZfHGBWF6gt29w/Y4uIJfNmAt9kO/LIhAHdldakCUGl3XHQKyd+X/DtJOh
+         KmRD+P0JkQ4wguoTYkqINmCnpxcjoJ3+XUKbooGxn9DvkrmUBVg2fvpTP4m+JBxNxlXJ
+         bqlttvLK8JKVWpfQ5hnTcdJun5oQ4u7jCqHkl6TSrsPeWCMxC2t95dXmSBAnwh7uPNWT
+         MpqcDu9QdYo7Bgb80CjYAh1AjE5US0CTjbSFeTOKx0tu/2rQu9J+dk88mbPKb4oHC3uL
+         kRNA==
+X-Gm-Message-State: ACrzQf24f7wO2spdlwNrH377Xk3wLjQRU3aXjYE9m/8s/N3SjgCXN4ac
+        msXnH0K6fbO6+1wR/JLs5sQlYjK5RGi5P2Hd
+X-Google-Smtp-Source: AMsMyM47cTdW1b6nyoN5xPb83x2VeYPoMkkgabfUCtvKrq+UfRDXjueGe/ZUGp4t7URxpO7uoMeS2A==
+X-Received: by 2002:a17:906:5d10:b0:784:b6c5:78d0 with SMTP id g16-20020a1709065d1000b00784b6c578d0mr23312295ejt.348.1665595913426;
+        Wed, 12 Oct 2022 10:31:53 -0700 (PDT)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com. [209.85.221.50])
+        by smtp.gmail.com with ESMTPSA id m26-20020a50931a000000b004482dd03fe8sm11695674eda.91.2022.10.12.10.31.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Oct 2022 10:31:52 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id bu30so27240695wrb.8
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 10:31:52 -0700 (PDT)
+X-Received: by 2002:adf:dfc1:0:b0:22f:edf7:b11b with SMTP id
+ q1-20020adfdfc1000000b0022fedf7b11bmr12498392wrn.583.1665595912117; Wed, 12
+ Oct 2022 10:31:52 -0700 (PDT)
+MIME-Version: 1.0
+References: <20221007145116.46554-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221007145116.46554-1-krzysztof.kozlowski@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 12 Oct 2022 10:31:38 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UAcn=yeCZ_jum9kGgqsdKsPpya-FPumYUWO=iyp-kKYw@mail.gmail.com>
+Message-ID: <CAD=FV=UAcn=yeCZ_jum9kGgqsdKsPpya-FPumYUWO=iyp-kKYw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7180: align TLMM pin
+ configuration with DT schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v3 13/17] EDAC/mc: Add MC unique index allocation
- procedure
-Message-ID: <Y0b5cq4evSg1nfb0@zn.tnic>
-References: <20220929232712.12202-1-Sergey.Semin@baikalelectronics.ru>
- <20220929232712.12202-14-Sergey.Semin@baikalelectronics.ru>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220929232712.12202-14-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 30, 2022 at 02:27:08AM +0300, Serge Semin wrote:
-> In case of the unique index allocation it's not that optimal to always
-> rely on the low-level device drivers (platform drivers), because they get
-> to start to implement either the same design pattern (for instance global
-> static MC counter) or may end-up with having non-unique index eventually
-> at runtime. Needless to say that having a generic unique index
-> allocation/tracking procedure will make code more readable and safer.
+Hi,
 
-I guess this is trying to say that the current memory controller index
-thing doesn't work. But why doesn't it work?
+On Fri, Oct 7, 2022 at 7:51 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> DT schema expects TLMM pin configuration nodes to be named with
+> '-state' suffix and their optional children with '-pins' suffix.
+>
+> Merge subnodes named 'pinconf' and 'pinmux' into one entry, add function
+> where missing (required by bindings for GPIOs) and reorganize overriding
+> pins by boards.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> ---
+>
+> Not tested on hardware.
 
-It works just fine with the x86 drivers - there the memory controller
-number is the same as the node number where it is located so that works
-just fine.
+I applied these two patches to the top of mainline today and booted up
+a sc7180-trogdor-coachz. I didn't do any stress testing, but at least
+it boots up and basic smoke tests pass.
 
-If that scheme cannot work on other systems, then I need to see an
-explanation why it cannot work first.
+> Doug,
+>
+> I think this implements our conclusion from SDM845 patches (alignment of
+> pinctrl with DT schema).
 
-> The suggested implementation is based on the kernel IDA infrastructure
-> exposed by the lib/idr.c driver with API described in linux/idr.h header
-> file. It's used to create an ID resource descriptor "mc_idr", which then
-> is utilized either to track the custom MC idx specified by EDAC LLDDs or
-> to allocate the next-free MC idx.
+Yeah, it looks really great! Hopefully others agree that this scheme
+looks great and it also validates nicely with your schema changes.
+Sorry for taking a few days to get back--your email coincided with a
+few vacation days for me.
 
-This is talking about the "what" and not the "why".
+I have a few nits and there's at least one problem (the glitching of
+the SPI chip select at boot).
 
-> A new special MC index is introduced here. It's defined by the
-> EDAC_AUTO_MC_NUM macro with a value specifically chosen as the least
-> probable value used for the real MC index. In case if the EDAC_AUTO_MC_NUM
-> index is specified by the EDAC LLDD, the MC index will be either retrieved
-> from the MC device OF-node alias index ("mc[:number:]") or automatically
-> generated as the next-free MC index found by the ID allocation procedure.
 
-This is also talking about the "what" and not the "why".
+> Cc: Doug Anderson <dianders@chromium.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180-idp.dts       | 211 +++---
+>  .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  36 +-
+>  .../dts/qcom/sc7180-trogdor-homestar.dtsi     |  41 +-
+>  .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  16 +-
+>  .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   |   8 +-
+>  .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  16 +-
+>  .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  25 +-
+>  .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi |  72 +-
+>  .../qcom/sc7180-trogdor-parade-ps8640.dtsi    |  32 +-
+>  .../boot/dts/qcom/sc7180-trogdor-pazquel.dtsi |   8 +-
+>  .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  14 +-
+>  .../qcom/sc7180-trogdor-quackingstick.dtsi    |  56 +-
+>  .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |   8 +-
+>  .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi |  16 +-
+>  .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  25 +-
+>  .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  |  72 +-
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 655 +++++++-----------
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi          | 410 +++++------
+>  18 files changed, 613 insertions(+), 1108 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> index 9dee131b1e24..3e93b13d275e 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
 
-At best, what you're doing should be visible from the patch itself.
+[ ...cut... ]
 
-Here's a longer explanation of how a commit message should look like:
+> @@ -642,126 +596,131 @@ pinconf-rts {
+>                          * pulling RX low (by sending wakeup bytes).
+>                          */
+>                          pins = "gpio39";
+> +                       function = "gpio";
+>                          bias-pull-down;
 
-https://kernel.org/doc/html/latest/process/submitting-patches.html#describe-your-changes
+optional nit: your new addition makes it obvious that the indentation of the
+surrounding lines is wrong. Maybe fix it as part of this patch?
 
-Thx.
 
--- 
-Regards/Gruss,
-    Boris.
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+> index 1bd6c7dcd9e9..c66568a882b3 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+> @@ -180,30 +180,19 @@ &wifi {
+>  /* PINCTRL - modifications to sc7180-trogdor.dtsi */
+>
+>  &en_pp3300_dx_edp {
+> -       pinmux {
+> -               pins = "gpio67";
+> -       };
+> -
+> -       pinconf {
+> -               pins = "gpio67";
+> -       };
+> +       pins = "gpio67";
+>  };
+>
+>  &sec_mi2s_active{
+> -       pinmux {
+> -               pins = "gpio49", "gpio50", "gpio51", "gpio52";
+> -               function = "mi2s_1";
+> -       };
+> +       pins = "gpio49", "gpio50", "gpio51", "gpio52";
 
-https://people.kernel.org/tglx/notes-about-netiquette
+Looks like the point of the homestar override is to add an extra pin
+(gpio52) but it forgot to update the list in the "pinconf" as well so
+gpio52 wasn't getting a drive strength and bias set. Your patch
+has the side effect of fixing this. That looks right to me (match
+GPIO51) given that the name of GPIO51 is AMP_DIN and GPIO52 AMP_DIN2.
+
+Assuming my analysis is correct, it's probably worth mentioning this
+behavior change in the commit message.
+
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index eae22e6e97c1..d923ddca8b8b 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -880,17 +880,17 @@ &sdhc_2 {
+>  };
+>
+>  &spi0 {
+> -       pinctrl-0 = <&qup_spi0_cs_gpio_init_high>, <&qup_spi0_cs_gpio>;
+> +       pinctrl-0 = <&qup_spi0_cs_gpio>;
+
+I think this is going to cause a problem. This is pretty much a direct
+revert of commit e440e30e26dd ("arm64: dts: qcom: sc7180: Avoid glitching
+SPI CS at bootup on trogdor").
+
+I was never crazy about the solution in the patch, but I really couldn't
+find another great way to solve it. I think the problem is fairly well
+described in that commit message, at least, and I'm certainly open to
+alternate solutions. Until then, I think this prevents landing your
+patch.
+
+[ ... cut ... ]
+
+> @@ -1467,197 +1315,174 @@ pinconf-rts {
+>                          * pulling RX low (by sending wakeup bytes).
+>                          */
+>                          pins = "gpio39";
+> +                       function = "gpio";
+>                          bias-pull-down;
+
+optional nit: your new addition makes it obvious that the indentation of the
+surrounding lines is wrong. Maybe fix it as part of this patch?
+
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 58976a1ba06b..8f7845fa669c 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -1486,410 +1486,336 @@ tlmm: pinctrl@3500000 {
+
+[ ... cut ... ]
+
+> -                       qup_spi0_default: qup-spi0-default {
+> -                               pinmux {
+> -                                       pins = "gpio34", "gpio35",
+> -                                              "gpio36", "gpio37";
+> -                                       function = "qup00";
+> -                               };
+> +                       qup_spi0_default: qup-spi0-default-state {
+> +                               pins = "gpio34", "gpio35", "gpio36", "gpio37";
+> +                               function = "qup00";
+>                         };
+>
+> -                       qup_spi0_cs_gpio: qup-spi0-cs-gpio {
+> -                               pinmux {
+> +                       qup_spi0_cs_gpio: qup-spi0-cs-gpio-state {
+> +                               qup_spi0_spi: spi-pins {
+>                                         pins = "gpio34", "gpio35",
+>                                                "gpio36";
+>                                         function = "qup00";
+>                                 };
+>
+> -                               pinmux-cs {
+> +                               qup_spi0_cs: cs-pins {
+>                                         pins = "gpio37";
+>                                         function = "gpio";
+>                                 };
+>                         };
+
+The way that the cs_gpio ended up after your patch series threw me for
+a loop. It's counterintutive that we have labels "qup_spi0_spi" and
+"qup_spi0_cs" and they're _not_ under "qup_spi0_default".
+
+Here are two proposals and I'd be happy with either of them:
+
+a) Get rid of the gpio nodes. Instead in the dtsi file do:
+
+  qup_spi0_cs_gpio: qup-spi0-cs-gpio-state {
+    qup_spi0_spi: spi-pins {
+      pins = "gpio34", "gpio35", "gpio36";
+      function = "qup00";
+    };
+
+    qup_spi0_cs: cs-pins {
+      pins = "gpio37";
+      function = "qup00";
+    };
+  };
+
+In the board file just:
+
+  &qup_spi0_cs {
+    function = "gpio";
+  };
+
+b) Split the whole thing up. In the dtsi file pinctrl section:
+
+  qup_spi0_spi: qup-spi0-spi-state {
+    pins = "gpio34", "gpio35", "gpio36";
+    function = "qup00";
+  };
+
+  qup_spi0_cs: qup-spi0-cs-state {
+    pins = "gpio37";
+    function = "qup00";
+  };
+
+  qup_spi0_cs_gpio: qup-spi0-cs-gpio-state {
+    pins = "gpio37";
+    function = "gpio";
+  };
+
+...in the dtsi file SPI section:
+
+  pinctrl-0 = <&qup_spi0_spi> <&qup_spi0_cs>;
+
+...in the board SPI section:
+
+  pinctrl-0 = <&qup_spi0_spi> <&qup_spi0_cs_gpio>;
+
+[ ... cut ... ]
+> -                       qup_uart0_default: qup-uart0-default {
+> -                               pinmux {
+> -                                       pins = "gpio34", "gpio35",
+> -                                              "gpio36", "gpio37";
+> -                                       function = "qup00";
+> -                               };
+> +                       qup_uart0_default: qup-uart0-default-state {
+> +                               pins = "gpio34", "gpio35", "gpio36", "gpio37";
+> +                               function = "qup00";
+>                         };
+
+It feels like all of the UARTs should be split up like uart3/uart8 are
+If any board actually uses these they will likely want different pulls
+and configs for the different pins.
