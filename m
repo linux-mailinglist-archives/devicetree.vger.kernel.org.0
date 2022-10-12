@@ -2,209 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C27D55FC059
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 07:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE54B5FC06D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 08:09:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbiJLF6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 01:58:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41216 "EHLO
+        id S229494AbiJLGJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 02:09:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbiJLF6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 01:58:06 -0400
-Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80BD5ABF3B;
-        Tue, 11 Oct 2022 22:57:56 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1665554262; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=atvxzaSC6LFGcRfJpsJMIxtZIt352jx03gJSKk9uG2bkcg77Y15gkiUasLg3zDhLReHbGEjnx3tJ2gkVMUb3aK7fyFOk6f5pWP0PjglEZcMHnXpc8g3weSsl8It/gmsCOF/SoFoUsKAy8Jv6bkLp9jxZB+M2JOEP+t8kMvODrMk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1665554262; h=Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=UaXtIwhiAd0KbivjBK2cgrEAbkI3s44C7vM8EyFF4v0=; 
-        b=L6Lud2AdEMM5tJTi0UUUFx1GxiYaGqtDGvSfxIof0tDU+nBc3J11SgE1BeFJWySk25dxe0Luhy/MpsioQaqeTtXrpAL/E3ejaLqzRvo5h2+DPe2maA9043VnkaIONCT7dS1Tx+DtxTco4HTvzqUBOlOwwxBp/PUYzefz1NItZug=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1665554262;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Reply-To;
-        bh=UaXtIwhiAd0KbivjBK2cgrEAbkI3s44C7vM8EyFF4v0=;
-        b=hq5MQdXicXEsg+vm/uyU/1/Dn97R6FibHgNnj8zV92K4aKrpJK0iyObxJ+qLhApu
-        FtnxRSOc/uhim8UcT0Y3n078oC9JCn6qmecZx+NY0ivRckdEyTAFgMfoGoQmtXHEB1s
-        4X0J6n/Tr5Fgu4XjuDCktzCDKTT7RWyLWPbtfgTQ=
-Received: from edelgard.fodlan.icenowy.me (112.94.102.144 [112.94.102.144]) by mx.zohomail.com
-        with SMTPS id 1665554261224772.6070403474648; Tue, 11 Oct 2022 22:57:41 -0700 (PDT)
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     soc@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
-Subject: [PATCH v2 10/10] ARM: dts: suniv: add device tree for PopStick v1.1
-Date:   Wed, 12 Oct 2022 13:56:02 +0800
-Message-Id: <20221012055602.1544944-11-uwu@icenowy.me>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221012055602.1544944-1-uwu@icenowy.me>
-References: <20221012055602.1544944-1-uwu@icenowy.me>
+        with ESMTP id S229469AbiJLGJK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 02:09:10 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC9BD77EB0;
+        Tue, 11 Oct 2022 23:09:09 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29C5t8d8011501;
+        Wed, 12 Oct 2022 06:09:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=jQYrO476z41NopM/bcra25kVZpYW49EA2sUprgcs8ic=;
+ b=o+yvO1xx/RixIYUGAHU4qkfR+n/AQS5AI3T/JwQkUH637BLfSkOYVr3K61YJ5+E8bN4L
+ Pw9Az601SbMqwIDeulzV+ddGDnSLOo5K5AqBCRifAlw8Ef1LMVm8zAGphbTjtlUlBULD
+ 7v5XyG9j5rPn+sd4w4KGJq5LP75mhmmLL8d954/DkXnyZqc/cD0oFpFEfa9VOQ2rE546
+ LnbA1m10/G37RDfxG9pcZ3Nd7lIPFejhG2vtnUq0nwb3Ys/aZuUYZa09VelN+3XsxuSv
+ hXzNXoglRsLd/ATRzTxewEdH9UxOv6Y1uF233EpVcun+oXdd3PUaz0YC34dFJskjhOIM UQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k5kar0m56-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 Oct 2022 06:09:01 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29C6911J009180
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 Oct 2022 06:09:01 GMT
+Received: from [10.131.117.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 11 Oct
+ 2022 23:08:58 -0700
+Message-ID: <ea0d7156-972b-8ce7-6169-c49dd7cd03d1@quicinc.com>
+Date:   Wed, 12 Oct 2022 11:38:49 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] dt-bindings: interconnect: qcom,msm8998-bwmon: Correct
+ SC7280 CPU compatible
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221011140744.29829-1-krzysztof.kozlowski@linaro.org>
+From:   Rajendra Nayak <quic_rjendra@quicinc.com>
+In-Reply-To: <20221011140744.29829-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: u15rEIGE9huMAx7oLW2Sr8x_AlRq-uk3
+X-Proofpoint-GUID: u15rEIGE9huMAx7oLW2Sr8x_AlRq-uk3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-12_03,2022-10-11_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
+ phishscore=0 suspectscore=0 adultscore=0 malwarescore=0 impostorscore=0
+ priorityscore=1501 mlxscore=0 bulkscore=0 lowpriorityscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210120040
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PopStick is a minimal Allwinner F1C200s dongle, with its USB controller
-wired to a USB Type-A port, a SD slot and a SPI NAND flash on board, and
-an on-board CH340 USB-UART converted connected to F1C200s's UART0.
 
-Add a device tree for it. As F1C200s is just F1C100s with a different
-DRAM chip co-packaged, directly use F1C100s DTSI here.
 
-This commit covers the v1.1 version of this board, which is now shipped.
-v1.0 is some internal sample that have not been shipped at all.
+On 10/11/2022 7:37 PM, Krzysztof Kozlowski wrote:
+> Two different compatibles for SC7280 CPU BWMON instance were used
+> in DTS and bindings.  Correct the bindings to use the same one as in
+> DTS, because it is more specific.
+> 
+> Fixes: b7c84ae757c2 ("dt-bindings: interconnect: qcom,msm8998-bwmon: Add support for sc7280 BWMONs")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
----
-New patch introduced in v2.
+ah, thanks for the fixing this,
+Reviewed-by: Rajendra Nayak <quic_rjendra@quicinc.com>
 
- arch/arm/boot/dts/Makefile                    |   3 +-
- .../boot/dts/suniv-f1c200s-popstick-v1.1.dts  | 101 ++++++++++++++++++
- 2 files changed, 103 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 6aa7dc4db2fc..0249c07bd8a6 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1391,7 +1391,8 @@ dtb-$(CONFIG_MACH_SUN9I) += \
- 	sun9i-a80-optimus.dtb \
- 	sun9i-a80-cubieboard4.dtb
- dtb-$(CONFIG_MACH_SUNIV) += \
--	suniv-f1c100s-licheepi-nano.dtb
-+	suniv-f1c100s-licheepi-nano.dtb \
-+	suniv-f1c200s-popstick-v1.1.dtb
- dtb-$(CONFIG_ARCH_TEGRA_2x_SOC) += \
- 	tegra20-acer-a500-picasso.dtb \
- 	tegra20-asus-tf101.dtb \
-diff --git a/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts b/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
-new file mode 100644
-index 000000000000..121dfc6f609d
---- /dev/null
-+++ b/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
-@@ -0,0 +1,101 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Icenowy Zheng <uwu@icenowy.me>
-+ */
-+
-+/dts-v1/;
-+#include "suniv-f1c100s.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "Popcorn Computer PopStick v1.1";
-+	compatible = "sourceparts,popstick-v1.1", "sourceparts,popstick",
-+		     "allwinner,suniv-f1c200s", "allwinner,suniv-f1c100s";
-+
-+	aliases {
-+		mmc0 = &mmc0;
-+		serial0 = &uart0;
-+		spi0 = &spi0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&pio 4 6 GPIO_ACTIVE_HIGH>; /* PE6 */
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	reg_vcc3v3: vcc3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+};
-+
-+&mmc0 {
-+	cd-gpios = <&pio 4 3 GPIO_ACTIVE_LOW>; /* PE3 */
-+	bus-width = <4>;
-+	disable-wp;
-+	status = "okay";
-+	vmmc-supply = <&reg_vcc3v3>;
-+};
-+
-+&spi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi0_pc_pins>;
-+	status = "okay";
-+
-+	flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		spi-max-frequency = <40000000>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "u-boot-with-spl";
-+				reg = <0x0 0x100000>;
-+			};
-+
-+			ubi@100000 {
-+				label = "ubi";
-+				reg = <0x100000 0x7f00000>;
-+			};
-+		};
-+	};
-+};
-+
-+&otg_sram {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pe_pins>;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
--- 
-2.37.1
-
+> ---
+>   .../devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml    | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+> index 2684562df4d9..be29e0b80995 100644
+> --- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+> @@ -24,7 +24,7 @@ properties:
+>       oneOf:
+>         - items:
+>             - enum:
+> -              - qcom,sc7280-bwmon
+> +              - qcom,sc7280-cpu-bwmon
+>                 - qcom,sdm845-bwmon
+>             - const: qcom,msm8998-bwmon
+>         - const: qcom,msm8998-bwmon       # BWMON v4
