@@ -2,126 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D53E15FC6FC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 16:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30FF65FC739
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 16:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229477AbiJLOFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 10:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48550 "EHLO
+        id S229883AbiJLOYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 10:24:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229569AbiJLOFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 10:05:34 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00AA25C358;
-        Wed, 12 Oct 2022 07:05:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1665583531; x=1697119531;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YqIauvraatao1KA8yPWOhmJyrNRczVNaBMKcZve1xvY=;
-  b=rLmO+DY7voSQrTTm4p1gN6rZyTFvTtAlJudbpLKAl/MXgfyJyY9HBIs0
-   xy7ARH2+grR5cDYSMRoLsBiMstYxB/SQtm2NIPEBa24rPqZntKMeohEHm
-   YTj8MU6sL3BWFfzcZxL/OzHt2P+wAJR0TJqlNoLa0EtZsfNJhnA6rjibc
-   uC6Sd6//9ygAk/AYWmXIZzNmLVl9ZiSFEuZo0CAMx68bcv2ZMvW/V0CLV
-   kYJiaVeQW6Mb5oE9Y2Z/XFBM8cXveL3Xfrys39hQAwG1clWIghpifHzMH
-   J04QifrfGT4fDgSEd/0knTRXx1+dVBqFzlOsV+9ez5luO03niJGhNHiGh
-   A==;
-X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; 
-   d="scan'208";a="195051104"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Oct 2022 07:05:30 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 12 Oct 2022 07:05:30 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Wed, 12 Oct 2022 07:05:26 -0700
-Date:   Wed, 12 Oct 2022 15:05:04 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Hal Feng <hal.feng@linux.starfivetech.com>
-CC:     Hal Feng <hal.feng@linux.starfivetech.com>,
-        Rob Herring <robh@kernel.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 12/30] dt-bindings: reset: Add starfive,jh7110-reset
- bindings
-Message-ID: <Y0bJkGQklX+eOGyW@wendy>
-References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
- <20220929175147.19749-1-hal.feng@linux.starfivetech.com>
- <20220929184349.GA2551443-robh@kernel.org>
- <8BEAFAD2C4CE6E4A+0a00376c-1e3e-f597-bcf6-106ff294859a@linux.starfivetech.com>
- <2f1d1afd-3c97-6ce0-8247-6e1c4a24e548@linaro.org>
- <4769BE3503398017+b1699221-ccc9-a0c1-0b11-141ce9644d74@linux.starfivetech.com>
- <9f04267d-2592-b303-9b79-9cef672c970a@linaro.org>
+        with ESMTP id S229918AbiJLOX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 10:23:58 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA81D38FE;
+        Wed, 12 Oct 2022 07:23:55 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29CAd0eb013878;
+        Wed, 12 Oct 2022 16:23:34 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=e2at5cECV3lmB6YhVf0LWjp6cb4WKD3ere/W0YhLlM0=;
+ b=kyGyJREASfcq6DxrIVNDnu7zdMgKTf5qc7zWI9uJaNR3fNR12uZa1YHyNWQxmFAgRCJC
+ DXgbhnHpp71W4d3IAhdpePzbj2mzMYy70Xbr5NuCCkR9DqXe5BWPX1kdk4KiosrhyS8e
+ a1Q4iP/F8JcbD2/oFTnsLP6tKKpZTebYfN676zCixOs1O96HQNsaUJY0nHwCkrIClnua
+ Rr/U9uHUKTkza/LOZKzWEsdme/FRUXepLYA10XYKylktKYcwP37iw3r2PiwVwec7/Jyi
+ nWS1/BV6F3U/N24dFOlS4yLLN0f9C0ipjOBIOiwP51ikDTe1cEoqQLO9BahPg1cdFWIN Kg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3k31gq3kby-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 Oct 2022 16:23:34 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C463810002A;
+        Wed, 12 Oct 2022 16:23:04 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BE95222F7D7;
+        Wed, 12 Oct 2022 16:23:04 +0200 (CEST)
+Received: from localhost (10.75.127.45) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Wed, 12 Oct
+ 2022 16:23:04 +0200
+From:   Olivier Moysan <olivier.moysan@foss.st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v4 0/8] iio: stm32-adc: add support of adc for stm32mp13
+Date:   Wed, 12 Oct 2022 16:21:57 +0200
+Message-ID: <20221012142205.13041-1-olivier.moysan@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <9f04267d-2592-b303-9b79-9cef672c970a@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-12_07,2022-10-12_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Hal Feng,
+On STM32MP13 SoCs, each ADC peripheral has a single ADC block.
+These ADC peripherals, ADC1 and ADC2, are fully independent.
+The STM32MP131 SoC provides only ADC2, while other STM32MP13x
+SoCs provide both ADC1 and ADC2.
 
-On Wed, Oct 12, 2022 at 09:33:42AM -0400, Krzysztof Kozlowski wrote:
-> >>> These two properties are the key differences among different reset controllers.
-> >>
-> >> Different as in different compatibles? Please answer the questions..> 
-> >>> There are five memory regions for clock and reset in StarFive JH7110 SoC. They
-> >>> are "syscrg", "aoncrg", "stgcrg", "ispcrg" and "voutcrg". Each memory region
-> >>> has different reset ASSERT/STATUS register offset and different number of reset
-> >>> signals. 
-> >>
-> >> Then these are not exactly the same devices, so using one compatible for
-> >> them does not look correct.
-> > 
-> > One compatible can just be matched by one device? I think this is what
-> > confuses me.
-> 
-> I don't understand the question.
+The STM32MP13 ADC features and characteristics are slightly
+different from STM32MP15 ADC ones, requiring a specific support
+in the driver.
 
-If two SoCs have exactly the same device/peripheral then they _can_ use
-the same compatible. If they share some common, viable feature-set then
-one can "fall back" to the other depending on what your Venn diagram of
-common features looks like. I've not been following this too closely,
-but I think what Krzysztof is suggesting is that you have a jh7100 and
-a jh7110 compatible. Then in your driver you just "know" that if you
-match against jh7110 which values to use for register offsets & vice
-versa for a match against the jh7100. There's many examples over the
-tree for how to handle this sort of thing rather than including it in
-the devicetree.
+This patchset enables the ADC peripheral on STM32MP135F-DK board.
 
-Maybe Rob and Krzysztof will scream at me for this description, but
-devicetree is about how periperhals etc are connected together in the
-system not about the internals of a given peripheral.
+On STM32MP135F-DK board the ADC is connected to VDDA voltage
+provided by the PMIC LOD1 supply, which has to be enabled through
+SCMI regulator framework.
+This serie introduces a fixed regulator to allow ADC probing,
+while SCMI regulators support is not available. This does
+not ensure ADC regulator enabling however.
 
-Following that logic, the devicetree should not contain register offsets
-etc that are a known quanitity once you've determined that you are running
-on vendor,soc-foo.
+Changes in v4:
+- reformat patch 1 commit message
+- reorder adc1 node
 
-Hopefully that helps with your confusion somewhat?
-Conor.
+v3:
+- Remove blank line in tag block
+- Use HZ_PER_MHZ unit for max frequency definition
+- Coding style updates
+
+v2:
+- Rework commit message length
+- Add missing spaces
+- Remove useless defines
+
+Olivier Moysan (8):
+  iio: adc: stm32-adc: fix channel sampling time init
+  dt-bindings: iio: adc: stm32-adc: add stm32mp13 compatibles
+  iio: adc: stm32-adc: add stm32mp13 support
+  iio: adc: stm32: manage min sampling time on all internal channels
+  ARM: dts: stm32: add adc support to stm32mp13
+  ARM: dts: stm32: add adc pins muxing on stm32mp135f-dk
+  ARM: dts: stm32: add dummy vdd_adc regulator on stm32mp135f-dk
+  ARM: dts: stm32: add adc support on stm32mp135f-dk
+
+ .../bindings/iio/adc/st,stm32-adc.yaml        |  68 ++++-
+ arch/arm/boot/dts/stm32mp13-pinctrl.dtsi      |   7 +
+ arch/arm/boot/dts/stm32mp131.dtsi             |  43 +++
+ arch/arm/boot/dts/stm32mp133.dtsi             |  31 +++
+ arch/arm/boot/dts/stm32mp135f-dk.dts          |  33 +++
+ drivers/iio/adc/stm32-adc-core.c              |  30 ++-
+ drivers/iio/adc/stm32-adc-core.h              |  30 +++
+ drivers/iio/adc/stm32-adc.c                   | 247 +++++++++++++++---
+ 8 files changed, 443 insertions(+), 46 deletions(-)
+
+-- 
+2.25.1
 
