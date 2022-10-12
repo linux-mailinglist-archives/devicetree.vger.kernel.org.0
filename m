@@ -2,212 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3CB75FC68E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 252865FC69D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:38:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229569AbiJLNf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 09:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46380 "EHLO
+        id S229830AbiJLNi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 09:38:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbiJLNf6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:35:58 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B054AC39F
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:35:56 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id cj27so10137211qtb.7
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:35:56 -0700 (PDT)
+        with ESMTP id S229459AbiJLNi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:38:26 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34658D0190
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:38:22 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id g11so5511075qts.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:38:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=p9wv8237wgiOHnZzBeahRRwwZUTEpSK22YpW0WQ8ENQ=;
-        b=CjpoFkyKt2Uj/f6Lutf+q+eujpjTXoQucjGCs5xN1wirDfpq/0VvBPWcYKcLddDJXy
-         djpKrpZvTmv3ZoHid7/65Bnf/1/dOnIcA5QYJ156coiid0vDg+n0PMHRSSGQcxwTxuNU
-         NyWVYMO9YA+CLepPyiIQi3efN6EZpZxCkC8M7MROypc7fzVg+XJo/mxouo3fBC1NEq4j
-         SqVrnI8AflI1sBsvVftUCjYx7d4qk1fuHfM4I+fnkPZ6HtusEJ16xDYm8Jq/hSLyBeZK
-         WIKAs2sSxNdCBQ03vVFfFeezd/VBd1nLR3vZWiszCzozsTpFLjRf2EwYSdZCJSMNzDGy
-         eX5Q==
+        bh=SidGkWFa9nPlFG+3QhCQlPl1KwD5+nWLJM4PPfubZi8=;
+        b=yduzRp+hEe3uLj/tYh2WUUp5LNVSRTO5Ou6Hf2Aws8/SZ6563pC1LqWisK5xF7j+vW
+         V6C7qRDWiVJo9+A8n2Zm3ki5hdDmFcHQfkcI7Ie3aJ6Y0fJcrtViu5tW0dmRG7bhB+lt
+         9frA7NqruVeUgoTaGK+LZb0rrr3YLfPMyYUSM7NUCXh0NygZhFHvoDMrUDFl9kVx62Y4
+         SfMezfHWTDv6B4IERJR7U+cr9ZaMAXuYzQSbOaiuRmLOvDGeuaT6suxMahHOSgbRIjjp
+         ydArzJELLkjM/NxwQVgQx5+BaPzxWdtBWCMJOnzYjeO+bEWC+TZGxKnSi12gOX9gczKn
+         Yrtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p9wv8237wgiOHnZzBeahRRwwZUTEpSK22YpW0WQ8ENQ=;
-        b=oGy2GVgvHAYIetGGziayu69/LQjuhF+Z6c9S37i2AMk6gZvFC7Cs4opaui3qHV39Yq
-         8Y6e3VpciOhPBmc3b4MJh3HDvYQizi+bRcpstJRAjQocFiQzFfVfFiK+LBbxAESbo7zA
-         5uQs+xQE8UM7+7RkHto5zkBoYmO4VAdh1Mdhqj15pQZo3jLauaSMnCSApC83VigpC6Ln
-         8Qn/BCWwzF6jz0pRjGK74Ma4Fzsf3GmNuhkVfyrrIiSYej3C0BzXiBoALJfYj586r4aB
-         mmcfbTn8rluTyANF/P0e9Nt8I814LWKfAZF5wlVKtv++caGbmwEL8BUZY8ZhSgeXO03A
-         QV6w==
-X-Gm-Message-State: ACrzQf2kLAnSH82d67lXMa8aqJcJiUP58blEqloUwGt4IN7fLiiBv47s
-        l+fTbj6aShdp1FKJ0v20JccNjA==
-X-Google-Smtp-Source: AMsMyM7q7HOB8fihkeRyzWXkhwIJbD9lX9nJvsCeMqMfFiR6wEnE4o8DM3wgIHiz9qtWeHFh2y6ftw==
-X-Received: by 2002:a05:622a:60b:b0:399:69c8:9b54 with SMTP id z11-20020a05622a060b00b0039969c89b54mr14464320qta.180.1665581755389;
-        Wed, 12 Oct 2022 06:35:55 -0700 (PDT)
+        bh=SidGkWFa9nPlFG+3QhCQlPl1KwD5+nWLJM4PPfubZi8=;
+        b=NhfbWU17o8Niy2Yz7/9oNvgWxa1qh68mDjzbLMdP1hfS+gwkc2riNim9C7bA2uoqA0
+         +D31Fbudv1THPVv/S6KFov+D/tPQH3xHkygwvB9pMgUBajjCLlrM4H4YECIH7sI9BwKj
+         Rna8fpLZhaf/Hy5HKhTETksDbUT8xuKKy7uuCDat0+VtsAfeFbp8Q6qwlcLp/+jzoeay
+         KWMZ9F/Oe6FM0Mlo2jpFCJKOgXs2zZbsMV4G7wSwEOEzMUsD/s0PWER+Sje8/LK9hZ/l
+         WAWNAGXu37NpZNHcW3oUBht/BxLwPGZRUaVbAN2UbOwIXcJwrZaxsQWsim91dbn9LkOD
+         ReNg==
+X-Gm-Message-State: ACrzQf0pzWeJCW2HEfLztW5kcxFAK/4STvyLnS+OxLh3a+iCaqen7xbW
+        YmDK1vap3yCv+uNSfrgifn0rsA==
+X-Google-Smtp-Source: AMsMyM4Rsj5oR1ATGM7658GzD3Q3lBbF+8Os3pqf/BLWi2fFG+xAXEPFzjZU6ldVhh3TOTZ5dZec8Q==
+X-Received: by 2002:ac8:5e08:0:b0:399:e50e:f821 with SMTP id h8-20020ac85e08000000b00399e50ef821mr13129591qtx.5.1665581900935;
+        Wed, 12 Oct 2022 06:38:20 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id p16-20020a05620a057000b006bb29d932e1sm5669503qkp.105.2022.10.12.06.35.53
+        by smtp.gmail.com with ESMTPSA id u10-20020a05620a430a00b006ce7cd81359sm15535290qko.110.2022.10.12.06.38.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 06:35:54 -0700 (PDT)
-Message-ID: <9f04267d-2592-b303-9b79-9cef672c970a@linaro.org>
-Date:   Wed, 12 Oct 2022 09:33:42 -0400
+        Wed, 12 Oct 2022 06:38:20 -0700 (PDT)
+Message-ID: <06249fe9-97eb-1ab8-5e35-00b3c613d3a7@linaro.org>
+Date:   Wed, 12 Oct 2022 09:36:04 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v1 12/30] dt-bindings: reset: Add starfive,jh7110-reset
- bindings
+Subject: Re: [PATCH 05/11] dt-bindings: thermal: k3-j72xx: elaborate on
+ binding descriptions
 Content-Language: en-US
-To:     Hal Feng <hal.feng@linux.starfivetech.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
+To:     Bryan Brattlof <bb@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        linux-kernel@vger.kernel.org
-References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
- <20220929175147.19749-1-hal.feng@linux.starfivetech.com>
- <20220929184349.GA2551443-robh@kernel.org>
- <8BEAFAD2C4CE6E4A+0a00376c-1e3e-f597-bcf6-106ff294859a@linux.starfivetech.com>
- <2f1d1afd-3c97-6ce0-8247-6e1c4a24e548@linaro.org>
- <4769BE3503398017+b1699221-ccc9-a0c1-0b11-141ce9644d74@linux.starfivetech.com>
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Keerthy <j-keerthy@ti.com>,
+        Linux Thermal <linux-pm@vger.kernel.org>,
+        Linux Device Tree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20221011231727.8090-1-bb@ti.com>
+ <20221011231727.8090-6-bb@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4769BE3503398017+b1699221-ccc9-a0c1-0b11-141ce9644d74@linux.starfivetech.com>
+In-Reply-To: <20221011231727.8090-6-bb@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/2022 09:16, Hal Feng wrote:
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - starfive,jh7110-reset
->>>>
->>>> 'reg' needed? Is this a sub-block of something else?
->>>
->>> Yes, the reset node is a child node of the syscon node, see patch 27 for detail.
->>> You might not see the complete patches at that time due to technical issue of
->>> our smtp email server. Again, I feel so sorry about that.
->>>
->>> 	syscrg: syscrg@13020000 {
->>> 		compatible = "syscon", "simple-mfd";
->>> 		reg = <0x0 0x13020000 0x0 0x10000>;
->>>
->>> 		syscrg_clk: clock-controller@13020000 {
->>> 			compatible = "starfive,jh7110-clkgen-sys";
->>> 			clocks = <&osc>, <&gmac1_rmii_refin>,
->>> 				 <&gmac1_rgmii_rxin>,
->>> 				 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
->>> 				 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
->>> 				 <&tdm_ext>, <&mclk_ext>;
->>> 			clock-names = "osc", "gmac1_rmii_refin",
->>> 				"gmac1_rgmii_rxin",
->>> 				"i2stx_bclk_ext", "i2stx_lrck_ext",
->>> 				"i2srx_bclk_ext", "i2srx_lrck_ext",
->>> 				"tdm_ext", "mclk_ext";
->>> 			#clock-cells = <1>;
->>> 		};
->>>
->>> 		syscrg_rst: reset-controller@13020000 {
->>> 			compatible = "starfive,jh7110-reset";
->>> 			#reset-cells = <1>;
->>
->> So the answer to the "reg needed?" is what? You have unit address but no
->> reg, so this is not correct.
+On 11/10/2022 19:17, Bryan Brattlof wrote:
+> Elaborate on the function of this device node as well as some of the
+> properties that this node uses.
 > 
-> Not needed in the reset-controller node, but needed in its parent node. 
-
-We do not talk about parent node. Rob's question was in this bindings.
-Is this document a binding for the parent node or for this node?
-
-> I am sorry
-> for missing description to point it out in the bindings. I will rewrite all bindings
-> for the next version. Unit address here should be deleted.
+> Signed-off-by: Bryan Brattlof <bb@ti.com>
+> ---
+>  .../bindings/thermal/ti,j72xx-thermal.yaml    | 27 ++++++++++++++++++-
+>  1 file changed, 26 insertions(+), 1 deletion(-)
 > 
->>
->>> 			starfive,assert-offset = <0x2F8>;
->>> 			starfive,status-offset= <0x308>;
->>> 			starfive,nr-resets = <JH7110_SYSRST_END>;
->>> 		};
->>> 	};
->>>
->>> In this case, we get the memory mapped space through the parent node with syscon
->>> APIs. You can see patch 13 for detail.
->>>
->>> static int reset_starfive_register(struct platform_device *pdev, const u32 *asserted)
->>> {
->>
->>
->> (...)
->>
->>>
->>>>
->>>>> +
->>>>> +  "#reset-cells":
->>>>> +    const: 1
->>>>> +
->>>>> +  starfive,assert-offset:
->>>>> +    description: Offset of the first ASSERT register
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +
->>>>> +  starfive,status-offset:
->>>>> +    description: Offset of the first STATUS register
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>
->>>> These can't be implied from the compatible string?
-> 
-> Definitely can. We do this is for simplifying the reset driver.
+> diff --git a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> index c74f124ebfc00..0b6a6fa07a532 100644
+> --- a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> @@ -9,6 +9,24 @@ title: Texas Instruments J72XX VTM (DTS) binding
+>  maintainers:
+>    - Keerthy <j-keerthy@ti.com>
+>  
+> +description: |
+> +  The TI K3 family of SoCs typically have a Voltage & Thermal
+> +  Management (VTM) device to control up to 8 temperature diode
+> +  sensors to measure silicon junction temperatures from different
+> +  hotspots of the chip as well as provide temperature, interrupt
+> +  and alerting information.
+> +
+> +  The VTM device will periodically enable these temperature sensors
+> +  to make a temperature measurement and store the reported data
+> +  allowing the sensors to stay in a reset state when not in use
+> +  to maximize the sensor's life.
+> +
+> +  This VTM driver will then use the following polynomial equation to
 
-The role of the bindings is not to simplify some specific driver in some
-specific OS...
+"VTM driver" is some physical/electronic element called driver? Or Linux
+driver? If the latter, drop it and just describe the equation.
 
-> Otherwise, we may need to define more compatibles because there
-> are multiple reset blocks in JH7110. Another case can be found at
-> https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/reset/altr,rst-mgr.yaml
+> +  calculate the temperature from the value stored in the VTM device.
+> +
+> +  Temp = (-9.2627e-12) * x^4 + (6.0373e-08) * x^3 + \
+> +         (-1.7058e-04) * x^2 + (3.2512e-01) * x   + (-4.9003e+01)
+> +
+>  properties:
+>    compatible:
+>      enum:
+> @@ -19,9 +37,16 @@ properties:
+>      items:
+>        - description: VTM cfg1 register space
+>        - description: VTM cfg2 register space
+> -      - description: VTM efuse register space
+> +      - description: |
+> +          A software trimming method must be applied to some Jacinto
+> +          devices to function properly. This eFuse region provides
+> +          the information needed for these SoCs to report
+> +          temperatures accurately.
+>  
+>    power-domains:
+> +    description: |
+> +      Should contain the phandle to a power management (PM) domain
+> +      node and the device-id of this device.
 
-And why is this a problem? You have different hardware, so should have
-different compatibles. Otherwise we would have a compatible
-"all,everything" and use it in all possible devices.
+This is quite generic - why adding it?
 
->>> These two properties are the key differences among different reset controllers.
->>
->> Different as in different compatibles? Please answer the questions..> 
->>> There are five memory regions for clock and reset in StarFive JH7110 SoC. They
->>> are "syscrg", "aoncrg", "stgcrg", "ispcrg" and "voutcrg". Each memory region
->>> has different reset ASSERT/STATUS register offset and different number of reset
->>> signals. 
->>
->> Then these are not exactly the same devices, so using one compatible for
->> them does not look correct.
-> 
-> One compatible can just be matched by one device? I think this is what
-> confuses me.
-
-I don't understand the question.
-
-> 
-> Best regards,
-> Hal
-> 
-
-Trim the replies - no need to quote everything (entire message following
-last reply/quote).
+>      maxItems: 1
+>  
+>    "#thermal-sensor-cells":
 
 Best regards,
 Krzysztof
