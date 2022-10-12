@@ -2,142 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C5145FC78B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 16:38:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32BAD5FC78E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 16:38:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbiJLOih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 10:38:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54048 "EHLO
+        id S229650AbiJLOii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 10:38:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbiJLOif (ORCPT
+        with ESMTP id S229640AbiJLOif (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 10:38:35 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DBFDE03B;
-        Wed, 12 Oct 2022 07:38:34 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id x13so8017476qkg.11;
-        Wed, 12 Oct 2022 07:38:33 -0700 (PDT)
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76D0C402D7
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 07:38:33 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id j21so8342613qkk.9
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 07:38:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rKPVsd3W7uhNdx8AxGe9ZGmFEXcX2gtbcARjTMPwtE0=;
-        b=jGgCcVxw9aYw+7+X6FUgRTvWP9wT47kEmtOZr477HoPkmQAsPEA5JGobOI6Qze1oP6
-         HPXB6t9x0H25ecRAwTY0BEXhlzAMg/o6RTruu8USuaYPuJvTdljw3u9oSPXN4yGstANA
-         aLxFp546AW+Ay1L/fgx7sRfkKlIGSymtayWFQ4DwNZ0T9qB9Trv5DUmuBtdlKrU41ESi
-         cgyR3kfuwNlBTsq3NS01dpqfazFNVgF1b6Wr8aOSTkmeMAqBxjpEU6+Tq60kBrey2PpH
-         x8y0MTNGT2fsR1ECqiiwD2wXi6jMN9JWReiWyiVOUMbL075hz+qaAOCf93KVgCINHefo
-         b7cA==
+        d=ziepe.ca; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=u0eqSs8D8Zyq93HxhcB9uauCbxkxsD79LqnsXThBZU4=;
+        b=nBlGzmppneJVftZVAdRUc8SDMtu28+R52PjX0hqulIEfS4QZ9X3ZxOsFb+wI9VyrWn
+         L/LUAF4zAGuwresjaJtPbsUQzAbxfPQ0W2hprNo7mjdNFp4BPvQT9n9LBcPQkREsO7Af
+         6b9iZUi3QgZnvK6cGojAjMQUAd6i+J3tln76arHaaeh3g/AUeFxxwDOr6ngw2zlZt5LZ
+         JI28ohC7AeIA6B2gAXCA3RPFGhJ/s3wMBSxnkdNKGiphQAntDwcnxELsJvGLiKgoJ22n
+         PfjHbfxSykYX0msc93QSe97LiewYxQf7oVnf6O3oXEw2GKmjUiydwB8oUe6E42DMK7Y0
+         zXIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rKPVsd3W7uhNdx8AxGe9ZGmFEXcX2gtbcARjTMPwtE0=;
-        b=JAug/8IoJHJJn6bghM1xUQKV5YAvspMCnZcVzxAJIPMDjFB+IJM/vZUWYkvKAN3C7U
-         gwSR4zgmBJEeY9SIncRHIw9YZvgXcQ+J2un8EQdUZuJFA81S+8PfRb38RwE9KU5yK+lx
-         zOEmdmumrnIlbjelwz+nV2qlknY+viJk1E0opGo4omfoSZ4m5NaqxIfwbD4/hCD6vHQB
-         mvHqvD4IdVIQ3Z8r6fNViPRpGyvWKc4wNbmk2YlpJ+1Aus87k8kzVKDl9ZXX/UlJ+HGM
-         ZCPYItpYl1r4RBEoxAdFyndNv6JhyLtV891t/kddmMpcxNGAEe/w+6KdoGZG+NYuW/p7
-         8G3g==
-X-Gm-Message-State: ACrzQf3SmyVMIv2CfsX+vslzee9Fae7pvcVOLRGxa3zBERqsqbYGIgnX
-        k8b8y9ZcOsRN47eXc6jImMYmZD9H3WSRP5zIoGA=
-X-Google-Smtp-Source: AMsMyM7b7eFUYW469t9gBAUzXjB/1SiBsX+TjGi2DrbbBdSxt9U56YHR1FbMXNHgZ43uuhcXFE2IKeNMDRcE++1W0/Y=
-X-Received: by 2002:a05:620a:2552:b0:6ca:bf8f:4d27 with SMTP id
- s18-20020a05620a255200b006cabf8f4d27mr20286297qko.383.1665585512923; Wed, 12
- Oct 2022 07:38:32 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=u0eqSs8D8Zyq93HxhcB9uauCbxkxsD79LqnsXThBZU4=;
+        b=h1POtHKTnCjQyLd6lEuNvkCaI2+no3MmziZCiqE9V566yOqSC+AtEcRlKvjQEsbkgy
+         MXnd5vmiVKxGjyYFTONUysxUxkE3OjoaZIk6DjUhxz86BuV8jcbyUuEQ+E74cvjPjMQh
+         z11Rg9+atksEPEJ5LMxVrbJDs86vZH9WmcJmcYf/9NGjWyK58ELHWBWMUBzktkixyxu/
+         FdQ0lK9R4Cs4QpvbbQXRYLAQ2HPFZEDKRfj22jM4U+x83BntxQp4/MCnDT62n7R4H1qi
+         CWgao32AZvUSvkpKjM0WrgZ5gDlYK+d3ackpGkbXR4KOaLYb2vW5GZ7Vak2aGLFxtza6
+         gdug==
+X-Gm-Message-State: ACrzQf0OJUHqhCYD2QD3O1ZrLa7dgZRoHBN7YfJDTBYlQKbeiOl7MsrX
+        0EwrWEPdK1JFAjdsm9d9txxg/Q==
+X-Google-Smtp-Source: AMsMyM4+AIWJQxWBA4Jv0JHMqvqHYDWJctiOTgcBHB44Ww27YolyE0l6UFRUO8aTgAryoalNdC720g==
+X-Received: by 2002:a37:34e:0:b0:6ea:2cef:131f with SMTP id 75-20020a37034e000000b006ea2cef131fmr16541977qkd.554.1665585512620;
+        Wed, 12 Oct 2022 07:38:32 -0700 (PDT)
+Received: from ziepe.ca (hlfxns017vw-47-55-122-23.dhcp-dynamic.fibreop.ns.bellaliant.net. [47.55.122.23])
+        by smtp.gmail.com with ESMTPSA id i8-20020a05620a404800b006bc192d277csm16352660qko.10.2022.10.12.07.38.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Oct 2022 07:38:31 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.95)
+        (envelope-from <jgg@ziepe.ca>)
+        id 1oicsP-001y84-7s;
+        Wed, 12 Oct 2022 11:38:29 -0300
+Date:   Wed, 12 Oct 2022 11:38:29 -0300
+From:   Jason Gunthorpe <jgg@ziepe.ca>
+To:     "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>
+Cc:     "Gupta, Nipun" <Nipun.Gupta@amd.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "saravanak@google.com" <saravanak@google.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "masahiroy@kernel.org" <masahiroy@kernel.org>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: Re: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
+ domain as parent
+Message-ID: <Y0bRZTP9Kc6mdCiu@ziepe.ca>
+References: <20220803122655.100254-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-5-nipun.gupta@amd.com>
+ <87h71juxuk.wl-maz@kernel.org>
+ <DM6PR12MB30820EE430405FF50C7F856BE8229@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <MN2PR12MB43586084670E14691920952889229@MN2PR12MB4358.namprd12.prod.outlook.com>
+ <Y0a65a9leWXpKfTo@ziepe.ca>
+ <MN2PR12MB4358A871519748CD7A6DB7A089229@MN2PR12MB4358.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-References: <20221012142205.13041-1-olivier.moysan@foss.st.com>
-In-Reply-To: <20221012142205.13041-1-olivier.moysan@foss.st.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 12 Oct 2022 17:37:56 +0300
-Message-ID: <CAHp75VeUXwqeb+kZE7HshMwjRRrd0=85=qxEGmLDkiyoEEuKrA@mail.gmail.com>
-Subject: Re: [PATCH v4 0/8] iio: stm32-adc: add support of adc for stm32mp13
-To:     Olivier Moysan <olivier.moysan@foss.st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MN2PR12MB4358A871519748CD7A6DB7A089229@MN2PR12MB4358.namprd12.prod.outlook.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 12, 2022 at 5:23 PM Olivier Moysan
-<olivier.moysan@foss.st.com> wrote:
->
-> On STM32MP13 SoCs, each ADC peripheral has a single ADC block.
-> These ADC peripherals, ADC1 and ADC2, are fully independent.
-> The STM32MP131 SoC provides only ADC2, while other STM32MP13x
-> SoCs provide both ADC1 and ADC2.
->
-> The STM32MP13 ADC features and characteristics are slightly
-> different from STM32MP15 ADC ones, requiring a specific support
-> in the driver.
->
-> This patchset enables the ADC peripheral on STM32MP135F-DK board.
->
-> On STM32MP135F-DK board the ADC is connected to VDDA voltage
-> provided by the PMIC LOD1 supply, which has to be enabled through
-> SCMI regulator framework.
-> This serie introduces a fixed regulator to allow ADC probing,
-> while SCMI regulators support is not available. This does
-> not ensure ADC regulator enabling however.
+On Wed, Oct 12, 2022 at 01:37:54PM +0000, Radovanovic, Aleksandar wrote:
+> > On Wed, Oct 12, 2022 at 10:34:23AM +0000, Radovanovic, Aleksandar wrote:
+> > 
+> > 
+> > > As for GITS_TRANSLATER, we can take up to 4 different IOVAs, which
+> > > limits us to 4 CDX devices (should be sufficient for current HW
+> > > use-cases). Also, it means that the address part must be the same for
+> > > all vectors within a single CDX device. I'm assuming this is OK as it
+> > > is going to be a single interrupt and IOMMU domain anyway.
+> > 
+> > This is not at all how MSI is supposed to work.
+> 
+> In the general case, no, they're not.
 
-FWIW,
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-for patches 1,3, and 4.
+I don't mean that you can hack this to work - I mean that in MSI the
+addr/data is supposed to come from the end point itself, not from some
+kind of shared structure. This is important because the actual act of
+generating the write has to be coherent with the DMA the device is
+doing, as the MSI write must push any DMA data to visibility to meet
+the "producer / consumer" model.
 
-> Changes in v4:
-> - reformat patch 1 commit message
-> - reorder adc1 node
->
-> v3:
-> - Remove blank line in tag block
-> - Use HZ_PER_MHZ unit for max frequency definition
-> - Coding style updates
->
-> v2:
-> - Rework commit message length
-> - Add missing spaces
-> - Remove useless defines
->
-> Olivier Moysan (8):
->   iio: adc: stm32-adc: fix channel sampling time init
->   dt-bindings: iio: adc: stm32-adc: add stm32mp13 compatibles
->   iio: adc: stm32-adc: add stm32mp13 support
->   iio: adc: stm32: manage min sampling time on all internal channels
->   ARM: dts: stm32: add adc support to stm32mp13
->   ARM: dts: stm32: add adc pins muxing on stm32mp135f-dk
->   ARM: dts: stm32: add dummy vdd_adc regulator on stm32mp135f-dk
->   ARM: dts: stm32: add adc support on stm32mp135f-dk
->
->  .../bindings/iio/adc/st,stm32-adc.yaml        |  68 ++++-
->  arch/arm/boot/dts/stm32mp13-pinctrl.dtsi      |   7 +
->  arch/arm/boot/dts/stm32mp131.dtsi             |  43 +++
->  arch/arm/boot/dts/stm32mp133.dtsi             |  31 +++
->  arch/arm/boot/dts/stm32mp135f-dk.dts          |  33 +++
->  drivers/iio/adc/stm32-adc-core.c              |  30 ++-
->  drivers/iio/adc/stm32-adc-core.h              |  30 +++
->  drivers/iio/adc/stm32-adc.c                   | 247 +++++++++++++++---
->  8 files changed, 443 insertions(+), 46 deletions(-)
->
-> --
-> 2.25.1
->
+So it is really weird/wrong to have a HW design where the MSI
+infrastructure is shared across many devices.
 
-
--- 
-With Best Regards,
-Andy Shevchenko
+Jason
