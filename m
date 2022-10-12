@@ -2,99 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 904C15FCB47
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 21:04:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FC395FCBA3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 21:39:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229775AbiJLTEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 15:04:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56468 "EHLO
+        id S229436AbiJLTjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 15:39:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229918AbiJLTEJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 15:04:09 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEB90FFF90
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 12:04:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=UpgSkj6GmfW+NSNwCj+VisYlbK0M
-        /XzHlZVxGc9d2q0=; b=Rq8YyG+VnFmxwE+oj5mefztRzA2PNpIBSlEcT8i4uKYX
-        kjDIvj4cakn/MBHD+N7CdQh3kgqr55fW4KjlJ0Dw5R+7NmDsydOTSjEDSvo/z9fC
-        WKBY3h1haoxEkFAxwp7qdDZ5sqko9rLuA3YnuxW4NewT0n0H3lBQhuqzEBBevYE=
-Received: (qmail 816697 invoked from network); 12 Oct 2022 21:04:05 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Oct 2022 21:04:05 +0200
-X-UD-Smtp-Session: l3s3148p1@W0FtDtvq2rkgAwDtxxN7ABspc7EPVowl
-Date:   Wed, 12 Oct 2022 21:04:04 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Hai Pham <hai.pham.ud@renesas.com>
-Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document R-Car V4H
- support
-Message-ID: <Y0cPpJin64ou4ivI@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Hai Pham <hai.pham.ud@renesas.com>
-References: <c268cb4497cbe79773bb6568f36c37adc6fb5bbe.1665582645.git.geert+renesas@glider.be>
+        with ESMTP id S229459AbiJLTjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 15:39:00 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E53865FF46
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 12:38:59 -0700 (PDT)
+Received: from cp.tophost.it (vm1054.cs12.seeweb.it [217.64.195.253])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 65AB72070B;
+        Wed, 12 Oct 2022 21:38:58 +0200 (CEST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qxEeX5/ZqgYrbyXW"
-Content-Disposition: inline
-In-Reply-To: <c268cb4497cbe79773bb6568f36c37adc6fb5bbe.1665582645.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Date:   Wed, 12 Oct 2022 21:25:18 +0200
+From:   konrad.dybcio@somainline.org
+To:     Dzmitry Sankouski <dsankouski@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 0/2] add device Xiaomi Mi 6 (codename sagit) and board
+ binding
+In-Reply-To: <20221012185245.1282599-1-dsankouski@gmail.com>
+References: <20221012185245.1282599-1-dsankouski@gmail.com>
+User-Agent: Roundcube Webmail/1.4.6
+Message-ID: <82891b0026f8f43b266245c7c0c85a98@somainline.org>
+X-Sender: konrad.dybcio@somainline.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2022-10-12 20:52, Dzmitry Sankouski wrote:
+> Add initial support for Xiaomi Mi 6 phone (codename sagit)
+> 
+> Dzmitry Sankouski (2):
+>   dt-bindings: arm: add xiaomi,sagit board based on msm8998 chip
+>   arm64: dts: qcom: sagit: add initial device tree for sagit
+> 
+Looks like you resent this series just to add the A-b on the dt-bindings 
+patch?
+If that's the case, you don't have to do it, the maintainer will pick up 
+the tags
+when applying your patch and an essentially empty revision just adds 
+confusion.
 
---qxEeX5/ZqgYrbyXW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Oct 12, 2022 at 03:51:46PM +0200, Geert Uytterhoeven wrote:
-> From: Hai Pham <hai.pham.ud@renesas.com>
->=20
-> Document support for the SPI Multi I/O Bus Controller (RPC-IF) in the
-> R-Car V4H SoC.
->=20
-> Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-What about moving V3U to the new Gen4 section?
-
-
---qxEeX5/ZqgYrbyXW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmNHD6QACgkQFA3kzBSg
-KbbUzw/9E8oJB+kpMZ+KHq3pXk48esFSsUV0Mf0Quh1Fg33pERUyvT0O0M5weYWB
-UauVms76LbEC0deBGrS0ZVcLJYmExe9FRrUdOPOtQLsHjvLtUzMbcYGGDUh/hyTT
-aIWkbwF1k7N720mB6Ve+Sb2LnhKC0ap+jl2fToVgz4BgVbpb9SWCFmzDQpl5+h86
-GEpChdp91MU6FhBlNA47NzGCEegtkOp3B72XmvqIxS5KojtTZALLwc3db/DUlnHm
-oVCr3+m/jFOFHoOz24Xz6mWa9/d6aGNQd743pBuCWMy2HQu54PGFN9TWiLmVsi37
-1e/XxwBPNLbAqSpAaS4J6gGPu+4vz9Te1W3RiGKQBuIRqCZHwv3wrZYiQyAuEqMk
-AhRyoN543LODFdiuCdmKzOXuDbp4huMc9FsLh2j3GaNyJC2g+5NK0yWktXX/jpOm
-F+A0t7Rse+oLv+90rIxBMXsktTh674dkvcP+LBP4LMwmahmN4BU3Gq8Lqf26lsyq
-Ec2k1lwfb/OmzPPapjfRlVMRJvdCrnAUx9GbduBKBmvTc6oXTVcVc/ZBMvPMPJoU
-mX/apC5HUBlR8NdKkSzesgRiAQs12hxMQo0d9vJL69szP29CR0LuPCBUtqtqM1vM
-jn3zC3afKrePHLkqSAu0xAvDPOhokp3kqS4hI+I5clWfXBfi3gk=
-=ZWG+
------END PGP SIGNATURE-----
-
---qxEeX5/ZqgYrbyXW--
+Konrad
+>  .../devicetree/bindings/arm/qcom.yaml         |   1 +
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../boot/dts/qcom/msm8998-xiaomi-sagit.dts    | 681 ++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pm8998.dtsi          |   8 +
+>  4 files changed, 691 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts
