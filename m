@@ -2,134 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70115FC5D2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:02:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BED565FC5DD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229600AbiJLNCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 09:02:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33556 "EHLO
+        id S229977AbiJLNE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 09:04:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229709AbiJLNCn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:02:43 -0400
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC61B2D9F
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:02:41 -0700 (PDT)
-Received: by mail-qv1-xf2c.google.com with SMTP id df9so10814107qvb.9
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:02:41 -0700 (PDT)
+        with ESMTP id S229964AbiJLNEs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:04:48 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE52B877
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:04:46 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id mx8so10821963qvb.8
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:04:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q+2Nqrw9STp++2L4DsJMi6hkYyDKD/Hz0Oh8MYX6p0Y=;
-        b=CTkA8daxSClsJkFRmJ62yhZEy0FtXUQuoq2kEht7XpVrZeTmAHnLdAAAUJHn7h41/f
-         geMwWHNNfWZI9SolLo9mWrmd+qpYI0gZ/51yF3NM52R2STqave+jS8bDKa3pA/8sx+2v
-         iYbUBphFEluEwCPfE/eJznt8ccOP+0iePi0NtR91OHqooe/mpe3utDS5Ta34TxWwDaUs
-         CroF/jvH/6ufeM2DlHjGKH4x4KceSXy6KnVs4rzbRxTTsli4A9+5d1z59fGcBG/LsOQr
-         NJ3ef2O31mVZJCMG0iXOHWBejmKJU72T/iw+irPkPj0EKrj68wDQ/mohGO+NZs8F8vHL
-         qJvA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=M9U4fPi5GNAg/H+GrZPg2lsLynUd9fsNHOB+vFj+U9I=;
+        b=qKI0Ur+UE5p/xiaydTpqCSSQieHcGXOkm2SqpzECXfcPDKwcUFMOnMnZHP2Z6q7B6U
+         jnhi/UguNrWMVPYzLeGlduv/fbsJ6Hpxo3h9PdgF9X8COXFgxg1ICfHvLfkhp4m0fk+V
+         Y8mB+7w98cXNJOiEcp/HXFs4uwG1pCXe09zZ6HNPh9qCor4Y7snCskyxl0Ghiob73ySy
+         awlnT0aRK/X/xox5Jv+L+VX3hBr8eLvo+yTHPu4ohvDizgIJff1fTi3klEw1C0tp0RQJ
+         lbqZDTNiRdnoqJJZG1UULMWl4+6pQfWg4jM+a9ZSi1jZ6431YLA84rfR1PhSCpy/lR10
+         buJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q+2Nqrw9STp++2L4DsJMi6hkYyDKD/Hz0Oh8MYX6p0Y=;
-        b=kYB5xQutKe97JrCv7ckhD8R9ZdCXQMUf1We6rSn/KG7sLkHgoVn2TFBws/MIRqF35m
-         zHwQKYX17HG36edmn46LvOG8duOh9O3IhpzaCeEupHO5dmAOwM+BcdgeGJXJ66lwIYSI
-         WliIQ6Uu9wpTEcFX19m80+6OjrllO9cvDOMeV19XJnEDxN/O9vy5+xs6fOUAuK7oN/TE
-         205MzuHWhj5Sm8Aqk5vkPmBbYjMZNd/gzoLODHTq00uleYwcVHZP8BwN4Cc/Zdwp01rE
-         T25SZgvw8ieBkGRwFDALHbNP/4Uy8yU0dd4sRV8gPYpyk4ZX2lrYR6jNK+p6sfUtaPYL
-         Dgmg==
-X-Gm-Message-State: ACrzQf0/AEbwhVxWBkuQHKDfRFTsgpnYbARhE613/zYD6bXCrwFrEBrA
-        0TWeC8/241IUD9B+J3d6VZrOmA==
-X-Google-Smtp-Source: AMsMyM4gic10KgpYSrCq8ohl+c7DgczEJyCmY5+V3wv8+9y1501BmIPAAsnLKawah6kgjln1sdVqKg==
-X-Received: by 2002:a05:6214:dce:b0:4b1:b1e7:f169 with SMTP id 14-20020a0562140dce00b004b1b1e7f169mr22688725qvt.64.1665579760064;
-        Wed, 12 Oct 2022 06:02:40 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-47-55-122-23.dhcp-dynamic.fibreop.ns.bellaliant.net. [47.55.122.23])
-        by smtp.gmail.com with ESMTPSA id ca6-20020a05622a1f0600b003994bbe91bdsm7900801qtb.60.2022.10.12.06.02.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 06:02:31 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-        (envelope-from <jgg@ziepe.ca>)
-        id 1oibNV-001wVQ-HJ;
-        Wed, 12 Oct 2022 10:02:29 -0300
-Date:   Wed, 12 Oct 2022 10:02:29 -0300
-From:   Jason Gunthorpe <jgg@ziepe.ca>
-To:     "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>
-Cc:     "Gupta, Nipun" <Nipun.Gupta@amd.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
-        "cohuck@redhat.com" <cohuck@redhat.com>,
-        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
-        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
-        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
-        "saravanak@google.com" <saravanak@google.com>,
-        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "yishaih@nvidia.com" <yishaih@nvidia.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "masahiroy@kernel.org" <masahiroy@kernel.org>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-        "okaya@kernel.org" <okaya@kernel.org>,
-        "Anand, Harpreet" <harpreet.anand@amd.com>,
-        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
- domain as parent
-Message-ID: <Y0a65a9leWXpKfTo@ziepe.ca>
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20220906134801.4079497-1-nipun.gupta@amd.com>
- <20220906134801.4079497-5-nipun.gupta@amd.com>
- <87h71juxuk.wl-maz@kernel.org>
- <DM6PR12MB30820EE430405FF50C7F856BE8229@DM6PR12MB3082.namprd12.prod.outlook.com>
- <MN2PR12MB43586084670E14691920952889229@MN2PR12MB4358.namprd12.prod.outlook.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=M9U4fPi5GNAg/H+GrZPg2lsLynUd9fsNHOB+vFj+U9I=;
+        b=HXqoG4aa6GVal5DubgTW1l0S8tjFVTqibSaFEUK4WqT2f66hGsAa3KPdmbW1R1sEj8
+         OTaP+pRH0dxlneFYfczHIJsnTM4mWhw0d1uk9MUY7zFXATU4DUgC4ZaCLMo6QLH/OYe3
+         cGl+eMOIgzUtn4wxYG5hHXu1og83cXoXFfL9hb1CsQOhHi4+JPz+a5YliB1Rnw5Iu7vp
+         5RRIkPlTCd/cC1MKWq0UMLtJxQbNNUcaVwTkUxBxyvEttWsv+1EWbJp/YV+RNzO9pZqn
+         cS/BKTaf2ceOhGDTcvsbP+Mmai5gFGdO0vti2XiPj9a3XK8RiSDtqyC05AKWhSXUVus0
+         5flA==
+X-Gm-Message-State: ACrzQf1Jj7r9DFC1aZ6n63S5B4SDA1EHXboHsYjUz6OThXlqm8XiS3HD
+        Ih+iGjN0WM7K6kaK8zX/wyvPQg==
+X-Google-Smtp-Source: AMsMyM4df3Hlk1yaiildPII8+BA5RljRoYu9EFFBUn6ZvtLDOEYluoJvE1GkwFaFhCb4wPGMdl5R/w==
+X-Received: by 2002:a05:6214:224c:b0:4b1:811d:9a06 with SMTP id c12-20020a056214224c00b004b1811d9a06mr23509248qvc.19.1665579885369;
+        Wed, 12 Oct 2022 06:04:45 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id j10-20020ac806ca000000b00359961365f1sm12324130qth.68.2022.10.12.06.04.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Oct 2022 06:04:44 -0700 (PDT)
+Message-ID: <0829050b-8ef3-e210-9a40-fbec01bb4d21@linaro.org>
+Date:   Wed, 12 Oct 2022 09:02:32 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MN2PR12MB43586084670E14691920952889229@MN2PR12MB4358.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add nodes to support WoW on
+ WCN6750
+Content-Language: en-US
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220926045735.719-1-quic_mpubbise@quicinc.com>
+ <f1057c78-39a2-6b26-f3c9-51cd99450dd2@linaro.org>
+ <a6e94553-c62f-128a-4122-94483b02bee7@quicinc.com>
+ <f7ea53ce-421f-f608-ba50-f107a7f5cb87@linaro.org>
+ <d215c841-987a-bf53-0c62-d8688cbd4e6b@quicinc.com>
+ <fc390436-92a3-2b2a-0078-cf50a9073b8c@quicinc.com>
+ <f9ecdb22-2827-989e-ada2-9eec95dba687@linaro.org>
+ <8d43fd52-3bbe-d711-e025-b45a79451ae2@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8d43fd52-3bbe-d711-e025-b45a79451ae2@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 12, 2022 at 10:34:23AM +0000, Radovanovic, Aleksandar wrote:
+On 12/10/2022 02:22, Manikanta Pubbisetty wrote:
+>> If you did it, you would see the check will fail. The bindings would
+>> report error. There is no need to engage reviewers if bindings find the
+>> errors for you, right?
+>>
+>> Nodes you added here are not allowed.
+>>
+> 
+> Thanks for the inputs Krzysztof, I now see the following error
+> "smp2p-wpss: 'wlan-ap-to-wpss', 'wlan-wpss-to-ap' do not match any of 
+> the regexes: '^master-kernel|slave-kernel|ipa-ap-to-modem|ipa-modem-to-ap$'"
+> 
+> After making changes to the smp2p binding, I did not see this error.
+> Following are the changes made.
+> 
+>   patternProperties:
+> -  "^master-kernel|slave-kernel|ipa-ap-to-modem|ipa-modem-to-ap$":
+> + 
+> "^master-kernel|slave-kernel|ipa-ap-to-modem|ipa-modem-to-ap|wlan-ap-to-wpss|wlan-wpss-to-ap$":
+> 
+> Shall I go ahead and make the smp2p binding change?
 
-> For the MSI EventID, the HW interrupt logic assumes the MSI write value is 
-> equal to the MSI vector number. However, the vector number is programmable
-> for most (all) of the interrupt sources, which isn't exactly the same as saying
-> EventID is programmable for a vector number, but can be used to emulate the
-> desired behaviour, with a translation table in firmware. 
+If it is correct change, then yes.
 
-If you do this stuff wrong you will eventually run into situations
-that don't work. Like VFIO/VMs and things.
+Best regards,
+Krzysztof
 
-> As for GITS_TRANSLATER, we can take up to 4 different IOVAs, which limits us
-> to 4 CDX devices (should be sufficient for current HW use-cases). Also, it means
-> that the address part must be the same for all vectors within a single CDX 
-> device. I'm assuming this is OK as it is going to be a single interrupt and IOMMU
-> domain anyway.
-
-This is not at all how MSI is supposed to work.
-
-Jason
