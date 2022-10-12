@@ -2,83 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 865795FC5C4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:00:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C70115FC5D2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:02:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229506AbiJLNAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 09:00:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57848 "EHLO
+        id S229600AbiJLNCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 09:02:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbiJLNA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:00:28 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 141785FAE4
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:00:27 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id f8so2939594qkg.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:00:27 -0700 (PDT)
+        with ESMTP id S229709AbiJLNCn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:02:43 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC61B2D9F
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:02:41 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id df9so10814107qvb.9
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:02:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S7I3Cz5+U5x6cIXGPA8p9f0gJdwGq7AR9Xznrk5pZ2M=;
-        b=RUfyxSq7fmq5cjgnShru5p1DpyftvUBe1/f4hzQ1PmJ0Q+GHCzHTY5hwtO2C/v6jmA
-         RdI0LdVobKGxBm018dRryOu+/vONbFYUGHH8VK+S6syziEp9u13ceqVcILGEWqE+gB8x
-         pzGZhXVOU9KAEMQ0PqAWNxSgMj9x4I2IG1yHTDSYLgJINCC576qp8CQJMXENZBksoCbC
-         mrSeZySI5K76K1GGVat8g9kSTpEcbayeMVJBZWij4QjvOV/JVIdDZdOkUx8wxGPyzCbO
-         rq079Sc6EayGR5GZE87XrvXw+jkLbvXG2G/Rqr4s09/Mj/r9iWeNZuGTMsR0D2QNDdtT
-         Ulzg==
+        d=ziepe.ca; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q+2Nqrw9STp++2L4DsJMi6hkYyDKD/Hz0Oh8MYX6p0Y=;
+        b=CTkA8daxSClsJkFRmJ62yhZEy0FtXUQuoq2kEht7XpVrZeTmAHnLdAAAUJHn7h41/f
+         geMwWHNNfWZI9SolLo9mWrmd+qpYI0gZ/51yF3NM52R2STqave+jS8bDKa3pA/8sx+2v
+         iYbUBphFEluEwCPfE/eJznt8ccOP+0iePi0NtR91OHqooe/mpe3utDS5Ta34TxWwDaUs
+         CroF/jvH/6ufeM2DlHjGKH4x4KceSXy6KnVs4rzbRxTTsli4A9+5d1z59fGcBG/LsOQr
+         NJ3ef2O31mVZJCMG0iXOHWBejmKJU72T/iw+irPkPj0EKrj68wDQ/mohGO+NZs8F8vHL
+         qJvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S7I3Cz5+U5x6cIXGPA8p9f0gJdwGq7AR9Xznrk5pZ2M=;
-        b=BzWZZNLa7wOotmp6MuP6X7eKWFz04Dt7TifX+u3uyME5soTEz1Y2pUvdwaIKRxptOF
-         d+GQ0qCQvRbPyDixRqZX4wQ1l1FFOqdOz9hO3+WvsBfROlnMJKqRk9YPlTzdZKoP0P+j
-         zzjiD8Xi7tjxSS5VO6OUDpC1EqYKlFYOetXmUkHXCF8MoQOy+n97Tu4E1Q9ukzdHVt4Y
-         4v0EdzNVTmyJNmNJVZIqSP0Mw1OXch2okPp80esilX6mxr+7ufPZLp7J2vMJubl14NGR
-         KSRhykSH1yp4SP5Bu1mdP1pMyI9ArF90lfk3H0uBZnxFXFpA+ndeJb16Mx5lSJMWwrwp
-         rASA==
-X-Gm-Message-State: ACrzQf1lYZRYoA5zflAkO2hFcf8x/6vToz5P4zjLy1o6ur0oRXAth86a
-        0TyOOA31IANg1Q2sWvN1WeaZgdjx+PCRiA==
-X-Google-Smtp-Source: AMsMyM4h65oRCdBS2LVLH3asi+Dz8Bht/2Ex4MGomFkxTgfupyoOTY1kejOISNYZo3eiUk2ujujm/g==
-X-Received: by 2002:a05:620a:280d:b0:6cf:ab57:a130 with SMTP id f13-20020a05620a280d00b006cfab57a130mr20372720qkp.749.1665579625333;
-        Wed, 12 Oct 2022 06:00:25 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id s4-20020a05620a254400b006bbc09af9f5sm15488418qko.101.2022.10.12.06.00.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 06:00:24 -0700 (PDT)
-Message-ID: <fc1e5799-20ea-de37-6693-e2ea0fb87f13@linaro.org>
-Date:   Wed, 12 Oct 2022 09:00:22 -0400
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Q+2Nqrw9STp++2L4DsJMi6hkYyDKD/Hz0Oh8MYX6p0Y=;
+        b=kYB5xQutKe97JrCv7ckhD8R9ZdCXQMUf1We6rSn/KG7sLkHgoVn2TFBws/MIRqF35m
+         zHwQKYX17HG36edmn46LvOG8duOh9O3IhpzaCeEupHO5dmAOwM+BcdgeGJXJ66lwIYSI
+         WliIQ6Uu9wpTEcFX19m80+6OjrllO9cvDOMeV19XJnEDxN/O9vy5+xs6fOUAuK7oN/TE
+         205MzuHWhj5Sm8Aqk5vkPmBbYjMZNd/gzoLODHTq00uleYwcVHZP8BwN4Cc/Zdwp01rE
+         T25SZgvw8ieBkGRwFDALHbNP/4Uy8yU0dd4sRV8gPYpyk4ZX2lrYR6jNK+p6sfUtaPYL
+         Dgmg==
+X-Gm-Message-State: ACrzQf0/AEbwhVxWBkuQHKDfRFTsgpnYbARhE613/zYD6bXCrwFrEBrA
+        0TWeC8/241IUD9B+J3d6VZrOmA==
+X-Google-Smtp-Source: AMsMyM4gic10KgpYSrCq8ohl+c7DgczEJyCmY5+V3wv8+9y1501BmIPAAsnLKawah6kgjln1sdVqKg==
+X-Received: by 2002:a05:6214:dce:b0:4b1:b1e7:f169 with SMTP id 14-20020a0562140dce00b004b1b1e7f169mr22688725qvt.64.1665579760064;
+        Wed, 12 Oct 2022 06:02:40 -0700 (PDT)
+Received: from ziepe.ca (hlfxns017vw-47-55-122-23.dhcp-dynamic.fibreop.ns.bellaliant.net. [47.55.122.23])
+        by smtp.gmail.com with ESMTPSA id ca6-20020a05622a1f0600b003994bbe91bdsm7900801qtb.60.2022.10.12.06.02.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Oct 2022 06:02:31 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.95)
+        (envelope-from <jgg@ziepe.ca>)
+        id 1oibNV-001wVQ-HJ;
+        Wed, 12 Oct 2022 10:02:29 -0300
+Date:   Wed, 12 Oct 2022 10:02:29 -0300
+From:   Jason Gunthorpe <jgg@ziepe.ca>
+To:     "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>
+Cc:     "Gupta, Nipun" <Nipun.Gupta@amd.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "saravanak@google.com" <saravanak@google.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "masahiroy@kernel.org" <masahiroy@kernel.org>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: Re: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
+ domain as parent
+Message-ID: <Y0a65a9leWXpKfTo@ziepe.ca>
+References: <20220803122655.100254-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-5-nipun.gupta@amd.com>
+ <87h71juxuk.wl-maz@kernel.org>
+ <DM6PR12MB30820EE430405FF50C7F856BE8229@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <MN2PR12MB43586084670E14691920952889229@MN2PR12MB4358.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v6 6/6] arm64: defconfig: Add tps65219 as modules
-Content-Language: en-US
-To:     jerome Neanne <jneanne@baylibre.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, nm@ti.com,
-        kristo@kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
-        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
-        bjorn.andersson@linaro.org, shawnguo@kernel.org,
-        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com
-Cc:     afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
-        msp@baylibre.com, j-keerthy@ti.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-omap@vger.kernel.org
-References: <20221011140549.16761-1-jneanne@baylibre.com>
- <20221011140549.16761-7-jneanne@baylibre.com>
- <72b9809e-d6d7-862a-26b8-221d14ea4322@linaro.org>
- <60507e87-cf92-13d9-29d0-83f18a648f4b@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <60507e87-cf92-13d9-29d0-83f18a648f4b@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MN2PR12MB43586084670E14691920952889229@MN2PR12MB4358.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,23 +113,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/2022 04:39, jerome Neanne wrote:
->> You explained what you did, which is easily visible. You did not explain
->> why you are doing it.
->>
->> Best regards,
->> Krzysztof
->>
-> Thanks for pointing me to the detailed guidelines
-> I'm new to upstream and not well aware of all good practices.
-> 
-> Would below commit message be more suitable:
-> 
-> Add support for the TPS65219 PMIC by enabling MFD, regulator and 
-> power-button drivers.  All drivers enabled as modules.
+On Wed, Oct 12, 2022 at 10:34:23AM +0000, Radovanovic, Aleksandar wrote:
 
-This still says only what you did. I still does not explain why.
+> For the MSI EventID, the HW interrupt logic assumes the MSI write value is 
+> equal to the MSI vector number. However, the vector number is programmable
+> for most (all) of the interrupt sources, which isn't exactly the same as saying
+> EventID is programmable for a vector number, but can be used to emulate the
+> desired behaviour, with a translation table in firmware. 
 
-Best regards,
-Krzysztof
+If you do this stuff wrong you will eventually run into situations
+that don't work. Like VFIO/VMs and things.
 
+> As for GITS_TRANSLATER, we can take up to 4 different IOVAs, which limits us
+> to 4 CDX devices (should be sufficient for current HW use-cases). Also, it means
+> that the address part must be the same for all vectors within a single CDX 
+> device. I'm assuming this is OK as it is going to be a single interrupt and IOMMU
+> domain anyway.
+
+This is not at all how MSI is supposed to work.
+
+Jason
