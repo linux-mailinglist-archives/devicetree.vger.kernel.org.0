@@ -2,100 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 772ED5FC5B7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 14:58:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 865795FC5C4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:00:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbiJLM6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 08:58:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51502 "EHLO
+        id S229506AbiJLNAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 09:00:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbiJLM6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 08:58:21 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20429B85E
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 05:58:20 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id de14so10818410qvb.5
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 05:58:20 -0700 (PDT)
+        with ESMTP id S229621AbiJLNA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:00:28 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 141785FAE4
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:00:27 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id f8so2939594qkg.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:00:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TnfLH1uWZM93WnOCm/j3uIYB90yqvfJmq8bZxGsy+kc=;
-        b=bH9us0saWKJQhA1kWT+vjoJW/+MSU1ic6wzQjV9QVFsbI3TcBrQuuJZh3xjEm4f81/
-         eAGrKd/w5yeMAeReTuqMd7v/KkHwN3FV3fyfR9uJejV6DwvTrW4RGK0cvn2ibR3CQ6fQ
-         IaB66scH892vFJSAK1xZ+4vFs5J46bMJI5pcjdfZbJAXmLF4+DOkDBvjJ5hA/PUlDu2a
-         oDIEyD6mdc33E5LDd5iZ951AzEkN3m7lXBv8fC00ap3yF2/Cm3KDoKqnSEoIPk0RSIpz
-         ABQMK3GOtNd5cluoYOYpu4Odo+f3xbPGHhLFKaX0lKXldZF33B4bSGAF9VfMEOmEBDR0
-         XwtA==
+        bh=S7I3Cz5+U5x6cIXGPA8p9f0gJdwGq7AR9Xznrk5pZ2M=;
+        b=RUfyxSq7fmq5cjgnShru5p1DpyftvUBe1/f4hzQ1PmJ0Q+GHCzHTY5hwtO2C/v6jmA
+         RdI0LdVobKGxBm018dRryOu+/vONbFYUGHH8VK+S6syziEp9u13ceqVcILGEWqE+gB8x
+         pzGZhXVOU9KAEMQ0PqAWNxSgMj9x4I2IG1yHTDSYLgJINCC576qp8CQJMXENZBksoCbC
+         mrSeZySI5K76K1GGVat8g9kSTpEcbayeMVJBZWij4QjvOV/JVIdDZdOkUx8wxGPyzCbO
+         rq079Sc6EayGR5GZE87XrvXw+jkLbvXG2G/Rqr4s09/Mj/r9iWeNZuGTMsR0D2QNDdtT
+         Ulzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TnfLH1uWZM93WnOCm/j3uIYB90yqvfJmq8bZxGsy+kc=;
-        b=0d6kB1XsGmBOdf+TXwB2pG+fjxlH8v0VoHLdutBPI1B0UayjH+KWQblyAbXeF4ATRx
-         DY0H5NzuQPZJ8a/ct5bDXuGGPZb0gPg55M36KJz4E1e5hN7JbBXo2wm33DmSAgV+IZ+5
-         biezMqcVuzI4R/3cYezT4oGc8kBHEqq7MppVBoq9QSmqXFj3UiNkyyQLN1J/WKKUzTkX
-         5YvVitVGOoTVypkL4CtafEjG7TRx4vQ1KS/89J36+pbPzTphCT5iKbC1qwsP6iz+2mfL
-         gHKGJYaSkFE6dOGcAXiB3dKhSrxSuBRytXtZz+taYpQKh/xRA4tXq49Rlpc09FeOq/qL
-         YQlA==
-X-Gm-Message-State: ACrzQf3FDhEguZ4/Ce1fFfVpJFGBrcFa31bzzPvjUDlYRD9MSBI21kwd
-        FLo4cfoDyDZeEgWCjBWPulrAAQ==
-X-Google-Smtp-Source: AMsMyM4g/HhyeEiE7hqMEnGkibS/RP//a3WhquctLtW5wccxFEO5/bzMLDqE97UGNpAEEYvXTcrcQg==
-X-Received: by 2002:a0c:e04e:0:b0:4b1:cae6:4b0a with SMTP id y14-20020a0ce04e000000b004b1cae64b0amr22874277qvk.121.1665579499909;
-        Wed, 12 Oct 2022 05:58:19 -0700 (PDT)
+        bh=S7I3Cz5+U5x6cIXGPA8p9f0gJdwGq7AR9Xznrk5pZ2M=;
+        b=BzWZZNLa7wOotmp6MuP6X7eKWFz04Dt7TifX+u3uyME5soTEz1Y2pUvdwaIKRxptOF
+         d+GQ0qCQvRbPyDixRqZX4wQ1l1FFOqdOz9hO3+WvsBfROlnMJKqRk9YPlTzdZKoP0P+j
+         zzjiD8Xi7tjxSS5VO6OUDpC1EqYKlFYOetXmUkHXCF8MoQOy+n97Tu4E1Q9ukzdHVt4Y
+         4v0EdzNVTmyJNmNJVZIqSP0Mw1OXch2okPp80esilX6mxr+7ufPZLp7J2vMJubl14NGR
+         KSRhykSH1yp4SP5Bu1mdP1pMyI9ArF90lfk3H0uBZnxFXFpA+ndeJb16Mx5lSJMWwrwp
+         rASA==
+X-Gm-Message-State: ACrzQf1lYZRYoA5zflAkO2hFcf8x/6vToz5P4zjLy1o6ur0oRXAth86a
+        0TyOOA31IANg1Q2sWvN1WeaZgdjx+PCRiA==
+X-Google-Smtp-Source: AMsMyM4h65oRCdBS2LVLH3asi+Dz8Bht/2Ex4MGomFkxTgfupyoOTY1kejOISNYZo3eiUk2ujujm/g==
+X-Received: by 2002:a05:620a:280d:b0:6cf:ab57:a130 with SMTP id f13-20020a05620a280d00b006cfab57a130mr20372720qkp.749.1665579625333;
+        Wed, 12 Oct 2022 06:00:25 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id u10-20020a05620a430a00b006e702033b15sm15449244qko.66.2022.10.12.05.58.18
+        by smtp.gmail.com with ESMTPSA id s4-20020a05620a254400b006bbc09af9f5sm15488418qko.101.2022.10.12.06.00.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 05:58:19 -0700 (PDT)
-Message-ID: <be6586ab-8a4e-91cd-cc30-81d49e6d4616@linaro.org>
-Date:   Wed, 12 Oct 2022 08:58:17 -0400
+        Wed, 12 Oct 2022 06:00:24 -0700 (PDT)
+Message-ID: <fc1e5799-20ea-de37-6693-e2ea0fb87f13@linaro.org>
+Date:   Wed, 12 Oct 2022 09:00:22 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [Patch v3 02/15] dt-bindings: media: s5p-mfc: Add mfcv12 variant
+Subject: Re: [PATCH v6 6/6] arm64: defconfig: Add tps65219 as modules
 Content-Language: en-US
-To:     aakarsh jain <aakarsh.jain@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
-        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
-        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andi@etezian.org, alim.akhtar@samsung.com,
-        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
-        linux-fsd@tesla.com, smitha.t@samsung.com
-References: <20221011122516.32135-1-aakarsh.jain@samsung.com>
- <CGME20221011125145epcas5p4f9d2656c8b91d7bb6a51989afa49120d@epcas5p4.samsung.com>
- <20221011122516.32135-3-aakarsh.jain@samsung.com>
+To:     jerome Neanne <jneanne@baylibre.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, nm@ti.com,
+        kristo@kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
+        bjorn.andersson@linaro.org, shawnguo@kernel.org,
+        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
+        marcel.ziswiler@toradex.com, vkoul@kernel.org,
+        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com
+Cc:     afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
+        msp@baylibre.com, j-keerthy@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org
+References: <20221011140549.16761-1-jneanne@baylibre.com>
+ <20221011140549.16761-7-jneanne@baylibre.com>
+ <72b9809e-d6d7-862a-26b8-221d14ea4322@linaro.org>
+ <60507e87-cf92-13d9-29d0-83f18a648f4b@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221011122516.32135-3-aakarsh.jain@samsung.com>
+In-Reply-To: <60507e87-cf92-13d9-29d0-83f18a648f4b@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2022 08:25, aakarsh jain wrote:
-> From: Smitha T Murthy <smitha.t@samsung.com>
+On 12/10/2022 04:39, jerome Neanne wrote:
+>> You explained what you did, which is easily visible. You did not explain
+>> why you are doing it.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> Thanks for pointing me to the detailed guidelines
+> I'm new to upstream and not well aware of all good practices.
 > 
-> Add Tesla FSD MFC(MFC v12) compatible.
+> Would below commit message be more suitable:
+> 
+> Add support for the TPS65219 PMIC by enabling MFD, regulator and 
+> power-button drivers.  All drivers enabled as modules.
 
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This still says only what you did. I still does not explain why.
 
 Best regards,
 Krzysztof
