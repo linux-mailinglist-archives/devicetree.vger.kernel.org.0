@@ -2,163 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 901025FC871
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 17:32:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25FB85FC87A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 17:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbiJLPcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 11:32:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44682 "EHLO
+        id S229561AbiJLPgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 11:36:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229641AbiJLPcB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 11:32:01 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89FDBCA894
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 08:31:59 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id x13so8133177qkg.11
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 08:31:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CoV8mWntzVcAfAl3JXoUDwAhCZVSliB3wLU/NyVEXwU=;
-        b=VyuN/nNatDf74KMBwFIFfCSQivpKpSpD9ESjBMxz3NW6mCzQAywWGakXKDe/EwvhjA
-         UVSLYp2oqrC/g6Nd9S4QrRPNxYTvFwX4gl5R64orFhLCgpFV2B3neOVhY3I+0pyCfzcG
-         GijF9/JtQ19/haPSrgKp8eAHyPPcwWfc7xV7JwuLY+IvoeKO5eiHsvLKWSRiRG4V550r
-         9A1bU0IMAbl0jhI6RfWzlXSM8L2OTjujpNvxn/oU5hVh0+NgKiO7Wj0dJyM5XJ5VFlvl
-         YkYr6cv1jQ3PGWNMtNbcLNn/KJUi6Cuf8CdlfzHIXj7j6TrDisARjpOdWFOGC+0/3UkN
-         D7Zg==
+        with ESMTP id S229540AbiJLPgf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 11:36:35 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35621D9978;
+        Wed, 12 Oct 2022 08:36:34 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id j188so12496649oih.4;
+        Wed, 12 Oct 2022 08:36:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CoV8mWntzVcAfAl3JXoUDwAhCZVSliB3wLU/NyVEXwU=;
-        b=L0HTMcnhuY2pNVd95E/rlUW2pHmxY89Bgt6QKUNrr5qJnzN6IFOGf+s9KSQGHZJtJE
-         Kp9CGrjSADKeJ5vo2e+pKbvUuIa6xEfSKPAOSzw/KYwpXA4mC6bMIomgy+PKywupKJrg
-         VHELXeDR8A5KzwpuDOP2GML+CaodUw5eQ96YgUHK3Hwiw+YMQJDjPjpcfHlqZz3uJodJ
-         pfOhNGB8cqcawVbMhgRovTPwNNewcMTkQQ/ZgUYAwoL21e5n9IyWtMfIzkdOWadqfSXw
-         VqObayN1F2XiKUXgYr6KcgxubVNxe/XP/SzMhRnA4E3TT9+dsXjuDaRqw5W3wOeM2mIG
-         EvWw==
-X-Gm-Message-State: ACrzQf2th6lbAD1juobd/rFJ6sh8lN7ByoL/zxwwbm5AhAKb3fAbOiEB
-        dGYXcqFhpXObNAQwQF2DwOQ3BQ==
-X-Google-Smtp-Source: AMsMyM6Rdj22kqr3e0wlZpFGK9jDuY9Gjwj7v+n72OmUgaqR6812NyzJhXQ8IbnACDj8n5J3lPCvuA==
-X-Received: by 2002:a37:e205:0:b0:6ee:834:1a1b with SMTP id g5-20020a37e205000000b006ee08341a1bmr8712931qki.342.1665588718677;
-        Wed, 12 Oct 2022 08:31:58 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id n1-20020a05620a294100b006ee949b8051sm2360358qkp.51.2022.10.12.08.31.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 08:31:58 -0700 (PDT)
-Message-ID: <fa60ba81-6cc7-7f78-55cc-9ca0053336b8@linaro.org>
-Date:   Wed, 12 Oct 2022 11:29:47 -0400
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n5lptyW3ie5pClcDGn5r9fNjFpkWHmTzbf2OcN0VuAU=;
+        b=mCkEIB+J+Ljz0kUI9auglrJwIkJm74kgGhA8UUHrgOdLu8Q7uT8OZTpMBfUoVhyUfg
+         DUiAzb5HEKY+4ntFmsSirnGlzBZQ/eGTHTiTt/90TKEsDMmKiXK6Dfch1OLJ3McikDD+
+         2UEMWiUP6DqMTw1mRHFwkEfESobi5Fx+0bX6c71DABLmy7PNZK+nB9+NX6RboDP4uHyp
+         fAbfBkrFGvUuaYLJbuA7FVlb40NNUzjMvzASkrgYZqKyiHH40lgUyUDOp46pbzSotL41
+         H+MQTBBBRERrj4cRu7h/kl6CA/iAsCU9iA+Fe004g7ZNX3jlcwtman9X7C7TmzEezBut
+         0sAw==
+X-Gm-Message-State: ACrzQf0rPn5MzUGi3gDoW3rB9pXHENSsJZtMXgxuMk6Zp6js1tx7NFU0
+        I61Xh+C6nuTbkQpiRL+H0g==
+X-Google-Smtp-Source: AMsMyM7YihuyUnIzLG6/okwQkls3Kbv8bMnGi6YmV46cxfr/5CDfSMZlI0ueMUzM8VQx2RPDXUmARA==
+X-Received: by 2002:a05:6808:1487:b0:354:923c:bc7a with SMTP id e7-20020a056808148700b00354923cbc7amr2454582oiw.145.1665588993393;
+        Wed, 12 Oct 2022 08:36:33 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a28-20020a544e1c000000b00339befdfad0sm6746011oiy.50.2022.10.12.08.36.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Oct 2022 08:36:32 -0700 (PDT)
+Received: (nullmailer pid 2164100 invoked by uid 1000);
+        Wed, 12 Oct 2022 15:36:34 -0000
+Date:   Wed, 12 Oct 2022 10:36:34 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        lee@kernel.org, robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        chiaen_wu@richtek.com, matthias.bgg@gmail.com,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        krzysztof.kozlowski+dt@linaro.org, cy_huang@richtek.com,
+        sre@kernel.org
+Subject: Re: [PATCH v3] dt-bindings: mfd: mt6370: fix the interrupt order of
+ the charger in the example
+Message-ID: <166558333754.1988433.10175192101178879616.robh@kernel.org>
+References: <fcf4e7e7594070a8698dc0d4b96e031bcaa9b3a3.1665585952.git.chiaen_wu@richtek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v10 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
- bindings
-Content-Language: en-US
-To:     Tanmay Shah <tanmay.shah@amd.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@amd.com>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221011212501.2661003-1-tanmay.shah@amd.com>
- <20221011212501.2661003-2-tanmay.shah@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221011212501.2661003-2-tanmay.shah@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fcf4e7e7594070a8698dc0d4b96e031bcaa9b3a3.1665585952.git.chiaen_wu@richtek.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2022 17:24, Tanmay Shah wrote:
-> Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
-> Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem
-> (cluster).
+On Wed, 12 Oct 2022 15:08:14 +0800, ChiaEn Wu wrote:
+> From: ChiaEn Wu <chiaen_wu@richtek.com>
 > 
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> Fix the interrupt order of the charger in the binding example.
+> 
+> Fixes: 76f52f815f1a ("dt-bindings: mfd: Add MediaTek MT6370")
+> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
+> v3
+> - Add a 'Reviewed-by' tag.
 > 
-> Changes in v10:
->   - rename example node to remoteproc
+> v2
+> - Revise the commit syntax.
 > 
-> Changes in v9:
->   - remove power-domains property description
->   - fix nitpicks in description of other properties
+> v1
+> - Due to this patch modifiacation
+>   (https://lore.kernel.org/all/20221001202918.me7z2qzm7cmrkzsg@mercury.elektranox.org/),
+>   there will get some warnings in linux-next when compiling the dts.
+> ---
+>  Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> Changes in v8:
->   - Add 'items:' for sram property
-> 
-> Changes in v7:
->   - Add minItems in sram property
-> 
-> Changes in v6:
->   - Add maxItems to sram and memory-region property
-> 
-> Changes in v5:
-> - Add constraints of the possible values of xlnx,cluster-mode property
-> - fix description of power-domains property for r5 core
-> - Remove reg, address-cells and size-cells properties as it is not required
-> - Fix description of mboxes property
-> - Add description of each memory-region and remove old .txt binding link
->   reference in the description
-> 
-> Changes in v4:
->   - Add memory-region, mboxes and mbox-names properties in example
-> 
-> Changes in v3:
->   - None
-> 
->  .../bindings/remoteproc/xlnx,r5f-rproc.yaml   | 135 ++++++++++++++++++
->  include/dt-bindings/power/xlnx-zynqmp-power.h |   6 +
->  2 files changed, 141 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> new file mode 100644
-> index 000000000000..8079b60b950e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
 
-The convention is to have filename matching the compatible, so:
-xlnx,zynqmp-r5fss.yaml
-
-> @@ -0,0 +1,135 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/xlnx,r5f-rproc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx R5F processor subsystem
-> +
-> +maintainers:
-> +  - Ben Levinsky <ben.levinsky@amd.com>
-> +  - Tanmay Shah <tanmay.shah@amd.com>
-> +
-> +description: |
-> +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
-> +  real-time processing based on the Cortex-R5F processor core from ARM.
-> +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
-> +  floating-point unit that implements the Arm VFPv3 instruction set.
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,zynqmp-r5fss
-> +
-
-
-
-Best regards,
-Krzysztof
-
+Applying to go into rc1 along with the other mt6370 fix, thanks!
