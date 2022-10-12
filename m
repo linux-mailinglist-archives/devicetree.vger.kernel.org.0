@@ -2,226 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 776555FC321
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 11:34:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C1325FC345
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 11:48:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbiJLJeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 05:34:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43944 "EHLO
+        id S229894AbiJLJsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 05:48:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiJLJeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 05:34:17 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2750BE51B;
-        Wed, 12 Oct 2022 02:34:16 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id m16so597738edc.4;
-        Wed, 12 Oct 2022 02:34:16 -0700 (PDT)
+        with ESMTP id S229964AbiJLJsb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 05:48:31 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80803A3F51
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 02:48:29 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id bu30so25411712wrb.8
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 02:48:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5hwOC37cPRVT+Lgt6Q6oTRESj5g4dMDJkms4UxcNz6o=;
-        b=gOWYd7cgiPSqMjcd2my2MAjZEF7vcSQs4HKRsvLSimpo/ry33sb15M2wKdnw5mprZf
-         wyCAKHyDGHBg6aRI0Z4ASWUB2qKF+CVeEAGnKxQZ/EPSwgQgDcVhXZ6ufR/DSMalG3h/
-         zdC5ggB3s9GDURjFRSohw+//Bys+Chny2WD0uRMCLATGn49f8YSkd/yNgOswbV8DH2lv
-         fXwOHd4Fw8Kim8LQyRAaXNuLHyNurQ+ysnFyK9xGWAosMx/iU5oGMCu6wkgzexqr1I+p
-         4iNVSgeThfrUSL55uW885yBO9c6DC2BpDHdYIPW6NDd1t+3/hebys9Eif5WNCEVuyXaG
-         leOQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NB6mG33aDtm6Zk8BktYrxC+8hOs8DwGLvDzn08Z1nM0=;
+        b=Wznf0FrIHwd9yD3BL0jRsJHyh27pJJRjliBl8pb+TQ0a2wOheEFN3cS5kQZzGjnUsx
+         h7Kgw2wAb714Vx0msRAfJdExER0hHksZ73uyPwf0B6PHzfAHHUcY+695IuN7vCVAPJPU
+         9W3Bel+OpP823Q9JZqDCnKEfwpskN2SOdBgLv1FqMUwGevEdCzJiHxiATvKEMf30gfED
+         8ZgzuAuE3kfsWs1l1k+aLHG9ISr7L/Z8C22vSQm//Z6dVMWIjJVcqOQzwK45+MLwOu3Z
+         1QX9dpoF8NImvgx8ocs1ngpqFys9qB8e1cmrHhX/LyD07raVySTomg7VpJtijnIkAliI
+         on6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5hwOC37cPRVT+Lgt6Q6oTRESj5g4dMDJkms4UxcNz6o=;
-        b=r/ZxG9LHhn/39sS+0oJ5WtSLZSektKrfbzF9Z6DOjGLs1m7WgxyApFq0Xl7gDjcoyp
-         ONLI7otW5CWWDMbaFbSyJ4TJ85V6X5ouDQlIKGTuBlTIDDdIW6MT0mddGvF06nsafEaM
-         Le//uQnLG6/VOYV7/t/u3aynXGf/tjXqfygvLA8DLqhSWujvWBG+XA1D532TgYC5VmDh
-         gh5LZ6NBdg0TJNmZHvc+zq4mQqkm3pK49HpZPwADuhxrVOQ0NjuN8Nf6jTM4+LE2Ck7D
-         l9o0TYUyaufy7vGISx13JgdgKWsfxdZIjwKZYu5Wp9wZ3FT+Jr0clyEGz+tsL1ZZri2O
-         REMg==
-X-Gm-Message-State: ACrzQf1+39IpxbFV8rjIAzFMU8ZayRHu/YyoYTrrQWyrw4wG2CFT4ACR
-        Qd/tQepE4IqOpDecJBoIVPPMCbOB9/YJGarIVmE=
-X-Google-Smtp-Source: AMsMyM7np7gDeepsDAM0PBQ0jBNtCsz3pC/4X0bx7r4wpvQb4BioUS97iasxlET2qoc9ejtvGFICpqJzcRu6OHtLSE0=
-X-Received: by 2002:a05:6402:46:b0:45c:bd68:6ab0 with SMTP id
- f6-20020a056402004600b0045cbd686ab0mr924498edu.16.1665567255027; Wed, 12 Oct
- 2022 02:34:15 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NB6mG33aDtm6Zk8BktYrxC+8hOs8DwGLvDzn08Z1nM0=;
+        b=RrVc3m7/ejO2NaelzQZfgFjx0fvU6Fw+je6T68fvuAxYB4MJSsOpgLhWcU6ygWmOr9
+         OJ/W03Eb/w86BIevt3HgU36Rn1Ns37v+K99ry2y4MfdvrTbL3isryCkTqpG0oAJUofwu
+         2Kc4B5XIBQDgPoZTDwDjL2gsrz7LFk1Io64Y4e2KopM4PMbv7zjWaJitXXcv8PIgK4K4
+         ob1mWdGY1STKvHYjoqvJzqdxr1s13Ts7ajsn/z8wsHn+z7eTs9d9GLIk/aSwQihXZQdG
+         RhVFcHffPpAvkRg97V53KFIUz2t1eSIniAEyGq2I3KNK2/l6+q4spmw5OyixsSLgQ67u
+         H8Rg==
+X-Gm-Message-State: ACrzQf3ceriyqIv7GbrWqDfeAa0UAq8SZdoBGMAZ46tmhwiPpNLGIK8C
+        0RKgRYyI5sxUtYjwRwHgg/DYvw==
+X-Google-Smtp-Source: AMsMyM4Y0dsY1cOpURNMZw4WsCAg5nExJ4wCqKEZj2OCuMoWYv/BIE+7HRScn1kypH278RstTt/ONQ==
+X-Received: by 2002:adf:ea08:0:b0:22e:46e9:2a8a with SMTP id q8-20020adfea08000000b0022e46e92a8amr18228046wrm.636.1665568108087;
+        Wed, 12 Oct 2022 02:48:28 -0700 (PDT)
+Received: from [192.168.1.91] (192.201.68.85.rev.sfr.net. [85.68.201.192])
+        by smtp.gmail.com with ESMTPSA id ck15-20020a5d5e8f000000b0022afe4fb459sm13724434wrb.51.2022.10.12.02.48.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Oct 2022 02:48:27 -0700 (PDT)
+Message-ID: <b0db2f52-6c26-a7e4-e16a-f2d9539c6584@baylibre.com>
+Date:   Wed, 12 Oct 2022 11:48:25 +0200
 MIME-Version: 1.0
-References: <20221012055602.1544944-1-uwu@icenowy.me> <20221012055602.1544944-11-uwu@icenowy.me>
-In-Reply-To: <20221012055602.1544944-11-uwu@icenowy.me>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Wed, 12 Oct 2022 11:34:03 +0200
-Message-ID: <CAJiuCcfSPaX_boxUjLUVdUKf7eENbOjX96aw=fTOUPEe=4cSwg@mail.gmail.com>
-Subject: Re: [PATCH v2 10/10] ARM: dts: suniv: add device tree for PopStick v1.1
-To:     Icenowy Zheng <uwu@icenowy.me>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andre Przywara <andre.przywara@arm.com>, soc@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v6 5/6] Input: Add tps65219 interrupt driven powerbutton
+Content-Language: en-US
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
+        bjorn.andersson@linaro.org, shawnguo@kernel.org,
+        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
+        marcel.ziswiler@toradex.com, vkoul@kernel.org,
+        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com
+Cc:     afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
+        msp@baylibre.com, j-keerthy@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org
+References: <20221011140549.16761-1-jneanne@baylibre.com>
+ <20221011140549.16761-6-jneanne@baylibre.com>
+From:   jerome Neanne <jneanne@baylibre.com>
+In-Reply-To: <20221011140549.16761-6-jneanne@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Icenowy,
+I forgot to add the Acked-by in the commit message:
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-On Wed, 12 Oct 2022 at 07:57, Icenowy Zheng <uwu@icenowy.me> wrote:
->
-> PopStick is a minimal Allwinner F1C200s dongle, with its USB controller
-> wired to a USB Type-A port, a SD slot and a SPI NAND flash on board, and
-> an on-board CH340 USB-UART converted connected to F1C200s's UART0.
->
-> Add a device tree for it. As F1C200s is just F1C100s with a different
-> DRAM chip co-packaged, directly use F1C100s DTSI here.
->
-> This commit covers the v1.1 version of this board, which is now shipped.
-> v1.0 is some internal sample that have not been shipped at all.
->
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> ---
-> New patch introduced in v2.
->
->  arch/arm/boot/dts/Makefile                    |   3 +-
->  .../boot/dts/suniv-f1c200s-popstick-v1.1.dts  | 101 ++++++++++++++++++
->  2 files changed, 103 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
->
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 6aa7dc4db2fc..0249c07bd8a6 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1391,7 +1391,8 @@ dtb-$(CONFIG_MACH_SUN9I) += \
->         sun9i-a80-optimus.dtb \
->         sun9i-a80-cubieboard4.dtb
->  dtb-$(CONFIG_MACH_SUNIV) += \
-> -       suniv-f1c100s-licheepi-nano.dtb
-> +       suniv-f1c100s-licheepi-nano.dtb \
-> +       suniv-f1c200s-popstick-v1.1.dtb
->  dtb-$(CONFIG_ARCH_TEGRA_2x_SOC) += \
->         tegra20-acer-a500-picasso.dtb \
->         tegra20-asus-tf101.dtb \
-> diff --git a/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts b/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
-> new file mode 100644
-> index 000000000000..121dfc6f609d
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
-> @@ -0,0 +1,101 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2022 Icenowy Zheng <uwu@icenowy.me>
-> + */
-> +
-> +/dts-v1/;
-> +#include "suniv-f1c100s.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/ {
-> +       model = "Popcorn Computer PopStick v1.1";
-> +       compatible = "sourceparts,popstick-v1.1", "sourceparts,popstick",
-> +                    "allwinner,suniv-f1c200s", "allwinner,suniv-f1c100s";
-> +
-> +       aliases {
-> +               mmc0 = &mmc0;
-> +               serial0 = &uart0;
-> +               spi0 = &spi0;
-> +       };
-> +
-> +       chosen {
-> +               stdout-path = "serial0:115200n8";
-> +       };
-> +
-> +       leds {
-> +               compatible = "gpio-leds";
-> +
-> +               led {
-> +                       function = LED_FUNCTION_STATUS;
-> +                       color = <LED_COLOR_ID_GREEN>;
-> +                       gpios = <&pio 4 6 GPIO_ACTIVE_HIGH>; /* PE6 */
-> +                       linux,default-trigger = "heartbeat";
-> +               };
-> +       };
-> +
-> +       reg_vcc3v3: vcc3v3 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "vcc3v3";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +       };
-> +};
-> +
-> +&mmc0 {
-> +       cd-gpios = <&pio 4 3 GPIO_ACTIVE_LOW>; /* PE3 */
-> +       bus-width = <4>;
-> +       disable-wp;
-> +       status = "okay";
-> +       vmmc-supply = <&reg_vcc3v3>;
-> +};
-> +
-> +&spi0 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&spi0_pc_pins>;
-> +       status = "okay";
-> +
-> +       flash@0 {
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               compatible = "spi-nand";
-> +               reg = <0>;
-> +               spi-max-frequency = <40000000>;
-> +
-> +               partitions {
-> +                       compatible = "fixed-partitions";
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +
-> +                       partition@0 {
-> +                               label = "u-boot-with-spl";
-> +                               reg = <0x0 0x100000>;
-> +                       };
-> +
-> +                       ubi@100000 {
-> +                               label = "ubi";
-> +                               reg = <0x100000 0x7f00000>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&otg_sram {
-
-Nitpick, but this should be alphabetically ordered no?
-
-> +       status = "okay";
-> +};
-> +
-> +&uart0 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&uart0_pe_pins>;
-> +       status = "okay";
-> +};
-> +
-> +&usb_otg {
-> +       dr_mode = "peripheral";
-> +       status = "okay";
-> +};
-> +
-> +&usbphy {
-> +       status = "okay";
-> +};
-> --
-> 2.37.1
->
->
+Please feel free to merge through MFD tree.
