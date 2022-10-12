@@ -2,125 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 962715FC74F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 16:25:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 240835FC765
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 16:32:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229899AbiJLOZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 10:25:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53914 "EHLO
+        id S229586AbiJLOcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 10:32:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229989AbiJLOYo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 10:24:44 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B809D73E4;
-        Wed, 12 Oct 2022 07:24:33 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29CAd1I5013940;
-        Wed, 12 Oct 2022 16:24:15 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=isiHWGkB7Zp0J3xZU0OT68bWWrLfWPTeUDUFSGCGSYU=;
- b=zrq/1NEgoGc0ZzWh9haQmgGiDLmDA1is/Kd+eGlrA35MXE58xP1K20femMpdj9h0DVb6
- uwkkaoVoaWEvjLntubkf6omtwjxZbe3Tx0vQI+oFloseVN0YGT+gJEWYROIEHBah1PFN
- J5cY2mNQNfHv3MlpZSqlFynhUbpnegdkr2AHe86n6PwPguPtd/CVb5YpkilY7JnZMsDd
- ueQaNuDyfmIxhQdr/ggBeau+91Wzm1eh0oA7vhHcNCNS3g63D3H9wpJrPZcaQa4qAQGY
- wZbppJbx9rKG7gPNfNXRdLq9H+qGMMiqmEGR5Wndm1TYoIF5MR/4jroiI/cMGGLIdqN/ QQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3k31gq3kjm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Oct 2022 16:24:15 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8C05010002A;
-        Wed, 12 Oct 2022 16:24:10 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8750522FA28;
-        Wed, 12 Oct 2022 16:24:10 +0200 (CEST)
-Received: from localhost (10.75.127.119) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Wed, 12 Oct
- 2022 16:24:10 +0200
-From:   Olivier Moysan <olivier.moysan@foss.st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Olivier Moysan <olivier.moysan@foss.st.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v4 8/8] ARM: dts: stm32: add adc support on stm32mp135f-dk
-Date:   Wed, 12 Oct 2022 16:22:05 +0200
-Message-ID: <20221012142205.13041-9-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221012142205.13041-1-olivier.moysan@foss.st.com>
-References: <20221012142205.13041-1-olivier.moysan@foss.st.com>
+        with ESMTP id S229492AbiJLOcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 10:32:33 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CFF4A2203
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 07:32:31 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id t25so3468498qkm.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 07:32:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SH4UGOuYFZRjMjpUe6JiCqBFCXy39ifK+ZqrTxN5hbc=;
+        b=h2tWoloLCif8btRNVAv/Kb99Ys0nSBWAsdEQBv245LFnhCgk3+HaPx5b6/4u30qaqc
+         3oAtZ6i0r8pAwA6mGhMULAttwwqiEz6jBQtizIuuziZjGvoZS4RdauEHZqmqBizGuvPB
+         FI+hp1RU8rPQRamMz24NeXBCIGqonYlFLzaYaRuYQGv7CDp5clNblWwTN5wg1mGX2CeC
+         /FfFsnjm0Vh4kcQWjmEH5rwe6YfmYUkmjq0hB08kmbs0WuGjLZPm45nKNLd4leXDbYt4
+         W4wL0UBPGSP7zC03yOpTfEGgEAHsPCesRgSH44F3E5SZxiorLTkr9vqu9mHiZRZPzWeC
+         1Bzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SH4UGOuYFZRjMjpUe6JiCqBFCXy39ifK+ZqrTxN5hbc=;
+        b=Y15j8R2t7XJwIUNkIrzZ9TfoynRR1jU1Fy8hYvlUKcVscCz+m3LmDHzFzVJ8T0qrF7
+         OuT93eYpqg9RVcWXXfcacwUrF+HK2QyXPKV8TNRtUL0gThPySMahZ2tcvlZ5iczD9Qt1
+         03+AsiaDhzM0wEX+nk2QtYHjx7A9t1oLacf2PaLeFfnbI2MehH5+0clgxZVxTFYgtQAc
+         S/4llGKuAXIff4GfYQnMzDtsjhTcCaE4BzgL4B9bz2xc/XCsXf3B5/NbvpCmN5OffsPK
+         SLPbGL+hy+S0+JIWByOAOyWJRwWFIuP2FWoKV3boWzwKqH4SQzOAw/TAmw7DPEe0Rw8I
+         W4eA==
+X-Gm-Message-State: ACrzQf1VURrUyIpP+/7qlVG8/3sf7jAqVqOnn8QhIUitfnLWtUbi+eT2
+        VEbA1RrHPubBU09U1sp8EJSktw==
+X-Google-Smtp-Source: AMsMyM561J8FH7HsWgP5RLTfNoeEdidaF/qKXJ1zmPKh6eF/XRTzCY/HasSxm6mPyaBCFY1GpNGHKQ==
+X-Received: by 2002:a37:ad12:0:b0:6ee:8313:6199 with SMTP id f18-20020a37ad12000000b006ee83136199mr5398271qkm.570.1665585150355;
+        Wed, 12 Oct 2022 07:32:30 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id bq15-20020a05622a1c0f00b0039cb9b6c390sm2395117qtb.79.2022.10.12.07.32.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Oct 2022 07:32:29 -0700 (PDT)
+Message-ID: <6f3088a8-284d-d71f-68d1-01a5412bfff2@linaro.org>
+Date:   Wed, 12 Oct 2022 10:32:07 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.119]
-X-ClientProxiedBy: GPXDAG2NODE6.st.com (10.75.127.70) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-12_07,2022-10-12_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: marvell,pp2: convert to
+ json-schema
+Content-Language: en-US
+To:     Marcin Wojtas <mw@semihalf.com>
+Cc:     =?UTF-8?Q?Micha=c5=82_Grzelak?= <mig@semihalf.com>,
+        devicetree@vger.kernel.org, linux@armlinux.org.uk,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, upstream@semihalf.com
+References: <20221011190613.13008-1-mig@semihalf.com>
+ <20221011190613.13008-2-mig@semihalf.com>
+ <ad015bc9-a6d2-491d-463a-42a6a0afbf75@linaro.org>
+ <CAPv3WKcY=erFTBDLP1AhQa0+CP6C8KJinmKFEkR2xh4mHHv_aQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAPv3WKcY=erFTBDLP1AhQa0+CP6C8KJinmKFEkR2xh4mHHv_aQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure ADC support on stm32mp135f-dk. ADC can be used for
-USB Type-C CC1 & CC2 pins wired to in6 & in12.
+On 11/10/2022 16:34, Marcin Wojtas wrote:
+>>
+>> Keep the same order of items here as in list of properties
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - clocks
+>>> +  - clock-names
+>>> +
+>>> +allOf:
+>>> +  - $ref: ethernet-controller.yaml#
+>>
+>> Hmm, are you sure this applies to top-level properties, not to
+>> ethernet-port subnodes? Your ports have phy-mode and phy - just like
+>> ethernet-controller. If I understand correctly, your Armada Ethernet
+>> Controller actually consists of multiple ethernet controllers?
+>>
+> 
+> PP2 is a single controller with common HW blocks, such as queue/buffer
+> management, parser/classifier, register space, and more. It controls
+> up to 3 MAC's (ports) that can be connected to phys, sfp cages, etc.
+> The latter cannot exist on their own and IMO the current hierarchy -
+> the main controller with subnodes (ports) properly reflects the
+> hardware.
+> 
+> Anyway, the ethernet-controller.yaml properties fit to the subnodes.
+> Apart from the name. The below is IMO a good description:.
 
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
- arch/arm/boot/dts/stm32mp135f-dk.dts | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+It also starts to look a bit like a switch (see bindings/net/dsa).
 
-diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
-index 348adeec7fdc..967df1944822 100644
---- a/arch/arm/boot/dts/stm32mp135f-dk.dts
-+++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
-@@ -76,6 +76,31 @@ vdd_adc: vdd-adc {
- 	};
- };
- 
-+&adc_1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&adc1_usb_cc_pins_a>;
-+	vdda-supply = <&vdd_adc>;
-+	vref-supply = <&vdd_adc>;
-+	status = "okay";
-+	adc1: adc@0 {
-+		status = "okay";
-+		/*
-+		 * Type-C USB_PWR_CC1 & USB_PWR_CC2 on in6 & in12.
-+		 * Use at least 5 * RC time, e.g. 5 * (Rp + Rd) * C:
-+		 * 5 * (5.1 + 47kOhms) * 5pF => 1.3us.
-+		 * Use arbitrary margin here (e.g. 5us).
-+		 */
-+		channel@6 {
-+			reg = <6>;
-+			st,min-sample-time-ns = <5000>;
-+		};
-+		channel@12 {
-+			reg = <12>;
-+			st,min-sample-time-ns = <5000>;
-+		};
-+	};
-+};
-+
- &i2c1 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&i2c1_pins_a>;
--- 
-2.25.1
+> 
+>> If so, this should be moved to proper place inside patternProperties.
+>> Maybe the subnodes should also be renamed from ports to just "ethernet"
+>> (as ethernet-controller.yaml expects), but other schemas do not follow
+>> this convention,
+> 
+> ethernet@
+> {
+>     ethernet-port@0
+>     {
+>      }
+>      ethernet-port@1
+>      {
+>      }
+> }
+> 
+> What do you recommend?
+
+Yes, keep it like this and reference the ethernet-controller.yaml in
+each port.
+
+Best regards,
+Krzysztof
 
