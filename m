@@ -2,147 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96DDC5FCA82
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 20:21:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC45C5FCA88
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 20:24:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbiJLSVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 14:21:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56248 "EHLO
+        id S229734AbiJLSYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 14:24:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229899AbiJLSUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 14:20:39 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E6EB31341;
-        Wed, 12 Oct 2022 11:20:34 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29CIJB8G109540;
-        Wed, 12 Oct 2022 13:19:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1665598751;
-        bh=5JtcXvc2y8xgELgZ+i8jCK0pwHl02q0j+wYLyn46Ud0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=IFDCH0pz4UCp/F9EExNlGaMBisTGvh42RLgniCbvCK6WlTmXDmWf9MoiwHHO6bZsx
-         8mDYqCPpkWz5L9Ydtc+z/OyVjmX1MNpJk46eDXn9XuCpkQMukig3a/+HlQliO1hGf8
-         C+NPIJ/IyEaEQnocrhAQcFddovqbPHXKUu+zL1WA=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29CIJBqA083381
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 12 Oct 2022 13:19:11 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 12
- Oct 2022 13:19:11 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 12 Oct 2022 13:19:11 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29CIJB1b124372;
-        Wed, 12 Oct 2022 13:19:11 -0500
-Date:   Wed, 12 Oct 2022 13:19:11 -0500
-From:   Bryan Brattlof <bb@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Keerthy <j-keerthy@ti.com>,
-        Linux Thermal <linux-pm@vger.kernel.org>,
-        Linux Device Tree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 05/11] dt-bindings: thermal: k3-j72xx: elaborate on
- binding descriptions
-Message-ID: <20221012181911.qk7v3yabo726lmtl@bryanbrattlof.com>
-References: <20221011231727.8090-1-bb@ti.com>
- <20221011231727.8090-6-bb@ti.com>
- <06249fe9-97eb-1ab8-5e35-00b3c613d3a7@linaro.org>
+        with ESMTP id S229537AbiJLSYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 14:24:01 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2EE1140
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 11:24:00 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id m19so25614012lfq.9
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 11:23:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f8EawSfGRFWzbyxxqHZ/CXnplUxOrrkRY1TiQySTK7A=;
+        b=eeXAatAdr9oRMAO2qqcunj8ZEr+oAJ/Xv/9/Y5iz1U+D24htTr2K78DpHWm+gon7uy
+         UpDKjmin0I2YYwX54XOtQR3LbsG4SFs3AnuE/0v81yGlZeI+FraVhrD+TkBg0VKhbY25
+         p0SH/D0wh9+ykibzQbmWC0Ky24M2HUzt1B6fM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f8EawSfGRFWzbyxxqHZ/CXnplUxOrrkRY1TiQySTK7A=;
+        b=JNdwqxnkJ18hXdCxF96bNVGq9fEq/eKBLgat7co68nR2dhUdNsPuthChgTPRTjDQuA
+         F19YAZQvq1yTh0ZMq+XzSbhWGYO71SCDfKLYjH/c6zhAe4JfqppKY41DBv7TmHgBHXLw
+         PwIWiXWXIL6s5i8VYFYzpxnC4XOfgebUkCreNG8mc6UTXvq3H2YFyTelslpdNAF2cbHy
+         mBZj21Oalucikp0XgxyafLkVEochigr4MKVdAJ/AN7bnShAegJfG5sMAJbz4HTYtMnsA
+         lTO2eBqXOsKkIKtrNNXza+7dw53CquAWC1aOOKBkpuxKDAh6yr287rPeWYpWdQ39FBq4
+         S3Ow==
+X-Gm-Message-State: ACrzQf2QT5HMMI41LS7MfvlKEg6Th6k8pcnPVolo14QjtOgeWG9BSnn8
+        dwlFR2ylCvRi58NT+D8KbDD9r09UyBl6qgXsZjYJOA==
+X-Google-Smtp-Source: AMsMyM7ctxGy1xfpOUr7onOXWKeqnUCIjPXxitKzTa8le/LjesknS63vkHu4WHzJwKdW/y1zALUhzudybYMIa4qyNWQ=
+X-Received: by 2002:a05:6512:3403:b0:48c:9727:50b0 with SMTP id
+ i3-20020a056512340300b0048c972750b0mr10355719lfr.309.1665599038342; Wed, 12
+ Oct 2022 11:23:58 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 12 Oct 2022 13:23:57 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <06249fe9-97eb-1ab8-5e35-00b3c613d3a7@linaro.org>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1665569560-28943-1-git-send-email-quic_srivasam@quicinc.com>
+References: <1665569560-28943-1-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 12 Oct 2022 13:23:57 -0500
+Message-ID: <CAE-0n52dsaTLQ7o6Z2PeFSv2_vTjvtujJ0JWCPE3uXxpKD0O4Q@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: qcom: lpass-cpu: mark HDMI TX registers as volatile
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        andersson@kernel.org, bgoswami@quicinc.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, judyhsiao@chromium.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz,
+        quic_plai@quicinc.com, quic_rohkumar@quicinc.com,
+        robh+dt@kernel.org, srinivas.kandagatla@linaro.org, tiwai@suse.com
+Cc:     Srinivasa Rao Mandadapu 
+        <srivasam@qualcomm.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On October 12, 2022 thus sayeth Krzysztof Kozlowski:
-> On 11/10/2022 19:17, Bryan Brattlof wrote:
-> > Elaborate on the function of this device node as well as some of the
-> > properties that this node uses.
-> > 
-> > Signed-off-by: Bryan Brattlof <bb@ti.com>
-> > ---
-> >  .../bindings/thermal/ti,j72xx-thermal.yaml    | 27 ++++++++++++++++++-
-> >  1 file changed, 26 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> > index c74f124ebfc00..0b6a6fa07a532 100644
-> > --- a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> > +++ b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> > @@ -9,6 +9,24 @@ title: Texas Instruments J72XX VTM (DTS) binding
-> >  maintainers:
-> >    - Keerthy <j-keerthy@ti.com>
-> >  
-> > +description: |
-> > +  The TI K3 family of SoCs typically have a Voltage & Thermal
-> > +  Management (VTM) device to control up to 8 temperature diode
-> > +  sensors to measure silicon junction temperatures from different
-> > +  hotspots of the chip as well as provide temperature, interrupt
-> > +  and alerting information.
-> > +
-> > +  The VTM device will periodically enable these temperature sensors
-> > +  to make a temperature measurement and store the reported data
-> > +  allowing the sensors to stay in a reset state when not in use
-> > +  to maximize the sensor's life.
-> > +
-> > +  This VTM driver will then use the following polynomial equation to
-> 
-> "VTM driver" is some physical/electronic element called driver? Or Linux
-> driver? If the latter, drop it and just describe the equation.
+Quoting Srinivasa Rao Mandadapu (2022-10-12 03:12:40)
+> From: Srinivasa Rao Mandadapu <srivasam@qualcomm.corp-partner.google.com>
+>
+> Update HDMI volatile registers list as DMA, Channel Selection registers
+> , vbit control registers are being reflected by hardware DP port
 
-Yeah I was trying to talk about the Linux driver. I'll edit it to only 
-the equation. 
+No idea why a comma starts this line.
 
-> 
-> > +  calculate the temperature from the value stored in the VTM device.
-> > +
-> > +  Temp = (-9.2627e-12) * x^4 + (6.0373e-08) * x^3 + \
-> > +         (-1.7058e-04) * x^2 + (3.2512e-01) * x   + (-4.9003e+01)
-> > +
-> >  properties:
-> >    compatible:
-> >      enum:
-> > @@ -19,9 +37,16 @@ properties:
-> >      items:
-> >        - description: VTM cfg1 register space
-> >        - description: VTM cfg2 register space
-> > -      - description: VTM efuse register space
-> > +      - description: |
-> > +          A software trimming method must be applied to some Jacinto
-> > +          devices to function properly. This eFuse region provides
-> > +          the information needed for these SoCs to report
-> > +          temperatures accurately.
-> >  
-> >    power-domains:
-> > +    description: |
-> > +      Should contain the phandle to a power management (PM) domain
-> > +      node and the device-id of this device.
-> 
-> This is quite generic - why adding it?
+> disconnection.
 
-This was really a "while I'm here" addition. But there is no need, I can 
-drop this
+Add a newline here?
 
-Thanks again Krzysztof
-~Bryan
+> This update is required to fix no display and no sound issue
+> observed after reconnecting TAMA/SANWA DP cables.
+> Once DP cable is unplugged, DMA control registers are being reset by
+> hardware, however at second plugin, new dma control values does not
+> updated to the dma hardware registers since new register value and
+> cached values at the time of first plugin are same.
+>
+
+Any Fixes tag?
+
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@qualcomm.corp-partner.google.com>
+
+Why not simply the quicinc email?
