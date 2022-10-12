@@ -2,116 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C52F5FCA29
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 20:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C2875FCA2D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 20:02:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbiJLSBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 14:01:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44110 "EHLO
+        id S229544AbiJLSCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 14:02:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiJLSBk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 14:01:40 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C78DC45A5
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 11:01:39 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29CI19Ef027355;
-        Wed, 12 Oct 2022 13:01:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1665597669;
-        bh=cPyBKMv6Z8JrxMqwY756UmrJeeJ/4DbeV/5ZOowFai4=;
-        h=From:To:CC:Subject:Date;
-        b=udUg+nHou7/46HW1FilGi2excOkuyhBT0YH4qt20UvwtO6ycJvyEXpWuoM0Xww+ig
-         VntuHOoRyd5Z7/uIMAAkEeLrhoM5pZXfNJAe3o5+g9LTWh4A2T+X0T4m2Qeo1MDZuY
-         Ftf75paC7vbZ13wvPOkjwHueHKmIPrZTRHDPJ7YY=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29CI19x7060109
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 12 Oct 2022 13:01:09 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 12
- Oct 2022 13:01:09 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 12 Oct 2022 13:01:08 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29CI16wS052016;
-        Wed, 12 Oct 2022 13:01:08 -0500
-From:   Matt Ranostay <mranostay@ti.com>
-To:     <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Matt Ranostay <mranostay@ti.com>
-Subject: [PATCH] arm64: dts: k3-j72*: correct compatible for syscon entries
-Date:   Wed, 12 Oct 2022 11:00:52 -0700
-Message-ID: <20221012180052.89840-1-mranostay@ti.com>
-X-Mailer: git-send-email 2.38.0.rc0.52.gdda7228a83
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229572AbiJLSCC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 14:02:02 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15096DD898;
+        Wed, 12 Oct 2022 11:02:01 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id q1so7829392pgl.11;
+        Wed, 12 Oct 2022 11:02:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mI6JTDhKVYSrCGCD4V56C9X6Kiak+3dUkc3QnuibHPU=;
+        b=ZwTl6AAaQ0Ws45vSBrLIcUrnyeGPkzph09dsda8I/3iok8sidXoeHPpBSYWXOhWO4I
+         VotyRNrTD2SYFyLa0rgP3w9dLcgU0io4629+19FHN7tg5P7vrE9tTi871hDFV81cYjgf
+         s05P6xeO/0de/53iAG8UuId+EXcpeOBccSvpUxeEcWXz9cyEyrKfHnYSvuhWjccb6/CE
+         sQNFkSa7PZFUOTCbx/fQ+02VgEkRTs0qibiKXdmr7plpmDS/81QioTTfVhHBbYG8fTqo
+         CQoct7DhqlQpGvbd6vSyxz/dbVVl7CyWJ2771hpPjKopD5so1Nq8b4vzopepLQvUUL+V
+         tXUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mI6JTDhKVYSrCGCD4V56C9X6Kiak+3dUkc3QnuibHPU=;
+        b=bYEYMkdXdGL8vg+I3STyGeb1izw5IYtr7/ObPH9POETAXf98dFkfnJZoI6ylm71pAR
+         LlVci1EYwZSCplV+AdgLd2PC0kPOS/aVWYyZOrnIAB4OFd0OHUUasuJo3p46XQQgNTE/
+         rh1Kq2e7uxjjo2JT3Qe+QgNMT5MjjmXegWzSQz34y8m455E+b19lRMODg4ALuJQUk35Y
+         QGmoAL7CdFHMVXmPgIcpLzQlR/vWAfJu64pBNxkgMqyzkCx8DgLUl9I3l63Y3uCeBnXV
+         GlXBoq8v9RH/w870x/+IWQJz5v7jjdJ5aaAhuV64hl0AjDApHmzOZuXSYvXMohKpQgw0
+         9G6A==
+X-Gm-Message-State: ACrzQf1RVHuQA/eEm0mIXlVeHbBVeh11x+3V7ac/+/X+C1BCu1++CN8M
+        +B07ZkVvs9KNKFWIPL80+aiTvSS4kfKKYA==
+X-Google-Smtp-Source: AMsMyM6wGKajSAd4wPGHhoHm+LRw505WIZj871/gi+wZTScVudBPvwvqo9aSHUegpMeeYFn/afRAgg==
+X-Received: by 2002:a63:1c47:0:b0:44c:2476:12ff with SMTP id c7-20020a631c47000000b0044c247612ffmr27537426pgm.50.1665597720308;
+        Wed, 12 Oct 2022 11:02:00 -0700 (PDT)
+Received: from localhost ([2406:7400:61:b6fa:b70b:65a4:a699:40c8])
+        by smtp.gmail.com with ESMTPSA id d10-20020a170902654a00b0016c50179b1esm10777750pln.152.2022.10.12.11.01.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Oct 2022 11:01:59 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 12 Oct 2022 23:31:51 +0530
+Message-Id: <CNK541A4RD4B.31EY633R2WS9O@skynet-linux>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <linux-kernel@vger.kernel.org>
+Cc:     <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <dmitry.baryshkov@linaro.org>, "Andy Gross" <agross@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
+        "Mathieu Poirier" <mathieu.poirier@linaro.org>
+Subject: Re: [PATCH v3 1/2] remoteproc: qcom: pas: Add MSM8953 ADSP PIL
+ support
+From:   "Sireesh Kodali" <sireeshkodali1@gmail.com>
+X-Mailer: aerc 0.12.0
+References: <20221008174658.336470-1-sireeshkodali1@gmail.com>
+ <20221008174658.336470-2-sireeshkodali1@gmail.com>
+ <56e8fc84-aad0-b153-e415-8c1bd1647c2b@linaro.org>
+In-Reply-To: <56e8fc84-aad0-b153-e415-8c1bd1647c2b@linaro.org>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing ti,j721e-system-controller to bus defines in mcu/wakeup
-domains to avoid the following similar warnings from dt-schema checks:
+On Mon Oct 10, 2022 at 4:22 PM IST, Krzysztof Kozlowski wrote:
+> On 08/10/2022 13:46, Sireesh Kodali wrote:
+> > Add support for the Audio DSP PIL found on the Qualcomm MSM8953
+> > platform. The same configuration is used on all SoCs based on the
+> > MSM8953 platform (SDM450, SDA450, SDM625, SDM632, APQ8053).
+> >=20
+> > Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+> > ---
+> >  drivers/remoteproc/qcom_q6v5_pas.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qc=
+om_q6v5_pas.c
+> > index 6afd0941e552..70b3a37c4814 100644
+> > --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> > +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> > @@ -950,6 +950,7 @@ static const struct of_device_id adsp_of_match[] =
+=3D {
+> >  	{ .compatible =3D "qcom,msm8226-adsp-pil", .data =3D &adsp_resource_i=
+nit},
+> >  	{ .compatible =3D "qcom,msm8974-adsp-pil", .data =3D &adsp_resource_i=
+nit},
+> >  	{ .compatible =3D "qcom,msm8996-adsp-pil", .data =3D &msm8996_adsp_re=
+source},
+> > +	{ .compatible =3D "qcom,msm8953-adsp-pil", .data =3D &msm8996_adsp_re=
+source},
+>
+> This one also in alphanumeric order, by compatible.
 
-arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: syscon@40f00000: compatible: ['syscon', 'simple-mfd'] is too short'
+Will be fixed in the next iteration
 
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index e5be78a58682..b5c666f98ba4 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -35,7 +35,7 @@ k3_reset: reset-controller {
- 	};
- 
- 	mcu_conf: syscon@40f00000 {
--		compatible = "syscon", "simple-mfd";
-+		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
- 		reg = <0x00 0x40f00000 0x00 0x20000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-index df08724bbf1c..5d9ec221fa34 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-@@ -35,7 +35,7 @@ k3_reset: reset-controller {
- 	};
- 
- 	mcu_conf: syscon@40f00000 {
--		compatible = "syscon", "simple-mfd";
-+		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
- 		reg = <0x0 0x40f00000 0x0 0x20000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index 4d1bfabd1313..3845d162d3c6 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -69,7 +69,7 @@ wkup_gpio_intr: interrupt-controller@42200000 {
- 	};
- 
- 	mcu_conf: syscon@40f00000 {
--		compatible = "syscon", "simple-mfd";
-+		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
- 		reg = <0x0 0x40f00000 0x0 0x20000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--- 
-2.38.0.rc0.52.gdda7228a83
+Regards,
+Sireesh Kodali
+>
+>
+> Best regards,
+> Krzysztof
 
