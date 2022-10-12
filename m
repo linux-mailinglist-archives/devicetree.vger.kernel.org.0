@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB1965FC59F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 14:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED4CB5FC5B4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 14:57:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbiJLMyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 08:54:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38600 "EHLO
+        id S229506AbiJLM5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 08:57:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbiJLMyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 08:54:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AB88C97F2;
-        Wed, 12 Oct 2022 05:54:11 -0700 (PDT)
+        with ESMTP id S229709AbiJLM5P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 08:57:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 625BF33A2A;
+        Wed, 12 Oct 2022 05:57:14 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 920846141C;
-        Wed, 12 Oct 2022 12:54:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA5AAC433D6;
-        Wed, 12 Oct 2022 12:54:08 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F1125614E6;
+        Wed, 12 Oct 2022 12:57:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81154C433C1;
+        Wed, 12 Oct 2022 12:57:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665579251;
-        bh=AIeGGSg/EfOPT/q/5pGppJEf2mu95V7y75CXy5HDoLY=;
+        s=k20201202; t=1665579433;
+        bh=WDbSYWq0wPAI5p27fm3VNziGpqWpDnwBwjDfAlffaJ8=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=eghw1zmWDlGQL6bVwaqS77HemFRMGuZ2H+EbyNO069FGb4Eb/0lVuGESOshgOGPAG
-         93pqukcfVGNRVLX0KoGz7mPxXXG/KvxKXm8WfI7UXzQ7nnDW7yEUxQn/tdeCOb4YC8
-         bfoX31FcNxkE/zyF137OmHghScvxw34m/oadhqN9aVRYYCBtuy+Yw3ghDNcMDLFnbF
-         y0Uyr3wXOXIR0hTE3uhMMSRBeF52vzVBZI10O+5gA0fampASQ6cyQ+i/sXhBkJgYnZ
-         dnoSevIC3y5P5plUORPRyFUdVEWxTNaW/JDRu47y2Qr9Z0NF/ee3/T1aUxIU5l6vFC
-         YzmbMXV0pIetQ==
-Message-ID: <2ee13936-4589-8711-2f20-a52f27047492@kernel.org>
-Date:   Wed, 12 Oct 2022 08:54:06 -0400
+        b=Na21Lbq8X4t084BkbZUHMR8zHQJ7j/oMRuo0VLF+gzc38KApN8H3Q00MefrvPdxdb
+         AiWpyrrzJyTlLCe2UFnBi1hWNiBjX9LMVUMTExXuetNeYRNfRQHVo+P1PS3qITRIHP
+         dLxQ9THvMVwfSl8JY/2XRK5JdBy+p8CD2CA8rDTuslCF3qC/wJ7+dIDpzp+C5tADFM
+         EtNNPBhpV/oCd2ovQFT2hy/LFDu9upGZxf2E2As3ROZEZpcv1Xhv0QFEf1HAaFUDYe
+         hH4kDvXyPgqEkWx1nEONX0JfyJPDgn91ksVlIpWH2A1TsnXuJ0fipo73HqZctURL/w
+         FvwNt9L8AmF5g==
+Message-ID: <87380fdb-4053-e8dc-e997-b7c42be025ca@kernel.org>
+Date:   Wed, 12 Oct 2022 08:57:08 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH V14 1/7] dt-bindings: Added the yaml bindings for DCC
+Subject: Re: [Patch v3 01/15] dt-bindings: media: s5p-mfc: Add new DT schema
+ for MFC
 Content-Language: en-US
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>, vkoul@kernel.org
-References: <cover.1664383851.git.quic_schowdhu@quicinc.com>
- <e320555b2075c94946ef3f9c78732dc84ba39449.1664383851.git.quic_schowdhu@quicinc.com>
- <4d0f7a01-1995-1b1e-40b9-125c3447b8c7@kernel.org>
- <78b42aab-164a-7fe6-fec5-77f52199c641@quicinc.com>
- <e028ad6a-9687-5089-4938-e982764b9c58@kernel.org>
- <a1a79910-c697-3660-ddf8-5f4f164c1b34@quicinc.com>
+To:     aakarsh jain <aakarsh.jain@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
+        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
+        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
+        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
+        andi@etezian.org, alim.akhtar@samsung.com,
+        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
+        linux-fsd@tesla.com, smitha.t@samsung.com
+References: <20221011122516.32135-1-aakarsh.jain@samsung.com>
+ <CGME20221011125142epcas5p13c858a5f27830fb1de50fa51e9730eca@epcas5p1.samsung.com>
+ <20221011122516.32135-2-aakarsh.jain@samsung.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <a1a79910-c697-3660-ddf8-5f4f164c1b34@quicinc.com>
+In-Reply-To: <20221011122516.32135-2-aakarsh.jain@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -67,34 +68,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/2022 01:57, Souradeep Chowdhury wrote:
+On 11/10/2022 08:25, aakarsh jain wrote:
+> From: Smitha T Murthy <smitha.t@samsung.com>
 > 
-> On 10/11/2022 6:50 PM, Krzysztof Kozlowski wrote:
->> On 30/09/2022 02:59, Souradeep Chowdhury wrote:
->>> Also the ./script/maintainers.pl gives the below output
->>>
->>> Souradeep Chowdhury<quic_schowdhu@quicinc.com>  (maintainer:DCC QTI
->>> DRIVER,in file)
->>> Andy Gross<agross@kernel.org>  (maintainer:ARM/QUALCOMM SUPPORT)
->>> Bjorn Andersson<andersson@kernel.org>  (maintainer:ARM/QUALCOMM SUPPORT)
->>> Konrad Dybcio<konrad.dybcio@somainline.org>  (reviewer:ARM/QUALCOMM SUPPORT)
->>> Rob Herring<robh+dt@kernel.org>  (maintainer:OPEN FIRMWARE AND FLATTENED
->>> DEVICE TREE BINDINGS)
->>> Krzysztof Kozlowski<krzysztof.kozlowski+dt@linaro.org>  (maintainer:OPEN
->>> FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
->>> linux-arm-msm@vger.kernel.org  (open list:DCC QTI DRIVER)
->>> devicetree@vger.kernel.org  (open list:OPEN FIRMWARE AND FLATTENED DEVICE
->>> TREE BINDINGS)
->>> linux-kernel@vger.kernel.org  (open list)
->>>
->>> Will send out the next version accordingly, let me know in case of any
->>> further concerns.
->> v15 and v16 was still not sent according to what you wrote above...
-> 
-> I have copied all of the above in the mailing list, also I have 
-> implemented all the previous comments.
+> Convert DT schema for s5p-mfc in yaml format
 
-At least my address is not correct.
+Convert S5P-MFC bindings to DT schema.
+
+You also missed full-stop.
+
+My second comment was ignored here.
+
+
+> 
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> ---
+>  .../devicetree/bindings/media/s5p-mfc.txt     |  75 --------
+>  .../bindings/media/samsung,s5p-mfc.yaml       | 163 ++++++++++++++++++
+>  2 files changed, 163 insertions(+), 75 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt b/Documentation/devicetree/bindings/media/s5p-mfc.txt
+> index aa54c8159d9f..8b137891791f 100644
+> --- a/Documentation/devicetree/bindings/media/s5p-mfc.txt
+> +++ b/Documentation/devicetree/bindings/media/s5p-mfc.txt
+
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
 
 Best regards,
 Krzysztof
