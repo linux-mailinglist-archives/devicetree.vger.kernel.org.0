@@ -2,82 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49BD95FCD68
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 23:42:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC74F5FCD75
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 23:45:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbiJLVmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 17:42:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60326 "EHLO
+        id S229506AbiJLVpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 17:45:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbiJLVmm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 17:42:42 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6813D120EE6
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 14:42:41 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id b2so30230eja.6
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 14:42:41 -0700 (PDT)
+        with ESMTP id S229640AbiJLVpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 17:45:24 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B4793AB1A
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 14:45:22 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id y1so227336pfr.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 14:45:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=OYdHqQLScp6clfYhq6LYLQ1B6NXfY8WPB94zZx9mwyk=;
-        b=gw6QluUYDqChzGUbk/F6w8IiUJuL7ueOskrMK30ZFWB3Vg8bBcFYTB5mP9p0r1gFSZ
-         NjSSMLt9Frz3HcT5SmQz+D9UvRrRqFZXyCHlbBv2iJfvCefqjO+CYTRrvHyvPCTLpN5C
-         eKb7+9RcWgm5llOB0hmx1YerY4AGB/T8/XXpI=
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XnSNmVn3ksCv9S8MOdNsWwpNq6AQ/Pcm1KHOD5G+EMY=;
+        b=MGsnnOGYTmmJRtA8umlAumAHrBbfsJN0AzQcAOW94b1F1EZyLaMrEapXfxR+MbLt1F
+         W2dt3XXHj0SG4HooyYMQ9meAu/G8kNck5O2VrATPQ2cGiCcbfelZXmZx7q9pZXhrLgRd
+         IaBflRnpcnLpOFjCPjOR/w1kgyhbDdQPHbZko4MGBD5MyAVlVf2dG03HSSImTJSC/i9S
+         jCZWDLNzif5W+2yjoxkfY2WHUGV5rhNAHCDAvB+LWqLgdoicKE2bZkCabXNfDu2TyszF
+         jUbvzs7DEtjoSPUKBfYdNk3Q9L+iGArIxaCeNPJan3kmlNQbF0IkuahIa8meBvSEwLi6
+         D63Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OYdHqQLScp6clfYhq6LYLQ1B6NXfY8WPB94zZx9mwyk=;
-        b=idZrLqiO7p6+CgWz5hJ21O+TLFyuIwQgJ6phWuBkGFBnkCryxYs30bQ+JDYptzNxSF
-         6BnPG64EAVY9/vJmbMKwPBi6fapnMCeoHF5+fazfJW54Z29aoTK0ejKH+TTANSGhCC1y
-         ir/KwN5lBiukUFyfgC1cV1241W5m01ovchF9YqzhHbJPur2SGxtcUnbv/kjMew3l5sfy
-         AVWYHAMDOr5mMVsgNLyLitKQiDOi7It7Ri+7cIkPGvxZKABfheAbKh7+rWFvbkywnvnP
-         yuUd4ggXHab2LC15Lt5ZRAtLg/2r6gNfx/1PO0idz9P+dsLdJrDyIyojEZTXKpvrTvkN
-         MMuA==
-X-Gm-Message-State: ACrzQf2Mc1t/Fa9wQiLnr2GOwGPN5o5D1hb9V3uIhnnskrkmS87tgJFi
-        P6K9jFCg0mLboMcuN5qm+S5eBkgETpdlIuMS
-X-Google-Smtp-Source: AMsMyM6T2xF8n3aVoatUWpn59u571gUSfZUG39A0tMy4wdnwibpiWRMvacBFQjTsCt2kQlhqqV7OeA==
-X-Received: by 2002:a17:907:c03:b0:781:fd5a:c093 with SMTP id ga3-20020a1709070c0300b00781fd5ac093mr23758968ejc.89.1665610959705;
-        Wed, 12 Oct 2022 14:42:39 -0700 (PDT)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
-        by smtp.gmail.com with ESMTPSA id gv15-20020a170906f10f00b0078d9e26db54sm1869742ejb.88.2022.10.12.14.42.38
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 14:42:38 -0700 (PDT)
-Received: by mail-wm1-f46.google.com with SMTP id c3-20020a1c3503000000b003bd21e3dd7aso1980647wma.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 14:42:38 -0700 (PDT)
-X-Received: by 2002:a05:600c:5488:b0:3b5:634:731 with SMTP id
- iv8-20020a05600c548800b003b506340731mr3906447wmb.188.1665610958124; Wed, 12
- Oct 2022 14:42:38 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XnSNmVn3ksCv9S8MOdNsWwpNq6AQ/Pcm1KHOD5G+EMY=;
+        b=kJ/cwAQfJ2HmdkBaR1XXhreNa7doDtYG29Vg5oQ+9w9lTA92VMCZyEsEF9WtFezc8Z
+         Pc/IOrlF5IgcuRgwzzHnLmaRZdNamQjPMXL+bJTF0fdh1LD4I0Rbcn9FObKJtG4wpcnQ
+         5fEZiRGyV6oRkzgheqU80i2a2qAehaRM8He+cZT2hevJ6wMhZ78G9zrivtXEJAzLZZLG
+         0QwG+rpySbPLZ4Vf0SmMLhHWPW6x7xfFBjg8HS7a3fcMOdaqFz2hHGCg+Zm1mphXp+M5
+         erozjw4LIDOjSbKmuyvm9NBvYJtnZkbp+YhKhVayZbKMw4hBH59OgLy4/Tj3wp3Z9Ibg
+         8QwA==
+X-Gm-Message-State: ACrzQf3jGqzP4MA6+OVZ7blmoy5M16cQj1lCTxKNHmjvVvQAxKxK4THx
+        O/ihudUCKSXcV/Q1niijI7OGJw==
+X-Google-Smtp-Source: AMsMyM6HbXJvvwCvGKgvg48z9e4cYGEm947nwbG/SYEqqcBQ9dDCX+0Mato1F438T8S1GJHJ2ZdJxQ==
+X-Received: by 2002:a63:4b4c:0:b0:45a:5f8:b49d with SMTP id k12-20020a634b4c000000b0045a05f8b49dmr26997295pgl.490.1665611121849;
+        Wed, 12 Oct 2022 14:45:21 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id ik7-20020a170902ab0700b0016f8e8032c4sm11006457plb.129.2022.10.12.14.45.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Oct 2022 14:45:20 -0700 (PDT)
+Date:   Wed, 12 Oct 2022 15:45:18 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V6 4/7] remoteproc: imx_rproc: support kicking Mcore from
+ Linux for i.MX8QXP
+Message-ID: <20221012214518.GB1196937@p14s>
+References: <20220929061704.1571746-1-peng.fan@oss.nxp.com>
+ <20220929061704.1571746-5-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-References: <20221010114417.29859-1-krzysztof.kozlowski@linaro.org> <20221010114417.29859-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221010114417.29859-2-krzysztof.kozlowski@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 12 Oct 2022 14:42:25 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WU_WPmhvABViw9w=8zuoWhW0VLo56+D3e5xXh8bBYPEg@mail.gmail.com>
-Message-ID: <CAD=FV=WU_WPmhvABViw9w=8zuoWhW0VLo56+D3e5xXh8bBYPEg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] arm64: dts: qcom: sdm845-db845c: correct SPI2 pins
- drive strength
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Vinod Koul <vkoul@kernel.org>, Xilin Wu <wuxilin123@gmail.com>,
-        Molly Sophia <mollysophia379@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220929061704.1571746-5-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,38 +76,181 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, Oct 10, 2022 at 4:46 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> The pin configuration (done with generic pin controller helpers and
-> as expressed by bindings) requires children nodes with either:
-> 1. "pins" property and the actual configuration,
-> 2. another set of nodes with above point.
->
-> The qup_spi2_default pin configuration uses alreaady the second method
-> with a "pinmux" child, so configure drive-strength similarly in
-> "pinconf".  Otherwise the PIN drive strength would not be applied.
->
-> Fixes: 8d23a0040475 ("arm64: dts: qcom: db845c: add Low speed expansion i2c and spi nodes")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
+On Thu, Sep 29, 2022 at 02:17:01PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> When M4 is in the same hardware partition with Cortex-A, it
+> could be start/stop by Linux.
+> 
+> Added power domain to make sure M4 could run, it requires several power
+> domains to work. Make clk always optional for i.MX8QXP, because
+> SCFW handles it when power up M4 core.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->
-> Not tested on hardware.
->
-> Changes since v1:
-> 1. Put it under pinconf instead of pinmux, as suggested by Doug.
+>  drivers/remoteproc/imx_rproc.c | 88 ++++++++++++++++++++++++++++++++--
+>  1 file changed, 85 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+> index a56aecae00c6..7d2e11aed0aa 100644
+> --- a/drivers/remoteproc/imx_rproc.c
+> +++ b/drivers/remoteproc/imx_rproc.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/of_reserved_mem.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+>  #include <linux/regmap.h>
+>  #include <linux/remoteproc.h>
+>  #include <linux/workqueue.h>
+> @@ -79,6 +80,8 @@ struct imx_rproc_mem {
+>  #define ATT_OWN		BIT(1)
+>  #define ATT_IOMEM	BIT(2)
+>  
+> +static int imx_rproc_detach_pd(struct rproc *rproc);
+> +
+>  struct imx_rproc {
+>  	struct device			*dev;
+>  	struct regmap			*regmap;
+> @@ -96,6 +99,10 @@ struct imx_rproc {
+>  	struct notifier_block		rproc_nb;
+>  	u32				rproc_pt;	/* partition id */
+>  	u32				rsrc_id;	/* resource id */
+> +	u32				entry;		/* cpu start address */
+> +	int                             num_pd;
+> +	struct device                   **pd_dev;
+> +	struct device_link              **pd_dev_link;
+>  };
+>  
+>  static const struct imx_rproc_att imx_rproc_att_imx93[] = {
+> @@ -335,6 +342,9 @@ static int imx_rproc_start(struct rproc *rproc)
+>  		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_START, 0, 0, 0, 0, 0, 0, &res);
+>  		ret = res.a0;
+>  		break;
+> +	case IMX_RPROC_SCU_API:
+> +		ret = imx_sc_pm_cpu_start(priv->ipc_handle, priv->rsrc_id, true, priv->entry);
+> +		break;
+>  	default:
+>  		return -EOPNOTSUPP;
+>  	}
+> @@ -364,6 +374,9 @@ static int imx_rproc_stop(struct rproc *rproc)
+>  		if (res.a1)
+>  			dev_info(dev, "Not in wfi, force stopped\n");
+>  		break;
+> +	case IMX_RPROC_SCU_API:
+> +		ret = imx_sc_pm_cpu_start(priv->ipc_handle, priv->rsrc_id, false, priv->entry);
+> +		break;
+>  	default:
+>  		return -EOPNOTSUPP;
+>  	}
+> @@ -713,8 +726,10 @@ static void imx_rproc_put_scu(struct rproc *rproc)
+>  	if (dcfg->method != IMX_RPROC_SCU_API)
+>  		return;
+>  
+> -	if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id))
+> +	if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id)) {
+> +		imx_rproc_detach_pd(rproc);
+>  		return;
+> +	}
+>  
+>  	imx_scu_irq_group_enable(IMX_SC_IRQ_GROUP_REBOOTED, BIT(priv->rproc_pt), false);
+>  	imx_scu_irq_unregister_notifier(&priv->rproc_nb);
+> @@ -736,6 +751,69 @@ static int imx_rproc_partition_notify(struct notifier_block *nb,
+>  	return 0;
+>  }
+>  
+> +static int imx_rproc_attach_pd(struct imx_rproc *priv)
+> +{
+> +	struct device *dev = priv->dev;
+> +	int ret, i;
+> +
+> +	priv->num_pd = of_count_phandle_with_args(dev->of_node, "power-domains",
+> +						  "#power-domain-cells");
+> +	if (priv->num_pd <= 1)
 
-I notice that there are other two patches in the series that put the
-configuration info under the mux node. ;-) They are with SoCs / boards
-that I wasn't really involved in and so I won't do anything to block
-them from landing but, as per my replies to v1 it's not my favorite...
+What happens if we get 1 power domains?  How is it handled?  There should be a
+comment explaining what is happening here.
 
-In any case, this patch here looks great to me. Thanks! Looking
-forward to seeing these converted over to the scheme that your sc7180
-patches used.
+> +		return 0;
+> +
+> +	priv->pd_dev = devm_kmalloc_array(dev, priv->num_pd, sizeof(*priv->pd_dev), GFP_KERNEL);
+> +	if (!priv->pd_dev)
+> +		return -ENOMEM;
+> +
+> +	priv->pd_dev_link = devm_kmalloc_array(dev, priv->num_pd, sizeof(*priv->pd_dev_link),
+> +					       GFP_KERNEL);
+> +
+> +	if (!priv->pd_dev_link)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < priv->num_pd; i++) {
+> +		priv->pd_dev[i] = dev_pm_domain_attach_by_id(dev, i);
+> +		if (IS_ERR(priv->pd_dev[i])) {
+> +			ret = PTR_ERR(priv->pd_dev[i]);
+> +			goto detach_pd;
+> +		}
+> +
+> +		priv->pd_dev_link[i] = device_link_add(dev, priv->pd_dev[i], DL_FLAG_STATELESS |
+> +						       DL_FLAG_PM_RUNTIME | DL_FLAG_RPM_ACTIVE);
+> +		if (!priv->pd_dev_link[i]) {
+> +			dev_pm_domain_detach(priv->pd_dev[i], false);
+> +			ret = -EINVAL;
+> +			goto detach_pd;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +detach_pd:
+> +	while (--i >= 0) {
+> +		device_link_del(priv->pd_dev_link[i]);
+> +		dev_pm_domain_detach(priv->pd_dev[i], false);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int imx_rproc_detach_pd(struct rproc *rproc)
+> +{
+> +	struct imx_rproc *priv = rproc->priv;
+> +	int i;
+> +
+> +	if (priv->num_pd <= 1)
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Same here.
+
+With the above:
+
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+
+> +		return 0;
+> +
+> +	for (i = 0; i < priv->num_pd; i++) {
+> +		device_link_del(priv->pd_dev_link[i]);
+> +		dev_pm_domain_detach(priv->pd_dev[i], false);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  {
+>  	struct regmap_config config = { .name = "imx-rproc" };
+> @@ -770,8 +848,12 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  		 * If Mcore resource is not owned by Acore partition, It is kicked by ROM,
+>  		 * and Linux could only do IPC with Mcore and nothing else.
+>  		 */
+> -		if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id))
+> -			return 0;
+> +		if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id)) {
+> +			if (of_property_read_u32(dev->of_node, "fsl,entry-address", &priv->entry))
+> +				return -EINVAL;
+> +
+> +			return imx_rproc_attach_pd(priv);
+> +		}
+>  
+>  		priv->rproc->state = RPROC_DETACHED;
+>  		priv->rproc->recovery_disabled = true;
+> -- 
+> 2.37.1
+> 
