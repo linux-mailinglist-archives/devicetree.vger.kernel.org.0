@@ -2,166 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFC355FC478
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 13:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 300D45FC481
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 13:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbiJLLpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 07:45:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47142 "EHLO
+        id S229818AbiJLLqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 07:46:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229764AbiJLLp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 07:45:29 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2579240A2;
-        Wed, 12 Oct 2022 04:45:10 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29CBivx7037778;
-        Wed, 12 Oct 2022 06:44:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1665575097;
-        bh=aBZmix5mN78scg9hnkAbo7v44ywBJRDrxSXesTutH9k=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=eJvr3WnNJ5zXpiLB0/oZbzrEgZOCPk0f5M7mjPgehpqHr12FYJuD6IvhilMpfPqKW
-         WJCXhwRK1MnkhQzLUFMhFRV+3SH4ajWu+M81cIJt6b+feSdOK9uxOFMa0Ua11EgpQU
-         1A1vjJOtZdaoXt357wQtC6uwPvBq/oVQ1eosQpio=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29CBivFR115992
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 12 Oct 2022 06:44:57 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 12
- Oct 2022 06:44:56 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 12 Oct 2022 06:44:56 -0500
-Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29CBiuM7016488;
-        Wed, 12 Oct 2022 06:44:56 -0500
-Received: from localhost (a0501179-pc.dhcp.ti.com [10.24.69.114])
-        by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 29CBitJl003376;
-        Wed, 12 Oct 2022 06:44:56 -0500
-From:   MD Danish Anwar <danishanwar@ti.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
-        <nm@ti.com>, <vigneshr@ti.com>, <srk@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        with ESMTP id S229828AbiJLLpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 07:45:47 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70074.outbound.protection.outlook.com [40.107.7.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14200C355D;
+        Wed, 12 Oct 2022 04:45:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aoZqjs02aUxrtDsfiXIBuCnR9f9FuTlqhEy2NZYSCMv9Lwy2FhlJlKZGpKK5D+inhjV43TpFc1kFoooxadOI0/z1OHtlNuXfItETaolvi8Pj2HUsFc2UFp2nGdI7yXzpja7IBQ64SEA679T1LhPllq4ETmNC0GD4kqFVGkzbb0EUxk9J4xb3jcq2AsB30scToN5NWv6ZL9yLkafDJ/mvjKkU494Q40J8Q0TgfG0/Xg+g6WL65fHbz2vxeSYE/jSlWai9/yo2W0gmH46YLenI/mBtMyl1hVaIJ0MlR763em8Wo5xNDYGbmRvT9jxed1zs9x4SHjIsRmlIoupnhnKB5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ozC32EB8q1MDZFH1nA/hVHbcgXJWqlAt6y6+2HQmWLo=;
+ b=hKgnm7rOaj50MJpwXOEQz640NXYM7yy2mAINcIBoIc7+G3Hu98DJmB5BaQA1ljqkl0U3hmgxncJv6WaqxYcqysOfrHm2vrb41OOrtirkwgVNb7upriu+7m4KRgaYVr4albOSFVj8VUr8AYqo5NGESblOmQeU9K88GkCaxWRpykHMTeSdUDP7ve3NWBUN7DY2gXWAuJ/ctJ3sgWE7NOMp5tj0K9u//qSgU+yrI3MDixqV22Psn8ur7tU225mvX9ijHDL7iz4DjRg+VK8sSNaPwwfA2mU0y39L7DYzDB8KUBZ6KhM6Zpsr/IBwEO39Pef8e4ay8Z6q5l57qdca6N+8Og==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ozC32EB8q1MDZFH1nA/hVHbcgXJWqlAt6y6+2HQmWLo=;
+ b=nhuLBhwU3Hmpse0hgX8TAwndVJ52VbeMRWs0c5M22/OeuMzDblDntioB/BFlqAgyFI4NILsHtZEPfitVI35VgFybPvspBrFU6gKKQEafB1s2XbyynpNgiCYhDVKK2tiGqCfHEqcmJy+yxJqPs/oveUNESFr68T29nFr9h/h3l1U=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by VI1PR04MB7168.eurprd04.prod.outlook.com (2603:10a6:800:129::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5709.15; Wed, 12 Oct
+ 2022 11:45:33 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::ba6:d7ae:a7c9:7a3a]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::ba6:d7ae:a7c9:7a3a%4]) with mapi id 15.20.5676.028; Wed, 12 Oct 2022
+ 11:45:33 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Vinod Koul <vkoul@kernel.org>, Abel Vesa <abel.vesa@nxp.com>
+CC:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "MD Danish Anwar" <danishanwar@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        "Grzegorz Jaszczyk" <grzegorz.jaszczyk@linaro.org>,
-        Puranjay Mohan <p-mohan@ti.com>
-Subject: [PATCH v6 5/5] remoteproc: pru: Configure firmware based on client setup
-Date:   Wed, 12 Oct 2022 17:14:29 +0530
-Message-ID: <20221012114429.2341215-6-danishanwar@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221012114429.2341215-1-danishanwar@ti.com>
-References: <20221012114429.2341215-1-danishanwar@ti.com>
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>
+Subject: RE: [PATCH v9 08/12] dt-bindings: phy: mxs-usb-phy: Add i.MX8DXL
+ compatible string
+Thread-Topic: [PATCH v9 08/12] dt-bindings: phy: mxs-usb-phy: Add i.MX8DXL
+ compatible string
+Thread-Index: AQHYemAk3FcpcWNM7Uqo5rQbmdVl3K1FszQAgMW3X4A=
+Date:   Wed, 12 Oct 2022 11:45:30 +0000
+Message-ID: <DU0PR04MB9417A516C062EA7E40C9349888229@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20220607111625.1845393-1-abel.vesa@nxp.com>
+ <20220607111625.1845393-9-abel.vesa@nxp.com> <YqDM0umwk6QizT/b@matsya>
+In-Reply-To: <YqDM0umwk6QizT/b@matsya>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|VI1PR04MB7168:EE_
+x-ms-office365-filtering-correlation-id: 93897313-9811-4cc4-e9b8-08daac474437
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: QjCqGgfNWm4rNM+OAQKVY4J2qAKytK9Oi2opg2pQoZwEeUkNHjBU9c9XX84bnYP9j8RTN2k/X9L1iv48e5quA5EhPBCzJqmd6U8myRQdfJ2g7ddn/wQoPF1GYm1jGtjJTmWa0bJsIX/TmmuAdPuhY98nhDRHCFBOD6x68fFvsbj/o46yv/r1txD6MexdpWQyi5dgk+Wyb26TeNjUYBv0NImDej1dKwHu20MlLufeU14TDvMEyaSVQGNyflbBwM0Lrnqwt2EH4BK51zA6GViBHLFVqxUnaBP9SFVN2lduGGX0R/OinOMSS6kL1UD8efU3/ppT12TiBqgqHidyxK/rPl7Kn/ZLx81GieYRwJQuNLImBO2ArbJAO1DJRTPsfeuuaoGVm9irpQBCflyocPvVznA+2pMkBcIsBzhgZNBCvcX0rRiJ10E6awuP1mWJ2oqt59xO5F6/mYrkZsMlaz74lt32ToMtdBU0dj34VUHFx7PVQIBVvyPgSsxpM1AFvAPlE/FRo1ETXuJB4E8i5GtlsoWStsoaTYBX6D/yJ85iRMLLmkapYrTpRaDW7Pr0Hxq2YDjS0PdJpaoW0fBFJKwQZF5BROVF1+UxBy8o/Y8KAM9vHAUmO8kjkUMbh4DZcFZZ29UVYUyDCpKkeSlrszSdrUHBrmXbhickbmvuYwvoWqaH+uv3r/LIO6INboteiIWLwBrulEpN9EZNkblIo27mpPtrNDsum7PoK+KDER77MOQ5WJ+PSvYBmAMw6bNmE258GyYbbCaoIm+NPAICOrNArTkd6K8DZMRfeH/lEZFflzqV8XIkA0Z2KrRYVkA4v3rymQt1C9dgN2J4DlLT/VCUjzpuRFwZdWvOm/tZuEbrUag=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(376002)(396003)(346002)(39860400002)(366004)(451199015)(122000001)(38100700002)(45080400002)(478600001)(966005)(38070700005)(5660300002)(316002)(8936002)(55016003)(54906003)(110136005)(6636002)(4326008)(53546011)(8676002)(76116006)(66946007)(64756008)(66446008)(66476007)(66556008)(41300700001)(71200400001)(7696005)(6506007)(2906002)(86362001)(52536014)(9686003)(33656002)(186003)(26005)(7416002)(44832011);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ao7yvmJuLdWsZ4oorsIq3f2DM8xFYUaRBcBRl6ItAzCFt5NJCCGNHu48nEJf?=
+ =?us-ascii?Q?Z9LdnzZVRkYaKjHVS4aYFQxO7fCJcpd+JEC9LBuU5O1oMWgXr4KyOiV+F6Sg?=
+ =?us-ascii?Q?nHfc/yxsMSGj3vmFHBLZRgubngmcyoKjhZMw8BwI2ouFoSY8MC8sNnXKHRta?=
+ =?us-ascii?Q?xigg/XoAS/Wd2/n47UTWIaLrd3ZpPMuTVP7da+/jn9rjLrXJPVnut3QbaPqm?=
+ =?us-ascii?Q?u11duhcoTpkUMHdtGaIIEJiAfAlPDTZx7Y8Eazu/6hfduUslyQXxYdH43PN/?=
+ =?us-ascii?Q?8YtmL5tfej2dW5HidiEPYlZAxmQ3UDTDPmnIJgLXsCDZfgRjBCqsSaKeQdbw?=
+ =?us-ascii?Q?yw9eYLQH2us9+a8UVhJc+t8ZA52kkgJ005icywXeQ2ZTb4AlPUlHfXgM8ieR?=
+ =?us-ascii?Q?l6edGCk0SZ+xX9a2upO53p7BbkNSO2uOnZrZhUO76ctp9SCydZr76wlraAyZ?=
+ =?us-ascii?Q?9zya+7Va/hYO7xv2FOza1fM9iFBnBrfDFHToFtS7JsA+qu/sjt2z+X8UpFJN?=
+ =?us-ascii?Q?esJsL1NGCh7LvvDm62+xZcbSWhtEZpH6PNPXoqvct5QYVV3IhFfWtwMrXljI?=
+ =?us-ascii?Q?WEt2J/GaH8GlEuFUKkxCKiDvQ1RGu2y83lPL/uvsheU9wK0kMR83INm6o8E7?=
+ =?us-ascii?Q?dzZg/ToaBrvUz/omdlKSVrd2Q6QHINuigPnTDmgv7rcLynOmFtHBl4iHOkyQ?=
+ =?us-ascii?Q?V5kkTiAdgMPIWxy5OeFvTdCgCFkgJYHPpfcVEQvVef+IuZHwOALCSjt7AiT0?=
+ =?us-ascii?Q?T0nTw+CvHypds2TaCWq2w99jtBNM5gjJkOBZrS3C46jMpFgttdz81ObL86YN?=
+ =?us-ascii?Q?zfXHAPSxEsFpvgCrlIfNzBykLHiWnXVnPl+rz58BaG+IhLuE53x+T98MklcU?=
+ =?us-ascii?Q?UbxL3FZy4P3L3nqb2v4H3ePhW4Bqyn7/ycS3DWdFaFrv+m7EC8JNcAyLUZeJ?=
+ =?us-ascii?Q?5JKsWNIVg+Hv0mDlzTtAC/QdWwKLxHRGcAuZHrKbVDHEDuZElSpvtqs4HHyh?=
+ =?us-ascii?Q?eE8DK4lYVGgc4ggWbI3OzjZkaOG0xBLrWpTzqzykGfvN6ym/BGeWqoGYvnmc?=
+ =?us-ascii?Q?4FC+GrQfSD6qRIOXonAmgXkRLOndIGZUlBxUGxi7ADPaLxQl5Gd6y9iskkKq?=
+ =?us-ascii?Q?1e2TjGqeo0WIxHjZwoW/2DBZ1paZpzUmSo39BbOGH9SZLY0Sz8KOni/sLsud?=
+ =?us-ascii?Q?nNyyEzuTarLBIHzFOVUTcbBapflaH+Yu49pDnIW39BVvHnaPxBIGv39nwHVa?=
+ =?us-ascii?Q?fHPsj4PNxCWRY1ZhwkL1O6ACPPKYy2l469eomBYJVMXl7NoIUeuj/v6DDCtD?=
+ =?us-ascii?Q?7razyQCLzvef/AYT5QjDUxZrX1ggswH9JnRi/YRc0qJQROWaXAxajmeS4DEZ?=
+ =?us-ascii?Q?a2onWNGypJUEYEXeYkUxOplq6vR6V8htncgCORn+sZBMvxPGEAwJs3hC71dO?=
+ =?us-ascii?Q?3wFqQaeaFZgYP8tyqlpkTOw2Eh1qSc57IHp5FobIpWI0kP2pNYdm2U4+QLeH?=
+ =?us-ascii?Q?Vpok5eD1jmM1doxKGXvHaSYjSCO6egmSdm7Wv/lU97dIZXw/d0vCKeWmW91v?=
+ =?us-ascii?Q?0soNuXM7o1iClPkWJfBzRgPpKr4OZWIR6PpFGxZs?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93897313-9811-4cc4-e9b8-08daac474437
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Oct 2022 11:45:31.2892
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YvOmiOzPBqVpats8zui8SplPBQyi0sbjtcFXZZ4Tg2PTKPaozghcBeW5mPFcLPbCnLdbytoCCh+hodhwnX0p2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7168
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tero Kristo <t-kristo@ti.com>
+Hi Vinod, Rob, Krzysztof
 
-Client device node property firmware-name is now used to configure
-firmware for the PRU instances. The default firmware is also
-restored once releasing the PRU resource.
+> Subject: Re: [PATCH v9 08/12] dt-bindings: phy: mxs-usb-phy: Add i.MX8DXL
+> compatible string
+>=20
+> On 07-06-22, 14:16, Abel Vesa wrote:
+> > Add compatible for i.MX8DXL USB PHY.
+>=20
+> Applied, thanks
 
-Co-developed-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Tero Kristo <t-kristo@ti.com>
-Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
----
- drivers/remoteproc/pru_rproc.c | 34 ++++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+I would like to know the rule that whether such new compatible string or ne=
+w
+property added to txt binding doc still is still ok to be accepted?
 
-diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-index 3d1870e6b13b..15ffaeddd963 100644
---- a/drivers/remoteproc/pru_rproc.c
-+++ b/drivers/remoteproc/pru_rproc.c
-@@ -172,6 +172,23 @@ void pru_control_set_reg(struct pru_rproc *pru, unsigned int reg,
- 	spin_unlock_irqrestore(&pru->rmw_lock, flags);
- }
- 
-+/**
-+ * pru_rproc_set_firmware() - set firmware for a pru core
-+ * @rproc: the rproc instance of the PRU
-+ * @fw_name: the new firmware name, or NULL if default is desired
-+ *
-+ * Return: 0 on success, or errno in error case.
-+ */
-+static int pru_rproc_set_firmware(struct rproc *rproc, const char *fw_name)
-+{
-+	struct pru_rproc *pru = rproc->priv;
-+
-+	if (!fw_name)
-+		fw_name = pru->fw_name;
-+
-+	return rproc_set_firmware(rproc, fw_name);
-+}
-+
- static struct rproc *__pru_rproc_get(struct device_node *np, int index)
- {
- 	struct rproc *rproc;
-@@ -230,6 +247,7 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
- 	struct rproc *rproc;
- 	struct pru_rproc *pru;
- 	struct device *dev;
-+	const char *fw_name;
- 	int ret;
- 
- 	rproc = __pru_rproc_get(np, index);
-@@ -256,11 +274,25 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
- 	if (pru_id)
- 		*pru_id = pru->id;
- 
-+	ret = of_property_read_string_index(np, "firmware-name", index,
-+					    &fw_name);
-+	if (!ret) {
-+		ret = pru_rproc_set_firmware(rproc, fw_name);
-+		if (ret) {
-+			dev_err(dev, "failed to set firmware: %d\n", ret);
-+			goto err;
-+		}
-+	}
-+
- 	return rproc;
- 
- err_no_rproc_handle:
- 	rproc_put(rproc);
- 	return ERR_PTR(ret);
-+
-+err:
-+	pru_rproc_put(rproc);
-+	return ERR_PTR(ret);
- }
- EXPORT_SYMBOL_GPL(pru_rproc_get);
- 
-@@ -280,6 +312,8 @@ void pru_rproc_put(struct rproc *rproc)
- 
- 	pru = rproc->priv;
- 
-+	pru_rproc_set_firmware(rproc, NULL);
-+
- 	mutex_lock(&pru->lock);
- 
- 	if (!pru->client_np) {
--- 
-2.25.1
+Or only fixes are accepted for txt binding?
 
+Thanks,
+Peng.
+
+>=20
+> >
+> > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/phy/mxs-usb-phy.txt | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+> b/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+> > index c9f5c0caf8a9..c9e392c64a7c 100644
+> > --- a/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+> > +++ b/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+> > @@ -8,6 +8,7 @@ Required properties:
+> >  	* "fsl,vf610-usbphy" for Vybrid vf610
+> >  	* "fsl,imx6sx-usbphy" for imx6sx
+> >  	* "fsl,imx7ulp-usbphy" for imx7ulp
+> > +	* "fsl,imx8dxl-usbphy" for imx8dxl
+> >    "fsl,imx23-usbphy" is still a fallback for other strings
+> >  - reg: Should contain registers location and length
+> >  - interrupts: Should contain phy interrupt
+> > --
+> > 2.34.3
+> >
+> >
+> > --
+> > linux-phy mailing list
+> > linux-phy@lists.infradead.org
+> >
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists=
+.i
+> nfradead.org%2Fmailman%2Flistinfo%2Flinux-
+> phy&amp;data=3D05%7C01%7Cpeng.fan%40nxp.com%7Cd65b54c2406f44828
+> a9408da496b20fd%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6
+> 37903021707349724%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwM
+> DAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%
+> 7C&amp;sdata=3DfPitVfeWmcSXvD3APuxTmytkTOS8Wt3z5ExVU4Ct334%3D&a
+> mp;reserved=3D0
+>=20
+> --
+> ~Vinod
