@@ -2,110 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C073A5FC4B8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 14:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 717275FC508
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 14:09:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbiJLMDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 08:03:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51546 "EHLO
+        id S229502AbiJLMJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 08:09:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbiJLMC5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 08:02:57 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4582A7ABC;
-        Wed, 12 Oct 2022 05:02:55 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29CAofXC019416;
-        Wed, 12 Oct 2022 12:02:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=5jYkfw8uF0wZhEX4SYCnpSA6qaL02kJLYhcKVZvnBOU=;
- b=DB1GyY78fXqDyzVcywz6lTBKXPIPfl278Lv/f6F4rnvIqYwLv2GgHky++fET0zhLw9f4
- NisoCCf2pri0inddVxdftHSfIqjmlc9ZhZeq7sq4jv2I8SsPHLpOOzhBky87pzazV4ru
- X1EdN3JreT8dSBOxEz2iyQAo6n0fDTVx+qc7Z8OOkgM5oVuUnIYmktPqKEbv4AA4lRP6
- mYrAoahweGD/rPmVLbHZQWNdve4/p26Htre2HtfowkIlnwYWt/fPe+MOClCZV+0IF6cc
- 4p4GgXZ6xIdVgVrtJBXL+qn6lrldefxcvM0fHNZ5jrhYrJaVnQvAiqd3RfbJ9LwwntcN Eg== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k5e7fjbsk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Oct 2022 12:02:53 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 29CC2mtT026937;
-        Wed, 12 Oct 2022 12:02:50 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3k3jpu0t2p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Wed, 12 Oct 2022 12:02:49 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 29CC2mwd026911;
-        Wed, 12 Oct 2022 12:02:48 GMT
-Received: from vpolimer-linux.qualcomm.com (vpolimer-linux.qualcomm.com [10.204.67.235])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 29CC2mNp026872;
-        Wed, 12 Oct 2022 12:02:48 +0000
-Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
-        id 700113F05; Wed, 12 Oct 2022 17:32:47 +0530 (IST)
-From:   Vinod Polimera <quic_vpolimer@quicinc.com>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com, dmitry.baryshkov@linaro.org,
-        quic_khsieh@quicinc.com, quic_vproddut@quicinc.com,
-        quic_bjorande@quicinc.com, quic_aravindh@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
-Subject: [PATCH v8 15/15] drm/msm/disp/dpu: clear active interface in the datapath cleanup
-Date:   Wed, 12 Oct 2022 17:32:39 +0530
-Message-Id: <1665576159-3749-16-git-send-email-quic_vpolimer@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1665576159-3749-1-git-send-email-quic_vpolimer@quicinc.com>
-References: <1665576159-3749-1-git-send-email-quic_vpolimer@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: G9BcDfnJhs3mfkKTF0IyF7VKrcaqlS4G
-X-Proofpoint-GUID: G9BcDfnJhs3mfkKTF0IyF7VKrcaqlS4G
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-12_06,2022-10-12_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 spamscore=0
- impostorscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
- malwarescore=0 adultscore=0 mlxscore=0 priorityscore=1501 phishscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210120079
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229520AbiJLMJY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 08:09:24 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4848EDE2;
+        Wed, 12 Oct 2022 05:09:23 -0700 (PDT)
+Received: from [192.168.1.15] (91-158-154-79.elisa-laajakaista.fi [91.158.154.79])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D02B84D3;
+        Wed, 12 Oct 2022 14:09:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1665576561;
+        bh=tpLq+kprIoOVWlbrGY2+d9G3Qq2Gp2E1+oAzuiC1GWc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fRxxCC9N3nRA46kkcotY/dNRIyonbkR1tjDF/W37jLFCmqtihofHtxiokLdM+2u1o
+         wYYwqkBqUx/ZtRZCOFiphso5Fnf5pdb12wSm7QwyT5cc37NfiSrmVPSCgCTPACPi+G
+         TIIVT69ZG/U0pXv0nVrpZI709JIcw1dqpaS/QFRU=
+Message-ID: <eae03891-c814-87fd-d1a6-099b855ca7fb@ideasonboard.com>
+Date:   Wed, 12 Oct 2022 15:09:17 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [RFC PATCH v5 3/6] drm/tidss: Add support for AM625 DSS
+Content-Language: en-US
+To:     Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>
+References: <20220928175223.15225-1-a-bhatia1@ti.com>
+ <20220928175223.15225-4-a-bhatia1@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20220928175223.15225-4-a-bhatia1@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Clear interface active register from the datapath for a clean shutdown of
-the datapath.
+On 28/09/2022 20:52, Aradhya Bhatia wrote:
+> Add support for the DSS controller on TI's new AM625 SoC in the tidss
+> driver.
+> 
+> The first video port (VP0) in am625-dss can output OLDI signals through
+> 2 OLDI TXes. A 3rd port has been added with "DISPC_VP_OLDI" bus type.
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>   drivers/gpu/drm/tidss/tidss_dispc.c | 61 ++++++++++++++++++++++++++++-
+>   drivers/gpu/drm/tidss/tidss_dispc.h |  3 ++
+>   drivers/gpu/drm/tidss/tidss_drv.c   |  1 +
+>   3 files changed, 64 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
+> index dd3c6a606ae2..34f0da4bb3e3 100644
+> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+> @@ -93,6 +93,7 @@ const struct dispc_features dispc_k2g_feats = {
+>   	.common_regs = tidss_k2g_common_regs,
+>   
+>   	.num_vps = 1,
+> +	.num_max_ports = 1,
+>   	.vp_name = { "vp1" },
+>   	.ovr_name = { "ovr1" },
+>   	.vpclk_name =  { "vp1" },
+> @@ -168,6 +169,7 @@ const struct dispc_features dispc_am65x_feats = {
+>   	.common_regs = tidss_am65x_common_regs,
+>   
+>   	.num_vps = 2,
+> +	.num_max_ports = 2,
+>   	.vp_name = { "vp1", "vp2" },
+>   	.ovr_name = { "ovr1", "ovr2" },
+>   	.vpclk_name =  { "vp1", "vp2" },
+> @@ -257,6 +259,7 @@ const struct dispc_features dispc_j721e_feats = {
+>   	.common_regs = tidss_j721e_common_regs,
+>   
+>   	.num_vps = 4,
+> +	.num_max_ports = 4,
+>   	.vp_name = { "vp1", "vp2", "vp3", "vp4" },
+>   	.ovr_name = { "ovr1", "ovr2", "ovr3", "ovr4" },
+>   	.vpclk_name = { "vp1", "vp2", "vp3", "vp4" },
+> @@ -275,6 +278,57 @@ const struct dispc_features dispc_j721e_feats = {
+>   	.vid_order = { 1, 3, 0, 2 },
+>   };
+>   
+> +const struct dispc_features dispc_am625_feats = {
+> +	.max_pclk_khz = {
+> +		[DISPC_VP_DPI] = 165000,
+> +		[DISPC_VP_OLDI] = 165000,
+> +	},
+> +
+> +	.scaling = {
+> +		.in_width_max_5tap_rgb = 1280,
+> +		.in_width_max_3tap_rgb = 2560,
+> +		.in_width_max_5tap_yuv = 2560,
+> +		.in_width_max_3tap_yuv = 4096,
+> +		.upscale_limit = 16,
+> +		.downscale_limit_5tap = 4,
+> +		.downscale_limit_3tap = 2,
+> +		/*
+> +		 * The max supported pixel inc value is 255. The value
+> +		 * of pixel inc is calculated like this: 1+(xinc-1)*bpp.
+> +		 * The maximum bpp of all formats supported by the HW
+> +		 * is 8. So the maximum supported xinc value is 32,
+> +		 * because 1+(32-1)*8 < 255 < 1+(33-1)*4.
+> +		 */
+> +		.xinc_max = 32,
+> +	},
+> +
+> +	.subrev = DISPC_AM625,
+> +
+> +	.common = "common",
+> +	.common_regs = tidss_am65x_common_regs,
+> +
+> +	.num_vps = 2,
+> +	/* note: the 3rd port is not representative of a 3rd pipeline */
+> +	.num_max_ports = 3,
+> +	.vp_name = { "vp1", "vp2" },
+> +	.ovr_name = { "ovr1", "ovr2" },
+> +	.vpclk_name =  { "vp1", "vp2" },
+> +	.vp_bus_type = { DISPC_VP_OLDI, DISPC_VP_DPI, DISPC_VP_OLDI },
 
-Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 3 +++
- 1 file changed, 3 insertions(+)
+Here, for example, we have an issue with the VP vs port. vp_bus_type is 
+of size TIDSS_MAX_PORTS (VPs), but you're using it for output ports. If 
+we did not have J7, which has 4 VPs, we'd have an overflow bug here.
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index 9f4f4e5..ab44016 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-@@ -2069,6 +2069,9 @@ void dpu_encoder_helper_phys_cleanup(struct dpu_encoder_phys *phys_enc)
- 	if (phys_enc->hw_pp->merge_3d)
- 		intf_cfg.merge_3d = phys_enc->hw_pp->merge_3d->idx;
- 
-+	if (phys_enc->hw_intf)
-+		intf_cfg.intf = phys_enc->hw_intf->idx;
-+
- 	if (ctl->ops.reset_intf_cfg)
- 		ctl->ops.reset_intf_cfg(ctl, &intf_cfg);
- 
--- 
-2.7.4
+The meaning of vp_sub_type also becomes a bit unclear. I guess it's 
+rather "output_port_bus_type"?
+
+  Tomi
 
