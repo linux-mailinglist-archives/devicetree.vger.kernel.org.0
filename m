@@ -2,207 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D36C5FCE24
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 00:09:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF4165FCE44
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 00:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbiJLWJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 18:09:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59392 "EHLO
+        id S229813AbiJLWRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 18:17:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230293AbiJLWIs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 18:08:48 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A08E8AAF
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 15:06:58 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id d24so151789pls.4
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 15:06:57 -0700 (PDT)
+        with ESMTP id S229505AbiJLWRr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 18:17:47 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B70A6A485A;
+        Wed, 12 Oct 2022 15:17:46 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id w18so135991wro.7;
+        Wed, 12 Oct 2022 15:17:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PINm7DlHkRfCIR9Bkun6rWqrRKKna4XtFs22k189M0s=;
-        b=mjh54rp5bz+CCsGBHXCvnfH/jZ/ERfZBhQxCBtvaPNyQgpQXSvi4dePgi1aoRsENtO
-         Yj4XAl1SgSSXy/PxUANCOwty3gvL6iY965kUdS7wU7EfeecwrDEc2qK+GKX/Grjlc60q
-         re1WH8oZl0eVL6lSCxbJosN7wU4WCCs8+38BErdMJLTcIoFk2wytjIMQChy64muezU8e
-         LwUF3UCw/B29XsdkHsSE/6jvl3Ey+IOuHZdQ5y1knUbUl5oewxC+dvGnqYLsYlep36Pi
-         tQaBqdlA6JFg4TxTiSztzKWr3VHedAJv3MrLsdBn0nXeL9NDMlnqpC6rHswbclmRCq3o
-         kasg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AwX9EaBzR0CFNo7qwx2QQhwUBrLNnhL6o4LAfvIe/aE=;
+        b=DQMs/KKUHhGzV2CxDfQFog12x/6lB2hB5ZOTWJEKU6P12F20aRYIGRG5r+aFNmeSxQ
+         7rk4zeieP5JTwq0ALMimyzhG2JY3ZSE/K9p6fYdRXYO13d+IwYFLhvTiXfe8YqmykCmn
+         jGHxoPeqgs+Fk6ED2l0NrVCyiCugC70lFbDHOnjqYy9ieVgZJTT5FXUn7re/4wiRcog/
+         NQA53Rizf4HKk8TmEM7sPdysIoDRW8KGTpG4KMIjGggjY3Q+g70cvUDtXytJR/WJmqdA
+         WdikFETPxk1990XIalPmjfSvN6MgtMVxzGJUhWMG0TLGbLjMb1vGVjYKAym88bA7plXl
+         9cJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PINm7DlHkRfCIR9Bkun6rWqrRKKna4XtFs22k189M0s=;
-        b=XRGv0hzXjlz2FJroKjm5yvKT382Kk8aSzpwu63DOutkiRYDX5h5phVLfiBjNaf8gF0
-         ifsmL+/cw8JUXqeRl4AhPfIbWCXEtF4BZfvl3LiJMnZwGDsR41ZLDMHvUL+Mhjj5YhlM
-         xP7ewA2ofzLISQF1LmrdZydIhxwK0b6E57+wtzzanCfkuMeqzSqsZ2bZllooc6MTgVYC
-         1yrYgPv8JXsa+qTuzZ2RrGTNbFfH7NoRZ7nJVtDvpes/pZncz5Fi7xgixBV6964n23+v
-         ZR5pY4K2ME2FeDDdlBDoLY7Fj8H7pqBkbP3vHRdDdySDwSrOW9wJUW9c4kaznfOZFjv3
-         bRkg==
-X-Gm-Message-State: ACrzQf264ZaUoJ+gNm4bH/ErtI8mB2v5aMShzsVJzwODwZx4/HYL6prN
-        iktCUcyxHUZ9sjFaJEO+giiEde7kYSwNbg==
-X-Google-Smtp-Source: AMsMyM5xX4d+J7aWaTWHRpdFvy0S00JxLqimXDS1GoqNST1+1HMvZ36ke+ifgi7AMGdrgc2vg9jRcg==
-X-Received: by 2002:a17:90b:1d4d:b0:20a:794a:f6e7 with SMTP id ok13-20020a17090b1d4d00b0020a794af6e7mr7525463pjb.151.1665612380886;
-        Wed, 12 Oct 2022 15:06:20 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id x67-20020a623146000000b00562adc8b6d3sm318530pfx.193.2022.10.12.15.06.19
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AwX9EaBzR0CFNo7qwx2QQhwUBrLNnhL6o4LAfvIe/aE=;
+        b=654PH8UGHc6A7x4RlUqfa+94iqfLSLSd4BzNm3f6HugK4BYFeqEJtUcIg4CVs1bHb/
+         LubBXhn+oRHKRrqgiQ+Q6yl92EYmLKZiFvFsZSR105JvM4t+x/3+zPxg9iy3fNrmlm9v
+         UJweyy6ea9hRuJ6y5xhbVDwRMPNSWMBAHWDtpXrWPdkSbSlTRmkBS4VCfNSLiZIAoqg4
+         ut4G6M9kwJaiwUqMh8qnLxrxRnjzZGAivus2OZbPMktEXKTb5YXNBmPnTLdQUxr7L5RC
+         ecR8fcGrUB87pFyNpo/4Uegcg7RWhk2toYWcdhHLcE9nwm190FzX1FNwmHdfO5T0AjYO
+         B+hA==
+X-Gm-Message-State: ACrzQf18OhO6F7vPa3jYMjxDtcrevbnbeG1jYVdlrAYJviM5vZdCf3WJ
+        ZLWd22aCRUHneBbdWWRzIyzQAdxbZjGlYGKu
+X-Google-Smtp-Source: AMsMyM5Cms9xqdEIMqXRLXwlMwtw0oQKPJOM0LAyxp4kTfeNuk2ybdd1wJV3wBTwgbp0VW5aEwPbfQ==
+X-Received: by 2002:a17:907:1b22:b0:741:8809:b4e6 with SMTP id mp34-20020a1709071b2200b007418809b4e6mr24404514ejc.84.1665613054819;
+        Wed, 12 Oct 2022 15:17:34 -0700 (PDT)
+Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
+        by smtp.gmail.com with ESMTPSA id d41-20020a056402402900b0045bef7cf489sm8306043eda.89.2022.10.12.15.17.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 15:06:20 -0700 (PDT)
-Date:   Wed, 12 Oct 2022 16:06:17 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V6 5/7] remoteproc: imx_rproc: support i.MX8QM
-Message-ID: <20221012220617.GC1196937@p14s>
-References: <20220929061704.1571746-1-peng.fan@oss.nxp.com>
- <20220929061704.1571746-6-peng.fan@oss.nxp.com>
+        Wed, 12 Oct 2022 15:17:33 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: Re: [PATCH v1] ARM: dts: sun8i: h3: orangepi-pc: Add CMA reserved memory node
+Date:   Thu, 13 Oct 2022 00:17:32 +0200
+Message-ID: <2057585.bB369e8A3T@kista>
+In-Reply-To: <f0e66966-b1c5-f130-54a4-ad63b77e1f26@collabora.com>
+References: <20220914151125.212876-1-dmitry.osipenko@collabora.com> <1826631.tdWV9SEqCh@jernej-laptop> <f0e66966-b1c5-f130-54a4-ad63b77e1f26@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220929061704.1571746-6-peng.fan@oss.nxp.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 29, 2022 at 02:17:02PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Most logic are same as i.MX8QXP, but i.MX8QM has two general purpose
-> M4 cores, the two cores runs independently and they has different resource
+Hi,
 
-s/has/have
+Dne =C4=8Detrtek, 15. september 2022 ob 11:01:36 CEST je Dmitry Osipenko=20
+napisal(a):
+> Hi,
+>=20
+> On 9/14/22 21:34, Jernej =C5=A0krabec wrote:
+> > Dne sreda, 14. september 2022 ob 17:33:27 CEST je Cl=C3=A9ment P=C3=A9r=
+on=20
+napisal(a):
+> >> Hi Dmitry,
+> >>=20
+> >> On Wed, 14 Sept 2022 at 17:12, Dmitry Osipenko
+> >>=20
+> >> <dmitry.osipenko@collabora.com> wrote:
+> >>> Add 256MB CMA node to the Orange Pi PC board. This fixes memory
+> >>> allocation
+> >>> failures for Cedrus video decoder on trying to play a 1080p video with
+> >>> gstreamer.
+> >>>=20
+> >>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> >>> ---
+> >>>=20
+> >>>  arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts | 14 ++++++++++++++
+> >>>  1 file changed, 14 insertions(+)
+> >>>=20
+> >>> diff --git a/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts
+> >>> b/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts index
+> >>> b96e015f54ee..e655346a9fb4 100644
+> >>> --- a/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts
+> >>> +++ b/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts
+> >>> @@ -60,6 +60,20 @@ chosen {
+> >>>=20
+> >>>                 stdout-path =3D "serial0:115200n8";
+> >>>        =20
+> >>>         };
+> >>>=20
+> >>> +       reserved-memory {
+> >>> +               #address-cells =3D <1>;
+> >>> +               #size-cells =3D <1>;
+> >>> +               ranges;
+> >>> +
+> >>> +               linux,cma@40000000 {
+> >>> +                       compatible =3D "shared-dma-pool";
+> >>> +                       alloc-ranges =3D <0x40000000 0x40000000>;
+> >>> +                       size =3D <0x10000000>; /* 256MiB */
+> >>> +                       linux,cma-default;
+> >>> +                       reusable;
+> >>> +               };
+> >>> +       };
+> >>> +
+> >>=20
+> >> This change seems legit for all H3 boards and could be moved to the H3
+> >> dtsi, no?
+> >=20
+> > That's true. However, there is a reason why this node doesn't exist. One
+> > or
+> > two H2+ boards (which use H3 dtsi) have only 256 MiB of RAM, so this ca=
+n't
+> > work with them. A few H3 boards have 512 MiB of RAM, so you eat basical=
+ly
+> > half of the RAM with that.
+>=20
+> It's a "reusable" CMA, hence it won't be eaten. System is free to use
+> the reusable CMA. In practice, CMA may get populated with a pinned pages
+> over time, hence system will work fine, but CMA will get fragmented and
+> this may cause problems for a larger CMA allocations.
+>=20
+> The main problem with 512M boards should be that they may not have a
+> suitable area for 256M CMA because it should be only either a low or
+> high part of the memory that might be busy at a boot time, and then
+> kernel will fail to boot.
+>=20
+> > Additionally, contrary to A20 and similar SoCs, which
+> > have such node, Cedrus can address whole RAM, so this is not strictly
+> > needed. It's better to leave this decision to distribution. Some don't
+> > care about Cedrus and some do a lot. Default size can be set via kernel
+> > config and it can be overriden by kernel argument if necessary.
+>=20
+> In my experience generic distributions usually don't care about
+> particular boards/devices. They ship a multiplatform kernel using
+> default config that has 64M for CMA and Cedrus doesn't work well with tha=
+t.
 
-> id, different start address from SCFW view.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+It still can be overriden using cma=3D kernel argument.
 
-With the above:
+>=20
+> BTW, the sunxi_defconfig doesn't specify CMA size at all, so it defaults
+> to 16M.
 
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+That can be easily changed, someone just need to send patch. Historically,=
+=20
+from A20 times, default choice for CMA size was 96 MiB. Good choice, and in=
+ my=20
+opinion also maximum, is 128 MiB. That's enough for 1080p. 256 MiB is reall=
+y=20
+only needed for 4k content, which only H3 and its variants support, from wh=
+at=20
+I can tell.
 
-> ---
->  drivers/remoteproc/imx_rproc.c | 47 +++++++++++++++++++++++++++++++---
->  1 file changed, 44 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-> index 7d2e11aed0aa..8175c4c9aa22 100644
-> --- a/drivers/remoteproc/imx_rproc.c
-> +++ b/drivers/remoteproc/imx_rproc.c
-> @@ -3,6 +3,7 @@
->   * Copyright (c) 2017 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
->   */
->  
-> +#include <dt-bindings/firmware/imx/rsrc.h>
->  #include <linux/arm-smccc.h>
->  #include <linux/clk.h>
->  #include <linux/err.h>
-> @@ -75,10 +76,13 @@ struct imx_rproc_mem {
->  	size_t size;
->  };
->  
-> -/* att flags */
-> +/* att flags: lower 16 bits specifying core, higher 16 bits for flags  */
->  /* M4 own area. Can be mapped at probe */
-> -#define ATT_OWN		BIT(1)
-> -#define ATT_IOMEM	BIT(2)
-> +#define ATT_OWN         BIT(31)
-> +#define ATT_IOMEM       BIT(30)
-> +
-> +#define ATT_CORE_MASK   0xffff
-> +#define ATT_CORE(I)     BIT((I))
->  
->  static int imx_rproc_detach_pd(struct rproc *rproc);
->  
-> @@ -101,6 +105,7 @@ struct imx_rproc {
->  	u32				rsrc_id;	/* resource id */
->  	u32				entry;		/* cpu start address */
->  	int                             num_pd;
-> +	u32				core_index;
->  	struct device                   **pd_dev;
->  	struct device_link              **pd_dev_link;
->  };
-> @@ -131,6 +136,19 @@ static const struct imx_rproc_att imx_rproc_att_imx93[] = {
->  	{ 0xD0000000, 0xa0000000, 0x10000000, 0 },
->  };
->  
-> +static const struct imx_rproc_att imx_rproc_att_imx8qm[] = {
-> +	/* dev addr , sys addr  , size      , flags */
-> +	{ 0x08000000, 0x08000000, 0x10000000, 0},
-> +	/* TCML */
-> +	{ 0x1FFE0000, 0x34FE0000, 0x00020000, ATT_OWN | ATT_IOMEM | ATT_CORE(0)},
-> +	{ 0x1FFE0000, 0x38FE0000, 0x00020000, ATT_OWN | ATT_IOMEM | ATT_CORE(1)},
-> +	/* TCMU */
-> +	{ 0x20000000, 0x35000000, 0x00020000, ATT_OWN | ATT_IOMEM | ATT_CORE(0)},
-> +	{ 0x20000000, 0x39000000, 0x00020000, ATT_OWN | ATT_IOMEM | ATT_CORE(1)},
-> +	/* DDR (Data) */
-> +	{ 0x80000000, 0x80000000, 0x60000000, 0 },
-> +};
-> +
->  static const struct imx_rproc_att imx_rproc_att_imx8qxp[] = {
->  	{ 0x08000000, 0x08000000, 0x10000000, 0 },
->  	/* TCML/U */
-> @@ -281,6 +299,12 @@ static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mq = {
->  	.method		= IMX_RPROC_MMIO,
->  };
->  
-> +static const struct imx_rproc_dcfg imx_rproc_cfg_imx8qm = {
-> +	.att            = imx_rproc_att_imx8qm,
-> +	.att_size       = ARRAY_SIZE(imx_rproc_att_imx8qm),
-> +	.method         = IMX_RPROC_SCU_API,
-> +};
-> +
->  static const struct imx_rproc_dcfg imx_rproc_cfg_imx8qxp = {
->  	.att		= imx_rproc_att_imx8qxp,
->  	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8qxp),
-> @@ -397,6 +421,17 @@ static int imx_rproc_da_to_sys(struct imx_rproc *priv, u64 da,
->  	for (i = 0; i < dcfg->att_size; i++) {
->  		const struct imx_rproc_att *att = &dcfg->att[i];
->  
-> +		/*
-> +		 * Ignore entries not belong to current core:
-> +		 * i.MX8QM has dual general M4_[0,1] cores, M4_0's own entries
-> +		 * has "ATT_CORE(0) & BIT(0)" true, M4_1's own entries has
-> +		 * "ATT_CORE(1) & BIT(1)" true.
-> +		 */
-> +		if (att->flags & ATT_CORE_MASK) {
-> +			if (!((BIT(priv->core_index)) & (att->flags & ATT_CORE_MASK)))
-> +				continue;
-> +		}
-> +
->  		if (da >= att->da && da + len < att->da + att->size) {
->  			unsigned int offset = da - att->da;
->  
-> @@ -844,6 +879,11 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
->  			return ret;
->  		}
->  
-> +		if (priv->rsrc_id == IMX_SC_R_M4_1_PID0)
-> +			priv->core_index = 1;
-> +		else
-> +			priv->core_index = 0;
-> +
->  		/*
->  		 * If Mcore resource is not owned by Acore partition, It is kicked by ROM,
->  		 * and Linux could only do IPC with Mcore and nothing else.
-> @@ -1040,6 +1080,7 @@ static const struct of_device_id imx_rproc_of_match[] = {
->  	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
->  	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
->  	{ .compatible = "fsl,imx8qxp-cm4", .data = &imx_rproc_cfg_imx8qxp },
-> +	{ .compatible = "fsl,imx8qm-cm4", .data = &imx_rproc_cfg_imx8qm },
->  	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
->  	{ .compatible = "fsl,imx93-cm33", .data = &imx_rproc_cfg_imx93 },
->  	{},
-> -- 
-> 2.37.1
-> 
+Best regards,
+Jernej
+
+
