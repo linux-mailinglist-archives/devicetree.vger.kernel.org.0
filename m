@@ -2,67 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0051A5FCD80
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 23:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDE285FCD8D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 23:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229845AbiJLVsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 17:48:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43134 "EHLO
+        id S229682AbiJLVxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 17:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229762AbiJLVsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 17:48:03 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C4CD1217E3;
-        Wed, 12 Oct 2022 14:48:02 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id s2so164833edd.2;
-        Wed, 12 Oct 2022 14:48:01 -0700 (PDT)
+        with ESMTP id S229677AbiJLVx1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 17:53:27 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9DF9125006;
+        Wed, 12 Oct 2022 14:53:23 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id w18so30834ejq.11;
+        Wed, 12 Oct 2022 14:53:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fiOoGqWP9QI63dNxXTXejVxT+J2IullvD3xHlr3pqqI=;
-        b=CuhP6SJAJqI9WLUgkws2o7QpcR3KOtu+vk40JKMcNTB7ITFZWoZdoY54dgctUAZ/v/
-         PVv0V7sCooD18SZJteKjKf+IFKQmwvqKqs3X+OGg9cmp+GfRj2Xw2Y1ufTvA3rJaufbe
-         4ar5B+w/gqaICz56Gu7Jq/B/V5aB7lkoHne2ocKK3H3NDjDYUSmzDfUC0KiN+tT75lNw
-         9bjBohG1r+V7twxDQCDLq3x3apOlrb1Tze0/i8X3/+GeqpkBQJrkRSKsl25kFFjljd8i
-         go7KK2h4WiFd1BJH/62P6yfdzUDg812obYEZa5Wd/TFlY9ucggat20Z3KBo+AtAnrZF2
-         jhUw==
+        bh=7/UAQonY1jdtSDxe6mG/GSNINyt/UsNb0npebwXSigc=;
+        b=JzgUWg8xRuGnBKhabW6f9oVrX/dtov7QQSv5AblnWE+IphRPFYyXHxp0aa1gj/sOjL
+         jIj9NjDn+q1Vr7xgRyH9vi/O3ykh3aSmcVbziGCwsjs7ozBwMv1uKzvV1PRm0I/+r9xy
+         H8rMl5j7umJzV3fdZB1IQRO6NFN1k7N/uewVl6JA1dKZaqgj3RPKiC/u8z62MrhdnbAL
+         jDiG54Ryee+x/P6b1lfF7tVqBuOUvLm+c4xFioji0No37mAoNWifcy4FztJSSWLI+L3X
+         CHzpg+NZ12LZxL88J0LQA0DI9kZRA4FUvvJLO7LTZQ3FrSJEeIE7hFigHGThq/oTv1Mz
+         fPdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fiOoGqWP9QI63dNxXTXejVxT+J2IullvD3xHlr3pqqI=;
-        b=nbXeeoKEBn0ZZQgCo5PoMb/Gn4Dy7bPqSOtftbPT4CIA/fbj9rTNyinZfEJF/xsZw6
-         Nk5yjB+sDqEA+xFd5WtFTMHMXHDDGZ9Bnixj/xPNndRB9GLTUtlGnnDZW4elrfBwpO0z
-         ozCL3NGHJ+Fyqqm8HmuTDDCFY3cb6yU7Dp6C7ULw7Oa/3i4XfiBGb1afcFt8h8R+F37W
-         VC69wjlXhKVW4q6UPbvBTfae7s5L1DcJouXgMKcYKjFNODSMqWeTfbsf6ROl94kOSIL3
-         Q92tSTufAWw+hSokiqKwKd96/gXc9u5YXKT8pCWlFaQc5PF783fnb+fKnq+NF1gx6oPx
-         WgLg==
-X-Gm-Message-State: ACrzQf1LOlsV09cGYCszEKsB1x3Ol+Ilm7Pu04tDscKsbHIUPpTdtW/8
-        JfcIQhc9Lz4h2O1ms8WTH3w=
-X-Google-Smtp-Source: AMsMyM5NKhZWo9SvUyqqCkby2CqZcu64sNYVrDopX0uUbIv+RX0/Berc7UxXx7bYGv1aVRFYuSrAeA==
-X-Received: by 2002:a05:6402:5406:b0:452:1560:f9d4 with SMTP id ev6-20020a056402540600b004521560f9d4mr29573632edb.333.1665611280437;
-        Wed, 12 Oct 2022 14:48:00 -0700 (PDT)
+        bh=7/UAQonY1jdtSDxe6mG/GSNINyt/UsNb0npebwXSigc=;
+        b=n7Qx5/FgdUSoMZLTvxj+w6K3HoDZ47GBdfGSyUiq72fWeDGMDWsJP7V2AIarJnY4b7
+         Aq65cx89c1Xrg7uMtZFFLi6PBgLAkWwb6mr7QII6oS4FGZRD8JmidCmlgk+DHhglGqlk
+         jxYMbEvisXqL1NCSqQWJwxI06FDjL0mVIyLHiDiO9wAZVPIAAPLxe1OhznkQCnrhD76j
+         COyu7jrT9zTh1mbJA+5lbJBeg6H8Uvc4fE2H7crmWHWGTFf621iAAD5lTBaWn5IBVgJs
+         ma6FYP3HwN4MVwKlovKj4I6MWq/2w5FbtYZ6vDC1iV102ugWS4HHPge9V1HHvQhH0W6O
+         Dzlw==
+X-Gm-Message-State: ACrzQf0LI+UhBUKp/O5ln7FL95caNxV8HlZzuvlBa7RVQzm+GX03f0F7
+        YEJaMMaOzDd2D8gSNTy/Ays=
+X-Google-Smtp-Source: AMsMyM5sK8vks8yeD99LKu/TvT/nZWJrqvIvXzWohkOK08pjY9d2ehQSA6pozuLJKbsjtBrx+kIZVw==
+X-Received: by 2002:a17:907:7d8d:b0:78d:d467:dd3 with SMTP id oz13-20020a1709077d8d00b0078dd4670dd3mr8553455ejc.547.1665611601720;
+        Wed, 12 Oct 2022 14:53:21 -0700 (PDT)
 Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id ay8-20020a170906d28800b00788c622fa2csm1852551ejb.135.2022.10.12.14.47.59
+        by smtp.gmail.com with ESMTPSA id ay8-20020a170906d28800b00788c622fa2csm1857593ejb.135.2022.10.12.14.53.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 14:47:59 -0700 (PDT)
+        Wed, 12 Oct 2022 14:53:21 -0700 (PDT)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] ARM: dts: sunxi: correct indentation
-Date:   Wed, 12 Oct 2022 23:47:58 +0200
-Message-ID: <2599730.BddDVKsqQX@kista>
-In-Reply-To: <20221002091959.68815-1-krzysztof.kozlowski@linaro.org>
-References: <20221002091959.68815-1-krzysztof.kozlowski@linaro.org>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v3 2/2] ARM: dts: axp22x/axp809: Add GPIO controller nodes
+Date:   Wed, 12 Oct 2022 23:53:20 +0200
+Message-ID: <9053509.rMLUfLXkoz@kista>
+In-Reply-To: <20220916042751.47906-3-samuel@sholland.org>
+References: <20220916042751.47906-1-samuel@sholland.org> <20220916042751.47906-3-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -76,50 +74,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Samuel,
 
-Dne nedelja, 02. oktober 2022 ob 11:19:59 CEST je Krzysztof Kozlowski 
-napisal(a):
-> Do not use spaces for indentation.
+Dne petek, 16. september 2022 ob 06:27:51 CEST je Samuel Holland napisal(a):
+> These PMICs all contain a GPIO controller. Now that the binding for this
+> variant is documented, wire up the controller in the device tree.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
 Jernej
 
 > ---
->  arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
-> b/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi index
-> e899d14f38c3..1d1d127cf38f 100644
-> --- a/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
-> +++ b/arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi
-> @@ -89,13 +89,13 @@ switch-4 {
+> Changes in v3:
+>  - Remove "ldo" pinctrl children from new nodes
+> 
+>  arch/arm/boot/dts/axp22x.dtsi | 6 ++++++
+>  arch/arm/boot/dts/axp809.dtsi | 7 +++++++
+>  2 files changed, 13 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/axp22x.dtsi b/arch/arm/boot/dts/axp22x.dtsi
+> index a020c12b2884..f79650afd0a7 100644
+> --- a/arch/arm/boot/dts/axp22x.dtsi
+> +++ b/arch/arm/boot/dts/axp22x.dtsi
+> @@ -67,6 +67,12 @@ battery_power_supply: battery-power {
+>  		status = "disabled";
 >  	};
 > 
->  	reg_gmac_3v3: gmac-3v3 {
-> -		      compatible = "regulator-fixed";
-> -		      regulator-name = "gmac-3v3";
-> -		      regulator-min-microvolt = <3300000>;
-> -		      regulator-max-microvolt = <3300000>;
-> -		      startup-delay-us = <100000>;
-> -		      enable-active-high;
-> -		      gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>;
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "gmac-3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		startup-delay-us = <100000>;
-> +		enable-active-high;
-> +		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>;
->  	};
-> 
->  	wifi_pwrseq: wifi_pwrseq {
+> +	axp_gpio: gpio {
+> +		compatible = "x-powers,axp221-gpio";
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +	};
+> +
+>  	regulators {
+>  		/* Default work frequency for buck regulators */
+>  		x-powers,dcdc-freq = <3000>;
+> diff --git a/arch/arm/boot/dts/axp809.dtsi b/arch/arm/boot/dts/axp809.dtsi
+> index ab8e5f2d9246..d134d4c00bd8 100644
+> --- a/arch/arm/boot/dts/axp809.dtsi
+> +++ b/arch/arm/boot/dts/axp809.dtsi
+> @@ -50,4 +50,11 @@ &axp809 {
+>  	compatible = "x-powers,axp809";
+>  	interrupt-controller;
+>  	#interrupt-cells = <1>;
+> +
+> +	axp_gpio: gpio {
+> +		compatible = "x-powers,axp809-gpio",
+> +			     "x-powers,axp221-gpio";
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +	};
+>  };
 > --
-> 2.34.1
+> 2.35.1
 
 
