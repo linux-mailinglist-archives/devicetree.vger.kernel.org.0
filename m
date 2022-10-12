@@ -2,191 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F36F5FC2D1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 11:15:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11E945FC2F5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 11:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbiJLJP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 05:15:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
+        id S229925AbiJLJUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 05:20:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbiJLJP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 05:15:27 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE6A491E9;
-        Wed, 12 Oct 2022 02:15:25 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29C8tfB7026001;
-        Wed, 12 Oct 2022 11:15:11 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=WuRU+MntGnCMaXFzcXMNoaYrVG/2orVNcEHKCqBKaQg=;
- b=aw/8jJZgI81jBzPEP9vF3LPDs5aPjpEocaar0BEyHQIeBVJf3IwXqr8qU9eA4qNGhZD9
- E/nWHpM0HKAQu6GHR9oua6gbkxKEp8P8I2lo/AA8USiX4Xe+czS5yGGuVt7q+1ZN9Xwn
- ePM0vVGgCRcJnkLY7tg+T3VvVfJ414fl/qxlyr4ks3itHGgzRBBRHp9ywxuXepQEGey/
- T+Xyefm7Ygfu2fYejo3QmnJtKUFGrSTrb+yS8LMlEXZiWh/6XipB/p1YXMR2nZQJA0V8
- McEPwXYZZpTlLsru2vbghdKsFOAMtA36QFVBzB6m+JVbv9Mc4jx3/vva+CYVqy7dyBd1 uA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3k4hwf66qg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Oct 2022 11:15:11 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6AE25100034;
-        Wed, 12 Oct 2022 11:15:04 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A10C32194EC;
-        Wed, 12 Oct 2022 11:15:04 +0200 (CEST)
-Received: from [10.201.22.54] (10.75.127.122) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Wed, 12 Oct
- 2022 11:15:01 +0200
-Message-ID: <cce333f4-17db-f891-a9a2-97036c7d7332@foss.st.com>
-Date:   Wed, 12 Oct 2022 11:15:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH] ASoC: dt-bindings: Convert dmic-codec to DT schema
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        "Mark Brown" <broonie@kernel.org>,
+        with ESMTP id S229950AbiJLJTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 05:19:53 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89339FAD4;
+        Wed, 12 Oct 2022 02:19:52 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id g27so23614157edf.11;
+        Wed, 12 Oct 2022 02:19:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pNSFAr2MGivBSLtf3MfcdCBQLmBdDr3TEf3ZiaGN4R8=;
+        b=FDD9yc6U8Q8r+i6GYJu0VNwuSvFNAx40cBnTrpkBokdJzW31FSIB9lA0QnpQAgLOjo
+         PKVXCCexLKAo8i2FAfU9IsiFRsUQxOMdOtHZbW5L9MpfpwfTFGjiZaF4jF0zZQbUTARs
+         zel/hmruMzT9kykHnTY2ItDib7T07yeZzsZvJZ/Is3J8jI044GBbLKdVxxGfm88IDsUk
+         33YTKntHYXEf7t2y8uP5s8RBD7gCeQ8CpPg3EcbTYu/QJconcAE8+QvBqOITjb4TqEjx
+         Ju86wNLPdYTqHaRGmFq7r6YbIt01PxHEEiwve2KLNzv0TjsnV/WdZX7H4vna6WgOkYKl
+         91Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pNSFAr2MGivBSLtf3MfcdCBQLmBdDr3TEf3ZiaGN4R8=;
+        b=Y5krs3gH4LstW35fFmtep+krlziDGaRKGYnnqCVNfC+2uio9hAjwiSd8BK8MAluNV9
+         DbqRtUP8z4qm9b/eCfsprJtVJAp0Y1ZMFKMAnrpDywh08xKwXZ+7TJBsdFiE873TTJJV
+         DrTjQ9HVSZ2xieo7eKzcNwmeThoGhSjvJrBjyo7AG8ZeAEN9nytPrd3Ua+VkvKiCq/Ef
+         ja5jhecoQV4ea/LEmNh7+nfbt6MrX0ymQV4YmDMrDJjEn+U1W9jOR2OlPchZWQ8fQAIM
+         F9CdGA4LmCy33c6br3zqOsFkiDUZymvFFTCbymcQChFSmOXSkaFWMoESj/1jsLrdpeCP
+         6UEQ==
+X-Gm-Message-State: ACrzQf3wINowk3MOWA24uTQNM4qeK5BdehR3kZ5KRuNdHr3IM19i0Fs0
+        eagIUWm+T8BFIF+YARqaBbd0/AN6fQ7QIw==
+X-Google-Smtp-Source: AMsMyM6bJSXO/d+EGXaKgWOUcUspbuz5Nz7fsjKtFF77ct5LATs5R5VsXUE1F00KHnOEfyVmIsI6Mw==
+X-Received: by 2002:a05:6402:1909:b0:459:d0b8:1606 with SMTP id e9-20020a056402190900b00459d0b81606mr26027648edz.313.1665566390977;
+        Wed, 12 Oct 2022 02:19:50 -0700 (PDT)
+Received: from skbuf ([188.27.184.197])
+        by smtp.gmail.com with ESMTPSA id d41-20020a056402402900b0045bef7cf489sm7093029eda.89.2022.10.12.02.19.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Oct 2022 02:19:50 -0700 (PDT)
+Date:   Wed, 12 Oct 2022 12:19:47 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        <arnaud.pouliquen@foss.st.com>, Heiko Stuebner <heiko@sntech.de>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221011184119.3754096-1-robh@kernel.org>
-From:   Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-In-Reply-To: <20221011184119.3754096-1-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.122]
-X-ClientProxiedBy: GPXDAG2NODE4.st.com (10.75.127.68) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-12_04,2022-10-11_02,2022-06-22_01
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>
+Subject: Re: [RFC v4 net-next 03/17] net: mscc: ocelot: expose stats layout
+ definition to be used by other drivers
+Message-ID: <20221012091947.tdiglhtzy5cvfmpe@skbuf>
+References: <20221008185152.2411007-1-colin.foster@in-advantage.com>
+ <20221008185152.2411007-4-colin.foster@in-advantage.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221008185152.2411007-4-colin.foster@in-advantage.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 10/11/22 20:41, Rob Herring wrote:
-> Convert the dmic-codec binding to DT schema format.
+On Sat, Oct 08, 2022 at 11:51:38AM -0700, Colin Foster wrote:
+> The ocelot_stats_layout array is common between several different chips,
+> some of which can only be controlled externally. Export this structure so
+> it doesn't have to be duplicated in these other drivers.
 > 
-> The '#sound-dai-cells' and 'sound-name-prefix' properties were not
-> documented, but are in use, so add them.
+> Rename the structure as well, to follow the conventions of other shared
+> resources.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
 > ---
->  .../devicetree/bindings/sound/dmic-codec.yaml | 55 +++++++++++++++++++
->  .../devicetree/bindings/sound/dmic.txt        | 22 --------
->  2 files changed, 55 insertions(+), 22 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/dmic-codec.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/dmic.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/dmic-codec.yaml b/Documentation/devicetree/bindings/sound/dmic-codec.yaml
-> new file mode 100644
-> index 000000000000..767152fa99cc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/dmic-codec.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/dmic-codec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic PDM Digital microphone (DMIC) codec
-> +
-> +maintainers:
-> +  - Arnaud Pouliquen <arnaud.pouliquen@st.com>
 
-I don't have much activity on the audio topic anymore, so I don't know if I'm
-the best person.
-But if one maintainer is needed, that's fine.
-Please just change my email address to arnaud.pouliquen@foss.st.com
-With that and the fix reported by the bot
-Reviewed-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+I see that ocelot->stats_layout has become a redundant indirection.
+It no longer contains anything hardware-specific. The register offsets
+are now part of the switch-specific sys_regmap.
 
-Thanks,
-Arnaud
-
-> +
-> +allOf:
-> +  - $ref: name-prefix.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: dmic-codec
-> +
-> +  '#sound-dai-cells':
-> +    const: 0
-> +
-> +  dmicen-gpios:
-> +    description: GPIO specifier for DMIC to control start and stop
-> +    maxItems: 1
-> +
-> +  num-channels:
-> +    description: Number of microphones on this DAI
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 8
-> +    default: 8
-> +
-> +  modeswitch-delay-ms:
-> +    description: Delay (in ms) to complete DMIC mode switch
-> +
-> +  wakeup-delay-ms:
-> +    description: Delay (in ms) after enabling the DMIC
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio.h>
-> +
-> +    dmic {
-> +        compatible = "dmic-codec";
-> +        dmicen-gpios = <&gpio4 3 GPIO_ACTIVE_HIGH>;
-> +        num-channels = <1>;
-> +        wakeup-delay-ms <50>;
-> +        modeswitch-delay-ms <35>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/sound/dmic.txt b/Documentation/devicetree/bindings/sound/dmic.txt
-> deleted file mode 100644
-> index 32e871037269..000000000000
-> --- a/Documentation/devicetree/bindings/sound/dmic.txt
-> +++ /dev/null
-> @@ -1,22 +0,0 @@
-> -Device-Tree bindings for Digital microphone (DMIC) codec
-> -
-> -This device support generic PDM digital microphone.
-> -
-> -Required properties:
-> -	- compatible: should be "dmic-codec".
-> -
-> -Optional properties:
-> -	- dmicen-gpios: GPIO specifier for dmic to control start and stop
-> -	- num-channels: Number of microphones on this DAI
-> -	- wakeup-delay-ms: Delay (in ms) after enabling the DMIC
-> -	- modeswitch-delay-ms: Delay (in ms) to complete DMIC mode switch
-> -
-> -Example node:
-> -
-> -	dmic_codec: dmic@0 {
-> -		compatible = "dmic-codec";
-> -		dmicen-gpios = <&gpio4 3 GPIO_ACTIVE_HIGH>;
-> -		num-channels = <1>;
-> -		wakeup-delay-ms <50>;
-> -		modeswitch-delay-ms <35>;
-> -	};
+Could you please refactor the code to use a single static const struct
+ocelot_stats_layout in ocelot_stats.c, and remove felix->info->stats_layout
+and ocelot->stats_layout?
