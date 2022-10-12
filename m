@@ -2,93 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E65F5FC22D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 10:44:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F36F5FC2D1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 11:15:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229694AbiJLIol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 04:44:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47266 "EHLO
+        id S229693AbiJLJP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 05:15:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbiJLIoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 04:44:39 -0400
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C751010;
-        Wed, 12 Oct 2022 01:44:38 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id D346A3200B1D;
-        Wed, 12 Oct 2022 04:44:36 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Wed, 12 Oct 2022 04:44:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1665564275; x=
-        1665650675; bh=0o82D+Vbr1Qqh8x9aEShWRywyoLoGwve0G5fih60HmI=; b=Z
-        XYDKeC5/DveUPpoOMVoz4/DdJeyl3m9weqgTrXfyQqwWvzYaAalORZR0wMUfauVm
-        USKsoTbCslmUlBAf5XKvoSkIhrqkHUKn9gKekULLRrxID3DBS5ccxKFFDBILr1et
-        dX5NHk+inqoJHJpifN0CzWqPwftdqF9THcmcBEFYYcBnl1S5cJZEO8NLlmtP1+lk
-        ZeYN5va3qjZCDyPWKhr21ftBm/DHvqFaoH2X/Rd/UrgduswGAGyUKAdJ0Vc+9qs1
-        kc+x2L+4b30Y/RPRDl5DlAjlLT7N0m77LIBehKY6hugHfbqONfqHtsJi2bwH47ey
-        KoPOeGtLHUPVqb+GfWezg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1665564275; x=
-        1665650675; bh=0o82D+Vbr1Qqh8x9aEShWRywyoLoGwve0G5fih60HmI=; b=I
-        fd6FpfmZQJ/ksNwvJQyxRNn6SC59iUAGrEXcNKYMClJKz7W1Z+mxFscdTkhJjlFT
-        MF0MBsvtxu2XA4kTEI1px5oZKSKueQtGs6tQ1LyRrdaGm7uxuPfJbqinecpjy8WG
-        2enjQVu2xOxybglwpvpV5yIcnnUmIluzjctMSiofN1bH9pYoMfWQWYb3IcH6r6iM
-        5jSErtaiKUZAO6AiH7GLRAtrK3hyExTY5v5joHPfi2kekxejuZUY2d/P/25n6Qxz
-        UJwO/nNHaZRDd7o8XgWcLbmKEQ0pShU7Bz+n3Err89Sj3xMY/DRbC4ZcsyiVUAD4
-        xjNGrtQum+JtiemLcFvhQ==
-X-ME-Sender: <xms:cn5GYwiS-Lu3wZlU07-So25sNnbspw80O20Rpqhkwb-BUEKGjIWPhg>
-    <xme:cn5GY5B5XzOgMcTZoI-5Sf7PCFtaihj6jUBBILKZBPrNUhXzeEfnI-iH3CH61ldck
-    sselZSWuf-Mg303vF0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeejkedgtdejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpefgkeeuleegieeghfduudeltdekfeffjeeuleehleefudettddtgfevueef
-    feeigeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:cn5GY4F6_o7WHad7WyUmypGGKpD_vD0KkfNIBdvEFDLW02hBxmxJJw>
-    <xmx:cn5GYxR7OZYcUuleHSsy1KxWC8O2IELM0B8vwjg077WUkbEyySyKhQ>
-    <xmx:cn5GY9wjwaVU9py0PKfgtkocDW9kcvxaSGy4lQKfkVEB0mreU8mmVg>
-    <xmx:c35GYwrdS9nADqpBxus3AqE0rdPeKImSwUA7AKKztmYEwewsiQPD9Q>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id E64ADB60086; Wed, 12 Oct 2022 04:44:34 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1047-g9e4af4ada4-fm-20221005.001-g9e4af4ad
-Mime-Version: 1.0
-Message-Id: <970b59a5-9fcb-494c-a07e-1443bdd5072c@app.fastmail.com>
-In-Reply-To: <695a13341db63965a22799dd78698751ed95448c.camel@icenowy.me>
-References: <20221012055602.1544944-1-uwu@icenowy.me>
- <20221012055602.1544944-2-uwu@icenowy.me>
- <60a2cb70-bde4-4423-9a54-7abc1ba466f8@app.fastmail.com>
- <695a13341db63965a22799dd78698751ed95448c.camel@icenowy.me>
-Date:   Wed, 12 Oct 2022 10:44:14 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Icenowy Zheng" <uwu@icenowy.me>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Chen-Yu Tsai" <wens@csie.org>,
-        "Jernej Skrabec" <jernej.skrabec@gmail.com>,
-        "Samuel Holland" <samuel@sholland.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Andre Przywara" <andre.przywara@arm.com>
-Cc:     soc@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v2 01/10] mailmap: update Icenowy Zheng's mail address
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        with ESMTP id S229827AbiJLJP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 05:15:27 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE6A491E9;
+        Wed, 12 Oct 2022 02:15:25 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29C8tfB7026001;
+        Wed, 12 Oct 2022 11:15:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=WuRU+MntGnCMaXFzcXMNoaYrVG/2orVNcEHKCqBKaQg=;
+ b=aw/8jJZgI81jBzPEP9vF3LPDs5aPjpEocaar0BEyHQIeBVJf3IwXqr8qU9eA4qNGhZD9
+ E/nWHpM0HKAQu6GHR9oua6gbkxKEp8P8I2lo/AA8USiX4Xe+czS5yGGuVt7q+1ZN9Xwn
+ ePM0vVGgCRcJnkLY7tg+T3VvVfJ414fl/qxlyr4ks3itHGgzRBBRHp9ywxuXepQEGey/
+ T+Xyefm7Ygfu2fYejo3QmnJtKUFGrSTrb+yS8LMlEXZiWh/6XipB/p1YXMR2nZQJA0V8
+ McEPwXYZZpTlLsru2vbghdKsFOAMtA36QFVBzB6m+JVbv9Mc4jx3/vva+CYVqy7dyBd1 uA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3k4hwf66qg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 Oct 2022 11:15:11 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6AE25100034;
+        Wed, 12 Oct 2022 11:15:04 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A10C32194EC;
+        Wed, 12 Oct 2022 11:15:04 +0200 (CEST)
+Received: from [10.201.22.54] (10.75.127.122) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Wed, 12 Oct
+ 2022 11:15:01 +0200
+Message-ID: <cce333f4-17db-f891-a9a2-97036c7d7332@foss.st.com>
+Date:   Wed, 12 Oct 2022 11:15:00 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH] ASoC: dt-bindings: Convert dmic-codec to DT schema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        "Mark Brown" <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
+        <arnaud.pouliquen@foss.st.com>, Heiko Stuebner <heiko@sntech.de>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221011184119.3754096-1-robh@kernel.org>
+From:   Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+In-Reply-To: <20221011184119.3754096-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.122]
+X-ClientProxiedBy: GPXDAG2NODE4.st.com (10.75.127.68) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-12_04,2022-10-11_02,2022-06-22_01
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,33 +74,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 12, 2022, at 10:35 AM, Icenowy Zheng wrote:
-> =E5=9C=A8 2022-10-12=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 10:31 +0200=EF=
-=BC=8CArnd Bergmann=E5=86=99=E9=81=93=EF=BC=9A
->> On Wed, Oct 12, 2022, at 7:55 AM, Icenowy Zheng wrote:
->>=20
->> I don't see a patch for updating the MAINTAINERS file here, if you
->> haven't already sent that another way, you should probably change
->> both at the same time.
->
-> Good point. If this patchset is going to have a v3, I will contain it
-> there; otherwise I will independently send it.
+Hi Rob,
 
-Ok. If you make a separate patch for the maintainers file, feel
-free to send this to me at soc@kernel.org, I can then put it into
-the fixes branch so it makes it into 6.1, otherwise I assume this
-gets picked up through the normal path along with the rest of the
-series.
+On 10/11/22 20:41, Rob Herring wrote:
+> Convert the dmic-codec binding to DT schema format.
+> 
+> The '#sound-dai-cells' and 'sound-name-prefix' properties were not
+> documented, but are in use, so add them.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/sound/dmic-codec.yaml | 55 +++++++++++++++++++
+>  .../devicetree/bindings/sound/dmic.txt        | 22 --------
+>  2 files changed, 55 insertions(+), 22 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/dmic-codec.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/dmic.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/dmic-codec.yaml b/Documentation/devicetree/bindings/sound/dmic-codec.yaml
+> new file mode 100644
+> index 000000000000..767152fa99cc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/dmic-codec.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/dmic-codec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic PDM Digital microphone (DMIC) codec
+> +
+> +maintainers:
+> +  - Arnaud Pouliquen <arnaud.pouliquen@st.com>
 
->> As a driver maintainer, you can also apply for a kernel.org account
->> [https://korg.docs.kernel.org/accounts.html] and use that for
->> sending patches and forwarding to another address.
->
-> Well I am in China now and not so easy to get my PGP key signed...
+I don't have much activity on the audio topic anymore, so I don't know if I'm
+the best person.
+But if one maintainer is needed, that's fine.
+Please just change my email address to arnaud.pouliquen@foss.st.com
+With that and the fix reported by the bot
+Reviewed-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
 
-Right, that can be a problem. In an urgent case, you could probably
-do a video meeting with someone you've previously met that is already
-on the kernel keyring, but that is perhaps not worth the hassle
-if your current setup otherwise works fine.
+Thanks,
+Arnaud
 
-     Arnd
+> +
+> +allOf:
+> +  - $ref: name-prefix.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: dmic-codec
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +  dmicen-gpios:
+> +    description: GPIO specifier for DMIC to control start and stop
+> +    maxItems: 1
+> +
+> +  num-channels:
+> +    description: Number of microphones on this DAI
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 8
+> +    default: 8
+> +
+> +  modeswitch-delay-ms:
+> +    description: Delay (in ms) to complete DMIC mode switch
+> +
+> +  wakeup-delay-ms:
+> +    description: Delay (in ms) after enabling the DMIC
+> +
+> +required:
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio.h>
+> +
+> +    dmic {
+> +        compatible = "dmic-codec";
+> +        dmicen-gpios = <&gpio4 3 GPIO_ACTIVE_HIGH>;
+> +        num-channels = <1>;
+> +        wakeup-delay-ms <50>;
+> +        modeswitch-delay-ms <35>;
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/sound/dmic.txt b/Documentation/devicetree/bindings/sound/dmic.txt
+> deleted file mode 100644
+> index 32e871037269..000000000000
+> --- a/Documentation/devicetree/bindings/sound/dmic.txt
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -Device-Tree bindings for Digital microphone (DMIC) codec
+> -
+> -This device support generic PDM digital microphone.
+> -
+> -Required properties:
+> -	- compatible: should be "dmic-codec".
+> -
+> -Optional properties:
+> -	- dmicen-gpios: GPIO specifier for dmic to control start and stop
+> -	- num-channels: Number of microphones on this DAI
+> -	- wakeup-delay-ms: Delay (in ms) after enabling the DMIC
+> -	- modeswitch-delay-ms: Delay (in ms) to complete DMIC mode switch
+> -
+> -Example node:
+> -
+> -	dmic_codec: dmic@0 {
+> -		compatible = "dmic-codec";
+> -		dmicen-gpios = <&gpio4 3 GPIO_ACTIVE_HIGH>;
+> -		num-channels = <1>;
+> -		wakeup-delay-ms <50>;
+> -		modeswitch-delay-ms <35>;
+> -	};
