@@ -2,297 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FC5F5FC00C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 07:04:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58E0D5FC039
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 07:56:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbiJLFEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 01:04:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52458 "EHLO
+        id S229471AbiJLF4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 01:56:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbiJLFEz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 01:04:55 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9D6D19002;
-        Tue, 11 Oct 2022 22:04:53 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id bj12so35527178ejb.13;
-        Tue, 11 Oct 2022 22:04:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eWXigG1u8LRFaluOU8xYqRPb0mmmgU/QzpmUWeqEHJQ=;
-        b=l0LaBghwdk7PCVJXNaOY/n6ExeGkkZuRA0FQDgOwjq/wsjF+xXFFgkG4R+uQxb4bYR
-         /jcdagEmVM8UboEh9+VDBu2hGDx89ri9JA76TIjPZR/oOCIjXeNHw9w/H2dJ7ObiPNXC
-         fLRe0IVTl3PSXFM4AHguYu/589Xa9Ppj8xqdcTrIphdstMZNH7X5rCfVfcufN0LnPztB
-         u38KBKxvN+xbzgtHCbisVir6WHrh02h9ScGvlwX6ILo2/Hp1kOtQjCQ9EQIZiUsLV1o+
-         G78R1tSUNdoYFp9oroHStleKgyrV0V1InF7sHy1y5hD3GHilNUYX+5yKwa2ZvkCghSKe
-         XeiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eWXigG1u8LRFaluOU8xYqRPb0mmmgU/QzpmUWeqEHJQ=;
-        b=DHLTLudogmSiCqzD3KCl2yXpBGynnJtKvHykZyekEY/Jm+7Kt5bHnamf5zhwwPs0xi
-         HVecH7X1X4rME9qDQcRepChPAHwWB821IaYzWITrA3tu5GWDcWfvI2g8zRoDhnLv0J+A
-         L0EHnYOkVenXyDAH5R/jFLntnnyicRuGLwPCW6vHAH9GimL4fqY7zGc5AHiz6ADLPDdO
-         E6sm9YI3NGim2V/sguHulwCgakViGfuHsHe8qIYUkcAK6GW/fO/mSDQGF4umIwNRMYyf
-         Y2nOPqhh2mxJKz4OEwNEi+VXl6Oj/jo1yvkoeD1SNXGldBNgAchtk7MF8CSLvnoe9KBm
-         CIvQ==
-X-Gm-Message-State: ACrzQf0rztEhJMniqNqvY2SHADhNJ4x89Vsv15ri6SBvBq7PasnEcsN6
-        T/VKCBtjKjVkZ+ajy5mf3VE=
-X-Google-Smtp-Source: AMsMyM5QHWHvMa7BfZ8Ya1GTDp16MRllclavGWOgQ1pt0TPpuOngyrdAMCZYzNadj8Cb3a4wIk0IFA==
-X-Received: by 2002:a17:907:2c67:b0:78d:49d2:6297 with SMTP id ib7-20020a1709072c6700b0078d49d26297mr21876419ejc.21.1665551092152;
-        Tue, 11 Oct 2022 22:04:52 -0700 (PDT)
-Received: from localhost.lan ([194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id e11-20020a170906314b00b0073ddb2eff27sm573916eje.167.2022.10.11.22.04.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Oct 2022 22:04:51 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        John Crispin <john@phrozen.org>,
-        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2 2/2] mtd: parsers: add TP-Link SafeLoader partitions table parser
-Date:   Wed, 12 Oct 2022 07:04:42 +0200
-Message-Id: <20221012050442.6815-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221012050442.6815-1-zajec5@gmail.com>
-References: <20221012050442.6815-1-zajec5@gmail.com>
+        with ESMTP id S229469AbiJLF4o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 01:56:44 -0400
+Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 736E29D509;
+        Tue, 11 Oct 2022 22:56:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1665554179; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=WTV4I9AqtF8NEWKXiyfe37p9e+3uoQyKfYMMKC12oZwAqz4QMe1JsRy0FOu6vtNPkZZOx44lwIrjHLxj5Ft++yIKburl2OVO1e1Gfl66Iqdk79W7+QcsxShPpG3e7vSbUx8IITKC8jd69cc8e0offrgSAMPoQiOWjXJwYGLIAUs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1665554179; h=Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=KU9sLoTveoefxunUD/xdovaMeWXf7cwcD0GVI0joPoM=; 
+        b=b6n5b7nv2V1N5TSB4RwZK0omSrjLg+YImusPP3qRMMRygR1wb6J6JC4hb0aKS9iAi9CwS6g3H+CAMcUb707DHFxAIZzENW6shhWF7osZ1bLpQvAM3+h1XKSg1W0EqOaiC1pl+VWUlAwBbekhzptXkucPt54L3wTSDYDRd31Ecmo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1665554179;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Transfer-Encoding:Reply-To;
+        bh=KU9sLoTveoefxunUD/xdovaMeWXf7cwcD0GVI0joPoM=;
+        b=I0EvLcljuAF5RCf6YxJRtkrDKcdbE147s35vorQxWDUg3pV+1dbVCelleqy6AOkf
+        f3LXbzBFjoena2/XcwRiiz/RBkuQAZhEA1JosuPLeduMBqm0QEg33YBxS7A9blXtzWf
+        RfZTwSpNaVmwBaIZHIELyvyQrPAb1p5pZ/+9I7DQ=
+Received: from edelgard.fodlan.icenowy.me (112.94.102.144 [112.94.102.144]) by mx.zohomail.com
+        with SMTPS id 1665554178267857.678933146887; Tue, 11 Oct 2022 22:56:18 -0700 (PDT)
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     soc@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH v2 00/10] SUNIV USB and PopStick support (and updating mailmap)
+Date:   Wed, 12 Oct 2022 13:55:52 +0800
+Message-Id: <20221012055602.1544944-1-uwu@icenowy.me>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+This patchset introduces support for F1C100s' USB and SourceParts
+PopStick board.
 
-This parser deals with most TP-Link home routers. It reads info about
-partitions and registers them in the MTD subsystem.
+As I switched to a new mail address, and this patchset contains patches
+authored before this change, a mailmap update is added.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Fix types (thanks kernel test robot)
-    Fix off-by-one when setting '\0'
----
- drivers/mtd/parsers/Kconfig             |  15 +++
- drivers/mtd/parsers/Makefile            |   1 +
- drivers/mtd/parsers/tplink_safeloader.c | 150 ++++++++++++++++++++++++
- 3 files changed, 166 insertions(+)
- create mode 100644 drivers/mtd/parsers/tplink_safeloader.c
+The DT binding and driver support for SUNIV USB PHY/MUSB are added, in
+addition to DT changes to the DTSI and Lichee Nano DT. A new DT is added
+for SourceParts PopStick v1.1 board.
 
-diff --git a/drivers/mtd/parsers/Kconfig b/drivers/mtd/parsers/Kconfig
-index aaa06050c9bc..c258ba2a3a6f 100644
---- a/drivers/mtd/parsers/Kconfig
-+++ b/drivers/mtd/parsers/Kconfig
-@@ -123,6 +123,21 @@ config MTD_AFS_PARTS
- 	  for your particular device. It won't happen automatically. The
- 	  'physmap' map driver (CONFIG_MTD_PHYSMAP) does this, for example.
- 
-+config MTD_PARSER_TPLINK_SAFELOADER
-+	tristate "TP-Link Safeloader partitions parser"
-+	depends on MTD && (ARCH_BCM_5301X || ATH79 || SOC_MT7620 || SOC_MT7621 || COMPILE_TEST)
-+	help
-+	  TP-Link home routers use flash partitions to store various data. Info
-+	  about flash space layout is stored in a partitions table using a
-+	  custom ASCII-based format.
-+
-+	  That format was first found in devices with SafeLoader bootloader and
-+	  was named after it. Later it was adapted to CFE and U-Boot
-+	  bootloaders.
-+
-+	  This driver reads partitions table, parses it and creates MTD
-+	  partitions.
-+
- config MTD_PARSER_TRX
- 	tristate "Parser for TRX format partitions"
- 	depends on MTD && (BCM47XX || ARCH_BCM_5301X || ARCH_MEDIATEK || RALINK || COMPILE_TEST)
-diff --git a/drivers/mtd/parsers/Makefile b/drivers/mtd/parsers/Makefile
-index 23fa4de4016f..0e70b621a1d8 100644
---- a/drivers/mtd/parsers/Makefile
-+++ b/drivers/mtd/parsers/Makefile
-@@ -10,6 +10,7 @@ ofpart-$(CONFIG_MTD_OF_PARTS_BCM4908)	+= ofpart_bcm4908.o
- ofpart-$(CONFIG_MTD_OF_PARTS_LINKSYS_NS)+= ofpart_linksys_ns.o
- obj-$(CONFIG_MTD_PARSER_IMAGETAG)	+= parser_imagetag.o
- obj-$(CONFIG_MTD_AFS_PARTS)		+= afs.o
-+obj-$(CONFIG_MTD_PARSER_TPLINK_SAFELOADER)	+= tplink_safeloader.o
- obj-$(CONFIG_MTD_PARSER_TRX)		+= parser_trx.o
- obj-$(CONFIG_MTD_SERCOMM_PARTS)		+= scpart.o
- obj-$(CONFIG_MTD_SHARPSL_PARTS)		+= sharpslpart.o
-diff --git a/drivers/mtd/parsers/tplink_safeloader.c b/drivers/mtd/parsers/tplink_safeloader.c
-new file mode 100644
-index 000000000000..23584a477391
---- /dev/null
-+++ b/drivers/mtd/parsers/tplink_safeloader.c
-@@ -0,0 +1,150 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright © 2022 Rafał Miłecki <rafal@milecki.pl>
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mtd/mtd.h>
-+#include <linux/mtd/partitions.h>
-+#include <linux/of.h>
-+#include <linux/slab.h>
-+
-+#define TPLINK_SAFELOADER_DATA_OFFSET		4
-+#define TPLINK_SAFELOADER_MAX_PARTS		32
-+
-+struct safeloader_cmn_header {
-+	__be32 size;
-+	uint32_t unused;
-+} __packed;
-+
-+static void *mtd_parser_tplink_safeloader_read_table(struct mtd_info *mtd)
-+{
-+	struct safeloader_cmn_header hdr;
-+	struct device_node *np;
-+	size_t bytes_read;
-+	size_t offset;
-+	size_t size;
-+	char *buf;
-+	int err;
-+
-+	np = mtd_get_of_node(mtd);
-+	if (mtd_is_partition(mtd))
-+		of_node_get(np);
-+	else
-+		np = of_get_child_by_name(np, "partitions");
-+
-+	if (of_property_read_u32(np, "partitions-table-offset", (u32 *)&offset)) {
-+		pr_err("Failed to get partitions table offset\n");
-+		goto err_put;
-+	}
-+
-+	err = mtd_read(mtd, offset, sizeof(hdr), &bytes_read, (uint8_t *)&hdr);
-+	if (err && !mtd_is_bitflip(err)) {
-+		pr_err("Failed to read from %s at 0x%zx\n", mtd->name, offset);
-+		goto err_put;
-+	}
-+
-+	size = be32_to_cpu(hdr.size);
-+
-+	buf = kmalloc(size + 1, GFP_KERNEL);
-+	if (!buf)
-+		goto err_put;
-+
-+	err = mtd_read(mtd, offset + sizeof(hdr), size, &bytes_read, buf);
-+	if (err && !mtd_is_bitflip(err)) {
-+		pr_err("Failed to read from %s at 0x%zx\n", mtd->name, offset + sizeof(hdr));
-+		goto err_kfree;
-+	}
-+
-+	buf[size] = '\0';
-+
-+	of_node_put(np);
-+
-+	return buf;
-+
-+err_kfree:
-+	kfree(buf);
-+err_put:
-+	of_node_put(np);
-+	return NULL;
-+}
-+
-+static int mtd_parser_tplink_safeloader_parse(struct mtd_info *mtd,
-+					      const struct mtd_partition **pparts,
-+					      struct mtd_part_parser_data *data)
-+{
-+	struct mtd_partition *parts;
-+	char name[65];
-+	size_t offset;
-+	size_t bytes;
-+	char *buf;
-+	int idx;
-+	int err;
-+
-+	parts = kcalloc(TPLINK_SAFELOADER_MAX_PARTS, sizeof(*parts), GFP_KERNEL);
-+	if (!parts) {
-+		err = -ENOMEM;
-+		goto err_out;
-+	}
-+
-+	buf = mtd_parser_tplink_safeloader_read_table(mtd);
-+	if (!buf) {
-+		err = -ENOENT;
-+		goto err_out;
-+	}
-+
-+	for (idx = 0, offset = TPLINK_SAFELOADER_DATA_OFFSET;
-+	     idx < TPLINK_SAFELOADER_MAX_PARTS &&
-+	     sscanf(buf + offset, "partition %64s base 0x%llx size 0x%llx%zn\n",
-+		    name, &parts[idx].offset, &parts[idx].size, &bytes) == 3;
-+	     idx++, offset += bytes + 1) {
-+		parts[idx].name = kstrdup(name, GFP_KERNEL);
-+		if (!parts[idx].name) {
-+			err = -ENOMEM;
-+			goto err_free;
-+		}
-+	}
-+
-+	if (idx == TPLINK_SAFELOADER_MAX_PARTS)
-+		pr_warn("Reached maximum number of partitions!\n");
-+
-+	kfree(buf);
-+
-+	*pparts = parts;
-+
-+	return idx;
-+
-+err_free:
-+	for (idx -= 1; idx >= 0; idx--)
-+		kfree(parts[idx].name);
-+err_out:
-+	return err;
-+};
-+
-+static void mtd_parser_tplink_safeloader_cleanup(const struct mtd_partition *pparts,
-+						 int nr_parts)
-+{
-+	int i;
-+
-+	for (i = 0; i < nr_parts; i++)
-+		kfree(pparts[i].name);
-+
-+	kfree(pparts);
-+}
-+
-+static const struct of_device_id mtd_parser_tplink_safeloader_of_match_table[] = {
-+	{ .compatible = "tplink,safeloader-partitions" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, mtd_parser_tplink_safeloader_of_match_table);
-+
-+static struct mtd_part_parser mtd_parser_tplink_safeloader = {
-+	.parse_fn = mtd_parser_tplink_safeloader_parse,
-+	.cleanup = mtd_parser_tplink_safeloader_cleanup,
-+	.name = "tplink-safeloader",
-+	.of_match_table = mtd_parser_tplink_safeloader_of_match_table,
-+};
-+module_mtd_part_parser(mtd_parser_tplink_safeloader);
-+
-+MODULE_LICENSE("GPL");
+Icenowy Zheng (10):
+  mailmap: update Icenowy Zheng's mail address
+  dt-bindings: phy: add binding document for Allwinner F1C100s USB PHY
+  dt-bindings: usb: sunxi-musb: add F1C100s MUSB compatible string
+  phy: sun4i-usb: add support for the USB PHY on F1C100s SoC
+  musb: sunxi: add support for the F1C100s MUSB controller
+  ARM: suniv: add USB-related device nodes
+  ARM: suniv: f1c100s: enable USB on Lichee Pi Nano
+  dt-bindings: vendor-prefixes: add Source Parts
+  dt-binding: arm: sunxi: add compatible strings for PopStick v1.1
+  ARM: dts: suniv: add device tree for PopStick v1.1
+
+ .mailmap                                      |   3 +
+ .../devicetree/bindings/arm/sunxi.yaml        |   7 ++
+ .../phy/allwinner,suniv-f1c100s-usb-phy.yaml  |  83 ++++++++++++++
+ .../usb/allwinner,sun4i-a10-musb.yaml         |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   3 +-
+ .../boot/dts/suniv-f1c100s-licheepi-nano.dts  |  16 +++
+ arch/arm/boot/dts/suniv-f1c100s.dtsi          |  26 +++++
+ .../boot/dts/suniv-f1c200s-popstick-v1.1.dts  | 101 ++++++++++++++++++
+ drivers/phy/allwinner/phy-sun4i-usb.c         |  11 ++
+ drivers/usb/musb/sunxi.c                      |   8 +-
+ 11 files changed, 258 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/allwinner,suniv-f1c100s-usb-phy.yaml
+ create mode 100644 arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
+
 -- 
-2.34.1
+2.37.1
 
