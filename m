@@ -2,107 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCC535FC8EA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 18:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6666A5FC8EC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 18:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbiJLQKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 12:10:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60600 "EHLO
+        id S229785AbiJLQLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 12:11:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbiJLQKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 12:10:49 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 639CA5301A;
-        Wed, 12 Oct 2022 09:10:48 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id l5so19580941oif.7;
-        Wed, 12 Oct 2022 09:10:48 -0700 (PDT)
+        with ESMTP id S229734AbiJLQLV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 12:11:21 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 915EDA033F;
+        Wed, 12 Oct 2022 09:11:20 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id qw20so38431670ejc.8;
+        Wed, 12 Oct 2022 09:11:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=B17w69Iz2NdYtUdmzCUWZNwrLTOOl7h6wkcqw6Cxh6Y=;
+        b=nnmYhgT6yHUjLg00VqhHteLb5AO8Pdjt/70ZiPO1TpGKF8Ig4Dpf1Tstm3q96mNDeG
+         YbB+YCO5g/au6QhZIkNblqIPL2ltJdNgUg+p+VeJYDYPDoKilk088OIIOSxXYL/afPWp
+         ekwTzNNdx6rvRXNp+eoKwF0zH50fjbQ+pyKxJNquzDMK0YA1vJa4bevNF8gCrq9w/xQp
+         VNl5NKACtAFkEzoDWNGOcqE5kUhIarG24q1o0d/5wjl6L8DWNa/ijd2FzMj5PJ4dHOVa
+         koS/wTN6shEZRFyuhRwqvQCTjTYOM2AqglTtnEYzGuEnv/jED3y1ocZHWOWKsosM/zjC
+         zXNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=v5nfVGttcfS2Qx29EmT7eIAyFp05PRBGUmnlDuw8/8Y=;
-        b=sQu8O2WbchnCdDFkCV9LFX5kgS1dHIUvLNRg2CW1Z+H0r8hz9T96Iuw05pAHAALwJV
-         Qv1l8lSxh5LS0Ffv7Jl51LOi0cFpN6PQWCOIr0zAivWBxzXYKPcq5X1tnyJ8BS+bLcoK
-         suFs4IDqQ7nElvdyNMUWx1jEQah7xArF4nIkYirJi6DwLaywowBiFgeDVWCKNcPFRSzD
-         etIsY5onGa5eFzikRg8YI+o7i/33DC33obW/7mc0FnIR8r4Ml2QvhHyyLhuYv1Pxc/JW
-         ZwvSQehgjc3V1XIrDeb9K0/xE+nbpJxcydp5rlyPKWrL2aGxVpI/yYptCjwcdiTXI8kc
-         nLGw==
-X-Gm-Message-State: ACrzQf3ydLuuIQVD6QeHKQYQF4CXvIn2wmBZOkRDHaYztXyEs8I+o3I1
-        +eKld0dG76zr4wOSo/wmbw==
-X-Google-Smtp-Source: AMsMyM5zySNiT7AeWdpH5HpvgmCX+7J3LX2aiwxqw8PKyFxsH+AFEdoknuBk5bpw4cP5c410opywdg==
-X-Received: by 2002:a05:6808:2226:b0:354:ab07:4f12 with SMTP id bd38-20020a056808222600b00354ab074f12mr2463085oib.234.1665591047619;
-        Wed, 12 Oct 2022 09:10:47 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b40-20020a4a98eb000000b00480549b424asm1096201ooj.34.2022.10.12.09.10.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 09:10:47 -0700 (PDT)
-Received: (nullmailer pid 2270015 invoked by uid 1000);
-        Wed, 12 Oct 2022 16:10:48 -0000
-Date:   Wed, 12 Oct 2022 11:10:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        linux-renesas-soc@vger.kernel.org, linux-pwm@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B17w69Iz2NdYtUdmzCUWZNwrLTOOl7h6wkcqw6Cxh6Y=;
+        b=sjnibrLD/mTm7ML7JmXDG68bJ9XUsPbXhytQqgSCJholNd/eJrKBFicPRmuKQUpwQW
+         aPy33a//fMvEaxag5xx+GR4LYAh4B9TPzFJ+7I5wmRQPMP/Ql2n3rDwMRMlrsvxz5S5e
+         HZyy5sIirzRJ+bufM9GS/8zgGuSLz15Z10A1tacg0mRNZOWygtZw5GzzunQ7GCsviTnx
+         nBsDzHXm3alE7vfRx6mUwIekxyBycwOW+MbTNTi8gYACgwjH66OAJhslczcHy04gDrYm
+         nGZC+IyEYKJFPwYGIUhjTjnLTyWNTJQugIglTs/Le7HtfL1i1YDIXTxCAOoyJDtVIy2/
+         S62A==
+X-Gm-Message-State: ACrzQf1ljsBwgYKGwAxZnGIm8Drz/Q7j+G2NWhs6zrxomk99VzBW27VH
+        VUmZ+EQ7JJ3tAbS9HRQA6PcrcgY92OKyGSRO/YKVfXPdlWVQjw==
+X-Google-Smtp-Source: AMsMyM6TEL6eeZKt8sdOki9RvQU7WssLXUhEdZuXfciNBAxs+hiMJqvFhMHxQS02jfK1Jhm5S7yAUYuA/DK1kFA+j48=
+X-Received: by 2002:a17:906:cc56:b0:78d:98c3:8714 with SMTP id
+ mm22-20020a170906cc5600b0078d98c38714mr17354646ejb.445.1665591078973; Wed, 12
+ Oct 2022 09:11:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <20221011172358.69043-1-krzysztof.kozlowski@linaro.org> <20221011172358.69043-24-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221011172358.69043-24-krzysztof.kozlowski@linaro.org>
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+Date:   Wed, 12 Oct 2022 19:11:06 +0300
+Message-ID: <CAL7jhicvj2mH6eMG0q=YcUW99ngz7tedQO0U4HsHkAuVKhrJrw@mail.gmail.com>
+Subject: Re: [PATCH v2 23/34] dt-bindings: pinctrl: qcom,sm6115-tlmm: minor
+ style cleanups
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Biju Das <biju.das@bp.renesas.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v8 1/2] dt-bindings: pwm: Add RZ/G2L GPT binding
-Message-ID: <166559104805.2269963.18219742807985150114.robh@kernel.org>
-References: <20221011134135.1930260-1-biju.das.jz@bp.renesas.com>
- <20221011134135.1930260-2-biju.das.jz@bp.renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221011134135.1930260-2-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Stephan Gerhold <stephan@gerhold.net>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        krishna Lanka <quic_vamslank@quicinc.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Oct 2022 14:41:34 +0100, Biju Das wrote:
-> Add device tree bindings for the General PWM Timer (GPT).
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v7->v8:
->  * Removed Rb tags from Rob and Geert as it modelled as single GPT
->    device handling multiple channels.
->  * Updated description
->  * Updated interrupts and interrupt-names properties
->  * Updated example
-> v6->v7:
->  * No change.
-> v5->v6:
->  * No change.
-> v4->v5:
->  * No change.
-> v3->v4:
->  * No change.
-> v2->v3:
->  * Added Rb tag from Rob.
-> v1->v2:
->  * Added '|' after 'description:' to preserve formatting.
->  * Removed description for pwm_cells as it is common property.
->  * Changed the reg size in example from 0xa4->0x100
->  * Added Rb tag from Geert.
-> RFC->v1:
->  * Added Description
->  * Removed comments from reg and clock
-> ---
->  .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 378 ++++++++++++++++++
->  1 file changed, 378 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-> 
+On Tue, Oct 11, 2022 at 8:26 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Drop "binding" from description (and align it with other Qualcomm
+> pinctrl bindings), use double quotes consistently, drop redundant
+> quotes and rename file to match compatible (to match coding convention).
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Iskren Chernev <iskren.chernev@gmail.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+>  ...qcom,sm6115-pinctrl.yaml => qcom,sm6115-tlmm.yaml} | 11 +++++------
+>  1 file changed, 5 insertions(+), 6 deletions(-)
+>  rename Documentation/devicetree/bindings/pinctrl/{qcom,sm6115-pinctrl.yaml => qcom,sm6115-tlmm.yaml} (95%)
+>
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-tlmm.yaml
+> similarity index 95%
+> rename from Documentation/devicetree/bindings/pinctrl/qcom,sm6115-pinctrl.yaml
+> rename to Documentation/devicetree/bindings/pinctrl/qcom,sm6115-tlmm.yaml
+> index 3f5f5229a86c..ed68c4ee032f 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-tlmm.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/pinctrl/qcom,sm6115-pinctrl.yaml#
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm6115-tlmm.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+>  title: Qualcomm Technologies, Inc. SM6115, SM4250 TLMM block
+> @@ -10,8 +10,8 @@ maintainers:
+>    - Iskren Chernev <iskren.chernev@gmail.com>
+>
+>  description:
+> -  This binding describes the Top Level Mode Multiplexer block found in the
+> -  SM4250/6115 platforms.
+> +  Top Level Mode Multiplexer pin controller in Qualcomm SM4250 and SM6115
+> +  SoCs.
+>
+>  properties:
+>    compatible:
+> @@ -36,9 +36,8 @@ properties:
+>    gpio-reserved-ranges: true
+>    wakeup-parent: true
+>
+> -#PIN CONFIGURATION NODES
+>  patternProperties:
+> -  '-state$':
+> +  "-state$":
+>      oneOf:
+>        - $ref: "#/$defs/qcom-sm6115-tlmm-state"
+>        - patternProperties:
+> @@ -46,7 +45,7 @@ patternProperties:
+>              $ref: "#/$defs/qcom-sm6115-tlmm-state"
+>          additionalProperties: false
+>
+> -'$defs':
+> +$defs:
+>    qcom-sm6115-tlmm-state:
+>      type: object
+>      description:
+> --
+> 2.34.1
+>
