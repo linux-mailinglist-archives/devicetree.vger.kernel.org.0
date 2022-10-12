@@ -2,130 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C23605FCA09
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 19:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D3445FCA19
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 19:56:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiJLRqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 13:46:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45970 "EHLO
+        id S229640AbiJLR4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 13:56:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbiJLRqf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 13:46:35 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0F2FFC1FC;
-        Wed, 12 Oct 2022 10:46:34 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id r17so39544626eja.7;
-        Wed, 12 Oct 2022 10:46:34 -0700 (PDT)
+        with ESMTP id S229477AbiJLR4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 13:56:07 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2402A6110E
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 10:56:03 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id d7-20020a17090a2a4700b0020d268b1f02so2669046pjg.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 10:56:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=uPmXPudUvAAgxzesevvcQguQuLGlpjd/EyDpnAZuAtc=;
-        b=qSNRcaQDGBvNiR2LPQyouzsn4X6roBIYCl9DBh6VFflM0wtkJRPGhQ0S+txPZ1MJdB
-         VrPGBXi2kVCdr9n0LSdNangU6BKVmfsLi/jgFrPxphT/53o042LyBLYk1kK1Fh5EbCj+
-         MqTcXUwcwXUX/a35figDmXFA/m1CF2W7iSRwi+k0OwhP8tJXHy3wksuIYqEJPaDbpGk4
-         JRVLIEfsqDNujz0k1+ct+vR6dvdHuN5I9x47rtpq7qVnzPrfmxE7azSiSeAgSnt0w/Iq
-         PO6L0DaiY+hC1HqV8grvDyDTdGTKlSKLowczuXHqS0XYQNBZMh5r5zQxHASrT3wFUHt7
-         OBpw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rn/UDIcscu5abOpP3v+WUHTT/jflHG0HmbSWAfN3l54=;
+        b=4uAbc7fbIErK5qUn9SAy5Jkng45r6O6mebcOQfFPXDS9n30sCnvMd2bwu66lRPOFKN
+         XTKsR/xQAfifYS1nMUKITEX9xpFSYVcZMEq/LSWrJAQY6lWma5wLwE4d+OZkYtIe8Or+
+         5/uvyXEjFfQmFRVROMktn/nNrZSrQoDJ2fHnzgwti4B/C0sXkDmi2dWoGBl+eEkUBYuy
+         Oo0NLkrKyf7qVI6YWXhdS+9JFEkj22AUtFeB9PIOcx7btBOOqspiVy6ibskfNJ2YzOGd
+         JMd/zxLaLtZkiwscZcR69ubsR4sVifHLLmIY9VtxgMpqfkTFSxER1TCwhm5gOVmWDd/p
+         btXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uPmXPudUvAAgxzesevvcQguQuLGlpjd/EyDpnAZuAtc=;
-        b=Mty6QBfw7Knxa0v11E5/IOqbKArbkXtZZpxBug48slr88OPV2IsDrvr5RjcJplnorE
-         eajO78eHj4q6VP+Hgr7KdAfQdajcV6TOm0QYhANdNMyJO7gh+DZjZS+KDszzcW34WcXU
-         xzwE0F+ec/BO9tmdne3yR+ufCyTdyEvB4Di35//+cek1EcRcX7jsMMrrstVDjLVa/xCj
-         czNiJ/Ir2X8ur908NUfxjrBMiiYfRFvhwOnbHwGvnldtnbZW6ANjIQoyglOTWZWQ8axU
-         rjBncAK05CSDcLVzi/Lit5bWEXXSV1e+UH4RDXOCfw8YM5f+h8VteN7a1YkRbJ0jCwTz
-         VdpA==
-X-Gm-Message-State: ACrzQf0UjuocKFCzCDX4PH4hZhHXuALUYt5PzPocRVyCiiRxEysY4xPX
-        rgmj2TBA+rdb0lzlVHVypPM=
-X-Google-Smtp-Source: AMsMyM4wxBrlbSBVQUiR2EiAp/azvfgT7mC0zxfYBjdc8NtTQjM4JRdZsLS1hv9ppmwpVuzyQLFVag==
-X-Received: by 2002:a17:907:3f13:b0:782:1266:8c10 with SMTP id hq19-20020a1709073f1300b0078212668c10mr23480980ejc.197.1665596793067;
-        Wed, 12 Oct 2022 10:46:33 -0700 (PDT)
-Received: from debianHome.localdomain (dynamic-078-050-029-094.78.50.pool.telefonica.de. [78.50.29.94])
-        by smtp.gmail.com with ESMTPSA id e16-20020a170906315000b00731582babcasm1613824eje.71.2022.10.12.10.46.32
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rn/UDIcscu5abOpP3v+WUHTT/jflHG0HmbSWAfN3l54=;
+        b=MUt05Cxkmu1yNs13qUNs6nzZEsHg4gomzGCMu6EbgwlrSIxAaxXW2WePuWowqeqB6t
+         fhSkZYDc7Ly+4mYIDCNqSe9h1cD7WWV/FGP7w/DLHRGS/5yzOlosdomFZntlinmDsq9a
+         d9SVqrFAYvT/yP48/YixLxNzHG/s1xVu1diNrQqaixmxgOquAeSxkyDSr43VscHD1VQR
+         u0oWd1W3zPMk0HuTcXdKs4uYwXVel8l7hEXK7u4h38skw5Mq3dhOOb6Pxv+NHiLNtmmT
+         L6pKwkCPX6fhLI+wG7OZFrYWcF4bwkYSol1PZySYVL5KgRyuKNBzBCFu8XdOkgGmcwn6
+         vXuw==
+X-Gm-Message-State: ACrzQf1rONz1PAwrd+/s8ySVeKkFhdSiOcOq4LCwBMU3EyktUfS2BJeV
+        Fgm0JXab1xphgwIUpiLsIsTbIA==
+X-Google-Smtp-Source: AMsMyM7zr66pcJj/ae8owjpIzOJuITFx/A8rJzNZeOjMKqUvNZKR6cxqEkmXqJO5rLkZ/6ZIhCu+MA==
+X-Received: by 2002:a17:90b:17cf:b0:20d:72eb:fd0c with SMTP id me15-20020a17090b17cf00b0020d72ebfd0cmr6377751pjb.217.1665597362585;
+        Wed, 12 Oct 2022 10:56:02 -0700 (PDT)
+Received: from localhost ([75.172.140.17])
+        by smtp.gmail.com with ESMTPSA id l6-20020a170902f68600b0017f92246e4dsm11047925plg.181.2022.10.12.10.56.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 10:46:32 -0700 (PDT)
-From:   =?UTF-8?q?Christian=20G=C3=B6ttsche?= <cgzones@googlemail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Tom Rix <trix@redhat.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, llvm@lists.linux.dev
-Subject: [PATCH] of: declare string literals const
-Date:   Wed, 12 Oct 2022 19:46:22 +0200
-Message-Id: <20221012174622.45006-1-cgzones@googlemail.com>
-X-Mailer: git-send-email 2.37.2
+        Wed, 12 Oct 2022 10:56:01 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        jerome Neanne <jneanne@baylibre.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, nm@ti.com,
+        kristo@kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
+        bjorn.andersson@linaro.org, shawnguo@kernel.org,
+        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
+        marcel.ziswiler@toradex.com, vkoul@kernel.org,
+        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com
+Cc:     afd@ti.com, narmstrong@baylibre.com, msp@baylibre.com,
+        j-keerthy@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH v6 6/6] arm64: defconfig: Add tps65219 as modules
+In-Reply-To: <fc1e5799-20ea-de37-6693-e2ea0fb87f13@linaro.org>
+References: <20221011140549.16761-1-jneanne@baylibre.com>
+ <20221011140549.16761-7-jneanne@baylibre.com>
+ <72b9809e-d6d7-862a-26b8-221d14ea4322@linaro.org>
+ <60507e87-cf92-13d9-29d0-83f18a648f4b@baylibre.com>
+ <fc1e5799-20ea-de37-6693-e2ea0fb87f13@linaro.org>
+Date:   Wed, 12 Oct 2022 10:56:00 -0700
+Message-ID: <7hzge1hqof.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-of_overlay_action_name() returns a string literal from a function local
-array.  Modifying string literals is undefined behavior which usage of
-const pointer can avoid.  of_overlay_action_name() is currently only
-used once in overlay_notify() to print the returned value.
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-While on it declare the data array const as well.
+> On 12/10/2022 04:39, jerome Neanne wrote:
+>>> You explained what you did, which is easily visible. You did not explain
+>>> why you are doing it.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>> Thanks for pointing me to the detailed guidelines
+>> I'm new to upstream and not well aware of all good practices.
+>> 
+>> Would below commit message be more suitable:
+>> 
+>> Add support for the TPS65219 PMIC by enabling MFD, regulator and 
+>> power-button drivers.  All drivers enabled as modules.
+>
+> This still says only what you did. I still does not explain why.
 
-Reported by Clang:
+Jerome, maybe adding a bit of preamble like:
 
-    In file included from arch/x86/kernel/asm-offsets.c:22:
-    In file included from arch/x86/kernel/../kvm/vmx/vmx.h:5:
-    In file included from ./include/linux/kvm_host.h:19:
-    In file included from ./include/linux/msi.h:23:
-    In file included from ./arch/x86/include/asm/msi.h:5:
-    In file included from ./arch/x86/include/asm/irqdomain.h:5:
-    In file included from ./include/linux/irqdomain.h:35:
-    ./include/linux/of.h:1555:3: error: initializing 'char *' with an expression of type 'const char[5]' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
-                    "init",
-                    ^~~~~~
-    ./include/linux/of.h:1556:3: error: initializing 'char *' with an expression of type 'const char[10]' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
-                    "pre-apply",
-                    ^~~~~~~~~~~
-    ./include/linux/of.h:1557:3: error: initializing 'char *' with an expression of type 'const char[11]' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
-                    "post-apply",
-                    ^~~~~~~~~~~~
-    ./include/linux/of.h:1558:3: error: initializing 'char *' with an expression of type 'const char[11]' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
-                    "pre-remove",
-                    ^~~~~~~~~~~~
-    ./include/linux/of.h:1559:3: error: initializing 'char *' with an expression of type 'const char[12]' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
-                    "post-remove",
-                    ^~~~~~~~~~~~~
+"Development boards from TI include the TPS65219 PMIC.  Add support..."
 
-Signed-off-by: Christian Göttsche <cgzones@googlemail.com>
----
- include/linux/of.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Krzysztof, I'm the first to argue for descriptive/verbose changelogs,
+but IMO, this is getting a little bit nit-picky.
 
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 6b79ef9a6541..8b9f94386dc3 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -1549,9 +1549,9 @@ enum of_overlay_notify_action {
- 	OF_OVERLAY_POST_REMOVE,
- };
- 
--static inline char *of_overlay_action_name(enum of_overlay_notify_action action)
-+static inline const char *of_overlay_action_name(enum of_overlay_notify_action action)
- {
--	static char *of_overlay_action_name[] = {
-+	static const char *const of_overlay_action_name[] = {
- 		"init",
- 		"pre-apply",
- 		"post-apply",
--- 
-2.37.2
+The series adds a new driver, DTS and defconfig patches to enable
+support the new driver.  The "why" for changes to defconfig changes like
+this are kind of implied/obvious, and there is lots of precedent for
+changelogs of defconfig changes for simple drivers to simply say "enable
+X and Y".
+
+If my above suggesion is not enough, please make a suggestion for what
+you think would qualify as an appropritate changelong that answers "why"
+for a simple driver change.
+
+Kevin
+
+
+
 
