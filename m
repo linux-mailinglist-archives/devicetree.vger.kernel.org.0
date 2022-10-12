@@ -2,60 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1E735FC924
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 18:23:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD5575FC92D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 18:25:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230022AbiJLQXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 12:23:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54276 "EHLO
+        id S229785AbiJLQZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 12:25:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229988AbiJLQW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 12:22:57 -0400
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B941F4191;
-        Wed, 12 Oct 2022 09:22:37 -0700 (PDT)
-Received: by mail-oo1-f54.google.com with SMTP id g15-20020a4a894f000000b0047f8e899623so12476217ooi.5;
-        Wed, 12 Oct 2022 09:22:37 -0700 (PDT)
+        with ESMTP id S229646AbiJLQZY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 12:25:24 -0400
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 234925FAD2;
+        Wed, 12 Oct 2022 09:25:21 -0700 (PDT)
+Received: by mail-oo1-f48.google.com with SMTP id g15-20020a4a894f000000b0047f8e899623so12481359ooi.5;
+        Wed, 12 Oct 2022 09:25:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rF616PFiM3a+4SBOR6qRryxHACAfp+96mQUr4nWBRVM=;
-        b=KNttITCxWRPkoSlsNKSMj33nc3FmAd8POeN3IRuzmUZVnKtgKwcVNWwrhiVc9Dr6A9
-         B/2m4IRKJD7WPB/u5MQEa8/swm+Zq5FQW9gOA0FDCiFfSvPXEvQn1q2mFfgjBZ/6Zycd
-         x+lQZ2RCZ+Y95EHgiVS+2ZNhQo8y9WLRNQvwl1OzNEayINrmpXhQdjVrnQihN375L9/7
-         smBQDikPwsI64OB9v5GC2mZwCAJiDDhmYzHPkHIbE23zDVHdWEbFsUGII8tLflOnaHOV
-         AXrGRyV2fNEIRxA0tcVGg22kAkc5MbJ2BGeH22MaKSJ/qMlStPCmdqllUE0SxwzaQ6Ab
-         JPTQ==
-X-Gm-Message-State: ACrzQf2SflTFTc8TydGvMTkKXPJxcqTftbgsSJXDaVRy+I9hn0UFHqu/
-        mEuMoFfijyCEnNhptutQytZBDwxTYA==
-X-Google-Smtp-Source: AMsMyM5YR9G+IoiB8RVUl5Mw0iIY8ze/NZWuJb2yC5K7gVYAFmXIh3+94GEkL5N/H9ZkPjiS8eHpuQ==
-X-Received: by 2002:a05:6830:1644:b0:661:8b9f:16c3 with SMTP id h4-20020a056830164400b006618b9f16c3mr10940674otr.235.1665591751648;
-        Wed, 12 Oct 2022 09:22:31 -0700 (PDT)
+        bh=XbGkRBfc7blEHX2oiLr1yUH1nf0Co3xQFCa79h+BBRk=;
+        b=o3Bk6hLFr1DNT8JRxe5OAUis+w4HBwv2oe5DErzvQPVxWeou0OgYqvQVz3LWRN+/Oe
+         jno6N1B2q/kIQsp0VFQLbU0vP9c/5bIqF4LlAIDX6eUY4zrRT/nykH99211JDwyQs59Y
+         0bdT1hwmBPxfYxBY13Qo1sqZ1N2S+XKyu0Fc9ESOinJOXyV7VF5kPR5njtqYE7m3Nm2w
+         XAButS+a3iY6H2fiEkKtNGM/hiDpOhC8/941KUnvzJ8LVAdwOSIZdZih3tv1hEDfa2ye
+         UCGtRSkQoY/sgGc46zMnEeziW6sL2XI5j0aYsNNtf16ZKa/n3/QSWmsYVzFyjdtyknTQ
+         RmeQ==
+X-Gm-Message-State: ACrzQf1njzWTtR0Hm/QUjQdBNV3pPvOS99i6lrk5QTmg71kljY6I7WGv
+        xMRMVZ0wTX9pcAie9muA4Q==
+X-Google-Smtp-Source: AMsMyM5WZKYN3WOatUVAQahyGG5zpQ2QpJ9rGf1419QBSTH+VPlsKqDKNZYOHp9EcGV1Saa4zwhNsA==
+X-Received: by 2002:a05:6830:34a5:b0:661:a0a5:b0f with SMTP id c37-20020a05683034a500b00661a0a50b0fmr6481648otu.165.1665591920378;
+        Wed, 12 Oct 2022 09:25:20 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id cy24-20020a056870b69800b00131c3d4d38fsm1361683oab.39.2022.10.12.09.22.30
+        by smtp.gmail.com with ESMTPSA id b6-20020a9d4786000000b00661b019accbsm1876633otf.3.2022.10.12.09.25.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 09:22:31 -0700 (PDT)
-Received: (nullmailer pid 2283425 invoked by uid 1000);
-        Wed, 12 Oct 2022 16:22:32 -0000
-Date:   Wed, 12 Oct 2022 11:22:32 -0500
+        Wed, 12 Oct 2022 09:25:19 -0700 (PDT)
+Received: (nullmailer pid 2286501 invoked by uid 1000);
+        Wed, 12 Oct 2022 16:25:21 -0000
+Date:   Wed, 12 Oct 2022 11:25:20 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Hai Pham <hai.pham.ud@renesas.com>, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document R-Car V4H
- support
-Message-ID: <166559175196.2283372.14409157945762538966.robh@kernel.org>
-References: <c268cb4497cbe79773bb6568f36c37adc6fb5bbe.1665582645.git.geert+renesas@glider.be>
+To:     Olivier Moysan <olivier.moysan@foss.st.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-iio@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v4 2/8] dt-bindings: iio: adc: stm32-adc: add stm32mp13
+ compatibles
+Message-ID: <166559192047.2286466.15301667518001122082.robh@kernel.org>
+References: <20221012142205.13041-1-olivier.moysan@foss.st.com>
+ <20221012142205.13041-3-olivier.moysan@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c268cb4497cbe79773bb6568f36c37adc6fb5bbe.1665582645.git.geert+renesas@glider.be>
+In-Reply-To: <20221012142205.13041-3-olivier.moysan@foss.st.com>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -67,17 +73,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Oct 2022 15:51:46 +0200, Geert Uytterhoeven wrote:
-> From: Hai Pham <hai.pham.ud@renesas.com>
+On Wed, 12 Oct 2022 16:21:59 +0200, Olivier Moysan wrote:
+> Add st,stm32mp13-adc-core and st,stm32mp13-adc compatibles
+> to support STM32MPU13 SoC.
 > 
-> Document support for the SPI Multi I/O Bus Controller (RPC-IF) in the
-> R-Car V4H SoC.
+> On STM32MP13x, each ADC peripheral has a single ADC block.
+> These ADC peripherals, ADC1 and ADC2, are fully independent.
 > 
-> Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Main characteristics of STM32MP13x ADC:
+> - One interrupt line per ADC
+> - 6 to 12 bits resolution
+> - 19 channels
+> 
+> ADC2 instance supports two extra internal channels VDDCPU and VDDQ_DDR.
+> Add "vddcpu" and "vddq_ddr" internal channels names to the reserved
+> labels list.
+> 
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
 > ---
->  .../bindings/memory-controllers/renesas,rpc-if.yaml          | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../bindings/iio/adc/st,stm32-adc.yaml        | 68 ++++++++++++++++++-
+>  1 file changed, 65 insertions(+), 3 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
