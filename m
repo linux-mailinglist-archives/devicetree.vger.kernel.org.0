@@ -2,99 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B035FC9FC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 19:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C23605FCA09
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 19:46:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbiJLRmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 13:42:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36212 "EHLO
+        id S229682AbiJLRqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 13:46:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbiJLRmg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 13:42:36 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEB0EFBCF1
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 10:42:35 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id a67so16098907edf.12
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 10:42:35 -0700 (PDT)
+        with ESMTP id S229655AbiJLRqf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 13:46:35 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0F2FFC1FC;
+        Wed, 12 Oct 2022 10:46:34 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id r17so39544626eja.7;
+        Wed, 12 Oct 2022 10:46:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=F+/oGLzREG21Yj0uftDYL1IyCwSjsexCNfPmeCYYK5U=;
-        b=j7mlJDdtav9g6vWHhzB0NwAdum8QysC2za2V7GrivI/Px5eW1urR25/m6DIOgTwa2z
-         N7Do86PkEu10oKl5S4Dl/HsMgMoPZmu1QdafheG/q9BqAeH/4gWGmms7wQNlGqFWSZMr
-         xCP/NgrU2d8KsGwj/W4HbnB42/mUWL68QTz2c=
+        d=googlemail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uPmXPudUvAAgxzesevvcQguQuLGlpjd/EyDpnAZuAtc=;
+        b=qSNRcaQDGBvNiR2LPQyouzsn4X6roBIYCl9DBh6VFflM0wtkJRPGhQ0S+txPZ1MJdB
+         VrPGBXi2kVCdr9n0LSdNangU6BKVmfsLi/jgFrPxphT/53o042LyBLYk1kK1Fh5EbCj+
+         MqTcXUwcwXUX/a35figDmXFA/m1CF2W7iSRwi+k0OwhP8tJXHy3wksuIYqEJPaDbpGk4
+         JRVLIEfsqDNujz0k1+ct+vR6dvdHuN5I9x47rtpq7qVnzPrfmxE7azSiSeAgSnt0w/Iq
+         PO6L0DaiY+hC1HqV8grvDyDTdGTKlSKLowczuXHqS0XYQNBZMh5r5zQxHASrT3wFUHt7
+         OBpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=F+/oGLzREG21Yj0uftDYL1IyCwSjsexCNfPmeCYYK5U=;
-        b=Om3ogfnz8exnMXk+0OwGjMhT3N76rmkwPcliQg+UTs6V+GJyyzR/l0i1R4SVBi30cw
-         1IjadTMZw0oex4qVEGxdPdH7QdS31Gs9697VK1/7HlExWMr300pmSLMMqKJMADoK7Mj2
-         8jqWcsHB6DkAuZBld3KNYLZEbXxE677/Mv+z3MvqLCVP4bOvMwXJMY66wqvMij4nMYdf
-         RR/dtp9cLj7Z36VToS5hfUAIh6PhKHmMaq0UwdUVzGjkEwOM9Pn5mEmdBa2lR8n2pykJ
-         vrrPo8cx4a11A4CgoM/LUQd2qnMxEIeSuAfniAJrmeRl2bvYgqSrHy7ILrA5mdVynlFo
-         jCMg==
-X-Gm-Message-State: ACrzQf2ceeAhhL/H6G09UTuT1EA4sLjZ9/Thw8wcme4yXASi3HRV5TGh
-        r9qOzrcU8rLqc1R6+jO5s0IxCl7gUK7TE6CJ
-X-Google-Smtp-Source: AMsMyM4Q4obkFsc2ODzCYT5b/FDMmfjNFH8856C8oFrt64e+r4+MabsZCVazxAMe+Wb4JV/Zb1N2vg==
-X-Received: by 2002:a05:6402:2146:b0:458:15d7:b99a with SMTP id bq6-20020a056402214600b0045815d7b99amr28755672edb.24.1665596554093;
-        Wed, 12 Oct 2022 10:42:34 -0700 (PDT)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id g18-20020a17090604d200b007826c0a05ecsm1550161eja.209.2022.10.12.10.42.31
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 10:42:32 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id u10so27307414wrq.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 10:42:31 -0700 (PDT)
-X-Received: by 2002:adf:dd0c:0:b0:22e:4bf6:6c08 with SMTP id
- a12-20020adfdd0c000000b0022e4bf66c08mr19368307wrm.617.1665596551460; Wed, 12
- Oct 2022 10:42:31 -0700 (PDT)
+        bh=uPmXPudUvAAgxzesevvcQguQuLGlpjd/EyDpnAZuAtc=;
+        b=Mty6QBfw7Knxa0v11E5/IOqbKArbkXtZZpxBug48slr88OPV2IsDrvr5RjcJplnorE
+         eajO78eHj4q6VP+Hgr7KdAfQdajcV6TOm0QYhANdNMyJO7gh+DZjZS+KDszzcW34WcXU
+         xzwE0F+ec/BO9tmdne3yR+ufCyTdyEvB4Di35//+cek1EcRcX7jsMMrrstVDjLVa/xCj
+         czNiJ/Ir2X8ur908NUfxjrBMiiYfRFvhwOnbHwGvnldtnbZW6ANjIQoyglOTWZWQ8axU
+         rjBncAK05CSDcLVzi/Lit5bWEXXSV1e+UH4RDXOCfw8YM5f+h8VteN7a1YkRbJ0jCwTz
+         VdpA==
+X-Gm-Message-State: ACrzQf0UjuocKFCzCDX4PH4hZhHXuALUYt5PzPocRVyCiiRxEysY4xPX
+        rgmj2TBA+rdb0lzlVHVypPM=
+X-Google-Smtp-Source: AMsMyM4wxBrlbSBVQUiR2EiAp/azvfgT7mC0zxfYBjdc8NtTQjM4JRdZsLS1hv9ppmwpVuzyQLFVag==
+X-Received: by 2002:a17:907:3f13:b0:782:1266:8c10 with SMTP id hq19-20020a1709073f1300b0078212668c10mr23480980ejc.197.1665596793067;
+        Wed, 12 Oct 2022 10:46:33 -0700 (PDT)
+Received: from debianHome.localdomain (dynamic-078-050-029-094.78.50.pool.telefonica.de. [78.50.29.94])
+        by smtp.gmail.com with ESMTPSA id e16-20020a170906315000b00731582babcasm1613824eje.71.2022.10.12.10.46.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Oct 2022 10:46:32 -0700 (PDT)
+From:   =?UTF-8?q?Christian=20G=C3=B6ttsche?= <cgzones@googlemail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Tom Rix <trix@redhat.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, llvm@lists.linux.dev
+Subject: [PATCH] of: declare string literals const
+Date:   Wed, 12 Oct 2022 19:46:22 +0200
+Message-Id: <20221012174622.45006-1-cgzones@googlemail.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-References: <20221007145116.46554-1-krzysztof.kozlowski@linaro.org> <20221007145116.46554-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221007145116.46554-2-krzysztof.kozlowski@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 12 Oct 2022 10:42:19 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WN+9DJp-3Ny04NmOLau2RYibeJayEtB7x0uT-YoizFQA@mail.gmail.com>
-Message-ID: <CAD=FV=WN+9DJp-3Ny04NmOLau2RYibeJayEtB7x0uT-YoizFQA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: qcom,sc7180: convert to dtschema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+of_overlay_action_name() returns a string literal from a function local
+array.  Modifying string literals is undefined behavior which usage of
+const pointer can avoid.  of_overlay_action_name() is currently only
+used once in overlay_notify() to print the returned value.
 
-On Fri, Oct 7, 2022 at 7:51 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> +      drive-strength:
-> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +        default: 2
-> +        description:
-> +          Selects the drive strength for the specified pins, in mA.
+While on it declare the data array const as well.
 
-The "default" of 2 is not correct. Please see commit 768f8d8e45f9
-("dt-bindings: pinctrl: drive-strength doesn't default to 2 if
-unspecified")
+Reported by Clang:
 
-In fact, are you sure this even needs to be replicated here? This is
-part of the common "qcom,tlmm-common.yaml" bindings file, isn't it?
+    In file included from arch/x86/kernel/asm-offsets.c:22:
+    In file included from arch/x86/kernel/../kvm/vmx/vmx.h:5:
+    In file included from ./include/linux/kvm_host.h:19:
+    In file included from ./include/linux/msi.h:23:
+    In file included from ./arch/x86/include/asm/msi.h:5:
+    In file included from ./arch/x86/include/asm/irqdomain.h:5:
+    In file included from ./include/linux/irqdomain.h:35:
+    ./include/linux/of.h:1555:3: error: initializing 'char *' with an expression of type 'const char[5]' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+                    "init",
+                    ^~~~~~
+    ./include/linux/of.h:1556:3: error: initializing 'char *' with an expression of type 'const char[10]' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+                    "pre-apply",
+                    ^~~~~~~~~~~
+    ./include/linux/of.h:1557:3: error: initializing 'char *' with an expression of type 'const char[11]' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+                    "post-apply",
+                    ^~~~~~~~~~~~
+    ./include/linux/of.h:1558:3: error: initializing 'char *' with an expression of type 'const char[11]' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+                    "pre-remove",
+                    ^~~~~~~~~~~~
+    ./include/linux/of.h:1559:3: error: initializing 'char *' with an expression of type 'const char[12]' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+                    "post-remove",
+                    ^~~~~~~~~~~~~
 
--Doug
+Signed-off-by: Christian Göttsche <cgzones@googlemail.com>
+---
+ include/linux/of.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/linux/of.h b/include/linux/of.h
+index 6b79ef9a6541..8b9f94386dc3 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -1549,9 +1549,9 @@ enum of_overlay_notify_action {
+ 	OF_OVERLAY_POST_REMOVE,
+ };
+ 
+-static inline char *of_overlay_action_name(enum of_overlay_notify_action action)
++static inline const char *of_overlay_action_name(enum of_overlay_notify_action action)
+ {
+-	static char *of_overlay_action_name[] = {
++	static const char *const of_overlay_action_name[] = {
+ 		"init",
+ 		"pre-apply",
+ 		"post-apply",
+-- 
+2.37.2
+
