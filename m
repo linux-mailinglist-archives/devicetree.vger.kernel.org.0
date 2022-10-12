@@ -2,135 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF7F5FC6E7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 16:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D53E15FC6FC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 16:05:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbiJLOCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 10:02:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40336 "EHLO
+        id S229477AbiJLOFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 10:05:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229741AbiJLOCC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 10:02:02 -0400
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6D3C7072
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 07:01:59 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:3da6:62e6:8ab0:ff90])
-        by andre.telenet-ops.be with bizsmtp
-        id X21x2800432x5mf0121xPs; Wed, 12 Oct 2022 16:01:57 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1oicJ2-001OYA-MM; Wed, 12 Oct 2022 16:01:56 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1oicJ2-00C327-A3; Wed, 12 Oct 2022 16:01:56 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
+        with ESMTP id S229569AbiJLOFe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 10:05:34 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00AA25C358;
+        Wed, 12 Oct 2022 07:05:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1665583531; x=1697119531;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YqIauvraatao1KA8yPWOhmJyrNRczVNaBMKcZve1xvY=;
+  b=rLmO+DY7voSQrTTm4p1gN6rZyTFvTtAlJudbpLKAl/MXgfyJyY9HBIs0
+   xy7ARH2+grR5cDYSMRoLsBiMstYxB/SQtm2NIPEBa24rPqZntKMeohEHm
+   YTj8MU6sL3BWFfzcZxL/OzHt2P+wAJR0TJqlNoLa0EtZsfNJhnA6rjibc
+   uC6Sd6//9ygAk/AYWmXIZzNmLVl9ZiSFEuZo0CAMx68bcv2ZMvW/V0CLV
+   kYJiaVeQW6Mb5oE9Y2Z/XFBM8cXveL3Xfrys39hQAwG1clWIghpifHzMH
+   J04QifrfGT4fDgSEd/0knTRXx1+dVBqFzlOsV+9ez5luO03niJGhNHiGh
+   A==;
+X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; 
+   d="scan'208";a="195051104"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Oct 2022 07:05:30 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 12 Oct 2022 07:05:30 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Wed, 12 Oct 2022 07:05:26 -0700
+Date:   Wed, 12 Oct 2022 15:05:04 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 2/2] memory: renesas-rpc-if: Add support for R-Car Gen4
-Date:   Wed, 12 Oct 2022 16:01:52 +0200
-Message-Id: <4d0824bf5ed0fb95c51cd36f9a3f0f562b1a6bf8.1665583089.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1665583089.git.geert+renesas@glider.be>
-References: <cover.1665583089.git.geert+renesas@glider.be>
+        Hal Feng <hal.feng@linux.starfivetech.com>
+CC:     Hal Feng <hal.feng@linux.starfivetech.com>,
+        Rob Herring <robh@kernel.org>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 12/30] dt-bindings: reset: Add starfive,jh7110-reset
+ bindings
+Message-ID: <Y0bJkGQklX+eOGyW@wendy>
+References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
+ <20220929175147.19749-1-hal.feng@linux.starfivetech.com>
+ <20220929184349.GA2551443-robh@kernel.org>
+ <8BEAFAD2C4CE6E4A+0a00376c-1e3e-f597-bcf6-106ff294859a@linux.starfivetech.com>
+ <2f1d1afd-3c97-6ce0-8247-6e1c4a24e548@linaro.org>
+ <4769BE3503398017+b1699221-ccc9-a0c1-0b11-141ce9644d74@linux.starfivetech.com>
+ <9f04267d-2592-b303-9b79-9cef672c970a@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <9f04267d-2592-b303-9b79-9cef672c970a@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SPI Multi I/O Bus Controller (RPC-IF) on R-Car Gen4 SoCs is very
-similar to the RPC-IF on R-Car Gen3 SoCs.  It does support four instead
-of three bits of strobe timing adjustment (STRTIM), and thus requires a
-new mask and new settings.
+Hey Hal Feng,
 
-Inspired by a patch in the BSP by Cong Dang.
+On Wed, Oct 12, 2022 at 09:33:42AM -0400, Krzysztof Kozlowski wrote:
+> >>> These two properties are the key differences among different reset controllers.
+> >>
+> >> Different as in different compatibles? Please answer the questions..> 
+> >>> There are five memory regions for clock and reset in StarFive JH7110 SoC. They
+> >>> are "syscrg", "aoncrg", "stgcrg", "ispcrg" and "voutcrg". Each memory region
+> >>> has different reset ASSERT/STATUS register offset and different number of reset
+> >>> signals. 
+> >>
+> >> Then these are not exactly the same devices, so using one compatible for
+> >> them does not look correct.
+> > 
+> > One compatible can just be matched by one device? I think this is what
+> > confuses me.
+> 
+> I don't understand the question.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- drivers/memory/renesas-rpc-if.c | 19 ++++++++++++-------
- include/memory/renesas-rpc-if.h |  1 +
- 2 files changed, 13 insertions(+), 7 deletions(-)
+If two SoCs have exactly the same device/peripheral then they _can_ use
+the same compatible. If they share some common, viable feature-set then
+one can "fall back" to the other depending on what your Venn diagram of
+common features looks like. I've not been following this too closely,
+but I think what Krzysztof is suggesting is that you have a jh7100 and
+a jh7110 compatible. Then in your driver you just "know" that if you
+match against jh7110 which values to use for register offsets & vice
+versa for a match against the jh7100. There's many examples over the
+tree for how to handle this sort of thing rather than including it in
+the devicetree.
 
-diff --git a/drivers/memory/renesas-rpc-if.c b/drivers/memory/renesas-rpc-if.c
-index 61c288d403750b14..09cd4318a83d84d3 100644
---- a/drivers/memory/renesas-rpc-if.c
-+++ b/drivers/memory/renesas-rpc-if.c
-@@ -136,7 +136,8 @@
- #define RPCIF_PHYCNT_DDRCAL	BIT(19)
- #define RPCIF_PHYCNT_HS		BIT(18)
- #define RPCIF_PHYCNT_CKSEL(v)	(((v) & 0x3) << 16) /* valid only for RZ/G2L */
--#define RPCIF_PHYCNT_STRTIM(v)	(((v) & 0x7) << 15) /* valid for R-Car and RZ/G2{E,H,M,N} */
-+#define RPCIF_PHYCNT_STRTIM(v)	(((v) & 0x7) << 15 | ((v) & 0x8) << 24) /* valid for R-Car and RZ/G2{E,H,M,N} */
-+
- #define RPCIF_PHYCNT_WBUF2	BIT(4)
- #define RPCIF_PHYCNT_WBUF	BIT(2)
- #define RPCIF_PHYCNT_PHYMEM(v)	(((v) & 0x3) << 0)
-@@ -323,6 +324,9 @@ int rpcif_hw_init(struct rpcif *rpc, bool hyperflash)
- 	if (rpc->type == RPCIF_RCAR_GEN3)
- 		regmap_update_bits(rpc->regmap, RPCIF_PHYCNT,
- 				   RPCIF_PHYCNT_STRTIM(7), RPCIF_PHYCNT_STRTIM(7));
-+	else if (rpc->type == RPCIF_RCAR_GEN4)
-+		regmap_update_bits(rpc->regmap, RPCIF_PHYCNT,
-+				   RPCIF_PHYCNT_STRTIM(15), RPCIF_PHYCNT_STRTIM(15));
- 
- 	regmap_update_bits(rpc->regmap, RPCIF_PHYOFFSET1, RPCIF_PHYOFFSET1_DDRTMG(3),
- 			   RPCIF_PHYOFFSET1_DDRTMG(3));
-@@ -333,17 +337,17 @@ int rpcif_hw_init(struct rpcif *rpc, bool hyperflash)
- 		regmap_update_bits(rpc->regmap, RPCIF_PHYINT,
- 				   RPCIF_PHYINT_WPVAL, 0);
- 
--	if (rpc->type == RPCIF_RCAR_GEN3)
--		regmap_update_bits(rpc->regmap, RPCIF_CMNCR,
--				   RPCIF_CMNCR_MOIIO(3) | RPCIF_CMNCR_BSZ(3),
--				   RPCIF_CMNCR_MOIIO(3) |
--				   RPCIF_CMNCR_BSZ(hyperflash ? 1 : 0));
--	else
-+	if (rpc->type == RPCIF_RZ_G2L)
- 		regmap_update_bits(rpc->regmap, RPCIF_CMNCR,
- 				   RPCIF_CMNCR_MOIIO(3) | RPCIF_CMNCR_IOFV(3) |
- 				   RPCIF_CMNCR_BSZ(3),
- 				   RPCIF_CMNCR_MOIIO(1) | RPCIF_CMNCR_IOFV(2) |
- 				   RPCIF_CMNCR_BSZ(hyperflash ? 1 : 0));
-+	else
-+		regmap_update_bits(rpc->regmap, RPCIF_CMNCR,
-+				   RPCIF_CMNCR_MOIIO(3) | RPCIF_CMNCR_BSZ(3),
-+				   RPCIF_CMNCR_MOIIO(3) |
-+				   RPCIF_CMNCR_BSZ(hyperflash ? 1 : 0));
- 
- 	/* Set RCF after BSZ update */
- 	regmap_write(rpc->regmap, RPCIF_DRCR, RPCIF_DRCR_RCF);
-@@ -718,6 +722,7 @@ static int rpcif_remove(struct platform_device *pdev)
- 
- static const struct of_device_id rpcif_of_match[] = {
- 	{ .compatible = "renesas,rcar-gen3-rpc-if", .data = (void *)RPCIF_RCAR_GEN3 },
-+	{ .compatible = "renesas,rcar-gen4-rpc-if", .data = (void *)RPCIF_RCAR_GEN4 },
- 	{ .compatible = "renesas,rzg2l-rpc-if", .data = (void *)RPCIF_RZ_G2L },
- 	{},
- };
-diff --git a/include/memory/renesas-rpc-if.h b/include/memory/renesas-rpc-if.h
-index 9c0ad64b8d292d49..862eff613dc7963d 100644
---- a/include/memory/renesas-rpc-if.h
-+++ b/include/memory/renesas-rpc-if.h
-@@ -59,6 +59,7 @@ struct rpcif_op {
- 
- enum rpcif_type {
- 	RPCIF_RCAR_GEN3,
-+	RPCIF_RCAR_GEN4,
- 	RPCIF_RZ_G2L,
- };
- 
--- 
-2.25.1
+Maybe Rob and Krzysztof will scream at me for this description, but
+devicetree is about how periperhals etc are connected together in the
+system not about the internals of a given peripheral.
+
+Following that logic, the devicetree should not contain register offsets
+etc that are a known quanitity once you've determined that you are running
+on vendor,soc-foo.
+
+Hopefully that helps with your confusion somewhat?
+Conor.
 
