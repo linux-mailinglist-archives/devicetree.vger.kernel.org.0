@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C08C5FC6A0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:38:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D7105FC6A4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:39:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbiJLNiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 09:38:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49790 "EHLO
+        id S229755AbiJLNja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 09:39:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229712AbiJLNia (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:38:30 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CFA9C1DB1
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:38:29 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id m6so5325910qkm.4
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:38:29 -0700 (PDT)
+        with ESMTP id S229605AbiJLNja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:39:30 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B48DC1DB5
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:39:29 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id df9so10879259qvb.9
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:39:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wP6wlJrJq0AXapDJFS1bYYPOvHfLJ0V91QFvJt3EmM4=;
-        b=htS8wPekH6ZSTbgOxRhFhZzM4WaVmH3SLzrWzC/csQJEta5wzwnBq4VgX4HRuq/wlv
-         2pM/l+kPsilF2MhKae2HPvsrPCttQ8QtTGGvoCJp+XsmAniI5lpVRLZbX7+WUo+oIhvz
-         T4lSI+UCD0m5D01yBDCns7rW+Y+H1KoMIM/5r83mopTdmTL53iG/0DFKiHcWe1u0knZr
-         2UqYxxTlO5VDXX4pa2JHwaop4luDOwSgM7UZu6KPk0p3L0R6jvuGur8oh+HVIZkylke2
-         Vavk6GqRLhmSpHCnw39fQAiCuAZ9PBGPt7lfuEpyo9x8N4wOhOqcuL0Fl0uDSy16/B0K
-         gzUg==
+        bh=V2VehAd5gLQUv4UjE5b9cSzsj4fTXuuHSx3swmWmJNA=;
+        b=fJWiIY/JGjWLeyzCpk4oWFV/lIWxyXQPkMhfz1zbPFlyE6tFO2nq7Kh2ZLTite/2Fq
+         i37gD2sMeQf66PxslJOZTHoz0pd+5TPQRpCB/YjIsBqf8cUr9142k+H2wRXZVLjzkVll
+         mKVoA56GC0ONVs+SEd60uCznFZViPHRLiNmtFe7y9wGkvH6n8AFfIBqMoC3glbCOCazJ
+         DHN3gCERAIHdL6tsNdIxekmr8I2ouzrz3LCBF+sbyN8SIsOx9DesBtUtXIKpBt/ZONtf
+         Lr3YUyJITtBSPVuEDD2e2m/EJryMTX/Nb6qUE2buNe2orPmJFZR6J04nwYBulMkiXYOW
+         xKaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wP6wlJrJq0AXapDJFS1bYYPOvHfLJ0V91QFvJt3EmM4=;
-        b=DIyn0Ll6tWmSj73IUVLAQ7Z8LtY6na9CbE+RV3/DWEyf9COmD3t/4g/u516juUeK22
-         tv51HsO5yIuTq288YssrAhB97ikeLYS1cepp4cLzpyy2juaQDnMEsf1TI8Oku/kCFvjD
-         E4GbcoRuLSKVdHVbDySkYAqJnCg9GH4qoeWCG1WavJbrINAIPc5aJfZoTTiIOTALV/5M
-         iY8gnkzs9SUiUAtRDkRia44N360cinV1JLBFo5a44fKZDry21o0Lqx5Yfr4T0w+J0Qha
-         PMprN08W0rSONtQKBvjFkl/ENJ36daaeSLyg4kaRalO5uvV162DnBC1ui2Ooj9BvD5Px
-         5+Tg==
-X-Gm-Message-State: ACrzQf3hw4il6ocn8QCF6aWVHgRgPCVkhhgDjSyesLd7vvZ4YYRBkZDX
-        +ldgdQTewq31U1OppqTgLOkFNQ==
-X-Google-Smtp-Source: AMsMyM61O/+jzXk0HyMtHXDlasOurO4ukB3Oer0kNlfh77afIvaaO559V1ICYh8C+CvN9BGgABt9ZQ==
-X-Received: by 2002:a05:620a:4594:b0:6ed:ee1f:3974 with SMTP id bp20-20020a05620a459400b006edee1f3974mr8299284qkb.688.1665581908203;
-        Wed, 12 Oct 2022 06:38:28 -0700 (PDT)
+        bh=V2VehAd5gLQUv4UjE5b9cSzsj4fTXuuHSx3swmWmJNA=;
+        b=7f7+HZUWY10xHog1lQxzQpYySKTd5mDCHia2SHEC5egkhHiptRBxJ/iBSz3188PllE
+         aKPNCVieB/a5EBP24IAHVPPYVeHhup2MFlpQtmCABIUW07sAodI2UKSzBXMohgfUCdXD
+         l7u50+bGK3PTRrfn6fYOHhNcgUAZXxGb/gfJarfwZLJuXnIaaIsZR7mHJXFdWzGchl5m
+         zdy6MOZHTDGb5xnntJcC1bEwf9UC1ufarnvloSxSNmK0sIPO0FptYeCVfe8WI0+pzApB
+         uhgCxu2tLqQM7LrXYXjTRR2oUrbGjKlSKT71H50EOy+eudAlArM0Xs9qZlEvaVQwqo/t
+         coow==
+X-Gm-Message-State: ACrzQf0MqTmj0MkhLCjCJAUlOIze+PLJYv8s0m2+jzB1xPGotk7tmFSp
+        UKqaVYiy6XhR9TAXbKEJXbX0sg==
+X-Google-Smtp-Source: AMsMyM4N7b9QcbpBeYehJ7xsQquGCxt6+7p6LALgbmSOwHp2iV6KBJYnmV/JNuTlYeNrwCM7dsFYEQ==
+X-Received: by 2002:ad4:5d61:0:b0:4b4:4f2:3099 with SMTP id fn1-20020ad45d61000000b004b404f23099mr12911230qvb.77.1665581968459;
+        Wed, 12 Oct 2022 06:39:28 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id bq8-20020a05620a468800b006ee0b144730sm6361377qkb.69.2022.10.12.06.38.26
+        by smtp.gmail.com with ESMTPSA id d12-20020ac800cc000000b0039cbbcc7da8sm1916600qtg.7.2022.10.12.06.39.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 06:38:27 -0700 (PDT)
-Message-ID: <2eaae603-9726-290e-7c9d-67b89256140c@linaro.org>
-Date:   Wed, 12 Oct 2022 09:38:26 -0400
+        Wed, 12 Oct 2022 06:39:27 -0700 (PDT)
+Message-ID: <76415dd7-aa74-7bf7-1952-dd1c847a5b57@linaro.org>
+Date:   Wed, 12 Oct 2022 09:39:25 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
@@ -85,57 +85,7 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 11/10/2022 19:17, Bryan Brattlof wrote:
-> Only some of TI's J721E SoCs will need a eFuse register range mapped to
-> determine if they're affected by TI's i2128 erratum. All other SoC will
-> not need this eFuse range to be mapped to function properly
-> 
-> Update the bindings for the k3_j72xx_bandgap thermal driver so other
-> devices will only need to define two register ranges
-> 
-> Signed-off-by: Bryan Brattlof <bb@ti.com>
-> ---
->  .../bindings/thermal/ti,j72xx-thermal.yaml    | 34 +++++++++++++------
->  1 file changed, 24 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> index 0b6a6fa07a532..387628ab35959 100644
-> --- a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> @@ -33,16 +33,6 @@ properties:
->        - ti,j721e-vtm
->        - ti,j7200-vtm
->  
-> -  reg:
 
-No, keep entire part here.
-with minItems:2
-
-
-> -    items:
-> -      - description: VTM cfg1 register space
-> -      - description: VTM cfg2 register space
-> -      - description: |
-> -          A software trimming method must be applied to some Jacinto
-> -          devices to function properly. This eFuse region provides
-> -          the information needed for these SoCs to report
-> -          temperatures accurately.
-> -
->    power-domains:
->      description: |
->        Should contain the phandle to a power management (PM) domain
-> @@ -52,6 +42,30 @@ properties:
->    "#thermal-sensor-cells":
->      const: 1
->  
-> +if:
-
-Put it under allOf.
-
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - ti,j721e-vtm
 > +then:
 > +  properties:
 > +    reg:
@@ -147,24 +97,16 @@ Put it under allOf.
 > +            devices to function properly. This eFuse region provides
 > +            the information needed for these SoCs to report
 > +            temperatures accurately.
-
-Instead:
-minItems: 3
-
 > +else:
 > +  properties:
 > +    reg:
 > +      items:
 > +        - description: VTM cfg1 register space
 > +        - description: VTM cfg2 register space
-
-Instead:
-maxItems: 2
-
 > +
->  required:
->    - compatible
->    - reg
+
+BTW, you have additionalProperties:false, so how you coded it won't
+work. Test your bindings before sending.
 
 Best regards,
 Krzysztof
