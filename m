@@ -2,144 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C12E5FCD08
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 23:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A51B5FCD12
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 23:23:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230090AbiJLVV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 17:21:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46142 "EHLO
+        id S230012AbiJLVXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 17:23:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230015AbiJLVVz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 17:21:55 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A3FE8D0E6;
-        Wed, 12 Oct 2022 14:21:54 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id m16so78762edc.4;
-        Wed, 12 Oct 2022 14:21:54 -0700 (PDT)
+        with ESMTP id S230167AbiJLVXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 17:23:47 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 805AF11C6E9
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 14:23:46 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id 67so147493pfz.12
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 14:23:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QQfpRIt3DFuqO+zX1CeFTtSVeijb+PJxpHgqxCSADR0=;
-        b=al3lXHrUDVuQJuNML3yc9OTVp8mBm1fceF0wyeRVT7rVZewHTS45N+wEDJE03RPt86
-         whlP9ZfSGJADr+jLrP9hcsriMOhuem5pNu2pOAlJGKbIkvgU4vsvgsKImKxmYnPqvZ04
-         Gy0dYOkAtFViIUJWCib2vOru/oXpiU2R5sCA5tIc9DrsT7nZUBEfhbCav1Ts2VeHxZg1
-         3UPQI7BMu+saxhG/f9BQK7IpFypRaaRBR+D1hcpKxTgFSXFoUMQDXQQyxHYxn8zeyDbc
-         JihcfTeXH5CI+eDdEWIsUu1fJgdoFDJYMUGCYlO33DjjtXQR6WbTQO4WMHCbg/3j38Sx
-         57KA==
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=0fllDq8R/NvidLJEwlTuoSMCemziS6TmBihyBD8m3EI=;
+        b=cWwFxm6DmOiGZap3PT8dYQAohuNvYbEGf7VSZLYHHJF9PzC/CH71sq387h96sl5aPp
+         wdp/igfGWvmgF/ZRmraJy5nV7bXzCWSRduokNKi4U6VhLfhvu30nZJbB+Oh+ON2Mxl/t
+         Z/AIZToLGF7IQUD7PJw7Rv4uRwe+Nrh5N+dEuNXOUUbkvnfe7aaN4/DRyaKxLYCcjEeP
+         H7PATNL6mQEh9iXE5PNftE42agvfC0ztFJkiEpUAjvIqxGOFlMdImpd1kcDUVoJY6AkU
+         Bzzgm8Ht1/zsB/2tOgtvAC9uqIlhYvgicEdR90VI9Ji4iyfKgeEXUngyz6eYeDxrOWyj
+         dlPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QQfpRIt3DFuqO+zX1CeFTtSVeijb+PJxpHgqxCSADR0=;
-        b=5jOwgoOUDNdSNnULoSwEv/sU328e+sWsVfU/neoCqTyoOWvsZGNsvSerU3A23AvmSw
-         4ZHKus6vjNCxXHiS32AK7/0I/8+ob9DRg/8K8h8LWV3dy33oXWFtYwylSEqBR65WMMZM
-         BtiwndG1bE80KHzs8du3RmYZiBeJEnOjaJpJeZKHUsdGBWTlBFLjyzJmEgKGpQB3frP1
-         huDyyKnXnujNbvIxW2rFEj2QYvfikscdwqpbWFgsr84VHy1zsIorDu0KKMkoA9bvW0bl
-         EAQsrCVjLU6mo04jxATIKp3hnQnvfujU/3LsjWxtQ8AwnOp08DdWACTWSAtimCvSBGBj
-         JcPg==
-X-Gm-Message-State: ACrzQf0Gtsp3RXJNNky2js7gwFwZDc1rwXhDgq9DE+Tlmjd4kN8sgf9x
-        6ujawiuh9LCumC1pB/CDVAWkN6Ruvz8W0Q==
-X-Google-Smtp-Source: AMsMyM7ztgB9rREL8AMYuGYCWQ376iRMzD7aUi2+lPvEwK2yjjBdeM84G3oYxHblooq1M66KBII06A==
-X-Received: by 2002:a50:fd16:0:b0:458:bf43:8dc7 with SMTP id i22-20020a50fd16000000b00458bf438dc7mr28513321eds.400.1665609712898;
-        Wed, 12 Oct 2022 14:21:52 -0700 (PDT)
-Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id a20-20020aa7cf14000000b00458dc7e8ecasm12009298edy.72.2022.10.12.14.21.51
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0fllDq8R/NvidLJEwlTuoSMCemziS6TmBihyBD8m3EI=;
+        b=Dfu3UZY34eidf5X7tSVkpxOxYUzIRA7N7uN4ThVIPVh9AVEMVewmfu3gHLmdDDzFwG
+         Foe7IiXLAC//eGYfMRlqM5phivxibkv3Cv5HWtP7zNuKuq9cXRYvml3GxZMwSKl7Y6+w
+         qYtwuM4OPiWCfQ6Ker/lGODtG88n2J6FADzpmZ5qJNu69AOWStFHixfSIB/MQ9+TeM3Y
+         6bIw53I3e6Uwfp5htDau5t+N0XAXCzDNx0Z6Ckolxx9VijgJ9vbJl6t10ighSG5O/YPx
+         UdTOt5u8fJhk85DxPp60agsbG6PEQHcKWkobVS8O/ScbEpwxYZ8M3qrjV3ulz51Qi+Kt
+         T/Rg==
+X-Gm-Message-State: ACrzQf2gFqX4+L8hsCOLV2ccLIZ3ksuqhyh0jBp+lHN7bX0zHF+ZJEiV
+        sVFGjoEjueBOPy8Fwl/BpAX/IA==
+X-Google-Smtp-Source: AMsMyM710vyGLYDDZjZmX/UXLk0efqPqSLGAtM7v2nEtet8TeeOpKf8blV2uniBgjkhh52iU2rDl9A==
+X-Received: by 2002:a05:6a00:181c:b0:563:2c6c:2a7a with SMTP id y28-20020a056a00181c00b005632c6c2a7amr21625965pfa.28.1665609824478;
+        Wed, 12 Oct 2022 14:23:44 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id u15-20020a17090abb0f00b0020d51aefb82sm1889902pjr.19.2022.10.12.14.23.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 14:21:52 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Icenowy Zheng <uwu@icenowy.me>
-Cc:     soc@kernel.org, linux-kernel@vger.kernel.org,
+        Wed, 12 Oct 2022 14:23:43 -0700 (PDT)
+Date:   Wed, 12 Oct 2022 15:23:41 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
-Subject: Re: [PATCH v2 04/10] phy: sun4i-usb: add support for the USB PHY on F1C100s SoC
-Date:   Wed, 12 Oct 2022 23:21:50 +0200
-Message-ID: <4218006.ejJDZkT8p0@kista>
-In-Reply-To: <20221012055602.1544944-5-uwu@icenowy.me>
-References: <20221012055602.1544944-1-uwu@icenowy.me> <20221012055602.1544944-5-uwu@icenowy.me>
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V6 3/7] remoteproc: imx_rproc: support attaching to
+ i.MX8QXP M4
+Message-ID: <20221012212341.GA1196937@p14s>
+References: <20220929061704.1571746-1-peng.fan@oss.nxp.com>
+ <20220929061704.1571746-4-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220929061704.1571746-4-peng.fan@oss.nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Icenowy,
-
-Dne sreda, 12. oktober 2022 ob 07:55:56 CEST je Icenowy Zheng napisal(a):
-> The F1C100s SoC has one USB OTG port connected to a MUSB controller.
+On Thu, Sep 29, 2022 at 02:17:00PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Add support for its USB PHY.
+> When M4 is kicked by SCFW, M4 runs in its own hardware partition, Linux
+> could only do IPC with M4, it could not start, stop, update image.
 > 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> We disable recovery reboot when M4 is managed by SCFW, because
+> remoteproc core still not support M4 auto-recovery without loading
+> image.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
-> No changes since v1.
+>  drivers/remoteproc/imx_rproc.c | 108 ++++++++++++++++++++++++++++++++-
+>  1 file changed, 107 insertions(+), 1 deletion(-)
 > 
->  drivers/phy/allwinner/phy-sun4i-usb.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c
-> b/drivers/phy/allwinner/phy-sun4i-usb.c index 3a3831f6059a..2f94cb77637b
-> 100644
-> --- a/drivers/phy/allwinner/phy-sun4i-usb.c
-> +++ b/drivers/phy/allwinner/phy-sun4i-usb.c
-> @@ -109,6 +109,7 @@ enum sun4i_usb_phy_type {
->  	sun8i_v3s_phy,
->  	sun50i_a64_phy,
->  	sun50i_h6_phy,
-> +	suniv_f1c100s_phy,
+> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+> index 7cc4fd207e2d..a56aecae00c6 100644
+> --- a/drivers/remoteproc/imx_rproc.c
+> +++ b/drivers/remoteproc/imx_rproc.c
+> @@ -6,6 +6,7 @@
+>  #include <linux/arm-smccc.h>
+>  #include <linux/clk.h>
+>  #include <linux/err.h>
+> +#include <linux/firmware/imx/sci.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/kernel.h>
+>  #include <linux/mailbox_client.h>
+> @@ -59,6 +60,8 @@
+>  #define IMX_SIP_RPROC_STARTED		0x01
+>  #define IMX_SIP_RPROC_STOP		0x02
+>  
+> +#define IMX_SC_IRQ_GROUP_REBOOTED	5
+> +
+>  /**
+>   * struct imx_rproc_mem - slim internal memory structure
+>   * @cpu_addr: MPU virtual address of the memory region
+> @@ -89,6 +92,10 @@ struct imx_rproc {
+>  	struct work_struct		rproc_work;
+>  	struct workqueue_struct		*workqueue;
+>  	void __iomem			*rsc_table;
+> +	struct imx_sc_ipc		*ipc_handle;
+> +	struct notifier_block		rproc_nb;
+> +	u32				rproc_pt;	/* partition id */
+> +	u32				rsrc_id;	/* resource id */
 >  };
-> 
->  struct sun4i_usb_phy_cfg {
-> @@ -859,6 +860,14 @@ static int sun4i_usb_phy_probe(struct platform_device
-> *pdev) return 0;
->  }
-> 
-> +static const struct sun4i_usb_phy_cfg suniv_f1c100s_cfg = {
-> +	.num_phys = 1,
-> +	.type = suniv_f1c100s_phy,
-
-I think you should just use sun4i_a10_phy. It has no special handling. I don't 
-see a point adding new phy types if there is no special cases for it.
-
-Best regards,
-Jernej
-
-> +	.disc_thresh = 3,
-> +	.phyctl_offset = REG_PHYCTL_A10,
-> +	.dedicated_clocks = true,
+>  
+>  static const struct imx_rproc_att imx_rproc_att_imx93[] = {
+> @@ -117,6 +124,18 @@ static const struct imx_rproc_att imx_rproc_att_imx93[] = {
+>  	{ 0xD0000000, 0xa0000000, 0x10000000, 0 },
+>  };
+>  
+> +static const struct imx_rproc_att imx_rproc_att_imx8qxp[] = {
+> +	{ 0x08000000, 0x08000000, 0x10000000, 0 },
+> +	/* TCML/U */
+> +	{ 0x1FFE0000, 0x34FE0000, 0x00040000, ATT_OWN | ATT_IOMEM },
+> +	/* OCRAM(Low 96KB) */
+> +	{ 0x21000000, 0x00100000, 0x00018000, 0 },
+> +	/* OCRAM */
+> +	{ 0x21100000, 0x00100000, 0x00040000, 0 },
+> +	/* DDR (Data) */
+> +	{ 0x80000000, 0x80000000, 0x60000000, 0 },
 > +};
 > +
->  static const struct sun4i_usb_phy_cfg sun4i_a10_cfg = {
->  	.num_phys = 3,
->  	.type = sun4i_a10_phy,
-> @@ -988,6 +997,8 @@ static const struct of_device_id
-> sun4i_usb_phy_of_match[] = { { .compatible =
-> "allwinner,sun50i-a64-usb-phy",
->  	  .data = &sun50i_a64_cfg},
->  	{ .compatible = "allwinner,sun50i-h6-usb-phy", .data = 
-&sun50i_h6_cfg },
-> +	{ .compatible = "allwinner,suniv-f1c100s-usb-phy",
-> +	  .data = &suniv_f1c100s_cfg },
->  	{ },
+>  static const struct imx_rproc_att imx_rproc_att_imx8mn[] = {
+>  	/* dev addr , sys addr  , size	    , flags */
+>  	/* ITCM   */
+> @@ -255,6 +274,12 @@ static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mq = {
+>  	.method		= IMX_RPROC_MMIO,
 >  };
->  MODULE_DEVICE_TABLE(of, sun4i_usb_phy_of_match);
-> --
+>  
+> +static const struct imx_rproc_dcfg imx_rproc_cfg_imx8qxp = {
+> +	.att		= imx_rproc_att_imx8qxp,
+> +	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8qxp),
+> +	.method		= IMX_RPROC_SCU_API,
+> +};
+> +
+>  static const struct imx_rproc_dcfg imx_rproc_cfg_imx8ulp = {
+>  	.att		= imx_rproc_att_imx8ulp,
+>  	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8ulp),
+> @@ -680,6 +705,37 @@ static void imx_rproc_free_mbox(struct rproc *rproc)
+>  	mbox_free_channel(priv->rx_ch);
+>  }
+>  
+> +static void imx_rproc_put_scu(struct rproc *rproc)
+> +{
+> +	struct imx_rproc *priv = rproc->priv;
+> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
+> +
+> +	if (dcfg->method != IMX_RPROC_SCU_API)
+> +		return;
+> +
+> +	if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id))
+
+Yes, now it makes sense.
+
+> +		return;
+> +
+> +	imx_scu_irq_group_enable(IMX_SC_IRQ_GROUP_REBOOTED, BIT(priv->rproc_pt), false);
+> +	imx_scu_irq_unregister_notifier(&priv->rproc_nb);
+> +}
+> +
+> +static int imx_rproc_partition_notify(struct notifier_block *nb,
+> +				      unsigned long event, void *group)
+> +{
+> +	struct imx_rproc *priv = container_of(nb, struct imx_rproc, rproc_nb);
+> +
+> +	/* Ignore other irqs */
+> +	if (!((event & BIT(priv->rproc_pt)) && (*(u8 *)group == IMX_SC_IRQ_GROUP_REBOOTED)))
+> +		return 0;
+> +
+> +	rproc_report_crash(priv->rproc, RPROC_WATCHDOG);
+> +
+> +	pr_info("Partition%d reset!\n", priv->rproc_pt);
+> +
+> +	return 0;
+> +}
+> +
+>  static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  {
+>  	struct regmap_config config = { .name = "imx-rproc" };
+> @@ -689,6 +745,7 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  	struct arm_smccc_res res;
+>  	int ret;
+>  	u32 val;
+> +	u8 pt;
+>  
+>  	switch (dcfg->method) {
+>  	case IMX_RPROC_NONE:
+> @@ -699,6 +756,51 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  		if (res.a0)
+>  			priv->rproc->state = RPROC_DETACHED;
+>  		return 0;
+> +	case IMX_RPROC_SCU_API:
+> +		ret = imx_scu_get_handle(&priv->ipc_handle);
+> +		if (ret)
+> +			return ret;
+> +		ret = of_property_read_u32(dev->of_node, "fsl,resource-id", &priv->rsrc_id);
+> +		if (ret) {
+> +			dev_err(dev, "No fsl,resource-id property\n");
+> +			return ret;
+> +		}
+> +
+> +		/*
+> +		 * If Mcore resource is not owned by Acore partition, It is kicked by ROM,
+> +		 * and Linux could only do IPC with Mcore and nothing else.
+> +		 */
+> +		if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id))
+> +			return 0;
+> +
+> +		priv->rproc->state = RPROC_DETACHED;
+> +		priv->rproc->recovery_disabled = true;
+> +
+> +		/* Get partition id and enable irq in SCFW */
+> +		ret = imx_sc_rm_get_resource_owner(priv->ipc_handle, priv->rsrc_id, &pt);
+> +		if (ret) {
+> +			dev_err(dev, "not able to get resource owner\n");
+> +			return ret;
+> +		}
+> +
+> +		priv->rproc_pt = pt;
+> +		priv->rproc_nb.notifier_call = imx_rproc_partition_notify;
+> +
+> +		ret = imx_scu_irq_register_notifier(&priv->rproc_nb);
+> +		if (ret) {
+> +			dev_warn(dev, "register scu notifier failed.\n");
+
+Either make this a dev_err() or remove entirely.
+
+> +			return ret;
+> +		}
+> +
+> +		ret = imx_scu_irq_group_enable(IMX_SC_IRQ_GROUP_REBOOTED, BIT(priv->rproc_pt),
+> +					       true);
+> +		if (ret) {
+> +			imx_scu_irq_unregister_notifier(&priv->rproc_nb);
+> +			dev_warn(dev, "Enable irq failed.\n");
+
+Same here.
+
+With the above:
+
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+
+
+> +			return ret;
+> +		}
+> +
+> +		return 0;
+>  	default:
+>  		break;
+>  	}
+> @@ -803,7 +905,7 @@ static int imx_rproc_probe(struct platform_device *pdev)
+>  
+>  	ret = imx_rproc_clk_enable(priv);
+>  	if (ret)
+> -		goto err_put_mbox;
+> +		goto err_put_scu;
+>  
+>  	INIT_WORK(&priv->rproc_work, imx_rproc_vq_work);
+>  
+> @@ -820,6 +922,8 @@ static int imx_rproc_probe(struct platform_device *pdev)
+>  
+>  err_put_clk:
+>  	clk_disable_unprepare(priv->clk);
+> +err_put_scu:
+> +	imx_rproc_put_scu(rproc);
+>  err_put_mbox:
+>  	imx_rproc_free_mbox(rproc);
+>  err_put_wkq:
+> @@ -837,6 +941,7 @@ static int imx_rproc_remove(struct platform_device *pdev)
+>  
+>  	clk_disable_unprepare(priv->clk);
+>  	rproc_del(rproc);
+> +	imx_rproc_put_scu(rproc);
+>  	imx_rproc_free_mbox(rproc);
+>  	destroy_workqueue(priv->workqueue);
+>  	rproc_free(rproc);
+> @@ -852,6 +957,7 @@ static const struct of_device_id imx_rproc_of_match[] = {
+>  	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
+>  	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
+>  	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
+> +	{ .compatible = "fsl,imx8qxp-cm4", .data = &imx_rproc_cfg_imx8qxp },
+>  	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
+>  	{ .compatible = "fsl,imx93-cm33", .data = &imx_rproc_cfg_imx93 },
+>  	{},
+> -- 
 > 2.37.1
-
-
+> 
