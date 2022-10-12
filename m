@@ -2,111 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D7105FC6A4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 034C35FC6AB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 15:41:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbiJLNja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 09:39:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50660 "EHLO
+        id S229741AbiJLNlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 09:41:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229605AbiJLNja (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:39:30 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B48DC1DB5
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:39:29 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id df9so10879259qvb.9
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 06:39:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V2VehAd5gLQUv4UjE5b9cSzsj4fTXuuHSx3swmWmJNA=;
-        b=fJWiIY/JGjWLeyzCpk4oWFV/lIWxyXQPkMhfz1zbPFlyE6tFO2nq7Kh2ZLTite/2Fq
-         i37gD2sMeQf66PxslJOZTHoz0pd+5TPQRpCB/YjIsBqf8cUr9142k+H2wRXZVLjzkVll
-         mKVoA56GC0ONVs+SEd60uCznFZViPHRLiNmtFe7y9wGkvH6n8AFfIBqMoC3glbCOCazJ
-         DHN3gCERAIHdL6tsNdIxekmr8I2ouzrz3LCBF+sbyN8SIsOx9DesBtUtXIKpBt/ZONtf
-         Lr3YUyJITtBSPVuEDD2e2m/EJryMTX/Nb6qUE2buNe2orPmJFZR6J04nwYBulMkiXYOW
-         xKaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V2VehAd5gLQUv4UjE5b9cSzsj4fTXuuHSx3swmWmJNA=;
-        b=7f7+HZUWY10xHog1lQxzQpYySKTd5mDCHia2SHEC5egkhHiptRBxJ/iBSz3188PllE
-         aKPNCVieB/a5EBP24IAHVPPYVeHhup2MFlpQtmCABIUW07sAodI2UKSzBXMohgfUCdXD
-         l7u50+bGK3PTRrfn6fYOHhNcgUAZXxGb/gfJarfwZLJuXnIaaIsZR7mHJXFdWzGchl5m
-         zdy6MOZHTDGb5xnntJcC1bEwf9UC1ufarnvloSxSNmK0sIPO0FptYeCVfe8WI0+pzApB
-         uhgCxu2tLqQM7LrXYXjTRR2oUrbGjKlSKT71H50EOy+eudAlArM0Xs9qZlEvaVQwqo/t
-         coow==
-X-Gm-Message-State: ACrzQf0MqTmj0MkhLCjCJAUlOIze+PLJYv8s0m2+jzB1xPGotk7tmFSp
-        UKqaVYiy6XhR9TAXbKEJXbX0sg==
-X-Google-Smtp-Source: AMsMyM4N7b9QcbpBeYehJ7xsQquGCxt6+7p6LALgbmSOwHp2iV6KBJYnmV/JNuTlYeNrwCM7dsFYEQ==
-X-Received: by 2002:ad4:5d61:0:b0:4b4:4f2:3099 with SMTP id fn1-20020ad45d61000000b004b404f23099mr12911230qvb.77.1665581968459;
-        Wed, 12 Oct 2022 06:39:28 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id d12-20020ac800cc000000b0039cbbcc7da8sm1916600qtg.7.2022.10.12.06.39.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 06:39:27 -0700 (PDT)
-Message-ID: <76415dd7-aa74-7bf7-1952-dd1c847a5b57@linaro.org>
-Date:   Wed, 12 Oct 2022 09:39:25 -0400
+        with ESMTP id S229543AbiJLNlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 09:41:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BC6A3910E;
+        Wed, 12 Oct 2022 06:41:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B3B2A61525;
+        Wed, 12 Oct 2022 13:41:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E212FC433D6;
+        Wed, 12 Oct 2022 13:41:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665582091;
+        bh=gS9wxuRyVQOOebK7MIwLmtqB4zEv1W61TkcfnxFrAzY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=VaPCfZrrRSpbp0FpZmR1OJ4MlXTMM58CVhb6JBzhst2KoQINIjDTsKQWs70AoHBvD
+         M3bC/U76FQYv5IWdX5jE/b+99vF002V9IJHUXShTnyBH3KxhdYLGlq5SnPpwvJEaIO
+         g+aj+AeUvIP1GdNd7dFgfUGjRkMGHKJESwegLjIZamG0JgzjA7MQT6IqKo67n3ZQYM
+         inTvLp4QLgLGjDYCe06AvlHXrh9a0jLXF4Kd/NXxU6MkBwsQBxkjT3D9E1dNFPeukW
+         JEVYEdoAsah/bqeMc5y3XiF9K5cDtR0wjjE9jrJhDzOpGj60odsNvUFKiKKTEXMScx
+         4EauRhKk9PsTg==
+Message-ID: <bfb59645-17fe-eba9-e244-9e5b639ce2dd@kernel.org>
+Date:   Wed, 12 Oct 2022 09:41:24 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH 06/11] dt-bindings: thermal: k3-j72xx: conditionally
- require efuse reg range
+Subject: Re: [Patch v3 01/15] dt-bindings: media: s5p-mfc: Add new DT schema
+ for MFC
 Content-Language: en-US
-To:     Bryan Brattlof <bb@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Keerthy <j-keerthy@ti.com>,
-        Linux Thermal <linux-pm@vger.kernel.org>,
-        Linux Device Tree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20221011231727.8090-1-bb@ti.com>
- <20221011231727.8090-7-bb@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221011231727.8090-7-bb@ti.com>
+To:     Rob Herring <robh@kernel.org>,
+        aakarsh jain <aakarsh.jain@samsung.com>
+Cc:     linux-fsd@tesla.com, linux-media@vger.kernel.org,
+        pankaj.dubey@samsung.com, linux-arm-kernel@lists.infradead.org,
+        dillon.minfei@gmail.com, devicetree@vger.kernel.org,
+        krzk+dt@kernel.org, smitha.t@samsung.com,
+        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
+        jernej.skrabec@gmail.com, robh+dt@kernel.org,
+        aswani.reddy@samsung.com, mchehab@kernel.org,
+        hverkuil-cisco@xs4all.nl, mark.rutland@arm.com,
+        m.szyprowski@samsung.com, linux-kernel@vger.kernel.org,
+        alim.akhtar@samsung.com, andi@etezian.org, andrzej.hajda@intel.com,
+        ezequiel@vanguardiasur.com.ar, david.plowman@raspberrypi.com
+References: <20221011122516.32135-1-aakarsh.jain@samsung.com>
+ <CGME20221011125142epcas5p13c858a5f27830fb1de50fa51e9730eca@epcas5p1.samsung.com>
+ <20221011122516.32135-2-aakarsh.jain@samsung.com>
+ <166558064414.1937173.2124012536890566845.robh@kernel.org>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <166558064414.1937173.2124012536890566845.robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2022 19:17, Bryan Brattlof wrote:
+On 12/10/2022 09:19, Rob Herring wrote:
+> On Tue, 11 Oct 2022 17:55:02 +0530, aakarsh jain wrote:
+>> From: Smitha T Murthy <smitha.t@samsung.com>
+>>
+>> Convert DT schema for s5p-mfc in yaml format
+>>
+>> Cc: linux-fsd@tesla.com
+>> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+>> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+>> ---
+>>  .../devicetree/bindings/media/s5p-mfc.txt     |  75 --------
+>>  .../bindings/media/samsung,s5p-mfc.yaml       | 163 ++++++++++++++++++
+>>  2 files changed, 163 insertions(+), 75 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
+>>
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
+> 
 
-> +then:
-> +  properties:
-> +    reg:
-> +      items:
-> +        - description: VTM cfg1 register space
-> +        - description: VTM cfg2 register space
-> +        - description: |
-> +            A software trimming method must be applied to some Jacinto
-> +            devices to function properly. This eFuse region provides
-> +            the information needed for these SoCs to report
-> +            temperatures accurately.
-> +else:
-> +  properties:
-> +    reg:
-> +      items:
-> +        - description: VTM cfg1 register space
-> +        - description: VTM cfg2 register space
-> +
-
-BTW, you have additionalProperties:false, so how you coded it won't
-work. Test your bindings before sending.
+All these must be fixed before schema can be applied.
 
 Best regards,
 Krzysztof
