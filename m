@@ -2,134 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDE285FCD8D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 23:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE6945FCD95
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 23:56:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiJLVxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 17:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51974 "EHLO
+        id S229507AbiJLV4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 17:56:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbiJLVx1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 17:53:27 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9DF9125006;
-        Wed, 12 Oct 2022 14:53:23 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id w18so30834ejq.11;
-        Wed, 12 Oct 2022 14:53:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7/UAQonY1jdtSDxe6mG/GSNINyt/UsNb0npebwXSigc=;
-        b=JzgUWg8xRuGnBKhabW6f9oVrX/dtov7QQSv5AblnWE+IphRPFYyXHxp0aa1gj/sOjL
-         jIj9NjDn+q1Vr7xgRyH9vi/O3ykh3aSmcVbziGCwsjs7ozBwMv1uKzvV1PRm0I/+r9xy
-         H8rMl5j7umJzV3fdZB1IQRO6NFN1k7N/uewVl6JA1dKZaqgj3RPKiC/u8z62MrhdnbAL
-         jDiG54Ryee+x/P6b1lfF7tVqBuOUvLm+c4xFioji0No37mAoNWifcy4FztJSSWLI+L3X
-         CHzpg+NZ12LZxL88J0LQA0DI9kZRA4FUvvJLO7LTZQ3FrSJEeIE7hFigHGThq/oTv1Mz
-         fPdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7/UAQonY1jdtSDxe6mG/GSNINyt/UsNb0npebwXSigc=;
-        b=n7Qx5/FgdUSoMZLTvxj+w6K3HoDZ47GBdfGSyUiq72fWeDGMDWsJP7V2AIarJnY4b7
-         Aq65cx89c1Xrg7uMtZFFLi6PBgLAkWwb6mr7QII6oS4FGZRD8JmidCmlgk+DHhglGqlk
-         jxYMbEvisXqL1NCSqQWJwxI06FDjL0mVIyLHiDiO9wAZVPIAAPLxe1OhznkQCnrhD76j
-         COyu7jrT9zTh1mbJA+5lbJBeg6H8Uvc4fE2H7crmWHWGTFf621iAAD5lTBaWn5IBVgJs
-         ma6FYP3HwN4MVwKlovKj4I6MWq/2w5FbtYZ6vDC1iV102ugWS4HHPge9V1HHvQhH0W6O
-         Dzlw==
-X-Gm-Message-State: ACrzQf0LI+UhBUKp/O5ln7FL95caNxV8HlZzuvlBa7RVQzm+GX03f0F7
-        YEJaMMaOzDd2D8gSNTy/Ays=
-X-Google-Smtp-Source: AMsMyM5sK8vks8yeD99LKu/TvT/nZWJrqvIvXzWohkOK08pjY9d2ehQSA6pozuLJKbsjtBrx+kIZVw==
-X-Received: by 2002:a17:907:7d8d:b0:78d:d467:dd3 with SMTP id oz13-20020a1709077d8d00b0078dd4670dd3mr8553455ejc.547.1665611601720;
-        Wed, 12 Oct 2022 14:53:21 -0700 (PDT)
-Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id ay8-20020a170906d28800b00788c622fa2csm1857593ejb.135.2022.10.12.14.53.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 14:53:21 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
+        with ESMTP id S229491AbiJLV4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 17:56:35 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E5C12502E;
+        Wed, 12 Oct 2022 14:56:22 -0700 (PDT)
+Received: from g550jk.arnhem.chello.nl (31-151-115-246.dynamic.upc.nl [31.151.115.246])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id EEAD1C9CE5;
+        Wed, 12 Oct 2022 21:56:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1665611780; bh=NZxJM0Mfp4tG1dvfoBIyUkMnYtwc3xujwcIwoZevaV0=;
+        h=From:To:Cc:Subject:Date;
+        b=xq5jxx9CSLYLZiRzOlc4pE3fDKJvfCOpTOUY6G/BBiop6OJRpVMSQvdWuEAu9HKPg
+         nYhngl4Y50jA+q5qcp+//qwK3g9FPJI+7YQ77qnqZR5DMxFhY45hwQ/j3WXK23QbpC
+         A0OQILfe+TcnXW1dnIj1AQrhX8eJQqPhHMAFrMW0=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 2/2] ARM: dts: axp22x/axp809: Add GPIO controller nodes
-Date:   Wed, 12 Oct 2022 23:53:20 +0200
-Message-ID: <9053509.rMLUfLXkoz@kista>
-In-Reply-To: <20220916042751.47906-3-samuel@sholland.org>
-References: <20220916042751.47906-1-samuel@sholland.org> <20220916042751.47906-3-samuel@sholland.org>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: msm8996: remove bogus ufs_variant node
+Date:   Wed, 12 Oct 2022 23:56:13 +0200
+Message-Id: <20221012215613.32054-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        FROM_SUSPICIOUS_NTLD_FP,SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Samuel,
+This ufs_variant node seems to be a remnant from downstream devicetree.
 
-Dne petek, 16. september 2022 ob 06:27:51 CEST je Samuel Holland napisal(a):
-> These PMICs all contain a GPIO controller. Now that the binding for this
-> variant is documented, wire up the controller in the device tree.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+As it doesn't seem to be used by anything upstream, remove it from the
+dtsi.
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ----
+ 1 file changed, 4 deletions(-)
 
-Best regards,
-Jernej
-
-> ---
-> 
-> Changes in v3:
->  - Remove "ldo" pinctrl children from new nodes
-> 
->  arch/arm/boot/dts/axp22x.dtsi | 6 ++++++
->  arch/arm/boot/dts/axp809.dtsi | 7 +++++++
->  2 files changed, 13 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/axp22x.dtsi b/arch/arm/boot/dts/axp22x.dtsi
-> index a020c12b2884..f79650afd0a7 100644
-> --- a/arch/arm/boot/dts/axp22x.dtsi
-> +++ b/arch/arm/boot/dts/axp22x.dtsi
-> @@ -67,6 +67,12 @@ battery_power_supply: battery-power {
->  		status = "disabled";
->  	};
-> 
-> +	axp_gpio: gpio {
-> +		compatible = "x-powers,axp221-gpio";
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +	};
-> +
->  	regulators {
->  		/* Default work frequency for buck regulators */
->  		x-powers,dcdc-freq = <3000>;
-> diff --git a/arch/arm/boot/dts/axp809.dtsi b/arch/arm/boot/dts/axp809.dtsi
-> index ab8e5f2d9246..d134d4c00bd8 100644
-> --- a/arch/arm/boot/dts/axp809.dtsi
-> +++ b/arch/arm/boot/dts/axp809.dtsi
-> @@ -50,4 +50,11 @@ &axp809 {
->  	compatible = "x-powers,axp809";
->  	interrupt-controller;
->  	#interrupt-cells = <1>;
-> +
-> +	axp_gpio: gpio {
-> +		compatible = "x-powers,axp809-gpio",
-> +			     "x-powers,axp221-gpio";
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +	};
->  };
-> --
-> 2.35.1
-
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index c0a2baffa49d..87e9aef951ab 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -1995,10 +1995,6 @@ ufshc: ufshc@624000 {
+ 			lanes-per-direction = <1>;
+ 			#reset-cells = <1>;
+ 			status = "disabled";
+-
+-			ufs_variant {
+-				compatible = "qcom,ufs_variant";
+-			};
+ 		};
+ 
+ 		ufsphy: phy@627000 {
+-- 
+2.38.0
 
