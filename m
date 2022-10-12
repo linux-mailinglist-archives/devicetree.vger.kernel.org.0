@@ -2,138 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EB775FCD16
-	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 23:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA2C45FCD47
+	for <lists+devicetree@lfdr.de>; Wed, 12 Oct 2022 23:31:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229477AbiJLVYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 17:24:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49326 "EHLO
+        id S229462AbiJLVah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 17:30:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbiJLVYJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 17:24:09 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5083511B2E0;
-        Wed, 12 Oct 2022 14:24:08 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id bj12so40559752ejb.13;
-        Wed, 12 Oct 2022 14:24:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AeJANbhYyBwy4ZbmnuIiUtzQb03C3ow/09NmLLrUl6A=;
-        b=JPL4aQt1cmlonH9wzqkdGwGX4yiWzBYuoNUgmryEg9d/JOfQlDrmkcICVOC/33yqcl
-         s0mTrzMYEWAgpf0uUa7YeZFD7CZ68ey2ehAGfeag4Z2kxjakghVUyBtUToFJmxKe+1wG
-         yJTCP2EuO/e6a8snlf+yd6pfpqoYRtMGSRyL3dmp7H0rzxos9JYoRmle2O3h9lHUA/DC
-         +K7hxS8Pn4f3tUSLLAPFIUxmVCpr/sSqr25uP6x3TlKVAwyzLB+POxUi2ZY8CECqmyKi
-         2HKXnaZIbOLLDoX2ntROXy4GRbnHUyek0QBvzOilU9uZ2dpSccEDOhCzPMmlsvSxPiLM
-         9ysg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AeJANbhYyBwy4ZbmnuIiUtzQb03C3ow/09NmLLrUl6A=;
-        b=cQ+oeY59uFcasnwQqvaqCJ70js7BjIaFm4a3oYmqVN5DPfgtfaq4tpRzXUwx1tsHN7
-         8jeW0DRFUN5SA/cYcatesoBozozuRWGI9TJmfifr9LfQ5kvdIfbGUmsSFvk5IJ20MIGD
-         1QT8xSbLZ4lIEI5jnjtp1sB3qXA6KXyse0Zm16aIjqw8woP5PJ1qVfcLRb7+H8Eixog+
-         GWSidv+zSYpWMHMb8sTx7rWf4CJaDxuIeasdbqoHlKP57GRkKAw6fkvcw9drmV4KtqQC
-         t/uMfY6AgY3tcjD2fWeuujAkL63Cd+u1/e51KYFV+W6aoI3e2W+00io3X7Jwb5apr8L1
-         ToJQ==
-X-Gm-Message-State: ACrzQf0CQCAVBnrk5XsTmU20rRnDQ02nD32Ad5C05XDYGX/cAFu9wlWB
-        m4/qGVliPVXkUroMrGQRsv8=
-X-Google-Smtp-Source: AMsMyM7BxsquvcB3WVD34NXGQwFZsJW43aw77Eq7EcPTf+1OXMK4gIIlb5g5xCn3wdhAQzLGAw7V7w==
-X-Received: by 2002:a17:907:8688:b0:78b:eaa5:8a9d with SMTP id qa8-20020a170907868800b0078beaa58a9dmr24591147ejc.509.1665609846821;
-        Wed, 12 Oct 2022 14:24:06 -0700 (PDT)
-Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id kw24-20020a170907771800b0073d87068042sm1807772ejc.110.2022.10.12.14.24.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 14:24:06 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Icenowy Zheng <uwu@icenowy.me>
-Cc:     soc@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
-Subject: Re: [PATCH v2 05/10] musb: sunxi: add support for the F1C100s MUSB controller
-Date:   Wed, 12 Oct 2022 23:24:04 +0200
-Message-ID: <3515217.R56niFO833@kista>
-In-Reply-To: <20221012055602.1544944-6-uwu@icenowy.me>
-References: <20221012055602.1544944-1-uwu@icenowy.me> <20221012055602.1544944-6-uwu@icenowy.me>
+        with ESMTP id S230266AbiJLV36 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 17:29:58 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F58E21E15;
+        Wed, 12 Oct 2022 14:29:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=rG4R+wqzRRZPy/iFUqxWu1RUJMeR5k+eB1P0dMbq/Qk=; b=v8VCLffVX+c4mNBh1I6bTUb7Mx
+        1fMdXAVVMdJhgtvLe/qfMY6KuKjn9OizoGn1f1wpe8UBQl23v+Fx/Wq3M9QD9uhiOajryN7AzyV6n
+        XbG9GWswWCZA5/aLGs9WgP0eToBuDOx3Oc+lVxGKyDxqqz5a3EEHXtEjD5/E36NKvHZk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oijI8-001psu-Va; Wed, 12 Oct 2022 23:29:28 +0200
+Date:   Wed, 12 Oct 2022 23:29:28 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Clark Wang <xiaoning.wang@nxp.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, peppe.cavallaro@st.com,
+        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+        mcoquelin.stm32@gmail.com, kernel@pengutronix.de,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 1/3] net: stmmac: add imx93 platform support
+Message-ID: <Y0cxuKz7rTpxHjMz@lunn.ch>
+References: <20221012105129.3706062-1-xiaoning.wang@nxp.com>
+ <20221012105129.3706062-2-xiaoning.wang@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221012105129.3706062-2-xiaoning.wang@nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Icenowy,
+> +static int imx93_set_intf_mode(struct plat_stmmacenet_data *plat_dat)
+> +{
+> +	struct imx_priv_data *dwmac = plat_dat->bsp_priv;
+> +	int val;
+> +
+> +	switch (plat_dat->interface) {
+> +	case PHY_INTERFACE_MODE_MII:
+> +		val = MX93_GPR_ENET_QOS_INTF_SEL_MII;
+> +		break;
+> +	case PHY_INTERFACE_MODE_RMII:
+> +		val = MX93_GPR_ENET_QOS_INTF_SEL_RMII;
+> +		break;
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +	case PHY_INTERFACE_MODE_RGMII_ID:
+> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> +		val = MX93_GPR_ENET_QOS_INTF_SEL_RGMII;
+> +		break;
+> +	default:
+> +		pr_debug("imx dwmac doesn't support %d interface\n",
+> +			 plat_dat->interface);
 
-Dne sreda, 12. oktober 2022 ob 07:55:57 CEST je Icenowy Zheng napisal(a):
-> The suniv SoC has a MUSB controller like the one in A33, but with a SRAM
-> region to be claimed.
-> 
-> Add support for it.
-> 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> ---
-> No changes since v1.
-> 
->  drivers/usb/musb/sunxi.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/usb/musb/sunxi.c b/drivers/usb/musb/sunxi.c
-> index 7f9a999cd5ff..4b368d16a73a 100644
-> --- a/drivers/usb/musb/sunxi.c
-> +++ b/drivers/usb/musb/sunxi.c
-> @@ -722,14 +722,17 @@ static int sunxi_musb_probe(struct platform_device
-> *pdev) INIT_WORK(&glue->work, sunxi_musb_work);
->  	glue->host_nb.notifier_call = sunxi_musb_host_notifier;
-> 
-> -	if (of_device_is_compatible(np, "allwinner,sun4i-a10-musb"))
-> +	if (of_device_is_compatible(np, "allwinner,sun4i-a10-musb") ||
-> +	    of_device_is_compatible(np, "allwinner,suniv-f1c100s-musb")) {
->  		set_bit(SUNXI_MUSB_FL_HAS_SRAM, &glue->flags);
-> +	}
-> 
->  	if (of_device_is_compatible(np, "allwinner,sun6i-a31-musb"))
->  		set_bit(SUNXI_MUSB_FL_HAS_RESET, &glue->flags);
-> 
->  	if (of_device_is_compatible(np, "allwinner,sun8i-a33-musb") ||
-> -	    of_device_is_compatible(np, "allwinner,sun8i-h3-musb")) {
-> +	    of_device_is_compatible(np, "allwinner,sun8i-h3-musb") ||
-> +	    of_device_is_compatible(np, "allwinner,suniv-f1c100s-musb")) {
-
-All that should be eventually converted to quirks. But for now:
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Best regards,
-Jernej
-
->  		set_bit(SUNXI_MUSB_FL_HAS_RESET, &glue->flags);
->  		set_bit(SUNXI_MUSB_FL_NO_CONFIGDATA, &glue->flags);
->  	}
-> @@ -815,6 +818,7 @@ static const struct of_device_id sunxi_musb_match[] = {
->  	{ .compatible = "allwinner,sun6i-a31-musb", },
->  	{ .compatible = "allwinner,sun8i-a33-musb", },
->  	{ .compatible = "allwinner,sun8i-h3-musb", },
-> +	{ .compatible = "allwinner,suniv-f1c100s-musb", },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, sunxi_musb_match);
-> --
-> 2.37.1
-
+netdev_debug(), or dev_debug(), so there is some clue which of the 42
+dwmac instances has a bad value in DT.
 
