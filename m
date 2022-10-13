@@ -2,76 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1D535FE2DA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 21:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 322AB5FE2DD
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 21:46:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229714AbiJMTpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 15:45:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52118 "EHLO
+        id S229722AbiJMTqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 15:46:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229684AbiJMTpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 15:45:51 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B23ED183E34
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 12:45:46 -0700 (PDT)
-Received: from [192.168.1.101] (95.49.31.41.neoplus.adsl.tpnet.pl [95.49.31.41])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 68E851F67B;
-        Thu, 13 Oct 2022 21:45:43 +0200 (CEST)
-Message-ID: <6b81eedd-f23f-d793-baa8-c0ecf8453702@somainline.org>
-Date:   Thu, 13 Oct 2022 21:45:43 +0200
+        with ESMTP id S229661AbiJMTqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 15:46:17 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF5C618B49D;
+        Thu, 13 Oct 2022 12:46:10 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29DJk36L041837;
+        Thu, 13 Oct 2022 14:46:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1665690363;
+        bh=GhIvSPMwfeAQY83CKUcyeJ66XyQ471sMxcqg2xYdHKA=;
+        h=From:To:CC:Subject:Date;
+        b=Yk62bC9u/aJQymIjtJLM5yUag9rOZzTMPfUo4pTGycoWbUO/lI/Zc20+rsgJi8bH8
+         k80cEZP1mDrQPxfRAt0h8esCt07QpfrDb6rIvZJmcGl2aS6D570lCWdA3tREIawZRl
+         MkDruAeAxkipe9u/qN+b3BxYq4zpQksoOkobTk4s=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29DJk3fp010259
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 13 Oct 2022 14:46:03 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 13
+ Oct 2022 14:46:03 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 13 Oct 2022 14:46:03 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29DJk1UH110251;
+        Thu, 13 Oct 2022 14:46:02 -0500
+From:   Matt Ranostay <mranostay@ti.com>
+To:     <vigneshr@ti.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        Matt Ranostay <mranostay@ti.com>
+Subject: [PATCH] dt-bindings: ufs: cdns,ufshc: add missing dma-coherent field
+Date:   Thu, 13 Oct 2022 12:45:59 -0700
+Message-ID: <20221013194559.128643-1-mranostay@ti.com>
+X-Mailer: git-send-email 2.38.0.rc0.52.gdda7228a83
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 4/4] ARM: dts: qcom: ipq4018-jalapeno: Add SoC compatible
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221013155418.47577-1-krzysztof.kozlowski@linaro.org>
- <20221013155418.47577-4-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20221013155418.47577-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add missing dma-coherent property to schema which avoids the following warnings
 
+ufs-wrapper@4e80000: ufs@4e84000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
 
-On 13.10.2022 17:54, Krzysztof Kozlowski wrote:
-> Add qcom,ipq4018 compatible fallback for the SoC.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: Matt Ranostay <mranostay@ti.com>
+---
+ Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Konrad
->  arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts b/arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts
-> index 394412619894..365fbac417fd 100644
-> --- a/arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts
-> +++ b/arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts
-> @@ -7,7 +7,7 @@
->  
->  / {
->  	model = "8devices Jalapeno";
-> -	compatible = "8dev,jalapeno";
-> +	compatible = "8dev,jalapeno", "qcom,ipq4018";
->  };
->  
->  &tlmm {
+diff --git a/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml b/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
+index fb45f66d6454..835e17269d2d 100644
+--- a/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
++++ b/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
+@@ -49,6 +49,8 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  dma-coherent: true
++
+ required:
+   - compatible
+   - clocks
+-- 
+2.38.0.rc0.52.gdda7228a83
+
