@@ -2,163 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 611D65FE1E5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 20:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 617785FE213
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 20:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231811AbiJMSqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 14:46:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32926 "EHLO
+        id S229973AbiJMSwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 14:52:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231797AbiJMSqR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 14:46:17 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A376B191D49;
-        Thu, 13 Oct 2022 11:43:09 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id n12so4168212wrp.10;
-        Thu, 13 Oct 2022 11:43:08 -0700 (PDT)
+        with ESMTP id S230056AbiJMSvr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 14:51:47 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9750D286E1
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 11:49:50 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id f8so1041430qkg.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 11:49:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B5L/tN8Nk5G1hFHXmpnHlaxEzIusr004HXV2igjx6Dg=;
-        b=WaMkAHVPl8AWTlsWCOn5940xJ4n2+DGuI4BNxlNTPRVWDmpiouz4lLGIdgOc56G/S6
-         iSHRYRPLpu31hPIR2oj21xQEuSdwrLDTdg/IugpMzX8dl4YOSahc+Yqf4kLYlruz8JzY
-         64PxNCx8ufShrGobabHugKDumGeDPrBw9+AWABQqzAidTIT/coJDU4Tn5zSPLWr8sdEf
-         oNp8J+itnMQD5L8G24GuDwqs4kj/GWhSmrVNWx4UmvfjtfwYAlO3E248VRJATnUSBFyS
-         20aXm6B8tZUCaWd3U1V2l5NDledETwN6ROnHCmJiV5fH9PIprBjM0gH3bh3kAWQdj8xr
-         54IA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C2SGbqYHT7CkdaSBV8U5e0zJ3eRE5mDDsTrhswazFq4=;
+        b=AZv610mXBZDZ/MHOrJ7h144VlGimj+29vBs6ewMkCQX8o1YkHBpRNRhHsy/yP5tM8C
+         on7RUkA+kh9IqbTI+uaxSqEvLAoqI8okrxToVcWT/LGYSo8qte45INSkKmqFgb5K/MP3
+         zOaHgfXjBhwmAnbBEUFZcehmnc020q2OSVWENTbWcTLo2DRD4BCujiDjlay+rHN8z6xP
+         VzQe1dsEbPbyt9Cp1hW+1GdKSQKHyYOh+DDwK13ILeQV+muCNBsK6URj157EbtIqv2xb
+         dBQyhpBTa+/oxsGgsq9HfCqKdsltd8idIngjnQt0cosMXjhKfebfmcE62totxdGP2Ryn
+         g+RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B5L/tN8Nk5G1hFHXmpnHlaxEzIusr004HXV2igjx6Dg=;
-        b=j6vz7WrqkhSvOisYXQ0MpTH7MYMrEAPwpjfdK3J7dK9vF09cbeGuIXpNA1ANqNaaMn
-         BX6WBxz7qvtqwNMP1NmVZpkKO6shPOE7ZI51PZnuZeOUgHLlrdjYh14Q3QeTDklQNcKc
-         6eKdHhGwJwDoa5x36MY4ttCxFRcrs5oEAx9gdv2YdycN0ssELlvDDLdaow6QBYoQ96A/
-         rviRLxkt8yBldofAjXLEnCguZjcEx6sOpgdEApvLh7jWkmsfEvpgitvXeOQ2J8uaxA20
-         D8bMffcsoVuWzZFYi/vTYVnFVSRGJAUzTBQ22sxta8cSy9/RTdzVwQHrEX2P4ZtNrbjT
-         /WLg==
-X-Gm-Message-State: ACrzQf3LvoP+o7B4IuTybBoGa9K8yu7+okLZaCyCW9xuY/nWylDgmGfZ
-        eygLMPr7DRWKWgAAboBtqtgB57EoAwXMFAR5
-X-Google-Smtp-Source: AMsMyM5D9VcyYdymrteUFP/uy7fZdMK47gw4RIDknOofM1/3bcKBsARkwBkRONaV/eI3T52TMYs+Xg==
-X-Received: by 2002:a17:907:75ed:b0:78d:97ed:2894 with SMTP id jz13-20020a17090775ed00b0078d97ed2894mr732203ejc.739.1665685520104;
-        Thu, 13 Oct 2022 11:25:20 -0700 (PDT)
-Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id i24-20020a056402055800b004588ef795easm283249edx.34.2022.10.13.11.25.19
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C2SGbqYHT7CkdaSBV8U5e0zJ3eRE5mDDsTrhswazFq4=;
+        b=xVZ2OLtQQh+hGdRuxwLiiOJjt2gsB9pUgxPrc5PBb/5dKFJULEflaf8UO3GwDx16pJ
+         cHUggZXRZk53BvxCbmvZhXFbN++0YX2Zz6VkM0HKFashVEWiH+nP2jBYTazqDRr+qQYP
+         PUi3b51edVc5LIQ8j6p7XuhHrJK7QFd1RtIrjRO9XfSoqug3B0O2zvGnQfzuXjj36eN/
+         9mu1W+sgL5FmmMbJaGj4jrRjcjsL/Mf/5O/VITLsSaVB2vMNiQ3Ry+plHI1r9ocSjAkU
+         7tlCL9DMhOXgqOVUJIZVQdUfUQCVvlbmxQfx49RPg1dkaCdvRb5FYADpv+oBhMjgTTaO
+         8u1A==
+X-Gm-Message-State: ACrzQf0+8b1wLvU4L7fkm8u9cR6tl8Y/7fgA5UgIitQWRH/7QDOy5Vx3
+        vFayvWbw88MrVyGyVw1KuqV6Uw==
+X-Google-Smtp-Source: AMsMyM7/2b+G5jEnO5nVlVP7slW4uGeZAxa9BQrGjiAA8NltfQ5dtjXa+6JSa9Lz4G4z33ssXKboVw==
+X-Received: by 2002:a05:620a:44c6:b0:6ee:7a7a:93d1 with SMTP id y6-20020a05620a44c600b006ee7a7a93d1mr1068341qkp.256.1665686944114;
+        Thu, 13 Oct 2022 11:49:04 -0700 (PDT)
+Received: from krzk-bin.home (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id u6-20020a05620a430600b006e16dcf99c8sm400748qko.71.2022.10.13.11.49.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Oct 2022 11:25:19 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        Thu, 13 Oct 2022 11:49:03 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Icenowy Zheng <uwu@icenowy.me>
-Cc:     soc@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org
-Subject: Re: Re: [PATCH v2 04/10] phy: sun4i-usb: add support for the USB PHY on F1C100s SoC
-Date:   Thu, 13 Oct 2022 20:25:18 +0200
-Message-ID: <3442772.V25eIC5XRa@kista>
-In-Reply-To: <439b685e3aada19021d94669f6f855f1fc81d08e.camel@icenowy.me>
-References: <20221012055602.1544944-1-uwu@icenowy.me> <4218006.ejJDZkT8p0@kista> <439b685e3aada19021d94669f6f855f1fc81d08e.camel@icenowy.me>
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Doug Anderson <dianders@chromium.org>
+Subject: [PATCH v2 1/3] arm64: dts: qcom: sc7180-trogdor-homestar: fully configure secondary I2S pins
+Date:   Thu, 13 Oct 2022 14:46:58 -0400
+Message-Id: <20221013184700.87260-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne =C4=8Detrtek, 13. oktober 2022 ob 10:49:51 CEST je Icenowy Zheng napisa=
-l(a):
-> =E5=9C=A8 2022-10-12=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 23:21 +0200=EF=
-=BC=8CJernej =C5=A0krabec=E5=86=99=E9=81=93=EF=BC=9A
->=20
-> > Hi Icenowy,
-> >=20
-> > Dne sreda, 12. oktober 2022 ob 07:55:56 CEST je Icenowy Zheng
-> >=20
-> > napisal(a):
-> > > The F1C100s SoC has one USB OTG port connected to a MUSB
-> > > controller.
-> > >=20
-> > > Add support for its USB PHY.
-> > >=20
-> > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > > ---
-> > > No changes since v1.
-> > >=20
-> > >  drivers/phy/allwinner/phy-sun4i-usb.c | 11 +++++++++++
-> > >  1 file changed, 11 insertions(+)
-> > >=20
-> > > diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c
-> > > b/drivers/phy/allwinner/phy-sun4i-usb.c index
-> > > 3a3831f6059a..2f94cb77637b
-> > > 100644
-> > > --- a/drivers/phy/allwinner/phy-sun4i-usb.c
-> > > +++ b/drivers/phy/allwinner/phy-sun4i-usb.c
-> > > @@ -109,6 +109,7 @@ enum sun4i_usb_phy_type {
-> > >         sun8i_v3s_phy,
-> > >         sun50i_a64_phy,
-> > >         sun50i_h6_phy,
-> > > +       suniv_f1c100s_phy,
-> > >  };
-> > >=20
-> > >  struct sun4i_usb_phy_cfg {
-> > > @@ -859,6 +860,14 @@ static int sun4i_usb_phy_probe(struct
-> > > platform_device
-> > > *pdev) return 0;
-> > >  }
-> > >=20
-> > > +static const struct sun4i_usb_phy_cfg suniv_f1c100s_cfg =3D {
-> > > +       .num_phys =3D 1,
-> > > +       .type =3D suniv_f1c100s_phy,
-> >=20
-> > I think you should just use sun4i_a10_phy. It has no special
-> > handling. I don't
-> > see a point adding new phy types if there is no special cases for it.
->=20
-> Sounds reasonable, although I think we should finally drop .type and
-> use only describing items.
+The Trogdor Homestar DTSI adds additional GPIO52 pin to secondary I2S pins
+("sec_mi2s_active") and configures it to "mi2s_1" function.
 
-That would be even better. Will you do it?
+The Trogdor DTSI (which is included by Homestar) configures drive
+strength and bias for all "sec_mi2s_active" pins, thus the intention was
+to apply this configuration also to GPIO52 on Homestar.
 
->=20
-> > Best regards,
-> > Jernej
-> >=20
-> > > +       .disc_thresh =3D 3,
-> > > +       .phyctl_offset =3D REG_PHYCTL_A10,
-> > > +       .dedicated_clocks =3D true,
-> > > +};
-> > > +
-> > >  static const struct sun4i_usb_phy_cfg sun4i_a10_cfg =3D {
-> > >         .num_phys =3D 3,
-> > >         .type =3D sun4i_a10_phy,
-> > > @@ -988,6 +997,8 @@ static const struct of_device_id
-> > > sun4i_usb_phy_of_match[] =3D { { .compatible =3D
-> > > "allwinner,sun50i-a64-usb-phy",
-> > >           .data =3D &sun50i_a64_cfg},
-> > >         { .compatible =3D "allwinner,sun50i-h6-usb-phy", .data =3D
-> >=20
-> > &sun50i_h6_cfg },
-> >=20
-> > > +       { .compatible =3D "allwinner,suniv-f1c100s-usb-phy",
-> > > +         .data =3D &suniv_f1c100s_cfg },
-> > >         { },
-> > >  };
-> > >  MODULE_DEVICE_TABLE(of, sun4i_usb_phy_of_match);
-> > > --
-> > > 2.37.1
+Reported-by: Doug Anderson <dianders@chromium.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+---
+
+Changes since v1:
+1. New patch
+
+Not tested on hardware.
+
+Cc: Doug Anderson <dianders@chromium.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+index 1bd6c7dcd9e9..bfab67f4a7c9 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+@@ -194,6 +194,12 @@ pinmux {
+ 		pins = "gpio49", "gpio50", "gpio51", "gpio52";
+ 		function = "mi2s_1";
+ 	};
++
++	pinconf {
++		pins = "gpio49", "gpio50", "gpio51", "gpio52";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
+ };
+ 
+ &ts_reset_l {
+-- 
+2.34.1
 
