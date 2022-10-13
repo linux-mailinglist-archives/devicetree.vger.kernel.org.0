@@ -2,99 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 837FD5FD81B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 13:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75EF35FD836
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 13:22:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbiJMLI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 07:08:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48564 "EHLO
+        id S229567AbiJMLWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 07:22:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiJMLI6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 07:08:58 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EEB3210CFB8;
-        Thu, 13 Oct 2022 04:08:56 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 3756880FC;
-        Thu, 13 Oct 2022 11:00:04 +0000 (UTC)
-Date:   Thu, 13 Oct 2022 14:08:54 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-Subject: Re: [PATCH 1/4] ARM: dts: omap3-n900: fix LCD reset line polarity
-Message-ID: <Y0fxxsk+e2o0wYZV@atomide.com>
-References: <20221004213503.848262-1-dmitry.torokhov@gmail.com>
- <Y0UDEtQlN5Y9h7BU@atomide.com>
- <20221011123726.elsr53ue7nxzhvww@mercury.elektranox.org>
- <Y0V4cLGbYe4j+ls6@google.com>
- <Y0V99Agad6Ma+yTC@atomide.com>
- <Y0V/82JsRVZh6PlL@google.com>
- <Y0WCCw8k+KTuvdWX@atomide.com>
- <41373c20-3b97-ac47-81c8-75bf1bbe3a38@ideasonboard.com>
- <Y0cVw63d3+pAVbd2@google.com>
- <b56197a1-f23d-5f8a-b32d-f8787586364e@ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b56197a1-f23d-5f8a-b32d-f8787586364e@ideasonboard.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229511AbiJMLWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 07:22:45 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C041046864;
+        Thu, 13 Oct 2022 04:22:44 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id p127so703662oih.9;
+        Thu, 13 Oct 2022 04:22:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zz0LlW4IaEDKOVSif4WH0v0lAUY6tkDYrRcPRPbxKn4=;
+        b=e+XWKi8iHbRL40XIeZQP3pq7GDQTxu1iRlSoAUzGmqLqCCL5wETKAd64/v1Edro1hF
+         aEkAB/HIhILc1O3B30I/rk6iXP5ohUf9GW09mGuJ+VoRnxGifON8kKXyXmHfrMB4O9Gb
+         0xcvDOCnDWEZyb/2UFUFC2v4KIOT/V3ptOYON4RJP4ihZSXNczFEiWP9Q97O4doX1sGW
+         AXNyQHfpugrOLdAcT36n448VIS5jO1tA9BpYuJOSi4wdJN9jVpxm9E5l4N1+8tMxYAi2
+         sXMbqWw6fk+tU8tYuoeYXSsd1udhK5JtJ3gTzzdL6lK5dWYOykpCkjEvolOooBO/2l80
+         kBrQ==
+X-Gm-Message-State: ACrzQf0X2NliB5F3881WQSWb8aquWmZfrETdyQgYzoMVgMc7pNOwqt8O
+        23mDbl/+SzZVWd93u0r45A==
+X-Google-Smtp-Source: AMsMyM7UW8mjhwu66yj3nbamxmNH9eKWPFDyFhaa4nn0LEM08IVnb9A4F2MynUd7d8/waVroHlIaRw==
+X-Received: by 2002:a05:6808:1911:b0:354:cede:ec0d with SMTP id bf17-20020a056808191100b00354cedeec0dmr4121263oib.161.1665660163624;
+        Thu, 13 Oct 2022 04:22:43 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id cg12-20020a056830630c00b006618b23df05sm7041409otb.21.2022.10.13.04.22.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Oct 2022 04:22:43 -0700 (PDT)
+Received: (nullmailer pid 5414 invoked by uid 1000);
+        Thu, 13 Oct 2022 11:22:44 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Dominic Rath <dominic.rath@ibv-augsburg.de>
+Cc:     vigneshr@ti.com, tjoseph@cadence.com, linux-kernel@vger.kernel.org,
+        lpieralisi@kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Alexander Bahle <bahle@ibv-augsburg.de>,
+        linux-pci@vger.kernel.org, Dominic Rath <rath@ibv-augsburg.de>,
+        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org, nm@ti.com
+In-Reply-To: <20221013062649.303184-2-dominic.rath@ibv-augsburg.de>
+References: <20221013062649.303184-1-dominic.rath@ibv-augsburg.de> <20221013062649.303184-2-dominic.rath@ibv-augsburg.de>
+Message-Id: <166565993088.4193992.9896527411552499308.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: cdns: Add PHY latency properties
+Date:   Thu, 13 Oct 2022 06:22:44 -0500
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 13 Oct 2022 08:26:47 +0200, Dominic Rath wrote:
+> From: Alexander Bahle <bahle@ibv-augsburg.de>
+> 
+> Add "cdns,tx-phy-latency-ps" and "cdns,rx-phy-latency-ps" DT bindings for
+> setting the PCIe PHY latencies.
+> The properties expect a list of uint32 PHY latencies in picoseconds for
+> every supported speed starting at PCIe Gen1, e.g.:
+> 
+>   max-link-speed = <2>;
+>   tx-phy-latency-ps = <100000 200000>; /* Gen1: 100ns, Gen2: 200ns */
+>   rx-phy-latency-ps = <150000 250000>; /* Gen1: 150ns, Gen2: 250ns */
+> 
+> There should be a value for every supported speed.
+> 
+> Signed-off-by: Alexander Bahle <bahle@ibv-augsburg.de>
+> Signed-off-by: Dominic Rath <rath@ibv-augsburg.de>
+> ---
+>  .../bindings/pci/cdns,cdns-pcie-ep.yaml       |  2 ++
+>  .../bindings/pci/cdns,cdns-pcie-host.yaml     |  2 ++
+>  .../devicetree/bindings/pci/cdns-pcie-ep.yaml | 20 +++++++++++++++++++
+>  .../bindings/pci/cdns-pcie-host.yaml          | 20 +++++++++++++++++++
+>  4 files changed, 44 insertions(+)
+> 
 
-* Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> [221013 06:13]:
-> I would just go with the above for the time being. It should be an easy
-> change, and as these omapfb and drm panel drivers are kind of copies of each
-> other, I think it makes sense to use the same code in both.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Maybe if a fix is needed, sure let's fix things first, then drop
-the unused panel drivers.
+yamllint warnings/errors:
 
-We already have drivers/gpu/drm/panel driver for both of these two
-omapfb panels:
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cdns-pcie-host.yaml: properties:cdns,tx-phy-latency-ps: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cdns-pcie-host.yaml: properties:cdns,rx-phy-latency-ps: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+./Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/pci/cdns-pcie-host.yaml
+./Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/pci/cdns-pcie-ep.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cdns-pcie-ep.yaml: properties:cdns,tx-phy-latency-ps: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cdns-pcie-ep.yaml: properties:cdns,rx-phy-latency-ps: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+./Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/pci/cdns-pcie-host.yaml
+./Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/pci/cdns-pcie-ep.yaml
 
-drivers/video/fbdev/omap2/omapfb/displays/panel-sony-acx565akm.c
-drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c
+doc reference errors (make refcheckdocs):
 
-The compatible strings used translate to these dts files:
+See https://patchwork.ozlabs.org/patch/
 
-arch/arm/boot/dts/motorola-mapphone-common.dtsi
-arch/arm/boot/dts/omap3-n900.dts
-arch/arm/boot/dts/omap3-n950.dts
-arch/arm/boot/dts/omap4-sdp.dts
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-These devices work with omapdrm and there should not be any need to
-stick with the omapfb driver. We can just drop the omapfb panel
-drivers for panel-sony-acx565akm.c and panel-dsi-cm.c. Let's put
-the limited effort where there is activity instead :)
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-The vrfb rotation work has been discussed on the lists, so seems
-like we will eventually have that for omapdrm. Meanwhile, software
-rotation is being used for postmarketos and leste with omapdrm
-AFAIK.
+pip3 install dtschema --upgrade
 
-> That said, I personally don't mind fixing the dts files and the drivers, and
-> even dropping the omapfb panel drivers. However, as I don't know if someone
-> needs the omapfb drivers or has to use an old dtb, I don't want to step on
-> that possible mine field. If someone else wants to go there (without my
-> involvement), fine for me =).
-
-I belive the only valid use case for omap2 omapfb is the n8x0 rfbi
-driver that has no omapdrm driver.
-
-Regards,
-
-Tony
-
+Please check and re-submit.
 
