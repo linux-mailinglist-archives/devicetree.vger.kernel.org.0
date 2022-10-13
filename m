@@ -2,151 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4A5B5FD47E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 08:08:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 711155FD4A6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 08:22:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbiJMGIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 02:08:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41862 "EHLO
+        id S229717AbiJMGWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 02:22:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229788AbiJMGIP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 02:08:15 -0400
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A0AB12D82F;
-        Wed, 12 Oct 2022 23:08:13 -0700 (PDT)
-Received: by mail-io1-xd30.google.com with SMTP id o65so572266iof.4;
-        Wed, 12 Oct 2022 23:08:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZgGIaSR1j5gh45UofaJHhaLHjoEzCn8ewUrFdupFYRo=;
-        b=f146fFkBuJsKezK3rEMScewvbphFSJwwFlwC9S3rX19EjpxAfynQsBffVSXf7nuqS0
-         zVz250ILVVdcSPO0LmxC7CbiFxGyt2e/Nrxl8HhIERlATk3OhWQJpoAgX6OyY4HtwJTe
-         Dp9w7KxDo7+KWQHDJ/xO3oOiARjVpLl+pt0IK1XJ9SX6+NfCd73ctRpzB82z/d38p4wU
-         JRLpyPTsTVkFVG0g2tmfZTSUaUFeCknfwDwy952pfinOjNXY4cDtAuULnRyB7TxTGugy
-         fmTkcij5EqLiTup/1wSdry1viTrzjyzj2P0Ac6MIkvfjh/Vx3M2Q9wmCDl13+1dUTH9h
-         GRYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZgGIaSR1j5gh45UofaJHhaLHjoEzCn8ewUrFdupFYRo=;
-        b=q5egF8UgCXEm59GQw5SqXb7RF/17NS9As2lMTYq4bSI7+8+th4XZE9kIBHxV213AaZ
-         f135th1VAUUL+biHj+9kbxpc9jcG21tbo0XsI5t0ZIcrycfiHuSWRmPzg8rhfiUbAr3i
-         R+vi0GSjsgo1o2bxgO5DsnKfNAm2cxeWroQYb1fJkIAkmCsuMW5f/M9+mdWiy66t885e
-         /KEGHfpILddPmcKRLUN7K+e8BoXd6yE3hz4tymHSgxpqgTSGOjgYc6AJd1DGFUyUAMq8
-         LgmWfQyxc0rtT33jwBoJ6mANd1OUzn8zyMlHIsvgA8EYy3qiwU60uvctsVEVCu/Ex1jO
-         mvRg==
-X-Gm-Message-State: ACrzQf002LQ5AgY6fq5GTAx7w7Au0V1W9izRBHucn5hI33z9iorHrY4j
-        QLSbT9qcY+oE+K+chfiGqi0=
-X-Google-Smtp-Source: AMsMyM4umPfTm3XfReffAJ7RYEsnfLQAwHJUS/mrzUMHn9LGzBeKs4SUmvoZql+JmUbwU+86B3r/3Q==
-X-Received: by 2002:a6b:b887:0:b0:6bb:fc82:d94b with SMTP id i129-20020a6bb887000000b006bbfc82d94bmr10345281iof.205.1665641292626;
-        Wed, 12 Oct 2022 23:08:12 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:9085:f814:ae2e:a9b4? ([2600:1700:2442:6db0:9085:f814:ae2e:a9b4])
-        by smtp.gmail.com with ESMTPSA id k12-20020a02334c000000b00363a3e0cfa7sm5800442jak.120.2022.10.12.23.08.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Oct 2022 23:08:11 -0700 (PDT)
-Message-ID: <a616f56c-60c7-ff7f-4a3c-a5d36d692a15@gmail.com>
-Date:   Thu, 13 Oct 2022 01:08:10 -0500
+        with ESMTP id S229437AbiJMGWk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 02:22:40 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B802E122BD6;
+        Wed, 12 Oct 2022 23:22:39 -0700 (PDT)
+Received: from [192.168.1.15] (91-158-154-79.elisa-laajakaista.fi [91.158.154.79])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8DB94492;
+        Thu, 13 Oct 2022 08:22:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1665642157;
+        bh=rZBDZR7MZOuIelDaywoffQzbCi2SBztFLeybeY1iFms=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=J2N2e5jmaqPq8FTEoqcSws3JE0J4/SzyThWGE9m+GBNvrZBlinotfty3KQ7c/oLY+
+         8GYtKV8+vhYIW+khhV3kX8sUjyAE+9SUfAcoGb02oVan529TBbN3xKcx5+Rkl8VIJn
+         nMvmBcuBzM++0M+sCSln/2n1Ed6ueTH1/ZoyeYA8=
+Message-ID: <b56197a1-f23d-5f8a-b32d-f8787586364e@ideasonboard.com>
+Date:   Thu, 13 Oct 2022 09:22:33 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH RFC 0/2] Generate device tree node for pci devices
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 1/4] ARM: dts: omap3-n900: fix LCD reset line polarity
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Tony Lindgren <tony@atomide.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221004213503.848262-1-dmitry.torokhov@gmail.com>
+ <Y0UDEtQlN5Y9h7BU@atomide.com>
+ <20221011123726.elsr53ue7nxzhvww@mercury.elektranox.org>
+ <Y0V4cLGbYe4j+ls6@google.com> <Y0V99Agad6Ma+yTC@atomide.com>
+ <Y0V/82JsRVZh6PlL@google.com> <Y0WCCw8k+KTuvdWX@atomide.com>
+ <41373c20-3b97-ac47-81c8-75bf1bbe3a38@ideasonboard.com>
+ <Y0cVw63d3+pAVbd2@google.com>
 Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Sonal Santan <sonal.santan@amd.com>
-Cc:     Rob Herring <robh@kernel.org>, Lizhi Hou <lizhi.hou@amd.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, helgaas@kernel.org, max.zhen@amd.com,
-        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com,
-        trix@redhat.com, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Allan.Nielsen@microchip.com" <Allan.Nielsen@microchip.com>,
-        "Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
-        "Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>
-References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
- <f831f62b-004b-4f73-2a66-de9d675c44b6@gmail.com>
- <CAL_JsqJn=i=TT9NArHK25g1NkZN_G1GjN3EGEeTAvyW_PUhgcw@mail.gmail.com>
- <8ea70992-d4e9-8bbd-0fca-d5700f84e071@amd.com>
- <CAL_JsqJA8K0nKO=O2QjyHdue6=EHYNqCTw6pKUsBKwrdrYGePA@mail.gmail.com>
- <7f2dc633-23a2-16dc-8a55-0611e2cd6b7c@amd.com>
- <20221010105858.140a8e98@fixe.home>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20221010105858.140a8e98@fixe.home>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <Y0cVw63d3+pAVbd2@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/10/22 03:58, Clément Léger wrote:
-> Le Fri, 7 Oct 2022 15:45:17 -0700,
-> Sonal Santan <sonal.santan@amd.com> a écrit :
-> 
->>>> Bringing this thread back into focus. Any thoughts on how to move forward?  
+On 12/10/2022 22:30, Dmitry Torokhov wrote:
+> On Wed, Oct 12, 2022 at 01:58:15PM +0300, Tomi Valkeinen wrote:
+>> Hi,
+>>
+>> On 11/10/2022 17:47, Tony Lindgren wrote:
+>>> * Dmitry Torokhov <dmitry.torokhov@gmail.com> [221011 14:30]:
+>>>> On Tue, Oct 11, 2022 at 05:30:12PM +0300, Tony Lindgren wrote:
+>>>>> * Dmitry Torokhov <dmitry.torokhov@gmail.com> [221011 13:57]:
+>>>>>> Hi Sebastian,
+>>>>>>
+>>>>>> On Tue, Oct 11, 2022 at 02:37:26PM +0200, Sebastian Reichel wrote:
+>>>>>>> Hi,
+>>>>>>>
+>>>>>>> On Tue, Oct 11, 2022 at 08:45:54AM +0300, Tony Lindgren wrote:
+>>>>>>>> * Dmitry Torokhov <dmitry.torokhov@gmail.com> [221004 21:26]:
+>>>>>>>>> The LCD driver (panel-sony-acx565akm), when probing, starts with line
+>>>>>>>>> driven low, and then toggles it to high and keeps it there. Also, the
+>>>>>>>>> line is driven low when powering off the device, and ls released when
+>>>>>>>>> powering it back on. This means that the reset line should be described
+>>>>>>>>> as "active low" in DTS. This will be important when the driver is
+>>>>>>>>> converted to gpiod API which respects the polarity declared in DTS.
+>>>>>>>>
+>>>>>>>> We should ensure these patches get merged together with the driver
+>>>>>>>> change to avoid breaking LCD for booting. Probably no need to have
+>>>>>>>> the driver quirk handling for inverted polartity in this case.
+>>>>>>>>
+>>>>>>>> It's probably easiest to have an immutable branch for the driver
+>>>>>>>> changes I can base the dts changes on. Or I can ack the dts changes
+>>>>>>>> if they get merged with the driver.
+>>>>>>>
+>>>>>>> Both drivers are already using gpiod API:
+>>>>>>>
+>>>>>>> drivers/gpu/drm/panel/panel-sony-acx565akm.c
+>>>>>>> drivers/gpu/drm/panel/panel-dsi-cm.c
+>>>>>>
+>>>>>> I was looking at
+>>>>>>
+>>>>>> drivers/video/fbdev/omap2/omapfb/displays/panel-sony-acx565akm.c
+>>>>>> drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c
+>>>>>
+>>>>> Ah OK that explains :)
+>>>>>
+>>>>>> which are not using gpiod. Should they be retired?
+>>>>>
+>>>>> Yes we should just get rid of them with omapdrm working just fine.
+>>>>
+>>>> Will you be submitting such patches? I'd like to get rid of
+>>>> of_get_named_gpio() and friends if I can...
 >>>
->>> Reviewers raise concerns/issues and the submitters work to address
->>> them or explain why they aren't an issue. The submitter has to push
->>> things forward. That's how the process works.
->>>   
-> 
-> Up to now, there does not seems to be a better solution to this
-> problem in term of maintainability, reusability and ease of use.
-> 
-> Again, patching the pre-boot description (ACPI or DT) is not an option,
-> the user is entitled to plug the card in whatever PCI slot he wants.
-> This is either probbly not possible and ACPI based system and would
-> require a difficult setup to even try to achieve that. This would also
-> result in two different description to support the same device.
-> 
->> We are working on updating the patch set to address the feedback. The 
->> design is still based on device tree overlay infrastructure.
-> 
-> Agreed, moreover saying that "the overlay support is fragile" seems to
-> be a shortcut to do nothing and move all the support outside of the
-> kernel. If buggy, then it would be better to fix this support (if there
-> are real problems encountered with it) or kill it by removing it
-> entirely if not usable (option 1 would of course be preferred).
-
-"Buggy" is true, but not an adequate description.  See my other reply in
-this thread a couple of minutes ago regarding "proof of concept".
-
-Rob has suggested removing it at least a couple of times this year.
-
--Frank
-
-> 
+>>> Adding Tomi to Cc, my guess is he already has such patches and knows
+>>> better which ones can go :)
 >>
->>> As I noted, much of this is needed on a DT system with PCI device not
->>> described in DT. So you could split out any ACPI system support to
->>> avoid that concern for example. Enabling others to exercise these
->>> patches may help too. Perhaps use QEMU to create some imaginary
->>> device.  
->> To verify this patch set, in addition to a x86_64/ACPI based system, we 
->> also have an AARCH64/DT QEMU setup where we have attached a physical 
->> Alveo device. We haven't run into any ACPI or DTO issues so far.
-> 
-> I've been able to use the same patch set with a X86 QEMU system by
-> attaching my physical PCI card to it. No issues were encountered
-> (although the usage was rather limited). Gaining some users of this
-> support would allow to gather more feedback.
-> 
+>> To be honest, I haven't really even had a glance towards fbdev for a long
+>> time.
 >>
->> Perhaps we can introduce this feature in a phased manner where we first 
->> enable DT based platforms and then enable ACPI based platforms?
+>> There is one thing that omapdrm doesn't support, which is VRFB rotation. I
+>> cannot say if the users of those above-mentioned panels require VRFB.
 >>
->> -Sonal
->>>
->>> Rob  
+>>>>>>> So this just breaks things.
+>>>>>>
+>>>>>> I missed the drivers in drivers/gpu/... and I see that they essentially
+>>>>>> abuse gpiod API as gpiod_set_value() operates on logical level
+>>>>>> (active/inactive) and not absolute (high/low). They should either use
+>>>>>> the gpiod_*_raw() variants, or they should be adjusted to do the proper
+>>>>>> thing together with the accompanying DTS change.
+>>>>>>
+>>>>>> What are your preferences?
+>>>>>
+>>>>> Seems like high/low at the connected device end is what we should use,
+>>>>> right? Otherwise things will misbehave if the panel is connected to
+>>>>> some other SoC possibly.
+>>>>
+>>>> It is exactly because of this case the driver should use active/inactive
+>>>> and follow polarity described in DTS. If the driver does:
+>>>>
+>>>> 	gpiod_set_value_cansleep(d->reset, 1);
+>>>>
+>>>> then if DTS is saying that the reset line is active low, under the wraps
+>>>> the line will be driven to "0", but if DTS is saying that the line is
+>>>> active high, then the very same call will drive the line to "1".
+>>>>
+>>>> This allows accommodating different designs without having to change the
+>>>> driver code.
+>>
+>> Isn't breaking an old dts file quite a bad thing? Why not just add a comment
+>> to the .dts and to the driver about the situation. I don't quite see that
+>> the fixing the dts (And, if done properly, adding a boot time fixup for old
+>> dtbs) and changing the drivers is worth the hassle.
+>>
+>> Unless we see new users for these drivers, which would require the new users
+>> to write broken dts files.
 > 
+> Or maybe there are devices with fixed DTSes and fixed up kernels but the
+> fixes have not been contributed upstream. I don't know...
 > 
+> My personal opinion is that we pay too much attention to DTS
+> compatibility in cases when it is not totally clear if there are devices
+> that use DTSes that are not bundled with the kernel and also have a
+> chance to have their kernel updated (and be lucky enough for the
+> upstream kernel to work on such device without extensive work).
+> 
+> Anyway, my goal is to stop exposing of_get_named_gpio() and its
+> derivatives, so please let me know your preference. Should I:
+> 
+> - mirror in omapfb drivers what gpu drivers do and use inverted
+>    polarity
+
+I would just go with the above for the time being. It should be an easy 
+change, and as these omapfb and drm panel drivers are kind of copies of 
+each other, I think it makes sense to use the same code in both.
+
+That said, I personally don't mind fixing the dts files and the drivers, 
+and even dropping the omapfb panel drivers. However, as I don't know if 
+someone needs the omapfb drivers or has to use an old dtb, I don't want 
+to step on that possible mine field. If someone else wants to go there 
+(without my involvement), fine for me =).
+
+  Tomi
 
