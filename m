@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14BB55FE41D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 23:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C36495FE421
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 23:19:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230080AbiJMVTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 17:19:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50224 "EHLO
+        id S230146AbiJMVTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 17:19:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230425AbiJMVTF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 17:19:05 -0400
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C59FB117E
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:19:03 -0700 (PDT)
-Received: by mail-qv1-xf2c.google.com with SMTP id f14so2121760qvo.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:19:03 -0700 (PDT)
+        with ESMTP id S230131AbiJMVTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 17:19:14 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF9924E60D
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:19:11 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id a5so1308785qkl.6
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:19:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HqR2KCYKmVm9s7WE15umjNdzmWYBIaWjIp2AMtzbdxg=;
-        b=Pa8C26IhKJL4eZX7SM8BD/J/PGGAA0YkUMDsCsgw5EfR5Bt5DsaT7jPqapCXkCQ02i
-         RcPg1+isjTCHpn7WLghwBg3UCh2tLbQ+1e5PJN9zuvPQNCQhrqkLRA7BRCzLMt5tVrr7
-         H1vuuyz0UAIzoQXnSBupth9e6Ii3YhHvOzS7ieUT2NI0yf1ZhhYyNECwro8Ss5rfrf81
-         iaeoW7exp4ThxR5YcFhtYPKyIU3gsXriXzwr2iP5hbsUKcTrWzY4wF7BHfPnTcN1Tt+V
-         knAYLmOZ4BKbKnWZmXNM/iSXlCcwNvecLU9kD7PrCmP971Mj9/a56PE/+5M7dI9tv8fA
-         WGsQ==
+        bh=AdQa4Sc6lXPDk4eLVgKrBJoxIwtdDyftfTuzXhtgqag=;
+        b=xXiLtrZxmTJB0QUjoV2MP5lRyPH9qYiv0ttgpO9VVSoyoWFECmEGWcP9HH/6IL+6i6
+         XU/Is8HVR8PbwCHLAAyAp4GCfrWse7/omn3aEEzTdy8GUQyjzffw5RkSnNNphDS+S02F
+         pVq8itm6asblEVoFLtJ84jkH7yHO66BoFnyzHimOR5Y2lluV8mCR3DBkUPp3QZXSU8gz
+         5L/9LFdXgWh6Quic86DuupCKA62r3xtj6/renFCxaXKb7WPgtJ36wIEXOS9bPxhB5lzI
+         4UeNQdze9t69+l2na90cg7iS625zDyb1Fd15Te2pm/+8/eago27aEi6Ew0Jl0kdHlH1O
+         gWiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HqR2KCYKmVm9s7WE15umjNdzmWYBIaWjIp2AMtzbdxg=;
-        b=WPilwJAVnmfrC8IEFOieiX3Y1WJ7INlF/lBB1M4je/U9iBQgcupcJcHNCmNMX5QIDr
-         WaN/AeZMNrUYLRxycOGNLG+W7BCfv6YuKoByimlVXhGu+wivrCZAbmmZoC/SICC9FDGW
-         zXvWeUQoqaldPP/YDEgg4YqPDQEtk3Xy61ErUgRu+/6DYlmmMu0y0ffEcbXuYVAlx9Ub
-         sxVhNLevAxrI7YCDMSapw2gp3akeaENSmo2N+ZrCs6V77j472iAGGGuRL56SIyM9uPoz
-         qrY8y3n1gpsYayKdLxZlaVmk+toeC1SI12yQneRdrBKxkX9mxRrIJ5i1l4Y+OnMckPh2
-         4ELg==
-X-Gm-Message-State: ACrzQf1vo2fHp6/ltRTjyhi7Hb36OQFl9IiwViM0lGFQa9uaITgJVHcb
-        u7dJ1FLzc7LEk+9XRuBj2OO1Aw==
-X-Google-Smtp-Source: AMsMyM7lnbf0nIPv9rq8SIxhIiHobUpjXLxcKtaCEwKFZcUGTo+wZFoUDg2Co/zScjFI02QAngcwAg==
-X-Received: by 2002:a05:6214:d8a:b0:4b1:9f67:450b with SMTP id e10-20020a0562140d8a00b004b19f67450bmr1509945qve.119.1665695942528;
-        Thu, 13 Oct 2022 14:19:02 -0700 (PDT)
+        bh=AdQa4Sc6lXPDk4eLVgKrBJoxIwtdDyftfTuzXhtgqag=;
+        b=4zgR+6Rf4Nxj/fDaxLD/egj8M0YSZKnOm3TFGNpFu4tQUTvFcwA6eFb5IHNI3/BPuA
+         0N5D9OI1zOSIgTRY1sg6WXotxaI1uvDg9/76S9tGyyiMgD3+KyZDfUdDXzL+f5cnjNsI
+         B/0oHfia6kyXgemAFkmH4VUUB6/sgAi8RKywoyUpgH2QpvC7yuiYxWPuasayco2smDPI
+         CGiYcw8769Bmz+JSmqrjeP8ggMiqXF+cHCEjpyot5ZaWelkpbCkHjQVJacoX7lOf19F2
+         7KEUFBUP27HXCcxSg6pRtSBS9Q+K5X+q7IHWxFQ/X5F8xjD6R2Dj1a+Rsg7Q1OeE6g3n
+         zL7g==
+X-Gm-Message-State: ACrzQf1PwPy8ghNm/ODgGABDXEL2BtR1Ex7WbS2HXW/fPmzuML3SzbL5
+        hyGVFrErUH/61myHLu9ME+pAfw==
+X-Google-Smtp-Source: AMsMyM5FSEL4ZcJOm04pRm55VzmthYq47dNfsl4AJ3TG7oDdZBUrvCAwTXawIX1+kP1G3VxgQ/pFvg==
+X-Received: by 2002:a05:620a:4622:b0:6ee:bd1f:fef1 with SMTP id br34-20020a05620a462200b006eebd1ffef1mr1569030qkb.778.1665695950902;
+        Thu, 13 Oct 2022 14:19:10 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id bj33-20020a05620a192100b006ecfb2c86d3sm606364qkb.130.2022.10.13.14.19.01
+        by smtp.gmail.com with ESMTPSA id s19-20020a05620a0bd300b006bb8b5b79efsm661373qki.129.2022.10.13.14.19.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 14:19:02 -0700 (PDT)
-Message-ID: <6f804ef0-bfc6-95ac-3a79-cf7b0dbcc5f7@linaro.org>
-Date:   Thu, 13 Oct 2022 17:16:51 -0400
+        Thu, 13 Oct 2022 14:19:10 -0700 (PDT)
+Message-ID: <f824335c-893e-33a8-5889-df817ab5362a@linaro.org>
+Date:   Thu, 13 Oct 2022 17:16:58 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH 1/3] ARM: dts: qcom: ipq8064-rb3011: fix nand node
- validation
+Subject: Re: [PATCH 2/3] ARM: dts: qcom: apq8084: fix compatible for l2-cache
 Content-Language: en-US
 To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -66,13 +65,15 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221013190657.48499-1-luca@z3ntu.xyz>
+ <20221013190657.48499-2-luca@z3ntu.xyz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221013190657.48499-1-luca@z3ntu.xyz>
+In-Reply-To: <20221013190657.48499-2-luca@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,12 +81,10 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 13/10/2022 15:06, Luca Weiss wrote:
-> The devicetree documentation for the nand node requires the subnode be
-> called nand@ and no compatible is needed.
+> The compatible "qcom,arch-cache" for l2-cache does not exist, and all
+> other Qualcomm boards use just "cache" for it. Fix it.
 > 
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  arch/arm/boot/dts/qcom-ipq8064-rb3011.dts | 3 +--
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
