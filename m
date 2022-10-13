@@ -2,66 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14A0D5FDDAD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 17:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20EAA5FDDCE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 17:58:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbiJMPzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 11:55:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57484 "EHLO
+        id S229554AbiJMP6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 11:58:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbiJMPzn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 11:55:43 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3E53B1DC4;
-        Thu, 13 Oct 2022 08:55:38 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id l5so2179558oif.7;
-        Thu, 13 Oct 2022 08:55:38 -0700 (PDT)
+        with ESMTP id S229513AbiJMP6w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 11:58:52 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85E83EE8AA;
+        Thu, 13 Oct 2022 08:58:47 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id n83so2175436oif.11;
+        Thu, 13 Oct 2022 08:58:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gYclH+AU0uDsjdL9yX3maHxQPLG1CbVvXWtgf7N5YNw=;
-        b=BLSsbL9ECOKW46IPgEQXcMzsSWvEfNf8WH38+B6J7iksTuyABU8b3Kh32IwAEL2BIy
-         ngfDSafq6cFNlAyHfb55JlPAujtk9gj+n7F9meybsExq0m8MWGIpLvPorAf+xpzkE6/7
-         eKY3tuOo8LklYiGjKNX1Cd9MERC5fZYhUguPHV3OrcY/XFhVjBP3fL5kWqrsE4ZVdSo4
-         dzdFTYHZLcvxlTMDBDTfW+8Qoyj8Lu5Z/7VCqTI7NIPTMSztS5KmTFMVwUqy0o5tIyWW
-         OppVE4Ibq06WM6AZco8YOovAruf87iiGyxQK6XRdZS2SY04qksa5Lug+bF0ruEfEA+DU
-         OiiQ==
-X-Gm-Message-State: ACrzQf2xXRsG4YSVFYifPPK3ghcg0mdNyE3X07twFfa1ymgm4zjgyIey
-        b4NGQ5eXN1drHJZDrk+anyp34u9YmQ==
-X-Google-Smtp-Source: AMsMyM6dDBIHv8Xu07nccWXkNNxJlTQAuUDsjISsABDxijdxjs4YI+QAHzD67QDw6sWTrqJBhEavmQ==
-X-Received: by 2002:a05:6808:282:b0:354:9454:af5b with SMTP id z2-20020a056808028200b003549454af5bmr228146oic.20.1665676537881;
-        Thu, 13 Oct 2022 08:55:37 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ss+Jh5JtGloc7s5Wbx0ajnNwFMxqRKR8S3W84woq5d0=;
+        b=huS9p0nXQYIDA04DhHN43jASeJMXxjUBHsvF1las77K1M6XrgHb6IsaS2gzd88VKBN
+         Tp44E6D24lq3mX9/a9l3Bwzb/QBGcfdUANBknnfNhddjNnfxgAoncgXt83BwEveHO+5o
+         E5Z8AG0qjXj4nOJqLb6A+oriBPOeFimo5Ts1Zbl2/Vb2cGlEx1maDl1gARwhfpPd9iXV
+         RL6QobzoRw4tG/h/mBfo7cE78PkZ1k1c66vBkQUOjanHyECvhtp3U3G1xQncQVARmmIL
+         yk67ffPSBdLFJOI8/WvBdmC6A/o0uJITTAGFG8sCfyNexpudzHCEe3FqPVdsIzIsX/n/
+         0LjQ==
+X-Gm-Message-State: ACrzQf2OXDI9oQYQf5iTDoTZnobGsFYuCvNV7ekaDt1+hlNnKDm80Buq
+        q1l+AfqiRDSvht4BQii3Iw==
+X-Google-Smtp-Source: AMsMyM5iCHO0JebPra0Jg+Q6DZjAoX1inRqvj5SNPFERV5Md/M86KaJltPptRbNuIxKEmiNyrhO1Tg==
+X-Received: by 2002:a05:6808:f05:b0:354:b362:c5be with SMTP id m5-20020a0568080f0500b00354b362c5bemr228112oiw.136.1665676726181;
+        Thu, 13 Oct 2022 08:58:46 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r6-20020a056830418600b00661b6e1eb3csm96328otu.38.2022.10.13.08.55.36
+        by smtp.gmail.com with ESMTPSA id e15-20020a4ada0f000000b0047f94375092sm2213226oou.40.2022.10.13.08.58.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Oct 2022 08:55:37 -0700 (PDT)
-Received: (nullmailer pid 384630 invoked by uid 1000);
-        Thu, 13 Oct 2022 15:55:38 -0000
+        Thu, 13 Oct 2022 08:58:45 -0700 (PDT)
+Received: (nullmailer pid 388475 invoked by uid 1000);
+        Thu, 13 Oct 2022 15:58:47 -0000
+Date:   Thu, 13 Oct 2022 10:58:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     allen <allen.chen@ite.com.tw>
-Cc:     Kenneth Hung <Kenneth.Hung@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Robert Foss <robert.foss@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Hermes Wu <Hermes.Wu@ite.com.tw>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Pin-yen Lin <treapking@chromium.org>,
-        Neil Armstrong <narmstrong@baylibre.com>
-In-Reply-To: <20221013105116.180380-2-allen.chen@ite.com.tw>
-References: <20221013105116.180380-1-allen.chen@ite.com.tw> <20221013105116.180380-2-allen.chen@ite.com.tw>
-Message-Id: <166567436493.334966.17548882165028995639.robh@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: it6505: add properties to restrict output bandwidth
-Date:   Thu, 13 Oct 2022 10:55:38 -0500
+To:     frowand.list@gmail.com
+Cc:     pantelis.antoniou@konsulko.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/1] MAINTAINERS: of: collapse overlay entry into main
+ device tree entry
+Message-ID: <166567671481.388208.3399174487542913808.robh@kernel.org>
+References: <20221012220548.4163865-1-frowand.list@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221012220548.4163865-1-frowand.list@gmail.com>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -72,39 +62,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Oct 2022 18:51:13 +0800, allen wrote:
-> From: allen chen <allen.chen@ite.com.tw>
+On Wed, 12 Oct 2022 17:05:48 -0500, frowand.list@gmail.com wrote:
+> From: Frank Rowand <frank.rowand@sony.com>
 > 
-> Add properties to restrict dp output data-lanes and clock.
+> Pantelis has not been active in recent years so no need to maintain
+> a separate entry for device tree overlays.
 > 
-> Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-> Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
+> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
 > ---
->  .../bindings/display/bridge/ite,it6505.yaml   | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
+> 
+> Based on Linus' top of tree, 676cb4957396 d0d51a97063d,
+> Wed Oct 12 11:16:58 2022 -0700
+> 
+>  MAINTAINERS | 14 +++-----------
+>  1 file changed, 3 insertions(+), 11 deletions(-)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/bridge/ite,it6505.example.dtb: dp-bridge@5c: port:endpoint: Unevaluated properties are not allowed ('link-frequencies' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Applied, thanks!
