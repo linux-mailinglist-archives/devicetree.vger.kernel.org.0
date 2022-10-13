@@ -2,144 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F0EB5FE2FC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 21:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 989605FE30D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 22:04:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbiJMTwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 15:52:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38358 "EHLO
+        id S229680AbiJMUEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 16:04:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbiJMTwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 15:52:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E8D83E749;
-        Thu, 13 Oct 2022 12:52:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 44B2361943;
-        Thu, 13 Oct 2022 19:52:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43CE3C433D7;
-        Thu, 13 Oct 2022 19:52:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665690731;
-        bh=kq+VTXRBGbc+Il1oDeRNKtbpzt1wNk0H3ymavMN0cx4=;
-        h=From:To:Cc:Subject:Date:From;
-        b=uoUYfrVMEBJbURQxqlU6KXgElBz3QDSyKK/kQwPTBqW7GVzP926PPsIf/UaAJ3VLx
-         1hWgWs2vGn5upy9Vz6+udxL8TLJ233v35pnl7JWt/HZckH0512g34uwa38zr6VtJGm
-         0HX85rljaR2tFBXTPxVoxA0PEQfoXMl5J7zz8GxZlIZI0J8d3COA31Y2r4eIBHBVad
-         SFP/OIITI2f/TrtDC7Skvoz/rNeL7MvHdbRKqvA9IfUQRyoEW52Xoxyi997lSgpGsd
-         koDsRsFrvPfL9bI5VzvP4Iyi7Wn/zkHMqJikIhn+mkJCopz7x+g7sOipV/8hYQrUdp
-         wndA8KT3oXTbA==
-From:   Nathan Chancellor <nathan@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matt Flax <flatmax@flatmax.com>,
-        Nathan Chancellor <nathan@kernel.org>
-Subject: [PATCH] of: Define of_match_ptr() with PTR_IF() to avoid unused variable warnings
-Date:   Thu, 13 Oct 2022 12:51:53 -0700
-Message-Id: <20221013195153.2767632-1-nathan@kernel.org>
-X-Mailer: git-send-email 2.37.3
+        with ESMTP id S229548AbiJMUEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 16:04:00 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8628718DA85;
+        Thu, 13 Oct 2022 13:03:59 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id p24-20020a9d6958000000b00661c528849eso686032oto.9;
+        Thu, 13 Oct 2022 13:03:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o/H8aAoz6l7rETFO7J3jM7BsdijuYpZHfTxeVocScgc=;
+        b=IH97tXIEuqHnv8yF0buqqqae0R1x5DSmNdsl8xZQbJYM545pp6XznNlbmTrifm0MHk
+         VhLti5fKSjtbzt3CC6W9oHJ9tTqhzIirByxaPnMvimswbnNyYyKNtkW8FGiDKtmAnrCW
+         ODdqoUh4Aga/ZaoYkNGG3OkaRUO1oiWkfQ0cr655sgg3DKL7V5zym3ypCdl5GJ8YgK9r
+         UPBRB2nOwIqqwE5Xh6WF5x70kGF+xeVeHWRo96Q85RBv+WYrh8Kiu365BJ58uPz5dQKD
+         q19Zr5koCIZ06P52m0ywRieeyZc5yBae5rw1ADNNOcwRDNI3w5XPAz2GjRRg1RfNayOj
+         DDxg==
+X-Gm-Message-State: ACrzQf0uamoJZVaDA9RvkUARyHR5qdRwaFb+20jltpC+rvaAox+ZxC/5
+        TYVQBL24dimiBNm9nxX2Eg==
+X-Google-Smtp-Source: AMsMyM7+PYtDsa7EQjA+sQghRK88ENkEV0dxZPFHUd138yZX381K//TyRVFizou9uBpgNYzKSxoABw==
+X-Received: by 2002:a05:6830:2706:b0:659:ddc3:58cf with SMTP id j6-20020a056830270600b00659ddc358cfmr812657otu.102.1665691438648;
+        Thu, 13 Oct 2022 13:03:58 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o8-20020a9d4048000000b006619701dc1csm330188oti.54.2022.10.13.13.03.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Oct 2022 13:03:58 -0700 (PDT)
+Received: (nullmailer pid 161997 invoked by uid 1000);
+        Thu, 13 Oct 2022 20:03:59 -0000
+Date:   Thu, 13 Oct 2022 15:03:59 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Peter Chen <peter.chen@kernel.org>,
+        Peng Fan <peng.fan@oss.nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 6/6] dt-bindings: usb: ci-hdrc-usb2: Add more phy tuning
+ properties
+Message-ID: <20221013200359.GA150958-robh@kernel.org>
+References: <20221011082924.884123-1-s.hauer@pengutronix.de>
+ <20221011082924.884123-7-s.hauer@pengutronix.de>
+ <20221012160806.GA2189350-robh@kernel.org>
+ <20221013101412.GI6702@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221013101412.GI6702@pengutronix.de>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When CONFIG_OF is disabled and a driver is built in, it is possible for
-an of_device_id structure to be unused, which results in a build warning
-with W=1 due to -Wunused-const-variable.
+On Thu, Oct 13, 2022 at 12:14:12PM +0200, Sascha Hauer wrote:
+> On Wed, Oct 12, 2022 at 11:08:06AM -0500, Rob Herring wrote:
+> > On Tue, Oct 11, 2022 at 10:29:24AM +0200, Sascha Hauer wrote:
+> > > Following the example of samsung,picophy-dc-vol-level-adjust more
+> > > phy tuning properties are added for configuring the remaining bitfields
+> > > in the USBNC_n_PHY_CFG1 register.
+> > 
+> > All these properties really doesn't scale. These properties should go 
+> > in the phy node as they are properties or the phy. There's no rule that 
+> > you can only read properties from the driver's device node.
+> 
+> I understand and agree.
+> 
+> On i.MX8M we currently use the usb-nop-xceiv. I guess it's not an option
+> to just add these properties there, so we'll need a phy node with a new
+> compatible like fsl,imx8mm-usbphy. The driver would basically just
+> register a usb-nop-xceiv and the node would be a container for the new
+> property. Does this sound sane?
 
-For example, in sound/soc/codecs/src4xxx-i2c.c:
+I think it would be fine if you do:
 
-  static const struct of_device_id src4xxx_of_match[] = {
-      { .compatible = "ti,src4392", },
-      { }
-  };
-  MODULE_DEVICE_TABLE(of, src4xxx_of_match);
+compatible = "fsl,imx8mm-usbphy", "usb-nop-xceiv";
 
-  static struct i2c_driver src4xxx_i2c_driver = {
-      .driver = {
-          .name = "src4xxx",
-          .of_match_table = of_match_ptr(src4xxx_of_match),
-      },
-      .probe = src4xxx_i2c_probe,
-      .id_table = src4xxx_i2c_ids,
-  };
-  module_i2c_driver(src4xxx_i2c_driver);
+You'll have to rework the usb-nop-xceiv schema 'select' like we have to 
+do for any compatible appearing in multiple schema files.
 
-A configuration with CONFIG_OF=n and CONFIG_SND_SOC_SRC4XXX_I2C=y
-produces
+Or don't have the fallback and add "fsl,imx8mm-usbphy" to the 
+phy-generic.c driver. But that should be marked for stable for at least 
+some compatibility with old kernels.
 
-  sound/soc/codecs/src4xxx-i2c.c:28:34: warning: unused variable 'src4xxx_of_match' [-Wunused-const-variable]
-  static const struct of_device_id src4xxx_of_match[] = {
-                                   ^
+For existing kernel binaries to work, you have to go with the former 
+option.
 
-because of_patch_ptr() expands to NULL when CONFIG_OF=n and
-MODULE_DEVICE_TABLE() expands to nothing when MODULE is not set (i.e.,
-when the driver is built into the kernel).
-
-This is a similar situation to the power management suspend and resume
-functions, which may or may not be used depending on whether or not
-CONFIG_PM is set. The solution for a long time was to make the functions
-as __maybe_unused but commit c06ef740d401 ("PM: core: Redefine pm_ptr()
-macro") adopted a new solution involving IS_ENABLED() and PTR_IF(),
-which allows the compiler to see the referenced object at least once in
-the file to clear up the unused warning, while simultaneously allowing
-the compiler to eliminate unused code in the final object file.
-
-Do the same thing with of_match_ptr() so that unused device IDs do not
-cause warnings. This would have prevented several added #ifdef's, such
-as the one added by commit 527a7f52529f ("perf/smmuv3: Fix unused
-variable warning when CONFIG_OF=n").
-
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
----
- include/linux/of.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 766d002bddb9..f2a8d411a0f2 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -14,6 +14,7 @@
- #include <linux/types.h>
- #include <linux/bitops.h>
- #include <linux/errno.h>
-+#include <linux/kconfig.h>
- #include <linux/kobject.h>
- #include <linux/mod_devicetable.h>
- #include <linux/spinlock.h>
-@@ -405,8 +406,6 @@ extern int of_update_property(struct device_node *np, struct property *newprop);
- extern int of_attach_node(struct device_node *);
- extern int of_detach_node(struct device_node *);
- 
--#define of_match_ptr(_ptr)	(_ptr)
--
- /*
-  * struct property *prop;
-  * const __be32 *p;
-@@ -843,10 +842,11 @@ static inline phys_addr_t of_dma_get_max_cpu_address(struct device_node *np)
- 	return PHYS_ADDR_MAX;
- }
- 
--#define of_match_ptr(_ptr)	NULL
- #define of_match_node(_matches, _node)	NULL
- #endif /* CONFIG_OF */
- 
-+#define of_match_ptr(_ptr)	PTR_IF(IS_ENABLED(CONFIG_OF), (_ptr))
-+
- /* Default string compare functions, Allow arch asm/prom.h to override */
- #if !defined(of_compat_cmp)
- #define of_compat_cmp(s1, s2, l)	strcasecmp((s1), (s2))
-
-base-commit: 4fe89d07dcc2804c8b562f6c7896a45643d34b2f
--- 
-2.37.3
-
+Rob
