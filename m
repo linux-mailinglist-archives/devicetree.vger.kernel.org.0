@@ -2,182 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BEDD5FE5C4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 01:00:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFAD65FE5E1
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 01:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229722AbiJMXAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 19:00:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42956 "EHLO
+        id S229666AbiJMXcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 19:32:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbiJMXAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 19:00:21 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA65B9379F;
-        Thu, 13 Oct 2022 16:00:12 -0700 (PDT)
+        with ESMTP id S229507AbiJMXcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 19:32:52 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE41189C1A
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 16:32:50 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id h15so2754144qtu.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 16:32:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1665702018; x=1697238018;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=j8NPJhobSjrTW6bjQXlYZSYkhG0tbDt3mMbxMdeVS4Q=;
-  b=TOTNMWNj/B9eQCe8iGIiRaNWMgFIcp5XnXU6TqKx/+80u0ooqlaAsHzj
-   sWI9whTdPkgYuRVfmQWhtemmm2+12qp1PB8zRqhykR7SUJCS4Z67HsjEa
-   v6wDFyCiDzyJ5sVooo6M+Q7oov9V4ncC1kjAQcP7KOhHWUeMUCC4RQ3Y6
-   I=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 13 Oct 2022 16:00:12 -0700
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2022 16:00:12 -0700
-Received: from [10.110.38.147] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 13 Oct
- 2022 16:00:10 -0700
-Message-ID: <2f313bf8-b366-e094-b5b6-c601458f5cfa@quicinc.com>
-Date:   Thu, 13 Oct 2022 16:00:10 -0700
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0+QfEwy7B/NrkymaL7q2hDY+q10f+0eJfcatFNx6Eqs=;
+        b=g/Vu/8osdQ1PPPGH7vBzzXaURD1oaMlsGgq3jdnsKjd5krGykX/Cle2SBf169AE5ys
+         hdM4wPEzDLwwMKvQH3DPzWGk1iRcWbR+snhitd0/pRftFXoi2wVL2nMGctYk38p33na1
+         n0c10dea0uI6lAQj4EDXgjTP5etp24/JKkyGVjqo9CZXtIZKcMlsiWx071FNqELvDsdE
+         uYsaK6blFQNGCXMnSVgUY08ZM8xJVeAc5QtVuqW7wOTq9U+VLtqh+N/1PNiw6ZYlwIpA
+         T9ERcCWX1wv8jru0xXngfVU/bYH51AerLE3rdIQTum7Z5z7qSaWqzVBYI89PBnU9NhsY
+         tH7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0+QfEwy7B/NrkymaL7q2hDY+q10f+0eJfcatFNx6Eqs=;
+        b=5CDjfQMiXSzPuuJQM+nz3PZNabiM0Td41KYpKDJFZrhcLLfBV5VKuZFq5/BhV0n02U
+         pb+p6Cy7tPfOVnQoh+8mI2GzBGM9MhYPrcYWFTXbyJ/YZcP5RuvVYRQFPyrIKRPkdiZb
+         qqvZpb0VRbVt1Geq4PT5n2VLSCAVaqgnbIOVSx/w1pikm16CtEeUqsEsSfH87ytf7xAp
+         re1EJIjzzIi163ieddNQ/ik6yEdLI9b3imLmjAAnb7IO/+lNFM1sQR+lAm6zUjXQYkNP
+         IlkwDEDZ3e4M5DII+FoCohlxxDv1xWhQfKPVB2ntq4mgS1HIQuzLoe8gK8G2rrSPJxxU
+         N6ew==
+X-Gm-Message-State: ACrzQf1PY3ylZEckQv2z2FgSLpjnbYElSLbrLeg0zysmCaN6JSdTJiEQ
+        3cucI2VCjmAoW2guimCGYz6GEA==
+X-Google-Smtp-Source: AMsMyM4IKZBPcrAkKgLQFL2CqgM5z3RNWKbjf6LsalpKHQodpII16MZttEiPtH4fRBxp/igpWcV2Vg==
+X-Received: by 2002:a05:622a:178b:b0:39c:c9db:2c5e with SMTP id s11-20020a05622a178b00b0039cc9db2c5emr2056358qtk.111.1665703969887;
+        Thu, 13 Oct 2022 16:32:49 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id n1-20020a05620a294100b006e8f8ca8287sm903306qkp.120.2022.10.13.16.32.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Oct 2022 16:32:48 -0700 (PDT)
+Message-ID: <1e02c8ae-d3b1-e226-f14b-c7f7d0292237@linaro.org>
+Date:   Thu, 13 Oct 2022 19:30:36 -0400
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v5 06/13] virt: gunyah: Identify hypervisor version
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH 05/11] dt-bindings: thermal: k3-j72xx: elaborate on
+ binding descriptions
 Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Bryan Brattlof <bb@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Will Deacon" <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Arnd Bergmann" <arnd@arndb.de>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-7-quic_eberman@quicinc.com>
- <Y0UJgcc0+AEbHTIM@kroah.com>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <Y0UJgcc0+AEbHTIM@kroah.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Keerthy <j-keerthy@ti.com>,
+        Linux Thermal <linux-pm@vger.kernel.org>,
+        Linux Device Tree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20221011231727.8090-1-bb@ti.com>
+ <20221011231727.8090-6-bb@ti.com>
+ <06249fe9-97eb-1ab8-5e35-00b3c613d3a7@linaro.org>
+ <20221012181911.qk7v3yabo726lmtl@bryanbrattlof.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221012181911.qk7v3yabo726lmtl@bryanbrattlof.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/10/2022 11:13 PM, Greg Kroah-Hartman wrote:
-> On Mon, Oct 10, 2022 at 05:08:33PM -0700, Elliot Berman wrote:
+On 12/10/2022 14:19, Bryan Brattlof wrote:
+>>> +          temperatures accurately.
+>>>  
+>>>    power-domains:
+>>> +    description: |
+>>> +      Should contain the phandle to a power management (PM) domain
+>>> +      node and the device-id of this device.
+>>
+>> This is quite generic - why adding it?
 > 
-> EXPORT_SYMBOL_GPL()?  I have to ask.
+> This was really a "while I'm here" addition. But there is no need, I can 
+> drop this
 
-typo only :)
+Drop it, we do not describe generic properties (already described in
+core schema).
 
-> 
-> But why is it exported at all?  No one is using it in this patch.
-> 
-It's used later in the series by the message queue driver. The idea here 
-now is that gunyah.ko is capable of identifying Gunyah and other drivers 
-can check if they are individually compatible with the reported version 
-of Gunyah.
+Best regards,
+Krzysztof
 
- From Patch 9:
-
-+static int __init gh_msgq_init(void)
-+{
-+	if (GH_API_INFO_API_VERSION(gunyah_api.api_info) != GUNYAH_API_V1) {
-+		pr_warn("Unrecognized gunyah version: %llu. Currently supported: %d\n",
-+			GH_API_INFO_API_VERSION(gunyah_api.api_info), GUNYAH_API_V1);
-+		return -ENODEV;
-+	}
-+
-+	return 0;
-+}
-
->> +
->> +static int __init gunyah_init(void)
->> +{
->> +	u32 uid[4];
->> +
->> +	gh_hypercall_get_uid(uid);
->> +
->> +	if (!(gh_uid_matches(GUNYAH, uid) || gh_uid_matches(QC_HYP, uid)))
->> +		return 0;
-> 
-> Why return success if this is not true?  Shouldn't you return an error
-> and fail to load?
-> 
-That's fair -- easy to fix.
-
->> +
->> +	gh_hypercall_hyp_identify(&gunyah_api);
->> +
->> +	pr_info("Running under Gunyah hypervisor %llx/v%lld\n",
->> +		  GH_API_INFO_VARIANT(gunyah_api.api_info),
->> +		  GH_API_INFO_API_VERSION(gunyah_api.api_info));
->> +
->> +	return 0;
->> +}
->> +arch_initcall(gunyah_init);
->> +
->> +static void __exit gunyah_exit(void)
->> +{
->> +}
->> +module_exit(gunyah_exit);
-> 
-> Why do you need a module_exit() call?
-> 
-
-I can remove.
-
->> +
->> +MODULE_LICENSE("GPL");
->> +MODULE_DESCRIPTION("Gunyah Hypervisor Driver");
-> 
-> What will cause this module to be properly automatically loaded?  I do
-> not see that happening here at all.
-> 
->> diff --git a/include/asm-generic/gunyah.h b/include/asm-generic/gunyah.h
->> index 86eb59e203ef..8f9d4c649ba8 100644
->> --- a/include/asm-generic/gunyah.h
->> +++ b/include/asm-generic/gunyah.h
->> @@ -85,6 +85,8 @@ static inline int gh_remap_error(int gh_error)
->>   	((uid)[0] == prefix ## _UID0 && (uid)[1] == prefix ## _UID1 && \
->>   	 (uid)[2] == prefix ## _UID2 && (uid)[3] == prefix ## _UID3)
->>   
->> +#define GUNYAH_API_V1			1
-> 
-> You do not use this define anywhere in this patch.
-> 
-> 
->> +
->>   #define GH_API_INFO_API_VERSION(x)	(((x) >> 0) & 0x3fff)
->>   #define GH_API_INFO_BIG_ENDIAN(x)	(((x) >> 14) & 1)
->>   #define GH_API_INFO_IS_64BIT(x)		(((x) >> 15) & 1)
->> @@ -103,6 +105,7 @@ struct gh_hypercall_hyp_identify_resp {
->>   	u64 api_info;
->>   	u64 flags[3];
->>   };
->> +extern struct gh_hypercall_hyp_identify_resp gunyah_api;
-> 
-> Again, not used.
-> 
-> thanks,
-> 
-> greg k-h
