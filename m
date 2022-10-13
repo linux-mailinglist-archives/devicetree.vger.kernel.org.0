@@ -2,144 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 744B15FD937
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:32:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E06215FD94A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:39:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbiJMMc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 08:32:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50102 "EHLO
+        id S229723AbiJMMjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 08:39:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbiJMMcz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:32:55 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28352DFC17
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:32:54 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id h15so866368qtu.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:32:54 -0700 (PDT)
+        with ESMTP id S229679AbiJMMi6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:38:58 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CAC011D99D
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:38:56 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id g11so880420qts.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:38:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=K9/tYfzo17fxLFOcvb7w4ZSv+9JYtZRmBZDcx1r51RQ=;
-        b=T8PR2tbP2asBfPQ/sPK7BXRCjTnXv7MbrGu6XACJj7n5bOLtJO1scp5X5Pg95HDtSU
-         LX88dulxsHzuUS4qhA7+Rk92DSgMWUUTpWwkyW9z65GjqHJYQRvieFZtzR+alSdsB/ME
-         1Lu6Bd9vx5A/i258W++UPk1L14KM6AMWkbV0cOl5PCb8hpJRJ0sd2DNs5nPjgWlujXrE
-         8PisCB6Ot2YFWI5w1XCs5tKHe4cbyNvZSSnDjFnRxJiFH1iYcJjtUvtRiP4mEBl3R/vB
-         L7PvSM3x7yzClY80o9bvSqf/tOpc4kz2QTJCvL0DZFoDQbzKQ2nDKRUyti8Z6XVeKrXZ
-         7+6A==
+        bh=5kz9tUsFqTbeOstAmkjMnqXNuAGfE9Jg+Fa6WSlHaXY=;
+        b=ZK8VDKTZB/G6KzUx18/x7iGXsNCnhmsEUHjFq/DOGq3C+2rzQ/onKPlyoiLxY3kr6u
+         vmvmQTeAHzrP7zl8Cq8dRTULBmrnfhxqFAi2p74AvAI/iw89aODcguStpcU8iM0RAC4l
+         i0WtaMk1sA7rak0Go/GCe7uQYyXkVU3nJ39s17YsxyblW0OHO6ltbHSHwTc+0QaH0iNL
+         XFap/X+b5TxlTZPpUzZcWR1leFsj6UF0ApCD11XqHYW5BDM4tJdzENUx1dnvo+NaDHhW
+         9YCg/g6zV/tYFGch21jEvfbTGotqlXqbVKw2ZUxtF98WTzs7jx3k7tqe8qvZxama4pi7
+         zJdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K9/tYfzo17fxLFOcvb7w4ZSv+9JYtZRmBZDcx1r51RQ=;
-        b=giPA61FcHjHS2mMPtxoCSK1WnZ7sG5+MU93TNJyMeJYRnNh2mZe3DRLC566lfp51c7
-         SdvYZa3PWYnidvGoHv/kQkimDhDsiCQICo01hBFuNs0/nnYZ/4/Ma4K1nhTJMYUBCXHT
-         lJKElR1ANYwkg6x+tZiGP15f6t+eHDJA7wmtdcSfRYdgysnZZhFB08U8zybN6WrXdgIq
-         wkx5dFZv1ecLoeifGAqaacGdb/7M2WDVZaLsY7blbhp8kthV3ROErf7sz448LrQCaB5g
-         cAaekT2jMoLcs0CIHcu0t392UphJ/WZwR6KzRAWqhp7/eKFX2q2ovCQoUvzWKvJamnbX
-         bWDw==
-X-Gm-Message-State: ACrzQf13q5zE+/+yqKLbm8OM3brWG+EM2LxIIdJXL8LtSf2tw5BDKM0W
-        XHn3o2qo9OMNV2PoR9LqCsfmS1p8NgWNEw==
-X-Google-Smtp-Source: AMsMyM6odUD07MJbJEAOtrPomHyrhKE2DOIYANh7IOcMSsMD88ZCbgJDBPZ1duhCai51wYvDAvDioA==
-X-Received: by 2002:a05:622a:546:b0:393:7334:65de with SMTP id m6-20020a05622a054600b00393733465demr27887490qtx.504.1665664373240;
-        Thu, 13 Oct 2022 05:32:53 -0700 (PDT)
+        bh=5kz9tUsFqTbeOstAmkjMnqXNuAGfE9Jg+Fa6WSlHaXY=;
+        b=c2t3LzmSeZn5FeDsD6wx13XT5Ayrvg0/QhFVECyMe9nE5a3a7u8qv76t00qW9VA8os
+         Y9buRgrPIQPPcGTJYH91EgsnhjPSRKu8iBntpZ5/VfnoUdcCw5lcoIlmhEC0rLEI2rI6
+         NLC9AuoLEemBXcxVpJUMx6M/qx4GSyRDrOR9g7t/J/x46wGeVSFiFTdqxv/8b3WmsADQ
+         KIcm3z7DpyQwSo7tx7gaWFrcFo3E7+6E9FsGqK1BaivIMzPO43Np04bJM//H0anSieqA
+         7N+rFNzs4ucCS+qf/PHZfJnaXTi1bJJgrcgv6O0NrjI8pKEEs/axrsjYRF2O9I++7gq/
+         W2uw==
+X-Gm-Message-State: ACrzQf1N6Bp3AYoL4dK3WDZv9PVMFuzAhFMSHyVZPJUAikNgLPDXn7Yl
+        9xSh9R8RNx17tdAQEoYgbMfF4w==
+X-Google-Smtp-Source: AMsMyM7QGWwq2TvteduWwhCjLEthvj2mVj02Nsr1AAZ/3O3uzKlIbcCYr5JBhY8RY7/i+vnIKYW/Sg==
+X-Received: by 2002:ac8:7d45:0:b0:396:ce08:4b49 with SMTP id h5-20020ac87d45000000b00396ce084b49mr25163847qtb.650.1665664734315;
+        Thu, 13 Oct 2022 05:38:54 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id k11-20020a05620a0b8b00b006cbc6e1478csm17498265qkh.57.2022.10.13.05.32.50
+        by smtp.gmail.com with ESMTPSA id o15-20020a05620a2a0f00b006ce40fbb8f6sm18877024qkp.21.2022.10.13.05.38.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 05:32:52 -0700 (PDT)
-Message-ID: <8d27a5f6-461a-5b28-1560-07bb4ddcaa8a@linaro.org>
-Date:   Thu, 13 Oct 2022 08:32:49 -0400
+        Thu, 13 Oct 2022 05:38:53 -0700 (PDT)
+Message-ID: <ee305dbb-0714-4d7c-437f-66b66842370f@linaro.org>
+Date:   Thu, 13 Oct 2022 08:36:42 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v6 6/6] arm64: defconfig: Add tps65219 as modules
+Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: qcom,sc7180: convert to
+ dtschema
 Content-Language: en-US
-To:     Kevin Hilman <khilman@baylibre.com>,
-        jerome Neanne <jneanne@baylibre.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, nm@ti.com,
-        kristo@kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
-        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
-        bjorn.andersson@linaro.org, shawnguo@kernel.org,
-        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com
-Cc:     afd@ti.com, narmstrong@baylibre.com, msp@baylibre.com,
-        j-keerthy@ti.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-omap@vger.kernel.org
-References: <20221011140549.16761-1-jneanne@baylibre.com>
- <20221011140549.16761-7-jneanne@baylibre.com>
- <72b9809e-d6d7-862a-26b8-221d14ea4322@linaro.org>
- <60507e87-cf92-13d9-29d0-83f18a648f4b@baylibre.com>
- <fc1e5799-20ea-de37-6693-e2ea0fb87f13@linaro.org>
- <7hzge1hqof.fsf@baylibre.com>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221007145116.46554-1-krzysztof.kozlowski@linaro.org>
+ <20221007145116.46554-2-krzysztof.kozlowski@linaro.org>
+ <CAD=FV=WN+9DJp-3Ny04NmOLau2RYibeJayEtB7x0uT-YoizFQA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7hzge1hqof.fsf@baylibre.com>
+In-Reply-To: <CAD=FV=WN+9DJp-3Ny04NmOLau2RYibeJayEtB7x0uT-YoizFQA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/2022 13:56, Kevin Hilman wrote:
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+On 12/10/2022 13:42, Doug Anderson wrote:
+> Hi,
 > 
->> On 12/10/2022 04:39, jerome Neanne wrote:
->>>> You explained what you did, which is easily visible. You did not explain
->>>> why you are doing it.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>> Thanks for pointing me to the detailed guidelines
->>> I'm new to upstream and not well aware of all good practices.
->>>
->>> Would below commit message be more suitable:
->>>
->>> Add support for the TPS65219 PMIC by enabling MFD, regulator and 
->>> power-button drivers.  All drivers enabled as modules.
+> On Fri, Oct 7, 2022 at 7:51 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> This still says only what you did. I still does not explain why.
+>> +      drive-strength:
+>> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+>> +        default: 2
+>> +        description:
+>> +          Selects the drive strength for the specified pins, in mA.
 > 
-> Jerome, maybe adding a bit of preamble like:
-> 
-> "Development boards from TI include the TPS65219 PMIC.  Add support..."
+> The "default" of 2 is not correct. Please see commit 768f8d8e45f9
+> ("dt-bindings: pinctrl: drive-strength doesn't default to 2 if
+> unspecified")
 
-I would propose: "Development boards from TI with xxx SoC include the
-..." because the point is that you use this defconfig for boards for
-given SoC (supported by upstream).
-
-Other way would be "Foo-bar development board includes the TP..."
-
-> 
-> Krzysztof, I'm the first to argue for descriptive/verbose changelogs,
-> but IMO, this is getting a little bit nit-picky.
-> 
-> The series adds a new driver, DTS and defconfig patches to enable
-> support the new driver.  The "why" for changes to defconfig changes like
-> this are kind of implied/obvious, and there is lots of precedent for
-> changelogs of defconfig changes for simple drivers to simply say "enable
-> X and Y".
-
-While I understand the entire patchset, the defconfig goes via separate
-tree/branch and must stand on its own. Later (one month, one year, one
-decade) someone will look at history and wonder why the heck we enabled
-TPS65219.
+Uh, you're right. This was copied to one binding and then I copied to
+another, and another...
 
 > 
-> If my above suggesion is not enough, please make a suggestion for what
-> you think would qualify as an appropritate changelong that answers "why"
-> for a simple driver change.
+> In fact, are you sure this even needs to be replicated here? This is
+> part of the common "qcom,tlmm-common.yaml" bindings file, isn't it?
 
-It is enough :)
+If the value was correct, it might be per-SoC specific, but that's
+another question. The default value is actually unknown, so I'll remove it.
 
 Best regards,
 Krzysztof
