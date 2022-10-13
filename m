@@ -2,154 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C11C5FD984
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 773D75FD976
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:46:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229784AbiJMMsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 08:48:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53948 "EHLO
+        id S229548AbiJMMqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 08:46:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbiJMMsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:48:22 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC33FA017
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:48:21 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id bb5so870202qtb.11
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:48:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vset9KWE9zQivwm9UZ3Uu6zccP3Nk+eON+QXvI2NVg0=;
-        b=LvTLUde8Kt5rW+JBv1vjyv1237A1v9omg/RrjwGYXeyCXx813ujpeDz5Hqp8MRoXZW
-         M469/E04zULZxsQzM85RmOwOhbJ0O9GVc1ms+Mkx3660wsYX4i+4rKfJlniTSQohya99
-         UmdK9OnNcryhOVH6vvnWM4MFen2czLoUHvPbkZaH1cQOFUl2yJHtt2tPEx/vH7b+tGoC
-         PUJGBkd+zfWaoR4Uln+vqVfE2KrZC3wI6u+uQd2HhpMgJx80ZJz+1kGx3tFzRgWV2cOl
-         TPv8hqm3fa/igMkKYX603TxobALqfAIW5SSIpasR/nRg606FnMFD0Cmr0xVVV7Ap48Ek
-         xlsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vset9KWE9zQivwm9UZ3Uu6zccP3Nk+eON+QXvI2NVg0=;
-        b=easy0ngktdOMikTteKVOBSKg5sxt5203wIxnvP6oOvWo+o39zyhpd1/gv3GIkwy21e
-         gbCLXIn8lwgw7QdeAXLoO45ZFEpDef73wZT10KMTDXehBtX6BuBdxXp8kltwRmCh/6l6
-         MEMCk/P4A5vYATdzy6uvK1jEf+MktzenMvCFaGuAVFhvh3kdvCGhsbYwfFu+K3C99iX0
-         ReceV2iqWAaXm0+bsyuOqpIzr5YTS5OGr5qQJQBEmSBpRPRrap47pKYRjk5HAIIJFT2w
-         3JOBUogGZc+EPuJGvJHOmHtX0MTCT9BplDcslbazuIHuHvigEWkfun/pxaDT908lgrjt
-         F+vQ==
-X-Gm-Message-State: ACrzQf0nFb9ShJ4HrPobfCg471js6d6IhBSMLSnUInlhXugXIxWtxF9r
-        Stz3LaT2tBm5pQKlRhIePwD1Gw==
-X-Google-Smtp-Source: AMsMyM7JmMnI/2BQnv3tqfrtm7zHuh3DrERSRZmtQBAVoHUAQNxGy8s3VLss49wirQ4l0EhNx4xgnQ==
-X-Received: by 2002:ac8:4e51:0:b0:35d:43ba:1ebf with SMTP id e17-20020ac84e51000000b0035d43ba1ebfmr27195534qtw.366.1665665300282;
-        Thu, 13 Oct 2022 05:48:20 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id j19-20020a05620a289300b006bb87c4833asm19054698qkp.109.2022.10.13.05.48.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 05:48:19 -0700 (PDT)
-Message-ID: <1f441795-c771-835b-731b-f5dd9557dc09@linaro.org>
-Date:   Thu, 13 Oct 2022 08:46:06 -0400
+        with ESMTP id S229493AbiJMMqw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:46:52 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7738A102500;
+        Thu, 13 Oct 2022 05:46:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1665665209; x=1697201209;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=mgH7bqIU6Bj+F/PoYyFSiLKrokyQ/VHmhqjqPAujEZ4=;
+  b=QE4ldFPAoQXOizXyZPdjb5z0AgQM6WYbaL+PSbUpt1g5tlTFwx2kQBT/
+   e3Ko6vC2PhAwFOHZEMml4bhpgZqmpEqvtIC+sX4Q7VMfVGWff4u0Tokv6
+   mzrdbm44NPFRxZiQAdboW6iKQDvLghVYA4n9lT5U18tZg5dNQG2Ql6UO5
+   3kNP5lA9caMFUHSeAyRRczGSlLiZ6BCcXsJhGtYLcCsI3Tyqy7AyfM1qO
+   Z54IbxIN+JSf6JgItzTokUOSCmz//+y3943IyfKc0KmEXfNyukMacH9zz
+   Ng6ZtgA0IjN0Yoa9nhrNNoGjdZvcdTUHCRhxffRwU1r+QBcJl4Uayf/zz
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="288338013"
+X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; 
+   d="scan'208";a="288338013"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2022 05:46:48 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="872313807"
+X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; 
+   d="scan'208";a="872313807"
+Received: from yungchua-mobl2.ccr.corp.intel.com (HELO [10.252.189.128]) ([10.252.189.128])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2022 05:46:45 -0700
+Message-ID: <f84e2722-ca56-8440-a5af-550080bd1f8f@linux.intel.com>
+Date:   Thu, 13 Oct 2022 20:46:26 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] ASoC: Add Richtek RT5512 Speaker Amp Driver
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Alex Elder <elder@linaro.org>,
-        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Vinod Koul <vinod.koul@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Johan Hovold <johan@kernel.org>
-References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
- <0f5bb12f-814d-37f2-9307-b2b649aedfe3@linaro.org>
-In-Reply-To: <0f5bb12f-814d-37f2-9307-b2b649aedfe3@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Mark Brown <broonie@kernel.org>,
+        Jeff Chang <richtek.jeff.chang@gmail.com>
+Cc:     jeff_chang@ricthek.com, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, tiwai@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Jeff <jeff_chang@richtek.com>
+References: <20221013080643.6509-1-richtek.jeff.chang@gmail.com>
+ <Y0f98d0A04f8dzQV@sirena.org.uk>
+From:   "Liao, Bard" <yung-chuan.liao@linux.intel.com>
+In-Reply-To: <Y0f98d0A04f8dzQV@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2022 09:57, Krzysztof Kozlowski wrote:
-> On 22/09/2022 10:32, Krzysztof Kozlowski wrote:
->> Hi everyone,
->>
->> Quite a lot of people are working on Qualcomm DT bindings conversion
->> (TXT->YAML) and fixups to Qualcomm DTS. We track a bit of this effort
->> internally in Linaro, but that has many shortcomings and we would like
->> to track it rather community-wide with the support and contributions
->> from the community.
->>
->> What to track:
->> 1. Which bindings to convert to YAML,
->> 2. Missing compatibles (either entirely or because of missing conversion),
->> 3. `dt_binding_check` warnings (usually connected with 1-2),
->> 4. `dtbs_check` warnings.
->>
->> Rob's bot gives us daily output for 1-4, but how can we track current
->> efforts to avoid duplication of work? Also it would allow people to find
->> tasks for them to get contributions to Linux kernel :). Is anyone in
->> community interested in tracking it together, in a public way?
->>
->> If so, where?
->> A. elinux.org (needs some formatting when pasting the output from tools)
->> B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
->> C. gitlab dedicated repo - some text file
->> D. Linux kernel TODO file (might be difficult to keep updated)
->> E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
->> have it for Exynos but I don't find it usable -
->> https://exynos.wiki.kernel.org/todo_tasks)
->>
->> I am leaning towards Gitlab pages because they could be quite automated
->> - with CI or with scripts.
-> 
-> This could be looking like that - the list of missing compatibles from
-> Rob's tasks:
-> https://gitlab.com/krzkoz/linux-dt-todo/-/blob/main/todo-compatibles.rst
-> 
-> There is a script which will automatically add new entries to the list
-> (above RST file), once fed with Rob's job output. Further this could be
-> probably pipelined with Rob's jobs.
-> 
-> List anyway has to be manually updated with work in progress.
-> 
-> This is for the compatibles. Missing part is doing something similar for
-> the dtbs_check warnings.
-> 
-> In replies Luca, Caleb and Neil mentioned GitLab issues. That could be
-> useful, so if someone would like to hook into GitLab API - feel free to
-> work on that (either in that repo or in separate).
 
-Just to be clear - if the approach is interesting to anyone, just join
-the project / ask for access and make edits/changes etc.
+On 10/13/2022 8:00 PM, Mark Brown wrote:
+> On Thu, Oct 13, 2022 at 04:06:43PM +0800, Jeff Chang wrote:
+>
+>> +config SND_SOC_RT5512
+>> +	tristate "Mediatek RT5512 speaker amplifier"
+> Looks like there's some Richtek/Mediatek branding confusion with this -
+> it's a bit unclear.  It's all the same company in the end I guess so it
+> doesn't matter.
 
-To do this, you can visit https://gitlab.com/krzkoz/linux-dt-todo/ and
-next to repository name (top/middle part of page) there should be
-"Request Access" link.
+Interesting, the naming of RT5512 looks like a Realtek codec. ^^
 
-Best regards,
-Krzysztof
 
