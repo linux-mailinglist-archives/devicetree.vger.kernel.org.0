@@ -2,79 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 773D75FD976
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D9F5FD993
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:51:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbiJMMqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 08:46:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52828 "EHLO
+        id S229507AbiJMMvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 08:51:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbiJMMqw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:46:52 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7738A102500;
-        Thu, 13 Oct 2022 05:46:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1665665209; x=1697201209;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=mgH7bqIU6Bj+F/PoYyFSiLKrokyQ/VHmhqjqPAujEZ4=;
-  b=QE4ldFPAoQXOizXyZPdjb5z0AgQM6WYbaL+PSbUpt1g5tlTFwx2kQBT/
-   e3Ko6vC2PhAwFOHZEMml4bhpgZqmpEqvtIC+sX4Q7VMfVGWff4u0Tokv6
-   mzrdbm44NPFRxZiQAdboW6iKQDvLghVYA4n9lT5U18tZg5dNQG2Ql6UO5
-   3kNP5lA9caMFUHSeAyRRczGSlLiZ6BCcXsJhGtYLcCsI3Tyqy7AyfM1qO
-   Z54IbxIN+JSf6JgItzTokUOSCmz//+y3943IyfKc0KmEXfNyukMacH9zz
-   Ng6ZtgA0IjN0Yoa9nhrNNoGjdZvcdTUHCRhxffRwU1r+QBcJl4Uayf/zz
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="288338013"
-X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; 
-   d="scan'208";a="288338013"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2022 05:46:48 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="872313807"
-X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; 
-   d="scan'208";a="872313807"
-Received: from yungchua-mobl2.ccr.corp.intel.com (HELO [10.252.189.128]) ([10.252.189.128])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2022 05:46:45 -0700
-Message-ID: <f84e2722-ca56-8440-a5af-550080bd1f8f@linux.intel.com>
-Date:   Thu, 13 Oct 2022 20:46:26 +0800
+        with ESMTP id S229671AbiJMMvs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:51:48 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85B79C4D99
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:51:47 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id bv10so2685672wrb.4
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:51:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ittzY8XWr2vUt5TfYx0WNV6vQKXOsg3628wSWyxu3Tk=;
+        b=pa1RYehGsYKwFEIktbYb1R08LUR1mPd75p+s0SKUggOKlo1ZWz0+T4pM2e6gfBmJ6w
+         KwM9e43ogoKf7P1VpYU3pOrk0xZffE1fOY6dDlh0QtU2ea6Xy19F/DxMoQq0ssqwrzxX
+         pYPc3XEVzlfcaYsz6KxGAdSRXE165TdCIoOMf0AG6oSoMTFHdAE31SO03Cx6F3ObOywm
+         UV6ESAjqutYOYt57ll5sSw1KKU8WmeyBWJkIFkRbUKatLB5WsFczs2Kuo8qJzHN2XuEv
+         ED8Ylwpulj0qX7Nux4ylvfBorKZCxQUAhNspdA2oFXo/+QQyF/Rxum/ZUWTOu2Lp/OK+
+         Wm0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ittzY8XWr2vUt5TfYx0WNV6vQKXOsg3628wSWyxu3Tk=;
+        b=Qh3XS0w+P+WkT0I0f3t/Yc3bVcWO1EMFATych8o+AjWV1NhvdkIkeBlv5j2oJ+1M0C
+         D1JN9ZZRlpxCybX8nQPO5B7/WKJVW7NKuCl+Nr0kp4bFak6qFleLA12xw3VhZ3VBdd8S
+         DPbdG974zvwYhyAZPmRsgq9U70+zHxlmstmb0xb3HlhoU+Gf7AKzXbkBqftmEyDdHQHc
+         5iqVszr3RbtAlk+d4cBr7XcM19huKYfmwRT4pG81MbTI8vRmd2AMQT6uUXP/4utq+dlT
+         5epcxCTf5Xqv+Ama0CKNVxdT2LVghT+kvPQ9AbS6jGqN//UcAsp3MN5ePV7QsdovOBA4
+         ZLTA==
+X-Gm-Message-State: ACrzQf1XplhuI2CF3xIqRLQ4CzNpvo1XzXKRArartop4gsy1TTJ+UM2I
+        GSjICSkjP+ae3ks1h5VMZJ7QwQ==
+X-Google-Smtp-Source: AMsMyM74Krj7KCSTqZ7hHv/RtujY0liYmFYrR/d8rk1YaYATiiLm3StVA2f3uX+CjwwOKQs0qm2gvA==
+X-Received: by 2002:a5d:6e08:0:b0:22e:4116:b8e8 with SMTP id h8-20020a5d6e08000000b0022e4116b8e8mr20872929wrz.60.1665665506142;
+        Thu, 13 Oct 2022 05:51:46 -0700 (PDT)
+Received: from planet9.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id m3-20020a056000024300b0022e3e7813f0sm1332292wrz.107.2022.10.13.05.51.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Oct 2022 05:51:45 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     sakari.ailus@iki.fi, dave.stevenson@raspberrypi.com,
+        jacopo@jmondi.org, paul.j.murphy@intel.com,
+        daniele.alessandrelli@intel.com, mchehab@kernel.org,
+        linux-media@vger.kernel.org
+Cc:     bryan.odonoghue@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/3] media: dt-bindings: imx412: Extend compatible strings
+Date:   Thu, 13 Oct 2022 13:51:40 +0100
+Message-Id: <20221013125142.3321405-2-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221013125142.3321405-1-bryan.odonoghue@linaro.org>
+References: <20221013125142.3321405-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] ASoC: Add Richtek RT5512 Speaker Amp Driver
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>,
-        Jeff Chang <richtek.jeff.chang@gmail.com>
-Cc:     jeff_chang@ricthek.com, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, tiwai@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Jeff <jeff_chang@richtek.com>
-References: <20221013080643.6509-1-richtek.jeff.chang@gmail.com>
- <Y0f98d0A04f8dzQV@sirena.org.uk>
-From:   "Liao, Bard" <yung-chuan.liao@linux.intel.com>
-In-Reply-To: <Y0f98d0A04f8dzQV@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add compatible bindings for imx577 which uses the same silicon enabling
+reference code from Sony in the available examples provided.
 
-On 10/13/2022 8:00 PM, Mark Brown wrote:
-> On Thu, Oct 13, 2022 at 04:06:43PM +0800, Jeff Chang wrote:
->
->> +config SND_SOC_RT5512
->> +	tristate "Mediatek RT5512 speaker amplifier"
-> Looks like there's some Richtek/Mediatek branding confusion with this -
-> it's a bit unclear.  It's all the same company in the end I guess so it
-> doesn't matter.
+Cc: sakari.ailus@iki.fi
+Cc: dave.stevenson@raspberrypi.com
+Cc: jacopo@jmondi.org
+Cc: "Paul J. Murphy" <paul.j.murphy@intel.com>
+Cc: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Interesting, the naming of RT5512 looks like a Realtek codec. ^^
-
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+index 26d1807d0bb6..d1561841ccbc 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+@@ -19,7 +19,10 @@ description:
+ 
+ properties:
+   compatible:
+-    const: sony,imx412
++    items:
++      - enum:
++          - sony,imx412
++          - sony,imx577
+   reg:
+     description: I2C address
+     maxItems: 1
+-- 
+2.34.1
 
