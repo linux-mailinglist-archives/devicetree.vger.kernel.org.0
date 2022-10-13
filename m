@@ -2,98 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BB2A5FE41C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 23:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93A305FE447
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 23:34:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbiJMVTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 17:19:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49370 "EHLO
+        id S230118AbiJMVeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 17:34:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230228AbiJMVSh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 17:18:37 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D4CC0688
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:18:25 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id g9so2090716qvo.12
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:18:25 -0700 (PDT)
+        with ESMTP id S229807AbiJMVeA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 17:34:00 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08BD715747E
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:33:59 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id x31-20020a17090a38a200b0020d2afec803so3040593pjb.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:33:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kapsffevo7CiEyz0RzVrGEoVlV5mkWbfwdc9eC+twpE=;
-        b=e9jgQtk6B0QyKrNah7ZqUZxxivK03N2oEntaWnQfofK65ngKboOvppvw2o/ZjZGDQo
-         aHjmjaaIFuMBZtc485FtqbjAKhKlcuiUewyy/RM2AjU+z1nrFjuLGVpBsITP9sK9y9ml
-         WklnVabFvSNTtywMAiCGn3E/ZcFESB8ImMJySwfufwjfPL/NRoK9pYx/YFgKqzEeEQuq
-         ZXFZLu7BzLeXf916YvIfaay8L6sC59nX1bQ4ippQv1J5oyrwlgGIiyhD5XG+BggNX7o8
-         YKuddxyDTcA/JhkUn5Q+tCsoUcL6oAGYBrhoQs+44Lg12hlsI5EMLTkaY29481IXCSsr
-         3T9A==
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FxtCO/sTBsdvIbx9K15nNXMqkXqCe3muvorIeT/Gp0Y=;
+        b=PQxgHbVW7gAjBNkJ0m4EistDNiE8uzyqSLr+wXnsfrQqr0iqW5Nv08TbMCsYysfj1n
+         6NkTZD+iOCPC50AvK3V5UdElwqJY/bqyff9ak+AdhI75oU98fdVWo5iW0B+/tOXLQPiN
+         hOp7vn/NbwLW7fGbHHfR/50F6GTF1adhVk7io=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kapsffevo7CiEyz0RzVrGEoVlV5mkWbfwdc9eC+twpE=;
-        b=kLmur3jkoOdJnWe5IaSls5VVVOvg9aMqG2I690DQEpl+y8pJiIHoBrLUx4DHUPY3xF
-         Yh0ZpYiqPSeyWrFGtW0/mBi+l0BQq3/Vz2NLsT9mWpbFC8zcwbYjVSg7HJcn4KJLo5gn
-         sDA3a+rEH/m9fNbdjy8waIe6LroEwYyCItHBh2gqfIiHrd7v0wNSs7XCcumnMUVJqN+E
-         V9FnYk4rRGAuqY4lIFPauZ0CCyqaD9vv0nYijFlkP9njpNlGOmLNN5Hm0wvagICbxQ4k
-         AYkTneOtzmWpr23Gqx7mqAPjTYroUrk/9PitpL/OCovUjc35nW0cYTCbvuADp2TQJ+QQ
-         77zA==
-X-Gm-Message-State: ACrzQf1nalef2BpesklJtXAu31hO2PwuCVDQGYIt5nrPYhKnXpa1X8qX
-        sO7Yij9rwWYZJQ2CDDYGExlI6g==
-X-Google-Smtp-Source: AMsMyM4ZIBu4HZXfpI+8e0m7scRAcHECSqvEtArxQcX5dfEfLzXy+g3tz2P5MPZeekNo0dqRVe6Qaw==
-X-Received: by 2002:a0c:a953:0:b0:4af:a643:dfc with SMTP id z19-20020a0ca953000000b004afa6430dfcmr1823330qva.10.1665695871793;
-        Thu, 13 Oct 2022 14:17:51 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id w6-20020a05620a148600b006bb0f9b89cfsm613550qkj.87.2022.10.13.14.17.50
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FxtCO/sTBsdvIbx9K15nNXMqkXqCe3muvorIeT/Gp0Y=;
+        b=rYR5Earb4+rPH2vtWNF4Zo2omErv24adkmLdifEnlp/DgYQ13vWRYaP52IpEIDRHlA
+         V1xDYlAg0u5KkykkXaj5o2V8toqZ7E18/oOmfRCHX7qcS6CW/FpW13//3nowoOQd+P3b
+         wbNRCCY99aoi75HKzFP3hdxr/NWxVuQgS/I7TtYgJYKlKiYJF/U7QWyZlolLQwpcQakq
+         dx3iOn5zxIxHGeS25z5E4cV0gFtyMkmC8iNOQuWLFVfTG+xALNGhUKe8uwPgk+JV/7wE
+         vGi0UebEQMdVcjehaFLH2EOQk1cTzG5p0411aRrWoUkls/iHvp8eXRI4w4sC+JyyhcdC
+         ufEA==
+X-Gm-Message-State: ACrzQf2WMenVW8Hzq8fjeRo5LR/TicY4lverBPKfLmyAgkWYoir+jIA/
+        0LVpn7yOwHgr13TjCS2xKP7SfVtivBVVQg==
+X-Google-Smtp-Source: AMsMyM5uCtOl2nxnKKMH5S50IdGA9ftWMvOziGDreMSFoMg0ribeqEJscEi9o8kO8lYmUUEMsVcqew==
+X-Received: by 2002:a17:902:e846:b0:185:2f:c4a with SMTP id t6-20020a170902e84600b00185002f0c4amr1763888plg.110.1665696838557;
+        Thu, 13 Oct 2022 14:33:58 -0700 (PDT)
+Received: from localhost ([2620:15c:9d:2:e1c4:e063:3947:c870])
+        by smtp.gmail.com with UTF8SMTPSA id 64-20020a620543000000b005632c49693asm139737pff.202.2022.10.13.14.33.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 14:17:51 -0700 (PDT)
-Message-ID: <163116cc-a5b1-aa98-01de-c24702a7aed7@linaro.org>
-Date:   Thu, 13 Oct 2022 17:17:49 -0400
+        Thu, 13 Oct 2022 14:33:58 -0700 (PDT)
+From:   Brian Norris <briannorris@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Brian Norris <briannorris@chromium.org>
+Subject: [PATCH] arm64: dts: rockchip: Drop Scarlet's repeated ec_ap_int_l definition
+Date:   Thu, 13 Oct 2022 14:33:35 -0700
+Message-Id: <20221013213336.1779917-1-briannorris@chromium.org>
+X-Mailer: git-send-email 2.38.0.413.g74048e4d9e-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH 3/3] ARM: dts: qcom: apq8064: fix coresight compatible
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221013190657.48499-1-luca@z3ntu.xyz>
- <20221013190657.48499-3-luca@z3ntu.xyz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221013190657.48499-3-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/10/2022 15:06, Luca Weiss wrote:
-> There's a typo missing the arm, prefix of arm,coresight-etb10. Fix it to
-> make devicetree validation happier.
-> 
+This is repeated a few lines down.
 
-Fixes: 7a5c275fd821 ("ARM: dts: qcom: Add apq8064 CoreSight components")
+Signed-off-by: Brian Norris <briannorris@chromium.org>
+---
 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+ arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi | 4 ----
+ 1 file changed, 4 deletions(-)
 
-With fixes tag:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+index ed3348b558f8..a47d9f758611 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+@@ -734,10 +734,6 @@ qca_bt: bluetooth@1 {
+ };
+ 
+ /* PINCTRL OVERRIDES */
+-&ec_ap_int_l {
+-	rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_up>;
+-};
+-
+ &ap_fw_wp {
+ 	rockchip,pins = <0 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
+ };
+-- 
+2.38.0.413.g74048e4d9e-goog
 
