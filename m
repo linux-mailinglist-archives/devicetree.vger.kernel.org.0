@@ -2,104 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2CB45FDE08
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 18:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D795A5FDE82
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 18:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbiJMQNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 12:13:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40214 "EHLO
+        id S229638AbiJMQwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 12:52:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbiJMQNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 12:13:22 -0400
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CA61382C0;
-        Thu, 13 Oct 2022 09:13:21 -0700 (PDT)
-Received: by mail-ot1-f54.google.com with SMTP id cy15-20020a056830698f00b0065c530585afso320414otb.2;
-        Thu, 13 Oct 2022 09:13:21 -0700 (PDT)
+        with ESMTP id S229459AbiJMQwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 12:52:32 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1026F10A7C9
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 09:52:30 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id s20so3364923lfi.11
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 09:52:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=J7z7cCyCHDIzHVx45lHOsuFvxs9CIE7teOYxW0OHgas=;
+        b=nhMy6r5YlIFKjYT/AOd96gSZqy7OL8OYB3egyaXHDqF6b6YSBZ4SVY+uMQiuGw66+Z
+         vw0KpfpnijRyaIAPqn/Fb3EFaOKkNOfhV03uGCrLnRbc7RMsumK0lgFDIioxXxKJECUD
+         soFWBjqV9I++zzWc4cL63ecm0hiyK51qOSL9BTsTp2HuzJDHKSbIiMwjtGHTx9l+6FdJ
+         pbNv+can8rj6bpLJKY6Xaw4mRPl6LfTfp8oBq1kkR/MxZ7ocYJA8DlJSrqzfZrutQrra
+         V6Fo1CZ2YwVKU1dFHaD3IoQ65pxc6PbnafbfTqUCK64wDzZGteZTOYUSqzjfs0gygrd0
+         MLmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bDreIWRzsR6jrvQkmaVxro1G4iBmu4ZMAyB7ovkP5pk=;
-        b=3JCUVFmrcf8OCMEHwf22HzZWfCZsAn5HsX6u+sTxKGAIAlZFdviFRW/ozneNQ1FD+x
-         1Ctb0hAbWoIRG4J9O/fXNFAFEM1BfvuEWgwJ8e8Ua6MzNsBpDgxtPFVeGSBEAQgT4kb7
-         mu7vyngpvpWz5swymEWXXdAK+EuVACT9mH820lanflaaCH4XUJF+A1LFh3g5lnDL7z2Y
-         eKJ4pO+BUaG0+/So1S7fMQrgzXEIP8x42iXtcEGlXOjhjCURMTR6xskQO2bwghXJvi0K
-         tQtR8JXnfHPqRhWzpBZ7gA0kLQbdO+qRCoLDMTI1Gq58Hkk9dggQEp9+z0XMAC1TFLHc
-         c9AA==
-X-Gm-Message-State: ACrzQf2Wsb20hgde6SxGkj3mIQL+lVsAjCDsBTiq6B4SeU1Vgjhh/2xU
-        Qgn59XbIiBd+VEFnsSjvMw==
-X-Google-Smtp-Source: AMsMyM4s7hJ3dkhHBslh1BX/Q4zgzgsf9W3g91Nq4KzOpU3zRtcLEPIqpcjS8NIWCpRFbiidc/BbZQ==
-X-Received: by 2002:a05:6830:16c7:b0:661:b465:6e1e with SMTP id l7-20020a05683016c700b00661b4656e1emr391867otr.124.1665677600949;
-        Thu, 13 Oct 2022 09:13:20 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q8-20020a4ad548000000b00475d676d2d4sm2269356oos.16.2022.10.13.09.13.20
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J7z7cCyCHDIzHVx45lHOsuFvxs9CIE7teOYxW0OHgas=;
+        b=Em9x5K1SFDJajEay0/o6fIPduFJnWK5P5zz1LcUP293DDVdg8ydIfbsZxLJ1siVbSe
+         67crfTTea+/Xr0F70iUEEFNQCLFaQN4y+jNR6IXR6UcSa/Hk5PvFDJOpM9BB+NjmkQBd
+         4bktaLXj6b+R4jR3G+1z+NOlLS2nX+V4Q1oWFI5Ag7434tOnHicxt0aMFrlSR0adxXRN
+         3HeOKla81DiqR+zjBiRQDwGLvGSEW7q7qq7v8bIWxoSTqdwmUNgs7iHUAM/jfDoLJlHX
+         nP4yDGCE0Aj/vho/kAQBGrbeQ1vQIyaGYy1yBZx3tJ5hG4DUOrdPWu5POzawwa0F7gV2
+         UZ4w==
+X-Gm-Message-State: ACrzQf29UmxR9q4ndl0ZUP9UMImTPcFGiRUD2NDI0hQTGIEFr0S/vw1B
+        Zuig53avb3FdJj6sIJFH8EroF7z2fs6pvQsbnDQ=
+X-Google-Smtp-Source: AMsMyM5VTqEH2JfRbXjT227CROHnUMC2UyrNnrJOUYPv74Srq4t4JVaEZCQGJXDsmBdzWuIXZBgv/g==
+X-Received: by 2002:a05:6512:3a8b:b0:4a2:5155:dca5 with SMTP id q11-20020a0565123a8b00b004a25155dca5mr210801lfu.70.1665679946834;
+        Thu, 13 Oct 2022 09:52:26 -0700 (PDT)
+Received: from fedora.. ([78.10.206.53])
+        by smtp.gmail.com with ESMTPSA id k7-20020a2e9207000000b00262fae1ffe6sm540752ljg.110.2022.10.13.09.52.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Oct 2022 09:13:20 -0700 (PDT)
-Received: (nullmailer pid 492565 invoked by uid 1000);
-        Thu, 13 Oct 2022 16:13:22 -0000
-Date:   Thu, 13 Oct 2022 11:13:22 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.1, take 1
-Message-ID: <20221013161322.GA447023-robh@kernel.org>
+        Thu, 13 Oct 2022 09:52:26 -0700 (PDT)
+From:   =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
+To:     devicetree@vger.kernel.org
+Cc:     mw@semihalf.com, linux@armlinux.org.uk, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        upstream@semihalf.com,
+        =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
+Subject: [PATCH v4 0/3] marvell,pp2.yaml and .dtsi further improvements
+Date:   Thu, 13 Oct 2022 18:51:31 +0200
+Message-Id: <20221013165134.78234-1-mig@semihalf.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+Hi,
 
-Please pull a couple of DT fixes. 
+This patch series deprecates port-id in comparison to previous patches
+and moves $ref:ethernet-controller.yaml to subnodes. Furthermore, it
+adds phys: as an optional property of a subnode because of adding
+unevaluatedProperties: false.
 
-It's not just merging the code for MT6370 that's been a mess, but the 
-bindings too with individual pieces picked up. But hey, it's 'just 
-documentation', so no one cares.
+Best regards,
+Michał
 
-Rob
+---
+Changelog:
+v3->v4
+- change commit message of first patch
+- move allOf:$ref to patternProperties:'^...':$ref
+- deprecate port-id in favour of reg
+- move reg to front of properties list in patternProperties
+- reflect the order of properties in required list in
+  patternProperties
+- add unevaluatedProperties: false to patternProperties
+- change unevaluated- to additionalProperties at top level
+- add property phys: to ports subnode
+- extend example binding with additional information about phys and sfp
+- hook phys property to phy-consumer.yaml schema
 
+v2->v3
+- move 'reg:description' to 'allOf:if:then'
+- change '#size-cells: true' and '#address-cells: true'
+  to '#size-cells: const: 0' and '#address-cells: const: 1'
+- replace all occurences of pattern "^eth\{hex_num}*"
+  with "^(ethernet-)?port@[0-9]+$"
+- add description in 'patternProperties:^...'
+- add 'patternProperties:^...:interrupt-names:minItems: 1'
+- add 'patternProperties:^...:reg:description'
+- update 'patternProperties:^...:port-id:description'
+- add 'patternProperties:^...:required: - reg'
+- update '*:description:' to uppercase
+- add 'allOf:then:required:marvell,system-controller'
+- skip quotation marks from 'allOf:$ref'
+- add 'else' schema to match 'allOf:if:then'
+- restrict 'clocks' in 'allOf:if:then'
+- restrict 'clock-names' in 'allOf:if:then'
+- add #address-cells=<1>; #size-cells=<0>; in 'examples:'
+- change every "ethX" to "ethernet-port@X" in 'examples:'
+- add "reg" and comment in all ports in 'examples:'
+- change /ethernet/eth0/phy-mode in examples://Armada-375
+  to "rgmii-id"
+- replace each cpm_ with cp0_ in 'examples:'
+- replace each _syscon0 with _clk0 in 'examples:'
+- remove each eth0X label in 'examples:'
+- update armada-375.dtsi and armada-cp11x.dtsi to match
+  marvell,pp2.yaml
 
-The following changes since commit 49da070062390094112b423ba443ea193527b2e4:
+v1->v2
+- move 'properties' to the front of the file
+- remove blank line after 'properties'
+- move 'compatible' to the front of 'properties'
+- move 'clocks', 'clock-names' and 'reg' definitions to 'properties' 
+- substitute all occurences of 'marvell,armada-7k-pp2' with
+  'marvell,armada-7k-pp22'
+- add properties:#size-cells and properties:#address-cells 
+- specify list in 'interrupt-names'
+- remove blank lines after 'patternProperties'
+- remove '^interrupt' and '^#.*-cells$' patterns
+- remove blank line after 'allOf'
+- remove first 'if-then-else' block from 'allOf'
+- negate the condition in allOf:if schema
+- delete 'interrupt-controller' from section 'examples'
+- delete '#interrupt-cells' from section 'examples'
 
-  Merge tag 'memblock-v6.1-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rppt/memblock (2022-10-11 20:48:55 -0700)
+Marcin Wojtas (2):
+  arm64: dts: marvell: Update network description to match schema
+  ARM: dts: armada-375: Update network description to match schema
 
-are available in the Git repository at:
+Michał Grzelak (1):
+  dt-bindings: net: marvell,pp2: convert to json-schema
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.1-1
+ .../devicetree/bindings/net/marvell,pp2.yaml  | 288 ++++++++++++++++++
+ .../devicetree/bindings/net/marvell-pp2.txt   | 141 ---------
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/armada-375.dtsi             |  12 +-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |  17 +-
+ 5 files changed, 308 insertions(+), 152 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/marvell,pp2.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/marvell-pp2.txt
 
-for you to fetch changes up to 917c362b5f8a6e31ff35719b1bacfc1b76a1fd2f:
+-- 
+2.37.3
 
-  MAINTAINERS: of: collapse overlay entry into main device tree entry (2022-10-13 10:58:09 -0500)
-
-----------------------------------------------------------------
-Devicetree fixes for v6.1-rc, part 1:
-
-- Fixes for Mediatek MT6370 binding
-
-- Merge the DT overlay maintainer entry to the main entry as Pantelis is
-  not active and Frank is taking a step back
-
-----------------------------------------------------------------
-ChiaEn Wu (2):
-      dt-bindings: leds: mt6370: Fix MT6370 LED indicator DT warning
-      dt-bindings: mfd: mt6370: fix the interrupt order of the charger in the example
-
-Frank Rowand (1):
-      MAINTAINERS: of: collapse overlay entry into main device tree entry
-
- .../bindings/leds/mediatek,mt6370-indicator.yaml           |  5 ++---
- Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml |  4 ++--
- MAINTAINERS                                                | 14 +++-----------
- 3 files changed, 7 insertions(+), 16 deletions(-)
