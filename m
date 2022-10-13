@@ -1,85 +1,222 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E4DD5FD7A9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 12:14:32 +0200 (CEST)
+Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
+	by mail.lfdr.de (Postfix) with ESMTP id 264445FD7D8
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 12:38:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbiJMKOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 06:14:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33098 "EHLO
+        id S229498AbiJMKh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 06:37:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbiJMKO0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 06:14:26 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B67142E6D
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 03:14:25 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oivEC-0004MS-Vg; Thu, 13 Oct 2022 12:14:12 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oivEC-0008EZ-EU; Thu, 13 Oct 2022 12:14:12 +0200
-Date:   Thu, 13 Oct 2022 12:14:12 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Peter Chen <peter.chen@kernel.org>,
-        Peng Fan <peng.fan@oss.nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 6/6] dt-bindings: usb: ci-hdrc-usb2: Add more phy tuning
- properties
-Message-ID: <20221013101412.GI6702@pengutronix.de>
-References: <20221011082924.884123-1-s.hauer@pengutronix.de>
- <20221011082924.884123-7-s.hauer@pengutronix.de>
- <20221012160806.GA2189350-robh@kernel.org>
+        with ESMTP id S229511AbiJMKh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 06:37:58 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42117E52D6;
+        Thu, 13 Oct 2022 03:37:55 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29DAbgde081195;
+        Thu, 13 Oct 2022 05:37:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1665657462;
+        bh=y2LZ3hY/sLVuCGWY1LGBLIkE/53Me85ywUgCqvqqef0=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=uDWVG6cHjO50e0JjrHWFDFT1CiJsXN+dNISKIQJi65wusB5rIk6fF9LYmfcbqNMCF
+         zjsRaV9ZHj4JFIretQWOkLtqBn8jhKlub2fRU+NX4m+Cx6dezI1IJT/3oC3nvRlyRk
+         mpkM9ovzNSZMPbG6tuiIriTyl9X0d6az+5pDP+I8=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29DAbgfK085806
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 13 Oct 2022 05:37:42 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 13
+ Oct 2022 05:37:41 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 13 Oct 2022 05:37:41 -0500
+Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29DAbbJf126088;
+        Thu, 13 Oct 2022 05:37:38 -0500
+Message-ID: <93b1644f-ed7c-9ded-978b-9da0d840cd1b@ti.com>
+Date:   Thu, 13 Oct 2022 16:07:37 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221012160806.GA2189350-robh@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [EXTERNAL] Re: [PATCH v6 1/5] dt-bindings: remoteproc: Add PRU
+ consumer bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
+        <nm@ti.com>, <vigneshr@ti.com>, <srk@ti.com>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20221012114429.2341215-1-danishanwar@ti.com>
+ <20221012114429.2341215-2-danishanwar@ti.com>
+ <78805233-0802-7a7e-f1b1-84c566084833@linaro.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+In-Reply-To: <78805233-0802-7a7e-f1b1-84c566084833@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 12, 2022 at 11:08:06AM -0500, Rob Herring wrote:
-> On Tue, Oct 11, 2022 at 10:29:24AM +0200, Sascha Hauer wrote:
-> > Following the example of samsung,picophy-dc-vol-level-adjust more
-> > phy tuning properties are added for configuring the remaining bitfields
-> > in the USBNC_n_PHY_CFG1 register.
+Hi Krzysztof,
+
+
+On 12/10/22 20:54, Krzysztof Kozlowski wrote:
+> On 12/10/2022 07:44, MD Danish Anwar wrote:
+>> From: Suman Anna <s-anna@ti.com>
+>>
+>> Add a YAML binding document for PRU consumers. The binding includes
 > 
-> All these properties really doesn't scale. These properties should go 
-> in the phy node as they are properties or the phy. There's no rule that 
-> you can only read properties from the driver's device node.
+> Add a DT schema binding for ...
+> 
 
-I understand and agree.
+Sure I'll change it to that.
 
-On i.MX8M we currently use the usb-nop-xceiv. I guess it's not an option
-to just add these properties there, so we'll need a phy node with a new
-compatible like fsl,imx8mm-usbphy. The driver would basically just
-register a usb-nop-xceiv and the node would be a container for the new
-property. Does this sound sane?
+> Second thing: where is a user of this common binding? How do you apply
+> this schema to anything?
+> 
 
-Sascha
+This dt binding will be included in 'ti,icssg-prueth.yaml' which is introduced
+in the series [1].
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+in 'ti,icssg-prueth.yaml' file --
+allOf:
+  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
+
+The consumer can apply the dt schema 'ti,icssg-prueth.yaml' and this schema
+will be applied with that as this schema is included in 'ti,icssg-prueth.yaml'.
+
+>> all the common properties that can be used by different PRU consumer
+>> or application nodes and supported by the PRU remoteproc driver.
+>> These are used to configure the PRU hardware for specific user
+>> applications.
+>>
+>> The application nodes themselves should define their own bindings.
+>>
+>> Co-developed-by: Tero Kristo <t-kristo@ti.com>
+>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  .../bindings/remoteproc/ti,pru-consumer.yaml  | 132 ++++++++++++++++++
+>>  1 file changed, 132 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+>> new file mode 100644
+>> index 000000000000..16be98b7d600
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+>> @@ -0,0 +1,132 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Common TI PRU Consumer Binding
+>> +
+>> +maintainers:
+>> +  - Suman Anna <s-anna@ti.com>
+>> +
+>> +description: |
+>> +  A PRU application/consumer/user node typically uses one or more PRU device
+>> +  nodes to implement a PRU application/functionality. Each application/client
+>> +  node would need a reference to at least a PRU node, and optionally define
+>> +  some properties needed for hardware/firmware configuration. The below
+>> +  properties are a list of common properties supported by the PRU remoteproc
+>> +  infrastructure.
+>> +
+>> +  The application nodes shall define their own bindings like regular platform
+>> +  devices, so below are in addition to each node's bindings.
+>> +
+>> +properties:
+>> +  ti,prus:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description: phandles to the PRU, RTU or Tx_PRU nodes used
+>> +    minItems: 1
+>> +    maxItems: 6
+>> +    items:
+>> +      maxItems: 1
+>> +
+>> +  firmware-name:
+>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>> +    minItems: 1
+>> +    maxItems: 6
+>> +    description: |
+>> +      firmwares for the PRU cores, the default firmware for the core from
+>> +      the PRU node will be used if not provided. The firmware names should
+>> +      correspond to the PRU cores listed in the 'ti,prus' property
+>> +
+>> +  ti,pruss-gp-mux-sel:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 1
+>> +    maxItems: 6
+>> +    items:
+>> +      enum: [0, 1, 2, 3, 4]
+>> +    description: |
+>> +      array of values for the GP_MUX_SEL under PRUSS_GPCFG register for a PRU.
+>> +      This selects the internal muxing scheme for the PRU instance. Values
+>> +      should correspond to the PRU cores listed in the 'ti,prus' property. The
+>> +      GP_MUX_SEL setting is a per-slice setting (one setting for PRU0, RTU0,
+>> +      and Tx_PRU0 on K3 SoCs). Use the same value for all cores within the
+>> +      same slice in the associative array. If the array size is smaller than
+>> +      the size of 'ti,prus' property, the default out-of-reset value (0) for the
+>> +      PRU core is used.
+>> +
+>> +required:
+>> +  - ti,prus
+>> +
+>> +additionalProperties: true
+>> +
+>> +examples:
+>> +  - |
+>> +    /* PRU application node full example */
+>> +    icssg2_eth: icssg2-eth {
+>> +      compatible = "ti,am654-icssg-prueth";
+>> +      pinctrl-names = "default";
+>> +      pinctrl-0 = <&icssg2_rgmii_pins_default>;
+>> +      sram = <&msmc_ram>;
+>> +      ti,prus = <&pru2_0>, <&rtu2_0>, <&tx_pru2_0>,
+>> +        <&pru2_1>, <&rtu2_1>, <&tx_pru2_1>;
+> 
+> Fix alignment. In other places as well.
+> 
+
+Sure, I'll work on this.
+
+>> +      firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
+>> +          "ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
+>> +          "ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
+>> +          "ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
+>> +          "ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
+>> +          "ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
+>> +
+> 
+> Best regards,
+> Krzysztof
+> 
+
+[1] https://lore.kernel.org/all/20220531095108.21757-2-p-mohan@ti.com/
+
+Thanks and Regards,
+Danish.
