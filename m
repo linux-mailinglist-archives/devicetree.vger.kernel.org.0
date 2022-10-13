@@ -2,119 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E05445FD319
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 04:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E82245FD34E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 04:40:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbiJMCDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 22:03:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41412 "EHLO
+        id S229626AbiJMCkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 22:40:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbiJMCDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 22:03:44 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8A181326B2;
-        Wed, 12 Oct 2022 19:03:39 -0700 (PDT)
-X-UUID: c38f2e913c5e470186c0b2630d7cbaf6-20221013
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=0Q5kRH18gt6Y/pbwXFl9/gu+4070qb8aRhjVye5Kcvw=;
-        b=D5uYOHeUQVJ/NehsKYzoqOKK/B8uQe+k4vRupYd3ncWIcWQkYyPq2MjXqxGe5Fhhh/QN/ugofg6r1yY8qK4UCo2SCloLbf1qHiA2A5fXOkVkJ0zrxyCpLfkIyKmD0T83aYrrrm5yrKwPf4QDE3P8rCep87KvbCWdR9yEfaV/6Cs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:d957c2a8-edcc-4d49-ab0f-a8ca01274e53,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:2dd9c2e1-2948-402a-a6e4-b5d31fe11eb7,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: c38f2e913c5e470186c0b2630d7cbaf6-20221013
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <moudy.ho@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 338902578; Thu, 13 Oct 2022 10:03:32 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 13 Oct 2022 10:03:30 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 13 Oct 2022 10:03:30 +0800
-From:   Moudy Ho <moudy.ho@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>
-Subject: [PATCH v3 4/8] arm64: dts: mediatek: mt8195: add MUTEX configuration for VPPSYS
-Date:   Thu, 13 Oct 2022 10:03:25 +0800
-Message-ID: <20221013020329.8800-5-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20221013020329.8800-1-moudy.ho@mediatek.com>
-References: <20221013020329.8800-1-moudy.ho@mediatek.com>
+        with ESMTP id S229600AbiJMCkk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 22:40:40 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04ABAFF21C;
+        Wed, 12 Oct 2022 19:40:38 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29D2eUBi010139;
+        Wed, 12 Oct 2022 21:40:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1665628830;
+        bh=kMR2ox77RnQmVe0zkdaunM4zi/sHhqP76vBI4aEl7F4=;
+        h=From:To:CC:Subject:Date;
+        b=TaTdDvkEggYp3cw8mTH3c7hB2dTP9vyYfCaPwEWRGSNE0V5/IlBr8FcO1SFHNmQKL
+         xZEbVXMWbJ6KBu3ZSF3Kpwb7NF2GMcPL0iMfYQAsf2K9djTuS25GSoidgNgMIYmdgy
+         eoNjYZ0VqcR2yXQz4xm+lvmhI46uRnOP9Wy4Uqy0=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29D2eTlw000799
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 12 Oct 2022 21:40:29 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 12
+ Oct 2022 21:40:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Wed, 12 Oct 2022 21:40:29 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29D2eOeh097431;
+        Wed, 12 Oct 2022 21:40:27 -0500
+From:   Matt Ranostay <mranostay@ti.com>
+To:     <ulf.hansson@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        Matt Ranostay <mranostay@ti.com>
+Subject: [PATCH] dt-bindings: mmc: sdhci-am654: add ti,itap-del-sel-ddr50 to schema
+Date:   Wed, 12 Oct 2022 19:40:21 -0700
+Message-ID: <20221013024021.121104-1-mranostay@ti.com>
+X-Mailer: git-send-email 2.38.0.rc0.52.gdda7228a83
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In MT8195, the MMSYS has two Video Processor Pipepline Subsystems
-named VPPSYS0 and VPPSYS1, each with specific MUTEX to control
-Start of Frame(SOF) and End of Frame (EOF) signals.
-Before working with them, the addresses, interrupts, clocks and power
-domains need to be set up in dts.
+Add missing ti,itap-del-sel-ddr50 property to schema to clear up the
+following warnings.
 
-Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+mmc@4fb0000: Unevaluated properties are not allowed ('ti,itap-del-sel-ddr50' was unexpected)
+
+Signed-off-by: Matt Ranostay <mranostay@ti.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ Documentation/devicetree/bindings/mmc/sdhci-am654.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 1bb6054531c1..4888d5ff9df7 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -1483,6 +1483,15 @@
- 			#clock-cells = <1>;
- 		};
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+index ea9121fb188d..382d5face49a 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
++++ b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+@@ -159,6 +159,12 @@ properties:
+     minimum: 0
+     maximum: 0x1f
  
-+		mutex@1400f000 {
-+			compatible = "mediatek,mt8195-vpp-mutex";
-+			reg = <0 0x1400f000 0 0x1000>;
-+			interrupts = <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,gce-client-reg = <&gce1 SUBSYS_1400XXXX 0xf000 0x1000>;
-+			clocks = <&vppsys0 CLK_VPP0_MUTEX>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
++  ti,itap-del-sel-ddr50:
++    description: Input tap delay for MMC DDR50 timing
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    minimum: 0
++    maximum: 0x1f
 +
- 		smi_sub_common_vpp0_vpp1_2x1: smi@14010000 {
- 			compatible = "mediatek,mt8195-smi-sub-common";
- 			reg = <0 0x14010000 0 0x1000>;
-@@ -1589,6 +1598,15 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		mutex@14f01000 {
-+			compatible = "mediatek,mt8195-vpp-mutex";
-+			reg = <0 0x14f01000 0 0x1000>;
-+			interrupts = <GIC_SPI 635 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,gce-client-reg = <&gce1 SUBSYS_14f0XXXX 0x1000 0x1000>;
-+			clocks = <&vppsys1 CLK_VPP1_DISP_MUTEX>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS1>;
-+		};
-+
- 		larb5: larb@14f02000 {
- 			compatible = "mediatek,mt8195-smi-larb";
- 			reg = <0 0x14f02000 0 0x1000>;
+   ti,itap-del-sel-ddr52:
+     description: Input tap delay for MMC DDR52 timing
+     $ref: "/schemas/types.yaml#/definitions/uint32"
 -- 
-2.18.0
+2.38.0.rc0.52.gdda7228a83
 
