@@ -2,150 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8402E5FDA38
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 15:18:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3AD45FD9EC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 15:07:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229933AbiJMNSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 09:18:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60890 "EHLO
+        id S229836AbiJMNHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 09:07:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229926AbiJMNSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 09:18:04 -0400
-X-Greylist: delayed 601 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 13 Oct 2022 06:18:00 PDT
-Received: from smtp-out-06.comm2000.it (smtp-out-06.comm2000.it [212.97.32.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210AF197F80;
-        Thu, 13 Oct 2022 06:17:59 -0700 (PDT)
-Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-06.comm2000.it (Postfix) with ESMTPSA id 7572E5639DE;
-        Thu, 13 Oct 2022 14:58:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1665665911;
-        bh=VwMyq6K/Y20d9lPOV/FUqg1ALLGkcp+OHNu++vwyun4=;
-        h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To;
-        b=QAqrBZjY6/M2FLKYEVmxD4MKm7EQg1D0jqIdhgEI1P8ccnfsqSqXeHM6WVovzq1yP
-         KRtea5CqX4ChN/TgzTzuU9iRtVj8/HQO8teNsnQ1KV9sR8PFAMwH4vpq4Hb2Z3mC1O
-         U5GhOXdkgvgGO6Qk3N8douYN7JKsqXJ3vCLIxogJM8FbRXq5KNYUMBurrcacwUTyRC
-         vqDd6ylWojGksPmsNpmBqEqINd9fei3HTHHo09DvKfOv6kx/f/mDlYOyKh6wGlknVg
-         5JmGazYqiepBMQLw60hiiDM6DaedyBt1Xi/erFxc0kAwPYtZv9lQVt3jOqqw5XvAf3
-         QxsuuxG1N2a0g==
-Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
-        id CF3D87F83D; Thu, 13 Oct 2022 14:58:29 +0200 (CEST)
-Date:   Thu, 13 Oct 2022 14:58:29 +0200
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Max Krummenacher <max.oss.09@gmail.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Marek Vasut <marex@denx.de>
-Cc:     max.krummenacher@toradex.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: display: add new bus-format property
- for panel-dpi
-Message-ID: <Y0gLdQleE64FQgn9@gaggiata.pivistrello.it>
-Reply-To: francesco.dolcini@toradex.com
-References: <20220628181838.2031-1-max.oss.09@gmail.com>
- <20220628181838.2031-3-max.oss.09@gmail.com>
+        with ESMTP id S229764AbiJMNHk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 09:07:40 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6233E4E72
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 06:07:24 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id g11so930044qts.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 06:07:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eeYmD+9oC4SIyMGPyNxFM02rA4eG+ZxLC97UDG4Gq8Y=;
+        b=NT3cxgzW2V6z8ig2J+jbtNONwXtql/qdmGUoZ1dtzTJ1D+gZrHabW6hMsvESuPjY0h
+         gT0F+ASyCaHnNW1O6WaQpFyO7f82xYzdmP0jV9IkvsrdeSGFIPuTSwlTT69XgFuHvdiW
+         10tLsaK658TpeDKThCI5gjTshTWw8uBd7D06V+vF9tEooWk+TXhauo8314QK161zb5SY
+         D/KpIkyX6s824gxsuu9NHyHvfsE/9lPTKLJ4o6F9x+NqemXXWECG5IrVjfI9hTUrKnN/
+         MKPIRRpoUPeBI6RwhMX40yNhYKQ9E1wm113c0SlFt75Xo3PK+cskmwAiAklYer5tZrVA
+         aZxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eeYmD+9oC4SIyMGPyNxFM02rA4eG+ZxLC97UDG4Gq8Y=;
+        b=UVihiG6asiu1dfN8w3EwfS0Plf96n46Z5MsVfnFFE2AjaQXF2BqaVw7kUvglTnmGHJ
+         k8LQ9GdGlb/bS/M83k32yF+dvAAqy8wK7kGuMK8eru1YwkAJDbyi9f3bulRZy9ccGXE7
+         uhvAL1jV//nm3r8N2Ku6nV2wlCCh+PwgRNaz6hvcnqCUj0h+orNrmECohkxUKVKMp0If
+         /NZjA9KpDsDXW/kgtRoEzOLSqs0ALeo4apFolNZ4kWkcpiisoYwt/QXQLGMmHzGMLkNu
+         4yFscgAGqTgqjNCs6jQ3M+aOQzWu+P8WJsEh6xHdgVzdFxH+vR5UmrdjpcJ+EtESh9Ey
+         3pWw==
+X-Gm-Message-State: ACrzQf2iSUuyd1B+ZJ4ipVACfoqn0svBnHVkCHJG3Vsu20vvwbJU8OuJ
+        7j8T24vRR4IM9ZHDiWbSmzJRE3CMxHxT2Q==
+X-Google-Smtp-Source: AMsMyM42iFf5XxPnHyd/Wz6xLAx/ZabUArY33VPEFQlpEFhHMWcLLlkCgxsxxgdT8TzTcye5eWI25A==
+X-Received: by 2002:ac8:5ad0:0:b0:35c:da19:62cf with SMTP id d16-20020ac85ad0000000b0035cda1962cfmr27767770qtd.482.1665666443688;
+        Thu, 13 Oct 2022 06:07:23 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id dz18-20020a05620a2b9200b006ee2953fac4sm8473755qkb.136.2022.10.13.06.07.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Oct 2022 06:07:23 -0700 (PDT)
+Message-ID: <0118faac-7d50-ddb2-2914-0610b83efe6c@linaro.org>
+Date:   Thu, 13 Oct 2022 09:05:11 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220628181838.2031-3-max.oss.09@gmail.com>
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH] arm64: dts: k3-j72*: correct compatible for syscon
+ entries
+Content-Language: en-US
+To:     Matt Ranostay <mranostay@ti.com>, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20221012180052.89840-1-mranostay@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221012180052.89840-1-mranostay@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Max, Marek, Dave et al.
-
-On Tue, Jun 28, 2022 at 08:18:36PM +0200, Max Krummenacher wrote:
-> From: Max Krummenacher <max.krummenacher@toradex.com>
+On 12/10/2022 14:00, Matt Ranostay wrote:
+> Add missing ti,j721e-system-controller to bus defines in mcu/wakeup
+> domains to avoid the following similar warnings from dt-schema checks:
 > 
-> The property is used to set the enum bus_format and infer the bpc
-> for a panel defined by 'panel-dpi'.
-> This specifies how the panel is connected to the display interface.
+> arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: syscon@40f00000: compatible: ['syscon', 'simple-mfd'] is too short'
 > 
-> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi  | 2 +-
+>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  | 2 +-
+>  arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
 > 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> index e5be78a58682..b5c666f98ba4 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> @@ -35,7 +35,7 @@ k3_reset: reset-controller {
+>  	};
+>  
+>  	mcu_conf: syscon@40f00000 {
+> -		compatible = "syscon", "simple-mfd";
+> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
 
-<snip>
+That's a different SoC, so probably you should use dedicated compatible
+here.
 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> index dae0676b5c6e..52f5db03b6a8 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> @@ -26,7 +26,28 @@ properties:
->    height-mm: true
->    label: true
->    panel-timing: true
-> -  port: true
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    description:
-> +      Input port node, receives the panel data.
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> +
-> +        properties:
-> +          bus-format:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            minimum: 0x1001
-> +            maximum: 0x1fff
-> +            description: |
-> +              Describes how the display panel is connected to the display interface.
-> +              Valid values are defined in <dt-bindings/display/dt-media-bus-format.h>.
-> +              The mapping between the color/significance of the panel lines to the
-> +              parallel data lines are defined in:
-> +              https://www.kernel.org/doc/html/v5.17/userspace-api/media/v4l/subdev-formats.html#packed-rgb-formats
-> +
+>  		reg = <0x00 0x40f00000 0x00 0x20000>;
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index df08724bbf1c..5d9ec221fa34 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -35,7 +35,7 @@ k3_reset: reset-controller {
+>  	};
+>  
+>  	mcu_conf: syscon@40f00000 {
+> -		compatible = "syscon", "simple-mfd";
+> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
+>  		reg = <0x0 0x40f00000 0x0 0x20000>;
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> index 4d1bfabd1313..3845d162d3c6 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> @@ -69,7 +69,7 @@ wkup_gpio_intr: interrupt-controller@42200000 {
+>  	};
+>  
+>  	mcu_conf: syscon@40f00000 {
+> -		compatible = "syscon", "simple-mfd";
+> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
 
-Last month I had the chance to talk in person about this topic with
-Dave, Marek and Max in Dublin.
+Here as wekk - it's a j721s2?
 
-My understanding is that this change is addressing a general need, Dave
-confirmed me they have a downstream patch for raspberrypi [1].
+>  		reg = <0x0 0x40f00000 0x0 0x20000>;
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
 
-From what I could tell the only concern is about the actual encoding of
-this `bus-format` property.
-
-I am personally convinced that a simple enum is the way to go, I think
-that Marek proposal is adding complexity and not flexibility (from my
-understanding Dave is on the same page, just correct me if I
-misunderstood you).
-
-The current proposal is already encoding the exact bit placing as
-described in Documentation/userspace-api/media/v4l/subdev-formats.rst [2],
-this enumeration can be extended to address any future needs
-and I would not invent a new one to define the exact same
-things (and using the same enum was also suggested by Rob).
-
-Marek: you told me that you had some concern about some valid use case
-not covered by this solution, would you mind explaining why that would
-not be covered with an addition on this enumeration?
-
-Any other opinion on this topic? How can we move this forward?
-
-Francesco
-
-[1] https://github.com/raspberrypi/linux/commit/8e43f1898191b43aa7ed6e6ca3a4cd28709af86d
-[2] https://www.kernel.org/doc/html/latest/userspace-api/media/v4l/subdev-formats.html
+Best regards,
+Krzysztof
 
