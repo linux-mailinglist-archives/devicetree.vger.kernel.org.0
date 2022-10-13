@@ -2,75 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 417325FE2B8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 21:32:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A7F35FE2D7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 21:45:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229676AbiJMTcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 15:32:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52844 "EHLO
+        id S229613AbiJMTpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 15:45:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229619AbiJMTcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 15:32:24 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80EAA1793AB;
-        Thu, 13 Oct 2022 12:32:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229516AbiJMTpU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 15:45:20 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CBE89AC9;
+        Thu, 13 Oct 2022 12:45:18 -0700 (PDT)
+Received: from [192.168.1.101] (95.49.31.41.neoplus.adsl.tpnet.pl [95.49.31.41])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 361D0B81CFB;
-        Thu, 13 Oct 2022 19:32:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4C3FC433D6;
-        Thu, 13 Oct 2022 19:32:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665689541;
-        bh=QRHJL54V4S+kCLjW93BfWGU2baP8jx0V5SQp/NcSw0o=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=a0SLipyrNd8Pu5E9veuvvZHo3oXt+0QSxV3MduFng+9AoRMb1GvVuWkj1nqZxW++2
-         FACMSrFaVEdAnBSseCORqlBTfQTGjBMzGX38fEZzsRVylT2lzQ3JBU16WesclEhCfh
-         qjB2f0dg5Uadxrs13N/krLCc9DL+Qt7IZXLII4t3H2leFUoFicIzlK8Ng2K90soquo
-         ubMzwmnyeM48X2GOlXPBWEDiH0Jxuk0c7smPb2BTXFWke1x/3FMRCGsl7RcAsya6Qh
-         aS5aTwAfLMszMhLcJneALp2P3ebtXxoihXm2J8zce8XLNu0nXwixL88yT/TYmdU0j4
-         C9f14XtBFU+QQ==
-Date:   Thu, 13 Oct 2022 14:32:19 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dominic Rath <dominic.rath@ibv-augsburg.de>,
-        krzysztof.kozlowski+dt@linaro.org, tjoseph@cadence.com,
-        bhelgaas@google.com, lpieralisi@kernel.org, nm@ti.com,
-        vigneshr@ti.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Alexander Bahle <bahle@ibv-augsburg.de>,
-        Dominic Rath <rath@ibv-augsburg.de>
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: cdns: Add PHY latency properties
-Message-ID: <20221013193219.GA3282648@bhelgaas>
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id CF73C2012D;
+        Thu, 13 Oct 2022 21:45:13 +0200 (CEST)
+Message-ID: <ef6ab3d9-8efa-63fb-7f7d-09df4fcb1c88@somainline.org>
+Date:   Thu, 13 Oct 2022 21:45:01 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221013191249.GA38183-robh@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH 3/4] ARM: dts: qcom: ipq4018-ap120c-ac: Add SoC compatible
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221013155418.47577-1-krzysztof.kozlowski@linaro.org>
+ <20221013155418.47577-3-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20221013155418.47577-3-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 13, 2022 at 02:12:49PM -0500, Rob Herring wrote:
-> On Thu, Oct 13, 2022 at 08:26:47AM +0200, Dominic Rath wrote:
-> > From: Alexander Bahle <bahle@ibv-augsburg.de>
-> > 
-> > Add "cdns,tx-phy-latency-ps" and "cdns,rx-phy-latency-ps" DT bindings for
-> > setting the PCIe PHY latencies.
-> > The properties expect a list of uint32 PHY latencies in picoseconds for
-> > every supported speed starting at PCIe Gen1, e.g.:
-> > 
-> >   max-link-speed = <2>;
-> >   tx-phy-latency-ps = <100000 200000>; /* Gen1: 100ns, Gen2: 200ns */
-> >   rx-phy-latency-ps = <150000 250000>; /* Gen1: 150ns, Gen2: 250ns */
-> ... 
 
-> If PTM is a standard PCIe thing, then I don't think these should be 
-> Cadence specific. IOW, drop 'cdns'. 
 
-PTM is definitely a standard PCIe thing.  I had the same question.
+On 13.10.2022 17:54, Krzysztof Kozlowski wrote:
+> Add qcom,ipq4018 compatible fallback for the SoC.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+
+Konrad
+>  arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
+> index af9a26fb5d4a..a5a6f3ebb274 100644
+> --- a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
+> +++ b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
+> @@ -6,7 +6,7 @@
+>  
+>  / {
+>  	model = "ALFA Network AP120C-AC";
+> -	compatible = "alfa-network,ap120c-ac";
+> +	compatible = "alfa-network,ap120c-ac", "qcom,ipq4018";
+>  
+>  	keys {
+>  		compatible = "gpio-keys";
