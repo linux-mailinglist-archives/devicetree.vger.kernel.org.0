@@ -2,107 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A82305FD6CA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 11:14:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E0185FD6DA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 11:17:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229984AbiJMJOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 05:14:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43096 "EHLO
+        id S229689AbiJMJRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 05:17:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230003AbiJMJNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 05:13:44 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65339141121
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 02:13:37 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id m16so1724345edc.4
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 02:13:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+dzrAn+aBg/5KVcVy/4aX4joCWNIa7ky5mt/LVd7Cts=;
-        b=EpOkGGCsgHYv53DtFoFfROkk3L70Tad3Fr98hzdLPuGpB67l/RLNzEBfk6W4b2EshY
-         heegHPUgBEw1hcrGaYOATLKXTKvem4g5S6Lb3RMMoJufXUlAxAamcbyAY13lmYodkLeX
-         u6SHw0M8I7LxbQAztnvDt2hOo8zLTOKUeT3zGoM3n/MiiwU1TLm72iCfKo3Btj9qeuSr
-         SBtQffQhJawJuoSnXkJ1hYdSEIdN4zYqlp7AE4TyZ6Uby+P2Wr9cbdnQTBDBexZGQ/AZ
-         Jd7XJ53v38BYyjY0H+QHMPGtwcluNUpf4di0GT/wReLKc0mWX74+PHtfMGqv0efLG7Bo
-         t5yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+dzrAn+aBg/5KVcVy/4aX4joCWNIa7ky5mt/LVd7Cts=;
-        b=0mIlrYrngoYFxLjo1ZwWifyH/mucZa5h8B5k0Fa7+hP3sHk2fHhuBAkk18jyzY6fEP
-         vUUOXCMCxXK3uEsAHA285x3hVV2qund+SITxhBoc7DV+uheffDUVr+fE86NfR0cJmyEC
-         LLavK80nZeYAzirS1VFueA5OlMAcks19xnAQWu+K5FSd4y//6F6mDWHMb1Zloqi/RaBd
-         4/H/VUC12YoP+XAJ9S9aKKHJUmsXI3bLuDF2IqHnLRe1owTqkH/adPk7ct5s8Yhw4EBV
-         t4PxazC3cHSMvsxTOTA7OS9RJvpbHtBcascyk6jC2od/gWZfTc6YsO7+PVpPldfQss/n
-         uJnw==
-X-Gm-Message-State: ACrzQf200mNuO1Mr3GvSV+ewvDfhL9+JUkbWREbVxkVqp+VaPV/Gc//G
-        mUbuC1lp5B5phiL1muP7pIrvBA==
-X-Google-Smtp-Source: AMsMyM5p8hsyMuf8fEG6NDPh7dYuTrJBp5jGeer89w4o0UR99iwkf54abNti1vvH5DL5t0oMqY+4Dw==
-X-Received: by 2002:a05:6402:5510:b0:459:5ea:9bc0 with SMTP id fi16-20020a056402551000b0045905ea9bc0mr30068091edb.152.1665652416151;
-        Thu, 13 Oct 2022 02:13:36 -0700 (PDT)
-Received: from otso.. (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id ti5-20020a170907c20500b0073dd1ac2fc8sm2582725ejc.195.2022.10.13.02.13.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Oct 2022 02:13:35 -0700 (PDT)
-From:   Luca Weiss <luca.weiss@fairphone.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229513AbiJMJRW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 05:17:22 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E925FBC;
+        Thu, 13 Oct 2022 02:17:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1665652637; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=QfKF6P//aPtt3yXkddZGb8gQhNXBSYeBQmboxbZCJlU=;
+        b=Ip0NSVDD1AM8ZgtvW/VD87fTHoRfAC5ZKR4g5vCDTryKzaGimlZJoh+FC5CRuxEyrYuyOV
+        zFio5aFohd39Q+mWiqCJyJxM7qdFhkFObmPHLG9/o7LYmzxzlFG4La4/m47ImlJB8FwZ5u
+        kKRpu9SSwogossEIyH7SeLGOjn8wS2U=
+Date:   Thu, 13 Oct 2022 10:17:04 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 7/8] serial: 8250/ingenic: Add support for the
+ JZ4750/JZ4755 SoCs
+To:     Siarhei Volkau <lis8215@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, kernel test robot <lkp@intel.com>,
+        kbuild-all@lists.01.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: qcom,pdc: Add missing compatibles
-Date:   Thu, 13 Oct 2022 11:12:08 +0200
-Message-Id: <20221013091208.356739-1-luca.weiss@fairphone.com>
-X-Mailer: git-send-email 2.38.0
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jiri Slaby <jirislaby@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        GPIO SUBSYSTEM <linux-gpio@vger.kernel.org>
+Message-Id: <GSPOJR.M4XZ4D03G60F@crapouillou.net>
+In-Reply-To: <bb9f79d4-82a9-4790-b849-d517333ea2d4@app.fastmail.com>
+References: <20221009181338.2896660-8-lis8215@gmail.com>
+        <202210100607.YdxoR0tD-lkp@intel.com>
+        <CAKNVLfaFvge4A8-QUzeq-JManpuYMGvyHXCJi-ew==CWN8-M=A@mail.gmail.com>
+        <bb9f79d4-82a9-4790-b849-d517333ea2d4@app.fastmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the compatibles that are already in use in the upstream Linux
-kernel to resolve dtbs_check warnings.
+Hi,
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml    | 4 ++++
- 1 file changed, 4 insertions(+)
+Le jeu., oct. 13 2022 at 08:46:39 +0200, Arnd Bergmann <arnd@arndb.de>=20
+a =C3=A9crit :
+> On Thu, Oct 13, 2022, at 8:37 AM, Siarhei Volkau wrote:
+>>  =D0=BF=D0=BD, 10 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 01:29, kernel =
+test robot=20
+>> <lkp@intel.com>:
+>>>  config: ia64-allyesconfig
+>>>  config: arm64-randconfig-r035-20221010
+>>=20
+>>>   > 142  #define CGU_REG_CPCCR   ((void *)CKSEG1ADDR(0x10000000))
+>>=20
+>>>  0-DAY CI Kernel Test Service
+>>=20
+>>  I know CKSEG1ADDR is MIPS specific, might be it needed to disable=20
+>> COMPILE_TEST
+>>  on the driver?
+>>  Since early syscon isn't mainlined yet I don't see any other way at=20
+>> the moment.
+>>=20
+>>  Any suggestions on that, folks?
+>=20
+> This looks like some setup that belongs into the bootloader. If you=20
+> are
+> handing over the console from bootloader to kernel, the hardware=20
+> should
+> already be in a working state, with no need to touch it during early
+> boot.
+>=20
+> If you are dealing with broken bootloaders that are not under your=20
+> control,
+> having this code in the architecture specific early boot as a fixup
+> would be better than putting it into the driver.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-index b6f56cf5fbe3..94791e261c42 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-@@ -28,11 +28,15 @@ properties:
-       - enum:
-           - qcom,sc7180-pdc
-           - qcom,sc7280-pdc
-+          - qcom,sc8280xp-pdc
-           - qcom,sdm845-pdc
-+          - qcom,sdx55-pdc
-+          - qcom,sdx65-pdc
-           - qcom,sm6350-pdc
-           - qcom,sm8150-pdc
-           - qcom,sm8250-pdc
-           - qcom,sm8350-pdc
-+          - qcom,sm8450-pdc
-       - const: qcom,pdc
- 
-   reg:
--- 
-2.38.0
+Agreed. I am not fond of having a driver poking into an unrelated=20
+subsystem's memory area.
+
+Just disable the divider in ingenic_fixup_fdt() in=20
+arch/mips/generic/board-ingenic.c.
+
+Cheers,
+-Paul
+
 
