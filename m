@@ -2,157 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 284025FD92D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B20C55FD932
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbiJMM3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 08:29:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41142 "EHLO
+        id S229708AbiJMMaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 08:30:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbiJMM3b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:29:31 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0510611B2E5
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:29:30 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id h24so518458qta.7
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:29:29 -0700 (PDT)
+        with ESMTP id S229696AbiJMMav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:30:51 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E2D2D25B4
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:30:49 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id h10so1147883qvq.7
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:30:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mWjMckfYO6R3pT1gH/T7HL/KjgENyPTv8P7zBRmvj2E=;
-        b=XvDln5twKivFEbGCXI+A5Pm/le3Z6axjz7FnqktjCKTSru73E7KUZtJ7bz7/AGR3T9
-         GoXY5M5rTphPUyLT9MVVaKopNZEgGXP7HGdMWURJ7oBNU4RPTdUcILdpUZIvo4bQkvt8
-         dTBKnFcU9CAv/kMpWOBMi/wauHGyFlcTxPlCYS/Q0HNCSs3NraT5VllMG06lh8WjoyWM
-         JhGAuQY9IE7FqV8RQhJwsfBcmmFhOh1oDkBILgi+SW+R61jamHKA91QPrMUvQmek4542
-         IRA3zuOmu+XrAKPjtV3gv+uTTjbMb1D2GeH973VoqdS7S8+CoLyplGRyxhoDqmvXg27d
-         qi6g==
+        bh=390wRPD9oe0xd/uU6WvHiSqS/MuVjNl5zczVPfqBsBg=;
+        b=yNPj4OaJGCY11Uif7Ct3WjVbag7S3DlIvdhknbtIL6sUVINs6EKBi46FfRYAhsLrdN
+         X1crCWv0aa80GCQdmRyjSdvzQM1U5utSgYP6yIPukzj7myYEfhm6UsBnizr+hJ2ibEPA
+         2mEcEU4miIkLLuHJg5It4JvUIdEXEAT5bV7FoF98N8w1gCXN8pegmEDvKkk/CoUhD4Jm
+         QadoMCni0eNEzRxie4ReRhY8fiD5cRsEW9SDw/UwKj2u+BT1gDEY9HjoC8uVqy9HN85O
+         2pitzE3eElslji7v1gfRy4RhqoccuD4LaWdPi/Z/O3J8s8kzEQUP4YgSaiyK2xmCwlhT
+         tSDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mWjMckfYO6R3pT1gH/T7HL/KjgENyPTv8P7zBRmvj2E=;
-        b=JC42CehIshRbG2i9/M9aGuVPJLOOZYjGpwADKSXGnZLaJm5htUtou2uR8lZrTHk/ss
-         18sND+zmXkvAAMOo86iP85j8n7H70As2CpoRfOFGaxfr5m2zXSG+jWfXHMzKLn2xfNng
-         lmWGyAlC/wmDNW4c1kUzCv2EuxJRXmSX0Q6zMZOYbRFMGN5WjqVD0HhCUETebgyHODvV
-         9Ir3qiMpi2ZWrH/M3nO/ql+OvGkxci2JIU00+rL7gVBvdd8LNndEzvaR4u82NQer05LJ
-         LjQw397mZjNDiGn7iFB047OqSF/UwfGtfAWNNwSTvwg4GUE9s4jZIe/xTu4V7A5QoYi0
-         Z/Rg==
-X-Gm-Message-State: ACrzQf3AzySxunIFDfKjLeEJh77L4NdaUjosX8ymIr525/lE1zAr1RVg
-        1RnG/pSQbqAKRUz1Zhd+2Nh2EI6kNUgEtQ==
-X-Google-Smtp-Source: AMsMyM5sv0Vga4IZ3dJIN7R/wSMuZUBhI82PmiMBNMK7yz2Vh/tmREqvUu0S6OmCnZGsdEy5COcy2w==
-X-Received: by 2002:a05:620a:2891:b0:6bc:5c73:9728 with SMTP id j17-20020a05620a289100b006bc5c739728mr23863484qkp.178.1665664158502;
-        Thu, 13 Oct 2022 05:29:18 -0700 (PDT)
+        bh=390wRPD9oe0xd/uU6WvHiSqS/MuVjNl5zczVPfqBsBg=;
+        b=rLQcsc19cr75zjyM+NCNc7h2BWaaf2/o3CJH0Vlv137nqgIy+r+Q6uKL3i3dzDV21r
+         WGB0dQgLgrVZcQB6byff39Bq5VUXzCR7QlCjIFEzjktb4LD+MVR60ggvsfYSu6XJ2B4C
+         PAEBf1b0XsD3Fo7QgOC2TzQLhabYuO4tPNgfyjvnX/mrSJhXw+6KDRxOx/t0LWjex+q6
+         PPVkxgrupaRPGsJse0z4ddkKzHnKOQx03Nr79aR/tWkkQJZ4/W7QKd+KzzDzGs2RKvJI
+         RKwzYeV5YbMWoC2oUlh3dV2S+58bFoV+NrmzwEriZQkZOkW7U9+ALP4+32HIpzrLYJZ7
+         11AA==
+X-Gm-Message-State: ACrzQf0ZDoY7dpjnip4FNNaj2BlaOnEDq/WZVstEEdkC46bVhl3YqUDo
+        dwVbTU/zHIJdtnpJx9Zb37Gyhw==
+X-Google-Smtp-Source: AMsMyM7i9FnSn4FHPOjamLwitqnVbZj6hoNBEAuS60cFFO20v9rF1UmJBF12yB2i3drGw2XYFsFnlw==
+X-Received: by 2002:a05:6214:1d24:b0:4b1:8acb:b3bc with SMTP id f4-20020a0562141d2400b004b18acbb3bcmr26794446qvd.126.1665664248312;
+        Thu, 13 Oct 2022 05:30:48 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id f7-20020a05620a408700b006bbc3724affsm18599984qko.45.2022.10.13.05.29.17
+        by smtp.gmail.com with ESMTPSA id dt39-20020a05620a47a700b006ec59941acasm13206478qkb.11.2022.10.13.05.30.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 05:29:17 -0700 (PDT)
-Message-ID: <a7e96623-0010-a7ae-fa3d-df1defcd51ca@linaro.org>
-Date:   Thu, 13 Oct 2022 08:27:05 -0400
+        Thu, 13 Oct 2022 05:30:47 -0700 (PDT)
+Message-ID: <84dee7a6-f8f7-75ee-b0a2-5c1516e7c0fd@linaro.org>
+Date:   Thu, 13 Oct 2022 08:28:37 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v1 1/5] soc: hpe: add support for HPE GXP Programmable
- Register Driver
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20221011185525.94210-1-nick.hawkins@hpe.com>
- <20221011185525.94210-2-nick.hawkins@hpe.com>
- <c6ab6116-5d92-132e-48fc-b731fd244d72@linaro.org>
- <DM4PR84MB19276978EB630CF08833E5A488229@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: msm8996: align TLMM pin
+ configuration with DT schema
 Content-Language: en-US
+To:     konrad.dybcio@somainline.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221012151545.39061-1-krzysztof.kozlowski@linaro.org>
+ <20221012151545.39061-2-krzysztof.kozlowski@linaro.org>
+ <99ae66c725776f110272cdc2359241f7@somainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DM4PR84MB19276978EB630CF08833E5A488229@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <99ae66c725776f110272cdc2359241f7@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/2022 16:25, Hawkins, Nick wrote:
-> Greetings Krysztof,
-> 
-> Thanks for the feedback! I have several questions below:
-> 
->>> +
->>> +static ssize_t server_id_show(struct device *dev, struct 
->>> +device_attribute *attr, char *buf) {
->>> +	struct gxp_plreg_drvdata *drvdata = dev_get_drvdata(dev);
->>> +	int value_upper;
->>> +	int value_lower;
->>> +	ssize_t ret;
->>> +	u32 trans_offset;
->>> +	u32 trans_shift;
->>> +
->>> +	/* read upper first */
->>> +	address_translation(drvdata->server_id.upper[BYTE],
->>> +			    &trans_offset,
->>> +			    &trans_shift);
->>> +	regmap_read(drvdata->plreg_map, trans_offset, &value_upper);
->>> +	value_upper = value_upper >> trans_shift;
->>> +	value_upper = value_upper & drvdata->server_id.upper[MASK];
->>> +
->>> +	/* read lower last */
->>> +	address_translation(drvdata->server_id.lower[BYTE],
->>> +			    &trans_offset,
->>> +			    &trans_shift);
->>> +	regmap_read(drvdata->plreg_map, trans_offset, &value_lower);
->>> +	value_lower = value_lower >> trans_shift;
->>> +	value_lower = value_lower & drvdata->server_id.lower[MASK];
->>> +
->>> +	ret = sprintf(buf, "0x%04x", value_upper | value_lower);
->>> +
->>> +	return ret;
->>> +}
->>> +
->>> +static DEVICE_ATTR_RO(server_id);
-> 
->> Missing sysfs documentation.
-> 
-> Can you point me at the proper location / documentation for documenting sysfs? Thanks!
+On 12/10/2022 14:32, konrad.dybcio@somainline.org wrote:
+> On 2022-10-12 17:15, Krzysztof Kozlowski wrote:
+>> DT schema expects TLMM pin configuration nodes to be named with
+>> '-state' suffix and their optional children with '-pins' suffix.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/apq8096-db820c.dts   |  96 ++++------
+>>  arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts  |  68 ++------
+>>  .../dts/qcom/msm8996-sony-xperia-tone.dtsi    |  26 +--
+>>  .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  |  10 +-
+>>  .../boot/dts/qcom/msm8996-xiaomi-gemini.dts   |   8 +-
+>>  .../boot/dts/qcom/msm8996-xiaomi-natrium.dts  |   4 +-
+>>  .../boot/dts/qcom/msm8996-xiaomi-scorpio.dts  |   8 +-
+>>  arch/arm64/boot/dts/qcom/msm8996.dtsi         | 164 +++++++++---------
+>>  8 files changed, 153 insertions(+), 231 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+>> b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+>> index 5cdc7ac1a9c0..a3d1ff1aba8f 100644
+>> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+>> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+>> @@ -422,82 +422,46 @@ &tlmm {
+>>  		"NC", /* GPIO_148 */
+>>  		"NC"; /* GPIO_149 */
+>>
+>> -	sdc2_cd_on: sdc2_cd_on {
+>> -		mux {
+>> -			pins = "gpio38";
+>> -			function = "gpio";
+>> -		};
+>> -
+>> -		config {
+>> -			pins = "gpio38";
+>> -			bias-pull-up;		/* pull up */
+>> -			drive-strength = <16>;	/* 16 MA */
+>> -		};
+>> +	sdc2_cd_on: sdc2-cd-on-state {
+>> +		pins = "gpio38";
+>> +		function = "gpio";
+>> +		bias-pull-up;
+>> +		drive-strength = <16>;
+> How about drive-strength before bias- properties? I think most DTs have 
+> it like that.
 
-Documentation/ABI/README
+Sure, I can move it.
 
 > 
->>> +	for (i = 0; i <= MASK; i++) {
->>> +		if (of_property_read_u32_index(np, "grp5", i,
->>> +					       &drvdata->grp_intr_flags.grp5[i])) {
->>> +			dev_err(&pdev->dev,
->>> +				"grp5intsflags is missing its 'grp5' property index %d\n", i);
->>> +			return -ENODEV;
->>> +		}
->>> +	}
->>> +
->>> +	np = of_get_child_by_name(pdev->dev.of_node, "pwrbtn");
->>> +	if (!np) {
->>> +		dev_err(&pdev->dev, "%pOF is missing its 'pwrbtn' node\n", np);
->>> +		return -ENODEV;
->>> +	}
->>> +
->>> +	for (i = 0; i <= VALUE; i++) {
->>> +		if (of_property_read_u32_index(np, "latch", i, 
->>> +&drvdata->pwrbtn.latch[i])) {
+> Other than that,
 > 
->> Undocumented properties. NAK.
-> 
-> If each child node of hpe,gxp-plreg were documented with their respective properties would this be acceptable?
-
-I would need to see the bindings.
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
 
 Best regards,
