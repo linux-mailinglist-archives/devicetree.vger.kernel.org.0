@@ -2,98 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C9985FD4E9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 08:37:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3C605FD510
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 08:44:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbiJMGhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 02:37:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49458 "EHLO
+        id S229572AbiJMGoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 02:44:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiJMGhv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 02:37:51 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04D411D98B;
-        Wed, 12 Oct 2022 23:37:49 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id 187so592717iov.10;
-        Wed, 12 Oct 2022 23:37:49 -0700 (PDT)
+        with ESMTP id S229502AbiJMGoL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 02:44:11 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C16E13B8EE
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 23:44:09 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id o20-20020a05600c4fd400b003b4a516c479so755051wmq.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 23:44:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eNhamnGFWcGOYQgKBpc4NUk2S/tQUkP2tXcVyRZsw7w=;
-        b=d4aW4wNfEHhNXyr75oI4eP0P0/jj9mS3Yq4Xewq/VAfs/yi+YOj7xR7T9Iifrk8exY
-         qty6B/1u+xVf39efvYVSQ7WElxAW4XbiqGS5W4zhff34t7nKvl4KVxYuiqj05miEa2xK
-         D27giew9e0cP9xobx4bvEhsvPT+Xt4cXVWnLvKGNpm1Hlxxzd7eh+WTtaqabSFpy6+Qo
-         xTJSnEhHPtwptVdrxC1C1DDPqLDaVnb2/H0PmYBOqgUL57wQhMCI4SCoSegDLmoW6Jdg
-         fmW+nBc9qE0HYq0riPMvBowSSW156BKMR+ybHsUDbI0rGSg47Oll+jiikOU3H8me6kq6
-         5qGg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=W+rxczmXg10fKsWz9dlAbQXlHy5Vc2mFKgDnkxn2Kck=;
+        b=SKEeuhM78a0OTPcXM1o78rSfUJGACYxjpcLwEC8WGbfwciUEy3s3NpS7lyg9hOJ3fQ
+         HsQyb6Vf8JF0H5rVbMcUn6Wfo2wtzmOZzx6q29+lVjpi8q7wEq1b7cSPmf2wdhGl2tUa
+         0KZNQ7WZ1qTufbsItfFT9WzFCG03971F/zkp7FFPg4SOvDA718Pq1sjIOHnVzRXVLpzf
+         inpmOJgckbIlEOboV1dAnGW5sx2oyWN/ttysxHI8+GFz7SBW9CEFzu9nCXgIpN5aUXip
+         IjkEbB9T5nJN8IMJwpxcVchHyptScSCjZwDs1teDNhLMY1fqUyx9S1nc+R1xQExeDvdi
+         ANBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eNhamnGFWcGOYQgKBpc4NUk2S/tQUkP2tXcVyRZsw7w=;
-        b=l/7j3OSDWbzKyG42id30dhhGxfM/tdn8fcKw/TKEI1W2dYXeUi9BrChoK3LjUtFAWA
-         dbnI45tZf0vyaEgVzNq8McWZBSi0mW9bzTT28iW+qt+fT1bVe7b7+sJ66jnuvyVrNRS2
-         HvqwqOpC7tBD5KHcujeBkohg4AD+Te8AOgcsv32T+/tKg1q2wVItuc18mlTJjfM+LPk0
-         aM9I+XWG7ZW9GEd3gCKAgsJevLSxXe7XV/jWpEbidcnYjaQh+hIV8KYyBv1w6pOZKi8Y
-         gQKKuX4YXmn8cxdPrqhoOj1qJPzInlywmGPV63B8oSgHaBvQSm24fsC88btKR4rs1vsX
-         fkZw==
-X-Gm-Message-State: ACrzQf3dL//V6AopN72LUbIH+vjd2Mgn4UGFe5MkbJr08bIENwbevN42
-        sVYZozauoiJiT8SFafNfNfE/pOwKPH6PS+Os83g=
-X-Google-Smtp-Source: AMsMyM4ELJz9R9H1jqMfQnPYwPEgtKghQ8aj+Oa+wwS+iJG1Es590FLazGuHIs7ncAaAH0z4hQQdeIryUql3pX9gNE0=
-X-Received: by 2002:a05:6638:2494:b0:363:db4f:c870 with SMTP id
- x20-20020a056638249400b00363db4fc870mr5703669jat.65.1665643069023; Wed, 12
- Oct 2022 23:37:49 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W+rxczmXg10fKsWz9dlAbQXlHy5Vc2mFKgDnkxn2Kck=;
+        b=nRfLhdffM/cZhJdQoGfmuvEVJS4D4BpwB6q3mT/yemBT11EIH2ditntjLxVoZFCZep
+         pFC2BABdhtNPLCQoxW+CcNrCoQI7e7Y6rGT5F388dy7j15lLr/sC8bqWO57WYF69Mmk+
+         8GmYurb3yA3LQcJeTuIuy4zoMSMyWES8PScswAPzjBF1SKlPdlHycgpi5MFDIU4eYZeR
+         ioolKo6b7Fe9YHFVvAfDEAHV4QhdtfL5+ltuDIjWrLFhr2PuAA+fCIvwmOfkKr885mF3
+         AmgQ5GTpvyU5aGJ1Tk33YSJyFmsW9QvHEr+Sr5RPioNHZY7l840mTP+3LZGk7AgCfsXe
+         J1fQ==
+X-Gm-Message-State: ACrzQf3LtobCMVSjV+19ghqIySg50OhykZA2KBMke7V8ASLTeUayitT5
+        a2RvVGR7S4LDqix3d6/x62vIfQ==
+X-Google-Smtp-Source: AMsMyM4kKAuve7NBLdS5HA+CyqgC97iUdTL6TelQNzkXQJQZLZ0MDtf/258wuob2uZ0auRgfBqHY2g==
+X-Received: by 2002:a7b:ca4f:0:b0:3c6:ce01:bc4a with SMTP id m15-20020a7bca4f000000b003c6ce01bc4amr5400917wml.42.1665643447879;
+        Wed, 12 Oct 2022 23:44:07 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:cb49:9049:c0a5:d695? ([2a01:e0a:982:cbb0:cb49:9049:c0a5:d695])
+        by smtp.gmail.com with ESMTPSA id l6-20020a05600c1d0600b003a5f3f5883dsm3856029wms.17.2022.10.12.23.44.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Oct 2022 23:44:06 -0700 (PDT)
+Message-ID: <48069056-62f0-f7c1-c8d1-ae072058b5d1@linaro.org>
+Date:   Thu, 13 Oct 2022 08:44:05 +0200
 MIME-Version: 1.0
-References: <20221009181338.2896660-8-lis8215@gmail.com> <202210100607.YdxoR0tD-lkp@intel.com>
-In-Reply-To: <202210100607.YdxoR0tD-lkp@intel.com>
-From:   Siarhei Volkau <lis8215@gmail.com>
-Date:   Thu, 13 Oct 2022 09:37:37 +0300
-Message-ID: <CAKNVLfaFvge4A8-QUzeq-JManpuYMGvyHXCJi-ew==CWN8-M=A@mail.gmail.com>
-Subject: Re: [PATCH 7/8] serial: 8250/ingenic: Add support for the
- JZ4750/JZ4755 SoCs
-To:     kernel test robot <lkp@intel.com>
-Cc:     kbuild-all@lists.01.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v4 1/2] remoteproc: qcom: pas: Add MSM8953 ADSP PIL
+ support
+Content-Language: en-US
+To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        dmitry.baryshkov@linaro.org, Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+References: <20221013042749.104668-1-sireeshkodali1@gmail.com>
+ <20221013042749.104668-2-sireeshkodali1@gmail.com>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+Reply-To: neil.armstrong@linaro.org
+In-Reply-To: <20221013042749.104668-2-sireeshkodali1@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=BF=D0=BD, 10 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 01:29, kernel test=
- robot <lkp@intel.com>:
-> config: ia64-allyesconfig
-> config: arm64-randconfig-r035-20221010
+On 13/10/2022 06:27, Sireesh Kodali wrote:
+> Add support for the Audio DSP PIL found on the Qualcomm MSM8953
+> platform. The same configuration is used on all SoCs based on the
+> MSM8953 platform (SDM450, SDA450, SDM625, SDM632, APQ8053).
+> 
+> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+> ---
+>   drivers/remoteproc/qcom_q6v5_pas.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> index 6afd0941e552..eff8d34d7f4b 100644
+> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> @@ -948,6 +948,7 @@ static const struct adsp_data sm8450_mpss_resource = {
+>   
+>   static const struct of_device_id adsp_of_match[] = {
+>   	{ .compatible = "qcom,msm8226-adsp-pil", .data = &adsp_resource_init},
+> +	{ .compatible = "qcom,msm8953-adsp-pil", .data = &msm8996_adsp_resource},
+>   	{ .compatible = "qcom,msm8974-adsp-pil", .data = &adsp_resource_init},
+>   	{ .compatible = "qcom,msm8996-adsp-pil", .data = &msm8996_adsp_resource},
+>   	{ .compatible = "qcom,msm8996-slpi-pil", .data = &slpi_resource_init},
 
->  > 142  #define CGU_REG_CPCCR   ((void *)CKSEG1ADDR(0x10000000))
-
-> 0-DAY CI Kernel Test Service
-
-I know CKSEG1ADDR is MIPS specific, might be it needed to disable COMPILE_T=
-EST
-on the driver?
-Since early syscon isn't mainlined yet I don't see any other way at the mom=
-ent.
-
-Any suggestions on that, folks?
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
