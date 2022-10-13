@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CF975FE3C8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 23:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2DB55FE3CB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 23:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbiJMVJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 17:09:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38776 "EHLO
+        id S229851AbiJMVKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 17:10:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbiJMVJm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 17:09:42 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD14521BB
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:09:36 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id y10so2085487qvo.11
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:09:36 -0700 (PDT)
+        with ESMTP id S229992AbiJMVKA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 17:10:00 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D26345069
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:09:53 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id w3so2549419qtv.9
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:09:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZtwkVcmFeREjbHg2IbPGzv0D1AjraFsKLqfRNwOXEg=;
-        b=lbcDaLLV+xm5LcT+W0wx6GXTIgptRh6dkXO+NcZm9QvxjMqPiP39TwEtUDdyKMTNdg
-         hVAbQ/50igQ+ib9K7XIQAiQ1V503ZzsMkTxyrr3qQYfm5sw21Ld+nCv9tfXEaWcCZJ92
-         MWzvRa6wQZKGmaPLn3kyDAbLNQ5IuAT7peEVk2HnewgxUDQWa7kBMzM+THX/NK5rY0yv
-         fiXU2+D0uT2cJgHJicR+sXJb87ygy9/2hYg3hzKofMzDxSlFa3Xlpu2GmIBA/B0vWLfz
-         U8Njr+g+fxPdsCCVLJCZoHXULf7OeWGXQ8FOCN2M1Ij4lJIQphydAT8xLdZazqH0OwqA
-         NT4w==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t57ikZlf062A8UotjpQHzVGOSC5K6YQZNDwftfOX4Ns=;
+        b=V2N4vT4k/4T84t+ssvdRNohKV/yac+qYpleEUNwuUUZmk3/bvgKFQm+RowdDO0/V+P
+         TONFau9hLTX9v41YGo/19yVLDd7RC6S+mhr/bRI3hEpfdvj+AWq9dDO6/ImXHCFQs3c/
+         PWUSXiXRypKqkNYjkuAKRDxeOANQEyOW4zSFCD97o9K2L5K2jVynlzNIDjUHC9NFoFZr
+         eBtL13FKCl3/gb3bx0Aw1vXbOQQx1EEGpFJSAyNggyH2YdQ28HkTLrL8N8E/OCCzNM3q
+         xZLsWP+/65YSQYnyhF8eWRaWvFklbP/UmwGXMJ8Jkxjo6rm2qok/vEYxtYH+8NX9RhT9
+         l5+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/ZtwkVcmFeREjbHg2IbPGzv0D1AjraFsKLqfRNwOXEg=;
-        b=0DgUYAVMQdYhiKbFBKcwPyYFb862aUtqnWTw+YgO7sreqkePCgJxZaRc9afHOHTeRj
-         gFSqo59cLDz+UUWI+2XFK6DkHOKfZH5cEoc5wZRxBj+GcqC2/Xp8aciN/j7cLbcY6ktL
-         8A+AJqMNSR0QlvBY6XsqlAXv5JOv9VJnIrJm4/3GK5+85w5L8IDLxCNA9pb3tDAM0cDZ
-         F75pj/QasfvAaELLO8KDVp+QiOq9L8DnCzo1K9IOJwAqVREF4cTbYKPOHiHPSKQRHMvm
-         lpx/wXZXhYeyZC8Ma75v7+WXlLRi4ux910Z3JlaDc9C9nKkB/MwtY6ykomjVHzDz1bq8
-         08/Q==
-X-Gm-Message-State: ACrzQf21Xeai754c8qFsMughbo1enZjZ5SvO7FVoL0HVxTvN+JJ3BRG+
-        z8tTrLdDa5djfZF3OL0QAuLlbA==
-X-Google-Smtp-Source: AMsMyM6RCSD1qWQGnAsB4pqDhnvQApT/yPvDVpgXn8cnvEzh/BiDwCvG7xnQYonqqGfLSlZojmgEGg==
-X-Received: by 2002:a05:6214:d06:b0:4b4:6bdb:27a with SMTP id 6-20020a0562140d0600b004b46bdb027amr1492425qvh.53.1665695375487;
-        Thu, 13 Oct 2022 14:09:35 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t57ikZlf062A8UotjpQHzVGOSC5K6YQZNDwftfOX4Ns=;
+        b=Xr/5ClPHx0ctlxR2uBdbb0LeL/S24Q5q8jxh5y+YiwTfrlNY7+KRqwfvSeJxugeyft
+         33oDwvr5HEKV3gxn70MmpxjxBU/xtqSHxv0DVx2K5hUhQtbVz4KwkXGYWEn3f+FhJZCp
+         NpqAPCxYk/Ia0CkGOZCWC5aYj9YAQXVW09h5RCigQcKYNbRilQmhHZicvjriuGBmg+Uc
+         K79P9llOV0KBR1H7yzrnsKpK9JM4j0y87A1NEun9F/wIR0UQ+00roxnCQy5VqcWJw23t
+         RDEIiu+g34U5SBU+aLRcaiwBPFSbe9XdBMaBSUNE97qnwVChKav2xwaL8f+6XoLqn3hD
+         uZ/A==
+X-Gm-Message-State: ACrzQf3dxzX8CeL38Q35wlgTRUV2LpLzFUPX6FxlMLq1Jq57zXhcxKEs
+        Kgm4HdYLKEQDJtHIHI8mT5c+YQ==
+X-Google-Smtp-Source: AMsMyM4msHvjZYcUlK2gQSnvOaKWCvuvF0VJt/rvy1VqturLiRUdYcGpB8NV4NRc69K18+9a5d1vNg==
+X-Received: by 2002:ac8:5715:0:b0:35b:b01e:e4c0 with SMTP id 21-20020ac85715000000b0035bb01ee4c0mr1671318qtw.556.1665695392707;
+        Thu, 13 Oct 2022 14:09:52 -0700 (PDT)
 Received: from krzk-bin.home (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id s1-20020a05620a29c100b006eeb3165554sm753071qkp.19.2022.10.13.14.08.24
+        by smtp.gmail.com with ESMTPSA id s1-20020a05620a29c100b006eeb3165554sm753071qkp.19.2022.10.13.14.09.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Oct 2022 14:08:54 -0700 (PDT)
+        Thu, 13 Oct 2022 14:09:48 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,22 +59,26 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 1/4] arm64: dts: qcom: msm8998: add gpio-ranges to TLMM
-Date:   Thu, 13 Oct 2022 17:06:09 -0400
-Message-Id: <20221013210612.95994-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 2/4] arm64: dts: qcom: msm8998-oneplus-cheeseburger: fix backlight pin function
+Date:   Thu, 13 Oct 2022 17:06:10 -0400
+Message-Id: <20221013210612.95994-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221013210612.95994-1-krzysztof.kozlowski@linaro.org>
+References: <20221013210612.95994-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm pinctrl bindings and drivers expect gpio-ranges property.
+There is no "normal" function, so use "gpio" for backlight button pin
+configuration.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
@@ -82,21 +87,22 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Changes since v2:
 1. None
 ---
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index f05f16ac5cc1..2c4acf227253 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -1056,6 +1056,7 @@ tlmm: pinctrl@3400000 {
- 			compatible = "qcom,msm8998-pinctrl";
- 			reg = <0x03400000 0xc00000>;
- 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-ranges = <&tlmm 0 0 150>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
+diff --git a/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts b/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts
+index ef2a88a64d32..122f6c25220e 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts
++++ b/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts
+@@ -35,7 +35,7 @@ &pmi8998_gpio {
+ 	button_backlight_default: button-backlight-state {
+ 		pinconf {
+ 			pins = "gpio5";
+-			function = "normal";
++			function = "gpio";
+ 			bias-pull-down;
+ 			qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
+ 		};
 -- 
 2.34.1
 
