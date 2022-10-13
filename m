@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B0425FE139
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 20:29:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 611D65FE1E5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 20:46:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231972AbiJMS3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 14:29:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58338 "EHLO
+        id S231811AbiJMSqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 14:46:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231976AbiJMS3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 14:29:30 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B303360CBE
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 11:25:04 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id 129so2257677pgc.5
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 11:25:04 -0700 (PDT)
+        with ESMTP id S231797AbiJMSqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 14:46:17 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A376B191D49;
+        Thu, 13 Oct 2022 11:43:09 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id n12so4168212wrp.10;
+        Thu, 13 Oct 2022 11:43:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+BTHaUgYO9jMl/xNji3tXYK1xSdk1QlEpno0FrqGDuU=;
-        b=wDSSH+4FY0VpIbgiubC+64Ugh9mhNbjE9Cg9Bp/N8tGJTTJ6V8mvcqXc3CyPlmRCCj
-         LFDFS2a9w47KoDRWWSQYU6FJIRAy/Z9S6lVfTOhDQ9eEb8olV/1vYHXR5s01g6+eCLgW
-         HISdz4uUlbGkaZgYJqVyFzxGkgM/P9WtBoAbdlkUApj6MkvXK6Wb3UTytIReooPKnCr+
-         DLI5raWn+zRH49nxXIvUIm944qaMgAnJUr5mmylp+KraSaKHHL2EZGzZvN4Pdtuvj4wz
-         fNXv0wL0IkjcsVdal513BLNcaDO5fKovL3lp3PKaNUAV9fAgC/Wl2+sDjAdVAGQi/hHC
-         v/bQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B5L/tN8Nk5G1hFHXmpnHlaxEzIusr004HXV2igjx6Dg=;
+        b=WaMkAHVPl8AWTlsWCOn5940xJ4n2+DGuI4BNxlNTPRVWDmpiouz4lLGIdgOc56G/S6
+         iSHRYRPLpu31hPIR2oj21xQEuSdwrLDTdg/IugpMzX8dl4YOSahc+Yqf4kLYlruz8JzY
+         64PxNCx8ufShrGobabHugKDumGeDPrBw9+AWABQqzAidTIT/coJDU4Tn5zSPLWr8sdEf
+         oNp8J+itnMQD5L8G24GuDwqs4kj/GWhSmrVNWx4UmvfjtfwYAlO3E248VRJATnUSBFyS
+         20aXm6B8tZUCaWd3U1V2l5NDledETwN6ROnHCmJiV5fH9PIprBjM0gH3bh3kAWQdj8xr
+         54IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+BTHaUgYO9jMl/xNji3tXYK1xSdk1QlEpno0FrqGDuU=;
-        b=05PZP8/xgXe7tq1qbxSt2GERTjJlEYHbaz4eRO9H5lD5VZz7T9f1fQqLtvinMvC+wX
-         wI9JjAYPkCt0fy/hxZRY/6eWh9PFf8m4irLswNUV3w/QhO81UhbIorVpVy4Xs/HfptpJ
-         fGULf9fZT7bpsqxdoHMpPo9AYF+B6EpavGue8CKgT22J+qoBQtSYzBTiDA2VbtJSzsYw
-         DZ4EZo5cWxYbOja75MvL8bbeDG1X4vNEmx8su88HHfBMCWL0tigI9mwRF0obmjD9/t4a
-         8qtoz+hNpRivC/CW5PS+RZKgo6iViPS3BVwg/126Veq9/MoNvCACDfDOCRT0+SqNd1ih
-         uR0Q==
-X-Gm-Message-State: ACrzQf2PXlNt9Gxamryc/9sxndYGO3Sh/FtW5f/THJk45vbhh2GXHoSv
-        LISHdH0ML1lMjpIJJGRFhFvf0Hnf7ZCfxpsSvBzvyA/jyKji9T0H
-X-Google-Smtp-Source: AMsMyM6vwqMcF79SgQmU96lUIhoknsg5lP1hG79RoUNhba0APdmzSzyBg6VnUlzHAK1CSgzO0HTJ4WoKCZ/dw6IcAmw=
-X-Received: by 2002:a63:f512:0:b0:460:35b5:14ed with SMTP id
- w18-20020a63f512000000b0046035b514edmr952445pgh.389.1665685415620; Thu, 13
- Oct 2022 11:23:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220708085632.1918323-1-peng.fan@oss.nxp.com>
- <CAJ+vNU3uYtDGMd6fPi7skWKL8UNXntfAEODARF0NVz9k7DCT7w@mail.gmail.com>
- <ec599991-44da-7b83-9374-d0043b32f053@denx.de> <CAJ+vNU2g+e8_PBq0SJYOXsB6PKpMb3dmzDRA5Gyj=NJS3Ckc1g@mail.gmail.com>
-In-Reply-To: <CAJ+vNU2g+e8_PBq0SJYOXsB6PKpMb3dmzDRA5Gyj=NJS3Ckc1g@mail.gmail.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Thu, 13 Oct 2022 11:23:22 -0700
-Message-ID: <CAJ+vNU0mPt27PgheodNLcOk97OdD6TK+1us58jc=4DMHndQpvQ@mail.gmail.com>
-Subject: Re: [PATCH V4 0/7] imx: blk-ctrl: Add interconnect for i.MX8MP
-To:     Marek Vasut <marex@denx.de>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, djakov@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        abelvesa@kernel.org, abailon@baylibre.com, l.stach@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, paul.elder@ideasonboard.com,
-        Markus.Niebel@ew.tq-group.com, aford173@gmail.com,
-        kernel@pengutronix.de, linux-pm@vger.kernel.org,
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B5L/tN8Nk5G1hFHXmpnHlaxEzIusr004HXV2igjx6Dg=;
+        b=j6vz7WrqkhSvOisYXQ0MpTH7MYMrEAPwpjfdK3J7dK9vF09cbeGuIXpNA1ANqNaaMn
+         BX6WBxz7qvtqwNMP1NmVZpkKO6shPOE7ZI51PZnuZeOUgHLlrdjYh14Q3QeTDklQNcKc
+         6eKdHhGwJwDoa5x36MY4ttCxFRcrs5oEAx9gdv2YdycN0ssELlvDDLdaow6QBYoQ96A/
+         rviRLxkt8yBldofAjXLEnCguZjcEx6sOpgdEApvLh7jWkmsfEvpgitvXeOQ2J8uaxA20
+         D8bMffcsoVuWzZFYi/vTYVnFVSRGJAUzTBQ22sxta8cSy9/RTdzVwQHrEX2P4ZtNrbjT
+         /WLg==
+X-Gm-Message-State: ACrzQf3LvoP+o7B4IuTybBoGa9K8yu7+okLZaCyCW9xuY/nWylDgmGfZ
+        eygLMPr7DRWKWgAAboBtqtgB57EoAwXMFAR5
+X-Google-Smtp-Source: AMsMyM5D9VcyYdymrteUFP/uy7fZdMK47gw4RIDknOofM1/3bcKBsARkwBkRONaV/eI3T52TMYs+Xg==
+X-Received: by 2002:a17:907:75ed:b0:78d:97ed:2894 with SMTP id jz13-20020a17090775ed00b0078d97ed2894mr732203ejc.739.1665685520104;
+        Thu, 13 Oct 2022 11:25:20 -0700 (PDT)
+Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
+        by smtp.gmail.com with ESMTPSA id i24-20020a056402055800b004588ef795easm283249edx.34.2022.10.13.11.25.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Oct 2022 11:25:19 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Icenowy Zheng <uwu@icenowy.me>
+Cc:     soc@kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
+        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org
+Subject: Re: Re: [PATCH v2 04/10] phy: sun4i-usb: add support for the USB PHY on F1C100s SoC
+Date:   Thu, 13 Oct 2022 20:25:18 +0200
+Message-ID: <3442772.V25eIC5XRa@kista>
+In-Reply-To: <439b685e3aada19021d94669f6f855f1fc81d08e.camel@icenowy.me>
+References: <20221012055602.1544944-1-uwu@icenowy.me> <4218006.ejJDZkT8p0@kista> <439b685e3aada19021d94669f6f855f1fc81d08e.camel@icenowy.me>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,130 +79,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 12, 2022 at 11:46 AM Tim Harvey <tharvey@gateworks.com> wrote:
->
-> On Tue, Oct 11, 2022 at 4:13 PM Marek Vasut <marex@denx.de> wrote:
-> >
-> > On 10/11/22 22:10, Tim Harvey wrote:
-> > > On Fri, Jul 8, 2022 at 1:57 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
-> > >>
-> > >> From: Peng Fan <peng.fan@nxp.com>
-> > >>
-> > >> V4:
-> > >>   Because the header is not included when adding NoC node, the fsl,imx8mp.h
-> > >>   needs be included in this patchset. So include it in patch 6
-> > >>
-> > >> V3:
-> > >>   Move adding NoC node patch to i.MX8MP ICC driver patchset
-> > >>   Per Lucas's comments, warn once when icc bulk get not return probe defer and continue.
-> > >>
-> > >> V2:
-> > >>   Use a low bandwidth value instead INT_MAX
-> > >>   Minor fix to move fsl,imx8mp.h out to dts patch, not driver patch
-> > >>   Add A-b tag from DT maintainer
-> > >>
-> > >> i.MX8MP NoC settings is invalid after related power domain up. So
-> > >> need to set valid values after power domain up.
-> > >>
-> > >> This patchset is to bind interconnect for each entry in blk ctrl.
-> > >>
-> > >> This patchset is not include DVFS DDRC feature.
-> > >>
-> > >> Peng Fan (7):
-> > >>    dt-bindings: soc: imx: add interconnect property for i.MX8MP media blk
-> > >>      ctrl
-> > >>    dt-bindings: soc: imx: add interconnect property for i.MX8MP hdmi blk
-> > >>      ctrl
-> > >>    dt-bindings: soc: imx: add interconnect property for i.MX8MP hsio blk
-> > >>      ctrl
-> > >>    soc: imx: add icc paths for i.MX8MP media blk ctrl
-> > >>    soc: imx: add icc paths for i.MX8MP hsio/hdmi blk ctrl
-> > >>    arm64: dts: imx8mp: add interconnects for media blk ctrl
-> > >>    arm64: dts: imx8mp: add interconnect for hsio blk ctrl
-> > >>
-> > >>   .../soc/imx/fsl,imx8mp-hdmi-blk-ctrl.yaml     |  9 +++++
-> > >>   .../soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml     | 10 +++++
-> > >>   .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 14 +++++++
-> > >>   arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 18 +++++++++
-> > >>   drivers/soc/imx/imx8m-blk-ctrl.c              | 39 +++++++++++++++++++
-> > >>   drivers/soc/imx/imx8mp-blk-ctrl.c             | 35 +++++++++++++++++
-> > >>   6 files changed, 125 insertions(+)
-> > >>
-> > >> --
-> > >> 2.25.1
-> > >>
-> > >
-> > > Hi Peng,
-> > >
-> > > I built origin/master from commit 041bc24d867a today for an imx8mp
-> > > board and am running into errors that appear to be introduced by this
-> > > series:
-> > > [   15.177372] platform 381f0040.usb-phy: deferred probe pending
-> > > [   15.183155] platform 382f0040.usb-phy: deferred probe pending
-> > > [   15.188928] platform 33800000.pcie: deferred probe pending
-> > > [   15.194439] platform 32ec0000.blk-ctrl: deferred probe pending
-> > > [   15.200287] platform 38330000.blk-ctrl: deferred probe pending
-> > > [   15.206129] platform 32f10000.blk-ctrl: deferred probe pending
-> > > [   15.211974] platform 32f10100.usb: deferred probe pending
-> > > [   15.217382] platform 32f10108.usb: deferred probe pending
-> > > [   15.222791] platform cpufreq-dt: deferred probe pending
-> > > # cat /sys/kernel/debug/devices_deferred
-> > > 381f0040.usb-phy        platform: supplier 32f10000.blk-ctrl not ready
-> > > 382f0040.usb-phy        platform: supplier 32f10000.blk-ctrl not ready
-> > > 33800000.pcie   platform: supplier 32f10000.blk-ctrl not ready
-> > > 32ec0000.blk-ctrl       imx8m-blk-ctrl: failed to get noc entries
-> > > 38330000.blk-ctrl       imx8m-blk-ctrl: failed to get noc entries
-> > > 32f10000.blk-ctrl       imx8mp-blk-ctrl: failed to get noc entries
-> > > 32f10100.usb    platform: supplier 32f10000.blk-ctrl not ready
-> > > 32f10108.usb    platform: supplier 32f10000.blk-ctrl not ready
-> > > cpufreq-dt
-> > >
-> > > Is there a driver I'm perhaps missing that is needed now or are there
-> > > some patches that come from a different unmerged tree needed?
-> >
-> > Do you have these enabled ?
-> >
-> > CONFIG_INTERCONNECT_IMX8MM=y
-> > CONFIG_INTERCONNECT_IMX8MN=y
-> > CONFIG_INTERCONNECT_IMX8MQ=y
-> > CONFIG_INTERCONNECT_IMX8MP=y
->
-> Marek,
->
-> Yes, I have those as well as CONFIG_ARCH_NXP which appears new for 6.1 enabled.
->
-> Best Regards,
->
-> Tim
+Dne =C4=8Detrtek, 13. oktober 2022 ob 10:49:51 CEST je Icenowy Zheng napisa=
+l(a):
+> =E5=9C=A8 2022-10-12=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 23:21 +0200=EF=
+=BC=8CJernej =C5=A0krabec=E5=86=99=E9=81=93=EF=BC=9A
+>=20
+> > Hi Icenowy,
+> >=20
+> > Dne sreda, 12. oktober 2022 ob 07:55:56 CEST je Icenowy Zheng
+> >=20
+> > napisal(a):
+> > > The F1C100s SoC has one USB OTG port connected to a MUSB
+> > > controller.
+> > >=20
+> > > Add support for its USB PHY.
+> > >=20
+> > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > ---
+> > > No changes since v1.
+> > >=20
+> > >  drivers/phy/allwinner/phy-sun4i-usb.c | 11 +++++++++++
+> > >  1 file changed, 11 insertions(+)
+> > >=20
+> > > diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c
+> > > b/drivers/phy/allwinner/phy-sun4i-usb.c index
+> > > 3a3831f6059a..2f94cb77637b
+> > > 100644
+> > > --- a/drivers/phy/allwinner/phy-sun4i-usb.c
+> > > +++ b/drivers/phy/allwinner/phy-sun4i-usb.c
+> > > @@ -109,6 +109,7 @@ enum sun4i_usb_phy_type {
+> > >         sun8i_v3s_phy,
+> > >         sun50i_a64_phy,
+> > >         sun50i_h6_phy,
+> > > +       suniv_f1c100s_phy,
+> > >  };
+> > >=20
+> > >  struct sun4i_usb_phy_cfg {
+> > > @@ -859,6 +860,14 @@ static int sun4i_usb_phy_probe(struct
+> > > platform_device
+> > > *pdev) return 0;
+> > >  }
+> > >=20
+> > > +static const struct sun4i_usb_phy_cfg suniv_f1c100s_cfg =3D {
+> > > +       .num_phys =3D 1,
+> > > +       .type =3D suniv_f1c100s_phy,
+> >=20
+> > I think you should just use sun4i_a10_phy. It has no special
+> > handling. I don't
+> > see a point adding new phy types if there is no special cases for it.
+>=20
+> Sounds reasonable, although I think we should finally drop .type and
+> use only describing items.
 
-I see this issue on origin/master 1440f5760228 using
-arch/arm64/configs/defconfig.
+That would be even better. Will you do it?
 
-It seems to me that the imx8m*_blk_ctrl_probe will all defer now until
-perhaps all the drivers using interconnects can probe, such as
-g1/lcdif etc?
+>=20
+> > Best regards,
+> > Jernej
+> >=20
+> > > +       .disc_thresh =3D 3,
+> > > +       .phyctl_offset =3D REG_PHYCTL_A10,
+> > > +       .dedicated_clocks =3D true,
+> > > +};
+> > > +
+> > >  static const struct sun4i_usb_phy_cfg sun4i_a10_cfg =3D {
+> > >         .num_phys =3D 3,
+> > >         .type =3D sun4i_a10_phy,
+> > > @@ -988,6 +997,8 @@ static const struct of_device_id
+> > > sun4i_usb_phy_of_match[] =3D { { .compatible =3D
+> > > "allwinner,sun50i-a64-usb-phy",
+> > >           .data =3D &sun50i_a64_cfg},
+> > >         { .compatible =3D "allwinner,sun50i-h6-usb-phy", .data =3D
+> >=20
+> > &sun50i_h6_cfg },
+> >=20
+> > > +       { .compatible =3D "allwinner,suniv-f1c100s-usb-phy",
+> > > +         .data =3D &suniv_f1c100s_cfg },
+> > >         { },
+> > >  };
+> > >  MODULE_DEVICE_TABLE(of, sun4i_usb_phy_of_match);
+> > > --
+> > > 2.37.1
 
-Some added debugging shows me:
-[   14.951371] of_icc_bulk_get path lcdif-rd err=-517
-[   14.956205] devm_of_icc_bulk_get ret=-517
-[   14.960562] imx8m_blk_ctrl_probe failed -517
-[   14.967191] of_icc_bulk_get path g1 err=-517
-[   14.971487] devm_of_icc_bulk_get ret=-517
-[   14.975614] imx8m_blk_ctrl_probe failed -517
-[   14.982200] of_icc_bulk_get path usb1 err=-517
-[   14.986680] devm_of_icc_bulk_get ret=-517
-[   14.990709] imx8mp_blk_ctrl_probe 0:usb1
-[   14.994641] imx8mp_blk_ctrl_probe 1:usb2
-[   15.002086] platform 381f0040.usb-phy: deferred probe pending
-[   15.007875] platform 382f0040.usb-phy: deferred probe pending
-[   15.013636] platform 32f00000.pcie-phy: deferred probe pending
-[   15.019480] platform 33800000.pcie: deferred probe pending
-[   15.024975] platform 32ec0000.blk-ctrl: deferred probe pending
-[   15.030819] platform 38330000.blk-ctrl: deferred probe pending
-[   15.036662] platform 32f10000.blk-ctrl: deferred probe pending
-[   15.042503] platform 32f10100.usb: deferred probe pending
-[   15.047912] platform 32f10108.usb: deferred probe pending
 
-Best Regards,
-
-Tim
