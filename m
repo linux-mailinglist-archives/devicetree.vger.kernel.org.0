@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FD565FDB2B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 15:41:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A556A5FDB3A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 15:42:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229902AbiJMNlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 09:41:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36166 "EHLO
+        id S229954AbiJMNmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 09:42:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229845AbiJMNlh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 09:41:37 -0400
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB126B143
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 06:41:34 -0700 (PDT)
-Received: by mail-qt1-x82f.google.com with SMTP id a24so1044393qto.10
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 06:41:34 -0700 (PDT)
+        with ESMTP id S229926AbiJMNmg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 09:42:36 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11DFC1142C2
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 06:42:29 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id z8so1059222qtv.5
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 06:42:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gOC055jHmqG+XdwtkHstI3mT0N/lTkxOBB78rFX7Q88=;
-        b=ICZ09Euq0qqnRRCeix0hL4FG5rjoLV3lwNeiTZ6CSZEcYsHdokGJGGrqtLpmwRV8os
-         VTYdb7KtyyCjLNTQUdU1hPcWYB3GFrzQw6tNojcilnzhZO7mL5HbrFwEgSCHmb7KDJm8
-         nODHcprT/wxjJedQQj+sYrYXTyqDp6B2MmJKyafcwMy4MVNIBDtYidZEGUkodp+Ac3ei
-         GeeffUqqD3aQAX3EKhY/Y9JLGF2wVYfOVcsdgV+7LsFjnJ/zkwk0BbBvQeytNTlaGfKx
-         xDRq5W+5iJo8mZhM+Lg8/JHGOda5k89pxpBOrhFkVjPA2YexhgW6huJCKWtp+COAy6kq
-         YQcg==
+        bh=XXjjiElFGFaUrCJj+dRuEG0KTD7h125bNssmscTrZRg=;
+        b=xVKPQcWL8F/a6ARO8rNoXrl1cvunKwp4q/r04mHDbbnQtr9Soc4XX8jefFbzZURsSD
+         IEGy7hL5u+kvhaEUR56cDLuvicOjhqDRSL1dhx5t0vlUSoNdri3Ftoo39kPVfyDsWXU3
+         s8lsFMEapI2xNlFiuuxHq1d5WsfG+T56sz0St8kC/24Ejky+sgvVXLAVaesa6I/jzCR0
+         P76ungnM4uVcXNQrO7bJhWHUVMiYtlNk7wpRSI3ScuNT7vw4ZVRRjPm7HhHJbuNbUp3i
+         VfABNumm2STNSnY8DYjvlwxgQzFSegMisVuVBRLflJEZXCRM0N93NyM/JkI439CZjUwp
+         iThg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gOC055jHmqG+XdwtkHstI3mT0N/lTkxOBB78rFX7Q88=;
-        b=Mx1IbC06Nt+HZpybWjOwJRvQmAPu7HC6lQBs9qQ0deDKZavjmbpddOWnwVennIeExw
-         xuQZ646GF+h8YwbelCrreT6JLgWUPMxeP68qUz+xxsnpRCHsOb6ddrZN5RCf8pOvJg7V
-         +kgolsADGAqZXLkCSzPPg6Jr3Eaa7s3vb7VNtns4bv0G8N7P2A9IrDWcAyCrRwcKih+z
-         wj/i58IqCO9DsgApgulc+lVDNj/uhjaPib0uIVkPQddgeKQfJ5VvHYJkiuXFEg8YLbgS
-         KpNLTEmAV5+zyY0d3gxKStRBBy2svYdmUhGvm+q8KqvhUsILA+55OneT1lSPAyQCRsAJ
-         m/pw==
-X-Gm-Message-State: ACrzQf0o3W+wQHV4GbxRtiKPrnn9BbKprbzEijMqimu83wFFKl5ccAoo
-        gkrXReXNP4TlWt1YF5YS140ZVT7lNo4XDQ==
-X-Google-Smtp-Source: AMsMyM4v+gyfEZLy+zxwIZmTVkqUPL3QONgpsG+eLXD0+x70VbTkXq3OJjbL4ju9zsmHn7WWfHZ1FQ==
-X-Received: by 2002:a05:620a:2414:b0:6ee:94fd:ac96 with SMTP id d20-20020a05620a241400b006ee94fdac96mr6048595qkn.270.1665668493718;
-        Thu, 13 Oct 2022 06:41:33 -0700 (PDT)
+        bh=XXjjiElFGFaUrCJj+dRuEG0KTD7h125bNssmscTrZRg=;
+        b=4WHuRTsn9hDwzC+38iQSkej5DID9HULYlGCjLNQohLfnTArcb+HaHXAbA5ipF/5mMb
+         uKIbX5k1BX2CaihoF5GKdY348UyEhmdhwxShulqEpmosvhLRTltAKCaIOxMJWmqcjRBE
+         0O2Vd4vebOrx3RizDa32mNl24129+ycLRVGhKYvctsLbRykexD/f5HGqLgZERp4/b0Dp
+         WB4Z3zwzJTemOgZVFA50bgqNxm7FxX0LyJpraeFvGXZSMivrto0AmfOND3VdSUz+lVD3
+         YWr5j+bX7LdWmQ/323/STUx7Xwl1T4H7IsFJjYet2Y2kPDU0whOMpTa4psJoAx2oY8im
+         RZyw==
+X-Gm-Message-State: ACrzQf2weNwpzzkKRf7KkHWFOXSgSAk6FSIuU+nhkFMBHDezAnMo5zm0
+        0aWvBDOemun7b27I4dbmQENPjA==
+X-Google-Smtp-Source: AMsMyM4pCP7S/IglP64nQs1ADdFxdYjtGYD6+xf+acQmZNAVjgGjowN2s5+LpUGn6/KnpPpEQKD2bA==
+X-Received: by 2002:ae9:e848:0:b0:6ee:92d5:94e4 with SMTP id a69-20020ae9e848000000b006ee92d594e4mr6659213qkg.404.1665668547297;
+        Thu, 13 Oct 2022 06:42:27 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05620a0c5000b006ce441816e0sm18397073qki.15.2022.10.13.06.41.32
+        by smtp.gmail.com with ESMTPSA id do31-20020a05620a2b1f00b006ea5a9984d1sm16286383qkb.94.2022.10.13.06.42.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 06:41:33 -0700 (PDT)
-Message-ID: <52ded711-5559-5c6c-c1fc-57449496ba54@linaro.org>
-Date:   Thu, 13 Oct 2022 09:39:22 -0400
+        Thu, 13 Oct 2022 06:42:26 -0700 (PDT)
+Message-ID: <fc043110-8db5-ede3-3bdb-5e0c3d1d0e26@linaro.org>
+Date:   Thu, 13 Oct 2022 09:40:15 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v4 1/2] remoteproc: qcom: pas: Add MSM8953 ADSP PIL
- support
+Subject: Re: [PATCH] arm64: dts: qcom: msm8996: remove bogus ufs_variant node
 Content-Language: en-US
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        dmitry.baryshkov@linaro.org, Andy Gross <agross@kernel.org>,
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-References: <20221013042749.104668-1-sireeshkodali1@gmail.com>
- <20221013042749.104668-2-sireeshkodali1@gmail.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221012215613.32054-1-luca@z3ntu.xyz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221013042749.104668-2-sireeshkodali1@gmail.com>
+In-Reply-To: <20221012215613.32054-1-luca@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,13 +79,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/10/2022 00:27, Sireesh Kodali wrote:
-> Add support for the Audio DSP PIL found on the Qualcomm MSM8953
-> platform. The same configuration is used on all SoCs based on the
-> MSM8953 platform (SDM450, SDA450, SDM625, SDM632, APQ8053).
+On 12/10/2022 17:56, Luca Weiss wrote:
+> This ufs_variant node seems to be a remnant from downstream devicetree.
 > 
-> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
-> ---
+> As it doesn't seem to be used by anything upstream, remove it from the
+> dtsi.
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
