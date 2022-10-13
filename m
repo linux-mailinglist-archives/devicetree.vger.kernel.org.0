@@ -2,79 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E06215FD94A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D676A5FD960
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:43:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbiJMMjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 08:39:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59352 "EHLO
+        id S229793AbiJMMnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 08:43:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbiJMMi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:38:58 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CAC011D99D
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:38:56 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id g11so880420qts.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:38:56 -0700 (PDT)
+        with ESMTP id S229614AbiJMMnf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:43:35 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D6D11E46C
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:43:32 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id bb5so862241qtb.11
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:43:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5kz9tUsFqTbeOstAmkjMnqXNuAGfE9Jg+Fa6WSlHaXY=;
-        b=ZK8VDKTZB/G6KzUx18/x7iGXsNCnhmsEUHjFq/DOGq3C+2rzQ/onKPlyoiLxY3kr6u
-         vmvmQTeAHzrP7zl8Cq8dRTULBmrnfhxqFAi2p74AvAI/iw89aODcguStpcU8iM0RAC4l
-         i0WtaMk1sA7rak0Go/GCe7uQYyXkVU3nJ39s17YsxyblW0OHO6ltbHSHwTc+0QaH0iNL
-         XFap/X+b5TxlTZPpUzZcWR1leFsj6UF0ApCD11XqHYW5BDM4tJdzENUx1dnvo+NaDHhW
-         9YCg/g6zV/tYFGch21jEvfbTGotqlXqbVKw2ZUxtF98WTzs7jx3k7tqe8qvZxama4pi7
-         zJdQ==
+        d=ziepe.ca; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5GLjOW0BdIWUzC24491suSRlciPNhdwolicX7+j12wA=;
+        b=SAEIiL74kEmoL7i6K+FYqWYt1OQC0cAaHX12qGeOzYXKJYjkEQAv7uljHXJ4swa6JR
+         xHlzlAi1STF9FMZLYrCuntQOvDs5BQQQPxJNF3wfOuWu4E3nVEPIqcgSDMeXg4W9foEx
+         0k+Hg9nLfuR5H3rbCakZXpB23lScKeqGXgHhy6TUwyz+9v5bENkOeE6fD/gpEwe5Bxf8
+         M/NMiVb+q2oJLRq1/nR2hNa+gk4jKzwubgW4zUEfNWFDeL0SX384wdAplhzPwDYznJw8
+         lgiepffTEMTrRRlC+4XC2iHdyDe8mR5JOTJf66zXX3BgrzWWTN5zjDZrFb7Xy67Npu6b
+         X8Dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5kz9tUsFqTbeOstAmkjMnqXNuAGfE9Jg+Fa6WSlHaXY=;
-        b=c2t3LzmSeZn5FeDsD6wx13XT5Ayrvg0/QhFVECyMe9nE5a3a7u8qv76t00qW9VA8os
-         Y9buRgrPIQPPcGTJYH91EgsnhjPSRKu8iBntpZ5/VfnoUdcCw5lcoIlmhEC0rLEI2rI6
-         NLC9AuoLEemBXcxVpJUMx6M/qx4GSyRDrOR9g7t/J/x46wGeVSFiFTdqxv/8b3WmsADQ
-         KIcm3z7DpyQwSo7tx7gaWFrcFo3E7+6E9FsGqK1BaivIMzPO43Np04bJM//H0anSieqA
-         7N+rFNzs4ucCS+qf/PHZfJnaXTi1bJJgrcgv6O0NrjI8pKEEs/axrsjYRF2O9I++7gq/
-         W2uw==
-X-Gm-Message-State: ACrzQf1N6Bp3AYoL4dK3WDZv9PVMFuzAhFMSHyVZPJUAikNgLPDXn7Yl
-        9xSh9R8RNx17tdAQEoYgbMfF4w==
-X-Google-Smtp-Source: AMsMyM7QGWwq2TvteduWwhCjLEthvj2mVj02Nsr1AAZ/3O3uzKlIbcCYr5JBhY8RY7/i+vnIKYW/Sg==
-X-Received: by 2002:ac8:7d45:0:b0:396:ce08:4b49 with SMTP id h5-20020ac87d45000000b00396ce084b49mr25163847qtb.650.1665664734315;
-        Thu, 13 Oct 2022 05:38:54 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id o15-20020a05620a2a0f00b006ce40fbb8f6sm18877024qkp.21.2022.10.13.05.38.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 05:38:53 -0700 (PDT)
-Message-ID: <ee305dbb-0714-4d7c-437f-66b66842370f@linaro.org>
-Date:   Thu, 13 Oct 2022 08:36:42 -0400
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5GLjOW0BdIWUzC24491suSRlciPNhdwolicX7+j12wA=;
+        b=z229wS1twWLib4WbeMHbrqwtim2njxfWrBvIp4a5h1BuDwSFZeyhM3WqRPAfs2lG6i
+         j5r9DRgzD2Ow4rEf3nVSquRddEosOABmuG3aBrIcUIdWfqNn2qfkYioHZZJcxFgVveGf
+         65NVZl/DxijGIGwuLHug1F6McmrQKCB+a4Maz2EkDjGbkj0Njz0lEKSmgXOHYB3d8Sha
+         h/lSR2r7W7Ep4ANf4qhE6iMALlABCaww/mBKDMnvjfWpTvgeF63Lc3r5eSCzsruePLQK
+         DMOZqqMIRcFPEfbL84tJP6bBp/HA6QKVlxNrHowsm8BaY5p/LSCJftLdwH/G3K8l63Z7
+         rj9w==
+X-Gm-Message-State: ACrzQf0h+vC4NP04K1UGYDND9yBAqMkZ7m3jD9y0+LdXxYpRYbWqmxZr
+        cfdxW5Kp+ET0h+ogobQ2BRjqYQ==
+X-Google-Smtp-Source: AMsMyM6G5JimpMoD9asbrrZ+i9ANXy1SXyDx3Pt9ou8Ri40WatBI18xwZQ0CGdktSGP9wh6uVBoUDg==
+X-Received: by 2002:a05:622a:90:b0:394:1a9b:638e with SMTP id o16-20020a05622a009000b003941a9b638emr27765696qtw.314.1665665011242;
+        Thu, 13 Oct 2022 05:43:31 -0700 (PDT)
+Received: from ziepe.ca (hlfxns017vw-47-55-122-23.dhcp-dynamic.fibreop.ns.bellaliant.net. [47.55.122.23])
+        by smtp.gmail.com with ESMTPSA id h19-20020a05620a401300b006eeb185c209sm2752971qko.50.2022.10.13.05.43.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Oct 2022 05:43:30 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.95)
+        (envelope-from <jgg@ziepe.ca>)
+        id 1oixYf-002fJN-2g;
+        Thu, 13 Oct 2022 09:43:29 -0300
+Date:   Thu, 13 Oct 2022 09:43:29 -0300
+From:   Jason Gunthorpe <jgg@ziepe.ca>
+To:     "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>
+Cc:     "Gupta, Nipun" <Nipun.Gupta@amd.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "saravanak@google.com" <saravanak@google.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "masahiroy@kernel.org" <masahiroy@kernel.org>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: Re: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
+ domain as parent
+Message-ID: <Y0gH8R8tEqn6sqZ5@ziepe.ca>
+References: <20220803122655.100254-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-5-nipun.gupta@amd.com>
+ <87h71juxuk.wl-maz@kernel.org>
+ <DM6PR12MB30820EE430405FF50C7F856BE8229@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <MN2PR12MB43586084670E14691920952889229@MN2PR12MB4358.namprd12.prod.outlook.com>
+ <Y0a65a9leWXpKfTo@ziepe.ca>
+ <MN2PR12MB4358A871519748CD7A6DB7A089229@MN2PR12MB4358.namprd12.prod.outlook.com>
+ <Y0bRZTP9Kc6mdCiu@ziepe.ca>
+ <MN2PR12MB4358277977C1B7E0BC214AC789229@MN2PR12MB4358.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: qcom,sc7180: convert to
- dtschema
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221007145116.46554-1-krzysztof.kozlowski@linaro.org>
- <20221007145116.46554-2-krzysztof.kozlowski@linaro.org>
- <CAD=FV=WN+9DJp-3Ny04NmOLau2RYibeJayEtB7x0uT-YoizFQA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=WN+9DJp-3Ny04NmOLau2RYibeJayEtB7x0uT-YoizFQA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MN2PR12MB4358277977C1B7E0BC214AC789229@MN2PR12MB4358.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,32 +117,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/2022 13:42, Doug Anderson wrote:
-> Hi,
+On Wed, Oct 12, 2022 at 03:09:26PM +0000, Radovanovic, Aleksandar wrote:
+
+> > On Wed, Oct 12, 2022 at 01:37:54PM +0000, Radovanovic, Aleksandar wrote:
+> > > > On Wed, Oct 12, 2022 at 10:34:23AM +0000, Radovanovic, Aleksandar
+> > wrote:
+> > > >
+> > > >
+> > > > > As for GITS_TRANSLATER, we can take up to 4 different IOVAs, which
+> > > > > limits us to 4 CDX devices (should be sufficient for current HW
+> > > > > use-cases). Also, it means that the address part must be the same
+> > > > > for all vectors within a single CDX device. I'm assuming this is
+> > > > > OK as it is going to be a single interrupt and IOMMU domain anyway.
+> > > >
+> > > > This is not at all how MSI is supposed to work.
+> > >
+> > > In the general case, no, they're not.
+> > 
+> > I don't mean that you can hack this to work - I mean that in MSI the
+> > addr/data is supposed to come from the end point itself, not from some kind
+> > of shared structure. This is important because the actual act of generating
+> > the write has to be coherent with the DMA the device is doing, as the MSI
+> > write must push any DMA data to visibility to meet the "producer /
+> > consumer" model.
+> > 
 > 
-> On Fri, Oct 7, 2022 at 7:51 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> +      drive-strength:
->> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
->> +        default: 2
->> +        description:
->> +          Selects the drive strength for the specified pins, in mA.
-> 
-> The "default" of 2 is not correct. Please see commit 768f8d8e45f9
-> ("dt-bindings: pinctrl: drive-strength doesn't default to 2 if
-> unspecified")
+> I'm not sure I follow your argument, the limitation here is that the MSI
+> address value is shared between vectors of the same device (requester id
+> or endpoint, whichever way you prefer to call it), not between
+> devices.
 
-Uh, you're right. This was copied to one binding and then I copied to
-another, and another...
+That isn't what you said, you said "we can take up to 4 different
+IOVAs, which limits us to 4 CDX devices" - which sounds like HW being
+shared across devices??
 
-> 
-> In fact, are you sure this even needs to be replicated here? This is
-> part of the common "qcom,tlmm-common.yaml" bindings file, isn't it?
-
-If the value was correct, it might be per-SoC specific, but that's
-another question. The default value is actually unknown, so I'll remove it.
-
-Best regards,
-Krzysztof
-
+Jason
