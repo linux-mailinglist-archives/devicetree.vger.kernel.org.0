@@ -2,83 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB06E5FD395
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 05:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA29E5FD3C6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 06:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbiJMDhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 23:37:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33416 "EHLO
+        id S229491AbiJME2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 00:28:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbiJMDh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 23:37:29 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8593FB48BB
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 20:37:28 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id s30so926088eds.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Oct 2022 20:37:28 -0700 (PDT)
+        with ESMTP id S229485AbiJME2D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 00:28:03 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B4812D0F;
+        Wed, 12 Oct 2022 21:28:01 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id l1so737362pld.13;
+        Wed, 12 Oct 2022 21:28:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=km/x4dNbpSXiQbScfZULHzvpKPxUFqn2RX0kYro9dnY=;
-        b=G+ijyw+YElgHkz9u0HrJK28v0DxiI72ImZDb0r4hO9PN3coaRP2XfA8ZfAl/8ZZ4AL
-         lsFDquibhSUs5NuGplp+wmb/kBY34E9kFVU5p56slsfiU9GVNRw6+OTBtW41bqNqypUY
-         1ipXiOtH4yore9LZw99lbA0Zdwcsf7jyfjVvE=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fYIg2WzOf03nIwqbYuPMBWLrzXyBCEb4x8ZfCAzdDu0=;
+        b=PB6hHHSd3+SuFQWbK6NTZO7GxvFQskAA6dAhhOpKXIzIUkmu0LDVSisLFpRfraApmG
+         ZQr5Am381sO9KaXYV2ZKKu9wvLU3AbfnWAkzzT0tRFUGRa9vSE3ZEmZMglCl3Ta286jg
+         jXu9WVFnTVSW7ZG1uCv1WtWuyY0vV7/OnWMZe9i52CU6A7rQrBcKyM4V/FLx2U5rf/a8
+         swUHsQQdoCBr3EgLWrkYla+bJwmH6bt8bRmlkB7UBBBnL1FTQ8eNdO1ro1LXzr91V77a
+         halV0HUwoBpAI/3S/viSP8KUMVGXnLRPnMHuzSL/gjIzRZKJ56ZOXUg4hLThRv9qEM06
+         Akiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=km/x4dNbpSXiQbScfZULHzvpKPxUFqn2RX0kYro9dnY=;
-        b=IETd3Hh7WMi/UXkhEz2HXP6c6bmVdlIsy2YTtEC1/iVKn77phkzurNvlHBh1b12e6u
-         yuSbDVsvui/udE2jNcpjyVtL0hxa1WYPoqxcmN0Mg61X6R9+pAm5RdxPzdcGiEwzlNG0
-         rZAOgq/3PtEf6mgHzTo/4MnNrCi42CvDWpJURL8QXLYoQJ/GeYA2ZvtXvf5rE3GPw+7b
-         zeNhfR3WyuYjNy4aSZaFLnJmZs6JYuOnIshO8R/TQR2dcccIy3miN9lKUGv1Ko7ZFrRE
-         ARa19KecGmQiuxu0WkiY2c7AxVu9kdbYzVVz1XP0icW2vu6xM77G+VEQUVEVw3amS/SM
-         1vjw==
-X-Gm-Message-State: ACrzQf2KZ3hcJP467fuqD3Wq3JNL2f0hVGxjcnikJ61usGZacehNFJGX
-        IsjwAh/f7VADMLGH7igrDhJJB8h4Yi+j4L3PlUr/qg==
-X-Google-Smtp-Source: AMsMyM5/cBj9U6Vdv/D7aVLYS1aJOy0vaa6E+V2MaYc8d7mEX7XjtYVDUAeN82NYnkMRxUFJGC4tqxwz5hhVNs84ZDM=
-X-Received: by 2002:a05:6402:22ef:b0:458:bfe5:31a3 with SMTP id
- dn15-20020a05640222ef00b00458bfe531a3mr29802577edb.6.1665632247137; Wed, 12
- Oct 2022 20:37:27 -0700 (PDT)
+        bh=fYIg2WzOf03nIwqbYuPMBWLrzXyBCEb4x8ZfCAzdDu0=;
+        b=7utCaIUmp+Owuwl5B6p3RuiATar+vylSs/LlPIqkUHi+qW8yS05daC/PVyhPTp4sB7
+         qxidtOPiPQ8E/NEeJXtVOGyMSCfpw3x+vLPdOkBwfPsqqcEA2YjDW3+9fEEzw7Nc6q9c
+         jxShQgP9TrPH5BC42CaRzlzxagxyHwHY2y0AWW2q1tFE9XV2qRexA+koqccKS80uPzn9
+         xbS22u0GBrA6gXJqwhKuo8unIgWhPjv8lw331O+UYLbfmhF2ZCFcnB3VvGYn8uxnrP3X
+         fYaV8R4RHmLG1GPkPPDXllT/kCEByq3S63HA0PUrp8HICNLwM5wNBBwtZu+D1k64ZILn
+         tQ0Q==
+X-Gm-Message-State: ACrzQf0Z3G2hHovGZmU24BaGt6AcjbYz89IUD/48THg7JYtthfkCwMpj
+        UkkG97sgnj7hX3EfCvNmQpz8Vk8FcWx25g==
+X-Google-Smtp-Source: AMsMyM5vIGCV8Tqdy5wnHnZQgZA4M21IavJpM74n0vLZn8SisXMe4S2DLvBTrkVJaZKPYwH2gdkMVw==
+X-Received: by 2002:a17:902:f706:b0:184:7a4c:fdd0 with SMTP id h6-20020a170902f70600b001847a4cfdd0mr6715091plo.98.1665635280609;
+        Wed, 12 Oct 2022 21:28:00 -0700 (PDT)
+Received: from skynet-linux.local ([2406:7400:61:b6fa:b70b:65a4:a699:40c8])
+        by smtp.googlemail.com with ESMTPSA id y9-20020a17090aca8900b001faafa42a9esm2192007pjt.26.2022.10.12.21.27.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Oct 2022 21:27:59 -0700 (PDT)
+From:   Sireesh Kodali <sireeshkodali1@gmail.com>
+To:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        dmitry.baryshkov@linaro.org,
+        Sireesh Kodali <sireeshkodali1@gmail.com>
+Subject: [PATCH v4 0/2] remoteproc: qcom: Add support for MSM8953 ADSP
+Date:   Thu, 13 Oct 2022 09:57:47 +0530
+Message-Id: <20221013042749.104668-1-sireeshkodali1@gmail.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-References: <20220729053254.220585-1-treapking@chromium.org> <9d1d8831-844f-f30f-6c8a-fac052f8699b@collabora.com>
-In-Reply-To: <9d1d8831-844f-f30f-6c8a-fac052f8699b@collabora.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Thu, 13 Oct 2022 11:37:15 +0800
-Message-ID: <CAEXTbpdE6JumX0ecP+LtDXnfR5E0VeaxU5N5_nVxVVNGRHATjQ@mail.gmail.com>
-Subject: Re: [PATCH v5] arm64: dts: mt8173-elm: Switch to SMC watchdog
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Evan Benn <evanbenn@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Friendly ping on this patch.
+This patch series adds support for the ADSP PIL as found on the MSM8953
+platform. It is a subset of a previous patch series.
 
-On Fri, Jul 29, 2022 at 4:36 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 29/07/22 07:32, Pin-yen Lin ha scritto:
-> > Switch to SMC watchdog because we need direct control of HW watchdog
-> > registers from kernel. The corresponding firmware was uploaded in
-> > https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
-> >
-> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
->
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Changes since v3:
+ * Made ordering of compatible strings lexical in driver patch
+
+Link to v3: https://lkml.org/lkml/2022/10/8/204
+
+Sireesh Kodali (2):
+  remoteproc: qcom: pas: Add MSM8953 ADSP PIL support
+  dt-bindings: remoteproc: qcom: adsp: Add ADSP on MSM8953
+
+ Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 5 +++++
+ drivers/remoteproc/qcom_q6v5_pas.c                          | 1 +
+ 2 files changed, 6 insertions(+)
+
+-- 
+2.38.0
+
