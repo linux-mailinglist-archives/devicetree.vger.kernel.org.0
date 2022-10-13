@@ -2,73 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70CA5FDC2A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 16:13:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CEEB5FDC82
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 16:44:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbiJMONt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 10:13:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58902 "EHLO
+        id S229712AbiJMOn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 10:43:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbiJMONs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 10:13:48 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 692FE4BA5D
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 07:13:35 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id z8so1191029qtv.5
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 07:13:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=31uffpNRwdyYprzTa+ufVXiBmknEXuHQwvr5vQ+4CNs=;
-        b=agzuYPwqrSRLKKVtoE5+KTZncK1sZujB9xHGFcWd8jdxLowy+i9fiZBegxrE6cTRuA
-         Wt4RDnYd+9+axBcBB7ZwtxOqYmidty380r9BoEkpfxP5EFiHCIUCB0hp6gWchOS/2jLQ
-         Qa01qfQ4RJ/33T5FmHZ4y/zJIQ3M2oOYEZHocvTsJ5E6DJvFx36OLH2H6T0d5ISuys6t
-         8j6c5GptFwSJW04FG3J0QPH01tDN2SkcMgYOnNFzFb8MOj1lZSmcksWuPSc4Q1VN2sKc
-         FktDgrejceY7dvyvY88XDThg5wRyJUx5ozTkiLGr+W7C5vikzjKpE/cX6XKa4w67G56Y
-         3jhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=31uffpNRwdyYprzTa+ufVXiBmknEXuHQwvr5vQ+4CNs=;
-        b=X+Ew3pVP8Zdd4BtyQe4XRCjuFSbVAp3QxOLNLLA7H4OFQvIavrSjXvRZkKL63fAZSq
-         QyakaNmqWFadAcxE5r8UdIyeWg6NtfCoJ6kIu7uQLnKCyAmQHRioUBgRLeg2vDCPdwXe
-         FpEuan7OUfpGKvPzl/G6lsr6PnkWielPFWLA02Mm4HCwgb/uiKSXalfvhbHqjFK7RDr2
-         91FseKHuk6j+iNJlUkfVjG5RA1NBIU/yGnArFnVKzlODIKK0S8WYffWPZCTRZLFOrsJE
-         1NmvYmpnaqWA/0mI1DFiB96RGbGzTvGNCbI9Dx8oE5HS0kNR8YxjwTVBZIyaITNYuaXZ
-         fYzQ==
-X-Gm-Message-State: ACrzQf2EfwFkabiNBe8NGEK8b/fwEY4gAN/AAKL3+GOrnEnkQSsTuKRD
-        d0MSoEJ7J752V/5QU0zcdntXJg==
-X-Google-Smtp-Source: AMsMyM5/a5SlZepFUrzT+rzNGyi1GbWiSQitwIlqhkYdtjGrwIB0/557uIVoDvpjWJq1aGHWujEVbw==
-X-Received: by 2002:a05:622a:1a85:b0:39b:d3cc:4714 with SMTP id s5-20020a05622a1a8500b0039bd3cc4714mr3142qtc.310.1665670414574;
-        Thu, 13 Oct 2022 07:13:34 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id bk19-20020a05620a1a1300b006ec771d8f89sm12214940qkb.112.2022.10.13.07.13.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 07:13:33 -0700 (PDT)
-Message-ID: <d3d2ecab-179a-dbff-4dd5-0785e49b45fa@linaro.org>
-Date:   Thu, 13 Oct 2022 10:13:32 -0400
+        with ESMTP id S229722AbiJMOn4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 10:43:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84562B1DCA;
+        Thu, 13 Oct 2022 07:43:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BCD5E61806;
+        Thu, 13 Oct 2022 14:43:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F4D2C433C1;
+        Thu, 13 Oct 2022 14:43:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665672234;
+        bh=NvwyE1DUE80ntZaLJ5MtSrUAvFGAB1vF7A51Xc8PXhM=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=g9R9GJtTg7FFJe6055C6CXI223Xhi9OyC0wc4IfG8ju3WBbgExL1Y99c+NAPi5nZu
+         nLHQkx3d9C6lKkMPiOJBxsM4vEwpbY1ODj4KLv7z+VR2kAZ9npSM3/Q5yWP8e2wAcJ
+         2yb9ot6OFf1BkgRmt/PwVCD+V7URzOw4/n2n3FSEHk6QB0+vOpSACKOpS6BQT0bcz4
+         Ke5Im2DGZ6bMaSDE1dxCjK4e/ODNqTm6CeCkQop/vOWoSo9Ih1JZN9oB2TOabe5MKq
+         hWyWh0N8sXN769affI4Mr8+G6Z4g+cMF+91d5u1W6Go4+rr+uHnyqG4XlWbE78D55f
+         kr6M1X0C1OZQw==
+From:   Mark Brown <broonie@kernel.org>
+To:     devicetree@vger.kernel.org, quic_rohkumar@quicinc.com,
+        linux-kernel@vger.kernel.org, andersson@kernel.org,
+        swboyd@chromium.org, srinivas.kandagatla@linaro.org,
+        tiwai@suse.com, alsa-devel@alsa-project.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com, agross@kernel.org,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        quic_plai@quicinc.com, bgoswami@quicinc.com, perex@perex.cz,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     Srinivasa Rao Mandadapu 
+        <srivasam@qualcomm.corp-partner.google.com>
+In-Reply-To: <1665569560-28943-1-git-send-email-quic_srivasam@quicinc.com>
+References: <1665569560-28943-1-git-send-email-quic_srivasam@quicinc.com>
+Subject: Re: [PATCH] ASoC: qcom: lpass-cpu: mark HDMI TX registers as volatile
+Message-Id: <166567223036.170727.7011980883912234789.b4-ty@kernel.org>
+Date:   Thu, 13 Oct 2022 15:43:50 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH] ASoC: Add Richtek RT5512 Speaker Amp Driver
-Content-Language: en-US
-To:     Jeff Chang <richtek.jeff.chang@gmail.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, jeff_chang@ricthek.com
-Cc:     Jeff <jeff_chang@richtek.com>
-References: <20221013080643.6509-1-richtek.jeff.chang@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221013080643.6509-1-richtek.jeff.chang@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-fc921
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,23 +60,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/10/2022 04:06, Jeff Chang wrote:
-> From: Jeff <jeff_chang@richtek.com>
+On Wed, 12 Oct 2022 15:42:40 +0530, Srinivasa Rao Mandadapu wrote:
+> From: Srinivasa Rao Mandadapu <srivasam@qualcomm.corp-partner.google.com>
 > 
-> The RT5512 is a boosted class-D amplifier with V/I sensing.
-> A built-in DC-DC step-up converter is used to provide efficient power for
-> class-D amplifier with multi-level class-H operation. The digital audio
-> interface supports I2S, left-justified, right-justified and TDM format for
-> audio in with a data out used for chip information like voltage sense and
-> current sense, which are able to be monitored via DATAO pin through proper
-> register setting.
+> Update HDMI volatile registers list as DMA, Channel Selection registers
+> , vbit control registers are being reflected by hardware DP port
+> disconnection.
+> This update is required to fix no display and no sound issue
+> observed after reconnecting TAMA/SANWA DP cables.
+> Once DP cable is unplugged, DMA control registers are being reset by
+> hardware, however at second plugin, new dma control values does not
+> updated to the dma hardware registers since new register value and
+> cached values at the time of first plugin are same.
 > 
-> Signed-off-by: SHIH CHIA CHANG <jeff_chang@richtek.com>
-> ---
->  .../bindings/sound/richtek,rt5512.yaml        |  50 +
+> [...]
 
-Bindings are separate patches.
+Applied to
 
-Best regards,
-Krzysztof
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[1/1] ASoC: qcom: lpass-cpu: mark HDMI TX registers as volatile
+      commit: c9a3545b1d771fb7b06a487796c40288c02c41c5
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
