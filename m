@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A433C5FDE87
+	by mail.lfdr.de (Postfix) with ESMTP id 4E2445FDE86
 	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 18:52:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbiJMQwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229550AbiJMQwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 13 Oct 2022 12:52:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35054 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbiJMQwf (ORCPT
+        with ESMTP id S229814AbiJMQwf (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 12:52:35 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8239910A7D7
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 09:52:31 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id i17so2085417lja.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 09:52:30 -0700 (PDT)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E990010A7C3
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 09:52:32 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id b1so3389499lfs.7
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 09:52:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=semihalf.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BWIwo+mIwSXhxLgpwwdJO6e+2GcvcXvg+9gu/sbvq84=;
-        b=Xi5DZ5qK+qk1qquLLkpXhdYUNmdfgyLafBxDhrB9rpscC/EIrl+UVUQguUo0PzTfq5
-         8K9wmjiGS3GJvD8GrzFFMXpqMchc/FBU7Jaz1btWIhp/ZB54mbEal084Svq3VEEF3UXF
-         WUcXAqfju0Af83SfunDSrm2pXxwj4YqGvARML/gBSRq4TntIOyjk51zX14Kym9RRyVD5
-         pDqgpGuLwl99Q0pHv+D8QIWvxCtZhnYiWlwN44KdXBACx6nb+jh5+4CHmMcwd66xW5Uj
-         UPXDX0PefoIkPA98z6cxVXiQOPv9LESdB1DVb4Eeab6Us2nrXxi11nlmqM+TkysLl6De
-         qwLg==
+        bh=6hw2W+lQ+Hv9z48dDP42SJngsa6TM787Uybb56JTsIU=;
+        b=ghoFwQTxBbVHDWGz3pu/fVVdmZGCPWS90lwX3nEcU8o2Y1zv1+S4YKeTSmNESQTc6v
+         iRO5UImZPCZP7qu1ZfLC/j5rrFtvoEEBjvZgBQVPzI9DvpXQ8FkeuIVOBWkHDpc5fmP3
+         1ATgRGOtOgU4JBqWGKYdqSQcOfHDgp5bnC5faThbh8oATv2pgFgKboonbacHOIbATQJH
+         rH0Es23nJMcEAS+3TJgRAAUeQ8cvn5VePMhUIbrmhr5EpxIprUUWmAY9Dey+gsSVNWvn
+         0E9i+lfXJe5ueJbmHYTiUe/1xqkCkFG1xyudg29Km7t5TTfV8UF0ovgJ8Nc407m2itT1
+         01Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BWIwo+mIwSXhxLgpwwdJO6e+2GcvcXvg+9gu/sbvq84=;
-        b=2V9FN8td3JDunabODHBHLR7CdYxB7aEhgJnN8oNryHbi1cbz43Z9Q/EbYI8pSNKk05
-         gja1q7y4FqDXnDbPKPka+Fhy7aHJFrGtqB4S6znAEnvsTfcLqo5wAmP8/pmrRhTewz14
-         t801J+5oevlGlfxMI5W4yHKE+QsE+GWgwFVdrPoP01YkL1vZ9EvrmcfCwE+mzhHcaPL4
-         FSbKneO68sU6IHekZ+JhGHkndqUep1hKNsV1l9YfNVpTAtzSK4hl3TA7ynUDNnwXDVWN
-         nFEb+m/pbblqWr51G0/auZuuiws+Z7eRKLTPTLcsSCyHcaWUESbC1r64JlZ6vT6zNVLC
-         PlLw==
-X-Gm-Message-State: ACrzQf2D7O1lev6ZXWzdOM2RATnjCIadw03FYp7MIJOqRVW0kpyBkuHl
-        pUPWa8HLDu/s9MqZ3En5aSOkoejegKFMxF4J
-X-Google-Smtp-Source: AMsMyM63g/W8O1g5lvdBVlFYJvInzSl0E+zJLeXuYwVpee2XRfgYaxeUhNgdwVvtEu+yzg0nEPLNJg==
-X-Received: by 2002:a05:651c:1685:b0:26e:e61:9c3f with SMTP id bd5-20020a05651c168500b0026e0e619c3fmr290114ljb.477.1665679949349;
-        Thu, 13 Oct 2022 09:52:29 -0700 (PDT)
+        bh=6hw2W+lQ+Hv9z48dDP42SJngsa6TM787Uybb56JTsIU=;
+        b=FLSr1/J+hmPT4cEW5EYbSsHVb8nnFp7lo8YrHg3xUtRMx+/hHSt4rD+CSMn4jW40BY
+         WDrcjuSp1qGNOGv3DkNb0F/F46XvIdlLSn/JarWxQtobvh5mMxhPI5QIH7geGY35AfES
+         TU8eUfPOBaVdI8IMWSIy6q0qApYv2sEIsENPW2h4O5Y19PXgJaUcTCPewrEa7Ix2efmu
+         p7Hq9SlDoK0shGbPUF/iOmA3rBy3R9x/NCiHwsoPsYBqNPUo1d/+VM+dLBEiYBmxrsoH
+         kzMHb7JxaRSnvPtAQheZbo9rOzE0J28QzcNvgEVChr96PBJ8gXi01QHADqmbm9a01iEI
+         490Q==
+X-Gm-Message-State: ACrzQf0NRN2T1qMmbeH68Uu2dwuqEmLQYb+bY5smExlioWeHFE5bYohL
+        3m7q9mwc7nOyW9jwaM0+7vAyMEW/TEr9EvUx
+X-Google-Smtp-Source: AMsMyM4gcJcA8tRARkMMAurN5cSMCEOxM2sdSbaTGrQZ+dBknfKwag6sQfZLDND3tnv8+yEOEtRERQ==
+X-Received: by 2002:a05:6512:33cb:b0:4a4:2bee:5c8b with SMTP id d11-20020a05651233cb00b004a42bee5c8bmr205014lfg.237.1665679950541;
+        Thu, 13 Oct 2022 09:52:30 -0700 (PDT)
 Received: from fedora.. ([78.10.206.53])
-        by smtp.gmail.com with ESMTPSA id k7-20020a2e9207000000b00262fae1ffe6sm540752ljg.110.2022.10.13.09.52.28
+        by smtp.gmail.com with ESMTPSA id k7-20020a2e9207000000b00262fae1ffe6sm540752ljg.110.2022.10.13.09.52.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Oct 2022 09:52:29 -0700 (PDT)
+        Thu, 13 Oct 2022 09:52:30 -0700 (PDT)
 From:   =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
 To:     devicetree@vger.kernel.org
 Cc:     mw@semihalf.com, linux@armlinux.org.uk, davem@davemloft.net,
@@ -56,9 +56,9 @@ Cc:     mw@semihalf.com, linux@armlinux.org.uk, davem@davemloft.net,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
         upstream@semihalf.com
-Subject: [PATCH v4 2/3] arm64: dts: marvell: Update network description to match schema
-Date:   Thu, 13 Oct 2022 18:51:33 +0200
-Message-Id: <20221013165134.78234-3-mig@semihalf.com>
+Subject: [PATCH v4 3/3] ARM: dts: armada-375: Update network description to match schema
+Date:   Thu, 13 Oct 2022 18:51:34 +0200
+Message-Id: <20221013165134.78234-4-mig@semihalf.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20221013165134.78234-1-mig@semihalf.com>
 References: <20221013165134.78234-1-mig@semihalf.com>
@@ -84,72 +84,43 @@ compatibility.
 
 Signed-off-by: Marcin Wojtas <mw@semihalf.com>
 ---
- arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+ arch/arm/boot/dts/armada-375.dtsi | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-index d6c0990a267d..7d0043824f2a 100644
---- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-@@ -58,6 +58,8 @@ config-space@CP11X_BASE {
- 		ranges = <0x0 0x0 ADDRESSIFY(CP11X_BASE) 0x2000000>;
+diff --git a/arch/arm/boot/dts/armada-375.dtsi b/arch/arm/boot/dts/armada-375.dtsi
+index 929deaf312a5..9fbe0cfec48f 100644
+--- a/arch/arm/boot/dts/armada-375.dtsi
++++ b/arch/arm/boot/dts/armada-375.dtsi
+@@ -178,6 +178,8 @@ mdio: mdio@c0054 {
  
- 		CP11X_LABEL(ethernet): ethernet@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 			compatible = "marvell,armada-7k-pp22";
- 			reg = <0x0 0x100000>, <0x129000 0xb000>, <0x220000 0x800>;
- 			clocks = <&CP11X_LABEL(clk) 1 3>, <&CP11X_LABEL(clk) 1 9>,
-@@ -69,7 +71,7 @@ CP11X_LABEL(ethernet): ethernet@0 {
- 			status = "disabled";
- 			dma-coherent;
- 
--			CP11X_LABEL(eth0): eth0 {
-+			CP11X_LABEL(eth0): ethernet-port@0 {
- 				interrupts = <39 IRQ_TYPE_LEVEL_HIGH>,
- 					<43 IRQ_TYPE_LEVEL_HIGH>,
- 					<47 IRQ_TYPE_LEVEL_HIGH>,
-@@ -83,12 +85,13 @@ CP11X_LABEL(eth0): eth0 {
- 				interrupt-names = "hif0", "hif1", "hif2",
- 					"hif3", "hif4", "hif5", "hif6", "hif7",
- 					"hif8", "link";
--				port-id = <0>;
-+				reg = <0>;
-+				port-id = <0>; /* For backward compatibility. */
- 				gop-port-id = <0>;
+ 			/* Network controller */
+ 			ethernet: ethernet@f0000 {
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				compatible = "marvell,armada-375-pp2";
+ 				reg = <0xf0000 0xa000>, /* Packet Processor regs */
+ 				      <0xc0000 0x3060>, /* LMS regs */
+@@ -187,15 +189,17 @@ ethernet: ethernet@f0000 {
+ 				clock-names = "pp_clk", "gop_clk";
  				status = "disabled";
- 			};
  
--			CP11X_LABEL(eth1): eth1 {
-+			CP11X_LABEL(eth1): ethernet-port@1 {
- 				interrupts = <40 IRQ_TYPE_LEVEL_HIGH>,
- 					<44 IRQ_TYPE_LEVEL_HIGH>,
- 					<48 IRQ_TYPE_LEVEL_HIGH>,
-@@ -102,12 +105,13 @@ CP11X_LABEL(eth1): eth1 {
- 				interrupt-names = "hif0", "hif1", "hif2",
- 					"hif3", "hif4", "hif5", "hif6", "hif7",
- 					"hif8", "link";
--				port-id = <1>;
-+				reg = <1>;
-+				port-id = <1>; /* For backward compatibility. */
- 				gop-port-id = <2>;
- 				status = "disabled";
- 			};
+-				eth0: eth0 {
++				eth0: ethernet-port@0 {
+ 					interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+-					port-id = <0>;
++					reg = <0>;
++					port-id = <0>; /* For backward compatibility. */
+ 					status = "disabled";
+ 				};
  
--			CP11X_LABEL(eth2): eth2 {
-+			CP11X_LABEL(eth2): ethernet-port@2 {
- 				interrupts = <41 IRQ_TYPE_LEVEL_HIGH>,
- 					<45 IRQ_TYPE_LEVEL_HIGH>,
- 					<49 IRQ_TYPE_LEVEL_HIGH>,
-@@ -121,7 +125,8 @@ CP11X_LABEL(eth2): eth2 {
- 				interrupt-names = "hif0", "hif1", "hif2",
- 					"hif3", "hif4", "hif5", "hif6", "hif7",
- 					"hif8", "link";
--				port-id = <2>;
-+				reg = <2>;
-+				port-id = <2>; /* For backward compatibility. */
- 				gop-port-id = <3>;
- 				status = "disabled";
+-				eth1: eth1 {
++				eth1: ethernet-port@1 {
+ 					interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+-					port-id = <1>;
++					reg = <1>;
++					port-id = <1>; /* For backward compatibility. */
+ 					status = "disabled";
+ 				};
  			};
 -- 
 2.37.3
