@@ -2,63 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E338D5FD2FA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 03:50:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D13B5FD31E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 04:06:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbiJMBuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 21:50:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41350 "EHLO
+        id S229490AbiJMCGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 22:06:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiJMBuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 21:50:16 -0400
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DADA183F0E;
-        Wed, 12 Oct 2022 18:50:11 -0700 (PDT)
-Received: by mail-oo1-f54.google.com with SMTP id c17-20020a4aa4d1000000b0047653e7c5f3so423079oom.1;
-        Wed, 12 Oct 2022 18:50:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=frhcxqlr4xu4fAiP6OzjXHuMjjt3FaUtEdB7oOk4NPs=;
-        b=UXLgTJPeCfT2qPYLr0U7so1M0C19I0oe/GgwCOAawq5HyQlSYy0d+rgCRspqzaq9Mx
-         XlvZmMA1773W0q0m6LrJl0r6zMndBAsnBEc1sSPsX3kfAi0mSGx6LOnj9/4umrkKsPEB
-         KSokN9CTOwuoxo3m47biXFtesVjOsZIfrjuoUabIzEdMJqf0lBzBLa8Pg8pMhgxezrel
-         wrDZJRSW7//z8GHEt1d1wrP5WWT85basQN9m/g47Oc4y+8HaI39bV7B9Ijul0PzsdNlU
-         w3GBTQQ4Quo/vRUIylmxn1bhfx2ZbEwb7E7io9JrzZQXh4/AGUwgiNIsAYIflzEfRxut
-         gygw==
-X-Gm-Message-State: ACrzQf2CF+Lvg9U6dr74zsqbwK8wH6nRC1oEv9dQwr1/AAXPQjGNLI5+
-        mNe4Qhe3nTQd3Nu8SfNsRixnhQrK8w==
-X-Google-Smtp-Source: AMsMyM6UHpju3T23qh158uoMzBGLcPrhVhvbAsXzclJ7MZlEpabglzXuQGFcewlgp7OQi6ZppirEjg==
-X-Received: by 2002:a4a:b806:0:b0:480:9f83:5783 with SMTP id g6-20020a4ab806000000b004809f835783mr194113oop.55.1665625809403;
-        Wed, 12 Oct 2022 18:50:09 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o77-20020a4a2c50000000b00425678b9c4bsm1629278ooo.0.2022.10.12.18.50.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Oct 2022 18:50:09 -0700 (PDT)
-Received: (nullmailer pid 3091989 invoked by uid 1000);
-        Thu, 13 Oct 2022 01:50:10 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     Naresh Solanki <Naresh.Solanki@9elements.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Roland Stigge <stigge@antcom.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org,
-        Marcello Sylvester Bauer <sylv@sylv.io>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20221012205736.1231514-3-Naresh.Solanki@9elements.com>
-References: <20221012205736.1231514-1-Naresh.Solanki@9elements.com> <20221012205736.1231514-3-Naresh.Solanki@9elements.com>
-Message-Id: <166562578885.3091453.640872394649622876.robh@kernel.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: hwmon: Add binding for max6639
-Date:   Wed, 12 Oct 2022 20:50:10 -0500
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        with ESMTP id S229471AbiJMCGw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 22:06:52 -0400
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC87122BED;
+        Wed, 12 Oct 2022 19:06:51 -0700 (PDT)
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4A7AD1B1B09;
+        Thu, 13 Oct 2022 04:06:50 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1058E1B1ADB;
+        Thu, 13 Oct 2022 04:06:50 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 71F911802204;
+        Thu, 13 Oct 2022 10:06:48 +0800 (+08)
+From:   Richard Zhu <hongxing.zhu@nxp.com>
+To:     vkoul@kernel.org, a.fatoum@pengutronix.de, p.zabel@pengutronix.de,
+        l.stach@pengutronix.de, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, robh@kernel.org, shawnguo@kernel.org,
+        alexander.stein@ew.tq-group.com, marex@denx.de,
+        richard.leitner@linux.dev
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: [PATCH RESEND v12 0/4] Add the iMX8MP PCIe support
+Date:   Thu, 13 Oct 2022 09:46:58 +0800
+Message-Id: <1665625622-20551-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,HEXHASH_WORD,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,40 +47,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Oct 2022 22:57:35 +0200, Naresh Solanki wrote:
-> From: Marcello Sylvester Bauer <sylv@sylv.io>
-> 
-> Add Devicetree binding documentation for Maxim MAX6639 temperature
-> monitor with PWM fan-speed controller.
-> 
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../bindings/hwmon/maxim,max6639.yaml         | 86 +++++++++++++++++++
->  1 file changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> 
+Re-base to the pci-v6.1-changes of pci/next branch. 
+Update the cover-letter, and re-send the v12 patch-set.
+This series adds the i.MX8MP PCIe support and tested on i.MX8MP
+EVK board when one PCIe NVME device is used.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+- i.MX8MP PCIe has reversed initial PERST bit value refer to i.MX8MQ/i.MX8MM.
+  Add the PHY PERST explicitly for i.MX8MP PCIe PHY.
+- Add the i.MX8MP PCIe PHY support in the i.MX8M PCIe PHY driver.
+  And share as much as possible codes with i.MX8MM PCIe PHY.
+- Add the i.MX8MP PCIe support in binding document, DTS files, and PCIe
+  driver.
 
-yamllint warnings/errors:
+Main changes v11-->v12:
+ - In the local down kernel(6.0-rc7 plus local codes) PM tests, i.MX8MP
+   PCIe encounters link failure.
+   To resolve this failure, the resets of i.MX8MP PCIe PHY should be always
+   kept 1b'1. Merge the fix into v12 patches here.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/hwmon/maxim,max6639.example.dts:22.29-39.13: Warning (i2c_bus_reg): /example-0/i2c/fan-controller@2e: I2C bus unit address format error, expected "10"
+Main changes v10-->v11:
+Refer to Ahmad's comments do the following changes;
+ - Correct the spell mistake and refine the commit log.
+ - Make codes indent by the member name
+ - Use the dev_err_probe replace the dev_err.
 
-doc reference errors (make refcheckdocs):
+Main changes v9-->v10:
+- Refer to Vinod's review comments, drop the array, and use the static data
+  structure directly in the drvdata definition.
 
-See https://patchwork.ozlabs.org/patch/
+Main changes v8-->v9:
+- Split the PHY driver changes into three patches.
+  - To keep the format consistent, re-define the PHY_CMN_REG75, and remove
+    two useless BIT definitions.
+  - Refine the i.MX8MM PCIe PHY driver, let it more reviewable, flexible,
+    and easy to expand.
+  - Add the i.MX8MP PCIe PHY support.
+- Only PHY related patches in v9, Since the others patches had been merged
+  by Phillipp/Shawn/Lorenzo [1].
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+Main changes v7-->v8:
+- Add the Reviewed-by tag, no other changes.
+  Only two patches in v8, Since the others patches had been merged by
+  Phillipp/Shawn/Lorenzo [1].
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+<snipped.>
 
-pip3 install dtschema --upgrade
+[1]
+Shawn's tree
+d50650500064 arm64: dts: imx8mp-evk: Add PCIe support
+9e65987b9584 arm64: dts: imx8mp: Add iMX8MP PCIe support
+5506018d3dec soc: imx: imx8mp-blk-ctrl: handle PCIe PHY resets
 
-Please check and re-submit.
+Philipp's tree
+051d9eb40388 reset: imx7: Fix the iMX8MP PCIe PHY PERST support
 
+Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |  16 ++++++++--
+drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 142 ++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------
+2 files changed, 106 insertions(+), 52 deletions(-)
+
+[RESEND v12 1/4] dt-binding: phy: Add i.MX8MP PCIe PHY binding
+[RESEND v12 2/4] phy: freescale: imx8m-pcie: Refine register
+[RESEND v12 3/4] phy: freescale: imx8m-pcie: Refine i.MX8MM PCIe PHY
+[RESEND v12 4/4] phy: freescale: imx8m-pcie: Add i.MX8MP PCIe PHY
