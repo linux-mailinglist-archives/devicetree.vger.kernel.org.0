@@ -2,110 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 262705FD733
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 11:38:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A915FD745
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 11:47:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229518AbiJMJiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 05:38:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38818 "EHLO
+        id S229475AbiJMJrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 05:47:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbiJMJiv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 05:38:51 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407A91217F9;
-        Thu, 13 Oct 2022 02:38:50 -0700 (PDT)
-Received: from zn.tnic (p200300ea9733e733329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e733:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229505AbiJMJrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 05:47:46 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57963102DE0;
+        Thu, 13 Oct 2022 02:47:45 -0700 (PDT)
+Received: from SoMainline.org (D57D4C6E.static.ziggozakelijk.nl [213.125.76.110])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id C35B21EC053B;
-        Thu, 13 Oct 2022 11:38:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1665653924;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=7sFMAuZJzUPv1j5Nd1UXqoUcoLytDTmELcFfg6XdXbI=;
-        b=UkfI9X4nygXICvQV52k1J8hwljulApTQLTNIi7MOwkzbgsvqYYHYuYnNu+FJaG1Z3N+9rY
-        lq2edsvl2cTGRsLoRUyhiugNuI4SUIjaHzo8Un66CpOwlEZUuauIwVoEvb/ZO2tfTdEVkb
-        DHDvHBKrJGdhcQZybcXqlqGiRO0W078=
-Date:   Thu, 13 Oct 2022 11:38:41 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 7E1383F270;
+        Thu, 13 Oct 2022 11:47:43 +0200 (CEST)
+Date:   Thu, 13 Oct 2022 11:47:42 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v3 13/17] EDAC/mc: Add MC unique index allocation
- procedure
-Message-ID: <Y0fcoSVN0mKMuCjo@zn.tnic>
-References: <20220929232712.12202-1-Sergey.Semin@baikalelectronics.ru>
- <20220929232712.12202-14-Sergey.Semin@baikalelectronics.ru>
- <Y0b5cq4evSg1nfb0@zn.tnic>
- <20221012200154.7fq3i7igbgkcy2mx@mobilestation>
- <Y0ckn5r3KN416Jeg@zn.tnic>
- <20221012223039.upbjsiywiipdrjjk@mobilestation>
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 10/16] arm64: dts: qcom: sm6125: align TLMM pin
+ configuration with DT schema
+Message-ID: <20221013094742.fftcbdkjipkw3pub@SoMainline.org>
+References: <20220930192954.242546-1-krzysztof.kozlowski@linaro.org>
+ <20220930192954.242546-11-krzysztof.kozlowski@linaro.org>
+ <20221011074512.anifehocqjnxuf35@SoMainline.org>
+ <112ada96-f742-8d06-dc90-a422d3636e06@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221012223039.upbjsiywiipdrjjk@mobilestation>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <112ada96-f742-8d06-dc90-a422d3636e06@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 13, 2022 at 01:30:39AM +0300, Serge Semin wrote:
-> A level of completeness can be relative to each person. For all the
-> years I've submitting the patches to the kernel I couldn't even
-> remember the last request to elaborate my logs. In no means I want to
-> say they were perfect. I could just be too immersed into the problem
-> so thought that the provided text was descriptive enough especially
-> for the subsystem maintainer. So to speak asking for more details
-> would be more than enough.
+On 2022-10-11 08:06:55, Krzysztof Kozlowski wrote:
+> On 11/10/2022 03:45, Marijn Suijten wrote:
+> > On 2022-09-30 21:29:48, Krzysztof Kozlowski wrote:
+> >> DT schema expects TLMM pin configuration nodes to be named with
+> >> '-state' suffix and their optional children with '-pins' suffix.
+> >>
+> >> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > Thanks!
+> > 
+> > Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > 
+> > Perhaps mention more clearly that this is fixing up an earlier patch
+> > that tried to address missing `-pins`?
+> 
+> It is not fixing only that patch, but also nodes added later without suffix.
 
-Dude, are you even reading what I'm writing to you?!
+Afaik the node was already there when [1] was applied, it just
+accidentally added -pins to cmd twice instead of once to clk and cmd
+separately.  But feel free to stick to a generic commit message.
 
-I don't care how immersed you were in the problem and who asked or
-didn't ask you to elaborate your logs. If you're submitting patches
-to the EDAC tree, those logs need to be complete and explain things
-sufficiently and exactly. Period.
+[1]: https://lore.kernel.org/all/20220912061746.6311-35-krzysztof.kozlowski@linaro.org/
 
-> So you need more details. You should have just asked. I can't read
-> your mind after all.
-
-And I can't read yours too. And I asked like three times already. And
-yet, you still are not giving me a concrete answer.
-
-I said "exact pointers please". That means, you point me to a driver and
-the *exact* *code* in there which you think is doing something which
-needs fixing.
-
-What you've given me again is the same spiel as before.
-
-So let me save you and me some time: your patches are not going anywhere
-until they explain the thing they're fixing properly and precisely. End
-of story.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+- Marijn
