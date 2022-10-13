@@ -2,77 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 796035FE2E6
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 21:47:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDE1F5FE2F4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 21:50:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbiJMTra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 15:47:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54074 "EHLO
+        id S229702AbiJMTuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 15:50:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbiJMTr3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 15:47:29 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3DB6188ABB;
-        Thu, 13 Oct 2022 12:47:28 -0700 (PDT)
-Received: from [192.168.1.101] (95.49.31.41.neoplus.adsl.tpnet.pl [95.49.31.41])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 7995F1F67B;
-        Thu, 13 Oct 2022 21:47:26 +0200 (CEST)
-Message-ID: <34557cdc-d78c-6fb4-84ec-d848f7b9aacb@somainline.org>
-Date:   Thu, 13 Oct 2022 21:47:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 3/3] ARM: dts: qcom: apq8064: fix coresight compatible
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229648AbiJMTuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 15:50:05 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2ED03AE40;
+        Thu, 13 Oct 2022 12:50:03 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id g10so2871357oif.10;
+        Thu, 13 Oct 2022 12:50:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zZvNjVbW4zowPy3Z/cAsr56lUs0ewtVKh94UUwuwhmA=;
+        b=zXuCWNUzjKY5lXlQfE4wGOP5C0Hc0hpRZNhJ392roq/K8ZP0wot0VsWv3q1Rup3OS8
+         XsNVtaAwtrO2ivaTYernMmAePHe5x4h3aukZVmejbgVCfFrv2KLjTelZvm4VZNHXr45L
+         BuEPQop+EvCrcsPKevgD2SmdptjjECG5eaymNcbs2e0rIQ+3IbTFxMPgPOJEIfl2JKfh
+         3tlbbyD/Jaj544gqH4ozALq9+zQor6ep7kJMe07Fv4ks2oQxKfV57JEkHivWD2E7q69/
+         oR4IAKnPaBk4GSxBhf3s2J+mEJcbchknvdxpvLVCXKqynlFZj5srrZJ0m3Ks4g3qoRuU
+         dYnw==
+X-Gm-Message-State: ACrzQf3E5dgcuE+jndXqRyylGx2atqO2IbkUWwH7AdJnJ3S0eaHRL7J7
+        K+R9y1C3NhOlDkKedIDdpQ==
+X-Google-Smtp-Source: AMsMyM55LbRP2E0YJcAZc7Ufq9gCBsA12TsQGbf58KBfsqxY0ISPmjy8+9HI4HKCzOMeF8uSp7WLww==
+X-Received: by 2002:a05:6808:1208:b0:351:9ff:795f with SMTP id a8-20020a056808120800b0035109ff795fmr703115oil.231.1665690603233;
+        Thu, 13 Oct 2022 12:50:03 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bb18-20020a056808169200b00354d732ed87sm234339oib.36.2022.10.13.12.50.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Oct 2022 12:50:02 -0700 (PDT)
+Received: (nullmailer pid 150868 invoked by uid 1000);
+        Thu, 13 Oct 2022 19:50:03 -0000
+Date:   Thu, 13 Oct 2022 14:50:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221013190657.48499-1-luca@z3ntu.xyz>
- <20221013190657.48499-3-luca@z3ntu.xyz>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20221013190657.48499-3-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Orson Zhai <orsonzhai@gmail.com>,
+        Cixi Geng <cixi.geng1@unisoc.com>, linux-gpio@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V3 2/3] dt-bindings: gpio: Convert Unisoc EIC controller
+ binding to yaml
+Message-ID: <166569060298.150817.4539198070843655655.robh@kernel.org>
+References: <20221010053338.22580-1-zhang.lyra@gmail.com>
+ <20221010053338.22580-3-zhang.lyra@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221010053338.22580-3-zhang.lyra@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 13.10.2022 21:06, Luca Weiss wrote:
-> There's a typo missing the arm, prefix of arm,coresight-etb10. Fix it to
-> make devicetree validation happier.
+On Mon, 10 Oct 2022 13:33:37 +0800, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Convert the Unisoc EIC controller binding to DT schema format.
+> Update the maxItems of 'reg' property, since the current gpio-eic-sprd
+> driver supports 3 reg items. Also removed a few similar examples.
+> 
+> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-
-Konrad
->  arch/arm/boot/dts/qcom-apq8064.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/gpio/gpio-eic-sprd.txt           |  97 -----------------
+>  .../bindings/gpio/sprd,gpio-eic.yaml          | 103 ++++++++++++++++++
+>  2 files changed, 103 insertions(+), 97 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-eic-sprd.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
 > 
-> diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-> index 942aa2278355..a39b940d5853 100644
-> --- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-> +++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-> @@ -1615,7 +1615,7 @@ wifi {
->  		};
->  
->  		etb@1a01000 {
-> -			compatible = "coresight-etb10", "arm,primecell";
-> +			compatible = "arm,coresight-etb10", "arm,primecell";
->  			reg = <0x1a01000 0x1000>;
->  
->  			clocks = <&rpmcc RPM_QDSS_CLK>;
+
+Reviewed-by: Rob Herring <robh@kernel.org>
