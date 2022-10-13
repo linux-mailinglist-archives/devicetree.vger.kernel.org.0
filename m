@@ -2,86 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA6365FD461
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 07:58:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A16A25FD476
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 08:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229487AbiJMF6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 01:58:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51104 "EHLO
+        id S229747AbiJMGFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 02:05:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbiJMF6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 01:58:01 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E29FB1285C7;
-        Wed, 12 Oct 2022 22:57:59 -0700 (PDT)
+        with ESMTP id S229749AbiJMGF3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 02:05:29 -0400
+Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED65C22B1F;
+        Wed, 12 Oct 2022 23:05:28 -0700 (PDT)
+Received: by mail-il1-x12e.google.com with SMTP id u2so479661ilv.6;
+        Wed, 12 Oct 2022 23:05:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1665640680; x=1697176680;
-  h=subject:from:to:cc:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=apJEnHLkQjzl7B1Pt8I9pkKweLKTkm4rh13qLb61/Ls=;
-  b=d5W0Bnmh/dEDALcpTerpPK3S0tC9luuIXA0s8VjLsFaD9mSaCNw2ibOS
-   zj0QsFwETv3Qnysn8MScDdwVr0aQgOPU4TB7BO3d1oHhc4V4Ib9WhA72Y
-   ItfZGPZJ2H0mgHe3tfPkWaUfpCaCoyLHnZVisI7mmf3dkjNKkONsuWTOq
-   0myDleprWevxyvhDqqGtLKWYwyqyqvSN7sBAtvkdeu25nwH/uDdcPo3Lk
-   16r3YpxhFvcYQwKu5lM+upqclVLg8Fiuulj1OqDN2PYOrz857+4bWcQ4x
-   FE6PsNHS6/hHXI5Uhi53Uyz2CYP3mKJnn8P9uqX/LgelqyKbPixGY6k6/
-   A==;
-X-IronPort-AV: E=Sophos;i="5.95,180,1661810400"; 
-   d="scan'208";a="26721526"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 13 Oct 2022 07:57:58 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 13 Oct 2022 07:57:58 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 13 Oct 2022 07:57:58 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1665640678; x=1697176678;
-  h=from:to:cc:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding:subject;
-  bh=apJEnHLkQjzl7B1Pt8I9pkKweLKTkm4rh13qLb61/Ls=;
-  b=IvAiit125OagcJRFBtuIlFxyrikB3kRQyddqC4Xm5KCkg4g4WaCXH1nR
-   XFP17n+V+q9VB4J4MECfBFSkqkIR2GauEvE6xH03KutpZUJXWfOYh08Rk
-   pP0wHu4JOEThvpLGuJr2tI6MGNOgcPpyKouxwe/kK0XiEYCqyFiMr8Ooj
-   oSP+YE1oxt7DC1SUHEmEo/NoJnPT5mNyD6aeDKrNIptfzrsfy840xaTsZ
-   Qo5zYXxrLbot5826NOpl7YImQkQKA2pXB2hWCljr6E7FGnBG/rpECxe2W
-   e/CcC3+cHWvaW2oPJZgmmSbX6Zr9AxA4YxjSPRJAT0QLGJq23stjojEWW
-   g==;
-X-IronPort-AV: E=Sophos;i="5.95,180,1661810400"; 
-   d="scan'208";a="26721525"
-Subject: Re: [PATCH AUTOSEL 5.15 31/47] arm64: dts: imx8mp: Add snps,
- gfladj-refclk-lpm-sel quirk to USB nodes
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 13 Oct 2022 07:57:58 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DECB2280056;
-        Thu, 13 Oct 2022 07:57:57 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Sasha Levin <sashal@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        l.stach@pengutronix.de, peng.fan@nxp.com,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        festevam@gmail.com, hongxing.zhu@nxp.com,
-        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
-        aford173@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Thu, 13 Oct 2022 07:57:55 +0200
-Message-ID: <4758030.GXAFRqVoOG@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20221013002124.1894077-31-sashal@kernel.org>
-References: <20221013002124.1894077-1-sashal@kernel.org> <20221013002124.1894077-31-sashal@kernel.org>
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DDj4+uRODjMr45xNf5pLX6OxTEFFbTj3Pj7jweavBZ0=;
+        b=kfyDKIfq0/UXndb7SbP3gaHrwAylkoI9zsC4F1QAe6tR9hx5djcgf4lnCSH/cHOyVa
+         f70TBwbfsS6kRnsxjRrOR5qS4I0UG6Qc629O/I0QZwgQ9UC7t3zmMljELIvsEridOC6z
+         IvgTE1LqAjTJ+xw2EHQj0T7pkqNsNSoQevlqS74KC2ZwLmRwKNDcwAR0HoJ7nRIn040g
+         dppmvfzGKaMiZbvosBbkxPnAo8ByYbcx/JLXBI4021HPujdz/zvsUiudFBl663j1wsbj
+         LI/57Bsurpb8HNPwCp6S7aQ+S+bStpp5E7P9+LpMcuVkp5DNlKT3r52cRe3LUQYfrPP4
+         FVCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DDj4+uRODjMr45xNf5pLX6OxTEFFbTj3Pj7jweavBZ0=;
+        b=imJ10IHZEp0qaZKTPXke6EWwVa186qigRhhQ2Ci83DRFGmzmZ1ARSoREhNy4wYyvDX
+         kOusDVyBYc/g+lyLjijHxTH9CaOX61r/NVKuzfufCQVkOOpAUVwzjM+HAA+YPv0SZTgV
+         ogSiIqWMjwrCWcv+Z1i4ZHsp3MsBNpKU+0dicC1N7aurjJ+69CnoNZPqaIsPX5TX8Co3
+         hrH4FyGOGfaiXF19aXr90n4XbRyjvaVQnRgwFR99MHqqZuppJ+xoH7oU1gSLnZrAUklM
+         P0/z2RgWKChP8xooRoRzox6ozv2aj1l2J5lUw0AHEKKTFrpwpDOErGurwboYaXjL22DP
+         2wCg==
+X-Gm-Message-State: ACrzQf1+rrlWFo4cBrf4DYFDhccDdlxAPJzphhbfOcHHgznF0Jv+TIaO
+        FIt6z5RTbvafYd4GVQUPbek=
+X-Google-Smtp-Source: AMsMyM6oNwKP1DHKsPbdJNJ5Qmy7dnImH5E9N9HvRQGLTT+J6m/lx6L0kNC3FXg2uni2RnCEigVdFg==
+X-Received: by 2002:a92:d484:0:b0:2fc:3a29:f8a9 with SMTP id p4-20020a92d484000000b002fc3a29f8a9mr9298488ilg.235.1665641128259;
+        Wed, 12 Oct 2022 23:05:28 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:9085:f814:ae2e:a9b4? ([2600:1700:2442:6db0:9085:f814:ae2e:a9b4])
+        by smtp.gmail.com with ESMTPSA id d6-20020a05663802a600b00363781b551csm7087606jaq.146.2022.10.12.23.05.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Oct 2022 23:05:27 -0700 (PDT)
+Message-ID: <0d571d21-507d-fcc5-bf58-d02f958de28a@gmail.com>
+Date:   Thu, 13 Oct 2022 01:05:26 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH RFC 0/2] Generate device tree node for pci devicesgain,
+Content-Language: en-US
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org, helgaas@kernel.org, max.zhen@amd.com,
+        sonal.santan@amd.com, larry.liu@amd.com, brian.xu@amd.com,
+        stefano.stabellini@xilinx.com, trix@redhat.com
+References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
+ <1d9faa2e-e3fc-d104-c85f-4035233848d6@gmail.com>
+ <ca35a14d-501d-265e-b196-a87e1e994cd0@amd.com>
+ <78211af5-171c-ef4f-a8c2-17f63dc479bc@gmail.com>
+ <20221010104210.68edf825@fixe.home>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20221010104210.68edf825@fixe.home>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,61 +81,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 13. Oktober 2022, 02:21:06 CEST schrieb Sasha Levin:
-> From: Alexander Stein <alexander.stein@ew.tq-group.com>
+On 10/10/22 03:42, Clément Léger wrote:
+> Le Tue, 13 Sep 2022 12:41:28 -0500,
+> Frank Rowand <frowand.list@gmail.com> a écrit :
 > 
-> [ Upstream commit 5c3d5ecf48ab06c709c012bf1e8f0c91e1fcd7ad ]
+>>>> I am not positive what part of what I wrote above is correct and would appreciate
+>>>> some confirmation of what is correct or incorrect.  
+>>>
+>>> There are 2 series devices rely on this patch:
+>>>
+>>>     1) Xilinx Alveo Accelerator cards (FPGA based device)
+>>>
+>>>     2) lan9662 PCIe card
+>>>
+>>>           please see: https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/  
+>>
+>> Thanks.  Please include this information in future versions of the patch series.
+>>
+>> For device 2 I have strongly recommended using pre-boot apply of the overlay to the base
+>> device tree.  I realize that this suggestion is only a partial solution if one wants to
+>> use hotplug to change system configuration (as opposed to using hotplug only to replace
+>> an existing device (eg a broken device) with another instance of the same device).  I
+>> also realize that this increased the system administration overhead.  On the other hand
+>> an overlay based solution is likely to be fragile and possibly flaky.
 > 
-> With this set the SOF/ITP counter is based on ref_clk when 2.0 ports are
-> suspended.
-> snps,dis-u2-freeclk-exists-quirk can be removed as
-> snps,gfladj-refclk-lpm-sel also clears the free running clock configuration
-> bit.
+> Again, applying overlays pre-boot is not an acceptable solution. Some
+> systems are not based on device-tree (x86 platforms with ACPI based
+> description, and I'm not even sure this is doable by modifying ACPI
+> tables). PCI is meant to be plug-and-play, so patching the ACPI
+> tables or device-tree pre-boot is likely not the correct answer to this
+> problem.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Link:
-> https://lore.kernel.org/r/20220915062855.751881-4-alexander.stein@ew.tq-gro
-> up.com Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Signed-off-by: Sasha Levin <sashal@kernel.org>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> 9b07b26230a1..664177ed38d3 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -912,7 +912,7 @@ usb_dwc3_0: usb@38100000 {
->  				interrupts = <GIC_SPI 40 
-IRQ_TYPE_LEVEL_HIGH>;
->  				phys = <&usb3_phy0>, <&usb3_phy0>;
->  				phy-names = "usb2-phy", "usb3-
-phy";
-> -				snps,dis-u2-freeclk-exists-quirk;
-> +				snps,gfladj-refclk-lpm-sel-quirk;
->  			};
-> 
->  		};
-> @@ -953,7 +953,7 @@ usb_dwc3_1: usb@38200000 {
->  				interrupts = <GIC_SPI 41 
-IRQ_TYPE_LEVEL_HIGH>;
->  				phys = <&usb3_phy1>, <&usb3_phy1>;
->  				phy-names = "usb2-phy", "usb3-
-phy";
-> -				snps,dis-u2-freeclk-exists-quirk;
-> +				snps,gfladj-refclk-lpm-sel-quirk;
->  			};
->  		};
-
-Mh, does it make sense to pick this one without commit a6fc2f1b0927 ("usb: 
-dwc3: core: add gfladj_refclk_lpm_sel quirk")?
-snps,gfladj-refclk-lpm-sel-quirk is unknown/unused after this patch, but 
-snps,dis-u2-freeclk-exists-quirk is not applied any more.
-If a6fc2f1b0927 is not applicable, I would drop this one instead.
-
-Best regards,
-Alexander
 
 
+> This would also require two different descriptions of the same card
+> (for ACPI and device-tree) and would require the final user to create a
+> specific overlay for its device based on the PCI slots the card is
+> plugged in.
+
+One of the many missing pieces of overlay support.  There have been several
+discussion of how to describe a "socket" in a device tree that a device
+could be plugged into, where a single device tree subtree .dtb could be
+relocated to one or more different socket locations.  Thus in this
+case a single overlay could be relocated to various PCI slots.
+
+I don't expect be getting involved in any future efforts around sockets
+(see my following comment for why).
+
+> 
+> The solution we proposed (Lizhi and I) allows to overcome these
+> problems and is way easier to use. Fixing the potential bugs that might
+> exists in the overlay layer seems a way better idea that just pushing
+
+It is not potential bugs.  The current run time overlay implementation is
+proof of concept quality and completeness.  It is not production ready.
+
+I got an opportunity for early retirement a couple of weeks ago.  My first
+inclination was to continue the same level of device tree maintainership,
+but I am quickly realizing that there are other activities that I would
+like to devote my time and energy to.  I will continue to support Rob with
+minor patch reviews and testing, and potentially finishing up some
+improvements to unittest.  On the other hand, bringing run time overlay
+support to product quality would be a major investment of my time that I
+am not willing to continue.
+
+So I am leaving major overlay issues in the capable hands of Rob.  I may
+chime in from time to time when I can do so without requiring too much of
+my time.
+
+-Frank
+
+> that away to the bootloader level. Moreover, this kind of devices is
+> likely to be more common with the increasing popularity of FPGA and a
+> proper solution must be found.
+> 
 
