@@ -2,82 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C58105FD91F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 284025FD92D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229546AbiJMMU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 08:20:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56948 "EHLO
+        id S229511AbiJMM3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 08:29:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbiJMMU0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:20:26 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E85DE105378
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:20:24 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6FA7C492;
-        Thu, 13 Oct 2022 14:20:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1665663622;
-        bh=xzy6JsDhXyvoXQiqBSvPXdA6yEH6j7Jz/E9TPh8hHkU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=knFDKUKt8m9AVaa2BwRtejYK3YgnlqNvresR70K7JdfxneyXTgLcDdjtgSfc14D7X
-         A6JDzo2ytPkFRC/OgTp+PQfVqO/wj63P/a6FJqAT3MRGxg2Eu7es0qdpQRbmr5Tn3T
-         SuKRj/Ri7fhych1WEu7DwvmGauuIa6kCQqWvdHQ4=
-Date:   Thu, 13 Oct 2022 15:20:16 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Daniel Scally <dan.scally@ideasonboard.com>
-Cc:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, kieran.bingham@ideasonboard.com,
-        debix-tech@polyhex.net
-Subject: Re: [PATCH v3 0/3]  Debix Model A board devicetree
-Message-ID: <Y0gCgMP6zzYRymRX@pendragon.ideasonboard.com>
-References: <20221012102121.1747491-1-dan.scally@ideasonboard.com>
+        with ESMTP id S229516AbiJMM3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:29:31 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0510611B2E5
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:29:30 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id h24so518458qta.7
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mWjMckfYO6R3pT1gH/T7HL/KjgENyPTv8P7zBRmvj2E=;
+        b=XvDln5twKivFEbGCXI+A5Pm/le3Z6axjz7FnqktjCKTSru73E7KUZtJ7bz7/AGR3T9
+         GoXY5M5rTphPUyLT9MVVaKopNZEgGXP7HGdMWURJ7oBNU4RPTdUcILdpUZIvo4bQkvt8
+         dTBKnFcU9CAv/kMpWOBMi/wauHGyFlcTxPlCYS/Q0HNCSs3NraT5VllMG06lh8WjoyWM
+         JhGAuQY9IE7FqV8RQhJwsfBcmmFhOh1oDkBILgi+SW+R61jamHKA91QPrMUvQmek4542
+         IRA3zuOmu+XrAKPjtV3gv+uTTjbMb1D2GeH973VoqdS7S8+CoLyplGRyxhoDqmvXg27d
+         qi6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mWjMckfYO6R3pT1gH/T7HL/KjgENyPTv8P7zBRmvj2E=;
+        b=JC42CehIshRbG2i9/M9aGuVPJLOOZYjGpwADKSXGnZLaJm5htUtou2uR8lZrTHk/ss
+         18sND+zmXkvAAMOo86iP85j8n7H70As2CpoRfOFGaxfr5m2zXSG+jWfXHMzKLn2xfNng
+         lmWGyAlC/wmDNW4c1kUzCv2EuxJRXmSX0Q6zMZOYbRFMGN5WjqVD0HhCUETebgyHODvV
+         9Ir3qiMpi2ZWrH/M3nO/ql+OvGkxci2JIU00+rL7gVBvdd8LNndEzvaR4u82NQer05LJ
+         LjQw397mZjNDiGn7iFB047OqSF/UwfGtfAWNNwSTvwg4GUE9s4jZIe/xTu4V7A5QoYi0
+         Z/Rg==
+X-Gm-Message-State: ACrzQf3AzySxunIFDfKjLeEJh77L4NdaUjosX8ymIr525/lE1zAr1RVg
+        1RnG/pSQbqAKRUz1Zhd+2Nh2EI6kNUgEtQ==
+X-Google-Smtp-Source: AMsMyM5sv0Vga4IZ3dJIN7R/wSMuZUBhI82PmiMBNMK7yz2Vh/tmREqvUu0S6OmCnZGsdEy5COcy2w==
+X-Received: by 2002:a05:620a:2891:b0:6bc:5c73:9728 with SMTP id j17-20020a05620a289100b006bc5c739728mr23863484qkp.178.1665664158502;
+        Thu, 13 Oct 2022 05:29:18 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id f7-20020a05620a408700b006bbc3724affsm18599984qko.45.2022.10.13.05.29.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Oct 2022 05:29:17 -0700 (PDT)
+Message-ID: <a7e96623-0010-a7ae-fa3d-df1defcd51ca@linaro.org>
+Date:   Thu, 13 Oct 2022 08:27:05 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20221012102121.1747491-1-dan.scally@ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v1 1/5] soc: hpe: add support for HPE GXP Programmable
+ Register Driver
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20221011185525.94210-1-nick.hawkins@hpe.com>
+ <20221011185525.94210-2-nick.hawkins@hpe.com>
+ <c6ab6116-5d92-132e-48fc-b731fd244d72@linaro.org>
+ <DM4PR84MB19276978EB630CF08833E5A488229@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DM4PR84MB19276978EB630CF08833E5A488229@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dan,
-
-Thank you for the patches.
-
-On Wed, Oct 12, 2022 at 11:21:18AM +0100, Daniel Scally wrote:
-> Hello
+On 12/10/2022 16:25, Hawkins, Nick wrote:
+> Greetings Krysztof,
 > 
-> This series adds a .dts file for the Polyhex Debix Model A board [1]
-> A binding for the vendor is also added.
+> Thanks for the feedback! I have several questions below:
 > 
-> [1] http://www.polyhex.net/product/embedded-motherboard/board/nxp.html?id=483
-
-For the whole series,
-
-Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> Daniel Scally (3):
->   dt-bindings: vendor-prefixes: Add Polyhex Technology Co.
->   dt-bindings: arm: fsl: Enumerate Debix Model A Board
->   arm64: dts: Add device tree for the Debix Model A Board
+>>> +
+>>> +static ssize_t server_id_show(struct device *dev, struct 
+>>> +device_attribute *attr, char *buf) {
+>>> +	struct gxp_plreg_drvdata *drvdata = dev_get_drvdata(dev);
+>>> +	int value_upper;
+>>> +	int value_lower;
+>>> +	ssize_t ret;
+>>> +	u32 trans_offset;
+>>> +	u32 trans_shift;
+>>> +
+>>> +	/* read upper first */
+>>> +	address_translation(drvdata->server_id.upper[BYTE],
+>>> +			    &trans_offset,
+>>> +			    &trans_shift);
+>>> +	regmap_read(drvdata->plreg_map, trans_offset, &value_upper);
+>>> +	value_upper = value_upper >> trans_shift;
+>>> +	value_upper = value_upper & drvdata->server_id.upper[MASK];
+>>> +
+>>> +	/* read lower last */
+>>> +	address_translation(drvdata->server_id.lower[BYTE],
+>>> +			    &trans_offset,
+>>> +			    &trans_shift);
+>>> +	regmap_read(drvdata->plreg_map, trans_offset, &value_lower);
+>>> +	value_lower = value_lower >> trans_shift;
+>>> +	value_lower = value_lower & drvdata->server_id.lower[MASK];
+>>> +
+>>> +	ret = sprintf(buf, "0x%04x", value_upper | value_lower);
+>>> +
+>>> +	return ret;
+>>> +}
+>>> +
+>>> +static DEVICE_ATTR_RO(server_id);
 > 
->  .../devicetree/bindings/arm/fsl.yaml          |   1 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../dts/freescale/imx8mp-debix-model-a.dts    | 529 ++++++++++++++++++
->  4 files changed, 533 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+>> Missing sysfs documentation.
+> 
+> Can you point me at the proper location / documentation for documenting sysfs? Thanks!
 
--- 
-Regards,
+Documentation/ABI/README
 
-Laurent Pinchart
+> 
+>>> +	for (i = 0; i <= MASK; i++) {
+>>> +		if (of_property_read_u32_index(np, "grp5", i,
+>>> +					       &drvdata->grp_intr_flags.grp5[i])) {
+>>> +			dev_err(&pdev->dev,
+>>> +				"grp5intsflags is missing its 'grp5' property index %d\n", i);
+>>> +			return -ENODEV;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	np = of_get_child_by_name(pdev->dev.of_node, "pwrbtn");
+>>> +	if (!np) {
+>>> +		dev_err(&pdev->dev, "%pOF is missing its 'pwrbtn' node\n", np);
+>>> +		return -ENODEV;
+>>> +	}
+>>> +
+>>> +	for (i = 0; i <= VALUE; i++) {
+>>> +		if (of_property_read_u32_index(np, "latch", i, 
+>>> +&drvdata->pwrbtn.latch[i])) {
+> 
+>> Undocumented properties. NAK.
+> 
+> If each child node of hpe,gxp-plreg were documented with their respective properties would this be acceptable?
+
+I would need to see the bindings.
+
+
+Best regards,
+Krzysztof
+
