@@ -2,156 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA7415FD814
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 13:05:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 837FD5FD81B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 13:09:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbiJMLF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 07:05:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46024 "EHLO
+        id S229513AbiJMLI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 07:08:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiJMLFz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 07:05:55 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7080B4D156;
-        Thu, 13 Oct 2022 04:05:54 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A0CB6492;
-        Thu, 13 Oct 2022 13:05:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1665659151;
-        bh=dUZBnksssSEsbfYjTSHdrj0Sb8JpUXd5lCyKkoOrkH8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=td9o3P/iAjwPyoVF/NtEnmhWLO5rawjBajdtyTf4xyJGDzO90Dgh+VjIj9whSYvZP
-         pCBr5bSg2Nq4A042YCFb3z1WKcxtdZiHrmfM8lbHcREkzYw14hH93ElRtY2qDENzS7
-         /gSEdzy91op7PCVQw965JCA+kpaB0kQ49CEOMlvk=
-Date:   Thu, 13 Oct 2022 14:05:45 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     allen <allen.chen@ite.com.tw>
-Cc:     Pin-yen Lin <treapking@chromium.org>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
-        Hermes Wu <Hermes.Wu@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229459AbiJMLI6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 07:08:58 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EEB3210CFB8;
+        Thu, 13 Oct 2022 04:08:56 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 3756880FC;
+        Thu, 13 Oct 2022 11:00:04 +0000 (UTC)
+Date:   Thu, 13 Oct 2022 14:08:54 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: it6505: add properties to restrict
- output bandwidth
-Message-ID: <Y0fxCVUtlkB4XHIq@pendragon.ideasonboard.com>
-References: <20221013105116.180380-1-allen.chen@ite.com.tw>
- <20221013105116.180380-2-allen.chen@ite.com.tw>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+Subject: Re: [PATCH 1/4] ARM: dts: omap3-n900: fix LCD reset line polarity
+Message-ID: <Y0fxxsk+e2o0wYZV@atomide.com>
+References: <20221004213503.848262-1-dmitry.torokhov@gmail.com>
+ <Y0UDEtQlN5Y9h7BU@atomide.com>
+ <20221011123726.elsr53ue7nxzhvww@mercury.elektranox.org>
+ <Y0V4cLGbYe4j+ls6@google.com>
+ <Y0V99Agad6Ma+yTC@atomide.com>
+ <Y0V/82JsRVZh6PlL@google.com>
+ <Y0WCCw8k+KTuvdWX@atomide.com>
+ <41373c20-3b97-ac47-81c8-75bf1bbe3a38@ideasonboard.com>
+ <Y0cVw63d3+pAVbd2@google.com>
+ <b56197a1-f23d-5f8a-b32d-f8787586364e@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221013105116.180380-2-allen.chen@ite.com.tw>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <b56197a1-f23d-5f8a-b32d-f8787586364e@ideasonboard.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Allen,
+Hi,
 
-Thank you for the patch.
+* Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> [221013 06:13]:
+> I would just go with the above for the time being. It should be an easy
+> change, and as these omapfb and drm panel drivers are kind of copies of each
+> other, I think it makes sense to use the same code in both.
 
-On Thu, Oct 13, 2022 at 06:51:13PM +0800, allen wrote:
-> From: allen chen <allen.chen@ite.com.tw>
-> 
-> Add properties to restrict dp output data-lanes and clock.
-> 
-> Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-> Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
-> ---
->  .../bindings/display/bridge/ite,it6505.yaml   | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> index 833d11b2303a7..f2c3d1d10359e 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> @@ -52,10 +52,51 @@ properties:
->      maxItems: 1
->      description: extcon specifier for the Power Delivery
->  
-> +  data-lanes:
-> +    oneOf:
-> +      - minItems: 1
-> +        maxItems: 1
-> +        uniqueItems: true
-> +        items:
-> +          enum:
-> +            - 0
-> +            - 1
-> +        description: For one lane operation.
-> +
-> +      - minItems: 2
-> +        maxItems: 2
-> +        uniqueItems: true
-> +        items:
-> +          enum:
-> +            - 0
-> +            - 1
-> +        description: For two lanes operation.
-> +
-> +      - minItems: 4
-> +        maxItems: 4
-> +        uniqueItems: true
-> +        items:
-> +          enum:
-> +            - 0
-> +            - 1
-> +            - 2
-> +            - 3
-> +        description: For four lanes operation.
+Maybe if a fix is needed, sure let's fix things first, then drop
+the unused panel drivers.
 
-The data lanes should be in the output endpoint. If there's no output
-port, one should be added.
+We already have drivers/gpu/drm/panel driver for both of these two
+omapfb panels:
 
-> +
->    port:
->      $ref: /schemas/graph.yaml#/properties/port
->      description: A port node pointing to DPI host port node
->  
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> +
-> +        properties:
-> +          link-frequencies:
-> +            minItems: 1
-> +            maxItems: 1
-> +            description: Allowed max link frequencies in Hz.
-> +
->  required:
->    - compatible
->    - ovdd-supply
-> @@ -84,10 +125,12 @@ examples:
->              pwr18-supply = <&it6505_pp18_reg>;
->              reset-gpios = <&pio 179 1>;
->              extcon = <&usbc_extcon>;
-> +            data-lanes = <0 1>;
->  
->              port {
->                  it6505_in: endpoint {
->                      remote-endpoint = <&dpi_out>;
-> +                    link-frequencies = /bits/ 64 <150000000>;
->                  };
->              };
->          };
+drivers/video/fbdev/omap2/omapfb/displays/panel-sony-acx565akm.c
+drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c
 
--- 
+The compatible strings used translate to these dts files:
+
+arch/arm/boot/dts/motorola-mapphone-common.dtsi
+arch/arm/boot/dts/omap3-n900.dts
+arch/arm/boot/dts/omap3-n950.dts
+arch/arm/boot/dts/omap4-sdp.dts
+
+These devices work with omapdrm and there should not be any need to
+stick with the omapfb driver. We can just drop the omapfb panel
+drivers for panel-sony-acx565akm.c and panel-dsi-cm.c. Let's put
+the limited effort where there is activity instead :)
+
+The vrfb rotation work has been discussed on the lists, so seems
+like we will eventually have that for omapdrm. Meanwhile, software
+rotation is being used for postmarketos and leste with omapdrm
+AFAIK.
+
+> That said, I personally don't mind fixing the dts files and the drivers, and
+> even dropping the omapfb panel drivers. However, as I don't know if someone
+> needs the omapfb drivers or has to use an old dtb, I don't want to step on
+> that possible mine field. If someone else wants to go there (without my
+> involvement), fine for me =).
+
+I belive the only valid use case for omap2 omapfb is the n8x0 rfbi
+driver that has no omapdrm driver.
+
 Regards,
 
-Laurent Pinchart
+Tony
+
+
