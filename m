@@ -2,130 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07CEE5FD51D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 08:47:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D54AA5FD551
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 09:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbiJMGrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 02:47:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43532 "EHLO
+        id S229492AbiJMHC1 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 13 Oct 2022 03:02:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbiJMGrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 02:47:04 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D401290A6;
-        Wed, 12 Oct 2022 23:47:03 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id EF7485C0127;
-        Thu, 13 Oct 2022 02:47:02 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Thu, 13 Oct 2022 02:47:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1665643622; x=
-        1665730022; bh=XwmsESqk/Mz2TS0pIfupkDkgEK5jAWpDkr1AL7dqjEQ=; b=a
-        wqMFRb+P9hedqzCXGkdo06lLrny5ilZcxAC4Nk/R57b287QUw39WN/2zYPxs6Kc7
-        zM9Meeht5SKyKtBYENDBbbKK3P3bedFuITiVZDtEJgrk9UiNjNpuCRolbByg6Naj
-        go6Rj1iHawTSol3FMqjU2y7Fy1noajh2yS0lYfaI+AAfkMm4YhJ3r4GPY0v/RYIK
-        B+kUobvEuWAMquAoQrWvu5xuxb2wFvcwrMNAIgD0G+6++RbOTA765G/STiBPrNKc
-        pTiIQrqKT/kzJgg6fTrZbGA6IB3EhAKuhY38gm2fRwSJn31VZlTV7xnlfUZWs9AZ
-        YpDpCnLdywHAEhPD7pd0w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1665643622; x=
-        1665730022; bh=XwmsESqk/Mz2TS0pIfupkDkgEK5jAWpDkr1AL7dqjEQ=; b=C
-        RtXT3kUB2JNUdCISb+BfeQfuzflADRGlr15UIgd9heK4aE5FRLf4yvD0+ds2br97
-        3wNRhmo2YimXJs7AHUnUVK/ikVEaSnO6p/tn7TuakqQiHOSmq3Fe9CS3loDg7xzI
-        jpc+Ske2ZdPq+em1A1ji/nXRXaLNCD8PpHuMTgOQBeHgf3tona4XCNCOy32gHh5R
-        CwRgCzZnLSwRvfbH0cEd3mK8nvlIJMWPOQDR/TtgiWokwiYPB8oiYcoq7XJU2UBf
-        kiHHe6/7oaUlneRBcChAw+RTwQq2lB+h2AqAu1HEFFBqkUyMZaQ0gkVUMDrgobaM
-        tadg4t0nz+/PVyHez0zUw==
-X-ME-Sender: <xms:ZbRHY3t7Wb6krKewjVLxQuag5wRQr19BJPrSCKl0PPxa-OdweXLnDw>
-    <xme:ZbRHY4cxZDi56UMG95tyINBJI5Xrd9XtfEe11xd1vEuXuHbgsBxpglDBPOZwyQuLG
-    osmlOJLvF48SZteqnY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeejledguddugecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
-    tehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrf
-    grthhtvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudek
-    tdfgjeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:ZbRHY6y4_LimGAeWk3Yz4h732qXyCAb-PaA2-1v6Jj7Afdi6bl-m8A>
-    <xmx:ZbRHY2OV-HxTA5POBUvfgNJ0epqhYd0Bzg38dNooqQPz3XpzTj5Mrg>
-    <xmx:ZbRHY39Rlln9hZ_jsYL_sxwqNPHVwn6M-zLAnTrVjlV2eQlrd8jRcA>
-    <xmx:ZrRHY0in_4fg76jKKZZymv8C57pap7TLcmYudQYy89fu9AxSpjBuJA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id C6189B60086; Thu, 13 Oct 2022 02:47:01 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1047-g9e4af4ada4-fm-20221005.001-g9e4af4ad
-Mime-Version: 1.0
-Message-Id: <bb9f79d4-82a9-4790-b849-d517333ea2d4@app.fastmail.com>
-In-Reply-To: <CAKNVLfaFvge4A8-QUzeq-JManpuYMGvyHXCJi-ew==CWN8-M=A@mail.gmail.com>
-References: <20221009181338.2896660-8-lis8215@gmail.com>
- <202210100607.YdxoR0tD-lkp@intel.com>
- <CAKNVLfaFvge4A8-QUzeq-JManpuYMGvyHXCJi-ew==CWN8-M=A@mail.gmail.com>
-Date:   Thu, 13 Oct 2022 08:46:39 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Siarhei Volkau" <lis8215@gmail.com>,
-        "kernel test robot" <lkp@intel.com>
-Cc:     kbuild-all@lists.01.org,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        "Vinod Koul" <vkoul@kernel.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Paul Cercueil" <paul@crapouillou.net>,
-        "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Jiri Slaby" <jirislaby@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH 7/8] serial: 8250/ingenic: Add support for the JZ4750/JZ4755 SoCs
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229470AbiJMHC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 03:02:26 -0400
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F34C8EC508;
+        Thu, 13 Oct 2022 00:02:25 -0700 (PDT)
+Received: by mail-qk1-f169.google.com with SMTP id a18so604835qko.0;
+        Thu, 13 Oct 2022 00:02:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xFBaFZ7wolEO3qxhb8a8NTy+t9VBo3V4xaw2Z47Lf1s=;
+        b=L3tOdsVb+L/1POZfeJkWDtRKL7xfWX0F32Axach71uU/s7Ph9sv3U3ykfsFXXWEB//
+         uT0NJN9hmGX0W2iY/9oixxt88U53m3dJSgPmCxR2xwpaFlydFHj5qrdHCCjtgUZBxLCs
+         5RZl+PmchiPRVGGeLavQwq14+WoGoT4TZVqXoKQE6C9NgF4LtRPIyekQJKPbI7DrqEOF
+         Puv2b9IcMTOVbLWWsm9xBFIEKFcN6PRrJPKYsRgOEpFnTWxqs0m5EoDu1cT2c/FUiwgf
+         hreMhbbC0SswMTlJtO1zchjRi9PyK2uV+AbpwFkUhbSkXk8c3jvB4lfaV3v7fyeAwKe3
+         iuCQ==
+X-Gm-Message-State: ACrzQf0jegxhDDq16N9oTiOYHfmgd4ADkHRyuQXOGQoA7zc9OSa81QH0
+        SOVsPeo43tPW4Xbp+uy9pHfsoC0F5ly+Yw==
+X-Google-Smtp-Source: AMsMyM4VH64S8ACfmdrDYIm9b982nJK440VCmPN4xJRJlHYLOSrhjqqoFK063HKkbKpLwG8BHia/2A==
+X-Received: by 2002:a37:be86:0:b0:6cf:b1aa:7476 with SMTP id o128-20020a37be86000000b006cfb1aa7476mr22699840qkf.715.1665644544854;
+        Thu, 13 Oct 2022 00:02:24 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id ay11-20020a05620a178b00b006bb78d095c5sm16746965qkb.79.2022.10.13.00.02.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Oct 2022 00:02:23 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-3608b5e634aso9441637b3.6;
+        Thu, 13 Oct 2022 00:02:23 -0700 (PDT)
+X-Received: by 2002:a81:5a57:0:b0:353:6de6:3263 with SMTP id
+ o84-20020a815a57000000b003536de63263mr29669742ywb.358.1665644543462; Thu, 13
+ Oct 2022 00:02:23 -0700 (PDT)
+MIME-Version: 1.0
+References: <c268cb4497cbe79773bb6568f36c37adc6fb5bbe.1665582645.git.geert+renesas@glider.be>
+ <Y0cPpJin64ou4ivI@shikoro>
+In-Reply-To: <Y0cPpJin64ou4ivI@shikoro>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 13 Oct 2022 09:02:11 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUqp6J8PZOx57tGpKZKxQBY_bkU7b8Kiqu9DNjmj2vCGg@mail.gmail.com>
+Message-ID: <CAMuHMdUqp6J8PZOx57tGpKZKxQBY_bkU7b8Kiqu9DNjmj2vCGg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document R-Car V4H support
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Hai Pham <hai.pham.ud@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 13, 2022, at 8:37 AM, Siarhei Volkau wrote:
-> =D0=BF=D0=BD, 10 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 01:29, kernel=
- test robot <lkp@intel.com>:
->> config: ia64-allyesconfig
->> config: arm64-randconfig-r035-20221010
->
->>  > 142  #define CGU_REG_CPCCR   ((void *)CKSEG1ADDR(0x10000000))
->
->> 0-DAY CI Kernel Test Service
->
-> I know CKSEG1ADDR is MIPS specific, might be it needed to disable COMP=
-ILE_TEST
-> on the driver?
-> Since early syscon isn't mainlined yet I don't see any other way at th=
-e moment.
->
-> Any suggestions on that, folks?
+Hi Wolfram,
 
-This looks like some setup that belongs into the bootloader. If you are
-handing over the console from bootloader to kernel, the hardware should
-already be in a working state, with no need to touch it during early
-boot.
+On Wed, Oct 12, 2022 at 9:04 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> On Wed, Oct 12, 2022 at 03:51:46PM +0200, Geert Uytterhoeven wrote:
+> > From: Hai Pham <hai.pham.ud@renesas.com>
+> >
+> > Document support for the SPI Multi I/O Bus Controller (RPC-IF) in the
+> > R-Car V4H SoC.
+> >
+> > Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-If you are dealing with broken bootloaders that are not under your contr=
-ol,
-having this code in the architecture specific early boot as a fixup
-would be better than putting it into the driver.
+Thanks!
 
-      Arnd
+> What about moving V3U to the new Gen4 section?
+
+I actually wrote such a patch a while back.
+However, I didn't send it after discovering the R-Car V3U Series
+User’s Manual Rev. 0.50 does not mention the fourth Strobe Timing
+Adjustment bit (STRTIM) in the RPC-IF PHY Control Register (PHYCNT),
+which is present on R-Car S4-8 and V4H, but not on R-Car Gen3.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
