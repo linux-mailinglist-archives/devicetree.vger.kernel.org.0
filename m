@@ -2,59 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E0185FD6DA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 11:17:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 262705FD733
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 11:38:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbiJMJRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 05:17:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54634 "EHLO
+        id S229518AbiJMJiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 05:38:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbiJMJRW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 05:17:22 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E925FBC;
-        Thu, 13 Oct 2022 02:17:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1665652637; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=QfKF6P//aPtt3yXkddZGb8gQhNXBSYeBQmboxbZCJlU=;
-        b=Ip0NSVDD1AM8ZgtvW/VD87fTHoRfAC5ZKR4g5vCDTryKzaGimlZJoh+FC5CRuxEyrYuyOV
-        zFio5aFohd39Q+mWiqCJyJxM7qdFhkFObmPHLG9/o7LYmzxzlFG4La4/m47ImlJB8FwZ5u
-        kKRpu9SSwogossEIyH7SeLGOjn8wS2U=
-Date:   Thu, 13 Oct 2022 10:17:04 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 7/8] serial: 8250/ingenic: Add support for the
- JZ4750/JZ4755 SoCs
-To:     Siarhei Volkau <lis8215@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, kernel test robot <lkp@intel.com>,
-        kbuild-all@lists.01.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S229494AbiJMJiv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 05:38:51 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407A91217F9;
+        Thu, 13 Oct 2022 02:38:50 -0700 (PDT)
+Received: from zn.tnic (p200300ea9733e733329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e733:329c:23ff:fea6:a903])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id C35B21EC053B;
+        Thu, 13 Oct 2022 11:38:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1665653924;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=7sFMAuZJzUPv1j5Nd1UXqoUcoLytDTmELcFfg6XdXbI=;
+        b=UkfI9X4nygXICvQV52k1J8hwljulApTQLTNIi7MOwkzbgsvqYYHYuYnNu+FJaG1Z3N+9rY
+        lq2edsvl2cTGRsLoRUyhiugNuI4SUIjaHzo8Un66CpOwlEZUuauIwVoEvb/ZO2tfTdEVkb
+        DHDvHBKrJGdhcQZybcXqlqGiRO0W078=
+Date:   Thu, 13 Oct 2022 11:38:41 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        GPIO SUBSYSTEM <linux-gpio@vger.kernel.org>
-Message-Id: <GSPOJR.M4XZ4D03G60F@crapouillou.net>
-In-Reply-To: <bb9f79d4-82a9-4790-b849-d517333ea2d4@app.fastmail.com>
-References: <20221009181338.2896660-8-lis8215@gmail.com>
-        <202210100607.YdxoR0tD-lkp@intel.com>
-        <CAKNVLfaFvge4A8-QUzeq-JManpuYMGvyHXCJi-ew==CWN8-M=A@mail.gmail.com>
-        <bb9f79d4-82a9-4790-b849-d517333ea2d4@app.fastmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v3 13/17] EDAC/mc: Add MC unique index allocation
+ procedure
+Message-ID: <Y0fcoSVN0mKMuCjo@zn.tnic>
+References: <20220929232712.12202-1-Sergey.Semin@baikalelectronics.ru>
+ <20220929232712.12202-14-Sergey.Semin@baikalelectronics.ru>
+ <Y0b5cq4evSg1nfb0@zn.tnic>
+ <20221012200154.7fq3i7igbgkcy2mx@mobilestation>
+ <Y0ckn5r3KN416Jeg@zn.tnic>
+ <20221012223039.upbjsiywiipdrjjk@mobilestation>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221012223039.upbjsiywiipdrjjk@mobilestation>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,48 +72,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Oct 13, 2022 at 01:30:39AM +0300, Serge Semin wrote:
+> A level of completeness can be relative to each person. For all the
+> years I've submitting the patches to the kernel I couldn't even
+> remember the last request to elaborate my logs. In no means I want to
+> say they were perfect. I could just be too immersed into the problem
+> so thought that the provided text was descriptive enough especially
+> for the subsystem maintainer. So to speak asking for more details
+> would be more than enough.
 
-Le jeu., oct. 13 2022 at 08:46:39 +0200, Arnd Bergmann <arnd@arndb.de>=20
-a =C3=A9crit :
-> On Thu, Oct 13, 2022, at 8:37 AM, Siarhei Volkau wrote:
->>  =D0=BF=D0=BD, 10 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 01:29, kernel =
-test robot=20
->> <lkp@intel.com>:
->>>  config: ia64-allyesconfig
->>>  config: arm64-randconfig-r035-20221010
->>=20
->>>   > 142  #define CGU_REG_CPCCR   ((void *)CKSEG1ADDR(0x10000000))
->>=20
->>>  0-DAY CI Kernel Test Service
->>=20
->>  I know CKSEG1ADDR is MIPS specific, might be it needed to disable=20
->> COMPILE_TEST
->>  on the driver?
->>  Since early syscon isn't mainlined yet I don't see any other way at=20
->> the moment.
->>=20
->>  Any suggestions on that, folks?
->=20
-> This looks like some setup that belongs into the bootloader. If you=20
-> are
-> handing over the console from bootloader to kernel, the hardware=20
-> should
-> already be in a working state, with no need to touch it during early
-> boot.
->=20
-> If you are dealing with broken bootloaders that are not under your=20
-> control,
-> having this code in the architecture specific early boot as a fixup
-> would be better than putting it into the driver.
+Dude, are you even reading what I'm writing to you?!
 
-Agreed. I am not fond of having a driver poking into an unrelated=20
-subsystem's memory area.
+I don't care how immersed you were in the problem and who asked or
+didn't ask you to elaborate your logs. If you're submitting patches
+to the EDAC tree, those logs need to be complete and explain things
+sufficiently and exactly. Period.
 
-Just disable the divider in ingenic_fixup_fdt() in=20
-arch/mips/generic/board-ingenic.c.
+> So you need more details. You should have just asked. I can't read
+> your mind after all.
 
-Cheers,
--Paul
+And I can't read yours too. And I asked like three times already. And
+yet, you still are not giving me a concrete answer.
 
+I said "exact pointers please". That means, you point me to a driver and
+the *exact* *code* in there which you think is doing something which
+needs fixing.
 
+What you've given me again is the same spiel as before.
+
+So let me save you and me some time: your patches are not going anywhere
+until they explain the thing they're fixing properly and precisely. End
+of story.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
