@@ -2,153 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D676A5FD960
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:43:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C11C5FD984
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229793AbiJMMnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 08:43:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42574 "EHLO
+        id S229784AbiJMMsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 08:48:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbiJMMnf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:43:35 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D6D11E46C
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:43:32 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id bb5so862241qtb.11
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:43:32 -0700 (PDT)
+        with ESMTP id S229541AbiJMMsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:48:22 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC33FA017
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:48:21 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id bb5so870202qtb.11
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:48:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5GLjOW0BdIWUzC24491suSRlciPNhdwolicX7+j12wA=;
-        b=SAEIiL74kEmoL7i6K+FYqWYt1OQC0cAaHX12qGeOzYXKJYjkEQAv7uljHXJ4swa6JR
-         xHlzlAi1STF9FMZLYrCuntQOvDs5BQQQPxJNF3wfOuWu4E3nVEPIqcgSDMeXg4W9foEx
-         0k+Hg9nLfuR5H3rbCakZXpB23lScKeqGXgHhy6TUwyz+9v5bENkOeE6fD/gpEwe5Bxf8
-         M/NMiVb+q2oJLRq1/nR2hNa+gk4jKzwubgW4zUEfNWFDeL0SX384wdAplhzPwDYznJw8
-         lgiepffTEMTrRRlC+4XC2iHdyDe8mR5JOTJf66zXX3BgrzWWTN5zjDZrFb7Xy67Npu6b
-         X8Dw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vset9KWE9zQivwm9UZ3Uu6zccP3Nk+eON+QXvI2NVg0=;
+        b=LvTLUde8Kt5rW+JBv1vjyv1237A1v9omg/RrjwGYXeyCXx813ujpeDz5Hqp8MRoXZW
+         M469/E04zULZxsQzM85RmOwOhbJ0O9GVc1ms+Mkx3660wsYX4i+4rKfJlniTSQohya99
+         UmdK9OnNcryhOVH6vvnWM4MFen2czLoUHvPbkZaH1cQOFUl2yJHtt2tPEx/vH7b+tGoC
+         PUJGBkd+zfWaoR4Uln+vqVfE2KrZC3wI6u+uQd2HhpMgJx80ZJz+1kGx3tFzRgWV2cOl
+         TPv8hqm3fa/igMkKYX603TxobALqfAIW5SSIpasR/nRg606FnMFD0Cmr0xVVV7Ap48Ek
+         xlsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5GLjOW0BdIWUzC24491suSRlciPNhdwolicX7+j12wA=;
-        b=z229wS1twWLib4WbeMHbrqwtim2njxfWrBvIp4a5h1BuDwSFZeyhM3WqRPAfs2lG6i
-         j5r9DRgzD2Ow4rEf3nVSquRddEosOABmuG3aBrIcUIdWfqNn2qfkYioHZZJcxFgVveGf
-         65NVZl/DxijGIGwuLHug1F6McmrQKCB+a4Maz2EkDjGbkj0Njz0lEKSmgXOHYB3d8Sha
-         h/lSR2r7W7Ep4ANf4qhE6iMALlABCaww/mBKDMnvjfWpTvgeF63Lc3r5eSCzsruePLQK
-         DMOZqqMIRcFPEfbL84tJP6bBp/HA6QKVlxNrHowsm8BaY5p/LSCJftLdwH/G3K8l63Z7
-         rj9w==
-X-Gm-Message-State: ACrzQf0h+vC4NP04K1UGYDND9yBAqMkZ7m3jD9y0+LdXxYpRYbWqmxZr
-        cfdxW5Kp+ET0h+ogobQ2BRjqYQ==
-X-Google-Smtp-Source: AMsMyM6G5JimpMoD9asbrrZ+i9ANXy1SXyDx3Pt9ou8Ri40WatBI18xwZQ0CGdktSGP9wh6uVBoUDg==
-X-Received: by 2002:a05:622a:90:b0:394:1a9b:638e with SMTP id o16-20020a05622a009000b003941a9b638emr27765696qtw.314.1665665011242;
-        Thu, 13 Oct 2022 05:43:31 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-47-55-122-23.dhcp-dynamic.fibreop.ns.bellaliant.net. [47.55.122.23])
-        by smtp.gmail.com with ESMTPSA id h19-20020a05620a401300b006eeb185c209sm2752971qko.50.2022.10.13.05.43.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Oct 2022 05:43:30 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-        (envelope-from <jgg@ziepe.ca>)
-        id 1oixYf-002fJN-2g;
-        Thu, 13 Oct 2022 09:43:29 -0300
-Date:   Thu, 13 Oct 2022 09:43:29 -0300
-From:   Jason Gunthorpe <jgg@ziepe.ca>
-To:     "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>
-Cc:     "Gupta, Nipun" <Nipun.Gupta@amd.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
-        "cohuck@redhat.com" <cohuck@redhat.com>,
-        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
-        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
-        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
-        "saravanak@google.com" <saravanak@google.com>,
-        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "yishaih@nvidia.com" <yishaih@nvidia.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "masahiroy@kernel.org" <masahiroy@kernel.org>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-        "okaya@kernel.org" <okaya@kernel.org>,
-        "Anand, Harpreet" <harpreet.anand@amd.com>,
-        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
- domain as parent
-Message-ID: <Y0gH8R8tEqn6sqZ5@ziepe.ca>
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20220906134801.4079497-1-nipun.gupta@amd.com>
- <20220906134801.4079497-5-nipun.gupta@amd.com>
- <87h71juxuk.wl-maz@kernel.org>
- <DM6PR12MB30820EE430405FF50C7F856BE8229@DM6PR12MB3082.namprd12.prod.outlook.com>
- <MN2PR12MB43586084670E14691920952889229@MN2PR12MB4358.namprd12.prod.outlook.com>
- <Y0a65a9leWXpKfTo@ziepe.ca>
- <MN2PR12MB4358A871519748CD7A6DB7A089229@MN2PR12MB4358.namprd12.prod.outlook.com>
- <Y0bRZTP9Kc6mdCiu@ziepe.ca>
- <MN2PR12MB4358277977C1B7E0BC214AC789229@MN2PR12MB4358.namprd12.prod.outlook.com>
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vset9KWE9zQivwm9UZ3Uu6zccP3Nk+eON+QXvI2NVg0=;
+        b=easy0ngktdOMikTteKVOBSKg5sxt5203wIxnvP6oOvWo+o39zyhpd1/gv3GIkwy21e
+         gbCLXIn8lwgw7QdeAXLoO45ZFEpDef73wZT10KMTDXehBtX6BuBdxXp8kltwRmCh/6l6
+         MEMCk/P4A5vYATdzy6uvK1jEf+MktzenMvCFaGuAVFhvh3kdvCGhsbYwfFu+K3C99iX0
+         ReceV2iqWAaXm0+bsyuOqpIzr5YTS5OGr5qQJQBEmSBpRPRrap47pKYRjk5HAIIJFT2w
+         3JOBUogGZc+EPuJGvJHOmHtX0MTCT9BplDcslbazuIHuHvigEWkfun/pxaDT908lgrjt
+         F+vQ==
+X-Gm-Message-State: ACrzQf0nFb9ShJ4HrPobfCg471js6d6IhBSMLSnUInlhXugXIxWtxF9r
+        Stz3LaT2tBm5pQKlRhIePwD1Gw==
+X-Google-Smtp-Source: AMsMyM7JmMnI/2BQnv3tqfrtm7zHuh3DrERSRZmtQBAVoHUAQNxGy8s3VLss49wirQ4l0EhNx4xgnQ==
+X-Received: by 2002:ac8:4e51:0:b0:35d:43ba:1ebf with SMTP id e17-20020ac84e51000000b0035d43ba1ebfmr27195534qtw.366.1665665300282;
+        Thu, 13 Oct 2022 05:48:20 -0700 (PDT)
+Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
+        by smtp.gmail.com with ESMTPSA id j19-20020a05620a289300b006bb87c4833asm19054698qkp.109.2022.10.13.05.48.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Oct 2022 05:48:19 -0700 (PDT)
+Message-ID: <1f441795-c771-835b-731b-f5dd9557dc09@linaro.org>
+Date:   Thu, 13 Oct 2022 08:46:06 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MN2PR12MB4358277977C1B7E0BC214AC789229@MN2PR12MB4358.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: Qualcomm DT bindings and DTS cleanups - tracking community wide
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Vinod Koul <vinod.koul@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Johan Hovold <johan@kernel.org>
+References: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
+ <0f5bb12f-814d-37f2-9307-b2b649aedfe3@linaro.org>
+In-Reply-To: <0f5bb12f-814d-37f2-9307-b2b649aedfe3@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 12, 2022 at 03:09:26PM +0000, Radovanovic, Aleksandar wrote:
-
-> > On Wed, Oct 12, 2022 at 01:37:54PM +0000, Radovanovic, Aleksandar wrote:
-> > > > On Wed, Oct 12, 2022 at 10:34:23AM +0000, Radovanovic, Aleksandar
-> > wrote:
-> > > >
-> > > >
-> > > > > As for GITS_TRANSLATER, we can take up to 4 different IOVAs, which
-> > > > > limits us to 4 CDX devices (should be sufficient for current HW
-> > > > > use-cases). Also, it means that the address part must be the same
-> > > > > for all vectors within a single CDX device. I'm assuming this is
-> > > > > OK as it is going to be a single interrupt and IOMMU domain anyway.
-> > > >
-> > > > This is not at all how MSI is supposed to work.
-> > >
-> > > In the general case, no, they're not.
-> > 
-> > I don't mean that you can hack this to work - I mean that in MSI the
-> > addr/data is supposed to come from the end point itself, not from some kind
-> > of shared structure. This is important because the actual act of generating
-> > the write has to be coherent with the DMA the device is doing, as the MSI
-> > write must push any DMA data to visibility to meet the "producer /
-> > consumer" model.
-> > 
+On 11/10/2022 09:57, Krzysztof Kozlowski wrote:
+> On 22/09/2022 10:32, Krzysztof Kozlowski wrote:
+>> Hi everyone,
+>>
+>> Quite a lot of people are working on Qualcomm DT bindings conversion
+>> (TXT->YAML) and fixups to Qualcomm DTS. We track a bit of this effort
+>> internally in Linaro, but that has many shortcomings and we would like
+>> to track it rather community-wide with the support and contributions
+>> from the community.
+>>
+>> What to track:
+>> 1. Which bindings to convert to YAML,
+>> 2. Missing compatibles (either entirely or because of missing conversion),
+>> 3. `dt_binding_check` warnings (usually connected with 1-2),
+>> 4. `dtbs_check` warnings.
+>>
+>> Rob's bot gives us daily output for 1-4, but how can we track current
+>> efforts to avoid duplication of work? Also it would allow people to find
+>> tasks for them to get contributions to Linux kernel :). Is anyone in
+>> community interested in tracking it together, in a public way?
+>>
+>> If so, where?
+>> A. elinux.org (needs some formatting when pasting the output from tools)
+>> B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
+>> C. gitlab dedicated repo - some text file
+>> D. Linux kernel TODO file (might be difficult to keep updated)
+>> E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
+>> have it for Exynos but I don't find it usable -
+>> https://exynos.wiki.kernel.org/todo_tasks)
+>>
+>> I am leaning towards Gitlab pages because they could be quite automated
+>> - with CI or with scripts.
 > 
-> I'm not sure I follow your argument, the limitation here is that the MSI
-> address value is shared between vectors of the same device (requester id
-> or endpoint, whichever way you prefer to call it), not between
-> devices.
+> This could be looking like that - the list of missing compatibles from
+> Rob's tasks:
+> https://gitlab.com/krzkoz/linux-dt-todo/-/blob/main/todo-compatibles.rst
+> 
+> There is a script which will automatically add new entries to the list
+> (above RST file), once fed with Rob's job output. Further this could be
+> probably pipelined with Rob's jobs.
+> 
+> List anyway has to be manually updated with work in progress.
+> 
+> This is for the compatibles. Missing part is doing something similar for
+> the dtbs_check warnings.
+> 
+> In replies Luca, Caleb and Neil mentioned GitLab issues. That could be
+> useful, so if someone would like to hook into GitLab API - feel free to
+> work on that (either in that repo or in separate).
 
-That isn't what you said, you said "we can take up to 4 different
-IOVAs, which limits us to 4 CDX devices" - which sounds like HW being
-shared across devices??
+Just to be clear - if the approach is interesting to anyone, just join
+the project / ask for access and make edits/changes etc.
 
-Jason
+To do this, you can visit https://gitlab.com/krzkoz/linux-dt-todo/ and
+next to repository name (top/middle part of page) there should be
+"Request Access" link.
+
+Best regards,
+Krzysztof
+
