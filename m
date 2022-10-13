@@ -2,123 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C98225FE419
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 23:18:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14BB55FE41D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 23:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbiJMVSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 17:18:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56062 "EHLO
+        id S230080AbiJMVTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 17:19:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230095AbiJMVST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 17:18:19 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C567C0688
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:18:09 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id z30so1291708qkz.13
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:18:08 -0700 (PDT)
+        with ESMTP id S230425AbiJMVTF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 17:19:05 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C59FB117E
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:19:03 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id f14so2121760qvo.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 14:19:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GpUcGMMTLEomNjTCrbBwsAmpnz2xKhZqSnjc0ThAaUs=;
-        b=ZXurGH/Z4HQBw7HeSk8mIe1MIcC65s+3gMCung+gK5e1TVWaUu5UE4ut+gVQgOVgNu
-         7vAVI12Ug6bikn9Yez/wuV9fxQi/E1paOrQPL/RH77TWxADk7Iq7sJ2wx0Mbopj+qlUf
-         oWxnaJajVbqB/XwNll/lE13lZeDwiGBNN55x8mozLJOkoOqBNCWl89f198HCHS3AL1iW
-         4A+z7nQoos4ya1yhP6F26Or/8TgSPIBknW47u2fUIWOY/+G984ns+ifd3BiCKFZ4N08X
-         AuNIucYlVrxjXpaFTrJDJDvm1I1thWgtHBtfTwh0Iy9PA1uVdM09zJAuJI1a8f7DJTEk
-         VnCg==
+        bh=HqR2KCYKmVm9s7WE15umjNdzmWYBIaWjIp2AMtzbdxg=;
+        b=Pa8C26IhKJL4eZX7SM8BD/J/PGGAA0YkUMDsCsgw5EfR5Bt5DsaT7jPqapCXkCQ02i
+         RcPg1+isjTCHpn7WLghwBg3UCh2tLbQ+1e5PJN9zuvPQNCQhrqkLRA7BRCzLMt5tVrr7
+         H1vuuyz0UAIzoQXnSBupth9e6Ii3YhHvOzS7ieUT2NI0yf1ZhhYyNECwro8Ss5rfrf81
+         iaeoW7exp4ThxR5YcFhtYPKyIU3gsXriXzwr2iP5hbsUKcTrWzY4wF7BHfPnTcN1Tt+V
+         knAYLmOZ4BKbKnWZmXNM/iSXlCcwNvecLU9kD7PrCmP971Mj9/a56PE/+5M7dI9tv8fA
+         WGsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GpUcGMMTLEomNjTCrbBwsAmpnz2xKhZqSnjc0ThAaUs=;
-        b=RsTTRhADJhBvszBTX0iVN211pxP5WgGNE6Nk7jxBo+UC8iv9z4cmAEIduXhx7ozAfI
-         NrmOrYwiUosllENLb1vzXN1zbXiLMAIwI61IyD8PO12iaoJgj7x/dxFsjdROzkdi9tSq
-         VCb3J8uc/hDD/LC3q0ta+54GkyjHQFHNgYdHL6s8ef6eOxfuROkfnT85FfajpSljs9pK
-         pjyd+an7jxACu8EEEPP8MuYUtOSYnXxrfAZiKe4SIqMzoaJkhmCYavHtlPNbyIZk01Xl
-         diWGRgqy0E/XLJAfB74Br0R0NUbfJQOohn0cn65yij9jZdtGKdtj1iOS06hb+m+rlZ02
-         KoTw==
-X-Gm-Message-State: ACrzQf3lhrDN8jZmnxKg3U5qX7jpGDaI1dcW7dmchPGW8LKv+dSxiryd
-        m6dcjI9fNe11QCtNfB2u/817kw==
-X-Google-Smtp-Source: AMsMyM6+0K3K9x9m57Jyeie2QSjIrUGbpa5EzJY5X1qA1AoyhSlTz4c/SQDE11VdncG3Y6RT63+Zqg==
-X-Received: by 2002:a37:9a46:0:b0:6ec:55c9:7872 with SMTP id c67-20020a379a46000000b006ec55c97872mr1597614qke.102.1665695844921;
-        Thu, 13 Oct 2022 14:17:24 -0700 (PDT)
+        bh=HqR2KCYKmVm9s7WE15umjNdzmWYBIaWjIp2AMtzbdxg=;
+        b=WPilwJAVnmfrC8IEFOieiX3Y1WJ7INlF/lBB1M4je/U9iBQgcupcJcHNCmNMX5QIDr
+         WaN/AeZMNrUYLRxycOGNLG+W7BCfv6YuKoByimlVXhGu+wivrCZAbmmZoC/SICC9FDGW
+         zXvWeUQoqaldPP/YDEgg4YqPDQEtk3Xy61ErUgRu+/6DYlmmMu0y0ffEcbXuYVAlx9Ub
+         sxVhNLevAxrI7YCDMSapw2gp3akeaENSmo2N+ZrCs6V77j472iAGGGuRL56SIyM9uPoz
+         qrY8y3n1gpsYayKdLxZlaVmk+toeC1SI12yQneRdrBKxkX9mxRrIJ5i1l4Y+OnMckPh2
+         4ELg==
+X-Gm-Message-State: ACrzQf1vo2fHp6/ltRTjyhi7Hb36OQFl9IiwViM0lGFQa9uaITgJVHcb
+        u7dJ1FLzc7LEk+9XRuBj2OO1Aw==
+X-Google-Smtp-Source: AMsMyM7lnbf0nIPv9rq8SIxhIiHobUpjXLxcKtaCEwKFZcUGTo+wZFoUDg2Co/zScjFI02QAngcwAg==
+X-Received: by 2002:a05:6214:d8a:b0:4b1:9f67:450b with SMTP id e10-20020a0562140d8a00b004b19f67450bmr1509945qve.119.1665695942528;
+        Thu, 13 Oct 2022 14:19:02 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id i5-20020a05622a08c500b0039bfe8acff6sm740039qte.58.2022.10.13.14.17.23
+        by smtp.gmail.com with ESMTPSA id bj33-20020a05620a192100b006ecfb2c86d3sm606364qkb.130.2022.10.13.14.19.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 14:17:24 -0700 (PDT)
-Message-ID: <4ab5d9bb-36e1-2375-4803-d6c0df438de4@linaro.org>
-Date:   Thu, 13 Oct 2022 17:15:13 -0400
+        Thu, 13 Oct 2022 14:19:02 -0700 (PDT)
+Message-ID: <6f804ef0-bfc6-95ac-3a79-cf7b0dbcc5f7@linaro.org>
+Date:   Thu, 13 Oct 2022 17:16:51 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v5 1/3] media: dt-bindings: imx412: Extend compatible
- strings
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, sakari.ailus@iki.fi,
-        dave.stevenson@raspberrypi.com, jacopo@jmondi.org,
-        paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        mchehab@kernel.org, linux-media@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 1/3] ARM: dts: qcom: ipq8064-rb3011: fix nand node
+ validation
+Content-Language: en-US
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221013125142.3321405-1-bryan.odonoghue@linaro.org>
- <20221013125142.3321405-2-bryan.odonoghue@linaro.org>
-Content-Language: en-US
+References: <20221013190657.48499-1-luca@z3ntu.xyz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221013125142.3321405-2-bryan.odonoghue@linaro.org>
+In-Reply-To: <20221013190657.48499-1-luca@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/10/2022 08:51, Bryan O'Donoghue wrote:
-> Add compatible bindings for imx577 which uses the same silicon enabling
-> reference code from Sony in the available examples provided.
+On 13/10/2022 15:06, Luca Weiss wrote:
+> The devicetree documentation for the nand node requires the subnode be
+> called nand@ and no compatible is needed.
 > 
-> Cc: sakari.ailus@iki.fi
-> Cc: dave.stevenson@raspberrypi.com
-> Cc: jacopo@jmondi.org
-> Cc: "Paul J. Murphy" <paul.j.murphy@intel.com>
-> Cc: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: linux-media@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
->  Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
-> index 26d1807d0bb6..d1561841ccbc 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
-> @@ -19,7 +19,10 @@ description:
->  
->  properties:
->    compatible:
-> -    const: sony,imx412
-> +    items:
+>  arch/arm/boot/dts/qcom-ipq8064-rb3011.dts | 3 +--
 
-You have only one item, so drop the "items".
 
-> +      - enum:
-> +          - sony,imx412
-> +          - sony,imx577
->    reg:
->      description: I2C address
->      maxItems: 1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
