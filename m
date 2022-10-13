@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2D9F5FD993
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF23E5FD997
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 14:51:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbiJMMvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 08:51:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35278 "EHLO
+        id S229823AbiJMMvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 08:51:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229671AbiJMMvs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:51:48 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85B79C4D99
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:51:47 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id bv10so2685672wrb.4
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:51:47 -0700 (PDT)
+        with ESMTP id S229812AbiJMMvx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 08:51:53 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F9B125855
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:51:51 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id u10so2704009wrq.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 05:51:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ittzY8XWr2vUt5TfYx0WNV6vQKXOsg3628wSWyxu3Tk=;
-        b=pa1RYehGsYKwFEIktbYb1R08LUR1mPd75p+s0SKUggOKlo1ZWz0+T4pM2e6gfBmJ6w
-         KwM9e43ogoKf7P1VpYU3pOrk0xZffE1fOY6dDlh0QtU2ea6Xy19F/DxMoQq0ssqwrzxX
-         pYPc3XEVzlfcaYsz6KxGAdSRXE165TdCIoOMf0AG6oSoMTFHdAE31SO03Cx6F3ObOywm
-         UV6ESAjqutYOYt57ll5sSw1KKU8WmeyBWJkIFkRbUKatLB5WsFczs2Kuo8qJzHN2XuEv
-         ED8Ylwpulj0qX7Nux4ylvfBorKZCxQUAhNspdA2oFXo/+QQyF/Rxum/ZUWTOu2Lp/OK+
-         Wm0g==
+        bh=a8xPngQ7Xav1IVqeX2fWSoDFWgcYJEV7TkYDvz0h/Mc=;
+        b=rOGynw/RR8E+IosAIA02jON+pQh39XPXi5XXzgGskDZBNrZGR1TBTnpgImzmo9mhR8
+         RUCZ4vLUqTUjHiYL3tEw8zi+4pH1IZ2Kmzk8ii2IrLTjYTNmt5e3tEgLXnqWxqEyW20n
+         gDSdAZNVhbtLaW4J1ciGqAiN+dStcXAXJnw2XRO43DSddm58r8WjgtaowhAeFh5lj7s9
+         yPl5EeG+G6FV8imgYKvzvg4QY52IxSOsC7VR+8tosIt2T4jwDvnTVkrF8gPJltFNFShB
+         8Eb9HW5Sgzx0atM7gpaATfXJ7lWgn8NVI482LgIh1nGKHDVehBtr2hoXLv+xKaWXiVGi
+         ZrvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ittzY8XWr2vUt5TfYx0WNV6vQKXOsg3628wSWyxu3Tk=;
-        b=Qh3XS0w+P+WkT0I0f3t/Yc3bVcWO1EMFATych8o+AjWV1NhvdkIkeBlv5j2oJ+1M0C
-         D1JN9ZZRlpxCybX8nQPO5B7/WKJVW7NKuCl+Nr0kp4bFak6qFleLA12xw3VhZ3VBdd8S
-         DPbdG974zvwYhyAZPmRsgq9U70+zHxlmstmb0xb3HlhoU+Gf7AKzXbkBqftmEyDdHQHc
-         5iqVszr3RbtAlk+d4cBr7XcM19huKYfmwRT4pG81MbTI8vRmd2AMQT6uUXP/4utq+dlT
-         5epcxCTf5Xqv+Ama0CKNVxdT2LVghT+kvPQ9AbS6jGqN//UcAsp3MN5ePV7QsdovOBA4
-         ZLTA==
-X-Gm-Message-State: ACrzQf1XplhuI2CF3xIqRLQ4CzNpvo1XzXKRArartop4gsy1TTJ+UM2I
-        GSjICSkjP+ae3ks1h5VMZJ7QwQ==
-X-Google-Smtp-Source: AMsMyM74Krj7KCSTqZ7hHv/RtujY0liYmFYrR/d8rk1YaYATiiLm3StVA2f3uX+CjwwOKQs0qm2gvA==
-X-Received: by 2002:a5d:6e08:0:b0:22e:4116:b8e8 with SMTP id h8-20020a5d6e08000000b0022e4116b8e8mr20872929wrz.60.1665665506142;
-        Thu, 13 Oct 2022 05:51:46 -0700 (PDT)
+        bh=a8xPngQ7Xav1IVqeX2fWSoDFWgcYJEV7TkYDvz0h/Mc=;
+        b=Kxl6NZumM9OsLRZVSARvvUgby3CjPW3ImIdXpSWTPESq9q+YamWr1GXyyrajhg6SA4
+         avkYoRJbbe84gwRlJXLElcy2LPrNLrDFM8Yq4uMNl1jRzCaWGNyLKBzBcmFXCtsSGxWT
+         055ExEprQh1Z2mJbr4+SN52maFKGdl/tOnOSuZFfpVJwD6b6V1JQlhgBLg7/KHVS4dgF
+         pqW/enFcm/RPmTUUWFlJUTced+D9m8iX9La1snpKCQegNJJFOYRUMolJaPWhxcYdNd9j
+         2KTTEgNgNXJxAWsJzUt3pYSJCvq8wSQnx7UmRj4NgCBATeUgism+V8U8K2u/1w4YrmQd
+         ojKQ==
+X-Gm-Message-State: ACrzQf2/nLJpWlyHJTsVaenD0AwgbeiQLWZgoEfLmY+MubD+iaYjVzAh
+        T/VX06NCVV0XS1wbGQcLpRDLYw==
+X-Google-Smtp-Source: AMsMyM7OBtmbZd0iFl3u8pFwQhlVSYrfeJI9A7ahdvRBy5i9Up33z7URxhvmxT/DQ8czD4M0O3zdIA==
+X-Received: by 2002:a05:6000:2c5:b0:22f:5242:12fe with SMTP id o5-20020a05600002c500b0022f524212femr16939052wry.401.1665665510100;
+        Thu, 13 Oct 2022 05:51:50 -0700 (PDT)
 Received: from planet9.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id m3-20020a056000024300b0022e3e7813f0sm1332292wrz.107.2022.10.13.05.51.45
+        by smtp.gmail.com with ESMTPSA id m3-20020a056000024300b0022e3e7813f0sm1332292wrz.107.2022.10.13.05.51.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Oct 2022 05:51:45 -0700 (PDT)
+        Thu, 13 Oct 2022 05:51:49 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     sakari.ailus@iki.fi, dave.stevenson@raspberrypi.com,
         jacopo@jmondi.org, paul.j.murphy@intel.com,
@@ -57,9 +57,9 @@ To:     sakari.ailus@iki.fi, dave.stevenson@raspberrypi.com,
 Cc:     bryan.odonoghue@linaro.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 1/3] media: dt-bindings: imx412: Extend compatible strings
-Date:   Thu, 13 Oct 2022 13:51:40 +0100
-Message-Id: <20221013125142.3321405-2-bryan.odonoghue@linaro.org>
+Subject: [PATCH v5 2/3] media: i2c: imx412: Assign v4l2 device subname based on compat string
+Date:   Thu, 13 Oct 2022 13:51:41 +0100
+Message-Id: <20221013125142.3321405-3-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221013125142.3321405-1-bryan.odonoghue@linaro.org>
 References: <20221013125142.3321405-1-bryan.odonoghue@linaro.org>
@@ -74,8 +74,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible bindings for imx577 which uses the same silicon enabling
-reference code from Sony in the available examples provided.
+imx412 and imx577 return the same chip-id when interrogated via i2c.
+I've confirmed this myself by
+
+Sakari suggested we should add a new compat which should be reflected in
+the name of the media entity
+
+https://patchwork.kernel.org/project/linux-media/patch/20220607134057.2427663-3-bryan.odonoghue@linaro.org/#24894500
+
+Set up the .data parameter of of_device_id to pass a string which
+we use to set the media entity name. Once done we can add in imx577 as a
+compatible chips with the media names reflecting the directed compat string.
 
 Cc: sakari.ailus@iki.fi
 Cc: dave.stevenson@raspberrypi.com
@@ -90,25 +99,49 @@ Cc: devicetree@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/media/i2c/imx412.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
-index 26d1807d0bb6..d1561841ccbc 100644
---- a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
-@@ -19,7 +19,10 @@ description:
+diff --git a/drivers/media/i2c/imx412.c b/drivers/media/i2c/imx412.c
+index a1394d6c1432..9f854a1a4c2f 100644
+--- a/drivers/media/i2c/imx412.c
++++ b/drivers/media/i2c/imx412.c
+@@ -1172,6 +1172,7 @@ static int imx412_init_controls(struct imx412 *imx412)
+ static int imx412_probe(struct i2c_client *client)
+ {
+ 	struct imx412 *imx412;
++	const char *name;
+ 	int ret;
  
- properties:
-   compatible:
--    const: sony,imx412
-+    items:
-+      - enum:
-+          - sony,imx412
-+          - sony,imx577
-   reg:
-     description: I2C address
-     maxItems: 1
+ 	imx412 = devm_kzalloc(&client->dev, sizeof(*imx412), GFP_KERNEL);
+@@ -1179,6 +1180,9 @@ static int imx412_probe(struct i2c_client *client)
+ 		return -ENOMEM;
+ 
+ 	imx412->dev = &client->dev;
++	name = device_get_match_data(&client->dev);
++	if (!name)
++		return -ENODEV;
+ 
+ 	/* Initialize subdev */
+ 	v4l2_i2c_subdev_init(&imx412->sd, client, &imx412_subdev_ops);
+@@ -1218,6 +1222,8 @@ static int imx412_probe(struct i2c_client *client)
+ 	imx412->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+ 	imx412->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+ 
++	v4l2_i2c_subdev_set_name(&imx412->sd, client, name, NULL);
++
+ 	/* Initialize source pad */
+ 	imx412->pad.flags = MEDIA_PAD_FL_SOURCE;
+ 	ret = media_entity_pads_init(&imx412->sd.entity, 1, &imx412->pad);
+@@ -1281,7 +1287,7 @@ static const struct dev_pm_ops imx412_pm_ops = {
+ };
+ 
+ static const struct of_device_id imx412_of_match[] = {
+-	{ .compatible = "sony,imx412" },
++	{ .compatible = "sony,imx412", .data = "imx412" },
+ 	{ }
+ };
+ 
 -- 
 2.34.1
 
