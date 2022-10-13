@@ -2,107 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFAD65FE5E1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 01:32:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 733755FE5E5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 01:37:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbiJMXcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 19:32:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41546 "EHLO
+        id S229594AbiJMXhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 19:37:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbiJMXcw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 19:32:52 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE41189C1A
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 16:32:50 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id h15so2754144qtu.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 16:32:50 -0700 (PDT)
+        with ESMTP id S229679AbiJMXhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 19:37:05 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE15A2F38E
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 16:37:01 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id mx8so2280339qvb.8
+        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 16:37:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0+QfEwy7B/NrkymaL7q2hDY+q10f+0eJfcatFNx6Eqs=;
-        b=g/Vu/8osdQ1PPPGH7vBzzXaURD1oaMlsGgq3jdnsKjd5krGykX/Cle2SBf169AE5ys
-         hdM4wPEzDLwwMKvQH3DPzWGk1iRcWbR+snhitd0/pRftFXoi2wVL2nMGctYk38p33na1
-         n0c10dea0uI6lAQj4EDXgjTP5etp24/JKkyGVjqo9CZXtIZKcMlsiWx071FNqELvDsdE
-         uYsaK6blFQNGCXMnSVgUY08ZM8xJVeAc5QtVuqW7wOTq9U+VLtqh+N/1PNiw6ZYlwIpA
-         T9ERcCWX1wv8jru0xXngfVU/bYH51AerLE3rdIQTum7Z5z7qSaWqzVBYI89PBnU9NhsY
-         tH7A==
+        bh=LfeSqoj2xkCKlJljCXFGihAQXP+bw5EdlDAnTwD29f0=;
+        b=DI2r/zw5cprwxbhoFNabIvVoBnWD5Xe3cprvWBoCcO9qSR6QNkCEm8+q+gMOIZGhYC
+         rVG95sysEoM0nCLzm92GfrPWtoyrC+WuWu7YXHXJBI90NoEh/dQWxlTwXnN4xqMZC+SI
+         RYBRVHTaxyPui+iaz5lurUD8ZqDA0VMAgPnIa9XvMiE58HgydLs71qPbOYQH5+KS/Dcu
+         95FtnClffK59VAv88plMGZm0eGyQKO1UEitNW9knFzv2C8oaVf8F8nnrNORSGzPFDBr5
+         XFQJzm3QYeRhfYiDQyBYSyzJ88nTYmNn7g9YWwrCpSw8qWCT0DZYWCL3B+3Dg470RPaV
+         TsDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0+QfEwy7B/NrkymaL7q2hDY+q10f+0eJfcatFNx6Eqs=;
-        b=5CDjfQMiXSzPuuJQM+nz3PZNabiM0Td41KYpKDJFZrhcLLfBV5VKuZFq5/BhV0n02U
-         pb+p6Cy7tPfOVnQoh+8mI2GzBGM9MhYPrcYWFTXbyJ/YZcP5RuvVYRQFPyrIKRPkdiZb
-         qqvZpb0VRbVt1Geq4PT5n2VLSCAVaqgnbIOVSx/w1pikm16CtEeUqsEsSfH87ytf7xAp
-         re1EJIjzzIi163ieddNQ/ik6yEdLI9b3imLmjAAnb7IO/+lNFM1sQR+lAm6zUjXQYkNP
-         IlkwDEDZ3e4M5DII+FoCohlxxDv1xWhQfKPVB2ntq4mgS1HIQuzLoe8gK8G2rrSPJxxU
-         N6ew==
-X-Gm-Message-State: ACrzQf1PY3ylZEckQv2z2FgSLpjnbYElSLbrLeg0zysmCaN6JSdTJiEQ
-        3cucI2VCjmAoW2guimCGYz6GEA==
-X-Google-Smtp-Source: AMsMyM4IKZBPcrAkKgLQFL2CqgM5z3RNWKbjf6LsalpKHQodpII16MZttEiPtH4fRBxp/igpWcV2Vg==
-X-Received: by 2002:a05:622a:178b:b0:39c:c9db:2c5e with SMTP id s11-20020a05622a178b00b0039cc9db2c5emr2056358qtk.111.1665703969887;
-        Thu, 13 Oct 2022 16:32:49 -0700 (PDT)
+        bh=LfeSqoj2xkCKlJljCXFGihAQXP+bw5EdlDAnTwD29f0=;
+        b=OBvqcGHc+WU0kZztzMWlSWQx/tREwIeBcjCAYLMhhFGOhW/ZTA6bCrBMMBTyvDsFta
+         4V2CdvWxKjfL1lX5EX0d84NSAsY0oWAMeZuXTW2Jd3UBh8yyXUxw7tv8L8Jvk/VNsQtW
+         gnRH9RwcetDz0dnjXBUi5SktVRgdM6T1IRXc/mSvbw2S7NObTZr4rqhe35Eb0v82Mo1H
+         IGAB7bfxQwfav4Q9ezsoLqHXcAG5m155Pt4y/bwNXZw4iAjdtRsb6ZgaUArjvEr69wCj
+         LiVPPd/20qAXbQwqVklQwSr8bvKhUUok6d6SUI0HRmrEOXN2HAZefLzeEIAqSGSl8zDP
+         tQEg==
+X-Gm-Message-State: ACrzQf1ftfGpgbLAakGKv8tC+ioZXAAWzQ9PgUdYlSDGLcCbuVRc65sl
+        GC5IcCpYZzYKIizhFG9lcA8eIJlP+xkIrw==
+X-Google-Smtp-Source: AMsMyM5673uWNCwb3Q7nTib5kLMEJmjIwEJk3eCcftbHuxk1YZhK2neYq5isJjtuUOJf2Y4Blq8T3g==
+X-Received: by 2002:a05:6214:21a6:b0:4b2:d753:ed24 with SMTP id t6-20020a05621421a600b004b2d753ed24mr1928297qvc.78.1665704221094;
+        Thu, 13 Oct 2022 16:37:01 -0700 (PDT)
 Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id n1-20020a05620a294100b006e8f8ca8287sm903306qkp.120.2022.10.13.16.32.48
+        by smtp.gmail.com with ESMTPSA id bi38-20020a05620a31a600b006dfa0891397sm992423qkb.32.2022.10.13.16.36.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 16:32:48 -0700 (PDT)
-Message-ID: <1e02c8ae-d3b1-e226-f14b-c7f7d0292237@linaro.org>
-Date:   Thu, 13 Oct 2022 19:30:36 -0400
+        Thu, 13 Oct 2022 16:37:00 -0700 (PDT)
+Message-ID: <4a25e348-c6d4-ceeb-ff08-1fca4132d5a7@linaro.org>
+Date:   Thu, 13 Oct 2022 19:34:48 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH 05/11] dt-bindings: thermal: k3-j72xx: elaborate on
- binding descriptions
+Subject: Re: [PATCH v2] ASoC: dt-bindings: Document audio OF graph
+ dai-tdm-slot-num dai-tdm-slot-width props
 Content-Language: en-US
-To:     Bryan Brattlof <bb@ti.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Keerthy <j-keerthy@ti.com>,
-        Linux Thermal <linux-pm@vger.kernel.org>,
-        Linux Device Tree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20221011231727.8090-1-bb@ti.com>
- <20221011231727.8090-6-bb@ti.com>
- <06249fe9-97eb-1ab8-5e35-00b3c613d3a7@linaro.org>
- <20221012181911.qk7v3yabo726lmtl@bryanbrattlof.com>
+To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+References: <20220927185359.294322-1-marex@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221012181911.qk7v3yabo726lmtl@bryanbrattlof.com>
+In-Reply-To: <20220927185359.294322-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/2022 14:19, Bryan Brattlof wrote:
->>> +          temperatures accurately.
->>>  
->>>    power-domains:
->>> +    description: |
->>> +      Should contain the phandle to a power management (PM) domain
->>> +      node and the device-id of this device.
->>
->> This is quite generic - why adding it?
+On 27/09/2022 14:53, Marek Vasut wrote:
+> Document dai-tdm-slot-num and dai-tdm-slot-width props as those are
+> parsed by simple graph card and may therefore appear in audio OF graph
+> node.
 > 
-> This was really a "while I'm here" addition. But there is no need, I can 
-> drop this
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: Drop the definition refs and just fill in type and description
+> ---
+>  .../devicetree/bindings/sound/audio-graph-port.yaml         | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> index bc46a95ed8400..64654ceef2089 100644
+> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> @@ -74,6 +74,12 @@ patternProperties:
+>        convert-sample-format:
+>          $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-sample-format"
+>  
+> +      dai-tdm-slot-num:
+> +        description: Number of slots in use.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +      dai-tdm-slot-width:
+> +        description: Width in bits for each slot.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
 
-Drop it, we do not describe generic properties (already described in
-core schema).
+Isn't the slot width already part of dai-tdm-slot-width-map? Number of
+slots maybe as well can be deducted from number of tuples in
+dai-tdm-slot-width-map?
+
+>        dai-tdm-slot-width-map:
+>          description: Mapping of sample widths to slot widths. For hardware
+>            that cannot support a fixed slot width or a slot width always
 
 Best regards,
 Krzysztof
