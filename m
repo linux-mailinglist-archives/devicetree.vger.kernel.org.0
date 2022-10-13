@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D2CF5FCFFD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 02:24:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 215AE5FD02D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 02:24:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230322AbiJMAY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Oct 2022 20:24:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56038 "EHLO
+        id S230495AbiJMAYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Oct 2022 20:24:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230408AbiJMAXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 20:23:33 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BA7E7694D;
-        Wed, 12 Oct 2022 17:20:53 -0700 (PDT)
+        with ESMTP id S231276AbiJMAYM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Oct 2022 20:24:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FFD112344F;
+        Wed, 12 Oct 2022 17:22:54 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7F3E7B81CD1;
-        Thu, 13 Oct 2022 00:20:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 492F4C433D7;
-        Thu, 13 Oct 2022 00:20:16 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 28AC8616EE;
+        Thu, 13 Oct 2022 00:22:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADF9FC433C1;
+        Thu, 13 Oct 2022 00:22:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665620418;
-        bh=DT34wFDOhYtkYS2iDOEeLPykJkGmz98cX+en54BTCts=;
+        s=k20201202; t=1665620567;
+        bh=G51MCD2AWfWPqZVPP8/x7FUWdHLTCTvBUkDb5r8072U=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FZMCubUWLSelRAETLBw79tz38bZjRHMKyeFm7ZVOZxeJPHMmBW/BwrASnmM2qEaX2
-         UVkqPHDkGOmDBcO7MbRqUO1k8WaIpwf2leQLSDmmKwwwpVD/ywpOnvLgQ+aijHTUCz
-         X/nTnDH2QLyNN5XQgaeRsyp92Ub+1yxvjSt49Zw1Jk1CI0VK0Q9kPvailwNrActskY
-         wkOfm+IymdQQuTFEBi+GmVKP/vsOaijn8bTKD6+0TZfSAa3OEay+ruFYWYb1k8JpGO
-         wAfeWbXskwYG9QCchCAilzT++iD+MH0JjRsbEDeDl4qAjymZdHg13XWtAW6C6Penk+
-         K1rUTWVbavScg==
+        b=nSVMCTpjkZCexDjYDTkTUm/veOxbLHtYEwDxZfCKoSW8S9SzvJqN4kxcNCA0SS1h6
+         Xw0vnOuqwrZjdnVvhlxRS1lPf96blkxBAusjDiG/FD7qKPnFWjGvn+usXeS6aqohrs
+         n6pIY4f3fy0fpt5cU3ar+KHpriahs4z2fh9zjDiLvLQTlp3ctruxjBnnYSuCIA73b7
+         l0RRh7trR90wGBMwNGf5jZAnMySFEX+AFBk9sUE5j/W+Bi+tmpaFWNu4mbj472jwLk
+         w7awW38IFIai880bxkM+L9SSE/4pYdeuqSRChsDheAaalZl/QQqgSTWROLsAHEMgRF
+         0ec21SNehS8tA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        l.stach@pengutronix.de, laurent.pinchart@ideasonboard.com,
-        peng.fan@nxp.com, marex@denx.de, festevam@gmail.com,
-        qiangqing.zhang@nxp.com, hongxing.zhu@nxp.com,
+        l.stach@pengutronix.de, peng.fan@nxp.com,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        festevam@gmail.com, hongxing.zhu@nxp.com,
         paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
         aford173@gmail.com, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.19 39/63] arm64: dts: imx8mp: Add snps,gfladj-refclk-lpm-sel quirk to USB nodes
-Date:   Wed, 12 Oct 2022 20:18:13 -0400
-Message-Id: <20221013001842.1893243-39-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 31/47] arm64: dts: imx8mp: Add snps,gfladj-refclk-lpm-sel quirk to USB nodes
+Date:   Wed, 12 Oct 2022 20:21:06 -0400
+Message-Id: <20221013002124.1894077-31-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221013001842.1893243-1-sashal@kernel.org>
-References: <20221013001842.1893243-1-sashal@kernel.org>
+In-Reply-To: <20221013002124.1894077-1-sashal@kernel.org>
+References: <20221013002124.1894077-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -81,10 +81,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 410d0d5e6f1e..7faf2d71ba4f 100644
+index 9b07b26230a1..664177ed38d3 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1168,7 +1168,7 @@ usb_dwc3_0: usb@38100000 {
+@@ -912,7 +912,7 @@ usb_dwc3_0: usb@38100000 {
  				interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
  				phys = <&usb3_phy0>, <&usb3_phy0>;
  				phy-names = "usb2-phy", "usb3-phy";
@@ -93,7 +93,7 @@ index 410d0d5e6f1e..7faf2d71ba4f 100644
  			};
  
  		};
-@@ -1210,7 +1210,7 @@ usb_dwc3_1: usb@38200000 {
+@@ -953,7 +953,7 @@ usb_dwc3_1: usb@38200000 {
  				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
  				phys = <&usb3_phy1>, <&usb3_phy1>;
  				phy-names = "usb2-phy", "usb3-phy";
