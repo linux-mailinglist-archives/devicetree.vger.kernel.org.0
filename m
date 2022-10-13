@@ -2,169 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B7945FDA39
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 15:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AAAA5FDA51
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 15:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbiJMNSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 09:18:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32792 "EHLO
+        id S229982AbiJMNTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 09:19:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbiJMNSG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 09:18:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7572F197FB2;
-        Thu, 13 Oct 2022 06:18:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229972AbiJMNS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 09:18:57 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EAEF4E18A;
+        Thu, 13 Oct 2022 06:18:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1665667129; x=1697203129;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Hy4RTQp6FBT2qM7enTnKF2hQg8bH2wkse5/kreZcno8=;
+  b=fJk8U9306rDzCczxk/Y5PDorAd8FKkTitH8r2qvLwpQrFj6jzaItKJxa
+   Qq5icWZQ0gKbjhEBl9jHDm29uUl6O5hr61P5Wl7PaygMuLypj/79wmCOc
+   AQcKbKvZRuXxS5V/gPwBmpgFTrtOhZtRNxdDHOFq97eAAUSAxWUkAjpUi
+   i7+wqSSXKfrUnFOmEbTH088dnjMlgShcMoKmPmCKRBQeIhUtny/5t08xP
+   DnE6lASknp8S7kSQ87Mz5N61rZsEnedfXLUPz1eqqiWljc/WZGoir54Ai
+   rJXx8V9xTrAya6dfSt/yd09QYcLKBP4v7uXPiNfrEqciWTzaChDdvjFLR
+   A==;
+X-IronPort-AV: E=Sophos;i="5.95,180,1661810400"; 
+   d="scan'208";a="26736834"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 13 Oct 2022 15:18:46 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 13 Oct 2022 15:18:46 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 13 Oct 2022 15:18:46 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1665667126; x=1697203126;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Hy4RTQp6FBT2qM7enTnKF2hQg8bH2wkse5/kreZcno8=;
+  b=Eufre5KRO0OK/kJPQIBQZPdEqC7ZaG8P7Z5E5d+RbVPM9nB6lhn2IFi0
+   6kLwkSF9huTy8ADkOE5BafxArfs26mkSX6YTFiPfVPoKlAeYtscnEP32U
+   JFjitp4ycE2LPT1eHupmTg5amM0P8AFP+oWrTOS0iLH1MayI0fK4QuxhF
+   Aa6q/+5Lo9CWnDtq3RIJJQL9jEE5R5yK8H9I/GrhzGjVyVOjxm5feMiha
+   1IMOQe2JBM3jvHgJTWlIwv0J8IQ2cLu88gyHeka9fQyj/Cul2vnyP1MT0
+   f7tV3r8qgMxOls+nyp+k0G4iibMHLLpkk2dt4gsxRqw333AKsAzvJnElw
+   w==;
+X-IronPort-AV: E=Sophos;i="5.95,180,1661810400"; 
+   d="scan'208";a="26736833"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 13 Oct 2022 15:18:46 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 15E52617A6;
-        Thu, 13 Oct 2022 13:18:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 504BFC433C1;
-        Thu, 13 Oct 2022 13:17:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665667079;
-        bh=ykIpCQcdoqILe12bA6j/YQGVyLMp8Zu4lFFTHjx+wVI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Dj8nGPq3b8sewX2PINI4u13q4Z1NEXVHCRJprTUlr0W7frv5NYHbkhJHGHV9aCcuz
-         KL+bBXC5cSaLJEMyQl2LQZF6IWzojOl39bNCJyMNgIFvm7FICR6/f0Y2dGQTe0+VKl
-         cOsGc+XCVzLR9hwkRIL/MvLlsANf27s0m/e4NvABCoV9idrcQdenTCEI85M0aW3kqL
-         02NltqAlNYtoXlmgX0IwwSm6t3TWe5PMfQiiX+JCtjgRNMH2TBOZb/fe/GAQfL1RHW
-         Kveink+OoIO45T2xpxY8OL9h0fo0+00811nFs376dxHa8uXPjx7gQHuLolq5rUa7Jb
-         WpN2Bh/4hC7ug==
-Received: by mercury (Postfix, from userid 1000)
-        id 650ED106523D; Thu, 13 Oct 2022 15:17:56 +0200 (CEST)
-Date:   Thu, 13 Oct 2022 15:17:56 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DF9D8280056;
+        Thu, 13 Oct 2022 15:18:45 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Abel Vesa <abelvesa@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-Subject: Re: [PATCH 1/4] ARM: dts: omap3-n900: fix LCD reset line polarity
-Message-ID: <20221013131756.wzn6pea4thwmwipb@mercury.elektranox.org>
-References: <Y0UDEtQlN5Y9h7BU@atomide.com>
- <20221011123726.elsr53ue7nxzhvww@mercury.elektranox.org>
- <Y0V4cLGbYe4j+ls6@google.com>
- <Y0V99Agad6Ma+yTC@atomide.com>
- <Y0V/82JsRVZh6PlL@google.com>
- <Y0WCCw8k+KTuvdWX@atomide.com>
- <41373c20-3b97-ac47-81c8-75bf1bbe3a38@ideasonboard.com>
- <Y0cVw63d3+pAVbd2@google.com>
- <b56197a1-f23d-5f8a-b32d-f8787586364e@ideasonboard.com>
- <Y0fxxsk+e2o0wYZV@atomide.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/5] i.MX6Q IPP DI support
+Date:   Thu, 13 Oct 2022 15:18:34 +0200
+Message-Id: <20221013131839.1365394-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eltypheyjbzocwtf"
-Content-Disposition: inline
-In-Reply-To: <Y0fxxsk+e2o0wYZV@atomide.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---eltypheyjbzocwtf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
 Hi,
 
-On Thu, Oct 13, 2022 at 02:08:54PM +0300, Tony Lindgren wrote:
-> Hi,
->=20
-> * Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> [221013 06:13]:
-> > I would just go with the above for the time being. It should be an easy
-> > change, and as these omapfb and drm panel drivers are kind of copies of=
- each
-> > other, I think it makes sense to use the same code in both.
->=20
-> Maybe if a fix is needed, sure let's fix things first, then drop
-> the unused panel drivers.
->=20
-> We already have drivers/gpu/drm/panel driver for both of these two
-> omapfb panels:
->=20
-> drivers/video/fbdev/omap2/omapfb/displays/panel-sony-acx565akm.c
-> drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c
->=20
-> The compatible strings used translate to these dts files:
->=20
-> arch/arm/boot/dts/motorola-mapphone-common.dtsi
-> arch/arm/boot/dts/omap3-n900.dts
-> arch/arm/boot/dts/omap3-n950.dts
-> arch/arm/boot/dts/omap4-sdp.dts
->=20
-> These devices work with omapdrm and there should not be any need to
-> stick with the omapfb driver. We can just drop the omapfb panel
-> drivers for panel-sony-acx565akm.c and panel-dsi-cm.c. Let's put
-> the limited effort where there is activity instead :)
+this series add support for IPP_DI[01] clock input.
+1st patch is just preparation to handle anaclk1/anaclk2 similar to osc &
+friends.
+2nd & 3rd patch adds the clock to bindings and device tree.
+4th patch adds the clock to the clk tree and also adds support for IPU
+clock source.
+5th patch adds the pinctrl defines for imx6q (only). I was only able to test
+this on pad DA14 on imx6q, but not on imx6dl.
 
-FWIW
+Putting all together it is possible to use those IPP DI0/1 clocks as input
+for IPU pixel clock.
 
-Acked-by: Sebastian Reichel <sre@kernel.org>
+Best regards,
+Alexander
 
-for removal of those two omapfb panel drivers.
+Alexander Stein (5):
+  ARM: dts: imx6qdl: add clocks to clock controller node
+  dt-bindings: clock: Add ipp_di0 and ipp_di1 clocks to i.MX6Q bindings
+  ARM: dts: imx6qdl: add missing ipp_di clocks to clock controller node
+  clk: imx6q: Add ipp-di0 and ipp-di1 clocks
+  ARM: dts: imx6q: add ipp_di0 and ipp_di1 pad configuration
 
-> The vrfb rotation work has been discussed on the lists, so seems
-> like we will eventually have that for omapdrm. Meanwhile, software
-> rotation is being used for postmarketos and leste with omapdrm
-> AFAIK.
->=20
-> > That said, I personally don't mind fixing the dts files and the drivers=
-, and
-> > even dropping the omapfb panel drivers. However, as I don't know if som=
-eone
-> > needs the omapfb drivers or has to use an old dtb, I don't want to step=
- on
-> > that possible mine field. If someone else wants to go there (without my
-> > involvement), fine for me =3D).
->=20
-> I belive the only valid use case for omap2 omapfb is the n8x0 rfbi
-> driver that has no omapdrm driver.
+ .../bindings/clock/imx6q-clock.yaml           |  4 ++
+ arch/arm/boot/dts/imx6dl-pinfunc.h            |  3 ++
+ arch/arm/boot/dts/imx6q-pinfunc.h             |  3 ++
+ arch/arm/boot/dts/imx6qdl.dtsi                | 38 +++++++++++++++++--
+ drivers/clk/imx/clk-imx6q.c                   | 20 ++++++----
+ include/dt-bindings/clock/imx6qdl-clock.h     |  4 +-
+ 6 files changed, 60 insertions(+), 12 deletions(-)
 
-Is that upstream? omapfb (and omapdrm) both have this:
+-- 
+2.25.1
 
-	/*
-	 * HACK
-	 * We don't have a working driver for rfbi, so skip it here always.
-	 * Otherwise dss will never get probed successfully, as it will wait
-	 * for rfbi to get probed.
-	 */
-	if (strstr(dev_name(dev), "rfbi"))
-		return 0;
-
-I've seen a few old drivers being removed by marking them as BROKEN
-(and updating Kconfig help text to explain the situation). Then the
-code is dropped 1-2 cycles later assuming nobody complained.
-
--- Sebastian
-
---eltypheyjbzocwtf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmNID/oACgkQ2O7X88g7
-+prR2RAAhA6EHZoqVJe/DqbtLqAnVKcWDEnIsciyOK6uDDOBzLz1yBeigzrfGocv
-QbKywte+CxYypvgGpxpWXh3WW88R94l3jTm/mbg5knI+Tj/Y7QtJZvZucKYLCK5J
-FsIAs7FnVbMZeL8/mEzY4s3IXP6r7JyAzKoIJJbzWfiKYcIriEQO3ywRjbisoq43
-45GNxoN2XrFSEtoohzmZBtm5iuOsLqWfB/1uZ4tzNkkJN/6w42i492dxa3yTJU1+
-Rb/Fx/DSToRE6XOWF6dkQ7Hl6QT2Gx6SWayZg1ZXyazcbmb0wLZ7XZhMd1ucLhvn
-QSbxqjv0tLfCH3abrIz9yCDts631jwCHnRt5lfCbsI6CQcdttKnwKKfFDCizBbsb
-BHje9X5abYLNrL+t/At6GrHy/tKVE9IPcQEX6PmdvKCHjSV1x167yI7p/vsRZ+z1
-haFlAYkqub0m5Ab8o0rLJNqoK/LtWdAw7gN7sH4EMy6tg3tmrx97/6ClRqZhEOWA
-bkztA6jTIi7yzm0zwpzyNGIiI6N0GI6exYRJ/FtFEBWzyALKbJuhPKgPMmBuWX06
-mIMK8PSSvCipqjnTeiOl9U43qh4lVCKa1r7WK9zJxEHJVVLlOJcfpdQGBO9IXo6U
-U0bcvMuFAu0zMcjEjb89Veq6ulLDkk75aFQJLL1D95wauNw8nw8=
-=zZqw
------END PGP SIGNATURE-----
-
---eltypheyjbzocwtf--
