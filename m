@@ -2,99 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B10B25FDBCD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 15:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FDE75FDBDD
+	for <lists+devicetree@lfdr.de>; Thu, 13 Oct 2022 16:02:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbiJMN7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 09:59:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46580 "EHLO
+        id S229496AbiJMOCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 10:02:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229773AbiJMN7f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 09:59:35 -0400
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD805D2580
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 06:59:02 -0700 (PDT)
-Received: by mail-qv1-f41.google.com with SMTP id df9so1288379qvb.9
-        for <devicetree@vger.kernel.org>; Thu, 13 Oct 2022 06:59:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PQ10/6LRc84micnFOBKpFzY/QjfgjefSJQE0Vl51KIY=;
-        b=FWQpdB+246DKDbgKp/9ISuIE6YWt3f8uxuh6Eg//8tM2Qh6GkiiJM4COHD/Vw2pg+H
-         UGcYA4ywGuTqgGfEB203o7yAPj6CJ8QkcSiq2qMsXq3F/ZMnkkAeOjHiYPQJe1m2h+AV
-         YlvsLQ6AYH1T6e8FXJ6WAjRLEcZsGott+NQl9AXQVfJ+NmzsGWHud0+sxehF2bpdL8LV
-         hdDANzFkucyfcAG3FFhhLmB21BynPOCWqerRye7rODHnb+SlTaVVhWsHxiB7uVvUR3pR
-         /wSQ0iG7/j9ElpZwEFs1NSE+k+5jEJ8Ej77X+7xZe/+4eVKkn6bIqIdGMF4D/gKEGaf2
-         O4Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PQ10/6LRc84micnFOBKpFzY/QjfgjefSJQE0Vl51KIY=;
-        b=KDSheOzMoES6qhnbnoQKffEo3VOi5Y6zRUA2KD65VectYS81byfzKOh+w42VDt3KZy
-         uKrb6tbgnrmOoUhSnkPClIUYxR3m35VsaJbCW5exnT9ICMmmb/JXB39shQV68bpIlQCj
-         6raaIabsnxahl76q2bejfWNtbC7k2gej9kRmaUCX136RxlSAKiX/Dyp2MJNUSdUAdDER
-         grDvXoA4n8z6Ca/cVOxPPjp88FACoTgbuSm4LqyXFGQKXF+AICUf5+RKbmLABF/Yt8MC
-         pCaSNBwetT87d4gu7DOq414M7A/lizOn4uzYS5rPnnybNpjEL3t6QS0ZlQSbOOvgDM0v
-         apZQ==
-X-Gm-Message-State: ACrzQf28VW+mr84onQRpYVIPBa345xsTNJKCmhOcZH8dasRxK80DI6Y3
-        t7dCXsHbEps01Kmk6N9vj0TKzg==
-X-Google-Smtp-Source: AMsMyM6XPi6X7sylpI0WdrSyatbD37xQO/0BUZe9dso2t46gwVsug9naadzRVdUbWODl4qHyPIpJWQ==
-X-Received: by 2002:ad4:5763:0:b0:4af:b800:be6b with SMTP id r3-20020ad45763000000b004afb800be6bmr27984799qvx.70.1665669102521;
-        Thu, 13 Oct 2022 06:51:42 -0700 (PDT)
-Received: from [192.168.1.57] (cpe-72-225-192-120.nyc.res.rr.com. [72.225.192.120])
-        by smtp.gmail.com with ESMTPSA id h28-20020a05620a13fc00b006ce7bb8518bsm368862qkl.5.2022.10.13.06.51.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 06:51:41 -0700 (PDT)
-Message-ID: <ea5feb23-54ce-45da-47a4-078ffb79ebd0@linaro.org>
-Date:   Thu, 13 Oct 2022 09:49:30 -0400
+        with ESMTP id S229831AbiJMOCc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 10:02:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2F85F98C;
+        Thu, 13 Oct 2022 07:02:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CE195617CE;
+        Thu, 13 Oct 2022 13:59:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1AB1C433D7;
+        Thu, 13 Oct 2022 13:59:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665669545;
+        bh=kR2C/8bejgtcIdVZw5KOgwD8/UohmQ1uLQ5wmD70seI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=rE+VvY9edkaV+9BLuT0K5BybpOd6H9IO/WD9uHn+0upu9iFdPwCOVQXjq1MMiIJk8
+         w5d4NB3bxksr8SdO8INRe3wzQCMvEI6C6NhxmAKTGKo18n4AL4lu6f/P8PcdY39BuW
+         ivHKGZAijuPuj2br3fmPXAT0Zu8sFyEUHbedpopOivTpbWYFHNokpO0Qx8f3fazvoC
+         hG2VxODq7LVnY+X0JasNCVsVVlVUpdL/2PJdebo+lYmykqSLvvqdjqCly1bhxPEw7j
+         tYOWvTvDx7gWWbHEjFq0L6Whn6q+ZewLiovmK6PN8J+lv6JXx7wGgtIKMlRVLSTWF0
+         x6RRGBnPl73Qg==
+Date:   Thu, 13 Oct 2022 08:59:03 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Dominic Rath <dominic.rath@ibv-augsburg.de>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        tjoseph@cadence.com, bhelgaas@google.com, lpieralisi@kernel.org,
+        nm@ti.com, vigneshr@ti.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        Alexander Bahle <bahle@ibv-augsburg.de>,
+        Dominic Rath <rath@ibv-augsburg.de>
+Subject: Re: [PATCH 2/3] PCI: cadence: Use DT bindings to set PHY latencies
+Message-ID: <20221013135903.GA3243887@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH 4/5] clk: imx6q: Add ipp-di0 and ipp-di1 clocks
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221013131839.1365394-1-alexander.stein@ew.tq-group.com>
- <20221013131839.1365394-5-alexander.stein@ew.tq-group.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221013131839.1365394-5-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221013062649.303184-3-dominic.rath@ibv-augsburg.de>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/10/2022 09:18, Alexander Stein wrote:
-> Described in CCM_CHSCCDR and CCM_CSCDR2 in the fields ipuX_diX_pre_clk_sel.
+On Thu, Oct 13, 2022 at 08:26:48AM +0200, Dominic Rath wrote:
+> From: Alexander Bahle <bahle@ibv-augsburg.de>
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  drivers/clk/imx/clk-imx6q.c               | 20 ++++++++++++--------
->  include/dt-bindings/clock/imx6qdl-clock.h |  4 +++-
+> Use optional "cdns,tx-phy-latency-ps" and "cdns,rx-phy-latency-ps"
+> DeviceTree bindings to set the CDNS_PCIE_LM_PTM_LAT_PARAM(_IDX)
+> register(s) during PCIe host and ep setup.
+> The properties expect a list of uint32 PHY latencies in picoseconds for
+> every supported speed starting at PCIe Gen1, e.g.:
 
-Don't mix bindings with drivers.
+s/ep/endpoint/
+s/properties expect a list/properties are lists/
 
-Best regards,
-Krzysztof
+Rewrap into a single paragraph or add a blank line between paragraphs.
 
+>   max-link-speed = <2>;
+>   tx-phy-latency-ps = <100000 200000>; /* Gen1: 100ns, Gen2: 200ns */
+>   rx-phy-latency-ps = <150000 250000>; /* Gen1: 150ns, Gen2: 250ns */
+> 
+> There should be a value for every supported speed but it is not enforced or
+> necessary. A warning is emitted to let users know that the PTM timestamps
+> from this PCIe device may not be precise enough for some applications.
+
+Not sure what "it is not enforced or necessary" means.  Maybe it just
+means that if a value is missing, we don't program LAT_PARAM and we
+emit a warning?
+
+> +	param_count = of_property_count_u32_elems(np, key);
+> +	if (param_count < 0 || param_count < max_link_speed) {
+> +		dev_warn(dev,
+> +			"no %s set for one or more speeds: %d\n",
+> +			key, param_count);
+> +	}
+> +
+> +	/* Don't set param for unsupported speed */
+> +	if (param_count > max_link_speed)
+> +		param_count = max_link_speed;
+> +
+> +	for (i = 0; i < param_count; i++) {
+> +		if (of_property_read_u32_index(np, key, i,
+> +					       &latency) < 0) {
+> +			dev_err(dev, "failed to set latency for speed %d. %s\n",
+> +				i, key);
+
+Seems like these messages should contain "PTM" somewhere.
+
+If they're truly optional properties, should these be dev_info()
+instead of dev_warn/dev_err?
+
+Bjorn
