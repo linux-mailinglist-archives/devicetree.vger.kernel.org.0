@@ -2,141 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 637895FF1A1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 17:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F045FF1ED
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 18:01:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229984AbiJNPo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 11:44:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42280 "EHLO
+        id S230172AbiJNQBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 12:01:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230354AbiJNPox (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 11:44:53 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F032B62E;
-        Fri, 14 Oct 2022 08:44:46 -0700 (PDT)
-Received: from fraeml737-chm.china.huawei.com (unknown [172.18.147.200])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4MprGf5WBZz67QPl;
-        Fri, 14 Oct 2022 23:41:46 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml737-chm.china.huawei.com (10.206.15.218) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 14 Oct 2022 17:44:43 +0200
-Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 14 Oct
- 2022 16:44:42 +0100
-Date:   Fri, 14 Oct 2022 16:44:41 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-CC:     Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        "Jonathan Cameron" <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-Subject: Re: [PATCH 3/3] iio: temperature: ltc2983: support more parts
-Message-ID: <20221014164435.000016a1@huawei.com>
-In-Reply-To: <20221014123724.1401011-4-demonsingur@gmail.com>
-References: <20221014123724.1401011-1-demonsingur@gmail.com>
-        <20221014123724.1401011-4-demonsingur@gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S229982AbiJNQBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 12:01:17 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCDDE1372A1
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 09:01:13 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id c23so3929476qtw.8
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 09:01:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CkC/MGqITsH4ItvGl9rSsBp9Fg2z5jG2MWsc8Iemckw=;
+        b=Fr5ayiTWxddqFsx5wxbR4O7/MzrPceGCim5Bu0T3ZNdH+eeFpd+WW9DBm67SYsd7+4
+         mmzc+e7wLneSvWfIVHZWqpE05QB9p7mTRtSZuieAIghZgoGUSYx9rCZNwdru2jltw57w
+         Nby7nk1gjpE8AysVdtUOEa/qs+RkzVNLiPaSho4yb5EM8nchwkQ1R9G+i6V/hS28CgvG
+         OEL5gNgAC4FOp2g5q6KxoYvJdkJt7nVsbdPffTS0ECrbYePn976vDxCQLh6siJXxeNdV
+         TkuG9It2RIPs/biTcebqBC2RgsdMmQvfwHMexQ+dssKtDEgA13di+KqS03w95zY+m8wa
+         SAHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CkC/MGqITsH4ItvGl9rSsBp9Fg2z5jG2MWsc8Iemckw=;
+        b=ftjIjhARTlWL2gy1mJg0Dy0MHmmzJXmI8yhbR8AYDAqhLZSwNaChUj4OgJ6+aDFUHS
+         XBkfA6atPOvAOPMGMq719YvYqEyRUYf1BOzZ7KM+EvQeUGy459y0V4OnQL1HtpWxAWkI
+         bfphRtSSl69MCiQ8uGMMZLMpx79XHQSXmofgEZmzXpqB5ZgOYAm4t9Yupm5X3P+23smA
+         UVvcrIlOLGUpeLAQIRrn1FWdVETe9y+Yxi4nwTxIOz9xZet3t/FZrnl/mY/neMkQfsKw
+         wcXs1Vda1CDedLnUKAfc6cZ0kIWzQf92lx0nvXilEWV5sTczdi9kBMqkyNsIJE8NQ+9e
+         310A==
+X-Gm-Message-State: ACrzQf02eF8RZXAkfrbJkowLL6wsZp7PPmPpZFgw3QIc5QqdkOc3DGEF
+        3kN2/7Y9MrldoV/xAaA7DEU/LA==
+X-Google-Smtp-Source: AMsMyM7CLKUeBtX1XegI5DUhv6wTLsUYKd53nK0+892VZERVqDOsE6ABLVGZyQ0DrZ6RmVBxMvoc3Q==
+X-Received: by 2002:ac8:5f51:0:b0:35d:1a4c:9eaa with SMTP id y17-20020ac85f51000000b0035d1a4c9eaamr4685049qta.198.1665763272437;
+        Fri, 14 Oct 2022 09:01:12 -0700 (PDT)
+Received: from [192.168.48.77] ([172.58.235.135])
+        by smtp.gmail.com with ESMTPSA id v17-20020a05620a441100b006ce813bb306sm3095238qkp.125.2022.10.14.09.01.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Oct 2022 09:01:11 -0700 (PDT)
+Message-ID: <cc7289ac-b75a-62e3-4b58-fc018715c068@linaro.org>
+Date:   Fri, 14 Oct 2022 12:01:09 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: arm,pl18x: Document
+ interrupt-names is ignored
+To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Yann Gautier <yann.gautier@foss.st.com>,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20221013221242.218808-1-marex@denx.de>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221013221242.218808-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.42]
-X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Oct 2022 15:37:24 +0300
-Cosmin Tanislav <demonsingur@gmail.com> wrote:
-
-> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+On 13/10/2022 18:12, Marek Vasut wrote:
+> Due to inconsistency of existing DTs regarding the content of this IP
+> interrupt-names DT property, document this such that interrupt-names
+> is not used by this IP bindings.
 > 
-> Add support for the following parts:
->  * LTC2984
->  * LTC2986
->  * LTM2985
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Andy Gross <agross@kernel.org>
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: Yann Gautier <yann.gautier@foss.st.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-mmc@vger.kernel.org
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: Add deprecated:false to interrupts: description
+> ---
+>  Documentation/devicetree/bindings/mmc/arm,pl18x.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> The LTC2984 is a variant of the LTC2983 with EEPROM.
-> The LTC2986 is a variant of the LTC2983 with only 10 channels,
-> EEPROM and support for active analog temperature sensors.
-> The LTM2985 is software-compatible with the LTC2986.
-> 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+> index 1e69a5a42439b..1c96da04f0e53 100644
+> --- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+> @@ -95,7 +95,9 @@ properties:
+>        PIO (polled I/O) interrupt and occurs when the FIFO needs to be
+>        emptied as part of a bulk read from the card. Some variants have these
+>        two interrupts wired into the same line (logic OR) and in that case
+> -      only one interrupt may be provided.
+> +      only one interrupt may be provided. The interrupt-names property is
+> +      not used due to inconsistency of existing DTs regarding its content.
+> +    deprecated: false
 
-...
-
-Hi Cosmin,
-
-Looks good except, I think we are still in the position that
-regmap for spi doesn't guarantee to bounce buffer the bulk accesses
-(last time I checked it actually did do so, but before that it didn't
-and there are obvious optimizations to take it back to not doing so -
-IRC Mark Brown's answer was we shouldn't rely on it..)
-
-Anyhow, the existing driver has instances of this so its no worse
-but we should really clean those up.
-
-Jonathan
+Why do you add deprecated false? All properties are not deprecated by
+default. Did any other referenced schema make it deprecated?
 
 
->  
-> +static int ltc2983_eeprom_cmd(struct ltc2983_data *st, unsigned int cmd,
-> +			      unsigned int wait_time, unsigned int status_reg,
-> +			      unsigned long status_fail_mask)
-> +{
-> +	__be32 bval = cpu_to_be32(LTC2983_EEPROM_KEY);
-> +	unsigned long time;
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	ret = regmap_bulk_write(st->regmap, LTC2983_EEPROM_KEY_REG, &bval,
-> +				sizeof(bval));
-
-SPI device and I was clearly dozing on existing driver but normally
-we avoid assuming that regmap will always use a bounce buffer for bulk
-accessors. Hence this should be a DMA safe buffer.
-
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	reinit_completion(&st->completion);
-> +
-> +	ret = regmap_write(st->regmap, LTC2983_STATUS_REG,
-> +			   LTC2983_STATUS_START(true) | cmd);
-> +	if (ret)
-> +		return ret;
-> +
-> +	time = wait_for_completion_timeout(&st->completion,
-> +					   msecs_to_jiffies(wait_time));
-> +	if (!time) {
-> +		dev_err(&st->spi->dev, "EEPROM command timed out\n");
-> +		return -ETIMEDOUT;
-> +	}
-> +
-> +	ret = regmap_read(st->regmap, status_reg, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (val & status_fail_mask) {
-> +		dev_err(&st->spi->dev, "EEPROM command failed: 0x%02X\n", val);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
+Best regards,
+Krzysztof
 
