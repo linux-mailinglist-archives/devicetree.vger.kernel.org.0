@@ -2,140 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBA045FE9B3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 09:38:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A3EC5FEA35
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 10:11:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbiJNHiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 03:38:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55460 "EHLO
+        id S229729AbiJNILz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 04:11:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbiJNHiK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 03:38:10 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E8A63B47F;
-        Fri, 14 Oct 2022 00:38:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E0C47B8225F;
-        Fri, 14 Oct 2022 07:38:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1061C433D6;
-        Fri, 14 Oct 2022 07:38:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1665733086;
-        bh=ymw2K5hvr5rw/WJaEA/gW9Nwyp8uHcWoIXyvNhiOULk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o6OL9hTJ4bQnWYaSsPFP5j2wrhaKg+DzfPA0l1t/fXr5NsvY4KcbIFi1OE2i/ofF/
-         a+GEFpqY/TLadop59FT1fvGIm/cfsLDUA5de//tPZWpJLT/NrxOi9xXNKk1w4H92W1
-         Ke7k0dPMZ2tlmFHQhwEoR2F5n0M9dTtOGO24w0Lg=
-Date:   Fri, 14 Oct 2022 09:38:47 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Jiri Slaby <jirislaby@kernel.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 13/13] tty: gunyah: Add tty console driver for RM
- Console Services
-Message-ID: <Y0kSB9ZFoK1WJVLi@kroah.com>
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-14-quic_eberman@quicinc.com>
- <7438406d-b446-201e-0ec3-5cf0a5b9f32c@kernel.org>
- <85ca7eb4-3e0c-4ffb-8bac-a435594ca0f7@app.fastmail.com>
- <b7cca9c7-5170-bf40-c030-d676944b03c6@quicinc.com>
- <Y0Zk2hN4uEbxCp56@kroah.com>
- <0640f0a5-19c1-55d2-229a-37751a18118f@quicinc.com>
+        with ESMTP id S229493AbiJNILy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 04:11:54 -0400
+Received: from mail.coredeal.pl (mail.coredeal.pl [51.75.73.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 500F32C121
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 01:11:53 -0700 (PDT)
+Received: by mail.coredeal.pl (Postfix, from userid 1002)
+        id 31552ADA00; Fri, 14 Oct 2022 08:09:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=coredeal.pl; s=mail;
+        t=1665735009; bh=9KGuIG62LgzC9aYmjKxzocuYLRCVghXg6v9Q1q2LHec=;
+        h=Date:From:To:Subject:From;
+        b=XW71O40AO14iejDsJhnUNRMGIE9UDP7Z/d0YJNuCSKBb16SNlhu1wP4OVjjGLrZJC
+         GnVZq2u5ejByHH4aAmhr/d8X8B3JnRrZihM6j5qzQmitaD8CN5sl6d+yQGC7K9gy0P
+         jZWTXaCHDiEQrFrYUHyFKJ/ZSXzynQlG/JjRH7XthI/pLMKrv/jJ3Sd5lSDrXx4QP2
+         5+KJgANRYRAjKzFprehR4M5StHZRwHmNDO33Z0l06v9gQrVYLdh0mlVzYFZ5R+SGKQ
+         KWrinRoRQ6vGzuyuE5p3Vn0D2iZ2jLfux58wf6w3YY1JDrQNSA1TE0DTXG19z8gNLD
+         o5aMGhKRCSvfA==
+Received: by mail.coredeal.pl for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 08:09:02 GMT
+Message-ID: <20221014064500-0.1.63.214d8.0.da2ke6cqg2@coredeal.pl>
+Date:   Fri, 14 Oct 2022 08:09:02 GMT
+From:   "Krzysztof Maj" <krzysztof.maj@coredeal.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Biznesowy angielski
+X-Mailer: mail.coredeal.pl
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0640f0a5-19c1-55d2-229a-37751a18118f@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_VALIDITY_RPBL,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 13, 2022 at 01:54:36PM -0700, Elliot Berman wrote:
-> 
-> 
-> On 10/11/2022 11:55 PM, Greg Kroah-Hartman wrote:
-> > On Tue, Oct 11, 2022 at 03:04:47PM -0700, Elliot Berman wrote:
-> > > 
-> > > 
-> > > On 10/11/2022 4:09 AM, Arnd Bergmann wrote:
-> > > > On Tue, Oct 11, 2022, at 8:02 AM, Jiri Slaby wrote:
-> > > > > On 11. 10. 22, 2:08, Elliot Berman wrote:
-> > > > > > +
-> > > > > > +	/* below are for printk console.
-> > > > > > +	 * gh_rm_console_* calls will sleep and console_write can be called from
-> > > > > > +	 * atomic ctx. Two xmit buffers are used. The active buffer is tracked with
-> > > > > > +	 * co_xmit_idx. Writes go into the co_xmit_buf[co_xmit_idx] buffer.
-> > > > > > +	 * A work is scheduled to flush the bytes. The work will swap the active buffer
-> > > > > > +	 * and write out the other buffer.
-> > > > > > +	 */
-> > > > > 
-> > > > > Ugh, why? This is too ugly and unnecessary. What about passing the kfifo
-> > > > > to gh_rm_console_write() instead? You do memcpy() there anyway.
-> > > > 
-> > > > Another problem here is that you really want the console output to be
-> > > > printed from atomic context, otherwise one would never see e.g. the
-> > > > output of a panic() call. Having a deferred write is probably fine for
-> > > > normal tty operations, but you probably want a different device for the
-> > > > console here, e.g. the hvc_dcc driver.
-> > > > 
-> > > 
-> > > Yes, that is our perspective on the RM console driver as well. I'll make
-> > > this more explicit in the Kconfig/commit text. We expect most VMs
-> > > (especially Linux) to use some other console mechanism provided by their
-> > > VMM. I'm submitting here because we are presently using RM console on some
-> > > of our VMs where we have other ways to collects logs on panic. It also makes
-> > > it easier to implement a simple virtual machine manager that does not want
-> > > to virtualize a serial device or have a virtio stack.
-> > 
-> > The whole goal of virtio was so that we would not have all of these
-> > random custom drivers for new hypervisors all over the place, requiring
-> > custom userspace interaction with them.
-> > 
-> > Please use virtio, that's what it is there for, don't create a new
-> > console device if you do not have to.
-> 
-> We have a lightweight VM product use case today that doesn't want to support
-> an entire virtio stack just for a console. This VM already has a Gunyah
-> stack present, and to facilitate their console needs, we want to give them
-> the Gunyah console.
-> 
-> There are a few other hypervisors that also provide a console facility in
-> Linux: Xen, ePAPR hypervisor and z/VM.
+Dzie=C5=84 dobry,=20
 
-Those all pre-dated virtio.  Please do not reinvent the wheel, again,
-this is explicitly what virtio was designed for, so that we would not
-have per-device/hypervisor drivers constantly being forced to be added.
+czy rozwa=C5=BCali Pa=C5=84stwo rozw=C3=B3j kwalifikacji j=C4=99zykowych =
+swoich pracownik=C3=B3w?
 
-Learn from the past mistakes and just use the interfaces and apis we
-already have.  You don't have to have a "heavy" VM to support just a
-virtio console, and in fact, all the code is already written for you!
+Opracowali=C5=9Bmy kursy j=C4=99zykowe dla r=C3=B3=C5=BCnych bran=C5=BC, =
+w kt=C3=B3rych koncentrujemy si=C4=99 na podniesieniu poziomu s=C5=82owni=
+ctwa i jako=C5=9Bci komunikacji wykorzystuj=C4=85c autorsk=C4=85 metod=C4=
+=99, stworzon=C4=85 specjalnie dla wymagaj=C4=85cego biznesu.=20
 
-thanks,
+Niestandardowy kurs on-line, dopasowany do profilu firmy i obszar=C3=B3w =
+=C5=9Bwiadczonych us=C5=82ug, w szybkim czasie przyniesie efekty, kt=C3=B3=
+re zwi=C4=99ksz=C4=85 komfort i jako=C5=9B=C4=87 pracy, rozwijaj=C4=85c m=
+o=C5=BCliwo=C5=9Bci biznesowe.=20
 
-greg k-h
+Zdalne szkolenie j=C4=99zykowe to m.in. zaj=C4=99cia z native speakerami,=
+ kt=C3=B3re w szybkim czasie naucz=C4=85 pracownik=C3=B3w rozmawia=C4=87 =
+za pomoc=C4=85 jasnego i zwi=C4=99z=C5=82ego j=C4=99zyka Business English=
+=2E
+
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 wi=C4=99cej szczeg=C3=B3=C5=82=C3=B3=
+w i opowiedzie=C4=87 jak dzia=C5=82amy?=20
+
+
+Pozdrawiam
+Krzysztof Maj
