@@ -2,117 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 710C35FEED7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 15:44:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AA235FEED2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 15:42:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbiJNNo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 09:44:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
+        id S229794AbiJNNmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 09:42:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbiJNNoZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 09:44:25 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD4B01CFC63;
-        Fri, 14 Oct 2022 06:44:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1665754876;
-    s=strato-dkim-0002; d=ibv-augsburg.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=3pB7WXwwUMURkXU3QEWf34QpwoK2MI1RffNpmhn/a1M=;
-    b=k9Bvgqy0oNImODQd+O/9q5JMI+eemxIVBVFBnwe7y6AhGBnCLmFsKQ4lyADmi87b9u
-    fi+yBXK9f/Dt4rM7qCztXFpeDijrAYdYQQkl9nnpWuErj/zf125NdCbWYTuJX07xV3om
-    x1LHxc8Rc+SvlTUqGrNYFnWRnGBuBqNeudm+ESdclIXs/iMXqWppWP+w1QOGjKhITAlW
-    Uh9frb4ZMkcsE2IhdGSTrj/y1Rx5v/KV9YNx12kF8EqlHSwPaYKISz9Iszg/dyqlnAY+
-    GCNpV0XqHJv+tSjA0sm0U+Br0w1fRsSNUS2ymDD5QxSCXqlP7lYk1eDTnymQ6TRR47Ag
-    5fFw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":KGMJfE6heLGk8b3w7Oa1fDtXwBjeDczIOHPRx8yNRKhFG/cxcP9dNdI9SxioDT8RvZMqtMfbyXFLOT+8odoEkA=="
-X-RZG-CLASS-ID: mo00
-Received: from JADEVM-DRA
-    by smtp.strato.de (RZmta 48.2.0 DYNA|AUTH)
-    with ESMTPSA id R6cb4ey9EDfFMag
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 14 Oct 2022 15:41:15 +0200 (CEST)
-Date:   Fri, 14 Oct 2022 15:41:14 +0200
-From:   Dominic Rath <dominic.rath@ibv-augsburg.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, tjoseph@cadence.com,
-        bhelgaas@google.com, lpieralisi@kernel.org, nm@ti.com,
-        vigneshr@ti.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Alexander Bahle <bahle@ibv-augsburg.de>,
-        Dominic Rath <rath@ibv-augsburg.de>
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: cdns: Add PHY latency properties
-Message-ID: <20221014134114.GA307620@JADEVM-DRA>
-References: <20221013062649.303184-1-dominic.rath@ibv-augsburg.de>
- <20221013062649.303184-2-dominic.rath@ibv-augsburg.de>
- <20221013191249.GA38183-robh@kernel.org>
+        with ESMTP id S229751AbiJNNmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 09:42:51 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12701C7133;
+        Fri, 14 Oct 2022 06:42:50 -0700 (PDT)
+Received: from fraeml741-chm.china.huawei.com (unknown [172.18.147.201])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4MpnZ05Fp7z67bhc;
+        Fri, 14 Oct 2022 21:39:52 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ fraeml741-chm.china.huawei.com (10.206.15.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 14 Oct 2022 15:42:49 +0200
+Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 14 Oct
+ 2022 14:42:48 +0100
+Date:   Fri, 14 Oct 2022 14:42:47 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+CC:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH v2 4/5] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+Message-ID: <20221014144247.00001eb1@huawei.com>
+In-Reply-To: <b1700ea7-4a7a-263c-595c-0f7a56763c10@gmail.com>
+References: <cover.1665066397.git.mazziesaccount@gmail.com>
+        <88e24b01da9f44ebf5fcd8344ded0b75ff742fbf.1665066397.git.mazziesaccount@gmail.com>
+        <Yz8fK7j8pxlU76xt@smile.fi.intel.com>
+        <98b59ad5-8c29-be41-4da1-a961db67827c@gmail.com>
+        <Y0QIzf2cAH9ehSeO@smile.fi.intel.com>
+        <19a6db0f-40a8-dacf-4583-cdb9d74e1243@fi.rohmeurope.com>
+        <b1700ea7-4a7a-263c-595c-0f7a56763c10@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221013191249.GA38183-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.42]
+X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 13, 2022 at 02:12:49PM -0500, Rob Herring wrote:
-> On Thu, Oct 13, 2022 at 08:26:47AM +0200, Dominic Rath wrote:
-> > From: Alexander Bahle <bahle@ibv-augsburg.de>
-> > 
-> > Add "cdns,tx-phy-latency-ps" and "cdns,rx-phy-latency-ps" DT bindings for
-> > setting the PCIe PHY latencies.
-> > The properties expect a list of uint32 PHY latencies in picoseconds for
-> > every supported speed starting at PCIe Gen1, e.g.:
-> > 
-> >   max-link-speed = <2>;
-> >   tx-phy-latency-ps = <100000 200000>; /* Gen1: 100ns, Gen2: 200ns */
-> >   rx-phy-latency-ps = <150000 250000>; /* Gen1: 150ns, Gen2: 250ns */
+On Wed, 12 Oct 2022 10:40:38 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+
+> On 10/10/22 16:20, Vaittinen, Matti wrote:
+> > On 10/10/22 14:58, Andy Shevchenko wrote:  
+> >> On Mon, Oct 10, 2022 at 12:12:34PM +0300, Matti Vaittinen wrote:
+> >> ...
+> >>  
+> >>>>> +	ret = regmap_bulk_read(data->regmap, chan->address, &data->buffer,
+> >>>>> +			       sizeof(s16));  
+> >>  
+> >>>> No endianess awareness (sizeof __le16 / __be16)  
+> >>  
+> >>>>> +	if (ret)
+> >>>>> +		return ret;
+> >>>>> +
+> >>>>> +	*val = data->buffer[0];  
+> >>>>
+> >>>> Ditto (get_unaligned_be16/le16 / le16/be16_to_cpup()).  
+> >>>
+> >>> I have probably misunderstood something but I don't see why we should use
+> >>> 'endianess awareness' in drivers? I thought the IIO framework code takes
+> >>> care of the endianes conversions based on scan_type so each individual
+> >>> driver does not need to do that. That however has been just my assumption. I
+> >>> will need to check this. Thanks for pointing it out.  
+> >>
+> >> The IIO core uses endianness field only once in iio_show_fixed_type() AFAICS.  
 > 
-> These are a property of the PHY or PCI host? Sounds like PHY to me and 
-> that should be in the PHY node. No reason the PCI driver can't go read 
-> PHY node properties.
+> Following is some hand waving and speculation after my quick code read. 
+> So, I may be utterly wrong in which case please do correct me...
+> 
+> Anyways, it seems to me that you're correct. The endianness field is 
+> only used by the IIO to build the channel information for user-space so 
+> that applications reading data can parse it. As far as I understand, the 
+> driver does not need to do the conversions for user-space, but the 
+> user-space tools should inspect the type information and do the 
+> conversion. I think it makes sense as user-space applications may be 
+> better equipped to do some maths. It also may be some applications do 
+> not want to spend cycles doing the conversion but the conversions can be 
+> done later "offline" for the captured raw data. So omitting conversion 
+> in the IIO driver kind of makes sense to me.
 
-I'm actually not sure if this a property of the PHY, the PCIe host, or
-of the combination of the two.
+That was indeed the original reasonining for buffered data path
+(note the endian marker is for scans only which only apply in buffered
+ / chardev case).
 
-We thought about adding this property to the PHY, too, but we didn't
-know how to handle cases where a single PCIe host is linked with
-multiple PHYs for multi-lane configurations (see TI's AM65x for
-example). Which PHYs latency would you use to configure this PCIe RC?
+It's less obvious for the sysfs path as that's inherently slow.
+We could have made this a problem for the IIO core, but we didn't :)
 
-Personally I don't have a very strong opinion either way - we just
-didn't know any better than to put this into the PCIe host that needs
-it. If you think this is better put into the PHY node we can of course
-send a new version of this patch.
+> 
+> I haven't thoroughly looked (and I have never used) the in-kernel IIO 
+> APIs for getting the data. A quick look at the 
+> include/linux/iio/consumer.h allows me to assume the iio_chan_spec can 
+> be obtained by the consumer drivers. This should make the endianess 
+> information available for the consumer drivers as well. So, again, 
+> consumer drivers can parse the raw-format data themself.
 
-Is there any binding that specifies "generic" PCIe properties, similar
-to ethernet-phy.yaml? We couldn't find any.
+yes consumers should be be endian aware if they are using the
+callback buffer route to get the data.  Now you mention it, we
+may well have cases where that isn't handled correctly.
+There are few enough users of that interface that it might well work
+by coincidence rather than design. oops.
 
-I guess in the AM64x case the "PHY" is serdes0_pcie_link below serdes0:
+> 
+> I have this far only used the sysfs and iio_generic_buffer on a 
+> little-endian machine so I have had no issues with the little-endian 
+> data and I have only observed the code. Hence I can not really say if my 
+> reasoning is correct - or if it is how IIO has been designed to operate. 
+> But based on my quick study I don't see a need for the IIO driver to do 
+> endianess conversion to any other format but what is indicated by 
+> scan_type. Specifically for KX022A, the data is already 16B LE when read 
+> from the sensor. This is also advertised by scan_type so no conversion 
+> should be needed (unless, of course, I am mistaken :]).
 
-&serdes0 {
-        serdes0_pcie_link: phy@0 {
-	...
+Ah. I'd missed that. Data storage should reflect the read back endianness
+and for the read_raw path you need to perform the conversion in driver
+(but not the high perf push to buffers path).
 
-This seems to be described by bindings/phy/phy-cadence-torrent.yaml.
+Sure we could probably have handled read_raw in tree as well but we didn't
+and probably too late to sensibly fix that now.  One of many things we'd
+probably do differently if we were starting again.
 
-Should we add a generic (without cdns) tx/rx-phy-latency-ps property
-there?
+J
 
-> If PTM is a standard PCIe thing, then I don't think these should be 
-> Cadence specific. IOW, drop 'cdns'. 
+> 
+> >> And it does nothing with it. Maybe Jonathan can shed a light what is it for
+> >> (I mean the field)?
+> >>  
+> 
+> I agree. It'd be great to listen to someone who actually knows what he 
+> is talking about and is not just guessing as I am ^_^;
+> 
+> Yours,
+> 	-- Matti
+> 
 
-Yes, it is a standard PCIe thing, but we haven't seen that many
-implementations yet, so we didn't want to pretend to know what this
-looks like in the generic case. We can of course drop 'cdns'.
-
-Best Regards,
-
-Dominic & Alexander
