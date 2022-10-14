@@ -2,138 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F47B5FEDF6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 14:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6D55FEE03
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 14:37:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229581AbiJNMXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 08:23:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44144 "EHLO
+        id S229541AbiJNMhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 08:37:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229800AbiJNMX2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 08:23:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C5051CCCDF;
-        Fri, 14 Oct 2022 05:23:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 196D461B0A;
-        Fri, 14 Oct 2022 12:23:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 723E5C433C1;
-        Fri, 14 Oct 2022 12:23:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665750206;
-        bh=opCSM6SmwEXXy81XxgCiHIRAX7jERw0sRlnq6ZysCP8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mjJ+enQbW9TnWdjb3oJaHBD6RoX7wLURWXKXxLiCa/MZxEX1r5jBtlkY2ORXb8a2X
-         ITjqtYQZ7WdEtjVY8s//vXlmwvFYGsiGRbFhf4hEyldBCpUtjYm6YwpIVTE+aMmkmR
-         l+lTZ72fDMDH2K3edklSJI+kU1wGae4aMQDs2jpmiLNzXFPO+qf2XmnfT9ifrWxlDQ
-         MDGbq97IwwuGztP80lX1/Y2mmhbeMpyvquW6xxbyo7DvJ8iAbDsgTf8sHuv3RtScZa
-         r4sdIvzFblIjmKXJG55S47K3HbDL6dt1yJ8znKt4dvUyZm29F7LEDhpbrDH26fSGyz
-         Rw55wNMAsPN7g==
-Date:   Fri, 14 Oct 2022 13:23:20 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
-        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
-        alim.akhtar@samsung.com, rcsekar@samsung.com,
-        aswani.reddy@samsung.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 4/6] ASoC: samsung: fsd: Add FSD soundcard driver
-Message-ID: <Y0lUuK0V8qVnr+LW@sirena.org.uk>
-References: <20221014102151.108539-1-p.rajanbabu@samsung.com>
- <CGME20221014104904epcas5p4f458182cc9ac9c223d9a25566f3dd300@epcas5p4.samsung.com>
- <20221014102151.108539-5-p.rajanbabu@samsung.com>
+        with ESMTP id S229567AbiJNMhi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 08:37:38 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EC6B181CAE;
+        Fri, 14 Oct 2022 05:37:37 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id b2so10191678eja.6;
+        Fri, 14 Oct 2022 05:37:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BElY3zj5J2fYFTJ0RPslkHgvyyXgBEXfPcu4R8WcRPQ=;
+        b=jNPKOyLU0SrI2xT7FEsBNdwRhKu8jkaIdyEoiq7u/3n9RAJkUCSklDmmbJ4h0w9OAE
+         LhJGUL7DMOfhELkqg2sgNiW7u9Dqr81ugDuuDYc3OlMyAOE9lPz7HiFoO1jsCoi70CCz
+         gge5+uBD4XOUch8d+E4xwOaeLn01bweW6f9UZBxvq68fC1QdK/frtOuiHkC3/5CVwD4A
+         MzBVTEyRA+hF6C6i1zAIzkZejeoaItHnKpUFi+D7K3Y5vhVf+n9fIWX/qL3OONpLUy1E
+         lVOrApnahvLgPl7vgsZBaR1I8Ra25NpxhwI8+tBiDEG5ZV/mtmDi3yPD5ikQMbL9KjaI
+         QZFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BElY3zj5J2fYFTJ0RPslkHgvyyXgBEXfPcu4R8WcRPQ=;
+        b=Rmtv3TOnZ60MitKNoy6JqFIuvTBwXvlyvbMOfzLapMUsdRlMJIjNliOiAD7DMoY/4s
+         NDWjxCFNMM//vyxwwT0NcgmAKp0+qhqLMh8tg8Sy2p1oRvQgEt3B0LWnUbYdcxrlvcCB
+         16hUWSLo3vHq/lGOTYifHuqwzRvP7hJ4AQ1dsljLAM6psGWNJjxcZTB8XH3UFsEpSqRW
+         qxcI+U8GWlHwW134SI20WpR8fH81Y2EsFuLuHctup6ZnnVB1tvaXywVj5SnSiKnFC29/
+         LSkbhkPJ+SDWX4rvEzRljCW7TaHZ63bkDU4kDlvUuyTyOMX0bN2DwQ9my7RRgA2nG/cO
+         OrVA==
+X-Gm-Message-State: ACrzQf0ul8sYblc2V8E6VutYfu7MM26k7zWytZ8Jifw1QfiekqMl468E
+        5827Mx+XbkUV109P9fmPgPA=
+X-Google-Smtp-Source: AMsMyM71cZAxTqFGQDy6LN3gnTgoSQ31JESWaxnkIbtukxeZvsnqBJGa+0IX/NqQ3FxsPDtyxw/5EQ==
+X-Received: by 2002:a17:906:cc57:b0:78d:3612:f0e1 with SMTP id mm23-20020a170906cc5700b0078d3612f0e1mr3479322ejb.188.1665751055571;
+        Fri, 14 Oct 2022 05:37:35 -0700 (PDT)
+Received: from localhost.localdomain ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id dk24-20020a0564021d9800b0045b910b0542sm1774756edb.15.2022.10.14.05.37.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Oct 2022 05:37:35 -0700 (PDT)
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Cosmin Tanislav <demonsingur@gmail.com>
+Subject: [PATCH 0/3] Support more parts in LTC2983
+Date:   Fri, 14 Oct 2022 15:37:21 +0300
+Message-Id: <20221014123724.1401011-1-demonsingur@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Co4Q+wAEW5EdCUvd"
-Content-Disposition: inline
-In-Reply-To: <20221014102151.108539-5-p.rajanbabu@samsung.com>
-X-Cookie: There's only one everything.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for the following parts:
+ * LTC2984
+ * LTC2986
+ * LTM2985
 
---Co4Q+wAEW5EdCUvd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The LTC2984 is a variant of the LTC2983 with EEPROM.
+The LTC2986 is a variant of the LTC2983 with only 10 channels,
+EEPROM and support for active analog temperature sensors.
+The LTM2985 is software-compatible with the LTC2986.
 
-On Fri, Oct 14, 2022 at 03:51:49PM +0530, Padmanabhan Rajanbabu wrote:
+Also, remove excessive allocations on resume.
 
-> +++ b/sound/soc/samsung/fsd-card.c
-> @@ -0,0 +1,349 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * ALSA SoC Audio Layer - FSD Soundcard driver
-> + *
-> + * Copyright (c) 2022 Samsung Electronics Co. Ltd.
-> + *	Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+Cosmin Tanislav (3):
+  iio: temperature: ltc2983: allocate iio channels once
+  dt-bindings: iio: temperature: ltc2983: support more parts
+  iio: temperature: ltc2983: support more parts
 
-Please make the entire comment a C++ one so things look more
-intentional.
+ .../bindings/iio/temperature/adi,ltc2983.yaml |  63 +++++-
+ drivers/iio/temperature/ltc2983.c             | 195 ++++++++++++++++--
+ 2 files changed, 240 insertions(+), 18 deletions(-)
 
-> +	if (link->dai_fmt & SND_SOC_DAIFMT_CBC_CFC) {
-> +		cdclk_dir = SND_SOC_CLOCK_OUT;
-> +	} else if (link->dai_fmt & SND_SOC_DAIFMT_CBP_CFP) {
-> +		cdclk_dir = SND_SOC_CLOCK_IN;
-> +	} else {
-> +		dev_err(card->dev, "Missing Clock Master information\n");
-> +		goto err;
-> +	}
+-- 
+2.37.3
 
-We're trying to modernise the langauge around clock providers, please
-use that term rather than the outdated terminology here.
-
-> +	if (priv->tdm_slots) {
-> +		ret = snd_soc_dai_set_tdm_slot(cpu_dai, false, false,
-> +				priv->tdm_slots, priv->tdm_slot_width);
-> +		if (ret < 0) {
-> +			dev_err(card->dev,
-> +				"Failed to configure in TDM mode:%d\n", ret);
-> +			goto err;
-> +		}
-> +	}
-
-Just set things once on probe if they don't depend on the configuration,
-it's neater and marginally faster if nothing else.
-
-> +	if (of_property_read_bool(dev->of_node, "widgets")) {
-> +		ret = snd_soc_of_parse_audio_simple_widgets(card, "widgets");
-> +		if (ret)
-> +			return ERR_PTR(ret);
-> +	}
-> +
-> +	/* Add DAPM routes to the card */
-> +	if (of_property_read_bool(node, "audio-routing")) {
-> +		ret = snd_soc_of_parse_audio_routing(card, "audio-routing");
-> +		if (ret)
-> +			return ERR_PTR(ret);
-> +	}
-
-Just fix the library functions to handle missing properties gracefully,
-every card is going to need the same code here.
-
---Co4Q+wAEW5EdCUvd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNJVLcACgkQJNaLcl1U
-h9CvIgf/SAQ8DRxcD5wyuIRH7gQqZTjvWFCF4H6llSklkqzQZj83G/C8GylQqjhN
-jrtgCtomymyJdlg83NY44CxMxDH4VQAVAp54N88D2AZFaxYruFasSR3MgnpdfWrX
-of1VocuEnjeFu1wyBl2GZVh/yfc3ITDMtaSd3ogwwtMGCi8IOBD1fkVd/lgc9gs/
-eOFEAlIsBA5jcD5PFPXjCDAHerOLxJxAnYuv5WQ1G6mnRcos8Lrb2A6hhoSn/Qed
-yb9A6MoZ7oagUm2AHQd/XL9UDbmmWz+te2WGLltWPz4WkxWMtu5ySrjiE/uhD9TU
-IriKVezxcSSpWV2/YbvZ5NFYwtLCvQ==
-=NM3V
------END PGP SIGNATURE-----
-
---Co4Q+wAEW5EdCUvd--
