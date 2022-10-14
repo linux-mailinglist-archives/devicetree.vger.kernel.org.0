@@ -2,98 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA5D5FF138
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 17:24:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46F025FF144
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 17:26:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbiJNPYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 11:24:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42578 "EHLO
+        id S230268AbiJNP0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 11:26:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230150AbiJNPYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 11:24:42 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0990F15A32C;
-        Fri, 14 Oct 2022 08:24:31 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29EF5CXq031283;
-        Fri, 14 Oct 2022 17:23:36 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=XxmR9+2YKarx682UHje/1a7OQNTotC8Yrb+nb/cNJ6A=;
- b=nW+A2DIfoop2HPybGIkjsA0Q1WmhUlgaxEAloKgDvDBHgRpUcN21iG5vLWkbbxV7CgcB
- RO/e+HcYfzTAFf1zm/qK94cUPSPfLuE9aK1UeBxISdYEdahkqbGs6U87NutOQDScDlCm
- aoGQlL5h4MopPAPgjUmpUYRMqMdLPrrcsKSfb8iWbCI66vAqnU/Zoe4nr/oMo57oInwA
- 7FtPegwj7cLyFjJzqPa20oapcFY/z24o0nm4yOft4Uy/sComyYTabTtz8oNA7+0F8aud
- C5gNKkJwkee0UFVU1cdxN/4Oj8gMDod9cLbF8vVaaNTL+CAdStfnaQ+yBX3+TsSUyrpm 7A== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3k64m7xf0p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Oct 2022 17:23:36 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B403A10002A;
-        Fri, 14 Oct 2022 17:23:31 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id ACA5D235F3B;
-        Fri, 14 Oct 2022 17:23:31 +0200 (CEST)
-Received: from localhost (10.75.127.123) by SHFDAG1NODE3.st.com (10.75.129.71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Fri, 14 Oct
- 2022 17:23:28 +0200
-From:   Patrick Delaunay <patrick.delaunay@foss.st.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        with ESMTP id S230120AbiJNP0u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 11:26:50 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59F264CA17;
+        Fri, 14 Oct 2022 08:26:49 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29EFQj4x047297;
+        Fri, 14 Oct 2022 10:26:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1665761205;
+        bh=cr+gOCZHdw+5ge9BgUDYqRul2Hv7vIzX24DwiHzRaxA=;
+        h=From:To:CC:Subject:Date;
+        b=sdgSgr9WcohTrO2iISuD6dKKtYbMyW9e1RzSpKWgEDPi8Iip2OQTzBuu4M9vXZAqh
+         s1Ih7zZR6bO3UyXao8GcFWJmvdpk2HksgadbB0tYr1WYR9TYAdKfIFkEB8NzeT/W7j
+         UDE836fx0heLA8c3FQziwaC6SNpXhCFFP0+fhxR4=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29EFQjrT002902
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 14 Oct 2022 10:26:45 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 14
+ Oct 2022 10:26:44 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 14 Oct 2022 10:26:44 -0500
+Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29EFQhPA102295;
+        Fri, 14 Oct 2022 10:26:44 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-CC:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: [PATCH] dt-bindings: nvmem: add new stm32mp13 compatible for stm32-romem
-Date:   Fri, 14 Oct 2022 17:23:27 +0200
-Message-ID: <20221014172324.1.Ifc1812116ff63f5501f3edd155d3cf5c0ecc846c@changeid>
-X-Mailer: git-send-email 2.25.1
+        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Andrew Davis <afd@ti.com>
+Subject: [PATCH 0/2] AM57x EVM Device Tree Overlays
+Date:   Fri, 14 Oct 2022 10:26:41 -0500
+Message-ID: <20221014152643.28745-1-afd@ti.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.75.127.123]
-X-ClientProxiedBy: GPXDAG2NODE4.st.com (10.75.127.68) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-14_08,2022-10-14_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new compatible for stm32mp13 support.
+Hello all,
 
-Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
----
+These is an uncontroversial (hopefully) DT Overlay to support the
+TI AM57x EVM. More complex cases are staged and ready to follow but
+wanted to test the water with this one.
 
- Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml | 1 +
- 1 file changed, 1 insertion(+)
+For some reason dtbs_check does not get run on overlays, this
+will need further investigation to fix in kbuild. For now I ran
+it through manually but am not 100% sure it actually checked it,
+so double checks here very welcome.
 
-diff --git a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-index 448a2678dc62..16f4cad2fa55 100644
---- a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-@@ -22,6 +22,7 @@ properties:
-   compatible:
-     enum:
-       - st,stm32f4-otp
-+      - st,stm32mp13-bsec
-       - st,stm32mp15-bsec
- 
-   reg:
+Series depends on https://www.spinics.net/lists/kernel/msg4548509.html
+
+Thanks,
+Andrew
+
+Andrew Davis (2):
+  ARM: dts: ti: Add AM57xx GP EVM board support
+  ARM: dts: ti: Add AM57xx GP EVM Rev A3 board support
+
+ arch/arm/boot/dts/Makefile        |   4 +
+ arch/arm/boot/dts/am57xx-evm.dtso | 127 ++++++++++++++++++++++++++++++
+ 2 files changed, 131 insertions(+)
+ create mode 100644 arch/arm/boot/dts/am57xx-evm.dtso
+
 -- 
-2.25.1
+2.37.3
 
