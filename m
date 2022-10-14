@@ -2,113 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 339F65FF223
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 18:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA4BF5FF278
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 18:46:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229948AbiJNQR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 12:17:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53042 "EHLO
+        id S229822AbiJNQqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 12:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbiJNQRz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 12:17:55 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF4111D0D66
-        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 09:17:54 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id o22so2762164qkl.8
-        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 09:17:54 -0700 (PDT)
+        with ESMTP id S229885AbiJNQqj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 12:46:39 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F28211E46B;
+        Fri, 14 Oct 2022 09:46:38 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id s196so3476707pgs.3;
+        Fri, 14 Oct 2022 09:46:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1gzC+6pIKgTRrlwCoquBVcFiz8VbT8QxkPUglAW6yjw=;
-        b=AA/+P5YcqpsI8jTynPbHxeED8efo3L92Ft5IK7ZzFKCeZmZ4nv3SKnoENmrrbu/8c8
-         fZkq4I5jbeaxW/bTEvgFGJ7vTxd6kJQO2Wd184HbCSRGuN2a7jyS0+iwTGwUFRiyQOo2
-         hyPZFOOti4Ql9unYGK/ye9LyGhSkdQhmSqCahl4S5rlO+8NUf0+zQhaMHLrptVab8xy8
-         JMnrDZbsLvRupj2sQiwFt+WLO/BGVgXo535qowjp1AVNKRq1x//oIv1EP/Zm6JAup12+
-         jxubr6v9hhJEh4TeZ6RJwgnEw6q4SEH2E80BJNRbWIGpMqT9zebQVtGdpwHmeJM0Gc93
-         NMwQ==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Lz9w4iTtt8VD0pnGuSpcxv01lLWgKdls9jQI3u/cJVU=;
+        b=YQRZg7ylX38gOy7LKdvCrTSm9oFdeFDGd0Xij4RxwzL0ecgSKg40kNAmatIs5yfwZV
+         nXbrs3sM02YGmZ6jHV+/15BP98e45vDRYl/sM+3MLvYjhmFlJA6pOKaZFrh7j+8beANm
+         yHnwlj0XohANnG2Lb1Rxxou9IHa/nzJtN6LlbN1gSOipa+scrRhw920tiwlsDlleqIN5
+         vwZGuWjjpHgLS9DZ70Nmm/4czGT2KCJCSW/3pskeC5P55uAD+e2cfgLuCLAQwZu6oj7F
+         RBiJdfRzwFRauSB52rp37qhnppNpTcnPWxBeCTjxD2c37bY0rT2f+b/FPdHb3L/f1rw0
+         nTfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1gzC+6pIKgTRrlwCoquBVcFiz8VbT8QxkPUglAW6yjw=;
-        b=zEWr+SpUhKcUiAO56jkTlMPGmIR9bIIZUtqg+y67P7Q4fDkgNs/galmL09CXaWxZWP
-         FU/dMxxmuM0bvYv1dibtTi7Y0xGnmcZ/zkJfUdMHJIv5POvJfYsBM2+suZWltGKSP8Li
-         /BXVXaZTD7ejHdj6N6JveI3GrANBkLfVixIiszH7RqP36ZNBY28MO8L8u+gOqqCSLLMZ
-         qoEHN4+c1FNz5KJkCYxckDsGhDw6Jn5UVTzCJFHD9foHtE3nGQC6JYzfd3MdBKy7ZvDh
-         H+oxIrcl7XHDKkXxnz3+N9ALZES9HXgcdXK1Apzvx1BVNP4qsJH6cMpOobg79p0EhTSk
-         vgAw==
-X-Gm-Message-State: ACrzQf3h4i+k4WdLv5dYa2nWsePxFfZkYFZo6X09sqEtSmDqbsFXuN7x
-        CzMEl4+dHKfyFrVZiEvcummWug==
-X-Google-Smtp-Source: AMsMyM6zeraRWOrhtxrEgxldJTmnsoJAKyRx/WeT0BIT3KKR45k0neMZPYTh54xC8XbnEVvqPXN4dg==
-X-Received: by 2002:a05:620a:b05:b0:6ee:cb0e:3c94 with SMTP id t5-20020a05620a0b0500b006eecb0e3c94mr3673383qkg.379.1665764273917;
-        Fri, 14 Oct 2022 09:17:53 -0700 (PDT)
-Received: from [192.168.7.170] ([12.190.236.102])
-        by smtp.gmail.com with ESMTPSA id v17-20020a05620a441100b006ce813bb306sm3137040qkp.125.2022.10.14.09.17.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Oct 2022 09:17:53 -0700 (PDT)
-Message-ID: <de4726f5-d7da-041a-31a3-dc7177786bf4@linaro.org>
-Date:   Fri, 14 Oct 2022 12:16:41 -0400
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Lz9w4iTtt8VD0pnGuSpcxv01lLWgKdls9jQI3u/cJVU=;
+        b=kYLgYG2JbQFCUaLLHantBmGt2DAyXvMydQ+VpLJYKBPdnwqEtVPS1NHUZGvEoCNOl6
+         tT6G4i2hfsOU4SkU/8E4b/7O78Lzka5WCAqALdPP95TsH11buMOfctB5aYfd0y/TKPf6
+         BkNw9BWs2LDxNipj78lYqkW5RDmAegxrWyJwpNk9piEabABBgM1C+XkhHJUyM8yQjzr/
+         YEyZRuquGy7yzMw/hQfy/kLoxScbew9uS40T5H64RgJaEGeWJUqdc3krknpCYi28W2Qs
+         Diq7z/mxpxu7NVOVGrfSZx5N6n7op1S+OHb/O45nrsIB4G3tduNc3yCgCR01XD6ktSFP
+         zqGQ==
+X-Gm-Message-State: ACrzQf3vyYWdUwiLim1d/xYRckaYM6CNzTF8XZhmRnUmz6SFpwZ1G0Ra
+        drUR/TjCR/ZP66epbAAVGg8=
+X-Google-Smtp-Source: AMsMyM6QVHntIHzZcjcTu7mS9KR6yMVgRd9YU9txRkHoQcGcebgSfqyGhkXCfRnTkqBoEAjG+nZdIA==
+X-Received: by 2002:a63:1917:0:b0:43c:1471:52b7 with SMTP id z23-20020a631917000000b0043c147152b7mr5295980pgl.522.1665765998174;
+        Fri, 14 Oct 2022 09:46:38 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d8-20020a170902cec800b0017f7b6e970esm1976920plg.146.2022.10.14.09.46.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Oct 2022 09:46:37 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 14 Oct 2022 09:46:37 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        allen-kh.cheng@mediatek.com, seiya.wang@mediatek.com,
+        tinghan.shen@mediatek.com, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] dt-bindings: watchdog: mediatek,mtk-wdt: Add
+ compatible for MT6795
+Message-ID: <20221014164637.GA150807@roeck-us.net>
+References: <20221005113517.70628-1-angelogioacchino.delregno@collabora.com>
+ <20221005113517.70628-5-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH 09/10] ARM: dts: stm32: enable USB OTG in dual role mode
- on stm32mp135f-dk
-Content-Language: en-US
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        alexandre.torgue@foss.st.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     amelie.delaunay@foss.st.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20221014092651.25202-1-fabrice.gasnier@foss.st.com>
- <20221014092651.25202-10-fabrice.gasnier@foss.st.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221014092651.25202-10-fabrice.gasnier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221005113517.70628-5-angelogioacchino.delregno@collabora.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2022 05:26, Fabrice Gasnier wrote:
-> The USB OTG controller provides the USB data available on stm32mp135f-dk,
-> on the Type-C connector. Data role is determined by "usb-role-switch".
+On Wed, Oct 05, 2022 at 01:35:16PM +0200, AngeloGioacchino Del Regno wrote:
+> Add the mediatek,mt6795-wdt compatible.
 > 
-> A STM32G0 provides the USB Type-C and Power Delivery connectivity.
-> It controls dual role power and dual role data through UCSI protocol over
-> I2C. It's wired on I2C1, with an interrupt pin on PI2 GPIO.
-> Its firmware maybe updated over I2C, so use the optional firmware-name
-> to enable firmware update.
-> 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+
 > ---
->  arch/arm/boot/dts/stm32mp135f-dk.dts | 34 ++++++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
+>  Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
-> index 02ff2bc664da..1c92bf096397 100644
-> --- a/arch/arm/boot/dts/stm32mp135f-dk.dts
-> +++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
-> @@ -95,6 +95,28 @@ &i2c1 {
->  	/* spare dmas for other usage */
->  	/delete-property/dmas;
->  	/delete-property/dma-names;
-> +
-> +	stm32g0@53 {
-
-Node names should be generic, usually typec.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-Best regards,
-Krzysztof
-
+> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> index f43b5af92d40..54dfe7941d53 100644
+> --- a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> @@ -23,6 +23,7 @@ properties:
+>            - enum:
+>                - mediatek,mt2712-wdt
+>                - mediatek,mt6589-wdt
+> +              - mediatek,mt6795-wdt
+>                - mediatek,mt7986-wdt
+>                - mediatek,mt8183-wdt
+>                - mediatek,mt8186-wdt
