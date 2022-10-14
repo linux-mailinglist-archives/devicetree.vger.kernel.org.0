@@ -2,80 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60DB45FF4DC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 22:51:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C47385FF4F2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 23:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231618AbiJNUv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 16:51:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59034 "EHLO
+        id S229485AbiJNVAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 17:00:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230448AbiJNUv2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 16:51:28 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19B9E24BFA;
-        Fri, 14 Oct 2022 13:51:26 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id v40-20020a056830092800b00661e37421c2so362191ott.3;
-        Fri, 14 Oct 2022 13:51:26 -0700 (PDT)
+        with ESMTP id S229462AbiJNVAe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 17:00:34 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50DB5106A74;
+        Fri, 14 Oct 2022 14:00:33 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id r13-20020a056830418d00b0065601df69c0so2553728otu.7;
+        Fri, 14 Oct 2022 14:00:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PM/tudBwVBkWLPdLQ9uHSq0aAAT5JTrVUZ4BADk5nQg=;
-        b=Vc/quhG0uz9wrGbqvUEtM2Yy+DSn/FMhGWyJta76pFfjxtoltm9xbpNyk2LlQya3o6
-         ugKyglLZ66Yb1AiRZi/doFZ39mfyLv5FmZbyiLlqJmN5hMKPGY6XzSzOj7zuU6o88HR9
-         fXSVvSp4l6eLaujJQ/qlvP4LBLl9GemKNAkB6oNATvwvM7n5NrtoCedQmysCbJofTO8H
-         SrExQZSdQ7o/bGBiYqVga/scieJD8tZzyEHn03YBWyBnT6xu2hYHN3h+Mqewq6/RK7S4
-         sfd8Qhn/I/6dERrCidNUsSueWc2CNu7glCuYPMeYEaJwoXP/pk3iUUnFvAogNTbB6m7J
-         DcKg==
-X-Gm-Message-State: ACrzQf05FhBNXVassswxmOxizoi9nSZMhvsVrjnMIKyAnrfzjEYrZ0GK
-        P8k2+AwZdVq2EyPXU4qzsQ==
-X-Google-Smtp-Source: AMsMyM5w4g67vSGZ3pSCI5S2Zc2iST2MyxLD+PeiQ6LuPDE+zA88Aoe8qbpQjyvz+NwDwTMTLkmsOQ==
-X-Received: by 2002:a9d:7745:0:b0:661:a3c9:3cff with SMTP id t5-20020a9d7745000000b00661a3c93cffmr3396961otl.176.1665780685215;
-        Fri, 14 Oct 2022 13:51:25 -0700 (PDT)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kq4otfpWoUaoxpIPZJV1lgpjpLZShT1J4qTsAKzDCpA=;
+        b=4pZRoWI9RE0n1zgDZKgPtJrTCa9tkp07e3QWXRbMuJd/CptQmZg4y8aDM2lgOEg0dm
+         NOnpytXrIDd1F/5MtLRI4eU5XxiPgr4DYMqIu94MPRIMU5vH8mb1egMNNV6lh9EPQTTi
+         Mr9AQmqcPSorTQ5w8+1gW9bZTmjORWpRVqzlzssb4txAD9Ff4eRlmLE9rlt4vKPjUyuf
+         1yb6PkbxnkCv6D/9VkX6DDZ7hl+iitxeUmM2yoP35w17YLSeIunCBo4guHyKZ4/5BMfk
+         VIf0Tu1zCKPXh2q5pKcXld1XBkoA9Xg3Li600EqcbLSOfIRtodVjjb1vLv4HI7krgC+g
+         q/xA==
+X-Gm-Message-State: ACrzQf38B2Vng3vvUDapaVn6AA8H+z/SiNnbapVCQW1JiexLhggjhbFr
+        ra93n6bG/tpvRRPQBTfc3Q==
+X-Google-Smtp-Source: AMsMyM4UYGB/NG4VC9kqGAklC5tFZU87mpAg9iGmbI1BTt2NsChpYzNoQCdRkPW5fPumiZKwr+PVjA==
+X-Received: by 2002:a9d:12ca:0:b0:661:b4b7:349d with SMTP id g68-20020a9d12ca000000b00661b4b7349dmr3380439otg.47.1665781232469;
+        Fri, 14 Oct 2022 14:00:32 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f17-20020a4ae611000000b00480b7efd5d9sm580678oot.6.2022.10.14.13.51.23
+        by smtp.gmail.com with ESMTPSA id r8-20020a056871088800b0010e73e252b8sm1860086oaq.6.2022.10.14.14.00.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Oct 2022 13:51:24 -0700 (PDT)
-Received: (nullmailer pid 2822557 invoked by uid 1000);
-        Fri, 14 Oct 2022 20:51:24 -0000
+        Fri, 14 Oct 2022 14:00:32 -0700 (PDT)
+Received: (nullmailer pid 2832389 invoked by uid 1000);
+        Fri, 14 Oct 2022 21:00:32 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Nandhini Srikandan <nandhini.srikandan@intel.com>,
-        Rashmi A <rashmi.a@intel.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Sumit Gupta <sumitg@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-iio@vger.kernel.org, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org
-Subject: [PATCH] dt-bindings: Remove "status" from schema examples, again
-Date:   Fri, 14 Oct 2022 15:51:04 -0500
-Message-Id: <20221014205104.2822159-1-robh@kernel.org>
-X-Mailer: git-send-email 2.35.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jacopo Mondi <jacopo@jmondi.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-media@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+In-Reply-To: <20221014183459.181567-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221014183459.181567-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Message-Id: <166578091220.2826696.5981359507940429250.robh@kernel.org>
+Subject: Re: [PATCH v2 1/5] media: dt-bindings: ov5645: Convert OV5645 binding to a schema
+Date:   Fri, 14 Oct 2022 16:00:32 -0500
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -87,125 +68,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There's no reason to have "status" properties in examples. "okay" is the
-default, and "disabled" turns off some schema checks ('required'
-specifically).
+On Fri, 14 Oct 2022 19:34:55 +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Convert the simple OV5645 Device Tree binding to json-schema.
+> 
+> The previous binding marked the below properties as required which was a
+> driver requirement and not the device requirement so just drop them from
+> the required list during the conversion.
+> - clock-frequency
+> - enable-gpios
+> - reset-gpios
+> 
+> Also drop the "clock-names" property as we have a single clock source for
+> the sensor and the driver has been updated to drop the clk referencing by
+> name.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> Resend v3:
+> * No change
+> 
+> v2 -> v3
+> * Dropped clock-names property
+> * Marked power supplies as mandatory
+> * Dropped the comment for voltage power supplies
+> * Included RB tag from Laurent
+> * Driver change to drop clock-names [0]
+> 
+> [0] https://lore.kernel.org/linux-media/Yyh%2F3uzOJOu3drEB@pendragon.ideasonboard.com/T/#t
+> 
+> v1 -> v2
+> * Dropped ref to video-interface-devices.yaml#
+> * Dropped driver specific required items from the list
+> * Updated commit message
+> * Dropped clock-lanes and bus-type from the port and example node
+> * Marked data-lanes as required in port node
+> ---
+>  .../devicetree/bindings/media/i2c/ov5645.txt  |  54 ---------
+>  .../bindings/media/i2c/ovti,ov5645.yaml       | 104 ++++++++++++++++++
+>  2 files changed, 104 insertions(+), 54 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> 
 
-A meta-schema check for this is pending, so hopefully the last time to
-fix these.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Fix the indentation in intel,phy-thunderbay-emmc while we're here.
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../arm/tegra/nvidia,tegra-ccplex-cluster.yaml    |  1 -
- .../display/tegra/nvidia,tegra124-dpaux.yaml      |  1 -
- .../display/tegra/nvidia,tegra186-display.yaml    |  2 --
- .../bindings/iio/addac/adi,ad74413r.yaml          |  1 -
- .../devicetree/bindings/net/cdns,macb.yaml        |  1 -
- .../devicetree/bindings/net/nxp,dwmac-imx.yaml    |  1 -
- .../bindings/phy/intel,phy-thunderbay-emmc.yaml   | 15 +++++++--------
- 7 files changed, 7 insertions(+), 15 deletions(-)
+Full log is available here: https://patchwork.ozlabs.org/patch/
 
-diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-index 711bb4d08c60..869c266e7ebc 100644
---- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-+++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-@@ -47,5 +47,4 @@ examples:
-       compatible = "nvidia,tegra234-ccplex-cluster";
-       reg = <0x0e000000 0x5ffff>;
-       nvidia,bpmp = <&bpmp>;
--      status = "okay";
-     };
-diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-dpaux.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-dpaux.yaml
-index 9ab123cd2325..5cdbc527a560 100644
---- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-dpaux.yaml
-+++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-dpaux.yaml
-@@ -128,7 +128,6 @@ examples:
-         resets = <&tegra_car 181>;
-         reset-names = "dpaux";
-         power-domains = <&pd_sor>;
--        status = "disabled";
- 
-         state_dpaux_aux: pinmux-aux {
-             groups = "dpaux-io";
-diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra186-display.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra186-display.yaml
-index 8c0231345529..ce5c673f940c 100644
---- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra186-display.yaml
-+++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra186-display.yaml
-@@ -138,7 +138,6 @@ examples:
-                  <&bpmp TEGRA186_CLK_NVDISPLAY_DSC>,
-                  <&bpmp TEGRA186_CLK_NVDISPLAYHUB>;
-         clock-names = "disp", "dsc", "hub";
--        status = "disabled";
- 
-         power-domains = <&bpmp TEGRA186_POWER_DOMAIN_DISP>;
- 
-@@ -227,7 +226,6 @@ examples:
-         clocks = <&bpmp TEGRA194_CLK_NVDISPLAY_DISP>,
-                  <&bpmp TEGRA194_CLK_NVDISPLAYHUB>;
-         clock-names = "disp", "hub";
--        status = "disabled";
- 
-         power-domains = <&bpmp TEGRA194_POWER_DOMAIN_DISP>;
- 
-diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
-index 03bb90a7f4f8..d2a9f92c0a6d 100644
---- a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
-+++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
-@@ -114,7 +114,6 @@ examples:
-       #size-cells = <0>;
- 
-       cs-gpios = <&gpio 17 GPIO_ACTIVE_LOW>;
--      status = "okay";
- 
-       ad74413r@0 {
-         compatible = "adi,ad74413r";
-diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-index 318f4efe7f6f..bef5e0f895be 100644
---- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-+++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-@@ -203,7 +203,6 @@ examples:
-                     power-domains = <&zynqmp_firmware PD_ETH_1>;
-                     resets = <&zynqmp_reset ZYNQMP_RESET_GEM1>;
-                     reset-names = "gem1_rst";
--                    status = "okay";
-                     phy-mode = "sgmii";
-                     phys = <&psgtr 1 PHY_TYPE_SGMII 1 1>;
-                     fixed-link {
-diff --git a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-index 4c155441acbf..0270b0ca166b 100644
---- a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-+++ b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-@@ -92,5 +92,4 @@ examples:
-                      <&clk IMX8MP_CLK_ENET_QOS>;
-             clock-names = "stmmaceth", "pclk", "ptp_ref", "tx";
-             phy-mode = "rgmii";
--            status = "disabled";
-     };
-diff --git a/Documentation/devicetree/bindings/phy/intel,phy-thunderbay-emmc.yaml b/Documentation/devicetree/bindings/phy/intel,phy-thunderbay-emmc.yaml
-index 34bdb5c4cae8..b09e5ba5e127 100644
---- a/Documentation/devicetree/bindings/phy/intel,phy-thunderbay-emmc.yaml
-+++ b/Documentation/devicetree/bindings/phy/intel,phy-thunderbay-emmc.yaml
-@@ -36,11 +36,10 @@ additionalProperties: false
- 
- examples:
-   - |
--     mmc_phy@80440800 {
--     #phy-cells = <0x0>;
--     compatible = "intel,thunderbay-emmc-phy";
--     status = "okay";
--     reg = <0x80440800 0x100>;
--     clocks = <&emmc>;
--     clock-names = "emmcclk";
--     };
-+    mmc_phy@80440800 {
-+        #phy-cells = <0x0>;
-+        compatible = "intel,thunderbay-emmc-phy";
-+        reg = <0x80440800 0x100>;
-+        clocks = <&emmc>;
-+        clock-names = "emmcclk";
-+    };
--- 
-2.35.1
+
+camera@3c: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/imx6dl-pico-dwarf.dtb
+	arch/arm/boot/dts/imx6dl-pico-hobbit.dtb
+	arch/arm/boot/dts/imx6dl-pico-nymph.dtb
+	arch/arm/boot/dts/imx6dl-pico-pi.dtb
+	arch/arm/boot/dts/imx6dl-wandboard.dtb
+	arch/arm/boot/dts/imx6dl-wandboard-revb1.dtb
+	arch/arm/boot/dts/imx6dl-wandboard-revd1.dtb
+	arch/arm/boot/dts/imx6q-pico-dwarf.dtb
+	arch/arm/boot/dts/imx6q-pico-hobbit.dtb
+	arch/arm/boot/dts/imx6q-pico-nymph.dtb
+	arch/arm/boot/dts/imx6q-pico-pi.dtb
+	arch/arm/boot/dts/imx6qp-wandboard-revd1.dtb
+	arch/arm/boot/dts/imx6q-wandboard.dtb
+	arch/arm/boot/dts/imx6q-wandboard-revb1.dtb
+	arch/arm/boot/dts/imx6q-wandboard-revd1.dtb
+
+ov5645@3c: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-mipi-2.1.dtb
+	arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-ex-mipi-2.1.dtb
+	arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dtb
+	arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h-ex-mipi-2.1.dtb
 
