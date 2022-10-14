@@ -2,71 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A3EC5FEA35
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 10:11:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46F585FEA32
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 10:11:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbiJNILz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 04:11:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36832 "EHLO
+        id S229550AbiJNILI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 04:11:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbiJNILy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 04:11:54 -0400
-Received: from mail.coredeal.pl (mail.coredeal.pl [51.75.73.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 500F32C121
-        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 01:11:53 -0700 (PDT)
-Received: by mail.coredeal.pl (Postfix, from userid 1002)
-        id 31552ADA00; Fri, 14 Oct 2022 08:09:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=coredeal.pl; s=mail;
-        t=1665735009; bh=9KGuIG62LgzC9aYmjKxzocuYLRCVghXg6v9Q1q2LHec=;
-        h=Date:From:To:Subject:From;
-        b=XW71O40AO14iejDsJhnUNRMGIE9UDP7Z/d0YJNuCSKBb16SNlhu1wP4OVjjGLrZJC
-         GnVZq2u5ejByHH4aAmhr/d8X8B3JnRrZihM6j5qzQmitaD8CN5sl6d+yQGC7K9gy0P
-         jZWTXaCHDiEQrFrYUHyFKJ/ZSXzynQlG/JjRH7XthI/pLMKrv/jJ3Sd5lSDrXx4QP2
-         5+KJgANRYRAjKzFprehR4M5StHZRwHmNDO33Z0l06v9gQrVYLdh0mlVzYFZ5R+SGKQ
-         KWrinRoRQ6vGzuyuE5p3Vn0D2iZ2jLfux58wf6w3YY1JDrQNSA1TE0DTXG19z8gNLD
-         o5aMGhKRCSvfA==
-Received: by mail.coredeal.pl for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 08:09:02 GMT
-Message-ID: <20221014064500-0.1.63.214d8.0.da2ke6cqg2@coredeal.pl>
-Date:   Fri, 14 Oct 2022 08:09:02 GMT
-From:   "Krzysztof Maj" <krzysztof.maj@coredeal.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: Biznesowy angielski
-X-Mailer: mail.coredeal.pl
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_VALIDITY_RPBL,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S230070AbiJNILB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 04:11:01 -0400
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FFF7C6956;
+        Fri, 14 Oct 2022 01:11:00 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 952215C0097;
+        Fri, 14 Oct 2022 04:10:59 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Fri, 14 Oct 2022 04:10:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1665735059; x=1665821459; bh=m2djQg3F4D
+        VynenjUu/6ySRNpcHRzX+D6LlzucfEhYs=; b=EhwpxGIJWz7/N+hl0C2NDCsdpD
+        sSkzHhxV5b20Luv58TV4gL/dmXHZ1fxw3EETGEEf/OmAIwdj+3ORLjlCfyJREoX5
+        NyoV4BF/zTmfNZg5M4vw3USDC0rJndcYmdEs6NtD7LDJMBEWmt+KTbMpFCJea3+0
+        c9TNxIRzE5CXODdnEWnxYDT2kRHyQoUOJQVmblDyvpqyGLKODAijBkwIg8WHkuh1
+        mKkmXpWVjDZEH5g8fhYeCedyOw/urT4KNS+3dpH+pEiBnxlmGzCPNqVtViAJH8JT
+        TI1pgtfAj3H/XvQlsoswowmDu/XknFtBFEbFNv8Q1ojLbUrKwUPTOfNOWJCA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1665735059; x=1665821459; bh=m2djQg3F4DVynenjUu/6ySRNpcHR
+        zX+D6LlzucfEhYs=; b=YqcxPACNXvW6SWq3nFas6BSz8Pb8z8+Zh1QFfWfR4BLv
+        hNa65a1BkkZl3n3hI2zZKteOlLqJTMbM59tTdUA5fhbpDnMK2GWhEdZkcM0+A02/
+        BxSFmO5eSablgsmMBJ2GZnvyJknzznxQMkFdHg4qgM+85nC13LG9fBzSpSsEmk7R
+        AbrlIQ+qBdJj9k2vluO2oCRVzMvCR655aUXhpeTM5fXlk896JNQ1iwQc9SS8nhOM
+        Xf3kyJiaH/9I1/j9cSSN1tLbbk6r2CBKqY2m2KgttscjKAhjEqoolvOT7q2u8+6Z
+        l8rpAGPL/Zkh+zBU/j02LzI/R5zi6b/ohj3tXOcTig==
+X-ME-Sender: <xms:kxlJY3F8XvO4JalLcHH-n6vFHLebIQssw4bnPFMe1qaod7ChZqTOcg>
+    <xme:kxlJY0WeKoHJ7I5K1UnOm6Y2eFZiYX4s_FqmOq5hgXF3Qf_78ejyScCX_85wmKnhc
+    cBMUvEpI9ehUOUCA_s>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeekvddgtdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:kxlJY5K5U_5zFgWIBrgYD0M530mKfMqteXU-UeolqK0rjvh_otNpqA>
+    <xmx:kxlJY1Gb2nXV6G45-XezRsWksKGuvdsnuYLJQbY2gzTAjJGFjapi_Q>
+    <xmx:kxlJY9Wrjj73t_p7ClI2cppRSw2nn_RxeF4KjuQccZtwnDb0oG6n4A>
+    <xmx:kxlJYwTnPAdERQjRBMXc7yN5SJWzM8fc3t55mhlc7QdIo8S7v6iREg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 59E0BB60083; Fri, 14 Oct 2022 04:10:59 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1047-g9e4af4ada4-fm-20221005.001-g9e4af4ad
+Mime-Version: 1.0
+Message-Id: <767d768e-70e5-4a94-accb-3384a3bfd582@app.fastmail.com>
+In-Reply-To: <20221013195153.2767632-1-nathan@kernel.org>
+References: <20221013195153.2767632-1-nathan@kernel.org>
+Date:   Fri, 14 Oct 2022 10:10:39 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Nathan Chancellor" <nathan@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Frank Rowand" <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "Matt Flax" <flatmax@flatmax.com>
+Subject: Re: [PATCH] of: Define of_match_ptr() with PTR_IF() to avoid unused variable
+ warnings
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry,=20
+On Thu, Oct 13, 2022, at 9:51 PM, Nathan Chancellor wrote:
+> 
+> -#define of_match_ptr(_ptr)	NULL
+>  #define of_match_node(_matches, _node)	NULL
+>  #endif /* CONFIG_OF */
+> 
+> +#define of_match_ptr(_ptr)	PTR_IF(IS_ENABLED(CONFIG_OF), (_ptr))
+> +
 
-czy rozwa=C5=BCali Pa=C5=84stwo rozw=C3=B3j kwalifikacji j=C4=99zykowych =
-swoich pracownik=C3=B3w?
+I think this is counterproductive, as it means we cannot use
+of_match_ptr() for its intended purpose any more, it will
+now cause a build failure for any driver that references a
+match table inside of an #ifdef.
 
-Opracowali=C5=9Bmy kursy j=C4=99zykowe dla r=C3=B3=C5=BCnych bran=C5=BC, =
-w kt=C3=B3rych koncentrujemy si=C4=99 na podniesieniu poziomu s=C5=82owni=
-ctwa i jako=C5=9Bci komunikacji wykorzystuj=C4=85c autorsk=C4=85 metod=C4=
-=99, stworzon=C4=85 specjalnie dla wymagaj=C4=85cego biznesu.=20
+Ideally we should be able to find the misuse of this macro with
+coccinelle and have it automatically generate patches that just remove
+it from drivers.
 
-Niestandardowy kurs on-line, dopasowany do profilu firmy i obszar=C3=B3w =
-=C5=9Bwiadczonych us=C5=82ug, w szybkim czasie przyniesie efekty, kt=C3=B3=
-re zwi=C4=99ksz=C4=85 komfort i jako=C5=9B=C4=87 pracy, rozwijaj=C4=85c m=
-o=C5=BCliwo=C5=9Bci biznesowe.=20
+A first-level approximation would be this oneliner:
 
-Zdalne szkolenie j=C4=99zykowe to m.in. zaj=C4=99cia z native speakerami,=
- kt=C3=B3re w szybkim czasie naucz=C4=85 pracownik=C3=B3w rozmawia=C4=87 =
-za pomoc=C4=85 jasnego i zwi=C4=99z=C5=82ego j=C4=99zyka Business English=
-=2E
+git grep -wl of_match_ptr | xargs git grep -wL CONFIG_OF | xargs sed -i "s:of_match_ptr(\([\ \#\>\"a-zA-Z0-9_-]*\)):\1:"
 
-Czy m=C3=B3g=C5=82bym przedstawi=C4=87 wi=C4=99cej szczeg=C3=B3=C5=82=C3=B3=
-w i opowiedzie=C4=87 jak dzia=C5=82amy?=20
+which takes care of 535 files that don't reference CONFIG_OF at all.
+There are 496 more files that use of_match_ptr() as well but also
+guard something inside of CONFIG_OF. Most of these are just
+incorrectly copy-pasted from older drivers and should not have an
+#ifdef in them to make the of_match_ptr() work, but they are not actually
+usable without CONFIG_OF.
 
+Historically, we added the #ifdef at the time when we supported hundreds
+of boards without DT and only a couple of boards with DT, so having the
+extra #ifdef was a way of ensuring that the DT conversion would not add
+a few extra bytes of .data to each driver. Now we support thousands of
+boards with DT and only a few dozen without DT, so this is all pointless.
 
-Pozdrawiam
-Krzysztof Maj
+       Arnd
