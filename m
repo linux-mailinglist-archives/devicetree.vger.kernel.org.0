@@ -2,113 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 255A35FF16D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 17:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2C2D5FF184
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 17:37:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbiJNPbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 11:31:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58928 "EHLO
+        id S230340AbiJNPhk convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 14 Oct 2022 11:37:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231148AbiJNPbd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 11:31:33 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0923189C22
-        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 08:31:26 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id r3-20020a05600c35c300b003b4b5f6c6bdso3787117wmq.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 08:31:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sR8XzZbfaSpDw94NzG24BznFgA7mEC/NTOou7h7IByk=;
-        b=sPF+GwRiXBLa1OuEr5MkQ63R2R9oM4A9xNILCIDui/xxiJY5DnZgtBnf25VWGLSioN
-         Qwpg8z+PGZIyOU62bfP78CGyDenLuZfo+ROkYKkn2J35AOGMxkmp0pJH41bXLEwZ/fDy
-         0RuIY7nn7pj3hQUGIQPE4VGXKaWiLaMe3ocbwsOHwD2ARgT9Ud7KaD1D/tRkB4IvwLZW
-         JxYPnO7v0FMIp9we8SMUuxyE1W9xmphCyOzHrHmQO3j9rEPtmHr9/idZrLhAS/I/kE0r
-         DaDdlmkxWdiI9PrTJ8JfS3qZCFRl7Ye12+3CD/95JAM54kOhoqIoCkzLGa+FHpdcm+Zu
-         nBfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sR8XzZbfaSpDw94NzG24BznFgA7mEC/NTOou7h7IByk=;
-        b=BTS2XdekIccq1YyKiD/38EiCkRA/jnEEbvF1UvwYad1iW5ZtOzsLsmqn+oypjGIwpq
-         tBNSmLoWbAEs8kLImu2iKX8qYR5ksOSFCFIs0TkD5WCZOdveh3Bp6d6joVlI3LdAk472
-         LkIGN9/OJ07RtnyOU2ZkO4RrzcTVYKMvz6XWFAQN6m1vR6cLB6Xco5EjminT2WqW3BP+
-         JPrgVTBkkY+fQF5+nvFtQfUSjxCnszhtJ4Qwyu0MH4ztV70DQWmFYM7g1vO0kK7dzLI8
-         LSOgZ/S1hdUS4h0PhTk+Qljc8M5VTvsYCASFQbAfrM9fkmqV7wVI8xAmHvLIGtxRfFIh
-         lR7A==
-X-Gm-Message-State: ACrzQf2qkypTkECHRWe1a69xXud61CEw2NtDXvJkxdOuqymGkF/68I87
-        lyhsSW32NiDph3CJ+HKH8C1Xpw==
-X-Google-Smtp-Source: AMsMyM7jhp4DAltumSoT/yQu53w7gmQYoL0h+Mv95KVKM0JLk0YflSNHphv2ouvxOEhdKoQ61mUdxw==
-X-Received: by 2002:a1c:f311:0:b0:3b5:18ca:fc5e with SMTP id q17-20020a1cf311000000b003b518cafc5emr4104232wmq.70.1665761485071;
-        Fri, 14 Oct 2022 08:31:25 -0700 (PDT)
-Received: from planet9.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id h11-20020a05600c314b00b003c6d896a17dsm6466286wmo.32.2022.10.14.08.31.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Oct 2022 08:31:24 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     sakari.ailus@iki.fi, dave.stevenson@raspberrypi.com,
-        jacopo@jmondi.org, paul.j.murphy@intel.com,
-        daniele.alessandrelli@intel.com, mchehab@kernel.org,
-        linux-media@vger.kernel.org
-Cc:     bryan.odonoghue@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v6 1/3] media: dt-bindings: imx412: Extend compatible strings
-Date:   Fri, 14 Oct 2022 16:30:43 +0100
-Message-Id: <20221014153045.3683026-2-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221014153045.3683026-1-bryan.odonoghue@linaro.org>
-References: <20221014153045.3683026-1-bryan.odonoghue@linaro.org>
+        with ESMTP id S229703AbiJNPhj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 11:37:39 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 526D816F414;
+        Fri, 14 Oct 2022 08:37:37 -0700 (PDT)
+Received: from fraeml743-chm.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Mpr6Q34fGz689J2;
+        Fri, 14 Oct 2022 23:34:38 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ fraeml743-chm.china.huawei.com (10.206.15.224) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 14 Oct 2022 17:37:34 +0200
+Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 14 Oct
+ 2022 16:37:34 +0100
+Date:   Fri, 14 Oct 2022 16:37:33 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+CC:     Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        "Jonathan Cameron" <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: Re: [PATCH 2/3] dt-bindings: iio: temperature: ltc2983: support
+ more parts
+Message-ID: <20221014163718.00000042@huawei.com>
+In-Reply-To: <20221014123724.1401011-3-demonsingur@gmail.com>
+References: <20221014123724.1401011-1-demonsingur@gmail.com>
+        <20221014123724.1401011-3-demonsingur@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [10.202.226.42]
+X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible bindings for imx577 which uses the same silicon enabling
-reference code from Sony in the available examples provided.
+On Fri, 14 Oct 2022 15:37:23 +0300
+Cosmin Tanislav <demonsingur@gmail.com> wrote:
 
-Cc: sakari.ailus@iki.fi
-Cc: dave.stevenson@raspberrypi.com
-Cc: jacopo@jmondi.org
-Cc: "Paul J. Murphy" <paul.j.murphy@intel.com>
-Cc: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-media@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> 
+> Add support for the following parts:
+>  * LTC2984
+>  * LTC2986
+>  * LTM2985
+> 
+> The LTC2984 is a variant of the LTC2983 with EEPROM.
+> The LTC2986 is a variant of the LTC2983 with only 10 channels,
+> EEPROM and support for active analog temperature sensors.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
-index 26d1807d0bb6..60dc25ff2b9e 100644
---- a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
-@@ -19,7 +19,9 @@ description:
- 
- properties:
-   compatible:
--    const: sony,imx412
-+    enum:
-+      - sony,imx412
-+      - sony,imx577
-   reg:
-     description: I2C address
-     maxItems: 1
--- 
-2.34.1
+If they 'work' but with fewer features, perhaps a fallback
+compatible?
+
+> The LTM2985 is software-compatible with the LTC2986.
+
+Fallback compatible?
+
+> 
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> ---
+>  .../bindings/iio/temperature/adi,ltc2983.yaml | 63 +++++++++++++++++--
+>  1 file changed, 59 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> index 722781aa4697..c33ab524fb64 100644
+> --- a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> +++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> @@ -4,19 +4,27 @@
+>  $id: http://devicetree.org/schemas/iio/temperature/adi,ltc2983.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Analog Devices LTC2983 Multi-sensor Temperature system
+> +title: Analog Devices LTC2983, LTC2986, LTM2985 Multi-sensor Temperature system
+>  
+>  maintainers:
+>    - Nuno Sá <nuno.sa@analog.com>
+>  
+>  description: |
+> -  Analog Devices LTC2983 Multi-Sensor Digital Temperature Measurement System
+> +  Analog Devices LTC2983, LTC2984, LTC2986, LTM2985 Multi-Sensor Digital
+> +  Temperature Measurement Systems
+> +
+>    https://www.analog.com/media/en/technical-documentation/data-sheets/2983fc.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/2984fb.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/29861fa.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ltm2985.pdf
+>  
+>  properties:
+>    compatible:
+>      enum:
+>        - adi,ltc2983
+> +      - adi,ltc2984
+> +      - adi,ltc2986
+> +      - adi,ltm2985
+>  
+>    reg:
+>      maxItems: 1
+> @@ -26,7 +34,7 @@ properties:
+>  
+>    adi,mux-delay-config-us:
+>      description:
+> -      The LTC2983 performs 2 or 3 internal conversion cycles per temperature
+> +      The device performs 2 or 3 internal conversion cycles per temperature
+
+Definitely a lesson here in avoiding device names in the descriptions!
+
+>        result. Each conversion cycle is performed with different excitation and
+>        input multiplexer configurations. Prior to each conversion, these
+>        excitation circuits and input switch configurations are changed and an
+> @@ -145,7 +153,7 @@ patternProperties:
+>        adi,three-conversion-cycles:
+>          description:
+>            Boolean property which set's three conversion cycles removing
+> -          parasitic resistance effects between the LTC2983 and the diode.
+> +          parasitic resistance effects between the device and the diode.
+>          type: boolean
+>  
+>        adi,average-on:
+> @@ -353,6 +361,41 @@ patternProperties:
+>          description: Boolean property which set's the adc as single-ended.
+>          type: boolean
+>  
+> +  "^temp@":
+> +    type: object
+> +    description:
+> +      Represents a channel which is being used as an active analog temperature
+> +      sensor.
+> +
+> +    properties:
+> +      adi,sensor-type:
+> +        description:
+> +          Identifies the sensor as an active analog temperature sensor.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        const: 31
+
+Ah. This is a bit odd as it's fixed for the channel type.  However there
+is precedence in this binding so fair enough.
+
+> +
+> +      adi,single-ended:
+> +        description: Boolean property which sets the sensor as single-ended.
+> +        type: boolean
+> +
+> +      adi,custom-temp:
+> +        description:
+> +          This is a table, where each entry should be a pair of
+> +          voltage(mv)-temperature(K). The entries must be given in nv and uK
+> +          so that, the original values must be multiplied by 1000000. For
+> +          more details look at table 71 and 72.
+> +          Note should be signed, but dtc doesn't currently maintain the
+> +          sign.
+> +        $ref: /schemas/types.yaml#/definitions/uint64-matrix
+> +        minItems: 3
+> +        maxItems: 64
+> +        items:
+> +          minItems: 2
+> +          maxItems: 2
+> +
+> +    required:
+> +      - adi,custom-temp
+> +
+>    "^rsense@":
+>      type: object
+>      description:
+> @@ -382,6 +425,18 @@ required:
+>    - reg
+>    - interrupts
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,ltc2983
+> +              - adi,ltc2984
+> +    then:
+> +      patternProperties:
+> +        "^temp@": false
+> +
+>  additionalProperties: false
+>  
+>  examples:
 
