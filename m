@@ -2,74 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35F135FF560
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 23:28:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C68DE5FF55C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 23:28:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229916AbiJNV2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229792AbiJNV2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 14 Oct 2022 17:28:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43918 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229847AbiJNV2X (ORCPT
+        with ESMTP id S229822AbiJNV2X (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 17:28:23 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63923AD9A2;
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A48A8C09A5;
         Fri, 14 Oct 2022 14:28:22 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id sc25so13064656ejc.12;
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-1324e7a1284so7331873fac.10;
         Fri, 14 Oct 2022 14:28:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cBdVRz3aai++/yfNem0cRz4vqtS6rcLCQcx1bOqCTrk=;
-        b=aDyZmY5asYVMBAavAWE7H8xl6PPVHJfQrQLZDLFqQW38Y70En1nlsWHTbAxNE+tRUF
-         EvFsjWVoVyTnFUTWnSKyiefPyZ8/Yt09noyzqU24OTyaVOGieZ7xkqh1ffIUKL/PQAyC
-         U72GXUyBdQ7Ffn17P/WlCKTwjQD8gtwSoCHz95QHCgVXFcOF2l0MoMsLFKec0vqvVLVw
-         2kRKTbo8JDpfxQQzcoSUUjTm9WnWw047g+Pk0d1rcyFxY3oPd3D2VawdFsVSFd+9rd6h
-         bPbPf06UnRyD27DTnvX49W5NYziIKfpZ7gZfrOsaiA1EtMK+a+KNffRtZLajmBZOOVNX
-         BQJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cBdVRz3aai++/yfNem0cRz4vqtS6rcLCQcx1bOqCTrk=;
-        b=bz/85Sw5WlMtgLfwG9l75+mQP4rypt+s67JT5zAltw5ZTXy0kCbW6aWt69jvhzr+pP
-         P2s6B1V8p9TMdEIL7IwxfPV8jVGSF4PxDTQwdUsPa34KbWaLpOC9GvshaAF3NSSgevx6
-         nLPmtDxbc0wpq/fWlwNtKsXvHscBd6eXooP5DOZbb7aGWUSQm6Y6jgS8Q+NF2+MjaJ5b
-         5bbKphRkB/Vn7139h4gZDGYNJasLOaBqOgmRdvzpg7bh3PXKy8eqS+LB+wLDOKEkzLZa
-         yPMne0i47f2LliPzh1oyLAJjZ5kpXQK860qPdtzImUJjPq84oRR6JfRq6rgRdGO4FOE2
-         Ss0w==
-X-Gm-Message-State: ACrzQf2AG16zOKN7Dg/yv3dIptCMt60+tcyHOknQ7fsF0dEki0/4+h5s
-        JCKdEA+B4ZKSFZ+T0kDx5WfecLI6u4ge94zRZTw=
-X-Google-Smtp-Source: AMsMyM5J33tCN546/v5heQ+s7KXdA4foVh9BKALQn2p1Dom3wmThyVPXwcIHhGdAXqGGySaefAeAkOXtP/Q3IAsYV6M=
-X-Received: by 2002:a17:906:591:b0:73d:c3ef:84ae with SMTP id
- 17-20020a170906059100b0073dc3ef84aemr4866942ejn.155.1665782900837; Fri, 14
- Oct 2022 14:28:20 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8VDrG8gwWiSTL+8w326fUr7NJNMlWkK+uBEJMrv9dLE=;
+        b=CxBEvHGDeCwYYKxgPbafeEo3a7D3melvuYOj6ZR+IixTmUdV728vpv3lI67AxIIuW5
+         BzhGBpiphju7SgZqZl24OWmNUC4d/NhXbLgViKwIc96HcB0JfsW0OakdTS9v3Zxo8efH
+         /GORaKjnQL6nMiLQaWapBtq3taOt/Lk0O0miUlLbLtmBiaOXFrs5e65bDcHDDljP7o50
+         JaF21KFkq0oQhJBbaz8fVtwVRbN3Qfd9idBb39CbNA0vQS6vYu55ZiqB5PNkVI38Zr4t
+         f2f8Jeproc7RsCfAFlHlAkYDOfmVh7yLfRZ3DKBAvL4IzarxPa33AB2S6KFZ6dJHVZIT
+         CiCw==
+X-Gm-Message-State: ACrzQf1dcVKX+nsuqCm4p0InVLWiOCo1JhxQubk9G826gkdfmbYkWVIm
+        Hss2icqEzRZcl49kljGMXw==
+X-Google-Smtp-Source: AMsMyM7qrSv9+CDGloU5Hq3jf9lh0GGMGCkyV0sSOJsdTgoMBsbPNUaD8dDfE17wid9x0U6VhXSLbA==
+X-Received: by 2002:a05:6870:9599:b0:132:f754:4ffa with SMTP id k25-20020a056870959900b00132f7544ffamr3826502oao.266.1665782901843;
+        Fri, 14 Oct 2022 14:28:21 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r6-20020a056830418600b00661b6e1eb3csm1679537otu.38.2022.10.14.14.28.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Oct 2022 14:28:21 -0700 (PDT)
+Received: (nullmailer pid 2932278 invoked by uid 1000);
+        Fri, 14 Oct 2022 21:28:22 -0000
+Date:   Fri, 14 Oct 2022 16:28:22 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Matt Ranostay <mranostay@ti.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, linux-scsi@vger.kernel.org,
+        vigneshr@ti.com, devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH] dt-bindings: ufs: cdns,ufshc: add missing dma-coherent
+ field
+Message-ID: <166578290097.2932204.9966446989931384399.robh@kernel.org>
+References: <20221013194559.128643-1-mranostay@ti.com>
 MIME-Version: 1.0
-References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221014183459.181567-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAL_JsqKC_BJDJLLFck_0CbQ-0rZ0oVWMAdiwwGep23nh2pP19g@mail.gmail.com>
-In-Reply-To: <CAL_JsqKC_BJDJLLFck_0CbQ-0rZ0oVWMAdiwwGep23nh2pP19g@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 14 Oct 2022 22:27:53 +0100
-Message-ID: <CA+V-a8vMLuzJ8h5UDNXUiZRXPV1vJ9gguUMywe_+sPcU8tK+tA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] media: dt-bindings: ov5645: Convert OV5645 binding
- to a schema
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221013194559.128643-1-mranostay@ti.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,44 +63,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Thu, 13 Oct 2022 12:45:59 -0700, Matt Ranostay wrote:
+> Add missing dma-coherent property to schema which avoids the following warnings
+> 
+> ufs-wrapper@4e80000: ufs@4e84000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+> 
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Thank you for the review.
-
-On Fri, Oct 14, 2022 at 10:05 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Fri, Oct 14, 2022 at 1:35 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> >
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Convert the simple OV5645 Device Tree binding to json-schema.
-> >
-> > The previous binding marked the below properties as required which was a
-> > driver requirement and not the device requirement so just drop them from
-> > the required list during the conversion.
-> > - clock-frequency
-> > - enable-gpios
-> > - reset-gpios
-> >
-> > Also drop the "clock-names" property as we have a single clock source for
-> > the sensor and the driver has been updated to drop the clk referencing by
-> > name.
->
-> Driver requirements are the ABI!
->
-> This breaks a kernel without the driver change and a DTB that has
-> dropped the properties.
->
-I already have a patch for the driver [0] which I missed to include
-along with the series.
-
-> Also, with 'clock-names' dropped, you've just introduced a bunch of
-> warnings on other people's platforms. Are you going to 'fix' all of
-> them?
->
-Yes I will fix them, once the patch driver patch [0] is merged in.
-
-[0] https://patchwork.kernel.org/project/linux-media/patch/20220919143350.176746-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-
-Cheers,
-Prabhakar
+Applied, thanks!
