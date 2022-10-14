@@ -2,103 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4C6C5FEC79
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 12:22:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 913D75FECEA
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 13:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbiJNKWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 06:22:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56058 "EHLO
+        id S229733AbiJNLKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 07:10:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbiJNKWM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 06:22:12 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A66C1B867E;
-        Fri, 14 Oct 2022 03:22:06 -0700 (PDT)
-X-UUID: 1c96c13c1224425bb2747da53a5f5f47-20221014
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=1EVtCMCEdutuhUNCrNtPVBANOTU4/N44AAt3ryFs7N0=;
-        b=crvxpsJocBUOzCEOqnQJSd01HAN9UMcKjOQri5P39mQxzI2wIqCnZE2P0noLDNGPZFsIT3hLrSJeefFnTGNtesT7NZGIG4pGRC92rpwR4f6G48gW+3Cn4tCQ4GbtkPxT6tNGyFKDFixWxBipsSChwDfP/L7R2GevDhehc9TXudY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:bf3a6cab-0045-4e2b-91cd-101521b671be,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:965d17b6-a023-44ff-92b1-76c504f71c7a,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 1c96c13c1224425bb2747da53a5f5f47-20221014
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 2005646948; Fri, 14 Oct 2022 18:22:00 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 14 Oct 2022 18:21:59 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Fri, 14 Oct 2022 18:21:59 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <angelogioacchino.delregno@collabora.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH] soc: mediatek: pm-domains: Fix the power glitch issue
-Date:   Fri, 14 Oct 2022 18:20:29 +0800
-Message-ID: <20221014102029.1162-1-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S229640AbiJNLKA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 07:10:00 -0400
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CFDF248F7
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 04:09:55 -0700 (PDT)
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20221014110953epoutp02883e96c8d8ebaad6c74874a0eaf3fff1~d6vlEJWGf2106221062epoutp02W
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 11:09:53 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20221014110953epoutp02883e96c8d8ebaad6c74874a0eaf3fff1~d6vlEJWGf2106221062epoutp02W
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1665745793;
+        bh=drQIuJSWxplbdrmSqi94xu4iCzrCrkKp7js1FjD7pio=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=tq2I/IEhnKRodIHvVU21HPJmi8wKOd7mzFMii7B7Fq0l00pszo4m70Z3yHMULMM7n
+         dsBKnNv8eAoWcTzFbzFGgh9XF5luRpmLHNCUmS7d2jkDuynT8MKvZep2mu8lADcVEk
+         Whd/a+8OGdvEq1w+RffvcRwwOvRiW9VoMHJTcA+Y=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20221014110952epcas5p11a5258e1f88485433db3d40d6e13ca86~d6vka0eVV0967309673epcas5p1_;
+        Fri, 14 Oct 2022 11:09:52 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.177]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4MpkDv0VCGz4x9Px; Fri, 14 Oct
+        2022 11:09:51 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        AE.01.26992.E7349436; Fri, 14 Oct 2022 20:09:50 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+        20221014104843epcas5p47f6daaad2e67e0c9eedd68c2256c025b~d6dGHtdk61505115051epcas5p44;
+        Fri, 14 Oct 2022 10:48:43 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20221014104843epsmtrp1f2e0545eff7515ee01a22945843d750c~d6dGFpebY3160431604epsmtrp1j;
+        Fri, 14 Oct 2022 10:48:43 +0000 (GMT)
+X-AuditID: b6c32a49-319fb70000016970-ae-6349437e3d6b
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        03.2C.18644.B8E39436; Fri, 14 Oct 2022 19:48:43 +0900 (KST)
+Received: from cheetah.sa.corp.samsungelectronics.net (unknown
+        [107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20221014104840epsmtip1fcd4e8faf2d2e9cdcaf053d95ed04d5a~d6dD78-cs2737027370epsmtip1S;
+        Fri, 14 Oct 2022 10:48:40 +0000 (GMT)
+From:   Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
+        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
+        alim.akhtar@samsung.com, rcsekar@samsung.com,
+        aswani.reddy@samsung.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+Subject: [PATCH 0/6] ASoC: samsung: fsd: audio support for FSD SoC
+Date:   Fri, 14 Oct 2022 15:51:45 +0530
+Message-Id: <20221014102151.108539-1-p.rajanbabu@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupnk+LIzCtJLcpLzFFi42LZdlhTU7fO2TPZ4OgnS4sH87axWVy5eIjJ
+        4tDmrewWUx8+YbOYf+Qcq0Xfi4fMFt+udDBZXN41h81ixvl9TBZHNwZbLNr6hd2ic1c/q8Ws
+        CztYLVr3HmG3OPymndViw/e1jA4CHhs+N7F57Jx1l91j06pONo871/aweex7u4zNo2/LKkaP
+        9Vuusnh83iQXwBGVbZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+Ti
+        E6DrlpkD9IGSQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8CkQK84Mbe4NC9dLy+1
+        xMrQwMDIFKgwITtjw+I9LAVveSoetys3MJ7l7GLk5JAQMJHo/P6NtYuRi0NIYDejxMU1XYwQ
+        zidGidUvupggnM+MEjfen2HrYuQAazl1URsivotR4vfyeewQTiuTxKuD61hA5rIJmEqsmtMI
+        NldEoIlJou3NRBYQh1lgI6PE6WMPmUCqhAWcJL4cfMQIYrMIqEp8bd8J1s0rYCsx/+ZdVogL
+        5SVWbzjADNIsIdDJIdE/8TULRMJF4ufnKYwQtrDEq+Nb2CFsKYmX/W1Qdr7EtI/NbBB2hUTb
+        xw1MELa9xIErc1hA/mEW0JRYv0sfIiwrMfXUOrASZgE+id7fT6DKeSV2zIOxVSXWL98EtVZa
+        Yt/1vVC2h8TdG3/BbhYSiJU4fPEB+wRG2VkIGxYwMq5ilEwtKM5NTy02LTDMSy2Hx1Ryfu4m
+        RnDK1PLcwXj3wQe9Q4xMHIyHGCU4mJVEeF8reSYL8aYkVlalFuXHF5XmpBYfYjQFhtlEZinR
+        5Hxg0s4riTc0sTQwMTMzM7E0NjNUEuddPEMrWUggPbEkNTs1tSC1CKaPiYNTqoHJ5aOTPM+b
+        t9pHbaMr2A9NL2SL1Wi74tvzRUesiGdZW3fW64fTXt3wvnK369w3D//dX2z9HytLzpc8UWl7
+        Zf3nWQnM6zjiGU7tsi9dUhddfeREmcCe/wXfWf5L2OubGvMFvZ224ax66iGjzhdvwhP0Qpyz
+        F3msin37XDNTV8Ytau++tTUuAqf7ZizKiHhiFScYadF968Q6Z8X+RYeNy88wtRoEzFxyVXpL
+        ffHk9NkzGr27M/jLVTYGLbSSlt5vqfX40I9utqfLV/e5G7TcLZxw9unZqC18S/Lqb3/sWfsw
+        umwp00+HSpbWF8HbTftPa4aIvAye+Fr8sdbx0/rLtc8dqZ/TFCX58qSfmGjf0g9KLMUZiYZa
+        zEXFiQDpFQPNIgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJLMWRmVeSWpSXmKPExsWy7bCSnG63nWeywYGZXBYP5m1js7hy8RCT
+        xaHNW9ktpj58wmYx/8g5Vou+Fw+ZLb5d6WCyuLxrDpvFjPP7mCyObgy2WLT1C7tF565+VotZ
+        F3awWrTuPcJucfhNO6vFhu9rGR0EPDZ8bmLz2DnrLrvHplWdbB53ru1h89j3dhmbR9+WVYwe
+        67dcZfH4vEkugCOKyyYlNSezLLVI3y6BK2PD4j0sBW95Kh63KzcwnuXsYuTgkBAwkTh1UbuL
+        kYtDSGAHo8Tjy8uYuhg5geLSEtP797BB2MISK/89Z4coamaSeLF0KSNIgk3AVGLVnEZWkISI
+        wAQmiZPvjrGAJJgFtjJKTP1sBGILCzhJfDn4CKyBRUBV4mv7TrAaXgFbifk377JCbJCXWL3h
+        APMERp4FjAyrGCVTC4pz03OLDQuM8lLL9YoTc4tL89L1kvNzNzGCQ1dLawfjnlUf9A4xMnEw
+        HmKU4GBWEuF9reSZLMSbklhZlVqUH19UmpNafIhRmoNFSZz3QtfJeCGB9MSS1OzU1ILUIpgs
+        EwenVANTuMzFVr8LG19fdqosP7Eov+vSRBvTN8uilj82SteuKOg0O3FqZ1BhTHOE8xZP0dIz
+        u9dl2ysc2Bwze9OKXae9b+ZdSGvvKl9a/Znt8IZ79gtNPWY/eCk+u9AtJbvtn3rC5BOv9ptI
+        fZpYuPrI88ci7cw7OxzWb5jM8N9j8Yqpa0O87bwXfU/2tmfu+MpzRPVpSpTa9WOuZS9Fzv/7
+        e7rmqITZMv81l235JE3k1oVoblPVu8+VvlPcwqtx3hJ3hqrZnNpqeucvbayz7bnZqfRCJuwM
+        /70V55vjFErnVi4X/HoxJn1V8H9hJ+71gVYfDHI37MjPCj/1/uTCCI1+Oem4rgO/b09XXLw8
+        1+ujy9uzSizFGYmGWsxFxYkA8X98b8wCAAA=
+X-CMS-MailID: 20221014104843epcas5p47f6daaad2e67e0c9eedd68c2256c025b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221014104843epcas5p47f6daaad2e67e0c9eedd68c2256c025b
+References: <CGME20221014104843epcas5p47f6daaad2e67e0c9eedd68c2256c025b@epcas5p4.samsung.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+The intention of this patch series is to enable audio support on FSD SoC.
 
-Power reset maybe generate unexpected signal. In order to avoid
-the glitch issue, we need to enable isolation first to guarantee the
-stable signal when power reset is triggered.
+The following features are added in samsung I2S interface:
+1. Add TDM support on samsung I2S interface
+2. Allow sound card to directly configure prescaler divider instead of
+calculating it from frame clock
 
-Fixes: 59b644b01cf4 ("soc: mediatek: Add MediaTek SCPSYS power domains")
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Reviewed-by: Miles Chen <miles.chen@mediatek.com>
----
-  Resend a PATCH from
-https://patchwork.kernel.org/project/linux-mediatek/patch/20220310011548.2487-1-chun-jie.chen@mediatek.com/
+Also the sound card support for FSD SoC is added, which utilizes samsung
+I2S interface as CPU DAI.
 
- [Allen-KH Cheng <allen-kh.cheng@mediatek.com>]
----
----
- drivers/soc/mediatek/mtk-pm-domains.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This patch is dependent on fsd-pinctrl fixes patch series [1]
+[1]: https://lkml.org/lkml/2022/10/13/257
 
-diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
-index 09e3c38b8466..474b272f9b02 100644
---- a/drivers/soc/mediatek/mtk-pm-domains.c
-+++ b/drivers/soc/mediatek/mtk-pm-domains.c
-@@ -275,9 +275,9 @@ static int scpsys_power_off(struct generic_pm_domain *genpd)
- 	clk_bulk_disable_unprepare(pd->num_subsys_clks, pd->subsys_clks);
- 
- 	/* subsys power off */
--	regmap_clear_bits(scpsys->base, pd->data->ctl_offs, PWR_RST_B_BIT);
- 	regmap_set_bits(scpsys->base, pd->data->ctl_offs, PWR_ISO_BIT);
- 	regmap_set_bits(scpsys->base, pd->data->ctl_offs, PWR_CLK_DIS_BIT);
-+	regmap_clear_bits(scpsys->base, pd->data->ctl_offs, PWR_RST_B_BIT);
- 	regmap_clear_bits(scpsys->base, pd->data->ctl_offs, PWR_ON_2ND_BIT);
- 	regmap_clear_bits(scpsys->base, pd->data->ctl_offs, PWR_ON_BIT);
- 
+Padmanabhan Rajanbabu (6):
+  ASoC: samsung: i2s: TDM Support for CPU DAI driver
+  ASoC: samsung: i2s: configure PSR from sound card
+  dt-bindings: sound: Add sound card bindings for Tesla FSD
+  ASoC: samsung: fsd: Add FSD soundcard driver
+  arm64: dts: fsd: Add I2S DAI node for Tesla FSD
+  arm64: dts: fsd: Add sound card node for Tesla FSD
+
+ .../bindings/sound/tesla,fsd-card.yaml        | 158 ++++++++
+ arch/arm64/boot/dts/tesla/fsd-evb.dts         |  57 +++
+ arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi    |  14 +
+ arch/arm64/boot/dts/tesla/fsd.dtsi            |  41 ++
+ sound/soc/samsung/Kconfig                     |  12 +
+ sound/soc/samsung/Makefile                    |   2 +
+ sound/soc/samsung/fsd-card.c                  | 349 ++++++++++++++++++
+ sound/soc/samsung/i2s-regs.h                  |  17 +
+ sound/soc/samsung/i2s.c                       | 120 +++++-
+ sound/soc/samsung/i2s.h                       |   1 +
+ 10 files changed, 766 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/tesla,fsd-card.yaml
+ create mode 100644 sound/soc/samsung/fsd-card.c
+
 -- 
-2.18.0
+2.17.1
 
