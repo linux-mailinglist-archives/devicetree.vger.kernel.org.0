@@ -2,85 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C153F5FEFDE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 16:10:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F5C45FEFE9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 16:11:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230086AbiJNOKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 10:10:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45654 "EHLO
+        id S230174AbiJNOL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 10:11:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229825AbiJNOKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 10:10:08 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2C977F09E;
-        Fri, 14 Oct 2022 07:10:07 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id x188so5150777oig.5;
-        Fri, 14 Oct 2022 07:10:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KCRXtXm+S+Vgn1M1AL9cmatt1G/L/k3UGFpcLB8yDLw=;
-        b=WvYIpFsu/g25Xp8u9dp6m2uH5tfidKFtl44gcAFVLmhu6UXsegtUjoe4woDlCOiLZL
-         CF6VNT6s0W4OuJE7WdKUrezv7D7MNFEP4HnJ/ummPKim/6kIvf7EP2nF/pJ9WYxz8+mo
-         yWZnhtRY1BmJAWPfSB8bHvMbTYi3xrZpmT0h2i5KMWnDJn0EDO03ZvPj6lXH9XwyWDjU
-         5oq62y5Rsv0VmvkAsrrggMvts0Oy85yfY9x1x2Z+0mwYfOlylzOYQgAk+FeYjdTZZC4Z
-         GdCkUEGG+r7wE+7ci8X8SaiTyh8KNKbQXn0C6j77HrIlVW4IrxyIuFLoBQLoAMXvtGAC
-         VGSg==
-X-Gm-Message-State: ACrzQf2cwO61iGjO0Azqm/YsDPCplbq4xupJJwyz9ccyJkKce4qazpbX
-        BFmY5aYRv+8lMpmjQBlSFA==
-X-Google-Smtp-Source: AMsMyM7j/oE8z7AS4zYm6NVvXj+ZM059l7CzZGm9ZwPzyh/uENyWJRMMKioNS3tpi0/g1yBaD5z7QQ==
-X-Received: by 2002:aca:4303:0:b0:354:cbc8:d269 with SMTP id q3-20020aca4303000000b00354cbc8d269mr2470024oia.115.1665756606573;
-        Fri, 14 Oct 2022 07:10:06 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ep10-20020a056870a98a00b00136f3e4bc29sm1338643oab.9.2022.10.14.07.10.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Oct 2022 07:10:05 -0700 (PDT)
-Received: (nullmailer pid 1893044 invoked by uid 1000);
-        Fri, 14 Oct 2022 14:10:05 -0000
-Date:   Fri, 14 Oct 2022 09:10:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Nipun Gupta <nipun.gupta@amd.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        puneet.gupta@amd.com, song.bao.hua@hisilicon.com,
-        mchehab+huawei@kernel.org, maz@kernel.org, f.fainelli@gmail.com,
-        jeffrey.l.hugo@gmail.com, saravanak@google.com,
-        Michael.Srba@seznam.cz, mani@kernel.org, yishaih@nvidia.com,
-        jgg@ziepe.ca, jgg@nvidia.com, robin.murphy@arm.com,
-        will@kernel.org, joro@8bytes.org, masahiroy@kernel.org,
-        ndesaulniers@google.com, linux-arm-kernel@lists.infradead.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kvm@vger.kernel.org, okaya@kernel.org,
-        harpreet.anand@amd.com, nikhil.agarwal@amd.com,
-        michal.simek@amd.com, aleksandar.radovanovic@amd.com, git@amd.com
-Subject: Re: [RFC PATCH v4 0/8] add support for CDX bus
-Message-ID: <20221014141005.GA1862711-robh@kernel.org>
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20221014044049.2557085-1-nipun.gupta@amd.com>
+        with ESMTP id S229971AbiJNOL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 10:11:56 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B02AA1D2F4F;
+        Fri, 14 Oct 2022 07:11:52 -0700 (PDT)
+Received: from fraeml715-chm.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4MppFt6NDrz689DH;
+        Fri, 14 Oct 2022 22:10:58 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ fraeml715-chm.china.huawei.com (10.206.15.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 14 Oct 2022 16:11:49 +0200
+Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 14 Oct
+ 2022 15:11:48 +0100
+Date:   Fri, 14 Oct 2022 15:11:47 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+CC:     Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        "Jonathan Cameron" <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: Re: [PATCH 1/3] iio: temperature: ltc2983: allocate iio channels
+ once
+Message-ID: <20221014151123.00003268@huawei.com>
+In-Reply-To: <20221014123724.1401011-2-demonsingur@gmail.com>
+References: <20221014123724.1401011-1-demonsingur@gmail.com>
+        <20221014123724.1401011-2-demonsingur@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221014044049.2557085-1-nipun.gupta@amd.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.42]
+X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 14, 2022 at 10:10:41AM +0530, Nipun Gupta wrote:
-> This patch series introduces AMD CDX bus, which provides a
-> mechanism to discover/rescan FPGA devices on run-time. These
-> devices are memory mapped on system bus for embedded CPUs, and 
-> added as CDX devices in Linux framework.
+On Fri, 14 Oct 2022 15:37:22 +0300
+Cosmin Tanislav <demonsingur@gmail.com> wrote:
 
-Please don't send a new version of a series as a reply to older 
-versions. Just provide a lore link to older versions.
+> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> 
+> Currently, every time the device wakes up from sleep, the
+> iio_chan array is reallocated, leaking the previous one
+> until the device is removed (basically never).
+> 
+> Move the allocation to the probe function to avoid this.
+> 
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+Hi Cosmin,
 
-Rob
+Please give a fixes tag for this one as we'll definitely want to
+backport it.
+
+Reply to this patch is fine as b4 will pick it up like any other tag.
+
+> ---
+>  drivers/iio/temperature/ltc2983.c | 13 ++++++-------
+>  1 file changed, 6 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/iio/temperature/ltc2983.c b/drivers/iio/temperature/ltc2983.c
+> index b652d2b39bcf..a60ccf183687 100644
+> --- a/drivers/iio/temperature/ltc2983.c
+> +++ b/drivers/iio/temperature/ltc2983.c
+> @@ -1385,13 +1385,6 @@ static int ltc2983_setup(struct ltc2983_data *st, bool assign_iio)
+>  		return ret;
+>  	}
+>  
+> -	st->iio_chan = devm_kzalloc(&st->spi->dev,
+> -				    st->iio_channels * sizeof(*st->iio_chan),
+> -				    GFP_KERNEL);
+> -
+> -	if (!st->iio_chan)
+> -		return -ENOMEM;
+> -
+>  	ret = regmap_update_bits(st->regmap, LTC2983_GLOBAL_CONFIG_REG,
+>  				 LTC2983_NOTCH_FREQ_MASK,
+>  				 LTC2983_NOTCH_FREQ(st->filter_notch_freq));
+> @@ -1514,6 +1507,12 @@ static int ltc2983_probe(struct spi_device *spi)
+>  		gpiod_set_value_cansleep(gpio, 0);
+>  	}
+>  
+> +	st->iio_chan = devm_kzalloc(&spi->dev,
+> +				    st->iio_channels * sizeof(*st->iio_chan),
+> +				    GFP_KERNEL);
+> +	if (!st->iio_chan)
+> +		return -ENOMEM;
+> +
+>  	ret = ltc2983_setup(st, true);
+>  	if (ret)
+>  		return ret;
+
