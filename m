@@ -2,161 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 182745FEE78
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 15:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69EF05FEE88
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 15:24:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbiJNNWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 09:22:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33668 "EHLO
+        id S229772AbiJNNYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 09:24:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229671AbiJNNWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 09:22:38 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94AC72D1DA;
-        Fri, 14 Oct 2022 06:22:36 -0700 (PDT)
-Received: from fraeml745-chm.china.huawei.com (unknown [172.18.147.200])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Mpn940Ssnz6HJMW;
-        Fri, 14 Oct 2022 21:21:44 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml745-chm.china.huawei.com (10.206.15.226) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 14 Oct 2022 15:22:34 +0200
-Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 14 Oct
- 2022 14:22:33 +0100
-Date:   Fri, 14 Oct 2022 14:22:32 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-CC:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        "Lars-Peter Clausen" <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v2 4/5] iio: accel: Support Kionix/ROHM KX022A
- accelerometer
-Message-ID: <20221014142232.000038df@huawei.com>
-In-Reply-To: <7abed64a-d544-a228-b5f1-4c7b5a3bd1be@fi.rohmeurope.com>
-References: <cover.1665066397.git.mazziesaccount@gmail.com>
-        <88e24b01da9f44ebf5fcd8344ded0b75ff742fbf.1665066397.git.mazziesaccount@gmail.com>
-        <Yz8fK7j8pxlU76xt@smile.fi.intel.com>
-        <20221009133351.6ff4894b@jic23-huawei>
-        <Y0O4fiQQX0M317h/@smile.fi.intel.com>
-        <7abed64a-d544-a228-b5f1-4c7b5a3bd1be@fi.rohmeurope.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S229512AbiJNNYQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 09:24:16 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EB761ACA93
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 06:24:12 -0700 (PDT)
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20221014132410epoutp03556bec7d27d78edc15f77a3a6a08ece3~d8k0Tq37a2125321253epoutp03Q
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 13:24:10 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20221014132410epoutp03556bec7d27d78edc15f77a3a6a08ece3~d8k0Tq37a2125321253epoutp03Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1665753850;
+        bh=yrOuse1uUrQ+ezg3S++UP/Ig12MY3vHjDOvlv7f8hzk=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=FuOF8Jn1ODCIbwLJEvyznzgDeFoQzUr1IjsOsrZnunmqcJc0tJFZuW+esGRDtS34a
+         iSfDt8KTumbKFDp7yht15LEm//a1mT41IDmKdJCcR+oHy9l0w6BJ/JhCby8dQcLGXY
+         58EKWa9fqUgohKwoejtLC4YbsIlvuduHal8y20AU=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+        20221014132409epcas5p2c0fbdfdb5df2772baecbb2f28aed29ed~d8kztFSwi2551225512epcas5p2A;
+        Fri, 14 Oct 2022 13:24:09 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.179]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4MpnCp3Dpgz4x9Pt; Fri, 14 Oct
+        2022 13:24:06 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        86.FB.39477.6F269436; Fri, 14 Oct 2022 22:24:06 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+        20221014132405epcas5p307221ed06f17f2c5773726611fd627fe~d8kwgzyfK2888628886epcas5p3W;
+        Fri, 14 Oct 2022 13:24:05 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20221014132405epsmtrp17dd1e064b39e2c506f7b940eba1f3f8e~d8kwfqxo92627326273epsmtrp1e;
+        Fri, 14 Oct 2022 13:24:05 +0000 (GMT)
+X-AuditID: b6c32a4a-007ff70000019a35-32-634962f68e6d
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        F1.82.18644.5F269436; Fri, 14 Oct 2022 22:24:05 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221014132403epsmtip11ed64f79d840cf37673db40038970179~d8kuZpC6q2986329863epsmtip1C;
+        Fri, 14 Oct 2022 13:24:03 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Padmanabhan Rajanbabu'" <p.rajanbabu@samsung.com>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s.nawrocki@samsung.com>,
+        <perex@perex.cz>, <tiwai@suse.com>, <pankaj.dubey@samsung.com>,
+        <rcsekar@samsung.com>, <aswani.reddy@samsung.com>
+Cc:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>
+In-Reply-To: <20221014102151.108539-6-p.rajanbabu@samsung.com>
+Subject: RE: [PATCH 5/6] arm64: dts: fsd: Add I2S DAI node for Tesla FSD
+Date:   Fri, 14 Oct 2022 18:54:02 +0530
+Message-ID: <00c201d8dfd0$3bc6b720$b3542560$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.42]
-X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKFI9qd/qMOsyXBjKz4d8Q6MS4QvwIMhU34AXuYdz+smRZmYA==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHJsWRmVeSWpSXmKPExsWy7bCmuu63JM9kg01vhCyuXDzEZHFo81Z2
+        i6kPn7BZzD9yjtWi78VDZotvVzqYLC7vmsNmMeP8PiaLoxuDLRZt/cJu0bmrn9Vi1oUdrBat
+        e4+wWxx+085qseH7WkYHfo8Nn5vYPHbOusvusWlVJ5vHnWt72Dz2vV3G5tG3ZRWjx/otV1k8
+        Pm+SC+CIyrbJSE1MSS1SSM1Lzk/JzEu3VfIOjneONzUzMNQ1tLQwV1LIS8xNtVVy8QnQdcvM
+        ATpeSaEsMacUKBSQWFyspG9nU5RfWpKqkJFfXGKrlFqQklNgUqBXnJhbXJqXrpeXWmJlaGBg
+        ZApUmJCdse7Na/aCpwoVvfNnsTYwTpDuYuTkkBAwkVh14j17FyMXh5DAbkaJeUc/M0E4nxgl
+        ZvbuYgKpEhL4zCixs60EpmPp3EZWiKJdjBJPpz+D6njJKLH3y19mkCo2AV2JHYvb2EBsEYEt
+        TBJ7N8WAFDELtAEVXVzL2MXIwcEpYCfRsK8UpEZYwEOi6c9eVpAwi4CqxNcT/iBhXgFLic0v
+        r7NA2IISJ2c+AbOZBeQltr+dwwxxkILEz6fLWCFWOUlMfvKVGaJGXOLl0SNgr0kIvOCQ2H/t
+        PjtEg4vEzwn7oZqFJV4d3wIVl5J42d/GDnKDBNA9i/5IQYQzJN4uX88IYdtLHLgyhwWkhFlA
+        U2L9Ln2IVXwSvb+fMEF08kp0tAlBVKtKNL+7ygJhS0tM7O5mhbA9JOZuW8Y+gVFxFpLHZiF5
+        bBaSB2YhLFvAyLKKUTK1oDg3PbXYtMAoL7UcHtvJ+bmbGMEJW8trB+PDBx/0DjEycTAeYpTg
+        YFYS4X2t5JksxJuSWFmVWpQfX1Sak1p8iNEUGNgTmaVEk/OBOSOvJN7QxNLAxMzMzMTS2MxQ
+        SZx38QytZCGB9MSS1OzU1ILUIpg+Jg5OqQambTELVet/7gm/fOVkuZWb42/b2IA1jxe/Om32
+        LSpscuc8D7+390/HH7XPzT23SVVkfrK72jmd0wz353hwXW1s2CPPVX3r7sa/dm767FtmNP/K
+        j9BquD6x/vsq81WfGNZMPPAyNNDd8lF4nEDZjktLgyvuaO60Z83T7g/czhOcLrfkGveZB3um
+        bzj1kzVP2v75opQLQduntnJV8k6elPD/4uevh5n7ZJ8fi11wxCm9al21u4Y058+kr1cZv+jx
+        ldyI/DPnyO7l+wNLZzv09bP+DV7bcSQ+/7zCPl+9d4ti3NQLFvm90XE/Zznz9JH7a9kXqgsq
+        lN7YPMNd6TbH1DnPnu51SRIy2MLE78ht5xOdrcRSnJFoqMVcVJwIABXfGUthBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFIsWRmVeSWpSXmKPExsWy7bCSnO7XJM9kg/WHDCyuXDzEZHFo81Z2
+        i6kPn7BZzD9yjtWi78VDZotvVzqYLC7vmsNmMeP8PiaLoxuDLRZt/cJu0bmrn9Vi1oUdrBat
+        e4+wWxx+085qseH7WkYHfo8Nn5vYPHbOusvusWlVJ5vHnWt72Dz2vV3G5tG3ZRWjx/otV1k8
+        Pm+SC+CI4rJJSc3JLEst0rdL4MpY9+Y1e8FThYre+bNYGxgnSHcxcnJICJhILJ3byNrFyMUh
+        JLCDUeLW8TcsEAlpiesbJ7BD2MISK/89Z4coes4ocarvJ1gRm4CuxI7FbWwgCRGBA0wSHb83
+        gI1iFuhilDj+dyUzRMtBRokvx/cDZTg4OAXsJBr2lYJ0Cwt4SDT92QsWZhFQlfh6wh8kzCtg
+        KbH55XUWCFtQ4uTMJ2A2s4C2RO/DVkYIW15i+9s5zBDXKUj8fLqMFcQWEXCSmPzkKzNEjbjE
+        y6NH2CcwCs9CMmoWklGzkIyahaRlASPLKkbJ1ILi3PTcYsMCo7zUcr3ixNzi0rx0veT83E2M
+        4OjV0trBuGfVB71DjEwcjIcYJTiYlUR4Xyt5JgvxpiRWVqUW5ccXleakFh9ilOZgURLnvdB1
+        Ml5IID2xJDU7NbUgtQgmy8TBKdXAlK7Irjv96f9dwq+dzCI4tRqmy79JMa57LLQmcqesCL/r
+        roAor4oQm5kXX+9/ffN0Cv+hvwLfe2Z/j7fZ9CJpvVIf54FnqrtmWQb/7O991/ew7mRH5scq
+        ztilrnVrXJI5+7niOFoDDWe78/xItVRft/15lPzeHoPy3e1TvuZdKfFikT8pJbBgSeH0I2es
+        YxstUp5yLFs86f3LmWKXVzLrVVeXvc+quWHp2bFmUmpo8qQYz6gr5osLXxoriGtE1d9p/lLe
+        bn+idDZvTOfB/yu+GLY4Hovwc7tSXWiWFL53gb7Nqlp16RDV92ElNz5McTH/OX/aZr3Uvff1
+        Z6YLnL3+ev+i5WGbVunqirt77vFRYinOSDTUYi4qTgQAmI2UPk0DAAA=
+X-CMS-MailID: 20221014132405epcas5p307221ed06f17f2c5773726611fd627fe
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
 X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-CMS-RootMailID: 20221014104911epcas5p394100ff6ed53be32c4d64c7e23e48833
+References: <20221014102151.108539-1-p.rajanbabu@samsung.com>
+        <CGME20221014104911epcas5p394100ff6ed53be32c4d64c7e23e48833@epcas5p3.samsung.com>
+        <20221014102151.108539-6-p.rajanbabu@samsung.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Oct 2022 09:10:21 +0000
-"Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com> wrote:
 
-> On 10/10/22 09:15, Andy Shevchenko wrote:
-> > On Sun, Oct 09, 2022 at 01:33:51PM +0100, Jonathan Cameron wrote:  
-> >> On Thu, 6 Oct 2022 21:32:11 +0300 Andy Shevchenko 
-> >> <andriy.shevchenko@linux.intel.com> wrote:  
-> >>> On Thu, Oct 06, 2022 at 05:38:14PM +0300, Matti Vaittinen wrote:  
-> > 
-> > ...
-> >   
-> >>>> +module_param(g_kx022a_use_buffer, bool, 0); 
-> >>>> +MODULE_PARM_DESC(g_kx022a_use_buffer, +		 "Buffer samples. Use
-> >>>> at own risk. Fifo must not overflow");  
-> >>> 
-> >>> Why?! We usually do not allow module parameters in the new code.  
-> >> 
-> >> Badly broken hardware - was my suggestion.  Alternatives if there 
-> >> are usecases that need to use the fifo, but it can wedge hard in a
-> >>  fashion that is impossible to prevent from the driver?  My gut 
-> >> feeling is still drop the support entirely with a strong comment in
-> >> the code that the hardware is broken in a fashion we don't know how
-> >> to work around.  
-> 
-> I did some quick study regarding couple of other Kionix sensors. (like 
-> KX122 and old KX022 - without the 'A'). It seems to me that the register 
-> interfaces between many of the sensors are largely identical. Extending 
-> the driver to support those seems pretty straightforward (scales and 
-> resolution may need tweaking, as does the FIFO size) but register 
-> contents and even offsets are largely identical.
 
-Last kionix part I had was a kxsd9 and I don't recall that having a fifo
-so obviously didn't hit this issue.
+>-----Original Message-----
+>From: Padmanabhan Rajanbabu [mailto:p.rajanbabu@samsung.com]
+>Sent: Friday, October 14, 2022 3:52 PM
+>To: lgirdwood@gmail.com; broonie@kernel.org; robh+dt@kernel.org;
+>krzysztof.kozlowski+dt@linaro.org; s.nawrocki@samsung.com;
+>perex@perex.cz; tiwai@suse.com; pankaj.dubey@samsung.com;
+>alim.akhtar@samsung.com; rcsekar@samsung.com;
+>aswani.reddy@samsung.com
+>Cc: alsa-devel@alsa-project.org; devicetree@vger.kernel.org; linux-
+>kernel@vger.kernel.org; linux-samsung-soc@vger.kernel.org; Padmanabhan
+>Rajanbabu <p.rajanbabu@samsung.com>
+>Subject: [PATCH 5/6] arm64: dts: fsd: Add I2S DAI node for Tesla FSD
+>
+>Add device tree node for I2S0 and I2S1 CPU DAI instances for Tesla FSD board
+>
+>Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+>---
+> arch/arm64/boot/dts/tesla/fsd-evb.dts      |  8 +++++
+> arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi | 14 ++++++++
+> arch/arm64/boot/dts/tesla/fsd.dtsi         | 38 ++++++++++++++++++++++
+> 3 files changed, 60 insertions(+)
+>
+>diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>b/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>index 1db6ddf03f01..c0a4509499ab 100644
+>--- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>+++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>@@ -41,3 +41,11 @@
+> &ufs {
+> 	status = "okay";
+> };
+>+
+>+&tdm_0 {
+>+	status = "okay";
+>+};
+>+
+>+&tdm_1 {
+>+	status = "okay";
+>+};
+>diff --git a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+>b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+>index e3852c946352..ff6f5d4b16dd 100644
+>--- a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+>+++ b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+>@@ -339,6 +339,20 @@
+> 		samsung,pin-pud = <FSD_PIN_PULL_UP>;
+> 		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
+> 	};
+>+
+>+	i2s0_bus: i2s0-bus {
+>+		samsung,pins = "gpd1-0", "gpd1-1", "gpd1-2", "gpd1-3",
+>"gpd1-4";
+>+		samsung,pin-function = <FSD_PIN_FUNC_2>;
+>+		samsung,pin-pud = <FSD_PIN_PULL_DOWN>;
+>+		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
+>+	};
+>+
+>+	i2s1_bus: i2s1-bus {
+>+		samsung,pins = "gpd2-0", "gpd2-1", "gpd2-2", "gpd2-3",
+>"gpd2-4";
+>+		samsung,pin-function = <FSD_PIN_FUNC_2>;
+>+		samsung,pin-pud = <FSD_PIN_PULL_DOWN>;
+>+		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
+>+	};
+> };
+>
+> &pinctrl_pmu {
+>diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi
+>b/arch/arm64/boot/dts/tesla/fsd.dtsi
+>index f35bc5a288c2..5decad45a1b6 100644
+>--- a/arch/arm64/boot/dts/tesla/fsd.dtsi
+>+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
+>@@ -32,6 +32,8 @@
+> 		spi0 = &spi_0;
+> 		spi1 = &spi_1;
+> 		spi2 = &spi_2;
+>+		tdm0 = &tdm_0;
+>+		tdm1 = &tdm_1;
+> 	};
+>
+> 	cpus {
+>@@ -809,6 +811,42 @@
+> 			status = "disabled";
+> 		};
+>
+>+		tdm_0: tdm@140e0000 {
+>+			compatible = "samsung,exynos7-i2s";
+>+			reg = <0x0 0x140E0000 0x0 0x100>;
+Address should be all in small caps
+Make sure you have run 'make dtbs_check' 
 
-> 
-> As said, it seems the Kionix sensors may have different size of internal 
-> FIFOs, or even no FIFO at all. So, maybe we could provide a 
-> "kionix,fifo-enable" flag (or even "kionix,fifo-size") from device-tree? 
+>+			interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
+>+			dmas = <&pdma1 14>, <&pdma1 13>, <&pdma1 12>;
+>+			dma-names = "tx", "rx", "tx-sec";
+>+			#clock-cells = <1>;
+>+			#sound-dai-cells = <1>;
+>+			clocks = <&clock_peric PERIC_HCLK_TDM0>,
+>+				 <&clock_peric PERIC_HCLK_TDM0>,
+>+				 <&clock_peric PERIC_PCLK_TDM0>;
+>+			clock-names = "i2s_opclk0", "i2s_opclk1", "iis";
+>+			pinctrl-names = "default";
+>+			pinctrl-0 = <&i2s0_bus>;
+>+			samsung,sec-dai-id = <0>;
+>+			status = "disabled";
+>+		};
+>+
+>+		tdm_1: tdm@140f0000 {
+>+			compatible = "samsung,exynos7-i2s";
+>+			reg = <0x0 0x140F0000 0x0 0x100>;
+Same as above
 
-For device where we don't have reports of this issue, that should be derived
-from the compatible (or even better a whoami register if there is one).
-The driver should know the fifo-size if it isn't discoverable.
+>+			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>;
+>+			dmas = <&pdma1 17>, <&pdma1 16>, <&pdma1 15>;
+>+			dma-names = "tx", "rx", "tx-sec";
+>+			#clock-cells = <1>;
+>+			#sound-dai-cells = <1>;
+>+			clocks = <&clock_peric PERIC_HCLK_TDM1>,
+>+				 <&clock_peric PERIC_HCLK_TDM1>,
+>+				 <&clock_peric PERIC_PCLK_TDM1>;
+>+			clock-names = "i2s_opclk0", "i2s_opclk1", "iis";
+>+			pinctrl-names = "default";
+>+			pinctrl-0 = <&i2s1_bus>;
+>+			samsung,sec-dai-id = <1>;
+>+			status = "disabled";
+>+		};
+>+
+> 		timer@10040000 {
+> 			compatible = "tesla,fsd-mct", "samsung,exynos4210-
+>mct";
+> 			reg = <0x0 0x10040000 0x0 0x800>;
+>--
+>2.17.1
 
-> This would be a way to have the FIFO disabled by default and warn users 
-> via dt-binding docs if they decide to explicitly enable the FIFO. 
-> (Besides, I believe the FIFO is usable on at least some of the Kionix 
-> sensors - because I've heard it is used on a few platforms).
-> 
-> This could give us safe defaults while not shutting the doors from those 
-> who wish to use the FIFO. Sure we need a buy-in from Krzysztof / Rob, 
-> but that may be less of an obstacle compared to the module param if Greg 
-> is so strongly oppsoing those. (And the dt-property could also provide 
-> some technical merites as these sensors seem to really have differencies 
-> in FIFOs).
 
-I'm dubious about having this for known broken parts - but I guess you
-can propose it and see what the dt-maintainers say.
-
-I don't want to see fifo size in the dt binding though.
-> 
-> > 
-> > I also would drop this from upstream and if anybody curious, provide
-> >  some kind of GitHub gist for that.  
-> 
-> Well, I think we all agree that downstream code hosted in some 
-> unofficial github repositories are rarely that valuable. They're less 
-> reliable, less tested, less reviewed, less secure and pretty much 
-> impossible to maintain in a way that interested user could get a version 
-> matching his preferred kernel.
-> 
-> There are reasons why I (people) keep sending the drivers to upstream - 
-> and why some companies even spend $$ for that. Having this feature in 
-> downstream repo is not nearly on same page for user's point of view as 
-> is having the support upstream.
-
-It's not really support if it comes with big warnings and potentially we
-even taint the kernel of someone turns it on...
-
-> 
-> > Also it needs some communication
-> >  with a vendor to clarify the things.  
-> 
-> I do communication with the vendor on a daily basis :] Nowadays Kionix 
-> is part of ROHM, and Finland SWDC has been collaboration with Kionix 
-> even before they "merged" (but I have not been part of the "sensor team" 
-> back then).
-> 
-> Unfortunately, reaching the correct people inside the company is hard 
-> and occasionally impossible - long story...
-
-:)
-
-Jonathan
