@@ -2,165 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AA235FEED2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 15:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 786435FEEE2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 15:46:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbiJNNmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 09:42:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37890 "EHLO
+        id S229653AbiJNNqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 09:46:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbiJNNmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 09:42:51 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12701C7133;
-        Fri, 14 Oct 2022 06:42:50 -0700 (PDT)
-Received: from fraeml741-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4MpnZ05Fp7z67bhc;
-        Fri, 14 Oct 2022 21:39:52 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml741-chm.china.huawei.com (10.206.15.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 14 Oct 2022 15:42:49 +0200
-Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 14 Oct
- 2022 14:42:48 +0100
-Date:   Fri, 14 Oct 2022 14:42:47 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-CC:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        with ESMTP id S229540AbiJNNqL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 09:46:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 589E112D27;
+        Fri, 14 Oct 2022 06:46:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 04833B82215;
+        Fri, 14 Oct 2022 13:46:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A4D1C433B5;
+        Fri, 14 Oct 2022 13:46:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1665755163;
+        bh=wg2Q52DIyrXZbMal2LNh2YUioMr1oyz8EPIe0so6DII=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JMkcLOQ1ZRGy8a24GpAGR03dm712NHH9RJ0YtVi5V84pp5M+qfIvJ3lpvIfcABJPc
+         LazO9V6dvyU+l+B+FT4j6Qepq0WNUuLiMbYNOQpaLHc/VJp0uElaY3WXmEivOmFhSf
+         MQhMJq5/knJLi2nVZeCEgC6+JUI3wv89Zf0bKXxI=
+Date:   Fri, 14 Oct 2022 15:46:48 +0200
+From:   "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+To:     "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>
+Cc:     Jason Gunthorpe <jgg@ziepe.ca>,
+        "Gupta, Nipun" <Nipun.Gupta@amd.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "saravanak@google.com" <saravanak@google.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "masahiroy@kernel.org" <masahiroy@kernel.org>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v2 4/5] iio: accel: Support Kionix/ROHM KX022A
- accelerometer
-Message-ID: <20221014144247.00001eb1@huawei.com>
-In-Reply-To: <b1700ea7-4a7a-263c-595c-0f7a56763c10@gmail.com>
-References: <cover.1665066397.git.mazziesaccount@gmail.com>
-        <88e24b01da9f44ebf5fcd8344ded0b75ff742fbf.1665066397.git.mazziesaccount@gmail.com>
-        <Yz8fK7j8pxlU76xt@smile.fi.intel.com>
-        <98b59ad5-8c29-be41-4da1-a961db67827c@gmail.com>
-        <Y0QIzf2cAH9ehSeO@smile.fi.intel.com>
-        <19a6db0f-40a8-dacf-4583-cdb9d74e1243@fi.rohmeurope.com>
-        <b1700ea7-4a7a-263c-595c-0f7a56763c10@gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: Re: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
+ domain as parent
+Message-ID: <Y0loSBsadhfsBnsr@kroah.com>
+References: <DM6PR12MB30820EE430405FF50C7F856BE8229@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <MN2PR12MB43586084670E14691920952889229@MN2PR12MB4358.namprd12.prod.outlook.com>
+ <Y0a65a9leWXpKfTo@ziepe.ca>
+ <MN2PR12MB4358A871519748CD7A6DB7A089229@MN2PR12MB4358.namprd12.prod.outlook.com>
+ <Y0bRZTP9Kc6mdCiu@ziepe.ca>
+ <MN2PR12MB4358277977C1B7E0BC214AC789229@MN2PR12MB4358.namprd12.prod.outlook.com>
+ <Y0gH8R8tEqn6sqZ5@ziepe.ca>
+ <MN2PR12MB4358CF6B6D2576B35E39328A89249@MN2PR12MB4358.namprd12.prod.outlook.com>
+ <Y0lODVFsp4KMfPdu@kroah.com>
+ <MN2PR12MB43583BB73731986D15B3620789249@MN2PR12MB4358.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.42]
-X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MN2PR12MB43583BB73731986D15B3620789249@MN2PR12MB4358.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Oct 2022 10:40:38 +0300
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-
-> On 10/10/22 16:20, Vaittinen, Matti wrote:
-> > On 10/10/22 14:58, Andy Shevchenko wrote:  
-> >> On Mon, Oct 10, 2022 at 12:12:34PM +0300, Matti Vaittinen wrote:
-> >> ...
-> >>  
-> >>>>> +	ret = regmap_bulk_read(data->regmap, chan->address, &data->buffer,
-> >>>>> +			       sizeof(s16));  
-> >>  
-> >>>> No endianess awareness (sizeof __le16 / __be16)  
-> >>  
-> >>>>> +	if (ret)
-> >>>>> +		return ret;
-> >>>>> +
-> >>>>> +	*val = data->buffer[0];  
-> >>>>
-> >>>> Ditto (get_unaligned_be16/le16 / le16/be16_to_cpup()).  
-> >>>
-> >>> I have probably misunderstood something but I don't see why we should use
-> >>> 'endianess awareness' in drivers? I thought the IIO framework code takes
-> >>> care of the endianes conversions based on scan_type so each individual
-> >>> driver does not need to do that. That however has been just my assumption. I
-> >>> will need to check this. Thanks for pointing it out.  
-> >>
-> >> The IIO core uses endianness field only once in iio_show_fixed_type() AFAICS.  
+On Fri, Oct 14, 2022 at 12:13:45PM +0000, Radovanovic, Aleksandar wrote:
+> [AMD Official Use Only - General]
 > 
-> Following is some hand waving and speculation after my quick code read. 
-> So, I may be utterly wrong in which case please do correct me...
 > 
-> Anyways, it seems to me that you're correct. The endianness field is 
-> only used by the IIO to build the channel information for user-space so 
-> that applications reading data can parse it. As far as I understand, the 
-> driver does not need to do the conversions for user-space, but the 
-> user-space tools should inspect the type information and do the 
-> conversion. I think it makes sense as user-space applications may be 
-> better equipped to do some maths. It also may be some applications do 
-> not want to spend cycles doing the conversion but the conversions can be 
-> done later "offline" for the captured raw data. So omitting conversion 
-> in the IIO driver kind of makes sense to me.
-
-That was indeed the original reasonining for buffered data path
-(note the endian marker is for scans only which only apply in buffered
- / chardev case).
-
-It's less obvious for the sysfs path as that's inherently slow.
-We could have made this a problem for the IIO core, but we didn't :)
-
 > 
-> I haven't thoroughly looked (and I have never used) the in-kernel IIO 
-> APIs for getting the data. A quick look at the 
-> include/linux/iio/consumer.h allows me to assume the iio_chan_spec can 
-> be obtained by the consumer drivers. This should make the endianess 
-> information available for the consumer drivers as well. So, again, 
-> consumer drivers can parse the raw-format data themself.
-
-yes consumers should be be endian aware if they are using the
-callback buffer route to get the data.  Now you mention it, we
-may well have cases where that isn't handled correctly.
-There are few enough users of that interface that it might well work
-by coincidence rather than design. oops.
-
+> > -----Original Message-----
+> > From: gregkh@linuxfoundation.org <gregkh@linuxfoundation.org>
+> > Sent: 14 October 2022 12:55
+> > To: Radovanovic, Aleksandar <aleksandar.radovanovic@amd.com>
+> > Cc: Jason Gunthorpe <jgg@ziepe.ca>; Gupta, Nipun
+> > <Nipun.Gupta@amd.com>; Marc Zyngier <maz@kernel.org>; Robin Murphy
+> > <robin.murphy@arm.com>; robh+dt@kernel.org;
+> > krzysztof.kozlowski+dt@linaro.org; rafael@kernel.org;
+> > eric.auger@redhat.com; alex.williamson@redhat.com; cohuck@redhat.com;
+> > Gupta, Puneet (DCG-ENG) <puneet.gupta@amd.com>;
+> > song.bao.hua@hisilicon.com; mchehab+huawei@kernel.org;
+> > f.fainelli@gmail.com; jeffrey.l.hugo@gmail.com; saravanak@google.com;
+> > Michael.Srba@seznam.cz; mani@kernel.org; yishaih@nvidia.com;
+> > will@kernel.org; joro@8bytes.org; masahiroy@kernel.org;
+> > ndesaulniers@google.com; linux-arm-kernel@lists.infradead.org; linux-
+> > kbuild@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > devicetree@vger.kernel.org; kvm@vger.kernel.org; okaya@kernel.org;
+> > Anand, Harpreet <harpreet.anand@amd.com>; Agarwal, Nikhil
+> > <nikhil.agarwal@amd.com>; Simek, Michal <michal.simek@amd.com>; git
+> > (AMD-Xilinx) <git@amd.com>
+> > Subject: Re: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
+> > domain as parent
+> > 
+> > Caution: This message originated from an External Source. Use proper
+> > caution when opening attachments, clicking links, or responding.
+> > 
+> > 
+> > On Fri, Oct 14, 2022 at 11:18:36AM +0000, Radovanovic, Aleksandar wrote:
+> > > Anyway, I think we're straying off topic here, none of this is visible to the
+> > kernel anyway. The question that we still need to answer is, are you OK with
+> > the limitations I listed originally?
+> > 
+> > What original limitations?  
 > 
-> I have this far only used the sysfs and iio_generic_buffer on a 
-> little-endian machine so I have had no issues with the little-endian 
-> data and I have only observed the code. Hence I can not really say if my 
-> reasoning is correct - or if it is how IIO has been designed to operate. 
-> But based on my quick study I don't see a need for the IIO driver to do 
-> endianess conversion to any other format but what is indicated by 
-> scan_type. Specifically for KX022A, the data is already 16B LE when read 
-> from the sensor. This is also advertised by scan_type so no conversion 
-> should be needed (unless, of course, I am mistaken :]).
-
-Ah. I'd missed that. Data storage should reflect the read back endianness
-and for the read_raw path you need to perform the conversion in driver
-(but not the high perf push to buffers path).
-
-Sure we could probably have handled read_raw in tree as well but we didn't
-and probably too late to sensibly fix that now.  One of many things we'd
-probably do differently if we were starting again.
-
-J
-
+> Limitations with regards to MSI message configuration of a CDX device:
 > 
-> >> And it does nothing with it. Maybe Jonathan can shed a light what is it for
-> >> (I mean the field)?
-> >>  
+> 1) MSI write value is at most 16 useable bits
 > 
-> I agree. It'd be great to listen to someone who actually knows what he 
-> is talking about and is not just guessing as I am ^_^;
-> 
-> Yours,
-> 	-- Matti
-> 
+> 2) MSI address value must be the same across all vectors of a single CDX device
+> This would be the (potentially IOMMU translated) I/O address of
+> GITS_TRANSLATER. As long as that IOMMU translation is consistent across a 
+> single device, I think we should be OK.
 
+It's been a while since I read the PCI spec, but this feels like it does
+not follow what MSI is supposed to allow.  Is the "CDX" spec anywhere
+that mentions any of this as to what is supposed to be allowed and
+supported?
+
+And what is a "single device" here in how the kernel knows about it?  Is
+it a PCI device, or some other new structure that is handed to the
+kernel from the BIOS?
+
+thanks,
+
+greg k-h
