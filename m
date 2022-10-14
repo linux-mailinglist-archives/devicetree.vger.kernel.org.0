@@ -2,50 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B7D95FEDA9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 13:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 429F55FEDC8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 14:02:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbiJNLzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 07:55:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43994 "EHLO
+        id S230119AbiJNMCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 08:02:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbiJNLzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 07:55:24 -0400
+        with ESMTP id S229892AbiJNMCb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 08:02:31 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 938DF357EA;
-        Fri, 14 Oct 2022 04:55:23 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BBFA18F92C;
+        Fri, 14 Oct 2022 05:02:30 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 16CAA61B07;
-        Fri, 14 Oct 2022 11:55:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E24DEC433C1;
-        Fri, 14 Oct 2022 11:55:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1665748522;
-        bh=w1gnSyo/sHEY1sf3aTn5NzwjtonvxvcQ/yPvIe4/0tk=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 07F3D61AC1;
+        Fri, 14 Oct 2022 12:02:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 673B3C433D7;
+        Fri, 14 Oct 2022 12:02:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665748949;
+        bh=kVy31r3/h21vCG8QHqLh13ALXicMXU3nisOAYti+Q5k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Bg0bxXdOrxLdVVn4IKoVrPzljijNyfKRQxPChgFzeuOXeg9wJnt/AdrF4blJjga6L
-         la+DfSwt0k33JWhmSHJHHT5mY5nOCjelnRc1USe9nKTknKUUKTbhSk06xVNoCZYMO0
-         IME26e+maUN5h3F+c7xbIWgTKlgRMEyWDnEIh3yo=
-Date:   Fri, 14 Oct 2022 13:56:07 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, xu.yang_2@nxp.com,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jun.li@nxp.com, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V2 1/6] dt-bindings: usb: usbmisc-imx: convert to DT
- schema
-Message-ID: <Y0lOV8iWlpfDV/kj@kroah.com>
-References: <20221014095148.2063669-1-peng.fan@oss.nxp.com>
- <20221014095148.2063669-2-peng.fan@oss.nxp.com>
+        b=OSs8wt76NzBNkq27S7FBfulQrBeTLcmu6r1j6QUFhDoEqWgg5gF6iOlPlRy6Ca89D
+         gk2jDUIN+ygSCA3HfY4mLsG3HKbhwSeywdB2FFsn0AAoExAkyl1adgOynbqiOk/17O
+         6sLobr1OU2h9vmaP9XWtmazxiUSX1SuVYbY6nUGBDbWeYmeXb286S8ObQMuRvpuD5s
+         jEOeTTuJJLvVsWsbLY0lrpWptf2LiK91Ts1WbEUVMeqjitKu9fxZXS73cUHhQnaYc7
+         oWB0cZYHTqnOhyIkUlszA65A1QvCeCC8LEKBt8HbzPcMPAqcpqZL2Cv2hkZpvI3qbd
+         lOPAvB/k++TYQ==
+Date:   Fri, 14 Oct 2022 13:02:23 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
+        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
+        alim.akhtar@samsung.com, rcsekar@samsung.com,
+        aswani.reddy@samsung.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 2/6] ASoC: samsung: i2s: configure PSR from sound card
+Message-ID: <Y0lPz91gbovAub9D@sirena.org.uk>
+References: <20221014102151.108539-1-p.rajanbabu@samsung.com>
+ <CGME20221014104857epcas5p2a275a1d606ca066227228d13bcf5b120@epcas5p2.samsung.com>
+ <20221014102151.108539-3-p.rajanbabu@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="/9qwgKi0P7NmZJOz"
 Content-Disposition: inline
-In-Reply-To: <20221014095148.2063669-2-peng.fan@oss.nxp.com>
+In-Reply-To: <20221014102151.108539-3-p.rajanbabu@samsung.com>
+X-Cookie: There's only one everything.
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -55,39 +61,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 14, 2022 at 05:51:43PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Convert usbmisc-imx to DT schema format.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/usb/fsl,usbmisc.yaml  | 52 +++++++++++++++++++
->  .../devicetree/bindings/usb/usbmisc-imx.txt   | 18 -------
->  2 files changed, 52 insertions(+), 18 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/usb/usbmisc-imx.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-> new file mode 100644
-> index 000000000000..c83ffb6729b5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/fsl,usbmisc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX non-core registers
-> +
-> +maintainers:
-> +  - Xu Yang <xu.yang_2@nxp.com>
 
-Signing someone else up to be a maintainer requires them to sign off on
-the patch to agree with this.  Why not list yourself instead?
+--/9qwgKi0P7NmZJOz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-thanks,
+On Fri, Oct 14, 2022 at 03:51:47PM +0530, Padmanabhan Rajanbabu wrote:
+> Currently the prescaler value in samsung I2S dai is calculated by
+> dividing the peripheral input clock frequency with frame clock
+> frequency and root clock frequency divider. This prescaler value is
+> used to divide the input clock to generate root clock (RCLK) from which
+> frame clock is generated for I2S communication.
+>=20
+> However for the platforms which does not have a dedicated audio PLL as
+> an input clock source, the prescaler divider will not generate accurate
+> root clock frequency, which inturn affects sampling frequency also.
+>=20
+> To overcome this scenario, support has been added to let the sound card
+> identify right prescaler divider value and configure the prescaler (PSR)
+> divider directly the from the sound card to achieve near accurate sample
+> frequencies
 
-greg k-h
+It's not clear to me why the solution here is to move the configuration
+to the sound card rather than to improve the I2S driver to be able to
+cope with whatever the restrictions are on the PSR in these systems - it
+seems more cumbersome for system integrators, especially since you've
+not documented the issues or how to configure it.  Could you expand on
+what the constraints are here and why it's not possible for the driver
+to figure things out (given some quirk information)?
+
+--/9qwgKi0P7NmZJOz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNJT84ACgkQJNaLcl1U
+h9DRTwf+J9Be15r7sAl4i8Dde8zTmse0pnZWcotDM9pbxNNsJ1iutdxRsMnVlQuJ
+9HavNjMp/3R7o6I3cIMB8ssa+EEaSLYDp8NzgDFhog/37cUV0whEBD6J7CRq1NRm
+pmN7pQkbvhvgK1M7y87LDhliNEYfVeRIkZR1Rk71ncNurfT5MLwYZNwuUcvmXpwG
+hkvgjy15llDZwcMT6Phj7VPmubu1MKGKhkLXQJLNKJFYD36NoSWI8qK6ID17RrQl
+JGMpowz32/S0oIjmLkWgPpf1upirFZC/nL4YO/mbYoDF5jUYsFPxAXD2MmRv8Bue
+7y5v0drOp0Cq70TJFJ3xkEb8CWA4ng==
+=sCvP
+-----END PGP SIGNATURE-----
+
+--/9qwgKi0P7NmZJOz--
