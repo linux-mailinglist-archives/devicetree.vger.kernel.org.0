@@ -2,253 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34C845FE604
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 01:59:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C54905FE62F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 02:20:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229621AbiJMX7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 19:59:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45972 "EHLO
+        id S229742AbiJNAUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 20:20:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiJMX7O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 19:59:14 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9CE1960B1;
-        Thu, 13 Oct 2022 16:59:12 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29DM06eQ031917;
-        Thu, 13 Oct 2022 23:58:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=vPRcGOw+Si4FJMh+VDINCHeApN/C7/h/1EjzsCJ1Wkc=;
- b=PoLdfAHGL8c9CVQZc1tWkLowxbj+28RTGH1uOyMZEKK0eSXentzi/HmsuDCQqkxrN2CJ
- 9XSiNwlnSYXTUV+Pg6qUut1g7KzWFP8TwfDnYv/mTg6QZEzpHi+qxced/pJYEZwKmYwT
- lV9NfAgYLam+yM/uUF9erhILAVO7YJO8XcfqKbD10vJxNszrqA+05kxWeP71N7RzK+An
- khZPNtF6PF5BJHfjTZ8I3dWVimAH8WY98HhS/j2UCDK4vJ44MhnFj/nciGhZ76Jn3Xcj
- unJJdr8v90gfZHXLWlq86k0NizoP2tGoLpBfBuZyP1wsH/UjnIwxzdEzlzyuUKWVrh5w wA== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k6bj72ywm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 13 Oct 2022 23:58:56 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29DNwt5o015321
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 13 Oct 2022 23:58:55 GMT
-Received: from [10.110.38.147] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 13 Oct
- 2022 16:58:53 -0700
-Message-ID: <ca13eb92-9b5b-19fd-27a5-f91f5048b142@quicinc.com>
-Date:   Thu, 13 Oct 2022 16:58:53 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v5 02/13] dt-bindings: Add binding for gunyah hypervisor
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        with ESMTP id S229744AbiJNAT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 20:19:59 -0400
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DAA813F0B;
+        Thu, 13 Oct 2022 17:19:42 -0700 (PDT)
+Received: by mail-io1-xd35.google.com with SMTP id l127so2716951iof.12;
+        Thu, 13 Oct 2022 17:19:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YfgeDHldJKIaGyJyuYC9kZ/QabK/ImTm8OEsJ6qFS0o=;
+        b=aPIKMzgB6NoaYto0JY7M6cEv04s4uoxll747l+s3rrQ1ZP3iVQY6mKdbR4UK/WhO6Q
+         zFDFH+JiCuN10nCLAO1N8cz6FbD+2UY6wJXlXpvG2lRXf5djAmm7Hx8o9lYxWo/hto3V
+         u7gQcwYUo3s0eCu+tQu36lHOPPoakCc/nhDiVNm6+547dbYD9OinMk18raK6OcxtZgza
+         i5S4GPGR2BUamhR5HHOCDMLWERHtiFFbobW3QUU9dF1JwgyOZVUkit6Fc/wvADVs8sp6
+         QFWgghjjMzY1oB5VZbMBnjUSWe7gwzSRSKYIp0YSuv2BOzndtGJWX3aTYtNFWAFuAiK1
+         9MLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YfgeDHldJKIaGyJyuYC9kZ/QabK/ImTm8OEsJ6qFS0o=;
+        b=RsxQwV+QE7o4QTiXSPb9RbtbpaAeRsAVth8Of1uAKbZuBTv1We3EB9+nfjMgfhhol0
+         10KM9hAz86RFP359G8Jnlaata+AmCUR38gLWh9WKxNUeezilgjg0iVGMGiQyCeJRtoem
+         4ZgBdBGY1p64FYvbrkHT9CuSR4CoHcIw1qdSw87Ph1P6kBd/OKZtbkPcDrwd5n4ApOw3
+         yraoOw3uzMLdFqtIi5teuJLBB63Kw1KZ0iT5aF2nRklqWMUyP3HLsuBLu9UplfyIwYrv
+         MlAjkxCKTt2mgi5SEMLKlZUWS6/LnENBpu5xuyG0GjSvZCbfn9NaM1yBuBbkDvKB6SSN
+         77qQ==
+X-Gm-Message-State: ACrzQf3d+hyDO//IjfE2dKEq1/syzGoV3F6yqMYrzNLpqJhRzjEFo/li
+        oMCdOaJ/qm/ntmjTaBrCga0ypw8mtI59Tw==
+X-Google-Smtp-Source: AMsMyM7ZVf8gntYC9p76yImA3xbiGj1OFGQZpFzMdTZXI8Oy3h87wPBSpKtQ7PU0LeSajwZsc/LWfw==
+X-Received: by 2002:a05:6602:3c7:b0:6a4:334d:3344 with SMTP id g7-20020a05660203c700b006a4334d3344mr1087894iov.21.1665706781353;
+        Thu, 13 Oct 2022 17:19:41 -0700 (PDT)
+Received: from localhost ([2607:fea8:a2e2:2d00::3fc2])
+        by smtp.gmail.com with UTF8SMTPSA id j20-20020a02cc74000000b0035672327fe5sm520116jaq.149.2022.10.13.17.19.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Oct 2022 17:19:40 -0700 (PDT)
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-3-quic_eberman@quicinc.com>
- <20221012155645.GA2173829-robh@kernel.org>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <20221012155645.GA2173829-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: S_mFRKLYHgbsZm8T_7ank-JOIHzPhT0D
-X-Proofpoint-ORIG-GUID: S_mFRKLYHgbsZm8T_7ank-JOIHzPhT0D
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-13_10,2022-10-13_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
- mlxlogscore=999 clxscore=1011 bulkscore=0 spamscore=0 phishscore=0
- adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210130133
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Richard Acayan <mailingradian@gmail.com>,
+        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v10 0/3] SDM670 Pin Control Driver
+Date:   Thu, 13 Oct 2022 20:19:31 -0400
+Message-Id: <20221014001934.4995-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.38.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes since v9:
+ - add arm64 kconfig check (3/3):
+   https://lore.kernel.org/r/20220925112103.148836-1-krzysztof.kozlowski@linaro.org
 
-On 10/12/2022 8:56 AM, Rob Herring wrote:
-> On Mon, Oct 10, 2022 at 05:08:29PM -0700, Elliot Berman wrote:
->> When Linux is booted as a guest under the Gunyah hypervisor, the Gunyah
->> Resource Manager applies a devicetree overlay describing the virtual
->> platform configuration of the guest VM, such as the message queue
->> capability IDs for communicating with the Resource Manager. This
->> information is not otherwise discoverable by a VM: the Gunyah hypervisor
->> core does not provide a direct interface to discover capability IDs nor
->> a way to communicate with RM without having already known the
->> corresponding message queue capability ID. Add the DT bindings that
->> Gunyah adheres for the hypervisor node and message queues.
->>
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->> ---
->>   .../bindings/firmware/gunyah-hypervisor.yaml  | 87 +++++++++++++++++++
->>   MAINTAINERS                                   |  1 +
->>   2 files changed, 88 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->> new file mode 100644
->> index 000000000000..f0a14101e2fd
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->> @@ -0,0 +1,87 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/firmware/gunyah-hypervisor.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Gunyah Hypervisor
->> +
->> +maintainers:
->> +  - Murali Nalajala <quic_mnalajal@quicinc.com>
->> +  - Elliot Berman <quic_eberman@quicinc.com>
->> +
->> +description: |+
->> +  On systems which support devicetree, Gunyah generates and overlays a deviceetree overlay which
-> 
-> How you end up with the node (applying an overlay) is not relavent to
-> the binding.
-> 
->> +  describes the basic configuration of the hypervisor. Virtual machines use this information to determine
->> +  the capability IDs of the message queues used to communicate with the Gunyah Resource Manager.
-> 
-> Wrap at 80. That is the coding standard still though 100 is deemed
-> allowed. And yamllint only complains at 110 because I didn't care to fix
-> everyones lines over 100.
-> 
->> +  See also: https://github.com/quic/gunyah-resource-manager/blob/develop/src/vm_creation/dto_construct.c
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: gunyah-hypervisor-1.0
->> +      - const: gunyah-hypervisor
-> 
-> 2 compatibles implies a difference between the 2. What's the difference?
-> Where does '1.0' come from?
-> 
+Changes since v8:
+ - change dt schema description (1/3)
+ - change comment (2/3)
+ - remove reference to generic pinctrl (1/3)
+ - change to double quotes (1/3)
 
-There's no difference. I thought the convention was to have 
-device-specific compatible and the generic compatible. "device-specific" 
-here would be specific to version of Gunyah since it's software.
+Changes since v7:
+ - remove complement_fw_reserved_gpios from patch 3
 
-We do similar for firmware in the qcom,scm bindings and following that 
-principle.
+Changes since v6:
+ - remove bitmap_fill() call completely (original commit was 4c0efbfb2669
+   ("pinctrl: msm: Add ability for drivers to supply a reserved GPIO list"),
+   original author CC'd)
+ - group some entries in pingroup arrays for less lines
+ - accumulate review tags
 
->> +
->> +  "#address-cells":
->> +    description: Number of cells needed to represent 64-bit capability IDs.
->> +    const: 2
->> +
->> +  "#size-cells":
->> +    description: must be 0, because capability IDs are not memory address
->> +                  ranges and do not have a size.
->> +    const: 0
->> +
->> +patternProperties:
->> +  "^gunyah-resource-mgr(@.*)?":
->> +    type: object
->> +    description:
->> +      Resource Manager node which is required to communicate to Resource
->> +      Manager VM using Gunyah Message Queues.
->> +
->> +    properties:
->> +      compatible:
->> +        items:
->> +          - const: gunyah-resource-manager-1-0
->> +          - const: gunyah-resource-manager
-> 
-> Same comment here.
-> 
->> +
->> +      reg:
->> +        items:
->> +          - description: Gunyah capability ID of the TX message queue
->> +          - description: Gunyah capability ID of the RX message queue
->> +
->> +      interrupts:
->> +        items:
->> +          - description: Interrupt for the TX message queue
->> +          - description: Interrupt for the RX message queue
->> +
->> +    additionalProperties: false
->> +
->> +    required:
->> +      - compatible
->> +      - reg
->> +      - interrupts
->> +
->> +additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - "#address-cells"
->> +  - "#size-cells"
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    hypervisor {
->> +        #address-cells = <2>;
->> +        #size-cells = <0>;
->> +        compatible = "gunyah-hypervisor-1.0", "gunyah-hypervisor";
->> +
->> +        gunyah-resource-mgr@0 {
->> +            compatible = "gunyah-resource-manager-1-0", "gunyah-resource-manager";
->> +            interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>, /* TX full IRQ */
->> +                         <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>; /* RX empty IRQ */
->> +            reg = <0x00000000 0x00000000>, <0x00000000 0x00000001>;
->> +                  /* TX, RX cap ids */
->> +        };
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 91d00b00d91c..ef6de7599d98 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -8884,6 +8884,7 @@ M:	Elliot Berman <quic_eberman@quicinc.com>
->>   M:	Murali Nalajala <quic_mnalajal@quicinc.com>
->>   L:	linux-arm-msm@vger.kernel.org
->>   S:	Supported
->> +F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->>   F:	Documentation/virt/gunyah/
->>   
->>   HABANALABS PCI DRIVER
->> -- 
->> 2.25.1
->>
->>
+Changes since v5:
+ - remove function requirement in schema
+ - change "-state$" regex to double quotes in schema
+ - drop quotes from qcom-tlmm-state ref in dt schema
+
+Changes since v4:
+ - accumulate review tag
+ - use --cover-letter
+ - this is effectively a resend
+
+Changes since v3:
+ - constrain gpio-reserved-ranges to 1-75 items
+ - proper indentation in dt-bindings example (actually tagged this time
+   instead of an outdated commit)
+ - remove unnecessary commit reference
+ - rename complement_fw_reserved_gpios -> complement_fw_gpio_ranges
+
+Changes since v2:
+ - remove quotes from pinctrl.yaml# in dt-bindings
+ - constrain gpio-reserved-ranges to 1-76 items (includes ufs_reset)
+ - indentation in dt-bindings example
+ - cite downstream kernel source
+ - remove MODULE_AUTHOR (most imported pinctrl drivers don't have this)
+
+Changes since v1:
+ - add a field in msm_pinctrl_soc_data to accomodate the needs of the
+   driver and device dts
+ - apply changes made to existing tlmm dt documentation
+ - add reserved gpios array
+ - rename device tree compat string to qcom,sdm670-tlmm
+ - remove dependency on ACPI
+ - move MODULE_DEVICE_TABLE macro call up
+ - add missing pins (fixes most of the debugfs problems)
+ - move qup0_pins down
+ - add whitespace between UFS_RESET macro and pins array
+
+This patch series adds the driver for the Qualcomm Snapdragon 670 TLMM
+(Top-Level Mode Multiplexer) and introduces a new field so that SDM670-
+related device trees can reserve their own gpios.
+
+Richard Acayan (3):
+  dt-bindings: pinctrl: qcom: add sdm670 pinctrl
+  pinctrl: qcom: do not reinitialize gpio valid mask
+  pinctrl: qcom: add sdm670 pinctrl
+
+ .../bindings/pinctrl/qcom,sdm670-tlmm.yaml    |  127 ++
+ drivers/pinctrl/qcom/Kconfig                  |   10 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-msm.c            |    3 +-
+ drivers/pinctrl/qcom/pinctrl-sdm670.c         | 1345 +++++++++++++++++
+ 5 files changed, 1484 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sdm670.c
+
+-- 
+2.38.0
+
