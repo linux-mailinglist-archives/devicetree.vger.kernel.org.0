@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2985FF213
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 18:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 339F65FF223
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 18:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbiJNQNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 12:13:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40544 "EHLO
+        id S229948AbiJNQR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 12:17:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230510AbiJNQNf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 12:13:35 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB760D038A
-        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 09:13:34 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id cr19so694782qtb.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 09:13:34 -0700 (PDT)
+        with ESMTP id S229460AbiJNQRz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 12:17:55 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF4111D0D66
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 09:17:54 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id o22so2762164qkl.8
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 09:17:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eAYgD7p8nfOyI0inpXjm1KydkFFVZgXtGF7VcGSmJv0=;
-        b=ISSTBDW5maTqi6JGFq5DH7FRK8gzbVwThTRZ81FikOlFIo4wB7lfsVx4i5g+pSUb6h
-         UxPkPL3F6Kz+iZdwBecJKyCPuOhxuC0AsvRqGEF/FJypUuVa4O+iTVE8FMAjrzK8Ciqc
-         GI4LHMm5hK6NmR4Hr7Knb3qGv3jBnRYLrjbb5/HYgXcj5nN4BO+Sg58uU+3YHZdhuq6B
-         lBaCFelM3POBA91JNem0zoWb8wtBjfLuQEsec1fe8przKHOJuGAQGxMuH5XYP/8gbCrp
-         5jJP7OdpXompy3+ZRTmdk8IXIqh/AiZSkM1WiP/LnRKdWQPJsIyM+x35KTT7HwDFAAnf
-         pwtg==
+        bh=1gzC+6pIKgTRrlwCoquBVcFiz8VbT8QxkPUglAW6yjw=;
+        b=AA/+P5YcqpsI8jTynPbHxeED8efo3L92Ft5IK7ZzFKCeZmZ4nv3SKnoENmrrbu/8c8
+         fZkq4I5jbeaxW/bTEvgFGJ7vTxd6kJQO2Wd184HbCSRGuN2a7jyS0+iwTGwUFRiyQOo2
+         hyPZFOOti4Ql9unYGK/ye9LyGhSkdQhmSqCahl4S5rlO+8NUf0+zQhaMHLrptVab8xy8
+         JMnrDZbsLvRupj2sQiwFt+WLO/BGVgXo535qowjp1AVNKRq1x//oIv1EP/Zm6JAup12+
+         jxubr6v9hhJEh4TeZ6RJwgnEw6q4SEH2E80BJNRbWIGpMqT9zebQVtGdpwHmeJM0Gc93
+         NMwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eAYgD7p8nfOyI0inpXjm1KydkFFVZgXtGF7VcGSmJv0=;
-        b=Nl7QszaOf5ZEhSdU9U93XqwsqBaEb7R/Dz6vy45S/+dzLLtXnQXevCEzqFWePKKa9s
-         dObaXki7XKyVtktrrDi6OXSwu8KrAnxD3BLdQZ8X63ByXZj3RxT5gHICLenV0mudzY/O
-         a/2UJF3J5xWhQa6UPbXXDZdch5wN44TsfKMuPzHj+SU1N5+4L4krKMj95oe7Kd8qlIkO
-         l5J8qQrh3Tp28Ho3Yk4yYDWn5pwBm52Hoj589bb2Jly1N0Utgu3ggDhLVYnvtXsL9Uy2
-         lLRdBptBFq1xa77HcgYPKvPi9TQMgstalywqtUvWRqc7uh2uQ7oMIU/RtUeUq0ozTKtl
-         33Og==
-X-Gm-Message-State: ACrzQf1397ZMYfw6iUiC7zDy/C84agj3thpx2Mii0uEe8jOCR617via1
-        ESvj95cvNJlmW6UJlNhNKTglBQ==
-X-Google-Smtp-Source: AMsMyM6YaCACpBs3YABkF2NUlwPBqw8RPkkMujHjs7tea+n8gH/GsHgoTZMQxOTqqm5XMWIsXYuPmw==
-X-Received: by 2002:ac8:5bc9:0:b0:39a:348b:857e with SMTP id b9-20020ac85bc9000000b0039a348b857emr4817701qtb.462.1665764013887;
-        Fri, 14 Oct 2022 09:13:33 -0700 (PDT)
+        bh=1gzC+6pIKgTRrlwCoquBVcFiz8VbT8QxkPUglAW6yjw=;
+        b=zEWr+SpUhKcUiAO56jkTlMPGmIR9bIIZUtqg+y67P7Q4fDkgNs/galmL09CXaWxZWP
+         FU/dMxxmuM0bvYv1dibtTi7Y0xGnmcZ/zkJfUdMHJIv5POvJfYsBM2+suZWltGKSP8Li
+         /BXVXaZTD7ejHdj6N6JveI3GrANBkLfVixIiszH7RqP36ZNBY28MO8L8u+gOqqCSLLMZ
+         qoEHN4+c1FNz5KJkCYxckDsGhDw6Jn5UVTzCJFHD9foHtE3nGQC6JYzfd3MdBKy7ZvDh
+         H+oxIrcl7XHDKkXxnz3+N9ALZES9HXgcdXK1Apzvx1BVNP4qsJH6cMpOobg79p0EhTSk
+         vgAw==
+X-Gm-Message-State: ACrzQf3h4i+k4WdLv5dYa2nWsePxFfZkYFZo6X09sqEtSmDqbsFXuN7x
+        CzMEl4+dHKfyFrVZiEvcummWug==
+X-Google-Smtp-Source: AMsMyM6zeraRWOrhtxrEgxldJTmnsoJAKyRx/WeT0BIT3KKR45k0neMZPYTh54xC8XbnEVvqPXN4dg==
+X-Received: by 2002:a05:620a:b05:b0:6ee:cb0e:3c94 with SMTP id t5-20020a05620a0b0500b006eecb0e3c94mr3673383qkg.379.1665764273917;
+        Fri, 14 Oct 2022 09:17:53 -0700 (PDT)
 Received: from [192.168.7.170] ([12.190.236.102])
-        by smtp.gmail.com with ESMTPSA id bl16-20020a05620a1a9000b006bbc09af9f5sm2845994qkb.101.2022.10.14.09.11.53
+        by smtp.gmail.com with ESMTPSA id v17-20020a05620a441100b006ce813bb306sm3137040qkp.125.2022.10.14.09.17.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Oct 2022 09:13:33 -0700 (PDT)
-Message-ID: <8c773f11-1c00-1856-daa7-250a4ec37d23@linaro.org>
-Date:   Fri, 14 Oct 2022 12:10:51 -0400
+        Fri, 14 Oct 2022 09:17:53 -0700 (PDT)
+Message-ID: <de4726f5-d7da-041a-31a3-dc7177786bf4@linaro.org>
+Date:   Fri, 14 Oct 2022 12:16:41 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: add samsung,starqltechn board
- based on sdm845 chip
+Subject: Re: [PATCH 09/10] ARM: dts: stm32: enable USB OTG in dual role mode
+ on stm32mp135f-dk
 Content-Language: en-US
-To:     Dzmitry Sankouski <dsankouski@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20221012185411.1282838-1-dsankouski@gmail.com>
- <20221012185411.1282838-2-dsankouski@gmail.com>
- <99652775-8921-9d4a-193e-20d1487e6759@linaro.org>
- <CABTCjFDDEhNo0OVk+87kU93xwvXNR3tMuinfLXzZ6PeyweCpag@mail.gmail.com>
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        alexandre.torgue@foss.st.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     amelie.delaunay@foss.st.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20221014092651.25202-1-fabrice.gasnier@foss.st.com>
+ <20221014092651.25202-10-fabrice.gasnier@foss.st.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CABTCjFDDEhNo0OVk+87kU93xwvXNR3tMuinfLXzZ6PeyweCpag@mail.gmail.com>
+In-Reply-To: <20221014092651.25202-10-fabrice.gasnier@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -83,27 +78,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2022 07:01, Dzmitry Sankouski wrote:
-> чт, 13 окт. 2022 г. в 16:43, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org>:
->>
->> On 12/10/2022 14:54, Dzmitry Sankouski wrote:
->>> Add samsung,starqltechn board (Samsung Galaxy S9) binding.
->>>
->>> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
->>> ---
->>> Changes for v2,v3: none
->>
->> Where is v2 and v3 of this?
-> I've been told it's easier for maintainers to resend all patch series,
-> even if only 1 patch from the series requires change. So I decided to
-> keep versions equal in all patches, to clearly indicate those patches
-> are from the same series. Please, correct me if I'm wrong.
+On 14/10/2022 05:26, Fabrice Gasnier wrote:
+> The USB OTG controller provides the USB data available on stm32mp135f-dk,
+> on the Type-C connector. Data role is determined by "usb-role-switch".
+> 
+> A STM32G0 provides the USB Type-C and Power Delivery connectivity.
+> It controls dual role power and dual role data through UCSI protocol over
+> I2C. It's wired on I2C1, with an interrupt pin on PI2 GPIO.
+> Its firmware maybe updated over I2C, so use the optional firmware-name
+> to enable firmware update.
+> 
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> ---
+>  arch/arm/boot/dts/stm32mp135f-dk.dts | 34 ++++++++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
+> index 02ff2bc664da..1c92bf096397 100644
+> --- a/arch/arm/boot/dts/stm32mp135f-dk.dts
+> +++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
+> @@ -95,6 +95,28 @@ &i2c1 {
+>  	/* spare dmas for other usage */
+>  	/delete-property/dmas;
+>  	/delete-property/dma-names;
+> +
+> +	stm32g0@53 {
 
-This is okay, but you wrote here there was a v1 and v2, and you changed
-nothing against it. If there was v1 and v2, we would ack it, I think.
+Node names should be generic, usually typec.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Or this changelog is for some other patch? Not for this one?
 
 Best regards,
 Krzysztof
