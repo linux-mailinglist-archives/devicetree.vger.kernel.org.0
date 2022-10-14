@@ -2,97 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FBEC5FF50B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 23:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C250C5FF50D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 23:10:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbiJNVKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 17:10:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49522 "EHLO
+        id S229679AbiJNVKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 17:10:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbiJNVKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 17:10:36 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB75F124223;
-        Fri, 14 Oct 2022 14:10:34 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id w196so6342202oiw.8;
-        Fri, 14 Oct 2022 14:10:34 -0700 (PDT)
+        with ESMTP id S229684AbiJNVKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 17:10:47 -0400
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76062182C62
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 14:10:46 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-1324e7a1284so7288358fac.10
+        for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 14:10:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xM+4m5a2a5cuZ5VhUjxrp5HzYAY1IJVbywUtama6FlI=;
-        b=r9QR4ZGzO398Ly+owwsHgWN0FyRZ94twmXXBwlbXQEbaTUTx6TfDegQzVkC2Z7fVVg
-         rkqEACu8C8LklI21LCt4V+uXzLwqrcurVMZYL3/24dcbTzxI8E728a7gZs488NQLPPn1
-         1Y0c+4qs1F87FGRiOH1Fl3YiyBOAMxQLVaR0J5b3ZE6hAyJCscI9BECiXdRR0UAlZ9aN
-         dVQVcrGb1zgQtYkPaiRD+PMKclnl1cWhx4yvOvAzH6BfNW0GcOvDlWTfZg+G5LXN5MGY
-         vyOWUSeSNvOh6Tv3HenX9DTIaTNuNopvUrtHT9Wj7RzJaDdk9nDkRT0X9ufm71IrNOoR
-         4KSg==
-X-Gm-Message-State: ACrzQf3MHdPgpPFLPFKOqgPrGlfNG6pc+zbH6mZXxMa/Bf9PVS06gQSx
-        cJwu2veDzgndJoHwgQ0f9A==
-X-Google-Smtp-Source: AMsMyM70Akl6mGH6k+1/khm5MR7s9COqT/1+UPtLcqb+A+ugOm6M9TWM9XzVXoggbzWtk1ZXP1Lwpg==
-X-Received: by 2002:a05:6808:1b0d:b0:355:219c:3d28 with SMTP id bx13-20020a0568081b0d00b00355219c3d28mr1571823oib.31.1665781833942;
-        Fri, 14 Oct 2022 14:10:33 -0700 (PDT)
+        bh=cTg3VOtYUy6KwfdTubwZlpR2bbgBtcoZg2Rent6kAWk=;
+        b=rNH4ULMWDeL/TgrPS5mghohb+4m/oaxrR3MYSXN5MD8+0K/9RS3KaF+56YgOkMZnBo
+         BZTq7ljlbpGJeSHRD7Ut4Pre5MJHuLC70gtNUlyXKbfFEmTtIms5ZOcUfp0RF+pOGmUW
+         s+hFfj3OouWfTZwwYuKcsdS50p3EHWag+cgNnDUJBXCluBdQ0FTQ1t+ZoaG9cmR/Sics
+         nKekaO0AedsqWGRsWy2K1g8/dMU1ZHQM32hciN3wdX0B/Wg5q5bOHU1kgePy57tJTuXi
+         i47fQpXFa4i7dZfzdn1ogXokrZEfADfDf5JY+MotltOxW+UB+uCb+YKgpkVvydN58LAE
+         7Zog==
+X-Gm-Message-State: ACrzQf30c9s0phmvJLV/PXNvvcQRQ+a+aYq28M3+xlZ8hMhqIVbpxojU
+        3a4KkbOKUvT6JQdzIA+R9g==
+X-Google-Smtp-Source: AMsMyM4mT4FASBIdYMfyiBriDTl9MgkYn6LddPepoBwjhVETgQGH5ykAURs1JOGsGpctJMsv+uJECw==
+X-Received: by 2002:a05:6870:3397:b0:133:f7:a730 with SMTP id w23-20020a056870339700b0013300f7a730mr9626786oae.281.1665781845734;
+        Fri, 14 Oct 2022 14:10:45 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 23-20020aca0f17000000b00354d7c7e42esm1549201oip.30.2022.10.14.14.10.33
+        by smtp.gmail.com with ESMTPSA id y3-20020a056870418300b0011f400edb17sm1911505oac.4.2022.10.14.14.10.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Oct 2022 14:10:33 -0700 (PDT)
-Received: (nullmailer pid 2911731 invoked by uid 1000);
-        Fri, 14 Oct 2022 21:10:34 -0000
-Date:   Fri, 14 Oct 2022 16:10:34 -0500
+        Fri, 14 Oct 2022 14:10:45 -0700 (PDT)
+Received: (nullmailer pid 2912093 invoked by uid 1000);
+        Fri, 14 Oct 2022 21:10:45 -0000
+Date:   Fri, 14 Oct 2022 16:10:45 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Markuss Broks <markuss.broks@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Dillon Min <dillon.minfei@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Daniel Mack <daniel@zonque.org>, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH] dt-bindings: display: panel: use
- spi-peripheral-props.yaml
-Message-ID: <166578183285.2911660.11950210372738963572.robh@kernel.org>
-References: <20221004120907.72767-1-krzysztof.kozlowski@linaro.org>
+To:     Yang Yingliang <yangyingliang@huawei.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        frowand.list@gmail.com
+Subject: Re: [PATCH -next v2 1/2] of/address: introduce of_address_count()
+ helper
+Message-ID: <166578184299.2912001.12592900941569120734.robh@kernel.org>
+References: <20221008115617.3583890-1-yangyingliang@huawei.com>
+ <20221008115617.3583890-2-yangyingliang@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221004120907.72767-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20221008115617.3583890-2-yangyingliang@huawei.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 04 Oct 2022 14:09:07 +0200, Krzysztof Kozlowski wrote:
-> For devices connectable by SPI bus (e.g. already using
-> "spi-max-frequency" property), reference the "spi-peripheral-props.yaml"
-> schema to allow using all SPI device properties, even these which device
-> bindings author did not tried yet.
+On Sat, 08 Oct 2022 19:56:16 +0800, Yang Yingliang wrote:
+> Introduce of_address_count() helper to count the IO resources
+> instead of open-coding it.
 > 
-> Change "additionalProperties" to "unevaluatedProperties", so the actual
-> other properties from "spi-peripheral-props.yaml" can be used.  This has
-> additional impact of allowing also other properties from
-> panel-common.yaml to be used.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
 > ---
->  .../devicetree/bindings/display/panel/ilitek,ili9163.yaml    | 3 ++-
->  .../devicetree/bindings/display/panel/ilitek,ili9341.yaml    | 1 +
->  .../devicetree/bindings/display/panel/nec,nl8048hl11.yaml    | 3 ++-
->  .../bindings/display/panel/samsung,lms380kf01.yaml           | 5 ++---
->  .../bindings/display/panel/samsung,lms397kf04.yaml           | 3 ++-
->  .../devicetree/bindings/display/panel/samsung,s6d27a1.yaml   | 4 ++--
->  .../devicetree/bindings/display/panel/tpo,tpg110.yaml        | 1 +
->  7 files changed, 12 insertions(+), 8 deletions(-)
+>  include/linux/of_address.h | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
 
 Applied, thanks!
