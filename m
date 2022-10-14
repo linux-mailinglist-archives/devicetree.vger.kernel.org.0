@@ -2,116 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F5C45FEFE9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 16:11:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 071F95FEFFC
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 16:15:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230174AbiJNOL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 10:11:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52858 "EHLO
+        id S229863AbiJNOPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 10:15:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229971AbiJNOL4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 10:11:56 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B02AA1D2F4F;
-        Fri, 14 Oct 2022 07:11:52 -0700 (PDT)
-Received: from fraeml715-chm.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4MppFt6NDrz689DH;
-        Fri, 14 Oct 2022 22:10:58 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml715-chm.china.huawei.com (10.206.15.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 14 Oct 2022 16:11:49 +0200
-Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 14 Oct
- 2022 15:11:48 +0100
-Date:   Fri, 14 Oct 2022 15:11:47 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-CC:     Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        "Jonathan Cameron" <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        with ESMTP id S230338AbiJNOPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 10:15:41 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD07CBFC5;
+        Fri, 14 Oct 2022 07:15:39 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29EAT6Co022413;
+        Fri, 14 Oct 2022 16:15:29 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=c4sqIP3SAOyeiYoNJ/9pa6fPWtN5o3u+21fCELVnUaE=;
+ b=hXrc1QkIwK5kz7wVV9Ww8bnj57a/XAgqCGJJjr0Z+AWq2glrw2BOgEA7gqEMeFN8AIIl
+ yjII/K91O7g6+ZHF7CEbpvpnERey+igFKL8DTI3nWy59sudTXu4+CA2r/v5AjQD0NOa0
+ mo4r5TI8NRK72PqxVfysLv/a5hQjFcQFRMlEToX7AQnHN9W8TzT4CdF/a7ipj10I/sGy
+ FmIxugO5in26pbEKpiAFYNiP6w/V/kloSLzF2PTiYdUv+x+zyXuKpLsKq25iG2LFsGRe
+ PFX6qNYn35NsWXjAAZkDVBDM5CD9qJ17ctf2GJiofvRN5Hm3GSC9FBP6iGLtsMSIPI72 MQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3k64m7x0dw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 14 Oct 2022 16:15:29 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4667410002A;
+        Fri, 14 Oct 2022 16:15:26 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3DF812309FA;
+        Fri, 14 Oct 2022 16:15:26 +0200 (CEST)
+Received: from localhost (10.75.127.44) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Fri, 14 Oct
+ 2022 16:15:24 +0200
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To:     <alexandre.torgue@foss.st.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <amelie.delaunay@foss.st.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-Subject: Re: [PATCH 1/3] iio: temperature: ltc2983: allocate iio channels
- once
-Message-ID: <20221014151123.00003268@huawei.com>
-In-Reply-To: <20221014123724.1401011-2-demonsingur@gmail.com>
-References: <20221014123724.1401011-1-demonsingur@gmail.com>
-        <20221014123724.1401011-2-demonsingur@gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <fabrice.gasnier@foss.st.com>
+Subject: [PATCH v2 00/10] Add support for USB on STM32MP13
+Date:   Fri, 14 Oct 2022 16:14:59 +0200
+Message-ID: <20221014141509.211149-1-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.42]
-X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-14_08,2022-10-14_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Oct 2022 15:37:22 +0300
-Cosmin Tanislav <demonsingur@gmail.com> wrote:
+Add support for USBPHYC, USB Host and USB OTG on STM32MP13.
+Enable all these interfaces on STM32MP135F-DK board.
+Enable the STM32G0 UCSI driver as module.
+Dependency on PWR and PMIC regulator is tempoarily managed by using
+fixed regulators (resp in the SoC dtsi and the board dts files).
+The USB support is functional when these regulators gets enabled at
+boot time before entering the kernel.
 
-> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> 
-> Currently, every time the device wakes up from sleep, the
-> iio_chan array is reallocated, leaking the previous one
-> until the device is removed (basically never).
-> 
-> Move the allocation to the probe function to avoid this.
-> 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-Hi Cosmin,
+Changes in v2:
+Adopt "usb" and "typec" generic node names
 
-Please give a fixes tag for this one as we'll definitely want to
-backport it.
+Amelie Delaunay (5):
+  ARM: dts: stm32: add USBPHYC and dual USB HS PHY support on stm32mp131
+  ARM: dts: stm32: add UBSH EHCI and OHCI support on stm32mp131
+  ARM: dts: stm32: add USB OTG HS support on stm32mp131
+  ARM: dts: stm32: enable USB HS phys on stm32mp135f-dk
+  ARM: dts: stm32: enable USB Host EHCI on stm32mp135f-dk
 
-Reply to this patch is fine as b4 will pick it up like any other tag.
+Fabrice Gasnier (5):
+  ARM: dts: stm32: add PWR fixed regulators on stm32mp131
+  ARM: dts: stm32: add fixed regulators to support usb on stm32mp135f-dk
+  ARM: dts: stm32: add pins for stm32g0 typec controller on stm32mp13
+  ARM: dts: stm32: enable USB OTG in dual role mode on stm32mp135f-dk
+  ARM: multi_v7_defconfig: enable Type-C UCSI and STM32G0 as modules
 
-> ---
->  drivers/iio/temperature/ltc2983.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/iio/temperature/ltc2983.c b/drivers/iio/temperature/ltc2983.c
-> index b652d2b39bcf..a60ccf183687 100644
-> --- a/drivers/iio/temperature/ltc2983.c
-> +++ b/drivers/iio/temperature/ltc2983.c
-> @@ -1385,13 +1385,6 @@ static int ltc2983_setup(struct ltc2983_data *st, bool assign_iio)
->  		return ret;
->  	}
->  
-> -	st->iio_chan = devm_kzalloc(&st->spi->dev,
-> -				    st->iio_channels * sizeof(*st->iio_chan),
-> -				    GFP_KERNEL);
-> -
-> -	if (!st->iio_chan)
-> -		return -ENOMEM;
-> -
->  	ret = regmap_update_bits(st->regmap, LTC2983_GLOBAL_CONFIG_REG,
->  				 LTC2983_NOTCH_FREQ_MASK,
->  				 LTC2983_NOTCH_FREQ(st->filter_notch_freq));
-> @@ -1514,6 +1507,12 @@ static int ltc2983_probe(struct spi_device *spi)
->  		gpiod_set_value_cansleep(gpio, 0);
->  	}
->  
-> +	st->iio_chan = devm_kzalloc(&spi->dev,
-> +				    st->iio_channels * sizeof(*st->iio_chan),
-> +				    GFP_KERNEL);
-> +	if (!st->iio_chan)
-> +		return -ENOMEM;
-> +
->  	ret = ltc2983_setup(st, true);
->  	if (ret)
->  		return ret;
+ arch/arm/boot/dts/stm32mp13-pinctrl.dtsi |  7 ++
+ arch/arm/boot/dts/stm32mp131.dtsi        | 81 ++++++++++++++++++++
+ arch/arm/boot/dts/stm32mp135f-dk.dts     | 95 ++++++++++++++++++++++++
+ arch/arm/configs/multi_v7_defconfig      |  2 +
+ 4 files changed, 185 insertions(+)
+
+-- 
+2.25.1
 
