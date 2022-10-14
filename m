@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B366F5FF107
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 17:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EED65FF106
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 17:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230129AbiJNPUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 11:20:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56246 "EHLO
+        id S230104AbiJNPUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 11:20:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230126AbiJNPUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 11:20:12 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E5034727
+        with ESMTP id S230111AbiJNPUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 11:20:10 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E757E36BD5
         for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 08:20:07 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id l16-20020a05600c4f1000b003c6c0d2a445so3753592wmq.4
+Received: by mail-wm1-x32c.google.com with SMTP id c3-20020a1c3503000000b003bd21e3dd7aso5577622wma.1
         for <devicetree@vger.kernel.org>; Fri, 14 Oct 2022 08:20:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=G+qRFSBJ+VCcrm8OgMqVSB4wBGSDumRukXHEi1aq3ic=;
-        b=mNrZDV3KBcXf6FixJKWBJ1C3FABLGivwTv4I9P5qaHrzMf7zXZJbq5/pQpJsuyVA+U
-         4o21CcHjTPmSr31ckmhY+msDYTsX4QfcWC2HmxiRvsSl7A26y7IpYuCUS9l7zbEPuyVI
-         JYCCbX99/d3FDyxccszQzz4mdzorR5hvP4L6+8Jsam0HeDcTtSqtQ0KDtEu9AiJialp5
-         9D7N0CNSvGhrK/yr6rxfp8VmMEQ9AivaCXr6m3EYRTn98BPj5/gIpzA7IO14IszJNdEE
-         F8dvRC329BHZfS9T3KV9Keb/VadAFkiIKOeOHgZOu5He6AtliytBttcgpq6poXLOEey0
-         K5HQ==
+        bh=WD3SWI1ZQbB56NbLV6ErcIYLgxudB79QnGxHT/OO1/A=;
+        b=xvuyHsGSe72rLdUihhIBroS2wQfyS10y9SL3x7bwkMz7yNpMbKWFfQk4EJbX/Zo372
+         PwscucOiJJKImb6RHp2IR7put5ZYBb8UBgWTLnZ4JnhUxaO5x/c0uvLkidJ+dPGP+TPm
+         iaDvm1ZRslxLAS8nhDnYVmkYjvIjuvrkZPzZXqn4K8bWCGldqzeMX0SNR+uEL06+sPvE
+         Q8vIN7a9fiz+fqqONarnApyHicElt5yUzQMXVOtF0ydXRndURCyICzKHciuwELNEDhWE
+         l1/+Fsza7f6d+lB92wDKYxEkL4DbyK/62lJf1Z1GtjJW6HF5KCWym+cyOHtkmzmw9Ib9
+         BrSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=G+qRFSBJ+VCcrm8OgMqVSB4wBGSDumRukXHEi1aq3ic=;
-        b=fiN8Hy9ZDmqFmK7L3mnU0FES9bD1kk7/DxlSVK2HrQVWzP5h7sQieG0tCv9BF1biqi
-         91Jl5GcQ5YlQ0vNInfqiMGwXCEpuUrJ2DpqCcXZfH12uAUfiLX0ic/DMhAr2sixpwyBm
-         3wuKwi5ssbVGBKykAVZGS9pqjndKCreGxJZCY7UayKI9YFXn4kkLtpopoVN4MxKnbKV1
-         0WOXPhOEWmIfZ6la2XcAQd+V85ShS0yXyogrv8An4K0paO1O5Fhw+rLy7jf38uLMdrKO
-         Ehl9PbrNcBbJAiBKdXQ3OFdcEfXszpKZ0Ttdht4XggCNd2QxbPwtbGYmtEbVVajadNek
-         Hgyg==
-X-Gm-Message-State: ACrzQf1IKr0EpGleY1I8kjMYWWWL5CGF+Wbzw/DSZzfL661YOmf995MK
-        z+KxkgV8/PtS99yEjqQDsMmk2g==
-X-Google-Smtp-Source: AMsMyM7tvePcKp2mnsbqKpN0/ErKnzP3D2TVserIxIygBlRAmG317STdtCV6LSvAtpr6Gn/DRV+qvg==
-X-Received: by 2002:a05:600c:a4c:b0:3b4:fc1b:81 with SMTP id c12-20020a05600c0a4c00b003b4fc1b0081mr3916369wmq.125.1665760805442;
-        Fri, 14 Oct 2022 08:20:05 -0700 (PDT)
+        bh=WD3SWI1ZQbB56NbLV6ErcIYLgxudB79QnGxHT/OO1/A=;
+        b=F0uFVA3xZ2gdhRwVJRkhMspNRV0kjAQhmay4BynJtF1lkFzCbcEDFxhExJ9solmsHr
+         CRX6/HzpTmi6vgXbIamCyeWI2qik07UC/VoTNGZkLt9FG5/OCPbi5e4Z4zV+HTaeDu35
+         ndoeaslttjKZCSRHvXqiExLQEMjv03pmCV8A3ARWHw/40DB6jPL5RhF7UJ4P6VjWWSYB
+         2Ab2tWmxJPaIHuD6m/UUj74n5u0wutv1KB/r0DkNv5LAEsP0GHOxtY4Ghs7fBNirQ4tC
+         wTxhhDUK0P9yRQup71kS28L2IhRkkMFLNoOJhZosziLV1Gl+3XKLoYALpx4r3vC9aiiE
+         MlLQ==
+X-Gm-Message-State: ACrzQf21A1dERnIpv+Ohp0p/2PiRmQ0+YRka/2PN5ugaGbuWCcvyFdbW
+        gu4EbOY68ioaDNO1O+Ak22xCXw==
+X-Google-Smtp-Source: AMsMyM7f1Cxdv0i/Y3UH5OsNKg6jf7wGcVPESpSUScbeO0dlFszQv0PQ/gafOm4z2H3jH5fpfnYUnw==
+X-Received: by 2002:a05:600c:3d8e:b0:3c6:e58d:354f with SMTP id bi14-20020a05600c3d8e00b003c6e58d354fmr3131064wmb.176.1665760807236;
+        Fri, 14 Oct 2022 08:20:07 -0700 (PDT)
 Received: from [127.0.0.1] (2a02-8440-6241-7429-3074-96af-9642-0004.rev.sfr.net. [2a02:8440:6241:7429:3074:96af:9642:4])
-        by smtp.gmail.com with ESMTPSA id z11-20020a05600c0a0b00b003c6bd91caa5sm2818223wmp.17.2022.10.14.08.20.03
+        by smtp.gmail.com with ESMTPSA id z11-20020a05600c0a0b00b003c6bd91caa5sm2818223wmp.17.2022.10.14.08.20.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Oct 2022 08:20:05 -0700 (PDT)
+        Fri, 14 Oct 2022 08:20:06 -0700 (PDT)
 From:   Guillaume Ranquet <granquet@baylibre.com>
-Date:   Fri, 14 Oct 2022 17:15:55 +0200
-Subject: [PATCH v2 02/12] dt-bindings: display: mediatek: add MT8195 hdmi bindings
+Date:   Fri, 14 Oct 2022 17:15:56 +0200
+Subject: [PATCH v2 03/12] drm/mediatek: hdmi: use a regmap instead of iomem
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20220919-v2-2-8419dcf4f09d@baylibre.com>
+Message-Id: <20220919-v2-3-8419dcf4f09d@baylibre.com>
 References: <20220919-v2-0-8419dcf4f09d@baylibre.com>
 In-Reply-To: <20220919-v2-0-8419dcf4f09d@baylibre.com>
 To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
@@ -88,172 +88,141 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mt8195 SoC bindings for hdmi and hdmi-ddc
+To prepare support for newer chips that need to share their address
+range with a dedicated ddc driver, use a regmap.
 
 Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 ---
- .../bindings/display/mediatek/mediatek,hdmi.yaml   | 67 +++++++++++++++++-----
- .../display/mediatek/mediatek,mt8195-hdmi-ddc.yaml | 51 ++++++++++++++++
- 2 files changed, 104 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_hdmi.c | 43 +++++++++++--------------------------
+ 1 file changed, 13 insertions(+), 30 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
-index bdaf0b51e68c..955026cd7ca5 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
-@@ -21,26 +21,21 @@ properties:
-       - mediatek,mt7623-hdmi
-       - mediatek,mt8167-hdmi
-       - mediatek,mt8173-hdmi
-+      - mediatek,mt8195-hdmi
+diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+index 4c80b6896dc3..9b02b30a193a 100644
+--- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
++++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+@@ -171,7 +171,7 @@ struct mtk_hdmi {
+ 	u32 ibias_up;
+ 	struct regmap *sys_regmap;
+ 	unsigned int sys_offset;
+-	void __iomem *regs;
++	struct regmap *regs;
+ 	enum hdmi_colorspace csp;
+ 	struct hdmi_audio_param aud_param;
+ 	bool audio_enable;
+@@ -187,44 +187,29 @@ static inline struct mtk_hdmi *hdmi_ctx_from_bridge(struct drm_bridge *b)
+ 	return container_of(b, struct mtk_hdmi, bridge);
+ }
  
-   reg:
-     maxItems: 1
+-static u32 mtk_hdmi_read(struct mtk_hdmi *hdmi, u32 offset)
++static int mtk_hdmi_read(struct mtk_hdmi *hdmi, u32 offset, u32 *val)
+ {
+-	return readl(hdmi->regs + offset);
++	return regmap_read(hdmi->regs, offset, val);
+ }
  
--  interrupts:
--    maxItems: 1
+ static void mtk_hdmi_write(struct mtk_hdmi *hdmi, u32 offset, u32 val)
+ {
+-	writel(val, hdmi->regs + offset);
++	regmap_write(hdmi->regs, offset, val);
+ }
+ 
+ static void mtk_hdmi_clear_bits(struct mtk_hdmi *hdmi, u32 offset, u32 bits)
+ {
+-	void __iomem *reg = hdmi->regs + offset;
+-	u32 tmp;
 -
-   clocks:
--    items:
--      - description: Pixel Clock
--      - description: HDMI PLL
--      - description: Bit Clock
--      - description: S/PDIF Clock
-+    minItems: 4
-+    maxItems: 4
+-	tmp = readl(reg);
+-	tmp &= ~bits;
+-	writel(tmp, reg);
++	regmap_clear_bits(hdmi->regs, offset, bits);
+ }
  
-   clock-names:
--    items:
--      - const: pixel
--      - const: pll
--      - const: bclk
--      - const: spdif
-+    minItems: 4
-+    maxItems: 4
-+
-+  interrupts:
-+    maxItems: 1
+ static void mtk_hdmi_set_bits(struct mtk_hdmi *hdmi, u32 offset, u32 bits)
+ {
+-	void __iomem *reg = hdmi->regs + offset;
+-	u32 tmp;
+-
+-	tmp = readl(reg);
+-	tmp |= bits;
+-	writel(tmp, reg);
++	regmap_set_bits(hdmi->regs, offset, bits);
+ }
  
-   phys:
-     maxItems: 1
-@@ -58,6 +53,9 @@ properties:
-     description: |
-       phandle link and register offset to the system configuration registers.
+ static void mtk_hdmi_mask(struct mtk_hdmi *hdmi, u32 offset, u32 val, u32 mask)
+ {
+-	void __iomem *reg = hdmi->regs + offset;
+-	u32 tmp;
+-
+-	tmp = readl(reg);
+-	tmp = (tmp & ~mask) | (val & mask);
+-	writel(tmp, reg);
++	regmap_update_bits(hdmi->regs, offset, mask, val);
+ }
  
-+  power-domains:
-+    maxItems: 1
-+
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
+ static void mtk_hdmi_hw_vid_black(struct mtk_hdmi *hdmi, bool black)
+@@ -473,7 +458,7 @@ static void mtk_hdmi_hw_aud_set_i2s_fmt(struct mtk_hdmi *hdmi,
+ {
+ 	u32 val;
  
-@@ -86,9 +84,50 @@ required:
-   - clock-names
-   - phys
-   - phy-names
--  - mediatek,syscon-hdmi
-   - ports
+-	val = mtk_hdmi_read(hdmi, GRL_CFG0);
++	mtk_hdmi_read(hdmi, GRL_CFG0, &val);
+ 	val &= ~(CFG0_W_LENGTH_MASK | CFG0_I2S_MODE_MASK);
  
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: mediatek,mt8195-hdmi
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: APB
-+            - description: HDCP
-+            - description: HDCP 24M
-+            - description: Split HDMI
-+        clock-names:
-+          items:
-+            - const: hdmi_apb_sel
-+            - const: hdcp_sel
-+            - const: hdcp24_sel
-+            - const: split_hdmi
-+
-+      required:
-+        - power-domains
-+    else:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Pixel Clock
-+            - description: HDMI PLL
-+            - description: Bit Clock
-+            - description: S/PDIF Clock
-+
-+        clock-names:
-+          items:
-+            - const: pixel
-+            - const: pll
-+            - const: bclk
-+            - const: spdif
-+
-+      required:
-+        - mediatek,syscon-hdmi
-+
- additionalProperties: false
+ 	switch (i2s_fmt) {
+@@ -565,7 +550,7 @@ static void mtk_hdmi_hw_aud_set_input_type(struct mtk_hdmi *hdmi,
+ {
+ 	u32 val;
  
- examples:
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
-new file mode 100644
-index 000000000000..0fe0a2a2f17f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek HDMI DDC for mt8195
-+
-+maintainers:
-+  - CK Hu <ck.hu@mediatek.com>
-+  - Jitao shi <jitao.shi@mediatek.com>
-+
-+description: |
-+  The HDMI DDC i2c controller is used to interface with the HDMI DDC pins.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8195-hdmi-ddc
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: ddc
-+
-+  mediatek,hdmi:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      A phandle to the mt8195 hdmi controller
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    hdmiddc0: ddc_i2c {
-+      compatible = "mediatek,mt8195-hdmi-ddc";
-+      mediatek,hdmi = <&hdmi0>;
-+      clocks = <&clk26m>;
-+      clock-names = "ddc";
-+    };
-+
-+...
+-	val = mtk_hdmi_read(hdmi, GRL_CFG1);
++	mtk_hdmi_read(hdmi, GRL_CFG1, &val);
+ 	if (input_type == HDMI_AUD_INPUT_I2S &&
+ 	    (val & CFG1_SPDIF) == CFG1_SPDIF) {
+ 		val &= ~CFG1_SPDIF;
+@@ -596,7 +581,7 @@ static void mtk_hdmi_hw_aud_src_reenable(struct mtk_hdmi *hdmi)
+ {
+ 	u32 val;
+ 
+-	val = mtk_hdmi_read(hdmi, GRL_MIX_CTRL);
++	mtk_hdmi_read(hdmi, GRL_MIX_CTRL, &val);
+ 	if (val & MIX_CTRL_SRC_EN) {
+ 		val &= ~MIX_CTRL_SRC_EN;
+ 		mtk_hdmi_write(hdmi, GRL_MIX_CTRL, val);
+@@ -610,7 +595,7 @@ static void mtk_hdmi_hw_aud_src_disable(struct mtk_hdmi *hdmi)
+ {
+ 	u32 val;
+ 
+-	val = mtk_hdmi_read(hdmi, GRL_MIX_CTRL);
++	mtk_hdmi_read(hdmi, GRL_MIX_CTRL, &val);
+ 	val &= ~MIX_CTRL_SRC_EN;
+ 	mtk_hdmi_write(hdmi, GRL_MIX_CTRL, val);
+ 	mtk_hdmi_write(hdmi, GRL_SHIFT_L1, 0x00);
+@@ -621,7 +606,7 @@ static void mtk_hdmi_hw_aud_set_mclk(struct mtk_hdmi *hdmi,
+ {
+ 	u32 val;
+ 
+-	val = mtk_hdmi_read(hdmi, GRL_CFG5);
++	mtk_hdmi_read(hdmi, GRL_CFG5, &val);
+ 	val &= CFG5_CD_RATIO_MASK;
+ 
+ 	switch (mclk) {
+@@ -1427,7 +1412,6 @@ static int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi,
+ 	struct device_node *cec_np, *remote, *i2c_np;
+ 	struct platform_device *cec_pdev;
+ 	struct regmap *regmap;
+-	struct resource *mem;
+ 	int ret;
+ 
+ 	ret = mtk_hdmi_get_all_clk(hdmi, np);
+@@ -1473,8 +1457,7 @@ static int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi,
+ 	}
+ 	hdmi->sys_regmap = regmap;
+ 
+-	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	hdmi->regs = devm_ioremap_resource(dev, mem);
++	hdmi->regs = device_node_to_regmap(dev->of_node);
+ 	if (IS_ERR(hdmi->regs)) {
+ 		ret = PTR_ERR(hdmi->regs);
+ 		goto put_device;
 
 -- 
 b4 0.11.0-dev
