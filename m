@@ -2,126 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA255FF0FC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 17:18:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87F655FF157
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 17:28:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbiJNPSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 11:18:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52228 "EHLO
+        id S230501AbiJNP2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 11:28:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbiJNPS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 11:18:29 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A482B1D3C60;
-        Fri, 14 Oct 2022 08:18:27 -0700 (PDT)
-Received: from fraeml739-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Mpqkl1JDxz6802C;
-        Fri, 14 Oct 2022 23:17:35 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml739-chm.china.huawei.com (10.206.15.220) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 14 Oct 2022 17:18:25 +0200
-Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 14 Oct
- 2022 16:18:25 +0100
-Date:   Fri, 14 Oct 2022 16:18:24 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-CC:     Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        "Jonathan Cameron" <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-Subject: Re: [PATCH 1/3] iio: temperature: ltc2983: allocate iio channels
- once
-Message-ID: <20221014161824.00001ca2@huawei.com>
-In-Reply-To: <20221014151123.00003268@huawei.com>
-References: <20221014123724.1401011-1-demonsingur@gmail.com>
-        <20221014123724.1401011-2-demonsingur@gmail.com>
-        <20221014151123.00003268@huawei.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S230440AbiJNP2j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 11:28:39 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F326165528;
+        Fri, 14 Oct 2022 08:28:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1665761318; x=1697297318;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5z/eMgxqqUuDg2RjLvj72J5xElrEO8SgLrrsw5yzTWI=;
+  b=Glh2OkpvxbfD/VinJqInH76DXRgcU/RbCZjd4m4f+v4fQ24Rty31c62M
+   T4m8RNS/4qjcriGsg5Qi9OrXExaLPB/vZqVBtcxtcwANocubV+w7e3PsW
+   JkxNhhId00W6X0eI/7YnuZMYcgCvTLbqjGqH0ya+MAUMK8Nyl92p76Z2M
+   vFw2YSLzgwDypLrUrxqPTBuj4cyftEQZCdsUMURV14VdLkyAoFfmittCS
+   NHTHKJ+kMnV+QbAYx5OhTSJVYoiGMIOweNPV7BAGI5DRTJDuZpXebqmt9
+   iBbD6tBHNn+S0ilFCDNh/PpoiXFqdSZo3rjzbhRAVdtQoqdbLRc/7zuE4
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="292758293"
+X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; 
+   d="scan'208";a="292758293"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2022 08:28:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="956619071"
+X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; 
+   d="scan'208";a="956619071"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmsmga005.fm.intel.com with ESMTP; 14 Oct 2022 08:28:34 -0700
+Date:   Fri, 14 Oct 2022 23:19:29 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com, dg@emlix.com,
+        j.zink@pengutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, system@metrotek.ru
+Subject: Re: [PATCH v17 1/2] fpga: lattice-sysconfig-spi: add Lattice
+ sysCONFIG FPGA manager
+Message-ID: <Y0l+AbjGSOyTaoqV@yilunxu-OptiPlex-7050>
+References: <20221011193821.21828-1-i.bornyakov@metrotek.ru>
+ <20221011193821.21828-2-i.bornyakov@metrotek.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.42]
-X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221011193821.21828-2-i.bornyakov@metrotek.ru>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Oct 2022 15:11:47 +0100
-Jonathan Cameron <Jonathan.Cameron@huawei.com> wrote:
+On 2022-10-11 at 22:38:20 +0300, Ivan Bornyakov wrote:
+> Add support to the FPGA manager for programming Lattice ECP5 FPGA over
+> slave SPI sysCONFIG interface.
+> 
+> sysCONFIG interface core functionality is separate from both ECP5 and
+> SPI specifics, so support for other FPGAs with different port types can
+> be added in the future.
+> 
+> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
 
-> On Fri, 14 Oct 2022 15:37:22 +0300
-> Cosmin Tanislav <demonsingur@gmail.com> wrote:
-> 
-> > From: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> > 
-> > Currently, every time the device wakes up from sleep, the
-> > iio_chan array is reallocated, leaking the previous one
-> > until the device is removed (basically never).
-> > 
-> > Move the allocation to the probe function to avoid this.
-> > 
-> > Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>  
-> Hi Cosmin,
-> 
-> Please give a fixes tag for this one as we'll definitely want to
-> backport it.
-> 
-> Reply to this patch is fine as b4 will pick it up like any other tag.
-Fixes: f110f3188e563 ("iio: temperature: Add support for LTC2983")
+[...]
 
-(from direct mail)
+> +
+> +static int sysconfig_read_busy(struct sysconfig_priv *priv)
+> +{
+> +	const u8 lsc_check_busy[] = SYSCONFIG_LSC_CHECK_BUSY;
+> +	u8 busy;
+> +	int ret;
+> +
+> +	ret = sysconfig_cmd_read(priv, lsc_check_busy, sizeof(lsc_check_busy),
+> +				 &busy, sizeof(busy));
+> +
+> +	return ret ? : busy;
+> +}
+> +
+> +static int sysconfig_poll_busy(struct sysconfig_priv *priv)
+> +{
+> +	unsigned long timeout;
+> +	int ret;
+> +
+> +	timeout = jiffies + msecs_to_jiffies(SYSCONFIG_POLL_BUSY_TIMEOUT_MS);
+> +
+> +	while (time_before(jiffies, timeout)) {
+> +		ret = sysconfig_read_busy(priv);
+> +		if (ret <= 0)
+> +			return ret;
+> +
+> +		usleep_range(SYSCONFIG_POLL_INTERVAL_US,
+> +			     SYSCONFIG_POLL_INTERVAL_US * 2);
+> +	}
+> +
+> +	return -ETIMEDOUT;
 
-> 
-> > ---
-> >  drivers/iio/temperature/ltc2983.c | 13 ++++++-------
-> >  1 file changed, 6 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/iio/temperature/ltc2983.c b/drivers/iio/temperature/ltc2983.c
-> > index b652d2b39bcf..a60ccf183687 100644
-> > --- a/drivers/iio/temperature/ltc2983.c
-> > +++ b/drivers/iio/temperature/ltc2983.c
-> > @@ -1385,13 +1385,6 @@ static int ltc2983_setup(struct ltc2983_data *st, bool assign_iio)
-> >  		return ret;
-> >  	}
-> >  
-> > -	st->iio_chan = devm_kzalloc(&st->spi->dev,
-> > -				    st->iio_channels * sizeof(*st->iio_chan),
-> > -				    GFP_KERNEL);
-> > -
-> > -	if (!st->iio_chan)
-> > -		return -ENOMEM;
-> > -
-> >  	ret = regmap_update_bits(st->regmap, LTC2983_GLOBAL_CONFIG_REG,
-> >  				 LTC2983_NOTCH_FREQ_MASK,
-> >  				 LTC2983_NOTCH_FREQ(st->filter_notch_freq));
-> > @@ -1514,6 +1507,12 @@ static int ltc2983_probe(struct spi_device *spi)
-> >  		gpiod_set_value_cansleep(gpio, 0);
-> >  	}
-> >  
-> > +	st->iio_chan = devm_kzalloc(&spi->dev,
-> > +				    st->iio_channels * sizeof(*st->iio_chan),
-> > +				    GFP_KERNEL);
-> > +	if (!st->iio_chan)
-> > +		return -ENOMEM;
-> > +
-> >  	ret = ltc2983_setup(st, true);
-> >  	if (ret)
-> >  		return ret;  
-> 
-> 
+As mentioned by Ahmad, could read_poll_timeout() be used?
 
+> +}
+> +
+> +static int sysconfig_read_status(struct sysconfig_priv *priv, u32 *status)
+> +{
+> +	const u8 lsc_read_status[] = SYSCONFIG_LSC_READ_STATUS;
+> +	__be32 device_status;
+> +	int ret;
+> +
+> +	ret = sysconfig_cmd_read(priv, lsc_read_status, sizeof(lsc_read_status),
+> +				 &device_status, sizeof(device_status));
+> +	if (ret)
+> +		return ret;
+> +
+> +	*status = be32_to_cpu(device_status);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sysconfig_poll_status(struct sysconfig_priv *priv, u32 *status)
+> +{
+> +	int ret = sysconfig_poll_busy(priv);
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	return sysconfig_read_status(priv, status);
+> +}
+> +
+> +static int sysconfig_poll_gpio(struct gpio_desc *gpio, bool is_active)
+> +{
+> +	unsigned long timeout;
+> +	int value;
+> +
+> +	timeout = jiffies + msecs_to_jiffies(SYSCONFIG_POLL_GPIO_TIMEOUT_MS);
+> +
+> +	while (time_before(jiffies, timeout)) {
+> +		value = gpiod_get_value(gpio);
+> +		if (value < 0)
+> +			return value;
+> +
+> +		if ((is_active && value) || (!is_active && !value))
+> +			return 0;
+> +
+> +		usleep_range(SYSCONFIG_POLL_INTERVAL_US,
+> +			     SYSCONFIG_POLL_INTERVAL_US * 2);
+> +	}
+> +
+> +	return -ETIMEDOUT;
+
+Same.
+
+[...]
+
+> +int sysconfig_probe(struct sysconfig_priv *priv)
+> +{
+> +	struct gpio_desc *program, *init, *done;
+> +	struct device *dev = priv->dev;
+> +	struct fpga_manager *mgr;
+> +
+> +	if (!dev)
+> +		return -ENODEV;
+> +
+> +	if (!priv->bitstream_burst_write_init) {
+> +		dev_err(dev,
+> +			"Callback for preparation for bitstream burst write is not defined\n");
+> +		return -EOPNOTSUPP;
+
+-EINVAL is better?
+
+> +	}
+> +
+> +	if (!priv->bitstream_burst_write) {
+> +		dev_err(dev,
+> +			"Callback for bitstream burst write is not defined\n");
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	if (!priv->bitstream_burst_write_complete) {
+> +		dev_err(dev,
+> +			"Callback for finishing bitstream burst write is not defined\n");
+> +		return -EOPNOTSUPP;
+> +	}
+
+command_transfer is optional?
+
+And I think different err log for each missing callback is too trivial,
+maybe just say like "ops missing" if any mandatory callback is missing.
+
+> +
+> +	program = devm_gpiod_get_optional(dev, "program", GPIOD_OUT_LOW);
+> +	if (IS_ERR(program))
+> +		return dev_err_probe(dev, PTR_ERR(program),
+> +				     "Failed to get PROGRAM GPIO\n");
+> +
+> +	init = devm_gpiod_get_optional(dev, "init", GPIOD_IN);
+> +	if (IS_ERR(init))
+> +		return dev_err_probe(dev, PTR_ERR(init),
+> +				     "Failed to get INIT GPIO\n");
+> +
+> +	done = devm_gpiod_get_optional(dev, "done", GPIOD_IN);
+> +	if (IS_ERR(done))
+> +		return dev_err_probe(dev, PTR_ERR(done),
+> +				     "Failed to get DONE GPIO\n");
+> +
+> +	priv->program = program;
+> +	priv->init = init;
+> +	priv->done = done;
+> +
+> +	mgr = devm_fpga_mgr_register(dev, "Lattice sysCONFIG FPGA Manager",
+> +				     &sysconfig_fpga_mgr_ops, priv);
+> +
+> +	return PTR_ERR_OR_ZERO(mgr);
+> +}
+> +EXPORT_SYMBOL(sysconfig_probe);
