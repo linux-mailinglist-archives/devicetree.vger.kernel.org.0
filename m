@@ -2,93 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C66C65FE792
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 05:25:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 250DF5FE797
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 05:28:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbiJNDZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Oct 2022 23:25:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37398 "EHLO
+        id S229504AbiJND2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Oct 2022 23:28:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbiJNDZ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 23:25:29 -0400
-Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.221.58])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DA8CA9243;
-        Thu, 13 Oct 2022 20:25:25 -0700 (PDT)
-X-QQ-mid: bizesmtp70t1665717897tggdurz9
-Received: from [192.168.50.235] ( [113.72.147.11])
-        by bizesmtp.qq.com (ESMTP) with 
-        id ; Fri, 14 Oct 2022 11:24:55 +0800 (CST)
-X-QQ-SSF: 01000000000000B09000000A0000000
-X-QQ-FEAT: Sm8l2YSuDykwx9zlf9aLJ0pyGRo8hfvyvKRxpLKx+MBlrJvD5pae//UyWDAHW
-        na+5Zc7KD3nH6kxeXh6Yqpsg0LCAFrZLbmfKzGrO0BDwerR9xpCu/dFNr2efEUDZBpPls6y
-        0LDmtH/jgCC728s/PbjIVFaNySz6J0mJm1iSKu6MrWK0k1EGan9i1YWZUUWi3EDBHYOAgW7
-        2LECSrZ7SDNEbTiafYaBMYy8np1WuK2EYswgPqtX9OxtcVauKnhg8LPOPxBNgvYoa5exsQ9
-        wQooaViwTDRQvilIPnMdhtemhJTHDS6oTPIW3h1NeNCTDhUYflKHmS7yqFkhvESXqWXhT27
-        dc07HIQ4XYHjmjFWxc2ve/5cGaJHF6vbiVpGk7z6+CQyfKG3JElOgvjk2WIIg==
-X-QQ-GoodBg: 0
-Message-ID: <7CB1B79E00E38D81+9631ccf1-48b5-9ffa-e5cd-b0c9a7c50a56@linux.starfivetech.com>
-Date:   Fri, 14 Oct 2022 11:24:44 +0800
+        with ESMTP id S229609AbiJND2k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Oct 2022 23:28:40 -0400
+Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67107133300;
+        Thu, 13 Oct 2022 20:28:34 -0700 (PDT)
+Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
+  by ironport.ite.com.tw with ESMTP; 14 Oct 2022 11:28:33 +0800
+Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL1.internal.ite.com.tw [192.168.65.58])
+        by mse.ite.com.tw with ESMTP id 29E3SVQ1062332;
+        Fri, 14 Oct 2022 11:28:31 +0800 (GMT-8)
+        (envelope-from allen.chen@ite.com.tw)
+Received: from CSBMAIL1.internal.ite.com.tw (192.168.65.58) by
+ CSBMAIL1.internal.ite.com.tw (192.168.65.58) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.14; Fri, 14 Oct 2022 11:28:31 +0800
+Received: from CSBMAIL1.internal.ite.com.tw ([fe80::dd22:b444:859b:61c7]) by
+ CSBMAIL1.internal.ite.com.tw ([fe80::dd22:b444:859b:61c7%18]) with mapi id
+ 15.01.2176.014; Fri, 14 Oct 2022 11:28:31 +0800
+From:   <allen.chen@ite.com.tw>
+To:     <robh@kernel.org>, <laurent.pinchart@ideasonboard.com>
+CC:     <treapking@chromium.org>, <Jau-Chih.Tseng@ite.com.tw>,
+        <Kenneth.Hung@ite.com.tw>, <Hermes.Wu@ite.com.tw>,
+        <andrzej.hajda@intel.com>, <narmstrong@baylibre.com>,
+        <robert.foss@linaro.org>, <jonas@kwiboo.se>,
+        <jernej.skrabec@gmail.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v4 1/2] dt-bindings: it6505: add properties to restrict
+ output bandwidth
+Thread-Topic: [PATCH v4 1/2] dt-bindings: it6505: add properties to restrict
+ output bandwidth
+Thread-Index: AQHY3vPJt2BxrbTZTketnPM7zo04e64MLaIAgAEFYfA=
+Date:   Fri, 14 Oct 2022 03:28:31 +0000
+Message-ID: <e24a52c109444452a9027d53a21d6ef0@ite.com.tw>
+References: <20221013105116.180380-1-allen.chen@ite.com.tw>
+ <20221013105116.180380-2-allen.chen@ite.com.tw>
+ <Y0fxCVUtlkB4XHIq@pendragon.ideasonboard.com>
+ <20221013192016.GA95717-robh@kernel.org>
+In-Reply-To: <20221013192016.GA95717-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.70.46]
+x-tm-snts-smtp: 5B72E33DD26C6D172F89B33E0E1B75AE939EC55DD65B7C0244349CC685D2962D2002:8
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v1 29/30] RISC-V: defconfig: Enable CONFIG_SERIAL_8250_DW
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Ben Dooks <ben.dooks@codethink.co.uk>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        linux-kernel@vger.kernel.org
-References: <20220929143225.17907-1-hal.feng@linux.starfivetech.com>
- <20220930090653.7449-1-hal.feng@linux.starfivetech.com>
- <01c658ad-7f73-20fc-03c0-c82dcd820aa4@codethink.co.uk>
- <Yzdig6GepDx34u1j@spud>
-From:   Hal Feng <hal.feng@linux.starfivetech.com>
-In-Reply-To: <Yzdig6GepDx34u1j@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:linux.starfivetech.com:qybglogicsvr:qybglogicsvr2
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
-        NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.6
+X-MAIL: mse.ite.com.tw 29E3SVQ1062332
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,PDS_RDNS_DYNAMIC_FP,
+        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Sep 2022 22:41:23 +0100, Conor Dooley wrote:
-> On Fri, Sep 30, 2022 at 09:54:14PM +0100, Ben Dooks wrote:
-> > On 30/09/2022 10:06, Hal Feng wrote:
-> > > Add CONFIG_SERIAL_8250_DW=y, which is a necessary option for
-> > > StarFive JH7110 and JH7100 SoCs to boot with serial ports.
-> > > 
-> > > Signed-off-by: Hal Feng <hal.feng@linux.starfivetech.com>
-> > 
-> > That might be useful for other users at some point an I don't
-> > think it adds much code.
-> 
-> Honestly I think this should be applied for 6.1, for parity with the
-> other SoCs that have their serial console enabled by default.
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Could this patch be pulled out and applied for v6.1? So the JH7100
-and the coming JH7110 can enable serial console by default when
-booting. Thanks.
-
-Best regards,
-Hal
+SGkNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IFJvYiBIZXJyaW5nIDxyb2Jo
+QGtlcm5lbC5vcmc+IA0KU2VudDogRnJpZGF5LCBPY3RvYmVyIDE0LCAyMDIyIDM6MjAgQU0NClRv
+OiBMYXVyZW50IFBpbmNoYXJ0IDxsYXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5jb20+OyBB
+bGxlbiBDaGVuICizr6xmpnQpIDxhbGxlbi5jaGVuQGl0ZS5jb20udHc+DQpDYzogUGluLXllbiBM
+aW4gPHRyZWFwa2luZ0BjaHJvbWl1bS5vcmc+OyBKYXUtQ2hpaCBUc2VuZyAotL+sTLS8KSA8SmF1
+LUNoaWguVHNlbmdAaXRlLmNvbS50dz47IEtlbm5ldGggSHVuZyAorHiuYa3bKSA8S2VubmV0aC5I
+dW5nQGl0ZS5jb20udHc+OyBIZXJtZXMgV3UgKKdkqM6nuykgPEhlcm1lcy5XdUBpdGUuY29tLnR3
+PjsgQW5kcnplaiBIYWpkYSA8YW5kcnplai5oYWpkYUBpbnRlbC5jb20+OyBOZWlsIEFybXN0cm9u
+ZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+OyBSb2JlcnQgRm9zcyA8cm9iZXJ0LmZvc3NAbGlu
+YXJvLm9yZz47IEpvbmFzIEthcmxtYW4gPGpvbmFzQGt3aWJvby5zZT47IEplcm5laiBTa3JhYmVj
+IDxqZXJuZWouc2tyYWJlY0BnbWFpbC5jb20+OyBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXgu
+aWU+OyBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+OyBLcnp5c3p0b2YgS296bG93c2tp
+IDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc+OyBvcGVuIGxpc3Q6RFJNIERSSVZF
+UlMgPGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+OyBvcGVuIGxpc3Q6T1BFTiBGSVJN
+V0FSRSBBTkQgRkxBVFRFTkVEIERFVklDRSBUUkVFIEJJTkRJTkdTIDxkZXZpY2V0cmVlQHZnZXIu
+a2VybmVsLm9yZz47IG9wZW4gbGlzdCA8bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZz4NClN1
+YmplY3Q6IFJlOiBbUEFUQ0ggdjQgMS8yXSBkdC1iaW5kaW5nczogaXQ2NTA1OiBhZGQgcHJvcGVy
+dGllcyB0byByZXN0cmljdCBvdXRwdXQgYmFuZHdpZHRoDQoNCk9uIFRodSwgT2N0IDEzLCAyMDIy
+IGF0IDAyOjA1OjQ1UE0gKzAzMDAsIExhdXJlbnQgUGluY2hhcnQgd3JvdGU6DQo+IEhpIEFsbGVu
+LA0KPiANCj4gVGhhbmsgeW91IGZvciB0aGUgcGF0Y2guDQo+IA0KPiBPbiBUaHUsIE9jdCAxMywg
+MjAyMiBhdCAwNjo1MToxM1BNICswODAwLCBhbGxlbiB3cm90ZToNCj4gPiBGcm9tOiBhbGxlbiBj
+aGVuIDxhbGxlbi5jaGVuQGl0ZS5jb20udHc+DQo+ID4gDQo+ID4gQWRkIHByb3BlcnRpZXMgdG8g
+cmVzdHJpY3QgZHAgb3V0cHV0IGRhdGEtbGFuZXMgYW5kIGNsb2NrLg0KPiA+IA0KPiA+IFNpZ25l
+ZC1vZmYtYnk6IFBpbi1ZZW4gTGluIDx0cmVhcGtpbmdAY2hyb21pdW0ub3JnPg0KPiA+IFNpZ25l
+ZC1vZmYtYnk6IEFsbGVuIENoZW4gPGFsbGVuLmNoZW5AaXRlLmNvbS50dz4NCj4gPiAtLS0NCj4g
+PiAgLi4uL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL2l0ZSxpdDY1MDUueWFtbCAgIHwgNDMgKysr
+KysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNDMgaW5zZXJ0aW9ucygrKQ0K
+PiA+IA0KPiA+IGRpZmYgLS1naXQgDQo+ID4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvZGlzcGxheS9icmlkZ2UvaXRlLGl0NjUwNS55YW1sIA0KPiA+IGIvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL2l0ZSxpdDY1MDUueWFtbA0KPiA+
+IGluZGV4IDgzM2QxMWIyMzAzYTcuLmYyYzNkMWQxMDM1OWUgMTAwNjQ0DQo+ID4gLS0tIA0KPiA+
+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL2l0ZSxp
+dDY1MDUueWFtbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9k
+aXNwbGF5L2JyaWRnZS9pdGUsaXQ2NTA1LnlhDQo+ID4gKysrIG1sDQo+ID4gQEAgLTUyLDEwICs1
+Miw1MSBAQCBwcm9wZXJ0aWVzOg0KPiA+ICAgICAgbWF4SXRlbXM6IDENCj4gPiAgICAgIGRlc2Ny
+aXB0aW9uOiBleHRjb24gc3BlY2lmaWVyIGZvciB0aGUgUG93ZXIgRGVsaXZlcnkNCj4gPiAgDQo+
+ID4gKyAgZGF0YS1sYW5lczoNCj4gPiArICAgIG9uZU9mOg0KPiA+ICsgICAgICAtIG1pbkl0ZW1z
+OiAxDQo+ID4gKyAgICAgICAgbWF4SXRlbXM6IDENCj4gPiArICAgICAgICB1bmlxdWVJdGVtczog
+dHJ1ZQ0KPiA+ICsgICAgICAgIGl0ZW1zOg0KPiA+ICsgICAgICAgICAgZW51bToNCj4gPiArICAg
+ICAgICAgICAgLSAwDQo+ID4gKyAgICAgICAgICAgIC0gMQ0KPiA+ICsgICAgICAgIGRlc2NyaXB0
+aW9uOiBGb3Igb25lIGxhbmUgb3BlcmF0aW9uLg0KPiA+ICsNCj4gPiArICAgICAgLSBtaW5JdGVt
+czogMg0KPiA+ICsgICAgICAgIG1heEl0ZW1zOiAyDQo+ID4gKyAgICAgICAgdW5pcXVlSXRlbXM6
+IHRydWUNCj4gPiArICAgICAgICBpdGVtczoNCj4gPiArICAgICAgICAgIGVudW06DQo+ID4gKyAg
+ICAgICAgICAgIC0gMA0KPiA+ICsgICAgICAgICAgICAtIDENCj4gPiArICAgICAgICBkZXNjcmlw
+dGlvbjogRm9yIHR3byBsYW5lcyBvcGVyYXRpb24uDQo+ID4gKw0KPiA+ICsgICAgICAtIG1pbkl0
+ZW1zOiA0DQo+ID4gKyAgICAgICAgbWF4SXRlbXM6IDQNCj4gPiArICAgICAgICB1bmlxdWVJdGVt
+czogdHJ1ZQ0KPiA+ICsgICAgICAgIGl0ZW1zOg0KPiA+ICsgICAgICAgICAgZW51bToNCj4gPiAr
+ICAgICAgICAgICAgLSAwDQo+ID4gKyAgICAgICAgICAgIC0gMQ0KPiA+ICsgICAgICAgICAgICAt
+IDINCj4gPiArICAgICAgICAgICAgLSAzDQo+ID4gKyAgICAgICAgZGVzY3JpcHRpb246IEZvciBm
+b3VyIGxhbmVzIG9wZXJhdGlvbi4NCj4gDQo+IFRoZSBkYXRhIGxhbmVzIHNob3VsZCBiZSBpbiB0
+aGUgb3V0cHV0IGVuZHBvaW50LiBJZiB0aGVyZSdzIG5vIG91dHB1dCANCj4gcG9ydCwgb25lIHNo
+b3VsZCBiZSBhZGRlZC4NCj4gDQo9PT4gSW4gdGhpcyBkdC1iaW5kaW5nLCBvdXIgb3V0cHV0IHBv
+aW50IGlzICJleHRjb24iIHNvIGRvZXNuJ3QgaGF2ZSBvdXRwdXQgZW5kcG9pbnQuDQpJIGRvbid0
+IGtub3cgaG93IHRvIGFkZCB0aGUgZW5kcG9pbnQuDQpJZiBuZWVkIHRvIGFkZCB0aGUgZW5kcG9p
+bnQgdG8gdGhpcyBkdC1iaW5kaW5nLCB3aGF0IGlzIHlvdXIgcmVjb21tZW5kIGFib3V0IGFkZGlu
+ZyB0aGUgZW5kcG9pbnQ/DQpCeSB0aGUgd2F5LCBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0
+b2Yua296bG93c2tpQGxpbmFyby5vcmc+IHNhaWQgd2UgY291bGQgcHV0ICJkYXRhLWxhbmVzIiBo
+ZXJlLg0KPiA+ICsNCj4gPiAgICBwb3J0Og0KPiA+ICAgICAgJHJlZjogL3NjaGVtYXMvZ3JhcGgu
+eWFtbCMvcHJvcGVydGllcy9wb3J0DQoNClRvIGZpeCB0aGUgZXJyb3IsIHRoaXMgbXVzdCBiZToN
+Cg0KJHJlZjogL3NjaGVtYXMvZ3JhcGgueWFtbCMvJGRlZnMvcG9ydC1iYXNlDQp1bmV2YWx1YXRl
+ZFByb3BlcnRpZXM6IGZhbHNlDQoNCj4gPiAgICAgIGRlc2NyaXB0aW9uOiBBIHBvcnQgbm9kZSBw
+b2ludGluZyB0byBEUEkgaG9zdCBwb3J0IG5vZGUNCj4gPiAgDQo+ID4gKyAgICBwcm9wZXJ0aWVz
+Og0KPiA+ICsgICAgICBlbmRwb2ludDoNCj4gPiArICAgICAgICAkcmVmOiAvc2NoZW1hcy9ncmFw
+aC55YW1sIy8kZGVmcy9lbmRwb2ludC1iYXNlDQo+ID4gKw0KPiA+ICsgICAgICAgIHByb3BlcnRp
+ZXM6DQo+ID4gKyAgICAgICAgICBsaW5rLWZyZXF1ZW5jaWVzOg0KPiA+ICsgICAgICAgICAgICBt
+aW5JdGVtczogMQ0KPiA+ICsgICAgICAgICAgICBtYXhJdGVtczogMQ0KPiA+ICsgICAgICAgICAg
+ICBkZXNjcmlwdGlvbjogQWxsb3dlZCBtYXggbGluayBmcmVxdWVuY2llcyBpbiBIei4NCj4gPiAr
+DQo+ID4gIHJlcXVpcmVkOg0KPiA+ICAgIC0gY29tcGF0aWJsZQ0KPiA+ICAgIC0gb3ZkZC1zdXBw
+bHkNCj4gPiBAQCAtODQsMTAgKzEyNSwxMiBAQCBleGFtcGxlczoNCj4gPiAgICAgICAgICAgICAg
+cHdyMTgtc3VwcGx5ID0gPCZpdDY1MDVfcHAxOF9yZWc+Ow0KPiA+ICAgICAgICAgICAgICByZXNl
+dC1ncGlvcyA9IDwmcGlvIDE3OSAxPjsNCj4gPiAgICAgICAgICAgICAgZXh0Y29uID0gPCZ1c2Jj
+X2V4dGNvbj47DQo+ID4gKyAgICAgICAgICAgIGRhdGEtbGFuZXMgPSA8MCAxPjsNCj4gPiAgDQo+
+ID4gICAgICAgICAgICAgIHBvcnQgew0KPiA+ICAgICAgICAgICAgICAgICAgaXQ2NTA1X2luOiBl
+bmRwb2ludCB7DQo+ID4gICAgICAgICAgICAgICAgICAgICAgcmVtb3RlLWVuZHBvaW50ID0gPCZk
+cGlfb3V0PjsNCj4gPiArICAgICAgICAgICAgICAgICAgICBsaW5rLWZyZXF1ZW5jaWVzID0gL2Jp
+dHMvIDY0IDwxNTAwMDAwMDA+Ow0KPiA+ICAgICAgICAgICAgICAgICAgfTsNCj4gPiAgICAgICAg
+ICAgICAgfTsNCj4gPiAgICAgICAgICB9Ow0KPiANCj4gLS0NCj4gUmVnYXJkcywNCj4gDQo+IExh
+dXJlbnQgUGluY2hhcnQNCj4gDQo=
