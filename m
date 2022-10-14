@@ -2,201 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 741475FEEB7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 15:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 710C35FEED7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 15:44:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbiJNNeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 09:34:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34162 "EHLO
+        id S229888AbiJNNo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 09:44:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229703AbiJNNee (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 09:34:34 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09C019C217;
-        Fri, 14 Oct 2022 06:34:27 -0700 (PDT)
-Received: from fraeml737-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4MpnPr2WxPz6H73n;
-        Fri, 14 Oct 2022 21:32:48 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml737-chm.china.huawei.com (10.206.15.218) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 14 Oct 2022 15:34:25 +0200
-Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 14 Oct
- 2022 14:34:24 +0100
-Date:   Fri, 14 Oct 2022 14:34:23 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-CC:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        "Lars-Peter Clausen" <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v2 4/5] iio: accel: Support Kionix/ROHM KX022A
- accelerometer
-Message-ID: <20221014143423.00000379@huawei.com>
-In-Reply-To: <10c4663b-dd65-a545-786d-10aed6e6e5e9@fi.rohmeurope.com>
-References: <cover.1665066397.git.mazziesaccount@gmail.com>
-        <88e24b01da9f44ebf5fcd8344ded0b75ff742fbf.1665066397.git.mazziesaccount@gmail.com>
-        <Yz8fK7j8pxlU76xt@smile.fi.intel.com>
-        <98b59ad5-8c29-be41-4da1-a961db67827c@gmail.com>
-        <Y0QIzf2cAH9ehSeO@smile.fi.intel.com>
-        <19a6db0f-40a8-dacf-4583-cdb9d74e1243@fi.rohmeurope.com>
-        <Y0QnkQklBpDdqjpi@smile.fi.intel.com>
-        <10c4663b-dd65-a545-786d-10aed6e6e5e9@fi.rohmeurope.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S229872AbiJNNoZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 09:44:25 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD4B01CFC63;
+        Fri, 14 Oct 2022 06:44:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1665754876;
+    s=strato-dkim-0002; d=ibv-augsburg.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=3pB7WXwwUMURkXU3QEWf34QpwoK2MI1RffNpmhn/a1M=;
+    b=k9Bvgqy0oNImODQd+O/9q5JMI+eemxIVBVFBnwe7y6AhGBnCLmFsKQ4lyADmi87b9u
+    fi+yBXK9f/Dt4rM7qCztXFpeDijrAYdYQQkl9nnpWuErj/zf125NdCbWYTuJX07xV3om
+    x1LHxc8Rc+SvlTUqGrNYFnWRnGBuBqNeudm+ESdclIXs/iMXqWppWP+w1QOGjKhITAlW
+    Uh9frb4ZMkcsE2IhdGSTrj/y1Rx5v/KV9YNx12kF8EqlHSwPaYKISz9Iszg/dyqlnAY+
+    GCNpV0XqHJv+tSjA0sm0U+Br0w1fRsSNUS2ymDD5QxSCXqlP7lYk1eDTnymQ6TRR47Ag
+    5fFw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":KGMJfE6heLGk8b3w7Oa1fDtXwBjeDczIOHPRx8yNRKhFG/cxcP9dNdI9SxioDT8RvZMqtMfbyXFLOT+8odoEkA=="
+X-RZG-CLASS-ID: mo00
+Received: from JADEVM-DRA
+    by smtp.strato.de (RZmta 48.2.0 DYNA|AUTH)
+    with ESMTPSA id R6cb4ey9EDfFMag
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 14 Oct 2022 15:41:15 +0200 (CEST)
+Date:   Fri, 14 Oct 2022 15:41:14 +0200
+From:   Dominic Rath <dominic.rath@ibv-augsburg.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, tjoseph@cadence.com,
+        bhelgaas@google.com, lpieralisi@kernel.org, nm@ti.com,
+        vigneshr@ti.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        Alexander Bahle <bahle@ibv-augsburg.de>,
+        Dominic Rath <rath@ibv-augsburg.de>
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: cdns: Add PHY latency properties
+Message-ID: <20221014134114.GA307620@JADEVM-DRA>
+References: <20221013062649.303184-1-dominic.rath@ibv-augsburg.de>
+ <20221013062649.303184-2-dominic.rath@ibv-augsburg.de>
+ <20221013191249.GA38183-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.42]
-X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221013191249.GA38183-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-...
-
-> >   
-> >>>>>> +	if (en)
-> >>>>>> +		return regmap_set_bits(data->regmap, KX022A_REG_CNTL,
-> >>>>>> +				       KX022A_MASK_DRDY);  
-> >>>>>
-> >>>>> I would put redundant 'else' here to have them on the same column, but
-> >>>>> it's pity we don't have regmap_assign_bits() API (or whatever name you
-> >>>>> can come up with) to hide this kind of code.  
-> >>>>
-> >>>> Eh, you mean you would put else here even though we return from the if? And
-> >>>> then put another return in else, and no return outside the if/else?
-> >>>>
-> >>>> I definitely don't like the idea.
-> >>>>
-> >>>> We could probably use regmap_update_bits and ternary but in my opinion that
-> >>>> would be just much less obvious. I do like the use of set/clear bits which
-> >>>> also makes the meaning / "polarity" of bits really clear.  
-> >>>
-> >>> The idea behind is simple (and note that I'm usually on the side of _removing_
-> >>> redundancy)
-> >>>
-> >>> 	if (en)
-> >>> 		return regmap_set_bits(data->regmap, KX022A_REG_CNTL,
-> >>> 				       KX022A_MASK_DRDY);
-> >>> 	else
-> >>> 		return regmap_clear_bits(data->regmap, KX022A_REG_CNTL,
-> >>> 					 ...
-> >>>
-> >>> Because the branches are semantically tighten to each other. But it's not
-> >>> a big deal to me.  
-> >>
-> >> What I do not really like in above example is that we never reach the
-> >> end of function body.  
+On Thu, Oct 13, 2022 at 02:12:49PM -0500, Rob Herring wrote:
+> On Thu, Oct 13, 2022 at 08:26:47AM +0200, Dominic Rath wrote:
+> > From: Alexander Bahle <bahle@ibv-augsburg.de>
 > > 
-> > What do you mean by that? Compiler does warn or what?  
-> 
-> I don't know if compiler warns about it as I didn't test it. Now that 
-> you mentioned it, I think I have seen such warnings from a compiler or 
-> some static analyzer (klocwork?) in the past though. What I mean is that:
-> 
-> int foo()
-> {
-> 	if () {
-> 		...
-> 		return 1;
-> 	} else {
-> 		...
-> 		return 2;
-> 	}
-> }
-> 
-
-For reference, this is the one I'd write if both options are good
-(or both are bad) and we don't need to worry about reducing indent
-for readability.
-
-However, I long since decided this was trivial enough not to
-comment on it in the code of others!
-
-> construct makes mistakes like:
-> 
-> int foo()
-> {
-> 	if () {
-> 		...
-> 		return 1;
-> 	} else {
-> 		...
-> 		return 2;
-> 	}
-> 
-> 	...
-> 
-> 	return 0;
-> }
-
-That should given unreachable code warning unless you've really managed
-to confuse the compiler  / static analysis tooling.
-
-> 
-> easy to make. When one uses:
-> 
-> int foo()
-> {
-> 	if () {
-> 		...
-> 		return 1;
-> 	}
-> 
-> 	...
-> 	return 2;
-> }
-> 
-> to begin with there is zero room for such confusion.
-> 
-> >   
-> >> It is against the expectation - and adding the
-> >> else has no real meaning when if returns. I actually think that
-> >> checkpatch could even warn about that construct.  
+> > Add "cdns,tx-phy-latency-ps" and "cdns,rx-phy-latency-ps" DT bindings for
+> > setting the PCIe PHY latencies.
+> > The properties expect a list of uint32 PHY latencies in picoseconds for
+> > every supported speed starting at PCIe Gen1, e.g.:
 > > 
-> > No way we ever accept such a thing for checkpatch because it's subjective  
+> >   max-link-speed = <2>;
+> >   tx-phy-latency-ps = <100000 200000>; /* Gen1: 100ns, Gen2: 200ns */
+> >   rx-phy-latency-ps = <150000 250000>; /* Gen1: 150ns, Gen2: 250ns */
 > 
-> Eh. Are you telling me that there is no subjective stuff in checkpatch? ;)
-> 
-> > (very dependant on the code piece). OTOH the proposed pattern is used in
-> > many places and left like that in places where I cleaned up the 'else',
-> > to leave the semantic tights with the above lines).
-> >   
-> >>>>>> +	return regmap_clear_bits(data->regmap, KX022A_REG_CNTL,
-> >>>>>> +				 KX022A_MASK_DRDY);  
-> > 
-> > I see that we have a strong disagreement here. I leave it to maintainers.  
-> 
-> 
-> Okay, let's hear what others have to say here.
+> These are a property of the PHY or PCI host? Sounds like PHY to me and 
+> that should be in the PHY node. No reason the PCI driver can't go read 
+> PHY node properties.
 
-Non answer above ;)
+I'm actually not sure if this a property of the PHY, the PCIe host, or
+of the combination of the two.
 
-Time for the old "Don't let perfect be the enemy of good!"
+We thought about adding this property to the PHY, too, but we didn't
+know how to handle cases where a single PCIe host is linked with
+multiple PHYs for multi-lane configurations (see TI's AM65x for
+example). Which PHYs latency would you use to configure this PCIe RC?
 
+Personally I don't have a very strong opinion either way - we just
+didn't know any better than to put this into the PCIe host that needs
+it. If you think this is better put into the PHY node we can of course
+send a new version of this patch.
 
-> 
-> Thanks for all the input this far.
-> 
-> Best Regards
-> 	-- Matti
-> 
+Is there any binding that specifies "generic" PCIe properties, similar
+to ethernet-phy.yaml? We couldn't find any.
 
+I guess in the AM64x case the "PHY" is serdes0_pcie_link below serdes0:
+
+&serdes0 {
+        serdes0_pcie_link: phy@0 {
+	...
+
+This seems to be described by bindings/phy/phy-cadence-torrent.yaml.
+
+Should we add a generic (without cdns) tx/rx-phy-latency-ps property
+there?
+
+> If PTM is a standard PCIe thing, then I don't think these should be 
+> Cadence specific. IOW, drop 'cdns'. 
+
+Yes, it is a standard PCIe thing, but we haven't seen that many
+implementations yet, so we didn't want to pretend to know what this
+looks like in the generic case. We can of course drop 'cdns'.
+
+Best Regards,
+
+Dominic & Alexander
