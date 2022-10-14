@@ -2,61 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F4C65FF503
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 23:09:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 683E65FF509
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 23:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbiJNVJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 17:09:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43512 "EHLO
+        id S229635AbiJNVJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 17:09:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiJNVJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 17:09:07 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 454BE1DCCCB;
-        Fri, 14 Oct 2022 14:09:02 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id w196so6338277oiw.8;
-        Fri, 14 Oct 2022 14:09:02 -0700 (PDT)
+        with ESMTP id S229700AbiJNVJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 17:09:48 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D6BF5584;
+        Fri, 14 Oct 2022 14:09:40 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-132af5e5543so7281790fac.8;
+        Fri, 14 Oct 2022 14:09:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sFbWOiyQ97fl6msdrmbKRp8AqMUR98EgH4kmS3rexak=;
-        b=E7KB33jyJ/sd2rJQRjKFTdsdBWUi5QV+DHKu8SgLYC/FYscvzy9vYr25TsMmmMMk5Y
-         2apIukM7I7rsdwJ6hBlsbrFwb6dLXcfzhvrnCldxfnhjTMzwMKKrERWNnKJ7Y3y4DnuF
-         E07Zy6vaSn5RqffuQv5RvtYJ46GsYvAdaGcWsh4LAcy6/QxpdGwrrdtfrAlGVaVxdfcF
-         hZ8DgA6wvreGNIvyE6/W4ZMzcq6cd2ZJnDPz490fRtH2elonuuSVZZZ9BKYWsDeUwr7g
-         8C7JTagmpogp427iPMkXL9+1hlu+lRSxWDGbuLngPD6z0IdV9e2mcA21IgAa96hQejSZ
-         M3xg==
-X-Gm-Message-State: ACrzQf1T79mqGCb46RBEHo3vrhPtDy/Sra+ZuTiDU+QnsJ4JUxY2xq/T
-        Hx4ali5nBcFas6QJ5m7+4t31ON+sXhyE
-X-Google-Smtp-Source: AMsMyM5exSaegpHBePjo8BcVuZoo8kQdXZomJxgyXZ72GJFXcpyYNV6f3Nb7Cbh/csJE79kBBPNDuA==
-X-Received: by 2002:a54:450c:0:b0:354:9464:2e64 with SMTP id l12-20020a54450c000000b0035494642e64mr3424172oil.178.1665781741786;
-        Fri, 14 Oct 2022 14:09:01 -0700 (PDT)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hb6+hRsJ2+j+iFOkFuOlPFAOELc94JpoZuRVImRdf8g=;
+        b=2E2flWabyczENMEFHS0kHdDvpHUjWgRbpYQtRN77ZY3S54gnNv7yM/Wi3tppK2cdPe
+         7VtxeH++biM/OSZBTVTvr4tCxPwHEKd0GSL8SiAVCPVvrDC7fQ7N2krDopj9nVRsg1AC
+         rYVun/RGpOivdkgTmhE0lZOf3g0dtQ30gk5M9jMvq9flkpewFYITMRB6VJ+uTGVfKJ9/
+         /NkFFo2l6EHPW2hWvGTYgwwLeBnidBTVnXw8nZyjRGWkWpyBQ8M7e3j6RqrdSpJWJdqv
+         londH3nmO5s/wDEDsghJxsFyZSrBYiAzSTruLTCJP1Z37ClOOyMRUpnS+qg2RXIbx6lV
+         /t4Q==
+X-Gm-Message-State: ACrzQf1RGAgZwAOH4Fl+a06whsmJwMVuPdWn/X9zmE825+cTc7n8wBW+
+        qCgKhtrdH1Opn20VOocj7UNnf8Xq5i5B
+X-Google-Smtp-Source: AMsMyM4+BPQEN5gTldI4WjhqseUpc40eMXjxoGcOKszJd0o09wnb6qdWDwfEFTmDEqNGJfLGVrMorg==
+X-Received: by 2002:a05:6870:538a:b0:132:756f:2c98 with SMTP id h10-20020a056870538a00b00132756f2c98mr9414474oan.134.1665781780102;
+        Fri, 14 Oct 2022 14:09:40 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l36-20020a05687106a400b0013669485016sm1797234oao.37.2022.10.14.14.09.00
+        by smtp.gmail.com with ESMTPSA id d21-20020a9d4f15000000b0066193fe498bsm1776819otl.28.2022.10.14.14.09.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Oct 2022 14:09:01 -0700 (PDT)
-Received: (nullmailer pid 2899059 invoked by uid 1000);
-        Fri, 14 Oct 2022 21:09:02 -0000
-Date:   Fri, 14 Oct 2022 16:09:02 -0500
+        Fri, 14 Oct 2022 14:09:39 -0700 (PDT)
+Received: (nullmailer pid 2910371 invoked by uid 1000);
+        Fri, 14 Oct 2022 21:09:40 -0000
+Date:   Fri, 14 Oct 2022 16:09:40 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     devicetree@vger.kernel.org, paul.j.murphy@intel.com,
-        mchehab@kernel.org, daniele.alessandrelli@intel.com,
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        William Zhang <william.zhang@broadcom.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Joel Peshkin <joel.peshkin@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        dave.stevenson@raspberrypi.com, jacopo@jmondi.org,
-        sakari.ailus@iki.fi, linux-media@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] media: dt-bindings: imx412: Extend compatible
- strings
-Message-ID: <166578173132.2894359.17034886949314932517.robh@kernel.org>
-References: <20221014180417.3683285-1-bryan.odonoghue@linaro.org>
- <20221014180417.3683285-2-bryan.odonoghue@linaro.org>
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Rini <trini@konsulko.com>, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2] dt-bindings: nvmem: u-boot,env: add Broadcom's
+ variant binding
+Message-ID: <166578177913.2909910.7600034251484225468.robh@kernel.org>
+References: <20220930163631.27040-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20221014180417.3683285-2-bryan.odonoghue@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220930163631.27040-1-zajec5@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,25 +72,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Oct 2022 19:04:15 +0100, Bryan O'Donoghue wrote:
-> Add compatible bindings for imx577 which uses the same silicon enabling
-> reference code from Sony in the available examples provided.
+On Fri, 30 Sep 2022 18:36:31 +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Cc: sakari.ailus@iki.fi
-> Cc: dave.stevenson@raspberrypi.com
-> Cc: jacopo@jmondi.org
-> Cc: "Paul J. Murphy" <paul.j.murphy@intel.com>
-> Cc: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: linux-media@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Broadcom uses U-Boot for a lot of their bcmbca familiy chipsets. U-Boot
+> stores its configuration in an environment data block.
+> 
+> Such blocks are usually stored on flash as a separated partition at
+> hardcoded address. Broadcom however decided to:
+> 1. Store env data block inside U-Boot partition
+> 2. Avoid sticking to hardcoded offsets
+> 3. Use custom header with "uEnv" magic and env data length
+> 
+> Example (length 0x4000):
+> $ hexdump -n 32 -C -s 0x40000 /dev/mtdblock0
+> 00040000  76 6e 45 75 00 40 00 00  34 89 7a 82 49 4d 41 47  |vnEu.@..4.z.IMAG|
+> 00040010  45 3d 4e 41 4e 44 3a 31  4d 2c 31 30 32 34 4d 00  |E=NAND:1M,1024M.|
+> (0x40000 offset is unit specific and can change)
+> 
+> Starting with the commit 118f3fbe517f4 ("dt-bindings: mtd: partitions:
+> support label/name only partition") DT can describe partitions matching
+> them by a name (without specifying actual address). With that feature
+> and this binding change it's possible to:
+> 1. Specify DT node for Broadcom's U-Boot env data subpartition
+> 2. Add nodes for specific environment data variables
+> 3. Reference them as NVMEM cells
+> 
+> This binding is unlikely to help Broadcom's U-Boot. U-Boot SPL needs to
+> find environment data early (before it accesses DTB) and it does that by
+> looking for an "uEnv" magic. Dirty way.
+> 
+> This binding can however be used by operating systems. It allows
+> describing cleanly U-Boot, its env data and variables. It tells
+> operating system about Broadcom-specific env data so it can parse it.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> V2: Work on better commit body & add example
+> ---
+>  .../devicetree/bindings/nvmem/u-boot,env.yaml | 21 +++++++++++++++++++
+>  1 file changed, 21 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
