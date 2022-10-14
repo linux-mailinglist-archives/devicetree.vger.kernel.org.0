@@ -2,409 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEBDD5FF400
-	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 21:18:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C95DC5FF4E4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Oct 2022 22:56:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbiJNTST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Oct 2022 15:18:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35956 "EHLO
+        id S229652AbiJNU42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Oct 2022 16:56:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbiJNTST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 15:18:19 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A20171C208F;
-        Fri, 14 Oct 2022 12:18:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1665775097; x=1697311097;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VhEzD1+s4UBVZBCb9ksjCgOB+a85FsVlqv5XHXgX99o=;
-  b=ncm6hwf+/qNL7wvDpW7anVUPSVJrMzSw0wu+KqNJ7l+6jqHEPSH7uiGW
-   9TKpCdfHcay7Iw65N1o5hvYXu8Yl/h36jOLGdD2nnzp1Oeag3B1CAAuBD
-   tUfya4/rEqrM5C/YkMQmiLlE0eoUVb/goRxx0JxG2l35/qnhw+nnB9tN/
-   zKGMK3a0ShhvE6ueJi0ZJMrpR7TVgNH+kTyDRo2hHAjtXIgQyVpoEUoVb
-   Qd2/BIMph4804DzhuApKoEcttd+9gOTz+vGVxXdNOVrzLdlIOBgFDpFGS
-   FYRAMEuTfTNlrk+DyVKh0/lnQ0MJp0LsGVcaho102SVf2uxvSbNuyq09S
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="305442314"
-X-IronPort-AV: E=Sophos;i="5.95,185,1661842800"; 
-   d="scan'208";a="305442314"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2022 12:18:17 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="696417779"
-X-IronPort-AV: E=Sophos;i="5.95,185,1661842800"; 
-   d="scan'208";a="696417779"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2022 12:18:14 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id D2779200DA;
-        Fri, 14 Oct 2022 22:18:11 +0300 (EEST)
-Date:   Fri, 14 Oct 2022 19:18:11 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 2/5] media: i2c: ov5645: Use runtime PM
-Message-ID: <Y0m180wwV9CiNNTf@paasikivi.fi.intel.com>
-References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221014183459.181567-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S229609AbiJNU41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Oct 2022 16:56:27 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4872B1C493F;
+        Fri, 14 Oct 2022 13:56:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=O38m3Gmwd1SrCi88XGH7fqSPtTeCobB2G4S90JKS4LE=;
+        b=APR5lPihbmnA7ydWGAq02059QmawuCzALRSf9UBQczYDmjCVySRG1fkH4ivdHFt6U/A6R1LyAMR/C
+         NPIFJRAkS3P31tunb/C5hKKbm8vfVPnqXabrRGFXA+timWXFShOI8Xguh7R3pP/dGhVcMBCxoE6e5+
+         0rQ6WgCZbSHPmRDaR/ytI0QYu2T4JwvVDKhQTU5bbfWtUIj5UFZCC7qShejd4/A0Q9rZHBd2xe6goy
+         CcN2Z/jWx9nKnyZBcxMBpdk786VY0CbkOFgieiBS4FQFN0c1NsRyuofq4J7wLbM/0CBRtVFU/OkhSe
+         HN4NBzQYB/pjsUYDpvVgISqobdMyriw==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000012,0.028393)], BW: [Enabled, t: (0.000030,0.000001)], RTDA: [Enabled, t: (0.109497), Hit: No, Details: v2.42.0; Id: 15.52k3rc.1gfc4h2bg.cfpc; mclb], total: 0(700)
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from localhost.localdomain ([92.100.86.33])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Fri, 14 Oct 2022 23:56:11 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, dg@emlix.com, j.zink@pengutronix.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        system@metrotek.ru
+Subject: [PATCH v18 0/2] Lattice sysCONFIG SPI FPGA manager
+Date:   Fri, 14 Oct 2022 23:27:48 +0300
+Message-Id: <20221014202750.20542-1-i.bornyakov@metrotek.ru>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221014183459.181567-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Add support to the FPGA manager for programming Lattice ECP5 FPGA over
+slave SPI sysCONFIG interface.
 
-On Fri, Oct 14, 2022 at 07:34:56PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Switch to using runtime PM for power management.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2
-> * Moved pm_runtime_*_autosuspend() calls after registering the subdev.
-> ---
->  drivers/media/i2c/Kconfig  |   2 +-
->  drivers/media/i2c/ov5645.c | 137 +++++++++++++++++++------------------
->  2 files changed, 70 insertions(+), 69 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> index 7806d4b81716..c0edd1017fe8 100644
-> --- a/drivers/media/i2c/Kconfig
-> +++ b/drivers/media/i2c/Kconfig
-> @@ -459,7 +459,7 @@ config VIDEO_OV5640
->  config VIDEO_OV5645
->  	tristate "OmniVision OV5645 sensor support"
->  	depends on OF
-> -	depends on I2C && VIDEO_DEV
-> +	depends on I2C && PM && VIDEO_DEV
->  	select MEDIA_CONTROLLER
->  	select VIDEO_V4L2_SUBDEV_API
->  	select V4L2_FWNODE
-> diff --git a/drivers/media/i2c/ov5645.c b/drivers/media/i2c/ov5645.c
-> index 81e4e87e1821..1551690a94e0 100644
-> --- a/drivers/media/i2c/ov5645.c
-> +++ b/drivers/media/i2c/ov5645.c
-> @@ -27,6 +27,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_graph.h>
-> +#include <linux/pm_runtime.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/slab.h>
->  #include <linux/types.h>
-> @@ -108,7 +109,6 @@ struct ov5645 {
->  	u8 timing_tc_reg21;
->  
->  	struct mutex power_lock; /* lock to protect power state */
-> -	int power_count;
->  
->  	struct gpio_desc *enable_gpio;
->  	struct gpio_desc *rst_gpio;
-> @@ -635,8 +635,24 @@ static int ov5645_set_register_array(struct ov5645 *ov5645,
->  	return 0;
->  }
->  
-> -static int ov5645_set_power_on(struct ov5645 *ov5645)
-> +static int ov5645_set_power_off(struct device *dev)
->  {
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct ov5645 *ov5645 = to_ov5645(sd);
-> +
-> +	ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x58);
-> +	gpiod_set_value_cansleep(ov5645->rst_gpio, 1);
-> +	gpiod_set_value_cansleep(ov5645->enable_gpio, 0);
-> +	clk_disable_unprepare(ov5645->xclk);
-> +	regulator_bulk_disable(OV5645_NUM_SUPPLIES, ov5645->supplies);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ov5645_set_power_on(struct device *dev)
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct ov5645 *ov5645 = to_ov5645(sd);
->  	int ret;
->  
->  	ret = regulator_bulk_enable(OV5645_NUM_SUPPLIES, ov5645->supplies);
-> @@ -658,57 +674,19 @@ static int ov5645_set_power_on(struct ov5645 *ov5645)
->  
->  	msleep(20);
->  
-> -	return 0;
-> -}
-> -
-> -static void ov5645_set_power_off(struct ov5645 *ov5645)
-> -{
-> -	gpiod_set_value_cansleep(ov5645->rst_gpio, 1);
-> -	gpiod_set_value_cansleep(ov5645->enable_gpio, 0);
-> -	clk_disable_unprepare(ov5645->xclk);
-> -	regulator_bulk_disable(OV5645_NUM_SUPPLIES, ov5645->supplies);
-> -}
-> -
-> -static int ov5645_s_power(struct v4l2_subdev *sd, int on)
-> -{
-> -	struct ov5645 *ov5645 = to_ov5645(sd);
-> -	int ret = 0;
-> -
-> -	mutex_lock(&ov5645->power_lock);
-> -
-> -	/* If the power count is modified from 0 to != 0 or from != 0 to 0,
-> -	 * update the power state.
-> -	 */
-> -	if (ov5645->power_count == !on) {
-> -		if (on) {
-> -			ret = ov5645_set_power_on(ov5645);
-> -			if (ret < 0)
-> -				goto exit;
-> -
-> -			ret = ov5645_set_register_array(ov5645,
-> -					ov5645_global_init_setting,
-> +	ret = ov5645_set_register_array(ov5645, ov5645_global_init_setting,
->  					ARRAY_SIZE(ov5645_global_init_setting));
-> -			if (ret < 0) {
-> -				dev_err(ov5645->dev,
-> -					"could not set init registers\n");
-> -				ov5645_set_power_off(ov5645);
-> -				goto exit;
-> -			}
-> -
-> -			usleep_range(500, 1000);
-> -		} else {
-> -			ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x58);
-> -			ov5645_set_power_off(ov5645);
-> -		}
-> +	if (ret < 0) {
-> +		dev_err(ov5645->dev, "could not set init registers\n");
-> +		goto exit;
->  	}
->  
-> -	/* Update the power count. */
-> -	ov5645->power_count += on ? 1 : -1;
-> -	WARN_ON(ov5645->power_count < 0);
-> +	usleep_range(500, 1000);
->  
-> -exit:
-> -	mutex_unlock(&ov5645->power_lock);
-> +	return 0;
->  
-> +exit:
-> +	ov5645_set_power_off(dev);
->  	return ret;
->  }
->  
-> @@ -795,7 +773,7 @@ static int ov5645_s_ctrl(struct v4l2_ctrl *ctrl)
->  	int ret;
->  
->  	mutex_lock(&ov5645->power_lock);
-> -	if (!ov5645->power_count) {
-> +	if (!pm_runtime_get_if_in_use(ov5645->dev)) {
->  		mutex_unlock(&ov5645->power_lock);
->  		return 0;
->  	}
-> @@ -827,6 +805,7 @@ static int ov5645_s_ctrl(struct v4l2_ctrl *ctrl)
->  		break;
->  	}
->  
-> +	pm_runtime_put_autosuspend(ov5645->dev);
+ChangeLog:
+  v1 -> v2:
+    * remove "spi" from compatible string
+    * reword description in dt-bindings doc
+    * add reference to spi-peripheral-props.yaml in dt-binding doc
+    * fix DTS example in dt-bindings doc: 4-spaces indentations, no
+      undersores in node names.
+  v2 -> v3:
+    * fix typo "##size-cells" -> "#size-cells" in dt-bindings example
+  v3 -> v4:
+    * dt-bindings: reword description
+    * dt-bindings: revert props order
+  v4 -> v5:
+    * dt-bindings: remove trailing dot from title
+    * dt-bindings: reword description to avoid driver reference
+    * dt-bindings: add "Reviewed-by: Krzysztof Kozlowski" tag
+  v5 -> v6:
+    * ecp5-spi: lock SPI bus for exclusive usage in
+      ecp5_ops_write_init(), release in ecp5_ops_write_complete()
+      or on error
+  v6 -> v7:
+    * ecp5-spi.c -> lattice-sysconfig-spi.c. Reworked to represent
+      generalized sysCONFIG port with implementations for ECP5 and
+      MachXO2
+    * lattice,ecp5-fpga-mgr.yaml -> lattice,sysconfig.yaml. Reworked to
+      document both ECP5 and MachXO2 sysCONFIG.
+    * dt-bindings: remove "Reviewed-by: Krzysztof Kozlowski" tag as doc
+      was rewritten by a considerable amount.
+  v7 -> v8:
+    * dt-bindings: move "program-gpios", "init-gpios" and "done-gpios"
+      to top-level properties and disallow them for MachXO2 variant.
+  v8 -> v9:
+    * dt-bindings: "program-gpios", "init-gpios" and "done-gpios" are
+      now optional for both ECP5 and MachXO2
+    * lattice-sysconfig-spi.c -> sysconfig-spi.c + sysconfig.c +
+      sysconfig.h
+        ** reworked to be one sysCONFIG FPGA Manager rather than two
+	   distinct ECP5 and MachXO2 managers
+	** splitted to port type agnostic sysconfig.c and SPI-specific
+	   sysconfig-spi.c
+	** command transfer function moved to callback for ease of
+	   adding another port type, such as I2C
+  v9 -> v10:
+    * split sysconfig_transfer() callback into separate command_write()
+      and command_write_then_read(). There are too many transfers
+      without readback.
+    * add command_write_with_data() callback which performs single
+      transfer of command + data. It's needed for better abstraction of
+      paged bitstream write routine.
+    * move sysconfig_lsc_burst_init() to bitstream_burst_write_init()
+      callback to break dependence of sysconfig.c from sysconfig-spi.c
+    * move sysconfig_lsc_burst_complete() to bitstream_burst_write_complete()
+      callback to break dependence of sysconfig.c from sysconfig-spi.c
+    * add bitstream_burst_write() to abstract fpga_manager_ops->write()
+      from bus type
+    * remove struct spi_device from struct sysconfig_priv, use
+      to_spi_device()
+    * move fpga_manager_ops initialization to sysconfig.c
+  v10 -> v11:
+    * rename sysconfig_lsc_burst_init() to sysconfig_spi_lsc_burst_init()
+    * rename sysconfig_bitstream_burst_write() to
+      sysconfig_spi_bitstream_burst_write()
+    * rename sysconfig_lsc_burst_complete() to
+      sysconfig_spi_lsc_burst_complete()
+    * rename "ecp5-fpga-mgr" to "sysconfig-ecp5"
+    * rename "machxo2-fpga-mgr" to "sysconfig-machxo2"
+    * move spi_max_speed_hz from struct sysconfig_fpga_priv to
+      struct sysconfig_spi_fpga_priv, which is local to sysconfig-spi.c
+    * remove SPI bus unlock on write error form
+      sysconfig_spi_bitstream_burst_write(), call
+      sysconfig_burst_write_complete() on error in
+      sysconfig_bitstream_burst_write() instead.
+  v11 -> v12:
+    * build sysconfig core as separate module to prevent duplication of
+      common code segments across different binaries
+    * rename sysconfig.c to lattice-sysconfig.c
+    * rename sysconfig.h to lattice-sysconfig.h
+    * rename sysconfig-spi.c to lattice-sysconfig-spi.c
+    * rename sysconfig_spi_cmd_write_then_read() to
+      sysconfig_spi_cmd_read()
+    * rename command_write_then_read() callback to command_read()
+    * rename sysconfig_cmd_write_then_read() to sysconfig_cmd_read()
+    * rename sysconfig_spi_lsc_burst_init() to
+      sysconfig_spi_bitstream_burst_init()
+    * rename sysconfig_spi_lsc_burst_complete() to
+      sysconfig_spi_bitstream_burst_complete()
+    * remove excessive !spi check from sysconfig_spi_cmd_write(),
+      sysconfig_spi_cmd_read(), sysconfig_spi_bitstream_burst_init(),
+      sysconfig_spi_bitstream_burst_write() and
+      sysconfig_spi_bitstream_burst_complete()
+    * drop MachXO2 support
+        ** drop struct sysconfig_fpga_priv
+        ** drop paged write
+        ** drop command_write_with_data() and friends
+        ** drop ISC_PROGRAM_DONE routine
+        ** drop refresh from sysconfig_isc_finish()
+        ** sysconfig_isc_erase() only erase SRAM
+	** drop MachXO2 mentions from DT bindings doc
+  v12 -> v13:
+    * use device_get_match_data() instead of of_device_get_match_data()
+      and drop of_device.h inclusion
+    * in polling routines use time_before(jiffies, timeout) instead of
+      retries count
+    * add usleep_range() to gpio polling routine
+    * check fail status of command in more pronounced way
+    * check definition of sysconfig_priv callbacks at probe
+    * (BIT(23) | BIT(24) | BIT(25)) -> GENMASK(25, 23)
+  v13 -> v14:
+    * return -ETIMEDOUT instead of -EBUSY from sysconfig_poll_busy() to
+      align with sysconfig_poll_gpio()
+  v14 -> v15:
+    * move sysCONFIG commands from stack to heap, as spi-summary doc
+      says: "I/O buffers use the usual Linux rules, and must be
+      DMA-safe. [...] Don't use the stack, or anything that's declared
+      "static"."
+        ** add u8 cmd_tx_buf[4] and u8 cmd_rx_buf[4] to
+	   struct sysconfig_priv
+	** copy commands to cmd_tx_buf before sending to the device
+	** use cmd_rx_buf for commands readback
+	** change command_write() and command_read() signatures, as
+	   command buffers are now embedded to sysconfig_priv
+	** combine sysconfig_read_busy() with sysconfig_poll_busy() to
+	   avoid same memcpy in the loop
+  v15 -> v16:
+    * revert to v14
+    * combine command_write() and command_read() to command_transfer()
+      which uses spi_write_then_read() underhood. spi_write_then_read()
+      is dma-safe for on-stack buffers.
+    * in sysconfig_spi_bitstream_burst_init() bounce on-stack buffer
+      with LSC_BITSTREAM_BURST command to the heap. Now everything
+      should be dma-safe.
+  v16 -> v17:
+    * return dev_err_probe() from sysconfig_probe() if
+      devm_gpiod_get_optional() fails
+  v17 -> v18:
+    * use read_poll_timeout() in sysconfig_poll_busy() and
+      sysconfig_poll_gpio()
+    * combine checks for callbacks presence in sysconfig_probe() into
+      one if-statement, add missing check for command_transfer()
 
-I think you'll need pm_runtime_mark_last_busy() before this. I missed this
-on the last round. Maybe in probe() too. Feel free to resend just this
-patch.
+Ivan Bornyakov (2):
+  fpga: lattice-sysconfig-spi: add Lattice sysCONFIG FPGA manager
+  dt-bindings: fpga: document Lattice sysCONFIG FPGA manager
 
->  	mutex_unlock(&ov5645->power_lock);
->  
->  	return ret;
-> @@ -991,6 +970,10 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
->  	int ret;
->  
->  	if (enable) {
-> +		ret = pm_runtime_resume_and_get(ov5645->dev);
-> +		if (ret < 0)
-> +			return ret;
-> +
->  		ret = ov5645_set_register_array(ov5645,
->  					ov5645->current_mode->data,
->  					ov5645->current_mode->data_size);
-> @@ -998,22 +981,22 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
->  			dev_err(ov5645->dev, "could not set mode %dx%d\n",
->  				ov5645->current_mode->width,
->  				ov5645->current_mode->height);
-> -			return ret;
-> +			goto err_rpm_put;
->  		}
->  		ret = v4l2_ctrl_handler_setup(&ov5645->ctrls);
->  		if (ret < 0) {
->  			dev_err(ov5645->dev, "could not sync v4l2 controls\n");
-> -			return ret;
-> +			goto err_rpm_put;
->  		}
->  
->  		ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x45);
->  		if (ret < 0)
-> -			return ret;
-> +			goto err_rpm_put;
->  
->  		ret = ov5645_write_reg(ov5645, OV5645_SYSTEM_CTRL0,
->  				       OV5645_SYSTEM_CTRL0_START);
->  		if (ret < 0)
-> -			return ret;
-> +			goto err_rpm_put;
->  	} else {
->  		ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x40);
->  		if (ret < 0)
-> @@ -1023,14 +1006,15 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
->  				       OV5645_SYSTEM_CTRL0_STOP);
->  		if (ret < 0)
->  			return ret;
-> +		pm_runtime_put(ov5645->dev);
->  	}
->  
->  	return 0;
-> -}
->  
-> -static const struct v4l2_subdev_core_ops ov5645_core_ops = {
-> -	.s_power = ov5645_s_power,
-> -};
-> +err_rpm_put:
-> +	pm_runtime_put(ov5645->dev);
-> +	return ret;
-> +}
->  
->  static const struct v4l2_subdev_video_ops ov5645_video_ops = {
->  	.s_stream = ov5645_s_stream,
-> @@ -1046,7 +1030,6 @@ static const struct v4l2_subdev_pad_ops ov5645_subdev_pad_ops = {
->  };
->  
->  static const struct v4l2_subdev_ops ov5645_subdev_ops = {
-> -	.core = &ov5645_core_ops,
->  	.video = &ov5645_video_ops,
->  	.pad = &ov5645_subdev_pad_ops,
->  };
-> @@ -1188,11 +1171,9 @@ static int ov5645_probe(struct i2c_client *client)
->  		goto free_ctrl;
->  	}
->  
-> -	ret = ov5645_s_power(&ov5645->sd, true);
-> -	if (ret < 0) {
-> -		dev_err(dev, "could not power up OV5645\n");
-> +	ret = ov5645_set_power_on(dev);
-> +	if (ret)
->  		goto free_entity;
-> -	}
->  
->  	ret = ov5645_read_reg(ov5645, OV5645_CHIP_ID_HIGH, &chip_id_high);
->  	if (ret < 0 || chip_id_high != OV5645_CHIP_ID_HIGH_BYTE) {
-> @@ -1209,12 +1190,16 @@ static int ov5645_probe(struct i2c_client *client)
->  
->  	dev_info(dev, "OV5645 detected at address 0x%02x\n", client->addr);
->  
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_get_noresume(dev);
-> +	pm_runtime_enable(dev);
-> +
->  	ret = ov5645_read_reg(ov5645, OV5645_AEC_PK_MANUAL,
->  			      &ov5645->aec_pk_manual);
->  	if (ret < 0) {
->  		dev_err(dev, "could not read AEC/AGC mode\n");
->  		ret = -ENODEV;
-> -		goto power_down;
-> +		goto err_pm_runtime;
->  	}
->  
->  	ret = ov5645_read_reg(ov5645, OV5645_TIMING_TC_REG20,
-> @@ -1222,7 +1207,7 @@ static int ov5645_probe(struct i2c_client *client)
->  	if (ret < 0) {
->  		dev_err(dev, "could not read vflip value\n");
->  		ret = -ENODEV;
-> -		goto power_down;
-> +		goto err_pm_runtime;
->  	}
->  
->  	ret = ov5645_read_reg(ov5645, OV5645_TIMING_TC_REG21,
-> @@ -1230,23 +1215,30 @@ static int ov5645_probe(struct i2c_client *client)
->  	if (ret < 0) {
->  		dev_err(dev, "could not read hflip value\n");
->  		ret = -ENODEV;
-> -		goto power_down;
-> +		goto err_pm_runtime;
->  	}
->  
-> -	ov5645_s_power(&ov5645->sd, false);
-> -
->  	ret = v4l2_async_register_subdev(&ov5645->sd);
->  	if (ret < 0) {
->  		dev_err(dev, "could not register v4l2 device\n");
-> +		pm_runtime_disable(dev);
-> +		pm_runtime_set_suspended(dev);
->  		goto free_entity;
->  	}
->  
-> +	pm_runtime_set_autosuspend_delay(dev, 1000);
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_put_autosuspend(dev);
-> +
->  	ov5645_entity_init_cfg(&ov5645->sd, NULL);
->  
->  	return 0;
->  
-> +err_pm_runtime:
-> +	pm_runtime_disable(dev);
-> +	pm_runtime_put_noidle(dev);
->  power_down:
-> -	ov5645_s_power(&ov5645->sd, false);
-> +	ov5645_set_power_off(dev);
->  free_entity:
->  	media_entity_cleanup(&ov5645->sd.entity);
->  free_ctrl:
-> @@ -1264,6 +1256,10 @@ static void ov5645_remove(struct i2c_client *client)
->  	v4l2_async_unregister_subdev(&ov5645->sd);
->  	media_entity_cleanup(&ov5645->sd.entity);
->  	v4l2_ctrl_handler_free(&ov5645->ctrls);
-> +	pm_runtime_disable(ov5645->dev);
-> +	if (!pm_runtime_status_suspended(ov5645->dev))
-> +		ov5645_set_power_off(ov5645->dev);
-> +	pm_runtime_set_suspended(ov5645->dev);
->  	mutex_destroy(&ov5645->power_lock);
->  }
->  
-> @@ -1279,10 +1275,15 @@ static const struct of_device_id ov5645_of_match[] = {
->  };
->  MODULE_DEVICE_TABLE(of, ov5645_of_match);
->  
-> +static const struct dev_pm_ops ov5645_pm_ops = {
-> +	SET_RUNTIME_PM_OPS(ov5645_set_power_off, ov5645_set_power_on, NULL)
-> +};
-> +
->  static struct i2c_driver ov5645_i2c_driver = {
->  	.driver = {
->  		.of_match_table = ov5645_of_match,
->  		.name  = "ov5645",
-> +		.pm = &ov5645_pm_ops,
->  	},
->  	.probe_new = ov5645_probe,
->  	.remove = ov5645_remove,
+ .../bindings/fpga/lattice,sysconfig.yaml      |  81 ++++
+ drivers/fpga/Kconfig                          |  11 +
+ drivers/fpga/Makefile                         |   2 +
+ drivers/fpga/lattice-sysconfig-spi.c          | 154 +++++++
+ drivers/fpga/lattice-sysconfig.c              | 394 ++++++++++++++++++
+ drivers/fpga/lattice-sysconfig.h              |  39 ++
+ 6 files changed, 681 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+ create mode 100644 drivers/fpga/lattice-sysconfig-spi.c
+ create mode 100644 drivers/fpga/lattice-sysconfig.c
+ create mode 100644 drivers/fpga/lattice-sysconfig.h
 
 -- 
-Kind regards,
+2.37.3
 
-Sakari Ailus
+
