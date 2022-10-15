@@ -2,52 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 605E55FFBD9
-	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 22:11:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1090E5FFBDB
+	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 22:11:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbiJOULr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 16:11:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56088 "EHLO
+        id S229666AbiJOULw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Oct 2022 16:11:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229594AbiJOULq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 16:11:46 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E6242AE3
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 13:11:44 -0700 (PDT)
+        with ESMTP id S229704AbiJOULv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 16:11:51 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C278045F47
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 13:11:50 -0700 (PDT)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29FKBUMV097674;
-        Sat, 15 Oct 2022 15:11:30 -0500
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29FKBYMu109094;
+        Sat, 15 Oct 2022 15:11:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1665864690;
-        bh=6rQELq3LVF1Oy9/G8iC1Hlu5ypUXnxEw4otfvlhku1o=;
-        h=From:To:CC:Subject:Date;
-        b=pVptbBBboZSPSKksXQWzIjyVdnx0lSdNonj6n6ktejeEwU4+VK++rZLm7hlIwPArK
-         HyoGulwGSWhgs8BEkIF2LaQnYcZnUyE78TaXXFExrLQQ3AXoSr++4qMxjgdryOciVa
-         ggRA8zAWarP2mI3XVxOHUuorrNhYPm039ihrVvqc=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29FKBUlT124367
+        s=ti-com-17Q1; t=1665864694;
+        bh=3W8w7YFCxLwMM646wryVFkXGy2Rq3g7xmmUtsBKbeTI=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=AiZSzQCzMhctn+ejXUd5oLWqvq/OKVEdwl4BlfUZA7SgNJNbO1LQNF1gzJNmxbg4l
+         a3TUf27eaBLNDaKhUEfIjshauZqOW6eYvxgCzsjouf7pcSIHbkAkj4zypMAOGYOg0j
+         q5Wot77preiXM65ls11vdMQ90H3M+YPi6e3uIUL4=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29FKBY08124379
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 15 Oct 2022 15:11:30 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Sat, 15 Oct 2022 15:11:34 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Sat, 15
- Oct 2022 15:11:30 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2022 15:11:33 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Sat, 15 Oct 2022 15:11:30 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29FKBR0c064094;
-        Sat, 15 Oct 2022 15:11:28 -0500
+ Frontend Transport; Sat, 15 Oct 2022 15:11:34 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29FKBVV5013992;
+        Sat, 15 Oct 2022 15:11:32 -0500
 From:   Matt Ranostay <mranostay@ti.com>
 To:     <vkoul@kernel.org>, <robh+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <vigneshr@ti.com>
 CC:     <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
         Matt Ranostay <mranostay@ti.com>
-Subject: [PATCH 0/2] phy: ti: phy-j721e-wiz: add j784s4 support
-Date:   Sat, 15 Oct 2022 13:11:21 -0700
-Message-ID: <20221015201123.195477-1-mranostay@ti.com>
+Subject: [PATCH 1/2] dt-bindings: phy-j721e-wiz: add j784s4 compatible string
+Date:   Sat, 15 Oct 2022 13:11:22 -0700
+Message-ID: <20221015201123.195477-2-mranostay@ti.com>
 X-Mailer: git-send-email 2.38.0.rc0.52.gdda7228a83
+In-Reply-To: <20221015201123.195477-1-mranostay@ti.com>
+References: <20221015201123.195477-1-mranostay@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -61,17 +63,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-WIZ modules for J784S4 platform have two input muxes which requires
-additional mux sections options.
+Add ti,j784s4-wiz-10g compatible string to binding documentation.
 
-Matt Ranostay (2):
-  dt-bindings: phy-j721e-wiz: add j784s4 compatible string
-  phy: ti: phy-j721e-wiz: add j784s4-wiz-10g module support
+Signed-off-by: Matt Ranostay <mranostay@ti.com>
+---
+ Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../bindings/phy/ti,phy-j721e-wiz.yaml        |  1 +
- drivers/phy/ti/phy-j721e-wiz.c                | 22 +++++++++++++++++++
- 2 files changed, 23 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+index 2225925b6dad..a9e38739c010 100644
+--- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
++++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+@@ -17,6 +17,7 @@ properties:
+       - ti,j721e-wiz-10g
+       - ti,am64-wiz-10g
+       - ti,j7200-wiz-10g
++      - ti,j784s4-wiz-10g
+ 
+   power-domains:
+     maxItems: 1
 -- 
 2.38.0.rc0.52.gdda7228a83
 
