@@ -2,118 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F6C95FF96F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 11:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 865F05FF978
+	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 11:30:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbiJOJYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 05:24:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49764 "EHLO
+        id S229665AbiJOJaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Oct 2022 05:30:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbiJOJYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 05:24:04 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E564CA24;
-        Sat, 15 Oct 2022 02:24:03 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29F9Lm49019199;
-        Sat, 15 Oct 2022 09:23:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=ZiQWBQqxGDHFAKWGI6Zhru9TemqX1gmSzeo4Kkz9Cyo=;
- b=FZMKy17Q6UVNT0+f1+wj51lnkasnPQ5N4SlP/93mcfkpiOxuvRRszSxNhPxixdkNlSE8
- xL5rUN0Jwi6/RADI1YB9OUOjPE1YSXrvA5SBZzpbqUIpUHMDRii/poMY6Wpqp3S9O1/C
- 5s/cFECsnwwi8jvcR0vGmZGi5aIBSlb6fb4Lgx+In52a9NACeHJwPB70D64LB3wLegNm
- CCUPYI+0/pAQmTI8FKjXmJpLJ3dsViUO1cvApa84jTPR8UgWEweIa25jvNp4nNMUwcIL
- ixljgRnna4XauWC0jeoaR5CVNJdzrSPLtB+hmt8Sql7APFqasePfalp92xvVrsY/OzmR 0Q== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k7m6u8kuh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 15 Oct 2022 09:23:18 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29F9NHFo008435
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 15 Oct 2022 09:23:17 GMT
-Received: from [10.216.53.102] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Sat, 15 Oct
- 2022 02:23:12 -0700
-Message-ID: <b0cbb2a4-088a-3f9a-8918-b95687ef2acd@quicinc.com>
-Date:   Sat, 15 Oct 2022 14:53:09 +0530
+        with ESMTP id S229550AbiJOJ36 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 05:29:58 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D497613D14;
+        Sat, 15 Oct 2022 02:29:56 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id g27so9743563edf.11;
+        Sat, 15 Oct 2022 02:29:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YdzYzQPczOob4IO3pFuC56rrjAxpW/32RTAW6DZMbmw=;
+        b=ScPcjlScG/12Dzm1gMutsJyhlbXrRHcQe5LoFTVzEPNAlIgbKfw9jTLOOJjsoXYvxt
+         cPdraLACd90IvK/7cIXd1ehw6DDI9lqLttV27FM/coh5tUDubXuvdft3QygshnghsPJk
+         NVmk56mAzQr5l4+f58oxFwggXQ0xeRI0Bo72u9UZqNjJ4J+ClZWT6t1SW89xKXm8wiLm
+         IatFqAJvlBq2UiVl0pBZwvdJ9h7m0Xlgs7YYIlbKPlrv36WyK1uHFO06fRt0pl94zZ8Y
+         AxtdlX0heYM5nbTOQvRzd0Z8PcDYY+LZCwtuPz7wGwiwJUw3xmc4tWQM8tPLCaXApzkQ
+         nEAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YdzYzQPczOob4IO3pFuC56rrjAxpW/32RTAW6DZMbmw=;
+        b=PHr30eK6U8Q7nEamgm6oYdv959uq1H2rEQu7ej+SiM3Vfq/4pL4kyrXpT3KoSEOC+G
+         x1O6rWFwO5h4lurtCqcCiX1gW4bze1N3DiyS1/Uo/37eohFe0PwXoGMLsFU6ydBERHTA
+         jukGxpEb+e+4fUEEj6D7HVuWp3AQAYD+J66v1iLpc7XTN+3z3cidAD5Ao4XPegpxPTAU
+         aTQXvkeuvNjfvAbF5lWQa6ipRrbk3iwvUv1/EPFWAzHc0XB8LpuVXw00vnFRgca5oSbY
+         m80W7AFdMBmr2cZWQQAkcDYo0D4Ta1V0csxMT7E3Rpc0E0L4gnlhDoXZDNaEifwePGPP
+         XvXg==
+X-Gm-Message-State: ACrzQf3PRoVJKvTSJJ5wJElE2Oo/kbHTI/eSMDGguSXgMqz/iVpjsNMO
+        nCDB1k1dG83fnPCivYheEvzHfXhO6P9+Rw==
+X-Google-Smtp-Source: AMsMyM72A/OQ5F+l11gRXWkiD/asNwXE5n0HCwpwa1VFlMvtIR/rNH0GO5v33NsnX6lqLOgY95iJVQ==
+X-Received: by 2002:aa7:c40b:0:b0:45d:4492:a8cb with SMTP id j11-20020aa7c40b000000b0045d4492a8cbmr1575750edq.217.1665826195174;
+        Sat, 15 Oct 2022 02:29:55 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id v5-20020a1709060b4500b0073d6093ac93sm2919033ejg.16.2022.10.15.02.29.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 15 Oct 2022 02:29:54 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        John Crispin <john@phrozen.org>,
+        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V3 1/2] dt-bindings: mtd: partitions: add TP-Link SafeLoader layout
+Date:   Sat, 15 Oct 2022 11:29:49 +0200
+Message-Id: <20221015092950.27467-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2] ASoC: qcom: lpass-cpu: mark HDMI TX registers as
- volatile
-Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
-        <alsa-devel@alsa-project.org>, <andersson@kernel.org>,
-        <bgoswami@quicinc.com>, <broonie@kernel.org>,
-        <devicetree@vger.kernel.org>, <judyhsiao@chromium.org>,
-        <lgirdwood@gmail.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <perex@perex.cz>,
-        <quic_plai@quicinc.com>, <quic_rohkumar@quicinc.com>,
-        <robh+dt@kernel.org>, <srinivas.kandagatla@linaro.org>,
-        <tiwai@suse.com>
-References: <1665637711-13300-1-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n53W3+MgRzpkV-9kBc6Pcvzta+ear3oxgMA-0rpNyJyJwQ@mail.gmail.com>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <CAE-0n53W3+MgRzpkV-9kBc6Pcvzta+ear3oxgMA-0rpNyJyJwQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: TGOfFq2HQkAB1AB9oduswYFG-uTnrxiD
-X-Proofpoint-GUID: TGOfFq2HQkAB1AB9oduswYFG-uTnrxiD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-15_05,2022-10-14_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- bulkscore=0 spamscore=0 malwarescore=0 mlxlogscore=999 priorityscore=1501
- suspectscore=0 clxscore=1015 adultscore=0 impostorscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2209130000
- definitions=main-2210150053
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On 10/15/2022 2:41 AM, Stephen Boyd wrote:
-> Quoting Srinivasa Rao Mandadapu (2022-10-12 22:08:31)
->> Update HDMI volatile registers list as DMA, Channel Selection registers,
->> vbit control registers are being reflected by hardware DP port
->> disconnection.
->>
->> This update is required to fix no display and no sound issue observed
->> after reconnecting TAMA/SANWA DP cables.
->> Once DP cable is unplugged, DMA control registers are being reset by
->> hardware, however at second plugin, new dma control values does not
->> updated to the dma hardware registers since new register value and
->> cached values at the time of first plugin are same.
->>
->> Fixes: 7cb37b7bd0d3 ("ASoC: qcom: Add support for lpass hdmi driver")
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> Reported-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
->> ---
-> I found that another patch in this area hasn't been applied[1]. Is it
-> still relevant? We're still carrying it in the chromium tree. If it is
-> relevant can you please resend it.
->
-> [1] https://lore.kernel.org/all/1602596728-11783-1-git-send-email-srivasam@codeaurora.org/
+Most TP-Link home routers use the same partitioning system based on a
+custom ASCII table.
 
-Thanks for Notifying this untracked patch.
+It doesn't seem to have any official name. GPL sources contain tool
+named simply "make_flash" and Makefile target "FlashMaker".
 
-Resent the patch.
-     - 
-https://patchwork.kernel.org/project/alsa-devel/patch/1665825530-7593-1-git-send-email-quic_srivasam@quicinc.com/
+This partitions table format was first found in devices with a custom
+SafeLoader bootloader so it was called SafeLoader by a community. Later
+it was ported to other bootloaders but it seems the name sticked.
+
+Add binding for describing flashes with SafeLoader partitions table. It
+allows operating systems to parse it properly and register proper flash
+layout.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Fix typo in commit: s/same/name/
+V3: Drop quotes from $ref
+    Describe flash space coverage & partitions types in the binding
+    See commit body of PATCH 2/2 for real life example
+---
+ .../tplink,safeloader-partitions.yaml         | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml
+
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml
+new file mode 100644
+index 000000000000..63e596aa0ca3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/partitions/tplink,safeloader-partitions.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TP-Link SafeLoader partitions
++
++description: |
++  TP-Link home routers store various data on flash (e.g. bootloader,
++  flash layout, firmware, product info, configuration, calibration
++  data). That requires flash partitioning.
++
++  Flash space layout of TP-Link devices is stored on flash itself using
++  a custom ASCII-based format. That format was first found in TP-Link
++  devices with a custom SafeLoader bootloader. Later it was adapted to
++  CFE and U-Boot bootloaders.
++
++  Partitions specified in partitions table cover whole flash space. Some
++  contain static data that shouldn't get modified (device's MAC or WiFi
++  calibration data). Others are semi-static (like kernel). Finally some
++  partitions contain fully changeable content (like rootfs).
++
++  This binding describes partitioning method and defines offset of ASCII
++  based partitions table. That offset is picked at manufacturing process
++  and doesn't change.
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++properties:
++  compatible:
++    const: tplink,safeloader-partitions
++
++  partitions-table-offset:
++    description: Flash offset of partitions table
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - partitions-table-offset
++
++additionalProperties: false
++
++examples:
++  - |
++    partitions {
++        compatible = "tplink,safeloader-partitions";
++        partitions-table-offset = <0x100000>;
++    };
+-- 
+2.34.1
 
