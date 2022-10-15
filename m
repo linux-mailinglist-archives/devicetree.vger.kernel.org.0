@@ -2,105 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBFB55FFB59
-	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 19:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BF8D5FFB78
+	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 19:30:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229754AbiJORFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 13:05:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47238 "EHLO
+        id S229646AbiJORac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Oct 2022 13:30:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbiJORE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 13:04:57 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A699D24BE4;
-        Sat, 15 Oct 2022 10:04:55 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id s30so10723095eds.1;
-        Sat, 15 Oct 2022 10:04:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AhI+hlPFB1VmnftZiBxf9R+xZVV23cThttepsCBJepo=;
-        b=D7RzF3t/EWVqoB7nziHldVdy/u1JR9lhj4bboxXOSosBovIY22BJCEdFgVTaSyo1c8
-         eQTsqz4lEI3XcvYXXQs/9k0CTH+A0XFJHi45rOjlC8NlUnl+N8J7KGV9YESaF2Q6NFVD
-         LKh3GQ6AHaXnFRgrUQIKSwtdCnRbFOehuyea8TwqyGfh9H+xqU5ftCAoSbGsJkJ5mJ9A
-         9wWUpglUu6zJpnfqwJFubZhCI+prpJX9Ftya55nysdS197/M5BraomZieUBjNMFBNK+z
-         1hKaolSAmUVIc730RftdNh/oeKa10j/lBnlMdJxJfs7kiy89H5Df0tg0iP9Nnaj2f1kJ
-         DbaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AhI+hlPFB1VmnftZiBxf9R+xZVV23cThttepsCBJepo=;
-        b=xjKRIQ+0TRqRozlama8D2wMlVsqcugll4VZSqASjsUbLB3+e3pSN5PaVjyBWv3MrnJ
-         +4OGV9/ic6A33WIwG04NuP+M+gLsisI9UUl9Tf0FfQVmLr4DUwonmv6KJ1M5Z+lHK3tN
-         4CuVYLXuRl9Li0TQYWm2AVgopBczuTPtWSSbUwcMft+D7mQoOqP+ERFjrA/7FJx3UMaZ
-         MUj61PKJNtnrA+eeX9as1M+lk/AHO6XBEkcwup/EktHXx0riR/2AZAWGmSTdA5pTqHfw
-         qfgZnG9vzR3cYhkbOtelB316o1d30NifhDXLHgHtKcoqFA6/WuD/e4wpGTgD5EYqVWNh
-         MTMQ==
-X-Gm-Message-State: ACrzQf1dabj6dD4KJb1TW07QzSOLMZQ2nvNSYGoKH2FWWrazJBwOHehe
-        B7kU+SfRS2vUNIOS3Dn9ODk=
-X-Google-Smtp-Source: AMsMyM6m9cRsVKns8lyjcAFDMk8qF1xJyJ8u2gOZQiJ4QjKIP4K1ErxBq8eX1lmLlp0OmKrln/cFig==
-X-Received: by 2002:aa7:de10:0:b0:458:e101:fe54 with SMTP id h16-20020aa7de10000000b00458e101fe54mr2953882edv.80.1665853494105;
-        Sat, 15 Oct 2022 10:04:54 -0700 (PDT)
-Received: from localhost.localdomain ([188.163.112.76])
-        by smtp.gmail.com with ESMTPSA id n19-20020a170906701300b0078d25e0f74bsm3362484ejj.46.2022.10.15.10.04.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Oct 2022 10:04:53 -0700 (PDT)
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229554AbiJORab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 13:30:31 -0400
+Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E09252A7;
+        Sat, 15 Oct 2022 10:30:27 -0700 (PDT)
+Date:   Sat, 15 Oct 2022 17:30:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1665855025; x=1666114225;
+        bh=DkDUqYsIo4WD6IeoCvcUlhuchiJ68MTUFWYeBqoljY4=;
+        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID;
+        b=Sw/PwmuQCDhWwZXq8NvwyUot9fBwp5Y6usJuOMs9v147/fLo+mUb1xDf1TCPusCv2
+         ruD9+xzlnNAgyXJOE+ubRWXf5jB6ujp1ZkvC7p/y0u458hgs19v/L3q4am7/A9aZPR
+         JCbfowjoJSzw8uOZwJUuEIFZ26EWbUpffIgs1U3I=
+To:     caleb@connolly.tech
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     krzysztof.kozlowski@linaro.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/1] ARM: tegra: asus-tf101: fix accelerometer mount matrix
-Date:   Sat, 15 Oct 2022 20:04:25 +0300
-Message-Id: <20221015170425.83233-2-clamor95@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221015170425.83233-1-clamor95@gmail.com>
-References: <20221015170425.83233-1-clamor95@gmail.com>
+        linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Rob Herring <robh+dt@kernel.org>, Tom Rix <trix@redhat.com>
+Subject: [PATCH v7 0/2] input: introduce support for Qualcomm SPMI haptics
+Message-ID: <20221015172915.1436236-1-caleb@connolly.tech>
+Feedback-ID: 10753939:user:proton
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,TO_EQ_FM_DIRECT_MX autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Accelerometer mount matrix used in tf101 downstream is inverted.
-This new matrix was generated on actual device using calibration
-script, like on other transformers.
+This series introduces a driver for the SPMI haptics hardware block
+found in Qualcomm PMICs. SPMI haptics support LRA (Linear Resonant
+Actuator) style haptics, as well as ERM (Eccentric Rotating Mass).
+It also supports several modes of driving the haptics, e.g. by loading
+the pattern to play into an internal buffer, or using PWM.
 
-Tested-by: Robert Eckelmann <longnoserob@gmail.com>
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- arch/arm/boot/dts/tegra20-asus-tf101.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+More information about the hardware can be found here:
+        https://gitlab.com/sdm845-mainline/linux/-/wikis/PMI8998-QPNP-Hapti=
+cs
 
-diff --git a/arch/arm/boot/dts/tegra20-asus-tf101.dts b/arch/arm/boot/dts/tegra20-asus-tf101.dts
-index 455f7e621c02..83262c790058 100644
---- a/arch/arm/boot/dts/tegra20-asus-tf101.dts
-+++ b/arch/arm/boot/dts/tegra20-asus-tf101.dts
-@@ -591,9 +591,9 @@ accelerometer@f {
- 					vdd-supply = <&vdd_1v8_sys>;
- 					vddio-supply = <&vdd_1v8_sys>;
- 
--					mount-matrix =	 "1",  "0",  "0",
--							 "0",  "1",  "0",
--							 "0",  "0",  "1";
-+					mount-matrix =	"-1",  "0",  "0",
-+							 "0", "-1",  "0",
-+							 "0",  "0", "-1";
- 				};
- 			};
- 		};
--- 
-2.34.1
+This driver has been written based on downstream sources as no public
+documentation is available. It includes initial support for LRA haptics
+in buffer mode, this combination seems to be the most common and will
+enable haptics on the OnePlus 6 and 6T, PocoPhone F1, OnePlus 5 and
+several other Qualcomm devices with mainline kernel support.
+
+The driver is implemented using the ff-memless (forcefeedback) input
+framework and makes an attempt to control the strength of vibration relativ=
+e
+to the magnitude set from userspace.
+
+Changes since v6:
+ - Apply Krzysztof's dt-bindings suggestions
+ - Rename qcom,wave-play-rate-us to qcom,wave-play-duration-us and
+   add a comment explaining the name change compared to downstream.
+ - Add COMPILE_TEST to kconfig
+
+Changes since v5:
+ - Fix dt schema errors
+ - Fix typo (thanks Vincent)
+
+Changes since v4:
+ - Significant rewrite and cleanup
+ - switch to dev_err_probe()
+ - Run through clang-format
+
+Changes since v3:
+ - Adjust example DTS to avoid creating new warnings in dt_binding_check
+ - Address warnings from kernel test robot.
+
+Changes since v2:
+ - Addressed Rob's comments on dt-bindings (I'm not sure what to do
+   about the pmic compatible?)
+ - Fixed some typos
+
+Changes since v1:
+ - Replace old QPNP naming with SPMI
+ - Address Bjorn's comments on the driver, various style and code cleanups
+ - Address Bjorn's comments on the DT bindings and DTS
+ - Pickup patches from Joel and Jami to enable haptics on the OnePlus 5
+   and Poco F1.
+
+Caleb Connolly (2):
+  dt-bindings: input: document Qualcomm PMI8998 haptics driver
+  input: add Qualcomm SPMI haptics driver
+
+ .../bindings/input/qcom,pmi8998-haptics.yaml  |  73 ++
+ drivers/input/misc/Kconfig                    |  15 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/qcom-pmi8998-haptics.c     | 690 ++++++++++++++++++
+ 4 files changed, 779 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/qcom,pmi8998-ha=
+ptics.yaml
+ create mode 100644 drivers/input/misc/qcom-pmi8998-haptics.c
+
+--
+2.38.0
+
 
