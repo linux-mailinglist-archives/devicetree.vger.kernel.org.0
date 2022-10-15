@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF42C5FFAD9
-	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 17:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C41DC5FFADE
+	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 17:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229761AbiJOPOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 11:14:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46326 "EHLO
+        id S229705AbiJOPPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Oct 2022 11:15:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbiJOPOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 11:14:33 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CF1101D3
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 08:14:28 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id r19so5421896qtx.6
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 08:14:27 -0700 (PDT)
+        with ESMTP id S229624AbiJOPPh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 11:15:37 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14B5D2DA91
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 08:15:36 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id g9so5007744qvo.12
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 08:15:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xWtY9IbWt5il9NHyrw2WEzVDhghebg1APkZsyDdBupM=;
-        b=Ekt7K3DLeH5An4km8nCETBo6O+2kpYAzQPq9HK44a8q44AwYn7d1xBTlsHsnITEELr
-         LIbmbmJIfp7W9ZJre3SuVrpDXKpSA2o4Z+nEEVrpyJ8kJGzEyf5eienFpYH4e8MrIaoa
-         Bv8V9dV+XD88iG23T9SNbHWyWI6pMNG18PmwwyIIaSWdHJKiDbJ3BUkirC+5OFbN76ZQ
-         BJvLQYy6j855izl+3z+1aS7JniqE8q05n48e9FJI0BdAwKuBo+Ok4171iKofjfAdj593
-         ZwGEuiPJlv6/+4ELnllepdoL36zBEEZy70G8TJQqMUIBKdoWznEEKqrfulH/xeommql6
-         L0dA==
+        bh=/oMrOTbUd3cbdsiML3nv2+rJ1KxLtOIUzPm5C1zEHGY=;
+        b=SX7g5cHeayW/KtT6diblULbooFsbwiTJedYfjCwfM4UCnWTZUKxVfMqG8RX5n+iIx1
+         a37yUV6S/lB41sqI9ecs8E1Lb185XWLP/mL2Gys4KmCUL7YqPLH8o2/WyQvK9amwdywd
+         mrlDakEqUIGp7frhPnOCUVDtM3ybjP2kdfCOgVPVT7MrdXiV8ZQ+DMoN5kCgmVArIDdG
+         nvc/ji598P8qVEL9X9VLLUypmmgK6QIS9dQv1KzJ/Cc8pvla5XB0IiVLHg+cN92IoVTo
+         ZHzUCHI3wpTrEi5eXsyXy56tqHdnOqMxCJBbR4CrneMfLiWuYb3xi3LbLbRHjKE+WIec
+         /BVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xWtY9IbWt5il9NHyrw2WEzVDhghebg1APkZsyDdBupM=;
-        b=M3fIj3LThy3uhaasICxRnWB2pCuGrMei+oS7HL5lXL8N+dnP2mTSZEpndq1GVCv0YB
-         qK0RVQr/NqbeyGPuWC3mQWSV37x4GjE5k/iILQll9Rwr++k9CktWuWwV8wEZTpfq5G6e
-         PUNra+sjFn8SwEknhrVNr4ZPm/mZzku57W2PMtBXGbEZn4g+UfeSY1D3sQpKIfEEr52X
-         w0CBscX5aiYr6uOhd1Pm3TDQhjkWFlXmpGtM6LvHbw6LObwMKJykdQC3xmAYyyNU/crl
-         efOgiKysp1yNEa/G8fxOuvxMuiGLhtp32SyG3xptxIwEuFrIcASvNGEOCK/+9E8MFRQC
-         vSmg==
-X-Gm-Message-State: ACrzQf2jCtRlN/WC9YJ6xHntojJ+gY8Gjm+vwKao0Q95h5mlUHQKFKOi
-        r8iYkEb8KzyqQ0KiQRZPR+qhfg==
-X-Google-Smtp-Source: AMsMyM7zH6DUMjoJWle+jyy6K2jNqugp2kdak+DoDBE1/iIesC19EcK38vi18d/rr2qIolI5TUyCEw==
-X-Received: by 2002:a05:622a:178e:b0:39c:c9ac:b4ad with SMTP id s14-20020a05622a178e00b0039cc9acb4admr2332516qtk.82.1665846867179;
-        Sat, 15 Oct 2022 08:14:27 -0700 (PDT)
+        bh=/oMrOTbUd3cbdsiML3nv2+rJ1KxLtOIUzPm5C1zEHGY=;
+        b=uY0ij8t9fCEWkg+EFg8gUakOvYX0cXu/qWQ78eeG5wIxjtGdz1qZHKn5brtxCWYR2n
+         D/wyTto87QEDcei6hYg1RvuWyHEaS1AH50taGESgDJc3GJMmyZOeAIdf+tGzmZaMzxHf
+         oV3JoJRwVyINXHAEjqkYQq3rdFeOubS8V5xSC9rUq1hBYUzVtD+R6z7L4kWP2io4+2if
+         Q0C2uBk04DKxg5ZQNrprlgFEWUAyeV+/Nqi63LWr9R5Rkq0NlwvElYAE/0z8U5yG72ef
+         o9aFjg+YK+0jJoypOFjhsgFzMqIuKe7Yst5897+0OTeXNJ7RW9ERZM5j9SfXgzgNpZ3V
+         7D5Q==
+X-Gm-Message-State: ACrzQf1pna4E/sG/wZLucmlvEPyB4N4+K8qNE7YNhQPppQgjyYEuWuxM
+        uy1nApHWOKbPZLiG2zk69wKImA==
+X-Google-Smtp-Source: AMsMyM5w93pwRpeupaaVj0b7ISuHi4qyZKLxOuU2c5bjnJYaWopZTwqcM3xGgr3SEIgSzVcrBFG5zg==
+X-Received: by 2002:a05:6214:21a9:b0:4b3:99ff:8794 with SMTP id t9-20020a05621421a900b004b399ff8794mr2116002qvc.68.1665846935149;
+        Sat, 15 Oct 2022 08:15:35 -0700 (PDT)
 Received: from ?IPV6:2601:42:0:3450:9477:c2f0:ddea:ea08? ([2601:42:0:3450:9477:c2f0:ddea:ea08])
-        by smtp.gmail.com with ESMTPSA id i9-20020a05620a404900b006bc192d277csm5192263qko.10.2022.10.15.08.14.25
+        by smtp.gmail.com with ESMTPSA id p14-20020ac8740e000000b003992448029esm4095819qtq.19.2022.10.15.08.15.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Oct 2022 08:14:26 -0700 (PDT)
-Message-ID: <19a408cb-995a-4729-dac8-ac8891909d84@linaro.org>
-Date:   Sat, 15 Oct 2022 11:14:24 -0400
+        Sat, 15 Oct 2022 08:15:34 -0700 (PDT)
+Message-ID: <16c192b3-b05f-8f24-30f7-82aeced6badd@linaro.org>
+Date:   Sat, 15 Oct 2022 11:15:32 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v2 6/6] dt-bindings: qcom,pdc: Introduce pdc bindings for
+Subject: Re: [PATCH v2 2/6] dt-bindings: clock: Add RPMHCC bindings for
  QDU1000 and QRU1000
 Content-Language: en-US
 To:     Melody Olvera <quic_molvera@quicinc.com>,
@@ -69,9 +69,9 @@ To:     Melody Olvera <quic_molvera@quicinc.com>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221014221011.7360-1-quic_molvera@quicinc.com>
- <20221014221011.7360-7-quic_molvera@quicinc.com>
+ <20221014221011.7360-3-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221014221011.7360-7-quic_molvera@quicinc.com>
+In-Reply-To: <20221014221011.7360-3-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,32 +85,25 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/10/2022 18:10, Melody Olvera wrote:
-> Add compatible fields for QDU1000 and QRU1000 pdcs.
+> Add compatible strings for RPMHCC for QDU1000 and QRU1000.
 > 
 > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml      | 2 ++
+>  Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml | 2 ++
 >  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-> index b6f56cf5fbe3..68a80e1c77c5 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-> @@ -26,6 +26,8 @@ properties:
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
+> index 437a34b930e3..7cacbfe745a5 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
+> @@ -17,6 +17,8 @@ description: |
+>  properties:
 >    compatible:
->      items:
->        - enum:
-> +          - qcom,qdu1000-pdc
-> +          - qcom,qru1000-pdc
+>      enum:
+> +      - qcom,qdu1000-rpmh-clk
+> +      - qcom,qru1000-rpmh-clk
 
-Un-reviewed.
-
-Bindings do not match your DTS, so you are documenting different
-hardware then upstreaming.
-
->            - qcom,sc7180-pdc
->            - qcom,sc7280-pdc
->            - qcom,sdm845-pdc
+Nope, you sent something entirely else.
 
 Best regards,
 Krzysztof
