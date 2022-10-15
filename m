@@ -2,160 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FEF85FFA34
-	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 15:17:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 860BF5FFA36
+	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 15:19:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbiJONRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 09:17:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51752 "EHLO
+        id S229556AbiJONTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Oct 2022 09:19:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229721AbiJONRN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 09:17:13 -0400
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 394E84D163
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:17:11 -0700 (PDT)
-Received: by mail-qv1-xf36.google.com with SMTP id l19so4913457qvu.4
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:17:11 -0700 (PDT)
+        with ESMTP id S229608AbiJONTg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 09:19:36 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E465B17A9A
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:19:34 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id hh9so5290897qtb.13
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:19:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GgRe8FExVz3GkkvoaaG9sGhymMB0PRwWjEbFxn6Jfss=;
-        b=l8pIr4sinoKUjWeipxRKIZ4oXm0ZoyoEdMLntlfg3I8d2d+o3gEDkvKbeMV4mdGZM9
-         pbWNz1n+CPFeyEowUoqwctEYOovkQ1fqDRm8G+D9Aa9hNlctlztjkQ40WdqsM3ren7G8
-         Tn+4VgnJ9HjAUuHoe/tkgklIyGV/C4LCZO0Qy9a+X3Q39s5OUZkc0G5qkbdiwkwbtid0
-         DxAP+DpCZLLbqYCKwXzeHKqOmZaxZOYNUcBjHDKReduIISgMbwpiYm8SgwfTjZwLfZQw
-         qlLJTpQaq7MbySaWBBqABO0ce6fFRduBW7gMJdziQlsV2tu/3UMsXEcqsilSKuNVA/Ly
-         CKCg==
+        bh=nCSwBkwZXdfMuWsk1P1u/17KwJcVR/Zaj8waJZyviMA=;
+        b=gE19VCZPTc1WzOZvTW/RwwowIeLE19BpAVizDq1z042x9ClQTwMdU4vUO6iz8l/tFO
+         WCqOQWpVRZZNUohu5DSbS2ds60Lfwa3zy+NNtFufMCBSjVO6JUKuzezomXeseqJwZeg4
+         MlBdFevqY8qb5n+C6gU5MBzzp1KUcjk9ws8bxhhfKN2rY13nPkw8rYgrKecqzb9uH9DA
+         YGrhZAysjoh9YWJlfu9KSbQDYeInPdusBDHAUUdgs0DEShSAAADOcIJp0ommS3ZhAvdH
+         ie4057izyck/v6SA8k8zhosrMOXCkI/DPb/5y1F5jrPXRpy7Lh6cQIXteahspVn8tbqy
+         WFAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GgRe8FExVz3GkkvoaaG9sGhymMB0PRwWjEbFxn6Jfss=;
-        b=B3Pt0rurf4lpXcm30yny9UGmR+06v2vjPSq2igsOoaQ5Fh4gff/ta5kF1eigGtElCi
-         R+oP5Rz1QIyp7VB866QNQB2SGrhNo/lSAMh3dkbMCkJy6g9AAtY9PevpqXPpctZ9OCtf
-         dEaBg/jZbdnGp3UTXioCXKPP4Ik/DJ6MdzurHFW68GEVpizZqFwxSuUjXaRZ3/o4th4l
-         ucAC70K1L2L5l7Ec5OdwNDp14pXSQ0R9bm7j7BuJsZ8BlET2xoHOEq557XiVQoM4d2CK
-         cjs+gACuNqS2nGN3oTVRVonqZ2bX3ZFfoai+LPRNfI/cXSfjlBV6mZjujglXjsPKPOFJ
-         Fl5w==
-X-Gm-Message-State: ACrzQf16qkGSiO1FY9cMsqGLzQqSVvN/aN2IpvarfOcEIg+/YthOO8Yx
-        LuOkx2djL2VUe4NS0R+RDJFvJQ==
-X-Google-Smtp-Source: AMsMyM6zyp0J3UGIsDFNwMFzEPuj7ARj7VGL3aJ2WLojj8HlMPHHcidekN3FLnw/8rXbQp4cVl86dw==
-X-Received: by 2002:ad4:5e8a:0:b0:4b1:b225:dbc1 with SMTP id jl10-20020ad45e8a000000b004b1b225dbc1mr2023264qvb.94.1665839830343;
-        Sat, 15 Oct 2022 06:17:10 -0700 (PDT)
+        bh=nCSwBkwZXdfMuWsk1P1u/17KwJcVR/Zaj8waJZyviMA=;
+        b=k2MDmwleKDyLmsxiINXHUmsd/wAywPCL8XhduT5EX1uiMGmzMSdvh2c/m/86Y31amM
+         gXIu6dO0LO535jjrZ9LmbYQXt4GsV9z0k+8MOk32k9rlbrk9FpF1+s61Tzt3Ea3D3Zh8
+         qoMpxam5/EIGrtrc1aYEGjT1wBGYgh7hTVx2U9gcxAZxC3Wa0qhkqPm9hH15zngL8Bsh
+         tpI3dDIC/YUE5zrjbVbmOEwx/HyTs/pTexL1bf+hdsgfkSwdTRv83ui80GcvJGeRIZEG
+         osi2TBa+59bTRKqd1oaioK6DMw6VNSpVFwZTM7DM6g+MZ8Cn+zLAen7DVRZSTujUkPYL
+         6GWA==
+X-Gm-Message-State: ACrzQf3UtdQ/z3ltbhg3hko/ljH42MI8eEyKuDEwVF8R8JFuqE9MRT7r
+        Bxl8uuNdhzVOF8yeJ5o1iuiVoA==
+X-Google-Smtp-Source: AMsMyM4kq7rQa7ljXuMMZTYKm/dBZMYoq01Eq1Y/RbRArMT13cL8p/kHh5EbvBTFyGn/SgktmacgFg==
+X-Received: by 2002:a05:622a:54:b0:399:5b6c:654b with SMTP id y20-20020a05622a005400b003995b6c654bmr1882983qtw.362.1665839973816;
+        Sat, 15 Oct 2022 06:19:33 -0700 (PDT)
 Received: from ?IPV6:2601:42:0:3450:161:5720:79e9:9739? ([2601:42:0:3450:161:5720:79e9:9739])
-        by smtp.gmail.com with ESMTPSA id h8-20020a05620a284800b006eeb51bb33dsm5046162qkp.78.2022.10.15.06.17.08
+        by smtp.gmail.com with ESMTPSA id y11-20020ac8524b000000b0039bde72b14asm3817450qtn.92.2022.10.15.06.19.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Oct 2022 06:17:09 -0700 (PDT)
-Message-ID: <2928a80c-6c5d-c7e0-10f1-4c3b18dab525@linaro.org>
-Date:   Sat, 15 Oct 2022 09:17:07 -0400
+        Sat, 15 Oct 2022 06:19:32 -0700 (PDT)
+Message-ID: <bcd3e840-ea25-51fd-6bca-683fd7680ab5@linaro.org>
+Date:   Sat, 15 Oct 2022 09:19:31 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v2 1/5] media: dt-bindings: ov5645: Convert OV5645 binding
- to a schema
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: Document QDU1000/QRU1000
+ SoCs and boards
 Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221014183459.181567-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAL_JsqKC_BJDJLLFck_0CbQ-0rZ0oVWMAdiwwGep23nh2pP19g@mail.gmail.com>
- <CA+V-a8vMLuzJ8h5UDNXUiZRXPV1vJ9gguUMywe_+sPcU8tK+tA@mail.gmail.com>
- <20221014214029.GA2937999-robh@kernel.org>
- <Y0pLDFMsFmHhC/R8@pendragon.ideasonboard.com>
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221014221138.7552-1-quic_molvera@quicinc.com>
+ <20221014221138.7552-2-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y0pLDFMsFmHhC/R8@pendragon.ideasonboard.com>
+In-Reply-To: <20221014221138.7552-2-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/10/2022 01:54, Laurent Pinchart wrote:
-> Hi Rob,
+On 14/10/2022 18:11, Melody Olvera wrote:
+> Document the QDU1000 and QRU1000 SoC bindings and the boards that use
+> them.
 > 
-> On Fri, Oct 14, 2022 at 04:40:29PM -0500, Rob Herring wrote:
->> On Fri, Oct 14, 2022 at 10:27:53PM +0100, Lad, Prabhakar wrote:
->>> On Fri, Oct 14, 2022 at 10:05 PM Rob Herring <robh+dt@kernel.org> wrote:
->>>> On Fri, Oct 14, 2022 at 1:35 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
->>>>>
->>>>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->>>>>
->>>>> Convert the simple OV5645 Device Tree binding to json-schema.
->>>>>
->>>>> The previous binding marked the below properties as required which was a
->>>>> driver requirement and not the device requirement so just drop them from
->>>>> the required list during the conversion.
->>>>> - clock-frequency
->>>>> - enable-gpios
->>>>> - reset-gpios
->>>>>
->>>>> Also drop the "clock-names" property as we have a single clock source for
->>>>> the sensor and the driver has been updated to drop the clk referencing by
->>>>> name.
->>>>
->>>> Driver requirements are the ABI!
->>>>
->>>> This breaks a kernel without the driver change and a DTB that has
->>>> dropped the properties.
->>>>
->>> I already have a patch for the driver [0] which I missed to include
->>> along with the series.
->>
->> You completely miss the point. Read the first sentence again. Changing 
->> driver requirements changes the ABI.
->>
->> This breaks the ABI. The driver patch does not help that.
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> I'm not following you here. If the DT binding makes a mandatory property
-> optional, it doesn't break any existing platform. The only thing that
-> would not work is a new DT that doesn't contain the now optional
-> property combined with an older driver that makes it required. That's
-> not a regression, as it would be a *new* DT.
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 1b5ac6b02bc5..3370a50644a6 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -40,6 +40,8 @@ description: |
+>          msm8996
+>          msm8998
+>          qcs404
+> +        qdu1000
+> +        qru1000
+>          sa8155p
+>          sa8540p
+>          sc7180
+> @@ -76,6 +78,7 @@ description: |
+>          mtp
+>          qrd
+>          sbc
+> +        x100
+>  
+>    The 'soc_version' and 'board_version' elements take the form of v<Major>.<Minor>
+>    where the minor number may be omitted when it's zero, i.e.  v1.0 is the same
+> @@ -493,6 +496,19 @@ properties:
+>            - const: google,pompom-sku0
+>            - const: qcom,sc7180
+>  
+> +      - description: Qualcomm Technologies, Inc. Distributed Unit 1000 platform
+> +          - items:
+> +              - enum:
+> +                  - qcom,qdu1000-idp
+> +                  - qcom,qdu1000-x100
+> +              - const: qcom,qdu1000
+> +
+> +      - description: Qualcomm Technologies, Inc. Radio Unit 1000 platform
+> +          - items:
+> +              - enum:
+> +                  -qcom,qru1000-idp
+> +              - const: qcom,qru1000
 
-You're right although in-tree DTS are now not compatible with older
-kernels. So it is not only about new DTS, it is about our kernel DTS
-which requires new kernel to work.
+This is still wrong order. All entries are ordered by SoC compatible. So
+this should go before sc7180, not after.
 
-DTS are exported and used by other systems, thus if someone blindly
-takes this new DTS without clock-names, his kernel/OS/bootloader might
-stop working.
-
-That is however a more relaxed requirement than kernel ABI against old DTS.
-
-> 
->>>> Also, with 'clock-names' dropped, you've just introduced a bunch of
->>>> warnings on other people's platforms. Are you going to 'fix' all of
->>>> them?
->>>>
->>> Yes I will fix them, once the patch driver patch [0] is merged in.
->>
->> Why? You are just making extra work. We have enough warnings as-is to 
->> fix.
-> 
-> I agree that a DT binding change should patch all in-tree DTS to avoid
-> introducing new warnings.
-
-Yes.
+> +
+>        - description: Google Quackingstick (newest rev)
+>          items:
+>            - const: google,quackingstick-sku1537
 
 Best regards,
 Krzysztof
