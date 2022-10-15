@@ -2,115 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95CE45FFA18
-	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 15:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1D1F5FFA22
+	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 15:06:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229770AbiJONAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 09:00:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43434 "EHLO
+        id S229693AbiJONGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Oct 2022 09:06:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229717AbiJONAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 09:00:24 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31752CE21
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:00:21 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id w3so5281021qtv.9
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:00:21 -0700 (PDT)
+        with ESMTP id S229635AbiJONGP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 09:06:15 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD8D40BED
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:06:14 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id a24so5280461qto.10
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:06:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YzVFvoqPA8otoKfTTkSzo5O42ejeTslaNX3VpWD2aaU=;
-        b=mLJCU69JHPINYeqEIAPtNr/qK1R54Q8SlRSUn7VGflw6i+u0BIdsTyCfyaaPMWvAL4
-         ZA9xcVjh1/MUMBfXirJeSbVlbfBrsOUR0W7Ohv1jOLDMSlR6+vKp2JnMZTYAT0ZOuxNl
-         akI5RcgwyxC8YloMc5rr40LYJDgbrxYkvAzk5GY7S8GVK3hkOy3wD6Udep/e12hapyDi
-         Gvk+OB4yx3gDLxsgBFybo9WIbktw0O1EGYZwtocop6tI7MxRG61AP8QfSjBVegi/x5h+
-         POKPUaYAjp78Iy6dDzRuPJhsUSLavftefrqrMypVFqIegE6wrbukKVrpuoXH2KcEmJwL
-         9ujw==
+        bh=TBNDWb/PUcfIBjVY7nryISHx24x9THNIcQMhnCQu8a0=;
+        b=psYq027JfEzzbK4E60x4LX4q7Vhlj2I1XUKQAilBWc+ExEOX+Zwp5+IksHLho0owp3
+         mb+leoQnlfmj+GZuwy6Ju444R43BH2cCaiwPHJJ7ddBvMxkCbSFEM4KMHuVygaVBVzGw
+         FFPdK72zr8DgmsR0B99ka8AItcsp9GI7/Qlcjh0hRPgWDDkyWn9as7+SneS2ZdIrnCMZ
+         SeLe1/k3r55lkFwSZNFjQrWhDZCGy2ptjn+AgfcGgmaCCSZ3ERNdVLvNEBt0HFSANG1u
+         AwqZABH/VnA9Q4WBKXfsWqQTwwntiIQRZcOBVgcb6uT3zE59w5qNU+Rirg5xDdXpk8dW
+         a3AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YzVFvoqPA8otoKfTTkSzo5O42ejeTslaNX3VpWD2aaU=;
-        b=nR+Km3HWohoohhL2BMX8jkpi3ZbiDPnFQ29jEsAcBvoSZDUoYJbX8G9Z2Qhyl4u+wu
-         HS0gBhcefEqJ6lEtgewfkVF+T1gWQS10ORMTVcRcC6PF8Ypdnl/ZbTD8ZoMeWXjsgGL4
-         BPmIUifbLAMqcwn/xlL8mLtQASzRXiv+mdSUWvgP0vnpW+nYm/Tp5k/9TXFHpJoAf9of
-         Ahq5vBMsj0nOmunmZU5HogJlMVKJOFFQPSQ98nMsPwPe2W7yDyMAYGc68lGX1kpDtltX
-         AVyl+WRiq/8nf0bYB0eCxK7SpUrKEwuHZ9En9589MuZonfydOkDlpKIWDa4mqFlOgf3q
-         8IuA==
-X-Gm-Message-State: ACrzQf3SGpVn2jvH0l8u0CMJg/U08C2ATuVvfcuwzDQjjNIk8w2HhAGM
-        s5pdulodqt+chg15SunlnE8jnDlmXW+KpA==
-X-Google-Smtp-Source: AMsMyM4MtkHVxQ/H6J+XcEyuC7jT+IeuyzzKHfpCjoFk7oA3Kb0GQocOfHKfvZta4G6dPITaxdmWqA==
-X-Received: by 2002:a05:622a:1829:b0:35b:b542:b593 with SMTP id t41-20020a05622a182900b0035bb542b593mr1779181qtc.471.1665838820432;
-        Sat, 15 Oct 2022 06:00:20 -0700 (PDT)
+        bh=TBNDWb/PUcfIBjVY7nryISHx24x9THNIcQMhnCQu8a0=;
+        b=mgG1FSfmmuyOrNCNpwPFKT6/2KK6XW70Y6QP5Zeo1aYuWeLz3dtGrhgOUcRXzF9uwd
+         DWyH6sNYoIYu+h4vTjZ4KmbZ3QTZ0pHQrxZcKdEqQkz0qvMeb21wNSicObyf0V0xzwpg
+         7TimYSaS8VLm1S40i66Af3mG+uMIP6BrXIlailGD4YZXWuR/P3YEtnrjUkqCq40u4Pol
+         W0u4/YPPQQDiNI7Kw6a9zavWwsxI9FjQmFAxlyWzhDPPzOqIO60nq7Mifd6MdQVv0gTj
+         sSNKYeB7+g5KZrl+Q8hYjZvzq7kG9N/fRyqyTZJc0zV1SyP8c1DjJvUYpNwRr/aUdDaO
+         jBmg==
+X-Gm-Message-State: ACrzQf3hFhvppTymx2KPjLLdcqlL00i9BVDJn6lz5u7mdVHwsMcFhBpD
+        yKE5T412IiPr+0ZjacSsmxSe3trhOHUarA==
+X-Google-Smtp-Source: AMsMyM68XCtlhc18qhR76sv5R8jMSEOf9gyOaszHbt0cP995dakcvcmIUwSNr07yseUpSAV9CGhYtQ==
+X-Received: by 2002:ac8:4d4a:0:b0:39c:d99c:dbce with SMTP id x10-20020ac84d4a000000b0039cd99cdbcemr1774966qtv.511.1665839173409;
+        Sat, 15 Oct 2022 06:06:13 -0700 (PDT)
 Received: from ?IPV6:2601:42:0:3450:161:5720:79e9:9739? ([2601:42:0:3450:161:5720:79e9:9739])
-        by smtp.gmail.com with ESMTPSA id u18-20020a05620a085200b006ce580c2663sm4609123qku.35.2022.10.15.06.00.18
+        by smtp.gmail.com with ESMTPSA id fe13-20020a05622a4d4d00b003994bbe91bdsm3897889qtb.60.2022.10.15.06.06.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Oct 2022 06:00:19 -0700 (PDT)
-Message-ID: <cd5fdffa-3408-3270-59d2-728fd67891ad@linaro.org>
-Date:   Sat, 15 Oct 2022 09:00:17 -0400
+        Sat, 15 Oct 2022 06:06:12 -0700 (PDT)
+Message-ID: <c8f33e83-1329-e549-d739-24b33f8633ba@linaro.org>
+Date:   Sat, 15 Oct 2022 09:06:11 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: arm,pl18x: Document
- interrupt-names is ignored
-To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+Subject: Re: [PATCH] dt-bindings: clock: Convert qcom,lcc to DT schema
+Content-Language: en-US
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Yann Gautier <yann.gautier@foss.st.com>,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20221013221242.218808-1-marex@denx.de>
- <cc7289ac-b75a-62e3-4b58-fc018715c068@linaro.org>
- <09cb3000-14c4-e94f-70e8-36e0ef8ce3fc@denx.de>
-Content-Language: en-US
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221015090946.448820-1-luca@z3ntu.xyz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <09cb3000-14c4-e94f-70e8-36e0ef8ce3fc@denx.de>
+In-Reply-To: <20221015090946.448820-1-luca@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2022 12:02, Marek Vasut wrote:
->>> ---
->>>   Documentation/devicetree/bindings/mmc/arm,pl18x.yaml | 4 +++-
->>>   1 file changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
->>> index 1e69a5a42439b..1c96da04f0e53 100644
->>> --- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
->>> @@ -95,7 +95,9 @@ properties:
->>>         PIO (polled I/O) interrupt and occurs when the FIFO needs to be
->>>         emptied as part of a bulk read from the card. Some variants have these
->>>         two interrupts wired into the same line (logic OR) and in that case
->>> -      only one interrupt may be provided.
->>> +      only one interrupt may be provided. The interrupt-names property is
->>> +      not used due to inconsistency of existing DTs regarding its content.
->>> +    deprecated: false
->>
->> Why do you add deprecated false? All properties are not deprecated by
->> default. Did any other referenced schema make it deprecated?
+On 15/10/2022 05:09, Luca Weiss wrote:
+> Convert the text bindings for the lcc to yaml format. Doing this showed
+> that clocks and clock-names were not documented, so fix that now.
 > 
-> Rob asked me to add it in V1 .
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>  .../devicetree/bindings/clock/qcom,lcc.txt    | 22 -----
+>  .../devicetree/bindings/clock/qcom,lcc.yaml   | 88 +++++++++++++++++++
+>  2 files changed, 88 insertions(+), 22 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,lcc.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,lcc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,lcc.txt b/Documentation/devicetree/bindings/clock/qcom,lcc.txt
+> deleted file mode 100644
+> index a3c78aa88038..000000000000
+> --- a/Documentation/devicetree/bindings/clock/qcom,lcc.txt
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -Qualcomm LPASS Clock & Reset Controller Binding
+> -------------------------------------------------
+> -
+> -Required properties :
+> -- compatible : shall contain only one of the following:
+> -
+> -			"qcom,lcc-msm8960"
+> -			"qcom,lcc-apq8064"
+> -			"qcom,lcc-ipq8064"
+> -			"qcom,lcc-mdm9615"
+> -
+> -- reg : shall contain base register location and length
+> -- #clock-cells : shall contain 1
+> -- #reset-cells : shall contain 1
+> -
+> -Example:
+> -	clock-controller@28000000 {
+> -		compatible = "qcom,lcc-ipq8064";
+> -		reg = <0x28000000 0x1000>;
+> -		#clock-cells = <1>;
+> -		#reset-cells = <1>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,lcc.yaml b/Documentation/devicetree/bindings/clock/qcom,lcc.yaml
+> new file mode 100644
+> index 000000000000..03c99435d342
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,lcc.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,lcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm LPASS Clock & Reset Controller Binding
 
-Indeed, thanks.
+Drop "Binding"
+
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,lcc-apq8064
+> +      - qcom,lcc-ipq8064
+> +      - qcom,lcc-mdm9615
+> +      - qcom,lcc-msm8960
+> +
+> +  clocks:
+> +    minItems: 8
+
+Drop minItems
+
+> +    maxItems: 8
+> +
+> +  clock-names:
+> +    minItems: 8
+
+Drop minItems
 
 Best regards,
 Krzysztof
