@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1D475FFA46
-	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 15:34:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06CA45FFA49
+	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 15:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229581AbiJONeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 09:34:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50860 "EHLO
+        id S229655AbiJONfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Oct 2022 09:35:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbiJONen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 09:34:43 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06DE61A20E
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:34:39 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id mx8so4925306qvb.8
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:34:39 -0700 (PDT)
+        with ESMTP id S229567AbiJONfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 09:35:20 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB3B27CF2
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:35:19 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id y10so4919920qvo.11
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 06:35:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5jbC/dTgT9zwc4R7yvMOOqEeEKsSGXBD2PJzao5ApGA=;
-        b=tyaPqt5f0ie3qyNAMa9G0VHvX8adDYBbLR250C1W1+aiR03eMIPP8M5POeMPLgbmNa
-         AvnSDW+tqCFxhw4zQGEbEkb3xs23d8Irxomrgm9h7v4IbxTsoOBtzhUL+40BT1SQAVL8
-         fwa4NLHsv/Q+HPAqyWmmGF4hWYuEcNHqT0NyyFfRv1L77xiU2AhYrMMY7my5YLU9XWll
-         MRaIw25u7bIiDQTH3Fxx9cLMbVFn5MF3LyG6l3QGNyHUvb4gxjO9u+i24sgDPd43LXjY
-         IJnZBU/tJ368wk6AXZwKHewZiwx/i1r37XtZSJLHgf7abx5V9oG1Vktt4Kbd9vKQs6Gf
-         CTeg==
+        bh=jkcqe6Aw+7OJI225AGBLIYG3qr/n+NNf8k9rGsJk/18=;
+        b=LVGdbQfPrOWvu7Q0dAfUe6/KaRakTMgliY5CBpGEvaanOsAmjuDEfVGJjqlsf540Pa
+         Do0kPx8nxUudS2bms00RGubL6bLlFFoE2patSLR9vipd383En41/lIzP/uesrfqfw3aU
+         cR9J+dJjTFMbWDeGjuI8ssiPGguI9MQdIysw6UYcALA8MhsSBRmTYa9r6rZam8N81iy6
+         cEp5h0ufHIl4TZKTlaYnPZx3taunuXcS2HMp5cXMHPKcmh6VyXOIxkpQWzvbvkpNgEV5
+         Q78IEJ4qvTXEPaEjyiAL4kEV6WitSn3DIDXTUWsd11GtSpvoaGGrdQCfjpXYCou2wafR
+         xFTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5jbC/dTgT9zwc4R7yvMOOqEeEKsSGXBD2PJzao5ApGA=;
-        b=U/wnxT+MNaV3bRP20Y5oZNfLJmxhURtwOkVvRh6uVg8KFFqb8f5vQ8DeDzrQ6roxA2
-         C+qnGIGfCFulllcX2zAM9OIhPVDfmBID3VE68hhppFZ0dUdliN0qcPtgzCQM1HNRc3S/
-         LbcfOceUKIvnPbuTZhPcTpqKl1qRRbKqTi8k72Csc+tohyV364NkDeTJSyAELI1RIU20
-         DSQ8YJ/c3SJpcMSGNONZ8cC1I4Prro1Ponp14h+h8WWVyNUS8vUAlTHJq4DMvemN7xAJ
-         ttscITXYCjYRjSQ+R1lXCnLrp63F1YIVV7meSpPkTxwUttB88edxSrnPLssBkeBy9QBg
-         dkXw==
-X-Gm-Message-State: ACrzQf38Ru2M7KDXmrNMxXUFXJOJx+ABp/d7zPlaO4LpD9EGjWAFtjpE
-        N5wKMuuCrE0QujrvNRClwMQAagcj/hAkjA==
-X-Google-Smtp-Source: AMsMyM7eSzYYXuFh8rXP+SNAVdND4Jdbr0FGlfuGsLZ/CRHHbmrKIVAFYohc2QGFSP3eHvxfWSO/ZA==
-X-Received: by 2002:a0c:8086:0:b0:4b1:cfa1:3c35 with SMTP id 6-20020a0c8086000000b004b1cfa13c35mr1950948qvb.47.1665840879112;
-        Sat, 15 Oct 2022 06:34:39 -0700 (PDT)
+        bh=jkcqe6Aw+7OJI225AGBLIYG3qr/n+NNf8k9rGsJk/18=;
+        b=QHKmCkXLoDfHwNhpE/8gk/wXtD3BBNOJ3QfFqSv8UFqQhKr2AGdMzVbGPaTlH7ne4u
+         gMXa1WSqyaDAo81ZxdVSlsw2UbGO/Dekt+W9ZN7t807i/nh0BpYS8VCJC0nRfwmUUMIG
+         4/xCddbsjRBYtdGoUD3d16QDSijaijzusFjZB68d6dPLyUe/56G9wpXSmJv0xjfWC0Zd
+         CZXXV8iPyoEiGqJVfbl2Yy2DqV7JOU33nZYDoO8ScjS3KHX5883DFfJsNUY/zEkiHnqI
+         cVJd7qvQ9Z/5mfjk02xkCO44WbeIYs8gz2K0oFKk9Qfn0V4Pvwym2JZLjHaM31rjdeVf
+         5xOg==
+X-Gm-Message-State: ACrzQf3z3SM2jdHJdFEWb+xQrxJ+51FvBvKlUMWwbjoTF0/FV2PVemiP
+        TW/NH8MXe/u2NFjsMfm19gxLXQ==
+X-Google-Smtp-Source: AMsMyM7nMDg8msQoBQxxTGrTLeaCf0ztgZP886nRu6CW2CERS8+Rh6tZ2dm5e8Eopk0eUYeQlhcbug==
+X-Received: by 2002:a05:6214:1c46:b0:4b3:f935:7cb9 with SMTP id if6-20020a0562141c4600b004b3f9357cb9mr1968222qvb.9.1665840918713;
+        Sat, 15 Oct 2022 06:35:18 -0700 (PDT)
 Received: from ?IPV6:2601:42:0:3450:161:5720:79e9:9739? ([2601:42:0:3450:161:5720:79e9:9739])
-        by smtp.gmail.com with ESMTPSA id d11-20020ac8544b000000b0039a3df76a26sm3920750qtq.18.2022.10.15.06.34.37
+        by smtp.gmail.com with ESMTPSA id w13-20020a05620a424d00b006ce441816e0sm4973747qko.15.2022.10.15.06.35.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Oct 2022 06:34:38 -0700 (PDT)
-Message-ID: <55d026c0-9c54-f5d6-bf5e-da71856f0698@linaro.org>
-Date:   Sat, 15 Oct 2022 09:34:37 -0400
+        Sat, 15 Oct 2022 06:35:18 -0700 (PDT)
+Message-ID: <7b25172f-9c59-5ff9-b6b3-38ca62a1d1f6@linaro.org>
+Date:   Sat, 15 Oct 2022 09:35:16 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v2 1/4] dt-bindings: firmware: scm: Add QDU1000/QRU1000
- compatibles
+Subject: Re: [PATCH v2 2/4] dt-bindings: power: rpmpd: Add QDU1000/QRU1000 to
+ rpmpd binding
 Content-Language: en-US
 To:     Melody Olvera <quic_molvera@quicinc.com>,
         Andy Gross <agross@kernel.org>,
@@ -67,14 +67,15 @@ Cc:     Robert Marko <robimarko@gmail.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221014221121.7497-1-quic_molvera@quicinc.com>
- <20221014221121.7497-2-quic_molvera@quicinc.com>
+ <20221014221121.7497-3-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221014221121.7497-2-quic_molvera@quicinc.com>
+In-Reply-To: <20221014221121.7497-3-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,30 +83,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/10/2022 18:11, Melody Olvera wrote:
-> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
+> Add compatible and constants for the power domains exposed by the RPMH
+> in the Qualcomm QDU1000 and QRU1000 platforms.
 > 
 > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  .../devicetree/bindings/firmware/qcom,scm.yaml   | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 2 ++
+>  include/dt-bindings/power/qcom-rpmpd.h                  | 6 ++++++
+>  2 files changed, 8 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> index c5b76c9f7ad0..47083f47f109 100644
-> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> @@ -38,6 +38,8 @@ properties:
->            - qcom,scm-msm8994
->            - qcom,scm-msm8996
->            - qcom,scm-msm8998
-> +          - qcom,scm-qdu1000
-> +          - qcom,scm-qru1000
+> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+> index 5b4eda919911..ffac5fcf5f6f 100644
+> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+> @@ -28,6 +28,8 @@ properties:
+>        - qcom,msm8998-rpmpd
+>        - qcom,qcm2290-rpmpd
+>        - qcom,qcs404-rpmpd
+> +      - qcom,qdu1000-rpmhpd
+> +      - qcom,qru1000-rpmhpd
 
-Why exactly we are no using qdu1000 as fallback? That was the
-recommendation in previous discussion.
-
-Patch is still incomplete - you still do no have proper changes in allOf
-for the clocks. If you want to say that this SoC does not take any
-clocks as input, then they should not be allowed.
+Same question about fallback.
 
 Best regards,
 Krzysztof
