@@ -2,53 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D71995FFB25
-	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 18:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73F4A5FFB3A
+	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 18:35:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbiJOQBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 12:01:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39004 "EHLO
+        id S229510AbiJOQfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Oct 2022 12:35:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229594AbiJOQBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 12:01:15 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C66C444B2;
-        Sat, 15 Oct 2022 09:01:14 -0700 (PDT)
+        with ESMTP id S229570AbiJOQfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 12:35:22 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 652AC3DBE1;
+        Sat, 15 Oct 2022 09:35:21 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A318BCE0AB5;
-        Sat, 15 Oct 2022 16:01:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42F48C433C1;
-        Sat, 15 Oct 2022 16:01:08 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B0978B80917;
+        Sat, 15 Oct 2022 16:35:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8562C433C1;
+        Sat, 15 Oct 2022 16:35:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1665849671;
-        bh=5DW+KfgeP2TSoBevcMQCqBiQ6w16gwzYO6dEt63VsXM=;
+        s=k20201202; t=1665851718;
+        bh=zVHCc6/1Q9R11ugbfMvUl3mKQW5UvyeO+jYzbCq0HD4=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=CrprHuiVK/GF8bX9i7S1Mqi8ckPruPrhU+xVvLoDKcNvL9kRQVY88Z7s142oyo7zH
-         25wSgw00z2SKr/1QVKTnC386ROpES7+yNG2CJEWNSIsLst7613jgHHQPMR76AbaO6L
-         G0VgqsnUYLYvgtNf+YFj1KUZXCcwa5HxFO4e+Bpm4UQXusl5AWoJNyw4wOX4Lj5ZZb
-         LU3+Ypv5fKBNuADSpBcDowG/Sd5iwj9Yu8QiQUYY3qa/4K6nTyyB2Nyycfma3G6Hsr
-         4riLWL+QXsdOpiuawbQPRo0oeih90R9c53+u8Fhvmfg4bliTLJg2qbWjmuKkSMSt1f
-         r3IY9qYJtWN1Q==
-Date:   Sat, 15 Oct 2022 17:01:37 +0100
+        b=j/YqUt7M95etBzTRmEFEBOcfZ4mt2YNB9fqbcxic4wq9tmkjhyOzonCxAnIVzzI8Y
+         UycMPMtER9MnfI4u1hk6FPDe8MpkEtNLMuoh+0gD+Wb5Hkyop0swCO/o3jH4ZQG12Z
+         fVeIzTnIAduRkbVzClJSWe7S10EsPgzngZz0OJMm41lYg/udlNRASFNfZc67nDzuMX
+         /RbaCcjZn/bXyeSzjLgBtNfa95E4Icx0vsl/dCgTRbENDJ46YLI2ggsLK5FgBlbaa5
+         kmY/iTCIL8hc7J5KtoE4frOaD/1jP189ReHJyuLFLzVu/pHJV286/isV/EEsldZjFi
+         WRiv9SF23JPig==
+Date:   Sat, 15 Oct 2022 17:35:43 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc:     Olivier Moysan <olivier.moysan@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     Cosmin Tanislav <demonsingur@gmail.com>,
+        Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
         Lars-Peter Clausen <lars@metafoo.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 0/8] iio: stm32-adc: add support of adc for stm32mp13
-Message-ID: <20221015170137.072b143a@jic23-huawei>
-In-Reply-To: <aeb970f3-a089-dbe0-5fa8-63da657850d4@foss.st.com>
-References: <20221012142205.13041-1-olivier.moysan@foss.st.com>
-        <aeb970f3-a089-dbe0-5fa8-63da657850d4@foss.st.com>
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: Re: [PATCH 1/3] iio: temperature: ltc2983: allocate iio channels
+ once
+Message-ID: <20221015173543.4b3f6d5d@jic23-huawei>
+In-Reply-To: <20221014161824.00001ca2@huawei.com>
+References: <20221014123724.1401011-1-demonsingur@gmail.com>
+        <20221014123724.1401011-2-demonsingur@gmail.com>
+        <20221014151123.00003268@huawei.com>
+        <20221014161824.00001ca2@huawei.com>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -62,86 +64,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Oct 2022 14:52:49 +0200
-Fabrice Gasnier <fabrice.gasnier@foss.st.com> wrote:
+On Fri, 14 Oct 2022 16:18:24 +0100
+Jonathan Cameron <Jonathan.Cameron@huawei.com> wrote:
 
-> On 10/12/22 16:21, Olivier Moysan wrote:
-> > On STM32MP13 SoCs, each ADC peripheral has a single ADC block.
-> > These ADC peripherals, ADC1 and ADC2, are fully independent.
-> > The STM32MP131 SoC provides only ADC2, while other STM32MP13x
-> > SoCs provide both ADC1 and ADC2.
+> On Fri, 14 Oct 2022 15:11:47 +0100
+> Jonathan Cameron <Jonathan.Cameron@huawei.com> wrote:
+> 
+> > On Fri, 14 Oct 2022 15:37:22 +0300
+> > Cosmin Tanislav <demonsingur@gmail.com> wrote:
+> >   
+> > > From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> > > 
+> > > Currently, every time the device wakes up from sleep, the
+> > > iio_chan array is reallocated, leaking the previous one
+> > > until the device is removed (basically never).
+> > > 
+> > > Move the allocation to the probe function to avoid this.
+> > > 
+> > > Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>    
+> > Hi Cosmin,
 > > 
-> > The STM32MP13 ADC features and characteristics are slightly
-> > different from STM32MP15 ADC ones, requiring a specific support
-> > in the driver.
+> > Please give a fixes tag for this one as we'll definitely want to
+> > backport it.
 > > 
-> > This patchset enables the ADC peripheral on STM32MP135F-DK board.
-> > 
-> > On STM32MP135F-DK board the ADC is connected to VDDA voltage
-> > provided by the PMIC LOD1 supply, which has to be enabled through
-> > SCMI regulator framework.
-> > This serie introduces a fixed regulator to allow ADC probing,
-> > while SCMI regulators support is not available. This does
-> > not ensure ADC regulator enabling however.  
+> > Reply to this patch is fine as b4 will pick it up like any other tag.  
+> Fixes: f110f3188e563 ("iio: temperature: Add support for LTC2983")
 > 
+> (from direct mail)
 > 
-> Hi Olivier,
-> 
-> I've one tiny remark on PATCH 5/8, "ARM: dts: stm32: add adc support to
-> stm32mp13"
-> 
-> With that fixed, for the whole series, you can add my:
-> 
-> Reviewed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-
-Applied 1 to the the fixes-togreg branch of iio.git and
-2,3,4 to the togreg branch of iio.git (pushed out as testing only
-until I can rebase on rc1).
-
-No overlap in code affected, so this should work fine and means
-I don't have to remember to pick up the non fixes later in the cycle.
+Applied to the fixes-togreg branch of iio.git.
 
 Thanks,
 
 Jonathan
 
-> 
-> Thanks,
-> Fabrice
-> 
-> > 
-> > Changes in v4:
-> > - reformat patch 1 commit message
-> > - reorder adc1 node
-> > 
-> > v3:
-> > - Remove blank line in tag block
-> > - Use HZ_PER_MHZ unit for max frequency definition
-> > - Coding style updates
-> > 
-> > v2:
-> > - Rework commit message length
-> > - Add missing spaces
-> > - Remove useless defines
-> > 
-> > Olivier Moysan (8):
-> >   iio: adc: stm32-adc: fix channel sampling time init
-> >   dt-bindings: iio: adc: stm32-adc: add stm32mp13 compatibles
-> >   iio: adc: stm32-adc: add stm32mp13 support
-> >   iio: adc: stm32: manage min sampling time on all internal channels
-> >   ARM: dts: stm32: add adc support to stm32mp13
-> >   ARM: dts: stm32: add adc pins muxing on stm32mp135f-dk
-> >   ARM: dts: stm32: add dummy vdd_adc regulator on stm32mp135f-dk
-> >   ARM: dts: stm32: add adc support on stm32mp135f-dk
-> > 
-> >  .../bindings/iio/adc/st,stm32-adc.yaml        |  68 ++++-
-> >  arch/arm/boot/dts/stm32mp13-pinctrl.dtsi      |   7 +
-> >  arch/arm/boot/dts/stm32mp131.dtsi             |  43 +++
-> >  arch/arm/boot/dts/stm32mp133.dtsi             |  31 +++
-> >  arch/arm/boot/dts/stm32mp135f-dk.dts          |  33 +++
-> >  drivers/iio/adc/stm32-adc-core.c              |  30 ++-
-> >  drivers/iio/adc/stm32-adc-core.h              |  30 +++
-> >  drivers/iio/adc/stm32-adc.c                   | 247 +++++++++++++++---
-> >  8 files changed, 443 insertions(+), 46 deletions(-)
 > >   
+> > > ---
+> > >  drivers/iio/temperature/ltc2983.c | 13 ++++++-------
+> > >  1 file changed, 6 insertions(+), 7 deletions(-)
+> > > 
+> > > diff --git a/drivers/iio/temperature/ltc2983.c b/drivers/iio/temperature/ltc2983.c
+> > > index b652d2b39bcf..a60ccf183687 100644
+> > > --- a/drivers/iio/temperature/ltc2983.c
+> > > +++ b/drivers/iio/temperature/ltc2983.c
+> > > @@ -1385,13 +1385,6 @@ static int ltc2983_setup(struct ltc2983_data *st, bool assign_iio)
+> > >  		return ret;
+> > >  	}
+> > >  
+> > > -	st->iio_chan = devm_kzalloc(&st->spi->dev,
+> > > -				    st->iio_channels * sizeof(*st->iio_chan),
+> > > -				    GFP_KERNEL);
+> > > -
+> > > -	if (!st->iio_chan)
+> > > -		return -ENOMEM;
+> > > -
+> > >  	ret = regmap_update_bits(st->regmap, LTC2983_GLOBAL_CONFIG_REG,
+> > >  				 LTC2983_NOTCH_FREQ_MASK,
+> > >  				 LTC2983_NOTCH_FREQ(st->filter_notch_freq));
+> > > @@ -1514,6 +1507,12 @@ static int ltc2983_probe(struct spi_device *spi)
+> > >  		gpiod_set_value_cansleep(gpio, 0);
+> > >  	}
+> > >  
+> > > +	st->iio_chan = devm_kzalloc(&spi->dev,
+> > > +				    st->iio_channels * sizeof(*st->iio_chan),
+> > > +				    GFP_KERNEL);
+> > > +	if (!st->iio_chan)
+> > > +		return -ENOMEM;
+> > > +
+> > >  	ret = ltc2983_setup(st, true);
+> > >  	if (ret)
+> > >  		return ret;    
+> > 
+> >   
+> 
 
