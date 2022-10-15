@@ -2,73 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2FE05FFA7B
-	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 16:05:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0C3F5FFA89
+	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 16:29:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbiJOOFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 10:05:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51080 "EHLO
+        id S229548AbiJOO3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Oct 2022 10:29:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbiJOOFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 10:05:35 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194D832DB2
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 07:05:27 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id mg6so4950968qvb.10
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 07:05:27 -0700 (PDT)
+        with ESMTP id S229554AbiJOO27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 10:28:59 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B6C4C00D
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 07:28:57 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id r8-20020a056830120800b00661a0a236efso3429846otp.4
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 07:28:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wRQiXvhJZIJmjGHaRfJj0NmdABZ2+jRov1EykwXk/aY=;
-        b=bgACONZ9H602AmqtfdwdaoOLeTQDeDloXCevf6CzGeghcBsSvzSV0FS1AuDHN8PlPu
-         yKMRvfc6SrG8hfjXCNzcGnv2OV6F89hskxh8qDSkILB4EodwCdoEmsCZkoqyk1Rb+aJD
-         e6LOLtjEClATYkyQmRoVHlFJJFJfCUNU5R71J9y6J4jZ7PLE0JT6b1bwdz8JYAnByg+r
-         /tmPZwn0dSSIMN/e8TqXbkThgvboCn+zs2qR8lijRFjLB/WhOJJloM2+jnAC8vIHJRM0
-         IPRqXQwYLUBGg2OGQKE8QIRoDhdBnT9ggzbbtAshIr4JWwHc2byUuqgmDRQA+hzZNOAK
-         4pIQ==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7qcdc/RkU0O0HbC0puyR2nnMuiyvRGRAFhnef/JK/qI=;
+        b=FSiaN47kDaF7oQH2XxDO3ksX+whBp1B+3AXnhFdsO/P/XKeNZ1eFr2Dcki+0mcYosb
+         6jR2xhwmQ+Goi5deUMyJDq9GZHk562L7EyHJTjqvaS2j1jz+NWEPJNck3cHAT8XJehks
+         +b54IQNQOjZJUBtI4Zguax5rVk6JX4HZ1Ijkc0LzjmmyZPJihBGT6n02nSE5VZNrwBFA
+         d6+TxzVh4siIN3CLvMRQlK78RS96WGUgsgu/T4BLYqqbk1t6ENaDnghbe876kzD6DafA
+         Pl3C/Sw9s4ArZI61om5XAPNbr2OGZ00KPNNLVl5TBWOiEd2Bp86uInIJE0vnyxQqE7FT
+         pmww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wRQiXvhJZIJmjGHaRfJj0NmdABZ2+jRov1EykwXk/aY=;
-        b=TFnwjdjXo07GkFrFxZh+9q67wakpplKWkt4LHXjUmw1bzI8F/f/7/vezSvnLWi+oWH
-         LGEGxfgB2P2E3cQiqrfch1dHkcblXNG88laVohAYLE4cilZmPIxCEF8ePvTWN4owW+dO
-         F56OAqd0xLKgFMImV3XgD595xmrqRJClMFqwzyni1qDoTfGGANA0rRzf5Tc6x071Wlkh
-         gLHWQbrrc1FtPwEh6Lg7uleYwgzo1LcxzCWlP2OjRTBMlJKIaHXJTrauQ3xDTn94WgKI
-         a3Xu6JBl0aniLptZrFrhCJPjgP5Hc7uo5ZRzRZby1AoCwbmvQCm2sy/1D4E2ew0W2/JU
-         BjOw==
-X-Gm-Message-State: ACrzQf0ynF2UtnrtxLJHVynTRjm0004L3JbkSPiShQ6ANHO0OlS/pSkT
-        ivVwoeFuKzhlbsmOuR9EqCdwZw==
-X-Google-Smtp-Source: AMsMyM4FiRDfw8auZQ76tRz9ZxY3JsftlXOzfAhvZV/TOc8ID7uPCiF7OqGEMnqDTzKPi6ZA6GpJbA==
-X-Received: by 2002:a05:6214:21cc:b0:4b3:ee7d:e9ab with SMTP id d12-20020a05621421cc00b004b3ee7de9abmr1852222qvh.60.1665842726776;
-        Sat, 15 Oct 2022 07:05:26 -0700 (PDT)
-Received: from krzk-bin.hsd1.pa.comcast.net ([2601:42:0:3450:161:5720:79e9:9739])
-        by smtp.gmail.com with ESMTPSA id s21-20020a05620a29d500b006bb78d095c5sm4958022qkp.79.2022.10.15.07.05.25
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7qcdc/RkU0O0HbC0puyR2nnMuiyvRGRAFhnef/JK/qI=;
+        b=aKftPeENCpr2w++MPsxCT6oJ/yIIH+b1wQFNBp3YVVh9lE0RgTEKHf77vKgVR+ymox
+         iSkHvRkGvSmD2ZyAbCunDsxr5ISPSCbB7kgsg5dtpa5KmkIn0rjMC7XANFH0Lfl0VQq7
+         Gu4hy2kVTMp7R7az+RUwXrqbe4ZddQ+h5eguJbF4uy1NXKEo3fabEioRKjaJ88lzM/pB
+         hX+gfeRACCGRkPF5HZMsojd8sj9oNHE3ZbK6dCAgZFQr99Bf11ggacHjXzaEKdxdOBVn
+         gqeC2eC6U3Tz4TayLKzr9WJr7d/+sz5KtetWOhJ58A6Ii/8T3Ice+yC/0+I1o3vgGv7D
+         /F3g==
+X-Gm-Message-State: ACrzQf15GYaar4SSfAVZuDsvkFZd3TcQadXCdBIN/lkW/iN+iwsak56N
+        DYTivMdLWuLeJ3UxNr3RrCDmUA==
+X-Google-Smtp-Source: AMsMyM7irA69CMmCVPDognpb7cdJLnYmXyUjx9zZmnhPAKaagiQHpVW0aWOZSt2YvYsg73hWhiewqA==
+X-Received: by 2002:a05:6830:1552:b0:661:8b22:84b6 with SMTP id l18-20020a056830155200b006618b2284b6mr1386038otp.12.1665844136951;
+        Sat, 15 Oct 2022 07:28:56 -0700 (PDT)
+Received: from fedora (69-109-179-158.lightspeed.dybhfl.sbcglobal.net. [69.109.179.158])
+        by smtp.gmail.com with ESMTPSA id j31-20020a056870051f00b0012c21a64a76sm2686518oao.24.2022.10.15.07.28.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Oct 2022 07:05:26 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        Sat, 15 Oct 2022 07:28:56 -0700 (PDT)
+Date:   Sat, 15 Oct 2022 10:28:53 -0400
+From:   William Breathitt Gray <william.gray@linaro.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Richard Acayan <mailingradian@gmail.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/5] arm64: dts: qcom: sm8450: Add GPI DMA compatible fallback
-Date:   Sat, 15 Oct 2022 10:04:47 -0400
-Message-Id: <20221015140447.55221-6-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221015140447.55221-1-krzysztof.kozlowski@linaro.org>
-References: <20221015140447.55221-1-krzysztof.kozlowski@linaro.org>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee@kernel.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
+Message-ID: <Y0rDpaGosqox77SQ@fedora>
+References: <20221010145222.1047748-1-biju.das.jz@bp.renesas.com>
+ <20221010145222.1047748-2-biju.das.jz@bp.renesas.com>
+ <8d6b8f0e-d9d7-0d77-aa99-379de768fd5d@linaro.org>
+ <OS0PR01MB592232C831CCA84FC302212F86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <ad2e4445-052b-d65a-bdba-5759c169aafd@linaro.org>
+ <OS0PR01MB59228146DE05231586212FE886239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <17fc9f27-03ad-7663-db21-2f14c7ff4312@linaro.org>
+ <OS0PR01MB5922152268684B5564AA170D86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="OGnd6CUR9MeZqDcJ"
+Content-Disposition: inline
+In-Reply-To: <OS0PR01MB5922152268684B5564AA170D86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -79,45 +91,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use SM6350 as fallback for GPI DMA, to indicate devices are compatible
-and that drivers can bind with only one compatible.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+--OGnd6CUR9MeZqDcJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index d32f08df743d..e01a019d8b23 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -730,7 +730,7 @@ gcc: clock-controller@100000 {
- 		};
- 
- 		gpi_dma2: dma-controller@800000 {
--			compatible = "qcom,sm8450-gpi-dma";
-+			compatible = "qcom,sm8450-gpi-dma", "qcom,sm6350-gpi-dma";
- 			#dma-cells = <3>;
- 			reg = <0 0x800000 0 0x60000>;
- 			interrupts = <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
-@@ -1058,7 +1058,7 @@ spi21: spi@898000 {
- 		};
- 
- 		gpi_dma0: dma-controller@900000 {
--			compatible = "qcom,sm8450-gpi-dma";
-+			compatible = "qcom,sm8450-gpi-dma", "qcom,sm6350-gpi-dma";
- 			#dma-cells = <3>;
- 			reg = <0 0x900000 0 0x60000>;
- 			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
-@@ -1394,7 +1394,7 @@ uart7: serial@99c000 {
- 		};
- 
- 		gpi_dma1: dma-controller@a00000 {
--			compatible = "qcom,sm8450-gpi-dma";
-+			compatible = "qcom,sm8450-gpi-dma", "qcom,sm6350-gpi-dma";
- 			#dma-cells = <3>;
- 			reg = <0 0xa00000 0 0x60000>;
- 			interrupts = <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.34.1
+On Tue, Oct 11, 2022 at 08:31:48PM +0000, Biju Das wrote:
+> > Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a
+> > bindings
+> >=20
+> > On 11/10/2022 15:23, Biju Das wrote:
+> > >> Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a
+> > >> bindings
+> > >>
+> > >> On 11/10/2022 10:55, Biju Das wrote:
+> > >>>
+> > >>>>>  .../bindings/mfd/renesas,rz-mtu3.yaml         | 305
+> > >>>> ++++++++++++++++++
+> > >>>>>  1 file changed, 305 insertions(+)  create mode 100644
+> > >>>>> Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+> > >>>>
+> > >>>> This should not be in MFD. Just because some device has few
+> > >> features,
+> > >>>> does not mean it should go to MFD... Choose either timer or pwm.
+> > >>>
+> > >>> MFD is for multifunction device. This IP supports multiple
+> > functions
+> > >>> like timer, pwm, clock source/events. That is the reason I have
+> > >> added
+> > >>> here. MFD is core which provides register access for client
+> > devices.
+> > >>>
+> > >>> For me moving it to pwm or counter is not a big problem.
+> > >>> Why do you think it cannot be MFD?
+> > >>
+> > >>
+> > >> Because it makes MFD a dump for everything where author did not
+> > want
+> > >> to think about real device aspects, but instead represented driver
+> > >> design (MFD driver).
+> > >
+> > > Core driver is MFD, just provides resources to child devices and is
+> > > not aware of any real device aspects.
+> > >
+> > >>
+> > >> MFDs are pretty often combining unrelated features, e.g. PMICs
+> > which
+> > >> have wakeup and system power control, regulator, 32 kHz clocks, RTC
+> > >> and some USB connector.
+> > >
+> > > Here also same right? pwm, counter and clock are 3 unrelated
+> > features.
+> > > That is the reason we have separate subsystems for these features.
+> >=20
+> > These are quite similar features of a similar piece of hardware.
+> > Sometimes called timer.
+> >=20
+> > >
+> > >>
+> > >> Just because you will have clocksource driver, PWM driver and timer
+> > >> driver does not make it a MFD.
+> > >
+> > > MFD is multi function device.
+> >=20
+> > No. MFD is a Linux subsystem name. Not a device type. The bindings are
+> > located in respective type.
+> >=20
+> > > So are are you agreeing Clock source, PWM and timer are different
+> > > functionalities or not? If not, why do we have 3 subsystems, if it
+> > is
+> > > same?
+> >=20
+> > Linux subsystems? We can have millions of them and it is not related
+> > to bindings.
+>=20
+> OK.
+>=20
+> >=20
+> >=20
+> > > Where do keep these bindings as there is only single "rz_mtu"
+> > bindings for these 3 different functionalities?
+> >=20
+> > Again, focus on hardware not on Linux drivers. Hardware is called MTU
+> > - Multi-Function TIMER Unit. Timer.
+>=20
+> OK
+> >=20
+> > > pwm or counter or mfd?
+> >=20
+> > Not MFD. I already proposed where to put it. Other Timer/PWM/Counter
+> > units are also in timer.
+> >=20
+>=20
+> I guess for counter/pwm maintainers, it is ok to model MTU3 as a single=
+=20
+> binding "rz-mtu3" in timer that binds against counter and pwm=20
+> functionalities as well??
+>=20
+> Cheers,
+> Biju
 
+I'm okay with putting the MTU3 binding under timer; we already have
+Documentation/devicetree/bindings/timer/renesas,mtu2.yaml there so
+adding a new renesas,mtu3.yaml next to it seems reasonable.
+
+Just to reiterate Krzysztof's point, the subsystems in Linux serve as a
+way to group drivers together that utilize the same ABIs, whereas the
+devicetree is a structure for organizing physical hardware. The
+structure of physical hardware types don't necessarily match the
+organization of the ABIs we use to support them. This is why you may end
+up with differing heirarchies between the devicetree and driver
+subsystems.
+
+To illustrate the point, take for example a hypothetical
+digital-to-analog (DAC) device with a few GPIO lines. Those GPIO
+input signals could be tied to buttons used to indicate to the system
+that a user wants to reset or adjust the DAC output, while the GPIO
+output signals could be status lights or triggers indicating that the
+DAC is operating. The respective driver for this device may utilize the
+IIO subsystem to support the DAC and the GPIO subsystem to support those
+GPIO lines, but it would be incorrect to put this under MFD because the
+purpose of the GPIO lines is to assist in the operation of the DAC; in
+other words, this is primarily a DAC device with some auxiliary
+convenience functionalities, not a MFD with distinct unrelated separate
+components.
+
+William Breathitt Gray
+
+--OGnd6CUR9MeZqDcJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCY0rDpQAKCRC1SFbKvhIj
+K6mqAQDuzOKTBtslnggYS7G5BypPDLq+0QzPSh11RvBzX/twyAEAr8JLtpMgRKbQ
+mualkhgXervhhLg/l1tagAvfPDBw6wM=
+=dWxm
+-----END PGP SIGNATURE-----
+
+--OGnd6CUR9MeZqDcJ--
