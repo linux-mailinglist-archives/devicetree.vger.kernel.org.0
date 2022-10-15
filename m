@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C2A25FFA6E
-	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 16:05:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 671115FFA71
+	for <lists+devicetree@lfdr.de>; Sat, 15 Oct 2022 16:05:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229717AbiJOOFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 10:05:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50440 "EHLO
+        id S229768AbiJOOF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Oct 2022 10:05:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbiJOOFX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 10:05:23 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D052E6A0
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 07:05:22 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id m6so4210851qkm.4
-        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 07:05:22 -0700 (PDT)
+        with ESMTP id S229755AbiJOOFZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 10:05:25 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E62672F030
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 07:05:23 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id o22so4201806qkl.8
+        for <devicetree@vger.kernel.org>; Sat, 15 Oct 2022 07:05:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EYgNOPB2ou2QU09N065JCjsFs4GUgDaOF6Ag64S/wVc=;
-        b=Ud/w3bMWnByY+ubVBteDK8+NuzzWFrNAMvoeQTFka+kW068kMHwt16riEPTZwjz2Yd
-         Qb7XPXqLamRfrc5ra6AuhRYROt34DAkztH3jp9lRjUNuHadeikIj+pLRsXZTLLBsklXH
-         SQ/Wbfp2gdCLzixYOWDHc9YUqZPP1QUnf9oIyAPAQ1U5ZAGQM3SpzQA63R0u++Z1MbJn
-         +fec0HaXmt5VvK+m3HgFOyj0lGtPZHmZkxmS/km4KMbRfwcmdKNw7hVAIW25v9cHoA/2
-         JYmFtEys8Vv5vgRoZee4OBlEIIMSBBL9dJKIxPwYR3T/FUxXMo6gIaJdWfSiRdoU7HTq
-         ojBA==
+        bh=G4zWvzs68p5BPYM5JKflvb3VPjPI+2iS6MVDVGF9yhQ=;
+        b=nkF0utl/VFDBh+6j5eD2vwQCw4MIV8HaFqd6zYNTfxdSXTHMmcnb9tJsxzXkjcBU/W
+         ErhrrvdCEsOWEsQRD+IaVtmukjI+NZ68rDhzS9bzFc3grls6h2qXqCZoXzptSJvEA5IH
+         zCG5fL3Yd8+QVdNUuOCzuV3/JDpq1VldwXVEYq8VK5Jh52UnuvvVIV9Ut3rQBZzj5SEo
+         UDkF8Yqs12+5RIT1znLmbuXVbiNlqUORIgbk5pgFTmKC7iFgYRbDfAKj0+huveMP6tdQ
+         xE5D50zh1M3z83CLZWtpVOzl84H6vL/Lv6BPFsBWDbEoesGkspuEniNZwsgfK/qimowl
+         G/yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EYgNOPB2ou2QU09N065JCjsFs4GUgDaOF6Ag64S/wVc=;
-        b=Xu7ZfyT29sDTRg8RWRmh9xMXla3kNlBXA9jIbTud5jqMOddAf9t1e/fBrOWa1MJifY
-         tI047Z47FsCEf6fnl1+R/7/nDaGRCBwxFz1l37tf4rjoSaXAHt8PdQjCo1MpmDvMQ+uR
-         UnVD9nWqvAJKyTx5WGR5tbGHUidnwonSxPgNFHHIVsUZKyIGjRTUWxAsN3P6Euh9H/oN
-         fQ05LcYPem/6Deo/kdK6IBBP+rjUt/dHjYp6MSbnO9i+/1GX8XxotjL9eBnLlMU9vE2L
-         T8/CHfdcVjXMNrv2EflIiQBjQuZEs9rXIrrZmjMgFzvJA18+T8AxiO30QpwHnAf2JUfx
-         eSJg==
-X-Gm-Message-State: ACrzQf1A6NuUslEdgF2p8TyOU/mW57CUZsuXuKiInwumEW9Qb0oSCx9V
-        4G7noNO+xxvztZ1WiGEW95aFEQ==
-X-Google-Smtp-Source: AMsMyM597iUAERus57y/4z0u3KllGvTg1CsFwXlRz55k1tmxlrzEkj0TbsPXwJHScNGMW1oUOPXpmA==
-X-Received: by 2002:a05:620a:298a:b0:6ce:7aa7:f01f with SMTP id r10-20020a05620a298a00b006ce7aa7f01fmr1834266qkp.611.1665842721806;
-        Sat, 15 Oct 2022 07:05:21 -0700 (PDT)
+        bh=G4zWvzs68p5BPYM5JKflvb3VPjPI+2iS6MVDVGF9yhQ=;
+        b=ur0Lytzye4XnYvN7wOQCP7SapgE6AJpCIlCrzHwAWBi6M1DDqGfTDxohtd8xDM5jPi
+         rYI8YT267LmXmgegf6KidbfJJs2ilI86XwjS2TbFvGiGkLNEhIToj7ZXuxwz1EDyjKru
+         M6XUolRtEhn8Jhr6dsMtfFAW47tJSr/CbRMqcPooCYfGroG3bkr+0jnKlDSNFOW8C5K+
+         zwbJ7cXpNQ7YoqLkqprN9jC69uWxb3Bd7ENsKi1KTDolkD+hrHQP70oCJ/sPug49nWV7
+         5fUZr8rGTzKYRVuLvlUx7ww8leW3sDKeiFS7Wwa1tUCjifSgxpuujZObn5bFuWrYLDmB
+         8CRQ==
+X-Gm-Message-State: ACrzQf0rhSygcFk0WLXSnGtmctlMe8P/HEttZa5d5Ui9gYmw188LjimU
+        hMvNXC1q/Ss95tUAvZU3r4PoDQ==
+X-Google-Smtp-Source: AMsMyM7PlW2yjEIyCuzgAyQpwxlt5f5/c2FPVPw3Sh+fSG/GwfaWtDrZjGW7arddbYODSvc/BmRzyw==
+X-Received: by 2002:a05:620a:f15:b0:6cf:2130:88e3 with SMTP id v21-20020a05620a0f1500b006cf213088e3mr1861019qkl.519.1665842723580;
+        Sat, 15 Oct 2022 07:05:23 -0700 (PDT)
 Received: from krzk-bin.hsd1.pa.comcast.net ([2601:42:0:3450:161:5720:79e9:9739])
-        by smtp.gmail.com with ESMTPSA id s21-20020a05620a29d500b006bb78d095c5sm4958022qkp.79.2022.10.15.07.05.20
+        by smtp.gmail.com with ESMTPSA id s21-20020a05620a29d500b006bb78d095c5sm4958022qkp.79.2022.10.15.07.05.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Oct 2022 07:05:20 -0700 (PDT)
+        Sat, 15 Oct 2022 07:05:22 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Richard Acayan <mailingradian@gmail.com>,
         Melody Olvera <quic_molvera@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/5] dmaengine: qcom: gpi: document preferred SM6350 binding
-Date:   Sat, 15 Oct 2022 10:04:44 -0400
-Message-Id: <20221015140447.55221-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/5] arm64: dts: qcom: sc7280: Add GPI DMA compatible fallback
+Date:   Sat, 15 Oct 2022 10:04:45 -0400
+Message-Id: <20221015140447.55221-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221015140447.55221-1-krzysztof.kozlowski@linaro.org>
 References: <20221015140447.55221-1-krzysztof.kozlowski@linaro.org>
@@ -79,37 +79,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Devices with ee offset of 0x10000 should rather bind with SM6350
-compatible, so the list will not unnecessarily grow for compatible
-devices.
+Use SM6350 as fallback for GPI DMA, to indicate devices are compatible
+and that drivers can bind with only one compatible.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/dma/qcom/gpi.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/dma/qcom/gpi.c b/drivers/dma/qcom/gpi.c
-index f8e19e6e6117..061add832295 100644
---- a/drivers/dma/qcom/gpi.c
-+++ b/drivers/dma/qcom/gpi.c
-@@ -2286,13 +2286,14 @@ static int gpi_probe(struct platform_device *pdev)
- }
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 212580316d3e..2a167412fa6a 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -920,7 +920,7 @@ opp-384000000 {
  
- static const struct of_device_id gpi_of_match[] = {
--	{ .compatible = "qcom,sc7280-gpi-dma", .data = (void *)0x10000 },
- 	{ .compatible = "qcom,sdm845-gpi-dma", .data = (void *)0x0 },
- 	{ .compatible = "qcom,sm6350-gpi-dma", .data = (void *)0x10000 },
- 	/*
--	 * Deprecated, devices with ee_offset = 0 should use sdm845-gpi-dma as
--	 * fallback and not need their own entries here.
-+	 * Do not grow the list for compatible devices. Instead use
-+	 * qcom,sdm845-gpi-dma (for ee_offset = 0x0) or qcom,sm6350-gpi-dma
-+	 * (for ee_offset = 0x10000).
- 	 */
-+	{ .compatible = "qcom,sc7280-gpi-dma", .data = (void *)0x10000 },
- 	{ .compatible = "qcom,sm8150-gpi-dma", .data = (void *)0x0 },
- 	{ .compatible = "qcom,sm8250-gpi-dma", .data = (void *)0x0 },
- 	{ .compatible = "qcom,sm8350-gpi-dma", .data = (void *)0x10000 },
+ 		gpi_dma0: dma-controller@900000 {
+ 			#dma-cells = <3>;
+-			compatible = "qcom,sc7280-gpi-dma";
++			compatible = "qcom,sc7280-gpi-dma", "qcom,sm6350-gpi-dma";
+ 			reg = <0 0x00900000 0 0x60000>;
+ 			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
+@@ -1419,7 +1419,7 @@ uart7: serial@99c000 {
+ 
+ 		gpi_dma1: dma-controller@a00000 {
+ 			#dma-cells = <3>;
+-			compatible = "qcom,sc7280-gpi-dma";
++			compatible = "qcom,sc7280-gpi-dma", "qcom,sm6350-gpi-dma";
+ 			reg = <0 0x00a00000 0 0x60000>;
+ 			interrupts = <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
 -- 
 2.34.1
 
