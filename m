@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86FD65FFFD3
-	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 16:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 066C35FFFD7
+	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 16:35:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229594AbiJPOey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 10:34:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54228 "EHLO
+        id S229790AbiJPOfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 10:35:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbiJPOel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 10:34:41 -0400
-Received: from mail-40136.proton.ch (mail-40136.proton.ch [185.70.40.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E2B1004C
-        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 07:34:35 -0700 (PDT)
-Date:   Sun, 16 Oct 2022 14:34:26 +0000
+        with ESMTP id S229884AbiJPOex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 10:34:53 -0400
+Received: from mail-4022.proton.ch (mail-4022.proton.ch [185.70.40.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C4B017883;
+        Sun, 16 Oct 2022 07:34:50 -0700 (PDT)
+Date:   Sun, 16 Oct 2022 14:34:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1665930873; x=1666190073;
-        bh=ZseDGcoe4OIAaVlHQjhD3IczOM2W29Cg0YZOAMrNt2U=;
+        s=protonmail; t=1665930888; x=1666190088;
+        bh=GMeupPgWWUPw0EJDTFY+bM7LAhXLvu31+otdHSQX2LA=;
         h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
          Subject:Reply-To:Feedback-ID:Message-ID;
-        b=W9mEDBfEZuZtawNU2vQRfl78qSxztHlrNuh73JhAiAGuVgkO32Gzo75mZaYa7eFl4
-         sfFff9PGi20DvfchCUgmR09LGOj4Y3kfWAq6J+lkx5ffwByANq2KW+mhRoC7bA2MO8
-         OOSHpa3P0hbPHtE3k3uBtZh5C+MDC3zbSeifSvjQ=
+        b=ITCkkYTjzq9wMdiL6h3/5tCqzncywXVBxrcr8kOjPPCj1kAAubkbpMZS8AdeMSKRo
+         mdp6Kjhr1gVKAMQSo8dqb2fxj73bqMcL458m4+domQBjee8ZNxzQKgdnjVf2WYJvfp
+         lcfl7UJu/eplPZtjUYkEJeW0FdGFll8UtyCKHnfE=
 To:     caleb@connolly.tech
 From:   Caleb Connolly <caleb@connolly.tech>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -32,8 +32,8 @@ Cc:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH 5/7] arm64: dts: qcom: sdm845-xiaomi-beryllium: commonize uart6 pinconf
-Message-ID: <20221016143300.1738550-6-caleb@connolly.tech>
+Subject: [PATCH 6/7] arm64: dts: qcom: sdm845-xiaomi-polaris: commonize uart6 pinconf
+Message-ID: <20221016143300.1738550-7-caleb@connolly.tech>
 Feedback-ID: 10753939:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -52,24 +52,15 @@ name.
 
 Signed-off-by: Caleb Connolly <caleb@connolly.tech>
 ---
- .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 29 ++-----------------
- 1 file changed, 3 insertions(+), 26 deletions(-)
+ .../boot/dts/qcom/sdm845-xiaomi-polaris.dts   | 27 ++-----------------
+ 1 file changed, 2 insertions(+), 25 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/ar=
-m64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index 82c27f90d300..1646db2328d4 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -35,7 +35,7 @@ / {
- =09qcom,msm-id =3D <321 0x20001>;
-
- =09aliases {
--=09=09hsuart0 =3D &uart6;
-+=09=09serial1 =3D &uart6;
- =09};
-
- =09gpio-keys {
-@@ -481,6 +481,8 @@ wcd_intr_default: wcd_intr_default {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm6=
+4/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+index 7747081b9887..c8b439dcbca4 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+@@ -639,6 +639,8 @@ wcd_intr_default: wcd-intr-default {
  &uart6 {
  =09status =3D "okay";
 
@@ -78,17 +69,17 @@ index 82c27f90d300..1646db2328d4 100644
  =09bluetooth {
  =09=09compatible =3D "qcom,wcn3990-bt";
 
-@@ -567,28 +569,3 @@ &wifi {
- =09vdd-3.3-ch0-supply =3D <&vreg_l25a_3p3>;
- =09vdd-3.3-ch1-supply =3D <&vreg_l23a_3p3>;
+@@ -735,28 +737,3 @@ &wifi {
+ =09qcom,snoc-host-cap-skip-quirk;
+ =09status =3D "okay";
  };
 -
 -/* PINCTRL - additions to nodes defined in sdm845.dtsi */
 -
 -&qup_uart6_default {
 -=09pinmux {
--=09=09pins =3D "gpio45", "gpio46", "gpio47", "gpio48";
--=09=09function =3D "qup6";
+-=09=09 pins =3D "gpio45", "gpio46", "gpio47", "gpio48";
+-=09=09 function =3D "qup6";
 -=09};
 -
 -=09cts {
