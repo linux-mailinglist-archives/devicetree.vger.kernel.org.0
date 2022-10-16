@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC8426000B0
-	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 17:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2EB46000B8
+	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 17:34:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229902AbiJPPcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 11:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40620 "EHLO
+        id S229763AbiJPPeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 11:34:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbiJPPcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 11:32:46 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96CAD36875
-        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 08:32:43 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id i12so6195059qvs.2
-        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 08:32:43 -0700 (PDT)
+        with ESMTP id S229663AbiJPPeS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 11:34:18 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED41E38A3A
+        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 08:34:17 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id z30so5345695qkz.13
+        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 08:34:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=n+glJUn1rJ1Nz2wNZdUlNIAxnWRCwagr6ACf9glezJI=;
-        b=klwSuUnkKoO0zTw1B5PLbnJhRCSHfBdQcpM3QHpPA0GC9UJTrQM0GTlzH0kQesQNZC
-         IE1R2q7MFkYvpxl8yQEX/HzuVlt76Q7ot4aCoVcHlX0VMfHbhHba2+NjR/mZMLktBKwg
-         +i4sirbI4oLqGOcYYZddBvMmMplvr8m3qOYDN60Zo7xyqHtoFzUuURvtd24O7bIw4gSv
-         yupvoo5bHeeTm87Xy8a+tcFQAFhCQT8yB6gLaf5/KfznzQHR0nJnPl5u/yQ+PCcJaewS
-         4vvOxWL5sleolma7WrGZZqPB1Rlv5NuHo+XFmaF9GA9wYbbffAdB/zX2fxeECcvM8/lL
-         9NxA==
+        bh=/HzaPuqNEIzv1PWmvD8WAnk/Y18nRQCpGE1l2eqH9ws=;
+        b=cgmcMRxhVutyoZcVTfiJ9EOzfMYm69fP9mG0tNU5Vj9SWYd6wQ/BrVP0hjEHPnYuy7
+         JybJDhxk9NjW4fA0UlweoG8ATmrTiTcZXuJYoLvZKLPpmwzYUyrWDX6VXc1/g1OvH6Hd
+         NJkVG4XSnY6xWOSUaIqXqJi3fzC5kC7M4AeUqixo4r/e+OKsjaSfvlOyDWnbkYWa1NhK
+         5Kf6ROPybvnEG1rAvVEXkace8tL+zgEphETag3XOiVpYTicT8HTpS4Fj9M0uKJ7yqex+
+         BqKX4owVWKL5PhvPd5FnqpkRDFq3oGSGSxKXWZxpEX1CblEQuDCWnCA/jG9jMQjsNmA4
+         LwEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n+glJUn1rJ1Nz2wNZdUlNIAxnWRCwagr6ACf9glezJI=;
-        b=kmUB3zjH06rwz9YfKpeR6e0CmLv/aFz8aeOBK2X2crqWUe+tWRVoLA81UwOUk+qf/g
-         M8gLuLrNkjHciglroG4yF9FHbN+jU2uOcrCrH8p/ppjnvC44VHGQW66Wtmbc8fg6pGaz
-         SfA9W/ixywzEvQDbIdxaPD60gA8S83b1CVHbq7aZ4slGZATGHXRHdMXdX8gNBEgnWaSW
-         PZMPXCfx8wb6kRab1ollxMqXA9XtKqqPKyQMxkVSZgHVsk9odAUXTt5tq19OlU/J0lmL
-         gylRvjIUZII6C6OyIKvLuDIpUQljC5VL2R+/IsdmEqQadVzwhwwV20QRYKVW9RTemEcq
-         sbHg==
-X-Gm-Message-State: ACrzQf2vUm6dcZ9apF24J9L5+qU6LlHvafCCi3KWeBsMihWxmuaU9AHX
-        EAA6XP736629u6/xWR5+w/vutA==
-X-Google-Smtp-Source: AMsMyM6+xL+9BLXbh6JLTiiPjwMnLmR5mvBjXAqAvfz2PnC4/uaWBmYX29THEJDsXVqG/xZab/whEA==
-X-Received: by 2002:ad4:5aee:0:b0:4b4:595:fb54 with SMTP id c14-20020ad45aee000000b004b40595fb54mr5383329qvh.5.1665934362813;
-        Sun, 16 Oct 2022 08:32:42 -0700 (PDT)
+        bh=/HzaPuqNEIzv1PWmvD8WAnk/Y18nRQCpGE1l2eqH9ws=;
+        b=6p77cWhdzW/ZXZKDPsiD3vnn2N+qDaLiF39dWj4Ttji7EBo+Nxf7bygKqk3EQECJc5
+         /VHfCovw/NgL9N2/kDsNqvypcOifBLiBgCoFdw0r7CJCUuet1O9DZVxTKqMRBUbt+NBB
+         HRndOpjCIISISpyFhaSRzEfaX31fl2yy0zgeHvhxUCoCh8Pa+RjBJR9mTm+ptCnFxyfT
+         ASDcJroSwO2ANa/EXfo2Yj+xv9oVdMt3oooLb9QQFDhm55U44k+JeV7Qtki2GDI4oHIP
+         pKO5xL1GytQy/h8FfX4+VQy90uNtR75YgVhJ57p7vkeHWVdUZ4/fb0v0irHPDTuaM+XG
+         EUng==
+X-Gm-Message-State: ACrzQf1HKoaLjX6PgJyLscc7GvhahSyh2uJ1rUf77wIlbzfHXdRe5sJf
+        MWkad9pHk3kuV932fyaOiIIXXg==
+X-Google-Smtp-Source: AMsMyM4u3CYE3ChHbdxdMXGxFHg+maC17Gk9XqoktcgBmxSXQeYMvpMNCexAD8IGCLH39CBN2uVplg==
+X-Received: by 2002:a05:620a:40d5:b0:6ee:e3f8:20d2 with SMTP id g21-20020a05620a40d500b006eee3f820d2mr1077035qko.14.1665934457113;
+        Sun, 16 Oct 2022 08:34:17 -0700 (PDT)
 Received: from ?IPV6:2601:42:0:3450:9b13:d679:7b5b:6921? ([2601:42:0:3450:9b13:d679:7b5b:6921])
-        by smtp.gmail.com with ESMTPSA id i20-20020ac860d4000000b00399d5d564b7sm5892803qtm.56.2022.10.16.08.32.41
+        by smtp.gmail.com with ESMTPSA id y21-20020a05620a44d500b006b61b2cb1d2sm7465845qkp.46.2022.10.16.08.34.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Oct 2022 08:32:41 -0700 (PDT)
-Message-ID: <c2accc8b-f4eb-47ca-333f-eeb98da6a363@linaro.org>
-Date:   Sun, 16 Oct 2022 11:32:40 -0400
+        Sun, 16 Oct 2022 08:34:16 -0700 (PDT)
+Message-ID: <199bed73-676b-850f-fe1e-f144e1b2f314@linaro.org>
+Date:   Sun, 16 Oct 2022 11:34:14 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v2 3/4] dt-bindings: clock: Add Ingenic JZ4755 CGU header
+Subject: Re: [PATCH V7 2/7] dt-bindings: remoteproc: imx_rproc: support
+ i.MX8QM
 Content-Language: en-US
-To:     Siarhei Volkau <lis8215@gmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20221016150110.3020451-1-lis8215@gmail.com>
- <20221016150110.3020451-4-lis8215@gmail.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, andersson@kernel.org,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>
+References: <20221014031037.1070424-1-peng.fan@oss.nxp.com>
+ <20221014031037.1070424-3-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221016150110.3020451-4-lis8215@gmail.com>
+In-Reply-To: <20221014031037.1070424-3-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,25 +80,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/10/2022 11:01, Siarhei Volkau wrote:
-> This will be used from the devicetree bindings to specify the clocks
-> that should be obtained from the jz4755-cgu driver.
+On 13/10/2022 23:10, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
+> Add i.MX8QM compatible
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  .../dt-bindings/clock/ingenic,jz4755-cgu.h    | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 include/dt-bindings/clock/ingenic,jz4755-cgu.h
+>  Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/include/dt-bindings/clock/ingenic,jz4755-cgu.h b/include/dt-bindings/clock/ingenic,jz4755-cgu.h
-> new file mode 100644
-> index 000000000..1ac13d61b
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/ingenic,jz4755-cgu.h
-> @@ -0,0 +1,49 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause) */
+> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> index 70322e57b6ff..64e783234e38 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> @@ -23,6 +23,7 @@ properties:
+>        - fsl,imx8mp-cm7
+>        - fsl,imx8mq-cm4
+>        - fsl,imx8qxp-cm4
+> +      - fsl,imx8qm-cm4
 
-Why did you choose 2.0+?
+Keep alphabetical order.
+
+>  
 
 Best regards,
 Krzysztof
