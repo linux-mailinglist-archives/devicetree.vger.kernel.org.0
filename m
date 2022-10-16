@@ -2,56 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32DE4600366
-	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 23:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADF3F60038B
+	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 23:55:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbiJPVDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 17:03:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33858 "EHLO
+        id S229765AbiJPVzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 17:55:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbiJPVDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 17:03:44 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E02B367B7;
-        Sun, 16 Oct 2022 14:03:43 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8387AE65;
-        Sun, 16 Oct 2022 23:03:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1665954220;
-        bh=/HjB+raKBthocv/QhAd0ZHFd1QaretPzH2sxa49Rnm8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HHQswEjbNdQK+pIeuX/gPUDU6UkSWamMHeVO69fBmy9ka8tdq0WY4Bh1p9070Pt2K
-         zIUAm28hoSgNMriJl7oGHFfLk16rZTUzjm8xELgK+g8GgPzdRKkz94FkiD9URRysI+
-         y/0GtnFDio77gnEmEy37hAjxZeTnmQNv4OJkWfOQ=
-Date:   Mon, 17 Oct 2022 00:03:17 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229728AbiJPVzF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 17:55:05 -0400
+Received: from mailgw.felk.cvut.cz (mailgw.felk.cvut.cz [147.32.82.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6340A13FA2;
+        Sun, 16 Oct 2022 14:54:59 -0700 (PDT)
+Received: from mailgw.felk.cvut.cz (localhost.localdomain [127.0.0.1])
+        by mailgw.felk.cvut.cz (Proxmox) with ESMTP id BF2D730B2949;
+        Sun, 16 Oct 2022 23:54:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        cmp.felk.cvut.cz; h=cc:cc:content-transfer-encoding:content-type
+        :content-type:date:from:from:in-reply-to:message-id:mime-version
+        :references:reply-to:subject:subject:to:to; s=felkmail; bh=LQd5Q
+        rd/j/9u/DWNjR5yotOcmDbQdjNNhniIHl7ZOf0=; b=MVJLVMYqSYViWakjPEkyh
+        jC5bHZpTvnlG/EkD9gUrNl+HiWBCacw7dmC80V+TfPPknuhBJ6yH0k0VD+86K0Yy
+        0PkMckp1RqcMwCFaQ+ooWYtXftz+0pfRmDRWOK1yXx+8jnFFa86wg+ryT70+kQtE
+        taPfDlDIgjBk7FIL/fpMCxMBP9YRUOQx5dsQIrJ76cnAKdOgXJFY1IPM39F8TY7x
+        oWR/miAyybtBlLDWhm2YpFZwxi6z+ZgMiHglVrqDcgQoDahOW0xjylaQhPwx9zsk
+        tQj7dqnmk4picPDdEXLCT2lPDvnC0Bu3SiRQVMrlc1KV+xUNtfAMLRPt+dcd+drh
+        Q==
+Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
+        by mailgw.felk.cvut.cz (Proxmox) with ESMTPS id D759630ADE4B;
+        Sun, 16 Oct 2022 23:54:55 +0200 (CEST)
+Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
+        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 29GLstLx017446;
+        Sun, 16 Oct 2022 23:54:55 +0200
+Received: (from pisa@localhost)
+        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 29GLstXE017445;
+        Sun, 16 Oct 2022 23:54:55 +0200
+X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
+From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
+To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
+Subject: Re: [PATCH v5 2/4] can: ctucanfd: add HW timestamps to RX and error CAN frames
+Date:   Sun, 16 Oct 2022 23:54:48 +0200
+User-Agent: KMail/1.9.10
+Cc:     Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "Marc Kleine-Budde" <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 4/5] media: i2c: ov5645: Return zero for s_stream(0)
-Message-ID: <Y0xxlTP53dwx8VD+@pendragon.ideasonboard.com>
-References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221014183459.181567-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Y0pSYfw+VDxXv85b@pendragon.ideasonboard.com>
- <Y0snkMEp9WqGtzom@paasikivi.fi.intel.com>
- <Y0tA4cZBdwCOkaOs@pendragon.ideasonboard.com>
- <Y0xnXM+Iw5OkdKj6@paasikivi.fi.intel.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221012062558.732930-1-matej.vasilevski@seznam.cz> <20221012062558.732930-3-matej.vasilevski@seznam.cz>
+In-Reply-To: <20221012062558.732930-3-matej.vasilevski@seznam.cz>
+X-KMail-QuotePrefix: > 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: Text/Plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
-In-Reply-To: <Y0xnXM+Iw5OkdKj6@paasikivi.fi.intel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+Message-Id: <202210162354.48915.pisa@cmp.felk.cvut.cz>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,SPF_HELO_NONE,SPF_NONE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,70 +72,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+Thanks for the work
 
-On Sun, Oct 16, 2022 at 08:19:40PM +0000, Sakari Ailus wrote:
-> On Sun, Oct 16, 2022 at 02:23:13AM +0300, Laurent Pinchart wrote:
-> > On Sat, Oct 15, 2022 at 09:35:12PM +0000, Sakari Ailus wrote:
-> > > On Sat, Oct 15, 2022 at 09:25:37AM +0300, Laurent Pinchart wrote:
-> > > > On Fri, Oct 14, 2022 at 07:34:58PM +0100, Prabhakar wrote:
-> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > 
-> > > > > Always return zero while stopping the stream as the caller will ignore the
-> > > > > return value.
-> > > > > 
-> > > > > This patch drops checking the return value of ov5645_write_reg() and
-> > > > > continues further in the code path while stopping stream. The user anyway
-> > > > > gets an error message in case ov5645_write_reg() fails.
-> > > > 
-> > > > Continuing all the way to pm_runtime_put() is fine, but I don't think
-> > > > the function should return 0. It's not up to the driver to decide if a
-> > > > failure would be useful to signal to the caller or not.
-> > > 
-> > > If the function returns an error when disabling streaming, what is the
-> > > expected power state of the device after this?
-> > 
-> > That's up to us to decide :-)
-> > 
-> > > The contract between the caller and the callee is that the state is not
-> > > changed if there is an error.
-> > 
-> > For most APIs, but that's not universal.
-> > 
-> > > This is a special case as very few callers
-> > > check the return value for streamoff operation and those that do generally
-> > > just print something. I've never seen a caller trying to prevent streaming
-> > > off in this case, for instance.
-> > 
-> > I think the stream off call should proceed and try to power off the
-> > device even if an error occurs along the way, i.e. it shouldn't return
-> > upon the first detected error.
-> > 
-> > > Of course we could document that streaming off always counts as succeeded
-> > > (e.g. decreasing device's runtime PM usage_count) while it could return an
-> > > informational error code. But I wonder if anyone would ever benefit from
-> > > that somehow. :-)
-> > 
-> > I think it could be useful to propagate errors up to inform the user
-> > that something wrong happened. That would involve fixing lots of drivers
-> > along the call chain though, so there's no urgency for the ov5645 to do
-> > so, but isn't it better to propagate the error code instead of hiding
-> > the issue ?
-> 
-> I also don't think hiding the issue would be the best thing to do, but that
-> wouldn't likely be a big problem either.
-> 
-> How about printing a warning in the wrapper while returning zero to the
-> original caller? This would keep the API intact while still leaving a trace
-> on something failing. Of course the driver is also free to print whatever
-> messages it likes.
+On Wednesday 12 of October 2022 08:25:56 Matej Vasilevski wrote:
+> This patch adds support for retrieving hardware timestamps to RX and
+> error CAN frames. It uses timecounter and cyclecounter structures,
+> because the timestamping counter width depends on the IP core integration
+> (it might not always be 64-bit).
+> For platform devices, you should specify "ts" clock in device tree.
+> For PCI devices, the timestamping frequency is assumed to be the same
+> as bus frequency.
+>
+> Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
 
-While I think error propagation could be more useful in the long run,
-printing a message in the wrapper is a good idea. I like centralized
-error handling, it has a tendency to go wrong when left to individual
-drivers.
+Acked-by: Pave Pisa <pisa@cmp.felk.cvut.cz>
 
+It would be great if the code gets in as a basic level for CTU CAN FD
+timestamping which we need for CAN latency test project.
+
+In the longer term, it could be usesfull to discuss if rx_filter == HWTSTAMP_FILTER_ALL
+and cfg.tx_type == HWTSTAMP_TX_ON should be divided to allow separate timestamping
+enable and disable for transmit and receive. Our actual focus is to receive
+and Tx is implemented by reading the timestamping counter in the message transmit
+done interrupt. There is option (for newer core version) to loop Tx frames
+into Rx loop which could allow to enhance precision of Tx timestamps
+to 10 ns. But that requires newer IP core and I wait even for some minor changes
+to allow identification of looped Tx frames into Rx queue.
+Switch to such processing mode will have some overhead etc... So it should
+stay configurable and used only when precise Tx timestamp are really required...
+
+When the current timestamping patch is accepted I plan to discuss
+use of clk_prepare_enable for the main IP core clocks.
+These clocks are AXI bus ones on our FPGA integration so they
+has to be up anyway and clk_prepare_enable etc.. does not change
+behavior, but I want to make that correct in long term.
+I hope/expect that it is not problem to call clk_prepare_enable twice
+on same reference when the clocks are the same. As I read the code the
+state is counted. If it is a problem then some if has to be put there
+when the core and timestamp clock are the same.
+
+Thanks for work and reviews,
+
+                Pavel
 -- 
-Regards,
+                Pavel Pisa
+    phone:      +420 603531357
+    e-mail:     pisa@cmp.felk.cvut.cz
+    Department of Control Engineering FEE CVUT
+    Karlovo namesti 13, 121 35, Prague 2
+    university: http://control.fel.cvut.cz/
+    personal:   http://cmp.felk.cvut.cz/~pisa
+    projects:   https://www.openhub.net/accounts/ppisa
+    CAN related:http://canbus.pages.fel.cvut.cz/
+    RISC-V education: https://comparch.edu.cvut.cz/
+    Open Technologies Research Education and Exchange Services
+    https://gitlab.fel.cvut.cz/otrees/org/-/wikis/home
 
-Laurent Pinchart
