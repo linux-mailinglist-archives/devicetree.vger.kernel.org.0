@@ -2,122 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E895600407
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 00:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CFC960040B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 00:58:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229790AbiJPW6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 18:58:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39508 "EHLO
+        id S229804AbiJPW6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 18:58:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbiJPW6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 18:58:23 -0400
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E619732BA8;
-        Sun, 16 Oct 2022 15:58:21 -0700 (PDT)
-Received: by mail-ot1-f47.google.com with SMTP id cb2-20020a056830618200b00661b6e5dcd8so4888208otb.8;
-        Sun, 16 Oct 2022 15:58:21 -0700 (PDT)
+        with ESMTP id S229792AbiJPW6Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 18:58:24 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02EE832B9B;
+        Sun, 16 Oct 2022 15:58:23 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id n130so10472865oia.6;
+        Sun, 16 Oct 2022 15:58:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0FGJBQWXx5CpWaQi3nYfZu/z/0GkvFFnodWEgQwT7VU=;
-        b=SH9Jur0xCrMAFWQ46mdPAXevodYLQv2pCTsMNyQ32G/cFMmgGxBdW7a17XFGDhdVQz
-         PbpLxW83qK42ivtTPR6OfUaw/KegEj0F3FZrv7s3XHMM4Y6IaQOLQe8lcQW2OEhSLFq3
-         IxoLuGjlJuf76jGjZoqnGUlo1YIElS0yfWR+CMj00lB8WotyfiTNLIPVMZw0Fxj/Cazq
-         DO9P6QMc+pCa2S7kiZkWLq8Hd88GmmoNB0hYT+rcCWR7koOdjv5JXF+e+ph8TeOjjQkY
-         RwrhV9Ucb1f4hLsFK4//aANXJZTk/BSLSjG41Tj2Ej7a1vhxRVi/ExYQNWl6uM+Ws+M8
-         fxjQ==
-X-Gm-Message-State: ACrzQf2nFwT9eiIncwrrkusD4zI6vOk02nklnGA67mAwAjuGS+XlIeNK
-        vNrTf2Xnj9QvWau2UcZSAg==
-X-Google-Smtp-Source: AMsMyM4LLY5uBLl0jyQjiLuAfmIxU2jlW1svNyO4p/uoDTSaYOLamHpc4SKVCxcOVtlx52/RTMJ6mA==
-X-Received: by 2002:a9d:f43:0:b0:638:c3c4:73ee with SMTP id 61-20020a9d0f43000000b00638c3c473eemr3601886ott.186.1665961101090;
-        Sun, 16 Oct 2022 15:58:21 -0700 (PDT)
+        bh=A22Jauy7LNRDNuhvPuiWffS/7WEdlZGpv0lUu6wktOU=;
+        b=tjl0DNXyZXseuxcBezm7x0qbft7x1v7zGCfP5jvbJ/lYrZdhqMQwtpCWOWXHrs4hwf
+         XFhYmmSKNkdQu9xUW+7yJ06MO3w4BnrFhjGQyC/RGhQsvgNo7xlMyv9YaawfWfg6CHeJ
+         asUxyrSAeWjZX1VR8yMVgakolNRXFJ+F7dliLzddsVB6yfGAkMkMTvjacphBpqOD7tup
+         Py5zCfiTj2bwUWwIMMLODEMpjwnqr7YZH6nhFVL31WzGunr0HfNxmMbueGvc0aljSJDe
+         V+1CXs6RgZQlp/hDdNv20gMbT9CvAIsWLln6MqO3KEtWDuiorKz01V626/iy5EuKZJ+9
+         A6Bw==
+X-Gm-Message-State: ACrzQf3s0UgsLhZC7dK0zLqfGFX9iC1t9raBsxPd4mBgxjUZ8uBlgPhr
+        mEdLR7Z3TdA5Dx5Pa/HMSQ==
+X-Google-Smtp-Source: AMsMyM7/JNd+JtwlZy7i5d/Z+UtIZM/Wkab6jBp3h69lrLIVsSh+Oi/U3tK6BY8sFZHjRxSU8yW+LA==
+X-Received: by 2002:a05:6808:219a:b0:354:daec:53cb with SMTP id be26-20020a056808219a00b00354daec53cbmr3503273oib.2.1665961102216;
+        Sun, 16 Oct 2022 15:58:22 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y3-20020a056870418300b0011f400edb17sm4281809oac.4.2022.10.16.15.58.20
+        by smtp.gmail.com with ESMTPSA id 64-20020a9d04c6000000b00661cc94f035sm4165401otm.41.2022.10.16.15.58.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Oct 2022 15:58:20 -0700 (PDT)
-Received: (nullmailer pid 3904632 invoked by uid 1000);
+        Sun, 16 Oct 2022 15:58:21 -0700 (PDT)
+Received: (nullmailer pid 3904626 invoked by uid 1000);
         Sun, 16 Oct 2022 22:58:18 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?q?Micha=C5=82_Grzelak?= <mig@semihalf.com>
-Cc:     davem@davemloft.net, krzysztof.kozlowski+dt@linaro.org,
-        upstream@semihalf.com, kuba@kernel.org, edumazet@google.com,
-        netdev@vger.kernel.org, pabeni@redhat.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, mw@semihalf.com, linux@armlinux.org.uk
-In-Reply-To: <20221014213254.30950-2-mig@semihalf.com>
-References: <20221014213254.30950-1-mig@semihalf.com> <20221014213254.30950-2-mig@semihalf.com>
-Message-Id: <166596083428.3897181.16535515589194840767.robh@kernel.org>
-Subject: Re: [PATCH v5 1/3] dt-bindings: net: marvell,pp2: convert to json-schema
+To:     Melody Olvera <quic_molvera@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20221014221138.7552-2-quic_molvera@quicinc.com>
+References: <20221014221138.7552-1-quic_molvera@quicinc.com> <20221014221138.7552-2-quic_molvera@quicinc.com>
+Message-Id: <166596080339.3896245.9931514726714981073.robh@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: Document QDU1000/QRU1000 SoCs and boards
 Date:   Sun, 16 Oct 2022 17:58:18 -0500
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Oct 2022 23:32:52 +0200, Michał Grzelak wrote:
-> Convert the marvell,pp2 bindings from text to proper schema.
+On Fri, 14 Oct 2022 15:11:36 -0700, Melody Olvera wrote:
+> Document the QDU1000 and QRU1000 SoC bindings and the boards that use
+> them.
 > 
-> Move 'marvell,system-controller' and 'dma-coherent' properties from
-> port up to the controller node, to match what is actually done in DT.
-> 
-> Rename all subnodes to match "^(ethernet-)?port@[0-2]$" and deprecate
-> port-id in favour of 'reg'.
-> 
-> Signed-off-by: Michał Grzelak <mig@semihalf.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  .../devicetree/bindings/net/marvell,pp2.yaml  | 305 ++++++++++++++++++
->  .../devicetree/bindings/net/marvell-pp2.txt   | 141 --------
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 306 insertions(+), 142 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/marvell,pp2.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/marvell-pp2.txt
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/qcom.yaml:496:18: [error] syntax error: mapping values are not allowed here (syntax)
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/arm/qcom.example.dts'
+Documentation/devicetree/bindings/arm/qcom.yaml:496:18: mapping values are not allowed in this context
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/arm/qcom.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/arm/qcom.yaml:496:18: mapping values are not allowed in this context
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/qcom.yaml: ignoring, error parsing file
+make: *** [Makefile:1420: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-ethernet@0: 'eth0', 'eth1', 'eth2' do not match any of the regexes: '^(ethernet-)?port@[0-2]$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/marvell/armada-7040-db.dtb
-	arch/arm64/boot/dts/marvell/armada-7040-mochabin.dtb
-	arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dtb
-	arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dtb
-	arch/arm64/boot/dts/marvell/armada-8040-db.dtb
-	arch/arm64/boot/dts/marvell/armada-8040-db.dtb
-	arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb
-	arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb
-	arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dtb
-	arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dtb
-	arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dtb
-	arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dtb
-	arch/arm64/boot/dts/marvell/cn9130-crb-A.dtb
-	arch/arm64/boot/dts/marvell/cn9130-crb-B.dtb
-	arch/arm64/boot/dts/marvell/cn9130-db-B.dtb
-	arch/arm64/boot/dts/marvell/cn9130-db.dtb
-	arch/arm64/boot/dts/marvell/cn9131-db-B.dtb
-	arch/arm64/boot/dts/marvell/cn9131-db-B.dtb
-	arch/arm64/boot/dts/marvell/cn9131-db.dtb
-	arch/arm64/boot/dts/marvell/cn9131-db.dtb
-	arch/arm64/boot/dts/marvell/cn9132-db-B.dtb
-	arch/arm64/boot/dts/marvell/cn9132-db-B.dtb
-	arch/arm64/boot/dts/marvell/cn9132-db-B.dtb
-	arch/arm64/boot/dts/marvell/cn9132-db.dtb
-	arch/arm64/boot/dts/marvell/cn9132-db.dtb
-	arch/arm64/boot/dts/marvell/cn9132-db.dtb
+See https://patchwork.ozlabs.org/patch/
 
-ethernet@f0000: 'eth0', 'eth1' do not match any of the regexes: '^(ethernet-)?port@[0-2]$', 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/armada-375-db.dtb
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
