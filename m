@@ -2,109 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2EB46000B8
-	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 17:34:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3EA36000E8
+	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 17:49:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbiJPPeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 11:34:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41922 "EHLO
+        id S229769AbiJPPt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 11:49:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbiJPPeS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 11:34:18 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED41E38A3A
-        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 08:34:17 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id z30so5345695qkz.13
-        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 08:34:17 -0700 (PDT)
+        with ESMTP id S229683AbiJPPtZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 11:49:25 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26DFEE7A;
+        Sun, 16 Oct 2022 08:49:22 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id q9so8461978pgq.8;
+        Sun, 16 Oct 2022 08:49:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/HzaPuqNEIzv1PWmvD8WAnk/Y18nRQCpGE1l2eqH9ws=;
-        b=cgmcMRxhVutyoZcVTfiJ9EOzfMYm69fP9mG0tNU5Vj9SWYd6wQ/BrVP0hjEHPnYuy7
-         JybJDhxk9NjW4fA0UlweoG8ATmrTiTcZXuJYoLvZKLPpmwzYUyrWDX6VXc1/g1OvH6Hd
-         NJkVG4XSnY6xWOSUaIqXqJi3fzC5kC7M4AeUqixo4r/e+OKsjaSfvlOyDWnbkYWa1NhK
-         5Kf6ROPybvnEG1rAvVEXkace8tL+zgEphETag3XOiVpYTicT8HTpS4Fj9M0uKJ7yqex+
-         BqKX4owVWKL5PhvPd5FnqpkRDFq3oGSGSxKXWZxpEX1CblEQuDCWnCA/jG9jMQjsNmA4
-         LwEA==
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/WlEL88T/8gonzqhH6cO2E6CR0UGDLwIIZCf+umnGgY=;
+        b=MyZk3IohuTtTDLI6wNP9DdVpZRD6zLm0z7Q8+C1R+Laa0hBg2kYFEzO5uVjgjShW1f
+         cEONri1vztKjmt2J0fLLiXTlxwF7io/T/W375c4k9LOJTW2x+SIS0j1ZIxiF8nnPm+kS
+         6YbXuvWMh7do/vNc0v1+/Gp2sSjW8LbKMfP4r1EIW/6MUnTvRpMn6iyh6/U+xqCPXKmx
+         mAWSzjGwOaYRLjhT5DpzpkScKBN+3GuUu5k0aFZ9VGv7D2P+bK5ht7ofPxhBOgOEdZga
+         mtAf5Ig+sJcIubtBePpx434glcRyXEw6URWAc/ekx4jnXXBmu0qRVh1r9pSg6kvOAGBF
+         D/sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/HzaPuqNEIzv1PWmvD8WAnk/Y18nRQCpGE1l2eqH9ws=;
-        b=6p77cWhdzW/ZXZKDPsiD3vnn2N+qDaLiF39dWj4Ttji7EBo+Nxf7bygKqk3EQECJc5
-         /VHfCovw/NgL9N2/kDsNqvypcOifBLiBgCoFdw0r7CJCUuet1O9DZVxTKqMRBUbt+NBB
-         HRndOpjCIISISpyFhaSRzEfaX31fl2yy0zgeHvhxUCoCh8Pa+RjBJR9mTm+ptCnFxyfT
-         ASDcJroSwO2ANa/EXfo2Yj+xv9oVdMt3oooLb9QQFDhm55U44k+JeV7Qtki2GDI4oHIP
-         pKO5xL1GytQy/h8FfX4+VQy90uNtR75YgVhJ57p7vkeHWVdUZ4/fb0v0irHPDTuaM+XG
-         EUng==
-X-Gm-Message-State: ACrzQf1HKoaLjX6PgJyLscc7GvhahSyh2uJ1rUf77wIlbzfHXdRe5sJf
-        MWkad9pHk3kuV932fyaOiIIXXg==
-X-Google-Smtp-Source: AMsMyM4u3CYE3ChHbdxdMXGxFHg+maC17Gk9XqoktcgBmxSXQeYMvpMNCexAD8IGCLH39CBN2uVplg==
-X-Received: by 2002:a05:620a:40d5:b0:6ee:e3f8:20d2 with SMTP id g21-20020a05620a40d500b006eee3f820d2mr1077035qko.14.1665934457113;
-        Sun, 16 Oct 2022 08:34:17 -0700 (PDT)
-Received: from ?IPV6:2601:42:0:3450:9b13:d679:7b5b:6921? ([2601:42:0:3450:9b13:d679:7b5b:6921])
-        by smtp.gmail.com with ESMTPSA id y21-20020a05620a44d500b006b61b2cb1d2sm7465845qkp.46.2022.10.16.08.34.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Oct 2022 08:34:16 -0700 (PDT)
-Message-ID: <199bed73-676b-850f-fe1e-f144e1b2f314@linaro.org>
-Date:   Sun, 16 Oct 2022 11:34:14 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH V7 2/7] dt-bindings: remoteproc: imx_rproc: support
- i.MX8QM
-Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, andersson@kernel.org,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>
-References: <20221014031037.1070424-1-peng.fan@oss.nxp.com>
- <20221014031037.1070424-3-peng.fan@oss.nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221014031037.1070424-3-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        h=message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/WlEL88T/8gonzqhH6cO2E6CR0UGDLwIIZCf+umnGgY=;
+        b=xq0bakoR43gg9h1INT8VXufd0KycSxhOiYKHIQOGSZ+WVQrAkWXBTMLJuk7cwj6xyW
+         JfF1qoI0Octg1FIFss7lsLTkdI3puNLnjsZmgUhzu3p53qdi/FPOIpRB45mDVV6rLEH8
+         QUgG2ZluQVj/6xfPBwBAz4ix6W6NTccDKOjV6qi+1HMkte/Nzhyv+YYnM5YnvK3fNC6a
+         paQhquyiwNy5r6i+zr+Nxtms0wJECX1FYi3iB9t0c9T20ssaVOFyW2swItkix/wm4TJh
+         AmGyQqXsPwjmfnINB6mj3OEd8CekTtx99dijnQIztLaYZemQIhPqG7rGn+2XtFmk99AI
+         o5qA==
+X-Gm-Message-State: ACrzQf276GnR0vuORHj4u2CAkGAl3pbUeXyYNqNM2dw0cFwUOR66u9aS
+        HxPPC1GDJO0/iJRbXgPA5X4=
+X-Google-Smtp-Source: AMsMyM6YXA2lbc2XeJ/c4G6hx6QxmOnVTh+E7N+iQZVL8cwfnU7wa2AgaCcv8teuEHmKMvjrdMbTpQ==
+X-Received: by 2002:a63:f806:0:b0:439:d86e:1f6e with SMTP id n6-20020a63f806000000b00439d86e1f6emr6994658pgh.46.1665935361660;
+        Sun, 16 Oct 2022 08:49:21 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id w14-20020a63fb4e000000b0041a6638b357sm4595222pgj.72.2022.10.16.08.49.19
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 16 Oct 2022 08:49:21 -0700 (PDT)
+From:   Tony Huang <tonyhuang.sunplus@gmail.com>
+To:     tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wells.lu@sunplus.com
+Subject: [PATCH v10 0/2] Add mmc driver for Sunplus SP7021 SOC
+Date:   Sun, 16 Oct 2022 23:48:30 +0800
+Message-Id: <cover.1665931914.git.tonyhuang.sunplus@gmail.com>
+X-Mailer: git-send-email 2.7.4
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/10/2022 23:10, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add i.MX8QM compatible
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index 70322e57b6ff..64e783234e38 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -23,6 +23,7 @@ properties:
->        - fsl,imx8mp-cm7
->        - fsl,imx8mq-cm4
->        - fsl,imx8qxp-cm4
-> +      - fsl,imx8qm-cm4
+This is a patch series for mmc driver for Sunplus SP7021 SOC.
 
-Keep alphabetical order.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
->  
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-Best regards,
-Krzysztof
+Tony Huang (2):
+  dt-binding: mmc: Add mmc yaml file for Sunplus SP7021
+  mmc: Add mmc driver for Sunplus SP7021
+
+ .../devicetree/bindings/mmc/sunplus,mmc.yaml       |  62 ++
+ MAINTAINERS                                        |   7 +
+ drivers/mmc/host/Kconfig                           |   9 +
+ drivers/mmc/host/Makefile                          |   1 +
+ drivers/mmc/host/sunplus-mmc.c                     | 959 +++++++++++++++++++++
+ 5 files changed, 1038 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
+ create mode 100644 drivers/mmc/host/sunplus-mmc.c
+
+-- 
+2.7.4
 
