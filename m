@@ -2,52 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3E125FFEA0
-	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 12:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C58495FFE9B
+	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 12:36:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbiJPKgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 06:36:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36258 "EHLO
+        id S229608AbiJPKgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 06:36:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbiJPKf7 (ORCPT
+        with ESMTP id S229671AbiJPKf7 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 06:35:59 -0400
-X-Greylist: delayed 443 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 16 Oct 2022 03:35:55 PDT
+X-Greylist: delayed 442 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 16 Oct 2022 03:35:54 PDT
 Received: from mout-y-209.mailbox.org (mout-y-209.mailbox.org [91.198.250.237])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ABA13A16A;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE978367B5;
         Sun, 16 Oct 2022 03:35:54 -0700 (PDT)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+Received: from smtp102.mailbox.org (unknown [91.198.250.119])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by mout-y-209.mailbox.org (Postfix) with ESMTPS id 4MqxDF6vDGz9td9;
-        Sun, 16 Oct 2022 12:28:29 +0200 (CEST)
+        by mout-y-209.mailbox.org (Postfix) with ESMTPS id 4MqxDJ5cTRz9tdL;
+        Sun, 16 Oct 2022 12:28:32 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=noorman.info;
-        s=MBO0001; t=1665916109;
+        s=MBO0001; t=1665916112;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=uoRUF8nZ/VGGSla+ak7lM2u3E/gt9381sADOuNB9V6g=;
-        b=E6uUPe0IR0tVNA4cb8bpDwqdfA5YM2scPH66L9ACE8OoHGfrUgMQYNjX3VrTQclsaBqjcs
-        Uwi63dpl1GfD2rEUdsQKG30E+ClfaCxC+K7+M4zEWaQ5D4WYb+il66WVV02FsaXzI16yJD
-        HBjdHfzS2bSSPzLbX6gUQzpr3c3SfB+zJzLqfS9S3prerAMzI4bL+EIZQkvYy3fCM2crWV
-        5cSsHyFwXvdyvNCykt3E2MKnZE309sciHVWXxAzen9MoVBLi96dxi6vOWKFFg0/71uAqdR
-        imX2/mfhOZR5MXU4J1IL682Vi1RO3rC0MP7IGmN/HyWTbVmhVvyYYBdrar2GFg==
+        bh=S9dcsqJ0RaWCdCguljfpy7EPjfO3aVZqXfHBh2syRzs=;
+        b=PW6BcCOVvdRubT2MiVhayL4rxpCCYMisSOpA54cmnYgztUvLOH6cQgZZG1ZI2xNhZs5UMy
+        lbR3NZbovfD61NazppymLDhnSHFElM82aO2+tFKoRLSabj+FgI5L9UoZIlgoEyO6EGTuDE
+        NxFz6QE7OJd8Y/vOyjKEWxbnloHSKXgVsivypAGQaml17Rgm/s8UNIvOkA2OV27a2lWO4x
+        jBmNGb6QgrF0eLP+PknfqCfihAY8u7MmwRNWBERy0UiyeteUc22JQYlOm1semTWxd2fOoe
+        9GEadMAtBpZyYzvvUvVRZUUnb3LLieOqtKRPQZXzjkzil2TpzlkzB7YfqxJadg==
 From:   Job Noorman <job@noorman.info>
-To:     Job Noorman <job@noorman.info>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/3] dt-bindings: touchscreen: add Himax hx83112b bindings
-Date:   Sun, 16 Oct 2022 12:27:53 +0200
-Message-Id: <20221016102756.40345-2-job@noorman.info>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, Job Noorman <job@noorman.info>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 3/3] arm64: dts: qcom: sdm632: fairphone-fp3: add touchscreen
+Date:   Sun, 16 Oct 2022 12:27:55 +0200
+Message-Id: <20221016102756.40345-4-job@noorman.info>
 In-Reply-To: <20221016102756.40345-1-job@noorman.info>
 References: <20221016102756.40345-1-job@noorman.info>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4MqxDF6vDGz9td9
+X-Rspamd-Queue-Id: 4MqxDJ5cTRz9tdL
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
@@ -57,102 +59,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds device tree bindings for Himax 83112b touchscreen
-devices.
+Add Himax hx83112b touchscreen to the FP3 DT.
 
 Signed-off-by: Job Noorman <job@noorman.info>
 ---
- .../input/touchscreen/himax,hx83112b.yaml     | 63 +++++++++++++++++++
- MAINTAINERS                                   |  6 ++
- 2 files changed, 69 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
+ arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml b/Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
-new file mode 100644
-index 000000000000..be2ba185c086
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/himax,hx83112b.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Himax hx83112b touchscreen controller bindings
-+
-+maintainers:
-+  - Job Noorman <job@noorman.info>
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - himax,hx83112b
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  touchscreen-inverted-x: true
-+  touchscreen-inverted-y: true
-+  touchscreen-size-x: true
-+  touchscreen-size-y: true
-+  touchscreen-swapped-x-y: true
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - reset-gpios
-+  - touchscreen-size-x
-+  - touchscreen-size-y
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      touchscreen@48 {
-+        compatible = "himax,hx83112b";
-+        reg = <0x48>;
-+        interrupt-parent = <&tlmm>;
-+        interrupts = <65 IRQ_TYPE_LEVEL_LOW>;
-+        touchscreen-size-x = <1080>;
-+        touchscreen-size-y = <2160>;
-+        reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-+      };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9ddcc242081c..2418bffe9187 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9094,6 +9094,12 @@ W:	http://www.highpoint-tech.com
- F:	Documentation/scsi/hptiop.rst
- F:	drivers/scsi/hptiop.c
+diff --git a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
+index 891e314bc782..2920504461d3 100644
+--- a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
++++ b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
+@@ -49,6 +49,20 @@ &hsusb_phy {
+ 	vdda-phy-dpdm-supply = <&pm8953_l13>;
+ };
  
-+HIMAX HX83112B TOUCHSCREEN SUPPORT
-+M:	Job Noorman <job@noorman.info>
-+L:	linux-input@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
++&i2c_3 {
++	status = "okay";
 +
- HIPPI
- M:	Jes Sorensen <jes@trained-monkey.org>
- L:	linux-hippi@sunsite.dk
++	touchscreen@48 {
++		compatible = "himax,hx83112b";
++		reg = <0x48>;
++		interrupt-parent = <&tlmm>;
++		interrupts = <65 IRQ_TYPE_LEVEL_LOW>;
++		touchscreen-size-x = <1080>;
++		touchscreen-size-y = <2160>;
++		reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
++	};
++};
++
+ &pm8953_resin {
+ 	status = "okay";
+ 	linux,code = <KEY_VOLUMEDOWN>;
 -- 
 2.38.0
 
