@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C007A600241
-	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 19:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88E9B600237
+	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 19:22:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbiJPRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 13:23:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48322 "EHLO
+        id S229974AbiJPRWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 13:22:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230121AbiJPRW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 13:22:57 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DC8937FA3
+        with ESMTP id S229851AbiJPRWv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 13:22:51 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 924E83846F
         for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 10:22:44 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id a18so5483863qko.0
-        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 10:22:43 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id r19so6544921qtx.6
+        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 10:22:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QXCX/bvx+GMITxwd1sJyJkSs746MTV1B+EirXA61vBw=;
-        b=U/Uog/3oGcNKxEW3ZGHOx7ZGNEgEpVgLbGkK5PfRbiX5qF1LrWDcMaK62Ey3ihB/Jp
-         v/fzi6npqnqZtqRvnndpylz7ntQiGtxTI9qvvaQyG7TwWp2PdkWRU8qHkxPPAPoEga7c
-         Jvb+b4lhBSEyqn+oehyxiDoAOekP2VIBPrWoeShQmo9PPO+Lm4dj8hr4Iq0IgWMCidTn
-         wIW9wLlDpcRwIh7kKsq7ZXySwJ93OMnRZ33jKAdfAQmbN1qeaVimbzxi2DIUtvtyZvXE
-         LcwvRV1Z5TRxrwyriSuJPtB8//Q+Z9w+iup3VbMlFWC6ZtMouBb/fe0dNmAztZjWRIvK
-         W4hg==
+        bh=rQBh9mrZMQXa4Wxb/syFmouoGZGa2l4WN/58xgtqFuw=;
+        b=s7wNXTOQSsjdVEyR5YrTtmqv8lR5B+KaQDfI2Wv98VdXJVgVXV/nTzxdf7sxt+J2/D
+         13/ugJn3Qn5o/96MErRjwMBj5rgbTOLAMaa0DjuzSKJLlgbOHpO4X76k40qPj2OVUvDN
+         b/Gc+FhYUFkYoTUwQZi/Yj5386puztFYUV3OtjpuxROKUlZaio3cMzOQ5C+8yQ519KfW
+         pmvyU47a4hiAhCuLwb9rxfAxKRXRR7rZ6QHB0gH1xmsU7ARXMlKmpRfsB0Sfe3THs2sG
+         eM6LFaK9NfxutfjezMUyxTHqBQ3KaIVEzSGn69LdIQgFppWuGhaSWB6ZTjI3HvVysSTO
+         X71w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QXCX/bvx+GMITxwd1sJyJkSs746MTV1B+EirXA61vBw=;
-        b=3oFnYVqcxleNoB9dY7hDYv98KnCaHb0lVNk3e8m12jZP3o9exoI4WJMSR4b45NrUAc
-         sh8ArlLi7vFUqP3MEvX62LS+JbF72rG1JL/+g4AfKW7llZqKiRSc/jFQAgDT6+UTegM7
-         3pxHnTLFtiwRIC56kpOaA8MA5KYUYowdhz5iUboOE2/PBvO1XmZvmYldm3TpJZmadnNl
-         4WGQg2/4dW/onbFkowiTGQK6zaenJuoS4glMkoJOZ6Tzjb3PcT2ZYArSoYo2o0AN76H/
-         voGScMbF7dup8w7jFSEjPppCOQc1GWIqUL5eolG5pVamDbSoK+V0kV8Dh5aBBqEwn+3d
-         eZ9g==
-X-Gm-Message-State: ACrzQf2GVOclW3Rtss0eoW+qObjBTn5QlofAVBSmPoAEct08XT6jF/2i
-        IqdN9O8G3CjgMzX46UVmoNcRhw==
-X-Google-Smtp-Source: AMsMyM7BISQHvTRb75ZiRziZVonRMA5Y+vaWTUg9EVFvYFVZk7gtnr2w1/7l0ETlV9k4tEdEnCZcVw==
-X-Received: by 2002:ae9:ec07:0:b0:6cf:4190:246 with SMTP id h7-20020ae9ec07000000b006cf41900246mr4953993qkg.760.1665940962485;
-        Sun, 16 Oct 2022 10:22:42 -0700 (PDT)
+        bh=rQBh9mrZMQXa4Wxb/syFmouoGZGa2l4WN/58xgtqFuw=;
+        b=reD/v/FBty5PTSv5bBBu1LFnl8qWv9KhgNCPNrX+J0lNUsakaJTaTKamygacTQMfC4
+         qdxkGsWadqOzVlTYmEGSc2bbPOrqR18yUcTjNnhkBSfdz/gTWuXF+bqfyQNxteT+bmkb
+         mq1eG+naZtMAYeebXMmG11f328gMoVR77wsFXgpyxqWQwemqvvdKtePae/8raBEoOjRG
+         SS212tDTuIL2GvO9arQNAaYt0D5vJZWCQj1aAZAGB3B8WizNVezUYrKiVr/e5VN8mmxA
+         g0EEyDvXr3sD5xp5dhDy6ohNEICWPVr2wla+Xg+4bUC6pCORGbAmPtUfentCrEzinTVJ
+         fYiA==
+X-Gm-Message-State: ACrzQf12cqd7bcBtNdHMU3nT9qj/yPuWPoJRRm4apYiAhiY9M5A+/NBt
+        Tk9ygS9ArK4CtCjiugMlcfzwdQ==
+X-Google-Smtp-Source: AMsMyM7+gdQKhNe4Km/RBuyvkeiDyZXFdAG5dbAI6xRXqdla+5Dz1TJvZGhbH96CCTZmGlhNxkf35Q==
+X-Received: by 2002:ac8:5f4e:0:b0:39c:c417:5405 with SMTP id y14-20020ac85f4e000000b0039cc4175405mr5906457qta.83.1665940963939;
+        Sun, 16 Oct 2022 10:22:43 -0700 (PDT)
 Received: from krzk-bin.hsd1.pa.comcast.net ([2601:42:0:3450:9b13:d679:7b5b:6921])
-        by smtp.gmail.com with ESMTPSA id r5-20020ac87945000000b003431446588fsm6051008qtt.5.2022.10.16.10.22.41
+        by smtp.gmail.com with ESMTPSA id r5-20020ac87945000000b003431446588fsm6051008qtt.5.2022.10.16.10.22.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Oct 2022 10:22:41 -0700 (PDT)
+        Sun, 16 Oct 2022 10:22:43 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 08/17] arm64: dts: qcom: sdm845: align TLMM pin configuration with DT schema
-Date:   Sun, 16 Oct 2022 13:22:03 -0400
-Message-Id: <20221016172212.49105-9-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 09/17] arm64: dts: qcom: sm6125-sony-xperia: add missing SD CD GPIO functions
+Date:   Sun, 16 Oct 2022 13:22:04 -0400
+Message-Id: <20221016172212.49105-10-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221016172212.49105-1-krzysztof.kozlowski@linaro.org>
 References: <20221016172212.49105-1-krzysztof.kozlowski@linaro.org>
@@ -77,30 +77,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT schema expects TLMM pin configuration nodes to be named with
-'-state' suffix and their optional children with '-pins' suffix.
+Add default GPIO function to SD card detect pins on SM6125 Sony Xperia,
+as required by bindings:
 
-  qcom/sdm845-lg-judyln.dtb: gpios@c000: 'vol-up-active-pins' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+  qcom/sm6125-sony-xperia-seine-pdx201.dtb: pinctrl@500000: sdc2-off-state: 'oneOf' conditional failed, one must be fixed:
+    'pins' is a required property
+    'function' is a required property
+    'clk-pins', 'cmd-pins', 'data-pins', 'sd-cd-pins' do not match any of the regexes: 'pinctrl-[0-9]+'
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-index 20f275f8694d..1eb423e4be24 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-@@ -604,7 +604,7 @@ pinconf {
- };
- 
- &pm8998_gpio {
--	vol_up_pin_a: vol-up-active-pins {
-+	vol_up_pin_a: vol-up-active-state {
- 		pins = "gpio6";
- 		function = "normal";
- 		input-enable;
+diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+index 6a8b88cc4385..9af4b76fa6d7 100644
+--- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
++++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+@@ -89,6 +89,7 @@ &hsusb_phy1 {
+ &sdc2_off_state {
+ 	sd-cd-pins {
+ 		pins = "gpio98";
++		function = "gpio";
+ 		drive-strength = <2>;
+ 		bias-disable;
+ 	};
+@@ -97,6 +98,7 @@ sd-cd-pins {
+ &sdc2_on_state {
+ 	sd-cd-pins {
+ 		pins = "gpio98";
++		function = "gpio";
+ 		drive-strength = <2>;
+ 		bias-pull-up;
+ 	};
 -- 
 2.34.1
 
