@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADF3F60038B
-	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 23:55:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C89D66003F3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 00:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229765AbiJPVzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 17:55:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58640 "EHLO
+        id S229572AbiJPWj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 18:39:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbiJPVzF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 17:55:05 -0400
-Received: from mailgw.felk.cvut.cz (mailgw.felk.cvut.cz [147.32.82.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6340A13FA2;
-        Sun, 16 Oct 2022 14:54:59 -0700 (PDT)
-Received: from mailgw.felk.cvut.cz (localhost.localdomain [127.0.0.1])
-        by mailgw.felk.cvut.cz (Proxmox) with ESMTP id BF2D730B2949;
-        Sun, 16 Oct 2022 23:54:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        cmp.felk.cvut.cz; h=cc:cc:content-transfer-encoding:content-type
-        :content-type:date:from:from:in-reply-to:message-id:mime-version
-        :references:reply-to:subject:subject:to:to; s=felkmail; bh=LQd5Q
-        rd/j/9u/DWNjR5yotOcmDbQdjNNhniIHl7ZOf0=; b=MVJLVMYqSYViWakjPEkyh
-        jC5bHZpTvnlG/EkD9gUrNl+HiWBCacw7dmC80V+TfPPknuhBJ6yH0k0VD+86K0Yy
-        0PkMckp1RqcMwCFaQ+ooWYtXftz+0pfRmDRWOK1yXx+8jnFFa86wg+ryT70+kQtE
-        taPfDlDIgjBk7FIL/fpMCxMBP9YRUOQx5dsQIrJ76cnAKdOgXJFY1IPM39F8TY7x
-        oWR/miAyybtBlLDWhm2YpFZwxi6z+ZgMiHglVrqDcgQoDahOW0xjylaQhPwx9zsk
-        tQj7dqnmk4picPDdEXLCT2lPDvnC0Bu3SiRQVMrlc1KV+xUNtfAMLRPt+dcd+drh
-        Q==
-Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
-        by mailgw.felk.cvut.cz (Proxmox) with ESMTPS id D759630ADE4B;
-        Sun, 16 Oct 2022 23:54:55 +0200 (CEST)
-Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
-        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 29GLstLx017446;
-        Sun, 16 Oct 2022 23:54:55 +0200
-Received: (from pisa@localhost)
-        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 29GLstXE017445;
-        Sun, 16 Oct 2022 23:54:55 +0200
-X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
-From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
-To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
-Subject: Re: [PATCH v5 2/4] can: ctucanfd: add HW timestamps to RX and error CAN frames
-Date:   Sun, 16 Oct 2022 23:54:48 +0200
-User-Agent: KMail/1.9.10
-Cc:     Ondrej Ille <ondrej.ille@gmail.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "Marc Kleine-Budde" <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221012062558.732930-1-matej.vasilevski@seznam.cz> <20221012062558.732930-3-matej.vasilevski@seznam.cz>
-In-Reply-To: <20221012062558.732930-3-matej.vasilevski@seznam.cz>
-X-KMail-QuotePrefix: > 
+        with ESMTP id S229597AbiJPWj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 18:39:27 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 937F86348
+        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 15:39:25 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 1DA012C04E3;
+        Sun, 16 Oct 2022 22:39:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1665959962;
+        bh=oWpcr9loT1LAqQR8CFDe7J/v/rubUPt8jGr6fgvQMVA=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=sn1zaw75dORdufc7wPFjprMROokf0b3/KUHgKNVnuju/NXRObnA5zRYWIdNBrt4oa
+         uQyb+qt0zQsMn3jYJqSj9ShTfbtYLN8+twu3Gvq6fMx7KpB879lrA4Y8dGJhGc00/4
+         24f/M7Pi0zNs0/DXnzY29+2nTu0xHlYJwc1fU/dGPj1Xr91QDMsWboDPIjqOJOxBnB
+         s3TWuf7D77dxp7vDIuh6dpj92Ni8z7qgpvHqPZ+S7hb5e7aY+qiTJr70n+TwSVsgy2
+         cj2bqfFomU9SWIon5l/rSJjv66UZufxZE1KJy8C0xC8nz+BDJNSc3sX3K+hZ4uLVDJ
+         jTWvhwysnLF/g==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B634c881a0001>; Mon, 17 Oct 2022 11:39:22 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
+ by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
+ Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 17 Oct 2022 11:39:21 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.042; Mon, 17 Oct 2022 11:39:21 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: armada-xp: add interrupts for watchdog
+Thread-Topic: [PATCH 1/2] ARM: dts: armada-xp: add interrupts for watchdog
+Thread-Index: AQHYHt7uiWYAlaasj0eIMMhjL00ERqySWk8AgX/uSYA=
+Date:   Sun, 16 Oct 2022 22:39:21 +0000
+Message-ID: <0308a842-efcb-d4a0-f17c-2b0bf12c9dfb@alliedtelesis.co.nz>
+References: <20220211003257.2037332-1-chris.packham@alliedtelesis.co.nz>
+ <20220211003257.2037332-2-chris.packham@alliedtelesis.co.nz>
+ <87o839jw4p.fsf@BL-laptop>
+In-Reply-To: <87o839jw4p.fsf@BL-laptop>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A4212113A5D92B4CB103CCF22FC0E6E5@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: Text/Plain;
-  charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-Message-Id: <202210162354.48915.pisa@cmp.felk.cvut.cz>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,SPF_HELO_NONE,SPF_NONE
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=EZC2v8uC c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=Qawa6l4ZSaYA:10 a=P-IC7800AAAA:8 a=HY4e2j-mU8xZvivSFSQA:9 a=QEXdDO2ut3YA:10 a=d3PnA9EDa4IxuAV0gXij:22
+X-SEG-SpamProfiler-Score: 0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,59 +81,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for the work
-
-On Wednesday 12 of October 2022 08:25:56 Matej Vasilevski wrote:
-> This patch adds support for retrieving hardware timestamps to RX and
-> error CAN frames. It uses timecounter and cyclecounter structures,
-> because the timestamping counter width depends on the IP core integration
-> (it might not always be 64-bit).
-> For platform devices, you should specify "ts" clock in device tree.
-> For PCI devices, the timestamping frequency is assumed to be the same
-> as bus frequency.
->
-> Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
-
-Acked-by: Pave Pisa <pisa@cmp.felk.cvut.cz>
-
-It would be great if the code gets in as a basic level for CTU CAN FD
-timestamping which we need for CAN latency test project.
-
-In the longer term, it could be usesfull to discuss if rx_filter == HWTSTAMP_FILTER_ALL
-and cfg.tx_type == HWTSTAMP_TX_ON should be divided to allow separate timestamping
-enable and disable for transmit and receive. Our actual focus is to receive
-and Tx is implemented by reading the timestamping counter in the message transmit
-done interrupt. There is option (for newer core version) to loop Tx frames
-into Rx loop which could allow to enhance precision of Tx timestamps
-to 10 ns. But that requires newer IP core and I wait even for some minor changes
-to allow identification of looped Tx frames into Rx queue.
-Switch to such processing mode will have some overhead etc... So it should
-stay configurable and used only when precise Tx timestamp are really required...
-
-When the current timestamping patch is accepted I plan to discuss
-use of clk_prepare_enable for the main IP core clocks.
-These clocks are AXI bus ones on our FPGA integration so they
-has to be up anyway and clk_prepare_enable etc.. does not change
-behavior, but I want to make that correct in long term.
-I hope/expect that it is not problem to call clk_prepare_enable twice
-on same reference when the clocks are the same. As I read the code the
-state is counted. If it is a problem then some if has to be put there
-when the core and timestamp clock are the same.
-
-Thanks for work and reviews,
-
-                Pavel
--- 
-                Pavel Pisa
-    phone:      +420 603531357
-    e-mail:     pisa@cmp.felk.cvut.cz
-    Department of Control Engineering FEE CVUT
-    Karlovo namesti 13, 121 35, Prague 2
-    university: http://control.fel.cvut.cz/
-    personal:   http://cmp.felk.cvut.cz/~pisa
-    projects:   https://www.openhub.net/accounts/ppisa
-    CAN related:http://canbus.pages.fel.cvut.cz/
-    RISC-V education: https://comparch.edu.cvut.cz/
-    Open Technologies Research Education and Exchange Services
-    https://gitlab.fel.cvut.cz/otrees/org/-/wikis/home
-
+SGkgR3JlZ29yeSwNCg0KT24gMTUvMDIvMjIgMDQ6MzksIEdyZWdvcnkgQ0xFTUVOVCB3cm90ZToN
+Cj4gSGVsbG8gQ2hyaXMsDQo+DQo+PiBUaGUgZmlyc3QgaW50ZXJydXB0IGlzIGZvciB0aGUgcmVn
+dWxhciB3YXRjaGRvZyB0aW1lb3V0LiBOb3JtYWxseSB0aGUNCj4+IFJTVE9VVCBsaW5lIHdpbGwg
+dHJpZ2dlciBhIHJlc2V0IGJlZm9yZSB0aGlzIGludGVycnVwdCBmaXJlcyBidXQgb24NCj4+IHN5
+c3RlbXMgd2l0aCBhIG5vbi1zdGFuZGFyZCByZXNldCBpdCBtYXkgc3RpbGwgdHJpZ2dlci4NCj4+
+DQo+PiBUaGUgc2Vjb25kIGludGVycnVwdCBpcyBmb3IgYSB0aW1lcjEgd2hpY2ggaXMgdXNlZCBh
+cyBhIHByZS10aW1lb3V0IGZvcg0KPj4gdGhlIHdhdGNoZG9nLg0KPj4NCj4+IFNpZ25lZC1vZmYt
+Ynk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4g
+QWNrZWQtYnk6IEdyZWdvcnkgQ0xFTUVOVCA8Z3JlZ29yeS5jbGVtZW50QGJvb3RsaW4uY29tPg0K
+Pg0KPiBUbyBrZWVwIGJpc2VjdGFiaWxpdHkgdGhpcyBwYXRjaCBzaG91bGQgYmUgbWVyZ2VkIGFm
+dGVyIHRoZSBkcml2ZXINCj4gcGF0Y2guDQo+DQo+IFRoYW5rcywNCj4NCj4gR3JlZ29yeQ0KDQpU
+aGUgZHJpdmVyIGNoYW5nZXMgd2VyZSBtZXJnZWQgYSB3aGlsZSBiYWNrLiBMb29rcyBsaWtlIHlv
+dXIgaW50ZW50aW9uIA0Kd2FzIGZvciB0aGlzIHRvIGdvIGluIHZpYSB0aGUgd2F0Y2hkb2cgdHJl
+ZSBidXQgdGhhdCBuZXZlciBoYXBwZW5lZC4gDQpDb3VsZCB5b3UgdGFrZSBpdCB0aHJvdWdoIHlv
+dXIgdHJlZSBub3c/IFByb2JhYmx5IHdvbid0IGJlIHVudGlsIDYuMiBub3cgDQpidXQgdGhhdCdz
+IGZpbmUuDQoNCj4NCj4+IC0tLQ0KPj4gICBhcmNoL2FybS9ib290L2R0cy9hcm1hZGEteHAtOThk
+eDMyMzYuZHRzaSB8IDEgKw0KPj4gICBhcmNoL2FybS9ib290L2R0cy9hcm1hZGEteHAuZHRzaSAg
+ICAgICAgICB8IDEgKw0KPj4gICAyIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKQ0KPj4N
+Cj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9hcm1hZGEteHAtOThkeDMyMzYuZHRz
+aSBiL2FyY2gvYXJtL2Jvb3QvZHRzL2FybWFkYS14cC05OGR4MzIzNi5kdHNpDQo+PiBpbmRleCAz
+OGEwNTJhMDMxMmQuLjBlNTYxZGZjMGNhOSAxMDA2NDQNCj4+IC0tLSBhL2FyY2gvYXJtL2Jvb3Qv
+ZHRzL2FybWFkYS14cC05OGR4MzIzNi5kdHNpDQo+PiArKysgYi9hcmNoL2FybS9ib290L2R0cy9h
+cm1hZGEteHAtOThkeDMyMzYuZHRzaQ0KPj4gQEAgLTI4Niw2ICsyODYsNyBAQCAmd2F0Y2hkb2cg
+ew0KPj4gICAJY29tcGF0aWJsZSA9ICJtYXJ2ZWxsLGFybWFkYS14cC13ZHQiOw0KPj4gICAJY2xv
+Y2tzID0gPCZjb3JlY2xrIDI+LCA8JnJlZmNsaz47DQo+PiAgIAljbG9jay1uYW1lcyA9ICJuYmNs
+ayIsICJmaXhlZCI7DQo+PiArCWludGVycnVwdHMgPSA8OTM+LCA8Mzg+Ow0KPj4gICB9Ow0KPj4g
+ICANCj4+ICAgJmNwdXJzdCB7DQo+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvYXJt
+YWRhLXhwLmR0c2kgYi9hcmNoL2FybS9ib290L2R0cy9hcm1hZGEteHAuZHRzaQ0KPj4gaW5kZXgg
+NmMxOTk4NGQ2NjhlLi40Mjk3NDgyZGE2MmYgMTAwNjQ0DQo+PiAtLS0gYS9hcmNoL2FybS9ib290
+L2R0cy9hcm1hZGEteHAuZHRzaQ0KPj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXJtYWRhLXhw
+LmR0c2kNCj4+IEBAIC0yNjAsNiArMjYwLDcgQEAgJndhdGNoZG9nIHsNCj4+ICAgCWNvbXBhdGli
+bGUgPSAibWFydmVsbCxhcm1hZGEteHAtd2R0IjsNCj4+ICAgCWNsb2NrcyA9IDwmY29yZWNsayAy
+PiwgPCZyZWZjbGs+Ow0KPj4gICAJY2xvY2stbmFtZXMgPSAibmJjbGsiLCAiZml4ZWQiOw0KPj4g
+KwlpbnRlcnJ1cHRzID0gPDkzPiwgPDM4PjsNCj4+ICAgfTsNCj4+ICAgDQo+PiAgICZjcHVyc3Qg
+ew0KPj4gLS0gDQo+PiAyLjM1LjENCj4+
