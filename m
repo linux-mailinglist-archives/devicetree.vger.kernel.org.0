@@ -2,77 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1152600069
-	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 17:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D53600075
+	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 17:13:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229843AbiJPPJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 11:09:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50912 "EHLO
+        id S229780AbiJPPNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 11:13:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbiJPPJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 11:09:15 -0400
-Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [IPv6:2001:67c:2050:103:465::111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B86B42D4C;
-        Sun, 16 Oct 2022 08:09:13 -0700 (PDT)
-Received: from smtp102.mailbox.org (unknown [91.198.250.119])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4Mr3S46tpPz9tM5;
-        Sun, 16 Oct 2022 17:09:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=noorman.info;
-        s=MBO0001; t=1665932949;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=BwnvJmYklKb2+UBlQ9rYbd4a798S+TwPnf4/wOdXb8Q=;
-        b=N/if0YtRFwuNvLmMwtm5NHC8Y4mZeD33HEV96X1NJo0JZbbn0QiMD8LeLLSrojqsPRs+JC
-        9voFab7Jfd6vb+Ei68y+dOLm6Z0U/OAf8bMIcCbUZy6K7JkzAJrCVL4TUxncLWQs37HbOo
-        CtM7rOkZq+WN9j4UhMXu5o0NHsyvktJl8DXX38K33c7KbfmGMwtIMs6P67P+LyFGdlekn5
-        uJUnSPl59bw9OTOMLDpNg5qdWyOeMOJdQh8nw9gUk9D+D+dkze/SHSJWSawksFVIPF/dSG
-        1TthsSYOXafnTaCQ3tHAGRgkDQrsp08cK65vqM5mbeSvSSNHiL8lVBpQbRt/rA==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Sun, 16 Oct 2022 17:09:07 +0200
-Message-Id: <CNNFXYM20GK5.3O8PV4IRMP2HH@ancom>
-Subject: Re: [PATCH v3 1/3] dt-bindings: touchscreen: add Himax hx83112b
- bindings
-From:   "Job Noorman" <job@noorman.info>
-To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "Luca Weiss" <luca@z3ntu.xyz>, <linux-input@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221016102756.40345-1-job@noorman.info>
- <20221016102756.40345-2-job@noorman.info>
- <08a98921-592f-fe70-1591-367f9c4063b6@linaro.org>
-In-Reply-To: <08a98921-592f-fe70-1591-367f9c4063b6@linaro.org>
-X-Rspamd-Queue-Id: 4Mr3S46tpPz9tM5
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229607AbiJPPNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 11:13:39 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C2E2A97A;
+        Sun, 16 Oct 2022 08:13:38 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id s30so12875619eds.1;
+        Sun, 16 Oct 2022 08:13:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/C5lwk/nMs2ZM6+Ipbgdt5+++HkO09MsMac4cJsw0kY=;
+        b=HgvQG2CcfeYc2FI8sWyMP94qrofK/LCeIcTNxe/UZ3IfZG+b6kuCWdKMWGdIk5ejJh
+         UjZe9e7SMP/4c0N4YBcBwcwc+EuUSsnQEnkWrTtmE6f5dNeQrdoOp8UT8EWfsgasu3nT
+         jRWiPgRT2pmDuM0vEUmigqQJKnyoXsQKMfYBLXzJnwAkW37UV4RKQGyOqejc1SDExEls
+         2YTosA/BGOKsT35asDVE9Eh+t3K2VbUwZPn/tVIA7ZVON6G7d90Auj9R7MJ/gJSjAhbC
+         iPA1omuP+puKpBLtCd00DBe7N/cJWDP3uD4DsUGweF368mvZi55W07pL5K/yuxxl5qll
+         kN+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/C5lwk/nMs2ZM6+Ipbgdt5+++HkO09MsMac4cJsw0kY=;
+        b=hl3aCVGRCx+qO2Y/ndboOGhOyu8iDaYW/1FEgjJi4UzL59ri0XfJYGzpKM0bWJnG6x
+         OGFnRMVgHCVD1yTv7gj0m7hZg5ypoDqAu4N05dBz+MCk1tmGszWuJvBfikUKvDddEUw3
+         jOn/ufN1/qn6gZMd4d3rSFoWV6QCVOjf06BMGp2/GkiFvFHMkcnlA0Q7xn/JgOugQslG
+         6CRLC5E9RbzkzHp1sDCIthB4Fr/yLIEbJqIMofEYBiAOShs/DIe7+qvjjBrcHdlZja9k
+         eJ1bxnFt4Mav8dFURX8UKe0hQOFmy80dEs5xfttii47VY4UTQ3fxIYp1WTG8SsV51dHk
+         BLJw==
+X-Gm-Message-State: ACrzQf2OAb+uUXRCSPIzRS6Ot6/EEUPZAJTNaONPgkMY/OGS/k3SoaGV
+        nftXEyDNzt6ykAYa+PzUQSY=
+X-Google-Smtp-Source: AMsMyM4KVbqkL8u6VEhOb2AMIH24wsn3G/75t2Uq+V3U5os3+a7gJM3qsEQyIxetM82NiN10AByxuQ==
+X-Received: by 2002:a50:ec84:0:b0:459:ae8:8025 with SMTP id e4-20020a50ec84000000b004590ae88025mr6410063edr.321.1665933217388;
+        Sun, 16 Oct 2022 08:13:37 -0700 (PDT)
+Received: from hp-power-15.localdomain (mm-39-7-212-37.vitebsk.dynamic.pppoe.byfly.by. [37.212.7.39])
+        by smtp.gmail.com with ESMTPSA id i8-20020a1709061e4800b0078d4c72e2cesm4702735ejj.44.2022.10.16.08.13.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Oct 2022 08:13:36 -0700 (PDT)
+From:   Siarhei Volkau <lis8215@gmail.com>
+Cc:     Siarhei Volkau <lis8215@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: [PATCH v2 0/2] Add Ingenic JZ4755 DMA support
+Date:   Sun, 16 Oct 2022 18:12:54 +0300
+Message-Id: <20221016151256.3021729-1-lis8215@gmail.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun Oct 16, 2022 at 5:00 PM CEST, Krzysztof Kozlowski wrote:
-> On 16/10/2022 06:27, Job Noorman wrote:
-> > This patch adds device tree bindings for Himax 83112b touchscreen
-> > devices.
-> >=20
-> > Signed-off-by: Job Noorman <job@noorman.info>
->
-> You got here tag from Rob, so keep it. The change was minor so did not
-> justify tag-drop.
+This patch serie adds JZ4755 SoC DMA support.
 
-Thanks for the info, I wasn't sure if this would be considered minor. Will
-add the tag in the next revision.
+Diffs from 1-st patchset:
+ - DMA patches splitted into its own patchset
+ - acks collected
 
-Best regards,
-Job
+Siarhei Volkau (2):
+  dt-bindings: ingenic: Add support for the JZ4755 dmaengine
+  dmaengine: JZ4780: Add support for the JZ4755.
+
+ Documentation/devicetree/bindings/dma/ingenic,dma.yaml | 1 +
+ drivers/dma/dma-jz4780.c                               | 8 ++++++++
+ 2 files changed, 9 insertions(+)
+
+-- 
+2.36.1
 
