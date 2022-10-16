@@ -2,299 +2,655 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CFE15FFCE6
-	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 03:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 036945FFD6C
+	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 08:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbiJPBdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Oct 2022 21:33:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44430 "EHLO
+        id S229653AbiJPGKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 02:10:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbiJPBdW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Oct 2022 21:33:22 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5F341D28;
-        Sat, 15 Oct 2022 18:33:20 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3638330A;
-        Sun, 16 Oct 2022 03:33:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1665883997;
-        bh=ieNfBG7/of6KMXgXmOP56haDL3EhVK5nv2A5zcxE7BA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oyY4I9e0/GRssDO1YOZiM0nS+w9LkxnniO25CukfRZlmI4j6kbMsAbkl/vd++9a1l
-         ChMAdioeKq5ohcj91HCPkhNacL4j2wn/zKE4EEnJUjLgAkm7f2drfDc+C+SrTG9fbD
-         VIx4PV8P3pyHlCoorKI6KXO95jiXZgv00Ytnvwes=
-Date:   Sun, 16 Oct 2022 04:32:54 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     francesco.dolcini@toradex.com,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        Marek Vasut <marex@denx.de>, max.krummenacher@toradex.com,
-        Rob Herring <robh@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: display: add new bus-format property
- for panel-dpi
-Message-ID: <Y0tfRhn/f1FiGDi4@pendragon.ideasonboard.com>
-References: <20220628181838.2031-1-max.oss.09@gmail.com>
- <20220628181838.2031-3-max.oss.09@gmail.com>
- <Y0gLdQleE64FQgn9@gaggiata.pivistrello.it>
- <CAPY8ntAszGzcp4XC=XKMHJvzCC9LHHf24pt=nZAUFKcK5=JM_Q@mail.gmail.com>
+        with ESMTP id S229725AbiJPGKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 02:10:49 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78C23ED4A;
+        Sat, 15 Oct 2022 23:10:46 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id sc25so18469600ejc.12;
+        Sat, 15 Oct 2022 23:10:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VNYgPu2luLZN8pmM/EkKUwwM/294BUfdBP1Pg+67IFg=;
+        b=Fz0SAL+d7+4q/aye92fODaFnRVi4m1eAizC01GVzYpe2sNI8sbdrzVXXR2WY5jA5u8
+         xQL7yGl/dth0DAx0noTFPiZ+JFX3/K637Lhw9Ja+BK0WlvUx4cs51yhMNJFiMDFiJDHL
+         XJINPDB59c1EoG2bth633p/oE4IIyEu4zvSOId/e8RK/+KMgayyi1feMOY9mALRZ2jfy
+         kEbmrKPzzGIHSiufnqpZz2PSIlWBxBds97CIOpTFup92H6XCD3Pt+kPlQ6DSxAQLrbAQ
+         b2kIBFFErFh6z7cNIUsB6sF5ylrysvcVqVazoQChDX5CF5Rt1uoqOygO8hxA03OEC+D+
+         e8sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VNYgPu2luLZN8pmM/EkKUwwM/294BUfdBP1Pg+67IFg=;
+        b=4ooPmeJ3arObEJKNzWKRYFwKrDyV5uJFD/9y+dE3F5NqaFG1vUOEsOBLwdAL3V0kJi
+         8Jg8CdLHQzbvRzElgFJueBCI1jnqa64OqFR70QSXrkvg5PDSQq+btQzo5bdz8KHZpkMo
+         JsiytZI6ggAmEkCG+baKz4dRzpkUO/MeAVBGeOZU82PBRfddyp4p211l7nt6iVCHVevH
+         KOXwxzEER/C9be2S1HYCe9CRNjHfQhRrREhhaYP7GK77pY4hWTqk/8OAj2DnBHmA05NX
+         poMAV2BL3/HoUxauMvqu29o791RwdyrxNJloE/wum4tpluEm89tcYiVKV30pXxWgWteH
+         p5Hg==
+X-Gm-Message-State: ACrzQf0XwoumdPubSdlvhpQGetUEA7DOMVH9BKRCtXq+AGD38eni5kVc
+        jY5JK6qhlorZQbUWkEGPDNjjH72GQHwikAj6P0kSEMLnKHY=
+X-Google-Smtp-Source: AMsMyM4BkFYho9W2l2W1YdIOMdSDjVek+RImZcsebBtusmjt0FvjV75svvXJ3uB2foCMTpYOte3nbBxwtmH1EBCPHks=
+X-Received: by 2002:a17:906:7945:b0:73b:e605:f31 with SMTP id
+ l5-20020a170906794500b0073be6050f31mr4230695ejo.129.1665900644905; Sat, 15
+ Oct 2022 23:10:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAPY8ntAszGzcp4XC=XKMHJvzCC9LHHf24pt=nZAUFKcK5=JM_Q@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220923185358.11023-1-jagathjog1996@gmail.com> <20220923185358.11023-3-jagathjog1996@gmail.com>
+In-Reply-To: <20220923185358.11023-3-jagathjog1996@gmail.com>
+From:   Jagath Jog J <jagathjog1996@gmail.com>
+Date:   Sun, 16 Oct 2022 11:40:33 +0530
+Message-ID: <CAM+2EuL8DOm9Xa8wgZGuOydf6+X6TxVXdbnUi2L3Cn_SVKHXzw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] rtc: max31329: Add Maxim max31329 real time clock
+To:     alexandre.belloni@bootlin.com, a.zummo@towertech.it,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi Alexandre,
 
-On Fri, Oct 14, 2022 at 03:08:49PM +0100, Dave Stevenson wrote:
-> On Thu, 13 Oct 2022 at 13:58, Francesco Dolcini wrote:
-> > On Tue, Jun 28, 2022 at 08:18:36PM +0200, Max Krummenacher wrote:
-> > > From: Max Krummenacher <max.krummenacher@toradex.com>
-> > >
-> > > The property is used to set the enum bus_format and infer the bpc
-> > > for a panel defined by 'panel-dpi'.
-> > > This specifies how the panel is connected to the display interface.
-> > >
-> > > Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-> > >
-> >
-> > <snip>
-> >
-> > > diff --git a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> > > index dae0676b5c6e..52f5db03b6a8 100644
-> > > --- a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> > > @@ -26,7 +26,28 @@ properties:
-> > >    height-mm: true
-> > >    label: true
-> > >    panel-timing: true
-> > > -  port: true
-> > > +
-> > > +  port:
-> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +    description:
-> > > +      Input port node, receives the panel data.
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> > > +
-> > > +        properties:
-> > > +          bus-format:
-> > > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > > +            minimum: 0x1001
-> > > +            maximum: 0x1fff
-> > > +            description: |
-> > > +              Describes how the display panel is connected to the display interface.
-> > > +              Valid values are defined in <dt-bindings/display/dt-media-bus-format.h>.
-> > > +              The mapping between the color/significance of the panel lines to the
-> > > +              parallel data lines are defined in:
-> > > +              https://www.kernel.org/doc/html/v5.17/userspace-api/media/v4l/subdev-formats.html#packed-rgb-formats
-> > > +
-> >
-> > Last month I had the chance to talk in person about this topic with
-> > Dave, Marek and Max in Dublin.
-> >
-> > My understanding is that this change is addressing a general need, Dave
-> > confirmed me they have a downstream patch for raspberrypi [1].
-> >
-> > From what I could tell the only concern is about the actual encoding of
-> > this `bus-format` property.
-> >
-> > I am personally convinced that a simple enum is the way to go, I think
-> > that Marek proposal is adding complexity and not flexibility (from my
-> > understanding Dave is on the same page, just correct me if I
-> > misunderstood you).
-> 
-> Yes I agree with you here.
-> 
-> This binding is for the panel, and currently the only path to pass the
-> panel mode to the DPI transmitter is one or more MEDIA_BUS_FMT_* enums
-> in struct drm_display_info *bus_formats.
-> 
-> Looking at Marek's comment over DSI and data-lanes, yes both source
-> and sink could advertise a data-lanes property to cover the condition
-> where they aren't wired up in a 1:1 fashion. Reality is that most
-> drivers don't support reordering the lanes - looking at the bindings,
-> only one (msm) documents the use of data-lanes on the host side.
-> rcar_mipi_dsi looks at the number of lanes specified only, and then
-> checks that the number requested by the device is <= the number
-> configured.
-> 
-> As I see it, the comparison here is that this "bus-format" property is
-> the equivalent of the data-lanes on the sink, and is the desired
-> number of lanes value passed from sink to source (one integer, not a
-> mapping).
-> If the source can reorder the lanes, then that is a property of the
-> source. This binding is for the sink, and so isn't a reasonable
-> comparison. It also doesn't have to be called "bus-format" on the
-> source, and can take a totally different form.
-> I'll admit that I know data-lane configuration more from CSI2, but
-> within V4L2 it is the node that can support reordering that should
-> have the lanes in a non-incrementing order, and that is normally the
-> SoC rather than the sensor. The same would seem to apply here - it's
-> the SoC that can remap the signals, not the panel.
-> 
-> It could be argued that for DPI the panel should only advertise the
-> panel's bit depth for each channel, not the padding. The panel is
-> generic and could handle any wiring/padding options, and it isn't
-> necessarily a simple 16/18/24/32 bit bus representation, just a
-> collection of N wires.
-> Padding and wiring is a function of the DPI transmitter / SoC, or
-> potentially an interconnect node between the two.
+Is there any change needed for this v3 series?
 
-Sooo... I'm not sure where to start :-)
+Thanks,
+Jagath
 
-I think the trouble when describing the connection between a source and
-a sink in DT is that none of the source or sink is an ideal place to
-describe properties of the connection.
-
-For DSI we have it relatively easy, as we only have to describe the
-number of lanes that are routed on the board and possibly how the lanes
-are rearranged. The former is a value that is common between the source
-and the sink, that's the easiest case, it can be specified in both DT
-nodes. The latter is a bit more complicated, and was solved by allowing
-specifying lane reordering on both the source and the sink. As there is
-typically only one of the two components that will support lane
-reordering (if any), DTs will usually specify a 1:1 mapping on one side,
-and possibly reorder on the other side. If both the source and the sink
-support reordering, setting data-lanes = <1 2> on both sides would lead
-to a different configuration than data-lanes = <2 1>, but both would
-work the same (I'm not sure why anyone would want the latter though).
-There may thus be multiple ways to describe a working setup, but that's
-fine, the complexity is manageable, and any hardware configuration can
-be described.
-
-The nice thing with DSI is that the actual data format doesn't depend on
-the board configuration (provided of course that enough lanes are
-available to sustain the required bandwidth). For DPI, things can be
-more difficult. In the test below, "format" refers to how data bits are
-mapped to hardware lines, similarly in concept to the media bus codes.
-
-I see three different cases at the hardware level:
-
-- Either or both the sink or the source support a single format. This
-  means that the side that supports multiple formats will always use the
-  same format. If data lines are rearranged, the format output by the
-  source may not match the format received by the sink, but the hardware
-  configuration of both the sink and the source is effectively fixed to
-  system-specific values.
-
-- Both the sink and the source support multiple formats, but only one
-  combination of formats is possible with how the data lines are routed.
-  This case is very similar to the previous one at the hardware level,
-  only one configuration is possible.
-
-- Both the sink and the source support multiple formats, and multiple
-  format combinations can lead to working configurations. This isn't an
-  uncommon case, there are DPI panels with 24 data lines that can
-  support both RGB666 and RGB888.
-
-At the software level, there are also multiple options:
-
-- Both sides could specify the device configuration in DT, using media
-  bus codes or any other set of standard or device-specific properties.
-  As this would specify a single configuration, it would map quite fine
-  to the first two hardware cases. Each driver would read its own
-  properties and configure the device accordingly. There would be no
-  need for communication between the drivers at runtime in this case.
-
-  This could also support the third hardware case, but would limit it to
-  one of the supported configurations, without allowing the other ones
-  to be selected at runtime.
-
-  This scheme is similar to data-lanes, in the sense that each side
-  reads its own hardcoded configuration from DT. It does however differ
-  in that the data format gets hardcoded as well, unlike DSI where the
-  data formats needs to be communicated at runtime between the drivers.
-  As, like DSI, it requires both sides to specify their hardware
-  configuration in DT, interoperability between sources and sinks would
-  require all DT bindings for all DPI devices to adhere to this. They
-  may not have to specify their configuration using the same set of
-  properties, but they would all need to specify it in DT. This would
-  thus, I think, lead to a dead end for the third hardware case.
-
-- The two sides could communicate at runtime to dynamically negotiate
-  their configuration. Some form of runtime configuration is required to
-  fully support the third hardware case, and it could also support the
-  other two cases.
-
-  The trouble here, beside how to express the required data in DT, is
-  how that communication would be handled. Let's consider a case where
-  data lines are "remapped":
-
-  - The display controller that has a D[23:0] output bus
-  - The panel that has a D[17:0] bus
-  - The data lines connections from the display controller to the panel
-    are D[23:18] -> D[17:12], D[15:10] -> D[11:6], D[7:2] -> D[5:0],
-    with the display controller's D[17:16], D[9:8] and D[1:0] outputs
-    unconnected
-  - The panel only supports RGB666
-  - The display controller supports both RGB888 and RGB666, and outputs
-    RGB666 as 00RRRRRR00GGGGGG00BBBBBB
-
-  This means that the only possibly configuration is the display
-  controller outputting RGB888 and the panel receiving RGB666. If we
-  expressed that as media bus codes in DT, the panel would would
-  communicate its RGB666 input format to the display controller, which
-  wouldn't know that it would have to output RGB888.
-
-  Of course, in this particular example, only one hardware configuration
-  is possible, so we could support it by specifying the media bus code
-  in both DT nodes, but that won't scale to cases where multiple
-  configurations are possible.
-
-The easy optin is to consider that most use cases are in the first two
-hardware categories, specify the media bus code in DT on both sides, and
-consider that support for the third category can be added later. I'm
-worried that we would then corner ourselves, as explained above, because
-this scheme requires all devices involved to specify their hardcoded
-configuration in DT. Will there then be a path forward that wouldn't
-break the DT ABI ? Even if there was, it would mean that all driver
-would then need to support two sets of DT properties, leading to a
-painful transition period on the driver side.
-
-> > The current proposal is already encoding the exact bit placing as
-> > described in Documentation/userspace-api/media/v4l/subdev-formats.rst [2],
-> > this enumeration can be extended to address any future needs
-> > and I would not invent a new one to define the exact same
-> > things (and using the same enum was also suggested by Rob).
-> >
-> > Marek: you told me that you had some concern about some valid use case
-> > not covered by this solution, would you mind explaining why that would
-> > not be covered with an addition on this enumeration?
-> 
-> All the MEDIA_BUS_FMT_* enums are explicitly defined with regard to
-> the colour component bit positions. Should someone be in the position
-> of needing to implement a YUV or similar DPI display, converting these
-> enums into the relevant new structure will be straightforward, so
-> backwards compatibility can be achieved easily.
-> 
-> > Any other opinion on this topic? How can we move this forward?
-> >
-> > Francesco
-> >
-> > [1] https://github.com/raspberrypi/linux/commit/8e43f1898191b43aa7ed6e6ca3a4cd28709af86d
-> > [2] https://www.kernel.org/doc/html/latest/userspace-api/media/v4l/subdev-formats.html
-
--- 
-Regards,
-
-Laurent Pinchart
+On Sat, Sep 24, 2022 at 12:24 AM Jagath Jog J <jagathjog1996@gmail.com> wrote:
+>
+> Add driver support for I2C based Maxim max31329 real time clock.
+>
+> Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
+> ---
+>  MAINTAINERS                |   7 +
+>  drivers/rtc/Kconfig        |  10 +
+>  drivers/rtc/Makefile       |   1 +
+>  drivers/rtc/rtc-max31329.c | 507 +++++++++++++++++++++++++++++++++++++
+>  4 files changed, 525 insertions(+)
+>  create mode 100644 drivers/rtc/rtc-max31329.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7032fcb0fd0f..d92ddab0958d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12478,6 +12478,13 @@ F:     include/linux/mfd/max14577*.h
+>  F:     include/linux/mfd/max77686*.h
+>  F:     include/linux/mfd/max77693*.h
+>
+> +MAXIM MAX31329 RTC DRIVER
+> +M:     Jagath Jog J <jagathjog1996@gmail.com>
+> +L:     linux-rtc@vger.kernel.org
+> +S:     Maintained
+> +F:     Documentation/devicetree/bindings/rtc/maxim,max31329.yaml
+> +F:     drivers/rtc/max31329.c
+> +
+>  MAXIRADIO FM RADIO RECEIVER DRIVER
+>  M:     Hans Verkuil <hverkuil@xs4all.nl>
+>  L:     linux-media@vger.kernel.org
+> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> index b8de25118ad0..d02cba94e121 100644
+> --- a/drivers/rtc/Kconfig
+> +++ b/drivers/rtc/Kconfig
+> @@ -393,6 +393,16 @@ config RTC_DRV_NCT3018Y
+>            This driver can also be built as a module, if so, the module will be
+>            called "rtc-nct3018y".
+>
+> +config RTC_DRV_MAX31329
+> +       tristate "Maxim MAX31329"
+> +       select REGMAP_I2C
+> +       help
+> +          If you say yes here you will get support for the
+> +          RTC of Maxim MAX31329.
+> +
+> +          This driver can also be build as a module. If so, the module
+> +          will be called rtc-max31329.
+> +
+>  config RTC_DRV_RK808
+>         tristate "Rockchip RK805/RK808/RK809/RK817/RK818 RTC"
+>         depends on MFD_RK808
+> diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
+> index aab22bc63432..741216d2f9ca 100644
+> --- a/drivers/rtc/Makefile
+> +++ b/drivers/rtc/Makefile
+> @@ -97,6 +97,7 @@ obj-$(CONFIG_RTC_DRV_MAX8907) += rtc-max8907.o
+>  obj-$(CONFIG_RTC_DRV_MAX8925)  += rtc-max8925.o
+>  obj-$(CONFIG_RTC_DRV_MAX8997)  += rtc-max8997.o
+>  obj-$(CONFIG_RTC_DRV_MAX8998)  += rtc-max8998.o
+> +obj-$(CONFIG_RTC_DRV_MAX31329)  += rtc-max31329.o
+>  obj-$(CONFIG_RTC_DRV_MESON_VRTC)+= rtc-meson-vrtc.o
+>  obj-$(CONFIG_RTC_DRV_MC13XXX)  += rtc-mc13xxx.o
+>  obj-$(CONFIG_RTC_DRV_MCP795)   += rtc-mcp795.o
+> diff --git a/drivers/rtc/rtc-max31329.c b/drivers/rtc/rtc-max31329.c
+> new file mode 100644
+> index 000000000000..fbbe439a9a3b
+> --- /dev/null
+> +++ b/drivers/rtc/rtc-max31329.c
+> @@ -0,0 +1,507 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * RTC driver for the Maxim MAX31329 Real-Time Clock
+> + * Copyright (c) 2022 Jagath Jog J
+> + *
+> + * Datasheet: https://datasheets.maximintegrated.com/en/ds/MAX31329.pdf
+> + *
+> + */
+> +
+> +#include <linux/bcd.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/rtc.h>
+> +
+> +/* Register map */
+> +/* Config registers */
+> +#define MAX31329_STATUS_REG             0x00
+> +#define MAX31329_STATUS_A1F             BIT(0)
+> +#define MAX31329_STATUS_OSF             BIT(6)
+> +#define MAX31329_INT_EN_REG             0x01
+> +#define MAX31329_INT_EN_A1IE            BIT(0)
+> +#define MAX31329_RTC_RESET_REG          0x02
+> +#define MAX31329_RTC_CONFIG1_REG        0x03
+> +#define MAX31329_RTC_CONFIG2_REG        0x04
+> +#define MAX31329_RTC_CONFIG2_ENCLKIN    BIT(2)
+> +#define MAX31329_RTC_CONFIG2_ENCLKO     BIT(7)
+> +#define MAX31329_RTC_CFG2_CLKOHZ_MSK    GENMASK(6, 5)
+> +#define MAX31329_TIMER_CONFIG_REG       0x05
+> +
+> +/* Watch registers */
+> +#define MAX31329_SECONDS_REG            0x06
+> +#define MAX31329_MINUTES_REG            0x07
+> +#define MAX31329_HOURS_REG              0x08
+> +#define MAX31329_HOURS_F24_12           BIT(6)
+> +#define MAX31329_HOURS_AM_PM            BIT(5)
+> +#define MAX31329_DAY_REG                0x09
+> +#define MAX31329_DATE_REG               0x0A
+> +#define MAX31329_MONTH_REG              0x0B
+> +#define MAX31329_MONTH_CENTURY          BIT(7)
+> +#define MAX31329_YEAR_REG               0x0C
+> +#define MAX31329_WATCH_SEC_LEN          0x07
+> +#define REG_TO_OFFSET(_REG)             ((_REG) - MAX31329_SECONDS_REG)
+> +
+> +/* Alarm registers */
+> +#define MAX31329_ALM1_SEC_REG           0x0D
+> +#define MAX31329_ALM1_MIN_REG           0x0E
+> +#define MAX31329_ALM1_HRS_REG           0x0F
+> +#define MAX31329_ALM1_DAY_DATE_REG      0x10
+> +#define MAX31329_ALM1_MON_REG           0x11
+> +#define MAX31329_ALM1_YEAR_REG          0x12
+> +#define MAX31329_ALM1_SEC_LEN           0x06
+> +
+> +#define MAX31329_PWR_MGMT_REG           0x18
+> +#define MAX31329_TRICKLE_REG            0x19
+> +#define MAX31329_TRICKLE_EN             BIT(7)
+> +#define MAX31329_TRICKLE_DIODE_EN       BIT(2)
+> +#define MAX31329_D_TRICKLE_OHMS         GENMASK(3, 0)
+> +
+> +/* Ram registers */
+> +#define MAX31329_RAM0_START_REG         0x22
+> +#define MAX31329_RAM0_END_REG           0x61
+> +
+> +struct max31329_data {
+> +       struct regmap *regmap;
+> +       struct rtc_device *rtc;
+> +       int irq;
+> +#ifdef CONFIG_COMMON_CLK
+> +       struct clk_hw clkout_hw;
+> +#endif
+> +};
+> +
+> +/* resistance in kohms */
+> +static u32 max31329_trickle_ohms[] = {
+> +       3000,
+> +       6000,
+> +       11000
+> +};
+> +
+> +static const struct regmap_config config = {
+> +       .reg_bits = 8,
+> +       .val_bits = 8,
+> +       .max_register = MAX31329_RAM0_END_REG,
+> +};
+> +
+> +static int max31329_get_osc_status(struct device *dev)
+> +{
+> +       struct max31329_data *max31329 = dev_get_drvdata(dev);
+> +       unsigned int status;
+> +       int ret;
+> +
+> +       ret = regmap_read(max31329->regmap, MAX31329_STATUS_REG, &status);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (status & MAX31329_STATUS_OSF)
+> +               return -EINVAL;
+> +
+> +       return 0;
+> +}
+> +
+> +static int max31329_alarm_irq_enable(struct device *dev, unsigned int enable)
+> +{
+> +       struct max31329_data *max31329 = dev_get_drvdata(dev);
+> +
+> +       return regmap_update_bits(max31329->regmap, MAX31329_INT_EN_REG,
+> +                                 MAX31329_INT_EN_A1IE,
+> +                                 enable ? MAX31329_INT_EN_A1IE : 0);
+> +}
+> +
+> +static int max31329_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
+> +{
+> +       struct max31329_data *max31329 = dev_get_drvdata(dev);
+> +       struct rtc_time *const tm = &alarm->time;
+> +       unsigned int aie_en, aie_flag;
+> +       int ret;
+> +       u8 regs[6];
+> +
+> +       ret = regmap_bulk_read(max31329->regmap, MAX31329_ALM1_SEC_REG, regs,
+> +                              MAX31329_ALM1_SEC_LEN);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = regmap_read(max31329->regmap, MAX31329_INT_EN_REG, &aie_en);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = regmap_read(max31329->regmap, MAX31329_STATUS_REG, &aie_flag);
+> +       if (ret)
+> +               return ret;
+> +
+> +       tm->tm_sec = bcd2bin(regs[REG_TO_OFFSET(MAX31329_SECONDS_REG)] & 0x7f);
+> +       tm->tm_min = bcd2bin(regs[REG_TO_OFFSET(MAX31329_MINUTES_REG)] & 0x7f);
+> +       tm->tm_hour = bcd2bin(regs[REG_TO_OFFSET(MAX31329_HOURS_REG)] & 0x3f);
+> +       tm->tm_mday = bcd2bin(regs[REG_TO_OFFSET(MAX31329_DATE_REG) - 1] & 0x3f);
+> +       tm->tm_mon = bcd2bin(regs[REG_TO_OFFSET(MAX31329_MONTH_REG) - 1] &
+> +                            0x1f) - 1;
+> +       tm->tm_year = bcd2bin(regs[REG_TO_OFFSET(MAX31329_YEAR_REG) - 1]) + 200;
+> +
+> +       alarm->enabled = FIELD_GET(MAX31329_INT_EN_A1IE, aie_en);
+> +       alarm->pending = FIELD_GET(MAX31329_STATUS_A1F, aie_flag) &&
+> +                                  alarm->enabled;
+> +
+> +       return 0;
+> +}
+> +
+> +static int max31329_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
+> +{
+> +       struct max31329_data *max31329 = dev_get_drvdata(dev);
+> +       const struct rtc_time *tm = &alrm->time;
+> +       u8 regs[6], year;
+> +       int ret;
+> +
+> +       regs[REG_TO_OFFSET(MAX31329_SECONDS_REG)] = bin2bcd(tm->tm_sec) & 0x7F;
+> +       regs[REG_TO_OFFSET(MAX31329_MINUTES_REG)] = bin2bcd(tm->tm_min) & 0x7f;
+> +       regs[REG_TO_OFFSET(MAX31329_HOURS_REG)] = bin2bcd(tm->tm_hour) & 0x3f;
+> +       regs[REG_TO_OFFSET(MAX31329_DATE_REG) - 1] = bin2bcd(tm->tm_mday) & 0x3f;
+> +       regs[REG_TO_OFFSET(MAX31329_MONTH_REG) - 1] = bin2bcd(tm->tm_mon + 1) & 0x1f;
+> +
+> +       if (tm->tm_year >= 200)
+> +               return -EINVAL;
+> +
+> +       year = bin2bcd(tm->tm_year - 100);
+> +       regs[REG_TO_OFFSET(MAX31329_YEAR_REG) - 1] = year;
+> +
+> +       ret = regmap_bulk_write(max31329->regmap, MAX31329_ALM1_SEC_REG, regs,
+> +                               MAX31329_ALM1_SEC_LEN);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return max31329_alarm_irq_enable(dev, alrm->enabled);
+> +}
+> +
+> +static int max31329_read_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +       struct max31329_data *max31329 = dev_get_drvdata(dev);
+> +       u8 data[7], century = 0;
+> +       int ret;
+> +
+> +       ret = max31329_get_osc_status(dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = regmap_bulk_read(max31329->regmap, MAX31329_SECONDS_REG, data,
+> +                              sizeof(data));
+> +       if (ret)
+> +               return ret;
+> +
+> +       tm->tm_sec = bcd2bin(data[REG_TO_OFFSET(MAX31329_SECONDS_REG)] & 0x7f);
+> +       tm->tm_min = bcd2bin(data[REG_TO_OFFSET(MAX31329_MINUTES_REG)] & 0x7f);
+> +       tm->tm_hour = bcd2bin(data[REG_TO_OFFSET(MAX31329_HOURS_REG)] & 0x3f);
+> +       /* Day of the week in linux range is 0~6 while 1~7 in RTC chip */
+> +       tm->tm_wday = bcd2bin(data[REG_TO_OFFSET(MAX31329_DAY_REG)] & 0x07) - 1;
+> +       tm->tm_mday = bcd2bin(data[REG_TO_OFFSET(MAX31329_DATE_REG)] & 0x3f);
+> +       /* linux tm_mon range:0~11, while month range is 1~12 in RTC chip */
+> +       tm->tm_mon = bcd2bin(data[REG_TO_OFFSET(MAX31329_MONTH_REG)] & 0x1f) - 1;
+> +
+> +       century = data[REG_TO_OFFSET(MAX31329_MONTH_REG)] & MAX31329_MONTH_CENTURY;
+> +       tm->tm_year = bcd2bin(data[REG_TO_OFFSET(MAX31329_YEAR_REG)]) +
+> +                            (century ? 200 : 100);
+> +
+> +       return 0;
+> +}
+> +
+> +static int max31329_set_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +       struct max31329_data *max31329 = dev_get_drvdata(dev);
+> +       u8 regs[7];
+> +
+> +       regs[REG_TO_OFFSET(MAX31329_SECONDS_REG)] = bin2bcd(tm->tm_sec);
+> +       regs[REG_TO_OFFSET(MAX31329_MINUTES_REG)] = bin2bcd(tm->tm_min);
+> +       regs[REG_TO_OFFSET(MAX31329_HOURS_REG)] = bin2bcd(tm->tm_hour);
+> +       regs[REG_TO_OFFSET(MAX31329_DAY_REG)] = bin2bcd(tm->tm_wday + 1);
+> +       regs[REG_TO_OFFSET(MAX31329_DATE_REG)] = bin2bcd(tm->tm_mday);
+> +       regs[REG_TO_OFFSET(MAX31329_MONTH_REG)] = bin2bcd(tm->tm_mon + 1);
+> +
+> +       if (tm->tm_year >= 200)
+> +               regs[REG_TO_OFFSET(MAX31329_MONTH_REG)] |= MAX31329_MONTH_CENTURY;
+> +       regs[REG_TO_OFFSET(MAX31329_YEAR_REG)] = bin2bcd(tm->tm_year % 100);
+> +
+> +       return regmap_bulk_write(max31329->regmap, MAX31329_SECONDS_REG, regs,
+> +                                MAX31329_WATCH_SEC_LEN);
+> +}
+> +
+> +static const struct rtc_class_ops max31329_rtc_ops = {
+> +       .read_time = max31329_read_time,
+> +       .set_time = max31329_set_time,
+> +       .read_alarm = max31329_read_alarm,
+> +       .set_alarm = max31329_set_alarm,
+> +       .alarm_irq_enable = max31329_alarm_irq_enable,
+> +};
+> +
+> +static irqreturn_t max31329_irq_handler(int irq, void *dev_id)
+> +{
+> +       struct device *dev = dev_id;
+> +       struct max31329_data *max31329 = dev_get_drvdata(dev);
+> +       unsigned int flags, controls;
+> +       unsigned long events = 0;
+> +       int ret;
+> +
+> +       ret = regmap_read(max31329->regmap, MAX31329_INT_EN_REG, &controls);
+> +       if (ret)
+> +               return IRQ_NONE;
+> +
+> +       ret = regmap_read(max31329->regmap, MAX31329_STATUS_REG, &flags);
+> +       if (ret)
+> +               return IRQ_NONE;
+> +
+> +       if (flags & MAX31329_STATUS_A1F) {
+> +               flags &= ~MAX31329_STATUS_A1F;
+> +               controls &= ~MAX31329_INT_EN_A1IE;
+> +               events = RTC_AF | RTC_IRQF;
+> +       }
+> +
+> +       if (events) {
+> +               rtc_update_irq(max31329->rtc, 1, events);
+> +               regmap_write(max31329->regmap, MAX31329_STATUS_REG, flags);
+> +               regmap_write(max31329->regmap, MAX31329_INT_EN_REG, controls);
+> +               return IRQ_HANDLED;
+> +       }
+> +
+> +       return IRQ_NONE;
+> +}
+> +
+> +static void max31329_trickle_config(struct device *dev)
+> +{
+> +       struct max31329_data *max31329 = dev_get_drvdata(dev);
+> +       u8 trickle_reg;
+> +       int ret, i;
+> +       u32 ohms;
+> +
+> +       /* Configure the trickle charger. */
+> +       ret = device_property_read_u32(dev, "trickle-resistor-ohms", &ohms);
+> +       if (ret)
+> +               return;
+> +
+> +       trickle_reg = MAX31329_TRICKLE_EN;
+> +       for (i = 1; i <= ARRAY_SIZE(max31329_trickle_ohms); i++) {
+> +               if (max31329_trickle_ohms[i - 1] == ohms) {
+> +                       trickle_reg |= i;
+> +                       regmap_write(max31329->regmap, MAX31329_TRICKLE_REG,
+> +                                    trickle_reg);
+> +               }
+> +       }
+> +}
+> +
+> +static int max31329_nvram_write(void *priv, unsigned int offset, void *val,
+> +                               size_t bytes)
+> +{
+> +       struct regmap *max31329_regmap = (struct regmap *)priv;
+> +
+> +       return regmap_bulk_write(max31329_regmap,
+> +                                MAX31329_RAM0_START_REG + offset,
+> +                                val, bytes);
+> +}
+> +
+> +static int max31329_nvram_read(void *priv, unsigned int offset, void *val,
+> +                              size_t bytes)
+> +{
+> +       struct regmap *max31329_regmap = (struct regmap *)priv;
+> +
+> +       return regmap_bulk_read(max31329_regmap,
+> +                               MAX31329_RAM0_START_REG + offset,
+> +                               val, bytes);
+> +}
+> +
+> +#ifdef CONFIG_COMMON_CLK
+> +#define clkout_hw_to_max31329(hw) container_of(hw, struct max31329_data, clkout_hw)
+> +
+> +static int clkout_rates[] = {
+> +       1,
+> +       4096,
+> +       8192,
+> +       32768
+> +};
+> +
+> +static unsigned long max31329_clkout_recalc_rate(struct clk_hw *hw,
+> +                                                unsigned long parent_rate)
+> +{
+> +       struct max31329_data *max31329 = clkout_hw_to_max31329(hw);
+> +       int clkout, ret;
+> +
+> +       ret = regmap_read(max31329->regmap, MAX31329_RTC_CONFIG2_REG, &clkout);
+> +       if (ret)
+> +               return 0;
+> +
+> +       return clkout_rates[FIELD_GET(MAX31329_RTC_CFG2_CLKOHZ_MSK, clkout)];
+> +}
+> +
+> +static long max31329_clkout_round_rate(struct clk_hw *hw, unsigned long rate,
+> +                                      unsigned long *prate)
+> +{
+> +       int i;
+> +
+> +       for (i = 0; i < ARRAY_SIZE(clkout_rates); i++)
+> +               if (clkout_rates[i] >= rate)
+> +                       return clkout_rates[i];
+> +
+> +       return 0;
+> +}
+> +
+> +static int max31329_clkout_set_rate(struct clk_hw *hw, unsigned long rate,
+> +                                   unsigned long parent_rate)
+> +{
+> +       struct max31329_data *max31329 = clkout_hw_to_max31329(hw);
+> +       int i;
+> +
+> +       for (i = 0; i < ARRAY_SIZE(clkout_rates); i++)
+> +               if (rate == clkout_rates[i])
+> +                       return regmap_update_bits(max31329->regmap,
+> +                                                 MAX31329_RTC_CONFIG2_REG,
+> +                                                 MAX31329_RTC_CFG2_CLKOHZ_MSK,
+> +                                                 FIELD_PREP(MAX31329_RTC_CFG2_CLKOHZ_MSK,
+> +                                                            i));
+> +       return -EINVAL;
+> +}
+> +
+> +static int max31329_clkout_prepare(struct clk_hw *hw)
+> +{
+> +       struct max31329_data *max31329 = clkout_hw_to_max31329(hw);
+> +
+> +       return regmap_update_bits(max31329->regmap, MAX31329_RTC_CONFIG2_REG,
+> +                                 MAX31329_RTC_CONFIG2_ENCLKO,
+> +                                 MAX31329_RTC_CONFIG2_ENCLKO);
+> +}
+> +
+> +static void max31329_clkout_unprepare(struct clk_hw *hw)
+> +{
+> +       struct max31329_data *max31329 = clkout_hw_to_max31329(hw);
+> +
+> +       regmap_update_bits(max31329->regmap, MAX31329_RTC_CONFIG2_REG,
+> +                          MAX31329_RTC_CONFIG2_ENCLKO,
+> +                          FIELD_PREP(MAX31329_RTC_CONFIG2_ENCLKO, 0));
+> +}
+> +
+> +static int max31329_clkout_is_prepared(struct clk_hw *hw)
+> +{
+> +       struct max31329_data *max31329 = clkout_hw_to_max31329(hw);
+> +       int clkout, ret;
+> +
+> +       ret = regmap_read(max31329->regmap, MAX31329_RTC_CONFIG2_REG, &clkout);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return !!(clkout & MAX31329_RTC_CONFIG2_ENCLKO);
+> +}
+> +
+> +static const struct clk_ops max31329_clkout_ops = {
+> +       .prepare = max31329_clkout_prepare,
+> +       .unprepare = max31329_clkout_unprepare,
+> +       .is_prepared = max31329_clkout_is_prepared,
+> +       .recalc_rate = max31329_clkout_recalc_rate,
+> +       .round_rate = max31329_clkout_round_rate,
+> +       .set_rate = max31329_clkout_set_rate,
+> +};
+> +
+> +static struct clk *max31329_clkout_register_clk(struct max31329_data *max31329,
+> +                                               struct i2c_client *client)
+> +{
+> +       struct device_node *node = client->dev.of_node;
+> +       struct clk_init_data init;
+> +       struct clk *clk;
+> +
+> +       init.name = "max31329-clkout";
+> +       init.ops = &max31329_clkout_ops;
+> +       init.flags = 0;
+> +       init.parent_names = NULL;
+> +       init.num_parents = 0;
+> +       max31329->clkout_hw.init = &init;
+> +
+> +       /* optional override of the clockname */
+> +       of_property_read_string(node, "clock-output-names", &init.name);
+> +
+> +       clk = devm_clk_register(&client->dev, &max31329->clkout_hw);
+> +       if (!IS_ERR(clk))
+> +               of_clk_add_provider(node, of_clk_src_simple_get, clk);
+> +
+> +       return clk;
+> +}
+> +#endif
+> +
+> +static int max31329_probe(struct i2c_client *client,
+> +                         const struct i2c_device_id *id)
+> +{
+> +       struct max31329_data *max31329;
+> +       int ret;
+> +       struct nvmem_config nvmem_cfg = {
+> +               .name = "max31329_nvram",
+> +               .word_size = 1,
+> +               .stride = 1,
+> +               .size = 64,
+> +               .type = NVMEM_TYPE_BATTERY_BACKED,
+> +               .reg_read = max31329_nvram_read,
+> +               .reg_write = max31329_nvram_write,
+> +       };
+> +
+> +       max31329 = devm_kzalloc(&client->dev, sizeof(*max31329), GFP_KERNEL);
+> +       if (!max31329)
+> +               return -ENOMEM;
+> +
+> +       max31329->regmap = devm_regmap_init_i2c(client, &config);
+> +       if (IS_ERR(max31329->regmap))
+> +               return PTR_ERR(max31329->regmap);
+> +
+> +       dev_set_drvdata(&client->dev, max31329);
+> +
+> +       max31329->rtc = devm_rtc_allocate_device(&client->dev);
+> +       if (IS_ERR(max31329->rtc))
+> +               return PTR_ERR(max31329->rtc);
+> +
+> +       max31329->rtc->ops = &max31329_rtc_ops;
+> +       max31329->irq = client->irq;
+> +       max31329->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
+> +       max31329->rtc->range_max = RTC_TIMESTAMP_END_2199;
+> +
+> +       if (max31329->irq) {
+> +               ret = devm_request_threaded_irq(&client->dev, max31329->irq,
+> +                                               NULL, max31329_irq_handler,
+> +                                               IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+> +                                               "max31329", &client->dev);
+> +               if (ret)
+> +                       return ret;
+> +       } else {
+> +               clear_bit(RTC_FEATURE_ALARM, max31329->rtc->features);
+> +               clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, max31329->rtc->features);
+> +       }
+> +
+> +       if (max31329->irq || device_property_read_bool(&client->dev,
+> +                                                      "wakeup-source"))
+> +               device_init_wakeup(&client->dev, true);
+> +
+> +       ret = devm_rtc_register_device(max31329->rtc);
+> +       if (ret)
+> +               return ret;
+> +
+> +       max31329_trickle_config(&client->dev);
+> +
+> +       nvmem_cfg.priv = max31329->regmap;
+> +       devm_rtc_nvmem_register(max31329->rtc, &nvmem_cfg);
+> +
+> +#ifdef CONFIG_COMMON_CLK
+> +       max31329_clkout_register_clk(max31329, client);
+> +#endif
+> +
+> +       return 0;
+> +}
+> +
+> +static const __maybe_unused struct of_device_id max31329_of_match[] = {
+> +       { .compatible = "maxim,max31329", },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, max31329_of_match);
+> +
+> +static struct i2c_driver max31329_driver = {
+> +       .driver = {
+> +               .name = "rtc-max31329",
+> +               .of_match_table = of_match_ptr(max31329_of_match),
+> +       },
+> +       .probe = max31329_probe,
+> +};
+> +module_i2c_driver(max31329_driver);
+> +
+> +MODULE_AUTHOR("Jagath Jog J <jagathjog1996@gmail.com>");
+> +MODULE_DESCRIPTION("Maxim MAX31329 RTC driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.17.1
+>
