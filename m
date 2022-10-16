@@ -2,105 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9AC56002A5
-	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 20:04:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A78BC6002D5
+	for <lists+devicetree@lfdr.de>; Sun, 16 Oct 2022 20:21:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbiJPSEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 14:04:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42264 "EHLO
+        id S229726AbiJPSVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 14:21:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbiJPSEQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 14:04:16 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80CAE31F80
-        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 11:04:15 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id j7so15160340wrr.3
-        for <devicetree@vger.kernel.org>; Sun, 16 Oct 2022 11:04:15 -0700 (PDT)
+        with ESMTP id S229673AbiJPSVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 14:21:31 -0400
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85E5118392;
+        Sun, 16 Oct 2022 11:21:30 -0700 (PDT)
+Received: by mail-io1-xd31.google.com with SMTP id h203so7577066iof.1;
+        Sun, 16 Oct 2022 11:21:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Fe/M3BtJEx5biARpyDFVvoQN+eQ6J3tXBkH3EpL46Fs=;
-        b=OWmXAT1iBdOq1G4kh+sUNBucMG35LEcXWnksatc5WMZAvIQUsJc2BXmBxahy+D9f2o
-         0oGMRFWKUjN1nhO+BIuCz7+F9XQM3AbFnxI9caj3RSNUeR4rMwXhw330PFGPPKLQYBfV
-         Fofimy2BjmcOurmnm/+zx6l6QmMqIaTuobOGP5xI0IS7e4LNP5m4oi+CS+0XxeqpbCTb
-         XiAxe7etrC/M4ncyGMgfITHhR0d6+o2rtRDuuBd0OhiVTXXGVOUgpPxZ1w0paaiDE1D6
-         H1DmSaE8RdKXyFG30v6X5aTqxRqFPINm8IHGGQg9dBwA/9+VqNP9qqjtAHKzvkYe1aPr
-         LzGg==
+        bh=hNtSAftWKRCBzivZiSHl1o3Clg9CAG5ufkQWS1xM5dk=;
+        b=qr0E08OvIG/JOQcJDRt4eYasa75SB8F2qfi6jpcqCTRVXWxD2WYpeP2srg5xT0hmjr
+         qNKRP9Elbb1imaPiFVyk5R7l7Pp9MYJPXEKGtgwWMhd/GU5sfd9f0wVs3ArU5rtPca1X
+         t77icbnKIa0jy0WAnYh2uvXmTkX9CbHbOfmxrVXNAreAZiOmAN7HTkjs7oLcDPtHjUJE
+         QlMAAYrHfO7Y+zUseBlbmck2jQ1cbjXk/xgtAQJ/5xmZcS6E8jivyhZzixBRFKBb9x5P
+         A9LTDgGX2GzgIumCShiUgkHqazhvr0hjbq0yowb4NVj606yriuBjthJFafjPUeAJ58Lr
+         GxMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Fe/M3BtJEx5biARpyDFVvoQN+eQ6J3tXBkH3EpL46Fs=;
-        b=DtcVjlJPEqSH4eYHb/b8abcwu+qcIOYiXv3X14L3NaPJmEfwq6LOjtE6UocGmowr5n
-         hauZ4C5kUZhpgsG/qjk/mmSDHvZdtTUsADNFY2V8UtdhFi+NGC5+QDuwO62881nlH2Sg
-         rQ7kaQ5+cF7TcWz8ljbXq9vCrTGzS2ZMCTXXZjhy+siBreNW3bULlpM4+jByleer+5CT
-         mchF5HbdbhZ8I+hKcku4nwegDJfxsn4x5kl/INrfK8AXMp3zUxpJa0zYrlSs1vuoy3/L
-         Z/zI0PvB4r7Ep1cnh85WBuSLZhdqNbsxtDosB4J1BDVGEUlsfpqwSIOuAj+wqaPJ5mcR
-         Fo/Q==
-X-Gm-Message-State: ACrzQf0lZvRoNGDI+hMj8rerdRLYRyzxK0JxBX2CXxEiJOhVVT2lZyhl
-        6zwSPjNY57kvyyqJ2kwjrUvxPA==
-X-Google-Smtp-Source: AMsMyM7D2VyZf6FGxMkmjwXFUNqzT06DWpUbiiwUB6FTiShabEHWfkRENPFVN7pb2IlJG7gyyV/VMA==
-X-Received: by 2002:a05:6000:1e17:b0:22e:618f:b9d8 with SMTP id bj23-20020a0560001e1700b0022e618fb9d8mr4071288wrb.280.1665943455076;
-        Sun, 16 Oct 2022 11:04:15 -0700 (PDT)
-Received: from localhost.localdomain (cpc76482-cwma10-2-0-cust629.7-3.cable.virginm.net. [86.14.22.118])
-        by smtp.gmail.com with ESMTPSA id k5-20020a5d6d45000000b0022e57e66824sm7844181wri.99.2022.10.16.11.04.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Oct 2022 11:04:14 -0700 (PDT)
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-To:     caleb.connolly@linaro.org
-Cc:     Luca Weiss <luca@z3ntu.xyz>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH 5/5] arm64: dts: qcom: msm8998-oneplus-common: enable RRADC
-Date:   Sun, 16 Oct 2022 19:03:29 +0100
-Message-Id: <20221016180330.1912214-6-caleb.connolly@linaro.org>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221016180330.1912214-1-caleb.connolly@linaro.org>
-References: <20221016180330.1912214-1-caleb.connolly@linaro.org>
+        bh=hNtSAftWKRCBzivZiSHl1o3Clg9CAG5ufkQWS1xM5dk=;
+        b=JNyzZkbYzMTSkLs/RN516c7Bq9/wI8jqFKxhcgabAAt4POMt9ok/+zk1bW0OipTKQY
+         fsMkQl8dF4zj7MEDVHWYjPKtOD0w+mwJIOPyaQbTxJyqPodv0V7oAC0bEEG5NBCsh9eZ
+         EXuy80X3xPlRg06mPiDkuSiOqktmVBBS1Q/db+OQXoREhKcOqqQJ0wjO6oo4+GBX3sIV
+         5dndfv06mdX3DnmMY3OGEEm6deolQLEjbH1L0GrbAb6GTsFyG3Q8/SE6sbVm46M+Ji5T
+         8CDpNzbv+9wxnlHU+BM9e/jvZoc6cHXIKX7LS72IsrKCQrzxZ7KJ9yS72iwnrIUqy/k6
+         aiqw==
+X-Gm-Message-State: ACrzQf1I1cxIQoyCjCw/8BvnbNj5PTxWCp2SDpnVmMf28z1dm9O77Np/
+        t+I5g0L6B8o4G2aYiCcBpQP2B4CQ8pdtUzFp1Zak92kExMeUag==
+X-Google-Smtp-Source: AMsMyM6YIAti+v0ycr+3MN2bvHwrODOtkVqs4HLOZAmOnKV1+BI1nRMrvsqDj4+GM/mWhShmxsd3rDqSUX6G5qzqagQ=
+X-Received: by 2002:a6b:6716:0:b0:6bc:113c:22a2 with SMTP id
+ b22-20020a6b6716000000b006bc113c22a2mr3001409ioc.12.1665944489899; Sun, 16
+ Oct 2022 11:21:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221016150110.3020451-1-lis8215@gmail.com> <20221016150110.3020451-4-lis8215@gmail.com>
+ <c2accc8b-f4eb-47ca-333f-eeb98da6a363@linaro.org>
+In-Reply-To: <c2accc8b-f4eb-47ca-333f-eeb98da6a363@linaro.org>
+From:   Siarhei Volkau <lis8215@gmail.com>
+Date:   Sun, 16 Oct 2022 21:21:18 +0300
+Message-ID: <CAKNVLfZ8qi4MS6ineF4M5xnSmHW+=P5mdgifmr74g4kOSK2wGA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: clock: Add Ingenic JZ4755 CGU header
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jami Kettunen <jami.kettunen@somainline.org>
+=D0=B2=D1=81, 16 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 18:32, Krzysztof K=
+ozlowski
+<krzysztof.kozlowski@linaro.org>:
 
-Enable the Round Robin ADC for the OnePlus 5/5T.
+> Why did you choose 2.0+?
 
-Signed-off-by: Jami Kettunen <jami.kettunen@somainline.org>
----
- arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+It's the first time that I need to choose a license, so it's a bit
+confusing what
+side effects they have, especially in that particular case.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi
-index 62bda23791bb..5650bf5e604e 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi
-@@ -279,6 +279,10 @@ vol_keys_default: vol-keys-state {
- 	};
- };
- 
-+&pmi8998_rradc {
-+	status = "okay";
-+};
-+
- &qusb2phy {
- 	status = "okay";
- 
--- 
-2.38.0
+What do you recommend?
 
+BR,
+Siarhei
