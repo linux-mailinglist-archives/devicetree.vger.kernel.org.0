@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 462B5600C4C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 12:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 257D6600C50
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 12:23:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbiJQKXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 06:23:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42022 "EHLO
+        id S230118AbiJQKXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 06:23:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230047AbiJQKXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 06:23:17 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987855FDE3
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 03:23:14 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id bp11so17722584wrb.9
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 03:23:14 -0700 (PDT)
+        with ESMTP id S229896AbiJQKXT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 06:23:19 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AEA65FDEA
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 03:23:15 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id r13so17711769wrj.11
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 03:23:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DpV/qCEWf/oxdA4ww51qfQjnCUWo3HbkpcM9BvV5fno=;
-        b=os1RfSXZtHCkU6GI6uXXkcEXJfLtaPZhkfLfPfmPyIMNVxXNjQy5ta95vojoukfmsC
-         G7KsJEO7XAv1guEoNs582HHYPf5Axn2VB/Nj1ktY5ocPtwwDs35xQfvPw6WoV2Jx1KgC
-         /BKr1Q322PFVBS8X0NgOW3ck8bPt6L5GGiBhpoI2hAIt3vW1g93q+RB3J10ZvK0vALLE
-         cDri5ua3+X1UaRh+Bwvuy/wMRnsfUU9UJAiy9ZUb25ATHLH1aqyYFXv3RFep96rbq6nt
-         TLg9v6E5D00RsriKmySXPT/sR7KWEke9DDTpcBoE59b0eEq8ZRUfQEGsYhD/SX3PgURU
-         Bo/w==
+        bh=T4vnnNnC74AadFGPIaQilMOOArwGooyURI20oo6pvdI=;
+        b=E7UkAb984yGO2S+TPiMJI8VNnm2hyTRukt0iCsSbfG4/frAjKuMNKkaTWVYhqG22Eo
+         pYd6DhLCyEVYISG8IRmNxxaOk0Zc7Fxdus5A4DZ1UuDas40yDtOLQ9wsTVGgn/BW4bIT
+         aPUQuU6sO8iw1POLSvGTFPe4/8ETooxDRhhBnT4qxK03duAsazPQT5pTKkUcx4EyLdkR
+         3oY1B8OHUEIBiBYFgcxcAXAg4GvtQhN9htlrFDR9lSTYw/1qdexnMrCnAxqIRTpeM0mm
+         LIh8sGTt8HUxDJnNWkO6u0GDIWTjNu148ul5nKLuKk/1jMhHKJZZlajwD1rbZ8h2NaFf
+         mzrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DpV/qCEWf/oxdA4ww51qfQjnCUWo3HbkpcM9BvV5fno=;
-        b=7FhEzkK9PvKVR2+OYoB6t5/4Ll9Bkmd06nr5WB60RIncnPfg/2h5+0Ns98uNOTKsBN
-         1KC0IK73oolC8rIbUchieozjVslmJe/85avDUft93Vidg13OQQmJmuLPE2hcybgzeQA5
-         3B7aY4aDSgWJ8bOiqe0YZlIIwxJpfXQgI4KO52z0X1ShAQDrYmL99+d+KBfrvAs30dNj
-         05MI93OR+ROWAMrDJc/zuQF+ZYJVZPjqDrALTNVN0Xl87f71fvCBsU7FvI+PYDzurAKu
-         1ZbhypmUINL8nMAWHR2c4+F7fUm8XRvLzVcOMYJTmhAqu/ZnLBxX0R0tQZJ6kC4ZO5oN
-         WwdQ==
-X-Gm-Message-State: ACrzQf3mK0s6xGw9yALEPAxPNtXi1aYdoodaPrhSCUwjy5er7zD9AD+9
-        cA4TYPL029zW5uzeSZ0E1Lfxcg==
-X-Google-Smtp-Source: AMsMyM6b39tiyV1LOE66pb8hnBuR0GHG0bwPbwGUkCiaGC+vdy4rgkQZqGJMiEQF479pvYc1CmgSxw==
-X-Received: by 2002:a5d:584a:0:b0:231:636c:de28 with SMTP id i10-20020a5d584a000000b00231636cde28mr5875835wrf.175.1666002193007;
+        bh=T4vnnNnC74AadFGPIaQilMOOArwGooyURI20oo6pvdI=;
+        b=YTDOBjXHhQ6haIGpjXBVaUFF9sJrMTa9fl7SDFQV85/HxduURX38sOG1NmN46MjpXf
+         5Wwe8uRqwjZzAE+umRY5HgpDzoDt+yDfXjea8QumwRbSUPUCBJJvTA55I9pgiIsau7FJ
+         JPfy0+nJFR7npe6q2fuEtAehA+4fEEsEVx5luMYeD8Jn8UZ6g9BH0QSiVsBVYnQSXZEb
+         QdT67I16oUwnyv/T4ZkUarIYElla+bR6m+x6ULFtnhfjKd9KPaDtZTDRWRkMq+JTuE/P
+         A9BXu8ZBlzRXxJTgnChXMhDNMj6WDc8otAXB2FowRGC05U6YSA3oH45aR4kyQbE8FxUx
+         DlZQ==
+X-Gm-Message-State: ACrzQf2D/mxpwkME9Gs7kARHAbWacO+EfufqxZQftUT4XLH8973MWK9f
+        luTyenaJ6os8gyNXkCHtjdjTOQ==
+X-Google-Smtp-Source: AMsMyM6HU5BuPA3M/bfb/GFmfDnbrmPt9e6BVpjgCq6VWHhs5X5IEOx2PBHwIP5KLLaFMco4dcVrhA==
+X-Received: by 2002:a05:6000:1d82:b0:22c:ae77:c8dc with SMTP id bk2-20020a0560001d8200b0022cae77c8dcmr6046310wrb.413.1666002193889;
         Mon, 17 Oct 2022 03:23:13 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id t9-20020a05600c198900b003b4fe03c881sm15590707wmq.48.2022.10.17.03.23.12
+        by smtp.gmail.com with ESMTPSA id t9-20020a05600c198900b003b4fe03c881sm15590707wmq.48.2022.10.17.03.23.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Oct 2022 03:23:12 -0700 (PDT)
+        Mon, 17 Oct 2022 03:23:13 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Mon, 17 Oct 2022 12:23:07 +0200
-Subject: [PATCH v2 3/5] arm: dts: qcom: mdm9615: wp8548-mangoh-green: fix sx150xq
- node names and probe-reset property
+Date:   Mon, 17 Oct 2022 12:23:08 +0200
+Subject: [PATCH v2 4/5] dt-bindings: regulators: convert non-smd RPM Regulators
+ bindings to dt-schema
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20221005-mdm9615-pinctrl-yaml-v2-3-639fe67a04be@linaro.org>
+Message-Id: <20221005-mdm9615-pinctrl-yaml-v2-4-639fe67a04be@linaro.org>
 References: <20221005-mdm9615-pinctrl-yaml-v2-0-639fe67a04be@linaro.org>
 In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v2-0-639fe67a04be@linaro.org>
 To:     Lee Jones <lee@kernel.org>,
@@ -84,72 +84,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the sx150xq node names to pinctrl and use the right probe-reset property.
+Convert the non-SMD Regulators bindings to dt-schema, the old text based
+bindings will be deleted later since the RPM bindings are not yet converted.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ .../bindings/regulator/qcom,ipc-rpm-regulator.yaml | 127 +++++++++++++++++++++
+ 1 file changed, 127 insertions(+)
 
-diff --git a/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts b/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
-index 30a110984597..a8304769b509 100644
---- a/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
-+++ b/arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts
-@@ -116,7 +116,7 @@ i2c@4 {
- 			#size-cells = <0>;
- 			reg = <4>;
- 
--			gpioext0: gpio@3e {
-+			gpioext0: pinctrl@3e {
- 				/* GPIO Expander 0 Mapping :
- 				 * - 0: ARDUINO_RESET_Level shift
- 				 * - 1: BattChrgr_PG_N
-@@ -142,7 +142,7 @@ gpioext0: gpio@3e {
- 				interrupt-parent = <&gpioext1>;
- 				interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
- 
--				probe-reset;
-+				semtech,probe-reset;
- 
- 				gpio-controller;
- 				interrupt-controller;
-@@ -154,7 +154,7 @@ i2c@5 {
- 			#size-cells = <0>;
- 			reg = <5>;
- 
--			gpioext1: gpio@3f {
-+			gpioext1: pinctrl@3f {
- 				/* GPIO Expander 1 Mapping :
- 				 * - 0: GPIOEXP_INT1
- 				 * - 1: Battery detect
-@@ -183,7 +183,7 @@ gpioext1: gpio@3f {
- 				interrupt-parent = <&msmgpio>;
- 				interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
- 
--				probe-reset;
-+				semtech,probe-reset;
- 
- 				gpio-controller;
- 				interrupt-controller;
-@@ -195,7 +195,7 @@ i2c@6 {
- 			#size-cells = <0>;
- 			reg = <6>;
- 
--			gpioext2: gpio@70 {
-+			gpioext2: pinctrl@70 {
- 				/* GPIO Expander 2 Mapping :
- 				 * - 0: USB_HUB_INTn
- 				 * - 1: HUB_CONNECT
-@@ -221,7 +221,7 @@ gpioext2: gpio@70 {
- 				interrupt-parent = <&gpioext1>;
- 				interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
- 
--				probe-reset;
-+				semtech,probe-reset;
- 
- 				gpio-controller;
- 				interrupt-controller;
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,ipc-rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,ipc-rpm-regulator.yaml
+new file mode 100644
+index 000000000000..e18bb8b87c43
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/qcom,ipc-rpm-regulator.yaml
+@@ -0,0 +1,127 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/qcom,ipc-rpm-regulator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: QCOM IPC RPM REGULATOR
++
++description:
++  The Qualcomm RPM over IPC regulator is modelled as a subdevice of the RPM.
++
++  Please refer to Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
++  for information regarding the RPM node.
++
++  The regulator node houses sub-nodes for each regulator within the device.
++  Each sub-node is identified using the node's name, with valid values listed
++  for each of the pmics below.
++
++  For pm8058 l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15,
++  l16, l17, l18, l19, l20, l21, l22, l23, l24, l25, s0, s1, s2, s3, s4,
++  lvs0, lvs1, ncp
++
++  For pm8901 l0, l1, l2, l3, l4, l5, l6, s0, s1, s2, s3, s4, lvs0, lvs1, lvs2, lvs3,
++  mvs
++
++  For pm8921 s1, s2, s3, s4, s7, s8, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11,
++  l12, l14, l15, l16, l17, l18, l21, l22, l23, l24, l25, l26, l27, l28,
++  l29, lvs1, lvs2, lvs3, lvs4, lvs5, lvs6, lvs7, usb-switch, hdmi-switch,
++  ncp
++
++  For pm8018 s1, s2, s3, s4, s5, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11,
++  l12, l14, lvs1
++
++  For smb208 s1a, s1b, s2a, s2b
++
++maintainers:
++  - Bjorn Andersson <andersson@kernel.org>
++
++properties:
++  compatible:
++    enum:
++      - qcom,rpm-pm8058-regulators
++      - qcom,rpm-pm8901-regulators
++      - qcom,rpm-pm8921-regulators
++      - qcom,rpm-pm8018-regulators
++      - qcom,rpm-smb208-regulators
++
++patternProperties:
++  ".*-supply$":
++    description: Input supply phandle(s) for this node
++
++  "^((s|l|lvs)[0-9]*)|(s[1-2][a-b])|(ncp)|(mvs)|(usb-switch)|(hdmi-switch)$":
++    description: List of regulators and its properties
++    $ref: regulator.yaml#
++    properties:
++      bias-pull-down:
++        description: enable pull down of the regulator when inactive
++        type: boolean
++
++      qcom,switch-mode-frequency:
++        description: Frequency (Hz) of the switch-mode power supply
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum:
++          - 19200000
++          - 9600000
++          - 6400000
++          - 4800000
++          - 3840000
++          - 3200000
++          - 2740000
++          - 2400000
++          - 2130000
++          - 1920000
++          - 1750000
++          - 1600000
++          - 1480000
++          - 1370000
++          - 1280000
++          - 1200000
++
++      qcom,force-mode:
++        description: Indicates that the regulator should be forced to a particular mode
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum:
++          - 0 # QCOM_RPM_FORCE_MODE_NONE do not force any mode
++          - 1 # QCOM_RPM_FORCE_MODE_LPM force into low power mode
++          - 2 # QCOM_RPM_FORCE_MODE_HPM force into high power mode
++          - 3 # QCOM_RPM_FORCE_MODE_AUTO allow regulator to automatically select its own mode
++              # based on realtime current draw, only for pm8921 smps and ftsmps
++
++      qcom,power-mode-hysteretic:
++        description: select that the power supply should operate in hysteretic mode,
++          instead of the default pwm mode
++        type: boolean
++
++additionalProperties: false
++
++required:
++  - compatible
++
++examples:
++  - |
++    #include <dt-bindings/mfd/qcom-rpm.h>
++    regulators {
++      compatible = "qcom,rpm-pm8921-regulators";
++      vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
++
++      s1 {
++        regulator-min-microvolt = <1225000>;
++        regulator-max-microvolt = <1225000>;
++
++        bias-pull-down;
++
++        qcom,switch-mode-frequency = <3200000>;
++      };
++
++      pm8921_s4: s4 {
++        regulator-min-microvolt = <1800000>;
++        regulator-max-microvolt = <1800000>;
++
++        qcom,switch-mode-frequency = <1600000>;
++        bias-pull-down;
++
++        qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
++      };
++    };
++...
 
 -- 
 b4 0.10.1
