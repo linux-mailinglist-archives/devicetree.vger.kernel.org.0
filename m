@@ -2,106 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C03526009F3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 11:10:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 382676009FF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 11:12:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229990AbiJQJKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 05:10:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56490 "EHLO
+        id S230497AbiJQJMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 05:12:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230307AbiJQJKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 05:10:18 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1AC622288;
-        Mon, 17 Oct 2022 02:10:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1665997807; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=0bJfDcoOH2/Dfhg55MIWlaG3Eyh+d7rLyW2xeWWEQy8=;
-        b=CUek5BrHtkLHGNAQvqkzWSKqxJ7U/UHeNfTUWBi+2KPDpcLQJV2UQMEqP6wpPs5x/wdhv8
-        brK0Z8OAQUfv+oKnBeqFCY7bQL0XyVc8pRZ6M+ZClv4w/ulqmtg5geb87QYDgGcs62k2DR
-        Bet/jnmj2kowe+zsoANpATl4nu1wdwQ=
-Date:   Mon, 17 Oct 2022 10:09:56 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v2 1/4] MIPS: ingenic: add new machine type MACH_JZ4755
-To:     Siarhei Volkau <lis8215@gmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S230499AbiJQJMX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 05:12:23 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B207E1275C;
+        Mon, 17 Oct 2022 02:12:18 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id n12so17429968wrp.10;
+        Mon, 17 Oct 2022 02:12:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uXahj3ItpGR0T2qFyurrngY0xMNOuQK04rAbGGKXwg8=;
+        b=T1YEkzHbvBFPw6bVHeAtex0uCKQnDI8cVLHbej+rFZDjaj8k0w6de65Z/eZYN99O/q
+         yRGdzP7R32VWRwcJy2R6jcIA81/wPVUBQgwXiqyvGU9ry/dpbdxm+3iPPPAwUTPcDfKM
+         DxxtrA+m4vsH7dnp7ILArBYf1h9BU1S2uJmyqFbTYzm4rumhAkWBDkqV1y8EZpAI2gL1
+         5bNKfbu3q4fQIjCr0MV4HW+Z1UJoEdzQRDOjw0NMUt0ogFpHRdIaR+MOzIegaojUqaLu
+         e45zoL0+0IFBum2N4+0A1D8JZeV2fNPaiHvRjrpeDR9JnoIK7/0kKXMzQaWW7K2lXc3B
+         S+0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uXahj3ItpGR0T2qFyurrngY0xMNOuQK04rAbGGKXwg8=;
+        b=rSYxZWNsZl/zEULnVcPvFbumPHAdmpRYc5Qj/r47bFslkmnSLTsJDviIZSIx+vsOQx
+         2wdMGNNNC7w9KIPsA9pYw4Gy6fmKJ9k8p8GIKpsQyGC6FShaRrr36J9BD9sKxTmYNYBS
+         KORTpLTwuvJKDSDz0BQN/9vFHavsih1gzspHrKeSrhiZaAQpS1I19DirBs8ZxipIGzhO
+         k51oNJlPymp3FT5VvNeSuhd57+8TgBeoFDVXYXgyONrVH/hMnfzI8/Wv8GTbBcmRDFNg
+         3yxbaIniRYnsjDFU7e2vXcd/rDTYMnt0bkb576GVWwgU1EIzFxtbRkPsOKOWaQAAssSf
+         o+qQ==
+X-Gm-Message-State: ACrzQf0jR+/WtNbFAZzX80z3Gtg0YDqmZBlLcZ2bJBmlR9BDhMJZLeqP
+        7cvg+MDLJAULaZ9dUc4jnjw=
+X-Google-Smtp-Source: AMsMyM7EgRpR3UtNzunxY9ssX+lJSt0/yeLT9iytC+8eoVn8Tr4Ffx7ttEuYsZLaBvGT8n3LJWBdwA==
+X-Received: by 2002:adf:de8f:0:b0:22e:361b:6a05 with SMTP id w15-20020adfde8f000000b0022e361b6a05mr5773321wrl.311.1665997937143;
+        Mon, 17 Oct 2022 02:12:17 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2501:c701:fc4d:6548:d8bd:5bd])
+        by smtp.gmail.com with ESMTPSA id n14-20020a5d400e000000b0022ae401e9e0sm7921503wrp.78.2022.10.17.02.12.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Oct 2022 02:12:16 -0700 (PDT)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Message-Id: <K44WJR.2LW3IFMAMTV73@crapouillou.net>
-In-Reply-To: <20221016150110.3020451-2-lis8215@gmail.com>
-References: <20221016150110.3020451-1-lis8215@gmail.com>
-        <20221016150110.3020451-2-lis8215@gmail.com>
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [RFC RESEND PATCH 0/2] RZ/G2UL separate out SoC specific parts
+Date:   Mon, 17 Oct 2022 10:11:59 +0100
+Message-Id: <20221017091201.199457-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Siarhei,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Le dim., oct. 16 2022 at 18:01:06 +0300, Siarhei Volkau=20
-<lis8215@gmail.com> a =E9crit :
-> which is close to jz4725b because it is actually a low price
-> successor of the jz4755.
-> It has the same MIPS32r1 core with Xburst(R) extension
-> MXU version 1 release 2.
->=20
-> Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
+Hi All,
 
-This patch doesn't really belong in the CGU patchset. It should go=20
-through the MIPS tree.
+This patch series aims to split up the RZ/G2UL SoC DTSI into common parts
+so that this can be shared with the RZ/Five SoC.
 
-I see why you include it, but you do not need to have the MACH_JZ4755=20
-symbol defined anywhere for the "default MACH_JZ4755" to work, it will=20
-just default to false until the patchset that adds JZ4755 support is=20
-merged in the MIPS tree.
+Implementation is based on the discussion [0] where I have used option#2.
+
+The Renesas RZ/G2UL (ARM64) and RZ/Five (RISC-V) have almost the same
+identical blocks to avoid duplication a base SoC dtsi (r9a07g043.dtsi) is
+created which will be used by the RZ/G2UL (r9a07g043u.dtsi) and RZ/Five
+(r9a07g043F.dtsi)
+
+Sending this as an RFC to get some feedback.
+
+r9a07g043f.dtsi will look something like below:
+
+#include <dt-bindings/interrupt-controller/irq.h>
+
+#define SOC_PERIPHERAL_IRQ_NUMBER(nr)	(nr + 32)
+#define SOC_PERIPHERAL_IRQ(nr, na)	SOC_PERIPHERAL_IRQ_NUMBER(nr) na
+
+#include <arm64/renesas/r9a07g043.dtsi>
+
+/ {
+   ...
+   ...   
+};
+
+Although patch#2 can be merged into patch#1 just wanted to keep them separated
+for easier review.
+
+RFC-> RESEND RFC
+* Patches rebased on [1]
+
+RFC: [2]
+
+[0] https://lore.kernel.org/linux-arm-kernel/Yyt8s5+pyoysVNeC@spud/T/
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20221009230044.10961-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[2] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20220929172356.301342-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
 Cheers,
--Paul
+Prabhakar
 
-> ---
->  arch/mips/ingenic/Kconfig | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/arch/mips/ingenic/Kconfig b/arch/mips/ingenic/Kconfig
-> index f595b339a..edd84cf13 100644
-> --- a/arch/mips/ingenic/Kconfig
-> +++ b/arch/mips/ingenic/Kconfig
-> @@ -4,6 +4,7 @@ config MACH_INGENIC_GENERIC
->  	bool
->  	select MACH_INGENIC
->  	select MACH_JZ4740
-> +	select MACH_JZ4755
->  	select MACH_JZ4725B
->  	select MACH_JZ4770
->  	select MACH_JZ4780
-> @@ -53,6 +54,10 @@ config MACH_JZ4740
->  	bool
->  	select SYS_HAS_CPU_MIPS32_R1
->=20
-> +config MACH_JZ4755
-> +	bool
-> +	select SYS_HAS_CPU_MIPS32_R1
-> +
->  config MACH_JZ4770
->  	bool
->  	select MIPS_CPU_SCACHE
-> --
-> 2.36.1
->=20
+Lad Prabhakar (2):
+  arm64: dts: renesas: r9a07g043: Introduce SOC_PERIPHERAL_IRQ() macro
+    to specify interrupt property
+  arm64: dts: renesas: r9a07g043: Split out RZ/G2UL SoC specific parts
 
+ arch/arm64/boot/dts/renesas/r9a07g043.dtsi    | 347 ++++++++----------
+ arch/arm64/boot/dts/renesas/r9a07g043u.dtsi   |  72 ++++
+ .../boot/dts/renesas/r9a07g043u11-smarc.dts   |   2 +-
+ 3 files changed, 220 insertions(+), 201 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
+
+-- 
+2.25.1
 
