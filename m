@@ -2,491 +2,716 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F90C600C4D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 12:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD923600C5F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 12:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbiJQKXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 06:23:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42090 "EHLO
+        id S230172AbiJQK0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 06:26:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbiJQKXT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 06:23:19 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB8765FDED
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 03:23:16 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id w18so17733126wro.7
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 03:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tehVJdn+YAMIW8sLG9rprzziEgXG4Ftde1HFsUXm3BM=;
-        b=YNS/sa5FYlrEdmuyt1YnX3pWQrHkLlA1LCv/KrF1/dpGANt6DKTxPbF0B+ZGrLEgTg
-         wG+/6VVDLNxAb9p0nV+r00x0bwggUlA7ITbWiUr7U+cYkr0tDsW1Sojf+D0E3ri8NAPV
-         D4d2UMm/5M91+XKlLYR9Xr+cuY46dShojyvkgZknYByPZHJKxdoMgXTVZAB6gqbgmrlM
-         nUEwpXbB6WWurHaYn9dIWP6ewEQfTR6/pJ99e5QCueMEvN3+KWEDwy+yr3L3u5Wztm2z
-         eG2HCBSVxEqliXMcVuewvTyn79iJZ0ifn0vvPpneTxX4XdGSfvuyHS5/GsliFD6icQy2
-         xztw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tehVJdn+YAMIW8sLG9rprzziEgXG4Ftde1HFsUXm3BM=;
-        b=2Awv+Z2RDW7RIhnxPYCaLbWFC19Pb24SkpOoFtjoDHcdnQPH2ew4KrTm48/C7QjzH0
-         l7xEEP7cDjggny2inKxyYo723sCHXza7PjGaszC5tKVEtSAdjAQuFMnp1vbvMEoB83z+
-         FE5zV/LEmOuay8Qz58NhOOMma/7TZ+Tr9O3XIiZGTtgPggAJH3/KSZV0+KXlnEPPQ9IO
-         BjcGTi2rQBnNU4s65kPb5oDCcx007b56+A2Z5iNiWZxBaciDUZAonIGp9GWbHQDyTfhF
-         5XFVvaOENwpLIODEEryPFQKBEq7sKdx6jQ541uTq+dxtKOA1kwUqOEsfM2naFVAxYGRY
-         7nbA==
-X-Gm-Message-State: ACrzQf0fvHD3IjEnjP8x3MyN13HecQNbh1uW7y3GJ6y2+cp8BED/4HCh
-        O+kSxd0OfkCih/u+jeXKXvMwsQ==
-X-Google-Smtp-Source: AMsMyM59RW/mmI2wSiVdHKX4158vDTn51NJ2YgVlyOBG45JfJNbBwEhVsKgLSRUvlkYb/BCmpH2aQw==
-X-Received: by 2002:a5d:4c4f:0:b0:22e:6c5b:a4b0 with SMTP id n15-20020a5d4c4f000000b0022e6c5ba4b0mr5881692wrt.574.1666002194823;
-        Mon, 17 Oct 2022 03:23:14 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id t9-20020a05600c198900b003b4fe03c881sm15590707wmq.48.2022.10.17.03.23.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Oct 2022 03:23:14 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Mon, 17 Oct 2022 12:23:09 +0200
-Subject: [PATCH v2 5/5] dt-bindings: soc: qcom: convert non-smd RPM bindings to
- dt-schema
+        with ESMTP id S229508AbiJQK0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 06:26:15 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20771AD99;
+        Mon, 17 Oct 2022 03:26:07 -0700 (PDT)
+Received: (Authenticated sender: foss@0leil.net)
+        by mail.gandi.net (Postfix) with ESMTPSA id 6D8A4E0002;
+        Mon, 17 Oct 2022 10:26:04 +0000 (UTC)
+From:   Quentin Schulz <foss+kernel@0leil.net>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de
+Cc:     foss+kernel@0leil.net, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Subject: [PATCH v2 1/2] =?utf-8?q?arm64:=20dts:=20rockchip:=20add=20PX30-=C2=B5Q7?= =?utf-8?q?=20(Ringneck)=20SoM=20with=20Haikou=20baseboard?=
+Date:   Mon, 17 Oct 2022 12:25:24 +0200
+Message-Id: <20220930-upstream-ringneck-v2-1-6671694b6934@theobroma-systems.com>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20220930-upstream-ringneck-v2-0-6671694b6934@theobroma-systems.com>
+References: <20220930-upstream-ringneck-v2-0-6671694b6934@theobroma-systems.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20221005-mdm9615-pinctrl-yaml-v2-5-639fe67a04be@linaro.org>
-References: <20221005-mdm9615-pinctrl-yaml-v2-0-639fe67a04be@linaro.org>
-In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v2-0-639fe67a04be@linaro.org>
-To:     Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        devicetree@vger.kernel.org
-X-Mailer: b4 0.10.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the non-SMD RPM node bindings to dt-schema, the old txt bindings
-are now removed since all bindings were converted.
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+The PX30-uQ7 (Ringneck) SoM is a µQseven-compatible (40mmx70mm, MXM-230
+connector) system-on-module from Theobroma Systems[1], featuring the
+Rockchip PX30.
+
+It provides the following feature set:
+ * up to 4GB DDR4
+ * up to 128GB on-module eMMC (with 8-bit 1.8V interface)
+ * SD card (on a baseboard) via edge connector
+ * Fast Ethernet with on-module TI DP83825I PHY
+ * MIPI-DSI/LVDS
+ * MIPI-CSI
+ * USB
+   - 1x USB 2.0 dual-role
+   - 3x USB 2.0 host
+ * on-module STM32 Cortex-M0 companion controller, implementing:
+   - low-power RTC functionality (ISL1208 emulation)
+   - fan controller (AMC6821 emulation)
+   - USB<->CAN bridge controller
+ * on-module Espressif ESP32 for Bluetooth + 2.4GHz WiFi
+ * on-module NXP SE05x Secure Element
+
+[1] https://www.theobroma-systems.com/som-product/px30-%C2%B5q7/
+
+Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 ---
- Documentation/devicetree/bindings/mfd/qcom-rpm.txt | 283 ---------------------
- .../devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml |  99 +++++++
- 2 files changed, 99 insertions(+), 283 deletions(-)
+ arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+ .../boot/dts/rockchip/px30-ringneck-haikou.dts     | 232 +++++++++++++
+ arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi    | 382 +++++++++++++++++++++
+ 3 files changed, 615 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom-rpm.txt b/Documentation/devicetree/bindings/mfd/qcom-rpm.txt
-deleted file mode 100644
-index b823b8625243..000000000000
---- a/Documentation/devicetree/bindings/mfd/qcom-rpm.txt
-+++ /dev/null
-@@ -1,283 +0,0 @@
--Qualcomm Resource Power Manager (RPM)
--
--This driver is used to interface with the Resource Power Manager (RPM) found in
--various Qualcomm platforms. The RPM allows each component in the system to vote
--for state of the system resources, such as clocks, regulators and bus
--frequencies.
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be one of:
--		    "qcom,rpm-apq8064"
--		    "qcom,rpm-msm8660"
--		    "qcom,rpm-msm8960"
--		    "qcom,rpm-ipq8064"
--		    "qcom,rpm-mdm9615"
--
--- reg:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: base address and size of the RPM's message ram
--
--- interrupts:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: three entries specifying the RPM's:
--		    1. acknowledgement interrupt
--		    2. error interrupt
--		    3. wakeup interrupt
--
--- interrupt-names:
--	Usage: required
--	Value type: <string-array>
--	Definition: must be the three strings "ack", "err" and "wakeup", in order
--
--- qcom,ipc:
--	Usage: required
--	Value type: <prop-encoded-array>
--
--	Definition: three entries specifying the outgoing ipc bit used for
--		    signaling the RPM:
--		    - phandle to a syscon node representing the apcs registers
--		    - u32 representing offset to the register within the syscon
--		    - u32 representing the ipc bit within the register
--
--
--= SUBNODES
--
--The RPM exposes resources to its subnodes. The below bindings specify the set
--of valid subnodes that can operate on these resources.
--
--== Regulators
--
--Regulator nodes are identified by their compatible:
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be one of:
--		    "qcom,rpm-pm8058-regulators"
--		    "qcom,rpm-pm8901-regulators"
--		    "qcom,rpm-pm8921-regulators"
--		    "qcom,rpm-pm8018-regulators"
--		    "qcom,rpm-smb208-regulators"
--
--- vdd_l0_l1_lvs-supply:
--- vdd_l2_l11_l12-supply:
--- vdd_l3_l4_l5-supply:
--- vdd_l6_l7-supply:
--- vdd_l8-supply:
--- vdd_l9-supply:
--- vdd_l10-supply:
--- vdd_l13_l16-supply:
--- vdd_l14_l15-supply:
--- vdd_l17_l18-supply:
--- vdd_l19_l20-supply:
--- vdd_l21-supply:
--- vdd_l22-supply:
--- vdd_l23_l24_l25-supply:
--- vdd_ncp-supply:
--- vdd_s0-supply:
--- vdd_s1-supply:
--- vdd_s2-supply:
--- vdd_s3-supply:
--- vdd_s4-supply:
--	Usage: optional (pm8058 only)
--	Value type: <phandle>
--	Definition: reference to regulator supplying the input pin, as
--		    described in the data sheet
--
--- lvs0_in-supply:
--- lvs1_in-supply:
--- lvs2_in-supply:
--- lvs3_in-supply:
--- mvs_in-supply:
--- vdd_l0-supply:
--- vdd_l1-supply:
--- vdd_l2-supply:
--- vdd_l3-supply:
--- vdd_l4-supply:
--- vdd_l5-supply:
--- vdd_l6-supply:
--- vdd_s0-supply:
--- vdd_s1-supply:
--- vdd_s2-supply:
--- vdd_s3-supply:
--- vdd_s4-supply:
--	Usage: optional (pm8901 only)
--	Value type: <phandle>
--	Definition: reference to regulator supplying the input pin, as
--		    described in the data sheet
--
--- vdd_l1_l2_l12_l18-supply:
--- vdd_l3_l15_l17-supply:
--- vdd_l4_l14-supply:
--- vdd_l5_l8_l16-supply:
--- vdd_l6_l7-supply:
--- vdd_l9_l11-supply:
--- vdd_l10_l22-supply:
--- vdd_l21_l23_l29-supply:
--- vdd_l24-supply:
--- vdd_l25-supply:
--- vdd_l26-supply:
--- vdd_l27-supply:
--- vdd_l28-supply:
--- vdd_ncp-supply:
--- vdd_s1-supply:
--- vdd_s2-supply:
--- vdd_s4-supply:
--- vdd_s5-supply:
--- vdd_s6-supply:
--- vdd_s7-supply:
--- vdd_s8-supply:
--- vin_5vs-supply:
--- vin_lvs1_3_6-supply:
--- vin_lvs2-supply:
--- vin_lvs4_5_7-supply:
--	Usage: optional (pm8921 only)
--	Value type: <phandle>
--	Definition: reference to regulator supplying the input pin, as
--		    described in the data sheet
--
--- vin_lvs1-supply:
--- vdd_l7-supply:
--- vdd_l8-supply:
--- vdd_l9_l10_l11_l12-supply:
--	Usage: optional (pm8018 only)
--	Value type: <phandle>
--	Definition: reference to regulator supplying the input pin, as
--		    described in the data sheet
--
--The regulator node houses sub-nodes for each regulator within the device. Each
--sub-node is identified using the node's name, with valid values listed for each
--of the pmics below.
--
--pm8058:
--	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15,
--	l16, l17, l18, l19, l20, l21, l22, l23, l24, l25, s0, s1, s2, s3, s4,
--	lvs0, lvs1, ncp
--
--pm8901:
--	l0, l1, l2, l3, l4, l5, l6, s0, s1, s2, s3, s4, lvs0, lvs1, lvs2, lvs3,
--	mvs
--
--pm8921:
--	s1, s2, s3, s4, s7, s8, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11,
--	l12, l14, l15, l16, l17, l18, l21, l22, l23, l24, l25, l26, l27, l28,
--	l29, lvs1, lvs2, lvs3, lvs4, lvs5, lvs6, lvs7, usb-switch, hdmi-switch,
--	ncp
--
--pm8018:
--	s1, s2, s3, s4, s5, , l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11,
--	l12, l14, lvs1
--
--smb208:
--	s1a, s1b, s2a, s2b
--
--The content of each sub-node is defined by the standard binding for regulators -
--see regulator.txt - with additional custom properties described below:
--
--=== Switch-mode Power Supply regulator custom properties
--
--- bias-pull-down:
--	Usage: optional
--	Value type: <empty>
--	Definition: enable pull down of the regulator when inactive
--
--- qcom,switch-mode-frequency:
--	Usage: required
--	Value type: <u32>
--	Definition: Frequency (Hz) of the switch-mode power supply;
--		    must be one of:
--		    19200000, 9600000, 6400000, 4800000, 3840000, 3200000,
--		    2740000, 2400000, 2130000, 1920000, 1750000, 1600000,
--		    1480000, 1370000, 1280000, 1200000
--
--- qcom,force-mode:
--	Usage: optional (default if no other qcom,force-mode is specified)
--	Value type: <u32>
--	Definition: indicates that the regulator should be forced to a
--		   particular mode, valid values are:
--		   QCOM_RPM_FORCE_MODE_NONE - do not force any mode
--		   QCOM_RPM_FORCE_MODE_LPM - force into low power mode
--		   QCOM_RPM_FORCE_MODE_HPM - force into high power mode
--		   QCOM_RPM_FORCE_MODE_AUTO - allow regulator to automatically
--					      select its own mode based on
--					      realtime current draw, only for:
--					      pm8921 smps and ftsmps
--
--- qcom,power-mode-hysteretic:
--	Usage: optional
--	Value type: <empty>
--	Definition: select that the power supply should operate in hysteretic
--		    mode, instead of the default pwm mode
--
--=== Low-dropout regulator custom properties
--
--- bias-pull-down:
--	Usage: optional
--	Value type: <empty>
--	Definition: enable pull down of the regulator when inactive
--
--- qcom,force-mode:
--	Usage: optional
--	Value type: <u32>
--	Definition: indicates that the regulator should not be forced to any
--		   particular mode, valid values are:
--		   QCOM_RPM_FORCE_MODE_NONE - do not force any mode
--		   QCOM_RPM_FORCE_MODE_LPM - force into low power mode
--		   QCOM_RPM_FORCE_MODE_HPM - force into high power mode
--		   QCOM_RPM_FORCE_MODE_BYPASS - set regulator to use bypass
--						mode, i.e.  to act as a switch
--						and not regulate, only for:
--						pm8921 pldo, nldo and nldo1200
--
--=== Negative Charge Pump custom properties
--
--- qcom,switch-mode-frequency:
--	Usage: required
--	Value type: <u32>
--	Definition: Frequency (Hz) of the switch mode power supply;
--		    must be one of:
--		    19200000, 9600000, 6400000, 4800000, 3840000, 3200000,
--		    2740000, 2400000, 2130000, 1920000, 1750000, 1600000,
--		    1480000, 1370000, 1280000, 1200000
--
--= EXAMPLE
--
--	#include <dt-bindings/mfd/qcom-rpm.h>
--
--	rpm@108000 {
--		compatible = "qcom,rpm-msm8960";
--		reg = <0x108000 0x1000>;
--		qcom,ipc = <&apcs 0x8 2>;
--
--		interrupts = <0 19 0>, <0 21 0>, <0 22 0>;
--		interrupt-names = "ack", "err", "wakeup";
--
--		regulators {
--			compatible = "qcom,rpm-pm8921-regulators";
--			vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
--
--			s1 {
--				regulator-min-microvolt = <1225000>;
--				regulator-max-microvolt = <1225000>;
--
--				bias-pull-down;
--
--				qcom,switch-mode-frequency = <3200000>;
--			};
--
--			pm8921_s4: s4 {
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <1800000>;
--
--				qcom,switch-mode-frequency = <1600000>;
--				bias-pull-down;
--
--				qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
--			};
--		};
--	};
--
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
+diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+index ef79a672804a1..1e3b9d7c1a8bb 100644
+--- a/arch/arm64/boot/dts/rockchip/Makefile
++++ b/arch/arm64/boot/dts/rockchip/Makefile
+@@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-evb.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-ctouch2-of10.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-engicam-px30-core-edimm2.2.dtb
++dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-ringneck-haikou.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-evb.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-roc-cc.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-rock-pi-s.dtb
+diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
 new file mode 100644
-index 000000000000..4e9df94ecd44
+index 0000000000000..08a3ad3e7ae92
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
-@@ -0,0 +1,99 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/soc/qcom/qcom,ipc-rpm.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
+@@ -0,0 +1,232 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2022 Theobroma Systems Design und Consulting GmbH
++ */
 +
-+title: Qualcomm Resource Power Manager (RPM) over IPC
++/dts-v1/;
++#include "px30-ringneck.dtsi"
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
 +
-+description: |
-+  This driver is used to interface with the Resource Power Manager (RPM) found
-+  in various Qualcomm platforms. The RPM allows each component in the system
-+  to vote for state of the system resources, such as clocks, regulators and bus
-+  frequencies.
++/ {
++	model = "Theobroma Systems PX30-uQ7 SoM on Haikou devkit";
++	compatible = "tsd,px30-ringneck-haikou", "rockchip,px30";
 +
-+maintainers:
-+  - Bjorn Andersson <andersson@kernel.org>
++	aliases {
++		mmc2 = &sdmmc;
++	};
 +
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,rpm-apq8064
-+      - qcom,rpm-msm8660
-+      - qcom,rpm-msm8960
-+      - qcom,rpm-ipq8064
-+      - qcom,rpm-mdm9615
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
 +
-+  reg: true
++	gpio-keys {
++		compatible = "gpio-keys";
++		pinctrl-0 = <&haikou_keys_pin>;
++		pinctrl-names = "default";
 +
-+  interrupts:
-+    minItems: 3
++		button-batlow-n {
++			label = "BATLOW#";
++			linux,code = <KEY_BATTERY>;
++			gpios = <&gpio3 RK_PA7 GPIO_ACTIVE_LOW>;
++		};
 +
-+  interrupt-names:
-+    items:
-+      - const: ack
-+      - const: err
-+      - const: wakeup
++		button-slp-btn-n {
++			label = "SLP_BTN#";
++			linux,code = <KEY_SLEEP>;
++			gpios = <&gpio1 RK_PB7 GPIO_ACTIVE_LOW>;
++		};
 +
-+  qcom,ipc:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to a syscon node representing the APCS registers
-+          - description: u32 representing offset to the register within the syscon
-+          - description: u32 representing the ipc bit within the register
-+    description:
-+      Three entries specifying the outgoing ipc bit used for signaling the RPM.
++		button-wake-n {
++			label = "WAKE#";
++			linux,code = <KEY_WAKEUP>;
++			gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_LOW>;
++			wakeup-source;
++		};
 +
-+patternProperties:
-+  "(regulators|-regulators)$":
-+    type: object
-+    $ref: /schemas/regulator/qcom,ipc-rpm-regulator.yaml#
++		switch-lid-btn-n {
++			label = "LID_BTN#";
++			linux,code = <SW_LID>;
++			linux,input-type = <EV_SW>;
++			gpios = <&gpio3 RK_PA6 GPIO_ACTIVE_LOW>;
++		};
++	};
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - qcom,ipc
++	leds {
++		pinctrl-0 = <&module_led_pin>, <&sd_card_led_pin>;
 +
-+additionalProperties: false
++		sd_card_led: led-1 {
++			gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "mmc2";
++			function = LED_FUNCTION_SD;
++			color = <LED_COLOR_ID_BLUE>;
++		};
++	};
 +
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/mfd/qcom-rpm.h>
++	i2s0-sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,name = "Haikou,I2S-codec";
++		simple-audio-card,mclk-fs = <512>;
 +
-+    rpm@108000 {
-+      compatible = "qcom,rpm-msm8960";
-+      reg = <0x108000 0x1000>;
-+      qcom,ipc = <&apcs 0x8 2>;
++		simple-audio-card,codec {
++			clocks = <&sgtl5000_clk>;
++			sound-dai = <&sgtl5000>;
++		};
 +
-+      interrupts = <GIC_SPI 19 IRQ_TYPE_NONE>, <GIC_SPI 21 IRQ_TYPE_NONE>, <GIC_SPI 22 IRQ_TYPE_NONE>;
-+      interrupt-names = "ack", "err", "wakeup";
++		simple-audio-card,cpu {
++			bitclock-master;
++			frame-master;
++			sound-dai = <&i2s0_8ch>;
++		};
++	};
 +
-+      regulators {
-+        compatible = "qcom,rpm-pm8921-regulators";
-+        vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
++	sgtl5000_clk: sgtl5000-oscillator {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency  = <24576000>;
++	};
 +
-+        s1 {
-+          regulator-min-microvolt = <1225000>;
-+          regulator-max-microvolt = <1225000>;
++	dc_12v: dc-12v-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "dc_12v";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++	};
 +
-+          bias-pull-down;
++	vcc3v3_baseboard: vcc3v3-baseboard-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v3_baseboard";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&dc_12v>;
++	};
 +
-+          qcom,switch-mode-frequency = <3200000>;
-+        };
++	vcc5v0_baseboard: vcc5v0-baseboard-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_baseboard";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&dc_12v>;
++	};
 +
-+        pm8921_s4: s4 {
-+          regulator-min-microvolt = <1800000>;
-+          regulator-max-microvolt = <1800000>;
++	vdda_codec: vdda-codec-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vdda_codec";
++		regulator-boot-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc5v0_baseboard>;
++	};
 +
-+          qcom,switch-mode-frequency = <1600000>;
-+          bias-pull-down;
++	vddd_codec: vddd-codec-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vddd_codec";
++		regulator-boot-on;
++		regulator-min-microvolt = <1600000>;
++		regulator-max-microvolt = <1600000>;
++		vin-supply = <&vcc5v0_baseboard>;
++	};
++};
 +
-+          qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
-+        };
-+      };
-+    };
++&i2c2 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	sgtl5000: codec@a {
++		compatible = "fsl,sgtl5000";
++		reg = <0x0a>;
++		clocks = <&sgtl5000_clk>;
++		#sound-dai-cells = <0>;
++		VDDA-supply = <&vdda_codec>;
++		VDDIO-supply = <&vcc3v3_baseboard>;
++		VDDD-supply = <&vddd_codec>;
++	};
++};
++
++&i2c3 {
++	eeprom@50 {
++		reg = <0x50>;
++		compatible = "atmel,24c01";
++		pagesize = <8>;
++		size = <128>;
++		vcc-supply = <&vcc3v3_baseboard>;
++	};
++};
++
++&i2s0_8ch {
++	status = "okay";
++};
++
++&gmac {
++	status = "okay";
++};
++
++&pinctrl {
++	haikou {
++		haikou_keys_pin: haikou-keys-pin {
++			rockchip,pins =
++			  /* WAKE# */
++			  <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_up>,
++			  /* SLP_BTN# */
++			  <1 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>,
++			  /* LID_BTN */
++			  <3 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
++			  /* BATLOW# */
++			  <3 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>,
++			  /* BIOS_DISABLE# */
++			  <2 RK_PC2 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
++
++	leds {
++		sd_card_led_pin: sd-card-led-pin {
++			rockchip,pins =
++			  <3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++};
++
++&pwm0 {
++	status = "okay";
++};
++
++&sdmmc {
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	bus-width = <4>;
++	cap-mmc-highspeed;
++	cap-sd-highspeed;
++	cd-gpios = <&gpio0 RK_PA3 GPIO_ACTIVE_LOW>;
++	disable-wp;
++	vmmc-supply = <&vcc3v3_baseboard>;
++	status = "okay";
++};
++
++&spi1 {
++	status = "okay";
++};
++
++&u2phy_otg {
++	status = "okay";
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&uart5 {
++	pinctrl-0 = <&uart5_xfer>;
++	status = "okay";
++};
++
++&usb20_otg {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
+new file mode 100644
+index 0000000000000..12397755830bd
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
+@@ -0,0 +1,382 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2022 Theobroma Systems Design und Consulting GmbH
++ */
++
++/dts-v1/;
++#include "px30.dtsi"
++#include <dt-bindings/leds/common.h>
++
++/ {
++	aliases {
++		mmc0 = &emmc;
++		mmc1 = &sdio;
++		rtc0 = &rtc_twi;
++		rtc1 = &rk809;
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		pinctrl-0 = <&emmc_reset>;
++		pinctrl-names = "default";
++		reset-gpios = <&gpio1 RK_PB3 GPIO_ACTIVE_HIGH>;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&module_led_pin>;
++		status = "okay";
++
++		module_led: led-0 {
++			gpios = <&gpio1 RK_PB0 GPIO_ACTIVE_HIGH>;
++			function = LED_FUNCTION_HEARTBEAT;
++			linux,default-trigger = "heartbeat";
++			color = <LED_COLOR_ID_AMBER>;
++		};
++	};
++
++	vcc5v0_sys: vccsys-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_sys";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
++};
++
++&cpu0 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu1 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu2 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu3 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&emmc {
++	bus-width = <8>;
++	cap-mmc-highspeed;
++	mmc-hs200-1_8v;
++	supports-emmc;
++	mmc-pwrseq = <&emmc_pwrseq>;
++	non-removable;
++	vmmc-supply = <&vcc_3v3>;
++	vqmmc-supply = <&vcc_emmc>;
++
++	status = "okay";
++};
++
++/* On-module TI DP83825I PHY but no connector, enable in carrierboard */
++&gmac {
++	snps,reset-gpio = <&gpio3 RK_PB0 GPIO_ACTIVE_LOW>;
++	snps,reset-active-low;
++	snps,reset-delays-us = <0 50000 50000>;
++	phy-supply = <&vcc_3v3>;
++	clock_in_out = "output";
++};
++
++&gpio2 {
++	/*
++	 * The Qseven BIOS_DISABLE signal on the PX30-µQ7 keeps the on-module
++	 * eMMC powered-down initially (in fact it keeps the reset signal
++	 * asserted). BIOS_DISABLE_OVERRIDE pin allows to re-enable eMMC after
++	 * the SPL has been booted from SD Card.
++	 */
++	bios-disable-override-hog {
++		gpios = <RK_PB5 GPIO_ACTIVE_LOW>;
++		output-high;
++		line-name = "bios_disable_override";
++		gpio-hog;
++	};
++
++	/*
++	 * The BIOS_DISABLE hog is a feedback pin for the actual status of the
++	 * signal, ignoring the BIOS_DISABLE_OVERRIDE logic. This usually
++	 * represents the state of a switch on the baseboard.
++	 */
++	bios-disable-n-hog {
++		gpios = <RK_PC2 GPIO_ACTIVE_LOW>;
++		line-name = "bios_disable";
++		input;
++		gpio-hog;
++	};
++};
++
++&gpu {
++	status = "okay";
++};
++
++&i2c0 {
++	status = "okay";
++
++	rk809: pmic@20 {
++		compatible = "rockchip,rk809";
++		reg = <0x20>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-0 = <&pmic_int>;
++		pinctrl-names = "default";
++		#clock-cells = <0>;
++		clock-output-names = "xin32k";
++		rockchip,system-power-controller;
++		wakeup-source;
++
++		vcc1-supply = <&vcc5v0_sys>;
++		vcc2-supply = <&vcc5v0_sys>;
++		vcc3-supply = <&vcc5v0_sys>;
++		vcc4-supply = <&vcc5v0_sys>;
++		vcc5-supply = <&vcc_3v3>;
++		vcc6-supply = <&vcc_3v3>;
++		vcc7-supply = <&vcc_3v3>;
++		vcc9-supply = <&vcc5v0_sys>;
++
++		regulators {
++			vdd_log: DCDC_REG1 {
++				regulator-name = "vdd_log";
++				regulator-min-microvolt = <950000>;
++				regulator-max-microvolt = <1350000>;
++				regulator-ramp-delay = <6001>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <950000>;
++				};
++			};
++
++			vdd_arm: DCDC_REG2 {
++				regulator-name = "vdd_arm";
++				regulator-min-microvolt = <950000>;
++				regulator-max-microvolt = <1350000>;
++				regulator-ramp-delay = <6001>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <950000>;
++				};
++			};
++
++			vcc_ddr: DCDC_REG3 {
++				regulator-name = "vcc_ddr";
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++				};
++			};
++
++			vcc_3v0_1v8: vcc_emmc: DCDC_REG4 {
++				regulator-name = "vcc_3v0_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3000000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3000000>;
++				};
++			};
++
++			vcc_3v3: DCDC_REG5 {
++				regulator-name = "vcc_3v3";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_1v8: LDO_REG2 {
++				regulator-name = "vcc_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			vcc_1v0: LDO_REG3 {
++				regulator-name = "vcc_1v0";
++				regulator-min-microvolt = <1000000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1000000>;
++				};
++			};
++
++			vccio_sd: LDO_REG5 {
++				regulator-name = "vccio_sd";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vcc_lcd: LDO_REG7 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1000000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-name = "vcc_lcd";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <1000000>;
++				};
++			};
++
++			vcc_1v8_lcd: LDO_REG8 {
++				regulator-name = "vcc_1v8_lcd";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			vcca_1v8: LDO_REG9 {
++				regulator-name = "vcca_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
++				regulator-boot-on;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++		};
++	};
++};
++
++&i2c1 {
++	status = "okay";
++
++	/* SE05x is limited to Fast Mode */
++	clock-frequency = <400000>;
++
++	fan: fan@18 {
++		compatible = "ti,amc6821";
++		reg = <0x18>;
++		#cooling-cells = <2>;
++	};
++
++	rtc_twi: rtc@6f {
++		compatible = "isil,isl1208";
++		reg = <0x6f>;
++	};
++};
++
++&i2c3 {
++	status = "okay";
++};
++
++&i2s0_8ch {
++	rockchip,trcm-sync-tx-only;
++
++	pinctrl-0 = <&i2s0_8ch_sclktx &i2s0_8ch_lrcktx
++		     &i2s0_8ch_sdo0 &i2s0_8ch_sdi0>;
++};
++
++&io_domains {
++	vccio1-supply = <&vcc_3v3>;
++	vccio2-supply = <&vccio_sd>;
++	vccio3-supply = <&vcc_3v3>;
++	vccio4-supply = <&vcc_3v3>;
++	vccio5-supply = <&vcc_3v3>;
++	vccio6-supply = <&vcc_emmc>;
++	vccio-oscgpi-supply = <&vcc_3v3>;
++
++	status = "okay";
++};
++
++&pinctrl {
++	emmc {
++		emmc_reset: emmc-reset {
++			rockchip,pins = <1 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	leds {
++		module_led_pin: module-led-pin {
++			rockchip,pins = <1 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	pmic {
++		pmic_int: pmic-int {
++			rockchip,pins =
++				<0 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
++};
++
++&saradc {
++	vref-supply = <&vcc_1v8>;
++	status = "okay";
++};
++
++&sdmmc {
++	vqmmc-supply = <&vccio_sd>;
++};
++
++&tsadc {
++	status = "okay";
++};
++
++&u2phy {
++	status = "okay";
++};
++
++&u2phy_host {
++	status = "okay";
++};
++
++/* Mule UCAN */
++&usb_host0_ehci {
++	status = "okay";
++};
++
++&usb_host0_ohci {
++	status = "okay";
++};
++
++&wdt {
++	status = "okay";
++};
 
 -- 
 b4 0.10.1
