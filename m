@@ -2,81 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36F81600940
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 10:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1542A6009DA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 11:03:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230403AbiJQIwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 04:52:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57766 "EHLO
+        id S230462AbiJQJDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 05:03:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230371AbiJQIwa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 04:52:30 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1481152466
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 01:51:42 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id fy4so23291640ejc.5
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 01:51:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=UdBvOAm2nsNgIpMmEYH/+M6ZXF4FkwnyWuMBjNXnMf8=;
-        b=qZcRb3zYq1BDONT7aPTE83vZnL1k1k7FXZhMcoQQqn6G4B6cjYZVdZWfkKS1Bjf6D3
-         /PDJEErlo48CtWZ6xxS+vOEVPj3dWmb0sDfwJ4f9h4SBlDPUmcfN3LYKIHbVLM/Nr7hu
-         ksdyontuSVXxtaWqXtYOkOpLIBUFt6jXttYU138H34A/VbmwrRmW3B1dmSNapoNrCWa1
-         uRNBixClgeERDAxfvpify1vQmFyWJ6oSKxZQwH26OShtpV9IS9Sk0YC9nptY+W753oH5
-         FlTQ2YBJnEdrrVu/+OgSjAeA/QtwBwOy0oFuZwdh0T757uIy/j9Osvn6ki1S7lrL6/9K
-         GIJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UdBvOAm2nsNgIpMmEYH/+M6ZXF4FkwnyWuMBjNXnMf8=;
-        b=FpNt2WILaQmBp565VCSl50xkRU7xub+vNp9ajYfeXL2Qze8qfbVUkWffjciniGCvYq
-         MTGsFy0hRU8ZQcJU7QcYg7oSTRypA5lYI8s0MaS2ruwVimHxOIMXKOSkAhXNfNJwWkVt
-         50EQPdbVueUKiupTKgSayTUtJyl38NumwWCOinAlAUN/RkpjnZ19c2E0G3FvQ25N6ijd
-         fQfE5Ph/ri8dKYHxIBfszLbRebaQUYHuGMBbuVzKdzUJkmRsher84gi9fj0X8niMHxfD
-         /5c5KEQKD4wugBRzfHu9edj06kosoHf9Oto2GCiLfG5p8EIhktaXuvixBd6DeE4CZzpw
-         1fwg==
-X-Gm-Message-State: ACrzQf3MiFD0cf795thP3cpwBtT8uH9uxkTTdcuWUQeX2ft/wQ2mVgom
-        SGIVm7bPoNYxxzVzAW7zv6tEKfqrirU1JmXU1ejeH+EmrD4=
-X-Google-Smtp-Source: AMsMyM7+Bz44CiiDh8+cvNHH4qaWCllQFFP5+GYDxc0K8ozofas9V8hCeukzOjp0NkqSBcF99MmDsYwJXteeCMYOQgo=
-X-Received: by 2002:a17:907:16aa:b0:6fe:91d5:18d2 with SMTP id
- hc42-20020a17090716aa00b006fe91d518d2mr4723543ejc.190.1665996700550; Mon, 17
- Oct 2022 01:51:40 -0700 (PDT)
+        with ESMTP id S230470AbiJQJC6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 05:02:58 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF7AD2C8;
+        Mon, 17 Oct 2022 02:02:50 -0700 (PDT)
+X-UUID: 81731069ea9f428bba80afca5c5170b7-20221017
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=gD7N/DSSbp1mar+/nG/ZYQKwg+fZQKRkhDobou7t55w=;
+        b=i3x8AG2rgTxMncYCZkjdDDrPgOnhj1V7F17eFql8FdFiujyWPTd+cNmUixs7KrGXG1oYRsnpAFDqFwGyJmsfXHswiwfar5C7LUYzI4SFsUjj8yyms2XwnyG5+vv4x4BpuhhhAwFLCizYrWaLL0OkaGI9WwqNzv8F4WrfFJerhxA=;
+X-CID-UNFAMILIAR: 1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:e993502a-027b-4bfe-aa39-1365ebccd8ea,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACT
+        ION:release,TS:75
+X-CID-INFO: VERSION:1.1.11,REQID:e993502a-027b-4bfe-aa39-1365ebccd8ea,IP:0,URL
+        :0,TC:0,Content:-25,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACT
+        ION:quarantine,TS:75
+X-CID-META: VersionHash:39a5ff1,CLOUDID:a0f097db-0379-47b3-a5dd-2ef5001d380a,B
+        ulkID:221017170245IG1IMEOR,BulkQuantity:0,Recheck:0,SF:38|28|16|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 81731069ea9f428bba80afca5c5170b7-20221017
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1205390772; Mon, 17 Oct 2022 17:02:42 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Mon, 17 Oct 2022 17:02:41 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs13n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Mon, 17 Oct 2022 17:02:40 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH] media: mediatek: vcodec: fix h264 cavlc bitstream fail
+Date:   Mon, 17 Oct 2022 17:02:08 +0800
+Message-ID: <20221017090208.19041-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20221007114647.2723457-1-s.hauer@pengutronix.de> <20221007114647.2723457-3-s.hauer@pengutronix.de>
-In-Reply-To: <20221007114647.2723457-3-s.hauer@pengutronix.de>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 17 Oct 2022 10:51:29 +0200
-Message-ID: <CACRpkdYBxh-PZmYaR+Y3gQFeC5WTia8LmM_aX4_o2oS7BRnNLg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] dt-bindings: gpio: Add gpio-latch binding document
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
-        kernel@pengutronix.de, Serge Semin <fancer.lancer@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
+        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 7, 2022 at 1:47 PM Sascha Hauer <s.hauer@pengutronix.de> wrote:
+Some cavlc bistream will decode fail when the frame size is small than
+20 bytes. Need to add pending data at the end of the bitstream.
 
-> This adds a binding for a GPIO multiplexer driver based on latches
-> connected to other GPIOs.
->
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+For the size of mapped memory is at least one page, adding four bytes data
+won't lead to access unknown virtual memory.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Fixes: 59fba9eed5a7 ("media: mediatek: vcodec: support stateless H.264 decoding for mt8192")
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+---
+ .../vcodec/vdec/vdec_h264_req_multi_if.c      | 27 ++++++++++++++++---
+ 1 file changed, 24 insertions(+), 3 deletions(-)
 
-Yours,
-Linus Walleij
+diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
+index 4cc92700692b..c1583dddcb04 100644
+--- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
++++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
+@@ -539,6 +539,24 @@ static int vdec_h264_slice_core_decode(struct vdec_lat_buf *lat_buf)
+ 	return 0;
+ }
+ 
++static void vdec_h264_insert_startcode(struct mtk_vcodec_dev *vcodec_dev, unsigned char *buf,
++				       size_t *bs_size, struct mtk_h264_pps_param *pps)
++{
++	struct device *dev = &vcodec_dev->plat_dev->dev;
++
++	/* cavlc bitstream when entropy_coding_mode_flag is false. */
++	if (pps->entropy_coding_mode_flag || *bs_size > 20 ||
++	    !(of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-dec") ||
++	    of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-dec")))
++		return;
++
++	buf[*bs_size] = 0;
++	buf[*bs_size + 1] = 0;
++	buf[*bs_size + 2] = 1;
++	buf[*bs_size + 3] = 0xff;
++	(*bs_size) += 4;
++}
++
+ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 				      struct vdec_fb *fb, bool *res_chg)
+ {
+@@ -582,9 +600,6 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 	}
+ 
+ 	inst->vsi->dec.nal_info = buf[nal_start_idx];
+-	inst->vsi->dec.bs_buf_addr = (u64)bs->dma_addr;
+-	inst->vsi->dec.bs_buf_size = bs->size;
+-
+ 	lat_buf->src_buf_req = src_buf_info->m2m_buf.vb.vb2_buf.req_obj.req;
+ 	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb, &lat_buf->ts_info, true);
+ 
+@@ -592,6 +607,12 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 	if (err)
+ 		goto err_free_fb_out;
+ 
++	vdec_h264_insert_startcode(inst->ctx->dev, buf, &bs->size,
++				   &share_info->h264_slice_params.pps);
++
++	inst->vsi->dec.bs_buf_addr = (uint64_t)bs->dma_addr;
++	inst->vsi->dec.bs_buf_size = bs->size;
++
+ 	*res_chg = inst->resolution_changed;
+ 	if (inst->resolution_changed) {
+ 		mtk_vcodec_debug(inst, "- resolution changed -");
+-- 
+2.25.1
+
