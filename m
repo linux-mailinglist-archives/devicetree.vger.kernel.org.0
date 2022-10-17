@@ -2,101 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D37F600793
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 09:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A377B6007A8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 09:25:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbiJQHVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 03:21:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45712 "EHLO
+        id S230216AbiJQHZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 03:25:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbiJQHVD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 03:21:03 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFFC95A3CA
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 00:20:57 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id a3so17160631wrt.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 00:20:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uHmVhCl0HtIsCNUv1vhNNpI4KWXeC+TR+yxWNqfso50=;
-        b=dRF1C+tMcrUm0A7kVrnb6ZkonA7wm6736FZD98+wKRpEEEu2vIcgnV2dx5krCflau6
-         gZaaQ0XMlwflOg3qUsZUQqQksF4oyZm9ldo8yBazsf3lxN6kaDfLzFZdaLpUdtPV2aHg
-         k/MUnr0wIlRILW8mqFT5gMLezng6rWYnSmYsaeqLfaeyufIvkmBER3Tv1G90iiDTgm+Y
-         m1DVpA6bjXE83huVmS2Bgej30aODA70l+up3E6QRkqG0kQceBCAeAgBd4qer+tf/f0Al
-         9EHSplCuvO2kREFIwPcw5VKvabC7J2FDargpWgkzjHYLJZ1R+75B3aLf1QsCop85A4aJ
-         0pug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uHmVhCl0HtIsCNUv1vhNNpI4KWXeC+TR+yxWNqfso50=;
-        b=l3xx6wuC0eVKuhFblIfP0npM6xYf4Vu8jwNhsLyyVGgZJ1Eqf0GlMztOWvKpZA20PG
-         6+rmFrI95h8hGhAPtjBped9cGfl9bxJWB53eDaAGDN8zQjqRKUOQULyROCo3e5Kgnqg+
-         JcFg3lP6Vo1U1zNrF0CHkj5FJmBvrgylNf5hu5qn6dXQPCVuF6MMdUH+ELmmnlyBfOtb
-         /hyHRNypUBzhq6RdGDrZcV/WP24WLfIcI2McBSGn32j2//J7aQxhtA5NMMZewV8/MZXN
-         jnPhyrZhL0xfEw2YFO1WSI1uv9yy8GfoaSuPlLQWZfp0oI6KQgzkJlD7H1gwmQWuhhVV
-         itmg==
-X-Gm-Message-State: ACrzQf2vmwehG5qcooJtmdqb/jhf2ptwWdBzXyWJA5pOtCbpb+vGxGv0
-        0WRgBVSEgbaZ0s0/qpJrep95xg==
-X-Google-Smtp-Source: AMsMyM5hnWJzG38N6N1rkatI/oqF7gOK3q/thTVZsPX1xK3F8THWoC5Imf6vPDIncvhWjXnRFocn1w==
-X-Received: by 2002:adf:e7c9:0:b0:22e:3524:9b4b with SMTP id e9-20020adfe7c9000000b0022e35249b4bmr5030706wrn.520.1665991255501;
-        Mon, 17 Oct 2022 00:20:55 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:ea6:24ea:3fe7:64b9? ([2a05:6e02:1041:c10:ea6:24ea:3fe7:64b9])
-        by smtp.googlemail.com with ESMTPSA id o39-20020a05600c512700b003b4ff30e566sm26519975wms.3.2022.10.17.00.20.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Oct 2022 00:20:55 -0700 (PDT)
-Message-ID: <9f859ba2-3f72-6f6f-7a5f-dae3a8b38c5e@linaro.org>
-Date:   Mon, 17 Oct 2022 09:20:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 5/5] dt-bindings: thermal: tsens: Add sm8450 compatible
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221016090035.565350-1-luca@z3ntu.xyz>
- <20221016090035.565350-5-luca@z3ntu.xyz>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20221016090035.565350-5-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229990AbiJQHZh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 03:25:37 -0400
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D77BE5A2DD;
+        Mon, 17 Oct 2022 00:25:36 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id D3745320084E;
+        Mon, 17 Oct 2022 03:25:35 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Mon, 17 Oct 2022 03:25:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1665991535; x=1666077935; bh=L5G3bLzreC
+        H3oUCt9+QvMdTXOUAOsrxsngh7C2K0tTg=; b=TORXiOZZgDgjkVaJ3LTQKd5YsA
+        YmSOOsWtPZrGEh+sCf+VITfu0GE0HRqE75RSM0Lzgtpb+iBkbyqH7SPeEJz7eRg/
+        VHV9Q/JT36NWEnqTdNumoGZdS2tQ2JC/RDKAj9JeYOcIv2pRIfLDA7RJ//ddx4+S
+        O2nKvckFiVY8ViaVuv6BIVboDjYtU9MDSqmuE0MsB+ZgxkCEsz3yIcNYkP6MKGIF
+        ZdlEi/rOcSyPUNe6deR+tNjQna/JrjRqoahTapJeuqpcX4RjCmHg3dyLexCtdS89
+        GsnX6S9tpqxJV3M+O+dbZNaF8UZ0VD8BxgnXsyNPG8aZXcJlQBAD5HW4K9ig==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1665991535; x=1666077935; bh=L5G3bLzreCH3oUCt9+QvMdTXOUAO
+        srxsngh7C2K0tTg=; b=rJFVmCCnBgVNZf22MdJXVt7IqOwr1WEXMl8j0HBuEpTM
+        ZANp4uJD9jFe6WV8MmVslOrAjIAbu/ueuna9IUdefSBIKGnDjB+57h+tFbtk63kx
+        uRjTj5//O1MCzXM5FK2s0lK292nkNzWDRXycPcu54CSZT21vv9u6P+CzRxhaqZpt
+        3JKzFHVRUvaPrsFKLK6RaJpSEJt6STM1muK+gB3IOy3R62AQ0SdCvQQSNRIF8aow
+        aZiWct3SQtxrOUdZgV+Vp7JB3IKsiWNt6ToOaWzqniRQnpGqJZ7vt1Pq7LEUE1tP
+        hJoVFYefVbLded4ZvtbjGtB5EN3bbbTdfzKBuwnMIw==
+X-ME-Sender: <xms:bgNNYxjTE5DSyccdl9D8Y59xFq8Vrs7PXiQB_p8gsFWLkS8FycVA1Q>
+    <xme:bgNNY2CNLtoibmIRdS3u2PquQFfFdMfkc7Lpi6fF1g5YCeoygFtnGhp2Dst7G5zd0
+    8SJ9cGuek75YwZw_oU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeekkedguddvtdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffegffdutddvhefffeeltefhjeejgedvleffjeeigeeuteelvdettddulefg
+    udfgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:bgNNYxHKtkRqv8yPGPO73LilgdgzDcr9JEasMxEEK7hC1nzPMXSAKw>
+    <xmx:bgNNY2S77sWo4tFLl8sj2HRwmIaFi15baxAE4I--4DgtXVnViUGZQg>
+    <xmx:bgNNY-xldXfbXHnMsjEOqzA-2zvSSZlh9WXw1gLHzNfxYgpSfLrudQ>
+    <xmx:bwNNY1qParKxg80KNqCzj1T_MBACF_12WF1HmOf7PRXR9i8IxrjtnQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id D0285B60089; Mon, 17 Oct 2022 03:25:34 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1047-g9e4af4ada4-fm-20221005.001-g9e4af4ad
+Mime-Version: 1.0
+Message-Id: <f8f803a8-ee36-4f32-8920-1fcf6b2265d1@app.fastmail.com>
+In-Reply-To: <039075b210d78d2f4fdeb66b6826b8d2c2836088.1665931914.git.tonyhuang.sunplus@gmail.com>
+References: <cover.1665931914.git.tonyhuang.sunplus@gmail.com>
+ <039075b210d78d2f4fdeb66b6826b8d2c2836088.1665931914.git.tonyhuang.sunplus@gmail.com>
+Date:   Mon, 17 Oct 2022 09:25:14 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Tony Huang" <tonyhuang.sunplus@gmail.com>,
+        "Ulf Hansson" <ulf.hansson@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>, krzk+dt@kernel.org,
+        "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wells.lu@sunplus.com
+Subject: Re: [PATCH v10 2/2] mmc: Add mmc driver for Sunplus SP7021
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/10/2022 11:00, Luca Weiss wrote:
-> Document the tsens-v2 compatible for sm8450 SoC.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
+On Sun, Oct 16, 2022, at 5:48 PM, Tony Huang wrote:
+> This is a patch for mmc driver for Sunplus SP7021 SOC.
+> Supports eMMC 4.41 DDR 104MB/s speed mode.
+>
+> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
 
-Applied, thanks
+Looks ok to me me overall.
 
+Acked-by: Arnd Bergmann <arnd@arndb.de>
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Just one more thing I noticed:
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+> +#define SPMMC_TIMEOUT			500000
+...
+> +static inline int spmmc_wait_finish(struct spmmc_host *host)
+> +{
+> +	u32 state;
+> +
+> +	return readl_poll_timeout_atomic(host->base + SPMMC_SD_STATE_REG, 
+> state,
+> +					(state & SPMMC_SDSTATE_FINISH), 1, SPMMC_TIMEOUT);
+> +}
+> +
+> +static inline int spmmc_wait_sdstatus(struct spmmc_host *host, 
+> unsigned int status_bit)
+> +{
+> +	u32 status;
+> +
+> +	return readl_poll_timeout_atomic(host->base + SPMMC_SD_STATUS_REG, 
+> status,
+> +					(status & status_bit), 1, SPMMC_TIMEOUT);
+> +}
+
+500ms seems like an awfully long time for a busy-wait, I wonder if this
+could be improved in some way. Is this always called from atomic context?
+
+If not, any callers from non-atomic context could use
+readl_poll_timeout() instead, or maybe there could be a shorter
+timeout in atomic context, with a fallback to a non-atomic
+workqueue if that times out, so only the MMC access will stall but
+not the entire system.
+
+The same problem does appear to be in dw_mmc.c and mtk-sd.c but not
+in sdhci*.c, so I don't know if this is avoidable.
+
+     Arnd
