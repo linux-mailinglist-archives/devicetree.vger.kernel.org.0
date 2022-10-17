@@ -2,96 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 042BA601567
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 19:31:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B336601574
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 19:33:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231128AbiJQRbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 13:31:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51442 "EHLO
+        id S229874AbiJQRd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 13:33:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231139AbiJQRay (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 13:30:54 -0400
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF466553;
-        Mon, 17 Oct 2022 10:30:40 -0700 (PDT)
-Received: by mail-il1-x134.google.com with SMTP id q11so6172701ilj.10;
-        Mon, 17 Oct 2022 10:30:40 -0700 (PDT)
+        with ESMTP id S230368AbiJQRdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 13:33:40 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7ED213F90
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 10:33:38 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id b5so11068403pgb.6
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 10:33:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/8q4ui2I0PbkckThln1KL8S7Gv3bNjUbhV3T4UKkFUc=;
-        b=LWQhQijW/K3QGTtSbzZcPYA000ASjJ1kn+xVcuG8p9zwsP53ifcj9jWnJ+S/JIIb5n
-         MscYqdmx/56bCG9Lya7D9ZHNdRKg97dKEkxXYCS6ljMupabbP8nr3e7vyLTCfZFG5I01
-         77YlPFIyARGCSnU6HrpwYpT3eh1WD9plur8N01+VK5fYIO7k3N9rhRpNq3tvXdgZDKm4
-         H+svTlfD/f4ONxoRNOWK5anXeGD8u/uJWL7s6I8+AU61DPqH0Ela/mlkU9jfr5xbcfk9
-         iulIzAhImVHe+Hu+xbti8GNqlpiAqEMYM5bpAae/wwVbucnmOoZqFN4dxUQFvXbUwF+d
-         QnQw==
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VIkU7sOMlV3fHaINlwJ0KYw7btBtSLgw5mO+qXWoUOw=;
+        b=Jmm7D6cRS6zPAgzomDFIyMJ+afNQc/L35rXtWrVxIPB0xDkGpo/668/Qb6CTzR8Mva
+         Aaz6+IsQYV+dHpvRGVptFXcOCjR6wvfgHUaTCD/RLlNfbNy+lzEzvS4QI31Bwzo5R8z7
+         r82nxp5MGpoWJBmk4hS6s0XWt7CQjHB0fjVD3G7Bs+RRndEmKVK/hY10sRG5dWuEPnhF
+         dW+XfNlc4+OJbMcx7CbXOJmfRiyR8SoQxSEE9g2dXvmOLXI5diciaP0ed3hrULJC3feW
+         vF21rTT9wpE7sPLKC4X4UITtaAyeZjNIqJ64Ulnj66EOWCEea2oCOG5hJqHeZkeB5dQt
+         RtCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/8q4ui2I0PbkckThln1KL8S7Gv3bNjUbhV3T4UKkFUc=;
-        b=PTmRQmwztklPSngdsmTnDzf6dMN53vLsS/tIL16+qlqA4yW7u3d1LZjDnsx74HCiJX
-         MzzIM8En80+3YdYUzrJMsUZ7V+CBlhaNbPREhqYyT0cGmXUPHCdrqYy+8/py09Vn7BPD
-         d6YK8ORBKdrqUMAS6WT6EQ6KczKM1hlSkGtMWHSpH8vK625nsU37PdAPBo/z++AyVa7a
-         gwmoyJJBNj2ydkKE4hfHXyy8fFVg8BddDJp4/df5turkOjBw9NubR1DOHtFJGbFKecnt
-         4GakYA9xDU2vSgQy/GaX91Hz++CCM/YljyykPVXwsgCZQTW4B+wHGk5RyhF/6GBT8IZ0
-         dA1w==
-X-Gm-Message-State: ACrzQf04iiEDEGLPPLPNnJpFpKSQ++AbSXSZ8h0I5DAWZ290csVrBrAD
-        d12uw/jxGBeGTntik7zrIH6QYdg083aGTqqZHtY=
-X-Google-Smtp-Source: AMsMyM4CrTJ6ZDzgjAcivdZiwngBUcCRna8HIl3nfrbF+OemFiWRHT+jPO25/qV6JOQykn/PXkrq60j+ldVtvrx/LGg=
-X-Received: by 2002:a05:6e02:13ca:b0:2fa:3064:2a81 with SMTP id
- v10-20020a056e0213ca00b002fa30642a81mr5123803ilj.19.1666027778867; Mon, 17
- Oct 2022 10:29:38 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VIkU7sOMlV3fHaINlwJ0KYw7btBtSLgw5mO+qXWoUOw=;
+        b=eXGQd0vBB/eAN2DiJ8GzYnQXaO8Xv77BNTMJkOZhLRhksklexw5tcB7J29xAbQobKZ
+         0ZpcsSvAiBx6+wogc1rgu+R/Oo9re2zVJqM9BjKZ/ICht8UMLNjyKcvtQUCk77C1TKNi
+         CfFLYTQM6g3hsPAigt72Y6zEOlbZXGMoaneIRRjNxmrbM3Y6Czj/u36xP6yKxZ4zv7b7
+         oCrUg05UhH/IT0bEjOf4lLICpJcLX7h2zAXCKqQLfg2iPf8j+Cw0RgaMqADiukIlmT36
+         pqAMdq9nietxxR0q2w24Ck4rOi3JSkdqht6MHmRwMrdurQbFqgjqsNJOuoNXFF3xbZDY
+         2RtQ==
+X-Gm-Message-State: ACrzQf0UTDAEMhIK18iCaaZ/Kaws7XsxRO+oIhelSzyCJG9c8HdRRnie
+        P//AGjoNASE7M5aRz0eRPPss+ctPYRdeng==
+X-Google-Smtp-Source: AMsMyM5jyy2WbvbjPaz7HjAuqsssAiAvwynoMnTFyb4G8cBccuREHHhkw139+BtRk/gDYP8/CXZJWA==
+X-Received: by 2002:a63:1609:0:b0:45c:7c1c:4e7d with SMTP id w9-20020a631609000000b0045c7c1c4e7dmr11482387pgl.265.1666028018299;
+        Mon, 17 Oct 2022 10:33:38 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id d11-20020a170902cecb00b00177fb862a87sm6985701plg.20.2022.10.17.10.33.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Oct 2022 10:33:37 -0700 (PDT)
+Date:   Mon, 17 Oct 2022 11:33:35 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "andersson@kernel.org" <andersson@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH V7 6/7] remoteproc: imx_rproc: request mbox channel later
+Message-ID: <20221017173335.GA121862@p14s>
+References: <20221014031037.1070424-1-peng.fan@oss.nxp.com>
+ <20221014031037.1070424-7-peng.fan@oss.nxp.com>
+ <20221014174903.GA4125124@p14s>
+ <DU0PR04MB94179580E85C888CDAA8EAA788299@DU0PR04MB9417.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20221016151256.3021729-1-lis8215@gmail.com> <20221016151256.3021729-3-lis8215@gmail.com>
- <895WJR.03DS0G5N9R0V1@crapouillou.net>
-In-Reply-To: <895WJR.03DS0G5N9R0V1@crapouillou.net>
-From:   Siarhei Volkau <lis8215@gmail.com>
-Date:   Mon, 17 Oct 2022 20:29:27 +0300
-Message-ID: <CAKNVLfY87P6jTG8g5L_S84MUXCfL1Z0GLgAdZqD4K6h6ubJb-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dmaengine: JZ4780: Add support for the JZ4755.
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB94179580E85C888CDAA8EAA788299@DU0PR04MB9417.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=BF=D0=BD, 17 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 12:34, Paul Cercue=
-il <paul@crapouillou.net>:
-> Can you verify that?
->
-> It should be pretty simple, if it has the bug you'll see I/O errors on
-> the SD card.
+On Mon, Oct 17, 2022 at 03:13:16AM +0000, Peng Fan wrote:
+> Hi Mathieu,
+> 
+> > Subject: Re: [PATCH V7 6/7] remoteproc: imx_rproc: request mbox channel
+> > later
+> > 
+> > On Fri, Oct 14, 2022 at 11:10:36AM +0800, Peng Fan (OSS) wrote:
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > >
+> > > It is possible that when remote processor crash, the communication
+> > > channel will be broken with garbage value in mailbox, such as when
+> > > Linux is issuing a message through mailbox, remote processor crashes,
+> > > we need free & rebuild the mailbox channels to make sure no garbage
+> > > value in mailbox channels.
+> > >
+> > > So move the request/free to start/stop for managing remote procesosr
+> > > in Linux, move to attach/detach for remote processor is out of control
+> > > of Linux.
+> > >
+> > > Previous, we just request mbox when attach for CM4 boot early before
+> > > Linux, but if mbox defer probe, remoteproc core will do resource
+> > > cleanup and corrupt resource table for later probe.
+> > >
+> > > So move request mbox ealier and still keep mbox request when attach
+> > > for self recovery case, but keep a check when request/free mbox.
+> > >
+> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > ---
+> > >  drivers/remoteproc/imx_rproc.c | 39
+> > > ++++++++++++++++++++++++++++++++--
+> > >  1 file changed, 37 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/remoteproc/imx_rproc.c
+> > > b/drivers/remoteproc/imx_rproc.c index 917e6db39572..1183de84a4c0
+> > > 100644
+> > > --- a/drivers/remoteproc/imx_rproc.c
+> > > +++ b/drivers/remoteproc/imx_rproc.c
+> > > @@ -84,6 +84,8 @@ struct imx_rproc_mem {
+> > >  #define ATT_CORE_MASK   0xffff
+> > >  #define ATT_CORE(I)     BIT((I))
+> > >
+> > > +static int imx_rproc_xtr_mbox_init(struct rproc *rproc); static void
+> > > +imx_rproc_free_mbox(struct rproc *rproc);
+> > >  static int imx_rproc_detach_pd(struct rproc *rproc);
+> > >
+> > >  struct imx_rproc {
+> > > @@ -357,6 +359,10 @@ static int imx_rproc_start(struct rproc *rproc)
+> > >  	struct arm_smccc_res res;
+> > >  	int ret;
+> > >
+> > > +	ret = imx_rproc_xtr_mbox_init(rproc);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > >  	switch (dcfg->method) {
+> > >  	case IMX_RPROC_MMIO:
+> > >  		ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
+> > > dcfg->src_mask, @@ -407,6 +413,8 @@ static int imx_rproc_stop(struct
+> > > rproc *rproc)
+> > >
+> > >  	if (ret)
+> > >  		dev_err(dev, "Failed to stop remote core\n");
+> > > +	else
+> > > +		imx_rproc_free_mbox(rproc);
+> > >
+> > >  	return ret;
+> > >  }
+> > > @@ -592,6 +600,22 @@ static void imx_rproc_kick(struct rproc *rproc,
+> > > int vqid)
+> > >
+> > >  static int imx_rproc_attach(struct rproc *rproc)  {
+> > > +	return imx_rproc_xtr_mbox_init(rproc); }
+> > > +
+> > > +static int imx_rproc_detach(struct rproc *rproc) {
+> > > +	struct imx_rproc *priv = rproc->priv;
+> > > +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
+> > > +
+> > > +	if (dcfg->method != IMX_RPROC_SCU_API)
+> > > +		return -EOPNOTSUPP;
+> > > +
+> > > +	if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id))
+> > > +		return -EOPNOTSUPP;
+> > > +
+> > > +	imx_rproc_free_mbox(rproc);
+> > > +
+> > >  	return 0;
+> > >  }
+> > >
+> > > @@ -610,6 +634,7 @@ static struct resource_table
+> > > *imx_rproc_get_loaded_rsc_table(struct rproc *rproc  static const struct
+> > rproc_ops imx_rproc_ops = {
+> > >  	.prepare	= imx_rproc_prepare,
+> > >  	.attach		= imx_rproc_attach,
+> > > +	.detach		= imx_rproc_detach,
+> > >  	.start		= imx_rproc_start,
+> > >  	.stop		= imx_rproc_stop,
+> > >  	.kick		= imx_rproc_kick,
+> > > @@ -720,6 +745,9 @@ static int imx_rproc_xtr_mbox_init(struct rproc
+> > *rproc)
+> > >  	struct device *dev = priv->dev;
+> > >  	struct mbox_client *cl;
+> > >
+> > > +	if (priv->tx_ch && priv->rx_ch)
+> > > +		return 0;
+> > > +
+> > 
+> > You did exactly the same things as in V6.  I asked you why this is needed and
+> > all you did is point me to the code in _probe(), which I can read on my own.
+> > 
+> 
+> Sorry for not wrote down clear.
+> 
+> > Again - why is this needed when we know it will be done in start() and
+> > attach()?
+> 
+> start() and attach() not able to handle mbox defer probe. So I add
 
-Well, the result is ambiguous:
+We are finally at the heart of the problem.  I had to go look at the
+implementation of imx_rproc_xtr_mbox_init() to understand that it can return
+-EPROBE_DEFER.  Had there been a comment in the code to highlight _why_ the if()
+condition is needed, I would have understood right away and all this waste of
+time avoided.
 
-Without that 'broken' flag: mmc works poorly, but becomes more or less
-stable when MMC clock downs to 6MHz (90% boots without errors).
-On the 12MHz MMC clock the issue doesn't appear in 50-70% cases.
-On the 24MHz MMC clock the device never boots up.
-
-However with the flag: MMC works stable on 24MHz MMC clock
-(boot issue observed only once), but if I increase MMC clock speed even
-a bit the problem appears oftenly ( >70% of cases).
-
-So, that flag definitely helps a lot, but the nature of the problem might b=
-e
-different.
-
-BR,
-Siarhei
+> the mbox requesting in probe to handle mbox defer probe, and add
+> a check when requesting mbox channel in start/attach. During first
+> time attach/start remote core, the imx_rproc_xtr_mbox_init just
+> return, because channel requested in probe flow. 
+> 
+> Since mbox requested in probe, why still add it in start() and attach()?
+> It is to support runtime stop and start(M4 is under control of Linux),
+> to support runtime detach(only for i.MX8QM/QXP attach recovery,
+> m4 out of control from linux) and attach.
+> 
+> Thanks,
+> Peng.
+> > 
+> > 
+> > >  	if (!of_get_property(dev->of_node, "mbox-names", NULL))
+> > >  		return 0;
+> > >
+> > > @@ -749,8 +777,15 @@ static void imx_rproc_free_mbox(struct rproc
+> > > *rproc)  {
+> > >  	struct imx_rproc *priv = rproc->priv;
+> > >
+> > > -	mbox_free_channel(priv->tx_ch);
+> > > -	mbox_free_channel(priv->rx_ch);
+> > > +	if (priv->tx_ch) {
+> > > +		mbox_free_channel(priv->tx_ch);
+> > > +		priv->tx_ch = NULL;
+> > > +	}
+> > > +
+> > > +	if (priv->rx_ch) {
+> > > +		mbox_free_channel(priv->rx_ch);
+> > > +		priv->rx_ch = NULL;
+> > > +	}
+> > >  }
+> > >
+> > >  static void imx_rproc_put_scu(struct rproc *rproc)
+> > > --
+> > > 2.37.1
+> > >
