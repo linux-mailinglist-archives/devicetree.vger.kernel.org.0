@@ -2,144 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B108B6013CC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 18:44:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD4F960145C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 19:11:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229622AbiJQQns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 12:43:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43584 "EHLO
+        id S230023AbiJQRLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 13:11:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230104AbiJQQnF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 12:43:05 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B726F54D
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 09:43:04 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id d26so26218922eje.10
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 09:43:04 -0700 (PDT)
+        with ESMTP id S229982AbiJQRLJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 13:11:09 -0400
+Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B936566A46;
+        Mon, 17 Oct 2022 10:11:08 -0700 (PDT)
+Received: by mail-il1-x12e.google.com with SMTP id q18so6132174ils.12;
+        Mon, 17 Oct 2022 10:11:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jfErmyZAWFClEhl0ayKENaiIcOOkglWFws7K0nbLI8s=;
-        b=YuN4qQfoF2e6dqSHS3GhLHb/376NeF5+Jco53igUcBLyO5ti7l9A4gPewJm8dn7UPY
-         3JPB2LigOAkU45CZSZTH603Lu+eam4JgCNjheQI7m8DAoVUCMhpm45xLkjcpQ/wDqaHz
-         Z8SfkC1aDXtOBuNlrsguluGrdbMpJ05GOQLEg=
+        bh=2R50tDa31QheH9PegEd+bVdQ3X/I4pMIoJ98xHZVENU=;
+        b=gbhcWFmvoOoHlrSw7fwphKzkgX4hOti+XwRW5+LaeaV09djLDTNgfQKCLEOakbXiUh
+         6f502qo/Bl7lANxZjkoEIkS7L5KK6Qf5i/U6ptkvGFke7HF/tAEqYL+qYQHS7OYkEdyh
+         ltYiMuLS+7IfdQmAVOErtTPxsRart4tGjR/3CZXAMPJws1qPEmu3zgtiZLljDS3tgRJQ
+         5Z2QHUPebEzye+DfcfYK0s2UQQ7Cx/NhjjpcFlsOd+MXD1ugiTuHb4teeP9eyac+Ja3n
+         MN1WcJoWDF8NdJ7J40fHi/+l1sfti3ibT4DKferFq6osjrScVwcR2ySvdivCjJixyzRO
+         qxfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jfErmyZAWFClEhl0ayKENaiIcOOkglWFws7K0nbLI8s=;
-        b=N2JafJKhcl92iKgy3FjXa5EteMoEEI0tQQ07z9dPs4SlOulMmySMS44XZspxcE/Txc
-         iBpen6YoxQle5L4Q9veFWsJWBX7mBjIhMxvP3xPS6hbR1wqnZ9cYqo82LgEAL57/uh0G
-         XcEM7bWQ+eM3c9uW3barfLF5vdGW7xLrPuMSGwiCBQMj07mdA2PjrkRmH3t9rcjI/voQ
-         FDfScKOUzRCUJQIMJL+gROPuqa9ekKI6bWWmm7uijYoJ2U72fmkugABa/4T8aBevnvhB
-         51naG1dJkXefLoqDKkOApORYFTgjb47Ij1Ay1aVSX1Xj9JiJKZDZ9mj2X7U8YnTRMABy
-         iJWw==
-X-Gm-Message-State: ACrzQf2NI+6s8D+Pf7GCHYgHXi6BMQjVkG6p79IfuIRIce5llhg/a6SP
-        kD8xMfPQyPUvyYh7+lUG5sPRZA==
-X-Google-Smtp-Source: AMsMyM5MTwEylTtgZG6px7FM0pHSFioXMA9CyVHtYoL4kufNNLTWNYIIIYw+AGduM16cdlExHZdjow==
-X-Received: by 2002:a17:906:9bd8:b0:78d:85f9:36ae with SMTP id de24-20020a1709069bd800b0078d85f936aemr9452638ejc.342.1666024982791;
-        Mon, 17 Oct 2022 09:43:02 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-95-244-101-110.retail.telecomitalia.it. [95.244.101.110])
-        by smtp.gmail.com with ESMTPSA id a24-20020a1709063a5800b0078128c89439sm6437388ejf.6.2022.10.17.09.43.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Oct 2022 09:43:02 -0700 (PDT)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     michael@amarulasolutions.com,
-        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [RFC PATCH v5 4/5] ARM: dts: stm32: add pin map for CAN controller on stm32f4
-Date:   Mon, 17 Oct 2022 18:42:30 +0200
-Message-Id: <20221017164231.4192699-5-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20221017164231.4192699-1-dario.binacchi@amarulasolutions.com>
-References: <20221017164231.4192699-1-dario.binacchi@amarulasolutions.com>
+        bh=2R50tDa31QheH9PegEd+bVdQ3X/I4pMIoJ98xHZVENU=;
+        b=kYdynQVBm5Yha0A/2HWC6K82gYtvp9XZkZRSBsmbFouUm09r3Bfo+Z7+r69+atFo5A
+         VLYtMzsTqaq88KJaA9Pq0I9ymJhlNSLl+X9cVKDP0s5RVWb/VOhalb1EpfmtF0qYCFI4
+         YkbCxBPabbIbI+g2G9uzsuZupOEhOYm2IO6D01I1I6IBtJsWtSeOSXicenJ+Vg6atBBP
+         gArNicynLmSAGbUKhVbQq9ovThUR0kW0wk1i3sjlW3YsiVWu59uV+QE4pkX4uZ0h2klT
+         ebUWPUyD+hzh7a0kcwfITUfKy2rxXeUOokYllQ6w03I6mjCcd+H4xo4RWfSiD3xCeIF/
+         fIgA==
+X-Gm-Message-State: ACrzQf2LD03iRkgN6P/4hFeg+kNaCsonoQzNl/cdztNifmDCXIAtR8Px
+        EMjMzBz5CKrYGGFZo818dv9LaqjaV5SURuocFNk=
+X-Google-Smtp-Source: AMsMyM5/Jdn558aL2rhxtSZ2OiG2HQGSp5Yfh5ExHu+Z1RngoeO5tlE0YXRAp2g3o24MQ3WEV+KDly8jDeAa2vFPnAs=
+X-Received: by 2002:a05:6e02:20ea:b0:2fc:318b:a952 with SMTP id
+ q10-20020a056e0220ea00b002fc318ba952mr5121906ilv.236.1666026668164; Mon, 17
+ Oct 2022 10:11:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20221016150110.3020451-1-lis8215@gmail.com> <20221016150110.3020451-5-lis8215@gmail.com>
+ <0S4WJR.4KB18PR21S9K1@crapouillou.net>
+In-Reply-To: <0S4WJR.4KB18PR21S9K1@crapouillou.net>
+From:   Siarhei Volkau <lis8215@gmail.com>
+Date:   Mon, 17 Oct 2022 20:10:56 +0300
+Message-ID: <CAKNVLfYEMwRC+4VuGcaENd1eTvbhWD9=uFDAhaz+1Fd8Aaqg_w@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] clk: Add Ingenic JZ4755 CGU driver
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pin configurations for using CAN controller on stm32f469-disco
-board. They are located on the Arduino compatible connector CN5 (CAN1)
-and on the extension connector CN12 (CAN2).
+=D0=BF=D0=BD, 17 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 12:24, Paul Cercue=
+il <paul@crapouillou.net>:
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> > +     [JZ4755_CLK_AIC] =3D {
+> > +             "aic", CGU_CLK_GATE,
+> > +             .parents =3D { JZ4755_CLK_I2S, -1, -1, -1 },
+>
+> Wrong parent here, should be JZ4755_CLK_EXT_HALF.
 
----
+I don't  agree, see Figure 20-13 in the JZ4755 PM.
 
-(no changes since v3)
+> Well it would be good to know...
 
-Changes in v3:
-- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
-- Remove a blank line.
-
-Changes in v2:
-- Remove a blank line.
-
- arch/arm/boot/dts/stm32f4-pinctrl.dtsi | 30 ++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-index 500bcc302d42..8a4d51f97248 100644
---- a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-@@ -448,6 +448,36 @@ pins2 {
- 					slew-rate = <2>;
- 				};
- 			};
-+
-+			can1_pins_a: can1-0 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 9, AF9)>; /* CAN1_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 8, AF9)>; /* CAN1_RX */
-+					bias-pull-up;
-+				};
-+			};
-+
-+			can2_pins_a: can2-0 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 5, AF9)>; /* CAN2_RX */
-+					bias-pull-up;
-+				};
-+			};
-+
-+			can2_pins_b: can2-1 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 12, AF9)>; /* CAN2_RX */
-+					bias-pull-up;
-+				};
-+			};
- 		};
- 	};
- };
--- 
-2.32.0
-
+Indeed, I will try to figure it out.
