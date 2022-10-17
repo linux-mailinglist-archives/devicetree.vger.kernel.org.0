@@ -2,72 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCEF160046B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 01:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A2D0600481
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 02:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbiJPXuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 19:50:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45848 "EHLO
+        id S229849AbiJQAUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 20:20:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229646AbiJPXuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 19:50:02 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3E341CB06;
-        Sun, 16 Oct 2022 16:50:00 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id r13so15999782wrj.11;
-        Sun, 16 Oct 2022 16:50:00 -0700 (PDT)
+        with ESMTP id S229972AbiJQAUg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 20:20:36 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39EDA13D1D;
+        Sun, 16 Oct 2022 17:20:35 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id p24-20020a9d6958000000b00661c528849eso4952264oto.9;
+        Sun, 16 Oct 2022 17:20:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :references:from:to:cc:subject:date:message-id:reply-to;
-        bh=hqOSIJYANytRgjreYBbHhrU6O3a0X+o3akj1sgVCeIg=;
-        b=PglFXOXth5k4R5xVSOxmYKOF0Hlkc1mvgZPlm3QC3dFnfHxmCijpO8b++RsH/WeUj4
-         mgQN+eP1uTn1wR7Kd+1WyoUBuTHXEZoVDZhs8hgfkQiWQY2QSxCp/qDI019pTcJs9Ghw
-         CPwC6TxgMLJ3tjdzSg0Gogg6LwTALMgbSSAVEDjGhWPnB6Fxs2HjJE9Xsp3slsCVqiJ0
-         sZYb2NxewbMIFEtTtD/WEOCbxWXQiZnln/iDSoXtSzMhSC+L8kNNBhlRrwMONFv7ARv3
-         A+ZdtU++tITX4YOr0WIyMlmH3ReuUsg0Pb7THD6f0H3VUeDmdrN4vYicYZ3jEH7BIzv5
-         WSzw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=9kvM+3fJBdQWLpyLziSUQTeFnCrd9UUj5XCixO7Xv7s=;
+        b=LahTpg9McgDs5JgGUv6uM1FVm+iHYG2rMm+XoOo/EjDguWm4Y2DbRLdtrV4e0/+LQv
+         DaqD+3fk9msZ95byEkERKCbxwSRYiD/+phrr+et/scXyXdD2KUnSBKSAd/nHzw0yg3VM
+         niYib1vsAh+iSH/5eHHEszQmHuusUuhIL6OnOotY0pq+DIvJLTpJp4eSnNfUGNbrOMWj
+         YeuyK6Yk63fXboAvwgSDpwWgb10FZrspMAtiD3IuVdl9EdUXR5NNymoj0CjPi+TFygD4
+         KQTZo4PNE27ZbTFPIQFELcvBRQuoFIP5vsaMEGxROvJ/pKnvx08uSeJLGXZaHcek/9Mk
+         wouQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :references:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hqOSIJYANytRgjreYBbHhrU6O3a0X+o3akj1sgVCeIg=;
-        b=Vrii43qzTgXXGDeIKda9see8VcHMWruDHRMzKClloaFrAcqTjB/9i2jSRQN7v0j/Z/
-         C7T1xorjSCEu8+OAVuFKS4WwhD6m4mqbQtIe8XhkMbicNjr6zvrwz0kCnGujrsLBh6y9
-         HF9u4xWnhNFc7qUoLe9P/QcMa8P/yNPngeS78gEjo2Cjplq1C0k+H8Ft/ZLvENygX48m
-         uu2Rb4fth601sY9WzBGsxK2jh4iuFjKZXT2j9rG5+XtiEVuVBYg2dg9lpae1wZAP2lsS
-         oUpK5AdmqoJ854XmU55Rb+plWgiJTa4+CO5g0TvtYjvAsW19iRwMYioUvJohgRFXLKzt
-         /GrA==
-X-Gm-Message-State: ACrzQf3q/DdFO12BbUQpOF4kFZJU8hQxCDs6uLuoXteNEJOyZslPz8Zb
-        kOitEBKhbA7f+t7DCIEyiOs=
-X-Google-Smtp-Source: AMsMyM7gwYq0L/dGmCChh7k/MqaoK5BVP38VC5+6H41ZEoCwrtqJoRpUc95LAC/AbeRuPp3LfRADSw==
-X-Received: by 2002:a5d:5149:0:b0:22e:8b85:3d7d with SMTP id u9-20020a5d5149000000b0022e8b853d7dmr4664169wrt.55.1665964199395;
-        Sun, 16 Oct 2022 16:49:59 -0700 (PDT)
-Received: from localhost (188.31.4.189.threembb.co.uk. [188.31.4.189])
-        by smtp.gmail.com with ESMTPSA id e14-20020a5d65ce000000b0022abcc1e3cesm7099822wrw.116.2022.10.16.16.49.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Oct 2022 16:49:58 -0700 (PDT)
-References: <20221016234335.904212-1-aidanmacdonald.0x0@gmail.com>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     jic23@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
-        lee.jones@linaro.org, sre@kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org
-Cc:     lars@metafoo.de, andy.shevchenko@gmail.com,
-        linus.walleij@linaro.org, brgl@bgdev.pl, michael@walle.cc,
-        samuel@sholland.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 00/13] Add support for AXP192 PMIC
-Date:   Mon, 17 Oct 2022 00:48:17 +0100
-In-reply-to: <20221016234335.904212-1-aidanmacdonald.0x0@gmail.com>
-Message-ID: <K1COyeb13LQEOP5ZE6KtxH963IahQXav@localhost>
+        bh=9kvM+3fJBdQWLpyLziSUQTeFnCrd9UUj5XCixO7Xv7s=;
+        b=12t+zI4SCZPSHjUZaA9bifjxmyF1ePfbRk++f+LgZyJ14ImNaThQNwqGeHzqjuf8z7
+         Jabud5lMEo6+yzt+Di1bXKvBx88xrLsPe83yImGikGan4+zHS1UHPAFA7LfxdCoA8kW5
+         ntQ8i364vxya6b9LAps55OEY/ezGttn6nQX9Z9oGBwaQFnXnkDhR0XiGVYcOD8qTE7yr
+         +7V9CUzyy5fnocPCUzYKZ5TEb9GTE+xWjCZ8cp7X5ETm1XPqyDurHf8wQNkgRZW7KheO
+         mxTzMBJ60A2NQzx3vhQBJ7zLtQPZ06lMRJVRMqvuoJtejy/HKbpdNIKvACEbx5IdxbQ8
+         qnJQ==
+X-Gm-Message-State: ACrzQf27uwYO61D8ZLelShcWlkmz4VGjm1siIXNhcPE71ZeOC5LBeNqC
+        TFNo1jeVbKG3HXBvO5fj6K8=
+X-Google-Smtp-Source: AMsMyM49bfbewVsg57/0mjRK5pHKRVhj1LRLI5kkSirPLIlfxbFFs+MweNQxxmib3f1EfxuF2GX1Sg==
+X-Received: by 2002:a05:6830:1343:b0:661:9598:6786 with SMTP id r3-20020a056830134300b0066195986786mr3804864otq.354.1665966034556;
+        Sun, 16 Oct 2022 17:20:34 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id m67-20020aca3f46000000b00350743ac8eesm3761627oia.41.2022.10.16.17.20.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Oct 2022 17:20:33 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <686b46bc-5986-abe5-8717-4c57d58d6581@roeck-us.net>
+Date:   Sun, 16 Oct 2022 17:20:31 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 1/2] ARM: dts: armada-xp: add interrupts for watchdog
+Content-Language: en-US
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+References: <20220211003257.2037332-1-chris.packham@alliedtelesis.co.nz>
+ <20220211003257.2037332-2-chris.packham@alliedtelesis.co.nz>
+ <87o839jw4p.fsf@BL-laptop>
+ <0308a842-efcb-d4a0-f17c-2b0bf12c9dfb@alliedtelesis.co.nz>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <0308a842-efcb-d4a0-f17c-2b0bf12c9dfb@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,16 +88,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/16/22 15:39, Chris Packham wrote:
+> Hi Gregory,
+> 
+> On 15/02/22 04:39, Gregory CLEMENT wrote:
+>> Hello Chris,
+>>
+>>> The first interrupt is for the regular watchdog timeout. Normally the
+>>> RSTOUT line will trigger a reset before this interrupt fires but on
+>>> systems with a non-standard reset it may still trigger.
+>>>
+>>> The second interrupt is for a timer1 which is used as a pre-timeout for
+>>> the watchdog.
+>>>
+>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>> Acked-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>>
+>> To keep bisectability this patch should be merged after the driver
+>> patch.
+>>
+>> Thanks,
+>>
+>> Gregory
+> 
+> The driver changes were merged a while back. Looks like your intention
+> was for this to go in via the watchdog tree but that never happened.
+> Could you take it through your tree now? Probably won't be until 6.2 now
+> but that's fine.
+> 
 
-Aidan MacDonald <aidanmacdonald.0x0@gmail.com> writes:
+We don't take any actual devicetree changes. Those need to be pushed through
+architecture/platform trees. Anything else would create never ending conflicts
+(and I strongly suspect that various maintainers would complain).
 
-> This series adds support for the AXP192 PMIC to the AXP20x MFD driver
-> framework, including support for regulators, ADCs, and AC/USB/battery
-> power supplies.
->
-> v6 is a resend of v5 from July -- the patches haven't changed at all
-> but I've rebased them on the latest git master branch.
+Guenter
 
-Whoops, forgot the link to v5. Here it is:
-
-https://lore.kernel.org/linux-iio/20220706101902.4984-1-aidanmacdonald.0x0@gmail.com/
