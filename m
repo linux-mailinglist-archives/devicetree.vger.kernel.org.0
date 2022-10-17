@@ -2,97 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 015B46010F6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 16:20:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92529601142
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 16:39:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230326AbiJQOU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 10:20:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37630 "EHLO
+        id S230431AbiJQOjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 10:39:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230314AbiJQOUY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 10:20:24 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1083F5B7B9;
-        Mon, 17 Oct 2022 07:20:21 -0700 (PDT)
-X-UUID: 9cac9a65c168484abf404c38ca669c74-20221017
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=SCTfi8EohP0/f/dHHu5qpABoBPiRJzFOeNfn7nLzrEY=;
-        b=ChQ48xbwQoffs2pVw5xsHQB1p2ZiyK7ymxsB2HU7eyz88Z0n1Nq5mp2NL6SJEK3CgdsUISZBnbGEctTjBg2oCDkR6mCmrRxklFgHU9ATCibStazGWULRldx2itReRLk6to58gKtL0PmwdFA38BAH+yvhcYE7dvcqF+Ke7+HjRZk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:a10657d5-d32c-45a8-bcb4-074bd6056c53,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:-5
-X-CID-META: VersionHash:39a5ff1,CLOUDID:18d80aa4-ebb2-41a8-a87c-97702aaf2e20,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 9cac9a65c168484abf404c38ca669c74-20221017
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <mengqi.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1120127280; Mon, 17 Oct 2022 22:20:15 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 17 Oct 2022 22:20:14 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Mon, 17 Oct 2022 22:20:13 +0800
-From:   Mengqi Zhang <mengqi.zhang@mediatek.com>
-To:     <chaotian.jing@mediatek.com>, <ulf.hansson@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <matthias.bgg@gmail.com>, <wenbin.mei@mediatek.com>
-CC:     <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Mengqi Zhang <mengqi.zhang@mediatek.com>
-Subject: [PATCH 2/2] dt-bingdings: mmc: Mediatek: add ICE clock
-Date:   Mon, 17 Oct 2022 22:20:07 +0800
-Message-ID: <20221017142007.5408-3-mengqi.zhang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221017142007.5408-1-mengqi.zhang@mediatek.com>
-References: <20221017142007.5408-1-mengqi.zhang@mediatek.com>
+        with ESMTP id S229738AbiJQOi7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 10:38:59 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EBFD659C0;
+        Mon, 17 Oct 2022 07:38:58 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id w18so25386388ejq.11;
+        Mon, 17 Oct 2022 07:38:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=71UDum2d0oKTyyrYpYR53saiIHSJtCoCDLAXfJhuh0c=;
+        b=YOUbjnCw6CQ+zeEfv3qNSDqY46R8PCIYzPoFfDBaZLucYbmypPvHxW50NxmaKxPp+v
+         3b1jxUGzTfRuKl4tahTyQrJZPRpQymz4LQy+1mJPTPt0p3gIruNxRxFe4zdEu+P1ttLE
+         2czHBIjRqa+BBLpesK3o5XgQGzymmWdILwZGmLFJoAaQ/KdzwOdvC1m4ySYZpxG41hqK
+         6l6avz8Fz9BD9VC7lvW3Kpd0i+44l4U9PxGOf0f/gj+Z7hCCWpNJZsXzq2EPRZ5E50s0
+         cQX7tqsZDolzzJ+UB91ZVbcB0YaGPWOqvF+vMcViRek0bcN/zWJSBfX9mN1kCwg1r/dx
+         /2Bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=71UDum2d0oKTyyrYpYR53saiIHSJtCoCDLAXfJhuh0c=;
+        b=OyGaeMtVU2KtXxPgG3cKQ4r3fpfaCtARReI0S3DX16X8aDMW8+dyNcV49MJxdootpN
+         slZGd5u1/1C/X2O+HcaP7WIYuNSlmS1yYlam8pVhOpJa7at2pRUY8mKbUjWoel8C2Nne
+         KZTOFuhTf9WoLI6qxszpyjltydlYvBx3/2qI+OZWFf9u4U0nt75Q/wN6Mf3Vfd6CeQ+Y
+         Ckd89bjqopggWhLD7KPb6UxYScHNQR9QKamxCCx480FfwtMFtq9gEL2BGIVNIF2ODCHn
+         lEr20ir34xqqE4kSGl5gP4X5tPQpeMoARZnKggzirPiErWx8byenna1+oQQMbTM7u6Aw
+         ex2Q==
+X-Gm-Message-State: ACrzQf0V1z5Scc/VOwYG4OVdAX+sa8AruA/O/81TqsERx1CgUxzQObmd
+        MDgU5Ot15CwLPi+OCnXtozU=
+X-Google-Smtp-Source: AMsMyM5B/fqBSYUN5FBCtfdzvZ77V3Tlw079HWU+uo6zYZQQL2kTw4bk3X3MK0XWuUtGmtvWbsdpIg==
+X-Received: by 2002:a17:906:dacd:b0:780:a90c:e144 with SMTP id xi13-20020a170906dacd00b00780a90ce144mr8882293ejb.153.1666017537079;
+        Mon, 17 Oct 2022 07:38:57 -0700 (PDT)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id x2-20020a50ba82000000b0044eb5b922bdsm7434353ede.24.2022.10.17.07.38.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Oct 2022 07:38:56 -0700 (PDT)
+Date:   Mon, 17 Oct 2022 16:38:54 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: display: simple-framebuffer: Support
+ system memory framebuffers
+Message-ID: <Y01o/ktQGO430tc6@orome>
+References: <20221007124946.406808-1-thierry.reding@gmail.com>
+ <20221007124946.406808-2-thierry.reding@gmail.com>
+ <44567457-2062-6e16-9a7f-c4ad23809ac9@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="oU+6EXuFJR8wOBj7"
+Content-Disposition: inline
+In-Reply-To: <44567457-2062-6e16-9a7f-c4ad23809ac9@suse.de>
+User-Agent: Mutt/2.2.7 (2022-08-07)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the binding for crypto clock of the Inline Crypto Engine
-of Mediatek SoCs.
 
-Signed-off-by: Mengqi Zhang <mengqi.zhang@mediatek.com>
----
- Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+--oU+6EXuFJR8wOBj7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-index d8e1e2e9adf2..f93d686e2911 100644
---- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-@@ -57,6 +57,7 @@ properties:
-       - description: peripheral bus clock gate (required for MT8192).
-       - description: AXI bus clock gate (required for MT8192).
-       - description: AHB bus clock gate (required for MT8192).
-+      - description: crypto clock used for data encrypt/decrypt (optional).
- 
-   clock-names:
-     minItems: 2
-@@ -69,6 +70,7 @@ properties:
-       - const: pclk_cg
-       - const: axi_cg
-       - const: ahb_cg
-+      - const: crypto
- 
-   interrupts:
-     description:
--- 
-2.25.1
+On Mon, Oct 10, 2022 at 11:37:37AM +0200, Thomas Zimmermann wrote:
+> Hi
+>=20
+> Am 07.10.22 um 14:49 schrieb Thierry Reding:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > In order to support framebuffers residing in system memory, allow the
+> > memory-region property to override the framebuffer memory specification
+> > in the "reg" property.
+>=20
+> What happens if both properties are present and they disagree with each
+> other?
+>=20
+> I understand that the framebuffer is behind 'memory-region', but does 're=
+g'
+> still contain device memory?  Do we need to acquire ownership from within
+> the driver?
 
+The intention is for both memory-region and reg properties to be
+mutually exclusive. I can't think of a scenario where you would need or
+want both.
+
+Note also the documentation for the memory-region property:
+
+|  memory-region:
+|    maxItems: 1
+|    description: Phandle to a node describing the memory to be used for the
+|      framebuffer. If present, overrides the "reg" property (if one exists=
+).
+
+Thierry
+
+--oU+6EXuFJR8wOBj7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNNaP4ACgkQ3SOs138+
+s6H7iw/9HTbPf+ms8rkbXYj+BazFfadfC6vbV0zPNK0f5t1IYUC8Dk0MYIwjdCAN
+KbSNIys+uh1EKjJeClsiJvSBLhrqrZVeVdqruxnLUx3kDYuIWvwJBcF4RJE/3SoG
+wS2nU80/E4q56dTqRyMxMYfwM86fnAFm26TxZul0Oa4prNc7KV+ixrQKybszACLa
+sAQ5F9FimcyngTFIspuT6v7a+rhS9H7uFjOKFQirfBw57aA7gsb2VMpH4UMOx77n
+UA9xa9XqRU9M3A6DC/W80XikkbBAK6eOCHrFIyaIM69KPnrdLhu40BbcqS7ol8Jw
+tkKRK3rO5FPQSGj1kV+oY9S8wE6p8lUl26Wh6HcLxZfIUH+SYP3AZ/TDIwX1LPiU
+7ETTkD5UJZRoTXt36FFt7dwGEiBpmbAuKwsa+M1zlTi5mnzOlqNzxmP7T0XpnDKQ
+QaF5wRp7yd+hrzrTOhq/XC4Nxih7dCDqG5Ige7EpY14NopzwXeiH0FKNXlq2Y0FD
+CnbxXPCl+Eitf2M8bCkn0n43LjxLpxEqJLUeM0ZyZTzBzu39wx4J2nyZX5KMUsCK
+lh3d1x5Z0nD99lNrIVlxPLwFkUw50gDwn3NiPcfzuAAOpmrcmpugtp3lMtIJ4hyf
+F9KSI+8HNSGujTApANyy6mvp+T8buDgv9VoOd4A85RhJhNIprkI=
+=jBYl
+-----END PGP SIGNATURE-----
+
+--oU+6EXuFJR8wOBj7--
