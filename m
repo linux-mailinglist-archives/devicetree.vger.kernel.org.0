@@ -2,175 +2,339 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB9D6600C20
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 12:17:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2DDB600C2B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 12:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230028AbiJQKQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 06:16:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55600 "EHLO
+        id S229786AbiJQKT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 06:19:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230231AbiJQKQJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 06:16:09 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4FE846D88;
-        Mon, 17 Oct 2022 03:16:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1666001764; x=1697537764;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-id:content-transfer-encoding:mime-version;
-  bh=T1yV5Wa/60lkxzki/9US5u4L6YoOZfe5PqLdhwEHxZk=;
-  b=xg4rEddj/8XllGB521H6dRHN90VQqj0WsqabZgdApWYHkwRO0DLsEGXF
-   r+CnwoT3JxvGRmqHWpZsTWcCcPFFIl+nJXJP3Ampf2GzPTCE/q2RKyP38
-   xUdZIGw8ytoSSbiE1Carg4CurL2HiDSUIGTrqqdr9QcZLXJqPy1KW103Q
-   Qy8Ja7Uq+ytcEee3mC2EWZwb3MJLw8X3TTUqlMy5q7VoNpOqQiy7WhoPu
-   24MMH7puwntw2XzfsblvW8SJgWCB/1qusf3bYrzdcogpDy034JAXw+Yuj
-   pUFdcN5tnHNyVBSDq+KNyk79b6jaQfkq9tuntbsXbT7XP70JHayJr0ms1
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.95,191,1661842800"; 
-   d="scan'208";a="182488828"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Oct 2022 03:16:03 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Mon, 17 Oct 2022 03:15:59 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12 via Frontend Transport; Mon, 17 Oct 2022 03:15:59 -0700
+        with ESMTP id S231255AbiJQKSz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 06:18:55 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AEC55F9B1;
+        Mon, 17 Oct 2022 03:18:52 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=idf17ch4DeJ4l6+pyRHHnbF8GWAOMJzuw+cE2TlYefXrZEkKn5aWOAWod/VWIOYip6SJTUSBNoBsoTHmmsyHRCoJ/Cp2md/f1sx1j3EzvO5svP04Xn9dNBolh9pm2WzVzoTKpEza4PAUizSuZf4abhgYTV6PlmbJToW83ODk1tUSTdcrZWz31Gm1pLb0MjJ83zJWy0EZVYk6CS0TvKdby5UTCFqL43av7qiZhOcfw7nFn/sAb8xZ1F/9ADYzTWhLMEYROtTyAVYDappbg1M5N5GeI8A0NuD9Vbp+OfV8Qiupc8xW/RnyEvTSXSpvoNkg2E5+IIrKm0Eom7UOCWIzmA==
+ b=XVjFo/W6lmm0qJUoa2ZOCZKlngko/beH3+w3BvYdjqnXbTRULh5PbWwxDKOyESLVrItmLk05EWrMir7dhJ1O4QTBnoi5x4b5eMafNs17PAN5L5Z0WetOx1Mi1335b7Oj+/ippTTeNlz3/bcDP08h5l97FfF2P/OoMr5vdR+wk9Z41s+PWFc0RVaFdY7uv8fIusg9Ecxr/rLxYX0Os7i+MLmEkpTmeXPtqKazZhXHiVV3/C+gjOG4AReEvpMYRHfykt9Ga3kyM6/dVVkB/l4QJOnazqHT1brYXZarS44caLRdsewraMUVCYbOUBShRfcZH2o9s/7++85jtULpKBapGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T1yV5Wa/60lkxzki/9US5u4L6YoOZfe5PqLdhwEHxZk=;
- b=PjRAC5KlqVoBe2RQ1ix1rK7NjPgbNwIiJymlPcgfumOQSpXxJCv1XffyBqIToMWn6Z8u5zos9Ir6a86ySRKiGFESDI+R0WVPFsfQWS5Lclh/C8IyTI677VGNyVarcmqWUm4lT1t7YoQrpuQegUNVSWrhqfZHjJHLT+Uy/yeKm0qjHYG4Q7ZnWitZinPO9Rqew6XEAU7N82dvTQMF9BmxHxJ399qKAUff0bvhtH/RH2Ze1I6aq4/+a2BNzbEmxqd0G++Wl02tBSutCjAuDRna8v3r2tO6eDOfHTHP8pg5wVreQPdC1YiLC8IYo/lJ3qnfpYaBpMEJFfxW4aN8DffRJg==
+ bh=Dvw62haEvEm7PwGkEGkITGhYHy+PYe7l7i7Uj6SNZjw=;
+ b=PwxG2G+JJHZYQbIUDzn+WRGnwGlBKLpwVhbd2oWeEGNl9/ZFerL2JXsxnHLqGI9Mysi2bI6mPzb4xJA5xaNVo5YuORMdtjybRO/VWpyR+aw2oAywvLaWBpxjM9BsBPuGWAmbhw9YtXpeNcUEWS24KUjsYqRuKDoC6IJhVXCKf2OZ5uJeCwwxyDk80BpDyx1qZLO3QRlX93AqV4KFem2LvoBI4XVq6HgbU3K9hPx3hAYiQm7okiYrmolygJBgWNEDSGW/b1hkEWWWazDeq5Rlr0G14t5NU5rsfz68seD9b6yHrD00WeqGEAMr/F/kj353XDXtWolmPSTdW2IPq6e1AQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T1yV5Wa/60lkxzki/9US5u4L6YoOZfe5PqLdhwEHxZk=;
- b=FdlMh/OnukC1MXp8grsbFJRhOw7JZJiHwyUt7NevUsy5CM4gVsE+MPiRqFTj1/9XwMBRZG3jnZSw1wq2IKy3Sd9UMtEDdJPfnGstrAqcxGGvKCkmwTCTz6LwKm+fWJNbSwPXbnc1HPxTkZdMY5GQcffJ/c6VzNspc/BV0srUZus=
-Received: from DM4PR11MB6479.namprd11.prod.outlook.com (2603:10b6:8:8c::19) by
- MW5PR11MB5882.namprd11.prod.outlook.com (2603:10b6:303:19e::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5723.26; Mon, 17 Oct 2022 10:15:55 +0000
-Received: from DM4PR11MB6479.namprd11.prod.outlook.com
- ([fe80::cf13:1785:f79d:9eb9]) by DM4PR11MB6479.namprd11.prod.outlook.com
- ([fe80::cf13:1785:f79d:9eb9%7]) with mapi id 15.20.5723.032; Mon, 17 Oct 2022
- 10:15:54 +0000
-From:   <Tudor.Ambarus@microchip.com>
-To:     <Mihai.Sain@microchip.com>, <robh+dt@kernel.org>,
-        <Eugen.Hristev@microchip.com>, <Claudiu.Beznea@microchip.com>,
-        <Nicolas.Ferre@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] ARM: dts: at91: sama7g5: fix signal name of pin PB2
-Thread-Topic: [PATCH] ARM: dts: at91: sama7g5: fix signal name of pin PB2
-Thread-Index: AQHY4hFxZ6EBeZdWQ0Cywu5hGH+yEQ==
-Date:   Mon, 17 Oct 2022 10:15:54 +0000
-Message-ID: <b79fb530-f3ba-cc09-1838-cc84ad37175f@microchip.com>
-References: <20221017083119.1643-1-mihai.sain@microchip.com>
-In-Reply-To: <20221017083119.1643-1-mihai.sain@microchip.com>
+ bh=Dvw62haEvEm7PwGkEGkITGhYHy+PYe7l7i7Uj6SNZjw=;
+ b=m77ctg6GtP1JUByaEPpqDwNJHGcEXYP3wJ2N5K1RqAx8jKL5ai5aLsobcGQQiZEphPYqs3kEM2fJBttEGhQ28fKikizqwHt9NRmdUIq6ZMXlR25By5W5/CEfT0DIAwf2/N9siViqFqY/VkmcVgLPvqPLDkKepmbVZh5jni2HJn4=
+Received: from DM6PR12MB3082.namprd12.prod.outlook.com (2603:10b6:5:11b::12)
+ by CY8PR12MB7657.namprd12.prod.outlook.com (2603:10b6:930:9d::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.26; Mon, 17 Oct
+ 2022 10:18:48 +0000
+Received: from DM6PR12MB3082.namprd12.prod.outlook.com
+ ([fe80::377f:69eb:dcb:3ea8]) by DM6PR12MB3082.namprd12.prod.outlook.com
+ ([fe80::377f:69eb:dcb:3ea8%6]) with mapi id 15.20.5723.026; Mon, 17 Oct 2022
+ 10:18:48 +0000
+From:   "Gupta, Nipun" <Nipun.Gupta@amd.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "saravanak@google.com" <saravanak@google.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "jgg@ziepe.ca" <jgg@ziepe.ca>, "jgg@nvidia.com" <jgg@nvidia.com>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "masahiroy@kernel.org" <masahiroy@kernel.org>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [RFC PATCH v4 1/8] dt-bindings: bus: add CDX bus device tree
+ bindings
+Thread-Topic: [RFC PATCH v4 1/8] dt-bindings: bus: add CDX bus device tree
+ bindings
+Thread-Index: AQHY34c5Cs6Z3QFBAEavcy1n9c9+Qa4N8EWAgARxhtA=
+Date:   Mon, 17 Oct 2022 10:18:48 +0000
+Message-ID: <DM6PR12MB308201A2C43733E80E7F218CE8299@DM6PR12MB3082.namprd12.prod.outlook.com>
+References: <20220803122655.100254-1-nipun.gupta@amd.com>
+ <20221014044049.2557085-1-nipun.gupta@amd.com>
+ <20221014044049.2557085-2-nipun.gupta@amd.com>
+ <20221014141717.GB1862711-robh@kernel.org>
+In-Reply-To: <20221014141717.GB1862711-robh@kernel.org>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-10-17T10:18:46Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=7ec0e9d4-d5a0-4a3f-a018-726b75a54627;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
+ header.d=none;dmarc=none action=none header.from=amd.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6479:EE_|MW5PR11MB5882:EE_
-x-ms-office365-filtering-correlation-id: 43781eee-0c7d-4949-95a5-08dab0289398
+x-ms-traffictypediagnostic: DM6PR12MB3082:EE_|CY8PR12MB7657:EE_
+x-ms-office365-filtering-correlation-id: 0b06de06-7ee1-4707-5811-08dab028fb22
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Mzu9NeNjQVsPJTYp+zeJFFFtqCrKupDLeE3szn9IdN08B7kZCf+NQ3W4+3HnWaSpwLf2eJC1mNxKSMDQwyCvd9wZQqmBlqeOWe38BX149I5y6bLmaH737kaTo9GOeJTFeUhdRDByi+JDj4mrpIuzJZa6NwzccGfMKlZVB5DzAW4wLk9gOcqWIR0bYG7jYWQM6UkTYcjw2qI8/Dyzvq+6nJsmHOY0/TDZk19g2RnuRB1mk2DOiCUS0WiV1oeYugTma3ncWa1frx9/rpBraTBmtaYm/annpU4b0SoTt4b/Lz1hMVWDN2G4xF1/y+7v4pfldpU86RoeJzKjnvAqFI5ci+gl1ImJQRvY/MjSgudMHOyfr/aV2VOVlux3PHyOeAVvermOAIAZYZ9aFgYaqkVPCKEfltwc19vS5Rzkm+11bbg5wh/S6Zd9zt0iY+32gJh0QpueJsuApqP5BAYT7JHbhAECrw9uG1yaL4qSk1EJ3o+JFjL8MHoRzBU3i4x/osn4DigTBdolMjP6v+M7su7kyuimVOLKbyWxAZiHx04+rc1LmIPvV1wT0bFTf+i8/yqZEggxoZVMfL923wam3LG6tPSk5RZ0NwgKQPQ/fRntGarqPEE8ykWiFobrOCEcV7sCYW1L1bC5eitRcQ/KSol6F9/DgoZo4zjp4Cmw7Ewz79LG9JXCMuyx61SFCdlnvy3x/5yGHsPswo+lTfi8JnYWry/mfnIl7CXLwVunsZCZt7vCmv+rTkbG9yFBADX2gI5na/z9U+N6oyeFE9R5xYRoCOcL0p1huy9vrujqBswfeWIX5h4+pmhUyALWGMD+8ib+QLY3XTGslxPKCswXC8i3rg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB6479.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(346002)(39860400002)(366004)(396003)(376002)(136003)(451199015)(31686004)(66556008)(66446008)(8676002)(66476007)(76116006)(110136005)(64756008)(316002)(6512007)(478600001)(6506007)(41300700001)(26005)(53546011)(186003)(71200400001)(2906002)(6486002)(5660300002)(2616005)(8936002)(36756003)(38070700005)(83380400001)(38100700002)(66946007)(91956017)(31696002)(122000001)(86362001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: XCNgJLIrRVoU/ewLzNjnRi0IRQBwKsUPjjUfWwX+fut6jUDG5eMwBUXHWEPFD0MnCSO6of1nkJaB0/+AHz5GL68m+llj0jzHW29Ho7Qu8UffqFF1j0YBH0XddRAhZjLn0VO27Zrt9MTDEOYHtPm8PCHM+Ztbv3weS74daatJSrAYJwWTngKui0tdoHNXetAshUL8t8UW2s1uwTIZ486wRNPVb3dgm1VAxW50CFd6aq+WvaVgO3fVO4BrS4Kv7qbN1JoxoWfqKYQT9zuTcQ/UjdWbNkzcaf4iLGKq0ktLMwE0giRih55XFfXL5jbh5/9eSz/S+ldtdxtpJHUkPJnVAg+jvr341lhomjTbMwqN49xWfsLxjnNU8khYzO6cOp6MrJAfgCgL7AFCJIMiL42qXxN3Jozr7GL8Nbfgp/oN0Ji+GTTXq2Wx700Tff930n8L1xhcqbumrPvlEcKp/vibyBVj5GCiB0f9u8GVIFs05EyvLiqaQ7HhdGp4amPcFYJDQzOkxRlzvT3AckS08bRJ/aRxCp6mG5Qbj5+96TiAqTWdvacAkYRTConX8RPGaUE2INfDdkGngGWFK/XnInnohqt8g0qQsT6pof4UMdniQSKyI3tHGjJt03fVaSBp0Fx6Ay+0fC0D4K0pTrWi9pPMyVBZrtVIGsMAScEvdtKT6rEb/0L+IMrmtHMk84O+bzyEzNQwOZnyjHmMx91vjqZNTWENqe94R1sUIxMTJbb2t5R3RXzHAo1W3j3jQgnSxxOE0UC7RPNUi8RPLCxlnVyQK/EbnXrVJ2uh3wWMjpiqO/M=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB3082.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(346002)(396003)(366004)(376002)(451199015)(6506007)(7696005)(2906002)(33656002)(8936002)(5660300002)(7406005)(53546011)(86362001)(52536014)(7416002)(9686003)(26005)(41300700001)(38070700005)(186003)(478600001)(4326008)(8676002)(64756008)(66446008)(966005)(71200400001)(45080400002)(66946007)(76116006)(66476007)(55016003)(66556008)(83380400001)(38100700002)(6916009)(54906003)(122000001)(316002);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QUNWODMyS3h3SzR5U3YzTU5zWVpCSzVDSHJnd24yZFQrRldCTWE3VmV2N2dI?=
- =?utf-8?B?QitWeDdtWWQ1SEs4L1FrMmtEVGtrdnBaRlVEYjlEaVFlOGlRbHdZK1FPN2lN?=
- =?utf-8?B?eTB4WHBHZHQ0eGJHcnlFWTVURTVKUnVGTFQyVGhsbEthdmdBajB3c2pRd3Yz?=
- =?utf-8?B?dXR6eXQ3YlJwRCtNYUtMZTVMNXZOYU0rZEJ4NmVXaTFaQzhiYkxkQzRMV1Vt?=
- =?utf-8?B?WTRCVVB4dURGMnJqM1c0UzVkKzJpUUhnUmYrd2t4QWlySkNVYVlBditjVTVr?=
- =?utf-8?B?UUpOSG8rbWhIVFRGSFlCK1hEaWswbHJuMnEwS3lSY2kwdEliWFpzOVV5WEVp?=
- =?utf-8?B?ZlAzUmdSQW1OMjg3RWdpZWt1d01SVUpaZnJTaUhTZVE1MmpCY2tiQ3N1eUgr?=
- =?utf-8?B?ZGU0S3g2UVVVZWtmaURwYUU1cFBmWUJYOVoxNnZrNldqQk9iLzNwSHBEeXh1?=
- =?utf-8?B?eUdaeS8zNmp5am56ZzArOXV3TDFUalJZMGhhR3dkRlhDVEhnODFlUEV3YWlv?=
- =?utf-8?B?VjlyRWUwbzZNVHByaDR1R05qK012Zzc2ZWo3Rm9FRnFmVVNzQVYrd0xRNUhM?=
- =?utf-8?B?OFFRak85bWZ5Mk9aREhORGlrY1NYNmpycy9TbWNuMGdXWHh2Z01MQ1hhUWhF?=
- =?utf-8?B?Y1Axb3p3SUlpSGQxRUczWnpGN0QwR2RmamNCVEtQUTNtdDNTQ2x1QTltaUdB?=
- =?utf-8?B?ZWVSYk9KNE95bUNENnlOamdWMVlXVXBhVVNxWndOZUJtL2tDV3E4WUNnU0Fr?=
- =?utf-8?B?T293eTdwajBHRFRjekZ1NWYwZFgvWUkvdFAyazFTcmFrblpCY2tBZFBNUEhE?=
- =?utf-8?B?S0lEbFBuRDFWSzZVLzZ5aWVHOGh6RzdoWDBDQlFzWCtON0JzLzNwa29YRlNo?=
- =?utf-8?B?dmxDQWZOSW1FL01sUVFUNUd6dDRaLy85dFcxZmw5bVQ2MU9VMW44KzUzOXRo?=
- =?utf-8?B?Qkp5SUlQTm5oUC8vTVVNaStGcUVWUjRCMjFDS0Nqa3ZkRjYvbTFTZmlIOW1L?=
- =?utf-8?B?bEZteUpaYzhWaVNycjZkQlphTlg4RG10QUkzWmhVd1h4NGdvakVISHR4WGs2?=
- =?utf-8?B?YWFyZUNkYW9NclNjT1pXdG91a1U2UUQxUmxIZXMzLzNzdEhvS0U5dmIrVUFh?=
- =?utf-8?B?akx0T3JBbzNpZ20vdHdMM0w2Q2pwZElTWVN5SUdCUGw4REFvV3o5NDJESHFW?=
- =?utf-8?B?eXIzSFV2QXpMYk1RNnpBNDVaMFU5UGsxbXpGa3RSRXhzc2k0bGJweEtUbVpm?=
- =?utf-8?B?aVBRTDBJbkJRTzlDcTF5N2JaS2J5c0Z2MGJRemk3a0RPNi9PSnpnQm82ZCty?=
- =?utf-8?B?cXBTTkJ3Qnd5OUJ3U054VE9CVXJUWTJtOUwxdHZ1blNtZWs4eW1EY0FLdXZ1?=
- =?utf-8?B?NWg3Z1E4NjUrZVN6aHp0NTJVUlpscmt0OVF2TTRGdVNJWkYwbGJGalZyMjg1?=
- =?utf-8?B?RFNBYitQSFEzS2dYZCtTZWR1QXdlQXoyMHh1MXlqQnhaRmhGU2ZSdVRlUFR5?=
- =?utf-8?B?ZXZ6L2NWdFpEejlzNG8rSDV3TjVyeWZEZ0hkcXZoN3V6ZHFLZHhaQVlFWXds?=
- =?utf-8?B?SmR4RjltTEhneThraVpKWk9kS21TQjVMeWxQMkxIRENFa2Q3RUpQV0UwYk1N?=
- =?utf-8?B?NjRFZmFnVTNRbDgzWEtlQmJWS0lsTnlOWHNOMkk2cGUxdDZIR1JWL3pxM21K?=
- =?utf-8?B?NUdDUm5mc2l0cEJsZS9HTTREM1RJM3lYdC9DUnErcG5UQlI4eHh5M0pUd2M5?=
- =?utf-8?B?cGZqTnpxRmpOelhKdWpna0xYNjhHbFp1Rk93cW5FcllHWERHMlBQZFc2TkFu?=
- =?utf-8?B?ZnRHL0JySDFpcGpjTEo2cFpCZkhWV3htTmQ3L20rdDZpeXpibW9KRHBlWXdj?=
- =?utf-8?B?cW1GS0VwSE9uS3RSYTYvUXUyZ05BaHpHY2RCVW05T0JoSXA4N2FsSUVhd1Jv?=
- =?utf-8?B?Z0tzR213SFBwM1pYUytWVldZcm4rQzFRVTROZmptbkVVOVhteDFrenNEYWZP?=
- =?utf-8?B?ZTV1d1JySnpRUnErazhodGFPa21Dc3BYamVkS1BkVm5GZjNqNVk5eWp0N2Jw?=
- =?utf-8?B?bGw2TmR6UDRzR1Z6RDh6Zmx4dElZK3dKc2lZT1ZpK2Zhb1VDTE5vZVZkWGlt?=
- =?utf-8?B?WVRjS1l0clNVVHQ2U0ZnblJNemdEMnNEYithRUxCeHFleDF5S3VrVFFCM1RI?=
- =?utf-8?B?bHc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3A0E13BE87042D4890C46AF30FFD2F95@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?MDxHAo3iEXNgaX3isT15GNwEYhsvwkmWOi2JbJw10SE1aoMkK8rJwvwR3Q1n?=
+ =?us-ascii?Q?O2dRvw3Ed0+XLv8R9SeyKcpAzfj+GfG2vvz0e6fAGm8pXmdKxQRXVsxoRT/q?=
+ =?us-ascii?Q?zep19/YwuXKz3WheUGZXFVCYEzxkTRmCcH/5J8ZBqsHQayl6+pGpRUGB20u4?=
+ =?us-ascii?Q?7TkvNbn+MtUwxPGwPV3ChNKVEpqidRYoN72uGzF1yF05PaNlk36xxxi2StpR?=
+ =?us-ascii?Q?jjY1Vi4isytQZ1S6X9CGfk4Q6wV6dKYOJpG+zURC9sPc0/ekA1KElFsdhzyg?=
+ =?us-ascii?Q?oCjhBym/N6vefGA6Tk75fnQtlIZyZWwOcC0aF0WIdD3Zbxrgfcr6EHIpQO1g?=
+ =?us-ascii?Q?STZ8iOpQsXcXD+EmpsyUjaleWqjuLtqDAtUKxMDHG75yiYei1IbmbGxS929D?=
+ =?us-ascii?Q?IDLwLerIHn3v6zAsOQTTzPSruR5rkVuXdibQGCqPsjRvv9TcnYtyID+KpaQ6?=
+ =?us-ascii?Q?qDTX1xxf8cqlIK7KSLcEpUVRUHfK0lHa1Fggfdzu5TJgNKzRRVFIMDw70EaH?=
+ =?us-ascii?Q?JEpvbbLtg2+j0Jn6slnwMy5bK/lDnXUXoqK7k/SEliBD6kl0D+dTd21HVJpB?=
+ =?us-ascii?Q?6rIoampYFFH4n4WPJHKTMqcKv0Mfzd5s9aUmbM/+ZSiAN4Trls8YEk343gLc?=
+ =?us-ascii?Q?kDG+o+dcLfI38LrHaCMo9ukDCUx9wbUZzG3eVyVH469NWtBzzNLvL28YTQW2?=
+ =?us-ascii?Q?mmoxl0zWGPThGPUC3+avy8sHl+tw/kjmnBKFHg7+qR9NHJ/C6eLa9iOsRytD?=
+ =?us-ascii?Q?ObywfHldNJR3hCDTvJTY6CE+lnEqnuYRoXm8/TXJba5ZCIbdQa2wOQKWzt5F?=
+ =?us-ascii?Q?qT5PvNvSQuRGT69tMTppEMWeNlXCCGYk5l2vgNJdm/Wjm+Td9QoplTbis85g?=
+ =?us-ascii?Q?+0LxM4eehJrQw+N3lmvvgk9kz5YEoU2OFOVKNdoiulIzglh5Uv3X7e1PTxfT?=
+ =?us-ascii?Q?7k/SINKgvuGq6EbcjZl/WKIcsvJ8sOiFuGwCOnkJh2xlej9NLujzMWAGS1Bz?=
+ =?us-ascii?Q?QfK36D0w4/ckEsJd8IElIG6iBIefOb2Q+YaUl8cCVTnmTVySK2oclUCrlzKO?=
+ =?us-ascii?Q?Ui11wfkNq7rcNchD14J7B/5e0O3bbl6H45lu628YiJfYe3RYS/dxS7Zkxtl4?=
+ =?us-ascii?Q?AfmW+f/cZMgwUoY8o/yGLbKsWzW8YzD+xnLnfmf2iTxD3svkUhkc9itclWSm?=
+ =?us-ascii?Q?0C8SwWbHmdTuzW1lqI3FP8XYCkxM24em7E0cKyr9v2bgLoshVppk6HGvzRIw?=
+ =?us-ascii?Q?AyLGv3fazXAiYVsTluHetO4ExLIjEUdmZAErJc/NeV4mJs0s47VsNpBU3y+C?=
+ =?us-ascii?Q?nwfQVcJDayMalPgj8K9iDxgHToLQ3lvxA9L62C7GBzkKw+PNmYFwoD6z35wp?=
+ =?us-ascii?Q?oN42Et5Om3gUVA1RJuhVQxbn2DoM2nLm90P0GtqdKfKhZjOweH3msMNMW7CK?=
+ =?us-ascii?Q?6lm+GoCwR9+UAtUDX8vPvwS43PRwAvbHAfRbDUtYmrD/stgC8/EdwcVPuiRQ?=
+ =?us-ascii?Q?5mmQA5NM72eR72h6Ny40NLvgOxTb7bUFZ9H8YjREjh17riTQuKnEzxya2cnf?=
+ =?us-ascii?Q?skUmEoDqcOBEXKDv+KI=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
+X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6479.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43781eee-0c7d-4949-95a5-08dab0289398
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Oct 2022 10:15:54.7151
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3082.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b06de06-7ee1-4707-5811-08dab028fb22
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Oct 2022 10:18:48.4233
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nf0tEGuvtAZYlN0AA1l0P0FPq7ZRs5TDaTj++7RHcLO2klpGrzF/6gEwdCJY68pnBRHMN0UL4CQMDFRshkv0VBmr3LOTj4ruxPUVKbIePtY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5882
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-userprincipalname: QGLLnhmUGN8p0e4gA/DabetNaZO74MBOXhl00Oi5I0RpBJ0jPn4bXLx8soSn1h6y
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7657
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMTAvMTcvMjIgMTE6MzEsIE1paGFpIFNhaW4gd3JvdGU6DQo+IFRoZSBzaWduYWwgbmFtZSBv
-ZiBwaW4gUEIyIHdpdGggZnVuY3Rpb24gRiBpcyBGTEVYQ09NMTFfSU8xDQo+IGFzIGl0IGlzIGRl
-ZmluZWQgaW4gdGhlIGRhdGFzaGVldC4NCj4gDQo+IEZpeGVzOiA3NTQwNjI5ZTJmYzcgKCJBUk06
-IGR0czogYXQ5MTogYWRkIHNhbWE3ZzUgU29DIERUIGFuZCBzYW1hN2c1LWVrIikNCj4gU2lnbmVk
-LW9mZi1ieTogTWloYWkgU2FpbiA8bWloYWkuc2FpbkBtaWNyb2NoaXAuY29tPg0KPiBBY2tlZC1i
-eTogTmljb2xhcyBGZXJyZSA8bmljb2xhcy5mZXJyZUBtaWNyb2NoaXAuY29tPg0KDQpSZXZpZXdl
-ZC1ieTogVHVkb3IgQW1iYXJ1cyA8dHVkb3IuYW1iYXJ1c0BtaWNyb2NoaXAuY29tPg0KDQo+IC0t
-LQ0KPiAgYXJjaC9hcm0vYm9vdC9kdHMvc2FtYTdnNS1waW5mdW5jLmggfCAyICstDQo+ICAxIGZp
-bGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1n
-aXQgYS9hcmNoL2FybS9ib290L2R0cy9zYW1hN2c1LXBpbmZ1bmMuaCBiL2FyY2gvYXJtL2Jvb3Qv
-ZHRzL3NhbWE3ZzUtcGluZnVuYy5oDQo+IGluZGV4IDRlYjMwNDQ1ZDIwNS4uNmU4N2YwZDRiOGZj
-IDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9zYW1hN2c1LXBpbmZ1bmMuaA0KPiAr
-KysgYi9hcmNoL2FybS9ib290L2R0cy9zYW1hN2c1LXBpbmZ1bmMuaA0KPiBAQCAtMjYxLDcgKzI2
-MSw3IEBADQo+ICAjZGVmaW5lIFBJTl9QQjJfX0ZMRVhDT002X0lPMAkJUElOTVVYX1BJTihQSU5f
-UEIyLCAyLCAxKQ0KPiAgI2RlZmluZSBQSU5fUEIyX19BRFRSRwkJCVBJTk1VWF9QSU4oUElOX1BC
-MiwgMywgMSkNCj4gICNkZWZpbmUgUElOX1BCMl9fQTIwCQkJUElOTVVYX1BJTihQSU5fUEIyLCA0
-LCAxKQ0KPiAtI2RlZmluZSBQSU5fUEIyX19GTEVYQ09NMTFfSU8wCQlQSU5NVVhfUElOKFBJTl9Q
-QjIsIDYsIDMpDQo+ICsjZGVmaW5lIFBJTl9QQjJfX0ZMRVhDT00xMV9JTzEJCVBJTk1VWF9QSU4o
-UElOX1BCMiwgNiwgMykNCj4gICNkZWZpbmUgUElOX1BCMwkJCQkzNQ0KPiAgI2RlZmluZSBQSU5f
-UEIzX19HUElPCQkJUElOTVVYX1BJTihQSU5fUEIzLCAwLCAwKQ0KPiAgI2RlZmluZSBQSU5fUEIz
-X19SRjEJCQlQSU5NVVhfUElOKFBJTl9QQjMsIDEsIDEpDQo+IA0KDQotLSANCkNoZWVycywNCnRh
-DQoNCg==
+[AMD Official Use Only - General]
+
+
+
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Friday, October 14, 2022 7:47 PM
+> To: Gupta, Nipun <Nipun.Gupta@amd.com>
+> Cc: krzysztof.kozlowski+dt@linaro.org; gregkh@linuxfoundation.org;
+> rafael@kernel.org; eric.auger@redhat.com; alex.williamson@redhat.com;
+> cohuck@redhat.com; Gupta, Puneet (DCG-ENG) <puneet.gupta@amd.com>;
+> song.bao.hua@hisilicon.com; mchehab+huawei@kernel.org; maz@kernel.org;
+> f.fainelli@gmail.com; jeffrey.l.hugo@gmail.com; saravanak@google.com;
+> Michael.Srba@seznam.cz; mani@kernel.org; yishaih@nvidia.com;
+> jgg@ziepe.ca; jgg@nvidia.com; robin.murphy@arm.com; will@kernel.org;
+> joro@8bytes.org; masahiroy@kernel.org; ndesaulniers@google.com; linux-arm=
+-
+> kernel@lists.infradead.org; linux-kbuild@vger.kernel.org; linux-
+> kernel@vger.kernel.org; devicetree@vger.kernel.org; kvm@vger.kernel.org;
+> okaya@kernel.org; Anand, Harpreet <harpreet.anand@amd.com>; Agarwal,
+> Nikhil <nikhil.agarwal@amd.com>; Simek, Michal <michal.simek@amd.com>;
+> Radovanovic, Aleksandar <aleksandar.radovanovic@amd.com>; git (AMD-Xilinx=
+)
+> <git@amd.com>
+> Subject: Re: [RFC PATCH v4 1/8] dt-bindings: bus: add CDX bus device tree
+> bindings
+>=20
+> Caution: This message originated from an External Source. Use proper caut=
+ion
+> when opening attachments, clicking links, or responding.
+>=20
+>=20
+> On Fri, Oct 14, 2022 at 10:10:42AM +0530, Nipun Gupta wrote:
+> > This patch adds a devicetree binding documentation for CDX
+> > bus.
+>=20
+> Please read submitting-patches.rst and what it says about commit
+> messages.
+
+Thanks for pointing. I had a look at the file and will update accordingly
+
+>=20
+> >
+> > Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
+> > ---
+> >  .../devicetree/bindings/bus/xlnx,cdx.yaml     | 65 +++++++++++++++++++
+> >  MAINTAINERS                                   |  6 ++
+> >  2 files changed, 71 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
+> b/Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
+> > new file mode 100644
+> > index 000000000000..984ff65b668a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
+> > @@ -0,0 +1,65 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id:
+> https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevice=
+tre
+> e.org%2Fschemas%2Fbus%2Fxlnx%2Ccdx.yaml%23&amp;data=3D05%7C01%7Cnip
+> un.gupta%40amd.com%7C16a836a178fa4e373c9308daadeecd32%7C3dd8961f
+> e4884e608e11a82d994e183d%7C0%7C0%7C638013538406495866%7CUnknow
+> n%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haW
+> wiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3D44F%2Bw51YMeCyE78g
+> 3EmevxqYx%2FybbeKdlkDv1X6XDcM%3D&amp;reserved=3D0
+> > +$schema:
+> https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevice=
+tre
+> e.org%2Fmeta-
+> schemas%2Fcore.yaml%23&amp;data=3D05%7C01%7Cnipun.gupta%40amd.com%
+> 7C16a836a178fa4e373c9308daadeecd32%7C3dd8961fe4884e608e11a82d994e
+> 183d%7C0%7C0%7C638013538406495866%7CUnknown%7CTWFpbGZsb3d8eyJ
+> WIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C
+> 3000%7C%7C%7C&amp;sdata=3DFPADx3bdmJg%2BfnEs%2BUtNTMPo3U1aiX3wv
+> w57EQvleK4%3D&amp;reserved=3D0
+> > +
+> > +title: AMD CDX bus controller
+> > +
+> > +description: |
+> > +  CDX bus controller detects CDX devices using CDX firmware and
+> > +  add those to cdx bus. The CDX bus manages multiple FPGA based
+> > +  hardware devices, which can support network, crypto or any other
+> > +  specialized type of devices. These FPGA based devices can be
+> > +  added/modified dynamically on run-time.
+> > +
+> > +  All devices on the CDX bus will have a unique streamid (for IOMMU)
+> > +  and a unique device ID (for MSI) corresponding to a requestor ID
+> > +  (one to one associated with the device). The streamid and deviceid
+> > +  are used to configure SMMU and GIC-ITS respectively.
+> > +
+> > +  iommu-map property is used to define the set of stream ids
+> > +  corresponding to each device and the associated IOMMU.
+> > +
+> > +  The MSI writes are accompanied by sideband data (Device ID).
+> > +  The msi-map property is used to associate the devices with the
+> > +  device ID as well as the associated ITS controller.
+> > +
+> > +maintainers:
+> > +  - Nipun Gupta <nipun.gupta@amd.com>
+> > +  - Nikhil Agarwal <nikhil.agarwal@amd.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: xlnx,cdxbus-controller-1.0
+>=20
+> Where does 1.0 come from?
+
+This came up in internal review comment, but seems that there is no need fo=
+r
+having the controller versioning. We will remove in the next set of patches=
+.
+
+>=20
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  iommu-map: true
+> > +
+> > +  msi-map: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - iommu-map
+> > +  - msi-map
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    soc {
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>;
+> > +
+> > +        cdx: cdx@4000000 {
+>=20
+> bus@...
+
+Sure. Will update.
+
+Thanks,
+Nipun
+
+>=20
+> > +            compatible =3D "xlnx,cdxbus-controller-1.0";
+> > +            reg =3D <0x00000000 0x04000000 0 0x1000>;
+> > +            /* define map for RIDs 250-259 */
+> > +            iommu-map =3D <250 &smmu 250 10>;
+> > +            /* define msi map for RIDs 250-259 */
+> > +            msi-map =3D <250 &its 250 10>;
+> > +        };
+> > +    };
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index f5ca4aefd184..5f48f11fe0c3 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -935,6 +935,12 @@ S:       Supported
+> >  F:   drivers/crypto/ccp/
+> >  F:   include/linux/ccp.h
+> >
+> > +AMD CDX BUS DRIVER
+> > +M:   Nipun Gupta <nipun.gupta@amd.com>
+> > +M:   Nikhil Agarwal <nikhil.agarwal@amd.com>
+> > +S:   Maintained
+> > +F:   Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
+> > +
+> >  AMD CRYPTOGRAPHIC COPROCESSOR (CCP) DRIVER - SEV SUPPORT
+> >  M:   Brijesh Singh <brijesh.singh@amd.com>
+> >  M:   Tom Lendacky <thomas.lendacky@amd.com>
+> > --
+> > 2.25.1
+> >
+> >
