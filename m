@@ -2,117 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4A3860159D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 19:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDA326015F3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 20:08:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbiJQRoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 13:44:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52680 "EHLO
+        id S230483AbiJQSIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 14:08:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229762AbiJQRoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 13:44:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B7BC73913;
-        Mon, 17 Oct 2022 10:43:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DCD42611EC;
-        Mon, 17 Oct 2022 17:43:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E83FC433D7;
-        Mon, 17 Oct 2022 17:43:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666028634;
-        bh=mlm9IawCUv6HCW+CtDSEE4DUxF4ycNCkp5t/60ov5ks=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=rH6gqJ7gGnfHcA9f4RJyFi6GUm6w35nBRIbgq6Z59k3kPJWB/wacn25YApmKmSAtM
-         8i1NMsjU2TifnnkwPZ00/lt4UVfn4mDfFt+mlSKZN5iiXKlIx5OhkCuXBP0H/uB75s
-         W/q83Cet8180jYfhiH1dDdmNfwE/LIKOb+du7H/Eq/4iXl3STcK75Xk2b0H1qVGGqv
-         fW6tgFvKZeegeEbQcHwGxIyTFVKn2B3pQt7eVAT4Mh0qgdLtJErV5+d9CKvqU3oBLc
-         oxxfS2VreNkzuzAH9/78EuYXOO040WwQ+YkHULYILrt3mDbCF8d5y6e9hDCCAFMDtk
-         aYOfiOnxnCwoQ==
-Date:   Mon, 17 Oct 2022 18:44:19 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, lee.jones@linaro.org, sre@kernel.org,
-        lgirdwood@gmail.com, broonie@kernel.org, lars@metafoo.de,
-        andy.shevchenko@gmail.com, linus.walleij@linaro.org, brgl@bgdev.pl,
-        michael@walle.cc, samuel@sholland.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 00/13] Add support for AXP192 PMIC
-Message-ID: <20221017184419.62d365c1@jic23-huawei>
-In-Reply-To: <20221016234335.904212-1-aidanmacdonald.0x0@gmail.com>
-References: <20221016234335.904212-1-aidanmacdonald.0x0@gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S230464AbiJQSIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 14:08:00 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDD0F74B8C;
+        Mon, 17 Oct 2022 11:07:59 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id h203so9785958iof.1;
+        Mon, 17 Oct 2022 11:07:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QEOWtVNjYdH9YkaPM5vlZiYdAHpFwckF9QtAFSfsGqA=;
+        b=pKRP1zgd6Q4k0q1nFaZ4ByQLmGLR4yopgzx4PRvBUNcappOfoWqE4JZhudsG0GffKG
+         vk2i4pydG1QSnz5rfF6kEAKjzYByjxFgEClxI6yu5E6GHDNa9k0sC+vqvaewVhWFSFuv
+         2ryvlMbrazWuTubDcOAMvD8gia7zy0a94rI8DE/8ycz1jRGQJ1peutbYG0Inm+WDJQnl
+         AZKSDEsamQlwcjgkUbBWrJHqS6KvIaHJMF+gZSPGX4DJrfDzySSPuAjTXaLnS2Hq+YN5
+         mETENz3PpTRUVLEbo3ZR+drpeA/6u2mAeDDhKYuWuNt/yKsiPWnyMz3jxWJ3aMaZS1pw
+         8Rog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QEOWtVNjYdH9YkaPM5vlZiYdAHpFwckF9QtAFSfsGqA=;
+        b=te0fAfPquR84XlIMquZkO4+CRpEmPmHdnhsMSDLd0I6b5GeHeizTzDOyFOfQ/FCF1D
+         GCitoaz/9iR/9HXVHluEHb2MODS8PjOmBEL1eb+ZvonU+RLGCY4rZFU7n/NYLVZyeXDZ
+         05eW2E26dCrVVTu7SmE/AAjkFzBT1y0XHnM1g7JwL8do3YbRN4YBN6KNg6LTV2smN/jF
+         t5TxWRfmbilOTiJRR4AvFRI2/itIu6/QXdUnCBBMWfYvQIdurIu80sGVowlFzURZXj2u
+         YBTa/2GycUs7sEbtQFXHgcXamPlsGCZVD95IzHiAJh2csFYRgUQd8+rbHmHWN1zqkHyF
+         cXtQ==
+X-Gm-Message-State: ACrzQf1b29Z7tXmnJwc2FD3ajfUSenyK0DdLKeFt3icPjY2nxx6YhRBj
+        ahd+gk9AOm86ZtZ+SonSOjKKM3HuiC7Xp/JkFLE=
+X-Google-Smtp-Source: AMsMyM77udb/S0MFXl+h+5pev1FZzF+2DS+r+HaH7gx3h1Jnzv0Dg4P2eFjll2WthNs/nHDpoV70jmtvXekovGsFHRk=
+X-Received: by 2002:a6b:6716:0:b0:6bc:113c:22a2 with SMTP id
+ b22-20020a6b6716000000b006bc113c22a2mr4946988ioc.12.1666030079215; Mon, 17
+ Oct 2022 11:07:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221016150110.3020451-1-lis8215@gmail.com> <20221016150110.3020451-5-lis8215@gmail.com>
+ <0S4WJR.4KB18PR21S9K1@crapouillou.net> <CAKNVLfYEMwRC+4VuGcaENd1eTvbhWD9=uFDAhaz+1Fd8Aaqg_w@mail.gmail.com>
+ <M0RWJR.TI6Q9ATD37DF3@crapouillou.net>
+In-Reply-To: <M0RWJR.TI6Q9ATD37DF3@crapouillou.net>
+From:   Siarhei Volkau <lis8215@gmail.com>
+Date:   Mon, 17 Oct 2022 21:07:47 +0300
+Message-ID: <CAKNVLfbbAaNdhWDo10XrUtyCM4R5E1CidC+TTQt8tUYbBU93qw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] clk: Add Ingenic JZ4755 CGU driver
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Oct 2022 00:43:22 +0100
-Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
+=D0=BF=D0=BD, 17 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 20:24, Paul Cercue=
+il <paul@crapouillou.net>:
+>
+>
+>
+> Le lun., oct. 17 2022 at 20:10:56 +0300, Siarhei Volkau
+> <lis8215@gmail.com> a =C3=A9crit :
+> > =D0=BF=D0=BD, 17 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 12:24, Paul Ce=
+rcueil
+> > <paul@crapouillou.net>:
+> >
+> >>  > +     [JZ4755_CLK_AIC] =3D {
+> >>  > +             "aic", CGU_CLK_GATE,
+> >>  > +             .parents =3D { JZ4755_CLK_I2S, -1, -1, -1 },
+> >>
+> >>  Wrong parent here, should be JZ4755_CLK_EXT_HALF.
+> >
+> > I don't  agree, see Figure 20-13 in the JZ4755 PM.
+>
+> 20-13 describes the I2S clock, no?
 
-> This series adds support for the AXP192 PMIC to the AXP20x MFD driver
-> framework, including support for regulators, ADCs, and AC/USB/battery
-> power supplies.
-> 
-> v6 is a resend of v5 from July -- the patches haven't changed at all
-> but I've rebased them on the latest git master branch.
+See 20.4.9 Serial Audio Clocks and Sampling Frequencies.
+It stated that: "For internal CODEC ... CODEC needs a 12MHz
+clock from CPM called SYS_CLK ...", but SYS_CLK is described
+only in the I2S Controller section. I assume it is the same clock.
 
-Hi Aidan,
+>
+> AIC clock's parent is EXT/2 according to the diagram in 8.2.2.
+>
 
-Lee has recently expressed that he keen to take as much of these sorts
-of series as possible via the various subsystem trees.
+It's a bit cryptic manual, who knows how it's done in the HW.
+I observed that codec runs on a desired sample rate only when PLL
+equals 432 or 216 MHz, but SYS_CLK is definitely configured to be
+12MHz - from EXTCLK. On other PLL frequencies it is lower by
+2-4% than expected. That isn't observed on JZ4725B.
 
-As such, it is useful to call out in the cover letter of such a series
-if this can be done.  For example, patch 9 (last IIO one) can't be
-applied without defines in patch 6 (I think).  Thus I'm assuming Lee
-will do an immutable branch with at least those patches on it.
-
-Perhaps worth expressing if that is also the case for the power
-and regulator subsystem patches?
-
-Thanks,
-
-Jonathan
-
-
-> 
-> Aidan MacDonald (13):
->   dt-bindings: mfd: add bindings for AXP192 MFD device
->   dt-bindings: iio: adc: axp209: Add AXP192 compatible
->   dt-bindings: power: supply: axp20x: Add AXP192 compatible
->   dt-bindings: power: axp20x-battery: Add AXP192 compatible
->   mfd: axp20x: Add support for AXP192
->   regulator: axp20x: Add support for AXP192
->   iio: adc: axp20x_adc: Minor code cleanups
->   iio: adc: axp20x_adc: Replace adc_en2 flag with adc_en2_mask field
->   iio: adc: axp20x_adc: Add support for AXP192
->   power: supply: axp20x_usb_power: Add support for AXP192
->   power: axp20x_battery: Add constant charge current table
->   power: axp20x_battery: Support battery status without fuel gauge
->   power: axp20x_battery: Add support for AXP192
-> 
->  .../bindings/iio/adc/x-powers,axp209-adc.yaml |  18 +
->  .../bindings/mfd/x-powers,axp152.yaml         |   1 +
->  .../x-powers,axp20x-battery-power-supply.yaml |   1 +
->  .../x-powers,axp20x-usb-power-supply.yaml     |   1 +
->  drivers/iio/adc/axp20x_adc.c                  | 356 ++++++++++++++++--
->  drivers/mfd/axp20x-i2c.c                      |   2 +
->  drivers/mfd/axp20x.c                          | 141 +++++++
->  drivers/power/supply/axp20x_battery.c         | 142 ++++++-
->  drivers/power/supply/axp20x_usb_power.c       |  84 ++++-
->  drivers/regulator/axp20x-regulator.c          | 100 ++++-
->  include/linux/mfd/axp20x.h                    |  84 +++++
->  11 files changed, 856 insertions(+), 74 deletions(-)
-> 
-
+> >>  Well it would be good to know...
+> >
+> > Indeed, I will try to figure it out.
+>
+> Cheers,
+> -Paul
+>
+>
