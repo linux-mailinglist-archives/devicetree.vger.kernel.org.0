@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D462F6017A4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 21:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A46A60178B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 21:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231262AbiJQT1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 15:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46440 "EHLO
+        id S231200AbiJQT00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 15:26:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231357AbiJQT0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 15:26:40 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAB857757B;
-        Mon, 17 Oct 2022 12:26:05 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29HJPcUG007828;
+        with ESMTP id S230483AbiJQT0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 15:26:18 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1388218B30;
+        Mon, 17 Oct 2022 12:26:04 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29HJPctN017214;
         Mon, 17 Oct 2022 14:25:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
         s=ti-com-17Q1; t=1666034738;
-        bh=wCcPCuvaCg+ey7MRHCWFhkNdrMbGlF3epBK7kwiZVOg=;
+        bh=gJnlZ3gu7fn/Vfuey53wcldGkX1GM1+DM6mfFO9jJeo=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Bzzwpu6RzaxHjRDj4RJ9KxaRT65GTWw5gfJJDcfuf1EgaFIRK6ezcatbx6gXrRViY
-         4Jc99gQ5y7MBhWi2ah7nbwORzEObbRF8yYiEjGQrHZR33J9PKi9mY4UixN6cmbjDhI
-         ZUbT0kXr69y2AkEOzBy7Oe22RzBawlLqrhCiWLr0=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29HJPbT9120645
+        b=cOtXbLOtibVGV6o6Sdkh/v00yuNc1JqSKwAaWwP1LCBDMqmyBa/L4PdCJRuqZVG4s
+         hKklBcRyNNT/yzAR0kud8iu8DGkj9UwkW3m92kNJwCUxscMsXlxrwYqMCuKYY8POi9
+         1mtXPxO3BVGo1528M5ek75ZmWbaBxg2mumeLkliA=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29HJPcpf026089
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
         Mon, 17 Oct 2022 14:25:38 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 17
- Oct 2022 14:25:37 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2022 14:25:38 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Mon, 17 Oct 2022 14:25:37 -0500
+ Frontend Transport; Mon, 17 Oct 2022 14:25:38 -0500
 Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29HJPWXQ026106;
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29HJPWXR026106;
         Mon, 17 Oct 2022 14:25:37 -0500
 From:   Andrew Davis <afd@ti.com>
 To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
@@ -47,9 +47,9 @@ To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 CC:     Andrew Davis <afd@ti.com>
-Subject: [PATCH 09/10] arm64: dts: ti: k3-am64: Enable MCAN nodes at the board level
-Date:   Mon, 17 Oct 2022 14:25:31 -0500
-Message-ID: <20221017192532.23825-10-afd@ti.com>
+Subject: [PATCH 10/10] arm64: dts: ti: k3-am64: Enable GPMC and ELM nodes at the board level
+Date:   Mon, 17 Oct 2022 14:25:32 -0500
+Message-ID: <20221017192532.23825-11-afd@ti.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20221017192532.23825-1-afd@ti.com>
 References: <20221017192532.23825-1-afd@ti.com>
@@ -66,81 +66,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MCAN nodes defined in the top-level AM64x SoC dtsi files are incomplete
-and will not be functional unless they are extended with pinmux
-information.
+The GPMC node defined in the top-level AM64x SoC dtsi files are incomplete
+and will not be functional unless it is extended with pinmux information.
 
-As the pinmux is only known at the board integration level, these
-nodes should only be enabled when provided with this information.
+As the pinmux is only known at the board integration level, this node
+should only be enabled when provided with this information.
 
-Disable the MCAN nodes in the dtsi files and only enable the ones that
-are actually pinned out on a given board.
+Disable the GPMC node in the dtsi file. Since the ELM is made to work
+with the GPMC, disable it too.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 2 ++
- arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 2 ++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 8 --------
  arch/arm64/boot/dts/ti/k3-am642-sk.dts   | 8 --------
- 3 files changed, 4 insertions(+), 8 deletions(-)
+ 3 files changed, 2 insertions(+), 16 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index 7ea07f7fe5a2..d6218038055a 100644
+index d6218038055a..c96df4b9b3d7 100644
 --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
 +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -1326,6 +1326,7 @@ main_mcan0: can@20701000 {
- 			     <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "int0", "int1";
- 		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+@@ -1381,6 +1381,7 @@ gpmc0: memory-controller@3b000000 {
+ 		#interrupt-cells = <2>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
 +		status = "disabled";
  	};
  
- 	main_mcan1: can@20711000 {
-@@ -1340,6 +1341,7 @@ main_mcan1: can@20711000 {
- 			     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "int0", "int1";
- 		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+ 	elm0: ecc@25010000 {
+@@ -1390,5 +1391,6 @@ elm0: ecc@25010000 {
+ 		power-domains = <&k3_pds 54 TI_SCI_PD_EXCLUSIVE>;
+ 		clocks = <&k3_clks 54 0>;
+ 		clock-names = "fck";
 +		status = "disabled";
  	};
- 
- 	crypto: crypto@40900000 {
+ };
 diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 9a3bf852810c..666f5d3a2d95 100644
+index 666f5d3a2d95..39feea78a084 100644
 --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
 +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -577,12 +577,14 @@ &ecap0 {
- };
- 
- &main_mcan0 {
-+	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_mcan0_pins_default>;
- 	phys = <&transceiver1>;
- };
- 
- &main_mcan1 {
-+	status = "okay";
- 	pinctrl-names = "default";
+@@ -589,11 +589,3 @@ &main_mcan1 {
  	pinctrl-0 = <&main_mcan1_pins_default>;
  	phys = <&transceiver2>;
+ };
+-
+-&gpmc0 {
+-	status = "disabled";
+-};
+-
+-&elm0 {
+-	status = "disabled";
+-};
 diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 451e1483f3e4..3e6df16fcb59 100644
+index 3e6df16fcb59..2e2d40da360a 100644
 --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
 +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -567,14 +567,6 @@ &ecap0 {
+@@ -566,11 +566,3 @@ &ecap0 {
+ 	pinctrl-names = "default";
  	pinctrl-0 = <&main_ecap0_pins_default>;
  };
- 
--&main_mcan0 {
+-
+-&gpmc0 {
 -	status = "disabled";
 -};
 -
--&main_mcan1 {
+-&elm0 {
 -	status = "disabled";
 -};
--
- &gpmc0 {
- 	status = "disabled";
- };
 -- 
 2.37.3
 
