@@ -2,137 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF2FD60085E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 10:10:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 013AC600860
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 10:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbiJQIK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 04:10:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43376 "EHLO
+        id S230170AbiJQILO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 04:11:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbiJQIK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 04:10:28 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1D2846866
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 01:10:24 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29H8A7II101306;
-        Mon, 17 Oct 2022 03:10:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1665994207;
-        bh=DcaX+n7/l8tciEU0Vu2jBSoMvY3jNO6bqbCzrMREmM4=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=UdfASsvQ+6ivyIJomLc/0uhCuNIM1ptLZgTu3C/5J/IiUgvBov/8p+kP3BfM2IGhN
-         h6RDqFW1NE/Z46hYXOTBJriDvErQDpUOOBjNcqMAoNr/J3tTvgXlndrPVKF4tMRvND
-         5woIEvu+NWbuE6n4uvKI1sfPugMTY3Eg0xzJVRiQ=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29H8A7oP025695
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 Oct 2022 03:10:07 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 17
- Oct 2022 03:10:06 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Mon, 17 Oct 2022 03:10:06 -0500
-Received: from ubuntu (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with SMTP id 29H8A0it094416;
-        Mon, 17 Oct 2022 03:10:01 -0500
-Date:   Mon, 17 Oct 2022 01:09:59 -0700
-From:   Matt Ranostay <mranostay@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: k3-j72*: correct compatible for syscon
- entries
-Message-ID: <Y00N1yvHrkKoeJ8i@ubuntu>
-References: <20221012180052.89840-1-mranostay@ti.com>
- <0118faac-7d50-ddb2-2914-0610b83efe6c@linaro.org>
+        with ESMTP id S230048AbiJQILN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 04:11:13 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D6F578BD
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 01:11:09 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id f11so17225024wrm.6
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 01:11:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=aXrWH9V8ckiI4td6mzaIwOJzeQHePtJKtlDcOsKbuzs=;
+        b=SGa7MjFDg8DyJmh0cVyAm03hNUsAM35Cl6aNwZ3QC0uyFSYk7Cp7Ifnw67p/woXBHA
+         HM7iZSq0rXzac4py35afmSfc8zKGmX9yTjjTmVmi+sUNyZXnbH50pQZnHK4uqYF40orZ
+         bbhF3eDZ36XXPZeg+zLtY/kh/Lvad+YWIAyG9JaHCFOKEyXYrobeQ7cA/5ZskqPnTbBr
+         6rPVD+ZJa2VyucPzo3FUUaiFe6kGQm0M9cB1kCS5HBS9DKkdYb0pGEvcu5PO5PnDwzuv
+         82cMSp0MF3LjrS5EGLEmALBWH7rVvok6X2M2KOtlV9Be8CzceVZaE9grIYnWLCPXLBbA
+         07kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aXrWH9V8ckiI4td6mzaIwOJzeQHePtJKtlDcOsKbuzs=;
+        b=PtYGlP0DoLFroz75UVQa28cHld4ali2ftI23bON4E056lAK/FfWi1P/VbrNbRG8nTz
+         DvHYywShBm6h6BrqjTcQotCRNkha5DIjCD1FPCLjhXRl1QWyvegH2PxjmCWQQxxlP/zN
+         fi/ICdDSoxQ7nUMy8cxjpFuoy2udhfuJ1a85FmqBhOV7d8Jgo752d3HVzZZv6DWZZMc4
+         M/4HGJ27Mfpdh98HnHgfXID+6jFtREjG1DRoAMeDmBOa06zz7CUHwkXucICB9G/XktRv
+         WBgHgglRCTtzsePlgE4xGWndknbEho7ZTs6Zm6zmFlOh0JWY9dKntL9kUhNtkLOzu4ia
+         ojvQ==
+X-Gm-Message-State: ACrzQf36qgAECj6axpss8bbEmj7bb/uGRmMXekyis+/HFf0fBodPP0cn
+        RxGp284SpFbV3h0KCuH+VkrnvQ==
+X-Google-Smtp-Source: AMsMyM6taGnWTPDwCpnz+imXeO9ParwTtvxOdaTAg0swafVmzasYk6u/OckbbAlHEmBBOPGkUpo31Q==
+X-Received: by 2002:adf:f2cd:0:b0:22e:49c0:aa3b with SMTP id d13-20020adff2cd000000b0022e49c0aa3bmr5553787wrp.97.1665994268506;
+        Mon, 17 Oct 2022 01:11:08 -0700 (PDT)
+Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
+        by smtp.gmail.com with ESMTPSA id n14-20020a05600c4f8e00b003b47b80cec3sm14779325wmq.42.2022.10.17.01.11.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Oct 2022 01:11:07 -0700 (PDT)
+Message-ID: <c51c2ec3-959d-a0da-b9c4-46cc77076390@linaro.org>
+Date:   Mon, 17 Oct 2022 10:11:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <0118faac-7d50-ddb2-2914-0610b83efe6c@linaro.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: msm8998: add gpio-ranges to TLMM
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221011213145.122879-1-krzysztof.kozlowski@linaro.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+Reply-To: neil.armstrong@linaro.org
+In-Reply-To: <20221011213145.122879-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 13, 2022 at 09:05:11AM -0400, Krzysztof Kozlowski wrote:
-> On 12/10/2022 14:00, Matt Ranostay wrote:
-> > Add missing ti,j721e-system-controller to bus defines in mcu/wakeup
-> > domains to avoid the following similar warnings from dt-schema checks:
-> > 
-> > arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: syscon@40f00000: compatible: ['syscon', 'simple-mfd'] is too short'
-> > 
-> > Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi  | 2 +-
-> >  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  | 2 +-
-> >  arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 +-
-> >  3 files changed, 3 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > index e5be78a58682..b5c666f98ba4 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > @@ -35,7 +35,7 @@ k3_reset: reset-controller {
-> >  	};
-> >  
-> >  	mcu_conf: syscon@40f00000 {
-> > -		compatible = "syscon", "simple-mfd";
-> > +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
+On 11/10/2022 23:31, Krzysztof Kozlowski wrote:
+> Qualcomm pinctrl bindings and drivers expect gpio-ranges property.
 > 
-> That's a different SoC, so probably you should use dedicated compatible
-> here.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/msm8998.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> index f05f16ac5cc1..2c4acf227253 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> @@ -1056,6 +1056,7 @@ tlmm: pinctrl@3400000 {
+>   			compatible = "qcom,msm8998-pinctrl";
+>   			reg = <0x03400000 0xc00000>;
+>   			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> +			gpio-ranges = <&tlmm 0 0 150>;
+>   			gpio-controller;
+>   			#gpio-cells = <2>;
+>   			interrupt-controller;
 
-Since there isn't any notable difference between these platforms for the simple-mfd
-controller I'm thinking it maybe makes sense to have a ti,generic-system-controller
-compatible. Thoughts?
-
-- Matt 
-
-> 
-> >  		reg = <0x00 0x40f00000 0x00 0x20000>;
-> >  		#address-cells = <1>;
-> >  		#size-cells = <1>;
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> > index df08724bbf1c..5d9ec221fa34 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> > @@ -35,7 +35,7 @@ k3_reset: reset-controller {
-> >  	};
-> >  
-> >  	mcu_conf: syscon@40f00000 {
-> > -		compatible = "syscon", "simple-mfd";
-> > +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-> >  		reg = <0x0 0x40f00000 0x0 0x20000>;
-> >  		#address-cells = <1>;
-> >  		#size-cells = <1>;
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> > index 4d1bfabd1313..3845d162d3c6 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> > @@ -69,7 +69,7 @@ wkup_gpio_intr: interrupt-controller@42200000 {
-> >  	};
-> >  
-> >  	mcu_conf: syscon@40f00000 {
-> > -		compatible = "syscon", "simple-mfd";
-> > +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-> 
-> Here as wekk - it's a j721s2?
-> 
-> >  		reg = <0x0 0x40f00000 0x0 0x20000>;
-> >  		#address-cells = <1>;
-> >  		#size-cells = <1>;
-> 
-> Best regards,
-> Krzysztof
-> 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
