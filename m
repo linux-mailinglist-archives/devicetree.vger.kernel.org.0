@@ -2,124 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A2D0600481
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 02:20:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7276600495
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 02:42:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbiJQAUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Oct 2022 20:20:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60840 "EHLO
+        id S229727AbiJQAmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Oct 2022 20:42:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbiJQAUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 20:20:36 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39EDA13D1D;
-        Sun, 16 Oct 2022 17:20:35 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id p24-20020a9d6958000000b00661c528849eso4952264oto.9;
-        Sun, 16 Oct 2022 17:20:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=9kvM+3fJBdQWLpyLziSUQTeFnCrd9UUj5XCixO7Xv7s=;
-        b=LahTpg9McgDs5JgGUv6uM1FVm+iHYG2rMm+XoOo/EjDguWm4Y2DbRLdtrV4e0/+LQv
-         DaqD+3fk9msZ95byEkERKCbxwSRYiD/+phrr+et/scXyXdD2KUnSBKSAd/nHzw0yg3VM
-         niYib1vsAh+iSH/5eHHEszQmHuusUuhIL6OnOotY0pq+DIvJLTpJp4eSnNfUGNbrOMWj
-         YeuyK6Yk63fXboAvwgSDpwWgb10FZrspMAtiD3IuVdl9EdUXR5NNymoj0CjPi+TFygD4
-         KQTZo4PNE27ZbTFPIQFELcvBRQuoFIP5vsaMEGxROvJ/pKnvx08uSeJLGXZaHcek/9Mk
-         wouQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9kvM+3fJBdQWLpyLziSUQTeFnCrd9UUj5XCixO7Xv7s=;
-        b=12t+zI4SCZPSHjUZaA9bifjxmyF1ePfbRk++f+LgZyJ14ImNaThQNwqGeHzqjuf8z7
-         Jabud5lMEo6+yzt+Di1bXKvBx88xrLsPe83yImGikGan4+zHS1UHPAFA7LfxdCoA8kW5
-         ntQ8i364vxya6b9LAps55OEY/ezGttn6nQX9Z9oGBwaQFnXnkDhR0XiGVYcOD8qTE7yr
-         +7V9CUzyy5fnocPCUzYKZ5TEb9GTE+xWjCZ8cp7X5ETm1XPqyDurHf8wQNkgRZW7KheO
-         mxTzMBJ60A2NQzx3vhQBJ7zLtQPZ06lMRJVRMqvuoJtejy/HKbpdNIKvACEbx5IdxbQ8
-         qnJQ==
-X-Gm-Message-State: ACrzQf27uwYO61D8ZLelShcWlkmz4VGjm1siIXNhcPE71ZeOC5LBeNqC
-        TFNo1jeVbKG3HXBvO5fj6K8=
-X-Google-Smtp-Source: AMsMyM49bfbewVsg57/0mjRK5pHKRVhj1LRLI5kkSirPLIlfxbFFs+MweNQxxmib3f1EfxuF2GX1Sg==
-X-Received: by 2002:a05:6830:1343:b0:661:9598:6786 with SMTP id r3-20020a056830134300b0066195986786mr3804864otq.354.1665966034556;
-        Sun, 16 Oct 2022 17:20:34 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id m67-20020aca3f46000000b00350743ac8eesm3761627oia.41.2022.10.16.17.20.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Oct 2022 17:20:33 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <686b46bc-5986-abe5-8717-4c57d58d6581@roeck-us.net>
-Date:   Sun, 16 Oct 2022 17:20:31 -0700
+        with ESMTP id S230023AbiJQAmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Oct 2022 20:42:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AE4C360B9;
+        Sun, 16 Oct 2022 17:42:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DE3AB60EB0;
+        Mon, 17 Oct 2022 00:41:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB883C433C1;
+        Mon, 17 Oct 2022 00:41:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1665967319;
+        bh=+6/iX7ck2Oohq9Zjb0OiVQciCXoiHsAIcWt5IlbTcY4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=R5Fxx1CuFWN2O2/LMRi+LN5bWu8nhXkqQzjWypQZgJUPQeJyR6hOnk7wJt5jvXev2
+         4Tn/C+OGDb4SyLYR2a1M2jDOOROcO4Dfd5uAsLe+zdbbuC/7lOP7ELeuzk8ZweAz8e
+         TE9Zz4wufl69OtWvdi7v87IzzboNOVCYV8GOq75zP+R0cwkMb8JdBIetqbgshxMLzs
+         KF0qzB9tTxpSpOqyloah575XJggksD4u2Op4rCnDywbZtLA/+uJwDSIMUKfpkl/yJm
+         X4Lyz5JFvH124203WQMnGJICefcwMrq8VMJl9kpBFjBFOK8emOXAH1n7nVc8pnw9bG
+         P5UQgqVC27dEg==
+Date:   Mon, 17 Oct 2022 08:41:53 +0800
+From:   Peter Chen <peter.chen@kernel.org>
+To:     Sascha Hauer <s.hauer@pengutronix.de>, Xu Yang <xu.yang_2@nxp.com>,
+        Li Jun <jun.li@nxp.com>
+Cc:     linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Peng Fan <peng.fan@oss.nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/6] usb: chipidea: Export more phy tuning parameters to
+ device tree
+Message-ID: <20221017004153.GC12701@nchen-desktop>
+References: <20221011082924.884123-1-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 1/2] ARM: dts: armada-xp: add interrupts for watchdog
-Content-Language: en-US
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-References: <20220211003257.2037332-1-chris.packham@alliedtelesis.co.nz>
- <20220211003257.2037332-2-chris.packham@alliedtelesis.co.nz>
- <87o839jw4p.fsf@BL-laptop>
- <0308a842-efcb-d4a0-f17c-2b0bf12c9dfb@alliedtelesis.co.nz>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <0308a842-efcb-d4a0-f17c-2b0bf12c9dfb@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221011082924.884123-1-s.hauer@pengutronix.de>
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/16/22 15:39, Chris Packham wrote:
-> Hi Gregory,
+On 22-10-11 10:29:18, Sascha Hauer wrote:
+> This series exports more phy tuning settings to device tree. There are
+> some values already exported and I follow that example in this series.
 > 
-> On 15/02/22 04:39, Gregory CLEMENT wrote:
->> Hello Chris,
->>
->>> The first interrupt is for the regular watchdog timeout. Normally the
->>> RSTOUT line will trigger a reset before this interrupt fires but on
->>> systems with a non-standard reset it may still trigger.
->>>
->>> The second interrupt is for a timer1 which is used as a pre-timeout for
->>> the watchdog.
->>>
->>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->> Acked-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->>
->> To keep bisectability this patch should be merged after the driver
->> patch.
->>
->> Thanks,
->>
->> Gregory
+> Patches 1 and 2 contain two small bugfixes for issues I stumbled upon
+> along the way. Patches 3 and 4 are cleanups. These patches could be
+> applied without the remaining two patches.
 > 
-> The driver changes were merged a while back. Looks like your intention
-> was for this to go in via the watchdog tree but that never happened.
-> Could you take it through your tree now? Probably won't be until 6.2 now
-> but that's fine.
+> The binding patch is based on
+> https://lore.kernel.org/linux-arm-kernel/20221010101816.298334-3-peng.fan@oss.nxp.com/t/,
+> so this will need a rebase once this series settles.
+
+I have left NXP, maybe Jun Li or Yang Xu could have a review.
+
+Peter
+> 
+> Sascha
+> 
+> Sascha Hauer (6):
+>   usb: chipidea: usbmisc_imx: Fix i.MX53 clock sel masks
+>   usb: chipidea: usbmisc_imx: Fix setting i.MX6SX wakeup source
+>   usb: chipidea: usbmisc_imx: Use GENMASK/FIELD_PREP for bitfields
+>   usb: chipidea: usbmisc_imx: Add prefix to register defines
+>   usb: chipidea: usbmisc_imx: Add device tree properties for i.MX7 phy
+>     tuning
+>   dt-bindings: usb: ci-hdrc-usb2: Add more phy tuning properties
+> 
+>  .../devicetree/bindings/usb/ci-hdrc-usb2.yaml |  79 ++++++++
+>  drivers/usb/chipidea/ci_hdrc_imx.c            |  14 ++
+>  drivers/usb/chipidea/ci_hdrc_imx.h            |   7 +
+>  drivers/usb/chipidea/usbmisc_imx.c            | 186 ++++++++++++------
+>  4 files changed, 230 insertions(+), 56 deletions(-)
+> 
+> -- 
+> 2.30.2
 > 
 
-We don't take any actual devicetree changes. Those need to be pushed through
-architecture/platform trees. Anything else would create never ending conflicts
-(and I strongly suspect that various maintainers would complain).
+-- 
 
-Guenter
-
+Thanks,
+Peter Chen
