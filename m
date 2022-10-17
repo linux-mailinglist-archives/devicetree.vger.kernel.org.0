@@ -2,151 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EE23601B1A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 23:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CC84601B35
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 23:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbiJQVOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 17:14:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33632 "EHLO
+        id S230392AbiJQVXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 17:23:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230123AbiJQVOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 17:14:51 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B8791D306;
-        Mon, 17 Oct 2022 14:14:48 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.24.131.113])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id CC7E5660229A;
-        Mon, 17 Oct 2022 22:14:45 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666041286;
-        bh=6GOLhrGgwzzH00fPL4O2mqsIa2iWSLJ77uzRHsOFl1M=;
-        h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-        b=JTij1qwJSLzBeIh9AbGxEE9TNM+2LfslXZn1Jn6rJvwuL2AwhYURIRPVwSoxp6N5y
-         l5AZ4qDyXQM0y9SSVocWKPee1K82qfmr/+6aZ5HS5H+FukhdmRDQyv8Z66HEjia51z
-         fRbizNOGffkXtqXIduVTbxMZ2MKLhUyIKXDrd6Hkrj8ED8XsYjVPRutVs1zfLnVpHi
-         pIAwJIux1mhqRcGY0wDN7lMRuPi7aY5QFdbK2SIlmr7X6x85RxVN4rkkh0DMK+/Qud
-         tB7HLipYUCajr8lqssz+Xnz0pqZSlVZDcnj3hoUwOMo6gFKUP58+LJSy0t6Mb5kxwr
-         Puc9RH4ggpV6w==
-Message-ID: <fd259c32-6a9d-7ab5-2172-3f2fe947ebfe@collabora.com>
-Date:   Tue, 18 Oct 2022 00:14:42 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v3 0/3] Enable initial support for StarFive VisionFive V1
- SBC
-Content-Language: en-US
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230342AbiJQVXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 17:23:32 -0400
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D398A7B78A;
+        Mon, 17 Oct 2022 14:23:26 -0700 (PDT)
+Received: by mail-io1-xd35.google.com with SMTP id i65so10262774ioa.0;
+        Mon, 17 Oct 2022 14:23:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XYQG9L0WOG7E+TXZGOh2Lmubn0+AsR6A7Ea6syLqUyQ=;
+        b=DDlea4psan6fGakfEvw2MIaDr32zNEN1/S7GTqmmx5IJ88UF1kXdO0ErhCoCmhohb8
+         /Nf95Dm3Qg6qP0LzP9Dlr9M0eEH9SJtjHFUUgD7JuOz9gOkMXnFSfT2rt59RBap+fuBM
+         SPuwfeDTOD1Cg2JiuxxHgl8e/spOD1wCYCY0vlC1NS1glv/SIc9QA4LccI1nUQKAiajd
+         guZae4U7oc5BlDNALXgIw9mM5Qt8tUoXGRmb58g39geLK8kmEEncxoXUyT0keXZS8fYj
+         589jiJ1IdyptqXBsS1KXe3KSMQJySJjTvdPCelNIcvi5YmC+HDcGeF0kHhnbPbSD4Jqn
+         7XoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XYQG9L0WOG7E+TXZGOh2Lmubn0+AsR6A7Ea6syLqUyQ=;
+        b=g3tknXjBlI3Vn1MrcxrY01pkwv82FWb9gfX6NVcC8s2gWUQByB47kgxdZFMK/IRvGF
+         08KhQ/opJNorzj4f37HFTNJ+ZF5bJ8raROdUmau0TWkw8XJz+jTucvOtWtXCH+XpGcyv
+         gXILephCUT3xKeKQn1tbu06aHWdRJsvLvj6vAIKcJgeMaxDunNB5lOexDfxibw3LsOKH
+         CaK6Iw6Rio1l8omX4yImwf57btfWYLKScglPszj4XlNjm/AHnW9LRHOisz92kRkMhRnA
+         Ai1Vd51lFZ7DuOU69nrGcWIyQe3MZuEXvpb3x++WjRWlMX6Ns7AcDzdazyNEMZHidXlQ
+         PiSw==
+X-Gm-Message-State: ACrzQf3InO9Mf2IOF6Tb9lXg9ZhDhJ2rpup+DtV2zAhoA/PAkO+qPGDl
+        jx+FFhYXrI0jMu1QpzopMkI=
+X-Google-Smtp-Source: AMsMyM7r9cJXj6CSb2SdazjR8bFX3mMN7uTdF0rMCmxCh+sRQmvRjB67Z7AnPymhZsVGubQX0y6xdA==
+X-Received: by 2002:a05:6638:3e06:b0:363:fd8c:7d3c with SMTP id co6-20020a0566383e0600b00363fd8c7d3cmr6659333jab.266.1666041805466;
+        Mon, 17 Oct 2022 14:23:25 -0700 (PDT)
+Received: from localhost ([2607:fea8:a2e2:2d00::4a89])
+        by smtp.gmail.com with UTF8SMTPSA id g191-20020a025bc8000000b0035672327fe5sm338763jab.149.2022.10.17.14.23.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Oct 2022 14:23:24 -0700 (PDT)
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20220908142914.359777-1-cristian.ciocaltea@collabora.com>
- <c5169131-486e-9808-ba48-b7abe1be6a99@collabora.com> <YzwCWDN4NyIQ8a46@wendy>
- <b1139318-b87e-b257-28ba-e2b0c7596053@collabora.com>
-In-Reply-To: <b1139318-b87e-b257-28ba-e2b0c7596053@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Richard Acayan <mailingradian@gmail.com>,
+        Melody Olvera <quic_molvera@quicinc.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 2/5] dmaengine: qcom: gpi: document preferred SM6350 binding
+Date:   Mon, 17 Oct 2022 17:23:20 -0400
+Message-Id: <20221017212320.4960-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.38.0
+In-Reply-To: <20221015140447.55221-3-krzysztof.kozlowski@linaro.org>
+References: <20221015140447.55221-1-krzysztof.kozlowski@linaro.org> <20221015140447.55221-3-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/4/22 13:15, Cristian Ciocaltea wrote:
-> On 10/4/22 12:52, Conor Dooley wrote:
->> On Mon, Oct 03, 2022 at 02:06:32PM +0300, Cristian Ciocaltea wrote:
->>> Please let me know if there is anything else missing in order to get 
->>> this
->>> queued for merging.
->>
->> Hey Cristian,
->>
->> LinusW has applied a conflicting change for 6.1 as he renamed the
->> pinctrl header that you have moved from one file to another in this
->> patch [0]. Could you rebase once that lands upstream please?
+> Devices with ee offset of 0x10000 should rather bind with SM6350
+> compatible, so the list will not unnecessarily grow for compatible
+> devices.
 > 
-> Hi Conor,
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  drivers/dma/qcom/gpi.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 > 
-> Sure, I will rebase as soon as rc1 is out.
+> diff --git a/drivers/dma/qcom/gpi.c b/drivers/dma/qcom/gpi.c
+> index f8e19e6e6117..061add832295 100644
+> --- a/drivers/dma/qcom/gpi.c
+> +++ b/drivers/dma/qcom/gpi.c
+> @@ -2286,13 +2286,14 @@ static int gpi_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id gpi_of_match[] = {
+> -	{ .compatible = "qcom,sc7280-gpi-dma", .data = (void *)0x10000 },
+>  	{ .compatible = "qcom,sdm845-gpi-dma", .data = (void *)0x0 },
+>  	{ .compatible = "qcom,sm6350-gpi-dma", .data = (void *)0x10000 },
+>  	/*
+> -	 * Deprecated, devices with ee_offset = 0 should use sdm845-gpi-dma as
+> -	 * fallback and not need their own entries here.
 
-I have submitted v4:
+This comment is from the dependency series [1]. Why would we need to add it just
+to remove it here? I was not notified that the dependency was applied anywhere
+(except as a base for other series) so it's not set in stone. Let's just drop
+the original patch that this comment originates from to prevent needlessly
+adding and removing the same lines at once.
 
-https://lore.kernel.org/all/20221017210542.979051-1-cristian.ciocaltea@collabora.com/
+[1] https://lore.kernel.org/linux-arm-msm/20221007213640.85469-4-mailingradian@gmail.com/
 
-> Thanks,
-> Cristian
+> +	 * Do not grow the list for compatible devices. Instead use
+> +	 * qcom,sdm845-gpi-dma (for ee_offset = 0x0) or qcom,sm6350-gpi-dma
+> +	 * (for ee_offset = 0x10000).
+>  	 */
+> +	{ .compatible = "qcom,sc7280-gpi-dma", .data = (void *)0x10000 },
+>  	{ .compatible = "qcom,sm8150-gpi-dma", .data = (void *)0x0 },
+>  	{ .compatible = "qcom,sm8250-gpi-dma", .data = (void *)0x0 },
+>  	{ .compatible = "qcom,sm8350-gpi-dma", .data = (void *)0x10000 },
+> -- 
+> 2.34.1
 > 
->>
->> Thanks,
->> Conor.
->>
->> 0 - 
->> https://lore.kernel.org/linux-riscv/CACRpkdZmmMjVwpHxkJP+Ui0XJgrdZx8kpVybifbwkRB1_uMhAg@mail.gmail.com/
->>
->>>
->>> Thanks,
->>> Cristian
->>>
->>> On 9/8/22 17:29, Cristian Ciocaltea wrote:
->>>> The StarFive VisionFive V1 SBC [1] is similar with the already 
->>>> supported
->>>> BeagleV Starlight Beta board, both being based on the StarFive 
->>>> JH7100 SoC.
->>>>
->>>> In addition to documenting the necessary compatibles, this patch series
->>>> moves most of the content from jh7100-beaglev-starlight.dts to a new 
->>>> file
->>>> jh7100-common.dtsi, to be shared between the two boards.
->>>>
->>>> No other changes are required in order to successfully boot the board.
->>>>
->>>> [1] https://github.com/starfive-tech/VisionFive
->>>>
->>>> Changes in v3:
->>>>    - Added Reviewed-by tag from Krzysztof in patch 1/3
->>>>    - Optimized patch 2/3 by enabling copy detection on "git 
->>>> format-patch",
->>>>      as indicated by Krzysztof
->>>>
->>>> Changes in v2:
->>>>    - Simplified documentation by using 'enum' instead of 'const' in
->>>>      patch 1/3, according to Conor's review
->>>>    - Added Reviewed-by tags from Conor
->>>>
->>>> Cristian Ciocaltea (3):
->>>>     dt-bindings: riscv: starfive: Add StarFive VisionFive V1 board
->>>>     riscv: dts: starfive: Add common DT for JH7100 based boards
->>>>     riscv: dts: starfive: Add StarFive VisionFive V1 device tree
->>>>
->>>>    .../devicetree/bindings/riscv/starfive.yaml   |   4 +-
->>>>    arch/riscv/boot/dts/starfive/Makefile         |   2 +-
->>>>    .../dts/starfive/jh7100-beaglev-starlight.dts | 153 
->>>> +-----------------
->>>>    ...aglev-starlight.dts => jh7100-common.dtsi} |   3 -
->>>>    .../jh7100-starfive-visionfive-v1.dts         |  20 +++
->>>>    5 files changed, 25 insertions(+), 157 deletions(-)
->>>>    copy arch/riscv/boot/dts/starfive/{jh7100-beaglev-starlight.dts 
->>>> => jh7100-common.dtsi} (96%)
->>>>    create mode 100644 
->>>> arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
->>>>
->>>
->>> _______________________________________________
->>> linux-riscv mailing list
->>> linux-riscv@lists.infradead.org
->>> http://lists.infradead.org/mailman/listinfo/linux-riscv
->>>
