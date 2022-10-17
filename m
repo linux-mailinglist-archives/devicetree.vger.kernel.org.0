@@ -2,205 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5CE600E4E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 13:56:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F65600E77
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 14:02:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230371AbiJQL4a convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 17 Oct 2022 07:56:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45152 "EHLO
+        id S229949AbiJQMBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 08:01:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229955AbiJQL43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 07:56:29 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F5DBF59;
-        Mon, 17 Oct 2022 04:56:26 -0700 (PDT)
-Received: from p508fc122.dip0.t-ipconnect.de ([80.143.193.34] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1okOj5-0007qc-6s; Mon, 17 Oct 2022 13:56:11 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     =?utf-8?B?T25kxZllag==?= Jirman <megi@xff.cz>,
-        Peter Geis <pgwipeout@gmail.com>,
-        linux-rockchip@lists.infradead.org,
+        with ESMTP id S229984AbiJQMBa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 08:01:30 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B38402C0;
+        Mon, 17 Oct 2022 05:01:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CrblE1KA36o3k22Tk/7VTrg3h3nkw1R7zFFfKq72frACo6zouqlRZ8Em8sJYDWCuuWA7i2SqFOAieMZM9eVdiIleuWibhvYKqfUQ4Bi+qvFDkEvFjFpdIu4oAkyfpvV86nwJ89zXAUzHZX11PxMmT7H/LZRj7k1Ka94AKWfbdMn5TGkQMpvStyq2wrNaR0sc4lFn8UrpYwjwPo2opHHzKWx+EF/vsVWQTElS7B1m2zsZypaN9/6j6DVS010q5dw9cjky0vV0Pr5DkfA6sFp8v/eRyhEydxIBqV1sCwcprQsDdCk2bAiG/MIyFE8eOt6pDsiac+KBSCkCzTqTWcu3IA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hW6MGak5wVW/gsGOjv+UoYaSYBjqCnOBg3DukYJGVrE=;
+ b=ifAMjPYPzuzOAxZPIidvvtUrqxx8BCmvrRIqkrXEjdTq3sisthiV6pXjyTZGS+QTJ65vpnEA9tIF9Zj9dnH09UiZOs4lZiH4/ghA5aS7hdWf97FURZ96XLmuV1jbate+oCrRBhS4ofCWM+Q10SlxKe4JoBa1L/6+ryKNH44ZO/rSlIlaTO+ugpEMh+OhaT4Hxudyx1i5dWZbQbbTb/CDs6VSh6RPkdQunxINGKtj4jc4aAXJa1Vi4vHK7flBWGfuSVYx8TkTcU0QhUKmrm6fJ093MS0RDya/XQZ0uW2bKVq/9v8BWnGKeK2uIhGQWOnx4EcINnEclx8tDX+ruMy8dA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hW6MGak5wVW/gsGOjv+UoYaSYBjqCnOBg3DukYJGVrE=;
+ b=eXAYuna50WeZ3gleBKnNxl4iBgzDO/298ub5+A0j+7wlZ2EzpV1abU/glCWwUZscnAhM8S5Ku4CPZTcy5fmxXDKBJQno8Vzx8mPskey4s6gU2Hhbzo8wGZnUpb6fnoAjKrNwMcmADTyl7iPUW3hPhDi8ylzd7TAPX6Z06/MPgmA=
+Received: from DM6PR01CA0024.prod.exchangelabs.com (2603:10b6:5:296::29) by
+ PH7PR12MB5926.namprd12.prod.outlook.com (2603:10b6:510:1d9::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5723.29; Mon, 17 Oct 2022 12:01:25 +0000
+Received: from DM6NAM11FT090.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:296:cafe::1f) by DM6PR01CA0024.outlook.office365.com
+ (2603:10b6:5:296::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.20 via Frontend
+ Transport; Mon, 17 Oct 2022 12:01:25 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT090.mail.protection.outlook.com (10.13.172.184) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5723.20 via Frontend Transport; Mon, 17 Oct 2022 12:01:25 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 17 Oct
+ 2022 07:01:24 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 17 Oct
+ 2022 05:01:24 -0700
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.31 via Frontend
+ Transport; Mon, 17 Oct 2022 07:01:21 -0500
+From:   Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map and ranges
-Date:   Mon, 17 Oct 2022 13:56:10 +0200
-Message-ID: <4679102.Wku2Vz74k6@phil>
-In-Reply-To: <20221005220812.4psu6kckej63yo2z@core>
-References: <20221005085439.740992-1-megi@xff.cz> <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com> <20221005220812.4psu6kckej63yo2z@core>
+        <saikrishna12468@gmail.com>, <git@amd.com>,
+        Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Subject: [PATCH 0/2] pinctrl: pinctrl-zynqmp: Revert output-enable and bias-high-impedance support
+Date:   Mon, 17 Oct 2022 17:30:58 +0530
+Message-ID: <20221017120100.21549-1-sai.krishna.potthuri@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT090:EE_|PH7PR12MB5926:EE_
+X-MS-Office365-Filtering-Correlation-Id: 27fc7ba6-da55-45f0-452c-08dab03750ee
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XH5W+J8UJZJqMFxKlKQ8jY+gpwDR8lsoLf25Pjefbp2Ou9e2IhdWWNNGqOySWP9ZE/Tnhymxx5UnNzZWgi6mo8bdwW5MgyxntQ453z5JyERBbPWdBmzKEe+jobfITnITB/MLiXhscdtGj608jjVyBkwOkmQAW8fibPlLyGop+Q52LWzFnxPXmMDXASmJWj4R6D32lDMA8ylfW5FBpiqNGVXdJ8SRuB/erNCO2nok+yVcDtpxg+dzgGy6kD1Na9M94GcJVOjOVzSSt6GI0ZZgN1vEKUWrV40MUZaRY6Y8pBSOdnB8k0H0C/mx6ugpcCOYpv2xcrDN6AfjdAMBAT5F49XDbixUdQaSXetZJodOPhujqlP2VxXfrw/o33wdxTNCWc9v6/qaBJMTtrFVxz1clDwEg8fxp4defMHHSnsdhVx76ARX+LzTYQIix4P0F4dVDIK1agRcHw/6IgxJNBMvhR1uCWVhwdfwQ+55MJz0sBV7MGNTvCOSElvhuQwphrOxU9ZKnk/Nrp9pHpIPxzGXPYPAZ2Qd7uBJThzulUF7gEnD6nvEGtNSGwd0HdGWDZ0nkyCJFun0G76BUyU+qcBSmtxzw/HE3ExHhpI17ttu9kQWjPkVK0NOPLOzM6+z3AQ6GKB8+mgvgVKJ5U3P5TI3H0zNqScDarRg+u3rLS6Gp7ZRPeG00ntnxyMAogH+WWvGD4lP33U+UwDYdT8ZkrT5bm40hymVJw1nCVty9lnc5Bv0+LlILk5nMLbt/LcBnIHluGJgu2tqCEM1H3LgtB7ZekXwVolg+Crd325LUMl2dxezhHBupTi3Z/3h+gzouwHt
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(396003)(136003)(376002)(346002)(39860400002)(451199015)(46966006)(36840700001)(40470700004)(86362001)(2616005)(110136005)(478600001)(4744005)(40480700001)(316002)(54906003)(8936002)(36860700001)(81166007)(70206006)(70586007)(8676002)(4326008)(82310400005)(5660300002)(41300700001)(356005)(26005)(83380400001)(103116003)(47076005)(40460700003)(426003)(82740400003)(36756003)(6666004)(2906002)(186003)(336012)(1076003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2022 12:01:25.3047
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27fc7ba6-da55-45f0-452c-08dab03750ee
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT090.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5926
+X-Spam-Status: No, score=0.0 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Having support for output-enable and bias-high-impedance properties
+causing system hang with older Xilinx ZynqMP Platform Management Firmware
+because there is missing autodetection feature.
+When this feature is implemented, support for these two properties should
+bring back.
 
-Am Donnerstag, 6. Oktober 2022, 00:08:12 CEST schrieb Ondřej Jirman:
-> On Wed, Oct 05, 2022 at 07:42:54AM -0400, Peter Geis wrote:
-> > On Wed, Oct 5, 2022 at 4:54 AM Ondrej Jirman <megi@xff.cz> wrote:
-> > >
-> > 
-> > Good Morning,
-> > 
-> > > I have two Realtek PCIe wifi cards connected over the 4 port PCIe swtich
-> > > to Quartz64-A. The cards fail to work, when nvme SSD is connected at the
-> > > same time to the bridge. Without nvme connected, cards work fine. The
-> > > issue seems to be related to mixed use of devices which make use of I/O
-> > > ranges and memory ranges.
-> > >
-> > > This patch changes I/O, MEM and config mappings so that config and I/O
-> > > mappings use the 0xf4000000 outbound address space, and MEM range uses
-> > > the whole 0x300000000 outbound space.
-> > >
-> > > This is simialar to how BSP does the mappings.
-> > 
-> > This change was very recent in the BSP stuff (Jan 2022):
-> > https://github.com/rockchip-linux/kernel/commit/cfab7abefc4093daa379fbd90a1e7ac1a484332b
-> > A few other interesting changes there as well. They added a 32 bit
-> > window in the lower range and made the entire upper range a 64 bit
-> > relocatable (why?) and prefetchable window. They also set the viewport
-> > number to 8. The dt-binding says this is autodetected, but I wonder if
-> > the value is being detected correctly.
-> > 
-> > It looks like it is dependent in BSP on a backported change from mainline:
-> > https://github.com/rockchip-linux/kernel/commit/50a01d3c10a6212f66364575a3c8f66c07f41591
-> > 
-> > Can someone weigh in why the dw core has config in the reg node
-> > instead of ranges?
-> > 
-> > >
-> > > I changed num-ob-windows to value detected by the kernel so if for whatever
-> > > reason the kernel ever starts respecting this DT property, it would not
-> > > switch to sharing I/O and CFG spaces via a single iATU mapping for
-> > > no reason.
-> > 
-> > This worries me that this value may be being detected incorrectly,
-> > they set it to this for a reason. It's not unheard of for Rockchip to
-> > need to override what they encode in the silicon.
-> 
-> I just noticed that you may be thinking that BSP does some detection. It does
-> not. It just uses either value from DT or hardcoded value 2 in the code.
-> 
-> https://github.com/rockchip-linux/kernel/blob/develop-4.19/drivers/pci/controller/dwc/pcie-designware-host.c#L450
+Sai Krishna Potthuri (2):
+  Revert "pinctrl: pinctrl-zynqmp: Add support for output-enable and
+    bias-high-impedance"
+  Revert "dt-bindings: pinctrl-zynqmp: Add output-enable configuration"
 
-@Peter or other people in the recipient list with more PCIe
-experience than me, can someone provide some more judgement
-on this topic?
+ .../devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml | 4 ----
+ drivers/pinctrl/pinctrl-zynqmp.c                         | 9 ---------
+ 2 files changed, 13 deletions(-)
 
-Thanks
-Heiko
-
-
-> > Very Respectfully,
-> > Peter Geis
-> > 
-> > >
-> > > This change to the regs/ranges makes the issue go away and both nvme and
-> > > wifi cards work when connected at the same time to the bridge. I tested
-> > > the nvme with large amount of reads/writes, both behind the PCIe bridge
-> > > and when directly connected to Quartz64-A board.
-> > >
-> > > Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> > > ---
-> > > BSP for reference: https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L2370
-> > >
-> > > v2:
-> > > - change ranges to use 0x300000000 fully for MEM and make use of
-> > >   the 0xf4000000 outbound range for IO and config
-> > > - full retest with/without the switch
-> > > - if lscpi/dmesg is useful in the future for comparison, see:
-> > >   https://xff.cz/kernels/random/quartz64a-pcie/
-> > >
-> > > I used this script for the tests:
-> > >
-> > > #!/bin/bash
-> > >
-> > > OUT=/mnt/data
-> > > n=8
-> > >
-> > > test -f /tmp/test.dat || \
-> > >     dd if=/dev/urandom of=/tmp/test.dat bs=1M count=1024
-> > > md5sum /tmp/test.dat
-> > >
-> > > i=0
-> > > while test $i -lt $n
-> > > do
-> > >     dd if=/tmp/test.dat of=$OUT/test$i.dat bs=4M oflag=direct
-> > >
-> > >     i=$(($i+1))
-> > > done
-> > >
-> > > i=0
-> > > while test $i -lt $n
-> > > do
-> > >     dd if=$OUT/test$i.dat bs=4M iflag=direct | md5sum
-> > >
-> > >     i=$(($i+1))
-> > > done
-> > >
-> > >
-> > >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 9 +++++----
-> > >  1 file changed, 5 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > index 319981c3e9f7..99fd9543fc6f 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > @@ -855,7 +855,8 @@ pcie2x1: pcie@fe260000 {
-> > >                 compatible = "rockchip,rk3568-pcie";
-> > >                 reg = <0x3 0xc0000000 0x0 0x00400000>,
-> > >                       <0x0 0xfe260000 0x0 0x00010000>,
-> > > -                     <0x3 0x3f000000 0x0 0x01000000>;
-> > > +                     <0x0 0xf4000000 0x0 0x01f00000>;
-> > > +
-> > >                 reg-names = "dbi", "apb", "config";
-> > >                 interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
-> > >                              <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
-> > > @@ -877,15 +878,15 @@ pcie2x1: pcie@fe260000 {
-> > >                                 <0 0 0 4 &pcie_intc 3>;
-> > >                 linux,pci-domain = <0>;
-> > >                 num-ib-windows = <6>;
-> > > -               num-ob-windows = <2>;
-> > > +               num-ob-windows = <8>;
-> > >                 max-link-speed = <2>;
-> > >                 msi-map = <0x0 &gic 0x0 0x1000>;
-> > >                 num-lanes = <1>;
-> > >                 phys = <&combphy2 PHY_TYPE_PCIE>;
-> > >                 phy-names = "pcie-phy";
-> > >                 power-domains = <&power RK3568_PD_PIPE>;
-> > > -               ranges = <0x01000000 0x0 0x3ef00000 0x3 0x3ef00000 0x0 0x00100000
-> > > -                         0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x3ef00000>;
-> > > +               ranges = <0x01000000 0x0 0x00000000 0x0 0xf5f00000 0x0 0x00100000
-> > > +                         0x02000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
-> > >                 resets = <&cru SRST_PCIE20_POWERUP>;
-> > >                 reset-names = "pipe";
-> > >                 #address-cells = <3>;
-> > > --
-> > > 2.37.3
-> > >
-> 
-
-
-
+-- 
+2.17.1
 
