@@ -2,152 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B29E4601D80
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 01:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C91B9601C83
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 00:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230097AbiJQXUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 19:20:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46984 "EHLO
+        id S230212AbiJQWky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 18:40:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230112AbiJQXUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 19:20:30 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B4A5FDFD;
-        Mon, 17 Oct 2022 16:20:27 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id g1so19931505lfu.12;
-        Mon, 17 Oct 2022 16:20:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :references:from:to:cc:subject:date:message-id:reply-to;
-        bh=hPjgbmyufVQcQ6EQc4g+TbLptg1Ow4K6/gfkQdTeaBk=;
-        b=B6/s8a/izQ/nkmMWEUBSlIGceBkIBbBxCyoJTZIZiQ0RsBeQpu80tBqNYIL6+R0eo4
-         kO7PHZUKpbPz32g5uarTU10cBEqaYSR7oy8OCNyYfyMzL0RDWirFs7ZGZPtjwXDezgNK
-         yF+Aamf5c4G7Tuf2Gs1fq+lbqkuZz9i7b7dC8WvOLXV0B1uqiL5DKnRphq34xw31RkKe
-         VzGu/Vn4LF7mOtoQ/8q+TYY8C5KoGgWLMNwXOQK6dT4clhITPAgRnuVOdKGJCP/7ji+n
-         ma5WEj2lBjg3tlq+dkpen1j0SSl/TVaoW38fSOgE3GfkV1x1DF65kOtMNR2poiBYNUn4
-         2jYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :references:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hPjgbmyufVQcQ6EQc4g+TbLptg1Ow4K6/gfkQdTeaBk=;
-        b=bt3hsB9PX4uquSPRIkTswhzSpvcR69Gw1cno6DmWLeFOS2gjodH1EyyYm6mNeE1/Iy
-         LnPQh7JTPrHweKnlYhfhKkb/ANSAuxWEmZDcj829zRFVBoTMz+f4L0iGoJbYGjx2S9EB
-         T76AV3SuM2dt5Jf5V0r43V5I5FsemJ/Nus5WY7zKATrCJB7h3KNJErmYh6iY4Zu61qwQ
-         oBhlYDlhewObOrYFvUYk8b2I7Jh40lCRnapprXYjDPKTGveXf0ibIMjjCUf93yoLzZAr
-         LNjmoPKpL6XbNsEyeCqQUw1rMPQaqEP91hOur4/nLECf9YUrm1pzm+YejyN/L3/jrS3A
-         4kcg==
-X-Gm-Message-State: ACrzQf0Fj4XOnucFxZkCYDJNwVm1QoLP/0D4m/mQ8lWEecNjP9ux7se0
-        LbC1PMsMNn+xwcT87KxRdZTTkBobCTtyZA==
-X-Google-Smtp-Source: AMsMyM4pCX+WNfC/CXNNsawWuYBaaZwuLJ/RgrcmgBhzoQzrC1lLwHLEE9fH6Fy3w2jJM3+OHQ32FQ==
-X-Received: by 2002:a05:6000:184e:b0:22e:4612:496d with SMTP id c14-20020a056000184e00b0022e4612496dmr56928wri.91.1666047969456;
-        Mon, 17 Oct 2022 16:06:09 -0700 (PDT)
-Received: from localhost (94.197.37.182.threembb.co.uk. [94.197.37.182])
-        by smtp.gmail.com with ESMTPSA id v2-20020a5d4b02000000b0022ed6ff3a96sm9371634wrq.39.2022.10.17.16.06.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Oct 2022 16:06:08 -0700 (PDT)
-References: <20221016234335.904212-1-aidanmacdonald.0x0@gmail.com>
- <20221017184419.62d365c1@jic23-huawei>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, lee.jones@linaro.org, sre@kernel.org,
-        lgirdwood@gmail.com, broonie@kernel.org, lars@metafoo.de,
-        andy.shevchenko@gmail.com, linus.walleij@linaro.org, brgl@bgdev.pl,
-        michael@walle.cc, samuel@sholland.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 00/13] Add support for AXP192 PMIC
-Date:   Mon, 17 Oct 2022 23:21:32 +0100
-In-reply-to: <20221017184419.62d365c1@jic23-huawei>
-Message-ID: <LYfRwE3pxZfgZBDC6gwvsSrHWqcSQXHK@localhost>
+        with ESMTP id S230120AbiJQWkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 18:40:52 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B48BC7B29F;
+        Mon, 17 Oct 2022 15:40:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 78697B81B43;
+        Mon, 17 Oct 2022 22:40:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26ECBC433C1;
+        Mon, 17 Oct 2022 22:40:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666046449;
+        bh=/3nMyjfwYNbh6D7yFQ8tG56v/iKyuORuuufbK2reUGU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=b+s92lE/wj1Cc66gkJmt2hnZFn8KBqhq2faVp7hHgiec5lNHLCkPI5mRPLLP9MMeZ
+         +d+CY9X+Jhob1g7etZ9J7vyQmru/A9jVx2MOiEh1TBWUONR63I0eb9zQyOLjonF1qK
+         y5ehqg41I99RARHtttQxWnLt9m/DjZN9L2Mai6Z4J7MZLiBnzjC7T9dzvGhtgBDGFm
+         TnfNM/eI/sQfuJwhVgd+e/zV8xjdRp+f6b+Wva/8/kodw8n7knfjhLBQvKaNiyJ7uK
+         9401JCy8POV/B2cPDEQy0u3xBuRuaD+mHIM5gbfHEJTP0XiccMSou3JpI9xh7+fSib
+         xUBQOsGeM3Iqg==
+Date:   Mon, 17 Oct 2022 17:40:46 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>
+Subject: Re: [PATCH v6] dt-bindings: qcom: document preferred compatible
+ naming
+Message-ID: <20221017224046.yxgpkhlqv4cykwc3@builder.lan>
+References: <20220928152501.490840-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220928152501.490840-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 28, 2022 at 05:25:01PM +0200, Krzysztof Kozlowski wrote:
+> Compatibles can come in two formats.  Either "vendor,ip-soc" or
+> "vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
+> DT schema file documenting preferred policy and enforcing it for all new
+> compatibles, except few existing patterns.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 
-Jonathan Cameron <jic23@kernel.org> writes:
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-> On Mon, 17 Oct 2022 00:43:22 +0100
-> Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
->
->> This series adds support for the AXP192 PMIC to the AXP20x MFD driver
->> framework, including support for regulators, ADCs, and AC/USB/battery
->> power supplies.
->>
->> v6 is a resend of v5 from July -- the patches haven't changed at all
->> but I've rebased them on the latest git master branch.
->
-> Hi Aidan,
->
-> Lee has recently expressed that he keen to take as much of these sorts
-> of series as possible via the various subsystem trees.
->
-> As such, it is useful to call out in the cover letter of such a series
-> if this can be done.  For example, patch 9 (last IIO one) can't be
-> applied without defines in patch 6 (I think).  Thus I'm assuming Lee
-> will do an immutable branch with at least those patches on it.
->
-> Perhaps worth expressing if that is also the case for the power
-> and regulator subsystem patches?
->
-> Thanks,
->
-> Jonathan
+Regards,
+Bjorn
 
-Yep, the IIO, regulator, and power subsystem patches all depend on
-the MFD patch. Specifically, patches 6, 9, and 10 depend on patch 5.
-I can't get rid of this dependency because the variant ID (AXP192_ID)
-has to be defined centrally in the MFD patch.
-
-The axp20x_battery patches (last three of the whole series) don't
-depend on the variant ID or other defines, so they could be taken
-independently through the power subsystem.
-
-Even though the IIO cleanups (7 and 8) don't depend on anything else
-I imagine it'd cause problems to take those via IIO because patch 9
-depends on them.
-
-IOW: Lee probably needs to take patches 5-10.
-
-- Aidan
-
->>
->> Aidan MacDonald (13):
->>   dt-bindings: mfd: add bindings for AXP192 MFD device
->>   dt-bindings: iio: adc: axp209: Add AXP192 compatible
->>   dt-bindings: power: supply: axp20x: Add AXP192 compatible
->>   dt-bindings: power: axp20x-battery: Add AXP192 compatible
->>   mfd: axp20x: Add support for AXP192
->>   regulator: axp20x: Add support for AXP192
->>   iio: adc: axp20x_adc: Minor code cleanups
->>   iio: adc: axp20x_adc: Replace adc_en2 flag with adc_en2_mask field
->>   iio: adc: axp20x_adc: Add support for AXP192
->>   power: supply: axp20x_usb_power: Add support for AXP192
->>   power: axp20x_battery: Add constant charge current table
->>   power: axp20x_battery: Support battery status without fuel gauge
->>   power: axp20x_battery: Add support for AXP192
->>
->>  .../bindings/iio/adc/x-powers,axp209-adc.yaml |  18 +
->>  .../bindings/mfd/x-powers,axp152.yaml         |   1 +
->>  .../x-powers,axp20x-battery-power-supply.yaml |   1 +
->>  .../x-powers,axp20x-usb-power-supply.yaml     |   1 +
->>  drivers/iio/adc/axp20x_adc.c                  | 356 ++++++++++++++++--
->>  drivers/mfd/axp20x-i2c.c                      |   2 +
->>  drivers/mfd/axp20x.c                          | 141 +++++++
->>  drivers/power/supply/axp20x_battery.c         | 142 ++++++-
->>  drivers/power/supply/axp20x_usb_power.c       |  84 ++++-
->>  drivers/regulator/axp20x-regulator.c          | 100 ++++-
->>  include/linux/mfd/axp20x.h                    |  84 +++++
->>  11 files changed, 856 insertions(+), 74 deletions(-)
->>
+> 
+> ---
+> 
+> Changes since v5:
+> 1. Correct Bjorn's email.
+> 2. Add tags.
+> 
+> Changes since v4:
+> 1. Add qcm.
+> 2. Add more qcom,ipq806x exceptions.
+> 3. Add Rob's tag.
+> 
+> Changes since v3:
+> 1. Add qcom,kpss-wdt-xxx to pattern for exceptions.
+> 2. Add ipq806x entries to list of exceptions.
+> 
+> Changes since v2:
+> 1. Narrow the expected pattern to be followed by dash '-' after model
+>    number (msm8996-) or by two letters and a dash (sc8280xp-).
+> 2. Add qcom,apss-wdt-xxx to list of exceptions.
+> 3. Use comment instead of description in the oneOf list.
+> 
+> Changes since v1:
+> 1. Add schema instead of readme (Rob).
+> 
+> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Alex Elder <elder@linaro.org>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  .../devicetree/bindings/arm/qcom-soc.yaml     | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/qcom-soc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+> new file mode 100644
+> index 000000000000..889fbfacf226
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SoC compatibles naming convention
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +
+> +description: |
+> +  Guidelines for new compatibles for SoC blocks/components.
+> +  When adding new compatibles in new bindings, use the format::
+> +    qcom,SoC-IP
+> +
+> +  For example::
+> +   qcom,sdm845-llcc-bwmon
+> +
+> +  When adding new compatibles to existing bindings, use the format in the
+> +  existing binding, even if it contradicts the above.
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      # Preferred naming style for compatibles of SoC components:
+> +      - pattern: "^qcom,(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+-.*$"
+> +      - pattern: "^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$"
+> +
+> +      # Legacy namings - variations of existing patterns/compatibles are OK,
+> +      # but do not add completely new entries to these:
+> +      - pattern: "^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - pattern: "^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - pattern: "^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - pattern: "^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - pattern: "^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
+> +      - enum:
+> +          - qcom,gpucc-sdm630
+> +          - qcom,gpucc-sdm660
+> +          - qcom,lcc-apq8064
+> +          - qcom,lcc-ipq8064
+> +          - qcom,lcc-mdm9615
+> +          - qcom,lcc-msm8960
+> +          - qcom,lpass-cpu-apq8016
+> +          - qcom,usb-ss-ipq4019-phy
+> +          - qcom,usb-hs-ipq4019-phy
+> +          - qcom,vqmmc-ipq4019-regulator
+> +
+> +      # Legacy compatibles with wild-cards - list cannot grow with new bindings:
+> +      - enum:
+> +          - qcom,ipq806x-gmac
+> +          - qcom,ipq806x-nand
+> +          - qcom,ipq806x-sata-phy
+> +          - qcom,ipq806x-usb-phy-ss
+> +          - qcom,ipq806x-usb-phy-hs
+> +
+> +additionalProperties: true
+> -- 
+> 2.34.1
+> 
