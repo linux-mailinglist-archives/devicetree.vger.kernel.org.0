@@ -2,132 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A377B6007A8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 09:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 057586007BA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 09:27:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbiJQHZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 03:25:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55836 "EHLO
+        id S229452AbiJQH1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 03:27:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbiJQHZh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 03:25:37 -0400
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D77BE5A2DD;
-        Mon, 17 Oct 2022 00:25:36 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id D3745320084E;
-        Mon, 17 Oct 2022 03:25:35 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Mon, 17 Oct 2022 03:25:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1665991535; x=1666077935; bh=L5G3bLzreC
-        H3oUCt9+QvMdTXOUAOsrxsngh7C2K0tTg=; b=TORXiOZZgDgjkVaJ3LTQKd5YsA
-        YmSOOsWtPZrGEh+sCf+VITfu0GE0HRqE75RSM0Lzgtpb+iBkbyqH7SPeEJz7eRg/
-        VHV9Q/JT36NWEnqTdNumoGZdS2tQ2JC/RDKAj9JeYOcIv2pRIfLDA7RJ//ddx4+S
-        O2nKvckFiVY8ViaVuv6BIVboDjYtU9MDSqmuE0MsB+ZgxkCEsz3yIcNYkP6MKGIF
-        ZdlEi/rOcSyPUNe6deR+tNjQna/JrjRqoahTapJeuqpcX4RjCmHg3dyLexCtdS89
-        GsnX6S9tpqxJV3M+O+dbZNaF8UZ0VD8BxgnXsyNPG8aZXcJlQBAD5HW4K9ig==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1665991535; x=1666077935; bh=L5G3bLzreCH3oUCt9+QvMdTXOUAO
-        srxsngh7C2K0tTg=; b=rJFVmCCnBgVNZf22MdJXVt7IqOwr1WEXMl8j0HBuEpTM
-        ZANp4uJD9jFe6WV8MmVslOrAjIAbu/ueuna9IUdefSBIKGnDjB+57h+tFbtk63kx
-        uRjTj5//O1MCzXM5FK2s0lK292nkNzWDRXycPcu54CSZT21vv9u6P+CzRxhaqZpt
-        3JKzFHVRUvaPrsFKLK6RaJpSEJt6STM1muK+gB3IOy3R62AQ0SdCvQQSNRIF8aow
-        aZiWct3SQtxrOUdZgV+Vp7JB3IKsiWNt6ToOaWzqniRQnpGqJZ7vt1Pq7LEUE1tP
-        hJoVFYefVbLded4ZvtbjGtB5EN3bbbTdfzKBuwnMIw==
-X-ME-Sender: <xms:bgNNYxjTE5DSyccdl9D8Y59xFq8Vrs7PXiQB_p8gsFWLkS8FycVA1Q>
-    <xme:bgNNY2CNLtoibmIRdS3u2PquQFfFdMfkc7Lpi6fF1g5YCeoygFtnGhp2Dst7G5zd0
-    8SJ9cGuek75YwZw_oU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeekkedguddvtdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffegffdutddvhefffeeltefhjeejgedvleffjeeigeeuteelvdettddulefg
-    udfgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:bgNNYxHKtkRqv8yPGPO73LilgdgzDcr9JEasMxEEK7hC1nzPMXSAKw>
-    <xmx:bgNNY2S77sWo4tFLl8sj2HRwmIaFi15baxAE4I--4DgtXVnViUGZQg>
-    <xmx:bgNNY-xldXfbXHnMsjEOqzA-2zvSSZlh9WXw1gLHzNfxYgpSfLrudQ>
-    <xmx:bwNNY1qParKxg80KNqCzj1T_MBACF_12WF1HmOf7PRXR9i8IxrjtnQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id D0285B60089; Mon, 17 Oct 2022 03:25:34 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1047-g9e4af4ada4-fm-20221005.001-g9e4af4ad
-Mime-Version: 1.0
-Message-Id: <f8f803a8-ee36-4f32-8920-1fcf6b2265d1@app.fastmail.com>
-In-Reply-To: <039075b210d78d2f4fdeb66b6826b8d2c2836088.1665931914.git.tonyhuang.sunplus@gmail.com>
-References: <cover.1665931914.git.tonyhuang.sunplus@gmail.com>
- <039075b210d78d2f4fdeb66b6826b8d2c2836088.1665931914.git.tonyhuang.sunplus@gmail.com>
-Date:   Mon, 17 Oct 2022 09:25:14 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Tony Huang" <tonyhuang.sunplus@gmail.com>,
-        "Ulf Hansson" <ulf.hansson@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>, krzk+dt@kernel.org,
-        "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        wells.lu@sunplus.com
-Subject: Re: [PATCH v10 2/2] mmc: Add mmc driver for Sunplus SP7021
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229913AbiJQH1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 03:27:38 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C2875A814
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 00:27:37 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id a3so17181747wrt.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 00:27:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vleqX4azqijmPtKs5ZJjm57oFDFAlglFXOly3nJ4WoI=;
+        b=D6Z+Xd+vG2yWDAUdKhIIBIp9MjbgQVORKD1Hup0Yx14lvdra4RSWNwJK1MgBFyN7Pa
+         KxseAC778j9+eoe1qktBfhMUMOGHy+Y6sTbeMYQHKSGEL36smoScPNAem3xj8aSjW9iy
+         I4r0C9NyDiJAyQeB/CHiPls45MEvgM+Jpnct72d6VJoEP+jVj4mGa+aKhIWQZ/a4VOR/
+         eHYyTSfbrvuS7vjgAjnTdwd01W8bmLk6wUE5wh+ps4GR49WAe3Kjdf90jtg4onIwGc2B
+         MUgXXHTPbnPEbmWXaWDj25qMvwzUT3+GJK+q5qdtQji2k+QESKiqWz6rQzpJOGRoJZh1
+         b22Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vleqX4azqijmPtKs5ZJjm57oFDFAlglFXOly3nJ4WoI=;
+        b=hP7rIggP2XAYr2EP+43KRcoLW0/sNMDYg1RHmF0KnKK997aH/9trxUcEXv5uNlpRhq
+         I4XSg2/xkzuZi+7kZyjgyKTAvJVMdBxii90P6XPD+qZ7YGlxN1IcxkFN5ISTmugTr5el
+         BxlbCM/TLqemSu6DVV/0+iYd6k7hJSzqCnY4I8YWEF1yDjVwolEEpNsxtUNxcU3gfRuY
+         1V00GzmefZwkFoRKShzIUlu9ta9t7Hh8PdXmZFAqA+4RzSHi8QmtNRZofzsoHMM6SNtF
+         KxJT3D/6QL5bDTvAncdaflxYPs3ub13ETSgIYPZihhmxGbwOG62qMzrwna3BXEEbk8GV
+         0qDQ==
+X-Gm-Message-State: ACrzQf2DCDykUuqff5ud7HNIaHgxd6edZdFM0FN0lYjrRRNwvIQbPde8
+        wGiBDdznPja5V+xAUHoZznYsEQ==
+X-Google-Smtp-Source: AMsMyM4SgJVOEGYl64n0Y+aPrzaEGfXHbsqGnyd0lMEGXvrEDGgS5/4llcPr+AJEUmKVghIVLMWVnA==
+X-Received: by 2002:a5d:5689:0:b0:231:bcaa:3125 with SMTP id f9-20020a5d5689000000b00231bcaa3125mr5621885wrv.431.1665991655278;
+        Mon, 17 Oct 2022 00:27:35 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:ea6:24ea:3fe7:64b9? ([2a05:6e02:1041:c10:ea6:24ea:3fe7:64b9])
+        by smtp.googlemail.com with ESMTPSA id n4-20020adf8b04000000b00231893bfdc7sm8135601wra.2.2022.10.17.00.27.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Oct 2022 00:27:34 -0700 (PDT)
+Message-ID: <f0bf36da-9467-c905-c5bc-1e232ba9c8a8@linaro.org>
+Date:   Mon, 17 Oct 2022 09:27:33 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] dt-bindings: thermal: Convert generic-adc-thermal to DT
+ schema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221011175235.3191509-1-robh@kernel.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20221011175235.3191509-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 16, 2022, at 5:48 PM, Tony Huang wrote:
-> This is a patch for mmc driver for Sunplus SP7021 SOC.
-> Supports eMMC 4.41 DDR 104MB/s speed mode.
->
-> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
+On 11/10/2022 19:52, Rob Herring wrote:
+> Convert the 'generic-adc-thermal' binding to DT schema format.
+> 
+> The binding said '#thermal-sensor-cells' should be 1, but all in tree
+> users are 0 and 1 doesn't make sense for a single channel.
+> 
+> Drop the example's related providers and consumers of the
+> 'generic-adc-thermal' node as the convention is to not have those in
+> the examples.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-Looks ok to me me overall.
+Applied, thanks
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
 
-Just one more thing I noticed:
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-> +#define SPMMC_TIMEOUT			500000
-...
-> +static inline int spmmc_wait_finish(struct spmmc_host *host)
-> +{
-> +	u32 state;
-> +
-> +	return readl_poll_timeout_atomic(host->base + SPMMC_SD_STATE_REG, 
-> state,
-> +					(state & SPMMC_SDSTATE_FINISH), 1, SPMMC_TIMEOUT);
-> +}
-> +
-> +static inline int spmmc_wait_sdstatus(struct spmmc_host *host, 
-> unsigned int status_bit)
-> +{
-> +	u32 status;
-> +
-> +	return readl_poll_timeout_atomic(host->base + SPMMC_SD_STATUS_REG, 
-> status,
-> +					(status & status_bit), 1, SPMMC_TIMEOUT);
-> +}
-
-500ms seems like an awfully long time for a busy-wait, I wonder if this
-could be improved in some way. Is this always called from atomic context?
-
-If not, any callers from non-atomic context could use
-readl_poll_timeout() instead, or maybe there could be a shorter
-timeout in atomic context, with a fallback to a non-atomic
-workqueue if that times out, so only the MMC access will stall but
-not the entire system.
-
-The same problem does appear to be in dw_mmc.c and mtk-sd.c but not
-in sdhci*.c, so I don't know if this is avoidable.
-
-     Arnd
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
