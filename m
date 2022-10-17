@@ -2,98 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52E02600B2D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 11:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A01EB600B40
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 11:45:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230106AbiJQJmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 05:42:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48200 "EHLO
+        id S231431AbiJQJpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 05:45:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230006AbiJQJmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 05:42:51 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5AB7F64;
-        Mon, 17 Oct 2022 02:42:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1665999771; x=1697535771;
-  h=message-id:date:mime-version:subject:to:references:cc:
-   from:in-reply-to:content-transfer-encoding;
-  bh=WsXUdjOn3js3nYe4RKd94I9UT2XiDhLyOPhGqc7Y3Iw=;
-  b=vhQL+DQvaqlPB/eyhQXFugPo88v4SLHyqkMBOYFpVgTAqs+GWw5hv3kL
-   eCOSXVxP6reoHTPBG02afLcILpbIGRmeMWwZz0ei1rKaRClyrd/Z5Y629
-   Rmjxh8PQklkfr15Bk8BXPiCHz5bRDEHJ83Qrmmv+3VOMz95U7ddy5oI2T
-   hNQI80TqTeR25Hwxb5oYv7XhSHR//VVvC/YPhX0TRm6bdxUzzHTcyHRaS
-   Uy4THvnA2LWliMzrO4ZcYvGltnD8Jc6Okbt6zXfenO+l99o/J7LPWUB80
-   /pIO6X/2CHrgv4dApNM0p6+t1L/Wo0F06a0qN5Lx/wM6Pesch997lxlmc
-   g==;
-X-IronPort-AV: E=Sophos;i="5.95,191,1661842800"; 
-   d="scan'208";a="185026782"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Oct 2022 02:42:50 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Mon, 17 Oct 2022 02:42:49 -0700
-Received: from [10.159.205.135] (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
- Transport; Mon, 17 Oct 2022 02:42:48 -0700
-Message-ID: <a30e0ff4-c73e-514e-bb35-18b1b6d49b21@microchip.com>
-Date:   Mon, 17 Oct 2022 11:42:43 +0200
+        with ESMTP id S230207AbiJQJph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 05:45:37 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2C38DFE2
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 02:45:30 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id bv10so17597782wrb.4
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 02:45:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=O+n1ShhbA3PkDMv6oI8//0dSStEO0rpZ1E2GZxrwNJ8=;
+        b=HzCBvEHKjBcVmbQFOvVkERzzPABe7O7NENhDfrw0HMRw6qyH06kygUDFtLeJyHm2Aq
+         QF1IQIiIZ3FXmdMUKUreeqV8oX4IJ4TGTvWOTxtuazqx8oqMWpjIdO97IVlcULLhwewT
+         k1prn+CrKXDt7xI9vPmBoru4G3jgBsJG0v0NCYX/XAGh7OCNUw4IVpncfcVhKohVVlMH
+         IBX+m4vqdjXEQ0Frt/bG+Zv1rUZpf5qHDS+xXWT0WcF6MRv6HABab0u7E+2a3Cn7GnM4
+         yaBDa+tv2183b0NJkoX2CEQgRB1brnBeOyxWDJGu3JmxODXPkHXnkT26aORgZVVlZy1+
+         12LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O+n1ShhbA3PkDMv6oI8//0dSStEO0rpZ1E2GZxrwNJ8=;
+        b=is7IO3ja0vXP+N9Su0yRM0sc0IORAA0+fPNjuCJ6cUrVJpHrw3d2IFd+4MZO1BXelz
+         jnzGSc4BXuvcCVEB+aNMgWAqbIrkJMbDJNxn2NgRrUtaBSAFNt/Jy+oSvZQ7qYD7Lt/G
+         C8dAQvaEIsFu8flRCfxaA+kmsyBMgDPxo9IzLHT7NBB7ZssmKRc9lnrZaKzZUjL7BqtZ
+         P79SwiwbeViUz/WVuFrLi2ZltpbCuV9MhY1d1JI98LpvsmQ6GyKVGUz3j2ZIjT5w0vLX
+         Vb7/PmLRNETxW9Q8AAIEHcyT/Qh6e7M06IyKmUvpb7BO705sIHNlubhXo1g+Hzq4/haH
+         zt1g==
+X-Gm-Message-State: ACrzQf0gSqcqwVPgkyCG0H9njo+2JrIGw6GHXu+gLLtkVtKUpF4HobEl
+        ZivyRSf3EXpveFvI7vrGofhNbuuV4QEiFhWd
+X-Google-Smtp-Source: AMsMyM7YAZPUOp3/N4bb1ClCSRlKmQTiZXyMsVlV7C8McCl56kkVkE6PGiXgXZnx+PnQ8yoCFcTByA==
+X-Received: by 2002:a5d:408e:0:b0:22e:650a:ec4b with SMTP id o14-20020a5d408e000000b0022e650aec4bmr5866330wrp.212.1665999929194;
+        Mon, 17 Oct 2022 02:45:29 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id d12-20020adfa40c000000b0022ca921dc67sm7824305wra.88.2022.10.17.02.45.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Oct 2022 02:45:28 -0700 (PDT)
+Subject: [PATCH v3 00/11] arm: qcom: mdm9615: first round of bindings and DT fixes
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] ARM: dts: at91: sama7g5: fix signal name of pin PB2
-Content-Language: en-US
-To:     Mihai Sain <mihai.sain@microchip.com>, <robh+dt@kernel.org>,
-        <eugen.hristev@microchip.com>, <claudiu.beznea@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221017083119.1643-1-mihai.sain@microchip.com>
-CC:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20221017083119.1643-1-mihai.sain@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIADUkTWMC/43NTQrDIBAF4KsE152iJtGkq96jdOHPJAqJgqbSEnL3SnddtavhPXjf7CRj8pjJpd
+ lJwuKzj6GG9tQQ41SYEbytmXDKOR35AKtdR8F6sBtk43BVMPknZhDCdpYao6WRpK61ygg6qWBc3YfH
+ stTS+bzF9Pp8K6ye22+4MKCgBYpWSTsxHK6LDyrFc0wzuVe08D8hXqFBThp1p5D27Rd0HMcbg3sd4A 0BAAA=
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Mon, 17 Oct 2022 11:45:25 +0200
+Message-Id: <20220928-mdm9615-dt-schema-fixes-v3-0-531da552c354@linaro.org>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     linux-rtc@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-input@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/10/2022 at 10:31, Mihai Sain wrote:
-> The signal name of pin PB2 with function F is FLEXCOM11_IO1
-> as it is defined in the datasheet.
-> 
-> Fixes: 7540629e2fc7 ("ARM: dts: at91: add sama7g5 SoC DT and sama7g5-ek")
-> Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+This is a first round of trivial bindings & DT fixes for the MDM9615 platform.
 
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-Thanks Mihai, best regards,
-   Nicolas
+This first round focuses on trivial changes, the remaining work will
+mainly be .txt to .yaml transition of old qcom pmic & co device bindings.
 
-> ---
->   arch/arm/boot/dts/sama7g5-pinfunc.h | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/sama7g5-pinfunc.h b/arch/arm/boot/dts/sama7g5-pinfunc.h
-> index 4eb30445d205..6e87f0d4b8fc 100644
-> --- a/arch/arm/boot/dts/sama7g5-pinfunc.h
-> +++ b/arch/arm/boot/dts/sama7g5-pinfunc.h
-> @@ -261,7 +261,7 @@
->   #define PIN_PB2__FLEXCOM6_IO0		PINMUX_PIN(PIN_PB2, 2, 1)
->   #define PIN_PB2__ADTRG			PINMUX_PIN(PIN_PB2, 3, 1)
->   #define PIN_PB2__A20			PINMUX_PIN(PIN_PB2, 4, 1)
-> -#define PIN_PB2__FLEXCOM11_IO0		PINMUX_PIN(PIN_PB2, 6, 3)
-> +#define PIN_PB2__FLEXCOM11_IO1		PINMUX_PIN(PIN_PB2, 6, 3)
->   #define PIN_PB3				35
->   #define PIN_PB3__GPIO			PINMUX_PIN(PIN_PB3, 0, 0)
->   #define PIN_PB3__RF1			PINMUX_PIN(PIN_PB3, 1, 1)
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <bjorn.andersson@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@somainline.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Lee Jones <lee@kernel.org>
+To: Satya Priya <quic_c_skakit@quicinc.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Alessandro Zummo <a.zummo@towertech.it>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>
+Cc: linux-input@vger.kernel.org
+Cc: linux-rtc@vger.kernel.org
+Dependencies: None
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v3:
+- Rebased on v6.1-rc1
+- patch 1: Added reviewed-by tag
+- patch 2: Fixes typo in commit msg and added precision about why MIT was selected
+- patch 3: Added reviewed-by tag
+- patch 4: None
+- patch 5: Drop second example node
+- patch 6: Drop Andy, fix interrupts desc and fix example indentation
+- patch 7: Fix commit msg wrap & add reviewed-by tag
+- patch 8: Reword commit msg & add reviewed-by tag
+- patch 9: Reword commit msg & add reviewed-by tag
+- patch 10: None
+- patch 11: Added reviewed-by tag
+- Link to v2: https://lore.kernel.org/r/20220928-mdm9615-dt-schema-fixes-v2-0-87fbeb4ae053@linaro.org
 
+Changes in v2:
+- patch 1: switch to move from swir.txt to qcom.yaml
+- patch 2: use MIT licence instead of X11 licence
+- patch 3: move reg after compatible
+- patch 4: added Krzysztof's review
+- patch 5: split into 5 changes:
+  - document qcom,pm8921 as fallback of qcom,pm8018
+  - convert qcom,pm8921-pwrkey to dt-schema
+  - document qcom,pm8921-rtc as fallback of qcom,pm8018-rtc
+  - drop unused PM8018 compatible
+  - drop unused pm8018 RTC compatible
+- patch 6: None
+- patch 7: Reworded commit log based on Dmitry's wording on similar patches
+- Link to v1: https://lore.kernel.org/r/20220928-mdm9615-dt-schema-fixes-v1-0-b6e63a7df1e8@linaro.org
 
+---
+Neil Armstrong (11):
+      dt-bindings: arm: qcom: move swir,mangoh-green-wp8548 board documentation to qcom.yaml
+      arm: dts: qcom: mdm9615*: add SPDX-License-Identifier
+      arm: dts: qcom: mdm9615: add missing reg in cpu@0 node
+      arm: dts: qcom: mdm9615: remove invalid spi-max-frequency gsbi3_spi node
+      dt-bindings: mfd: qcom-pm8xxx: document qcom,pm8921 as fallback of qcom,pm8018
+      dt-bindings: input: qcom,pm8921-pwrkey: convert to dt-schema
+      dt-bindings: rtc: qcom-pm8xxx: document qcom,pm8921-rtc as fallback of qcom,pm8018-rtc
+      mfd: qcom-pm8xxx: drop unused PM8018 compatible
+      rtc: pm8xxx: drop unused pm8018 compatible
+      arm: dts: qcom: mdm9615: remove invalid interrupt-names from pl18x mmc nodes
+      arm: dts: qcom: mdm9615: remove useless amba subnode
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   6 +
+ Documentation/devicetree/bindings/arm/swir.txt     |  12 --
+ .../bindings/input/qcom,pm8921-pwrkey.yaml         |  75 +++++++++++++
+ .../bindings/input/qcom,pm8xxx-pwrkey.txt          |  46 --------
+ .../devicetree/bindings/mfd/qcom-pm8xxx.yaml       |  33 +++++-
+ .../devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml   |  16 ++-
+ .../boot/dts/qcom-mdm9615-wp8548-mangoh-green.dts  |  39 +------
+ arch/arm/boot/dts/qcom-mdm9615-wp8548.dtsi         |  39 +------
+ arch/arm/boot/dts/qcom-mdm9615.dtsi                | 121 +++++++--------------
+ drivers/mfd/qcom-pm8xxx.c                          |   1 -
+ drivers/rtc/rtc-pm8xxx.c                           |   1 -
+ 11 files changed, 159 insertions(+), 230 deletions(-)
+---
+base-commit: 9abf2313adc1ca1b6180c508c25f22f9395cc780
+change-id: 20220928-mdm9615-dt-schema-fixes-66d4d0ccb7c7
+
+Best regards,
 -- 
-Nicolas Ferre
+Neil Armstrong <neil.armstrong@linaro.org>
