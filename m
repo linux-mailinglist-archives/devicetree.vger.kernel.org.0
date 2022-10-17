@@ -2,125 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29959601964
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 22:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44AED601A97
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 22:50:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230383AbiJQUYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 16:24:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53546 "EHLO
+        id S229914AbiJQUu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 16:50:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230350AbiJQUXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 16:23:49 -0400
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-eopbgr140085.outbound.protection.outlook.com [40.107.14.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20473FA1A;
-        Mon, 17 Oct 2022 13:23:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kxp1ewuhFZ2l7FGQE3hw5EF0veQd7NvcWioMUgkQHcjuihU1I47LeDhNXx+F4Kg8bmQF/lrZj2m/2Esoq7HVm7j/5TGBBW/Ue+CyOezfGGCJeWvUPSESIh8vNUh46+sAUDdVY5OZ4meaQPWJQV+CXxqBhn+OGg+Dgpch2tXauXwRRValWdhmqR2tAgNZEX5DzEBkuebLrp7jKUN6dzdSERak3hHjuw4f6whqcvoVmZ19n9QHGA7H2qVUgC+nf618isKh+wxSaMxPpOCZXBOBfnzeFH2KfvKIa07zW25F0eN0Pq92n+ZPvfWroSDdRq30JyYwLyVzqNH0ElY+6EvnXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U8mr+E5E/bquLjHtd3y1fs2FBigd04YzSdV1VetNIuY=;
- b=TA3uaoVYHLTXdfGsuOyToUaa3seK0W5pwUHlLwSJsPy6H0qgnauAhna4Jxn9+pMc8qgUQbfyX8GVSQ7mQjkzUnRRXFO38QdH7pkzZX7fs+Mm4LzW81W9wnCkIfPLY9o+/aGyzV3VHF3voVI5TWJwOGgS2RA6FaIN8VxlXscEB9X0Fc9LwduD5cr2BUS9aggHuCE4ZyGYL9bSnaZkQ79mjsscLJSjGjSutn+nbGFGPw0Ecqs7vxDw469ftH4lGECmlhkU+fi49bCCJzUSBOZOz6djbsc7mLZErcflvmoHM5yRC88T2LMdpkkSC5rpvuGq2YWrXL1QWvViYNu6obkpQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U8mr+E5E/bquLjHtd3y1fs2FBigd04YzSdV1VetNIuY=;
- b=Z8fl6nKEyhMX0e+PrxKe3MiRCWjmx9duO9ilnTQ21mBW6erz/r2tSsyBdqGq1jze1WRI9PqNWtc9+/6qac6gODLSoz+byfD6Qwn94DZ3pE8ENlU8DtEs+GVbQBIiDff2EbNbb+rpZeEtmiPLP6tK4DAOSjUnZVoGkK3F94pcRaaL/zAX7D/YUTiunyvkEgUhNYBDbAo0kcHKwM7cQeYmwLkXYehq+lIhgb0m06M9hT8saQJNoWbCouudTsm9Yl1qdlIU1yv3kkICN3qsKhgEYILmIoi1K2vTCDDDtO5X9jtdaOycOuW0zEN5qpk8kuPXPUGtTsOcSNfOGixWO69oeg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
- by AM9PR03MB7379.eurprd03.prod.outlook.com (2603:10a6:20b:268::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Mon, 17 Oct
- 2022 20:23:43 +0000
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::204a:de22:b651:f86d]) by DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::204a:de22:b651:f86d%6]) with mapi id 15.20.5723.033; Mon, 17 Oct 2022
- 20:23:43 +0000
-From:   Sean Anderson <sean.anderson@seco.com>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        netdev@vger.kernel.org
-Cc:     Eric Dumazet <edumazet@google.com>,
-        "linuxppc-dev @ lists . ozlabs . org" <linuxppc-dev@lists.ozlabs.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Mackerras <paulus@samba.org>,
+        with ESMTP id S229932AbiJQUuz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 16:50:55 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C52D6C97D
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 13:50:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1666039849;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZUPaVA9mOe9qz31NtPQ5gA4/QtVOU/DOfiSg8H5xwzc=;
+        b=CykiKLYjjU6qpzUp6cOPg5P9nlzKO1oWGY0rox78CPn5zB5IpURDn07ky3b+wm7qkwZ2I7
+        ZuE2mGySBW1/xhablAyAM/aAlLfvG9NSZNs3QYN+M2zdm3Xr6r2G517jIb5gXQ+vr5M0kn
+        fjsVMR3IxmbMwZIqmKL0xwmd1A0e8u4=
+Received: from mail-oo1-f71.google.com (mail-oo1-f71.google.com
+ [209.85.161.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-651-u7sbsJMbNbGpH_owVFXyZA-1; Mon, 17 Oct 2022 16:50:48 -0400
+X-MC-Unique: u7sbsJMbNbGpH_owVFXyZA-1
+Received: by mail-oo1-f71.google.com with SMTP id t10-20020a4a760a000000b004809c721ac0so5175556ooc.4
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 13:50:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZUPaVA9mOe9qz31NtPQ5gA4/QtVOU/DOfiSg8H5xwzc=;
+        b=yvHCo2q77m3z4obW55HsQWsdS6J5XqBcLzp5KJSJiT4YLxr+iBggFjjbBeKw/GY7y1
+         57xhcabFhole0Kjd3kRKkz1vvH8/uirG9QJ+jzeYnRN0Fh0nwJoQRtdonS1aJ+Zah+Z6
+         IUQksa5tJhqLGt5lrxQwf5jOBepvQ1nZoUeiwfvJWkB4SM6C62KRY8HUUVq6Ujs3G7nb
+         KgNne5HylEB310gkcnhtQ+g5iQ6YCvZ0MvXt6hpj96Sk8gaFQbVxPxvPx01pvojFMEEe
+         HN2yLdCdL5LCkYKJqS0o/+jxxCaGljPWQTw+cbmRw5RGn0UYyxAdyZZ0WxRJoEyNu+RN
+         sbJQ==
+X-Gm-Message-State: ACrzQf3BuuG8YX37VoS/l/2dl6GMhnyA0e/4OmkiwHOVcxEeS/dEhcub
+        nJU4UonwdQ/c/yOShqAxu2qCTuXCcU+yCfuQ2Hm3IwQ8iqVkvhRo9a/6XNZ1ghWVPOgVrrvii2I
+        es7LG+nGKEueQtEchzUfY2w==
+X-Received: by 2002:a4a:eb10:0:b0:475:bf9b:e6ba with SMTP id f16-20020a4aeb10000000b00475bf9be6bamr5039473ooj.33.1666039846597;
+        Mon, 17 Oct 2022 13:50:46 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM7edLgl7Vg1Gy/zyvTAwhkrXRUgoyjTw6/UNJC5o7zT06WFRmqDS5N4NTFiBpM5ix4JIIz/Zw==
+X-Received: by 2002:a4a:eb10:0:b0:475:bf9b:e6ba with SMTP id f16-20020a4aeb10000000b00475bf9be6bamr5039462ooj.33.1666039846353;
+        Mon, 17 Oct 2022 13:50:46 -0700 (PDT)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::21])
+        by smtp.gmail.com with ESMTPSA id 184-20020a4a1ac1000000b0044df311eee1sm4599264oof.33.2022.10.17.13.50.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Oct 2022 13:50:45 -0700 (PDT)
+Date:   Mon, 17 Oct 2022 15:50:43 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH net-next v7 10/10] arm64: dts: layerscape: Add nodes for QSGMII PCSs
-Date:   Mon, 17 Oct 2022 16:22:41 -0400
-Message-Id: <20221017202241.1741671-11-sean.anderson@seco.com>
-X-Mailer: git-send-email 2.35.1.1320.gc452695387.dirty
-In-Reply-To: <20221017202241.1741671-1-sean.anderson@seco.com>
-References: <20221017202241.1741671-1-sean.anderson@seco.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0251.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::16) To DB7PR03MB4972.eurprd03.prod.outlook.com
- (2603:10a6:10:7d::22)
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc8280xp: fix USB0 PHY PCS_MISC
+ registers
+Message-ID: <20221017205043.wgys4c7ybb4ga4o7@halaney-x13s>
+References: <20220919094454.1574-1-johan+linaro@kernel.org>
+ <20220919094454.1574-2-johan+linaro@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR03MB4972:EE_|AM9PR03MB7379:EE_
-X-MS-Office365-Filtering-Correlation-Id: b498ea2e-3b6d-481e-9711-08dab07d7c2d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: F1pcQrcsYwJWg5vkzFgnmGM7kWahJypU/CN9RbJYUhbJkygbGjKujpL+cIku+95w6QX8gCc2lG73qvMPVGZcALoJvDuvjIiDGFV5B5D8QXb1QdRCo/TSiBdhtsBn4BrS3HP3gZSPdDSxCQ8BwWvSyjxEJsbhDdFOw9Fc8hxsIQqATLdy3muJITwsT9BI4qe3eOXxWG022Rd4E+pcuM7M1DY/JZsbuppmzkhb1eUNQKVv1s4Q5OBptOrLvfHQLg0mf7+kKTipoF0fWfOSYKJ0RjjHfpQyH53nI9bqzVSb4mUt+31SC3PwSQNtckTYX4fkjRtSthQPP75HBm4zvHLuV04ssKfMjCdLpvfyMFthogoYieNjWQTZn5S2tTXz1uEjNxrnCwz7KzAcGLhSoJOFEJ0ZxiCFe8gYPaEOZNFfyJFJtnev6uEYC0hjYCLolPpBw3R0LAcWY3/6iGCudjseLRRV1MgMbiqymGFY4Z+3wSgb9SXgZ7FVcTy4nj3HtsvtGcZ6KCIDuDssaHMNX++ix9bPKYUR5/sAHy2l7ClS4C1aztUOvBeScN0BsiO25rkfYAuo2e+c/juxqwIJQNWX3gg8f8Vf0utHBYbziltGH69Ok4NxcrN15xbfPxn/WCGUThYKMl/eQk5F7n3iiOwsTrYxvKOt289IgCPZPqN/D2O5N9sIeVy4UuXjTVEBQyraSHd4aJW0anddJdd3SDiWQ2XaxO6u2D14M3le97jud89KyRp4/zh801JErGW+OsiYvexlcrCXczYQyFfQpQEKuw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(346002)(396003)(39850400004)(136003)(376002)(366004)(451199015)(36756003)(86362001)(38350700002)(38100700002)(478600001)(110136005)(1076003)(186003)(54906003)(316002)(66946007)(44832011)(5660300002)(7416002)(8936002)(2906002)(2616005)(66476007)(6486002)(4326008)(66556008)(8676002)(41300700001)(6506007)(6512007)(26005)(52116002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8PfQyK5HJ5bS/28OFXJ+fd1mKEuQxJhpOvOxiTzZYZHkPCGm0AnsRSdOxbJF?=
- =?us-ascii?Q?XVrS3QKa4v2bco8mpgbpbWyQUYkUDSmB2AdT9jjCsatJ0KJBwNCu2o4Kj3Hr?=
- =?us-ascii?Q?K+UIlWcgE8Mx6O/iu8dcrsvju63Pd21HyliZjpI3zu6HIA01mpUnr3tlvOfI?=
- =?us-ascii?Q?bazrPpuJRlrI16C8UVKsGI01vV5Iz10I8aKPnQsnIKiofto7s1C0l0RDoQQc?=
- =?us-ascii?Q?2yaU3cqgCLLa9CpZIT64SsvOg9SgkitrYqvsIuVbIAu/PEpH/BzEgi9yQTvr?=
- =?us-ascii?Q?zeccsHGhntOqA1j1d372cIsTvMNtEznx7uFwiPkM6+jlOApRYE86y3+Zof7e?=
- =?us-ascii?Q?WqrgVfJiUx8Gx+rSvyrHuNVhsboxeOe/qCv+bGXJjmrswPsX2/nqtYs6IxxC?=
- =?us-ascii?Q?W47+C59RGtRRnkqa8rdcxNPZBP4OuGrMZwXQh8acXZ5hFShImkkMUPAtAIEE?=
- =?us-ascii?Q?ffqM7U5TkOiYzGjKhRV5/YI/PN6MYkYeX6eXkxY8rq0f5IzGIx+MFTiCkdsZ?=
- =?us-ascii?Q?BnUa9tpiEfTlxd+7IKi959Tzi+DUaRRL3eZltxVBeDpfJlp0fxqxa+T6UZvW?=
- =?us-ascii?Q?OC2nvZIFUEMlhP5NY+TYUWSoZzEJCp5pNkcz1qQY+Q0Gn20HqYAsU8GcE5bw?=
- =?us-ascii?Q?wUd0fKTFkMRbZcSVR13KoObI/6IIuGSIgSaN+yseLsp28ONr/gGEBeO0gClL?=
- =?us-ascii?Q?CgTsXOBQqKGRNUn3L4Q3P0ixIJzgKVnbX7OpaICINAs9Bp45VoUHoy6LnkZ6?=
- =?us-ascii?Q?oTGxtGx3NxM8NIxP/UCn7icOezTNRIBcCGtAl4HN6eCXdFbhnAm5ddgBZOSr?=
- =?us-ascii?Q?BHml+FXk4thBhUH8fgQod0pAx49XlER4kLctwqOjBSte98vMrsBYnPHPw00E?=
- =?us-ascii?Q?sOaRnFVFYsX118FODoMzdEfu1jaz2hXnguiTo6dJ1shHKikZXsymj4eZrUty?=
- =?us-ascii?Q?bMDhfhA3SBrq0s05NagW0ePcSCRJLJ4Xr0no2ZiHjbBHOonAYeI2jB3ZVjd1?=
- =?us-ascii?Q?JGMf8FIbe5TIuoB++sa6u4LLC0fWM4XGPgVwa74d+rTrwkA+3fm+qoMVrRHs?=
- =?us-ascii?Q?dZC9QnJu3cGLsEKco20o83rJa/gyX8mApXumRCQG70110dFX+0HlMUSelPgK?=
- =?us-ascii?Q?z6c6/vgkjVKWm6NPFlXZV8NBwhMAII1ijJCUzjjqiUqmNp0zK9XAfzHfAomV?=
- =?us-ascii?Q?vL1GE271mQxElMIGFDXDErP8TsQQpf3JAZHRHRTduYOQyV0DUjnRHURdQKNc?=
- =?us-ascii?Q?2ABO8OWLJ/B0ucWeu0ZKYmoO7tgXaYAHkKjVOqaTgrh7Fw/r/KI5bBoZYpbZ?=
- =?us-ascii?Q?zLkNI1DOzs5X6Kt+ce8VTSbC3YpOOZj+a6jEyU8kB/DgKtEDnijrx6g7zQOs?=
- =?us-ascii?Q?5L33oEvCxFfvb/BuyCSlhw1iMyHztIpZVmXite3Bc/j/khl5+p6nr08XnRVg?=
- =?us-ascii?Q?t61cYifKaKp1KUG1wMUgAnIUxJ+4ybEyzqFDM9ceZzY889KdS4DVjBuHmBeo?=
- =?us-ascii?Q?5q58GrdjGl3EztArq+uJ+nEPU/GfUPQihx5tgxDU4BiXg14kHJs9GWBULj/X?=
- =?us-ascii?Q?dSDUDediB2PMfm7ztLYV2elBx6mpzKo3Sl6fq7hO4+g8VYJUEF6I+4zQkFQv?=
- =?us-ascii?Q?Jg=3D=3D?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b498ea2e-3b6d-481e-9711-08dab07d7c2d
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2022 20:23:42.9140
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tXTfFh0hva+l2xNDmNr/fOd/kn22VwVBOWlcF7eCwaNRgQdHAwy67GmuS+lQcbxcHNxI7TF2M9evE1M210BAAQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR03MB7379
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220919094454.1574-2-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -128,131 +83,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we actually read registers from QSGMII PCSs, it's important
-that we have the correct address (instead of hoping that we're the MAC
-with all the QSGMII PCSs on its bus). This adds nodes for the QSGMII
-PCSs.  The exact mapping of QSGMII to MACs depends on the SoC.
+Hi,
 
-Since the first QSGMII PCSs share an address with the SGMII and XFI
-PCSs, we only add new nodes for PCSs 2-4. This avoids address conflicts
-on the bus.
+On Mon, Sep 19, 2022 at 11:44:51AM +0200, Johan Hovold wrote:
+> The USB0 SS PHY node had the PCS_MISC register block (0x1200) replaced
+> with PCS_USB (0x1700).
+> 
+> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-Signed-off-by: Sean Anderson <sean.anderson@seco.com>
----
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 
-(no changes since v3)
+Thanks for the patch, I think this patch makes sense from what I'm
+seeing of upstream's expectations (that register space should be
+PCS_MISC's) downstream, register names, and offsets.
 
-Changes in v3:
-- Split this patch off from the previous one
+Being verbose because it took me a little bit to figure out, but here's
+the offset and registers I found downstream which correlate to
+your change:
 
-Changes in v2:
-- New
+    /* Module: USB3_PCS_MISC_USB3_PCS_MISC_USB3_PCS_MISC */
+    #define USB3_PCS_MISC_TYPEC_CTRL				0x1200
+    #define USB3_PCS_MISC_TYPEC_PWRDN_CTRL				0x1204
+    #define USB3_PCS_MISC_PCS_MISC_CONFIG1				0x1208
+    #define USB3_PCS_MISC_CLAMP_ENABLE				0x120C
+    #define USB3_PCS_MISC_TYPEC_STATUS				0x1210
+    #define USB3_PCS_MISC_PLACEHOLDER_STATUS			0x1214
 
- .../boot/dts/freescale/fsl-ls1043-post.dtsi   | 24 ++++++++++++++++++
- .../boot/dts/freescale/fsl-ls1046-post.dtsi   | 25 +++++++++++++++++++
- 2 files changed, 49 insertions(+)
+Your description of the PCS_USB region accidentally being used in the
+prior version also adds up with what I see.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043-post.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1043-post.dtsi
-index d237162a8744..5c4d7eef8b61 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1043-post.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1043-post.dtsi
-@@ -24,9 +24,12 @@ &fman0 {
- 
- 	/* these aliases provide the FMan ports mapping */
- 	enet0: ethernet@e0000 {
-+		pcs-handle-names = "qsgmii";
- 	};
- 
- 	enet1: ethernet@e2000 {
-+		pcsphy-handle = <&pcsphy1>, <&qsgmiib_pcs1>;
-+		pcs-handle-names = "sgmii", "qsgmii";
- 	};
- 
- 	enet2: ethernet@e4000 {
-@@ -36,11 +39,32 @@ enet3: ethernet@e6000 {
- 	};
- 
- 	enet4: ethernet@e8000 {
-+		pcsphy-handle = <&pcsphy4>, <&qsgmiib_pcs2>;
-+		pcs-handle-names = "sgmii", "qsgmii";
- 	};
- 
- 	enet5: ethernet@ea000 {
-+		pcsphy-handle = <&pcsphy5>, <&qsgmiib_pcs3>;
-+		pcs-handle-names = "sgmii", "qsgmii";
- 	};
- 
- 	enet6: ethernet@f0000 {
- 	};
-+
-+	mdio@e1000 {
-+		qsgmiib_pcs1: ethernet-pcs@1 {
-+			compatible = "fsl,lynx-pcs";
-+			reg = <0x1>;
-+		};
-+
-+		qsgmiib_pcs2: ethernet-pcs@2 {
-+			compatible = "fsl,lynx-pcs";
-+			reg = <0x2>;
-+		};
-+
-+		qsgmiib_pcs3: ethernet-pcs@3 {
-+			compatible = "fsl,lynx-pcs";
-+			reg = <0x3>;
-+		};
-+	};
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046-post.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046-post.dtsi
-index d6caaea57d90..4e3345093943 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046-post.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046-post.dtsi
-@@ -23,6 +23,8 @@ &soc {
- &fman0 {
- 	/* these aliases provide the FMan ports mapping */
- 	enet0: ethernet@e0000 {
-+		pcsphy-handle = <&qsgmiib_pcs3>;
-+		pcs-handle-names = "qsgmii";
- 	};
- 
- 	enet1: ethernet@e2000 {
-@@ -35,14 +37,37 @@ enet3: ethernet@e6000 {
- 	};
- 
- 	enet4: ethernet@e8000 {
-+		pcsphy-handle = <&pcsphy4>, <&qsgmiib_pcs1>;
-+		pcs-handle-names = "sgmii", "qsgmii";
- 	};
- 
- 	enet5: ethernet@ea000 {
-+		pcsphy-handle = <&pcsphy5>, <&pcsphy5>;
-+		pcs-handle-names = "sgmii", "qsgmii";
- 	};
- 
- 	enet6: ethernet@f0000 {
- 	};
- 
- 	enet7: ethernet@f2000 {
-+		pcsphy-handle = <&pcsphy7>, <&qsgmiib_pcs2>, <&pcsphy7>;
-+		pcs-handle-names = "sgmii", "qsgmii", "xfi";
-+	};
-+
-+	mdio@eb000 {
-+		qsgmiib_pcs1: ethernet-pcs@1 {
-+			compatible = "fsl,lynx-pcs";
-+			reg = <0x1>;
-+		};
-+
-+		qsgmiib_pcs2: ethernet-pcs@2 {
-+			compatible = "fsl,lynx-pcs";
-+			reg = <0x2>;
-+		};
-+
-+		qsgmiib_pcs3: ethernet-pcs@3 {
-+			compatible = "fsl,lynx-pcs";
-+			reg = <0x3>;
-+		};
- 	};
- };
--- 
-2.35.1.1320.gc452695387.dirty
+Thanks,
+Andrew
+
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 49ea8b5612fc..e8905445ca19 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -1184,7 +1184,7 @@ usb_0_ssphy: usb3-phy@88eb400 {
+>  				      <0 0x088ec400 0 0x1f0>,
+>  				      <0 0x088eba00 0 0x100>,
+>  				      <0 0x088ebc00 0 0x3ec>,
+> -				      <0 0x088ec700 0 0x64>;
+> +				      <0 0x088ec200 0 0x18>;
+>  				#phy-cells = <0>;
+>  				#clock-cells = <0>;
+>  				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> -- 
+> 2.35.1
+> 
 
