@@ -2,207 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B10B6008ED
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 10:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08B89600912
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 10:49:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbiJQInr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 04:43:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36512 "EHLO
+        id S229452AbiJQIt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 04:49:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229898AbiJQInq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 04:43:46 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB7632B602
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 01:43:43 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id i21so10275917ljh.12
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 01:43:43 -0700 (PDT)
+        with ESMTP id S229796AbiJQIt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 04:49:27 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1902410DC
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 01:49:25 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id bj12so23207886ejb.13
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 01:49:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=p23jnQNQ6JC6/vxi7zw6GQkHOBG7ZpOlqxBcqeLSsBY=;
-        b=erUNPQmYvqeKh2VbLgBzmizyrnnZC2uQQTGooV4d9SzFHe9PhjXSJP+wx5Q4CsmwAL
-         +L5CkOJnS3sj/u3GC/TAuVjX6bahwzPV/EBPP6DWTEG0zccaEgZHk6uVyfiv8AKjeM/q
-         vdSySjT5io0djVS8dfVGbB5+8ySG2LPhe8zTlFl/nX7UqcqmrUnqM7cImm5BIfSxyaj+
-         OvVBpsAruCn5QZRqcU4h6vQ2cZp/kpoHmDRKodWilfkX6yEuk3Q37L5ILLLKk1GlbBSA
-         dRlEliqqiKHeoLj/BV0q3AnXs2w44pDtYeBV+THjAuYw7phP9D+b7apSaYStTEEjKwsB
-         AxMw==
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ur8IA2XfFVehJVfyvGio3wT5RKRTtvQ2gh4yATlbsSM=;
+        b=KCaBRtPpKTFX3TBBPIF9EPb+x0r7QBcde9BI9jtKFbGUjnrjcjcKGhQh4cz27bFZJY
+         elnTNWnvdoxzGxwXNJoIqdIREab9X5NRjizO6pSlnJMRBiA6+vBICFNnEuwt6FNOkqj7
+         fqrQKLfxw/CZIhJykdJsc6J/BFIkeB/QfGb12gXZB5+UPoENWrDctTdDdR+59xHPhhhj
+         N98FTKm4pwrhDPgPXFCaryZAVR8WNiA1gZt+pFLKfSMK5nkvs6vmh+z3vW+NnuslXwaw
+         4w4UkJGn/tpuUP2ROzw0LOKidK5vF20TZnS7TLFJHZbyOeDG3cpFkdxDWWNLstLFWCE+
+         ICqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p23jnQNQ6JC6/vxi7zw6GQkHOBG7ZpOlqxBcqeLSsBY=;
-        b=yR8BXYIucY7kXy0oraiVJiV27nS6wN1QvZI4skzZqAP3D1QzsTRniNRHv4Ei1jAzvi
-         6PLY/ID+RS1AEaOyOOFEDTVw+VL+xCfzgaHD65PlmiLqm75b8AWBSS0Yb0PkBu9gm5hp
-         z15mIp+/Cv8XPw63Bde9c8hf5gRWQWWLEcSMN5ScpGVrdp9EI+/qSbDRxXAkBzli6GGg
-         5tvjNLMRvdycvqminxAVKqeMZxbonwR5PJBCFTtVcmE7Hkl/6Y2pGmBufyPK+sMEalfh
-         LM/EHX5vIdYYwAQI5m3bk2XzVJk4lwiP9EzX1neXneIa7GRcfnNesOKWi6V0zhmaVWqZ
-         xs+g==
-X-Gm-Message-State: ACrzQf0LLn7Fqrp4A8TgA8m/0H9wBCmewE3Iq2RxPG/llCwlEPQeXaea
-        5vfm/BxjSrhYuAH2DXrSocE5hg==
-X-Google-Smtp-Source: AMsMyM4+l6WqvfUjCX8XWsHsk6YAn7bdpDsUTToKjUg99qgXfKxK1XzYx4rgrLg29QGkKJDql77plw==
-X-Received: by 2002:a05:651c:983:b0:26c:1c6b:8473 with SMTP id b3-20020a05651c098300b0026c1c6b8473mr3478239ljq.341.1665996222210;
-        Mon, 17 Oct 2022 01:43:42 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id r3-20020a2ea383000000b0026faf7bfa62sm1404744lje.76.2022.10.17.01.43.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Oct 2022 01:43:41 -0700 (PDT)
-Message-ID: <a4a8557e-3fe7-356c-9434-01263f6d9771@linaro.org>
-Date:   Mon, 17 Oct 2022 11:43:41 +0300
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ur8IA2XfFVehJVfyvGio3wT5RKRTtvQ2gh4yATlbsSM=;
+        b=W01r1qkCF4SJfLpi81pZg1mNI/hxWFC5m+2WChw0qztsR3z76eE5Fyf/2q/K8YsDj8
+         WSNzq72lGzgQCNABOqj7C8VWHrC0Q/QDBiWp365z0ijdLXn3j85gAGdKVuFBrdoetqfX
+         1t7M9/k9u7my2+XysABMOpeZJmvSbCw1ioLyrhyVd1umCcZS69P2K5pbaYaLWkHbpq+x
+         ZGn/R+chQtoz0pYrkFt5qKYPJOq7PaFAYnVw8LOL7hpbkMUf/xfl9Fv3IPg1LzToikVr
+         CKF7g6m01C0OMBlzo4zfvYF6QdYZU/DM9yI1rfFOKdEekCCsOr9eOWc3Ez+5nKFtWezw
+         GyQQ==
+X-Gm-Message-State: ACrzQf3RzDifhUmGGab1A6NufdiZ0NlASn8IbqE+fkcGwms3Bf3AiGOW
+        F4RzvinmwqMLQXFlGzSXMxyrdTCi5MSfZ2h5ysuXlA==
+X-Google-Smtp-Source: AMsMyM6ksJr/GI0QTpcwrX9CLuUnwMNfW/GaLo39RZHmA/3d/gkSvPfkSMhXEgpy1QK71T9pH58UsLBF/mxC+G+Yr0g=
+X-Received: by 2002:a17:907:7606:b0:78e:61d:757e with SMTP id
+ jx6-20020a170907760600b0078e061d757emr7375630ejc.690.1665996563649; Mon, 17
+ Oct 2022 01:49:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v5 09/13] mailbox: Add Gunyah message queue mailbox
-Content-Language: en-GB
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-10-quic_eberman@quicinc.com>
- <38a62751-799d-67ff-68d8-2946f2308e59@linaro.org>
- <c6c32b15-e32e-4362-00fc-e6710dca2546@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <c6c32b15-e32e-4362-00fc-e6710dca2546@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20221005145746.172138-1-m.zatovic1@gmail.com> <20221005145746.172138-2-m.zatovic1@gmail.com>
+In-Reply-To: <20221005145746.172138-2-m.zatovic1@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 17 Oct 2022 10:49:12 +0200
+Message-ID: <CACRpkdaxYcyEauFotzei8J0VOVksQH9Mm-AdF1aFU0BXjd4t4A@mail.gmail.com>
+Subject: Re: [RFCv2 PATCH 2/4] bus: add Wiegand bus driver
+To:     =?UTF-8?B?TWFydGluIFphxaVvdmnEjQ==?= <m.zatovic1@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, gregkh@linuxfoundation.org,
+        jeffrey.l.hugo@gmail.com, andersson@kernel.org,
+        Michael.Srba@seznam.cz, saravanak@google.com, mani@kernel.org,
+        hemantk@codeaurora.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2022 01:32, Elliot Berman wrote:
-> 
-> 
-> On 10/12/2022 2:47 PM, Dmitry Baryshkov wrote:
->> On 11/10/2022 03:08, Elliot Berman wrote:
->>> +
->>> +static irqreturn_t gh_msgq_tx_irq_handler(int irq, void *data)
->>> +{
->>> +    struct gunyah_msgq *msgq = data;
->>> +
->>> +    mbox_chan_txdone(gunyah_msgq_chan(msgq), 0);
->>> +
->>> +    return IRQ_HANDLED;
->>> +}
->>> +
->>> +static void gh_msgq_txdone_tasklet(unsigned long data)
->>> +{
->>> +    struct gunyah_msgq *msgq = (struct gunyah_msgq *)data;
->>> +
->>> +    mbox_chan_txdone(gunyah_msgq_chan(msgq), msgq->last_status);
->>
->> I don't quite get this. Why do you need both an IRQ and a tasklet?
->>
-> 
-> I've now tweaked the code comments now as well to explain a bit better.
-> 
-> Gunyah tells us in the hypercall itself whether the message queue is 
-> full. Once the the message queue is full, Gunyah will let us know when 
-> reader starts draining the queue and we can start adding more messages 
-> via the tx_irq.
-> 
-> One point to note: the last message to be sent into the message queue 
-> that makes the queue full can be detected. The hypercall reports that 
-> the message was sent (GH_ERROR_OK) and the "ready" return value is 
-> false. In its current form, the msgq mailbox driver should never make a 
-> send hypercall and get GH_ERROR_MSGQUEUE_FULL because the driver 
-> properly track when the message queue is full.
-> 
-> When mailbox driver reports txdone, the implication is that more 
-> messages can be sent (not just that the message was transmitted). In 
-> typical operation, the msgq mailbox driver can immediately report that 
-> the message was sent and no tx_irq happens because the hypercall returns 
-> GH_ERROR_OK and ready=true. The mailbox framework doesn't allow txdone 
-> directly from the send_data callback. To work around that, Jassi 
-> recommended we use tasklet [1]. In the "atypical" case where message 
-> queue becomes full, we get GH_ERROR_OK and ready=false. In that case, we 
-> don't report txdone right away with the tasklet and instead wait for the 
-> tx_irq to know when more messages can be sent.
+On Wed, Oct 5, 2022 at 4:58 PM Martin Za=C5=A5ovi=C4=8D <m.zatovic1@gmail.c=
+om> wrote:
 
-Can we please get some sort of this information into the comments in the 
-source file?
+> The Wiegand bus driver spawns devices and matches them with
+> drivers.
+>
+> Signed-off-by: Martin Za=C5=A5ovi=C4=8D <m.zatovic1@gmail.com>
 
-> 
-> [1]: Tasklet works because send_data is called from mailbox framework 
-> with interrupts disabled. Once interrupts are re-enabled, the txdone is 
-> allowed to happen which is also when tasklet runs.
-> 
->>> +
->>> +    /**
->>> +     * EAGAIN: message didn't send.
->>> +     * ret = 1: message sent, but now the message queue is full and 
->>> we can't send any more msgs.
->>> +     * Either way, don't report that this message is done.
->>> +     */
->>> +    if (ret == -EAGAIN || ret == 1)
->>> +        return ret;
->>
->> '1' doesn't seem to be a valid return code for _send_data.
->>
->> Also it would be logical to return any error here, not just -EAGAIN.
->>
-> 
-> 
-> If I return error to mailbox framework, then the message is stuck: 
-> clients don't know that there was some underlying transport failure. It 
-> would be retried if the client sends another message, but there is no 
-> guarantee that either retrying later would work (what would have 
-> changed?) nor that client would send another message to trigger retry. 
-> If the message is malformed or message queue not correctly set up, 
-> client would never know. Client should be told that the message wasn't 
-> sent.
+Overall this is a vast improvement over the first patches!
 
-I see. msg_submit() doesn't propagate the error.
+I might not have time to look closer right now, but I see you got
+a lot of comments from Krzysztof et al so you have some stuff to
+work on.
 
-> 
-> 
->>> +int gunyah_msgq_init(struct device *parent, struct gunyah_msgq 
->>> *msgq, struct mbox_client *cl,
->>> +             struct gunyah_resource *tx_ghrsc, struct 
->>> gunyah_resource *rx_ghrsc)
->>
->> Are the message queues allocated/created dynamically or statically? If 
->> the later is true, please use devm_request(_threaded)_irq and 
->> devm_kzalloc.
->>
-> 
-> With the exception of resource manager, message queues are created 
-> dynamically.
-> 
-> P.S. Thanks for all the other suggestions in this and the other patches, 
-> I've applied them.
-> 
-> Thanks,
-> Elliot
+Looking forward to the first non-RFC patch series!
 
--- 
-With best wishes
-Dmitry
-
+Yours,
+Linus Walleij
