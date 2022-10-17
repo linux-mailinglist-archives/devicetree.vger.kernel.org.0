@@ -2,89 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4F960145C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 19:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA4B460147F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 19:16:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230023AbiJQRLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 13:11:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49386 "EHLO
+        id S229979AbiJQRQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 13:16:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbiJQRLJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 13:11:09 -0400
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B936566A46;
-        Mon, 17 Oct 2022 10:11:08 -0700 (PDT)
-Received: by mail-il1-x12e.google.com with SMTP id q18so6132174ils.12;
-        Mon, 17 Oct 2022 10:11:08 -0700 (PDT)
+        with ESMTP id S230023AbiJQRQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 13:16:00 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68F966E2C9
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 10:15:59 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id a18so7080888qko.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 10:15:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2R50tDa31QheH9PegEd+bVdQ3X/I4pMIoJ98xHZVENU=;
-        b=gbhcWFmvoOoHlrSw7fwphKzkgX4hOti+XwRW5+LaeaV09djLDTNgfQKCLEOakbXiUh
-         6f502qo/Bl7lANxZjkoEIkS7L5KK6Qf5i/U6ptkvGFke7HF/tAEqYL+qYQHS7OYkEdyh
-         ltYiMuLS+7IfdQmAVOErtTPxsRart4tGjR/3CZXAMPJws1qPEmu3zgtiZLljDS3tgRJQ
-         5Z2QHUPebEzye+DfcfYK0s2UQQ7Cx/NhjjpcFlsOd+MXD1ugiTuHb4teeP9eyac+Ja3n
-         MN1WcJoWDF8NdJ7J40fHi/+l1sfti3ibT4DKferFq6osjrScVwcR2ySvdivCjJixyzRO
-         qxfw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4ZecDoFZ2FP/kx+KdceBdgeFczEPpStIKFSrAh+N6jU=;
+        b=LXDJSdcdeLuJYxtyhdZsAI0SNOP4m46trXhDeGqAl1V4CXsnADHkT0hIDME8MnMKpI
+         XBRruyzZYQU82Ll4/zEH84hcvRlJ5p0pM24FEdi5Trj7CTeEI1d8RPsKNT7QdSC9Kk7j
+         FUS7JzlCBQn62wGI4XV7Zpvnrd+X8g6r3HyWyrjajvVTkywCowHWSf0/u/g+UB71GKVG
+         ZpVr4VlhfALLqJaTazVk01O8UnzXNlTtBo5yQ3Tsze986io4/+j+sr6ysWbXSR/GHd6b
+         NJNjvUQnYN1Nh7QE2Hx/xz1HWrS+egDBtsPwtlDO59O0zmebeJERkOTe9SqTbp4xeFXd
+         dXoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2R50tDa31QheH9PegEd+bVdQ3X/I4pMIoJ98xHZVENU=;
-        b=kYdynQVBm5Yha0A/2HWC6K82gYtvp9XZkZRSBsmbFouUm09r3Bfo+Z7+r69+atFo5A
-         VLYtMzsTqaq88KJaA9Pq0I9ymJhlNSLl+X9cVKDP0s5RVWb/VOhalb1EpfmtF0qYCFI4
-         YkbCxBPabbIbI+g2G9uzsuZupOEhOYm2IO6D01I1I6IBtJsWtSeOSXicenJ+Vg6atBBP
-         gArNicynLmSAGbUKhVbQq9ovThUR0kW0wk1i3sjlW3YsiVWu59uV+QE4pkX4uZ0h2klT
-         ebUWPUyD+hzh7a0kcwfITUfKy2rxXeUOokYllQ6w03I6mjCcd+H4xo4RWfSiD3xCeIF/
-         fIgA==
-X-Gm-Message-State: ACrzQf2LD03iRkgN6P/4hFeg+kNaCsonoQzNl/cdztNifmDCXIAtR8Px
-        EMjMzBz5CKrYGGFZo818dv9LaqjaV5SURuocFNk=
-X-Google-Smtp-Source: AMsMyM5/Jdn558aL2rhxtSZ2OiG2HQGSp5Yfh5ExHu+Z1RngoeO5tlE0YXRAp2g3o24MQ3WEV+KDly8jDeAa2vFPnAs=
-X-Received: by 2002:a05:6e02:20ea:b0:2fc:318b:a952 with SMTP id
- q10-20020a056e0220ea00b002fc318ba952mr5121906ilv.236.1666026668164; Mon, 17
- Oct 2022 10:11:08 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4ZecDoFZ2FP/kx+KdceBdgeFczEPpStIKFSrAh+N6jU=;
+        b=qDuU1fdFBDA+LJCVfZyyWhljYZo+O6pfk6byK9GgIaBAC4DszcIOD9asObJj6hzGRX
+         TTORcLUzCZWE59c0rFfV7EXf+t56zMYRp20QYS7KLs1jjfRFeYRCNvJmzLcTmeVXAulY
+         gmqKt/gx40YoTSy9f5KksUzWtTmIp9noR2vyn5O45GrLlIevMUtbfJ/9m/JPhsENPLiP
+         i0zWeP8vVyP8ONNkDDSF5OMg2sbnuErz4hsfxqGnZhWpZatOSTrEcpV6bir9V/MxPwYt
+         Wb3odXVf6XJxg7564mL9ABuseCtLk2IXTNjx7LwpGQtNTWcWbw9jS07iUB+fScpId5y/
+         TWjA==
+X-Gm-Message-State: ACrzQf19STrFe+R54asIUleb/TqEXdYvhQVhn1OcyODJUDZ8Ui0zkDq9
+        HkBKxTjBPATtC9QdGx+cm0k29eNm5rTj4Q==
+X-Google-Smtp-Source: AMsMyM78cEACn7q29/KOCzKKbKrK66y2E/xmtRkYp6XmajqupdFIvn1kcwfKZf54KpEbLcIXuiHOEQ==
+X-Received: by 2002:a05:620a:46a7:b0:6ee:dea7:cc1c with SMTP id bq39-20020a05620a46a700b006eedea7cc1cmr6200325qkb.506.1666026958537;
+        Mon, 17 Oct 2022 10:15:58 -0700 (PDT)
+Received: from [10.101.5.247] ([148.59.24.28])
+        by smtp.gmail.com with ESMTPSA id c25-20020ac81119000000b003996aa171b9sm169442qtj.97.2022.10.17.10.15.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Oct 2022 10:15:57 -0700 (PDT)
+Message-ID: <5e153119-f853-ff57-8277-2d782e255be2@linaro.org>
+Date:   Mon, 17 Oct 2022 13:15:45 -0400
 MIME-Version: 1.0
-References: <20221016150110.3020451-1-lis8215@gmail.com> <20221016150110.3020451-5-lis8215@gmail.com>
- <0S4WJR.4KB18PR21S9K1@crapouillou.net>
-In-Reply-To: <0S4WJR.4KB18PR21S9K1@crapouillou.net>
-From:   Siarhei Volkau <lis8215@gmail.com>
-Date:   Mon, 17 Oct 2022 20:10:56 +0300
-Message-ID: <CAKNVLfYEMwRC+4VuGcaENd1eTvbhWD9=uFDAhaz+1Fd8Aaqg_w@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] clk: Add Ingenic JZ4755 CGU driver
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH 09/15] dt-bindings: phy: qcom,qmp-pcie: mark current
+ bindings as legacy
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221017145328.22090-1-johan+linaro@kernel.org>
+ <20221017145328.22090-10-johan+linaro@kernel.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221017145328.22090-10-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=BF=D0=BD, 17 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 12:24, Paul Cercue=
-il <paul@crapouillou.net>:
+On 17/10/2022 10:53, Johan Hovold wrote:
+> The current QMP PCIe PHY bindings are based on the original MSM8996
+> binding which provided multiple PHYs per IP block and these in turn were
+> described by child nodes.
+> 
+> Later QMP PCIe PHY blocks only provide a single PHY and the remnant
+> child node does not really reflect the hardware.
+> 
+> The original MSM8996 binding also ended up describing the individual
+> register blocks as belonging to either the wrapper node or the PHY child
+> nodes.
+> 
+> This is an unnecessary level of detail which has lead to problems when
+> later IP blocks using different register layouts have been forced to fit
+> the original mould rather than updating the binding. The bindings are
+> arguable also incomplete as they only the describe register blocks used
+> by the current Linux drivers (e.g. does not include the per lane PCS
+> registers).
+> 
+> In preparation for adding new bindings for SC8280XP which further
+> bindings can be based on, mark the current bindings as "legacy".
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  .../{qcom,qmp-pcie-phy.yaml => qcom,qmp-pcie-phy-legacy.yaml} | 4 ++--
 
-> > +     [JZ4755_CLK_AIC] =3D {
-> > +             "aic", CGU_CLK_GATE,
-> > +             .parents =3D { JZ4755_CLK_I2S, -1, -1, -1 },
->
-> Wrong parent here, should be JZ4755_CLK_EXT_HALF.
+I don't think we should rename anything as legacy. These are "normal"
+platforms, not legacy ones. SM8450 is not even that old.
 
-I don't  agree, see Figure 20-13 in the JZ4755 PM.
+The recommendation is to keep names matching the compatibles, not adding
+some legacy/newer/newest suffixes.
 
-> Well it would be good to know...
+Best regards,
+Krzysztof
 
-Indeed, I will try to figure it out.
