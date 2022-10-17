@@ -2,110 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D1986014AE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 19:22:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAB616014E0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 19:25:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230200AbiJQRWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 13:22:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48324 "EHLO
+        id S230290AbiJQRY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 13:24:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbiJQRWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 13:22:33 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5C471739
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 10:22:32 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id h10so7814617qvq.7
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 10:22:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VQlsXPG+b/ivmTTpsGhpnAcJEtCBNzn8M5P3pvqQhSs=;
-        b=dX5kUxlKjD7RhLO2sY7XEDAry/0JjXW+PYd8LJNyx6uFUBbEmjgG9ImOa5jTXzU4Jb
-         W+Sy9+SEaBoObXZAWCSTIpbzXKODnyoYtWOW3O8/SK49D/uxYr0EhNGKN0c6G1bVivNd
-         Wv4XGV75oHWfJbCYZwgzi7woEKN+yshKzzbbheqUflYj3s/Yty1s1WJnHWuJ6Rw9/j8K
-         5taPt9RC9WhefbAO4L6Mgo3WfJyRtmJyIdCLPPRCr3EQpiRdi6JOlYQ52Q0lmiX8MXMo
-         RWCNP3rtM7K0cXzdlGGB3745l2iJj+NwpCSkdfEjMEpQMPXnWUOyahUS458NOGo5pGoH
-         lO2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VQlsXPG+b/ivmTTpsGhpnAcJEtCBNzn8M5P3pvqQhSs=;
-        b=0NKY7jvViozkq1f1Xvg1/OaY1Wk1Wli6XNf5WveuNaKGm1aW9yzYgEEbvnfNWn+LaO
-         Rp7ZR1iQiLbruivQXoKm1OJrazJ1/k8nKpJX+09tkwqPzREH4jdVk88FrSKtNXVvGn8r
-         12+V1MayYCyB3ShuHXUgCp3PbZBaiwjmYv5jef1WQI57lwcDSVYWUcq/Y/JCDfkHTISM
-         +m7fDwY6rZpm9xh/fIqsRSIOeOhVuY4E1MiQGrg4gVzoW2Wail/WKdqPJnxHIYeX0yxd
-         h3E9TQfuJfbbCUDNDORq4i354l1yoZVldAuJqx7NHnoG12HtpOX/B7eARMK4spgN5hGR
-         2rRA==
-X-Gm-Message-State: ACrzQf1r+pvRLWcOWYA/zDPthVCAnUpoXdsfLXrcOKDx7Zv/22MIVrGK
-        rLvDAcuzH+Obj8oeBi1s1zrFEA==
-X-Google-Smtp-Source: AMsMyM7F9zGFYDYD754st0ujJyV3rD1idxlFxOrrfeWDYWev/I49SdrGpCJUI2tnB/ugL8hZ8uw5iw==
-X-Received: by 2002:a05:6214:21ab:b0:4b4:6dc:b94e with SMTP id t11-20020a05621421ab00b004b406dcb94emr8980096qvc.107.1666027351200;
-        Mon, 17 Oct 2022 10:22:31 -0700 (PDT)
-Received: from [10.101.5.247] ([148.59.24.28])
-        by smtp.gmail.com with ESMTPSA id dm54-20020a05620a1d7600b006eeb185c209sm244330qkb.50.2022.10.17.10.22.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Oct 2022 10:22:30 -0700 (PDT)
-Message-ID: <73651055-2a1b-75b9-3483-b180afa6f7bd@linaro.org>
-Date:   Mon, 17 Oct 2022 13:22:27 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH 1/5] arm64: dts: qcom: pmi8998: add rradc node
-Content-Language: en-US
-To:     Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S230267AbiJQRYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 13:24:37 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82D4665CE;
+        Mon, 17 Oct 2022 10:24:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1666027472; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=q2LKFFdukj0Teo80d6xApjlkPmcHoDYGqshawhQ6Zp4=;
+        b=iamdcSxFgEwdT5Dd6NOiZ9hoaP/6qqx46nqgsRbZ84SwzSqeu69s+BZ4NZ+BKfwwJ9ja/k
+        oOaC/T7wZONdZpGf2331jSVlaUC+JhE+pfKNwBSccrGc0fMzPX4dEf+Ufh5oK8wZWUHPnf
+        tsyYtrCA+zggOaba6/A+8HQQZLoD0IM=
+Date:   Mon, 17 Oct 2022 18:24:22 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 4/4] clk: Add Ingenic JZ4755 CGU driver
+To:     Siarhei Volkau <lis8215@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-References: <20221016180330.1912214-1-caleb.connolly@linaro.org>
- <20221016180330.1912214-2-caleb.connolly@linaro.org>
- <5929051d-d2be-5b51-0cf9-294affa51df2@linaro.org>
- <1f6d8eb9-8e6e-a201-50c6-a9fa6f25b3d6@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1f6d8eb9-8e6e-a201-50c6-a9fa6f25b3d6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Message-Id: <M0RWJR.TI6Q9ATD37DF3@crapouillou.net>
+In-Reply-To: <CAKNVLfYEMwRC+4VuGcaENd1eTvbhWD9=uFDAhaz+1Fd8Aaqg_w@mail.gmail.com>
+References: <20221016150110.3020451-1-lis8215@gmail.com>
+        <20221016150110.3020451-5-lis8215@gmail.com>
+        <0S4WJR.4KB18PR21S9K1@crapouillou.net>
+        <CAKNVLfYEMwRC+4VuGcaENd1eTvbhWD9=uFDAhaz+1Fd8Aaqg_w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/10/2022 11:29, Caleb Connolly wrote:
-
->>> +		pmi8998_rradc: adc@4500 {
->>> +			compatible = "qcom,pmi8998-rradc";
->>> +			reg = <0x4500>;
->>> +			#io-channel-cells = <1>;
->>> +
->>> +			status = "disabled";
->>
->> Why disabling it? It does not need any external/board resources, so
->> maybe it should be just like other adcs - enabled by default? What does
->> it measure? What is its input?
-> 
-> The RRADC mostly reports values which only make sense on mobile devices, battery 
-> ID and temperature, USB and DC input voltage/current as well as a (duplicate?) 
-> die temperature of the PMIC - I guess closer to the SMB/FG block.
-> 
-> When I last tested the DC input readings didn't work on db845c, as it just 
-> produces the 4.2v you'd get from a battery.
-
-If it is connected to some line - e.g. to the battery - then it is
-operational and there is no reason to disable it.
 
 
-Best regards,
-Krzysztof
+Le lun., oct. 17 2022 at 20:10:56 +0300, Siarhei Volkau=20
+<lis8215@gmail.com> a =C3=A9crit :
+> =D0=BF=D0=BD, 17 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 12:24, Paul Cerc=
+ueil=20
+> <paul@crapouillou.net>:
+>=20
+>>  > +     [JZ4755_CLK_AIC] =3D {
+>>  > +             "aic", CGU_CLK_GATE,
+>>  > +             .parents =3D { JZ4755_CLK_I2S, -1, -1, -1 },
+>>=20
+>>  Wrong parent here, should be JZ4755_CLK_EXT_HALF.
+>=20
+> I don't  agree, see Figure 20-13 in the JZ4755 PM.
+
+20-13 describes the I2S clock, no?
+
+AIC clock's parent is EXT/2 according to the diagram in 8.2.2.
+
+>>  Well it would be good to know...
+>=20
+> Indeed, I will try to figure it out.
+
+Cheers,
+-Paul
+
 
