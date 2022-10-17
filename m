@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 262E26012C0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 17:29:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D538B6013A7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 18:40:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230307AbiJQP3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 11:29:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55454 "EHLO
+        id S230127AbiJQQkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 12:40:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbiJQP3f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 11:29:35 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93DF62BDB
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 08:29:31 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id y10so8896972wma.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 08:29:31 -0700 (PDT)
+        with ESMTP id S229793AbiJQQkg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 12:40:36 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 156FC4B49E
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 09:40:32 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id e129so10920112pgc.9
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 09:40:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ztY07P7Nmg/8FBmqQMyonwKE1XlxX2fUXn/V1GcbSV8=;
-        b=ESwFXJ6YBY2EU9+J/6XDGyI79ha7GegoHe/VpBu3YeYKAqWtwYbaSyPmlfZPEBtQXV
-         2L2GkB0OR9ZzdzcXt376UUyi84PF5rFt3XtLNOZ4X65RefBV8sQovCSPeB5gPaN0dJ3V
-         yjWsMTfa/VoZV5pUSzbQ5bW/eX513hwxzKbmD7y46Top/SfQr2aUughYh0BxyDyFmDxC
-         b7SQcQOwffZZiFWnZYhPToEtlz3I3wH+x5csUZBbT1zXr7jnX4TeidskpfPF7AyUzNof
-         ZiEUQTc9jNNi6peptDKSz/LmvBohPjKb1Q6qi6xhpCmLY6xWPR17rdaV73DNWELG07Y8
-         P2AA==
+        h=content-transfer-encoding:author:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ja3n7UoR5krxLTXF2BIGLH1a4R4IrPfEp3/SrF1htuE=;
+        b=qEih3QuJC+Y/SzRtUxEpqY+PWzQgky53hGqBB75AJJeJeXUaLWWmXFn0tbt8AhUPc0
+         uBybEPWIQ+8oUmmEPwNQRgL38VHNUfO/9+prYSKNMWk7zkIBCjwrwkgawK+3BdEK+sLy
+         vOYPxA0VMaFR3JIcsnEQmveEPxlum/GZ291qb4MGdokrkGtuSDXGKZaQ5TczUhRXPNXp
+         NFkiNhm65vBdZrNejraWch1IF8WEBlYjeEWHc/2H7h58j7NiCze4wYIJf4BCApkwy40Z
+         Jg5+yuUHl3rY6z5KLm/xdIN302Lgyzpihrw/zC14CMnVR5TKozemlSHhvRxiRJVOGOn3
+         Rf6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ztY07P7Nmg/8FBmqQMyonwKE1XlxX2fUXn/V1GcbSV8=;
-        b=Z4pxd0cCzSmjvMcWfu/VYntPIgaTohMy1zvL0eEzesTRhEWPc0N2UY8Kwn6pNoc0RP
-         97+BNJUODRHAxAKsaHABRY0QOiV/qjs+ESGTPP+r6Qot/r8OdkcFgEfBh/P/4tBhfQq6
-         dSBecqEifdOrF082Lr0Z945i/+S/DjUC24eIrhoRMK5Hu4MqknJK96gE8JB2wfHGtMvo
-         aKkj9Yb7bK++0E104fW7//UHY4iveg7lv3cPc6K3J5VDLgrTa+j4BFMY+2DdY/o20SDY
-         JqbYqxnUq1IpTkc2c+PkxOAz1i3kUjldex8VeWLwDRfNfrB2AzX4kWjRZfa2bbatwkun
-         FVvg==
-X-Gm-Message-State: ACrzQf0kR7NGQHwSN2jHPbcctmBr9REfc8YnA35df29bFByWyoppPSQN
-        XUdYoY5d5ESAtsekJeERPmahFg==
-X-Google-Smtp-Source: AMsMyM7Egd26oBZtE3NtF6Z6JpD9Wz8tVYJ7fdTpQyPQU7e+obc02UfXyE0OLhJXHE9czGJHOyHcvA==
-X-Received: by 2002:a05:600c:4e8c:b0:3c6:ea09:9cf0 with SMTP id f12-20020a05600c4e8c00b003c6ea099cf0mr7792213wmq.43.1666020570103;
-        Mon, 17 Oct 2022 08:29:30 -0700 (PDT)
-Received: from [192.168.0.11] (cpc76482-cwma10-2-0-cust629.7-3.cable.virginm.net. [86.14.22.118])
-        by smtp.gmail.com with ESMTPSA id n10-20020a05600c3b8a00b003c6b7f55673sm16708009wms.2.2022.10.17.08.29.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Oct 2022 08:29:29 -0700 (PDT)
-Message-ID: <1f6d8eb9-8e6e-a201-50c6-a9fa6f25b3d6@linaro.org>
-Date:   Mon, 17 Oct 2022 16:29:28 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH 1/5] arm64: dts: qcom: pmi8998: add rradc node
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org,
+        h=content-transfer-encoding:author:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ja3n7UoR5krxLTXF2BIGLH1a4R4IrPfEp3/SrF1htuE=;
+        b=6gAZB838nmbELUbmMQO8h7OU5R+j9ALh5vJk82yVchypATBzbCP02Dcx+unWtptsb/
+         u7gyD5dVvnDlqHDtG40QBVeMKabpZJiycaHHr9KLDcBGr0PWkTimmjxsudpByOlE/91C
+         Z/5Nyu4I886MaibGjO5h2KvoGexGxsFoS5PvnpEEK/omMpXIfpjTYIZfXd3PBE6e58w4
+         35fXiER/z5+GniaGn9KXMZX22egUsr5TyGsdr3ZKBfw9CnZIFHnUbIx6THrCLwtkKq8c
+         aiWC1TDA38OMPyu2HMAXUfD20OQyZWXOSCzABRtyP0x7vQbtHb4T2ubcVf+EgO3QhvxW
+         0x+g==
+X-Gm-Message-State: ACrzQf0d8iujw6Dyk9tx9AorbJWa3x0xS7Oyo/SvSEnUjpVUeME2hF5a
+        GDOo83oCWUIBiGKqoCeyjTRoHD+uTbYVXQ==
+X-Google-Smtp-Source: AMsMyM5j2iFAOZ0VnbEXzq8FF+Zoh8S6Qvvv9hf/o5FL6ZmwBZTanXJXB13ASnC3VgJnjHLkOYug2Q==
+X-Received: by 2002:aa7:84ce:0:b0:563:1aaf:81d5 with SMTP id x14-20020aa784ce000000b005631aaf81d5mr13479784pfn.63.1666024831991;
+        Mon, 17 Oct 2022 09:40:31 -0700 (PDT)
+Received: from localhost.localdomain ([122.171.23.186])
+        by smtp.gmail.com with ESMTPSA id d14-20020a170902b70e00b00178af82a08dsm6872113pls.91.2022.10.17.09.40.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Oct 2022 09:40:31 -0700 (PDT)
+From:   Amit Pundir <amit.pundir@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-References: <20221016180330.1912214-1-caleb.connolly@linaro.org>
- <20221016180330.1912214-2-caleb.connolly@linaro.org>
- <5929051d-d2be-5b51-0cf9-294affa51df2@linaro.org>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <5929051d-d2be-5b51-0cf9-294affa51df2@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: [PATCH] Revert "arm64: dts: qcom: sm8250: Add cpuidle states"
+Date:   Mon, 17 Oct 2022 22:10:05 +0530
+Message-Id: <20221017164005.2622934-1-amit.pundir@linaro.org>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Author: Amit Pundir <amit.pundir@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,50 +76,210 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This reverts commit 32bc936d732171d48c9c8f96c4fa25ac3ed7e1c7.
 
+This patch was part of a patch series to add APSS RSC to
+Cluster power domain
+https://patchwork.kernel.org/project/linux-pm/cover/1641749107-31979-1-git-send-email-quic_mkshah@quicinc.com/
+but the rest of the patches in this series got NACKed and didn't land.
 
-On 17/10/2022 02:10, Krzysztof Kozlowski wrote:
-> On 16/10/2022 14:03, Caleb Connolly wrote:
->> Add a DT node for the Round Robin ADC found in the PMI8998 PMIC.
->>
->> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/pmi8998.dtsi | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
->> index 6d3d212560c1..5a479259c041 100644
->> --- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
->> @@ -18,6 +18,14 @@ pmi8998_gpio: gpios@c000 {
->>   			interrupt-controller;
->>   			#interrupt-cells = <2>;
->>   		};
->> +
->> +		pmi8998_rradc: adc@4500 {
->> +			compatible = "qcom,pmi8998-rradc";
->> +			reg = <0x4500>;
->> +			#io-channel-cells = <1>;
->> +
->> +			status = "disabled";
-> 
-> Why disabling it? It does not need any external/board resources, so
-> maybe it should be just like other adcs - enabled by default? What does
-> it measure? What is its input?
+These cpuidle states made RB5 (sm8250) highly unstable and I run into
+following crash every now and then:
 
-The RRADC mostly reports values which only make sense on mobile devices, battery 
-ID and temperature, USB and DC input voltage/current as well as a (duplicate?) 
-die temperature of the PMIC - I guess closer to the SMB/FG block.
+[    T1] vreg_l11c_3p3: failed to enable: -ETIMEDOUT
+[    T1] qcom-rpmh-regulator 18200000.rsc:pm8150l-rpmh-regulators: ldo11: devm_regulator_register() failed, ret=-110
+[    T1] qcom-rpmh-regulator: probe of 18200000.rsc:pm8150l-rpmh-regulators failed with error -110
 
-When I last tested the DC input readings didn't work on db845c, as it just 
-produces the 4.2v you'd get from a battery.
+I reported this breakage earlier this year as well:
+https://lore.kernel.org/all/CAMi1Hd2Sngya_2m2odkjq4fdV8OiiXsFMEX1bb807cWMC7H-sg@mail.gmail.com/
+I can confirm that if I cherry-pick the rest of the patches from the
+series then I can't reproduce this crash, but I'm not sure when the rest
+of the patches are going to land though.
 
-Enabling it by default should be fine (and would certainly simplify this series :P).
-> 
-> Best regards,
-> Krzysztof
-> 
+Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 105 ---------------------------
+ 1 file changed, 105 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index a5b62cadb129..a2c15da1a450 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -101,8 +101,6 @@ CPU0: cpu@0 {
+ 			capacity-dmips-mhz = <448>;
+ 			dynamic-power-coefficient = <205>;
+ 			next-level-cache = <&L2_0>;
+-			power-domains = <&CPU_PD0>;
+-			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
+@@ -125,8 +123,6 @@ CPU1: cpu@100 {
+ 			capacity-dmips-mhz = <448>;
+ 			dynamic-power-coefficient = <205>;
+ 			next-level-cache = <&L2_100>;
+-			power-domains = <&CPU_PD1>;
+-			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
+@@ -146,8 +142,6 @@ CPU2: cpu@200 {
+ 			capacity-dmips-mhz = <448>;
+ 			dynamic-power-coefficient = <205>;
+ 			next-level-cache = <&L2_200>;
+-			power-domains = <&CPU_PD2>;
+-			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
+@@ -167,8 +161,6 @@ CPU3: cpu@300 {
+ 			capacity-dmips-mhz = <448>;
+ 			dynamic-power-coefficient = <205>;
+ 			next-level-cache = <&L2_300>;
+-			power-domains = <&CPU_PD3>;
+-			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
+@@ -188,8 +180,6 @@ CPU4: cpu@400 {
+ 			capacity-dmips-mhz = <1024>;
+ 			dynamic-power-coefficient = <379>;
+ 			next-level-cache = <&L2_400>;
+-			power-domains = <&CPU_PD4>;
+-			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
+@@ -209,8 +199,6 @@ CPU5: cpu@500 {
+ 			capacity-dmips-mhz = <1024>;
+ 			dynamic-power-coefficient = <379>;
+ 			next-level-cache = <&L2_500>;
+-			power-domains = <&CPU_PD5>;
+-			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
+@@ -231,8 +219,6 @@ CPU6: cpu@600 {
+ 			capacity-dmips-mhz = <1024>;
+ 			dynamic-power-coefficient = <379>;
+ 			next-level-cache = <&L2_600>;
+-			power-domains = <&CPU_PD6>;
+-			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
+@@ -252,8 +238,6 @@ CPU7: cpu@700 {
+ 			capacity-dmips-mhz = <1024>;
+ 			dynamic-power-coefficient = <444>;
+ 			next-level-cache = <&L2_700>;
+-			power-domains = <&CPU_PD7>;
+-			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 2>;
+ 			operating-points-v2 = <&cpu7_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
+@@ -300,42 +284,6 @@ core7 {
+ 				};
+ 			};
+ 		};
+-
+-		idle-states {
+-			entry-method = "psci";
+-
+-			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+-				compatible = "arm,idle-state";
+-				idle-state-name = "silver-rail-power-collapse";
+-				arm,psci-suspend-param = <0x40000004>;
+-				entry-latency-us = <360>;
+-				exit-latency-us = <531>;
+-				min-residency-us = <3934>;
+-				local-timer-stop;
+-			};
+-
+-			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+-				compatible = "arm,idle-state";
+-				idle-state-name = "gold-rail-power-collapse";
+-				arm,psci-suspend-param = <0x40000004>;
+-				entry-latency-us = <702>;
+-				exit-latency-us = <1061>;
+-				min-residency-us = <4488>;
+-				local-timer-stop;
+-			};
+-		};
+-
+-		domain-idle-states {
+-			CLUSTER_SLEEP_0: cluster-sleep-0 {
+-				compatible = "domain-idle-state";
+-				idle-state-name = "cluster-llcc-off";
+-				arm,psci-suspend-param = <0x4100c244>;
+-				entry-latency-us = <3264>;
+-				exit-latency-us = <6562>;
+-				min-residency-us = <9987>;
+-				local-timer-stop;
+-			};
+-		};
+ 	};
+ 
+ 	cpu0_opp_table: opp-table-cpu0 {
+@@ -649,59 +597,6 @@ pmu {
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
+-
+-		CPU_PD0: cpu0 {
+-			#power-domain-cells = <0>;
+-			power-domains = <&CLUSTER_PD>;
+-			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+-		};
+-
+-		CPU_PD1: cpu1 {
+-			#power-domain-cells = <0>;
+-			power-domains = <&CLUSTER_PD>;
+-			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+-		};
+-
+-		CPU_PD2: cpu2 {
+-			#power-domain-cells = <0>;
+-			power-domains = <&CLUSTER_PD>;
+-			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+-		};
+-
+-		CPU_PD3: cpu3 {
+-			#power-domain-cells = <0>;
+-			power-domains = <&CLUSTER_PD>;
+-			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+-		};
+-
+-		CPU_PD4: cpu4 {
+-			#power-domain-cells = <0>;
+-			power-domains = <&CLUSTER_PD>;
+-			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+-		};
+-
+-		CPU_PD5: cpu5 {
+-			#power-domain-cells = <0>;
+-			power-domains = <&CLUSTER_PD>;
+-			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+-		};
+-
+-		CPU_PD6: cpu6 {
+-			#power-domain-cells = <0>;
+-			power-domains = <&CLUSTER_PD>;
+-			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+-		};
+-
+-		CPU_PD7: cpu7 {
+-			#power-domain-cells = <0>;
+-			power-domains = <&CLUSTER_PD>;
+-			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+-		};
+-
+-		CLUSTER_PD: cpu-cluster0 {
+-			#power-domain-cells = <0>;
+-			domain-idle-states = <&CLUSTER_SLEEP_0>;
+-		};
+ 	};
+ 
+ 	qup_opp_table: opp-table-qup {
 -- 
-Kind Regards,
-Caleb (they/them)
+2.25.1
+
