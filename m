@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 110C1601284
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 17:11:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FAFE601285
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 17:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230452AbiJQPLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 11:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56408 "EHLO
+        id S229999AbiJQPLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 11:11:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231218AbiJQPLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 11:11:14 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0851175B8
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 08:11:10 -0700 (PDT)
+        with ESMTP id S230444AbiJQPLT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 11:11:19 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBBD06274
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 08:11:15 -0700 (PDT)
 Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 89340E70;
-        Mon, 17 Oct 2022 17:11:06 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4D3DD1056;
+        Mon, 17 Oct 2022 17:11:07 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
         s=mail; t=1666019467;
-        bh=dD47nasK5odHhQjco+fAENn/8bMnVplBLHHCVxtgATI=;
+        bh=OpSkTV4RmPNiwCTMEkpkptkJbcwt11zlhPDq/ORMhMs=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bFPqbVe/7bs2av2kia90xJpgLaPeIHSIHrNVoEZ4WIduCuS712yz7WqmTDdoFGoZ5
-         8sfq8o+m7bnVHuOleEFBdx1sNCN5juNr/GEOk3A6xcanBJthITcEc4anF+U011uSHB
-         O0K2tuyf1BerYm/OQhmuSPf8GhZLr/Wu7yQSW2zA=
+        b=urNYDH/tDbRzQuzWiiBBLzI2EwSOUHq5nEMrfB6yz98Uqa3OwuYYRB8xYtbGk4uuY
+         JQFUQmuScilKTsTNBBNmXm9QZ6EpjVgTY7fYzC814LTTGJtCi6nWs5BzgoXtszCHYE
+         TcmZOorQAapFD0GVECBszgWG2HAFVB2PFfwfW9hI=
 From:   Daniel Scally <dan.scally@ideasonboard.com>
 To:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
         robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
@@ -32,9 +32,9 @@ Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
         linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
         kieran.bingham@ideasonboard.com, debix-tech@polyhex.net,
         Daniel Scally <dan.scally@ideasonboard.com>
-Subject: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add Polyhex Technology Co.
-Date:   Mon, 17 Oct 2022 16:10:48 +0100
-Message-Id: <20221017151050.2321919-2-dan.scally@ideasonboard.com>
+Subject: [PATCH v4 2/3] dt-bindings: arm: fsl: Enumerate Debix Model A Board
+Date:   Mon, 17 Oct 2022 16:10:49 +0100
+Message-Id: <20221017151050.2321919-3-dan.scally@ideasonboard.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221017151050.2321919-1-dan.scally@ideasonboard.com>
 References: <20221017151050.2321919-1-dan.scally@ideasonboard.com>
@@ -49,42 +49,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an entry for Polyhex Technology Co. to vendor-prefixes.yaml
+Add an entry to the list of imx8mp boards denoting the Debix Model A
+board from Polyhex Technology Co.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
 Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
 ---
 Changes in v4:
 
-  - None
+        - None
 
 Changes in v3:
 
-  - None
+    - Dropped (2GB) from the comment too (Kieran)
 
 Changes in v2:
 
-  - None
+    - Dropped 2gb suffix, added hyphens for readability (Laurent)
 
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 2f0151e9f6be..7ba1d2c11aa9 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -995,6 +995,8 @@ patternProperties:
-     description: PocketBook International SA
-   "^polaroid,.*":
-     description: Polaroid Corporation
-+  "^polyhex,.*":
-+    description: Polyhex Technology Co. Ltd.
-   "^portwell,.*":
-     description: Portwell Inc.
-   "^poslab,.*":
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 7431579ab0e8..1cb72eda8652 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -931,6 +931,7 @@ properties:
+               - dh,imx8mp-dhcom-pdk2      # i.MX8MP DHCOM SoM on PDK2 board
+               - fsl,imx8mp-evk            # i.MX8MP EVK Board
+               - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
++              - polyhex,imx8mp-debix-model-a # Polyhex Debix Model A Board
+               - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
+               - toradex,verdin-imx8mp-nonwifi  # Verdin iMX8M Plus Modules without Wi-Fi / BT
+               - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
 -- 
 2.34.1
 
