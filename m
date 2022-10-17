@@ -2,247 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E27E9600747
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 09:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C063F60074B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 09:08:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbiJQHIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 03:08:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37822 "EHLO
+        id S229616AbiJQHIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 03:08:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229763AbiJQHIM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 03:08:12 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF3EB2E6AC;
-        Mon, 17 Oct 2022 00:08:09 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id bj12so22688287ejb.13;
-        Mon, 17 Oct 2022 00:08:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qs14ysy+q1KUN7l6jyTJj1EYiV5ayfoc/slof2Oqsn4=;
-        b=B/akBzlEyd5+dndi5xqfwVl1LcCUr24kFHb4n5BnDXqbaMwuHa8UnNQ0jeQLrksaq3
-         qEIWNIfeRzxYoIamdCmbJuT0/mMkYBRU3E04eabmH6M1vm7e5AETPQZSS0z1YVT2m2kC
-         qiZ/yPxPF9Xj43tcAtsuA34Me6dKixX28w5x4Nn/JTyK6Le+nLO0AT9apcEIa4kXeLLP
-         Y0jW0330g4iWqI2aOpGZ9gahGFLBwVcDWE3NUm3T7LZyRntvRpC+rnTBKpIWBpg33hEV
-         VIpWsp4bjgxj1F/dEv3vaN27YxPs7/piL6kWAkxrgNaSc9VZQKWkEAr26qmwvSvczFk2
-         1QWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qs14ysy+q1KUN7l6jyTJj1EYiV5ayfoc/slof2Oqsn4=;
-        b=p65RVL9PIRfYOyfLw1kkEcfHToIVI4iACqxmGFsO1sXBsjcCA8GnNI0ViaG2KWL/ks
-         /bUH4Rf++ZBEFonMkvy3LF3I+Uj+dpkR9hw5Ag7GosqciwFhlElf2DN3PsFvXxHnBdRN
-         ObS/8CBdmgiY6ENrjFSQ2rUg3jPhg5UqTA14pOgJOK1UNp01P5bVx74ZuIuHrqWS/r1o
-         C0Ov+++AR+JzRGScqxVV5rqNoxao9yfPJMkhPJs0/l5U5ynYWCHFKGtXy8oIK+2NVMPT
-         SyOscy0jKi3jxk2oxFQryMcTrESED/VO9BHJZXs97eyWa28/k9Xy8ZI7zhot7c0r2ZG0
-         utTg==
-X-Gm-Message-State: ACrzQf3Jsd5K0PNEeYpOba6+ba1PzB2a0PZzl6pflj33L0fPUV1OkPM7
-        j8Wvmk67CfV/xCx7fk+OTug=
-X-Google-Smtp-Source: AMsMyM78vTFxn/LWzQXx6XUJ0qt6b1lUfMc6PR3xIXMoAv7SA34odEyscKdRbaq6gFblRxGDdxlX6Q==
-X-Received: by 2002:a17:907:843:b0:73a:5b0e:8352 with SMTP id ww3-20020a170907084300b0073a5b0e8352mr7585614ejb.438.1665990487991;
-        Mon, 17 Oct 2022 00:08:07 -0700 (PDT)
-Received: from [192.168.0.182] ([188.24.15.51])
-        by smtp.gmail.com with ESMTPSA id lb23-20020a170907785700b0077205dd15basm5645854ejc.66.2022.10.17.00.08.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Oct 2022 00:08:07 -0700 (PDT)
-Message-ID: <3c4c9d0d-a542-bd54-a8d0-589bb4e6ea49@gmail.com>
-Date:   Mon, 17 Oct 2022 10:08:10 +0300
+        with ESMTP id S230155AbiJQHIj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 03:08:39 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E51BE222B1;
+        Mon, 17 Oct 2022 00:08:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 971B8B80F6F;
+        Mon, 17 Oct 2022 07:08:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B78F8C433D6;
+        Mon, 17 Oct 2022 07:08:31 +0000 (UTC)
+Message-ID: <11db8299-cb75-dd97-11bd-3f269a8434cf@xs4all.nl>
+Date:   Mon, 17 Oct 2022 09:08:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v9 2/2] iio: adc: ad4130: add AD4130 driver
+ Thunderbird/102.3.2
+Subject: Re: [V17,0/15] Enable jpeg enc & dec multi-hardwares for MT8195
 Content-Language: en-US
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-References: <20221006140737.12396-1-cosmin.tanislav@analog.com>
- <20221006140737.12396-3-cosmin.tanislav@analog.com>
- <20221009183122.0de740e0@jic23-huawei>
-From:   Cosmin Tanislav <demonsingur@gmail.com>
-In-Reply-To: <20221009183122.0de740e0@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     "kyrie.wu" <kyrie.wu@mediatek.com>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        angelogioacchino.delregno@collabora.com,
+        nicolas.dufresne@collabora.com, wenst@chromium.org
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com,
+        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>
+References: <20220929090817.24272-1-irui.wang@mediatek.com>
+ <81fb2973c0376c988cf2f6550da24b533e341092.camel@mediatek.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <81fb2973c0376c988cf2f6550da24b533e341092.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Irui,
 
-
-On 10/9/22 20:31, Jonathan Cameron wrote:
-> On Thu,  6 Oct 2022 17:07:37 +0300
-> Cosmin Tanislav <demonsingur@gmail.com> wrote:
+On 10/14/22 11:26, kyrie.wu wrote:
+> On Thu, 2022-09-29 at 17:08 +0800, Irui Wang wrote:
+>> From: kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>
 > 
->> AD4130-8 is an ultra-low power, high precision, measurement solution for
->> low bandwidth battery operated applications.
+> Dear Hans,
+> 
+> Do you have any comments about the series patches?
+
+None :-)
+
+It's all in this pull request:
+
+https://patchwork.linuxtv.org/project/linux-media/patch/50618425-5159-4077-3d3b-6938c86ca474@xs4all.nl/
+
+Now that rc1 has been released by Linus I expect this PR to be merged by the end of this week
+(depending on Mauro's schedule).
+
+Regards,
+
+	Hans
+
+> 
+> Thanks.
+> 
+> Regards,
+> Kyrie.
 >>
->> The fully integrated AFE (Analog Front-End) includes a multiplexer for up
->> to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
->> Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
->> selectable filter options, smart sequencer, sensor biasing and excitation
->> options, diagnostics, and a FIFO buffer.
+>> This series adds support for multi hardwares jpeg enc & dec,
+>> by first adding use of_platform_populate to manage each hardware
+>> information:interrupt, clock, register bases and power.
+>> Secondly add jpeg enc & dec work queue to deal with the encoding
+>> or decoding requests of multi-hardwares at the same time.
+>> Lastly, add output picture reorder function interface to
+>> eliminate the out of order images.
 >>
->> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
->> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> Hi Cosmin,
+>> This series has been tested with MT8195 Gstreamer.
+>> Encoding and decoding worked for this chip.
+>>
+>> Patches 1 Adds jpeg encoder dt-bindings for mt8195
+>>
+>> Patches 2 jpeg encoder builds two module for using Multi-HW,
+>> export some functions to make them visible by other modules.
+>>
+>> Patches 3 use devm_of_platform_populate to manage multi-hardware.
+>>
+>> Patch 4 add jpeg encoding timeout function to judge hardware timeout.
+>>
+>> Patch 5 add encoding work queue to deal with multi-hardware encoding
+>> at the same time.
+>>
+>> Patch 6 add output picture reorder function to jpgenc order images.
+>>
+>> Patch 7 add stop cmd function to deal with jpgenc EOS operation.
+>>
+>> Patch 8 Adds jpeg decoder dt-bindings for mt8195
+>>
+>> Patches 9 jpeg decoder builds three module for using Multi-HW,
+>> export some functions to make them visible by other modules.
+>>
+>> Patch 10 use of_platform_populate to manage multi-hardware.
+>>
+>> Patch 11 add jpeg decoding timeout function to judge hardware
+>> timeout.
+>>
+>> Patch 12 add decoding work queue to deal with multi-hardware decoding
+>> at the same time.
+>>
+>> Patch 13 add output picture reorder function to jpgdec order images.
+>>
+>> Patch 14 refactor jpegdec func interface for HW working.
+>>
+>> Patch 15 add stop cmd function to deal with jpgdec EOS operation.
+>>
+>> ---
+>> This series patches dependent on:
+>> media_stage tree:
+>> [1]
+>>
+> https://git.linuxtv.org/media_stage.git/commit/?id=b3627647f9ea7473d10fb08a95fd7c4133a17ca4
+>>
+>> patch1 new jpegdec dt-bindings included files
+>> [2] MM IOMMU binding:
+>>
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220217113453.13658-2-yong.wu@mediatek.com/
+>>
+>> [3] MT8195 power domain:
+>>
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=580579
+>>
+>> Changes compared with v16:
+>> - some modifications for patch v16's review comments.
+>>
+>> Changes compared with v15:
+>> - some modifications for patch v15's review comments.
+>>
+>> Changes compared with v14:
+>> - some modifications for patch v14's review comments.
+>>
+>> Changes compared with v13:
+>> - some modifications for patch v13's review comments.
+>> - fix kernel robot check errors.
+>> - fix kernel-doc check warns.
+>> - fix sparse check warns.
+>> - combine jpeg encoder series with decoder series into
+>>   one single series.
+>>
+>> Changes compared with v12:
+>> - some modifications for patch v12's review comments.
+>>
+>> Changes compared with v11:
+>> - some modifications for patch v11's review comments.
+>> - fix yaml file check errors.
+>>
+>> Changes compared with v10:
+>> - some modifications for patch v10's review comments.
+>> - fix Gstreamer test errors.
+>>
+>> Changes compared with v9:
+>> - some modifications for patch v9's review comments.
+>>
+>> Changes compared with v8:
+>> - some modifications for patch v8's review comments.
+>> - add stop cmd function.
+>>
+>> Changes compared with v7:
+>> - some modifications for patch v6's review comments.
+>>
+>> Changes compared with v6:
+>> - new yaml file for mt8195 jpeg encoder.
+>> - some modifications for patch v5's review comments.
+>>
+>> Changes compared with v5:
+>> - use of_platform_populate to replace component framework to
+>>   manage multi-hardware in patch 2.
+>>
+>> Changes compared with v4:
+>> - No change compaered with v4
+>>
+>> Changes compared with v3:
+>> - Structure patches for consistency, non-backward
+>>   compatible and do not break any existing functionality
+>>
+>> Changes compared with v2:
+>> - Split the last two patches into several patches
+>>   to enhance readability
+>> - Correct some syntax errors
+>> - Explain why the component framework is used
+>>
+>> Changes compared with v1:
+>> - Add jpeg encoder dt-bindings for MT8195
+>> - Use component framework to manage jpegenc HW
+>> - Add jpegenc output pic reorder function interface
+>>
+>> kyrie wu (15):
+>>   dt-bindings: mediatek: Add mediatek, mt8195-jpgenc compatible
+>>   mtk-jpegenc: export jpeg encoder functions
+>>   mtk-jpegenc: support jpegenc multi-hardware
+>>   mtk-jpegenc: add jpegenc timeout func interface
+>>   mtk-jpegenc: add jpeg encode worker interface
+>>   mtk-jpegenc: add output pic reorder interface
+>>   mtk-jpegenc: add stop cmd interface for jpgenc
+>>   dt-bindings: mediatek: Add mediatek,mt8195-jpgdec compatible
+>>   media: mtk-jpegdec: export jpeg decoder functions
+>>   media: mtk-jpegdec: support jpegdec multi-hardware
+>>   media: mtk-jpegdec: add jpegdec timeout func interface
+>>   media: mtk-jpegdec: add jpeg decode worker interface
+>>   media: mtk-jpegdec: add output pic reorder interface
+>>   media: mtk-jpegdec: refactor jpegdec func interface
+>>   mtk-jpegdec: add stop cmd interface for jpgdec
+>>
+>>  .../media/mediatek,mt8195-jpegdec.yaml        | 168 ++++++
+>>  .../media/mediatek,mt8195-jpegenc.yaml        | 147 ++++++
+>>  drivers/media/platform/mediatek/jpeg/Makefile |  14 +-
+>>  .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 490
+>> ++++++++++++++++--
+>>  .../platform/mediatek/jpeg/mtk_jpeg_core.h    | 169 +++++-
+>>  .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 315 ++++++++++-
+>>  .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.h  |   6 +-
+>>  .../platform/mediatek/jpeg/mtk_jpeg_dec_reg.h |   1 +
+>>  .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 255 +++++++++
+>>  9 files changed, 1482 insertions(+), 83 deletions(-)
+>>  create mode 100644
+>> Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+>>  create mode 100644
+>> Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml
+>>
 > 
-> I've cropped down (mostly) to the clock changes.
-> A few minor things in there + this looks like it would suffer from the issue
-> with IIO_CONST_ATTR() not being handled correctly for buffer attributes.
-> 
-> Jonathan
-> 
-> 
-> 
->> +static IIO_CONST_ATTR(hwfifo_watermark_min, "1");
->> +static IIO_CONST_ATTR(hwfifo_watermark_max, __stringify(AD4130_FIFO_SIZE));
-> 
-> These look like they'd suffer from same problem
-> https://lore.kernel.org/all/cover.1664782676.git.mazziesaccount@gmail.com/
-> tackles.  Short term fix is don't use IIO_CONST_ATTR for buffer attributes.
-> 
-
-Right, this only works downstream.
-
-Should I switch to IIO_STATIC_CONST_DEVICE_ATTR?
-
-> 
->> +static IIO_DEVICE_ATTR_RO(hwfifo_watermark, 0);
->> +static IIO_DEVICE_ATTR_RO(hwfifo_enabled, 0);
->> +
->> +static const struct attribute *ad4130_fifo_attributes[] = {
->> +	&iio_const_attr_hwfifo_watermark_min.dev_attr.attr,
->> +	&iio_const_attr_hwfifo_watermark_max.dev_attr.attr,
->> +	&iio_dev_attr_hwfifo_watermark.dev_attr.attr,
->> +	&iio_dev_attr_hwfifo_enabled.dev_attr.attr,
->> +	NULL
->> +};
-> 
-> 
->> +static void ad4130_clk_disable_unprepare(void *clk)
->> +{
->> +	clk_disable_unprepare(clk);
->> +}
->> +
->> +static int ad4130_set_mclk_sel(struct ad4130_state *st,
->> +			       enum ad4130_mclk_sel mclk_sel)
->> +{
->> +	return regmap_update_bits(st->regmap, AD4130_ADC_CONTROL_REG,
->> +				 AD4130_ADC_CONTROL_MCLK_SEL_MASK,
->> +				 FIELD_PREP(AD4130_ADC_CONTROL_MCLK_SEL_MASK,
->> +					    mclk_sel));
->> +}
->> +
->> +static unsigned long ad4130_int_clk_recalc_rate(struct clk_hw *hw,
->> +						unsigned long parent_rate)
->> +{
->> +	return AD4130_MCLK_FREQ_76_8KHZ;
->> +}
->> +
->> +static int ad4130_int_clk_is_enabled(struct clk_hw *hw)
->> +{
->> +	struct ad4130_state *st = container_of(hw, struct ad4130_state, int_clk_hw);
->> +
->> +	return st->mclk_sel == AD4130_MCLK_76_8KHZ_OUT;
->> +}
->> +
->> +static int ad4130_int_clk_prepare(struct clk_hw *hw)
->> +{
->> +	struct ad4130_state *st = container_of(hw, struct ad4130_state, int_clk_hw);
->> +	int ret;
->> +
->> +	ret = ad4130_set_mclk_sel(st, AD4130_MCLK_76_8KHZ_OUT);
->> +	if (ret)
->> +		return ret;
->> +
->> +	st->mclk_sel = AD4130_MCLK_76_8KHZ_OUT;
->> +
->> +	return 0;
->> +}
->> +
->> +static void ad4130_int_clk_unprepare(struct clk_hw *hw)
->> +{
->> +	struct ad4130_state *st = container_of(hw, struct ad4130_state, int_clk_hw);
->> +	int ret;
->> +
->> +	ret = ad4130_set_mclk_sel(st, AD4130_MCLK_76_8KHZ);
->> +	if (ret)
->> +		return;
->> +
->> +	st->mclk_sel = AD4130_MCLK_76_8KHZ;
->> +}
->> +
->> +static const struct clk_ops ad4130_int_clk_ops = {
->> +	.recalc_rate = ad4130_int_clk_recalc_rate,
->> +	.is_enabled = ad4130_int_clk_is_enabled,
->> +	.prepare = ad4130_int_clk_prepare,
->> +	.unprepare = ad4130_int_clk_unprepare,
->> +};
->> +
->> +static int ad4130_setup_int_clk(struct ad4130_state *st)
->> +{
->> +	struct device *dev = &st->spi->dev;
->> +	struct device_node *of_node = dev->of_node;
-> 
-> Hmm. There goes our careful use of generic firmware properties.
-> I guess there still isn't much we can do about that for clks
-> so at least it's contained to this one function.
-> 
-> Also is this code safe to of_node == NULL?
-> 
-
-No, I guess it is not. I'll fix it.
-Should I just
-if (!of_node) return 0;
-?
-
->> +	struct clk_init_data init;
->> +	const char *clk_name;
->> +	struct clk *clk;
->> +
->> +	if (st->int_pin_sel == AD4130_INT_PIN_CLK ||
->> +	    st->mclk_sel != AD4130_MCLK_76_8KHZ)
->> +		return 0;
->> +
->> +	clk_name = of_node->name;
->> +	of_property_read_string(of_node, "clock-output-names", &clk_name);
-> 
-> Probably want to check success of that read before using it.
-> I'd also expect that these to be optional + doesn't he dt binding need
-> updating to add this stuff?
-> 
-
-It does need updating, sorry.
-of_node->name is the default clk_name, if clock-output-names is present
-then the of_property_read_string() result will be used instead. If not,
-there's no trouble, and we don't care about the return value since we
-have the default clk_name assigned just above.
-I can also switch to device_property_read_string() here to minimize the
-damage from using OF.
-
-> 
->> +
->> +	init.name = clk_name;
->> +	init.ops = &ad4130_int_clk_ops;
->> +
->> +	st->int_clk_hw.init = &init;
->> +	clk = devm_clk_register(dev, &st->int_clk_hw);
->> +	if (IS_ERR(clk))
->> +		return PTR_ERR(clk);
->> +
->> +	return of_clk_add_provider(of_node, of_clk_src_simple_get, clk);
->> +}
->> +
