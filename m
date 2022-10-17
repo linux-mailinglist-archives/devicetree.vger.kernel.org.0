@@ -2,188 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3111C6014A9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 19:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D1986014AE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 19:22:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230180AbiJQRU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 13:20:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46972 "EHLO
+        id S230200AbiJQRWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 13:22:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230154AbiJQRU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 13:20:56 -0400
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F0371711
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 10:20:53 -0700 (PDT)
-Received: by mail-qv1-xf2c.google.com with SMTP id f14so7825063qvo.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 10:20:53 -0700 (PDT)
+        with ESMTP id S230113AbiJQRWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 13:22:33 -0400
+Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5C471739
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 10:22:32 -0700 (PDT)
+Received: by mail-qv1-xf2d.google.com with SMTP id h10so7814617qvq.7
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 10:22:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=d8KFvXWXk+yHpFJT0KTXsfMVjC6a7dZVFBnEd/ZjfUI=;
-        b=wf/PwgJ+34F7/B0pCzFjaKHZmmo9BpTXsHL/cr3KMWfaitH5BdFvQnDtuQJn8txoHT
-         J0m4i7BCubMwdI8Sb8A8D/kWG4s5Gr66h1DeBNFd8NU3UCHm0N21AMI/nczPyaaPmizi
-         v2Ger7sY7Bks0BYMqmBl0gWu+UYdbcKA2xB9e6ze+eNLcElnazUc7foBOURKeeIZPHO7
-         4AYmUj1SmNorM8nI1dG9t7z1ZSQnpfcge2nZYjS4UZc0mds6hIUy3+49uQzG7TXIRsFS
-         5ZTp/KB18Qe1dy6g62cTgPwbGMwFD7dc1xyQFagDirmlVJdOpEPiRie2a6vsl6mpxp5q
-         k7NQ==
+        bh=VQlsXPG+b/ivmTTpsGhpnAcJEtCBNzn8M5P3pvqQhSs=;
+        b=dX5kUxlKjD7RhLO2sY7XEDAry/0JjXW+PYd8LJNyx6uFUBbEmjgG9ImOa5jTXzU4Jb
+         W+Sy9+SEaBoObXZAWCSTIpbzXKODnyoYtWOW3O8/SK49D/uxYr0EhNGKN0c6G1bVivNd
+         Wv4XGV75oHWfJbCYZwgzi7woEKN+yshKzzbbheqUflYj3s/Yty1s1WJnHWuJ6Rw9/j8K
+         5taPt9RC9WhefbAO4L6Mgo3WfJyRtmJyIdCLPPRCr3EQpiRdi6JOlYQ52Q0lmiX8MXMo
+         RWCNP3rtM7K0cXzdlGGB3745l2iJj+NwpCSkdfEjMEpQMPXnWUOyahUS458NOGo5pGoH
+         lO2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d8KFvXWXk+yHpFJT0KTXsfMVjC6a7dZVFBnEd/ZjfUI=;
-        b=1iGJCTMTg9EpLEJIBAJwwL1wtBjlVnNVFOATKR+Xw17s+nePDjeq8mhhwMBprl+kSM
-         PcOjPzrTQ+zr7UZikbQWVK+Pd5jzgq+NegdjQ1MefyUMvLNb/ApEXPWDB/zOQ2f/G4oU
-         80xq5HbeXThiDTZQwXT7n2s6/ZNezIW+1a8UbDwr7Dfmc9DvP/MPGu3HeRDyEs4DWnb3
-         t1G3XxAV2yDt229QwbQyd2PP3dUr2OY0H2H+HB1ltclwzmzXrhOuDRJE3FTDp1DDPDFZ
-         ldChNtHa+TYRjlrLRDboBNQrsaRTFq+eK6sAqZUkeoiaMEqQHbCWel7pRpF5UXsr/pvi
-         qUOg==
-X-Gm-Message-State: ACrzQf1Qn28p84nFqsDTgSI9I9Rkyoep1fSRaRyf0CqKa22dbPCcnHkg
-        DaLTEJSxpGPKL2QGZ1vYd86IBA==
-X-Google-Smtp-Source: AMsMyM6/3ZjXIrE4Qn/bdGiyrsjypB6R/Ooht83aXja1DRa3oM95NXtfLHU3Qi+LnuCL5VdxoSK15Q==
-X-Received: by 2002:a0c:9a4c:0:b0:4b1:d3ef:85cc with SMTP id q12-20020a0c9a4c000000b004b1d3ef85ccmr9242276qvd.105.1666027252384;
-        Mon, 17 Oct 2022 10:20:52 -0700 (PDT)
+        bh=VQlsXPG+b/ivmTTpsGhpnAcJEtCBNzn8M5P3pvqQhSs=;
+        b=0NKY7jvViozkq1f1Xvg1/OaY1Wk1Wli6XNf5WveuNaKGm1aW9yzYgEEbvnfNWn+LaO
+         Rp7ZR1iQiLbruivQXoKm1OJrazJ1/k8nKpJX+09tkwqPzREH4jdVk88FrSKtNXVvGn8r
+         12+V1MayYCyB3ShuHXUgCp3PbZBaiwjmYv5jef1WQI57lwcDSVYWUcq/Y/JCDfkHTISM
+         +m7fDwY6rZpm9xh/fIqsRSIOeOhVuY4E1MiQGrg4gVzoW2Wail/WKdqPJnxHIYeX0yxd
+         h3E9TQfuJfbbCUDNDORq4i354l1yoZVldAuJqx7NHnoG12HtpOX/B7eARMK4spgN5hGR
+         2rRA==
+X-Gm-Message-State: ACrzQf1r+pvRLWcOWYA/zDPthVCAnUpoXdsfLXrcOKDx7Zv/22MIVrGK
+        rLvDAcuzH+Obj8oeBi1s1zrFEA==
+X-Google-Smtp-Source: AMsMyM7F9zGFYDYD754st0ujJyV3rD1idxlFxOrrfeWDYWev/I49SdrGpCJUI2tnB/ugL8hZ8uw5iw==
+X-Received: by 2002:a05:6214:21ab:b0:4b4:6dc:b94e with SMTP id t11-20020a05621421ab00b004b406dcb94emr8980096qvc.107.1666027351200;
+        Mon, 17 Oct 2022 10:22:31 -0700 (PDT)
 Received: from [10.101.5.247] ([148.59.24.28])
-        by smtp.gmail.com with ESMTPSA id bv8-20020a05622a0a0800b0038b684a1642sm246319qtb.32.2022.10.17.10.20.50
+        by smtp.gmail.com with ESMTPSA id dm54-20020a05620a1d7600b006eeb185c209sm244330qkb.50.2022.10.17.10.22.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Oct 2022 10:20:51 -0700 (PDT)
-Message-ID: <d6642028-3fb9-4e39-a349-666625dabb9d@linaro.org>
-Date:   Mon, 17 Oct 2022 13:20:49 -0400
+        Mon, 17 Oct 2022 10:22:30 -0700 (PDT)
+Message-ID: <73651055-2a1b-75b9-3483-b180afa6f7bd@linaro.org>
+Date:   Mon, 17 Oct 2022 13:22:27 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH 10/15] dt-bindings: phy: qcom,qmp-pcie: add sc8280xp
- bindings
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: pmi8998: add rradc node
 Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
+To:     Caleb Connolly <caleb.connolly@linaro.org>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221017145328.22090-1-johan+linaro@kernel.org>
- <20221017145328.22090-11-johan+linaro@kernel.org>
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+References: <20221016180330.1912214-1-caleb.connolly@linaro.org>
+ <20221016180330.1912214-2-caleb.connolly@linaro.org>
+ <5929051d-d2be-5b51-0cf9-294affa51df2@linaro.org>
+ <1f6d8eb9-8e6e-a201-50c6-a9fa6f25b3d6@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221017145328.22090-11-johan+linaro@kernel.org>
+In-Reply-To: <1f6d8eb9-8e6e-a201-50c6-a9fa6f25b3d6@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/10/2022 10:53, Johan Hovold wrote:
-> Add bindings for the PCIe QMP PHYs found on SC8280XP.
+On 17/10/2022 11:29, Caleb Connolly wrote:
+
+>>> +		pmi8998_rradc: adc@4500 {
+>>> +			compatible = "qcom,pmi8998-rradc";
+>>> +			reg = <0x4500>;
+>>> +			#io-channel-cells = <1>;
+>>> +
+>>> +			status = "disabled";
+>>
+>> Why disabling it? It does not need any external/board resources, so
+>> maybe it should be just like other adcs - enabled by default? What does
+>> it measure? What is its input?
 > 
-> The PCIe2 and PCIe3 controllers and PHYs on SC8280XP can be used in
-> 4-lane mode or as separate controllers and PHYs in 2-lane mode (e.g. as
-> PCIe2A and PCIe2B).
+> The RRADC mostly reports values which only make sense on mobile devices, battery 
+> ID and temperature, USB and DC input voltage/current as well as a (duplicate?) 
+> die temperature of the PMIC - I guess closer to the SMB/FG block.
 > 
-> The configuration for a specific system can be read from a TCSR register.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  .../bindings/phy/qcom,qmp-pcie-phy.yaml       | 163 ++++++++++++++++++
->  1 file changed, 163 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
-> new file mode 100644
-> index 000000000000..82da95eaa9d6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
+> When I last tested the DC input readings didn't work on db845c, as it just 
+> produces the 4.2v you'd get from a battery.
 
-Filename based on compatible, so for example:
+If it is connected to some line - e.g. to the battery - then it is
+operational and there is no reason to disable it.
 
-qcom,sc8280xp-qmp-pcie-phy.yaml
-
-
-> @@ -0,0 +1,163 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/qcom,qmp-pcie-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm QMP PHY controller (PCIe)
-> +
-> +maintainers:
-> +  - Vinod Koul <vkoul@kernel.org>
-> +
-> +description:
-> +  QMP PHY controller supports physical layer functionality for a number of
-> +  controllers on Qualcomm chipsets, such as, PCIe, UFS, and USB.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sc8280xp-qmp-gen3x1-pcie-phy
-> +      - qcom,sc8280xp-qmp-gen3x2-pcie-phy
-> +      - qcom,sc8280xp-qmp-gen3x4-pcie-phy
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    maxItems: 6
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aux
-> +      - const: cfg_ahb
-> +      - const: ref
-> +      - const: rchng
-> +      - const: pipe
-> +      - const: pipediv2
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: phy
-> +
-> +  vdda-phy-supply: true
-> +
-> +  vdda-pll-supply: true
-> +
-> +  qcom,4ln-config-sel:
-> +    description: 4-lane configuration as TCSR syscon phandle, register offset
-> +                 and bit number
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      maxItems: 3
-
-You have only one phandle, so you need to describe the items and limit
-their number, like here:
-
-https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
-
-This allows you to skip most of property description.
-
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clock-output-names:
-> +    maxItems: 1
-> +
-> +  "#phy-cells":
-> +    const: 0
 
 Best regards,
 Krzysztof
