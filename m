@@ -2,319 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 104D16010A3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 15:58:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF6956010AA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 16:00:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230318AbiJQN6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 09:58:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38598 "EHLO
+        id S230014AbiJQOAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 10:00:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230224AbiJQN6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 09:58:21 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12B9C65241
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 06:58:15 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id bj12so25047973ejb.13
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 06:58:15 -0700 (PDT)
+        with ESMTP id S229726AbiJQOAh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 10:00:37 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B9AF101CF;
+        Mon, 17 Oct 2022 07:00:36 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id bj12so25064749ejb.13;
+        Mon, 17 Oct 2022 07:00:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=l6qb7EnwWd+MujPJIdP+A0aq3ZXuoSEIdKGZ1nIKSBU=;
-        b=WSmB0k/y+owfGHpr7XZueKvVYyAsF/HG2UJkVCUUx80g+eJoYbIqb/Dd3iKZLzj+2a
-         HlXroWuTmESs69/ky6M71ERjUYT0Vgsf4U5UkSc+wysCnkS4//hW4yDcQOwaXUBF4Q0l
-         QlzgDugDExrrxJbmObFjv51ilttgLbTJ6OxO3DA/mqtlTFNdZ9H9Hkj2Trmw1KWe4XRJ
-         mzHAbc0kqWVnDlm4nJvp4rcv9pVxJXTXVZoQ60+RffoBNNYo5wcQQecPszl5ii9yD+y1
-         jqu6e6CBQEPtJlqtbAG6nBWTvYhhzBZOweeGHTMEqmI6aYFNMdv3uUnS8GM6/rliDWd4
-         9hhw==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/6Mxh+LUgjvM5Wy1z968oPB0TD46726WrRuhqmLLUF8=;
+        b=cIB6/ZaMlhQLapkDhLKU88sKZVO8jSTXcbrwyM0v0J14Lyp9HI/NvT7Rg4R0iwiOw5
+         Tr+goX1/+z3/6ZT89TN+wTQG30Anz6owonNBXvffGvwPcp0KC3igmjHt0vFIfiVEExYq
+         OpyzcZ5/F76gd1iYG3D0VAs9Ext9SD81/T9/xgxccz2elVaIJyRS31RepA14jTGY6u4w
+         JtFz+xvcOPmkOgWMi2XK7/H/MxAfFmlu2YaxFk17Uyrv1LsYWYMJZq2rq3DFuHkpcBr7
+         3mGD+04tlPHdh2rX+INqGYQc0fJfc5/vMmujikmWC7xQSdr1PrJGnbza8355Nndrls9q
+         x/3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l6qb7EnwWd+MujPJIdP+A0aq3ZXuoSEIdKGZ1nIKSBU=;
-        b=FKiCKdPZ3NrHEb4jLDgBmkGCmiCO9P2fS8xp42PDE9Y92hntMZFt2oZ8g1TqtcpTRz
-         4sFSlg8d1k0CJHHxc/1vqxO33CnmadPoXS4UZkGE5htllgh3PuYxbgpafw4u3kplIX36
-         hCpEox6NyrVjYkn/nppYygj2X8eQXGOGCQNGWkM6kthxK7LfWbvpgy0rZj2jnPNx/iv7
-         bsnqydpza9AH9AAFejhqPVMKHg5AsST4gJcRDxozhPBX2okCufNI9kC1TUebyEQIz/sh
-         gukwNCVHyVBHlThJugqEZuuJdeVjZDovIOXJem/SA5VwguEHkXZq3nr+ApJI1h/XgOAK
-         6bCA==
-X-Gm-Message-State: ACrzQf05GYfIItag+4I9tY6SdreBw08rvZROdp3HvZhVoLk/FHWWKc70
-        Cqg6Ehp7syIz3rJ+D/aEazaubrDYIGb71LzwNOEVLw==
-X-Google-Smtp-Source: AMsMyM4Ov26cj1GiYz2ZhZkbdyGIWCXwoTehLQKTtCSomF/ccslqb6E03xaDlUVPloPpohLqaFpy9ZrmfmEJj3op23o=
-X-Received: by 2002:a17:907:97c1:b0:791:98b8:9ab8 with SMTP id
- js1-20020a17090797c100b0079198b89ab8mr765215ejc.425.1666015094221; Mon, 17
- Oct 2022 06:58:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221016061523.30127-1-laurent.pinchart@ideasonboard.com> <20221016061523.30127-2-laurent.pinchart@ideasonboard.com>
-In-Reply-To: <20221016061523.30127-2-laurent.pinchart@ideasonboard.com>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Mon, 17 Oct 2022 14:57:58 +0100
-Message-ID: <CAPY8ntCH5qc9cMHEjyX2K-2spibi=zp8vdvexz1Coouyp5sKWg@mail.gmail.com>
-Subject: Re: [PATCH v2 01/20] media: dt-bindings: Convert imx290.txt to YAML
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/6Mxh+LUgjvM5Wy1z968oPB0TD46726WrRuhqmLLUF8=;
+        b=e5X1YexuzuWAArWsl0VufqymJ6zUIfkwK2GVpn+vkXmi6U/fW+GkYIZDWZYofxmsJ7
+         duKXkSW07duR8MEa+XF8iZYJd3dxVDqUt12d3F6eWN7XPIkOCjb9zXkgzDyCOvD78M+Z
+         iawxQ6qBoWHDeW9XQImQQxuhDFMUlqZS4rnc2lKhXnCUgzDdpVX/QcvNm+QdhN2iKBJ+
+         CrLvTdUafxtaC7ZDknDrOyIteWTehlrRdmNY6lxF/pAERnNrX78EYVXQgeWZK93nt8jQ
+         Xz/fP1WQSEqtxrzKO9E1qd5oNqDVugMcRXbcLRLgY9Q4lulyQI6ky8A5UuvL5VQ0UtCj
+         qFTw==
+X-Gm-Message-State: ACrzQf39MrX+GjTsjvZc6AfvabCdL35+tqNl8xS/Hgh/kS5UyzsCFcug
+        JatfcAeA5/E+svcZ+ZWomaI=
+X-Google-Smtp-Source: AMsMyM7/2Qu+IN4+gZnrPRxaCKtT7vBBWfcsq/ollfS2FGqUS9hTmmS4SwjYJtUP+clglaCk3um8gg==
+X-Received: by 2002:a17:907:3e0f:b0:791:9529:3674 with SMTP id hp15-20020a1709073e0f00b0079195293674mr2292715ejc.503.1666015234887;
+        Mon, 17 Oct 2022 07:00:34 -0700 (PDT)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id s15-20020a05640217cf00b0045467008dd0sm7468590edy.35.2022.10.17.07.00.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Oct 2022 07:00:33 -0700 (PDT)
+Date:   Mon, 17 Oct 2022 16:00:31 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     William Breathitt Gray <william.gray@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Lee Jones <lee@kernel.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
+Message-ID: <Y01f/5VtxgCDz+tx@orome>
+References: <20221010145222.1047748-1-biju.das.jz@bp.renesas.com>
+ <20221010145222.1047748-2-biju.das.jz@bp.renesas.com>
+ <8d6b8f0e-d9d7-0d77-aa99-379de768fd5d@linaro.org>
+ <OS0PR01MB592232C831CCA84FC302212F86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <ad2e4445-052b-d65a-bdba-5759c169aafd@linaro.org>
+ <OS0PR01MB59228146DE05231586212FE886239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <17fc9f27-03ad-7663-db21-2f14c7ff4312@linaro.org>
+ <OS0PR01MB5922152268684B5564AA170D86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <Y0rDpaGosqox77SQ@fedora>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nZ+UcSAkhSAEBb22"
+Content-Disposition: inline
+In-Reply-To: <Y0rDpaGosqox77SQ@fedora>
+User-Agent: Mutt/2.2.7 (2022-08-07)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent
 
-On Sun, 16 Oct 2022 at 07:15, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Convert the Sony IMX290 DT binding from text to YAML. Add Manivannan as
-> a maintainer given that he is listed in MAINTAINERS for the file, as
-> volunteering myself.
->
-> The name of the input clock, "xclk", is wrong as the hardware manual
-> names it INCK. As the device has a single clock, the name could be
-> omitted, but that would require a corresponding change to the driver and
-> is thus a candidate for further patches.
->
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../devicetree/bindings/media/i2c/imx290.txt  |  57 --------
->  .../bindings/media/i2c/sony,imx290.yaml       | 129 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 130 insertions(+), 58 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx290.txt
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/i2c/imx290.txt b/Documentation/devicetree/bindings/media/i2c/imx290.txt
-> deleted file mode 100644
-> index a3cc21410f7c..000000000000
-> --- a/Documentation/devicetree/bindings/media/i2c/imx290.txt
-> +++ /dev/null
-> @@ -1,57 +0,0 @@
-> -* Sony IMX290 1/2.8-Inch CMOS Image Sensor
-> -
-> -The Sony IMX290 is a 1/2.8-Inch CMOS Solid-state image sensor with
-> -Square Pixel for Color Cameras. It is programmable through I2C and 4-wire
-> -interfaces. The sensor output is available via CMOS logic parallel SDR output,
-> -Low voltage LVDS DDR output and CSI-2 serial data output. The CSI-2 bus is the
-> -default. No bindings have been defined for the other busses.
-> -
-> -Required Properties:
-> -- compatible: Should be "sony,imx290"
-> -- reg: I2C bus address of the device
-> -- clocks: Reference to the xclk clock.
-> -- clock-names: Should be "xclk".
-> -- clock-frequency: Frequency of the xclk clock in Hz.
-> -- vdddo-supply: Sensor digital IO regulator.
-> -- vdda-supply: Sensor analog regulator.
-> -- vddd-supply: Sensor digital core regulator.
-> -
-> -Optional Properties:
-> -- reset-gpios: Sensor reset GPIO
-> -
-> -The imx290 device node should contain one 'port' child node with
-> -an 'endpoint' subnode. For further reading on port node refer to
-> -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> -
-> -Required Properties on endpoint:
-> -- data-lanes: check ../video-interfaces.txt
-> -- link-frequencies: check ../video-interfaces.txt
-> -- remote-endpoint: check ../video-interfaces.txt
-> -
-> -Example:
-> -       &i2c1 {
-> -               ...
-> -               imx290: camera-sensor@1a {
-> -                       compatible = "sony,imx290";
-> -                       reg = <0x1a>;
-> -
-> -                       reset-gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
-> -                       pinctrl-names = "default";
-> -                       pinctrl-0 = <&camera_rear_default>;
-> -
-> -                       clocks = <&gcc GCC_CAMSS_MCLK0_CLK>;
-> -                       clock-names = "xclk";
-> -                       clock-frequency = <37125000>;
-> -
-> -                       vdddo-supply = <&camera_vdddo_1v8>;
-> -                       vdda-supply = <&camera_vdda_2v8>;
-> -                       vddd-supply = <&camera_vddd_1v5>;
-> -
-> -                       port {
-> -                               imx290_ep: endpoint {
-> -                                       data-lanes = <1 2 3 4>;
-> -                                       link-frequencies = /bits/ 64 <445500000>;
-> -                                       remote-endpoint = <&csiphy0_ep>;
-> -                               };
-> -                       };
-> -               };
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
-> new file mode 100644
-> index 000000000000..21377daae026
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
-> @@ -0,0 +1,129 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/sony,imx290.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sony IMX290 1/2.8-Inch CMOS Image Sensor
-> +
-> +maintainers:
-> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +
-> +description: |-
-> +  The Sony IMX290 is a 1/2.8-Inch CMOS Solid-state image sensor with Square
-> +  Pixel for Color Cameras. It is programmable through I2C and 4-wire
-> +  interfaces. The sensor output is available via CMOS logic parallel SDR
-> +  output, Low voltage LVDS DDR output and CSI-2 serial data output. The CSI-2
-> +  bus is the default. No bindings have been defined for the other busses.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sony,imx290
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description: Input clock (37.125 MHz or 74.25 MHz)
-> +    items:
-> +      - const: xclk
-> +
-> +  clock-frequency:
-> +    description: Frequency of the xclk clock in Hz
-> +
-> +  vdda-supply:
-> +    description: Analog power supply (2.9V)
-> +
-> +  vddd-supply:
-> +    description: Digital core power supply (1.2V)
-> +
-> +  vdddo-supply:
-> +    description: Digital I/O power supply (1.8V)
-> +
-> +  reset-gpios:
-> +    description: Sensor reset (XCLR) GPIO
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    description: |
-> +      Video output port
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            anyOf:
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
-> +
-> +          link-frequencies: true
-> +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - clock-frequency
-> +  - vdda-supply
-> +  - vddd-supply
-> +  - vdddo-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        imx290: camera-sensor@1a {
-> +            compatible = "sony,imx290";
-> +            reg = <0x1a>;
-> +
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&camera_rear_default>;
-> +
-> +            clocks = <&gcc 90>;
-> +            clock-names = "xclk";
-> +            clock-frequency = <37125000>;
-> +
-> +            vdddo-supply = <&camera_vdddo_1v8>;
-> +            vdda-supply = <&camera_vdda_2v8>;
-> +            vddd-supply = <&camera_vddd_1v5>;
-> +
-> +            reset-gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
-> +
-> +            port {
-> +                imx290_ep: endpoint {
-> +                    data-lanes = <1 2 3 4>;
-> +                    link-frequencies = /bits/ 64 <445500000>;
+--nZ+UcSAkhSAEBb22
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Minor nit that this won't work with the current Linux driver due to a
-driver restriction implementing the recommended settings from Sony.
-OV8865 has the same restrictions and notes it in the binding[1]. I
-don't know if this is the preferred approach or not.
+On Sat, Oct 15, 2022 at 10:28:53AM -0400, William Breathitt Gray wrote:
+> On Tue, Oct 11, 2022 at 08:31:48PM +0000, Biju Das wrote:
+> > > Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a
+> > > bindings
+> > >=20
+> > > On 11/10/2022 15:23, Biju Das wrote:
+> > > >> Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a
+> > > >> bindings
+> > > >>
+> > > >> On 11/10/2022 10:55, Biju Das wrote:
+> > > >>>
+> > > >>>>>  .../bindings/mfd/renesas,rz-mtu3.yaml         | 305
+> > > >>>> ++++++++++++++++++
+> > > >>>>>  1 file changed, 305 insertions(+)  create mode 100644
+> > > >>>>> Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+> > > >>>>
+> > > >>>> This should not be in MFD. Just because some device has few
+> > > >> features,
+> > > >>>> does not mean it should go to MFD... Choose either timer or pwm.
+> > > >>>
+> > > >>> MFD is for multifunction device. This IP supports multiple
+> > > functions
+> > > >>> like timer, pwm, clock source/events. That is the reason I have
+> > > >> added
+> > > >>> here. MFD is core which provides register access for client
+> > > devices.
+> > > >>>
+> > > >>> For me moving it to pwm or counter is not a big problem.
+> > > >>> Why do you think it cannot be MFD?
+> > > >>
+> > > >>
+> > > >> Because it makes MFD a dump for everything where author did not
+> > > want
+> > > >> to think about real device aspects, but instead represented driver
+> > > >> design (MFD driver).
+> > > >
+> > > > Core driver is MFD, just provides resources to child devices and is
+> > > > not aware of any real device aspects.
+> > > >
+> > > >>
+> > > >> MFDs are pretty often combining unrelated features, e.g. PMICs
+> > > which
+> > > >> have wakeup and system power control, regulator, 32 kHz clocks, RTC
+> > > >> and some USB connector.
+> > > >
+> > > > Here also same right? pwm, counter and clock are 3 unrelated
+> > > features.
+> > > > That is the reason we have separate subsystems for these features.
+> > >=20
+> > > These are quite similar features of a similar piece of hardware.
+> > > Sometimes called timer.
+> > >=20
+> > > >
+> > > >>
+> > > >> Just because you will have clocksource driver, PWM driver and timer
+> > > >> driver does not make it a MFD.
+> > > >
+> > > > MFD is multi function device.
+> > >=20
+> > > No. MFD is a Linux subsystem name. Not a device type. The bindings are
+> > > located in respective type.
+> > >=20
+> > > > So are are you agreeing Clock source, PWM and timer are different
+> > > > functionalities or not? If not, why do we have 3 subsystems, if it
+> > > is
+> > > > same?
+> > >=20
+> > > Linux subsystems? We can have millions of them and it is not related
+> > > to bindings.
+> >=20
+> > OK.
+> >=20
+> > >=20
+> > >=20
+> > > > Where do keep these bindings as there is only single "rz_mtu"
+> > > bindings for these 3 different functionalities?
+> > >=20
+> > > Again, focus on hardware not on Linux drivers. Hardware is called MTU
+> > > - Multi-Function TIMER Unit. Timer.
+> >=20
+> > OK
+> > >=20
+> > > > pwm or counter or mfd?
+> > >=20
+> > > Not MFD. I already proposed where to put it. Other Timer/PWM/Counter
+> > > units are also in timer.
+> > >=20
+> >=20
+> > I guess for counter/pwm maintainers, it is ok to model MTU3 as a single=
+=20
+> > binding "rz-mtu3" in timer that binds against counter and pwm=20
+> > functionalities as well??
+> >=20
+> > Cheers,
+> > Biju
+>=20
+> I'm okay with putting the MTU3 binding under timer; we already have
+> Documentation/devicetree/bindings/timer/renesas,mtu2.yaml there so
+> adding a new renesas,mtu3.yaml next to it seems reasonable.
+>=20
+> Just to reiterate Krzysztof's point, the subsystems in Linux serve as a
+> way to group drivers together that utilize the same ABIs, whereas the
+> devicetree is a structure for organizing physical hardware. The
+> structure of physical hardware types don't necessarily match the
+> organization of the ABIs we use to support them. This is why you may end
+> up with differing heirarchies between the devicetree and driver
+> subsystems.
+>=20
+> To illustrate the point, take for example a hypothetical
+> digital-to-analog (DAC) device with a few GPIO lines. Those GPIO
+> input signals could be tied to buttons used to indicate to the system
+> that a user wants to reset or adjust the DAC output, while the GPIO
+> output signals could be status lights or triggers indicating that the
+> DAC is operating. The respective driver for this device may utilize the
+> IIO subsystem to support the DAC and the GPIO subsystem to support those
+> GPIO lines, but it would be incorrect to put this under MFD because the
+> purpose of the GPIO lines is to assist in the operation of the DAC; in
+> other words, this is primarily a DAC device with some auxiliary
+> convenience functionalities, not a MFD with distinct unrelated separate
+> components.
 
-  Dave
+Exactly. In addition to the DT aspect, another misconception is that a
+driver for a multi-function device needs to be somehow split up to match
+the Linux subsystem structure. In most cases that's not true. Pick the
+subsystem that most closely fits the main function of a device and
+implement the driver. If you can expose further functions using other
+subsystems, that's absolutely fine. Drivers can register with multiple
+subsystems at the same time.
 
-[1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/media/i2c/ov8856.yaml#L78
+Yes, that's not quite as neat as having individual drivers for each
+subsystem, but it's a much better approximation of the hardware and
+therefore will lead to more compact and stable drivers. Trying to split
+things up arbitrarily often makes for wonky constructs.
 
-> +                    remote-endpoint = <&csiphy0_ep>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 72b9654f764c..c431fd20e89b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18982,7 +18982,7 @@ M:      Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->  L:     linux-media@vger.kernel.org
->  S:     Maintained
->  T:     git git://linuxtv.org/media_tree.git
-> -F:     Documentation/devicetree/bindings/media/i2c/imx290.txt
-> +F:     Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
->  F:     drivers/media/i2c/imx290.c
->
->  SONY IMX319 SENSOR DRIVER
-> --
-> Regards,
->
-> Laurent Pinchart
->
+We've gained powerful tools over the years to easily deal with cross-
+subsystem drivers, so there's seldom a reason to strictly split things
+across subsystem boundaries anymore.
+
+Thierry
+
+--nZ+UcSAkhSAEBb22
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNNX/0ACgkQ3SOs138+
+s6Fd7w/7Bk/7GH1pccb3LSpYVwJqBPu6guiw4I1yjG2aNVsX3MBfwjXXg0LBJkRV
+0YctZRdJTPgZcaXrTs5Kx8GovuxokrxgM9M9jqktB7tSmlQSVUEJC19uk01X5hwc
+f+VtHHugkqde1PbC2aMSX4OBX0C7MeRHijIGK8oi2e9auN+LQm+w2lh5vKJtP/6C
+MEDJtOOCo+eEZWKPx5wOwwV/8WLEmyBolMYQunCrwVE8VyXnerGzf0Pc9BBsEEFS
+vaO8ad+VaUFnSMsMDTPOzW6oPsPmQafD8Jih3diuP1aZgcEE1iwfzBYTHAkX4kuw
+us38EbVXOMNx6pVi9MzUTon/XuKdPHsXT4byq4nHXVqE0yv1O9H6zrGIQTocBKvK
+8WJaHynZUW+fmL5Yi3wnBY72EY3+bFQxtpGNCBb5EWdO45e871pXnAebOCpsgw3Y
+rIu74lOmAUeHuSvZZC8njsW8aFgXlBNtSb9Ja0c+ng7XxmrVNWgRgJ4E9MUV8Kf7
+nESRrVTHyhPbOyKjAe4nTZF3hxZV52Rq74icpPGA6Mv4mKZpY6q999WvVzUPxUT6
+2wTZc4nQoKyDn233bD/FwQqA5fguE4lx1fZ2UOItvPyK5abQvVVw5d/980Wr71IP
+Xk3Q7svtVW1zRBaJoltW+D8v62H8pXk6BZvfgPnz3YSVr+1y3xA=
+=yeGv
+-----END PGP SIGNATURE-----
+
+--nZ+UcSAkhSAEBb22--
