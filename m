@@ -2,98 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDD87601926
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 22:15:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5E5F60192E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 22:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231181AbiJQUPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 16:15:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54272 "EHLO
+        id S231425AbiJQUQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 16:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231328AbiJQUPL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 16:15:11 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5D4D13F69
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 13:14:38 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id a5so7399220qkl.6
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 13:14:38 -0700 (PDT)
+        with ESMTP id S231424AbiJQUQT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 16:16:19 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A180248CD
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 13:15:28 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id a18so7437939qko.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 13:15:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AJNYfqxtZnChw9cbOfNCDV05T7F1NoqGmT3O3gZzEBM=;
-        b=VfJr3OlRU13ehHMlkxPfDyfREWIYoxHXSKik6aOMvOcvPIw/0IOmWCv04ArbYSCBgX
-         gjCWQ27fY/UUfgK5FAoGirDZpg6Yfcah0UB+2Idf5V5HHrzhNI5tAq8rlqhA/kdznWeL
-         guBj2o4XMZ63T9/P8pTshLuniEEAIRwqCSv8xsgNdlJz+gsL/9zpI40eDVibOWal2QvB
-         wRR3ZCodiBADpKHKF0fU1fxv34l7JV1tR3xmEC9oxDfAbQOPxmkHHdgQm6s4Q4SUBOil
-         3uDBSw9AbMBrJhjJkP47Gtf91PIhOaIN79/jX9so3PFdJeq0qoktVrGT9ULI4T7+W0lj
-         nIPg==
+        bh=3hFR/JKuZ224C1tzOZjwuzfHyBFmtfdzMfvcxSPRjbQ=;
+        b=VE7guqGIMqTuXk335bohHdtRCqXAbmWg+6R4hdeueCxnywSVbiaUbTt3HiU0yZd98T
+         aYU5U+Ou88iOou8HVpEB9gzROMfdf1JkSJJBSv9p1+/ZX9sJcZV7XvG/7oSflTjTWxQj
+         KR07CkK5BHfsc/1TXEsBCeo4WrJNEImWo1byP8IwTGQx3w6WO5Yo7IXLlCE6Ct2LUhHM
+         R/HGLlUpNUmA849i8BnYbN+q24XSbogzIGps2H6yn2gT7KoxcSxvTEoh6gmN/dlbWAUa
+         svyCF5cmNx4J2QJ2kWZJb8wn3vLJKhU1FQWlFIwhtZwTvhujuts7Ev/I7PwJKOBe/QwI
+         9fmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AJNYfqxtZnChw9cbOfNCDV05T7F1NoqGmT3O3gZzEBM=;
-        b=YeGApmrIGUXQzv6777eeObOKWTtDSPEptpLPd+o35cReYylHWWHvOIOxOt7VqYvNFM
-         cHwG60B7R5EDUM5LtdWZa4Tz91SuaYQ3REuIi1b36E/xfLxO+Ne9poeuZoM0nXcnG0mH
-         Siz/kNCR0XGuKoIFc58mtSXyUMHaoE00L7r/YComiQZxOjdocekYOjudpALKBc+vu00A
-         FtTzWau7TIAhPGmPk9zDxlVBRckMbSTispTuhcKglRxFT0WY7cBCDuVlq7MAtXJEjVSG
-         YGxuPErGPoIOAzSfOWnnPQNcGBsEJx7Cw4QfvakzVqqKLokZdJVLWBIbcLSaBTsO+isn
-         Udjw==
-X-Gm-Message-State: ACrzQf1VBIW1QgT7Isj2g8nh4MK0rzVVxGbTMRK08xN0IfQsE+RGJgqZ
-        hsUJuZZ7Q6GQQAYoqjr9P1TbMg==
-X-Google-Smtp-Source: AMsMyM6nbM3QyrJQkf2xsIjrCZ17eCwlmopsJMFJeXQXdnYELAZ/yXqmTnhCtFDRYPk0U3iHfdmd7Q==
-X-Received: by 2002:a05:620a:d8c:b0:6a7:91a4:2669 with SMTP id q12-20020a05620a0d8c00b006a791a42669mr9007086qkl.269.1666037596372;
-        Mon, 17 Oct 2022 13:13:16 -0700 (PDT)
+        bh=3hFR/JKuZ224C1tzOZjwuzfHyBFmtfdzMfvcxSPRjbQ=;
+        b=pOTY3Q1A9CiUT/tTJeoUNDUUhAIyjeFcTWWevbHpeffoU1Gxh8TdMPwsAfUI1pnJoi
+         SCA+e4oEUwtbNpz6eX7NOnSQRScdplEVCJswtXOxKqUWGiQJrQsIJaHOZ1OQdn1EUrLQ
+         qpiIsQQRFQulernsm9dGWr1tVagQu7YSO4+yMNAFUVTzC1ekx+LUXJyv9fGW6vQ/wfRO
+         j4dQtP46kvQRH0t63ldpdJYpb7k57diNaugS8hYJ+ZodQh0ltwDQzf+D3K97ipERWTeZ
+         LKciA+bmyb5mqSwd40PJMj5uV1sADVPGlsISDA19c23cwVegZeyZ6moPB5XNL1x0l4xC
+         xLZQ==
+X-Gm-Message-State: ACrzQf0E5HtDBrjYmu5w8Wjjri16tEUZ3qMMf48aREzDNOGucnmlkVo0
+        rqHyqPFGxGMdtT1JCZ5B8w/6LA==
+X-Google-Smtp-Source: AMsMyM6hKTj8N78SpstCP8ItrkFlrR+UIDFZexsd8+/YfceyQ65yGg4jBiZVbiTxImsak4+Kij5bxA==
+X-Received: by 2002:ae9:ea03:0:b0:6e0:ca9c:e795 with SMTP id f3-20020ae9ea03000000b006e0ca9ce795mr8923285qkg.168.1666037681995;
+        Mon, 17 Oct 2022 13:14:41 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id x7-20020ac85387000000b0039cc944ebdasm489188qtp.54.2022.10.17.13.13.15
+        by smtp.gmail.com with ESMTPSA id u24-20020a37ab18000000b006bb83c2be40sm556712qke.59.2022.10.17.13.14.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Oct 2022 13:13:15 -0700 (PDT)
-Message-ID: <3e7e6b3d-1ba7-ca89-60a9-e63d9856e497@linaro.org>
-Date:   Mon, 17 Oct 2022 16:13:14 -0400
+        Mon, 17 Oct 2022 13:14:41 -0700 (PDT)
+Message-ID: <279324eb-fc1f-4d1a-b1c2-d8cf64809e1f@linaro.org>
+Date:   Mon, 17 Oct 2022 16:14:39 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.2
-Subject: Re: [PATCH v2] dt-bindings: mfd: qcom,spmi-pmic: document rradc node
+Subject: Re: [PATCH v3] arm64: dts: qcom: pmi8998: add rradc node
+Content-Language: en-US
 To:     Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         devicetree@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-References: <20221017185105.2279129-1-caleb.connolly@linaro.org>
-Content-Language: en-US
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+References: <20221017190902.2282899-1-caleb.connolly@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221017185105.2279129-1-caleb.connolly@linaro.org>
+In-Reply-To: <20221017190902.2282899-1-caleb.connolly@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/10/2022 14:51, Caleb Connolly wrote:
-> Document the rradc node name, like adc-tm it's only used on a few
-> platforms, so differentiate it from the standard adc node.
+On 17/10/2022 15:09, Caleb Connolly wrote:
+> Add a DT node for the Round Robin ADC found in the PMI8998 PMIC.
+> 
+> The RRADC reports PMIC die and skin temperatures, as well as
+> battery/charger thermals. It also reports USB and DC charger voltage and
+> current measurements.
 > 
 > Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 > ---
+> This patch introduces a new dtbs_check warning which will be fixed by
+> https://lore.kernel.org/linux-arm-msm/20221017185105.2279129-1-caleb.connolly@linaro.org/
 > 
-> V1: https://lore.kernel.org/linux-arm-msm/20221016175757.1911016-1-caleb.connolly@linaro.org/
+> V2: https://lore.kernel.org/linux-arm-msm/20221017185609.2280067-1-caleb.connolly@linaro.org/
+> Changes since v2:
+>  * Remove 'status = "okay";'
+> 
+> V1:
+> https://lore.kernel.org/linux-arm-msm/20221016180330.1912214-1-caleb.connolly@linaro.org/
 > Changes since v1:
->  * Add a new node instead of using the adc@ node
->  * no longer depend on Luca's patch
+>  * Change node name from adc@ to rradc@, see linked patch
+>  * Enable the RRADC by default, rather than per-device 
+> ---
+>  arch/arm64/boot/dts/qcom/pmi8998.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+> index 6d3d212560c1..08c9ec2cafa6 100644
+> --- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+> @@ -18,6 +18,12 @@ pmi8998_gpio: gpios@c000 {
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+>  		};
+> +
+> +		pmi8998_rradc: rradc@4500 {
 
-This is not what I proposed. The node name should stay adc as it is
-generic. I propose to do it the same way as in
-f4b632da13cf0ee39cdbd4ff08d1961ed50e3c14
+No, generic node names so adc. Please do not send DTS patches separate
+from the bindings.
 
 Best regards,
 Krzysztof
