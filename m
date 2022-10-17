@@ -2,124 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C18060160F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 20:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDBA860163D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 20:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbiJQSQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 14:16:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42356 "EHLO
+        id S230337AbiJQS0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 14:26:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbiJQSQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 14:16:13 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A867974B95;
-        Mon, 17 Oct 2022 11:16:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 689AAB819DC;
-        Mon, 17 Oct 2022 18:16:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CC24C433D6;
-        Mon, 17 Oct 2022 18:16:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666030570;
-        bh=bC+/cya3KMQ7ZR+S6dM4jCfaG/o95my92WsHxec/tmM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Im0QvOQkcDh9n/LSlegRTaIMhk5lyz2BSvjq5rvEsDq0IG7qKGQN20KDnI3i79h38
-         MUrrpL5+lJJ8X2RG8JTGEvkUdp02CHhQ20z8AXwx9CxWx35ninpuctfnlCGT/X4FFJ
-         Jk+XYZB1BjGW5r9eIgE50k86kgGBb1WxUQb4YkaSLOw3qyQMhKQh+1HTlz2dZppMJu
-         NCsJ6Y062GuIMf+C6o6uYfzWTOTrQqi6XEwlXcyBB8CdNFoOIhBAecUpt4lyNM24Eq
-         mTWxjf8Rousv0+85TXufRq2Ngwx+sK+xxPDUYaowtpQmfhLsYH5qw7EaNr2v+ChHFh
-         /cax+mCkLrGmg==
-Received: by mail-vs1-f48.google.com with SMTP id h29so12325617vsq.9;
-        Mon, 17 Oct 2022 11:16:09 -0700 (PDT)
-X-Gm-Message-State: ACrzQf03ppCdOs8Be/HcRLpigamMwnteZBtX0kdliGBJQQNXsmr1FvWb
-        Y4PDSnJzffgJwOUQK67YlKNYaqBqPO9SCtE21Q==
-X-Google-Smtp-Source: AMsMyM7chLsN+79vZUm6IwwIyOYTUmu0e5xkXf8cjzjCxvNdC3kO2CvscxuAQOwHWh/CFI3aR3PwKfF6K+NsaTmlV0c=
-X-Received: by 2002:a67:e19a:0:b0:3a7:6b54:cc63 with SMTP id
- e26-20020a67e19a000000b003a76b54cc63mr5305559vsl.26.1666030568947; Mon, 17
- Oct 2022 11:16:08 -0700 (PDT)
+        with ESMTP id S230304AbiJQS0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 14:26:54 -0400
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6BD474CE6;
+        Mon, 17 Oct 2022 11:26:53 -0700 (PDT)
+Received: by mail-oo1-f50.google.com with SMTP id g15-20020a4a894f000000b0047f8e899623so2755953ooi.5;
+        Mon, 17 Oct 2022 11:26:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=14x/M1tKZwx1cpScI/Zn9umGF7nknJ0iPBkHXl0p60w=;
+        b=7wpMGAuxXsPn25YuNGrtZ3sAIgRIs+/YMxs4yEM4jxwxANNFxPtv2oezL2EABBiqbp
+         7Eg3qS4W/M+Oflco5puM2LewRCuo1eW/h7MNSWFbrOzO5IsROFw1d5+SIM27H7ilkAv1
+         fUIZY/rHN6kI/g1NXyH9KN5wsgeMI9vpy8V8evlkhfQ7+9umgz37IAb9LEOff3R10o6b
+         2R3WC1wtcKH7VCHFoTSTZHm7nLjdm9NMsKrFazjM5Vt/QwLLV3/WhzCwp/0J3tKnjoxH
+         FkKqE3UUR5NAWeD1PQq6gVBkO3KG+DkgYpDqxAUp6ROYKFBO/SNMLfuSuqiodr6kqoT4
+         4VcQ==
+X-Gm-Message-State: ACrzQf3IcXZ9Y+c5ezB/S6rI5hSlaGVUw4eF00P6EEDey7QHp+NGeC5Q
+        yqa8RC07zW4TKgVCFvcwIyu1n1btOA==
+X-Google-Smtp-Source: AMsMyM4CG65ULQoMsmj7Stme8+7rka/kGz7dJ4wC47I7Ms/prM1SAEmqglGIHsHsjKKzmkj+TXJmxA==
+X-Received: by 2002:a4a:d31a:0:b0:47e:70a5:7eed with SMTP id g26-20020a4ad31a000000b0047e70a57eedmr4773127oos.16.1666031212900;
+        Mon, 17 Oct 2022 11:26:52 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i34-20020a056870892200b0013320d9d9casm5148668oao.44.2022.10.17.11.26.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Oct 2022 11:26:52 -0700 (PDT)
+Received: (nullmailer pid 2246065 invoked by uid 1000);
+        Mon, 17 Oct 2022 18:26:53 -0000
+Date:   Mon, 17 Oct 2022 13:26:53 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?Q?Micha=C5=82?= Grzelak <mig@semihalf.com>
+Cc:     robh+dt@kernel.org, edumazet@google.com, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, upstream@semihalf.com,
+        devicetree@vger.kernel.org, davem@davemloft.net, pabeni@redhat.com,
+        mw@semihalf.com, kuba@kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: net: marvell,pp2: convert to
+ json-schema
+Message-ID: <166603121217.2246011.825778809609571162.robh@kernel.org>
+References: <20221014213254.30950-1-mig@semihalf.com>
+ <20221014213254.30950-2-mig@semihalf.com>
 MIME-Version: 1.0
-References: <20221007124946.406808-1-thierry.reding@gmail.com>
- <20221007124946.406808-5-thierry.reding@gmail.com> <dd869713-6eb2-fadd-fdef-6ca155198a8c@suse.de>
- <Y01sunkDsQQQhXuC@orome>
-In-Reply-To: <Y01sunkDsQQQhXuC@orome>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 17 Oct 2022 13:15:59 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKzSife8_ob3P=KVVcQ_ny=ppMF5LsjLxvYz95roy-y2A@mail.gmail.com>
-Message-ID: <CAL_JsqKzSife8_ob3P=KVVcQ_ny=ppMF5LsjLxvYz95roy-y2A@mail.gmail.com>
-Subject: Re: [PATCH v2 4/7] drm/simpledrm: Add support for system memory framebuffers
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221014213254.30950-2-mig@semihalf.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 17, 2022 at 9:54 AM Thierry Reding <thierry.reding@gmail.com> wrote:
->
-> On Mon, Oct 10, 2022 at 10:12:34AM +0200, Thomas Zimmermann wrote:
-> > Hi
-> >
-> > Am 07.10.22 um 14:49 schrieb Thierry Reding:
-> > > From: Thierry Reding <treding@nvidia.com>
-> > >
-> > > Simple framebuffers can be set up in system memory, which cannot be
-> > > requested and/or I/O remapped using the I/O resource helpers. Add a
-> > > separate code path that obtains system memory framebuffers from the
-> > > reserved memory region referenced in the memory-region property.
-> > >
-> > > v2: make screen base a struct iosys_map to avoid sparse warnings
+On Fri, 14 Oct 2022 23:32:52 +0200, Michał Grzelak wrote:
+> Convert the marvell,pp2 bindings from text to proper schema.
+> 
+> Move 'marvell,system-controller' and 'dma-coherent' properties from
+> port up to the controller node, to match what is actually done in DT.
+> 
+> Rename all subnodes to match "^(ethernet-)?port@[0-2]$" and deprecate
+> port-id in favour of 'reg'.
+> 
+> Signed-off-by: Michał Grzelak <mig@semihalf.com>
+> ---
+>  .../devicetree/bindings/net/marvell,pp2.yaml  | 305 ++++++++++++++++++
+>  .../devicetree/bindings/net/marvell-pp2.txt   | 141 --------
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 306 insertions(+), 142 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/marvell,pp2.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/marvell-pp2.txt
+> 
 
-[...]
-
-> > > +static int simple_framebuffer_init(struct reserved_mem *rmem)
-> > > +{
-> > > +   pr_info("framebuffer memory at %pa, size %lu bytes\n", &rmem->base,
-> > > +           (unsigned long)rmem->size);
-> > > +
-> > > +   rmem->ops = &simple_framebuffer_ops;
-> > > +
-> > > +   return 0;
-> > > +}
-> > > +RESERVEDMEM_OF_DECLARE(simple_framebuffer, "framebuffer", simple_framebuffer_init);
-> >
-> > What's the prupose of these code at all?  I looked through the kernel, but
-> > there aren't many other examples of it.
->
-> This is a fairly standard construct to deal with early memory
-> reservations. What happens is roughly this: during early kernel boot,
-> the reserved-memory core code will iterate over all children of the top-
-> level reserved-memory node and see if they have a compatible string that
-> matches one of the entries in the table created by these
-> RESERVEDMEM_OF_DECLARE entries. It will then call the init function for
-> a matched entry and register a struct reserved_mem for these. The init
-> function in this case just dumps an informational message to the boot
-> log to provide some information about the framebuffer region that was
-> reserved (which can be used for example for troubleshooting purposes)
-> and sets the device init/release operations (which will be called when a
-> device is associated with the reserved memory region, i.e. when the
-> of_reserved_mem_device_init_by_idx() function is called).
->
-> The reason why there aren't many examples of this is because these are
-> special memory regions that (at least upstream) kernels seldom support.
-> Perhaps the most common use-cases are the shared DMA pools (such as
-> CMA).
-
-Also, not all regions need to be handled 'early' before slab allocator
-or drivers are probed. Do you need early handling here? I can't see
-why other than if fbcon is up early.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
