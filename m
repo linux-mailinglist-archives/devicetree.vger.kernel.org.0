@@ -2,77 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FEB6005E9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 06:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2F1E600622
+	for <lists+devicetree@lfdr.de>; Mon, 17 Oct 2022 07:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233066AbiJQEFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 00:05:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39284 "EHLO
+        id S229486AbiJQFKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 01:10:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233061AbiJQEFE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 00:05:04 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9954D2A965;
-        Sun, 16 Oct 2022 21:05:01 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id u71so9413729pgd.2;
-        Sun, 16 Oct 2022 21:05:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q5p3UQHf7lMhNZGekqo42nH+ILZYOEybK5oj6juH8GI=;
-        b=LSFexhKQS2DTkLxErMWIb8rjxPpatv78eLD5Sem/VoiJ++3pZfQ97U2C213d/gzI6g
-         YBs56FcWKZeJ0tPxI3ADxgaXBK7rDU2EacU98Enb33EXdYxPJ2tSMHKIpJtp+ARogYcD
-         +3L3vOzsNmH1QVM50heO7lp+X0kmn01OkPKNIvQcwiv2uKBVX553KmFaE8H/V6QdHcgJ
-         ek0+UYZbCu9unyqjLxwhHBE4NMPnSjor2tDXw/4rX+rjRgZww34cYwgOW7NbDtML4R/1
-         eMy3/uVqX9nK/rM5JULPRD22BrkzzQFipv0n+jXfXzEV5jwCWNZRQ6huUEDVVxQzA7zp
-         d13Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q5p3UQHf7lMhNZGekqo42nH+ILZYOEybK5oj6juH8GI=;
-        b=lbdYWLte4dIOWT0R4G0nDQAnASctTUInPfk6kfgbBY9TaOKfh0MdcjohvI8Gpp1rbP
-         +TnD6ftlUqEMPPJgHSrdn6GQqEjeoTYnHDYuFGLqgA3g6d6sPr4Q5RJkJhObntYdHsXk
-         onwtlOZXkT2ZCuiQUKDUD56mQiZZ7p+CWPwIaiELLd80ALTcWTj+uOKTuy13dk4UEgtr
-         JoM+ABNRDJ9vJMO61hyxSwJVCNGFoPh6dtB0M0N6YpTyhprVsyMIDcoEep0ibxln0Jfn
-         wWDbkF8bwP+9MoREGN9qnKBrNKT142VLXuR5Tb3h8rwh1QHPYN7k3I2ftw7v1OO+beQJ
-         UIFA==
-X-Gm-Message-State: ACrzQf0F7lqJnwLRlNTxBbXIT7NJoNVXg+ssm8eDFQc0k1VvhJAD1+uR
-        f/f73TcCutq25qC+XgICUL4=
-X-Google-Smtp-Source: AMsMyM7AfShoia2XeA1R/wHwIr8oyisR+OPfo6RmkdGwBgOSau7ymb0MCG1IX0ZrcOkL/ZuHBwJTRQ==
-X-Received: by 2002:a62:e70f:0:b0:562:d556:8cf2 with SMTP id s15-20020a62e70f000000b00562d5568cf2mr10479510pfh.78.1665979500542;
-        Sun, 16 Oct 2022 21:05:00 -0700 (PDT)
-Received: from penguin ([2401:fa00:8f:201:216:3eff:fe90:6649])
-        by smtp.gmail.com with ESMTPSA id f15-20020a17090a664f00b0020d3662cc77sm8382445pjm.48.2022.10.16.21.04.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Oct 2022 21:04:59 -0700 (PDT)
-Date:   Mon, 17 Oct 2022 13:04:51 +0900
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Caleb Connolly <caleb@connolly.tech>
-Cc:     krzysztof.kozlowski@linaro.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org, Jeff LaBundy <jeff@labundy.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Rob Herring <robh+dt@kernel.org>, Tom Rix <trix@redhat.com>
-Subject: Re: [PATCH v7 2/2] input: add Qualcomm SPMI haptics driver
-Message-ID: <Y0zUY93B+D0Uy1Je@penguin>
-References: <20221015172915.1436236-3-caleb@connolly.tech>
+        with ESMTP id S229739AbiJQFKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 01:10:51 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2049.outbound.protection.outlook.com [40.107.22.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20266520AC;
+        Sun, 16 Oct 2022 22:10:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hzrRegoaDID47oIspa5LOWP9TC/13+EkvO4r6k92u2kswhIkK3AI9Jm2nX7DnyV7unKMWYnWj7pEKUmni3EYkzqiyLol9nigVPcgenulAdwYMlvEq41xRMgAAGw8UXr2XtNIfvq1P0OiQ/AqGm1/b9gUO9lZZaqgq04ZjRZgC4129r6IzjJayN3sEKh3UUNzNDsKH6Nd1/4zOjTL5zvaXMZC+IO2I2KaHRpPgAV3ImlmezE2MCSw/Cw/o5/l2uvXLgic0AoAqfiBZNL75i6l7cyDIFYGkUroc91pZRyWWav4TECH//GwBcSfyfDUU4hbC7v6sI9ltdXHKBAHlR6DAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Y3seuytbF2ClXnttmeUwjyjobnfgtaXFyxTpaSdPQQw=;
+ b=nLlJYivOREp8AT5IPCOMpi0URmzlAGga28+Hydm0JpDYnorPhYS5usYWYthnlqoF3kPMoaXLaV2L2cDI5o7Y5IPV3H48N1h/+Tjes6SnQCzcJaw8Qid9LXl5v2H4foGyW6EimEsEaNp3DHiB5JI77pVi3VNye6H+NiDUP0Q2LVMFtETLTyb7KmZYORIVQSQXhhYNIMhHeZAyMChPsJquRPDXSuuLVvrSx1kPATXfZDZ1g2skVxeacQ9vgq7L4uhS+YY47sFPSJjpApbp34U/Yk4SPpktjtX89nnATbTqgpOBzHgeYJOgYDiOha4ao8Ki2Vue8PueCu4U6jfxb738Ng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Y3seuytbF2ClXnttmeUwjyjobnfgtaXFyxTpaSdPQQw=;
+ b=K7oLvHpStXk2iXgENlDrKWUwgp5vp1iluld0BZ5Hn3Vg1KaD2qJ/LYdsYLr2fimvFzwRvY02bfyyFCHzsxSb8ail8zxA0FG33FRQjG17QEExkXqKyQ8OeaOQyiG0WLR+Q5n9jmX3T0qO+XAaoiCNjtPGJgdzvAwpXb6P5OFszmc=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM9PR04MB8383.eurprd04.prod.outlook.com (2603:10a6:20b:3ed::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Mon, 17 Oct
+ 2022 05:10:47 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::a5ff:3d28:4bbc:e1ed]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::a5ff:3d28:4bbc:e1ed%6]) with mapi id 15.20.5723.032; Mon, 17 Oct 2022
+ 05:10:47 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "andersson@kernel.org" <andersson@kernel.org>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: RE: [PATCH V7 2/7] dt-bindings: remoteproc: imx_rproc: support
+ i.MX8QM
+Thread-Topic: [PATCH V7 2/7] dt-bindings: remoteproc: imx_rproc: support
+ i.MX8QM
+Thread-Index: AQHY33pZAZ8rwH1kpUGdOkq3aEhK7a4RKogAgADj0sA=
+Date:   Mon, 17 Oct 2022 05:10:47 +0000
+Message-ID: <DU0PR04MB9417A4BB57256B7852C42A8C88299@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20221014031037.1070424-1-peng.fan@oss.nxp.com>
+ <20221014031037.1070424-3-peng.fan@oss.nxp.com>
+ <199bed73-676b-850f-fe1e-f144e1b2f314@linaro.org>
+In-Reply-To: <199bed73-676b-850f-fe1e-f144e1b2f314@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AM9PR04MB8383:EE_
+x-ms-office365-filtering-correlation-id: d5b6457b-29f3-4e07-ed59-08daaffdf3ce
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: hGP3Eh77MwFiL0mPGd8sUXe0JYuEShuqDn0e0/cHyg1OxMoYfjYuFsG/vKsdIHH7XybwPEEB6oMebmq8LrhFVvkvUnxgjNoAAtPqk611Yaqd4lgOc8YheRTTezsMDyTHsg5myDbtfZO0PJneb5ugoVaLyIfqWIDJ0eHxNBRWflNMK+Cqoipdgs4Qy+Tcz68fRxb5WL/8HJwdwD4uVmg5mJuTexQw9FbgR0VZ+45el5SQPg+FLE9+ff0RjMU/f+tl5LTdmMt0H0015XuK6kuq7QZv7h0+i8C2fs7JfCEWMV4fVl4y6+QOeeeD9gKNuYpegg3CbHLdyZE9LIUA1SZesPDgYfCZ/ASemEOLnxSmycwxk1CMDyY3nD5xtNtq2/tJpSsU8xF+/DPnyHiCapF6oE1ByeNGCAWtm03/eEynxttDluxPVZ1KZ6PcdmIdq9YM0HYLJj6DSFrcPD0e2R+LDhBwcRWyZNAw6BZ+YjI18byfgg3AomSFiAemj+vVe4bpkOw31WfXiZME6bIkn3mqlbiEgzLPhC6MDue5/4ftzZ0R2EuXf3jcvalZLLpx/nH4bK68oRqmpCHJueELDRY4xEQcCosZZPepx+bVMZ46cqhMMXAFioIZSC9Uo+PDbIJBffNFjsDUbFvQCxSfW8Rim0UgcceschnjCWvJ/bX33l1CODh9cwB8YLbYKjsWROKmZunGKQhlm2JX8I9/GaGpAvONKBWM7jVRaPYhEZuPPWPWw0FFUGJ0Z6b10+PszVa0vmU9DLZLypDnBmiWzqDV3Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(396003)(346002)(366004)(39860400002)(376002)(451199015)(55016003)(86362001)(33656002)(38070700005)(38100700002)(122000001)(83380400001)(316002)(478600001)(54906003)(71200400001)(110136005)(41300700001)(26005)(44832011)(7696005)(53546011)(6506007)(8936002)(52536014)(4744005)(7416002)(5660300002)(9686003)(66446008)(66476007)(66556008)(64756008)(76116006)(8676002)(186003)(4326008)(66946007)(2906002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ajl0NS9jeXJlY3lPbm1PYVcvRTVPek5aQndob0dicmdZendTUzd6OUF6bkR2?=
+ =?utf-8?B?dThVZzhrY0QxeXJwNGpKWklvTFRzOS85VTl5QlVTMU8vR2JISlVXeW1CTzhT?=
+ =?utf-8?B?dkRPUjdjeVVTWWs5a3JsNDFFMlloZlB0cW5DSXB4WTg4Sno1T09qUW52cmhr?=
+ =?utf-8?B?RW5vMm5keGZPRjU5WW5ocDlJTE9Ra2lRZ21PMHoxNGhzOFh6VER6bk93MDUx?=
+ =?utf-8?B?dXF0Y1BzdjBFQW5LYm1UNnJ5aVRZM1BYUXFWUWVjU2o4YWNlOWQyT25UNEpE?=
+ =?utf-8?B?aFI5ZzNUNzRDQW1CSU4vUlBlVEt1RTB0Zkd1QWpXQ1FEYUZ5RiswWkpNUGpE?=
+ =?utf-8?B?NDBKeGhma245RjMxdEoyWFJmS1hYV3E0SE0xWVVkazJiaXdKOFU5L0dOV1Z3?=
+ =?utf-8?B?MXJ2ZjgzVVlZbUZMSTFXcjNETm1BZU9Fem96MDR4WW4yVE1HamtvVkZJZEtP?=
+ =?utf-8?B?TUNndzlBa051UzRnVlYrM0ludGZqU1pjNkt5VERDanA3L0dpYkIvR0J6ODlB?=
+ =?utf-8?B?VzNSK0J4bWZjRGF3Y3MyZmJwWmtRY3ZpbUZuemYrMzJUNE5zdnVnZHk2SlZy?=
+ =?utf-8?B?Q0dSWldwUU5OOHh4LzJ4YnlyREVqbXhkOFBZL05GUUUxRTlacWFpZDdudGhB?=
+ =?utf-8?B?aHh1QjhhMjdHb0tUc0RMaUVoN2MxU0UzZE5pNmUvOXpqdHRXOStISzYrWDB0?=
+ =?utf-8?B?QUpKck1tOGFKYlhEQXJEUk8vaHhCZWNFY3hFd24xL3l3OXhHVUlKT2FyMGVu?=
+ =?utf-8?B?QTl6OUxkZ1ZhbzVMRld5MDNRRTdZcEFaa2lLeXBaZWVGWEo2dHdXdTFQMFVa?=
+ =?utf-8?B?WTVpeHdZdW11c3lRRTNRTUlXSWJKdEJFa1ZtMS9zVDhXQzIwTXNyVjEyc3Ru?=
+ =?utf-8?B?akhDR1l6UnUxR0dMTWdhdlV0amJXUDM5Mk9SRytMR2JhdDhHcXJ2QlNZUzFI?=
+ =?utf-8?B?VllHa0txU1R6NUl1Y3dYZGhrWTdDdHJMbHdQdUY0YmNMckpmSi85N0VtUnVC?=
+ =?utf-8?B?T3J1S2ZhRVJXaHNDcU9saWRJTlpXTk41RTh2aXFkbFpFbUVnMTJiOVpFZFhl?=
+ =?utf-8?B?S0lYK0U3WnVCZURyR011c0ZKcys0Yysvdm5MM0EzZG1HTHFNTHhOY1gyZzA2?=
+ =?utf-8?B?bHJvS0t6NTE3V3Y4OU02L2FUNU1MZW1OZWxMcWZPVGp2Qms2OGYyYjVtRzk4?=
+ =?utf-8?B?eDVUbkEyWi9tT3pSNFR4QXVCTWpkQXYrQ0srSVpZbnMydFlVZ0t3SEMwQ2E4?=
+ =?utf-8?B?SzlDZlFNa0J3RlZFVDhGR0dxY21MVTlLU2QzbnRVVUNpdk1VdURDaks1bitw?=
+ =?utf-8?B?N0M2QUlzaGt2emlMY2xHZEdJWGR6cTdaRGNPclBCU0djTm1OQW0wbDJXTDU5?=
+ =?utf-8?B?UDJsdy8yTWZ0VTROV0RBaERJMHhpb2toZFlFSmpHaWFuVmhxN3ZpbVp2UEdV?=
+ =?utf-8?B?ZXE1Ry91U3RNYXpKbktTZDZKUlZXWCtOQVpwTE1TaUt5RDVnVzR0aWoveFlx?=
+ =?utf-8?B?MGVuNk5EZE1iTk1ZT2UvMytwR3l6M3dVSVlZUWFjelMwRTMza09BcDBxTmt2?=
+ =?utf-8?B?Q1JXRWJYSVZkM0c3TGQvcHlrVWpBRW9xazI5MmdkR3hhREx0UUI2K3dMemU0?=
+ =?utf-8?B?YXlRdUtna3cxdW5NWlJycnVjdnJ3VnlpZWM2ZWNEOXhydnpiNDltakFhekpn?=
+ =?utf-8?B?aWhyWS9rOXpoWnZHVGNPOGV3akFmdnJBKzZHQUZUbi80MUhmdHZZR1pQaDlh?=
+ =?utf-8?B?bjV6MmFXN01yNHFqVGdZRjYvVTFvbEgxQmpjMlhRRkhVWmVpUmMvREZjZUI3?=
+ =?utf-8?B?dW5KWUIvSWNDYmgrNzFpdVZzUERKLzJoUjZFYVllQ2cxSUFBajBSQWlzQmZS?=
+ =?utf-8?B?K05Vby94Y1NXNWZnUnV1elY0OTlTUE5FbUVrUEJVdXBldTJ0SUxSV2V2Z3Jy?=
+ =?utf-8?B?ZzlrK1BkMDY1U3c5Uy91bTkzM1NMcVZmZ3pVRDVkeUYyY3dIUTJBUXEzeE1Y?=
+ =?utf-8?B?aTlEUWwzUGRnRHFLcXdhSnBaZWFqMGtxOHpUeTViUzBCS3RVUWRyVjF3SGRz?=
+ =?utf-8?B?a2p6YTMvc1ZnaFhRYS9NNHJOd0JOdUhtaTVHOTJMNlZCY3NRV3RBTnQydHpY?=
+ =?utf-8?Q?w7TQ=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221015172915.1436236-3-caleb@connolly.tech>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5b6457b-29f3-4e07-ed59-08daaffdf3ce
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Oct 2022 05:10:47.8045
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FzPdCgHWi3/zITabm6OOMawnACXbxN0Q3aev3iVVBpAYr9tgiXVNlsxnHypVI1iC9EG565rb4K1kSGbhTq0CEw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8383
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,809 +142,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Caleb,
-
-On Sat, Oct 15, 2022 at 05:30:56PM +0000, Caleb Connolly wrote:
-> Add support for the haptics found in pmi8998 and related PMICs.
-> Based on the ff-memless interface. Currently this driver provides
-> a partial implementation of hardware features.
-> 
-> This driver only supports LRAs (Linear Resonant Actuators) in the "buffer"
-> mode with a single wave pattern.
-> 
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> ---
->  drivers/input/misc/Kconfig                |  15 +
->  drivers/input/misc/Makefile               |   1 +
->  drivers/input/misc/qcom-pmi8998-haptics.c | 690 ++++++++++++++++++++++
->  3 files changed, 706 insertions(+)
->  create mode 100644 drivers/input/misc/qcom-pmi8998-haptics.c
-> 
-> diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-> index a18ab7358d8f..608a64fa7914 100644
-> --- a/drivers/input/misc/Kconfig
-> +++ b/drivers/input/misc/Kconfig
-> @@ -186,6 +186,21 @@ config INPUT_PMIC8XXX_PWRKEY
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called pmic8xxx-pwrkey.
-> 
-> +config INPUT_QCOM_PMI8998_HAPTICS
-> +	tristate "Qualcomm SPMI HAPTICS"
-> +	depends on ARCH_QCOM || COMPILE_TEST
-> +	depends on MFD_PM8XXX || MFD_SPMI_PMIC || COMPILE_TEST
-> +	select INPUT_FF_MEMLESS
-> +	help
-> +	  This option enables support for the haptics found in pmi8998 and
-> +	  related PMICs. Based on the ff-memless interface.
-> +
-> +	  This driver is for hardware too new for the INPUT_PM8XXX_VIBRATOR
-> +	  driver.
-> +
-> +	  To compile this driver as module, choose M here: the
-> +	  module will be called qcom_pmi8998_haptics.
-> +
->  config INPUT_SPARCSPKR
->  	tristate "SPARC Speaker support"
->  	depends on PCI && SPARC64
-> diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-> index 28dfc444f0a9..039d0a97f2f4 100644
-> --- a/drivers/input/misc/Makefile
-> +++ b/drivers/input/misc/Makefile
-> @@ -65,6 +65,7 @@ obj-$(CONFIG_INPUT_PMIC8XXX_PWRKEY)	+= pmic8xxx-pwrkey.o
->  obj-$(CONFIG_INPUT_POWERMATE)		+= powermate.o
->  obj-$(CONFIG_INPUT_PWM_BEEPER)		+= pwm-beeper.o
->  obj-$(CONFIG_INPUT_PWM_VIBRA)		+= pwm-vibra.o
-> +obj-$(CONFIG_INPUT_QCOM_PMI8998_HAPTICS)+= qcom-pmi8998-haptics.o
->  obj-$(CONFIG_INPUT_RAVE_SP_PWRBUTTON)	+= rave-sp-pwrbutton.o
->  obj-$(CONFIG_INPUT_RB532_BUTTON)	+= rb532_button.o
->  obj-$(CONFIG_INPUT_REGULATOR_HAPTIC)	+= regulator-haptic.o
-> diff --git a/drivers/input/misc/qcom-pmi8998-haptics.c b/drivers/input/misc/qcom-pmi8998-haptics.c
-> new file mode 100644
-> index 000000000000..e9eec2d9de2d
-> --- /dev/null
-> +++ b/drivers/input/misc/qcom-pmi8998-haptics.c
-> @@ -0,0 +1,690 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022, Caleb Connolly <caleb@connolly.tech>
-> + * Qualcomm QPMI haptics driver for pmi8998 and related PMICs.
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/errno.h>
-> +#include <linux/input.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/kernel.h>
-> +#include <linux/log2.h>
-> +#include <linux/minmax.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-
-I do not think you need this. Or the include above. For just
-of_device_id you need linux/mod_devicetable.h.
-
-
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/time.h>
-> +#include <linux/types.h>
-> +
-> +// clang-format off
-> +#define HAP_STATUS_1_REG		0x0A
-> +#define HAP_BUSY_BIT			BIT(1)
-> +#define SC_FLAG_BIT			BIT(3)
-> +#define AUTO_RES_ERROR_BIT		BIT(4)
-> +
-> +#define HAP_LRA_AUTO_RES_LO_REG		0x0B
-> +#define HAP_LRA_AUTO_RES_HI_REG		0x0C
-> +
-> +#define HAP_EN_CTL_REG			0x46
-> +#define HAP_EN_BIT			BIT(7)
-> +
-> +#define HAP_EN_CTL2_REG			0x48
-> +#define BRAKE_EN_BIT			BIT(0)
-> +
-> +#define HAP_AUTO_RES_CTRL_REG		0x4B
-> +#define AUTO_RES_EN_BIT			BIT(7)
-> +#define AUTO_RES_ERR_RECOVERY_BIT	BIT(3)
-> +#define AUTO_RES_EN_FLAG_BIT		BIT(0)
-> +
-> +#define HAP_CFG1_REG			0x4C
-> +#define HAP_ACT_TYPE_MASK		BIT(0)
-> +
-> +#define HAP_CFG2_REG			0x4D
-> +#define HAP_LRA_RES_TYPE_MASK		BIT(0)
-> +
-> +#define HAP_SEL_REG			0x4E
-> +#define HAP_WF_SOURCE_MASK		GENMASK(5, 4)
-> +#define HAP_WF_SOURCE_SHIFT		4
-> +
-> +#define HAP_LRA_AUTO_RES_REG		0x4F
-> +#define LRA_AUTO_RES_MODE_MASK		GENMASK(6, 4)
-> +#define LRA_AUTO_RES_MODE_SHIFT		4
-> +#define LRA_HIGH_Z_MASK			GENMASK(3, 2)
-> +#define LRA_HIGH_Z_SHIFT		2
-> +#define LRA_RES_CAL_MASK		GENMASK(1, 0)
-> +#define HAP_RES_CAL_PERIOD_MIN		4
-> +#define HAP_RES_CAL_PERIOD_MAX		32
-> +
-> +#define HAP_VMAX_CFG_REG		0x51
-> +#define HAP_VMAX_OVD_BIT		BIT(6)
-> +#define HAP_VMAX_MASK			GENMASK(5, 1)
-> +#define HAP_VMAX_SHIFT			1
-> +
-> +#define HAP_ILIM_CFG_REG		0x52
-> +#define HAP_ILIM_SEL_MASK		BIT(0)
-> +#define HAP_ILIM_400_MA			0
-> +#define HAP_ILIM_800_MA			1
-> +
-> +#define HAP_SC_DEB_REG			0x53
-> +#define HAP_SC_DEB_MASK			GENMASK(2, 0)
-> +#define HAP_SC_DEB_CYCLES_MIN		0
-> +#define HAP_DEF_SC_DEB_CYCLES		8
-> +#define HAP_SC_DEB_CYCLES_MAX		32
-> +
-> +#define HAP_RATE_CFG1_REG		0x54
-> +#define HAP_RATE_CFG1_MASK		GENMASK(7, 0)
-> +#define HAP_RATE_CFG2_SHIFT		8 // As CFG2 is the most significant byte
-> +
-> +#define HAP_RATE_CFG2_REG		0x55
-> +#define HAP_RATE_CFG2_MASK		GENMASK(3, 0)
-> +
-> +#define HAP_SC_CLR_REG			0x59
-> +#define SC_CLR_BIT			BIT(0)
-> +
-> +#define HAP_BRAKE_REG			0x5C
-> +#define HAP_BRAKE_PAT_MASK		0x3
-> +
-> +#define HAP_WF_REPEAT_REG		0x5E
-> +#define WF_REPEAT_MASK			GENMASK(6, 4)
-> +#define WF_REPEAT_SHIFT			4
-> +#define WF_REPEAT_MIN			1
-> +#define WF_REPEAT_MAX			128
-> +#define WF_S_REPEAT_MASK		GENMASK(1, 0)
-> +#define WF_S_REPEAT_MIN			1
-> +#define WF_S_REPEAT_MAX			8
-> +
-> +#define HAP_WF_S1_REG			0x60
-> +#define HAP_WF_SIGN_BIT			BIT(7)
-> +#define HAP_WF_OVD_BIT			BIT(6)
-> +#define HAP_WF_SAMP_MAX			GENMASK(5, 1)
-> +#define HAP_WF_SAMPLE_LEN		8
-> +
-> +#define HAP_PLAY_REG			0x70
-> +#define HAP_PLAY_BIT			BIT(7)
-> +#define HAP_PAUSE_BIT			BIT(0)
-> +
-> +#define HAP_SEC_ACCESS_REG		0xD0
-> +#define HAP_SEC_ACCESS_UNLOCK		0xA5
-> +
-> +#define HAP_TEST2_REG			0xE3
-> +
-> +
-> +#define HAP_VMAX_MIN_MV			116
-> +#define HAP_VMAX_MAX_MV			3596
-> +#define HAP_VMAX_MAX_MV_STRONG		3596
-> +
-> +#define HAP_WAVE_PLAY_RATE_MIN_US	0
-> +#define HAP_WAVE_PLAY_RATE_MAX_US	20475
-> +#define HAP_WAVE_PLAY_TIME_MAX_MS	15000
-> +
-> +#define AUTO_RES_ERR_POLL_TIME_NS	(20 * NSEC_PER_MSEC)
-> +#define HAPTICS_BACK_EMF_DELAY_US	20000
-> +
-> +#define HAP_BRAKE_PAT_LEN		4
-> +#define HAP_WAVE_SAMP_LEN		8
-> +#define NUM_WF_SET			4
-> +#define HAP_WAVE_SAMP_SET_LEN		(HAP_WAVE_SAMP_LEN * NUM_WF_SET)
-> +#define HAP_RATE_CFG_STEP_US		5
-> +
-> +#define SC_MAX_COUNT			5
-> +#define SC_COUNT_RST_DELAY_US		1000000
-> +
-> +// Actuator types
-
-I still prefer old C style comments /* ... */
-
-> +#define HAP_TYPE_LRA			0
-> +#define HAP_TYPE_ERM			1
-> +
-> +// LRA Wave type
-> +#define HAP_WAVE_SINE			0
-> +#define HAP_WAVE_SQUARE			1
-> +
-> +// Play modes
-> +#define HAP_PLAY_DIRECT			0
-> +#define HAP_PLAY_BUFFER			1
-> +#define HAP_PLAY_AUDIO			2
-> +#define HAP_PLAY_PWM			3
-> +
-> +#define HAP_PLAY_MAX			HAP_PLAY_PWM
-> +
-> +// Auto resonance type
-> +#define HAP_AUTO_RES_NONE		0
-> +#define HAP_AUTO_RES_ZXD		1
-> +#define HAP_AUTO_RES_QWD		2
-> +#define HAP_AUTO_RES_MAX_QWD		3
-> +#define HAP_AUTO_RES_ZXD_EOP		4
-> +// clang-format on
-> +
-> +static const uint8_t default_brake_pattern[] = {
-
-u8 (u16, u32) in kernel code not exposed to userspace.
-
-> +	0x3, 0x3, 0x3, 0x3, 0x3,
-> +};
-> +
-> +static const uint8_t wave_sample_pattern[] = {
-> +	0x7e, 0x7e, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28,
-> +};
-> +
-> +/**
-> + * struct spmi_haptics - struct for spmi haptics data.
-> + *
-> + * @dev: Our device parent.
-> + * @regmap: Register map for the hardware block.
-> + * @input: The input device used to receive events.
-> + * @work: Work struct to play effects.
-> + * @base: Base address of the regmap.
-> + * @play_irq: Fired to load the next wave pattern.
-> + * @sc_irq: Short circuit irq.
-> + * @last_sc_time: Time since the short circuit IRQ last fired.
-> + * @sc_count: Number of times the short circuit IRQ has fired in this interval.
-> + * @actuator_type: The type of actuator in use.
-> + * @wave_shape: The shape of the waves to use (sine or square).
-> + * @play_mode: The play mode to use (direct, buffer, pwm, audio).
-> + * @vmax: Max voltage to use when playing.
-> + * @current_limit: The current limit for this hardware (400mA or 800mA).
-> + * @play_wave_rate: The wave rate to use for this hardware.
-> + * @play_lock: Lock to be held when updating the hardware state.
-> + */
-> +struct spmi_haptics {
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +	struct input_dev *input;
-> +	struct work_struct work;
-> +	uint32_t base;
-> +
-> +	int play_irq;
-> +	int sc_irq;
-> +	ktime_t last_sc_time;
-> +	uint8_t sc_count;
-> +
-> +	uint8_t actuator_type;
-> +	uint8_t wave_shape;
-> +	uint8_t play_mode;
-> +	uint32_t vmax;
-> +	uint32_t current_limit;
-> +	uint32_t play_wave_rate;
-> +	struct mutex play_lock;
-> +};
-> +
-> +static int haptics_write_vmax(struct spmi_haptics *haptics)
-> +{
-> +	uint8_t val = 0;
-> +	uint32_t vmax_mv = haptics->vmax;
-> +
-> +	vmax_mv = clamp_t(uint32_t, vmax_mv, HAP_VMAX_MIN_MV, HAP_VMAX_MAX_MV);
-> +	vmax_mv = DIV_ROUND_CLOSEST(vmax_mv, HAP_VMAX_MIN_MV);
-> +
-> +	val = FIELD_PREP(HAP_VMAX_MASK, vmax_mv);
-> +
-> +	return regmap_update_bits(haptics->regmap,
-> +				  haptics->base + HAP_VMAX_CFG_REG,
-> +				  HAP_VMAX_MASK | HAP_WF_OVD_BIT, val);
-> +}
-> +
-> +static int haptics_module_enable(struct spmi_haptics *haptics, bool enable)
-> +{
-> +	return regmap_update_bits(haptics->regmap,
-> +				  haptics->base + HAP_EN_CTL_REG, HAP_EN_BIT,
-> +				  enable ? HAP_EN_BIT : 0);
-> +}
-> +
-> +static int haptics_play(struct spmi_haptics *haptics, bool play)
-> +{
-> +	return regmap_update_bits(haptics->regmap, haptics->base + HAP_PLAY_REG,
-> +				  HAP_PLAY_BIT | HAP_PAUSE_BIT,
-> +				  play ? HAP_PLAY_BIT : 0);
-> +}
-> +
-> +static bool is_haptics_module_enabled(struct spmi_haptics *haptics)
-> +{
-> +	uint32_t val;
-> +
-> +	regmap_read(haptics->regmap, haptics->base + HAP_EN_CTL_REG, &val);
-> +	return !!val;
-> +}
-> +
-> +/*
-> + * This IRQ is fired to tell us to load the next wave sample set.
-> + * As we only currently support a single sample set, it's unused.
-> + */
-> +static irqreturn_t haptics_play_irq(int irq, void *data)
-> +{
-> +	struct spmi_haptics *haptics = data;
-> +
-> +	dev_dbg(haptics->dev, "play_irq triggered");
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +/*
-> + * Fires every ~50ms whilst the haptics are active.
-> + * If the SC_FLAG_BIT is set then that means there isn't a short circuit
-> + * and we just need to clear the IRQ to indicate that the device should
-> + * keep vibrating.
-> + *
-> + * Otherwise, it means a short circuit situation has occurred.
-> + */
-> +static irqreturn_t haptics_sc_irq(int irq, void *data)
-> +{
-> +	struct spmi_haptics *haptics = data;
-> +	int ret;
-> +	uint32_t val;
-> +	long sc_delta_time_us;
-> +	ktime_t temp;
-> +
-> +	mutex_lock(&haptics->play_lock);
-> +
-> +	ret = regmap_read(haptics->regmap, haptics->base + HAP_STATUS_1_REG,
-> +			  &val);
-
-Temporary variables that either hold en error code or 0 for success are
-better called "error" or "err".
-
-> +	if (ret)
-> +		goto out;
-> +
-> +	if (!(val & SC_FLAG_BIT)) {
-> +		haptics->sc_count = 0;
-> +		goto out;
-> +	}
-> +
-> +	temp = ktime_get();
-> +	sc_delta_time_us = ktime_us_delta(temp, haptics->last_sc_time);
-> +	haptics->last_sc_time = temp;
-> +
-> +	if (sc_delta_time_us > SC_COUNT_RST_DELAY_US)
-> +		haptics->sc_count = 0;
-> +	else
-> +		haptics->sc_count++;
-> +
-> +	ret = regmap_update_bits(haptics->regmap,
-> +				 haptics->base + HAP_SC_CLR_REG, SC_CLR_BIT,
-> +				 SC_CLR_BIT);
-> +	if (ret)
-> +		goto out;
-> +
-> +	if (haptics->sc_count > SC_MAX_COUNT) {
-> +		cancel_work_sync(&haptics->work);
-> +		dev_err(haptics->dev,
-> +			"Short circuit persists, disabling haptics\n");
-> +		ret = haptics_module_enable(haptics, false);
-> +		if (ret)
-> +			dev_err(haptics->dev, "Error disabling module, rc=%d\n",
-> +				ret);
-> +	}
-> +
-> +out:
-> +	mutex_unlock(&haptics->play_lock);
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int haptics_vibrate(struct spmi_haptics *haptics)
-> +{
-> +	int ret;
-> +
-> +	if (haptics->sc_count > SC_MAX_COUNT) {
-> +		dev_err(haptics->dev, "Can't play while in short circuit");
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = haptics_write_vmax(haptics);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = haptics_module_enable(haptics, true);
-> +	if (ret) {
-> +		dev_err(haptics->dev, "Error enabling module, ret=%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = haptics_play(haptics, true);
-> +	if (ret) {
-> +		dev_err(haptics->dev, "Error enabling play, ret=%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int haptics_stop_vibrate(struct spmi_haptics *haptics)
-> +{
-> +	int ret;
-> +
-> +	ret = haptics_play(haptics, false);
-> +	if (ret) {
-> +		dev_err(haptics->dev, "Error disabling play, ret=%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = haptics_module_enable(haptics, false);
-> +	if (ret) {
-> +		dev_err(haptics->dev, "Error disabling module, ret=%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return ret;
-
-	return 0;
-
-> +}
-> +
-> +static void haptics_play_stop_work(struct work_struct *work)
-> +{
-> +	struct spmi_haptics *haptics =
-> +		container_of(work, struct spmi_haptics, work);
-> +
-> +	int ret;
-> +
-> +	mutex_lock(&haptics->play_lock);
-> +
-> +	if (!is_haptics_module_enabled(haptics) && haptics->vmax)
-> +		ret = haptics_vibrate(haptics);
-> +	else
-> +		ret = haptics_stop_vibrate(haptics);
-> +	if (ret)
-> +		dev_err(haptics->dev, "Error setting haptics, ret=%d", ret);
-> +
-> +	mutex_unlock(&haptics->play_lock);
-> +}
-> +
-> +static int spmi_haptics_play_effect(struct input_dev *dev, void *data,
-> +				    struct ff_effect *effect)
-> +{
-> +	struct spmi_haptics *haptics = input_get_drvdata(dev);
-> +	uint32_t magnitude;
-> +
-> +	dev_dbg(haptics->dev, "%s: Rumbling with strong: %d and weak: %d",
-> +		 __func__, effect->u.rumble.strong_magnitude,
-> +		 effect->u.rumble.weak_magnitude);
-> +
-> +	magnitude = effect->u.rumble.strong_magnitude >> 8;
-> +	if (!magnitude)
-> +		magnitude = effect->u.rumble.weak_magnitude >> 10;
-> +
-> +	if (!magnitude)
-> +		haptics->vmax = 0;
-> +	else
-> +		haptics->vmax =
-> +			((HAP_VMAX_MAX_MV - HAP_VMAX_MIN_MV) * magnitude) /
-> +				100 +
-> +			HAP_VMAX_MIN_MV;
-> +
-> +	schedule_work(&haptics->work);
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * spmi_haptics_close - callback for input device close
-> + * @dev: input device pointer
-> + *
-> + * Turns off the vibrator.
-> + */
-> +static void spmi_haptics_close(struct input_dev *dev)
-> +{
-> +	struct spmi_haptics *haptics = input_get_drvdata(dev);
-> +
-> +	cancel_work_sync(&haptics->work);
-> +	haptics->vmax = 0;
-> +
-> +	if (is_haptics_module_enabled(haptics))
-> +		haptics_stop_vibrate(haptics);
-> +}
-> +
-> +static int haptics_write_brake_pattern(struct spmi_haptics *haptics,
-> +				       const uint8_t *brake_pattern)
-> +{
-> +	int ret, i;
-> +	uint8_t val = 0;
-> +
-> +	for (i = HAP_BRAKE_PAT_LEN - 1; i >= 0; i--)
-> +		val |= FIELD_PREP(HAP_BRAKE_PAT_MASK, brake_pattern[i])
-> +		       << (i * 2);
-> +
-> +	ret = regmap_update_bits(haptics->regmap, haptics->base + HAP_BRAKE_REG,
-> +				 0xff, val);
-> +
-> +	return ret   ?:
-> +		       regmap_update_bits(haptics->regmap,
-> +					  haptics->base + HAP_EN_CTL2_REG,
-> +					  BRAKE_EN_BIT, BRAKE_EN_BIT);
-> +}
-> +
-> +static int haptics_init(struct spmi_haptics *haptics)
-> +{
-> +	int ret;
-> +	uint8_t val, mask;
-> +	uint16_t play_rate;
-> +
-> +	ret = regmap_update_bits(haptics->regmap, haptics->base + HAP_CFG1_REG,
-> +				 HAP_ACT_TYPE_MASK, haptics->actuator_type);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Configure auto resonance
-> +	 * see qpnp_haptics_lra_auto_res_config downstream
-> +	 * This is greatly simplified.
-> +	 */
-> +	val = FIELD_PREP(LRA_RES_CAL_MASK, ilog2(32 / HAP_RES_CAL_PERIOD_MIN)) |
-> +	      FIELD_PREP(LRA_AUTO_RES_MODE_MASK, HAP_AUTO_RES_ZXD_EOP) |
-> +	      FIELD_PREP(LRA_HIGH_Z_MASK, 1);
-> +	mask = LRA_AUTO_RES_MODE_MASK | LRA_HIGH_Z_MASK | LRA_RES_CAL_MASK;
-> +
-> +	ret = regmap_update_bits(haptics->regmap,
-> +				 haptics->base + HAP_LRA_AUTO_RES_REG, mask,
-> +				 val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = FIELD_PREP(HAP_WF_SOURCE_MASK, haptics->play_mode);
-> +	ret = regmap_update_bits(haptics->regmap, haptics->base + HAP_SEL_REG,
-> +				 HAP_WF_SOURCE_MASK, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_update_bits(haptics->regmap,
-> +				 haptics->base + HAP_ILIM_CFG_REG,
-> +				 HAP_ILIM_SEL_MASK, haptics->current_limit);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Configure the debounce for short-circuit detection. */
-> +	ret = regmap_update_bits(haptics->regmap,
-> +				 haptics->base + HAP_SC_DEB_REG,
-> +				 HAP_SC_DEB_MASK, HAP_SC_DEB_CYCLES_MAX);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_update_bits(haptics->regmap, haptics->base + HAP_CFG2_REG,
-> +				 HAP_LRA_RES_TYPE_MASK, haptics->wave_shape);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Configure RATE_CFG1 and RATE_CFG2 registers.
-> +	 * Note: For ERM (unsupported) these registers act as play rate and
-> +	 * for LRA these represent resonance period
-> +	 */
-> +	play_rate = haptics->play_wave_rate / HAP_RATE_CFG_STEP_US;
-> +	val = FIELD_PREP(HAP_RATE_CFG1_MASK, play_rate);
-> +	ret = regmap_update_bits(haptics->regmap,
-> +				 haptics->base + HAP_RATE_CFG1_REG,
-> +				 HAP_RATE_CFG1_MASK, val);
-> +	val = FIELD_PREP(HAP_RATE_CFG2_MASK, play_rate >> 8);
-> +	ret = ret   ?:
-> +		      regmap_update_bits(haptics->regmap,
-> +					 haptics->base + HAP_RATE_CFG2_REG,
-> +					 HAP_RATE_CFG1_MASK, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = haptics_write_brake_pattern(haptics, default_brake_pattern);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Currently this is the only supported play mode */
-> +	if (haptics->play_mode == HAP_PLAY_BUFFER) {
-> +		/* zero repeats and zero sample repeats */
-> +		val = FIELD_PREP(WF_REPEAT_MASK, 0) |
-> +		      FIELD_PREP(WF_S_REPEAT_MASK, 0);
-> +		ret = regmap_update_bits(haptics->regmap,
-> +					 haptics->base + HAP_WF_REPEAT_REG,
-> +					 WF_REPEAT_MASK | WF_S_REPEAT_MASK,
-> +					 val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_bulk_write(haptics->regmap,
-> +					haptics->base + HAP_WF_S1_REG,
-> +					wave_sample_pattern, HAP_WAVE_SAMP_LEN);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int spmi_haptics_probe(struct platform_device *pdev)
-> +{
-> +	struct spmi_haptics *haptics;
-> +	struct input_dev *input_dev;
-> +	int ret, irq;
-> +
-> +	haptics = devm_kzalloc(&pdev->dev, sizeof(*haptics), GFP_KERNEL);
-> +	if (!haptics)
-> +		return -ENOMEM;
-> +
-> +	haptics->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +	if (!haptics->regmap)
-> +		return -ENODEV;
-> +
-> +	haptics->dev = &pdev->dev;
-> +
-> +	platform_set_drvdata(pdev, haptics);
-> +
-> +	ret = device_property_read_u32(haptics->dev, "reg", &haptics->base);
-> +	if (ret)
-> +		return dev_err_probe(haptics->dev, ret,
-> +				     "Couldn't read base address");
-
-Please use normal dev_err() in input code.
-
-> +
-> +	/* This is the only currently supported configuration, these values
-> +	 * are left to allow future additions
-> +	 */
-> +	haptics->actuator_type = HAP_TYPE_LRA;
-> +	haptics->play_mode = HAP_PLAY_BUFFER;
-> +	haptics->wave_shape = HAP_WAVE_SINE;
-> +	haptics->current_limit = HAP_ILIM_400_MA;
-> +
-> +	ret = device_property_read_u32(haptics->dev, "qcom,wave-play-rate-us",
-> +				       &haptics->play_wave_rate);
-> +	if (ret)
-> +		return dev_err_probe(haptics->dev, ret,
-> +				     "qcom,wave-play-rate-us is required\n");
-> +
-> +	INIT_WORK(&haptics->work, haptics_play_stop_work);
-> +
-> +	ret = haptics_init(haptics);
-> +	if (ret)
-> +		return ret;
-> +
-> +	input_dev = devm_input_allocate_device(&pdev->dev);
-> +	if (!input_dev)
-> +		return -ENOMEM;
-> +
-> +	input_dev->name = "spmi_haptics";
-> +	input_dev->id.version = 1;
-> +	input_dev->close = spmi_haptics_close;
-> +	input_set_drvdata(input_dev, haptics);
-> +
-> +	haptics->input = input_dev;
-> +
-> +	/* In the future this should become FF_PERIODIC */
-> +	input_set_capability(haptics->input, EV_FF, FF_RUMBLE);
-> +
-> +	ret = input_ff_create_memless(input_dev, NULL,
-> +				      spmi_haptics_play_effect);
-> +	if (ret)
-> +		return dev_err_probe(
-> +			&pdev->dev, ret,
-> +			"Couldn't register haptics as EV_FF device\n");
-> +
-> +	ret = input_register_device(input_dev);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret,
-> +				     "Couldn't register input device\n");
-> +
-> +	/* NOTE: the play IRQ is only used for buffer mode */
-> +	irq = platform_get_irq_byname(pdev, "play");
-> +	if (irq < 0) {
-> +		return dev_err_probe(&pdev->dev, irq,
-> +				     "Unable to get play irq\n");
-> +	}
-> +	ret = devm_request_threaded_irq(haptics->dev, irq, NULL,
-> +					haptics_play_irq, IRQF_ONESHOT,
-> +					"haptics_play_irq", haptics);
-
-Does this one need to be threaded given that the handler is a dummy?
-
-> +	if (ret)
-> +		return dev_err_probe(haptics->dev, ret,
-> +				     "Couldn't request play irq\n");
-> +
-> +	irq = platform_get_irq_byname(pdev, "short");
-> +	if (irq < 0)
-> +		return dev_err_probe(&pdev->dev, irq,
-> +				     "Unable to get short circut irq\n");
-> +	ret = devm_request_threaded_irq(haptics->dev, irq, NULL, haptics_sc_irq,
-> +					IRQF_ONESHOT, "haptics_short_irq",
-> +					haptics);
-> +	if (ret)
-> +		return dev_err_probe(haptics->dev, ret,
-> +				     "Couldn't request short circuit irq\n");
-> +
-> +	mutex_init(&haptics->play_lock);
-
-This seems way too late. You want to initialize mutex pretty much after
-you allocated memory.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused spmi_haptics_suspend(struct device *dev)
-
-I think with the latest changes to how PM calls are done you do not need
-to mark it as __maybe_unused. See 4f35adaee07d182a4a7ef6b960c614ff3c5b4090
-for examples/details.
-
-> +{
-> +	struct spmi_haptics *haptics = dev_get_drvdata(dev);
-> +
-> +	cancel_work_sync(&haptics->work);
-> +	haptics_stop_vibrate(haptics);
-> +
-> +	return 0;
-> +}
-> +
-> +static SIMPLE_DEV_PM_OPS(spmi_haptics_pm_ops, spmi_haptics_suspend, NULL);
-> +
-> +static int spmi_haptics_remove(struct platform_device *pdev)
-> +{
-> +	struct spmi_haptics *haptics = dev_get_drvdata(&pdev->dev);
-> +
-> +	cancel_work_sync(&haptics->work);
-
-Are we sure this is needed? Input core should call spmi_haptics_close()
-if the device has been opened, otherwise there should not be work in
-flight anyway.
-
-> +	mutex_destroy(&haptics->play_lock);
-
-I really do not see the reason for calling mutex_destroy().
-
-> +	input_unregister_device(haptics->input);
-
-This is not needed, devm-managed input device will be unregistered
-properly.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static void spmi_haptics_shutdown(struct platform_device *pdev)
-> +{
-> +	struct spmi_haptics *haptics = dev_get_drvdata(&pdev->dev);
-> +
-> +	cancel_work_sync(&haptics->work);
-> +	haptics_stop_vibrate(haptics);
-> +}
-> +
-> +static const struct of_device_id spmi_haptics_match_table[] = {
-> +	{ .compatible = "qcom,pmi8998-haptics" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, spmi_haptics_match_table);
-> +
-> +static struct platform_driver spmi_haptics_driver = {
-> +	.probe		= spmi_haptics_probe,
-> +	.remove		= spmi_haptics_remove,
-> +	.shutdown	= spmi_haptics_shutdown,
-> +	.driver		= {
-> +		.name	= "spmi-haptics",
-> +		.pm	= &spmi_haptics_pm_ops,
-> +		.of_match_table = spmi_haptics_match_table,
-> +	},
-> +};
-> +module_platform_driver(spmi_haptics_driver);
-> +
-> +MODULE_DESCRIPTION("spmi haptics driver using ff-memless framework");
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Caleb Connolly <caleb@connolly.tech>");
-> --
-> 2.38.0
-> 
-> 
-
-Thanks.
-
--- 
-Dmitry
+PiBTdWJqZWN0OiBSZTogW1BBVENIIFY3IDIvN10gZHQtYmluZGluZ3M6IHJlbW90ZXByb2M6IGlt
+eF9ycHJvYzogc3VwcG9ydA0KPiBpLk1YOFFNDQo+IA0KPiBPbiAxMy8xMC8yMDIyIDIzOjEwLCBQ
+ZW5nIEZhbiAoT1NTKSB3cm90ZToNCj4gPiBGcm9tOiBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNv
+bT4NCj4gPg0KPiA+IEFkZCBpLk1YOFFNIGNvbXBhdGlibGUNCj4gPg0KPiA+IFJldmlld2VkLWJ5
+OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFBlbmcg
+RmFuIDxwZW5nLmZhbkBueHAuY29tPg0KPiA+IC0tLQ0KPiA+ICBEb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvcmVtb3RlcHJvYy9mc2wsaW14LXJwcm9jLnlhbWwgfCAxICsNCj4gPiAg
+MSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3JlbW90ZXByb2MvZnNsLGlteC0NCj4gcnBy
+b2MueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZW1vdGVwcm9jL2Zz
+bCxpbXgtDQo+IHJwcm9jLnlhbWwNCj4gPiBpbmRleCA3MDMyMmU1N2I2ZmYuLjY0ZTc4MzIzNGUz
+OCAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVt
+b3RlcHJvYy9mc2wsaW14LXJwcm9jLnlhbWwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvcmVtb3RlcHJvYy9mc2wsaW14LQ0KPiBycHJvYy55YW1sDQo+ID4gQEAg
+LTIzLDYgKzIzLDcgQEAgcHJvcGVydGllczoNCj4gPiAgICAgICAgLSBmc2wsaW14OG1wLWNtNw0K
+PiA+ICAgICAgICAtIGZzbCxpbXg4bXEtY200DQo+ID4gICAgICAgIC0gZnNsLGlteDhxeHAtY200
+DQo+ID4gKyAgICAgIC0gZnNsLGlteDhxbS1jbTQNCj4gDQo+IEtlZXAgYWxwaGFiZXRpY2FsIG9y
+ZGVyLg0KDQpTdXJlLiB3aWxsIGZpeCBpbiBWOC4NCg0KVGhhbmtzLA0KUGVuZy4NCj4gDQo+ID4N
+Cj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQoNCg==
