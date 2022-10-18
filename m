@@ -2,303 +2,464 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E625E60248E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 08:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFD2B6024DD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 09:00:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbiJRGiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 02:38:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44582 "EHLO
+        id S229818AbiJRHAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 03:00:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229687AbiJRGiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 02:38:09 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B81E08A7DC;
-        Mon, 17 Oct 2022 23:38:01 -0700 (PDT)
-X-UUID: 368b31d11a3a4dba8c4129cb21b9e595-20221018
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=eM+soasMJzB6uxzurzAYBD4NNpjZ9qTL1sEyE6FK3J8=;
-        b=WfOuPQb2y10opBmhNbzJD5LV31CgOox0UNaRcXkVQsg8p7K9Cu4C3lPUri1c47FM5KXXk6GwHxmKZwipysdb0E2zcf3vrbR/5qzw6JqqB1pXQ/oKV4NrgilEXcimxTAtwKVio+q+uC0vA9U7Tp4iam4Aqr8Y8RbuQG2NQGm2oBk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:6cf3a249-a9b5-42b6-b1b9-1618c24b7655,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:8f0921a4-ebb2-41a8-a87c-97702aaf2e20,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 368b31d11a3a4dba8c4129cb21b9e595-20221018
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1704619019; Tue, 18 Oct 2022 14:37:56 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 18 Oct 2022 14:37:54 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs13n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Tue, 18 Oct 2022 14:37:54 +0800
-Message-ID: <b5d18b4b631cb19d435f37ccacd296a2282c2a1a.camel@mediatek.com>
-Subject: Re: [PATCH] arm64: dts: mt8195: Add Ethernet controller
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <macpaul.lin@mediatek.com>
-Date:   Tue, 18 Oct 2022 14:37:54 +0800
-In-Reply-To: <d6bda69e-d331-3e64-2100-d41e84c3fab7@linaro.org>
-References: <20221017095834.7675-1-biao.huang@mediatek.com>
-         <d6bda69e-d331-3e64-2100-d41e84c3fab7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229456AbiJRHAy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 03:00:54 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ABF11F2F4;
+        Tue, 18 Oct 2022 00:00:50 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29I70RGt016220;
+        Tue, 18 Oct 2022 02:00:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1666076427;
+        bh=rlotxECe5194+Cjcu7Qtp1ZTXtwp5x44Eg6U6HO4Dd8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=yGNFKc+vkKiULvp+SdpMFat6aWWKtLBnvFwfdcbqjXYCXjf2FQs+wDjEZXRCwVCTs
+         HDJ3UN6iSqDghiAOQuZrqyltq7tuy/FQtEuap9Ax9Zd7QMgtXetyJXDTlgEAoHz5qb
+         P7C0cOFfQIquBp/7wivnRUDNMdnFKxE8Xp9W6wYE=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29I70R6o061772
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 18 Oct 2022 02:00:27 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 18
+ Oct 2022 02:00:27 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 18 Oct 2022 02:00:26 -0500
+Received: from [10.250.234.73] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29I70L8E048951;
+        Tue, 18 Oct 2022 02:00:22 -0500
+Message-ID: <d6f8b40b-3e2d-e777-28c9-ff67065e2c8b@ti.com>
+Date:   Tue, 18 Oct 2022 12:30:21 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [RFC PATCH v5 4/6] drm/tidss: Add support to configure OLDI mode
+ for am625-dss.
+Content-Language: en-US
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>
+References: <20220928175223.15225-1-a-bhatia1@ti.com>
+ <20220928175223.15225-5-a-bhatia1@ti.com>
+ <88220e6f-1bcc-7746-4281-e74f9e832e97@ideasonboard.com>
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <88220e6f-1bcc-7746-4281-e74f9e832e97@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Krzysztof,
-	Thanks for your comments!
+Hi Tomi
 
-On Mon, 2022-10-17 at 22:01 -0400, Krzysztof Kozlowski wrote:
-> On 17/10/2022 05:58, Biao Huang wrote:
-> > Add Ethernet controller node for mt8195.
-> > 
-> > Signed-off-by: Biao Huang <biao.huang@mediatek.com>
-> > ---
-> >  arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 88
-> > ++++++++++++++++++++
-> >  arch/arm64/boot/dts/mediatek/mt8195.dtsi     | 87
-> > +++++++++++++++++++
-> >  2 files changed, 175 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > index 4fbd99eb496a..02e04f82a4ae 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> > @@ -258,6 +258,72 @@ &mt6359_vsram_others_ldo_reg {
-> >  };
-> >  
-> >  &pio {
-> > +	eth_default: eth_default {
-> 
-> No underscores in node names. Please also be sure your patch does not
-> bring new warnings with `dtbs_check` (lack of suffix above could mean
-> it
-> brings...)
-OK, I'll fix the underscores issue in next send.
-As to "lack of suffix" issue, do you mean I should write it like:
-	eth-default: eth-default@0 {
-		...
-	}
-If yes, other nodes in current file don't have such suffix.
-e.g.
-	gpio_keys_pins: gpio-keys-pins
+Thank you for the comprehensive feedback across all the patches. I am
+working on them.
 
-Should I keep unified style with other nodes?
-> 
-> > +		txd_pins {
-> 
-> No underscores
-OK, will fix in next send.
-> 
-> > +			pinmux = <PINMUX_GPIO77__FUNC_GBE_TXD3>,
-> > +				 <PINMUX_GPIO78__FUNC_GBE_TXD2>,
-> > +				 <PINMUX_GPIO79__FUNC_GBE_TXD1>,
-> > +				 <PINMUX_GPIO80__FUNC_GBE_TXD0>;
-> > +			drive-strength = <MTK_DRIVE_8mA>;
-> > +		};
-> > +		cc_pins {
-> 
-> Ditto... and so on.
-OK, will fix in next send.
-> 
-> > +			pinmux = <PINMUX_GPIO85__FUNC_GBE_TXC>,
-> > +				 <PINMUX_GPIO88__FUNC_GBE_TXEN>,
-> > +				 <PINMUX_GPIO87__FUNC_GBE_RXDV>,
-> > +				 <PINMUX_GPIO86__FUNC_GBE_RXC>;
-> > +			drive-strength = <MTK_DRIVE_8mA>;
-> > +		};
-> > +		rxd_pins {
-> > +			pinmux = <PINMUX_GPIO81__FUNC_GBE_RXD3>,
-> > +				 <PINMUX_GPIO82__FUNC_GBE_RXD2>,
-> > +				 <PINMUX_GPIO83__FUNC_GBE_RXD1>,
-> > +				 <PINMUX_GPIO84__FUNC_GBE_RXD0>;
-> > +		};
-> > +		mdio_pins {
-> > +			pinmux = <PINMUX_GPIO89__FUNC_GBE_MDC>,
-> > +				 <PINMUX_GPIO90__FUNC_GBE_MDIO>;
-> > +			input-enable;
-> > +		};
-> > +		power_pins {
-> > +			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
-> > +				 <PINMUX_GPIO92__FUNC_GPIO92>;
-> > +			output-high;
-> > +		};
-> > +	};
-> > +
-> > +	eth_sleep: eth_sleep {
-> > +		txd_pins {
-> > +			pinmux = <PINMUX_GPIO77__FUNC_GPIO77>,
-> > +				 <PINMUX_GPIO78__FUNC_GPIO78>,
-> > +				 <PINMUX_GPIO79__FUNC_GPIO79>,
-> > +				 <PINMUX_GPIO80__FUNC_GPIO80>;
-> > +		};
-> > +		cc_pins {
-> > +			pinmux = <PINMUX_GPIO85__FUNC_GPIO85>,
-> > +				 <PINMUX_GPIO88__FUNC_GPIO88>,
-> > +				 <PINMUX_GPIO87__FUNC_GPIO87>,
-> > +				 <PINMUX_GPIO86__FUNC_GPIO86>;
-> > +		};
-> > +		rxd_pins {
-> > +			pinmux = <PINMUX_GPIO81__FUNC_GPIO81>,
-> > +				 <PINMUX_GPIO82__FUNC_GPIO82>,
-> > +				 <PINMUX_GPIO83__FUNC_GPIO83>,
-> > +				 <PINMUX_GPIO84__FUNC_GPIO84>;
-> > +		};
-> > +		mdio_pins {
-> > +			pinmux = <PINMUX_GPIO89__FUNC_GPIO89>,
-> > +				 <PINMUX_GPIO90__FUNC_GPIO90>;
-> > +			input-disable;
-> > +			bias-disable;
-> > +		};
-> > +		power_pins {
-> > +			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
-> > +				 <PINMUX_GPIO92__FUNC_GPIO92>;
-> > +			input-disable;
-> > +			bias-disable;
-> > +		};
-> > +	};
-> > +
-> >  	gpio_keys_pins: gpio-keys-pins {
-> >  		pins {
-> >  			pinmux = <PINMUX_GPIO106__FUNC_GPIO106>;
-> > @@ -434,6 +500,28 @@ &xhci0 {
-> >  	status = "okay";
-> >  };
-> >  
-> > +&eth {
-> > +	phy-mode ="rgmii-rxid";
-> > +	phy-handle = <&eth_phy0>;
-> > +	snps,reset-gpio = <&pio 93 GPIO_ACTIVE_HIGH>;
-> > +	snps,reset-delays-us = <0 10000 10000>;
-> > +	mediatek,tx-delay-ps = <2030>;
-> > +	pinctrl-names = "default", "sleep";
-> > +	pinctrl-0 = <&eth_default>;
-> > +	pinctrl-1 = <&eth_sleep>;
-> > +	status = "okay";
-> > +
-> > +	mdio {
-> > +		compatible = "snps,dwmac-mdio";
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +		eth_phy0: eth_phy0@1 {
-> 
-> ethernet-phy@1
-OK, will modify in next send.
-> 
-> > +			compatible = "ethernet-phy-id001c.c916";
-> > +			reg = <0x1>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> >  &xhci1 {
-> >  	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> >  	status = "okay";
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > index 905d1a90b406..aa1fcc3b9cb6 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > @@ -1042,6 +1042,93 @@ spis1: spi@1101e000 {
-> >  			status = "disabled";
-> >  		};
-> >  
-> > +		stmmac_axi_setup: stmmac-axi-config {
-> > +			snps,wr_osr_lmt = <0x7>;
-> > +			snps,rd_osr_lmt = <0x7>;
-> > +			snps,blen = <0 0 0 0 16 8 4>;
-> > +		};
-> > +
-> > +		mtl_rx_setup: rx-queues-config {
-> > +			snps,rx-queues-to-use = <4>;
-> > +			snps,rx-sched-sp;
-> > +			queue0 {
-> > +				snps,dcb-algorithm;
-> > +				snps,map-to-dma-channel = <0x0>;
-> > +			};
-> > +			queue1 {
-> > +				snps,dcb-algorithm;
-> > +				snps,map-to-dma-channel = <0x0>;
-> > +			};
-> > +			queue2 {
-> > +				snps,dcb-algorithm;
-> > +				snps,map-to-dma-channel = <0x0>;
-> > +			};
-> > +			queue3 {
-> > +				snps,dcb-algorithm;
-> > +				snps,map-to-dma-channel = <0x0>;
-> > +			};
-> > +		};
-> > +
-> > +		mtl_tx_setup: tx-queues-config {
-> > +			snps,tx-queues-to-use = <4>;
-> > +			snps,tx-sched-wrr;
-> > +			queue0 {
-> > +				snps,weight = <0x10>;
-> > +				snps,dcb-algorithm;
-> > +				snps,priority = <0x0>;
-> > +			};
-> > +			queue1 {
-> > +				snps,weight = <0x11>;
-> > +				snps,dcb-algorithm;
-> > +				snps,priority = <0x1>;
-> > +			};
-> > +			queue2 {
-> > +				snps,weight = <0x12>;
-> > +				snps,dcb-algorithm;
-> > +				snps,priority = <0x2>;
-> > +			};
-> > +			queue3 {
-> > +				snps,weight = <0x13>;
-> > +				snps,dcb-algorithm;
-> > +				snps,priority = <0x3>;
-> > +			};
-> > +		};
-> > +
-> > +		eth: ethernet@11021000 {
-> > +			compatible = "mediatek,mt8195-gmac",
-> > "snps,dwmac-5.10a";
-> > +			reg = <0 0x11021000 0 0x4000>;
-> > +			interrupts = <GIC_SPI 716 IRQ_TYPE_LEVEL_HIGH
-> > 0>;
-> > +			interrupt-names = "macirq";
-> > +			mac-address = [00 55 7b b5 7d f7];
-> 
-> How is this property of a SoC? Are you saying now that all MT8195
-> SoCs
-> have the same MAC address?
-The mac-address here is taken as a default mac address in eth driver
-rather than a randome one.
-Actually, there will be a tool to customize eth mac address (e.g
-through "ifconfig eth0 hw ether xx:xx:xx:xx:xx:xx"), so every
-MT8195 SoCs will get their specified mac address in real product.
-> 
-> Best regards,
-> Krzysztof
-> 
-Best Regards!
-Biao
+I do have some concerns which I have talked about, below.
 
+On 12-Oct-22 17:53, Tomi Valkeinen wrote:
+> On 28/09/2022 20:52, Aradhya Bhatia wrote:
+>> The newer version of DSS (AM625-DSS) has 2 OLDI TXes at its disposal.
+>> These can be configured to support the following modes:
+>>
+>> 1. OLDI_SINGLE_LINK_SINGLE_MODE
+>> Single Output over OLDI 0.
+>> +------+        +---------+      +-------+
+>> |      |        |         |      |       |
+>> | CRTC +------->+ ENCODER +----->| PANEL |
+>> |      |        |         |      |       |
+>> +------+        +---------+      +-------+
+> 
+> Can you have single link on OLDI 1 (OLDI 0 off)? I don't know if that 
+> make sense on this platform, but if the pins for OLDI 0 and 1 are 
+> different, there might be a reason on some cases for that.
+
+HW does not support a case where single link is enabled over OLDI 1 with
+OLDI 0 off, even though the pins are different.
+
+One could still put 2 panel nodes in DT to set OLDI in a Clone Mode and
+simply not use OLDI 0 pins, but I dont think that is a valid case that
+should be supported.
+
+> 
+>> 2. OLDI_SINGLE_LINK_CLONE_MODE
+>> Duplicate Output over OLDI 0 and 1.
+>> +------+        +---------+      +-------+
+>> |      |        |         |      |       |
+>> | CRTC +---+--->| ENCODER +----->| PANEL |
+>> |      |   |    |         |      |       |
+>> +------+   |    +---------+      +-------+
+>>        |
+> 
+> I think you've got a tab in the line above, but otherwise use spaces.
+> 
+>>             |    +---------+      +-------+
+>>             |    |         |      |       |
+>>             +--->| ENCODER +----->| PANEL |
+>>                  |         |      |       |
+>>                  +---------+      +-------+
+>>
+>> 3. OLDI_DUAL_LINK_MODE
+>> Combined Output over OLDI 0 and 1.
+>> +------+        +---------+      +-------+
+>> |      |        |         +----->|       |
+>> | CRTC +------->+ ENCODER |      | PANEL |
+>> |      |        |         +----->|       |
+>> +------+        +---------+      +-------+
+>>
+>> Following the above pathways for different modes, 2 encoder/panel-bridge
+>> pipes get created for clone mode, and 1 pipe in cases of single link and
+>> dual link mode.
+>>
+>> Add support for confgure the OLDI modes using of and lvds DRM helper
+> 
+> "configuring"
+> 
+>> functions.
+>>
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>> ---
+>>   drivers/gpu/drm/tidss/tidss_dispc.c |  11 +++
+>>   drivers/gpu/drm/tidss/tidss_dispc.h |   8 ++
+>>   drivers/gpu/drm/tidss/tidss_drv.h   |   3 +
+>>   drivers/gpu/drm/tidss/tidss_kms.c   | 146 +++++++++++++++++++++++-----
+>>   4 files changed, 145 insertions(+), 23 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
+>> b/drivers/gpu/drm/tidss/tidss_dispc.c
+>> index 34f0da4bb3e3..88008ad39b55 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+>> @@ -354,6 +354,8 @@ struct dispc_device {
+>>       bool is_enabled;
+>> +    enum dispc_oldi_modes oldi_mode;
+>> +
+>>       struct dss_vp_data vp_data[TIDSS_MAX_PORTS];
+>>       u32 *fourccs;
+>> @@ -1958,6 +1960,15 @@ const u32 *dispc_plane_formats(struct 
+>> dispc_device *dispc, unsigned int *len)
+>>       return dispc->fourccs;
+>>   }
+>> +int dispc_configure_oldi_mode(struct dispc_device *dispc,
+>> +                  enum dispc_oldi_modes oldi_mode)
+>> +{
+>> +    WARN_ON(!dispc);
+>> +
+>> +    dispc->oldi_mode = oldi_mode;
+>> +    return 0;
+>> +}
+> 
+> I think "configure" means more than just storing the value. Maybe 
+> dispc_set_oldi_mode(). And an empty line above the return.
+> 
+>> +
+>>   static s32 pixinc(int pixels, u8 ps)
+>>   {
+>>       if (pixels == 1)
+>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.h 
+>> b/drivers/gpu/drm/tidss/tidss_dispc.h
+>> index b66418e583ee..45cce1054832 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_dispc.h
+>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.h
+>> @@ -64,6 +64,13 @@ enum dispc_dss_subrevision {
+>>       DISPC_AM625,
+>>   };
+>> +enum dispc_oldi_modes {
+>> +    OLDI_MODE_OFF,                /* OLDI turned off / tied off in 
+>> IP. */
+>> +    OLDI_SINGLE_LINK_SINGLE_MODE,        /* Single Output over OLDI 
+>> 0. */
+>> +    OLDI_SINGLE_LINK_CLONE_MODE,        /* Duplicate Output over OLDI 
+>> 0 and 1. */
+>> +    OLDI_DUAL_LINK_MODE,            /* Combined Output over OLDI 0 
+>> and 1. */
+>> +};
+>> +
+>>   struct dispc_features {
+>>       int min_pclk_khz;
+>>       int max_pclk_khz[DISPC_VP_MAX_BUS_TYPE];
+>> @@ -131,6 +138,7 @@ int dispc_plane_setup(struct dispc_device *dispc, 
+>> u32 hw_plane,
+>>                 u32 hw_videoport);
+>>   int dispc_plane_enable(struct dispc_device *dispc, u32 hw_plane, 
+>> bool enable);
+>>   const u32 *dispc_plane_formats(struct dispc_device *dispc, unsigned 
+>> int *len);
+>> +int dispc_configure_oldi_mode(struct dispc_device *dispc, enum 
+>> dispc_oldi_modes oldi_mode);
+>>   int dispc_init(struct tidss_device *tidss);
+>>   void dispc_remove(struct tidss_device *tidss);
+>> diff --git a/drivers/gpu/drm/tidss/tidss_drv.h 
+>> b/drivers/gpu/drm/tidss/tidss_drv.h
+>> index d7f27b0b0315..2252ba0222ca 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_drv.h
+>> +++ b/drivers/gpu/drm/tidss/tidss_drv.h
+>> @@ -12,6 +12,9 @@
+>>   #define TIDSS_MAX_PORTS 4
+>>   #define TIDSS_MAX_PLANES 4
+>> +/* For AM625-DSS with 2 OLDI TXes */
+>> +#define TIDSS_MAX_BRIDGE_PER_PIPE    2
+> 
+> "BRIDGES"?
+> 
+>> +
+>>   typedef u32 dispc_irq_t;
+>>   struct tidss_device {
+>> diff --git a/drivers/gpu/drm/tidss/tidss_kms.c 
+>> b/drivers/gpu/drm/tidss/tidss_kms.c
+>> index 666e527a0acf..73afe390f36d 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_kms.c
+>> +++ b/drivers/gpu/drm/tidss/tidss_kms.c
+>> @@ -107,32 +107,84 @@ static const struct drm_mode_config_funcs 
+>> mode_config_funcs = {
+>>       .atomic_commit = drm_atomic_helper_commit,
+>>   };
+>> +static int tidss_get_oldi_mode(struct tidss_device *tidss)
+> 
+> Return enum dispc_oldi_modes, not int.
+> 
+>> +{
+>> +    int pixel_order;
+>> +    struct device_node *dss_ports, *oldi0_port, *oldi1_port;
+>> +
+>> +    dss_ports = of_get_next_child(tidss->dev->of_node, NULL);
+> 
+> Hmm you get the next child and hope that it's the ports node?
+> 
+> In any case, I think you can call of_graph_get_port_by_id() with the 
+> tidss->dev->of_node and it'll do the right thing.
+I think this will only work if the child of dss node is just "ports",
+but we've been using "dss_ports" as the child.
+
+However, you are right. I shouldn't expect the first child to be
+dss_ports. I will use the "of_get_child_by_name" helper to get the
+dss_ports node.
+
+> 
+>> +    oldi0_port = of_graph_get_port_by_id(dss_ports, 0);
+>> +    oldi1_port = of_graph_get_port_by_id(dss_ports, 2);
+> 
+> I think you need to of_put these at some point.
+> 
+>> +    if (!(oldi0_port && oldi1_port))
+>> +        return OLDI_SINGLE_LINK_SINGLE_MODE;
+> 
+> This one matches also for !oldi0 && oldi1. If oldi1 cannot be used in 
+> single-link mode, the above should take it into account.
+
+Right. I will print a warning if somebody's trying to use (!oldi0 &&
+oldi1) but since its a single link requirement, I will still set the
+OLDI for single link single mode.
+
+> 
+>> +
+>> +    /*
+>> +     * OLDI Ports found for both the OLDI TXes. The DSS is to be 
+>> configured
+>> +     * in either Dual Link or Clone Mode.
+>> +     */
+>> +    pixel_order = drm_of_lvds_get_dual_link_pixel_order(oldi0_port,
+>> +                                oldi1_port);
+>> +    switch (pixel_order) {
+>> +    case -EINVAL:
+>> +        /*
+>> +         * The dual link properties were not found in at least one of
+>> +         * the sink nodes. Since 2 OLDI ports are present in the DT, it
+>> +         * can be safely assumed that the required configuration is
+>> +         * Clone Mode.
+>> +         */
+>> +        return OLDI_SINGLE_LINK_CLONE_MODE;
+>> +
+>> +    case DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS:
+>> +    case DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS:
+>> +        /*
+>> +         * Note that the OLDI TX 0 transmits the odd set of pixels while
+>> +         * the OLDI TX 1 transmits the even set. This is a fixed
+>> +         * configuration in the IP and an cannot be change vis SW. These
+>> +         * properties have been used to merely identify if a Dual Link
+>> +         * configuration is required. Swapping this property in the 
+>> panel
+>> +         * port DT nodes will not make any difference.
+>> +         */
+> 
+> But if they are in the wrong order, shouldn't we fail or at least give a 
+> warning?
+>  >> +        return OLDI_DUAL_LINK_MODE;
+>> +
+>> +    default:
+>> +        return OLDI_MODE_OFF;
+>> +    }
+>> +}
+>> +
+>>   static int tidss_dispc_modeset_init(struct tidss_device *tidss)
+>>   {
+>>       struct device *dev = tidss->dev;
+>>       unsigned int fourccs_len;
+>>       const u32 *fourccs = dispc_plane_formats(tidss->dispc, 
+>> &fourccs_len);
+>> -    unsigned int i;
+>> +    unsigned int i, j;
+>>       struct pipe {
+>>           u32 hw_videoport;
+>> -        struct drm_bridge *bridge;
+>> +        struct drm_bridge *bridge[TIDSS_MAX_BRIDGE_PER_PIPE];
+>>           u32 enc_type;
+>> +        u32 num_bridges;
+>>       };
+>>       const struct dispc_features *feat = tidss->feat;
+>> -    u32 max_vps = feat->num_vps;
+>> +    u32 max_ports = feat->num_max_ports;
+>>       u32 max_planes = feat->num_planes;
+>>       struct pipe pipes[TIDSS_MAX_PORTS];
+>>       u32 num_pipes = 0;
+>> +    u32 pipe_number = 0;
+>>       u32 crtc_mask;
+>> +    u32 num_oldi = 0;
+>> +    u32 oldi0_port = 0;
+>> +    u32 hw_vp = 0;
+>> +    enum dispc_oldi_modes oldi_mode;
+>>       /* first find all the connected panels & bridges */
+>> -    for (i = 0; i < max_vps; i++) {
+>> +    for (i = 0; i < max_ports; i++) {
+>>           struct drm_panel *panel;
+>>           struct drm_bridge *bridge;
+>> +        bool bridge_req = true;
+>>           u32 enc_type = DRM_MODE_ENCODER_NONE;
+>>           int ret;
+>> @@ -146,6 +198,11 @@ static int tidss_dispc_modeset_init(struct 
+>> tidss_device *tidss)
+>>               return ret;
+>>           }
+>> +        /* default number of bridges required for a panel/bridge*/
+>> +        pipe_number = num_pipes;
+>> +        pipes[pipe_number].num_bridges = 1;
+>> +        hw_vp = i;
+>> +
+>>           if (panel) {
+>>               u32 conn_type;
+>> @@ -155,7 +212,43 @@ static int tidss_dispc_modeset_init(struct 
+>> tidss_device *tidss)
+>>               case DISPC_VP_OLDI:
+>>                   enc_type = DRM_MODE_ENCODER_LVDS;
+>>                   conn_type = DRM_MODE_CONNECTOR_LVDS;
+>> +
+>> +                /*
+>> +                 * A single DSS controller cannot support 2
+>> +                 * independent displays. If 2nd node is detected,
+>> +                 * it is for Dual Link Mode or Clone Mode.
+>> +                 *
+>> +                 * A new pipe instance is not required.
+>> +                 */
+>> +                if (++num_oldi == 2) {
+>> +                    pipe_number = oldi0_port;
+>> +                    hw_vp = i;
+>> +
+>> +                    /* 2nd OLDI DT node detected. Get its mode */
+>> +                    oldi_mode = tidss_get_oldi_mode(tidss);
+>> +                    bridge_req = false;
+>> +
+>> +                    /*
+>> +                     * A separate panel bridge will only be
+>> +                     * required if 2 panels are connected for
+>> +                     * the OLDI Clone Mode.
+>> +                     */
+>> +                    if (oldi_mode == OLDI_SINGLE_LINK_CLONE_MODE) {
+>> +                        bridge_req = true;
+>> +                        (pipes[pipe_number].num_bridges)++;
+>> +                    }
+>> +                } else {
+>> +                    /*
+>> +                     * First OLDI DT node detected. Save it
+>> +                     * in case there is another node for Dual
+>> +                     * Link Mode or Clone Mode.
+>> +                     */
+>> +                    oldi0_port = i;
+>> +                    oldi_mode = OLDI_SINGLE_LINK_SINGLE_MODE;
+>> +                }
+>> +                dispc_configure_oldi_mode(tidss->dispc, oldi_mode);
+>>                   break;
+>> +
+>>               case DISPC_VP_DPI:
+>>                   enc_type = DRM_MODE_ENCODER_DPI;
+>>                   conn_type = DRM_MODE_CONNECTOR_DPI;
+>> @@ -173,19 +266,23 @@ static int tidss_dispc_modeset_init(struct 
+>> tidss_device *tidss)
+>>                   return -EINVAL;
+>>               }
+>> -            bridge = devm_drm_panel_bridge_add(dev, panel);
+>> -            if (IS_ERR(bridge)) {
+>> -                dev_err(dev,
+>> -                    "failed to set up panel bridge for port %d\n",
+>> -                    i);
+>> -                return PTR_ERR(bridge);
+>> +            if (bridge_req) {
+>> +                bridge = devm_drm_panel_bridge_add(dev, panel);
+>> +                if (IS_ERR(bridge)) {
+>> +                    dev_err(dev,
+>> +                        "failed to set up panel bridge for port %d\n",
+>> +                        i);
+>> +                    return PTR_ERR(bridge);
+>> +                }
+>>               }
+>>           }
+>> -        pipes[num_pipes].hw_videoport = i;
+>> -        pipes[num_pipes].bridge = bridge;
+>> -        pipes[num_pipes].enc_type = enc_type;
+>> -        num_pipes++;
+>> +        if (bridge_req) {
+>> +            pipes[pipe_number].hw_videoport = hw_vp;
+>> +            pipes[pipe_number].bridge[pipes[pipe_number].num_bridges 
+>> - 1] = bridge;
+>> +            pipes[pipe_number].enc_type = enc_type;
+>> +            num_pipes++;
+>> +        }
+> 
+> I need to look at this with better time. But I started to wonder, would 
+> it be clearer to first figure out the oldi setup before the loop, rather 
+> than figuring it out inside the loop. I'm not sure if it would help 
+> much, though.
+> 
+I had not thought about taking this approach, but it might actually be
+better.
+
+These patches, at the moment, do not support a case where a clone mode
+or dual link mode is used on a bridge instead of a panel. My edits
+inside the loop are panel dependent. If we do have oldi setup
+information prior to the beginning of the loop, the panel dependency can
+be removed and some commond code can be written to support an additional
+encoder - bridge connection should it be required.
+
+Let me know what you think!
+
+If this apparch is better indeed, I will make these changes before
+sending out the next revision.
+
+
+Regards
+Aradhya
