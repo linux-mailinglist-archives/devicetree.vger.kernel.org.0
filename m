@@ -2,82 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E638860299D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 12:47:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 856DD6029C0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 13:01:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbiJRKrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 06:47:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60776 "EHLO
+        id S229980AbiJRLBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 07:01:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbiJRKrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 06:47:23 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 424E6B5FCA;
-        Tue, 18 Oct 2022 03:46:58 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id b12so19837070edd.6;
-        Tue, 18 Oct 2022 03:46:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3j3M/lz5qKcy4O2cA0PXIjVvWRcebK1YS0t2E2ZHQI8=;
-        b=QcLRzTaL8Uq8n1qWmbchdjMXkIpeVLbnkFZGrHCwtuk/sfV/QjDOD6OnRgKTGDgSWw
-         pPRnk2dZOZFirQkmViI9HrJwVFrycme3NpsIRjY+mJ8b0QvtEHX/3zDiNZd9QvqVE6z3
-         MiX3TQAClob5Zwq0Si3p7afVpVanyLmcoViRyXv+cxJuhKNaEx/nnFr3RdPle9y+uW2k
-         W0q7PPmsf4f2POTNZj11eMmL49SIeGFPp+7cTUOvEuz6DnNxSUS+QHzmPAAE/W6EYDaL
-         hSOe4Ji6Y8xIlSkEm3m+uWKs7zXJPw6Nint5EwzSzLRY6GLG0PRwKZClo1mKI87X+ArS
-         bWoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3j3M/lz5qKcy4O2cA0PXIjVvWRcebK1YS0t2E2ZHQI8=;
-        b=CD1nlfj4+zH8+OFm6YHvYw1cK0FdrRJya6zd+NB8oJSIGB+jlo6y3pgBpyKQCGUFpG
-         koHQtnTEPBKZ5pb0UE06/4FSDiq0AfXXCaawJf664Mt6rfBBGL42ZpLfK6NGKJFP/oV2
-         hEUlEAp5plhiaSWTW0F5T5NGSbsnHl53yat3ErcBb7QAFa/nWh9Tp2Qz1T+U70fAuEG7
-         iazW76HDM2y4RpE6gr/HcngM3kV0/SvpWuoZgH/NEEfvdj2VkALzDGe5nI/UY9V0n4SL
-         7sE1VZ7JpfANj/EZ9gj8iSBcc4MPG9oKk3q1K3drD97O7ceExN6jyXxjaPgERMbREfkN
-         qVFA==
-X-Gm-Message-State: ACrzQf2yToXD4Fw0aWI7IBo5aHVm4coZXjdW3ax14VqYE5cPtFMvyOlG
-        kd7xdUFmJlQNcJBLcVCwZzs=
-X-Google-Smtp-Source: AMsMyM6njbmUZixipehzHmt3TZ6nV54TCeLyJPOOe8JL01Az5mF9LWX4XqEDq1hWN+QrS/XIxiEqWA==
-X-Received: by 2002:a05:6402:4303:b0:45c:cd3d:f5 with SMTP id m3-20020a056402430300b0045ccd3d00f5mr2001704edc.188.1666090015727;
-        Tue, 18 Oct 2022 03:46:55 -0700 (PDT)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id e11-20020a056402104b00b00459f4974128sm8739778edu.50.2022.10.18.03.46.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 03:46:54 -0700 (PDT)
-Date:   Tue, 18 Oct 2022 12:46:52 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/7] drm/simpledrm: Add support for system memory
- framebuffers
-Message-ID: <Y06EHB8D1ip3PVyb@orome>
-References: <20221007124946.406808-1-thierry.reding@gmail.com>
- <20221007124946.406808-5-thierry.reding@gmail.com>
- <dd869713-6eb2-fadd-fdef-6ca155198a8c@suse.de>
- <Y01sunkDsQQQhXuC@orome>
- <CAL_JsqKzSife8_ob3P=KVVcQ_ny=ppMF5LsjLxvYz95roy-y2A@mail.gmail.com>
+        with ESMTP id S229674AbiJRLBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 07:01:41 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04289B5FE1
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 04:01:34 -0700 (PDT)
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20221018110129epoutp04e5ca145b8e31b787ae73acde57239159~fJNYocH5k0573005730epoutp04c
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 11:01:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20221018110129epoutp04e5ca145b8e31b787ae73acde57239159~fJNYocH5k0573005730epoutp04c
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1666090889;
+        bh=k4vYvvGuuWfM3VOKoxhBAgCgz9idhglV/m3UVogcGcg=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=iMYWVWiwGYRu8Xaset6LzKa8oajGiV5eZ7Yxm9+9CI3e2/9zHt4/j/EmNgXtq78cR
+         fatR3KTQvR2C5jMRMb+jCvZQ2LfzDh5wfSeBHYLK9VrPndIcSuatMmbDDF7ITB6iAx
+         VmqWkAUZn+RUWnDWRlAA2vip/+2baZ7pEQmNNQrc=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20221018110128epcas5p10dbf5058053acc545c49e1ff8dcac98c~fJNXsr3vd1116011160epcas5p1T;
+        Tue, 18 Oct 2022 11:01:28 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.180]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4Ms9sK5wHJz4x9Pt; Tue, 18 Oct
+        2022 11:01:25 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        B0.3D.39477.5878E436; Tue, 18 Oct 2022 20:01:25 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20221018104904epcas5p265c1716075593f6ae69bea4c842a87df~fJCis4ay11025610256epcas5p2F;
+        Tue, 18 Oct 2022 10:49:04 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20221018104904epsmtrp1ebf2132bbf0e0c93576efe3d105cf9f9~fJCiqzNRs1943319433epsmtrp1D;
+        Tue, 18 Oct 2022 10:49:04 +0000 (GMT)
+X-AuditID: b6c32a4a-007ff70000019a35-e9-634e8785460d
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        6A.6B.14392.0A48E436; Tue, 18 Oct 2022 19:49:04 +0900 (KST)
+Received: from FDSFTE308 (unknown [107.122.81.79]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221018104900epsmtip1a157ace2e193ff79beb666c3f1dc5939~fJCfd9tk-2216622166epsmtip1k;
+        Tue, 18 Oct 2022 10:49:00 +0000 (GMT)
+From:   "Aakarsh Jain" <aakarsh.jain@samsung.com>
+To:     "'Rob Herring'" <robh@kernel.org>
+Cc:     <linux-fsd@tesla.com>, <linux-media@vger.kernel.org>,
+        <pankaj.dubey@samsung.com>, <linux-arm-kernel@lists.infradead.org>,
+        <dillon.minfei@gmail.com>, <devicetree@vger.kernel.org>,
+        <krzk+dt@kernel.org>, <smitha.t@samsung.com>,
+        <benjamin.gaignard@collabora.com>, <stanimir.varbanov@linaro.org>,
+        <jernej.skrabec@gmail.com>, <robh+dt@kernel.org>,
+        <aswani.reddy@samsung.com>, <mchehab@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <mark.rutland@arm.com>,
+        <m.szyprowski@samsung.com>, <linux-kernel@vger.kernel.org>,
+        <alim.akhtar@samsung.com>, <andi@etezian.org>,
+        <andrzej.hajda@intel.com>, <ezequiel@vanguardiasur.com.ar>,
+        <david.plowman@raspberrypi.com>
+In-Reply-To: <166558064414.1937173.2124012536890566845.robh@kernel.org>
+Subject: RE: [Patch v3 01/15] dt-bindings: media: s5p-mfc: Add new DT schema
+ for MFC
+Date:   Tue, 18 Oct 2022 16:18:59 +0530
+Message-ID: <000501d8e2df$3d209700$b761c500$@samsung.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="0puBMFs9lsK95MlP"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKzSife8_ob3P=KVVcQ_ny=ppMF5LsjLxvYz95roy-y2A@mail.gmail.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIjXZOHgvokXGuofbg3rWbxTFZEMQGGfBLcASb/h3kBq/W9F61cN4wA
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA01TaVBTVxjlvqwwA30iLReGQvpGRBlZogEvKG2dIn2IdRjbgnVoMSZvCJLN
+        BGrRFnCBjiwVZ6hKWDWgAyIihEUMFkNsBKwbFIatotJCGBkZoCxqoQkJLf/O953v3HPPd+ey
+        aY6FLFd2vDSRUkj5YoJpR29o2+jtk/7jHoH/wmsvNFzcwETq+VEMPVVP05Gurp6FNN0FNHTF
+        0MpAJfoHDNR45zkd3RgzsY/zh+hotKQaIKPqDyaqfdHDQM/Go1FXcyETZdfUM9A1/RALlfc+
+        xtDl2rcYulQ/w0LpLXoWWtI2sdCQtgGgUxl67GNIVhVXAbJpqAyQvWVTNPKmaohFqrVGjKyt
+        PM0kB3u0TLKuLJVMv/uaTv6kqQTk4okiFpmp72WS07XuZMff06xIh/0J20UUX0gpOJRUIBPG
+        S+NCiIjPYz+JDQj05/pwg9BWgiPlS6gQInR3pE9YvNi0BoLzLV+cZGpF8pVKwu/D7QpZUiLF
+        EcmUiSEEJReK5Ty5r5IvUSZJ43ylVGIw199/c4Bp8ECC6PbAAiZf8Pyue3CSmQYecTKBLRvi
+        PFjWdRxkAju2I34LwFcn5+mWYgrApYLTVmYWwPKCl2BF0p49x7QQLQDOGQcZlmIUwPsjnUzz
+        FBP3g087shlm7IR7whOq4eVzabiKAetfVWFmwhb/FFZoHy4L1uJR8JR+fllANwmmO3NYmYDN
+        tseDoCZrk7ltj6+B7fkjdDOm4R6wcaKQZrkRBy78ednqFQa72gzWGWd4dyGbZvaFeI8tHNTV
+        WSOEwvtVhXQLXgvHDRqWBbtC45kMKxbAF5eMVgMxvK7Ns85/BFu7zVq2yWAjvN7sZ2m/D3/u
+        qMYsvg4w580IZunbw6biFbweFg5aIkLcDbZdLQe5gFCtiqZaFU21KoLqf7dSQK8ELpRcKYmj
+        lAHyzVLqyH8vLpBJasHyN/He1QSeDU/66gDGBjoA2TTCyT5sZrfA0V7ITz5KKWSxiiQxpdSB
+        ANO6z9Jc3xXITP9MmhjL5QX58wIDA3lBWwK5hLO9+oK3wBGP4ydSCRQlpxQrOoxt65qGHZsz
+        2OxM2YquTdyurnmvIGWdNxy7EZ1/ssT9g+/fhocZU7y8Ir6SYUW6Uc55jzPGm1ExhqKI7uiv
+        ZcGaq/3P1QaRU+1vCcf6KmKSwyu++MxuIJZObEp1WXM0T7cr3WtvLnbafcNEzo69IlueRDIx
+        kLXu9w2SRW9C/WCu5Zd+v8ONk6GHsuxaz5cKv9RoQn7dGfVNWkTz7LZz+/7ixxyctv2hVLIt
+        NXzJI2X0YPv+8Ts2MFd42OaJds+iumawKnWccFyvOf5mdsrzHZ5/Hf4oriev88o95wNNxMMt
+        wefa+MojtxxyczIW3eCh9AsXXe719buNVbREJl/8Z0j1JGNmx77ql31nCbpSxOd60xRK/r+e
+        Pg8yrwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpgleLIzCtJLcpLzFFi42LZdlhJTndBi1+ywb6PLBYP5m1js1j84zmT
+        xf3Fn1ksDm3eym6x5cpsZovlxw+wWsw/co7VYvvBRywWG18AZS/OvMti8Xz+OkaLl7PusVls
+        enyN1eLhq3CLy7vmsFn0bNjKarH2yF12i6XXLzJZLNv0h8li0dYv7Bate4+wW/zfs4Pd4u6e
+        bYwWLW1HmBwkPNbMW8PosePuEkaP60s+MXvsnHWX3WPxnpdMHptWdbJ53Lm2h81j85J6j9aj
+        v1g8+rasYvT41zSX3aPryHU2j8+b5DxOff3MHsAXxWWTkpqTWZZapG+XwJWx7/ZPpoKfqhVX
+        7nxga2C8oNDFyMkhIWAicbLnO1sXIxeHkMBuRol/e6cwQiRkJP63HWOHsIUlVv57DmYLCTxl
+        lJj0OBPEZhPQl7h/qocVxBYRUJVomvWABWQQs8AmVol3F+YyQkz9wyjxYP86sCpOAXeJlXvO
+        A63j4BAWCJHY/a0OJMwC1Pz5dC87SJhXwFJiS7cOSJhXQFDi5MwnLCBhZgE9ibaNYKcxC8hL
+        bH87hxniNAWJn0+XQZ3gJnH58HEWiBpxiaM/e5gnMArPQjJpFsKkWUgmzULSsYCRZRWjZGpB
+        cW56brFhgWFearlecWJucWleul5yfu4mRnAi0dLcwbh91Qe9Q4xMHIyHGCU4mJVEeN2++CQL
+        8aYkVlalFuXHF5XmpBYfYpTmYFES573QdTJeSCA9sSQ1OzW1ILUIJsvEwSnVwGRUmcJm0hqo
+        +TqvlvHN+70sVfLT/UozkvYG6Omt6z6wXtfYqoVBdImifRST0M5titreN63O5DiXXI1Y+239
+        IufmwmyFG+9+GLoJxyff/H6hdxe/k56Es893Tkm78/frHk1s+iX2rd1i79KNPbo+3NMdLGVY
+        T6xl/3bkj1mUqTKfzvqcQLlnNQ/tV1wK/fx1m3edUmCHzWSPAl2pySyBd9g7n79TW18n1iWp
+        4yyqbrZ2zt/oVT7mrFo33518rv9kVW5Nc+HCZmmXzLc1ZTeaIhn+NBszvz760nDqHd9f9vVh
+        Yf/zNCPyRJ8XzHT4fajJOa9y2idvvQ/hsvOue3+Xam2w43grw/F1Usb6R+ZKLMUZiYZazEXF
+        iQCGAXqIkwMAAA==
+X-CMS-MailID: 20221018104904epcas5p265c1716075593f6ae69bea4c842a87df
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221011125142epcas5p13c858a5f27830fb1de50fa51e9730eca
+References: <20221011122516.32135-1-aakarsh.jain@samsung.com>
+        <CGME20221011125142epcas5p13c858a5f27830fb1de50fa51e9730eca@epcas5p1.samsung.com>
+        <20221011122516.32135-2-aakarsh.jain@samsung.com>
+        <166558064414.1937173.2124012536890566845.robh@kernel.org>
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,100 +136,136 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---0puBMFs9lsK95MlP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 17, 2022 at 01:15:59PM -0500, Rob Herring wrote:
-> On Mon, Oct 17, 2022 at 9:54 AM Thierry Reding <thierry.reding@gmail.com>=
- wrote:
+> -----Original Message-----
+> From: Rob Herring [mailto:robh@kernel.org]
+> Sent: 12 October 2022 18:50
+> To: aakarsh jain <aakarsh.jain@samsung.com>
+> Cc: linux-fsd@tesla.com; linux-media@vger.kernel.org;
+> pankaj.dubey@samsung.com; linux-arm-kernel@lists.infradead.org;
+> dillon.minfei@gmail.com; devicetree@vger.kernel.org; krzk+dt@kernel.org;
+> smitha.t@samsung.com; benjamin.gaignard@collabora.com;
+> stanimir.varbanov@linaro.org; jernej.skrabec@gmail.com;
+> robh+dt@kernel.org; aswani.reddy@samsung.com; mchehab@kernel.org;
+> hverkuil-cisco@xs4all.nl; mark.rutland@arm.com;
+> m.szyprowski@samsung.com; linux-kernel@vger.kernel.org;
+> alim.akhtar@samsung.com; andi@etezian.org; andrzej.hajda@intel.com;
+> ezequiel@vanguardiasur.com.ar; david.plowman@raspberrypi.com
+> Subject: Re: [Patch v3 01/15] dt-bindings: media: s5p-mfc: Add new DT
+> schema for MFC
+> 
+> On Tue, 11 Oct 2022 17:55:02 +0530, aakarsh jain wrote:
+> > From: Smitha T Murthy <smitha.t@samsung.com>
 > >
-> > On Mon, Oct 10, 2022 at 10:12:34AM +0200, Thomas Zimmermann wrote:
-> > > Hi
-> > >
-> > > Am 07.10.22 um 14:49 schrieb Thierry Reding:
-> > > > From: Thierry Reding <treding@nvidia.com>
-> > > >
-> > > > Simple framebuffers can be set up in system memory, which cannot be
-> > > > requested and/or I/O remapped using the I/O resource helpers. Add a
-> > > > separate code path that obtains system memory framebuffers from the
-> > > > reserved memory region referenced in the memory-region property.
-> > > >
-> > > > v2: make screen base a struct iosys_map to avoid sparse warnings
->=20
-> [...]
->=20
-> > > > +static int simple_framebuffer_init(struct reserved_mem *rmem)
-> > > > +{
-> > > > +   pr_info("framebuffer memory at %pa, size %lu bytes\n", &rmem->b=
-ase,
-> > > > +           (unsigned long)rmem->size);
-> > > > +
-> > > > +   rmem->ops =3D &simple_framebuffer_ops;
-> > > > +
-> > > > +   return 0;
-> > > > +}
-> > > > +RESERVEDMEM_OF_DECLARE(simple_framebuffer, "framebuffer", simple_f=
-ramebuffer_init);
-> > >
-> > > What's the prupose of these code at all?  I looked through the kernel=
-, but
-> > > there aren't many other examples of it.
+> > Convert DT schema for s5p-mfc in yaml format
 > >
-> > This is a fairly standard construct to deal with early memory
-> > reservations. What happens is roughly this: during early kernel boot,
-> > the reserved-memory core code will iterate over all children of the top-
-> > level reserved-memory node and see if they have a compatible string that
-> > matches one of the entries in the table created by these
-> > RESERVEDMEM_OF_DECLARE entries. It will then call the init function for
-> > a matched entry and register a struct reserved_mem for these. The init
-> > function in this case just dumps an informational message to the boot
-> > log to provide some information about the framebuffer region that was
-> > reserved (which can be used for example for troubleshooting purposes)
-> > and sets the device init/release operations (which will be called when a
-> > device is associated with the reserved memory region, i.e. when the
-> > of_reserved_mem_device_init_by_idx() function is called).
+> > Cc: linux-fsd@tesla.com
+> > Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+> > Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> > ---
+> >  .../devicetree/bindings/media/s5p-mfc.txt     |  75 --------
+> >  .../bindings/media/samsung,s5p-mfc.yaml       | 163
+> ++++++++++++++++++
+> >  2 files changed, 163 insertions(+), 75 deletions(-)  create mode
+> > 100644 Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
 > >
-> > The reason why there aren't many examples of this is because these are
-> > special memory regions that (at least upstream) kernels seldom support.
-> > Perhaps the most common use-cases are the shared DMA pools (such as
-> > CMA).
->=20
-> Also, not all regions need to be handled 'early' before slab allocator
-> or drivers are probed. Do you need early handling here? I can't see
-> why other than if fbcon is up early.
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+following
+> warnings. Consider if they are expected or the schema is incorrect. These
+> may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here:
+https://protect2.fireeye.com/v1/url?k=b651482e-
+> e9ca7131-b650c361-000babdfecba-bb28230f82534754&q=1&e=25a7ee78-
+> 697f-4371-880e-
+> dcf4e3072c99&u=https%3A%2F%2Fpatchwork.ozlabs.org%2Fpatch%2F
+> 
+> 
+> codec@13400000: clock-names: ['mfc', 'sclk_mfc'] is too long
+> 	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
+> 	arch/arm/boot/dts/exynos3250-monk.dtb
+> 	arch/arm/boot/dts/exynos3250-rinato.dtb
+> 
+> codec@13400000: clocks: [[7, 178], [7, 228]] is too long
+> 	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
+> 	arch/arm/boot/dts/exynos3250-monk.dtb
+> 	arch/arm/boot/dts/exynos3250-rinato.dtb
+> 
+> codec@13400000: iommus: [[36]] is too short
+> 	arch/arm/boot/dts/exynos3250-monk.dtb
+> 	arch/arm/boot/dts/exynos3250-monk.dtb
+> 
+> codec@13400000: iommus: [[40]] is too short
+> 	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
+> 	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
+> 
+> codec@13400000: iommus: [[47]] is too short
+> 	arch/arm/boot/dts/exynos3250-rinato.dtb
+> 	arch/arm/boot/dts/exynos3250-rinato.dtb
+> 
+> codec@13400000: memory-region: [[31], [32]] is too long
+> 	arch/arm/boot/dts/exynos4210-smdkv310.dtb
+> 
+> codec@13400000: memory-region: [[37], [38]] is too long
+> 	arch/arm/boot/dts/exynos4210-origen.dtb
+> 
+> codec@13400000: memory-region: [[41], [42]] is too long
+> 	arch/arm/boot/dts/exynos4412-smdk4412.dtb
+> 
+> codec@13400000: memory-region: [[43], [44]] is too long
+> 	arch/arm/boot/dts/exynos4412-origen.dtb
+> 
+> codec@13400000: memory-region: [[47], [48]] is too long
+> 	arch/arm/boot/dts/exynos4412-itop-elite.dtb
+> 	arch/arm/boot/dts/exynos4412-odroidx2.dtb
+> 	arch/arm/boot/dts/exynos4412-odroidx.dtb
+> 
+> codec@13400000: memory-region: [[48], [49]] is too long
+> 	arch/arm/boot/dts/exynos4412-odroidu3.dtb
+> 
+> codec@f1700000: clock-names:0: 'mfc' was expected
+> 	arch/arm/boot/dts/s5pv210-aquila.dtb
+> 	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
+> 	arch/arm/boot/dts/s5pv210-galaxys.dtb
+> 	arch/arm/boot/dts/s5pv210-goni.dtb
+> 	arch/arm/boot/dts/s5pv210-smdkc110.dtb
+> 	arch/arm/boot/dts/s5pv210-smdkv210.dtb
+> 	arch/arm/boot/dts/s5pv210-torbreck.dtb
+> 
+> codec@f1700000: clock-names:1: 'sclk_mfc' was expected
+> 	arch/arm/boot/dts/s5pv210-aquila.dtb
+> 	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
+> 	arch/arm/boot/dts/s5pv210-galaxys.dtb
+> 	arch/arm/boot/dts/s5pv210-goni.dtb
+> 	arch/arm/boot/dts/s5pv210-smdkc110.dtb
+> 	arch/arm/boot/dts/s5pv210-smdkv210.dtb
+> 	arch/arm/boot/dts/s5pv210-torbreck.dtb
+> 
+> codec@f1700000: memory-region: [[51], [52]] is too long
+> 	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
+> 
+> codec@f1700000: memory-region: [[55], [56]] is too long
+> 	arch/arm/boot/dts/s5pv210-galaxys.dtb
 
-No, I don't think this needs early handling. Obviously we want this to
-be available as soon as possible, but since the framebuffer driver is
-built on top of DRM and that all becomes available fairly late, I don't
-think this could ever run *that* early.
 
-So are you saying that in general if we don't need early handling we
-should avoid RESERVEDMEM_OF_DECLARE and instead manually resolve the
-memory regions and inspect them? In other words, RESERVEDMEM_OF_DECLARE
-should only ever be used when this early handling is needed?
 
-Thierry
+Hi Rob,
 
---0puBMFs9lsK95MlP
-Content-Type: application/pgp-signature; name="signature.asc"
+We tried reproducing warnings as reported above, but I am not able to see
+these warnings after  running make dtbs_check & make DT_CHECKER_FLAGS=-m
+dt_binding_check.
+Packages used-
+yamllint 1.10.0
+$ dt-mk-schema --version
+2022.9
 
------BEGIN PGP SIGNATURE-----
+Am I missing anything? Do let me know.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNOhBwACgkQ3SOs138+
-s6GMixAAosptozjyV0LN3+Kp4L51xHZfeK0y399j2b2MNorrcoEyr0Ptv/VlWgdp
-BD72CEq7CX+8QFn16zTZyMtnytAxl4Gr0Rhci+WadHS+FxMX2C8/0UeBJfs8jOhS
-56rdz1momIif7MPtcgW1nQSIQFC+3UVOgI21F1CHYXUDHoPmnSvpMYjzVgVZkloT
-7l6gRVGGrE5wfrb7pby8SNay2400ZIaS3IXfXGL34U8rQDA8Upc3IJh0cY+Fw8Tg
-RPPRiQHQdbTgMyi1jgYlyXpGAlYy3ywuDrX1sqo0fKooh5SqLoGqidQTsHAEBUPf
-DfdUFzpyDxB+SvtVf+b8lx+FC/mnVqg07lH9cKmfhzjqGgo5SElSZjeqjQgxYXdc
-VeQySrqJGwzNaj4qQp57O+2LtgncXzTstUSECJ87dvwTRUw+yMygDMRfh25qpmTM
-9rn5dO3URjJ0Nzvnulj1Xn5XHA9DpHltc7g4pKiWueYPuxPr2DMdLFF/QT2+sbdy
-HoNLcZeECKbk8J9caeIeuDi3pVScE6uaJ4jvq0UrkQMfBRNEaBKlMlrmVz8wlqMd
-i43iJYrUrAUiWvXpGCWnwflP1MI6wKLbwIrMaNmzBpTOM526+yR1al/rK8ccp8wb
-xGCKg+0FWKl3o1eVDkcrW8QWzZdWR3pPG621KgYy/b56JDMzLOU=
-=Cnem
------END PGP SIGNATURE-----
 
---0puBMFs9lsK95MlP--
+Thanks,
+Aakarsh
+
