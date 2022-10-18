@@ -2,146 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 744F2602F88
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:22:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B534602F9B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:24:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbiJRPWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 11:22:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54266 "EHLO
+        id S230264AbiJRPYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 11:24:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbiJRPWU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:22:20 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E3A095AEA
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:22:16 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id y10so9478686qvo.11
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:22:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Lv8WBr1FNWwiPSantujB2q1YWU9vZjg1PUxZfiq8E+E=;
-        b=Y4jkCbYLflIwRtB6tQSvzHC9hCTgoxtJ9qJiwbAx+1BFzveaeElyQQRStj1+sBjMUr
-         95iwr/wsNZiECpU+Z0BtMlqxmtsPzdbArvYhUL891k1ejFLiOxwzH665e/lQMSU7EFmU
-         uwYdOQRX7sB6SP3nTlXYSEvouHzmG3fqV5SJ5YLKMnXrPcm/E06pbYp0Ym+mnP7t2WJ4
-         C+0fi+TvJhVKWk0K+8armXEBms1snrgCxDSlDgVneMJW3jqOEeUuXH8cTcmUii+Ig+jk
-         2GGUsgo0LUP8EmC+bVY/4hDrdyiFFEZnKrPWTn/GtX6ZfQneyebYwMxSoEXtU9p64d71
-         d6aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lv8WBr1FNWwiPSantujB2q1YWU9vZjg1PUxZfiq8E+E=;
-        b=Lbz7PQVrEa5e52EpEtKaND5eGCnJYjWa2ERCsFqhHr0G0XRvPaATOow/naeYACeSC4
-         /7N4mZCnqk1X2CfkzwvjTdIba+pk6bTAd2acR+LpcLE09UerrqtzVGVCqfLnmJ42d6wW
-         WfKM5tAP3HlgaD3cO2Iys1nEX5fXL+4aYfuDZzU+fDcUX5JqBrIIrGjzerHGxWFbH0Iq
-         IjwsmJwhaGQIlQ1pBws2ZBu1lKwMzkye3diFM+YuqQRIjJFaC/trOvrLmUt9qfzpyXWp
-         WldxqhyEzGdtzBQhQR5rUU681MJuBbZij9cceX0fqTg984OWNjFXcVGAXKNifIYTJo5J
-         maMg==
-X-Gm-Message-State: ACrzQf0wdRzx+kYx019s9Okv/q3LgBHzF8/P/eOwJQhu48fGymj+c5kl
-        hQEQjn/yurUN4DWYqmSwkLpuaQ==
-X-Google-Smtp-Source: AMsMyM44obpzH0jsTyh/TW1xASYKTSf82eL3jRxtnD2rspTO5E09JiUI1qoHppormvOcoXFYQ9LJQQ==
-X-Received: by 2002:a05:6214:27c5:b0:4b1:7b3b:4098 with SMTP id ge5-20020a05621427c500b004b17b3b4098mr2568272qvb.27.1666106535182;
-        Tue, 18 Oct 2022 08:22:15 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id p12-20020ae9f30c000000b006eec09eed39sm2524367qkg.40.2022.10.18.08.22.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 08:22:14 -0700 (PDT)
-Message-ID: <7a2b1617-5e57-994e-a246-2e6f9fd69262@linaro.org>
-Date:   Tue, 18 Oct 2022 11:22:13 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 10/15] dt-bindings: phy: qcom,qmp-pcie: add sc8280xp
- bindings
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S230242AbiJRPYb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:24:31 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E7A5F7D;
+        Tue, 18 Oct 2022 08:24:23 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29IFOC4x028995;
+        Tue, 18 Oct 2022 10:24:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1666106652;
+        bh=yeXu6LAsPOv7ziEk86rcmv96Ao8dzF3pExh/3NJ67Pk=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=KpyywX9fcBO2sNcsnxgfhWM4e6QAi+goA4/NATSywB/PuNJzvVW+kZI4hDpvFNTkf
+         5X+CBxzIxAKvHCfGempyQ0XitIKzk6pREKdds9cVKXStzaou7ZZP+F3tm0tCklF62v
+         zUI7O1AFfS4ynxayuNFa3W7QQZwEzUtU6GTkBLiY=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29IFOCJQ018949
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 18 Oct 2022 10:24:12 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 18
+ Oct 2022 10:24:11 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 18 Oct 2022 10:24:11 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29IFOBVm026167;
+        Tue, 18 Oct 2022 10:24:11 -0500
+Date:   Tue, 18 Oct 2022 10:24:11 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Andrew Davis <afd@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221017145328.22090-1-johan+linaro@kernel.org>
- <20221017145328.22090-11-johan+linaro@kernel.org>
- <d6642028-3fb9-4e39-a349-666625dabb9d@linaro.org>
- <Y050nxCaFXIgczrA@hovoldconsulting.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y050nxCaFXIgczrA@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 00/10] AM64x Disable Incomplete DT Nodes
+Message-ID: <20221018152411.iguw2mg27ahexq2e@bryanbrattlof.com>
+References: <20221017192532.23825-1-afd@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20221017192532.23825-1-afd@ti.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/10/2022 05:40, Johan Hovold wrote:
-> On Mon, Oct 17, 2022 at 01:20:49PM -0400, Krzysztof Kozlowski wrote:
->> On 17/10/2022 10:53, Johan Hovold wrote:
->>> Add bindings for the PCIe QMP PHYs found on SC8280XP.
->>>
->>> The PCIe2 and PCIe3 controllers and PHYs on SC8280XP can be used in
->>> 4-lane mode or as separate controllers and PHYs in 2-lane mode (e.g. as
->>> PCIe2A and PCIe2B).
->>>
->>> The configuration for a specific system can be read from a TCSR register.
->>>
->>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>> ---
->>>  .../bindings/phy/qcom,qmp-pcie-phy.yaml       | 163 ++++++++++++++++++
->>>  1 file changed, 163 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
->>> new file mode 100644
->>> index 000000000000..82da95eaa9d6
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
->>
->> Filename based on compatible, so for example:
->>
->> qcom,sc8280xp-qmp-pcie-phy.yaml
+On October 17, 2022 thus sayeth Andrew Davis:
+> Hello all,
 > 
-> Ok, but as I mentioned in my reply to the previous patch, this file is
-> the one that is expected to be extended with new bindings.
-
-I would still propose to use compatible of this series and treat it as a
-family name of compatible or similar devices. What other choice we have?
-
-If new (third) PHY bindings appear, then rename older to "-legacies" and
-this one to "-legacy"?
-
+> This series goes through the AM64x dtsi and disables the set of nodes
+> that are not functional without additional board level information.
+> This is usually pinmux data, but can also be inernal device resources.
 > 
-> I can't seem to find where this naming scheme is documented now even if
-> I'm quite sure I've seen it before. Do you have a pointer?
-
-If you need the source of authority, then:
-https://lore.kernel.org/linux-devicetree/YlhkwvGdcf4ozTzG@robh.at.kernel.org/
-
-If you need unofficial documentation, then slides here:
-https://osseu2022.sched.com/event/15z0W
-
-If you need something official, that's on TODO list. :)
-
+> Only when the node is completed in the board file should the node be
+> enabled. This helps prevents nodes that represent IP that are not
+> pinned-out on a given board from being left enabled.
 > 
-> And does this imply that the file name should also include the gen infix
-> of one of the original compatibles (e.g.
-> "qcom,sc8280xp-qmp-gen3x4-pcie-phy.yaml")?
+> This also reduces the effort needed to add a new board, one no longer
+> needs to manually disable all the extra IP. For instance TI J784s4 has
+> 20(!) MCAN instances. It is much easier to enable the one you pin out,
+> vs disabling the 19 that you did not.
+> 
+> Thanks,
+> Andrew
+> 
+> Andrew Davis (10):
+>   arm64: dts: ti: k3-am64: Enable UART nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable I2C nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable SPI nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable EPWM nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable ECAP nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable PCIe nodes at the board level
+>   arm64: dts: ti: k3-am64: MDIO pinmux should belong to the MDIO node
+>   arm64: dts: ti: k3-am64: Enable MDIO nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable MCAN nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable GPMC and ELM nodes at the board level
+> 
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi |  37 ++++++
+>  arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi  |   6 +
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 119 ++-----------------
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts   | 142 ++---------------------
+>  4 files changed, 63 insertions(+), 241 deletions(-)
+> 
 
-Since you already have here three compatibles, you cannot have one
-filename matching exactly all of them, so we already accept something
-generic. Therefore I proposed the common part - matching SoC component.
+Reviewed-by: Bryan Brattlof <bb@ti.com>
 
-Best regards,
-Krzysztof
+I wholeheartedly agree! This looks great to me!
 
+~Bryan
