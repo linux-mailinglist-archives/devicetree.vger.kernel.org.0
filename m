@@ -2,159 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E39A66028D0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 11:55:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D9416028D4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 11:56:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbiJRJzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 05:55:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58780 "EHLO
+        id S229880AbiJRJ4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 05:56:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229660AbiJRJzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 05:55:50 -0400
-Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04924B03F7
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 02:55:49 -0700 (PDT)
-Received: by mail-vs1-xe34.google.com with SMTP id 128so14127994vsz.12
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 02:55:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fHxePj/mZk3CsytYYPoDZH/iNdYUG/Ul5xfu8zN39CE=;
-        b=OYyvIRNLbIXwMu8B/GP88pxXrBL1rTVN9OKaaVp/yCjYwxp2DiR8uf2cHv99SQhhbP
-         ovobN81Sc9Ab+x8TgvH+gt2GR5hbwNAMQg0nTIJtF0QSR75P6jA1F51PqRneDvCrwdWr
-         eSLd9+3CKgZGM+8HyndN0MCQ3By0MhOjASV9Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fHxePj/mZk3CsytYYPoDZH/iNdYUG/Ul5xfu8zN39CE=;
-        b=4xNMI2hEyPMylSjD4Edu5i35XMaQJ4TGpCVWY1o/k7iquuC4qQFTpsljyqDs+Opf1f
-         yF1Ybn+gXly98n51dreFspoW0wZ/lUV92QDQvDbpznEFiPyap5JFQfCcXaMlFmsj7OpT
-         Gc8Bvk46gcez7jhKVXoLYBMQILCrn0ztr2qCQH2SjTVN8vexcPGaLYMMa1oIbBXWl30m
-         V32pMwNWOLnU33K0Q2SRNQDN7qN6ygjuvSlkhtDqDXkgJb4XK1g5nP7cWjz8qcsUIeRr
-         QrrdDZxlvF3ipRcHBpHnJl2NhFSLGcHQr23B7XdrGt1FJMjZukALJ//HUqNc+PkEBzJH
-         lvcA==
-X-Gm-Message-State: ACrzQf3Mpyg3w5wpY6KIrYM7qZnpiqtOSLaoFsyRfZDMUY1wT5VlyOFb
-        F9j78VFEjt9QMQJRD62FDFOg152A9RqfbjOCBTBiSQ==
-X-Google-Smtp-Source: AMsMyM6GgD/Ll61bSvxwgEJyCP26sucK9tDFdq9CCdZxSHx2TzvQOlTTAReK+eEoO6lxWQgVsRzgtN68ZiTGLSBKSFA=
-X-Received: by 2002:a67:f684:0:b0:392:ac17:f9b0 with SMTP id
- n4-20020a67f684000000b00392ac17f9b0mr926868vso.85.1666086948130; Tue, 18 Oct
- 2022 02:55:48 -0700 (PDT)
+        with ESMTP id S230187AbiJRJz7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 05:55:59 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8819B14E6;
+        Tue, 18 Oct 2022 02:55:57 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 749F9240010;
+        Tue, 18 Oct 2022 09:55:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1666086956;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=GMcXIkL+nvRSGz9bJcoeIxWVctnTAOc43A22A4uBfDc=;
+        b=hGtr3RmGXUOTWNJnsTlSAnrlwI1g2/ziwgCBu48BF9TX1LSiY3B8/Kc85ZR+kmZkx6OEZo
+        0RIvhz3wy09RC4ufLYCnc3MkQnqhh4f5Iq/QK6DB01+EEDnkaR7qI9rIifXnDBbW0umMav
+        xU/9o2sCrd21/7wOKuTLEXJNZjJShSwGC16gihHfg1XUxKgP/rXVMO89Ggzji9LAewdymB
+        ExgO1TlKUaOnztGhNMErVMv/nWW3TSJ395ftwNa/NTh9yUjahmUvFfHz5mq4KFmMJYw6Ul
+        kd7mqSel48md0rACsrUVqzXafLO0a0FUkHUJiIcu5+0fT6jy11dnWGJ66e/4tQ==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        John Crispin <john@phrozen.org>,
+        =?utf-8?b?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V3 2/2] mtd: parsers: add TP-Link SafeLoader partitions table parser
+Date:   Tue, 18 Oct 2022 11:55:48 +0200
+Message-Id: <20221018095548.542866-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221015092950.27467-2-zajec5@gmail.com>
+References: 
 MIME-Version: 1.0
-References: <20221017090208.19041-1-yunfei.dong@mediatek.com>
-In-Reply-To: <20221017090208.19041-1-yunfei.dong@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 18 Oct 2022 17:55:36 +0800
-Message-ID: <CAGXv+5G5Lr6rCB0D+q9egRFmhAzpGL49dNrQeCT8JpeUT+OiAA@mail.gmail.com>
-Subject: Re: [PATCH] media: mediatek: vcodec: fix h264 cavlc bitstream fail
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'aec4d5f5ffd0f0092bd9dc21ea90e0bc237d4b74'
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 17, 2022 at 5:02 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
->
-> Some cavlc bistream will decode fail when the frame size is small than
-> 20 bytes. Need to add pending data at the end of the bitstream.
+On Sat, 2022-10-15 at 09:29:50 UTC, =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This parser deals with most TP-Link home routers. It reads info about
+> partitions and registers them in the MTD subsystem.
+> 
+> Example from TP-Link Archer C5 V2:
+> 
+> spi-nor spi0.0: s25fl128s1 (16384 Kbytes)
+> 15 tplink-safeloader partitions found on MTD device spi0.0
+> Creating 15 MTD partitions on "spi0.0":
+> 0x000000000000-0x000000040000 : "fs-uboot"
+> 0x000000040000-0x000000440000 : "os-image"
+> 0x000000440000-0x000000e40000 : "rootfs"
+> 0x000000e40000-0x000000e40200 : "default-mac"
+> 0x000000e40200-0x000000e40400 : "pin"
+> 0x000000e40400-0x000000e40600 : "product-info"
+> 0x000000e50000-0x000000e60000 : "partition-table"
+> 0x000000e60000-0x000000e60200 : "soft-version"
+> 0x000000e61000-0x000000e70000 : "support-list"
+> 0x000000e70000-0x000000e80000 : "profile"
+> 0x000000e80000-0x000000e90000 : "default-config"
+> 0x000000e90000-0x000000ee0000 : "user-config"
+> 0x000000ee0000-0x000000fe0000 : "log"
+> 0x000000fe0000-0x000000ff0000 : "radio_bk"
+> 0x000000ff0000-0x000001000000 : "radio"
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-"magic terminating pattern" instead of "pending data"?
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
 
-> For the size of mapped memory is at least one page, adding four bytes data
-> won't lead to access unknown virtual memory.
-
-Actually we can narrow this down a bit. The minimum dimension (16x16)
-sets the minimum size of the buffer at 256 bytes.
-
-> Fixes: 59fba9eed5a7 ("media: mediatek: vcodec: support stateless H.264 decoding for mt8192")
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
->  .../vcodec/vdec/vdec_h264_req_multi_if.c      | 27 ++++++++++++++++---
->  1 file changed, 24 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-> index 4cc92700692b..c1583dddcb04 100644
-> --- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-> +++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-> @@ -539,6 +539,24 @@ static int vdec_h264_slice_core_decode(struct vdec_lat_buf *lat_buf)
->         return 0;
->  }
->
-> +static void vdec_h264_insert_startcode(struct mtk_vcodec_dev *vcodec_dev, unsigned char *buf,
-> +                                      size_t *bs_size, struct mtk_h264_pps_param *pps)
-> +{
-> +       struct device *dev = &vcodec_dev->plat_dev->dev;
-> +
-> +       /* cavlc bitstream when entropy_coding_mode_flag is false. */
-> +       if (pps->entropy_coding_mode_flag || *bs_size > 20 ||
-> +           !(of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-dec") ||
-> +           of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-dec")))
-> +               return;
-> +
-
-There should be a comment here describing what is added.
-
-
-ChenYu
-
-> +       buf[*bs_size] = 0;
-> +       buf[*bs_size + 1] = 0;
-> +       buf[*bs_size + 2] = 1;
-> +       buf[*bs_size + 3] = 0xff;
-> +       (*bs_size) += 4;
-> +}
-> +
->  static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
->                                       struct vdec_fb *fb, bool *res_chg)
->  {
-> @@ -582,9 +600,6 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
->         }
->
->         inst->vsi->dec.nal_info = buf[nal_start_idx];
-> -       inst->vsi->dec.bs_buf_addr = (u64)bs->dma_addr;
-> -       inst->vsi->dec.bs_buf_size = bs->size;
-> -
->         lat_buf->src_buf_req = src_buf_info->m2m_buf.vb.vb2_buf.req_obj.req;
->         v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb, &lat_buf->ts_info, true);
->
-> @@ -592,6 +607,12 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
->         if (err)
->                 goto err_free_fb_out;
->
-> +       vdec_h264_insert_startcode(inst->ctx->dev, buf, &bs->size,
-> +                                  &share_info->h264_slice_params.pps);
-> +
-> +       inst->vsi->dec.bs_buf_addr = (uint64_t)bs->dma_addr;
-> +       inst->vsi->dec.bs_buf_size = bs->size;
-> +
->         *res_chg = inst->resolution_changed;
->         if (inst->resolution_changed) {
->                 mtk_vcodec_debug(inst, "- resolution changed -");
-> --
-> 2.25.1
->
+Miquel
