@@ -2,119 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9DBB602F8E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:23:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 744F2602F88
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:22:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230141AbiJRPXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 11:23:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55916 "EHLO
+        id S229868AbiJRPWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 11:22:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230127AbiJRPXJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:23:09 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11FC3D0CD9;
-        Tue, 18 Oct 2022 08:23:05 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id bh7-20020a05600c3d0700b003c6fb3b2052so3305500wmb.2;
-        Tue, 18 Oct 2022 08:23:05 -0700 (PDT)
+        with ESMTP id S229930AbiJRPWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:22:20 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E3A095AEA
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:22:16 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id y10so9478686qvo.11
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:22:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :references:from:to:cc:subject:date:message-id:reply-to;
-        bh=bEddq63SNEjeM/xMvu/ByxpDSe5rVs/O0NJXLl0d3Xg=;
-        b=gE7AGVea8ljT1IZHd4CmvcafBr/enqORfbdBqrgjJSrVGOOKPY4ywo7IeiIrQ4fywQ
-         gGszJUNF2NeKfFoHUPRtFvPEspit2YSpFRUvPiEzhL7vwfDme0ymoDPUyXkErRgHREor
-         CVHrUmmhl4EnlfNPBACKMfwWD7Cfq1rRqjVLE4X7/UoyEzHRNSE2G4+fZ5kz4vyQq3RV
-         Gq6NjMEKfrzAqX7plM5nLqGKAaeAo1PUfqwaZMh7cMslP4rh6iK04VkQSKzeia1omlP2
-         UWG39AfB76XqX9a9VyIPZkeki2r2wX1ytOjcOtnYcvwQbb+SgU9QBsDFGpreb+T1klDt
-         okRQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Lv8WBr1FNWwiPSantujB2q1YWU9vZjg1PUxZfiq8E+E=;
+        b=Y4jkCbYLflIwRtB6tQSvzHC9hCTgoxtJ9qJiwbAx+1BFzveaeElyQQRStj1+sBjMUr
+         95iwr/wsNZiECpU+Z0BtMlqxmtsPzdbArvYhUL891k1ejFLiOxwzH665e/lQMSU7EFmU
+         uwYdOQRX7sB6SP3nTlXYSEvouHzmG3fqV5SJ5YLKMnXrPcm/E06pbYp0Ym+mnP7t2WJ4
+         C+0fi+TvJhVKWk0K+8armXEBms1snrgCxDSlDgVneMJW3jqOEeUuXH8cTcmUii+Ig+jk
+         2GGUsgo0LUP8EmC+bVY/4hDrdyiFFEZnKrPWTn/GtX6ZfQneyebYwMxSoEXtU9p64d71
+         d6aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :references:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bEddq63SNEjeM/xMvu/ByxpDSe5rVs/O0NJXLl0d3Xg=;
-        b=0UfGsMGXQ5zaYOgqOa1rtlRueBRlApBqSBvYhKbfHluxO1Oi6X5bcoZs+0hxhbXxg6
-         0MV1dD9ga/sulmLJvbtOn3mMTYfU1KxD7u+/l9vbIXtAWsVAWLToBsuucYdqSHfi/NSo
-         nzmKA2BcwpjXfH5e0h+mb4dNGUTJqgbkJ2+ZlOA1hajImhnwS6a35RCpnLP5jqP0lzSY
-         kcCdqwreUJMUkVdixc7OR5/LYEjPfjbaSvDBHfMhG5uX8zlXm4phHVlgK7kuNkv96Q/A
-         tqFMKlaNzS8DkPb9u4bUltZR+IRZb7g8kxYLdjAn8eS9njQNhj3l7lEXihtIOtcD8bln
-         Qjjw==
-X-Gm-Message-State: ACrzQf12VwKfPToUNxPuRFRITTte2XD6NnKoO1bdMLOSG5JcCivcPGb2
-        rz3Gbe2eYgaki7TuOtcH11A=
-X-Google-Smtp-Source: AMsMyM4daIGfqDv/NZF1S01gyC5tFEmQdv3UTJqAdeeUQvv25Fu5Hg5RKSgZXfi/kzn0A0QnspLPOg==
-X-Received: by 2002:a05:600c:1509:b0:3c6:809a:b5a1 with SMTP id b9-20020a05600c150900b003c6809ab5a1mr23993837wmg.71.1666106584459;
-        Tue, 18 Oct 2022 08:23:04 -0700 (PDT)
-Received: from localhost (94.197.29.248.threembb.co.uk. [94.197.29.248])
-        by smtp.gmail.com with ESMTPSA id l6-20020a05600c1d0600b003a5f3f5883dsm20187232wms.17.2022.10.18.08.23.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 08:23:03 -0700 (PDT)
-References: <20221016234335.904212-1-aidanmacdonald.0x0@gmail.com>
- <20221017184419.62d365c1@jic23-huawei>
- <LYfRwE3pxZfgZBDC6gwvsSrHWqcSQXHK@localhost>
- <CAHp75VfL5TXvoVY8Zq946eUJYetLt2Od2m26mUSPGxsdF=TC-Q@mail.gmail.com>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
-        lee.jones@linaro.org, sre@kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, lars@metafoo.de, linus.walleij@linaro.org,
-        brgl@bgdev.pl, michael@walle.cc, samuel@sholland.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 00/13] Add support for AXP192 PMIC
-Date:   Tue, 18 Oct 2022 16:15:37 +0100
-In-reply-to: <CAHp75VfL5TXvoVY8Zq946eUJYetLt2Od2m26mUSPGxsdF=TC-Q@mail.gmail.com>
-Message-ID: <HMq7csUe6Gk3DrWRzgEmM5kpQ9DomiFs@localhost>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Lv8WBr1FNWwiPSantujB2q1YWU9vZjg1PUxZfiq8E+E=;
+        b=Lbz7PQVrEa5e52EpEtKaND5eGCnJYjWa2ERCsFqhHr0G0XRvPaATOow/naeYACeSC4
+         /7N4mZCnqk1X2CfkzwvjTdIba+pk6bTAd2acR+LpcLE09UerrqtzVGVCqfLnmJ42d6wW
+         WfKM5tAP3HlgaD3cO2Iys1nEX5fXL+4aYfuDZzU+fDcUX5JqBrIIrGjzerHGxWFbH0Iq
+         IjwsmJwhaGQIlQ1pBws2ZBu1lKwMzkye3diFM+YuqQRIjJFaC/trOvrLmUt9qfzpyXWp
+         WldxqhyEzGdtzBQhQR5rUU681MJuBbZij9cceX0fqTg984OWNjFXcVGAXKNifIYTJo5J
+         maMg==
+X-Gm-Message-State: ACrzQf0wdRzx+kYx019s9Okv/q3LgBHzF8/P/eOwJQhu48fGymj+c5kl
+        hQEQjn/yurUN4DWYqmSwkLpuaQ==
+X-Google-Smtp-Source: AMsMyM44obpzH0jsTyh/TW1xASYKTSf82eL3jRxtnD2rspTO5E09JiUI1qoHppormvOcoXFYQ9LJQQ==
+X-Received: by 2002:a05:6214:27c5:b0:4b1:7b3b:4098 with SMTP id ge5-20020a05621427c500b004b17b3b4098mr2568272qvb.27.1666106535182;
+        Tue, 18 Oct 2022 08:22:15 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id p12-20020ae9f30c000000b006eec09eed39sm2524367qkg.40.2022.10.18.08.22.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Oct 2022 08:22:14 -0700 (PDT)
+Message-ID: <7a2b1617-5e57-994e-a246-2e6f9fd69262@linaro.org>
+Date:   Tue, 18 Oct 2022 11:22:13 -0400
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 10/15] dt-bindings: phy: qcom,qmp-pcie: add sc8280xp
+ bindings
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221017145328.22090-1-johan+linaro@kernel.org>
+ <20221017145328.22090-11-johan+linaro@kernel.org>
+ <d6642028-3fb9-4e39-a349-666625dabb9d@linaro.org>
+ <Y050nxCaFXIgczrA@hovoldconsulting.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y050nxCaFXIgczrA@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18/10/2022 05:40, Johan Hovold wrote:
+> On Mon, Oct 17, 2022 at 01:20:49PM -0400, Krzysztof Kozlowski wrote:
+>> On 17/10/2022 10:53, Johan Hovold wrote:
+>>> Add bindings for the PCIe QMP PHYs found on SC8280XP.
+>>>
+>>> The PCIe2 and PCIe3 controllers and PHYs on SC8280XP can be used in
+>>> 4-lane mode or as separate controllers and PHYs in 2-lane mode (e.g. as
+>>> PCIe2A and PCIe2B).
+>>>
+>>> The configuration for a specific system can be read from a TCSR register.
+>>>
+>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+>>> ---
+>>>  .../bindings/phy/qcom,qmp-pcie-phy.yaml       | 163 ++++++++++++++++++
+>>>  1 file changed, 163 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
+>>> new file mode 100644
+>>> index 000000000000..82da95eaa9d6
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-pcie-phy.yaml
+>>
+>> Filename based on compatible, so for example:
+>>
+>> qcom,sc8280xp-qmp-pcie-phy.yaml
+> 
+> Ok, but as I mentioned in my reply to the previous patch, this file is
+> the one that is expected to be extended with new bindings.
 
-Andy Shevchenko <andy.shevchenko@gmail.com> writes:
+I would still propose to use compatible of this series and treat it as a
+family name of compatible or similar devices. What other choice we have?
 
-> On Tue, Oct 18, 2022 at 2:06 AM Aidan MacDonald
-> <aidanmacdonald.0x0@gmail.com> wrote:
->> Jonathan Cameron <jic23@kernel.org> writes:
->> > On Mon, 17 Oct 2022 00:43:22 +0100
->> > Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
->
-> ...
->
->> > Lee has recently expressed that he keen to take as much of these sorts
->> > of series as possible via the various subsystem trees.
->> >
->> > As such, it is useful to call out in the cover letter of such a series
->> > if this can be done.  For example, patch 9 (last IIO one) can't be
->> > applied without defines in patch 6 (I think).  Thus I'm assuming Lee
->> > will do an immutable branch with at least those patches on it.
->> >
->> > Perhaps worth expressing if that is also the case for the power
->> > and regulator subsystem patches?
->
->> Yep, the IIO, regulator, and power subsystem patches all depend on
->> the MFD patch.
->
-> There are two types of dependencies: compile and functional.
->
->> Specifically, patches 6, 9, and 10 depend on patch 5.
->> I can't get rid of this dependency because the variant ID (AXP192_ID)
->> has to be defined centrally in the MFD patch.
->
-> It's not clear which one you are talking about. If it's functional,
-> then each driver can be taken separately via each concerned subsystem.
+If new (third) PHY bindings appear, then rename older to "-legacies" and
+this one to "-legacy"?
 
-Johnathan was talking about compile dependencies -- the defines he's
-mentioning -- so what I mean is compile dependencies. Patches 6/9/10
-do not compile unless they are applied after patch 5, because of a new
-enumerator AXP192_ID defined in patch 5.
+> 
+> I can't seem to find where this naming scheme is documented now even if
+> I'm quite sure I've seen it before. Do you have a pointer?
 
-Regards,
-Aidan
+If you need the source of authority, then:
+https://lore.kernel.org/linux-devicetree/YlhkwvGdcf4ozTzG@robh.at.kernel.org/
+
+If you need unofficial documentation, then slides here:
+https://osseu2022.sched.com/event/15z0W
+
+If you need something official, that's on TODO list. :)
+
+> 
+> And does this imply that the file name should also include the gen infix
+> of one of the original compatibles (e.g.
+> "qcom,sc8280xp-qmp-gen3x4-pcie-phy.yaml")?
+
+Since you already have here three compatibles, you cannot have one
+filename matching exactly all of them, so we already accept something
+generic. Therefore I proposed the common part - matching SoC component.
+
+Best regards,
+Krzysztof
+
