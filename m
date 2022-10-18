@@ -2,47 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A5EE602260
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 05:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66D1A602267
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 05:20:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231523AbiJRDSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 23:18:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40548 "EHLO
+        id S229872AbiJRDU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 23:20:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231363AbiJRDSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 23:18:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5253A937A7;
-        Mon, 17 Oct 2022 20:16:07 -0700 (PDT)
+        with ESMTP id S231693AbiJRDTt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 23:19:49 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A685B1F9F8;
+        Mon, 17 Oct 2022 20:16:53 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DD5ED61407;
-        Tue, 18 Oct 2022 03:14:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76A69C43470;
-        Tue, 18 Oct 2022 03:14:36 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9D035B81C66;
+        Tue, 18 Oct 2022 03:14:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC55DC433D7;
+        Tue, 18 Oct 2022 03:14:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666062877;
-        bh=joEAajdFBUS+uI5I7QGs4b7iH6QTCl9/sEDNk0a3OKI=;
+        s=k20201202; t=1666062880;
+        bh=jrFTSkSw8/OLP0A8Fwb4P0GAlBszX3caoZ5KrK3ljEM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=P9jffexcY3p3sKihLezoph3yWTkKn/p/EuZXw06Z38KB/vcmXNTY/uLk8YE9TLGjr
-         85hJKL5gQpYW8EvTZGj2j+JvPLVwZueojXycjA3whWVVmLa4RBj5Uq0zmoacBanouY
-         6Awz4WDKkw+aqsBkUt00PtzPoSJeftkNdwqSzp+Qvtpyr8I9JJlXzyyFZ0QoAwBfe7
-         K110Sztdmr1E/6ZKauq6CAceDKbNF9ny1/bNQKdoyaVBvd+VKFbBWY6zG9GvhKjqg3
-         12zByV/9Uko3WCDUdAUjv5yDag5xJGPNeWSYzp06gDxyWR/e93JdzPkpv/J3D1HYge
-         YU3fpq0TDWymA==
+        b=e1+t1IhIYwzgwbOkbSNMO/bNRkrBjYOYiNqurdi+LW8vyuZTF8jIPt5M/oVo5mSOR
+         WkdS8gCf1OH/kk0yuvQmkT6YrkvpnqwMVVJfQT4aYAd6pO7US7MQnBKMU06yOBOckT
+         9czBaAsTEHwTzewgU79gXPBG+s4Xt9Nht+kYlBOUBQQ5fEp8N5ih7Yx/nwwbTC0Ucq
+         ckqMKYZhEaiHHB3bHdvu1HklqxMg11i7RqEk4IjPtqMmuhRu331GY0WHVwbpE5o8v5
+         SrboLXhxOplLDqLMFpowRcVjxYXXO8kdN2CTgKPAVeSvdKqh8rkKdBfR75Pv7ITKTM
+         u/AL20LuHTB4Q==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     robh@kernel.org, quic_c_skakit@quicinc.com
-Cc:     quic_tdas@quicinc.com, Stephen Boyd <swboyd@chromium.org>,
-        devicetree@vger.kernel.org, mka@chromium.org,
-        linux-kernel@vger.kernel.org, agross@kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add the reset reg for lpass audiocc on SC7280
-Date:   Mon, 17 Oct 2022 22:14:28 -0500
-Message-Id: <166606235856.3553294.15553489586953661871.b4-ty@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, quic_wcheng@quicinc.com,
+        agross@kernel.org, quic_kriskura@quicinc.com, vkoul@kernel.org,
+        kishon@ti.com, robh+dt@kernel.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     quic_vpulyala@quicinc.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com
+Subject: Re: (subset) [PATCH v13 0/3] Add QCOM SNPS PHY overriding params support
+Date:   Mon, 17 Oct 2022 22:14:30 -0500
+Message-Id: <166606235851.3553294.12620286711674222439.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <1663674495-25748-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1663674495-25748-1-git-send-email-quic_c_skakit@quicinc.com>
+In-Reply-To: <1662480933-12326-1-git-send-email-quic_kriskura@quicinc.com>
+References: <1662480933-12326-1-git-send-email-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -55,15 +62,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Sep 2022 17:18:15 +0530, Satya Priya wrote:
-> Add the reset register offset for clock gating.
+On Tue, 6 Sep 2022 21:45:30 +0530, Krishna Kurapati wrote:
+> Added support for overriding tuning parameters in QCOM SNPS PHY
+> from device tree. This parameter tuning is required to tune the
+> hs signal on dp/dm lines for electrical compliance to be successful.
 > 
+> Changes in v13:
+> Fixed NULL pointer check in driver code.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc7280: Add the reset reg for lpass audiocc on SC7280
-      commit: cb1d0aaa674e99957b85af570cb2730145af01df
+[3/3] arm64: dts: qcom: sc7280: Update SNPS Phy params for SC7280 IDP device
+      commit: 3b08e3fdf056cf30ecb1413d2bcb1353a333024b
 
 Best regards,
 -- 
