@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07E3A602EE4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 16:54:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B84F4602F1D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:03:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229710AbiJROyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 10:54:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44806 "EHLO
+        id S230310AbiJRPDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 11:03:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230187AbiJROx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 10:53:57 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF7EDD9948
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 07:53:56 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id l4so14058030plb.8
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 07:53:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:author:mime-version:message-id:date
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ats1U1GKP5ySkCQcFs4Bt8DbrtP8aKLYh292IozDhn8=;
-        b=ZrAC8O0zV5XMJISD0nU0tmntzsIrWrAzLhnfv5ntWDNrY7cSWrniEMtWh+1pQO10RM
-         uNRQ+npKwnQKBo6GzbbSHzgC0vJuS+JkQ/7nRUmu4JiVvUqvHwyrzQyqYt4/Zkc+/e5G
-         Jynopflmt053WmFJqqnt4OTJXn22409fjaW4nMlJwKyGWhj3CHH5Mrb6Q1h0lqQYmJva
-         JCqhXJ/2iWzCOVVykBWZrEvrAFJRToY2tRA5XZtREZlT35McytzE0zUW75YUjbU5AmnS
-         BN5j14tVCdMht0slkxfFokS/XUjlDgjb/GOQlFqq68LYccaTFjRrloWE8ZQ2zFFe3L/9
-         T/XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:author:mime-version:message-id:date
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ats1U1GKP5ySkCQcFs4Bt8DbrtP8aKLYh292IozDhn8=;
-        b=t6Pum2rEj2d7bUCnYFxt9qNZpnbUV4so9kTN7uhDyz5IaSOFancp5rNSzEEyecJt+y
-         JeA0EPnjzbTW9Kzea8hbN/5bsobNgJnFxBjYdMBuBOZGj7ikrFXGcqqKQNrCo4ZW6iV0
-         0S/U1p9YPw9XCwMwIfU5N6K9mIaQex7guw2eTpSW9mr2rTm4OcfDfDSulUdlWUigtjAd
-         +h3SQURkV4df1SQpg69U2Vpyv7uw2XnxITi9K1923q+jJ2MBKK27Ng4qEGO8nH+JrB/G
-         p80EPkMaLlkc4+BqkhFkM7OSn5zQInW+z5oTaVdsAUvblz0K77jEXBOgaiGK+3xDdfVz
-         /b/A==
-X-Gm-Message-State: ACrzQf2ebU0l9vhdupsfwgikqnRECpzFIhBF4k6Rwqsvp10/SM6Jlwfr
-        hRTWsW3yl4ob0n9mcSC9aOuYUA==
-X-Google-Smtp-Source: AMsMyM5ba3pgVFa5RG65wrHNrhugFZ9F6QITUf4ry3gX63r7xh5Fhx5Am+itfgaWnxIuhaT9gWXx+g==
-X-Received: by 2002:a17:90a:2bcb:b0:20a:ea55:32ef with SMTP id n11-20020a17090a2bcb00b0020aea5532efmr39655500pje.59.1666104836204;
-        Tue, 18 Oct 2022 07:53:56 -0700 (PDT)
-Received: from localhost.localdomain ([122.171.23.186])
-        by smtp.gmail.com with ESMTPSA id q3-20020a170902a3c300b001784a45511asm8775248plb.79.2022.10.18.07.53.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 07:53:55 -0700 (PDT)
-From:   Amit Pundir <amit.pundir@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: qcom: qrb5165-rb5: Disable cpuidle states
-Date:   Tue, 18 Oct 2022 20:23:48 +0530
-Message-Id: <20221018145348.4051809-1-amit.pundir@linaro.org>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S230175AbiJRPDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:03:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCE3EB14D7;
+        Tue, 18 Oct 2022 08:03:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8B3F7B81F80;
+        Tue, 18 Oct 2022 15:03:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A651C43140;
+        Tue, 18 Oct 2022 15:03:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666105409;
+        bh=VjXD7ZcWcKlQqghmfswBpYjxHHV20g6b5wi+ToAzSCY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=EpEkKt/e60Hg7YCKjzJqZCtietCjwk0K8wxOMdBE4/PZAFcGDsnWNTUDlkAcoBXjF
+         EX9DpJ1ZreQec4+s/Yhb4e3yBp1G4ECbDB2xRFrCFaiKMORE4OFhUdWdV82LEf7Eum
+         SZX/72MQXwiCFdsEBawPRWB2pm3LZdDUF7F/5Kb063YeHiDJaUwgJTpTeZIrJHXXqj
+         7W50BJZsZ+qiFmj3N12hOKAMQuDn9EmsJzGhfRe1/RkeFesy8tg646lr0JLrTJOfOb
+         Se90nHE9VEn1vODdvXHLyX6bKn1M1op0JA0OOhzSekiYVOwKL8IIHak8guwP5lJxE9
+         phQatm7kGcoEw==
+Received: by mail-vs1-f43.google.com with SMTP id d187so14994509vsd.6;
+        Tue, 18 Oct 2022 08:03:29 -0700 (PDT)
+X-Gm-Message-State: ACrzQf33SCf5fHh1LzqFQ41G1xhQyMy0rEImESRA6nX17BfsMxbBtozj
+        FjjE6NYYfR0xxY9T2kZ2lfEE8/i4RNaKwrnPzQ==
+X-Google-Smtp-Source: AMsMyM7K6hComKg5JG6GbuPJ9zm/550Uojuox7IQzMTqQdCy/0irT+8elJkkDnDArj2MYP0m0UYcrfW7NRELwjyYqsA=
+X-Received: by 2002:a67:c188:0:b0:3a7:60b:1156 with SMTP id
+ h8-20020a67c188000000b003a7060b1156mr1580748vsj.53.1666105408190; Tue, 18 Oct
+ 2022 08:03:28 -0700 (PDT)
 MIME-Version: 1.0
-Author: Amit Pundir <amit.pundir@linaro.org>
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20220930163631.27040-1-zajec5@gmail.com> <166578177913.2909910.7600034251484225468.robh@kernel.org>
+ <Y059lG8ZOXXzc4N+@wendy> <2f5f0c7f-4e1d-2434-51b4-d98d3fa7f49a@gmail.com> <Y06zrIZPZOCV63Vc@wendy>
+In-Reply-To: <Y06zrIZPZOCV63Vc@wendy>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 18 Oct 2022 10:03:18 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+u5dG3mHYFC774SE8T+M8ehrw_7qp7-E1q8gaY6EwbRQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+u5dG3mHYFC774SE8T+M8ehrw_7qp7-E1q8gaY6EwbRQ@mail.gmail.com>
+Subject: Re: [PATCH V2] dt-bindings: nvmem: u-boot,env: add Broadcom's variant binding
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc:     William Zhang <william.zhang@broadcom.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Joel Peshkin <joel.peshkin@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Tom Rini <trini@konsulko.com>, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,39 +71,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Disable cpuidle states for RB5. These cpuidle states
-made the device highly unstable and it runs into the
-following crash frequently:
+On Tue, Oct 18, 2022 at 9:10 AM Conor Dooley <conor.dooley@microchip.com> w=
+rote:
+>
+> On Tue, Oct 18, 2022 at 03:58:38PM +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
+> > On 18.10.2022 12:19, Conor Dooley wrote:
+> > > On Fri, Oct 14, 2022 at 04:09:40PM -0500, Rob Herring wrote:
+> > > > On Fri, 30 Sep 2022 18:36:31 +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
+> > > > > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> > > > >
+> > > > > Broadcom uses U-Boot for a lot of their bcmbca familiy chipsets. =
+U-Boot
+> > > > > stores its configuration in an environment data block.
+> > > > >
+> > > > > Such blocks are usually stored on flash as a separated partition =
+at
+> > > > > hardcoded address. Broadcom however decided to:
+> > > > > 1. Store env data block inside U-Boot partition
+> > > > > 2. Avoid sticking to hardcoded offsets
+> > > > > 3. Use custom header with "uEnv" magic and env data length
+> > > > >
+> > > > > Example (length 0x4000):
+> > > > > $ hexdump -n 32 -C -s 0x40000 /dev/mtdblock0
+> > > > > 00040000  76 6e 45 75 00 40 00 00  34 89 7a 82 49 4d 41 47  |vnEu=
+.@..4.z.IMAG|
+> > > > > 00040010  45 3d 4e 41 4e 44 3a 31  4d 2c 31 30 32 34 4d 00  |E=3D=
+NAND:1M,1024M.|
+> > > > > (0x40000 offset is unit specific and can change)
+> > > > >
+> > > > > Starting with the commit 118f3fbe517f4 ("dt-bindings: mtd: partit=
+ions:
+> > > > > support label/name only partition") DT can describe partitions ma=
+tching
+> > > > > them by a name (without specifying actual address). With that fea=
+ture
+> > > > > and this binding change it's possible to:
+> > > > > 1. Specify DT node for Broadcom's U-Boot env data subpartition
+> > > > > 2. Add nodes for specific environment data variables
+> > > > > 3. Reference them as NVMEM cells
+> > > > >
+> > > > > This binding is unlikely to help Broadcom's U-Boot. U-Boot SPL ne=
+eds to
+> > > > > find environment data early (before it accesses DTB) and it does =
+that by
+> > > > > looking for an "uEnv" magic. Dirty way.
+> > > > >
+> > > > > This binding can however be used by operating systems. It allows
+> > > > > describing cleanly U-Boot, its env data and variables. It tells
+> > > > > operating system about Broadcom-specific env data so it can parse=
+ it.
+> > > > >
+> > > > > Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> > > > > ---
+> > > > > V2: Work on better commit body & add example
+> > > > > ---
+> > > > >   .../devicetree/bindings/nvmem/u-boot,env.yaml | 21 ++++++++++++=
++++++++
+> > > > >   1 file changed, 21 insertions(+)
+> > > > >
+> > > >
+> > > > Applied, thanks!
+> > >
+> > > Hey Rob,
+> > > Maybe my tooling is out of date or w/e but this is breaking
+> > > dt_binding_check for me.
+> > >
+> > > I applied the below to fix the build, which I was about to send, befo=
+re
+> > > realising that you'd applied it and wondered if I was missing somethi=
+ng.
+> >
+> > Thanks for catching that and submitting a fix!
+>
+> No worries.
+>
+> >
+> > I guess I didn't run dt_binding_check this time or I did it before
+> > adding an example. Sorry for that!
+>
+> BTW, subsequent to sending the fix I double checked my dt_binding_check
+> logs and I saw:
+> Documentation/devicetree/bindings/nvmem/u-boot,env.example.dtb: partition=
+@0: Unevaluated properties are not allowed ('partition-u-boot-env' was unex=
+pected)
+>         From schema: Documentation/devicetree/bindings/mtd/partitions/u-b=
+oot.yaml
+>
+> I think unevaluated property detection got better in v2022.08 of
+> dt-schema so that is probably worth fixing too. I'll leave that one up
+> to you ;)
 
-[    T1] vreg_l11c_3p3: failed to enable: -ETIMEDOUT
-[    T1] qcom-rpmh-regulator 18200000.rsc:pm8150l-rpmh-regulators: ldo11: devm_regulator_register() failed, ret=-110
-[    T1] qcom-rpmh-regulator: probe of 18200000.rsc:pm8150l-rpmh-regulators failed with error -110
+Sigh. The simple fix is add 'partition-u-boot-env' to u-boot.yaml. But
+now I have no idea if that is really complete as this Broadcom stuff
+is coming in bit by bit. So I've now just dropped everything. Please
+resend with it all fixed.
 
-Fixes: 32bc936d7321 ("arm64: dts: qcom: sm8250: Add cpuidle states")
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index cc003535a3c5..f936c41bfbea 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -251,6 +251,14 @@ qca639x: qca639x {
- 
- };
- 
-+&LITTLE_CPU_SLEEP_0 {
-+	status = "disabled";
-+};
-+
-+&BIG_CPU_SLEEP_0 {
-+	status = "disabled";
-+};
-+
- &adsp {
- 	status = "okay";
- 	firmware-name = "qcom/sm8250/adsp.mbn";
--- 
-2.25.1
-
+Rob
