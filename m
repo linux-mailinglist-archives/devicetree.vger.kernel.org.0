@@ -2,179 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA5A9602FA2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6863C602FC5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230140AbiJRP1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 11:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
+        id S230271AbiJRPcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 11:32:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbiJRP1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:27:41 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB69BC60E
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:27:38 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id j21so8831969qkk.9
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:27:38 -0700 (PDT)
+        with ESMTP id S230314AbiJRPcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:32:15 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37BCAD38C3
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:32:10 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id d13so8858441qko.5
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:32:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WlrRdSiBc3+5x9el6+WiPvB5GSvm3lz/xveRGeJez/Y=;
-        b=EG4Jn93JA7AM0w+NYd6U5tSunzgTzsLPJB6RjP4zYCZU9YHf1M0jKzBPVe27OL136x
-         MyKkdfB2RKkeJ21qM2W8EIkOq99xdz8GYOH1phybCn/G3EHufIgmp3UoJMOCFs/8giKr
-         vxm5yZcYMM441WpCJSKIfKCy2c36eX2ddb7N4X4Zpm/EPI6WzKBY5QumEHJyKO9EnZuI
-         qOJY4mDirk6vZ6bSZldRzeY2UjHOE2LVs0nCcHvdoLHAT17synotSEmp68cI0tl+gYRI
-         z/ioOlQDknuVnOveAKcJI0eeRX2k3Q9zCs8Y3i/bhFNCB9rsVncWP+jvt1+WKrbn2aiT
-         3mxg==
+        bh=G1/uDkzke1I9MIXgJReSc/5yrjYBWTdhHs4pK5HuUcU=;
+        b=eU7bFamSLI28JsgdEar8LiWEMX6cc97/5zuKhkJeJI96D4MPCqmHgaUXqVhvD47bW1
+         A+wxdY1mbuEqCwwaHmNlZz5jqMtpS6XfsJg4eyRrmKtvtutpHVZfeeeU82AKjIcRHwbR
+         zBspuDGnsCBnr06GRU9iP4HbzQk7me66qHm4DBgl1ZjhJjdT0+8FZB/doPw7kNA1O4fF
+         R13sZi9dqR3SHx8H9/9woXnOdBZHbS4bro7KjScFRupf4n35o2J1ij8CPtYJ5sVYAjRw
+         GWqwqj5FxwAQXMka1zN5L0WlOFNgCTFxjwQK1Hql7oFnh1JI1sg6F/9Sag0qsJsaJwhO
+         TGMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WlrRdSiBc3+5x9el6+WiPvB5GSvm3lz/xveRGeJez/Y=;
-        b=RMJSBmwgeCc6562Cf/YtYyZ69D9ZM9zl3onyXxIclIDDDh34XhQlg9OkvaTjegvx25
-         KIbLQETz6hDsxSWbmN0kSZwZhtOYRotWLiPgGDkDQ1M9FU6pUqtBaFGpT5JGg8R2RSFh
-         ea5aUtGi03XLYeMX/RG6y86AaZ3PDZozNbHdh/G7OtQGkrld9r2O1cT28uUWvDzU8ycv
-         wikFVlsOvCWiFWuZLVeXH+ncjj2KoxNBHJqodBBmEuqBh5OOv2KUoS2JEjshnPJKLNbh
-         Jigx6TjlFnSEpU6NSezBkhJlhhoXZNojKBKkW/GxQjQK3ls5HAS58fYspuoh5SNKzImI
-         wKRQ==
-X-Gm-Message-State: ACrzQf1m+BhXFCnCwcMHaaEwo3y1tlcHq2DzL1NiVWC32gOwibKY1vQW
-        PXY1z5eJX2KjhOhMJIX3lRSOtw==
-X-Google-Smtp-Source: AMsMyM5iD16RwRypyXJlH9TWM1p1s0lQhnKdXXOoxUFalUOI9aplDm8h+1FMPxcIpbk+rdSjCD1iuw==
-X-Received: by 2002:a05:620a:bc9:b0:6be:9d56:78dc with SMTP id s9-20020a05620a0bc900b006be9d5678dcmr2165897qki.365.1666106857366;
-        Tue, 18 Oct 2022 08:27:37 -0700 (PDT)
+        bh=G1/uDkzke1I9MIXgJReSc/5yrjYBWTdhHs4pK5HuUcU=;
+        b=IL4s+D2j4zHHAvJUnYij9OAEm7aKNMee0wxXAjlFJXFJsWHIMlGDm7tQ8+DQXtPFVX
+         T2nYug6Md+aZpiRzBxcOtbLcC395ybi+Mm4VsGlYmimGQHGmHUlOTpgT73odxODF9tcr
+         QqPL1shrT6J1UKVm5tMCv15HZUmKkLp/cY1nNnYYxirC/71xuT7LnO1gsuT4/H3zAEHK
+         1CQs7b517mfTYWe8VhcbvM3IZYmJJu8lw9nSX5V5E7ZDZxwg0/wUTWNutV/NOJn+swjP
+         PsH4fANydfWxagi76pLVzRhiWhl9M2w9JAK4mkdicjBzhHIEE8/7Iq8Tec+c7WMLT4MJ
+         UwXg==
+X-Gm-Message-State: ACrzQf09IY4AAmwbMOaScnqJE+z/8WvoZOGMfCvwdBEaaIWXhiE9tmoB
+        cqQ6Xiev56OiztI9FopkBP/djg==
+X-Google-Smtp-Source: AMsMyM7eVweGu17+jtxN0kMIKkC2qER56wGixOvLXX1kSLjhAlxUlN+fkkmcKGJrQWP5eMoSC3HGQQ==
+X-Received: by 2002:a05:620a:46a7:b0:6ee:dea7:cc1c with SMTP id bq39-20020a05620a46a700b006eedea7cc1cmr2303292qkb.506.1666107129262;
+        Tue, 18 Oct 2022 08:32:09 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id b14-20020ac844ce000000b003434d3b5938sm2107848qto.2.2022.10.18.08.27.36
+        by smtp.gmail.com with ESMTPSA id c25-20020ac81119000000b003996aa171b9sm2043401qtj.97.2022.10.18.08.32.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 08:27:36 -0700 (PDT)
-Message-ID: <39a7d2d1-06c2-4002-e222-54c24c5eb31f@linaro.org>
-Date:   Tue, 18 Oct 2022 11:27:35 -0400
+        Tue, 18 Oct 2022 08:32:08 -0700 (PDT)
+Message-ID: <b0c1bdfb-4a31-9deb-1f0a-0ed813707464@linaro.org>
+Date:   Tue, 18 Oct 2022 11:32:07 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
 Subject: Re: [PATCH 09/15] dt-bindings: phy: qcom,qmp-pcie: mark current
  bindings as legacy
 Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Johan Hovold <johan@kernel.org>
 Cc:     Johan Hovold <johan+linaro@kernel.org>,
         Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221017145328.22090-1-johan+linaro@kernel.org>
  <20221017145328.22090-10-johan+linaro@kernel.org>
- <5e153119-f853-ff57-8277-2d782e255be2@linaro.org>
- <Y05Qf2nDCIVg23Zh@hovoldconsulting.com>
+ <CAA8EJpqSWmy5Z4cmJnsdjMjkmACW7HSi-k5JxZ0gLCeUAWEnxQ@mail.gmail.com>
+ <Y05+E90tmlq2tNFa@hovoldconsulting.com>
+ <CAA8EJprwhEvUfUr-zDir4zFh_NAyr0qPbrHi6Hf8=2HC1dAhaw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y05Qf2nDCIVg23Zh@hovoldconsulting.com>
+In-Reply-To: <CAA8EJprwhEvUfUr-zDir4zFh_NAyr0qPbrHi6Hf8=2HC1dAhaw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/10/2022 03:06, Johan Hovold wrote:
-> On Mon, Oct 17, 2022 at 01:15:45PM -0400, Krzysztof Kozlowski wrote:
->> On 17/10/2022 10:53, Johan Hovold wrote:
->>> The current QMP PCIe PHY bindings are based on the original MSM8996
->>> binding which provided multiple PHYs per IP block and these in turn were
->>> described by child nodes.
->>>
->>> Later QMP PCIe PHY blocks only provide a single PHY and the remnant
->>> child node does not really reflect the hardware.
->>>
->>> The original MSM8996 binding also ended up describing the individual
->>> register blocks as belonging to either the wrapper node or the PHY child
->>> nodes.
->>>
->>> This is an unnecessary level of detail which has lead to problems when
->>> later IP blocks using different register layouts have been forced to fit
->>> the original mould rather than updating the binding. The bindings are
->>> arguable also incomplete as they only the describe register blocks used
->>> by the current Linux drivers (e.g. does not include the per lane PCS
->>> registers).
->>>
->>> In preparation for adding new bindings for SC8280XP which further
->>> bindings can be based on, mark the current bindings as "legacy".
->>>
->>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>> ---
->>>  .../{qcom,qmp-pcie-phy.yaml => qcom,qmp-pcie-phy-legacy.yaml} | 4 ++--
+On 18/10/2022 07:37, Dmitry Baryshkov wrote:
+> 
+>>> And yes, I think we should also upgrade
+>>> older DTs, keeping drivers backwards compatible (for some time?).
 >>
->> I don't think we should rename anything as legacy. These are "normal"
->> platforms, not legacy ones. SM8450 is not even that old.
+>> Possibly, but I'm not sure it's worth the dts churn. As I mentioned
+>> elsewhere, supporting both the old and new binding in the driver is
+>> mostly trivial, while encoding the deprecated bindings in DT schema
+>> sounds like it would be painful.
 > 
-> I'm not really referring to the platforms as legacy, but the rather the
-> format of the bindings. The intent is that by marking the current ones
-> as such, people will not base new bindings on the old scheme.
-> 
-> There's no problem supporting both schemes in the driver also for the
-> current compatibles, but expressing such a deprecation in DT schema
-> sounds like it would be painful. We instead decided to simple draw the
-> line at SC8280XP and have future bindings be based on its binding.
-> 
->> The recommendation is to keep names matching the compatibles, not adding
->> some legacy/newer/newest suffixes.
-> 
-> Yeah, I know, but that's not what the current bindings do. And if we
-> keep 
-> 
-> 	qcom,qmp-pcie-phy.yaml
-> 
-> and add
-> 
-> 	qcom,sc8280xp-qmp-pcie-phy.yaml
-> 
-> then I fear that people will base their bindings on the former rather
-> than the latter.
+> This is probably the time where Krzysztof can advise us. I'm still not
+> sure when it is expected to encode both old and new bindings in the
+> schema and when we can update both the schema and the DT.
 
-Then how about renaming this file to something matching the oldest
-supported SoC? Like: qcom,msm8998-qmp-pcie-phy.yaml
-(I don't know which one is the oldest there)
+I do not follow what exactly the proposal is. Are you asking whether to:
+1. keep existing DTS compatible with old driver?
+or
+2. update existing DTS so it is working only with new driver (and not
+compatible with old driver thus having ABI break)?
 
-Or ipq6018 as the first one appearing in the list.
-
-> 
-> I guess I can just add a comment in the old schema file with a reference
-> to the sc8280xp bindings to try to prevent people from adding new ones
-> in the wrong place.
-
-Yes, that's also works for me. You can change the description part to
-have something like:
-"QMP PHY controller on SoCs like sc8180x and older. For newer SoCs,
-please look at xxxxx.yaml"
-
-> If I understand you correctly this is what you are suggesting? And that
-> the new file should still be named "qcom,sc8280xp-qmp-pcie-phy.yaml"
-> also as new bindings are added to that file?
-
-Yes.
-
-> 
-> I could also rename the old schema file after one of the old platforms
-> platforms therein (e.g. qcom,msm8998-qmp-pcie-phy) to make it sounds
-> less like a generic schema for new bindings.
-
-Oh, we thought about the same.
-
-> 
-> That is
-> 
-> 	qcom,msm8998-qmp-pcie-phy.yaml + comment (for current bindings)
-> 	qcom,sc8280xp-qmp-pcie-phy.yaml (for new bindings)
-
-Yes, please.
+If so, it is less question to bindings but more to the usage of DTS in
+other projects (like bootloaders, firmware, BSD) and generic
+recommendation is: do not break other users, if possible. It is however
+up to the platform maintainer (Bjorn) to decide on this, not on me.
 
 Best regards,
 Krzysztof
