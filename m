@@ -2,137 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD60E60252E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 09:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D621E60258A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 09:21:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbiJRHKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 03:10:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35680 "EHLO
+        id S230292AbiJRHVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 03:21:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230121AbiJRHKc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 03:10:32 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E7487CA8A;
-        Tue, 18 Oct 2022 00:10:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229808AbiJRHVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 03:21:15 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5FE5A0258;
+        Tue, 18 Oct 2022 00:21:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666077673; x=1697613673;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=G/vj/lqmp9J6IKlQvrSZrkWaQzN/UAUrJThxXOZ9VOw=;
+  b=iDvcJFjGIGc7FPEIziKmAqujRGkg/IFiYSjM4PXaX+k4bnJ8FoHeWKpM
+   5fPjAknPCDofwS+X1gq0UcGUcaLNOrpxvSaCDdQOElFgZNLFX96DKSqYa
+   aR3KDeA2bKV+uMz2ofWuRz/xR+LguOenKcZW1fXiyhT7x1l/tqzE+ijgi
+   JXZhZjRmBU08UxAvsL+Ge2qyEBEQ3Q0dX6w/8xV2k6eHvlqvOyU7lSDfj
+   BOTn7iaYUJwEWoNc33iLtm3lJUtFK8Yh7tD05XNUlPsZ1hWrrLNKVLJvy
+   DBBBLR3M+QlBykCsZnGseegsZrlEWkdJxzhYlOKIO3Ix2Q9bMFEXEx1Xf
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.95,193,1661810400"; 
+   d="scan'208";a="26807801"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 18 Oct 2022 09:21:10 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 18 Oct 2022 09:21:10 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 18 Oct 2022 09:21:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666077670; x=1697613670;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=G/vj/lqmp9J6IKlQvrSZrkWaQzN/UAUrJThxXOZ9VOw=;
+  b=ITT2y0CSNFa43VdkQTEkkMxkpv8xCZm8vzhue/yR1S6TxaEzcwJaBcj/
+   MyGbPSMqbswCOpNLhLTLhwSHi/Q6mVRhohh/ZHzzpLT8E6sH8yVQsXTNM
+   8U0OfDPRWjWxZMXe30nYcq3tjrrni9zkGLjpngh2hXtpUuZSDtSecmCkL
+   tpK19jjnIxq+nelCEkW7Jv1QXWKheENUVg0Pm5yNPVBM46QXgrVw97Ey8
+   0nlhMAWW25I5N58hrQaENAbHGuJXykZ+Nz/6zcB5SUrmx/VuqIhL4G9Ku
+   QBS5zqWfRsOSOerYkD1q8DdY3nfi6O5U9f1rKfIx1D7nMBOJn84HCxvmy
+   w==;
+X-IronPort-AV: E=Sophos;i="5.95,193,1661810400"; 
+   d="scan'208";a="26807800"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 18 Oct 2022 09:21:10 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EB4E4B81BFB;
-        Tue, 18 Oct 2022 07:10:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D647C43142;
-        Tue, 18 Oct 2022 07:10:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666077024;
-        bh=1n3yKH+jHZcKm9JP7oiRX4+wyMPs14jcsoNBnG64pzM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IDK5B6RjsysNX0+AYImjKVmDqOo9rgjr03Ev75Ke4c+n5UXbMSBujGcEuMboMRcoK
-         LZGArh2WZ6Lj8SlItOV3kr1Efjqh0clxkXQb6ARyT4k0DRqEGvfuLFI/ZjwAK33mFm
-         fIDdicAYl8LMeT//MiJRVfeTy8tu6BPaeTwVARQz+Uos8D3bq5N2SUT7Ho2bNLM2iN
-         ojU/PggckJplbF9McOLggnl+IavNo+5oTsBwfeeFYYAlH4oIRjr8xCAWN5tfS/ijAS
-         8ZiSCdGRqOOhzzckZOuRxtHQGPs9zpLonZhh1c96Ac4sIxPX92G+k55djoXM5lNGTe
-         /crPZgAjI+TCA==
-Date:   Tue, 18 Oct 2022 08:10:17 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2C218280056;
+        Tue, 18 Oct 2022 09:21:10 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
-Message-ID: <Y05RWbqA0ofEc/Zj@google.com>
-References: <20221010145222.1047748-1-biju.das.jz@bp.renesas.com>
- <20221010145222.1047748-2-biju.das.jz@bp.renesas.com>
- <8d6b8f0e-d9d7-0d77-aa99-379de768fd5d@linaro.org>
- <OS0PR01MB592232C831CCA84FC302212F86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/1] dt-bindings: clock: ti,cdce925: Convert to DT schema
+Date:   Tue, 18 Oct 2022 09:21:06 +0200
+Message-Id: <20221018072106.2391771-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <OS0PR01MB592232C831CCA84FC302212F86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Oct 2022, Biju Das wrote:
+Convert the TI CDCE925 clock binding to DT schema format.
+Including a small fix: Add the missing 'ti' prefix in the example
+compatible.
 
-> 
-> Hi Krzysztof Kozlowski,
-> 
-> > Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a
-> > bindings
-> > 
-> > On 10/10/2022 10:52, Biju Das wrote:
-> > > The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
-> > > the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
-> > > channels and one 32-bit timer channel. It supports the following
-> > > functions
-> > >  - Counter
-> > >  - Timer
-> > >  - PWM
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > > v3->v4:
-> > >  * Dropped counter and pwm compatibeles as they don't have any
-> > resources.
-> > >  * Made rz-mtu3 as pwm provider.
-> > >  * Updated the example and description.
-> > > v2->v3:
-> > >  * Dropped counter bindings and integrated with mfd as it has only
-> > one property.
-> > >  * Removed "#address-cells" and "#size-cells" as it do not have
-> > children with
-> > >    unit addresses.
-> > >  * Removed quotes from counter and pwm.
-> > >  * Provided full path for pwm bindings.
-> > >  * Updated the example.
-> > > v1->v2:
-> > >  * Modelled counter and pwm as a single device that handles
-> > >    multiple channels.
-> > >  * Moved counter and pwm bindings to respective subsystems
-> > >  * Dropped 'bindings' from MFD binding title.
-> > >  * Updated the example
-> > >  * Changed the compatible names.
-> > > ---
-> > >  .../bindings/mfd/renesas,rz-mtu3.yaml         | 305
-> > ++++++++++++++++++
-> > >  1 file changed, 305 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
-> > 
-> > This should not be in MFD. Just because some device has few features,
-> > does not mean it should go to MFD... Choose either timer or pwm.
-> 
-> MFD is for multifunction device. This IP supports multiple functions
-> like timer, pwm, clock source/events. That is the reason I have added 
-> here. MFD is core which provides register access for client devices.
-> 
-> For me moving it to pwm or counter is not a big problem.
-> Why do you think it cannot be MFD?
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+I have to admit I only have one specific addon platform for this
+hardware, which is actually a CECD813 tbh.
 
-Sorry for jumping in late here.  I see this has been resolved.
+ .../devicetree/bindings/clock/ti,cdce925.txt  |  53 ---------
+ .../devicetree/bindings/clock/ti,cdce925.yaml | 104 ++++++++++++++++++
+ 2 files changed, 104 insertions(+), 53 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/ti,cdce925.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/ti,cdce925.yaml
 
-The TL;DR is: if you're not using the MFD Core (and including
-mfd/core.h), it's not an MFD.  You *could* split this up into its
-component parts, place them into their own subsystems and use an MFD
-core driver to register them all, but as Thierry says, this is not a
-hard requirement either.
-
+diff --git a/Documentation/devicetree/bindings/clock/ti,cdce925.txt b/Documentation/devicetree/bindings/clock/ti,cdce925.txt
+deleted file mode 100644
+index df42ab72718f..000000000000
+--- a/Documentation/devicetree/bindings/clock/ti,cdce925.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-Binding for TI CDCE913/925/937/949 programmable I2C clock synthesizers.
+-
+-Reference
+-This binding uses the common clock binding[1].
+-
+-[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-[2] https://www.ti.com/product/cdce913
+-[3] https://www.ti.com/product/cdce925
+-[4] https://www.ti.com/product/cdce937
+-[5] https://www.ti.com/product/cdce949
+-
+-The driver provides clock sources for each output Y1 through Y5.
+-
+-Required properties:
+- - compatible: Shall be one of the following:
+-	- "ti,cdce913": 1-PLL, 3 Outputs
+-	- "ti,cdce925": 2-PLL, 5 Outputs
+-	- "ti,cdce937": 3-PLL, 7 Outputs
+-	- "ti,cdce949": 4-PLL, 9 Outputs
+- - reg: I2C device address.
+- - clocks: Points to a fixed parent clock that provides the input frequency.
+- - #clock-cells: From common clock bindings: Shall be 1.
+-
+-Optional properties:
+- - xtal-load-pf: Crystal load-capacitor value to fine-tune performance on a
+-                 board, or to compensate for external influences.
+-- vdd-supply: A regulator node for Vdd
+-- vddout-supply: A regulator node for Vddout
+-
+-For all PLL1, PLL2, ... an optional child node can be used to specify spread
+-spectrum clocking parameters for a board.
+-  - spread-spectrum: SSC mode as defined in the data sheet.
+-  - spread-spectrum-center: Use "centered" mode instead of "max" mode. When
+-    present, the clock runs at the requested frequency on average. Otherwise
+-    the requested frequency is the maximum value of the SCC range.
+-
+-
+-Example:
+-
+-	clockgen: cdce925pw@64 {
+-		compatible = "cdce925";
+-		reg = <0x64>;
+-		clocks = <&xtal_27Mhz>;
+-		#clock-cells = <1>;
+-		xtal-load-pf = <5>;
+-		vdd-supply = <&1v8-reg>;
+-		vddout-supply = <&3v3-reg>;
+-		/* PLL options to get SSC 1% centered */
+-		PLL2 {
+-			spread-spectrum = <4>;
+-			spread-spectrum-center;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/ti,cdce925.yaml b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
+new file mode 100644
+index 000000000000..1e68ee68e458
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
+@@ -0,0 +1,104 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/ti,cdce925.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI CDCE913/925/937/949 programmable I2C clock synthesizers node bindings
++
++maintainers:
++  - Mike Looijmans <mike.looijmans@topic.nl>
++
++description: |
++  Flexible Low Power LVCMOS Clock Generator with SSC Support for EMI Reduction
++
++  - CDCE(L)913: 1-PLL, 3 Outputs https://www.ti.com/product/cdce913
++  - CDCE(L)925: 2-PLL, 5 Outputs https://www.ti.com/product/cdce925
++  - CDCE(L)937: 3-PLL, 7 Outputs https://www.ti.com/product/cdce937
++  - CDCE(L)949: 4-PLL, 9 Outputs https://www.ti.com/product/cdce949
++
++properties:
++  $nodename:
++    pattern: "^clock-controller$"
++
++  compatible:
++    enum:
++      - ti,cdce913
++      - ti,cdce925
++      - ti,cdce937
++      - ti,cdce949
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: fixed parent clock
++
++  "#clock-cells":
++    const: 1
++
++  vdd-supply:
++    description: Regulator that provides 1.8V Vdd power supply
++
++  vddout-supply:
++    description: |
++      Regulator that provides Vddout power supply.
++      non-L variant: 2.5V or 3.3V for
++      L variant: 1.8V for
++
++  xtal-load-pf:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      Crystal load-capacitor value to fine-tune performance on a
++      board, or to compensate for external influences.
++
++patternProperties:
++  "^PLL[1-4]$":
++    type: object
++    description: |
++      optional child node can be used to specify spread
++      spectrum clocking parameters for a board
++
++    properties:
++      spread-spectrum:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: SSC mode as defined in the data sheet
++
++      spread-spectrum-center:
++        type: boolean
++        description: |
++          Use "centered" mode instead of "max" mode. When
++          present, the clock runs at the requested frequency on average.
++          Otherwise the requested frequency is the maximum value of the
++          SCC range.
++
++required:
++  - compatible
++  - ret
++  - clocks
++  - "#clock-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        cdce925: clock-controller@64 {
++            compatible = "ti,cdce925";
++            reg = <0x64>;
++            clocks = <&xtal_27Mhz>;
++            #clock-cells = <1>;
++            xtal-load-pf = <5>;
++            vdd-supply = <&reg_1v8>;
++            vddout-supply = <&reg_3v3>;
++            /* PLL options to get SSC 1% centered */
++            PLL2 {
++                spread-spectrum = <4>;
++                spread-spectrum-center;
++            };
++        };
++    };
 -- 
-Lee Jones [李琼斯]
+2.25.1
+
