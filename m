@@ -2,106 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0282D603279
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 20:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 015B86032DE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 20:55:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229691AbiJRSaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 14:30:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60420 "EHLO
+        id S229623AbiJRSzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 14:55:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbiJRSaO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 14:30:14 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B96257B784
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 11:30:06 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id 8so9244133qka.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 11:30:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BK5yk15LkKfIrAj2R6RMYbj0RdizV7gUhlXw7YTHuck=;
-        b=S8z7ViILNWv6pSSoxpuj/F/EYGFfWIFaN7il1DWvpL18xqGZcNZUAQfdS1OoechpTt
-         sK1h7Hg6LerSvf+o6QdYAXBqi796Yvaz+JeibS5CoyetsXV42bOX8mqWETc9k96d+N5L
-         Xxx7R9SCKEijUzuvOg+SUMer/s9EUFXzrFH87JB14uQpyoXoYGwkDx6mburJYJ3BTCXx
-         s5XCERItoFaBUGwLV/CSTYRVJHPl4ET9rJbCDstnJco4kAacYirsKbJRviRK2kwo9ytt
-         OEX6IrVCI9Jhjh6fAqr8LHlGezBmkX+p2TVL4mYXjve0evSn1s+FOvo9kKpb87LUg7/S
-         Z0Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BK5yk15LkKfIrAj2R6RMYbj0RdizV7gUhlXw7YTHuck=;
-        b=f6T6bD2OF0EFKukbbHMjpLVPf86LSIDusY3W7gkSC5OX2LFQoucR1vT63mYCdFqCoq
-         CD7Yf5S2RVh1VFumIg20nmOtUjHXxSe3OvPePvjNEWQC9HEqeFHXUMxnz62mlUSduiyy
-         bp0k//fgnChepYc9FMWBF56xtvUfH7KeffZC2JUMHy7V+9vnsv6Xl0NTOGVK7eLErylJ
-         wiBNdumYCo9izWw9b9XPGV+pRHuco2R82nRNYmvsEzEng1DKsXzFPwtMZYjz+4IdnyJy
-         1xfQGxNeKUJlJ561ODyJwGrfTif1J9tuykZfqFhXcjjr6JZhFdcPF3Z0i0wpaRGR/I3H
-         rfFQ==
-X-Gm-Message-State: ACrzQf3ene3/Av/83dmBYfZqem1JGiuKJoysW592w6nsD0/LNDANeKJ+
-        RR0MumOM2QbtguB80RmRv1qmOQ==
-X-Google-Smtp-Source: AMsMyM4kK8z6bP4sSqyzi35kzNH1G8VJ027Py0bbB36RNpqYcPKjKDrRGf2YgUcA/R6HCsTR+aiB9A==
-X-Received: by 2002:a05:620a:4548:b0:6ee:deba:2795 with SMTP id u8-20020a05620a454800b006eedeba2795mr2837278qkp.621.1666117804589;
-        Tue, 18 Oct 2022 11:30:04 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id cf17-20020a05622a401100b0039c7b9522ecsm2405829qtb.35.2022.10.18.11.30.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 11:30:03 -0700 (PDT)
-Message-ID: <8a418360-400f-ff00-4230-865af883f17d@linaro.org>
-Date:   Tue, 18 Oct 2022 14:30:02 -0400
+        with ESMTP id S229729AbiJRSzR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 14:55:17 -0400
+Received: from smtp.smtpout.orange.fr (smtp-29.smtpout.orange.fr [80.12.242.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4945895D4
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 11:55:13 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.100.34])
+        by smtp.orange.fr with ESMTPA
+        id krk4o4LYpJvOZkrk4odlCd; Tue, 18 Oct 2022 20:55:12 +0200
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Tue, 18 Oct 2022 20:55:12 +0200
+X-ME-IP: 86.243.100.34
+Message-ID: <15ebc256-1855-7720-05e1-6673b1da7d93@wanadoo.fr>
+Date:   Tue, 18 Oct 2022 20:55:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 2/2] dt-bingdings: mmc: Mediatek: add ICE clock
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Mengqi Zhang <mengqi.zhang@mediatek.com>,
-        chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, wenbin.mei@mediatek.com
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221017142007.5408-1-mengqi.zhang@mediatek.com>
- <20221017142007.5408-3-mengqi.zhang@mediatek.com>
- <5d87f1c3-1c73-054b-dca1-9f52939e187d@linaro.org>
-In-Reply-To: <5d87f1c3-1c73-054b-dca1-9f52939e187d@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v3 2/2] media: i2c: add support for OV4689
+To:     mike.rudenko@gmail.com
+Cc:     arec.kao@intel.com, c.hemp@phytec.de,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        hverkuil@xs4all.nl, jimmy.su@intel.com,
+        krzysztof.kozlowski+dt@linaro.org,
+        laurent.pinchart+renesas@ideasonboard.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        marex@denx.de, mchehab@kernel.org, rdunlap@infradead.org,
+        robh+dt@kernel.org, sakari.ailus@linux.intel.com,
+        shawnx.tu@intel.com, tommaso.merciai@amarulasolutions.com
+References: <20220927222152.132951-1-mike.rudenko@gmail.com>
+ <20220927222152.132951-3-mike.rudenko@gmail.com>
+Content-Language: fr
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20220927222152.132951-3-mike.rudenko@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/10/2022 14:29, Krzysztof Kozlowski wrote:
-> On 17/10/2022 10:20, Mengqi Zhang wrote:
->> Document the binding for crypto clock of the Inline Crypto Engine
->> of Mediatek SoCs.
-> > This does not match the patch contents at all.
+Le 28/09/2022 à 00:21, Mikhail Rudenko a écrit :
+> Add a V4L2 sub-device driver for OmniVision OV4689 image sensor. This
+> is a 4 Mpx image sensor using the I2C bus for control and the CSI-2
+> bus for data.
+> 
+> This driver supports following features:
+> - manual exposure and analog gain control support
+> - test pattern support
+> - media controller support
+> - runtime PM support
+> - support following resolutions:
+>    + 2688x1520 at 30 fps
+> 
+> The driver provides all mandatory V4L2 controls for compatibility with
+> libcamera. The sensor supports 1/2/4-lane CSI-2 modes, but the driver
+> implements 4 lane mode only at this moment.
 
-Ah, my bad, I read "crypto block", not clock, so it matches. :)
+Hi,
 
-However you are not documenting a binding for it. You are adding
-optional clock.
+a few nitpick below.
+
+CJ
 
 > 
->>
->> Signed-off-by: Mengqi Zhang <mengqi.zhang@mediatek.com>
->> ---
->>  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
-> 
-> Best regards,
-> Krzysztof
-> 
+> Signed-off-by: Mikhail Rudenko <mike.rudenko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
 
-Best regards,
-Krzysztof
+[...]
+
+> +static int ov4689_check_sensor_id(struct ov4689 *ov4689,
+> +				  struct i2c_client *client)
+> +{
+> +	struct device *dev = &ov4689->client->dev;
+> +	u32 id = 0;
+> +	int ret;
+> +
+> +	ret = ov4689_read_reg(client, OV4689_REG_CHIP_ID,
+> +			      OV4689_REG_VALUE_16BIT, &id);
+> +	if (id != CHIP_ID) {
+> +		dev_err(dev, "Unexpected sensor id(%06x), ret(%d)\n", id, ret);
+> +		return -ENODEV;
+
+return ret?
+(otherwise what is the point of -EINVAL and -EIO in ov4689_read_reg()?)
+
+> +	}
+> +
+> +	dev_info(dev, "Detected OV%06x sensor\n", CHIP_ID);
+> +
+> +	return 0;
+> +}
+
+[...]
+
+> +static int ov4689_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct v4l2_subdev *sd;
+> +	struct ov4689 *ov4689;
+> +	int ret;
+> +
+> +	ret = ov4689_check_hwcfg(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ov4689 = devm_kzalloc(dev, sizeof(*ov4689), GFP_KERNEL);
+> +	if (!ov4689)
+> +		return -ENOMEM;
+> +
+> +	ov4689->client = client;
+> +	ov4689->cur_mode = &supported_modes[OV4689_MODE_2688_1520];
+> +
+> +	ov4689->xvclk = devm_clk_get_optional(dev, NULL);
+> +	if (IS_ERR(ov4689->xvclk)) {
+> +		return dev_err_probe(dev, PTR_ERR(ov4689->xvclk),
+> +				     "Failed to get external clock\n");
+> +	}
+> +
+> +	if (!ov4689->xvclk) {
+> +		dev_dbg(dev,
+> +			"No clock provided, using clock-frequency property\n");
+> +		device_property_read_u32(dev, "clock-frequency", &ov4689->clock_rate);
+> +	} else {
+> +		ov4689->clock_rate = clk_get_rate(ov4689->xvclk);
+> +	}
+> +
+> +	if (ov4689->clock_rate != OV4689_XVCLK_FREQ) {
+> +		dev_err(dev,
+> +			"External clock rate mismatch: got %d Hz, expected %d Hz\n",
+> +			ov4689->clock_rate, OV4689_XVCLK_FREQ);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ov4689->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						     GPIOD_OUT_LOW);
+> +	if (IS_ERR(ov4689->reset_gpio)) {
+> +		dev_err(dev, "Failed to get reset-gpios\n");
+> +		return PTR_ERR(ov4689->reset_gpio);
+> +	}
+> +
+> +	ov4689->pwdn_gpio = devm_gpiod_get_optional(dev, "pwdn", GPIOD_OUT_LOW);
+> +	if (IS_ERR(ov4689->pwdn_gpio)) {
+> +		dev_err(dev, "Failed to get pwdn-gpios\n");
+> +		return PTR_ERR(ov4689->pwdn_gpio);
+> +	}
+> +
+> +	ret = ov4689_configure_regulators(ov4689);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to get power regulators\n");
+
+dev_err_probe()?
+I think that devm_regulator_bulk_get() can return -EPROBE_DEFER)
+
+> +		return ret;
+> +	}
+> +
+> +	mutex_init(&ov4689->mutex);
+> +
+> +	sd = &ov4689->subdev;
+> +	v4l2_i2c_subdev_init(sd, client, &ov4689_subdev_ops);
+> +	ret = ov4689_initialize_controls(ov4689);
+> +	if (ret)
+> +		goto err_destroy_mutex;
+> +
+> +	ret = ov4689_power_on(dev);
+> +	if (ret)
+> +		goto err_free_handler;
+> +
+> +	ret = ov4689_check_sensor_id(ov4689, client);
+> +	if (ret)
+> +		goto err_power_off;
+> +
+> +#ifdef CONFIG_VIDEO_V4L2_SUBDEV_API
+> +	sd->internal_ops = &ov4689_internal_ops;
+> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +#endif
+> +#if defined(CONFIG_MEDIA_CONTROLLER)
+> +	ov4689->pad.flags = MEDIA_PAD_FL_SOURCE;
+> +	sd->entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> +	ret = media_entity_pads_init(&sd->entity, 1, &ov4689->pad);
+> +	if (ret < 0)
+> +		goto err_power_off;
+> +#endif
+> +
+> +	ret = v4l2_async_register_subdev_sensor(sd);
+> +	if (ret) {
+> +		dev_err(dev, "v4l2 async register subdev failed\n");
+> +		goto err_clean_entity;
+> +	}
+> +
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_idle(dev);
+> +
+> +	return 0;
+> +
+> +err_clean_entity:
+> +	media_entity_cleanup(&sd->entity);
+> +err_power_off:
+> +	ov4689_power_off(dev);
+> +err_free_handler:
+> +	v4l2_ctrl_handler_free(&ov4689->ctrl_handler);
+> +err_destroy_mutex:
+> +	mutex_destroy(&ov4689->mutex);
+> +
+> +	return ret;
+> +}
+
+[...]
 
