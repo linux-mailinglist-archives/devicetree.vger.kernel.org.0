@@ -2,166 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3867C602FEB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5628602FF4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:45:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230423AbiJRPmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 11:42:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41162 "EHLO
+        id S229916AbiJRPpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 11:45:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbiJRPmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:42:13 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93081B56C5;
-        Tue, 18 Oct 2022 08:42:11 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id fy4so33196050ejc.5;
-        Tue, 18 Oct 2022 08:42:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t6V4GGutCgqH9SAAugBYUbePwRzXguzjtNw602xA/gE=;
-        b=mHm+3pWbcBXYNzpH81/lPhpNc0B5kdPfe11TzAwKplI3MeDt+vueDt94EyEvU1Sp/9
-         FG7s+qK49MByuxF/6qySYFNkRnj6YmVQQEE8HHmga3zOcvsVUPoRbh5/mWw2A8h+CosA
-         443JPbvEAxAPNq/5WHvZnMihOiVz1OULEPw6NGmo6iRZMTZVReFpSbtdIE/2luLroH3l
-         7acYUGPBANPm+bneNLEmYehFT74EjsE/BD5l0SplQu2yBTl0Otb6yxygQGBfyJww9O47
-         siGdsYoNyCv6f7moBSe45FPQAvagtdUYy1gQ6hueJSaHwvMavITll5AvKH7uzXQC3EX0
-         U8aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t6V4GGutCgqH9SAAugBYUbePwRzXguzjtNw602xA/gE=;
-        b=H6TnyLY9o/C18/ZQ65lv2nhRx5nE4cV6g1inkLJQEyBTy2qk80YTMSJnofunpsYPf4
-         1vmiVo6iJqa0+01n9ekBcTcoEbDlDgC/8iqk84ObItAcdKt6PwN0sb0J23PVltysLDDh
-         EsKHyV/FV6DE6KuzWAMIwZztQRXUQwK/kniegZ2Wk85/yuNOELwRPCtikCCZ+4aIiQxX
-         HNKfLaI9XxKZskbQk0uIno+7Wqm7JE5HSa3y6pAiFUv+b1vOh8Xsoi7mfMPNDyEIzkVh
-         MnhRTxAvIvjST8SBF6cp5SoI51JwxMStuWFcSfV/TeSmA9c7XWKCURISG0CmqF60TjfH
-         VhOg==
-X-Gm-Message-State: ACrzQf0uDkWoRYjxBF5ns5qm6C1a9NQUQwwiuacp6Zq8iQapdQkmi4zd
-        nXc1Obau9I52HsBvS4tPyCU=
-X-Google-Smtp-Source: AMsMyM4aQBhuScJ+Q7RqBmH9Vm86c4qsX+AsD4/jD1J/4RjZSwYFXEPfljnNUP0uP4wvnYZSMzZ1OQ==
-X-Received: by 2002:a17:906:9c82:b0:781:5752:4f2b with SMTP id fj2-20020a1709069c8200b0078157524f2bmr2842003ejc.561.1666107730031;
-        Tue, 18 Oct 2022 08:42:10 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id c18-20020a170906925200b0078dd2f9357fsm7751636ejx.89.2022.10.18.08.42.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 08:42:09 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tom Rini <trini@konsulko.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Joel Peshkin <joel.peshkin@broadcom.com>,
-        William Zhang <william.zhang@broadcom.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V3 2/2] dt-bindings: nvmem: u-boot,env: add Broadcom's variant binding
-Date:   Tue, 18 Oct 2022 17:42:02 +0200
-Message-Id: <20221018154202.4634-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221018154202.4634-1-zajec5@gmail.com>
-References: <20221018154202.4634-1-zajec5@gmail.com>
+        with ESMTP id S230403AbiJRPpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:45:18 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3448AA223F;
+        Tue, 18 Oct 2022 08:45:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1666107900;
+        bh=Jt9NmyfGUJIYwUHCzEW8eHOdjWosSSdsIWzKAGgNkII=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=af4k8kmuydlKzRPaqGcg5kxLEtku1l3NBrtQiBu2TBbes+tESXccMaDzhjRcXAmWO
+         I0l2raeeldApHJXHqe+ikRsse1uMppCUMT0Nc1N4BkO8Fi0wvv4byyTP3h/1mT/oYe
+         6Zj51rAOvllZR7X6oyP/XvMffcaa4TiaUYwTgF9I=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.77.116] ([80.245.77.116]) by web-mail.gmx.net
+ (3c-app-gmx-bap38.server.lan [172.19.172.108]) (via HTTP); Tue, 18 Oct 2022
+ 17:45:00 +0200
 MIME-Version: 1.0
+Message-ID: <trinity-8fe25643-9cf4-4f09-bebb-208570a540d4-1666107900051@3c-app-gmx-bap38>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Aw: Re: [RFC v1 02/12] dt-bindings: PCI: mediatek-gen3: add support
+ for mt7986
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Date:   Tue, 18 Oct 2022 17:45:00 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <684c5659-0691-6534-1602-6c0a53e6e503@linaro.org>
+References: <20221017104141.7338-1-linux@fw-web.de>
+ <20221017104141.7338-3-linux@fw-web.de>
+ <684c5659-0691-6534-1602-6c0a53e6e503@linaro.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:PMOh3tpLUMdJNWND3roFSaz6NdXp/BM0p9g+fEsaYUCyloExNRoiqxoIPHwvPXVjpVM0z
+ 0B5l1TzUaZ0CvFNKNRCUuE8US/Xs1UjdwtXKEBnhpHWRHi68JRTvBJd7x1V+fd81vJ86syjRsTcs
+ YEQjSw2iNQndlmMfMuZfUVauKCjVairtdw6kOemtuJiDNzarIhRNAOYNAwkHAA2koGgd/KINNjgt
+ nsCz4Rpd8DBsU3vx7wS5H3k9CwMzPP9AkSmzbMQMCi6K3W2jl/6Vwj+c7VyhzNl8TXy3aNQgLYEf
+ hI=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:G7hCPfXsN6k=:TmCjYiVy2SSY1kL8mfwEFj
+ JFWGn2gp0L3NVnE9OVdn2BATvK+qouS+Okg3iLkffGumPDUGbZ2g19ZaLTb1FF5JdPGB8NSdJ
+ e5vm/bYfhd8QrFCyYQ5KhCX2QGTK99urFaI1QAudQtmDh/w9vgUmbAQyB4LZZ2IX/Hiu5Sp8X
+ kL90zQ5Brgn+/Os/+l7AmK6JuESqeYe0P3OsleBVo5zwMnzDephXKIMihGrCZS+ayvsqZ62XW
+ 46nZYR95XAcC7PA8pa0OaHEUDTvPYKRJ0J+TAwYoyNRvdp7VBx+3LlHSvII16ad6GGuZD/xvw
+ geTwgsoWjkw1mJ1/Lgzvc4Lx+ycqWUGhYq5APrP6RiZfRwJV26dtZPtcAa9UEII9dQHE7wmK8
+ HyDd+dIVoAWOwl5YtEAfl1c2YwwaG7lXLXM8QMnqEqzYyYvGXW16J7r9p8kqfyX6nIonrOJ6e
+ bunYg+PGn/16CAqPc1ojiKVoQqwddIycVyPxbps4BTHqa5AKfe4PZTtdD23jHY88c+xBwEQmd
+ Vx/FtPVepTWuLBlJywrqJ0wBVIHlAQtkq6Ni8ujbu8v47c41erwK1ZV81F1X1uRN4L9+e19+c
+ K8d28j3OMMFwrLk6CN2uiGipWjRDNTAO6M4R/tg6xqjQXBJ0ey3LErS1HFO3R4oadeNg0XEPO
+ yWKbCy5kNkRpRb2atxmQSBxBAiBYrJTzDM2qmXbdc13kWyH/DgthnXjPiBC7Ur3ofq+yZOb6E
+ Cwpgxck+HkVRbFBn+Sr/heQjJq2ZOqpOkKqZsClqadiqTregIMqVeXRYYPjkBkjZMAq8JPz5w
+ bOKk+Z2gwJQyR0BOH45XEvFIFQ6Y+aIFMB/azazxk7NT5vUHYrT+/5W81FDyjVeAv/bib/T4g
+ F+yvK/zPR8f55bobu0NAggeEYm97FSvfl0iSZZmnNFRXL6CMq3clwDu5q7VrefUR5YoydGAQG
+ VlTt7Fc8Pcc6paQDMkWm3woMxhLjtR7A06/C9SdGh4TCb5tDA/xt8tlx3DjSkTuDSaG0iy2KU
+ Ope2usjZzJdeYbfK3iHJp4eskuL3LG0dNyPQar/Q85AG13JOIjDIjsvYGUJsATdhN721XF4k+
+ tOFfqECcmqe10SCGKRGv/6xpFz9F/8eygo2TWz0rcddVZI8TvmCllUjgKWpkMKuvBn7D+A7tA
+ /BgSORrCMk3HZQb8VwPXQBVpNA/+/+bfN8402Ug/VqaA1gn2swCwiUawi31pSizKwty0rXO5b
+ kd+A+nCtluUwcnMiJ86TGv5xK9f7NrwgLMcAiTbuGOFdo4n3lcLN0zWRYWbFvcwNlpBpenlWg
+ uWUWldxT
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi,
 
-Broadcom uses U-Boot for a lot of their bcmbca familiy chipsets. U-Boot
-stores its configuration in an environment data block.
+> Gesendet: Dienstag, 18. Oktober 2022 um 17:35 Uhr
+> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+> On 17/10/2022 06:41, Frank Wunderlich wrote:
+> > From: Frank Wunderlich <frank-w@public-files.de>
 
-Such blocks are usually stored on flash as a separated partition at
-hardcoded address. Broadcom however decided to:
-1. Store env data block inside U-Boot partition
-2. Avoid sticking to hardcoded offsets
-3. Use custom header with "uEnv" magic and env data length
+> Maybe the clock is not required on mt7986?
 
-Example (length 0x4000):
-$ hexdump -n 32 -C -s 0x40000 /dev/mtdblock0
-00040000  76 6e 45 75 00 40 00 00  34 89 7a 82 49 4d 41 47  |vnEu.@..4.z.IMAG|
-00040010  45 3d 4e 41 4e 44 3a 31  4d 2c 31 30 32 34 4d 00  |E=NAND:1M,1024M.|
-(0x40000 offset is unit specific and can change)
+yes, mt7986 does not have all clocks currently defined in binding for gen3=
+-pcie (currently mt8xxx)
 
-Starting with the commit 118f3fbe517f4 ("dt-bindings: mtd: partitions:
-support label/name only partition") DT can describe partitions matching
-them by a name (without specifying actual address). With that feature
-and this binding change it's possible to:
-1. Specify DT node for Broadcom's U-Boot env data subpartition
-2. Add nodes for specific environment data variables
-3. Reference them as NVMEM cells
+the mapping is as followed:
 
-This binding is unlikely to help Broadcom's U-Boot. U-Boot SPL needs to
-find environment data early (before it accesses DTB) and it does that by
-looking for an "uEnv" magic. Dirty way.
+CLK_INFRA_IPCIER_CK: peri_26m
+CLK_INFRA_IPCIEB_CK: top_133m
+CLK_INFRA_IPCIE_CK: pcie working clock from SoC, in MT7986 it is equal to =
+tl_26m + tl_96m + tl_32k in MT8192
+CLK_INFRA_PCIE_SEL: clock mux to select source clock to CLK_INFRA_IPCIE_CK
+CLK_INFRA_IPCIE_PIPE_CK : pcie working clock from PHY, pl_250m
 
-This binding can however be used by operating systems. It allows
-describing cleanly U-Boot, its env data and variables. It tells
-operating system about Broadcom-specific env data so it can parse it.
+as far as i see the driver only enables the clocks in bulk (no access to t=
+he clock-names), but binding needs the names
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Work on better commit body & add example
-V3: Avoid duplicated "mac" label
----
- .../devicetree/bindings/nvmem/u-boot,env.yaml | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+got it solved with help from mtk (see my comment on part 7) with filling m=
+issing clocks with a fixed-clock-node.
+If this is the right way this binding-change is enough ;)
 
-diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-index e96bca99f2d9..cbc5c69fd405 100644
---- a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-@@ -38,6 +38,8 @@ properties:
-         const: u-boot,env-redundant-bool
-       - description: Two redundant blocks with active having higher counter
-         const: u-boot,env-redundant-count
-+      - description: Broadcom's variant with custom header
-+        const: brcm,env
- 
-   reg:
-     maxItems: 1
-@@ -73,3 +75,22 @@ examples:
-             };
-         };
-     };
-+  - |
-+    partitions {
-+        compatible = "fixed-partitions";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        partition@0 {
-+            reg = <0x0 0x100000>;
-+            compatible = "brcm,u-boot";
-+            label = "u-boot";
-+
-+            partition-u-boot-env {
-+                compatible = "brcm,env";
-+
-+                ethaddr {
-+                };
-+            };
-+        };
-+    };
--- 
-2.34.1
+> Anyway, for the bindings:
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+thx
+
+regards Frank
