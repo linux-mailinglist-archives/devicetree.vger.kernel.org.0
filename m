@@ -2,270 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 856DD6029C0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 13:01:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8749D6029E2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 13:11:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbiJRLBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 07:01:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39778 "EHLO
+        id S229619AbiJRLLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 07:11:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbiJRLBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 07:01:41 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04289B5FE1
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 04:01:34 -0700 (PDT)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20221018110129epoutp04e5ca145b8e31b787ae73acde57239159~fJNYocH5k0573005730epoutp04c
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 11:01:29 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20221018110129epoutp04e5ca145b8e31b787ae73acde57239159~fJNYocH5k0573005730epoutp04c
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1666090889;
-        bh=k4vYvvGuuWfM3VOKoxhBAgCgz9idhglV/m3UVogcGcg=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=iMYWVWiwGYRu8Xaset6LzKa8oajGiV5eZ7Yxm9+9CI3e2/9zHt4/j/EmNgXtq78cR
-         fatR3KTQvR2C5jMRMb+jCvZQ2LfzDh5wfSeBHYLK9VrPndIcSuatMmbDDF7ITB6iAx
-         VmqWkAUZn+RUWnDWRlAA2vip/+2baZ7pEQmNNQrc=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
-        20221018110128epcas5p10dbf5058053acc545c49e1ff8dcac98c~fJNXsr3vd1116011160epcas5p1T;
-        Tue, 18 Oct 2022 11:01:28 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.180]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4Ms9sK5wHJz4x9Pt; Tue, 18 Oct
-        2022 11:01:25 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        B0.3D.39477.5878E436; Tue, 18 Oct 2022 20:01:25 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20221018104904epcas5p265c1716075593f6ae69bea4c842a87df~fJCis4ay11025610256epcas5p2F;
-        Tue, 18 Oct 2022 10:49:04 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20221018104904epsmtrp1ebf2132bbf0e0c93576efe3d105cf9f9~fJCiqzNRs1943319433epsmtrp1D;
-        Tue, 18 Oct 2022 10:49:04 +0000 (GMT)
-X-AuditID: b6c32a4a-007ff70000019a35-e9-634e8785460d
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        6A.6B.14392.0A48E436; Tue, 18 Oct 2022 19:49:04 +0900 (KST)
-Received: from FDSFTE308 (unknown [107.122.81.79]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20221018104900epsmtip1a157ace2e193ff79beb666c3f1dc5939~fJCfd9tk-2216622166epsmtip1k;
-        Tue, 18 Oct 2022 10:49:00 +0000 (GMT)
-From:   "Aakarsh Jain" <aakarsh.jain@samsung.com>
-To:     "'Rob Herring'" <robh@kernel.org>
-Cc:     <linux-fsd@tesla.com>, <linux-media@vger.kernel.org>,
-        <pankaj.dubey@samsung.com>, <linux-arm-kernel@lists.infradead.org>,
-        <dillon.minfei@gmail.com>, <devicetree@vger.kernel.org>,
-        <krzk+dt@kernel.org>, <smitha.t@samsung.com>,
-        <benjamin.gaignard@collabora.com>, <stanimir.varbanov@linaro.org>,
-        <jernej.skrabec@gmail.com>, <robh+dt@kernel.org>,
-        <aswani.reddy@samsung.com>, <mchehab@kernel.org>,
-        <hverkuil-cisco@xs4all.nl>, <mark.rutland@arm.com>,
-        <m.szyprowski@samsung.com>, <linux-kernel@vger.kernel.org>,
-        <alim.akhtar@samsung.com>, <andi@etezian.org>,
-        <andrzej.hajda@intel.com>, <ezequiel@vanguardiasur.com.ar>,
-        <david.plowman@raspberrypi.com>
-In-Reply-To: <166558064414.1937173.2124012536890566845.robh@kernel.org>
-Subject: RE: [Patch v3 01/15] dt-bindings: media: s5p-mfc: Add new DT schema
- for MFC
-Date:   Tue, 18 Oct 2022 16:18:59 +0530
-Message-ID: <000501d8e2df$3d209700$b761c500$@samsung.com>
+        with ESMTP id S229569AbiJRLLE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 07:11:04 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835468768F;
+        Tue, 18 Oct 2022 04:11:02 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id o12so13453348lfq.9;
+        Tue, 18 Oct 2022 04:11:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/8tni/kGjlOK1XQXN8hrFzhS2TkTfeJI5GrBJqNimS4=;
+        b=U3adCc4TOa+bs1UzQ2+mK/yffvKbwL7MjTI0L4iVAkbxlI2v9RN9MMXp5ts52m79aU
+         2JkUS/3rc6UopxWcL8xZU9nEK1IKnYNvEH34nrv8myJnl7v942cq7NGPp101gv9OLXZE
+         kLzF30AZOUIeOtuFFCd/Jp+ybmZkoq5v8qmi8VGuEhkd7a38szOIDiMUVRUh/jcNEqXi
+         m7T3Mn/ZXhAFQM+u+TcG5xdOWhZqQzQl85sDvJDoqlXBEY2qk9YS51kclGn8JPVbuRGu
+         aTr/wh2c2YmO96nRgYNOCEnVMHbjOlCCEGOvJc3tmbbm6F0Z/JGjffHyynCKeqkmQdkQ
+         MwSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:cc:to:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/8tni/kGjlOK1XQXN8hrFzhS2TkTfeJI5GrBJqNimS4=;
+        b=dQBUAkGEuhJ4zhUuSDwMV9G9mJ2w8axwD3UKEqyfCDoqTc3wBH8TLBewXxfkeQSNvY
+         x3dlQkodhiidBlgZSr+ZW+fxx0JId86jwSxT6/l/zRzMV9f5F83OX77y34BMwGHP7bKW
+         zy2fZWpaAv2/S6WunwJR4Bju8ZQ40icHN07uvDFj545vtyYG9S9fbnCbU6Ft3BZ3fM3F
+         CuctY2O89UYYirQmEU0aJgMBpayCRIIpoQDMcz+BZRNsLIUtM+mcw8Uls3oQUlbogcv8
+         TmV0/qTtYYBNIPwzx55Nk59bOXgEfpvlvcg63BKvzgCDULheSvixX2bxsMofLDomEtdG
+         ruKg==
+X-Gm-Message-State: ACrzQf2pT4B8bRosfS8+xYgig1CYq3/RagNfG1wIYaLW2aHUYnXaRQhm
+        Er5THzCogKvePKV39cv08HIgt/WXjsg=
+X-Google-Smtp-Source: AMsMyM4YwYjI14nqwWNbm8QXPm+0tMad0TDLe5Vzidp2gYburZTUglifXys/m57b1qZkAoier9C/Qg==
+X-Received: by 2002:a05:6512:1320:b0:488:8fcc:e196 with SMTP id x32-20020a056512132000b004888fcce196mr798229lfu.602.1666091460648;
+        Tue, 18 Oct 2022 04:11:00 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::4? (dc75zzyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::4])
+        by smtp.gmail.com with ESMTPSA id p11-20020ac24ecb000000b0048a9e899693sm1837547lfr.16.2022.10.18.04.10.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Oct 2022 04:10:59 -0700 (PDT)
+Message-ID: <e34d8586-a471-81d6-d09c-f2e0d9884628@gmail.com>
+Date:   Tue, 18 Oct 2022 14:10:59 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <cover.1665066397.git.mazziesaccount@gmail.com>
+ <88e24b01da9f44ebf5fcd8344ded0b75ff742fbf.1665066397.git.mazziesaccount@gmail.com>
+ <Yz8fK7j8pxlU76xt@smile.fi.intel.com>
+ <98b59ad5-8c29-be41-4da1-a961db67827c@gmail.com>
+ <Y0QIzf2cAH9ehSeO@smile.fi.intel.com>
+ <19a6db0f-40a8-dacf-4583-cdb9d74e1243@fi.rohmeurope.com>
+ <b1700ea7-4a7a-263c-595c-0f7a56763c10@gmail.com>
+ <20221014144247.00001eb1@huawei.com>
+Content-Language: en-US
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [RFC PATCH v2 4/5] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+In-Reply-To: <20221014144247.00001eb1@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQIjXZOHgvokXGuofbg3rWbxTFZEMQGGfBLcASb/h3kBq/W9F61cN4wA
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA01TaVBTVxjlvqwwA30iLReGQvpGRBlZogEvKG2dIn2IdRjbgnVoMSZvCJLN
-        BGrRFnCBjiwVZ6hKWDWgAyIihEUMFkNsBKwbFIatotJCGBkZoCxqoQkJLf/O953v3HPPd+ey
-        aY6FLFd2vDSRUkj5YoJpR29o2+jtk/7jHoH/wmsvNFzcwETq+VEMPVVP05Gurp6FNN0FNHTF
-        0MpAJfoHDNR45zkd3RgzsY/zh+hotKQaIKPqDyaqfdHDQM/Go1FXcyETZdfUM9A1/RALlfc+
-        xtDl2rcYulQ/w0LpLXoWWtI2sdCQtgGgUxl67GNIVhVXAbJpqAyQvWVTNPKmaohFqrVGjKyt
-        PM0kB3u0TLKuLJVMv/uaTv6kqQTk4okiFpmp72WS07XuZMff06xIh/0J20UUX0gpOJRUIBPG
-        S+NCiIjPYz+JDQj05/pwg9BWgiPlS6gQInR3pE9YvNi0BoLzLV+cZGpF8pVKwu/D7QpZUiLF
-        EcmUiSEEJReK5Ty5r5IvUSZJ43ylVGIw199/c4Bp8ECC6PbAAiZf8Pyue3CSmQYecTKBLRvi
-        PFjWdRxkAju2I34LwFcn5+mWYgrApYLTVmYWwPKCl2BF0p49x7QQLQDOGQcZlmIUwPsjnUzz
-        FBP3g087shlm7IR7whOq4eVzabiKAetfVWFmwhb/FFZoHy4L1uJR8JR+fllANwmmO3NYmYDN
-        tseDoCZrk7ltj6+B7fkjdDOm4R6wcaKQZrkRBy78ednqFQa72gzWGWd4dyGbZvaFeI8tHNTV
-        WSOEwvtVhXQLXgvHDRqWBbtC45kMKxbAF5eMVgMxvK7Ns85/BFu7zVq2yWAjvN7sZ2m/D3/u
-        qMYsvg4w580IZunbw6biFbweFg5aIkLcDbZdLQe5gFCtiqZaFU21KoLqf7dSQK8ELpRcKYmj
-        lAHyzVLqyH8vLpBJasHyN/He1QSeDU/66gDGBjoA2TTCyT5sZrfA0V7ITz5KKWSxiiQxpdSB
-        ANO6z9Jc3xXITP9MmhjL5QX58wIDA3lBWwK5hLO9+oK3wBGP4ydSCRQlpxQrOoxt65qGHZsz
-        2OxM2YquTdyurnmvIGWdNxy7EZ1/ssT9g+/fhocZU7y8Ir6SYUW6Uc55jzPGm1ExhqKI7uiv
-        ZcGaq/3P1QaRU+1vCcf6KmKSwyu++MxuIJZObEp1WXM0T7cr3WtvLnbafcNEzo69IlueRDIx
-        kLXu9w2SRW9C/WCu5Zd+v8ONk6GHsuxaz5cKv9RoQn7dGfVNWkTz7LZz+/7ixxyctv2hVLIt
-        NXzJI2X0YPv+8Ts2MFd42OaJds+iumawKnWccFyvOf5mdsrzHZ5/Hf4oriev88o95wNNxMMt
-        wefa+MojtxxyczIW3eCh9AsXXe719buNVbREJl/8Z0j1JGNmx77ql31nCbpSxOd60xRK/r+e
-        Pg8yrwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpgleLIzCtJLcpLzFFi42LZdlhJTndBi1+ywb6PLBYP5m1js1j84zmT
-        xf3Fn1ksDm3eym6x5cpsZovlxw+wWsw/co7VYvvBRywWG18AZS/OvMti8Xz+OkaLl7PusVls
-        enyN1eLhq3CLy7vmsFn0bNjKarH2yF12i6XXLzJZLNv0h8li0dYv7Bate4+wW/zfs4Pd4u6e
-        bYwWLW1HmBwkPNbMW8PosePuEkaP60s+MXvsnHWX3WPxnpdMHptWdbJ53Lm2h81j85J6j9aj
-        v1g8+rasYvT41zSX3aPryHU2j8+b5DxOff3MHsAXxWWTkpqTWZZapG+XwJWx7/ZPpoKfqhVX
-        7nxga2C8oNDFyMkhIWAicbLnO1sXIxeHkMBuRol/e6cwQiRkJP63HWOHsIUlVv57DmYLCTxl
-        lJj0OBPEZhPQl7h/qocVxBYRUJVomvWABWQQs8AmVol3F+YyQkz9wyjxYP86sCpOAXeJlXvO
-        A63j4BAWCJHY/a0OJMwC1Pz5dC87SJhXwFJiS7cOSJhXQFDi5MwnLCBhZgE9ibaNYKcxC8hL
-        bH87hxniNAWJn0+XQZ3gJnH58HEWiBpxiaM/e5gnMArPQjJpFsKkWUgmzULSsYCRZRWjZGpB
-        cW56brFhgWFearlecWJucWleul5yfu4mRnAi0dLcwbh91Qe9Q4xMHIyHGCU4mJVEeN2++CQL
-        8aYkVlalFuXHF5XmpBYfYpTmYFES573QdTJeSCA9sSQ1OzW1ILUIJsvEwSnVwGRUmcJm0hqo
-        +TqvlvHN+70sVfLT/UozkvYG6Omt6z6wXtfYqoVBdImifRST0M5titreN63O5DiXXI1Y+239
-        IufmwmyFG+9+GLoJxyff/H6hdxe/k56Es893Tkm78/frHk1s+iX2rd1i79KNPbo+3NMdLGVY
-        T6xl/3bkj1mUqTKfzvqcQLlnNQ/tV1wK/fx1m3edUmCHzWSPAl2pySyBd9g7n79TW18n1iWp
-        4yyqbrZ2zt/oVT7mrFo33518rv9kVW5Nc+HCZmmXzLc1ZTeaIhn+NBszvz760nDqHd9f9vVh
-        Yf/zNCPyRJ8XzHT4fajJOa9y2idvvQ/hsvOue3+Xam2w43grw/F1Usb6R+ZKLMUZiYZazEXF
-        iQCGAXqIkwMAAA==
-X-CMS-MailID: 20221018104904epcas5p265c1716075593f6ae69bea4c842a87df
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221011125142epcas5p13c858a5f27830fb1de50fa51e9730eca
-References: <20221011122516.32135-1-aakarsh.jain@samsung.com>
-        <CGME20221011125142epcas5p13c858a5f27830fb1de50fa51e9730eca@epcas5p1.samsung.com>
-        <20221011122516.32135-2-aakarsh.jain@samsung.com>
-        <166558064414.1937173.2124012536890566845.robh@kernel.org>
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/14/22 16:42, Jonathan Cameron wrote:
+> On Wed, 12 Oct 2022 10:40:38 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> On 10/10/22 16:20, Vaittinen, Matti wrote:
+>>> On 10/10/22 14:58, Andy Shevchenko wrote:
+>>>> On Mon, Oct 10, 2022 at 12:12:34PM +0300, Matti Vaittinen wrote:
+>>>> ...
+>>>>   
+>>>>>>> +	ret = regmap_bulk_read(data->regmap, chan->address, &data->buffer,
+>>>>>>> +			       sizeof(s16));
+>>>>   
+>>>>>> No endianess awareness (sizeof __le16 / __be16)
+>>>>   
+>>>>>>> +	if (ret)
+>>>>>>> +		return ret;
+>>>>>>> +
+>>>>>>> +	*val = data->buffer[0];
+>>>>>>
+>>>>>> Ditto (get_unaligned_be16/le16 / le16/be16_to_cpup()).
+>>>>>
+>>>>> I have probably misunderstood something but I don't see why we should use
+>>>>> 'endianess awareness' in drivers? I thought the IIO framework code takes
+>>>>> care of the endianes conversions based on scan_type so each individual
+>>>>> driver does not need to do that. That however has been just my assumption. I
+>>>>> will need to check this. Thanks for pointing it out.
+>>>>
+>>>> The IIO core uses endianness field only once in iio_show_fixed_type() AFAICS.
+>>
+>> Following is some hand waving and speculation after my quick code read.
+>> So, I may be utterly wrong in which case please do correct me...
+>>
+>> Anyways, it seems to me that you're correct. The endianness field is
+>> only used by the IIO to build the channel information for user-space so
+>> that applications reading data can parse it. As far as I understand, the
+>> driver does not need to do the conversions for user-space, but the
+>> user-space tools should inspect the type information and do the
+>> conversion. I think it makes sense as user-space applications may be
+>> better equipped to do some maths. It also may be some applications do
+>> not want to spend cycles doing the conversion but the conversions can be
+>> done later "offline" for the captured raw data. So omitting conversion
+>> in the IIO driver kind of makes sense to me.
+> 
+> That was indeed the original reasonining for buffered data path
+> (note the endian marker is for scans only which only apply in buffered
+>   / chardev case).
 
+So, in a case where we "push_to_buffers" the data, we can leave the data 
+to use the endianess we advertise via endianess info field?
 
-> -----Original Message-----
-> From: Rob Herring [mailto:robh@kernel.org]
-> Sent: 12 October 2022 18:50
-> To: aakarsh jain <aakarsh.jain@samsung.com>
-> Cc: linux-fsd@tesla.com; linux-media@vger.kernel.org;
-> pankaj.dubey@samsung.com; linux-arm-kernel@lists.infradead.org;
-> dillon.minfei@gmail.com; devicetree@vger.kernel.org; krzk+dt@kernel.org;
-> smitha.t@samsung.com; benjamin.gaignard@collabora.com;
-> stanimir.varbanov@linaro.org; jernej.skrabec@gmail.com;
-> robh+dt@kernel.org; aswani.reddy@samsung.com; mchehab@kernel.org;
-> hverkuil-cisco@xs4all.nl; mark.rutland@arm.com;
-> m.szyprowski@samsung.com; linux-kernel@vger.kernel.org;
-> alim.akhtar@samsung.com; andi@etezian.org; andrzej.hajda@intel.com;
-> ezequiel@vanguardiasur.com.ar; david.plowman@raspberrypi.com
-> Subject: Re: [Patch v3 01/15] dt-bindings: media: s5p-mfc: Add new DT
-> schema for MFC
-> 
-> On Tue, 11 Oct 2022 17:55:02 +0530, aakarsh jain wrote:
-> > From: Smitha T Murthy <smitha.t@samsung.com>
-> >
-> > Convert DT schema for s5p-mfc in yaml format
-> >
-> > Cc: linux-fsd@tesla.com
-> > Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
-> > Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
-> > ---
-> >  .../devicetree/bindings/media/s5p-mfc.txt     |  75 --------
-> >  .../bindings/media/samsung,s5p-mfc.yaml       | 163
-> ++++++++++++++++++
-> >  2 files changed, 163 insertions(+), 75 deletions(-)  create mode
-> > 100644 Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> >
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-following
-> warnings. Consider if they are expected or the schema is incorrect. These
-> may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here:
-https://protect2.fireeye.com/v1/url?k=b651482e-
-> e9ca7131-b650c361-000babdfecba-bb28230f82534754&q=1&e=25a7ee78-
-> 697f-4371-880e-
-> dcf4e3072c99&u=https%3A%2F%2Fpatchwork.ozlabs.org%2Fpatch%2F
-> 
-> 
-> codec@13400000: clock-names: ['mfc', 'sclk_mfc'] is too long
-> 	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
-> 	arch/arm/boot/dts/exynos3250-monk.dtb
-> 	arch/arm/boot/dts/exynos3250-rinato.dtb
-> 
-> codec@13400000: clocks: [[7, 178], [7, 228]] is too long
-> 	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
-> 	arch/arm/boot/dts/exynos3250-monk.dtb
-> 	arch/arm/boot/dts/exynos3250-rinato.dtb
-> 
-> codec@13400000: iommus: [[36]] is too short
-> 	arch/arm/boot/dts/exynos3250-monk.dtb
-> 	arch/arm/boot/dts/exynos3250-monk.dtb
-> 
-> codec@13400000: iommus: [[40]] is too short
-> 	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
-> 	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
-> 
-> codec@13400000: iommus: [[47]] is too short
-> 	arch/arm/boot/dts/exynos3250-rinato.dtb
-> 	arch/arm/boot/dts/exynos3250-rinato.dtb
-> 
-> codec@13400000: memory-region: [[31], [32]] is too long
-> 	arch/arm/boot/dts/exynos4210-smdkv310.dtb
-> 
-> codec@13400000: memory-region: [[37], [38]] is too long
-> 	arch/arm/boot/dts/exynos4210-origen.dtb
-> 
-> codec@13400000: memory-region: [[41], [42]] is too long
-> 	arch/arm/boot/dts/exynos4412-smdk4412.dtb
-> 
-> codec@13400000: memory-region: [[43], [44]] is too long
-> 	arch/arm/boot/dts/exynos4412-origen.dtb
-> 
-> codec@13400000: memory-region: [[47], [48]] is too long
-> 	arch/arm/boot/dts/exynos4412-itop-elite.dtb
-> 	arch/arm/boot/dts/exynos4412-odroidx2.dtb
-> 	arch/arm/boot/dts/exynos4412-odroidx.dtb
-> 
-> codec@13400000: memory-region: [[48], [49]] is too long
-> 	arch/arm/boot/dts/exynos4412-odroidu3.dtb
-> 
-> codec@f1700000: clock-names:0: 'mfc' was expected
-> 	arch/arm/boot/dts/s5pv210-aquila.dtb
-> 	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
-> 	arch/arm/boot/dts/s5pv210-galaxys.dtb
-> 	arch/arm/boot/dts/s5pv210-goni.dtb
-> 	arch/arm/boot/dts/s5pv210-smdkc110.dtb
-> 	arch/arm/boot/dts/s5pv210-smdkv210.dtb
-> 	arch/arm/boot/dts/s5pv210-torbreck.dtb
-> 
-> codec@f1700000: clock-names:1: 'sclk_mfc' was expected
-> 	arch/arm/boot/dts/s5pv210-aquila.dtb
-> 	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
-> 	arch/arm/boot/dts/s5pv210-galaxys.dtb
-> 	arch/arm/boot/dts/s5pv210-goni.dtb
-> 	arch/arm/boot/dts/s5pv210-smdkc110.dtb
-> 	arch/arm/boot/dts/s5pv210-smdkv210.dtb
-> 	arch/arm/boot/dts/s5pv210-torbreck.dtb
-> 
-> codec@f1700000: memory-region: [[51], [52]] is too long
-> 	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
-> 
-> codec@f1700000: memory-region: [[55], [56]] is too long
-> 	arch/arm/boot/dts/s5pv210-galaxys.dtb
+> It's less obvious for the sysfs path as that's inherently slow.
+> We could have made this a problem for the IIO core, but we didn't :)
 
+But again, as far as I understood, the user-space is still expected to 
+read the sysfs field for "scan_elements/in_accel_<channel>_type"? I 
+guess it would be confusing to say "le:s16/16>>0" there while returning 
+CPU native endianess values from sysfs files?
 
+>> I haven't thoroughly looked (and I have never used) the in-kernel IIO
+>> APIs for getting the data. A quick look at the
+>> include/linux/iio/consumer.h allows me to assume the iio_chan_spec can
+>> be obtained by the consumer drivers. This should make the endianess
+>> information available for the consumer drivers as well. So, again,
+>> consumer drivers can parse the raw-format data themself.
+> 
+> yes consumers should be be endian aware if they are using the
+> callback buffer route to get the data.  Now you mention it, we
+> may well have cases where that isn't handled correctly.
+> There are few enough users of that interface that it might well work
+> by coincidence rather than design. oops.
+> 
+>>
+>> I have this far only used the sysfs and iio_generic_buffer on a
+>> little-endian machine so I have had no issues with the little-endian
+>> data and I have only observed the code. Hence I can not really say if my
+>> reasoning is correct - or if it is how IIO has been designed to operate.
+>> But based on my quick study I don't see a need for the IIO driver to do
+>> endianess conversion to any other format but what is indicated by
+>> scan_type. Specifically for KX022A, the data is already 16B LE when read
+>> from the sensor. This is also advertised by scan_type so no conversion
+>> should be needed (unless, of course, I am mistaken :]).
+> 
+> Ah. I'd missed that. Data storage should reflect the read back endianness
+> and for the read_raw path you need to perform the conversion in driver
+> (but not the high perf push to buffers path).
 
-Hi Rob,
+Oh, really? I think it might be confusing to say "le:s16/16>>0" in 
+"scan_elements/in_accel_<channel>_type" but return something else from 
+the in_accel_<channel>_raw. Especially the "raw" word at the end of the 
+file signals the data is in non converted raw format.
 
-We tried reproducing warnings as reported above, but I am not able to see
-these warnings after  running make dtbs_check & make DT_CHECKER_FLAGS=-m
-dt_binding_check.
-Packages used-
-yamllint 1.10.0
-$ dt-mk-schema --version
-2022.9
+I take your word for that if you say this is what the user-space 
+expects, it just is not what I did expect. Well, I do very little work 
+on the user-space these days ;) Still just to be on safe side - do you 
+mean I should convert the data returned from read_raw to the CPU endianess?
 
-Am I missing anything? Do let me know.
+> Sure we could probably have handled read_raw in tree as well but we didn't
+> and probably too late to sensibly fix that now.  One of many things we'd
+> probably do differently if we were starting again.
 
+Well, this is pretty usual story :) Predicting the future is hard. My 
+crystal ball ran out of batteries a long ago ;)
 
-Thanks,
-Aakarsh
+Best Regards
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
