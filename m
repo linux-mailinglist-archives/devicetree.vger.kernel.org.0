@@ -2,72 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3ECA602D2B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23437602D3E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:45:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230470AbiJRNj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 09:39:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56712 "EHLO
+        id S230416AbiJRNp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 09:45:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230472AbiJRNjz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:39:55 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE472B1A6
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:39:52 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id 8so8615737qka.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:39:52 -0700 (PDT)
+        with ESMTP id S229934AbiJRNpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:45:24 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BEFBABD6B
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:45:22 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id a10so23492342wrm.12
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:45:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w+sLgrbsGMQHlemgqQ7Mq0DFwn5lvuXfVQkqzsmbPPc=;
-        b=Z8Yp8a8zbodfJ+0cy6HZrLXd7Wj9v77Qx8shoJarMrcirS/pY3TTcl+uzS+HqtjkVK
-         6SIJFTRTymA+j74uqIA+VCx6ufHwulAgozSQG9U+Loubt4n1kDhJFQt9hPsHOCqppjnI
-         BZo0TLOvoXy+Rjc9q9oGEhDrUq/JOwd8a8CO7BkdE/45WKP1AdyKKUa9K/Cin/t7SqRn
-         sid/jFqbBqHfaoofCViIqQ1SvdLmH/7tBfaKaq/aoBc2vzff96n/HAUPEZtpJIMK6tRA
-         EpjG3sFT+ApgAbBrgwLmdFX8Q8T2+apOr89qgQDt8c6GaJw1AOpiNi0Jb58cSr2w/MQT
-         nC1A==
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=MJnaw4Nz/0LgJzP7kyxNcgi29Swk3/5rr37ifIz0ztw=;
+        b=qm28la7HKa0mTC4IqnER+pSavQF5rf2U/g2TYDSqEzerpd8hRn5ew7DHga2eqk/vhe
+         gcsBlX7jhzY/Zhtgmwb+/mWJ7Rez6bPb5eJ9kkIGplP1GerC400+HBKr1osapVzBgk3K
+         XGcQ6qEXROnauyzLo6R1pvcjhZZ82x31JNWtQbNpj18Dbb1nPW26otcrzBommLmr4QqN
+         XsmkMTaXm2HG1qDP2mLsmt9rzRy/rGPLFq76jKScxqvomPFxVBx4ASdA9IzYFPfwlWfl
+         8U70j+JxFPPWf7WD6hSJWFp8AnKHKZpH+wSUWYb/RKetq36jEWSZ268Kpmu0eo0D1HG3
+         4wjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w+sLgrbsGMQHlemgqQ7Mq0DFwn5lvuXfVQkqzsmbPPc=;
-        b=CpahBDufoAv8rJW3pweDyvx3nsJMa1ikgi1Isti/HXJ0B43DR2rj/NKOOJVCPlC+Jo
-         HJNdD55Rl5zT2F59TO7Uwow0KMyJvGJMviH1dC5Jv7BlXTjGH+cU3gPzETu6JR3G+2Mh
-         ekXsVFQLTSL/AdmDO3Hm6SvUC94SRA+Jshv/shjZVoRhYMxogucvJqV7QOyrNQlUTkdI
-         BpWksgJ5Eb2yKxdEvwvBsS9ZD/sWfMZVs3iIO+aqEvCDIvAqmYOqRFFgb87pvYM0XoAa
-         0B5CzboXhGnGvUl1y52J4+SFlFLDk1NTHC10LEokt3KvvKU/HEh+Oztsa1eIn2aWWxrI
-         6C5w==
-X-Gm-Message-State: ACrzQf3AdSN7HsulkbKW87KwoawhBs1uJU12z1P+Iq3sKbAfs5anblhj
-        dVaPe35PLirnW4Pqg24MVsfYRg==
-X-Google-Smtp-Source: AMsMyM77QVLHqie0IxFfekeRYS2BibCfcZ0ghwPBj4VV4wG0myvynk87fYbUHdKPYmPTDjePFO+BGw==
-X-Received: by 2002:a05:620a:40a:b0:6ed:2700:e080 with SMTP id 10-20020a05620a040a00b006ed2700e080mr1767424qkp.649.1666100391578;
-        Tue, 18 Oct 2022 06:39:51 -0700 (PDT)
-Received: from krzk-bin.MSRM (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id t24-20020a37ea18000000b006c73c3d288esm2368713qkj.131.2022.10.18.06.39.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 06:39:50 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH] ARM: dts: aspeed: align SPI node name with dtschema
-Date:   Tue, 18 Oct 2022 09:39:46 -0400
-Message-Id: <166610038083.12522.14381298437428190883.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220830180344.15657-1-krzysztof.kozlowski@linaro.org>
-References: <20220830180344.15657-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MJnaw4Nz/0LgJzP7kyxNcgi29Swk3/5rr37ifIz0ztw=;
+        b=KnmiVkucWVhN+oUcIWE/Mrst6wANkgtxm6wIuV+lvH8+T+oKEqAUcRJECIY5ciJxfg
+         2fwE9tc6WnS0Yk7JJK+cgidwv3GTnblnUdY2m/qRlV4MLuVWFcvCCuEY+kCZctBWBBOh
+         emuVT/cnpg+U2KBXLvZSHUscjR9sC7rHtQEKpjO7kKk/+faUZDwhi177EItiGsrWIoDz
+         T9useB1KoRX4wy60/eVPdog0vGl7y6bqvb3M8MkwgYIcoZ2xqu4Wz1S5cyPcEawwaOoz
+         ZQ7GfPiwzLHneRRqP9FDBGgcE9jeaX2Z3410qMjEdijxq+sSUUqAvh5c5yzujWCeVSwL
+         VRzA==
+X-Gm-Message-State: ACrzQf17dUqSZAkBBaGolGzfnvHMyGaWYmMndHHBrlfdnJWMUK4ggoPZ
+        maOiDQ6S0Z8d0/noHvSf6nQmAg==
+X-Google-Smtp-Source: AMsMyM4FyNB+hm27xiZNu6OR6bDUk9kxUANipNOmcBaInA9C+QLskKPhKGLV0gHR7zsYn59wtiebyg==
+X-Received: by 2002:a05:6000:1842:b0:22e:7bbf:c75 with SMTP id c2-20020a056000184200b0022e7bbf0c75mr1976315wri.547.1666100720778;
+        Tue, 18 Oct 2022 06:45:20 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:7fad:ace8:cda6:d900? ([2a01:e0a:982:cbb0:7fad:ace8:cda6:d900])
+        by smtp.gmail.com with ESMTPSA id x8-20020a5d6508000000b00228dff8d975sm11176515wru.109.2022.10.18.06.45.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Oct 2022 06:45:20 -0700 (PDT)
+Message-ID: <37b4c6e6-ff16-184a-08b7-b6d1ee225c6a@linaro.org>
+Date:   Tue, 18 Oct 2022 15:45:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: sc7280: Add GPI DMA compatible
+ fallback
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Richard Acayan <mailingradian@gmail.com>,
+        Melody Olvera <quic_molvera@quicinc.com>
+References: <20221015140447.55221-1-krzysztof.kozlowski@linaro.org>
+ <20221015140447.55221-4-krzysztof.kozlowski@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20221015140447.55221-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,16 +86,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Aug 2022 21:03:44 +0300, Krzysztof Kozlowski wrote:
-> The node names should be generic and DT schema expects certain pattern.
+On 15/10/2022 16:04, Krzysztof Kozlowski wrote:
+> Use SM6350 as fallback for GPI DMA, to indicate devices are compatible
+> and that drivers can bind with only one compatible.
 > 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
-Applied, thanks!
-
-[1/1] ARM: dts: aspeed: align SPI node name with dtschema
-      https://git.kernel.org/krzk/linux-dt/c/50c7e281f44726249b5ab7f148c02bbba751fea1
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
