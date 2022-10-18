@@ -2,112 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62817602D0A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:32:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3D9B602D29
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:39:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230399AbiJRNcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 09:32:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
+        id S229934AbiJRNj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 09:39:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230401AbiJRNcc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:32:32 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A0DCCAE7C
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:32:31 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id m6so8584698qkm.4
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:32:31 -0700 (PDT)
+        with ESMTP id S229975AbiJRNjv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:39:51 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93C991EC56
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:39:49 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id z30so8579100qkz.13
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:39:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kaCHs2xS34elvJKmekTcmuQN9rNgKKexethJB2Y5REc=;
-        b=ZjLD7F1VbceTQdc2FVYGM7rpP0gstOOB09yNhHNiAVOxHHRSI7rGQKG/pWUAG9tV9u
-         xsu9qHuKEEYagg01nvbAohXXIwLdUGr59Bf+RzhYYiPHCII2jlQ5LBcNagarjtuR7QKz
-         x49vCaGeYNSKtFDuti8ryyppzuXuaHEsY/ezLvw7QniellFRh24Ql7wd4m6hgzrF1JBF
-         d84sYUuyKZlSpbZPk/76KcsOZxmzkzXbooe39RKpshXZEqRVWUhwKjCJHcF/qzXAFMBO
-         v4UapfMF9rX5/53ohSH4zefn1KbtUo1MBUIY+TvJoWYx1ua+XHg40ymsrkA/SF8QfoeK
-         masg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/GaRn096EJkVZZlzc+nVh5YRf5MDAhYRvE4OmZmnDu4=;
+        b=EkZruu4rs61lg7zj4v5FZ1R0zXYR0uE99SAj0j59YpOF+DJnIASEoPqnf5Yd6OLWY6
+         47gGheGUjp9pPEtdXY42ElrGLfqOhPxb9tRvkw7qc5n3HqyouhWOkcCm5decCz3/BF4k
+         b5MQsDdoccFi0GpEZnd8x372f/fHtb/CcE66/d3zZ+3FCRSMWOWQmnhr99exOThmKYwM
+         IeVARrdEgtqZVnqkk2B2l4Ag4q+/MruisnU0zCqKnnrMC/O7L2pM2X+6yPPnNuQovvu6
+         DJuI8fAeCblhXKzz1GhRP2E99GEjJzt7kGYkRpOhjR+3aIZ1+Omu1dOhxx78ZjhUVeI8
+         Izdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kaCHs2xS34elvJKmekTcmuQN9rNgKKexethJB2Y5REc=;
-        b=a9dECt2qkSBnDur/8yfj1DoVpzck14+apIDm248JyzkEEVtzoVcFlWT/VWe4qApPIx
-         yqiMQoZliwLD/Nk6t6u8DOFLMjfDZZmKEmfMT9ktGNJO+Y0DL6qKY9gyPQ0TJRYhn5gy
-         pfmTl0EV7Uryc7R1aiyy8KXhDxF+B8Ivy4ctjspJ3iD7EFct4Zcc7ocMwRxYE5780RYD
-         sQclMrfL9TntUcQTKX/PGkWdQw03mMkbBxzHXguQBqtYQG+onWgpZQWW+cLRdQB2dVPR
-         wWpyb4RbSNrjeFaYdo3QZC8NpiSloiXAiAvWCBX7eX5zK8C5rkmZKb5OyjEkyeeEF9Hv
-         gJLw==
-X-Gm-Message-State: ACrzQf1kiHV1TLDvGdpoT8gpPjRBkpAh+w7ACNSvWj5/fiygnYiLiGJH
-        V2oolOYS3LNnfRlAyQvjU0zBMg==
-X-Google-Smtp-Source: AMsMyM6HmKsH2C2pBgFfSroERxT1KE12W4nAI9sADy1phl2YVcta9wYDoZr46YTDutbO0FZuaKq7aA==
-X-Received: by 2002:a05:620a:2150:b0:6e0:79d1:3216 with SMTP id m16-20020a05620a215000b006e079d13216mr1799310qkm.406.1666099950341;
-        Tue, 18 Oct 2022 06:32:30 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id l12-20020a05620a28cc00b006ecf030ef15sm2427438qkp.65.2022.10.18.06.32.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 06:32:29 -0700 (PDT)
-Message-ID: <d681e41f-fd8e-f233-2a25-53c4e0a52c33@linaro.org>
-Date:   Tue, 18 Oct 2022 09:32:28 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH] ARM: dts: ast2600-evb: correct compatible (drop -a1)
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>
-References: <20220804092727.64742-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/GaRn096EJkVZZlzc+nVh5YRf5MDAhYRvE4OmZmnDu4=;
+        b=JHHMQp+fnToCYgRh4VoucjtGFZtmUdeOJPPVXCJ4gYyo2du45U4FA6XQd4UTXbv2sl
+         BlXWHhiNjo9DdaTeyikxfq4yypt8v5iUVLVfHbJgYtDzek5SUEHXMDAKUiFrmTykzJTr
+         DmFp7KI2xb5ZU74XdOzLvm/jI3Z/yiyWUWnqPnbBYruGh84hzQGuxmmCqkNxppS0UxVw
+         fLVy49Z6tNPQr4DkOCrYeUfg+8ZZEbO2yJ/WzfMTMRfRr5gxHh415OKa/l9kOLo70+is
+         DCTNkbZ1V06NuYHWRZNzy7AQqiZDUUw0PRlKhQfyNVn0BNFfqNtABk85P2MssxXeNz4k
+         mWVg==
+X-Gm-Message-State: ACrzQf0u6II04bxLRTQwoZotsrHPVyWA2jupWal1p3H9sVGlpIEJ6ccg
+        +7Zho6Pbu3/GZN6loxCl+QFVMA==
+X-Google-Smtp-Source: AMsMyM5YKTiiYTgjU4PSq7epPdghQRg90zvIlzhA0QCwaCfBBNZM4GK4cwt3eJXzBRaLNQHo+LfMPA==
+X-Received: by 2002:a37:e205:0:b0:6ee:834:1a1b with SMTP id g5-20020a37e205000000b006ee08341a1bmr1808177qki.342.1666100388736;
+        Tue, 18 Oct 2022 06:39:48 -0700 (PDT)
+Received: from krzk-bin.MSRM (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id t24-20020a37ea18000000b006c73c3d288esm2368713qkj.131.2022.10.18.06.39.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Oct 2022 06:39:47 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220804092727.64742-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Gregory Clement <gregory.clement@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+Subject: Re: [PATCH] MAINTAINERS: ARM: marvell: include bindings
+Date:   Tue, 18 Oct 2022 09:39:44 -0400
+Message-Id: <166610038083.12522.9467894060649948229.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220809055729.19242-1-krzysztof.kozlowski@linaro.org>
+References: <20220809055729.19242-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/08/2022 05:27, Krzysztof Kozlowski wrote:
-> Due to copy-paste, the ast2600-evb and ast2600-evb-a1 got the same
-> compatible.  Drop the '-a1' suffix from the first to match what is
-> expected by bindings.
+On Tue, 9 Aug 2022 08:57:29 +0300, Krzysztof Kozlowski wrote:
+> Include top-level Marvell bindings in Marvell maintainer entries.
 > 
-> Fixes: aa5e06208500 ("ARM: dts: ast2600-evb: fix board compatible")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm/boot/dts/aspeed-ast2600-evb.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> index c698e6538269..2010e3cb6158 100644
-> --- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> +++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> @@ -8,7 +8,7 @@
->  
->  / {
->  	model = "AST2600 EVB";
-> -	compatible = "aspeed,ast2600-evb-a1", "aspeed,ast2600";
-> +	compatible = "aspeed,ast2600-evb", "aspeed,ast2600";
 
-This is weird. I sent this patch on 4th August but it was never
-applied... yet instead I see a commit in mainline from end of September:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=d916109169159f9319f45ce7e1339e41eccf22c4
-which was never sent to mailing list.
+Applied, thanks!
 
-So instead of picking up existing commit from mailing list waiting there
-for 1.5 months, Joel just committed something without sharing in public way.
+[1/1] MAINTAINERS: ARM: marvell: include bindings
+      https://git.kernel.org/krzk/linux-dt/c/b65c1735c73019549255e3a59ec80e9b9201c6e5
 
 Best regards,
-Krzysztof
-
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
