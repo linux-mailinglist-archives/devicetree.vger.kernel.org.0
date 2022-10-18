@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E37CB6030F2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 18:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A712C603153
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 19:05:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbiJRQpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 12:45:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55218 "EHLO
+        id S230032AbiJRRFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 13:05:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbiJRQpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 12:45:54 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCD7CDED32
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 09:45:52 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id v11so1134009wmd.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 09:45:52 -0700 (PDT)
+        with ESMTP id S230077AbiJRRFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 13:05:08 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E735B2D1C2
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 10:04:58 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id l28so10062259qtv.4
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 10:04:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+orLHdjN22tP869vCnaab3e5mhNvntEtV9jpkeSTRtw=;
-        b=S6dvHcLhvq0gyDjYHLftknwwXLAGEmhHTtaYQfFpeTBoqo8p56p6xiDIqySooNZomx
-         YxJJrJQuRywSPrB82azwjh/OJo9/vqIe8iTLEJbVBSN5dy2IEi4L3QewHM/h+of4i81K
-         DK8VKsPBPYQ80RGi7Pjg7b/hv9A1ozHZfRGtY=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DEzQc+Bct6/RN359ieT08SroCePicyjw/ZP5+4KzKko=;
+        b=Yv2Yf4MClIPvLvVthW6ibzYYs/8MCcjv7A0cDTf+ru3A3yKWSCT11z1/dmpHREgniS
+         CZd8pRhZMM+2t6neOlbn+S9t/NHa3ZGG1QDeEF1tJ5P1eydU7WrOByCOReTDMVU6RSpW
+         +qqVuLR71UnsGlES4mbhwEr2E9ViuS9xEAQ5e4hiRiqcoW/DH3vqKiAcaan43qpXSPyO
+         gYed5+tLNdW53lishFHaqOzaBduIBigay/B2t3gz835uJF1s7QSI+z76uOn1xsXwwCA9
+         GaXKgl79Yx64ZuZyKOFYVJImUWHbwEfvupBj5ejMUARQb1SO9vT6+FJnhkVVI20FEQQ0
+         973w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+orLHdjN22tP869vCnaab3e5mhNvntEtV9jpkeSTRtw=;
-        b=axJvKd80b1w3yvUgKvy8nx3a/3TNSYpjrcnTKrAdPqNcyeqJ/Bb9C2doo0qDcyMQQt
-         6fbzjkPu3kXfGLwTp3EoUCe6hdMk9b4riyPcGqxpOkX1ouweG0jsARihMXvEfvqVsglX
-         T2JZdSqD62whNZWmL5kEo75EpuXicr3JjKwD3dCf9JXzxlmuz65lPITCUh2h//PmScLZ
-         SZPyB9IISiSOXwLQjCi77s5u4m1ex5oU/cfgEbPww5js9Oo4DjVmGcbTL4ImfkqD8C0e
-         NwaHCOyCZzpM0AV7M2g+PpMxMur0/b7JDHbwoTy6Qy95sk9jscn5YKjVKnIdcdWlHHwo
-         y3gQ==
-X-Gm-Message-State: ACrzQf2lU6oeRq+6UTx1pO+kzpr/etkRCzWlPp4oFwEs5SlydETdxFxp
-        uc86IuUoNrRNdk5sKbNtOKfcIQ==
-X-Google-Smtp-Source: AMsMyM5pnkks/HND10mWToRhl+UCf2Z9hxQ1obs63ep+oxFuntY0Pg679ulh4Iz5SoE8EuPgz/8UNw==
-X-Received: by 2002:a05:600c:4e06:b0:3c6:ce02:ece4 with SMTP id b6-20020a05600c4e0600b003c6ce02ece4mr2582171wmq.58.1666111551336;
-        Tue, 18 Oct 2022 09:45:51 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i.station (net-188-217-54-207.cust.vodafonedsl.it. [188.217.54.207])
-        by smtp.gmail.com with ESMTPSA id e26-20020a05600c4b9a00b003a5537bb2besm13545592wmp.25.2022.10.18.09.45.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 09:45:50 -0700 (PDT)
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-To:     tommaso.merciai@amarulasolutions.com
-Cc:     michael@amarulasolutions.com, linuxfancy@googlegroups.com,
-        linux-amarula@amarulasolutions.com, kamlesh.gurudasani@gmail.com,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: add binding for tft displays based on ilitek,ili9488
-Date:   Tue, 18 Oct 2022 18:45:25 +0200
-Message-Id: <20221018164532.1705215-2-tommaso.merciai@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221018164532.1705215-1-tommaso.merciai@amarulasolutions.com>
-References: <20221018164532.1705215-1-tommaso.merciai@amarulasolutions.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DEzQc+Bct6/RN359ieT08SroCePicyjw/ZP5+4KzKko=;
+        b=5gIr+uQrWS0bVg3JiBkJU6if9vGPPeENWuvLT9Fwn3p+95s3CAmwSRTmmzx+0MaRci
+         //JtTBFYoAdxKiAXauXsXAzAVDUa/TIFk9/5BefG1Qm1D6BCESiUmCEfnzolYUYubl3p
+         g1aweFmnHY2gqUo5Hk4FEqtPvUr5Td+QbWNrdibonKlaK1lHPr9cKrRjOCO4zDU2PMrs
+         7+VVZNuFDaamHLN+z6g10yqvDqaZRfrgasbsbt57QuuAs6t2wBewfPAo7SMJAt6pCKmH
+         d6lxXqCvEXnYk1Rmdd1SYtbm1ADvrepGp0tmtLYU3C+cUPm1WAlBGnyWx14JB6D0s/Id
+         2tOA==
+X-Gm-Message-State: ACrzQf04keIQ5oEvkRpTY8IjfumWmJZuISXdYioHPPLDapThplaZjyJc
+        xQPfsdnQsNKPg0M3h4zsNDkbxQ==
+X-Google-Smtp-Source: AMsMyM6O5+hrWJ0mMLBWOJaqqxIhaz6RjAnqBNmY+sO63zvY7Q+NXA1KOLcuPzNWaNyH5Suv784shw==
+X-Received: by 2002:a05:622a:1d4:b0:39c:ef9b:e77f with SMTP id t20-20020a05622a01d400b0039cef9be77fmr2864814qtw.529.1666112697242;
+        Tue, 18 Oct 2022 10:04:57 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id u24-20020a37ab18000000b006bb83c2be40sm2757555qke.59.2022.10.18.10.04.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Oct 2022 10:04:56 -0700 (PDT)
+Message-ID: <56ce7440-b60b-4688-c7ac-d0435f79eb97@linaro.org>
+Date:   Tue, 18 Oct 2022 13:04:54 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 1/4 v5] dt-bindings: memory: Factor out common properties
+ of LPDDR bindings
+Content-Language: en-US
+To:     Julius Werner <jwerner@chromium.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        linux-kernel@vger.kernel.org, Jian-Jia Su <jjsu@google.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+References: <20220930220606.303395-1-jwerner@chromium.org>
+ <166610580692.30968.11562735981650899285.b4-ty@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <166610580692.30968.11562735981650899285.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,93 +78,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This binding is for the tft displays based on ilitek,ili9488.
-waveshare,waveshare,pico-rt-lcd-35 (waveshare pico-restouch-lcd-3.5)
+On 18/10/2022 11:10, Krzysztof Kozlowski wrote:
+> On Fri, 30 Sep 2022 15:06:03 -0700, Julius Werner wrote:
+>> The bindings for different LPDDR versions mostly use the same kinds of
+>> properties, so in order to reduce duplication when we're adding support
+>> for more versions, this patch creates a new lpddr-props subschema that
+>> can be referenced by the others to define these common parts. (This will
+>> consider a few smaller I/O width and density numbers "legal" for LPDDR3
+>> that are usually not used there, but this should be harmless.)
+>>
+>> [...]
+> 
+> Applied, thanks!
+> 
+> [1/4] dt-bindings: memory: Factor out common properties of LPDDR bindings
+>       https://git.kernel.org/krzk/linux-mem-ctrl/c/087cf0c5a19c638dd3b26fe7034274b38bc8db6b
+> [2/4] dt-bindings: memory: Add numeric LPDDR compatible string variant
+>       https://git.kernel.org/krzk/linux-mem-ctrl/c/f4deb90635ec8a7dd5d5e4e931ab539edc9a9c90
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
----
- .../bindings/display/ilitek,ili9488.yaml      | 72 +++++++++++++++++++
- 1 file changed, 72 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9488.yaml
+Run checkpatch before sending patches to the mailing list... This was a
+v5 so I expected it ti be clean.
 
-diff --git a/Documentation/devicetree/bindings/display/ilitek,ili9488.yaml b/Documentation/devicetree/bindings/display/ilitek,ili9488.yaml
-new file mode 100644
-index 0000000000000..879ecc42c350c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/ilitek,ili9488.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/ilitek,ili9488.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ilitek ILI9488 display panels device tree bindings
-+
-+maintainers:
-+  - Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
-+  - Michael Trimarchi <michael@amarulasolutions.com>
-+  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-+
-+description:
-+  This binding is for display panels using an Ilitek ILI9488 controller in SPI
-+  mode.
-+
-+allOf:
-+  - $ref: panel/panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          # Waveshare 3.5" 320x480 Color TFT LCD
-+          - "waveshare,pico-rt-lcd-35"
-+      - const: ilitek,ili9488
-+
-+  spi-max-frequency:
-+    maximum: 20000000
-+
-+  dc-gpios:
-+    maxItems: 1
-+    description: Display data/command selection (D/CX)
-+
-+  backlight: true
-+  reg: true
-+  reset-gpios: true
-+  rotation: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - dc-gpios
-+  - reset-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    backlight: backlight {
-+            compatible = "gpio-backlight";
-+            gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
-+    };
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+
-+            display@0{
-+                    compatible = "waveshare,pico-rt-lcd-35", "ilitek,ili9488";
-+                    reg = <0>;
-+                    spi-max-frequency = <20000000>;
-+                    dc-gpios = <&gpio0 24 GPIO_ACTIVE_HIGH>;
-+                    reset-gpios = <&gpio0 25 GPIO_ACTIVE_HIGH>;
-+                    backlight = <&backlight>;
-+            };
-+    };
-+
-+...
--- 
-2.25.1
+Best regards,
+Krzysztof
 
