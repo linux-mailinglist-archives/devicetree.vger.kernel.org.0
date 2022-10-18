@@ -2,48 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D070D602218
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 05:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F236602211
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 05:10:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231348AbiJRDKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 23:10:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34578 "EHLO
+        id S231329AbiJRDKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 23:10:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231184AbiJRDJC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 23:09:02 -0400
+        with ESMTP id S230401AbiJRDIw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 23:08:52 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C97749AFC2;
-        Mon, 17 Oct 2022 20:07:15 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B33D9AFC6;
+        Mon, 17 Oct 2022 20:07:16 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 915B261370;
-        Tue, 18 Oct 2022 03:07:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43E24C43470;
-        Tue, 18 Oct 2022 03:07:13 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 81F356136D;
+        Tue, 18 Oct 2022 03:07:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25741C433D7;
+        Tue, 18 Oct 2022 03:07:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666062434;
-        bh=WOSB6sGd9KXigO1ib9PytmE0wzW1hIZQiHeHeNCfodU=;
+        s=k20201202; t=1666062435;
+        bh=yrkC0pvgPvpDKwgj/vYv2JEF3r1i9da9LRxA3R0N6fQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=AZ2CFQbAdes4nAzCvFtOPEKAf716HjHYYdL4glm9RXfg0nBVkubeq4dOqjqzA3MlW
-         e28adrRuhiFpZHbCMED2ZO3VtYrnSMSw3j80jpizDrymLfUyFfyokZ+VELhpagRnxE
-         DQtzqITOs+69g6pyju8K3kBJ145coZ6I68wnLPCbpuOq2SxgBNNE7V3uC3Pdk1kVTE
-         8bN6sYatNLW9OKMWM9IyOLDtUkjgKpX9eJJCYnfBXsEgI8sHYeFKrbVzgaUHPS6KHD
-         JVyrxv8oiMTFPiyOry8lqYJWi3w73+URcQned41vJzFkLSSdTVofa2IRviAOWOu4AL
-         t/2CO+St+EJFw==
+        b=LPCgHiUmypUcltI+S+pF+niIsGr8XkhmJOR81VVHzD3GJCqe5Uv3SonHphVeHSpY0
+         EGBAoSHKCYgpvtv5pw5Ux9gEIPBq08UmzKtQIwHauYvfhv1YiA44H4bK9x3MRRU5f+
+         NaynS9RcmaAuXzknEckKYs8f34CSImYxVZkkI3Z8c8EeMhn4xRVF27au6ew5bATFMx
+         kQOK58ILg/Q1MS3TqjV+9XidZItQA4lqU3EasbzvcYSxn89rH5iz6ayZk5c6ZTxpWW
+         EZOwUKTrmfBYvaXLUkONWSLuOH2qCmv3TRNMH+i0xTanIzJlVLnXKrAZQiz9Gi0lqk
+         BGF7IxPnJysdw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+To:     luca@z3ntu.xyz, linux-arm-msm@vger.kernel.org
+Cc:     phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        agross@kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
         Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     robh@kernel.org
-Subject: Re: (subset) [RESEND PATCH v2 1/4] dt-bindings: soc: qcom: smd-rpm: add PMIC regulators nodes
-Date:   Mon, 17 Oct 2022 22:05:46 -0500
-Message-Id: <166606235847.3553294.6530961896750547882.b4-ty@kernel.org>
+Subject: Re: (subset) [PATCH 1/2] ARM: dts: qcom: fix msm8974 tsens compatible
+Date:   Mon, 17 Oct 2022 22:05:48 -0500
+Message-Id: <166606235858.3553294.5669486829553405282.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220926092104.111449-1-krzysztof.kozlowski@linaro.org>
-References: <20220926092104.111449-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220925161317.76356-1-luca@z3ntu.xyz>
+References: <20220925161317.76356-1-luca@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -56,16 +57,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Sep 2022 11:21:01 +0200, Krzysztof Kozlowski wrote:
-> The Qualcomm RPM over SMD contains devices for one or two PMIC
-> regulators - already used in several DTS files.
+On Sun, 25 Sep 2022 18:13:16 +0200, Luca Weiss wrote:
+> Bindings mandate the use of the fallback compatible qcom,tsens-v0_1 for
+> msm8974. Add it to fix the warning.
 > 
 > 
 
 Applied, thanks!
 
-[3/4] arm64: dts: qcom: align RPM regulators node name with bindings
-      commit: 372698e8df2619bf76b047c9a600d1f659d7868b
+[1/2] ARM: dts: qcom: fix msm8974 tsens compatible
+      commit: 23fa8ec64963b504071bdd0bdc6ade28cd7ecca1
+[2/2] ARM: dts: qcom: apq8084: add tsens interrupt
+      commit: 078d683252d9ceb06661cd3fc07b6fd58ef06548
 
 Best regards,
 -- 
