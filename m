@@ -2,147 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 514BB602D4E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:47:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 846A7602D64
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbiJRNrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 09:47:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45816 "EHLO
+        id S230429AbiJRNvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 09:51:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbiJRNrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:47:00 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DC36C775
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:46:58 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id g11so9639486qts.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:46:58 -0700 (PDT)
+        with ESMTP id S229452AbiJRNvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:51:40 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C79E48680F
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:51:38 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id d13so8625788qko.5
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:51:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bk1cdWlqVhbhLyQ5Z0Zwm2RMGNfzdRPJPquTEkxwGHE=;
-        b=eTE2CBBoY8P+wFvZ5WJ8YTjFt3XYrDBbVejGXLnQROjLeveblnjTK7tp6+x3PNeyLV
-         nl+kC/51un8xz66tWMZFsOfn7l6JOXEdSX4noD/wVmTq59861M7563YIEj36/A4iytgT
-         ypqFJKyPaNnb2jA4K2WKMjyYtXYpyyt1xiamShV7Q5mkqy1S1BW9QPCwNSudex4VdPoZ
-         CL52impiIZL8J1vI2exlcidmRxw7MzWnn5lqSjfPCQE4wVjsYBd480CRrOukxCQyXq4v
-         E0vdLe/zF54VtEl3O+iY22rgkC8XMpaOgZEC904aXAvLSRiPQqIc+h/Xlx2488hMYKmA
-         AMlw==
+        bh=9Bp+MtIf4+R6pNtZTvWCO+IGmeYq2hNpJQPV17Az0I4=;
+        b=ASBeeOrm3YZSpMLkcK0F5eHdf8DZeuVCUsOADJLijx/8HJo1tFiK+O1NWTeedngzos
+         KvbWN0H7a1tkPkYDh93JvfVUJ8h7CkKAEDwM1bLvtWSbM3mQUN9365BICoTQNDbkwyHd
+         OPnR1IqfTRtJ7yhkmvUMhCAeqYW9IurnyF1OEfBt6gba3HClWRRwpxYguyyV+NUDcD56
+         iXP2rAVW5heQIxcBsB1OBITz5ht2I+xkGsnbaDKQwhPJylEoE8ITN3iI1MRV0Y3C7vwn
+         q6eIGbYD84qvoPxBTMr8NrJI7UT/EniQYNcUvacTeh+w+QVzY30v+Mwyjx6WPxQtf60m
+         haiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bk1cdWlqVhbhLyQ5Z0Zwm2RMGNfzdRPJPquTEkxwGHE=;
-        b=6RJbHoKBMytr++9767wcIsuIQS1nq1cK5Kg2UmzUJPRA7Pk8t2s+pFTlayIZXGnnz/
-         HF8skxv4ED4g4M6lBpjeKL62o0t/MLTJHmSYbdzGo9yrzqzaZr/82JVI3Cfu7MJTcwZJ
-         R93flWi9RRgBSluyKGDKk4YqX5jFgKTQFE2W+FYq6fV+b69/JF+oNgIX+hiaS93bUtML
-         7T0wPbZ389RsghvgwSSNv3jkyeupImJhhvk8bq/m50uRdWm6EKjT8C2if8pSEY0a43T6
-         JySN3rtj9WHF5u8sJHC+LonGFOdDnxXTnWEHcgIQOhofrZb4QfDNg6ARVo7mpTPiOwVR
-         Cb5A==
-X-Gm-Message-State: ACrzQf0eyCZC2M2IwlJy2WRz/He8J9qEAVeB/3pZK06YBbd/su2o8Qsf
-        XFq2PpEuyblR8Vki9beiMwA7+w==
-X-Google-Smtp-Source: AMsMyM6WvkWA2L2ll4WKjb1TisgOdDzT0tIlfPlXDDEbaY+sefp3eDrCawcJJSviK5xy4qL9wXJecQ==
-X-Received: by 2002:a05:622a:164b:b0:39c:ec98:a13 with SMTP id y11-20020a05622a164b00b0039cec980a13mr2131165qtj.339.1666100817866;
-        Tue, 18 Oct 2022 06:46:57 -0700 (PDT)
+        bh=9Bp+MtIf4+R6pNtZTvWCO+IGmeYq2hNpJQPV17Az0I4=;
+        b=n2YXfVYFGRQuGL5Bd4/x6QVsLg4KGCwZj3BtbAL8Iw2E/WLFanr49j7J23+cgGMMLT
+         rMbbqZp6y7VMSCu6lepYo11pq8l+VN3NiuzgFYm2QXb3R+tYww441WPwEJzakh6vbK5n
+         eM3swxCiF+HS6RHuTAREblHHNkerW3692FDuBnw2XFL0KEd4KtYU6+JUq73lV6N8RSNp
+         5c+eZxgCSA5dKWTxcrDoIIeeN52ZHeORSldv1x6jYHeQyVIvYxlezxkD51hFxXZZj0z0
+         NiGn/Mko2l+nFN4oaYYdfJFSkjQ2TLQRwd4FYDcvOG5fnJQq0w3cTHBoiUV1kzx1SiDu
+         gk+Q==
+X-Gm-Message-State: ACrzQf2C0Kk+fchikxlzLNhMqIjY75xt2qjIhUadkLCJrJhXLc7KIa3X
+        XYBdNLUgj5Aan0y6F0BmcGHhzJACSGkN3g==
+X-Google-Smtp-Source: AMsMyM4dC3ZAV4mCKJjX8mzg/4nbCvt+gntlN3+/orwCsGNYUF/sB+TKvJdsQ9diUqgPtThzOYqMfw==
+X-Received: by 2002:a05:620a:1729:b0:6ee:cf01:6810 with SMTP id az41-20020a05620a172900b006eecf016810mr1798512qkb.555.1666101097893;
+        Tue, 18 Oct 2022 06:51:37 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id s23-20020a05622a1a9700b003988b3d5280sm2027602qtc.70.2022.10.18.06.46.56
+        by smtp.gmail.com with ESMTPSA id ci19-20020a05622a261300b0035badb499c7sm2009135qtb.21.2022.10.18.06.51.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 06:46:57 -0700 (PDT)
-Message-ID: <eb670850-6e97-df7b-cb62-1513f877956a@linaro.org>
-Date:   Tue, 18 Oct 2022 09:46:55 -0400
+        Tue, 18 Oct 2022 06:51:37 -0700 (PDT)
+Message-ID: <3339aa03-5e43-7579-837f-d70eb0f4dae6@linaro.org>
+Date:   Tue, 18 Oct 2022 09:51:35 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v1 1/3] clk: loongson2: add clock dt-bindings include file
+Subject: Re: [PATCH 1/1] dt-bindings: clock: ti,cdce925: Convert to DT schema
 Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-References: <20221018130531.301-1-zhuyinbo@loongson.cn>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221018072106.2391771-1-alexander.stein@ew.tq-group.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221018130531.301-1-zhuyinbo@loongson.cn>
+In-Reply-To: <20221018072106.2391771-1-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/10/2022 09:05, Yinbo Zhu wrote:
-> This file defines all loongson2 soc clock indexes, it should be
-> included in the device tree in which there's device using the
-> clocks.
+On 18/10/2022 03:21, Alexander Stein wrote:
+> Convert the TI CDCE925 clock binding to DT schema format.
+> Including a small fix: Add the missing 'ti' prefix in the example
+> compatible.
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
->  MAINTAINERS                                 |  6 +++++
->  include/dt-bindings/clock/loongson2-clock.h | 29 +++++++++++++++++++++
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Use subject prefixes matching the subsystem (git log --oneline -- ...).
+Thank you for your patch. There is something to discuss/improve.
 
-These are bindings.
-
->  2 files changed, 35 insertions(+)
->  create mode 100644 include/dt-bindings/clock/loongson2-clock.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a162b6fba6fe..3db469f51d74 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11914,6 +11914,12 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
->  F:	drivers/clocksource/loongson2_hpet.c
->  
-> +LOONGSON2 SOC SERIES CLOCK DRIVER
-> +M:	Yinbo Zhu <zhuyinbo@loongson.cn>
-> +L:	linux-clk@vger.kernel.org
-> +S:	Maintained
-> +F:	include/dt-bindings/clock/loongson2-clock.h
-> +
->  LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
->  M:	Sathya Prakash <sathya.prakash@broadcom.com>
->  M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
-> diff --git a/include/dt-bindings/clock/loongson2-clock.h b/include/dt-bindings/clock/loongson2-clock.h
+> diff --git a/Documentation/devicetree/bindings/clock/ti,cdce925.yaml b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
 > new file mode 100644
-> index 000000000000..23806408fe49
+> index 000000000000..1e68ee68e458
 > --- /dev/null
-> +++ b/include/dt-bindings/clock/loongson2-clock.h
-
-Filename matching the compatible, so:
-loongson,ls2k-clk.h
-
-> @@ -0,0 +1,29 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-
-Dual license, like bindings, unless you are not allowed.
-
-> +/*
-> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
-> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
-> + */
+> +++ b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/ti,cdce925.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#ifndef __DT_BINDINGS_CLOCK_LOONGSON2_H
-> +#define __DT_BINDINGS_CLOCK_LOONGSON2_H
+> +title: TI CDCE913/925/937/949 programmable I2C clock synthesizers node bindings
+
+Drop "node bindings"
+
 > +
-> +#define	LOONGSON2_REFCLK_100M				0
+> +maintainers:
+> +  - Mike Looijmans <mike.looijmans@topic.nl>
+> +
+> +description: |
+> +  Flexible Low Power LVCMOS Clock Generator with SSC Support for EMI Reduction
+> +
+> +  - CDCE(L)913: 1-PLL, 3 Outputs https://www.ti.com/product/cdce913
+> +  - CDCE(L)925: 2-PLL, 5 Outputs https://www.ti.com/product/cdce925
+> +  - CDCE(L)937: 3-PLL, 7 Outputs https://www.ti.com/product/cdce937
+> +  - CDCE(L)949: 4-PLL, 9 Outputs https://www.ti.com/product/cdce949
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^clock-controller$"
 
-Drop weird indentation after define.
+Drop this requirement. It is in general expected, but there is no need
+for each binding to specify it.
 
+Other problem is that you did not actually test these bindings before
+sending...
+
+> +
+> +  compatible:
+> +    enum:
+> +      - ti,cdce913
+> +      - ti,cdce925
+> +      - ti,cdce937
+> +      - ti,cdce949
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: fixed parent clock
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  vdd-supply:
+> +    description: Regulator that provides 1.8V Vdd power supply
+> +
+> +  vddout-supply:
+> +    description: |
+> +      Regulator that provides Vddout power supply.
+> +      non-L variant: 2.5V or 3.3V for
+> +      L variant: 1.8V for
+> +
+> +  xtal-load-pf:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Crystal load-capacitor value to fine-tune performance on a
+> +      board, or to compensate for external influences.
+> +
+> +patternProperties:
+> +  "^PLL[1-4]$":
+> +    type: object
+> +    description: |
+> +      optional child node can be used to specify spread
+> +      spectrum clocking parameters for a board
+> +
+
+    additionalProperties: false
+
+> +    properties:
+> +      spread-spectrum:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: SSC mode as defined in the data sheet
+> +
+> +      spread-spectrum-center:
+> +        type: boolean
+> +        description: |
+> +          Use "centered" mode instead of "max" mode. When
+> +          present, the clock runs at the requested frequency on average.
+> +          Otherwise the requested frequency is the maximum value of the
+> +          SCC range.
+> +
 
 Best regards,
 Krzysztof
