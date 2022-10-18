@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4909601E54
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 02:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7276601EB6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 02:12:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231376AbiJRAJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 20:09:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36422 "EHLO
+        id S231542AbiJRAMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 20:12:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231432AbiJRAIq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 20:08:46 -0400
+        with ESMTP id S231337AbiJRAKx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 20:10:53 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7345B87F90;
-        Mon, 17 Oct 2022 17:08:11 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D94F8804BF;
+        Mon, 17 Oct 2022 17:08:57 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9B4F2B81BE1;
-        Tue, 18 Oct 2022 00:08:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7281EC433D7;
-        Tue, 18 Oct 2022 00:08:07 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3031FB81BEE;
+        Tue, 18 Oct 2022 00:08:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07291C4347C;
+        Tue, 18 Oct 2022 00:08:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666051688;
-        bh=YPDuCu2UpB22OWik411oVG7fEymtDedQ6SVGcfxrmDI=;
+        s=k20201202; t=1666051735;
+        bh=+qxshXRLHCgXJCcz2rQ45NN1YEd7lLjnzFHjHHAybrs=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WNrEpRcO3F+6fYsWPlRnV2CmG5dhKfZnS91Ldy32gSgHmje+xM01WyMqc9SyinuME
-         1zDrAd1t/Tqnjih3smQepy86KdtmQe0A+xUv3vBZihGgogTmBjc+8+chFQuoQ/Xbzx
-         /QkAOjBAwhDOaJ6RlQS9K1qYaCnhv23vQ0up5ilA4YxVLPbGH9iA7461LRd90V1Pw8
-         lVYQFGPdm6GXSjxrK9blutAcA01WAtQjAEqHzSIIX/5QeS+8rThrHzcDr5WhI4lkkr
-         Hec5wlCOaB/Iqcc0IVuGaU7b75DQGBbyaqxlDbWnaKpNcaJ6NrYU811K2mNPPLuRf9
-         E/4LvMDHdeOrQ==
+        b=hk0UqwVSu8NVJmioMJuJtxSMiCQiQUk/fx+DiHsMRvhr4ntB0STRqguxBA8luqvSi
+         Wjh1qN8E359FF85PKGpQ5oX8tGT1DXrqKZrkBrI4LWx+KUa/pP9x8feCl6wYsMnTv+
+         a/VQlFT+LseeXvsi0NnoQ6eSjn+dx2X8XlKtGS7NEKiREmXm925MuYdBK+KWi5UT5S
+         MxoZXdvqoV+lEAkMNqSgNTPmuLCPMFbGe8hbc1xYcem3J9qN0GL7ea5iE7EZFD+7kT
+         IBAmTODznplubtIHC7hVOzdsYwNRe/wKumdBPLQt+7OCZKbTz2nm1ZayFPG0uDQp/N
+         b2ySjTD3QwhIA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+Cc:     Marek Bykowski <marek.bykowski@gmail.com>,
         Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
         robh+dt@kernel.org, frowand.list@gmail.com,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.0 20/32] of: Fix "dma-ranges" handling for bus controllers
-Date:   Mon, 17 Oct 2022 20:07:17 -0400
-Message-Id: <20221018000729.2730519-20-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.19 08/29] of/fdt: Don't calculate initrd size from DT if start > end
+Date:   Mon, 17 Oct 2022 20:08:17 -0400
+Message-Id: <20221018000839.2730954-8-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221018000729.2730519-1-sashal@kernel.org>
-References: <20221018000729.2730519-1-sashal@kernel.org>
+In-Reply-To: <20221018000839.2730954-1-sashal@kernel.org>
+References: <20221018000839.2730954-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -57,104 +57,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Robin Murphy <robin.murphy@arm.com>
+From: Marek Bykowski <marek.bykowski@gmail.com>
 
-[ Upstream commit f1ad5338a4d57fe1fe6475003acb8c70bf9d1bdf ]
+[ Upstream commit d5e3050c0feb8bf7b9a75482fafcc31b90257926 ]
 
-Commit 951d48855d86 ("of: Make of_dma_get_range() work on bus nodes")
-relaxed the handling of "dma-ranges" for any leaf node on the assumption
-that it would still represent a usage error for the property to be
-present on a non-bus leaf node. However there turns out to be a fiddly
-case where a bus also represents a DMA-capable device in its own right,
-such as a PCIe root complex with an integrated DMA engine on its
-platform side. In such cases, "dma-ranges" translation is entirely valid
-for devices discovered behind the bus, but should not be erroneously
-applied to the bus controller device itself which operates in its
-parent's address space. Fix this by restoring the previous behaviour for
-the specific case where a device is configured via its own OF node,
-since it is logical to assume that a device should never represent its
-own parent bus.
+If the properties 'linux,initrd-start' and 'linux,initrd-end' of
+the chosen node populated from the bootloader, eg. U-Boot, are so that
+start > end, then the phys_initrd_size calculated from end - start is
+negative that subsequently gets converted to a high positive value for
+being unsigned long long. Then, the memory region with the (invalid)
+size is added to the bootmem and attempted being paged in paging_init()
+that results in the kernel fault.
 
-Reported-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-Link: https://lore.kernel.org/r/112e8f3d3e7c054ecf5e12b5ac0aa5596ec00681.1664455433.git.robin.murphy@arm.com
+For example, on the FVP ARM64 system I'm running, the U-Boot populates
+the 'linux,initrd-start' with 8800_0000 and 'linux,initrd-end' with 0.
+The phys_initrd_size calculated is then ffff_ffff_7800_0000
+(= 0 - 8800_0000 = -8800_0000 + ULLONG_MAX + 1). paging_init() then
+attempts to map the address 8800_0000 + ffff_ffff_7800_0000 and oops'es
+as below.
+
+It should be stressed, it is generally a fault of the bootloader's with
+the kernel relying on it, however we should not allow the bootloader's
+misconfiguration to lead to the kernel oops. Not only the kernel should be
+bullet proof against it but also finding the root cause of the paging
+fault spanning over the bootloader, DT, and kernel may happen is not so
+easy.
+
+  Unable to handle kernel paging request at virtual address fffffffefe43c000
+  Mem abort info:
+    ESR = 0x96000007
+    EC = 0x25: DABT (current EL), IL = 32 bits
+    SET = 0, FnV = 0
+    EA = 0, S1PTW = 0
+  Data abort info:
+    ISV = 0, ISS = 0x00000007
+    CM = 0, WnR = 0
+  swapper pgtable: 4k pages, 39-bit VAs, pgdp=0000000080e3d000
+  [fffffffefe43c000] pgd=0000000080de9003, pud=0000000080de9003
+  Unable to handle kernel paging request at virtual address ffffff8000de9f90
+  Mem abort info:
+    ESR = 0x96000005
+    EC = 0x25: DABT (current EL), IL = 32 bits
+    SET = 0, FnV = 0
+    EA = 0, S1PTW = 0
+  Data abort info:
+    ISV = 0, ISS = 0x00000005
+    CM = 0, WnR = 0
+  swapper pgtable: 4k pages, 39-bit VAs, pgdp=0000000080e3d000
+  [ffffff8000de9f90] pgd=0000000000000000, pud=0000000000000000
+  Internal error: Oops: 96000005 [#1] PREEMPT SMP
+  Modules linked in:
+  CPU: 0 PID: 0 Comm: swapper Not tainted 5.4.51-yocto-standard #1
+  Hardware name: FVP Base (DT)
+  pstate: 60000085 (nZCv daIf -PAN -UAO)
+  pc : show_pte+0x12c/0x1b4
+  lr : show_pte+0x100/0x1b4
+  sp : ffffffc010ce3b30
+  x29: ffffffc010ce3b30 x28: ffffffc010ceed80
+  x27: fffffffefe43c000 x26: fffffffefe43a028
+  x25: 0000000080bf0000 x24: 0000000000000025
+  x23: ffffffc010b8d000 x22: ffffffc010e3d000
+  x23: ffffffc010b8d000 x22: ffffffc010e3d000
+  x21: 0000000080de9000 x20: ffffff7f80000f90
+  x19: fffffffefe43c000 x18: 0000000000000030
+  x17: 0000000000001400 x16: 0000000000001c00
+  x15: ffffffc010cef1b8 x14: ffffffffffffffff
+  x13: ffffffc010df1f40 x12: ffffffc010df1b70
+  x11: ffffffc010ce3b30 x10: ffffffc010ce3b30
+  x9 : 00000000ffffffc8 x8 : 0000000000000000
+  x7 : 000000000000000f x6 : ffffffc010df16e8
+  x5 : 0000000000000000 x4 : 0000000000000000
+  x3 : 00000000ffffffff x2 : 0000000000000000
+  x1 : 0000008080000000 x0 : ffffffc010af1d68
+  Call trace:
+   show_pte+0x12c/0x1b4
+   die_kernel_fault+0x54/0x78
+   __do_kernel_fault+0x11c/0x128
+   do_translation_fault+0x58/0xac
+   do_mem_abort+0x50/0xb0
+   el1_da+0x1c/0x90
+   __create_pgd_mapping+0x348/0x598
+   paging_init+0x3f0/0x70d0
+   setup_arch+0x2c0/0x5d4
+   start_kernel+0x94/0x49c
+  Code: 92748eb5 900052a0 9135a000 cb010294 (f8756a96) 
+
+Signed-off-by: Marek Bykowski <marek.bykowski@gmail.com>
+Link: https://lore.kernel.org/r/20220909023358.76881-1-marek.bykowski@gmail.com
 Signed-off-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/of/address.c    | 4 +++-
- drivers/of/device.c     | 9 ++++++++-
- drivers/of/of_private.h | 5 +++++
- 3 files changed, 16 insertions(+), 2 deletions(-)
+ drivers/of/fdt.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 96f0a12e507c..c34ac33b7338 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -579,7 +579,8 @@ u64 of_translate_address(struct device_node *dev, const __be32 *in_addr)
- }
- EXPORT_SYMBOL(of_translate_address);
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 583ca847a39c..8b379ba7471b 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -937,6 +937,8 @@ static void __init early_init_dt_check_for_initrd(unsigned long node)
+ 	if (!prop)
+ 		return;
+ 	end = of_read_number(prop, len/4);
++	if (start > end)
++		return;
  
--static struct device_node *__of_get_dma_parent(const struct device_node *np)
-+#ifdef CONFIG_HAS_DMA
-+struct device_node *__of_get_dma_parent(const struct device_node *np)
- {
- 	struct of_phandle_args args;
- 	int ret, index;
-@@ -596,6 +597,7 @@ static struct device_node *__of_get_dma_parent(const struct device_node *np)
- 
- 	return of_node_get(args.np);
- }
-+#endif
- 
- static struct device_node *of_get_next_dma_parent(struct device_node *np)
- {
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 75b6cbffa755..8cefe5a7d04e 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -116,12 +116,19 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- {
- 	const struct iommu_ops *iommu;
- 	const struct bus_dma_region *map = NULL;
-+	struct device_node *bus_np;
- 	u64 dma_start = 0;
- 	u64 mask, end, size = 0;
- 	bool coherent;
- 	int ret;
- 
--	ret = of_dma_get_range(np, &map);
-+	if (np == dev->of_node)
-+		bus_np = __of_get_dma_parent(np);
-+	else
-+		bus_np = of_node_get(np);
-+
-+	ret = of_dma_get_range(bus_np, &map);
-+	of_node_put(bus_np);
- 	if (ret < 0) {
- 		/*
- 		 * For legacy reasons, we have to assume some devices need
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index 9324483397f6..fb6792d381a6 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -155,12 +155,17 @@ struct bus_dma_region;
- #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
- int of_dma_get_range(struct device_node *np,
- 		const struct bus_dma_region **map);
-+struct device_node *__of_get_dma_parent(const struct device_node *np);
- #else
- static inline int of_dma_get_range(struct device_node *np,
- 		const struct bus_dma_region **map)
- {
- 	return -ENODEV;
- }
-+static inline struct device_node *__of_get_dma_parent(const struct device_node *np)
-+{
-+	return of_get_parent(np);
-+}
- #endif
- 
- void fdt_init_reserved_mem(void);
+ 	__early_init_dt_declare_initrd(start, end);
+ 	phys_initrd_start = start;
 -- 
 2.35.1
 
