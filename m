@@ -2,64 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B534602F9B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:24:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA5A9602FA2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:27:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230264AbiJRPYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 11:24:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58032 "EHLO
+        id S230140AbiJRP1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 11:27:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230242AbiJRPYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:24:31 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E7A5F7D;
-        Tue, 18 Oct 2022 08:24:23 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29IFOC4x028995;
-        Tue, 18 Oct 2022 10:24:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666106652;
-        bh=yeXu6LAsPOv7ziEk86rcmv96Ao8dzF3pExh/3NJ67Pk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=KpyywX9fcBO2sNcsnxgfhWM4e6QAi+goA4/NATSywB/PuNJzvVW+kZI4hDpvFNTkf
-         5X+CBxzIxAKvHCfGempyQ0XitIKzk6pREKdds9cVKXStzaou7ZZP+F3tm0tCklF62v
-         zUI7O1AFfS4ynxayuNFa3W7QQZwEzUtU6GTkBLiY=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29IFOCJQ018949
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 18 Oct 2022 10:24:12 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 18
- Oct 2022 10:24:11 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 18 Oct 2022 10:24:11 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29IFOBVm026167;
-        Tue, 18 Oct 2022 10:24:11 -0500
-Date:   Tue, 18 Oct 2022 10:24:11 -0500
-From:   Bryan Brattlof <bb@ti.com>
-To:     Andrew Davis <afd@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S229962AbiJRP1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:27:41 -0400
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB69BC60E
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:27:38 -0700 (PDT)
+Received: by mail-qk1-x72d.google.com with SMTP id j21so8831969qkk.9
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:27:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WlrRdSiBc3+5x9el6+WiPvB5GSvm3lz/xveRGeJez/Y=;
+        b=EG4Jn93JA7AM0w+NYd6U5tSunzgTzsLPJB6RjP4zYCZU9YHf1M0jKzBPVe27OL136x
+         MyKkdfB2RKkeJ21qM2W8EIkOq99xdz8GYOH1phybCn/G3EHufIgmp3UoJMOCFs/8giKr
+         vxm5yZcYMM441WpCJSKIfKCy2c36eX2ddb7N4X4Zpm/EPI6WzKBY5QumEHJyKO9EnZuI
+         qOJY4mDirk6vZ6bSZldRzeY2UjHOE2LVs0nCcHvdoLHAT17synotSEmp68cI0tl+gYRI
+         z/ioOlQDknuVnOveAKcJI0eeRX2k3Q9zCs8Y3i/bhFNCB9rsVncWP+jvt1+WKrbn2aiT
+         3mxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WlrRdSiBc3+5x9el6+WiPvB5GSvm3lz/xveRGeJez/Y=;
+        b=RMJSBmwgeCc6562Cf/YtYyZ69D9ZM9zl3onyXxIclIDDDh34XhQlg9OkvaTjegvx25
+         KIbLQETz6hDsxSWbmN0kSZwZhtOYRotWLiPgGDkDQ1M9FU6pUqtBaFGpT5JGg8R2RSFh
+         ea5aUtGi03XLYeMX/RG6y86AaZ3PDZozNbHdh/G7OtQGkrld9r2O1cT28uUWvDzU8ycv
+         wikFVlsOvCWiFWuZLVeXH+ncjj2KoxNBHJqodBBmEuqBh5OOv2KUoS2JEjshnPJKLNbh
+         Jigx6TjlFnSEpU6NSezBkhJlhhoXZNojKBKkW/GxQjQK3ls5HAS58fYspuoh5SNKzImI
+         wKRQ==
+X-Gm-Message-State: ACrzQf1m+BhXFCnCwcMHaaEwo3y1tlcHq2DzL1NiVWC32gOwibKY1vQW
+        PXY1z5eJX2KjhOhMJIX3lRSOtw==
+X-Google-Smtp-Source: AMsMyM5iD16RwRypyXJlH9TWM1p1s0lQhnKdXXOoxUFalUOI9aplDm8h+1FMPxcIpbk+rdSjCD1iuw==
+X-Received: by 2002:a05:620a:bc9:b0:6be:9d56:78dc with SMTP id s9-20020a05620a0bc900b006be9d5678dcmr2165897qki.365.1666106857366;
+        Tue, 18 Oct 2022 08:27:37 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id b14-20020ac844ce000000b003434d3b5938sm2107848qto.2.2022.10.18.08.27.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Oct 2022 08:27:36 -0700 (PDT)
+Message-ID: <39a7d2d1-06c2-4002-e222-54c24c5eb31f@linaro.org>
+Date:   Tue, 18 Oct 2022 11:27:35 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 09/15] dt-bindings: phy: qcom,qmp-pcie: mark current
+ bindings as legacy
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 00/10] AM64x Disable Incomplete DT Nodes
-Message-ID: <20221018152411.iguw2mg27ahexq2e@bryanbrattlof.com>
-References: <20221017192532.23825-1-afd@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20221017192532.23825-1-afd@ti.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221017145328.22090-1-johan+linaro@kernel.org>
+ <20221017145328.22090-10-johan+linaro@kernel.org>
+ <5e153119-f853-ff57-8277-2d782e255be2@linaro.org>
+ <Y05Qf2nDCIVg23Zh@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y05Qf2nDCIVg23Zh@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,46 +84,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On October 17, 2022 thus sayeth Andrew Davis:
-> Hello all,
+On 18/10/2022 03:06, Johan Hovold wrote:
+> On Mon, Oct 17, 2022 at 01:15:45PM -0400, Krzysztof Kozlowski wrote:
+>> On 17/10/2022 10:53, Johan Hovold wrote:
+>>> The current QMP PCIe PHY bindings are based on the original MSM8996
+>>> binding which provided multiple PHYs per IP block and these in turn were
+>>> described by child nodes.
+>>>
+>>> Later QMP PCIe PHY blocks only provide a single PHY and the remnant
+>>> child node does not really reflect the hardware.
+>>>
+>>> The original MSM8996 binding also ended up describing the individual
+>>> register blocks as belonging to either the wrapper node or the PHY child
+>>> nodes.
+>>>
+>>> This is an unnecessary level of detail which has lead to problems when
+>>> later IP blocks using different register layouts have been forced to fit
+>>> the original mould rather than updating the binding. The bindings are
+>>> arguable also incomplete as they only the describe register blocks used
+>>> by the current Linux drivers (e.g. does not include the per lane PCS
+>>> registers).
+>>>
+>>> In preparation for adding new bindings for SC8280XP which further
+>>> bindings can be based on, mark the current bindings as "legacy".
+>>>
+>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+>>> ---
+>>>  .../{qcom,qmp-pcie-phy.yaml => qcom,qmp-pcie-phy-legacy.yaml} | 4 ++--
+>>
+>> I don't think we should rename anything as legacy. These are "normal"
+>> platforms, not legacy ones. SM8450 is not even that old.
 > 
-> This series goes through the AM64x dtsi and disables the set of nodes
-> that are not functional without additional board level information.
-> This is usually pinmux data, but can also be inernal device resources.
+> I'm not really referring to the platforms as legacy, but the rather the
+> format of the bindings. The intent is that by marking the current ones
+> as such, people will not base new bindings on the old scheme.
 > 
-> Only when the node is completed in the board file should the node be
-> enabled. This helps prevents nodes that represent IP that are not
-> pinned-out on a given board from being left enabled.
+> There's no problem supporting both schemes in the driver also for the
+> current compatibles, but expressing such a deprecation in DT schema
+> sounds like it would be painful. We instead decided to simple draw the
+> line at SC8280XP and have future bindings be based on its binding.
 > 
-> This also reduces the effort needed to add a new board, one no longer
-> needs to manually disable all the extra IP. For instance TI J784s4 has
-> 20(!) MCAN instances. It is much easier to enable the one you pin out,
-> vs disabling the 19 that you did not.
+>> The recommendation is to keep names matching the compatibles, not adding
+>> some legacy/newer/newest suffixes.
 > 
-> Thanks,
-> Andrew
+> Yeah, I know, but that's not what the current bindings do. And if we
+> keep 
 > 
-> Andrew Davis (10):
->   arm64: dts: ti: k3-am64: Enable UART nodes at the board level
->   arm64: dts: ti: k3-am64: Enable I2C nodes at the board level
->   arm64: dts: ti: k3-am64: Enable SPI nodes at the board level
->   arm64: dts: ti: k3-am64: Enable EPWM nodes at the board level
->   arm64: dts: ti: k3-am64: Enable ECAP nodes at the board level
->   arm64: dts: ti: k3-am64: Enable PCIe nodes at the board level
->   arm64: dts: ti: k3-am64: MDIO pinmux should belong to the MDIO node
->   arm64: dts: ti: k3-am64: Enable MDIO nodes at the board level
->   arm64: dts: ti: k3-am64: Enable MCAN nodes at the board level
->   arm64: dts: ti: k3-am64: Enable GPMC and ELM nodes at the board level
+> 	qcom,qmp-pcie-phy.yaml
 > 
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi |  37 ++++++
->  arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi  |   6 +
->  arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 119 ++-----------------
->  arch/arm64/boot/dts/ti/k3-am642-sk.dts   | 142 ++---------------------
->  4 files changed, 63 insertions(+), 241 deletions(-)
+> and add
 > 
+> 	qcom,sc8280xp-qmp-pcie-phy.yaml
+> 
+> then I fear that people will base their bindings on the former rather
+> than the latter.
 
-Reviewed-by: Bryan Brattlof <bb@ti.com>
+Then how about renaming this file to something matching the oldest
+supported SoC? Like: qcom,msm8998-qmp-pcie-phy.yaml
+(I don't know which one is the oldest there)
 
-I wholeheartedly agree! This looks great to me!
+Or ipq6018 as the first one appearing in the list.
 
-~Bryan
+> 
+> I guess I can just add a comment in the old schema file with a reference
+> to the sc8280xp bindings to try to prevent people from adding new ones
+> in the wrong place.
+
+Yes, that's also works for me. You can change the description part to
+have something like:
+"QMP PHY controller on SoCs like sc8180x and older. For newer SoCs,
+please look at xxxxx.yaml"
+
+> If I understand you correctly this is what you are suggesting? And that
+> the new file should still be named "qcom,sc8280xp-qmp-pcie-phy.yaml"
+> also as new bindings are added to that file?
+
+Yes.
+
+> 
+> I could also rename the old schema file after one of the old platforms
+> platforms therein (e.g. qcom,msm8998-qmp-pcie-phy) to make it sounds
+> less like a generic schema for new bindings.
+
+Oh, we thought about the same.
+
+> 
+> That is
+> 
+> 	qcom,msm8998-qmp-pcie-phy.yaml + comment (for current bindings)
+> 	qcom,sc8280xp-qmp-pcie-phy.yaml (for new bindings)
+
+Yes, please.
+
+Best regards,
+Krzysztof
+
