@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18731602858
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 11:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5694860285D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 11:31:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbiJRJ2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 05:28:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40836 "EHLO
+        id S229526AbiJRJbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 05:31:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbiJRJ2e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 05:28:34 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27BA0AD990;
-        Tue, 18 Oct 2022 02:28:32 -0700 (PDT)
+        with ESMTP id S229525AbiJRJbk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 05:31:40 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E700AD9B2;
+        Tue, 18 Oct 2022 02:31:39 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3D32FB81E0F;
-        Tue, 18 Oct 2022 09:28:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95968C433D6;
-        Tue, 18 Oct 2022 09:28:26 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 36818B81E0F;
+        Tue, 18 Oct 2022 09:31:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAE9DC433D6;
+        Tue, 18 Oct 2022 09:31:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666085310;
-        bh=FNvybaaMSsU92LM//vA2J3d3Vos299Q6dH/tB2HZSFo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BoMPy1FAOHq5BZA2CnEyws5/nBk29uNnj7pXHtFvQmOdEpi6SEsgzOrizDu+lJdiU
-         s6PEmpn4evaWY+VO1JHdctD1qpmgc2AG3rXYwhMbY9a1QB1UcmiwgE6QOkJ/Yn9+xe
-         CvU2UAgk/Yg0CPuFjJFicRyODN+e48aB4oDn1K6sR3we7H8h6PsqrfFeW8BHhWerl4
-         oxYxdfIHQIiQgCFoQXFU64r0ENhw1xxy+TAm8/G3XrfKPeCsSFfYarQDh0wzQD4PsP
-         mZ/k7OB6nOD/inO41U8TiEH4W0TEMFJerIrbcWF7KScIXwpNDAVlneIu9yyCHUK0Z7
-         ofC29dlwbBrwg==
-Date:   Tue, 18 Oct 2022 10:28:23 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     ChiaEn Wu <peterwu.pub@gmail.com>, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, chiaen_wu@richtek.com,
-        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        krzysztof.kozlowski+dt@linaro.org, cy_huang@richtek.com,
-        sre@kernel.org
-Subject: Re: [PATCH v3] dt-bindings: mfd: mt6370: fix the interrupt order of
- the charger in the example
-Message-ID: <Y05xt+r2tPmfJbcq@google.com>
-References: <fcf4e7e7594070a8698dc0d4b96e031bcaa9b3a3.1665585952.git.chiaen_wu@richtek.com>
- <166558333754.1988433.10175192101178879616.robh@kernel.org>
+        s=k20201202; t=1666085497;
+        bh=VSqtKXH7fWy/Zr00J19onaibCcqs1TqNaT6Qxu7nmzo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kEniEo3sa8FCC9tnMTmiasSRxtMiOY27eGwOy9H8YsM2RI7v+Yzsr4OuP8jsi0DTi
+         gU4ysOZauWktUG1oflw06OnduIk9z9SH8Q6LVmbO66FIfWFansom7fSBFDyv8dn9xG
+         t2hVzAuiFYJxHbAu483YrsKUCggPEHK/erkZPmPtOLQZl1Q+gzQntN6qImJdJwXX0n
+         SuwjcLEC2MREqFYcOSfY255diwlEXftktl+u3Sh4LtiWwIK2I35rLqvCIVk0TLLH20
+         XWOvxdUA3WvsTSA0PPr755no+bLygzFjvTPIsTsKPYmvYr7yqmnXgAVrUHZNleYzjy
+         J1uCAXVo5GuIg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1okiwW-0001xk-Q4; Tue, 18 Oct 2022 11:31:24 +0200
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] dt-bindings: PCI: qcom-ep: Fix PERST register description
+Date:   Tue, 18 Oct 2022 11:31:15 +0200
+Message-Id: <20221018093115.7537-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <166558333754.1988433.10175192101178879616.robh@kernel.org>
 X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -62,37 +61,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Oct 2022, Rob Herring wrote:
+The 'qcom,perst-regs' property holds a single phandle array with the
+phandle of the TCSR syscon and offsets of the two PERST registers, but
+the current schema does not capture this.
 
-> On Wed, 12 Oct 2022 15:08:14 +0800, ChiaEn Wu wrote:
-> > From: ChiaEn Wu <chiaen_wu@richtek.com>
-> > 
-> > Fix the interrupt order of the charger in the binding example.
-> > 
-> > Fixes: 76f52f815f1a ("dt-bindings: mfd: Add MediaTek MT6370")
-> > Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > ---
-> > v3
-> > - Add a 'Reviewed-by' tag.
-> > 
-> > v2
-> > - Revise the commit syntax.
-> > 
-> > v1
-> > - Due to this patch modifiacation
-> >   (https://lore.kernel.org/all/20221001202918.me7z2qzm7cmrkzsg@mercury.elektranox.org/),
-> >   there will get some warnings in linux-next when compiling the dts.
-> > ---
-> >  Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> 
-> Applying to go into rc1 along with the other mt6370 fix, thanks!
+Update the binding to describe the single phandle array and its three
+elements.
 
-Fine by me, but please change the subject line to start with an
-upper-case char.
+Fixes: 31c9ef002580 ("dt-bindings: PCI: Add Qualcomm PCIe Endpoint controller")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ .../devicetree/bindings/pci/qcom,pcie-ep.yaml          | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+index 977c976ea799..7574291646ad 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+@@ -42,13 +42,13 @@ properties:
+     maxItems: 8
+ 
+   qcom,perst-regs:
+-    description: Reference to a syscon representing TCSR followed by the two
+-                 offsets within syscon for Perst enable and Perst separation
+-                 enable registers
++    description: PERST TCSR registers
+     $ref: "/schemas/types.yaml#/definitions/phandle-array"
+     items:
+-      minItems: 3
+-      maxItems: 3
++      - items:
++          - description: phandle of TCSR syscon
++          - description: offset of PERST Enable register
++          - description: offset of PERST Separation Enable register
+ 
+   interrupts:
+     items:
 -- 
-Lee Jones [李琼斯]
+2.37.3
+
