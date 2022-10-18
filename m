@@ -2,60 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C2876024FB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 09:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD60E60252E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 09:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229917AbiJRHG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 03:06:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53060 "EHLO
+        id S230177AbiJRHKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 03:10:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230019AbiJRHG4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 03:06:56 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C555796BE;
-        Tue, 18 Oct 2022 00:06:54 -0700 (PDT)
+        with ESMTP id S230121AbiJRHKc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 03:10:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E7487CA8A;
+        Tue, 18 Oct 2022 00:10:28 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 534FEB81D54;
-        Tue, 18 Oct 2022 07:06:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07F5DC433C1;
-        Tue, 18 Oct 2022 07:06:52 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EB4E4B81BFB;
+        Tue, 18 Oct 2022 07:10:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D647C43142;
+        Tue, 18 Oct 2022 07:10:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666076812;
-        bh=J6RF9tAF1MFuLDPx06GDwAxd0NEPV+odgtOEQ0YfJ6o=;
+        s=k20201202; t=1666077024;
+        bh=1n3yKH+jHZcKm9JP7oiRX4+wyMPs14jcsoNBnG64pzM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TFlu84wEFmVYCt3vicjR1mwSQZMw6t4ueg5GUCGDs6IeJ9+DfDwF+d/o9dYGa0eJw
-         iNhajrl0/Wt54Umujt/dQO38lbfpY+xvDC/kUC/udc/blXrTzryivgKN1CY2RZ04OW
-         S5X2zeh+sqeiUaglZwEmezMumwDNgAmONTxVXwTOD1mEiC2WNZ4sQSmGE+tS3f8l8/
-         9orcu7ygx23yqqKgAlWuZ+iDhO/UivnkVT19bV2mCVID7tmaKyFg+wgLFD7zLwGZJC
-         5KUokhVirYgdHkG1e3xIr/MSTdA0UM7xhbf/K5/jgaI8arpzTV5jKtv7led7xjivMv
-         th6urGmmC0jZA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1okggR-0007jp-1q; Tue, 18 Oct 2022 09:06:39 +0200
-Date:   Tue, 18 Oct 2022 09:06:39 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        b=IDK5B6RjsysNX0+AYImjKVmDqOo9rgjr03Ev75Ke4c+n5UXbMSBujGcEuMboMRcoK
+         LZGArh2WZ6Lj8SlItOV3kr1Efjqh0clxkXQb6ARyT4k0DRqEGvfuLFI/ZjwAK33mFm
+         fIDdicAYl8LMeT//MiJRVfeTy8tu6BPaeTwVARQz+Uos8D3bq5N2SUT7Ho2bNLM2iN
+         ojU/PggckJplbF9McOLggnl+IavNo+5oTsBwfeeFYYAlH4oIRjr8xCAWN5tfS/ijAS
+         8ZiSCdGRqOOhzzckZOuRxtHQGPs9zpLonZhh1c96Ac4sIxPX92G+k55djoXM5lNGTe
+         /crPZgAjI+TCA==
+Date:   Tue, 18 Oct 2022 08:10:17 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 09/15] dt-bindings: phy: qcom,qmp-pcie: mark current
- bindings as legacy
-Message-ID: <Y05Qf2nDCIVg23Zh@hovoldconsulting.com>
-References: <20221017145328.22090-1-johan+linaro@kernel.org>
- <20221017145328.22090-10-johan+linaro@kernel.org>
- <5e153119-f853-ff57-8277-2d782e255be2@linaro.org>
+        William Breathitt Gray <william.gray@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a bindings
+Message-ID: <Y05RWbqA0ofEc/Zj@google.com>
+References: <20221010145222.1047748-1-biju.das.jz@bp.renesas.com>
+ <20221010145222.1047748-2-biju.das.jz@bp.renesas.com>
+ <8d6b8f0e-d9d7-0d77-aa99-379de768fd5d@linaro.org>
+ <OS0PR01MB592232C831CCA84FC302212F86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <5e153119-f853-ff57-8277-2d782e255be2@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <OS0PR01MB592232C831CCA84FC302212F86239@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -65,75 +69,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 17, 2022 at 01:15:45PM -0400, Krzysztof Kozlowski wrote:
-> On 17/10/2022 10:53, Johan Hovold wrote:
-> > The current QMP PCIe PHY bindings are based on the original MSM8996
-> > binding which provided multiple PHYs per IP block and these in turn were
-> > described by child nodes.
-> > 
-> > Later QMP PCIe PHY blocks only provide a single PHY and the remnant
-> > child node does not really reflect the hardware.
-> > 
-> > The original MSM8996 binding also ended up describing the individual
-> > register blocks as belonging to either the wrapper node or the PHY child
-> > nodes.
-> > 
-> > This is an unnecessary level of detail which has lead to problems when
-> > later IP blocks using different register layouts have been forced to fit
-> > the original mould rather than updating the binding. The bindings are
-> > arguable also incomplete as they only the describe register blocks used
-> > by the current Linux drivers (e.g. does not include the per lane PCS
-> > registers).
-> > 
-> > In preparation for adding new bindings for SC8280XP which further
-> > bindings can be based on, mark the current bindings as "legacy".
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> >  .../{qcom,qmp-pcie-phy.yaml => qcom,qmp-pcie-phy-legacy.yaml} | 4 ++--
+On Tue, 11 Oct 2022, Biju Das wrote:
+
 > 
-> I don't think we should rename anything as legacy. These are "normal"
-> platforms, not legacy ones. SM8450 is not even that old.
+> Hi Krzysztof Kozlowski,
+> 
+> > Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Document RZ/G2L MTU3a
+> > bindings
+> > 
+> > On 10/10/2022 10:52, Biju Das wrote:
+> > > The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
+> > > the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
+> > > channels and one 32-bit timer channel. It supports the following
+> > > functions
+> > >  - Counter
+> > >  - Timer
+> > >  - PWM
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > ---
+> > > v3->v4:
+> > >  * Dropped counter and pwm compatibeles as they don't have any
+> > resources.
+> > >  * Made rz-mtu3 as pwm provider.
+> > >  * Updated the example and description.
+> > > v2->v3:
+> > >  * Dropped counter bindings and integrated with mfd as it has only
+> > one property.
+> > >  * Removed "#address-cells" and "#size-cells" as it do not have
+> > children with
+> > >    unit addresses.
+> > >  * Removed quotes from counter and pwm.
+> > >  * Provided full path for pwm bindings.
+> > >  * Updated the example.
+> > > v1->v2:
+> > >  * Modelled counter and pwm as a single device that handles
+> > >    multiple channels.
+> > >  * Moved counter and pwm bindings to respective subsystems
+> > >  * Dropped 'bindings' from MFD binding title.
+> > >  * Updated the example
+> > >  * Changed the compatible names.
+> > > ---
+> > >  .../bindings/mfd/renesas,rz-mtu3.yaml         | 305
+> > ++++++++++++++++++
+> > >  1 file changed, 305 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/mfd/renesas,rz-mtu3.yaml
+> > 
+> > This should not be in MFD. Just because some device has few features,
+> > does not mean it should go to MFD... Choose either timer or pwm.
+> 
+> MFD is for multifunction device. This IP supports multiple functions
+> like timer, pwm, clock source/events. That is the reason I have added 
+> here. MFD is core which provides register access for client devices.
+> 
+> For me moving it to pwm or counter is not a big problem.
+> Why do you think it cannot be MFD?
 
-I'm not really referring to the platforms as legacy, but the rather the
-format of the bindings. The intent is that by marking the current ones
-as such, people will not base new bindings on the old scheme.
+Sorry for jumping in late here.  I see this has been resolved.
 
-There's no problem supporting both schemes in the driver also for the
-current compatibles, but expressing such a deprecation in DT schema
-sounds like it would be painful. We instead decided to simple draw the
-line at SC8280XP and have future bindings be based on its binding.
+The TL;DR is: if you're not using the MFD Core (and including
+mfd/core.h), it's not an MFD.  You *could* split this up into its
+component parts, place them into their own subsystems and use an MFD
+core driver to register them all, but as Thierry says, this is not a
+hard requirement either.
 
-> The recommendation is to keep names matching the compatibles, not adding
-> some legacy/newer/newest suffixes.
-
-Yeah, I know, but that's not what the current bindings do. And if we
-keep 
-
-	qcom,qmp-pcie-phy.yaml
-
-and add
-
-	qcom,sc8280xp-qmp-pcie-phy.yaml
-
-then I fear that people will base their bindings on the former rather
-than the latter.
-
-I guess I can just add a comment in the old schema file with a reference
-to the sc8280xp bindings to try to prevent people from adding new ones
-in the wrong place.
-
-If I understand you correctly this is what you are suggesting? And that
-the new file should still be named "qcom,sc8280xp-qmp-pcie-phy.yaml"
-also as new bindings are added to that file?
-
-I could also rename the old schema file after one of the old platforms
-platforms therein (e.g. qcom,msm8998-qmp-pcie-phy) to make it sounds
-less like a generic schema for new bindings.
-
-That is
-
-	qcom,msm8998-qmp-pcie-phy.yaml + comment (for current bindings)
-	qcom,sc8280xp-qmp-pcie-phy.yaml (for new bindings)
-
-Johan
+-- 
+Lee Jones [李琼斯]
