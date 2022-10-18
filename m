@@ -2,119 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FB5560315F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 19:11:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4DC8603192
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 19:29:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbiJRRLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 13:11:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50434 "EHLO
+        id S229807AbiJRR3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 13:29:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbiJRRLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 13:11:16 -0400
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87BB5C1495
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 10:11:15 -0700 (PDT)
-Received: by mail-qt1-x834.google.com with SMTP id h24so9739451qta.7
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 10:11:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AtZtFlWaxDzp4p+zyoaTuOJhPmtR/rXSVbDgcVsy++M=;
-        b=tnIPN01nJpr5rusLud3hXjIo2aDkZ+LjkWepVdHkW95LxlFnX4zXSYGAv0cpxkN2PY
-         xrTi47GvozItMnZUJX1J73I8rs7f4JKXTW4TD8wg6nWWqsXPlfWnv8sgSEeS1EvHhhiB
-         BE6eEB12x97rxWtUqK3JigC7BcdOp/TsmYmoFjnvh9FeGSypTAaEba5DX3lmvjpzPmai
-         CM+1lfLcVt2cGAJhQKiCBNHrL3x5qlsBIoKqDF+M5xts/0VeCUPKaE4RZg1UyYsxZTc/
-         52Qz5AkPADMoEL6TN75vTc3ds2tV5c9eMfb1NXjWgXfyuKEab+Vw1iGL72LIsfcPm+XF
-         avgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AtZtFlWaxDzp4p+zyoaTuOJhPmtR/rXSVbDgcVsy++M=;
-        b=VSUZqjbpF4p4fIbXIhss94py3xSmga25Vwy/blaZGhleqX6NgfN1yDzmQ2beq1U5eM
-         wGEZrHpCafnWpwOEFO3aJv7hF+/ZjjMkxW7EAbM6+7Ni8rDcMaW2uK7x8PWMLlZ2t2iY
-         RDKEuttYAXuWvx3D5VSZyay9z98kT2zgHSpckol89MUZkecwpE5OGJFRJ4GLDTO1Qk5u
-         FYx1u4cfNlMz0Tn/yuHsYwr/hHLciYwldvxBYUY4Nq8iZLT0b/II7FImBseoqUVyQBpG
-         CgohQ+18Uz9DjsC0q69zkdKtcxmwFTAIx6VYn0dcfYqQAynV1/GtA+k4lXzdZYUYeGv+
-         cxPQ==
-X-Gm-Message-State: ACrzQf1h7GfSE+rAwTx5yWohC3WhLtebk3tDZVYHObMDXis4m/806EBk
-        LCSZ2W8eelxXJgq6r8VcBt29xw==
-X-Google-Smtp-Source: AMsMyM6SadXRdagzOt9c1T8+N4cXX7UyAxOLgO26HDrO47PED7/ad9lu195FTu+7QvB61W4FUzMg5g==
-X-Received: by 2002:ac8:5cc6:0:b0:398:10b4:8fff with SMTP id s6-20020ac85cc6000000b0039810b48fffmr2933621qta.602.1666113074679;
-        Tue, 18 Oct 2022 10:11:14 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id g5-20020ac80705000000b00398ed306034sm2203461qth.81.2022.10.18.10.11.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 10:11:13 -0700 (PDT)
-Message-ID: <12d79669-6e8c-6cf8-2e32-d4e0e2e42f3d@linaro.org>
-Date:   Tue, 18 Oct 2022 13:11:12 -0400
+        with ESMTP id S229491AbiJRR3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 13:29:34 -0400
+Received: from smtpcmd0987.aruba.it (smtpcmd0987.aruba.it [62.149.156.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1D98A389E
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 10:29:31 -0700 (PDT)
+Received: from [192.168.50.220] ([146.241.87.206])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id kqP9orvJLaWj1kqPAoCbei; Tue, 18 Oct 2022 19:29:29 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1666114169; bh=2R1Qx2v5j+cUhKJyPReXeVM3kkRyNKVJuTVaauBdp9A=;
+        h=Date:MIME-Version:Subject:To:From:Content-Type;
+        b=JI8QiS5clsPeOZ5Z35oTXgw7oDw+y5B8RIJGwZD91qzm4CEX8dkaysJCHn6TICCxK
+         gq//3IPx6dHZM1R9cr5N7U9oAufIXWpzabRrBxz721YhQ8PQiLgMQ8FSLjPgP2OSWK
+         +DGBKtFgutA4A7IGvQL9mwJTcSsad8oB2ZvckT2LYqr65dZD7IXGANsZptU3rZxWc9
+         mvdd1eSo7XjgIHjSAerDUyU52zrF4bACYvoQoOSNuL1LHYj3ztyHtLVdF41X96mpbJ
+         KsPuxZbRQWfTrx/7TeMEyRY5uwuV0GwljDufLHWAtA/1ISmrb6kJE6nC8WwEEJOX+0
+         a233rxHKTZDyQ==
+Message-ID: <de1957b5-ef9c-1f78-d2e6-b97a6f678b26@benettiengineering.com>
+Date:   Tue, 18 Oct 2022 19:29:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH V3 1/2] dt-bindings: firmware: qcom-scm: Add optional
- interrupt
+ Thunderbird/102.3.3
+Subject: Re: [PATCH 4/5] ARM: dts: imxrt1050: remove mmc max-frequency
+ property
+To:     Bough Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+References: <20221017235602.86250-1-giulio.benetti@benettiengineering.com>
+ <20221017235602.86250-4-giulio.benetti@benettiengineering.com>
+ <DB7PR04MB40100794ED12BA4224CD6B1B90289@DB7PR04MB4010.eurprd04.prod.outlook.com>
 Content-Language: en-US
-To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, robimarko@gmail.com,
-        quic_gurus@quicinc.com, quic_rjendra@quicinc.com
-References: <1666086406-5452-1-git-send-email-quic_sibis@quicinc.com>
- <1666086406-5452-2-git-send-email-quic_sibis@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1666086406-5452-2-git-send-email-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+In-Reply-To: <DB7PR04MB40100794ED12BA4224CD6B1B90289@DB7PR04MB4010.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfEYXM2XHTtUBYOG3z6wAwj/H7EJCvinaFe/k/4O7VAg8rd3dOA3DFPlrEFst6KA5MxSfopjrt38ZI2rC8DZYHIxoExerTUxu2ika8uAbdR6Xfv94SZXH
+ xIRquoGlNPWaD5lhn6BEi9RXtMASMeO2ZxZtiBzjGH0QThzIAYqAGDleWQ1t9G7MBRyOeNk7ABRxflYHfiRh6qZ84TLpdIlAZSIGfMO3ieSojW+vs/xpPB+x
+ HonI+o/3AyiSxhG9hKj88qv9Y5+sfHRpvNBH2RjHRltsVWeUnMsXAIz8Qxc6CXbJ2/eqmJJiroXa+0b9miT7jRAszV2bjiq8vzpItyQsltdbiNsX/loe4hQh
+ Ft4gceRDDjV/TCVo0QfUC0FbKIgKZl0lmLe/vEXOsF/FwMYOS6e40ZukyxIRV457CjEmYckIpMCv21W/6uU1kd3ztqcHESdVyntFWT3DQFHmXfDadNiYzH93
+ gx5PiG5j44buLfV09vegssOEAKRwaZy1H7HPQVxkMtxVtOEDT8zbdFLkQw0=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/10/2022 05:46, Sibi Sankar wrote:
-> From: Guru Das Srinagesh <quic_gurus@quicinc.com>
-> 
-> Add an interrupt specification to the bindings to support the wait-queue
-> feature.
-> 
-> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
-> 
-> The interrupt property for scm firmware from a binding perspective is
-> completely optional i.e. not all tz fw running in the wild on sm8450
-> devices support this feature. The bootloader does the interrupt property
-> addition on sm8450 devices with wait-queue support.
-> 
->  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> index c5b76c9f7ad0..6483d76b2371 100644
-> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> @@ -71,6 +71,11 @@ properties:
->    '#reset-cells':
->      const: 1
->  
-> +  interrupts:
-> +    description:
-> +      The wait-queue interrupt that firmware raises as part of handshake
-> +      protocol to handle sleeping SCM calls.
+Hi Haibo,
 
-You still miss here constraints... nothing improved. Just look at other
-properties in this file.
+On 18/10/22 05:01, Bough Chen wrote:
+>> -----Original Message-----
+>> From: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>> Sent: 2022年10月18日 7:56
+>> To: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>> linux-kernel@vger.kernel.org; linux-clk@vger.kernel.org;
+>> linux-mmc@vger.kernel.org
+>> Cc: Stephen Boyd <sboyd@kernel.org>; Bough Chen <haibo.chen@nxp.com>;
+>> Adrian Hunter <adrian.hunter@intel.com>; Ulf Hansson
+>> <ulf.hansson@linaro.org>; Giulio Benetti
+>> <giulio.benetti@benettiengineering.com>
+>> Subject: [PATCH 4/5] ARM: dts: imxrt1050: remove mmc max-frequency
+>> property
+>>
+>> According to i.MXRT1050 Reference Manual usdhc supports up to 208Mhz clock
+> 
+> Please double check this. As I know, the i.MXRT1050 and i.MX6/7/8/9 series use the same usdhc IP, maybe include some small difference.
+> For the usdhc in i.MX6/7/8/9, I confirmed with IC team, the card clock output from usdhc can't be upper than 
+200MHz, otherwise maybe meet some stable related issue.
 
-maxItems:1
+Thanks for poiting, I've double checked and you're right. RM states 
+208Mhz but DS states 200Mhz and it makes sense because of HS200.
 
-Best regards,
-Krzysztof
+> So here I think should change to like this:
+>   max-frequency = <200000000>;
+
+Ok, I'll send a V2 for this. I wait for other comments on the other 
+patches for a bit before.
+
+Best regards
+-- 
+Giulio Benetti
+CEO/CTO@Benetti Engineering sas
+
+> 
+> Best Regards
+> Haibo Chen
+> 
+> 
+>> so let's remove max-frequency property in the .dtsi base file and in case add
+>> that property in the board specific .dts file for a specific device connected to it.
+>>
+>> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>> ---
+>>   arch/arm/boot/dts/imxrt1050.dtsi | 1 -
+>>   1 file changed, 1 deletion(-)
+>>
+>> diff --git a/arch/arm/boot/dts/imxrt1050.dtsi
+>> b/arch/arm/boot/dts/imxrt1050.dtsi
+>> index 114465e4dde6..0b44cc4ce6ad 100644
+>> --- a/arch/arm/boot/dts/imxrt1050.dtsi
+>> +++ b/arch/arm/boot/dts/imxrt1050.dtsi
+>> @@ -93,7 +93,6 @@ usdhc1: mmc@402c0000 {
+>>   			bus-width = <4>;
+>>   			fsl,wp-controller;
+>>   			no-1-8-v;
+>> -			max-frequency = <4000000>;
+>>   			fsl,tuning-start-tap = <20>;
+>>   			fsl,tuning-step = <2>;
+>>   			status = "disabled";
+>> --
+>> 2.34.1
+> 
 
