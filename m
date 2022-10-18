@@ -2,221 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7CFF602956
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 12:30:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E638860299D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 12:47:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbiJRKar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 06:30:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55856 "EHLO
+        id S230060AbiJRKrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 06:47:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229894AbiJRKaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 06:30:46 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 797658F954
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 03:30:42 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id r18so12905625pgr.12
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 03:30:42 -0700 (PDT)
+        with ESMTP id S230057AbiJRKrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 06:47:23 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 424E6B5FCA;
+        Tue, 18 Oct 2022 03:46:58 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id b12so19837070edd.6;
+        Tue, 18 Oct 2022 03:46:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=exg8qK7HbANK8LGW8V7Sf+Nbz3fOY3t3f61wcS0cpmU=;
-        b=bwI1fqtxthcSt+uCO30znii+gfNeb5Q3uZ7GcmLwoC3d649+jbF8Ow3LyM7hk2IvuZ
-         cLK+JkAdD54eOh2j6QV0/FJcL6wkMID6ihFlcV/rqJFPKeZ3Ak/fCTBhL4rCp7zhKgZN
-         fM3mzoJAbfE3YkVKnfOJFKiItq1wQsghsle+UFshysohGg7t8WEEn+Jrk/D58LL7J6CZ
-         aHg9jAruVGlQNvXe15cht5jDlXIW/pDhN6Q2DVXNtI3YOeqRQXT9j3l06mthM9P0cQU2
-         PF5zrbpJqU3dsdtfa4ONsclOwLxmLlXWfrqhIyCE9NELiLdPn00n5ay1VQ85N6YepgzZ
-         WSTg==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3j3M/lz5qKcy4O2cA0PXIjVvWRcebK1YS0t2E2ZHQI8=;
+        b=QcLRzTaL8Uq8n1qWmbchdjMXkIpeVLbnkFZGrHCwtuk/sfV/QjDOD6OnRgKTGDgSWw
+         pPRnk2dZOZFirQkmViI9HrJwVFrycme3NpsIRjY+mJ8b0QvtEHX/3zDiNZd9QvqVE6z3
+         MiX3TQAClob5Zwq0Si3p7afVpVanyLmcoViRyXv+cxJuhKNaEx/nnFr3RdPle9y+uW2k
+         W0q7PPmsf4f2POTNZj11eMmL49SIeGFPp+7cTUOvEuz6DnNxSUS+QHzmPAAE/W6EYDaL
+         hSOe4Ji6Y8xIlSkEm3m+uWKs7zXJPw6Nint5EwzSzLRY6GLG0PRwKZClo1mKI87X+ArS
+         bWoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=exg8qK7HbANK8LGW8V7Sf+Nbz3fOY3t3f61wcS0cpmU=;
-        b=B6ViAnn6t5ziph1v96qyyIuJJOmorvAT2Ofz7rDC1HLOBghLJ4bbMJefzbqrnREcp3
-         tnNRESFQNI4t9GgMCUN70vDx1bHNpIkY50ECxH6Mpii87m49WZn24Bl/cF9zNmQoGKc3
-         R+uVcWDQieNOTQNJdZ4QyJ747I1BPYZ+l7/Mkuwk2kqX/dzWqW5ZlxWn0nRtfGjOOGug
-         /nGzzDv80Po+WlDvRR+GVrdpkAmnviSL6OiQQUmkyFP08mUlYMUchTce+ok5/BsA/AFg
-         iqZQ4gRSGXch0G7BmlNg8Ktpvmdb2ZTR7oFAQKQse2xiTBOLanT9UG0tfpDz+ZmdBAey
-         W2ew==
-X-Gm-Message-State: ACrzQf03JAJDMkVh7ld1xmAIHPBy9Rg7jLZbyYvRcwu78NZdlk3p6diE
-        M7wU8LXgrmraFsVJMrVU90NbzNrnNskvMisQxVxgeA==
-X-Google-Smtp-Source: AMsMyM5BLMlVQf/WZNomvvuRQgyN2ps9/NivHtmdRTqq88wmho9EPNZIly4CEni5YeJKoAVezylqg9ThesITq5rux/k=
-X-Received: by 2002:a63:464d:0:b0:441:5968:cd0e with SMTP id
- v13-20020a63464d000000b004415968cd0emr2101209pgk.595.1666089041982; Tue, 18
- Oct 2022 03:30:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221017164005.2622934-1-amit.pundir@linaro.org> <20221017201654.u7x5vrjsad653kma@bogus>
-In-Reply-To: <20221017201654.u7x5vrjsad653kma@bogus>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 18 Oct 2022 12:30:04 +0200
-Message-ID: <CAPDyKFqMLHhzFzYZ5wB5xTSaHkesp9pxX3QEhT+8XZictUnUaQ@mail.gmail.com>
-Subject: Re: [PATCH] Revert "arm64: dts: qcom: sm8250: Add cpuidle states"
-To:     Amit Pundir <amit.pundir@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3j3M/lz5qKcy4O2cA0PXIjVvWRcebK1YS0t2E2ZHQI8=;
+        b=CD1nlfj4+zH8+OFm6YHvYw1cK0FdrRJya6zd+NB8oJSIGB+jlo6y3pgBpyKQCGUFpG
+         koHQtnTEPBKZ5pb0UE06/4FSDiq0AfXXCaawJf664Mt6rfBBGL42ZpLfK6NGKJFP/oV2
+         hEUlEAp5plhiaSWTW0F5T5NGSbsnHl53yat3ErcBb7QAFa/nWh9Tp2Qz1T+U70fAuEG7
+         iazW76HDM2y4RpE6gr/HcngM3kV0/SvpWuoZgH/NEEfvdj2VkALzDGe5nI/UY9V0n4SL
+         7sE1VZ7JpfANj/EZ9gj8iSBcc4MPG9oKk3q1K3drD97O7ceExN6jyXxjaPgERMbREfkN
+         qVFA==
+X-Gm-Message-State: ACrzQf2yToXD4Fw0aWI7IBo5aHVm4coZXjdW3ax14VqYE5cPtFMvyOlG
+        kd7xdUFmJlQNcJBLcVCwZzs=
+X-Google-Smtp-Source: AMsMyM6njbmUZixipehzHmt3TZ6nV54TCeLyJPOOe8JL01Az5mF9LWX4XqEDq1hWN+QrS/XIxiEqWA==
+X-Received: by 2002:a05:6402:4303:b0:45c:cd3d:f5 with SMTP id m3-20020a056402430300b0045ccd3d00f5mr2001704edc.188.1666090015727;
+        Tue, 18 Oct 2022 03:46:55 -0700 (PDT)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id e11-20020a056402104b00b00459f4974128sm8739778edu.50.2022.10.18.03.46.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Oct 2022 03:46:54 -0700 (PDT)
+Date:   Tue, 18 Oct 2022 12:46:52 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jon Hunter <jonathanh@nvidia.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/7] drm/simpledrm: Add support for system memory
+ framebuffers
+Message-ID: <Y06EHB8D1ip3PVyb@orome>
+References: <20221007124946.406808-1-thierry.reding@gmail.com>
+ <20221007124946.406808-5-thierry.reding@gmail.com>
+ <dd869713-6eb2-fadd-fdef-6ca155198a8c@suse.de>
+ <Y01sunkDsQQQhXuC@orome>
+ <CAL_JsqKzSife8_ob3P=KVVcQ_ny=ppMF5LsjLxvYz95roy-y2A@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="0puBMFs9lsK95MlP"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKzSife8_ob3P=KVVcQ_ny=ppMF5LsjLxvYz95roy-y2A@mail.gmail.com>
+User-Agent: Mutt/2.2.7 (2022-08-07)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Oct 2022 at 22:17, Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Mon, Oct 17, 2022 at 10:10:05PM +0530, Amit Pundir wrote:
-> > This reverts commit 32bc936d732171d48c9c8f96c4fa25ac3ed7e1c7.
-> >
-> > This patch was part of a patch series to add APSS RSC to
-> > Cluster power domain
-> > https://patchwork.kernel.org/project/linux-pm/cover/1641749107-31979-1-git-send-email-quic_mkshah@quicinc.com/
-> > but the rest of the patches in this series got NACKed and didn't land.
-> >
-> > These cpuidle states made RB5 (sm8250) highly unstable and I run into
-> > following crash every now and then:
-> >
-> > [    T1] vreg_l11c_3p3: failed to enable: -ETIMEDOUT
-> > [    T1] qcom-rpmh-regulator 18200000.rsc:pm8150l-rpmh-regulators: ldo11: devm_regulator_register() failed, ret=-110
-> > [    T1] qcom-rpmh-regulator: probe of 18200000.rsc:pm8150l-rpmh-regulators failed with error -110
-> >
-> > I reported this breakage earlier this year as well:
-> > https://lore.kernel.org/all/CAMi1Hd2Sngya_2m2odkjq4fdV8OiiXsFMEX1bb807cWMC7H-sg@mail.gmail.com/
-> > I can confirm that if I cherry-pick the rest of the patches from the
-> > series then I can't reproduce this crash, but I'm not sure when the rest
-> > of the patches are going to land though.
 
-I have been talking to Maulik (offlist) about re-posting the series,
-but apparently she has been too busy to move this forward.
+--0puBMFs9lsK95MlP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I assume a better option, than reverting, is to get the above series
-merged. If I recall, there were only a few minor comments from me on
-the genpd patch [1]. That said, let me help out and refresh the
-series, I will do it asap!
-
+On Mon, Oct 17, 2022 at 01:15:59PM -0500, Rob Herring wrote:
+> On Mon, Oct 17, 2022 at 9:54 AM Thierry Reding <thierry.reding@gmail.com>=
+ wrote:
 > >
-> > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 105 ---------------------------
-> >  1 file changed, 105 deletions(-)
+> > On Mon, Oct 10, 2022 at 10:12:34AM +0200, Thomas Zimmermann wrote:
+> > > Hi
+> > >
+> > > Am 07.10.22 um 14:49 schrieb Thierry Reding:
+> > > > From: Thierry Reding <treding@nvidia.com>
+> > > >
+> > > > Simple framebuffers can be set up in system memory, which cannot be
+> > > > requested and/or I/O remapped using the I/O resource helpers. Add a
+> > > > separate code path that obtains system memory framebuffers from the
+> > > > reserved memory region referenced in the memory-region property.
+> > > >
+> > > > v2: make screen base a struct iosys_map to avoid sparse warnings
+>=20
+> [...]
+>=20
+> > > > +static int simple_framebuffer_init(struct reserved_mem *rmem)
+> > > > +{
+> > > > +   pr_info("framebuffer memory at %pa, size %lu bytes\n", &rmem->b=
+ase,
+> > > > +           (unsigned long)rmem->size);
+> > > > +
+> > > > +   rmem->ops =3D &simple_framebuffer_ops;
+> > > > +
+> > > > +   return 0;
+> > > > +}
+> > > > +RESERVEDMEM_OF_DECLARE(simple_framebuffer, "framebuffer", simple_f=
+ramebuffer_init);
+> > >
+> > > What's the prupose of these code at all?  I looked through the kernel=
+, but
+> > > there aren't many other examples of it.
 > >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > index a5b62cadb129..a2c15da1a450 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > @@ -101,8 +101,6 @@ CPU0: cpu@0 {
-> >                       capacity-dmips-mhz = <448>;
-> >                       dynamic-power-coefficient = <205>;
-> >                       next-level-cache = <&L2_0>;
-> > -                     power-domains = <&CPU_PD0>;
-> > -                     power-domain-names = "psci";
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       operating-points-v2 = <&cpu0_opp_table>;
-> >                       interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> > @@ -125,8 +123,6 @@ CPU1: cpu@100 {
-> >                       capacity-dmips-mhz = <448>;
-> >                       dynamic-power-coefficient = <205>;
-> >                       next-level-cache = <&L2_100>;
-> > -                     power-domains = <&CPU_PD1>;
-> > -                     power-domain-names = "psci";
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       operating-points-v2 = <&cpu0_opp_table>;
-> >                       interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> > @@ -146,8 +142,6 @@ CPU2: cpu@200 {
-> >                       capacity-dmips-mhz = <448>;
-> >                       dynamic-power-coefficient = <205>;
-> >                       next-level-cache = <&L2_200>;
-> > -                     power-domains = <&CPU_PD2>;
-> > -                     power-domain-names = "psci";
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       operating-points-v2 = <&cpu0_opp_table>;
-> >                       interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> > @@ -167,8 +161,6 @@ CPU3: cpu@300 {
-> >                       capacity-dmips-mhz = <448>;
-> >                       dynamic-power-coefficient = <205>;
-> >                       next-level-cache = <&L2_300>;
-> > -                     power-domains = <&CPU_PD3>;
-> > -                     power-domain-names = "psci";
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       operating-points-v2 = <&cpu0_opp_table>;
-> >                       interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> > @@ -188,8 +180,6 @@ CPU4: cpu@400 {
-> >                       capacity-dmips-mhz = <1024>;
-> >                       dynamic-power-coefficient = <379>;
-> >                       next-level-cache = <&L2_400>;
-> > -                     power-domains = <&CPU_PD4>;
-> > -                     power-domain-names = "psci";
-> >                       qcom,freq-domain = <&cpufreq_hw 1>;
-> >                       operating-points-v2 = <&cpu4_opp_table>;
-> >                       interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> > @@ -209,8 +199,6 @@ CPU5: cpu@500 {
-> >                       capacity-dmips-mhz = <1024>;
-> >                       dynamic-power-coefficient = <379>;
-> >                       next-level-cache = <&L2_500>;
-> > -                     power-domains = <&CPU_PD5>;
-> > -                     power-domain-names = "psci";
-> >                       qcom,freq-domain = <&cpufreq_hw 1>;
-> >                       operating-points-v2 = <&cpu4_opp_table>;
-> >                       interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> > @@ -231,8 +219,6 @@ CPU6: cpu@600 {
-> >                       capacity-dmips-mhz = <1024>;
-> >                       dynamic-power-coefficient = <379>;
-> >                       next-level-cache = <&L2_600>;
-> > -                     power-domains = <&CPU_PD6>;
-> > -                     power-domain-names = "psci";
-> >                       qcom,freq-domain = <&cpufreq_hw 1>;
-> >                       operating-points-v2 = <&cpu4_opp_table>;
-> >                       interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> > @@ -252,8 +238,6 @@ CPU7: cpu@700 {
-> >                       capacity-dmips-mhz = <1024>;
-> >                       dynamic-power-coefficient = <444>;
-> >                       next-level-cache = <&L2_700>;
-> > -                     power-domains = <&CPU_PD7>;
-> > -                     power-domain-names = "psci";
-> >                       qcom,freq-domain = <&cpufreq_hw 2>;
-> >                       operating-points-v2 = <&cpu7_opp_table>;
-> >                       interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> > @@ -300,42 +284,6 @@ core7 {
-> >                               };
-> >                       };
-> >               };
-> > -
-> > -             idle-states {
-> > -                     entry-method = "psci";
-> > -
-> > -                     LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
-> > -                             compatible = "arm,idle-state";
-> > -                             idle-state-name = "silver-rail-power-collapse";
-> > -                             arm,psci-suspend-param = <0x40000004>;
-> > -                             entry-latency-us = <360>;
-> > -                             exit-latency-us = <531>;
-> > -                             min-residency-us = <3934>;
-> > -                             local-timer-stop;
->
-> If this is temporary fix for some broke firmware or setup, I suggest to
-> just add status = "disabled" for these states. Also worth checking if keeping
-> the cpu states is okay and only cluster state is the issue or everything
-> needs to be disabled. That way it would avoid the churn when re-enabling it.
+> > This is a fairly standard construct to deal with early memory
+> > reservations. What happens is roughly this: during early kernel boot,
+> > the reserved-memory core code will iterate over all children of the top-
+> > level reserved-memory node and see if they have a compatible string that
+> > matches one of the entries in the table created by these
+> > RESERVEDMEM_OF_DECLARE entries. It will then call the init function for
+> > a matched entry and register a struct reserved_mem for these. The init
+> > function in this case just dumps an informational message to the boot
+> > log to provide some information about the framebuffer region that was
+> > reserved (which can be used for example for troubleshooting purposes)
+> > and sets the device init/release operations (which will be called when a
+> > device is associated with the reserved memory region, i.e. when the
+> > of_reserved_mem_device_init_by_idx() function is called).
+> >
+> > The reason why there aren't many examples of this is because these are
+> > special memory regions that (at least upstream) kernels seldom support.
+> > Perhaps the most common use-cases are the shared DMA pools (such as
+> > CMA).
+>=20
+> Also, not all regions need to be handled 'early' before slab allocator
+> or drivers are probed. Do you need early handling here? I can't see
+> why other than if fbcon is up early.
 
-That's a good option, unless we can get the other series (that fixes
-this issue) merged soon. As stated, I will help to re-spin it and then
-we can take it from there.
+No, I don't think this needs early handling. Obviously we want this to
+be available as soon as possible, but since the framebuffer driver is
+built on top of DRM and that all becomes available fairly late, I don't
+think this could ever run *that* early.
 
->
-> --
-> Regards,
-> Sudeep
+So are you saying that in general if we don't need early handling we
+should avoid RESERVEDMEM_OF_DECLARE and instead manually resolve the
+memory regions and inspect them? In other words, RESERVEDMEM_OF_DECLARE
+should only ever be used when this early handling is needed?
 
-Kind regards
-Uffe
+Thierry
+
+--0puBMFs9lsK95MlP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNOhBwACgkQ3SOs138+
+s6GMixAAosptozjyV0LN3+Kp4L51xHZfeK0y399j2b2MNorrcoEyr0Ptv/VlWgdp
+BD72CEq7CX+8QFn16zTZyMtnytAxl4Gr0Rhci+WadHS+FxMX2C8/0UeBJfs8jOhS
+56rdz1momIif7MPtcgW1nQSIQFC+3UVOgI21F1CHYXUDHoPmnSvpMYjzVgVZkloT
+7l6gRVGGrE5wfrb7pby8SNay2400ZIaS3IXfXGL34U8rQDA8Upc3IJh0cY+Fw8Tg
+RPPRiQHQdbTgMyi1jgYlyXpGAlYy3ywuDrX1sqo0fKooh5SqLoGqidQTsHAEBUPf
+DfdUFzpyDxB+SvtVf+b8lx+FC/mnVqg07lH9cKmfhzjqGgo5SElSZjeqjQgxYXdc
+VeQySrqJGwzNaj4qQp57O+2LtgncXzTstUSECJ87dvwTRUw+yMygDMRfh25qpmTM
+9rn5dO3URjJ0Nzvnulj1Xn5XHA9DpHltc7g4pKiWueYPuxPr2DMdLFF/QT2+sbdy
+HoNLcZeECKbk8J9caeIeuDi3pVScE6uaJ4jvq0UrkQMfBRNEaBKlMlrmVz8wlqMd
+i43iJYrUrAUiWvXpGCWnwflP1MI6wKLbwIrMaNmzBpTOM526+yR1al/rK8ccp8wb
+xGCKg+0FWKl3o1eVDkcrW8QWzZdWR3pPG621KgYy/b56JDMzLOU=
+=Cnem
+-----END PGP SIGNATURE-----
+
+--0puBMFs9lsK95MlP--
