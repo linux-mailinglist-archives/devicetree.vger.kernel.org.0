@@ -2,104 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D37F6602D03
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62817602D0A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:32:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229722AbiJRNcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 09:32:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38184 "EHLO
+        id S230399AbiJRNcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 09:32:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229868AbiJRNcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:32:02 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C96D3CA880;
-        Tue, 18 Oct 2022 06:32:01 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id g10so15525562oif.10;
-        Tue, 18 Oct 2022 06:32:01 -0700 (PDT)
+        with ESMTP id S230401AbiJRNcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:32:32 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A0DCCAE7C
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:32:31 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id m6so8584698qkm.4
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:32:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kaCHs2xS34elvJKmekTcmuQN9rNgKKexethJB2Y5REc=;
+        b=ZjLD7F1VbceTQdc2FVYGM7rpP0gstOOB09yNhHNiAVOxHHRSI7rGQKG/pWUAG9tV9u
+         xsu9qHuKEEYagg01nvbAohXXIwLdUGr59Bf+RzhYYiPHCII2jlQ5LBcNagarjtuR7QKz
+         x49vCaGeYNSKtFDuti8ryyppzuXuaHEsY/ezLvw7QniellFRh24Ql7wd4m6hgzrF1JBF
+         d84sYUuyKZlSpbZPk/76KcsOZxmzkzXbooe39RKpshXZEqRVWUhwKjCJHcF/qzXAFMBO
+         v4UapfMF9rX5/53ohSH4zefn1KbtUo1MBUIY+TvJoWYx1ua+XHg40ymsrkA/SF8QfoeK
+         masg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/sc5xfjWbep3XdzZfvFceKEVzMS+1eS5iVILCK+RzyA=;
-        b=KauH+vHA6xPWz7CJV4XBgw9vuw3colVkfSPap/bikAw9/uJh5n19Tf/5M8avFoa2aF
-         AZZl43vEPx3esSjL+3Chr/wz0BtBK9Y12dUQwdsoLASfVZ9i8mDViaxzuQS/APzSu03f
-         L1uxdOmwUk/kMPeB+z3aeYAAeu+NL82OXMth7QH23KlSsxrA1ybaCF1kfgIIJ763K1jc
-         FOf9OKCu6pATX8+JS+M6BCg/VCFAb3a+Fy9YXDvvFVfpkN8LFI7VQv7fAZpoyTn/aTZK
-         +hXauHsMrId1Sq/hQmX/d8trcu6u3L2x4IyzvW6ywsfV/v5gaTOeQUY2ObVBHE0X7E/G
-         M91A==
-X-Gm-Message-State: ACrzQf0VVws4OnuIb3cUa2CjOPI1fXPA2ya0Uu35ZqeiVNDnPlvzXlYi
-        05m/q+HpyigotJBCVEatvA==
-X-Google-Smtp-Source: AMsMyM6O96ho0FdVAHMJ0wdtQSaFrVSflxDHBhWXy9n/5CqGY3B7jr/SPsYk5PbQXTTdsZkI31qUAw==
-X-Received: by 2002:aca:4b0d:0:b0:354:c1fd:27d with SMTP id y13-20020aca4b0d000000b00354c1fd027dmr1420251oia.108.1666099921003;
-        Tue, 18 Oct 2022 06:32:01 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bd18-20020a056808221200b00354e8bc0236sm5643318oib.34.2022.10.18.06.32.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 06:32:00 -0700 (PDT)
-Received: (nullmailer pid 180824 invoked by uid 1000);
-        Tue, 18 Oct 2022 13:32:01 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20221018072106.2391771-1-alexander.stein@ew.tq-group.com>
-References: <20221018072106.2391771-1-alexander.stein@ew.tq-group.com>
-Message-Id: <166609951951.171676.6449728650793742921.robh@kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: clock: ti,cdce925: Convert to DT schema
-Date:   Tue, 18 Oct 2022 08:32:01 -0500
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        bh=kaCHs2xS34elvJKmekTcmuQN9rNgKKexethJB2Y5REc=;
+        b=a9dECt2qkSBnDur/8yfj1DoVpzck14+apIDm248JyzkEEVtzoVcFlWT/VWe4qApPIx
+         yqiMQoZliwLD/Nk6t6u8DOFLMjfDZZmKEmfMT9ktGNJO+Y0DL6qKY9gyPQ0TJRYhn5gy
+         pfmTl0EV7Uryc7R1aiyy8KXhDxF+B8Ivy4ctjspJ3iD7EFct4Zcc7ocMwRxYE5780RYD
+         sQclMrfL9TntUcQTKX/PGkWdQw03mMkbBxzHXguQBqtYQG+onWgpZQWW+cLRdQB2dVPR
+         wWpyb4RbSNrjeFaYdo3QZC8NpiSloiXAiAvWCBX7eX5zK8C5rkmZKb5OyjEkyeeEF9Hv
+         gJLw==
+X-Gm-Message-State: ACrzQf1kiHV1TLDvGdpoT8gpPjRBkpAh+w7ACNSvWj5/fiygnYiLiGJH
+        V2oolOYS3LNnfRlAyQvjU0zBMg==
+X-Google-Smtp-Source: AMsMyM6HmKsH2C2pBgFfSroERxT1KE12W4nAI9sADy1phl2YVcta9wYDoZr46YTDutbO0FZuaKq7aA==
+X-Received: by 2002:a05:620a:2150:b0:6e0:79d1:3216 with SMTP id m16-20020a05620a215000b006e079d13216mr1799310qkm.406.1666099950341;
+        Tue, 18 Oct 2022 06:32:30 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id l12-20020a05620a28cc00b006ecf030ef15sm2427438qkp.65.2022.10.18.06.32.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Oct 2022 06:32:29 -0700 (PDT)
+Message-ID: <d681e41f-fd8e-f233-2a25-53c4e0a52c33@linaro.org>
+Date:   Tue, 18 Oct 2022 09:32:28 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH] ARM: dts: ast2600-evb: correct compatible (drop -a1)
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>
+References: <20220804092727.64742-1-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220804092727.64742-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Oct 2022 09:21:06 +0200, Alexander Stein wrote:
-> Convert the TI CDCE925 clock binding to DT schema format.
-> Including a small fix: Add the missing 'ti' prefix in the example
-> compatible.
+On 04/08/2022 05:27, Krzysztof Kozlowski wrote:
+> Due to copy-paste, the ast2600-evb and ast2600-evb-a1 got the same
+> compatible.  Drop the '-a1' suffix from the first to match what is
+> expected by bindings.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Fixes: aa5e06208500 ("ARM: dts: ast2600-evb: fix board compatible")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> I have to admit I only have one specific addon platform for this
-> hardware, which is actually a CECD813 tbh.
+>  arch/arm/boot/dts/aspeed-ast2600-evb.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->  .../devicetree/bindings/clock/ti,cdce925.txt  |  53 ---------
->  .../devicetree/bindings/clock/ti,cdce925.yaml | 104 ++++++++++++++++++
->  2 files changed, 104 insertions(+), 53 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/ti,cdce925.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/ti,cdce925.yaml
-> 
+> diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> index c698e6538269..2010e3cb6158 100644
+> --- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> +++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> @@ -8,7 +8,7 @@
+>  
+>  / {
+>  	model = "AST2600 EVB";
+> -	compatible = "aspeed,ast2600-evb-a1", "aspeed,ast2600";
+> +	compatible = "aspeed,ast2600-evb", "aspeed,ast2600";
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This is weird. I sent this patch on 4th August but it was never
+applied... yet instead I see a commit in mainline from end of September:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=d916109169159f9319f45ce7e1339e41eccf22c4
+which was never sent to mailing list.
 
-yamllint warnings/errors:
+So instead of picking up existing commit from mailing list waiting there
+for 1.5 months, Joel just committed something without sharing in public way.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/ti,cdce925.example.dtb: clock-controller@64: $nodename:0: 'clock-controller@64' does not match '^clock-controller$'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/ti,cdce925.example.dtb: clock-controller@64: 'ret' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+Best regards,
+Krzysztof
 
