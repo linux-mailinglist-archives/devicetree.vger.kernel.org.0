@@ -2,53 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17DEE601F96
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 02:30:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA47D601FC4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 02:39:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231958AbiJRA36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 20:29:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43142 "EHLO
+        id S232286AbiJRAjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 20:39:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232125AbiJRA3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 20:29:37 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD7E7FF8A;
-        Mon, 17 Oct 2022 17:28:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 60E51B81C08;
-        Tue, 18 Oct 2022 00:12:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39C14C433C1;
-        Tue, 18 Oct 2022 00:12:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666051925;
-        bh=GX9MeIOmSj4IS8x82C0PrDb5RjFNTGbmW/XirqUl7PM=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Wj8jQ4QUMvXnPvwEEbeCNCTvwDu8Qby7Yne+uh31cWNeCVgI9Ay7blUmnxIpOYRWD
-         j7sRYmMx4T7ut5X5ZveCD3Dld6USEqg5llX2RS2JEvTs3SU1p/7DVepODWQ3rCxxA/
-         34srb75yHvbqLYpbujuc8sb17qh/Sp5inbJ6bzvi94/27Got6V6OBX3EXiw7fqh5wQ
-         1sdzDxraEplYfPAYCD+03xsuZeP30DqakZK04F+qsWv1NMHPjJxGIa++3f9uUsvwx+
-         6cokv99yaUerxVjVSlIKXc88banxQcBNpO33tA4D5Rf8UY75Ep1SE6DX8N9SfSKVqu
-         EyKsXMWSyA36w==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Marek Bykowski <marek.bykowski@gmail.com>,
-        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 1/8] of/fdt: Don't calculate initrd size from DT if start > end
-Date:   Mon, 17 Oct 2022 20:11:55 -0400
-Message-Id: <20221018001202.2732458-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S232236AbiJRAjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 20:39:00 -0400
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447B82D1D3;
+        Mon, 17 Oct 2022 17:38:44 -0700 (PDT)
+Received: by mail-io1-xd2c.google.com with SMTP id 187so10543312iov.10;
+        Mon, 17 Oct 2022 17:38:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XlhfMLBD9roK3usgmTalym3p24qmGFsJ7yKhSqoF6eE=;
+        b=SKuxY2D1ggKZw5AIxtovMVOi0bMS6948pzTuhpr95+US+rXA2hyFjcWyfCdaCUCb/S
+         SM6+4PzuUnwDMnMspTha9/yHQQZKVwtRUuo8H+ckdNX1bL3C02cZnUKbxyDYSICzlkkL
+         PnvvwRjhz6x4R/pklBCE0RuQNK+ycvNJFIhhpH8Ff7132g4zBuH/aa5+Bcb3u8Qm97LW
+         NpECeJxZC50ldm2IQOBTskFOzdxdKW2KlpOytzQ6ERCHmkrXrWy5hJmh/dDUzS+i98Rf
+         bI3Z2pigyquQAYS7H1XD03xPG7fiF9EZ1JhC/rlTYRTqdJK1jVfAdx5X6mFtXxO8Ykle
+         2Ctg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XlhfMLBD9roK3usgmTalym3p24qmGFsJ7yKhSqoF6eE=;
+        b=3/+cFbomYcx74q46TpZhkNqkkhsTRdmcMqKXHED7jHwzzFnIoD6HPOtlBfVGMTl2y4
+         MGVcUvwgmPxGlxpAaJBdSMrrxd7hmauHKR2NmarsXc5QR9Z2JOugUZ8wDBGfzAevtbH6
+         mo1uw1mhU40tHBagYjBzj7bXWK/MQXRkk6R4ffGTJILFBLWJIdlw5R+6m06F7E2MVwbq
+         F7wSG4LPU3AasM6Eco1vfZqoxDe2fHCkqOnAxMqvy4XRJ3qTbRcvMkSjAOWzkG91GcOU
+         t/p86gX6E4qIMb6iOHGvg8ZHGA5hhd96w2+XxJeuYMWGWvwhRxF8/PX0YStGgA31lMfm
+         QqiQ==
+X-Gm-Message-State: ACrzQf39Ulb9SIcoEfCJdOXfrKVYSJiwq4rVCcmWouFitIi8zNJDbj/P
+        DGD6yV9a9+Zzj4Aq0363Dc4=
+X-Google-Smtp-Source: AMsMyM7btFADvKuqFJI+j+cM9Q57eDbr9oysnGbnjoIQefOXCXYVFU3irXtHKbQpzKghTu0GbV2sgQ==
+X-Received: by 2002:a05:6602:2c8e:b0:6a3:886a:30fb with SMTP id i14-20020a0566022c8e00b006a3886a30fbmr432747iow.75.1666053472214;
+        Mon, 17 Oct 2022 17:37:52 -0700 (PDT)
+Received: from localhost ([2607:fea8:a2e2:2d00::4a89])
+        by smtp.gmail.com with UTF8SMTPSA id k3-20020a0566022a4300b006a11760aebbsm468096iov.36.2022.10.17.17.37.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Oct 2022 17:37:51 -0700 (PDT)
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Richard Acayan <mailingradian@gmail.com>,
+        Melody Olvera <quic_molvera@quicinc.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 2/5] dmaengine: qcom: gpi: document preferred SM6350 binding
+Date:   Mon, 17 Oct 2022 20:37:28 -0400
+Message-Id: <20221018003727.22763-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.38.0
+In-Reply-To: <6d9df544-b99e-4d62-53d1-1f3290d31a19@linaro.org>
+References: <20221015140447.55221-1-krzysztof.kozlowski@linaro.org> <20221015140447.55221-3-krzysztof.kozlowski@linaro.org> <20221017212320.4960-1-mailingradian@gmail.com> <801c902d-4e1a-6ddc-e050-afdc2514e687@linaro.org> <20221017220004.6234-1-mailingradian@gmail.com> <6d9df544-b99e-4d62-53d1-1f3290d31a19@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEXHASH_WORD,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,112 +79,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marek Bykowski <marek.bykowski@gmail.com>
+> On 17/10/2022 18:00, Richard Acayan wrote:
+>>> On 17/10/2022 17:23, Richard Acayan wrote:
+>>>>> Devices with ee offset of 0x10000 should rather bind with SM6350
+>>>>> compatible, so the list will not unnecessarily grow for compatible
+>>>>> devices.
+>>>>>
+>>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>> ---
+>>>>>  drivers/dma/qcom/gpi.c | 7 ++++---
+>>>>>  1 file changed, 4 insertions(+), 3 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/dma/qcom/gpi.c b/drivers/dma/qcom/gpi.c
+>>>>> index f8e19e6e6117..061add832295 100644
+>>>>> --- a/drivers/dma/qcom/gpi.c
+>>>>> +++ b/drivers/dma/qcom/gpi.c
+>>>>> @@ -2286,13 +2286,14 @@ static int gpi_probe(struct platform_device *pdev)
+>>>>>  }
+>>>>>  
+>>>>>  static const struct of_device_id gpi_of_match[] = {
+>>>>> -	{ .compatible = "qcom,sc7280-gpi-dma", .data = (void *)0x10000 },
+>>>>>  	{ .compatible = "qcom,sdm845-gpi-dma", .data = (void *)0x0 },
+>>>>>  	{ .compatible = "qcom,sm6350-gpi-dma", .data = (void *)0x10000 },
+>>>>>  	/*
+>>>>> -	 * Deprecated, devices with ee_offset = 0 should use sdm845-gpi-dma as
+>>>>> -	 * fallback and not need their own entries here.
+>>>>
+>>>> This comment is from the dependency series [1]. Why would we need to add it just
+>>>> to remove it here? I was not notified that the dependency was applied anywhere
+>>>> (except as a base for other series) so it's not set in stone. Let's just drop
+>>>> the original patch that this comment originates from to prevent needlessly
+>>>> adding and removing the same lines at once.
+>>>
+>>> I don't remove the comment, I re-phrase it to be better suited for final
+>>> code.
+>> 
+>> Yes, I didn't word that exactly right. I still think the patch that adds this is
+>> now useless if it's just going to be replaced. Do you think I should keep the
+>> patch that this comment originates from, even though we already know exactly how
+>> its substantial contents will be replaced?
+>> 
+>> We can't modify history and drop commits on kernel trees, but I can still send
+>> a v6 series that drops the original comment.
+> 
+> Sure. You can make it then:
+> 
+> 	 * Do not grow the list for compatible devices. Instead use
+> 	 * qcom,sdm845-gpi-dma (for ee_offset = 0x0).
 
-[ Upstream commit d5e3050c0feb8bf7b9a75482fafcc31b90257926 ]
+If you don't want me to drop the original patch completely, then there is no
+need to make any changes at all to the driver patches IMHO. I originally thought
+we only needed one patch for the driver (yours) but you seem to have a really
+good reason not to drop the original patch. Sorry for asking.
 
-If the properties 'linux,initrd-start' and 'linux,initrd-end' of
-the chosen node populated from the bootloader, eg. U-Boot, are so that
-start > end, then the phys_initrd_size calculated from end - start is
-negative that subsequently gets converted to a high positive value for
-being unsigned long long. Then, the memory region with the (invalid)
-size is added to the bootmem and attempted being paged in paging_init()
-that results in the kernel fault.
+I guess you can add this if you want:
 
-For example, on the FVP ARM64 system I'm running, the U-Boot populates
-the 'linux,initrd-start' with 8800_0000 and 'linux,initrd-end' with 0.
-The phys_initrd_size calculated is then ffff_ffff_7800_0000
-(= 0 - 8800_0000 = -8800_0000 + ULLONG_MAX + 1). paging_init() then
-attempts to map the address 8800_0000 + ffff_ffff_7800_0000 and oops'es
-as below.
+Acked-by: Richard Acayan <mailingradian@gmail.com>
 
-It should be stressed, it is generally a fault of the bootloader's with
-the kernel relying on it, however we should not allow the bootloader's
-misconfiguration to lead to the kernel oops. Not only the kernel should be
-bullet proof against it but also finding the root cause of the paging
-fault spanning over the bootloader, DT, and kernel may happen is not so
-easy.
-
-  Unable to handle kernel paging request at virtual address fffffffefe43c000
-  Mem abort info:
-    ESR = 0x96000007
-    EC = 0x25: DABT (current EL), IL = 32 bits
-    SET = 0, FnV = 0
-    EA = 0, S1PTW = 0
-  Data abort info:
-    ISV = 0, ISS = 0x00000007
-    CM = 0, WnR = 0
-  swapper pgtable: 4k pages, 39-bit VAs, pgdp=0000000080e3d000
-  [fffffffefe43c000] pgd=0000000080de9003, pud=0000000080de9003
-  Unable to handle kernel paging request at virtual address ffffff8000de9f90
-  Mem abort info:
-    ESR = 0x96000005
-    EC = 0x25: DABT (current EL), IL = 32 bits
-    SET = 0, FnV = 0
-    EA = 0, S1PTW = 0
-  Data abort info:
-    ISV = 0, ISS = 0x00000005
-    CM = 0, WnR = 0
-  swapper pgtable: 4k pages, 39-bit VAs, pgdp=0000000080e3d000
-  [ffffff8000de9f90] pgd=0000000000000000, pud=0000000000000000
-  Internal error: Oops: 96000005 [#1] PREEMPT SMP
-  Modules linked in:
-  CPU: 0 PID: 0 Comm: swapper Not tainted 5.4.51-yocto-standard #1
-  Hardware name: FVP Base (DT)
-  pstate: 60000085 (nZCv daIf -PAN -UAO)
-  pc : show_pte+0x12c/0x1b4
-  lr : show_pte+0x100/0x1b4
-  sp : ffffffc010ce3b30
-  x29: ffffffc010ce3b30 x28: ffffffc010ceed80
-  x27: fffffffefe43c000 x26: fffffffefe43a028
-  x25: 0000000080bf0000 x24: 0000000000000025
-  x23: ffffffc010b8d000 x22: ffffffc010e3d000
-  x23: ffffffc010b8d000 x22: ffffffc010e3d000
-  x21: 0000000080de9000 x20: ffffff7f80000f90
-  x19: fffffffefe43c000 x18: 0000000000000030
-  x17: 0000000000001400 x16: 0000000000001c00
-  x15: ffffffc010cef1b8 x14: ffffffffffffffff
-  x13: ffffffc010df1f40 x12: ffffffc010df1b70
-  x11: ffffffc010ce3b30 x10: ffffffc010ce3b30
-  x9 : 00000000ffffffc8 x8 : 0000000000000000
-  x7 : 000000000000000f x6 : ffffffc010df16e8
-  x5 : 0000000000000000 x4 : 0000000000000000
-  x3 : 00000000ffffffff x2 : 0000000000000000
-  x1 : 0000008080000000 x0 : ffffffc010af1d68
-  Call trace:
-   show_pte+0x12c/0x1b4
-   die_kernel_fault+0x54/0x78
-   __do_kernel_fault+0x11c/0x128
-   do_translation_fault+0x58/0xac
-   do_mem_abort+0x50/0xb0
-   el1_da+0x1c/0x90
-   __create_pgd_mapping+0x348/0x598
-   paging_init+0x3f0/0x70d0
-   setup_arch+0x2c0/0x5d4
-   start_kernel+0x94/0x49c
-  Code: 92748eb5 900052a0 9135a000 cb010294 (f8756a96) 
-
-Signed-off-by: Marek Bykowski <marek.bykowski@gmail.com>
-Link: https://lore.kernel.org/r/20220909023358.76881-1-marek.bykowski@gmail.com
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/of/fdt.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 513558eecfd6..44903f94d0cd 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -917,6 +917,8 @@ static void __init early_init_dt_check_for_initrd(unsigned long node)
- 	if (!prop)
- 		return;
- 	end = of_read_number(prop, len/4);
-+	if (start > end)
-+		return;
- 
- 	__early_init_dt_declare_initrd(start, end);
- 
--- 
-2.35.1
-
+> 
+> And my patch will just change one line.
+> 
+> We can also keep it like:
+> 
+> 	 * Do not grow the list for compatible devices. Instead use
+> 	 * proper fallback compatibles.
+> 
+> Best regards,
+> Krzysztof
+> 
