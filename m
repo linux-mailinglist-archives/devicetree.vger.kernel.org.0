@@ -2,428 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 545E4602FDF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:38:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7071602FE9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 17:42:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229989AbiJRPiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 11:38:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60920 "EHLO
+        id S229610AbiJRPmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 11:42:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229903AbiJRPiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:38:55 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DFE2BCB93
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:38:53 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id f8so8878572qkg.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 08:38:53 -0700 (PDT)
+        with ESMTP id S229962AbiJRPmK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 11:42:10 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C78B56C5;
+        Tue, 18 Oct 2022 08:42:08 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id sc25so33183162ejc.12;
+        Tue, 18 Oct 2022 08:42:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y6hCJkFqagNxMfW9SDbCFBpsm7z3HVXT6Fjd2UYXEv4=;
-        b=Ne/MjDOGNroy+zY/MyDh4x9b4cUAtHXC3Rm/aJyvKhXjbC/tyGcNEPVVgFHPPcKwma
-         TKIUjPHHuaMnNg893nblJ9gtPaaoEmQ+1Pz4mWg1V1IoxKKiB0YxSs4ko/Bj7ria4e1w
-         VSRdItIayeT7oo91BgVScj5mPAGGwIWE9J7HcCUSgyRNZlWO+3V1S+g6+UMfsqpMNmil
-         9teAO4pdFzJ7d2tsjW8DD5x0Wk7li2NWrOTpMdXam/ifK1q7jcYSYTbPcdqk6k9r3zWL
-         gMvgi+8Dcj7Iiy3Dtd7uZuOxaXYwLCEii5mzglfB+YA7rCyc57id1xYfXlI8Evn9KRAZ
-         VBHQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b56rtWITDRxSLrlOSl1k6NFsHhuMjl+yg3dnUWpYOLI=;
+        b=Hsg3mAtjQpvoO0pLzprhW7xgoGOGI9zwrr5XD4snsU4F2F19updt3nOKcLraXbNufg
+         6bi+WVZzw1OfNhBMm7czC2GVw6NQtKcSmH4HY4zHXL0ZxhAueBJOUTBxD50dEyLL3cp3
+         4vgWY9G0/R2YvmWhUjhEUohttuigcFXKnhaa014/PoXwR2Kv+oqqYEF8t1s9rvQ++zk0
+         6uEdLi8wSZnJXHHhkqm68CAEhVaphljOS6vR8l4GOGttnFCyREdcHlUVPDBPpIpFHevw
+         A/SMRbUmPd674Kgf7FSdbZNDrSvOTBHItZwssZwhHj0e2L4byCwUgXx0kCLc+uXBYIgt
+         SU0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y6hCJkFqagNxMfW9SDbCFBpsm7z3HVXT6Fjd2UYXEv4=;
-        b=cGYS1CljmqiKRl9eqp+RSCnLiipc3aFo5QmeWWwUO4XSFT35ybGppRIqLNhrZ/OBHr
-         yRQnLTP2g1A6XUPGzLoXPinzy6a6PcTwWbaPNujLeBDR/Awiosg7CgbsivBuSChhVEia
-         CGtKKeYqVSXItFxamY3/QGWL+7ogIWByiwktSGO0t6Jv5xhQhB01bXUt98UySBJLpMtF
-         ipgXSFQic3sVcHxNmI+djH9yLDL4be+wit8QzxEzhVm0ftEwpsyqXc7tekmLvzikTqfw
-         89adKys+c0F55ZZ71MwNs1htwtuOYEE97zBcEA2P6EdKZroE6qY9GK+GdijlDVUvYglZ
-         Y3mQ==
-X-Gm-Message-State: ACrzQf0HUoFeh44mxiIHxZ46uzYkt8yKg7lwmaYF/90yybZh1//4S9j/
-        RoOEY5ttaB7m7HfpZLBKlr7v7A==
-X-Google-Smtp-Source: AMsMyM4cbC5maHuTSb+jVctbnXvXXi+FVdljAiIPuL3j2ArNw+LTIgMURFTk7wgx40DS5DtMd5h66w==
-X-Received: by 2002:a05:620a:1709:b0:6ed:4817:1d02 with SMTP id az9-20020a05620a170900b006ed48171d02mr2275958qkb.73.1666107532699;
-        Tue, 18 Oct 2022 08:38:52 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id ci19-20020a05622a261300b0035badb499c7sm2157359qtb.21.2022.10.18.08.38.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 08:38:52 -0700 (PDT)
-Message-ID: <a0ffab83-6797-f769-bb4f-946c7098a4bc@linaro.org>
-Date:   Tue, 18 Oct 2022 11:38:51 -0400
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b56rtWITDRxSLrlOSl1k6NFsHhuMjl+yg3dnUWpYOLI=;
+        b=KH7wUvYkP0zopXxC/jMuo+MfpyKMXuvDCXqlvtbgTVijV5rXa/VqqpcgETIhH/A9/4
+         bN+tVmwzaJdvfEwjS8UDqAM0FX80YVryHS4paMnC2HPoNHR+ka9ymhk9FymKRsWNSpQo
+         VZmV+UEHiZCZ4UsceSEZ7VK39y81z1O9ym3OTHslYE/DW66JLuxaDoIx9nRAEUxxmAEA
+         SSNqH8NS1EGy+MZSLDQHbUDjIed4kMc/NC3mNV7tzc4JSXl98bBav7RdNPJ1Vu1SCB8y
+         f/66lnh6/kpV8MNGS9gtGuXAh3hE4HBs2nkWjP/dPvg5ErhSwy6gGigjSjJpE+o7Vstg
+         kUMw==
+X-Gm-Message-State: ACrzQf03ztPVgxfK5Gx6F3LPapOL+2Cm5EDhnuoauthplUUswt0rKH2P
+        CaCBrFsBt+XdMVPqgiyCE54=
+X-Google-Smtp-Source: AMsMyM57XmcuD6x6f8mMwGeCzHow4jOYB0F/F3dru7OTMGAvTwEL8rc+fx9SaF+nUXUGB7wEaLBR9Q==
+X-Received: by 2002:a17:907:72d2:b0:78d:4c16:a68d with SMTP id du18-20020a17090772d200b0078d4c16a68dmr2949288ejc.401.1666107726858;
+        Tue, 18 Oct 2022 08:42:06 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id c18-20020a170906925200b0078dd2f9357fsm7751636ejx.89.2022.10.18.08.42.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Oct 2022 08:42:06 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tom Rini <trini@konsulko.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Joel Peshkin <joel.peshkin@broadcom.com>,
+        William Zhang <william.zhang@broadcom.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V3 1/2] dt-bindings: mtd: partitions: u-boot: allow dynamic subpartitions
+Date:   Tue, 18 Oct 2022 17:42:01 +0200
+Message-Id: <20221018154202.4634-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [RFC v1 12/12] arm64: dts: mt7986: add Bananapi R3
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20221017104141.7338-1-linux@fw-web.de>
- <20221017104141.7338-13-linux@fw-web.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221017104141.7338-13-linux@fw-web.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/10/2022 06:41, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add support for Bananapi R3 SBC.
-> 
-> - SD/eMMC support (switching first 4 bits of data-bus with sw6/D)
-> - all rj45 ports and both SFP working (eth1/lan4)
-> - PCIe and all USB-Ports + SIM-Slot tested
-> - i2c and all uarts tested
-> - wifi tested
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Thank you for your patch. There is something to discuss/improve.
+U-Boot partition may contain subpartitions. For example Broadcom
+includes environment data block in the middle of its U-Boot partition.
 
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> SPI-NAND/NOR switched (CS by sw5/C) not yet included
->   this is done with DT-Overlays in my tree, but i have no idea yet,
->   how to upstream
-> 
-> break some lines in wifi-eeprom-data because of checkpatch warnings.
-> originally there were 8 x int32 per line
-> ---
->  arch/arm64/boot/dts/mediatek/Makefile         |   2 +
->  .../mediatek/mt7986a-bananapi-bpi-r3-emmc.dts |  34 +
->  .../mediatek/mt7986a-bananapi-bpi-r3-sd.dts   |  29 +
->  .../dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi | 609 ++++++++++++++++++
->  4 files changed, 674 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 0ec90cb3ef28..c22cd3e6b98f 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -8,6 +8,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd.dtb> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtb
+This allows describing Broadcom's U-Boot env data and will allow
+referencing its NVMEM cell in the future.
 
-Alphabetical order
+Reg: 118f3fbe517f4 ("dt-bindings: mtd: partitions: support label/name only partition")
+Ref: dd638202dfb65 ("dt-bindings: mtd: partitions: add additional example for qcom,smem-part")
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V3: Add this patch as pre-requirement for u-boot,env.yaml & brcm,env
+---
+ .../devicetree/bindings/mtd/partitions/u-boot.yaml         | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
-> new file mode 100644
-> index 000000000000..859b4180ca11
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
-> @@ -0,0 +1,34 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2021 MediaTek Inc.
-> + * Author: Sam.Shih <sam.shih@mediatek.com>
-> + */
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +#include "mt7986a-bananapi-bpi-r3.dtsi"
-> +
-> +/ {
-> +	model = "Bananapi BPI-R3 (emmc)";
-> +};
-> +
-> +&mmc0 {
-> +	pinctrl-names = "default", "state_uhs";
-> +	pinctrl-0 = <&mmc0_pins_default>;
-> +	pinctrl-1 = <&mmc0_pins_uhs>;
-> +	bus-width = <8>;
-> +	max-frequency = <200000000>;
-> +	cap-mmc-highspeed;
-> +	mmc-hs200-1_8v;
-> +	mmc-hs400-1_8v;
-> +	hs400-ds-delay = <0x14014>;
-> +	vmmc-supply = <&reg_3p3v>;
-> +	vqmmc-supply = <&reg_1p8v>;
-> +	non-removable;
-> +	no-sd;
-> +	no-sdio;
-> +	status = "okay";
-> +};
-> +
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
-> new file mode 100644
-> index 000000000000..57200407ab86
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
-> @@ -0,0 +1,29 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2021 MediaTek Inc.
-> + * Author: Sam.Shih <sam.shih@mediatek.com>
-> + */
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +#include "mt7986a-bananapi-bpi-r3.dtsi"
-> +
-> +/ {
-> +	model = "Bananapi BPI-R3 (sdmmc)";
-> +};
-> +
-> +&mmc0 {
-> +	//sdcard
-> +	pinctrl-names = "default", "state_uhs";
-> +	pinctrl-0 = <&mmc0_pins_default>;
-> +	pinctrl-1 = <&mmc0_pins_uhs>;
-> +	bus-width = <4>;
-> +	max-frequency = <52000000>;
-> +	cap-sd-highspeed;
-> +	vmmc-supply = <&reg_3p3v>;
-> +	vqmmc-supply = <&reg_1p8v>;
-> +	status = "okay";
-> +};
-> +
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
-> new file mode 100644
-> index 000000000000..b2317e894855
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
-> @@ -0,0 +1,609 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2021 MediaTek Inc.
-> + * Authors: Sam.Shih <sam.shih@mediatek.com>
-> + *          Frank Wunderlich <frank-w@public-files.de>
-> + *          Daniel Golle <daniel@makrotopia.org>
-> + */
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +#include "mt7986a.dtsi"
-> +
-> +/ {
-> +	model = "Bananapi BPI-R3";
-> +	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		ethernet0 = &gmac0;
-> +		ethernet1 = &gmac1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		factory {
-
-key/button prefix
-
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
-> +			label = "reset";
-> +			linux,code = <KEY_RESTART>;
-> +			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		wps {
-> +			label = "wps";
-> +			linux,code = <KEY_WPS_BUTTON>;
-> +			gpios = <&pio 10 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +
-> +	/* i2c of the left SFP cage (wan) */
-> +	i2c_sfp1: i2c-gpio-0 {
-> +		compatible = "i2c-gpio";
-> +		sda-gpios = <&pio 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		scl-gpios = <&pio 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		i2c-gpio,delay-us = <2>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +
-> +	/* i2c of the right SFP cage (lan) */
-> +	i2c_sfp2: i2c-gpio-1 {
-> +		compatible = "i2c-gpio";
-> +		sda-gpios = <&pio 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		scl-gpios = <&pio 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		i2c-gpio,delay-us = <2>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		green_led: led-0 {
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_POWER;
-> +			gpios = <&pio 69 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +		};
-> +
-> +		blue_led: led-1 {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_STATUS;
-> +			gpios = <&pio 86 GPIO_ACTIVE_HIGH>;
-> +			default-state = "off";
-> +		};
-> +	};
-
-Blank line
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0 0x40000000 0 0x40000000>;
-> +	};
-> +
-> +	reg_1p8v: regulator-1p8v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "fixed-1.8V";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_3p3v: regulator-3p3v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "fixed-3.3V";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_5v: regulator-5v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "fixed-5V";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	/* left SFP cage (wan) */
-> +	sfp1: sfp1 {
-
-sfp-1
-
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&i2c_sfp1>;
-> +		los-gpio = <&pio 46 GPIO_ACTIVE_HIGH>;
-> +		moddef0-gpio = <&pio 49 GPIO_ACTIVE_LOW>;
-> +		tx-disable-gpio = <&pio 20 GPIO_ACTIVE_HIGH>;
-> +		tx-fault-gpio = <&pio 7 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	/* right SFP cage (lan) */
-> +	sfp2: sfp2 {
-
-sfp-2
-
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&i2c_sfp2>;
-> +		los-gpios = <&pio 31 GPIO_ACTIVE_HIGH>;
-> +		mod-def0-gpios = <&pio 47 GPIO_ACTIVE_LOW>;
-> +		tx-disable-gpios = <&pio 15 GPIO_ACTIVE_HIGH>;
-> +		tx-fault-gpios = <&pio 48 GPIO_ACTIVE_HIGH>;
-> +	};
-> +};
-> +
-> +&crypto {
-> +	status = "okay";
-> +};
-> +
-> +&eth {
-> +	status = "okay";
-> +
-> +	gmac0: mac@0 {
-> +		compatible = "mediatek,eth-mac";
-> +		reg = <0>;
-> +		phy-mode = "2500base-x";
-> +
-> +		fixed-link {
-> +			speed = <2500>;
-> +			full-duplex;
-> +			pause;
-> +		};
-> +	};
-> +
-> +	gmac1: mac@1 {
-> +		compatible = "mediatek,eth-mac";
-> +		reg = <1>;
-> +		phy-mode = "2500base-x";
-> +		sfp = <&sfp1>;
-> +		managed = "in-band-status";
-> +	};
-> +
-> +	mdio: mdio-bus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +};
-> +
-> +&mdio {
-> +	switch: switch@0 {
-> +		compatible = "mediatek,mt7531";
-> +		reg = <31>;
-
-This does not match your unit address.
-
-> +		reset-gpios = <&pio 5 GPIO_ACTIVE_HIGH>;
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&pcie {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&pcie_phy {
-> +	status = "okay";
-> +};
-> +
-> +&pio {
-> +	i2c_pins: i2c-pins-3-4 {
-
-Usually bindings expect certain suffix or prefix. Are you sure this
-passes dtbs_check?
-
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/u-boot.yaml b/Documentation/devicetree/bindings/mtd/partitions/u-boot.yaml
+index 8a88e7d16524..3c56efe48efd 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/u-boot.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/u-boot.yaml
+@@ -27,6 +27,10 @@ properties:
+           Broadcom stores environment variables inside a U-Boot partition. They
+           can be identified by a custom header with magic value.
+ 
++patternProperties:
++  "^partition-.*$":
++    $ref: partition.yaml#
++
+ unevaluatedProperties: false
+ 
+ examples:
+@@ -40,6 +44,9 @@ examples:
+             compatible = "brcm,u-boot";
+             reg = <0x0 0x100000>;
+             label = "u-boot";
++
++            partition-u-boot-env {
++            };
+         };
+ 
+         partition@100000 {
+-- 
+2.34.1
 
