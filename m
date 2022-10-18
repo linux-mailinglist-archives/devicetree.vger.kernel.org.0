@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E5B2602794
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 10:53:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 234A8602795
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 10:53:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiJRIxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 04:53:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36770 "EHLO
+        id S229885AbiJRIxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 04:53:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbiJRIxl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 04:53:41 -0400
+        with ESMTP id S229727AbiJRIxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 04:53:42 -0400
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC32B3F1FE
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 01:53:39 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3F943F1FE
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 01:53:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666083220; x=1697619220;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=B1hZbfcowIGSkAmfyHuDx/f2mgU2YVi6+6fFNT1KU40=;
-  b=ZyAu9qHSXJf0YRVwEn2dbun6D5RRkw+uZ1jVpT5k5CYyqL2MTk/RF0w0
-   qS1P14DYvnxy4y3PDiWtCyEvXkH+nLD5DzC3PYGsqcjCo9lXgD3SOdI/G
-   eUlLU9N5s7LiPwXZTluUDPWw0IIhhl6uRSawIOqJ1YdoA+z73gdFG2W6U
-   Hx3tJVP/N2tNLzaudkfr8l5va2q/Oj7orSy7/+goxGwun7hg2bfBbU3Os
-   2sIxjaNQ5FGRCxkuItPM1cbVKfj4aUbXENPidh+s3ogkRxv5Lv/LUJCWe
-   p8VoqUd2trgdkd4k5IftHYpu4UHiyYBp1mEYFFlJA54P1554wIluz8d63
+  t=1666083221; x=1697619221;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=YIrqbZKy9i40cn6BDWmvSaZQwPrQGOZcBBaaGWHCepE=;
+  b=DCw1bCfUmjwyatFmhnlnWabxUlW2GW4t9NY74WALXzBAyUK/03DukWM7
+   eSA8zwPdp+jIdBYGOOPXD87V/H6+YR70wCcOXke2DQrDRgcIgdtQ7KL9F
+   JDMnWFvp1p/uOeR3S9P1MQtJx8wtyNPrpghJLM/sXoSkXU7jOn0QXp3TI
+   iWF1TQEnkrtJCi5mfiHMPUp/3Lp7yZnTqxKkB49X0QGoEz+fy4fA3DreP
+   tGcjf3Vi+zhN1T3d6DJHPdBv6tl74vCp2JEWOiiA69dwdAjP9nxcvizqp
+   ubijAjigwWyFecad/1iAW74aspBpZeaLVuGAPtCvWAZDfuZORfzwTtdlu
    A==;
 X-IronPort-AV: E=Sophos;i="5.95,193,1661810400"; 
-   d="scan'208";a="26812031"
+   d="scan'208";a="26812033"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 18 Oct 2022 10:53:37 +0200
+  by mx1-pgp.tq-group.com with ESMTP; 18 Oct 2022 10:53:38 +0200
 Received: from mx1.tq-group.com ([192.168.6.7])
   by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 18 Oct 2022 10:53:37 +0200
+  Tue, 18 Oct 2022 10:53:38 +0200
 X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 18 Oct 2022 10:53:37 +0200
+        by tq-pgp-pr1.tq-net.de on Tue, 18 Oct 2022 10:53:38 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666083217; x=1697619217;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=B1hZbfcowIGSkAmfyHuDx/f2mgU2YVi6+6fFNT1KU40=;
-  b=NDK/MFh4K7Ci9nLqJ6grH5TMkKT/425bxkcrnae5OQvTQtw4AcADExzd
-   c5NfPnDGLxLFJRVpoJxfpb5hbsPszEqoPq5zI2tgccV8YQwv74n6aoVNm
-   0g718vYchmY9aL1iRROs9k/JO6LXdEbZf4dsVtS3X+r82dFRQitNgWs34
-   gp4fplWr6cEwnxkIek7ub/TPTZTFVAD+oFk5jDziK9Bdkxt7Mfomohs+E
-   MsM2ATe6DzzNAdzBTR5c23C/Ch5Ye8scJGJ3GTH2VZCxWG/pX6pqRi1O0
-   lA0TpKPPJlW/FaK2SzE+uzCXYm9BPJArTzZqDZu8JAUdGLUjR89sjG7HZ
-   w==;
+  t=1666083218; x=1697619218;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=YIrqbZKy9i40cn6BDWmvSaZQwPrQGOZcBBaaGWHCepE=;
+  b=d9WTTbp7q99sKV8jA/VQZafqE5mPmroerqs7i35ulEeE3emcmMthApkr
+   6PyGi5YDoD4XwWa5NhzwYLKMot95QlHuib+lWyFIcign3Ish9rswqwb15
+   atHumGhtigRO8vVxMFpsfPtMVRVE7nNxadIayCyhQrDS4Q9AfMEHWA4QC
+   XzkoOGx6zbY1MVpCrhh4ohPj2CCH8tP9km7kJWwM+yEzn0hn7if7X7Pqo
+   ZFJJurNi8owhZ82y72/vBB79mvZKF78itQ17RC4Gf7Hw0jiDlsjJBR5PK
+   EvUCIzbga7b2662Xul3CBjJxtJRM1OE2LyvOjq/fwZVCq9ubC+nOEjlgJ
+   g==;
 X-IronPort-AV: E=Sophos;i="5.95,193,1661810400"; 
-   d="scan'208";a="26812030"
+   d="scan'208";a="26812032"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 18 Oct 2022 10:53:37 +0200
 Received: from steina-w.tq-net.de (unknown [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7998E280056;
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B33FD280072;
         Tue, 18 Oct 2022 10:53:37 +0200 (CEST)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -70,10 +70,12 @@ Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/2] arm64: dts: tqma8mpql: add PCIe support
-Date:   Tue, 18 Oct 2022 10:53:29 +0200
-Message-Id: <20221018085330.2540222-1-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 2/2] arm64: defconfig: Add Renesas 9-series PCIe clock generator
+Date:   Tue, 18 Oct 2022 10:53:30 +0200
+Message-Id: <20221018085330.2540222-2-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221018085330.2540222-1-alexander.stein@ew.tq-group.com>
+References: <20221018085330.2540222-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,99 +87,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PCIe support on TQMa8MPxL module on MBa8MPxL mainboard.
+MBa8MPxL (with TQMa8MPQL attached) needs this driver for PCIe reference
+clock generation. Add it do default config.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
-This is based on next-20221018 where imp8mp PCIe support has been
-merged.
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 42 ++++++++++++++++++-
- 1 file changed, 41 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-index 7bf6f81e87b4..7a32379cd006 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-@@ -8,6 +8,7 @@
- 
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/net/ti-dp83867.h>
-+#include <dt-bindings/phy/phy-imx8-pcie.h>
- #include <dt-bindings/pwm/pwm.h>
- #include "imx8mp-tqma8mpql.dtsi"
- 
-@@ -48,6 +49,12 @@ backlight_lvds: backlight {
- 		status = "disabled";
- 	};
- 
-+	clk_xtal25: clk-xtal25 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <25000000>;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
-@@ -340,9 +347,16 @@ &gpio4 {
- 			  "", "", "", "",
- 			  "", "", "", "",
- 			  "", "", "DP_IRQ", "DSI_EN",
--			  "HDMI_OC#", "TEMP_EVENT#", "PCIE_CLK_OE#", "",
-+			  "HDMI_OC#", "TEMP_EVENT#", "PCIE_REFCLK_OE#", "",
- 			  "", "", "", "FAN_PWR",
- 			  "RTC_EVENT#", "CODEC_RST#", "", "";
-+
-+	pcie_refclkreq-hog {
-+		gpio-hog;
-+		gpios = <22 0>;
-+		output-high;
-+		line-name = "PCIE_REFCLK_OE#";
-+	};
- };
- 
- &gpio5 {
-@@ -377,6 +391,13 @@ at24c02_54: eeprom@54 {
- 		pagesize = <16>;
- 		vcc-supply = <&reg_vcc_3v3>;
- 	};
-+
-+	pcieclk: clk@6a {
-+		compatible = "renesas,9fgv0241";
-+		reg = <0x6a>;
-+		clocks = <&clk_xtal25>;
-+		#clock-cells = <1>;
-+	};
- };
- 
- &i2c4 {
-@@ -407,6 +428,25 @@ &pcf85063 {
- 	interrupts = <28 IRQ_TYPE_EDGE_FALLING>;
- };
- 
-+&pcie_phy {
-+	fsl,clkreq-unsupported;
-+	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
-+	clocks = <&pcieclk 0>;
-+	clock-names = "ref";
-+	status = "okay";
-+};
-+
-+&pcie {
-+	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
-+		 <&clk IMX8MP_CLK_HSIO_AXI>,
-+		 <&clk IMX8MP_CLK_PCIE_ROOT>;
-+	clock-names = "pcie", "pcie_bus", "pcie_aux";
-+	assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
-+	assigned-clock-rates = <10000000>;
-+	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
-+	status = "okay";
-+};
-+
- &pwm2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pwm2>;
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 0b6af3348e79..d3f1bf5d7e15 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -1049,6 +1049,7 @@ CONFIG_COMMON_CLK_CS2000_CP=y
+ CONFIG_COMMON_CLK_FSL_SAI=y
+ CONFIG_COMMON_CLK_S2MPS11=y
+ CONFIG_COMMON_CLK_PWM=y
++CONFIG_COMMON_CLK_RS9_PCIE=y
+ CONFIG_COMMON_CLK_VC5=y
+ CONFIG_COMMON_CLK_NPCM8XX=y
+ CONFIG_COMMON_CLK_BD718XX=m
 -- 
 2.25.1
 
