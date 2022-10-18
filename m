@@ -2,73 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 846A7602D64
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98898602D6A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:52:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230429AbiJRNvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 09:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59352 "EHLO
+        id S229774AbiJRNwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 09:52:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbiJRNvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:51:40 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C79E48680F
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:51:38 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id d13so8625788qko.5
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:51:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9Bp+MtIf4+R6pNtZTvWCO+IGmeYq2hNpJQPV17Az0I4=;
-        b=ASBeeOrm3YZSpMLkcK0F5eHdf8DZeuVCUsOADJLijx/8HJo1tFiK+O1NWTeedngzos
-         KvbWN0H7a1tkPkYDh93JvfVUJ8h7CkKAEDwM1bLvtWSbM3mQUN9365BICoTQNDbkwyHd
-         OPnR1IqfTRtJ7yhkmvUMhCAeqYW9IurnyF1OEfBt6gba3HClWRRwpxYguyyV+NUDcD56
-         iXP2rAVW5heQIxcBsB1OBITz5ht2I+xkGsnbaDKQwhPJylEoE8ITN3iI1MRV0Y3C7vwn
-         q6eIGbYD84qvoPxBTMr8NrJI7UT/EniQYNcUvacTeh+w+QVzY30v+Mwyjx6WPxQtf60m
-         haiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Bp+MtIf4+R6pNtZTvWCO+IGmeYq2hNpJQPV17Az0I4=;
-        b=n2YXfVYFGRQuGL5Bd4/x6QVsLg4KGCwZj3BtbAL8Iw2E/WLFanr49j7J23+cgGMMLT
-         rMbbqZp6y7VMSCu6lepYo11pq8l+VN3NiuzgFYm2QXb3R+tYww441WPwEJzakh6vbK5n
-         eM3swxCiF+HS6RHuTAREblHHNkerW3692FDuBnw2XFL0KEd4KtYU6+JUq73lV6N8RSNp
-         5c+eZxgCSA5dKWTxcrDoIIeeN52ZHeORSldv1x6jYHeQyVIvYxlezxkD51hFxXZZj0z0
-         NiGn/Mko2l+nFN4oaYYdfJFSkjQ2TLQRwd4FYDcvOG5fnJQq0w3cTHBoiUV1kzx1SiDu
-         gk+Q==
-X-Gm-Message-State: ACrzQf2C0Kk+fchikxlzLNhMqIjY75xt2qjIhUadkLCJrJhXLc7KIa3X
-        XYBdNLUgj5Aan0y6F0BmcGHhzJACSGkN3g==
-X-Google-Smtp-Source: AMsMyM4dC3ZAV4mCKJjX8mzg/4nbCvt+gntlN3+/orwCsGNYUF/sB+TKvJdsQ9diUqgPtThzOYqMfw==
-X-Received: by 2002:a05:620a:1729:b0:6ee:cf01:6810 with SMTP id az41-20020a05620a172900b006eecf016810mr1798512qkb.555.1666101097893;
-        Tue, 18 Oct 2022 06:51:37 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id ci19-20020a05622a261300b0035badb499c7sm2009135qtb.21.2022.10.18.06.51.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 06:51:37 -0700 (PDT)
-Message-ID: <3339aa03-5e43-7579-837f-d70eb0f4dae6@linaro.org>
-Date:   Tue, 18 Oct 2022 09:51:35 -0400
+        with ESMTP id S229452AbiJRNwt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:52:49 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F1C8169A;
+        Tue, 18 Oct 2022 06:52:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EAE3FB81F66;
+        Tue, 18 Oct 2022 13:52:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2169C433C1;
+        Tue, 18 Oct 2022 13:52:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666101165;
+        bh=Rpe8fNS7ucIdrriKqnBNEgNQaG9KzJWM0Ibr0zsKMOE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=CIIJfLtaeJFtKGx9McsAo9g+6AAAGFOqrMWC9JMBlF1r8DoifbvLVnRWqU6Rndbxu
+         XG+XsSbVSb37VD0UgPBFEAwA/r9fgbm4DpippgV9V3ZE8wmD7uOFgTXwK2nUKqtdMJ
+         /MehBPPIJM7J7neDZHPEanqw5GV+l9hI6IT3m00+VoWH4NvwaQBOmzHg5Vx0EaS1W0
+         +eWwDp0uDRDHpdbyeOvNesxBTQThwAblnA18VjREkUWWLfjr6NH83ZEO1obvYIEmAe
+         cNTw3ytrPe8bH56J3/JWrxhFOKBjd2PndLHWnF2PC0RWhaf7FDTY8qFUmdy8mb0MyD
+         B83/vH2/WSxLw==
+Received: by mail-vs1-f51.google.com with SMTP id 1so10492194vsx.1;
+        Tue, 18 Oct 2022 06:52:45 -0700 (PDT)
+X-Gm-Message-State: ACrzQf0HWxJMCrYXtqK9TokY53F4jMd8JlbK61HCwD8w/pEkU2FeeNDP
+        IAhWoYlrS1XVAYg5fa6Bx82jIwx1lfT469yG1g==
+X-Google-Smtp-Source: AMsMyM4/B3fnDjWo+mzcsxUH9eX3UfBrB/LooXCAwejl4EWDivaUeEITq+fs76FUyI0FNO9YxRwHm0yfAjMKGdoUfH0=
+X-Received: by 2002:a67:c088:0:b0:39b:1bb3:bdd1 with SMTP id
+ x8-20020a67c088000000b0039b1bb3bdd1mr1391749vsi.85.1666101164584; Tue, 18 Oct
+ 2022 06:52:44 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 1/1] dt-bindings: clock: ti,cdce925: Convert to DT schema
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221018072106.2391771-1-alexander.stein@ew.tq-group.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221018072106.2391771-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20220930163631.27040-1-zajec5@gmail.com> <166578177913.2909910.7600034251484225468.robh@kernel.org>
+ <Y059lG8ZOXXzc4N+@wendy>
+In-Reply-To: <Y059lG8ZOXXzc4N+@wendy>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 18 Oct 2022 08:52:35 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLKCgW439gUTtXux+_i5ZLwoEF3SzjSg2V27-QpY9EqUA@mail.gmail.com>
+Message-ID: <CAL_JsqLKCgW439gUTtXux+_i5ZLwoEF3SzjSg2V27-QpY9EqUA@mail.gmail.com>
+Subject: Re: [PATCH V2] dt-bindings: nvmem: u-boot,env: add Broadcom's variant binding
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        William Zhang <william.zhang@broadcom.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Joel Peshkin <joel.peshkin@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Tom Rini <trini@konsulko.com>, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,110 +71,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/10/2022 03:21, Alexander Stein wrote:
-> Convert the TI CDCE925 clock binding to DT schema format.
-> Including a small fix: Add the missing 'ti' prefix in the example
-> compatible.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+On Tue, Oct 18, 2022 at 5:19 AM Conor Dooley <conor.dooley@microchip.com> w=
+rote:
+>
+> On Fri, Oct 14, 2022 at 04:09:40PM -0500, Rob Herring wrote:
+> > On Fri, 30 Sep 2022 18:36:31 +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
+> > > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> > >
+> > > Broadcom uses U-Boot for a lot of their bcmbca familiy chipsets. U-Bo=
+ot
+> > > stores its configuration in an environment data block.
+> > >
+> > > Such blocks are usually stored on flash as a separated partition at
+> > > hardcoded address. Broadcom however decided to:
+> > > 1. Store env data block inside U-Boot partition
+> > > 2. Avoid sticking to hardcoded offsets
+> > > 3. Use custom header with "uEnv" magic and env data length
+> > >
+> > > Example (length 0x4000):
+> > > $ hexdump -n 32 -C -s 0x40000 /dev/mtdblock0
+> > > 00040000  76 6e 45 75 00 40 00 00  34 89 7a 82 49 4d 41 47  |vnEu.@..=
+4.z.IMAG|
+> > > 00040010  45 3d 4e 41 4e 44 3a 31  4d 2c 31 30 32 34 4d 00  |E=3DNAND=
+:1M,1024M.|
+> > > (0x40000 offset is unit specific and can change)
+> > >
+> > > Starting with the commit 118f3fbe517f4 ("dt-bindings: mtd: partitions=
+:
+> > > support label/name only partition") DT can describe partitions matchi=
+ng
+> > > them by a name (without specifying actual address). With that feature
+> > > and this binding change it's possible to:
+> > > 1. Specify DT node for Broadcom's U-Boot env data subpartition
+> > > 2. Add nodes for specific environment data variables
+> > > 3. Reference them as NVMEM cells
+> > >
+> > > This binding is unlikely to help Broadcom's U-Boot. U-Boot SPL needs =
+to
+> > > find environment data early (before it accesses DTB) and it does that=
+ by
+> > > looking for an "uEnv" magic. Dirty way.
+> > >
+> > > This binding can however be used by operating systems. It allows
+> > > describing cleanly U-Boot, its env data and variables. It tells
+> > > operating system about Broadcom-specific env data so it can parse it.
+> > >
+> > > Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> > > ---
+> > > V2: Work on better commit body & add example
+> > > ---
+> > >  .../devicetree/bindings/nvmem/u-boot,env.yaml | 21 +++++++++++++++++=
+++
+> > >  1 file changed, 21 insertions(+)
+> > >
+> >
+> > Applied, thanks!
+>
+> Hey Rob,
+> Maybe my tooling is out of date or w/e but this is breaking
+> dt_binding_check for me.
+>
+> I applied the below to fix the build, which I was about to send, before
+> realising that you'd applied it and wondered if I was missing something.
 
-Thank you for your patch. There is something to discuss/improve.
+Indeed, it is broken. I've applied your fix. Thanks.
 
-> diff --git a/Documentation/devicetree/bindings/clock/ti,cdce925.yaml b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
-> new file mode 100644
-> index 000000000000..1e68ee68e458
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
-> @@ -0,0 +1,104 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/ti,cdce925.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI CDCE913/925/937/949 programmable I2C clock synthesizers node bindings
-
-Drop "node bindings"
-
-> +
-> +maintainers:
-> +  - Mike Looijmans <mike.looijmans@topic.nl>
-> +
-> +description: |
-> +  Flexible Low Power LVCMOS Clock Generator with SSC Support for EMI Reduction
-> +
-> +  - CDCE(L)913: 1-PLL, 3 Outputs https://www.ti.com/product/cdce913
-> +  - CDCE(L)925: 2-PLL, 5 Outputs https://www.ti.com/product/cdce925
-> +  - CDCE(L)937: 3-PLL, 7 Outputs https://www.ti.com/product/cdce937
-> +  - CDCE(L)949: 4-PLL, 9 Outputs https://www.ti.com/product/cdce949
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^clock-controller$"
-
-Drop this requirement. It is in general expected, but there is no need
-for each binding to specify it.
-
-Other problem is that you did not actually test these bindings before
-sending...
-
-> +
-> +  compatible:
-> +    enum:
-> +      - ti,cdce913
-> +      - ti,cdce925
-> +      - ti,cdce937
-> +      - ti,cdce949
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: fixed parent clock
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  vdd-supply:
-> +    description: Regulator that provides 1.8V Vdd power supply
-> +
-> +  vddout-supply:
-> +    description: |
-> +      Regulator that provides Vddout power supply.
-> +      non-L variant: 2.5V or 3.3V for
-> +      L variant: 1.8V for
-> +
-> +  xtal-load-pf:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Crystal load-capacitor value to fine-tune performance on a
-> +      board, or to compensate for external influences.
-> +
-> +patternProperties:
-> +  "^PLL[1-4]$":
-> +    type: object
-> +    description: |
-> +      optional child node can be used to specify spread
-> +      spectrum clocking parameters for a board
-> +
-
-    additionalProperties: false
-
-> +    properties:
-> +      spread-spectrum:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: SSC mode as defined in the data sheet
-> +
-> +      spread-spectrum-center:
-> +        type: boolean
-> +        description: |
-> +          Use "centered" mode instead of "max" mode. When
-> +          present, the clock runs at the requested frequency on average.
-> +          Otherwise the requested frequency is the maximum value of the
-> +          SCC range.
-> +
-
-Best regards,
-Krzysztof
-
+Rob
