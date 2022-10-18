@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CCD36035B1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 00:15:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 753126035F7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 00:35:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbiJRWPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 18:15:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46984 "EHLO
+        id S230094AbiJRWfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 18:35:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbiJRWPS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 18:15:18 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E9458052D
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 15:15:15 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id f8so9630640qkg.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 15:15:15 -0700 (PDT)
+        with ESMTP id S229973AbiJRWez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 18:34:55 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13323BF42
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 15:34:41 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id d13so9651261qko.5
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 15:34:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=o1+6PbWMEZLRW3S77WbnMQfGu4kXttl8N+DvVGyhW/Q=;
-        b=qXT+UqSyXWVwTSLwYNr6KL7ccmG6J2dg7gP1KdS9CpARawmnb3SKus2CuK5galCDqN
-         4aZwRaU6YS5f3KLZrf5diQ7vy2Fq9GQcf7UjWsU2BVLiK9aGGUuB5gxMrOjlzyQJgmhu
-         rFRmzaE9s1c8DqlameY1ohQtQbIbBqTb4d90tQze3HcjGsqXv6tjAp5FTFinMbjjFjk6
-         zdW4EgF3Z71vdk2vYJn9yGZ0tEDLWjxDcAMJR8F6+pWoSe8dfuMblokexVqFEL1pKfIV
-         MxPwVxcer7zWYEBM7phARw4W2iIn891CEJSpksrIvDgsiJiZgRufBjgr0SWY/FekC2ru
-         wIjA==
+        bh=d8l26VqjYWMF70YANmL81xtMBvMhRbV8z9l+EzsfRds=;
+        b=YQU3BqgIHmAt0qLxWsgB/A/68Rg1+5YSjPjDYmW4ZrL3BcBgrBwppHonhNCu251mQ3
+         efCkml5cPx8PmPF0jeawXTMouir0+ENDrVxBMuzqw5um/jvUpSBgufubtRGRIApUbeao
+         rTvKRvpy84yhLlu0FNeOkuSNWFO2sS7cLR+GcWGE26fijILt/TDJWlkNxGcRREGinTsH
+         o9N6jhZu4nfgWI0XidVVGyWNwvLWZOPb+sWGAppNExQaBX3OhaOrqPS1HVbp1VVi/Wrg
+         qGuQdG2iT8S+jivnBEQJx+sA2JrJpxoTbew7QRxyh2whO2vhCd12sQgBhMLSVMgAyBEA
+         au1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o1+6PbWMEZLRW3S77WbnMQfGu4kXttl8N+DvVGyhW/Q=;
-        b=42UUbiZdqkbieaCi6pfsIGrfwmVDSfCxUIZFDMj50FGKRKdSGn4Zkvrhg4xgrhg/MS
-         YlVdgM5HAz1V9A9g5ox2idVmQTQ7NUfXRhHJ7y5meAZXhpTld6QEGq+4VllJb3mvRrGu
-         u+KCzW8bJEcSfhx2Dk9xHXvkgD8iNmQiwjVLnVDUsGW7mDlVrqoowQg3uT1i1bdvFvYh
-         2uX0qT7OjcABG+rvmop7fwoH5BUCskLj53YZFHl9JzHMhulV0q5NV+y8gOfrvx7qTIN0
-         QJLU4RxhhE25GMwP5urSmRnjMNqmQHY9oRkdtcTpt0zRZp4C0hwGz7jzBKA9nq+V7tcm
-         GlrA==
-X-Gm-Message-State: ACrzQf2/XpGILKmRAJKpFld0HQKOztEsfUSsCY1VCWiz+0LkKYnHFhGO
-        a1l5ggu+Xt9EcbeERJ8AwujjbQ==
-X-Google-Smtp-Source: AMsMyM4n4rW3pBJps152lVMjljUvaNQKvWvMUkEy+3ZsuPxuuRReiqeSNaPp9WczWH/qLSv3ceSUvg==
-X-Received: by 2002:a05:620a:1f3:b0:6e9:e33d:3bb6 with SMTP id x19-20020a05620a01f300b006e9e33d3bb6mr3518789qkn.115.1666131314216;
-        Tue, 18 Oct 2022 15:15:14 -0700 (PDT)
+        bh=d8l26VqjYWMF70YANmL81xtMBvMhRbV8z9l+EzsfRds=;
+        b=pwZE2xKpoiEkfTnyCM8EfQtvKjPhy7M7JzlUzrp8hR5S4QtYd2BArETJiiEtGwSlMh
+         1pZADaaCzl1JlIaZo5xQMkfchK9Ondp16/riME3FaWo+MtChNG9PFndq/1FlM+RRkn+q
+         +h+TcGaOdqJWCbG7nHFZr/hb+o2DMCSeMqulijYR1RYh7DMIDTXKd4Ot5H4hwJC9Qhov
+         olKCFNFEgSeQ6mIg1oiRwxEIfLC5UzOEXQyxNqZ5/75AFyx45Pf5d5BEvKRZuO4kEpqJ
+         QnvNySuC4JEomaq7gFBK6/deD0mEyscQMcakkU/Wnjv/clo6BQyPppcNHfsgrkIJmVi1
+         CA0g==
+X-Gm-Message-State: ACrzQf0Sy01u1neH49NhXHhZSSuLKnbLxHM2KUM5DYfYX2kOG2hKDT3U
+        Iz+RnREczghW3F88M3WrNJFfmA==
+X-Google-Smtp-Source: AMsMyM6gR/rEAC/F7rWYiVhzX0uXvT39XzWAY16QONciExLnxAPhkuGkhDZgxZo29aVddigxcRgU/Q==
+X-Received: by 2002:a05:620a:8010:b0:6ee:cf03:38a6 with SMTP id ee16-20020a05620a801000b006eecf0338a6mr3568874qkb.264.1666132476151;
+        Tue, 18 Oct 2022 15:34:36 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id s7-20020a05620a254700b006ec59941acasm3413120qko.11.2022.10.18.15.15.13
+        by smtp.gmail.com with ESMTPSA id n14-20020ac85a0e000000b0039ad65104fasm2987271qta.12.2022.10.18.15.34.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 15:15:13 -0700 (PDT)
-Message-ID: <d4158329-5a7a-c622-a8f8-ea2508b663c6@linaro.org>
-Date:   Tue, 18 Oct 2022 18:15:12 -0400
+        Tue, 18 Oct 2022 15:34:35 -0700 (PDT)
+Message-ID: <3b446b01-cf9c-a185-bbad-a77b7d73c5d2@linaro.org>
+Date:   Tue, 18 Oct 2022 18:34:34 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: Add base QDU1000/QRU1000 DTSIs
+Subject: Re: [net-next][PATCH v4] dt-bindings: dsa: Add lan9303 yaml
 Content-Language: en-US
-To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221014221138.7552-1-quic_molvera@quicinc.com>
- <20221014221138.7552-3-quic_molvera@quicinc.com>
+To:     Jerry.Ray@microchip.com, andrew@lunn.ch, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221003164624.4823-1-jerry.ray@microchip.com>
+ <c1b64758-219b-9251-cea8-d5301f01ee7f@linaro.org>
+ <MWHPR11MB1693223A91222AEAAA3FC69FEF299@MWHPR11MB1693.namprd11.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221014221138.7552-3-quic_molvera@quicinc.com>
+In-Reply-To: <MWHPR11MB1693223A91222AEAAA3FC69FEF299@MWHPR11MB1693.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,40 +78,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2022 18:11, Melody Olvera wrote:
-> Add the base DTSI files for QDU1000 and QRU1000 SoCs, including base
-> descriptions of CPUs, GCC, RPMHCC, QUP, TLMM, and interrupt-controller
-> to boot to shell with console on these SoCs.
+On 17/10/2022 14:33, Jerry.Ray@microchip.com wrote:
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-gpios:
+>>> +    description: Optional reset line
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-duration:
+>>> +    description: Reset duration in milliseconds
+>>> +    default: 200
+>>
+>> This is a friendly reminder during the review process.
+>>
+>> It seems my previous comments were not fully addressed. Maybe my
+>> feedback got lost between the quotes, maybe you just forgot to apply it.
+>> Please go back to the previous discussion and either implement all
+>> requested changes or keep discussing them.
+>>
+>> Thank you.
+>>
 > 
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 1646 +++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/qru1000.dtsi |   27 +
->  2 files changed, 1673 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qdu1000.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/qru1000.dtsi
+> I am documenting "what is" rather than what I think it should be. I
+> would prefer there be a "-ms" suffix on the name, but that was not
+> what was in the pre-existing code.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> new file mode 100644
-> index 000000000000..777734b30f56
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> @@ -0,0 +1,1646 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/qcom,gcc-qdu1000.h>
-> +#include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/dma/qcom-gpi.h>
-> +#include <dt-bindings/interconnect/qcom,qdu1000.h>
-> +#include <dt-bindings/power/qcom-rpmpd.h>
-> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> I added the "default: 200" line and can add a "maxItems: 1", but begin
+> getting errors when I attempt to further define this field as a
+> uint32 type or anything like that.
 
-As pointed out by kernel test robot, your patchset is unbuildable and
-unmerge'able, so automated tools cannot test it.
+There are no errors after adding proper type. However I cannot help you
+for some unspecified code with unspecified warnings.
+
+> 
+> And no, I'm not getting any warnings or errors from the dt_bindings_check.
 
 Best regards,
 Krzysztof
