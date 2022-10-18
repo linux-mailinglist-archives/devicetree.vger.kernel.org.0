@@ -2,109 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D017E602CE3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16CE9602CFE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230492AbiJRN0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 09:26:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45360 "EHLO
+        id S229894AbiJRNbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 09:31:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230488AbiJRNZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:25:54 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E804C96D6
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:25:14 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id o22so8568279qkl.8
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:25:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rLekKpBYGH8ndeJEM8TUXAibtMNpseYq89qr23kvcRg=;
-        b=nvlt78pAFMY6sl9vdsBMkAaOROLjx8h2KNVZgLalVtUam0JVzz6yVruzLOdDb88KjA
-         bxTlhpSl08Nyl2i2cSXTTRN4VeLZQ4AvVKBQ9ZlT3GK9J7a+zrJtd/DdZClAESfub3x0
-         36cglufyWktnD761LvSVyVWhRVyFCa3JhW0Tqkz8wvQ8sU9AT/w/ycUBzQgcT+w7lJ+e
-         Rkmbrln9N8Tvzs8NLkIA/LYk2VuzxAvLnXfz+FsiNlnALFS5xCR7LVVie9wUxtoSm8KF
-         5x7WYXAC7Zx9VfTUzUTuSBmLrPtbHZeMJznUScgRaU8V0Wiwqxu7Ya6ZAJnolEp0U8eI
-         Y90w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rLekKpBYGH8ndeJEM8TUXAibtMNpseYq89qr23kvcRg=;
-        b=EvbEvJLI6aG2n5EFpQUvKmzt1iU8mfcr4pCez4F20aD+AqD38ZddLd8d4QHU+HHKQ0
-         ROKXDjeJPlNxfPobme5HIoL3XSOTt9ufHlcieqdd41bLNrrRQZMV/5Ei0hhIUFPUWTNJ
-         WNWo12L8UP1V5qQuSCuuwZnREWnMo1kpbPsi3cZGYFNIfhK14etofxFAjwYzoGVwAibm
-         oCbWpgdU2CFrQeMgpe0czpQK1dK543ihigaCeaJ2N+D5omRylVb6t8zqXEN0toYNmm1P
-         yfWaTgFwX0MQQqVvJp+IMTmmu6E/gZVebFzYQYIepF1h3keqYCxRIgvFa23Q6mpmUlt7
-         r9FA==
-X-Gm-Message-State: ACrzQf30z/nM6PKe1Xaj1sxaSvzHsIXgDtcN/VLjHEC/f1EfIMYSnP0s
-        qpOz4FCekwTmNLyZMVT8ABcvNw==
-X-Google-Smtp-Source: AMsMyM7/FLeJ8jSuI5g0egAb58PR1xxeRZOb17GOpDIpA8y1m1u9lLMJRq80gc01kGOTu/6UmMKxxw==
-X-Received: by 2002:a05:620a:d8c:b0:6a7:91a2:c827 with SMTP id q12-20020a05620a0d8c00b006a791a2c827mr1714546qkl.407.1666099509047;
-        Tue, 18 Oct 2022 06:25:09 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id dt5-20020a05620a478500b006ee94c5bf26sm2430593qkb.91.2022.10.18.06.25.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 06:25:08 -0700 (PDT)
-Message-ID: <81220c13-56e3-eda5-8b60-68b0f7a1feee@linaro.org>
-Date:   Tue, 18 Oct 2022 09:25:07 -0400
+        with ESMTP id S229509AbiJRNbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:31:11 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E8D8C6945;
+        Tue, 18 Oct 2022 06:31:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1666099867; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=g3MzspTM9Dr8LSMMQ6MITd3EeKWr2rZaVT6P5JRlgFc=;
+        b=nAc34R932407pmkTMuqbozzx64BjLHj4VBOG8Q9x82Nm0YPEk6WYI4Uvc+AY6jgKIlUogL
+        scmhs6NBK2SX5jpT1AvnxBbIwdc6oZb0UK1wNsQDthGPSXu24u6WwISI01Lqur1NB8HcAd
+        G5hGjtV2EBVWvTh2Fu7f5al1oI1Bf94=
+Date:   Tue, 18 Oct 2022 14:30:57 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 4/4] clk: Add Ingenic JZ4755 CGU driver
+To:     Siarhei Volkau <lis8215@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Message-Id: <LVAYJR.C9X3GOLBHW113@crapouillou.net>
+In-Reply-To: <CAKNVLfbbAaNdhWDo10XrUtyCM4R5E1CidC+TTQt8tUYbBU93qw@mail.gmail.com>
+References: <20221016150110.3020451-1-lis8215@gmail.com>
+        <20221016150110.3020451-5-lis8215@gmail.com>
+        <0S4WJR.4KB18PR21S9K1@crapouillou.net>
+        <CAKNVLfYEMwRC+4VuGcaENd1eTvbhWD9=uFDAhaz+1Fd8Aaqg_w@mail.gmail.com>
+        <M0RWJR.TI6Q9ATD37DF3@crapouillou.net>
+        <CAKNVLfbbAaNdhWDo10XrUtyCM4R5E1CidC+TTQt8tUYbBU93qw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v3 0/4] arm64: dts: fix drive strength macros and values
- for FSD Platform
-Content-Language: en-US
-To:     chanho61.park@samsung.com, pankaj.dubey@samsung.com,
-        alim.akhtar@samsung.com, linus.walleij@linaro.org,
-        robh+dt@kernel.org,
-        Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <CGME20221013110708epcas5p3c54c22bbc77175eb2a26dc9fd43814d5@epcas5p3.samsung.com>
- <20221013104024.50179-1-p.rajanbabu@samsung.com>
- <166609930553.9199.13331632528050957780.b4-ty@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <166609930553.9199.13331632528050957780.b4-ty@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/10/2022 09:21, Krzysztof Kozlowski wrote:
-> On Thu, 13 Oct 2022 16:10:20 +0530, Padmanabhan Rajanbabu wrote:
->> With reference to FSD SoC HW UM, there are some deviations in the
->> drive strength macros names and macro values. Also the IPs are not
->> using the default drive strength values as recommended by HW UM.
->>
->> FSD SoC pinctrl has following four levels of drive-strength and their
->> corresponding values:
->> Level-1 <-> 0
->> Level-2 <-> 1
->> Level-4 <-> 2
->> Level-6 <-> 3
->>
->> [...]
-> 
-> Applied, thanks!
-> 
-> [1/4] arm64: dts: fix drive strength macros as per FSD HW UM
->       https://git.kernel.org/krzk/linux/c/3a27bce7e13e3b5368377c9a518927e197a4afb1
-> [2/4] arm64: dts: fix HSI2C drive strength values as per FSD HW UM
->       https://git.kernel.org/krzk/linux/c/bb997d949e5a835f626facfd67b1768fd4492398
+Hi Siarhei,
 
-Fixed subject and squashed last two commits into this one.
+Le lun., oct. 17 2022 at 21:07:47 +0300, Siarhei Volkau=20
+<lis8215@gmail.com> a =C3=A9crit :
+> =D0=BF=D0=BD, 17 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 20:24, Paul Cerc=
+ueil=20
+> <paul@crapouillou.net>:
+>>=20
+>>=20
+>>=20
+>>  Le lun., oct. 17 2022 at 20:10:56 +0300, Siarhei Volkau
+>>  <lis8215@gmail.com> a =C3=A9crit :
+>>  > =D0=BF=D0=BD, 17 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 12:24, Paul =
+Cercueil
+>>  > <paul@crapouillou.net>:
+>>  >
+>>  >>  > +     [JZ4755_CLK_AIC] =3D {
+>>  >>  > +             "aic", CGU_CLK_GATE,
+>>  >>  > +             .parents =3D { JZ4755_CLK_I2S, -1, -1, -1 },
+>>  >>
+>>  >>  Wrong parent here, should be JZ4755_CLK_EXT_HALF.
+>>  >
+>>  > I don't  agree, see Figure 20-13 in the JZ4755 PM.
+>>=20
+>>  20-13 describes the I2S clock, no?
+>=20
+> See 20.4.9 Serial Audio Clocks and Sampling Frequencies.
+> It stated that: "For internal CODEC ... CODEC needs a 12MHz
+> clock from CPM called SYS_CLK ...", but SYS_CLK is described
+> only in the I2S Controller section. I assume it is the same clock.
 
-Best regards,
-Krzysztof
+Yes, and your SYS_CLK is the I2S clock, not the AIC clock.
+
+>>=20
+>>  AIC clock's parent is EXT/2 according to the diagram in 8.2.2.
+>>=20
+>=20
+> It's a bit cryptic manual, who knows how it's done in the HW.
+> I observed that codec runs on a desired sample rate only when PLL
+> equals 432 or 216 MHz, but SYS_CLK is definitely configured to be
+> 12MHz - from EXTCLK. On other PLL frequencies it is lower by
+> 2-4% than expected. That isn't observed on JZ4725B.
+
+The audio codec supplies SYS_CLK to the controller, not the other way=20
+around. Parent the I2S clock to EXT/2 (which is 12 MHz) and it should=20
+work fine, independently of the PLL.
+
+The AIC clock does not drive anything, it only "powers" the AIC module.=20
+It should be parented only to EXT/2, similar to what's done in every=20
+other CGU driver.
+
+Cheers,
+-Paul
+
 
