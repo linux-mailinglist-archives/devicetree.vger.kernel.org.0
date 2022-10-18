@@ -2,115 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9498A602759
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 10:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C0A5602761
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 10:45:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230365AbiJRIoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 04:44:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41042 "EHLO
+        id S229819AbiJRIpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 04:45:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231130AbiJRIoB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 04:44:01 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB0D33D591;
-        Tue, 18 Oct 2022 01:44:00 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29I8hnPo039205;
-        Tue, 18 Oct 2022 03:43:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666082629;
-        bh=bIyVP0S98Q+cV6lYX+CKx/3vm13O8g2H7ynwT5bXbMk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=IjA9NDUEWYjKjA58f6Zbfdx/IlPhGdhXbWNmOkju7Gpe9sagl5C9IA4/xTp9PsG3I
-         sOLaX1Va/LCXCiNmGcIPguzP7Uw6PwYyvjsWrpf1+BRpgMbdt63Ckoohb1j/upLZec
-         zxKJpCQSI8sM11PtlnwVa0jUM89Ng56nrP7fHfSE=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29I8hn5g007242
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 18 Oct 2022 03:43:49 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 18
- Oct 2022 03:43:49 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 18 Oct 2022 03:43:49 -0500
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29I8hXCS076871;
-        Tue, 18 Oct 2022 03:43:45 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <robh+dt@kernel.org>, <lee@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <kishon@kernel.org>,
-        <vkoul@kernel.org>, <dan.carpenter@oracle.com>, <rogerq@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>
-Subject: [PATCH v2 3/3] phy: ti: gmii-sel: Add support for CPSW9G GMII SEL in J721e
-Date:   Tue, 18 Oct 2022 14:13:33 +0530
-Message-ID: <20221018084333.149790-4-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221018084333.149790-1-s-vadapalli@ti.com>
-References: <20221018084333.149790-1-s-vadapalli@ti.com>
+        with ESMTP id S229965AbiJRIpb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 04:45:31 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8CE42B3;
+        Tue, 18 Oct 2022 01:45:29 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id g27so19415584edf.11;
+        Tue, 18 Oct 2022 01:45:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0/8NmRmqGedxeycJ3OB7oM9G22Yz7F5BIQQt6w2lrLI=;
+        b=ZiKrKi0V1pV6ESxIjFxlS0xnTj7mg0J+NYoLpR6OSRtJCxVpqlzGTfplN9sgliOIkj
+         No5dEcD2TvtjurquM6dAVveFJd6wJbTI6liKvD4S0TZpMvuQUZytqqN2tuSLmn8ybrAv
+         L8CP8L2lAY5LDFEkddBLQXNcpSQ/d3ZCCmsMG9sNZiD4GlVjvjY6nb64w3So7SrAVOdR
+         mZmXvvmexVMprLKl+PU1ob029c7ZMdTKWFU4ObH8ApKwqTPqYZp9/dGEwJpw+gy2kJTg
+         lxw/q6KmdJjaClZoV1fPlb/pKvCsXc2QIw2uQLmFMjXdsLusmXuzhc0nNP8bmQHQXQX4
+         uXqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0/8NmRmqGedxeycJ3OB7oM9G22Yz7F5BIQQt6w2lrLI=;
+        b=LmaKLrYe1+k58q7d6a5e7powym82V+wuzRSMG4Oa+Y4w24SgaVn6niU8lMFkOuvdnB
+         +a5X2SBRLp3JguhtysY7KUCmantLhE9993qTmjxtIYAcm10QIoH9tp3c+ZU7iUcHAlBB
+         juCZmiFWQgMJcZBXqlcOhFzOxUw2kNngl/n9vhVN2V23EulW2wGhGFncXzI2RubWhxv4
+         YFv3pww+XhtGskVRLef8wkiVWZe6fu026u0TKUSGRUAAGjjqbJkdw7AxbCy7qMjQcDF/
+         ycH+n2Lmt3WOpcZkfdKTApjcqseZ13DyFgjv3nwbtVItg6MM1UcaV2sxmxXMWDT5CYyN
+         UoDw==
+X-Gm-Message-State: ACrzQf0hrxhGY0AP/OMpg/nWNKWA1wnj0WX/G3Ugwz+vjkVK9+14tvnI
+        d6718U+IaimD0tpmMWTKhXz25XmVkwL0pqDGWBk=
+X-Google-Smtp-Source: AMsMyM78Ns5tyMZ7MerCWFuAKME6j6Him7zNR2GHM/CujzZLWMxEH7QwV2tFGWZNKPpCMMGt+lRiCdHcq6N0IfL4zpw=
+X-Received: by 2002:a05:6402:42c6:b0:45c:fc58:bd0f with SMTP id
+ i6-20020a05640242c600b0045cfc58bd0fmr1647683edc.19.1666082728449; Tue, 18 Oct
+ 2022 01:45:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221011082924.884123-1-s.hauer@pengutronix.de> <20221011082924.884123-2-s.hauer@pengutronix.de>
+In-Reply-To: <20221011082924.884123-2-s.hauer@pengutronix.de>
+From:   Xu Yang <xu.yang.nxp@gmail.com>
+Date:   Tue, 18 Oct 2022 16:45:16 +0800
+Message-ID: <CAE+6oSyK-Z6_zhYA+yyJnX58LVAQ6Rc_+kaa1mxALSXf2YNBKg@mail.gmail.com>
+Subject: Re: [PATCH 1/6] usb: chipidea: usbmisc_imx: Fix i.MX53 clock sel masks
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Peter Chen <peter.chen@kernel.org>,
+        Peng Fan <peng.fan@oss.nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org, Xu Yang <xu.yang_2@nxp.com>,
+        jun.li@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each of the CPSW9G ports in J721e support additional modes like QSGMII.
-Add a new compatible for J721e to support the additional modes.
+On Tue, Oct 11, 2022 at 4:50 PM Sascha Hauer <s.hauer@pengutronix.de> wrote:
+>
+> According to the reference manual the masks for the
+> MX53_USB_CTRL_1_H*_XCVR_CLK_SEL bits are 0x3, not 0x11 (which were
+> probably meant as 0b11).
+>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 
-In TI's J721e, each of the CPSW9G ethernet interfaces can act as a
-QSGMII main or QSGMII-SUB port. The QSGMII main interface is responsible
-for performing auto-negotiation between the MAC and the PHY while the rest
-of the interfaces are designated as QSGMII-SUB interfaces, indicating that
-they will not be taking part in the auto-negotiation process.
+Reviewed-by: Xu Yang <xu.yang_2@nxp.com>
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- drivers/phy/ti/phy-gmii-sel.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Thanks,
+Xu Yang
 
-diff --git a/drivers/phy/ti/phy-gmii-sel.c b/drivers/phy/ti/phy-gmii-sel.c
-index c8f30d2e1f46..8c667819c39a 100644
---- a/drivers/phy/ti/phy-gmii-sel.c
-+++ b/drivers/phy/ti/phy-gmii-sel.c
-@@ -218,6 +218,15 @@ struct phy_gmii_sel_soc_data phy_gmii_sel_cpsw5g_soc_j7200 = {
- 	.num_qsgmii_main_ports = 1,
- };
- 
-+static const
-+struct phy_gmii_sel_soc_data phy_gmii_sel_cpsw9g_soc_j721e = {
-+	.use_of_data = true,
-+	.regfields = phy_gmii_sel_fields_am654,
-+	.extra_modes = BIT(PHY_INTERFACE_MODE_QSGMII),
-+	.num_ports = 8,
-+	.num_qsgmii_main_ports = 2,
-+};
-+
- static const struct of_device_id phy_gmii_sel_id_table[] = {
- 	{
- 		.compatible	= "ti,am3352-phy-gmii-sel",
-@@ -243,6 +252,10 @@ static const struct of_device_id phy_gmii_sel_id_table[] = {
- 		.compatible	= "ti,j7200-cpsw5g-phy-gmii-sel",
- 		.data		= &phy_gmii_sel_cpsw5g_soc_j7200,
- 	},
-+	{
-+		.compatible	= "ti,j721e-cpsw9g-phy-gmii-sel",
-+		.data		= &phy_gmii_sel_cpsw9g_soc_j721e,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, phy_gmii_sel_id_table);
--- 
-2.25.1
-
+> ---
+>  drivers/usb/chipidea/usbmisc_imx.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/usb/chipidea/usbmisc_imx.c b/drivers/usb/chipidea/usbmisc_imx.c
+> index bac0f5458cab9..8f805aa9c383c 100644
+> --- a/drivers/usb/chipidea/usbmisc_imx.c
+> +++ b/drivers/usb/chipidea/usbmisc_imx.c
+> @@ -42,9 +42,9 @@
+>  #define MX53_USB_OTG_PHY_CTRL_0_OFFSET 0x08
+>  #define MX53_USB_OTG_PHY_CTRL_1_OFFSET 0x0c
+>  #define MX53_USB_CTRL_1_OFFSET         0x10
+> -#define MX53_USB_CTRL_1_H2_XCVR_CLK_SEL_MASK (0x11 << 2)
+> +#define MX53_USB_CTRL_1_H2_XCVR_CLK_SEL_MASK (0x3 << 2)
+>  #define MX53_USB_CTRL_1_H2_XCVR_CLK_SEL_ULPI BIT(2)
+> -#define MX53_USB_CTRL_1_H3_XCVR_CLK_SEL_MASK (0x11 << 6)
+> +#define MX53_USB_CTRL_1_H3_XCVR_CLK_SEL_MASK (0x3 << 6)
+>  #define MX53_USB_CTRL_1_H3_XCVR_CLK_SEL_ULPI BIT(6)
+>  #define MX53_USB_UH2_CTRL_OFFSET       0x14
+>  #define MX53_USB_UH3_CTRL_OFFSET       0x18
+> --
+> 2.30.2
+>
