@@ -2,160 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8208E602596
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 09:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 302596025C7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 09:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230347AbiJRHW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 03:22:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37580 "EHLO
+        id S230175AbiJRHdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 03:33:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230318AbiJRHWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 03:22:18 -0400
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEFB3AB82B;
-        Tue, 18 Oct 2022 00:22:16 -0700 (PDT)
-Received: from canpemm500004.china.huawei.com (unknown [172.30.72.55])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Ms4wd6MCQzpVhq;
-        Tue, 18 Oct 2022 15:18:57 +0800 (CST)
-Received: from localhost (10.175.101.6) by canpemm500004.china.huawei.com
- (7.192.104.92) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 18 Oct
- 2022 15:22:11 +0800
-From:   Weilong Chen <chenweilong@huawei.com>
-To:     <chenweilong@huawei.com>, <yangyicong@hisilicon.com>,
-        <xuwei5@huawei.com>, <wsa@kernel.org>, <robh+dt@kernel.org>,
-        <robh@kernel.org>
-CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH next v6 2/2] dt-bindings: i2c: add entry for hisilicon,i2c-ascend910
-Date:   Tue, 18 Oct 2022 15:30:12 +0800
-Message-ID: <20221018073012.309355-2-chenweilong@huawei.com>
-X-Mailer: git-send-email 2.31.GIT
-In-Reply-To: <20221018073012.309355-1-chenweilong@huawei.com>
-References: <20221018073012.309355-1-chenweilong@huawei.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.175.101.6]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- canpemm500004.china.huawei.com (7.192.104.92)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230183AbiJRHdM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 03:33:12 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B11FD647C0;
+        Tue, 18 Oct 2022 00:33:11 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id q10-20020a17090a304a00b0020b1d5f6975so13261118pjl.0;
+        Tue, 18 Oct 2022 00:33:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ztdTBdFFzUgQtkWJUCxW6jiR87PJzZ+mXWctPgKolvM=;
+        b=eQSVen1p2Y5GfCyu3w9CAFa9H/zR1rYZVHO/SrmOkRMLuetRJUqdeAH+DFXAsye+jZ
+         vNN7cLon6QNedGvhV0XM+gEayfzPjHsXWeVWiBmnO5ZuMs5giwDWKZ86ddf+qUuOsLB3
+         MNxTQH8mtGZNI9GfeVGV0PwYJFxQq1wLhrC0svZU5exoBz5Xs0zrGWT7VclpBl2K1lE9
+         r4o4Cig6qwCMNRjuDtBEBkpEsRUDgy1mdpSZKmCnRMB+msDl/aLel8EmBsVYq6ZvIWW5
+         f3J9AeoxDjxVdU4R3BUyMAhFjNWQDyGC1qmWLprda963XYXrIoZLO+11Nlie5cBio+AA
+         mCyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ztdTBdFFzUgQtkWJUCxW6jiR87PJzZ+mXWctPgKolvM=;
+        b=Z263AL7Vh2e251ap3k1LJ5v5CP1oC5aVptZeTJJ/JdkGLciH0+CtfGKd/hsRzRvz/3
+         EIdU9lWBcvZtU3cav9ZL6jcDrCexsodAlVwwWEBCcXcF0McksiFP68bRlMILpJULhVYE
+         NqF0XKt6BaEmKd60wJr2W1apnZNL0ahLw3DfDz18E64VkBjzUCG2UYM86nMl2RB+UcKd
+         lDGo836zlaFMUY2yqiRR9s/tNZdk3rtfqxM/rC8U+MvyKATmLFS8CeVjlOmt4TutQlkj
+         TCIwhY3CN0ANOyVpY9XCpJl38QGYKgt0l6O4oVGLohiGjLldzd6zg2tPoJWhO0rH9nBg
+         WfSg==
+X-Gm-Message-State: ACrzQf2HNSF3JW+Ki5GouNMINL0nuX9kqzABwfIhymxoez4FyNkNHF+k
+        z1BMZoT7B6ZGad+W3Hn4jAk=
+X-Google-Smtp-Source: AMsMyM5ymQfvsJkKieokFR3ManmwtxeTxbHN8TuFfwchzLGVDWoftGl3FvKwQJsJ/cHY0uL9Cc3V6w==
+X-Received: by 2002:a17:902:7081:b0:178:6154:9d79 with SMTP id z1-20020a170902708100b0017861549d79mr1725816plk.79.1666078390591;
+        Tue, 18 Oct 2022 00:33:10 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id s1-20020a170902ea0100b001769206a766sm7853260plg.307.2022.10.18.00.33.08
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Oct 2022 00:33:09 -0700 (PDT)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     krzk@kernel.org, rafael@kernel.org, daniel.lezcano@linaro.org,
+        amitk@kernel.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     lh.kuo@sunplus.com, Li-hao Kuo <lhjeff911@gmail.com>
+Subject: [PATCH v11 0/2] Add thermal control driver for Sunplus SoC
+Date:   Tue, 18 Oct 2022 15:32:50 +0800
+Message-Id: <cover.1665990345.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the new compatible for HiSilicon i2c.
+This is a patch series for thermal driver for Sunplus SoC.
 
-Signed-off-by: Weilong Chen <chenweilong@huawei.com>
----
-Change since v5:
-- Use hisilicon,i2c-ascend910 as compatible string. For more information about
-  the SoC at https://e.huawei.com/en/products/cloud-computing-dc/atlas/ascend-910
-- Alphabetic order the MAINTAINERS
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Change since v4:
-- Add description for SoC specific compatibles.
-- Use the clock binding.
-- Fix decimal, space, case, unused labels.
-Link: https://lore.kernel.org/lkml/20220909074842.281232-1-chenweilong@huawei.com/T/#m4e1c915ead04f4e2e48d69131053a966801625db
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
- .../bindings/i2c/hisilicon,i2c-xxx.yaml       | 70 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml
+Li-hao Kuo (2):
+  thermal: Add thermal driver for Sunplus
+  dt-bindings: thermal: Add Sunplus schema
 
-diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml
-new file mode 100644
-index 000000000000..a7285ddc260d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/i2c/hisilicon,i2c-xxx.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: HiSilicon common IIC controller Device Tree Bindings
-+
-+maintainers:
-+  - yangyicong@huawei.com
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: hisilicon,i2c-ascend910
-+    description:
-+      The HiSilicon common IIC controller can be used for many different
-+      types of SoC such as Huawei Ascend AI series chips.
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    default: 400000
-+
-+  i2c-sda-falling-time-ns:
-+    default: 343
-+
-+  i2c-scl-falling-time-ns:
-+    default: 203
-+
-+  i2c-sda-hold-time-ns:
-+    default: 830
-+
-+  i2c-scl-rising-time-ns:
-+    default: 365
-+
-+  i2c-digital-filter-width-ns:
-+    default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c@5038b0000 {
-+      compatible = "hisilicon,i2c-ascend910";
-+      reg = <0x38b0000 0x10000>;
-+      interrupts = <0x0 120 0x4>;
-+      i2c-sda-falling-time-ns = <56>;
-+      i2c-scl-falling-time-ns = <56>;
-+      i2c-sda-hold-time-ns = <56>;
-+      i2c-scl-rising-time-ns = <56>;
-+      i2c-digital-filter;
-+      i2c-digital-filter-width-ns = <0x0>;
-+      clocks = <&alg_clk>;
-+      clock-frequency = <400000>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ad32dc9c4822..961e4442fb08 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9211,6 +9211,7 @@ M:	Yicong Yang <yangyicong@hisilicon.com>
- L:	linux-i2c@vger.kernel.org
- S:	Maintained
- W:	https://www.hisilicon.com
-+F:	Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml
- F:	drivers/i2c/busses/i2c-hisi.c
- 
- HISILICON LPC BUS DRIVER
+ .../bindings/thermal/sunplus,sp7021-thermal.yaml   |  43 +++++++
+ MAINTAINERS                                        |   7 ++
+ drivers/thermal/Kconfig                            |  10 ++
+ drivers/thermal/Makefile                           |   1 +
+ drivers/thermal/sunplus_thermal.c                  | 130 +++++++++++++++++++++
+ 5 files changed, 191 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/sunplus,sp7021-thermal.yaml
+ create mode 100644 drivers/thermal/sunplus_thermal.c
+
 -- 
-2.31.GIT
+2.7.4
 
