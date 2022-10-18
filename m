@@ -2,67 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4442E60277A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 10:49:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E5B2602794
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 10:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbiJRItg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 04:49:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55078 "EHLO
+        id S229489AbiJRIxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 04:53:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229824AbiJRItf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 04:49:35 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A014DA2AB8;
-        Tue, 18 Oct 2022 01:49:14 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id u21so19430375edi.9;
-        Tue, 18 Oct 2022 01:49:14 -0700 (PDT)
+        with ESMTP id S229727AbiJRIxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 04:53:41 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC32B3F1FE
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 01:53:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JD5xKRIjt+c5qwYIekfRX8D7OYCIbultW28a7WBo4YE=;
-        b=K9xLw6aMPOF2LazZJvee4GHTgrL6kyR+bRPcF+HU7s+tgIw6GYi3kYEqm5UJ5z6XCl
-         Dw4Fgs1U/jrTfqF9B94r1QJXJet9H8EgtS2H4Ca4XrEI1Kr5bpd3FFGTWEEIIVo1P42R
-         kfMv6YgODqc1YHyGsEW5a+IjXfO6OSQ63Ld5L5momgiS+IOOAUWP+r89NnoYpSrM+Z7H
-         3NIWw7Eke8k+CZrunqn6j3eKzyyx5IeaaLrCOl3zfJdaDCH2E+thIlOzYDEHzPp1apgz
-         ucMXVA6zyxLsVICufpIT6n48vRDnH6Wx2TgZq6Ts/PdsiD82P73AHCaymHqgc3VYjp5D
-         uNoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JD5xKRIjt+c5qwYIekfRX8D7OYCIbultW28a7WBo4YE=;
-        b=jyi0EQJ5fsDNLqU/WKJN0fcN0bUM7qQGJFZE3vp5YUeCgfKM/0VCsCnrGguCg9LIMx
-         +bJGyAzM3gnBj5QUcZcOJtUpteMnju9G6u4kXZrj0A8Hf0ap/suu3cZ4ZmFoOHQ4/R6j
-         ICHKtWgrXt5uNkrqOy7zXFoIcVV97J6XrVC8krlWHgOwgvjfjM6ThKBN6tTAcsnkE+E6
-         cSZCVlko8TJPla3OxlfUJzaglmwOpFC4TjKIdRftyYPPhnGVQqpDtglMeR0h+5hhPOAz
-         r/wp5CIIKTSdmM3cSUZRClBzCnKqL5IHVbfbl+gcfah0IY+Y9p72cqUs8cYTKvVWCFUM
-         M6EQ==
-X-Gm-Message-State: ACrzQf2hUKL9x2+zPIIkOgIyp7c6czad6BdgPdQZ4kPuAn4mWOOtYNld
-        ipLfSvxFhLd1Akf39Zi54MTPoeR6N7G6yVYeClCNXYemuAg=
-X-Google-Smtp-Source: AMsMyM5AgzBWzp6+KMrgyfE6rCCKqvOUScIRGvXv7jI4Fc6XIpQwbrzdxp+zdLu7QDZWROXPqgazcSiMm3uPTSEQ8oQ=
-X-Received: by 2002:a05:6402:22ef:b0:458:bfe5:31a3 with SMTP id
- dn15-20020a05640222ef00b00458bfe531a3mr1628614edb.6.1666082952053; Tue, 18
- Oct 2022 01:49:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221011082924.884123-1-s.hauer@pengutronix.de> <20221011082924.884123-5-s.hauer@pengutronix.de>
-In-Reply-To: <20221011082924.884123-5-s.hauer@pengutronix.de>
-From:   Xu Yang <xu.yang.nxp@gmail.com>
-Date:   Tue, 18 Oct 2022 16:49:00 +0800
-Message-ID: <CAE+6oSxo9Putacb5bV5L3Z4vtYLqsqcomf_h6Ogodo1esjpaiA@mail.gmail.com>
-Subject: Re: [PATCH 4/6] usb: chipidea: usbmisc_imx: Add prefix to register defines
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Peter Chen <peter.chen@kernel.org>,
-        Peng Fan <peng.fan@oss.nxp.com>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666083220; x=1697619220;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=B1hZbfcowIGSkAmfyHuDx/f2mgU2YVi6+6fFNT1KU40=;
+  b=ZyAu9qHSXJf0YRVwEn2dbun6D5RRkw+uZ1jVpT5k5CYyqL2MTk/RF0w0
+   qS1P14DYvnxy4y3PDiWtCyEvXkH+nLD5DzC3PYGsqcjCo9lXgD3SOdI/G
+   eUlLU9N5s7LiPwXZTluUDPWw0IIhhl6uRSawIOqJ1YdoA+z73gdFG2W6U
+   Hx3tJVP/N2tNLzaudkfr8l5va2q/Oj7orSy7/+goxGwun7hg2bfBbU3Os
+   2sIxjaNQ5FGRCxkuItPM1cbVKfj4aUbXENPidh+s3ogkRxv5Lv/LUJCWe
+   p8VoqUd2trgdkd4k5IftHYpu4UHiyYBp1mEYFFlJA54P1554wIluz8d63
+   A==;
+X-IronPort-AV: E=Sophos;i="5.95,193,1661810400"; 
+   d="scan'208";a="26812031"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 18 Oct 2022 10:53:37 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 18 Oct 2022 10:53:37 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 18 Oct 2022 10:53:37 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666083217; x=1697619217;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=B1hZbfcowIGSkAmfyHuDx/f2mgU2YVi6+6fFNT1KU40=;
+  b=NDK/MFh4K7Ci9nLqJ6grH5TMkKT/425bxkcrnae5OQvTQtw4AcADExzd
+   c5NfPnDGLxLFJRVpoJxfpb5hbsPszEqoPq5zI2tgccV8YQwv74n6aoVNm
+   0g718vYchmY9aL1iRROs9k/JO6LXdEbZf4dsVtS3X+r82dFRQitNgWs34
+   gp4fplWr6cEwnxkIek7ub/TPTZTFVAD+oFk5jDziK9Bdkxt7Mfomohs+E
+   MsM2ATe6DzzNAdzBTR5c23C/Ch5Ye8scJGJ3GTH2VZCxWG/pX6pqRi1O0
+   lA0TpKPPJlW/FaK2SzE+uzCXYm9BPJArTzZqDZu8JAUdGLUjR89sjG7HZ
+   w==;
+X-IronPort-AV: E=Sophos;i="5.95,193,1661810400"; 
+   d="scan'208";a="26812030"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 18 Oct 2022 10:53:37 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7998E280056;
+        Tue, 18 Oct 2022 10:53:37 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org, Xu Yang <xu.yang_2@nxp.com>,
-        jun.li@nxp.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/2] arm64: dts: tqma8mpql: add PCIe support
+Date:   Tue, 18 Oct 2022 10:53:29 +0200
+Message-Id: <20221018085330.2540222-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,65 +85,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 11, 2022 at 4:49 PM Sascha Hauer <s.hauer@pengutronix.de> wrote:
->
-> The driver is used for a broad range of i.MX SoCs and most of the
-> register defines have a SoC/regname specific prefix to make clear
-> in which context they should be used. Add such a prefix to the
-> MX7D_USB_OTG_PHY_CFG1 defines as well.
->
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+Add PCIe support on TQMa8MPxL module on MBa8MPxL mainboard.
 
-Reviewed-by: Xu Yang <xu.yang_2@nxp.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+This is based on next-20221018 where imp8mp PCIe support has been
+merged.
 
-Thanks,
-Xu Yang
+ .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 42 ++++++++++++++++++-
+ 1 file changed, 41 insertions(+), 1 deletion(-)
 
-> ---
->  drivers/usb/chipidea/usbmisc_imx.c | 20 ++++++++++++--------
->  1 file changed, 12 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/usb/chipidea/usbmisc_imx.c b/drivers/usb/chipidea/usbmisc_imx.c
-> index 95f2ba01c0df1..63de7d6fea427 100644
-> --- a/drivers/usb/chipidea/usbmisc_imx.c
-> +++ b/drivers/usb/chipidea/usbmisc_imx.c
-> @@ -126,8 +126,8 @@
->  #define MX7D_USB_OTG_PHY_STATUS_CHRGDET                BIT(29)
->
->  #define MX7D_USB_OTG_PHY_CFG1          0x30
-> -#define TXPREEMPAMPTUNE0               GENMASK(29, 28)
-> -#define TXVREFTUNE0                    GENMASK(23, 20)
-> +#define MX7D_USB_OTG_PHY_CFG1_TXPREEMPAMPTUNE0 GENMASK(29, 28)
-> +#define MX7D_USB_OTG_PHY_CFG1_TXVREFTUNE0      GENMASK(23, 20)
->
->  #define MX6_USB_OTG_WAKEUP_BITS (MX6_BM_WAKEUP_ENABLE | MX6_BM_VBUS_WAKEUP | \
->                                  MX6_BM_ID_WAKEUP)
-> @@ -659,15 +659,19 @@ static int usbmisc_imx7d_init(struct imx_usbmisc_data *data)
->                 /* PHY tuning for signal quality */
->                 reg = readl(usbmisc->base + MX7D_USB_OTG_PHY_CFG1);
->                 if (data->emp_curr_control &&
-> -                   FIELD_FIT(TXPREEMPAMPTUNE0, data->emp_curr_control)) {
-> -                       reg &= ~TXPREEMPAMPTUNE0;
-> -                       reg |= FIELD_PREP(TXPREEMPAMPTUNE0, data->emp_curr_control);
-> +                   FIELD_FIT(MX7D_USB_OTG_PHY_CFG1_TXPREEMPAMPTUNE0,
-> +                             data->emp_curr_control)) {
-> +                       reg &= ~MX7D_USB_OTG_PHY_CFG1_TXPREEMPAMPTUNE0;
-> +                       reg |= FIELD_PREP(MX7D_USB_OTG_PHY_CFG1_TXPREEMPAMPTUNE0,
-> +                                         data->emp_curr_control);
->                 }
->
->                 if (data->dc_vol_level_adjust &&
-> -                   FIELD_FIT(TXVREFTUNE0, data->dc_vol_level_adjust)) {
-> -                       reg &= ~TXVREFTUNE0;
-> -                       reg |= FIELD_PREP(TXVREFTUNE0, data->dc_vol_level_adjust);
-> +                   FIELD_FIT(MX7D_USB_OTG_PHY_CFG1_TXVREFTUNE0,
-> +                             data->dc_vol_level_adjust)) {
-> +                       reg &= ~MX7D_USB_OTG_PHY_CFG1_TXVREFTUNE0;
-> +                       reg |= FIELD_PREP(MX7D_USB_OTG_PHY_CFG1_TXVREFTUNE0,
-> +                                         data->dc_vol_level_adjust);
->                 }
->
->                 writel(reg, usbmisc->base + MX7D_USB_OTG_PHY_CFG1);
-> --
-> 2.30.2
->
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+index 7bf6f81e87b4..7a32379cd006 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+@@ -8,6 +8,7 @@
+ 
+ #include <dt-bindings/leds/common.h>
+ #include <dt-bindings/net/ti-dp83867.h>
++#include <dt-bindings/phy/phy-imx8-pcie.h>
+ #include <dt-bindings/pwm/pwm.h>
+ #include "imx8mp-tqma8mpql.dtsi"
+ 
+@@ -48,6 +49,12 @@ backlight_lvds: backlight {
+ 		status = "disabled";
+ 	};
+ 
++	clk_xtal25: clk-xtal25 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <25000000>;
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
+@@ -340,9 +347,16 @@ &gpio4 {
+ 			  "", "", "", "",
+ 			  "", "", "", "",
+ 			  "", "", "DP_IRQ", "DSI_EN",
+-			  "HDMI_OC#", "TEMP_EVENT#", "PCIE_CLK_OE#", "",
++			  "HDMI_OC#", "TEMP_EVENT#", "PCIE_REFCLK_OE#", "",
+ 			  "", "", "", "FAN_PWR",
+ 			  "RTC_EVENT#", "CODEC_RST#", "", "";
++
++	pcie_refclkreq-hog {
++		gpio-hog;
++		gpios = <22 0>;
++		output-high;
++		line-name = "PCIE_REFCLK_OE#";
++	};
+ };
+ 
+ &gpio5 {
+@@ -377,6 +391,13 @@ at24c02_54: eeprom@54 {
+ 		pagesize = <16>;
+ 		vcc-supply = <&reg_vcc_3v3>;
+ 	};
++
++	pcieclk: clk@6a {
++		compatible = "renesas,9fgv0241";
++		reg = <0x6a>;
++		clocks = <&clk_xtal25>;
++		#clock-cells = <1>;
++	};
+ };
+ 
+ &i2c4 {
+@@ -407,6 +428,25 @@ &pcf85063 {
+ 	interrupts = <28 IRQ_TYPE_EDGE_FALLING>;
+ };
+ 
++&pcie_phy {
++	fsl,clkreq-unsupported;
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
++	clocks = <&pcieclk 0>;
++	clock-names = "ref";
++	status = "okay";
++};
++
++&pcie {
++	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
++		 <&clk IMX8MP_CLK_HSIO_AXI>,
++		 <&clk IMX8MP_CLK_PCIE_ROOT>;
++	clock-names = "pcie", "pcie_bus", "pcie_aux";
++	assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
++	assigned-clock-rates = <10000000>;
++	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
++	status = "okay";
++};
++
+ &pwm2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_pwm2>;
+-- 
+2.25.1
+
