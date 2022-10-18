@@ -2,106 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7200602038
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 03:11:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C624A60208B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 03:41:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230041AbiJRBL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 21:11:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38216 "EHLO
+        id S230108AbiJRBl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 21:41:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231377AbiJRBLK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 21:11:10 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47011120A5
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 18:11:09 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id e15so10621168iof.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 18:11:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b1/DJ1QD/JmVXkFdZ5L+JX8R7wgIJKqU2QhO7hDCqBU=;
-        b=lcOqSM8ajEqysG3b9KJ59Yye1I8wK/ju25O2DSyQYA2svT1Avqy5h1Euoqw6ec6U1D
-         76hre713ef9f73yeHovOVfW+AhZ4S5pLDkQ5jMQGvVO18EoTXaj9sfxEg1KzAfJIydvQ
-         KKTfRsZpv8+OU/Ff1o8hzU0XwU3UXoD6/aI+pXcFW9Y+jacbW2OsWhhDUoLEqu8xJiUt
-         SnOQc0iJped5sCDi9BZv39DERfIPCn10/9HhjhlHqlzFBL0naTunR5w+v55VARrKSKAY
-         5L10Zmne8Y8wt3QxyQvfF81SXzyNrmJ1MS9ZhEuLuJrp02bQqhz56rykwkw/EfkhaFla
-         Q2mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b1/DJ1QD/JmVXkFdZ5L+JX8R7wgIJKqU2QhO7hDCqBU=;
-        b=SXo+2ap3oXChvWozqsZfdsHG+pO5H4kLNEpwdnJyhVPVwHfpT84loK8IOuYAfWsiZO
-         6kOAM+NR/YTCmmxdpRSuZRjs+cSX8Wk79/M9UVIfx2QzzRYCP/ZlHzVcqocS7fwJ7zgZ
-         /t/TBa7TT8o07jTL+9UXj/oiXa4sjS1fCpVDh0Kt9YejeHNlW/XS/kOGbRBnoo9xAezx
-         5WNOGtOcRgQlAMgwXcDb23+XMvVoxA5M2JY5/BB2xs5e9eyQUCVF0kEo5iiNLuxC9uee
-         oTvpHthkZCP+LmBACMCW//8IxKFFYUXNYYq6LMj7HUofIpYQVm9yw2vlkxuhSMoUSK6v
-         S9pw==
-X-Gm-Message-State: ACrzQf2Ky26zm+MJy356LJPiAc+aYBsbQHtL6ImOEUIISsVWhBat7HDX
-        tDR+BGZomLpWljkNbOX7Lqs=
-X-Google-Smtp-Source: AMsMyM5Hz1rwGYBJ6G4/CWt5c9HAx1x7Aza+ahz0ZAzEMoSwKfXzmJrD7FfZmo3bUevM/RhmOD+oZQ==
-X-Received: by 2002:a05:6602:29c4:b0:6a4:db74:ca82 with SMTP id z4-20020a05660229c400b006a4db74ca82mr482963ioq.201.1666055468778;
-        Mon, 17 Oct 2022 18:11:08 -0700 (PDT)
-Received: from localhost ([2607:fea8:a2e2:2d00::4a89])
-        by smtp.gmail.com with UTF8SMTPSA id 7-20020a6b0107000000b006bc404507dfsm533646iob.6.2022.10.17.18.11.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Oct 2022 18:11:08 -0700 (PDT)
-From:   Richard Acayan <mailingradian@gmail.com>
-To:     iommu@lists.linux.dev
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S230123AbiJRBl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 21:41:27 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC1B571997;
+        Mon, 17 Oct 2022 18:41:25 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29I1BXSw017230;
+        Tue, 18 Oct 2022 01:41:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=qcppdkim1;
+ bh=kR1vPbJl6kOgRhB+Tcxs3TLjs9t0g2NsmVPhBqhNtww=;
+ b=OW6MA2s6X0vuQ05imRTGqdolF2IMaKuGyg+KTMhKYKFYw5xhfnFKqNAoeE/6Jl7w4sjv
+ AzxHfZ99Nhzpdw9u3PlnD06G31cKANhVY7sGc90orskfBZ3Opt3GUKhA547fSGyNxpHB
+ llXy9vhqOd4g8E9hZ2Qq+dLuPrlMsqa22fgpQ7imAMIBUKvc6g0eGO9T9mGVzHSNtL6+
+ 9wqGcw6tKAtXjCnm1h8iorWXb5KlmkHsb+Db4MDPTlvOBssEZQnsWoCke+sX6J1z4vdx
+ WixVoShfPjZccb2Lp6xs1+E+JU5UeQc9nT4fE8NqiZmq6tqI3xooiVYhRubvdjCYw6+o WQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k9gwe887w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Oct 2022 01:41:16 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29I1fFx5032682
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Oct 2022 01:41:15 GMT
+Received: from fenglinw2-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Mon, 17 Oct 2022 18:41:12 -0700
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Richard Acayan <mailingradian@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [RESEND PATCH v2 2/2] iommu: arm-smmu-qcom: add sdm670 compatible
-Date:   Mon, 17 Oct 2022 21:10:48 -0400
-Message-Id: <20221018011048.25371-3-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221018011048.25371-1-mailingradian@gmail.com>
-References: <20221018011048.25371-1-mailingradian@gmail.com>
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fenglin Wu <quic_fenglinw@quicinc.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>
+Subject: [PATCH v3 2/2] dt-bindings: add bindings for QCOM flash LED
+Date:   Tue, 18 Oct 2022 09:40:24 +0800
+Message-ID: <20221018014024.948731-3-quic_fenglinw@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221018014024.948731-1-quic_fenglinw@quicinc.com>
+References: <20221018014024.948731-1-quic_fenglinw@quicinc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: WoqUkH6-NguXAn8Zq1QMPzogbwC9Aa6Y
+X-Proofpoint-ORIG-GUID: WoqUkH6-NguXAn8Zq1QMPzogbwC9Aa6Y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-17_13,2022-10-17_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
+ spamscore=0 impostorscore=0 adultscore=0 mlxscore=0 priorityscore=1501
+ mlxlogscore=999 lowpriorityscore=0 suspectscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210180007
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Snapdragon 670 needs the IOMMU for GENI I2C. Add a compatible string to
-support it.
+Add binding document for flash LED module inside Qualcomm Technologies,
+Inc. PMICs.
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
 ---
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/leds/qcom,spmi-flash-led.yaml    | 116 ++++++++++++++++++
+ 1 file changed, 116 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-index b2708de25ea3..bf9653b9eb89 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-@@ -431,6 +431,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
- 	{ .compatible = "qcom,sc8180x-smmu-500" },
- 	{ .compatible = "qcom,sc8280xp-smmu-500" },
- 	{ .compatible = "qcom,sdm630-smmu-v2" },
-+	{ .compatible = "qcom,sdm670-smmu-500" },
- 	{ .compatible = "qcom,sdm845-smmu-500" },
- 	{ .compatible = "qcom,sm6125-smmu-500" },
- 	{ .compatible = "qcom,sm6350-smmu-500" },
+diff --git a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+new file mode 100644
+index 000000000000..d8efde02db72
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+@@ -0,0 +1,116 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/qcom,spmi-flash-led.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Flash LED device inside Qualcomm Technologies, Inc. PMICs
++
++maintainers:
++  - Fenglin Wu <quic_fenglinw@quicinc.com>
++
++description: |
++  Flash LED controller is present inside some Qualcomm Technologies, Inc. PMICs.
++  The flash LED module can have different number of LED channels supported
++  e.g. 3 or 4. There are some different registers between them but they can
++  both support maximum current up to 1.5 A per channel and they can also support
++  ganging 2 channels together to supply maximum current up to 2 A. The current
++  will be split symmetrically on each channel and they will be enabled and
++  disabled at the same time.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - qcom,pm8150c-flash-led
++          - qcom,pm8150l-flash-led
++          - qcom,pm8350c-flash-led
++      - const: qcom,spmi-flash-led
++  reg:
++    description: address offset of the flash LED controller
++    maxItems: 1
++
++patternProperties:
++  "^led-[0-3]$":
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++    description: |
++      Represents the physical LED components which are connected to the
++      flash LED channels' output.
++
++    properties:
++      led-sources:
++        description: |
++          The HW indices of the flash LED channels that connect to the
++          physical LED
++        allOf:
++          - minItems: 1
++            maxItems: 2
++            items:
++              enum: [1, 2, 3, 4]
++
++      led-max-microamp:
++        anyOf:
++          - minimum: 5000
++            maximum: 500000
++            multipleOf: 5000
++          - minimum: 10000
++            maximum: 1000000
++            multipleOf: 10000
++
++      flash-max-microamp:
++        anyOf:
++          - minimum: 12500
++            maximum: 1500000
++            multipleOf: 12500
++          - minimum: 25000
++            maximum: 2000000
++            multipleOf: 25000
++
++      flash-max-timeout-us:
++        minimum: 10000
++        maximum: 1280000
++        multipleOf: 10000
++
++    required:
++      - led-sources
++      - led-max-microamp
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++    spmi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        led-controller@ee00 {
++            compatible = "qcom,pm8350c-flash-led", "qcom,spmi-flash-led";
++            reg = <0xee00>;
++
++            led-0 {
++                function = LED_FUNCTION_FLASH;
++                color = <LED_COLOR_ID_WHITE>;
++                led-sources = <1>, <4>;
++                led-max-microamp = <300000>;
++                flash-max-microamp = <2000000>;
++                flash-max-timeout-us = <1280000>;
++                function-enumerator = <0>;
++            };
++
++            led-1 {
++                function = LED_FUNCTION_FLASH;
++                color = <LED_COLOR_ID_YELLOW>;
++                led-sources = <2>, <3>;
++                led-max-microamp = <300000>;
++                flash-max-microamp = <2000000>;
++                flash-max-timeout-us = <1280000>;
++                function-enumerator = <1>;
++            };
++        };
++    };
 -- 
-2.38.0
+2.25.1
 
