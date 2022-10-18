@@ -2,107 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14C046020A8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 03:56:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9B0F6020B0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 03:58:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230345AbiJRB4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 21:56:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58008 "EHLO
+        id S229829AbiJRB6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 21:58:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbiJRB4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 21:56:32 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60AA72FD3
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 18:56:25 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id f8so7867533qkg.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 18:56:25 -0700 (PDT)
+        with ESMTP id S230078AbiJRB6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 21:58:19 -0400
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0F1D8BBBA
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 18:58:09 -0700 (PDT)
+Received: by mail-qv1-xf32.google.com with SMTP id mg6so8504894qvb.10
+        for <devicetree@vger.kernel.org>; Mon, 17 Oct 2022 18:58:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cwnKiJHjgGODb7JZ57x/PI3J93dO3KCDNTmDBrZdsDc=;
-        b=xflSfO3croZNnEFDdG7BOLArdMlmy+EU22He2ItcgDKF+cPzrW4GyqHfDn+EHI9zAN
-         FtdDBSXhjYQV8JJmZVlWlPrOYWCBFm2F35En38JSnLi4GEB8FR+HJsn5CH/fJSe8tLiZ
-         rZPdTlOaunKSdBCHtJ/Wh3FxNLQn/RGKWEW5siTVp7xYRUpfj53c/RPUrc+YwaZYUf3P
-         ZBvApA9Gxu9brukx62hgnNia1ucmgNCdB4WTZzZh3dfaZAmEqgorXE3an33GUpbFl8Rj
-         ePveOh+GWzORHhtyXYCDVUFTvM/kI6mFSBttrncVbBGF8Jpv72/iuyjSg8RV+tstvJvV
-         lFHw==
+        bh=RLAK/RZjVkZUTYOcQamXq8CZ6Yk8GhuaCQFzyazb1/0=;
+        b=s7wsrJIbJuR6XRlLJOlaT0wo31Nb6jk1jWgt7E+X4/J9DxjIe9jqjJc0kNd4RtSon2
+         UrRkEhhG5mnY/GyUr9bsbJ9xnJJcTTdRiKeB+cdWVeZtUhXEQjKrnOlyMmCHATJ35K+q
+         u/O4CYWdz886vVW7SE6+V6qD8T2niGd/HZbAgmIN8XTkzJ8ekZ5xdSHdhvdHa6xNlhI6
+         fALBO1STWizAbLuc3kL2GfJOHGWhqSzj5q+mOm6oFsT6ZDps19dNn5a9OSpOjr/xd+G/
+         okSyIutvjiCgRh3kjlbOZXrWbq+/fXIugCxvJAiC6j6zmq7noGfIUYF5lKJ3j5ks6oVD
+         ThPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cwnKiJHjgGODb7JZ57x/PI3J93dO3KCDNTmDBrZdsDc=;
-        b=NA6ht4pYriaF6BN3MaA4y1wOEBkdfsv59y8FIQT7vZbk3ZCU9vwZ1J0CWmzlH8ZuEr
-         NvtmlZjIR0X8Uwy+SrL2VhXLdH5Ac0+vRVPBE0mCAZCG6YWZZoZ9ktGcC4fcM77InG/7
-         PAkvvykHZMNnZh4tdzMVsPcye53Fe9Jsw7/AEgJ+XVIB5wVXW3K9YDt+I3Y8yXriUCPG
-         yU+9TxAopwLbV7J9XPjVU0sl/ADYYZrIYgETl4caZ9/GSdfwlo/pCrgJMo6T/3W+kHly
-         7ZSu03wjuJdMi2C7DDkPVLytxS7N833IbFIU66YO3NP94fwXTaQ2wFdzFbHmStIqLvBj
-         VTew==
-X-Gm-Message-State: ACrzQf33wvh20O03M87awum/Fu3rv3r9xf+NoVgmEy+DZCYLYaewmXrs
-        UbjLHM6xdBQKRglAgDBf2R0GRA==
-X-Google-Smtp-Source: AMsMyM5ocMIfY0aC8/+qBtf+hP1sxMYMg/Y2wsOOlblki8BnnPjo0vYAfLgMcatAAS2jP/FXcwSJYA==
-X-Received: by 2002:a05:620a:1982:b0:6ee:c63f:f983 with SMTP id bm2-20020a05620a198200b006eec63ff983mr373977qkb.382.1666058184215;
-        Mon, 17 Oct 2022 18:56:24 -0700 (PDT)
+        bh=RLAK/RZjVkZUTYOcQamXq8CZ6Yk8GhuaCQFzyazb1/0=;
+        b=GKIusFiT2oW31L2KgPHZT+8IjuahhuOnAGVkp8PugMt5RFWLVu+ILUjanAX8zNM2ue
+         lisn1s8r3gJkxFfv/8NOlJD/qM3fpFostDidjRXI8ghnpIbwuYg4WHyiTjZ7mcv6yU5k
+         HjWE3eBNCRGNpJCOmvSekaZTR9Zji3vaAA1k1i+0ipIkAB+79/VDUrWfUK1CNfnBMjeS
+         xO6gRNYRT2p01AG4cxiQjmItewluoX2qK0vAwq46tfhjn9eZtDm5oxIb0YnTRyE3kbTS
+         vVQbx2YflzJVpFwawJ8ZWkOo1fn+Yy0/C4JPLiCXD8+9ptTaB3dmWhiuPCIfEP36FzMe
+         z8/w==
+X-Gm-Message-State: ACrzQf3N+bIjN9epoziRUuL9HSLyVAQ9qwRK5oKXp36om8+DYxElrHll
+        SOEW3pDQ/ZiJFAx3qhECQdg40Q==
+X-Google-Smtp-Source: AMsMyM4cPM5mKlAtoI4hcuDlyyAjJY0S6+DfQxC+qRJYxgx9Dmkh2LRZLb11bUWpjR1eofMYfJ5C5A==
+X-Received: by 2002:a05:6214:1cc2:b0:4af:891b:4e75 with SMTP id g2-20020a0562141cc200b004af891b4e75mr370762qvd.30.1666058289055;
+        Mon, 17 Oct 2022 18:58:09 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id s15-20020a05622a178f00b0035d432f5ba3sm1053661qtk.17.2022.10.17.18.56.22
+        by smtp.gmail.com with ESMTPSA id bi39-20020a05620a31a700b006eeb64da8b1sm1159797qkb.2.2022.10.17.18.58.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Oct 2022 18:56:23 -0700 (PDT)
-Message-ID: <7ada410d-8d13-b29a-869c-3f5d032528bf@linaro.org>
-Date:   Mon, 17 Oct 2022 21:56:21 -0400
+        Mon, 17 Oct 2022 18:58:08 -0700 (PDT)
+Message-ID: <b8477650-07e0-c6a0-fec4-baeccbd44309@linaro.org>
+Date:   Mon, 17 Oct 2022 21:58:07 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH] dt-bindings: nvmem: add new stm32mp13 compatible for
- stm32-romem
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: sdm632: fairphone-fp3: add
+ touchscreen
 Content-Language: en-US
-To:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+To:     Job Noorman <job@noorman.info>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20221014172324.1.Ifc1812116ff63f5501f3edd155d3cf5c0ecc846c@changeid>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221017100409.189293-1-job@noorman.info>
+ <20221017100409.189293-4-job@noorman.info>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221014172324.1.Ifc1812116ff63f5501f3edd155d3cf5c0ecc846c@changeid>
+In-Reply-To: <20221017100409.189293-4-job@noorman.info>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2022 11:23, Patrick Delaunay wrote:
-> Add a new compatible for stm32mp13 support.
+On 17/10/2022 06:04, Job Noorman wrote:
+> Add Himax hx83112b touchscreen to the FP3 DT.
 > 
-> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
-> ---
-> 
->  Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-> index 448a2678dc62..16f4cad2fa55 100644
-> --- a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-> @@ -22,6 +22,7 @@ properties:
->    compatible:
->      enum:
->        - st,stm32f4-otp
-> +      - st,stm32mp13-bsec
->        - st,stm32mp15-bsec
+> Signed-off-by: Job Noorman <job@noorman.info>
 
-According to usage in DTS (separate patch for some reason), the devices
-are compatible, so please describe them like that.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
