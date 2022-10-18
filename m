@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C63576030EC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 18:44:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E37CB6030F2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 18:45:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbiJRQoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 12:44:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49094 "EHLO
+        id S229875AbiJRQpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 12:45:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229926AbiJRQo3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 12:44:29 -0400
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3536F5FC1
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 09:44:26 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id c23so10018430qtw.8
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 09:44:26 -0700 (PDT)
+        with ESMTP id S229904AbiJRQpy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 12:45:54 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCD7CDED32
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 09:45:52 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id v11so1134009wmd.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 09:45:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8Tbu2eJEYFjyO0ej5IfoFmf0gdEZqmFzh3CLJlNQxzw=;
-        b=Hah9Indmain6Q3j8MTL7qJDfMpsNsnS3XJcTan9bQ9Fc+dNLiT9H+PQ0q4MlSJZO4P
-         uD0JxDcLWYwQ7s4yTP99/LbnLAAKPOXxKFGvraeuh8S/9Yaiukr63doI9fjqroADX8Tc
-         kcjF6I/okYhO482Egc/N8MT0JPHMCDDE9iRwrql3bnnWDrtDoyh4mAGfr8hbRmkREmns
-         1prvsXGljY08AFIOrsXq/rSCWbTdYjIPQKIMrmI34EnZIswfW2QC1OiKsghmjRgWUF0m
-         HPRPtPc4CtLUOKlRmYKmVtzjEamjBRBtL8YkRptfKxneTxofqArshuRiqH31DJxNw11f
-         w8yQ==
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+orLHdjN22tP869vCnaab3e5mhNvntEtV9jpkeSTRtw=;
+        b=S6dvHcLhvq0gyDjYHLftknwwXLAGEmhHTtaYQfFpeTBoqo8p56p6xiDIqySooNZomx
+         YxJJrJQuRywSPrB82azwjh/OJo9/vqIe8iTLEJbVBSN5dy2IEi4L3QewHM/h+of4i81K
+         DK8VKsPBPYQ80RGi7Pjg7b/hv9A1ozHZfRGtY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8Tbu2eJEYFjyO0ej5IfoFmf0gdEZqmFzh3CLJlNQxzw=;
-        b=KOQJ/twqax8GGcH55P14PtNTbsH5wayOUYeAMiE5ttqhEZ+AlwFP0x2dshoMSsaUqu
-         pB5rJrT1cMfc3iXnlUQ/xjRXS+031tccjg3FVAaeMzKhi59FA2OnmeWaa2u8jyeXw8a8
-         HhC82HGWNR0uZtm3jxAI4QgKAa9EeFq8sLRdCF5ToHkCqgmKeBXSP2FSsLof8hmirB94
-         E44zgcmHd9V9FfSqQV5cSXHmt+CXzb5wydj6qPSV9qAVSa8TT5CBIdRbjMnR/Ff0xdyL
-         ye/sA8qw3FqBjU8p083DHaNPehl+aLFRta7qaH0z6CFKj1zMd8owvRNUMSSSDyXBUdrB
-         hZrQ==
-X-Gm-Message-State: ACrzQf1i5h1iWop3nuqmFgrgSB19PRD779fpYC7Rlt13Krd+wo/kpbpB
-        AJVN3w0MQbD+edoe09SbwwtioA==
-X-Google-Smtp-Source: AMsMyM5Dd8///qAFR9rKWcH8IQOs/how2BLHQqSSuEXBHTCVT2Lyylgatw9LASPWVZL8YIG80OYPNw==
-X-Received: by 2002:a05:622a:1a9d:b0:39c:d634:be42 with SMTP id s29-20020a05622a1a9d00b0039cd634be42mr2878001qtc.476.1666111464968;
-        Tue, 18 Oct 2022 09:44:24 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id dt5-20020a05620a478500b006ee94c5bf26sm2782237qkb.91.2022.10.18.09.44.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 09:44:24 -0700 (PDT)
-Message-ID: <e334e265-fde0-29df-d905-c3ec4941f152@linaro.org>
-Date:   Tue, 18 Oct 2022 12:44:22 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 09/15] dt-bindings: phy: qcom,qmp-pcie: mark current
- bindings as legacy
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+orLHdjN22tP869vCnaab3e5mhNvntEtV9jpkeSTRtw=;
+        b=axJvKd80b1w3yvUgKvy8nx3a/3TNSYpjrcnTKrAdPqNcyeqJ/Bb9C2doo0qDcyMQQt
+         6fbzjkPu3kXfGLwTp3EoUCe6hdMk9b4riyPcGqxpOkX1ouweG0jsARihMXvEfvqVsglX
+         T2JZdSqD62whNZWmL5kEo75EpuXicr3JjKwD3dCf9JXzxlmuz65lPITCUh2h//PmScLZ
+         SZPyB9IISiSOXwLQjCi77s5u4m1ex5oU/cfgEbPww5js9Oo4DjVmGcbTL4ImfkqD8C0e
+         NwaHCOyCZzpM0AV7M2g+PpMxMur0/b7JDHbwoTy6Qy95sk9jscn5YKjVKnIdcdWlHHwo
+         y3gQ==
+X-Gm-Message-State: ACrzQf2lU6oeRq+6UTx1pO+kzpr/etkRCzWlPp4oFwEs5SlydETdxFxp
+        uc86IuUoNrRNdk5sKbNtOKfcIQ==
+X-Google-Smtp-Source: AMsMyM5pnkks/HND10mWToRhl+UCf2Z9hxQ1obs63ep+oxFuntY0Pg679ulh4Iz5SoE8EuPgz/8UNw==
+X-Received: by 2002:a05:600c:4e06:b0:3c6:ce02:ece4 with SMTP id b6-20020a05600c4e0600b003c6ce02ece4mr2582171wmq.58.1666111551336;
+        Tue, 18 Oct 2022 09:45:51 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i.station (net-188-217-54-207.cust.vodafonedsl.it. [188.217.54.207])
+        by smtp.gmail.com with ESMTPSA id e26-20020a05600c4b9a00b003a5537bb2besm13545592wmp.25.2022.10.18.09.45.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Oct 2022 09:45:50 -0700 (PDT)
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     tommaso.merciai@amarulasolutions.com
+Cc:     michael@amarulasolutions.com, linuxfancy@googlegroups.com,
+        linux-amarula@amarulasolutions.com, kamlesh.gurudasani@gmail.com,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221017145328.22090-1-johan+linaro@kernel.org>
- <20221017145328.22090-10-johan+linaro@kernel.org>
- <CAA8EJpqSWmy5Z4cmJnsdjMjkmACW7HSi-k5JxZ0gLCeUAWEnxQ@mail.gmail.com>
- <Y05+E90tmlq2tNFa@hovoldconsulting.com>
- <CAA8EJprwhEvUfUr-zDir4zFh_NAyr0qPbrHi6Hf8=2HC1dAhaw@mail.gmail.com>
- <b0c1bdfb-4a31-9deb-1f0a-0ed813707464@linaro.org>
- <Y07OfmfQgQWFzHZY@hovoldconsulting.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y07OfmfQgQWFzHZY@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Maxime Ripard <maxime@cerno.tech>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: add binding for tft displays based on ilitek,ili9488
+Date:   Tue, 18 Oct 2022 18:45:25 +0200
+Message-Id: <20221018164532.1705215-2-tommaso.merciai@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221018164532.1705215-1-tommaso.merciai@amarulasolutions.com>
+References: <20221018164532.1705215-1-tommaso.merciai@amarulasolutions.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,77 +78,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/10/2022 12:04, Johan Hovold wrote:
-> On Tue, Oct 18, 2022 at 11:32:07AM -0400, Krzysztof Kozlowski wrote:
->> On 18/10/2022 07:37, Dmitry Baryshkov wrote:
->>>
->>>>> And yes, I think we should also upgrade
->>>>> older DTs, keeping drivers backwards compatible (for some time?).
->>>>
->>>> Possibly, but I'm not sure it's worth the dts churn. As I mentioned
->>>> elsewhere, supporting both the old and new binding in the driver is
->>>> mostly trivial, while encoding the deprecated bindings in DT schema
->>>> sounds like it would be painful.
->>>
->>> This is probably the time where Krzysztof can advise us. I'm still not
->>> sure when it is expected to encode both old and new bindings in the
->>> schema and when we can update both the schema and the DT.
->>
->> I do not follow what exactly the proposal is. Are you asking whether to:
->> 1. keep existing DTS compatible with old driver?
->> or
->> 2. update existing DTS so it is working only with new driver (and not
->> compatible with old driver thus having ABI break)?
->>
->> If so, it is less question to bindings but more to the usage of DTS in
->> other projects (like bootloaders, firmware, BSD) and generic
->> recommendation is: do not break other users, if possible. It is however
->> up to the platform maintainer (Bjorn) to decide on this, not on me.
-> 
-> The question is whether to convert also the current bindings and DTS to
-> the new (sc8280xp) scheme (e.g. drop the child nodes and register
-> subregions).
-> 
-> The driver can support both binding schemes using the same compatible
-> strings for a transition period (or in theory forever) by checking for
-> the existence of a child node.
-> 
-> Converting the DTS to use the new bindings would obviously prevent using
-> them with an old kernel (i.e. 2 above), but I don't think that's a
-> problem (unlike backward compatibility during at least a transition
-> period).
+This binding is for the tft displays based on ilitek,ili9488.
+waveshare,waveshare,pico-rt-lcd-35 (waveshare pico-restouch-lcd-3.5)
 
-It is still not nice towards any other users of DTS, because this will
-break all of them. I agree this won't be ABI type of break. It is
-discouraged though, unless there are clear benefits from this or one
-totally does not care about other DTS users...
+Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+---
+ .../bindings/display/ilitek,ili9488.yaml      | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9488.yaml
 
-As I said it is up to platform maintainer.
-
-> 
-> My concern was how to describe the deprecation in DT schema if we were
-> convert them. By instead just keeping the old bindings as-is in a
-> separate file and continuing to support them in the driver we can have a
-> nice and clean description of the new bindings (sc8280xp) without the
-> legacy cruft.
-
-You cannot have one compatible in two schemas, so for old bindings (and
-DTS):
-1. Don't convert them,
-2. Convert with keeping old properties - as you pointed this might be
-full of conditionals/allOf, so difficult to maintain and read,
-3. Convert dropping old stuff.
-
-For the option 3. for sure Rob will ask why. :)
-
-> 
-> If we were to start introducing conditionals on existence of child
-> nodes, and marking the old bindings as deprecated in one large schema,
-> then that sounds like it would be very messy and hard to read and
-> maintain. But perhaps there is some way to do this without such
-> downsides that I'm not aware of.
-
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/display/ilitek,ili9488.yaml b/Documentation/devicetree/bindings/display/ilitek,ili9488.yaml
+new file mode 100644
+index 0000000000000..879ecc42c350c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/ilitek,ili9488.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/ilitek,ili9488.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Ilitek ILI9488 display panels device tree bindings
++
++maintainers:
++  - Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
++  - Michael Trimarchi <michael@amarulasolutions.com>
++  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
++
++description:
++  This binding is for display panels using an Ilitek ILI9488 controller in SPI
++  mode.
++
++allOf:
++  - $ref: panel/panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          # Waveshare 3.5" 320x480 Color TFT LCD
++          - "waveshare,pico-rt-lcd-35"
++      - const: ilitek,ili9488
++
++  spi-max-frequency:
++    maximum: 20000000
++
++  dc-gpios:
++    maxItems: 1
++    description: Display data/command selection (D/CX)
++
++  backlight: true
++  reg: true
++  reset-gpios: true
++  rotation: true
++
++required:
++  - compatible
++  - reg
++  - dc-gpios
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    backlight: backlight {
++            compatible = "gpio-backlight";
++            gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
++    };
++    spi {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++
++            display@0{
++                    compatible = "waveshare,pico-rt-lcd-35", "ilitek,ili9488";
++                    reg = <0>;
++                    spi-max-frequency = <20000000>;
++                    dc-gpios = <&gpio0 24 GPIO_ACTIVE_HIGH>;
++                    reset-gpios = <&gpio0 25 GPIO_ACTIVE_HIGH>;
++                    backlight = <&backlight>;
++            };
++    };
++
++...
+-- 
+2.25.1
 
