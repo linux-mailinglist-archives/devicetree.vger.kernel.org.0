@@ -2,81 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A171F60309F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 18:18:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C63576030EC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 18:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230348AbiJRQSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 12:18:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37644 "EHLO
+        id S229800AbiJRQoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 12:44:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230419AbiJRQSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 12:18:13 -0400
+        with ESMTP id S229926AbiJRQo3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 12:44:29 -0400
 Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58250BA279
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 09:18:10 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id a24so9945593qto.10
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 09:18:09 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3536F5FC1
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 09:44:26 -0700 (PDT)
+Received: by mail-qt1-x832.google.com with SMTP id c23so10018430qtw.8
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 09:44:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Mz8n0nULnXUq1UCVs2wcXkpsnocCU9N11569El+Afoc=;
-        b=Hc8SCWziT1iXhYnLRoggO4/WW5dX/pI6+yej08xkT1pU8ICLz15uWW/j3uMzp7Qexk
-         yvmJqXViTrF76A70E2OF6ElMaKsh5O1a/0VTPWx6xmykoYCJnvuSXtbDv9YXG1dY/aRi
-         tFjjlt5Y198P5O/cSHuk9/rvMfvlfQDFtwqh73eR8CH4/5PenN/zutGDo6uzF6fyND5i
-         5IMO5k/KESDqCg/lRnxKYwF/FzMa4NhXL24Hrrfkki1syPafI4HuBviePfJ2jIyoeavE
-         VOjnTH/yPUmpTuZC18XXYoa6wUg+lmxqyxCHQe2j9TTN9leXsypuTY6GGz8vDOu/5V6H
-         hDDw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8Tbu2eJEYFjyO0ej5IfoFmf0gdEZqmFzh3CLJlNQxzw=;
+        b=Hah9Indmain6Q3j8MTL7qJDfMpsNsnS3XJcTan9bQ9Fc+dNLiT9H+PQ0q4MlSJZO4P
+         uD0JxDcLWYwQ7s4yTP99/LbnLAAKPOXxKFGvraeuh8S/9Yaiukr63doI9fjqroADX8Tc
+         kcjF6I/okYhO482Egc/N8MT0JPHMCDDE9iRwrql3bnnWDrtDoyh4mAGfr8hbRmkREmns
+         1prvsXGljY08AFIOrsXq/rSCWbTdYjIPQKIMrmI34EnZIswfW2QC1OiKsghmjRgWUF0m
+         HPRPtPc4CtLUOKlRmYKmVtzjEamjBRBtL8YkRptfKxneTxofqArshuRiqH31DJxNw11f
+         w8yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Mz8n0nULnXUq1UCVs2wcXkpsnocCU9N11569El+Afoc=;
-        b=IQcBof+6Jq+mzX6QCHk08tJYm+jHOY9ErUJ8cCBcrkH/ARnskWE6UM8nrSWo6mQX/P
-         FPL+3TMFxcAwGN9hK3/wclT3LdPqMIe7MuXPiHiGtx1zvsHJkz/J9mv43w9CTAPIaJ7g
-         A9BYrCnuAoltaoUNHueMYxg3CrTTzdNcdA21H8IhD6GO1WNhve8hPm0TpQN4EFWx61CE
-         nLFDVy4gZagVsTOZLPPJ0dBs+yqVp0K1TebVZRsKs7kvt9jczEh0BlQnfBQizBd281Xm
-         NSHRho515MJ+7fQRBap7XdULmPqF1o3O7NF74zVr2zZY3fNytIiyjejiBYw8X6HAsZK9
-         0CVg==
-X-Gm-Message-State: ACrzQf2MGqlnMUbMrJeWbrwEhOUriUaiOb1ZCYaKpYiYAORKo3igOMZl
-        8t/+2Ag/zZ1FX1pEmjSQQtwO6g==
-X-Google-Smtp-Source: AMsMyM4SMAabsvAM2AilDWSmKwY2QNp2RDPnJHax5dmRLyjFbjRB+jhKlLbGZtBfsLtAiBxfcot96A==
-X-Received: by 2002:a05:622a:144e:b0:39c:f9a0:c93b with SMTP id v14-20020a05622a144e00b0039cf9a0c93bmr963165qtx.672.1666109888611;
-        Tue, 18 Oct 2022 09:18:08 -0700 (PDT)
-Received: from krzk-bin.MSRM (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id r28-20020ae9d61c000000b006ed30a8fb21sm2636342qkk.76.2022.10.18.09.18.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 09:18:07 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        krishna Lanka <quic_vamslank@quicinc.com>,
-        linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Iskren Chernev <iskren.chernev@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/33] pinctrl/arm64: qcom: continued - fix Qualcomm TLMM pinctrl schema warnings (5th set)
-Date:   Tue, 18 Oct 2022 12:18:03 -0400
-Message-Id: <166610987889.55974.15245001765390019579.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221017230012.47878-1-krzysztof.kozlowski@linaro.org>
-References: <20221017230012.47878-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8Tbu2eJEYFjyO0ej5IfoFmf0gdEZqmFzh3CLJlNQxzw=;
+        b=KOQJ/twqax8GGcH55P14PtNTbsH5wayOUYeAMiE5ttqhEZ+AlwFP0x2dshoMSsaUqu
+         pB5rJrT1cMfc3iXnlUQ/xjRXS+031tccjg3FVAaeMzKhi59FA2OnmeWaa2u8jyeXw8a8
+         HhC82HGWNR0uZtm3jxAI4QgKAa9EeFq8sLRdCF5ToHkCqgmKeBXSP2FSsLof8hmirB94
+         E44zgcmHd9V9FfSqQV5cSXHmt+CXzb5wydj6qPSV9qAVSa8TT5CBIdRbjMnR/Ff0xdyL
+         ye/sA8qw3FqBjU8p083DHaNPehl+aLFRta7qaH0z6CFKj1zMd8owvRNUMSSSDyXBUdrB
+         hZrQ==
+X-Gm-Message-State: ACrzQf1i5h1iWop3nuqmFgrgSB19PRD779fpYC7Rlt13Krd+wo/kpbpB
+        AJVN3w0MQbD+edoe09SbwwtioA==
+X-Google-Smtp-Source: AMsMyM5Dd8///qAFR9rKWcH8IQOs/how2BLHQqSSuEXBHTCVT2Lyylgatw9LASPWVZL8YIG80OYPNw==
+X-Received: by 2002:a05:622a:1a9d:b0:39c:d634:be42 with SMTP id s29-20020a05622a1a9d00b0039cd634be42mr2878001qtc.476.1666111464968;
+        Tue, 18 Oct 2022 09:44:24 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id dt5-20020a05620a478500b006ee94c5bf26sm2782237qkb.91.2022.10.18.09.44.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Oct 2022 09:44:24 -0700 (PDT)
+Message-ID: <e334e265-fde0-29df-d905-c3ec4941f152@linaro.org>
+Date:   Tue, 18 Oct 2022 12:44:22 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 09/15] dt-bindings: phy: qcom,qmp-pcie: mark current
+ bindings as legacy
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221017145328.22090-1-johan+linaro@kernel.org>
+ <20221017145328.22090-10-johan+linaro@kernel.org>
+ <CAA8EJpqSWmy5Z4cmJnsdjMjkmACW7HSi-k5JxZ0gLCeUAWEnxQ@mail.gmail.com>
+ <Y05+E90tmlq2tNFa@hovoldconsulting.com>
+ <CAA8EJprwhEvUfUr-zDir4zFh_NAyr0qPbrHi6Hf8=2HC1dAhaw@mail.gmail.com>
+ <b0c1bdfb-4a31-9deb-1f0a-0ed813707464@linaro.org>
+ <Y07OfmfQgQWFzHZY@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y07OfmfQgQWFzHZY@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,89 +87,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Oct 2022 18:59:39 -0400, Krzysztof Kozlowski wrote:
-> Patches are organized not by file, but rather type of change
-> 1. First patches is for common TLMM schema and dropping unneeded refs.
-> 2. Last patches are pure cleanups without functional impact.
+On 18/10/2022 12:04, Johan Hovold wrote:
+> On Tue, Oct 18, 2022 at 11:32:07AM -0400, Krzysztof Kozlowski wrote:
+>> On 18/10/2022 07:37, Dmitry Baryshkov wrote:
+>>>
+>>>>> And yes, I think we should also upgrade
+>>>>> older DTs, keeping drivers backwards compatible (for some time?).
+>>>>
+>>>> Possibly, but I'm not sure it's worth the dts churn. As I mentioned
+>>>> elsewhere, supporting both the old and new binding in the driver is
+>>>> mostly trivial, while encoding the deprecated bindings in DT schema
+>>>> sounds like it would be painful.
+>>>
+>>> This is probably the time where Krzysztof can advise us. I'm still not
+>>> sure when it is expected to encode both old and new bindings in the
+>>> schema and when we can update both the schema and the DT.
+>>
+>> I do not follow what exactly the proposal is. Are you asking whether to:
+>> 1. keep existing DTS compatible with old driver?
+>> or
+>> 2. update existing DTS so it is working only with new driver (and not
+>> compatible with old driver thus having ABI break)?
+>>
+>> If so, it is less question to bindings but more to the usage of DTS in
+>> other projects (like bootloaders, firmware, BSD) and generic
+>> recommendation is: do not break other users, if possible. It is however
+>> up to the platform maintainer (Bjorn) to decide on this, not on me.
 > 
-> Changes since v2
-> ================
-> 1. Patch #6 "dt-bindings: pinctrl: qcom,sm6115: use common TLMM schema":
->    Drop drive-strength.
-> 2. Move "qcom,sc7280: drop checks used in common TLMM" to previous series
->    (patchset #4 from list below).
+> The question is whether to convert also the current bindings and DTS to
+> the new (sc8280xp) scheme (e.g. drop the child nodes and register
+> subregions).
 > 
-> [...]
+> The driver can support both binding schemes using the same compatible
+> strings for a transition period (or in theory forever) by checking for
+> the existence of a child node.
+> 
+> Converting the DTS to use the new bindings would obviously prevent using
+> them with an old kernel (i.e. 2 above), but I don't think that's a
+> problem (unlike backward compatibility during at least a transition
+> period).
 
-Applied, thanks!
+It is still not nice towards any other users of DTS, because this will
+break all of them. I agree this won't be ABI type of break. It is
+discouraged though, unless there are clear benefits from this or one
+totally does not care about other DTS users...
 
-[01/33] dt-bindings: pinctrl: qcom,mdm9607: drop ref to pinctrl.yaml
-        https://git.kernel.org/krzk/linux-dt/c/e04f0761325a1d9abbf5b91ae7fd5decac489d5f
-[02/33] dt-bindings: pinctrl: qcom,sc8180x: drop ref to pinctrl.yaml
-        https://git.kernel.org/krzk/linux-dt/c/251446a3b032a95512facd97e5f0d5588757f0de
-[03/33] dt-bindings: pinctrl: qcom,sc8180x: drop checks used in common TLMM
-        https://git.kernel.org/krzk/linux-dt/c/776b76e048cc2a4d21bb209d0c3e4eb63efbaac9
-[04/33] dt-bindings: pinctrl: qcom,sc8280xp: drop checks used in common TLMM
-        https://git.kernel.org/krzk/linux-dt/c/4412a0e5ed7aaa81d2c25010f06b4ebb84b95f69
-[05/33] dt-bindings: pinctrl: qcom,sm6115: use common TLMM schema
-        https://git.kernel.org/krzk/linux-dt/c/3c84d8c243b84dc49bba365cd5d2d7f63c8cf38c
-[06/33] dt-bindings: pinctrl: qcom,sm6125: drop checks used in common TLMM
-        https://git.kernel.org/krzk/linux-dt/c/423e46e66010849e9c817960b24493948885d623
-[07/33] dt-bindings: pinctrl: qcom,sm6125: drop ref to pinctrl.yaml
-        https://git.kernel.org/krzk/linux-dt/c/58d4fe9ca487bad0f3d2695f3052e9b0f4fe4dd0
-[08/33] dt-bindings: pinctrl: qcom,sm6350: drop ref to pinctrl.yaml
-        https://git.kernel.org/krzk/linux-dt/c/661a3fb1f02edd0a1e36e85fc6546810623eb22b
-[09/33] dt-bindings: pinctrl: qcom,sm6350: drop checks used in common TLMM
-        https://git.kernel.org/krzk/linux-dt/c/4d947acc060cf8b11a174b11e38dfaa51d00d9cd
-[10/33] dt-bindings: pinctrl: qcom,sm6375-tlmm: drop ref to pinctrl.yaml
-        https://git.kernel.org/krzk/linux-dt/c/8870dce580cbc6d813de139d3f13ea332a71f30f
-[11/33] dt-bindings: pinctrl: qcom,sm6375-tlmm: drop checks used in common TLMM
-        https://git.kernel.org/krzk/linux-dt/c/b71b285a0fe760f550bc81f070acaecef0556277
-[12/33] dt-bindings: pinctrl: qcom,sm8250: use common TLMM schema
-        https://git.kernel.org/krzk/linux-dt/c/b8d64ea6520cf835940958004f1c7e30af733b29
-[13/33] dt-bindings: pinctrl: qcom,sm8350: drop ref to pinctrl.yaml
-        https://git.kernel.org/krzk/linux-dt/c/c915a9ef30068bee41411cf7fdfb98df213ec18f
-[14/33] dt-bindings: pinctrl: qcom,sm8350: drop checks used in common TLMM
-        https://git.kernel.org/krzk/linux-dt/c/e10be82893354ec5e35ee40d2cf7a68c8f423023
-[15/33] dt-bindings: pinctrl: qcom,sm8450: drop checks used in common TLMM
-        https://git.kernel.org/krzk/linux-dt/c/ca1941f8ed433f4418c811b0d33dcd1b71e7fbdf
-[16/33] dt-bindings: pinctrl: qcom,mdm9607-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/73966aa6adc11dac733088b9ff40935cecaed857
-[17/33] dt-bindings: pinctrl: qcom,msm8909-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/7612c2f17f9ea97f737042aea470eb34677003c4
-[18/33] dt-bindings: pinctrl: qcom,qcm2290-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/a869153b2440dc0cce7dc59ffbfe755624221e1a
-[19/33] dt-bindings: pinctrl: qcom,sdx65-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/222ca103b87737eebf9b1a124b3391a8d3747ba8
-[20/33] dt-bindings: pinctrl: qcom,sc8180x-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/e1a31f9897abea87011338a07d66b3bc7af9bf7a
-[21/33] dt-bindings: pinctrl: qcom,sc8280xp-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/7703f13a83f8c45d571baa8907baf42d84d0643d
-[22/33] dt-bindings: pinctrl: qcom,sm6115-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/a095c7e0f0abc052399064ffa5b84d9ac09d68b9
-[23/33] dt-bindings: pinctrl: qcom,sm6125-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/f8c76af267faf6ba890055f49ae686403f80ba25
-[24/33] dt-bindings: pinctrl: qcom,sm6350-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/cf0a3d3106087689b0722490f152c1a92cbbecb1
-[25/33] dt-bindings: pinctrl: qcom,sm6375-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/fb45ee0a77474b289be8e32750dfa48f1d563a2f
-[26/33] dt-bindings: pinctrl: qcom,sm8250: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/4a0c5fb38e6f0dc1197c6258143fe5e5401d33ca
-[27/33] dt-bindings: pinctrl: qcom,sm8350-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/16dc56ebb069c5e8c31a0aee7a8a1a36d21eeee8
-[28/33] dt-bindings: pinctrl: qcom,sm8450-tlmm: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/7ddfbb41820907b6d1d3b52ee506353c4f2d208f
-[29/33] dt-bindings: pinctrl: qcom,sc7280-lpass-lpi: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/aad11c7938e49282ae34cbf39692abd207800fce
-[30/33] dt-bindings: pinctrl: qcom,sc8280xp-lpass-lpi: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/e1c3624793397bb97b8bedc67de2a438767337db
-[31/33] dt-bindings: pinctrl: qcom,sm8250-lpass-lpi: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/2740420374119100b0304e41b1b509528fea27df
-[32/33] dt-bindings: pinctrl: qcom,sm8450-lpass-lpi: minor style cleanups
-        https://git.kernel.org/krzk/linux-dt/c/fc371f6075cfa4f62496ce03afb8c8dbaac40235
-[33/33] dt-bindings: pinctrl: qcom: adjust description
-        https://git.kernel.org/krzk/linux-dt/c/09f537065c064826a6a892fa0fdfd6521e5bf82a
+As I said it is up to platform maintainer.
+
+> 
+> My concern was how to describe the deprecation in DT schema if we were
+> convert them. By instead just keeping the old bindings as-is in a
+> separate file and continuing to support them in the driver we can have a
+> nice and clean description of the new bindings (sc8280xp) without the
+> legacy cruft.
+
+You cannot have one compatible in two schemas, so for old bindings (and
+DTS):
+1. Don't convert them,
+2. Convert with keeping old properties - as you pointed this might be
+full of conditionals/allOf, so difficult to maintain and read,
+3. Convert dropping old stuff.
+
+For the option 3. for sure Rob will ask why. :)
+
+> 
+> If we were to start introducing conditionals on existence of child
+> nodes, and marking the old bindings as deprecated in one large schema,
+> then that sounds like it would be very messy and hard to read and
+> maintain. But perhaps there is some way to do this without such
+> downsides that I'm not aware of.
+
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
+
