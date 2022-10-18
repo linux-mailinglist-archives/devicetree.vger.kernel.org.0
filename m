@@ -2,604 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A53E5602C7F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14434602BE9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 14:42:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbiJRNKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 09:10:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60392 "EHLO
+        id S229906AbiJRMmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 08:42:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230027AbiJRNJ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:09:56 -0400
-Received: from egress-ip33b.ess.de.barracuda.com (egress-ip33b.ess.de.barracuda.com [18.185.115.237])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7133CD139
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:09:53 -0700 (PDT)
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69]) by mx-outbound21-93.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Tue, 18 Oct 2022 13:09:50 +0000
-Received: by mail-qv1-f69.google.com with SMTP id np19-20020a056214371300b004b3b9ee8365so8631565qvb.16
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 06:09:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7gUNAKJLQD4mhpB+2CwqveRQRM7i9T+yPyinXJEn1U4=;
-        b=EVNsbouI6gDqzPK7MXpozm4ZyZwlRfAbR5HN2EldEvwuAluEXsSDgsQRpj9i6jRntk
-         IYj/IJZlvT2g9C/R7b3mMc1MHy/3yNrlfOcdzyScOzJg3La9T4aIn3JLYksMQOjU+U1U
-         Aj2J8IFnd4vMeX6c4b8sp+/gMHEZba/r1fAuw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7gUNAKJLQD4mhpB+2CwqveRQRM7i9T+yPyinXJEn1U4=;
-        b=CBnmb8DEdw648US8AVDhw2xqxUEgM9GiIvS5S41pd1JOKD+zeBAuUDaOaznChZuAcB
-         oIsAdf1ZZKQ71fFjMw6Bsp/rfv/yRN0wJrtMFxkHkTLOFIAml8YeXZ1RusmqV3A6famP
-         822CRHLLcxuQVNURpXhlQDgtOQppfHpsfv/XndwS9p0rf8qvbzPjj1B88xJnVGZO4AwK
-         SG1EUUGi3q+5912T+k/OdxiVW6EQ0FsLPwtTtzS0wXuz9TlRI1O+opmoZ7AuuyX45f9S
-         rPk2cVYdRIEEIwewmw7GXrAksvTyjCaBLF6iZESTbbPps2cAuBZDsABz1RwRjO2zteaU
-         Ixyw==
-X-Gm-Message-State: ACrzQf1FaVwSxZF8xdyuvT8PYWMwkxVmxKlpmaPFMIEfbnP/ZEJ2wMfu
-        3dC2HT4SYc4VA6UYmZDVU/2EvsaCdpUWOLK3WNcCudNLGM6HUFh5Zvxulfga4ibtPKUokrvccz8
-        vojTv6Np9dBLaLuS6xBDuC8pEgmQrLmmT1W2lwhVaY5Z8rPdbFwYsL/6+dw==
-X-Received: by 2002:a17:902:e945:b0:179:ce23:dd4d with SMTP id b5-20020a170902e94500b00179ce23dd4dmr2801740pll.68.1666097115289;
-        Tue, 18 Oct 2022 05:45:15 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM5o05ybVbZ4LZwR88IubUMEwIwak+n6lyRukisx/n6fWe/H35PWqVQiw4PtniwV12oM6LOKUw==
-X-Received: by 2002:a17:902:e945:b0:179:ce23:dd4d with SMTP id b5-20020a170902e94500b00179ce23dd4dmr2801706pll.68.1666097114878;
-        Tue, 18 Oct 2022 05:45:14 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:330a:c5d2:e90c:db79:45c8:3513])
-        by smtp.gmail.com with ESMTPSA id a17-20020a621a11000000b00563ce1905f4sm9110102pfa.5.2022.10.18.05.45.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 05:45:14 -0700 (PDT)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S229470AbiJRMmO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 08:42:14 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D80F7A87A7;
+        Tue, 18 Oct 2022 05:42:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666096932; x=1697632932;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MsAE7+/Uvyq9EmYiyG/WgM2cVqod6GgSrZuR7R1V7Ro=;
+  b=CF7pSVCYQINFfR9vaYRXFbFjnsRgkjIEbQoBegnabnrnWcNXUKCSa6Ui
+   kNQyIJcs9/KfhaMcfVdlxY03SDsVwY3QJxQOUX92OBTudmTnczIvHFvLM
+   HLTWRFa5hGZBqqU85ajXxuQA0A/VnS4aoba1xOoFBrbhRt4oU+52X0nLc
+   tlkaqZWDeVCWC0PTGOh3+0wrXdWbknPHYBgeJnquUCUx3jUuRbvyGwAQG
+   Rgd01Dpl9NpAgmSbUcDeQfAxzG7ZdxROc117Ct2KhQ/tTBHEhJ0Xf7Pca
+   /o/vtMSRDxOJdtP/Ed9Cg3seftDqudVIJxNQMpzxFE3BaKKW6+a/mi2iK
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="304829082"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; 
+   d="scan'208";a="304829082"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2022 05:42:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="606520561"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; 
+   d="scan'208";a="606520561"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga006.jf.intel.com with ESMTP; 18 Oct 2022 05:42:08 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1oklv4-009MLZ-33;
+        Tue, 18 Oct 2022 15:42:06 +0300
+Date:   Tue, 18 Oct 2022 15:42:06 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH 3/3] arch: arm64: ti: Add support for AM68 SK base board
-Date:   Tue, 18 Oct 2022 18:08:49 +0530
-Message-Id: <20221018123849.23695-4-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20221018123849.23695-1-sinthu.raja@ti.com>
-References: <20221018123849.23695-1-sinthu.raja@ti.com>
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH v2 4/5] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+Message-ID: <Y06fHg6JdSA2GbII@smile.fi.intel.com>
+References: <cover.1665066397.git.mazziesaccount@gmail.com>
+ <88e24b01da9f44ebf5fcd8344ded0b75ff742fbf.1665066397.git.mazziesaccount@gmail.com>
+ <Yz8fK7j8pxlU76xt@smile.fi.intel.com>
+ <20221009133351.6ff4894b@jic23-huawei>
+ <Y0O4fiQQX0M317h/@smile.fi.intel.com>
+ <7abed64a-d544-a228-b5f1-4c7b5a3bd1be@fi.rohmeurope.com>
+ <20221014142232.000038df@huawei.com>
+ <b7017e04-83a0-da3e-4ea7-28a2d34febc8@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1666098590-305469-5649-12630-1
-X-BESS-VER: 2019.1_20221004.2324
-X-BESS-Apparent-Source-IP: 209.85.219.69
-X-BESS-Outbound-Spam-Score: 0.50
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.243545 [from 
-        cloudscan16-149.eu-central-1b.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.50 BSF_RULE7568M          META: Custom Rule 7568M 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_RULE7568M, BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b7017e04-83a0-da3e-4ea7-28a2d34febc8@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+On Tue, Oct 18, 2022 at 02:27:20PM +0300, Matti Vaittinen wrote:
+> On 10/14/22 16:22, Jonathan Cameron wrote:
+> > On Tue, 11 Oct 2022 09:10:21 +0000
+> > "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com> wrote:
+> > > On 10/10/22 09:15, Andy Shevchenko wrote:
+> > > > On Sun, Oct 09, 2022 at 01:33:51PM +0100, Jonathan Cameron wrote:
+> > > > > On Thu, 6 Oct 2022 21:32:11 +0300 Andy Shevchenko
+> > > > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > > > On Thu, Oct 06, 2022 at 05:38:14PM +0300, Matti Vaittinen wrote:
 
-The SK architecture comprises of baseboard and a SOM board. It is
-as follows,
+...
 
-       +--------------------------------------+---+
-       |                                      |   |<--Connectors
-       |                                      +---|
-       |      +---------------------------+   |   |
-       |      | SOM                       |   +---|
-       |      |                           |   |   |
-       |      |                           |   +---| Power Supply
-       |      |                           |       |   |
-       |      +---------------------------+       |   |
-       |                                          |<--+
-       |           BASE BOARD                     |
-       +------------------------------------------+
+> > > > > > > +module_param(g_kx022a_use_buffer, bool, 0);
+> > > > > > > +MODULE_PARM_DESC(g_kx022a_use_buffer, +		 "Buffer samples. Use
+> > > > > > > at own risk. Fifo must not overflow");
+> // snip
+> 
+> > > This would be a way to have the FIFO disabled by default and warn users
+> > > via dt-binding docs if they decide to explicitly enable the FIFO.
+> > > (Besides, I believe the FIFO is usable on at least some of the Kionix
+> > > sensors - because I've heard it is used on a few platforms).
+> > > 
+> > > This could give us safe defaults while not shutting the doors from those
+> > > who wish to use the FIFO. Sure we need a buy-in from Krzysztof / Rob,
+> > > but that may be less of an obstacle compared to the module param if Greg
+> > > is so strongly oppsoing those. (And the dt-property could also provide
+> > > some technical merites as these sensors seem to really have differencies
+> > > in FIFOs).
+> > 
+> > I'm dubious about having this for known broken parts - but I guess you
+> > can propose it and see what the dt-maintainers say.
+> > 
+> > I don't want to see fifo size in the dt binding though.
+> 
+> // snip
+> 
+> > > > Also it needs some communication
+> > > >   with a vendor to clarify the things.
+> > > 
+> > > I do communication with the vendor on a daily basis :] Nowadays Kionix
+> > > is part of ROHM, and Finland SWDC has been collaboration with Kionix
+> > > even before they "merged" (but I have not been part of the "sensor team"
+> > > back then).
+> > > 
+> > > Unfortunately, reaching the correct people inside the company is hard
+> > > and occasionally impossible - long story...
+> > 
+> > :)
+> 
+> Just a note. I have done some further investigation (further testing
+> combined with tracing the SPI lines) and also got some answer(s) from the
+> ASIC designers. First thing is that the underlying FIFO is 258 bytes and can
+> hold up-to 43 HiRes samples. This is also fixed in the recent data-sheet.
+> The register informing how many bytes of data is stored in FIFO is still
+> only 8bits. When FIFO is full, the magic value 255 is used to indicate the
+> 258 bytes of data. This explains the strange 42,5 samples (255 bytes) of
+> data being reported.
+> 
+> Furthermore, I've noticed that the FIFO appearing to be "stuck", eg. amount
+> of data stored in FIFO not decreasing when data is read is 100%
+> reproducible. The condition is that the PC1 bit (accelerometer state
+> control) is toggled before the FIFO is read. The issue does not seem to be
+> reproducible if the PC1 is not touched. I have also asked if this is a known
+> limitation.
+> 
+> Anyways, it seems we have a solution to the problem. We simply handle the
+> case when 255 bytes is reported correctly (by reading 258 bytes of valid
+> data) - and we prevent changing the sensor configuration when FIFO is
+> enabled.
+> 
+> I will implement these changes to the v3 and drop both the module-param and
+> the dt-property. Sorry for the hassle and thanks for the patience/support!
 
-AM68 Starter Kit's baseboard contains most of the actual connectors,
-power supply etc. The System on Module (SoM) is plugged on to the base
-board. Therefore, add support for peripherals brought out in the base
-board.
+This is very good news, Matti, thanks for pushing this forward and finding
+better solution!
 
-Schematics: https://www.ti.com/lit/zip/SPRR463
-
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile               |   2 +
- .../boot/dts/ti/k3-am68-sk-base-board.dts     | 459 ++++++++++++++++++
- 2 files changed, 461 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 4555a5be2257..498b089d96f8 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -19,6 +19,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
- 
-+dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
-+
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-new file mode 100644
-index 000000000000..f51cbd2e3b72
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -0,0 +1,459 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
-+ *
-+ * Base Board: https://www.ti.com/lit/zip/SPRR463
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am68-sk-som.dtsi"
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include <dt-bindings/phy/phy-cadence.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/mux/ti-serdes.h>
-+
-+/ {
-+	compatible = "ti,am68-sk", "ti,j721s2";
-+	model = "Texas Instruments AM68 SK";
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x2880000";
-+	};
-+
-+	aliases {
-+		serial2 = &main_uart8;
-+		mmc1 = &main_sdhci1;
-+		can0 = &mcu_mcan0;
-+		can1 = &mcu_mcan1;
-+		can2 = &main_mcan6;
-+		can3 = &main_mcan7;
-+	};
-+
-+	vusb_main: fixedregulator-vusb-main5v0 {
-+		/* USB MAIN INPUT 5V DC */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vusb-main5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_3v3: fixedregulator-vsys3v3 {
-+		/* Output of LM5141 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vusb_main>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: fixedregulator-sd {
-+		/* Output of TPS22918 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vsys_3v3>;
-+		gpio = <&exp1 10 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vdd_sd_dv: gpio-regulator-TLV71033 {
-+		/* Output of TLV71033 */
-+		compatible = "regulator-gpio";
-+		regulator-name = "tlv71033";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vsys_3v3>;
-+		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+	};
-+
-+	vsys_io_1v8: regulator-vsys-io-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_io_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_io_1v2: regulator-vsys-io-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_io_1v2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	transceiver1: can-phy0 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&mcu_mcan0_pins_default>;
-+		standby-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	transceiver2: can-phy1 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&mcu_mcan1_pins_default>;
-+		standby-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	transceiver3: can-phy2 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&main_mcan6_pins_default>;
-+		standby-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	transceiver4: can-phy3 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&main_mcan7_pins_default>;
-+		standby-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&main_pmx0 {
-+
-+	main_uart8_pins_default: main-uart8-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0d0, PIN_INPUT, 11) /* (AF26) SPI0_CS1.UART8_RXD */
-+			J721S2_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AH27) SPI0_CLK.UART8_TXD */
-+		>;
-+	};
-+
-+	main_i2c0_pins_default: i2c0_pins_default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0e0, PIN_INPUT, 0) /* (AH25) I2C0_SCL */
-+			J721S2_IOPAD(0x0e4, PIN_INPUT, 0) /* (AE24) I2C0_SDA */
-+		>;
-+	};
-+
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
-+			J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
-+			J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
-+			J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
-+			J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
-+			J721S2_IOPAD(0x0f0, PIN_INPUT, 0) /* (R22) MMC1_DAT3 */
-+			J721S2_IOPAD(0x0e8, PIN_INPUT, 8) /* (AE25) TIMER_IO0.MMC1_SDCD */
-+		>;
-+	};
-+
-+	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0c4, PIN_INPUT, 7) /* (AB26) ECAP0_IN_APWM_OUT.GPIO0_49 */
-+		>;
-+	};
-+
-+	main_usbss0_pins_default: main-usbss0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AG25) TIMER_IO1.USB0_DRVVBUS */
-+		>;
-+	};
-+
-+	main_mcan6_pins_default: mcan6_pins_default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x098, PIN_INPUT, 0) /* (V25) MCASP0_AXR10.MCAN6_RX */
-+			J721S2_IOPAD(0x094, PIN_INPUT, 0) /* (AA25) MCASP0_AXR9.MCAN6_TX */
-+		>;
-+	};
-+
-+	main_mcan7_pins_default: mcan7_pins_default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
-+			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
-+		>;
-+	};
-+
-+};
-+
-+&wkup_pmx0 {
-+	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (B22) MCU_RGMII1_RD0 */
-+			J721S2_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B21) MCU_RGMII1_RD1 */
-+			J721S2_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C22) MCU_RGMII1_RD2 */
-+			J721S2_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D23) MCU_RGMII1_RD3 */
-+			J721S2_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (D22) MCU_RGMII1_RXC */
-+			J721S2_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (E23) MCU_RGMII1_RX_CTL */
-+			J721S2_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (F23) MCU_RGMII1_TD0 */
-+			J721S2_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (G22) MCU_RGMII1_TD1 */
-+			J721S2_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E21) MCU_RGMII1_TD2 */
-+			J721S2_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E22) MCU_RGMII1_TD3 */
-+			J721S2_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (F21) MCU_RGMII1_TXC */
-+			J721S2_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (F22) MCU_RGMII1_TX_CTL */
-+		>;
-+	};
-+
-+	mcu_mdio_pins_default: mcu-mdio-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A21) MCU_MDIO0_MDC */
-+			J721S2_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (A22) MCU_MDIO0_MDIO */
-+		>;
-+	};
-+
-+	mcu_mcan0_pins_default: mcu-mcan0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x0bc, PIN_INPUT, 0) /* (E28) MCU_MCAN0_RX */
-+			J721S2_WKUP_IOPAD(0x0b8, PIN_OUTPUT, 0) /* (E27) MCU_MCAN0_TX */
-+		>;
-+	};
-+
-+	mcu_mcan1_pins_default: mcu-mcan1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x0d4, PIN_INPUT, 0) /* (F26) WKUP_GPIO0_5.MCU_MCAN1_RX */
-+			J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
-+		>;
-+	};
-+
-+	mcu_i2c1_pins_default: mcu_i2c1_pins_default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
-+			J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
-+		>;
-+	};
-+
-+};
-+
-+&main_gpio2 {
-+	status = "disabled";
-+};
-+
-+&main_gpio4 {
-+	status = "disabled";
-+};
-+
-+&main_gpio6 {
-+	status = "disabled";
-+};
-+
-+&wkup_gpio1 {
-+	status = "disabled";
-+};
-+
-+&wkup_uart0 {
-+	status = "reserved";
-+};
-+
-+&main_uart0 {
-+	status = "disabled";
-+};
-+
-+&main_uart1 {
-+	status = "disabled";
-+};
-+
-+&main_uart2 {
-+	status = "disabled";
-+};
-+
-+&main_uart3 {
-+	status = "disabled";
-+};
-+
-+&main_uart4 {
-+	status = "disabled";
-+};
-+
-+&main_uart5 {
-+	status = "disabled";
-+};
-+
-+&main_uart6 {
-+	status = "disabled";
-+};
-+
-+&main_uart7 {
-+	status = "disabled";
-+};
-+
-+&main_uart8 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart8_pins_default>;
-+	/* Shared with TFA on this platform */
-+	power-domains = <&k3_pds 357 TI_SCI_PD_SHARED>;
-+};
-+
-+&main_uart9 {
-+	status = "disabled";
-+};
-+
-+&main_i2c0 {
-+	clock-frequency = <400000>;
-+
-+	exp1: gpio@21 {
-+		compatible = "ti,tca6424";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "CSI_VIO_SEL", "CSI_SEL_FPC_EXPn", "HDMI_PDn",
-+					"HDMI_LS_OE", "DP0_3V3 _EN", "BOARDID_EEPROM_WP",
-+					"CAN_STB", " ", "GPIO_uSD_PWR_EN", "eDP_ENABLE",
-+					"IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_MCU_RGMII_RST#",
-+					"IO_EXP_CSI2_EXP_RSTz", " ", "CSI0_B_GPIO1",
-+					"CSI1_B_GPIO1";
-+	};
-+};
-+
-+&main_i2c1 {
-+	status = "disabled";
-+};
-+
-+&main_i2c2 {
-+	status = "disabled";
-+};
-+
-+&main_i2c3 {
-+	status = "disabled";
-+};
-+
-+&main_i2c4 {
-+	status = "disabled";
-+};
-+
-+&main_i2c5 {
-+	status = "disabled";
-+};
-+
-+&main_i2c6 {
-+	status = "disabled";
-+};
-+
-+&main_sdhci0 {
-+	status = "disabled";
-+};
-+
-+&main_sdhci1 {
-+	/* SD card */
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	pinctrl-names = "default";
-+	disable-wp;
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv>;
-+};
-+
-+&mcu_cpsw {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
-+};
-+
-+&davinci_mdio {
-+	phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&cpsw_port1 {
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&phy0>;
-+};
-+
-+&mcu_mcan0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan0_pins_default>;
-+	phys = <&transceiver1>;
-+};
-+
-+&mcu_mcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan1_pins_default>;
-+	phys = <&transceiver2>;
-+};
-+
-+&main_mcan0 {
-+	status = "disabled";
-+};
-+
-+&main_mcan1 {
-+	status = "disabled";
-+};
-+
-+&main_mcan2 {
-+	status = "disabled";
-+};
-+
-+&main_mcan3 {
-+	status = "disabled";
-+};
-+
-+&main_mcan4 {
-+	status = "disabled";
-+};
-+
-+&main_mcan5 {
-+	status = "disabled";
-+};
-+
-+&main_mcan6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan6_pins_default>;
-+	phys = <&transceiver3>;
-+};
-+
-+&main_mcan7 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan7_pins_default>;
-+	phys = <&transceiver4>;
-+};
-+
-+&main_mcan8 {
-+	status = "disabled";
-+};
-+
-+&main_mcan9 {
-+	status = "disabled";
-+};
-+
-+&main_mcan10 {
-+	status = "disabled";
-+};
-+
-+&main_mcan11 {
-+	status = "disabled";
-+};
-+
-+&main_mcan12 {
-+	status = "disabled";
-+};
-+
-+&main_mcan13 {
-+	status = "disabled";
-+};
-+
-+&main_mcan14 {
-+	status = "disabled";
-+};
-+
-+&main_mcan15 {
-+	status = "disabled";
-+};
-+
-+&main_mcan17 {
-+	status = "disabled";
-+};
 -- 
-2.36.1
+With Best Regards,
+Andy Shevchenko
+
 
