@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C09A601FB5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 02:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17DEE601F96
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 02:30:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230482AbiJRAjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Oct 2022 20:39:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47010 "EHLO
+        id S231958AbiJRA36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Oct 2022 20:29:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232153AbiJRAit (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 20:38:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B828372EF8;
-        Mon, 17 Oct 2022 17:38:32 -0700 (PDT)
+        with ESMTP id S232125AbiJRA3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Oct 2022 20:29:37 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD7E7FF8A;
+        Mon, 17 Oct 2022 17:28:05 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EA4A861349;
-        Tue, 18 Oct 2022 00:11:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81FAEC433C1;
-        Tue, 18 Oct 2022 00:11:49 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 60E51B81C08;
+        Tue, 18 Oct 2022 00:12:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39C14C433C1;
+        Tue, 18 Oct 2022 00:12:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666051910;
-        bh=nYc/JJQWVLR17zmJ/Apl3A09K9m9aLeR87SkRSK+Grk=;
+        s=k20201202; t=1666051925;
+        bh=GX9MeIOmSj4IS8x82C0PrDb5RjFNTGbmW/XirqUl7PM=;
         h=From:To:Cc:Subject:Date:From;
-        b=lcEGQ21lgKqTSMBDpAaTFyzac6X/h8ZPi5vx92OjF6aaoLz4m7vqryAfnz+kxmVfP
-         FOtgtO50WGm19Anrrfv6L1i07BPaC2kV36Lhz3DDvW452CtGooM/CQjtTEPNm6Tv9o
-         v7wy8FSYIcCg3Ve5UHiwPk5Mjo+NG2tj7PCCX5n8xXA8jVpU9Yj3CCRQPozu0ZoNFK
-         93rmmlQqRBooH4ugfCL6cgsaTjF7/CMiDwjT17zTUmz3YbjTf0CO6jy63HzcOKJbvm
-         nXmT72btXuIqKxV9gh8okQCX9vHiQmpXYjM1qHA3vNDIyaTHKBgc5gRjisjr/WL2X9
-         0kHU5+pAsCMVg==
+        b=Wj8jQ4QUMvXnPvwEEbeCNCTvwDu8Qby7Yne+uh31cWNeCVgI9Ay7blUmnxIpOYRWD
+         j7sRYmMx4T7ut5X5ZveCD3Dld6USEqg5llX2RS2JEvTs3SU1p/7DVepODWQ3rCxxA/
+         34srb75yHvbqLYpbujuc8sb17qh/Sp5inbJ6bzvi94/27Got6V6OBX3EXiw7fqh5wQ
+         1sdzDxraEplYfPAYCD+03xsuZeP30DqakZK04F+qsWv1NMHPjJxGIa++3f9uUsvwx+
+         6cokv99yaUerxVjVSlIKXc88banxQcBNpO33tA4D5Rf8UY75Ep1SE6DX8N9SfSKVqu
+         EyKsXMWSyA36w==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Marek Bykowski <marek.bykowski@gmail.com>,
         Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
         robh+dt@kernel.org, frowand.list@gmail.com,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 1/8] of/fdt: Don't calculate initrd size from DT if start > end
-Date:   Mon, 17 Oct 2022 20:11:40 -0400
-Message-Id: <20221018001147.2732350-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.9 1/8] of/fdt: Don't calculate initrd size from DT if start > end
+Date:   Mon, 17 Oct 2022 20:11:55 -0400
+Message-Id: <20221018001202.2732458-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -150,10 +150,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+)
 
 diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index cc9b8c699da4..253680c84c8c 100644
+index 513558eecfd6..44903f94d0cd 100644
 --- a/drivers/of/fdt.c
 +++ b/drivers/of/fdt.c
-@@ -957,6 +957,8 @@ static void __init early_init_dt_check_for_initrd(unsigned long node)
+@@ -917,6 +917,8 @@ static void __init early_init_dt_check_for_initrd(unsigned long node)
  	if (!prop)
  		return;
  	end = of_read_number(prop, len/4);
