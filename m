@@ -2,67 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C7A560262D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 09:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDB8F602648
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 10:00:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230188AbiJRHv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 03:51:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59538 "EHLO
+        id S230167AbiJRIAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 04:00:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230038AbiJRHvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 03:51:25 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5898A32EC0
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 00:51:23 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id l22so19269079edj.5
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 00:51:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nx4cJDlCKZ9fU1HAj805dfsVKCPNxoVsjTzwe56667E=;
-        b=xLsyuuLUYCg+D40GpLmV+wGnd9NUl9GyPGOO/imPfZMlKB0iDVh2PM7B7xKKNKLKkc
-         3n9llVb0UyT/JKAfl2w1HcghTSnq/VAuQEZJZhm7lZ87/RoHj9e/ecw6xmQnYP6oPjdW
-         QfOxY8e/4jM7hFJSk9LCaD0OWgasTXKoBwslX75QqzjvO8/w/GKhmEl01eTK23g9VS/r
-         k9LVI8k3eQKQb2OBtLx6HSrmf6v6E60LXifZJtGMB5dd/mkpmIb51gMvFNIypMK0xsJw
-         V/D4SICRJFo/ACkbfsyeG2DX5XQCMcatHTpm3BJlZ8AVrQOJC2Lb32MHcpHFg1wwaFT2
-         AUcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nx4cJDlCKZ9fU1HAj805dfsVKCPNxoVsjTzwe56667E=;
-        b=fE8I+fKXxtwmC66696ThmjjMTwZkgE7AKFz6sds5ncroa/rIK7e8mZjBENp6s7dPFd
-         FyHYyfzjGO3RvfiwVyk9j9+sJeq7YByYw11rbFKebwvDKEyMoNH/LUZBT5icXetDq0av
-         WUHHxEbduF6Ewp4XrjRP6ufbc/u6Ox7Cp0FJYEJUD5nKodC38+6p53NTUfOuYtY+MutR
-         IAxEINN7AjSBwAQduqcfMm7pkdDC/o5/Ww1NmRlG651LNJcSMSJlnXGvE6Ixp4STtEFC
-         GtX3/F+59uXYdauhnFv++xpyGNM+yBKFzREGCCTv94/nGO8Ty7VIQI6T/rXEz4CgatqQ
-         8tPA==
-X-Gm-Message-State: ACrzQf0yviTvzrBx1tBogZRvja3hJECtoBQIX1NoIvxEyo4EafbNKCIs
-        CXVkPWxkhDVUa8wdhlonbokFdDok0p0gsQQxxOVU1A==
-X-Google-Smtp-Source: AMsMyM604N7NwfiJE52AGqgGfOvE09PuWjXnLOWzzJRQX1fQtc0uH2fKcV0YGuRX5XKkil/Gf0sbEs+8WxVgO0N5hps=
-X-Received: by 2002:a05:6402:d0b:b0:458:a244:4e99 with SMTP id
- eb11-20020a0564020d0b00b00458a2444e99mr1489708edb.46.1666079481948; Tue, 18
- Oct 2022 00:51:21 -0700 (PDT)
+        with ESMTP id S230034AbiJRIAD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 04:00:03 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A019648CA5
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 01:00:01 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1okhW4-0003HI-0X; Tue, 18 Oct 2022 10:00:00 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1okhW3-0002X6-GE; Tue, 18 Oct 2022 09:59:59 +0200
+Date:   Tue, 18 Oct 2022 09:59:59 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v4 0/3] arm64: dts: Add InnoComm WB15-EVK support
+Message-ID: <20221018075959.GA9130@pengutronix.de>
+References: <20220922081347.3860008-1-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-References: <20221017130303.21746-1-sai.krishna.potthuri@amd.com>
-In-Reply-To: <20221017130303.21746-1-sai.krishna.potthuri@amd.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 18 Oct 2022 09:51:10 +0200
-Message-ID: <CACRpkdYYvznEKQ0huj5XwNwghMP-FRw5e54Di9FLVdXdsFP3-A@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] pinctrl: pinctrl-zynqmp: Revert output-enable and
- bias-high-impedance support
-To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Cc:     Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        saikrishna12468@gmail.com, git@amd.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220922081347.3860008-1-s.hauer@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,22 +52,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 17, 2022 at 3:03 PM Sai Krishna Potthuri
-<sai.krishna.potthuri@amd.com> wrote:
+Shawn,
 
-> Having support for output-enable and bias-high-impedance properties
-> causing system hang with older Xilinx ZynqMP Platform Management Firmware
-> because there is missing autodetection feature.
-> When this feature is implemented, support for these two properties should
-> bring back.
->
-> changes in v2:
-> -> Added stable tree tag in 1/2 and 2/2 patches.
+will you take this series?
 
-Patches applied for fixes!
+Thanks
+  Sascha
 
-Thanks for dealing with this, I hope you find a proper way to make
-it work with all firmwares.
+On Thu, Sep 22, 2022 at 10:13:44AM +0200, Sascha Hauer wrote:
+> The InnoComm WB15-EVK [1] board is a Eval base board for the WB15 SoM
+> [2] which is based on the NXP i.MX8MM. This series adds InnoComm as a
+> vendor prefix and the necessary dts/dtsi files.
+> 														     [1] https://www.innocomm.com/product_inner.aspx?num=2233
+> 														     [2] https://www.innocomm.com/product_inner.aspx?num=2232
+> 
+> Changes since v3:
+> - drop unnecessary status = "okay" from new node
+> 
+> Changes since v2:
+> - Fix another remaining s/innocom/innocomm/
+> - Don't use underscores in node names
+> - Use IRQ_TYPE_LEVEL_LOW to specify interrupt polarity
+> 
+> Changes since v1:
+> - Fix spelling of InnoComm:
+>   s/innocom/innocomm/
+>   s/Innocom/InnoComm/
+> 
+> Sascha Hauer (3):
+>   dt-bindings: vendor-prefixes: Add prefix for InnoComm
+>   dt-bindings: arm: fsl: Add InnoComm WB15 EVK
+>   arm64: dts: freescale: Add InnoComm i.MX8MM based WB15 SoM and EVK
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          |   1 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../freescale/imx8mm-innocomm-wb15-evk.dts    | 146 ++++++
+>  .../dts/freescale/imx8mm-innocomm-wb15.dtsi   | 480 ++++++++++++++++++
+>  5 files changed, 630 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15-evk.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15.dtsi
+> 
+> -- 
+> 2.30.2
+> 
+> 
 
-Yours,
-Linus Walleij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
