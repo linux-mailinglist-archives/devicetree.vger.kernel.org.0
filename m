@@ -2,95 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48EAF602D06
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D37F6602D03
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 15:32:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230187AbiJRNcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 09:32:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38160 "EHLO
+        id S229722AbiJRNcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 09:32:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230238AbiJRNcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:32:05 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A2D5CA8A3;
-        Tue, 18 Oct 2022 06:32:04 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-132fb4fd495so16762930fac.12;
-        Tue, 18 Oct 2022 06:32:04 -0700 (PDT)
+        with ESMTP id S229868AbiJRNcC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 09:32:02 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C96D3CA880;
+        Tue, 18 Oct 2022 06:32:01 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id g10so15525562oif.10;
+        Tue, 18 Oct 2022 06:32:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9LPS7Ui1ifKCQGZJtIESYlvh40jFVqHRbTJAbgwh0jA=;
-        b=oT4dfEBswTP2TPhphK9xVWeBuXWJb9hnTvsIStXNfjTXMvxku2ixkyP9gPqrK9pVES
-         sdGrqzcbs/0BYeFcFMhv69AhhQzFgOCp7DAuNwCVGlHVt8x86pzsaMsTkn42A0cQK1zR
-         pq7LnUtQc7wvsRuZdTc97luKl26NJS0nvGekdkYi8LS9enOgl54AwDHDdu7UAr9xKCD6
-         E7blLbI4yW8n5uL3KMH9iLmyAnrRJGGZP59hK0DWcdo3jaNcpXhGD05cSNr0BCC0KdOz
-         geqyjauVMbzz/vRAsvhleRDD0DpAhJqKlbwfEQeFySC/Od/ATW4Q3xzsHaqWVkHedOEy
-         RoSw==
-X-Gm-Message-State: ACrzQf21fO3u09KUYIFmOIXV3UJEFrFI/iSNLVYK4AhCUf6TxDUeCzaE
-        EHc36OkhytEWl/WgEaYv1Q==
-X-Google-Smtp-Source: AMsMyM5Z+V662wMKC+ZWGOfybHUQM4CBjcqbEfQ060Ke1a/Yt2qr9c2zZMlcyonm0B9BZHC4O0QcAg==
-X-Received: by 2002:a05:6870:c214:b0:131:c125:bcb2 with SMTP id z20-20020a056870c21400b00131c125bcb2mr18579957oae.292.1666099923460;
-        Tue, 18 Oct 2022 06:32:03 -0700 (PDT)
+        bh=/sc5xfjWbep3XdzZfvFceKEVzMS+1eS5iVILCK+RzyA=;
+        b=KauH+vHA6xPWz7CJV4XBgw9vuw3colVkfSPap/bikAw9/uJh5n19Tf/5M8avFoa2aF
+         AZZl43vEPx3esSjL+3Chr/wz0BtBK9Y12dUQwdsoLASfVZ9i8mDViaxzuQS/APzSu03f
+         L1uxdOmwUk/kMPeB+z3aeYAAeu+NL82OXMth7QH23KlSsxrA1ybaCF1kfgIIJ763K1jc
+         FOf9OKCu6pATX8+JS+M6BCg/VCFAb3a+Fy9YXDvvFVfpkN8LFI7VQv7fAZpoyTn/aTZK
+         +hXauHsMrId1Sq/hQmX/d8trcu6u3L2x4IyzvW6ywsfV/v5gaTOeQUY2ObVBHE0X7E/G
+         M91A==
+X-Gm-Message-State: ACrzQf0VVws4OnuIb3cUa2CjOPI1fXPA2ya0Uu35ZqeiVNDnPlvzXlYi
+        05m/q+HpyigotJBCVEatvA==
+X-Google-Smtp-Source: AMsMyM6O96ho0FdVAHMJ0wdtQSaFrVSflxDHBhWXy9n/5CqGY3B7jr/SPsYk5PbQXTTdsZkI31qUAw==
+X-Received: by 2002:aca:4b0d:0:b0:354:c1fd:27d with SMTP id y13-20020aca4b0d000000b00354c1fd027dmr1420251oia.108.1666099921003;
+        Tue, 18 Oct 2022 06:32:01 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q1-20020a9d6301000000b006618f8e44e5sm5804446otk.57.2022.10.18.06.32.02
+        by smtp.gmail.com with ESMTPSA id bd18-20020a056808221200b00354e8bc0236sm5643318oib.34.2022.10.18.06.32.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 06:32:03 -0700 (PDT)
-Received: (nullmailer pid 180829 invoked by uid 1000);
+        Tue, 18 Oct 2022 06:32:00 -0700 (PDT)
+Received: (nullmailer pid 180824 invoked by uid 1000);
         Tue, 18 Oct 2022 13:32:01 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, vigneshr@ti.com, nsekhar@ti.com,
-        pabeni@redhat.com, linux@armlinux.org.uk, vladimir.oltean@nxp.com,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        edumazet@google.com, krzysztof.kozlowski@linaro.org
-In-Reply-To: <20221018085810.151327-2-s-vadapalli@ti.com>
-References: <20221018085810.151327-1-s-vadapalli@ti.com> <20221018085810.151327-2-s-vadapalli@ti.com>
-Message-Id: <166609952162.171762.3639347443256680406.robh@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update bindings for J721e CPSW9G
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20221018072106.2391771-1-alexander.stein@ew.tq-group.com>
+References: <20221018072106.2391771-1-alexander.stein@ew.tq-group.com>
+Message-Id: <166609951951.171676.6449728650793742921.robh@kernel.org>
+Subject: Re: [PATCH 1/1] dt-bindings: clock: ti,cdce925: Convert to DT schema
 Date:   Tue, 18 Oct 2022 08:32:01 -0500
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Oct 2022 14:28:08 +0530, Siddharth Vadapalli wrote:
-> Update bindings for TI K3 J721e SoC which contains 9 ports (8 external
-> ports) CPSW9G module and add compatible for it.
+On Tue, 18 Oct 2022 09:21:06 +0200, Alexander Stein wrote:
+> Convert the TI CDCE925 clock binding to DT schema format.
+> Including a small fix: Add the missing 'ti' prefix in the example
+> compatible.
 > 
-> Changes made:
->     - Add new compatible ti,j721e-cpswxg-nuss for CPSW9G.
->     - Extend pattern properties for new compatible.
->     - Change maximum number of CPSW ports to 8 for new compatible.
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
->  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 23 +++++++++++++++++--
->  1 file changed, 21 insertions(+), 2 deletions(-)
+> I have to admit I only have one specific addon platform for this
+> hardware, which is actually a CECD813 tbh.
+> 
+>  .../devicetree/bindings/clock/ti,cdce925.txt  |  53 ---------
+>  .../devicetree/bindings/clock/ti,cdce925.yaml | 104 ++++++++++++++++++
+>  2 files changed, 104 insertions(+), 53 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/ti,cdce925.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/ti,cdce925.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml:196:25: [error] syntax error: mapping values are not allowed here (syntax)
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.example.dts'
-Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml:196:25: mapping values are not allowed in this context
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml:196:25: mapping values are not allowed in this context
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml: ignoring, error parsing file
-make: *** [Makefile:1492: dt_binding_check] Error 2
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/ti,cdce925.example.dtb: clock-controller@64: $nodename:0: 'clock-controller@64' does not match '^clock-controller$'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/ti,cdce925.example.dtb: clock-controller@64: 'ret' is a required property
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
 
 doc reference errors (make refcheckdocs):
 
