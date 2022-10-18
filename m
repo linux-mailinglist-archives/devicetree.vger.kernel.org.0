@@ -2,73 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFD2B6024DD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 09:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E2516024F4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 09:05:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229818AbiJRHAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 03:00:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39664 "EHLO
+        id S230078AbiJRHFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 03:05:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiJRHAy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 03:00:54 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ABF11F2F4;
-        Tue, 18 Oct 2022 00:00:50 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29I70RGt016220;
-        Tue, 18 Oct 2022 02:00:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666076427;
-        bh=rlotxECe5194+Cjcu7Qtp1ZTXtwp5x44Eg6U6HO4Dd8=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=yGNFKc+vkKiULvp+SdpMFat6aWWKtLBnvFwfdcbqjXYCXjf2FQs+wDjEZXRCwVCTs
-         HDJ3UN6iSqDghiAOQuZrqyltq7tuy/FQtEuap9Ax9Zd7QMgtXetyJXDTlgEAoHz5qb
-         P7C0cOFfQIquBp/7wivnRUDNMdnFKxE8Xp9W6wYE=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29I70R6o061772
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 18 Oct 2022 02:00:27 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 18
- Oct 2022 02:00:27 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 18 Oct 2022 02:00:26 -0500
-Received: from [10.250.234.73] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29I70L8E048951;
-        Tue, 18 Oct 2022 02:00:22 -0500
-Message-ID: <d6f8b40b-3e2d-e777-28c9-ff67065e2c8b@ti.com>
-Date:   Tue, 18 Oct 2022 12:30:21 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [RFC PATCH v5 4/6] drm/tidss: Add support to configure OLDI mode
- for am625-dss.
+        with ESMTP id S229752AbiJRHFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 03:05:31 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60084.outbound.protection.outlook.com [40.107.6.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2C806DFA0;
+        Tue, 18 Oct 2022 00:05:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UVFkZiaihKGZkmImSXCaEubW5B60+KEvXxFNb2uKd06MD+SiTql9dMeufcgUtzk0mnk20q9DZiBz0+Cp0iczYvFZE3NpMlilvfRDuWlAJYeMn1XsBvy5yyQX2Vcdr5IIrIp53WDb+ocpERdtYq3Nuh0ew1a/+YSrDb/j3oinGnSV8S1I0hTRd52Sl5g4pkM1rrTRh8xZ17/KfYucIypOlVxgbucE+x6R22g+0wJmDeAVeC7TxoVl7OLCrtnA822a+4ASplLcf3QgFa1V+xq00zeS2ljZw+tt2DXBWUmeCxauz/vh6wx9Wbyaz2eOriMV1ro8NI0XFwNB7y0WatXd9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yi7yFsI/cUQYkKrdAxbMpIbB2fKR7YzSmFCE26QI0Rk=;
+ b=mZy3N6JUDrZu02j6y0R8ypF8dDrDytALxrmMcyUXDU1DQqICjanmgIzBS03ru1SFvbkuDaF5gtvSSlrQ3Kq4CFW6tr1SrzMl8aEVjXuFzAQuuPfNXUiB6XBPLeqoWz3IOuyH+SH2O3Da5aP9twOqU+HlZf09XiuaGMsANhchGq13YCHPmpHUp/fGl91ZKyS6zdkESV5X6OEHCAEE4A12ql3ZM5rk/RFWW+7qcGBJTOHwyrGAK3rQ+HDaOB+axPb0VrqQzIW+BNoxS7s8T+yJREEEj+SbJB1FzEHb1gec3yfqGfiW04PqQqS7F75TDMYW+5ThI0L0RY73ePUj5G/q4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yi7yFsI/cUQYkKrdAxbMpIbB2fKR7YzSmFCE26QI0Rk=;
+ b=KW2tZj5mzUKn/2hcBU0vARjojqu3jAUkHzzjwnWYKT5qsGI+ssFRpzWIb7lAb72N1gIeyKPJ0Iw6XGCzMSlT3gicPIXyusFBQUbaWXP+mgtCcYycBIPowdWEDT9JlgHEIpBvoeCnHNmT6kIP2hn2PNO9akmXPy1InxQA4ELAe1Q=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AS8PR04MB7766.eurprd04.prod.outlook.com (2603:10a6:20b:2aa::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Tue, 18 Oct
+ 2022 07:05:24 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::a5ff:3d28:4bbc:e1ed]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::a5ff:3d28:4bbc:e1ed%6]) with mapi id 15.20.5723.032; Tue, 18 Oct 2022
+ 07:05:24 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "andersson@kernel.org" <andersson@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH V7 6/7] remoteproc: imx_rproc: request mbox channel later
+Thread-Topic: [PATCH V7 6/7] remoteproc: imx_rproc: request mbox channel later
+Thread-Index: AQHY33pjL4ioJSeYvkqlTZaiTg9KJa4OK4mAgAO85tCAAPXHgIAA4lmA
+Date:   Tue, 18 Oct 2022 07:05:24 +0000
+Message-ID: <DU0PR04MB94171073005FC3DBC63611C688289@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20221014031037.1070424-1-peng.fan@oss.nxp.com>
+ <20221014031037.1070424-7-peng.fan@oss.nxp.com>
+ <20221014174903.GA4125124@p14s>
+ <DU0PR04MB94179580E85C888CDAA8EAA788299@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <20221017173335.GA121862@p14s>
+In-Reply-To: <20221017173335.GA121862@p14s>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>
-References: <20220928175223.15225-1-a-bhatia1@ti.com>
- <20220928175223.15225-5-a-bhatia1@ti.com>
- <88220e6f-1bcc-7746-4281-e74f9e832e97@ideasonboard.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <88220e6f-1bcc-7746-4281-e74f9e832e97@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AS8PR04MB7766:EE_
+x-ms-office365-filtering-correlation-id: 31273906-28a3-49a2-fe2f-08dab0d72128
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: LUQFwQK9t983Mtj18DoXaaRNtVDzKNJgf94KbWBsk5/HimHveFEbcYZUi8KKr99jWZm9VkgtNr3v0N1YIYotBzZ+QgHCdC0txwfTDbmLS9ITBGX/vKRFgP48bzKrNWYlPn40Z339HsrrV8Mzo6rg7gHjNR1PCEZDKZfMeDPI9O7NDNQj+8sG6XEu/ym/bJmXnsgXDRxml/nhWtPKqCpShHScNjmeeWcQWDdNM5xUx9mlbrdEZhGKLu77VQcV5T98UtGbCfHaiEmj26nOmGN352CLdadVkmGnRBpCrW2nU9S+xbengkmJBHUCurMazj7vhjpchk523FoTUyhvxcSsVgD84dTsHQsyQwiqcvnGG5/PCCpQBUDMIksF3VrUe5xWHZrL76a2jhIXrFHXTZqIeCIw5vSChTSjssHjKuAc92Jir2erxuZ37Psy3WquZHqjYxI4O61sgfu8XO56fpmVWOU8CF2js5xXiGZl+u6sa+nLdMSBrmU38ZqsrHDBfXuJoCZ+PIJVB0CKlEqVYo7ecEatRItRUvMEgDnnenwsCO+K+7Pr9wYtdGaqvcQF/YCjblc6FayDQo3/CbtlKWPaKHHGfnZX3rjcVi5V83Ehn7T/agCutiY6mPHolZDLGs+USgHocifQbXRtJJHrPLkmkf4r1y8yHnQ5kvmeckgNW9iWlUIOPCAjP9wv6kYHv0lKAv8POpSWZYIpst0tNnTHtjZe53onAnyrncUp8HmtBrc79cittUJnwhASfyeY5AGGJs12LH0ssdgEVNZssT31nw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(39860400002)(346002)(396003)(136003)(366004)(451199015)(6916009)(64756008)(66476007)(66556008)(66446008)(66946007)(54906003)(8676002)(4326008)(76116006)(33656002)(316002)(186003)(5660300002)(2906002)(44832011)(86362001)(55016003)(83380400001)(7416002)(26005)(7696005)(41300700001)(6506007)(9686003)(52536014)(8936002)(71200400001)(478600001)(38070700005)(122000001)(38100700002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?dX5rXyJ5X8iUtp2mZO9LZ7R/ZCZncJVph+LCB/+flA5Xr92X3yrFX9d7nQhd?=
+ =?us-ascii?Q?yj70bd/jy3PGL81fA2UStseO8k+c9alv+b1c39V2cd3xDJyBReSza/uGEoYP?=
+ =?us-ascii?Q?ZgHIOxGn71d3w+8HUHIhHhlWpO+3VxZqDfQd4mVQPQbVlkEAMqzBcm/cIRoF?=
+ =?us-ascii?Q?2MD6hOIllh+gShCLWI0ASPvHJ8i4yxXUywiUPqxgv2N4Zbh1fph/Dsh+BhIQ?=
+ =?us-ascii?Q?Y9uqemd9qz9pQm6kibdYli0pZRH4GgOXwlMSndVZqU/k7FkrjfBpYv52UOpc?=
+ =?us-ascii?Q?g+qaIja4FJIUQAd4+V3kV8siAImBHu28h75kRJSkJp4If3OJa/DrqnJuIrk3?=
+ =?us-ascii?Q?SVfMPwTZCmoMAtmSUrWlMFW8iA0l+h3yaJo9acuGU3hbfkoFArEPJVE1vdz9?=
+ =?us-ascii?Q?nWt/V+dGiz8CPJ1NBx7woUR17Ur5zx9rHlikRvHA4jpztZ6MhiLnFVmWkViy?=
+ =?us-ascii?Q?xl8HixSuKj7ehyM3jvTo6yLp/yzL4jaeUhA50QfjSTgJhU4ZD9/eJFL15936?=
+ =?us-ascii?Q?ekATo3Te+tcxw+5n49knPQRw/u9Rkg7QsFkd0jZ/DOqRSz7KSJ8dzq4x0m4X?=
+ =?us-ascii?Q?Hyk7JicSaRJKzWqyt4R3tA111zPuBoJUjzwaPdwvjnqeo1YtgkodHb7i91ek?=
+ =?us-ascii?Q?lDPLaLZFYRgG13nFJI4WNl8taWozEtPTFKqJ67ZkwOjgm0DYC/N+TMgHZw4b?=
+ =?us-ascii?Q?OpUvIiqJTGGgLl3DPT9UiCkS6SlbiMqGDZH4mkAktqUv8vQjT2C2gUGLr93n?=
+ =?us-ascii?Q?WIO8/WF6oc2gA3iZzdvsey9aSZNoRMXmyrL9nX1WInvunmJLB070cByIj9hN?=
+ =?us-ascii?Q?pgMuN3b8jIR10ET1WkujbZ9qoSshd+u4xMPytB7ur2aeWGEtgQoSiJkIQLOx?=
+ =?us-ascii?Q?huSk7KV41o79fDrrUvG+ske2MziNucfgThAZvBImM1tnuTNHiWjEzmq2UBNj?=
+ =?us-ascii?Q?N1vNBovA1vL9Yo3HWPLbP0STOSTHE4EffCIifgjWsvUqQBkO05nQycSCaFsv?=
+ =?us-ascii?Q?+Le+WwQGCIPGxZcUgwswc+7Rg0OYsNSjt/frxsH0V/w4T2gnfH/deEzWf1ye?=
+ =?us-ascii?Q?MoOobVScpbrcKn+9pkYCzycVTzoN6DDeep7L1B05aQc/YAlv83JWvPxINFbn?=
+ =?us-ascii?Q?YBBR0qUhuq3FMqdmIWZBh6c4UzLlo74Y/2AGC2s7WThJ09C0oMxus/E+XUYm?=
+ =?us-ascii?Q?B7nQYL/iZtJpFQdhE+e+Oo3PCaKs8TwRWGBsIhFayYky5hKvAk1NktPYwNM2?=
+ =?us-ascii?Q?c8YaQJvhrlWciVQVQqPAue3gn5kylfBzzdcHoNR1m+OC9q9hVJZ7eYBn9BrH?=
+ =?us-ascii?Q?yU2xsJQxGZDwwWjdvsh4bEvU/FIBLRtgKT5wkSL91qYPPoDzaEVfqzqEz8w/?=
+ =?us-ascii?Q?lr8II+zu8J5S3/XuxvfA2NalqaYYP5ZCDPZMlw9DmGOLmUBm/WjXN+A5yM9R?=
+ =?us-ascii?Q?4MWZKjgAhofQxHUR79w87GEd/au6/gKmiuUOklX8XmgH1CzWiudkpIpBvwXm?=
+ =?us-ascii?Q?aOgCGBQZGfYjwuAXCihLVIk184/iFDyqYjM7LlzHuFg1qP1WFufxnY/aKgT/?=
+ =?us-ascii?Q?+Iq3c1IfmJYpZvUAzF4=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31273906-28a3-49a2-fe2f-08dab0d72128
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2022 07:05:24.6513
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KVYtK3mRa0WNTijIAMkS5Rf+sV4erys4nTRCLPzxeK5nFmuo3OGvrSWLu+qIMxmOXh9i/y6YigP6DxLLOnISWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7766
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,390 +131,183 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi
+> Subject: Re: [PATCH V7 6/7] remoteproc: imx_rproc: request mbox channel
+> later
+>=20
+> On Mon, Oct 17, 2022 at 03:13:16AM +0000, Peng Fan wrote:
+> > Hi Mathieu,
+> >
+> > > Subject: Re: [PATCH V7 6/7] remoteproc: imx_rproc: request mbox
+> > > channel later
+> > >
+> > > On Fri, Oct 14, 2022 at 11:10:36AM +0800, Peng Fan (OSS) wrote:
+> > > > From: Peng Fan <peng.fan@nxp.com>
+> > > >
+> > > > It is possible that when remote processor crash, the communication
+> > > > channel will be broken with garbage value in mailbox, such as when
+> > > > Linux is issuing a message through mailbox, remote processor
+> > > > crashes, we need free & rebuild the mailbox channels to make sure
+> > > > no garbage value in mailbox channels.
+> > > >
+> > > > So move the request/free to start/stop for managing remote
+> > > > procesosr in Linux, move to attach/detach for remote processor is
+> > > > out of control of Linux.
+> > > >
+> > > > Previous, we just request mbox when attach for CM4 boot early
+> > > > before Linux, but if mbox defer probe, remoteproc core will do
+> > > > resource cleanup and corrupt resource table for later probe.
+> > > >
+> > > > So move request mbox ealier and still keep mbox request when
+> > > > attach for self recovery case, but keep a check when request/free
+> mbox.
+> > > >
+> > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > ---
+> > > >  drivers/remoteproc/imx_rproc.c | 39
+> > > > ++++++++++++++++++++++++++++++++--
+> > > >  1 file changed, 37 insertions(+), 2 deletions(-)
+> > > >
+> > > > diff --git a/drivers/remoteproc/imx_rproc.c
+> > > > b/drivers/remoteproc/imx_rproc.c index
+> 917e6db39572..1183de84a4c0
+> > > > 100644
+> > > > --- a/drivers/remoteproc/imx_rproc.c
+> > > > +++ b/drivers/remoteproc/imx_rproc.c
+> > > > @@ -84,6 +84,8 @@ struct imx_rproc_mem {
+> > > >  #define ATT_CORE_MASK   0xffff
+> > > >  #define ATT_CORE(I)     BIT((I))
+> > > >
+> > > > +static int imx_rproc_xtr_mbox_init(struct rproc *rproc); static
+> > > > +void imx_rproc_free_mbox(struct rproc *rproc);
+> > > >  static int imx_rproc_detach_pd(struct rproc *rproc);
+> > > >
+> > > >  struct imx_rproc {
+> > > > @@ -357,6 +359,10 @@ static int imx_rproc_start(struct rproc *rproc=
+)
+> > > >  	struct arm_smccc_res res;
+> > > >  	int ret;
+> > > >
+> > > > +	ret =3D imx_rproc_xtr_mbox_init(rproc);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > >  	switch (dcfg->method) {
+> > > >  	case IMX_RPROC_MMIO:
+> > > >  		ret =3D regmap_update_bits(priv->regmap, dcfg->src_reg,
+> > > > dcfg->src_mask, @@ -407,6 +413,8 @@ static int
+> > > > dcfg->imx_rproc_stop(struct
+> > > > rproc *rproc)
+> > > >
+> > > >  	if (ret)
+> > > >  		dev_err(dev, "Failed to stop remote core\n");
+> > > > +	else
+> > > > +		imx_rproc_free_mbox(rproc);
+> > > >
+> > > >  	return ret;
+> > > >  }
+> > > > @@ -592,6 +600,22 @@ static void imx_rproc_kick(struct rproc
+> > > > *rproc, int vqid)
+> > > >
+> > > >  static int imx_rproc_attach(struct rproc *rproc)  {
+> > > > +	return imx_rproc_xtr_mbox_init(rproc); }
+> > > > +
+> > > > +static int imx_rproc_detach(struct rproc *rproc) {
+> > > > +	struct imx_rproc *priv =3D rproc->priv;
+> > > > +	const struct imx_rproc_dcfg *dcfg =3D priv->dcfg;
+> > > > +
+> > > > +	if (dcfg->method !=3D IMX_RPROC_SCU_API)
+> > > > +		return -EOPNOTSUPP;
+> > > > +
+> > > > +	if (imx_sc_rm_is_resource_owned(priv->ipc_handle, priv->rsrc_id))
+> > > > +		return -EOPNOTSUPP;
+> > > > +
+> > > > +	imx_rproc_free_mbox(rproc);
+> > > > +
+> > > >  	return 0;
+> > > >  }
+> > > >
+> > > > @@ -610,6 +634,7 @@ static struct resource_table
+> > > > *imx_rproc_get_loaded_rsc_table(struct rproc *rproc  static const
+> > > > struct
+> > > rproc_ops imx_rproc_ops =3D {
+> > > >  	.prepare	=3D imx_rproc_prepare,
+> > > >  	.attach		=3D imx_rproc_attach,
+> > > > +	.detach		=3D imx_rproc_detach,
+> > > >  	.start		=3D imx_rproc_start,
+> > > >  	.stop		=3D imx_rproc_stop,
+> > > >  	.kick		=3D imx_rproc_kick,
+> > > > @@ -720,6 +745,9 @@ static int imx_rproc_xtr_mbox_init(struct
+> > > > rproc
+> > > *rproc)
+> > > >  	struct device *dev =3D priv->dev;
+> > > >  	struct mbox_client *cl;
+> > > >
+> > > > +	if (priv->tx_ch && priv->rx_ch)
+> > > > +		return 0;
+> > > > +
+> > >
+> > > You did exactly the same things as in V6.  I asked you why this is
+> > > needed and all you did is point me to the code in _probe(), which I c=
+an
+> read on my own.
+> > >
+> >
+> > Sorry for not wrote down clear.
+> >
+> > > Again - why is this needed when we know it will be done in start()
+> > > and attach()?
+> >
+> > start() and attach() not able to handle mbox defer probe. So I add
+>=20
+> We are finally at the heart of the problem.  I had to go look at the
+> implementation of imx_rproc_xtr_mbox_init() to understand that it can
+> return -EPROBE_DEFER.  Had there been a comment in the code to highlight
+> _why_ the if() condition is needed, I would have understood right away an=
+d
+> all this waste of time avoided.
 
-Thank you for the comprehensive feedback across all the patches. I am
-working on them.
+My bad. I could add comment in V8 if no major comments after you review.
+Thanks for your time.
 
-I do have some concerns which I have talked about, below.
-
-On 12-Oct-22 17:53, Tomi Valkeinen wrote:
-> On 28/09/2022 20:52, Aradhya Bhatia wrote:
->> The newer version of DSS (AM625-DSS) has 2 OLDI TXes at its disposal.
->> These can be configured to support the following modes:
->>
->> 1. OLDI_SINGLE_LINK_SINGLE_MODE
->> Single Output over OLDI 0.
->> +------+        +---------+      +-------+
->> |      |        |         |      |       |
->> | CRTC +------->+ ENCODER +----->| PANEL |
->> |      |        |         |      |       |
->> +------+        +---------+      +-------+
-> 
-> Can you have single link on OLDI 1 (OLDI 0 off)? I don't know if that 
-> make sense on this platform, but if the pins for OLDI 0 and 1 are 
-> different, there might be a reason on some cases for that.
-
-HW does not support a case where single link is enabled over OLDI 1 with
-OLDI 0 off, even though the pins are different.
-
-One could still put 2 panel nodes in DT to set OLDI in a Clone Mode and
-simply not use OLDI 0 pins, but I dont think that is a valid case that
-should be supported.
-
-> 
->> 2. OLDI_SINGLE_LINK_CLONE_MODE
->> Duplicate Output over OLDI 0 and 1.
->> +------+        +---------+      +-------+
->> |      |        |         |      |       |
->> | CRTC +---+--->| ENCODER +----->| PANEL |
->> |      |   |    |         |      |       |
->> +------+   |    +---------+      +-------+
->>        |
-> 
-> I think you've got a tab in the line above, but otherwise use spaces.
-> 
->>             |    +---------+      +-------+
->>             |    |         |      |       |
->>             +--->| ENCODER +----->| PANEL |
->>                  |         |      |       |
->>                  +---------+      +-------+
->>
->> 3. OLDI_DUAL_LINK_MODE
->> Combined Output over OLDI 0 and 1.
->> +------+        +---------+      +-------+
->> |      |        |         +----->|       |
->> | CRTC +------->+ ENCODER |      | PANEL |
->> |      |        |         +----->|       |
->> +------+        +---------+      +-------+
->>
->> Following the above pathways for different modes, 2 encoder/panel-bridge
->> pipes get created for clone mode, and 1 pipe in cases of single link and
->> dual link mode.
->>
->> Add support for confgure the OLDI modes using of and lvds DRM helper
-> 
-> "configuring"
-> 
->> functions.
->>
->> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->> ---
->>   drivers/gpu/drm/tidss/tidss_dispc.c |  11 +++
->>   drivers/gpu/drm/tidss/tidss_dispc.h |   8 ++
->>   drivers/gpu/drm/tidss/tidss_drv.h   |   3 +
->>   drivers/gpu/drm/tidss/tidss_kms.c   | 146 +++++++++++++++++++++++-----
->>   4 files changed, 145 insertions(+), 23 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
->> b/drivers/gpu/drm/tidss/tidss_dispc.c
->> index 34f0da4bb3e3..88008ad39b55 100644
->> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
->> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
->> @@ -354,6 +354,8 @@ struct dispc_device {
->>       bool is_enabled;
->> +    enum dispc_oldi_modes oldi_mode;
->> +
->>       struct dss_vp_data vp_data[TIDSS_MAX_PORTS];
->>       u32 *fourccs;
->> @@ -1958,6 +1960,15 @@ const u32 *dispc_plane_formats(struct 
->> dispc_device *dispc, unsigned int *len)
->>       return dispc->fourccs;
->>   }
->> +int dispc_configure_oldi_mode(struct dispc_device *dispc,
->> +                  enum dispc_oldi_modes oldi_mode)
->> +{
->> +    WARN_ON(!dispc);
->> +
->> +    dispc->oldi_mode = oldi_mode;
->> +    return 0;
->> +}
-> 
-> I think "configure" means more than just storing the value. Maybe 
-> dispc_set_oldi_mode(). And an empty line above the return.
-> 
->> +
->>   static s32 pixinc(int pixels, u8 ps)
->>   {
->>       if (pixels == 1)
->> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.h 
->> b/drivers/gpu/drm/tidss/tidss_dispc.h
->> index b66418e583ee..45cce1054832 100644
->> --- a/drivers/gpu/drm/tidss/tidss_dispc.h
->> +++ b/drivers/gpu/drm/tidss/tidss_dispc.h
->> @@ -64,6 +64,13 @@ enum dispc_dss_subrevision {
->>       DISPC_AM625,
->>   };
->> +enum dispc_oldi_modes {
->> +    OLDI_MODE_OFF,                /* OLDI turned off / tied off in 
->> IP. */
->> +    OLDI_SINGLE_LINK_SINGLE_MODE,        /* Single Output over OLDI 
->> 0. */
->> +    OLDI_SINGLE_LINK_CLONE_MODE,        /* Duplicate Output over OLDI 
->> 0 and 1. */
->> +    OLDI_DUAL_LINK_MODE,            /* Combined Output over OLDI 0 
->> and 1. */
->> +};
->> +
->>   struct dispc_features {
->>       int min_pclk_khz;
->>       int max_pclk_khz[DISPC_VP_MAX_BUS_TYPE];
->> @@ -131,6 +138,7 @@ int dispc_plane_setup(struct dispc_device *dispc, 
->> u32 hw_plane,
->>                 u32 hw_videoport);
->>   int dispc_plane_enable(struct dispc_device *dispc, u32 hw_plane, 
->> bool enable);
->>   const u32 *dispc_plane_formats(struct dispc_device *dispc, unsigned 
->> int *len);
->> +int dispc_configure_oldi_mode(struct dispc_device *dispc, enum 
->> dispc_oldi_modes oldi_mode);
->>   int dispc_init(struct tidss_device *tidss);
->>   void dispc_remove(struct tidss_device *tidss);
->> diff --git a/drivers/gpu/drm/tidss/tidss_drv.h 
->> b/drivers/gpu/drm/tidss/tidss_drv.h
->> index d7f27b0b0315..2252ba0222ca 100644
->> --- a/drivers/gpu/drm/tidss/tidss_drv.h
->> +++ b/drivers/gpu/drm/tidss/tidss_drv.h
->> @@ -12,6 +12,9 @@
->>   #define TIDSS_MAX_PORTS 4
->>   #define TIDSS_MAX_PLANES 4
->> +/* For AM625-DSS with 2 OLDI TXes */
->> +#define TIDSS_MAX_BRIDGE_PER_PIPE    2
-> 
-> "BRIDGES"?
-> 
->> +
->>   typedef u32 dispc_irq_t;
->>   struct tidss_device {
->> diff --git a/drivers/gpu/drm/tidss/tidss_kms.c 
->> b/drivers/gpu/drm/tidss/tidss_kms.c
->> index 666e527a0acf..73afe390f36d 100644
->> --- a/drivers/gpu/drm/tidss/tidss_kms.c
->> +++ b/drivers/gpu/drm/tidss/tidss_kms.c
->> @@ -107,32 +107,84 @@ static const struct drm_mode_config_funcs 
->> mode_config_funcs = {
->>       .atomic_commit = drm_atomic_helper_commit,
->>   };
->> +static int tidss_get_oldi_mode(struct tidss_device *tidss)
-> 
-> Return enum dispc_oldi_modes, not int.
-> 
->> +{
->> +    int pixel_order;
->> +    struct device_node *dss_ports, *oldi0_port, *oldi1_port;
->> +
->> +    dss_ports = of_get_next_child(tidss->dev->of_node, NULL);
-> 
-> Hmm you get the next child and hope that it's the ports node?
-> 
-> In any case, I think you can call of_graph_get_port_by_id() with the 
-> tidss->dev->of_node and it'll do the right thing.
-I think this will only work if the child of dss node is just "ports",
-but we've been using "dss_ports" as the child.
-
-However, you are right. I shouldn't expect the first child to be
-dss_ports. I will use the "of_get_child_by_name" helper to get the
-dss_ports node.
-
-> 
->> +    oldi0_port = of_graph_get_port_by_id(dss_ports, 0);
->> +    oldi1_port = of_graph_get_port_by_id(dss_ports, 2);
-> 
-> I think you need to of_put these at some point.
-> 
->> +    if (!(oldi0_port && oldi1_port))
->> +        return OLDI_SINGLE_LINK_SINGLE_MODE;
-> 
-> This one matches also for !oldi0 && oldi1. If oldi1 cannot be used in 
-> single-link mode, the above should take it into account.
-
-Right. I will print a warning if somebody's trying to use (!oldi0 &&
-oldi1) but since its a single link requirement, I will still set the
-OLDI for single link single mode.
-
-> 
->> +
->> +    /*
->> +     * OLDI Ports found for both the OLDI TXes. The DSS is to be 
->> configured
->> +     * in either Dual Link or Clone Mode.
->> +     */
->> +    pixel_order = drm_of_lvds_get_dual_link_pixel_order(oldi0_port,
->> +                                oldi1_port);
->> +    switch (pixel_order) {
->> +    case -EINVAL:
->> +        /*
->> +         * The dual link properties were not found in at least one of
->> +         * the sink nodes. Since 2 OLDI ports are present in the DT, it
->> +         * can be safely assumed that the required configuration is
->> +         * Clone Mode.
->> +         */
->> +        return OLDI_SINGLE_LINK_CLONE_MODE;
->> +
->> +    case DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS:
->> +    case DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS:
->> +        /*
->> +         * Note that the OLDI TX 0 transmits the odd set of pixels while
->> +         * the OLDI TX 1 transmits the even set. This is a fixed
->> +         * configuration in the IP and an cannot be change vis SW. These
->> +         * properties have been used to merely identify if a Dual Link
->> +         * configuration is required. Swapping this property in the 
->> panel
->> +         * port DT nodes will not make any difference.
->> +         */
-> 
-> But if they are in the wrong order, shouldn't we fail or at least give a 
-> warning?
->  >> +        return OLDI_DUAL_LINK_MODE;
->> +
->> +    default:
->> +        return OLDI_MODE_OFF;
->> +    }
->> +}
->> +
->>   static int tidss_dispc_modeset_init(struct tidss_device *tidss)
->>   {
->>       struct device *dev = tidss->dev;
->>       unsigned int fourccs_len;
->>       const u32 *fourccs = dispc_plane_formats(tidss->dispc, 
->> &fourccs_len);
->> -    unsigned int i;
->> +    unsigned int i, j;
->>       struct pipe {
->>           u32 hw_videoport;
->> -        struct drm_bridge *bridge;
->> +        struct drm_bridge *bridge[TIDSS_MAX_BRIDGE_PER_PIPE];
->>           u32 enc_type;
->> +        u32 num_bridges;
->>       };
->>       const struct dispc_features *feat = tidss->feat;
->> -    u32 max_vps = feat->num_vps;
->> +    u32 max_ports = feat->num_max_ports;
->>       u32 max_planes = feat->num_planes;
->>       struct pipe pipes[TIDSS_MAX_PORTS];
->>       u32 num_pipes = 0;
->> +    u32 pipe_number = 0;
->>       u32 crtc_mask;
->> +    u32 num_oldi = 0;
->> +    u32 oldi0_port = 0;
->> +    u32 hw_vp = 0;
->> +    enum dispc_oldi_modes oldi_mode;
->>       /* first find all the connected panels & bridges */
->> -    for (i = 0; i < max_vps; i++) {
->> +    for (i = 0; i < max_ports; i++) {
->>           struct drm_panel *panel;
->>           struct drm_bridge *bridge;
->> +        bool bridge_req = true;
->>           u32 enc_type = DRM_MODE_ENCODER_NONE;
->>           int ret;
->> @@ -146,6 +198,11 @@ static int tidss_dispc_modeset_init(struct 
->> tidss_device *tidss)
->>               return ret;
->>           }
->> +        /* default number of bridges required for a panel/bridge*/
->> +        pipe_number = num_pipes;
->> +        pipes[pipe_number].num_bridges = 1;
->> +        hw_vp = i;
->> +
->>           if (panel) {
->>               u32 conn_type;
->> @@ -155,7 +212,43 @@ static int tidss_dispc_modeset_init(struct 
->> tidss_device *tidss)
->>               case DISPC_VP_OLDI:
->>                   enc_type = DRM_MODE_ENCODER_LVDS;
->>                   conn_type = DRM_MODE_CONNECTOR_LVDS;
->> +
->> +                /*
->> +                 * A single DSS controller cannot support 2
->> +                 * independent displays. If 2nd node is detected,
->> +                 * it is for Dual Link Mode or Clone Mode.
->> +                 *
->> +                 * A new pipe instance is not required.
->> +                 */
->> +                if (++num_oldi == 2) {
->> +                    pipe_number = oldi0_port;
->> +                    hw_vp = i;
->> +
->> +                    /* 2nd OLDI DT node detected. Get its mode */
->> +                    oldi_mode = tidss_get_oldi_mode(tidss);
->> +                    bridge_req = false;
->> +
->> +                    /*
->> +                     * A separate panel bridge will only be
->> +                     * required if 2 panels are connected for
->> +                     * the OLDI Clone Mode.
->> +                     */
->> +                    if (oldi_mode == OLDI_SINGLE_LINK_CLONE_MODE) {
->> +                        bridge_req = true;
->> +                        (pipes[pipe_number].num_bridges)++;
->> +                    }
->> +                } else {
->> +                    /*
->> +                     * First OLDI DT node detected. Save it
->> +                     * in case there is another node for Dual
->> +                     * Link Mode or Clone Mode.
->> +                     */
->> +                    oldi0_port = i;
->> +                    oldi_mode = OLDI_SINGLE_LINK_SINGLE_MODE;
->> +                }
->> +                dispc_configure_oldi_mode(tidss->dispc, oldi_mode);
->>                   break;
->> +
->>               case DISPC_VP_DPI:
->>                   enc_type = DRM_MODE_ENCODER_DPI;
->>                   conn_type = DRM_MODE_CONNECTOR_DPI;
->> @@ -173,19 +266,23 @@ static int tidss_dispc_modeset_init(struct 
->> tidss_device *tidss)
->>                   return -EINVAL;
->>               }
->> -            bridge = devm_drm_panel_bridge_add(dev, panel);
->> -            if (IS_ERR(bridge)) {
->> -                dev_err(dev,
->> -                    "failed to set up panel bridge for port %d\n",
->> -                    i);
->> -                return PTR_ERR(bridge);
->> +            if (bridge_req) {
->> +                bridge = devm_drm_panel_bridge_add(dev, panel);
->> +                if (IS_ERR(bridge)) {
->> +                    dev_err(dev,
->> +                        "failed to set up panel bridge for port %d\n",
->> +                        i);
->> +                    return PTR_ERR(bridge);
->> +                }
->>               }
->>           }
->> -        pipes[num_pipes].hw_videoport = i;
->> -        pipes[num_pipes].bridge = bridge;
->> -        pipes[num_pipes].enc_type = enc_type;
->> -        num_pipes++;
->> +        if (bridge_req) {
->> +            pipes[pipe_number].hw_videoport = hw_vp;
->> +            pipes[pipe_number].bridge[pipes[pipe_number].num_bridges 
->> - 1] = bridge;
->> +            pipes[pipe_number].enc_type = enc_type;
->> +            num_pipes++;
->> +        }
-> 
-> I need to look at this with better time. But I started to wonder, would 
-> it be clearer to first figure out the oldi setup before the loop, rather 
-> than figuring it out inside the loop. I'm not sure if it would help 
-> much, though.
-> 
-I had not thought about taking this approach, but it might actually be
-better.
-
-These patches, at the moment, do not support a case where a clone mode
-or dual link mode is used on a bridge instead of a panel. My edits
-inside the loop are panel dependent. If we do have oldi setup
-information prior to the beginning of the loop, the panel dependency can
-be removed and some commond code can be written to support an additional
-encoder - bridge connection should it be required.
-
-Let me know what you think!
-
-If this apparch is better indeed, I will make these changes before
-sending out the next revision.
-
-
-Regards
-Aradhya
+Thanks,
+Peng.
+>=20
+> > the mbox requesting in probe to handle mbox defer probe, and add a
+> > check when requesting mbox channel in start/attach. During first time
+> > attach/start remote core, the imx_rproc_xtr_mbox_init just return,
+> > because channel requested in probe flow.
+> >
+> > Since mbox requested in probe, why still add it in start() and attach()=
+?
+> > It is to support runtime stop and start(M4 is under control of Linux),
+> > to support runtime detach(only for i.MX8QM/QXP attach recovery,
+> > m4 out of control from linux) and attach.
+> >
+> > Thanks,
+> > Peng.
+> > >
+> > >
+> > > >  	if (!of_get_property(dev->of_node, "mbox-names", NULL))
+> > > >  		return 0;
+> > > >
+> > > > @@ -749,8 +777,15 @@ static void imx_rproc_free_mbox(struct rproc
+> > > > *rproc)  {
+> > > >  	struct imx_rproc *priv =3D rproc->priv;
+> > > >
+> > > > -	mbox_free_channel(priv->tx_ch);
+> > > > -	mbox_free_channel(priv->rx_ch);
+> > > > +	if (priv->tx_ch) {
+> > > > +		mbox_free_channel(priv->tx_ch);
+> > > > +		priv->tx_ch =3D NULL;
+> > > > +	}
+> > > > +
+> > > > +	if (priv->rx_ch) {
+> > > > +		mbox_free_channel(priv->rx_ch);
+> > > > +		priv->rx_ch =3D NULL;
+> > > > +	}
+> > > >  }
+> > > >
+> > > >  static void imx_rproc_put_scu(struct rproc *rproc)
+> > > > --
+> > > > 2.37.1
+> > > >
