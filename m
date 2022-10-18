@@ -2,224 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 015B86032DE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 20:55:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E8AF603394
+	for <lists+devicetree@lfdr.de>; Tue, 18 Oct 2022 21:53:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbiJRSzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 14:55:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35608 "EHLO
+        id S230006AbiJRTxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 15:53:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbiJRSzR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 14:55:17 -0400
-Received: from smtp.smtpout.orange.fr (smtp-29.smtpout.orange.fr [80.12.242.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4945895D4
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 11:55:13 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.100.34])
-        by smtp.orange.fr with ESMTPA
-        id krk4o4LYpJvOZkrk4odlCd; Tue, 18 Oct 2022 20:55:12 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Tue, 18 Oct 2022 20:55:12 +0200
-X-ME-IP: 86.243.100.34
-Message-ID: <15ebc256-1855-7720-05e1-6673b1da7d93@wanadoo.fr>
-Date:   Tue, 18 Oct 2022 20:55:07 +0200
+        with ESMTP id S230010AbiJRTxk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 15:53:40 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F0BF8FD5A;
+        Tue, 18 Oct 2022 12:53:10 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id o21so12444667ple.5;
+        Tue, 18 Oct 2022 12:53:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Decn228I23NeLLtliUyA2wHQT/chAyjBvAFPep29TTY=;
+        b=gPXw0e5DdOSjS6vUUvJpAJ25al5FdM+3bpuoFbiQViQvegio6bFFg4zi3gRrQqc8QI
+         uNd1nwd6fspz6ZrvMd2DvKYPo7yuPe3pPbz1xvMikstoqaxGPr67o75E0KE0VA4orT55
+         4KSz4FB75Q3BlufHKu3D58LBG/Gm/tF83H5lUxzVtDjyPNT0WZAaYZ5z1XV/djSnR9/7
+         p0p7hcIk2ESbzkY1StAXf9RLw+rFJcE3n9Y/TL4rwvQ2syZxXXtVvylM4HhP165eEpYy
+         3R6v4priW798+Ub3UG0W+hb7YrtEuAqx9pfhkT1JsKwwgTZJeGxJJu59xbITIrYevMDO
+         Z2gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Decn228I23NeLLtliUyA2wHQT/chAyjBvAFPep29TTY=;
+        b=gmyD52dh5cC2AqZebOcOij1cBAlk016R6wDpmIJWgCLU/wTy2zr3axPxfJsNjGNFYz
+         /xUf9Ge2jW8C6M5vmbq2A3Sq5G9hsbBW0M9hjoOFktM5PkKjzNVmJuEpMQkd+OnGwWe/
+         UtWP/ZU1OzRaU44harA76iXTBU5X0YGAKZ/svQzZw+FJSyebYmzQhEkYpovPsHKuye26
+         MOVByLKGdESEu5mxAy6z/e2xRjbJbPz04oAQ53yrwAy3cRgn6NbguK59ubm9ZegrSsg3
+         TinrCV0trXSxLwC7yrfUwUQTjWJORBVnW2fEWcxRZ3/XDtyaqkjnygdDLm1h/g37BC9M
+         FF2A==
+X-Gm-Message-State: ACrzQf1qTGvKUPH2hDO5JKFm87J0AF19uTKPhLqiDnm+xWC4XoySE7we
+        NWdsVIvBHrFyUl8vM9HVCjY=
+X-Google-Smtp-Source: AMsMyM4052ls7BSb0cFjir+Iyuqwp7lSrhnhy4HuHtKCGVeTeGzapD1MCYEa5WwiM98xw7FSZwedAQ==
+X-Received: by 2002:a17:902:8491:b0:183:c3d2:2112 with SMTP id c17-20020a170902849100b00183c3d22112mr4773643plo.133.1666122789257;
+        Tue, 18 Oct 2022 12:53:09 -0700 (PDT)
+Received: from localhost.localdomain ([103.51.72.20])
+        by smtp.gmail.com with ESMTPSA id t25-20020aa79479000000b0056126b79072sm9666063pfq.21.2022.10.18.12.53.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Oct 2022 12:53:08 -0700 (PDT)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on Odroid N2/N2+
+Date:   Tue, 18 Oct 2022 19:51:19 +0000
+Message-Id: <20221018195122.8877-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v3 2/2] media: i2c: add support for OV4689
-To:     mike.rudenko@gmail.com
-Cc:     arec.kao@intel.com, c.hemp@phytec.de,
-        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        hverkuil@xs4all.nl, jimmy.su@intel.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        laurent.pinchart+renesas@ideasonboard.com,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        marex@denx.de, mchehab@kernel.org, rdunlap@infradead.org,
-        robh+dt@kernel.org, sakari.ailus@linux.intel.com,
-        shawnx.tu@intel.com, tommaso.merciai@amarulasolutions.com
-References: <20220927222152.132951-1-mike.rudenko@gmail.com>
- <20220927222152.132951-3-mike.rudenko@gmail.com>
-Content-Language: fr
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20220927222152.132951-3-mike.rudenko@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 28/09/2022 à 00:21, Mikhail Rudenko a écrit :
-> Add a V4L2 sub-device driver for OmniVision OV4689 image sensor. This
-> is a 4 Mpx image sensor using the I2C bus for control and the CSI-2
-> bus for data.
-> 
-> This driver supports following features:
-> - manual exposure and analog gain control support
-> - test pattern support
-> - media controller support
-> - runtime PM support
-> - support following resolutions:
->    + 2688x1520 at 30 fps
-> 
-> The driver provides all mandatory V4L2 controls for compatibility with
-> libcamera. The sensor supports 1/2/4-lane CSI-2 modes, but the driver
-> implements 4 lane mode only at this moment.
+Odroid N2/N2+ support active cooling via gpio-fan controller.
+Add fan controls and tip point for cpu and ddr thermal sensor
+on this boards.
 
-Hi,
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+ .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-a few nitpick below.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index fd3fa82e4c33..e61a4285a910 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -39,6 +39,14 @@ emmc_pwrseq: emmc-pwrseq {
+ 		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
+ 	};
+ 
++	fan: gpio-fan {
++		compatible = "gpio-fan";
++		gpios = <&gpio_ao GPIOAO_10 GPIO_ACTIVE_HIGH>;
++		/* Using Dummy Speed */
++		gpio-fan,speed-map = <0 0>, <1 1>;
++		#cooling-cells = <2>;
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -410,6 +418,40 @@ &cpu103 {
+ 	clock-latency = <50000>;
+ };
+ 
++&cpu_thermal {
++	trips {
++		cpu_active: cpu-active {
++			temperature = <60000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map {
++			trip = <&cpu_active>;
++			cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++		};
++	};
++};
++
++&ddr_thermal {
++	trips {
++		ddr_active: cpu-active {
++			temperature = <60000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map {
++			trip = <&ddr_active>;
++			cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++		};
++	};
++};
++
+ &ext_mdio {
+ 	external_phy: ethernet-phy@0 {
+ 		/* Realtek RTL8211F (0x001cc916) */
 
-CJ
-
-> 
-> Signed-off-by: Mikhail Rudenko <mike.rudenko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
-
-[...]
-
-> +static int ov4689_check_sensor_id(struct ov4689 *ov4689,
-> +				  struct i2c_client *client)
-> +{
-> +	struct device *dev = &ov4689->client->dev;
-> +	u32 id = 0;
-> +	int ret;
-> +
-> +	ret = ov4689_read_reg(client, OV4689_REG_CHIP_ID,
-> +			      OV4689_REG_VALUE_16BIT, &id);
-> +	if (id != CHIP_ID) {
-> +		dev_err(dev, "Unexpected sensor id(%06x), ret(%d)\n", id, ret);
-> +		return -ENODEV;
-
-return ret?
-(otherwise what is the point of -EINVAL and -EIO in ov4689_read_reg()?)
-
-> +	}
-> +
-> +	dev_info(dev, "Detected OV%06x sensor\n", CHIP_ID);
-> +
-> +	return 0;
-> +}
-
-[...]
-
-> +static int ov4689_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct v4l2_subdev *sd;
-> +	struct ov4689 *ov4689;
-> +	int ret;
-> +
-> +	ret = ov4689_check_hwcfg(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ov4689 = devm_kzalloc(dev, sizeof(*ov4689), GFP_KERNEL);
-> +	if (!ov4689)
-> +		return -ENOMEM;
-> +
-> +	ov4689->client = client;
-> +	ov4689->cur_mode = &supported_modes[OV4689_MODE_2688_1520];
-> +
-> +	ov4689->xvclk = devm_clk_get_optional(dev, NULL);
-> +	if (IS_ERR(ov4689->xvclk)) {
-> +		return dev_err_probe(dev, PTR_ERR(ov4689->xvclk),
-> +				     "Failed to get external clock\n");
-> +	}
-> +
-> +	if (!ov4689->xvclk) {
-> +		dev_dbg(dev,
-> +			"No clock provided, using clock-frequency property\n");
-> +		device_property_read_u32(dev, "clock-frequency", &ov4689->clock_rate);
-> +	} else {
-> +		ov4689->clock_rate = clk_get_rate(ov4689->xvclk);
-> +	}
-> +
-> +	if (ov4689->clock_rate != OV4689_XVCLK_FREQ) {
-> +		dev_err(dev,
-> +			"External clock rate mismatch: got %d Hz, expected %d Hz\n",
-> +			ov4689->clock_rate, OV4689_XVCLK_FREQ);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ov4689->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-> +						     GPIOD_OUT_LOW);
-> +	if (IS_ERR(ov4689->reset_gpio)) {
-> +		dev_err(dev, "Failed to get reset-gpios\n");
-> +		return PTR_ERR(ov4689->reset_gpio);
-> +	}
-> +
-> +	ov4689->pwdn_gpio = devm_gpiod_get_optional(dev, "pwdn", GPIOD_OUT_LOW);
-> +	if (IS_ERR(ov4689->pwdn_gpio)) {
-> +		dev_err(dev, "Failed to get pwdn-gpios\n");
-> +		return PTR_ERR(ov4689->pwdn_gpio);
-> +	}
-> +
-> +	ret = ov4689_configure_regulators(ov4689);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to get power regulators\n");
-
-dev_err_probe()?
-I think that devm_regulator_bulk_get() can return -EPROBE_DEFER)
-
-> +		return ret;
-> +	}
-> +
-> +	mutex_init(&ov4689->mutex);
-> +
-> +	sd = &ov4689->subdev;
-> +	v4l2_i2c_subdev_init(sd, client, &ov4689_subdev_ops);
-> +	ret = ov4689_initialize_controls(ov4689);
-> +	if (ret)
-> +		goto err_destroy_mutex;
-> +
-> +	ret = ov4689_power_on(dev);
-> +	if (ret)
-> +		goto err_free_handler;
-> +
-> +	ret = ov4689_check_sensor_id(ov4689, client);
-> +	if (ret)
-> +		goto err_power_off;
-> +
-> +#ifdef CONFIG_VIDEO_V4L2_SUBDEV_API
-> +	sd->internal_ops = &ov4689_internal_ops;
-> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> +#endif
-> +#if defined(CONFIG_MEDIA_CONTROLLER)
-> +	ov4689->pad.flags = MEDIA_PAD_FL_SOURCE;
-> +	sd->entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> +	ret = media_entity_pads_init(&sd->entity, 1, &ov4689->pad);
-> +	if (ret < 0)
-> +		goto err_power_off;
-> +#endif
-> +
-> +	ret = v4l2_async_register_subdev_sensor(sd);
-> +	if (ret) {
-> +		dev_err(dev, "v4l2 async register subdev failed\n");
-> +		goto err_clean_entity;
-> +	}
-> +
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_enable(dev);
-> +	pm_runtime_idle(dev);
-> +
-> +	return 0;
-> +
-> +err_clean_entity:
-> +	media_entity_cleanup(&sd->entity);
-> +err_power_off:
-> +	ov4689_power_off(dev);
-> +err_free_handler:
-> +	v4l2_ctrl_handler_free(&ov4689->ctrl_handler);
-> +err_destroy_mutex:
-> +	mutex_destroy(&ov4689->mutex);
-> +
-> +	return ret;
-> +}
-
-[...]
+base-commit: aae703b02f92bde9264366c545e87cec451de471
+-- 
+2.38.0
 
