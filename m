@@ -2,133 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B0F16045A5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 14:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5BE2604533
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 14:25:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232519AbiJSMpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 08:45:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58848 "EHLO
+        id S229716AbiJSMZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 08:25:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232619AbiJSMpT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:45:19 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D25B1119F2;
-        Wed, 19 Oct 2022 05:28:15 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id j4so27885056lfk.0;
-        Wed, 19 Oct 2022 05:28:14 -0700 (PDT)
+        with ESMTP id S233408AbiJSMYP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:24:15 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 288A783229
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 04:59:52 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id i6so16989722pli.12
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 04:59:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MEslt1RuSXUcyMvZuWV2zoIP99mcfhq4IT43n7JtoN8=;
-        b=CHDCVUQxhP5zedafe5Fy0AcTvPDy2APY6prls4+epl+l8eKvD/foanWlFtPyvPmIbk
-         vyETXKgyJh32IvytlFx2z1FOFTA4UYbxs3vA9Lbs2XOSO6Wh7aNK+rntsIz70A6k852r
-         j8Zs3AFWu4AFeAnu9RcvgtS5eaUHzubhG0BM7jVIFfYvdQpb+zYvZPysCvg4pJCUwCLc
-         5jXHEMa02Uuoz28IKa1Aorlg2n5MffTr4vz0Y2sJtheV/s7NmP4OZiqekpuvZpF3rKZE
-         31ePzg8TjiXRFMQRU1spjaDXC1LcHmJpxZuBH0BenmJ83v66XJxoSb8Pqq7JbglGgbz0
-         gg1w==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VMNFqQ1cKYZraeOUh2laCGjFrCge3hBVt6vY/kYdzro=;
+        b=uCAZEUah1GXTO/Dhr3QPK4COCoFCeM8+Jjxsh4MLnKf1kiS4gCYn1tFEbS+Qx0GQZr
+         lBKbx4uC7EboNj0hJmSxCxX7dYXYKZ6TMcAjDHAZvSUj8/wRjt9NaqPlLU1drz+/1cth
+         A0SDNx2KUz3G2e5yuejO1SKwBWH0Xq/88Oo8IpcpmMYdLk8GLJcz8xf85uJDV+HoXfhs
+         q0ctj00NM7PQDZemzH7QSJyup22Fz1Lh6PN2gCzIp+Gsu5+9wiKeEM7kiw2zYcFA5eAk
+         bXoQip1KEgt9apacmG85i9WjsEXPBj1xloNylB25uCs0tHmqknYZuWAgfPq+lquO777l
+         cKAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MEslt1RuSXUcyMvZuWV2zoIP99mcfhq4IT43n7JtoN8=;
-        b=PzIo5ibXmqzh3VtOhcZ9M1R/Dde69Ebj2teHV+z0JtIv79zA+hn3vme0ec8/+GV1Il
-         XM9cDINfJ++9TEK/TRh/G5GMS9XZ4D9Wz2KvVtgE5eZpWMg7Fd48qHN5PZVqpyqvkY/n
-         0VgvBqoodlJMSHFdxwqnoaE00aabi320doX0I68/PWARx+TxRrLdE+U/78h1LyPocSH8
-         svCzzscphAX7fzxzrk4eQWN564QwATf3vUAHM48jnu92LiPwT8UF+1rCnJHqXM/96f1i
-         lqpYhGSCq0YhgjlXE+oGMk3g3IRvgUTJLt4aNxoyWF9tHPROQvrJQ6weIi0K7Q81PYnS
-         9+qA==
-X-Gm-Message-State: ACrzQf2wtYdwFE5LKlyrQn/6a/UE4znEtkAz65/xPw6wom3L9LWVTYV4
-        //UTWC1axBjESZ/UHw6usqe5Krn2srI=
-X-Google-Smtp-Source: AMsMyM4gLXcYIkULuHyL9C32E1bcJWwX7brePnpuiphaKMj+qGQE5gfjVZ/3+0hBVMaCfCSsbeCZPA==
-X-Received: by 2002:a17:907:6e0e:b0:78e:1385:c06 with SMTP id sd14-20020a1709076e0e00b0078e13850c06mr6518840ejc.485.1666180397196;
-        Wed, 19 Oct 2022 04:53:17 -0700 (PDT)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id ey4-20020a0564022a0400b00459148fbb3csm10430043edb.86.2022.10.19.04.53.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 04:53:16 -0700 (PDT)
-Message-ID: <c8d12dd0-7504-0198-dacb-b3723d82fc60@gmail.com>
-Date:   Wed, 19 Oct 2022 13:53:15 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VMNFqQ1cKYZraeOUh2laCGjFrCge3hBVt6vY/kYdzro=;
+        b=Mq25hF4tIUnfTEXKe+Hzr6BPILYSXE/dFfkFT/B+oy4SqEPfGG/r3v8i3DRkb+5tKK
+         QZUnyZ5xxRzWcEpxwFx5YGPIwFmVt9s77h1+zlmEKJR6MhjPdOPsFdaoRmYaKd1HBfQf
+         Z5GF768s03RLsCF7lItofBv8sAWOrSURxvL+FJ32RV8vqNBZ3earDQsVenOYzk/QxcPP
+         6d4fphFvGxo8h2nTKPQmaykKIKVwk8ULImzYvmtPv8+7NJOLXwnM6lVNbfbc4qihsgwc
+         9bSU3pgkEFRNd0SJT37O30HS7LabOI9iAQ8rdkiMneicgQyjB7lR5Xkc/3sG+Rw70rv/
+         4Xmg==
+X-Gm-Message-State: ACrzQf1BScooi3U1YhYsg5U5eqEuLJJatE7uN4VqJJQaS5ZELlTM2mTj
+        kQXIvANvK8+Ido614m5LZ/89c7ybqV932PhwLqk4ZA==
+X-Google-Smtp-Source: AMsMyM6WQNKXibXuVfWu8N49gAxdnh4vFghljtoHG++6NQujmf4jWPdnvyEXOs837QKkhfJvV65lOWL+4b+PAZmI4Cs=
+X-Received: by 2002:a17:903:246:b0:179:96b5:1ad2 with SMTP id
+ j6-20020a170903024600b0017996b51ad2mr7993669plh.37.1666180690956; Wed, 19 Oct
+ 2022 04:58:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH 2/2] mtd: core: set ROOT_DEV for partitions marked as root
- devices in DT
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+References: <20221018145348.4051809-1-amit.pundir@linaro.org>
+In-Reply-To: <20221018145348.4051809-1-amit.pundir@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 19 Oct 2022 13:57:34 +0200
+Message-ID: <CAPDyKFoBMB9OMUrcoPCV0of1fj2dimEwPyHGW=ydjJ2M0ubM8Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: qrb5165-rb5: Disable cpuidle states
+To:     Amit Pundir <amit.pundir@linaro.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Mikhail Zhilkin <csharper2005@gmail.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Chaitanya Kulkarni <kch@nvidia.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20221019114855.31639-1-zajec5@gmail.com>
- <20221019115041.31805-1-zajec5@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20221019115041.31805-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19.10.2022 13:50, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This adds support for "linux,root-device" binding that is used to mark
-> root device MTD partition. It's useful for devices using device tree
-> that don't have bootloader passing root info in cmdline.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+On Tue, 18 Oct 2022 at 16:53, Amit Pundir <amit.pundir@linaro.org> wrote:
+>
+> Disable cpuidle states for RB5. These cpuidle states
+> made the device highly unstable and it runs into the
+> following crash frequently:
+>
+> [    T1] vreg_l11c_3p3: failed to enable: -ETIMEDOUT
+> [    T1] qcom-rpmh-regulator 18200000.rsc:pm8150l-rpmh-regulators: ldo11: devm_regulator_register() failed, ret=-110
+> [    T1] qcom-rpmh-regulator: probe of 18200000.rsc:pm8150l-rpmh-regulators failed with error -110
+>
+> Fixes: 32bc936d7321 ("arm64: dts: qcom: sm8250: Add cpuidle states")
+> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
 > ---
->   drivers/mtd/mtdcore.c | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-> index 07249af4f890..034b06aff660 100644
-> --- a/drivers/mtd/mtdcore.c
-> +++ b/drivers/mtd/mtdcore.c
-> @@ -28,6 +28,7 @@
->   #include <linux/leds.h>
->   #include <linux/debugfs.h>
->   #include <linux/nvmem-provider.h>
-> +#include <linux/root_dev.h>
->   
->   #include <linux/mtd/mtd.h>
->   #include <linux/mtd/partitions.h>
-> @@ -735,6 +736,12 @@ int add_mtd_device(struct mtd_info *mtd)
->   		not->add(mtd);
->   
->   	mutex_unlock(&mtd_table_mutex);
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index cc003535a3c5..f936c41bfbea 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -251,6 +251,14 @@ qca639x: qca639x {
+>
+>  };
+>
+> +&LITTLE_CPU_SLEEP_0 {
+> +       status = "disabled";
+> +};
 > +
-> +	if (of_find_property(mtd_get_of_node(mtd), "linux,rootfs", NULL)) {
-
-I forgot to re-do "format-patch" after "commit --amend".
-s/linux,rootfs/linux,root-device/
-
-I'll fix that in V2 after giving this patchset some time to review.
-
-
-> +		pr_info("mtd: setting mtd%d (%s) as root device\n", mtd->index, mtd->name);
-> +		ROOT_DEV = MKDEV(MTD_BLOCK_MAJOR, mtd->index);
-> +	}
+> +&BIG_CPU_SLEEP_0 {
+> +       status = "disabled";
+> +};
 > +
->   	/* We _know_ we aren't being removed, because
->   	   our caller is still holding us here. So none
->   	   of this try_ nonsense, and no bitching about it
+>  &adsp {
+>         status = "okay";
+>         firmware-name = "qcom/sm8250/adsp.mbn";
+> --
+> 2.25.1
 
+Disabling the CPU idlestates, will revert us back to using only the WFI state.
+
+An option that probably works too is to just drop the idlestate for
+the CPU cluster. Would you mind trying the below and see if that works
+too?
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index c32227ea40f9..c707a49e8001 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -700,7 +700,6 @@ CPU_PD7: cpu7 {
+
+                CLUSTER_PD: cpu-cluster0 {
+                        #power-domain-cells = <0>;
+-                       domain-idle-states = <&CLUSTER_SLEEP_0>;
+                };
+        };
+
+Kind regards
+Uffe
