@@ -2,103 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29ACF603A1B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 08:52:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB6B7603A93
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 09:24:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbiJSGwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 02:52:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53024 "EHLO
+        id S229995AbiJSHYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 03:24:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229543AbiJSGwT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 02:52:19 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B75706C12F;
-        Tue, 18 Oct 2022 23:52:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=1w6iARXkcU5udr40SXfE+pLZ56UmQ/8xdX5bxFQ1ePc=; b=Y+FB9sR7gOWgn9WpyzFoXQmUvD
-        m6n64RUEP8cQo0gKhz0hZ4ZA+u3P5po72+Hu/KVZkGUcIxGd/qeX7GjmMl32T3+i9Ow2BVd+xySXN
-        TEoa2f9cBgQoZaj5WYrMDf+qvjWfbX7LTfdIKv2l8BYVcuC5HN2qY7q/gsrPA+EKqpaF7OGzmvNh8
-        9qSu9t6goBkxLTlQM6xDZIO+xFYDjKxP97Z7adCuxCYfdqEQnNNDOVZ129pzl2trgnve7Sz4I9meY
-        kiwWwkcjw7t32xx3oyCDkIdHeK8C8ThoNoBaLsQE2W02wjEA9bE76xQQG3v5HCSxtvv1xxljRKffE
-        FKC8mNbQ==;
-Received: from p200300ccff064b001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff06:4b00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1ol2vr-00045r-0h; Wed, 19 Oct 2022 08:52:03 +0200
-Received: from andi by aktux with local (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1ol2vq-0044Jl-HI; Wed, 19 Oct 2022 08:52:02 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        j.neuschaefer@gmx.net
-Cc:     Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH 2/2] ARM: dts: imx6sl-tolino-shine2hd: Add backlight boost
-Date:   Wed, 19 Oct 2022 08:51:59 +0200
-Message-Id: <20221019065159.969852-3-andreas@kemnade.info>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20221019065159.969852-1-andreas@kemnade.info>
-References: <20221019065159.969852-1-andreas@kemnade.info>
+        with ESMTP id S229777AbiJSHYK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 03:24:10 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15976786F4
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 00:24:07 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id bk15so27545694wrb.13
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 00:24:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=pO5JseBz8j296HTsa3kKnD9/F7eh1kiGFetG6YGNQSM=;
+        b=A/dTZiZGo87ELII687rFcq19EVEWe04nVPcMeBcmzA9KkKv8+iQGGIr3k4oPKMQkqK
+         KnCnooJ7BEGW2zyS6gsC0AwJ8f7t3hSWDzRBD8KDfaRSJhL+Ou/aNNq2l0FHqutjgboE
+         v2uiYoPrLAC88MPy5iiLVceaAFVZ81yzdfP0BwQdFyPAw9NqwC9hvHv4LMx04/gc28v1
+         nMxBEMdkmU+li7gSQXHOV71y1PB3hT6eZAPUpXwR0VCJ+F6GJraRC5X2DrZ3RpuPsMqA
+         2gOCqy7JPIVVjII+brkNwo77xieGLstZOEOFhC1DAGdlfcujziYCTVHkQuobSOv9sVkV
+         394w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pO5JseBz8j296HTsa3kKnD9/F7eh1kiGFetG6YGNQSM=;
+        b=01e9catdSOdSU35ESJKDl0W/VDeZBdZpE6yBxzpTjL0er2wimFv8aWCOz+vBVu+Ix8
+         M16wrjqlx3DX57uTvt8W2jRTEJX0JH9x7w4hD6f7zxdpNYe3zXswPumv0B1yb4CbVKa5
+         IuUV+f26Zb9FySsoPR7sX7XfEZ4HLRGpQqdwp99S1A/OtH6WURKdiaVWSDIuQK+s452x
+         s3cNUtgOK1h324/jPJFYCXNZDGU7ZPvI34k+Ac66toO8pjnkdooKO2u67+036CzsniEF
+         HDqopkWyzqWo63xJuWB21AMUnj3CIs6ImBmQ9NTNChgMaxVqoTk9aQO6VA8DAWB/mN/d
+         u94A==
+X-Gm-Message-State: ACrzQf0kWhpvXwU0MSDwXFDqy43G/4M77HEwAdnHJq2Y+Ws53xUmYr0d
+        6odYfIEzYJyFXd5thcrscvVlCw==
+X-Google-Smtp-Source: AMsMyM41BG7VmonFRVjNhVfV/BEj8FDJYM2MMC9XYIyg52OWiE/yTm381JfFpSAthVXGpTfwKDZ6bQ==
+X-Received: by 2002:a05:6000:1102:b0:22e:529:a43d with SMTP id z2-20020a056000110200b0022e0529a43dmr4122710wrw.412.1666164244704;
+        Wed, 19 Oct 2022 00:24:04 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:b15b:4b56:592a:c397? ([2a01:e0a:982:cbb0:b15b:4b56:592a:c397])
+        by smtp.gmail.com with ESMTPSA id z9-20020a5d44c9000000b0022917d58603sm12975630wrr.32.2022.10.19.00.24.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Oct 2022 00:24:04 -0700 (PDT)
+Message-ID: <c0f22ea5-b094-d477-e6e4-c509945587e9@linaro.org>
+Date:   Wed, 19 Oct 2022 09:24:03 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -1.0 (-)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on
+ Odroid N2/N2+
+Content-Language: en-US
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Anand Moon <linux.amoon@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221018195122.8877-1-linux.amoon@gmail.com>
+ <CAFBinCCqXBk9Xq0k=NA3zGi8spwyPQN7dMVWcjE+pXkXYf+FKQ@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CAFBinCCqXBk9Xq0k=NA3zGi8spwyPQN7dMVWcjE+pXkXYf+FKQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Vendor system has a separate checkbox for increasing brightness of the
-backlight combined with a big warning that power consumption will
-greatly increase. With that checkbox enabled there is a greater range in
-which backlight brightness can be adjusted
-Add a switch to achieve the same, since the backlight is actually LED,
-this seems to be the most appopiate place to add it. Nothing fits
-perfectly.
+Hi,
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+On 18/10/2022 23:16, Martin Blumenstingl wrote:
+> Hello Anand,
+> 
+> On Tue, Oct 18, 2022 at 9:53 PM Anand Moon <linux.amoon@gmail.com> wrote:
+>>
+>> Odroid N2/N2+ support active cooling via gpio-fan controller.
+>> Add fan controls and tip point for cpu and ddr thermal sensor
+>> on this boards.
+> In the schematics for board rev 0.6 [0] I cannot find any information
+> about a fan connector.
+> The schematics for board rev 0.3 [1] on the other hand document a PWM
+> based fan connector on page 16.
 
-diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts b/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
-index ea0ce59aa4f1..da1399057634 100644
---- a/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
-+++ b/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
-@@ -80,6 +80,12 @@ led-0 {
- 			gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
- 			linux,default-trigger = "timer";
- 		};
-+
-+		led-1 {
-+			label = "tolinoshine2hd:white:backlightboost";
-+			gpios = <&gpio1 29 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "off";
-+		};
- 	};
- 
- 	memory@80000000 {
-@@ -404,7 +410,8 @@ MX6SL_PAD_REF_CLK_32K__I2C3_SDA  0x4001f8b1
- 
- 	pinctrl_led: ledgrp {
- 		fsl,pins = <
--			MX6SL_PAD_SD1_DAT2__GPIO5_IO13 0x17059
-+			MX6SL_PAD_SD1_DAT2__GPIO5_IO13    0x17059
-+			MX6SL_PAD_EPDC_SDCE2__GPIO1_IO29  0x17059
- 		>;
- 	};
- 
--- 
-2.30.2
+It seems the fan connector is on page 41 on rev 0.6 and it seems to be the same.
 
+> So now I am not sure whether your patch only applies to certain board
+> revisions, the schematics are incorrect, etc.
+> 
+> Can you please provide some details about the fan connector on
+> Odroid-N2/N2+ and which hardware revisions are supported (and which
+> aren't) by your patch?
+> 
+> 
+> Thank you!
+> Martin
+> 
+> 
+> [0] https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+> [1] https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.3_20190117.pdf
+
+Neil
