@@ -2,97 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1FDA605005
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 20:57:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F329A60508C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 21:37:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbiJSS5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 14:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46162 "EHLO
+        id S231206AbiJSThG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 15:37:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbiJSS5t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 14:57:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66765AB832;
-        Wed, 19 Oct 2022 11:57:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 035636199B;
-        Wed, 19 Oct 2022 18:57:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28EDAC433C1;
-        Wed, 19 Oct 2022 18:57:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666205867;
-        bh=EnOpH7Lv1TeiqPjow/eD64evbB/LIRhs0HLdNfrtqzY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=c14JiC5Cxi1euBihLQy4aYcfn7XPo+SjbbDLw5kiIqj4ktcXPnRdE3nhmRFWG5OpA
-         yiyaY4Zh/2RZ14Pil0LM3NGxj81fTEjpCAHmM93XHLXgPsOBXTp0qRUH4m+eY4Cqf0
-         lXmN2Q4hgb3fjOGajMN2tTkFSBmHCo/thpSmGnQAKb19R8diUJ323KSBTu2jntU1+x
-         0toYyNe13UVkLR8rLJ/KXLeo/79WeiYHF3jgEtYRXusbtvMVEr+0rWRgbDvY1RArkJ
-         lmnp9JqX37Hs6gR6RTWoRxbyUA5eoFa/n6zSyL6RSQgZN7oAJbhTVd5shkPpdZ7Kjd
-         NvsxD2ToXFvjw==
-Message-ID: <6e6935bc-6de9-99fe-be17-1845b1910e2c@kernel.org>
-Date:   Wed, 19 Oct 2022 19:57:44 +0100
+        with ESMTP id S230289AbiJSTg4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 15:36:56 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D4E11849A4
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 12:36:54 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id d6so29850203lfs.10
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 12:36:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TManQgzHQ6XphXtlKXuYjSPihnY9oImMeI5Fsm/kiVw=;
+        b=Fu5/fD92PNQDscJzpZhAxROpgQu8MYPPeZJmEnHdHXVe7t0pF6KNkEXLv/A79RT5lq
+         mGWz2rp75cnTEpNgFTAU4AWcMTLKCsYBTXAtpX4MfDEOYq49/XLodFZ5THSPR5q1tk+Y
+         Ar329JxMrIQH/jQqu4dChKNzgT9mou3wNixdhI6R/P4zzJln//K8btuh9uRNnJVaDvkj
+         rEmdGzqRz/nj9y7W9vxqkMh2xrz94OW5whZFzISj3zHGvXH1NUNNDEa1q85mlaKtlo4K
+         rADVDjn9bmTDLEwlZhFRASojOxn4lvkuqcg8NDFK6/cUhvoxRaKOrceWyMVmVe7mTTSz
+         t5Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TManQgzHQ6XphXtlKXuYjSPihnY9oImMeI5Fsm/kiVw=;
+        b=Ulv/FHEZJomAJPcfpwrjnqNyNwnhIffNoP0SFxfD1ZUWgoenfkbOxwdIkxNVzTpKQt
+         RaL8vYQrSZzHVPMWEhKmALrRzXB2fHeVskWj68aa1uPSfFsSSt3bdZEhUfJGh55C1Rhw
+         WushtyvEBiCxBDduQxxxkYCszjwwwfrESR0mTDuObZ3P3acbqTeQxxU442o1zQ86M1kG
+         dgXthPRWV5OhaI1QJWA7ednYp7LBgyOBzLMn/7idNNOsV5kIFVx4hHR+6jcJzY4gTYOC
+         WSPmTnrNDrBRUa/F3shXFilR1Vh189kjDbtdSoE3ilrOPa4nX1poz8JxUhap6gfxoj5S
+         v2hA==
+X-Gm-Message-State: ACrzQf22S3NMWvljZC38jJ8l7Bc88bCnywC9Opjh3ZGUThG6LY+Mu+Hz
+        7QZPwGEAyXWfXmooUQVMTI+qpQ==
+X-Google-Smtp-Source: AMsMyM6+rcbNzUmRYys01c5wdoohS1ZFuRzf9DQSiQ2JnTWR1FX8F3hKJWno1hcMQSX8qTcNXTQbQg==
+X-Received: by 2002:a19:4918:0:b0:48c:e6a0:c8d8 with SMTP id w24-20020a194918000000b0048ce6a0c8d8mr3432684lfa.679.1666208212372;
+        Wed, 19 Oct 2022 12:36:52 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id k26-20020ac2457a000000b004972b0bb426sm2392465lfm.257.2022.10.19.12.36.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Oct 2022 12:36:52 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH 1/2 v3] dt-bindings: ARM: add bindings for the D-Link DWL-8610AP
+Date:   Wed, 19 Oct 2022 21:34:48 +0200
+Message-Id: <20221019193449.3036010-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH] of: fix repeated words in comments
-Content-Language: en-US
-To:     Randy Dunlap <rdunlap@infradead.org>,
-        Jilin Yuan <yuanjilin@cdjrlc.com>, robh+dt@kernel.org,
-        frowand.list@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221019130200.60460-1-yuanjilin@cdjrlc.com>
- <9fb4c010-b465-e908-6868-d9e493a9688f@infradead.org>
-From:   Conor Dooley <conor@kernel.org>
-In-Reply-To: <9fb4c010-b465-e908-6868-d9e493a9688f@infradead.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 19:53, Randy Dunlap wrote:
-> 
-> 
-> On 10/19/22 06:02, Jilin Yuan wrote:
->> Delete the redundant word 'of'.
->>
->> Signed-off-by: Jilin Yuan <yuanjilin@cdjrlc.com>
->> ---
->>  drivers/of/device.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/of/device.c b/drivers/of/device.c
->> index 8cefe5a7d04e..16c7e5a2a868 100644
->> --- a/drivers/of/device.c
->> +++ b/drivers/of/device.c
->> @@ -19,7 +19,7 @@
->>  
->>  /**
->>   * of_match_device - Tell if a struct device matches an of_device_id list
->> - * @matches: array of of device match structures to search in
->> + * @matches: array of device match structures to search in
-> 
-> Hi,
-> Rob has already explained this at least 2 times.
-> 
-> The second "of" is "open firmware".
-> I would write it
->               array of OF device match structures to search in
-> :)
+The D-Link DWL-8610AP is a pure access point with ethernet in
+and wireless (both 2.4GHz and 5GHz) out.
 
-Good luck getting a response out of these guys, at this point
-you've gotta wonder if they're real people or bots.
+Cc: devicetree@vger.kernel.org
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v3:
+- Collect Rob's ACK
+- Resend with the main DTS patch
+---
+ Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> 
->>   * @dev: the of device structure to match against
->>   *
->>   * Used by a driver to check whether an platform_device present in the
-> 
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
+index 958df32b4899..2657f9b82ecd 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
+@@ -97,6 +97,7 @@ properties:
+       - description: BCM53016 based boards
+         items:
+           - enum:
++              - dlink,dwl-8610ap
+               - meraki,mr32
+           - const: brcm,bcm53016
+           - const: brcm,bcm4708
+-- 
+2.34.1
+
