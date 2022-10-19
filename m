@@ -2,53 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDA85604A59
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:04:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F1B604AC5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbiJSPEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 11:04:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60682 "EHLO
+        id S232236AbiJSPL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 11:11:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229736AbiJSPC5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:02:57 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B5915ECE6;
-        Wed, 19 Oct 2022 07:57:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 797FAB8224C;
-        Wed, 19 Oct 2022 14:56:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2560C433C1;
-        Wed, 19 Oct 2022 14:56:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1666191393;
-        bh=TM4wgjfRG/tpZ3xsCpLkHBSysgXbD+pBzv+iwSUm6kg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Hlsw1Gwy1q7/79w+6D6j6HBbTG13TcCDZAYvv6gU5AroS8Z+SjnpAMdNs1Yuxv2FW
-         WNUr++fT7x1cg0yRThZSaWWywiq3ROpZ+xnyobtCxDH7za5iLD8l2JHJNCtkoETgga
-         oUAUYNhU4hgpb7jTpu7k2dS3oH9KmofD/O26Aus8=
-Date:   Wed, 19 Oct 2022 16:56:30 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Quentin Schulz <foss+kernel@0leil.net>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: lower rk3399-puma-haikou SD
- controller clock frequency
-Message-ID: <Y1AQHqm+cOmrrveJ@kroah.com>
-References: <20221019-upstream-puma-sd-40mhz-v1-0-754a76421518@theobroma-systems.com>
+        with ESMTP id S232182AbiJSPK6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:10:58 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95AC38E7BE
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:04:13 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id j21so10836658qkk.9
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:04:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WIba4LQ00ttMU3jX8PFfsaELx8frRr91MUBlfYSr2kI=;
+        b=vsmdeYcbOirVkIwVp69K0/B/Q2G8pj5aImsLGSphSCOkdyOtVK4s+2f3JpaBxGkjMX
+         hJO02Hssoq5its4BAfIW39nttxpgNxjT1robK16PB6u0FasQKcHfZjT2d6t8yR3xB9FO
+         +f9bnHcJ4B1+Zv+etkxUy54f48qZESHPiLBpNB2ipipQS80b/wXUHWgv94jp0i75dnq4
+         XSEc8lr0a9ThTsxyJJjnuJu6pHyaMQb8Mnh1mArbWkSO9kY6I+oUuCMUqmdC/C+Pll5x
+         59V4VcW1H1XbZW74BsMCayRw8As4dtO0IezTlweUN+2Cgp64uWmubZQwsHXPiW11qTM1
+         wSdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WIba4LQ00ttMU3jX8PFfsaELx8frRr91MUBlfYSr2kI=;
+        b=BpK2rekWTMo9X4xvCBiyyZM1LpDXCVo//q5EbC+D9n+fklp9+ztfV4Ecr3jrk1ByfJ
+         QZcYkljied7vDuW23zqI9ARlg+ff9OxPHSs0W6P5l3817tazJ6uY0QCgV/1YfxiOsoyc
+         S8Cs3yxpiirJqJjhAAv2e44UmI7yptSqWBJ2FLiXTvk7O1yTr2yBNKIDWz9IkcTZaHK7
+         VxJEg1ZjxdHtIuBDag9NwsZV4HoA6kMlMSkvuRk0DC50Rv6ZfRVWOLQD7r0ObBI0TRQX
+         f0Mi6vBPT23P8Dl5L5RXBsU2wC+WmVuFRU8YdRhkCSknxybI+7ZEXmtaTZhGmUEeMbqL
+         jGYA==
+X-Gm-Message-State: ACrzQf0ynNGfGttsKAvBygVSWifjUH5NDz8RXLrH3riCnxZaxXmoNVRK
+        yB5MBfDwBbBmmfku1vGjFT4Z5w==
+X-Google-Smtp-Source: AMsMyM66zRdjEsWkpeQJV2uIpQ6hyK3beuGQqjZeWEqSkjNlyGOYQkFrNhdKvmWqwkiCfpzs5N8Mbg==
+X-Received: by 2002:ae9:e604:0:b0:6ec:c872:a0d5 with SMTP id z4-20020ae9e604000000b006ecc872a0d5mr5644764qkf.684.1666191852713;
+        Wed, 19 Oct 2022 08:04:12 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id d18-20020a05620a241200b006bc192d277csm5266084qkn.10.2022.10.19.08.04.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Oct 2022 08:04:11 -0700 (PDT)
+Message-ID: <a45bbe87-9ce0-4b52-c275-cf1a361b7afe@linaro.org>
+Date:   Wed, 19 Oct 2022 11:04:10 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221019-upstream-puma-sd-40mhz-v1-0-754a76421518@theobroma-systems.com>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-pcie: Convert to YAML
+ schemas of Xilinx AXI PCIe Root Port Bridge
+Content-Language: en-US
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     bhelgaas@google.com, michals@xilinx.com, robh+dt@kernel.org,
+        bharat.kumar.gogada@amd.com
+References: <20221019144640.9458-1-thippeswamy.havalige@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221019144640.9458-1-thippeswamy.havalige@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,32 +76,234 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 19, 2022 at 04:27:27PM +0200, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+On 19/10/2022 10:46, Thippeswamy Havalige wrote:
+> Convert to YAML dtschemas of Xilinx AXI PCIe Root Port Bridge
+> dt binding.
 > 
-> From: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
-
-You can not have 2 authors :(
-
-> 
-> CRC errors (code -84 EILSEQ) have been observed for some SanDisk
-> Ultra A1 cards when running at 50MHz.
-> 
-> Waveform analysis suggest that the level shifters that are used on the
-> RK3399-Q7 module for voltage translation between 3.0 and 3.3V don't
-> handle clock rates at or above 48MHz properly. Back off to 40MHz for
-> some safety margin.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 60fd9f72ce8a ("arm64: dts: rockchip: add Haikou baseboard with RK3399-Q7 SoM")
-> Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
-> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
 > ---
-> We've been carrying this patch downstream for years and completely forgot to
-> upstream it. This is now done.
+>  .../devicetree/bindings/pci/xilinx-pcie.txt   | 88 -------------------
+>  .../devicetree/bindings/pci/xilinx-pcie.yaml  | 81 +++++++++++++++++
+>  2 files changed, 81 insertions(+), 88 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/xilinx-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/pci/xilinx-pcie.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/xilinx-pcie.txt b/Documentation/devicetree/bindings/pci/xilinx-pcie.txt
+> deleted file mode 100644
+> index fd57a81180a4..000000000000
+> --- a/Documentation/devicetree/bindings/pci/xilinx-pcie.txt
+> +++ /dev/null
+> @@ -1,88 +0,0 @@
+> -* Xilinx AXI PCIe Root Port Bridge DT description
+> -
+> -Required properties:
+> -- #address-cells: Address representation for root ports, set to <3>
+> -- #size-cells: Size representation for root ports, set to <2>
+> -- #interrupt-cells: specifies the number of cells needed to encode an
+> -	interrupt source. The value must be 1.
+> -- compatible: Should contain "xlnx,axi-pcie-host-1.00.a"
+> -- reg: Should contain AXI PCIe registers location and length
+> -- device_type: must be "pci"
+> -- interrupts: Should contain AXI PCIe interrupt
+> -- interrupt-map-mask,
+> -  interrupt-map: standard PCI properties to define the mapping of the
+> -	PCI interface to interrupt numbers.
+> -- ranges: ranges for the PCI memory regions (I/O space region is not
+> -	supported by hardware)
+> -	Please refer to the standard PCI bus binding document for a more
+> -	detailed explanation
+> -
+> -Optional properties for Zynq/Microblaze:
+> -- bus-range: PCI bus numbers covered
+> -
+> -Interrupt controller child node
+> -+++++++++++++++++++++++++++++++
+> -Required properties:
+> -- interrupt-controller: identifies the node as an interrupt controller
+> -- #address-cells: specifies the number of cells needed to encode an
+> -	address. The value must be 0.
+> -- #interrupt-cells: specifies the number of cells needed to encode an
+> -	interrupt source. The value must be 1.
+> -
+> -NOTE:
+> -The core provides a single interrupt for both INTx/MSI messages. So,
+> -created a interrupt controller node to support 'interrupt-map' DT
+> -functionality.  The driver will create an IRQ domain for this map, decode
+> -the four INTx interrupts in ISR and route them to this domain.
+> -
+> -
+> -Example:
+> -++++++++
+> -Zynq:
+> -	pci_express: axi-pcie@50000000 {
+> -		#address-cells = <3>;
+> -		#size-cells = <2>;
+> -		#interrupt-cells = <1>;
+> -		compatible = "xlnx,axi-pcie-host-1.00.a";
+> -		reg = < 0x50000000 0x1000000 >;
+> -		device_type = "pci";
+> -		interrupts = < 0 52 4 >;
+> -		interrupt-map-mask = <0 0 0 7>;
+> -		interrupt-map = <0 0 0 1 &pcie_intc 1>,
+> -				<0 0 0 2 &pcie_intc 2>,
+> -				<0 0 0 3 &pcie_intc 3>,
+> -				<0 0 0 4 &pcie_intc 4>;
+> -		ranges = < 0x02000000 0 0x60000000 0x60000000 0 0x10000000 >;
+> -
+> -		pcie_intc: interrupt-controller {
+> -			interrupt-controller;
+> -			#address-cells = <0>;
+> -			#interrupt-cells = <1>;
+> -		};
+> -	};
+> -
+> -
+> -Microblaze:
+> -	pci_express: axi-pcie@10000000 {
+> -		#address-cells = <3>;
+> -		#size-cells = <2>;
+> -		#interrupt-cells = <1>;
+> -		compatible = "xlnx,axi-pcie-host-1.00.a";
+> -		reg = <0x10000000 0x4000000>;
+> -		device_type = "pci";
+> -		interrupt-parent = <&microblaze_0_intc>;
+> -		interrupts = <1 2>;
+> -		interrupt-map-mask = <0 0 0 7>;
+> -		interrupt-map = <0 0 0 1 &pcie_intc 1>,
+> -				<0 0 0 2 &pcie_intc 2>,
+> -				<0 0 0 3 &pcie_intc 3>,
+> -				<0 0 0 4 &pcie_intc 4>;
+> -		ranges = <0x02000000 0x00000000 0x80000000 0x80000000 0x00000000 0x10000000>;
+> -
+> -		pcie_intc: interrupt-controller {
+> -			interrupt-controller;
+> -			#address-cells = <0>;
+> -			#interrupt-cells = <1>;
+> -		};
+> -
+> -	};
+> diff --git a/Documentation/devicetree/bindings/pci/xilinx-pcie.yaml b/Documentation/devicetree/bindings/pci/xilinx-pcie.yaml
+> new file mode 100644
+> index 000000000000..6b372ac1763e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/xilinx-pcie.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/xilinx-pcie.yaml#
 
-It has to be accepted before you are done :)
+Filename based on compatible, so:
+xlnx,axi-pcie-host.yaml
 
-thanks,
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx AXI PCIe Root Port Bridge DT description
 
-greg k-h
+Drop "DT description"
+
+> +
+> +maintainers:
+> +  - Thippeswamy Havalige <thippesw@xilinx.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,axi-pcie-host-1.00.a
+> +
+> +  reg:
+> +    items:
+> +      - description: should contain AXI PCIe registers location and length
+
+Drop description, just maxItems: 1
+
+> +
+> +  interrupts:
+> +    items:
+> +      - description: should contain AXI PCIe interrupt
+
+Ditto
+
+
+> +
+> +  ranges:
+> +    items:
+> +      - description: |
+> +          ranges for the PCI memory regions (I/O space region is not
+> +          supported by hardware)
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +
+> +  interrupt-controller:
+> +    description: identifies the node as an interrupt controller
+> +    type: object
+
+    additionalProperties: false
+
+> +    properties:
+> +      "interrupt-controller": true
+> +      "#address-cells":
+> +        const: 0
+> +      "#interrupt-cells":
+> +        const: 1
+
+Add also required properties for this node.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - ranges
+> +  - device_type
+> +  - interrupt-map
+> +  - "#interrupt-cells"
+> +  - interrupt-controller
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +
+> +    Zynq:
+> +        pci_express: pcie@50000000 {
+> +               #address-cells = <3>;
+
+Use 4 spaces for example indentation.
+
+> +               #size-cells = <2>;
+> +               #interrupt-cells = <1>;
+> +               compatible = "xlnx,axi-pcie-host-1.00.a";
+> +               reg = < 0x50000000 0x1000000 >;
+
+Fix style.
+
+compatible goes first, then reg, then the rest.
+
+> +               device_type = "pci";
+> +               interrupts = < 0 52 4 >;
+
+Fix the style, use defines.
+
+> +               interrupt-map-mask = <0 0 0 7>;
+> +               interrupt-map = <0 0 0 1 &pcie_intc 1>,
+> +                               <0 0 0 2 &pcie_intc 2>,
+> +                               <0 0 0 3 &pcie_intc 3>,
+> +                               <0 0 0 4 &pcie_intc 4>;
+> +                ranges = < 0x02000000 0 0x60000000 0x60000000 0 0x10000000 >;
+
+Original example looked correct, so how did it become with these spaces?
+
+> +                pcie_intc: interrupt-controller {
+> +                         interrupt-controller;
+> +                         #address-cells = <0>;
+> +                         #interrupt-cells = <1>;
+> +                };
+> +    };
+
+Best regards,
+Krzysztof
+
