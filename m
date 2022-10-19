@@ -2,308 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DADD1604422
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 13:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93095604719
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229989AbiJSL6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 07:58:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44326 "EHLO
+        id S230012AbiJSN3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 09:29:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbiJSL56 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 07:57:58 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7806636BF3;
-        Wed, 19 Oct 2022 04:36:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S232601AbiJSN3H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:29:07 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E43B9AC28;
+        Wed, 19 Oct 2022 06:16:02 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 5BBBECE2154;
-        Wed, 19 Oct 2022 11:36:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6070C4FF41;
-        Wed, 19 Oct 2022 11:36:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666179380;
-        bh=pZz6W3qt7Z8aEc7Y/CcnxS3JGIvgJnfxnWaHsyB+7Gc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lRjskLdjBbnslbFOtpr0716XP3Ym90S+1zRnf7iyCby1mCNRkBmGaPf671JqUPEvy
-         FyOK0zj3/0w3E8oSNj/xtRp8hhAjH/5ScZ0LOYXE015tI0Ai6q2KYLlpd7sMq16xwW
-         KwZF6jQ4+COgO4GcM5SR+kfT1FmIeM1DELbjqzbUWdrcoDPSqz8bSKPssZVMaOemKT
-         OECUhbzuHhclnRDxo7P4pY7uAduqsDo8BQa0oMA81Pa11CIQ4JrYSjk2Z7DeZUHDFg
-         uiYGRRyN2E4mABdNVY55iqotojY6dv+XQVSJKxg7JCfax8Y1nO0D58O8n/9djRB8C/
-         pJncNoCSoq2NQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1ol7Mm-0005pv-Ix; Wed, 19 Oct 2022 13:36:08 +0200
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 37E5C66023AA;
+        Wed, 19 Oct 2022 09:51:09 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666169469;
+        bh=JRrtscYJcgnvP6zoQUoIszeWzHvqEHR17uOuuaKa6uA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=MfG6R1OFvTDzIsvmQwazrsJnhSLRTyrtSrgynYi08JlaDlOxOKCPip8RY8pvSiRgN
+         KHb2pqiMn8wrmvIEDU4mM/ucE8/nyn+dbJgdN0muZb0dQ9rgRNqt+jaWTa3riM+zYc
+         wDPK6pXdn/LhiAnQa1pF37+eoFm26xSj+Skk3fR4nVOhtpBldwVO0A3+5i+hhu717Q
+         jj+iXCHioBkax2EtGx12ed0P2XL9JPxMT9+fiu5dPi0El57ERZ/oxru4OxfRB5GGye
+         pf9NGLGTrQ2mEC4wZ3z+qtqmv8BIXMwAtSdLEcv3RrzeHiDI4J0ogl2iIy3WR+CEkN
+         xyzf96mibVOwg==
+Message-ID: <01ef8a2d-091f-5428-2cb8-41ba3e137a06@collabora.com>
+Date:   Wed, 19 Oct 2022 10:51:07 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v1 3/3] arm64: dts: mt8195: Add venc node
+Content-Language: en-US
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v2 15/15] phy: qcom-qmp-pcie: add support for sc8280xp 4-lane PHYs
-Date:   Wed, 19 Oct 2022 13:35:52 +0200
-Message-Id: <20221019113552.22353-16-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221019113552.22353-1-johan+linaro@kernel.org>
-References: <20221019113552.22353-1-johan+linaro@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Irui Wang <irui.wang@mediatek.com>
+References: <20221017070858.13902-1-tinghan.shen@mediatek.com>
+ <20221017070858.13902-4-tinghan.shen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221017070858.13902-4-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PCIe2 and PCIe3 controllers and PHYs on SC8280XP can be used in
-4-lane mode or as separate controllers and PHYs in 2-lane mode (e.g. as
-PCIe2A and PCIe2B).
+Il 17/10/22 09:08, Tinghan Shen ha scritto:
+> Add venc node for mt8195 SoC.
+> 
+> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 903e92d6156f..7cf2f7ef4ec6 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -2163,6 +2163,30 @@
+>   			power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
+>   		};
+>   
+> +		venc: venc@1a020000 {
 
-Add support for fetching the 4-lane configuration from the TCSR and
-programming the lane registers of the second port when in 4-lane mode.
+As Krzysztof also said, this is video-codec@1a020000.
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- drivers/phy/qualcomm/Kconfig             |   1 +
- drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 118 +++++++++++++++++++++++
- 2 files changed, 119 insertions(+)
+Also, there's one more thing... MT8195 has two video encoder cores, but this
+node is only for the first one. There's a second instance at 0x1b020000: please
+add it.
 
-diff --git a/drivers/phy/qualcomm/Kconfig b/drivers/phy/qualcomm/Kconfig
-index 5c98850f5a36..eb9ddc685b38 100644
---- a/drivers/phy/qualcomm/Kconfig
-+++ b/drivers/phy/qualcomm/Kconfig
-@@ -54,6 +54,7 @@ config PHY_QCOM_QMP
- 	tristate "Qualcomm QMP PHY Driver"
- 	depends on OF && COMMON_CLK && (ARCH_QCOM || COMPILE_TEST)
- 	select GENERIC_PHY
-+	select MFD_SYSCON
- 	help
- 	  Enable this to support the QMP PHY transceiver that is used
- 	  with controllers such as PCIe, UFS, and USB on Qualcomm chips.
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-index ea5228bd9ecc..e5bce4810bb5 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-@@ -10,6 +10,7 @@
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_device.h>
-@@ -17,6 +18,7 @@
- #include <linux/phy/pcie.h>
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
-+#include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/reset.h>
- #include <linux/slab.h>
-@@ -886,6 +888,10 @@ static const struct qmp_phy_init_tbl sc8280xp_qmp_gen3x2_pcie_rc_serdes_tbl[] =
- 	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIAS_EN_CLKBUFLR_EN, 0x14),
- };
- 
-+static const struct qmp_phy_init_tbl sc8280xp_qmp_gen3x4_pcie_serdes_4ln_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIAS_EN_CLKBUFLR_EN, 0x1c),
-+};
-+
- static const struct qmp_phy_init_tbl sc8280xp_qmp_gen3x1_pcie_tx_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V5_TX_PI_QEC_CTRL, 0x20),
- 	QMP_PHY_INIT_CFG(QSERDES_V5_TX_LANE_MODE_1, 0x75),
-@@ -1491,6 +1497,9 @@ struct qmp_phy_cfg {
- 	const struct qmp_phy_cfg_tables *tables_rc;
- 	const struct qmp_phy_cfg_tables *tables_ep;
- 
-+	const struct qmp_phy_init_tbl *serdes_4ln_tbl;
-+	int serdes_4ln_num;
-+
- 	/* clock ids to be requested */
- 	const char * const *clk_list;
- 	int num_clks;
-@@ -1518,6 +1527,7 @@ struct qmp_pcie {
- 	struct device *dev;
- 
- 	const struct qmp_phy_cfg *cfg;
-+	bool tcsr_4ln_config;
- 
- 	void __iomem *serdes;
- 	void __iomem *pcs;
-@@ -1527,6 +1537,8 @@ struct qmp_pcie {
- 	void __iomem *tx2;
- 	void __iomem *rx2;
- 
-+	void __iomem *port_b;
-+
- 	struct clk *pipe_clk;
- 	struct clk *pipediv2_clk;
- 	struct clk_bulk_data *clks;
-@@ -1932,6 +1944,44 @@ static const struct qmp_phy_cfg sc8280xp_qmp_gen3x2_pciephy_cfg = {
- 	.phy_status		= PHYSTATUS,
- };
- 
-+static const struct qmp_phy_cfg sc8280xp_qmp_gen3x4_pciephy_cfg = {
-+	.lanes			= 4,
-+
-+	.offsets		= &qmp_pcie_offsets_v5,
-+
-+	.tables = {
-+		.serdes		= sc8280xp_qmp_pcie_serdes_tbl,
-+		.serdes_num	= ARRAY_SIZE(sc8280xp_qmp_pcie_serdes_tbl),
-+		.tx		= sc8280xp_qmp_gen3x2_pcie_tx_tbl,
-+		.tx_num		= ARRAY_SIZE(sc8280xp_qmp_gen3x2_pcie_tx_tbl),
-+		.rx		= sc8280xp_qmp_gen3x2_pcie_rx_tbl,
-+		.rx_num		= ARRAY_SIZE(sc8280xp_qmp_gen3x2_pcie_rx_tbl),
-+		.pcs		= sc8280xp_qmp_gen3x2_pcie_pcs_tbl,
-+		.pcs_num	= ARRAY_SIZE(sc8280xp_qmp_gen3x2_pcie_pcs_tbl),
-+		.pcs_misc	= sc8280xp_qmp_gen3x2_pcie_pcs_misc_tbl,
-+		.pcs_misc_num	= ARRAY_SIZE(sc8280xp_qmp_gen3x2_pcie_pcs_misc_tbl),
-+	},
-+
-+	.tables_rc = &(const struct qmp_phy_cfg_tables) {
-+		.serdes		= sc8280xp_qmp_gen3x2_pcie_rc_serdes_tbl,
-+		.serdes_num	= ARRAY_SIZE(sc8280xp_qmp_gen3x2_pcie_rc_serdes_tbl),
-+	},
-+
-+	.serdes_4ln_tbl		= sc8280xp_qmp_gen3x4_pcie_serdes_4ln_tbl,
-+	.serdes_4ln_num		= ARRAY_SIZE(sc8280xp_qmp_gen3x4_pcie_serdes_4ln_tbl),
-+
-+	.clk_list		= sc8280xp_pciephy_clk_l,
-+	.num_clks		= ARRAY_SIZE(sc8280xp_pciephy_clk_l),
-+	.reset_list		= sdm845_pciephy_reset_l,
-+	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-+	.vreg_list		= qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.regs			= sm8250_pcie_regs_layout,
-+
-+	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-+	.phy_status		= PHYSTATUS,
-+};
-+
- static const struct qmp_phy_cfg sdx55_qmp_pciephy_cfg = {
- 	.lanes			= 2,
- 
-@@ -2054,6 +2104,24 @@ static void qmp_pcie_configure(void __iomem *base,
- 	qmp_pcie_configure_lane(base, tbl, num, 0xff);
- }
- 
-+static void qmp_pcie_init_port_b(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
-+{
-+	const struct qmp_phy_cfg *cfg = qmp->cfg;
-+	const struct qmp_pcie_offsets *offs = cfg->offsets;
-+	void __iomem *tx3, *rx3, *tx4, *rx4;
-+
-+	tx3 = qmp->port_b + offs->tx;
-+	rx3 = qmp->port_b + offs->rx;
-+	tx4 = qmp->port_b + offs->tx2;
-+	rx4 = qmp->port_b + offs->rx2;
-+
-+	qmp_pcie_configure_lane(tx3, tbls->tx, tbls->tx_num, 1);
-+	qmp_pcie_configure_lane(rx3, tbls->rx, tbls->rx_num, 1);
-+
-+	qmp_pcie_configure_lane(tx4, tbls->tx, tbls->tx_num, 2);
-+	qmp_pcie_configure_lane(rx4, tbls->rx, tbls->rx_num, 2);
-+}
-+
- static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
- {
- 	const struct qmp_phy_cfg *cfg = qmp->cfg;
-@@ -2080,6 +2148,11 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
- 
- 	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
- 	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
-+
-+	if (cfg->lanes >= 4 && qmp->tcsr_4ln_config) {
-+		qmp_pcie_configure(serdes, cfg->serdes_4ln_tbl, cfg->serdes_4ln_num);
-+		qmp_pcie_init_port_b(qmp, tbls);
-+	}
- }
- 
- static int qmp_pcie_init(struct phy *phy)
-@@ -2477,6 +2550,37 @@ static int qmp_pcie_parse_dt_legacy(struct qmp_pcie *qmp, struct device_node *np
- 	return 0;
- }
- 
-+static int qmp_pcie_get_4ln_config(struct qmp_pcie *qmp)
-+{
-+	struct regmap *tcsr;
-+	unsigned int args[2];
-+	int ret;
-+
-+	tcsr = syscon_regmap_lookup_by_phandle_args(qmp->dev->of_node,
-+						    "qcom,4ln-config-sel",
-+						    ARRAY_SIZE(args), args);
-+	if (IS_ERR(tcsr)) {
-+		ret = PTR_ERR(tcsr);
-+		if (ret == -ENOENT)
-+			return 0;
-+
-+		dev_err(qmp->dev, "failed to lookup syscon: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = regmap_test_bits(tcsr, args[0], BIT(args[1]));
-+	if (ret < 0) {
-+		dev_err(qmp->dev, "failed to read tcsr: %d\n", ret);
-+		return ret;
-+	}
-+
-+	qmp->tcsr_4ln_config = ret;
-+
-+	dev_dbg(qmp->dev, "4ln_config_sel = %d\n", qmp->tcsr_4ln_config);
-+
-+	return 0;
-+}
-+
- static int qmp_pcie_parse_dt(struct qmp_pcie *qmp)
- {
- 	struct platform_device *pdev = to_platform_device(qmp->dev);
-@@ -2484,10 +2588,15 @@ static int qmp_pcie_parse_dt(struct qmp_pcie *qmp)
- 	const struct qmp_pcie_offsets *offs = cfg->offsets;
- 	struct device *dev = qmp->dev;
- 	void __iomem *base;
-+	int ret;
- 
- 	if (!offs)
- 		return -EINVAL;
- 
-+	ret = qmp_pcie_get_4ln_config(qmp);
-+	if (ret)
-+		return ret;
-+
- 	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
-@@ -2503,6 +2612,12 @@ static int qmp_pcie_parse_dt(struct qmp_pcie *qmp)
- 		qmp->rx2 = base + offs->rx2;
- 	}
- 
-+	if (qmp->cfg->lanes >= 4 && qmp->tcsr_4ln_config) {
-+		qmp->port_b = devm_platform_ioremap_resource(pdev, 1);
-+		if (IS_ERR(qmp->port_b))
-+			return PTR_ERR(qmp->port_b);
-+	}
-+
- 	qmp->pipe_clk = devm_clk_get(dev, "pipe");
- 	if (IS_ERR(qmp->pipe_clk)) {
- 		return dev_err_probe(dev, PTR_ERR(qmp->pipe_clk),
-@@ -2610,6 +2725,9 @@ static const struct of_device_id qmp_pcie_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,sc8280xp-qmp-gen3x2-pcie-phy",
- 		.data = &sc8280xp_qmp_gen3x2_pciephy_cfg,
-+	}, {
-+		.compatible = "qcom,sc8280xp-qmp-gen3x4-pcie-phy",
-+		.data = &sc8280xp_qmp_gen3x4_pciephy_cfg,
- 	}, {
- 		.compatible = "qcom,sdm845-qhp-pcie-phy",
- 		.data = &sdm845_qhp_pciephy_cfg,
--- 
-2.37.3
+Regards,
+Angelo
 
