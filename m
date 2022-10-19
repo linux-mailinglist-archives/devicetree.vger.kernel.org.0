@@ -2,117 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 211F26044BF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 14:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CD676044D2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 14:16:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231598AbiJSMOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 08:14:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47204 "EHLO
+        id S232844AbiJSMQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 08:16:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232874AbiJSMOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:14:00 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13331A2086;
-        Wed, 19 Oct 2022 04:50:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Hr6GqhiNot3Wp0AyCg0faopd7+PRJ3WvXflOrKZONA4=; b=YFxyjHqd72qFv1ZmqquSjQj3Ni
-        D3wXXvK6M3WA1rk7s4+NX15Uz6XwiHA8v4FNuggbDx5WYXp54ANzsSwSuOZMgMQbrJixNWjYc5M9Y
-        UIFKPUj4d16f7o4LNoZ2EyKDedNZAK/z6bu5xJpI2vvu2zpyFRVWjrxOjAarxcMzPsvpJ9NDMmblH
-        P7L50yGZjjEqvCOICBap4c2fxBzrest7PZ4oh7k0nYwLCa6lw67T1MJkkxDCIsLXE9o+djXQEx5DX
-        BmUCmODre+YPvgPq0s67x3crjTk2KRr4w0v9FlaReFO11py7jYHZ2DTuIRNfB0VHsgoZlYL3FXxL4
-        zVAJ4jjw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34794)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1ol7ZF-0005bK-1u; Wed, 19 Oct 2022 12:49:02 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1ol7Z9-00027o-Rf; Wed, 19 Oct 2022 12:48:55 +0100
-Date:   Wed, 19 Oct 2022 12:48:55 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Hector Martin <marcan@marcan.st>, Petr Mladek <pmladek@suse.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        with ESMTP id S232842AbiJSMPz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:15:55 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C73B22B0E;
+        Wed, 19 Oct 2022 04:51:56 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id m15so24819436edb.13;
+        Wed, 19 Oct 2022 04:51:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yTGwtjY7Qx3UHK834yfCMHLL0TaAs+yVt4csz4H7rFw=;
+        b=OtokJ3G5ZiLF/OC4iEJMusA6NeuqVEVdAZ9v0gKZ8M5SVAINXZqwJnLLxNhUZUgn8R
+         Q7gUdiErZk0QhUbU84FHgDdN+NzKzliyYGENPzQm0dU8dRuZrN4SxXvFchaXy4nCYdz+
+         9m8rfs2Wr8KKCpoURG3k9LjtOE1djHUFfUWmOGsjHt90WSAMwlXlepZVemcfXbkZV882
+         j1JEIpQJk7vhe8E/4jkP7JzjmN5G4sHQ+WWbRkhH6rjTLvP+rBW440/lpRqjboaxwzsm
+         78L82AZScEuO4G8Pu7+oje4nyPKYFi1KhoQQibGXkee3QvlrxpWsuo1+dkPwB0MXStJt
+         3blA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yTGwtjY7Qx3UHK834yfCMHLL0TaAs+yVt4csz4H7rFw=;
+        b=mR05cQJSKmBYtbYk/RCBD8IXOBoXa7qBk3SJU7OUNTA+3jvvLS+RxweIiulI52k/KL
+         02QDNe5oHalHaQMDbXzKEbA+TlIrv6ZZaOZdo0wOjhtH+64szR5THzR1gBkCZv28bLXo
+         7TfBYB1hSMM+NRntN9mUmIEP+t7Nn79Ld+T+DSB0wgeb1Fg/7cM5bPIf9xLjiSnO63Oi
+         h+61yxQTDzYThRygXq2wrsCL5qG7nu1azqZt6IirVx8JbjJm8Ut1AmpjdI/t0DkhQEGy
+         tH/9zJaeXEb/nyKv4PHN3fa1uokRgF/KnvCtgIXMVpp9505RAVFt3xYu03TxGvD2YCMp
+         zpGQ==
+X-Gm-Message-State: ACrzQf1FoPZ47+InYEoI+sihES/XmvxDvwCH4VMG3cG6d1CfcF+4mOox
+        juj6j6q7jVYPZCP0w73WXPk=
+X-Google-Smtp-Source: AMsMyM5hxDnxb0AZmFD6fuLcsa3sjqXIPikwrHU3jQN0KPwiAZQ1Myq20sNxembhfYBGhptsB46FRw==
+X-Received: by 2002:a05:6402:3709:b0:459:279e:fdc6 with SMTP id ek9-20020a056402370900b00459279efdc6mr7180563edb.338.1666180247042;
+        Wed, 19 Oct 2022 04:50:47 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id dk24-20020a0564021d9800b0045b910b0542sm10377884edb.15.2022.10.19.04.50.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Oct 2022 04:50:46 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-Subject: Re: [PATCH 4/7] lib/vsprintf: Add support for generic FOURCCs by
- extending %p4cc
-Message-ID: <Y0/kJwpbvbeul8n3@shell.armlinux.org.uk>
-References: <YxdInl2qzQWM+3bs@shell.armlinux.org.uk>
- <E1oVYUS-005CmS-IA@rmk-PC.armlinux.org.uk>
- <Y0/Kt9CW5vYcxHhK@alley>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Chaitanya Kulkarni <kch@nvidia.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 2/2] mtd: core: set ROOT_DEV for partitions marked as root devices in DT
+Date:   Wed, 19 Oct 2022 13:50:41 +0200
+Message-Id: <20221019115041.31805-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221019114855.31639-1-zajec5@gmail.com>
+References: <20221019114855.31639-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y0/Kt9CW5vYcxHhK@alley>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 19, 2022 at 12:00:23PM +0200, Petr Mladek wrote:
-> On Tue 2022-09-06 14:19:44, Russell King wrote:
-> > From: Hector Martin <marcan@marcan.st>
-> > 
-... 
-> > +Generic FourCC code
-> > +-------------------
-> > +
-> > +::
-> > +	%p4c[hnbl]	gP00 (0x67503030)
-> > +
-> > +Print a generic FourCC code, as both ASCII characters and its numerical
-> > +value as hexadecimal.
-> > +
-> > +The additional ``h``, ``r``, ``b``, and ``l`` specifiers are used to specify
-> > +host, reversed, big or little endian order data respectively. Host endian
-> > +order means the data is interpreted as a 32-bit integer and the most
-> > +significant byte is printed first; that is, the character code as printed
-> > +matches the byte order stored in memory on big-endian systems, and is reversed
-> > +on little-endian systems.
-> > +
-> > +Passed by reference.
-> > +
-> > +Examples for a little-endian machine, given &(u32)0x67503030::
-> > +
-> > +	%p4ch	gP00 (0x67503030)
-> > +	%p4cl	gP00 (0x67503030)
-> > +	%p4cb	00Pg (0x30305067)
-> > +	%p4cr	00Pg (0x30305067)
-> 
-> Nit: I would prefer to keep the same order (h,r,b,l) everywhere.
-> 
->      I guess that you wanted to show exactly the same results next
->      to each other. But it is not the case on big-endian anyway.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-This is straight from the Asahi kernel tree, and is unmodified. I'm
-guessing you're use of "you" here refers to Hector rather than me.
+This adds support for "linux,root-device" binding that is used to mark
+root device MTD partition. It's useful for devices using device tree
+that don't have bootloader passing root info in cmdline.
 
-So, Hector, any opinions on Petr's comments please?
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ drivers/mtd/mtdcore.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Thanks.
-
+diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
+index 07249af4f890..034b06aff660 100644
+--- a/drivers/mtd/mtdcore.c
++++ b/drivers/mtd/mtdcore.c
+@@ -28,6 +28,7 @@
+ #include <linux/leds.h>
+ #include <linux/debugfs.h>
+ #include <linux/nvmem-provider.h>
++#include <linux/root_dev.h>
+ 
+ #include <linux/mtd/mtd.h>
+ #include <linux/mtd/partitions.h>
+@@ -735,6 +736,12 @@ int add_mtd_device(struct mtd_info *mtd)
+ 		not->add(mtd);
+ 
+ 	mutex_unlock(&mtd_table_mutex);
++
++	if (of_find_property(mtd_get_of_node(mtd), "linux,rootfs", NULL)) {
++		pr_info("mtd: setting mtd%d (%s) as root device\n", mtd->index, mtd->name);
++		ROOT_DEV = MKDEV(MTD_BLOCK_MAJOR, mtd->index);
++	}
++
+ 	/* We _know_ we aren't being removed, because
+ 	   our caller is still holding us here. So none
+ 	   of this try_ nonsense, and no bitching about it
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+2.34.1
+
