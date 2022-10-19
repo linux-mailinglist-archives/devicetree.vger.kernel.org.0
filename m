@@ -2,148 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D353D603F3C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 11:31:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11CD3604076
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 11:58:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233506AbiJSJay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 05:30:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34550 "EHLO
+        id S231361AbiJSJ6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 05:58:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233913AbiJSJ3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 05:29:51 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B12EB774;
-        Wed, 19 Oct 2022 02:13:14 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 754E166015ED;
-        Wed, 19 Oct 2022 09:55:52 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666169753;
-        bh=qCUZKYlUvnwloHXmaClS+rjs+8bWGqFAUjftTWAGEx0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=LjE9o1GkblbjvaNm++jLYcGI4z/7vIBJEIcY9dQ++qrF+YgZSueMSbMEgippcC9Mw
-         pLlEtU7beTPzMCPEZ6cNp3+GeTyHcDiUkUs37Tmd6FG6BeuD1bl1mMHh+54tbwUy27
-         9y07KjbsIHu3KFQVGQBU5ATCPRLarQwbSAsOF8yOynbMqANFjGrVTAo4MSnbhNQs0v
-         K5gNaAJ2l5wNOKPA09IVlZK15+UtGaJXSPWSkIJpUFQzJoqBI/GLNiiSx6hDMH5Psm
-         4sp+lykeNyXJ/ZVIO9mrnvEVWhHmy0rqXMUZF3viHi8tHPL3KQdeCq1lYLQpLTmb03
-         uhmwv4ph4+UnQ==
-Message-ID: <c30fbc60-bcdf-71f5-0db7-bd9bb27ddd37@collabora.com>
-Date:   Wed, 19 Oct 2022 10:55:49 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v1 2/3] arm64: dts: mt8195: Add pcie and pcie phy nodes
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S234250AbiJSJ60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 05:58:26 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEBD111BA9;
+        Wed, 19 Oct 2022 02:35:44 -0700 (PDT)
+X-UUID: 76276290a9ed4666a853127c63a000b2-20221019
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=7PYeSbs1rJ/yIu6lL50fcsiJCbAbHIheAPMIeRRMdDA=;
+        b=mvHx6cltk6O2/41eJEo462t/zsdjV32ufzZLzwQ7wtLnm7ttPPchtOkILVMHFtRwqxSOZPzTKsZ9zY57+BXZo/JZQkrkwUfEfMVvJSzo+5hexbgDTv2+RAdVrRJeeAFLoA0ISwe1CJk9La/Ig+L+d/6EyjZFe5XSvyKZp7Vrri0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.12,REQID:b9912910-db81-4c5f-a9a8-a1d1b16778ce,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:100
+X-CID-INFO: VERSION:1.1.12,REQID:b9912910-db81-4c5f-a9a8-a1d1b16778ce,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
+        N:quarantine,TS:100
+X-CID-META: VersionHash:62cd327,CLOUDID:611d4aa4-ebb2-41a8-a87c-97702aaf2e20,B
+        ulkID:2210191715202JY9RVF3,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 76276290a9ed4666a853127c63a000b2-20221019
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1251354093; Wed, 19 Oct 2022 17:15:19 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 19 Oct 2022 17:15:18 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 19 Oct 2022 17:15:17 +0800
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20221017070858.13902-1-tinghan.shen@mediatek.com>
- <20221017070858.13902-3-tinghan.shen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221017070858.13902-3-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Biao Huang <biao.huang@mediatek.com>,
+        <macpaul.lin@mediatek.com>
+Subject: [PATCH v2 0/1] arm64: dts: mt8195: Add Ethernet controller
+Date:   Wed, 19 Oct 2022 17:15:14 +0800
+Message-ID: <20221019091515.21878-1-biao.huang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,MAY_BE_FORGED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/10/22 09:08, Tinghan Shen ha scritto:
-> Add pcie and pcie phy nodes for mt8195.
-> 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 143 +++++++++++++++++++++++
->   1 file changed, 143 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index d03f0c2b8233..903e92d6156f 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -1182,6 +1182,104 @@
->   			status = "disabled";
->   		};
->   
-> +		pcie0: pcie@112f0000 {
-> +			compatible = "mediatek,mt8195-pcie",
-> +				     "mediatek,mt8192-pcie";
+Changes in v2:
+1. modify pinctrl node used by ethernet to match rules in pinctrl-mt8195.yaml,
+as comments from Krzysztof.
+2. remove "mac-address" property in ethernet node as comments from Krzysztof.
 
-..snip..
+Changes in v1:
+add dts node for MT8195 Ethernet controller
 
-> +
-> +			phys = <&pciephy>;
-> +			phy-names = "pcie-phy";
-> +
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_PCIE_MAC_P0>;
+Biao Huang (1):
+  arm64: dts: mt8195: Add Ethernet controller
 
-You're missing the resets:
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 88 ++++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi     | 86 +++++++++++++++++++
+ 2 files changed, 174 insertions(+)
 
-			resets = <&infracfg_ao MT8195_INFRA_RST2_PCIE_P0_SWRST>;
-			reset-names = "mac";
+-- 
+2.18.0
 
-> +
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 7>;
-
-..snip..
-
-> +		};
-> +
-> +		pcie1: pcie@112f8000 {
-> +			compatible = "mediatek,mt8195-pcie",
-> +				     "mediatek,mt8192-pcie";
-
-..snip..
-
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_PCIE_MAC_P1>;
-
-Here too:
-			resets = <&infracfg_ao MT8195_INFRA_RST2_USBSIF_P1_SWRST>,
-				 <&infracfg_ao MT8195_INFRA_RST2_PCIE_P1_SWRST>;
-			reset-names = "phy", "mac";
-
-> +
-> +			#interrupt-cells = <1>;
-
-..snip..
-
-> @@ -1241,6 +1339,34 @@
->   				reg = <0x189 0x2>;
->   				bits = <7 5>;
->   			};
-> +			pciephy_rx_ln1: pciephy-rx-ln1@190 {
-> +				reg = <0x190 0x1>;
-> +				bits = <0 4>;
-> +			};
-> +			pciephy_tx_ln1_nmos: pciephy-tx-ln1-nmos@190 {
-
-Please run dtbs_check and try to build the kernel before pushing commits upstream.
-This will give you a not-so-nice warning and that shall not happen.
-
-You can solve it by naming these nodes like:
-pciephy-rx-ln1@190,1
-pciephy-tx-ln1-nmos@190,2
-
-...etc
-
-Regards,
-Angelo
 
