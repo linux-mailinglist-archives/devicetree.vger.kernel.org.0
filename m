@@ -2,112 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1E9360481D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:50:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94E47604847
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:53:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231325AbiJSNtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 09:49:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56792 "EHLO
+        id S233728AbiJSNxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 09:53:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232921AbiJSNsa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:48:30 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25ED19003;
-        Wed, 19 Oct 2022 06:32:51 -0700 (PDT)
-Received: (Authenticated sender: kory.maincent@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id D76FAE0007;
-        Wed, 19 Oct 2022 13:32:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1666186343;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=4H7vT96t4Gg2mvOMTAf2MIe6YqeZHlVPrSbGQ6Z0P8U=;
-        b=CUy8nN36BZsU6m2IBtItc7gm2WLjl4v/gW7apb0LG5G+/b5o54EWRmh7oGhxJ0nOwV1ga7
-        C3RSJBI/JxW8doW/hUs0fNQ1BrdzoNzB5eP29YIrK5l0Hf1KpimS4mchfUgk46TctPq+nx
-        O89Hb1KJ872kYLdDwS3Zaqg01SBvf5fqvm+l0wYKfxS9xt89b4xSz15QQo1XeSHjVy2lfU
-        aANYFiYsF3eJHaN45klxj2fQVr2/SOsGCIg9y6I0sLdrnjLGhWmA6BOoSOL04HruC+V6XP
-        7TmKp1vntsTG35puwEMzFauSQeYEKVlvtm4/1LlsdS0fA5MbhjqHcJ+JpnJPeA==
-From:   =?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     thomas.petazzoni@bootlin.com,
-        Kory Maincent <kory.maincent@bootlin.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH 5/6] arm: dts: spear600: Add ssp controller nodes
-Date:   Wed, 19 Oct 2022 15:32:07 +0200
-Message-Id: <20221019133208.319626-6-kory.maincent@bootlin.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221019133208.319626-1-kory.maincent@bootlin.com>
-References: <20221019133208.319626-1-kory.maincent@bootlin.com>
+        with ESMTP id S233758AbiJSNw5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:52:57 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F7D1C8110
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:36:31 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id m6so10660431qkm.4
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:36:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=spOHuMkUzxNQDF31ZQ14bo2Slaj0LH2xXCN8rwJWrnI=;
+        b=w+CMYrks958c8ml3PmlfBooj70tDMnLmjJmSQ7i5gkstqLRFgYVvEj4aNS4tX2afCi
+         KuYAkUXp8mTQ6lM1dnCZFg1Uvepgbs5c9hw81imvk3Tg5Q6JRw5SM4CKE7uE2wlRlbDO
+         3bglyUheaLDRyGmGCGgf0t9tUyqyX+W8Vn+6e6fA57MekTOVvqR8W/faGWEx15EM71LX
+         ilmjv2dZ8Yh6IfLlrNkW1hMEXmJCiF+YXGIBe7S/PQpQ2qvgekGFjjaSxDTmXTqrsJSX
+         8XBwueSqOpqKy5h/oBJIzKsByESd00LhMrJ3vZ6vY2SGo1wLocFxESEJu+NPTun2/TOQ
+         6Jlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=spOHuMkUzxNQDF31ZQ14bo2Slaj0LH2xXCN8rwJWrnI=;
+        b=6UXumAspwe9CmXkpY5yH93vq87o1m4lJt7a6oVTJ959p+J8Ntiqlz1w+TM4+irqnX6
+         HfSVlLnBU2YP1tBT21XlP5zsOx3glaIfzvP/dzPhzKyuLrrwY+cAOdWGGe7ZE7iLDgqX
+         Q91/dBSyXE3PFzNgnEbz6WSAc7mk72bIwoR6fype2yl9P2z9g2Tnt4WgspZnbp8WavrV
+         9DoVnNKHQ3z24Jr3jfWs2LmvNkViDxKKpzQX/fWpfNR6ftdy9DMle5g4t5o3jlmDefUf
+         dOFPh47kgKgTY5hSOMA94mJiWEdWCa6X6mhLnwUKpsUs1ORWVtk1jVJr2/53EPu9qshD
+         5Gow==
+X-Gm-Message-State: ACrzQf0gwC1FnXYtjn5bUbcl9cOxTOmwQZ05zjVnVFa1yEt52wG18+ka
+        zFLIsVenofg8BeCdEBTvvIeqr1IN1Ns6og==
+X-Google-Smtp-Source: AMsMyM4YZyJwWnHgYffvrOP+BQyLg9L1WUxQQbV6BkIOfB1dOifPywxyt/QXAnfCIv35UpoMV3cqLg==
+X-Received: by 2002:a05:620a:2697:b0:6cf:33cd:2bd2 with SMTP id c23-20020a05620a269700b006cf33cd2bd2mr5404994qkp.341.1666186586436;
+        Wed, 19 Oct 2022 06:36:26 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id ca27-20020a05622a1f1b00b003436103df40sm4052757qtb.8.2022.10.19.06.36.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Oct 2022 06:36:25 -0700 (PDT)
+Message-ID: <b335e842-0dd9-851a-9876-8ee4711609c0@linaro.org>
+Date:   Wed, 19 Oct 2022 09:36:24 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v3 2/2] dt-bindings: add bindings for QCOM flash LED
+Content-Language: en-US
+To:     Fenglin Wu <quic_fenglinw@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     quic_collinsd@quicinc.com, quic_subbaram@quicinc.com
+References: <20221018014024.948731-1-quic_fenglinw@quicinc.com>
+ <20221018014024.948731-3-quic_fenglinw@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221018014024.948731-3-quic_fenglinw@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kory Maincent <kory.maincent@bootlin.com>
+On 17/10/2022 21:40, Fenglin Wu wrote:
+> Add binding document for flash LED module inside Qualcomm Technologies,
+> Inc. PMICs.
 
-The SPEAr600 has three Synchronous serial port to enables synchronous
-serial communication with slave or master peripherals (SPI). Lets add these
-nodes to be able to use them.
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
- arch/arm/boot/dts/spear600.dtsi | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+This means:
+1. you miss subsystem prefix
+2. drop redundant second "bindings"
 
-diff --git a/arch/arm/boot/dts/spear600.dtsi b/arch/arm/boot/dts/spear600.dtsi
-index 9d5a04a46b14..6b67c0ceaed9 100644
---- a/arch/arm/boot/dts/spear600.dtsi
-+++ b/arch/arm/boot/dts/spear600.dtsi
-@@ -207,6 +207,36 @@ adc: adc@d820b000 {
- 				interrupts = <6>;
- 				status = "disabled";
- 			};
-+
-+			ssp1: spi@d0100000 {
-+				compatible = "arm,pl022", "arm,primecell";
-+				reg = <0xd0100000 0x1000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interrupt-parent = <&vic0>;
-+				interrupts = <26>;
-+				status = "disabled";
-+			};
-+
-+			ssp2: spi@d0180000 {
-+				compatible = "arm,pl022", "arm,primecell";
-+				reg = <0xd0180000 0x1000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interrupt-parent = <&vic0>;
-+				interrupts = <27>;
-+				status = "disabled";
-+			};
-+
-+			ssp3: spi@d8180000 {
-+				compatible = "arm,pl022", "arm,primecell";
-+				reg = <0xd8180000 0x1000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interrupt-parent = <&vic1>;
-+				interrupts = <5>;
-+				status = "disabled";
-+			};
- 		};
- 	};
- };
--- 
-2.25.1
+> 
+> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+> ---
+>  .../bindings/leds/qcom,spmi-flash-led.yaml    | 116 ++++++++++++++++++
+>  1 file changed, 116 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+> new file mode 100644
+> index 000000000000..d8efde02db72
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+> @@ -0,0 +1,116 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/qcom,spmi-flash-led.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Flash LED device inside Qualcomm Technologies, Inc. PMICs
+> +
+> +maintainers:
+> +  - Fenglin Wu <quic_fenglinw@quicinc.com>
+> +
+> +description: |
+> +  Flash LED controller is present inside some Qualcomm Technologies, Inc. PMICs.
+> +  The flash LED module can have different number of LED channels supported
+> +  e.g. 3 or 4. There are some different registers between them but they can
+> +  both support maximum current up to 1.5 A per channel and they can also support
+> +  ganging 2 channels together to supply maximum current up to 2 A. The current
+> +  will be split symmetrically on each channel and they will be enabled and
+> +  disabled at the same time.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,pm8150c-flash-led
+> +          - qcom,pm8150l-flash-led
+> +          - qcom,pm8350c-flash-led
+> +      - const: qcom,spmi-flash-led
+
+Blank line
+
+> +  reg:
+> +    description: address offset of the flash LED controller
+
+Drop description, it's obvious.
+
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^led-[0-3]$":
+> +    type: object
+> +    $ref: common.yaml#
+> +    unevaluatedProperties: false
+> +    description: |
+
+No need for |
+
+> +      Represents the physical LED components which are connected to the
+> +      flash LED channels' output.
+> +
+> +    properties:
+> +      led-sources:
+> +        description: |
+
+No need for |
+
+Rest looks good:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
