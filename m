@@ -2,133 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 679246037E3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 04:09:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F1266037F0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 04:16:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbiJSCJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 22:09:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44406 "EHLO
+        id S229885AbiJSCQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 22:16:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbiJSCJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 22:09:45 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1492711C39;
-        Tue, 18 Oct 2022 19:09:44 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id f37so25739342lfv.8;
-        Tue, 18 Oct 2022 19:09:43 -0700 (PDT)
+        with ESMTP id S229767AbiJSCQo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 22:16:44 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 390D0E22FE
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 19:16:43 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id g16so6074580qtu.2
+        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 19:16:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mmCTinY52KbZt+uBCZCpAheaWizV9m369exbq9S3d4w=;
-        b=gdhqay8/dHKxwC9B0+Gq2upmNvuQpQSoFmlmmE6+AFnD+6LDujmGDOaSiIfwlW/e9f
-         jZXa9ll//JxZiv1dCr3f4mBDKd1tvYyYKTptL+zw/bWIK+Lj7OKD7XmA+2IRb2Kztnjp
-         9kMSFj8E/6XjCisAG0CBckFcHdh8+F8NzIA/hzrtQm4454pigZoUWuNnj0mp+PE+am2I
-         9/gb67w4ubBF6oEEcXlduBuKwRjawHKPjgC+uIUYoSVbCSLhdxhPuSWr6dQf+lJ+5BTA
-         E+mPIec7tXOhtvZgF7VSMWYu/ZWHIUqn49515hgyUqL3laRu7YLLAzRl5rgrYXNNdyw4
-         OJDA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E8x+7Z+Z6b0lSZr5oAgQ9sf8Zu+riBY1bkbxzxFWnbA=;
+        b=m0ByPr6C/cS4ycq6ks4YexfbRTnDWKSgWfv/4qenF4G2pscQck2FLpMBoFWei6plRj
+         kL9Z1PyGPp5GW2RPJdGYpYaiXyixL736jDyFacyjJYP/QRqHqKZMN/fy6bhKq0kUIIUo
+         FVgkyrVl+MKqIKj5J0U60AU58FbFX4Ujr6rSCT1+Gm5KubV0Wzmsz1xAOaGETKS12VLj
+         5tcyudgCb67cBZWFpx6UhoRn5f7rGAutuiifnIJte4zmsA/K8/bSZlaBy9we4fH5vb80
+         vp1yNZOMeiHZ18KDU87i1PfJJvaPiz7S+CTbouYQzP/1nDfhijS6cbafztPs7INs0tRr
+         H61g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mmCTinY52KbZt+uBCZCpAheaWizV9m369exbq9S3d4w=;
-        b=XrdwkJKoiyy+33wYvqj7l4JeQBdLqVBLPYbd7uMu14dxy/smFvU3fuG4kKjf9RRyQU
-         GDNpBxIx4Bfa4EBJWjTg+YiOnNyNZMY74yfL0dNQAqB1Qlmt3oLjarrxVKebKclwjYcu
-         XK1K7LOnrURI9+4ljf5vK0V/Re7ZIdRj0IX/YTJlRQr1OVr5NvqHAxyN6zcPGe7XNDIC
-         XglVkFzxvxlZY8S8SgM29rAZ7SznGFxD8vQEfdEH38JEj49sUOfJBUi86B9jotAsKhQI
-         dVibDkY7VikaQPuAiiKBG2TE468QUsW/O3S0n/peaEVdsx9XPkf5mSRbqhvzi7v/QOLk
-         hNXg==
-X-Gm-Message-State: ACrzQf3Q7k7YSzBNYpBVx/3Fy9xLosYJXAPyP+SPmeGfnddsyP97/hSq
-        rsL8JF2ay/itZ4lPUU1lsuRKsDCrSqaNjfGMRCM=
-X-Google-Smtp-Source: AMsMyM4tf12B5v3IjC3VTEM+aiTPw1NUqKiGuQkPbINKNLy/Y112LaJmzi7Czca/tEztlgUJvdBL83PykKVM24Fwa5c=
-X-Received: by 2002:a05:6512:1586:b0:498:fa29:35ec with SMTP id
- bp6-20020a056512158600b00498fa2935ecmr2084247lfb.641.1666145382080; Tue, 18
- Oct 2022 19:09:42 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E8x+7Z+Z6b0lSZr5oAgQ9sf8Zu+riBY1bkbxzxFWnbA=;
+        b=O3HZx84jpEN9UgBGhtsP9WvgBaPCAjNSxSMLiNheuWBV4ViL02xcGLMhF1HNqLrq2N
+         1d+NzWtkaqJ6plIupGeOsqu8Zw3FTiLrX1SBQNsWtIOsxn51Xj3oM/oiz7et8FgXLtK5
+         oAhQvRByVkqRDW/LyqfMCpv/UtwRASzFMAQmNyYE9zx0uP7xa8wPVDQP0QSBxfr2lKuY
+         SzcaqKhV3IQcIlKJvMvIuBm5vvehzKJEV3K42HBDqHIiyVSQZKdLDsMVONaeA9B1OPe6
+         qJZ4J/9p08tPrkBjTDJZpglayh8ZMyNKO29kF+kDBHkWKm2InXLTtG6Ji2Hd0EYbC+WU
+         uiJQ==
+X-Gm-Message-State: ACrzQf1U71mg0HJlInkXqEuMNS6o6tM3934WqjVw729b4tkIOl/vdQpd
+        21hv95SrCLKFrf6dJNe9KVgjkQ==
+X-Google-Smtp-Source: AMsMyM5XSiiuLHPWOA6L6S3EeqrOIUTUyPxIqyWG5U6Ak6MFYYB5Gsw/C4+3mwEUVz+KKZNQwqAfVA==
+X-Received: by 2002:ac8:5a51:0:b0:35c:fa98:1101 with SMTP id o17-20020ac85a51000000b0035cfa981101mr4674423qta.604.1666145802374;
+        Tue, 18 Oct 2022 19:16:42 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id l12-20020a37f90c000000b006cbc6e1478csm3759596qkj.57.2022.10.18.19.16.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Oct 2022 19:16:41 -0700 (PDT)
+Message-ID: <12bf6379-31f4-7192-5990-0c199f3fab61@linaro.org>
+Date:   Tue, 18 Oct 2022 22:16:40 -0400
 MIME-Version: 1.0
-References: <cover.1665931914.git.tonyhuang.sunplus@gmail.com>
- <039075b210d78d2f4fdeb66b6826b8d2c2836088.1665931914.git.tonyhuang.sunplus@gmail.com>
- <f8f803a8-ee36-4f32-8920-1fcf6b2265d1@app.fastmail.com>
-In-Reply-To: <f8f803a8-ee36-4f32-8920-1fcf6b2265d1@app.fastmail.com>
-From:   =?UTF-8?B?6buD5oe35Y6a?= <tonyhuang.sunplus@gmail.com>
-Date:   Wed, 19 Oct 2022 10:10:48 +0800
-Message-ID: <CAHpW4oTqQxzXZ_LReA8cBBANyVg1n25KxLnjdyv6dLkPkPq+nA@mail.gmail.com>
-Subject: Re: [PATCH v10 2/2] mmc: Add mmc driver for Sunplus SP7021
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
-        "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        wells.lu@sunplus.com, Tony Huang <tony.huang@sunplus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [EXT] Re: [PATCH V2 1/6] dt-bindings: usb: usbmisc-imx: convert
+ to DT schema
+Content-Language: en-US
+To:     Jun Li <jun.li@nxp.com>, Xu Yang <xu.yang_2@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, Peng Fan <peng.fan@nxp.com>
+References: <20221014095148.2063669-1-peng.fan@oss.nxp.com>
+ <20221014095148.2063669-2-peng.fan@oss.nxp.com>
+ <359bc301-fed6-80eb-6945-caeb7fbb319d@linaro.org>
+ <PAXPR04MB87840FFD365C5C044D54B55F8C299@PAXPR04MB8784.eurprd04.prod.outlook.com>
+ <9e03801c-dea8-1029-4ba1-fa0d6144b0d7@linaro.org>
+ <DB9PR04MB9628C50A44BF8DC09C75CAF9892B9@DB9PR04MB9628.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DB9PR04MB9628C50A44BF8DC09C75CAF9892B9@DB9PR04MB9628.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Arnd, Ulf:
+On 18/10/2022 22:10, Jun Li wrote:
+>>> So we have named it like this.
+>>
+>> "Freescale i.MX non-core registers" implies this hardware is about i.MX
+>> registers. i.MX like for all SoCs.
+>>
+>> What you wrote now, about USB registers - quite different.
+>>
+>> However if you describe here registers, not some device, usually it's place
+>> is not USB...
+>>
+>> And actually all devices are bunch of registers, right? So everything should
+>> be called registers?
+>>
+>> Name is poor choice, so please find more appropriate one matching real purpose
+>> of this block.
+> 
+> How about "Freescale i.MX wrapper module for Chipidea USB2 controller"
+> 
 
-Arnd Bergmann <arnd@arndb.de> =E6=96=BC 2022=E5=B9=B410=E6=9C=8817=E6=97=A5=
- =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=883:25=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Sun, Oct 16, 2022, at 5:48 PM, Tony Huang wrote:
-> > This is a patch for mmc driver for Sunplus SP7021 SOC.
-> > Supports eMMC 4.41 DDR 104MB/s speed mode.
-> >
-> > Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
->
-> Looks ok to me me overall.
->
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
->
-> Just one more thing I noticed:
->
-> > +#define SPMMC_TIMEOUT                        500000
-> ...
-> > +static inline int spmmc_wait_finish(struct spmmc_host *host)
-> > +{
-> > +     u32 state;
-> > +
-> > +     return readl_poll_timeout_atomic(host->base + SPMMC_SD_STATE_REG,
-> > state,
-> > +                                     (state & SPMMC_SDSTATE_FINISH), 1=
-, SPMMC_TIMEOUT);
-> > +}
-> > +
-> > +static inline int spmmc_wait_sdstatus(struct spmmc_host *host,
-> > unsigned int status_bit)
-> > +{
-> > +     u32 status;
-> > +
-> > +     return readl_poll_timeout_atomic(host->base + SPMMC_SD_STATUS_REG=
-,
-> > status,
-> > +                                     (status & status_bit), 1, SPMMC_T=
-IMEOUT);
-> > +}
->
-> 500ms seems like an awfully long time for a busy-wait, I wonder if this
-> could be improved in some way. Is this always called from atomic context?
->
-> If not, any callers from non-atomic context could use
-> readl_poll_timeout() instead, or maybe there could be a shorter
-> timeout in atomic context, with a fallback to a non-atomic
-> workqueue if that times out, so only the MMC access will stall but
-> not the entire system.
+Sounds very good, thank you.
 
-OK, I would use real_poll_timeout() instead.
-Because I see "BUG: scheduling while atomic" issue before.
-I have solved this problem.
+Best regards,
+Krzysztof
 
->
-> The same problem does appear to be in dw_mmc.c and mtk-sd.c but not
-> in sdhci*.c, so I don't know if this is avoidable.
->
->      Arnd
