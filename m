@@ -2,190 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B341604705
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9F1A604723
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230314AbiJSN1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 09:27:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35668 "EHLO
+        id S231148AbiJSNbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 09:31:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230493AbiJSN0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:26:43 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 639A519376E
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:13:15 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id be13so12389147lfb.4
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:13:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rqDvk7+exoNL3wVC4+UCNH0Gcht0+8dPb7k0aCCIA4U=;
-        b=l2wqik9MZ7MgeaQq4PYtPyC/ESK8vjtBxpP3yMZwEc2/jwyY2UQpAsKSvnrAe3wT1c
-         ajPfNOuKHkroxGyXUbIPSULj5Nj+ZJky1/fvRxnt/k29EykkAxrq7XkQ0J5W+2eE1Oab
-         1hv6lY0g2Vb4kkEyI6G1xleX61MJIyVqgtG2ZVZ5gEFol3tKGsT0BPaNcP9hAK6Wa07w
-         7S+n5WQIt0xXKNDkj8L+Owp5SlS5DDvSGbMr9nN+9S/9DoG4EbUr7c9m+EVbRovMwvmr
-         l9zN3vSidTNMAf60dnHj5FJkdoy/kYQGlWktoNkgGY+u955mnz1W+jFjc0Mo9i6RnOEv
-         QlNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rqDvk7+exoNL3wVC4+UCNH0Gcht0+8dPb7k0aCCIA4U=;
-        b=FRYL8hqvoOUBzip2MhJVnvkSqX8p5gr6Uvfgk0f8gLGUtxnRIckYRDO/cGQZf2pFTx
-         vip5Sms+JE7/muxsO9yfCFl9wpgfSmsPZIy+SiwJNbWlWvYqudn/9I1rRzUtSYDELKxH
-         5toJqTn+VXxSGH1ldRK6I1MfPMv5LDxDGC/rl8taNyYvjWRaNPwIcOMk+ZPTSbKqeZR1
-         eMHesfp2YtbNZYve2lo2shElq51440sv+KzYTLTN/MIbR16hOBHenvoN0nao1wwOW/7G
-         UhZKlzC0JGWeB8DUHbb5Y3NCdNny+y494UDDBvtEUZzwKvyp58JEKEMXmKZhbndGZDo6
-         hkXg==
-X-Gm-Message-State: ACrzQf3VktQYynpotLxFVKd54uye4hwOvok2OMxuNMikbX1cGYltfIHf
-        /Zfa0C5GAjnmnhVzI2lXx89VPQ==
-X-Google-Smtp-Source: AMsMyM5tGKH8k0FM95AqUc7ouKnl7Osrbk4TyjvB28KHNdYabY8SPKqjwcZD/vcUv8DowyQeSBW4vA==
-X-Received: by 2002:a05:6512:3053:b0:4a2:6b9c:a853 with SMTP id b19-20020a056512305300b004a26b9ca853mr2700368lfb.666.1666185123437;
-        Wed, 19 Oct 2022 06:12:03 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id k14-20020ac2456e000000b004948378080csm2274704lfm.290.2022.10.19.06.12.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 06:12:03 -0700 (PDT)
-Message-ID: <0f1fff20-772f-c4d1-f803-f1824ef23780@linaro.org>
-Date:   Wed, 19 Oct 2022 16:12:02 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v2 08/15] phy: qcom-qmp-pcie: add register init helper
-Content-Language: en-GB
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231267AbiJSNaf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:30:35 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on20624.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe59::624])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4173F36844;
+        Wed, 19 Oct 2022 06:17:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LUkpPJC+GTrWn6E1imHk083zEMmaFrKygTYBOFvFWBgzJbK8w9JthJcr5XQPuFIHK1jnYlnMJcnBEWOLpIFor7TRLKOOf3jwumIiYcEoD1PXP1jwfQEctrd8vR952CGNzQsyBTSWKKCleVjjOo5TtSaY9aSoj8kUkgPCT6mghIVeFDJ+/Kw35j9BkIsuHCVqGuq23o9XmchI3JaEe85VZarmNSPUE6ch+Giat2MaCc9NLaafLs8GyhNEWVOf0iqRQobuDnkDNH5RnTVkdMRR/mQpAzM/nYlYkVOthCLhbqT0qfAkvVnZtBqmm7/6RIKG4KEuuSEJuneHnmNnS718kw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dMY8MNshq3QcpIPOmIkqyOXxwgoYAYl6NXAs+woA5s0=;
+ b=DcIUnfk9I5OleL9LnLJCpYn4K0rQQV/t79Y/jNyCVqzeqUszRa+sQUeoku+7gQRIqX4dVNwT8chVLVS4Cu5xadh+Nf6HZtCu7dyqTIfTrKjMTFdFNane1lbF3QA5SbRaqtUuZe6mpsqdpchA13eFdctZiZ6xuQpDGVW/WlM3AG28J6aYRO9oUqoGAzBDnZYVSAHUxwmXPrVftinkJjb2ATVDZfzI8r/xzCv1zsDjYZ2hiJlJyd52q3K9svIcXL4mqXHb0OS0XQwCNCz1fZ+cGDy0wWz5jmeE9Ohwzqc8BIi0MXL53Aaplc7jLYXz0b154zFzhyk6HufZXyy3hvZH7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 216.228.118.233) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=fail (p=reject sp=reject pct=100) action=oreject
+ header.from=nvidia.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dMY8MNshq3QcpIPOmIkqyOXxwgoYAYl6NXAs+woA5s0=;
+ b=iFkCwvXN1P7CvgByHdh8fovnU9ijtNSp+MqVgu/rmgXTXUuw8OcN4susdxjY3ZJLqFAJ1sxsL+KuRdnZBNtzfeYxVbYFojoQ6UZKGcNOUJwKgZ96Y6pq3qnn6G7NdOn7w2QlFvUxoGS2MbhtdnTPl2e3gGYAi4HIu4teUMaBRJI89ikRd3Vz0uXbFUMFlm+EJvaOrGuFpdmeYxuO9AuwT+5bKaYwWnK/fJKU9hU4nfF7PE+miR2c9I8Nf5tcfmAw/9wVD4xKB1XRzn6af1t75HeAw1h+gy3QN/6/LCrbfm6SnEDCOxBG8wCeh2l3+JI4BuOnfqRN+oWFWrdGeq9fXQ==
+Received: from DM6PR03CA0037.namprd03.prod.outlook.com (2603:10b6:5:100::14)
+ by BL1PR12MB5972.namprd12.prod.outlook.com (2603:10b6:208:39b::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Wed, 19 Oct
+ 2022 13:16:22 +0000
+Received: from DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:100:cafe::d6) by DM6PR03CA0037.outlook.office365.com
+ (2603:10b6:5:100::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34 via Frontend
+ Transport; Wed, 19 Oct 2022 13:16:22 +0000
+X-MS-Exchange-Authentication-Results: spf=none (sender IP is 216.228.118.233)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=oreject header.from=nvidia.com;
+Received-SPF: None (protection.outlook.com: nvidia.com does not designate
+ permitted sender hosts)
+Received: from mail.nvidia.com (216.228.118.233) by
+ DM6NAM11FT032.mail.protection.outlook.com (10.13.173.93) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5746.16 via Frontend Transport; Wed, 19 Oct 2022 13:16:22 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Wed, 19 Oct
+ 2022 06:16:17 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Wed, 19 Oct 2022 06:16:16 -0700
+Received: from moonraker.nvidia.com (10.127.8.14) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.986.29 via Frontend
+ Transport; Wed, 19 Oct 2022 06:16:15 -0700
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221019113552.22353-1-johan+linaro@kernel.org>
- <20221019113552.22353-9-johan+linaro@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221019113552.22353-9-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH] arm64: tegra: Remove unused property for I2C
+Date:   Wed, 19 Oct 2022 14:16:13 +0100
+Message-ID: <20221019131613.145999-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT032:EE_|BL1PR12MB5972:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ee43839-78d3-4450-4289-08dab1d41e15
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: H0PolQ1pzwqi+7YmTyKfOAq4lNUvlpUNMFASibX4beHOTymqAm3k44ihiK4KxyYUemShhj/q5ALAZ/sAp6ovzlL+n+jiIz/wTv1EE15rMid3bFFQ/tHynhzYW38wZSWOLH+LX5lEr3xlaQl5r+SvADUjqyZy1SwG77mJaqVYRbhk+14b80ClFEeoP0nrLOuEnAjz6KpmByEzStaKGxLYiOyPy5/fiWsG3ALsCAK1qlfsqzlXbwGkU+DwwTMsEdgeeI1GufNmP7czlY3/UF79B/tB4srLgIcpQgnD/nNEzpVTbKW8ElhyLHtFnwKn/F0QEiA9rjbk3NlRAhz9O0Jprr+pvOIO5DUHgXwOGnLujCG3dczbC8PzL8m5de27xMtmHNxHisv0GtxiL6b8LP4w1Xu6jJUaoJ/9QyhBG2dZj7UN4GtcMlmppPeGwNzPOEzW2UQnyEHmjI/8FnB+/ZWdhFndL3c9X9sh8ABPtjBjcJBbV1Vq6V8CakboWGgRkumztdGJQRTFVr9NlNzeyLMsJAbNKbYfbZFuSx7YCZ0y4wLFdWk7Jmy93pF7EVfIA/00eby/RQDuX+UAh5N1ND7nYq6692G2Ck+HkIViMf37oZcypR2cuQq+PchnCnC2wP1cC0S4HS7xcj8lfRnySKar1sNWRVkhXCUg7QOZuFqktYASUu7r2nwgfVlgDLTJ44S9IPaMgB9daWwlgg2xwKoT0ITUMw66hPgpK/zIkm/U8Raa9PyDRNN80R/px50uSZWUf7h7xAlP2cCXSKuKdb75oA==
+X-Forefront-Antispam-Report: CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(346002)(376002)(136003)(396003)(451199015)(40470700004)(46966006)(36840700001)(8936002)(26005)(7636003)(82740400003)(356005)(86362001)(316002)(70206006)(36860700001)(54906003)(70586007)(4326008)(110136005)(5660300002)(4744005)(8676002)(2906002)(41300700001)(40460700003)(426003)(47076005)(2616005)(1076003)(82310400005)(186003)(83380400001)(478600001)(107886003)(7696005)(336012)(40480700001)(36756003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2022 13:16:22.0676
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ee43839-78d3-4450-4289-08dab1d41e15
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5972
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        SPF_HELO_PASS,SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 14:35, Johan Hovold wrote:
-> Generalise the serdes initialisation helper so that it can be used to
-> initialise all the PHY registers (e.g. serdes, tx, rx, pcs).
-> 
-> Note that this defers the ungating of the PIPE clock somewhat, which is
-> fine as it isn't needed until starting the PHY.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 51 +++++++-----------------
->   1 file changed, 15 insertions(+), 36 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> index dd7e72424fc0..f57d10f20277 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> @@ -1820,46 +1820,32 @@ static void qmp_pcie_configure(void __iomem *base,
->   	qmp_pcie_configure_lane(base, tbl, num, 0xff);
->   }
->   
-> -static void qmp_pcie_serdes_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
-> -{
-> -	void __iomem *serdes = qmp->serdes;
-> -
-> -	if (!tables)
-> -		return;
-> -
-> -	qmp_pcie_configure(serdes, tables->serdes, tables->serdes_num);
-> -}
-> -
-> -static void qmp_pcie_lanes_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
-> +static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
->   {
->   	const struct qmp_phy_cfg *cfg = qmp->cfg;
-> +	void __iomem *serdes = qmp->serdes;
->   	void __iomem *tx = qmp->tx;
->   	void __iomem *rx = qmp->rx;
->   	void __iomem *tx2 = qmp->tx2;
->   	void __iomem *rx2 = qmp->rx2;
-> +	void __iomem *pcs = qmp->pcs;
-> +	void __iomem *pcs_misc = qmp->pcs_misc;
->   
-> -	if (!tables)
-> +	if (!tbls)
->   		return;
->   
-> -	qmp_pcie_configure_lane(tx, tables->tx, tables->tx_num, 1);
-> -	qmp_pcie_configure_lane(rx, tables->rx, tables->rx_num, 1);
-> +	qmp_pcie_configure(serdes, tbls->serdes, tbls->serdes_num);
-> +
-> +	qmp_pcie_configure_lane(tx, tbls->tx, tbls->tx_num, 1);
-> +	qmp_pcie_configure_lane(rx, tbls->rx, tbls->rx_num, 1);
->   
->   	if (cfg->lanes >= 2) {
-> -		qmp_pcie_configure_lane(tx2, tables->tx, tables->tx_num, 2);
-> -		qmp_pcie_configure_lane(rx2, tables->rx, tables->rx_num, 2);
-> +		qmp_pcie_configure_lane(tx2, tbls->tx, tbls->tx_num, 2);
-> +		qmp_pcie_configure_lane(rx2, tbls->rx, tbls->rx_num, 2);
->   	}
-> -}
-> -
-> -static void qmp_pcie_pcs_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
-> -{
-> -	void __iomem *pcs = qmp->pcs;
-> -	void __iomem *pcs_misc = qmp->pcs_misc;
-> -
-> -	if (!tables)
-> -		return;
->   
-> -	qmp_pcie_configure(pcs, tables->pcs, tables->pcs_num);
-> -	qmp_pcie_configure(pcs_misc, tables->pcs_misc, tables->pcs_misc_num);
-> +	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
-> +	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
+Commit 156af9de0932 ("arm64: tegra: Add Tegra234 I2C devicetree nodes")
+populated the I2C device nodes for Tegra234. One of these nodes
+contains the property 'nvidia,hw-instance-id' which is neither
+documented or used. Remove this unused property.
 
-Nit: could we please keep it as `tables'?
+Fixes: 156af9de0932 ("arm64: tegra: Add Tegra234 I2C devicetree nodes")
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
->   }
->   
->   static int qmp_pcie_init(struct phy *phy)
-> @@ -1932,8 +1918,8 @@ static int qmp_pcie_power_on(struct phy *phy)
->   	else
->   		mode_tables = cfg->tables_ep;
->   
-> -	qmp_pcie_serdes_init(qmp, &cfg->tables);
-> -	qmp_pcie_serdes_init(qmp, mode_tables);
-> +	qmp_pcie_init_registers(qmp, &cfg->tables);
-> +	qmp_pcie_init_registers(qmp, mode_tables);
->   
->   	ret = clk_prepare_enable(qmp->pipe_clk);
->   	if (ret) {
-> @@ -1941,13 +1927,6 @@ static int qmp_pcie_power_on(struct phy *phy)
->   		return ret;
->   	}
->   
-> -	/* Tx, Rx, and PCS configurations */
-> -	qmp_pcie_lanes_init(qmp, &cfg->tables);
-> -	qmp_pcie_lanes_init(qmp, mode_tables);
-> -
-> -	qmp_pcie_pcs_init(qmp, &cfg->tables);
-> -	qmp_pcie_pcs_init(qmp, mode_tables);
-> -
->   	/* Pull PHY out of reset state */
->   	qphy_clrbits(pcs, cfg->regs[QPHY_SW_RESET], SW_RESET);
->   
-
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+index 0170bfa8a467..499102ce5bd0 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+@@ -1488,7 +1488,6 @@ gen2_i2c: i2c@c240000 {
+ 		gen8_i2c: i2c@c250000 {
+ 			compatible = "nvidia,tegra194-i2c";
+ 			reg = <0xc250000 0x100>;
+-			nvidia,hw-instance-id = <0x7>;
+ 			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+ 			status = "disabled";
+ 			clock-frequency = <400000>;
 -- 
-With best wishes
-Dmitry
+2.25.1
 
