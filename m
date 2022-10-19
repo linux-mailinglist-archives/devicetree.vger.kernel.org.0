@@ -2,148 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84248604C47
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:53:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D602604C4A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:53:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231669AbiJSPxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 11:53:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33058 "EHLO
+        id S229785AbiJSPxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 11:53:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232725AbiJSPxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:53:15 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCD07159976
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:50:25 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id fy4so40924922ejc.5
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:50:25 -0700 (PDT)
+        with ESMTP id S231260AbiJSPxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:53:22 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12E6167F6C
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:50:40 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id a18so10989218qko.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:50:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=oCxur44GiGn0KEf47+NGc2flFZLTxOPMJcgB85rch6w=;
-        b=Af1ORI7qLHGJw4ifz/2FBCp+Nq0eizmGhWVnbLOtKaMLO9xPtn7WgrxQFzTVHlGfI1
-         2lFZJu+P2cn2W4CKzeUJnS3n2wUNZDghZrIxPpbENfO1w+DMF4ypDyyfQGvc9uuprFoe
-         GBgp+bgwLUw6X0CUrZCNNCVIWXh2uD4Y7879s=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qOfJ+DtwLBfM1XbcRFI2vxlA6IMtNA7Mryro9IUFiqQ=;
+        b=oc0gnv7Evlf82aR7oG1AboITLdai3h8yWa1/UJ7yR9+TKLMHmoMbTTmAbXZDhx/mH/
+         f8JzUDB4THCqRc0UcOpZlhBf1KF8fZ37sXyanaOERaci7Hknvb+VnHq9YbG3S6M4Qo6t
+         Kd2fXjzLpcglTwZTAsYkeamTktkNbPTVxwdidUbWVJxEwIsSvaDQSYBNPbr630dN5pHj
+         M+Ps8vzh5cyYyGUhPUJy8KVfU+HvhMor6ykp8jdRP8SuM03kXJie5tGnWlTL235k8gUg
+         G33IffSj3PK5urVg+8imYLgvKxues9F4oX65mcPNhgvVmOmdMZfVBCV6vqIWG1/dOL0q
+         K3IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oCxur44GiGn0KEf47+NGc2flFZLTxOPMJcgB85rch6w=;
-        b=oYztoBBev9tSMB+Yoo5YTSD0GLpTJbBL8ltdBKUrvCZbhJjK8V7yXUZo5z2IkdZvCF
-         5jPYc4M8/kTtCa/XQMF2BBVfhImNPs6XdqmFtJVm4U4Jyrj15cj1yROMbSFyGDUzI/WL
-         OXUZHwPKAiKzPneYh1Qqq1J83IAfw3HqtEZaVI076GibIj3IXR8/K7kHE/+vLpwxhhZT
-         +NXgXtphdv1lW2844MrEh5dhEEPOq90pR93NBcy4O60CV7mWpyHwDdDSR+jQi5MYnC++
-         McSNsQOtaVHomd4z8DURjsXSA5WnL/b8Q76N+fR8Vn8SSVBfoIH/cJK629aobq4/UdqM
-         QcJQ==
-X-Gm-Message-State: ACrzQf1vcDyfdyocs95uxZExZsOsViqLdZL4nlZ87M/UWTofn4x8OUhI
-        zXJmtIUn7Eai2ZoOzeNppF9PSOm1drQBnWtg
-X-Google-Smtp-Source: AMsMyM6ch3GU4fUaTKlzCjNfji7Z1IIz76deRKc3XlNjDgrknZMCw2m23nVUrNIh/Ho19cU5xJDIog==
-X-Received: by 2002:a17:907:2ced:b0:78d:ece6:7cad with SMTP id hz13-20020a1709072ced00b0078dece67cadmr7238292ejc.136.1666194529337;
-        Wed, 19 Oct 2022 08:48:49 -0700 (PDT)
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
-        by smtp.gmail.com with ESMTPSA id g10-20020a1709062daa00b0077d37a5d401sm9161291eji.33.2022.10.19.08.48.48
-        for <devicetree@vger.kernel.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qOfJ+DtwLBfM1XbcRFI2vxlA6IMtNA7Mryro9IUFiqQ=;
+        b=UAVyZJgh9kMyGgxqSEAG7h+ZAaTKhqkRhXIBuSpQNryT906MH/ZtUEqcc/sTW4xqu6
+         bMwhcbKKT4Pwbclvj57TQbWHKqmw5fhzMJPGEQFPLlVU8lmcdt6Y6oZ6k1I/ad0zbjvJ
+         qeApkAqY/xTYPI8o+dg5cY9WAw5Y1YyIfDNTBv+A+FA2IYm0yfqtrPqLinQGE+/i/Pfn
+         91mRcvKpSRrUBfvaczLfWaFGuEpJIj7DrUVR2kb/OxBMDiM7sSfJn5FGxPDILZnufWG3
+         FxJImLwPxypuSVOXd/2NZl2O1rt7yfMbAvpUSK7NNPf7WR3AWzk146rSq6kCaReNOeq4
+         J0oA==
+X-Gm-Message-State: ACrzQf0S1Fq1p4uF1VPEeFcsVXXoz/jqjuzJWam0E2j+P38e/2vVGnaA
+        Tcl/+sRQ8PPiL///0RhroxB9ew==
+X-Google-Smtp-Source: AMsMyM4XstFVm8wPAtWg45RsoEAOZKJXDEbdNRgDhHSCIrBKgB8W/I23RBjhjFccEni81/er3hUtsw==
+X-Received: by 2002:ae9:ef53:0:b0:6ec:f6f:4422 with SMTP id d80-20020ae9ef53000000b006ec0f6f4422mr6017291qkg.41.1666194588599;
+        Wed, 19 Oct 2022 08:49:48 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id i23-20020ac84897000000b0039853b7b771sm4207324qtq.80.2022.10.19.08.49.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 08:48:48 -0700 (PDT)
-Received: by mail-wm1-f49.google.com with SMTP id t4so13172169wmj.5
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:48:48 -0700 (PDT)
-X-Received: by 2002:a05:600c:19c9:b0:3c2:7fff:a689 with SMTP id
- u9-20020a05600c19c900b003c27fffa689mr27767365wmq.85.1666194527713; Wed, 19
- Oct 2022 08:48:47 -0700 (PDT)
+        Wed, 19 Oct 2022 08:49:47 -0700 (PDT)
+Message-ID: <a44cadfe-5e9d-8c6a-b111-abd550a909bf@linaro.org>
+Date:   Wed, 19 Oct 2022 11:49:46 -0400
 MIME-Version: 1.0
-References: <20221019001351.1630089-1-krzysztof.kozlowski@linaro.org> <20221019001351.1630089-4-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221019001351.1630089-4-krzysztof.kozlowski@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 19 Oct 2022 08:48:35 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VsFbei4h_cwhJhReUi8Pk_C-qHu_8iDqfzf_e=C8QnXg@mail.gmail.com>
-Message-ID: <CAD=FV=VsFbei4h_cwhJhReUi8Pk_C-qHu_8iDqfzf_e=C8QnXg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: sc7180: align TLMM pin
- configuration with DT schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 3/3] doc: iio: pressure: ms5611: added max SPI frequency
+ setting to the example
+Content-Language: en-US
+To:     Mitja Spes <mitja@lxnav.com>, linux-iio@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Tomasz Duszynski <tduszyns@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20221019125254.952588-1-mitja@lxnav.com>
+ <20221019125254.952588-3-mitja@lxnav.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221019125254.952588-3-mitja@lxnav.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 19/10/2022 08:52, Mitja Spes wrote:
+> Added max SPI frequency setting to the example. It is now honored by the
+> driver.
 
-On Tue, Oct 18, 2022 at 5:14 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> DT schema expects TLMM pin configuration nodes to be named with
-> '-state' suffix and their optional children with '-pins' suffix.
->
-> Merge subnodes named 'pinconf' and 'pinmux' into one entry, add function
-> where missing (required by bindings for GPIOs) and reorganize overriding
-> pins by boards.
->
-> Split the SPI and UART configuration into separate nodes
-> 1. SPI (MOSI, MISO, SCLK), SPI chip-select, SPI chip-select via GPIO,
-> 2. UART per each pin: TX, RX and optional CTS/RTS.
->
-> This allows each board to customize them easily without adding any new
-> nodes.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
+
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
+
+> 
+> Signed-off-by: Mitja Spes <mitja@lxnav.com>
 > ---
->
-> Changes since v2:
-> 1. Rebase on reverted SPI CS glitch patch.
->
-> Changes since v1:
-> 1. Split SPI and UART nodes, after discussion with Doug.
->
-> Not tested on hardware.
->
-> Cc: Doug Anderson <dianders@chromium.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180-idp.dts       | 236 +++----
->  .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  36 +-
->  .../dts/qcom/sc7180-trogdor-homestar.dtsi     |  47 +-
->  .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  16 +-
->  .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   |   8 +-
->  .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  16 +-
->  .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  25 +-
->  .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi |  72 +-
->  .../qcom/sc7180-trogdor-parade-ps8640.dtsi    |  32 +-
->  .../boot/dts/qcom/sc7180-trogdor-pazquel.dtsi |   8 +-
->  .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  14 +-
->  .../qcom/sc7180-trogdor-quackingstick.dtsi    |  56 +-
->  .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |   8 +-
->  .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi |  16 +-
->  .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  25 +-
->  .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  |  72 +-
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 629 +++++++-----------
->  arch/arm64/boot/dts/qcom/sc7180.dtsi          | 597 +++++++++--------
->  18 files changed, 776 insertions(+), 1137 deletions(-)
+>  Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml b/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml
+> index 4f06707450bf..08bd06e6dabe 100644
+> --- a/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml
+> +++ b/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml
+> @@ -52,6 +52,7 @@ examples:
+>              compatible = "meas,ms5611";
+>              reg = <0>;
+>              vdd-supply = <&ldo_3v3_gnss>;
+> +            spi-max-frequency = <20000000>;
 
-You probably should send a v4 since this now conflicts with commit
-c24c9d53e001 ("arm64: dts: qcom: correct white-space before {"), which
-has landed.
+Whether it is honored by driver it matters less. More important is how
+hardware can handle it. This should be included in the bindings/properties.
 
-In any case, this looks nice to me.
+Best regards,
+Krzysztof
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
-FWIW I put this on a sc7180-trogdor-coachz and the device booted up to
-the browser. I didn't do massive amounts of tests, but I'm OK with:
-
-Tested-by: Douglas Anderson <dianders@chromium.org>
