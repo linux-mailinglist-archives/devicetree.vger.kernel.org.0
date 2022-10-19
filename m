@@ -2,98 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7F0D6053ED
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 01:32:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29360605433
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 01:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230260AbiJSXb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 19:31:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50408 "EHLO
+        id S229893AbiJSXuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 19:50:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiJSXby (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 19:31:54 -0400
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 656EA170DD6;
-        Wed, 19 Oct 2022 16:31:53 -0700 (PDT)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-134072c15c1so22612806fac.2;
-        Wed, 19 Oct 2022 16:31:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+33l5I2VZMgbnyKGZxI7ecoUX1H76kvZR+34CwmtQMg=;
-        b=tEB6iqz+CJ3jPSDzaFoFqTJT/7+qXhOVWGNoR9c18tlV7aB8Mc02vf3/Jxrk9+562X
-         Ax7V0RIcRlCrNNKVpEatiJvNDnES0W9RAUQ0jBGydKYDkRh5BimJ7c7rA/c5163bRqhe
-         +KSA6AwKZZomp9JbvbLMDeDw6DbGxg2W2xp1ZijzUgX2wlfRr+rB3AvCNbzm7h5U/ol8
-         iqsi6/5uQMW1rdQt1n5S2p7pv3//iXc1utMlnEQd8Cp+8h3zcV27PvuAQhbfMDomF0VF
-         LgN84+9J9VxNEiwbqP9Q7hpIgJ7QvFNKFJ0T3P020F3Zd20rV1YtU4tj337OJze+Z6EY
-         38dg==
-X-Gm-Message-State: ACrzQf0ILzGHJqlFpQw/JPTDoGavEoIWL7z0s++rDR2wfR6V+I+B4Lsi
-        hCPxU2aKBkHROlDXrL6AeA==
-X-Google-Smtp-Source: AMsMyM54aYnJHjke8Je2cYbVpvRwk2+QL/Qg8jacOx+5wLiVpGaRfOjqPn3dtsJ1MXMyo1mf64+Y8Q==
-X-Received: by 2002:a05:6870:d2a0:b0:11d:37d7:9c76 with SMTP id d32-20020a056870d2a000b0011d37d79c76mr7008238oae.57.1666222312385;
-        Wed, 19 Oct 2022 16:31:52 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id eh6-20020a056870f58600b00132e63ee5e6sm8183007oab.54.2022.10.19.16.31.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Oct 2022 16:31:51 -0700 (PDT)
-Received: (nullmailer pid 19939 invoked by uid 1000);
-        Wed, 19 Oct 2022 23:31:53 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229807AbiJSXuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 19:50:12 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00D88FF8F6;
+        Wed, 19 Oct 2022 16:50:10 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29JMvF0N005767;
+        Wed, 19 Oct 2022 23:49:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=PKlvJyr2CLODo5qWsgOnyStlxfDpx8K32m51Mvty0So=;
+ b=EjX1n2PSktb274+6pjGEvtdzZnnWDOXhkKVCbxAyAWKx4HP2x/ZVnvTqbJw5G/Z5ltDz
+ 4//ppxyLpti16SePtoXOT2FI4rFZxrfaMEKAPWiPttDJX+V7lcCqaa2nsdYGqgrBMZrC
+ pWIMg9UttruVAUMp3BEZDTDH9uNhQ6161N6FSo46YDiM8okl7pvLO2sJeSFmneZ21bqI
+ xbcnBHcTOIoLbE7KavwV1YDd35rj5Lk8fr4O8lJZzZB5VnryQTvzKaAkwvOJC2eTkb5f
+ knnIvlyfVmYKRYjFvhFxTHhxHRPPU3f56O9r7zU+oRHPuGc7VSBZBYbLwiC4XI7TOq9P rw== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ka820v6kc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Oct 2022 23:49:53 +0000
+Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29JNnqiK031012
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Oct 2022 23:49:52 GMT
+Received: from [10.134.66.255] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 19 Oct
+ 2022 16:49:52 -0700
+Message-ID: <0d9123cd-d741-31c3-7c75-92c8e98e1000@quicinc.com>
+Date:   Wed, 19 Oct 2022 16:49:52 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 3/6] clk: qcom: branch: Add BRANCH_HALT_INVERT flag
+ support for branch clocks
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-In-Reply-To: <E1ol97m-00EDSR-46@rmk-PC.armlinux.org.uk>
-References: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk> <E1ol97m-00EDSR-46@rmk-PC.armlinux.org.uk>
-Message-Id: <166622204824.13053.10147527260423850821.robh@kernel.org>
-Subject: Re: [PATCH net-next 1/7] dt-bindings: net: sff,sfp: update binding
-Date:   Wed, 19 Oct 2022 18:31:53 -0500
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Marc Zyngier <maz@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Thomas Gleixner" <tglx@linutronix.de>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Imran Shaik <quic_imrashai@quicinc.com>
+References: <20221014221011.7360-1-quic_molvera@quicinc.com>
+ <20221014221011.7360-4-quic_molvera@quicinc.com>
+ <20221015002007.E3815C433D7@smtp.kernel.org>
+From:   Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <20221015002007.E3815C433D7@smtp.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: IYAedlfPUMCJJK-RJSWQ85rBRpKeYDL7
+X-Proofpoint-GUID: IYAedlfPUMCJJK-RJSWQ85rBRpKeYDL7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-19_13,2022-10-19_04,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ lowpriorityscore=0 spamscore=0 priorityscore=1501 bulkscore=0 adultscore=0
+ malwarescore=0 mlxscore=0 impostorscore=0 suspectscore=0 phishscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210190133
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 19 Oct 2022 14:28:46 +0100, Russell King (Oracle) wrote:
-> Add a minimum and default for the maximum-power-milliwatt option;
-> module power levels were originally up to 1W, so this is the default
-> and the minimum power level we can have for a functional SFP cage.
-> 
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  Documentation/devicetree/bindings/net/sff,sfp.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-yamllint warnings/errors:
+On 10/14/2022 5:20 PM, Stephen Boyd wrote:
+> Quoting Melody Olvera (2022-10-14 15:10:08)
+>> diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
+>> index f869fc6aaed6..b5dc1f4ef277 100644
+>> --- a/drivers/clk/qcom/clk-branch.c
+>> +++ b/drivers/clk/qcom/clk-branch.c
+>> @@ -1,6 +1,7 @@
+>>  // SPDX-License-Identifier: GPL-2.0
+>>  /*
+>>   * Copyright (c) 2013, The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
+>>   */
+>>  
+>>  #include <linux/kernel.h>
+>> @@ -56,6 +57,10 @@ static bool clk_branch2_check_halt(const struct clk_branch *br, bool enabling)
+>>  
+>>         if (enabling) {
+>>                 val &= mask;
+>> +
+>> +               if (br->halt_check == BRANCH_HALT_INVERT)
+>> +                       return (val & BRANCH_CLK_OFF) == BRANCH_CLK_OFF;
+>> +
+>>                 return (val & BRANCH_CLK_OFF) == 0 ||
+>>                         val == BRANCH_NOC_FSM_STATUS_ON;
+>>         } else {
+>> diff --git a/drivers/clk/qcom/clk-branch.h b/drivers/clk/qcom/clk-branch.h
+>> index 17a58119165e..4ac1debeb91e 100644
+>> --- a/drivers/clk/qcom/clk-branch.h
+>> +++ b/drivers/clk/qcom/clk-branch.h
+>> @@ -1,5 +1,6 @@
+>>  /* SPDX-License-Identifier: GPL-2.0 */
+>>  /* Copyright (c) 2013, The Linux Foundation. All rights reserved. */
+>> +/* Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved. */
+>>  
+>>  #ifndef __QCOM_CLK_BRANCH_H__
+>>  #define __QCOM_CLK_BRANCH_H__
+>> @@ -33,6 +34,7 @@ struct clk_branch {
+>>  #define BRANCH_HALT_ENABLE_VOTED       (BRANCH_HALT_ENABLE | BRANCH_VOTED)
+>>  #define BRANCH_HALT_DELAY              2 /* No bit to check; just delay */
+>>  #define BRANCH_HALT_SKIP               3 /* Don't check halt bit */
+>> +#define BRANCH_HALT_INVERT             4 /* Invert logic for halt bit */
+> How is it different from BRANCH_HALT vs. BRANCH_HALT_ENABLE?
+Main difference here is in how other parts of the register are checked to see if halting
+happened or not. Turns out the clocks that use this can be reconfigured to be a little
+more friendly to the code already submitted, so this patch isn't necessary. I'll drop it
+in the next PS.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/sff,sfp.yaml: properties:maximum-power-milliwatt: 'minimum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-	hint: Scalar and array keywords cannot be mixed
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Thanks,
+Melody
