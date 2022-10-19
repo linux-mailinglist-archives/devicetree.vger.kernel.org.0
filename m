@@ -2,124 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAA0160499E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3AFF6049A6
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:47:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231265AbiJSOqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 10:46:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37334 "EHLO
+        id S231311AbiJSOrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 10:47:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbiJSOq0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:46:26 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C70156252
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:32:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1666189966;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=5YibLNy+OciDPg1RqQtPWy91evf3zRYGT05L7hMD1SE=;
-        b=XMmjW232vNZUtQ2gdCcRA7a4fdA4jMFXg+t/h+AfkKcoKRsNvgFJdH0xM1E9lbf05u+0kj
-        lVc+Ub0QZAIT21zxeKsg3octwXrIjsO4/MLx/KxXMFGrM7m2ahWRwMMgOv3yKEC6jq+1KB
-        MqU06aJs6/NXWAmNVMYwpM90XvLia3c=
-Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
- [209.85.166.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-443-o2GpSASDP1yarM8ixtrGIA-1; Wed, 19 Oct 2022 10:32:44 -0400
-X-MC-Unique: o2GpSASDP1yarM8ixtrGIA-1
-Received: by mail-io1-f72.google.com with SMTP id r12-20020a5e8e4c000000b006bc3030624fso13396053ioo.23
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:32:44 -0700 (PDT)
+        with ESMTP id S229718AbiJSOrN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:47:13 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CF4A17A94A
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:34:18 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id mg6so11463553qvb.10
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:34:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vDB5k4w9Nrimwa6bfe7vGx28PGhXZqRaVOrj+g1S1+o=;
+        b=TU2nkFx3sV4Z42wKZfEmu4cF0mBsiW36dyAGC1c6axQGVI+U6sqzTi+3+Q16y352cQ
+         hmv9ohn52g1yHqQxZU8mhX3kpV/X4SNXOuABzmym4CDf3+32f4wpJbr2jdEmV0Vc+PMq
+         r0E3qm45mrzUFasazIT8WCS+PSccx78cA1SnQ0vlRL719LBU46+ZcZ7Z7vLK48QqvVm5
+         enV8D6RfUm27wfJz6ycORbgCBfSxKro/g0LWrLhaBiumW3ZF1sefS/wwef1pmkWN3SU2
+         OhetK4iimfMEkPD8fniFfQa+GCwV8rq+MzJPRRWA1mmx+YTWOrBziklxESdgVaM85OWe
+         yqFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5YibLNy+OciDPg1RqQtPWy91evf3zRYGT05L7hMD1SE=;
-        b=hxnnOzWW8pTq2sRfRBhFr4e9UBx6hjoF/rlYE1Xb1KKctMVm2niz1h2s9jPNra77bO
-         M9ZfBJULghDp+SwqGKIGQR2i9PK5qK1ib9SNJiJ1yFI/iC1oVfEdL32lbDELjkh2C21B
-         Km/etQfzXPqrN9dGtz/Z34WWJbduFAhg7a0yP1p/Hw0nyr/qFdjZHtGVMpkRDmYDEAUa
-         xQR/2+jcHmS+l0thhir+88uv+xrFjPciXGFFsyjhj3ZV1xOAhInBLBuyXFBWRLD1cSjj
-         TYQAs9ReW6PCXp6AlC/tSx/k/AJq/CHJRU4LtMWnFPwWxOoZOhk1uLkUd3szGgY7H+bh
-         F8oA==
-X-Gm-Message-State: ACrzQf2+0OpGPHYkPXBIhAzLudRlB5JQy4hYnOi5XmjjIuYz4BCzIetl
-        +5ug+2DlkmwZunwCiaR8bxFr70dfAB96wIdmW31S+6TbmaNmsXcCdxEaK1Dc9xjW04/GkFCZhJf
-        +y/Q5WfIaf2/96Q0R54nCuQ==
-X-Received: by 2002:a02:54c1:0:b0:363:453e:2ccb with SMTP id t184-20020a0254c1000000b00363453e2ccbmr6451897jaa.228.1666189964203;
-        Wed, 19 Oct 2022 07:32:44 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM6/HkVuS6wNDB9egoiQiNu3qMpbMyAK3j1AnEKd9qXTPxLsvFR1yo6X9O/te7EZm3+VoF9IlA==
-X-Received: by 2002:a02:54c1:0:b0:363:453e:2ccb with SMTP id t184-20020a0254c1000000b00363453e2ccbmr6451869jaa.228.1666189963941;
-        Wed, 19 Oct 2022 07:32:43 -0700 (PDT)
-Received: from x1 (c-98-239-145-235.hsd1.wv.comcast.net. [98.239.145.235])
-        by smtp.gmail.com with ESMTPSA id f20-20020a02a114000000b00363961f0f2dsm2140039jag.115.2022.10.19.07.32.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Oct 2022 07:32:43 -0700 (PDT)
-Date:   Wed, 19 Oct 2022 10:32:41 -0400
-From:   Brian Masney <bmasney@redhat.com>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] PCI: qcom: Add basic interconnect support
-Message-ID: <Y1AKiTkLa23idaf2@x1>
-References: <20221017112449.2146-1-johan+linaro@kernel.org>
- <20221017112449.2146-3-johan+linaro@kernel.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vDB5k4w9Nrimwa6bfe7vGx28PGhXZqRaVOrj+g1S1+o=;
+        b=lMlghOHcaaRxr3ySNtqpYqC17DVBvxaufOuTyOK7LnJ6isY7VcxKgekFqHud2SUIij
+         ZR315QrFeOmXK8jw/RUBTy5kXN2Bc3bpQswUyQdaJqm7dlXz3qTkn+DNWfTpNRRt39Df
+         Ol0LqS93cTTYA3EhPGC3XjELLHUyciwhzEwW9qrPPH6IqTdSnXngVNpnPoIOtSjnJtyf
+         zemYEaf3PQpDCIrcVqLWJQmaU+TlHQqQRoUXTGYXkodllwd1cEXNauMkN6aex+dUwXo2
+         San5RHCjv1cz22V74Wrox/2eqMX2UyLfsApFAMoMEA7pN76biXi8rlNj+lzT63OIzO1u
+         cm7w==
+X-Gm-Message-State: ACrzQf3/V0jn4vY+oIx4uWyINA+iB4wbMgl7zeDKjD7dKVxytNZgXhJN
+        Dipgy0L1tjDIaMUcxbTytSnrkQ==
+X-Google-Smtp-Source: AMsMyM6RlQFofNXPRmQ9/EbwSwPYRuf1EIY7RXrfGjDeKu6T2Wc3g1yx/VmnDJPrJKvHvbdYpJMDsA==
+X-Received: by 2002:a0c:9c8b:0:b0:4b1:ac82:5c50 with SMTP id i11-20020a0c9c8b000000b004b1ac825c50mr7057179qvf.15.1666190056795;
+        Wed, 19 Oct 2022 07:34:16 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id q2-20020a05620a0d8200b006cf9084f7d0sm4944260qkl.4.2022.10.19.07.34.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Oct 2022 07:34:16 -0700 (PDT)
+Message-ID: <3d07998b-f02a-036c-af66-883671ac1730@linaro.org>
+Date:   Wed, 19 Oct 2022 10:34:15 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221017112449.2146-3-johan+linaro@kernel.org>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 2/2] dt-bindings: rtc: add bindings for max313xx RTCs
+Content-Language: en-US
+To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+References: <20221019133910.282-1-Ibrahim.Tilki@analog.com>
+ <20221019133910.282-2-Ibrahim.Tilki@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221019133910.282-2-Ibrahim.Tilki@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 17, 2022 at 01:24:49PM +0200, Johan Hovold wrote:
-> +	/*
-> +	 * Some Qualcomm platforms require interconnect bandwidth constraints
-> +	 * to be set before enabling interconnect clocks.
-> +	 *
-> +	 * Set an initial peak bandwidth corresponding to single-lane Gen 1
-> +	 * for the pcie-mem path.
-> +	 */
-> +	ret = icc_set_bw(pcie->icc_mem, 0, MBps_to_icc(250));
-
-[snip]
-
-> +	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
-> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
+On 19/10/2022 09:39, Ibrahim Tilki wrote:
+> Devicetree binding documentation for Analog Devices MAX313XX RTCs
+> 
+> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> ---
+>  .../devicetree/bindings/rtc/adi,max313xx.yaml | 163 ++++++++++++++++++
+>  1 file changed, 163 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml b/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
+> new file mode 100644
+> index 000000000..1aa491799
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
+> @@ -0,0 +1,163 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2022 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/adi,max313xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	switch (speed) {
-> +	case 1:
-> +		bw = MBps_to_icc(250);
-> +		break;
-> +	case 2:
-> +		bw = MBps_to_icc(500);
-> +		break;
-> +	default:
-> +	case 3:
-> +		bw = MBps_to_icc(985);
-> +		break;
-> +	}
+> +title: Analog Devices MAX313XX series I2C RTC driver
 
-Just curious: These platforms have a 4 lane PCIe bus. Why use 985
-instead of 1000 for the maximum?
+Drop "driver" unless it is some hardware-related term.
 
-Brian
+> +
+> +maintainers:
+> +  - Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> +  - Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> +
+> +description: Bindings for the Analog Devices MAX313XX series RTCs.
+
+Drop "Bindings for"
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max31328
+> +      - adi,max31329
+> +      - adi,max31331
+> +      - adi,max31334
+> +      - adi,max31341
+> +      - adi,max31342
+> +      - adi,max31343
+
+This looked familiar... and indeed it is.
+
+https://lore.kernel.org/all/a382fdee-3672-50b8-cd58-85563b9d9079@linaro.org/
+
+Where is the changelog? What are the differences? How can we understand
+what is happening here?
+
+Best regards,
+Krzysztof
 
