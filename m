@@ -2,83 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5FA6604C57
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:54:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 106A2604C10
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbiJSPy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 11:54:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58034 "EHLO
+        id S232658AbiJSPsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 11:48:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232428AbiJSPx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:53:57 -0400
-X-Greylist: delayed 733 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 19 Oct 2022 08:51:30 PDT
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3987B196089;
-        Wed, 19 Oct 2022 08:51:30 -0700 (PDT)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.94.2)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1olB9A-000167-Pv; Wed, 19 Oct 2022 17:38:20 +0200
-Date:   Wed, 19 Oct 2022 16:38:14 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: phy: mediatek: tphy: add compatible for
- tphy-v4
-Message-ID: <07c5d962515c4f675f076bb91d69eaf651b187c6.1666193782.git.daniel@makrotopia.org>
-References: <df51b63add2830d91b527db64fba6ffdb7765f5d.1666193782.git.daniel@makrotopia.org>
+        with ESMTP id S229992AbiJSPrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:47:23 -0400
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2416C1DEC02
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:41:57 -0700 (PDT)
+Received: by mail-qv1-xf30.google.com with SMTP id f14so11624770qvo.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:41:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h0ceYVTwSJB8ccQZxmQCbl2zZtcaTBh+8PZFVFjj7pc=;
+        b=lAPeGU1vVHrIERvJnn6ykIPOI+2UFW7fRoRaqQxRk4IfJzUdXaB62b8qt1ay5U2Kre
+         pezihyOgPFtbxsK27L4+7wB4jDNBD4Uvv4PsVhUVoUXvmu8agK+FkR0NUWKRn2kvIP4W
+         BPz/q5ZlZSbTOqw8A/IshgTa8u8D7NRJC4huz/nhusYlBZWgErPZfdagLh0Xax6qRrrK
+         oDpwjlBrPl7+gVsH0pKXS97jWURZvV8645li3zLPjc5MkzJGDLj7JHN87IrEYN+55FKy
+         6SREwO7qDnAPqpz/S9ZN/iPXfLnx8hxhEx/mU3IB9jk0GBzbG27Dj8qn1xDGUiLcZ0BA
+         XA/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=h0ceYVTwSJB8ccQZxmQCbl2zZtcaTBh+8PZFVFjj7pc=;
+        b=GjoyqluLSdUJfclMzP+Oid+AvKGuNy3qJmWBku9e5G6xznkmQQQpXXBQtULgzHxiS+
+         ZXiuarI9nAMzqCwjpjnK2NWdSqKlOaTYQpJn0K3yAnf2T8A/R1zYSjoUi0Zlyf9yQyTf
+         YyqdoX7ZMKccsayvpziDfA45BKVRnZoW+inl4oUOmkDjILmCzPTrFoM65gxogRXqDaE1
+         ZPwRqzKXRW6dBqMHnClp22MdIV/3CUKXZ/m+xWoKvTdksNWaANWe8T/xuGssSzEO6vYE
+         dXDC6gdA2BqicyYwgny+KYGQxfz6vmti3ELZ+kxA5VOvAvoqYE+8DLLOofpnkXacQCUg
+         6a7g==
+X-Gm-Message-State: ACrzQf15y+3pZ2HAqcPyuoqJ6HwFnzSYfaX7/kV8XJEKYiTwku2i1hij
+        yh9rZ91pRtav0cl9DiXdZbT5VQ==
+X-Google-Smtp-Source: AMsMyM4690QIj1e5aDq+SATm8Xi8DLIniBPwM5FgSW72DXTEXRxde1H/kFDfoKWVHqvr7oQ14AbQ/Q==
+X-Received: by 2002:a05:6214:2a85:b0:4b4:3f9:2639 with SMTP id jr5-20020a0562142a8500b004b403f92639mr7271033qvb.93.1666194102877;
+        Wed, 19 Oct 2022 08:41:42 -0700 (PDT)
+Received: from krzk-bin.MSRM (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id s7-20020a05620a254700b006ec59941acasm5250673qko.11.2022.10.19.08.41.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Oct 2022 08:41:42 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>
+Subject: Re: (subset) [PATCH v3 4/4] dt-bindings: pinctrl: qcom,sc7180: convert to dtschema
+Date:   Wed, 19 Oct 2022 11:41:40 -0400
+Message-Id: <166619409804.178762.14168255120927060733.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221019001351.1630089-5-krzysztof.kozlowski@linaro.org>
+References: <20221019001351.1630089-1-krzysztof.kozlowski@linaro.org> <20221019001351.1630089-5-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <df51b63add2830d91b527db64fba6ffdb7765f5d.1666193782.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-V4 can be found in MT7986 and MT7981 SoCs, it supports PCIe with two
-lanes.
+On Tue, 18 Oct 2022 20:13:51 -0400, Krzysztof Kozlowski wrote:
+> Convert Qualcomm SC7180 pin controller bindings to DT schema.  Keep the
+> parsing of pin configuration subnodes consistent with other Qualcomm
+> schemas (children named with '-state' suffix, their children with
+> '-pins').
+> 
+> 
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Applied, thanks!
 
-diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-index 5613cc5106e32f..851e3dda7b638b 100644
---- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-+++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-@@ -89,6 +89,11 @@ properties:
-               - mediatek,mt8188-tphy
-               - mediatek,mt8195-tphy
-           - const: mediatek,generic-tphy-v3
-+      - items:
-+          - enum:
-+              - mediatek,mt7981-tphy
-+              - mediatek,mt7986-tphy
-+          - const: mediatek,generic-tphy-v4
-       - const: mediatek,mt2701-u3phy
-         deprecated: true
-       - const: mediatek,mt2712-u3phy
-@@ -99,7 +104,7 @@ properties:
-     description:
-       Register shared by multiple ports, exclude port's private register.
-       It is needed for T-PHY V1, such as mt2701 and mt8173, but not for
--      T-PHY V2/V3, such as mt2712.
-+      T-PHY V2/V3/V4, such as mt2712.
-     maxItems: 1
- 
-   "#address-cells":
+[4/4] dt-bindings: pinctrl: qcom,sc7180: convert to dtschema
+      https://git.kernel.org/krzk/linux-dt/c/ee3d25dff30ca1a4a2afa66da81465accf2b045a
+
+Best regards,
 -- 
-2.37.3
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
