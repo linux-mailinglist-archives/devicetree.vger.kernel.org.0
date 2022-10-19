@@ -2,206 +2,349 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A2B96046E5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 574A360466E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:10:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231622AbiJSNW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 09:22:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42090 "EHLO
+        id S232185AbiJSNJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 09:09:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232204AbiJSNWE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:22:04 -0400
-Received: from dhl.lxnav.com (dhl.lxnav.com [168.119.248.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4892E194FB4
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:07:15 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2582B4068C;
-        Wed, 19 Oct 2022 14:55:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lxnav.com; s=dhl;
-        t=1666184103; h=from:subject:date:message-id:to:cc:mime-version:
-         content-transfer-encoding; bh=t4Yaw2ZLuxRrXeXgMKdBXuSmh/kxDmx/nG04x9JTVpY=;
-        b=jRHmYMffIWRnfbrYiOqE4kr4qmjAgByvauE5ssWejiTP7a6P6B6ll2wjJEIpCZ5RVfYRjJ
-        IVQB5jk1ReSBD+vK9HtY4vqB1hv39FaWRG4UtSefk8bJpa92P5XmOsOv5uPAZp530/zcGm
-        4ZKyox1WtgeC9E0uSmhghMI2X2IvI5DmNJ5nae9r7pTNEqOUQ6UOML6VmFepGOY9V5LdVD
-        WIrR9Ik3ejI3FE9ZdcN8/6Wnrha+8Mp79bT2K7Aycm6j3KOsKqCTLTwwOW/L8XxegRmvm1
-        /G8gUc8C97Nrr1jetQ9GDdVvmNRBNPuYER1DVcqJ3C39QDAGasqQwNWIDVn7rQ==
-From:   Mitja Spes <mitja@lxnav.com>
-To:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>
-Cc:     Mitja Spes <mitja@lxnav.com>, Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Tomasz Duszynski <tduszyns@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] iio: pressure: ms5611: fixed value compensation bug
-Date:   Wed, 19 Oct 2022 14:52:50 +0200
-Message-Id: <20221019125254.952588-1-mitja@lxnav.com>
+        with ESMTP id S232088AbiJSNJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:09:30 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A7A52BE06;
+        Wed, 19 Oct 2022 05:54:37 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id 204so17109396pfx.10;
+        Wed, 19 Oct 2022 05:54:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=y81h2vug6ZFljaTYznjsrWUdpzznggvoDmvJtXu5Hj8=;
+        b=Vrq3Og4l0aTsPavvn6d70G0q5JTPrth0Dfnu3dFhIhlCoHwMH2uH4INdtooLYIsQgH
+         T5/E1bkLdEK9n6B+FKRNRk4efccTlhLh7ZgsygLv5FkR/jL4ZOypsUJgTrHxpFMh+bIr
+         y6B6KuAJ5VlN88toFuz7AZXbkPj4o8Q2fkB0m2nRFtm3WAc2dY5dO/QvMmn18/uknn7S
+         TUq65jD7Rdn1lFxWD1ZmUum5voa5X9a28JrL5YURD8hndHTbfNnoSelhDlsj7VbYHSW6
+         Kgx8uVcx9+uWcXpEjSmOJpv1a2Jm3N5+E02RyKNLlhks4z8MRLfeK2acEIyKdI5eJV8e
+         YfdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y81h2vug6ZFljaTYznjsrWUdpzznggvoDmvJtXu5Hj8=;
+        b=BAIg9J0sZhwfbLDsJeBRXfK8Ex31ZhqZuj39eYK3WLPlclTP5hGlXdN1XCPxuuDEni
+         Pb6tvMdok52CTUExb+zAG95JAdRD3izllPbwHWOSptJZYhIwlLhoqqjwxGtbJvX71pNR
+         P6h37CYSI8TWwwtpGdrywhCPARdTdu3jn0EL5mF2xlVSdGQiCcZPvXHEyb+FlVm94Gj6
+         tNtRS6+48CaIqeIyzA2QGtP4AOku7BqYyqSMZy+QghXyQqF2NwYToRCvmL3ADmSfmNaF
+         t5Tc5PU7yQNdXPb5msT6dr3LnB2iWCEkVPrupR3p/3rRuRhB721TnR2RljFLoKDdr8j9
+         /hTQ==
+X-Gm-Message-State: ACrzQf1aMiteFFI4pStM1Azi5qntWPd6B6pJu/eVjeAGK6rUXp6fJCYP
+        GkmGccBxGnVcH7UqTVBT/EfLu69Tf/HLlpfV4mw=
+X-Google-Smtp-Source: AMsMyM5WH7dUW2PP90Zh8tbWF1+DbpPMVYBEJO4Ks75ZeaHN6v2UsMZ2w92ONL2mAe/35cc9OV0emMBjkQesWAJ1eGw=
+X-Received: by 2002:a63:2a97:0:b0:457:23e9:586d with SMTP id
+ q145-20020a632a97000000b0045723e9586dmr7117267pgq.190.1666183994498; Wed, 19
+ Oct 2022 05:53:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220628181838.2031-1-max.oss.09@gmail.com> <20220628181838.2031-3-max.oss.09@gmail.com>
+ <Y0gLdQleE64FQgn9@gaggiata.pivistrello.it> <CAPY8ntAszGzcp4XC=XKMHJvzCC9LHHf24pt=nZAUFKcK5=JM_Q@mail.gmail.com>
+ <Y0tfRhn/f1FiGDi4@pendragon.ideasonboard.com>
+In-Reply-To: <Y0tfRhn/f1FiGDi4@pendragon.ideasonboard.com>
+From:   Max Krummenacher <max.oss.09@gmail.com>
+Date:   Wed, 19 Oct 2022 14:53:03 +0200
+Message-ID: <CAEHkU3W_8vGOPprMW=K3dKJc6AQQPCNVTwOP+aii_o4ohfmYQw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: display: add new bus-format property
+ for panel-dpi
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        francesco.dolcini@toradex.com, Marek Vasut <marex@denx.de>,
+        max.krummenacher@toradex.com, Rob Herring <robh@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When using multiple instances of this driver the compensation PROM was
-overwritten by the last initialized sensor. Now each sensor has own PROM
-storage.
+Hi Laurent
 
-Signed-off-by: Mitja Spes <mitja@lxnav.com>
----
- drivers/iio/pressure/ms5611.h      | 12 +++----
- drivers/iio/pressure/ms5611_core.c | 51 ++++++++++++++++--------------
- 2 files changed, 31 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/iio/pressure/ms5611.h b/drivers/iio/pressure/ms5611.h
-index cbc9349c342a..550b75b7186f 100644
---- a/drivers/iio/pressure/ms5611.h
-+++ b/drivers/iio/pressure/ms5611.h
-@@ -25,13 +25,6 @@ enum {
- 	MS5607,
- };
- 
--struct ms5611_chip_info {
--	u16 prom[MS5611_PROM_WORDS_NB];
--
--	int (*temp_and_pressure_compensate)(struct ms5611_chip_info *chip_info,
--					    s32 *temp, s32 *pressure);
--};
--
- /*
-  * OverSampling Rate descriptor.
-  * Warning: cmd MUST be kept aligned on a word boundary (see
-@@ -50,12 +43,15 @@ struct ms5611_state {
- 	const struct ms5611_osr *pressure_osr;
- 	const struct ms5611_osr *temp_osr;
- 
-+	u16 prom[MS5611_PROM_WORDS_NB];
-+
- 	int (*reset)(struct ms5611_state *st);
- 	int (*read_prom_word)(struct ms5611_state *st, int index, u16 *word);
- 	int (*read_adc_temp_and_pressure)(struct ms5611_state *st,
- 					  s32 *temp, s32 *pressure);
- 
--	struct ms5611_chip_info *chip_info;
-+	int (*compensate_temp_and_pressure)(struct ms5611_state *st, s32 *temp,
-+					  s32 *pressure);
- 	struct regulator *vdd;
- };
- 
-diff --git a/drivers/iio/pressure/ms5611_core.c b/drivers/iio/pressure/ms5611_core.c
-index 717521de66c4..c564a1d6cafe 100644
---- a/drivers/iio/pressure/ms5611_core.c
-+++ b/drivers/iio/pressure/ms5611_core.c
-@@ -85,7 +85,7 @@ static int ms5611_read_prom(struct iio_dev *indio_dev)
- 	struct ms5611_state *st = iio_priv(indio_dev);
- 
- 	for (i = 0; i < MS5611_PROM_WORDS_NB; i++) {
--		ret = st->read_prom_word(st, i, &st->chip_info->prom[i]);
-+		ret = st->read_prom_word(st, i, &st->prom[i]);
- 		if (ret < 0) {
- 			dev_err(&indio_dev->dev,
- 				"failed to read prom at %d\n", i);
-@@ -93,7 +93,7 @@ static int ms5611_read_prom(struct iio_dev *indio_dev)
- 		}
- 	}
- 
--	if (!ms5611_prom_is_valid(st->chip_info->prom, MS5611_PROM_WORDS_NB)) {
-+	if (!ms5611_prom_is_valid(st->prom, MS5611_PROM_WORDS_NB)) {
- 		dev_err(&indio_dev->dev, "PROM integrity check failed\n");
- 		return -ENODEV;
- 	}
-@@ -114,21 +114,20 @@ static int ms5611_read_temp_and_pressure(struct iio_dev *indio_dev,
- 		return ret;
- 	}
- 
--	return st->chip_info->temp_and_pressure_compensate(st->chip_info,
--							   temp, pressure);
-+	return st->compensate_temp_and_pressure(st, temp, pressure);
- }
- 
--static int ms5611_temp_and_pressure_compensate(struct ms5611_chip_info *chip_info,
-+static int ms5611_temp_and_pressure_compensate(struct ms5611_state *st,
- 					       s32 *temp, s32 *pressure)
- {
- 	s32 t = *temp, p = *pressure;
- 	s64 off, sens, dt;
- 
--	dt = t - (chip_info->prom[5] << 8);
--	off = ((s64)chip_info->prom[2] << 16) + ((chip_info->prom[4] * dt) >> 7);
--	sens = ((s64)chip_info->prom[1] << 15) + ((chip_info->prom[3] * dt) >> 8);
-+	dt = t - (st->prom[5] << 8);
-+	off = ((s64)st->prom[2] << 16) + ((st->prom[4] * dt) >> 7);
-+	sens = ((s64)st->prom[1] << 15) + ((st->prom[3] * dt) >> 8);
- 
--	t = 2000 + ((chip_info->prom[6] * dt) >> 23);
-+	t = 2000 + ((st->prom[6] * dt) >> 23);
- 	if (t < 2000) {
- 		s64 off2, sens2, t2;
- 
-@@ -154,17 +153,17 @@ static int ms5611_temp_and_pressure_compensate(struct ms5611_chip_info *chip_inf
- 	return 0;
- }
- 
--static int ms5607_temp_and_pressure_compensate(struct ms5611_chip_info *chip_info,
-+static int ms5607_temp_and_pressure_compensate(struct ms5611_state *st,
- 					       s32 *temp, s32 *pressure)
- {
- 	s32 t = *temp, p = *pressure;
- 	s64 off, sens, dt;
- 
--	dt = t - (chip_info->prom[5] << 8);
--	off = ((s64)chip_info->prom[2] << 17) + ((chip_info->prom[4] * dt) >> 6);
--	sens = ((s64)chip_info->prom[1] << 16) + ((chip_info->prom[3] * dt) >> 7);
-+	dt = t - (st->prom[5] << 8);
-+	off = ((s64)st->prom[2] << 17) + ((st->prom[4] * dt) >> 6);
-+	sens = ((s64)st->prom[1] << 16) + ((st->prom[3] * dt) >> 7);
- 
--	t = 2000 + ((chip_info->prom[6] * dt) >> 23);
-+	t = 2000 + ((st->prom[6] * dt) >> 23);
- 	if (t < 2000) {
- 		s64 off2, sens2, t2, tmp;
- 
-@@ -342,15 +341,6 @@ static int ms5611_write_raw(struct iio_dev *indio_dev,
- 
- static const unsigned long ms5611_scan_masks[] = {0x3, 0};
- 
--static struct ms5611_chip_info chip_info_tbl[] = {
--	[MS5611] = {
--		.temp_and_pressure_compensate = ms5611_temp_and_pressure_compensate,
--	},
--	[MS5607] = {
--		.temp_and_pressure_compensate = ms5607_temp_and_pressure_compensate,
--	}
--};
--
- static const struct iio_chan_spec ms5611_channels[] = {
- 	{
- 		.type = IIO_PRESSURE,
-@@ -433,7 +423,20 @@ int ms5611_probe(struct iio_dev *indio_dev, struct device *dev,
- 	struct ms5611_state *st = iio_priv(indio_dev);
- 
- 	mutex_init(&st->lock);
--	st->chip_info = &chip_info_tbl[type];
-+
-+	switch (type) {
-+	case MS5611:
-+		st->compensate_temp_and_pressure =
-+			ms5611_temp_and_pressure_compensate;
-+		break;
-+	case MS5607:
-+		st->compensate_temp_and_pressure =
-+			ms5607_temp_and_pressure_compensate;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
- 	st->temp_osr =
- 		&ms5611_avail_temp_osr[ARRAY_SIZE(ms5611_avail_temp_osr) - 1];
- 	st->pressure_osr =
--- 
-2.34.1
+On Sun, Oct 16, 2022 at 3:33 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hello,
+>
+> On Fri, Oct 14, 2022 at 03:08:49PM +0100, Dave Stevenson wrote:
+> > On Thu, 13 Oct 2022 at 13:58, Francesco Dolcini wrote:
+> > > On Tue, Jun 28, 2022 at 08:18:36PM +0200, Max Krummenacher wrote:
+> > > > From: Max Krummenacher <max.krummenacher@toradex.com>
+> > > >
+> > > > The property is used to set the enum bus_format and infer the bpc
+> > > > for a panel defined by 'panel-dpi'.
+> > > > This specifies how the panel is connected to the display interface.
+> > > >
+> > > > Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+> > > >
+> > >
+> > > <snip>
+> > >
+> > > > diff --git a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
+> > > > index dae0676b5c6e..52f5db03b6a8 100644
+> > > > --- a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
+> > > > +++ b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
+> > > > @@ -26,7 +26,28 @@ properties:
+> > > >    height-mm: true
+> > > >    label: true
+> > > >    panel-timing: true
+> > > > -  port: true
+> > > > +
+> > > > +  port:
+> > > > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > +    description:
+> > > > +      Input port node, receives the panel data.
+> > > > +
+> > > > +    properties:
+> > > > +      endpoint:
+> > > > +        $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> > > > +
+> > > > +        properties:
+> > > > +          bus-format:
+> > > > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +            minimum: 0x1001
+> > > > +            maximum: 0x1fff
+> > > > +            description: |
+> > > > +              Describes how the display panel is connected to the display interface.
+> > > > +              Valid values are defined in <dt-bindings/display/dt-media-bus-format.h>.
+> > > > +              The mapping between the color/significance of the panel lines to the
+> > > > +              parallel data lines are defined in:
+> > > > +              https://www.kernel.org/doc/html/v5.17/userspace-api/media/v4l/subdev-formats.html#packed-rgb-formats
+> > > > +
+> > >
+> > > Last month I had the chance to talk in person about this topic with
+> > > Dave, Marek and Max in Dublin.
+> > >
+> > > My understanding is that this change is addressing a general need, Dave
+> > > confirmed me they have a downstream patch for raspberrypi [1].
+> > >
+> > > From what I could tell the only concern is about the actual encoding of
+> > > this `bus-format` property.
+> > >
+> > > I am personally convinced that a simple enum is the way to go, I think
+> > > that Marek proposal is adding complexity and not flexibility (from my
+> > > understanding Dave is on the same page, just correct me if I
+> > > misunderstood you).
+> >
+> > Yes I agree with you here.
+> >
+> > This binding is for the panel, and currently the only path to pass the
+> > panel mode to the DPI transmitter is one or more MEDIA_BUS_FMT_* enums
+> > in struct drm_display_info *bus_formats.
+> >
+> > Looking at Marek's comment over DSI and data-lanes, yes both source
+> > and sink could advertise a data-lanes property to cover the condition
+> > where they aren't wired up in a 1:1 fashion. Reality is that most
+> > drivers don't support reordering the lanes - looking at the bindings,
+> > only one (msm) documents the use of data-lanes on the host side.
+> > rcar_mipi_dsi looks at the number of lanes specified only, and then
+> > checks that the number requested by the device is <= the number
+> > configured.
+> >
+> > As I see it, the comparison here is that this "bus-format" property is
+> > the equivalent of the data-lanes on the sink, and is the desired
+> > number of lanes value passed from sink to source (one integer, not a
+> > mapping).
+> > If the source can reorder the lanes, then that is a property of the
+> > source. This binding is for the sink, and so isn't a reasonable
+> > comparison. It also doesn't have to be called "bus-format" on the
+> > source, and can take a totally different form.
+> > I'll admit that I know data-lane configuration more from CSI2, but
+> > within V4L2 it is the node that can support reordering that should
+> > have the lanes in a non-incrementing order, and that is normally the
+> > SoC rather than the sensor. The same would seem to apply here - it's
+> > the SoC that can remap the signals, not the panel.
+> >
+> > It could be argued that for DPI the panel should only advertise the
+> > panel's bit depth for each channel, not the padding. The panel is
+> > generic and could handle any wiring/padding options, and it isn't
+> > necessarily a simple 16/18/24/32 bit bus representation, just a
+> > collection of N wires.
+> > Padding and wiring is a function of the DPI transmitter / SoC, or
+> > potentially an interconnect node between the two.
+>
+> Sooo... I'm not sure where to start :-)
+>
+> I think the trouble when describing the connection between a source and
+> a sink in DT is that none of the source or sink is an ideal place to
+> describe properties of the connection.
+>
+> For DSI we have it relatively easy, as we only have to describe the
+> number of lanes that are routed on the board and possibly how the lanes
+> are rearranged. The former is a value that is common between the source
+> and the sink, that's the easiest case, it can be specified in both DT
+> nodes. The latter is a bit more complicated, and was solved by allowing
+> specifying lane reordering on both the source and the sink. As there is
+> typically only one of the two components that will support lane
+> reordering (if any), DTs will usually specify a 1:1 mapping on one side,
+> and possibly reorder on the other side. If both the source and the sink
+> support reordering, setting data-lanes = <1 2> on both sides would lead
+> to a different configuration than data-lanes = <2 1>, but both would
+> work the same (I'm not sure why anyone would want the latter though).
+> There may thus be multiple ways to describe a working setup, but that's
+> fine, the complexity is manageable, and any hardware configuration can
+> be described.
+>
+> The nice thing with DSI is that the actual data format doesn't depend on
+> the board configuration (provided of course that enough lanes are
+> available to sustain the required bandwidth). For DPI, things can be
+> more difficult. In the test below, "format" refers to how data bits are
+> mapped to hardware lines, similarly in concept to the media bus codes.
+>
+> I see three different cases at the hardware level:
+>
+> - Either or both the sink or the source support a single format. This
+>   means that the side that supports multiple formats will always use the
+>   same format. If data lines are rearranged, the format output by the
+>   source may not match the format received by the sink, but the hardware
+>   configuration of both the sink and the source is effectively fixed to
+>   system-specific values.
+>
+> - Both the sink and the source support multiple formats, but only one
+>   combination of formats is possible with how the data lines are routed.
+>   This case is very similar to the previous one at the hardware level,
+>   only one configuration is possible.
+>
+> - Both the sink and the source support multiple formats, and multiple
+>   format combinations can lead to working configurations. This isn't an
+>   uncommon case, there are DPI panels with 24 data lines that can
+>   support both RGB666 and RGB888.
 
+
+I see a panel-dpi compatible panel to be a fixed format only.
+I.e. The panel itself supports one and only one format. It is the
+hardware designers' choice how to connect the panel. I agree that at
+a HW level it is possible to connect a panel that supports RGB888 to
+18 data lanes in a RGB666 configuration and whatever other combination
+you can think of, however once the HW is set the format is fixed.
+
+If a panel can change its format by e.g. strapping pins it is still
+in the hardware designers hand to set the format.
+
+Should the panel be able to adapt its format then one would either
+need a communication channel from the panel to the source which
+transport the information what format the panel decided to use or,
+more likely, the panel-dpi driver would need to set the used
+format by some communication (GPIO/I2C/SPI...). However both cases
+are outside of what panel-simple or panel-dpi can do. Those would
+be the panels which need and merit their specific drivers.
+
+>
+> At the software level, there are also multiple options:
+>
+> - Both sides could specify the device configuration in DT, using media
+>   bus codes or any other set of standard or device-specific properties.
+>   As this would specify a single configuration, it would map quite fine
+>   to the first two hardware cases. Each driver would read its own
+>   properties and configure the device accordingly. There would be no
+>   need for communication between the drivers at runtime in this case.
+
+In my view of things that format specifies the connection between
+the display controller and the panel. I.e. how is data represented
+between the two endpoints.
+If the controller outputs its data in one format and the panel
+expects it in a different format you will unlikely display what
+is intended.
+So at least for the panel-dpi case it makes more sense that only
+one side (the side which has it fixed, i.e. the panel) sets it.
+
+>
+>   This could also support the third hardware case, but would limit it to
+>   one of the supported configurations, without allowing the other ones
+>   to be selected at runtime.
+>
+>   This scheme is similar to data-lanes, in the sense that each side
+>   reads its own hardcoded configuration from DT. It does however differ
+>   in that the data format gets hardcoded as well, unlike DSI where the
+>   data formats needs to be communicated at runtime between the drivers.
+>   As, like DSI, it requires both sides to specify their hardware
+>   configuration in DT, interoperability between sources and sinks would
+>   require all DT bindings for all DPI devices to adhere to this. They
+>   may not have to specify their configuration using the same set of
+>   properties, but they would all need to specify it in DT. This would
+>   thus, I think, lead to a dead end for the third hardware case.
+
+If source and sink would be able to negotiate one of many possible
+formats at runtime this can no longer be handled by a panel-simple
+provided driver. It would also no longer be a DT responsibility.
+I.e. it would go into (optional?) API functionality between the source
+and sink.
+The HW as described here has the panel connected per
+MEDIA_BUS_FMT_RGB666_1X24-CPAD
+LO (which does not exist and would be
+described as MEDIA_BUS_FMT_RGB888_1X24) and the display controller
+supports MEDIA_BUS_FMT_RGB888_1X24 and MEDIA_BUS_FMT_RGB666_1X24_CPADHI.
+So the display controller would choose MEDIA_BUS_FMT_RGB888_1X24 for
+its configuration.
+
+And again, it's the HW designers responsibility to connect the panel
+in a way compatible with what the particular display controller can
+produce.
+
+So I still see the solution that a panel-dpi in the DT specifies
+the format in its endpoint and the display controller does read it
+from there as a way forward.
+
+Max
+
+
+>
+> The easy optin is to consider that most use cases are in the first two
+> hardware categories, specify the media bus code in DT on both sides, and
+> consider that support for the third category can be added later. I'm
+> worried that we would then corner ourselves, as explained above, because
+> this scheme requires all devices involved to specify their hardcoded
+> configuration in DT. Will there then be a path forward that wouldn't
+> break the DT ABI ? Even if there was, it would mean that all driver
+> would then need to support two sets of DT properties, leading to a
+> painful transition period on the driver side.
+>
+> > > The current proposal is already encoding the exact bit placing as
+> > > described in Documentation/userspace-api/media/v4l/subdev-formats.rst [2],
+> > > this enumeration can be extended to address any future needs
+> > > and I would not invent a new one to define the exact same
+> > > things (and using the same enum was also suggested by Rob).
+> > >
+> > > Marek: you told me that you had some concern about some valid use case
+> > > not covered by this solution, would you mind explaining why that would
+> > > not be covered with an addition on this enumeration?
+> >
+> > All the MEDIA_BUS_FMT_* enums are explicitly defined with regard to
+> > the colour component bit positions. Should someone be in the position
+> > of needing to implement a YUV or similar DPI display, converting these
+> > enums into the relevant new structure will be straightforward, so
+> > backwards compatibility can be achieved easily.
+> >
+> > > Any other opinion on this topic? How can we move this forward?
+> > >
+> > > Francesco
+> > >
+> > > [1] https://github.com/raspberrypi/linux/commit/8e43f1898191b43aa7ed6e6ca3a4cd28709af86d
+> > > [2] https://www.kernel.org/doc/html/latest/userspace-api/media/v4l/subdev-formats.html
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
