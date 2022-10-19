@@ -2,90 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA5586047B2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:44:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 196F5604828
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbiJSNod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 09:44:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40932 "EHLO
+        id S232194AbiJSNtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 09:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233216AbiJSNoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:44:00 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 334291552F4;
-        Wed, 19 Oct 2022 06:31:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8CD26B823B2;
-        Wed, 19 Oct 2022 13:30:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81588C433C1;
-        Wed, 19 Oct 2022 13:30:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666186216;
-        bh=2L2jeDsVN9w9kUdnBfgnFxJ5WxkNRtvWQ38M5+XfO/4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IIUPHmMcZWYt3OvMmRU/6acc8WNrgwHI/j40NvGwvaPYH4m8M7uDA/nf1NNshtW6o
-         X6AyS/wMjWZ3X8M8vySGdL1wIoygXc5pzd+Ajjj0AQGU/C9PJ7p3qjs1CR1v8AlIYi
-         4nLuu238p59ZORrMzteTWOg5rk6oWVymepGYuSyjw4H0ZFaqe1wQM9GH7S13Nn/WiL
-         3QyuUYbVd+28HujNkqsBPEmkldVNCGPIc3gIsIrIBY/noy8118Ss0BaBKEO+emmRpq
-         WlQjwsrnw8wBQ90AntiNw6zz/h1/dBQcqlszpet03zZHaXuX5iLemoXhB76pswnE4l
-         ujVKLR0Fpba9A==
-Date:   Wed, 19 Oct 2022 19:00:12 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S233607AbiJSNsO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:48:14 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 134EF367AB;
+        Wed, 19 Oct 2022 06:32:45 -0700 (PDT)
+Received: (Authenticated sender: kory.maincent@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id F0121E0004;
+        Wed, 19 Oct 2022 13:32:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1666186335;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=lhiCYLQFvv0VNmNRXtrzuQS+x+dk0THDr97Yf1PzbkM=;
+        b=RTbIUUpviy3RBFy4C92Nl+g/4+7ZKXbm5bkEC2seFprdfYb8gvVvUp21ePX1ic6naKZaDf
+        fLKiEUvJjZSqF8t1HbIeRqksG4CzSecbjvOhSTWYNM/IKa43kVateKGuDPT59pOvGrkqe9
+        Z5Skfi8erhZpefeK2gHMRs6qSBuVRPQYP2kOapMbZKTJY4Y44dZ2qaPe247uvhRHmIFo5W
+        XGEpbvorPY4gbgx2hbt4h6NY/KF8or3XbZg5Sb923YC69L7JIJnI1LZG86mlUzEb41OHkC
+        EcYUO73S2e+07lxcopUDLwFalB6AHWljl7OEc+TuKsXLw4dZ6lgWN448ZNYawg==
+From:   =?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>
+To:     Rajeev Kumar <rajeev-dlh.kumar@st.com>,
+        Bhavna Yadav <bhavna.yadav@st.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Deepak Sikri <deepak.sikri@st.com>,
+        Vijay Kumar Mishra <vijay.kumar@st.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     thomas.petazzoni@bootlin.com,
+        Kory Maincent <kory.maincent@bootlin.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dmaengine: qcom: gpi: Add compatible for QDU1000
- and QRU1000
-Message-ID: <Y0/75E7MqCpQml+I@matsya>
-References: <20221014221102.7445-1-quic_molvera@quicinc.com>
- <20221014221102.7445-3-quic_molvera@quicinc.com>
- <15b50b09-ba8c-c93c-a5f8-7b0d4d12f223@linaro.org>
+        Vipin Kumar <vipin.kumar@st.com>,
+        Vipul Kumar Samar <vipulkumar.samar@st.com>
+Subject: [PATCH 2/6] arm: dts: spear600: Fix clcd interrupt
+Date:   Wed, 19 Oct 2022 15:32:04 +0200
+Message-Id: <20221019133208.319626-3-kory.maincent@bootlin.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221019133208.319626-1-kory.maincent@bootlin.com>
+References: <20221019133208.319626-1-kory.maincent@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <15b50b09-ba8c-c93c-a5f8-7b0d4d12f223@linaro.org>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15-10-22, 09:42, Krzysztof Kozlowski wrote:
-> On 14/10/2022 18:11, Melody Olvera wrote:
-> > Add compatible fields for the Qualcomm QDU1000 and QRU1000 SoCs.
-> > 
-> > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> > ---
-> >  drivers/dma/qcom/gpi.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/drivers/dma/qcom/gpi.c b/drivers/dma/qcom/gpi.c
-> > index cc938a31dc2d..02438735e92b 100644
-> > --- a/drivers/dma/qcom/gpi.c
-> > +++ b/drivers/dma/qcom/gpi.c
-> > @@ -2286,6 +2286,8 @@ static int gpi_probe(struct platform_device *pdev)
-> >  }
-> >  
-> >  static const struct of_device_id gpi_of_match[] = {
-> > +	{ .compatible = "qcom,qdu1000-gpi-dma", .data = (void *)0x10000 },
-> > +	{ .compatible = "qcom,qru1000-gpi-dma", .data = (void *)0x10000 },
-> 
-> The feedback was: drop entire patch.
-> 
-> There is really no need for this pattern to keep growing.
+From: Kory Maincent <kory.maincent@bootlin.com>
 
-Right, I have picked the patches so you dont need to add yours to driver
-file, please check dmaengine/next
+Interrupt 12 of the Interrupt controller belongs to the SMI controller,
+the right one for the display controller is the interrupt 13.
 
+Fixes: 8113ba917dfa ("ARM: SPEAr: DT: Update device nodes")
+Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+---
+ arch/arm/boot/dts/spear600.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/spear600.dtsi b/arch/arm/boot/dts/spear600.dtsi
+index fd41243a0b2c..9d5a04a46b14 100644
+--- a/arch/arm/boot/dts/spear600.dtsi
++++ b/arch/arm/boot/dts/spear600.dtsi
+@@ -47,7 +47,7 @@ clcd: clcd@fc200000 {
+ 			compatible = "arm,pl110", "arm,primecell";
+ 			reg = <0xfc200000 0x1000>;
+ 			interrupt-parent = <&vic1>;
+-			interrupts = <12>;
++			interrupts = <13>;
+ 			status = "disabled";
+ 		};
+ 
 -- 
-~Vinod
+2.25.1
+
