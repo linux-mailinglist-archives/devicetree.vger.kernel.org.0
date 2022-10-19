@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C2EE604793
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7942460479C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:42:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231574AbiJSNlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 09:41:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59006 "EHLO
+        id S232930AbiJSNmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 09:42:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232521AbiJSNl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:41:27 -0400
+        with ESMTP id S232790AbiJSNlk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:41:40 -0400
 Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C3A411D99E;
-        Wed, 19 Oct 2022 06:29:04 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B1B190E47;
+        Wed, 19 Oct 2022 06:29:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
-        Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=INKpDetnPumeR9xcGYn4Jhz0i4x5931DH0k2SGuMQMs=; b=tVFE5Jqhq+7wUCbZPou4JcvHHi
-        cWnHv/LLxipwnSe4vnKvWBk6fgFwD0hbNYxbSeoQUNLeQqLNIpIKxIO4P+fx8H3AJsrgRuXXgTjVC
-        ZxdILqPkp/SIeusvtReoknUmrT0YpBRBbhNVINeQ5xd5GjjNbQ+xrbY1eJgLCw336A2KkyUjXsov2
-        lm95pG5Hh0Hr1JyWGQ/++zx3cBd85PcwBGyDIxoLzuED86uVi5wfDkqexO+DG25PPcSR6NhloVrWX
-        eL5IP4QepQbvZSQ2oznltmZvCGyhU9NAzBDJJJOAnOmT9fv5CWtmIR1c8+unDpjyUm81zJ9TR15zS
-        gXkwOIYQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34804)
+        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
+        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
+        In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=S60rxcbm9SKKnx03gyUf4MEo4iXOvL9J8IAsBwwkSM4=; b=jlXviFSMe9bp3Ao33itgTN4Qah
+        z2TyP1pvVlValbpJ2PDxf9zoCjjVTyXXPN0/GT2Fq5DX89jwBWXz0gKBfpiS5jkXTUpvH9gKnrDJH
+        LQt2qcf66rPixTV362DcPvcC7tLK77R6RhY+cY4pT/3mjCVOtbOzpLIGtTTWRuJ75qGGPhFL6rP7V
+        luj6yOh8hLVWYAKhZVKdzn12lX9dnfHrD+hlMjxzXGxIfZztWgWdIJPurMyFaMyJk56l3nIqBm0kp
+        41PO8nJts1ng5EE3mCcfGBTEl7nuWl6vw8l8Djr7CoGilqNAgXm5Nx3lopJtgaDnWEUwfuHlbAyTo
+        HUXDI1HQ==;
+Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:57648 helo=rmk-PC.armlinux.org.uk)
         by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1ol97O-0005ip-Nz; Wed, 19 Oct 2022 14:28:22 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1ol97M-0002Be-Te; Wed, 19 Oct 2022 14:28:20 +0100
-Date:   Wed, 19 Oct 2022 14:28:20 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+        (envelope-from <rmk@armlinux.org.uk>)
+        id 1ol97m-0005j2-N4; Wed, 19 Oct 2022 14:28:46 +0100
+Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <rmk@rmk-PC.armlinux.org.uk>)
+        id 1ol97m-00EDSR-46; Wed, 19 Oct 2022 14:28:46 +0100
+In-Reply-To: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk>
+References: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk>
+From:   "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
 To:     "David S. Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        Eric Dumazet <edumazet@google.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
+Cc:     Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH net-next 0/7] net: sfp: improve high power module
- implementation
-Message-ID: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk>
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH net-next 1/7] dt-bindings: net: sff,sfp: update binding
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <E1ol97m-00EDSR-46@rmk-PC.armlinux.org.uk>
+Sender: Russell King <rmk@armlinux.org.uk>
+Date:   Wed, 19 Oct 2022 14:28:46 +0100
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
         autolearn=ham autolearn_force=no version=3.4.6
@@ -60,46 +61,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add a minimum and default for the maximum-power-milliwatt option;
+module power levels were originally up to 1W, so this is the default
+and the minimum power level we can have for a functional SFP cage.
 
-This series aims to improve the power level switching between standard
-level 1 and the higher power levels.
+Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+---
+ Documentation/devicetree/bindings/net/sff,sfp.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-The first patch updates the DT binding documentation to include the
-minimum and default of 1W, which is the base level that every SFP cage
-must support. Hence, it makes sense to document this in the binding.
-
-The second patch enforces a minimum of 1W when parsing the firmware
-description, and optimises the code for that case; there's no need to
-check for SFF8472 compliance since we will not need to touch the
-A2h registers.
-
-Patch 3 validates that the module supports SFF-8472 rev 10.2 before
-checking for power level 2 - rev 10.2 is where support for power
-levels was introduced, so if the module doesn't support this revision,
-it doesn't support power levels. Setting the power level 2 declaration
-bit is likely to be spurious.
-
-Patch 4 does the same for power level 3, except this was introduced in
-SFF-8472 rev 11.9. The revision code was never updated, so we use the
-rev 11.4 to signify this.
-
-Patch 5 cleans up the code - rather than using BIT(0), we now use a
-properly named value for the power level select bit.
-
-Patch 6 introduces a read-modify-write helper.
-
-Patch 7 gets rid of the DM7052 hack (which sets a power level
-declaration bit but is not compatible with SFF-8472 rev 10.2, and
-the module does not implement the A2h I2C address.)
-
-Series tested with my DM7052.
-
- Documentation/devicetree/bindings/net/sff,sfp.yaml |  2 +
- drivers/net/phy/sfp.c                              | 85 +++++++++++-----------
- include/linux/sfp.h                                |  2 +
- 3 files changed, 48 insertions(+), 41 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/net/sff,sfp.yaml b/Documentation/devicetree/bindings/net/sff,sfp.yaml
+index 06c66ab81c01..20d30cccc95e 100644
+--- a/Documentation/devicetree/bindings/net/sff,sfp.yaml
++++ b/Documentation/devicetree/bindings/net/sff,sfp.yaml
+@@ -23,6 +23,8 @@ title: Small Form Factor (SFF) Committee Small Form-factor Pluggable (SFP)
+ 
+   maximum-power-milliwatt:
+     maxItems: 1
++    minimum: 1000
++    default: 1000
+     description:
+       Maximum module power consumption Specifies the maximum power consumption
+       allowable by a module in the slot, in milli-Watts. Presently, modules can
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+2.30.2
+
