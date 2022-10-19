@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CFF5604C32
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0615B604C3D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:53:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229765AbiJSPvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 11:51:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59704 "EHLO
+        id S232568AbiJSPxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 11:53:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232450AbiJSPvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:51:35 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 527E21290AB
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:47:30 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id g9so11606879qvo.12
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:47:30 -0700 (PDT)
+        with ESMTP id S232592AbiJSPwt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:52:49 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B598BC450
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:49:49 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id sc25so40912157ejc.12
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:49:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vrFWkLuR3jMPPnmrB2JfbwYDWpDDskQjLWBXZha57GU=;
-        b=xYXM2Z2ltScJJy4QcFwBtAffA5VWVcQlo0S4/hkyRqt6H5Ks0RZJaxlhTBsI79Y6eN
-         nFnWo+u0hMFbF+VjkYxxKp+38kEspd1VSYB6/PdEweaqtWhrXgtAYIAiFXL+mWiPl7/1
-         s18tySpWt6wCd4+mWeTq5U1FX6M/8M4U7KWZZ64r26KeultSol1gEqKyChFaiqmX/+E/
-         CjoBpmukF21eVQ5eVK6bdttdvO6zb8sehxxW8jtB2s76ZX5Rulr0F3PrLm7JBNweclVb
-         LbAaRWMWqp7rlp15YmWqHsBkChiZY/rZpxLlKMMnWQ71YaUzu8nKg+myW36d3vIdMkMY
-         iBKw==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=x/LBGeRA1bR4x/er8ptm3OVF4CHSU/5RYrhJUueSgZE=;
+        b=C1ufBFChd3ta9Bpk6NhYscZbbJ7JDe1ZFQ+hb33zZWt91jdlj+w86KBpTM6vakXu2U
+         Qv0x1YlEOhpT9celq+q/nlE3hxnC7RldNre50cZVo02wJvg8NgB+MdadbWkRBZzB49bQ
+         k6FO3/apf9bvCZYQGYyY9ln1WQ/EFw8vZXsyY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vrFWkLuR3jMPPnmrB2JfbwYDWpDDskQjLWBXZha57GU=;
-        b=wLk7iwWunBln57aOC+gE50BF3LzdOnSDR0CU7gpUPooUfjLOajzD38MgeH4Uc8h6ab
-         1YZO0tC1WuzxU1v+CZY/uLFBnQl6UHuDNPjuZwH4/9fR9KclYnd+sPGZtZfa30VDVkjX
-         Ndo1LDTZMqF1MYl3TYuF+nrIMEn2Y9jyqkd37or0hcdRGmOHbC7p/dPf/bOTKlk7yxzp
-         TsPONhDLzjYvyvgRzRe0dfECvfaOEeS0idXxdGak5X5bkbBZZIN9j06U+I8RIdG2Pfwh
-         AMgnFMDDt39bDYvDQ3ITdC0+Bw6KxBklroybzhaMPCK20A91HlOEuFnbMK6V7Y3oplR+
-         8TWA==
-X-Gm-Message-State: ACrzQf1LZBV25tzW7ISggagctd8gIEAFh0fLmj9LwK0mRf8pKO+nxouN
-        iz6TAxVn1XvON5a8DguHowYtZM4iMKn4wA==
-X-Google-Smtp-Source: AMsMyM7tuiMw+QrtUrI0S4X8+zom/Ro5V8tZ6UfEyKSPIYgWvqIcLfEZfPwJd3CWu3zGvXED1w2vBw==
-X-Received: by 2002:ad4:5bc1:0:b0:4ad:34b2:d29c with SMTP id t1-20020ad45bc1000000b004ad34b2d29cmr7300069qvt.21.1666194415380;
-        Wed, 19 Oct 2022 08:46:55 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id x5-20020a05620a258500b006bb366779a4sm4966487qko.6.2022.10.19.08.46.53
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x/LBGeRA1bR4x/er8ptm3OVF4CHSU/5RYrhJUueSgZE=;
+        b=TWFzrzRco7CRkWhi2GkBMhamHtfjfHkSQ7qWjsUZe/I3xTeu8iC4NbG5EvDCFXP0HL
+         WT7ySjMtSVt4uym+rMdBK69E41hON6iqHsvVgwi3VIVApmF+jCC2adhgKLOVBnvnbbf4
+         JcE+KfZIEXpoXrKdQGGNENhvH4ADsFARNfxWCw8g83YXnwjG1SH7JM9tGgCQdoYcbrbw
+         DGLZlJmpXaMWOj7d76fwSo+2wLnxqv5v9wqYX8l/YpJ0h+0sNrdlQPLYpzTQr9Rh5b53
+         QxaL4ZRZRW/VKKBx3gRrar/krBFtoJqzh4bK+tiQO8OG/KQoSu/etnd3I0WoUfpaKFAS
+         s+2g==
+X-Gm-Message-State: ACrzQf0JJYCoJutdvAMXucBvIxm+PQ/iUOUVb6eDqmem5vOJPRxCOrTT
+        NF1ZX9zDlaRhkbEuWxRLAIEBZy7MfJKQOA==
+X-Google-Smtp-Source: AMsMyM7FFkdvVjaxIYs4UcJngFNKBNfcL0DPD80xce9YZio8TPeaPGFg26hQokLL35XM9B4B+HLUfw==
+X-Received: by 2002:a17:906:eecb:b0:73c:5c85:142b with SMTP id wu11-20020a170906eecb00b0073c5c85142bmr7335270ejb.433.1666194502187;
+        Wed, 19 Oct 2022 08:48:22 -0700 (PDT)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
+        by smtp.gmail.com with ESMTPSA id g10-20020aa7c84a000000b0045cbe305be1sm10627206edt.49.2022.10.19.08.48.19
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 08:46:54 -0700 (PDT)
-Message-ID: <5bf984f4-681c-7001-281f-f35bb7fdfc8b@linaro.org>
-Date:   Wed, 19 Oct 2022 11:46:53 -0400
+        Wed, 19 Oct 2022 08:48:19 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id v130-20020a1cac88000000b003bcde03bd44so288806wme.5
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:48:19 -0700 (PDT)
+X-Received: by 2002:a05:600c:4b19:b0:3c6:cc7c:763c with SMTP id
+ i25-20020a05600c4b1900b003c6cc7c763cmr6355432wmp.57.1666194498976; Wed, 19
+ Oct 2022 08:48:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 0/3] Suspending i.MX watchdog in WAIT mode
-Content-Language: en-US
-To:     Andrej Picej <andrej.picej@norik.com>,
-        linux-watchdog@vger.kernel.org
-Cc:     shawnguo@kernel.org, linux@roeck-us.net,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
-        kernel@pengutronix.de, s.hauer@pengutronix.de,
-        wim@linux-watchdog.org, robh+dt@kernel.org
-References: <20221019111714.1953262-1-andrej.picej@norik.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221019111714.1953262-1-andrej.picej@norik.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20221019001351.1630089-1-krzysztof.kozlowski@linaro.org> <20221019001351.1630089-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221019001351.1630089-3-krzysztof.kozlowski@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 19 Oct 2022 08:48:04 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UriVs4-=KCg5TkzCuQaS=LEZS=CDOH0=69GsYjhPcu_g@mail.gmail.com>
+Message-ID: <CAD=FV=UriVs4-=KCg5TkzCuQaS=LEZS=CDOH0=69GsYjhPcu_g@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] arm64: dts: qcom: sc7180: revert "arm64: dts:
+ qcom: sc7180: Avoid glitching SPI CS at bootup on trogdor"
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,32 +82,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 07:17, Andrej Picej wrote:
-> The i.MX6 watchdog can't be stopped once started. This means that
-> special hardware suspend needs to be configured when the device enters
-> low-power modes.
-> Usually i.MX devices have two bits which deal with this:
-> - WDZST bit disables the timer in "deeper" low power modes and
-> - WDW bit disables the timer in "WAIT" mode which corresponds with
-> Linux's "freeze" low-power mode.
-> 
-> WDZST bit support is already in place since 1a9c5efa576e ("watchdog: imx2_wdt: disable watchdog timer during low power mode").
-> WDW bit is not common for all imx2-wdt supported devices, therefore use
-> a new device-tree property "fsl,suspend-in-wait" which suspends the
-> watchdog in "WAIT" mode.
-> 
-> Andrej Picej (3):
->   watchdog: imx2_wdg: suspend watchdog in WAIT mode
->   dt-bindings: watchdog: fsl-imx: document suspend in wait mode
->   ARM: dts: imx6ul/ull: suspend i.MX6UL watchdog in wait mode
-> 
->  .../devicetree/bindings/watchdog/fsl-imx-wdt.yaml          | 5 +++++
+Hi,
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
+On Tue, Oct 18, 2022 at 5:14 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> This reverts commit e440e30e26dd6b0424002ad0ddcbbcea783efd85 because it
+> is not a reliable way of fixing SPI CS glitch and it depends on specific
+> Linux kernel pin controller driver behavior.
+>
+> This behavior of kernel driver was changed in commit b991f8c3622c
+> ("pinctrl: core: Handling pinmux and pinconf separately") thus
+> effectively the DTS fix stopped being effective.
+>
+> Proper solution for the glitching SPI chip select must be implemented in
+> the drivers, not via ordering of entries in DTS.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> ---
+>
+> Changes since v2:
+> 1. New patch
+>
+> Not tested on hardware.
+>
+> Cc: Doug Anderson <dianders@chromium.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 27 +++-----------------
+>  1 file changed, 3 insertions(+), 24 deletions(-)
 
-Best regards,
-Krzysztof
+It would have been nice for the commit message to mention the fix in
+the driver, which has already landed as commit d21f4b7ffc22 ("pinctrl:
+qcom: Avoid glitching lines when we first mux to output").
 
+In any case:
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
+I've confirmed that this patch is fine after taking the pinctrl fix.
+
+Tested-by: Douglas Anderson <dianders@chromium.org>
