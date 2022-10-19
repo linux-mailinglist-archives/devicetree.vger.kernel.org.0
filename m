@@ -2,118 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81DD2604995
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAA0160499E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:46:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229870AbiJSOom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 10:44:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48038 "EHLO
+        id S231265AbiJSOqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 10:46:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231673AbiJSOoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:44:15 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 238491B76DA
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:30:37 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id f8so10785452qkg.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:30:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rEmIhwLP6JWJlQRt/3w8mhy6Yg1o3TLKHqQiOhMxy0U=;
-        b=ilprgxZy/nxFTTz37DvZ1mP/ydqyP3gwcaRJpuxF1UGyotKOl1P0TiyF+qbRDXAVP+
-         akYeivho+XgXIdhxz/1VcgkOGZfNaJDsQECdfdTkS6TTo2LVgrhTqAm6ZgwAdYEwfXlO
-         zxfaDJfLj27/AjML/XccPnZwVbKFy9U6IkozVVN5YTtOkJUYLEgBeUy/uDP62/+Tw7lL
-         tMpbux0+ueArUxiap5maUr7qhn1u6sU12qPulUMS8yLmn70JLDoPH+st0+0ZPCAaAHZ7
-         Dcq0zZ6TK48SG9SefGqm3jvUjdISTD6ETlJmCPAzI73W3Io2vVKh/okOJTkgLCpE94Kt
-         S4jQ==
+        with ESMTP id S229990AbiJSOq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:46:26 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C70156252
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:32:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1666189966;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=5YibLNy+OciDPg1RqQtPWy91evf3zRYGT05L7hMD1SE=;
+        b=XMmjW232vNZUtQ2gdCcRA7a4fdA4jMFXg+t/h+AfkKcoKRsNvgFJdH0xM1E9lbf05u+0kj
+        lVc+Ub0QZAIT21zxeKsg3octwXrIjsO4/MLx/KxXMFGrM7m2ahWRwMMgOv3yKEC6jq+1KB
+        MqU06aJs6/NXWAmNVMYwpM90XvLia3c=
+Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
+ [209.85.166.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-443-o2GpSASDP1yarM8ixtrGIA-1; Wed, 19 Oct 2022 10:32:44 -0400
+X-MC-Unique: o2GpSASDP1yarM8ixtrGIA-1
+Received: by mail-io1-f72.google.com with SMTP id r12-20020a5e8e4c000000b006bc3030624fso13396053ioo.23
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:32:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rEmIhwLP6JWJlQRt/3w8mhy6Yg1o3TLKHqQiOhMxy0U=;
-        b=sjXhVB2AVgh+aqUXGGzLsK5ShuvHmKESyCEJIVT8qyvFJTGl1rzdgbl8qxYylqazM8
-         /1cP1pLG6oRVIhBYyKbhHTIRSW7I/k85/NNGVJGuAqtGuvRHxpCG5NFbzJ0s8tX4tNDS
-         WfuxTh6Myb+khQ7S26lXkHXO3527Nauk7qPjtA+xLcGRSDGOckK29dA1pOixdSj8qCSD
-         2ISZkcd0W7W0WwHE3V6ofrD4QKhBFRQlVSotOzbauCAITFd0KmBS5dlrjCHpp4SVwXz2
-         opq94QlRKsjJmy8aGbEnQ13eMw7SWkV9DUs6e158D4M6hp2w8wrBDRoub7c5Bq1x+S9h
-         74dA==
-X-Gm-Message-State: ACrzQf0WrI3NAt+p4cznc5vocI2EyuAj2WfhwnYD/ZdCyXtRdqgQWKGv
-        Er0hI28wEDqbM7kXNoQto0/k3o2imd/DFA==
-X-Google-Smtp-Source: AMsMyM49VXrZGh0Y6/lHBCG4YpU/HQkprtBYeSAxBKwVJI5YDUWZ81RHBa5iViI4NMMV2LjRZt4rPA==
-X-Received: by 2002:a37:9ac4:0:b0:6ee:caa8:fe2f with SMTP id c187-20020a379ac4000000b006eecaa8fe2fmr5788394qke.638.1666189768362;
-        Wed, 19 Oct 2022 07:29:28 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id u24-20020a37ab18000000b006bb83c2be40sm4993247qke.59.2022.10.19.07.29.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 07:29:27 -0700 (PDT)
-Message-ID: <d355ee40-5905-4d10-8300-81e9a63117ee@linaro.org>
-Date:   Wed, 19 Oct 2022 10:29:26 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v3 1/2] spi: dt-bindings: amlogic, meson-gx-spicc: Add
- pinctrl names for SPI signal states
-Content-Language: en-US
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5YibLNy+OciDPg1RqQtPWy91evf3zRYGT05L7hMD1SE=;
+        b=hxnnOzWW8pTq2sRfRBhFr4e9UBx6hjoF/rlYE1Xb1KKctMVm2niz1h2s9jPNra77bO
+         M9ZfBJULghDp+SwqGKIGQR2i9PK5qK1ib9SNJiJ1yFI/iC1oVfEdL32lbDELjkh2C21B
+         Km/etQfzXPqrN9dGtz/Z34WWJbduFAhg7a0yP1p/Hw0nyr/qFdjZHtGVMpkRDmYDEAUa
+         xQR/2+jcHmS+l0thhir+88uv+xrFjPciXGFFsyjhj3ZV1xOAhInBLBuyXFBWRLD1cSjj
+         TYQAs9ReW6PCXp6AlC/tSx/k/AJq/CHJRU4LtMWnFPwWxOoZOhk1uLkUd3szGgY7H+bh
+         F8oA==
+X-Gm-Message-State: ACrzQf2+0OpGPHYkPXBIhAzLudRlB5JQy4hYnOi5XmjjIuYz4BCzIetl
+        +5ug+2DlkmwZunwCiaR8bxFr70dfAB96wIdmW31S+6TbmaNmsXcCdxEaK1Dc9xjW04/GkFCZhJf
+        +y/Q5WfIaf2/96Q0R54nCuQ==
+X-Received: by 2002:a02:54c1:0:b0:363:453e:2ccb with SMTP id t184-20020a0254c1000000b00363453e2ccbmr6451897jaa.228.1666189964203;
+        Wed, 19 Oct 2022 07:32:44 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM6/HkVuS6wNDB9egoiQiNu3qMpbMyAK3j1AnEKd9qXTPxLsvFR1yo6X9O/te7EZm3+VoF9IlA==
+X-Received: by 2002:a02:54c1:0:b0:363:453e:2ccb with SMTP id t184-20020a0254c1000000b00363453e2ccbmr6451869jaa.228.1666189963941;
+        Wed, 19 Oct 2022 07:32:43 -0700 (PDT)
+Received: from x1 (c-98-239-145-235.hsd1.wv.comcast.net. [98.239.145.235])
+        by smtp.gmail.com with ESMTPSA id f20-20020a02a114000000b00363961f0f2dsm2140039jag.115.2022.10.19.07.32.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Oct 2022 07:32:43 -0700 (PDT)
+Date:   Wed, 19 Oct 2022 10:32:41 -0400
+From:   Brian Masney <bmasney@redhat.com>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Da Xue <da@libre.computer>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com>
- <20221004-up-aml-fix-spi-v3-1-89de126fd163@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221004-up-aml-fix-spi-v3-1-89de126fd163@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] PCI: qcom: Add basic interconnect support
+Message-ID: <Y1AKiTkLa23idaf2@x1>
+References: <20221017112449.2146-1-johan+linaro@kernel.org>
+ <20221017112449.2146-3-johan+linaro@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221017112449.2146-3-johan+linaro@kernel.org>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 10:01, Amjad Ouled-Ameur wrote:
-> SPI pins of the SPICC Controller in Meson-GX needs to be controlled by
-> pin biais when idle. Therefore define three pinctrl names:
-> - default: SPI pins are controlled by spi function.
-> - idle-high: SCLK pin is pulled-up, but MOSI/MISO are still controlled
-> by spi function.
-> - idle-low: SCLK pin is pulled-down, but MOSI/MISO are still controlled
-> by spi function.
->
+On Mon, Oct 17, 2022 at 01:24:49PM +0200, Johan Hovold wrote:
+> +	/*
+> +	 * Some Qualcomm platforms require interconnect bandwidth constraints
+> +	 * to be set before enabling interconnect clocks.
+> +	 *
+> +	 * Set an initial peak bandwidth corresponding to single-lane Gen 1
+> +	 * for the pcie-mem path.
+> +	 */
+> +	ret = icc_set_bw(pcie->icc_mem, 0, MBps_to_icc(250));
 
+[snip]
 
+> +	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
+> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - amlogic,meson-gx-spicc
-> +
-> +    then:
-> +      properties:
-> +        pinctrl-names:
-> +          minItems: 1
-> +          items:
-> +            - const: default
-> +            - const: idle-high
-> +            - const: idle-low
+> +	switch (speed) {
+> +	case 1:
+> +		bw = MBps_to_icc(250);
+> +		break;
+> +	case 2:
+> +		bw = MBps_to_icc(500);
+> +		break;
+> +	default:
+> +	case 3:
+> +		bw = MBps_to_icc(985);
+> +		break;
+> +	}
 
-You should also define in such case pinctrl-0 and others.
+Just curious: These platforms have a 4 lane PCIe bus. Why use 985
+instead of 1000 for the maximum?
 
-Best regards,
-Krzysztof
+Brian
 
