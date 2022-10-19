@@ -2,50 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A54E604E44
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:13:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F7BD604E49
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:14:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbiJSRNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 13:13:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33718 "EHLO
+        id S230094AbiJSRN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 13:13:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiJSRNp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:13:45 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87F0B1BE932;
-        Wed, 19 Oct 2022 10:13:44 -0700 (PDT)
+        with ESMTP id S230139AbiJSRN5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:13:57 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52F381D0650;
+        Wed, 19 Oct 2022 10:13:54 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4341AB82571;
-        Wed, 19 Oct 2022 17:13:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF6B1C433C1;
-        Wed, 19 Oct 2022 17:13:38 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0AD79B8256F;
+        Wed, 19 Oct 2022 17:13:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E00C5C433D6;
+        Wed, 19 Oct 2022 17:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666199622;
-        bh=NyNZ+inQk271m+JIba1TXYMkNOx6yVUC2InlpmkUhuw=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=rytKq5vvUUyE8N8WZpL8iJdwJIevzOag8iHOLHERt4UdcmgEFyf+H/s9hkM7k2QUr
-         3r79IG9Brh31vXxj+jupWhf3dDZTZMWzryGltHKNAH+8NZXlI1V4vqKw6QWsftLfVp
-         +iLqUmHDnOP86FGJH1JcITGZDqwhtYtsoQTD99U4QG+cOxa1r7eJiDGWmp78wJiYjL
-         mjYPeY154KNQVchRPInrM1TKq27rKr/WeaxPoe9lovc4WU+lN9D1D6gBnCxCbcGQXg
-         R3YOOEGLQhlzSHgjUxkF7AZbveFF5vRuPEDvtbhHuiwCBVjHext3ryNzQNw3GO0eWN
-         TFf4Sy7F+dCyQ==
+        s=k20201202; t=1666199631;
+        bh=CL8cFgCw4ynN/G27qFiFYik2sE93rrVtsedtuYFWlfE=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=cAR7LEv8bcDRMmWE4fl8ZIoXaiVuUExHveg5/wrWUUIM/jR5j5Xq3Vn6qbGZzByNM
+         cHs8mqwBb0Lljtyz718ImUaOAvTUJg5hV+oCJt3UBYLsdIwQrPWfuuGf5DObnyIgLt
+         l8ZWPhJ4cjQNB6OEThInIyCTdQshfe2xdLmmmbFQfALNy25HQdkRrTqx8wTFpmPnoR
+         gSaQlhgry0XUOYaOgmiqU/85Mj7xtSY3+ycaUxw7hm3QOf318/8WOZF5uuqKG/eSwv
+         8n+tLbInCRiHN4DFP6v34MKszzfR5yYgssVHmv7ATiiJubcCIQP8qqbfTm5cYHvxjz
+         My6tJydShahdQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, swboyd@chromium.org,
-        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-        linux-arm-msm@vger.kernel.org, bgoswami@quicinc.com,
-        judyhsiao@chromium.org, alsa-devel@alsa-project.org,
-        andersson@kernel.org, srinivas.kandagatla@linaro.org,
-        lgirdwood@gmail.com, quic_plai@quicinc.com, agross@kernel.org,
-        tiwai@suse.com, robh+dt@kernel.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        perex@perex.cz
-In-Reply-To: <1665825530-7593-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1665825530-7593-1-git-send-email-quic_srivasam@quicinc.com>
-Subject: Re: [RESEND] Asoc: qcom: lpass-cpu: Mark HDMI TX parity register as volatile
-Message-Id: <166619961841.1416660.6646939908532904224.b4-ty@kernel.org>
-Date:   Wed, 19 Oct 2022 18:13:38 +0100
+To:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc:     linux-arm-kernel@lists.infradead.org, michal.simek@amd.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        git@amd.com, linux-spi@vger.kernel.org
+In-Reply-To: <20221011062040.12116-1-amit.kumar-mahapatra@amd.com>
+References: <20221011062040.12116-1-amit.kumar-mahapatra@amd.com>
+Subject: Re: [PATCH v4 0/7] spi: spi-zyqnmp-gqspi: Add tap delay and Versal platform support
+Message-Id: <166619962963.1416921.6108066747778177545.b4-ty@kernel.org>
+Date:   Wed, 19 Oct 2022 18:13:49 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -59,22 +55,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 15 Oct 2022 14:48:50 +0530, Srinivasa Rao Mandadapu wrote:
-> Update LPASS_HDMI_TX_PARITY_ADDR register as volatile, to fix
-> dp audio failures observed with some of external monitors.
-> 
-> Fixes: 7cb37b7bd0d3 ("ASoC: qcom: Add support for lpass hdmi driver")
-> 
+On Tue, 11 Oct 2022 11:50:33 +0530, Amit Kumar Mahapatra wrote:
+> - Fix kernel-doc warnings in GQSPI driver.
+> - Avoid setting CPOL, CPHA & baud rate multiple times.
+> - Add Versal platform support in GQSPI driver.
+> - Add tap delay support in GQSPI driver.
 > 
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/1] Asoc: qcom: lpass-cpu: Mark HDMI TX parity register as volatile
-      commit: 1dd5166102e7ca91e8c5d833110333835e147ddb
+[1/7] spi: spi-zynqmp-gqspi: Fix kernel-doc warnings
+      commit: b3b953084b1bd0e74785bc5017444dd56952fb39
+[2/7] spi: spi-zynqmp-gqspi: Set CPOL and CPHA during hardware init
+      commit: 22742b8bbdd9fee1ae30be49c7e7e3becba96fc1
+[3/7] spi: spi-zynqmp-gqspi: Avoid setting baud rate multiple times for same SPI frequency
+      commit: 21764a49d32e041e9d118a7b38c14e3e02fae129
+[4/7] firmware: xilinx: Add qspi firmware interface
+      commit: 1e400cb9cff2157f89ca95aba4589f95253425ba
+[5/7] spi: spi-zynqmp-gqspi: Add tap delay support for ZynqMP GQSPI Controller
+      commit: fae7b3c3ecd76a911a1f0e45d2258a420559cbf6
+[6/7] spi: dt-bindings: zynqmp-qspi: Add support for Xilinx Versal QSPI
+      commit: 824590249b3cdf57d090d4c912f1497b8e61458f
+[7/7] spi: spi-zynqmp-gqspi: Add tap delay support for GQSPI controller on Versal platform
+      commit: 29f4d95b97bcabc0cd83c34495224b24490f0fe0
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
