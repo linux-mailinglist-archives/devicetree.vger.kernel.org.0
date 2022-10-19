@@ -2,167 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3191F604941
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:31:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 015DA604913
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:21:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230512AbiJSObI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 10:31:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38060 "EHLO
+        id S229994AbiJSOV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 10:21:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231408AbiJSOar (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:30:47 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B184119C050
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:15:13 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id g9so11406858qvo.12
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:15:13 -0700 (PDT)
+        with ESMTP id S232768AbiJSOVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:21:10 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE13C481F0
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:04:38 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id bg9-20020a05600c3c8900b003bf249616b0so71705wmb.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:04:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5vgVZXeinbhpnwzOcj3FGms9cM/M5Xj4R/cDa4Tk1cA=;
-        b=rk5peA0BMWFeyDVMmseRsE34nvZ6ETndaDo8/pPXbdaMYNHXtIqBDx9Voigy0BlSKB
-         w4Ch9hzSDZ6TEnBjZPBnKyTIPHIy4UaziH9o03NjzzrQ8HJ4nrvBXc35I8Bjo02kHFhH
-         HTRueBS7B0zoCmi47wCK+/JrVRDlzKZICYaueC0HQ4YE5gmQ4CVRwJMmTS1EOvVl5kLy
-         safAUk6uLnfvYRatROHZzB5PFDfETN+QPQAOLHEEvH5zyHPZs6SvPRJVGQCTUnmznXPP
-         FanCKOiU1cWgR7wzMsBBed7tYw5v0bwiRzvdg0pD74ea8tYwgMTvlQ3jQeb9y23XbeaJ
-         khrw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=PVj2DAdfLIU/pX3XZE26BCq9oqHkdH2P1yACg55ATYc=;
+        b=QlA9FYPVLD1k0zfaUSwjLI8Q83sBFeoAzC7eQuA8Vn4Dp8rjm78gQg6ZSYljWFaYI7
+         +EDL8mVklujMsDG8GH9sEfGXq2u99dWf+2LcmapexNQMysE0Gk9TzJ7RJR9XciOpt60T
+         v2f7F0XsTAOUDv9oH+0tpL/amAfarJmdENSkKa5Fmhky74UWZjAH3KB+l6inFESY5V1f
+         aNjyQ0JZwMql16HhSJGSg149q426+rWzciTmWU7Ja794brJrFd4gv8Mq63R3zu2Skj0B
+         bJKMfYLkoBFcz8AsXb9NzPVITJMOIhiV15K+OlEVdt/gbPnIOGmsPEGVwyHC61oOIOBn
+         bN5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5vgVZXeinbhpnwzOcj3FGms9cM/M5Xj4R/cDa4Tk1cA=;
-        b=yStlh7qNEH5faCQtpXqUTSq+MtP36q39zjZ9c3gDXmmjtfJl/fHAFvd9Ptn/sqZ8z/
-         +La7NAdLKQe9DnjE1m1hkRW1nrYsMiapNRmZKqsL+4IJjYaNG8JNoSTLnvga4yXR7Eb9
-         n+vQ+WX3NhoJvEGzAEO/D6zJXk99Sv13gOsM2FNL2LyvhkBJFs0pJCYyhEdcXiTNIdJg
-         iTC/yXsxutiQNl61bJrYXnlM5t1G2fipkLUJHKmDu5A6Hy1GJfAAmLf/7ZGzvlV9W+dR
-         ySJLFWrj9E8OPOIjGfPG4en+Zhk/BhJcdgPOHPKDwmeKz1ov2RC566i+Th1a0vxFobOg
-         prsg==
-X-Gm-Message-State: ACrzQf2Z9/EUZ+BH7Cqf6+df/9Lp6iq1b7m16I1b88jsYJodgK0+lS1W
-        L6ECgbDzxtVJDinN8V52Cs6thfPklxlvnOWtBA==
-X-Google-Smtp-Source: AMsMyM4mOJ/ZRGynrSUABhwfAdolVCW+k/oCuD8MciOZ3QxKdz/q9Sa33mzbHg22ndZhxIQLzGpdgQ==
-X-Received: by 2002:a17:903:48e:b0:17e:ea4a:394e with SMTP id jj14-20020a170903048e00b0017eea4a394emr8350170plb.48.1666187999426;
-        Wed, 19 Oct 2022 06:59:59 -0700 (PDT)
-Received: from localhost.localdomain ([117.193.210.93])
-        by smtp.gmail.com with ESMTPSA id 194-20020a6216cb000000b0053e199aa99bsm11240322pfw.220.2022.10.19.06.59.54
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PVj2DAdfLIU/pX3XZE26BCq9oqHkdH2P1yACg55ATYc=;
+        b=8GlcznaZyjVNAX+9Z0rmj5Bnkls5Y+H49Q2ZuxjYI1uP4KNB3+iuwYbvmlka4VGh/w
+         N9Mf7W5wlpAy9mS/8Ftfp4Ib15jYm0jv3R/Rlk/BmDkzJi3RwA+D1DDf2nlKq26BT26T
+         M7LgOJ2EiHPdl9LlkDG+hjPWKhVHPGKwQHSyf5MF3io7cy8Os9MMAMV1zvn1R8lWQ23O
+         C6l1zSJ4hQc1qOL5JF4ZCIsGfY3/Gpjv2PMyyeBcaPj4IBWf7uJWr7Zi3zoD34AS/Smw
+         0h4UtE35kRmMgXY5ReBqJhd0/ZtS313cv6MNzIc6MkyR9Xg0UjvE9j/uMrLlHaHfP/md
+         MClg==
+X-Gm-Message-State: ACrzQf0Bzl93M5/RZ4uzMPvYC4xmhsARf+gJQM/yOcBjKKU3acM4RM5d
+        s4O+Vpw4h0spypfSEKvBvBk00w==
+X-Google-Smtp-Source: AMsMyM5VncASy5bf6AEIZVI0iOwpTrGuyy+Dcp8M8CChiqgXYaA84TGEqw0ITPNidhlKL1DMQ9mdMg==
+X-Received: by 2002:a05:600c:468f:b0:3c6:f85c:25a1 with SMTP id p15-20020a05600c468f00b003c6f85c25a1mr5696138wmo.60.1666188197604;
+        Wed, 19 Oct 2022 07:03:17 -0700 (PDT)
+Received: from [127.0.1.1] (rtr.23.90.200.126.unyc.it. [23.90.200.126])
+        by smtp.googlemail.com with ESMTPSA id o5-20020a5d62c5000000b00228cbac7a25sm13998628wrv.64.2022.10.19.07.03.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Oct 2022 06:59:58 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     andersson@kernel.org, viresh.kumar@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
-        robh+dt@kernel.org
-Cc:     johan@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8450: Supply clock from cpufreq node to CPUs
-Date:   Wed, 19 Oct 2022 19:29:25 +0530
-Message-Id: <20221019135925.366162-5-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221019135925.366162-1-manivannan.sadhasivam@linaro.org>
-References: <20221019135925.366162-1-manivannan.sadhasivam@linaro.org>
+        Wed, 19 Oct 2022 07:03:17 -0700 (PDT)
+Subject: [PATCH v3 0/2] spi: amlogic: meson-spicc: Use pinctrl to drive CLK line when idle
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-b4-tracking: H4sIAB4DUGMC/3WNzQrCMBCEX6Xs2ZV0q/bn5HuIh01c7UKalsQWS+m7G7x7Gr6Bb2aDJFElQVdsEG
+ XRpGPIUB0KcD2Hl6A+MgMZotKYE84T8uDxqR9Mk6Ija2upG7mYCrJkOQnayMH1WQuz97nsNb3HuP5O
+ Fspx+7u3EBqspGFpSy5bOl8tr15tlKMbB7jv+/4FlmtKQLQAAAA=
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Date:   Wed, 19 Oct 2022 16:01:02 +0200
+Message-Id: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Da Xue <da@libre.computer>, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1666188196; l=1508;
+ i=aouledameur@baylibre.com; s=20220920; h=from:subject:message-id;
+ bh=/olsUtwOJnRswdLM6doMxbVMNoGB8qZCnkiNegDbh1w=;
+ b=aFPV+HsjpwaTDlj7ngssvgjXRK+U0pQ5Yu0g/7m9QFR2MBhDYQYr2iRBsvSx6x+PD6M/5IKDkRss
+ MTCh+avjCw3BKpkSwtHHwbLoGKJbXu2qDxoOXZfjOz5/8jYPCtQC
+X-Developer-Key: i=aouledameur@baylibre.com; a=ed25519;
+ pk=HgYWawSL4qLGPx+RzJ+Cuu+V8Pi/KQnDDm1wjWPMOFE=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply clocks
-to the CPU cores. But this relationship is not represented in DTS so far.
+Between SPI transactions, all SPI pins are in HiZ state. When using the SS
+signal from the SPICC controller it's not an issue because when the
+transaction resumes all pins come back to the right state at the same time
+as SS.
 
-So let's make cpufreq node as the clock provider and CPU nodes as the
-consumers. The clock index for each CPU node is based on the frequency
-domain index.
+The problem is when we use CS as a GPIO. In fact, between the GPIO CS
+state change and SPI pins state change from idle, you can have a missing or
+spurious clock transition.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Set a bias on the clock depending on the clock polarity requested before CS
+goes active, by passing a special "idle-low" and "idle-high" pinctrl state
+and setting the right state at a start of a message.
+
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Changes in v3:
+- Fixed documentation by removing pinctrl states as they are not mandatory.
+- Link to v2: https://lore.kernel.org/r/20221004-up-aml-fix-spi-v2-0-3e8ae91a1925@baylibre.com
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 6c18cfca9a34..8f26cf9aad01 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -52,6 +52,7 @@ CPU0: cpu@0 {
- 			power-domain-names = "psci";
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
-+			clocks = <&cpufreq_hw 0>;
- 			L2_0: l2-cache {
- 			      compatible = "cache";
- 			      next-level-cache = <&L3_0>;
-@@ -71,6 +72,7 @@ CPU1: cpu@100 {
- 			power-domain-names = "psci";
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
-+			clocks = <&cpufreq_hw 0>;
- 			L2_100: l2-cache {
- 			      compatible = "cache";
- 			      next-level-cache = <&L3_0>;
-@@ -87,6 +89,7 @@ CPU2: cpu@200 {
- 			power-domain-names = "psci";
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
-+			clocks = <&cpufreq_hw 0>;
- 			L2_200: l2-cache {
- 			      compatible = "cache";
- 			      next-level-cache = <&L3_0>;
-@@ -103,6 +106,7 @@ CPU3: cpu@300 {
- 			power-domain-names = "psci";
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
-+			clocks = <&cpufreq_hw 0>;
- 			L2_300: l2-cache {
- 			      compatible = "cache";
- 			      next-level-cache = <&L3_0>;
-@@ -119,6 +123,7 @@ CPU4: cpu@400 {
- 			power-domain-names = "psci";
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			#cooling-cells = <2>;
-+			clocks = <&cpufreq_hw 1>;
- 			L2_400: l2-cache {
- 			      compatible = "cache";
- 			      next-level-cache = <&L3_0>;
-@@ -135,6 +140,7 @@ CPU5: cpu@500 {
- 			power-domain-names = "psci";
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			#cooling-cells = <2>;
-+			clocks = <&cpufreq_hw 1>;
- 			L2_500: l2-cache {
- 			      compatible = "cache";
- 			      next-level-cache = <&L3_0>;
-@@ -152,6 +158,7 @@ CPU6: cpu@600 {
- 			power-domain-names = "psci";
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			#cooling-cells = <2>;
-+			clocks = <&cpufreq_hw 1>;
- 			L2_600: l2-cache {
- 			      compatible = "cache";
- 			      next-level-cache = <&L3_0>;
-@@ -168,6 +175,7 @@ CPU7: cpu@700 {
- 			power-domain-names = "psci";
- 			qcom,freq-domain = <&cpufreq_hw 2>;
- 			#cooling-cells = <2>;
-+			clocks = <&cpufreq_hw 2>;
- 			L2_700: l2-cache {
- 			      compatible = "cache";
- 			      next-level-cache = <&L3_0>;
-@@ -3804,6 +3812,7 @@ cpufreq_hw: cpufreq@17d91000 {
- 				     <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "dcvsh-irq-0", "dcvsh-irq-1", "dcvsh-irq-2";
- 			#freq-domain-cells = <1>;
-+			#clock-cells = <1>;
- 		};
- 
- 		gem_noc: interconnect@19100000 {
+---
+Amjad Ouled-Ameur (2):
+      spi: dt-bindings: amlogic, meson-gx-spicc: Add pinctrl names for SPI signal states
+      spi: meson-spicc: Use pinctrl to drive CLK line when idle
+
+ .../bindings/spi/amlogic,meson-gx-spicc.yaml       | 67 ++++++++++++++--------
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 14 +++++
+ drivers/spi/spi-meson-spicc.c                      | 39 ++++++++++++-
+ 3 files changed, 94 insertions(+), 26 deletions(-)
+---
+base-commit: aae703b02f92bde9264366c545e87cec451de471
+change-id: 20221004-up-aml-fix-spi-c2bb7e78e603
+
+Best regards,
 -- 
-2.25.1
-
+Amjad Ouled-Ameur <aouledameur@baylibre.com>
