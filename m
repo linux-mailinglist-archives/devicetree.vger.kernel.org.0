@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FC3360516D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 22:40:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30843605195
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 22:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229939AbiJSUke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 16:40:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45910 "EHLO
+        id S231499AbiJSUuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 16:50:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229776AbiJSUkd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 16:40:33 -0400
+        with ESMTP id S231331AbiJSUun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 16:50:43 -0400
 Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE9C2104D2E;
-        Wed, 19 Oct 2022 13:40:31 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id m15so26964660edb.13;
-        Wed, 19 Oct 2022 13:40:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11D1763E5;
+        Wed, 19 Oct 2022 13:50:42 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id t16so7781163edd.2;
+        Wed, 19 Oct 2022 13:50:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=SHoyPeO+yKlHEZz3rBetsZcxV3gDKtY4M4wZKqAJU44=;
-        b=UzNgmdeOVI3wCoSDtw5phtRdCh6LXmWV7A8EjSQV4rzEUqMqIXUXjcVZgP+e3OMf6p
-         ot77V5gUbJhRgLGtNoahckKs6LxDl9OWpYUlGi1qCIbUYOaSRvo5IiHv51DUbB9IreiV
-         GT/z6+lboMwwuLfc0dBSdp71HnobwCLTsgtPY94Zfv4LmLwO7MCmTV9f2DbUv1roosYW
-         BLs8dT8DoWLdQqFiyJW0jqumgfA3HJyXl52I7DY4p8zWwUFgguzpKn6CEHXmHXs8trx9
-         biE7f0WeMOZPETXTNszAMPNNp+MFlUd5W1rL72ZdjwWRcaFoJvvbqmPoXThjWrdLvPhx
-         VIMw==
+        bh=k9Jb/D65Nwg00CddvhyNz1Pxcixmx0unsPQe8+d9sp4=;
+        b=fa63IEr9jQKvbBnkDN5zidLJtLtuwez4NKCLptx6HoEnO1qmslQdNwePVxo+j8j6gJ
+         CSOAWaJkDuvnh1wfFKZ99frANkEA4eD1QIC/zwJxwGUssFUqpMJR2HPKaBwqI5i35EO0
+         33JTLh0XzNYoxV8mHYhujKZezsqZDSbXNYWhQyo2Z1fz//3JYSzQqcRHukFoVylsufnt
+         qwNI57GTs468vVKMRDx42UutK9QiLwmfypca+jdxntZCzOHCua633n7YZsx6lil/LCbQ
+         B5XOP0ltuncOShhY9+AjxVbSq7c00WUHlTPhpIukN92c1R6mTfW/2P/fzarRKmQgPvO6
+         60nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SHoyPeO+yKlHEZz3rBetsZcxV3gDKtY4M4wZKqAJU44=;
-        b=cNgvfmtbpzs9GkfEvmPiagitkCvo4CKJmA/Aty8an0Go/YS47LN61ZxFh/x/AtFtRr
-         ATKpetHJ6ZTMBKc9ZKhptm918hc0u5ZiJsOYkFRWBAwSRSSllCQbF58FmceX9Ef2dSQV
-         La1puPLI9d27mubFrnTCB+h4byZ9w6lMS800zmWbm0Q72bOq5sX2pzpnK6GCGqVgET2O
-         q0KtUDgeRfAWZ2/QWktoBZUSoEswyHcJDCCrDCsKR9kodoQEu87ZcFYf15OofPu7wO0s
-         mi1psaV2AVLYZLx+k5gFXYBn6tlCjM2n9xhmBAIKC6NLq0XGhckTz+PX3JaziEVxStEl
-         BYRA==
-X-Gm-Message-State: ACrzQf1pF9WakIGDe8nj7jN8cOO8jXuqJ7BO2ryzRc7GHMlZ1V7G1heg
-        e9EAthzZXVkHZyGpan7bPq68is5Y7iFTg7YAppk=
-X-Google-Smtp-Source: AMsMyM6fJRPrr6+1iw5zNkf08dPmy3usxyt57frb+bnuN14stIeda86KPRYBoRUipDmTmUCZddfWX5FfeSat4d6+8rU=
-X-Received: by 2002:aa7:db07:0:b0:458:f6e5:ab71 with SMTP id
- t7-20020aa7db07000000b00458f6e5ab71mr9373877eds.330.1666212030128; Wed, 19
- Oct 2022 13:40:30 -0700 (PDT)
+        bh=k9Jb/D65Nwg00CddvhyNz1Pxcixmx0unsPQe8+d9sp4=;
+        b=Re/XOZDSU4mjKt/vtYY/u7PY/O2XTA4ykiXkzR4NiICfz3Ygf9YDnx5jz9glE7+Y+d
+         895wHI3jX2FES0GBQhv2gEeklJzCabqlEVHmx6oyxsyavCv1VV2saf2mF9y1ZXomQdsD
+         kGvGtOAtBRSXH2MT3JwGU+u8prnFv7kR9LqhYhWdd0qmmJe4SExe5gtGLkXHR5whwFvf
+         pkbL2neFlIfUKEWDG3q1T0uA8IqnfX9qdQ1oYOz7uQE5fhOkhHWY655j2CPJz6Zu2gR5
+         aht6690oJ6r09VfIPBagcQXIrpbCjAU55mg+5Z+5hGYnnWt/e2+T0OLblvuvuJEYBG+l
+         benw==
+X-Gm-Message-State: ACrzQf2JWIBZcgGoUpwp/jEvHypgIdIhLn0WLw8TfbJGmyhxOb8t4PsY
+        C4R/HOenRp+sy5jFrjJHxkX3Z576pkJBG3g8Dk4=
+X-Google-Smtp-Source: AMsMyM5WSDH4F3/5sQv3/kCfh6o4ZgGBFVx1bvDggwII+Ekb/WVPf3ARd86uFycXR7ZHWTK4GNRjOWYhMn+7yLUmzC4=
+X-Received: by 2002:a05:6402:190e:b0:45c:d10a:4c1a with SMTP id
+ e14-20020a056402190e00b0045cd10a4c1amr9266859edz.345.1666212640531; Wed, 19
+ Oct 2022 13:50:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221018195122.8877-1-linux.amoon@gmail.com> <CAFBinCCqXBk9Xq0k=NA3zGi8spwyPQN7dMVWcjE+pXkXYf+FKQ@mail.gmail.com>
- <CANAwSgSR6jHRQR6QgzUop_B4gcOsQnfc6LoUXrP0CSTasZkVfQ@mail.gmail.com>
- <CANAwSgRLZfon5qUFeKW9U9AbHvSa=uKVaVgqghVk554-H1LVKw@mail.gmail.com>
- <402500e8-b4fe-9b8f-d634-e329191af1b8@linaro.org> <CANAwSgQhWrzeRcpQSSAmfp+i3966dUQdtCLbcWwifQk=1ce=og@mail.gmail.com>
-In-Reply-To: <CANAwSgQhWrzeRcpQSSAmfp+i3966dUQdtCLbcWwifQk=1ce=og@mail.gmail.com>
+References: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com> <20221004-up-aml-fix-spi-v3-2-89de126fd163@baylibre.com>
+In-Reply-To: <20221004-up-aml-fix-spi-v3-2-89de126fd163@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Wed, 19 Oct 2022 22:40:18 +0200
-Message-ID: <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on
- Odroid N2/N2+
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+Date:   Wed, 19 Oct 2022 22:50:29 +0200
+Message-ID: <CAFBinCAsCg6QQRH3VPY1OKuyfkxY0oCXLhAuMwO6=00gXKqQrQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] spi: meson-spicc: Use pinctrl to drive CLK line
+ when idle
+To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Da Xue <da@libre.computer>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
@@ -74,28 +74,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+Hi Amjad,
 
-On Wed, Oct 19, 2022 at 7:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
+On Wed, Oct 19, 2022 at 4:03 PM Amjad Ouled-Ameur
+<aouledameur@baylibre.com> wrote:
 [...]
-> > > +&pwm_AO_ab {
-> >
-> > &pwm_AO_cd not _ab
-> >
-> No it has a conflict with CPU_B (vddcpu_b) PWM
-Uh, you're right. That's probably why the Hardkernel team uses a
-software based PWM implementation: [0]
-In hindsight they should have used a different pad either for VDDCPU_B
-or the fan.
-
-I think the most pragmatic approach (since the "GPIO PWM" driver is
-not upstream and I don't know if something like that would be accepted
-upstream) is to use a GPIO based fan as you did in your initial patch.
-Not sure what others think though.
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> index c3ac531c4f84..04e9d0f1bde0 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> @@ -429,6 +429,20 @@ mux {
+>                         };
+>                 };
+>
+> +               spi_idle_high_pins: spi-idle-high-pins {
+> +                       mux {
+> +                               groups = "spi_sclk";
+> +                               bias-pull-up;
+> +                       };
+> +               };
+> +
+> +               spi_idle_low_pins: spi-idle-low-pins {
+> +                       mux {
+> +                               groups = "spi_sclk";
+> +                               bias-pull-down;
+> +                       };
+> +               };
+> +
+We typically have the .dts{,i} changes in a separate patch. I suggest
+doing the same here.
+I also have two questions about this part:
+- why are these not referenced by the SPICC controller node?
+- is there a particular reason why meson-gxl.dtsi is updated but
+meson-gxbb.dtsi is not? (my understanding is that GXBB is also lacking
+hardware OEN support)
 
 
 Best regards,
 Martin
-
-
-[0] https://github.com/hardkernel/linux/blob/c109dec94e7e819554830acfac4b6ed96e230179/arch/arm64/boot/dts/amlogic/meson64_odroidn2.dtsi#L356-L359
