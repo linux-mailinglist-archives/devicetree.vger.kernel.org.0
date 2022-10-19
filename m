@@ -2,203 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D6DC604E8C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CABD604E9A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:26:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbiJSRYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 13:24:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34770 "EHLO
+        id S229866AbiJSR0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 13:26:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231513AbiJSRYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:24:07 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EE2F18DD79;
-        Wed, 19 Oct 2022 10:24:05 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29JFwhdS021524;
-        Wed, 19 Oct 2022 19:23:44 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=z4NuzLYnlhuUAveYIXaA0i15wFwqK0u8Xd/CIKAqiIg=;
- b=NFKujf5ixQszUEjatken2l9ciMY1ctnAjSp39seTO4kzacyeyBb5qNecgBiM/58D0R47
- 9WIbKrgJVojkLDymJtHpglLYhbJzOczg38pBY2OBAvmf5rAvFk0HO2IeAOCUAnDhbcwq
- puWuwJuj+cDvwI9PA21fc7tAOL9Xbmg5DyhVFCPO/dUrzXsh54LBn+p0ZwGwT8Vs5f07
- YMDarjzE61A8Gx2afrSFzWAGLlhgIv3TSuZ59rSTaoxT6gkrl2J/4p7pylDW/Tr0Iidu
- zsTfNnJ0fzNybSLgec1ko/T+fTlZR9EWKJBFa4npcUJGaLF1ZGCZtr+Bp0APxRan2ino aA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3k7j9n4n32-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Oct 2022 19:23:44 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 67874100034;
-        Wed, 19 Oct 2022 19:23:38 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 61E4623D3F0;
-        Wed, 19 Oct 2022 19:23:38 +0200 (CEST)
-Received: from [10.48.0.213] (10.48.0.213) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Wed, 19 Oct
- 2022 19:23:35 +0200
-Message-ID: <4d113cfd-4c22-780e-2a13-48ca0e2b28ab@foss.st.com>
-Date:   Wed, 19 Oct 2022 19:23:34 +0200
+        with ESMTP id S230250AbiJSR0o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:26:44 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E79F1D1A98;
+        Wed, 19 Oct 2022 10:26:41 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29JHQXLG116399;
+        Wed, 19 Oct 2022 12:26:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1666200393;
+        bh=3hvx9pr5K+0guJn4DKXmTSuodCT3VlQZ4faEGDqq4No=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=v2YFb2MRCK2ydlVtJg3M8fj+9tfFUlNJSrR81RTgl+kRfVt+1at2w9sIgjM29DnsB
+         50HZbFREPlqJ/t4hwfdylSqSedOpk0cA3eRzx4aLjASO4Ez24CNIGO2ApNcGyLXEHa
+         UjTixXMg1pnkfrKjELk/Brh1IpO4hh+kTJBt05sM=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29JHQXM6047730
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 19 Oct 2022 12:26:33 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 19
+ Oct 2022 12:26:33 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Wed, 19 Oct 2022 12:26:32 -0500
+Received: from [10.250.33.68] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29JHQVvj123567;
+        Wed, 19 Oct 2022 12:26:31 -0500
+Message-ID: <90cbb65b-389e-95b5-26d8-39bc33f88df6@ti.com>
+Date:   Wed, 19 Oct 2022 12:26:31 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH] dt-bindings: nvmem: add new stm32mp13 compatible for
- stm32-romem
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+Subject: Re: [PATCH v2 3/4] arm64: dts: ti: Add initial support for J784S4 SoC
+Content-Language: en-US
+To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-CC:     <devicetree@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20221014172324.1.Ifc1812116ff63f5501f3edd155d3cf5c0ecc846c@changeid>
- <7ada410d-8d13-b29a-869c-3f5d032528bf@linaro.org>
-Content-Language: en-US
-From:   Patrick DELAUNAY <patrick.delaunay@foss.st.com>
-In-Reply-To: <7ada410d-8d13-b29a-869c-3f5d032528bf@linaro.org>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Hari Nagalla <hnagalla@ti.com>
+References: <20221014082314.118361-1-a-nandan@ti.com>
+ <20221014082314.118361-4-a-nandan@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20221014082314.118361-4-a-nandan@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.48.0.213]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-19_10,2022-10-19_04,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 10/14/22 3:23 AM, Apurva Nandan wrote:
+> The J784S4 SoC belongs to the K3 Multicore SoC architecture
+> platform, providing advanced system integration in automotive,
+> ADAS and industrial applications requiring AI at the network edge.
+> This SoC extends the K3 Jacinto 7 family of SoCs with focus on
+> raising performance and integration while providing interfaces,
+> memory architecture and compute performance for multi-sensor, high
+> concurrency applications.
+> 
 
-On 10/18/22 03:56, Krzysztof Kozlowski wrote:
-> On 14/10/2022 11:23, Patrick Delaunay wrote:
->> Add a new compatible for stm32mp13 support.
->>
->> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
->> ---
->>
->>   Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
->> index 448a2678dc62..16f4cad2fa55 100644
->> --- a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
->> +++ b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
->> @@ -22,6 +22,7 @@ properties:
->>     compatible:
->>       enum:
->>         - st,stm32f4-otp
->> +      - st,stm32mp13-bsec
->>         - st,stm32mp15-bsec
-> According to usage in DTS (separate patch for some reason), the devices
-> are compatible, so please describe them like that.
+[...]
 
+> +
+> +		hwspinlock: hwlock@30e00000 {
+> +			compatible = "ti,am654-hwspinlock";
+> +			reg = <0x00 0x30e00000 0x00 0x1000>;
+> +			#hwlock-cells = <1>;
+> +			status = "disabled";
 
-I push the separate patch "ARM: dts: stm32mp13: fix compatible for BSEC"
+Why is this disabled? The node is complete and usable.
 
-It is a advice of my colleagues: send an update of device tree
+I do not know if we settled on a set of rules for disabling nodes
+by default in the dtsi, I couldn't find one if we did, but how does
+this sound,
 
-only when the binding modification is acked.
+If a node in a dtsi file is incomplete, or the described hardware
+unusable, without additional information provided by board-level
+additions, then the node may be disabled. Otherwise it must be
+left in the default enabled state.
 
+Without something like that, we will end up with the same problem
+we are trying to fix here, but in reverse, one will have to
+enable nodes in board files that would not otherwise need to
+refrenced. Worse that sounds like a configuration setting, not a
+hardware description, so it would not belong in the device tree.
 
-Sorry for disturbance, I can sent a V2 with the 2 patches.
+Same for main_ringacc, main_udmap, cpts, and mcu_navss below.
 
+> +		};
+> +
 
-The STM32MP15 and STM32MP13 don't use the same version of the BSEC device,
+[...]
 
-and the driver need to handle it.
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/pinctrl/k3.h>
+> +#include <dt-bindings/soc/ti,sci_pm_domain.h>
+> +
+> +/ {
+> +
 
+Extra newline not needed.
 
-In these 2 patches:
+Andrew
 
-- [PATCH] dt-bindings: nvmem: add new stm32mp13 compatible for stm32-romem
-
-- [PATCH] ARM: dts: stm32mp13: fix compatible for BSEC
-
-
-I fix a error for BSEC node in the initial patch to support STM32MP13x,
-
-the DTS "stm32mp131.dtsi" should not used/accepted with the a BSEC node 
-using
-
-the compatible "st,stm32mp15-bsec" in commit 1da8779c0029 ("ARM: dts: 
-stm32: add STM32MP13 SoCs support")
-
-
-It is a preliminary step to add support of STM32MP13x in STM32 ROMEM driver.
-
-
-I don't indicate these patches as "Fixes:" to avoid a dts check issue
-
-if only the DTS patch was backported.
-
-
-Today it not blocking for STM32MP13x users because this SoC is not yet 
-available for customers
-
-and it is only used internally on the ST Microelectronics board 
-STM32MP135F-DK.
-
-
-Nobody (except STMicroelectronics) use this SoC  STM32MP13x with the 
-current DTS / Linux version.
-
-
-Moreover, by default, the STM32 ROMEM driver in not activated in any 
-defconfig,
-
-I prepare a other patch to activated it by default in arm_multiv7_defconfig.
-
-but I am waiting this DTS correction to avoid to probe the stm32 romen 
-driver with STM32MP15
-
-configuration on STM32MP13x SoC.
-
-
-I think is a good time to update this DTS error before the SoC availability,
-
-agreed with SoC Maintainer, Alexandre Torgue, even if this patch breaks 
-surrent users
-
-of STM32MP13x DTS (but it is only internals user STMicroelectronics 
-until now).
-
-
-but perhaps you prefer a other solution ?
-
-
-add Fixes in the DTS patch ?
-
-+ Fixes: 1da8779c0029 ("ARM: dts: stm32: add STM32MP13 SoCs support")
-
-or
-
-
-         bsec: efuse@5c005000 {
-             compatible = "st,stm32mp13-bsec", "st,stm32mp15-bsec";
-
-
-sorry, I misses to share this context.
-
-
->
-> Best regards,
-> Krzysztof
-
-
-Regards
-
-Patrick
-
+> +	model = "Texas Instruments K3 J784S4 SoC";
