@@ -2,123 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A70E603A9A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 09:26:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC693603AE9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 09:47:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbiJSH0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 03:26:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33064 "EHLO
+        id S230104AbiJSHra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 03:47:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229687AbiJSH0s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 03:26:48 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C97905F9A8
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 00:26:47 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ol3T6-00049x-J2; Wed, 19 Oct 2022 09:26:24 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ol3T4-0003wz-E9; Wed, 19 Oct 2022 09:26:22 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ol3T3-00916N-M6; Wed, 19 Oct 2022 09:26:21 +0200
-Date:   Wed, 19 Oct 2022 09:26:21 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de,
-        thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sebastian.reichel@collabora.com,
-        wxt@rock-chips.com, kever.yang@rock-chips.com,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v1 2/2] ARM: dts: rk3288: add the interrupts property
- for PWM
-Message-ID: <20221019072621.lh5hcznggbcscihf@pengutronix.de>
-References: <6eba6c10-9c96-b40f-937a-e02d43b04cd7@gmail.com>
- <7ae39c9c-8424-8b65-ac09-c0e87f3b0f01@arm.com>
+        with ESMTP id S230125AbiJSHr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 03:47:28 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8DA6CD02;
+        Wed, 19 Oct 2022 00:47:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1666165642; x=1697701642;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=LypfmRLZezRvZ80PtilHRfcQRqUmEX2LdxRqHmA8vmo=;
+  b=LbEr/IucazeVVhSvh4fpj3cdS6tQwJ6ZbMBdT2cNAC7rBS+bYZMYikBV
+   j99HqVlQLwvBj6+kEfAaVdwQy8C9kQx5VEzrq7PMvFsIq+CEcEqhsohCu
+   YwaqaTwjVx9Lpkj4P9AYCKAug7J2rmLis19OHqi79UM1EU+Do1skboZbb
+   JLeb0tYHksS6yTDd3hkV0xyQa4eyb/zp0koSzmHQardZxMoGQg2U0Tpe/
+   IurnXWjvoA+hbr6GFzkjLQBmlJfoel3f0r7xAgXxhX4F9W/99gq9qXa5A
+   sRIPX1r8tc2IkOWyu1tVzI3GBuN9LYP28TflVEsf6zkHHeXUq8sZZ/OxP
+   w==;
+X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; 
+   d="scan'208";a="196077013"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Oct 2022 00:47:22 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 19 Oct 2022 00:47:21 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Wed, 19 Oct 2022 00:47:20 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <claudiu.beznea@microchip.com>, <nicolas.ferre@microchip.com>,
+        <UNGLinuxDriver@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH] ARM: dts: lan966x: Enable sgpio on pcb8291
+Date:   Wed, 19 Oct 2022 09:51:54 +0200
+Message-ID: <20221019075154.2555054-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="egf4vu67dggq4mpk"
-Content-Disposition: inline
-In-Reply-To: <7ae39c9c-8424-8b65-ac09-c0e87f3b0f01@arm.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Enable sgpio node on pcb8291 as this is needed to be able to control
+the LEDs on this board. Otherwise the LEDs support on the board will
+not be available.
+On the other board pcb8309 the sgpio is already enabled because it
+needed to access the SFP ports.
 
---egf4vu67dggq4mpk
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+---
+ arch/arm/boot/dts/lan966x-pcb8291.dts | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-On Thu, Sep 29, 2022 at 04:50:43PM +0100, Robin Murphy wrote:
-> On 2022-09-29 15:04, Johan Jonker wrote:
-> > The Rockchip rk3288 SoC has 4-built-in PWM channels.
-> >=20
-> > Configurable to operate in capture mode.
-> > Measures the high/low polarity effective cycles of this input waveform
-> > Generates a single interrupt at the transition of input waveform polari=
-ty
-> >=20
-> > Configurable to operate in continuous mode or one-shot mode.
-> > One-shot operation will produce N + 1 periods of the waveform,
-> > where N is the repeat counter value, and generates a single interrupt at
-> > the end of operation.
-> > Continuous mode generates the waveform continuously and
-> > do not generates any interrupts.
-> >=20
-> > Add interrupts property to rk3288 PWM nodes.
->=20
-> As far as I can make out from the TRM, these are only valid when
-> GRF_SOC_CON2[0] =3D 0, otherwise it's in "new" RK_PWM mode using SPI 78 f=
-or
-> all channels. Which apparently will be the case for anyone using upstream
-> U-Boot:
->=20
-> https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/mach-rockchip=
-/rk3288/rk3288.c#L83
+diff --git a/arch/arm/boot/dts/lan966x-pcb8291.dts b/arch/arm/boot/dts/lan966x-pcb8291.dts
+index f4f054cdf2a87..3a3d76af86122 100644
+--- a/arch/arm/boot/dts/lan966x-pcb8291.dts
++++ b/arch/arm/boot/dts/lan966x-pcb8291.dts
+@@ -69,6 +69,12 @@ can0_b_pins:  can0-b-pins {
+ 		pins = "GPIO_35", "GPIO_36";
+ 		function = "can0_b";
+ 	};
++
++	sgpio_a_pins: sgpio-a-pins {
++		/* SCK, D0, D1, LD */
++		pins = "GPIO_32", "GPIO_33", "GPIO_34", "GPIO_35";
++		function = "sgpio_a";
++	};
+ };
+ 
+ &can0 {
+@@ -118,6 +124,20 @@ &serdes {
+ 	status = "okay";
+ };
+ 
++&sgpio {
++	pinctrl-0 = <&sgpio_a_pins>;
++	pinctrl-names = "default";
++	microchip,sgpio-port-ranges = <0 3>, <8 11>;
++	status = "okay";
++
++	gpio@0 {
++		ngpios = <64>;
++	};
++	gpio@1 {
++		ngpios = <64>;
++	};
++};
++
+ &switch {
+ 	status = "okay";
+ };
+-- 
+2.38.0
 
-Huh, so it depends on a (software) setting which irqs are in use? So the
-patch isn't correct as is, but I have no idea how to make it right.
-Should we rely on the bootloader to fixup the dtb correctly?
-
-Anyhow, I'm marking the patch as 'changes-requested' in our patchwork
-instance.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---egf4vu67dggq4mpk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmNPppoACgkQwfwUeK3K
-7Akn2wf9E1mkjcU/X67/FHOeTDj1DxRQnT2HY0ff5ncZoX/knkINO0zn2zGjIGF0
-UDiwKP5KkEFkWGPkn1PZ7vnTRTeZelBL8O1TIqlpWHC9peH2gOEMSdUCcbE2e3aA
-MaErc+U4m9roSDtFnYkLFHudpANRgB545KscxYZaKR82ONFONQ57PaIiZuFnS2Fy
-uqMhDbgZc5OhHiKRwAvSumOPXoJ1XuJ85lZmmAmZd5mSp/2QAvk+H1zHxisjqw/b
-rQisgoJR1FVllkL6atrCQ1+Yml/9TtPZ05/y/pxbCVVdq69YgMpq0goABsX06Qx9
-W9a9eJvn0vfzsQ6TZBDIShGvmiRiFw==
-=DSeO
------END PGP SIGNATURE-----
-
---egf4vu67dggq4mpk--
