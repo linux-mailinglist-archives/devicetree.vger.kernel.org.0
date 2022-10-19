@@ -2,52 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 196F5604828
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:50:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1E9360481D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:50:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232194AbiJSNtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231325AbiJSNtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 19 Oct 2022 09:49:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47672 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233607AbiJSNsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:48:14 -0400
+        with ESMTP id S232921AbiJSNsa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:48:30 -0400
 Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 134EF367AB;
-        Wed, 19 Oct 2022 06:32:45 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25ED19003;
+        Wed, 19 Oct 2022 06:32:51 -0700 (PDT)
 Received: (Authenticated sender: kory.maincent@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id F0121E0004;
-        Wed, 19 Oct 2022 13:32:12 +0000 (UTC)
+        by mail.gandi.net (Postfix) with ESMTPSA id D76FAE0007;
+        Wed, 19 Oct 2022 13:32:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1666186335;
+        t=1666186343;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=lhiCYLQFvv0VNmNRXtrzuQS+x+dk0THDr97Yf1PzbkM=;
-        b=RTbIUUpviy3RBFy4C92Nl+g/4+7ZKXbm5bkEC2seFprdfYb8gvVvUp21ePX1ic6naKZaDf
-        fLKiEUvJjZSqF8t1HbIeRqksG4CzSecbjvOhSTWYNM/IKa43kVateKGuDPT59pOvGrkqe9
-        Z5Skfi8erhZpefeK2gHMRs6qSBuVRPQYP2kOapMbZKTJY4Y44dZ2qaPe247uvhRHmIFo5W
-        XGEpbvorPY4gbgx2hbt4h6NY/KF8or3XbZg5Sb923YC69L7JIJnI1LZG86mlUzEb41OHkC
-        EcYUO73S2e+07lxcopUDLwFalB6AHWljl7OEc+TuKsXLw4dZ6lgWN448ZNYawg==
+        bh=4H7vT96t4Gg2mvOMTAf2MIe6YqeZHlVPrSbGQ6Z0P8U=;
+        b=CUy8nN36BZsU6m2IBtItc7gm2WLjl4v/gW7apb0LG5G+/b5o54EWRmh7oGhxJ0nOwV1ga7
+        C3RSJBI/JxW8doW/hUs0fNQ1BrdzoNzB5eP29YIrK5l0Hf1KpimS4mchfUgk46TctPq+nx
+        O89Hb1KJ872kYLdDwS3Zaqg01SBvf5fqvm+l0wYKfxS9xt89b4xSz15QQo1XeSHjVy2lfU
+        aANYFiYsF3eJHaN45klxj2fQVr2/SOsGCIg9y6I0sLdrnjLGhWmA6BOoSOL04HruC+V6XP
+        7TmKp1vntsTG35puwEMzFauSQeYEKVlvtm4/1LlsdS0fA5MbhjqHcJ+JpnJPeA==
 From:   =?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>
-To:     Rajeev Kumar <rajeev-dlh.kumar@st.com>,
-        Bhavna Yadav <bhavna.yadav@st.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Deepak Sikri <deepak.sikri@st.com>,
-        Vijay Kumar Mishra <vijay.kumar@st.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     thomas.petazzoni@bootlin.com,
         Kory Maincent <kory.maincent@bootlin.com>,
         Viresh Kumar <vireshk@kernel.org>,
         Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vipin Kumar <vipin.kumar@st.com>,
-        Vipul Kumar Samar <vipulkumar.samar@st.com>
-Subject: [PATCH 2/6] arm: dts: spear600: Fix clcd interrupt
-Date:   Wed, 19 Oct 2022 15:32:04 +0200
-Message-Id: <20221019133208.319626-3-kory.maincent@bootlin.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: [PATCH 5/6] arm: dts: spear600: Add ssp controller nodes
+Date:   Wed, 19 Oct 2022 15:32:07 +0200
+Message-Id: <20221019133208.319626-6-kory.maincent@bootlin.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221019133208.319626-1-kory.maincent@bootlin.com>
 References: <20221019133208.319626-1-kory.maincent@bootlin.com>
@@ -65,28 +58,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Kory Maincent <kory.maincent@bootlin.com>
 
-Interrupt 12 of the Interrupt controller belongs to the SMI controller,
-the right one for the display controller is the interrupt 13.
+The SPEAr600 has three Synchronous serial port to enables synchronous
+serial communication with slave or master peripherals (SPI). Lets add these
+nodes to be able to use them.
 
-Fixes: 8113ba917dfa ("ARM: SPEAr: DT: Update device nodes")
 Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 ---
- arch/arm/boot/dts/spear600.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/spear600.dtsi | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
 diff --git a/arch/arm/boot/dts/spear600.dtsi b/arch/arm/boot/dts/spear600.dtsi
-index fd41243a0b2c..9d5a04a46b14 100644
+index 9d5a04a46b14..6b67c0ceaed9 100644
 --- a/arch/arm/boot/dts/spear600.dtsi
 +++ b/arch/arm/boot/dts/spear600.dtsi
-@@ -47,7 +47,7 @@ clcd: clcd@fc200000 {
- 			compatible = "arm,pl110", "arm,primecell";
- 			reg = <0xfc200000 0x1000>;
- 			interrupt-parent = <&vic1>;
--			interrupts = <12>;
-+			interrupts = <13>;
- 			status = "disabled";
+@@ -207,6 +207,36 @@ adc: adc@d820b000 {
+ 				interrupts = <6>;
+ 				status = "disabled";
+ 			};
++
++			ssp1: spi@d0100000 {
++				compatible = "arm,pl022", "arm,primecell";
++				reg = <0xd0100000 0x1000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				interrupt-parent = <&vic0>;
++				interrupts = <26>;
++				status = "disabled";
++			};
++
++			ssp2: spi@d0180000 {
++				compatible = "arm,pl022", "arm,primecell";
++				reg = <0xd0180000 0x1000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				interrupt-parent = <&vic0>;
++				interrupts = <27>;
++				status = "disabled";
++			};
++
++			ssp3: spi@d8180000 {
++				compatible = "arm,pl022", "arm,primecell";
++				reg = <0xd8180000 0x1000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				interrupt-parent = <&vic1>;
++				interrupts = <5>;
++				status = "disabled";
++			};
  		};
- 
+ 	};
+ };
 -- 
 2.25.1
 
