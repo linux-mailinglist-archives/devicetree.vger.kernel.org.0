@@ -2,97 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D6C604EA7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:31:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7E51604E65
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:16:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230206AbiJSRbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 13:31:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56540 "EHLO
+        id S230155AbiJSRQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 13:16:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbiJSRbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:31:17 -0400
-X-Greylist: delayed 1226 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 19 Oct 2022 10:31:16 PDT
-Received: from msg-2.mailo.com (msg-2.mailo.com [213.182.54.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D4925C55;
-        Wed, 19 Oct 2022 10:31:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1666199435; bh=fiH8/vrSyWzjJXKim+s93q4OhgioJqgJk6uvtBkqYH4=;
-        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding;
-        b=TQJcgpM+S5tAdRstd32dH3+aeBacBcLfhn1cRFJaoW/48UcB77zEpvDptDQPCj/xm
-         A8scgCskoE0EjwrT2QStOEDouUfOfDeT8IkRk4TJFb2IEzuY2hxYO+y1S2WHdRiYaQ
-         Wzfv8ZtGfLQjbDDAw16B0Lgf3lym9iiweiZGVmyc=
-Received: by b-2.in.mailobj.net [192.168.90.12] with ESMTP
-        via [213.182.55.207]
-        Wed, 19 Oct 2022 19:10:35 +0200 (CEST)
-X-EA-Auth: Cd0Ai1B4yfPsr25S8xGnZTRMHsnbsGm6LBkX5tA4skP0zeZIlyWHFa8P24/PvElxhrF9DbtRM3OJZ8ZMhBOcWW/7yMLsDqpXeNdjbAgAvuI=
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Vincent Knecht <vincent.knecht@mailoo.org>
-Subject: [PATCH 2/2] soc: qcom: spm: Add MSM8939 SPM register data
-Date:   Wed, 19 Oct 2022 19:10:03 +0200
-Message-Id: <20221019171004.1080911-2-vincent.knecht@mailoo.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221019171004.1080911-1-vincent.knecht@mailoo.org>
-References: <20221019171004.1080911-1-vincent.knecht@mailoo.org>
+        with ESMTP id S230372AbiJSRQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:16:10 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AD87183E1C;
+        Wed, 19 Oct 2022 10:16:07 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29JGSdNK006987;
+        Wed, 19 Oct 2022 13:13:50 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3k7ss6gsgv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Oct 2022 13:13:49 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 29JHDbvD029363
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 19 Oct 2022 13:13:37 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Wed, 19 Oct 2022 13:13:36 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Wed, 19 Oct 2022 13:13:36 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Wed, 19 Oct 2022 13:13:36 -0400
+Received: from tachici-Precision-5530.ad.analog.com ([10.48.65.157])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 29JHDISI014873;
+        Wed, 19 Oct 2022 13:13:20 -0400
+From:   Alexandru Tachici <alexandru.tachici@analog.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     <andrew@lunn.ch>, <linux@armlinux.org.uk>, <davem@davemloft.net>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>
+Subject: [net-next 1/2] net: ethernet: adi: adin1110: add reset GPIO
+Date:   Wed, 19 Oct 2022 20:13:13 +0300
+Message-ID: <20221019171314.86325-1-alexandru.tachici@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: VqMy5pJ_8tI3mKl5EaW37fYiwCZvlZNw
+X-Proofpoint-GUID: VqMy5pJ_8tI3mKl5EaW37fYiwCZvlZNw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-19_10,2022-10-19_04,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
+ lowpriorityscore=0 bulkscore=0 impostorscore=0 spamscore=0 phishscore=0
+ suspectscore=0 clxscore=1011 malwarescore=0 priorityscore=1501
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210190098
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SPM register information and initialization values for
-QCOM MSM8939 SoC.
+Add an optional GPIO to be used for a hardware reset of the IC.
 
-Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
 ---
- drivers/soc/qcom/spm.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/net/ethernet/adi/adin1110.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/drivers/soc/qcom/spm.c b/drivers/soc/qcom/spm.c
-index 484b42b7454e..670775e43f07 100644
---- a/drivers/soc/qcom/spm.c
-+++ b/drivers/soc/qcom/spm.c
-@@ -98,6 +98,17 @@ static const struct spm_reg_data spm_reg_8916_cpu = {
- 	.start_index[PM_SLEEP_MODE_SPC] = 5,
- };
+diff --git a/drivers/net/ethernet/adi/adin1110.c b/drivers/net/ethernet/adi/adin1110.c
+index 78ded19dd8c1..3e090ff9b966 100644
+--- a/drivers/net/ethernet/adi/adin1110.c
++++ b/drivers/net/ethernet/adi/adin1110.c
+@@ -1082,9 +1082,30 @@ static void adin1110_adjust_link(struct net_device *dev)
+  */
+ static int adin1110_check_spi(struct adin1110_priv *priv)
+ {
++	struct gpio_desc *reset_gpio;
+ 	int ret;
+ 	u32 val;
  
-+static const struct spm_reg_data spm_reg_8939_cpu = {
-+	.reg_offset = spm_reg_offset_v3_0,
-+	.spm_cfg = 0x1,
-+	.spm_dly = 0x3C102800,
-+	.seq = { 0x60, 0x03, 0x60, 0x0B, 0x0F, 0x20, 0x50, 0x1B, 0x10, 0x80,
-+		0x30, 0x90, 0x5B, 0x60, 0x50, 0x03, 0x60, 0x76, 0x76, 0x0B,
-+		0x50, 0x1B, 0x94, 0x5B, 0x80, 0x10, 0x26, 0x30, 0x50, 0x0F },
-+	.start_index[PM_SLEEP_MODE_STBY] = 0,
-+	.start_index[PM_SLEEP_MODE_SPC] = 5,
-+};
++	reset_gpio = devm_gpiod_get_optional(&priv->spidev->dev, "reset",
++					     GPIOD_OUT_LOW);
++	if (reset_gpio) {
++		/* MISO pin is used for internal configuration, can't have
++		 * anyone else disturbing the SDO line.
++		 */
++		spi_bus_lock(priv->spidev->controller);
 +
- static const u16 spm_reg_offset_v2_1[SPM_REG_NR] = {
- 	[SPM_REG_CFG]		= 0x08,
- 	[SPM_REG_SPM_CTL]	= 0x30,
-@@ -211,6 +222,8 @@ static const struct of_device_id spm_match_table[] = {
- 	  .data = &spm_reg_8909_cpu },
- 	{ .compatible = "qcom,msm8916-saw2-v3.0-cpu",
- 	  .data = &spm_reg_8916_cpu },
-+	{ .compatible = "qcom,msm8939-saw2-v3.0-cpu",
-+	  .data = &spm_reg_8939_cpu },
- 	{ .compatible = "qcom,msm8974-saw2-v2.1-cpu",
- 	  .data = &spm_reg_8974_8084_cpu },
- 	{ .compatible = "qcom,msm8998-gold-saw2-v4.1-l2",
++		gpiod_set_value(reset_gpio, 1);
++		fsleep(10000);
++		gpiod_set_value(reset_gpio, 0);
++
++		/* Need to wait 90 ms before interacting with
++		 * the MAC after a HW reset.
++		 */
++		fsleep(90000);
++
++		spi_bus_unlock(priv->spidev->controller);
++	}
++
+ 	ret = adin1110_read_reg(priv, ADIN1110_PHY_ID, &val);
+ 	if (ret < 0)
+ 		return ret;
 -- 
-2.37.3
-
-
+2.34.1
 
