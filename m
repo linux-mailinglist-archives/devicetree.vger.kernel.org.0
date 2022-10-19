@@ -2,114 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E47926053F0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 01:32:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 918646053F2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 01:32:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231739AbiJSXcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 19:32:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50434 "EHLO
+        id S230130AbiJSXcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 19:32:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiJSXb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 19:31:58 -0400
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 032F6170DD6;
-        Wed, 19 Oct 2022 16:31:58 -0700 (PDT)
-Received: by mail-ot1-f43.google.com with SMTP id d18-20020a05683025d200b00661c6f1b6a4so10427744otu.1;
-        Wed, 19 Oct 2022 16:31:57 -0700 (PDT)
+        with ESMTP id S230390AbiJSXb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 19:31:57 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2BCB171CF8;
+        Wed, 19 Oct 2022 16:31:54 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id x188so21065866oig.5;
+        Wed, 19 Oct 2022 16:31:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MS0VPgDd6DBW5Ti7Tsf3pJIozjZqn06guICmD2Kp4sM=;
-        b=0a+ruPl68EQ83VfXh8jxAR9EtN/DVoIU/4OkR3ukE65mQbGLgbA5bUtDCHdRjKJ0t3
-         nMzmTip0nMX5nk6z8jUKOVSZ0z9nKc++7uPyLcMD+24YKag2DxwdbTGcPE8KpB+5a9Xq
-         VDUllp6TtSNBqUAH11xOaWQf3NW0PpUnF9O6PJ1GKWlkp9TAQAtvr4uHN1F5ZvY8LOrE
-         ejYRoULNFbOPB4dPyXCodVnqiSzK6743S12ONDyQWTAScXLGzV/E85VHd+Ktmj1y6/Kr
-         Umi24ic1QIUqbZR5Uz4NIP/4NBsDg2LIckbItx+bXvFuXDvau+Joga7EBnALBVZsOVnJ
-         suIw==
-X-Gm-Message-State: ACrzQf12+vZ0/GdUf2dPEVWUZElHnWpXf65IyjYurJcxQ5RX9Re09m4l
-        D6FrGx/gNTwI6ld9W6BxQA==
-X-Google-Smtp-Source: AMsMyM6licy+56vLBx+iqqslzytNI3UKFyi0/zd2kw7rkpCogv5TjVOaifRFEOt+ifDYFE23dsBvIA==
-X-Received: by 2002:a9d:6f02:0:b0:661:d432:fb52 with SMTP id n2-20020a9d6f02000000b00661d432fb52mr5498021otq.153.1666222317217;
-        Wed, 19 Oct 2022 16:31:57 -0700 (PDT)
+        bh=E5cGz5B9dPL46ZTbOBdW+TTlGdujxRf62tpWJdo/bwM=;
+        b=vZAUr/mcKwU3CB6M0WGpUg5CDf2k3uAcTS1T508kwSNMB8s+jZot8RXsyiPKzhLZBT
+         qGzUvzztTaFwRrLwT3vHpOYiMK7FLtm6mnBGpvMlcL1BDQ2wfBf60Nilr5w9+IenZIVP
+         PGFRZfzbV2AiiEfNoCgtwmeGqH9Z1JMbQ5YxMXrLELD65u8xUFeDGxnbHzxdpOnQGBsQ
+         SeJmjucKzqEiqlTCIg1rIJ+hCghlcvUlVnSVNYIJiDNgLpjgwHgUKEvNzzkYQyvMBZKS
+         fLh3+00pxP0QkvjX5jrPibkaUmsEUDUf9PcBU3Quo2hrKkYuybdg3mPX7NiD/fd3GJ8N
+         iwBg==
+X-Gm-Message-State: ACrzQf0m3IDly+Np8wog3mwA2a+h8jWJ3I+HOYr4drIP1SsnabM27JXJ
+        zh/zPwtt2Fhj/OpStLF06A==
+X-Google-Smtp-Source: AMsMyM5ZVSZDdegdGAkToDobbXtMAhqVv57lgef/mAQiKfsNW1YOi3NJDccz/RIi8hCNsqTAHAnWbQ==
+X-Received: by 2002:a05:6808:1507:b0:355:3ec:3109 with SMTP id u7-20020a056808150700b0035503ec3109mr6076098oiw.263.1666222313861;
+        Wed, 19 Oct 2022 16:31:53 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s17-20020a4ac811000000b00480dccc0c2asm2117891ooq.14.2022.10.19.16.31.56
+        by smtp.gmail.com with ESMTPSA id y22-20020a056870459600b0011d02a3fa63sm8264285oao.14.2022.10.19.16.31.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Oct 2022 16:31:56 -0700 (PDT)
-Received: (nullmailer pid 19942 invoked by uid 1000);
+        Wed, 19 Oct 2022 16:31:53 -0700 (PDT)
+Received: (nullmailer pid 19944 invoked by uid 1000);
         Wed, 19 Oct 2022 23:31:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Da Xue <da@libre.computer>
-In-Reply-To: <20221004-up-aml-fix-spi-v3-1-89de126fd163@baylibre.com>
-References: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com> <20221004-up-aml-fix-spi-v3-1-89de126fd163@baylibre.com>
-Message-Id: <166622204954.13100.10317615531856688163.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] spi: dt-bindings: amlogic, meson-gx-spicc: Add pinctrl names for SPI signal states
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        bharat.kumar.gogada@amd.com, bhelgaas@google.com,
+        linux-pci@vger.kernel.org, michals@xilinx.com
+In-Reply-To: <20221019144640.9458-2-thippeswamy.havalige@amd.com>
+References: <20221019144640.9458-1-thippeswamy.havalige@amd.com> <20221019144640.9458-2-thippeswamy.havalige@amd.com>
+Message-Id: <166622207386.14208.14849032885001110673.robh@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: PCI: xilinx-nwl: Convert to YAML schemas of Xilinx NWL PCIe Root Port Bridge
 Date:   Wed, 19 Oct 2022 18:31:53 -0500
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 19 Oct 2022 16:01:03 +0200, Amjad Ouled-Ameur wrote:
-> SPI pins of the SPICC Controller in Meson-GX needs to be controlled by
-> pin biais when idle. Therefore define three pinctrl names:
-> - default: SPI pins are controlled by spi function.
-> - idle-high: SCLK pin is pulled-up, but MOSI/MISO are still controlled
-> by spi function.
-> - idle-low: SCLK pin is pulled-down, but MOSI/MISO are still controlled
-> by spi function.
+On Wed, 19 Oct 2022 20:16:40 +0530, Thippeswamy Havalige wrote:
+> Convert to YAML schemas for Xilinx NWL PCIe Root Port Bridge
+> dt binding.
 > 
-> Reported-by: Da Xue <da@libre.computer>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
 > ---
->  .../bindings/spi/amlogic,meson-gx-spicc.yaml       | 67 ++++++++++++++--------
->  1 file changed, 42 insertions(+), 25 deletions(-)
+>  .../bindings/pci/xilinx-nwl-pcie.txt          |  73 -----------
+>  .../bindings/pci/xilinx-nwl-pcie.yaml         | 122 ++++++++++++++++++
+>  2 files changed, 122 insertions(+), 73 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml:46:1: [error] duplication of key "allOf" in mapping (key-duplicates)
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml:46:1: found duplicate key "allOf" with value "[]" (original value: "[]")
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml: ignoring, error parsing file
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.example.dts'
-Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml:46:1: found duplicate key "allOf" with value "[]" (original value: "[]")
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1492: dt_binding_check] Error 2
+Full log is available here: https://patchwork.ozlabs.org/patch/
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+pcie@fd0e0000: Unevaluated properties are not allowed ('clocks', 'iommus', 'power-domains' were unexpected)
+	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dtb
 
