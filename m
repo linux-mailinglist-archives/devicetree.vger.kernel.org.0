@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF976048A9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:05:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA6D160490C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:20:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiJSOFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 10:05:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34222 "EHLO
+        id S229592AbiJSOUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 10:20:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234214AbiJSOEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:04:41 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F872168E40
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:46:20 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id bp15so28182491lfb.13
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:46:20 -0700 (PDT)
+        with ESMTP id S233501AbiJSOTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:19:46 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F2FE09B8
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:03:01 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a26so39814769ejc.4
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:03:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mi+LxXEoeheHG6dh6zF/4rl0OCksLbDke1IojHO4tA8=;
-        b=irdHAYA9Jwqqm0lxZQw+hxnUNsTL0kw7lUyDAibF1ONGiJ7yP9iggjkSnbYBaNetnY
-         OHh6i4j6+BxG1lhj/4bHWifcc1AZl38kf1netmavd6C1Fir05OUvIdWSxH78x7kyRZnl
-         dYO4XAfcGTfX7cQ0On4Wa0/m6/Ptr+vxvNa+WoR+MrtnmyfPFanzPgxlNYxASXdSs/aA
-         g72AZJ2eb5OiL1Nbj7Tn4VsZYNkfD1roC/jGZ/RWB7oqcSEuuecOuu06c7JwwzxNK1SS
-         v2HpB7S50pordEQFWQKqTKjUsh2KdXLwLX5jlutGSbBE1BNE/2Thg2OF/5aA9WArNsJk
-         sxuw==
+        bh=UJIED1GMLicc9E2xTm0vMrBYlH7QKNnQvZ0ZP1r6MEk=;
+        b=K9naMjrZKs+uKZCSLVPRDZ2jSvYGjjkZf49XV8WaELqWNzpbevfDUza4cYpAaua+oq
+         QCERtfMC3wjKCGvnU89DLqR/bLqjDUV8ktOm0luwt8ciKr3/wb8Gf+MF9fA7fjj5AAmP
+         HUjbH8OVfJCuEl7k6AD24SN+R1te3atr2YaJkpIo00fP7TML8XcjkyE2o09hp4uYAi+y
+         YE2hvmjKKbJIDIAVgtZLLTvYalXOkz560rvf6ks4AEcrM9i4inb53/yYCXjxJIZOY1TP
+         54g4TUGcDLnoX3eex9RpbsVl+iAiTUyukUCPBFF+3oYwbbf/qEnxgqZK8LDFWdQuZcd9
+         u8bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mi+LxXEoeheHG6dh6zF/4rl0OCksLbDke1IojHO4tA8=;
-        b=hDZ4stTwCO9oq1f6BTfE92jIhl5q4hWxAed8D3Iy8RP6gjN4S2wAJd2Jndytg6sRfc
-         fi776VB9luPLmU4NS6dXGxXTnESl+9C6BQd9e7HYyB+0OfJaWMD+wrdKA6TaelbLXxa6
-         U4/v/Lin6oF/OoT8v7bX02ZATjM1j98ape6TyM+3/eeMqGYudtMzBkkv1mpsQzErbiwx
-         bbkX6PEz7OVg1SL700sA8GY4GdC0oFLgyxjp0904jHRR9vkSqzRj67nAaNXBWzGgOnWr
-         yK6+H6VPwqv1q6Mc8s+XHl6+ymFF6Lrdb+zWbUiDQ5nv5hbiuN1kE+KtoL6y/MtcPWDD
-         xafg==
-X-Gm-Message-State: ACrzQf1cxkYrecLWR/gijk76mnJyg1DgbiOtmV8P3Eh6KFUfz3Braxzn
-        JUzQgXkumrW78miDQkLUCtCR3A==
-X-Google-Smtp-Source: AMsMyM54rKUClMHRJrOCc/1SNFrVq4sFv2gmYRmlKpizJzuAPsZ8y2ng4/eO3zYlb8FE8WHHi+7x2g==
-X-Received: by 2002:a05:6512:3da2:b0:4a2:6fb7:b64b with SMTP id k34-20020a0565123da200b004a26fb7b64bmr2725454lfv.442.1666187102434;
-        Wed, 19 Oct 2022 06:45:02 -0700 (PDT)
+        bh=UJIED1GMLicc9E2xTm0vMrBYlH7QKNnQvZ0ZP1r6MEk=;
+        b=IEQJFqwtmmKHXT/Mbinh6aEtjbtfzW+gU+UvxZBYFO56/C47V9OappM0wNnBNuIHbj
+         4TkzJ4YQ7YsG9lxakV6xjbU/KoBE7OCddBxr5C6ncnwjculEXiD/r/AgoS8BsEwuO8qe
+         4++KnFVvwyvHCek4UlKFP+uML2Y2dFsaML87v3416BZzdC2wonmOgP1nmgMXsIT2Y5d7
+         WUOdqUUl5lOCvlRXUhKfpNbdL8FkQIImybGqVaBZK2KQBmXLaoihj0ksjjqN5Z3A6E3Q
+         76C7Y8l06t6drARaiRPEsGre9RXGbPjBIi9sIjb/1WP3wioT2jmwVHf4KyWNg7WaYt9I
+         6S+A==
+X-Gm-Message-State: ACrzQf1dKWiODV29db9WwTAzxM3nJrvq6wWiz+C450GN+VPGk/VF7O9o
+        1OiOrtKX19jXOEah61mG/BJfSg1FpXUpBA==
+X-Google-Smtp-Source: AMsMyM7Cva7bl9FMqpWN6cGLNUl5h1EdpUNy5P98fDoiY7YC0WhyZAFXhoHFs2BmHbMdvQ9r5Xgbgg==
+X-Received: by 2002:a05:651c:a11:b0:26f:db4e:e7a6 with SMTP id k17-20020a05651c0a1100b0026fdb4ee7a6mr3016661ljq.361.1666187484890;
+        Wed, 19 Oct 2022 06:51:24 -0700 (PDT)
 Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id s12-20020a056512214c00b0049f87fb416dsm2315571lfr.12.2022.10.19.06.45.01
+        by smtp.gmail.com with ESMTPSA id b7-20020a056512070700b004a2386b8ce8sm2285850lfs.211.2022.10.19.06.51.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 06:45:02 -0700 (PDT)
-Message-ID: <a9c4c02e-de96-bada-d4a2-32c06e2eed75@linaro.org>
-Date:   Wed, 19 Oct 2022 16:45:01 +0300
+        Wed, 19 Oct 2022 06:51:24 -0700 (PDT)
+Message-ID: <e17c4a43-383f-110d-4682-11727cff66ce@linaro.org>
+Date:   Wed, 19 Oct 2022 16:51:23 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH v2 07/15] phy: qcom-qmp-pcie: clean up PHY lane init
+Subject: Re: [PATCH v2 11/15] phy: qcom-qmp-pcie: restructure PHY creation
 Content-Language: en-GB
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Vinod Koul <vkoul@kernel.org>
@@ -66,9 +66,9 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221019113552.22353-1-johan+linaro@kernel.org>
- <20221019113552.22353-8-johan+linaro@kernel.org>
+ <20221019113552.22353-12-johan+linaro@kernel.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221019113552.22353-8-johan+linaro@kernel.org>
+In-Reply-To: <20221019113552.22353-12-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,14 +82,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 19/10/2022 14:35, Johan Hovold wrote:
-> Clean up the PHY lane initialisation somewhat by adding further
-> temporary variables and programming both tx and rx for the second lane
-> after the first lane.
+> In preparation for supporting devicetree bindings which do not use a
+> child node, move the PHY creation to probe() proper and parse the serdes
+> resource in what is now the legacy devicetree helper.
 > 
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 13 +++++++------
->   1 file changed, 7 insertions(+), 6 deletions(-)
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 36 +++++++++++-------------
+>   1 file changed, 17 insertions(+), 19 deletions(-)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
