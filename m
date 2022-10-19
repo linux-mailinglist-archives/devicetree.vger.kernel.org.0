@@ -2,100 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2733A6040BE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 12:14:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56BF9604090
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 12:04:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231936AbiJSKOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 06:14:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59104 "EHLO
+        id S234387AbiJSKEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 06:04:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbiJSKNm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 06:13:42 -0400
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2040.outbound.protection.outlook.com [40.107.220.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AEF8165B7
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 02:54:29 -0700 (PDT)
+        with ESMTP id S234582AbiJSKEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 06:04:12 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on0623.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe0c::623])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A558D2CFB;
+        Wed, 19 Oct 2022 02:42:33 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CPpcYVrSw4AYTRa1/3Ecfo+4gbA0zcO8UovqLLzssd5+2pczUaBzH+RAyxDz5ows8I3U8u1rDvlVb3qnZZy4+IaLgKm/HDNa5I+kEXKDfnQkNXOFCxQ6NXoaAB8HGXwf0GzftmW08IyajAwKHdlo95Un0NHZKmCJTIP9CDpReh6S7K5IgcpRwIcVnCYKrkvB3oIOCVP66Ja1V5JLzeCjEeKqArQ5x0PwMouI6n7pxhjfVGqm2Z1KRburA7kL+C34yY9gXIkndOZQA/gmGV9/sm+PGvStSoVt6JHdm8CasRoq2HNG2SuLqgaVcezd6IJjyRoAbCRd1vkDt6ygY4XEIA==
+ b=emm+jDNSAjBFOSZ2NOBR9CMSIstoI8hxNfljAoYpD2m7Ov5QiLZ2eAhI2QjKY21ac5jtCe1wq+Sr78h6e4ZhXvL3efTOxwWnpA9eEZrqus0TToxbzSek72adas0RYWqQHERt9GIrtpIHlbDCtgqJmlPj/+3L1OuLtSM70EX44sN5Ov7C2WXMbUc/sUTRdwTGf5EDNtcQ39YqpzTGSMP4G3yEviBYV+0NdmdQvMVpNxphFSzsBm6lYsFNlDfSy3mylHEz0+b/mZhlVUvy6UHe2OufUu2FYKLnjSXGntoZnwTesGZrueTO39NU07mnNHK3Rm2d3g9cAqj+L+/gJPAGgw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1DrQEriu6Frf/ivYlmEkfraardttDohUNl06GVy1L0U=;
- b=MMHtCy3+ATtrRG2Wc41uOfv7zBmh638CHrJhxrWeZZ7cuV5kBc6HYXNWCUNBHTfUTTRz4dJicRHHp8p3ux8WSW2DWO4kI/bGgCcHUEXiQS/p3RU4yJyA4bkuJHsq+7lP4gzD+at4JMxIvu14Gx7d6n17N2z/+Qpqd2m77k4e3RnM2GAJmkh1YQQeSsTCXedkny73pI3wIzju5MGsjx0ShniJbhcFY1DObLXTzFfVv/YrDzZ0hmvblye7GGvm7+WEd6vvFIYoxM2ICaXS4CVKF80q41OCnmbCyMpZKTzq30p14jV/cq6BMuUnxoAs/5Tl5b/EgnFAJ23t2LskuXvTKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=59sgFrPDR/lc2sRtJZ2iGWhYJL1MStDl3Dlm9usaw7Q=;
+ b=YMOmDdjhfeAE4ib/vLO1cLOQeesN6zStiIcodVNDt+jYOasKALUtIf1EJGHCFXziuwiZI2/6mpI6UsLCjSBpZrRpLVgqMa0tHcN3Iaj0YHMDKI2Swqvvp4+SQy13l1fMS+NtfTSHLBIhBL3oBujwkRE2RvlLn/tY1oOhMQsLQPLkg0MLhkBTMsLXV+kQl082R8Uzdp4NusBqfxjtYA5TVDQRTCCY0u+Tb8UyhbSeZ7iSuldXQwk4GNkQJYlSXVV1QDD7yx7M0l07znI+zmczVVC3olyW41PptBjUaLK+RiNshnTIfR0urHQ/bRizYp7TTVpHkQnTWAsGi0DjQhZeVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1DrQEriu6Frf/ivYlmEkfraardttDohUNl06GVy1L0U=;
- b=3niD29bf6A+rzJNzq+U4yf1piz00YaP1afruw0OKakUGC0jQMTJI1R+BNTiexneLzAe6uwspwVReVZoPfi+b3LF9DHmcqjIHrFNdz3uxLumoLpbuiL/NadXkYA71IRRXjkBuc9jG0+5+shB3cXxPcAmsYOHzamSQHHDxRs7CTD8=
-Received: from BN9P221CA0010.NAMP221.PROD.OUTLOOK.COM (2603:10b6:408:10a::13)
- by MW4PR12MB7014.namprd12.prod.outlook.com (2603:10b6:303:218::8) with
+ bh=59sgFrPDR/lc2sRtJZ2iGWhYJL1MStDl3Dlm9usaw7Q=;
+ b=GUs2ZS/XEEfkxQsLvzZlk6EFjR+wNkcstxYdstgRR4o2drwqVf/TBrSIX6t07ljcyN93gLx6JLpZ3u1aIiVJGe5G2iyyQdJc7zbITjClOor6fTpeGqGM9KRy82xjGBY3fHZ6p9bXyDq2mEYlRwfEiAWiQ69nyXds3Ma0lI1SSn8=
+Received: from PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
+ by DU0PR04MB9493.eurprd04.prod.outlook.com (2603:10a6:10:350::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.32; Wed, 19 Oct
- 2022 09:17:24 +0000
-Received: from BN8NAM11FT021.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:10a:cafe::76) by BN9P221CA0010.outlook.office365.com
- (2603:10b6:408:10a::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34 via Frontend
- Transport; Wed, 19 Oct 2022 09:17:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT021.mail.protection.outlook.com (10.13.177.114) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5746.16 via Frontend Transport; Wed, 19 Oct 2022 09:17:23 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Wed, 19 Oct
- 2022 04:17:23 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Wed, 19 Oct
- 2022 02:17:22 -0700
-Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.31 via Frontend
- Transport; Wed, 19 Oct 2022 04:17:19 -0500
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-To:     <linux-arm-kernel@lists.infradead.org>
-CC:     <git@amd.com>, <devicetree@vger.kernel.org>, <will@kernel.org>,
-        <mark.rutland@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <michal.simek@xilinx.com>
-Subject: [PATCH v1 1/2] dt-bindings: Add the binding doc for xilinx APM
-Date:   Wed, 19 Oct 2022 14:47:12 +0530
-Message-ID: <20221019091713.9285-2-shubhrajyoti.datta@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221019091713.9285-1-shubhrajyoti.datta@amd.com>
-References: <20221019091713.9285-1-shubhrajyoti.datta@amd.com>
+ 2022 09:26:01 +0000
+Received: from PA4PR04MB9640.eurprd04.prod.outlook.com
+ ([fe80::89ef:2505:c50f:3607]) by PA4PR04MB9640.eurprd04.prod.outlook.com
+ ([fe80::89ef:2505:c50f:3607%5]) with mapi id 15.20.5723.034; Wed, 19 Oct 2022
+ 09:26:01 +0000
+From:   Jun Li <jun.li@nxp.com>
+To:     "sboyd@kernel.org" <sboyd@kernel.org>,
+        "abelvesa@kernel.org" <abelvesa@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: RE: [PATCH v4 2/3] clk: imx: imx8mp: add shared clk gate for usb
+ suspend clk
+Thread-Topic: [PATCH v4 2/3] clk: imx: imx8mp: add shared clk gate for usb
+ suspend clk
+Thread-Index: AQHY1N8+3DslQb0H3EmVnh4V22Fjr64VjPbw
+Date:   Wed, 19 Oct 2022 09:26:00 +0000
+Message-ID: <PA4PR04MB964042A30D09FAF4A5C40227892B9@PA4PR04MB9640.eurprd04.prod.outlook.com>
+References: <1664549663-20364-1-git-send-email-jun.li@nxp.com>
+ <1664549663-20364-2-git-send-email-jun.li@nxp.com>
+In-Reply-To: <1664549663-20364-2-git-send-email-jun.li@nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PA4PR04MB9640:EE_|DU0PR04MB9493:EE_
+x-ms-office365-filtering-correlation-id: c98a965a-1c07-4eb8-b3d7-08dab1b3effd
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gFCyndxv2lHB9gq2SzlSvgSfe2f5OnX0dfalFhRPbdCE2CFblWE/adnp+t18n7qkEOcR9S97q4Jfu2r/7LTUu+Nrn96vFbjT2wJXlmxNcJL3K3GAeM+DDKw5q1Y30mEg+fVVA/8ptIBhTWPWUCfkyaIvvfphmbnNakUd/6Nfrq/WHyrAqqijNpVXh+w6W2Z3M6/5v5us/rV2ssmBDfS15JGx0rS4BjsYL/Yp/e0bA8K7UfRICIvrdglBWeUr/PtHhSHGIig+ceyKFPtlLK+atgARJrGHF0to86md7VFJfGNuw+uCEEL+r28vtQCcddWbJNOqInY0gjlR2y+ZZRTy4PS+W2AKrtTiXBxbAwB6NGj1Z5f2C5BpZHVrZHZoVGoSMd/Wb7H1RexbLAep/hXiUXIkH4wxcyQwiyk0ZiOnDPpSoOntlAXc8GeIUaayisjGMyrlhEtpe/5ltRClbn2Htn3hLUOSmnfzjgL/Pyf+rv7j07JJR7pL7TVxZyoVjci+vSdGZ9ogJWCyizYMxA7ZK8qJpK6SgyPEz7fzOhykyN70bqZExlmUaNbx2ZP8omkBsusnPdTtPSIWf6YAWcnR8jbSlmGCZ1v3OwKMQ8ZclFBiiIIzuWqNCC1QvZpZoKPead3KJctRWy32ya4/nfiAZOTWPq5aLEZ+tRbIhUn1X3YiIsAYsI2NrxvQsmspRCgxyb3+UXf2QXJmrBl93WccaFcgC2Yx9pJputOfqgqV0bJptXxufeo9aZKYvLlIrIgs6T9SIIQhONqCCxgBg9LvjD21OzCHUSFDJg4iBRAykV8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9640.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(136003)(39860400002)(396003)(366004)(451199015)(2906002)(5660300002)(52536014)(66476007)(8936002)(7416002)(83380400001)(41300700001)(8676002)(4326008)(6506007)(66946007)(44832011)(66556008)(66446008)(64756008)(76116006)(15650500001)(33656002)(7696005)(186003)(478600001)(26005)(316002)(9686003)(110136005)(122000001)(54906003)(71200400001)(53546011)(38070700005)(55016003)(38100700002)(86362001)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?01RqHP0O7JueZyXk8jKHzo1QFUtrd/q12V/hePsnDGFIl9LwcI0AapT2VRmu?=
+ =?us-ascii?Q?pHamb7GPfDQevZMeKjTfIhjRf2PMw4vMA24vlHTReN0IY4k9iCUCyZKDY7Ah?=
+ =?us-ascii?Q?sXWwRafSSQ1p5X6rgQSEGeo+LoeQnKDMLtanVebhjRPxVSybvdgTJt4aBSu8?=
+ =?us-ascii?Q?N04rsis9edOOp7AbbA+SGKJHgnHb52MCqsB6BEAh4elOHBqUzR171RATR6KF?=
+ =?us-ascii?Q?lIkhkG2Ihrq5cHib+YAfrKhxc21Uqgy5/10xwVgz53CTnmnMtlKG+u9kiPU1?=
+ =?us-ascii?Q?vCuza3RU4YcqIOx453G0E3vVlMfDhWJaPIPtf5cjhaaUxFoTs7QMNF+USWs7?=
+ =?us-ascii?Q?PWgxxluY1ZFRvgehQLjZ4AagrDD7ceM7NMDB9C5JPg04AGmIGkAue/GRNw+v?=
+ =?us-ascii?Q?gtPpUmmK7s+IIgm2NghRdPJe5Bp7ksuSikhsYRIOeqsY+wlFuL++ts0rtL6F?=
+ =?us-ascii?Q?E4Y1Y3qCwa+oyvjRFbonjSU6Byd+jVpY6eDGKGpfKorfIm11cATQsMmf5s0X?=
+ =?us-ascii?Q?BZVMapx0/63mrzPcfM7cOIDw4mTT/lCGT3Dufts6IvyG3F1jyNTf9l/D+Qmf?=
+ =?us-ascii?Q?O95crRAUkfPl6PN9+hwdEezMaj4C79/QfcDj5FRExu7yIJss428QOMaSZJWd?=
+ =?us-ascii?Q?/amcmiNcwsueZCjGlRQArpTdzz7klNCBE2KgutLZE5FzhyDLbKhqoIwXZenR?=
+ =?us-ascii?Q?bolUmefv2pDpGMOU03Eot2ldrh4Smgd3gwKPqhs3Td0gCW8GqnIFiaaG2J+c?=
+ =?us-ascii?Q?jYG2TXh4mPj8VGDnnTiTfYmkZQD3MaLSr+P2fL70k4FmHY3jlGl44mW5wn/g?=
+ =?us-ascii?Q?z0DyO5SGbC5b8PoUl2CGHbdwAgMLo9dSrzkqSAA5m9gGRVorvZksHFRBiP84?=
+ =?us-ascii?Q?gvJb6KQV/Nq4Job83BXZ1lTNzUpDw5VTDxxZwVkUxDdArq0sIkf6DUK30GTk?=
+ =?us-ascii?Q?arZevSewxb4pFGA6pCSSa+uiRPfG9ItNvhAmZ/rKFcUuEcvI4Ab321xuiSkK?=
+ =?us-ascii?Q?kIsJHN79rGylsK5PI0RF0wdi2LZFnTtXHSj6y+Y37cPVeELiqNeFJS6dI7jP?=
+ =?us-ascii?Q?BLheQf+gLRtvbpFy6hWMQKQwMt18Lu5bX5mwqOI/BAYvmfmfaMInAUWzA63F?=
+ =?us-ascii?Q?g/5SqRYo6raKKX/9AuXrizzuRnVCVr3Syh3hr7KAXDhJFUIZPGGDcQXAk7Nu?=
+ =?us-ascii?Q?jWh+Lf5q36eA/NbPKPU0I0fctOSD5KJBMcnnwDWw17sjxH+2sQmTr2J4kC8G?=
+ =?us-ascii?Q?Oy/eVD1jso2io1/s7Gn3FRB6PqurrfjcVRaO2czzRke3ab+fT0pvh0Wxcuv1?=
+ =?us-ascii?Q?D3T5TNn6CCJ+mVhrpsZlxzWB5we6vARSIQVAtLgAucBrD2SRFJfBitdqj9WA?=
+ =?us-ascii?Q?vpND4faG8pzCT7Y8B6X2EC1BnkXPHpoMDKsiUT90e3yva5VItpxHiIFTrNfn?=
+ =?us-ascii?Q?gpJw4fa24rG9YlXfV1+Ej6bZBYy4oVHgs1NwBbNcmy8rFRYxbIfRoWKaolTa?=
+ =?us-ascii?Q?NFGeBDEH2kPQaEr63wxQ2AYa7KR/zyPSSFxuOowfGDfIOvyKeAnsiwawDkwT?=
+ =?us-ascii?Q?BUoUF28h2BrCbWfq37Q=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT021:EE_|MW4PR12MB7014:EE_
-X-MS-Office365-Filtering-Correlation-Id: b69717d9-845c-45de-8776-08dab1b2bbbd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2ZDVG3E1iNSu/+2XqGgCzbUN5xFIquDslBnk8rkJGIhxWTwzTD/BQFRLLXEVC0hX0awpK1ZUUfsI0Ibb4DKmrSHmFPyGrIPieyjgXS/5TezjWZslWqa/qVa2xZVK8SrVBnGq7DPFXHoVeJbA5FXZMTaUpBgqQgwMUP1nB5fekC/yKtMRsgp1uxrqWFmG6S0BJgUxfzL3+dUy4gOafT8BrPCKY6pwOkguCqIv0DUJjTkM+DxfUz+if209XBD6AV82xUyd2Kq6lICXqMFfthZPMEjHL7Tiffdh/LG8rzpWxuFLY214DrjWSFhwJBCW1fi6k+693YAnSgBUsxTXWiNjjx788cpC1u79e7A9g81s8dhUNB2h80+eevIJxyiJDmJQIBFBNhcFGUrKDIqtpcF5LzSNEr9lz3ifbKtSVACCRSbLO30iUg+TinWEF/YkCkBOUezMt0lX/KVe6OIm6rClKmQ3mBb3vg4+dDK3mOPADWJpMXOxBqiKUfOKsASmTZL6nmlfrmLSPhJ6gGJsh0+fpRU+y3uz/v/2dLRm3LVYFh22iJHJ54uoODOvZiV0M/sJ9iIOu16MXNTvvxHZ16DZp2a/iyX4cffxcbI74hBWGbH0AYV+UC0uveJMYeqRq9ivF5zXwZR96hvYHnUGaXdpf9/Qlqd4jaVYbq2uKYlToskKaB76GEuEkJmA8vKOfRmzWyfp16OCeg4LkvHNtnSGwmilKsbm3L+EB2KogJVFk2K8wgEBY52UtfDrV62j18t5cyw2gsBDeHuyN0ZF17GC2Z4Z/93pR6Z9CsHbYpeFwiU2x8XN8AnKuolKPj1hegADhw2wQfTcseEEPb6gdt7Y4oAwea6I0mwsQpN1vklzIgPF63+wvhQlUIX1UhWH9tav
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(136003)(39860400002)(396003)(451199015)(36840700001)(40470700004)(46966006)(41300700001)(26005)(40460700003)(186003)(82310400005)(336012)(478600001)(44832011)(2616005)(1076003)(36756003)(107886003)(6666004)(86362001)(2906002)(8936002)(5660300002)(4326008)(82740400003)(36860700001)(6916009)(40480700001)(54906003)(316002)(47076005)(8676002)(70586007)(83380400001)(426003)(81166007)(356005)(966005)(70206006)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2022 09:17:23.7933
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9640.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c98a965a-1c07-4eb8-b3d7-08dab1b3effd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Oct 2022 09:26:00.9677
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b69717d9-845c-45de-8776-08dab1b2bbbd
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT021.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7014
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZkWb7KI4Yl985CP2TQyc5Vw0HgYxJ+YsxhHLSJ7Ocmj9E7RNuFdLMPKy3DY8E5tc
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9493
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,T_SPF_PERMERROR autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -103,163 +133,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LogiCORE IP AXI Performance Monitor core enables AXI system
-performance measurement for multiple slots (AXI4/AXI3/
-AXI4-Stream/AXI4-Lite) activity. Add the devicetree binding for
-xilinx APM.
+Hi Stephen,
 
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
----
+> -----Original Message-----
+> From: Jun Li <jun.li@nxp.com>
+> Sent: Friday, September 30, 2022 10:54 PM
+> To: sboyd@kernel.org; abelvesa@kernel.org
+> Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
+> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>;
+> mturquette@baylibre.com; l.stach@pengutronix.de; Peng Fan
+> <peng.fan@nxp.com>; alexander.stein@ew.tq-group.com;
+> gregkh@linuxfoundation.org; devicetree@vger.kernel.org;
+> linux-arm-kernel@lists.infradead.org; linux-clk@vger.kernel.org
+> Subject: [PATCH v4 2/3] clk: imx: imx8mp: add shared clk gate for usb sus=
+pend
+> clk
+>=20
+> 32K usb suspend clock gate is shared with usb_root_clk, this shared clock
+> gate was initially defined only for usb suspend clock, usb suspend clk is
+> kept on while system is active or system sleep with usb wakeup enabled, s=
+o
+> usb root clock is fine with this situation; with the commit cf7f3f4fa9e5
+> ("clk: imx8mp: fix usb_root_clk parent"), this clock gate is changed to b=
+e
+> for usb root clock, but usb root clock will be off while usb is suspended=
+,
+> so usb suspend clock will be gated too, this cause some usb functionaliti=
+es
+> will not work, so define this clock to be a shared clock gate to conform
+> with the real HW status.
+>=20
+> Fixes: 9c140d9926761 ("clk: imx: Add support for i.MX8MP clock driver")
+> Cc: stable@vger.kernel.org # v5.19+
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Li Jun <jun.li@nxp.com>
 
-Changes in v1:
- - Use boolean for the values xlnx,enable-profile , xlnx,enable-trace
-and xlnx,enable-event-count
-- Update the file name
-- use generic node name pmu
+Is this version okay for you?=20
 
- .../bindings/perf/xlnx,axi-perf-monitor.yaml  | 133 ++++++++++++++++++
- 1 file changed, 133 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml
+Thanks
+Li Jun
 
-diff --git a/Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml b/Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml
-new file mode 100644
-index 000000000000..bd3a9dbc1184
---- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml
-@@ -0,0 +1,133 @@
-+# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/perf/xlnx,axi-perf-monitor.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx Axi Performance Monitor
-+
-+maintainers:
-+  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-+
-+properties:
-+  compatible:
-+    const: xlnx,axi-perf-monitor
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  xlnx,enable-profile:
-+    description:
-+      Enables the profile mode. Event counting in profile mode consists of a
-+      fixed number of accumulators for each AXI4/AXI3/AXI4-Lite slot. All the
-+      events that can be counted are detected and given to the accumulator
-+      which calculates the aggregate value. There is no selection of events,
-+      and in this mode, event counting is done only on AXI4/AXI3/AXI4-Lite
-+      monitor slots.
-+    type: boolean
-+
-+  xlnx,enable-trace:
-+    description:
-+      Enables trace mode. In trace mode, the APM provides event logging in a
-+      reduced dynamic configuration. It captures the specified AXI events,
-+      external events and the time stamp difference between two successive
-+      events into the streaming FIFO. The selection of events to be captured
-+      is set through parameter configuration. Streaming agents are not
-+      supported in trace mode.
-+    type: boolean
-+
-+  xlnx,num-monitor-slots:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Number of monitor slots.
-+    minimum: 1
-+    maximum: 8
-+
-+  xlnx,enable-event-count:
-+    description:
-+      Enable event count.
-+    type: boolean
-+
-+  xlnx,enable-event-log:
-+    type: boolean
-+    description:
-+      Enable event log.
-+
-+  xlnx,have-sampled-metric-cnt:
-+    type: boolean
-+    description:
-+      Sampled metric counters enabled in APM.
-+
-+  xlnx,metric-count-width:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - enum: [32, 64]
-+    description:
-+      Metric Counter width.
-+
-+  xlnx,metric-count-scale:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - enum: [1, 2, 4, 8]
-+    description:
-+      Metric Counter scale factor.
-+
-+  xlnx,num-of-counters:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Number of counters in APM.
-+
-+  xlnx,metrics-sample-count-width:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - enum: [32, 64]
-+    description:
-+      Sampled metric counter width.
-+
-+  xlnx,global-count-width:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - enum: [32, 64]
-+    description:
-+      Global Clock counter width.
-+
-+  xlnx,id-filter-32bit:
-+    description: APM is in 32-bit mode.
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    pmu@44a00000 {
-+        compatible = "xlnx,axi-perf-monitor";
-+        interrupt-parent = <&axi_intc_1>;
-+        interrupts = <GIC_SPI 123 IRQ_TYPE_EDGE_RISING>;
-+        reg = <0x44a00000 0x1000>;
-+        clocks = <&clkc 15>;
-+        xlnx,num-monitor-slots = <4>;
-+        xlnx,enable-event-count;
-+        xlnx,enable-event-log;
-+        xlnx,have-sampled-metric-cnt;
-+        xlnx,num-of-counters = <8>;
-+        xlnx,metric-count-width = <32>;
-+        xlnx,metrics-sample-count-width = <32>;
-+        xlnx,global-count-width = <32>;
-+        xlnx,metric-count-scale = <1>;
-+        xlnx,id-filter-32bit;
-+    };
--- 
-2.17.1
+> ---
+> change for v4:
+> - improve the commit log to explain why this is stable stuff.
+>=20
+>  drivers/clk/imx/clk-imx8mp.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
+> index e89db568f5a8..5b66514bdd0c 100644
+> --- a/drivers/clk/imx/clk-imx8mp.c
+> +++ b/drivers/clk/imx/clk-imx8mp.c
+> @@ -17,6 +17,7 @@
+>=20
+>  static u32 share_count_nand;
+>  static u32 share_count_media;
+> +static u32 share_count_usb;
+>=20
+>  static const char * const pll_ref_sels[] =3D { "osc_24m", "dummy", "dumm=
+y",
+> "dummy", };  static const char * const audio_pll1_bypass_sels[] =3D
+> {"audio_pll1", "audio_pll1_ref_sel", }; @@ -673,7 +674,8 @@ static int
+> imx8mp_clocks_probe(struct platform_device *pdev)
+>  	hws[IMX8MP_CLK_UART2_ROOT] =3D imx_clk_hw_gate4("uart2_root_clk",
+> "uart2", ccm_base + 0x44a0, 0);
+>  	hws[IMX8MP_CLK_UART3_ROOT] =3D imx_clk_hw_gate4("uart3_root_clk",
+> "uart3", ccm_base + 0x44b0, 0);
+>  	hws[IMX8MP_CLK_UART4_ROOT] =3D imx_clk_hw_gate4("uart4_root_clk",
+> "uart4", ccm_base + 0x44c0, 0);
+> -	hws[IMX8MP_CLK_USB_ROOT] =3D imx_clk_hw_gate4("usb_root_clk",
+> "hsio_axi", ccm_base + 0x44d0, 0);
+> +	hws[IMX8MP_CLK_USB_ROOT] =3D imx_clk_hw_gate2_shared2("usb_root_clk",
+> "hsio_axi", ccm_base + 0x44d0, 0, &share_count_usb);
+> +	hws[IMX8MP_CLK_USB_SUSP] =3D
+> imx_clk_hw_gate2_shared2("usb_suspend_clk",
+> +"osc_32k", ccm_base + 0x44d0, 0, &share_count_usb);
+>  	hws[IMX8MP_CLK_USB_PHY_ROOT] =3D imx_clk_hw_gate4("usb_phy_root_clk",
+> "usb_phy_ref", ccm_base + 0x44f0, 0);
+>  	hws[IMX8MP_CLK_USDHC1_ROOT] =3D imx_clk_hw_gate4("usdhc1_root_clk",
+> "usdhc1", ccm_base + 0x4510, 0);
+>  	hws[IMX8MP_CLK_USDHC2_ROOT] =3D imx_clk_hw_gate4("usdhc2_root_clk",
+> "usdhc2", ccm_base + 0x4520, 0);
+> --
+> 2.34.1
 
