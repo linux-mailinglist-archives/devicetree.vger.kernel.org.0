@@ -2,138 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E9EA604C83
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECA85604C90
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 18:00:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbiJSP73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 11:59:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55384 "EHLO
+        id S231872AbiJSQAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 12:00:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231694AbiJSP6v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:58:51 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 582BE1C0709
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:57:47 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id a5so10973230qkl.6
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:57:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XuH1cwGYuoIXuHDHrxmGsjJyFHpkABDYVCIkLmAK2bw=;
-        b=ghdwkgoTZX+EiHmt/h6EJyEpxc3hSgg79jAPidHTEO5U7Oacb2f7aV9dA16+K2MI+2
-         ZzRKn6SblRwL+Rux3tzWlTKKK0E+pXdghGvOqIUCGWlsFEqRDdMrL3lJvy/xM9Jm/J8i
-         RRa9s8ygIFflpnEI7Oafv9LZ+seAPhNZ0bpscvw5Yk0pUNTAgLlOCdBvKHWaC+TKSBEN
-         /xlpUA+2rL7MD4soWBynVfAodBYwZDxgDAvIr/lbs3fW72ukn33S338xKxaC+S1OptCh
-         hBSPFsIFUsKwTeGOzyu+tPtH7BasQmSIyETOFf+XPtp2krHM8NbAy1mN78PRPba3v0gl
-         yIow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XuH1cwGYuoIXuHDHrxmGsjJyFHpkABDYVCIkLmAK2bw=;
-        b=C3lsqn9DF1X6+h2L07MMmHq2L8Gf9JkYuD1zSnS/x/Ltbiq2IU4QX8h7T3ed3e20mM
-         8xEsDRhoR6PbMU1aPGkxTKncmuqvook3yb9hE+W8KSGWc9U55bHGYl3p3DXDXam5hhKP
-         Yqln0yjsHor9PfmsFxFNQoqC6ffQhq5/cH/lp33Nh32PsqcsupEms53Q6I3L02neOApG
-         sKTA9CeblANZH42rqkjNgaJ6JdBaxKM3auq2j8E2N9tfzrSxOayAUlh5sla1PZUNXPFq
-         g10U+7TxbHdAKv6bMComCJZDBRn96JREpEkqbXTfzrEV1t/7BpBt5albVr0h2uuG/exN
-         0xbQ==
-X-Gm-Message-State: ACrzQf00a53ryDT6gnNeIMspj6vHP2U6eXNxQrTZGk2MzBFMzp8P5UNC
-        Cvfo6lREOn0hwJ2CciYK0gLa5A==
-X-Google-Smtp-Source: AMsMyM4eCXdcxPYYjqQ4LMC6OlOLsmYWjCS81HiLMFGL1eq8MVPxt363n9uh3cA7kLDZL6Qos11S6g==
-X-Received: by 2002:a05:620a:30b:b0:6e4:6de2:7f38 with SMTP id s11-20020a05620a030b00b006e46de27f38mr6179989qkm.520.1666195060953;
-        Wed, 19 Oct 2022 08:57:40 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id i23-20020ac84897000000b0039853b7b771sm4218488qtq.80.2022.10.19.08.57.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 08:57:40 -0700 (PDT)
-Message-ID: <6b71bc77-b168-282b-9318-1640bba4e946@linaro.org>
-Date:   Wed, 19 Oct 2022 11:57:37 -0400
+        with ESMTP id S231537AbiJSQAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 12:00:25 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 999DB9A9D0
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:59:42 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5B1B35A4;
+        Wed, 19 Oct 2022 17:59:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1666195180;
+        bh=f6TZdjBsSQ2qwq7mKE2z+jQGGPQK5tMyCSea52sbMiQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NiPHLsOFifU6YsXMkvgPnetyjEd975JWWdFksM7pJZtrmRjEIEgbgU50zuZmea+eU
+         3XvqnGlu9tKY9ujCAzUHdyMEVsYXTnRCQqs6rdTHWbXs8513JgsoEWKoG3iNCLqppq
+         ZQydana0uiVzpi9IJCi/8Pd+992uuHbZ1ybDOVTo=
+Date:   Wed, 19 Oct 2022 18:59:16 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Jianqiang Chen <jianqian@xilinx.com>
+Subject: Re: [PATCH v2 36/37] arm64: dts: zynqmp: Add ports for the
+ DisplayPort subsystem
+Message-ID: <Y1Ae1NlyVGNL/BVs@pendragon.ideasonboard.com>
+References: <20220928224719.3291-1-laurent.pinchart@ideasonboard.com>
+ <20220928224719.3291-37-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v3 4/4] dt-bindings: pinctrl: qcom,sc7180: convert to
- dtschema
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-References: <20221019001351.1630089-1-krzysztof.kozlowski@linaro.org>
- <20221019001351.1630089-5-krzysztof.kozlowski@linaro.org>
- <CAD=FV=U0WR-a7d4p5eoCFMRer5yhX8AcEPdUaJag4KpGB9kp+A@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=U0WR-a7d4p5eoCFMRer5yhX8AcEPdUaJag4KpGB9kp+A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220928224719.3291-37-laurent.pinchart@ideasonboard.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 11:48, Doug Anderson wrote:
-> Hi,
+Hi Michal,
+
+I plan to send a pull request for the series soon. Patches 01/37 to
+35/37 will go through the DRM tree. How would you like to handle this
+patch and the next ? They depend on the DT binding changes in 01/37.
+
+On Thu, Sep 29, 2022 at 01:47:18AM +0300, Laurent Pinchart wrote:
+> The DPSUB DT bindings now specify ports to model the connections with
+> the programmable logic and the DisplayPort output. Add them to the
+> device tree.
 > 
-> On Tue, Oct 18, 2022 at 5:14 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> Convert Qualcomm SC7180 pin controller bindings to DT schema.  Keep the
->> parsing of pin configuration subnodes consistent with other Qualcomm
->> schemas (children named with '-state' suffix, their children with
->> '-pins').
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->>
->> ---
->>
->> Changes since v2:
->> 1. Drop entire drive-strength (not needed, brought by common TLMM
->>    schema).
->>
->> Changes since v1:
->> 1. Drop default:2 for drive strength
->> 2. Add Rb tag.
->>
->> Cc: Doug Anderson <dianders@chromium.org>
->> ---
->>  .../bindings/pinctrl/qcom,sc7180-pinctrl.txt  | 187 ------------------
->>  .../bindings/pinctrl/qcom,sc7180-pinctrl.yaml | 158 +++++++++++++++
->>  2 files changed, 158 insertions(+), 187 deletions(-)
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
-> Looks great now.
-> 
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index a549265e55f6..307c76cd8544 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -930,6 +930,30 @@ zynqmp_dpsub: display@fd4a0000 {
+>  			       <&zynqmp_dpdma ZYNQMP_DPDMA_VIDEO1>,
+>  			       <&zynqmp_dpdma ZYNQMP_DPDMA_VIDEO2>,
+>  			       <&zynqmp_dpdma ZYNQMP_DPDMA_GRAPHICS>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +				};
+> +				port@1 {
+> +					reg = <1>;
+> +				};
+> +				port@2 {
+> +					reg = <2>;
+> +				};
+> +				port@3 {
+> +					reg = <3>;
+> +				};
+> +				port@4 {
+> +					reg = <4>;
+> +				};
+> +				port@5 {
+> +					reg = <5>;
+> +				};
+> +			};
+>  		};
+>  	};
+>  };
 
-Thanks
+-- 
+Regards,
 
-> 
-> Will you also send out separate patches to fix up the "drive strength"
-> for all the other Qualcomm boards. They all have the same problem. The
-> drive strength never defaults to 2 and always gets left at whatever
-> the BIOS leaves it at unless it's specified.
-
-If you mean - other bindings for Qualcomm - then answer is yes. Several
-things are already applied and will pop-up in tomorrow's next:
-https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git/log/?h=next/qcom-pinctrl
-
-I'll go in spare time with rest of bindings.
-
-Best regards,
-Krzysztof
-
+Laurent Pinchart
