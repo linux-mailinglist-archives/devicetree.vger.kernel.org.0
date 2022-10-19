@@ -2,80 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07DDC60491C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47D6060494E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:34:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232332AbiJSOWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 10:22:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37916 "EHLO
+        id S229552AbiJSOeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 10:34:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232932AbiJSOV0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:21:26 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B74107AA5
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:05:00 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id fn7-20020a05600c688700b003b4fb113b86so104559wmb.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:05:00 -0700 (PDT)
+        with ESMTP id S232035AbiJSOdo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:33:44 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB5C315D0B1
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:18:09 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id m29-20020a05600c3b1d00b003c6bf423c71so129831wms.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 07:18:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rZgwfLubP2W/1t0/FaJA376eh/Hnps387U4J2IjbH+Q=;
-        b=u/rHqaVSXAtf44+agVTaE7rGMxdiAM9mO+71rH0zJ13C+ops+wfxsALrLi/qTcHLo2
-         Ev9tB/jp7LpRZrpDHe+l83Ad3mBJ2dKF4iB6mppCyruY6ljkZZUK6lCRy7Ing4rcvvER
-         Zj/PzLkyiUQv6AgvOqL2zNCF9C8AoGVdGkNgWTSsWTe00yYumXkM2MceEQazBiKqE3jl
-         KjZzDc8RXzZ4mZcyAV2kNLiHjgklBvH5uBSWHKUc3IosI9qDvLSiwftNVI92bOBCdG/0
-         8Urw1OrJdT28AjBHu9avIBYu4AkAcdhPIF4Udczs8XDQNxnna8i6A9pc6rQnj5gVoJ7J
-         5JTQ==
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=tgE0FLvM8ucDhQ/XFC4TsW1lQP/cE6WWYc/1CEGZeM4=;
+        b=5/SwuTkh9AuZjgBO2c/82wyMw/fr7W8mDdVmMEiV+XWpKq8UWeBWJcheHnJ+jJ5ZxB
+         HUML7tRazDOcItLtuJNRnh695/rDKb7B650uXDhDJXiTZe+DS+Da8V35L5Zfj1r2LRoi
+         QsKBZ76KN9NTva8BGtSPwv3AZebtftYk8CPzTlkFmUYPKJeeRH7A91IdWISOtzFxYn/Q
+         C5ZD6HgOOGoBisWECtKGC41QwksD8IdccHA4di+pqz14N0rjGgCWpyRtImrXdHE6hxXO
+         o9N8MsNpiImXFThoRN7zIvOoeIHlQuL45PQ+URY4DBhQZc8uDU9Yj3QqIDUuF55GYs4i
+         7VCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rZgwfLubP2W/1t0/FaJA376eh/Hnps387U4J2IjbH+Q=;
-        b=WDSLiPjGbRnfyJk9OlNmcocQsEnr8a4LR7n9Zz1umkdrtidfIHfygrP5sc4PMDnQf+
-         SUYUw3IVVWblNOKOzOjdao36yxcvaxt5eiO+G5sZGbdScv+73IAfnCjdmaFY3QR1wwcJ
-         GKrZuL1M1TVHh2HaHoMW6RK4GwiOsEsN4HRe1bV/U2gOwmgLj/nau1bWD0uTuGrexeJc
-         K2VJ/jwhH3dGsokYIfkEavdXJuIP7RgvwKe5VZS8l8pSkL6euZCAmvxEZQXEyUDnZoDD
-         o9fjGzto1DHULqGtN1cjvIUUwjW+3mGjAAoCBG6R9cOgDXi76N449r8EztlyC06h94KZ
-         tQiw==
-X-Gm-Message-State: ACrzQf17UqqqUlOAqNVy0PKaetror9O5GfytAEWDH0qmzwowx/kyJ2Fu
-        B//T50jHCVrT6MoQXpwK/lUmGA==
-X-Google-Smtp-Source: AMsMyM4k2lIu5FtcD+oSZfD3YSgbmUclwlgXE3MZJDzEiIqjqYmYHAetaHQWtEDUAoC/OeKJuPuMjQ==
-X-Received: by 2002:a05:600c:4e47:b0:3c6:fc59:5eff with SMTP id e7-20020a05600c4e4700b003c6fc595effmr6918684wmq.18.1666188199567;
-        Wed, 19 Oct 2022 07:03:19 -0700 (PDT)
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tgE0FLvM8ucDhQ/XFC4TsW1lQP/cE6WWYc/1CEGZeM4=;
+        b=fvLm7l2YHc07Ci6qnidhx/szZRqSjWYSONYgrTMJXcjeHCQ6jnCmjwmmTHdJO+FT3o
+         OhLIvfEaF4v6k7PyrmtSRLtakzIV9NUe0qvCe1+frXf4KEcBgw+0CpMNlWDBO1lm2nId
+         2EQLNYY0IX8euvVo6GiD66GjYRlJ16XjkCP3j9uA9Ify4PxLbVOyrr4whcBNjAmoDY0l
+         8suCxf/Ic+hDV62V2VJoPTCzKaFeuwk9mCE3m1txGWdYUco9vejpTcVdMUFCwnF07sCs
+         tkKd+OX+bcw+uZ+aSn/9zIE4d0fKY4mcOoGrQvJggt7udO0bLnE1IbHDY20HhNztySRN
+         TqFQ==
+X-Gm-Message-State: ACrzQf2oMLQLksJQx0YEnlzmOMpT80ysVlMI7HIxYNI2ekM/R4ExwQsl
+        h5V0pzfB44w5PhffGMj+vKUyeA==
+X-Google-Smtp-Source: AMsMyM41t4ieHvPEMZSwVTSTH/SaFUbZSisbnlHXyyDLRTf2X+rqyNcpCqzj4pDtpvuqYWysDO8SYw==
+X-Received: by 2002:a05:600c:3b88:b0:3c6:cef8:8465 with SMTP id n8-20020a05600c3b8800b003c6cef88465mr26386904wms.64.1666189077476;
+        Wed, 19 Oct 2022 07:17:57 -0700 (PDT)
 Received: from [127.0.1.1] (rtr.23.90.200.126.unyc.it. [23.90.200.126])
-        by smtp.googlemail.com with ESMTPSA id o5-20020a5d62c5000000b00228cbac7a25sm13998628wrv.64.2022.10.19.07.03.18
+        by smtp.googlemail.com with ESMTPSA id n9-20020a05600c3b8900b003b4ff30e566sm2126577wms.3.2022.10.19.07.17.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Oct 2022 07:03:19 -0700 (PDT)
-From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Date:   Wed, 19 Oct 2022 16:01:04 +0200
-Subject: [PATCH v3 2/2] spi: meson-spicc: Use pinctrl to drive CLK line when idle
+        Wed, 19 Oct 2022 07:17:57 -0700 (PDT)
+Subject: [PATCH v6 0/4] thermal: mediatek: Add support for MT8365 SoC
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20221004-up-aml-fix-spi-v3-2-89de126fd163@baylibre.com>
-References: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com>
-In-Reply-To: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Da Xue <da@libre.computer>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>
+X-b4-tracking: H4sIABEHUGMC/w2LQQqEMAwAvyI5G6gtVtnfRBttoMal1b2If98cZ4Z5oHEVbvDpHqj8kyanGsS+gz
+ WT7oySjME77wc3zHh/UcLo8MpcDyq4VNHdJKUwxxQmN8YN7F6osUXSNduvdynv+wdpzSLpbgAAAA==
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Date:   Wed, 19 Oct 2022 16:17:53 +0200
+Message-Id: <20221018-up-i350-thermal-bringup-v6-0-c87b9f75550b@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        linux-mediatek@lists.infradead.org, Rob Herring <robh@kernel.org>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Michael Kao <michael.kao@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
 X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1666188196; l=4316;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1666189076; l=936;
  i=aouledameur@baylibre.com; s=20220920; h=from:subject:message-id;
- bh=dN6XmPpYO7Ty0vQSXH4eMp49Nq2iRF2CEqKZcOspWpI=;
- b=vviwObwJxuPYh/ZZNDCsfx7v9An1mgI8ZqaQQkOEPhpUcxtNrkB4V7dyqhh3eHnJUsX9mrUCOAxn
- oyRtrThBCRUCQgrksHjC40en6/dPJsjPNI8IfERp46vdxVdELtM6
+ bh=AkQkB8ukw3UxEfgonly6hxwIDLwEx/thToGWUZdxIJE=;
+ b=SUWFXCNucodISbrUskCDh0YoTCsogZWud3XzdBli3zQmimygHWg70FPtlIqqm07DyoyO9egxtzMa
+ qhul2jb6A/7tt607LQkz4h/HD6jC5iu8Fis6htcIgDiP2uTf8nru
 X-Developer-Key: i=aouledameur@baylibre.com; a=ed25519;
  pk=HgYWawSL4qLGPx+RzJ+Cuu+V8Pi/KQnDDm1wjWPMOFE=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,138 +91,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Between SPI transactions, all SPI pins are in HiZ state. When using the SS
-signal from the SPICC controller it's not an issue because when the
-transaction resumes all pins come back to the right state at the same time
-as SS.
+This patchset adds thermal support for MT8365 SoC which contains three
+thermal sensors.
 
-The problem is when we use CS as a GPIO. In fact, between the GPIO CS
-state change and SPI pins state change from idle, you can have a missing or
-spurious clock transition.
+Changes in V6:
+- rebased on thermal/linux-next
 
-Set a bias on the clock depending on the clock polarity requested before CS
-goes active, by passing a special "idle-low" and "idle-high" pinctrl state
-and setting the right state at a start of a message
-
-Reported-by: Da Xue <da@libre.computer>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 14 +++++++++++
- drivers/spi/spi-meson-spicc.c              | 39 +++++++++++++++++++++++++++++-
- 2 files changed, 52 insertions(+), 1 deletion(-)
+Amjad Ouled-Ameur (1):
+      thermal: mediatek: add another get_temp ops for thermal sensors
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index c3ac531c4f84..04e9d0f1bde0 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -429,6 +429,20 @@ mux {
- 			};
- 		};
- 
-+		spi_idle_high_pins: spi-idle-high-pins {
-+			mux {
-+				groups = "spi_sclk";
-+				bias-pull-up;
-+			};
-+		};
-+
-+		spi_idle_low_pins: spi-idle-low-pins {
-+			mux {
-+				groups = "spi_sclk";
-+				bias-pull-down;
-+			};
-+		};
-+
- 		spi_ss0_pins: spi-ss0 {
- 			mux {
- 				groups = "spi_ss0";
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index bad201510a99..ffea38e2339c 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -21,6 +21,7 @@
- #include <linux/types.h>
- #include <linux/interrupt.h>
- #include <linux/reset.h>
-+#include <linux/pinctrl/consumer.h>
- 
- /*
-  * The Meson SPICC controller could support DMA based transfers, but is not
-@@ -167,6 +168,9 @@ struct meson_spicc_device {
- 	unsigned long			tx_remain;
- 	unsigned long			rx_remain;
- 	unsigned long			xfer_remain;
-+	struct pinctrl			*pinctrl;
-+	struct pinctrl_state		*pins_idle_high;
-+	struct pinctrl_state		*pins_idle_low;
- };
- 
- #define pow2_clk_to_spicc(_div) container_of(_div, struct meson_spicc_device, pow2_div)
-@@ -175,8 +179,22 @@ static void meson_spicc_oen_enable(struct meson_spicc_device *spicc)
- {
- 	u32 conf;
- 
--	if (!spicc->data->has_oen)
-+	if (!spicc->data->has_oen) {
-+		/* Try to get pinctrl states for idle high/low */
-+		spicc->pins_idle_high = pinctrl_lookup_state(spicc->pinctrl,
-+							     "idle-high");
-+		if (IS_ERR(spicc->pins_idle_high)) {
-+			dev_warn(&spicc->pdev->dev, "can't get idle-high pinctrl\n");
-+			spicc->pins_idle_high = NULL;
-+		}
-+		spicc->pins_idle_low = pinctrl_lookup_state(spicc->pinctrl,
-+							     "idle-low");
-+		if (IS_ERR(spicc->pins_idle_low)) {
-+			dev_warn(&spicc->pdev->dev, "can't get idle-low pinctrl\n");
-+			spicc->pins_idle_low = NULL;
-+		}
- 		return;
-+	}
- 
- 	conf = readl_relaxed(spicc->base + SPICC_ENH_CTL0) |
- 		SPICC_ENH_MOSI_OEN | SPICC_ENH_CLK_OEN | SPICC_ENH_CS_OEN;
-@@ -441,6 +459,16 @@ static int meson_spicc_prepare_message(struct spi_master *master,
- 	else
- 		conf &= ~SPICC_POL;
- 
-+	if (!spicc->data->has_oen) {
-+		if (spi->mode & SPI_CPOL) {
-+			if (spicc->pins_idle_high)
-+				pinctrl_select_state(spicc->pinctrl, spicc->pins_idle_high);
-+		} else {
-+			if (spicc->pins_idle_low)
-+				pinctrl_select_state(spicc->pinctrl, spicc->pins_idle_low);
-+		}
-+	}
-+
- 	if (spi->mode & SPI_CPHA)
- 		conf |= SPICC_PHA;
- 	else
-@@ -487,6 +515,9 @@ static int meson_spicc_unprepare_transfer(struct spi_master *master)
- 	/* Set default configuration, keeping datarate field */
- 	writel_relaxed(conf, spicc->base + SPICC_CONREG);
- 
-+	if (!spicc->data->has_oen)
-+		pinctrl_select_default_state(&spicc->pdev->dev);
-+
- 	return 0;
- }
- 
-@@ -798,6 +829,12 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 		goto out_core_clk;
- 	}
- 
-+	spicc->pinctrl = devm_pinctrl_get(&pdev->dev);
-+	if (IS_ERR(spicc->pinctrl)) {
-+		ret = PTR_ERR(spicc->pinctrl);
-+		goto out_clk;
-+	}
-+
- 	device_reset_optional(&pdev->dev);
- 
- 	master->num_chipselect = 4;
+Fabien Parent (2):
+      dt-bindings: thermal: mediatek: add binding documentation for MT8365 SoC
+      thermal: mediatek: add support for MT8365 SoC
 
+Markus Schneider-Pargmann (1):
+      thermal: mediatek: control buffer enablement tweaks
+
+ .../bindings/thermal/mediatek-thermal.txt          |   1 +
+ drivers/thermal/mtk_thermal.c                      | 197 +++++++++++++++++----
+ 2 files changed, 166 insertions(+), 32 deletions(-)
+---
+base-commit: 68c0c5a5d991b6633e2b2d3c55713d123113fb60
+change-id: 20221018-up-i350-thermal-bringup-ad386d37056f
+
+Best regards,
 -- 
-b4 0.10.1
+Amjad Ouled-Ameur <aouledameur@baylibre.com>
