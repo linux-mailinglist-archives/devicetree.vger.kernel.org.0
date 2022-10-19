@@ -2,209 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2061860395F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 07:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0ABA6039A1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 08:14:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbiJSFuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 01:50:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50098 "EHLO
+        id S229972AbiJSGOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 02:14:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229926AbiJSFuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 01:50:00 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 867BA2FC33;
-        Tue, 18 Oct 2022 22:49:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666158597; x=1697694597;
-  h=subject:from:to:cc:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=sfZASKJMevM/XYzFNRMC+Oxl4B5+UhpkwhkxSapBR3U=;
-  b=FUSRG1MftlyRymmhvoWLD68qb+wQamwcyyOwUUTu9We+YC/AhRXEmn0e
-   UdYLHhUAfXdfG89cpeI4CIwu1JgWvQEDlH2y0KpkM50v3f6rSpaCk+JXT
-   VKOBFBnOwBKAWD/XsrKb50UtMdoYUhAWnqZ4B1FLl5RV1ECzCMFH8VoqD
-   T2yeyzWzTfLbl1Air3Y6+XMvkHiq0h7hcUVJzb+yVU5R9YcaaZUwYcVev
-   6ho9HKkRzJnVgJsNJNQi/WVeZph4jbbNgD7gq5SIw5GB7qSKBCnPaQs8g
-   jgV34jhLGDdF1IDd48dnU9O2OSfMnMaEgOy9DlLbkwMEtDOvwzCVjmCql
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.95,195,1661810400"; 
-   d="scan'208";a="26831791"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 19 Oct 2022 07:49:53 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 19 Oct 2022 07:49:53 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 19 Oct 2022 07:49:53 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666158593; x=1697694593;
-  h=from:to:cc:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding:subject;
-  bh=sfZASKJMevM/XYzFNRMC+Oxl4B5+UhpkwhkxSapBR3U=;
-  b=Fn3RfaszCIF48ezU5jfqW7bf1X7TxRmMbfh7ySD+YgZJcBZfHChOvW6m
-   HU42tujQjkvoYoFhSaTe8zap/MUJHNMkqKkfJIwyNh8KfS7DhrN8O31O6
-   cVciahLlL38sMQrq/yt6qRmtsfTCnUs/NHmHuV+JZ5J8o2trNNcGTafga
-   l0YrCKBAaFCVwGOD0cn1xW8jsRdDf35nudMpY+GROwemJbjiD2zOFw9Bp
-   otqfObinqbrTQzFZfnkUAUO9xq2QhrMXrPt1wyTpkAq2XeW2w1KrHBxIH
-   rcl5nWeiXiTxsz8GzLTxe5U1kD4QVwrQ6+p64wmdecn1EJjp9vYbjPmmz
-   w==;
-X-IronPort-AV: E=Sophos;i="5.95,195,1661810400"; 
-   d="scan'208";a="26831790"
-Subject: Re: Re: [PATCH 1/1] dt-bindings: clock: ti,cdce925: Convert to DT schema
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 19 Oct 2022 07:49:52 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id CF6CA280056;
-        Wed, 19 Oct 2022 07:49:52 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Date:   Wed, 19 Oct 2022 07:49:48 +0200
-Message-ID: <8628461.lOV4Wx5bFT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <3339aa03-5e43-7579-837f-d70eb0f4dae6@linaro.org>
-References: <20221018072106.2391771-1-alexander.stein@ew.tq-group.com> <3339aa03-5e43-7579-837f-d70eb0f4dae6@linaro.org>
+        with ESMTP id S229785AbiJSGOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 02:14:52 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87E242AC4C;
+        Tue, 18 Oct 2022 23:14:48 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29J3ZQvu013169;
+        Wed, 19 Oct 2022 06:14:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=HZGCd51g7jqRcgVQSQP5FkQhvHWeGjO8TyvdKeQhDAc=;
+ b=lbGYMPYBMG1Q3cBigXQxmsZk7nywvS32hhlVbsRZ2kW7Vn8eQky1OBLdpB+tIkrh2Lv6
+ 0/pmoBzc7oQRXsIMRwSX9O7fXskNMz49c7T5EBmvnTxZm79PoyyWZQSWhezmx/LpK8o9
+ TptfiFZIgbMkDG4g3UAbhhGjjb9j+q4Q2LJRf2xxaVxnNXL4itArZqCQFxyNxjw/zreo
+ 91CnRYHO/FjNtOpUN5LQUTFBVf/ZIJYKrWW20b7HT61K+KQSBL7JsZuNr1++JDj54VJA
+ E9F9QQNMfkO9wa5wefXC/MWqzXfYWaOGIF+AmRzGZ87Y+CoaiKnXsRg4ktxiywVMjIaW rw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ka5emgtjf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Oct 2022 06:14:39 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29J6EXHY019572
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Oct 2022 06:14:38 GMT
+Received: from [10.79.43.230] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 18 Oct
+ 2022 23:14:30 -0700
+Subject: Re: [PATCH V3 1/2] dt-bindings: firmware: qcom-scm: Add optional
+ interrupt
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>
+CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <konrad.dybcio@somainline.org>, <robimarko@gmail.com>,
+        <quic_gurus@quicinc.com>, <quic_rjendra@quicinc.com>
+References: <1666086406-5452-1-git-send-email-quic_sibis@quicinc.com>
+ <1666086406-5452-2-git-send-email-quic_sibis@quicinc.com>
+ <12d79669-6e8c-6cf8-2e32-d4e0e2e42f3d@linaro.org>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+Message-ID: <2464d90f-64e9-5e3c-404b-10394c3bc302@quicinc.com>
+Date:   Wed, 19 Oct 2022 11:44:23 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <12d79669-6e8c-6cf8-2e32-d4e0e2e42f3d@linaro.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: dPXnPkqHIYutBVpFKx656VxTrZ69Niiq
+X-Proofpoint-GUID: dPXnPkqHIYutBVpFKx656VxTrZ69Niiq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-19_02,2022-10-19_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=999 spamscore=0
+ malwarescore=0 clxscore=1015 phishscore=0 mlxscore=0 bulkscore=0
+ impostorscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2209130000 definitions=main-2210190034
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hey Krzysztof,
+Thanks for taking time to review the series.
 
-thanks for your review.
-
-Am Dienstag, 18. Oktober 2022, 15:51:35 CEST schrieb Krzysztof Kozlowski:
-> On 18/10/2022 03:21, Alexander Stein wrote:
-> > Convert the TI CDCE925 clock binding to DT schema format.
-> > Including a small fix: Add the missing 'ti' prefix in the example
-> > compatible.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+On 10/18/22 10:41 PM, Krzysztof Kozlowski wrote:
+> On 18/10/2022 05:46, Sibi Sankar wrote:
+>> From: Guru Das Srinagesh <quic_gurus@quicinc.com>
+>>
+>> Add an interrupt specification to the bindings to support the wait-queue
+>> feature.
+>>
+>> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
+>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> ---
+>>
+>> The interrupt property for scm firmware from a binding perspective is
+>> completely optional i.e. not all tz fw running in the wild on sm8450
+>> devices support this feature. The bootloader does the interrupt property
+>> addition on sm8450 devices with wait-queue support.
+>>
+>>   Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+>> index c5b76c9f7ad0..6483d76b2371 100644
+>> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+>> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+>> @@ -71,6 +71,11 @@ properties:
+>>     '#reset-cells':
+>>       const: 1
+>>   
+>> +  interrupts:
+>> +    description:
+>> +      The wait-queue interrupt that firmware raises as part of handshake
+>> +      protocol to handle sleeping SCM calls.
 > 
-> Thank you for your patch. There is something to discuss/improve.
+> You still miss here constraints... nothing improved. Just look at other
+> properties in this file.
 > 
-> > diff --git a/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
-> > b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml new file mode
-> > 100644
-> > index 000000000000..1e68ee68e458
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
-> > @@ -0,0 +1,104 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/ti,cdce925.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: TI CDCE913/925/937/949 programmable I2C clock synthesizers node
-> > bindings
-> Drop "node bindings"
-
-Thanks, will do so.
-
-> > +
-> > +maintainers:
-> > +  - Mike Looijmans <mike.looijmans@topic.nl>
-> > +
-> > +description: |
-> > +  Flexible Low Power LVCMOS Clock Generator with SSC Support for EMI
-> > Reduction +
-> > +  - CDCE(L)913: 1-PLL, 3 Outputs https://www.ti.com/product/cdce913
-> > +  - CDCE(L)925: 2-PLL, 5 Outputs https://www.ti.com/product/cdce925
-> > +  - CDCE(L)937: 3-PLL, 7 Outputs https://www.ti.com/product/cdce937
-> > +  - CDCE(L)949: 4-PLL, 9 Outputs https://www.ti.com/product/cdce949
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^clock-controller$"
+> maxItems:1
 > 
-> Drop this requirement. It is in general expected, but there is no need
-> for each binding to specify it.
 
-Should this be put in a common binding then?
+Ack. Missed adding it in the re-spin.
 
-> Other problem is that you did not actually test these bindings before
-> sending...
-> 
-> > +
-> > +  compatible:
-> > +    enum:
-> > +      - ti,cdce913
-> > +      - ti,cdce925
-> > +      - ti,cdce937
-> > +      - ti,cdce949
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: fixed parent clock
-> > +
-> > +  "#clock-cells":
-> > +    const: 1
-> > +
-> > +  vdd-supply:
-> > +    description: Regulator that provides 1.8V Vdd power supply
-> > +
-> > +  vddout-supply:
-> > +    description: |
-> > +      Regulator that provides Vddout power supply.
-> > +      non-L variant: 2.5V or 3.3V for
-> > +      L variant: 1.8V for
-> > +
-> > +  xtal-load-pf:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: |
-> > +      Crystal load-capacitor value to fine-tune performance on a
-> > +      board, or to compensate for external influences.
-> > +
-> > +patternProperties:
-> > +  "^PLL[1-4]$":
-> > +    type: object
-> > +    description: |
-> > +      optional child node can be used to specify spread
-> > +      spectrum clocking parameters for a board
-> > +
-> 
->     additionalProperties: false
+-Sibi
 
-Will do.
-
-Thanks and best regards,
-Alexander
-
-> > +    properties:
-> > +      spread-spectrum:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description: SSC mode as defined in the data sheet
-> > +
-> > +      spread-spectrum-center:
-> > +        type: boolean
-> > +        description: |
-> > +          Use "centered" mode instead of "max" mode. When
-> > +          present, the clock runs at the requested frequency on average.
-> > +          Otherwise the requested frequency is the maximum value of the
-> > +          SCC range.
-> > +
-> 
 > Best regards,
 > Krzysztof
-
-
-
-
+> 
