@@ -2,74 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B64A60464D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:06:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2B96046E5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:22:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232836AbiJSNGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 09:06:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34750 "EHLO
+        id S231622AbiJSNW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 09:22:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232727AbiJSNGC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:06:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6EEA18B766;
-        Wed, 19 Oct 2022 05:50:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A970CB823CD;
-        Wed, 19 Oct 2022 12:49:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79DC3C433B5;
-        Wed, 19 Oct 2022 12:49:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666183769;
-        bh=YE9JgLLLQcGSzyeupSVS0hxeagJWUUGzlvzc9Jis9Xs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LRsWHDZJ/RB9cFDgaAseVj4gLmNkQZ5gYS6DeY2NtGmY+a8ZYhKlOTnUv8WaW3ZZW
-         g6W/2FIn7gk2S2OLuuSI6wyOqUVNfVsJsz+SD2/A5lMJktNlRiBAzOQ80JWY+SLkUv
-         4/gBOVThe1C1Ff+dllDOcM5ATYc0F5U/BOQMylB1vLhRPHT3ngh1ClHeaolEb2ezGU
-         cQWyg2DsVds2htjMN52E7o8LF6pYP00YjfjNu06fyDrDWydTXyb0GtrsUJhNG1/f8K
-         4uW1iWMiIWPA0Cs6PRrf9lYqmk2kUf4PjuCRoSGPggGWrtsTptW7lzmIbDtZxocZVv
-         QM+R/3sBTYO9A==
-Date:   Wed, 19 Oct 2022 18:19:25 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S232204AbiJSNWE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:22:04 -0400
+Received: from dhl.lxnav.com (dhl.lxnav.com [168.119.248.164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4892E194FB4
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:07:15 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2582B4068C;
+        Wed, 19 Oct 2022 14:55:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lxnav.com; s=dhl;
+        t=1666184103; h=from:subject:date:message-id:to:cc:mime-version:
+         content-transfer-encoding; bh=t4Yaw2ZLuxRrXeXgMKdBXuSmh/kxDmx/nG04x9JTVpY=;
+        b=jRHmYMffIWRnfbrYiOqE4kr4qmjAgByvauE5ssWejiTP7a6P6B6ll2wjJEIpCZ5RVfYRjJ
+        IVQB5jk1ReSBD+vK9HtY4vqB1hv39FaWRG4UtSefk8bJpa92P5XmOsOv5uPAZp530/zcGm
+        4ZKyox1WtgeC9E0uSmhghMI2X2IvI5DmNJ5nae9r7pTNEqOUQ6UOML6VmFepGOY9V5LdVD
+        WIrR9Ik3ejI3FE9ZdcN8/6Wnrha+8Mp79bT2K7Aycm6j3KOsKqCTLTwwOW/L8XxegRmvm1
+        /G8gUc8C97Nrr1jetQ9GDdVvmNRBNPuYER1DVcqJ3C39QDAGasqQwNWIDVn7rQ==
+From:   Mitja Spes <mitja@lxnav.com>
+To:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>
+Cc:     Mitja Spes <mitja@lxnav.com>, Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Tomasz Duszynski <tduszyns@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] dma/arm64: qcom: use one compatible also for
- 0x10000 offset
-Message-ID: <Y0/yVdVaZ0PNSRPN@matsya>
-References: <20221018230352.1238479-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] iio: pressure: ms5611: fixed value compensation bug
+Date:   Wed, 19 Oct 2022 14:52:50 +0200
+Message-Id: <20221019125254.952588-1-mitja@lxnav.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221018230352.1238479-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18-10-22, 19:03, Krzysztof Kozlowski wrote:
-> Hi,
-> 
-> Dependencies
-> ============
-> 1. DT bindings and DMA driver change depends contextually on:
->    https://lore.kernel.org/all/20221018005740.23952-1-mailingradian@gmail.com/
-> 
-> 2. DTS patches are independent, although they will spark some dtbs_check
->    warnings (due to change in bindings).
+When using multiple instances of this driver the compensation PROM was
+overwritten by the last initialized sensor. Now each sensor has own PROM
+storage.
 
-Applied 1-2, thanks
+Signed-off-by: Mitja Spes <mitja@lxnav.com>
+---
+ drivers/iio/pressure/ms5611.h      | 12 +++----
+ drivers/iio/pressure/ms5611_core.c | 51 ++++++++++++++++--------------
+ 2 files changed, 31 insertions(+), 32 deletions(-)
 
+diff --git a/drivers/iio/pressure/ms5611.h b/drivers/iio/pressure/ms5611.h
+index cbc9349c342a..550b75b7186f 100644
+--- a/drivers/iio/pressure/ms5611.h
++++ b/drivers/iio/pressure/ms5611.h
+@@ -25,13 +25,6 @@ enum {
+ 	MS5607,
+ };
+ 
+-struct ms5611_chip_info {
+-	u16 prom[MS5611_PROM_WORDS_NB];
+-
+-	int (*temp_and_pressure_compensate)(struct ms5611_chip_info *chip_info,
+-					    s32 *temp, s32 *pressure);
+-};
+-
+ /*
+  * OverSampling Rate descriptor.
+  * Warning: cmd MUST be kept aligned on a word boundary (see
+@@ -50,12 +43,15 @@ struct ms5611_state {
+ 	const struct ms5611_osr *pressure_osr;
+ 	const struct ms5611_osr *temp_osr;
+ 
++	u16 prom[MS5611_PROM_WORDS_NB];
++
+ 	int (*reset)(struct ms5611_state *st);
+ 	int (*read_prom_word)(struct ms5611_state *st, int index, u16 *word);
+ 	int (*read_adc_temp_and_pressure)(struct ms5611_state *st,
+ 					  s32 *temp, s32 *pressure);
+ 
+-	struct ms5611_chip_info *chip_info;
++	int (*compensate_temp_and_pressure)(struct ms5611_state *st, s32 *temp,
++					  s32 *pressure);
+ 	struct regulator *vdd;
+ };
+ 
+diff --git a/drivers/iio/pressure/ms5611_core.c b/drivers/iio/pressure/ms5611_core.c
+index 717521de66c4..c564a1d6cafe 100644
+--- a/drivers/iio/pressure/ms5611_core.c
++++ b/drivers/iio/pressure/ms5611_core.c
+@@ -85,7 +85,7 @@ static int ms5611_read_prom(struct iio_dev *indio_dev)
+ 	struct ms5611_state *st = iio_priv(indio_dev);
+ 
+ 	for (i = 0; i < MS5611_PROM_WORDS_NB; i++) {
+-		ret = st->read_prom_word(st, i, &st->chip_info->prom[i]);
++		ret = st->read_prom_word(st, i, &st->prom[i]);
+ 		if (ret < 0) {
+ 			dev_err(&indio_dev->dev,
+ 				"failed to read prom at %d\n", i);
+@@ -93,7 +93,7 @@ static int ms5611_read_prom(struct iio_dev *indio_dev)
+ 		}
+ 	}
+ 
+-	if (!ms5611_prom_is_valid(st->chip_info->prom, MS5611_PROM_WORDS_NB)) {
++	if (!ms5611_prom_is_valid(st->prom, MS5611_PROM_WORDS_NB)) {
+ 		dev_err(&indio_dev->dev, "PROM integrity check failed\n");
+ 		return -ENODEV;
+ 	}
+@@ -114,21 +114,20 @@ static int ms5611_read_temp_and_pressure(struct iio_dev *indio_dev,
+ 		return ret;
+ 	}
+ 
+-	return st->chip_info->temp_and_pressure_compensate(st->chip_info,
+-							   temp, pressure);
++	return st->compensate_temp_and_pressure(st, temp, pressure);
+ }
+ 
+-static int ms5611_temp_and_pressure_compensate(struct ms5611_chip_info *chip_info,
++static int ms5611_temp_and_pressure_compensate(struct ms5611_state *st,
+ 					       s32 *temp, s32 *pressure)
+ {
+ 	s32 t = *temp, p = *pressure;
+ 	s64 off, sens, dt;
+ 
+-	dt = t - (chip_info->prom[5] << 8);
+-	off = ((s64)chip_info->prom[2] << 16) + ((chip_info->prom[4] * dt) >> 7);
+-	sens = ((s64)chip_info->prom[1] << 15) + ((chip_info->prom[3] * dt) >> 8);
++	dt = t - (st->prom[5] << 8);
++	off = ((s64)st->prom[2] << 16) + ((st->prom[4] * dt) >> 7);
++	sens = ((s64)st->prom[1] << 15) + ((st->prom[3] * dt) >> 8);
+ 
+-	t = 2000 + ((chip_info->prom[6] * dt) >> 23);
++	t = 2000 + ((st->prom[6] * dt) >> 23);
+ 	if (t < 2000) {
+ 		s64 off2, sens2, t2;
+ 
+@@ -154,17 +153,17 @@ static int ms5611_temp_and_pressure_compensate(struct ms5611_chip_info *chip_inf
+ 	return 0;
+ }
+ 
+-static int ms5607_temp_and_pressure_compensate(struct ms5611_chip_info *chip_info,
++static int ms5607_temp_and_pressure_compensate(struct ms5611_state *st,
+ 					       s32 *temp, s32 *pressure)
+ {
+ 	s32 t = *temp, p = *pressure;
+ 	s64 off, sens, dt;
+ 
+-	dt = t - (chip_info->prom[5] << 8);
+-	off = ((s64)chip_info->prom[2] << 17) + ((chip_info->prom[4] * dt) >> 6);
+-	sens = ((s64)chip_info->prom[1] << 16) + ((chip_info->prom[3] * dt) >> 7);
++	dt = t - (st->prom[5] << 8);
++	off = ((s64)st->prom[2] << 17) + ((st->prom[4] * dt) >> 6);
++	sens = ((s64)st->prom[1] << 16) + ((st->prom[3] * dt) >> 7);
+ 
+-	t = 2000 + ((chip_info->prom[6] * dt) >> 23);
++	t = 2000 + ((st->prom[6] * dt) >> 23);
+ 	if (t < 2000) {
+ 		s64 off2, sens2, t2, tmp;
+ 
+@@ -342,15 +341,6 @@ static int ms5611_write_raw(struct iio_dev *indio_dev,
+ 
+ static const unsigned long ms5611_scan_masks[] = {0x3, 0};
+ 
+-static struct ms5611_chip_info chip_info_tbl[] = {
+-	[MS5611] = {
+-		.temp_and_pressure_compensate = ms5611_temp_and_pressure_compensate,
+-	},
+-	[MS5607] = {
+-		.temp_and_pressure_compensate = ms5607_temp_and_pressure_compensate,
+-	}
+-};
+-
+ static const struct iio_chan_spec ms5611_channels[] = {
+ 	{
+ 		.type = IIO_PRESSURE,
+@@ -433,7 +423,20 @@ int ms5611_probe(struct iio_dev *indio_dev, struct device *dev,
+ 	struct ms5611_state *st = iio_priv(indio_dev);
+ 
+ 	mutex_init(&st->lock);
+-	st->chip_info = &chip_info_tbl[type];
++
++	switch (type) {
++	case MS5611:
++		st->compensate_temp_and_pressure =
++			ms5611_temp_and_pressure_compensate;
++		break;
++	case MS5607:
++		st->compensate_temp_and_pressure =
++			ms5607_temp_and_pressure_compensate;
++		break;
++	default:
++		return -EINVAL;
++	}
++
+ 	st->temp_osr =
+ 		&ms5611_avail_temp_osr[ARRAY_SIZE(ms5611_avail_temp_osr) - 1];
+ 	st->pressure_osr =
 -- 
-~Vinod
+2.34.1
+
