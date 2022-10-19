@@ -2,89 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11CD3604076
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 11:58:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E94A60402A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 11:43:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231361AbiJSJ6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 05:58:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35904 "EHLO
+        id S234001AbiJSJmi convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 19 Oct 2022 05:42:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234250AbiJSJ60 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 05:58:26 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEBD111BA9;
-        Wed, 19 Oct 2022 02:35:44 -0700 (PDT)
-X-UUID: 76276290a9ed4666a853127c63a000b2-20221019
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=7PYeSbs1rJ/yIu6lL50fcsiJCbAbHIheAPMIeRRMdDA=;
-        b=mvHx6cltk6O2/41eJEo462t/zsdjV32ufzZLzwQ7wtLnm7ttPPchtOkILVMHFtRwqxSOZPzTKsZ9zY57+BXZo/JZQkrkwUfEfMVvJSzo+5hexbgDTv2+RAdVrRJeeAFLoA0ISwe1CJk9La/Ig+L+d/6EyjZFe5XSvyKZp7Vrri0=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:b9912910-db81-4c5f-a9a8-a1d1b16778ce,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:100
-X-CID-INFO: VERSION:1.1.12,REQID:b9912910-db81-4c5f-a9a8-a1d1b16778ce,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
-        N:quarantine,TS:100
-X-CID-META: VersionHash:62cd327,CLOUDID:611d4aa4-ebb2-41a8-a87c-97702aaf2e20,B
-        ulkID:2210191715202JY9RVF3,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
-        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 76276290a9ed4666a853127c63a000b2-20221019
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1251354093; Wed, 19 Oct 2022 17:15:19 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 19 Oct 2022 17:15:18 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 19 Oct 2022 17:15:17 +0800
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Biao Huang <biao.huang@mediatek.com>,
-        <macpaul.lin@mediatek.com>
-Subject: [PATCH v2 0/1] arm64: dts: mt8195: Add Ethernet controller
-Date:   Wed, 19 Oct 2022 17:15:14 +0800
-Message-ID: <20221019091515.21878-1-biao.huang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S235099AbiJSJmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 05:42:13 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEFA5D7E07;
+        Wed, 19 Oct 2022 02:19:07 -0700 (PDT)
+Received: from p508fdae2.dip0.t-ipconnect.de ([80.143.218.226] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1ol5C7-0004cp-PN; Wed, 19 Oct 2022 11:16:59 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Robin Murphy <robin.murphy@arm.com>,
+        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Johan Jonker <jbx6244@gmail.com>, thierry.reding@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        sebastian.reichel@collabora.com, wxt@rock-chips.com,
+        kever.yang@rock-chips.com, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v1 2/2] ARM: dts: rk3288: add the interrupts property for PWM
+Date:   Wed, 19 Oct 2022 11:16:58 +0200
+Message-ID: <5883380.DvuYhMxLoT@phil>
+In-Reply-To: <20221019072621.lh5hcznggbcscihf@pengutronix.de>
+References: <6eba6c10-9c96-b40f-937a-e02d43b04cd7@gmail.com> <7ae39c9c-8424-8b65-ac09-c0e87f3b0f01@arm.com> <20221019072621.lh5hcznggbcscihf@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,MAY_BE_FORGED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changes in v2:
-1. modify pinctrl node used by ethernet to match rules in pinctrl-mt8195.yaml,
-as comments from Krzysztof.
-2. remove "mac-address" property in ethernet node as comments from Krzysztof.
+Am Mittwoch, 19. Oktober 2022, 09:26:21 CEST schrieb Uwe Kleine-König:
+> On Thu, Sep 29, 2022 at 04:50:43PM +0100, Robin Murphy wrote:
+> > On 2022-09-29 15:04, Johan Jonker wrote:
+> > > The Rockchip rk3288 SoC has 4-built-in PWM channels.
+> > > 
+> > > Configurable to operate in capture mode.
+> > > Measures the high/low polarity effective cycles of this input waveform
+> > > Generates a single interrupt at the transition of input waveform polarity
+> > > 
+> > > Configurable to operate in continuous mode or one-shot mode.
+> > > One-shot operation will produce N + 1 periods of the waveform,
+> > > where N is the repeat counter value, and generates a single interrupt at
+> > > the end of operation.
+> > > Continuous mode generates the waveform continuously and
+> > > do not generates any interrupts.
+> > > 
+> > > Add interrupts property to rk3288 PWM nodes.
+> > 
+> > As far as I can make out from the TRM, these are only valid when
+> > GRF_SOC_CON2[0] = 0, otherwise it's in "new" RK_PWM mode using SPI 78 for
+> > all channels. Which apparently will be the case for anyone using upstream
+> > U-Boot:
+> > 
+> > https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/mach-rockchip/rk3288/rk3288.c#L83
+> 
+> Huh, so it depends on a (software) setting which irqs are in use?
 
-Changes in v1:
-add dts node for MT8195 Ethernet controller
+In the past when Rockchip swapped one IP block for another they often
+had both in a soc for one generation (as a safeguard probably)
+So the rk3288 has two different pwm implementations and the GRF
+register selects which one is active.
 
-Biao Huang (1):
-  arm64: dts: mt8195: Add Ethernet controller
+Heiko
 
- arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 88 ++++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt8195.dtsi     | 86 +++++++++++++++++++
- 2 files changed, 174 insertions(+)
+> So the
+> patch isn't correct as is, but I have no idea how to make it right.
+> Should we rely on the bootloader to fixup the dtb correctly?
+> 
+> Anyhow, I'm marking the patch as 'changes-requested' in our patchwork
+> instance.
+> 
+> Best regards
+> Uwe
+> 
+> 
 
--- 
-2.18.0
+
 
 
