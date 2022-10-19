@@ -2,104 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97AA86038E0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 06:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D1B7603908
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 07:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbiJSEaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 00:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
+        id S229535AbiJSFD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 01:03:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiJSEap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 00:30:45 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 890BA37FAF;
-        Tue, 18 Oct 2022 21:30:44 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29J4UB9g047912;
-        Tue, 18 Oct 2022 23:30:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666153811;
-        bh=ZJsJDB45gJCSopNcBJ7tG0ngepWd/dQzLt2AFNiyxN8=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=A3WwfimL1hItwCQp/DpcTptxayHSXkOCrd9WuAF+JbTC3vLiMIUJ3Hj6qaBrbWXbQ
-         xJWX6DYk4ssIU8xD67e6tEpx798dm/P8TIbby+BzitN9TP84dQ9xBES4uMCMOmMZbV
-         2hDdFFAfXc1cu9d8Fy+IyRf3zu9KaW6jCvP319Is=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29J4UBqM002789
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 18 Oct 2022 23:30:11 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 18
- Oct 2022 23:30:11 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 18 Oct 2022 23:30:11 -0500
-Received: from [172.24.145.87] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29J4U5h1098101;
-        Tue, 18 Oct 2022 23:30:06 -0500
-Message-ID: <0a895e05-4134-d129-2b3d-e09242d8798f@ti.com>
-Date:   Wed, 19 Oct 2022 10:00:05 +0530
+        with ESMTP id S229506AbiJSFD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 01:03:28 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7619A5D101;
+        Tue, 18 Oct 2022 22:03:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666155807; x=1697691807;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=o6pyxH0L5HFS1fwpUgdGvaHH+ef6BU4LBn8UIWF6hk4=;
+  b=fGmz52n6vpoBHv4F1EbbqdwkBdG12cxv19J5lQmHhd5YdK7jdH9qA/Ra
+   BG/Si26HM3xz3LgesiKfEez2l6E+B2gcpyGIluqXoeW81McTJOIsr9oro
+   JNNgU4uAXXE++XC7frdDAIMyRtqbNAA5QyavkV6gtvs+NhOUG6oIO7ITR
+   wH9FKkO+xdDvhS4XdUxUcTTa6Dm8+xdnrqli1ItQHElPiag/kEZ5m4+i4
+   q4lq323oA8sEtPBjnETcRgH3auvJICTJ5d4l0hDqDKHCcIWic6j/QoeQL
+   oQ3XUlAyVONYOq6WhOTtkjz69Ti8U6cB1/17ZlAhs08CrEior0+h1baxQ
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="289624353"
+X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; 
+   d="scan'208";a="289624353"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2022 22:03:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="771583163"
+X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; 
+   d="scan'208";a="771583163"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmsmga001.fm.intel.com with ESMTP; 18 Oct 2022 22:03:23 -0700
+Date:   Wed, 19 Oct 2022 12:54:14 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com, dg@emlix.com,
+        j.zink@pengutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, system@metrotek.ru
+Subject: Re: [PATCH v18 1/2] fpga: lattice-sysconfig-spi: add Lattice
+ sysCONFIG FPGA manager
+Message-ID: <Y0+C9tTIXkAcKXBS@yilunxu-OptiPlex-7050>
+References: <20221014202750.20542-1-i.bornyakov@metrotek.ru>
+ <20221014202750.20542-2-i.bornyakov@metrotek.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-CC:     <davem@davemloft.net>, <kuba@kernel.org>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vigneshr@ti.com>,
-        <nsekhar@ti.com>, <pabeni@redhat.com>, <linux@armlinux.org.uk>,
-        <vladimir.oltean@nxp.com>, <linux-arm-kernel@lists.infradead.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <edumazet@google.com>,
-        <krzysztof.kozlowski@linaro.org>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
- bindings for J721e CPSW9G
-To:     Rob Herring <robh@kernel.org>
-References: <20221018085810.151327-1-s-vadapalli@ti.com>
- <20221018085810.151327-2-s-vadapalli@ti.com>
- <166609952162.171762.3639347443256680406.robh@kernel.org>
-Content-Language: en-US
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <166609952162.171762.3639347443256680406.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221014202750.20542-2-i.bornyakov@metrotek.ru>
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
-
-On 18/10/22 19:02, Rob Herring wrote:
-> On Tue, 18 Oct 2022 14:28:08 +0530, Siddharth Vadapalli wrote:
->> Update bindings for TI K3 J721e SoC which contains 9 ports (8 external
->> ports) CPSW9G module and add compatible for it.
->>
->> Changes made:
->>     - Add new compatible ti,j721e-cpswxg-nuss for CPSW9G.
->>     - Extend pattern properties for new compatible.
->>     - Change maximum number of CPSW ports to 8 for new compatible.
->>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> ---
->>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 23 +++++++++++++++++--
->>  1 file changed, 21 insertions(+), 2 deletions(-)
->>
+On 2022-10-14 at 23:27:49 +0300, Ivan Bornyakov wrote:
+> Add support to the FPGA manager for programming Lattice ECP5 FPGA over
+> slave SPI sysCONFIG interface.
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> sysCONFIG interface core functionality is separate from both ECP5 and
+> SPI specifics, so support for other FPGAs with different port types can
+> be added in the future.
 > 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml:196:25: [error] syntax error: mapping values are not allowed here (syntax)
+> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> ---
 
-I will fix the errors in the v3 series and ensure that there are no
-errors or warnings with dt_binding_check, using the updated dt-schema
-and yamllint.
+[...]
 
-Regards,
-Siddharth.
+> +static int sysconfig_poll_gpio(struct gpio_desc *gpio, bool is_active)
+> +{
+> +	int ret, val;
+> +
+> +	ret = read_poll_timeout(gpiod_get_value, val, val < 0 ||
+> +				(val && is_active) || (!val && !is_active),
+
+val < 0 || (!!val == is_active)
+
+is it better?
+
+> +				SYSCONFIG_POLL_INTERVAL_US,
+> +				SYSCONFIG_POLL_GPIO_TIMEOUT_US, false, gpio);
+> +
+> +	return val < 0 ? val : ret;
+
+Try not to use ternery operator here.
+
+  if (ret)
+	return ret;
+  else if (val < 0)
+	return val;
+
+  return 0;
+
+Is it OK?
+
+Thanks,
+Yilun
