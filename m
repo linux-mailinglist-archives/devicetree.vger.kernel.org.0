@@ -2,101 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A22A9604E36
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B59FD604EAB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:31:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229949AbiJSRJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 13:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45518 "EHLO
+        id S231136AbiJSRbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 13:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231317AbiJSRJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:09:04 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A408E1CF55B;
-        Wed, 19 Oct 2022 10:08:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1666199335; x=1697735335;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=XMpHfi/Dvwo8JftuvXLvZW5yVLuSuEHPJySZS0XUGZs=;
-  b=SYxV4k15/fpgg+X0F/MkSmRXHetiNdL1nRmBPFvNiLTCyNgmz8KW849c
-   JIDiA5BYSdFkl7ZAUmcHNOh/we1SC99365YgXok/JkqTESiUhDmHkD/+H
-   mcwsLZSc7sWNcjIGSxPNr0LLeWqFPc0D0q0stqJeRjtaSaoilV2foJ1sf
-   o=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 19 Oct 2022 10:08:17 -0700
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2022 10:08:17 -0700
-Received: from [10.134.66.255] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 19 Oct
- 2022 10:08:17 -0700
-Message-ID: <a4db0335-33d8-76cd-6f89-b8bde603aedf@quicinc.com>
-Date:   Wed, 19 Oct 2022 10:08:16 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 2/2] dmaengine: qcom: gpi: Add compatible for QDU1000
- and QRU1000
-To:     Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S230368AbiJSRbf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:31:35 -0400
+Received: from msg-1.mailo.com (msg-1.mailo.com [213.182.54.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C035D1A20AC;
+        Wed, 19 Oct 2022 10:31:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1666199431; bh=YA0BOkdiz79MH4TeYdCWc3K+k18k+lPhrqSBn3FcEP4=;
+        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
+         MIME-Version:Content-Transfer-Encoding;
+        b=JL7hCR89MUtFpd5Z+MHPdLV/5j4ihmusu2mjgcRbqp3kZtm/c5PzyqE+BWP1oGtfQ
+         24weX/ucrxYNtW4yKjl9sf7kUEgIFr1CpWRAtHT+XWC+G8ORikR2pJ+ZhkG+P/cSkS
+         qItt8UZgypnFljVH+V8Bf7w3uOFVAaUWNT9e8GzQ=
+Received: by b-2.in.mailobj.net [192.168.90.12] with ESMTP
+        via [213.182.55.207]
+        Wed, 19 Oct 2022 19:10:31 +0200 (CEST)
+X-EA-Auth: pqrCBYabG3dWmpjf45ktDvkr0IckO/bnqpsV44HUeQQRkdEgoNO8NUMhjPIpAoNKEjgxkCqIkm2lkHD2MuYOgMOcO9odgIpr6Uo639adV9g=
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221014221102.7445-1-quic_molvera@quicinc.com>
- <20221014221102.7445-3-quic_molvera@quicinc.com>
- <15b50b09-ba8c-c93c-a5f8-7b0d4d12f223@linaro.org> <Y0/75E7MqCpQml+I@matsya>
-Content-Language: en-US
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <Y0/75E7MqCpQml+I@matsya>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Vincent Knecht <vincent.knecht@mailoo.org>
+Subject: [PATCH 1/2] dt-bindings: soc: qcom: spm: Add MSM8939 CPU compatible
+Date:   Wed, 19 Oct 2022 19:10:02 +0200
+Message-Id: <20221019171004.1080911-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document the "qcom,msm8939-saw2-v3.0-cpu" compatible for the CPU
+Subsystem Power Manager (SPM) on the MSM8939 SoC.
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+index f433e6e0a19f..8791f8ad2c84 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+@@ -24,6 +24,7 @@ properties:
+           - qcom,msm8998-silver-saw2-v4.1-l2
+           - qcom,msm8909-saw2-v3.0-cpu
+           - qcom,msm8916-saw2-v3.0-cpu
++          - qcom,msm8939-saw2-v3.0-cpu
+           - qcom,msm8226-saw2-v2.1-cpu
+           - qcom,msm8974-saw2-v2.1-cpu
+           - qcom,apq8084-saw2-v2.1-cpu
+-- 
+2.37.3
 
 
-On 10/19/2022 6:30 AM, Vinod Koul wrote:
-> On 15-10-22, 09:42, Krzysztof Kozlowski wrote:
->> On 14/10/2022 18:11, Melody Olvera wrote:
->>> Add compatible fields for the Qualcomm QDU1000 and QRU1000 SoCs.
->>>
->>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>> ---
->>>  drivers/dma/qcom/gpi.c | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/drivers/dma/qcom/gpi.c b/drivers/dma/qcom/gpi.c
->>> index cc938a31dc2d..02438735e92b 100644
->>> --- a/drivers/dma/qcom/gpi.c
->>> +++ b/drivers/dma/qcom/gpi.c
->>> @@ -2286,6 +2286,8 @@ static int gpi_probe(struct platform_device *pdev)
->>>  }
->>>  
->>>  static const struct of_device_id gpi_of_match[] = {
->>> +	{ .compatible = "qcom,qdu1000-gpi-dma", .data = (void *)0x10000 },
->>> +	{ .compatible = "qcom,qru1000-gpi-dma", .data = (void *)0x10000 },
->> The feedback was: drop entire patch.
->>
->> There is really no need for this pattern to keep growing.
-> Right, I have picked the patches so you dont need to add yours to driver
-> file, please check dmaengine/next
->
-Yes, I think I understand now; I'll just use existing compatibles and drop this PS.
 
-Thanks,
-Melody
