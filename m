@@ -2,67 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6E9D60428B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 13:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2075B6040AB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 12:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233087AbiJSLGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 07:06:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54044 "EHLO
+        id S230342AbiJSKJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 06:09:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233375AbiJSLFY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 07:05:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEAC51A20D;
-        Wed, 19 Oct 2022 03:34:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7643961800;
-        Wed, 19 Oct 2022 09:34:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C98CDC433D7;
-        Wed, 19 Oct 2022 09:34:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666172044;
-        bh=+XJ4KA8dllr0ByMjgUh1Y3S/fQ8SIHjq3TDCIyLLrNo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T7Uch+ZhgMxzh633BHSOdQxgxOqQowc35/YWFAWeeU2s0E+SioG0sAWiRyAQRnsGN
-         0mXBcQtpiF2kOYrwuWgc4SJnQZsDBoFGsW8JvtPwpY6O8uiibCtq3L726zsubk+UWG
-         8j9rsryp/cG7gZydanqhizZLgUtQQ5H0t7mYjnPlKn62L/KB5r3+p3esvvbTejHnNz
-         8oH+xKXDWfh0w5qUuu+S9D7Z7ggNqLH+rGfZpwZXQjZ03Ssa2uO/EhPzBD2hPHkSF2
-         uX0uoTZbcVItVSQjtyPhNnndaLD6L9gEP95UYVf3GiCDPHFzNRKGwjsnOw0aNaVVXs
-         pYOkC+u9eiivA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ol5SS-0005JG-2I; Wed, 19 Oct 2022 11:33:52 +0200
-Date:   Wed, 19 Oct 2022 11:33:52 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S231312AbiJSKIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 06:08:31 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74DBD144E3E
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 02:47:09 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id bk15so28143687wrb.13
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 02:47:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DdgXhYJznmHGVmIL5L/eIrSwLYryd7B2Pc6VvUxulzk=;
+        b=oAXjbhE3qOCsd145YkFLFZBiQKjvZcSnZFUFug0NcRNH4Rd0kcOpyXO3449qDzhoAF
+         qQDHoLZOVCQWDjO9RG14XGi3gQhyjeOs4D4Kn4tDnNwrgJuzNx6MFv0UDmPR0biMafkF
+         REba1wY3LG4J+0Wnqc7762jdOrBZT4iN5rvfjRsaTvmoiWj1KjmbXiLs9VwOjo/7nCN5
+         JEL4+Scg8lzwWW9BuEw9DSrJGuNO8fq606CUJ/nkFDEdGx7gZyCbzbmX+yQOzVwMheo0
+         rvp4CnFceyPM3YNxnyW+AqE4YIT6+4qc5bDkzNGfVqLgUFwwsoH76czeFeWEHZNYnsMO
+         5xpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DdgXhYJznmHGVmIL5L/eIrSwLYryd7B2Pc6VvUxulzk=;
+        b=zvzKGsldGTLXvJmwO8OK9/jfEtGzpDgdff85BdT3/BCLjJZtoqrIshqAJ2+Rt1sIqV
+         mS5VDBhXPLTNU0oa6m+aO0evcIgRQMLkvZvDUJYhlxqFR4lyAHb8udm09r1CE6e3gtwI
+         CT0ETJsr0UVsYKPK52jqC8JKyTKtQKUGCXdqewMuqnXEQuRLXSQYdKh3ppNTER59KTHl
+         KJ1kdyMUOXnIE2rRaaM8DOvW20SsQLBoo0Gutn+Uj/jw4q4nk5qRP/M8ZImtnJtvXyVR
+         WY8AdMmaa4IvsqALUISPAHHoDbrzr2vaEkGQzSOcXWSZr+Ly9sPakVe4lNSZix8BUsHv
+         Z64g==
+X-Gm-Message-State: ACrzQf2v2t8Brzydi11i4LCKK7c5f/M4SMfq2FFsVrVPMJOGska/gkgV
+        /thv9H/ffmcaqgrXn1EcGi2P3Q==
+X-Google-Smtp-Source: AMsMyM4WalG8ywewDhqbkl+de1a1iGi/aoRDXottmigSbOIwosBHZ+R961KdCG2PGONWUx2xt0A2/g==
+X-Received: by 2002:a5d:6508:0:b0:22e:1af4:57f9 with SMTP id x8-20020a5d6508000000b0022e1af457f9mr4393470wru.539.1666172736226;
+        Wed, 19 Oct 2022 02:45:36 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:9368:960c:f98f:35b5? ([2a05:6e02:1041:c10:9368:960c:f98f:35b5])
+        by smtp.googlemail.com with ESMTPSA id fc12-20020a05600c524c00b003a342933727sm23219909wmb.3.2022.10.19.02.45.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Oct 2022 02:45:35 -0700 (PDT)
+Message-ID: <f8be7e54-8f54-99ec-d97c-6025fe989c81@linaro.org>
+Date:   Wed, 19 Oct 2022 11:45:34 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v7 1/2] thermal: loongson2: add thermal management support
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 09/15] dt-bindings: phy: qcom,qmp-pcie: mark current
- bindings as legacy
-Message-ID: <Y0/EgN78YdQ9Mg23@hovoldconsulting.com>
-References: <20221017145328.22090-1-johan+linaro@kernel.org>
- <20221017145328.22090-10-johan+linaro@kernel.org>
- <CAA8EJpqSWmy5Z4cmJnsdjMjkmACW7HSi-k5JxZ0gLCeUAWEnxQ@mail.gmail.com>
- <Y05+E90tmlq2tNFa@hovoldconsulting.com>
- <CAA8EJprwhEvUfUr-zDir4zFh_NAyr0qPbrHi6Hf8=2HC1dAhaw@mail.gmail.com>
- <b0c1bdfb-4a31-9deb-1f0a-0ed813707464@linaro.org>
- <Y07OfmfQgQWFzHZY@hovoldconsulting.com>
- <e334e265-fde0-29df-d905-c3ec4941f152@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e334e265-fde0-29df-d905-c3ec4941f152@linaro.org>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+References: <20220930021054.22387-1-zhuyinbo@loongson.cn>
+ <72c5ecfa-da9f-f7d9-e020-133a48de92a4@loongson.cn>
+ <32cff5f7-d0c2-c7e6-67d2-2506469b5d15@loongson.cn>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <32cff5f7-d0c2-c7e6-67d2-2506469b5d15@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,62 +82,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 18, 2022 at 12:44:22PM -0400, Krzysztof Kozlowski wrote:
-> On 18/10/2022 12:04, Johan Hovold wrote:
-
-> > The question is whether to convert also the current bindings and DTS to
-> > the new (sc8280xp) scheme (e.g. drop the child nodes and register
-> > subregions).
-> > 
-> > The driver can support both binding schemes using the same compatible
-> > strings for a transition period (or in theory forever) by checking for
-> > the existence of a child node.
-> > 
-> > Converting the DTS to use the new bindings would obviously prevent using
-> > them with an old kernel (i.e. 2 above), but I don't think that's a
-> > problem (unlike backward compatibility during at least a transition
-> > period).
+On 19/10/2022 10:51, Yinbo Zhu wrote:
 > 
-> It is still not nice towards any other users of DTS, because this will
-> break all of them. I agree this won't be ABI type of break. It is
-> discouraged though, unless there are clear benefits from this or one
-> totally does not care about other DTS users...
 > 
-> As I said it is up to platform maintainer.
-
-Yeah. When time I spoke to Bjorn about this, we agreed to draw the line
-at SC8280XP.
-
-But if it turns out converting older platforms is needed to fix bugs or
-add features (e.g. due to the incomplete register descriptions), we may
-later have to reconsider this.
-
-> > My concern was how to describe the deprecation in DT schema if we were
-> > convert them. By instead just keeping the old bindings as-is in a
-> > separate file and continuing to support them in the driver we can have a
-> > nice and clean description of the new bindings (sc8280xp) without the
-> > legacy cruft.
+> 在 2022/10/14 上午11:48, Yinbo Zhu 写道:
+>> Hi thermal maintainer
+>>
+>> Are there any other suggestions about this patch? If not, please help
+>> merge this patch to upstream.
+>>
+>> RRs
+>> Yinbo
 > 
-> You cannot have one compatible in two schemas, so for old bindings (and
-> DTS):
-> 1. Don't convert them,
-> 2. Convert with keeping old properties - as you pointed this might be
-> full of conditionals/allOf, so difficult to maintain and read,
-> 3. Convert dropping old stuff.
-> 
-> For the option 3. for sure Rob will ask why. :)
+> Any updates?
 
-Thanks for confirming.
+I'll review it until the end of the week
 
-So I guess we start with keeping the old bindings as they are (1) and if
-later needed (or desired) we should simply drop the old bindings (3)
-from the schema (we can still have the driver support the old bindings
-during a transition period).
 
-> > If we were to start introducing conditionals on existence of child
-> > nodes, and marking the old bindings as deprecated in one large schema,
-> > then that sounds like it would be very messy and hard to read and
-> > maintain. But perhaps there is some way to do this without such
-> > downsides that I'm not aware of.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Johan
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
