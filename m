@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8FCF6048A6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:05:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EF976048A9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:05:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229924AbiJSOFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 10:05:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60490 "EHLO
+        id S229489AbiJSOFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 10:05:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234027AbiJSOES (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:04:18 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64036143A48
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:45:43 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id bu25so28239162lfb.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:45:43 -0700 (PDT)
+        with ESMTP id S234214AbiJSOEl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:04:41 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F872168E40
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:46:20 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id bp15so28182491lfb.13
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:46:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=h9WfAq9GlhRokXPelqeWHthsmCpycJCohpwOtcymBXs=;
-        b=pj/UffD41G8Iag/bxmsJ7mApxGuCCO4sUpnc87OpLKIYy6sgo/WL3srjmgGC7rWdyG
-         qg6U+PYe5I5uvsWHe0IkyropCNcU+DQM8+xZLhOZqN1sUvA1S8bwF3ZX2/K7P/bdin2E
-         WSpeDtyJmLFSVE/JKVOKGtkkes9Y2C8XzeBOpGN3zn1paIj9b8uWH4FTj3NhDVcr6Nml
-         +Jp5J6KYzqIuuY27Hw/9m7L6yNuXH+UCtQDjaig5wzr/QvBqlHwEmjNTW2YdeF0Dqki4
-         AJFg8EeWW831/VgwDIWPAgyvvRkMHiZFlgaePg1pl5LnwXcUYBtXbGKt0rFyyNTjbnEo
-         ayVQ==
+        bh=Mi+LxXEoeheHG6dh6zF/4rl0OCksLbDke1IojHO4tA8=;
+        b=irdHAYA9Jwqqm0lxZQw+hxnUNsTL0kw7lUyDAibF1ONGiJ7yP9iggjkSnbYBaNetnY
+         OHh6i4j6+BxG1lhj/4bHWifcc1AZl38kf1netmavd6C1Fir05OUvIdWSxH78x7kyRZnl
+         dYO4XAfcGTfX7cQ0On4Wa0/m6/Ptr+vxvNa+WoR+MrtnmyfPFanzPgxlNYxASXdSs/aA
+         g72AZJ2eb5OiL1Nbj7Tn4VsZYNkfD1roC/jGZ/RWB7oqcSEuuecOuu06c7JwwzxNK1SS
+         v2HpB7S50pordEQFWQKqTKjUsh2KdXLwLX5jlutGSbBE1BNE/2Thg2OF/5aA9WArNsJk
+         sxuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h9WfAq9GlhRokXPelqeWHthsmCpycJCohpwOtcymBXs=;
-        b=tjjZfl/0OhcRKTWd1S16LyxRQZVjPDpCCOyWndaBCPoqaAtCEj1Ta9fBHHXV8lIMeA
-         3AJtrsJFI69bah18VqxDRrUGkY9iEDM5sWYLZODYMRO1pXut08ZhPKwvZyscVJOK8Nzs
-         PZ9Lh9PaXgiPciYo4kQoBAn7oW2sm8ZgrdOADkYHqDjK+/8ud5EWOy+NRckfOsZECPUi
-         rW1QvTKETGeccGh2m/5z/6w+Dws19z7zKfP9cEaaJuMeurvMtFff8N0iq+Qu4Pd+AtGP
-         EQSa5g9raqy+LPGuXRY5Q9d9t3/3rPPzzooiBa6TPQ/KW6q9tXfJQOF7p/GPnrVAKF7i
-         YaMQ==
-X-Gm-Message-State: ACrzQf1C0XhjuZ3+AhlHt22/fzJgVtiIXsnmAUnKmJM1FFE3J78d65M1
-        XttGlwxgFswQj9K+NbW+wpwOXA==
-X-Google-Smtp-Source: AMsMyM5b2vyYPLDgUf0s1Uyw3+sPCvqEqEGYyKzYINQDUoDWiJvmGUVKOD0SEyhCvSuLsjUYLXbifA==
-X-Received: by 2002:a05:6512:110c:b0:4a2:4119:f5c4 with SMTP id l12-20020a056512110c00b004a24119f5c4mr2784433lfg.606.1666187074664;
-        Wed, 19 Oct 2022 06:44:34 -0700 (PDT)
+        bh=Mi+LxXEoeheHG6dh6zF/4rl0OCksLbDke1IojHO4tA8=;
+        b=hDZ4stTwCO9oq1f6BTfE92jIhl5q4hWxAed8D3Iy8RP6gjN4S2wAJd2Jndytg6sRfc
+         fi776VB9luPLmU4NS6dXGxXTnESl+9C6BQd9e7HYyB+0OfJaWMD+wrdKA6TaelbLXxa6
+         U4/v/Lin6oF/OoT8v7bX02ZATjM1j98ape6TyM+3/eeMqGYudtMzBkkv1mpsQzErbiwx
+         bbkX6PEz7OVg1SL700sA8GY4GdC0oFLgyxjp0904jHRR9vkSqzRj67nAaNXBWzGgOnWr
+         yK6+H6VPwqv1q6Mc8s+XHl6+ymFF6Lrdb+zWbUiDQ5nv5hbiuN1kE+KtoL6y/MtcPWDD
+         xafg==
+X-Gm-Message-State: ACrzQf1cxkYrecLWR/gijk76mnJyg1DgbiOtmV8P3Eh6KFUfz3Braxzn
+        JUzQgXkumrW78miDQkLUCtCR3A==
+X-Google-Smtp-Source: AMsMyM54rKUClMHRJrOCc/1SNFrVq4sFv2gmYRmlKpizJzuAPsZ8y2ng4/eO3zYlb8FE8WHHi+7x2g==
+X-Received: by 2002:a05:6512:3da2:b0:4a2:6fb7:b64b with SMTP id k34-20020a0565123da200b004a26fb7b64bmr2725454lfv.442.1666187102434;
+        Wed, 19 Oct 2022 06:45:02 -0700 (PDT)
 Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id s28-20020a2eb63c000000b0026dcf238c50sm2450177ljn.127.2022.10.19.06.44.34
+        by smtp.gmail.com with ESMTPSA id s12-20020a056512214c00b0049f87fb416dsm2315571lfr.12.2022.10.19.06.45.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 06:44:34 -0700 (PDT)
-Message-ID: <0b0c752c-1f3d-bf5a-ade7-e2f8acac92a4@linaro.org>
-Date:   Wed, 19 Oct 2022 16:44:33 +0300
+        Wed, 19 Oct 2022 06:45:02 -0700 (PDT)
+Message-ID: <a9c4c02e-de96-bada-d4a2-32c06e2eed75@linaro.org>
+Date:   Wed, 19 Oct 2022 16:45:01 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH v2 08/15] phy: qcom-qmp-pcie: add register init helper
+Subject: Re: [PATCH v2 07/15] phy: qcom-qmp-pcie: clean up PHY lane init
 Content-Language: en-GB
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -66,11 +66,9 @@ Cc:     Johan Hovold <johan+linaro@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221019113552.22353-1-johan+linaro@kernel.org>
- <20221019113552.22353-9-johan+linaro@kernel.org>
- <0f1fff20-772f-c4d1-f803-f1824ef23780@linaro.org>
- <Y0/63eH82t2zXFi5@hovoldconsulting.com>
+ <20221019113552.22353-8-johan+linaro@kernel.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Y0/63eH82t2zXFi5@hovoldconsulting.com>
+In-Reply-To: <20221019113552.22353-8-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,119 +81,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 16:25, Johan Hovold wrote:
-> On Wed, Oct 19, 2022 at 04:12:02PM +0300, Dmitry Baryshkov wrote:
->> On 19/10/2022 14:35, Johan Hovold wrote:
->>> Generalise the serdes initialisation helper so that it can be used to
->>> initialise all the PHY registers (e.g. serdes, tx, rx, pcs).
->>>
->>> Note that this defers the ungating of the PIPE clock somewhat, which is
->>> fine as it isn't needed until starting the PHY.
->>>
->>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>> ---
->>>    drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 51 +++++++-----------------
->>>    1 file changed, 15 insertions(+), 36 deletions(-)
->>>
->>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>> index dd7e72424fc0..f57d10f20277 100644
->>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>> @@ -1820,46 +1820,32 @@ static void qmp_pcie_configure(void __iomem *base,
->>>    	qmp_pcie_configure_lane(base, tbl, num, 0xff);
->>>    }
->>>    
->>> -static void qmp_pcie_serdes_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
->>> -{
->>> -	void __iomem *serdes = qmp->serdes;
->>> -
->>> -	if (!tables)
->>> -		return;
->>> -
->>> -	qmp_pcie_configure(serdes, tables->serdes, tables->serdes_num);
->>> -}
->>> -
->>> -static void qmp_pcie_lanes_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
->>> +static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
->>>    {
->>>    	const struct qmp_phy_cfg *cfg = qmp->cfg;
->>> +	void __iomem *serdes = qmp->serdes;
->>>    	void __iomem *tx = qmp->tx;
->>>    	void __iomem *rx = qmp->rx;
->>>    	void __iomem *tx2 = qmp->tx2;
->>>    	void __iomem *rx2 = qmp->rx2;
->>> +	void __iomem *pcs = qmp->pcs;
->>> +	void __iomem *pcs_misc = qmp->pcs_misc;
->>>    
->>> -	if (!tables)
->>> +	if (!tbls)
->>>    		return;
->>>    
->>> -	qmp_pcie_configure_lane(tx, tables->tx, tables->tx_num, 1);
->>> -	qmp_pcie_configure_lane(rx, tables->rx, tables->rx_num, 1);
->>> +	qmp_pcie_configure(serdes, tbls->serdes, tbls->serdes_num);
->>> +
->>> +	qmp_pcie_configure_lane(tx, tbls->tx, tbls->tx_num, 1);
->>> +	qmp_pcie_configure_lane(rx, tbls->rx, tbls->rx_num, 1);
->>>    
->>>    	if (cfg->lanes >= 2) {
->>> -		qmp_pcie_configure_lane(tx2, tables->tx, tables->tx_num, 2);
->>> -		qmp_pcie_configure_lane(rx2, tables->rx, tables->rx_num, 2);
->>> +		qmp_pcie_configure_lane(tx2, tbls->tx, tbls->tx_num, 2);
->>> +		qmp_pcie_configure_lane(rx2, tbls->rx, tbls->rx_num, 2);
->>>    	}
->>> -}
->>> -
->>> -static void qmp_pcie_pcs_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
->>> -{
->>> -	void __iomem *pcs = qmp->pcs;
->>> -	void __iomem *pcs_misc = qmp->pcs_misc;
->>> -
->>> -	if (!tables)
->>> -		return;
->>>    
->>> -	qmp_pcie_configure(pcs, tables->pcs, tables->pcs_num);
->>> -	qmp_pcie_configure(pcs_misc, tables->pcs_misc, tables->pcs_misc_num);
->>> +	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
->>> +	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
->>
->> Nit: could we please keep it as `tables'?
+On 19/10/2022 14:35, Johan Hovold wrote:
+> Clean up the PHY lane initialisation somewhat by adding further
+> temporary variables and programming both tx and rx for the second lane
+> after the first lane.
 > 
-> I considered that but found that the longer identifier hurt
-> readability so I prefer to use "tbls" here.
-> 
-> Compare
-> 
-> 	qmp_pcie_configure(serdes, tbls->serdes, tbls->serdes_num);
-> 
-> 	qmp_pcie_configure_lane(tx, tbls->tx, tbls->tx_num, 1);
-> 	qmp_pcie_configure_lane(rx, tbls->rx, tbls->rx_num, 1);
-> 
-> 	if (cfg->lanes >= 2) {
-> 		qmp_pcie_configure_lane(tx2, tbls->tx, tbls->tx_num, 2);
-> 		qmp_pcie_configure_lane(rx2, tbls->rx, tbls->rx_num, 2);
-> 	}
-> 
-> 	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
-> 	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
-> 
-> with
-> 
-> 	qmp_pcie_configure(serdes, tables->serdes, tables->serdes_num);
-> 
-> 	qmp_pcie_configure_lane(tx, tables->tx, tables->tx_num, 1);
-> 	qmp_pcie_configure_lane(rx, tables->rx, tables->rx_num, 1);
-> 
-> 	if (cfg->lanes >= 2) {
-> 		qmp_pcie_configure_lane(tx2, tables->tx, tables->tx_num, 2);
-> 		qmp_pcie_configure_lane(rx2, tables->rx, tables->rx_num, 2);
-> 	}
-> 
-> 	qmp_pcie_configure(pcs, tables->pcs, tables->pcs_num);
-> 	qmp_pcie_configure(pcs_misc, tables->pcs_misc, tables->pcs_misc_num);
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 13 +++++++------
+>   1 file changed, 7 insertions(+), 6 deletions(-)
 
-I'd say, it's up to Vinod. I'd prefer the second version.
-
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
 With best wishes
