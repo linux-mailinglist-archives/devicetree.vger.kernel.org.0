@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C147604631
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:00:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 315C4604620
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:00:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231474AbiJSM5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 08:57:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44532 "EHLO
+        id S229559AbiJSM75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 08:59:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232094AbiJSM4y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:56:54 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4955210F88C
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:40:09 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id l19so11237078qvu.4
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:40:08 -0700 (PDT)
+        with ESMTP id S232641AbiJSM6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:58:49 -0400
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 798601CB26
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:42:18 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id x13so10543516qkg.11
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:42:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l6HYyoIjnUvMwU0yHagIn4/18iAr7NA//UMNayfCA+Y=;
-        b=dOvlTzjU6BuP1xy7GcxjujxEOKHwCReRbfOLizRueBfSY4FEnUFZnc3MJQBdxAonYR
-         cFVPgQVYkTHgCCNXwvCeexr31HkXl9SQl7x9T+RPUCiaxG4tSM/1uequdCROWB2egGVa
-         LQmlcU/YaL1ZgPxRckvGKI33MT6lTRwcQyJuVL3tAwN7qdwIaNZUH5Jnd0ytgV6ZEbIi
-         uEuncEuR5nDSN6XWNGqB5FbAzAfD+aapeTrfyZxkCFoqakaA5beR1rNpNBLKCa50gZnU
-         aJcxDzxDJJpSQ6eLxBLX8JAU4NGfAMKodKevmuEHWebdpwQzz7riEHaZnRPp1/ibRyUo
-         4tYw==
+        bh=APY6XkBoiH+8MYx94R2gCE5tsyBBjocoJUqhpNcG1uo=;
+        b=t0jva4wVew3s5XSwsmG9/vKT92stEy73Mz1sWf3wiZStx2UYRLlL+2Ue1tYnQID5Qm
+         FB272FCC/NGWhCI7C4XfeKTRYdFEaVGCI7MtWoYoacYNprbMXX0MTZNpbzEAn2j2Nha0
+         jCz+tqfS6oNV1e1ELhtj/YUlwJ03+DjRsJakr2AirJJHw93lXnKErJh0nQodWQwP0kB9
+         gVH4UJsXrMmeAVaX89fRORuta/K3zrt+niaVSaDqY7KOl9wH9CJADKSNSU78yNRzsk9t
+         sg9gG2NNMfC4oCxff1qbWIGj1imxFQf129rR5HfMwuhlb3wBihKWdrIGbDSa6d++OrvO
+         c/tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l6HYyoIjnUvMwU0yHagIn4/18iAr7NA//UMNayfCA+Y=;
-        b=CMHiO8/J89YtvL0G/+yZ1QPuWMayomycD9uhjZwqBOeasfA7NmsmmTwN+BMLbJByFK
-         XmEw93IPDub3OwksSFqJ+wxT6WeEILFdYeSaM0CGw67ZHSzLi3ovSHcfmjJ11+ovMNr8
-         vJr0Sm+73JNcBtAfk3UD5ASAyAneH3Tjwo3G6TrMdm/507Xd40JNZPVG6NXlbbSrc7qi
-         zer3uLkHpKtlYmBLc4oiSvF2ReFWXaG0Z56zt+BCqNopQ0rodvcPh0HXPzaPj8GUVbuS
-         qFHmhw51gJM7cskPxq0zWnLvx9QK7b9XfDuAiMu8qoYIXHFzo8kTz9+0uw/Pn+X75STV
-         3PcA==
-X-Gm-Message-State: ACrzQf2jBH7PVvVhX2DWR1QeT+5qaN3eS3YyQlnLCbxwmnBWMK6aJeTE
-        TLR7oGGCAiFOcx57p7ERlFy+YQ==
-X-Google-Smtp-Source: AMsMyM6sbGZb7PJUgIQ1RnhFxi87WWEJX86EP7sxBpspPM4u/LORyoNprWbrcZrCBb0JQauxsamnLg==
-X-Received: by 2002:a05:6214:d4b:b0:4b1:80eb:64e2 with SMTP id 11-20020a0562140d4b00b004b180eb64e2mr6312320qvr.123.1666183154441;
-        Wed, 19 Oct 2022 05:39:14 -0700 (PDT)
+        bh=APY6XkBoiH+8MYx94R2gCE5tsyBBjocoJUqhpNcG1uo=;
+        b=rYMbWKolL+0Ld9/vWOQlcKkTZG2XY/ZHcFIcwLYcrZPr5i2QJjy1yADNDw60XToJH9
+         0xF7Q8Xe3KqCMS39l11BecdE03eamyr4lICSIWxlZ+PEG1fU9zZhPxDovrJud/MaMlwn
+         sJl8ZvSkD4SMRNcB4slQVyCSr7mIAvuhakEkiXWMntY+T2O/hjn6WViEGbaEglWe40H8
+         feTrPnlY+0R4nii/Qvq0FeB7tBv261PN7ZldKjABanA7kbUjZ7sr74MGHdnM26NDZzl1
+         nocbnOMTNHiX+eX+zsu5hPqi2i1kZTdigfgpADY8tgmXPnjDcKo+E5CVy9Ig5BkT7rwI
+         jaww==
+X-Gm-Message-State: ACrzQf0zZ1mAPAxdvIONaHXFxGg5mHmCRyQehNWEAmOMEpkYju4UvGdQ
+        WzgHleCegrM4sW2ZAlvd7Y8MFQ==
+X-Google-Smtp-Source: AMsMyM4mg+k/dzvcqomBH9qc5f5xm21maADpMizbJY1M4DfSbN0jD6paa3IvF7n7dlHO8kOeeH6YfA==
+X-Received: by 2002:a05:620a:2809:b0:6bc:5e0d:d7b1 with SMTP id f9-20020a05620a280900b006bc5e0dd7b1mr5230359qkp.545.1666183277044;
+        Wed, 19 Oct 2022 05:41:17 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id s15-20020a05622a178f00b0035d432f5ba3sm4043604qtk.17.2022.10.19.05.39.13
+        by smtp.gmail.com with ESMTPSA id y2-20020a05620a0e0200b006ee8874f5d8sm4708919qkm.28.2022.10.19.05.41.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 05:39:13 -0700 (PDT)
-Message-ID: <c6cc4363-2004-a3e8-97cb-d6eb2b8c8704@linaro.org>
-Date:   Wed, 19 Oct 2022 08:39:12 -0400
+        Wed, 19 Oct 2022 05:41:16 -0700 (PDT)
+Message-ID: <1847fa0b-7b1b-13f2-6667-0b9003ae58ac@linaro.org>
+Date:   Wed, 19 Oct 2022 08:41:13 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v2 09/15] dt-bindings: phy: qcom,qmp-pcie: rename current
+Subject: Re: [PATCH v2 10/15] dt-bindings: phy: qcom,qmp-pcie: add sc8280xp
  bindings
 Content-Language: en-US
 To:     Johan Hovold <johan+linaro@kernel.org>,
@@ -68,15 +68,14 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221019113552.22353-1-johan+linaro@kernel.org>
- <20221019113552.22353-10-johan+linaro@kernel.org>
+ <20221019113552.22353-11-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221019113552.22353-10-johan+linaro@kernel.org>
+In-Reply-To: <20221019113552.22353-11-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,35 +83,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 19/10/2022 07:35, Johan Hovold wrote:
-> The current QMP PCIe PHY bindings are based on the original MSM8996
-> binding which provided multiple PHYs per IP block and these in turn were
-> described by child nodes.
+> Add bindings for the PCIe QMP PHYs found on SC8280XP.
 > 
-> Later QMP PCIe PHY blocks only provide a single PHY and the remnant
-> child node does not really reflect the hardware.
+> The PCIe2 and PCIe3 controllers and PHYs on SC8280XP can be used in
+> 4-lane mode or as separate controllers and PHYs in 2-lane mode (e.g. as
+> PCIe2A and PCIe2B).
 > 
-> The original MSM8996 binding also ended up describing the individual
-> register blocks as belonging to either the wrapper node or the PHY child
-> nodes.
-> 
-> This is an unnecessary level of detail which has lead to problems when
-> later IP blocks using different register layouts have been forced to fit
-> the original mould rather than updating the binding. The bindings are
-> arguable also incomplete as they only the describe register blocks used
-> by the current Linux drivers (e.g. does not include the per lane PCS
-> registers).
-> 
-> In preparation for adding new bindings for SC8280XP which further
-> bindings can be based on, rename the current schema file after IPQ8074,
-> which was the first SoC added to the bindings after MSM8996 (which has
-> already been split out), and add a reference to the SC8280XP bindings.
+> The configuration for a specific system can be read from a TCSR register.
 > 
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  ...om,qmp-pcie-phy.yaml => qcom,ipq8074-qmp-pcie-phy.yaml} | 7 +++++--
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+But please wait with applying this patch for Rob's bot:
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221019113552.22353-11-johan+linaro@kernel.org/
 
 Best regards,
 Krzysztof
