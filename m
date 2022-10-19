@@ -2,132 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5584604EFF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88CFE604F48
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 20:03:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbiJSRj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 13:39:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51408 "EHLO
+        id S230122AbiJSSDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 14:03:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231407AbiJSRjJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:39:09 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0385CBCBB1
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 10:39:03 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id k2so41728154ejr.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 10:39:03 -0700 (PDT)
+        with ESMTP id S229988AbiJSSDk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 14:03:40 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5001C73FE;
+        Wed, 19 Oct 2022 11:03:37 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id bu30so30429815wrb.8;
+        Wed, 19 Oct 2022 11:03:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZSg9wcbNbcSOzspwRfzUTkVyTxhvEyAzYbLBRttaf6c=;
-        b=ZiBfOirqBI2qE4AiRDRnuhq1ob5CIfxeotj1301D57aJfCNREHqXeIQwvVp9IA9Y1Z
-         VVvW4ZXNqJ5Y/vpWF98UbLmz5DhIyi14Apizp1Zlr9+JF9bT/nQqnyn3e6hNI4rcaF3U
-         5RZpeMajMDB2QUin4L2NaiUzethvwDdEuT8yRq2rA8z6DT3MwE/hJsiKp6Q37x+wg2yr
-         fsBK2FFVFOT252oMIV0TZFFYBSyjbG17Z73UUVlpO6H/jw7sbbAhZOmFqTSw3veZNuIO
-         q8EIkpcYvoNW1gN4tyenhNFraY5ojzG7dAPYu0P/OqlPkzNfuqOL6AqTqxrJT5PtTWbs
-         2QXg==
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Xq2G8P0XcWZlec1xAQsXMClpeEpgdBC4SuRpNQneoJg=;
+        b=EG2SCsqoLP4xpGn9MS0EY9rWkZbT2LPZqxFag9LlDbjhqjecHsxIaOT0p3orES75bs
+         Dy6mdD+jlzqfwH6JLwIpxe7TEkAqyj+cYJh/0CsktmEG+vpi/xhc8pturGxyKRDLVfq+
+         3Mv9ZaDxIoFGvYn34QKzjfIUNJD8xyNVZBSjwnFJBv7h6+SoTauiJ70RffaSPuXdXcLV
+         YlIx2p9FcJ1XTu2IPt4pbQng5GLwHRBEvZdHL4Ho5/VmR7leHwU/cNGVII58p9rjjmHj
+         7nBQywCpdyNjCM2yAm/6sUU2TIbGbqLB/EKPP0LRUFbAVXTbk3fLWhOvw1Kk44+BR6iY
+         U/4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZSg9wcbNbcSOzspwRfzUTkVyTxhvEyAzYbLBRttaf6c=;
-        b=3d8pxybl1hK3rdxQVwhltr3Xuhxhkm4SwyvH0/sRWpcypnCZLPKsB4aCbHGY+lhkIg
-         XuughGkagSUMq9i5yhDR1itm7HO6cMJuQKyuzx/A+Uc0sFbxdCrZNdf3ncADpPgwmY94
-         xsoYnyIkkbZyEv3QWCLmnR1kkBTwp6bndbZSmvAgKexAcL4oLDxJnEYgkg/8mSTJK/yq
-         oKlIgvKGfmsqCP2hfg6XGdjwW+aiq3KhO58mK6ool37aeLIwioXZKby3vvYpm8kOMagU
-         8AQiJPBL+VjCUvK0+bZdiFkN01XaL4+Xjd24AarLWsJ4QMrso6oVmPRUVzaEx+/0Z1WS
-         A7VA==
-X-Gm-Message-State: ACrzQf0D4BZilitREU+odH5ZvGsJiZE9oRfKI6VL6DxVhomYqmutOWhv
-        9G3+V/7x1Teyg7CjjqWfsi4=
-X-Google-Smtp-Source: AMsMyM6aAlkq7HSlsQwfhnYhFYnY0TG4ZY4rvi90moQGO1x5RG+zkv2DRiNziDFlFUNhxqhMx/Cn7A==
-X-Received: by 2002:a17:907:b07:b0:78d:ce2b:1999 with SMTP id h7-20020a1709070b0700b0078dce2b1999mr8022259ejl.267.1666201142104;
-        Wed, 19 Oct 2022 10:39:02 -0700 (PDT)
-Received: from [192.168.2.4] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id f11-20020a170906738b00b0073dc8d0eabesm9411681ejl.15.2022.10.19.10.39.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 10:39:01 -0700 (PDT)
-Message-ID: <21c35744-eee0-ae31-dc54-3e7e1334ae08@gmail.com>
-Date:   Wed, 19 Oct 2022 19:39:00 +0200
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Xq2G8P0XcWZlec1xAQsXMClpeEpgdBC4SuRpNQneoJg=;
+        b=1Wzd2DgvTGiqwxxp5iCufkvTjhffV+7QX0/lt0q3vqqRneUneWqlQn3pBeYy7lX7gK
+         UgRvhQDi6crr27Qm7l2VZaKdzrsekPyHyfC/9pjQ8KDVQu4lvF7ldCDXnEn6Ld2HvJCp
+         hTcDxD2lJtR0WKh+uz3d/ArxEMKliipJnYtywXTxdW7xLIvYE7tQ6vQ8fIt0aw8OAuZK
+         5vNnTVtTHwiKbgUv0OFLNTrXYI6ZjkM2/a2aT1oOtEKZnngBVbFONT7tgC5Dx62pu/NG
+         gllTzJqRgaJIPqAvUedegbWp4e04Je/FF7lLzjNYSTS06IA93Tj+BJXKQvS91p1UzO+o
+         oUbA==
+X-Gm-Message-State: ACrzQf0ICp+BKiQMM1KxOGltKLttc6oujf3AdPioWUBWto3q7WrjxMTB
+        1hYRsNtsNdB3pkXc/vxwi0k=
+X-Google-Smtp-Source: AMsMyM6FC+ajC/WBdUmh/DcvJGhoTjwLSuVIdQPQj9iOc5jM2kDPQkvbHek9GM5B8LAFSeyae9m69g==
+X-Received: by 2002:adf:f501:0:b0:22c:cbea:240a with SMTP id q1-20020adff501000000b0022ccbea240amr6238752wro.78.1666202615315;
+        Wed, 19 Oct 2022 11:03:35 -0700 (PDT)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id t18-20020a5d6a52000000b0022af865810esm14096229wrw.75.2022.10.19.11.03.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Oct 2022 11:03:33 -0700 (PDT)
+Date:   Wed, 19 Oct 2022 20:03:31 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 2/5] iommu: Implement of_iommu_get_resv_regions()
+Message-ID: <Y1A78xWWJTCfsdGL@orome>
+References: <20220923123557.866972-1-thierry.reding@gmail.com>
+ <20220923123557.866972-3-thierry.reding@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH] arm: dts: rockchip: add crypto node for RK322x
-To:     =?UTF-8?Q?Michele_Zuccal=c3=a0?= <ardutu@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Alex Bee <knaerzche@gmail.com>,
-        Corentin Labbe <clabbe@baylibre.com>
-References: <Y1AqBnPSyu7PpiwP@deskilmich.example.net>
-Content-Language: en-US
-From:   Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <Y1AqBnPSyu7PpiwP@deskilmich.example.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="gvCbHzF82XlnTgiW"
+Content-Disposition: inline
+In-Reply-To: <20220923123557.866972-3-thierry.reding@gmail.com>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added Cc: clabbe@baylibre.com
 
-On 10/19/22 18:47, Michele Zuccalà wrote:
-> The cryptographic hardware of the rk322x is compatible with the one present in the rk3288.
-> 
-> Add the respective node to the device tree.
-> 
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> Signed-off-by: Michele Zuccalà <ardutu@gmail.com>
+--gvCbHzF82XlnTgiW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Sep 23, 2022 at 02:35:54PM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+>=20
+> This is an implementation that IOMMU drivers can use to obtain reserved
+> memory regions from a device tree node. It uses the reserved-memory DT
+> bindings to find the regions associated with a given device. If these
+> regions are marked accordingly, identity mappings will be created for
+> them in the IOMMU domain that the devices will be attached to.
+>=20
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  arch/arm/boot/dts/rk322x.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/rk322x.dtsi b/arch/arm/boot/dts/rk322x.dtsi
-> index ffc16d6b9..b381fc2a0 100644
-> --- a/arch/arm/boot/dts/rk322x.dtsi
-> +++ b/arch/arm/boot/dts/rk322x.dtsi
-> @@ -132,6 +132,17 @@ display_subsystem: display-subsystem {
->  		ports = <&vop_out>;
->  	};
->  
-> +	crypto: crypto@100a0000 {
-
-> +		compatible = "rockchip,rk3288-crypto";
-
-Hi,
-
-Compatible strings must SoC orientated.
-
-Something like:
-compatible = "rockchip,rk3228-crypto", "rockchip,rk3288-crypto";
-
-This string must be add to YAML document:
-https://lore.kernel.org/linux-rockchip/20220927075511.3147847-25-clabbe@baylibre.com/
-
-The status of that serie is unknown to me.
-Not sure by who or when that is going to be merged.
-
-Johan
-
-> +		reg = <0x100a0000 0x4000>;
-> +		interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru HCLK_M_CRYPTO>, <&cru HCLK_S_CRYPTO>,
-> +			 <&cru SCLK_CRYPTO>, <&cru ACLK_DMAC>;
-> +		clock-names = "aclk", "hclk", "sclk", "apb_pclk";
-> +		resets = <&cru SRST_CRYPTO>;
-> +		reset-names = "crypto-rst";
-> +	};
+> Changes in v9:
+> - address review comments by Robin Murphy:
+>   - warn about non-direct mappings since they are not supported yet
+>   - cleanup code to require less indentation
+>   - narrow scope of variables
+>=20
+> Changes in v8:
+> - cleanup set-but-unused variables
+>=20
+> Changes in v6:
+> - remove reference to now unused dt-bindings/reserved-memory.h include
+>=20
+> Changes in v5:
+> - update for new "iommu-addresses" device tree bindings
+>=20
+> Changes in v4:
+> - fix build failure on !CONFIG_OF_ADDRESS
+>=20
+> Changes in v3:
+> - change "active" property to identity mapping flag that is part of the
+>   memory region specifier (as defined by #memory-region-cells) to allow
+>   per-reference flags to be used
+>=20
+> Changes in v2:
+> - use "active" property to determine whether direct mappings are needed
+>=20
+>  drivers/iommu/of_iommu.c | 104 +++++++++++++++++++++++++++++++++++++++
+>  include/linux/of_iommu.h |   8 +++
+>  2 files changed, 112 insertions(+)
+>=20
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index 5696314ae69e..0bf2b08bca0a 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/module.h>
+>  #include <linux/msi.h>
+>  #include <linux/of.h>
+> +#include <linux/of_address.h>
+>  #include <linux/of_iommu.h>
+>  #include <linux/of_pci.h>
+>  #include <linux/pci.h>
+> @@ -172,3 +173,106 @@ const struct iommu_ops *of_iommu_configure(struct d=
+evice *dev,
+> =20
+>  	return ops;
+>  }
 > +
->  	i2s1: i2s1@100b0000 {
->  		compatible = "rockchip,rk3228-i2s", "rockchip,rk3066-i2s";
->  		reg = <0x100b0000 0x4000>;
+> +static inline bool check_direct_mapping(struct device *dev, struct resou=
+rce *phys,
+> +					phys_addr_t start, phys_addr_t end)
+> +{
+> +	if (start !=3D phys->start || end !=3D phys->end) {
+> +		dev_warn(dev, "treating non-direct mapping [%pr] -> [%pap-%pap] as res=
+ervation\n",
+> +			 &phys, &start, &end);
+> +		return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+> +/**
+> + * of_iommu_get_resv_regions - reserved region driver helper for device =
+tree
+> + * @dev: device for which to get reserved regions
+> + * @list: reserved region list
+> + *
+> + * IOMMU drivers can use this to implement their .get_resv_regions() cal=
+lback
+> + * for memory regions attached to a device tree node. See the reserved-m=
+emory
+> + * device tree bindings on how to use these:
+> + *
+> + *   Documentation/devicetree/bindings/reserved-memory/reserved-memory.t=
+xt
+> + */
+> +void of_iommu_get_resv_regions(struct device *dev, struct list_head *lis=
+t)
+> +{
+> +#if IS_ENABLED(CONFIG_OF_ADDRESS)
+> +	struct of_phandle_iterator it;
+> +	int err;
+> +
+> +	of_for_each_phandle(&it, err, dev->of_node, "memory-region", NULL, 0) {
+> +		const __be32 *maps, *end;
+> +		struct resource res;
+> +		int size;
+> +
+> +		memset(&res, 0, sizeof(res));
+> +
+> +		/*
+> +		 * The "reg" property is optional and can be omitted by reserved-memor=
+y regions
+> +		 * that represent reservations in the IOVA space, which are regions th=
+at should
+> +		 * not be mapped.
+> +		 */
+> +		if (of_find_property(it.node, "reg", NULL)) {
+> +			err =3D of_address_to_resource(it.node, 0, &res);
+> +			if (err < 0) {
+> +				dev_err(dev, "failed to parse memory region %pOF: %d\n",
+> +					it.node, err);
+> +				continue;
+> +			}
+> +		}
+> +
+> +		maps =3D of_get_property(it.node, "iommu-addresses", &size);
+> +		if (!maps)
+> +			continue;
+> +
+> +		end =3D maps + size / sizeof(__be32);
+> +
+> +		while (maps < end) {
+> +			struct device_node *np;
+> +			u32 phandle;
+> +			int na, ns;
+> +
+> +			phandle =3D be32_to_cpup(maps++);
+> +			np =3D of_find_node_by_phandle(phandle);
+> +			na =3D of_n_addr_cells(np);
+> +			ns =3D of_n_size_cells(np);
+> +
+> +			if (np =3D=3D dev->of_node) {
+> +				int prot =3D IOMMU_READ | IOMMU_WRITE;
+> +				struct iommu_resv_region *region;
+> +				enum iommu_resv_type type;
+> +				phys_addr_t start;
+> +				size_t length;
+> +
+> +				start =3D of_translate_dma_address(np, maps);
+
+I just came across an issue when extending the testing from simple-
+framebuffer to the full display engine, with the main difference being
+that the fill display engine is hooked up both to the IOMMU and to the
+memory controller via the interconnects property ("dma-mem").
+
+The latter seems to throw off the of_translate_dma_address() because we
+have a top-level bus@0 node that sets #address-cells =3D <1> and #size-
+cells =3D <1>, which is sufficient to represent the "reg" entries for the
+devices. However, for the reserved-memory node needs #address-cells =3D
+<2> and #size-cells =3D <2> to make sure we can describe memory regions
+above the 4 GiB boundary (and potentially larger than 4 GiB, too).
+
+What happens now is that of_translate_dma_address() will find the DMA
+parent for the display engine, which is the memory controller, which
+also has #address-cells =3D <2> and #size-cells =3D <2> for the same reason
+as the reserved-memory node. In other words, what this tries to model is
+that for DMA accesses, we span more than the 4 GiB range that is
+sufficient to address registers for IP blocks.
+
+However, of_translate_dma_address() then ends up getting #address-cells
+and #size-cells from the *parent* of the DMA parent. And then everything
+falls apart during translation.
+
+Any idea if I'm doing something wrong? Or is the code wrong and it's not
+actually using the right cell counts? Should it be using the cell counts
+=66rom the DMA parent rather than its parent bus?
+
+Thierry
+
+--gvCbHzF82XlnTgiW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNQO/EACgkQ3SOs138+
+s6GiVw//Rt0WZudr7yKNPo4DHkqkQqPgm679wTYK2vd8F6vk9+NmIe2SR+9L54s2
+G9YYbsEusjC+8mxsozgr1ze2gJhwsDv0kMgIgS7HseZYDUmorPUA38q6nDsMyYJl
+m9UG7f2z7lBQ/u1dLrZgToz/ym+U2rAZiZTPJ+G5tPvdhSKCBMK5KlatFDlcNM09
+Lr2EXutWTX9LkwMUKlvPITYNA5S0i/7kHEk7/rTWKj70PbSFuhPNW5BvNUs9aXki
+jDQK6/CBnXXLj2Dp14B6HYrlwZiYu0E63itYPyZMx5mfO9i1pxyVHe/s+VS7vtMt
+q0RMKPdTfWHCCopYhMI72M4Ri2PJtgB7g2zqkEpXytOn1jJy4c2P0cu1Y+T7nGpE
+plOwpeWDb5CrOPDYiGGPRRb6lE/zRO5Mfwefp7TnJ81Eet+LI2kVy4FeUe5Oross
+o4A7xBoAZKSkaWyhon0oIB7IqetTzDMeQEanKTbdK6kPusxO3VPOUyarVkAx3s8J
+5KWRlOUEmu19ASRjYF4nMKK8PYA+0uqwYXAaDgXIFTcEPfzrylQNTgfsjZz1RTEJ
+L1MmObgjOn+CReAbVbLooI4cp+jhDYV66poT298ifi9oHuTOTf6/9ULbfaUnuGmr
+zWm8ePp4oWnHEA5nOczB7tiRVQlIP2O4vFaY6hrnhF5etUhbzfE=
+=Xlzl
+-----END PGP SIGNATURE-----
+
+--gvCbHzF82XlnTgiW--
