@@ -2,117 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0203E6048DC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:12:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D056B60492B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 16:26:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230500AbiJSOMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 10:12:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58186 "EHLO
+        id S232459AbiJSO0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 10:26:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231892AbiJSOMJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:12:09 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6DE5237D3
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:54:37 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id m23so22261057lji.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 06:54:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RknYa2NABgYYHyJknMjUhYiHTu2aqnADkUkC2x00Z/k=;
-        b=yVyYhg2zBMm+7w3lS+wQf7QQB6OxkvKhhDBuAPYoaZ7jD0KpwgQm287TcPFHMwTTkE
-         jryok8brz3+crpof1k38RGlYAy8EknTf68wgzwJcnn3FBydmHK77NIq8gst0QpljcDnr
-         lEQvShh77tEZtVCe8fl0GZnP2mCH81by5zLhTlqbuLfUx0UpnWcovEmz96yWNOv810Mr
-         lQfdoKcRbsxklj6SU8zBtJVkDk9ttPpnKVB3WgOpCeAy6PAWmY19KZnVd68/6dOt51tZ
-         ZrVbOIMPqosRKsDK0eA3b5vgFTfilJ2lUvoaaulDneOt2wSZ4l6ggS6O4BHZOrnDLQIo
-         1jyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RknYa2NABgYYHyJknMjUhYiHTu2aqnADkUkC2x00Z/k=;
-        b=SsmMpCkfXbkkqTmtEzPrFPTzWU67Zexb1PdOATxdSfrYtvzVC2cecL086kMqsSHLlh
-         SGjM+JRZuFQ4yBtMkY5cSawXDQ3nz+z04SGaBzA1SczU+5OTuT5g5wCrwgRbQEPqN9f7
-         7zQ1zUgO6ebq0O7MnQ+LfWirDDl7FcudFXe+36L439z1yaTD84NBDqwUPrMCTZ5Q+8vg
-         QFqklbNOwHdB4WTV+QF6PselHwvATyGTwwks0vdvD5DxiD3B8viN5aq21X3zOcaGw0NB
-         VyrQN/dpRg0EC3p3R1sPPitUIu0JKaA4FWMdg22bmnkc8dqraSOvWcY17hCeMi0B/3tq
-         4Tlw==
-X-Gm-Message-State: ACrzQf1XZVDdnyFPvbP4b9ljhFImJXCw+MSH6TZQQ4oSPbdQi0vpwEfW
-        q9nHw7DXzB8OJIDy0Z5pbnVcQA==
-X-Google-Smtp-Source: AMsMyM7XIZU0I24cerZGyqqlXQ/1nBl3l4sFmHTpzgGVDmR0GJjUQ91snFjYNIxrUZWHEFwuHqEW5w==
-X-Received: by 2002:a2e:bc0f:0:b0:26e:15f:51dd with SMTP id b15-20020a2ebc0f000000b0026e015f51ddmr3021059ljf.118.1666187550011;
-        Wed, 19 Oct 2022 06:52:30 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id t17-20020a056512209100b004996fbfd75esm2298842lfr.71.2022.10.19.06.52.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 06:52:29 -0700 (PDT)
-Message-ID: <02a879d4-cc7a-ca8e-7334-755873baa3e7@linaro.org>
-Date:   Wed, 19 Oct 2022 16:52:29 +0300
+        with ESMTP id S232677AbiJSO02 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 10:26:28 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 264FE1A0F84;
+        Wed, 19 Oct 2022 07:11:20 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3FA61660238F;
+        Wed, 19 Oct 2022 14:57:18 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666187838;
+        bh=GoqeN/GewrNfh6KyiazZvRA5/fFpIcsiWVnAafIR6s4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=jBofWKcmTNvwpH9DAux2lWFazuczb2Pf/fXzZqE0pO2VrcgF/kgweGX93IzW0q6dR
+         LnNY/qK0yn57wnFWEI7CZwAlbCwEpOEdI46HTLg2jLfSmp3lM3REKgMRQjxrFSQCGZ
+         Bkx8lg4zoq755qaQZei/LZIebSwKBIocbdPksVCNPNa2oH/SpQceh0iuHRL3IcZlmq
+         6JOKzuI+VhGDaafraA9xicTTzMyv7UbABtRAoH/CNwyg961zSWqXvZnSk8/tZ6mWeX
+         WmWPaTaKlTw1rYytzTyQEdncQ7h84pCx/Y9UMXDhYrTbb9BlkGGXpxJnQzW1tBvqt3
+         vXepuTfwwUcgQ==
+Message-ID: <cf0d4a88-16d0-bb10-8402-30d60feafa1b@collabora.com>
+Date:   Wed, 19 Oct 2022 15:57:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH v2 12/15] phy: qcom-qmp-pcie: fix initialisation reset
-Content-Language: en-GB
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+Subject: Re: [PATCH v2] arm64: dts: mt8195: Add Ethernet controller
+Content-Language: en-US
+To:     Biao Huang <biao.huang@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221019113552.22353-1-johan+linaro@kernel.org>
- <20221019113552.22353-13-johan+linaro@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221019113552.22353-13-johan+linaro@kernel.org>
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        macpaul.lin@mediatek.com
+References: <20221019091515.21878-1-biao.huang@mediatek.com>
+ <20221019091515.21878-2-biao.huang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221019091515.21878-2-biao.huang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 14:35, Johan Hovold wrote:
-> Add the missing delay after asserting reset. This is specifically needed
-> for the reset to have any effect on SC8280XP.
+Il 19/10/22 11:15, Biao Huang ha scritto:
+> Add Ethernet controller node for mt8195.
 > 
-> The vendor driver uses a 1 ms delay, but that seems a bit excessive.
-> Instead use a 200 us delay which appears to be more than enough and also
-> matches the UFS reset delay added by commit 870b1279c7a0 ("scsi:
-> ufs-qcom: Add reset control support for host controller").
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
 > ---
->   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 2 ++
->   1 file changed, 2 insertions(+)
+>   arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 88 ++++++++++++++++++++
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi     | 86 +++++++++++++++++++
+>   2 files changed, 174 insertions(+)
 > 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> index 2f4bdef73395..9c8e009033f1 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> @@ -1866,6 +1866,8 @@ static int qmp_pcie_init(struct phy *phy)
->   		goto err_disable_regulators;
->   	}
+
+..snip..
+
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 905d1a90b406..7f7d9f8e72ee 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1042,6 +1042,92 @@ spis1: spi@1101e000 {
+>   			status = "disabled";
+>   		};
 >   
-> +	usleep_range(200, 300);
+> +		stmmac_axi_setup: stmmac-axi-config {
+
+Didn't you get a warning during dtb build for these ones?
+And if you did, why have you ignored it? :-)
+
+> +			snps,wr_osr_lmt = <0x7>;
+> +			snps,rd_osr_lmt = <0x7>;
+> +			snps,blen = <0 0 0 0 16 8 4>;
+> +		};
 > +
 
-If there is a v3, I'd kindly ask to add a comment about vendor using 1ms 
-here.
+..snip..
 
->   	ret = reset_control_bulk_deassert(cfg->num_resets, qmp->resets);
->   	if (ret) {
->   		dev_err(qmp->dev, "reset deassert failed\n");
+> +
+> +		eth: ethernet@11021000 {
+> +			compatible = "mediatek,mt8195-gmac", "snps,dwmac-5.10a";
+> +			reg = <0 0x11021000 0 0x4000>;
+> +			interrupts = <GIC_SPI 716 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			interrupt-names = "macirq";
+> +			clock-names = "axi",
+> +				      "apb",
+> +				      "mac_cg",
+> +				      "mac_main",
+> +				      "ptp_ref",
+> +				      "rmii_internal";
+> +			clocks = <&pericfg_ao CLK_PERI_AO_ETHERNET>,
+> +				 <&pericfg_ao CLK_PERI_AO_ETHERNET_BUS>,
+> +				 <&pericfg_ao CLK_PERI_AO_ETHERNET_MAC>,
+> +				 <&topckgen CLK_TOP_SNPS_ETH_250M>,
+> +				 <&topckgen CLK_TOP_SNPS_ETH_62P4M_PTP>,
+> +				 <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>;
+> +			assigned-clocks = <&topckgen CLK_TOP_SNPS_ETH_250M>,
+> +					  <&topckgen CLK_TOP_SNPS_ETH_62P4M_PTP>,
+> +					  <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_ETHPLL_D2>,
+> +						 <&topckgen CLK_TOP_ETHPLL_D8>,
+> +						 <&topckgen CLK_TOP_ETHPLL_D10>;
+> +			power-domains = <&spm MT8195_POWER_DOMAIN_ETHER>;
+> +			mediatek,pericfg = <&infracfg_ao>;
+> +			snps,axi-config = <&stmmac_axi_setup>;
+> +			snps,mtl-rx-config = <&mtl_rx_setup>;
+> +			snps,mtl-tx-config = <&mtl_tx_setup>;
+> +			snps,txpbl = <16>;
+> +			snps,rxpbl = <16>;
+> +			snps,clk-csr = <0>;
+> +			status = "disabled";
 
--- 
-With best wishes
-Dmitry
+Please move stmmac-axi-config, rx-queues-config, tx-queues-config here as a subnode
+or in the root node, respecting address/size cells being zero.
+Of course adding that here means also specifying {address,size}-cells = <0> in this
+ethernet node.
 
+Regards,
+Angelo
