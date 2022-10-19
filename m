@@ -2,109 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D39E604DB6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 18:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D69B604DCC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 18:53:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229714AbiJSQsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 12:48:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42746 "EHLO
+        id S229921AbiJSQxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 12:53:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiJSQsI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 12:48:08 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86E7F1C5A4A
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 09:48:07 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id r17so41335420eja.7
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 09:48:07 -0700 (PDT)
+        with ESMTP id S229606AbiJSQxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 12:53:22 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE28A1CEC00
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 09:53:20 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id a10so30050647wrm.12
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 09:53:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-disposition:mime-version
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NPE1WLTtmzYEcWs1OXz6Ce7ZBqPhhjbzmP6J9QZciy0=;
-        b=G4GNgHZftQkToFnlexhVY1LW6r7JEdJwDvyl+5e5xD584J/U05N+4MlSp4m4jcjFiu
-         uulqP11i+wDg4uc+ZJ+llJKgLAOc60GuWbf45VOUO0xB+WRQ2KOJVm7RIEDU6J7tS7Jq
-         GpFSaim3gozuh9F+DHlm84+OaxzrQmt5oi3skTA7eB8MkBOo9mcmy3vfYBNkqX/mxhjp
-         6NLQiXfsDF8vICoTYuZX/bZp57LmCfVoMU/TKTMe/Q1tg1JVYn50+pGGdtns8BFIm4Gs
-         AhbhvBSV5EIqtZpC2ggv1FXxpp/D6Cq4ANx/KORaqFQkdktIo3WLB4OkoU/x0FskVZ4N
-         JOtA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=LTAsnU5E92eB+qM6c/ybV2oQFafDvcuad98jbA6ENts=;
+        b=WpIqH6sWxI6Hu6UReuyNYrXyJhDU+rDEgOP2RlGzl1zKwZERTXOvQh6h1JCi3h+LXe
+         LZUA9R/IiGCU0NllpowXPn+Uv9KCmsSx5ADU6HXkhZHumIZ+l0Maaw1M+hDV+XYp3gmy
+         mHoD7i4M2m4WiiHH6zMqPxqwk/vjAzNXHXHg1zKmOlR6q2+enQZVK4ODS1rTzYEi4c/8
+         5NdGRXYH4AfV0uXEiNK5ndX2gGR1VW7a197z2UMKYuwWVSkAvTrAaiIwfBjnGuog9zyB
+         C7VUpP0yfgRhA/v8u5PZlcXnxUeHasXCm4yCB6jVt/KliKDsruTiMkmulyRaxTTIu+mt
+         S1Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-disposition:mime-version
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NPE1WLTtmzYEcWs1OXz6Ce7ZBqPhhjbzmP6J9QZciy0=;
-        b=Z8U0HMJHg4GGaxl8qTADY07Cn20kh5jiXQ0Vlh9fsI9s2b2+jUONcvqdr+X5I4C7SZ
-         XFqKym5EUezPodXue+Ns5XZXYQ/FghsBfQdBKGkbIOYOn0FG5GjZy3bWo1SLjIIDDbEf
-         9+dbweJaIm0wJsCDCQhci1gy4JGkT5qVRK6MqCtZPKdB9PzvxFk09bcvwcoEP13MX2B8
-         NJuygNmU9U7kOLJO1Und8ixm5owYsyQ1JmaHIIBasNLvmxlAp5t8F3jXWd/FZQZmM2cU
-         lnNZ3xeAFpY1N68d4DjaWVpW9TZ/45g40LJKJiBOhhvqeWLImhJAiXoNaQwfmP2m+PAB
-         7HSw==
-X-Gm-Message-State: ACrzQf1/nitZzZeuUJz6BI4zSxNQ90XGj8GIgEj2h1+Nzot9RoE9bKSb
-        WlOKUoDYE/Hq3x/FLnbYT/k=
-X-Google-Smtp-Source: AMsMyM4gcob5NLEjLSha74eHg1JG59rPuxxKsjcpE7czaRcravYnSuNImb81uyqqn4ivI9zUWCupNg==
-X-Received: by 2002:a17:906:9746:b0:78e:11cc:3bb3 with SMTP id o6-20020a170906974600b0078e11cc3bb3mr7583026ejy.379.1666198086046;
-        Wed, 19 Oct 2022 09:48:06 -0700 (PDT)
-Received: from deskilmich.example.net (2-236-113-220.ip233.fastwebnet.it. [2.236.113.220])
-        by smtp.gmail.com with ESMTPSA id rp7-20020a170906d96700b00730bfe6adc4sm9209984ejb.37.2022.10.19.09.48.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Oct 2022 09:48:05 -0700 (PDT)
-Date:   Wed, 19 Oct 2022 18:47:02 +0200
-From:   Michele =?iso-8859-1?Q?Zuccal=E0?= <ardutu@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH] arm: dts: rockchip: add crypto node for RK322x
-Message-ID: <Y1AqBnPSyu7PpiwP@deskilmich.example.net>
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LTAsnU5E92eB+qM6c/ybV2oQFafDvcuad98jbA6ENts=;
+        b=tKKcwttFsDVYMjT7ZnZhf3TRsn7o74WNr3lsIxgZ9LmH4G+GHNkOHoYyqa9iqtOTGl
+         TqYcTcgiymXQK+UwePcNgNSO4CRD4SrjyCKkDjRSws13zDxQrC4lLZorZTnFBBOr7zWe
+         9XPjk0HdVBbg7cyLqymlKH3vKV5GS0Tvqi4TXJsTj/aPyMKgsPKpvBa9IqgV3+MC/Ln9
+         huz75KQ8gydoqb8C8Bt9ktG3qPEsizs/lHM6a6EfgYZQzjJ/2yUSv5GFIfVfM81fO8xq
+         knuF+oEOem4w3mIFznT46eAoHb/6E1xq2RisW1GkFlP4kLwb9jNOoZdj2JRUXSZbAa7a
+         z7pg==
+X-Gm-Message-State: ACrzQf0PpItp18b1O/mUB7Gn1/rmUH/652m2hfniXYhf4UymipArd22+
+        hz1Sct1kKpruaw9d0EUJayOKVw==
+X-Google-Smtp-Source: AMsMyM6TUejGXleI8wbR+NzTKQK8JKTIGhCs1+rC2ZIma8ucCBvl4QA0tduEqQwFPKHHpZup6eUUxg==
+X-Received: by 2002:a5d:64c2:0:b0:22e:41b0:42ca with SMTP id f2-20020a5d64c2000000b0022e41b042camr5930528wri.411.1666198399330;
+        Wed, 19 Oct 2022 09:53:19 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:b15b:4b56:592a:c397? ([2a01:e0a:982:cbb0:b15b:4b56:592a:c397])
+        by smtp.gmail.com with ESMTPSA id j30-20020adfa55e000000b0021e51c039c5sm14905294wrb.80.2022.10.19.09.53.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Oct 2022 09:53:18 -0700 (PDT)
+Message-ID: <dc918114-8b89-441b-5ba1-aaf3ae084860@linaro.org>
+Date:   Wed, 19 Oct 2022 18:53:17 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 1/2] spi: dt-bindings: amlogic, meson-gx-spicc: Add
+ pinctrl names for SPI signal states
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Da Xue <da@libre.computer>, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com>
+ <20221004-up-aml-fix-spi-v3-1-89de126fd163@baylibre.com>
+ <d355ee40-5905-4d10-8300-81e9a63117ee@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <d355ee40-5905-4d10-8300-81e9a63117ee@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The cryptographic hardware of the rk322x is compatible with the one present in the rk3288.
+On 19/10/2022 16:29, Krzysztof Kozlowski wrote:
+> On 19/10/2022 10:01, Amjad Ouled-Ameur wrote:
+>> SPI pins of the SPICC Controller in Meson-GX needs to be controlled by
+>> pin biais when idle. Therefore define three pinctrl names:
+>> - default: SPI pins are controlled by spi function.
+>> - idle-high: SCLK pin is pulled-up, but MOSI/MISO are still controlled
+>> by spi function.
+>> - idle-low: SCLK pin is pulled-down, but MOSI/MISO are still controlled
+>> by spi function.
+>>
+> 
+> 
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - amlogic,meson-gx-spicc
+>> +
+>> +    then:
+>> +      properties:
+>> +        pinctrl-names:
+>> +          minItems: 1
+>> +          items:
+>> +            - const: default
+>> +            - const: idle-high
+>> +            - const: idle-low
+> 
+> You should also define in such case pinctrl-0 and others.
 
-Add the respective node to the device tree.
+Ok I thought it would be covered by the pinctrl-consumer.yaml
+but yeah we should allow pinctrl-1 and pinctrl-2 here aswell by adding:
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
-Signed-off-by: Michele Zuccalà <ardutu@gmail.com>
----
- arch/arm/boot/dts/rk322x.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+             pinctrl-1: true
+             pinctrl-2: true
 
-diff --git a/arch/arm/boot/dts/rk322x.dtsi b/arch/arm/boot/dts/rk322x.dtsi
-index ffc16d6b9..b381fc2a0 100644
---- a/arch/arm/boot/dts/rk322x.dtsi
-+++ b/arch/arm/boot/dts/rk322x.dtsi
-@@ -132,6 +132,17 @@ display_subsystem: display-subsystem {
- 		ports = <&vop_out>;
- 	};
- 
-+	crypto: crypto@100a0000 {
-+		compatible = "rockchip,rk3288-crypto";
-+		reg = <0x100a0000 0x4000>;
-+		interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru HCLK_M_CRYPTO>, <&cru HCLK_S_CRYPTO>,
-+			 <&cru SCLK_CRYPTO>, <&cru ACLK_DMAC>;
-+		clock-names = "aclk", "hclk", "sclk", "apb_pclk";
-+		resets = <&cru SRST_CRYPTO>;
-+		reset-names = "crypto-rst";
-+	};
-+
- 	i2s1: i2s1@100b0000 {
- 		compatible = "rockchip,rk3228-i2s", "rockchip,rk3066-i2s";
- 		reg = <0x100b0000 0x4000>;
--- 
-2.35.3
+> 
+> Best regards,
+> Krzysztof
+> 
+Neil
 
