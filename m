@@ -2,210 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A8AD604E51
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6CF5604E60
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 19:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbiJSRPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 13:15:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36646 "EHLO
+        id S230316AbiJSRP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 13:15:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbiJSRPJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:15:09 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 403A5127928;
-        Wed, 19 Oct 2022 10:14:55 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29JHEPUt113785;
-        Wed, 19 Oct 2022 12:14:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666199665;
-        bh=6Yk4ZgWU7L/RHOKUFCxLZUy3p8/nm2inHJmRmMRVoC8=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=vF6pJI+afFZ5TlfIqj3eJKDQ7QkQfYU8+MckbmeKpKyJMUjEoWVdYGNGyFvlWRKjl
-         87vsXNEEBSMkd5rZyAywHvuU1LY0b46KFNuVWs7qqdfXDvb6VK/ji7AGaR702q28Mw
-         FwQioz4T0Ix1wWv9vCiRlEGFCFPgQvjhcvXdgDm0=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29JHEPVV003107
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 19 Oct 2022 12:14:25 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 19
- Oct 2022 12:14:24 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 19 Oct 2022 12:14:24 -0500
-Received: from [10.250.234.73] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29JHEJRe017688;
-        Wed, 19 Oct 2022 12:14:20 -0500
-Message-ID: <837bcf1d-e59f-5990-29e2-2b64d3dfaaa1@ti.com>
-Date:   Wed, 19 Oct 2022 22:44:19 +0530
+        with ESMTP id S230328AbiJSRPw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 13:15:52 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32BE4181972;
+        Wed, 19 Oct 2022 10:15:47 -0700 (PDT)
+Received: from p508fdae2.dip0.t-ipconnect.de ([80.143.218.226] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1olCfL-0008VN-NU; Wed, 19 Oct 2022 19:15:39 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        Quentin Schulz <foss+kernel@0leil.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        quentin.schulz@theobroma-systems.com
+Subject: Re: [PATCH] arm64: dts: rockchip: lower rk3399-puma-haikou SD controller clock frequency
+Date:   Wed, 19 Oct 2022 19:15:38 +0200
+Message-ID: <8130714.T7Z3S40VBb@phil>
+In-Reply-To: <52349f5d-661f-3e38-9745-01a84ddf820f@theobroma-systems.com>
+References: <20221019-upstream-puma-sd-40mhz-v1-0-754a76421518@theobroma-systems.com> <Y1AQHqm+cOmrrveJ@kroah.com> <52349f5d-661f-3e38-9745-01a84ddf820f@theobroma-systems.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [RFC PATCH v5 5/6] drm/tidss: Add IO CTRL and Power support for
- OLDI TX in am625
-Content-Language: en-US
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>
-References: <20220928175223.15225-1-a-bhatia1@ti.com>
- <20220928175223.15225-6-a-bhatia1@ti.com>
- <708ae70e-dc1b-1079-8442-06cbea228e99@ideasonboard.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <708ae70e-dc1b-1079-8442-06cbea228e99@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi
+Hi Quentin,
 
-On 12-Oct-22 17:59, Tomi Valkeinen wrote:
-> On 28/09/2022 20:52, Aradhya Bhatia wrote:
->> The ctrl mmr module of the AM625 is different from the AM65X SoC. Thus
->> the ctrl mmr registers that supported the OLDI TX power have become
->> different in AM625 SoC.
->>
->> Add IO CTRL support and control the OLDI TX power for AM625.
->>
->> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->> ---
->>   drivers/gpu/drm/tidss/tidss_dispc.c      | 55 ++++++++++++++++++------
->>   drivers/gpu/drm/tidss/tidss_dispc_regs.h |  6 +++
->>   2 files changed, 49 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
->> b/drivers/gpu/drm/tidss/tidss_dispc.c
->> index 88008ad39b55..68444e0cd8d7 100644
->> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
->> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
->> @@ -921,21 +921,52 @@ int dispc_vp_bus_check(struct dispc_device 
->> *dispc, u32 hw_videoport,
->>   static void dispc_oldi_tx_power(struct dispc_device *dispc, bool power)
->>   {
->> -    u32 val = power ? 0 : OLDI_PWRDN_TX;
->> +    u32 val;
->>       if (WARN_ON(!dispc->oldi_io_ctrl))
->>           return;
->> -    regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT0_IO_CTRL,
->> -               OLDI_PWRDN_TX, val);
->> -    regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT1_IO_CTRL,
->> -               OLDI_PWRDN_TX, val);
->> -    regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT2_IO_CTRL,
->> -               OLDI_PWRDN_TX, val);
->> -    regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT3_IO_CTRL,
->> -               OLDI_PWRDN_TX, val);
->> -    regmap_update_bits(dispc->oldi_io_ctrl, OLDI_CLK_IO_CTRL,
->> -               OLDI_PWRDN_TX, val);
->> +    if (dispc->feat->subrev == DISPC_AM65X) {
->> +        val = power ? 0 : OLDI_PWRDN_TX;
->> +
->> +        regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT0_IO_CTRL,
->> +                   OLDI_PWRDN_TX, val);
->> +        regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT1_IO_CTRL,
->> +                   OLDI_PWRDN_TX, val);
->> +        regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT2_IO_CTRL,
->> +                   OLDI_PWRDN_TX, val);
->> +        regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT3_IO_CTRL,
->> +                   OLDI_PWRDN_TX, val);
->> +        regmap_update_bits(dispc->oldi_io_ctrl, OLDI_CLK_IO_CTRL,
->> +                   OLDI_PWRDN_TX, val);
->> +
->> +    } else if (dispc->feat->subrev == DISPC_AM625) {
->> +        if (power) {
->> +            switch (dispc->oldi_mode) {
->> +            case OLDI_SINGLE_LINK_SINGLE_MODE:
->> +                /* Power down OLDI TX 1 */
->> +                val = OLDI1_PWRDN_TX;
->> +                break;
->> +
->> +            case OLDI_SINGLE_LINK_CLONE_MODE:
->> +            case OLDI_DUAL_LINK_MODE:
->> +                /* No Power down */
->> +                val = 0;
->> +                break;
->> +
->> +            default:
->> +                /* Power down both the OLDI TXes */
->> +                val = OLDI0_PWRDN_TX | OLDI1_PWRDN_TX;
->> +                break;
->> +            }
->> +        } else {
->> +            /* Power down both the OLDI TXes */
->> +            val = OLDI0_PWRDN_TX | OLDI1_PWRDN_TX;
->> +        }
+Am Mittwoch, 19. Oktober 2022, 17:59:54 CEST schrieb quentin.schulz@theobroma-systems.com:
+> Hi Greg,
 > 
-> Ugh, I hate power-down bits. So you "enable" it to disable it =). What's 
-> the default value or the register here? Or will this always be called? 
-> I.e. if we only use DPI, do we power down the OLDIs somewhere (or does 
-> it matter)?
+> On 10/19/22 4:56 PM, Greg KH <gregkh@linuxfoundation.org> wrote:
+> > On Wed, Oct 19, 2022 at 04:27:27PM +0200, Quentin Schulz wrote:
+> > > From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> > >
+> > > From: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
+> > 
+> > You can not have 2 authors :(
+> > 
+> 
+> That's a bug in b4 and my patch submission/mail sending workflow, I'll sort something out with the b4 community and send a new version of the patch soon. Thanks for the heads up!
+
+I guess, Jakob is the original author?
+If so, I can simply drop your authorship.
+
+
+Heiko
+
+> 
+> [...]
+> 
+> > It has to be accepted before you are done :)
+> > 
+> 
+> A "small" detail :)
+> 
+> Cheers,
+> Quentin
 > 
 
-The power bits are defaulted to keep the OLDI TXes powered off, and they
-have to be turned ON.
-
-This function is also called to power off the OLDI TXes, from
-dispc_vp_unprepare. And that happens with "power" variable as false. So
-the else condition above is indeed required.
-
-You are right about the other scenario though. If DPI is only used, the
-mode will be set to OLDI_MODE_OFF and in that case, the dispc_vp_prepare
-function will NOT be called for the OLDI VP thereby rendering the
-"default" clause of the switch statement, for powering down the OLDIs,
-essentially useless. I just put it there because of convention.
-
->> +
->> +        regmap_update_bits(dispc->oldi_io_ctrl, OLDI_PD_CTRL,
->> +                   OLDI0_PWRDN_TX | OLDI1_PWRDN_TX, val);
->> +    }
->>   }
->>   static void dispc_set_num_datalines(struct dispc_device *dispc,
->> @@ -2831,7 +2862,7 @@ int dispc_init(struct tidss_device *tidss)
->>           dispc->vp_data[i].gamma_table = gamma_table;
->>       }
->> -    if (feat->subrev == DISPC_AM65X) {
->> +    if (feat->subrev == DISPC_AM65X || feat->subrev == DISPC_AM625) {
->>           r = dispc_init_am65x_oldi_io_ctrl(dev, dispc);
->>           if (r)
->>               return r;
->> diff --git a/drivers/gpu/drm/tidss/tidss_dispc_regs.h 
->> b/drivers/gpu/drm/tidss/tidss_dispc_regs.h
->> index 13feedfe5d6d..510bee70b3b8 100644
->> --- a/drivers/gpu/drm/tidss/tidss_dispc_regs.h
->> +++ b/drivers/gpu/drm/tidss/tidss_dispc_regs.h
->> @@ -238,6 +238,12 @@ enum dispc_common_regs {
->>   #define OLDI_DAT3_IO_CTRL            0x0C
->>   #define OLDI_CLK_IO_CTRL            0x10
->> +/* Only for AM625 OLDI TX */
->> +#define OLDI_PD_CTRL                0x100
->> +#define OLDI_LB_CTRL                0x104
->> +
->>   #define OLDI_PWRDN_TX                BIT(8)
->> +#define OLDI0_PWRDN_TX                BIT(0)
->> +#define OLDI1_PWRDN_TX                BIT(1)
-> 
-> Maybe these (the new and old ones) should be platform-prefixed. And 
-> organized so that the register and its bits are together.
-Okay, will do.
 
 
-Regards
-Aradhya
+
