@@ -2,141 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E07CC6040CF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 12:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84B596040D5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 12:23:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229698AbiJSKVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 06:21:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42512 "EHLO
+        id S231343AbiJSKXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 06:23:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbiJSKVN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 06:21:13 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC5B12B34A;
-        Wed, 19 Oct 2022 03:01:05 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id o65so14003174iof.4;
-        Wed, 19 Oct 2022 03:01:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=V+gH18NMXsLrXdxE5QG5IXpfPb6gpkkgJRS++3hiNtc=;
-        b=HaxP/TJIrzOP1fSvUBtD3PbhySohG28AX/Rs413Hoa9jyN0bFl0ofjcLNUcuORn9jw
-         9kCoKP872VmdonnjqmLC3pVfnJD02GFt67Ovrq8sO2EtZ9Mcm38NW5K53/4E9Zrzvf/o
-         61sVVStnYCeLmbxsI4HyAnP/JB7hg3JGFRi4+HP6Go6aJ6K5LPMIy/Z62caPMuen8Hf4
-         NqsvpjZ4ajUcfZQtpwNDxGb9lQInom4CxJFx7KEIblBgLMQmljANIo4F0t8cuTyvk1jf
-         0uenQDKuZxEKNKq9lxaOfL5t9OvVhJVuK5eB5xHfFGhxME3eVHeHJCwZwBIB9nPv+4Xx
-         3b4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=V+gH18NMXsLrXdxE5QG5IXpfPb6gpkkgJRS++3hiNtc=;
-        b=qXzMpmFQJPv7r+AgREW7uDGZ3KrW13a3S0Hi0IxRQXi3r8zS+LColv6JwI3mFjN7Pv
-         lESGuqIRmzkiBDH7KN/iLABNTOS/QWTnr95mGY65ICb+AHUSxDibPMveYShK9Rqwu6WJ
-         8H2WHEi6DvMQcGAKR4XFPxJy0lQOMfSmQmvqcsWLzLEMcS1x9VJ7NUkdxczmBUNsAqQX
-         Ep7M2xr+VQJHUWvcAE+0VvSdis5b2yxzq80WRM4Vby4oqLq8FFsQOEDbjqJ17PjExlDQ
-         x67tnMwoZejJp3la6BlBJp9vx/MHABJ3B9hyHkNbIH7pQoDSE8KA+nyuJbEc3f4A+5Vq
-         Z+qQ==
-X-Gm-Message-State: ACrzQf3dSUbvsfgLf8Bd+o7r3vcCnvI4DV80KUwFswACBXHSiJI7eJbs
-        H9oh5gdhBev7HcY/Q1dYwDTHWJmhKEzAt7EN4wZdg5nb
-X-Google-Smtp-Source: AMsMyM6xArXqSugR0nN9BNdZbtJnY3QAB/sH1iDiacz99SmY/2A38tLRXBMdEsAFJKv7SCu695euSpu3Wg+bztX3Tao=
-X-Received: by 2002:a92:da4a:0:b0:2f8:fa94:9dae with SMTP id
- p10-20020a92da4a000000b002f8fa949daemr5074198ilq.80.1666172904631; Wed, 19
- Oct 2022 02:48:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221018195122.8877-1-linux.amoon@gmail.com> <CAFBinCCqXBk9Xq0k=NA3zGi8spwyPQN7dMVWcjE+pXkXYf+FKQ@mail.gmail.com>
- <CANAwSgSR6jHRQR6QgzUop_B4gcOsQnfc6LoUXrP0CSTasZkVfQ@mail.gmail.com>
-In-Reply-To: <CANAwSgSR6jHRQR6QgzUop_B4gcOsQnfc6LoUXrP0CSTasZkVfQ@mail.gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Wed, 19 Oct 2022 15:18:08 +0530
-Message-ID: <CANAwSgRLZfon5qUFeKW9U9AbHvSa=uKVaVgqghVk554-H1LVKw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on
- Odroid N2/N2+
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230009AbiJSKW7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 06:22:59 -0400
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E65C8950;
+        Wed, 19 Oct 2022 03:02:34 -0700 (PDT)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out1.suse.de (Postfix) with ESMTP id CF34633924;
+        Wed, 19 Oct 2022 10:00:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+        t=1666173625; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=iR8uS4Gx4LUrjoOa7cKkotplZsy+7+DUm7VXca8j8Vk=;
+        b=qk52itcPxIK0JYJIi3Lrj54e+dtHIlQeHi6ZYF0FDwxWlMQhelJJNQhmNUS1f86htn1Xka
+        3pgdL7jeDWGAv/Xsx519Lwgtk5IQgrsiiCt87uyBNDUZYcXKpnvAr+ZVrDQofc7P5ldqj4
+        6qPVodH8VgXZUIZ4NmbL7RdzPT2GDiM=
+Received: from suse.cz (unknown [10.100.201.202])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by relay2.suse.de (Postfix) with ESMTPS id 3E4AF2C142;
+        Wed, 19 Oct 2022 10:00:24 +0000 (UTC)
+Date:   Wed, 19 Oct 2022 12:00:23 +0200
+From:   Petr Mladek <pmladek@suse.com>
+To:     Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
+        devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [PATCH 4/7] lib/vsprintf: Add support for generic FOURCCs by
+ extending %p4cc
+Message-ID: <Y0/Kt9CW5vYcxHhK@alley>
+References: <YxdInl2qzQWM+3bs@shell.armlinux.org.uk>
+ <E1oVYUS-005CmS-IA@rmk-PC.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1oVYUS-005CmS-IA@rmk-PC.armlinux.org.uk>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+On Tue 2022-09-06 14:19:44, Russell King wrote:
+> From: Hector Martin <marcan@marcan.st>
+> 
+> %p4cc is designed for DRM/V4L2 FOURCCs with their specific quirks, but
+> it's useful to be able to print generic 4-character codes formatted as
+> an integer. Extend it to add format specifiers for printing generic
+> 32-bit FOURCCs with various endian semantics:
+> 
+> %p4ch   Host-endian
+> %p4cl	Little-endian
+> %p4cb	Big-endian
+> %p4cr	Reverse-endian
+> 
+> The endianness determines how bytes are interpreted as a u32, and the
+> FOURCC is then always printed MSByte-first (this is the opposite of
+> V4L/DRM FOURCCs). This covers most practical cases, e.g. %p4cr would
+> allow printing LSByte-first FOURCCs stored in host endian order
+> (other than the hex form being in character order, not the integer
+> value).
+> 
+> --- a/Documentation/core-api/printk-formats.rst
+> +++ b/Documentation/core-api/printk-formats.rst
+> @@ -625,6 +625,38 @@ Passed by reference.
+>  	%p4cc	Y10  little-endian (0x20303159)
+>  	%p4cc	NV12 big-endian (0xb231564e)
+>  
+> +Generic FourCC code
+> +-------------------
+> +
+> +::
+> +	%p4c[hnbl]	gP00 (0x67503030)
+> +
+> +Print a generic FourCC code, as both ASCII characters and its numerical
+> +value as hexadecimal.
+> +
+> +The additional ``h``, ``r``, ``b``, and ``l`` specifiers are used to specify
+> +host, reversed, big or little endian order data respectively. Host endian
+> +order means the data is interpreted as a 32-bit integer and the most
+> +significant byte is printed first; that is, the character code as printed
+> +matches the byte order stored in memory on big-endian systems, and is reversed
+> +on little-endian systems.
+> +
+> +Passed by reference.
+> +
+> +Examples for a little-endian machine, given &(u32)0x67503030::
+> +
+> +	%p4ch	gP00 (0x67503030)
+> +	%p4cl	gP00 (0x67503030)
+> +	%p4cb	00Pg (0x30305067)
+> +	%p4cr	00Pg (0x30305067)
 
-On Wed, 19 Oct 2022 at 08:36, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Hi Martin,
->
-> On Wed, 19 Oct 2022 at 02:46, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> >
-> > Hello Anand,
-> >
-> > On Tue, Oct 18, 2022 at 9:53 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> > >
-> > > Odroid N2/N2+ support active cooling via gpio-fan controller.
-> > > Add fan controls and tip point for cpu and ddr thermal sensor
-> > > on this boards.
-> > In the schematics for board rev 0.6 [0] I cannot find any information
-> > about a fan connector.
-> > The schematics for board rev 0.3 [1] on the other hand document a PWM
-> > based fan connector on page 16.
-> > So now I am not sure whether your patch only applies to certain board
-> > revisions, the schematics are incorrect, etc.
-> >
-> > Can you please provide some details about the fan connector on
-> > Odroid-N2/N2+ and which hardware revisions are supported (and which
-> > aren't) by your patch?
-> >
-> >
-> Ok I got this wrong the schematics below there is pwm controller, not
-> gpio controller
-> GPIOAO.BIT10 (PWM)
-> I will correct the patch sorry for the mistake I did not look more carefully.
->
+Nit: I would prefer to keep the same order (h,r,b,l) everywhere.
 
-As per the schematics GPIOAO_10 is controlled by PWMAO_D
-But looking into the datasheet [0] I could not find the relevant
-PWMAO_D pmw ip block to link the fan to the PWM controller.
+     I guess that you wanted to show exactly the same results next
+     to each other. But it is not the case on big-endian anyway.
 
-[0] https://dn.odroid.com/S922X/ODROID-N2/Datasheet/S922X_Public_Datasheet_V0.2.pdf
+> +
+> +Examples for a big-endian machine, given &(u32)0x67503030::
+> +
+> +	%p4ch	gP00 (0x67503030)
+> +	%p4cl	00Pg (0x30305067)
+> +	%p4cb	gP00 (0x67503030)
+> +	%p4cr	00Pg (0x30305067)
 
-I could get the PWM node but is not working for me.
+Same here.
 
-@@ -547,6 +588,14 @@ &pwm_ab {
-        status = "okay";
- };
+> +
+>  Thanks
+>  ======
+>  
+> diff --git a/lib/vsprintf.c b/lib/vsprintf.c
+> index 3c1853a9d1c0..31707499f90f 100644
+> --- a/lib/vsprintf.c
+> +++ b/lib/vsprintf.c
+> @@ -1757,27 +1757,50 @@ char *fourcc_string(char *buf, char *end, const u32 *fourcc,
+>  	char output[sizeof("0123 little-endian (0x01234567)")];
+>  	char *p = output;
+>  	unsigned int i;
+> +	bool pix_fmt = false;
 
-+&pwm_AO_ab {
-+       pinctrl-1 = <&pwm_ao_d_10_pins>;
-+       pinctrl-names = "default";
-+       clocks = <&xtal>;
-+       clock-names = "clkin0";
-+       status = "okay";
-+};
-+
+Nit: I would prefer "pixel_fmt". I am not a graphics guy and wondered
+     what "pix" did stands for ;-)
 
-Thanks
--Anand
+>  	u32 orig, val;
+>  
+> -	if (fmt[1] != 'c' || fmt[2] != 'c')
+> +	if (fmt[1] != 'c')
+>  		return error_string(buf, end, "(%p4?)", spec);
+>  
+>  	if (check_pointer(&buf, end, fourcc, spec))
+>  		return buf;
+>  
+>  	orig = get_unaligned(fourcc);
+> -	val = orig & ~BIT(31);
+> +	switch (fmt[2]) {
+> +	case 'h':
+> +		val = orig;
+> +		break;
+> +	case 'r':
+> +		val = orig = swab32(orig);
+> +		break;
+> +	case 'l':
+> +		val = orig = le32_to_cpu(orig);
+> +		break;
+> +	case 'b':
+> +		val = orig = be32_to_cpu(orig);
+> +		break;
+> +	case 'c':
+> +		/* Pixel formats are printed LSB-first */
+> +		val = swab32(orig & ~BIT(31));
+> +		pix_fmt = true;
+> +		break;
+> +	default:
+> +		return error_string(buf, end, "(%p4?)", spec);
+> +	}
+>  
+>  	for (i = 0; i < sizeof(u32); i++) {
+> -		unsigned char c = val >> (i * 8);
+> +		unsigned char c = val >> ((3 - i) * 8);
+
+This hardcodes '3' but the for-cycle uses i < sizeof(u32).
+We should be consistent.
+
+A solution would be:
+
+	int i;
+
+	for (i = sizeof(u32); --i >= 0;) {
+		unsigned char c = val >> (i * 8);
 
 
-> > Thank you!
-> > Martin
-> >
-> >
-> > [0] https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
-> > [1] https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.3_20190117.pdf
-> Thanks
-> -Anand
+>  		/* Print non-control ASCII characters as-is, dot otherwise */
+>  		*p++ = isascii(c) && isprint(c) ? c : '.';
+>  	}
+>  
+> -	*p++ = ' ';
+> -	strcpy(p, orig & BIT(31) ? "big-endian" : "little-endian");
+> -	p += strlen(p);
+> +	if (pix_fmt) {
+> +		*p++ = ' ';
+> +		strcpy(p, orig & BIT(31) ? "big-endian" : "little-endian");
+> +		p += strlen(p);
+> +	}
+>  
+>  	*p++ = ' ';
+>  	*p++ = '(';
+
+Best Regards,
+Petr
