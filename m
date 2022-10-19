@@ -2,467 +2,340 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 323596036FE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 02:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FCDD6037BE
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 04:01:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbiJSAP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Oct 2022 20:15:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57932 "EHLO
+        id S229437AbiJSCBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Oct 2022 22:01:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiJSAPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 20:15:12 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E6713CED
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 17:14:24 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id l28so10769280qtv.4
-        for <devicetree@vger.kernel.org>; Tue, 18 Oct 2022 17:14:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xj8oqc6X0SELPAzO35XBgvTJvR6agdd6xEitocppSZs=;
-        b=oLl6VaOnCBXK2IbqkwcF0sRCgbnD00xYEw03TPZryw5nA8Pu3LfLv7u2zhpv9V5kr0
-         3wlYXBZVCO6vDnG2IP5Inzkp5flKcoharRuga+Q5yC7ecATftcVrHAugMLXz5DLWkukx
-         O3NC0bTWpY157gfxP0361n+TLyYAWVnjBaEzeUrTZbOuNpvXnOFimb21E2Ij9UG+cf1L
-         z/jBzWNoljpb1mke13kKjE0ZMx/R//YISdVJ/uyufNYp8I04pxy0iXNCxDvx9xd8Cyi1
-         bXIgAK4FX7MHhSgcsD9fbUJjpwwmxfLQoww9Xq7fk1eHNan04orPuiT3KYKOkx7R/54x
-         J0QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Xj8oqc6X0SELPAzO35XBgvTJvR6agdd6xEitocppSZs=;
-        b=ALastlcVY4iHShLpfXKwLZHY/4GslvxVmOAqSYJq2TzUOgsqlhFHmDPQqshb9uJeCH
-         4VQCkcDw6nC641YKjOwSwTOk6eWV5H0qJWpeBnFIVYZHC4PGCTvqAhgkGAdmlDaGOwe/
-         a8xNZoFiY2FchaHhGaRaKkmXs6YgrbI9hpb7nIeKd4ythy5/pFpGjpVNUyZwfw3MnDih
-         tjh6wkirAv87RvqxOH9QoJvQatmGgVmBZWCt/Qkp8yHPu+7bNSG4CH4YhyFZxFlKgnr2
-         mWtqe2uKeYjc+GmH+0aIvFP/Fs0tsw3RaY+kXME/QVNPyMIlW5r6bnJQcRQV7Yv0YbEk
-         CIbQ==
-X-Gm-Message-State: ACrzQf3n3FFkc/q7aRp9yIUpSUK9qOQ0TY9hiYOSzPp698Vy4Qp8AY+j
-        rUgMU+wzrflNzEJGXd5DDGFzFQ==
-X-Google-Smtp-Source: AMsMyM6g9Ri6FRsiW+hBnl6dSfWyMabwhY8WO4G8LrroY11luCENx1+H5TMQ9aEcdY/diSBDQ9hNeg==
-X-Received: by 2002:ac8:7d12:0:b0:39c:c95a:5a20 with SMTP id g18-20020ac87d12000000b0039cc95a5a20mr4447322qtb.278.1666138446542;
-        Tue, 18 Oct 2022 17:14:06 -0700 (PDT)
-Received: from krzk-bin.MSRM (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id ay40-20020a05620a17a800b006bb78d095c5sm3381240qkb.79.2022.10.18.17.14.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Oct 2022 17:14:06 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 4/4] dt-bindings: pinctrl: qcom,sc7180: convert to dtschema
-Date:   Tue, 18 Oct 2022 20:13:51 -0400
-Message-Id: <20221019001351.1630089-5-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221019001351.1630089-1-krzysztof.kozlowski@linaro.org>
-References: <20221019001351.1630089-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
+        with ESMTP id S229572AbiJSCBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Oct 2022 22:01:17 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2087.outbound.protection.outlook.com [40.107.22.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE75680BE6;
+        Tue, 18 Oct 2022 19:01:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KjzJjgikoK9zO8S6uqiw3gLR7uyQ6j3gHCK3OwiAQ9HCJZoREFw31bGHW1/NKsRNb76/BvXdVvZ7apZJ2wGjJyI6y5TvY2zAXv0vT+BGJgujmGG0GAYv698ztm95t+9jk6Emo07wgl9qWm04Ze1FMkcxBbMMXSdpcDpMDNhnrKxnxc+eO8AcwBsWkwViIkVUqyVNuybMXMD/9BcuM+DbIuO2SFT64u86R4TrrwkGSni0TzIDGrNMC4JOhkV92iXdzGa1Wbgkfbm6MAJmVldX9MV96c1dj4tC9lrrfXtgIiKU4PBAdsaLD/d+MAsGZ4F031Sqah/B9y6LyxbNauQZSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Yrn23BE6BbxgnksoXo5+K+iBwPnwIbGrrDb8mOlNwao=;
+ b=CngPEEiCqlgFX92v1EuxUIBeW4UY3CWF0tzpG6aRiOkJktUUlj6vVLlEo9h0JxiW0Ls1Oi+il5FbAwhEhhKSOorPIUNl5CrOsvAu6EEUmuv5Hvi9O8TRpcOa54CvUd+0mdcAz3dDbsm6SiS17MD8fZ8gm5DRclDJLuTKRa6oHMxNoVfnaLLXeKWu/ldCNBEHNEYKAPqqyN8ZQOGsZkdgT0mi2bEXcdI3tSzjUgHwqLt4qRArtsYkfEA/Da+oSWxhFEIhpcC/XJX5fplz/mu6VpOqbx0x4xWiq5W9A/iheB5M+G4bFWfDNVqlnpAS1h+Y8hQuTBr+ycjb8klqRmL9Aw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Yrn23BE6BbxgnksoXo5+K+iBwPnwIbGrrDb8mOlNwao=;
+ b=rj/YcqdrQdm6FHv3wMlV21m6tmyAmyEPSd+scPO/2iNX3+ecu+bYxeHpk81NhrAVjMbNPGsqq8Xtcc6VYBUPV3jxDQ8e3dyLagyMHgO99bhVBX2wsWmnaj4zHNcUY5ji33eanIt+bKGExDi1Yso11egx+Kbh3l7HS4rC4I5QCx8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by VE1PR04MB7246.eurprd04.prod.outlook.com (2603:10a6:800:1ae::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.26; Wed, 19 Oct
+ 2022 02:01:10 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::181b:75f7:dbc8:b4bc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::181b:75f7:dbc8:b4bc%6]) with mapi id 15.20.5723.033; Wed, 19 Oct 2022
+ 02:01:10 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, guido.gunther@puri.sm,
+        marcel.ziswiler@toradex.com, laurentiu.palcu@oss.nxp.com,
+        robh@kernel.org
+Subject: [PATCH v13 0/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
+Date:   Wed, 19 Oct 2022 10:02:20 +0800
+Message-Id: <20221019020226.2340782-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.37.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG3P274CA0011.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::23)
+ To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|VE1PR04MB7246:EE_
+X-MS-Office365-Filtering-Correlation-Id: e86cff44-b1df-47e4-2c77-08dab175cac2
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: t/NmfRELQelOgQCKzrEGpNTy1LeKk2xxX5+dRjVO+GVygSMjAFThMkQ7P1dS0Qje9RQmvjVETCB4eDTx8fQgib24oXnZf3NiHX6bHPfbZDztSpeLIk2TbWHmEZrWmZFT0L1nbV9LxDiMxprZA6rYrK2+FFxpOB8W3RrkUey0xLeSfJy0WTsdJF0ZHRf7EtRq6/CJCGp1LBz49oh/sYRw96bTRzFXyvpVwh3sEcudC+UlWRwGwZ7sK6eDJKAJv9p/LSXX0wN6kX9i85YxDrrv9EtVDXlvGasEJL3IOre2a8y3lCSHBEqHTyO64HBpWp9ZeL81oDwEdF0lGlCSHXuO3IbB+SPgbsjmliODExJb7oXBLSBtIwT5Daz2z4lzVncjz3gzpViv0klsrMw5OCPya1u9XZDWaWpyHR8kMSOej2bEb8dy691vsz4U8LRtFM17OCFaLFuJeCZHaT0GdOwNbxGhZ+VuhcjX9NMUWdBFcsXNldzGPyTBJ2pCPstM1NQbfCbJ5YKerG/KCQsjz3w0HcHfAhcGioRVivAUGcOyADf1eyDL965WoDYLUDUpmkrRdiY51WR5VkfU5PKpvye+ow57xb9FAvwqm5/B3Khsb1kLETeLs0ZCpGRVwIlkej7wcrw6slIwwdYlC9cmk9lR5lu7X7SZpcb5LtbC+q/ZQ2l4xwek8SVN3MuH1EpeDRg2qjwW5KYsQcYAVx4gFpOoVUho6iq4R2t8nhXVIiapMXQLccMGn3lNiZ9s2dFpCRCVwsxGdprcG6vQMVORX7It/xP6a23nQvhnFzS2AWFy6Ng=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39860400002)(136003)(376002)(346002)(396003)(451199015)(316002)(83380400001)(8936002)(6512007)(5660300002)(2906002)(2616005)(1076003)(7416002)(66946007)(30864003)(66556008)(66476007)(8676002)(86362001)(186003)(52116002)(26005)(41300700001)(4326008)(6666004)(36756003)(6506007)(66899015)(38100700002)(38350700002)(6486002)(966005)(478600001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uYzY1GjJhd98PSFo/d3Smft935+gLmM3Yt/WTqdp92LeYUTrzMM3zq3J8U9w?=
+ =?us-ascii?Q?VVdBK/UMssjALAaZsA7s8lDCmxEhbT872iN9c6xCZemakWSjvbv7Pi1HdQpX?=
+ =?us-ascii?Q?z3Sga2jLXIkfMzH4G8fc1gUTdp9J1x1L/ub7o5BC5DYg0liWV1rWuYMhrtjz?=
+ =?us-ascii?Q?24aNqzmfDV0YJ6YvWmOHqXxXkwXSuTVr6F5q4q/LBlLwMFR4NYVBxWkkc29Q?=
+ =?us-ascii?Q?mUPC1DzirS3BPwvAQiVqw8mcMqBRDqR6lJaUPjGjAMLUOh1Pi/kvqlvrMWhc?=
+ =?us-ascii?Q?qhuMSHs9jntx8pqRU1STlf40YgyCMHxnKZq34LDhMPArYZjWrNObFR/DNUHS?=
+ =?us-ascii?Q?0xHm4PMUAmkzwRX0OktbO5MEY0qpzLa1FFJ+XJ+EIKSrEaRPuAGV+spevwZ1?=
+ =?us-ascii?Q?l2WzD4ArKd5VJAWRCE9eGBA48gvISkydlUa/6Y9FZa05MKQa1/di4K7xKQn0?=
+ =?us-ascii?Q?KfdmIC9xHhkxcWWbyQOSUZiuLi5u5DFIC18KOW19H54dOHr4dIm2RQRl28pt?=
+ =?us-ascii?Q?UYC2JdW3Ht7S0tkO6S7WZm75VghJmKYfjjptp+hc3oRXXeO5Sa5XO+Bh3N5+?=
+ =?us-ascii?Q?Yz6+ozYyu3Y5FagcTsZTsqlxGBuG/ILXIwOG/s5uljgWsKM5QbSQvJNs5Sx0?=
+ =?us-ascii?Q?1Oe443kwhOshs4uySqPMNH33ZausNrdRaXYZqG2YIBhGKspeijnnnfSjrbYN?=
+ =?us-ascii?Q?UGKElYmrb81q9xCR5C7/eOjgNC1/MM85IP82RpMHhQ8ZcI7g2pOmk0DeAh1q?=
+ =?us-ascii?Q?DgwoQRNeO9nYtDMMqvikOmufAXXEPgWG2cjwsn4OZF0mipf4B8HBU4nTP3m0?=
+ =?us-ascii?Q?ceN+8reYV8e2/o0EZae1mVgrYenxYp9ZL+mMz3aKfhA+z4h4nFDAZqerWz5/?=
+ =?us-ascii?Q?ft91DridnmDHcZGBOAY3KHKdFzCX/gXP+GscO9jLSudzk+sMdrY0HjoXNeCc?=
+ =?us-ascii?Q?UWCJ5VwSbUVF3fz36Lz1LVxGQ597WS9Esl76dcaNS94CowOsAmfB/qIUoG7V?=
+ =?us-ascii?Q?GvlDRtXmBZl4umvt6nV+vAXF2EKDr49MUMeYciWDHV4P5v0lt1+bhx/Q+8OI?=
+ =?us-ascii?Q?3FTfb/h57c2C5aP3lJ4dGaRP7cNIdGOnq9iOsm06HnvZ5CTF0+ELd5kzm1JV?=
+ =?us-ascii?Q?+mkzh1Mf/7A7yX+7jCOZHQEj+SDfvzvSQQ9pSeg8576Fj/R9R7kh/UVkYBIw?=
+ =?us-ascii?Q?fwVoZ8cJrASbIl7txc8iWXpOg2huY2m8Jy0SV6Xs8hC25SIKMuJG8WaGTca+?=
+ =?us-ascii?Q?hvp7pHYJfCtpRrn6zJeZFz0EZhoxHw1uHLpnm3F2tQYk5qq5RJ2PVFgRMrqR?=
+ =?us-ascii?Q?cZCFGUkNq0AumQ0ubCFuFgVJMCEnNiJ0VP/KvucrHhuXOOIEQHCePj7UeUoV?=
+ =?us-ascii?Q?B42dXiKcjpt5Zz/vKlYQkjHzB0JAf0Pch/kbJf/TQ16HST/QvI6tiHNKFVPF?=
+ =?us-ascii?Q?zVK93OYLCP+rDdZUb6MnMvr7/0nVNpEATQatRlcY92LMvxoWjSaihIdzLPMk?=
+ =?us-ascii?Q?DTI9lqHMhm00HM36fS5p8pLk9HqnFTzRyxQO0INrbJS5zI47dSTtsMu80dxB?=
+ =?us-ascii?Q?tMb66ZpLS6BADEd6l/1XYXOjrecMfbF4CcJrr8YS?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e86cff44-b1df-47e4-2c77-08dab175cac2
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2022 02:01:10.1733
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nosRJ3CoVK9pqM5/nDvzXQ6YIFIyoIWBIX5EKI4m4hDx5Pfl1jYraOOj2rIhT+lDfJNxtRC1VqaP5naNcqx2dg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7246
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm SC7180 pin controller bindings to DT schema.  Keep the
-parsing of pin configuration subnodes consistent with other Qualcomm
-schemas (children named with '-state' suffix, their children with
-'-pins').
+Hi,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
 
----
+This is the v13 series to introduce i.MX8qm/qxp Display Processing Unit(DPU)
+DRM support.
 
-Changes since v2:
-1. Drop entire drive-strength (not needed, brought by common TLMM
-   schema).
+DPU is comprised of a blit engine for 2D graphics, a display controller
+and a command sequencer.  Outside of DPU, optional prefetch engines can
+fetch data from memory prior to some DPU fetchunits of blit engine and
+display controller.  The pre-fetchers support linear formats and Vivante
+GPU tile formats.
 
-Changes since v1:
-1. Drop default:2 for drive strength
-2. Add Rb tag.
+Reference manual can be found at:
+https://www.nxp.com/webapp/Download?colCode=IMX8DQXPRM
 
-Cc: Doug Anderson <dianders@chromium.org>
----
- .../bindings/pinctrl/qcom,sc7180-pinctrl.txt  | 187 ------------------
- .../bindings/pinctrl/qcom,sc7180-pinctrl.yaml | 158 +++++++++++++++
- 2 files changed, 158 insertions(+), 187 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.txt
- create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.yaml
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.txt
-deleted file mode 100644
-index 6ffeac9801df..000000000000
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.txt
-+++ /dev/null
-@@ -1,187 +0,0 @@
--Qualcomm Technologies, Inc. SC7180 TLMM block
--
--This binding describes the Top Level Mode Multiplexer block found in the
--SC7180 platform.
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be "qcom,sc7180-pinctrl"
--
--- reg:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: the base address and size of the north, south and west
--		    TLMM tiles
--
--- reg-names:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: names for the cells of reg, must contain "north", "south"
--		    and "west".
--
--- interrupts:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: should specify the TLMM summary IRQ.
--
--- interrupt-controller:
--	Usage: required
--	Value type: <none>
--	Definition: identifies this node as an interrupt controller
--
--- #interrupt-cells:
--	Usage: required
--	Value type: <u32>
--	Definition: must be 2. Specifying the pin number and flags, as defined
--		    in <dt-bindings/interrupt-controller/irq.h>
--
--- gpio-controller:
--	Usage: required
--	Value type: <none>
--	Definition: identifies this node as a gpio controller
--
--- #gpio-cells:
--	Usage: required
--	Value type: <u32>
--	Definition: must be 2. Specifying the pin number and flags, as defined
--		    in <dt-bindings/gpio/gpio.h>
--
--- gpio-ranges:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition:  see ../gpio/gpio.txt
--
--- gpio-reserved-ranges:
--	Usage: optional
--	Value type: <prop-encoded-array>
--	Definition: see ../gpio/gpio.txt
--
--Please refer to ../gpio/gpio.txt and ../interrupt-controller/interrupts.txt for
--a general description of GPIO and interrupt bindings.
--
--Please refer to pinctrl-bindings.txt in this directory for details of the
--common pinctrl bindings used by client devices, including the meaning of the
--phrase "pin configuration node".
--
--The pin configuration nodes act as a container for an arbitrary number of
--subnodes. Each of these subnodes represents some desired configuration for a
--pin, a group, or a list of pins or groups. This configuration can include the
--mux function to select on those pin(s)/group(s), and various pin configuration
--parameters, such as pull-up, drive strength, etc.
--
--
--PIN CONFIGURATION NODES:
--
--The name of each subnode is not important; all subnodes should be enumerated
--and processed purely based on their content.
--
--Each subnode only affects those parameters that are explicitly listed. In
--other words, a subnode that lists a mux function but no pin configuration
--parameters implies no information about any pin configuration parameters.
--Similarly, a pin subnode that describes a pullup parameter implies no
--information about e.g. the mux function.
--
--
--The following generic properties as defined in pinctrl-bindings.txt are valid
--to specify in a pin configuration subnode:
--
--- pins:
--	Usage: required
--	Value type: <string-array>
--	Definition: List of gpio pins affected by the properties specified in
--		    this subnode.
--
--		    Valid pins are:
--		      gpio0-gpio118
--		        Supports mux, bias and drive-strength
--
--		      sdc1_clk, sdc1_cmd, sdc1_data sdc2_clk, sdc2_cmd,
--		      sdc2_data sdc1_rclk
--		        Supports bias and drive-strength
--
--		      ufs_reset
--			Supports bias and drive-strength
--
--- function:
--	Usage: required
--	Value type: <string>
--	Definition: Specify the alternative function to be configured for the
--		    specified pins. Functions are only valid for gpio pins.
--		    Valid values are:
--
--		    adsp_ext, agera_pll, aoss_cti, atest_char, atest_char0,
--		    atest_char1, atest_char2, atest_char3, atest_tsens,
--		    atest_tsens2, atest_usb1, atest_usb10, atest_usb11,
--		    atest_usb12, atest_usb13, atest_usb2, atest_usb20,
--		    atest_usb21, atest_usb22, atest_usb23, audio_ref,
--		    btfm_slimbus, cam_mclk, cci_async, cci_i2c, cci_timer0,
--		    cci_timer1, cci_timer2, cci_timer3, cci_timer4,
--		    cri_trng, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
--		    ddr_pxi2, ddr_pxi3, dp_hot, edp_lcd, gcc_gp1, gcc_gp2,
--		    gcc_gp3, gpio, gp_pdm0, gp_pdm1, gp_pdm2, gps_tx,
--		    jitter_bist, ldo_en, ldo_update, lpass_ext, mdp_vsync,
--		    mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s_0,
--		    mi2s_1, mi2s_2, mss_lte, m_voc, pa_indicator, phase_flag,
--		    PLL_BIST, pll_bypassnl, pll_reset, prng_rosc, qdss,
--		    qdss_cti, qlink_enable, qlink_request, qspi_clk, qspi_cs,
--		    qspi_data, qup00, qup01, qup02_i2c, qup02_uart, qup03,
--		    qup04_i2c, qup04_uart, qup05, qup10, qup11_i2c, qup11_uart,
--		    qup12, qup13_i2c, qup13_uart, qup14, qup15, sdc1_tb,
--		    sdc2_tb, sd_write, sp_cmu, tgu_ch0, tgu_ch1, tgu_ch2,
--		    tgu_ch3, tsense_pwm1, tsense_pwm2, uim1, uim2, uim_batt,
--		    usb_phy, vfr_1, _V_GPIO, _V_PPS_IN, _V_PPS_OUT,
--		    vsense_trigger, wlan1_adc0, wlan1_adc1, wlan2_adc0,
--		    wlan2_adc1,
--
--- bias-disable:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins should be configured as no pull.
--
--- bias-pull-down:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins should be configured as pull down.
--
--- bias-pull-up:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins should be configured as pull up.
--
--- output-high:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins are configured in output mode, driven
--		    high.
--		    Not valid for sdc pins.
--
--- output-low:
--	Usage: optional
--	Value type: <none>
--	Definition: The specified pins are configured in output mode, driven
--		    low.
--		    Not valid for sdc pins.
--
--- drive-strength:
--	Usage: optional
--	Value type: <u32>
--	Definition: Selects the drive strength for the specified pins, in mA.
--		    Valid values are: 2, 4, 6, 8, 10, 12, 14 and 16
--
--Example:
--
--	tlmm: pinctrl@3500000 {
--		compatible = "qcom,sc7180-pinctrl";
--		reg = <0x3500000 0x300000>,
--		      <0x3900000 0x300000>,
--		      <0x3D00000 0x300000>;
--		reg-names = "west", "north", "south";
--		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
--		gpio-controller;
--		#gpio-cells = <2>;
--		gpio-ranges = <&tlmm 0 0 119>;
--		gpio-reserved-ranges = <0 4>, <106 4>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--	};
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.yaml
-new file mode 100644
-index 000000000000..b40f6dc6adae
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.yaml
-@@ -0,0 +1,158 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/qcom,sc7180-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SC7180 TLMM pin controller
-+
-+maintainers:
-+  - Bjorn Andersson <andersson@kernel.org>
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+
-+description:
-+  Top Level Mode Multiplexer pin controller in Qualcomm SC7180 SoC.
-+
-+properties:
-+  compatible:
-+    const: qcom,sc7180-pinctrl
-+
-+  reg:
-+    maxItems: 3
-+
-+  reg-names:
-+    items:
-+      - const: west
-+      - const: north
-+      - const: south
-+
-+  interrupts: true
-+  interrupt-controller: true
-+  "#interrupt-cells": true
-+  gpio-controller: true
-+  "#gpio-cells": true
-+  gpio-ranges: true
-+  wakeup-parent: true
-+
-+  gpio-reserved-ranges:
-+    minItems: 1
-+    maxItems: 60
-+
-+  gpio-line-names:
-+    maxItems: 119
-+
-+patternProperties:
-+  "-state$":
-+    oneOf:
-+      - $ref: "#/$defs/qcom-sc7180-tlmm-state"
-+      - patternProperties:
-+          "-pins$":
-+            $ref: "#/$defs/qcom-sc7180-tlmm-state"
-+        additionalProperties: false
-+
-+$defs:
-+  qcom-sc7180-tlmm-state:
-+    type: object
-+    description:
-+      Pinctrl node's client devices use subnodes for desired pin configuration.
-+      Client device subnodes use below standard properties.
-+    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
-+
-+    properties:
-+      pins:
-+        description:
-+          List of gpio pins affected by the properties specified in this
-+          subnode.
-+        items:
-+          oneOf:
-+            - pattern: "^gpio([0-9]|[1-9][0-9]|10[0-9]|11[0-8])$"
-+            - enum: [ sdc1_rclk, sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk,
-+                      sdc2_cmd, sdc2_data, ufs_reset ]
-+        minItems: 1
-+        maxItems: 36
-+
-+      function:
-+        description:
-+          Specify the alternative function to be configured for the specified
-+          pins.
-+
-+        enum: [ adsp_ext, agera_pll, aoss_cti, atest_char, atest_char0,
-+                atest_char1, atest_char2, atest_char3, atest_tsens,
-+                atest_tsens2, atest_usb1, atest_usb10, atest_usb11,
-+                atest_usb12, atest_usb13, atest_usb2, atest_usb20, atest_usb21,
-+                atest_usb22, atest_usb23, audio_ref, btfm_slimbus, cam_mclk,
-+                cci_async, cci_i2c, cci_timer0, cci_timer1, cci_timer2,
-+                cci_timer3, cci_timer4, cri_trng, dbg_out, ddr_bist, ddr_pxi0,
-+                ddr_pxi1, ddr_pxi2, ddr_pxi3, dp_hot, edp_lcd, gcc_gp1,
-+                gcc_gp2, gcc_gp3, gpio, gp_pdm0, gp_pdm1, gp_pdm2, gps_tx,
-+                jitter_bist, ldo_en, ldo_update, lpass_ext, mdp_vsync,
-+                mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s_0, mi2s_1,
-+                mi2s_2, mss_lte, m_voc, pa_indicator, phase_flag, PLL_BIST,
-+                pll_bypassnl, pll_reset, prng_rosc, qdss, qdss_cti,
-+                qlink_enable, qlink_request, qspi_clk, qspi_cs, qspi_data,
-+                qup00, qup01, qup02_i2c, qup02_uart, qup03, qup04_i2c,
-+                qup04_uart, qup05, qup10, qup11_i2c, qup11_uart, qup12,
-+                qup13_i2c, qup13_uart, qup14, qup15, sdc1_tb, sdc2_tb,
-+                sd_write, sp_cmu, tgu_ch0, tgu_ch1, tgu_ch2, tgu_ch3,
-+                tsense_pwm1, tsense_pwm2, uim1, uim2, uim_batt, usb_phy, vfr_1,
-+                _V_GPIO, _V_PPS_IN, _V_PPS_OUT, vsense_trigger, wlan1_adc0,
-+                wlan1_adc1, wlan2_adc0, wlan2_adc1 ]
-+
-+      bias-pull-down: true
-+      bias-pull-up: true
-+      bias-disable: true
-+      drive-strength: true
-+      input-enable: true
-+      output-high: true
-+      output-low: true
-+
-+    required:
-+      - pins
-+
-+    additionalProperties: false
-+
-+allOf:
-+  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    tlmm: pinctrl@3500000 {
-+        compatible = "qcom,sc7180-pinctrl";
-+        reg = <0x03500000 0x300000>,
-+              <0x03900000 0x300000>,
-+              <0x03d00000 0x300000>;
-+        reg-names = "west", "north", "south";
-+        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        interrupt-controller;
-+        #interrupt-cells = <2>;
-+        gpio-ranges = <&tlmm 0 0 120>;
-+        wakeup-parent = <&pdc>;
-+
-+        dp_hot_plug_det: dp-hot-plug-det-state {
-+            pins = "gpio117";
-+            function = "dp_hot";
-+        };
-+
-+        qup_spi11_cs_gpio: qup-spi11-cs-gpio-state {
-+            spi-pins {
-+                pins = "gpio53", "gpio54", "gpio55";
-+                function = "qup15";
-+            };
-+
-+            cs-pins {
-+                pins = "gpio56";
-+                function = "gpio";
-+            };
-+        };
-+    };
+This patch set adds kernel modesetting support for the display controller part.
+It supports two CRTCs per display controller, several planes, prefetch
+engines and some properties of CRTC and plane.  Currently, the registers of
+the controller is accessed without command sequencer involved, instead just by
+using CPU.  DRM connectors would be created from the DPU KMS driver.
+
+
+Patch 1 ~ 3 add dt-bindings for DPU and prefetch engines.
+Patch 4 is a minor improvement of a macro to suppress warning as the KMS driver
+uses it.
+Patch 5 introduces the DPU DRM support.
+Patch 6 updates MAINTAINERS.
+
+Welcome comments, thanks.
+
+v12->v13:
+* Drop 'drm->irq_enabled = true;' from patch 5/6 to fix a potential build
+  break reported by 'kernel test robot <lkp@intel.com>'.  drm->irq_enabled
+  should not be used by imx-dpu drm as it is only used by legacy drivers
+  with userspace modesetting.
+
+v11->v12:
+* Rebase the series upon v6.1-rc1.
+* Minor update on Kconfigs, struct names and macro names for patch 5/6
+  due to the rebase.
+
+v10->v11:
+* Rebase the series upon v6.0-rc1.
+* Include drm_blend.h and drm_framebuffer.h in dpu-kms.c and dpu-plane.c
+  to fix build errors due to the rebase.
+* Fix a checkpatch warning for dpu-crtc.c.
+* Properly use dev_err_probe() to return it's return value directly where
+  possible.
+
+v9->v10:
+* Rebase the series upon v5.18-rc1.
+* Make 'checkpatch.pl --strict' happier for patch 5/6.
+* Add Rob's R-b tag on patch 3/6.
+* Add Laurentiu's R-b tag on patch 5/6.
+* Add Laurentiu's A-b tag on patch 6/6.
+
+v8->v9:
+* Use drm_atomic_get_new_plane_state() in dpu_plane_atomic_update() for
+  patch 5/6. (Laurentiu)
+* Drop getting DPU DT alias ID for patch 5/6, as it is unused.
+* Reference 'interrupts-extended' schema instead of 'interrupts' for patch 3/6
+  to require an additional DPR interrupt(r_rtram_stall) because the reference
+  manual does mention it, though the driver doesn't get/use it for now.
+  Reference 'interrupt-names' schema to define the two DPR interrupt names -
+  'dpr_wrap' and 'r_rtram_stall'.  Accordingly, patch 5/6 gets the 'dpr_wrap'
+  interrupt by name.
+* Drop Rob's R-b tag on patch 3/6, as review is needed.
+
+v7->v8:
+* Rebase this series up onto the latest drm-misc-next branch, due to DRM plane
+  helper functions API change(atomic_check and atomic_update) from DRM atomic
+  core.  So, dpu_plane_atomic_check() and dpu_plane_atomic_update() are updated
+  accordingly in patch 5/6.  Also, rename plane->state variables and relevant
+  DPU plane state variables in those two functions to reflect they are new
+  states, like the patch 'drm: Rename plane->state variables in atomic update
+  and disable' recently landed in drm-misc-next.
+* Replace drm_gem_fb_prepare_fb() with drm_gem_plane_helper_prepare_fb() in
+  patch 5/6, due to DRM core API change.
+* Improve DPR burst length for GPU standard tile and 32bpp GPU super tile in
+  patch 5/6 to align with the latest version of internal HW documention.
+
+v6->v7:
+* Fix return value of dpu_get_irqs() if platform_get_irq() fails. (Laurentiu)
+* Use the function array dpu_irq_handler[] to store individual DPU irq handlers.
+  (Laurentiu)
+* Call get/put() hooks directly to get/put DPU fetchunits for DPU plane groups.
+  (Laurentiu)
+* Shorten the names of individual DPU irq handlers by using DPU unit abbrev
+  names to make writing dpu_irq_handler[] easier.
+* Add Rob's R-b tag back on DPU dt-binding patch as change in v6 was reviewed.
+
+v5->v6:
+* Use graph schema in the DPU dt-binding.
+* Do not use macros where possible in the DPU DRM driver. (Laurentiu)
+* Break dpu_plane_atomic_check() into some smaller functions. (Laurentiu)
+* Address some minor comments from Laurentiu on the DPU DRM driver.
+* Add dpu_crtc_err() helper marco in the DPU DRM driver to tell dmesg
+  which CRTC generates error.
+* Drop calling dev_set_drvdata() from dpu_drm_bind/unbind() in the DPU DRM
+  driver as it is done in dpu_drm_probe().
+* Some trivial tweaks.
+
+v4->v5:
+* Rebase up onto the latest drm-misc-next branch and remove the hook to
+  drm_atomic_helper_legacy_gamma_set() from patch 5/6, because it was dropped
+  by the newly landed commit 'drm: automatic legacy gamma support'.
+* Remove a redundant blank line from dpu_plane_atomic_update() in patch 5/6.
+
+v3->v4:
+* Improve compatible properties in DPU and prefetch engines' dt bindings
+  by using enum instead of oneOf+const.
+* Add Rob's R-b tags on dt binding patches(patch 1/6, 2/6 and 3/6).
+* Add Daniel's A-b tag on patch 4/6.
+
+v2->v3:
+* Fix DPU DRM driver build warnings which are
+  Reported-by: kernel test robot <lkp@intel.com>.
+* Drop DPU DRM driver build dependency on IMX_SCU, as dummy SCU functions have
+  been added in header files by the patch 'firmware: imx: add dummy functions'
+  which has landed in linux-next/master branch.
+* Add a missing blank line in include/drm/drm_atomic.h.
+
+v1->v2:
+* Test this patch set also with i.MX8qm LVDS displays.
+* Drop the device tree patches because we'll use new dt binding way to
+  support i.MX8qm/qxp clocks.  This depends on a not-yet-landed patch set
+  to do basic conversions for the platforms.
+* Fix dt binding yamllint warnings.
+* Require bypass0 and bypass1 clocks for both i.MX8qxp and i.MX8qm in DPU's
+  dt binding documentation.
+* Use new dt binding way to add clocks in the dt binding examples.
+* Address several comments from Laurentiu on the DPU DRM patch.
+
+Liu Ying (6):
+  dt-bindings: display: imx: Add i.MX8qxp/qm DPU binding
+  dt-bindings: display: imx: Add i.MX8qxp/qm PRG binding
+  dt-bindings: display: imx: Add i.MX8qxp/qm DPR channel binding
+  drm/atomic: Avoid unused-but-set-variable warning on
+    for_each_old_plane_in_state
+  drm/imx: Introduce i.MX8qm/qxp DPU DRM
+  MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
+
+ .../display/imx/fsl,imx8qxp-dprc.yaml         |  100 ++
+ .../bindings/display/imx/fsl,imx8qxp-dpu.yaml |  387 ++++++
+ .../bindings/display/imx/fsl,imx8qxp-prg.yaml |   60 +
+ MAINTAINERS                                   |    9 +
+ drivers/gpu/drm/imx/Kconfig                   |    1 +
+ drivers/gpu/drm/imx/Makefile                  |    1 +
+ drivers/gpu/drm/imx/dpu/Kconfig               |    9 +
+ drivers/gpu/drm/imx/dpu/Makefile              |   10 +
+ drivers/gpu/drm/imx/dpu/dpu-constframe.c      |  171 +++
+ drivers/gpu/drm/imx/dpu/dpu-core.c            | 1044 +++++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-crtc.c            |  969 +++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-crtc.h            |   72 ++
+ drivers/gpu/drm/imx/dpu/dpu-disengcfg.c       |  117 ++
+ drivers/gpu/drm/imx/dpu/dpu-dprc.c            |  715 +++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-dprc.h            |   40 +
+ drivers/gpu/drm/imx/dpu/dpu-drv.c             |  290 +++++
+ drivers/gpu/drm/imx/dpu/dpu-drv.h             |   28 +
+ drivers/gpu/drm/imx/dpu/dpu-extdst.c          |  299 +++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c     |  292 +++++
+ drivers/gpu/drm/imx/dpu/dpu-fetcheco.c        |  224 ++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c      |  152 +++
+ drivers/gpu/drm/imx/dpu/dpu-fetchunit.c       |  610 ++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchunit.h       |  195 +++
+ drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c       |  248 ++++
+ drivers/gpu/drm/imx/dpu/dpu-framegen.c        |  395 +++++++
+ drivers/gpu/drm/imx/dpu/dpu-gammacor.c        |  223 ++++
+ drivers/gpu/drm/imx/dpu/dpu-hscaler.c         |  275 +++++
+ drivers/gpu/drm/imx/dpu/dpu-kms.c             |  542 +++++++++
+ drivers/gpu/drm/imx/dpu/dpu-kms.h             |   23 +
+ drivers/gpu/drm/imx/dpu/dpu-layerblend.c      |  348 ++++++
+ drivers/gpu/drm/imx/dpu/dpu-plane.c           |  804 +++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-plane.h           |   59 +
+ drivers/gpu/drm/imx/dpu/dpu-prg.c             |  433 +++++++
+ drivers/gpu/drm/imx/dpu/dpu-prg.h             |   45 +
+ drivers/gpu/drm/imx/dpu/dpu-prv.h             |  231 ++++
+ drivers/gpu/drm/imx/dpu/dpu-tcon.c            |  250 ++++
+ drivers/gpu/drm/imx/dpu/dpu-vscaler.c         |  308 +++++
+ drivers/gpu/drm/imx/dpu/dpu.h                 |  385 ++++++
+ include/drm/drm_atomic.h                      |    5 +-
+ 39 files changed, 10368 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
+ create mode 100644 drivers/gpu/drm/imx/dpu/Kconfig
+ create mode 100644 drivers/gpu/drm/imx/dpu/Makefile
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-constframe.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-core.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-disengcfg.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-extdst.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetcheco.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-framegen.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-gammacor.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-hscaler.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-layerblend.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prv.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-tcon.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-vscaler.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu.h
+
 -- 
-2.34.1
+2.37.1
 
