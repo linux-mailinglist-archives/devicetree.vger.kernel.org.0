@@ -2,126 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19C02604513
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 14:21:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 248DA6046AF
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 15:17:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230361AbiJSMVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 08:21:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46236 "EHLO
+        id S231637AbiJSNRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 09:17:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233267AbiJSMTm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:19:42 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B7F565668;
-        Wed, 19 Oct 2022 04:55:22 -0700 (PDT)
-X-UUID: 9e2244b9f5e1430cbb49fe1ac3ce02b5-20221019
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=F+3N5jdI5Vdo+TGFz2Tt3Kx3wcLZK4tfh0R6kaTzfo4=;
-        b=PjTvdmEHWiqw09J54bOAxr1dmCDvPJISe4/WmVzzTmy5hNfTZ22RP0DMYxSQunnyICJEYduLDEr+nrt+ZSLaCD+Vf+fWvG1hG+tfrEH40/aTzC9dII87b5bK3XosHeM9kzlV7tqv8JoNvMYN5T1ltkY+UGPM/C1AffgYpM0dC4o=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:e22817f7-e0fa-4f0c-95dd-0fb874ae3dbf,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:40
-X-CID-INFO: VERSION:1.1.12,REQID:e22817f7-e0fa-4f0c-95dd-0fb874ae3dbf,IP:0,URL
-        :0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:40
-X-CID-META: VersionHash:62cd327,CLOUDID:37c34aa3-73e4-48dd-a911-57b5d5484f14,B
-        ulkID:2210191807288342RCAR,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48|102,
-        TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,C
-        OL:0
-X-UUID: 9e2244b9f5e1430cbb49fe1ac3ce02b5-20221019
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 318839224; Wed, 19 Oct 2022 18:07:28 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 19 Oct 2022 18:07:26 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 19 Oct 2022 18:07:25 +0800
-Message-ID: <d264de2367a777e310b0824fb2e04bfb37d46d3d.camel@mediatek.com>
-Subject: Re: [PATCH] media: mediatek: vcodec: Skip unsupported h264 encoder
- profile
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <nicolas.dufresne@collabora.com>
-CC:     Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 19 Oct 2022 18:07:25 +0800
-In-Reply-To: <20220926093501.26466-1-irui.wang@mediatek.com>
-References: <20220926093501.26466-1-irui.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229910AbiJSNRd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 09:17:33 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 966C84E402;
+        Wed, 19 Oct 2022 06:03:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666184588; x=1697720588;
+  h=subject:from:to:cc:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=93p6LX+Ewu3rCVdZcsXWSNEp7EfDushKgpEKzPy47FQ=;
+  b=cTcVCQJrGOvWvthlW2LIMOEY/Eq3uP5+nUptWomNwgX+bF1TUunYOtCB
+   7qwff03/+kgQnuPCC7XUrexk6AAXleL3gCzy5PcH2XAQyURlMFapfJF7a
+   x1AlW3OmkyB8iCVIbnlvpF6D01FuOE+Gg731Gy78SKCT/3zwiP6MKZOob
+   Q1QSSzAiZS6VDpq81H6AKrEFxeWUc98QGnO78HkGL67NUdVlyyNf9bZto
+   eTAdtNNulL20O23PNCsUU9u3K0PcllJroefZOg5qNaO3X0+ud0xJ2QR1Z
+   CbNne9tn7WwG9cchUktMuAPEpIanFvbWaQT/2D5ISj19dMPaHC0wOwaAW
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.95,196,1661810400"; 
+   d="scan'208";a="26842869"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 19 Oct 2022 12:45:13 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 19 Oct 2022 12:45:13 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 19 Oct 2022 12:45:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666176313; x=1697712313;
+  h=from:to:cc:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding:subject;
+  bh=93p6LX+Ewu3rCVdZcsXWSNEp7EfDushKgpEKzPy47FQ=;
+  b=L641wtOtlNmC+t2Uqkw+LRpWIYhfg7cGAAsCvRqQAaqwB+/WCGUhSntp
+   u60ot7ftL8SUt4I0OjPi3jzS6guL5fVeAD//pOS/w3+gbbv1/Fh7LCtKC
+   LdhuAvM3QauGBd0BtlCqIwz5FgYr/AHzBnBXMcyryBEl3d68q3CxKj51J
+   OdCqbW1UeaueZ1U6YP/fXRZjdky1KaeUFoJkaQUr+XSLlsN1L5DxG/d8V
+   Bk+bLLHEw+6xEaCDn6hcm9zLlPn26snWLmI1YojULfA77vU5UlRppcYZ2
+   /w2kwMzuqq3ihHGlJy0Esqz7KMhrqFA5YkbsG2GKo4Ou+ROJhTY5TnpWU
+   g==;
+X-IronPort-AV: E=Sophos;i="5.95,196,1661810400"; 
+   d="scan'208";a="26842868"
+Subject: Re: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on Odroid
+ N2/N2+
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 19 Oct 2022 12:45:13 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C62CB280056;
+        Wed, 19 Oct 2022 12:45:12 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Anand Moon <linux.amoon@gmail.com>
+Date:   Wed, 19 Oct 2022 12:45:10 +0200
+Message-ID: <7193025.LvFx2qVVIh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20221018195122.8877-1-linux.amoon@gmail.com>
+References: <20221018195122.8877-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Hans,
-
-Gently ping for this patch, could you help to review this patch?
-
-Thanks
-Best Regards
-
-On Mon, 2022-09-26 at 17:35 +0800, Irui Wang wrote:
-> The encoder driver support h264 baseline, main, high encoder
-> profile, set mask for V4L2_CID_MPEG_VIDEO_H264_PROFILE to skip
-> the unsupported profile.
+Am Dienstag, 18. Oktober 2022, 21:51:19 CEST schrieb Anand Moon:
+> Odroid N2/N2+ support active cooling via gpio-fan controller.
+> Add fan controls and tip point for cpu and ddr thermal sensor
+> on this boards.
 > 
-> get supported h264_profile by command: v4l2-ctl -d /dev/videoX -L
-> h264_profile 0x00990a6b (menu) : min=0 max=4 default=4 value=4
->         0: Baseline
->         2: Main
->         4: High
-> 
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
->  drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
 > 
-> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc.c
-> b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc.c
-> index d810a78dde51..d65800a3b89d 100644
-> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc.c
-> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc.c
-> @@ -1397,7 +1397,10 @@ int mtk_vcodec_enc_ctrls_setup(struct
-> mtk_vcodec_ctx *ctx)
->  			0, V4L2_MPEG_VIDEO_HEADER_MODE_SEPARATE);
->  	v4l2_ctrl_new_std_menu(handler, ops,
-> V4L2_CID_MPEG_VIDEO_H264_PROFILE,
->  			V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
-> -			0, V4L2_MPEG_VIDEO_H264_PROFILE_HIGH);
-> +			~((1 << V4L2_MPEG_VIDEO_H264_PROFILE_BASELINE)
-> |
-> +			  (1 << V4L2_MPEG_VIDEO_H264_PROFILE_MAIN) |
-> +			  (1 << V4L2_MPEG_VIDEO_H264_PROFILE_HIGH)),
-> +			V4L2_MPEG_VIDEO_H264_PROFILE_HIGH);
->  	v4l2_ctrl_new_std_menu(handler, ops,
-> V4L2_CID_MPEG_VIDEO_H264_LEVEL,
->  			       h264_max_level,
->  			       0, V4L2_MPEG_VIDEO_H264_LEVEL_4_0);
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi index
+> fd3fa82e4c33..e61a4285a910 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> @@ -39,6 +39,14 @@ emmc_pwrseq: emmc-pwrseq {
+>  		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
+>  	};
+> 
+> +	fan: gpio-fan {
+> +		compatible = "gpio-fan";
+> +		gpios = <&gpio_ao GPIOAO_10 GPIO_ACTIVE_HIGH>;
+> +		/* Using Dummy Speed */
+> +		gpio-fan,speed-map = <0 0>, <1 1>;
+> +		#cooling-cells = <2>;
+> +	};
+> +
+>  	leds {
+>  		compatible = "gpio-leds";
+> 
+> @@ -410,6 +418,40 @@ &cpu103 {
+>  	clock-latency = <50000>;
+>  };
+> 
+> +&cpu_thermal {
+> +	trips {
+> +		cpu_active: cpu-active {
+> +			temperature = <60000>; /* millicelsius */
+> +			hysteresis = <2000>; /* millicelsius */
+> +			type = "active";
+> +		};
+> +	};
+> +
+> +	cooling-maps {
+> +		map {
+> +			trip = <&cpu_active>;
+> +			cooling-device = <&fan THERMAL_NO_LIMIT 
+THERMAL_NO_LIMIT>;
+> +		};
+> +	};
+> +};
+> +
+> +&ddr_thermal {
+> +	trips {
+> +		ddr_active: cpu-active {
+
+I suspect this node name shall be 'ddr-active', not 'cpu-active'.
+
+Best regards,
+Alexander
+
+> +			temperature = <60000>; /* millicelsius */
+> +			hysteresis = <2000>; /* millicelsius */
+> +			type = "active";
+> +		};
+> +	};
+> +
+> +	cooling-maps {
+> +		map {
+> +			trip = <&ddr_active>;
+> +			cooling-device = <&fan THERMAL_NO_LIMIT 
+THERMAL_NO_LIMIT>;
+> +		};
+> +	};
+> +};
+> +
+>  &ext_mdio {
+>  	external_phy: ethernet-phy@0 {
+>  		/* Realtek RTL8211F (0x001cc916) */
+> 
+> base-commit: aae703b02f92bde9264366c545e87cec451de471
+
+
+
 
