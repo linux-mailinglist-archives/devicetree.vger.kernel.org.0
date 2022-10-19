@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8738D6045F6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 14:52:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06B0F60460E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 14:56:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231878AbiJSMwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 08:52:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53878 "EHLO
+        id S230367AbiJSM4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 08:56:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233321AbiJSMv7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:51:59 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24AEEE0B3
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:34:06 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id o22so10538809qkl.8
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:34:06 -0700 (PDT)
+        with ESMTP id S233043AbiJSM4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:56:00 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D25E14D8FE
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:38:54 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id a18so10578133qko.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:38:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PX18bToPOnvPyqbrZjvQaY5SwM0Ct0C5YKtPYXd9P9I=;
-        b=rDQlZYT8SxjtV9ek3IiNUMnGCGrzvBJ5gDbOz/qnFZG3R7+MMCdF+PMSptg2eRMo4u
-         nzp/fwAnNuann98pfuxf5pH79MDwO3LWITubYsb96DyVH63Qb9HGA4Quwu9qNTnwx1jn
-         ZHmKhb1pfGWidPIt+8mZxniT5ZZULzEafvm97ZLlDT+S0wFGnpakbjDfCsv1cQ2LHz45
-         IsYePLwOZjjX98oJ7rSpH51fMipB+mUf5r7VsQfYL+ebgW1NZnvA0LepBhhFU8kKvEmj
-         Unv8W+pWDDwuoWro1a4LJ5w0DpcVXzDfKO18vnLF9v1cOyWECZmO5RWGrobvAosNgkKI
-         njfw==
+        bh=yztcDb/9Hhh5Rkv5M5nLE2clBrl/RANSXIwbIVDKzcg=;
+        b=c6TUtOPHf/1jy2RkaZ9KZYqSJRHzD/kcZx5TA9S1o397Mrus0CeSD0Emoa46RX+OXV
+         ioJWsrANMi4wmLC6peKtC788oaEqgtld0Y+FYh31c0WO/Xs+8HPJ0CG4svmVo3cQWVvZ
+         +32DT1yuGfoLdmVqOca7sl4J3clcFxk2hQlRA0/yV4YlwGHaX3ZHJub0Fa1npAj65XgL
+         L0TMPgHvaH0WwEDlhKFwJWyJJS1r6Dz+FibEGoGey2sOnImhL0tipecHyIXjYvHvaUG0
+         riDEl7SRMowNXhYbNshwUtoPzIraCVlcwcb4WcklAhR5vSrtu96Y87JzzOrc7l/AhhTg
+         gYFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PX18bToPOnvPyqbrZjvQaY5SwM0Ct0C5YKtPYXd9P9I=;
-        b=F3857FZUG+dYFHSrXGBBdqakcBYytd7B9psmXACMRDykHflrK4DA2OaDY0OAuvUXzV
-         ViSb3gjkIyqn5rsx20Ao25eqiwfFnXzI4+sd76DGFQo9hbMMNTXBRKUW/pXlYSoyTr4c
-         l47GPFBxxfwVvETeNZOJhhEC4M6Vq0ARF+TxqeKR1ypHG03WBX9GbE3k1hrWRMSHeLxj
-         2dUtalG6ZDdZe6obnJ3YROdWjor2IxxwFyH0O20jELq8nEB+r+koGGMEz1uCvb7nM8Tc
-         dBizJm95VgLRhgf6q7pypzTUopik/cj0pNCx1rKXJxPdWBz/Bm0CgXR5Nfb5/a/8ULfr
-         CSSw==
-X-Gm-Message-State: ACrzQf0Oaz0Ra4xAYiArCxQ569SWTWFDG4oLRDdmV2ApZ+u2E4oqZ5dT
-        sIhLtB1iE0MMWpdTvgyooVrqtQ==
-X-Google-Smtp-Source: AMsMyM5Fh/5Xj6uqwhE3SfgD49hweT3z6vUVN1Wqv0vpArs/K2txN9tLrVzgrE5g2C4WhAlRwY85Ew==
-X-Received: by 2002:a05:620a:2627:b0:6b9:1b05:7b9 with SMTP id z39-20020a05620a262700b006b91b0507b9mr5334977qko.776.1666182782282;
-        Wed, 19 Oct 2022 05:33:02 -0700 (PDT)
+        bh=yztcDb/9Hhh5Rkv5M5nLE2clBrl/RANSXIwbIVDKzcg=;
+        b=P2VvJBnySRJAz3APL5fkTkpBdFs2SVFb7mo1pE6+tCryIxaAiUbG+nzCXmfwHBjJZg
+         KsC2VmiobY8TXlHbF5nvXK+DxnMdmSnBezUFBKt+mGX/13zJmA9j2Wg7bN7aaANw54sC
+         MkYVzzHrpuyApAIoInbMzXEQ6rnPsvs98ww26mgpJrKzpkFkTAhMe+bYGpz8Ju8YvW69
+         Dc8UhEJ8BvJ0LDBBFNFZgZ40ddCyiFk7LqtdqYCS1ql4i1eQpm7PoCxivm4fdMTBKnFJ
+         mbKoyyd35rEPz06cDK80GxNzbQ0OEZEz1VDBlW6brPsLP8EVYQ0XMd/N+hqCDyEtO7Fs
+         VgJw==
+X-Gm-Message-State: ACrzQf28dlSKgsJ3CXp7PEy4celKLTLDaQS2H0iiJy01Dd8iQQ+hLlPn
+        HGLs9baEXFw+4HHOc6JzUxlYsQ==
+X-Google-Smtp-Source: AMsMyM6SC40e+0JgwyPmZJo+chi9ytQvP9whxlTv+lJaJhecWJIKYPMqoLkW/vEBTOm+/nphGOcI5A==
+X-Received: by 2002:a05:620a:28ce:b0:6cf:933c:40d3 with SMTP id l14-20020a05620a28ce00b006cf933c40d3mr5104264qkp.258.1666183076537;
+        Wed, 19 Oct 2022 05:37:56 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id t6-20020a05620a450600b006e8f8ca8287sm4712954qkp.120.2022.10.19.05.33.01
+        by smtp.gmail.com with ESMTPSA id bp17-20020a05620a459100b006ce3f1af120sm4916845qkb.44.2022.10.19.05.37.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 05:33:01 -0700 (PDT)
-Message-ID: <b035a095-f8d6-1951-67a0-e2c1f1d18492@linaro.org>
-Date:   Wed, 19 Oct 2022 08:33:00 -0400
+        Wed, 19 Oct 2022 05:37:56 -0700 (PDT)
+Message-ID: <11d6f585-bd9f-246f-29e0-719f0551e6c9@linaro.org>
+Date:   Wed, 19 Oct 2022 08:37:53 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: add loongson2 clock include
- file
+Subject: Re: [PATCH v4 1/3] dt-bindings: net: renesas: Document Renesas
+ Ethernet Switch
 Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-References: <20221019035117.29352-1-zhuyinbo@loongson.cn>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20221019083518.933070-1-yoshihiro.shimoda.uh@renesas.com>
+ <20221019083518.933070-2-yoshihiro.shimoda.uh@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221019035117.29352-1-zhuyinbo@loongson.cn>
+In-Reply-To: <20221019083518.933070-2-yoshihiro.shimoda.uh@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,17 +78,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/10/2022 23:51, Yinbo Zhu wrote:
-> This file defines all loongson2 soc clock indexes, it should be
-> included in the device tree in which there's device using the
-> clocks.
+On 19/10/2022 04:35, Yoshihiro Shimoda wrote:
+> Document Renesas Etherent Switch for R-Car S4-8 (r8a779f0).
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-You sent the patchset twice. It's confusing and might cause review to be
-missed.
+Thank you for your patch. There is something to discuss/improve.
 
-Send a v3, including my review. Send it only once.
+> +  ethernet-ports:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      '#address-cells':
+> +        description: Port number of ETHA (TSNA).
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^port@[0-9a-f]+$":
+> +        type: object
+> +        $ref: /schemas/net/ethernet-controller.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            description:
+> +              Port number of ETHA (TSNA).
+> +
+> +          phy-handle: true
+> +
+> +          phy-mode: true
+
+Why do you need these two properties here? They are provided by
+ethernet-controller, so I suggest to drop them.
+
+I already commented about it in v3.
+
+> +
+> +          phys:
+> +            maxItems: 1
+> +            description:
+> +              Phandle of an Ethernet SERDES.
+> +
+> +          mdio:
+> +            $ref: /schemas/net/mdio.yaml#
+> +            unevaluatedProperties: false
+> +
+> +        required:
+> +          - reg
+> +          - phy-handle
+> +          - phy-mode
+> +          - phys
+> +          - mdio
+
 
 Best regards,
 Krzysztof
