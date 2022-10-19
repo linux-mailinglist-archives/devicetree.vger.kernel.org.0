@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E87604C60
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E9EA604C83
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:59:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232112AbiJSPyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 11:54:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38818 "EHLO
+        id S229726AbiJSP73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 11:59:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232845AbiJSPyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:54:13 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E142713F45
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:51:58 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id df9so11632718qvb.9
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:51:58 -0700 (PDT)
+        with ESMTP id S231694AbiJSP6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:58:51 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 582BE1C0709
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:57:47 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id a5so10973230qkl.6
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:57:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SFqLEGUzpiVO1+2P52g6TS8O0gkAqr8zlFG6DWw04Gs=;
-        b=JJW6jtt3ZMWkdIABGoHVnFfx6CZE87gFuMr0b9unxJyBPg+JUQoakx4dWxJrGzX9d9
-         OZANzSdANQ+k3dOKcy25LJfUFGPFF6OPZuCyLMBzYkj+VeWnwjbLm2BMzUadK+OdPJ4M
-         YqhMg+y+KWzmUKgrpGdEfBmlp4ovkncAg3jfslrUN4tjMLNiiijB9CKxYWzaJA94juf2
-         bnkD50cJaMCeXA5A00/5YxXYyvDdTPgeQNw224KAfNAtx060aT/yutpFNyeL2rRyPCVC
-         EAuU4NdXb0/jIT+J/pWnZKP0R2RjE2FY2nULpVoYygr5XlHCBRszM8AVuHZDuao5Ifcv
-         L1mg==
+        bh=XuH1cwGYuoIXuHDHrxmGsjJyFHpkABDYVCIkLmAK2bw=;
+        b=ghdwkgoTZX+EiHmt/h6EJyEpxc3hSgg79jAPidHTEO5U7Oacb2f7aV9dA16+K2MI+2
+         ZzRKn6SblRwL+Rux3tzWlTKKK0E+pXdghGvOqIUCGWlsFEqRDdMrL3lJvy/xM9Jm/J8i
+         RRa9s8ygIFflpnEI7Oafv9LZ+seAPhNZ0bpscvw5Yk0pUNTAgLlOCdBvKHWaC+TKSBEN
+         /xlpUA+2rL7MD4soWBynVfAodBYwZDxgDAvIr/lbs3fW72ukn33S338xKxaC+S1OptCh
+         hBSPFsIFUsKwTeGOzyu+tPtH7BasQmSIyETOFf+XPtp2krHM8NbAy1mN78PRPba3v0gl
+         yIow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SFqLEGUzpiVO1+2P52g6TS8O0gkAqr8zlFG6DWw04Gs=;
-        b=Igy9hcIwZDiCXvUQdu/VBqdDw1nI908nfmvZHgqUQu3oovrfvWqD3tqzwP1T7Ajckp
-         HFMZhw3lvygvOTd4IGVLUbnY78tlKsSuD6po7D8cDnigm9epjjJEifDgo8zzdMvyezQ1
-         QnAecye3D75ARKmtelQfWIAPcbdnFuRjJbhqAKnE2S7I4D0++hbXUBJsH/fnvCl6Gy8m
-         xOVlHwmcX5E6JMty/jZoArnOdTClQLES9y+DzVA3bGuz9ydcOqLLLDyjvti+aVDinDBF
-         hJYO/zku6IHr1yy+hUFubDoviwBe0jsZmm5S1EDvZuLFKzcy+t9zScQc1yVII39DHFo4
-         n/0w==
-X-Gm-Message-State: ACrzQf2agpJ2Sf2sqs778QiQR/1c+JgCTS9d0Tkkb3+d0rLSBL3V4EvN
-        pV9fuEtw4D4rPxy2PQzVyVV8DA==
-X-Google-Smtp-Source: AMsMyM4/vU9X/eTGGnSWw6kfOlAWtgN1f8wnRekjRIM1GmBfWGM+ONIx108lZzbU1PEmcIcGvoM0AQ==
-X-Received: by 2002:a0c:df11:0:b0:4b4:ccd:ad5a with SMTP id g17-20020a0cdf11000000b004b40ccdad5amr7096319qvl.111.1666194688485;
-        Wed, 19 Oct 2022 08:51:28 -0700 (PDT)
+        bh=XuH1cwGYuoIXuHDHrxmGsjJyFHpkABDYVCIkLmAK2bw=;
+        b=C3lsqn9DF1X6+h2L07MMmHq2L8Gf9JkYuD1zSnS/x/Ltbiq2IU4QX8h7T3ed3e20mM
+         8xEsDRhoR6PbMU1aPGkxTKncmuqvook3yb9hE+W8KSGWc9U55bHGYl3p3DXDXam5hhKP
+         Yqln0yjsHor9PfmsFxFNQoqC6ffQhq5/cH/lp33Nh32PsqcsupEms53Q6I3L02neOApG
+         sKTA9CeblANZH42rqkjNgaJ6JdBaxKM3auq2j8E2N9tfzrSxOayAUlh5sla1PZUNXPFq
+         g10U+7TxbHdAKv6bMComCJZDBRn96JREpEkqbXTfzrEV1t/7BpBt5albVr0h2uuG/exN
+         0xbQ==
+X-Gm-Message-State: ACrzQf00a53ryDT6gnNeIMspj6vHP2U6eXNxQrTZGk2MzBFMzp8P5UNC
+        Cvfo6lREOn0hwJ2CciYK0gLa5A==
+X-Google-Smtp-Source: AMsMyM4eCXdcxPYYjqQ4LMC6OlOLsmYWjCS81HiLMFGL1eq8MVPxt363n9uh3cA7kLDZL6Qos11S6g==
+X-Received: by 2002:a05:620a:30b:b0:6e4:6de2:7f38 with SMTP id s11-20020a05620a030b00b006e46de27f38mr6179989qkm.520.1666195060953;
+        Wed, 19 Oct 2022 08:57:40 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id g22-20020ac84696000000b0039d03f69cf5sm714630qto.72.2022.10.19.08.51.27
+        by smtp.gmail.com with ESMTPSA id i23-20020ac84897000000b0039853b7b771sm4218488qtq.80.2022.10.19.08.57.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 08:51:27 -0700 (PDT)
-Message-ID: <56118d35-dfe6-f46b-9fc7-28aca6530fb5@linaro.org>
-Date:   Wed, 19 Oct 2022 11:51:27 -0400
+        Wed, 19 Oct 2022 08:57:40 -0700 (PDT)
+Message-ID: <6b71bc77-b168-282b-9318-1640bba4e946@linaro.org>
+Date:   Wed, 19 Oct 2022 11:57:37 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx: document suspend in
- wait mode
+Subject: Re: [PATCH v3 4/4] dt-bindings: pinctrl: qcom,sc7180: convert to
+ dtschema
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Andrej Picej <andrej.picej@norik.com>
-Cc:     linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
-        linux@roeck-us.net, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
-        kernel@pengutronix.de, s.hauer@pengutronix.de,
-        wim@linux-watchdog.org, robh+dt@kernel.org
-References: <20221019111714.1953262-1-andrej.picej@norik.com>
- <20221019111714.1953262-3-andrej.picej@norik.com>
- <7508670.GXAFRqVoOG@steina-w>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <20221019001351.1630089-1-krzysztof.kozlowski@linaro.org>
+ <20221019001351.1630089-5-krzysztof.kozlowski@linaro.org>
+ <CAD=FV=U0WR-a7d4p5eoCFMRer5yhX8AcEPdUaJag4KpGB9kp+A@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7508670.GXAFRqVoOG@steina-w>
+In-Reply-To: <CAD=FV=U0WR-a7d4p5eoCFMRer5yhX8AcEPdUaJag4KpGB9kp+A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,41 +86,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 09:00, Alexander Stein wrote:
-> Hello Andrej,
+On 19/10/2022 11:48, Doug Anderson wrote:
+> Hi,
 > 
-> Am Mittwoch, 19. Oktober 2022, 13:17:13 CEST schrieb Andrej Picej:
-
-Missing commit msg.
-
->> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> On Tue, Oct 18, 2022 at 5:14 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> Convert Qualcomm SC7180 pin controller bindings to DT schema.  Keep the
+>> parsing of pin configuration subnodes consistent with other Qualcomm
+>> schemas (children named with '-state' suffix, their children with
+>> '-pins').
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>
 >> ---
->>  Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 5 +++++
->>  1 file changed, 5 insertions(+)
 >>
->> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->> b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml index
->> fb7695515be1..01b3e04e7e65 100644
->> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->> @@ -55,6 +55,11 @@ properties:
->>        If present, the watchdog device is configured to assert its
->>        external reset (WDOG_B) instead of issuing a software reset.
+>> Changes since v2:
+>> 1. Drop entire drive-strength (not needed, brought by common TLMM
+>>    schema).
 >>
->> +  fsl,suspend-in-wait:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description: |
->> +      If present, the watchdog device is suspended in WAIT mode.
->> +
->>  required:
->>    - compatible
->>    - interrupts
+>> Changes since v1:
+>> 1. Drop default:2 for drive strength
+>> 2. Add Rb tag.
+>>
+>> Cc: Doug Anderson <dianders@chromium.org>
+>> ---
+>>  .../bindings/pinctrl/qcom,sc7180-pinctrl.txt  | 187 ------------------
+>>  .../bindings/pinctrl/qcom,sc7180-pinctrl.yaml | 158 +++++++++++++++
+>>  2 files changed, 158 insertions(+), 187 deletions(-)
 > 
-> What is the condition the watchdog is suspended in WAIT mode? Is this specific 
-> to SoC or platform or something else?
->
+> Looks great now.
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-And what happens else? When it is not suspended in WAIT mode?
+Thanks
+
+> 
+> Will you also send out separate patches to fix up the "drive strength"
+> for all the other Qualcomm boards. They all have the same problem. The
+> drive strength never defaults to 2 and always gets left at whatever
+> the BIOS leaves it at unless it's specified.
+
+If you mean - other bindings for Qualcomm - then answer is yes. Several
+things are already applied and will pop-up in tomorrow's next:
+https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git/log/?h=next/qcom-pinctrl
+
+I'll go in spare time with rest of bindings.
 
 Best regards,
 Krzysztof
