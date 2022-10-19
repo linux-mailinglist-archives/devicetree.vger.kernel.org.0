@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70B326045D0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 14:50:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6077F6045E6
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 14:51:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232350AbiJSMuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 08:50:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35148 "EHLO
+        id S230247AbiJSMvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 08:51:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233673AbiJSMtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:49:21 -0400
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4B1C15716
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:32:11 -0700 (PDT)
-Received: by mail-qt1-x82f.google.com with SMTP id g16so6686480qtu.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:32:11 -0700 (PDT)
+        with ESMTP id S233501AbiJSMux (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 08:50:53 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E3D51F9C7
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:32:54 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id h10so11227676qvq.7
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 05:32:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=whlykbQsNRDmBUFhZqH43vmu3PG1yI/9OA5fIpYLMqI=;
-        b=qNV4e3eA/V25xQDFfA53+l3QpBYZ4hKhtUdH4C2TCUXYtZUJv1WoLDiQtRweDm9KwA
-         GDuxKtKUYvRSWkZmN+Qv1Hjx2cRuHBRZJDkmJiySsa43OQBtwlznBctHWmzUeulQ0I43
-         hfQDS21yFxMeZWGtCGpsjLPh1BADnewcVXX7uhtEOomWZpPsZVjcTZXoykB9OcxdeGp/
-         zZHRvksJn5SYp++R+TLj1PrPd52JoulzvzNxxyvKJk2Lt+eqTA6pNH0mZzy5c4FnzYy8
-         t3n5IB4dXC6cauJXazobwnH2cenhVPsKfnpLPU1TSUTkGF2pYf6/v+I84sQqiGYRxPZl
-         InCQ==
+        bh=TsgvCsDrG0L5go1M7pNQAYTvwXsvN/vC+2+5gNeL11E=;
+        b=Pwht4Y+YQT/Q+akb1YflgdfeRaQJuvKGI6p12b2VMApcNLE+XKb1VRzgzTpED0nkNt
+         4f2KSAw6YjmsVm8Kt69rdjuO/3eGmIhPPBjoFnKwC5zHYkZ2Fbmu0SPZjSkUzBKnP5T+
+         pv1c1OBsXnOCeRoLlWX0VJHUbBHciC17XRfwu1Lmw2ea0IZlXdCMK8+7aCfFMUGqeXDF
+         jer9TP3K+xipbqsEHsFe1GShMYQ1zYLob1JTLk4flJZ3IxU8P3PRvKwb9JLyPRru9Jl5
+         dPQBpZ0irN/tU/QIOTmQQNV6Mxc7D3gIV5HDt/zoERdAxrI06T7LMvXVFzBlSyh0zbqH
+         ihhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=whlykbQsNRDmBUFhZqH43vmu3PG1yI/9OA5fIpYLMqI=;
-        b=hbJhUfP6O8THByXO9I7ihJyssHc2wmY1On8rf3Y04ZZbwcLaHbG6AZjuAGGPVcI0kI
-         DDyEaOXLg9EJv+bcEqNPpbJwgZt0PZaehzrBWVnRYtMxyNv63rIm9r9nljEsCYWByxuC
-         vnQZRdYi8el4KiOCwcfVgxQbytV0hHiTJCs6eLZu0EfAwiKgQlvU1tsGIjzMl2fTt73c
-         NDAe/vF2wFKtKtg/yOaqH24GFSBFx1Ah5BB47dqJnMcaMWPS+kqJdwiC/hy56N1dqa8K
-         c2igs676xbMpODWs92T06ipZEFAa6WQgb6+fcb9KzpwbrdTk1M6war/8bli+E7yEp75p
-         mRDA==
-X-Gm-Message-State: ACrzQf3uKxTHoLPqocOu2o5GX0k/4Kw8/BCiNuZULJeqcMda3fFZLcol
-        pZsdRd8wTnlYil3NA0eYPY2oVw==
-X-Google-Smtp-Source: AMsMyM7bUSOzzZ6K0iuspDrCqy2b1YagSH5wAqYiNXw/7EInOLjCDS1oLVxV6rMmh9ZpGER8tXYtrg==
-X-Received: by 2002:a05:622a:15d1:b0:39c:f1da:fe0e with SMTP id d17-20020a05622a15d100b0039cf1dafe0emr6113062qty.662.1666182672542;
-        Wed, 19 Oct 2022 05:31:12 -0700 (PDT)
+        bh=TsgvCsDrG0L5go1M7pNQAYTvwXsvN/vC+2+5gNeL11E=;
+        b=Og+1uxXjw0nhDE9hLurK/+8+uSxtHzdGQPRCA9vVcU3WN05BcWz4pPZ+LLT5y7rvfz
+         LbUTWZTdh7GmZP+U3+JP0ZVQ5TrMCCMXXcuFy64rieSOEyPH+KkpSHf2JFzUhKjF2kTD
+         6hCvvGAc2l1AbwSWLephSukGJtR4VQLHE/+ixCuMQbbYwvncXsWpafkKVg3LRl1vAKy3
+         KC8JzhmR+sEJEyWRPdC/f1ACL/Cnw0FliuyOwaczzznQEpoLKh3NESEQm9jSZt7WdpFY
+         X3HsxWiE8J9hufUI34b03plJhyS0kTqRIcNaB/+3ZH2ZnCeekArwKsJM2MlKu5OweILx
+         /2Uw==
+X-Gm-Message-State: ACrzQf0epsgD68tmhY+raBQGquJpsODrGNd/XjMJeU0VW9OnYBl0LdUC
+        FN2ehl3rELSdCJUhcjR9iNhzQQ==
+X-Google-Smtp-Source: AMsMyM7ajU52RN5MSL5JJQ1VgEbJtgiUHm5DykSRp3Iw07X0DoKYmRCW+TIJPHzBUa6tueBS9s6jsQ==
+X-Received: by 2002:a05:6214:519c:b0:4b1:8eaf:a21f with SMTP id kl28-20020a056214519c00b004b18eafa21fmr6147405qvb.97.1666182715482;
+        Wed, 19 Oct 2022 05:31:55 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id h3-20020ac87763000000b0035d5e5660cbsm3899065qtu.59.2022.10.19.05.31.10
+        by smtp.gmail.com with ESMTPSA id hf8-20020a05622a608800b0039cbbcc7da8sm3871762qtb.7.2022.10.19.05.31.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 05:31:11 -0700 (PDT)
-Message-ID: <9e3fb6b4-c929-66b9-a1de-d39f2893c37d@linaro.org>
-Date:   Wed, 19 Oct 2022 08:31:10 -0400
+        Wed, 19 Oct 2022 05:31:54 -0700 (PDT)
+Message-ID: <05305f6e-8ba5-9145-7835-db60a8a560bf@linaro.org>
+Date:   Wed, 19 Oct 2022 08:31:53 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v2 3/3] dt-bindings: clock: add loongson2 clock binding
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: add loongson2 clock include
+ file
 Content-Language: en-US
 To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
         Michael Turquette <mturquette@baylibre.com>,
@@ -69,9 +70,8 @@ To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
         linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
 References: <20221019062912.3463-1-zhuyinbo@loongson.cn>
- <20221019062912.3463-3-zhuyinbo@loongson.cn>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221019062912.3463-3-zhuyinbo@loongson.cn>
+In-Reply-To: <20221019062912.3463-1-zhuyinbo@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,100 +85,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 19/10/2022 02:29, Yinbo Zhu wrote:
-> Add the loongson2 clock binding with DT schema format using
-> json-schema.
+> This file defines all loongson2 soc clock indexes, it should be
+> included in the device tree in which there's device using the
+> clocks.
 > 
 > Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 
-Drop redundant (last) binding from the title.
-
-
-> ---
-> Change in v2:
-> 		1. Drop "Binding" string in the title.
-> 		2. Drop entire allOf and move the contents to top level.
-> 		3. Change string "refclk_100m" to "ref_100m". 
-> 
->  .../bindings/clock/loongson,ls2k-clk.yaml     | 64 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> new file mode 100644
-> index 000000000000..104e38a618e2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/loongson,ls2k-clk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson2 SoC Clock Control Module
-> +
-> +maintainers:
-> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
-> +
-> +description: |
-> +  Loongson2 SoC clock control module is an integrated clock controller, which
-> +  generates and supplies to all modules.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - loongson,ls2k-clk
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: 100m ref
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref_100m
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +    description:
-> +      The clock consumer should specify the desired clock by having the clock
-> +      ID in its "clocks" phandle cell. See include/dt-bindings/clock/loongson,ls2k-clk.h
-> +      for the full list of loongson2 SoC clock IDs.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ref_100m: clock-ref-100m {
-> +        compatible = "fixed-clock";
-> +        #clock-cells = <0>;
-> +        clock-frequency = <100000000>;
-> +        clock-output-names = "ref_100m";
-> +    };
-> +
-> +  - |
-
-Drop this. This splits examples into two separate ones, but you have
-here only one example.
-
-> +    clk: clock-controller@1fe00480 {
-> +        compatible = "loongson,ls2k-clk";
-> +        reg = <0x1fe00480 0x58>;
-> +        #clock-cells = <1>;
-> +        clocks = <&ref_100m>;
-> +        clock-names = "ref_100m";
-> +    };
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
+
 
