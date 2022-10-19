@@ -2,112 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D602604C4A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:53:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4E87604C60
+	for <lists+devicetree@lfdr.de>; Wed, 19 Oct 2022 17:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbiJSPxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 11:53:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56612 "EHLO
+        id S232112AbiJSPyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 11:54:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231260AbiJSPxW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:53:22 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12E6167F6C
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:50:40 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id a18so10989218qko.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:50:40 -0700 (PDT)
+        with ESMTP id S232845AbiJSPyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 11:54:13 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E142713F45
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:51:58 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id df9so11632718qvb.9
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 08:51:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qOfJ+DtwLBfM1XbcRFI2vxlA6IMtNA7Mryro9IUFiqQ=;
-        b=oc0gnv7Evlf82aR7oG1AboITLdai3h8yWa1/UJ7yR9+TKLMHmoMbTTmAbXZDhx/mH/
-         f8JzUDB4THCqRc0UcOpZlhBf1KF8fZ37sXyanaOERaci7Hknvb+VnHq9YbG3S6M4Qo6t
-         Kd2fXjzLpcglTwZTAsYkeamTktkNbPTVxwdidUbWVJxEwIsSvaDQSYBNPbr630dN5pHj
-         M+Ps8vzh5cyYyGUhPUJy8KVfU+HvhMor6ykp8jdRP8SuM03kXJie5tGnWlTL235k8gUg
-         G33IffSj3PK5urVg+8imYLgvKxues9F4oX65mcPNhgvVmOmdMZfVBCV6vqIWG1/dOL0q
-         K3IQ==
+        bh=SFqLEGUzpiVO1+2P52g6TS8O0gkAqr8zlFG6DWw04Gs=;
+        b=JJW6jtt3ZMWkdIABGoHVnFfx6CZE87gFuMr0b9unxJyBPg+JUQoakx4dWxJrGzX9d9
+         OZANzSdANQ+k3dOKcy25LJfUFGPFF6OPZuCyLMBzYkj+VeWnwjbLm2BMzUadK+OdPJ4M
+         YqhMg+y+KWzmUKgrpGdEfBmlp4ovkncAg3jfslrUN4tjMLNiiijB9CKxYWzaJA94juf2
+         bnkD50cJaMCeXA5A00/5YxXYyvDdTPgeQNw224KAfNAtx060aT/yutpFNyeL2rRyPCVC
+         EAuU4NdXb0/jIT+J/pWnZKP0R2RjE2FY2nULpVoYygr5XlHCBRszM8AVuHZDuao5Ifcv
+         L1mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qOfJ+DtwLBfM1XbcRFI2vxlA6IMtNA7Mryro9IUFiqQ=;
-        b=UAVyZJgh9kMyGgxqSEAG7h+ZAaTKhqkRhXIBuSpQNryT906MH/ZtUEqcc/sTW4xqu6
-         bMwhcbKKT4Pwbclvj57TQbWHKqmw5fhzMJPGEQFPLlVU8lmcdt6Y6oZ6k1I/ad0zbjvJ
-         qeApkAqY/xTYPI8o+dg5cY9WAw5Y1YyIfDNTBv+A+FA2IYm0yfqtrPqLinQGE+/i/Pfn
-         91mRcvKpSRrUBfvaczLfWaFGuEpJIj7DrUVR2kb/OxBMDiM7sSfJn5FGxPDILZnufWG3
-         FxJImLwPxypuSVOXd/2NZl2O1rt7yfMbAvpUSK7NNPf7WR3AWzk146rSq6kCaReNOeq4
-         J0oA==
-X-Gm-Message-State: ACrzQf0S1Fq1p4uF1VPEeFcsVXXoz/jqjuzJWam0E2j+P38e/2vVGnaA
-        Tcl/+sRQ8PPiL///0RhroxB9ew==
-X-Google-Smtp-Source: AMsMyM4XstFVm8wPAtWg45RsoEAOZKJXDEbdNRgDhHSCIrBKgB8W/I23RBjhjFccEni81/er3hUtsw==
-X-Received: by 2002:ae9:ef53:0:b0:6ec:f6f:4422 with SMTP id d80-20020ae9ef53000000b006ec0f6f4422mr6017291qkg.41.1666194588599;
-        Wed, 19 Oct 2022 08:49:48 -0700 (PDT)
+        bh=SFqLEGUzpiVO1+2P52g6TS8O0gkAqr8zlFG6DWw04Gs=;
+        b=Igy9hcIwZDiCXvUQdu/VBqdDw1nI908nfmvZHgqUQu3oovrfvWqD3tqzwP1T7Ajckp
+         HFMZhw3lvygvOTd4IGVLUbnY78tlKsSuD6po7D8cDnigm9epjjJEifDgo8zzdMvyezQ1
+         QnAecye3D75ARKmtelQfWIAPcbdnFuRjJbhqAKnE2S7I4D0++hbXUBJsH/fnvCl6Gy8m
+         xOVlHwmcX5E6JMty/jZoArnOdTClQLES9y+DzVA3bGuz9ydcOqLLLDyjvti+aVDinDBF
+         hJYO/zku6IHr1yy+hUFubDoviwBe0jsZmm5S1EDvZuLFKzcy+t9zScQc1yVII39DHFo4
+         n/0w==
+X-Gm-Message-State: ACrzQf2agpJ2Sf2sqs778QiQR/1c+JgCTS9d0Tkkb3+d0rLSBL3V4EvN
+        pV9fuEtw4D4rPxy2PQzVyVV8DA==
+X-Google-Smtp-Source: AMsMyM4/vU9X/eTGGnSWw6kfOlAWtgN1f8wnRekjRIM1GmBfWGM+ONIx108lZzbU1PEmcIcGvoM0AQ==
+X-Received: by 2002:a0c:df11:0:b0:4b4:ccd:ad5a with SMTP id g17-20020a0cdf11000000b004b40ccdad5amr7096319qvl.111.1666194688485;
+        Wed, 19 Oct 2022 08:51:28 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id i23-20020ac84897000000b0039853b7b771sm4207324qtq.80.2022.10.19.08.49.47
+        by smtp.gmail.com with ESMTPSA id g22-20020ac84696000000b0039d03f69cf5sm714630qto.72.2022.10.19.08.51.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 08:49:47 -0700 (PDT)
-Message-ID: <a44cadfe-5e9d-8c6a-b111-abd550a909bf@linaro.org>
-Date:   Wed, 19 Oct 2022 11:49:46 -0400
+        Wed, 19 Oct 2022 08:51:27 -0700 (PDT)
+Message-ID: <56118d35-dfe6-f46b-9fc7-28aca6530fb5@linaro.org>
+Date:   Wed, 19 Oct 2022 11:51:27 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 3/3] doc: iio: pressure: ms5611: added max SPI frequency
- setting to the example
+Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx: document suspend in
+ wait mode
 Content-Language: en-US
-To:     Mitja Spes <mitja@lxnav.com>, linux-iio@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Tomasz Duszynski <tduszyns@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221019125254.952588-1-mitja@lxnav.com>
- <20221019125254.952588-3-mitja@lxnav.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Andrej Picej <andrej.picej@norik.com>
+Cc:     linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
+        linux@roeck-us.net, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
+        kernel@pengutronix.de, s.hauer@pengutronix.de,
+        wim@linux-watchdog.org, robh+dt@kernel.org
+References: <20221019111714.1953262-1-andrej.picej@norik.com>
+ <20221019111714.1953262-3-andrej.picej@norik.com>
+ <7508670.GXAFRqVoOG@steina-w>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221019125254.952588-3-mitja@lxnav.com>
+In-Reply-To: <7508670.GXAFRqVoOG@steina-w>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 08:52, Mitja Spes wrote:
-> Added max SPI frequency setting to the example. It is now honored by the
-> driver.
-
-Use subject prefixes matching the subsystem (git log --oneline -- ...).
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
-
+On 19/10/2022 09:00, Alexander Stein wrote:
+> Hello Andrej,
 > 
-> Signed-off-by: Mitja Spes <mitja@lxnav.com>
-> ---
->  Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml b/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml
-> index 4f06707450bf..08bd06e6dabe 100644
-> --- a/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml
-> +++ b/Documentation/devicetree/bindings/iio/pressure/meas,ms5611.yaml
-> @@ -52,6 +52,7 @@ examples:
->              compatible = "meas,ms5611";
->              reg = <0>;
->              vdd-supply = <&ldo_3v3_gnss>;
-> +            spi-max-frequency = <20000000>;
+> Am Mittwoch, 19. Oktober 2022, 13:17:13 CEST schrieb Andrej Picej:
 
-Whether it is honored by driver it matters less. More important is how
-hardware can handle it. This should be included in the bindings/properties.
+Missing commit msg.
+
+>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>> ---
+>>  Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>> b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml index
+>> fb7695515be1..01b3e04e7e65 100644
+>> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>> @@ -55,6 +55,11 @@ properties:
+>>        If present, the watchdog device is configured to assert its
+>>        external reset (WDOG_B) instead of issuing a software reset.
+>>
+>> +  fsl,suspend-in-wait:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description: |
+>> +      If present, the watchdog device is suspended in WAIT mode.
+>> +
+>>  required:
+>>    - compatible
+>>    - interrupts
+> 
+> What is the condition the watchdog is suspended in WAIT mode? Is this specific 
+> to SoC or platform or something else?
+>
+
+And what happens else? When it is not suspended in WAIT mode?
 
 Best regards,
 Krzysztof
