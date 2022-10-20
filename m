@@ -2,113 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75F7060649A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 17:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA4C160649C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 17:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbiJTPdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 11:33:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34688 "EHLO
+        id S230100AbiJTPdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 11:33:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230416AbiJTPc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 11:32:58 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A13E1B1554
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 08:32:56 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id z5-20020a17090a8b8500b00210a3a2364fso2621614pjn.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 08:32:56 -0700 (PDT)
+        with ESMTP id S230159AbiJTPdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 11:33:22 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D2421C070F
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 08:33:19 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id m6so130440qkm.4
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 08:33:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:author:mime-version:message-id:date
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=J8kLTeSmfMCZ7W5nv8dEkfy8Er4qT7D6uW91rQpuUnI=;
-        b=J99RzTtsCx0dQIYYCbRkyL3+jSOh0MylJtc5NtdTUVN+3ZG3cFJZgCixn5HvHLWlka
-         n2zjYLoke0SZcjzUu+MgcgTfcrKuKVOHH8dkH+58KbcXgO8xk85u8CMEMbgcLieyOveS
-         4Wd2avQRPUTgjuLwlf/RQpCFz7XFXHARMJWXX4UK3YE7BMOymHPzLfe/q9pwO04PyZwv
-         O/+kHL+lxtQC3/nEVALnxFgEXkyLr76g46s8IwHUOLjVXNP7D/Kn+pNBNiABh0fIix3w
-         sqOU2ufzqoj6eZLvorPUFXD7ajADz57ZxVTPzNxr67PKqZhk5M0JCjHurwHoq1Qi12X6
-         d+dA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7HUxkh6qlwBPEzlvP9/xhAHaR3FqYhNfBKYj/tNf7PA=;
+        b=HJklLCQLdYFpnP5xyffmVbRdWBwhkQ/6rqkWdwlyJt7dry8F+hezpx/EXR0kue7fhH
+         rrm/qTmP9B6OtQwcpdvWKvrBMM7GhX6PxRsl1xp5ewMVDHAEMXHzpCHWhLpNwESLfrV3
+         vFZDOpxbmhc7NjasI9J0rxeOoeg45VL929G7jak40RlJRBgkghMLheHa++PJn7ITC0tQ
+         A/8WJKMghNEyvWpR8L0CCIb6Ai7CdNikMW09XhY5XapQyRAib/dZjbH7Qoi8tKQnA/CR
+         CcFzX4RMKS+WJeWXllDnzRctiaeWaPWz9MFyrMf/+TcALg6ZTx6d4j7COimXzDjLvqs0
+         wqlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:author:mime-version:message-id:date
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J8kLTeSmfMCZ7W5nv8dEkfy8Er4qT7D6uW91rQpuUnI=;
-        b=oHxtU0+CPOM1zl2D1Iq9vSJd8v6hYJEIkZxr2SugJdNNj2zSNT6Rs9mHxQbl/uPmrb
-         +UsaNQDtpfy+hlc3QgPSa4WijKPLoBsERmGjU4QONHTYeMGgHbzY3ZdftXKr/a9N7/ZH
-         OVouuI3xMA+kk0uE3ZUdZuPtoWsLsV3EOkLzknvo/X7toK0wJyzcOgVdNopcgdmRP96d
-         FOJWd7X0tLI5VlVrTY1Vt33HpD76BTs4IJvVvxegOjoIiRIzOUEY2xtk4gomLAOt5JPB
-         UQ9FFGSYCPkIb+QHnBDzkDZeo7At5SfAZbGmFbNN9zcJVWEghjS68gxjjky2NeeAIZLl
-         i+eQ==
-X-Gm-Message-State: ACrzQf1vThUIYLOmk+eXDhY56HcBQnKfXDW4v8s6acvAyl49Z92fDp+0
-        bcm7IzkTHF4aB9jlfKXppVBCujKj9BxB1Q==
-X-Google-Smtp-Source: AMsMyM7G//3UmXQ1yeXYgYwJwlnuwcXdumpMfkx+NzsZ5xxp3FlDwNXB+4HBho9B/F8pGyH2Ff/oOg==
-X-Received: by 2002:a17:902:7481:b0:180:58d7:24e0 with SMTP id h1-20020a170902748100b0018058d724e0mr14480095pll.49.1666279975000;
-        Thu, 20 Oct 2022 08:32:55 -0700 (PDT)
-Received: from localhost.localdomain ([122.171.19.137])
-        by smtp.gmail.com with ESMTPSA id y5-20020aa78f25000000b0053ae018a91esm13977278pfr.173.2022.10.20.08.32.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 08:32:54 -0700 (PDT)
-From:   Amit Pundir <amit.pundir@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: qcom: sm8250: drop idlestate for the CPU cluster
-Date:   Thu, 20 Oct 2022 21:02:38 +0530
-Message-Id: <20221020153238.3444787-1-amit.pundir@linaro.org>
-X-Mailer: git-send-email 2.25.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7HUxkh6qlwBPEzlvP9/xhAHaR3FqYhNfBKYj/tNf7PA=;
+        b=tWtI87slEuastXAAqDqukN0qi/J2yqqTX/RN7/+8ca1Abm5+5tRfm/OQ2VJI3u+sP1
+         wkfpeL0Ls4dvQlZcsM5iBRBbQs1Rf78gqK4KZc3XoHHNjRe8qgKcl9IPHrFzjgM9BN/e
+         mrsgo9wF4wzZLSLRUIl1q9l8hvkbjxzkYxnalBg/Ie3UrTC29iHrCXoD9iH9DY87dIRk
+         X2IdAapTXIhWabUpmIxUdtUB80+W/Yydth4N/68bpBelCMIgBJqcSNbOvXBelbRjpHqk
+         ME2ZiT8mD6cUJcjZKkNdP9Ws7Ty9h6vDslPHmN9jAoFcxA4k1FJ15b0CJhhQMzDoYt1K
+         CFew==
+X-Gm-Message-State: ACrzQf3Zk0vw5tZgtj3o6sWlfwlSlYqWmnO39wL2lONYZL+q8uAimAvh
+        Mj9KCNSSErQR6sh/rEkuSnzFfg==
+X-Google-Smtp-Source: AMsMyM7fbfzfUbQBTjbq0KwtSpFbinTm7Ze4xD696dbgFpTmqpYHuP0DOiT72Wu1R1/5TKojB+yxcQ==
+X-Received: by 2002:a37:5d2:0:b0:6ee:7931:825a with SMTP id 201-20020a3705d2000000b006ee7931825amr9581420qkf.591.1666279997876;
+        Thu, 20 Oct 2022 08:33:17 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id hh6-20020a05622a618600b00343057845f7sm6064722qtb.20.2022.10.20.08.33.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 08:33:17 -0700 (PDT)
+Message-ID: <dee7f119-551f-3163-7148-aeb822a0be38@linaro.org>
+Date:   Thu, 20 Oct 2022 11:33:10 -0400
 MIME-Version: 1.0
-Author: Amit Pundir <amit.pundir@linaro.org>
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 2/2] dt-bindings: rtc: add bindings for max313xx RTCs
+Content-Language: en-US
+To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+References: <20221019133910.282-1-Ibrahim.Tilki@analog.com>
+ <20221019133910.282-2-Ibrahim.Tilki@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221019133910.282-2-Ibrahim.Tilki@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Recently added cpuidle states made RB5 (sm8250) devboard
-highly unstable and it runs into the following crash
-frequently during the boot process:
+On 19/10/2022 09:39, Ibrahim Tilki wrote:
+> Devicetree binding documentation for Analog Devices MAX313XX RTCs
+> 
+> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> ---
+>  .../devicetree/bindings/rtc/adi,max313xx.yaml | 163 ++++++++++++++++++
+>  1 file changed, 163 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
+> 
 
-[    T1] vreg_l11c_3p3: failed to enable: -ETIMEDOUT
-[    T1] qcom-rpmh-regulator 18200000.rsc:pm8150l-rpmh-regulators: ldo11: devm_regulator_register() failed, ret=-110
-[    T1] qcom-rpmh-regulator: probe of 18200000.rsc:pm8150l-rpmh-regulators failed with error -110
+Thank you for your patch. There is something to discuss/improve.
 
-Removing idlestate for the CPU cluster fixes this crash for
-the time being, while a proper fix is being worked upon.
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        rtc@68 {
+> +            reg = <0x68>;
+> +            compatible = "adi,max31329";
+> +            clocks = <&clkin>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
+> +            interrupt-names = "INTB";
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        rtc@68 {
+> +            reg = <0x68>;
+> +            compatible = "adi,max31331";
+> +            #clock-cells = <0>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <25 IRQ_TYPE_EDGE_FALLING>, <26 IRQ_TYPE_EDGE_FALLING>;
+> +            interrupt-names = "INTA", "INTB";
+> +        };
+> +    };
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        rtc@69 {
+> +            reg = <0x69>;
+> +            compatible = "adi,max31341";
+> +            #clock-cells = <0>;
+> +            clocks = <&clkin>;
 
-Fixes: 32bc936d7321 ("arm64: dts: qcom: sm8250: Add cpuidle states")
-Suggested-by: Sudeep Holla <sudeep.holla@arm.com>
-Suggested-by: Ulf Hansson <ulf.hansson@linaro.org>
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index a5b62cadb129..c2d964bc3a39 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -700,7 +700,6 @@ CPU_PD7: cpu7 {
- 
- 		CLUSTER_PD: cpu-cluster0 {
- 			#power-domain-cells = <0>;
--			domain-idle-states = <&CLUSTER_SLEEP_0>;
- 		};
- 	};
- 
--- 
-2.25.1
+Drop the last example - it's basically the same as first, without
+interrupts.
+
+With that:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
