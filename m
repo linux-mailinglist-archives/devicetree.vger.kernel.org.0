@@ -2,126 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86962605E81
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF3C1605E8B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229720AbiJTLMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 07:12:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34396 "EHLO
+        id S229794AbiJTLOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 07:14:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbiJTLMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:12:47 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6257B1CC775
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 04:12:46 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1olTTc-0005sK-KM; Thu, 20 Oct 2022 13:12:40 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1olTTb-00048X-Ud; Thu, 20 Oct 2022 13:12:39 +0200
-Date:   Thu, 20 Oct 2022 13:12:39 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        Frank Li <frank.li@nxp.com>, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, Han Xu <han.xu@nxp.com>,
-        festevam@gmail.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 06/15] arm64: dts: imx8mp-evk: enable fspi nor on imx8mp
- evk
-Message-ID: <20221020111239.vunok2je26tl2nko@pengutronix.de>
-References: <20221020095934.1659449-1-peng.fan@oss.nxp.com>
- <20221020095934.1659449-7-peng.fan@oss.nxp.com>
+        with ESMTP id S230034AbiJTLNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:13:55 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16DB5119BDB
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 04:13:46 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id k67so3146231vsk.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 04:13:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RxhhqW9JKRj5MjXW/jzEJqVqePNXtFqQf3mTMtmQZF0=;
+        b=LE8QP3ziYOhbahNN6Srlo9VcdqQMB1YVT0KCSfs/iHUhOcliGz42AC9wG8YnxfYIEb
+         lIw0Wi+FR7eOI/nKc1jlUvj9gR7wnrirJT5xLm7XqxSmYcB9/VW0m+foAzNDWx1xcwRs
+         KnbncNaRL/2mZMUhRU1XoYVC5n0hsB1qY1eDXqmt0ZIBFTnpJLbtqdf+OPAOmldgKlEs
+         Hz245KAEKIi3LHYqquTepBX9QIk/JQQUNA3/jJIDu8GouY86WN07n1Tz3FvEEVOcCPXy
+         PeXk5/PPPnW5MWHtxBFdJ7Zq4CDrbWEeQFv+3Z38eUcrsmpSlZHMkUDs3tZj9B+02NtR
+         OouA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RxhhqW9JKRj5MjXW/jzEJqVqePNXtFqQf3mTMtmQZF0=;
+        b=aYYun07hCjTD3pmKyvWxG323jAiR0a7UAlRfbgY6AAScAQYroK1ODxscvBaf9C9xRe
+         z4DFtq4k/zH4wKFL0HsxtQDce4yBOwEoZDSrjZhEJnNV1iiOECJvzSd4ugM6HJ7SPfqM
+         AtuoSC1HL+cWwu2+oQG+CBC3XSt/y7iP2FrY3maSZYcHha7dWj7j7vuc7p0CJmuOKeWt
+         BoFsgAFcA/XBRkEB0qRY2T0JI52kQyrrhvWHOr2HGJFKSzFaCp+l2gcOLOdHcop9DJqn
+         twTxTjEx8jP1RD2gBrP0ziximpyq97q64D9B19y/ecWQvosvhIqs9UYuQq2qnbG/PNRg
+         Pqlg==
+X-Gm-Message-State: ACrzQf33EC36+ilrE9Fy/RdUERlo0yzLJJAQ9wRp4j+B2zSGH03r5jPc
+        rkm8OnSQGgFLSY5dt9bDp/7o+pXr2gW8QWueCn3pmN3/toq8zQ==
+X-Google-Smtp-Source: AMsMyM7623m7f8/X4BmFn/9QBoivUohxCpY9FoUuJ166Lu0mWaqJuWfug6DaDR4S62S0tSLKsXHA8VkGyAjYV+YONU8=
+X-Received: by 2002:aa7:8504:0:b0:563:1ae2:6dc0 with SMTP id
+ v4-20020aa78504000000b005631ae26dc0mr13457624pfn.48.1666264415497; Thu, 20
+ Oct 2022 04:13:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221020095934.1659449-7-peng.fan@oss.nxp.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <Y1AqBnPSyu7PpiwP@deskilmich.example.net> <21c35744-eee0-ae31-dc54-3e7e1334ae08@gmail.com>
+ <CAK1Nf77W=_7xnDfEjKr=N9Ot0WSgzchEJqJ5_PXOMcvfiQKd8Q@mail.gmail.com> <9009700.CDJkKcVGEf@phil>
+In-Reply-To: <9009700.CDJkKcVGEf@phil>
+From:   =?UTF-8?Q?Michele_Zuccal=C3=A0?= <ardutu@gmail.com>
+Date:   Thu, 20 Oct 2022 13:13:10 +0200
+Message-ID: <CAK1Nf75B-4wzM3pafaOVHCD9WugT3YPjphbEq25-WLRGh3Jhbw@mail.gmail.com>
+Subject: Re: [PATCH] arm: dts: rockchip: add crypto node for RK322x
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Alex Bee <knaerzche@gmail.com>,
+        Corentin Labbe <clabbe@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
+Hi Heiko,
 
-On 22-10-20, Peng Fan (OSS) wrote:
-> From: Han Xu <han.xu@nxp.com>
-> 
-> enable fspi nor on imx8mp evk dts
-> 
-> Reviewed-by: Frank Li <frank.li@nxp.com>
-> Signed-off-by: Han Xu <han.xu@nxp.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 27 ++++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> index 366f709f8790..f36033b9cebb 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -85,6 +85,22 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
->  	};
->  };
->  
-> +&flexspi {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexspi0>;
-> +	status = "okay";
-> +
-> +	flash0: mt25qu256aba@0 {
-                     ^
-This should throw a warning. You need to name it flash@0.
-Nit: The phandle name is not very useful, instead I would name it
-nor_flash or so.
+>
+> no worries, we'll get you through it :-)
+>
 
-> +		reg = <0>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		compatible = "jedec,spi-nor";
+thank you
 
-compatible is the first property followed by the reg.
+>
+> actually you want to go the following route:
+>
+> (1) pick up
+> - https://lore.kernel.org/all/20220927075511.3147847-25-clabbe@baylibre.com/
+> - https://lore.kernel.org/all/20220927075511.3147847-26-clabbe@baylibre.com/
+> as a base to work on
+>
+> (2) create a patch to add your compatible.
+> I _think_ after that, the compatible block should looks
+> something like:
+>
+>   compatible:
+>     oneOf:
+>       - const: rockchip,rk3288-crypto
+>       - const: rockchip,rk3328-crypto
+>       - const: rockchip,rk3399-crypto
+>       - items:
+>           - const: rockchip,rk3228-crypto
+>           - const: rockchip,rk3288-crypto
+>
+> to handle the new dual element compatible.
+>         make dt_binding_check
+> should tell you about a wrong format.
+>
+> (3) modify your dts patch to use the two compatibles
+> (4) export patches by
+>         git format-patch -2 --cover-letter
+> and mention in the cover-letter the dependency on the
+> yaml conversion.
 
-> +		spi-max-frequency = <80000000>;
-> +		spi-tx-bus-width = <1>;
-> +		spi-rx-bus-width = <4>;
-> +	};
-> +};
-> +
->  &A53_0 {
->  	cpu-supply = <&reg_arm>;
->  };
-> @@ -585,6 +601,17 @@ MX8MP_IOMUXC_SAI2_MCLK__GPIO4_IO27      0x154   /* CAN2_STBY */
->  		>;
->  	};
->  
-> +	pinctrl_flexspi0: flexspi0grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_ALE__FLEXSPI_A_SCLK           0x1c2
-> +			MX8MP_IOMUXC_NAND_CE0_B__FLEXSPI_A_SS0_B        0x82
-> +			MX8MP_IOMUXC_NAND_DATA00__FLEXSPI_A_DATA00      0x82
-> +			MX8MP_IOMUXC_NAND_DATA01__FLEXSPI_A_DATA01      0x82
-> +			MX8MP_IOMUXC_NAND_DATA02__FLEXSPI_A_DATA02      0x82
-> +			MX8MP_IOMUXC_NAND_DATA03__FLEXSPI_A_DATA03      0x82
-> +		>;
-> +	};
-> +
->  	pinctrl_gpio_led: gpioledgrp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x140
-> -- 
-> 2.37.1
-> 
-> 
-> 
+very clear. But excuse the stupid question, this way it becomes a new patchset
+and not the v2 of this patch, right?! Will this patch be automatically
+ignored ?!
+
+Michele
