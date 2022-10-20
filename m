@@ -2,268 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26F89605F7A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:56:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFFB7605F8E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 14:00:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229736AbiJTL4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 07:56:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44474 "EHLO
+        id S229885AbiJTMAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 08:00:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbiJTL4W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:56:22 -0400
-Received: from mail-4324.protonmail.ch (mail-4324.protonmail.ch [185.70.43.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E8F12E0E6;
-        Thu, 20 Oct 2022 04:56:20 -0700 (PDT)
-Date:   Thu, 20 Oct 2022 11:56:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1666266978; x=1666526178;
-        bh=8+35NVO0c0UvUjwWAVqxXJYRfNgUQLbju4mSBPabbg8=;
-        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-         Subject:Reply-To:Feedback-ID:Message-ID;
-        b=eun3vO++Su1XSxTdmdJs/WC6r519scdeMdkVcc58v2ILdhhqVZbRknNO+hRWBpHPW
-         CHleG38sTeJzGTY2EJdGlDIiYHjRjjgr1mjzi9zt+eQ7HloGRS4ZhiErtTJW2e0PhC
-         3FO1JcCT5HePfUJArvGI3q3Tl3VKXaYEydJO5msK86lXXsfuLdHLZfyrAPlvaGz56w
-         fSYzggmDNAe+To1M+b5x9Bn6uU2vnC0z9ngsNan0Rn0JweRcCtSR5jQeX56FNDpL1I
-         H0FYfd1tgHVNnnxzXxVxuU+SedW9D+izfgeP5IACSs1hqqPAbUgBhIMw7CKZfNkG+i
-         3pb/BqKhJ3ceg==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Travkin <nikita@trvn.ru>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH] arm64: dts: msm8916-samsung-a2015: Add vibrator
-Message-ID: <20221020115255.2026-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S229769AbiJTMAd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 08:00:33 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA2E0F6C3E
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 05:00:31 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id f22so13497457qto.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 05:00:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=A29LATjKRu0eJyZf1li9gtTtcrd9vRWs2MhC8cVGWxA=;
+        b=zdXq2ZWOf+kBQAJ50NbogZcfiG0qZPePutWtHEhKeegdtOWL1wTmCHgw23EJp425+c
+         Td5S4yCvuYmGHcOLZ8p4mkKYX64yDjk25aZs/f3qAdvWQXz9gfLVRsIMg/imY2DM2Ld5
+         /ccleL9a37cuOaIdkZHK2wTXvmzdEZ6PZzUQzDG3ZhTTYTVrCtfHWqbWfBamI1vHFxoF
+         ULLYcjA76tqAwvmw2j5J1+ubn3fWVabtXxoySbAr7bXlBvK+Bqca0rnVYOL/7nnnIxq4
+         Oot108r5U7+S9oatZi8YvONoChoeoixOSz9/oOv6Vz8gv3KLYNui3BJ0evFo7R65nG3W
+         1SEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A29LATjKRu0eJyZf1li9gtTtcrd9vRWs2MhC8cVGWxA=;
+        b=lOj8U7VqLueJ0UzNM5VHITGbr12QjW6jsxer+8j1H1bueAKMYNFEtsQ+dWdxBVwFTH
+         Y644YwN4tWTlefE8SiDC42I9kF5KUmiR16ekdmZg7gcxX75dplGcVqMvatyoEhtFzkj3
+         i8PpEgfMAuNGykFG+G5WUSZSqGN0oCGRU+cXeQOLY3AQXaGZNu3C0mG5d4JRc5Hb/uek
+         KiBc7eJS8iTNLLC2so5zo3T9V9cX0kEFvZmvDQBcEqD0sA/fxdBILwSMMSvzmHo0dt4a
+         YEmpKB9X6XPr00+HFlz4VmN8OQ97O74XSwGl9D1EAu+Bs0V0M+KweVOuGmEJji/s8a+T
+         pA6w==
+X-Gm-Message-State: ACrzQf2ANEA67g+KYPQE3IxbZhw1Ii6WWWfqm7+YKGnVMcNSX68AZzsd
+        oioeQRuu1mJpih8/hRW5Gs4x1Q==
+X-Google-Smtp-Source: AMsMyM6eVViG4LXv1H82MSpp3Hhgprwb3+orqfs74ID/Coou2aSueOhKs1MTstIJbBBjLCoS0NGi7A==
+X-Received: by 2002:ac8:7dc4:0:b0:39c:f95f:57fe with SMTP id c4-20020ac87dc4000000b0039cf95f57femr8723185qte.612.1666267230880;
+        Thu, 20 Oct 2022 05:00:30 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id a10-20020ac85b8a000000b00397b1c60780sm6092213qta.61.2022.10.20.05.00.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 05:00:29 -0700 (PDT)
+Message-ID: <b682cf05-2d96-d7e4-6f86-b1776d16b132@linaro.org>
+Date:   Thu, 20 Oct 2022 08:00:28 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 3/3] doc: iio: pressure: ms5611: added max SPI frequency
+ setting to the example
+To:     =?UTF-8?Q?Mitja_=c5=a0pes?= <mitja@lxnav.com>
+Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Tomasz Duszynski <tduszyns@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221019125254.952588-1-mitja@lxnav.com>
+ <20221019125254.952588-3-mitja@lxnav.com>
+ <a44cadfe-5e9d-8c6a-b111-abd550a909bf@linaro.org>
+ <CACbQKWdyE2Q7wya4JwAv2+9-1M3oSrB3YfR+qfM3M7TiHjukew@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CACbQKWdyE2Q7wya4JwAv2+9-1M3oSrB3YfR+qfM3M7TiHjukew@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nikita Travkin <nikita@trvn.ru>
+On 20/10/2022 01:40, Mitja Špes wrote:
+> On Wed, Oct 19, 2022 at 5:49 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> Use subject prefixes matching the subsystem (git log --oneline -- ...).
+> 
+> Will do.
+> 
+>> Whether it is honored by driver it matters less. More important is how
+>> hardware can handle it. This should be included in the bindings/properties.
+> 
+> The hardware handles frequencies up to 20MHz. That constraint is already
+> written in meas,ms5611.yaml.
+> What my patch 2 does is allow the user to set a lower frequency and the patch
+> 3 just emphasises that in the example.
 
-Both a2015 devices use motor drivers controlled with PWM signal.
-A5 additionally has a fixed regulator that powers the driver and is
-controlled by enable signal. A3 routes that enable signal to the
-motor driver itself.
-To simplify the description, add the motor to the common dtsi and
-assume a regulator is used for both.
+Then I am not sure whether it is worth changing. This is just an
+example. Old value is correct.
 
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-[Rename the nodes to be reusable in msm8916-sansung-e2015]
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../qcom/msm8916-samsung-a2015-common.dtsi    | 52 +++++++++++++++++++
- .../boot/dts/qcom/msm8916-samsung-a3u-eur.dts |  8 +++
- .../boot/dts/qcom/msm8916-samsung-a5u-eur.dts |  8 +++
- .../qcom/msm8916-samsung-e2015-common.dtsi    | 26 ++--------
- 4 files changed, 73 insertions(+), 21 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/a=
-rch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-index 3255bd3fcb55..16935de738af 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-@@ -23,6 +23,17 @@ tz-apps@85500000 {
- =09=09};
- =09};
-=20
-+=09clk_pwm: pwm {
-+=09=09compatible =3D "clk-pwm";
-+=09=09#pwm-cells =3D <2>;
-+
-+=09=09clocks =3D <&gcc GCC_GP2_CLK>;
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&motor_pwm_default>;
-+=09=09status =3D "disabled";
-+=09};
-+
- =09gpio-keys {
- =09=09compatible =3D "gpio-keys";
-=20
-@@ -61,6 +72,24 @@ event-hall-sensor {
- =09=09};
- =09};
-=20
-+=09/*
-+=09 * NOTE: A5 connects GPIO 76 to a reglator powering the motor
-+=09 * driver IC but A3 connects the same signal to an ENABLE pin of
-+=09 * the driver.
-+=09 */
-+=09reg_motor_vdd: regulator-motor-vdd {
-+=09=09compatible =3D "regulator-fixed";
-+=09=09regulator-name =3D "motor_vdd";
-+=09=09regulator-min-microvolt =3D <3000000>;
-+=09=09regulator-max-microvolt =3D <3000000>;
-+
-+=09=09gpio =3D <&msmgpio 76 GPIO_ACTIVE_HIGH>;
-+=09=09enable-active-high;
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&motor_en_default>;
-+=09};
-+
- =09reg_vdd_tsp_a: regulator-vdd-tsp-a {
- =09=09compatible =3D "regulator-fixed";
- =09=09regulator-name =3D "vdd_tsp_a";
-@@ -153,6 +182,16 @@ nfc@27 {
- =09=09=09pinctrl-0 =3D <&nfc_default &nfc_clk_req>;
- =09=09};
- =09};
-+
-+=09vibrator: vibrator {
-+=09=09compatible =3D "pwm-vibrator";
-+
-+=09=09pwms =3D <&clk_pwm 0 100000>;
-+=09=09pwm-names =3D "enable";
-+
-+=09=09vcc-supply =3D <&reg_motor_vdd>;
-+=09=09status =3D "disabled";
-+=09};
- };
-=20
- &blsp_i2c2 {
-@@ -397,6 +436,19 @@ mdss_sleep: mdss-sleep {
- =09=09};
- =09};
-=20
-+=09motor_en_default: motor-en-default {
-+=09=09pins =3D "gpio76";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
-+=09motor_pwm_default: motor-pwm-default {
-+=09=09pins =3D "gpio50";
-+=09=09function =3D "gcc_gp2_clk_a";
-+=09};
-+
- =09muic_i2c_default: muic-i2c-default {
- =09=09pins =3D "gpio105", "gpio106";
- =09=09function =3D "gpio";
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts b/arch/ar=
-m64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-index 6db5f78ca286..d495d5ae5cc3 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-@@ -81,6 +81,10 @@ touchscreen@20 {
- =09};
- };
-=20
-+&clk_pwm {
-+=09status =3D "okay";
-+};
-+
- &dsi0 {
- =09panel@0 {
- =09=09reg =3D <0>;
-@@ -104,6 +108,10 @@ &dsi0_out {
- =09remote-endpoint =3D <&panel_in>;
- };
-=20
-+&vibrator {
-+=09status =3D "okay";
-+};
-+
- &msmgpio {
- =09panel_vdd3_default: panel-vdd3-default {
- =09=09pins =3D "gpio9";
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts b/arch/ar=
-m64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-index 5fb8ecd0c9ca..c03504ab27b7 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-@@ -50,6 +50,10 @@ touchscreen@48 {
- =09};
- };
-=20
-+&clk_pwm {
-+=09status =3D "okay";
-+};
-+
- &pronto {
- =09iris {
- =09=09compatible =3D "qcom,wcn3660b";
-@@ -61,6 +65,10 @@ &touchkey {
- =09vdd-supply =3D <&reg_touch_key>;
- };
-=20
-+&vibrator {
-+=09status =3D "okay";
-+};
-+
- &msmgpio {
- =09tkey_en_default: tkey-en-default {
- =09=09pins =3D "gpio97";
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi b/a=
-rch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-index 542010fdfb8a..edd24b597a15 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-@@ -26,19 +26,6 @@ muic: extcon@14 {
- =09=09};
- =09};
-=20
--=09reg_motor_vdd: regulator-motor-vdd {
--=09=09compatible =3D "regulator-fixed";
--=09=09regulator-name =3D "motor_vdd";
--=09=09regulator-min-microvolt =3D <3300000>;
--=09=09regulator-max-microvolt =3D <3300000>;
--
--=09=09gpio =3D <&msmgpio 76 GPIO_ACTIVE_HIGH>;
--=09=09enable-active-high;
--
--=09=09pinctrl-names =3D "default";
--=09=09pinctrl-0 =3D <&motor_en_default>;
--=09};
--
- =09reg_touch_key: regulator-touch-key {
- =09=09compatible =3D "regulator-fixed";
- =09=09regulator-name =3D "touch_key";
-@@ -61,20 +48,17 @@ &blsp_i2c2 {
- =09/delete-node/ magnetometer@12;
- };
-=20
-+&reg_motor_vdd {
-+=09regulator-min-microvolt =3D <3300000>;
-+=09regulator-max-microvolt =3D <3300000>;
-+};
-+
- &touchkey {
- =09vcc-supply =3D <&reg_touch_key>;
- =09vdd-supply =3D <&reg_touch_key>;
- };
-=20
- &msmgpio {
--=09motor_en_default: motor-en-default {
--=09=09pins =3D "gpio76";
--=09=09function =3D "gpio";
--
--=09=09drive-strength =3D <2>;
--=09=09bias-disable;
--=09};
--
- =09tkey_en_default: tkey-en-default {
- =09=09pins =3D "gpio97";
- =09=09function =3D "gpio";
---=20
-2.30.2
-
+Best regards,
+Krzysztof
 
