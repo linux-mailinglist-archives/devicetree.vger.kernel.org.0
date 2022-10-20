@@ -2,63 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04378605E57
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 12:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0471C605E64
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:03:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbiJTK7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 06:59:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59406 "EHLO
+        id S231194AbiJTLDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 07:03:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbiJTK7w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 06:59:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9521A2F001;
-        Thu, 20 Oct 2022 03:59:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 323A861AF6;
-        Thu, 20 Oct 2022 10:59:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B3E6C433D6;
-        Thu, 20 Oct 2022 10:59:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666263590;
-        bh=oNTahkkZ6EJ/BED5DDzmzj9s5hQoDekb/BIBiCvXL04=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GAneG2oc8jEpfBXNZcINY8mPfqRun9rCjs2s+ctvZqqTjpqmE3wsnjWWsfjED+HJn
-         fTNMJN/ptqz9FAneZtb5g2EezpCVMhhG7w7rjqYBpT0VixHap1C/j27J8JSRAmRsVr
-         ijran+p0y7xHfvK/YC9dsgDe4lIjS7eidIEIWP5KybDUJ3kvdEsLILNDURjxZJwInc
-         NYlKw/yqMmr69gjxs8e5pQsh2Tdfd3ldFtqLs4QxQVuzNujrjj36T/dlnrWZyefFqn
-         vjlAtOQjbfBDoMaAfhq8Z5YBv2vLFNlU+MFD+Mz24blovOlCMDVlQkGNKFC1qUVm/i
-         dS+zgsDhjXyEQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1olTGy-0002Ib-EE; Thu, 20 Oct 2022 12:59:37 +0200
-Date:   Thu, 20 Oct 2022 12:59:36 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 15/15] phy: qcom-qmp-pcie: add support for sc8280xp
- 4-lane PHYs
-Message-ID: <Y1EqGPc/UzZJmGcz@hovoldconsulting.com>
-References: <20221019113552.22353-1-johan+linaro@kernel.org>
- <20221019113552.22353-16-johan+linaro@kernel.org>
- <2902e7e8-eddf-149c-06fd-86b85d8af326@linaro.org>
- <Y1DuB6hzb3V5Lqdy@hovoldconsulting.com>
- <004a6ab9-690b-db13-08a9-c42d09368814@linaro.org>
+        with ESMTP id S231176AbiJTLDH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:03:07 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE5F61CB519
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 04:03:06 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1olTKE-0004VL-Qb; Thu, 20 Oct 2022 13:02:58 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1olTKD-0003RO-No; Thu, 20 Oct 2022 13:02:57 +0200
+Date:   Thu, 20 Oct 2022 13:02:57 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, festevam@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 03/15] arm64: dts: imx8mp-evk: fix BUCK/LDO voltage
+Message-ID: <20221020110257.5ojjq2j2c53hevnt@pengutronix.de>
+References: <20221020095934.1659449-1-peng.fan@oss.nxp.com>
+ <20221020095934.1659449-4-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <004a6ab9-690b-db13-08a9-c42d09368814@linaro.org>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221020095934.1659449-4-peng.fan@oss.nxp.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,82 +53,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 20, 2022 at 12:32:13PM +0300, Dmitry Baryshkov wrote:
-> On 20/10/2022 09:43, Johan Hovold wrote:
-> > On Thu, Oct 20, 2022 at 06:43:47AM +0300, Dmitry Baryshkov wrote:
-> >> On 19/10/2022 14:35, Johan Hovold wrote:
-> >>> The PCIe2 and PCIe3 controllers and PHYs on SC8280XP can be used in
-> >>> 4-lane mode or as separate controllers and PHYs in 2-lane mode (e.g. as
-> >>> PCIe2A and PCIe2B).
-> >>>
-> >>> Add support for fetching the 4-lane configuration from the TCSR and
-> >>> programming the lane registers of the second port when in 4-lane mode.
-> >>>
-> >>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+Hi Peng,
 
-> > The gen3x4 PHYs can be in either 4-lane or 2-lane mode depending on the
-> > TCSR configuration. Port A is programmed identically in both cases
-> > except for this serdes register, and in 4-lane mode tx/rx also needs
-> > to be programmed for port B.
-> >   
-> >>> +
-> >>>    	/* clock ids to be requested */
-> >>>    	const char * const *clk_list;
-> >>>    	int num_clks;
-> >>> @@ -1518,6 +1527,7 @@ struct qmp_pcie {
-> >>>    	struct device *dev;
-> >>>    
-> >>>    	const struct qmp_phy_cfg *cfg;
-> >>> +	bool tcsr_4ln_config;
-> >>
-> >> As a matter of preference, this seems too specific. I'd rename it to
-> >> split_config or split_4ln_config.
-> > 
-> > I'm afraid those names do not make much sense. This TCSR register
-> > controls whether the PHY is in 4-lane mode (instead of 2-lane mode).
+On 22-10-20, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Well, we just need the info that it's 4-lane. It doesn't really matter 
-> if this information comes from TCSR, DT or e.g. fuses. I'd say that TCSR 
-> is a platform detail. Thus I'm suggesting a more generic name.
-
-No, it's a specific configuration flag for this (and possibly coming
-platforms) to control whether the two PHY ports are used as individual x2
-PHYs or as a combined x4 PHY.
-
-It's not just about number of lanes and can definitely not come from DT
-or somewhere else as that TCSR bit drives a signal that's needed during
-programming.
-
-> >>> +static void qmp_pcie_init_port_b(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
-> >>> +{
-> >>> +	const struct qmp_phy_cfg *cfg = qmp->cfg;
-> >>> +	const struct qmp_pcie_offsets *offs = cfg->offsets;
-> >>> +	void __iomem *tx3, *rx3, *tx4, *rx4;
-> >>> +
-> >>> +	tx3 = qmp->port_b + offs->tx;
-> >>> +	rx3 = qmp->port_b + offs->rx;
-> >>> +	tx4 = qmp->port_b + offs->tx2;
-> >>> +	rx4 = qmp->port_b + offs->rx2;
-> >>> +
-> >>> +	qmp_pcie_configure_lane(tx3, tbls->tx, tbls->tx_num, 1);
-> >>> +	qmp_pcie_configure_lane(rx3, tbls->rx, tbls->rx_num, 1);
-> >>> +
-> >>> +	qmp_pcie_configure_lane(tx4, tbls->tx, tbls->tx_num, 2);
-> >>> +	qmp_pcie_configure_lane(rx4, tbls->rx, tbls->rx_num, 2);
-> >>
-> >> I'd use BIT(2) and BIT(3) here. This would allow one to make a
-> >> difference between programming first pair of lanes and second pair of
-> >> lanes if necessary.
-> > 
-> > No, the tx and tx registers of the second port should be programmed
-> > identically to that of the first port.
+> Per PCA9450C datasheet, the voltage range as below:
+> BUCK1 0.6 - 2.1875
+> BUCK2 0.6 - 2.1875
+> BUCK4 0.6 - 3.4
+> BUCK5 0.6 - 3.4
+> BUCK6 0.6 - 3.4
 > 
-> As you would prefer. As a matter of fact, we do not have CFG_LANES in 
-> the PCIe PHY. Thus I'm surprised that you didn't drop this. I think 
-> CFG_LANES usage is limited to sm8250 USB and combo PHY configurations.
+> LDO1 1.6-1.9, 3.0-3.3
+> LDO2 0.8 – 1.15
+> LDO3 0.8 - 3.3
+> LDO4 0.8 - 3.3
+> LDO5 1.8 - 3.3
+> 
+> So correct them, and also add LDO[2,4]
 
-It's actually also used by SC8280XP so we cannot drop it (see
-sc8280xp_qmp_gen3x2_pcie_tx_tbl) here. Appears to be unused for UFS
-currently, though.
+In the DTS you specify voltage constraints for a specific hardware and
+not the one supported by the PMIC. What the PMIC supports (min/max) is
+specified within the driver.
 
-Johan
+Regards,
+  Marco
+
+> 
+> Fixes: 5497bc2a2bff ("arm64: dts: imx8mp-evk: Add PMIC device")
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 44 +++++++++++++-------
+>  1 file changed, 30 insertions(+), 14 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> index b4c1ef2559f2..a4cddc5a8620 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> @@ -248,8 +248,8 @@ pmic@25 {
+>  		regulators {
+>  			BUCK1 {
+>  				regulator-name = "BUCK1";
+> -				regulator-min-microvolt = <720000>;
+> -				regulator-max-microvolt = <1000000>;
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+>  				regulator-boot-on;
+>  				regulator-always-on;
+>  				regulator-ramp-delay = <3125>;
+> @@ -257,8 +257,8 @@ BUCK1 {
+>  
+>  			reg_arm: BUCK2 {
+>  				regulator-name = "BUCK2";
+> -				regulator-min-microvolt = <720000>;
+> -				regulator-max-microvolt = <1025000>;
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+>  				regulator-boot-on;
+>  				regulator-always-on;
+>  				regulator-ramp-delay = <3125>;
+> @@ -268,40 +268,56 @@ reg_arm: BUCK2 {
+>  
+>  			BUCK4 {
+>  				regulator-name = "BUCK4";
+> -				regulator-min-microvolt = <3000000>;
+> -				regulator-max-microvolt = <3600000>;
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+>  				regulator-boot-on;
+>  				regulator-always-on;
+>  			};
+>  
+>  			BUCK5 {
+>  				regulator-name = "BUCK5";
+> -				regulator-min-microvolt = <1650000>;
+> -				regulator-max-microvolt = <1950000>;
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+>  				regulator-boot-on;
+>  				regulator-always-on;
+>  			};
+>  
+>  			BUCK6 {
+>  				regulator-name = "BUCK6";
+> -				regulator-min-microvolt = <1045000>;
+> -				regulator-max-microvolt = <1155000>;
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+>  				regulator-boot-on;
+>  				regulator-always-on;
+>  			};
+>  
+>  			LDO1 {
+>  				regulator-name = "LDO1";
+> -				regulator-min-microvolt = <1650000>;
+> -				regulator-max-microvolt = <1950000>;
+> +				regulator-min-microvolt = <1600000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			LDO2 {
+> +				regulator-name = "LDO2";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1150000>;
+>  				regulator-boot-on;
+>  				regulator-always-on;
+>  			};
+>  
+>  			LDO3 {
+>  				regulator-name = "LDO3";
+> -				regulator-min-microvolt = <1710000>;
+> -				regulator-max-microvolt = <1890000>;
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4: LDO4 {
+> +				regulator-name = "LDO4";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+>  				regulator-boot-on;
+>  				regulator-always-on;
+>  			};
+> -- 
+> 2.37.1
+> 
+> 
+> 
