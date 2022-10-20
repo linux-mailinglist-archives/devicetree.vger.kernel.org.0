@@ -2,91 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13755606223
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:47:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A7D606231
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:49:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbiJTNrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 09:47:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60384 "EHLO
+        id S229648AbiJTNtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 09:49:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbiJTNrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:47:37 -0400
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1B1E1A653E
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 06:47:36 -0700 (PDT)
-Received: by mail-qv1-xf2e.google.com with SMTP id i9so13548890qvo.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 06:47:36 -0700 (PDT)
+        with ESMTP id S229756AbiJTNtw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:49:52 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C4035B9ED
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 06:49:48 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id r19so13683798qtx.6
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 06:49:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gfoaDvIHm+IYqFg1zUd7jQMQTXkElPWTcNgvljK5gOA=;
-        b=XZcIHHMg1dkhD0LgOjy1iBpji/JY8TckG64n7iRLwcdhSP6mWFjkTQpve5ROlxVx9R
-         z3ZyWgENFeFwmcNNpiAZ1rDDt9xTH7+vV+O6iybz68MR5IU+kPJ431BoBfarnd5CmCIh
-         m75Z0BY/2hll7ZDl3b3Bh4n4rSxv4lRaLGtPBpTKUb2qvOdPzfWtblSDpGZaD0W4Mw2M
-         z9gRZjdMTSNCJwui0gk4X6RdyStQm2ePgb6Lcfcv6MYPB6W0n8bmVA/ntbrAweNTsex0
-         cXFzrKKM9b/6jfDMmxw59mkngKBzHtv3T/Z3jv2aNVReNceJF2AAp2FYF6w8Xx0cCk/X
-         1YpA==
+        bh=eCugKGKgD58NO86j3of1byOLKxlb3YEcJBoQXIxcJt4=;
+        b=V9PnC/7te6W8O4yhJrpQ6/vVx/IPerKdnm+ShwnrGBaK8mF9GIK1bH/Jerk/yg4oyh
+         GHGXZeTZoj4Jl8cFbMjycsP0nmYKS29Dcyo2xSgraUVr9Rn0qep3LFtGjDmVaSjZ6fpE
+         JRHRTsW5aZiL43n1/wGya3Tn9/rwPVkb6lyHZpDEitk5G1+gK7Yq8Y4gOh1iG/XoL1fl
+         DpawdtuA7VCW7pdWAIYPF1Fbk5/KdQO7VAcTVxglbCNkiefAAaN8awsosSI/MKJLMQ8z
+         xUN/98n6cVgOdOFJ3RsvuPHWgWexsyB4KQbUtyEjaAKWTBvNR00DgDHv2gEXRt/dNQZh
+         uMig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gfoaDvIHm+IYqFg1zUd7jQMQTXkElPWTcNgvljK5gOA=;
-        b=TRuN0m3t6F8Ai2PUymgXt/eR0Tay1dAlNJl3UTeV4NARXS5Xbd2zglGtyCxdgIQQEH
-         EniiVRuP3XL6RphVgUI91LwzyAWEowWP2U1878KKmucqYQo5bGgmSKCfUVwIXtW//G3w
-         f1+3eqyZE3Oe7X2n2AX0Fu9MFkdToI4BM+NB6gppkcurf/jNm2VKxysFRD9ZLg1xtgSs
-         +xJiU4GxNHzd+Qlpe3IYmKVPZwkS8iVNaMf3zcrkwpNYCvzA6XCq7FnD2dKckp0LD3g4
-         lP5Bk/cH7QbLjDgie7+lcFe6XBfiXVka95dijezhtu7td4IhW5tUWofnJl3jdpUI+QpQ
-         arww==
-X-Gm-Message-State: ACrzQf2RX0HjtL6Y1I2pE2VCvAnqQrF7RjtP7LIIpsZt4EWnQlrfp6Wu
-        qt/eYfg9xFGsyYocRGj1OwtHyQ==
-X-Google-Smtp-Source: AMsMyM5sOIvVtFC130aKpuulDJA8HBv+YuVvL3HoTNZOe6dhDsx7M2SccxP4xCX5/6e1vhY5fApY1w==
-X-Received: by 2002:a05:6214:c68:b0:4b2:31c5:78bc with SMTP id t8-20020a0562140c6800b004b231c578bcmr11137347qvj.45.1666273656040;
-        Thu, 20 Oct 2022 06:47:36 -0700 (PDT)
+        bh=eCugKGKgD58NO86j3of1byOLKxlb3YEcJBoQXIxcJt4=;
+        b=X6T0qk9KH4OBCEu+ecOkkA6GAeztgMHNoyIT9Hj/oTWEDzoYgzQy5/WMgV36D8mmx4
+         mAzJltYO4MPxfP+fs5nspopVmF5oTOZMFgZJOt/FNL/M6s3UibFbYDf88D72n0wAa9Lu
+         cvgiylCKS4u7M2EwWihWi+fpQJebDbt5eDIfG4QFygRbQpUChn1qRYgP2qJyXU4D5pCE
+         xGdhc3ls76H7mH40Jd2XZ0xbM2NT7SDpZZBUqGy7zeI5Mu9SReeuVi61EPVl3k9LIWy3
+         lzAcv4IYSpHFL+o9t/TghxcR9BIailMQX/UxLGO3/Utd01pmTWxbv5gR5qKIr1aN2UDv
+         A3ZQ==
+X-Gm-Message-State: ACrzQf3zj9LfVtRshbb1xLfcEXijsI+Qia4J4gzuXk9c13QIhxzG/Sdr
+        KwUl3OEpu8HW52auTDHt+6Gcsg==
+X-Google-Smtp-Source: AMsMyM67Fw2Mkn4WMgrITEyn1zHbFcb5pAPqzgXfo5bWNurksVn6OFa85fmESCPVkwOdlypWblzxhg==
+X-Received: by 2002:ac8:5c41:0:b0:39c:d768:128c with SMTP id j1-20020ac85c41000000b0039cd768128cmr11055780qtj.269.1666273787636;
+        Thu, 20 Oct 2022 06:49:47 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id gb11-20020a05622a598b00b00398d83256ddsm6107388qtb.31.2022.10.20.06.47.34
+        by smtp.gmail.com with ESMTPSA id bl9-20020a05620a1a8900b006cf38fd659asm6998281qkb.103.2022.10.20.06.49.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 06:47:35 -0700 (PDT)
-Message-ID: <883c9095-f304-1b8c-2f4f-a2151d8e1d1b@linaro.org>
-Date:   Thu, 20 Oct 2022 09:47:33 -0400
+        Thu, 20 Oct 2022 06:49:47 -0700 (PDT)
+Message-ID: <d495a80f-e101-cc2c-1447-a22e5b5991e5@linaro.org>
+Date:   Thu, 20 Oct 2022 09:49:45 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v2,1/2] dt-bindings: display: mediatek: dpi: Add
- compatible for MediaTek MT8188
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: ti,j721e-system-controller: add
+ compatible strings for other platforms
 Content-Language: en-US
-To:     xinlei.lee@mediatek.com, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <1666266353-16670-1-git-send-email-xinlei.lee@mediatek.com>
- <1666266353-16670-2-git-send-email-xinlei.lee@mediatek.com>
+To:     Matt Ranostay <mranostay@ti.com>, nm@ti.com, vigneshr@ti.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20221020032802.308545-1-mranostay@ti.com>
+ <20221020032802.308545-2-mranostay@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1666266353-16670-2-git-send-email-xinlei.lee@mediatek.com>
+In-Reply-To: <20221020032802.308545-2-mranostay@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/10/2022 07:45, xinlei.lee@mediatek.com wrote:
-> From: xinlei lee <xinlei.lee@mediatek.com>
+On 19/10/2022 23:28, Matt Ranostay wrote:
+> There are multiple J7 based platforms, and the j721e-system-controller
+> shouldn't be define in non-j721e devices device trees.
 > 
-> For MT8188, the vdosys0 only supports 1T1P mode while the vdosys0 supports 2T1P mode in MT8195.
+> This is mainly for clarity; but also useful in case there are future
+> erratas that need to be fixed for a specific platform.
 > 
-> So we need to add dt-binding documentation of dpi for MediaTek MT8188 SoC.
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
