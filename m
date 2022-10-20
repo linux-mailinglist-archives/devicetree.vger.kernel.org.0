@@ -2,104 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DFB16064AA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 17:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 745F66064B6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 17:36:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230217AbiJTPek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 11:34:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38200 "EHLO
+        id S230183AbiJTPgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 11:36:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230353AbiJTPei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 11:34:38 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBECF2A423;
-        Thu, 20 Oct 2022 08:34:30 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29KERMVB021524;
-        Thu, 20 Oct 2022 17:34:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=IqHKS/vCDR7EQlr9WEEoFigCoOnxdq42cEM/JJjFv8E=;
- b=XgdhoTwM8cSZiLtXHGRVFaiqo8PgGfMqCNqy8CmE9MyBoGla2uvR3tLSNksAJRBeRHCh
- F2PchDrgZb2ljEVsGAwjvIuVtMPEpASsqgUAyT1fnXW74jkPymsQD5CRbonbGq+KBKpC
- NCMNa/82N4BLH56okQUANbjKSKx1GfLDvdTRJ40QH6hAUmYHCtym/ZWeW+oA2CRQS0F4
- //WoFvpR3lCzKadk7YbhpAD84ob+zP5mLd2WsDwM974DUBigr1bT0kLzfbi5XtaXqrLF
- bABnfhMof2Ql2BEgKChJhgJrGmkB3VYDL4dM4EBp2idqfqhzL5mHxZ7pgk88rIIC/5ou Wg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3k7j9nc1b9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 20 Oct 2022 17:34:14 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6EF1F10002A;
-        Thu, 20 Oct 2022 17:34:08 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6A727237D8A;
-        Thu, 20 Oct 2022 17:34:08 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 20 Oct
- 2022 17:34:08 +0200
-Message-ID: <54d0a3cb-3a48-1336-ddda-4fb0e1a20df6@foss.st.com>
-Date:   Thu, 20 Oct 2022 17:34:07 +0200
+        with ESMTP id S230141AbiJTPgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 11:36:37 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D58D01DB25D
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 08:36:35 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id z30so99308qkz.13
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 08:36:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=I8eoY0I5X2Sipw0ooGhphn3tjUk+gvKWNqo8fyMAjhM=;
+        b=eic3GDq4OJUmSYYvHL0oWXDL9lVOw11tLOJKO3ef1YNzKereUxNtFux4TdZPd3NZvp
+         uNy2DRDUzs5T+18K/CnvJnbEHPou10yv3lcXYX++tpwUOhvgDF608RroFgjjzLqGfxia
+         eMWg4eNHeOsdxpSkJCB1L26xljap9hADA6WC+4pcWlzgYFH8U6KDFDWwBkZszr2RU7TC
+         cpiwaEtOVn25gwDzAC7s0CsWAKkSJeqjvSo3jWab/H5Jl9HIWahxceQKBy1BN2HLjJB5
+         q+w4yqYgaD9KZH3068nlNXj4gBcV6lzbrlYzDYW+4yPB2TjTg18yvcHCPcHpxioNYFXc
+         pCrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I8eoY0I5X2Sipw0ooGhphn3tjUk+gvKWNqo8fyMAjhM=;
+        b=yKpxeJRU/bnwsfpzuQZoAuCnzHLyChoraSe41CWT5/qYmIAEzi48FUmRTgWJAFo5Uz
+         K2kCtQRLfGM8fQeO35NCP8dKRndOK6FOXEVPRpOVtaovUrYF+e+RSR7wCezUFEJPCvvM
+         gDHx6asjkv8gUW6b3MIAfFCwO/rugC1md/CPq8xhiamNFnmOo+zoIs2CaD0HU9vFAFF2
+         /E5B9ewy0HK8J2jR/p/jun9PhPAF/AZIPWjkes7x2a62NDydpaFrRLmZsrSYW9n92RoP
+         jmxKwzCNS4QYKqWEBh5iKZGLwHitVVAJXMCSbe/hJF3pJGrtivsYL0zcGMF9dj94XKvR
+         Gi1A==
+X-Gm-Message-State: ACrzQf2XRBulkYr9Z32r2zeO4Ote06D7WFkcmhihv74xUj7VFM5SrmLm
+        fJoo2qIMEGch2aCKY2tUtGvoJA==
+X-Google-Smtp-Source: AMsMyM4VSBXCeZsMsTw/Ws3ddbjakxegDhi66swi/1jOVMiIPiNapMwXyWu2+hA7sRlGSn4PLy8h5A==
+X-Received: by 2002:a37:f517:0:b0:6ea:11bd:fdd6 with SMTP id l23-20020a37f517000000b006ea11bdfdd6mr9408107qkk.447.1666280194999;
+        Thu, 20 Oct 2022 08:36:34 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id k11-20020a05620a414b00b006e99290e83fsm7682843qko.107.2022.10.20.08.36.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 08:36:34 -0700 (PDT)
+Message-ID: <22c39fd8-e98a-a091-f2c8-12a235f7be8c@linaro.org>
+Date:   Thu, 20 Oct 2022 11:36:32 -0400
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] ARM: dts: stm32: add sdmmc cd-gpios for STM32MP135F-DK
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v6 01/10] dt-bindings: pwm: Document Synopsys DesignWare
+ snps,pwm-dw-apb-timers-pwm2
 Content-Language: en-US
-To:     Yann Gautier <yann.gautier@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220921160334.3227138-1-yann.gautier@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220921160334.3227138-1-yann.gautier@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+References: <20221020151610.59443-1-ben.dooks@sifive.com>
+ <20221020151610.59443-2-ben.dooks@sifive.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221020151610.59443-2-ben.dooks@sifive.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-20_07,2022-10-20_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yann
-
-On 9/21/22 18:03, Yann Gautier wrote:
-> On STM32MP135F-DK, the SD card detect GPIO is GPIOH4.
+On 20/10/2022 11:16, Ben Dooks wrote:
+> Add documentation for the bindings for Synopsys' DesignWare PWM block
+> as we will be adding DT/platform support to the Linux driver soon.
 > 
-> Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
+> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
 > ---
->   arch/arm/boot/dts/stm32mp135f-dk.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
-> index e6b8ffd332c7..52f86596ce12 100644
-> --- a/arch/arm/boot/dts/stm32mp135f-dk.dts
-> +++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
-> @@ -82,7 +82,7 @@ &sdmmc1 {
->   	pinctrl-0 = <&sdmmc1_b4_pins_a &sdmmc1_clk_pins_a>;
->   	pinctrl-1 = <&sdmmc1_b4_od_pins_a &sdmmc1_clk_pins_a>;
->   	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-> -	broken-cd;
-> +	cd-gpios = <&gpioh 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
->   	disable-wp;
->   	st,neg-edge;
->   	bus-width = <4>;
+> v5:
+>  - fixed order of properties
+>  - corrected clock to two items
 
-Applied on stm32-next.
+This is a friendly reminder during the review process.
 
-Thanks.
-Alex
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+If a tag was not added on purpose, please state why and what changed.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
+
