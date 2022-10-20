@@ -2,172 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2312160554C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 04:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 680A6605554
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 04:11:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230472AbiJTCFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 22:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50506 "EHLO
+        id S229926AbiJTCLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 22:11:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229916AbiJTCFh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 22:05:37 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00670129756;
-        Wed, 19 Oct 2022 19:05:28 -0700 (PDT)
-X-UUID: 20feeda39a5942278c66c40810c63f14-20221020
+        with ESMTP id S229775AbiJTCLE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 22:11:04 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB20164BEC;
+        Wed, 19 Oct 2022 19:11:02 -0700 (PDT)
+X-UUID: 98f5b9142ff349de9ac6a3e910a87808-20221020
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=VO5xvhLVQhzMCqtvS6hNx0N5unp8zokjIFS9QG53Czc=;
-        b=cgtZ90yVJBMD/NNXA2lDVvu8VmY3DDNey99o0ywOVB3jM7h7kyW9ZAu801iaoRGWKDv+fiXiwcTo1NQdFtjrJETmclFy3Xeo+NGSqGNDiyEwEOEnmlTA0xXn8XQpApkM5oaG1LBCbj5EW5XAzxomG5b5S0g0JES6Hm6P/oX+S+4=;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=JaIR81W7uRC3RHrO6DoWqaK6YpTRAbe3E0L77VhfzRA=;
+        b=GY5OXJHiGC3wCbJ/uUXv0sru4cUlpNZz0lQ8EctPjyqqOoph1SPRm1UOgXl/j2tWQCH2oopP02XnVFaJWmm8LvsjhrvglZiFSD3H5wWtNDqhSS2Tg3wTrEJEj6OA79RBjUtE2tF6tk9eHWZ4m2ZSBlGM4WefNpG+u6+k+SP3JFg=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:bbd6fbd9-774d-42bd-8490-38af96895deb,IP:0,U
+X-CID-O-INFO: VERSION:1.1.12,REQID:4288b337-0a83-4b1b-a778-9d389e66fb46,IP:0,U
         RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
         release,TS:0
-X-CID-META: VersionHash:62cd327,CLOUDID:26315ba4-ebb2-41a8-a87c-97702aaf2e20,B
+X-CID-META: VersionHash:62cd327,CLOUDID:0c6f5ba4-ebb2-41a8-a87c-97702aaf2e20,B
         ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 20feeda39a5942278c66c40810c63f14-20221020
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 98f5b9142ff349de9ac6a3e910a87808-20221020
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 345631413; Thu, 20 Oct 2022 10:05:22 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+        with ESMTP id 1432779166; Thu, 20 Oct 2022 10:10:57 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 20 Oct 2022 10:05:21 +0800
+ 15.2.792.15; Thu, 20 Oct 2022 10:10:56 +0800
 Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 20 Oct 2022 10:05:21 +0800
-Message-ID: <d4a6eb562dfd06f616267be6beaf9c37d88cff37.camel@mediatek.com>
-Subject: Re: [PATCH v2] arm64: dts: mt8195: Add Ethernet controller
-From:   Biao Huang <biao.huang@mediatek.com>
+ Transport; Thu, 20 Oct 2022 10:10:55 +0800
+Message-ID: <ccb830693f467b59d829c7929ea3b47b2d4c029f.camel@mediatek.com>
+Subject: Re: [PATCH v1 2/3] arm64: dts: mt8195: Add pcie and pcie phy nodes
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
+CC:     <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <macpaul.lin@mediatek.com>
-Date:   Thu, 20 Oct 2022 10:05:20 +0800
-In-Reply-To: <cf0d4a88-16d0-bb10-8402-30d60feafa1b@collabora.com>
-References: <20221019091515.21878-1-biao.huang@mediatek.com>
-         <20221019091515.21878-2-biao.huang@mediatek.com>
-         <cf0d4a88-16d0-bb10-8402-30d60feafa1b@collabora.com>
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 20 Oct 2022 10:10:55 +0800
+In-Reply-To: <c30fbc60-bcdf-71f5-0db7-bd9bb27ddd37@collabora.com>
+References: <20221017070858.13902-1-tinghan.shen@mediatek.com>
+         <20221017070858.13902-3-tinghan.shen@mediatek.com>
+         <c30fbc60-bcdf-71f5-0db7-bd9bb27ddd37@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 X-MTK:  N
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Angelo,
-	Thanks for your comments!
+Hi Angelo,
 
-On Wed, 2022-10-19 at 15:57 +0200, AngeloGioacchino Del Regno wrote:
-> Il 19/10/22 11:15, Biao Huang ha scritto:
-> > Add Ethernet controller node for mt8195.
+Thanks for your review.
+
+On Wed, 2022-10-19 at 10:55 +0200, AngeloGioacchino Del Regno wrote:
+> Il 17/10/22 09:08, Tinghan Shen ha scritto:
+> > Add pcie and pcie phy nodes for mt8195.
 > > 
-> > Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 > > ---
-> >   arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 88
-> > ++++++++++++++++++++
-> >   arch/arm64/boot/dts/mediatek/mt8195.dtsi     | 86
-> > +++++++++++++++++++
-> >   2 files changed, 174 insertions(+)
+> >   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 143
+> > +++++++++++++++++++++++
+> >   1 file changed, 143 insertions(+)
 > > 
-> 
-> ..snip..
-> 
 > > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
 > > b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > index 905d1a90b406..7f7d9f8e72ee 100644
+> > index d03f0c2b8233..903e92d6156f 100644
 > > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
 > > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > @@ -1042,6 +1042,92 @@ spis1: spi@1101e000 {
+> > @@ -1182,6 +1182,104 @@
 > >   			status = "disabled";
 > >   		};
 > >   
-> > +		stmmac_axi_setup: stmmac-axi-config {
-> 
-> Didn't you get a warning during dtb build for these ones?
-> And if you did, why have you ignored it? :-)
-I checked some dts, they keep stmmac-axi-config outside ethernet node,
-so I keep the similar way with them, maybe that's old style.
-> 
-> > +			snps,wr_osr_lmt = <0x7>;
-> > +			snps,rd_osr_lmt = <0x7>;
-> > +			snps,blen = <0 0 0 0 16 8 4>;
-> > +		};
-> > +
+> > +		pcie0: pcie@112f0000 {
+> > +			compatible = "mediatek,mt8195-pcie",
+> > +				     "mediatek,mt8192-pcie";
 > 
 > ..snip..
 > 
 > > +
-> > +		eth: ethernet@11021000 {
-> > +			compatible = "mediatek,mt8195-gmac",
-> > "snps,dwmac-5.10a";
-> > +			reg = <0 0x11021000 0 0x4000>;
-> > +			interrupts = <GIC_SPI 716 IRQ_TYPE_LEVEL_HIGH
-> > 0>;
-> > +			interrupt-names = "macirq";
-> > +			clock-names = "axi",
-> > +				      "apb",
-> > +				      "mac_cg",
-> > +				      "mac_main",
-> > +				      "ptp_ref",
-> > +				      "rmii_internal";
-> > +			clocks = <&pericfg_ao CLK_PERI_AO_ETHERNET>,
-> > +				 <&pericfg_ao
-> > CLK_PERI_AO_ETHERNET_BUS>,
-> > +				 <&pericfg_ao
-> > CLK_PERI_AO_ETHERNET_MAC>,
-> > +				 <&topckgen CLK_TOP_SNPS_ETH_250M>,
-> > +				 <&topckgen
-> > CLK_TOP_SNPS_ETH_62P4M_PTP>,
-> > +				 <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>;
-> > +			assigned-clocks = <&topckgen
-> > CLK_TOP_SNPS_ETH_250M>,
-> > +					  <&topckgen
-> > CLK_TOP_SNPS_ETH_62P4M_PTP>,
-> > +					  <&topckgen
-> > CLK_TOP_SNPS_ETH_50M_RMII>;
-> > +			assigned-clock-parents = <&topckgen
-> > CLK_TOP_ETHPLL_D2>,
-> > +						 <&topckgen
-> > CLK_TOP_ETHPLL_D8>,
-> > +						 <&topckgen
-> > CLK_TOP_ETHPLL_D10>;
+> > +			phys = <&pciephy>;
+> > +			phy-names = "pcie-phy";
+> > +
 > > +			power-domains = <&spm
-> > MT8195_POWER_DOMAIN_ETHER>;
-> > +			mediatek,pericfg = <&infracfg_ao>;
-> > +			snps,axi-config = <&stmmac_axi_setup>;
-> > +			snps,mtl-rx-config = <&mtl_rx_setup>;
-> > +			snps,mtl-tx-config = <&mtl_tx_setup>;
-> > +			snps,txpbl = <16>;
-> > +			snps,rxpbl = <16>;
-> > +			snps,clk-csr = <0>;
-> > +			status = "disabled";
+> > MT8195_POWER_DOMAIN_PCIE_MAC_P0>;
 > 
-> Please move stmmac-axi-config, rx-queues-config, tx-queues-config
-> here as a subnode
-> or in the root node, respecting address/size cells being zero.
-> Of course adding that here means also specifying {address,size}-cells 
-> = <0> in this
-> ethernet node.
-OK, I'll move them to ethernet node, and add address/size-cells in
-thernet node.
+> You're missing the resets:
+> 
+> 			resets = <&infracfg_ao
+> MT8195_INFRA_RST2_PCIE_P0_SWRST>;
+> 			reset-names = "mac";
+> 
+> > +
+> > +			#interrupt-cells = <1>;
+> > +			interrupt-map-mask = <0 0 0 7>;
+> 
+> ..snip..
+> 
+> > +		};
+> > +
+> > +		pcie1: pcie@112f8000 {
+> > +			compatible = "mediatek,mt8195-pcie",
+> > +				     "mediatek,mt8192-pcie";
+> 
+> ..snip..
+> 
+> > +			power-domains = <&spm
+> > MT8195_POWER_DOMAIN_PCIE_MAC_P1>;
+> 
+> Here too:
+> 			resets = <&infracfg_ao
+> MT8195_INFRA_RST2_USBSIF_P1_SWRST>,
+
+Reset the combo-phy in PCIe driver will cause side effect on USB2 port,
+so this reset cannot be added.
+
+We will fix others in the next version.
+
+Thanks.
+> 				 <&infracfg_ao
+> MT8195_INFRA_RST2_PCIE_P1_SWRST>;
+> 			reset-names = "phy", "mac";
+> 
+> > +
+> > +			#interrupt-cells = <1>;
+> 
+> ..snip..
+> 
+> > @@ -1241,6 +1339,34 @@
+> >   				reg = <0x189 0x2>;
+> >   				bits = <7 5>;
+> >   			};
+> > +			pciephy_rx_ln1: pciephy-rx-ln1@190 {
+> > +				reg = <0x190 0x1>;
+> > +				bits = <0 4>;
+> > +			};
+> > +			pciephy_tx_ln1_nmos: pciephy-tx-ln1-nmos@190 {
+> 
+> Please run dtbs_check and try to build the kernel before pushing
+> commits upstream.
+> This will give you a not-so-nice warning and that shall not happen.
+> 
+> You can solve it by naming these nodes like:
+> pciephy-rx-ln1@190,1
+> pciephy-tx-ln1-nmos@190,2
+> 
+> ...etc
 > 
 > Regards,
 > Angelo
-Best Regards!
-Biao
+> 
+> 
 
