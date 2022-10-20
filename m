@@ -2,83 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA25560602B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 14:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E79606034
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 14:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229886AbiJTM3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 08:29:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36274 "EHLO
+        id S229988AbiJTMai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 08:30:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbiJTM3G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 08:29:06 -0400
+        with ESMTP id S229874AbiJTMag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 08:30:36 -0400
 Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB48196EE3
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 05:29:05 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id f22so13543633qto.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 05:29:05 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77E5017A025
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 05:30:33 -0700 (PDT)
+Received: by mail-qt1-x832.google.com with SMTP id f22so13546016qto.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 05:30:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nIpMO9a3TMJ3e31kasrT8my9ncSnz9zJEo18eTxZYyk=;
-        b=ukSxzKBcV+DFRtLpuVpDfi/17STUzj4EVb1xaaIsvxFtW70JA63QhdGU8cVdXKYXbW
-         4uSeM66NIMpIFMlLyn/4QSZMfEqHC7MtkhjpMm+zlmJhmlrxm5x+iPESwQTo83yM0EWh
-         3mgtr5CY+DaXe1w+nXPBufcaXeV7tTuFNZmCJ7X7TlakvYXTGuODiZyAMof8SW6FvBKX
-         b5ffLVLe1Xq+oG+Rv5ohaCPkkC6gWsjtC3M1lyjHXc1ZrB85DlFS9C/9RAHlge9htAty
-         SvTf+7NuYi72OGXw8spYtGWlBuWJ9ZsnQQwAAaGsBHWExVDp9+K46unrAqYmjrcpxVdj
-         x2eA==
+        bh=nwFzTfmaI4aoP9ub3l+xxk91QEvLlkdEzVB8aFhbF8M=;
+        b=GOpQigYwwWrtTc0MsrR0sgADT2xbbze/Spvqf1mCIvK0nTB7VqU254sOkVyTgaaQ6g
+         XnOfwJpzvufp/3VqiIohSnhyU1v1U7x3IHjbJ5uz4AnMU3Mmu0L1zvLILTti72/xnzyP
+         H976nafkHoX6i9s2HduXhGKo6FM9XrbP69tgduk9JzsZcXKnVk4lRh/teVGhxTYG/fxb
+         XOIfr8v8vR4B4/b8b7kII0MK/IVJqEFQUbJ1SIB5ZFqUQ7HysEw7/+ZDRa7CmFm9N+4J
+         3BEz5sHxO6CyS94uCwcponIV8DyZhZN3STu7lStGisyoQRS5LSVSGXDkcvdFwEmLUk+u
+         Q1og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nIpMO9a3TMJ3e31kasrT8my9ncSnz9zJEo18eTxZYyk=;
-        b=oPfeYK3wJV/DkQbHl7S4R6OlAsxFs0PP41nRi0P2Y80xJ6402YKcefRlbiTTo6AxU/
-         I2Z3mrVxWT9ablcDJNEEoxpKU6bSJSjisSgTjKhwZCDi2m8TPv11dH7ZBVCn0oAvjtfr
-         m5E+0lELFhKa06JQKgo7JuLSLSOZC9eANuM8DQusLEbedBhldMK2lQew4ayopLhKPj3g
-         UFDTQdb7aMEq7YwYLNmoZZAaVufhw92YyEb46MzSLKep/vN8tPcVj0e/43xxCMO4Y4Jw
-         thCDMT+kw+fzaFEUpzQdql4/JBdR4nCtvOUkXpHplcYKp2SvTNSlicYJucE8V7zHuMUQ
-         qX5A==
-X-Gm-Message-State: ACrzQf3B7N4dcnKCF6UtWFEnyMYeW075lFXqHPLtUvHfcLiXXuRZDEuA
-        DVJD0odrYKyh6Vm1ufSexbDQ6w==
-X-Google-Smtp-Source: AMsMyM6iTZOiG6wgWBnMxFnwJfs0K9Tg8YX2G44KHiB6c0TvGF3AHGkYhfW5BZM2LlbYcCAlE2QePQ==
-X-Received: by 2002:a05:622a:312:b0:39c:dc09:49e3 with SMTP id q18-20020a05622a031200b0039cdc0949e3mr10568430qtw.4.1666268944557;
-        Thu, 20 Oct 2022 05:29:04 -0700 (PDT)
+        bh=nwFzTfmaI4aoP9ub3l+xxk91QEvLlkdEzVB8aFhbF8M=;
+        b=i+BTIz2Sgpkhou0ISh3LsaFO6ZQeRhKtbSB+emuFELbR9b9Le+j4Nja8bkJSLA9Qn4
+         dQfE8X8F0FztwN5PTF+f5q/P5qW6USXq3yGBm8JFSz/mWr2iP8V8sEOzXLC9sMobhhwD
+         U4WtVkrKNtXWLQ9gpWlFDF4yZzrfHIBmqgE/cMcosifeDLG9oDliyRGkLSssbyY9VUWr
+         2EhwbjzgugxAo0KuaXeuaAsOVp4yt2ikg5tqMBjTTnUo36rW3pZpVQNunbHZiVkpbsba
+         k7hnzuEbXUJfw/SZVS9RZrdIXWYT64reu6j+vD/DLMuYfdYxISV17XQIcAex4xprUWS5
+         hLGQ==
+X-Gm-Message-State: ACrzQf2TLZwH1Q/Ap7MoBMDHNaLdFerWF/fX6GzhxTz0dVGStITdU14A
+        HrsyT7J4rIxR9tS4lKaKwR2dMw==
+X-Google-Smtp-Source: AMsMyM5F9WV0Thpuu3h2+g2DvPdwv/u/qD/2u0zviGnfaQQrCmaqtd0WBCOF7oX5IGMKR+rIqDSxOQ==
+X-Received: by 2002:a05:622a:214:b0:39c:de63:2580 with SMTP id b20-20020a05622a021400b0039cde632580mr10656012qtx.31.1666269032574;
+        Thu, 20 Oct 2022 05:30:32 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id j12-20020a05620a288c00b006b640efe6dasm7179583qkp.132.2022.10.20.05.29.02
+        by smtp.gmail.com with ESMTPSA id s7-20020a05620a254700b006af0ce13499sm7259659qko.115.2022.10.20.05.30.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 05:29:03 -0700 (PDT)
-Message-ID: <972db8bd-e45a-47b1-c2c4-008c279c6b59@linaro.org>
-Date:   Thu, 20 Oct 2022 08:29:02 -0400
+        Thu, 20 Oct 2022 05:30:31 -0700 (PDT)
+Message-ID: <5081381c-093c-5a2b-6e17-47733a3b12e7@linaro.org>
+Date:   Thu, 20 Oct 2022 08:30:28 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: qcom: Add SC8280XP/SA8540P
- interconnects
+Subject: Re: [PATCH v4 1/3] dt-bindings: net: renesas: Document Renesas
+ Ethernet Switch
 Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221017112449.2146-1-johan+linaro@kernel.org>
- <20221017112449.2146-2-johan+linaro@kernel.org>
- <010b6de2-5df6-77c9-2f04-43f2edc89ff2@linaro.org>
- <Y1D/Vaa/3zKP4Cxj@hovoldconsulting.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20221019083518.933070-1-yoshihiro.shimoda.uh@renesas.com>
+ <20221019083518.933070-2-yoshihiro.shimoda.uh@renesas.com>
+ <11d6f585-bd9f-246f-29e0-719f0551e6c9@linaro.org>
+ <TYBPR01MB53418699D3420682CB8B3F31D82A9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y1D/Vaa/3zKP4Cxj@hovoldconsulting.com>
+In-Reply-To: <TYBPR01MB53418699D3420682CB8B3F31D82A9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,111 +87,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/10/2022 03:57, Johan Hovold wrote:
-> On Wed, Oct 19, 2022 at 10:37:31AM -0400, Krzysztof Kozlowski wrote:
->> On 17/10/2022 07:24, Johan Hovold wrote:
->>> Add the missing SC8280XP/SA8540P "pcie-mem" and "cpu-pcie" interconnect
->>> paths to the bindings.
+On 19/10/2022 21:31, Yoshihiro Shimoda wrote:
+> Hi Krzysztof,
+> 
+>> From: Krzysztof Kozlowski, Sent: Wednesday, October 19, 2022 9:38 PM
+>>
+>> On 19/10/2022 04:35, Yoshihiro Shimoda wrote:
+>>> Document Renesas Etherent Switch for R-Car S4-8 (r8a779f0).
 >>>
->>> Fixes: 76d777ae045e ("dt-bindings: PCI: qcom: Add SC8280XP to binding")
->>> Fixes: 76c4207f4085 ("dt-bindings: PCI: qcom: Add SA8540P to binding")
->>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>> ---
->>>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 25 +++++++++++++++++++
->>>  1 file changed, 25 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> index 22a2aac4c23f..a55434f95edd 100644
->>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> @@ -62,6 +62,12 @@ properties:
->>>      minItems: 3
->>>      maxItems: 12
->>>  
->>> +  interconnects:
->>> +    maxItems: 2
+>>> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+> 
+> Thank you for your review!
+> 
+>>> +  ethernet-ports:
+>>> +    type: object
+>>> +    additionalProperties: false
 >>> +
->>> +  interconnect-names:
->>> +    maxItems: 2
+>>> +    properties:
+>>> +      '#address-cells':
+>>> +        description: Port number of ETHA (TSNA).
+>>> +        const: 1
 >>> +
->>>    resets:
->>>      minItems: 1
->>>      maxItems: 12
->>> @@ -629,6 +635,25 @@ allOf:
->>>            items:
->>>              - const: pci # PCIe core reset
->>>  
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - qcom,pcie-sa8540p
->>> +              - qcom,pcie-sc8280xp
->>> +    then:
->>> +      properties:
->>> +        interconnects:
->>> +          maxItems: 2
+>>> +      '#size-cells':
+>>> +        const: 0
+>>> +
+>>> +    patternProperties:
+>>> +      "^port@[0-9a-f]+$":
+>>> +        type: object
+>>> +        $ref: /schemas/net/ethernet-controller.yaml#
+>>> +        unevaluatedProperties: false
+>>> +
+>>> +        properties:
+>>> +          reg:
+>>> +            description:
+>>> +              Port number of ETHA (TSNA).
+>>> +
+>>> +          phy-handle: true
+>>> +
+>>> +          phy-mode: true
 >>
->> No need for this.
+>> Why do you need these two properties here? They are provided by
+>> ethernet-controller, so I suggest to drop them.
 >>
->>> +        interconnect-names:
->>> +          items:
->>> +            - const: pcie-mem
->>> +            - const: cpu-pcie
->>> +      required:
->>> +        - interconnects
->>> +        - interconnect-names
->>
->> else:
->>   ??
->>
->> Otherwise, you allow any names for other variants.
+>> I already commented about it in v3.
 > 
-> Are you suggesting something like moving the names to the common
-> constraints for now:
-> 
->   interconnects:
->     maxItems: 2
-> 
->   interconnect-names:
->     items:
->       - const: pcie-mem
->       - const: cpu-pcie
-> 
-> and then in the allOf:
-> 
->   - if:
->       properties:
->         compatible:
->           contains:
->             enum:
->               - qcom,pcie-sa8540p
->               - qcom,pcie-sc8280xp
->     then:
->       required:
->         - interconnects
->         - interconnect-names
->     else:
->       properties:
->         interconnects: false
->         interconnect-names: false
-> 
-> This way we'd catch anyone adding interconnects to a DTS without first
-> updating the bindings, but it also seems to go against the idea of
-> bindings fully describing the hardware by saying that no other platforms
-> have interconnects (when they actually do even if we don't describe it
-> just yet).
+> I'm sorry. I misunderstood you comments. I thought I should drop
+> "description" on these properties and "enum" on the phy-mode.
+> I'll drop them on v5.
 
-You can add a comment to the else like "TODO: Not described yet". I
-would prefer to have specific but incomplete bindings, instead of loose
-one which later might cause people adding whatever names they like.
+If the enum on phy-mode is different than what ethernet-controller.yaml
+brings, then please keep it.
 
-> Or should we do the above but without the else clause to have some
-> constraints in place on the names at least?
+Just remove everything which is already provided by
+ethernet-controller.yaml (and does not differ).
 
-This would work as well if you think the names are applicable for other
-devices.
+> 
 
 Best regards,
 Krzysztof
