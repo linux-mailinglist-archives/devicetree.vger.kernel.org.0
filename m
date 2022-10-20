@@ -2,69 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 680A6605554
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 04:11:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F41F8605572
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 04:23:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbiJTCLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 22:11:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32968 "EHLO
+        id S229736AbiJTCXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 22:23:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbiJTCLE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 22:11:04 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB20164BEC;
-        Wed, 19 Oct 2022 19:11:02 -0700 (PDT)
-X-UUID: 98f5b9142ff349de9ac6a3e910a87808-20221020
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=JaIR81W7uRC3RHrO6DoWqaK6YpTRAbe3E0L77VhfzRA=;
-        b=GY5OXJHiGC3wCbJ/uUXv0sru4cUlpNZz0lQ8EctPjyqqOoph1SPRm1UOgXl/j2tWQCH2oopP02XnVFaJWmm8LvsjhrvglZiFSD3H5wWtNDqhSS2Tg3wTrEJEj6OA79RBjUtE2tF6tk9eHWZ4m2ZSBlGM4WefNpG+u6+k+SP3JFg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:4288b337-0a83-4b1b-a778-9d389e66fb46,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:62cd327,CLOUDID:0c6f5ba4-ebb2-41a8-a87c-97702aaf2e20,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 98f5b9142ff349de9ac6a3e910a87808-20221020
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1432779166; Thu, 20 Oct 2022 10:10:57 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 20 Oct 2022 10:10:56 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 20 Oct 2022 10:10:55 +0800
-Message-ID: <ccb830693f467b59d829c7929ea3b47b2d4c029f.camel@mediatek.com>
-Subject: Re: [PATCH v1 2/3] arm64: dts: mt8195: Add pcie and pcie phy nodes
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 20 Oct 2022 10:10:55 +0800
-In-Reply-To: <c30fbc60-bcdf-71f5-0db7-bd9bb27ddd37@collabora.com>
-References: <20221017070858.13902-1-tinghan.shen@mediatek.com>
-         <20221017070858.13902-3-tinghan.shen@mediatek.com>
-         <c30fbc60-bcdf-71f5-0db7-bd9bb27ddd37@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229569AbiJTCXb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 22:23:31 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 030001D5E25;
+        Wed, 19 Oct 2022 19:23:31 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id a24so12914207qto.10;
+        Wed, 19 Oct 2022 19:23:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9lB5arQHffZuEw1/gufkq+xRyVa+H5y2gBqdt079YS8=;
+        b=afmDpeKvZHQ8ZP3dazfMRPJO3k3uVwvPrd5HuNSMdSZLdpYlO+rzSoIT+287dLPkLw
+         LrOSTJ5Z0Z9121Z59cekYYH4DVkmBjnt7XLTQzFQbbH3tgZLzss8+NTGZ3/varM+dQLC
+         X2+ih+J4npIh2mug1ZjWx4xwgX3fpn2kwcXJpiCRWVzPmKANoXe+PdFtjIkWD8Zo5cpa
+         2YydRcOD67QKodCKRHcK9KDQfgLAJjFiq2FpUVdzURO4JemsOWlAFZCXYufXrabN7NOy
+         Uc7Rx2O4Hyj4795RBjDVxqsDKZLngG6YzukMBuFCjTWQ2TZijCZkHW798NYoKOc0UIBX
+         kOXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9lB5arQHffZuEw1/gufkq+xRyVa+H5y2gBqdt079YS8=;
+        b=AsMCOkrophgKIam7Q3pWmilIwq+EQQ/iYCD/GNoWReA7bAWj9XR+Z+NDFoSYqOX5Yw
+         ofR1y823D8S3u9dGVrbUp0dzvpxdRsNeL299Q7RRNAHRRJkJnVYwNN7sx6+FpgwEHJlj
+         t96mWy6vKvOAjsELbYpts/EmHr7GmrlDOv/beHfnvnji/mqWYqyoSYKzaDM9zeWIK4nF
+         ihkUSlzLtfv+T88DbGzxmHtsfNis0fSwiZk9A3AKofFQZ1DlycZnhQkYeeWZH2vuNNBF
+         scKPHzwK6dmF6yHCn3qUd+bI2BBiQb70gnTA0NAXjsB/EGrXjrKwHdwvcvYA3IJyzYAW
+         6KRg==
+X-Gm-Message-State: ACrzQf26sjgm0t1Z4wZBKwDVp/dyjCLJYRWFxIO9zAUOCO7cmu4rrw0q
+        3af5TUyjgffzVrVRlSaA3FwdoaidHss=
+X-Google-Smtp-Source: AMsMyM61M+FGhHV7uc+pRXMllfs3Dnt+txsGR4IMmW8EKQCIRiu3qgotTtLMcIdpC6YTRnh1HywOPA==
+X-Received: by 2002:ac8:7d81:0:b0:39c:d6ad:cce9 with SMTP id c1-20020ac87d81000000b0039cd6adcce9mr9414490qtd.81.1666232610039;
+        Wed, 19 Oct 2022 19:23:30 -0700 (PDT)
+Received: from [192.168.1.102] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id r8-20020a05620a298800b006be8713f742sm6568745qkp.38.2022.10.19.19.23.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Oct 2022 19:23:29 -0700 (PDT)
+Message-ID: <ccd7f1fc-b2e2-7acf-d7fd-85191564603a@gmail.com>
+Date:   Wed, 19 Oct 2022 19:23:26 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v4 2/3] net: ethernet: renesas: Add Ethernet Switch driver
+Content-Language: en-US
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Andrew Lunn <andrew@lunn.ch>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20221019083518.933070-1-yoshihiro.shimoda.uh@renesas.com>
+ <20221019083518.933070-3-yoshihiro.shimoda.uh@renesas.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20221019083518.933070-3-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,107 +79,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
 
-Thanks for your review.
 
-On Wed, 2022-10-19 at 10:55 +0200, AngeloGioacchino Del Regno wrote:
-> Il 17/10/22 09:08, Tinghan Shen ha scritto:
-> > Add pcie and pcie phy nodes for mt8195.
-> > 
-> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 143
-> > +++++++++++++++++++++++
-> >   1 file changed, 143 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > index d03f0c2b8233..903e92d6156f 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > @@ -1182,6 +1182,104 @@
-> >   			status = "disabled";
-> >   		};
-> >   
-> > +		pcie0: pcie@112f0000 {
-> > +			compatible = "mediatek,mt8195-pcie",
-> > +				     "mediatek,mt8192-pcie";
+On 10/19/2022 1:35 AM, Yoshihiro Shimoda wrote:
+> Add Renesas Ethernet Switch driver for R-Car S4-8 to be used as an
+> ethernet controller.
 > 
-> ..snip..
-> 
-> > +
-> > +			phys = <&pciephy>;
-> > +			phy-names = "pcie-phy";
-> > +
-> > +			power-domains = <&spm
-> > MT8195_POWER_DOMAIN_PCIE_MAC_P0>;
-> 
-> You're missing the resets:
-> 
-> 			resets = <&infracfg_ao
-> MT8195_INFRA_RST2_PCIE_P0_SWRST>;
-> 			reset-names = "mac";
-> 
-> > +
-> > +			#interrupt-cells = <1>;
-> > +			interrupt-map-mask = <0 0 0 7>;
-> 
-> ..snip..
-> 
-> > +		};
-> > +
-> > +		pcie1: pcie@112f8000 {
-> > +			compatible = "mediatek,mt8195-pcie",
-> > +				     "mediatek,mt8192-pcie";
-> 
-> ..snip..
-> 
-> > +			power-domains = <&spm
-> > MT8195_POWER_DOMAIN_PCIE_MAC_P1>;
-> 
-> Here too:
-> 			resets = <&infracfg_ao
-> MT8195_INFRA_RST2_USBSIF_P1_SWRST>,
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Reset the combo-phy in PCIe driver will cause side effect on USB2 port,
-so this reset cannot be added.
-
-We will fix others in the next version.
-
-Thanks.
-> 				 <&infracfg_ao
-> MT8195_INFRA_RST2_PCIE_P1_SWRST>;
-> 			reset-names = "phy", "mac";
-> 
-> > +
-> > +			#interrupt-cells = <1>;
-> 
-> ..snip..
-> 
-> > @@ -1241,6 +1339,34 @@
-> >   				reg = <0x189 0x2>;
-> >   				bits = <7 5>;
-> >   			};
-> > +			pciephy_rx_ln1: pciephy-rx-ln1@190 {
-> > +				reg = <0x190 0x1>;
-> > +				bits = <0 4>;
-> > +			};
-> > +			pciephy_tx_ln1_nmos: pciephy-tx-ln1-nmos@190 {
-> 
-> Please run dtbs_check and try to build the kernel before pushing
-> commits upstream.
-> This will give you a not-so-nice warning and that shall not happen.
-> 
-> You can solve it by naming these nodes like:
-> pciephy-rx-ln1@190,1
-> pciephy-tx-ln1-nmos@190,2
-> 
-> ...etc
-> 
-> Regards,
-> Angelo
-> 
-> 
-
+How can this be a switch driver when it does not include any switchdev 
+header files nor does it attempt to be using the DSA framework? You are 
+certainly duplicating a lot of things that DSA would do for you like 
+managing PHYs and registering per-port nework devices. Why?
+-- 
+Florian
