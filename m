@@ -2,51 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFF3960551A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 03:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5F2A605521
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 03:45:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbiJTBkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 21:40:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51784 "EHLO
+        id S230427AbiJTBpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 21:45:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbiJTBj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 21:39:59 -0400
-Received: from outgoing.mit.edu (outgoing-auth-1.mit.edu [18.9.28.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D931CC09A1;
-        Wed, 19 Oct 2022 18:39:56 -0700 (PDT)
-Received: from cwcc.thunk.org (pool-173-48-120-46.bstnma.fios.verizon.net [173.48.120.46])
-        (authenticated bits=0)
-        (User authenticated as tytso@ATHENA.MIT.EDU)
-        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 29K1da8v032650
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Oct 2022 21:39:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mit.edu; s=outgoing;
-        t=1666229979; bh=SVMJ5L1m0MB2xHZj2sVzKk9l0nqg8YoodXfNHrUhDyk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=Vsk5KEItNWI6o8IQVZZAY2JLMhCH0r3jsO3UPfPasuwDTmSzewqxm8wpmx0Yj5+1U
-         hu+B9HSEYVZFSmqNTY7DTgE0x5KG9wc9xPKc976d/fqq4aav/LTiEW2KSaFCxluvTQ
-         JQyiNwURe0++3JK4TuM+ilHAZD5e+ElN4f/SMo1VuIkOlPgxpj9w9QDnnBIDLForuL
-         vpLfX8ERpOOBj1VcJdv17RUyhGTQ+w+ZlbVNI1b83WGPt6H+0wkhnUTGbQuIX4HE5h
-         SbQzeFAPbAx9dy/HJ6czzNSmcvhC/PG5mbEVrVv4BlYtspGeRW4fTmDIML3BHWHu1m
-         Kcj/1TKuia+ag==
-Received: by cwcc.thunk.org (Postfix, from userid 15806)
-        id 7D60415C3AD1; Wed, 19 Oct 2022 21:39:36 -0400 (EDT)
-Date:   Wed, 19 Oct 2022 21:39:36 -0400
-From:   "Theodore Ts'o" <tytso@mit.edu>
-To:     Randy Dunlap <rdunlap@infradead.org>
-Cc:     Jilin Yuan <yuanjilin@cdjrlc.com>, robh+dt@kernel.org,
-        frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: fix repeated words in comments
-Message-ID: <Y1Cm2Hvf7W7NxVzk@mit.edu>
-References: <20221019130200.60460-1-yuanjilin@cdjrlc.com>
- <9fb4c010-b465-e908-6868-d9e493a9688f@infradead.org>
+        with ESMTP id S230456AbiJTBph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 21:45:37 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7BA16727B;
+        Wed, 19 Oct 2022 18:45:36 -0700 (PDT)
+Received: from canpemm500009.china.huawei.com (unknown [172.30.72.55])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Mt9MC0PQQzpVj1;
+        Thu, 20 Oct 2022 09:42:15 +0800 (CST)
+Received: from [10.67.102.169] (10.67.102.169) by
+ canpemm500009.china.huawei.com (7.192.105.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 20 Oct 2022 09:45:33 +0800
+CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <yangyicong@hisilicon.com>,
+        <robh+dt@kernel.org>, <robh@kernel.org>, <wsa@kernel.org>,
+        <xuwei5@huawei.com>
+Subject: Re: [PATCH next v6 1/2] i2c: hisi: Add initial device tree support
+To:     Weilong Chen <chenweilong@huawei.com>
+References: <20221018073012.309355-1-chenweilong@huawei.com>
+From:   Yicong Yang <yangyicong@huawei.com>
+Message-ID: <b18ac3f5-2b72-aaf6-c818-570c38003a3f@huawei.com>
+Date:   Thu, 20 Oct 2022 09:45:33 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9fb4c010-b465-e908-6868-d9e493a9688f@infradead.org>
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+In-Reply-To: <20221018073012.309355-1-chenweilong@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.102.169]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ canpemm500009.china.huawei.com (7.192.105.203)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,46 +50,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 19, 2022 at 11:53:54AM -0700, Randy Dunlap wrote:
+On 2022/10/18 15:30, Weilong Chen wrote:
+> The HiSilicon I2C controller can be used on embedded platform, which
+> boot from devicetree.
 > 
-> On 10/19/22 06:02, Jilin Yuan wrote:
-> > Delete the redundant word 'of'.
-> > 
-> > Signed-off-by: Jilin Yuan <yuanjilin@cdjrlc.com>
-> > ---
-> >  drivers/of/device.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/of/device.c b/drivers/of/device.c
-> > index 8cefe5a7d04e..16c7e5a2a868 100644
-> > --- a/drivers/of/device.c
-> > +++ b/drivers/of/device.c
-> > @@ -19,7 +19,7 @@
-> >  
-> >  /**
-> >   * of_match_device - Tell if a struct device matches an of_device_id list
-> > - * @matches: array of of device match structures to search in
-> > + * @matches: array of device match structures to search in
+
+Still looks good to me:
+
+Acked-by: Yicong Yang <yangyicong@hisilicon.com>
+
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+> ---
+> Change since v5:
+> - Use hisilicon,i2c-ascend910 as compatible string. For more information about
+>   the SoC at https://e.huawei.com/en/products/cloud-computing-dc/atlas/ascend-910
+> Link: https://lore.kernel.org/linux-i2c/20220920072215.161331-1-chenweilong@huawei.com/
 > 
-> Hi,
-> Rob has already explained this at least 2 times.
+> Change since v4:
+> - Remove the protection for the headers for ACPI/OF
+> Link: https://lore.kernel.org/lkml/20220909074842.281232-1-chenweilong@huawei.com/T/
 > 
-> The second "of" is "open firmware".
-> I would write it
->               array of OF device match structures to search in
-> :)
-
-Actually, I'd probably do something like
-
-    	     array of Open Firmware (OF) device match structures...
-
-This is the first place in that file (at least in a comment) where OF
-gets used, and I've always been a big fan of using the fully expanded
-acronym before using the acronym form.  Remember, PCMCIA stands for
-People Can't Memorize Computer Industry Acronyms.  :-)
-
-(Actually, it's Personal Computer Memory Chip Industry Association,
-but most people don't know that, because using acronyms without
-defining them first makes you feel like you're an "insider".  :-)
-
-	     	      	   	    - Ted
+>  drivers/i2c/busses/Kconfig    |  2 +-
+>  drivers/i2c/busses/i2c-hisi.c | 15 ++++++++++++++-
+>  2 files changed, 15 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
+> index 264e780ae32e..a2081c03f3c4 100644
+> --- a/drivers/i2c/busses/Kconfig
+> +++ b/drivers/i2c/busses/Kconfig
+> @@ -673,7 +673,7 @@ config I2C_HIGHLANDER
+>  
+>  config I2C_HISI
+>  	tristate "HiSilicon I2C controller"
+> -	depends on (ARM64 && ACPI) || COMPILE_TEST
+> +	depends on ARM64 || COMPILE_TEST
+>  	help
+>  	  Say Y here if you want to have Hisilicon I2C controller support
+>  	  available on the Kunpeng Server.
+> diff --git a/drivers/i2c/busses/i2c-hisi.c b/drivers/i2c/busses/i2c-hisi.c
+> index 76c3d8f6fc3c..d58a6d2f1bc6 100644
+> --- a/drivers/i2c/busses/i2c-hisi.c
+> +++ b/drivers/i2c/busses/i2c-hisi.c
+> @@ -5,6 +5,7 @@
+>   * Copyright (c) 2021 HiSilicon Technologies Co., Ltd.
+>   */
+>  
+> +#include <linux/acpi.h>
+>  #include <linux/bits.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/completion.h>
+> @@ -13,6 +14,7 @@
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+>  #include <linux/mod_devicetable.h>
+> +#include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/property.h>
+>  #include <linux/units.h>
+> @@ -483,17 +485,28 @@ static int hisi_i2c_probe(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> +#ifdef CONFIG_ACPI
+>  static const struct acpi_device_id hisi_i2c_acpi_ids[] = {
+>  	{ "HISI03D1", 0 },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(acpi, hisi_i2c_acpi_ids);
+> +#endif
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id hisi_i2c_dts_ids[] = {
+> +	{ .compatible = "hisilicon,i2c-ascend910", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, hisi_i2c_dts_ids);
+> +#endif
+>  
+>  static struct platform_driver hisi_i2c_driver = {
+>  	.probe		= hisi_i2c_probe,
+>  	.driver		= {
+>  		.name	= "hisi-i2c",
+> -		.acpi_match_table = hisi_i2c_acpi_ids,
+> +		.acpi_match_table = ACPI_PTR(hisi_i2c_acpi_ids),
+> +		.of_match_table = of_match_ptr(hisi_i2c_dts_ids),
+>  	},
+>  };
+>  module_platform_driver(hisi_i2c_driver);
+> 
