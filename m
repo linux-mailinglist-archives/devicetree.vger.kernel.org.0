@@ -2,167 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14FBD606589
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:16:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2944C606592
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbiJTQQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 12:16:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39332 "EHLO
+        id S230188AbiJTQTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 12:19:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiJTQQe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:16:34 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 056B0836E5;
-        Thu, 20 Oct 2022 09:16:32 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D333923A;
-        Thu, 20 Oct 2022 09:16:38 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 15E9A3F792;
-        Thu, 20 Oct 2022 09:16:30 -0700 (PDT)
-Date:   Thu, 20 Oct 2022 17:16:28 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Amit Pundir <amit.pundir@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: qrb5165-rb5: Disable cpuidle states
-Message-ID: <20221020161628.nyimwuni4zboasjo@bogus>
-References: <20221018145348.4051809-1-amit.pundir@linaro.org>
- <CAPDyKFoBMB9OMUrcoPCV0of1fj2dimEwPyHGW=ydjJ2M0ubM8Q@mail.gmail.com>
- <20221020093057.zrrvxlgghn27bpes@bogus>
- <CAMi1Hd05PkEJcHqHpQX-X6B2oR4250_pHPjkd2-54JWgKsYx0Q@mail.gmail.com>
- <CAPDyKFo=w-ET62c-B6=qSpkZm-V9LmBuVRy38GzX_UAjQhX6oA@mail.gmail.com>
+        with ESMTP id S230478AbiJTQTN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:19:13 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63C6D180AFC
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:19:12 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id z8so14012048qtv.5
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:19:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3nmjFBEeD9ZP/eQLwAKtGJ8tL9wL4OpdvH58XZgElX0=;
+        b=Ew3XbGq/ADOFDDQULys1w5f0CUfRk2TBhCZqASgyGf36zV7VrScYztVOw8PmvpPlIB
+         HYGwtPKOluSR6DSzzIvr24JeJ0YYWoedtS8MzVoC5I74C3fbl78BwL4tOR0KcydB2KSb
+         /V2CzhHyrKES9ZLC827HHJDu0gp7CJm6ybgYZrtdqvPzZMmoCUXj/HWvUXMmWbIG1pmn
+         T1bsNTHO9qQzwZZnkI0HRDhTTPZ9azKvLazcaXqn1eFLd1J/GxU3DtrwmOLyVeSlsYvg
+         bG461MfFxyncmwL3rNmwLUZIHwqKECSrwdyKE4M5VeHTEJ9bCVZBJz3/LEdk03MCSnR0
+         Cw8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3nmjFBEeD9ZP/eQLwAKtGJ8tL9wL4OpdvH58XZgElX0=;
+        b=BEpakDxfUaYL8YkzJsewrvWobZ6N7zapYhbDCgXXaME9qRNqhrgWWQmvhorFQECnGU
+         O3TFoYlq3qbgBUJnCKQDiCdCDcO2Ue6wgLs8QS9c8dMeu1eFH2qYAQ3LZg4fNxiaS0bu
+         litrvGkZMkbCXOWt+rom4yUsyVuMvYgNj9wIlyhXOvOYL2wyBv5o2uMVE+ug73Bq+0L5
+         8XEhWcCPah3cx3qC7LtZHipltdlFbBEyZTx8Cop7I6AnVp2FMlE2UxilEZDZAm5EuCvX
+         a1wmtWOx+h2lL3h4qHIa2raguym6v3pQaO9VBF9i4/Pv8RZ62sNgWQo6ScupMp7xP6kq
+         003w==
+X-Gm-Message-State: ACrzQf26M8l06lw0R9sy+pil1y4WfzgKuikbQj95+Y0jRZJYTVvIMUZb
+        +zGdB3T+6RWLkyUyts0Q+g71Ug==
+X-Google-Smtp-Source: AMsMyM7XjZb4dPpbk62kCztyoDByKSy+hibNQg8o9nkkhr20RuX1MAdCla2yOjzYa0GvSTYvZIsm+g==
+X-Received: by 2002:ac8:7c44:0:b0:39c:cbe1:2787 with SMTP id o4-20020ac87c44000000b0039ccbe12787mr11764085qtv.214.1666282750048;
+        Thu, 20 Oct 2022 09:19:10 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id r17-20020ac87951000000b0039cb9ef50b5sm6277185qtt.26.2022.10.20.09.19.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 09:19:09 -0700 (PDT)
+Message-ID: <aaf7d4a9-c767-6a63-691d-e3ae00b206fc@linaro.org>
+Date:   Thu, 20 Oct 2022 12:19:07 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFo=w-ET62c-B6=qSpkZm-V9LmBuVRy38GzX_UAjQhX6oA@mail.gmail.com>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 1/3] dt-bindings: soc: mediatek: pwrap: add MT8365 SoC
+ bindings
+Content-Language: en-US
+To:     fchiby@baylibre.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Johnson Wang <johnson.wang@mediatek.com>,
+        "Zhiyong.Tao" <zhiyong.tao@mediatek.com>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Sen Chu <sen.chu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20221020130957.25197-1-fchiby@baylibre.com>
+ <20221020130957.25197-2-fchiby@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221020130957.25197-2-fchiby@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 20, 2022 at 04:40:15PM +0200, Ulf Hansson wrote:
-> On Thu, 20 Oct 2022 at 16:09, Amit Pundir <amit.pundir@linaro.org> wrote:
-> >
-> > On Thu, 20 Oct 2022 at 15:01, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > >
-> > > On Wed, Oct 19, 2022 at 01:57:34PM +0200, Ulf Hansson wrote:
-> > > > On Tue, 18 Oct 2022 at 16:53, Amit Pundir <amit.pundir@linaro.org> wrote:
-> > > > >
-> > > > > Disable cpuidle states for RB5. These cpuidle states
-> > > > > made the device highly unstable and it runs into the
-> > > > > following crash frequently:
-> > > > >
-> > > > > [    T1] vreg_l11c_3p3: failed to enable: -ETIMEDOUT
-> > > > > [    T1] qcom-rpmh-regulator 18200000.rsc:pm8150l-rpmh-regulators: ldo11: devm_regulator_register() failed, ret=-110
-> > > > > [    T1] qcom-rpmh-regulator: probe of 18200000.rsc:pm8150l-rpmh-regulators failed with error -110
-> > > > >
-> > > > > Fixes: 32bc936d7321 ("arm64: dts: qcom: sm8250: Add cpuidle states")
-> > > > > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 8 ++++++++
-> > > > >  1 file changed, 8 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > > > > index cc003535a3c5..f936c41bfbea 100644
-> > > > > --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > > > > +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > > > > @@ -251,6 +251,14 @@ qca639x: qca639x {
-> > > > >
-> > > > >  };
-> > > > >
-> > > > > +&LITTLE_CPU_SLEEP_0 {
-> > > > > +       status = "disabled";
-> > > > > +};
-> > > > > +
-> > > > > +&BIG_CPU_SLEEP_0 {
-> > > > > +       status = "disabled";
-> > > > > +};
-> > > > > +
-> > > > >  &adsp {
-> > > > >         status = "okay";
-> > > > >         firmware-name = "qcom/sm8250/adsp.mbn";
-> > > > > --
-> > > > > 2.25.1
-> > > >
-> > > > Disabling the CPU idlestates, will revert us back to using only the WFI state.
-> > > >
-> > > > An option that probably works too is to just drop the idlestate for
-> > > > the CPU cluster. Would you mind trying the below and see if that works
-> > > > too?
-> > > >
-> > >
-> > > Indeed this is was I suggested to check initially. But I was surprised to
-> > > see IIUC, Amit just disabled CPU states with above change and got it working.
-> > > So it is not cluster state alone causing the issue, is it somehow presence
-> > > of both cpu and cluster states ? Am I missing something here.
-> > >
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > index c32227ea40f9..c707a49e8001 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > @@ -700,7 +700,6 @@ CPU_PD7: cpu7 {
-> > > >
-> > > >                 CLUSTER_PD: cpu-cluster0 {
-> > > >                         #power-domain-cells = <0>;
-> > > > -                       domain-idle-states = <&CLUSTER_SLEEP_0>;
-> > >
-> > > How about just marking CLUSTER_SLEEP_0 state disabled ? That looks cleaner
-> > > than deleting this domain-idle-states property here. Also not sure if DTS
-> > > warnings will appear if you delete this ?
-> >
-> > Hi, I did try disabling CLUSTER_SLEEP_0: cluster-sleep-0 {} in
-> > domain-idle-states {} but that didn't help. That's why I end up
-> > disabling individual cpu states in idle-states {}.
+On 20/10/2022 09:09, fchiby@baylibre.com wrote:
+> From: Fabien Parent <fparent@baylibre.com>
 > 
-> Yep, this boils down to the fact that genpd doesn't check whether the
-> domain-idle-state is disabled by using of_device_is_available(). See
-> genpd_iterate_idle_states().
+> Add pwrap binding documentation for
 > 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Yes I found that but can't that be fixed with a simple patch like below ?
+This is not exactly v1 then. Please use patch versioning and add
+changelog (to cover letter or to individual patches).
 
-> That said, I suggest we go with the above one-line change. It may not
-> be as clean as it could be, but certainly easy to revert when the
-> support for it has been added in a newer kernel.
->
-
-I don't like removing the state. It means it doesn't have the state rather
-than i"it has state but is not working and hence disabled".
-
-Will handling the availability of the state cause any issues ?
-
-Regards,
-Sudeep
-
--->8
-
-diff --git i/drivers/base/power/domain.c w/drivers/base/power/domain.c
-index ead135c7044c..6471b559230e 100644
---- i/drivers/base/power/domain.c
-+++ w/drivers/base/power/domain.c
-@@ -2952,6 +2952,10 @@ static int genpd_iterate_idle_states(struct device_node *dn,
-                np = it.node;
-                if (!of_match_node(idle_state_match, np))
-                        continue;
-+
-+               if (!of_device_is_available(np))
-+                       continue;
-+
-                if (states) {
-                        ret = genpd_parse_state(&states[i], np);
-                        if (ret) {
+Best regards,
+Krzysztof
 
