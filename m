@@ -2,136 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F055A605980
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 10:18:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FA046059BA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 10:28:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231224AbiJTIS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 04:18:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48550 "EHLO
+        id S229974AbiJTI2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 04:28:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231255AbiJTISZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 04:18:25 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0013150FA9
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 01:18:21 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id bu30so33107185wrb.8
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 01:18:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fsj+8WfOAZfb/OmR4M1+8IvYvMPpVpcsoTV/p/XqqZI=;
-        b=qh1bsgdxEeRCQ6hZldQMcr3aLqpWdd1Clao0b8Ya5qOdGGbjkC94KnXF1WtRGghZA9
-         kiCXAtUNfsM0/UJskrvFZvEjSjPHQHp8+w05atY2PKLSkHNQeqYq8rMnyIf7kp5yGD8g
-         18dqXvtWAUjToox+VWRTYw2x1amBzMLfYOi20j2ybIQIU5SgiealQ0r7JKAzSpbFGSOQ
-         g7MwnhfWhXcZSQVeYnUr8ynUaAfaxSvapGRddFhcinqCWnlAllOLxfCXSKSC/Y465mHt
-         x2qon43dtp8zWqeV42EtzH2vZOW1Yft19khX2huV6LD49oCR6/WoDRQJNReRqi27KCAq
-         +c+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Fsj+8WfOAZfb/OmR4M1+8IvYvMPpVpcsoTV/p/XqqZI=;
-        b=amw42C1VSrjBN3nbSCaLbHyk+6t+IpJgYhBcXn0FI/MMonYis04khHLFtN5zBz9X66
-         wCsWZqZasawU9y/0pqvwMtuVPrn3HE0jN/iHygBbLZrlGtc99aqAQ2gwYgL1QVYWA0Zz
-         0BLYciEkaXXSlcc+9QkuBhKng1eLSrjAwj7ATlBhhimGAslM2yHYYDFZ3b5mpn2296I1
-         Kx3IELR6f0MjXfQKgkxE2lwZ0duPdJoVHyMlescHIn6Z/WXqUOqzaiCwkM+O3znFArAT
-         QsJJJb1IrU4HPaU8LR0CocHe5sReWNlaWu2F0lTAq+cD8uhMXuPqUSnfYaIsANcY77lg
-         m7oQ==
-X-Gm-Message-State: ACrzQf1XoMTLjZhATqnu6CEDxeWvdDyz/baLEXz5IhW49dwsgYYMjU8W
-        uYImrZ6pN4ZdQYztH/3rX5UpSA==
-X-Google-Smtp-Source: AMsMyM6UKfTDoyvlxHH9d/C28T5MXbvxRFj4MQ89o3ZziE5fhA0V9cNBU3VXeKSyrS1ckZcMeT35uA==
-X-Received: by 2002:a5d:59a7:0:b0:230:3652:1aa with SMTP id p7-20020a5d59a7000000b00230365201aamr7627500wrr.308.1666253899934;
-        Thu, 20 Oct 2022 01:18:19 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ef2:f28d:311f:c84b? ([2a01:e0a:982:cbb0:ef2:f28d:311f:c84b])
-        by smtp.gmail.com with ESMTPSA id o13-20020adfe80d000000b0023580e7a2c4sm1462948wrm.86.2022.10.20.01.18.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 01:18:19 -0700 (PDT)
-Message-ID: <a6942e7a-faa5-d839-aebf-0d28e7e14f06@linaro.org>
-Date:   Thu, 20 Oct 2022 10:18:18 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 2/2] spi: meson-spicc: Use pinctrl to drive CLK line
- when idle
-Content-Language: en-US
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Cc:     Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229664AbiJTI2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 04:28:42 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDEEC18B4A4;
+        Thu, 20 Oct 2022 01:28:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=lbsZ/YW7ZnIezwA4BRfrow1LCllF86bNZlcUisWMgkY=; b=0RNLUrzBGOpPkxhVKlJw1XP1dt
+        7yQ5SsKHRlKyD3skl5phrZiBJoPInAdZbvlrGNDSpq+pP1w1UMtuUMYcclPDwc/tRbNS7MyFB/A+3
+        7BimswlwrF9gfnESIs5s+LpUGfcXJmXKYSUd+rY5dsOJsyR3Rp9UCkYJMm2+WGAo0DFmxm9H60wLn
+        mrFA/MC+RTbx9j2/EAt6o13O609mCl0+un6MBBfHDkpFe6DG6wl4tz6euxlqHVZiH3XJjMqD6iFZJ
+        Z47Pxaf51r16Bef5RprJFUf1kUS9pt6b03cLG2lsAhF+1sVdFv+P87tZarXRWkBOu2+wNSCoTCmPr
+        RJVWgqZg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34816)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1olQuh-0006ie-NW; Thu, 20 Oct 2022 09:28:27 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1olQuf-000311-Qb; Thu, 20 Oct 2022 09:28:25 +0100
+Date:   Thu, 20 Oct 2022 09:28:25 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Da Xue <da@libre.computer>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com>
- <20221004-up-aml-fix-spi-v3-2-89de126fd163@baylibre.com>
- <CAFBinCAsCg6QQRH3VPY1OKuyfkxY0oCXLhAuMwO6=00gXKqQrQ@mail.gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <CAFBinCAsCg6QQRH3VPY1OKuyfkxY0oCXLhAuMwO6=00gXKqQrQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH net-next 1/7] dt-bindings: net: sff,sfp: update binding
+Message-ID: <Y1EGqR6IEhPfx7gd@shell.armlinux.org.uk>
+References: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk>
+ <E1ol97m-00EDSR-46@rmk-PC.armlinux.org.uk>
+ <166622204824.13053.10147527260423850821.robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <166622204824.13053.10147527260423850821.robh@kernel.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 22:50, Martin Blumenstingl wrote:
-> Hi Amjad,
+On Wed, Oct 19, 2022 at 06:31:53PM -0500, Rob Herring wrote:
+> On Wed, 19 Oct 2022 14:28:46 +0100, Russell King (Oracle) wrote:
+> > Add a minimum and default for the maximum-power-milliwatt option;
+> > module power levels were originally up to 1W, so this is the default
+> > and the minimum power level we can have for a functional SFP cage.
+> > 
+> > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> > ---
+> >  Documentation/devicetree/bindings/net/sff,sfp.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
 > 
-> On Wed, Oct 19, 2022 at 4:03 PM Amjad Ouled-Ameur
-> <aouledameur@baylibre.com> wrote:
-> [...]
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> index c3ac531c4f84..04e9d0f1bde0 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> @@ -429,6 +429,20 @@ mux {
->>                          };
->>                  };
->>
->> +               spi_idle_high_pins: spi-idle-high-pins {
->> +                       mux {
->> +                               groups = "spi_sclk";
->> +                               bias-pull-up;
->> +                       };
->> +               };
->> +
->> +               spi_idle_low_pins: spi-idle-low-pins {
->> +                       mux {
->> +                               groups = "spi_sclk";
->> +                               bias-pull-down;
->> +                       };
->> +               };
->> +
-> We typically have the .dts{,i} changes in a separate patch. I suggest
-> doing the same here.
-> I also have two questions about this part:
-> - why are these not referenced by the SPICC controller node?
-
-Because it's up to the board to use or not those states, if some pull-up/downs
-are already present on the lines no need to use those special states.
-
-> - is there a particular reason why meson-gxl.dtsi is updated but
-> meson-gxbb.dtsi is not? (my understanding is that GXBB is also lacking
-> hardware OEN support)
-
-Good question indeed, so indeed they should be added in meson-gxbb.dtsi in a separate patch.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
+> yamllint warnings/errors:
 > 
-> Best regards,
-> Martin
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/sff,sfp.yaml: properties:maximum-power-milliwatt: 'minimum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
+> 	hint: Scalar and array keywords cannot be mixed
+> 	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
 
-Thanks,
-Neil
+I'm reading that error message and it means absolutely nothing to me.
+Please can you explain it (and also re-word it to be clearer)?
+
+Thanks.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
