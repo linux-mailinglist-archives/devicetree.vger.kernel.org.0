@@ -2,135 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9122A605748
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 08:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3B8E60575B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 08:33:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230070AbiJTGXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 02:23:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48138 "EHLO
+        id S230100AbiJTGdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 02:33:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiJTGXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 02:23:30 -0400
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2221D7DF4A;
-        Wed, 19 Oct 2022 23:23:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=I/afnG2+a4ez2vedQq7/YijcurboxCvkdx39ZZvFVHk=; b=UovpLjUZJLJCJR4gewLl+FP0hw
-        vIoA+7ioenmYj1chWeaaRYs3YR8r6ujLr2h+xKoWHT6ey2bg6WBljx1KOmTr4eQ4uglIq2aSTdOiu
-        pNSHjVv4A32nGOj6fS3y5cVZh7uEiZD5QN577nW48es4daYfH/JFYjlBQ1H7DGmi+zcZbpJtvaWMt
-        51SH8mjRAQ9nPutO7lZYLFDxZjK+MGHFDd6rZmxfoisrP3XtqnEIDfqdU0dfp4FlrYtMpmPlDP96w
-        LLWaXWf/b7/N22VsVhTr2hNncj6usDpJ8KZhuliuD/DfzGma8sbO1OOv1RPDckzvN0GS8UYXAOc/K
-        gsXnTFxw==;
-Received: from [89.212.21.243] (port=33888 helo=[192.168.69.85])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.95)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1olOxY-00Cio8-7W;
-        Thu, 20 Oct 2022 08:23:23 +0200
-Message-ID: <d93503b7-fa65-d2ae-461f-56d68bf312e0@norik.com>
-Date:   Thu, 20 Oct 2022 08:23:24 +0200
+        with ESMTP id S229615AbiJTGdg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 02:33:36 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AAB215B303;
+        Wed, 19 Oct 2022 23:33:34 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29K5oH7Z009106;
+        Thu, 20 Oct 2022 06:33:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=0UYnmYoL+d89Orz6iaNY/DjHRjYVyMl063fYMgg13s8=;
+ b=fsIaTrsH3vzcn1Zowyt/TwOq4hYJYTTHafg/yS9Ai0l/tJ/wCGSaMKVMT/KSRO4k9vCw
+ Yg1CgIqwQpM1+WmXI7eYj2KAbgwoO5NFxCZ0mojOm15Q6z+FrTOloqy4hFbi+/eZjwTy
+ kvSfBMPqWCYHrcD7ydKDCcDrN+1Ok28pRU+zXKeNS32saij0t1AnBgNI9jprb6HTKuLk
+ SzFFDW4hTXIZDowsBXGiW9CL9XDqp9aTSjX5D7R17L79CDw77A/yUjkk9HCKrxum0YJh
+ rdx458Guk/7/6aeT3Rp3fmoGuVfSVnGtjmtGyxSA0yXvQP3tkwC6nCdjYNECXSpEPOWx iA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ka6brukhj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 20 Oct 2022 06:33:24 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29K6XMR2011139
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 20 Oct 2022 06:33:22 GMT
+Received: from [10.239.155.106] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 19 Oct
+ 2022 23:33:19 -0700
+Message-ID: <f1ae1f37-ab94-d0ae-289f-08d8b1cae772@quicinc.com>
+Date:   Thu, 20 Oct 2022 14:33:16 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx: document suspend in
- wait mode
-Content-Language: en-GB
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v3 2/2] dt-bindings: add bindings for QCOM flash LED
+Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
-        linux@roeck-us.net, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
-        kernel@pengutronix.de, s.hauer@pengutronix.de,
-        wim@linux-watchdog.org, robh+dt@kernel.org
-References: <20221019111714.1953262-1-andrej.picej@norik.com>
- <20221019111714.1953262-3-andrej.picej@norik.com>
- <7508670.GXAFRqVoOG@steina-w>
- <56118d35-dfe6-f46b-9fc7-28aca6530fb5@linaro.org>
-From:   Andrej Picej <andrej.picej@norik.com>
-In-Reply-To: <56118d35-dfe6-f46b-9fc7-28aca6530fb5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>
+References: <20221018014024.948731-1-quic_fenglinw@quicinc.com>
+ <20221018014024.948731-3-quic_fenglinw@quicinc.com>
+ <b335e842-0dd9-851a-9876-8ee4711609c0@linaro.org>
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+In-Reply-To: <b335e842-0dd9-851a-9876-8ee4711609c0@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 5_GkBqJhkKvSeCvFarFHW0Z2lzvFH2rt
+X-Proofpoint-GUID: 5_GkBqJhkKvSeCvFarFHW0Z2lzvFH2rt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-20_01,2022-10-19_04,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ priorityscore=1501 bulkscore=0 malwarescore=0 mlxscore=0 spamscore=0
+ suspectscore=0 clxscore=1015 mlxlogscore=999 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210200037
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander and Krzysztof,
 
-hope I can reply to both questions here.
 
-On 19. 10. 22 17:51, Krzysztof Kozlowski wrote:
-> On 19/10/2022 09:00, Alexander Stein wrote:
->> Hello Andrej,
+On 2022/10/19 21:36, Krzysztof Kozlowski wrote:
+> On 17/10/2022 21:40, Fenglin Wu wrote:
+>> Add binding document for flash LED module inside Qualcomm Technologies,
+>> Inc. PMICs.
+> 
+> Use subject prefixes matching the subsystem (git log --oneline -- ...).
+> 
+> This means:
+> 1. you miss subsystem prefix
+> 2. drop redundant second "bindings"
+> 
 >>
->> Am Mittwoch, 19. Oktober 2022, 13:17:13 CEST schrieb Andrej Picej:
-> 
-> Missing commit msg.
-> 
->>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->>> ---
->>>   Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 5 +++++
->>>   1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>> b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml index
->>> fb7695515be1..01b3e04e7e65 100644
->>> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>> @@ -55,6 +55,11 @@ properties:
->>>         If present, the watchdog device is configured to assert its
->>>         external reset (WDOG_B) instead of issuing a software reset.
->>>
->>> +  fsl,suspend-in-wait:
->>> +    $ref: /schemas/types.yaml#/definitions/flag
->>> +    description: |
->>> +      If present, the watchdog device is suspended in WAIT mode.
->>> +
->>>   required:
->>>     - compatible
->>>     - interrupts
+>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>> ---
+>>   .../bindings/leds/qcom,spmi-flash-led.yaml    | 116 ++++++++++++++++++
+>>   1 file changed, 116 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
 >>
->> What is the condition the watchdog is suspended in WAIT mode? Is this specific
->> to SoC or platform or something else?
->>
+>> diff --git a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+>> new file mode 100644
+>> index 000000000000..d8efde02db72
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+>> @@ -0,0 +1,116 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/leds/qcom,spmi-flash-led.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Flash LED device inside Qualcomm Technologies, Inc. PMICs
+>> +
+>> +maintainers:
+>> +  - Fenglin Wu <quic_fenglinw@quicinc.com>
+>> +
+>> +description: |
+>> +  Flash LED controller is present inside some Qualcomm Technologies, Inc. PMICs.
+>> +  The flash LED module can have different number of LED channels supported
+>> +  e.g. 3 or 4. There are some different registers between them but they can
+>> +  both support maximum current up to 1.5 A per channel and they can also support
+>> +  ganging 2 channels together to supply maximum current up to 2 A. The current
+>> +  will be split symmetrically on each channel and they will be enabled and
+>> +  disabled at the same time.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - qcom,pm8150c-flash-led
+>> +          - qcom,pm8150l-flash-led
+>> +          - qcom,pm8350c-flash-led
+>> +      - const: qcom,spmi-flash-led
 > 
-
-Sorry, what exactly do you mean by condition? When the property 
-"fsl,suspend-in-wait" is set the watchdog is suspended in WAIT mode, so 
-this is defined by the user. Didn't want to apply it for all the 
-supported machines since there could be devices which depend on watchdog 
-triggering in WAIT mode. We stumbled on this problem on imx6 devices, 
-but the same bit (with the same description) is found on imx25, imx35, 
-imx50/51/53, imx7 and imx8.
-
-> And what happens else? When it is not suspended in WAIT mode?
+> Blank line
 > 
-
-When you put the device in "freeze"/"Suspend-To-Idle" low-power mode the 
-watchdog keeps running and triggers a reset after 128 seconds. So the 
-maximum length the device can stay in this mode is limited to 128 seconds.
-
-Hope this answers your questions.
-
-Best regards,
-Andrej
+>> +  reg:
+>> +    description: address offset of the flash LED controller
+> 
+> Drop description, it's obvious.
+> 
+>> +    maxItems: 1
+>> +
+>> +patternProperties:
+>> +  "^led-[0-3]$":
+>> +    type: object
+>> +    $ref: common.yaml#
+>> +    unevaluatedProperties: false
+>> +    description: |
+> 
+> No need for |
+> 
+>> +      Represents the physical LED components which are connected to the
+>> +      flash LED channels' output.
+>> +
+>> +    properties:
+>> +      led-sources:
+>> +        description: |
+> 
+> No need for |
+> 
+> Rest looks good:
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
+Thanks you Krzysztof! I will address them when pushing next patch.
