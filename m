@@ -2,74 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEE126061B5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB03D6061BD
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:35:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbiJTNeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 09:34:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53170 "EHLO
+        id S230100AbiJTNfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 09:35:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229947AbiJTNen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:34:43 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E12A213D6B;
-        Thu, 20 Oct 2022 06:34:37 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id f9-20020a17090a654900b00210928389f8so3494997pjs.2;
-        Thu, 20 Oct 2022 06:34:37 -0700 (PDT)
+        with ESMTP id S230185AbiJTNfg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:35:36 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 057E7153805;
+        Thu, 20 Oct 2022 06:35:33 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id pq16so19791946pjb.2;
+        Thu, 20 Oct 2022 06:35:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pbzLARdfDYI9Ff/olyED+n7BZ3NSvaMpDSCiHZZlV3A=;
-        b=jVYL5qhSbFZik/5trV3sfpE5B65Ijq4PdUNEH1QW26XH1slnCTj4wM4Dndw+O0arQ/
-         r/4i6cSk2HBWKWMM/r8yKTSaU/s7qbBqAeyqO4VihWsFjJRa3v03ZjyvvM2hKHNljTzc
-         13mYWx5fLqWLUUZn00fO/PPkN1EBLWkfuNme5/74b26Jf0Y98x+NR0ZpH8syYUMo2UqC
-         WZzadUcBHHrNEDAP6ARe+RJqMpXPW38a7hGrcXBx9IES8XKHqz9Y6KPKY2qQSOiKSQ6X
-         a+83svxW6BevaJfNnhD7iRqOtd9QsD9agdqIm1sHGuSJ/tLhixsrnF7PpmmnQ1+psV9p
-         5OOw==
+        bh=IDDImz2rsoo4UtZtPdwMftLLZrVfqbqY4KCmjbbdHXY=;
+        b=i8vZcs+k0jmouKy/fTKgLB1LoR+zELNtS04vonxIiX1NVX8ToNPdbZnONWpty1Rcbe
+         pc51YqnqUgMD7ydfjBDsHzjWs+X6NYBjv+2GHsK2Hv6vk+Y49c7yTIxut+eJjlayGBb/
+         Mp4HeJZ1zN5BUJwzgdsKAH6kt3pmjotQe7vVc1TrGLcJxwr2pGqDcB8N3I3tb+9eCjKU
+         ITgaAUUErOHKXfbCgVaURGnQ55KmQQbZ2GqKPvIfESd5sNZrfELwFTB07h6alkpzdCNC
+         p2W6SouEwULZdzwUk7ub9lOU7P0kELhTLDMVMrFLU0ozhnSuULejZnSMiG+/hO/mKBSz
+         Nwbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pbzLARdfDYI9Ff/olyED+n7BZ3NSvaMpDSCiHZZlV3A=;
-        b=YP9cc9m4yknmzEMlIPWk4/lSEC1NdGpRC5KCcHabPrxjP9+6SgXwKieEAg/XHqsDwe
-         rm64SQmGjH8NMDY21Yp/R/VdDRLhEbXtk6A09lb9TxoNSYiYwi0/C4gVV0zBTV92AXeN
-         uRG1N1n+j2mRaYyv+/5Z4DUribi1sYHxWd1Bfn94qPBosALVMM+4G+SbL6W3RjmlEM0Z
-         lOy9ILwQn95aYnFrqvISfZPVqQYFBgE5mSQogrh3W1Ja1bH5nK7UE/1IgRAbdVa/nLAu
-         RSJRcXWoh7EQjJvprgrO5+obJdvAt89Gu+/oyQWJMDgeEljtfU9aCLnmAOUUatvB5oTI
-         SUow==
-X-Gm-Message-State: ACrzQf2s8IwRnuWrXj4bd90JsULAHjnCQVWBFZcDuDKYYA47uVpQxUwp
-        7EL9cRwHXHiT7beoAj+tb4pSbFNWxwC3bw==
-X-Google-Smtp-Source: AMsMyM67gCW0k+ChdE0o0qjGUxVm2tZ77Jcp/vRzQ8cRMV/TI0HbSpPVadKvI9EeKsRMUDFRhbMJAA==
-X-Received: by 2002:a17:903:230b:b0:186:6041:51bf with SMTP id d11-20020a170903230b00b00186604151bfmr4192435plh.24.1666272876871;
-        Thu, 20 Oct 2022 06:34:36 -0700 (PDT)
+        bh=IDDImz2rsoo4UtZtPdwMftLLZrVfqbqY4KCmjbbdHXY=;
+        b=x8Uleb6WNH9uNDAnqmFYrrJ5IeAZKF2fmhflx4A4/eLdihBcN+hQes6f15wBJbLaz9
+         z6NGM8a3PlKieeTFY7BCYMEZpUg2hnSdjAx3z6kHgHt6vNW3yixOK/osZej+w9QLvzXx
+         lHrdy70dYKnOmdN0hHh9NpxQ77PlzPnvNUE7a5kZQMimIYG6nf/cMzIe4Qg5cGMjWvL5
+         teit3WumJ9u2XFfNDkswazG2w9n0gxGTgUk3Nqb0QxLaccXieqQlfHU8o+/hZvVF7nUx
+         a0c9fR/uqhbPN+XNj8a+6dSOtD/hMJd2eyt/mVjIy5//1+xllIwWdeCvh6N7TelasVTQ
+         cdjg==
+X-Gm-Message-State: ACrzQf3s0BsiM3g6T8/A6VkzkY5qqnjLFC86PBiKCb0oXMcJMSkasovX
+        U/ptHwQuCaYJwJvGswObY0I=
+X-Google-Smtp-Source: AMsMyM7m40THty99keXaBvUqJAddHs4vdXkL+iu9uaB7zFuCW2ms4DXuOyDJ+SXg9wvnt+4YH/tSdw==
+X-Received: by 2002:a17:90b:4ac5:b0:20a:de32:366b with SMTP id mh5-20020a17090b4ac500b0020ade32366bmr15811968pjb.197.1666272932133;
+        Thu, 20 Oct 2022 06:35:32 -0700 (PDT)
 Received: from debian.me (subs28-116-206-12-50.three.co.id. [116.206.12.50])
-        by smtp.gmail.com with ESMTPSA id u9-20020a17090a1f0900b00202618f0df4sm1865363pja.0.2022.10.20.06.34.36
+        by smtp.gmail.com with ESMTPSA id s16-20020a17090a075000b002005fcd2cb4sm1887133pje.2.2022.10.20.06.35.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 06:34:36 -0700 (PDT)
+        Thu, 20 Oct 2022 06:35:31 -0700 (PDT)
 Received: by debian.me (Postfix, from userid 1000)
-        id E568B103F24; Thu, 20 Oct 2022 20:34:32 +0700 (WIB)
-Date:   Thu, 20 Oct 2022 20:34:32 +0700
+        id F22341041A9; Thu, 20 Oct 2022 20:35:28 +0700 (WIB)
+Date:   Thu, 20 Oct 2022 20:35:28 +0700
 From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        Jilin Yuan <yuanjilin@cdjrlc.com>, robh+dt@kernel.org,
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     Jilin Yuan <yuanjilin@cdjrlc.com>, robh+dt@kernel.org,
         frowand.list@gmail.com, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Subject: Re: [PATCH] of: fix repeated words in comments
-Message-ID: <Y1FOaBGzIuKlCkq4@debian.me>
+Message-ID: <Y1FOoJh3e32zS8x7@debian.me>
 References: <20221019130200.60460-1-yuanjilin@cdjrlc.com>
  <9fb4c010-b465-e908-6868-d9e493a9688f@infradead.org>
- <6e6935bc-6de9-99fe-be17-1845b1910e2c@kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="BD4AS0YE8FWkgUTO"
+        protocol="application/pgp-signature"; boundary="3NmMATSo5+wZXRpk"
 Content-Disposition: inline
-In-Reply-To: <6e6935bc-6de9-99fe-be17-1845b1910e2c@kernel.org>
+In-Reply-To: <9fb4c010-b465-e908-6868-d9e493a9688f@infradead.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,34 +76,36 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---BD4AS0YE8FWkgUTO
+--3NmMATSo5+wZXRpk
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 19, 2022 at 07:57:44PM +0100, Conor Dooley wrote:
-> Good luck getting a response out of these guys, at this point
-> you've gotta wonder if they're real people or bots.
+On Wed, Oct 19, 2022 at 11:53:54AM -0700, Randy Dunlap wrote:
+> >  /**
+> >   * of_match_device - Tell if a struct device matches an of_device_id l=
+ist
+> > - * @matches: array of of device match structures to search in
+> > + * @matches: array of device match structures to search in
+>=20
+> Hi,
+> Rob has already explained this at least 2 times.
 >=20
 
-I think @cdjrlc.com people only have one-way communication with kernel
-community, since they send patches but ignoring (critical) review on
-these.
-
-Thanks.
+On what?
 
 --=20
 An old man doll... just what I always wanted! - Clara
 
---BD4AS0YE8FWkgUTO
+--3NmMATSo5+wZXRpk
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCY1FOZAAKCRD2uYlJVVFO
-o8Y2AP9DHldmyPOw3l8al4Z66y8Q9j1knVCmIjV2cFK8wNgPuwD/c74yv9F1Ue3p
-J15vRyScuuSyxKQ/yuML75Z7U284Sgw=
-=Huxt
+iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCY1FOoAAKCRD2uYlJVVFO
+oxtlAP42AqNdTIS4JDG0vvNRIIGBO2lHDD3G4/pk1WewW2Y9QwD/bpAcr38jzdNO
+BtsupHxqOVhpPlbBlJGu2fKbbgIb5gk=
+=TFUC
 -----END PGP SIGNATURE-----
 
---BD4AS0YE8FWkgUTO--
+--3NmMATSo5+wZXRpk--
