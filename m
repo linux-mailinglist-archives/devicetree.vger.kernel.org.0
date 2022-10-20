@@ -2,157 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B66EF606278
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 16:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E61E160639D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 16:56:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbiJTOJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 10:09:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51314 "EHLO
+        id S229632AbiJTO4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 10:56:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230101AbiJTOJC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 10:09:02 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31FE5170B52
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 07:09:01 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id v40-20020a056830092800b00661e37421c2so9276569ott.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 07:09:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KmrrMOMdYJ6b8buOtE8wTwfyN1foDEi2s8Ex1cEpDfY=;
-        b=To+Qk0A3CM/eFhRAolkD4U6Tmg9JsHMThNENPRJNAC/8o31f3nqxxAoWnz8aornjNY
-         ZmjX9KtEBg56Di83mek3SSSKstfbmTv32ucyB2YEwNFQOfpZhrpHKLtzIz89q2S0VBB6
-         Nwl35WxoMpSkp6lBNMueuK5hUwiiQpuDlfU0nXhZlWgqYM+8f0r6pBkOv45hlWR74/rB
-         llB1M+pJJinTTHg1UV3/IA4VeEIdivuIdj7r/QInd0DKXs8veOu1DttyZMiDsaHAGJCs
-         g4CRjlw1PAPpqroyID3/q8GTDnu2qA6yuwgUnmzRW33+3ThPWS9uvrJQJyP6Uxkh2KCX
-         s5nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KmrrMOMdYJ6b8buOtE8wTwfyN1foDEi2s8Ex1cEpDfY=;
-        b=6j7XZ+C3nxKNNV7HuXIYUrUkwTfkXf8fkLx8SHBtDqPLz32gAryMrwASD+8YB+k6NE
-         xZYP2JXYjYSwFx3H5MDhCy6/+BhpFfmId2+2y2JoYcQyHgtMG6UA131fcgsEdlw2kq9k
-         nNuUyKC7lfQ4dZDtX8+B18CevicJoBmm84LMnl/hvoi5oB0V2fT2iOEzCJ26QoCbog8h
-         y7hE42NKlhH4NgBEypHU+SFnaEvjr12cwJdbME7JTfVhoPms6cNQGViTiUiWpB19nQyN
-         TW2Cd626J1KEZU7WpGkLoAg8N2y6nTk6LDGZyy9LjcE9ubQFAIHZYcDfaA65l+Wc/1tY
-         vkWg==
-X-Gm-Message-State: ACrzQf250e54T0M3T1FzQbnI+SjL9ZGTDy/sff8UbSFFd9Il+mgDUDSx
-        nhtlCnPlIkQzBAeFXZWHw5+1vwNSxa8ie3Uq7qOusg==
-X-Google-Smtp-Source: AMsMyM7TnkHvlubvtysHFMD02cLjU/w/mTgkliIpDR7G2WAUuROhb7YuX7lLMg1AN6GBnVxu2mW0NzRsuihLAUrld5s=
-X-Received: by 2002:a05:6830:4119:b0:661:e687:1912 with SMTP id
- w25-20020a056830411900b00661e6871912mr7160259ott.352.1666274940321; Thu, 20
- Oct 2022 07:09:00 -0700 (PDT)
+        with ESMTP id S229542AbiJTO4O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 10:56:14 -0400
+X-Greylist: delayed 2654 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 20 Oct 2022 07:56:12 PDT
+Received: from vps0.lunn.ch (unknown [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65E3A491E7;
+        Thu, 20 Oct 2022 07:56:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=iYZGKo2r/D10Kc3WGxW6zEism6QXYhH2VU1htaM1CLQ=; b=ix7CQyJHDT6ecZglnVPBW+pahc
+        DRvjeNPfsSKMN012azIjvTGtyR+Y/PtRVCTYwiiAr5yEXT2Wi0lcnCO78P2oZdP27dR9BehPEN3cW
+        ePbMcxdMizVi2o5QB0VIV0y8D9eP+N0JSCfkohXyYStG7doTt2KEqIXqfC39rNTtK6C0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1olWGq-000Cfo-Ri; Thu, 20 Oct 2022 16:11:40 +0200
+Date:   Thu, 20 Oct 2022 16:11:40 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] net: ethernet: renesas: Add Ethernet Switch driver
+Message-ID: <Y1FXHDHxD4w7v3d1@lunn.ch>
+References: <20221019083518.933070-1-yoshihiro.shimoda.uh@renesas.com>
+ <20221019083518.933070-3-yoshihiro.shimoda.uh@renesas.com>
+ <ccd7f1fc-b2e2-7acf-d7fd-85191564603a@gmail.com>
 MIME-Version: 1.0
-References: <20221018145348.4051809-1-amit.pundir@linaro.org>
- <CAPDyKFoBMB9OMUrcoPCV0of1fj2dimEwPyHGW=ydjJ2M0ubM8Q@mail.gmail.com> <20221020093057.zrrvxlgghn27bpes@bogus>
-In-Reply-To: <20221020093057.zrrvxlgghn27bpes@bogus>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Thu, 20 Oct 2022 19:38:23 +0530
-Message-ID: <CAMi1Hd05PkEJcHqHpQX-X6B2oR4250_pHPjkd2-54JWgKsYx0Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: qrb5165-rb5: Disable cpuidle states
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ccd7f1fc-b2e2-7acf-d7fd-85191564603a@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NEUTRAL,SPF_NEUTRAL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Oct 2022 at 15:01, Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Wed, Oct 19, 2022 at 01:57:34PM +0200, Ulf Hansson wrote:
-> > On Tue, 18 Oct 2022 at 16:53, Amit Pundir <amit.pundir@linaro.org> wrote:
-> > >
-> > > Disable cpuidle states for RB5. These cpuidle states
-> > > made the device highly unstable and it runs into the
-> > > following crash frequently:
-> > >
-> > > [    T1] vreg_l11c_3p3: failed to enable: -ETIMEDOUT
-> > > [    T1] qcom-rpmh-regulator 18200000.rsc:pm8150l-rpmh-regulators: ldo11: devm_regulator_register() failed, ret=-110
-> > > [    T1] qcom-rpmh-regulator: probe of 18200000.rsc:pm8150l-rpmh-regulators failed with error -110
-> > >
-> > > Fixes: 32bc936d7321 ("arm64: dts: qcom: sm8250: Add cpuidle states")
-> > > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 8 ++++++++
-> > >  1 file changed, 8 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > > index cc003535a3c5..f936c41bfbea 100644
-> > > --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > > @@ -251,6 +251,14 @@ qca639x: qca639x {
-> > >
-> > >  };
-> > >
-> > > +&LITTLE_CPU_SLEEP_0 {
-> > > +       status = "disabled";
-> > > +};
-> > > +
-> > > +&BIG_CPU_SLEEP_0 {
-> > > +       status = "disabled";
-> > > +};
-> > > +
-> > >  &adsp {
-> > >         status = "okay";
-> > >         firmware-name = "qcom/sm8250/adsp.mbn";
-> > > --
-> > > 2.25.1
-> >
-> > Disabling the CPU idlestates, will revert us back to using only the WFI state.
-> >
-> > An option that probably works too is to just drop the idlestate for
-> > the CPU cluster. Would you mind trying the below and see if that works
-> > too?
-> >
->
-> Indeed this is was I suggested to check initially. But I was surprised to
-> see IIUC, Amit just disabled CPU states with above change and got it working.
-> So it is not cluster state alone causing the issue, is it somehow presence
-> of both cpu and cluster states ? Am I missing something here.
->
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > index c32227ea40f9..c707a49e8001 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > @@ -700,7 +700,6 @@ CPU_PD7: cpu7 {
-> >
-> >                 CLUSTER_PD: cpu-cluster0 {
-> >                         #power-domain-cells = <0>;
-> > -                       domain-idle-states = <&CLUSTER_SLEEP_0>;
->
-> How about just marking CLUSTER_SLEEP_0 state disabled ? That looks cleaner
-> than deleting this domain-idle-states property here. Also not sure if DTS
-> warnings will appear if you delete this ?
+On Wed, Oct 19, 2022 at 07:23:26PM -0700, Florian Fainelli wrote:
+> 
+> 
+> On 10/19/2022 1:35 AM, Yoshihiro Shimoda wrote:
+> > Add Renesas Ethernet Switch driver for R-Car S4-8 to be used as an
+> > ethernet controller.
+> > 
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> 
+> How can this be a switch driver when it does not include any switchdev
+> header files nor does it attempt to be using the DSA framework? You are
+> certainly duplicating a lot of things that DSA would do for you like
+> managing PHYs and registering per-port nework devices. Why?
 
-Hi, I did try disabling CLUSTER_SLEEP_0: cluster-sleep-0 {} in
-domain-idle-states {} but that didn't help. That's why I end up
-disabling individual cpu states in idle-states {}.
+Hi Florian
 
-Regards,
-Amit Pundir
+It is not clear yet if this is actually a DSA switch. I asked these
+questions a few revisions ago and it actually looks like it is a pure
+switchdev switch. It might be possible to make it a DSA switch. It is
+a bit fuzzy, since it is all internal and integrated.
 
-
->
-> --
-> Regards,
-> Sudeep
+  Andrew
