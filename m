@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0471C605E64
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A23605E69
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231194AbiJTLDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 07:03:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39950 "EHLO
+        id S231153AbiJTLE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 07:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231176AbiJTLDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:03:07 -0400
+        with ESMTP id S231200AbiJTLEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:04:54 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE5F61CB519
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 04:03:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D736A497
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 04:04:51 -0700 (PDT)
 Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1olTKE-0004VL-Qb; Thu, 20 Oct 2022 13:02:58 +0200
+        id 1olTLy-0004hW-7z; Thu, 20 Oct 2022 13:04:46 +0200
 Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1olTKD-0003RO-No; Thu, 20 Oct 2022 13:02:57 +0200
-Date:   Thu, 20 Oct 2022 13:02:57 +0200
+        id 1olTLx-0003SY-N8; Thu, 20 Oct 2022 13:04:45 +0200
+Date:   Thu, 20 Oct 2022 13:04:45 +0200
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         shawnguo@kernel.org, s.hauer@pengutronix.de,
         devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, festevam@gmail.com,
+        Fugang Duan <fugang.duan@nxp.com>,
+        linux-kernel@vger.kernel.org, Clark Wang <xiaoning.wang@nxp.com>,
+        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 03/15] arm64: dts: imx8mp-evk: fix BUCK/LDO voltage
-Message-ID: <20221020110257.5ojjq2j2c53hevnt@pengutronix.de>
+Subject: Re: [PATCH 04/15] ARM64: dts: imx8mp-evk: add pwm support
+Message-ID: <20221020110445.2xsmdybyhhaaasgx@pengutronix.de>
 References: <20221020095934.1659449-1-peng.fan@oss.nxp.com>
- <20221020095934.1659449-4-peng.fan@oss.nxp.com>
+ <20221020095934.1659449-5-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221020095934.1659449-4-peng.fan@oss.nxp.com>
+In-Reply-To: <20221020095934.1659449-5-peng.fan@oss.nxp.com>
 User-Agent: NeoMutt/20180716
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -56,132 +56,31 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hi Peng,
 
 On 22-10-20, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Per PCA9450C datasheet, the voltage range as below:
-> BUCK1 0.6 - 2.1875
-> BUCK2 0.6 - 2.1875
-> BUCK4 0.6 - 3.4
-> BUCK5 0.6 - 3.4
-> BUCK6 0.6 - 3.4
-> 
-> LDO1 1.6-1.9, 3.0-3.3
-> LDO2 0.8 – 1.15
-> LDO3 0.8 - 3.3
-> LDO4 0.8 - 3.3
-> LDO5 1.8 - 3.3
-> 
-> So correct them, and also add LDO[2,4]
+> From: Clark Wang <xiaoning.wang@nxp.com>
 
-In the DTS you specify voltage constraints for a specific hardware and
-not the one supported by the PMIC. What the PMIC supports (min/max) is
-specified within the driver.
+...
+
+>  &iomuxc {
+> +	pinctrl_pwm1: pwm1grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_GPIO1_IO01__PWM1_OUT	0x116
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm2: pwm2grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_GPIO1_IO11__PWM2_OUT	0x116
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm4: pwm4grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SAI5_RXFS__PWM4_OUT	0x116
+> +		>;
+> +	};
+
+Please sort them alphabetical into the iomuxc node and do not break that
+sort.
 
 Regards,
   Marco
-
-> 
-> Fixes: 5497bc2a2bff ("arm64: dts: imx8mp-evk: Add PMIC device")
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 44 +++++++++++++-------
->  1 file changed, 30 insertions(+), 14 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> index b4c1ef2559f2..a4cddc5a8620 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -248,8 +248,8 @@ pmic@25 {
->  		regulators {
->  			BUCK1 {
->  				regulator-name = "BUCK1";
-> -				regulator-min-microvolt = <720000>;
-> -				regulator-max-microvolt = <1000000>;
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
->  				regulator-boot-on;
->  				regulator-always-on;
->  				regulator-ramp-delay = <3125>;
-> @@ -257,8 +257,8 @@ BUCK1 {
->  
->  			reg_arm: BUCK2 {
->  				regulator-name = "BUCK2";
-> -				regulator-min-microvolt = <720000>;
-> -				regulator-max-microvolt = <1025000>;
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
->  				regulator-boot-on;
->  				regulator-always-on;
->  				regulator-ramp-delay = <3125>;
-> @@ -268,40 +268,56 @@ reg_arm: BUCK2 {
->  
->  			BUCK4 {
->  				regulator-name = "BUCK4";
-> -				regulator-min-microvolt = <3000000>;
-> -				regulator-max-microvolt = <3600000>;
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
->  				regulator-boot-on;
->  				regulator-always-on;
->  			};
->  
->  			BUCK5 {
->  				regulator-name = "BUCK5";
-> -				regulator-min-microvolt = <1650000>;
-> -				regulator-max-microvolt = <1950000>;
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
->  				regulator-boot-on;
->  				regulator-always-on;
->  			};
->  
->  			BUCK6 {
->  				regulator-name = "BUCK6";
-> -				regulator-min-microvolt = <1045000>;
-> -				regulator-max-microvolt = <1155000>;
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
->  				regulator-boot-on;
->  				regulator-always-on;
->  			};
->  
->  			LDO1 {
->  				regulator-name = "LDO1";
-> -				regulator-min-microvolt = <1650000>;
-> -				regulator-max-microvolt = <1950000>;
-> +				regulator-min-microvolt = <1600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			LDO2 {
-> +				regulator-name = "LDO2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1150000>;
->  				regulator-boot-on;
->  				regulator-always-on;
->  			};
->  
->  			LDO3 {
->  				regulator-name = "LDO3";
-> -				regulator-min-microvolt = <1710000>;
-> -				regulator-max-microvolt = <1890000>;
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4: LDO4 {
-> +				regulator-name = "LDO4";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
->  				regulator-boot-on;
->  				regulator-always-on;
->  			};
-> -- 
-> 2.37.1
-> 
-> 
-> 
