@@ -2,289 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C790D605593
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 04:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E45960559A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 04:45:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbiJTCmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 22:42:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47100 "EHLO
+        id S229846AbiJTCpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 22:45:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229731AbiJTCmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 22:42:17 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A05BB18D46A;
-        Wed, 19 Oct 2022 19:42:09 -0700 (PDT)
-X-UUID: fdbc2e923b3d47649f80acc9c35e4fc8-20221020
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=6XvUd0dwp6H2FgsEGlACEaC7L9K/yg0t2tm8pNN9aVc=;
-        b=Aqh8+CGZjL19In9oo5LVxH5CHki6wMOMANVsKqp+54DKx9LyxLiCUXEnWILn3guuGjIXWi88v3y4picbiPiiPLAHMaAHP1dNkU5nqmKbrp84cLronVJwibukiBLNcyxd+eghuZPY4Ik0P1/PGL+r7iWBn7FLBN8FRaUkdpvSf/k=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:23ff96c0-779d-4eff-9b90-b456905d532e,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:100
-X-CID-INFO: VERSION:1.1.12,REQID:23ff96c0-779d-4eff-9b90-b456905d532e,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
-        N:quarantine,TS:100
-X-CID-META: VersionHash:62cd327,CLOUDID:9e8c5ca4-ebb2-41a8-a87c-97702aaf2e20,B
-        ulkID:221020104206TMTQZLMN,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
-        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: fdbc2e923b3d47649f80acc9c35e4fc8-20221020
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1229771477; Thu, 20 Oct 2022 10:42:04 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 20 Oct 2022 10:42:04 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 20 Oct 2022 10:42:03 +0800
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Biao Huang <biao.huang@mediatek.com>,
-        <macpaul.lin@mediatek.com>
-Subject: [PATCH v3] arm64: dts: mt8195: Add Ethernet controller
-Date:   Thu, 20 Oct 2022 10:41:55 +0800
-Message-ID: <20221020024155.24520-2-biao.huang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221020024155.24520-1-biao.huang@mediatek.com>
-References: <20221020024155.24520-1-biao.huang@mediatek.com>
+        with ESMTP id S229576AbiJTCpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 22:45:02 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C63DF104D34;
+        Wed, 19 Oct 2022 19:45:00 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id d10so19015007pfh.6;
+        Wed, 19 Oct 2022 19:45:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DxTNTmWj9D1rQHXlzMQFMBO3C27RqK0bb2TQ7qskUT0=;
+        b=G4le0DMd/DCIBNZdMwQxOY5flpwO+b5D4PD+gYTXLe9eI3p1nEiOx5K17nYeGlknvs
+         vY8FQLreZ/eNKktPjfFBDq0k9nEl72SFC8kza4Laokp93rVLrBXMRuij8bn84mtslSG/
+         E5M/6M+A66K8rS58H3pfJI7s4GMh3CSf48c7VuyjgeKICQm2pd75joYaQgxEWYg8UsIv
+         7NEqg5YFLXsfM4bhWbwf/pdHkITTEdWQZP8qUKhlbwPgBdTqjlJ6O3fFIL6Yl5sLMZqj
+         HOyevS2TFJDyOyIzvHnsfP3mCXkC/qPs7kt9E3yHLERtw0asJH0PtT0HheYS1wdENg7W
+         M8Pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DxTNTmWj9D1rQHXlzMQFMBO3C27RqK0bb2TQ7qskUT0=;
+        b=Ik13CTxd3ORnbeJKZtDFaSM9ihLNM0g84oIc9ARaP4kjadylEV9qhSBNaFJwQn7DEa
+         XrN39mXzN0GxW2csA4COK7Pe6+X64IelURw+PWK7YPQr+bHNtW3b8hJ2jZf4cy0MNg50
+         RKIKB2Jqk2cSbKOD9kjr936xPaD7e9i6mr/RveqI2qxBhiYSlZrgeV2Kpc0UGvHyY8z6
+         sx8msFlvK3E8pwIoypwiJhsVJE0qwdfSZSURVtv+MBpuyLA6Iy8z1tDadUSKofE4S7DE
+         Sa4Ey5pT8GZ3NiDeoVDgDqjTC4aQXn7WT+3s8QQMo0FCBC8uKIOVG9LqO6ImNFefaAp5
+         Vtag==
+X-Gm-Message-State: ACrzQf24IvAXG2I4f4fPfoh5/vIj4mxqI2nSdyMcf0rRuK8nhGDss1dP
+        Q1U3LKsN1DDR75MNYMChcZc=
+X-Google-Smtp-Source: AMsMyM6UwkpmEE5y/h4FfAmmhnXDZIA3TlSD3kflBN72OO+k4Ln1lu0vuv0jLb4abMwtYBD443hHwg==
+X-Received: by 2002:a05:6a00:a28:b0:567:7014:490f with SMTP id p40-20020a056a000a2800b005677014490fmr7653793pfh.10.1666233899965;
+        Wed, 19 Oct 2022 19:44:59 -0700 (PDT)
+Received: from [192.168.43.80] (subs03-180-214-233-92.three.co.id. [180.214.233.92])
+        by smtp.gmail.com with ESMTPSA id a4-20020a170902ecc400b0017f92d7fe2csm11581423plh.288.2022.10.19.19.44.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Oct 2022 19:44:59 -0700 (PDT)
+Message-ID: <12c8c3c1-eb17-8e44-8906-05e2e3e92acc@gmail.com>
+Date:   Thu, 20 Oct 2022 09:44:52 +0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v7 0/8] phy: Add support for Lynx 10G SerDes
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-phy@lists.infradead.org
+Cc:     Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-doc@vger.kernel.org
+References: <20221018231112.2142074-1-sean.anderson@seco.com>
+Content-Language: en-US
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+In-Reply-To: <20221018231112.2142074-1-sean.anderson@seco.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Ethernet controller node for mt8195.
+On 10/19/22 06:11, Sean Anderson wrote:
+> This adds support for the Lynx 10G SerDes found on the QorIQ T-series
+> and Layerscape series. Due to limited time and hardware, only support
+> for the LS1046ARDB is added in this initial series. There is a sketch
+> for LS1088ARDB support, but it is incomplete.
+> 
+> Dynamic reconfiguration does not work. That is, the configuration must
+> match what is set in the RCW. From my testing, SerDes register settings
+> appear identical. The issue appears to be between the PCS and the MAC.
+> The link itself comes up at both ends, and a mac loopback succeeds.
+> However, a PCS loopback results in dropped packets. Perhaps there is
+> some undocumented register in the PCS?
+> 
+> I suspect this driver is around 95% complete, but, unfortunately, I no
+> longer have time to investigate this further. At the very least it is
+> useful for two cases:
+> - Although this is untested, it should support 2.5G SGMII as well as
+>   1000BASE-KX. The latter needs MAC and PCS support, but the former
+>   should work out of the box.
+> - It allows for clock configurations not supported by the RCW. This is
+>   very useful if you want to use e.g. SRDS_PRTCL_S1=0x3333 and =0x1133
+>   on the same board. This is because the former setting will use PLL1
+>   as the 1G reference, but the latter will use PLL1 as the 10G
+>   reference. Because we can reconfigure the PLLs, it is possible to
+>   always use PLL1 as the 1G reference.
+> 
+> Changes in v7:
+> - Use double quotes everywhere in yaml
+> - Break out call order into generic documentation
+> - Refuse to switch "major" protocols
+> - Update Kconfig to reflect restrictions
+> - Remove set/clear of "pcs reset" bit, since it doesn't seem to fix
+>   anything.
+> 
+> Changes in v6:
+> - Bump PHY_TYPE_2500BASEX to 13, since PHY_TYPE_USXGMII was added in the
+>   meantime
+> - fsl,type -> phy-type
+> - frequence -> frequency
+> - Update MAINTAINERS to include new files
+> - Include bitfield.h and slab.h to allow compilation on non-arm64
+>   arches.
+> - Depend on COMMON_CLK and either layerscape/ppc
+> - XGI.9 -> XFI.9
+> 
+> Changes in v5:
+> - Update commit description
+> - Dual id header
+> - Remove references to PHY_INTERFACE_MODE_1000BASEKX to allow this
+>   series to be applied directly to linux/master.
+> - Add fsl,lynx-10g.h to MAINTAINERS
+> 
+> Changes in v4:
+> - Add 2500BASE-X and 10GBASE-R phy types
+> - Use subnodes to describe lane configuration, instead of describing
+>   PCCRs. This is the same style used by phy-cadence-sierra et al.
+> - Add ids for Lynx 10g PLLs
+> - Rework all debug statements to remove use of __func__. Additional
+>   information has been provided as necessary.
+> - Consider alternative parent rates in round_rate and not in set_rate.
+>   Trying to modify out parent's rate in set_rate will deadlock.
+> - Explicitly perform a stop/reset sequence in set_rate. This way we
+>   always ensure that the PLL is properly stopped.
+> - Set the power-down bit when disabling the PLL. We can do this now that
+>   enable/disable aren't abused during the set rate sequence.
+> - Fix typos in QSGMII_OFFSET and XFI_OFFSET
+> - Rename LNmTECR0_TEQ_TYPE_PRE to LNmTECR0_TEQ_TYPE_POST to better
+>   reflect its function (adding post-cursor equalization).
+> - Use of_clk_hw_onecell_get instead of a custom function.
+> - Return struct clks from lynx_clks_init instead of embedding lynx_clk
+>   in lynx_priv.
+> - Rework PCCR helper functions; T-series SoCs differ from Layerscape SoCs
+>   primarily in the layout and offset of the PCCRs. This will help bring a
+>   cleaner abstraction layer. The caps have been removed, since this handles the
+>   only current usage.
+> - Convert to use new binding format. As a result of this, we no longer need to
+>   have protocols for PCIe or SATA. Additionally, modes now live in lynx_group
+>   instead of lynx_priv.
+> - Remove teq from lynx_proto_params, since it can be determined from
+>   preq_ratio/postq_ratio.
+> - Fix an early return from lynx_set_mode not releasing serdes->lock.
+> - Rename lynx_priv.conf to .cfg, since I kept mistyping it.
+> 
+> Changes in v3:
+> - Manually expand yaml references
+> - Add mode configuration to device tree
+> - Rename remaining references to QorIQ SerDes to Lynx 10G
+> - Fix PLL enable sequence by waiting for our reset request to be cleared
+>   before continuing. Do the same for the lock, even though it isn't as
+>   critical. Because we will delay for 1.5ms on average, use prepare
+>   instead of enable so we can sleep.
+> - Document the status of each protocol
+> - Fix offset of several bitfields in RECR0
+> - Take into account PLLRST_B, SDRST_B, and SDEN when considering whether
+>   a PLL is "enabled."
+> - Only power off unused lanes.
+> - Split mode lane mask into first/last lane (like group)
+> - Read modes from device tree
+> - Use caps to determine whether KX/KR are supported
+> - Move modes to lynx_priv
+> - Ensure that the protocol controller is not already in-use when we try
+>   to configure a new mode. This should only occur if the device tree is
+>   misconfigured (e.g. when QSGMII is selected on two lanes but there is
+>   only one QSGMII controller).
+> - Split PLL drivers off into their own file
+> - Add clock for "ext_dly" instead of writing the bit directly (and
+>   racing with any clock code).
+> - Use kasprintf instead of open-coding the snprintf dance
+> - Support 1000BASE-KX in lynx_lookup_proto. This still requires PCS
+>   support, so nothing is truly "enabled" yet.
+> - Describe modes in device tree
+> - ls1088a: Add serdes bindings
+> 
+> Changes in v2:
+> - Rename to fsl,lynx-10g.yaml
+> - Refer to the device in the documentation, rather than the binding
+> - Move compatible first
+> - Document phy cells in the description
+> - Allow a value of 1 for phy-cells. This allows for compatibility with
+>   the similar (but according to Ioana Ciornei different enough) lynx-28g
+>   binding.
+> - Remove minItems
+> - Use list for clock-names
+> - Fix example binding having too many cells in regs
+> - Add #clock-cells. This will allow using assigned-clocks* to configure
+>   the PLLs.
+> - Document the structure of the compatible strings
+> - Rename driver to Lynx 10G (etc.)
+> - Fix not clearing group->pll after disabling it
+> - Support 1 and 2 phy-cells
+> - Power off lanes during probe
+> - Clear SGMIIaCR1_PCS_EN during probe
+> - Rename LYNX_PROTO_UNKNOWN to LYNX_PROTO_NONE
+> - Handle 1000BASE-KX in lynx_proto_mode_prep
+> - Use one phy cell for SerDes1, since no lanes can be grouped
+> - Disable SerDes by default to prevent breaking boards inadvertently.
+> 
+> Sean Anderson (8):
+>   dt-bindings: phy: Add 2500BASE-X and 10GBASE-R
+>   dt-bindings: phy: Add Lynx 10G phy binding
+>   dt-bindings: clock: Add ids for Lynx 10g PLLs
+>   phy: fsl: Add Lynx 10G SerDes driver
+>   arm64: dts: ls1046a: Add serdes bindings
+>   arm64: dts: ls1088a: Add serdes bindings
+>   arm64: dts: ls1046ardb: Add serdes bindings
+>   [WIP] arm64: dts: ls1088ardb: Add serdes bindings
+> 
+>  .../devicetree/bindings/phy/fsl,lynx-10g.yaml |  236 ++++
+>  Documentation/driver-api/phy/index.rst        |    1 +
+>  Documentation/driver-api/phy/lynx_10g.rst     |   58 +
+>  MAINTAINERS                                   |    7 +
+>  .../boot/dts/freescale/fsl-ls1046a-rdb.dts    |  112 ++
+>  .../arm64/boot/dts/freescale/fsl-ls1046a.dtsi |   18 +
+>  .../boot/dts/freescale/fsl-ls1088a-rdb.dts    |  161 +++
+>  .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |   18 +
+>  drivers/phy/freescale/Kconfig                 |   23 +
+>  drivers/phy/freescale/Makefile                |    3 +
+>  drivers/phy/freescale/lynx-10g.h              |   16 +
+>  drivers/phy/freescale/phy-fsl-lynx-10g-clk.c  |  503 +++++++
+>  drivers/phy/freescale/phy-fsl-lynx-10g.c      | 1167 +++++++++++++++++
+>  include/dt-bindings/clock/fsl,lynx-10g.h      |   14 +
+>  include/dt-bindings/phy/phy.h                 |    2 +
+>  15 files changed, 2339 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+>  create mode 100644 Documentation/driver-api/phy/lynx_10g.rst
+>  create mode 100644 drivers/phy/freescale/lynx-10g.h
+>  create mode 100644 drivers/phy/freescale/phy-fsl-lynx-10g-clk.c
+>  create mode 100644 drivers/phy/freescale/phy-fsl-lynx-10g.c
+>  create mode 100644 include/dt-bindings/clock/fsl,lynx-10g.h
+> 
 
-Signed-off-by: Biao Huang <biao.huang@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 88 ++++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt8195.dtsi     | 88 ++++++++++++++++++++
- 2 files changed, 176 insertions(+)
+I can't cleanly apply this series either on arm64 tree or linux-next.
+On what tree and commit the series is based on?
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-index 4fbd99eb496a..0e8496d837ef 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-@@ -258,6 +258,72 @@ &mt6359_vsram_others_ldo_reg {
- };
- 
- &pio {
-+	eth_default_pins: eth-default-pins {
-+		pins-txd {
-+			pinmux = <PINMUX_GPIO77__FUNC_GBE_TXD3>,
-+				 <PINMUX_GPIO78__FUNC_GBE_TXD2>,
-+				 <PINMUX_GPIO79__FUNC_GBE_TXD1>,
-+				 <PINMUX_GPIO80__FUNC_GBE_TXD0>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+		};
-+		pins-cc {
-+			pinmux = <PINMUX_GPIO85__FUNC_GBE_TXC>,
-+				 <PINMUX_GPIO88__FUNC_GBE_TXEN>,
-+				 <PINMUX_GPIO87__FUNC_GBE_RXDV>,
-+				 <PINMUX_GPIO86__FUNC_GBE_RXC>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+		};
-+		pins-rxd {
-+			pinmux = <PINMUX_GPIO81__FUNC_GBE_RXD3>,
-+				 <PINMUX_GPIO82__FUNC_GBE_RXD2>,
-+				 <PINMUX_GPIO83__FUNC_GBE_RXD1>,
-+				 <PINMUX_GPIO84__FUNC_GBE_RXD0>;
-+		};
-+		pins-mdio {
-+			pinmux = <PINMUX_GPIO89__FUNC_GBE_MDC>,
-+				 <PINMUX_GPIO90__FUNC_GBE_MDIO>;
-+			input-enable;
-+		};
-+		pins-power {
-+			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
-+				 <PINMUX_GPIO92__FUNC_GPIO92>;
-+			output-high;
-+		};
-+	};
-+
-+	eth_sleep_pins: eth-sleep-pins {
-+		pins-txd {
-+			pinmux = <PINMUX_GPIO77__FUNC_GPIO77>,
-+				 <PINMUX_GPIO78__FUNC_GPIO78>,
-+				 <PINMUX_GPIO79__FUNC_GPIO79>,
-+				 <PINMUX_GPIO80__FUNC_GPIO80>;
-+		};
-+		pins-cc {
-+			pinmux = <PINMUX_GPIO85__FUNC_GPIO85>,
-+				 <PINMUX_GPIO88__FUNC_GPIO88>,
-+				 <PINMUX_GPIO87__FUNC_GPIO87>,
-+				 <PINMUX_GPIO86__FUNC_GPIO86>;
-+		};
-+		pins-rxd {
-+			pinmux = <PINMUX_GPIO81__FUNC_GPIO81>,
-+				 <PINMUX_GPIO82__FUNC_GPIO82>,
-+				 <PINMUX_GPIO83__FUNC_GPIO83>,
-+				 <PINMUX_GPIO84__FUNC_GPIO84>;
-+		};
-+		pins-mdio {
-+			pinmux = <PINMUX_GPIO89__FUNC_GPIO89>,
-+				 <PINMUX_GPIO90__FUNC_GPIO90>;
-+			input-disable;
-+			bias-disable;
-+		};
-+		pins-power {
-+			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
-+				 <PINMUX_GPIO92__FUNC_GPIO92>;
-+			input-disable;
-+			bias-disable;
-+		};
-+	};
-+
- 	gpio_keys_pins: gpio-keys-pins {
- 		pins {
- 			pinmux = <PINMUX_GPIO106__FUNC_GPIO106>;
-@@ -434,6 +500,28 @@ &xhci0 {
- 	status = "okay";
- };
- 
-+&eth {
-+	phy-mode ="rgmii-rxid";
-+	phy-handle = <&ethernet_phy0>;
-+	snps,reset-gpio = <&pio 93 GPIO_ACTIVE_HIGH>;
-+	snps,reset-delays-us = <0 10000 10000>;
-+	mediatek,tx-delay-ps = <2030>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&eth_default_pins>;
-+	pinctrl-1 = <&eth_sleep_pins>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		ethernet_phy0: ethernet-phy@1 {
-+			compatible = "ethernet-phy-id001c.c916";
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
- &xhci1 {
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 905d1a90b406..7efaf92c5ff3 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -1042,6 +1042,94 @@ spis1: spi@1101e000 {
- 			status = "disabled";
- 		};
- 
-+		eth: ethernet@11021000 {
-+			compatible = "mediatek,mt8195-gmac", "snps,dwmac-5.10a";
-+			reg = <0 0x11021000 0 0x4000>;
-+			interrupts = <GIC_SPI 716 IRQ_TYPE_LEVEL_HIGH 0>;
-+			interrupt-names = "macirq";
-+			clock-names = "axi",
-+				      "apb",
-+				      "mac_cg",
-+				      "mac_main",
-+				      "ptp_ref",
-+				      "rmii_internal";
-+			clocks = <&pericfg_ao CLK_PERI_AO_ETHERNET>,
-+				 <&pericfg_ao CLK_PERI_AO_ETHERNET_BUS>,
-+				 <&pericfg_ao CLK_PERI_AO_ETHERNET_MAC>,
-+				 <&topckgen CLK_TOP_SNPS_ETH_250M>,
-+				 <&topckgen CLK_TOP_SNPS_ETH_62P4M_PTP>,
-+				 <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>;
-+			assigned-clocks = <&topckgen CLK_TOP_SNPS_ETH_250M>,
-+					  <&topckgen CLK_TOP_SNPS_ETH_62P4M_PTP>,
-+					  <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_ETHPLL_D2>,
-+						 <&topckgen CLK_TOP_ETHPLL_D8>,
-+						 <&topckgen CLK_TOP_ETHPLL_D10>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_ETHER>;
-+			mediatek,pericfg = <&infracfg_ao>;
-+			snps,axi-config = <&stmmac_axi_setup>;
-+			snps,mtl-rx-config = <&mtl_rx_setup>;
-+			snps,mtl-tx-config = <&mtl_tx_setup>;
-+			snps,txpbl = <16>;
-+			snps,rxpbl = <16>;
-+			snps,clk-csr = <0>;
-+			#address-cells = <0>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+
-+			stmmac_axi_setup: stmmac-axi-config {
-+				snps,wr_osr_lmt = <0x7>;
-+				snps,rd_osr_lmt = <0x7>;
-+				snps,blen = <0 0 0 0 16 8 4>;
-+			};
-+
-+			mtl_rx_setup: rx-queues-config {
-+				snps,rx-queues-to-use = <4>;
-+				snps,rx-sched-sp;
-+				queue0 {
-+					snps,dcb-algorithm;
-+					snps,map-to-dma-channel = <0x0>;
-+				};
-+				queue1 {
-+					snps,dcb-algorithm;
-+					snps,map-to-dma-channel = <0x0>;
-+				};
-+				queue2 {
-+					snps,dcb-algorithm;
-+					snps,map-to-dma-channel = <0x0>;
-+				};
-+				queue3 {
-+					snps,dcb-algorithm;
-+					snps,map-to-dma-channel = <0x0>;
-+				};
-+			};
-+
-+			mtl_tx_setup: tx-queues-config {
-+				snps,tx-queues-to-use = <4>;
-+				snps,tx-sched-wrr;
-+				queue0 {
-+					snps,weight = <0x10>;
-+					snps,dcb-algorithm;
-+					snps,priority = <0x0>;
-+				};
-+				queue1 {
-+					snps,weight = <0x11>;
-+					snps,dcb-algorithm;
-+					snps,priority = <0x1>;
-+				};
-+				queue2 {
-+					snps,weight = <0x12>;
-+					snps,dcb-algorithm;
-+					snps,priority = <0x2>;
-+				};
-+				queue3 {
-+					snps,weight = <0x13>;
-+					snps,dcb-algorithm;
-+					snps,priority = <0x3>;
-+				};
-+			};
-+		};
-+
- 		xhci0: usb@11200000 {
- 			compatible = "mediatek,mt8195-xhci",
- 				     "mediatek,mtk-xhci";
 -- 
-2.25.1
+An old man doll... just what I always wanted! - Clara
 
