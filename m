@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEBEE606178
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32CA4606168
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:21:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbiJTNXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 09:23:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45126 "EHLO
+        id S231183AbiJTNU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 09:20:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230357AbiJTNXA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:23:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A25E019634A;
-        Thu, 20 Oct 2022 06:22:37 -0700 (PDT)
+        with ESMTP id S231195AbiJTNUx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:20:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8531F140DD;
+        Thu, 20 Oct 2022 06:19:55 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8017061B33;
-        Thu, 20 Oct 2022 13:15:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF451C433B5;
-        Thu, 20 Oct 2022 13:15:32 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 75CC3B82755;
+        Thu, 20 Oct 2022 13:19:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A90EC433B5;
+        Thu, 20 Oct 2022 13:19:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666271732;
-        bh=IScp8MGBm9uoFQg4S2EpobrVU50THT1MSKOXcEFHkSU=;
+        s=k20201202; t=1666271989;
+        bh=jsKWqw6sex5flEAQdpaxCShxbW/VjcISHfQKqdUw+a8=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=k/Nir49M09ZU/CG7Q6L7m9YW4JARFAM1YN9bSlXmSaOSaWq8o9mNOCWEl+pXoxX64
-         GB+SIIP2Taoz2PzpUEFqAaIYqDxxucQtLACyX3ra8WVQ8HtUW1NFDTtQdZDw3YclyM
-         VFS21uUcCCN+GyJxj9CTZPw3xq1SIak6krx8FGLk6RJfW59W6Czigcz3L6KfJRERHN
-         JFr8xGiNz93rvuOYlghhb4VvNVeTA02gcnQ3SpCtKPY/pMT7V2KWKYAcI1AcOXbBzL
-         S7UEpzNeIzlTnHaqtUWWmA4Ap+u8MtzjtbZS56d51sMEduxouWQvgSAsaQ/mIUjnT2
-         v1mYEeF3lC+tg==
-Received: by mail-ua1-f50.google.com with SMTP id n5so684403uap.2;
-        Thu, 20 Oct 2022 06:15:32 -0700 (PDT)
-X-Gm-Message-State: ACrzQf30EJUDaBGpCn8f6pv9NoiyByNKI9Ndhnfbc0DXjM2SJhFpgD8O
-        Q54lTXTl7+DvalF/htrvWLMv73xvqSqSDpW0cg==
-X-Google-Smtp-Source: AMsMyM5IcnXVMGk7tBvM2Wt+JK7prp1EjA6Y62+pK4TUqA61tUKTNQZUcYgH5QyYcRKRmy1esYnKvKk8f/uoN6CtDaQ=
-X-Received: by 2002:a05:6102:cd0:b0:3a9:6788:8ecc with SMTP id
- g16-20020a0561020cd000b003a967888eccmr6710540vst.0.1666271731788; Thu, 20 Oct
- 2022 06:15:31 -0700 (PDT)
+        b=P7BLnUwmTIDbb47f8eoEGEGDQbdlq7NB9mkPrZd84BNm52isGS45nq1K+8+sSXWq5
+         xSNVSLgsG0kXy8kv6O2anMcCv66pi4gH4lTOAOO+hXVnPdGABrfZqYvu5qYmbUzYiH
+         1r1q6+Y8R5uvaAHmuXjEuYNZnLobH+L3+HeIiBitfucYnXN+V6dGprmspwAIVoxCdj
+         xpgrEktxeO4ZSoRLL8PEm30FggMf1e+TrTqHrG4r07DR2z+gBBnMqJxvEEz1QBMMSZ
+         LbGlJXf/eS1X6b9MupWP9VfmSQz6i1QBQb/GdK0j7WP3H4IDUEqx2HOjs12EfAaII+
+         7HMIA8v8uxzqg==
+Received: by mail-vk1-f174.google.com with SMTP id o28so9792056vkn.11;
+        Thu, 20 Oct 2022 06:19:49 -0700 (PDT)
+X-Gm-Message-State: ACrzQf3APzoBAalwMfeZreh2LtJKsjxYrXQT+7iiOiVxIM3c3VyozxAP
+        zKxOexXKLuRsnPlhzdbJrv+A9F1OWz2q28/gxg==
+X-Google-Smtp-Source: AMsMyM6cyxNnvi9QEJ/wzCU65VsV6e19S0B0G0O3vHqDZtWRVmtOdSAG+7qlhrYAvnHtwtK5VUmTEn64i8lpZzNOyk8=
+X-Received: by 2002:a1f:29d2:0:b0:3b2:4f9c:3b5a with SMTP id
+ p201-20020a1f29d2000000b003b24f9c3b5amr984670vkp.14.1666271987997; Thu, 20
+ Oct 2022 06:19:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221019130200.60460-1-yuanjilin@cdjrlc.com> <9fb4c010-b465-e908-6868-d9e493a9688f@infradead.org>
- <Y1Cm2Hvf7W7NxVzk@mit.edu>
-In-Reply-To: <Y1Cm2Hvf7W7NxVzk@mit.edu>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 20 Oct 2022 08:15:22 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLypcBCOVZ8yYWK0J_xc2Vcr+ANrX_3v4vN55Srp4RknQ@mail.gmail.com>
-Message-ID: <CAL_JsqLypcBCOVZ8yYWK0J_xc2Vcr+ANrX_3v4vN55Srp4RknQ@mail.gmail.com>
-Subject: Re: [PATCH] of: fix repeated words in comments
-To:     "Theodore Ts'o" <tytso@mit.edu>
-Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        Jilin Yuan <yuanjilin@cdjrlc.com>, frowand.list@gmail.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221018001029.2731620-1-sashal@kernel.org> <20221018001029.2731620-12-sashal@kernel.org>
+In-Reply-To: <20221018001029.2731620-12-sashal@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 20 Oct 2022 08:19:39 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLCR68uCFugv8abv-1cEwbNXHgKViYO78CQA+qoZtFx9g@mail.gmail.com>
+Message-ID: <CAL_JsqLCR68uCFugv8abv-1cEwbNXHgKViYO78CQA+qoZtFx9g@mail.gmail.com>
+Subject: Re: [PATCH AUTOSEL 5.10 12/16] of: Fix "dma-ranges" handling for bus controllers
+To:     Sasha Levin <sashal@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Robin Murphy <robin.murphy@arm.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        frowand.list@gmail.com, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -62,45 +62,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 19, 2022 at 8:39 PM Theodore Ts'o <tytso@mit.edu> wrote:
+On Mon, Oct 17, 2022 at 7:10 PM Sasha Levin <sashal@kernel.org> wrote:
 >
-> On Wed, Oct 19, 2022 at 11:53:54AM -0700, Randy Dunlap wrote:
-> >
-> > On 10/19/22 06:02, Jilin Yuan wrote:
-> > > Delete the redundant word 'of'.
-> > >
-> > > Signed-off-by: Jilin Yuan <yuanjilin@cdjrlc.com>
-> > > ---
-> > >  drivers/of/device.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/of/device.c b/drivers/of/device.c
-> > > index 8cefe5a7d04e..16c7e5a2a868 100644
-> > > --- a/drivers/of/device.c
-> > > +++ b/drivers/of/device.c
-> > > @@ -19,7 +19,7 @@
-> > >
-> > >  /**
-> > >   * of_match_device - Tell if a struct device matches an of_device_id list
-> > > - * @matches: array of of device match structures to search in
-> > > + * @matches: array of device match structures to search in
-> >
-> > Hi,
-> > Rob has already explained this at least 2 times.
-> >
-> > The second "of" is "open firmware".
-> > I would write it
-> >               array of OF device match structures to search in
-> > :)
+> From: Robin Murphy <robin.murphy@arm.com>
 >
-> Actually, I'd probably do something like
->
->              array of Open Firmware (OF) device match structures...
+> [ Upstream commit f1ad5338a4d57fe1fe6475003acb8c70bf9d1bdf ]
 
-Or just put the struct name in there: of_device_id
-
-But at this point I prefer to just leave it alone for the
-entertainment factor of how many times can I get this patch from
-send-only email accts.
+This was not marked with Fixes or for stable on purpose as there are
+not existing devices that need it and I think there is some chance of
+regressing existing devices. So please drop it for now.
 
 Rob
