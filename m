@@ -2,79 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F06E60637B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 16:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F7E7606401
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 17:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230058AbiJTOrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 10:47:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51488 "EHLO
+        id S229509AbiJTPQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 11:16:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbiJTOrn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 10:47:43 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D1F0103DBE
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 07:47:42 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id bh7-20020a05600c3d0700b003c6fb3b2052so2372861wmb.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 07:47:42 -0700 (PDT)
+        with ESMTP id S229739AbiJTPQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 11:16:15 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB8EB136409
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 08:16:14 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id bk15so35027483wrb.13
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 08:16:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wNLw0g9aW4DViYegUYXRGvm/PASw5WNRrmtJ1qb1e6w=;
-        b=M0Q26zKHwnoa5C4gpwRkznGLdTFUNIrn4NezGvAcNwQkGpFUfvs8mod8m5PfHumNhO
-         FjJdyIhNJkmPnMFP4RYImzSHTM6xaFNHkVv3TlPCJ2NB+4wUEmZMkUChqAzhEU0k7Hbs
-         +w73BJAmT5QgDqmkas3cRE1uxnOtTFm2R6TNpiggzBdGv+/WPa9+mfs2jr8rqGmF8mLo
-         eLwSMwCyX0r3sSiu6YubXY4kAdzk0m4UaUsBwz+qEwbb0LzPJrUH1Nq0uNdCN+Xtbmub
-         J8WId3sby5tyTTyP3bKiZtYYWjtRafFp/t7SNKXO8Dq2ZkocycKHnntJqmhBnVV4q7Wr
-         Ec4g==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HPfdUDxQ8JWzLN/qiL20jBM0KQ2BlXI48NY7ZfUHHSc=;
+        b=R47J7bhm6nc6f+hbSTG6ubo+fIvok0uIfxmJnOX9lBwOGpzg7l8tU9mO0q3PzZw/Eo
+         A86ckdcXYz85ZzJzZXRpPKJmIf7tQaDbFWFbs4lDHGgwFct04cRrHJwyhylP4vIGPOOq
+         nG6wpaXqnvZeYRWSCZz7cZ+y1dRHeft7WEMYxC8E1TROTVrGlW5WSHHT7KwxjaHSnTpR
+         V3m/dAmfkKDA7V7nCoSKw1E7gN35CtbVow0YdcfLWHbosD+XAxA39qS9hbsvMg/Y696n
+         l9i3J0YhLHioHHVSxOSqKZlDFmE9aU7D0lIJlmgq0bgi6q3kzsSlQymtZPkux8m2pvQY
+         pNIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wNLw0g9aW4DViYegUYXRGvm/PASw5WNRrmtJ1qb1e6w=;
-        b=fNkMFzTqw7aWuUTD2qgJEfbmKQ/ydsHj/V4aR5Ki2DKApnjiiur1ucfNLQIQS+CIW4
-         2OcSKeDW9+7DzvEdy6/3wkKHdodq0BF/q2y6PqsKBHBM0XdWmOo5E6/JshB8/qCOTCx7
-         zE5PK9kRaEQERJR+aeHeKboxicUQGjYYz6HFthWYmqHFotjaxhUAkHLyVRKLsfEuixp7
-         JXxmEV1P+csOqrXJgNHXPybBFliRXU/4V4UCxleAxwINVpimIh1SVmctitWcdS8JMufR
-         HEDlvgftpBgdCuibXbEKXTnQ95fep5B3nlpVFFKPDp1LOtsgAvZfl5IJoAoUr8+PzRwP
-         Furw==
-X-Gm-Message-State: ACrzQf1RjgJr+klXxTCzkVw7bealWyycDPeFmJAp39xTQB2xB5HrdpUg
-        sgOR2ZBv8Vv8UqKi9FJyLh/FdQ==
-X-Google-Smtp-Source: AMsMyM5XvMCvfeePE6gNiP9NaRupMSx/FrsALgVK+S06GitZYBks1Xp1wq80uP/M7ZboZh5SsKucfw==
-X-Received: by 2002:a05:600c:1912:b0:3c6:e3cf:4335 with SMTP id j18-20020a05600c191200b003c6e3cf4335mr24163995wmq.81.1666277260344;
-        Thu, 20 Oct 2022 07:47:40 -0700 (PDT)
-Received: from [10.35.6.130] ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id l35-20020a05600c1d2300b003b477532e66sm6663310wms.2.2022.10.20.07.47.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 07:47:40 -0700 (PDT)
-Message-ID: <72d561c9-e2cd-83b7-bd47-ebba5ad571f0@sifive.com>
-Date:   Thu, 20 Oct 2022 15:47:39 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v5 06/10] pwm: dwc: split pci out of core driver
-To:     Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        linux-pwm@vger.kernel.org
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HPfdUDxQ8JWzLN/qiL20jBM0KQ2BlXI48NY7ZfUHHSc=;
+        b=AT9V2mCzb5v+6ddNzzmeg51sxmizz3kOzt04S633TlxjhRUKADXHLWeglGC9ddmUXW
+         nHZN9RbM0qh7xjEffVPdu7xYyjUiguozxw78cgHKJ+G30/PPxlh9Ij6DOjhIUZLdT2bj
+         nxlI5LLbAi+PzDIiEAP+MSGgnljfdtZU83WWMKfvudRakeu3RIp2+asytxRucr8KDJQR
+         sEqDkZcUnvW+YncpD8GwKiAftwk+EkQ/Q27sMQK8joyCO9pxNfc5AZmrsXOlvzyQ4HM9
+         R7LVjMyNq90JHkBb7+7RULu/JwJaaeiH8FTtIVmG3qiydr6HuqXcwsHW/dojYOoNWtCP
+         VEFA==
+X-Gm-Message-State: ACrzQf3GQNeJfR1HIdnfZIVE7ALX98pTuYHcHzU9cnclI6iVBnk85TSq
+        RgCNt/bpEvHnw/BSjDWYj0y3Nw==
+X-Google-Smtp-Source: AMsMyM4jI2hcOzEdc5K0f/c82GJsXiCvu7j6Wo8CQbxy1l2wkijCAqWKzRAC/Jkkkni6l5QGv/C9tw==
+X-Received: by 2002:a05:6000:154e:b0:230:45ad:fb87 with SMTP id 14-20020a056000154e00b0023045adfb87mr9474567wry.270.1666278973340;
+        Thu, 20 Oct 2022 08:16:13 -0700 (PDT)
+Received: from rainbowdash.guest.codethink.co.uk ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id bg6-20020a05600c3c8600b003c6f3e5ba42sm41362wmb.46.2022.10.20.08.16.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Oct 2022 08:16:12 -0700 (PDT)
+From:   Ben Dooks <ben.dooks@sifive.com>
+To:     linux-pwm@vger.kernel.org
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Lee Jones <lee.jones@linaro.org>,
         u.kleine-koenig@pengutronix.de,
         Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
         William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-References: <20221005221242.470734-1-ben.dooks@sifive.com>
- <20221005221242.470734-7-ben.dooks@sifive.com>
- <0c7e6208-307e-3788-e864-b79647c8b2a1@linux.intel.com>
-Content-Language: en-GB
-From:   Ben Dooks <ben.dooks@sifive.com>
-In-Reply-To: <0c7e6208-307e-3788-e864-b79647c8b2a1@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Ben Dooks <ben.dooks@sifive.com>
+Subject: [PATCH v6 00/10] Designware PWM driver updates for OF
+Date:   Thu, 20 Oct 2022 16:16:00 +0100
+Message-Id: <20221020151610.59443-1-ben.dooks@sifive.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,32 +77,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/10/2022 11:39, Jarkko Nikula wrote:
-> Hi
-> 
-> On 10/6/22 01:12, Ben Dooks wrote:
->> Moving towards adding non-pci support for the driver, move the pci
->> parts out of the core into their own module. This is partly due to
->> the module_driver() code only being allowed once in a module and also
->> to avoid a number of #ifdef if we build a single file in a system
->> without pci support.
->>
->> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
->> ---
->> v4:
->>   - removed DWC_PERIOD_NS as not needed
-> 
-> ...
-> 
->> --- a/drivers/pwm/pwm-dwc.c
->> +++ b/drivers/pwm/pwm-dwc.c
->> -
->> -#define DWC_TIMERS_TOTAL    8
->> -#define DWC_CLK_PERIOD_NS    10
->> -
-> 
-> Actually DWC_CLK_PERIOD_NS is still used here. Only the next patch 07/10 
-> is removing usage of it so this patch is not bisect safe.
+This is an updated version of the Designware PWM driver updates
+for OF support, which now splits the driver into PCI and OF parts
+as well as tries to sort out the review comments.
 
-Ok, will fix for v6.
+Hopefully this can now be queued for the next kernel version.
+
+v6:
+ - fix removal ordering of DWC_PERIOD_NS
+v5:
+ - fixed kconfig string error
+ - merged pwm-nr into main of code
+ - split of code from pci code
+ - updated pwm-nr capping
+ - fix duplicate error reporting in of-code
+ - fix return in of-probe
+ - remove unecessary remove function as devm_ functions sort this
+ - fixed ordering of properties
+ - added missing reg item
+ - fixed missing split of the two clock sources.
+ - get bus clock in of code
+v4:
+ - split pci and of into new modules
+ - fixup review comments
+ - fix typos in dt-bindings
+v3:
+- change the compatible name
+- squash down pwm count patch
+- fixup patch naming
+v2:
+- fix #pwm-cells count to be 3
+- fix indetation 
+- merge the two clock patches
+- add HAS_IOMEM as a config dependency
+
+
+Ben Dooks (10):
+  dt-bindings: pwm: Document Synopsys DesignWare
+    snps,pwm-dw-apb-timers-pwm2
+  pwm: dwc: allow driver to be built with COMPILE_TEST
+  pwm: dwc: change &pci->dev to dev in probe
+  pwm: dwc: move memory alloc to own function
+  pwm: dwc: use devm_pwmchip_add
+  pwm: dwc: split pci out of core driver
+  pwm: dwc: make timer clock configurable
+  pwm: dwc: add of/platform support
+  pwm: dwc: add PWM bit unset in get_state call
+  pwm: dwc: use clock rate in hz to avoid rounding issues
+
+ .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml |  68 ++++++
+ drivers/pwm/Kconfig                           |  24 +-
+ drivers/pwm/Makefile                          |   2 +
+ drivers/pwm/pwm-dwc-of.c                      |  76 +++++++
+ drivers/pwm/pwm-dwc-pci.c                     | 134 +++++++++++
+ drivers/pwm/pwm-dwc.c                         | 210 ++++--------------
+ drivers/pwm/pwm-dwc.h                         |  59 +++++
+ 7 files changed, 402 insertions(+), 171 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
+ create mode 100644 drivers/pwm/pwm-dwc-of.c
+ create mode 100644 drivers/pwm/pwm-dwc-pci.c
+ create mode 100644 drivers/pwm/pwm-dwc.h
+
+-- 
+2.35.1
 
