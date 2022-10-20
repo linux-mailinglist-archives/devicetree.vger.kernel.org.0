@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FB716059F7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 10:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A47B86059FD
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 10:35:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230260AbiJTIeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 04:34:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37548 "EHLO
+        id S231135AbiJTIe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 04:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230371AbiJTId4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 04:33:56 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E496318D469;
-        Thu, 20 Oct 2022 01:33:53 -0700 (PDT)
+        with ESMTP id S231167AbiJTIeG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 04:34:06 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E9F18BE1C;
+        Thu, 20 Oct 2022 01:34:03 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 685AB66023A2;
-        Thu, 20 Oct 2022 09:33:51 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6B26966023A2;
+        Thu, 20 Oct 2022 09:34:01 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666254832;
-        bh=eYxMz6zERQc7GTytaTxwkwMkEwSbrxhut31+a3wEpqo=;
+        s=mail; t=1666254842;
+        bh=2UNffIqKl9kH8OQ2kWi77ZkGLh9VCV/WSKKr3JkfLio=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=McX7Tn5gyIzVRQETcl61spVTpz7+tpl7vReaL79clhy9oI8LNQw/BCnp1mCRLEMj2
-         UoppxK88l1oNtHXEjz0UChsVJk01qesYhOaTWdyiwoHbeu+55JW2XeTZFGInqr34KU
-         Fdh4tOwi6HLmiLrcLP4wD5aw6Cl/UpxzuAAfdbtCxbbFdmiWeX6fvJ8h2NQjXJ3Qut
-         AEh3lX/7PKynaZ61blx05q9pnsR9QTfB/i5lxK9+JeFVu7kvL781F+O/XXRaBk6ey4
-         e2SVZ02BqzwUIUV5tgxg60vCcQwR+h5FYkQDkJiCOTZxKjlZDPzWU5ttZ3C6l6CcpR
-         zqXswuAhJclyQ==
-Message-ID: <3e20104a-674a-666a-10b4-4a19abeabc9a@collabora.com>
-Date:   Thu, 20 Oct 2022 10:33:48 +0200
+        b=DOVn7CNkTSdtftA5n9AsIu69+b61TGcZ2ZpgFhWQ/TGhEF6RoJqVq6Dwf9cTidhJv
+         yMGzEE/Us1gF0mVlrnbQ8gB3MDFSbSY+pNVJvONUQ9Q+HRQKpDF4RMMLKRlAqbcKOC
+         svRtQ2+TT3vuufHbv9IVnmvUPDGvaNQLugW8TY4oOEGRkKYeBq/yrSj2w5dC/gJxC5
+         8AKeilYlXiRkEOk1MJhbd2/vnK4slPcZpsBMhU4CaKl1u1Rq/ia3cEU/h8VIjeIEdm
+         ZU+3Cdh+ZlsNxAfjUOJZJhiXCzVG8t44ZjOjYl9IskmLJFR4z38/tt+9ObJiIlqd3C
+         YG1Cs18lzwuiw==
+Message-ID: <9761e573-3ec6-bbbf-7985-b9ad63d00580@collabora.com>
+Date:   Thu, 20 Oct 2022 10:33:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH,2/2] drm: mediatek: Add mt8188 dpi compatibles and
- platform data
+Subject: Re: [PATCH,1/2] dt-bindings: display: mediatek: dpi: Add compatible
+ for MediaTek MT8188
 Content-Language: en-US
 To:     xinlei.lee@mediatek.com, chunkuang.hu@kernel.org,
         p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
@@ -48,10 +48,10 @@ Cc:     dri-devel@lists.freedesktop.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <1666249553-15801-1-git-send-email-xinlei.lee@mediatek.com>
- <1666249553-15801-3-git-send-email-xinlei.lee@mediatek.com>
+ <1666249553-15801-2-git-send-email-xinlei.lee@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <1666249553-15801-3-git-send-email-xinlei.lee@mediatek.com>
+In-Reply-To: <1666249553-15801-2-git-send-email-xinlei.lee@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -66,70 +66,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 Il 20/10/22 09:05, xinlei.lee@mediatek.com ha scritto:
 > From: xinlei lee <xinlei.lee@mediatek.com>
 > 
-> For MT8188, the vdosys0 only supports 1T1P mode, so we need to add the compatible for mt8188 edp-intf.
+> For MT8188, the vdosys0 only supports 1T1P mode while the vdosys0 supports 2T1P mode in MT8195.
+> 
+> So we need to add dt-binding documentation of dpi for MediaTek MT8188 SoC.
 > 
 > Signed-off-by: xinlei lee <xinlei.lee@mediatek.com>
 > ---
->   drivers/gpu/drm/mediatek/mtk_dpi.c     | 17 +++++++++++++++++
->   drivers/gpu/drm/mediatek/mtk_drm_drv.c |  2 ++
->   2 files changed, 19 insertions(+)
+>   Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> index 508a6d9..5cefda4 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -929,6 +929,20 @@ static const struct mtk_dpi_conf mt8183_conf = {
->   	.csc_enable_bit = CSC_ENABLE,
->   };
->   
-> +static const struct mtk_dpi_conf mt8188_edpintf_conf = {
-> +	.cal_factor = mt8195_dpintf_calculate_factor,
-> +	.max_clock_khz = 600000,
-> +	.output_fmts = mt8195_output_fmts,
-> +	.num_output_fmts = ARRAY_SIZE(mt8195_output_fmts),
-> +	.pixels_per_iter = 4,
-> +	.input_2pixel = false,
-> +	.dimension_mask = DPINTF_HPW_MASK,
-> +	.hvsize_mask = DPINTF_HSIZE_MASK,
-> +	.channel_swap_shift = DPINTF_CH_SWAP,
-> +	.yuv422_en_bit = DPINTF_YUV422_EN,
-> +	.csc_enable_bit = DPINTF_CSC_ENABLE,
-> +};
-> +
->   static const struct mtk_dpi_conf mt8192_conf = {
->   	.cal_factor = mt8183_calculate_factor,
->   	.reg_h_fre_con = 0xe0,
-> @@ -1079,6 +1093,9 @@ static const struct of_device_id mtk_dpi_of_ids[] = {
->   	{ .compatible = "mediatek,mt8183-dpi",
->   	  .data = &mt8183_conf,
->   	},
-> +	{ .compatible = "mediatek,mt8188-edp-intf",
-> +	  .data = &mt8188_edpintf_conf,
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> index 5bb23e9..963f82b 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> @@ -23,6 +23,7 @@ properties:
+>         - mediatek,mt8173-dpi
+>         - mediatek,mt8183-dpi
+>         - mediatek,mt8186-dpi
+> +      - mediatek,mt8188-edp-intf
 
-Please rename to:
-
-mediatek,mt8188-dp-intf
-
-and
-
-&mt8188_dpintf_conf
-
-> +	},
->   	{ .compatible = "mediatek,mt8192-dpi",
->   	  .data = &mt8192_conf,
->   	},
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> index 91f58db..5732ed8 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -631,6 +631,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
->   	  .data = (void *)MTK_DPI },
->   	{ .compatible = "mediatek,mt8183-dpi",
->   	  .data = (void *)MTK_DPI },
-> +	{ .compatible = "mediatek,mt8188-edp-intf",
-
-Same here.
+Please rename to "mediatek,mt8188-dp-intf".
 
 Regards,
 Angelo
+
 
