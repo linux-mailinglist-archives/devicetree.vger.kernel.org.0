@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F41F8605572
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 04:23:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B18605592
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 04:42:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229736AbiJTCXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 22:23:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58714 "EHLO
+        id S229774AbiJTCmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 22:42:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229569AbiJTCXb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 22:23:31 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 030001D5E25;
-        Wed, 19 Oct 2022 19:23:31 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id a24so12914207qto.10;
-        Wed, 19 Oct 2022 19:23:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9lB5arQHffZuEw1/gufkq+xRyVa+H5y2gBqdt079YS8=;
-        b=afmDpeKvZHQ8ZP3dazfMRPJO3k3uVwvPrd5HuNSMdSZLdpYlO+rzSoIT+287dLPkLw
-         LrOSTJ5Z0Z9121Z59cekYYH4DVkmBjnt7XLTQzFQbbH3tgZLzss8+NTGZ3/varM+dQLC
-         X2+ih+J4npIh2mug1ZjWx4xwgX3fpn2kwcXJpiCRWVzPmKANoXe+PdFtjIkWD8Zo5cpa
-         2YydRcOD67QKodCKRHcK9KDQfgLAJjFiq2FpUVdzURO4JemsOWlAFZCXYufXrabN7NOy
-         Uc7Rx2O4Hyj4795RBjDVxqsDKZLngG6YzukMBuFCjTWQ2TZijCZkHW798NYoKOc0UIBX
-         kOXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9lB5arQHffZuEw1/gufkq+xRyVa+H5y2gBqdt079YS8=;
-        b=AsMCOkrophgKIam7Q3pWmilIwq+EQQ/iYCD/GNoWReA7bAWj9XR+Z+NDFoSYqOX5Yw
-         ofR1y823D8S3u9dGVrbUp0dzvpxdRsNeL299Q7RRNAHRRJkJnVYwNN7sx6+FpgwEHJlj
-         t96mWy6vKvOAjsELbYpts/EmHr7GmrlDOv/beHfnvnji/mqWYqyoSYKzaDM9zeWIK4nF
-         ihkUSlzLtfv+T88DbGzxmHtsfNis0fSwiZk9A3AKofFQZ1DlycZnhQkYeeWZH2vuNNBF
-         scKPHzwK6dmF6yHCn3qUd+bI2BBiQb70gnTA0NAXjsB/EGrXjrKwHdwvcvYA3IJyzYAW
-         6KRg==
-X-Gm-Message-State: ACrzQf26sjgm0t1Z4wZBKwDVp/dyjCLJYRWFxIO9zAUOCO7cmu4rrw0q
-        3af5TUyjgffzVrVRlSaA3FwdoaidHss=
-X-Google-Smtp-Source: AMsMyM61M+FGhHV7uc+pRXMllfs3Dnt+txsGR4IMmW8EKQCIRiu3qgotTtLMcIdpC6YTRnh1HywOPA==
-X-Received: by 2002:ac8:7d81:0:b0:39c:d6ad:cce9 with SMTP id c1-20020ac87d81000000b0039cd6adcce9mr9414490qtd.81.1666232610039;
-        Wed, 19 Oct 2022 19:23:30 -0700 (PDT)
-Received: from [192.168.1.102] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id r8-20020a05620a298800b006be8713f742sm6568745qkp.38.2022.10.19.19.23.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Oct 2022 19:23:29 -0700 (PDT)
-Message-ID: <ccd7f1fc-b2e2-7acf-d7fd-85191564603a@gmail.com>
-Date:   Wed, 19 Oct 2022 19:23:26 -0700
+        with ESMTP id S229610AbiJTCmQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 22:42:16 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7FE718DD61;
+        Wed, 19 Oct 2022 19:42:11 -0700 (PDT)
+X-UUID: 67617bad31744be49dd48540ea22e2d5-20221020
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=DbSlmKYbAE29Y8sgLqS8ouQ67A0rGAev9b9TkM5gXHo=;
+        b=FcIDomfQH99Vc8TY3OZ4L0k4P+ag8NBvFbVsZACKEkuwosllzew5HfzRRExarlkoZgE0M9BzjDdjCnWSHZp0t0cmU1hCV7L0lMfepM09gxXC0oDr+hckNBkN0RWK6yG0fkhatrSuYKbgqfq1VvfQptv7a+mtaf3fYvXArWCuQO8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.12,REQID:084ca48f-663a-49f2-9f20-8faa0e50b710,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:100
+X-CID-INFO: VERSION:1.1.12,REQID:084ca48f-663a-49f2-9f20-8faa0e50b710,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
+        N:quarantine,TS:100
+X-CID-META: VersionHash:62cd327,CLOUDID:4008d7ee-314c-4293-acb8-ca4299dd021f,B
+        ulkID:221020104206IAA5FZIY,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 67617bad31744be49dd48540ea22e2d5-20221020
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1054899474; Thu, 20 Oct 2022 10:42:04 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 20 Oct 2022 10:42:03 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 20 Oct 2022 10:41:56 +0800
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Biao Huang <biao.huang@mediatek.com>,
+        <macpaul.lin@mediatek.com>
+Subject: [PATCH v3 0/1] arm64: dts: mt8195: Add Ethernet controller
+Date:   Thu, 20 Oct 2022 10:41:54 +0800
+Message-ID: <20221020024155.24520-1-biao.huang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v4 2/3] net: ethernet: renesas: Add Ethernet Switch driver
-Content-Language: en-US
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Andrew Lunn <andrew@lunn.ch>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <20221019083518.933070-1-yoshihiro.shimoda.uh@renesas.com>
- <20221019083518.933070-3-yoshihiro.shimoda.uh@renesas.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20221019083518.933070-3-yoshihiro.shimoda.uh@renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,17 +70,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes in v3:
+1. move stmmac-axi-config, rx-queues-config, tx-queues-configs inside ethernet node
+as Angelo's comments.
+2. add {address,size}-cells = <0> in ethernet node as Angelo's comments.
 
+Changes in v2:
+1. modify pinctrl node used by ethernet to match rules in pinctrl-mt8195.yaml,
+which is pointed by Krzysztof.
+2. remove "mac-address" property in ethernet node as comments of Krzysztof.
 
-On 10/19/2022 1:35 AM, Yoshihiro Shimoda wrote:
-> Add Renesas Ethernet Switch driver for R-Car S4-8 to be used as an
-> ethernet controller.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Changes in v1:
+add dts node for MT8195 Ethernet controller
 
-How can this be a switch driver when it does not include any switchdev 
-header files nor does it attempt to be using the DSA framework? You are 
-certainly duplicating a lot of things that DSA would do for you like 
-managing PHYs and registering per-port nework devices. Why?
+Biao Huang (1):
+  arm64: dts: mt8195: Add Ethernet controller
+
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 88 ++++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi     | 88 ++++++++++++++++++++
+ 2 files changed, 176 insertions(+)
+
 -- 
-Florian
+2.18.0
+
+
