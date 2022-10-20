@@ -2,81 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA609605B3F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 11:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68996605B50
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 11:37:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbiJTJdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 05:33:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
+        id S229491AbiJTJhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 05:37:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231283AbiJTJcc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 05:32:32 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7449415A969
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 02:32:23 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id o12so24062870lfq.9
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 02:32:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vbo5+yxCw1Loi5uLkMP1tDK1U+EA1+GCOOOHXa4CGGI=;
-        b=O6mDEx4dRLj/vAVzy2Aph7R6Z73vdf+VuLUUt1K+G+pPDM84CT5WF5NOwWOFOO+Gi6
-         wTE108TymB66vlnG4km+fef77IPNX6HUCwaLqrQuBHteIiV8koVOEjSxIaUaPbtJ5qY8
-         ahZCE1NLcVcgEi7IvRxFEGg6vv4VIxN8uSWLnQF5GkLmW1BRhkjEbeC3W76TUfDOcdVb
-         PfTBXDkz0YprUQdhngVHRU8DP7CCbuGntY3HaeiwgZg0j/Fg2dJSUenit49QbMMHttdd
-         mTzzxcmjdoeoNrto77RJHat+RBEFkI+z3K8V8aIAKyYOlXpQUSr1cJ804zY7c6IkVNX8
-         NtHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vbo5+yxCw1Loi5uLkMP1tDK1U+EA1+GCOOOHXa4CGGI=;
-        b=rhvx2VGI1gwhlCpRPLaLoR56Uh92DKjXeiumSnXSCQOVpfBCFKbKUO16wA0GmcS7pl
-         2NwlGHGovvF9rm3CykQYmoGFlbOAdliydw0eNcJhZJWIZi0DsLxWsjDgP/JSba6UdliY
-         DjQoH+AqdjUdkehJi5LGSNW54bEjrMLbHAmQVfosFb3MOf8kvJ9fj79pGgnsb305MSxS
-         xueX9Nsp8Z8yt/wCFWmqiy75Y8DjrP52EpaIGhzjVnSw/GeNWzkTZ71VZDW5AIcJAjRi
-         NVqJkTuKN3+yCJ97MRhN5/InWEebvk5c4Hvje8iDJE+YUAbFVcn0q93u0Mx3EQLz/afq
-         scuQ==
-X-Gm-Message-State: ACrzQf1wZRF6MGq6C8WRIqd6O3nhjZfTveV0JcUF2GY+zZ5A/+5sCaRS
-        VpwLRS7HWUytOAej9cAk1jGNDQ==
-X-Google-Smtp-Source: AMsMyM4ZRdhINz5QnYRn8AeaGxUG4k9Nojc8u1utaKccujFaIuR4oyR3qkdibyWqq9n8hAsHW19m+A==
-X-Received: by 2002:a05:6512:12c8:b0:4a2:cc28:cab8 with SMTP id p8-20020a05651212c800b004a2cc28cab8mr4123960lfg.205.1666258334516;
-        Thu, 20 Oct 2022 02:32:14 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id k12-20020ac257cc000000b00494a1b242dasm2665017lfo.14.2022.10.20.02.32.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 02:32:14 -0700 (PDT)
-Message-ID: <004a6ab9-690b-db13-08a9-c42d09368814@linaro.org>
-Date:   Thu, 20 Oct 2022 12:32:13 +0300
+        with ESMTP id S229501AbiJTJhr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 05:37:47 -0400
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2087.outbound.protection.outlook.com [40.107.102.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ED0C165523
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 02:37:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RakSZ2pGZSejbDy21lQpb6uDyEzQ9jfy7D22cVSvbERKg9yfnI2otDONus/Vc6pvBJqyORHN69Vyvdu6/pVbvtH9a7iWXOZcZQEvePtTHcGOgzZgPcxHOAMiBe08WIpnJvJJWK06gCN4wbFlgMTk/TSDB0sm3vBiXxoD9J7XV0F3+wHvU+YfLDxpQ8bFPV9g35N7UAwBMo6MRL+YP9VGFSMffVQAkux+UKnjOtD6Wl/rchnmGyyIZ2tibZLXVU93R8s1stEjB6ykfRxT5w0yTG5m9hjuQJG/skCfaNKOkOHVH58tYJ21sMfK4vo1ysSKfIR2poRL6y/KVeW0nJpYGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kOm9G41b/sYlEDzNgiUKtoZxKQhx/1TvNY8pXwhQ3Vw=;
+ b=AekAhK7u0KSoIHDVP2EEVRty3d65iCYKje+qJ598GxmRZaOxO/3gJNtQ1fsr6763NNKlVKAva55JtYpgprHMN2xFs63d1Ov4m/kIkJS29I/2fuN4+Ouqy7oFdV+V8qnEzhb+2j12iwXc8YXA9mJGYEvZxD2aYy1n7PdkDgaTZxKdbdUuSpihyLaiMdkgLeW6FM2NyJJpXRK6MJrlfQksnX87AG3OsEiSVL60O5AZ7wnYp3VwIb16OPKz4brFe/1wJ02428GgwIomapzkucIGjwUWwYAECm6kWwm80TDyyyCX9GKykecgHiL3T/bRqmSaUHrkQ7/MUV303GavJcgn9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kOm9G41b/sYlEDzNgiUKtoZxKQhx/1TvNY8pXwhQ3Vw=;
+ b=gRXjm2a4s9NF1Kb1pJqsGRFpfudMG5jSHYAH9qlBFafH/8pZsKkgg93xXVvbDIa/3J/3ivuQNT8LvEa5tVeaKHtdSddmCdiuVe0X+GJUIEkXKWALNuvaRkHTWVWLEF4qvnzyKoweHRWHRdnRhMcmlgPjoHvg2jvfBQ2nl7URuPM=
+Received: from BY5PR12MB4902.namprd12.prod.outlook.com (2603:10b6:a03:1dd::9)
+ by PH7PR12MB5596.namprd12.prod.outlook.com (2603:10b6:510:136::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.30; Thu, 20 Oct
+ 2022 09:37:41 +0000
+Received: from BY5PR12MB4902.namprd12.prod.outlook.com
+ ([fe80::282d:edef:88ac:662e]) by BY5PR12MB4902.namprd12.prod.outlook.com
+ ([fe80::282d:edef:88ac:662e%8]) with mapi id 15.20.5723.034; Thu, 20 Oct 2022
+ 09:37:40 +0000
+From:   "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     "git (AMD-Xilinx)" <git@amd.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>
+Subject: RE: [PATCH v1 1/2] dt-bindings: Add the binding doc for xilinx APM
+Thread-Topic: [PATCH v1 1/2] dt-bindings: Add the binding doc for xilinx APM
+Thread-Index: AQHY45uhHzsZVfH/MEqlnDiMGcCnpq4Vo+wAgAFgyoA=
+Date:   Thu, 20 Oct 2022 09:37:40 +0000
+Message-ID: <BY5PR12MB4902C7CB6F85513BCD1BF7B0812A9@BY5PR12MB4902.namprd12.prod.outlook.com>
+References: <20221019091713.9285-1-shubhrajyoti.datta@amd.com>
+ <20221019091713.9285-2-shubhrajyoti.datta@amd.com>
+ <f103812b-5eb5-8c19-e379-16b347ea80ce@linaro.org>
+In-Reply-To: <f103812b-5eb5-8c19-e379-16b347ea80ce@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-10-20T09:37:37Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=74423da8-ab21-41d3-8c43-2f3866f6bfcc;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BY5PR12MB4902:EE_|PH7PR12MB5596:EE_
+x-ms-office365-filtering-correlation-id: 83220054-d08d-4031-6f9d-08dab27ebb57
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: SHCcmxPVA52nzCYiu/dl2kuZF+I5vCEsL/2ntrwCaXLnI14PGhFT9Fd3569A2nxLtX0JhMXHGgdPJwHivbjFFQUzULD7UJAVcWhmatqEgaaIhYDYzblsohJqi5Ntc6LR2ZwvJKr6XDwu4/T3Nxzl3Fq3aeOUjBiKLgOsjr8rPZSghUngi6pnoOsqv81WKupGdfwM9jBLHZARkupWQc0siFOGm7SP0WglND3Sj77skGZuf+bdloru0ig0NgPydKwOmlnrVBkrONW4266FGGhINFvfXpiU9zm5fI6Kjxlo4JADc1K+sRMayBCWaSUrjJ6VcYcSF4mjMwRI4ZniAcLq5OJRZQN99tS4g3gFJWn9xG0Ycm7MZI3sZ5csB9oe1DJ+ZkYi9g2y+I05DcQwqMRsjPfGdxYISyww32DzXFqhSWV3VLRzfsyfq6ArgjcEyusXduRmmMGle5N/IJ8+nirhI8R1NU+pLwN71CNbjY8x+vd5BH822hbXuRpI8rxKU2anE8p1e0Bx4sTZk7rHJ5c+DkuHNifS0o2H+jbgu1yUkwPF427VpnSw+KU2VD3CrVD4dcQjZmKwgLd/j98eeQNCtFeY/Mjv0kZX2kw7ko9Vq39Dqc2sBfukl9shYrGsDC04Q7HIEGWKSe40vG95bjL17ZtcP9nMa4ghz2Fq/7V5yyFkLDOBsDcKdYP8BavcEXSI9n/0IRTkDKE/BXMVRFYaEca4v0YsP3baLJc6cvSYvk0T9pqhnxSGokuDq3k2Kv5TkJEuDJKbEw/S3Vvh+plVDK0ZNHHKMOq+fZy5kUIAYy1WHwY1HsySbmwT2oLOhM5i12FpkYxGMbt4Dq4lMxaKBw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB4902.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(39860400002)(366004)(346002)(396003)(376002)(451199015)(33656002)(122000001)(86362001)(2906002)(38100700002)(54906003)(5660300002)(26005)(186003)(71200400001)(38070700005)(83380400001)(110136005)(76116006)(478600001)(7696005)(9686003)(316002)(53546011)(966005)(6506007)(66556008)(66446008)(66946007)(66476007)(45080400002)(55016003)(52536014)(41300700001)(4326008)(64756008)(107886003)(8936002)(8676002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9YBFUHu6X2pVk8GD4jRgSEAtIn/1mxlMlATXjOlMi8CYUOD4QMa+UfuYcK/m?=
+ =?us-ascii?Q?iu3Qhim3PoAwa4251gKkrk+8evsFJmVsdr9hkrGU5GIfWpV1TCIeuf4gCZjO?=
+ =?us-ascii?Q?iohv8bBiO1U4u2jomhN+Dow914KcHfKQQyL9zRxxRoH7DPd/7dkBGbaroh7b?=
+ =?us-ascii?Q?vSmQHaSzUaupZ/EIsNOb9nSVOmx/078vXLpcKSD8ba81mEpVwIbmRugV1mVU?=
+ =?us-ascii?Q?+oDdI6j7Nb8Hmz/lvj5bGa8DJt/WVR/Zdy3usmgC2OPCkxQ2iNSg9pACoNMu?=
+ =?us-ascii?Q?N99Sa00cc8weLmcQRybf3dWWp/77mMq5ldZ2ZFYsS2JaSqa6YGDc9YSKYaI1?=
+ =?us-ascii?Q?aysXHgFAnlKiIKbaJ+oQZHQtBcih8A9RL0yF5ENfoaEdGhh0qh6z0/rmKEge?=
+ =?us-ascii?Q?+iVaCsfHggpi3pJPjUKy61skwD+045vWbaOK9vCNF3O+80fA7DRQMpv2QW8n?=
+ =?us-ascii?Q?raB9qHrIYUrEIs+0MsyaL0rxLEn2jbUvfVpSVIA6IM97izeXzekU+GLpOkA0?=
+ =?us-ascii?Q?LW83anZYcJ8FOcpK4zSihhb1HXx9/OjQQOmcCk5DmivWpibb6NSJ9onIAWIw?=
+ =?us-ascii?Q?+qD1fYv6K1IgygaVwU9E9dqYexYRVwV9MXn5oMuPtZnkP+zAo2vw+qMMlmtw?=
+ =?us-ascii?Q?rFncH/HHuZP+PlqCkWCLaiiC6ZmLk1wuesoBQxwZMk9bcrfrDVBzGmG+k9mq?=
+ =?us-ascii?Q?46F96542NOw+9zci3OKPTNCUE64QKv3b5RAEC/0V8wk9jWVh4zzRbu0PifGC?=
+ =?us-ascii?Q?fiMPf4h78xZ8TUQz7uwMkULbfWOP6TfXAjRLS4GMRgO2lp1Gq8RI/fvrfokh?=
+ =?us-ascii?Q?CE1PbyEpfVTx3/4pYNYslPUI2a08JgkyAWI51pzjITWEnBkFFgrTxmTVjZbK?=
+ =?us-ascii?Q?dcxcVGSQpRdDS7aReK+TtylJDlDk8fY+MqFxi0kOjaZEbjBk3mQwUulu5nK1?=
+ =?us-ascii?Q?mMwnDMEeQzXa7Dmii6VR09CSczS2NALQdOswntjQCsYkTOIBT+t0FEgdLlie?=
+ =?us-ascii?Q?qqbOQe7Plz3c3UBhnU7DbeixD4E6y1ehd+AyNxGJ1/PHdRZi7UAR81q/SZae?=
+ =?us-ascii?Q?B0mcRThF0mRoxhK0R61D4G1rJU8TDuTBJyoxSvTaQ8rGMX6zkstFz0XISbiV?=
+ =?us-ascii?Q?vfka93bjzCr5gaSX7jIYQSrBKH1Z0NQ/RQjzp3dYh2mD9vX/qUJ58XmT0SBU?=
+ =?us-ascii?Q?CpBYt0nmnCwGsIGPJj6DH0u7zIHtr++S2HZUhdDCSbB41e8kMDmUbGqojmgJ?=
+ =?us-ascii?Q?/y8WTI7W6aTUVhTfv9PvlHq5kzRmXgQxbMkUFwlp4JWwPyVjbN9jy7Sz/DvH?=
+ =?us-ascii?Q?g0bnxU2PgRXgtnMV06v7CBQOD+Duu2RqHZ+j72JBLsdamycc5RrpNay8L2Dc?=
+ =?us-ascii?Q?/GLLYRfK9fvwsX4eXiczNwMm7XGTnhL5GA+nwuj1HC6mnzbqV/k9HvxcCFli?=
+ =?us-ascii?Q?Jp1WNSRG3xcbFQC4jJmnRr8CFfwkCER96oJY+soYaZK042PPT3k0dOfet14G?=
+ =?us-ascii?Q?SfDGJl18k7nX9m3VC95VSQZGoTmJ5gqxzbo5W7jlWXKYS6V18NR4wFtnDiJI?=
+ =?us-ascii?Q?obK4soBGYXsMl7I5d9Y=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v2 15/15] phy: qcom-qmp-pcie: add support for sc8280xp
- 4-lane PHYs
-Content-Language: en-GB
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221019113552.22353-1-johan+linaro@kernel.org>
- <20221019113552.22353-16-johan+linaro@kernel.org>
- <2902e7e8-eddf-149c-06fd-86b85d8af326@linaro.org>
- <Y1DuB6hzb3V5Lqdy@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Y1DuB6hzb3V5Lqdy@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4902.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83220054-d08d-4031-6f9d-08dab27ebb57
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2022 09:37:40.4415
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XeZbviMdUAhAJRxE5pDX29W5labXUyTbcBbk4iXTcNWZAKZyyxxO0DjrzF/pDBrBvIgVN/QpvK8aqgKOsHDpVw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5596
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,194 +132,220 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/10/2022 09:43, Johan Hovold wrote:
-> On Thu, Oct 20, 2022 at 06:43:47AM +0300, Dmitry Baryshkov wrote:
->> On 19/10/2022 14:35, Johan Hovold wrote:
->>> The PCIe2 and PCIe3 controllers and PHYs on SC8280XP can be used in
->>> 4-lane mode or as separate controllers and PHYs in 2-lane mode (e.g. as
->>> PCIe2A and PCIe2B).
->>>
->>> Add support for fetching the 4-lane configuration from the TCSR and
->>> programming the lane registers of the second port when in 4-lane mode.
->>>
->>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>> ---
->>>    drivers/phy/qualcomm/Kconfig             |   1 +
->>>    drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 118 +++++++++++++++++++++++
->>>    2 files changed, 119 insertions(+)
->>>
->>> diff --git a/drivers/phy/qualcomm/Kconfig b/drivers/phy/qualcomm/Kconfig
->>> index 5c98850f5a36..eb9ddc685b38 100644
->>> --- a/drivers/phy/qualcomm/Kconfig
->>> +++ b/drivers/phy/qualcomm/Kconfig
->>> @@ -54,6 +54,7 @@ config PHY_QCOM_QMP
->>>    	tristate "Qualcomm QMP PHY Driver"
->>>    	depends on OF && COMMON_CLK && (ARCH_QCOM || COMPILE_TEST)
->>>    	select GENERIC_PHY
->>> +	select MFD_SYSCON
->>>    	help
->>>    	  Enable this to support the QMP PHY transceiver that is used
->>>    	  with controllers such as PCIe, UFS, and USB on Qualcomm chips.
->>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>> index ea5228bd9ecc..e5bce4810bb5 100644
->>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>> @@ -10,6 +10,7 @@
->>>    #include <linux/io.h>
->>>    #include <linux/iopoll.h>
->>>    #include <linux/kernel.h>
->>> +#include <linux/mfd/syscon.h>
->>>    #include <linux/module.h>
->>>    #include <linux/of.h>
->>>    #include <linux/of_device.h>
->>> @@ -17,6 +18,7 @@
->>>    #include <linux/phy/pcie.h>
->>>    #include <linux/phy/phy.h>
->>>    #include <linux/platform_device.h>
->>> +#include <linux/regmap.h>
->>>    #include <linux/regulator/consumer.h>
->>>    #include <linux/reset.h>
->>>    #include <linux/slab.h>
->>> @@ -886,6 +888,10 @@ static const struct qmp_phy_init_tbl sc8280xp_qmp_gen3x2_pcie_rc_serdes_tbl[] =
->>>    	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIAS_EN_CLKBUFLR_EN, 0x14),
->>>    };
->>>    
->>> +static const struct qmp_phy_init_tbl sc8280xp_qmp_gen3x4_pcie_serdes_4ln_tbl[] = {
->>> +	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIAS_EN_CLKBUFLR_EN, 0x1c),
->>> +};
->>> +
->>>    static const struct qmp_phy_init_tbl sc8280xp_qmp_gen3x1_pcie_tx_tbl[] = {
->>>    	QMP_PHY_INIT_CFG(QSERDES_V5_TX_PI_QEC_CTRL, 0x20),
->>>    	QMP_PHY_INIT_CFG(QSERDES_V5_TX_LANE_MODE_1, 0x75),
->>> @@ -1491,6 +1497,9 @@ struct qmp_phy_cfg {
->>>    	const struct qmp_phy_cfg_tables *tables_rc;
->>>    	const struct qmp_phy_cfg_tables *tables_ep;
->>>    
->>> +	const struct qmp_phy_init_tbl *serdes_4ln_tbl;
->>> +	int serdes_4ln_num;
->>
->> Would it make more sense to change this into the proper
->> qmp_phy_cfg_tables entry and then use the existing API for programming
->> the table?
-> 
-> No, there is just one serdes register update needed when in 4-lane mode,
-> besides programming tx/rx for the second port. Adding a third struct
-> qmp_phy_cfg_tables for this seems like overkill and would lead to a more
-> convoluted implementation of the programming sequence.
+[AMD Official Use Only - General]
 
-Ack. Let's have it this way and change it later if the need arises.
 
-> 
-> And you can't add it two one of the existing ones, as your comment seems
-> to suggest.
 
-Please excuse me if I didn't write it clear enough. I suggested adding 
-another cfg_tables, as you correctly commented above.
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Sent: Wednesday, October 19, 2022 5:53 PM
+> To: Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>; linux-arm-
+> kernel@lists.infradead.org
+> Cc: git (AMD-Xilinx) <git@amd.com>; devicetree@vger.kernel.org;
+> will@kernel.org; mark.rutland@arm.com; robh+dt@kernel.org;
+> krzysztof.kozlowski+dt@linaro.org; michal.simek@xilinx.com
+> Subject: Re: [PATCH v1 1/2] dt-bindings: Add the binding doc for xilinx A=
+PM
+>=20
+> Caution: This message originated from an External Source. Use proper
+> caution when opening attachments, clicking links, or responding.
+>=20
+>=20
+> On 19/10/2022 05:17, Shubhrajyoti Datta wrote:
+> > The LogiCORE IP AXI Performance Monitor core enables AXI system
+> > performance measurement for multiple slots (AXI4/AXI3/
+> > AXI4-Stream/AXI4-Lite) activity. Add the devicetree binding for xilinx
+> > APM.
+>=20
+> Subject:
+> Drop redundant "bindings" and add missing prefix, so:
+>=20
+> dt-bindings: perf: Add Xilinx APM
+Will update.
+>=20
+> >
+> > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> > ---
+> >
+> > Changes in v1:
+>=20
+> This should be then a v2.
+Earlier one was an RFC so I had made it v1.
 
-> 
-> The gen3x4 PHYs can be in either 4-lane or 2-lane mode depending on the
-> TCSR configuration. Port A is programmed identically in both cases
-> except for this serdes register, and in 4-lane mode tx/rx also needs
-> to be programmed for port B.
->   
->>> +
->>>    	/* clock ids to be requested */
->>>    	const char * const *clk_list;
->>>    	int num_clks;
->>> @@ -1518,6 +1527,7 @@ struct qmp_pcie {
->>>    	struct device *dev;
->>>    
->>>    	const struct qmp_phy_cfg *cfg;
->>> +	bool tcsr_4ln_config;
->>
->> As a matter of preference, this seems too specific. I'd rename it to
->> split_config or split_4ln_config.
-> 
-> I'm afraid those names do not make much sense. This TCSR register
-> controls whether the PHY is in 4-lane mode (instead of 2-lane mode).
+>=20
+> >  - Use boolean for the values xlnx,enable-profile , xlnx,enable-trace
+> > and xlnx,enable-event-count
+> > - Update the file name
+> > - use generic node name pmu
+> >
+> >  .../bindings/perf/xlnx,axi-perf-monitor.yaml  | 133
+> > ++++++++++++++++++
+> >  1 file changed, 133 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml
+> > b/Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml
+> > new file mode 100644
+> > index 000000000000..bd3a9dbc1184
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yam
+> > +++ l
+> > @@ -0,0 +1,133 @@
+> > +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause %YAML 1.2
+> > +---
+> > +$id:
+> >
+> +https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevi
+> > +cetree.org%2Fschemas%2Fperf%2Fxlnx%2Caxi-perf-
+> monitor.yaml%23&amp;dat
+> >
+> +a=3D05%7C01%7Cshubhrajyoti.datta%40amd.com%7C15905dd06b164f7de3d
+> 508dab1
+> >
+> +ccb630%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C638017790
+> 04335677
+> >
+> +2%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMz
+> IiLCJBTiI
+> >
+> +6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3DzOrK%2FG
+> dlP87S%2FTp
+> > +XqdnrNSk0PyJgWRJYU4EZHgJtqMA%3D&amp;reserved=3D0
+> > +$schema:
+> >
+> +https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevi
+> > +cetree.org%2Fmeta-
+> schemas%2Fcore.yaml%23&amp;data=3D05%7C01%7Cshubhrajy
+> >
+> +oti.datta%40amd.com%7C15905dd06b164f7de3d508dab1ccb630%7C3dd89
+> 61fe488
+> >
+> +4e608e11a82d994e183d%7C0%7C0%7C638017790043356772%7CUnknown
+> %7CTWFpbGZ
+> >
+> +sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6
+> Mn0%
+> >
+> +3D%7C3000%7C%7C%7C&amp;sdata=3DVl1TpXVHyuS6YmnSP%2BKPOO8D5ap
+> 0y9jtV52Q9s
+> > +%2F1pvQ%3D&amp;reserved=3D0
+> > +
+> > +title: Xilinx Axi Performance Monitor
+> > +
+> > +maintainers:
+> > +  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: xlnx,axi-perf-monitor
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  xlnx,enable-profile:
+> > +    description:
+> > +      Enables the profile mode. Event counting in profile mode consist=
+s of a
+> > +      fixed number of accumulators for each AXI4/AXI3/AXI4-Lite slot. =
+All the
+> > +      events that can be counted are detected and given to the accumul=
+ator
+> > +      which calculates the aggregate value. There is no selection of e=
+vents,
+> > +      and in this mode, event counting is done only on AXI4/AXI3/AXI4-=
+Lite
+> > +      monitor slots.
+> > +    type: boolean
+> > +
+> > +  xlnx,enable-trace:
+> > +    description:
+> > +      Enables trace mode. In trace mode, the APM provides event loggin=
+g in
+> a
+> > +      reduced dynamic configuration. It captures the specified AXI eve=
+nts,
+> > +      external events and the time stamp difference between two succes=
+sive
+> > +      events into the streaming FIFO. The selection of events to be ca=
+ptured
+> > +      is set through parameter configuration. Streaming agents are not
+> > +      supported in trace mode.
+> > +    type: boolean
+>=20
+> Both enable profile and enable trace do not look like hardware properties=
+,
+> but rather runtime features. In what use case this enabling trace or prof=
+ile
+> should be a property of a hardware?
+>=20
+The hardware being on FPGA is configurable what capabilities it will have.
+Once chosen to have say the trace it will have tracing capabilities else it=
+ will not have.
 
-Well, we just need the info that it's 4-lane. It doesn't really matter 
-if this information comes from TCSR, DT or e.g. fuses. I'd say that TCSR 
-is a platform detail. Thus I'm suggesting a more generic name.
+> > +
+> > +  xlnx,num-monitor-slots:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Number of monitor slots.
+> > +    minimum: 1
+> > +    maximum: 8
+> > +
+> > +  xlnx,enable-event-count:
+> > +    description:
+> > +      Enable event count.
+>=20
+> The same
+>=20
+> > +    type: boolean
+> > +
+> > +  xlnx,enable-event-log:
+> > +    type: boolean
+> > +    description:
+> > +      Enable event log.
+>=20
+> The same
+Similarly whether event logging capabilities will be there in the hardware =
+is configurable.
+If enabled then it have event logging capabilities.
 
-> 
->>>    
->>>    	void __iomem *serdes;
->>>    	void __iomem *pcs;
->>> @@ -1527,6 +1537,8 @@ struct qmp_pcie {
->>>    	void __iomem *tx2;
->>>    	void __iomem *rx2;
->>>    
->>> +	void __iomem *port_b;
->>> +
->>>    	struct clk *pipe_clk;
->>>    	struct clk *pipediv2_clk;
->>>    	struct clk_bulk_data *clks;
->>> @@ -1932,6 +1944,44 @@ static const struct qmp_phy_cfg sc8280xp_qmp_gen3x2_pciephy_cfg = {
->>>    	.phy_status		= PHYSTATUS,
->>>    };
->    
->>> +static void qmp_pcie_init_port_b(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
->>> +{
->>> +	const struct qmp_phy_cfg *cfg = qmp->cfg;
->>> +	const struct qmp_pcie_offsets *offs = cfg->offsets;
->>> +	void __iomem *tx3, *rx3, *tx4, *rx4;
->>> +
->>> +	tx3 = qmp->port_b + offs->tx;
->>> +	rx3 = qmp->port_b + offs->rx;
->>> +	tx4 = qmp->port_b + offs->tx2;
->>> +	rx4 = qmp->port_b + offs->rx2;
->>> +
->>> +	qmp_pcie_configure_lane(tx3, tbls->tx, tbls->tx_num, 1);
->>> +	qmp_pcie_configure_lane(rx3, tbls->rx, tbls->rx_num, 1);
->>> +
->>> +	qmp_pcie_configure_lane(tx4, tbls->tx, tbls->tx_num, 2);
->>> +	qmp_pcie_configure_lane(rx4, tbls->rx, tbls->rx_num, 2);
->>
->> I'd use BIT(2) and BIT(3) here. This would allow one to make a
->> difference between programming first pair of lanes and second pair of
->> lanes if necessary.
-> 
-> No, the tx and tx registers of the second port should be programmed
-> identically to that of the first port.
+>=20
+> > +
+> > +  xlnx,have-sampled-metric-cnt:
+> > +    type: boolean
+> > +    description:
+> > +      Sampled metric counters enabled in APM.
+> > +
+> > +  xlnx,metric-count-width:
+> > +    allOf:
+> > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > +      - enum: [32, 64]
+>=20
+> This is a friendly reminder during the review process.
+>=20
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all reques=
+ted
+> changes or keep discussing them.
+>=20
+I tried to address the comments in=20
+https://lore.kernel.org/linux-arm-kernel/BY5PR12MB4902474D74155E57BF5D7B9C8=
+14F9@BY5PR12MB4902.namprd12.prod.outlook.com/
 
-As you would prefer. As a matter of fact, we do not have CFG_LANES in 
-the PCIe PHY. Thus I'm surprised that you didn't drop this. I think 
-CFG_LANES usage is limited to sm8250 USB and combo PHY configurations.
+I thought I have implemented all the comments.  Let me know if I missed som=
+ething.
 
-> 
->>> +}
->>> +
->>>    static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
->>>    {
->>>    	const struct qmp_phy_cfg *cfg = qmp->cfg;
->>> @@ -2080,6 +2148,11 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
->>>    
->>>    	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
->>>    	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
->>> +
->>> +	if (cfg->lanes >= 4 && qmp->tcsr_4ln_config) {
->>> +		qmp_pcie_configure(serdes, cfg->serdes_4ln_tbl, cfg->serdes_4ln_num);
->>> +		qmp_pcie_init_port_b(qmp, tbls);
->>> +	}
->>
->> As you have been refactoring this piece of code, maybe it would make
->> more sense to change qmp->tx/tx2 into an array of two elements? Then we
->> can extend it to 4 in this patch, and just always write the whole array
->> in a loop?
-> 
-> No, I don't think that would be an improvement and would obscure the
-> fact that we're programming two otherwise identical ports (e.g. tx1 and
-> tx2 of port B is used for the third and fourth lanes).
-> 
-> Note that the above conditional encodes the difference in programming
-> sequence between 4-lane and 2-lane mode I described above (one serdes
-> register difference + tx/rx of port b).
-
-Either way looks fine to me. So, let's leave this in a way you've 
-implemented it.
-
--- 
-With best wishes
-Dmitry
-
+Thanks and Regards,
+Shubhrajyoti
+> Thank you.
+>=20
+> Best regards,
+> Krzysztof
