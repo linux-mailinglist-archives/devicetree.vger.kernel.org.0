@@ -2,116 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E637606567
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3ED460656C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:08:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbiJTQIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 12:08:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47572 "EHLO
+        id S230386AbiJTQIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 12:08:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230045AbiJTQIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:08:31 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E54C1213EE;
-        Thu, 20 Oct 2022 09:08:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Tu4U+lQnvDeK4WfdirToag/wlMxNrMbWVorqMwlhqtM=; b=u+iIlvdsFZyNWyaK+vQJhzNpjX
-        FautNPth7Z3euRWWBWFNtE+M0OyfS5TUvl893+xNaNLdVX09ZVuItxXOG8EreDsTJBHOJnKEsNUqP
-        JJRGR+1QQGjAr5H1vu9plxC1pXF/B7wQ+nTIHZbtNSNy0Atz+OWW2Ch7Rf51OXKFa8x/gCVOuEnjR
-        WoRLGaW+Im5ltPflzVOrrrmQi3Xwk5YUxhZSjm/MeCXdXxPWH499MUyIUq1UrgP381wIHM6eE1tyC
-        sd0MsAEuD93vdvcbHnAD/shcK3KU6+cst0VZsEZLik8HVK5kanhVklGh2IqbHVezDkNu/RSBALAHK
-        QHZIfqvw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34826)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1olY5n-0007T4-05; Thu, 20 Oct 2022 17:08:23 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1olY5l-0003HR-7b; Thu, 20 Oct 2022 17:08:21 +0100
-Date:   Thu, 20 Oct 2022 17:08:21 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH net-next 1/7] dt-bindings: net: sff,sfp: update binding
-Message-ID: <Y1FydexHzzOKS1V+@shell.armlinux.org.uk>
-References: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk>
- <E1ol97m-00EDSR-46@rmk-PC.armlinux.org.uk>
- <166622204824.13053.10147527260423850821.robh@kernel.org>
- <Y1EGqR6IEhPfx7gd@shell.armlinux.org.uk>
- <20221020141923.GA1252205-robh@kernel.org>
- <CAL_JsqKn0bn4nnzXXyZEVv9ZsFA6UXpV2SDHW7nkncH3Z3tsKA@mail.gmail.com>
+        with ESMTP id S230378AbiJTQIn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:08:43 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 152411BB558
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:08:41 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id b25so199146qkk.7
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:08:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8TtEMRpsimdvD8kh9027kcik8M+Z+knHwtPDnnGUJLQ=;
+        b=YBfXYAQoqJLRmfHEsw9oyaJxInNF1RbJgUhGCqH5Ex2nDsDZF5708kiqPnJrA6B+wk
+         c0lzVMc/JHFiLc6CpPCzvH/ll1lwjrB5oT9/DTNT9EWfi0wo3XruTkQrVfWdVsG6H+Rj
+         NPrJujaKswGSzalA6nMBARxLwAL2TunQXQt+eSF7PSq7uYbVlESTuac9KMjhofJeJ45W
+         y6uNhGM2vf3vyREsHoY0GJv5wyX5hykFxv7E0Obf3r//Vmp5/MU29jgkfgyEzQ7GOUc8
+         b1whIY6YeiTIwuB0zCDJ/MwIr47Vak3DbI/zxFuwI4wSHK7WVFwBALKvPB7j5jo9kPSl
+         ImQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8TtEMRpsimdvD8kh9027kcik8M+Z+knHwtPDnnGUJLQ=;
+        b=RzxDXglZyV7M6EePkSSIVZDSv+uosdJaF14CnnwEWawJoBxeBWzukynwTfhnkuhlrp
+         jzZnYF0jEg07YNaCRqKTeKKqqB3/5E1eL82b7fqo+ZGgIidE5DT3Nr0q8OzNuAu+zsKy
+         TfaDoSeDAYT7IX+9bHtljAyMSF05uFwYzj3IfJqqlTXghMQOVO03HJy3MHvfff7Q0LXS
+         u2gbvNg+HKc+K68rmUfQR3TmYLGlJizkNGiRWbaTkmQqdYNtA2OoP5TQbGm5NA9hxlNJ
+         esbZJLTSKvNTWs0MlZnZpQ9d5Fy6+pmwLczXE9BrzgPywhstJZwwdb7D+u2NhB91GsIi
+         jRHA==
+X-Gm-Message-State: ACrzQf1jidV7X4Vz7AiFmmdNWcSkUXPKv5/07/06YGcfYNVv5Q3Uoo1z
+        wwSO/ge/Ozd9IV8ho1ucI6r/sA==
+X-Google-Smtp-Source: AMsMyM4VXP5zpdCUBgwtAJBoMUAdpAydK8PX90MqEuxs1/Z+Ya8Fy12UemSkGfB7i2UCdB24KkTnVA==
+X-Received: by 2002:a05:620a:318d:b0:6ce:d8de:bab2 with SMTP id bi13-20020a05620a318d00b006ced8debab2mr9925801qkb.456.1666282119782;
+        Thu, 20 Oct 2022 09:08:39 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id f11-20020ac87f0b000000b003999d25e772sm6496923qtk.71.2022.10.20.09.08.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 09:08:38 -0700 (PDT)
+Message-ID: <9fbe1bf5-a84d-c56b-1c0e-6848ee3d30fe@linaro.org>
+Date:   Thu, 20 Oct 2022 12:08:36 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKn0bn4nnzXXyZEVv9ZsFA6UXpV2SDHW7nkncH3Z3tsKA@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: Add base QDU1000/QRU1000 DTSIs
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221014221138.7552-1-quic_molvera@quicinc.com>
+ <20221014221138.7552-3-quic_molvera@quicinc.com>
+ <56af2a04-1b21-000d-e3f9-86b6ac74aaf2@linaro.org>
+ <a0032338-482f-0de7-5952-c3c8b8423df6@quicinc.com>
+ <50372a15-56ce-6ad6-f622-00624b909db8@linaro.org>
+ <Y1FTJgloEi5ag2/j@gerhold.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y1FTJgloEi5ag2/j@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 20, 2022 at 09:27:44AM -0500, Rob Herring wrote:
-> On Thu, Oct 20, 2022 at 9:19 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Thu, Oct 20, 2022 at 09:28:25AM +0100, Russell King (Oracle) wrote:
-> > > On Wed, Oct 19, 2022 at 06:31:53PM -0500, Rob Herring wrote:
-> > > > On Wed, 19 Oct 2022 14:28:46 +0100, Russell King (Oracle) wrote:
-> > > > > Add a minimum and default for the maximum-power-milliwatt option;
-> > > > > module power levels were originally up to 1W, so this is the default
-> > > > > and the minimum power level we can have for a functional SFP cage.
-> > > > >
-> > > > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/net/sff,sfp.yaml | 2 ++
-> > > > >  1 file changed, 2 insertions(+)
-> > > > >
-> > > >
-> > > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > > >
-> > > > yamllint warnings/errors:
-> > > >
-> > > > dtschema/dtc warnings/errors:
-> > > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/sff,sfp.yaml: properties:maximum-power-milliwatt: 'minimum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-> > > >     hint: Scalar and array keywords cannot be mixed
-> > > >     from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-> > >
-> > > I'm reading that error message and it means absolutely nothing to me.
-> > > Please can you explain it (and also re-word it to be clearer)?
-> >
-> > 'maxItems' is a constraint for arrays. 'maximum' is a constraint for
-> > scalar values. Mixing them does not make sense.
+On 20/10/2022 09:54, Stephan Gerhold wrote:
+> On Thu, Oct 20, 2022 at 08:41:15AM -0400, Krzysztof Kozlowski wrote:
+>> On 19/10/2022 16:21, Melody Olvera wrote:
+>>> On 10/15/2022 6:28 AM, Krzysztof Kozlowski wrote:
+>>>> On 14/10/2022 18:11, Melody Olvera wrote:
+>>>> [...]
+>>>>> +	clocks {
+>>>>> +		xo_board: xo-board {
+>>>>> +			compatible = "fixed-clock";
+>>>>> +			clock-frequency = <19200000>;
+>>>> Both clocks are not a property of a SoC. They are provided by the board,
+>>>> so they should either be defined by board DTS or at least their
+>>>> frequency must be provided by the board.
+>>> That doesn't seem in keeping with precedent.... the sm8* series all have the clocks in
+>>> the dtsi. These are common to the boards anyways.
+>>
+>> Because people do not pay attention what is part of SoC, what is part of
+>> board. DTSI is for the SoC and these are inputs to the SoC.
+>>
 > 
-> TBC, dropping 'maxItems' is what is needed here.
+> (Just chiming in because I had this thought already a few times when you
+>  suggested moving the XO "clock-frequency" to the board DTS:)
+> 
+> I understand your reasoning for moving components of the board to the
+> board DTS, but IMHO adding just the clock-frequency to the board DTS is
+> even more misleading: It suggests that there are functional board
+> designs where you would use a XO clock with a different clock-frequency.
+> Is that really realistic though?
 
-So how does this work?
+Keeping it in DTSI also suggests you could have some different frequency.
 
-maxItems: 1
+> 
+> There are assumptions about the XO clock frequency in a lot of places:
+> You would need to fully rewrite the gcc-<SoC>.c driver because it has
+> fixed multipliers/dividers for one specific XO frequency. All firmware
+> binaries would likely need changes. And does the hardware even support a
+> different XO clock frequency? The APQ8016E datasheet for example
+> strictly documents a XO clock input of 19.2 MHz and a sleep clock of
+> 32.768 kHz.
 
-tells it that there should be an array of one property, which is at the
-DT level fundamentally the same as a scalar property.
+I know, the same with most of other platforms. Qualcomm is not special
+here. Maybe the difference is that some other platforms have few
+external clocks and not all of them are required.
 
-minimum:
-default:
-maximum:
+> IMHO the only realistic variation of the XO clock setup would be to have
+> a physical "fixed-clock" with a higher frequency, followed by a
+> "fixed-factor-clock" that brings it back to the expected frequency. To
+> model that properly it is not enough to have just the "clock-frequency"
+> in the board DTS. In this case you need two clock nodes, and the
+> xo_board would be the "fixed-factor-clock".
 
-tells it that this is a scalar property, so there should be exactly one
-item or the property should not be mentioned?
+It's not about whether you can change it or not. It's about describing
+hardware - SoC DTSI describes SoC. DTS describes the board (assuming
+there is no SoM or other DTSI files). This clock is not in DTSI.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+> Therefore it should be all or nothing IMO: Either we move the full
+> xo-board node to the board DTS (which allows alternatively defining the
+> "fixed-factor-clock" or whatever).
+
+You can move entire clock to boards.
+
+> Or we assume that there will be
+> always an input clock signal with the fixed frequency and keep it fully
+> in the SoC .dtsi.
+> 
+> Having just the "clock-frequency" in the board DTS puts the attention on
+> the wrong detail, IMO. :)
+
+No, it puts attention to the board designer that he needs to provide the
+clock in his design.
+
+We had such talks about other platforms, although I do not have any
+recent bookmarks. Something older:
+
+https://lore.kernel.org/all/3382034.5ADO0F7naY@wuerfel/
+
+https://lore.kernel.org/linux-samsung-soc/53DAB0A6.9030700@gmail.com/
+
+Best regards,
+Krzysztof
+
