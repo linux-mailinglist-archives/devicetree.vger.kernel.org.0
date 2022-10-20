@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7307606AF6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 00:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D521606B1F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 00:17:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230124AbiJTWG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 18:06:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55342 "EHLO
+        id S229817AbiJTWRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 18:17:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbiJTWGY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 18:06:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B89DE21129A;
-        Thu, 20 Oct 2022 15:06:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 193FB61D3E;
-        Thu, 20 Oct 2022 22:06:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 777E2C4347C;
-        Thu, 20 Oct 2022 22:06:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666303582;
-        bh=LEXz6lQTYIKv1JGpfH2q1eepeDnKvg6Ve/0W4r24DcM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=TI6kczEW5L03DA6teLr/ZYBF2LUic/qvr3GEU62OpZhvZqQuGp+Hb0F1YzPRdCft/
-         Bm48bUrIFbnSdN/X9MndJBkxJ7l4b7DHgkM+G8O19zd27skxz1ywQewfIrGHQq4o9P
-         bCeZAlUxbK4VuYm2wXwUKvEo8U0Ai005IdlzfFMTu0LYkfrYQAsbe3SvJh8gY6DANh
-         PC4mOAFTTMI43JckWE0WwC75a753LS6px95gnMlpQHRbYwuy2HnQJs1201x43XoTKt
-         V1WXwHIq6M+F5hmEguVcHE5L/QYuO4ONEpHo6tSOR/0rVylbNkTvBA5X6EHosHhtg7
-         dnr7ifmE3oRNQ==
-Received: by mail-vk1-f174.google.com with SMTP id a66so534602vkc.3;
-        Thu, 20 Oct 2022 15:06:22 -0700 (PDT)
-X-Gm-Message-State: ACrzQf3aWj6UBvP0xfvNjuK4AQnZUZmrY3i3V1f1JUKE0YW6zry/yB9+
-        vvpqMYmYavtfovmdY2+0GYqqM0o51rDv6Mu1Pg==
-X-Google-Smtp-Source: AMsMyM4AlVdebaHlddeCi13gpZs/ZxpSNKAz6ATtMZsm9Gau8xHw25ymZZEs8Df/CGSiDgOtAWC2KxSw2+7ZKzRCqWQ=
-X-Received: by 2002:a1f:60cd:0:b0:3ae:da42:89d0 with SMTP id
- u196-20020a1f60cd000000b003aeda4289d0mr8750783vkb.15.1666303581383; Thu, 20
- Oct 2022 15:06:21 -0700 (PDT)
+        with ESMTP id S229861AbiJTWRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 18:17:11 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 395D321551B;
+        Thu, 20 Oct 2022 15:17:08 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29KMGmK2058047;
+        Thu, 20 Oct 2022 17:16:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1666304208;
+        bh=zQnSES82ipiGqNM7gc4jpefdaGHRyDoGL9iPjKpkoyU=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ACL3SPCxxjsb/0PTbeY5uC7GHrhOjlfRLnKNpXCA7rO06iDVj/mYogHdYX2kXOBrZ
+         BdX0oIU65+djzlM5b0d4D1tjipgdyEPj0FBtqvmO0PV6ilLuzmRQSCCLrCIQdT8Ztg
+         UyLVv8pFXxo3HTYVM93PKG8FSsyJMO1zKCTQRU/g=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29KMGmLF009684
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 20 Oct 2022 17:16:48 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 20
+ Oct 2022 17:16:47 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 20 Oct 2022 17:16:47 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29KMGlJK014120;
+        Thu, 20 Oct 2022 17:16:47 -0500
+Date:   Thu, 20 Oct 2022 17:16:47 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Andrew Davis <afd@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 00/12] TI J7x Disable Incomplete DT Nodes
+Message-ID: <20221020221647.d6pifdm2jtjpt4yk@bryanbrattlof.com>
+References: <20221020160305.18711-1-afd@ti.com>
 MIME-Version: 1.0
-References: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk> <E1ol97m-00EDSR-46@rmk-PC.armlinux.org.uk>
- <166622204824.13053.10147527260423850821.robh@kernel.org> <Y1EGqR6IEhPfx7gd@shell.armlinux.org.uk>
- <20221020141923.GA1252205-robh@kernel.org> <CAL_JsqKn0bn4nnzXXyZEVv9ZsFA6UXpV2SDHW7nkncH3Z3tsKA@mail.gmail.com>
- <Y1FydexHzzOKS1V+@shell.armlinux.org.uk>
-In-Reply-To: <Y1FydexHzzOKS1V+@shell.armlinux.org.uk>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 20 Oct 2022 17:06:12 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKrJppdZzH2xtb+0SjJwir0rpdEzrGCf43t03eGriz3gg@mail.gmail.com>
-Message-ID: <CAL_JsqKrJppdZzH2xtb+0SjJwir0rpdEzrGCf43t03eGriz3gg@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/7] dt-bindings: net: sff,sfp: update binding
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20221020160305.18711-1-afd@ti.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,113 +68,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 20, 2022 at 11:08 AM Russell King (Oracle)
-<linux@armlinux.org.uk> wrote:
->
-> On Thu, Oct 20, 2022 at 09:27:44AM -0500, Rob Herring wrote:
-> > On Thu, Oct 20, 2022 at 9:19 AM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Thu, Oct 20, 2022 at 09:28:25AM +0100, Russell King (Oracle) wrote=
-:
-> > > > On Wed, Oct 19, 2022 at 06:31:53PM -0500, Rob Herring wrote:
-> > > > > On Wed, 19 Oct 2022 14:28:46 +0100, Russell King (Oracle) wrote:
-> > > > > > Add a minimum and default for the maximum-power-milliwatt optio=
-n;
-> > > > > > module power levels were originally up to 1W, so this is the de=
-fault
-> > > > > > and the minimum power level we can have for a functional SFP ca=
-ge.
-> > > > > >
-> > > > > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.u=
-k>
-> > > > > > ---
-> > > > > >  Documentation/devicetree/bindings/net/sff,sfp.yaml | 2 ++
-> > > > > >  1 file changed, 2 insertions(+)
-> > > > > >
-> > > > >
-> > > > > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_bindin=
-g_check'
-> > > > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > > > >
-> > > > > yamllint warnings/errors:
-> > > > >
-> > > > > dtschema/dtc warnings/errors:
-> > > > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bi=
-ndings/net/sff,sfp.yaml: properties:maximum-power-milliwatt: 'minimum' shou=
-ld not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclu=
-siveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-> > > > >     hint: Scalar and array keywords cannot be mixed
-> > > > >     from schema $id: http://devicetree.org/meta-schemas/keywords.=
-yaml#
-> > > >
-> > > > I'm reading that error message and it means absolutely nothing to m=
-e.
-> > > > Please can you explain it (and also re-word it to be clearer)?
-> > >
-> > > 'maxItems' is a constraint for arrays. 'maximum' is a constraint for
-> > > scalar values. Mixing them does not make sense.
-> >
-> > TBC, dropping 'maxItems' is what is needed here.
->
-> So how does this work?
+On October 20, 2022 thus sayeth Andrew Davis:
+> Hello all,
+> 
+> Same story as for AM64x[0] and AM62x[1], this time for J7x.
+> 
+> This one was a little more involved that the last 2 rounds as some IP
+> (like UART) are pinned out using the default pinmux. Perhaps we should be
+> explicit here and have pinmux nodes that simply restate the defaults. I
+> can go solve that in a follow up series if we think that is what we
+> want to do.
+> 
+> I have the last round for AM65x ready to post, but that involves a few
+> boards that I do not have (Simatic IOT2050) but would like to do some
+> additional re-work with, so holding off until after I get that sorted.
+> 
+> Thanks,
+> Andrew
+> 
+> [0] https://www.spinics.net/lists/arm-kernel/msg1018532.html
+> [1] https://www.spinics.net/lists/arm-kernel/msg1018864.html
+> 
+> Andrew Davis (12):
+>   arm64: dts: ti: k3-j721e: Enable UART nodes at the board level
+>   arm64: dts: ti: k3-j721e: Enable I2C nodes at the board level
+>   arm64: dts: ti: k3-j721e: Enable MCASP nodes at the board level
+>   arm64: dts: ti: k3-j721e: Enable MCAN nodes at the board level
+>   arm64: dts: ti: k3-j7200: Enable UART nodes at the board level
+>   arm64: dts: ti: k3-j7200: Enable I2C nodes at the board level
+>   arm64: dts: ti: k3-j721s2: Enable UART nodes at the board level
+>   arm64: dts: ti: k3-j721e: Enable Mailbox nodes at the board level
+>   arm64: dts: ti: k3-j7200: Enable Mailbox nodes at the board level
+>   arm64: dts: ti: k3-j721s2: Enable Mailbox nodes at the board level
+>   arm64: dts: ti: k3-j721s2: Enable MCAN nodes at the board level
+>   arm64: dts: ti: k3-j721s2: Enable I2C nodes at the board level
+> 
+>  .../dts/ti/k3-j7200-common-proc-board.dts     |  48 ++----
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     |  29 ++++
+>  .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |   5 +
+>  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   |  42 +----
+>  .../dts/ti/k3-j721e-common-proc-board.dts     | 141 +++-------------
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  55 ++++++
+>  .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |   7 +
+>  arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 158 ++----------------
+>  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   |  33 +---
+>  .../dts/ti/k3-j721s2-common-proc-board.dts    | 132 +--------------
+>  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    |  58 +++++++
+>  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |   7 +
+>  arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  |  98 +----------
+>  13 files changed, 231 insertions(+), 582 deletions(-)
+> 
 
-Do you really want to know? ;)
+*whew* these Jacinto boards have a lot of stuff on them :) but it LGTM
 
->
-> maxItems: 1
+Reviewed-by: Bryan Brattlof <bb@ti.com>
 
-json-schema happily ignores any keywords that it doesn't understand or
-don't make sense for a specific context. The DT meta-schema tries to
-prevent that.
-
-> tells it that there should be an array of one property, which is at the
-> DT level fundamentally the same as a scalar property.
-
-Yes, it is true that the YAML encoded DT and (currently) the internal
-encoding used by the tools encode everything as matrices simply
-because dtc doing the YAML encoding doesn't know the types beyond what
-DTS source level provides, so everything has to be the same encoding.
-Now we use the type information in the schemas to decode the DTBs
-directly and don't have that limitation. Once I remove the YAML
-encoding, we can stop encoding everything as a matrix and having to
-fixup the schemas from scalar -> array -> matrix.
-
-> minimum:
-> default:
-> maximum:
->
-> tells it that this is a scalar property, so there should be exactly one
-> item or the property should not be mentioned?
-
-Not sure I follow the question. As the property is defined as a
-scalar, it only needs scalar keywords. Internally, the schema gets
-expanded to:
-
-prop:
-  minItems: 1
-  maxItems: 1
-  items:
-    - maxItems: 1
-      minItems: 1
-      items:
-        - maximum: ???
-          minimum: ???
-          default: ???
-
-This is what processed-schemas.json will contain if you just have the
-scalar keywords.
-
-It's a bit more messy now with the unit suffixes as initially they
-were all scalars, but over time we've had to allow for arrays. So it's
-really they default to scalars unless you need an array in which you
-can define:
-
-prop:
-  maxItems: 2
-  items:
-    maximum: ???
-
-Could you do 'maxItems: 1' here? Yes, that would be a valid schema,
-but IIRC we'll still complain because it is redundant.
-
-Rob
+~Bryan
