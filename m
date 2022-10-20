@@ -2,136 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B077E60565E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 06:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C14F6056B2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 07:22:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229871AbiJTEgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 00:36:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45950 "EHLO
+        id S229659AbiJTFWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 01:22:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229898AbiJTEgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 00:36:36 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02453161FCE
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 21:36:35 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id d24so19219090pls.4
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 21:36:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hQl2xZYeQM+maPS5+wYcZN71xZnoLpUn4u2n9e80A1k=;
-        b=VVCyCBne3egzpFuhrKEfIJkrp75Jz1ao+512Mq7obhK9H2gHLqxnb0fOSyHPyUCWPY
-         H+pga1QGEb8LKqRW6F5bZ8oOGRgEPnHt3atLKn2x4swvheId21kGBqC7Xg3q8yaTPHfc
-         M+mYcRu/ofWtNUyJvpeFFjquHqKNtAiXiQhfT2e5uTnjeyEzMVMMwuqcMp0F1exuspjV
-         7gDs9b3vI/SbdTW44+/ZordSgddEgDQPAEPXaOH8R5dpTNFbDudY1EFC1vwaxxBZrQPL
-         3N/LBQLk6Eil69yQ8IUTa3UkMzozOEpUA93eySIPuF8Lqbw/LnMx2aMykdMXiCfY5/0U
-         nuAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hQl2xZYeQM+maPS5+wYcZN71xZnoLpUn4u2n9e80A1k=;
-        b=UJUk1mdbgwJepejpMZSkl2xYoqdLvl9Spk5yyuyr6oLm7aPB/cLUDEdG2vCmxOHN69
-         uz8Qwq8+hvtQzXCn3L5uPFWEOtMqWq0lsE8jnISWqJD0XMRbGtRxUxX27T8mbQTOYvil
-         7tsVMa0LTlU3WUYWB4ETFUh3lK+LX+06kXwqDjhKJ0dEtnYBHDv0hOf/8CYJNrM443Ma
-         j0ka6Q59sJf5TNHGPUjj1ju8RD2McLVf4JHzAfYHVm1+7DJdofn5jxecpr0P5qTxyz06
-         pCFm54FSNigJHijx2fz/LmIzd6ExOiT5WV/AMN3Crh9d+VpfvwbfwDhQZroK+wUpOrEB
-         uR+Q==
-X-Gm-Message-State: ACrzQf32w0C4T2zpNhjczisKYdLzibx3JfO+4DpBhOIzMEDUj3M8AWBk
-        tLh8/eDX6W1dhs1G/hvnUdI5NkhfUVJzhQ==
-X-Google-Smtp-Source: AMsMyM5zzjWfS/DI9BhJnlbWYlBt7rgwoFs02MxbqPnbIHLzHL2X4Z2CL+tsFOb7bIpWQg9BvHojZg==
-X-Received: by 2002:a17:902:7b95:b0:178:ab50:76b5 with SMTP id w21-20020a1709027b9500b00178ab5076b5mr12139210pll.161.1666240594345;
-        Wed, 19 Oct 2022 21:36:34 -0700 (PDT)
-Received: from localhost ([122.172.86.128])
-        by smtp.gmail.com with ESMTPSA id y2-20020a170902864200b001754cfb5e21sm11614884plt.96.2022.10.19.21.36.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Oct 2022 21:36:33 -0700 (PDT)
-Date:   Thu, 20 Oct 2022 10:06:32 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     =?utf-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 5/6] arm: dts: spear600: Add ssp controller nodes
-Message-ID: <20221020043632.cbofx5jvajhy4xba@vireshk-i7>
-References: <20221019133208.319626-1-kory.maincent@bootlin.com>
- <20221019133208.319626-6-kory.maincent@bootlin.com>
+        with ESMTP id S229645AbiJTFWE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 01:22:04 -0400
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C81B15ECE6;
+        Wed, 19 Oct 2022 22:22:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=bHgO3V7i8G41klxyiVv7xcjgv6aTc1mHBQcIemEhvo0=; b=dza0J5EigBYzlhPG33O+pHLewO
+        yFI3MRCxWPosGrxbPdDDf9GRDNDsbylA2/rRbfv6c46VsVj9M7cS8TOKQrd4yMgej4DRc19xVj4ok
+        OeyX6m7MYuH0XPAf5hKBQ55EUoLSiennRl3/q+ft0oTV29jg9r2sHjbEdJS++eiLwVBBQCw+WuT+n
+        MOwQxipnkQDQYEOUuB8a/5PgPmJdmSU2VF62f5PmtqiMlUZ/gj6TrYKMdQX+huAeIeqQATopW83c9
+        +oqijXSPAMHttptobD/Wl+RzscXbhcotLE8rNbNpNy1gedfMwbD04E3pbC5l+WXtZ3hB6bCDiPNlJ
+        6R1RwL5g==;
+Received: from [89.212.21.243] (port=49886 helo=[192.168.69.85])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.95)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1olO06-00CZ1p-SX;
+        Thu, 20 Oct 2022 07:21:58 +0200
+Message-ID: <d57f34db-2aff-f469-0146-335950c2b437@norik.com>
+Date:   Thu, 20 Oct 2022 07:21:59 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221019133208.319626-6-kory.maincent@bootlin.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 0/3] Suspending i.MX watchdog in WAIT mode
+Content-Language: en-GB
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-watchdog@vger.kernel.org, shawnguo@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
+        kernel@pengutronix.de, s.hauer@pengutronix.de,
+        wim@linux-watchdog.org, robh+dt@kernel.org
+References: <20221019111714.1953262-1-andrej.picej@norik.com>
+ <20221019152915.GB4602@roeck-us.net>
+From:   Andrej Picej <andrej.picej@norik.com>
+In-Reply-To: <20221019152915.GB4602@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-10-22, 15:32, Köry Maincent wrote:
-> From: Kory Maincent <kory.maincent@bootlin.com>
-> 
-> The SPEAr600 has three Synchronous serial port to enables synchronous
-> serial communication with slave or master peripherals (SPI). Lets add these
-> nodes to be able to use them.
-> 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
->  arch/arm/boot/dts/spear600.dtsi | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/spear600.dtsi b/arch/arm/boot/dts/spear600.dtsi
-> index 9d5a04a46b14..6b67c0ceaed9 100644
-> --- a/arch/arm/boot/dts/spear600.dtsi
-> +++ b/arch/arm/boot/dts/spear600.dtsi
-> @@ -207,6 +207,36 @@ adc: adc@d820b000 {
->  				interrupts = <6>;
->  				status = "disabled";
->  			};
-> +
-> +			ssp1: spi@d0100000 {
-> +				compatible = "arm,pl022", "arm,primecell";
-> +				reg = <0xd0100000 0x1000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				interrupt-parent = <&vic0>;
-> +				interrupts = <26>;
-> +				status = "disabled";
-> +			};
-> +
-> +			ssp2: spi@d0180000 {
-> +				compatible = "arm,pl022", "arm,primecell";
-> +				reg = <0xd0180000 0x1000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				interrupt-parent = <&vic0>;
-> +				interrupts = <27>;
-> +				status = "disabled";
-> +			};
-> +
-> +			ssp3: spi@d8180000 {
-> +				compatible = "arm,pl022", "arm,primecell";
-> +				reg = <0xd8180000 0x1000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				interrupt-parent = <&vic1>;
-> +				interrupts = <5>;
-> +				status = "disabled";
-> +			};
->  		};
->  	};
->  };
+Hi Guenter,
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+On 19. 10. 22 17:30, Guenter Roeck wrote:
+> On Wed, Oct 19, 2022 at 01:17:11PM +0200, Andrej Picej wrote:
+>> The i.MX6 watchdog can't be stopped once started. This means that
+>> special hardware suspend needs to be configured when the device enters
+>> low-power modes.
+>> Usually i.MX devices have two bits which deal with this:
+>> - WDZST bit disables the timer in "deeper" low power modes and
+>> - WDW bit disables the timer in "WAIT" mode which corresponds with
+>> Linux's "freeze" low-power mode.
+>>
+>> WDZST bit support is already in place since 1a9c5efa576e ("watchdog: imx2_wdt: disable watchdog timer during low power mode").
+>> WDW bit is not common for all imx2-wdt supported devices, therefore use
+>> a new device-tree property "fsl,suspend-in-wait" which suspends the
+>> watchdog in "WAIT" mode.
+> 
+> I think that needs to be validated using the "compatible" property;
+> it should not be possible to set/accept the new flag for devices
+> which don't support it.
 
--- 
-viresh
+Ok, I can add that to a v2.
+
+Thanks,
+Andrej
+
+> 
+> Thanks,
+> Guenter
+> 
+
