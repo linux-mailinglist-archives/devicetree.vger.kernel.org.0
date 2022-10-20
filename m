@@ -2,81 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE41C605975
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 10:15:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F055A605980
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 10:18:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231208AbiJTIP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 04:15:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39436 "EHLO
+        id S231224AbiJTIS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 04:18:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231228AbiJTIPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 04:15:25 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16B8A3AAF
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 01:15:20 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id l16-20020a05600c4f1000b003c6c0d2a445so1603335wmq.4
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 01:15:20 -0700 (PDT)
+        with ESMTP id S231255AbiJTISZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 04:18:25 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0013150FA9
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 01:18:21 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id bu30so33107185wrb.8
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 01:18:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=mhEUUAx17h0AgHtxJMeCII0Aci1ZEeSL8jXNszOE9M4=;
-        b=SGMXowYozhs41yaXnsLn+6I8DWByS05nCpogBo/gSwiquuK9eqEsbVsWuQKQ+Q9KbU
-         Xvss5cdXVqIKC6wayAtZhK+eUKPYcyLjmj/OI2zfTMFSPCeIx+At6NyPkoCePWzDRv7R
-         V6y1pr2HzjZfkl0uSjYyyuVTnxTuLHekFSLJiZlRBO6wOWKPtJBmSxVjKeoC1Q+K4Z5Y
-         2DsaXTJQ6Fpp/TXwYnlXRmsgd57l07vJySEOZ4HahHdfHdqa5p/uC7p8dCBm1yH7KyQy
-         VYUDRgOWFYZA2CtSK+m0gjZ9fUym8nA8Rz5givWgXosqDLZHBAycT7Wvc6Xh5dFvtvUl
-         MeSA==
+        bh=Fsj+8WfOAZfb/OmR4M1+8IvYvMPpVpcsoTV/p/XqqZI=;
+        b=qh1bsgdxEeRCQ6hZldQMcr3aLqpWdd1Clao0b8Ya5qOdGGbjkC94KnXF1WtRGghZA9
+         kiCXAtUNfsM0/UJskrvFZvEjSjPHQHp8+w05atY2PKLSkHNQeqYq8rMnyIf7kp5yGD8g
+         18dqXvtWAUjToox+VWRTYw2x1amBzMLfYOi20j2ybIQIU5SgiealQ0r7JKAzSpbFGSOQ
+         g7MwnhfWhXcZSQVeYnUr8ynUaAfaxSvapGRddFhcinqCWnlAllOLxfCXSKSC/Y465mHt
+         x2qon43dtp8zWqeV42EtzH2vZOW1Yft19khX2huV6LD49oCR6/WoDRQJNReRqi27KCAq
+         +c+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=mhEUUAx17h0AgHtxJMeCII0Aci1ZEeSL8jXNszOE9M4=;
-        b=C/nCXMkNRvUSwJGAX8+6VsZfCcZLhGTm+I3QzjTmrfU5fikyYcr4CRSspw+7oELHQT
-         /dFHSNtjU9vnCAhd0PzHx74UYSASHjevHiCfpgoVMX4hvQhOur3sVQJtxIGPzMTKoh9/
-         X3q8SZ++MNCswZaFEA1RARpUxHC2tKpi+g22bcbgdWhTiIpyFQUZ7EI6kQ6UVSooyBve
-         Gtyng52LESsm2Aaz4i7wOajrwcVV9juUVbw3UUv7N8fny445T7Q2cU59umID1pN3AJQZ
-         YXu3G/acnPsrRANa7LOg8gvAK+5ddfKG78rf1WeeZDb2HcZUqSVz9ZWAoUkt/lReUSrr
-         r+2Q==
-X-Gm-Message-State: ACrzQf3dSvX6DgGsXIekLK1KBOeD0caadoAKUD6ZAApoLdVIlZjTHaLI
-        dt/6Vxj4R0GuqrZFRCN2C/W4WA==
-X-Google-Smtp-Source: AMsMyM6+QEGDiYr4HnFQpx2CtydwueOIIFGgcqt8YVmO8d/ISMyk+foSu6EsTOXeeBSJYJr/u3e+Mg==
-X-Received: by 2002:a7b:c455:0:b0:3c6:bd0e:f9b0 with SMTP id l21-20020a7bc455000000b003c6bd0ef9b0mr29253450wmi.21.1666253719306;
-        Thu, 20 Oct 2022 01:15:19 -0700 (PDT)
+        bh=Fsj+8WfOAZfb/OmR4M1+8IvYvMPpVpcsoTV/p/XqqZI=;
+        b=amw42C1VSrjBN3nbSCaLbHyk+6t+IpJgYhBcXn0FI/MMonYis04khHLFtN5zBz9X66
+         wCsWZqZasawU9y/0pqvwMtuVPrn3HE0jN/iHygBbLZrlGtc99aqAQ2gwYgL1QVYWA0Zz
+         0BLYciEkaXXSlcc+9QkuBhKng1eLSrjAwj7ATlBhhimGAslM2yHYYDFZ3b5mpn2296I1
+         Kx3IELR6f0MjXfQKgkxE2lwZ0duPdJoVHyMlescHIn6Z/WXqUOqzaiCwkM+O3znFArAT
+         QsJJJb1IrU4HPaU8LR0CocHe5sReWNlaWu2F0lTAq+cD8uhMXuPqUSnfYaIsANcY77lg
+         m7oQ==
+X-Gm-Message-State: ACrzQf1XoMTLjZhATqnu6CEDxeWvdDyz/baLEXz5IhW49dwsgYYMjU8W
+        uYImrZ6pN4ZdQYztH/3rX5UpSA==
+X-Google-Smtp-Source: AMsMyM6UKfTDoyvlxHH9d/C28T5MXbvxRFj4MQ89o3ZziE5fhA0V9cNBU3VXeKSyrS1ckZcMeT35uA==
+X-Received: by 2002:a5d:59a7:0:b0:230:3652:1aa with SMTP id p7-20020a5d59a7000000b00230365201aamr7627500wrr.308.1666253899934;
+        Thu, 20 Oct 2022 01:18:19 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:ef2:f28d:311f:c84b? ([2a01:e0a:982:cbb0:ef2:f28d:311f:c84b])
-        by smtp.gmail.com with ESMTPSA id q6-20020a7bce86000000b003b3365b38f9sm2127648wmj.10.2022.10.20.01.15.18
+        by smtp.gmail.com with ESMTPSA id o13-20020adfe80d000000b0023580e7a2c4sm1462948wrm.86.2022.10.20.01.18.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 01:15:18 -0700 (PDT)
-Message-ID: <6696b644-bb9d-54e4-0b3b-e4897a881898@linaro.org>
-Date:   Thu, 20 Oct 2022 10:15:17 +0200
+        Thu, 20 Oct 2022 01:18:19 -0700 (PDT)
+Message-ID: <a6942e7a-faa5-d839-aebf-0d28e7e14f06@linaro.org>
+Date:   Thu, 20 Oct 2022 10:18:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-From:   neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on
- Odroid N2/N2+
+Subject: Re: [PATCH v3 2/2] spi: meson-spicc: Use pinctrl to drive CLK line
+ when idle
 Content-Language: en-US
 To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Cc:     Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221018195122.8877-1-linux.amoon@gmail.com>
- <CAFBinCCqXBk9Xq0k=NA3zGi8spwyPQN7dMVWcjE+pXkXYf+FKQ@mail.gmail.com>
- <CANAwSgSR6jHRQR6QgzUop_B4gcOsQnfc6LoUXrP0CSTasZkVfQ@mail.gmail.com>
- <CANAwSgRLZfon5qUFeKW9U9AbHvSa=uKVaVgqghVk554-H1LVKw@mail.gmail.com>
- <402500e8-b4fe-9b8f-d634-e329191af1b8@linaro.org>
- <CANAwSgQhWrzeRcpQSSAmfp+i3966dUQdtCLbcWwifQk=1ce=og@mail.gmail.com>
- <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Da Xue <da@libre.computer>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com>
+ <20221004-up-aml-fix-spi-v3-2-89de126fd163@baylibre.com>
+ <CAFBinCAsCg6QQRH3VPY1OKuyfkxY0oCXLhAuMwO6=00gXKqQrQ@mail.gmail.com>
 Organization: Linaro Developer Services
-In-Reply-To: <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
+In-Reply-To: <CAFBinCAsCg6QQRH3VPY1OKuyfkxY0oCXLhAuMwO6=00gXKqQrQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,40 +87,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 22:40, Martin Blumenstingl wrote:
-> Hi Anand,
+On 19/10/2022 22:50, Martin Blumenstingl wrote:
+> Hi Amjad,
 > 
-> On Wed, Oct 19, 2022 at 7:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> On Wed, Oct 19, 2022 at 4:03 PM Amjad Ouled-Ameur
+> <aouledameur@baylibre.com> wrote:
 > [...]
->>>> +&pwm_AO_ab {
->>>
->>> &pwm_AO_cd not _ab
->>>
->> No it has a conflict with CPU_B (vddcpu_b) PWM
-> Uh, you're right. That's probably why the Hardkernel team uses a
-> software based PWM implementation: [0]
-> In hindsight they should have used a different pad either for VDDCPU_B
-> or the fan.
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> index c3ac531c4f84..04e9d0f1bde0 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> @@ -429,6 +429,20 @@ mux {
+>>                          };
+>>                  };
+>>
+>> +               spi_idle_high_pins: spi-idle-high-pins {
+>> +                       mux {
+>> +                               groups = "spi_sclk";
+>> +                               bias-pull-up;
+>> +                       };
+>> +               };
+>> +
+>> +               spi_idle_low_pins: spi-idle-low-pins {
+>> +                       mux {
+>> +                               groups = "spi_sclk";
+>> +                               bias-pull-down;
+>> +                       };
+>> +               };
+>> +
+> We typically have the .dts{,i} changes in a separate patch. I suggest
+> doing the same here.
+> I also have two questions about this part:
+> - why are these not referenced by the SPICC controller node?
+
+Because it's up to the board to use or not those states, if some pull-up/downs
+are already present on the lines no need to use those special states.
+
+> - is there a particular reason why meson-gxl.dtsi is updated but
+> meson-gxbb.dtsi is not? (my understanding is that GXBB is also lacking
+> hardware OEN support)
+
+Good question indeed, so indeed they should be added in meson-gxbb.dtsi in a separate patch.
 > 
-> I think the most pragmatic approach (since the "GPIO PWM" driver is
-> not upstream and I don't know if something like that would be accepted
-> upstream) is to use a GPIO based fan as you did in your initial patch.
-> Not sure what others think though.
-> 
-
-Indeed I recall them using a SW pwm.
-
-Yes it's perfectly ok to use a gpio-fan.
-
-Anand, please fixup the ddr-active name and send a v2.
-
-Thanks,
-Neil
-
 > 
 > Best regards,
 > Martin
-> 
-> 
-> [0] https://github.com/hardkernel/linux/blob/c109dec94e7e819554830acfac4b6ed96e230179/arch/arm64/boot/dts/amlogic/meson64_odroidn2.dtsi#L356-L359
 
+Thanks,
+Neil
