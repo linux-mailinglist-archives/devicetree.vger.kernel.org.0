@@ -2,88 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42FC9606B83
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 00:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 972FA606B97
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 00:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229974AbiJTWrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 18:47:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53238 "EHLO
+        id S229904AbiJTWvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 18:51:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbiJTWrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 18:47:51 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4932722D5B4;
-        Thu, 20 Oct 2022 15:47:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6358FB829BA;
-        Thu, 20 Oct 2022 22:47:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BCA9C4347C;
-        Thu, 20 Oct 2022 22:47:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666306065;
-        bh=Z6h4fiMZNTudlMNmgFxn8uqKN4ZLGwFX1pM5STB8bgU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=IuajgbaZ3oMMFzM2Ml6ZpGykxu+wOiuilmGDZ+yYrSAlxR8f9MESQB+MbEgKj36+w
-         NHpIABG3CUdOqot6h0sUGXNNE1QrKy9ZEtAYVL0AUL1LOHMwaXndPJzas4rqJTzGW4
-         2OQRiSLrEHwkgzTtTjhP8EunkBv/wLfGdi0go4jlkc9ucVKLfvnONxsYegH9huFDxa
-         Oh2edeFrOFo1B3FN0Wi589hUqWpSaFjsRC2YT9E+Oc+K7PxQDXoeLRkfPB3dBlHSda
-         sM7GDvsxCIRaHfqCNyO7z4J57TlfwqHxFLF/ZBgpgEWs0L0j51I6M6DmXrJPq0hnVU
-         7sp8OuBqfFG0A==
-Received: by mail-ua1-f44.google.com with SMTP id j6so1103819uaa.10;
-        Thu, 20 Oct 2022 15:47:44 -0700 (PDT)
-X-Gm-Message-State: ACrzQf2oNyu+THrETl8YD15ym4PLnl4L7kJBkZAunE7RuHd4Jz7AGzkW
-        5ben/lDSfllNWfN1dAWSxt1QAQ1LlwxDibpCbQ==
-X-Google-Smtp-Source: AMsMyM6SRs5iGDxFTlJ6d06xbMPre8Gf5kzb+q2tHwbla775ouzvqQs0W/dPfISyGmCqQavruBkETdveDQXsBvMf2xU=
-X-Received: by 2002:a67:c088:0:b0:39b:1bb3:bdd1 with SMTP id
- x8-20020a67c088000000b0039b1bb3bdd1mr8506943vsi.85.1666306063880; Thu, 20 Oct
- 2022 15:47:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221014151302.27641-1-afd@ti.com>
-In-Reply-To: <20221014151302.27641-1-afd@ti.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 20 Oct 2022 17:47:34 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+O0_i3k_3S=W6C-n+ZE7GRKKhOQ7HR54QutmMJq54a_Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+O0_i3k_3S=W6C-n+ZE7GRKKhOQ7HR54QutmMJq54a_Q@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: Allow DTB overlays to built from .dtso named
- source files
-To:     Andrew Davis <afd@ti.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        with ESMTP id S229823AbiJTWvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 18:51:40 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB7D22C838
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 15:51:39 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id o8so706011qvw.5
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 15:51:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vJ2fnMwkzzcUrlt3Fw/NVeA9nUJ+nnr2Hha7CQJiOpk=;
+        b=ZzAmKewB3lrlF+suASqb5cFqR/atkwrjJFQRxTN4nzItV+jc0Meo3S/6l75CXfFzmd
+         FCQtLKuMiWgoQQRTFg8m5P5x+S2W+Wh2nLcRyY6CIRT7V2abqPuk6FMDox/dZOJJYyi5
+         fa9ro91xjm6anHGz/ZvT/+D6TMc9HMmiFv6H2By0fj9fYjkvD0skvWmAKT+Q2tyYvqTa
+         xiS0n7QOjWJuf0XujxGGmtAGtLJgRXdCEPDlIQ4uc9RgKoI30wcgFdgahNScWSEDrVCI
+         LWq6RC8C21UogkntMcp1n7zM5K655+xJHYG6Ll2LgF03x84nGtzks2eGN3JCpKPD7wKB
+         3sEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vJ2fnMwkzzcUrlt3Fw/NVeA9nUJ+nnr2Hha7CQJiOpk=;
+        b=QNpKgwyeBmE41xN+fRkhbnl17yfutdJRHY0+coLfCp0GykTKpx4EHJSI49yI5+i0Fv
+         0JQCH3ijPK5iRdPfe8saS0Xp2cd9l+0TBpG9fHdat4eAP++PNzu8ADviKkBEHL5JW60W
+         rq+fIqFtJto8sG19WeIPMJMRreTqNfaa/+k6+PSifipLfsH7XKlfSfTqbqgzJiAz0WeW
+         8hUE6J+CDmfUpbu7E3quPctT78roafjfCRZJyHUOtMgMzKgeqHfhUSVL+pNbaXFDAw2w
+         bJQpUyhi9jBgd5VN8fX2SDUSsyeD6w5XytOuu7RnVg5Omr/ilHtVIb585QLvJNM5xO+H
+         bsOw==
+X-Gm-Message-State: ACrzQf3UXmlWJi8zX7KDllfAMUokhDRNy9l44JSeuehOw60Z6laKw04t
+        +vAiI2oXo3F1eH731pwLL6YDkw==
+X-Google-Smtp-Source: AMsMyM6ZYp4ANf+l94jK/CL+Z2C9Vn6alVFc/ybjhWwM7RIuQ96aJgsBD3Ry1CQBtcj56dvINeQfBw==
+X-Received: by 2002:a05:6214:4015:b0:4b1:78f2:8dfd with SMTP id kd21-20020a056214401500b004b178f28dfdmr14120578qvb.81.1666306298222;
+        Thu, 20 Oct 2022 15:51:38 -0700 (PDT)
+Received: from krzk-bin.MSRM (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id ew5-20020a05622a514500b0039cc9d24843sm6903479qtb.66.2022.10.20.15.51.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Oct 2022 15:51:37 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 0/3] arm64/pinctrl: dt-bindings: qcom: sc7180: convert to dtschema
+Date:   Thu, 20 Oct 2022 18:51:32 -0400
+Message-Id: <20221020225135.31750-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 14, 2022 at 10:13 AM Andrew Davis <afd@ti.com> wrote:
->
-> Currently DTB Overlays (.dtbo) are build from source files with the same
-> extension (.dts) as the base DTs (.dtb). This may become confusing and
-> even lead to wrong results. For example, a composite DTB (created from a
-> base DTB and a set of overlays) might have the same name as one of the
-> overlays that create it.
->
-> Different files should be generated from differently named sources.
->  .dtb  <-> .dts
->  .dtbo <-> .dtso
->
-> We do not remove the ability to compile DTBO files from .dts files here,
-> only add a new rule allowing the .dtso file name. The current .dts named
-> overlays can be renamed with time. After all have been renamed we can
-> remove the other rule.
+Hi,
 
-There was a patch from Geert converting everything. I'd rather not
-support both ways.
+Changes since v3
+================
+1. Drop bindings patch: applied.
+2. Rebase.
+3. Add tags.
 
-Rob
+Changes since v2
+================
+1. New patch: revert of glitch SPI CS workaround
+2. dt-bindings: Drop entire drive-strength (not needed, brought by common TLMM
+   schema).
+3. Add tags.
+v2: https://lore.kernel.org/all/20221013184700.87260-1-krzysztof.kozlowski@linaro.org/
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (3):
+  arm64: dts: qcom: sc7180-trogdor-homestar: fully configure secondary
+    I2S pins
+  arm64: dts: qcom: sc7180: revert "arm64: dts: qcom: sc7180: Avoid
+    glitching SPI CS at bootup on trogdor"
+  arm64: dts: qcom: sc7180: align TLMM pin configuration with DT schema
+
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts       | 236 +++----
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  36 +-
+ .../dts/qcom/sc7180-trogdor-homestar.dtsi     |  41 +-
+ .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  16 +-
+ .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   |   8 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  16 +-
+ .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  25 +-
+ .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi |  72 +-
+ .../qcom/sc7180-trogdor-parade-ps8640.dtsi    |  32 +-
+ .../boot/dts/qcom/sc7180-trogdor-pazquel.dtsi |   8 +-
+ .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  14 +-
+ .../qcom/sc7180-trogdor-quackingstick.dtsi    |  56 +-
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |   8 +-
+ .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi |  16 +-
+ .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  25 +-
+ .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  |  72 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 650 +++++++-----------
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          | 597 ++++++++--------
+ 18 files changed, 776 insertions(+), 1152 deletions(-)
+
+-- 
+2.34.1
+
