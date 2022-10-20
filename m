@@ -2,118 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 204B1605EAB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:19:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36F89605EC7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:24:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230488AbiJTLTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 07:19:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51660 "EHLO
+        id S231325AbiJTLYi convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 20 Oct 2022 07:24:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230131AbiJTLTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:19:44 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9F96D2E7;
-        Thu, 20 Oct 2022 04:19:35 -0700 (PDT)
-X-UUID: d6324221b4c8432aa2fd7fb945db3303-20221020
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=o1UOZUfKHRFNreNnfb8QigkcTVnukydqA2mmXzDsqKY=;
-        b=WX4skekIxrD9ESdnkoEGcwov57c7AZJTuZGY/Ox2a5b35FmDZVlVwCItDhH66Ev6fR4upmvbYI24cgkn6/AknaA8e3kTfxFCsVcVrjZWhHFkSvRiJUU1XjuU5KPqWCzd0aFSvSuQu0K+EMIxcOPgBibId0q89QOwUgXL8l8I8Ic=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:31dbd1a1-f9ac-4ba8-89f8-1d150768cba5,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:95
-X-CID-INFO: VERSION:1.1.12,REQID:31dbd1a1-f9ac-4ba8-89f8-1d150768cba5,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
-        :quarantine,TS:95
-X-CID-META: VersionHash:62cd327,CLOUDID:0ae46ca4-ebb2-41a8-a87c-97702aaf2e20,B
-        ulkID:221020191931XVBKLZPW,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
-        il,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: d6324221b4c8432aa2fd7fb945db3303-20221020
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1106162124; Thu, 20 Oct 2022 19:19:28 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 20 Oct 2022 19:19:27 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 20 Oct 2022 19:19:27 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Ryder Lee <ryder.lee@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230402AbiJTLYf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:24:35 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF2DBC12
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 04:24:27 -0700 (PDT)
+Received: from p57b7734d.dip0.t-ipconnect.de ([87.183.115.77] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1olTev-00062S-61; Thu, 20 Oct 2022 13:24:21 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Michele =?ISO-8859-1?Q?Zuccal=E0?= <ardutu@gmail.com>
+Cc:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Irui Wang <irui.wang@mediatek.com>
-Subject: [PATCH v2 3/3] arm64: dts: mt8195: Add venc node
-Date:   Thu, 20 Oct 2022 19:19:25 +0800
-Message-ID: <20221020111925.30002-4-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20221020111925.30002-1-tinghan.shen@mediatek.com>
-References: <20221020111925.30002-1-tinghan.shen@mediatek.com>
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Alex Bee <knaerzche@gmail.com>,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: Re: [PATCH] arm: dts: rockchip: add crypto node for RK322x
+Date:   Thu, 20 Oct 2022 13:24:20 +0200
+Message-ID: <5768534.MhkbZ0Pkbq@phil>
+In-Reply-To: <CAK1Nf75B-4wzM3pafaOVHCD9WugT3YPjphbEq25-WLRGh3Jhbw@mail.gmail.com>
+References: <Y1AqBnPSyu7PpiwP@deskilmich.example.net> <9009700.CDJkKcVGEf@phil> <CAK1Nf75B-4wzM3pafaOVHCD9WugT3YPjphbEq25-WLRGh3Jhbw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add venc node for mt8195 SoC.
+Hi Michele,
 
-Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Am Donnerstag, 20. Oktober 2022, 13:13:10 CEST schrieb Michele Zuccalà:
+> > no worries, we'll get you through it :-)
+> >
+> 
+> thank you
+> 
+> >
+> > actually you want to go the following route:
+> >
+> > (1) pick up
+> > - https://lore.kernel.org/all/20220927075511.3147847-25-clabbe@baylibre.com/
+> > - https://lore.kernel.org/all/20220927075511.3147847-26-clabbe@baylibre.com/
+> > as a base to work on
+> >
+> > (2) create a patch to add your compatible.
+> > I _think_ after that, the compatible block should looks
+> > something like:
+> >
+> >   compatible:
+> >     oneOf:
+> >       - const: rockchip,rk3288-crypto
+> >       - const: rockchip,rk3328-crypto
+> >       - const: rockchip,rk3399-crypto
+> >       - items:
+> >           - const: rockchip,rk3228-crypto
+> >           - const: rockchip,rk3288-crypto
+> >
+> > to handle the new dual element compatible.
+> >         make dt_binding_check
+> > should tell you about a wrong format.
+> >
+> > (3) modify your dts patch to use the two compatibles
+> > (4) export patches by
+> >         git format-patch -2 --cover-letter
+> > and mention in the cover-letter the dependency on the
+> > yaml conversion.
+> 
+> very clear. But excuse the stupid question, this way it becomes a new patchset
+> and not the v2 of this patch, right?! Will this patch be automatically
+> ignored ?!
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 2128fa007480..0779666c187c 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -2170,6 +2170,30 @@
- 			power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
- 		};
- 
-+		venc: video-codec@1a020000 {
-+			compatible = "mediatek,mt8195-vcodec-enc";
-+			reg = <0 0x1a020000 0 0x10000>;
-+			iommus = <&iommu_vdo M4U_PORT_L19_VENC_RCPU>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_REC>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_BSDMA>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_SV_COMV>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_RD_COMV>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_CUR_LUMA>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_CUR_CHROMA>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_REF_LUMA>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_REF_CHROMA>;
-+			interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,scp = <&scp>;
-+			clocks = <&vencsys CLK_VENC_VENC>;
-+			clock-names = "venc_sel";
-+			assigned-clocks = <&topckgen CLK_TOP_VENC>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D4>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-+		};
-+
- 		vencsys_core1: clock-controller@1b000000 {
- 			compatible = "mediatek,mt8195-vencsys_core1";
- 			reg = <0 0x1b000000 0 0x1000>;
--- 
-2.18.0
+The new patchset still should become v2, as it still addresses
+your overall goal of adding crypto support for the rk3228.
+
+
+Heiko
+
 
