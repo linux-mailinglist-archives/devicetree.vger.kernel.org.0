@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 075406065E1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:33:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E08E86065F4
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:39:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229996AbiJTQdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 12:33:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60290 "EHLO
+        id S230111AbiJTQjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 12:39:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229966AbiJTQdr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:33:47 -0400
+        with ESMTP id S229742AbiJTQjU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:39:20 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F6451C4EEE
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:33:46 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4AC91BB970
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:39:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1666283625;
+        s=mimecast20190719; t=1666283958;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=+PN9Zmo6gmcoTAvY3Ztc9ZICuuK1P6MwzJ+pG+ZS7pk=;
-        b=DG+Nvo7StrcPp+qo/WcbzO1hDPbdVoCnNvVm0a4cvjTKYgJhN65Z9GngUZY6qI/0FyGlsh
-        Hxw0H3eA7eyHXY86DzbnXK4+OB5gmOZFEbkF0CZmTnYmpo4wYwZ/npeJc3/FALg2o1dLZ0
-        Tfbs3IDQBnwkv8IC0eCcJWQ7zQ4SUSk=
-Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
- [209.85.166.197]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=omwjaJqVpRMhtOWiFbngTkAQCb38UHG2LtZ5YNjxAtA=;
+        b=it2FiodO3cBbOs4KN7TDM0lzIURYuXMffN0znUiVV6r/6ORjxZOxmdC7Jm3J6cxd9G0Cl0
+        rp5+9nSK5MvGUHbiQlNaSMduPBi/pIbHjRKhlzBoAKXedkhUes1DkRXO5F5fcOEn1hXe3/
+        6PhlaASx8TizmYTSaVl5zARB7sMqQeY=
+Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
+ [209.85.166.199]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-641-ieZnczwjOMWt5S6EHPoFow-1; Thu, 20 Oct 2022 12:33:44 -0400
-X-MC-Unique: ieZnczwjOMWt5S6EHPoFow-1
-Received: by mail-il1-f197.google.com with SMTP id j29-20020a056e02219d00b002f9b13c40c5so257647ila.21
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:33:44 -0700 (PDT)
+ us-mta-29-Obeb9MIcNkCgcrqiyqLM_Q-1; Thu, 20 Oct 2022 12:39:16 -0400
+X-MC-Unique: Obeb9MIcNkCgcrqiyqLM_Q-1
+Received: by mail-il1-f199.google.com with SMTP id i8-20020a056e0212c800b002f9a4c75658so342747ilm.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:39:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+PN9Zmo6gmcoTAvY3Ztc9ZICuuK1P6MwzJ+pG+ZS7pk=;
-        b=581RzVxOdsAB71eKIxtdBTfc47JErt200OJvbCegi1HSHnULdWBF4PYRQqD7hdhbfG
-         8NdeOezaxB5lG/jUqTOHxEtq3+PA+owNHdHjoZK2I3JOd2EwtSq+iHy4vQhnSVe8v4jd
-         P0LE+yf5Nf3IINg2oNX3Wu44kfuhtfp/Xl+/xdyndSo222T83dtEKqVXowkXaXFMI6PZ
-         uFAy/c1bhyQnBROg60VFeViRi0HR29pCzOZqbqY+CNgSAd1oLPe5KGwbQjs6cLZcMGsk
-         k10ZpzPfriylNweDGtWaJDiP7PCs9UDO9PxLGTzpKA+2g27zRVzQeQIqxUYyPEI0l65h
-         qsaA==
-X-Gm-Message-State: ACrzQf3f5zFplM+iuQhRVhBegIOffiqjElp7+pviSBth4H5fTwRY6ipF
-        ti0hZPb/ysHaMeMBmuAekiOmZTe9sAgYqF23RwMB6rzDxRKvKdIL0387fVHuBEGDIPBREpA75Nh
-        t7GnOtH1reGz8bvd+o3hwMg==
-X-Received: by 2002:a05:6e02:1546:b0:2fd:1a72:8825 with SMTP id j6-20020a056e02154600b002fd1a728825mr10907259ilu.83.1666283623519;
-        Thu, 20 Oct 2022 09:33:43 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM7XHdv+alEzff5ONYljf0u9Vv1MKFPW6k4p9y5USRUJuL/pvytZkuf5ZoBiDEPgV8q09Ix6lw==
-X-Received: by 2002:a05:6e02:1546:b0:2fd:1a72:8825 with SMTP id j6-20020a056e02154600b002fd1a728825mr10907245ilu.83.1666283623274;
-        Thu, 20 Oct 2022 09:33:43 -0700 (PDT)
+        bh=omwjaJqVpRMhtOWiFbngTkAQCb38UHG2LtZ5YNjxAtA=;
+        b=Eo/r3FOKguQUQ9sjYF+hl9RRSGbqYWCmNIguKo4iQNChZVsy3gFZ2Zh0nVaBgHyxYV
+         big2Bx2SnCu7ja8gxPi1y7tUlU7Oh1zI0T50ivSn/F6x8h+McQqAmS5KsjyWTnLW/zgf
+         y9FMpWVitStGRZGxnELIjasZpTeVxkRSJC5kmOOKBCE3GEByeCwBt8aZlN7AysBhgWcL
+         rFLuSen3Jev42YvFBKz4Y9pWMIAT1kXpzgjx5sBRqRaF7bpHk7k5+91mqji63ynHOk+/
+         BvS7tEmMLpWa6T7hCtwqrPD0M7wcMkJI7CLUl6+IRTouSHFxneIZv3ZsDdLFbLwV8pFP
+         cIog==
+X-Gm-Message-State: ACrzQf1XMsoxMWi0uZCuvecrVTS3tgOGk0pwsMxqfb/6jl6r2TMeLOjW
+        nPQ8xPqDbhWlL13xGqjOrYxppAW1fdyS3toMxbEIfJ2AX0iivtOT8cfPET/rqD3vATu7N9ok04O
+        7GP2r41XiQXytGdre2Ld7Hg==
+X-Received: by 2002:a92:504:0:b0:2fb:43d:2271 with SMTP id q4-20020a920504000000b002fb043d2271mr11064391ile.256.1666283955750;
+        Thu, 20 Oct 2022 09:39:15 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM6EE4aSqztMreyOxctnSgCWKuz27gi8pWFZs+RXHi18gS6e9oWB11AExqXJVPnhQwLF3k/ykg==
+X-Received: by 2002:a92:504:0:b0:2fb:43d:2271 with SMTP id q4-20020a920504000000b002fb043d2271mr11064372ile.256.1666283955516;
+        Thu, 20 Oct 2022 09:39:15 -0700 (PDT)
 Received: from x1 (c-98-239-145-235.hsd1.wv.comcast.net. [98.239.145.235])
-        by smtp.gmail.com with ESMTPSA id c4-20020a92cf44000000b002ff36cb0a62sm883868ilr.27.2022.10.20.09.33.41
+        by smtp.gmail.com with ESMTPSA id o10-20020a056e02068a00b002de7ceafb4esm3247837ils.20.2022.10.20.09.39.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 09:33:42 -0700 (PDT)
-Date:   Thu, 20 Oct 2022 12:33:40 -0400
+        Thu, 20 Oct 2022 09:39:15 -0700 (PDT)
+Date:   Thu, 20 Oct 2022 12:39:13 -0400
 From:   Brian Masney <bmasney@redhat.com>
 To:     Parikshit Pareek <quic_ppareek@quicinc.com>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -66,15 +66,14 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
         Shazad Hussain <quic_shazhuss@quicinc.com>,
         Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: qcom: Document additional
- sa8540p device
-Message-ID: <Y1F4ZMAhHWRd9c3m@x1>
+Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: add SA8540P ride(Qdrive-3)
+Message-ID: <Y1F5sY4ETqNiRVdP@x1>
 References: <20221020073036.16656-1-quic_ppareek@quicinc.com>
- <20221020073036.16656-2-quic_ppareek@quicinc.com>
+ <20221020073036.16656-3-quic_ppareek@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221020073036.16656-2-quic_ppareek@quicinc.com>
+In-Reply-To: <20221020073036.16656-3-quic_ppareek@quicinc.com>
 User-Agent: Mutt/2.2.7 (2022-08-07)
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -86,11 +85,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 20, 2022 at 01:00:35PM +0530, Parikshit Pareek wrote:
-> Add the qdrive3 ride device to the valid device compatibles found on the
-> sa8540p platform.
+On Thu, Oct 20, 2022 at 01:00:36PM +0530, Parikshit Pareek wrote:
+> Introduce the Qualcomm SA8540P ride automotive platform, also known as
+> Qdrive-3 development board.
+> 
+> This initial contribution supports SMP, CPUFreq, cluster idle, UFS, RPMh
+> regulators, debug UART, PMICs, remoteprocs and USB.
+> 
+> The SA8540P ride contains four PM8450 PMICs.
 > 
 > Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
 
+With Konrad's requested changes:
+
 Reviewed-by: Brian Masney <bmasney@redhat.com>
+Tested-by: Brian Masney <bmasney@redhat.com>
+
+After more research, I've verified that the board reboot issue that
+I brought up in v5 is unrelated to the DTS, so no need to block merging
+this. I'll post some more findings soon about the issue.
+
+Brian
 
