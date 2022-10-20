@@ -2,98 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 039CF6065A4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:21:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F04D86065C4
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:27:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230139AbiJTQVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 12:21:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50896 "EHLO
+        id S229935AbiJTQ1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 12:27:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231131AbiJTQVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:21:19 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F45B1B90FC
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:21:16 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id l32so238806wms.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:21:16 -0700 (PDT)
+        with ESMTP id S230121AbiJTQ1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:27:02 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B39C4183E12
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:26:51 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id w3so14021293qtv.9
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:26:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GI9uwBLCvWR3OgOlMBN6oypd3UQ7AbJ0Dp0NjT4lxFo=;
-        b=4bkGk7hJ3/gLjKzcyaaVY4WHvFfZ/PYLiPSr23645Oe+YIeu5MQtu87/06UUV74DWt
-         vjeIeuy545c3YWmN4F5u890dHccN6tX0FuXbuDRL9cN1BosH/MLEXrQVnPJ7sTq1mEt5
-         Jaf0j8dfM6H7PxYZg8D8HKbagf/tVdLiR5KQBL5GtdIn7nlluYg1aDQgbb2JtKgUNgyA
-         DULRMrKHxIgtNKU2wEaDALPuviN4CW0AwCoQ0X9GL4ampRj5nmJ5JRR9aP6xMM34qlXp
-         zVXfOmzw7VSRV4Be3wXQVUr2J6tEvrKnKmPavpnipA1l8olLWTgjbM0e2J+AD5+hyZPk
-         rMmw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=i6dycCpajngbg2v0BxydQNe62PN7WGYYePMNofzYYVc=;
+        b=wfsRQlkpytgr4C7fZSjIUAV4biD/c9lsIrlikHQqE00AJ2/GOyHnnt3jxGWi294hGP
+         QCasoxV4e9jXqpbgbz31nNhvaFeADTamkq7h6sYVQF9mmlUYJ+sBia7pC/OsFXYi1um2
+         VImRxEcqOSlz9Nk+isbbctIsQUCMMdA7pBncg7CbtoR1hdzlAiZcYxadW4nbEnaESRok
+         PDbUyqeZ6XNiRSkuU+librfsphReuWoIFrib9SeleKjrKJHRFCnlYcBl9Co6vLMv5KS7
+         ohwXrDFxgwtMBDXIGsTpL9+CqwKrL8GCIsZRVI6bdsJykU7Kyypa+oCUM/OZ9+mm5hN5
+         hXkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GI9uwBLCvWR3OgOlMBN6oypd3UQ7AbJ0Dp0NjT4lxFo=;
-        b=h+3JqoYMDCmOkKooHf3OLJIC3ItW1GdmRlo6qLQBowsyH0t7CPbZdmCSWNtM7Nv2QX
-         m2gkgEcM9/JhklygWKECahBQPS9UgoyfyNzov81Ojmcx1JwufworJ0b14xyD3peLLM+X
-         fjGQNm9OyCTeu5JdqZLDL6sGhuiue7jVzHXomnH8N9+39DW5fPlp1yr/yTB3/MkMSp5q
-         h2zTXlGER+vZ2+EF/IE/4b6fxLEPSxocfI1CPZn3SrbF8t/Q71eUrepKMIj1FWEHUUk9
-         ujbpydoPfexahr/XF/x8NCC2Ckybkuhom3y3ZVpg/HBz6Q8pYYWaV0Tk6FRnl94INSsP
-         9ibA==
-X-Gm-Message-State: ACrzQf2GzmvNAQG2zdArl6y41I57pHqxFuCIIwZH1YqMgs3DOn6W61i7
-        oWy8asQNGplxTXmI5ibZfQeltA==
-X-Google-Smtp-Source: AMsMyM59O1Ens9WgNUevB39v9v24YyNwkvj33JjcvXYrs8vAqoPeTDo86MUcxITGL1VMMe8AHK3heA==
-X-Received: by 2002:a05:600c:3511:b0:3b4:bb85:f1dd with SMTP id h17-20020a05600c351100b003b4bb85f1ddmr10229689wmq.42.1666282875631;
-        Thu, 20 Oct 2022 09:21:15 -0700 (PDT)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id m14-20020a05600c3b0e00b003b4fe03c881sm208028wms.48.2022.10.20.09.21.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 09:21:15 -0700 (PDT)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Thu, 20 Oct 2022 18:20:49 +0200
-Subject: [PATCH v3 5/5] Input: mtk-pmic-keys: add MT6357 support
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i6dycCpajngbg2v0BxydQNe62PN7WGYYePMNofzYYVc=;
+        b=q8fYxmjMkMWhD/oOd2RAxWpSW6B41q7RqYciTMp4d25+tHDKlKUeCiXdLRo40miz3L
+         6tbZkRbyszsJzG878WK2iCZB0Fti7D2HjkoQ/+Dw2reBeJgasQ6fl872REymra8DwAKG
+         fw4W4BbmSrymGQN7NjAQ0N0kbp11lMtQVxE6FteUozjpLNHwa2kwG+niFN2pEEJwD26l
+         I6TLArNDsJhMcAlGDkKQBeCdBesB3eNZ5GYCspNtgfAAZfQg7lTttAH4Vvd8G7JolS8u
+         9vIbR/ql7Tp/MiCtpbrU3atl4tDlCkecXRHr+LlYKjAuiuVYJQgALQwHmIATmP2xzq11
+         U7eg==
+X-Gm-Message-State: ACrzQf0pIuYM3aiGMwWRoqJbkox4zedoDAPQ39Wj0BfwkMzfpg9Osm2i
+        AUsbeui6npBnza3KX0yXm0ltAA==
+X-Google-Smtp-Source: AMsMyM6sQzBZV+ybT3krnybJ7F1Gg+NUMIA1BVdPlr14i0N9nM/yHMvtqFpBbCgFGENuju805QWTFA==
+X-Received: by 2002:ac8:5acf:0:b0:39c:d4d8:3f75 with SMTP id d15-20020ac85acf000000b0039cd4d83f75mr11661745qtd.579.1666283210197;
+        Thu, 20 Oct 2022 09:26:50 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id do20-20020a05620a2b1400b006ec9f5e3396sm7912806qkb.72.2022.10.20.09.26.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 09:26:49 -0700 (PDT)
+Message-ID: <d5e176b3-75e2-67bc-3fc6-b54fe685c9a0@linaro.org>
+Date:   Thu, 20 Oct 2022 12:26:48 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20221005-mt6357-support-v3-5-7e0bd7c315b2@baylibre.com>
-References: <20221005-mt6357-support-v3-0-7e0bd7c315b2@baylibre.com>
-In-Reply-To: <20221005-mt6357-support-v3-0-7e0bd7c315b2@baylibre.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: Add base QDU1000/QRU1000 DTSIs
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2028; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=K2/LktiwnSqpYUY/NYDB7cyyBwW4Kzl5Gx1VcVhpHIg=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjUXV0iDb1YAXNizgwzlkkfM7Ta8EZ8gn6PwGStpFi
- gLELkyKJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY1F1dAAKCRArRkmdfjHURU8oD/
- sFWNRnMZfn2cJP8Xi92PmsQjtSjIQBMJiweHO3Y1WhAVltQpeURhm1QH/EAUnhtesmXThIsZzpigI9
- tJA52SFGLbNp65c0YFxO4jon2VvX31XVtRMGEsM1L4YdJjuL32G38ScQqaKK4hGIFD9sxF5mIAyie+
- WjPr47ZocNTBhczo2Dc07VZcu/oTWsBZPthKx2oHGglsHgJTBQ3pcAsxseJGTv9Y/dXaaI/owDEa7Y
- 89Or5TTOiaFHJpNx971Lw9eng+JI0FiQoH+RHGdw510zXFiINtsYdvRsm1Ee/NCiEvprOY9QdzEbiy
- Jw4lais2ggy7LkEEAjbVN8ovn4BSNhido0KzySqEqtnJFlPpcdV4f45tSF552VOFX8j8I0SH9wDekw
- TKQNf63p9fs1ptK7FUFMgrgWUYrxPfZPYIKxiEnS+0fAm4VY+7RXh1V6rRJzXY1HCllSmN5bcajER0
- uofbc+30YUOjtWZ+/22yPcLYOsW5kRh8G1sMo3OFBHFdew2qo2Y3m8s6qYbgqYKBaN14pyxpCQNisn
- R7/KpEG3f6sxUEfqBOWhbcY9kLp7M49mUZ56YFFgmPYKWq2nqwwh+f1pes+A9df7/pKmspkyDZnnwO
- aYWoIe3nLI1owUIr3N9CcN9MTXLgQm9Ko9lvNljcOvdfwtZ01c4BcCwZN1Zw==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221014221138.7552-1-quic_molvera@quicinc.com>
+ <20221014221138.7552-3-quic_molvera@quicinc.com>
+ <56af2a04-1b21-000d-e3f9-86b6ac74aaf2@linaro.org>
+ <a0032338-482f-0de7-5952-c3c8b8423df6@quicinc.com>
+ <50372a15-56ce-6ad6-f622-00624b909db8@linaro.org>
+ <Y1FTJgloEi5ag2/j@gerhold.net>
+ <9fbe1bf5-a84d-c56b-1c0e-6848ee3d30fe@linaro.org>
+In-Reply-To: <9fbe1bf5-a84d-c56b-1c0e-6848ee3d30fe@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -101,61 +85,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabien Parent <fparent@baylibre.com>
+On 20/10/2022 12:08, Krzysztof Kozlowski wrote:
+> On 20/10/2022 09:54, Stephan Gerhold wrote:
+>> On Thu, Oct 20, 2022 at 08:41:15AM -0400, Krzysztof Kozlowski wrote:
+>>> On 19/10/2022 16:21, Melody Olvera wrote:
+>>>> On 10/15/2022 6:28 AM, Krzysztof Kozlowski wrote:
+>>>>> On 14/10/2022 18:11, Melody Olvera wrote:
+>>>>> [...]
+>>>>>> +	clocks {
+>>>>>> +		xo_board: xo-board {
+>>>>>> +			compatible = "fixed-clock";
+>>>>>> +			clock-frequency = <19200000>;
+>>>>> Both clocks are not a property of a SoC. They are provided by the board,
+>>>>> so they should either be defined by board DTS or at least their
+>>>>> frequency must be provided by the board.
+>>>> That doesn't seem in keeping with precedent.... the sm8* series all have the clocks in
+>>>> the dtsi. These are common to the boards anyways.
+>>>
+>>> Because people do not pay attention what is part of SoC, what is part of
+>>> board. DTSI is for the SoC and these are inputs to the SoC.
+>>>
+>>
+>> (Just chiming in because I had this thought already a few times when you
+>>  suggested moving the XO "clock-frequency" to the board DTS:)
+>>
+>> I understand your reasoning for moving components of the board to the
+>> board DTS, but IMHO adding just the clock-frequency to the board DTS is
+>> even more misleading: It suggests that there are functional board
+>> designs where you would use a XO clock with a different clock-frequency.
+>> Is that really realistic though?
+> 
+> Keeping it in DTSI also suggests you could have some different frequency.
+> 
+>>
+>> There are assumptions about the XO clock frequency in a lot of places:
+>> You would need to fully rewrite the gcc-<SoC>.c driver because it has
+>> fixed multipliers/dividers for one specific XO frequency. All firmware
+>> binaries would likely need changes. And does the hardware even support a
+>> different XO clock frequency? The APQ8016E datasheet for example
+>> strictly documents a XO clock input of 19.2 MHz and a sleep clock of
+>> 32.768 kHz.
+> 
+> I know, the same with most of other platforms. Qualcomm is not special
+> here. Maybe the difference is that some other platforms have few
+> external clocks and not all of them are required.
+> 
+>> IMHO the only realistic variation of the XO clock setup would be to have
+>> a physical "fixed-clock" with a higher frequency, followed by a
+>> "fixed-factor-clock" that brings it back to the expected frequency. To
+>> model that properly it is not enough to have just the "clock-frequency"
+>> in the board DTS. In this case you need two clock nodes, and the
+>> xo_board would be the "fixed-factor-clock".
+> 
+> It's not about whether you can change it or not. It's about describing
+> hardware - SoC DTSI describes SoC. DTS describes the board (assuming
+> there is no SoM or other DTSI files). This clock is not in DTSI.
+> 
+>> Therefore it should be all or nothing IMO: Either we move the full
+>> xo-board node to the board DTS (which allows alternatively defining the
+>> "fixed-factor-clock" or whatever).
+> 
+> You can move entire clock to boards.
+> 
+>> Or we assume that there will be
+>> always an input clock signal with the fixed frequency and keep it fully
+>> in the SoC .dtsi.
+>>
+>> Having just the "clock-frequency" in the board DTS puts the attention on
+>> the wrong detail, IMO. :)
+> 
+> No, it puts attention to the board designer that he needs to provide the
+> clock in his design.
+> 
 
-Add PMIC Keys support on MT6357 SoC.
+Another solution which would satisfy me, would be to put these clocks to
+a dedicated, re-usable DTSI and include that DTSI in each board DTS.
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- drivers/input/keyboard/mtk-pmic-keys.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Best regards,
+Krzysztof
 
-diff --git a/drivers/input/keyboard/mtk-pmic-keys.c b/drivers/input/keyboard/mtk-pmic-keys.c
-index 9b34da0ec260..2a63e0718eb6 100644
---- a/drivers/input/keyboard/mtk-pmic-keys.c
-+++ b/drivers/input/keyboard/mtk-pmic-keys.c
-@@ -10,6 +10,7 @@
- #include <linux/kernel.h>
- #include <linux/mfd/mt6323/registers.h>
- #include <linux/mfd/mt6331/registers.h>
-+#include <linux/mfd/mt6357/registers.h>
- #include <linux/mfd/mt6358/registers.h>
- #include <linux/mfd/mt6397/core.h>
- #include <linux/mfd/mt6397/registers.h>
-@@ -90,6 +91,19 @@ static const struct mtk_pmic_regs mt6331_regs = {
- 	.rst_lprst_mask = MTK_PMIC_MT6331_RST_DU_MASK,
- };
- 
-+static const struct mtk_pmic_regs mt6357_regs = {
-+	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
-+		MTK_PMIC_KEYS_REGS(MT6357_TOPSTATUS,
-+				   0x2, MT6357_PSC_TOP_INT_CON0, 0x5,
-+				   MTK_PMIC_PWRKEY_RST),
-+	.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
-+		MTK_PMIC_KEYS_REGS(MT6357_TOPSTATUS,
-+				   0x8, MT6357_PSC_TOP_INT_CON0, 0xa,
-+				   MTK_PMIC_HOMEKEY_INDEX),
-+	.pmic_rst_reg = MT6357_TOP_RST_MISC,
-+	.rst_lprst_mask = MTK_PMIC_RST_DU_MASK,
-+};
-+
- static const struct mtk_pmic_regs mt6358_regs = {
- 	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
- 		MTK_PMIC_KEYS_REGS(MT6358_TOPSTATUS,
-@@ -276,6 +290,9 @@ static const struct of_device_id of_mtk_pmic_keys_match_tbl[] = {
- 	}, {
- 		.compatible = "mediatek,mt6331-keys",
- 		.data = &mt6331_regs,
-+	}, {
-+		.compatible = "mediatek,mt6357-keys",
-+		.data = &mt6357_regs,
- 	}, {
- 		.compatible = "mediatek,mt6358-keys",
- 		.data = &mt6358_regs,
-
--- 
-b4 0.10.1
