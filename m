@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0771D605658
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 06:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B077E60565E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 06:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbiJTEft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 00:35:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44654 "EHLO
+        id S229871AbiJTEgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 00:36:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229876AbiJTEfs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 00:35:48 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B54115A97E
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 21:35:45 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id s196so16867884pgs.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 21:35:45 -0700 (PDT)
+        with ESMTP id S229898AbiJTEgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 00:36:36 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02453161FCE
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 21:36:35 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id d24so19219090pls.4
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 21:36:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=vaTJwOuEg93iQQbdS+3fyrSbZ2F6gvnRoRGn3vEwwlc=;
-        b=fXLmBLGDsn3B1lcmX2rR2fnv1LRU+O9Z+KLUZE5v0P4rE+VHfpNukHXhWNOsPICWI8
-         cE3IUw79W3w8yjrc+G0PYZdUZ6G2ZxF03miAuDIzD3GUlTDyZcBL9/xhRFymof7pPulU
-         YhmHORcwwHiczDf1HHypj8Bl8F/pQaYb+M4O0Ep+dd1SwIWvcEySoL1LFQ/npC4EDgKt
-         S2B3c4QSUxF0Oc6zU+xrGZ0sACC1tPTY2WVb06qsIMrgIS486MWUeF0Gvzyax7ObtMc7
-         lYQhp2JCfO0wAfqNfx0EtjFLAzR58ILRo6wnMzaCaV+2Gc23+oLE3V3/fxQwg6qutx24
-         LYAw==
+        bh=hQl2xZYeQM+maPS5+wYcZN71xZnoLpUn4u2n9e80A1k=;
+        b=VVCyCBne3egzpFuhrKEfIJkrp75Jz1ao+512Mq7obhK9H2gHLqxnb0fOSyHPyUCWPY
+         H+pga1QGEb8LKqRW6F5bZ8oOGRgEPnHt3atLKn2x4swvheId21kGBqC7Xg3q8yaTPHfc
+         M+mYcRu/ofWtNUyJvpeFFjquHqKNtAiXiQhfT2e5uTnjeyEzMVMMwuqcMp0F1exuspjV
+         7gDs9b3vI/SbdTW44+/ZordSgddEgDQPAEPXaOH8R5dpTNFbDudY1EFC1vwaxxBZrQPL
+         3N/LBQLk6Eil69yQ8IUTa3UkMzozOEpUA93eySIPuF8Lqbw/LnMx2aMykdMXiCfY5/0U
+         nuAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vaTJwOuEg93iQQbdS+3fyrSbZ2F6gvnRoRGn3vEwwlc=;
-        b=mITjW4RbCo4iFJDksqWgrTJq8Q9NOIPuv0SaJs+OI8yrpbJnvjogROO8sUKacZGaU2
-         HZC+omHcxexfqwb4Y7zf0J5JioQW1k4Qd42N8PTK3BAh+cFgqc3QkQD8zpKsJAAJL+JT
-         ssbqtM7ExomivBR90ApdB3R3JHapi3W1QVAsoAvLWul8JJZYkMPHJc4MPGypskt/q+MM
-         u9C29l1J3WzkOCJleJEvxuTJ5sSOrPqWdZ8PsSz8syoQsSQZFCXhgxip3noe5YOqESIv
-         pzOv9ExAtSDa/eJ3qwEe/jW1YqD+PdZRBvPptnfZHr5fmlvSTZBRC3+FqBNq4udyEkOd
-         uO0g==
-X-Gm-Message-State: ACrzQf2GdC1lcC+PDQhJJE470j7CS8yksAsc9IgwryJbhwi2vr+9hdAD
-        GqFINqo7F1LQ9a7wZHkrstL/WQ==
-X-Google-Smtp-Source: AMsMyM4lAKNM3kgTfz4JjX9/gfimDSCwGs+K08lNtqHYthW7vm65NZKtwJ65yFtOI0uccMwqOvzROw==
-X-Received: by 2002:a62:164d:0:b0:562:bc4e:253 with SMTP id 74-20020a62164d000000b00562bc4e0253mr11752301pfw.26.1666240544915;
-        Wed, 19 Oct 2022 21:35:44 -0700 (PDT)
+        bh=hQl2xZYeQM+maPS5+wYcZN71xZnoLpUn4u2n9e80A1k=;
+        b=UJUk1mdbgwJepejpMZSkl2xYoqdLvl9Spk5yyuyr6oLm7aPB/cLUDEdG2vCmxOHN69
+         uz8Qwq8+hvtQzXCn3L5uPFWEOtMqWq0lsE8jnISWqJD0XMRbGtRxUxX27T8mbQTOYvil
+         7tsVMa0LTlU3WUYWB4ETFUh3lK+LX+06kXwqDjhKJ0dEtnYBHDv0hOf/8CYJNrM443Ma
+         j0ka6Q59sJf5TNHGPUjj1ju8RD2McLVf4JHzAfYHVm1+7DJdofn5jxecpr0P5qTxyz06
+         pCFm54FSNigJHijx2fz/LmIzd6ExOiT5WV/AMN3Crh9d+VpfvwbfwDhQZroK+wUpOrEB
+         uR+Q==
+X-Gm-Message-State: ACrzQf32w0C4T2zpNhjczisKYdLzibx3JfO+4DpBhOIzMEDUj3M8AWBk
+        tLh8/eDX6W1dhs1G/hvnUdI5NkhfUVJzhQ==
+X-Google-Smtp-Source: AMsMyM5zzjWfS/DI9BhJnlbWYlBt7rgwoFs02MxbqPnbIHLzHL2X4Z2CL+tsFOb7bIpWQg9BvHojZg==
+X-Received: by 2002:a17:902:7b95:b0:178:ab50:76b5 with SMTP id w21-20020a1709027b9500b00178ab5076b5mr12139210pll.161.1666240594345;
+        Wed, 19 Oct 2022 21:36:34 -0700 (PDT)
 Received: from localhost ([122.172.86.128])
-        by smtp.gmail.com with ESMTPSA id e19-20020a170902ed9300b00173411a4385sm11623239plj.43.2022.10.19.21.35.21
+        by smtp.gmail.com with ESMTPSA id y2-20020a170902864200b001754cfb5e21sm11614884plt.96.2022.10.19.21.36.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Oct 2022 21:35:23 -0700 (PDT)
-Date:   Thu, 20 Oct 2022 10:05:20 +0530
+        Wed, 19 Oct 2022 21:36:33 -0700 (PDT)
+Date:   Thu, 20 Oct 2022 10:06:32 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     =?utf-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-Cc:     Rajeev Kumar <rajeev-dlh.kumar@st.com>,
-        Bhavna Yadav <bhavna.yadav@st.com>,
-        Deepak Sikri <deepak.sikri@st.com>,
-        Vijay Kumar Mishra <vijay.kumar@st.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
         Viresh Kumar <vireshk@kernel.org>,
         Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vipin Kumar <vipin.kumar@st.com>,
-        Vipul Kumar Samar <vipulkumar.samar@st.com>
-Subject: Re: [PATCH 2/6] arm: dts: spear600: Fix clcd interrupt
-Message-ID: <20221020043520.eitwswwxjlrso5jq@vireshk-i7>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 5/6] arm: dts: spear600: Add ssp controller nodes
+Message-ID: <20221020043632.cbofx5jvajhy4xba@vireshk-i7>
 References: <20221019133208.319626-1-kory.maincent@bootlin.com>
- <20221019133208.319626-3-kory.maincent@bootlin.com>
+ <20221019133208.319626-6-kory.maincent@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221019133208.319626-3-kory.maincent@bootlin.com>
+In-Reply-To: <20221019133208.319626-6-kory.maincent@bootlin.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,27 +80,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 19-10-22, 15:32, Köry Maincent wrote:
 > From: Kory Maincent <kory.maincent@bootlin.com>
 > 
-> Interrupt 12 of the Interrupt controller belongs to the SMI controller,
-> the right one for the display controller is the interrupt 13.
+> The SPEAr600 has three Synchronous serial port to enables synchronous
+> serial communication with slave or master peripherals (SPI). Lets add these
+> nodes to be able to use them.
 > 
-> Fixes: 8113ba917dfa ("ARM: SPEAr: DT: Update device nodes")
 > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 > ---
->  arch/arm/boot/dts/spear600.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm/boot/dts/spear600.dtsi | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
 > 
 > diff --git a/arch/arm/boot/dts/spear600.dtsi b/arch/arm/boot/dts/spear600.dtsi
-> index fd41243a0b2c..9d5a04a46b14 100644
+> index 9d5a04a46b14..6b67c0ceaed9 100644
 > --- a/arch/arm/boot/dts/spear600.dtsi
 > +++ b/arch/arm/boot/dts/spear600.dtsi
-> @@ -47,7 +47,7 @@ clcd: clcd@fc200000 {
->  			compatible = "arm,pl110", "arm,primecell";
->  			reg = <0xfc200000 0x1000>;
->  			interrupt-parent = <&vic1>;
-> -			interrupts = <12>;
-> +			interrupts = <13>;
->  			status = "disabled";
+> @@ -207,6 +207,36 @@ adc: adc@d820b000 {
+>  				interrupts = <6>;
+>  				status = "disabled";
+>  			};
+> +
+> +			ssp1: spi@d0100000 {
+> +				compatible = "arm,pl022", "arm,primecell";
+> +				reg = <0xd0100000 0x1000>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				interrupt-parent = <&vic0>;
+> +				interrupts = <26>;
+> +				status = "disabled";
+> +			};
+> +
+> +			ssp2: spi@d0180000 {
+> +				compatible = "arm,pl022", "arm,primecell";
+> +				reg = <0xd0180000 0x1000>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				interrupt-parent = <&vic0>;
+> +				interrupts = <27>;
+> +				status = "disabled";
+> +			};
+> +
+> +			ssp3: spi@d8180000 {
+> +				compatible = "arm,pl022", "arm,primecell";
+> +				reg = <0xd8180000 0x1000>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				interrupt-parent = <&vic1>;
+> +				interrupts = <5>;
+> +				status = "disabled";
+> +			};
 >  		};
+>  	};
+>  };
 
 Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
